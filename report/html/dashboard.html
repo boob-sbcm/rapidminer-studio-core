@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    
+    
+    <link rel="SHORTCUT ICON" href="img/clover.ico" />
+
+    <link rel="stylesheet" href="aui/css/aui.min.css" media="all"/>
+    <link rel="stylesheet" href="aui/css/aui-experimental.min.css" media="all"/>
+    <!--[if IE 9]><link rel="stylesheet" href="aui/css/aui-ie9.min.css" media="all"/><![endif]-->
+
+    <style type="text/css" media="all">
+        @import url('style.css');
+        @import url('tree.css');
+        
+    </style>
+
+    <script src="jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui-experimental.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui-soy.min.js" type="text/javascript"></script>
+
+    <script src="package-nodes-tree.js" type="text/javascript"></script>
+    <script src="clover-tree.js" type="text/javascript"></script>
+    <script src="clover.js" type="text/javascript"></script>
+    <script src="clover-descriptions.js" type="text/javascript"></script>
+    <script src="cloud.js" type="text/javascript"></script>
+
+            <title>rapidminer-studio-core 转换结果 </title>
+    </head>
+
+<body onresize="processTreeMapDashJson(treeMapJson);" >
+    <div id="page">
+        
+        
+
+
+<header id="header" role="banner">
+    <nav class="aui-header aui-dropdown2-trigger-group" role="navigation">
+        <div class="aui-header-inner">
+            <div class="aui-header-primary">
+                <h1 id="logo" class="aui-header-logo aui-header-logo-clover">
+                    <a href="http://www.atlassian.com/clover" title="Open Atlassian Clover home page"><span class="aui-header-logo-device">Clover</span></a>
+                </h1>
+                            </div>
+            <div class="aui-header-secondary">
+                <ul class="aui-nav">
+                    <li id="system-help-menu">
+                        <a class="aui-nav-link" title="Open online Clover documentation" target="_blank"
+                           href="https://confluence.atlassian.com/display/CLOVER/Clover+Documentation+Home">
+                            <span class="aui-icon aui-icon-small aui-iconfont-help">&#160;Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+        
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <div class="aui-page-panel-nav aui-page-panel-nav-clover">
+                    
+
+<div class="aui-page-header-inner" style="margin-bottom: 20px;">
+    <div class="aui-page-header-image">
+                <div class="aui-avatar aui-avatar-large aui-avatar-project">
+            <div class="aui-avatar-inner">
+                                    <img src="img/clover_logo_large.png" alt="Clover icon"/>
+                            </div>
+        </div>
+            </div>
+    <div class="aui-page-header-main" >
+        <h1>
+                                        rapidminer-studio-core 转换结果 
+                                </h1>
+    </div>
+</div>
+
+<nav class="aui-navgroup aui-navgroup-vertical">
+    <div class="aui-navgroup-inner">
+                                            <ul class="aui-nav">
+                <li class="aui-nav-selected">
+                    <a href="dashboard.html">Project overview</a>
+                </li>
+            </ul>
+        
+                <div class="aui-nav-heading packages-nav-heading">
+            <strong>Packages</strong>
+        </div>
+        <div class="aui-nav project-packages">
+            <form method="get" action="#" class="aui package-filter-container">
+                <input type="text" autocomplete="off" class="package-filter text"
+                       placeholder="Type to filter packages..." name="package-filter" id="package-filter"
+                       title="Start typing package name (or part of the name) to search through the tree. Use arrow keys and the Enter key to navigate."/>
+            </form>
+            <p class="package-filter-no-results-message hidden">
+                <small>No results found.</small>
+            </p>
+                                                  <div class="packages-tree-wrapper" data-root-relative="" data-package-name="">
+                <div class="packages-tree-container"></div>
+                <div class="clover-packages-lozenges"></div>
+            </div>
+        </div>
+        
+            </div>
+</nav>                </div>
+                <section class="aui-page-panel-content">
+                    <div class="aui-page-panel-content-clover">
+
+                    
+                    <ol class="aui-nav aui-nav-breadcrumbs">
+            
+        <li><a href="dashboard.html">Project Clover database 星期二 九月 5 2017 16:40:29 CST</a></li>
+    </ol>
+    
+<h1 class="aui-h2-clover">
+            Project overview
+    </h1>
+<div class="aui-tabs horizontal-tabs">
+        <ul class="tabs-menu">
+            <li class="menu-item active-tab">
+            <a href="dashboard.html">Dashboard</a>
+        </li>
+                <li class="menu-item ">
+            <a href="pkg-summary.html"><strong>Application code</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="testsrc-pkg-summary.html"><strong>Test code</strong></a>
+        </li>
+        <li class="menu-item ">
+            <a href="test-pkg-summary.html"><strong>Test results</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="top-risks.html"><strong>Top risks</strong></a>
+        </li>
+        <li class="menu-item ">
+            <a href="quick-wins.html"><strong>Quick wins</strong></a>
+        </li>
+                                                <li class="menu-item ">
+                <a href="treemap.html"><strong>Coverage tree map</strong></a>
+            </li>
+            </ul>
+    <div class="tabs-pane active-pane" id="tabs-first">
+
+        <div>&#160;</div>
+
+
+
+    <div class="aui-message aui-message-warning">
+        <p class="title">
+            <strong>Evaluation License</strong>
+        </p>
+        <p>
+            This report was generated with an evaluation server license.  <a href="http://www.atlassian.com/software/clover">Purchase Clover</a> or <a href="http://confluence.atlassian.com/x/JAgQCQ">configure your license.</a>
+        </p>
+    </div>
+
+
+
+<div class="aui-group">
+    <div class="aui-item">
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                
+                <h3>
+                    Code coverage
+                    <small style="float:right; font-weight: normal">
+                        3,995 classes,
+                        0 /
+                        100 elements
+                    </small>
+                </h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div>
+                <p><a href="pkg-summary.html">See more</a></p>
+            </div>
+        </div>
+
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>
+                    Test results
+                    <small style="float:right; font-weight: normal">
+                        0 /
+                        0 tests
+                        0 secs
+                    </small>
+                </h3>
+            </header>
+            <div class="dashboard-widget-content">
+                                        <div class="aui-message aui-message-warning">
+        <p class="title">
+            <strong>No test results</strong>
+        </p>
+        <p>No test results could be found. Please ensure that you have instrumented your unit tests correctly.</p>
+    </div>
+                                <p><a href="test-pkg-summary.html">See more</a></p>
+            </div>
+        </div>
+
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Code metrics</h3>
+            </header>
+                         
+
+<div id="$statsId" class="aui-item" style="display: ${display}">
+<div style="display: table">
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of branches in this project">Branches:</label></div>
+        <div class="stats-box-value">0</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of statements in this project">Statements:</label></div>
+        <div class="stats-box-value">65</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of methods in this project">Methods:</label></div>
+        <div class="stats-box-value">35</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of classes in this project">Classes:</label></div>
+        <div class="stats-box-value">3,995</div>
+    </div>
+            <div class="stats-box">
+            <div class="stats-box-label"><label title="Total number of files in this project">Files:</label></div>
+            <div class="stats-box-value">3,461</div>
+        </div>
+                <div class="stats-box">
+            <div class="stats-box-label"><label title="Total number of packages in this project">Packages:</label></div>
+            <div class="stats-box-value">318</div>
+        </div>
+        <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of lines of code in this project">LOC:</label></div>
+        <div class="stats-box-value">597,442</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of non-comment lines of code in this project">NCLOC:</label></div>
+        <div class="stats-box-value">360,217</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Cyclomatic complexity is the number of paths in this project">Total complexity:</label></div>
+        <div class="stats-box-value">35</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label">
+            <label title="Complexity density is the complexity divided by the number of statements in this project">Complexity density:</label>
+        </div>
+        <div class="stats-box-value">0.54</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Number of statements per method.">Statements/Method:</label></div>
+        <div class="stats-box-value">1.86</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Number of methods per class.">Methods/Class:</label></div>
+        <div class="stats-box-value">0.01</div>
+    </div>
+            <div class="stats-box">
+            <div class="stats-box-label"><label title="Number of classes per package.">Classes/Package:</label></div>
+            <div class="stats-box-value">12.56</div>
+        </div>
+        <div class="stats-box">
+        <div class="stats-box-label"><label title="Complexity divided by the number of methods in this project">Average method complexity:</label></div>
+        <div class="stats-box-value">1</div>
+    </div>
+</div>
+
+</div>        </div>
+
+                <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Class Coverage Distribution</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <div style="text-align: center">                     <img src="img/classDistrubutionChart.png" alt="img/classDistrubutionChart.png" usemap="#classDistrubutionChart.png"/>
+                </div>
+                <map id="classDistrubutionChart.png" name="classDistrubutionChart.png">
+<area shape="rect" coords="38,15,60,206" title="33 classes have 0% coverage" alt="" nohref="nohref"/>
+</map>
+            </div>
+        </div>
+        
+                <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Class Complexity</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <div style="text-align: center">
+                    <img src="img/classComplexityChart.png" alt="img/classComplexityChart.png" usemap="#classComplexityChart.png"/>
+                </div>
+                <map id="classComplexityChart.png" name="classComplexityChart.png">
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,209,52,212,49,209,52,207,54,209,54,209" title="Complexity: 0; Coverage: 0%; Class: ManagedExtension" alt="" href="com/rapidminer/tools/plugin/ManagedExtension.html#ManagedExtension"/>
+<area shape="poly" coords="54,209,52,212,49,209,52,207,54,209,54,209" title="Complexity: 0; Coverage: 0%; Class: ManagedExtension" alt="" href="com/rapidminer/tools/plugin/ManagedExtension.html#ManagedExtension"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,65,52,68,49,65,52,63,54,65,54,65" title="Complexity: 3; Coverage: 0%; Class: Actions" alt="" href="com/rapidminer/gui/actions/Actions.html#Actions"/>
+<area shape="poly" coords="54,209,52,212,49,209,52,207,54,209,54,209" title="Complexity: 0; Coverage: 0%; Class: ManagedExtension" alt="" href="com/rapidminer/tools/plugin/ManagedExtension.html#ManagedExtension"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,18,52,20,49,18,52,15,54,18,54,18" title="Complexity: 4; Coverage: 0%; Class: MetaDataDeclerationWizardStep" alt="" href="com/rapidminer/gui/tools/dialogs/wizards/dataimport/MetaDataDeclerationWizardStep.html#MetaDataDeclerationWizardStep"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+<area shape="poly" coords="54,161,52,164,49,161,52,159,54,161,54,161" title="Complexity: 1; Coverage: 0%; Class: RegexpPropertyDialog.RegexpSearchStyledDocument" alt="" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html#RegexpPropertyDialog.RegexpSearchStyledDocument"/>
+</map>
+            </div>
+        </div>
+        
+                    <div class="dashboard-widget">
+                <header class="dashboard-widget-header">
+                    <h3>Coverage tree map</h3>
+                </header>
+                <div class="dashboard-widget-content">
+                    <div id="infovis" style="width:100%; height:250px;">
+                        <div id="treemap-loader" style="position:relative;top:50px;">
+                            <p>
+                                Generating Coverage Tree Map. Please wait...
+                            </p>
+                            <p>
+                                <img src="img/ajax-loader.gif" alt="Loading Treemap"/>
+                            </p>
+                        </div>
+                    </div>
+                    <p><a href="treemap.html">See more</a></p>
+                </div>
+
+            </div>
+            </div>
+
+
+    <div class="aui-item">
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Top 20 project risks</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                
+                                                                <a class="tag" href="com/rapidminer/gui/tools/dialogs/wizards/dataimport/MetaDataDeclerationWizardStep.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">MetaDataDeclerationWizardStep</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/new_plotter/engine/jfreechart/JFreeChartPlotEngine.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">JFreeChartPlotEngine</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/actions/Actions.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">Actions</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/processeditor/MacroEditor.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">MacroEditor</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">RegexpPropertyDialog.RegexpSearchStyledDocument</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/tools/StrictDecimalFormat.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">StrictDecimalFormat</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/processeditor/RepositoryLocationsEditor.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">RepositoryLocationsEditor.RepositoryLocationTable</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/operatortree/actions/ToggleBreakpointItem.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">ToggleBreakpointItem</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/operatortree/actions/ToggleActivationItem.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">ToggleActivationItem</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/properties/celleditors/value/ProcessLocationValueCellEditor.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">ProcessLocationValueCellEditor</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/flow/ErrorTable.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">ErrorTable</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/flow/OverviewPanel.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">OverviewPanel</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/flow/QuickFixDialog.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">QuickFixDialog</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/flow/ProcessPanel.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">ProcessPanel</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/security/PasswordManager.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">PasswordManager</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/MainFrame.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">MainFrame</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/viewer/DataViewer.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">DataViewer</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/viewer/MetaDataViewer.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">MetaDataViewer</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/tutorial/gui/TutorialBrowser.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">TutorialBrowser</a>
+                                    
+                                                                <a class="tag" href="com/rapidminer/gui/tools/SystemMonitor.html"
+                            style="font-size: 28px;color:#d04437"
+                            title="Average Method Complexity - 1 , Coverage - 0% ">SystemMonitor</a>
+                                                    <p><a href="top-risks.html">See more</a></p>
+            </div>
+        </div>
+
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Most complex packages</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                
+                <table class="aui">
+                                            
+                                                <tr>
+                            <td>1. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                            <td>
+                                <a href="com/rapidminer/gui/processeditor/pkg-summary.html">com.rapidminer.gui.processeditor</a>
+                                <span class="aui-badge" title="Package complexity">5</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>2. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                            <td>
+                                <a href="com/rapidminer/gui/tools/dialogs/wizards/dataimport/pkg-summary.html">com.rapidminer.gui.tools.dialogs.wizards.dataimport</a>
+                                <span class="aui-badge" title="Package complexity">5</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>3. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                            <td>
+                                <a href="com/rapidminer/gui/flow/pkg-summary.html">com.rapidminer.gui.flow</a>
+                                <span class="aui-badge" title="Package complexity">4</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>4. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                            <td>
+                                <a href="com/rapidminer/gui/actions/pkg-summary.html">com.rapidminer.gui.actions</a>
+                                <span class="aui-badge" title="Package complexity">3</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>5. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                            <td>
+                                <a href="com/rapidminer/gui/properties/pkg-summary.html">com.rapidminer.gui.properties</a>
+                                <span class="aui-badge" title="Package complexity">2</span>
+                            </td>
+                        </tr>
+                                    </table>
+            </div>
+        </div>
+
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Most complex classes</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <table class="aui">
+                                            
+                                                <tr>
+                            <td>1. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                            <td>
+                                <a  href="com/rapidminer/gui/tools/dialogs/wizards/dataimport/MetaDataDeclerationWizardStep.html"  title="com.rapidminer.gui.tools.dialogs.wizards.dataimport.MetaDataDeclerationWizardStep">MetaDataDeclerationWizardStep</a>
+                                <span class="aui-badge" title="Class complexity">4</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>2. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                            <td>
+                                <a  href="com/rapidminer/gui/actions/Actions.html"  title="com.rapidminer.gui.actions.Actions">Actions</a>
+                                <span class="aui-badge" title="Class complexity">3</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>3. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                            <td>
+                                <a  href="com/rapidminer/gui/properties/RegexpPropertyDialog.html"  title="com.rapidminer.gui.properties.RegexpPropertyDialog.RegexpSearchStyledDocument">RegexpPropertyDialog.RegexpSearchStyledDocument</a>
+                                <span class="aui-badge" title="Class complexity">1</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>4. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                            <td>
+                                <a  href="com/rapidminer/gui/properties/OperatorPropertyPanel.html"  title="com.rapidminer.gui.properties.OperatorPropertyPanel">OperatorPropertyPanel</a>
+                                <span class="aui-badge" title="Class complexity">1</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>5. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                            <td>
+                                <a  href="com/rapidminer/gui/new_plotter/engine/jfreechart/JFreeChartPlotEngine.html"  title="com.rapidminer.gui.new_plotter.engine.jfreechart.JFreeChartPlotEngine">JFreeChartPlotEngine</a>
+                                <span class="aui-badge" title="Class complexity">1</span>
+                            </td>
+                        </tr>
+                                    </table>
+            </div>
+        </div>
+
+                <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Least tested methods</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <table class="aui">
+                                            
+
+                    <tr>
+                        <td align="right">1.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="JFreeChartPlotEngine.&lt;init&gt;,&#160;line&#160;206()" href="com/rapidminer/gui/new_plotter/engine/jfreechart/JFreeChartPlotEngine.html?line=206#src-206">JFreeChartPlotEngine.&lt;init&gt;,&#160;line&#160;206()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">2.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="MacroEditor.&lt;init&gt;,&#160;line&#160;137()" href="com/rapidminer/gui/processeditor/MacroEditor.html?line=137#src-137">MacroEditor.&lt;init&gt;,&#160;line&#160;137()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">3.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="MetaDataDeclerationWizardStep.&lt;init&gt;,&#160;line&#160;117()" href="com/rapidminer/gui/tools/dialogs/wizards/dataimport/MetaDataDeclerationWizardStep.html?line=117#src-117">MetaDataDeclerationWizardStep.&lt;init&gt;,&#160;line&#160;117()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">4.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="MetaDataDeclerationWizardStep.&lt;init&gt;,&#160;line&#160;169()" href="com/rapidminer/gui/tools/dialogs/wizards/dataimport/MetaDataDeclerationWizardStep.html?line=169#src-169">MetaDataDeclerationWizardStep.&lt;init&gt;,&#160;line&#160;169()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">5.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="MetaDataDeclerationWizardStep.&lt;init&gt;,&#160;line&#160;226()" href="com/rapidminer/gui/tools/dialogs/wizards/dataimport/MetaDataDeclerationWizardStep.html?line=226#src-226">MetaDataDeclerationWizardStep.&lt;init&gt;,&#160;line&#160;226()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">6.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="RegexpPropertyDialog.RegexpSearchStyledDocument.&lt;init&gt;,&#160;line&#160;237()" href="com/rapidminer/gui/properties/RegexpPropertyDialog.html?line=237#src-237">RegexpPropertyDialog.RegexpSearchStyledDocument.&lt;init&gt;,&#160;line&#160;237()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">7.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="MetaDataDeclerationWizardStep.&lt;init&gt;,&#160;line&#160;56()" href="com/rapidminer/gui/tools/dialogs/wizards/dataimport/MetaDataDeclerationWizardStep.html?line=56#src-56">MetaDataDeclerationWizardStep.&lt;init&gt;,&#160;line&#160;56()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">8.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="StrictDecimalFormat.&lt;init&gt;,&#160;line&#160;51()" href="com/rapidminer/tools/StrictDecimalFormat.html?line=51#src-51">StrictDecimalFormat.&lt;init&gt;,&#160;line&#160;51()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">9.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="RepositoryLocationsEditor.RepositoryLocationTable.&lt;init&gt;,&#160;line&#160;66()" href="com/rapidminer/gui/processeditor/RepositoryLocationsEditor.html?line=66#src-66">RepositoryLocationsEditor.RepositoryLocationTable.&lt;init&gt;,&#160;line&#160;66()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">10.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="ToggleBreakpointItem.&lt;init&gt;,&#160;line&#160;43()" href="com/rapidminer/gui/operatortree/actions/ToggleBreakpointItem.html?line=43#src-43">ToggleBreakpointItem.&lt;init&gt;,&#160;line&#160;43()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">11.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="ToggleActivationItem.&lt;init&gt;,&#160;line&#160;52()" href="com/rapidminer/gui/operatortree/actions/ToggleActivationItem.html?line=52#src-52">ToggleActivationItem.&lt;init&gt;,&#160;line&#160;52()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">12.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="ProcessLocationValueCellEditor.&lt;init&gt;,&#160;line&#160;62()" href="com/rapidminer/gui/properties/celleditors/value/ProcessLocationValueCellEditor.html?line=62#src-62">ProcessLocationValueCellEditor.&lt;init&gt;,&#160;line&#160;62()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">13.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="ErrorTable.&lt;init&gt;,&#160;line&#160;272()" href="com/rapidminer/gui/flow/ErrorTable.html?line=272#src-272">ErrorTable.&lt;init&gt;,&#160;line&#160;272()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">14.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="OverviewPanel.&lt;init&gt;,&#160;line&#160;119()" href="com/rapidminer/gui/flow/OverviewPanel.html?line=119#src-119">OverviewPanel.&lt;init&gt;,&#160;line&#160;119()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">15.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="QuickFixDialog.&lt;init&gt;,&#160;line&#160;45()" href="com/rapidminer/gui/flow/QuickFixDialog.html?line=45#src-45">QuickFixDialog.&lt;init&gt;,&#160;line&#160;45()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">16.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="ProcessPanel.&lt;init&gt;,&#160;line&#160;513()" href="com/rapidminer/gui/flow/ProcessPanel.html?line=513#src-513">ProcessPanel.&lt;init&gt;,&#160;line&#160;513()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">17.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="PasswordManager.&lt;init&gt;,&#160;line&#160;52()" href="com/rapidminer/gui/security/PasswordManager.html?line=52#src-52">PasswordManager.&lt;init&gt;,&#160;line&#160;52()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">18.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="MainFrame.&lt;init&gt;,&#160;line&#160;540()" href="com/rapidminer/gui/MainFrame.html?line=540#src-540">MainFrame.&lt;init&gt;,&#160;line&#160;540()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">19.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="DataViewer.&lt;init&gt;,&#160;line&#160;64()" href="com/rapidminer/gui/viewer/DataViewer.html?line=64#src-64">DataViewer.&lt;init&gt;,&#160;line&#160;64()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">20.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="MetaDataViewer.&lt;init&gt;,&#160;line&#160;83()" href="com/rapidminer/gui/viewer/MetaDataViewer.html?line=83#src-83">MetaDataViewer.&lt;init&gt;,&#160;line&#160;83()</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                    </table>
+            </div>
+        </div>
+        
+    </div>
+</div>
+                            </div> <!-- tabs-pane active-pane -->
+                        </div>
+
+    <script type="text/javascript" src="jit.js" ></script>
+    <script type="text/javascript" src="treemap-dash-json.js" ></script>
+
+                        </div> <!-- class="aui-page-panel-content-clover" -->
+                    <footer id="footer" role="contentinfo">
+    <section class="footer-body">
+        <ul>
+            <li>
+                Report generated by <a target="_new" href="http://www.atlassian.com/software/clover">Atlassian Clover</a> v 4.1.2
+                on 星期二 九月 5 2017 17:24:16 CST using coverage data from 星期四 一月 1 1970 08:00:00 CST.
+            </li>
+        </ul>
+        <ul>
+            <li>Clover Evaluation License registered to Clover Plugin. You have 29 day(s) before your license expires.</li>
+        </ul>
+        <div id="footer-logo">
+            <a target="_blank" href="http://www.atlassian.com/">
+                Atlassian
+            </a>
+        </div>
+    </section>
+</footer>                </section> <!-- class="aui-page-panel-content" -->
+            </div> <!-- class="aui-page-panel-inner" -->
+        </div> <!-- class="aui-page-panel" -->
+    </div> <!-- id="page" -->
+</body>
+</html>
