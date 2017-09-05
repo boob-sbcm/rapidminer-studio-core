@@ -1,20 +1,30 @@
 buildscript {
-    repositories {
+	ext.kotlin_version = '1.2-M2'
+	repositories {
         jcenter()
         maven { url 'https://maven.rapidminer.com/content/groups/public/' }
-    }
+		maven {
+			url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2'
+		}
+	}
     dependencies {
         classpath 'com.rapidminer.gradle:java-basics:0.4.0'
         classpath 'com.rapidminer.gradle:java-publishing:0.2.0'
-    }
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+	}
 }
 
-apply plugin: 'com.rapidminer.java-basics'
-apply plugin: 'com.rapidminer.java-publishing.agpl-v3'
+apply plugin :'maven'
+
+//apply plugin: 'com.rapidminer.java-basics'
+//apply plugin: 'com.rapidminer.java-publishing.agpl-v3'
 
 repositories {
     jcenter()
     maven { url 'https://maven.rapidminer.com/content/groups/public/' }
+	maven {
+		url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2'
+	}
 }
 
 dependencies {
@@ -142,11 +152,13 @@ dependencies {
 	// up until 7.4.1 this was a transitive dependency coming from license-commons (jackson version 2.4.0)
 	compile 'com.fasterxml.jackson.core:jackson-core:2.6.6'
 	compile 'com.fasterxml.jackson.core:jackson-databind:2.6.6'
+	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
-task wrapper(type: Wrapper) { gradleVersion = '4.0.1' }
+task wrapper(type: Wrapper) { gradleVersion = '4.1' }
 
 apply from: 'gradle/wsimport.gradle'
+apply plugin: 'kotlin'
 apply from: 'gradle/props.gradle'
 apply from: 'gradle/tutorial.gradle'
 
