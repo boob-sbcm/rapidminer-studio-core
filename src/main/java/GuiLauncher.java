@@ -1,8 +1,8 @@
-import java.nio.file.Paths;
-
 import com.rapidminer.gui.RapidMinerGUI;
 import com.rapidminer.gui.ToolbarGUIStartupListener;
 import com.rapidminer.tools.PlatformUtilities;
+
+import java.nio.file.Paths;
 
 /**
  * The type Gui launcher.
