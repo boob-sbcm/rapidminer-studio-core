@@ -27,33 +27,61 @@ import java.io.IOException;
 /**
  * A place where a process can be saved. Basically, this is either a file or a location in a
  * repository.
- * 
+ *
  * @author Simon Fischer
- * */
+ */
 public interface ProcessLocation {
 
-	/** Reads the process and returns it. */
-	public Process load(ProgressListener listener) throws IOException, XMLException;
+    /**
+     * Reads the process and returns it.  @param listener the listener
+     *
+     * @param listener the listener
+     * @return the process
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     */
+    public Process load(ProgressListener listener) throws IOException, XMLException;
 
-	/** Stores the process at the referenced location. */
-	public void store(Process process, ProgressListener listener) throws IOException;
+    /**
+     * Stores the process at the referenced location.  @param process the process
+     *
+     * @param process  the process
+     * @param listener the listener
+     * @throws IOException the io exception
+     */
+    public void store(Process process, ProgressListener listener) throws IOException;
 
 	/** The toString representation is used, e.g. in the welcome screen dialog, */
 	@Override
 	public String toString();
 
-	/**
-	 * Reads the contents of the referenced resource and returns the XML without parsing it. Used if
-	 * process file is broken.
-	 */
-	public String getRawXML() throws IOException;
+    /**
+     * Reads the contents of the referenced resource and returns the XML without parsing it. Used if
+     * process file is broken.
+     *
+     * @return the raw xml
+     * @throws IOException the io exception
+     */
+    public String getRawXML() throws IOException;
 
-	/** Returns a string saved to the history file. */
-	public String toHistoryFileString();
+    /**
+     * Returns a string saved to the history file.  @return the string
+     *
+     * @return the string
+     */
+    public String toHistoryFileString();
 
-	/** Returns a string as it is displayed in the recent files menu. */
-	public String toMenuString();
+    /**
+     * Returns a string as it is displayed in the recent files menu.  @return the string
+     *
+     * @return the string
+     */
+    public String toMenuString();
 
-	/** Returns a short name, e.g. the last component of the path. */
-	public String getShortName();
+    /**
+     * Returns a short name, e.g. the last component of the path.  @return the short name
+     *
+     * @return the short name
+     */
+    public String getShortName();
 }

@@ -27,7 +27,7 @@ import java.util.Vector;
  * The RandomDataContainer is an implementation of the KohonenTrainingsData interface, and therefor
  * provides examples of data for a KohonenNet. The data is returned to the KohonenNet via an
  * iterator, which shuffels the data examples.
- * 
+ *
  * @author Sebastian Land
  */
 public class RandomDataContainer implements KohonenTrainingsData {
@@ -40,7 +40,12 @@ public class RandomDataContainer implements KohonenTrainingsData {
 
 	private BitSet flag;
 
-	public void addData(double[] data) {
+    /**
+     * Add data.
+     *
+     * @param data the data
+     */
+    public void addData(double[] data) {
 		this.data.add(data);
 	}
 

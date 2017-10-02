@@ -34,8 +34,9 @@ import com.rapidminer.tools.Tools;
 
 
 /**
- * @author Marius Helf
+ * The type Zip file object.
  *
+ * @author Marius Helf
  */
 public class ZipFileObject extends ArchiveFileObject {
 
@@ -47,12 +48,23 @@ public class ZipFileObject extends ArchiveFileObject {
 	private ZipOutputStream zipOutputStream;
 	private boolean finished = false;
 
-	public ZipFileObject() throws OperatorException {
+    /**
+     * Instantiates a new Zip file object.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public ZipFileObject() throws OperatorException {
 		super();
 		zipOutputStream = new ZipOutputStream(getArchiveDataStream());
 	}
 
-	public ZipFileObject(BufferType bufferType) throws OperatorException {
+    /**
+     * Instantiates a new Zip file object.
+     *
+     * @param bufferType the buffer type
+     * @throws OperatorException the operator exception
+     */
+    public ZipFileObject(BufferType bufferType) throws OperatorException {
 		super(bufferType);
 		zipOutputStream = new ZipOutputStream(getArchiveDataStream());
 	}
@@ -168,7 +180,13 @@ public class ZipFileObject extends ArchiveFileObject {
 		return supportedLevels;
 	}
 
-	public boolean supportsComppressionLevel(FuzzyCompressionLevel compressionLevel) {
+    /**
+     * Supports comppression level boolean.
+     *
+     * @param compressionLevel the compression level
+     * @return the boolean
+     */
+    public boolean supportsComppressionLevel(FuzzyCompressionLevel compressionLevel) {
 		return getSupportedCompressionLevels().contains(compressionLevel);
 	}
 }

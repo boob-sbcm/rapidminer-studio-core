@@ -46,7 +46,7 @@ import com.rapidminer.tools.ObjectVisualizerService;
  * column can be specified in order to define the strength of the transition (this column can for
  * example store the number of times this transition occurred after an aggregation).
  * </p>
- *
+ * <p>
  * <p>
  * The parameter &quot;node_description&quot; will be used for displaying information about the
  * nodes if the information is made available via an example visualization operator. The string
@@ -57,21 +57,41 @@ import com.rapidminer.tools.ObjectVisualizerService;
  */
 public class TransitionGraphOperator extends Operator {
 
-	public static final String PARAMETER_SOURCE_ATTRIBUTE = "source_attribute";
+    /**
+     * The constant PARAMETER_SOURCE_ATTRIBUTE.
+     */
+    public static final String PARAMETER_SOURCE_ATTRIBUTE = "source_attribute";
 
-	public static final String PARAMETER_TARGET_ATTRIBUTE = "target_attribute";
+    /**
+     * The constant PARAMETER_TARGET_ATTRIBUTE.
+     */
+    public static final String PARAMETER_TARGET_ATTRIBUTE = "target_attribute";
 
-	public static final String PARAMETER_STRENGTH_ATTRIBUTE = "strength_attribute";
+    /**
+     * The constant PARAMETER_STRENGTH_ATTRIBUTE.
+     */
+    public static final String PARAMETER_STRENGTH_ATTRIBUTE = "strength_attribute";
 
-	public static final String PARAMETER_TYPE_ATTRIBUTE = "type_attribute";
+    /**
+     * The constant PARAMETER_TYPE_ATTRIBUTE.
+     */
+    public static final String PARAMETER_TYPE_ATTRIBUTE = "type_attribute";
 
-	public static final String PARAMETER_NODE_DESCRIPTION = "node_description";
+    /**
+     * The constant PARAMETER_NODE_DESCRIPTION.
+     */
+    public static final String PARAMETER_NODE_DESCRIPTION = "node_description";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort graphOutput = getOutputPorts().createPort("transition graph");
 
-	public TransitionGraphOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Transition graph operator.
+     *
+     * @param description the description
+     */
+    public TransitionGraphOperator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new AttributeSetPrecondition(exampleSetInput, AttributeSetPrecondition
@@ -95,7 +115,15 @@ public class TransitionGraphOperator extends Operator {
 		graphOutput.deliver(transitionGraph);
 	}
 
-	public TransitionGraph createTransitionGraph(ExampleSet exampleSet) throws UndefinedParameterError, UserError {
+    /**
+     * Create transition graph transition graph.
+     *
+     * @param exampleSet the example set
+     * @return the transition graph
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws UserError               the user error
+     */
+    public TransitionGraph createTransitionGraph(ExampleSet exampleSet) throws UndefinedParameterError, UserError {
 		// Tools.checkIds(exampleSet);
 
 		String sourceAttribute = getParameterAsString(PARAMETER_SOURCE_ATTRIBUTE);

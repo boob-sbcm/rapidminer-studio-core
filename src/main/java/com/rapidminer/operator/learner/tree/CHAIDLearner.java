@@ -45,7 +45,12 @@ import com.rapidminer.tools.OperatorService;
 @SuppressWarnings("deprecation")
 public class CHAIDLearner extends DecisionTreeLearner {
 
-	public CHAIDLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Chaid learner.
+     *
+     * @param description the description
+     */
+    public CHAIDLearner(OperatorDescription description) {
 		super(description);
 	}
 
@@ -100,12 +105,17 @@ public class CHAIDLearner extends DecisionTreeLearner {
 		};
 	}
 
-	/**
-	 * This method calculates the benefit of the given attribute. This implementation utilizes the
-	 * defined {@link Criterion}. Subclasses might want to override this method in order to
-	 * calculate the benefit in other ways.
-	 */
-	protected Benefit calculateBenefit(ExampleSet trainingSet, Attribute attribute) throws OperatorException {
+    /**
+     * This method calculates the benefit of the given attribute. This implementation utilizes the
+     * defined {@link Criterion}. Subclasses might want to override this method in order to
+     * calculate the benefit in other ways.
+     *
+     * @param trainingSet the training set
+     * @param attribute   the attribute
+     * @return the benefit
+     * @throws OperatorException the operator exception
+     */
+    protected Benefit calculateBenefit(ExampleSet trainingSet, Attribute attribute) throws OperatorException {
 		ChiSquaredWeighting weightOp = null;
 		try {
 			weightOp = OperatorService.createOperator(ChiSquaredWeighting.class);

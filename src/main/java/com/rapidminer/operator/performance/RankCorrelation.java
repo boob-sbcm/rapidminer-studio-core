@@ -28,21 +28,33 @@ import com.rapidminer.tools.math.Averagable;
  * Computes either the Spearman (rho) or Kendall (tau-b) rank correlation between the actual label
  * and predicted values of an example set. Since ranking is involved, neither correlation is
  * averageable.
- * 
+ *
  * @author Paul Rubin
  */
 public class RankCorrelation extends MeasuredPerformance {
 
 	private static final long serialVersionUID = 6908369375703683363L;
 
-	public static final String[] NAMES = { "spearman_rho", "kendall_tau" };
+    /**
+     * The constant NAMES.
+     */
+    public static final String[] NAMES = { "spearman_rho", "kendall_tau" };
 
-	public static final String[] DESCRIPTIONS = {
+    /**
+     * The constant DESCRIPTIONS.
+     */
+    public static final String[] DESCRIPTIONS = {
 			"The rank correlation between the actual and predicted labels, using Spearman's rho.",
 			"The rank correlation between the actual and predicted labels, using Kendall's tau-b." };
 
-	public static final int RHO = 0;
-	public static final int TAU = 1;
+    /**
+     * The constant RHO.
+     */
+    public static final int RHO = 0;
+    /**
+     * The constant TAU.
+     */
+    public static final int TAU = 1;
 
 	private double counter = 0; // example count
 
@@ -50,22 +62,28 @@ public class RankCorrelation extends MeasuredPerformance {
 
 	private int type = RHO;
 
-	/** Default constructor */
-	public RankCorrelation() {
+    /**
+     * Default constructor
+     */
+    public RankCorrelation() {
 		this(RHO);
 	}
 
-	/**
-	 * Constructor with user-specified choice of correlation coefficient. User specifies RHO or TAU.
-	 * 
-	 * @param type
-	 *            coefficient type with coefficient choice
-	 */
-	public RankCorrelation(int type) {
+    /**
+     * Constructor with user-specified choice of correlation coefficient. User specifies RHO or TAU.
+     *
+     * @param type coefficient type with coefficient choice
+     */
+    public RankCorrelation(int type) {
 		this.type = type;
 	}
 
-	public RankCorrelation(RankCorrelation rc) {
+    /**
+     * Instantiates a new Rank correlation.
+     *
+     * @param rc the rc
+     */
+    public RankCorrelation(RankCorrelation rc) {
 		super(rc);
 		this.type = rc.type;
 		this.value = rc.value;

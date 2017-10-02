@@ -31,7 +31,7 @@ import javax.swing.Icon;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AddToSortingColumnsAction extends AbstractAction {
@@ -57,7 +57,14 @@ public class AddToSortingColumnsAction extends AbstractAction {
 
 	private int direction;
 
-	public AddToSortingColumnsAction(ExtendedJTable table, int direction, IconSize size) {
+    /**
+     * Instantiates a new Add to sorting columns action.
+     *
+     * @param table     the table
+     * @param direction the direction
+     * @param size      the size
+     */
+    public AddToSortingColumnsAction(ExtendedJTable table, int direction, IconSize size) {
 		super("Add to Sorting Columns (" + (direction == ExtendedJTableSorterModel.DESCENDING ? "Descending" : "Ascending")
 				+ ")", direction == ExtendedJTableSorterModel.DESCENDING ? DESCENDING_ICONS[size.ordinal()]
 				: ASCENDING_ICONS[size.ordinal()]);

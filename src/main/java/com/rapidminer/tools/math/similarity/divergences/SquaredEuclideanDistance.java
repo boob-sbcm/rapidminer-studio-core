@@ -26,7 +26,7 @@ import com.rapidminer.tools.math.similarity.BregmanDivergence;
 
 /**
  * The &quot;Squared Euclidean distance &quot;.
- * 
+ *
  * @author Regina Fritsch
  */
 public class SquaredEuclideanDistance extends BregmanDivergence {

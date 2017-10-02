@@ -30,6 +30,8 @@ import com.rapidminer.RapidMiner;
 
 
 /**
+ * The type 18 n.
+ *
  * @author Simon Fischer, Nils Woehler, Adrian Wilke
  */
 public class I18N {
@@ -39,8 +41,14 @@ public class I18N {
 	private static final ExtensibleResourceBundle GUI_BUNDLE;
 	private static final ExtensibleResourceBundle SETTINGS_BUNDLE;
 
-	public static final String SETTINGS_TYPE_TITLE_SUFFIX = ".title";
-	public static final String SETTINGS_TYPE_DESCRIPTION_SUFFIX = ".description";
+    /**
+     * The constant SETTINGS_TYPE_TITLE_SUFFIX.
+     */
+    public static final String SETTINGS_TYPE_TITLE_SUFFIX = ".title";
+    /**
+     * The constant SETTINGS_TYPE_DESCRIPTION_SUFFIX.
+     */
+    public static final String SETTINGS_TYPE_DESCRIPTION_SUFFIX = ".description";
 
 	// init I18N
 	static {
@@ -72,24 +80,34 @@ public class I18N {
 		GUI_BUNDLE.addResourceBundle(plotterBundle);
 	}
 
-	/** Returns the resource bundle for error messages and quick fixes. */
-	public static ResourceBundle getErrorBundle() {
+    /**
+     * Returns the resource bundle for error messages and quick fixes.  @return the error bundle
+     *
+     * @return the error bundle
+     */
+    public static ResourceBundle getErrorBundle() {
 		return ERROR_BUNDLE;
 	}
 
-	/**
-	 * Type of I18N message for the settings bundle. Provided toString() methods include a point
-	 * ('.') as prefix, followed by the type in lower case. E.g. '.description'.
-	 */
-	public enum SettingsType {
-		TITLE {
+    /**
+     * Type of I18N message for the settings bundle. Provided toString() methods include a point
+     * ('.') as prefix, followed by the type in lower case. E.g. '.description'.
+     */
+    public enum SettingsType {
+        /**
+         * The Title.
+         */
+        TITLE {
 
 			@Override
 			public String toString() {
 				return SETTINGS_TYPE_TITLE_SUFFIX;
 			}
 		},
-		DESCRIPTION {
+        /**
+         * The Description.
+         */
+        DESCRIPTION {
 
 			@Override
 			public String toString() {
@@ -98,40 +116,76 @@ public class I18N {
 		}
 	}
 
-	public static ResourceBundle getGUIBundle() {
+    /**
+     * Gets gui bundle.
+     *
+     * @return the gui bundle
+     */
+    public static ResourceBundle getGUIBundle() {
 		return GUI_BUNDLE;
 	}
 
-	public static ResourceBundle getUserErrorMessagesBundle() {
+    /**
+     * Gets user error messages bundle.
+     *
+     * @return the user error messages bundle
+     */
+    public static ResourceBundle getUserErrorMessagesBundle() {
 		return USER_ERROR_BUNDLE;
 	}
 
-	public static ResourceBundle getSettingsBundle() {
+    /**
+     * Gets settings bundle.
+     *
+     * @return the settings bundle
+     */
+    public static ResourceBundle getSettingsBundle() {
 		return SETTINGS_BUNDLE;
 	}
 
-	/** registers the properties of the given bundle on the global error bundle */
-	public static void registerErrorBundle(ResourceBundle bundle) {
+    /**
+     * registers the properties of the given bundle on the global error bundle  @param bundle the bundle
+     *
+     * @param bundle the bundle
+     */
+    public static void registerErrorBundle(ResourceBundle bundle) {
 		registerErrorBundle(bundle, false);
 	}
 
-	/** registers the properties of the given bundle on the global gui bundle */
-	public static void registerGUIBundle(ResourceBundle bundle) {
+    /**
+     * registers the properties of the given bundle on the global gui bundle  @param bundle the bundle
+     *
+     * @param bundle the bundle
+     */
+    public static void registerGUIBundle(ResourceBundle bundle) {
 		registerGUIBundle(bundle, false);
 	}
 
-	/** registers the properties of the given bundle on the global userError bundle */
-	public static void registerUserErrorMessagesBundle(ResourceBundle bundle) {
+    /**
+     * registers the properties of the given bundle on the global userError bundle  @param bundle the bundle
+     *
+     * @param bundle the bundle
+     */
+    public static void registerUserErrorMessagesBundle(ResourceBundle bundle) {
 		registerUserErrorMessagesBundle(bundle, false);
 	}
 
-	/** registers the properties of the given bundle on the global settings bundle */
-	public static void registerSettingsBundle(ResourceBundle bundle) {
+    /**
+     * registers the properties of the given bundle on the global settings bundle  @param bundle the bundle
+     *
+     * @param bundle the bundle
+     */
+    public static void registerSettingsBundle(ResourceBundle bundle) {
 		registerSettingsBundle(bundle, false);
 	}
 
-	/** registers the properties of the given bundle on the global error bundle */
-	public static void registerErrorBundle(ResourceBundle bundle, boolean overwrite) {
+    /**
+     * registers the properties of the given bundle on the global error bundle  @param bundle the bundle
+     *
+     * @param bundle    the bundle
+     * @param overwrite the overwrite
+     */
+    public static void registerErrorBundle(ResourceBundle bundle, boolean overwrite) {
 		if (!overwrite) {
 			ERROR_BUNDLE.addResourceBundle(bundle);
 		} else {
@@ -139,8 +193,13 @@ public class I18N {
 		}
 	}
 
-	/** registers the properties of the given bundle on the global gui bundle */
-	public static void registerGUIBundle(ResourceBundle bundle, boolean overwrite) {
+    /**
+     * registers the properties of the given bundle on the global gui bundle  @param bundle the bundle
+     *
+     * @param bundle    the bundle
+     * @param overwrite the overwrite
+     */
+    public static void registerGUIBundle(ResourceBundle bundle, boolean overwrite) {
 		if (!overwrite) {
 			GUI_BUNDLE.addResourceBundle(bundle);
 		} else {
@@ -148,8 +207,13 @@ public class I18N {
 		}
 	}
 
-	/** registers the properties of the given bundle on the global userError bundle */
-	public static void registerUserErrorMessagesBundle(ResourceBundle bundle, boolean overwrite) {
+    /**
+     * registers the properties of the given bundle on the global userError bundle  @param bundle the bundle
+     *
+     * @param bundle    the bundle
+     * @param overwrite the overwrite
+     */
+    public static void registerUserErrorMessagesBundle(ResourceBundle bundle, boolean overwrite) {
 		if (!overwrite) {
 			USER_ERROR_BUNDLE.addResourceBundle(bundle);
 		} else {
@@ -157,8 +221,13 @@ public class I18N {
 		}
 	}
 
-	/** registers the properties of the given bundle on the global settings bundle */
-	public static void registerSettingsBundle(ResourceBundle bundle, boolean overwrite) {
+    /**
+     * registers the properties of the given bundle on the global settings bundle  @param bundle the bundle
+     *
+     * @param bundle    the bundle
+     * @param overwrite the overwrite
+     */
+    public static void registerSettingsBundle(ResourceBundle bundle, boolean overwrite) {
 		if (!overwrite) {
 			SETTINGS_BUNDLE.addResourceBundle(bundle);
 		} else {
@@ -166,14 +235,19 @@ public class I18N {
 		}
 	}
 
-	/**
-	 * Returns a message if found or the key if not found. Arguments <b>can</b> be specified which
-	 * will be used to format the String. In the {@link ResourceBundle} the String '{0}' (without ')
-	 * will be replaced by the first argument, '{1}' with the second and so on.
-	 *
-	 * Catches the exception thrown by ResourceBundle in the latter case.
-	 **/
-	public static String getMessage(ResourceBundle bundle, String key, Object... arguments) {
+    /**
+     * Returns a message if found or the key if not found. Arguments <b>can</b> be specified which
+     * will be used to format the String. In the {@link ResourceBundle} the String '{0}' (without ')
+     * will be replaced by the first argument, '{1}' with the second and so on.
+     * <p>
+     * Catches the exception thrown by ResourceBundle in the latter case.
+     *
+     * @param bundle    the bundle
+     * @param key       the key
+     * @param arguments the arguments
+     * @return the message
+     */
+    public static String getMessage(ResourceBundle bundle, String key, Object... arguments) {
 		try {
 
 			if (arguments == null || arguments.length == 0) {
@@ -193,79 +267,117 @@ public class I18N {
 		}
 	}
 
-	/**
-	 * Convenience method to call {@link #getMessage(ResourceBundle, String, Object...)} with return
-	 * value from {@link #getGUIBundle()} as {@link ResourceBundle}.
-	 */
-	public static String getGUIMessage(String key, Object... arguments) {
+    /**
+     * Convenience method to call {@link #getMessage(ResourceBundle, String, Object...)} with return
+     * value from {@link #getGUIBundle()} as {@link ResourceBundle}.
+     *
+     * @param key       the key
+     * @param arguments the arguments
+     * @return the gui message
+     */
+    public static String getGUIMessage(String key, Object... arguments) {
 		return getMessage(getGUIBundle(), key, arguments);
 	}
 
-	/**
-	 * Convenience method to call {@link #getMessageOrNull(ResourceBundle, String, Object...)} with
-	 * return value from {@link #getGUIBundle()} as {@link ResourceBundle}.
-	 */
-	public static String getGUIMessageOrNull(String key, Object... arguments) {
+    /**
+     * Convenience method to call {@link #getMessageOrNull(ResourceBundle, String, Object...)} with
+     * return value from {@link #getGUIBundle()} as {@link ResourceBundle}.
+     *
+     * @param key       the key
+     * @param arguments the arguments
+     * @return the gui message or null
+     */
+    public static String getGUIMessageOrNull(String key, Object... arguments) {
 		return getMessageOrNull(getGUIBundle(), key, arguments);
 	}
 
-	/**
-	 * Convenience method to call {@link #getMessage(ResourceBundle, String, Object...)} with return
-	 * value from {@link #getErrorBundle()} as {@link ResourceBundle}.
-	 */
-	public static String getErrorMessage(String key, Object... arguments) {
+    /**
+     * Convenience method to call {@link #getMessage(ResourceBundle, String, Object...)} with return
+     * value from {@link #getErrorBundle()} as {@link ResourceBundle}.
+     *
+     * @param key       the key
+     * @param arguments the arguments
+     * @return the error message
+     */
+    public static String getErrorMessage(String key, Object... arguments) {
 		return getMessage(getErrorBundle(), key, arguments);
 	}
 
-	/**
-	 * Convenience method to call {@link #getMessageOrNull(ResourceBundle, String, Object...)} with
-	 * return value from {@link #getErrorBundle()} as {@link ResourceBundle}.
-	 */
-	public static String getErrorMessageOrNull(String key, Object... arguments) {
+    /**
+     * Convenience method to call {@link #getMessageOrNull(ResourceBundle, String, Object...)} with
+     * return value from {@link #getErrorBundle()} as {@link ResourceBundle}.
+     *
+     * @param key       the key
+     * @param arguments the arguments
+     * @return the error message or null
+     */
+    public static String getErrorMessageOrNull(String key, Object... arguments) {
 		return getMessageOrNull(getErrorBundle(), key, arguments);
 	}
 
-	/**
-	 * Convenience method to call {@link #getMessage(ResourceBundle, String, Object...)} with return
-	 * value from {@link #getUserErrorMessagesBundle()} as {@link ResourceBundle}.
-	 */
-	public static String getUserErrorMessage(String key, Object... arguments) {
+    /**
+     * Convenience method to call {@link #getMessage(ResourceBundle, String, Object...)} with return
+     * value from {@link #getUserErrorMessagesBundle()} as {@link ResourceBundle}.
+     *
+     * @param key       the key
+     * @param arguments the arguments
+     * @return the user error message
+     */
+    public static String getUserErrorMessage(String key, Object... arguments) {
 		return getMessage(getUserErrorMessagesBundle(), key, arguments);
 	}
 
-	/**
-	 * Convenience method to call {@link #getMessageOrNull(ResourceBundle, String, Object...)} with
-	 * return value from {@link #getUserErrorMessagesBundle()} as {@link ResourceBundle}.
-	 */
-	public static String getUserErrorMessageOrNull(String key, Object... arguments) {
+    /**
+     * Convenience method to call {@link #getMessageOrNull(ResourceBundle, String, Object...)} with
+     * return value from {@link #getUserErrorMessagesBundle()} as {@link ResourceBundle}.
+     *
+     * @param key       the key
+     * @param arguments the arguments
+     * @return the user error message or null
+     */
+    public static String getUserErrorMessageOrNull(String key, Object... arguments) {
 		return getMessageOrNull(getUserErrorMessagesBundle(), key, arguments);
 	}
 
-	/**
-	 * Convenience method to call {@link #getMessage(ResourceBundle, String, Object...)} with return
-	 * value from {@link #getSettingsBundle()} as {@link ResourceBundle}.
-	 */
-	public static String getSettingsMessage(String key, SettingsType type, Object... arguments) {
+    /**
+     * Convenience method to call {@link #getMessage(ResourceBundle, String, Object...)} with return
+     * value from {@link #getSettingsBundle()} as {@link ResourceBundle}.
+     *
+     * @param key       the key
+     * @param type      the type
+     * @param arguments the arguments
+     * @return the settings message
+     */
+    public static String getSettingsMessage(String key, SettingsType type, Object... arguments) {
 		return getMessage(getSettingsBundle(), key + type, arguments);
 	}
 
-	/**
-	 * Convenience method to call {@link #getMessageOrNull(ResourceBundle, String, Object...)} with
-	 * return value from {@link #getSettingsBundle()} as {@link ResourceBundle}.
-	 */
-	public static String getSettingsMessageOrNull(String key, SettingsType type, Object... arguments) {
+    /**
+     * Convenience method to call {@link #getMessageOrNull(ResourceBundle, String, Object...)} with
+     * return value from {@link #getSettingsBundle()} as {@link ResourceBundle}.
+     *
+     * @param key       the key
+     * @param type      the type
+     * @param arguments the arguments
+     * @return the settings message or null
+     */
+    public static String getSettingsMessageOrNull(String key, SettingsType type, Object... arguments) {
 		return getMessageOrNull(getSettingsBundle(), key + type, arguments);
 	}
 
-	/**
-	 * Returns a message if found or <code>null</code> if not.
-	 *
-	 * Arguments <b>can</b> be specified which will be used to format the String. In the
-	 * {@link ResourceBundle} the String '{0}' (without ') will be replaced by the first argument,
-	 * '{1}' with the second and so on.
-	 *
-	 */
-	public static String getMessageOrNull(ResourceBundle bundle, String key, Object... arguments) {
+    /**
+     * Returns a message if found or <code>null</code> if not.
+     * <p>
+     * Arguments <b>can</b> be specified which will be used to format the String. In the
+     * {@link ResourceBundle} the String '{0}' (without ') will be replaced by the first argument,
+     * '{1}' with the second and so on.
+     *
+     * @param bundle    the bundle
+     * @param key       the key
+     * @param arguments the arguments
+     * @return the message or null
+     */
+    public static String getMessageOrNull(ResourceBundle bundle, String key, Object... arguments) {
 
 		if (bundle.containsKey(key)) {
 			return getMessage(bundle, key, arguments);
@@ -275,11 +387,15 @@ public class I18N {
 
 	}
 
-	/**
-	 * This will return the value of the property gui.label.-key- of the GUI bundle or the key
-	 * itself if unknown.
-	 */
-	public static String getGUILabel(String key, Object... arguments) {
+    /**
+     * This will return the value of the property gui.label.-key- of the GUI bundle or the key
+     * itself if unknown.
+     *
+     * @param key       the key
+     * @param arguments the arguments
+     * @return the gui label
+     */
+    public static String getGUILabel(String key, Object... arguments) {
 		String completeKey = "gui.label." + key;
 		if (GUI_BUNDLE.containsKey(completeKey)) {
 			return getMessage(GUI_BUNDLE, completeKey, arguments);

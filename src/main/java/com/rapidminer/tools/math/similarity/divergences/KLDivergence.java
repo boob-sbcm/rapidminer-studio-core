@@ -26,7 +26,7 @@ import com.rapidminer.tools.math.similarity.BregmanDivergence;
 
 /**
  * The &quot;Kullback-Leibler divergence &quot;.
- * 
+ *
  * @author Regina Fritsch
  */
 public class KLDivergence extends BregmanDivergence {

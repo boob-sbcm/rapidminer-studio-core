@@ -28,28 +28,41 @@ import javax.swing.Icon;
  * This interface extends IOObject and is hence an object which can be handled by operators.
  * Additionally this object is a result and can be of interest for a user. ResultWriters can write
  * the results in a result file.
- * 
- * @see com.rapidminer.operator.io.ResultWriter
+ *
  * @author Ingo Mierswa
+ * @see com.rapidminer.operator.io.ResultWriter
  */
 public interface ResultObject extends IOObject {
 
-	/** Defines the name of this result object. */
-	public abstract String getName();
+    /**
+     * Defines the name of this result object.  @return the name
+     *
+     * @return the name
+     */
+    public abstract String getName();
 
-	/** Result string will be displayed in result files written with a ResultWriter operator. */
-	public abstract String toResultString();
+    /**
+     * Result string will be displayed in result files written with a ResultWriter operator.  @return the string
+     *
+     * @return the string
+     */
+    public abstract String toResultString();
 
-	/** Returns an icon used for displaying the results. May return null. */
-	public abstract Icon getResultIcon();
+    /**
+     * Returns an icon used for displaying the results. May return null.  @return the result icon
+     *
+     * @return the result icon
+     */
+    public abstract Icon getResultIcon();
 
-	/**
-	 * Returns a list of actions (e.g. "save") that is displayed below (or near to) the
-	 * visualisation component.
-	 * 
-	 * @deprecated Action concept for GUI components removed from result objects
-	 */
-	@Deprecated
+    /**
+     * Returns a list of actions (e.g. "save") that is displayed below (or near to) the
+     * visualisation component.
+     *
+     * @return the actions
+     * @deprecated Action concept for GUI components removed from result objects
+     */
+    @Deprecated
 	public abstract List<Action> getActions();
 
 }

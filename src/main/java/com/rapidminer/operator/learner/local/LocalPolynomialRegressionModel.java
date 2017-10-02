@@ -40,12 +40,16 @@ import com.rapidminer.tools.math.smoothing.SmoothingKernel;
 
 
 /**
- * @author Sebastian Land
+ * The type Local polynomial regression model.
  *
+ * @author Sebastian Land
  */
 public class LocalPolynomialRegressionModel extends PredictionModel {
 
-	public static class RegressionData implements Serializable {
+    /**
+     * The type Regression data.
+     */
+    public static class RegressionData implements Serializable {
 		
 		private static final long serialVersionUID = 8540161261369474329L;
 
@@ -53,21 +57,43 @@ public class LocalPolynomialRegressionModel extends PredictionModel {
 		private double exampleLabel;
 		private double exampleWeight;
 
-		public RegressionData(double[] exampleValues, double exampleLabel, double exampleWeight) {
+        /**
+         * Instantiates a new Regression data.
+         *
+         * @param exampleValues the example values
+         * @param exampleLabel  the example label
+         * @param exampleWeight the example weight
+         */
+        public RegressionData(double[] exampleValues, double exampleLabel, double exampleWeight) {
 			this.exampleValues = exampleValues;
 			this.exampleLabel = exampleLabel;
 			this.exampleWeight = exampleWeight;
 		}
 
-		public double[] getExampleValues() {
+        /**
+         * Get example values double [ ].
+         *
+         * @return the double [ ]
+         */
+        public double[] getExampleValues() {
 			return exampleValues;
 		}
 
-		public double getExampleLabel() {
+        /**
+         * Gets example label.
+         *
+         * @return the example label
+         */
+        public double getExampleLabel() {
 			return exampleLabel;
 		}
 
-		public double getExampleWeight() {
+        /**
+         * Gets example weight.
+         *
+         * @return the example weight
+         */
+        public double getExampleWeight() {
 			return exampleWeight;
 		}
 	}
@@ -78,7 +104,17 @@ public class LocalPolynomialRegressionModel extends PredictionModel {
 	private int degree;
 	private double ridge;
 
-	protected LocalPolynomialRegressionModel(ExampleSet trainingExampleSet, GeometricDataCollection<RegressionData> data,
+    /**
+     * Instantiates a new Local polynomial regression model.
+     *
+     * @param trainingExampleSet the training example set
+     * @param data               the data
+     * @param neighborhood       the neighborhood
+     * @param kernelSmoother     the kernel smoother
+     * @param degree             the degree
+     * @param ridge              the ridge
+     */
+    protected LocalPolynomialRegressionModel(ExampleSet trainingExampleSet, GeometricDataCollection<RegressionData> data,
 			Neighborhood neighborhood, SmoothingKernel kernelSmoother, int degree, double ridge) {
 		super(trainingExampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
@@ -173,27 +209,57 @@ public class LocalPolynomialRegressionModel extends PredictionModel {
 		return buffer.toString();
 	}
 
-	public GeometricDataCollection<RegressionData> getSamples() {
+    /**
+     * Gets samples.
+     *
+     * @return the samples
+     */
+    public GeometricDataCollection<RegressionData> getSamples() {
 		return samples;
 	}
 
-	public Neighborhood getNeighborhood() {
+    /**
+     * Gets neighborhood.
+     *
+     * @return the neighborhood
+     */
+    public Neighborhood getNeighborhood() {
 		return neighborhood;
 	}
 
-	public SmoothingKernel getKernelSmoother() {
+    /**
+     * Gets kernel smoother.
+     *
+     * @return the kernel smoother
+     */
+    public SmoothingKernel getKernelSmoother() {
 		return kernelSmoother;
 	}
 
-	public int getDegree() {
+    /**
+     * Gets degree.
+     *
+     * @return the degree
+     */
+    public int getDegree() {
 		return degree;
 	}
 
-	public double getRidge() {
+    /**
+     * Gets ridge.
+     *
+     * @return the ridge
+     */
+    public double getRidge() {
 		return ridge;
 	}
 
-	public String[] getAttributeNames() {
+    /**
+     * Get attribute names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getAttributeNames() {
 		ExampleSet trainSet = getTrainingHeader();
 		Attributes attributes = trainSet.getAttributes();
 		String[] attributeNames = new String[attributes.size()];

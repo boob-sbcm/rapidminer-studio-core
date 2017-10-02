@@ -36,7 +36,10 @@ import com.rapidminer.tools.Tools;
  */
 public class Population {
 
-	public static final Comparator<Individual> PERFORMANCE_COMPARATOR = new Comparator<Individual>() {
+    /**
+     * The constant PERFORMANCE_COMPARATOR.
+     */
+    public static final Comparator<Individual> PERFORMANCE_COMPARATOR = new Comparator<Individual>() {
 
 		@Override
 		public int compare(Individual i1, Individual i2) {
@@ -61,83 +64,145 @@ public class Population {
 	/** The last generation where setBestEver() was invoked. */
 	private int lastImprovement = 1;
 
-	/** Removes all individuals. */
-	public void clear() {
+    /**
+     * Removes all individuals.
+     */
+    public void clear() {
 		individuals.clear();
 	}
 
-	/** Adds a single individual. */
-	public void add(Individual individual) {
+    /**
+     * Adds a single individual.  @param individual the individual
+     *
+     * @param individual the individual
+     */
+    public void add(Individual individual) {
 		individuals.add(individual);
 	}
 
-	/** Adds all individuals from the given collection. */
-	public void addAll(Collection<Individual> newIndividuals) {
+    /**
+     * Adds all individuals from the given collection.  @param newIndividuals the new individuals
+     *
+     * @param newIndividuals the new individuals
+     */
+    public void addAll(Collection<Individual> newIndividuals) {
 		individuals.addAll(newIndividuals);
 	}
 
-	/** Removes a single individual. */
-	public void remove(Individual individual) {
+    /**
+     * Removes a single individual.  @param individual the individual
+     *
+     * @param individual the individual
+     */
+    public void remove(Individual individual) {
 		individuals.remove(individual);
 	}
 
-	/** Removes a single individual. */
-	public void remove(int i) {
+    /**
+     * Removes a single individual.  @param i the
+     *
+     * @param i the
+     */
+    public void remove(int i) {
 		individuals.remove(i);
 	}
 
-	/** Returns a single individual. */
-	public Individual get(int i) {
+    /**
+     * Returns a single individual.  @param i the
+     *
+     * @param i the
+     * @return the individual
+     */
+    public Individual get(int i) {
 		return individuals.get(i);
 	}
 
-	/** Returns the number of all individuals. */
-	public int getNumberOfIndividuals() {
+    /**
+     * Returns the number of all individuals.  @return the number of individuals
+     *
+     * @return the number of individuals
+     */
+    public int getNumberOfIndividuals() {
 		return individuals.size();
 	}
 
-	public void setCurrentBest(Individual currentBest) {
+    /**
+     * Sets current best.
+     *
+     * @param currentBest the current best
+     */
+    public void setCurrentBest(Individual currentBest) {
 		this.currentBest = currentBest;
 	}
 
-	public Individual getCurrentBest() {
+    /**
+     * Gets current best.
+     *
+     * @return the current best
+     */
+    public Individual getCurrentBest() {
 		return this.currentBest;
 	}
 
-	public void setBestEver(Individual bestEver) {
+    /**
+     * Sets best ever.
+     *
+     * @param bestEver the best ever
+     */
+    public void setBestEver(Individual bestEver) {
 		this.lastImprovement = generations;
 		this.bestEver = bestEver;
 	}
 
-	public Individual getBestEver() {
+    /**
+     * Gets best ever.
+     *
+     * @return the best ever
+     */
+    public Individual getBestEver() {
 		return bestEver;
 	}
 
-	public void nextGeneration() {
+    /**
+     * Next generation.
+     */
+    public void nextGeneration() {
 		this.generations++;
 	}
 
-	public int getGeneration() {
+    /**
+     * Gets generation.
+     *
+     * @return the generation
+     */
+    public int getGeneration() {
 		return generations;
 	}
 
-	public int getGenerationsWithoutImprovement() {
+    /**
+     * Gets generations without improvement.
+     *
+     * @return the generations without improvement
+     */
+    public int getGenerationsWithoutImprovement() {
 		return generations - lastImprovement;
 	}
 
-	/**
-	 * Sorts the individuals in ascending order according to their performance, thus the best one
-	 * will be in last position.
-	 */
-	public void sort() {
+    /**
+     * Sorts the individuals in ascending order according to their performance, thus the best one
+     * will be in last position.
+     */
+    public void sort() {
 		Collections.sort(individuals, PERFORMANCE_COMPARATOR);
 	}
 
-	/**
-	 * Sorts the individuals in ascending order according to their performance, thus the best one
-	 * will be in last position.
-	 */
-	public void sort(Comparator<Individual> comparator) {
+    /**
+     * Sorts the individuals in ascending order according to their performance, thus the best one
+     * will be in last position.
+     *
+     * @param comparator the comparator
+     */
+    public void sort(Comparator<Individual> comparator) {
 		Collections.sort(individuals, comparator);
 	}
 

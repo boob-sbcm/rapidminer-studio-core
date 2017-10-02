@@ -29,7 +29,7 @@ import com.rapidminer.tools.Tools;
  * <p>
  * This class represents a container for objects within a given distance from another object.
  * </p>
- * 
+ * <p>
  * <p>
  * It is a simple data structure with associated query and setting methods enabling a linked list of
  * all distance-Containers for all objects in a search Room. As most objects in a SearchSpace are
@@ -37,7 +37,7 @@ import com.rapidminer.tools.Tools;
  * be linked to a single distance Container. However, in very dense clusters the number can increase
  * significantly.
  * </p>
- * 
+ *
  * @author Stephan Deutsch, Ingo Mierswa
  */
 public class KdistanceContainer {
@@ -67,39 +67,45 @@ public class KdistanceContainer {
 	 */
 	private List<SearchObject> listOfObjects;
 
-	/**
-	 * This constructor creates a container for an associated SearchObject so (which has to be
-	 * referenced) and sets the other aspects of the contained data to zero; it also creates a list
-	 * of Objects.
-	 */
-	public KdistanceContainer(SearchObject so) {
+    /**
+     * This constructor creates a container for an associated SearchObject so (which has to be
+     * referenced) and sets the other aspects of the contained data to zero; it also creates a list
+     * of Objects.
+     *
+     * @param so the so
+     */
+    public KdistanceContainer(SearchObject so) {
 		this.listOfObjects = new ArrayList<SearchObject>(); // construct a new listOfObjects
 		// this.distanceAssociatedObject = so; // set the container to associate the SearchObject so
 		this.setDistance(0); // set distance to zero (as we do not yet have any object associated
 		this.setNumberOfObjects(0); // accordingly the number of objects is zero as well
 	}
 
-	/**
-	 * Provides the distance of the container as an integer value.
-	 */
-	public double getDistance() {
+    /**
+     * Provides the distance of the container as an integer value.
+     *
+     * @return the distance
+     */
+    public double getDistance() {
 		return this.distance;
 	}
 
-	/**
-	 * Sets the distance of the container to dist (double type value).
-	 * 
-	 * @param dist
-	 */
-	public void setDistance(double dist) {
+    /**
+     * Sets the distance of the container to dist (double type value).
+     *
+     * @param dist the dist
+     */
+    public void setDistance(double dist) {
 		this.distance = dist;
 	}
 
-	/**
-	 * Gives the number of objects in the container (e.g. which are actually in the list, but
-	 * without the need to ask the list itself about its size).
-	 */
-	public int getNumberOfObjects() {
+    /**
+     * Gives the number of objects in the container (e.g. which are actually in the list, but
+     * without the need to ask the list itself about its size).
+     *
+     * @return the number of objects
+     */
+    public int getNumberOfObjects() {
 		return this.numberOfObjects;
 	}
 
@@ -114,39 +120,43 @@ public class KdistanceContainer {
 		this.numberOfObjects = number;
 	}
 
-	/**
-	 * <p>
-	 * Adds a SearchObject to the container.
-	 * </p>
-	 * 
-	 * <p>
-	 * Attention: As you do this, it has to be checked, if the distance between the associated
-	 * SearchObject and the object added to the container is equal to the distance of the objects
-	 * already in the container.
-	 * </p>
-	 * 
-	 * <p>
-	 * To achieve this, the method checks if the distance delivered as a sanity check parameter is
-	 * equal to the distance of the container; if yes, the object is added, else not. A boolean
-	 * state on the success is returned.
-	 * </p>
-	 * 
-	 * <p>
-	 * if the container is empty, e.g. the first object is added, no checks are necessary and hence
-	 * the distance check against the initial zero value is not performed thus not preventing the
-	 * addition of the object.
-	 * </p>
-	 * 
-	 * <p>
-	 * It is recommended to e.g. add an object <i>so</i> to the list of the objects of a container
-	 * associated to an object <i>soA</i> with the following process:
-	 * </p>
-	 * 
-	 * <p>
-	 * KdistanceContainer.addObject(so, soA.getDistance(so));
-	 * </p>
-	 */
-	public boolean addObject(SearchObject so, double dist) {
+    /**
+     * <p>
+     * Adds a SearchObject to the container.
+     * </p>
+     * <p>
+     * <p>
+     * Attention: As you do this, it has to be checked, if the distance between the associated
+     * SearchObject and the object added to the container is equal to the distance of the objects
+     * already in the container.
+     * </p>
+     * <p>
+     * <p>
+     * To achieve this, the method checks if the distance delivered as a sanity check parameter is
+     * equal to the distance of the container; if yes, the object is added, else not. A boolean
+     * state on the success is returned.
+     * </p>
+     * <p>
+     * <p>
+     * if the container is empty, e.g. the first object is added, no checks are necessary and hence
+     * the distance check against the initial zero value is not performed thus not preventing the
+     * addition of the object.
+     * </p>
+     * <p>
+     * <p>
+     * It is recommended to e.g. add an object <i>so</i> to the list of the objects of a container
+     * associated to an object <i>soA</i> with the following process:
+     * </p>
+     * <p>
+     * <p>
+     * KdistanceContainer.addObject(so, soA.getDistance(so));
+     * </p>
+     *
+     * @param so   the so
+     * @param dist the dist
+     * @return the boolean
+     */
+    public boolean addObject(SearchObject so, double dist) {
 		// first, check if the container is empty, in this case the object can be added
 		// without additional checks:
 		if (this.listOfObjects.size() == 0) {
@@ -167,22 +177,25 @@ public class KdistanceContainer {
 		}
 	}
 
-	/**
-	 * Returns an object from the list of objects in the container at position i (check needed if
-	 * this returns the appropriate object, as internally, an iterator is started at position i in
-	 * the list and the next() element is delivered back...).
-	 * 
-	 * @param i
-	 */
-	public SearchObject getObject(int i) {
+    /**
+     * Returns an object from the list of objects in the container at position i (check needed if
+     * this returns the appropriate object, as internally, an iterator is started at position i in
+     * the list and the next() element is delivered back...).
+     *
+     * @param i the
+     * @return the object
+     */
+    public SearchObject getObject(int i) {
 		return listOfObjects.get(i);
 	}
 
-	/**
-	 * This method delivers an Iterator on the list of objects of the container positioned at the
-	 * beginning of the list.
-	 */
-	public ListIterator<SearchObject> getListIterator() {
+    /**
+     * This method delivers an Iterator on the list of objects of the container positioned at the
+     * beginning of the list.
+     *
+     * @return the list iterator
+     */
+    public ListIterator<SearchObject> getListIterator() {
 		return listOfObjects.listIterator();
 	}
 }

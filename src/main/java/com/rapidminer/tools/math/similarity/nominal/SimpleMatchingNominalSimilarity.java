@@ -20,7 +20,7 @@ package com.rapidminer.tools.math.similarity.nominal;
 
 /**
  * Implements the simple matching similarity for nominal attributes.
- * 
+ *
  * @author Michael Wurst, Sebastian Land
  */
 public class SimpleMatchingNominalSimilarity extends AbstractNominalSimilarity {

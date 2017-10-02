@@ -32,23 +32,37 @@ import org.jfree.ui.RectangleAnchor;
 
 /**
  * This is the block chart plotter based on JFreeChart.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class BlockChartPlotter extends Abstract2DChartPlotter {
 
-	public BlockChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Block chart plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public BlockChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings, dataTable);
 
 	}
 
-	public BlockChartPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Block chart plotter.
+     *
+     * @param settings the settings
+     */
+    public BlockChartPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
 	private static final long serialVersionUID = -5231467872475202473L;
 
-	public static class BlockPaintScale implements PaintScale {
+    /**
+     * The type Block paint scale.
+     */
+    public static class BlockPaintScale implements PaintScale {
 
 		private ColorProvider colorProvider = new ColorProvider(true);
 
@@ -56,7 +70,13 @@ public class BlockChartPlotter extends Abstract2DChartPlotter {
 
 		private double maxColor;
 
-		public BlockPaintScale(double minColor, double maxColor) {
+        /**
+         * Instantiates a new Block paint scale.
+         *
+         * @param minColor the min color
+         * @param maxColor the max color
+         */
+        public BlockPaintScale(double minColor, double maxColor) {
 			this.minColor = minColor;
 			this.maxColor = maxColor;
 		}

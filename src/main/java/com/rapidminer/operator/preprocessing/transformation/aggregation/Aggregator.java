@@ -24,28 +24,36 @@ import com.rapidminer.example.table.DataRow;
 
 
 /**
- * 
+ * The interface Aggregator.
+ *
  * @author Sebastian Land
- * 
  */
 public interface Aggregator {
 
-	/**
-	 * This will count the given example to the group this {@link Aggregator} belongs to. The
-	 * respective attribute will be queried from the {@link AggregationFunction} this was created
-	 * by.
-	 */
-	public void count(Example example);
+    /**
+     * This will count the given example to the group this {@link Aggregator} belongs to. The
+     * respective attribute will be queried from the {@link AggregationFunction} this was created
+     * by.
+     *
+     * @param example the example
+     */
+    public void count(Example example);
 
-	/**
-	 * This does the same as {@link #count(Example)}, but will take the weight of the current
-	 * example into account.
-	 */
-	public void count(Example example, double weight);
+    /**
+     * This does the same as {@link #count(Example)}, but will take the weight of the current
+     * example into account.
+     *
+     * @param example the example
+     * @param weight  the weight
+     */
+    public void count(Example example, double weight);
 
-	/**
-	 * This will set the result value into the data row onto the position of the given attribute.
-	 */
-	public void set(Attribute attribute, DataRow row);
+    /**
+     * This will set the result value into the data row onto the position of the given attribute.
+     *
+     * @param attribute the attribute
+     * @param row       the row
+     */
+    public void set(Attribute attribute, DataRow row);
 
 }

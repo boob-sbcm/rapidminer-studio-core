@@ -20,18 +20,24 @@ package com.rapidminer.operator.learner.functions.kernel.rvm.kernel;
 
 /**
  * Laplace kernel: K(x, y) = exp(-sqrt(lengthScale^{-2} * ||x - y||^2))
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
  */
 public class KernelLaplace extends KernelRadial {
 
 	private static final long serialVersionUID = -6119888769441823765L;
 
-	/** Constructor(s) */
+    /**
+     * Constructor(s)
+     */
+    public KernelLaplace() {}
 
-	public KernelLaplace() {}
-
-	public KernelLaplace(double lengthScale) {
+    /**
+     * Instantiates a new Kernel laplace.
+     *
+     * @param lengthScale the length scale
+     */
+    public KernelLaplace(double lengthScale) {
 		super(lengthScale);
 	}
 

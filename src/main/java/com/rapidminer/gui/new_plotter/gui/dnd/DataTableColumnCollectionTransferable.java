@@ -28,15 +28,19 @@ import java.io.IOException;
 
 /**
  * A container to transfer multiple {@link DataTableColumn}s via DragAndDrop.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class DataTableColumnCollectionTransferable implements Transferable {
 
 	private final DataTableColumnCollection collection;
 
-	public DataTableColumnCollectionTransferable(DataTableColumnCollection collection) {
+    /**
+     * Instantiates a new Data table column collection transferable.
+     *
+     * @param collection the collection
+     */
+    public DataTableColumnCollectionTransferable(DataTableColumnCollection collection) {
 		this.collection = collection;
 	}
 

@@ -59,7 +59,14 @@ public class SimpleIOObjectEntry extends SimpleDataEntry implements IOObjectEntr
 	private WeakReference<MetaData> metaData = null;
 	private Class<? extends IOObject> dataObjectClass = null;
 
-	SimpleIOObjectEntry(String name, SimpleFolder containingFolder, LocalRepository repository) {
+    /**
+     * Instantiates a new Simple io object entry.
+     *
+     * @param name             the name
+     * @param containingFolder the containing folder
+     * @param repository       the repository
+     */
+    SimpleIOObjectEntry(String name, SimpleFolder containingFolder, LocalRepository repository) {
 		super(name, containingFolder, repository);
 	}
 
@@ -67,7 +74,12 @@ public class SimpleIOObjectEntry extends SimpleDataEntry implements IOObjectEntr
 		return new File(((SimpleFolder) getContainingFolder()).getFile(), getName() + IOO_SUFFIX);
 	}
 
-	protected File getMetaDataFile() {
+    /**
+     * Gets meta data file.
+     *
+     * @return the meta data file
+     */
+    protected File getMetaDataFile() {
 		return new File(((SimpleFolder) getContainingFolder()).getFile(), getName() + MD_SUFFIX);
 	}
 

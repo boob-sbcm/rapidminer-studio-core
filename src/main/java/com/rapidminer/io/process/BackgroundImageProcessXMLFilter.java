@@ -35,8 +35,10 @@ import com.rapidminer.operator.Operator;
  */
 public class BackgroundImageProcessXMLFilter implements ProcessXMLFilter {
 
-	/** user data key for process background image */
-	public static final String KEY_PROCESS_BACKGROUND_IMAGE = "com.rapidminer.io.process.process_background_image";
+    /**
+     * user data key for process background image
+     */
+    public static final String KEY_PROCESS_BACKGROUND_IMAGE = "com.rapidminer.io.process.process_background_image";
 
 	private static final String XML_ATTRIBUTE_HEIGHT = "height";
 	private static final String XML_ATTRIBUTE_WIDTH = "width";
@@ -106,24 +108,22 @@ public class BackgroundImageProcessXMLFilter implements ProcessXMLFilter {
 		}
 	}
 
-	/**
-	 * Returns the background image for the given execution unit.
-	 *
-	 * @param process
-	 *            the execution unit in question
-	 * @return the background image or {@code null} if there is none
-	 */
-	public static ProcessBackgroundImage lookupBackgroundImage(ExecutionUnit process) {
+    /**
+     * Returns the background image for the given execution unit.
+     *
+     * @param process the execution unit in question
+     * @return the background image or {@code null} if there is none
+     */
+    public static ProcessBackgroundImage lookupBackgroundImage(ExecutionUnit process) {
 		return (ProcessBackgroundImage) process.getUserData(KEY_PROCESS_BACKGROUND_IMAGE);
 	}
 
-	/**
-	 * Adds a {@link ProcessBackgroundImage}.
-	 *
-	 * @param image
-	 *            the new background image
-	 */
-	public static void setBackgroundImage(ProcessBackgroundImage image) {
+    /**
+     * Adds a {@link ProcessBackgroundImage}.
+     *
+     * @param image the new background image
+     */
+    public static void setBackgroundImage(ProcessBackgroundImage image) {
 		if (image == null) {
 			throw new IllegalArgumentException("image must not be null!");
 		}
@@ -131,13 +131,12 @@ public class BackgroundImageProcessXMLFilter implements ProcessXMLFilter {
 		image.getProcess().setUserData(KEY_PROCESS_BACKGROUND_IMAGE, image);
 	}
 
-	/**
-	 * Removes the given {@link ProcessBackgroundImage}.
-	 *
-	 * @param process
-	 *            the execution unit for which to remove the background image
-	 */
-	public static void removeBackgroundImage(ExecutionUnit process) {
+    /**
+     * Removes the given {@link ProcessBackgroundImage}.
+     *
+     * @param process the execution unit for which to remove the background image
+     */
+    public static void removeBackgroundImage(ExecutionUnit process) {
 		process.setUserData(KEY_PROCESS_BACKGROUND_IMAGE, null);
 	}
 }

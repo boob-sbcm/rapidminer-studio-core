@@ -25,7 +25,7 @@ import com.rapidminer.operator.performance.PerformanceVector;
  * Individuals contain all necessary informations for feature selection or weighting of example sets
  * for population based search heuristics, including the performance. Each individiual can also
  * handle a crowding distance for multi-objecitve optimization approaches.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Individual {
@@ -42,22 +42,41 @@ public class Individual {
 	/** The crowding distance can used for multiobjective optimization schemes. */
 	private double crowdingDistance = Double.NaN;
 
-	/** Creates a new individual by cloning the given values. */
-	public Individual(double[] weights) {
+    /**
+     * Creates a new individual by cloning the given values.  @param weights the weights
+     *
+     * @param weights the weights
+     */
+    public Individual(double[] weights) {
 		this.weights = weights;
 	}
 
-	public double[] getWeights() {
+    /**
+     * Get weights double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getWeights() {
 		return this.weights;
 	}
 
-	public double[] getWeightsClone() {
+    /**
+     * Get weights clone double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getWeightsClone() {
 		double[] clone = new double[weights.length];
 		System.arraycopy(this.weights, 0, clone, 0, this.weights.length);
 		return clone;
 	}
 
-	public int getNumberOfUsedAttributes() {
+    /**
+     * Gets number of used attributes.
+     *
+     * @return the number of used attributes
+     */
+    public int getNumberOfUsedAttributes() {
 		int count = 0;
 		for (double d : this.weights) {
 			if (d > 0) {
@@ -67,19 +86,39 @@ public class Individual {
 		return count;
 	}
 
-	public PerformanceVector getPerformance() {
+    /**
+     * Gets performance.
+     *
+     * @return the performance
+     */
+    public PerformanceVector getPerformance() {
 		return performanceVector;
 	}
 
-	public void setPerformance(PerformanceVector performanceVector) {
+    /**
+     * Sets performance.
+     *
+     * @param performanceVector the performance vector
+     */
+    public void setPerformance(PerformanceVector performanceVector) {
 		this.performanceVector = performanceVector;
 	}
 
-	public double getCrowdingDistance() {
+    /**
+     * Gets crowding distance.
+     *
+     * @return the crowding distance
+     */
+    public double getCrowdingDistance() {
 		return this.crowdingDistance;
 	}
 
-	public void setCrowdingDistance(double crowdingDistance) {
+    /**
+     * Sets crowding distance.
+     *
+     * @param crowdingDistance the crowding distance
+     */
+    public void setCrowdingDistance(double crowdingDistance) {
 		this.crowdingDistance = crowdingDistance;
 	}
 }

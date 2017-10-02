@@ -37,9 +37,9 @@ import com.rapidminer.tools.container.Pair;
 
 
 /**
- * 
+ * The type Range axis data.
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class RangeAxisData {
 
@@ -54,7 +54,13 @@ public class RangeAxisData {
 
 	private NumericalValueRange cachedAutoViewRange = null;
 
-	public RangeAxisData(RangeAxisConfig rangeAxisConfig, PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Range axis data.
+     *
+     * @param rangeAxisConfig the range axis config
+     * @param plotInstance    the plot instance
+     */
+    public RangeAxisData(RangeAxisConfig rangeAxisConfig, PlotInstance plotInstance) {
 		super();
 		this.rangeAxisConfig = rangeAxisConfig;
 		this.plotInstance = plotInstance;
@@ -104,24 +110,26 @@ public class RangeAxisData {
 
 	}
 
-	/**
-	 * Returns a list of all values on this RangeAxisConfig, together with the ValueSource which
-	 * generates the respective value. If a value appears in more than one ValueSource, only the
-	 * value from the first ValueSource is added to the list.
-	 */
-	public List<Pair<ValueSource, Double>> getDistinctValues() {
+    /**
+     * Returns a list of all values on this RangeAxisConfig, together with the ValueSource which
+     * generates the respective value. If a value appears in more than one ValueSource, only the
+     * value from the first ValueSource is added to the list.
+     *
+     * @return the distinct values
+     */
+    public List<Pair<ValueSource, Double>> getDistinctValues() {
 		if (cachedDistinctSourcesAndValues == null) {
 			updateValueCache();
 		}
 		return cachedDistinctSourcesAndValues;
 	}
 
-	/**
-	 * This function is used receiving the viewing range of this range axis only.
-	 * 
-	 * @return lower viewing bound
-	 */
-	public double getLowerViewBound() {
+    /**
+     * This function is used receiving the viewing range of this range axis only.
+     *
+     * @return lower viewing bound
+     */
+    public double getLowerViewBound() {
 
 		if (rangeAxisConfig.isUsingUserDefinedLowerViewBound()) {
 			return rangeAxisConfig.getUserDefinedRange().getLowerBound();
@@ -133,12 +141,12 @@ public class RangeAxisData {
 		}
 	}
 
-	/**
-	 * This function is used receiving the viewing range of this range axis only.
-	 * 
-	 * @return upper viewing bound
-	 */
-	public double getUpperViewBound() {
+    /**
+     * This function is used receiving the viewing range of this range axis only.
+     *
+     * @return upper viewing bound
+     */
+    public double getUpperViewBound() {
 		if (rangeAxisConfig.isUsingUserDefinedUpperViewBound()) {
 			return rangeAxisConfig.getUserDefinedRange().getUpperBound();
 		} else {
@@ -160,21 +168,36 @@ public class RangeAxisData {
 		cachedAutoViewRange = null;
 	}
 
-	public double getMaxYValue() {
+    /**
+     * Gets max y value.
+     *
+     * @return the max y value
+     */
+    public double getMaxYValue() {
 		if (Double.isNaN(cachedMaxYValue)) {
 			updateValueCache();
 		}
 		return cachedMaxYValue;
 	}
 
-	public double getMinYValue() {
+    /**
+     * Gets min y value.
+     *
+     * @return the min y value
+     */
+    public double getMinYValue() {
 		if (Double.isNaN(cachedMinYValue)) {
 			updateValueCache();
 		}
 		return cachedMinYValue;
 	}
 
-	public void rangeAxisConfigChanged(RangeAxisConfigChangeEvent e) {
+    /**
+     * Range axis config changed.
+     *
+     * @param e the e
+     */
+    public void rangeAxisConfigChanged(RangeAxisConfigChangeEvent e) {
 		if (e == null || e == lastProcessedEvent) {
 			return;
 		}
@@ -203,7 +226,12 @@ public class RangeAxisData {
 		}
 	}
 
-	public RangeAxisConfig getRangeAxisConfig() {
+    /**
+     * Gets range axis config.
+     *
+     * @return the range axis config
+     */
+    public RangeAxisConfig getRangeAxisConfig() {
 		return rangeAxisConfig;
 	}
 
@@ -217,7 +245,12 @@ public class RangeAxisData {
 		}
 	}
 
-	public List<PlotConfigurationError> getWarnings() {
+    /**
+     * Gets warnings.
+     *
+     * @return the warnings
+     */
+    public List<PlotConfigurationError> getWarnings() {
 		List<PlotConfigurationError> warnings = new LinkedList<PlotConfigurationError>();
 
 		if (rangeAxisConfig.getValueType() == ValueType.UNKNOWN) {
@@ -246,10 +279,12 @@ public class RangeAxisData {
 		return warnings;
 	}
 
-	/**
-	 * @return
-	 */
-	public List<PlotConfigurationError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return errors errors
+     */
+    public List<PlotConfigurationError> getErrors() {
 		List<PlotConfigurationError> errors = new LinkedList<PlotConfigurationError>();
 
 		double lowerViewBound = getLowerViewBound();

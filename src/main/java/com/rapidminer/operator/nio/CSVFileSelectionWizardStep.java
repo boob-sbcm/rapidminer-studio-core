@@ -31,18 +31,20 @@ import javax.swing.filechooser.FileFilter;
 /**
  * This step allows to select an file. With this file the {@link CSVResultSetConfiguration} will be
  * created.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class CSVFileSelectionWizardStep extends FileSelectionWizardStep {
 
 	private CSVResultSetConfiguration configuration;
 
-	/**
-	 * There must be a configuration given, but might be empty.
-	 */
-	public CSVFileSelectionWizardStep(AbstractWizard parent, CSVResultSetConfiguration configuration) {
+    /**
+     * There must be a configuration given, but might be empty.
+     *
+     * @param parent        the parent
+     * @param configuration the configuration
+     */
+    public CSVFileSelectionWizardStep(AbstractWizard parent, CSVResultSetConfiguration configuration) {
 		super(parent, configuration.getCsvFileAsFile(), new FileFilter() {
 
 			@Override

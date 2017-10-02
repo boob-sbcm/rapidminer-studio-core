@@ -38,7 +38,10 @@ public class BinaryDataSourceFactory extends FileDataSourceFactory<BinaryDataSou
 	private static final Set<String> BINARY_MIME_TYPES = Collections.emptySet();
 	private static final Set<String> BINARY_FILE_ENDINGS = Collections.emptySet();
 
-	public BinaryDataSourceFactory() {
+    /**
+     * Instantiates a new Binary data source factory.
+     */
+    public BinaryDataSourceFactory() {
 		super("blob", BINARY_MIME_TYPES, BINARY_FILE_ENDINGS, DumpToRepositoryStep.STEP_ID);
 	}
 

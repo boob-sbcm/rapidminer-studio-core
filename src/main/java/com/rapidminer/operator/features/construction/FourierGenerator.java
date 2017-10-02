@@ -33,7 +33,7 @@ import java.util.List;
  * continous function can be synthesized with help of a Fourier synthesis, i.e. with a sum of
  * trigonometric function with different frequencies and phases. This pop op searches for the best
  * frequencies and construct the corresponding trigonometric functions as new attributes.
- * 
+ * <p>
  * For each attribute <code>a</code> of the individuals the following is done:
  * <ol>
  * <li>The label is seen as function of the attribute <code>a</code></li>
@@ -42,7 +42,7 @@ import java.util.List;
  * <li>For each of these <code>k</code> frequencies a new attribute is generated:
  * <code>sin(f_k * a) + p_k</code>.</li>
  * </ol>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class FourierGenerator extends ExampleSetBasedIndividualOperator {
@@ -56,8 +56,16 @@ public class FourierGenerator extends ExampleSetBasedIndividualOperator {
 
 	private RandomGenerator random;
 
-	/** Creates a new fourier generator. */
-	public FourierGenerator(int maxPeaks, int adaptionType, int attributesPerPeak, double epsilon, RandomGenerator random) {
+    /**
+     * Creates a new fourier generator.  @param maxPeaks the max peaks
+     *
+     * @param maxPeaks          the max peaks
+     * @param adaptionType      the adaption type
+     * @param attributesPerPeak the attributes per peak
+     * @param epsilon           the epsilon
+     * @param random            the random
+     */
+    public FourierGenerator(int maxPeaks, int adaptionType, int attributesPerPeak, double epsilon, RandomGenerator random) {
 		this.factory = new SinusFactory(maxPeaks);
 		factory.setAdaptionType(adaptionType);
 		factory.setEpsilon(epsilon);
@@ -65,11 +73,21 @@ public class FourierGenerator extends ExampleSetBasedIndividualOperator {
 		this.random = random;
 	}
 
-	public void setStartGenerations(int startGenerations) {
+    /**
+     * Sets start generations.
+     *
+     * @param startGenerations the start generations
+     */
+    public void setStartGenerations(int startGenerations) {
 		this.startGenerations = startGenerations;
 	}
 
-	public void setApplyInGeneration(int applyInGeneration) {
+    /**
+     * Sets apply in generation.
+     *
+     * @param applyInGeneration the apply in generation
+     */
+    public void setApplyInGeneration(int applyInGeneration) {
 		this.applyInGeneration = applyInGeneration;
 	}
 

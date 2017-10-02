@@ -26,7 +26,7 @@ import java.util.Iterator;
 /**
  * This iterator iterates over all examples of an example set and creates
  * {@link com.rapidminer.datatable.CorrelationMatrixRow2DataTableRowWrapper} objects.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CorrelationMatrixRow2DataTableRowIterator implements Iterator<DataTableRow> {
@@ -35,11 +35,13 @@ public class CorrelationMatrixRow2DataTableRowIterator implements Iterator<DataT
 
 	private int currentRow;
 
-	/**
-	 * Creates a new DataTable iterator backed up by examples. If the idAttribute is null the
-	 * DataTableRows will not be able to deliver an Id.
-	 */
-	public CorrelationMatrixRow2DataTableRowIterator(NumericalMatrix matrix) {
+    /**
+     * Creates a new DataTable iterator backed up by examples. If the idAttribute is null the
+     * DataTableRows will not be able to deliver an Id.
+     *
+     * @param matrix the matrix
+     */
+    public CorrelationMatrixRow2DataTableRowIterator(NumericalMatrix matrix) {
 		this.matrix = matrix;
 		this.currentRow = 0;
 	}

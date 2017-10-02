@@ -56,7 +56,7 @@ import org.jfree.ui.RectangleEdge;
 
 /**
  * This is the new parallel plotter.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ParallelPlotter2 extends LocalNormalizationPlotterAdapter {
@@ -78,12 +78,23 @@ public class ParallelPlotter2 extends LocalNormalizationPlotterAdapter {
 
 	private double[] colorMap = null;
 
-	public ParallelPlotter2(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Parallel plotter 2.
+     *
+     * @param settings the settings
+     */
+    public ParallelPlotter2(final PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 	}
 
-	public ParallelPlotter2(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Parallel plotter 2.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public ParallelPlotter2(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}

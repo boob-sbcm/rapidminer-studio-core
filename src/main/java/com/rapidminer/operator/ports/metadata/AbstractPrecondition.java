@@ -27,25 +27,52 @@ import java.util.List;
 
 
 /**
+ * The type Abstract precondition.
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractPrecondition implements Precondition {
 
 	private final InputPort inputPort;
 
-	public AbstractPrecondition(InputPort inputPort) {
+    /**
+     * Instantiates a new Abstract precondition.
+     *
+     * @param inputPort the input port
+     */
+    public AbstractPrecondition(InputPort inputPort) {
 		this.inputPort = inputPort;
 	}
 
-	protected InputPort getInputPort() {
+    /**
+     * Gets input port.
+     *
+     * @return the input port
+     */
+    protected InputPort getInputPort() {
 		return inputPort;
 	}
 
-	protected void createError(Severity severity, String i18nKey, Object... i18nArgs) {
+    /**
+     * Create error.
+     *
+     * @param severity the severity
+     * @param i18nKey  the 18 n key
+     * @param i18nArgs the 18 n args
+     */
+    protected void createError(Severity severity, String i18nKey, Object... i18nArgs) {
 		createError(severity, Collections.<QuickFix> emptyList(), i18nKey, i18nArgs);
 	}
 
-	protected void createError(Severity severity, final List<? extends QuickFix> fixes, String i18nKey, Object... i18nArgs) {
+    /**
+     * Create error.
+     *
+     * @param severity the severity
+     * @param fixes    the fixes
+     * @param i18nKey  the 18 n key
+     * @param i18nArgs the 18 n args
+     */
+    protected void createError(Severity severity, final List<? extends QuickFix> fixes, String i18nKey, Object... i18nArgs) {
 		getInputPort().addError(new SimpleMetaDataError(severity, getInputPort(), fixes, i18nKey, i18nArgs));
 	}
 

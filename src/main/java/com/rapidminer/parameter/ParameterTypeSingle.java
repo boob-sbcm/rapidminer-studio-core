@@ -35,11 +35,23 @@ public abstract class ParameterTypeSingle extends ParameterType {
 
 	private static final long serialVersionUID = 1144201124955949715L;
 
-	public ParameterTypeSingle(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type single.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeSingle(Element element) throws XMLException {
 		super(element);
 	}
 
-	public ParameterTypeSingle(String key, String description) {
+    /**
+     * Instantiates a new Parameter type single.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ParameterTypeSingle(String key, String description) {
 		super(key, description);
 	}
 
@@ -91,11 +103,14 @@ public abstract class ParameterTypeSingle extends ParameterType {
 		}
 	}
 
-	/**
-	 * Subclasses may override this method to transform the string before writing it to XML.
-	 * {@link ParameterTypePassword} uses this to encrypt the string.
-	 */
-	public String toXMLString(String value) {
+    /**
+     * Subclasses may override this method to transform the string before writing it to XML.
+     * {@link ParameterTypePassword} uses this to encrypt the string.
+     *
+     * @param value the value
+     * @return the string
+     */
+    public String toXMLString(String value) {
 		return value;
 	}
 

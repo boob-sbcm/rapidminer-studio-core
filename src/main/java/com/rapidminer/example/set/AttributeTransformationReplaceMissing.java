@@ -28,7 +28,7 @@ import java.util.Map;
 
 /**
  * This transformation simply returns the same value.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeTransformationReplaceMissing implements AttributeTransformation {
@@ -37,11 +37,21 @@ public class AttributeTransformationReplaceMissing implements AttributeTransform
 
 	private Map<String, Double> replacementMap;
 
-	public AttributeTransformationReplaceMissing(Map<String, Double> replacementMap) {
+    /**
+     * Instantiates a new Attribute transformation replace missing.
+     *
+     * @param replacementMap the replacement map
+     */
+    public AttributeTransformationReplaceMissing(Map<String, Double> replacementMap) {
 		this.replacementMap = replacementMap;
 	}
 
-	public AttributeTransformationReplaceMissing(AttributeTransformationReplaceMissing other) {
+    /**
+     * Instantiates a new Attribute transformation replace missing.
+     *
+     * @param other the other
+     */
+    public AttributeTransformationReplaceMissing(AttributeTransformationReplaceMissing other) {
 		this.replacementMap = new HashMap<String, Double>();
 		Iterator<Map.Entry<String, Double>> i = other.replacementMap.entrySet().iterator();
 		while (i.hasNext()) {
@@ -55,7 +65,12 @@ public class AttributeTransformationReplaceMissing implements AttributeTransform
 		return new AttributeTransformationReplaceMissing(this);
 	}
 
-	public void setReplacementMap(Map<String, Double> replacementMap) {
+    /**
+     * Sets replacement map.
+     *
+     * @param replacementMap the replacement map
+     */
+    public void setReplacementMap(Map<String, Double> replacementMap) {
 		this.replacementMap = replacementMap;
 	}
 

@@ -47,14 +47,23 @@ import com.rapidminer.tools.OperatorService;
 /**
  * This is a precondition for {@link InputPort}s that ensures that the capabilities given by an
  * operator are matched by the delivered ExampleSet.
- * 
+ *
  * @author Sebastian Land
  */
 public class CapabilityPrecondition extends ExampleSetPrecondition {
 
-	protected final CapabilityProvider capabilityProvider;
+    /**
+     * The Capability provider.
+     */
+    protected final CapabilityProvider capabilityProvider;
 
-	public CapabilityPrecondition(CapabilityProvider capabilityProvider, InputPort inputPort) {
+    /**
+     * Instantiates a new Capability precondition.
+     *
+     * @param capabilityProvider the capability provider
+     * @param inputPort          the input port
+     */
+    public CapabilityPrecondition(CapabilityProvider capabilityProvider, InputPort inputPort) {
 		super(inputPort);
 		this.capabilityProvider = capabilityProvider;
 	}
@@ -128,7 +137,12 @@ public class CapabilityPrecondition extends ExampleSetPrecondition {
 		}
 	}
 
-	protected void checkLabelPreconditions(ExampleSetMetaData metaData) {
+    /**
+     * Check label preconditions.
+     *
+     * @param metaData the meta data
+     */
+    protected void checkLabelPreconditions(ExampleSetMetaData metaData) {
 		// label
 		// check if needs label
 		// TODO: This checks if it is supported, but not if it is required. This test will break if
@@ -221,39 +235,45 @@ public class CapabilityPrecondition extends ExampleSetPrecondition {
 		}
 	}
 
-	/**
-	 * This method has to return a collection of quick fixes which are appropriate when
-	 * classification is supported and the data needs regression. The default implementation will
-	 * return fixes for discretization.
-	 */
-	protected List<QuickFix> getFixesForRegressionWhenClassificationSupported(AttributeMetaData labelMD) {
+    /**
+     * This method has to return a collection of quick fixes which are appropriate when
+     * classification is supported and the data needs regression. The default implementation will
+     * return fixes for discretization.
+     *
+     * @param labelMD the label md
+     * @return the fixes for regression when classification supported
+     */
+    protected List<QuickFix> getFixesForRegressionWhenClassificationSupported(AttributeMetaData labelMD) {
 		return AbstractDiscretizationOperator.createDiscretizationFixes(getInputPort(), labelMD.getName());
 	}
 
-	/**
-	 * This method has to return a collection of quick fixes which are appropriate when regression
-	 * is supported and the data needs classification.
-	 */
-	protected Collection<QuickFix> getFixesForClassificationWhenRegressionSupported() {
+    /**
+     * This method has to return a collection of quick fixes which are appropriate when regression
+     * is supported and the data needs classification.
+     *
+     * @return the fixes for classification when regression supported
+     */
+    protected Collection<QuickFix> getFixesForClassificationWhenRegressionSupported() {
 		return Collections.emptyList();
 	}
 
-	/**
-	 * This has to return a list of appropriate quick fixes in the case, that only binominal labels
-	 * are supported but the data contains polynomials.
-	 */
-	protected Collection<QuickFix> getFixesForPolynomialClassificationWhenBinominalSupported() {
+    /**
+     * This has to return a list of appropriate quick fixes in the case, that only binominal labels
+     * are supported but the data contains polynomials.
+     *
+     * @return the fixes for polynomial classification when binominal supported
+     */
+    protected Collection<QuickFix> getFixesForPolynomialClassificationWhenBinominalSupported() {
 		return Collections.emptyList();
 	}
 
-	/**
-	 * Creates a quickfix to convert to nominal.
-	 * 
-	 * @param labelName
-	 *            If null, regular attributes will be converted. Otherwise the special attribute
-	 *            with the given name will be converted.
-	 */
-	protected QuickFix createToBinominalFix(final String labelName) {
+    /**
+     * Creates a quickfix to convert to nominal.
+     *
+     * @param labelName If null, regular attributes will be converted. Otherwise the special attribute            with the given name will be converted.
+     * @return the quick fix
+     */
+    protected QuickFix createToBinominalFix(final String labelName) {
 		return new OperatorInsertionQuickFix("insert_nominal_to_binominal_" + (labelName != null ? "label" : "attributes"),
 				new Object[0], 10, getInputPort()) {
 
@@ -271,14 +291,13 @@ public class CapabilityPrecondition extends ExampleSetPrecondition {
 		};
 	}
 
-	/**
-	 * Creates a quickfix to convert to numerical.
-	 * 
-	 * @param labelName
-	 *            If null, regular attributes will be converted. Otherwise the special attribute
-	 *            with the given name will be converted.
-	 */
-	protected QuickFix createToNumericalFix(final String labelName) {
+    /**
+     * Creates a quickfix to convert to numerical.
+     *
+     * @param labelName If null, regular attributes will be converted. Otherwise the special attribute            with the given name will be converted.
+     * @return the quick fix
+     */
+    protected QuickFix createToNumericalFix(final String labelName) {
 		return new OperatorInsertionQuickFix("insert_nominal_to_numerical_" + (labelName != null ? "label" : "attributes"),
 				new Object[0], 10, getInputPort()) {
 
@@ -296,7 +315,13 @@ public class CapabilityPrecondition extends ExampleSetPrecondition {
 		};
 	}
 
-	protected void createLearnerError(String description, List<? extends QuickFix> list) {
+    /**
+     * Create learner error.
+     *
+     * @param description the description
+     * @param list        the list
+     */
+    protected void createLearnerError(String description, List<? extends QuickFix> list) {
 		String id = "Learner";
 		if (capabilityProvider instanceof Operator) {
 			id = ((Operator) capabilityProvider).getOperatorDescription().getName();

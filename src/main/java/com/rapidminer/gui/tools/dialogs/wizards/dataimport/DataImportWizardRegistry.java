@@ -33,20 +33,18 @@ import com.rapidminer.core.io.data.source.DataSourceFactoryRegistry;
 @Deprecated
 public interface DataImportWizardRegistry {
 
-	/**
-	 * Registers a new {@link DataImportWizardFactory}.
-	 *
-	 * @param factory
-	 *            the new factory
-	 * @throws IllegalArgumentException
-	 *             if the given factory is {@code null}
-	 */
-	void register(DataImportWizardFactory factory);
+    /**
+     * Registers a new {@link DataImportWizardFactory}.
+     *
+     * @param factory the new factory
+     * @throws IllegalArgumentException if the given factory is {@code null}
+     */
+    void register(DataImportWizardFactory factory);
 
-	/**
-	 * Returns all registered factories as unmodifiable list.
-	 *
-	 * @return list of registered factories
-	 */
-	List<DataImportWizardFactory> getFactories();
+    /**
+     * Returns all registered factories as unmodifiable list.
+     *
+     * @return list of registered factories
+     */
+    List<DataImportWizardFactory> getFactories();
 }

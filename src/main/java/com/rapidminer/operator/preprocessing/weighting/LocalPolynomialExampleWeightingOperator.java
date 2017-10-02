@@ -65,36 +65,47 @@ import java.util.List;
  * contain a new weight attribute. If a weight attribute was already included in the exampleSet, its
  * values will be used as initial values for this algorithm. If not, each example is assigned a
  * weight of 1.
- * 
+ * <p>
  * For calculating the weights, this operator will perform a local polynomial regression for each
  * example. For more information about local polynomial regression, take a look at the operator
  * description of the local polynomial regression operator {@link LocalPolynomialRegressionOperator}
  * .
- * 
+ * <p>
  * After the predicted result has been calculated, the residuals are computed and rescaled using
  * their median.
- * 
+ * <p>
  * This result will be transformed by a smooth function, which cuts of values greater than a
  * threshold. This means, that examples without prediction error will gain a weight of 1, while
  * examples with an error greater than the threshold will be down weighted to 0.
- * 
+ * <p>
  * This procedure is iterated as often as specified by the user and will result in weights, which
  * will penalize outliers heavily. This is especially useful for algorithms using the least squares
  * optimization such as Linear Regression, Polynomial Regression or Local Polynomial Regression,
  * since least square is very sensitive to outliers.
- * 
+ *
  * @author Sebastian Land
  */
 public class LocalPolynomialExampleWeightingOperator extends Operator {
 
-	public static final double ROOT_OF_SIX = Math.sqrt(6d);
+    /**
+     * The constant ROOT_OF_SIX.
+     */
+    public static final double ROOT_OF_SIX = Math.sqrt(6d);
 
-	public static final String PARAMETER_NUMBER_OF_ITERATIONS = "iterations";
+    /**
+     * The constant PARAMETER_NUMBER_OF_ITERATIONS.
+     */
+    public static final String PARAMETER_NUMBER_OF_ITERATIONS = "iterations";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	public LocalPolynomialExampleWeightingOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Local polynomial example weighting operator.
+     *
+     * @param description the description
+     */
+    public LocalPolynomialExampleWeightingOperator(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, exampleSetOutput, SetRelation.EQUAL) {
@@ -121,7 +132,15 @@ public class LocalPolynomialExampleWeightingOperator extends Operator {
 		exampleSetOutput.deliver(exampleSet);
 	}
 
-	public ExampleSet doWork(ExampleSet exampleSet, ParameterHandler handler) throws OperatorException {
+    /**
+     * Do work example set.
+     *
+     * @param exampleSet the example set
+     * @param handler    the handler
+     * @return the example set
+     * @throws OperatorException the operator exception
+     */
+    public ExampleSet doWork(ExampleSet exampleSet, ParameterHandler handler) throws OperatorException {
 		DistanceMeasure measure = DistanceMeasures.createMeasure(handler);
 		measure.init(exampleSet, this);
 

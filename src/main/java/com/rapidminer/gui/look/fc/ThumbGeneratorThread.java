@@ -23,7 +23,7 @@ import java.util.Vector;
 
 /**
  * A thread used for generating the file and image thumbs.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ThumbGeneratorThread extends Thread {
@@ -32,7 +32,12 @@ public class ThumbGeneratorThread extends Thread {
 
 	private ItemPanel browsePanel;
 
-	public ThumbGeneratorThread(ItemPanel browsePanel) {
+    /**
+     * Instantiates a new Thumb generator thread.
+     *
+     * @param browsePanel the browse panel
+     */
+    public ThumbGeneratorThread(ItemPanel browsePanel) {
 		this.browsePanel = browsePanel;
 	}
 

@@ -36,92 +36,105 @@ import com.rapidminer.operator.ExecutionUnit;
  * If it makes no sense that the event is passed down to the earlier phases/decorators, call
  * {@link MouseEvent#consume()}.
  * </p>
- *
+ * <p>
  * <p>
  * <strong>Attention:</strong> Drawing should work on a headless server, so implementing both this
  * interface and {@link ProcessDrawDecorator} in the same class should be avoided.
  * </p>
  *
  * @author Marco Boeck
+ * @see ProcessRendererView#addEventDecorator(ProcessEventDecorator, RenderPhase) ProcessRendererView#addEventDecorator(ProcessEventDecorator, RenderPhase)ProcessRendererView#addEventDecorator(ProcessEventDecorator, RenderPhase)
  * @since 6.4.0
- * @see ProcessRendererView#addEventDecorator(ProcessEventDecorator, RenderPhase)
- *
  */
 public interface ProcessEventDecorator {
 
-	/**
-	 * The type of mouse event a {@link ProcessEventDecorator} can be notified of.
-	 *
-	 * @since 6.4.0
-	 */
-	public static enum MouseEventType {
-		/** see {@link MouseListener#mouseClicked(MouseEvent)} */
-		MOUSE_CLICKED,
+    /**
+     * The type of mouse event a {@link ProcessEventDecorator} can be notified of.
+     *
+     * @since 6.4.0
+     */
+    public static enum MouseEventType {
+        /**
+         * see {@link MouseListener#mouseClicked(MouseEvent)}
+         */
+        MOUSE_CLICKED,
 
-		/** see {@link MouseListener#mousePressed(MouseEvent)} */
-		MOUSE_PRESSED,
+        /**
+         * see {@link MouseListener#mousePressed(MouseEvent)}
+         */
+        MOUSE_PRESSED,
 
-		/** see {@link MouseListener#mouseReleased(MouseEvent)} */
-		MOUSE_RELEASED,
+        /**
+         * see {@link MouseListener#mouseReleased(MouseEvent)}
+         */
+        MOUSE_RELEASED,
 
-		/** see {@link MouseMotionListener#mouseMoved(MouseEvent)} */
-		MOUSE_MOVED,
+        /**
+         * see {@link MouseMotionListener#mouseMoved(MouseEvent)}
+         */
+        MOUSE_MOVED,
 
-		/** see {@link MouseMotionListener#mouseDragged(MouseEvent)} */
-		MOUSE_DRAGGED,
+        /**
+         * see {@link MouseMotionListener#mouseDragged(MouseEvent)}
+         */
+        MOUSE_DRAGGED,
 
-		/** see {@link MouseListener#mouseEntered(MouseEvent)} */
-		MOUSE_ENTERED,
+        /**
+         * see {@link MouseListener#mouseEntered(MouseEvent)}
+         */
+        MOUSE_ENTERED,
 
-		/** see {@link MouseListener#mouseExited(MouseEvent)} */
-		MOUSE_EXITED;
+        /**
+         * see {@link MouseListener#mouseExited(MouseEvent)}
+         */
+        MOUSE_EXITED;
 	}
 
-	/**
-	 * The type of key event a {@link ProcessEventDecorator} can be notified of.
-	 *
-	 * @since 6.4.0
-	 */
-	public static enum KeyEventType {
-		/** see {@link KeyListener#keyPressed(KeyEvent)} */
-		KEY_PRESSED,
+    /**
+     * The type of key event a {@link ProcessEventDecorator} can be notified of.
+     *
+     * @since 6.4.0
+     */
+    public static enum KeyEventType {
+        /**
+         * see {@link KeyListener#keyPressed(KeyEvent)}
+         */
+        KEY_PRESSED,
 
-		/** see {@link KeyListener#keyReleased(KeyEvent)} */
-		KEY_RELEASED,
+        /**
+         * see {@link KeyListener#keyReleased(KeyEvent)}
+         */
+        KEY_RELEASED,
 
-		/** see {@link KeyListener#keyTyped(KeyEvent)} */
-		KEY_TYPED;
+        /**
+         * see {@link KeyListener#keyTyped(KeyEvent)}
+         */
+        KEY_TYPED;
 	}
 
-	/**
-	 * Process the mouse event during the {@link RenderPhase} specified while registering.
-	 * <p>
-	 * If it makes no sense that the event is passed down to the earlier phases/decorators, call
-	 * {@link MouseEvent#consume()}.
-	 * </p>
-	 *
-	 * @param process
-	 *            the process the mouse event happened over. Can be {@code null}!
-	 * @param type
-	 *            the mouse event type
-	 * @param e
-	 *            the mouse event to process
-	 */
-	public void processMouseEvent(ExecutionUnit process, MouseEventType type, MouseEvent e);
+    /**
+     * Process the mouse event during the {@link RenderPhase} specified while registering.
+     * <p>
+     * If it makes no sense that the event is passed down to the earlier phases/decorators, call
+     * {@link MouseEvent#consume()}.
+     * </p>
+     *
+     * @param process the process the mouse event happened over. Can be {@code null}!
+     * @param type    the mouse event type
+     * @param e       the mouse event to process
+     */
+    public void processMouseEvent(ExecutionUnit process, MouseEventType type, MouseEvent e);
 
-	/**
-	 * Process the key event during the {@link RenderPhase} specified while registering.
-	 * <p>
-	 * If it makes no sense that the event is passed down to the earlier phases/decorators, call
-	 * {@link KeyEvent#consume()}.
-	 * </p>
-	 *
-	 * @param process
-	 *            the process the mouse event happened over. Can be {@code null}!
-	 * @param type
-	 *            the key event type
-	 * @param e
-	 *            the key event to process
-	 */
-	public void processKeyEvent(ExecutionUnit process, KeyEventType type, KeyEvent e);
+    /**
+     * Process the key event during the {@link RenderPhase} specified while registering.
+     * <p>
+     * If it makes no sense that the event is passed down to the earlier phases/decorators, call
+     * {@link KeyEvent#consume()}.
+     * </p>
+     *
+     * @param process the process the mouse event happened over. Can be {@code null}!
+     * @param type    the key event type
+     * @param e       the key event to process
+     */
+    public void processKeyEvent(ExecutionUnit process, KeyEventType type, KeyEvent e);
 }

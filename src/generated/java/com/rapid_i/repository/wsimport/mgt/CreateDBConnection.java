@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for createDBConnection complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="createDBConnection">
  *   &lt;complexContent>
@@ -48,8 +48,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "createDBConnection", propOrder = {
@@ -64,22 +62,43 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class CreateDBConnection {
 
+    /**
+     * The Name.
+     */
     protected String name;
+    /**
+     * The Host.
+     */
     protected String host;
+    /**
+     * The Port.
+     */
     protected String port;
+    /**
+     * The User.
+     */
     protected String user;
+    /**
+     * The Pwd.
+     */
     protected String pwd;
+    /**
+     * The Schema.
+     */
     protected String schema;
+    /**
+     * The System.
+     */
     protected String system;
+    /**
+     * The Permitted groups.
+     */
     protected List<String> permittedGroups;
 
     /**
      * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getName() {
         return name;
@@ -87,11 +106,8 @@ public class CreateDBConnection {
 
     /**
      * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setName(String value) {
         this.name = value;
@@ -99,11 +115,8 @@ public class CreateDBConnection {
 
     /**
      * Gets the value of the host property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getHost() {
         return host;
@@ -111,11 +124,8 @@ public class CreateDBConnection {
 
     /**
      * Sets the value of the host property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setHost(String value) {
         this.host = value;
@@ -123,11 +133,8 @@ public class CreateDBConnection {
 
     /**
      * Gets the value of the port property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getPort() {
         return port;
@@ -135,11 +142,8 @@ public class CreateDBConnection {
 
     /**
      * Sets the value of the port property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setPort(String value) {
         this.port = value;
@@ -147,11 +151,8 @@ public class CreateDBConnection {
 
     /**
      * Gets the value of the user property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getUser() {
         return user;
@@ -159,11 +160,8 @@ public class CreateDBConnection {
 
     /**
      * Sets the value of the user property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setUser(String value) {
         this.user = value;
@@ -171,11 +169,8 @@ public class CreateDBConnection {
 
     /**
      * Gets the value of the pwd property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getPwd() {
         return pwd;
@@ -183,11 +178,8 @@ public class CreateDBConnection {
 
     /**
      * Sets the value of the pwd property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setPwd(String value) {
         this.pwd = value;
@@ -195,11 +187,8 @@ public class CreateDBConnection {
 
     /**
      * Gets the value of the schema property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getSchema() {
         return schema;
@@ -207,11 +196,8 @@ public class CreateDBConnection {
 
     /**
      * Sets the value of the schema property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setSchema(String value) {
         this.schema = value;
@@ -219,11 +205,8 @@ public class CreateDBConnection {
 
     /**
      * Gets the value of the system property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getSystem() {
         return system;
@@ -231,11 +214,8 @@ public class CreateDBConnection {
 
     /**
      * Sets the value of the system property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setSystem(String value) {
         this.system = value;
@@ -243,25 +223,25 @@ public class CreateDBConnection {
 
     /**
      * Gets the value of the permittedGroups property.
-     * 
+     * <p>
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the permittedGroups property.
-     * 
+     * <p>
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getPermittedGroups().add(newItem);
      * </pre>
-     * 
-     * 
+     * <p>
+     * <p>
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link String }
-     * 
-     * 
+     *
+     * @return the permitted groups
      */
     public List<String> getPermittedGroups() {
         if (permittedGroups == null) {

@@ -31,21 +31,47 @@ import com.rapidminer.operator.learner.functions.kernel.jmysvm.kernel.Kernel;
  */
 public interface SVMInterface {
 
-	/** Initializes this SVM. */
-	public void init(Kernel kernel, SVMExamples examples);
+    /**
+     * Initializes this SVM.  @param kernel the kernel
+     *
+     * @param kernel   the kernel
+     * @param examples the examples
+     */
+    public void init(Kernel kernel, SVMExamples examples);
 
-	/** Train this SVM. */
-	public void train() throws OperatorException;
+    /**
+     * Train this SVM.  @throws OperatorException the operator exception
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void train() throws OperatorException;
 
-	/** Perform a prediction of label for all examples. */
-	public void predict(SVMExamples examples);
+    /**
+     * Perform a prediction of label for all examples.  @param examples the examples
+     *
+     * @param examples the examples
+     */
+    public void predict(SVMExamples examples);
 
-	/** Perform a prediction of label for all examples. */
-	public double predict(SVMExample sVMExample);
+    /**
+     * Perform a prediction of label for all examples.  @param sVMExample the s vm example
+     *
+     * @param sVMExample the s vm example
+     * @return the double
+     */
+    public double predict(SVMExample sVMExample);
 
-	/** Returns the weights of all features. */
-	public double[] getWeights();
+    /**
+     * Returns the weights of all features.  @return the double [ ]
+     *
+     * @return the double [ ]
+     */
+    public double[] getWeights();
 
-	/** Returns the value of b. */
-	public double getB();
+    /**
+     * Returns the value of b.  @return the b
+     *
+     * @return the b
+     */
+    public double getB();
 }

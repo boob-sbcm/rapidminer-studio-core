@@ -52,13 +52,13 @@ import com.rapidminer.tools.Tools;
  * algorithm iteratively grows and prunes rules until there are no positive examples left or the
  * error rate is greater than 50%.
  * </p>
- *
+ * <p>
  * <p>
  * In the growing phase, for each rule greedily conditions are added to the rule until the rule is
  * perfect (i.e. 100% accurate). The procedure tries every possible value of each attribute and
  * selects the condition with highest information gain.
  * </p>
- *
+ * <p>
  * <p>
  * In the prune phase, for each rule any final sequences of the antecedents is pruned with the
  * pruning metric p/(p+n).
@@ -72,17 +72,34 @@ public class RuleLearner extends AbstractLearner {
 
 	private static final String PARAMETER_MINIMAL_PRUNE_BENEFIT = "minimal_prune_benefit";
 
-	public static final String[] CRITERIA_NAMES = { "information_gain", "accuracy" };
+    /**
+     * The constant CRITERIA_NAMES.
+     */
+    public static final String[] CRITERIA_NAMES = { "information_gain", "accuracy" };
 
-	public static final Class<?>[] CRITERIA_CLASSES = { InfoGainCriterion.class, AccuracyCriterion.class };
+    /**
+     * The constant CRITERIA_CLASSES.
+     */
+    public static final Class<?>[] CRITERIA_CLASSES = { InfoGainCriterion.class, AccuracyCriterion.class };
 
-	public static final int CRITERION_INFO_GAIN = 0;
+    /**
+     * The constant CRITERION_INFO_GAIN.
+     */
+    public static final int CRITERION_INFO_GAIN = 0;
 
-	public static final int CRITERION_ACCURACY = 1;
+    /**
+     * The constant CRITERION_ACCURACY.
+     */
+    public static final int CRITERION_ACCURACY = 1;
 
 	private List<Terminator> terminators = new LinkedList<Terminator>();
 
-	public RuleLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Rule learner.
+     *
+     * @param description the description
+     */
+    public RuleLearner(OperatorDescription description) {
 		super(description);
 	}
 

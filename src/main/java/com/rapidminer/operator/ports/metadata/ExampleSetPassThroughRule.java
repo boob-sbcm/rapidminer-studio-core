@@ -24,13 +24,25 @@ import com.rapidminer.parameter.UndefinedParameterError;
 
 
 /**
+ * The type Example set pass through rule.
+ *
  * @author Simon Fischer
  */
 public class ExampleSetPassThroughRule extends PassThroughRule {
 
-	SetRelation relation;
+    /**
+     * The Relation.
+     */
+    SetRelation relation;
 
-	public ExampleSetPassThroughRule(InputPort inputPort, OutputPort outputPort, SetRelation attributeSetRelation) {
+    /**
+     * Instantiates a new Example set pass through rule.
+     *
+     * @param inputPort            the input port
+     * @param outputPort           the output port
+     * @param attributeSetRelation the attribute set relation
+     */
+    public ExampleSetPassThroughRule(InputPort inputPort, OutputPort outputPort, SetRelation attributeSetRelation) {
 		super(inputPort, outputPort, false);
 		this.relation = attributeSetRelation;
 	}
@@ -53,13 +65,15 @@ public class ExampleSetPassThroughRule extends PassThroughRule {
 		}
 	}
 
-	/**
-	 * This method might be used for convenience for slight modifications of the exampleSet like
-	 * adding an attribute. Subclasses might override this method.
-	 * 
-	 * @throws UndefinedParameterError
-	 */
-	public ExampleSetMetaData modifyExampleSet(ExampleSetMetaData metaData) throws UndefinedParameterError {
+    /**
+     * This method might be used for convenience for slight modifications of the exampleSet like
+     * adding an attribute. Subclasses might override this method.
+     *
+     * @param metaData the meta data
+     * @return the example set meta data
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public ExampleSetMetaData modifyExampleSet(ExampleSetMetaData metaData) throws UndefinedParameterError {
 		return metaData;
 	}
 

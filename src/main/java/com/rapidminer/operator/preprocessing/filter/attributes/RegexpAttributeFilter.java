@@ -43,14 +43,23 @@ import java.util.regex.PatternSyntaxException;
 /**
  * This Attribute Filter removes every attribute, which name does not match the Regular expression
  * given by parameter. A data scan is not needed.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa, Tobias Malbrecht
  */
 public class RegexpAttributeFilter extends AbstractAttributeFilterCondition {
 
-	public static final String PARAMETER_REGULAR_EXPRESSION = "regular_expression";
-	public static final String PARAMETER_ADD_EXCEPTION = "use_except_expression";
-	public static final String PARAMETER_EXCEPT_REGULAR_EXPRESSION = "except_regular_expression";
+    /**
+     * The constant PARAMETER_REGULAR_EXPRESSION.
+     */
+    public static final String PARAMETER_REGULAR_EXPRESSION = "regular_expression";
+    /**
+     * The constant PARAMETER_ADD_EXCEPTION.
+     */
+    public static final String PARAMETER_ADD_EXCEPTION = "use_except_expression";
+    /**
+     * The constant PARAMETER_EXCEPT_REGULAR_EXPRESSION.
+     */
+    public static final String PARAMETER_EXCEPT_REGULAR_EXPRESSION = "except_regular_expression";
 
 	private String attributeNameRegexp;
 	private String exceptRegexp = null;

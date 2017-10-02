@@ -41,7 +41,6 @@ import com.rapidminer.operator.ports.metadata.SimpleMetaDataError;
  * preconditions and the connection to the source output port.
  *
  * @author Nils Woehler
- *
  */
 public abstract class AbstractInputPort extends AbstractPort implements InputPort {
 
@@ -56,7 +55,14 @@ public abstract class AbstractInputPort extends AbstractPort implements InputPor
 	/** The port to which this port is connected. */
 	private OutputPort sourceOutputPort;
 
-	protected AbstractInputPort(Ports<? extends Port> owner, String name, boolean simulatesStack) {
+    /**
+     * Instantiates a new Abstract input port.
+     *
+     * @param owner          the owner
+     * @param name           the name
+     * @param simulatesStack the simulates stack
+     */
+    protected AbstractInputPort(Ports<? extends Port> owner, String name, boolean simulatesStack) {
 		super(owner, name, simulatesStack);
 	}
 
@@ -102,7 +108,12 @@ public abstract class AbstractInputPort extends AbstractPort implements InputPor
 		}
 	}
 
-	public void connect(OutputPort outputPort) {
+    /**
+     * Connect.
+     *
+     * @param outputPort the output port
+     */
+    public void connect(OutputPort outputPort) {
 		this.sourceOutputPort = outputPort;
 		fireUpdate(this);
 	}
@@ -189,17 +200,32 @@ public abstract class AbstractInputPort extends AbstractPort implements InputPor
 		metaDataChangeListeners.remove(listener);
 	}
 
-	protected synchronized void informListenersOfChange(MetaData metaData) {
+    /**
+     * Inform listeners of change.
+     *
+     * @param metaData the meta data
+     */
+    protected synchronized void informListenersOfChange(MetaData metaData) {
 		for (MetaDataChangeListener listener : metaDataChangeListeners) {
 			listener.informMetaDataChanged(metaData);
 		}
 	}
 
-	public MetaData getRealMetaData() {
+    /**
+     * Gets real meta data.
+     *
+     * @return the real meta data
+     */
+    public MetaData getRealMetaData() {
 		return realMetaData;
 	}
 
-	public void setRealMetaData(MetaData realMetaData) {
+    /**
+     * Sets real meta data.
+     *
+     * @param realMetaData the real meta data
+     */
+    public void setRealMetaData(MetaData realMetaData) {
 		this.realMetaData = realMetaData;
 	}
 

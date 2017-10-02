@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric hyperbolic cosine of an angle.
  *
  * @author Denis Schernov
- *
  */
 public class HyperbolicCosine extends Abstract1DoubleInputFunction {
 
-	public HyperbolicCosine() {
+    /**
+     * Instantiates a new Hyperbolic cosine.
+     */
+    public HyperbolicCosine() {
 		super("trigonometrical.cosh", Ontology.NUMERICAL);
 	}
 

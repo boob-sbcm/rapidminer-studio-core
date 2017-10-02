@@ -20,18 +20,29 @@ package com.rapidminer.example.set;
 
 /**
  * Exception class whose instances are thrown during the creation of conditions.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class ConditionCreationException extends Exception {
 
 	private static final long serialVersionUID = -7648754234739697969L;
 
-	public ConditionCreationException(String message) {
+    /**
+     * Instantiates a new Condition creation exception.
+     *
+     * @param message the message
+     */
+    public ConditionCreationException(String message) {
 		super(message);
 	}
 
-	public ConditionCreationException(String message, Throwable cause) {
+    /**
+     * Instantiates a new Condition creation exception.
+     *
+     * @param message the message
+     * @param cause   the cause
+     */
+    public ConditionCreationException(String message, Throwable cause) {
 		super(message, cause);
 	}
 }

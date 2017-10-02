@@ -58,7 +58,7 @@ import java.util.Vector;
  * the models are combined to a single global model. The number of models to be trained maximally
  * are specified by the parameter <code>iterations</code>.
  * </p>
- * 
+ * <p>
  * <p>
  * If the parameter <code>rescale_label_priors</code> is set, then the example set is reweighted, so
  * that all classes are equally probable (or frequent). For two-class problems this turns the
@@ -69,7 +69,7 @@ import java.util.Vector;
  * <code>rescale_label_priors</code> is not set, then the operator performs boosting based on
  * probability estimates.
  * </p>
- * 
+ * <p>
  * <p>
  * The estimates used by this operator may either be computed using the same set as for training, or
  * in each iteration the training set may be split randomly, so that a model is fitted based on the
@@ -79,14 +79,14 @@ import java.util.Vector;
  * Set this parameter to a value of lower than 1 to use the specified subset of data for training,
  * and the remaining examples for probability estimation.
  * </p>
- * 
+ * <p>
  * <p>
  * If the parameter <code>allow_marginal_skews</code> is <em>not</em> set, then the support of each
  * subset defined in terms of common base model predictions does not change from one iteration to
  * the next. Analogously the class priors do not change. This is the procedure originally described
  * in {@rapidminer.cite Scholz/2005b} in the context of subgroup discovery.
  * </p>
- * 
+ * <p>
  * <p>
  * Setting the <code>allow_marginal_skews</code> option to <code>true</code> leads to a procedure
  * that changes the marginal weights/probabilities of subsets, if this is beneficial in a boosting
@@ -94,7 +94,7 @@ import java.util.Vector;
  * upper-bounds the training error in this case. This bound is reduced more quickly by the
  * BayesianBoosting operator, however.
  * </p>
- * 
+ * <p>
  * <p>
  * In sum, to reproduce the sequential sampling, or knowledge-based sampling, from
  * {@rapidminer.cite Scholz/2005b} for subgroup discovery, two of the default parameter settings of
@@ -102,7 +102,7 @@ import java.util.Vector;
  * <code>true</code>, and <code>allow_marginal_skews</code> must be set to <code>false</code>. In
  * addition, a boolean (binomial) label has to be used.
  * </p>
- * 
+ * <p>
  * <p>
  * The operator requires an example set as its input. To sample out prior knowledge of a different
  * form it is possible to provide another model as an optional additional input. The predictions of
@@ -112,39 +112,45 @@ import java.util.Vector;
  * the case of an optional initial model, this model will also be stored in the output model, in
  * order to produce the same initial weighting during model application.
  * </p>
- * 
+ *
  * @author Martin Scholz
  */
 public class BayesianBoosting extends AbstractMetaLearner {
 
-	/**
-	 * Name of the variable specifying the maximal number of iterations of the learner.
-	 */
-	public static final String PARAMETER_ITERATIONS = "iterations";
+    /**
+     * Name of the variable specifying the maximal number of iterations of the learner.
+     */
+    public static final String PARAMETER_ITERATIONS = "iterations";
 
-	/** Name of the flag indicating internal bootstrapping. */
-	public static final String PARAMETER_USE_SUBSET_FOR_TRAINING = "use_subset_for_training";
+    /**
+     * Name of the flag indicating internal bootstrapping.
+     */
+    public static final String PARAMETER_USE_SUBSET_FOR_TRAINING = "use_subset_for_training";
 
-	/**
-	 * Boolean parameter to specify whether the label priors should be equally likely after first
-	 * iteration.
-	 */
-	public static final String PARAMETER_RESCALE_LABEL_PRIORS = "rescale_label_priors";
+    /**
+     * Boolean parameter to specify whether the label priors should be equally likely after first
+     * iteration.
+     */
+    public static final String PARAMETER_RESCALE_LABEL_PRIORS = "rescale_label_priors";
 
-	/**
-	 * Boolean parameter that switches between KBS (if set to false) and a boosting-like
-	 * reweighting.
-	 */
-	public static final String PARAMETER_ALLOW_MARGINAL_SKEWS = "allow_marginal_skews";
+    /**
+     * Boolean parameter that switches between KBS (if set to false) and a boosting-like
+     * reweighting.
+     */
+    public static final String PARAMETER_ALLOW_MARGINAL_SKEWS = "allow_marginal_skews";
 
-	/** Discard models with an advantage of less than the specified value. */
-	public static final double MIN_ADVANTAGE = 0.001;
+    /**
+     * Discard models with an advantage of less than the specified value.
+     */
+    public static final double MIN_ADVANTAGE = 0.001;
 
 	/** A model to initialise the example weights. */
 	private Model startModel;
 
-	/** Field for visualizing performance. */
-	protected int currentIteration;
+    /**
+     * Field for visualizing performance.
+     */
+    protected int currentIteration;
 
 	/** A performance measure to be visualized. */
 	private double performance = 0;
@@ -156,8 +162,12 @@ public class BayesianBoosting extends AbstractMetaLearner {
 
 	private final InputPort modelInput = getInputPorts().createPort("model");
 
-	/** Constructor. */
-	public BayesianBoosting(OperatorDescription description) {
+    /**
+     * Constructor.  @param description the description
+     *
+     * @param description the description
+     */
+    public BayesianBoosting(OperatorDescription description) {
 		super(description);
 
 		modelInput.addPrecondition(new SimplePrecondition(modelInput, new PredictionModelMetaData(PredictionModel.class,
@@ -254,16 +264,15 @@ public class BayesianBoosting extends AbstractMetaLearner {
 		return model;
 	}
 
-	/**
-	 * Creates a weight attribute if not yet done. It either backs up the old weoghts for restoring
-	 * them later, or it fills the newly created attribute with the initial value of 1. If rescaling
-	 * to equal class priors is activated then the weights are set accordingly.
-	 * 
-	 * @param exampleSet
-	 *            the example set to be prepared
-	 * @return a <code>double[]</code> array containing the class priors.
-	 */
-	protected double[] prepareWeights(ExampleSet exampleSet) {
+    /**
+     * Creates a weight attribute if not yet done. It either backs up the old weoghts for restoring
+     * them later, or it fills the newly created attribute with the initial value of 1. If rescaling
+     * to equal class priors is activated then the weights are set accordingly.
+     *
+     * @param exampleSet the example set to be prepared
+     * @return a <code>double[]</code> array containing the class priors.
+     */
+    protected double[] prepareWeights(ExampleSet exampleSet) {
 		Attribute weightAttr = exampleSet.getAttributes().getWeight();
 		if (weightAttr == null) {
 			this.oldWeights = null;
@@ -347,14 +356,14 @@ public class BayesianBoosting extends AbstractMetaLearner {
 		}
 	}
 
-	/**
-	 * Runs the &quot;embedded&quot; learner on the example set and returns a model.
-	 * 
-	 * @param exampleSet
-	 *            an <code>ExampleSet</code> to train a model for
-	 * @return a <code>Model</code>
-	 */
-	protected Model trainBaseModel(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Runs the &quot;embedded&quot; learner on the example set and returns a model.
+     *
+     * @param exampleSet an <code>ExampleSet</code> to train a model for
+     * @return a <code>Model</code>
+     * @throws OperatorException the operator exception
+     */
+    protected Model trainBaseModel(ExampleSet exampleSet) throws OperatorException {
 		Model model = applyInnerLearner(exampleSet);
 		return model;
 	}
@@ -494,19 +503,18 @@ public class BayesianBoosting extends AbstractMetaLearner {
 		return new BayBoostModel(trainingSet, modelInfo, classPriors);
 	}
 
-	/**
-	 * This method reweights the example set with respect to the
-	 * <code>WeightedPerformanceMeasures</code> object. Please note that the weights will not be
-	 * reset at any time, because they continuously change from one iteration to the next. This
-	 * method does not change the priors of the classes.
-	 * 
-	 * @param wp
-	 *            the WeightedPerformanceMeasures to use
-	 * @param exampleSet
-	 *            <code>ExampleSet</code> to be reweighted
-	 * @return the total weight of examples as an error estimate
-	 */
-	protected double reweightExamples(WeightedPerformanceMeasures wp, ExampleSet exampleSet) throws OperatorException {
+    /**
+     * This method reweights the example set with respect to the
+     * <code>WeightedPerformanceMeasures</code> object. Please note that the weights will not be
+     * reset at any time, because they continuously change from one iteration to the next. This
+     * method does not change the priors of the classes.
+     *
+     * @param wp         the WeightedPerformanceMeasures to use
+     * @param exampleSet <code>ExampleSet</code> to be reweighted
+     * @return the total weight of examples as an error estimate
+     * @throws OperatorException the operator exception
+     */
+    protected double reweightExamples(WeightedPerformanceMeasures wp, ExampleSet exampleSet) throws OperatorException {
 		boolean allowMarginalSkews = this.getParameterAsBoolean(PARAMETER_ALLOW_MARGINAL_SKEWS);
 		double remainingWeight = WeightedPerformanceMeasures.reweightExamples(exampleSet, wp.getContingencyMatrix(),
 				allowMarginalSkews);

@@ -34,19 +34,17 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
 
 
 /**
- *
  * A {@link Function} parsing a date to a string with respect to the size and format.
  *
  * @author Marcel Seifert
- *
  */
 public class DateString extends AbstractFunction {
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 */
-	public DateString() {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     */
+    public DateString() {
 		super("conversion.date_str", 3, Ontology.NOMINAL);
 	}
 
@@ -65,18 +63,15 @@ public class DateString extends AbstractFunction {
 		return new SimpleExpressionEvaluator(makeStringCallable(date, size, format), type, isResultConstant(inputEvaluators));
 	}
 
-	/**
-	 * Builds a String Callable from one date and two string arguments
-	 *
-	 * @param date
-	 *            the input date
-	 * @param size
-	 *            the input size
-	 * @param format
-	 *            the input format
-	 * @return the resulting callable<String>
-	 */
-	protected Callable<String> makeStringCallable(final ExpressionEvaluator date, final ExpressionEvaluator size,
+    /**
+     * Builds a String Callable from one date and two string arguments
+     *
+     * @param date   the input date
+     * @param size   the input size
+     * @param format the input format
+     * @return the resulting callable<String>
+     */
+    protected Callable<String> makeStringCallable(final ExpressionEvaluator date, final ExpressionEvaluator size,
 			final ExpressionEvaluator format) {
 
 		final Callable<Date> funcDate = date.getDateFunction();
@@ -173,18 +168,15 @@ public class DateString extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result for one date and two string input values.
-	 *
-	 * @param dateDate
-	 *            the date
-	 * @param sizeString
-	 *            from {@link ExpressionParserConstants}
-	 * @param formatString
-	 *            from {@link ExpressionParserConstants}
-	 * @return the result of the computation.
-	 */
-	protected String compute(Date dateDate, String sizeString, String formatString) {
+    /**
+     * Computes the result for one date and two string input values.
+     *
+     * @param dateDate     the date
+     * @param sizeString   from {@link ExpressionParserConstants}
+     * @param formatString from {@link ExpressionParserConstants}
+     * @return the result of the computation.
+     */
+    protected String compute(Date dateDate, String sizeString, String formatString) {
 		if (dateDate == null || sizeString == null || formatString == null) {
 			return null;
 		}

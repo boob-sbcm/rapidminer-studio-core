@@ -41,14 +41,23 @@ import java.util.logging.Level;
 
 
 /**
- * 
+ * The type Repository source.
+ *
  * @author Sebastian Land
  */
 public class RepositorySource extends AbstractReader<IOObject> {
 
-	public static final String PARAMETER_REPOSITORY_ENTRY = "repository_entry";
+    /**
+     * The constant PARAMETER_REPOSITORY_ENTRY.
+     */
+    public static final String PARAMETER_REPOSITORY_ENTRY = "repository_entry";
 
-	public RepositorySource(OperatorDescription description) {
+    /**
+     * Instantiates a new Repository source.
+     *
+     * @param description the description
+     */
+    public RepositorySource(OperatorDescription description) {
 		super(description, IOObject.class);
 	}
 

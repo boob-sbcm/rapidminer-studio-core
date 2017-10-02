@@ -35,6 +35,7 @@ import java.util.Map;
  * The cache is heap utilization aware in the sense that it displaces entries (if any) if the load
  * factor of the heap is higher than {@value #MAX_HEAP_LOAD_FACTOR}.
  *
+ * @param <T> the type parameter
  * @author Michael Knopf, Gisa Schaefer
  * @since 7.1.0
  */
@@ -49,14 +50,14 @@ public class ReferenceCache<T> {
 	/** The size of this cache. */
 	private final int size;
 
-	/**
-	 * A heap utilization aware reference object similar in its interface to {@link WeakReference}s
-	 * and {@link SoftReference}s. In most scenarios, it is stronger than a {@link WeakReference}
-	 * but weaker than a {@link SoftReference}.
-	 *
-	 * @see ReferenceCache
-	 */
-	public class Reference {
+    /**
+     * A heap utilization aware reference object similar in its interface to {@link WeakReference}s
+     * and {@link SoftReference}s. In most scenarios, it is stronger than a {@link WeakReference}
+     * but weaker than a {@link SoftReference}.
+     *
+     * @see ReferenceCache
+     */
+    public class Reference {
 
 		/** Weak reference that lives is never cleared manually (fall back for the cache). */
 		private final TransparentWeakReference weak;
@@ -78,17 +79,16 @@ public class ReferenceCache<T> {
 			}
 		}
 
-		/**
-		 * Returns this reference object's referent. If this reference object has been cleared,
-		 * either by the program or by the garbage collector, then this method returns {@code null}.
-		 * <p>
-		 * If the reference has not been cleared yet, the corresponding cache entry will be updated.
-		 * This makes it more likely that subsequent look ups will be successful.
-		 *
-		 * @return the object to which this reference refers, or {@code null} if this reference
-		 *         object has been cleared
-		 */
-		public T get() {
+        /**
+         * Returns this reference object's referent. If this reference object has been cleared,
+         * either by the program or by the garbage collector, then this method returns {@code null}.
+         * <p>
+         * If the reference has not been cleared yet, the corresponding cache entry will be updated.
+         * This makes it more likely that subsequent look ups will be successful.
+         *
+         * @return the object to which this reference refers, or {@code null} if this reference         object has been cleared
+         */
+        public T get() {
 			SoftReference<T> soft;
 
 			synchronized (cache) {
@@ -108,17 +108,16 @@ public class ReferenceCache<T> {
 			}
 		}
 
-		/**
-		 * Returns this reference object's referent. If this reference object has been cleared,
-		 * either by the program or by the garbage collector, then this method returns {@code null}.
-		 * <p>
-		 * Unlike {@link #get()}, invoking this method does not update the cache and thus does not
-		 * increase the likelihood of successful subsequent look ups.
-		 *
-		 * @return the object to which this reference refers, or {@code null} if this reference
-		 *         object has been cleared
-		 */
-		public T weakGet() {
+        /**
+         * Returns this reference object's referent. If this reference object has been cleared,
+         * either by the program or by the garbage collector, then this method returns {@code null}.
+         * <p>
+         * Unlike {@link #get()}, invoking this method does not update the cache and thus does not
+         * increase the likelihood of successful subsequent look ups.
+         *
+         * @return the object to which this reference refers, or {@code null} if this reference         object has been cleared
+         */
+        public T weakGet() {
 			return weak.get();
 		}
 	}
@@ -189,18 +188,23 @@ public class ReferenceCache<T> {
 		}
 	}
 
-	/**
-	 * Creates a new heap utilization aware reference cache of the given size.
-	 *
-	 * @param size
-	 *            the size of the new cache
-	 */
-	public ReferenceCache(final int size) {
+    /**
+     * Creates a new heap utilization aware reference cache of the given size.
+     *
+     * @param size the size of the new cache
+     */
+    public ReferenceCache(final int size) {
 		this.size = size;
 		cache = new LRUCache();
 	}
 
-	public Reference newReference(T value) {
+    /**
+     * New reference reference.
+     *
+     * @param value the value
+     * @return the reference
+     */
+    public Reference newReference(T value) {
 		return new Reference(value);
 	}
 

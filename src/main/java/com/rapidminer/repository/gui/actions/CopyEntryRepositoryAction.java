@@ -28,14 +28,19 @@ import javax.swing.Action;
 
 /**
  * This action is the standard copy action.
- * 
+ *
  * @author Simon Fischer
  */
 public class CopyEntryRepositoryAction extends AbstractRepositoryAction<Entry> {
 
 	private static final long serialVersionUID = 1L;
 
-	public CopyEntryRepositoryAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Copy entry repository action.
+     *
+     * @param tree the tree
+     */
+    public CopyEntryRepositoryAction(RepositoryTree tree) {
 		super(tree, Entry.class, false, "repository_copy");
 		putValue(ACTION_COMMAND_KEY, "copy");
 	}

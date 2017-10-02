@@ -47,7 +47,12 @@ public class ThresholdApplier extends Operator {
 	private InputPort thresholdInput = getInputPorts().createPort("threshold", Threshold.class);
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	public ThresholdApplier(OperatorDescription description) {
+    /**
+     * Instantiates a new Threshold applier.
+     *
+     * @param description the description
+     */
+    public ThresholdApplier(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, Ontology.VALUE_TYPE,

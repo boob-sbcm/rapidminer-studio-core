@@ -19,7 +19,14 @@ import com.sun.javadoc.RootDoc;
  */
 public class ProgramHTMLOperatorDocGenerator implements OperatorDocGenerator {
 
-	public void generateDoc(Operator op, RootDoc rootDoc, PrintWriter out) {
+    /**
+     * Generate doc.
+     *
+     * @param op      the op
+     * @param rootDoc the root doc
+     * @param out     the out
+     */
+    public void generateDoc(Operator op, RootDoc rootDoc, PrintWriter out) {
 		ClassDoc opDoc = rootDoc.classNamed(op.getClass().getName());
 
 		// name
@@ -31,7 +38,15 @@ public class ProgramHTMLOperatorDocGenerator implements OperatorDocGenerator {
 		out.println("#####");
 	}
 
-	public String transformHTMLJavadocComment(String comment, final Class clazz, final String operatorName) {
+    /**
+     * Transform html javadoc comment string.
+     *
+     * @param comment      the comment
+     * @param clazz        the clazz
+     * @param operatorName the operator name
+     * @return the string
+     */
+    public String transformHTMLJavadocComment(String comment, final Class clazz, final String operatorName) {
 		try {
 			// Links
 			StringBuffer linksReplaced = new StringBuffer();
@@ -76,9 +91,19 @@ public class ProgramHTMLOperatorDocGenerator implements OperatorDocGenerator {
 		}
 	}
 
-	/** Does nothing. */
-	public void beginGroup(String groupName, PrintWriter out) {}
+    /**
+     * Does nothing.  @param groupName the group name
+     *
+     * @param groupName the group name
+     * @param out       the out
+     */
+    public void beginGroup(String groupName, PrintWriter out) {}
 
-	/** Does nothing. */
-	public void endGroup(String groupName, PrintWriter out) {}
+    /**
+     * Does nothing.  @param groupName the group name
+     *
+     * @param groupName the group name
+     * @param out       the out
+     */
+    public void endGroup(String groupName, PrintWriter out) {}
 }

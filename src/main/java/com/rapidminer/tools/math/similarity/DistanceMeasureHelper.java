@@ -38,20 +38,24 @@ import com.rapidminer.tools.Observer;
  * overrides
  * {@link DistanceMeasure#installAdditionalPorts(com.rapidminer.operator.ports.InputPorts, com.rapidminer.parameter.ParameterHandler)}
  * this may install new ports at the operator.
- *
+ * <p>
  * In its {@link Operator#doWork()} method, the operator may call
  * {@link #getInitializedMeasure(ExampleSet)} in order to initialize the distance measure and obtain
  * it. Call this method only once.
  *
  * @author Simon Fischer
- *
  */
 public class DistanceMeasureHelper {
 
 	private Operator operator;
 	private DistanceMeasure measure;
 
-	public DistanceMeasureHelper(Operator operator) {
+    /**
+     * Instantiates a new Distance measure helper.
+     *
+     * @param operator the operator
+     */
+    public DistanceMeasureHelper(Operator operator) {
 		this.operator = operator;
 		operator.getParameters().addObserver(new Observer<String>() {
 
@@ -85,13 +89,26 @@ public class DistanceMeasureHelper {
 		}
 	}
 
-	public DistanceMeasure getInitializedMeasure(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Gets initialized measure.
+     *
+     * @param exampleSet the example set
+     * @return the initialized measure
+     * @throws OperatorException the operator exception
+     */
+    public DistanceMeasure getInitializedMeasure(ExampleSet exampleSet) throws OperatorException {
 		updateMeasure();
 		measure.init(exampleSet, operator);
 		return measure;
 	}
 
-	public int getSelectedMeasureType() throws UndefinedParameterError {
+    /**
+     * Gets selected measure type.
+     *
+     * @return the selected measure type
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public int getSelectedMeasureType() throws UndefinedParameterError {
 		return DistanceMeasures.getSelectedMeasureType(operator);
 	}
 }

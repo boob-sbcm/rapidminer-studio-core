@@ -47,7 +47,10 @@ public class ClusterModel extends AbstractModel implements ClusterModelInterface
 
 	private static final long serialVersionUID = 3780908886210272852L;
 
-	public static final int UNASSIGNABLE = -1;
+    /**
+     * The constant UNASSIGNABLE.
+     */
+    public static final int UNASSIGNABLE = -1;
 
 	private static final int OPERATOR_PROGRESS_STEPS = 50000;
 
@@ -63,7 +66,15 @@ public class ClusterModel extends AbstractModel implements ClusterModelInterface
 
 	private ArrayList<Cluster> clusters;
 
-	public ClusterModel(ExampleSet exampleSet, int k, boolean addClusterAsLabel, boolean removeUnknown) {
+    /**
+     * Instantiates a new Cluster model.
+     *
+     * @param exampleSet        the example set
+     * @param k                 the k
+     * @param addClusterAsLabel the add cluster as label
+     * @param removeUnknown     the remove unknown
+     */
+    public ClusterModel(ExampleSet exampleSet, int k, boolean addClusterAsLabel, boolean removeUnknown) {
 		super(exampleSet);
 		this.clusters = new ArrayList<Cluster>(k);
 		for (int i = 0; i < k; i++) {
@@ -132,28 +143,41 @@ public class ClusterModel extends AbstractModel implements ClusterModelInterface
 
 	}
 
-	public int getNumberOfClusters() {
+    /**
+     * Gets number of clusters.
+     *
+     * @return the number of clusters
+     */
+    public int getNumberOfClusters() {
 		return clusters.size();
 	}
 
-	/**
-	 * This method returns whether this cluster model should add the assignment as a label.
-	 */
-	public boolean isAddingLabel() {
+    /**
+     * This method returns whether this cluster model should add the assignment as a label.
+     *
+     * @return the boolean
+     */
+    public boolean isAddingLabel() {
 		return isAddingAsLabel;
 	}
 
-	/**
-	 * This method returns whether examples which can't be assigned should be removed from the
-	 * resulting example set.
-	 *
-	 * @return
-	 */
-	public boolean isRemovingUnknownAssignments() {
+    /**
+     * This method returns whether examples which can't be assigned should be removed from the
+     * resulting example set.
+     *
+     * @return boolean boolean
+     */
+    public boolean isRemovingUnknownAssignments() {
 		return isRemovingUnknown;
 	}
 
-	public void setClusterAssignments(int[] clusterId, ExampleSet exampleSet) {
+    /**
+     * Sets cluster assignments.
+     *
+     * @param clusterId  the cluster id
+     * @param exampleSet the example set
+     */
+    public void setClusterAssignments(int[] clusterId, ExampleSet exampleSet) {
 		Attribute id = exampleSet.getAttributes().getId();
 		if (id.isNominal()) {
 			NominalMapping mapping = id.getMapping();
@@ -171,12 +195,15 @@ public class ClusterModel extends AbstractModel implements ClusterModelInterface
 		}
 	}
 
-	/**
-	 * This method returns an array with the indices or the cluster for all examples in the set.
-	 * This will work with new examples, if centroid based clustering has been used before.
-	 * Otherwise new examples cannot be assigned.
-	 */
-	public int[] getClusterAssignments(ExampleSet exampleSet) {
+    /**
+     * This method returns an array with the indices or the cluster for all examples in the set.
+     * This will work with new examples, if centroid based clustering has been used before.
+     * Otherwise new examples cannot be assigned.
+     *
+     * @param exampleSet the example set
+     * @return the int [ ]
+     */
+    public int[] getClusterAssignments(ExampleSet exampleSet) {
 		int[] clusterAssignments = new int[exampleSet.size()];
 		Attribute idAttribute = exampleSet.getAttributes().getId();
 		NominalMapping mapping = null;
@@ -192,13 +219,16 @@ public class ClusterModel extends AbstractModel implements ClusterModelInterface
 		return clusterAssignments;
 	}
 
-	/**
-	 * This method returns the index of the cluster, this Id's example has been assigned to. Please
-	 * note, that this can only be applied to examples included in the clustering process. New
-	 * examples might be assigned to clusters using the getClusterAssignments method, if and only if
-	 * the cluster model supports this. Currently only centroid based cluster models do.
-	 */
-	public int getClusterIndexOfId(Object id) {
+    /**
+     * This method returns the index of the cluster, this Id's example has been assigned to. Please
+     * note, that this can only be applied to examples included in the clustering process. New
+     * examples might be assigned to clusters using the getClusterAssignments method, if and only if
+     * the cluster model supports this. Currently only centroid based cluster models do.
+     *
+     * @param id the id
+     * @return the cluster index of id
+     */
+    public int getClusterIndexOfId(Object id) {
 		int index = 0;
 		for (Cluster cluster : clusters) {
 			if (cluster.containsExampleId(id)) {
@@ -209,11 +239,22 @@ public class ClusterModel extends AbstractModel implements ClusterModelInterface
 		return UNASSIGNABLE;
 	}
 
-	public Cluster getCluster(int i) {
+    /**
+     * Gets cluster.
+     *
+     * @param i the
+     * @return the cluster
+     */
+    public Cluster getCluster(int i) {
 		return clusters.get(i);
 	}
 
-	public Collection<Cluster> getClusters() {
+    /**
+     * Gets clusters.
+     *
+     * @return the clusters
+     */
+    public Collection<Cluster> getClusters() {
 		return clusters;
 	}
 
@@ -227,7 +268,13 @@ public class ClusterModel extends AbstractModel implements ClusterModelInterface
 		return "Cluster model";
 	}
 
-	public void checkCapabilities(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Check capabilities.
+     *
+     * @param exampleSet the example set
+     * @throws OperatorException the operator exception
+     */
+    public void checkCapabilities(ExampleSet exampleSet) throws OperatorException {
 		com.rapidminer.example.Tools.isIdTagged(exampleSet);
 	}
 

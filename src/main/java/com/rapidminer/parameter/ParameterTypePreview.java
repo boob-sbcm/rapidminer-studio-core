@@ -33,7 +33,7 @@ import org.w3c.dom.Element;
  * This parameter type will lead to a GUI element which can be used as initialization for a results
  * preview. This might be practical especially for complex operators which often also provide a
  * configuration wizard.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ParameterTypePreview extends ParameterType {
@@ -44,23 +44,39 @@ public class ParameterTypePreview extends ParameterType {
 
 	private transient PreviewListener previewListener;
 
-	public ParameterTypePreview(Class<? extends PreviewCreator> previewCreatorClass, PreviewListener previewListener) {
+    /**
+     * Instantiates a new Parameter type preview.
+     *
+     * @param previewCreatorClass the preview creator class
+     * @param previewListener     the preview listener
+     */
+    public ParameterTypePreview(Class<? extends PreviewCreator> previewCreatorClass, PreviewListener previewListener) {
 		this("preview", "Shows a preview for the results which will be achieved by the current configuration.",
 				previewCreatorClass, previewListener);
 	}
 
-	public ParameterTypePreview(String parameterName, String description,
+    /**
+     * Instantiates a new Parameter type preview.
+     *
+     * @param parameterName       the parameter name
+     * @param description         the description
+     * @param previewCreatorClass the preview creator class
+     * @param previewListener     the preview listener
+     */
+    public ParameterTypePreview(String parameterName, String description,
 			Class<? extends PreviewCreator> previewCreatorClass, PreviewListener previewListener) {
 		super(parameterName, description);
 		this.previewCreatorClass = previewCreatorClass;
 		this.previewListener = previewListener;
 	}
 
-	/**
-	 * Returns a new instance of the wizard creator. If anything does not work this method will
-	 * return null.
-	 */
-	public PreviewCreator getPreviewCreator() {
+    /**
+     * Returns a new instance of the wizard creator. If anything does not work this method will
+     * return null.
+     *
+     * @return the preview creator
+     */
+    public PreviewCreator getPreviewCreator() {
 		PreviewCreator creator = null;
 		try {
 			creator = previewCreatorClass.newInstance();
@@ -78,7 +94,12 @@ public class ParameterTypePreview extends ParameterType {
 		return creator;
 	}
 
-	public PreviewListener getPreviewListener() {
+    /**
+     * Gets preview listener.
+     *
+     * @return the preview listener
+     */
+    public PreviewListener getPreviewListener() {
 		return previewListener;
 	}
 

@@ -27,7 +27,7 @@ import java.io.Serializable;
  * This interface defines methods for all entries of ExampleTable implementations. It provides a set
  * and get method for the data. Subclasses may use a double array, a sparse representation, a file
  * or a database.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public abstract class DataRow implements Serializable {
@@ -37,36 +37,57 @@ public abstract class DataRow implements Serializable {
 	 */
 	private static final long serialVersionUID = -3482048832637144523L;
 
-	/** Returns the value for the given index. */
-	protected abstract double get(int index, double defaultValue);
+    /**
+     * Returns the value for the given index.  @param index the index
+     *
+     * @param index        the index
+     * @param defaultValue the default value
+     * @return the double
+     */
+    protected abstract double get(int index, double defaultValue);
 
-	/** Sets the given data for the given index. */
-	protected abstract void set(int index, double value, double defaultValue);
+    /**
+     * Sets the given data for the given index.  @param index the index
+     *
+     * @param index        the index
+     * @param value        the value
+     * @param defaultValue the default value
+     */
+    protected abstract void set(int index, double value, double defaultValue);
 
-	/**
-	 * Ensures that neither <code>get(i)</code> nor <code>put(i,v)</code> throw a runtime exception
-	 * for all <i>0 <= i <= numberOfColumns</i>.
-	 */
-	protected abstract void ensureNumberOfColumns(int numberOfColumns);
+    /**
+     * Ensures that neither <code>get(i)</code> nor <code>put(i,v)</code> throw a runtime exception
+     * for all <i>0 <= i <= numberOfColumns</i>.
+     *
+     * @param numberOfColumns the number of columns
+     */
+    protected abstract void ensureNumberOfColumns(int numberOfColumns);
 
-	/** Trims the number of columns to the actually needed number. Does nothing by default. */
-	public void trim() {}
+    /**
+     * Trims the number of columns to the actually needed number. Does nothing by default.
+     */
+    public void trim() {}
 
-	/**
-	 * This returns the type of this particular {@link DataRow} implementation according to the list
-	 * in the {@link DataRowFactory}.
-	 */
-	public abstract int getType();
+    /**
+     * This returns the type of this particular {@link DataRow} implementation according to the list
+     * in the {@link DataRowFactory}.
+     *
+     * @return the type
+     */
+    public abstract int getType();
 
 	/** Returns a string representation for this data row. */
 	@Override
 	public abstract String toString();
 
-	/**
-	 * Returns the value stored at the given {@link Attribute}'s index. Returns Double.NaN if the
-	 * given attribute is null.
-	 */
-	public double get(Attribute attribute) {
+    /**
+     * Returns the value stored at the given {@link Attribute}'s index. Returns Double.NaN if the
+     * given attribute is null.
+     *
+     * @param attribute the attribute
+     * @return the double
+     */
+    public double get(Attribute attribute) {
 		if (attribute == null) {
 			return Double.NaN;
 		} else {
@@ -79,8 +100,13 @@ public abstract class DataRow implements Serializable {
 		}
 	}
 
-	/** Sets the value of the {@link Attribute} to <code>value</code>. */
-	public void set(Attribute attribute, double value) {
+    /**
+     * Sets the value of the {@link Attribute} to <code>value</code>.  @param attribute the attribute
+     *
+     * @param attribute the attribute
+     * @param value     the value
+     */
+    public void set(Attribute attribute, double value) {
 		attribute.setValue(this, value);
 	}
 }

@@ -28,7 +28,7 @@ import javax.swing.JPopupMenu;
 
 /**
  * This transformation just does nothing.
- * 
+ *
  * @author Sebastian Land
  */
 public class NullCoordinateTransformation implements CoordinateTransformation {

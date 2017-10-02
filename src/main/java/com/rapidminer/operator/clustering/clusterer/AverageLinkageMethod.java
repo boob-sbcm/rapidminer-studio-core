@@ -26,14 +26,20 @@ import java.util.Map;
 /**
  * This class provides the AverageLinkageMethod, also called UPGMA, for the agglomerative clustering
  * operator.
- * 
+ *
  * @author Sebastian Land
  */
 public class AverageLinkageMethod extends AbstractLinkageMethod {
 
 	private int[] clusterIds;
 
-	public AverageLinkageMethod(DistanceMatrix matrix, int[] clusterIds) {
+    /**
+     * Instantiates a new Average linkage method.
+     *
+     * @param matrix     the matrix
+     * @param clusterIds the cluster ids
+     */
+    public AverageLinkageMethod(DistanceMatrix matrix, int[] clusterIds) {
 		super(matrix, clusterIds);
 		this.clusterIds = clusterIds;
 	}

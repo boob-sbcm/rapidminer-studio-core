@@ -32,16 +32,21 @@ import org.w3c.dom.Element;
 
 /**
  * An example process with a description.
- * 
+ *
  * @author Simon Fischer
- * */
+ */
 public class ExampleProcess {
 
 	private String processXML;
 	private String comment;
 	private final Element element;
 
-	public ExampleProcess(Element exampleElement) {
+    /**
+     * Instantiates a new Example process.
+     *
+     * @param exampleElement the example element
+     */
+    public ExampleProcess(Element exampleElement) {
 		this.element = exampleElement;
 		if (element != null) {
 			this.processXML = XMLTools.getTagContents(element, "process");
@@ -49,29 +54,54 @@ public class ExampleProcess {
 		}
 	}
 
-	public void setComment(String comment) {
+    /**
+     * Sets comment.
+     *
+     * @param comment the comment
+     */
+    public void setComment(String comment) {
 		this.comment = comment;
 		if (element != null) {
 			XMLTools.setTagContents(element, "comment", comment);
 		}
 	}
 
-	public String getComment() {
+    /**
+     * Gets comment.
+     *
+     * @return the comment
+     */
+    public String getComment() {
 		return comment;
 	}
 
-	public void setProcessXML(String xml) {
+    /**
+     * Sets process xml.
+     *
+     * @param xml the xml
+     */
+    public void setProcessXML(String xml) {
 		this.processXML = xml;
 		if (element != null) {
 			XMLTools.setTagContents(element, "process", xml);
 		}
 	}
 
-	public String getProcessXML() {
+    /**
+     * Gets process xml.
+     *
+     * @return the process xml
+     */
+    public String getProcessXML() {
 		return processXML;
 	}
 
-	public Process getProcess() {
+    /**
+     * Gets process.
+     *
+     * @return the process
+     */
+    public Process getProcess() {
 		try {
 			return new Process(getProcessXML());
 		} catch (IOException e) {
@@ -91,7 +121,12 @@ public class ExampleProcess {
 		}
 	}
 
-	public Element getElement() {
+    /**
+     * Gets element.
+     *
+     * @return the element
+     */
+    public Element getElement() {
 		return element;
 	}
 

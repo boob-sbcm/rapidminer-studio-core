@@ -38,13 +38,12 @@ import com.rapidminer.tutorial.gui.TutorialBrowser;
  */
 public class TutorialTools {
 
-	/**
-	 * Opens the given {@link Tutorial} in a {@link ProgressThread}.
-	 *
-	 * @param tutorial
-	 *            the tutorial which should be opened
-	 */
-	public static void openTutorial(final Tutorial tutorial) {
+    /**
+     * Opens the given {@link Tutorial} in a {@link ProgressThread}.
+     *
+     * @param tutorial the tutorial which should be opened
+     */
+    public static void openTutorial(final Tutorial tutorial) {
 		if (!RapidMinerGUI.getMainFrame().close()) {
 			return;
 		}

@@ -73,17 +73,37 @@ public class Attribute2ExamplePivoting extends ExampleSetTransformationOperator 
 
 	private static final OperatorVersion CHANGE_INCLUDED_SPECIAL = new OperatorVersion(5, 1, 1);
 
-	public static final String PARAMETER_ATTRIBUTE_NAME_REGEX = "attributes";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME_REGEX.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME_REGEX = "attributes";
 
-	public static final String PARAMETER_SERIES = "attribute_name";
+    /**
+     * The constant PARAMETER_SERIES.
+     */
+    public static final String PARAMETER_SERIES = "attribute_name";
 
-	public static final String PARAMETER_INDEX_ATTRIBUTE = "index_attribute";
+    /**
+     * The constant PARAMETER_INDEX_ATTRIBUTE.
+     */
+    public static final String PARAMETER_INDEX_ATTRIBUTE = "index_attribute";
 
-	public static final String PARAMETER_KEEP_MISSINGS = "keep_missings";
+    /**
+     * The constant PARAMETER_KEEP_MISSINGS.
+     */
+    public static final String PARAMETER_KEEP_MISSINGS = "keep_missings";
 
-	public static final String PARAMETER_CREATE_NOMINAL_INDEX = "create_nominal_index";
+    /**
+     * The constant PARAMETER_CREATE_NOMINAL_INDEX.
+     */
+    public static final String PARAMETER_CREATE_NOMINAL_INDEX = "create_nominal_index";
 
-	public Attribute2ExamplePivoting(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute 2 example pivoting.
+     *
+     * @param description the description
+     */
+    public Attribute2ExamplePivoting(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(new ExampleSetPrecondition(getExampleSetInputPort()));

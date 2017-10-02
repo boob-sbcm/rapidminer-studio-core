@@ -47,42 +47,104 @@ import com.rapidminer.parameter.conditions.EqualTypeCondition;
  */
 public class Data2Performance extends AbstractExampleSetEvaluator {
 
-	public static final String PARAMETER_PERFORMANCE_TYPE = "performance_type";
+    /**
+     * The constant PARAMETER_PERFORMANCE_TYPE.
+     */
+    public static final String PARAMETER_PERFORMANCE_TYPE = "performance_type";
 
-	public static final String PARAMETER_ATTRIBUTE_VALUE = "attribute_value";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_VALUE.
+     */
+    public static final String PARAMETER_ATTRIBUTE_VALUE = "attribute_value";
 
-	public static final String PARAMETER_STATISTICS = "statistics";
+    /**
+     * The constant PARAMETER_STATISTICS.
+     */
+    public static final String PARAMETER_STATISTICS = "statistics";
 
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	public static final String PARAMETER_EXAMPLE_INDEX = "example_index";
+    /**
+     * The constant PARAMETER_EXAMPLE_INDEX.
+     */
+    public static final String PARAMETER_EXAMPLE_INDEX = "example_index";
 
-	public static final String PARAMETER_OPTIMIZATION_DIRECTION = "optimization_direction";
+    /**
+     * The constant PARAMETER_OPTIMIZATION_DIRECTION.
+     */
+    public static final String PARAMETER_OPTIMIZATION_DIRECTION = "optimization_direction";
 
-	public static final String[] OPTIMIZATION_DIRECTIONS = new String[] { "minimize", "maximize" };
+    /**
+     * The constant OPTIMIZATION_DIRECTIONS.
+     */
+    public static final String[] OPTIMIZATION_DIRECTIONS = new String[] { "minimize", "maximize" };
 
-	public static final int OPTIMIZATION_DIRECTION_MINIMIZE = 0;
+    /**
+     * The constant OPTIMIZATION_DIRECTION_MINIMIZE.
+     */
+    public static final int OPTIMIZATION_DIRECTION_MINIMIZE = 0;
 
-	public static final int OPTIMIZATION_DIRECTION_MAXIMIZE = 1;
+    /**
+     * The constant OPTIMIZATION_DIRECTION_MAXIMIZE.
+     */
+    public static final int OPTIMIZATION_DIRECTION_MAXIMIZE = 1;
 
-	public static final String[] MACRO_TYPES = new String[] { "number_of_examples", "number_of_attributes", "data_value",
+    /**
+     * The constant MACRO_TYPES.
+     */
+    public static final String[] MACRO_TYPES = new String[] { "number_of_examples", "number_of_attributes", "data_value",
 			"statistics" };
 
-	public static final int MACRO_TYPE_EXAMPLES = 0;
-	public static final int MACRO_TYPE_ATTRIBUTES = 1;
-	public static final int MACRO_TYPE_DATA = 2;
-	public static final int MACRO_TYPE_STATISTICS = 3;
+    /**
+     * The constant MACRO_TYPE_EXAMPLES.
+     */
+    public static final int MACRO_TYPE_EXAMPLES = 0;
+    /**
+     * The constant MACRO_TYPE_ATTRIBUTES.
+     */
+    public static final int MACRO_TYPE_ATTRIBUTES = 1;
+    /**
+     * The constant MACRO_TYPE_DATA.
+     */
+    public static final int MACRO_TYPE_DATA = 2;
+    /**
+     * The constant MACRO_TYPE_STATISTICS.
+     */
+    public static final int MACRO_TYPE_STATISTICS = 3;
 
-	public static final String[] STATISTICS_TYPES = new String[] { "average", "min", "max", "count" };
+    /**
+     * The constant STATISTICS_TYPES.
+     */
+    public static final String[] STATISTICS_TYPES = new String[] { "average", "min", "max", "count" };
 
-	public static final int STATISTICS_TYPE_AVERAGE = 0;
-	public static final int STATISTICS_TYPE_MIN = 1;
-	public static final int STATISTICS_TYPE_MAX = 2;
-	public static final int STATISTICS_TYPE_COUNT = 3;
+    /**
+     * The constant STATISTICS_TYPE_AVERAGE.
+     */
+    public static final int STATISTICS_TYPE_AVERAGE = 0;
+    /**
+     * The constant STATISTICS_TYPE_MIN.
+     */
+    public static final int STATISTICS_TYPE_MIN = 1;
+    /**
+     * The constant STATISTICS_TYPE_MAX.
+     */
+    public static final int STATISTICS_TYPE_MAX = 2;
+    /**
+     * The constant STATISTICS_TYPE_COUNT.
+     */
+    public static final int STATISTICS_TYPE_COUNT = 3;
 
 	private double performanceValue = Double.NaN;
 
-	public Data2Performance(OperatorDescription description) {
+    /**
+     * Instantiates a new Data 2 performance.
+     *
+     * @param description the description
+     */
+    public Data2Performance(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(

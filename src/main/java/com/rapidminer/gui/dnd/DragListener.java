@@ -22,12 +22,21 @@ import java.awt.datatransfer.Transferable;
 
 
 /**
+ * The interface Drag listener.
+ *
  * @author Nils Woehler
- * 
  */
 public interface DragListener {
 
-	public void dragStarted(Transferable t);
+    /**
+     * Drag started.
+     *
+     * @param t the t
+     */
+    public void dragStarted(Transferable t);
 
-	public void dragEnded();
+    /**
+     * Drag ended.
+     */
+    public void dragEnded();
 }

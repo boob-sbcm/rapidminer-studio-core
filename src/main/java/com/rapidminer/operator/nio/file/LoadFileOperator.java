@@ -53,25 +53,59 @@ import java.util.List;
 
 
 /**
+ * The type Load file operator.
+ *
  * @author Nils Woehler, Marius Helf
  */
 public class LoadFileOperator extends Operator {
 
-	public static final String PARAMETER_FILENAME = "filename";
-	public static final String PARAMETER_URL = "url";
-	public static final String PARAMETER_REPOSITORY_LOCATION = "repository_entry";
+    /**
+     * The constant PARAMETER_FILENAME.
+     */
+    public static final String PARAMETER_FILENAME = "filename";
+    /**
+     * The constant PARAMETER_URL.
+     */
+    public static final String PARAMETER_URL = "url";
+    /**
+     * The constant PARAMETER_REPOSITORY_LOCATION.
+     */
+    public static final String PARAMETER_REPOSITORY_LOCATION = "repository_entry";
 
-	public static final String[] SOURCE_TYPES = new String[] { "file", "URL", "repository blob entry" };
-	public static final String PARAMETER_SOURCE_TYPE = "resource_type";
-	public static final int SOURCE_TYPE_FILE = 0;
-	public static final int SOURCE_TYPE_URL = 1;
-	public static final int SOURCE_TYPE_REPOSITORY = 2;
+    /**
+     * The constant SOURCE_TYPES.
+     */
+    public static final String[] SOURCE_TYPES = new String[] { "file", "URL", "repository blob entry" };
+    /**
+     * The constant PARAMETER_SOURCE_TYPE.
+     */
+    public static final String PARAMETER_SOURCE_TYPE = "resource_type";
+    /**
+     * The constant SOURCE_TYPE_FILE.
+     */
+    public static final int SOURCE_TYPE_FILE = 0;
+    /**
+     * The constant SOURCE_TYPE_URL.
+     */
+    public static final int SOURCE_TYPE_URL = 1;
+    /**
+     * The constant SOURCE_TYPE_REPOSITORY.
+     */
+    public static final int SOURCE_TYPE_REPOSITORY = 2;
 
-	public OutputPort fileOutputPort = getOutputPorts().createPort("file");
+    /**
+     * The File output port.
+     */
+    public OutputPort fileOutputPort = getOutputPorts().createPort("file");
 
 	private List<File> myTempFiles = new LinkedList<File>();
 
-	public LoadFileOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Load file operator.
+     *
+     * @param description the description
+     */
+    public LoadFileOperator(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new GenerateNewMDRule(fileOutputPort, FileObject.class));
 		getTransformer().addRule(new MDTransformationRule() {
@@ -87,11 +121,12 @@ public class LoadFileOperator extends Operator {
 		});
 	}
 
-	/**
-	 * @throws UserError
-	 * 
-	 */
-	protected void checkMetaData() throws UserError {
+    /**
+     * Check meta data.
+     *
+     * @throws UserError the user error
+     */
+    protected void checkMetaData() throws UserError {
 		String source;
 		try {
 			switch (getParameterAsInt(PARAMETER_SOURCE_TYPE)) {

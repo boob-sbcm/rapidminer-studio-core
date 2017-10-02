@@ -34,22 +34,30 @@ import com.rapidminer.tools.Tools;
 
 
 /**
- *
  * This operator deletes the selected file. If the file doesn't exist and the corresponding checkbox
  * is activated, an exception is thrown.
  *
  * @author Philipp Kersting
- *
  */
-
 public class DeleteFileOperator extends Operator {
 
-	public static final String PARAMETER_FILE = "file";
-	public static final String PARAMETER_NO_FILE_ERROR = "fail_if_missing";
+    /**
+     * The constant PARAMETER_FILE.
+     */
+    public static final String PARAMETER_FILE = "file";
+    /**
+     * The constant PARAMETER_NO_FILE_ERROR.
+     */
+    public static final String PARAMETER_NO_FILE_ERROR = "fail_if_missing";
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public DeleteFileOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Delete file operator.
+     *
+     * @param description the description
+     */
+    public DeleteFileOperator(OperatorDescription description) {
 		super(description);
 		dummyPorts.start();
 		getTransformer().addRule(dummyPorts.makePassThroughRule());

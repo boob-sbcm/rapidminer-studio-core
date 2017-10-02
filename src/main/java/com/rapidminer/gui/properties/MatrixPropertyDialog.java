@@ -35,9 +35,9 @@ import javax.swing.JScrollPane;
 /**
  * A Dialog displaying a {@link MatrixPropertyTable}. This can be used to add new values to the
  * parameter matrix or change current values. Removal of values is also supported.
- * 
- * @see com.rapidminer.gui.properties.MatrixPropertyTable
+ *
  * @author Helge Homburg, Tobias Malbrecht
+ * @see com.rapidminer.gui.properties.MatrixPropertyTable
  */
 public class MatrixPropertyDialog extends PropertyDialog {
 
@@ -47,7 +47,14 @@ public class MatrixPropertyDialog extends PropertyDialog {
 
 	private final MatrixPropertyTable matrixPropertyTable;
 
-	public MatrixPropertyDialog(final ParameterTypeMatrix type, double[][] matrix, Operator operator) {
+    /**
+     * Instantiates a new Matrix property dialog.
+     *
+     * @param type     the type
+     * @param matrix   the matrix
+     * @param operator the operator
+     */
+    public MatrixPropertyDialog(final ParameterTypeMatrix type, double[][] matrix, Operator operator) {
 		super(type, "matrix");
 
 		this.isSquared = type.isSquared();
@@ -122,7 +129,12 @@ public class MatrixPropertyDialog extends PropertyDialog {
 		layoutDefault(scrollPane, NORMAL, buttons.toArray(new AbstractButton[buttons.size()]));
 	}
 
-	public double[][] getMatrix() {
+    /**
+     * Get matrix double [ ] [ ].
+     *
+     * @return the double [ ] [ ]
+     */
+    public double[][] getMatrix() {
 		return matrixPropertyTable.getParameterMatrix();
 	}
 }

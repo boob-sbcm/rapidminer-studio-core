@@ -48,9 +48,9 @@ import com.rapidminer.tools.LogService;
 
 
 /**
+ * The type Managed extension.
  *
  * @author Simon Fischer
- *
  */
 public class ManagedExtension {
 
@@ -104,15 +104,30 @@ public class ManagedExtension {
 		this.setActive(true);
 	}
 
-	public void setActive(boolean active) {
+    /**
+     * Sets active.
+     *
+     * @param active the active
+     */
+    public void setActive(boolean active) {
 		this.active = active;
 	}
 
-	public boolean isActive() {
+    /**
+     * Is active boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isActive() {
 		return active;
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return name;
 	}
 
@@ -128,11 +143,14 @@ public class ManagedExtension {
 		return null;
 	}
 
-	/**
-	 * This method returns the jar file of the extension or throws an {@link FileNotFoundException}
-	 * exception.
-	 */
-	public JarFile findArchive() throws IOException {
+    /**
+     * This method returns the jar file of the extension or throws an {@link FileNotFoundException}
+     * exception.
+     *
+     * @return the jar file
+     * @throws IOException the io exception
+     */
+    public JarFile findArchive() throws IOException {
 		File findFile = findFile();
 		if (findFile != null) {
 			return new JarFile(findFile);
@@ -140,7 +158,14 @@ public class ManagedExtension {
 		throw new FileNotFoundException("Could not access file of installed extension.");
 	}
 
-	public JarFile findArchive(String version) throws IOException {
+    /**
+     * Find archive jar file.
+     *
+     * @param version the version
+     * @return the jar file
+     * @throws IOException the io exception
+     */
+    public JarFile findArchive(String version) throws IOException {
 		File findFile = findFile(version);
 		if (findFile == null) {
 			throw new IOException(
@@ -154,11 +179,21 @@ public class ManagedExtension {
 		}
 	}
 
-	public String getSelectedVersion() {
+    /**
+     * Gets selected version.
+     *
+     * @return the selected version
+     */
+    public String getSelectedVersion() {
 		return selectedVersion;
 	}
 
-	public static File getUserExtensionsDir() {
+    /**
+     * Gets user extensions dir.
+     *
+     * @return the user extensions dir
+     */
+    public static File getUserExtensionsDir() {
 		return FileSystemService.getUserConfigFile("managed");
 	}
 
@@ -187,7 +222,10 @@ public class ManagedExtension {
 		return doc;
 	}
 
-	public static void saveConfiguration() {
+    /**
+     * Save configuration.
+     */
+    public static void saveConfiguration() {
 		try {
 			File localDir = getUserExtensionsDir();
 			if (!localDir.exists()) {
@@ -233,7 +271,12 @@ public class ManagedExtension {
 		MANAGED_EXTENSIONS.put(ext.packageID, ext);
 	}
 
-	public static List<File> getActivePluginJars() {
+    /**
+     * Gets active plugin jars.
+     *
+     * @return the active plugin jars
+     */
+    public static List<File> getActivePluginJars() {
 		List<File> result = new LinkedList<>();
 		for (ManagedExtension ext : MANAGED_EXTENSIONS.values()) {
 			if (ext.isActive()) {
@@ -246,11 +289,25 @@ public class ManagedExtension {
 		return result;
 	}
 
-	public static ManagedExtension get(String packageId) {
+    /**
+     * Get managed extension.
+     *
+     * @param packageId the package id
+     * @return the managed extension
+     */
+    public static ManagedExtension get(String packageId) {
 		return MANAGED_EXTENSIONS.get(packageId);
 	}
 
-	public static ManagedExtension getOrCreate(String packageId, String packageName, String license) {
+    /**
+     * Gets or create.
+     *
+     * @param packageId   the package id
+     * @param packageName the package name
+     * @param license     the license
+     * @return the or create
+     */
+    public static ManagedExtension getOrCreate(String packageId, String packageName, String license) {
 		ManagedExtension ext = MANAGED_EXTENSIONS.get(packageId);
 		if (ext == null) {
 			ext = new ManagedExtension(packageId, packageName, license);
@@ -260,53 +317,108 @@ public class ManagedExtension {
 		return ext;
 	}
 
-	public static ManagedExtension remove(String packageId) {
+    /**
+     * Remove managed extension.
+     *
+     * @param packageId the package id
+     * @return the managed extension
+     */
+    public static ManagedExtension remove(String packageId) {
 		return MANAGED_EXTENSIONS.remove(packageId);
 	}
 
-	public String getPackageId() {
+    /**
+     * Gets package id.
+     *
+     * @return the package id
+     */
+    public String getPackageId() {
 		return packageID;
 	}
 
-	public void addAndSelectVersion(String version) {
+    /**
+     * Add and select version.
+     *
+     * @param version the version
+     */
+    public void addAndSelectVersion(String version) {
 		this.selectedVersion = version;
 		installedVersions.add(version);
 		saveConfiguration();
 	}
 
-	public File getDestinationFile(String version) throws IOException {
+    /**
+     * Gets destination file.
+     *
+     * @param version the version
+     * @return the destination file
+     * @throws IOException the io exception
+     */
+    public File getDestinationFile(String version) throws IOException {
 		return new File(getUserExtensionsDir(), packageID + "-" + version + ".jar");
 	}
 
-	public static void init() {
+    /**
+     * Init.
+     */
+    public static void init() {
 		readConfiguration();
 	}
 
-	public static Collection<ManagedExtension> getAll() {
+    /**
+     * Gets all.
+     *
+     * @return the all
+     */
+    public static Collection<ManagedExtension> getAll() {
 		return MANAGED_EXTENSIONS.values();
 	}
 
-	public Set<String> getInstalledVersions() {
+    /**
+     * Gets installed versions.
+     *
+     * @return the installed versions
+     */
+    public Set<String> getInstalledVersions() {
 		return installedVersions;
 	}
 
-	public void setSelectedVersion(String version) {
+    /**
+     * Sets selected version.
+     *
+     * @param version the version
+     */
+    public void setSelectedVersion(String version) {
 		this.selectedVersion = version;
 	}
 
-	public String getLatestInstalledVersionBefore(String version) {
+    /**
+     * Gets latest installed version before.
+     *
+     * @param version the version
+     * @return the latest installed version before
+     */
+    public String getLatestInstalledVersionBefore(String version) {
 		SortedSet<String> head = installedVersions.headSet(version);
 		return head.isEmpty() ? null : head.last();
 	}
 
-	public String getLatestInstalledVersion() {
+    /**
+     * Gets latest installed version.
+     *
+     * @return the latest installed version
+     */
+    public String getLatestInstalledVersion() {
 		return installedVersions.isEmpty() ? null : installedVersions.last();
 	}
 
-	/**
-	 * Adds leading zeroes until the version is of the form {@code xx.yy.zzz}.
-	 */
-	public static String normalizeVersion(String version) {
+    /**
+     * Adds leading zeroes until the version is of the form {@code xx.yy.zzz}.
+     *
+     * @param version the version
+     * @return the string
+     */
+    public static String normalizeVersion(String version) {
 		if (version == null) {
 			return null;
 		}
@@ -341,8 +453,12 @@ public class ManagedExtension {
 		return result.toString();
 	}
 
-	/** Returns true if uninstall was successful. */
-	public boolean uninstallActiveVersion() {
+    /**
+     * Returns true if uninstall was successful.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean uninstallActiveVersion() {
 		File file = findFile(selectedVersion);
 		// we only mark as uninstalled if
 		// (1) File does not exist, probably was removed manually

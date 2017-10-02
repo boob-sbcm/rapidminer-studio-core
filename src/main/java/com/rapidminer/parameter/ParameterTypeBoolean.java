@@ -37,23 +37,49 @@ public class ParameterTypeBoolean extends ParameterTypeSingle {
 
 	private boolean defaultValue = false;
 
-	public ParameterTypeBoolean(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type boolean.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeBoolean(Element element) throws XMLException {
 		super(element);
 
 		this.defaultValue = Boolean.valueOf(element.getAttribute(ATTRIBUTE_DEFAULT));
 	}
 
-	public ParameterTypeBoolean(String key, String description, boolean defaultValue, boolean expert) {
+    /**
+     * Instantiates a new Parameter type boolean.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultValue the default value
+     * @param expert       the expert
+     */
+    public ParameterTypeBoolean(String key, String description, boolean defaultValue, boolean expert) {
 		this(key, description, defaultValue);
 		setExpert(expert);
 	}
 
-	public ParameterTypeBoolean(String key, String description, boolean defaultValue) {
+    /**
+     * Instantiates a new Parameter type boolean.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultValue the default value
+     */
+    public ParameterTypeBoolean(String key, String description, boolean defaultValue) {
 		super(key, description);
 		this.defaultValue = defaultValue;
 	}
 
-	public boolean getDefault() {
+    /**
+     * Gets default.
+     *
+     * @return the default
+     */
+    public boolean getDefault() {
 		return defaultValue;
 	}
 

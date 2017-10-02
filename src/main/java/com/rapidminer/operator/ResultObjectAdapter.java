@@ -36,7 +36,7 @@ import javax.swing.Icon;
  * if the subclass does not need to extend other classes. The method {@link #toResultString()}
  * delivers the return value of {@link #toString()}. The visualization components for the graphical
  * user interface is simply the HTML representation of the result string.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public abstract class ResultObjectAdapter extends AbstractIOObject implements ResultObject, LoggingHandler {
@@ -51,7 +51,12 @@ public abstract class ResultObjectAdapter extends AbstractIOObject implements Re
 		}
 	}
 
-	protected void cloneAnnotationsFrom(IOObject other) {
+    /**
+     * Clone annotations from.
+     *
+     * @param other the other
+     */
+    protected void cloneAnnotationsFrom(IOObject other) {
 		this.annotations = other.getAnnotations().clone();
 	}
 
@@ -61,13 +66,14 @@ public abstract class ResultObjectAdapter extends AbstractIOObject implements Re
 		return this.getClass().getSimpleName();
 	}
 
-	/**
-	 * Adds an action to the list of Java Swing Actions which will shown in the visualization
-	 * component. If the class implements Saveable an action for saving is already added.
-	 * 
-	 * @deprecated Action concept for GUI components removed from result objects
-	 */
-	@Deprecated
+    /**
+     * Adds an action to the list of Java Swing Actions which will shown in the visualization
+     * component. If the class implements Saveable an action for saving is already added.
+     *
+     * @param a the a
+     * @deprecated Action concept for GUI components removed from result objects
+     */
+    @Deprecated
 	protected void addAction(Action a) {}
 
 	/**
@@ -99,11 +105,14 @@ public abstract class ResultObjectAdapter extends AbstractIOObject implements Re
 		return RendererService.getIcon(this.getClass());
 	}
 
-	/**
-	 * Encodes the given String as HTML. Only linebreaks and less then and greater than will be
-	 * encoded.
-	 */
-	public static String toHTML(String string) {
+    /**
+     * Encodes the given String as HTML. Only linebreaks and less then and greater than will be
+     * encoded.
+     *
+     * @param string the string
+     * @return the string
+     */
+    public static String toHTML(String string) {
 		String str = string;
 		str = str.replaceAll(">", "&gt;");
 		str = str.replaceAll("<", "&lt;");

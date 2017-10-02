@@ -65,17 +65,21 @@ import com.rapidminer.tools.RandomGenerator;
  */
 public class XVPrediction extends OperatorChain implements CapabilityProvider {
 
-	/** The parameter name for &quot;Number of subsets for the crossvalidation.&quot; */
-	public static final String PARAMETER_NUMBER_OF_VALIDATIONS = "number_of_validations";
+    /**
+     * The parameter name for &quot;Number of subsets for the crossvalidation.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_VALIDATIONS = "number_of_validations";
 
-	/**
-	 * The parameter name for &quot;Set the number of validations to the number of examples. If set
-	 * to true, number_of_validations is ignored.&quot;
-	 */
-	public static final String PARAMETER_LEAVE_ONE_OUT = "leave_one_out";
+    /**
+     * The parameter name for &quot;Set the number of validations to the number of examples. If set
+     * to true, number_of_validations is ignored.&quot;
+     */
+    public static final String PARAMETER_LEAVE_ONE_OUT = "leave_one_out";
 
-	/** The parameter name for &quot;Defines the sampling type of the cross validation.&quot; */
-	public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
+    /**
+     * The parameter name for &quot;Defines the sampling type of the cross validation.&quot;
+     */
+    public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
 
 	private int number;
 
@@ -98,7 +102,12 @@ public class XVPrediction extends OperatorChain implements CapabilityProvider {
 	// output
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("labelled data");
 
-	public XVPrediction(OperatorDescription description) {
+    /**
+     * Instantiates a new Xv prediction.
+     *
+     * @param description the description
+     */
+    public XVPrediction(OperatorDescription description) {
 		super(description, "Training", "Model Application");
 
 		exampleSetInput.addPrecondition(new CapabilityPrecondition(this, exampleSetInput));
@@ -216,7 +225,14 @@ public class XVPrediction extends OperatorChain implements CapabilityProvider {
 		getProgress().complete();
 	}
 
-	protected MDInteger getTestSetSize(MDInteger originalSize) throws UndefinedParameterError {
+    /**
+     * Gets test set size.
+     *
+     * @param originalSize the original size
+     * @return the test set size
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected MDInteger getTestSetSize(MDInteger originalSize) throws UndefinedParameterError {
 		if (getParameterAsBoolean(PARAMETER_LEAVE_ONE_OUT)) {
 			return new MDInteger(1);
 		} else {
@@ -224,7 +240,14 @@ public class XVPrediction extends OperatorChain implements CapabilityProvider {
 		}
 	}
 
-	protected MDInteger getTrainingSetSize(MDInteger originalSize) throws UndefinedParameterError {
+    /**
+     * Gets training set size.
+     *
+     * @param originalSize the original size
+     * @return the training set size
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected MDInteger getTrainingSetSize(MDInteger originalSize) throws UndefinedParameterError {
 		if (getParameterAsBoolean(PARAMETER_LEAVE_ONE_OUT)) {
 			return originalSize.add(-1);
 		} else {

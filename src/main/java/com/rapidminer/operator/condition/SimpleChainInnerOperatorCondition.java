@@ -27,7 +27,7 @@ import com.rapidminer.operator.WrongNumberOfInnerOperatorsException;
 /**
  * This condition can be used to check if all inner operators can handle the output of their
  * predecessor.
- * 
+ *
  * @author Ingo Mierswa
  */
 @SuppressWarnings("deprecation")
@@ -35,11 +35,19 @@ public class SimpleChainInnerOperatorCondition implements InnerOperatorCondition
 
 	private boolean deliverInput;
 
-	public SimpleChainInnerOperatorCondition() {
+    /**
+     * Instantiates a new Simple chain inner operator condition.
+     */
+    public SimpleChainInnerOperatorCondition() {
 		this(false);
 	}
 
-	public SimpleChainInnerOperatorCondition(boolean deliverInput) {
+    /**
+     * Instantiates a new Simple chain inner operator condition.
+     *
+     * @param deliverInput the deliver input
+     */
+    public SimpleChainInnerOperatorCondition(boolean deliverInput) {
 		this.deliverInput = deliverInput;
 	}
 

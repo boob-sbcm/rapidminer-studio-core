@@ -48,7 +48,10 @@ import com.rapidminer.parameter.UndefinedParameterError;
  */
 public class ExampleSetDataRenderer extends AbstractDataTableTableRenderer {
 
-	public static final String RENDERER_NAME = "Data View";
+    /**
+     * The constant RENDERER_NAME.
+     */
+    public static final String RENDERER_NAME = "Data View";
 
 	private AttributeSubsetSelector subsetSelector = null;
 

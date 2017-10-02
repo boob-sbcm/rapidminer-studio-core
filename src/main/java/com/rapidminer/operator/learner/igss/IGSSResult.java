@@ -31,7 +31,7 @@ import java.util.LinkedList;
 /**
  * This class stores all results found by the IGSS algorithm. It contains method to calculate the
  * prior probabilities and the diversity in the results of the predictions.
- * 
+ *
  * @author Dirk Dach
  */
 public class IGSSResult extends ResultObjectAdapter {
@@ -44,28 +44,50 @@ public class IGSSResult extends ResultObjectAdapter {
 	/** The default probability of the positive class */
 	private double[] priors;
 
-	public IGSSResult(ExampleSet eSet) {
+    /**
+     * Instantiates a new Igss result.
+     *
+     * @param eSet the e set
+     */
+    public IGSSResult(ExampleSet eSet) {
 		this.priors = getPriors(eSet);
 		results = new LinkedList<Result>();
 	}
 
-	/** Adds a result. */
-	public void addResult(Result r) {
+    /**
+     * Adds a result.  @param r the r
+     *
+     * @param r the r
+     */
+    public void addResult(Result r) {
 		this.results.addLast(r);
 	}
 
-	/** Returns a list of all stored results. */
-	public LinkedList<Result> getResults() {
+    /**
+     * Returns a list of all stored results.  @return the results
+     *
+     * @return the results
+     */
+    public LinkedList<Result> getResults() {
 		return this.results;
 	}
 
-	/** Returns the default probability of the example set the object was constructed with. */
-	public double[] getPriors() {
+    /**
+     * Returns the default probability of the example set the object was constructed with.  @return the double [ ]
+     *
+     * @return the double [ ]
+     */
+    public double[] getPriors() {
 		return this.priors;
 	}
 
-	/** Returns the default probability of the given example set. */
-	public static double[] getPriors(ExampleSet exampleSet) {
+    /**
+     * Returns the default probability of the given example set.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     * @return the double [ ]
+     */
+    public static double[] getPriors(ExampleSet exampleSet) {
 		Iterator<Example> reader = exampleSet.iterator();
 		double totalWeight = 0.0d;
 		double totalPositiveWeight = 0.0d;
@@ -82,8 +104,14 @@ public class IGSSResult extends ResultObjectAdapter {
 		return result;
 	}
 
-	/** Calculates the diversity in the predictions of the results for the given example set. */
-	public static double calculateDiversity(ExampleSet exampleSet, LinkedList<Result> theResults) {
+    /**
+     * Calculates the diversity in the predictions of the results for the given example set.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     * @param theResults the the results
+     * @return the double
+     */
+    public static double calculateDiversity(ExampleSet exampleSet, LinkedList<Result> theResults) {
 		Iterator<Example> reader = exampleSet.iterator();
 		int[][] predictionMatrix = new int[exampleSet.size()][2];
 		for (int i = 0; reader.hasNext(); i++) { // all examples
@@ -130,16 +158,31 @@ public class IGSSResult extends ResultObjectAdapter {
 		return result.toString();
 	}
 
-	/** Returns the logarithm to base 2. */
-	public static double log2(double arg) {
+    /**
+     * Returns the logarithm to base 2.  @param arg the arg
+     *
+     * @param arg the arg
+     * @return the double
+     */
+    public static double log2(double arg) {
 		return Math.log(arg) / Math.log(2);
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "gss";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "IGSS results";
 	}
 

@@ -50,7 +50,6 @@ import com.rapidminer.tools.I18N;
  * the text field is empty the action will not be painted and cannot be invoked.
  *
  * @author Marco Boeck, Nils Woehler
- *
  */
 public class TextFieldWithAction extends JPanel {
 
@@ -65,30 +64,25 @@ public class TextFieldWithAction extends JPanel {
 
 	private JTextField field;
 
-	/**
-	 * Creates a new {@link TextFieldWithAction} instance.
-	 *
-	 * @param field
-	 *            the textfield into which the action icon should be placed
-	 * @param action
-	 *            the action to invoke when clicking the icon in the textfield
-	 */
-	public TextFieldWithAction(final JTextField field, final ResourceAction action) {
+    /**
+     * Creates a new {@link TextFieldWithAction} instance.
+     *
+     * @param field  the textfield into which the action icon should be placed
+     * @param action the action to invoke when clicking the icon in the textfield
+     */
+    public TextFieldWithAction(final JTextField field, final ResourceAction action) {
 
 		this(field, action, null);
 	}
 
-	/**
-	 * Creates a new {@link TextFieldWithAction} instance.
-	 *
-	 * @param field
-	 *            the textfield into which the action icon should be placed
-	 * @param action
-	 *            the action to invoke when clicking the icon in the textfield
-	 * @param hoverAction
-	 *            the action to invoke when hovering the icon in the textfield
-	 */
-	public TextFieldWithAction(final JTextField field, final ResourceAction action, final ImageIcon hoverIcon) {
+    /**
+     * Creates a new {@link TextFieldWithAction} instance.
+     *
+     * @param field     the textfield into which the action icon should be placed
+     * @param action    the action to invoke when clicking the icon in the textfield
+     * @param hoverIcon the hover icon
+     */
+    public TextFieldWithAction(final JTextField field, final ResourceAction action, final ImageIcon hoverIcon) {
 		if (field == null) {
 			throw new IllegalArgumentException("field must not be null!");
 		}

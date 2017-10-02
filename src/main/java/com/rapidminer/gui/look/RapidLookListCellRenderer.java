@@ -34,7 +34,10 @@ import com.rapidminer.gui.look.borders.Borders;
  */
 public class RapidLookListCellRenderer extends BasicComboBoxRenderer {
 
-	public static class UIResource extends RapidLookListCellRenderer implements javax.swing.plaf.UIResource {
+    /**
+     * The type Ui resource.
+     */
+    public static class UIResource extends RapidLookListCellRenderer implements javax.swing.plaf.UIResource {
 
 		private static final long serialVersionUID = -8203261034086759332L;
 	}
@@ -45,14 +48,22 @@ public class RapidLookListCellRenderer extends BasicComboBoxRenderer {
 
 	private JList<?> parentList = null;
 
-	public RapidLookListCellRenderer() {
+    /**
+     * Instantiates a new Rapid look list cell renderer.
+     */
+    public RapidLookListCellRenderer() {
 		super();
 		if (this.focusBorder == null) {
 			this.focusBorder = Borders.getComboBoxListCellRendererFocusBorder();
 		}
 	}
 
-	public JList<?> getParentList() {
+    /**
+     * Gets parent list.
+     *
+     * @return the parent list
+     */
+    public JList<?> getParentList() {
 		return this.parentList;
 	}
 

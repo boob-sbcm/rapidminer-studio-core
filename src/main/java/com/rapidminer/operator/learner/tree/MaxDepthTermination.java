@@ -23,14 +23,19 @@ import com.rapidminer.example.ExampleSet;
 
 /**
  * Terminates if a maximal depth is reached.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MaxDepthTermination implements Terminator {
 
 	private int maxDepth;
 
-	public MaxDepthTermination(int maxDepth) {
+    /**
+     * Instantiates a new Max depth termination.
+     *
+     * @param maxDepth the max depth
+     */
+    public MaxDepthTermination(int maxDepth) {
 		this.maxDepth = maxDepth;
 	}
 

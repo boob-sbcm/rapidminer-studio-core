@@ -30,23 +30,31 @@ import javax.swing.table.TableCellRenderer;
  * of this interface are constructed via reflection and that a one-argument constructor taking the
  * {@link ParameterType} must be provided. Directly after initialization the method
  * {@link #setOperator(Operator)} is invoked.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer Exp $
  */
 public interface PropertyValueCellEditor extends TableCellEditor, TableCellRenderer {
 
-	/** This method can be implemented to perform operator specific settings. */
-	public void setOperator(Operator operator);
+    /**
+     * This method can be implemented to perform operator specific settings.  @param operator the operator
+     *
+     * @param operator the operator
+     */
+    public void setOperator(Operator operator);
 
-	/**
-	 * Returns true if this editor should also be used as renderer. Should not be the case for
-	 * components with frames around the component like JTextFields.
-	 */
-	public boolean useEditorAsRenderer();
+    /**
+     * Returns true if this editor should also be used as renderer. Should not be the case for
+     * components with frames around the component like JTextFields.
+     *
+     * @return the boolean
+     */
+    public boolean useEditorAsRenderer();
 
-	/**
-	 * Indicates whether this editor renders the parameter type key and does not need to be rendered
-	 * by the PropertyPanel.
-	 */
-	public boolean rendersLabel();
+    /**
+     * Indicates whether this editor renders the parameter type key and does not need to be rendered
+     * by the PropertyPanel.
+     *
+     * @return the boolean
+     */
+    public boolean rendersLabel();
 }

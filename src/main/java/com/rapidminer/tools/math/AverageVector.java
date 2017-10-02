@@ -28,7 +28,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Handles several averagables.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class AverageVector extends ResultObjectAdapter implements Comparable<Object>, Cloneable {
@@ -59,28 +59,50 @@ public abstract class AverageVector extends ResultObjectAdapter implements Compa
 		return this.averagesList.hashCode();
 	}
 
-	/** Returns the number of averages in the list. */
-	public int size() {
+    /**
+     * Returns the number of averages in the list.  @return the int
+     *
+     * @return the int
+     */
+    public int size() {
 		return averagesList.size();
 	}
 
-	/** Adds an {@link Averagable} to the list of criteria. */
-	public void addAveragable(Averagable avg) {
+    /**
+     * Adds an {@link Averagable} to the list of criteria.  @param avg the avg
+     *
+     * @param avg the avg
+     */
+    public void addAveragable(Averagable avg) {
 		averagesList.add(avg);
 	}
 
-	/** Removes an {@link Averagable} from the list of criteria. */
-	public void removeAveragable(Averagable avg) {
+    /**
+     * Removes an {@link Averagable} from the list of criteria.  @param avg the avg
+     *
+     * @param avg the avg
+     */
+    public void removeAveragable(Averagable avg) {
 		averagesList.remove(avg);
 	}
 
-	/** Returns the Averagable by index. */
-	public Averagable getAveragable(int index) {
+    /**
+     * Returns the Averagable by index.  @param index the index
+     *
+     * @param index the index
+     * @return the averagable
+     */
+    public Averagable getAveragable(int index) {
 		return averagesList.get(index);
 	}
 
-	/** Returns the Averagable by name. */
-	public Averagable getAveragable(String name) {
+    /**
+     * Returns the Averagable by name.  @param name the name
+     *
+     * @param name the name
+     * @return the averagable
+     */
+    public Averagable getAveragable(String name) {
 		Iterator<Averagable> i = averagesList.iterator();
 		while (i.hasNext()) {
 			Averagable a = i.next();
@@ -91,8 +113,12 @@ public abstract class AverageVector extends ResultObjectAdapter implements Compa
 		return null;
 	}
 
-	/** Returns the number of averagables in this vector. */
-	public int getSize() {
+    /**
+     * Returns the number of averagables in this vector.  @return the size
+     *
+     * @return the size
+     */
+    public int getSize() {
 		return averagesList.size();
 	}
 
@@ -123,7 +149,12 @@ public abstract class AverageVector extends ResultObjectAdapter implements Compa
 		return result.toString();
 	}
 
-	public void buildAverages(AverageVector av) {
+    /**
+     * Build averages.
+     *
+     * @param av the av
+     */
+    public void buildAverages(AverageVector av) {
 		if (this.size() != av.size()) {
 			throw new IllegalArgumentException("Performance vectors have different size!");
 		}

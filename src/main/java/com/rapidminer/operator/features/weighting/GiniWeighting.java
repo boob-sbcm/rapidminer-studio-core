@@ -26,12 +26,17 @@ import com.rapidminer.operator.learner.tree.criterions.GiniIndexCriterion;
 /**
  * This operator calculates the relevance of a feature by computing the Gini index of the class
  * distribution, if the given example set would have been splitted according to the feature.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class GiniWeighting extends AbstractEntropyWeighting {
 
-	public GiniWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Gini weighting.
+     *
+     * @param description the description
+     */
+    public GiniWeighting(OperatorDescription description) {
 		super(description);
 	}
 

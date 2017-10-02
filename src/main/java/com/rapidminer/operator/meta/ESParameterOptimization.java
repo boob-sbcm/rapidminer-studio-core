@@ -28,7 +28,7 @@ import com.rapidminer.tools.math.optimization.ec.es.Individual;
 
 /**
  * Evolutionary Strategy approach for an evolutionary parameter optimization.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ESParameterOptimization extends ESOptimization {
@@ -36,8 +36,25 @@ public class ESParameterOptimization extends ESOptimization {
 	/** The parent operator. Used for fitness evaluation. */
 	private EvolutionaryParameterOptimizationOperator operator;
 
-	/** Creates a new evolutionary SVM optimization. */
-	public ESParameterOptimization(EvolutionaryParameterOptimizationOperator operator, int individualSize, int initType, // start
+    /**
+     * Creates a new evolutionary SVM optimization.  @param operator the operator
+     *
+     * @param operator                      the operator
+     * @param individualSize                the individual size
+     * @param initType                      the init type
+     * @param maxIterations                 the max iterations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param popSize                       the pop size
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param crossoverProb                 the crossover prob
+     * @param showPlot                      the show plot
+     * @param random                        the random
+     * @param logging                       the logging
+     */
+    public ESParameterOptimization(EvolutionaryParameterOptimizationOperator operator, int individualSize, int initType, // start
 																															// population
 																															// creation
 																															// type

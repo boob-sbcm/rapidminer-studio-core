@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric sine of an angle.
  *
  * @author Denis Schernov
- *
  */
 public class Sinus extends Abstract1DoubleInputFunction {
 
-	public Sinus() {
+    /**
+     * Instantiates a new Sinus.
+     */
+    public Sinus() {
 		super("trigonometrical.sin", Ontology.NUMERICAL);
 	}
 

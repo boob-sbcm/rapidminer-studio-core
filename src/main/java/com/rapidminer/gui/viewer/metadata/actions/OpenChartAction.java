@@ -43,16 +43,15 @@ import com.rapidminer.gui.viewer.metadata.model.NumericalAttributeStatisticsMode
  * {@link AttributeStatisticsPanel}.
  *
  * @author Marco Boeck, Michael Knopf, Nils Woehler
- *
  */
 public class OpenChartAction extends ResourceAction {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Creates a new {@link OpenChartAction} instance.
-	 */
-	public OpenChartAction() {
+    /**
+     * Creates a new {@link OpenChartAction} instance.
+     */
+    public OpenChartAction() {
 		super(true, "meta_data_stats.open_chart");
 	}
 

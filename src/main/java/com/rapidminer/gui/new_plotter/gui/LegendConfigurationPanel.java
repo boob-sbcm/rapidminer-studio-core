@@ -43,8 +43,9 @@ import com.rapidminer.tools.I18N;
 
 
 /**
- * @author Nils Woehler, Marius Helf
+ * The type Legend configuration panel.
  *
+ * @author Nils Woehler, Marius Helf
  */
 public class LegendConfigurationPanel extends AbstractConfigurationPanel {
 
@@ -76,7 +77,12 @@ public class LegendConfigurationPanel extends AbstractConfigurationPanel {
 
 	private JButton legendFontColorChooserButton;
 
-	public LegendConfigurationPanel(PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Legend configuration panel.
+     *
+     * @param plotInstance the plot instance
+     */
+    public LegendConfigurationPanel(PlotInstance plotInstance) {
 		super(plotInstance);
 		createComponents();
 		registerAsPlotConfigurationListener();

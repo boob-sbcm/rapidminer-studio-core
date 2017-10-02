@@ -31,9 +31,8 @@ import java.util.logging.Level;
 /**
  * The complete state of a data import wizard. Steps of the wizard communicate through this
  * interface.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class WizardState {
 
@@ -45,7 +44,13 @@ public class WizardState {
 
 	private RepositoryLocation selectedLocation;
 
-	public WizardState(AbstractDataResultSetReader operator, DataResultSetFactory dataResultSetFactory) {
+    /**
+     * Instantiates a new Wizard state.
+     *
+     * @param operator             the operator
+     * @param dataResultSetFactory the data result set factory
+     */
+    public WizardState(AbstractDataResultSetReader operator, DataResultSetFactory dataResultSetFactory) {
 		super();
 		this.config = new DataResultSetTranslationConfiguration(operator);
 		this.translator = new DataResultSetTranslator(operator);
@@ -53,19 +58,43 @@ public class WizardState {
 		this.dataResultSetFactory = dataResultSetFactory;
 	}
 
-	public DataResultSetTranslator getTranslator() {
+    /**
+     * Gets translator.
+     *
+     * @return the translator
+     */
+    public DataResultSetTranslator getTranslator() {
 		return translator;
 	}
 
-	public DataResultSetTranslationConfiguration getTranslationConfiguration() {
+    /**
+     * Gets translation configuration.
+     *
+     * @return the translation configuration
+     */
+    public DataResultSetTranslationConfiguration getTranslationConfiguration() {
 		return config;
 	}
 
-	public DataResultSetFactory getDataResultSetFactory() {
+    /**
+     * Gets data result set factory.
+     *
+     * @return the data result set factory
+     */
+    public DataResultSetFactory getDataResultSetFactory() {
 		return dataResultSetFactory;
 	}
 
-	public ExampleSet readNow(DataResultSet dataResultSet, boolean previewOnly, ProgressListener progressListener)
+    /**
+     * Read now example set.
+     *
+     * @param dataResultSet    the data result set
+     * @param previewOnly      the preview only
+     * @param progressListener the progress listener
+     * @return the example set
+     * @throws OperatorException the operator exception
+     */
+    public ExampleSet readNow(DataResultSet dataResultSet, boolean previewOnly, ProgressListener progressListener)
 			throws OperatorException {
 		// LogService.getRoot().info("Reading example set...");
 		LogService.getRoot().log(Level.INFO, "com.rapidminer.operator.nio.model.WizardState.reading_example_set");
@@ -79,19 +108,39 @@ public class WizardState {
 		}
 	}
 
-	public int getNumberOfPreviewRows() {
+    /**
+     * Gets number of preview rows.
+     *
+     * @return the number of preview rows
+     */
+    public int getNumberOfPreviewRows() {
 		return maxRows;
 	}
 
-	public AbstractDataResultSetReader getOperator() {
+    /**
+     * Gets operator.
+     *
+     * @return the operator
+     */
+    public AbstractDataResultSetReader getOperator() {
 		return operator;
 	}
 
-	public void setSelectedLocation(RepositoryLocation selectedLocation) {
+    /**
+     * Sets selected location.
+     *
+     * @param selectedLocation the selected location
+     */
+    public void setSelectedLocation(RepositoryLocation selectedLocation) {
 		this.selectedLocation = selectedLocation;
 	}
 
-	public RepositoryLocation getSelectedLocation() {
+    /**
+     * Gets selected location.
+     *
+     * @return the selected location
+     */
+    public RepositoryLocation getSelectedLocation() {
 		return selectedLocation;
 	}
 }

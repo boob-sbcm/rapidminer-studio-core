@@ -27,18 +27,29 @@ import org.math.plot.PlotPanel;
 
 /**
  * The abstract super class for all 3D plotters using the JMathPlot library.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class JMathPlotter3D extends JMathPlotter {
 
 	private static final long serialVersionUID = -8695197842788069313L;
 
-	public JMathPlotter3D(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new J math plotter 3 d.
+     *
+     * @param settings the settings
+     */
+    public JMathPlotter3D(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
-	public JMathPlotter3D(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new J math plotter 3 d.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public JMathPlotter3D(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings, dataTable);
 	}
 

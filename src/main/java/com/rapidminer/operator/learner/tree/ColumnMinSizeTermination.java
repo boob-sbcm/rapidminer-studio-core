@@ -27,7 +27,12 @@ public class ColumnMinSizeTermination implements ColumnTerminator {
 
 	private int minSize;
 
-	public ColumnMinSizeTermination(int minSize) {
+    /**
+     * Instantiates a new Column min size termination.
+     *
+     * @param minSize the min size
+     */
+    public ColumnMinSizeTermination(int minSize) {
 		this.minSize = minSize;
 	}
 

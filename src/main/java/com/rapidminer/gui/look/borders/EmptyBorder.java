@@ -27,7 +27,7 @@ import javax.swing.plaf.UIResource;
 
 /**
  * The UIResource for empty borders.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class EmptyBorder extends AbstractBorder implements UIResource {

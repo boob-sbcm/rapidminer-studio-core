@@ -47,7 +47,6 @@ import com.rapidminer.parameter.ParameterTypeDate;
  * to choose dates comfortable.
  *
  * @author Nils Woehler
- *
  */
 public class DateValueCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {
 
@@ -59,7 +58,12 @@ public class DateValueCellEditor extends AbstractCellEditor implements PropertyV
 	private final DatePicker datePicker = new DatePicker(new Date(), DateFormat.getDateTimeInstance());
 	private AtomicBoolean updatingComponents = new AtomicBoolean(false);
 
-	public DateValueCellEditor(final ParameterTypeDate type) {
+    /**
+     * Instantiates a new Date value cell editor.
+     *
+     * @param type the type
+     */
+    public DateValueCellEditor(final ParameterTypeDate type) {
 		panel.setLayout(new GridBagLayout());
 		panel.setToolTipText(type.getDescription());
 

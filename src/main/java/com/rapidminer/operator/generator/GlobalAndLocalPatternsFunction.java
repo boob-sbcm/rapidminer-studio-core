@@ -27,7 +27,7 @@ import com.rapidminer.tools.RandomGenerator;
 /**
  * The label is positive if the sum of both arguments is positive and negative otherwise. In
  * addition, several local patterns in different sizes are placed in the data space.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class GlobalAndLocalPatternsFunction extends ClassificationFunction {

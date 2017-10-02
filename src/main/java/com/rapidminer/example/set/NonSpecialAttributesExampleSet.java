@@ -40,24 +40,26 @@ public class NonSpecialAttributesExampleSet extends AbstractExampleSet {
 	/** The parent example set. */
 	private ExampleSet parent;
 
-	/**
-	 * @deprecated use static creation method {@link #create(ExampleSet)} instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Non special attributes example set.
+     *
+     * @param exampleSet the example set
+     * @deprecated use static creation method {@link #create(ExampleSet)} instead
+     */
+    @Deprecated
 	public NonSpecialAttributesExampleSet(ExampleSet exampleSet) {
 		this.parent = (ExampleSet) exampleSet.clone();
 		makeSpecialAttributesRegular(parent);
 	}
 
-	/**
-	 * Creates a new example set where all current special attributes are regular.
-	 *
-	 * @param exampleSet
-	 *            the example set to start from
-	 * @return an example set with only regular attributes
-	 * @since 7.5.1
-	 */
-	public static ExampleSet create(ExampleSet exampleSet) {
+    /**
+     * Creates a new example set where all current special attributes are regular.
+     *
+     * @param exampleSet the example set to start from
+     * @return an example set with only regular attributes
+     * @since 7.5.1
+     */
+    public static ExampleSet create(ExampleSet exampleSet) {
 		ExampleSet newSet = (ExampleSet) exampleSet.clone();
 		makeSpecialAttributesRegular(newSet);
 		return newSet;
@@ -76,8 +78,12 @@ public class NonSpecialAttributesExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	/** Clone constructor. */
-	public NonSpecialAttributesExampleSet(NonSpecialAttributesExampleSet exampleSet) {
+    /**
+     * Clone constructor.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     */
+    public NonSpecialAttributesExampleSet(NonSpecialAttributesExampleSet exampleSet) {
 		this.parent = (ExampleSet) exampleSet.parent.clone();
 	}
 

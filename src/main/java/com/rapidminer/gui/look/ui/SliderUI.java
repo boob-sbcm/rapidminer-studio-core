@@ -66,11 +66,22 @@ public class SliderUI extends BasicSliderUI {
 
 	private MouseListener thumbPressedListener;
 
-	public static ComponentUI createUI(JComponent jcomponent) {
+    /**
+     * Create ui component ui.
+     *
+     * @param jcomponent the jcomponent
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent jcomponent) {
 		return new SliderUI((JSlider) jcomponent);
 	}
 
-	public SliderUI(JSlider jSlider) {
+    /**
+     * Instantiates a new Slider ui.
+     *
+     * @param jSlider the j slider
+     */
+    public SliderUI(JSlider jSlider) {
 		super(jSlider);
 	}
 
@@ -267,7 +278,12 @@ public class SliderUI extends BasicSliderUI {
 		return this.slider;
 	}
 
-	protected MouseListener createThumbPressedListener() {
+    /**
+     * Create thumb pressed listener mouse listener.
+     *
+     * @return the mouse listener
+     */
+    protected MouseListener createThumbPressedListener() {
 		return new ThumbListener();
 	}
 

@@ -28,14 +28,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract2DoubleInputFun
  * A {@link Function} for division.
  *
  * @author Gisa Schaefer
- *
  */
 public class Divide extends Abstract2DoubleInputFunction {
 
-	/**
-	 * Constructs a division function.
-	 */
-	public Divide() {
+    /**
+     * Constructs a division function.
+     */
+    public Divide() {
 		super("basic.division", 2, Ontology.NUMERICAL);
 	}
 

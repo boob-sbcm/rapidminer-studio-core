@@ -23,11 +23,16 @@ import java.util.EventListener;
 
 /**
  * A listener for the {@link ButtonBarCardPanel}. Listens to {@link CardSelectionEvent}s.
- * 
+ *
  * @author Dominik Halfkann
  */
 public interface CardSelectionListener extends EventListener {
 
-	public void cardSelected(CardSelectionEvent e);
+    /**
+     * Card selected.
+     *
+     * @param e the e
+     */
+    public void cardSelected(CardSelectionEvent e);
 
 }

@@ -25,7 +25,9 @@ import java.io.Serializable;
  * This class can be used to build pairs of typed objects and sort them. ATTENTION!! This class is
  * not usable for hashing since only the first version is used as hash entry. To use a hash function
  * on a tupel, use Pair!
- * 
+ *
+ * @param <T1> the type parameter
+ * @param <T2> the type parameter
  * @author Sebastian Land
  */
 public class Tupel<T1 extends Comparable<T1>, T2> implements Comparable<Tupel<T1, T2>>, Serializable {
@@ -36,16 +38,32 @@ public class Tupel<T1 extends Comparable<T1>, T2> implements Comparable<Tupel<T1
 
 	private T2 t2;
 
-	public Tupel(T1 t1, T2 t2) {
+    /**
+     * Instantiates a new Tupel.
+     *
+     * @param t1 the t 1
+     * @param t2 the t 2
+     */
+    public Tupel(T1 t1, T2 t2) {
 		this.t1 = t1;
 		this.t2 = t2;
 	}
 
-	public T1 getFirst() {
+    /**
+     * Gets first.
+     *
+     * @return the first
+     */
+    public T1 getFirst() {
 		return t1;
 	}
 
-	public T2 getSecond() {
+    /**
+     * Gets second.
+     *
+     * @return the second
+     */
+    public T2 getSecond() {
 		return t2;
 	}
 

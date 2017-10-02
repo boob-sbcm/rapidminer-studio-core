@@ -33,7 +33,7 @@ import java.util.Iterator;
  * <code>GridViz</code> is a simple extension of <code>RadViz</code> that places the dimensional
  * anchors on a rectangular grid instead of using the perimeter of a circle. The number of
  * dimensions that can be displayed increases significantly.
- * 
+ *
  * @author Daniel Hakenjos, Ingo Mierswa
  */
 public class GridVizPlotter extends RadVizPlotter {
@@ -42,13 +42,22 @@ public class GridVizPlotter extends RadVizPlotter {
 
 	private static final int MAX_NUMBER_OF_COLUMNS = 10000;
 
-	/** Constructs a new GridVizPlotter. */
-	public GridVizPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Constructs a new GridVizPlotter.  @param settings the settings
+     *
+     * @param settings the settings
+     */
+    public GridVizPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
-	/** Constructs a new GridVizPlotter. */
-	public GridVizPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Constructs a new GridVizPlotter.  @param settings the settings
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public GridVizPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings);
 		setDataTable(dataTable);
 	}
@@ -58,7 +67,14 @@ public class GridVizPlotter extends RadVizPlotter {
 		return new ColumnsPlotterCondition(MAX_NUMBER_OF_COLUMNS);
 	}
 
-	protected void calculateAttributeVectors(int totalSize, int gridSize, int gridDelta) {
+    /**
+     * Calculate attribute vectors.
+     *
+     * @param totalSize the total size
+     * @param gridSize  the grid size
+     * @param gridDelta the grid delta
+     */
+    protected void calculateAttributeVectors(int totalSize, int gridSize, int gridDelta) {
 		int dim = this.dataTable.getNumberOfColumns();
 		anchorVectorX = new double[dim];
 		anchorVectorY = new double[dim];

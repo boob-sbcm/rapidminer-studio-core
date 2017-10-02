@@ -26,7 +26,7 @@ import com.rapidminer.tools.math.similarity.SimilarityMeasure;
 
 /**
  * A variant of the Jaccard coefficient defined for numeric attributes.
- * 
+ *
  * @author Michael Wurst
  */
 public class JaccardNumericalSimilarity extends SimilarityMeasure {

@@ -24,18 +24,16 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryDouble
 
 
 /**
- *
  * A {@link Function} for minimum.
  *
  * @author David Arnu
- *
  */
 public class Minimum extends AbstractArbitraryDoubleInputFunction {
 
-	/**
-	 * Constructs an minimum function.
-	 */
-	public Minimum() {
+    /**
+     * Constructs an minimum function.
+     */
+    public Minimum() {
 		super("statistical.min", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, Ontology.NUMERICAL);
 
 	}

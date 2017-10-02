@@ -60,13 +60,18 @@ public class ExampleSetIterator extends OperatorChain {
 	private final OutputPort exampleSetInnerSource = getSubprocess(0).getInnerSources().createPort("example set");
 	private final InputPort performanceInnerSink = getSubprocess(0).getInnerSinks().createPort("performance");
 
-	/**
-	 * The parameter name for &quot;Return only best result? (Requires a PerformanceVector in the
-	 * inner result).&quot;
-	 */
-	public static final String PARAMETER_ONLY_BEST = "only_best";
+    /**
+     * The parameter name for &quot;Return only best result? (Requires a PerformanceVector in the
+     * inner result).&quot;
+     */
+    public static final String PARAMETER_ONLY_BEST = "only_best";
 
-	public ExampleSetIterator(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set iterator.
+     *
+     * @param description the description
+     */
+    public ExampleSetIterator(OperatorDescription description) {
 		super(description, "Subprocess");
 
 		exampleSetExtender.start();

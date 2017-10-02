@@ -21,26 +21,44 @@ package com.rapidminer.operator;
 /**
  * The interface for values which can logged and plotted during process definitions. Operators
  * should define their values in their constructor.
- * 
+ *
  * @author Robert Rudolph, Ingo Mierswa
  */
 public interface ValueInterface {
 
-	/** Returns a human readable description. */
-	public String getDescription();
+    /**
+     * Returns a human readable description.  @return the description
+     *
+     * @return the description
+     */
+    public String getDescription();
 
-	/** Returns the key. */
-	public String getKey();
+    /**
+     * Returns the key.  @return the key
+     *
+     * @return the key
+     */
+    public String getKey();
 
-	/** Returns true if this value should be documented. */
-	public boolean isDocumented();
+    /**
+     * Returns true if this value should be documented.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean isDocumented();
 
-	/**
-	 * Returns the current value which can be logged by the process log operator.
-	 */
-	public Object getValue();
+    /**
+     * Returns the current value which can be logged by the process log operator.
+     *
+     * @return the value
+     */
+    public Object getValue();
 
-	/** Returns true if the value is nominal. */
-	public boolean isNominal();
+    /**
+     * Returns true if the value is nominal.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean isNominal();
 
 }

@@ -36,57 +36,119 @@ import javax.swing.JPopupMenu;
  * Encapsulates default settings for a text area. This can be passed to the constructor once the
  * necessary fields have been filled out. The advantage of doing this over calling lots of set()
  * methods after creating the text area is that this method is faster.
- * 
+ * <p>
  * Important bug fix: static defaults with 1 (!) document no longer used!
- * 
+ *
  * @author Slava Pestov, Tom Bradford, Ingo Mierswa
  */
 public class TextAreaDefaults {
 
-	public InputHandler inputHandler;
+    /**
+     * The Input handler.
+     */
+    public InputHandler inputHandler;
 
-	public SyntaxDocument document;
+    /**
+     * The Document.
+     */
+    public SyntaxDocument document;
 
-	public boolean editable;
+    /**
+     * The Editable.
+     */
+    public boolean editable;
 
-	public boolean caretVisible;
+    /**
+     * The Caret visible.
+     */
+    public boolean caretVisible;
 
-	public boolean caretBlinks;
+    /**
+     * The Caret blinks.
+     */
+    public boolean caretBlinks;
 
-	public boolean blockCaret;
+    /**
+     * The Block caret.
+     */
+    public boolean blockCaret;
 
-	public int electricScroll;
+    /**
+     * The Electric scroll.
+     */
+    public int electricScroll;
 
-	public int cols;
+    /**
+     * The Cols.
+     */
+    public int cols;
 
-	public int rows;
+    /**
+     * The Rows.
+     */
+    public int rows;
 
-	public SyntaxStyle[] styles;
+    /**
+     * The Styles.
+     */
+    public SyntaxStyle[] styles;
 
-	public Color caretColor;
+    /**
+     * The Caret color.
+     */
+    public Color caretColor;
 
-	public Color selectionColor;
+    /**
+     * The Selection color.
+     */
+    public Color selectionColor;
 
-	public Color lineHighlightColor;
+    /**
+     * The Line highlight color.
+     */
+    public Color lineHighlightColor;
 
-	public boolean lineHighlight;
+    /**
+     * The Line highlight.
+     */
+    public boolean lineHighlight;
 
-	public Color bracketHighlightColor;
+    /**
+     * The Bracket highlight color.
+     */
+    public Color bracketHighlightColor;
 
-	public boolean bracketHighlight;
+    /**
+     * The Bracket highlight.
+     */
+    public boolean bracketHighlight;
 
-	public Color eolMarkerColor;
+    /**
+     * The Eol marker color.
+     */
+    public Color eolMarkerColor;
 
-	public boolean eolMarkers;
+    /**
+     * The Eol markers.
+     */
+    public boolean eolMarkers;
 
-	public boolean paintInvalid;
+    /**
+     * The Paint invalid.
+     */
+    public boolean paintInvalid;
 
-	public JPopupMenu popup;
+    /**
+     * The Popup.
+     */
+    public JPopupMenu popup;
 
-	/**
-	 * Returns a new TextAreaDefaults object with the default values filled in.
-	 */
-	public static TextAreaDefaults getDefaults() {
+    /**
+     * Returns a new TextAreaDefaults object with the default values filled in.
+     *
+     * @return the defaults
+     */
+    public static TextAreaDefaults getDefaults() {
 		TextAreaDefaults defaults = new TextAreaDefaults();
 
 		defaults.inputHandler = new DefaultInputHandler();

@@ -100,29 +100,30 @@ import com.rapidminer.tools.container.Pair;
  * {@link TablePanelModel#canCellHaveMultipleValues(int, int)}.
  *
  * @author Marco Boeck
- *
  */
 public class TablePanel extends JPanel {
 
-	/**
-	 * Defines how additional space is distributed when using fixed width mode.
-	 *
-	 *
-	 * @author Marco Boeck
-	 *
-	 */
-	public static enum FillerMode {
-		/**
-		 * additional space is not filled in any way, components will be centered in the middle of
-		 * their respective location
-		 */
-		NONE,
+    /**
+     * Defines how additional space is distributed when using fixed width mode.
+     *
+     * @author Marco Boeck
+     */
+    public static enum FillerMode {
+        /**
+         * additional space is not filled in any way, components will be centered in the middle of
+         * their respective location
+         */
+        NONE,
 
-		/** additional space is filled between the last component per row and the delete row button */
-		IN_BETWEEN,
+        /**
+         * additional space is filled between the last component per row and the delete row button
+         */
+        IN_BETWEEN,
 
-		/** additional space is filled after the delete row button */
-		REMAINDER;
+        /**
+         * additional space is filled after the delete row button
+         */
+        REMAINDER;
 	}
 
 	private static final long serialVersionUID = 7783828436200806566L;
@@ -157,17 +158,14 @@ public class TablePanel extends JPanel {
 	/** stores all component (aka cells) to allow for easy replacement */
 	private Map<Pair<Integer, Integer>, Component> mapOfComponents;
 
-	/**
-	 * Creates a new {@link TablePanel} instance.
-	 *
-	 * @param model
-	 * @param useScrollPane
-	 *            if set to <code>true</code>, will add a scrollpane around the GUI.
-	 * @param hideUnavailableContentAssist
-	 *            if <code>true</code>, the content assist button will be hidden if no content
-	 *            assist is available for the given field
-	 */
-	public TablePanel(final TablePanelModel model, boolean useScrollPane, boolean hideUnavailableContentAssist) {
+    /**
+     * Creates a new {@link TablePanel} instance.
+     *
+     * @param model                        the model
+     * @param useScrollPane                if set to <code>true</code>, will add a scrollpane around the GUI.
+     * @param hideUnavailableContentAssist if <code>true</code>, the content assist button will be hidden if no content            assist is available for the given field
+     */
+    public TablePanel(final TablePanelModel model, boolean useScrollPane, boolean hideUnavailableContentAssist) {
 		this.mapOfComponents = new HashMap<>();
 		this.useScrollPane = useScrollPane;
 		this.hideUnavailableContentAssist = hideUnavailableContentAssist;
@@ -307,12 +305,12 @@ public class TablePanel extends JPanel {
 		repaint();
 	}
 
-	/**
-	 * Set the backing model.
-	 *
-	 * @param model
-	 */
-	public void setModel(TablePanelModel model) {
+    /**
+     * Set the backing model.
+     *
+     * @param model the model
+     */
+    public void setModel(TablePanelModel model) {
 		// unregister ourself if we had a model before
 		if (this.model != null) {
 			this.model.removeTableModelListener(listener);
@@ -325,48 +323,47 @@ public class TablePanel extends JPanel {
 		createGUI();
 	}
 
-	/**
-	 * Returns the {@link TablePanelModel} instance of this {@link TablePanel}.
-	 *
-	 * @return
-	 */
-	public TablePanelModel getModel() {
+    /**
+     * Returns the {@link TablePanelModel} instance of this {@link TablePanel}.
+     *
+     * @return model model
+     */
+    public TablePanelModel getModel() {
 		return this.model;
 	}
 
-	/**
-	 * Defines how additional space is distributed in each row if dimension constraints have been
-	 * set via {@link #setDimensionConstraints(Dimension[])}. See {@link FillerMode} for a
-	 * description of each mode.
-	 *
-	 * @param fillerMode
-	 */
-	public void setFillerMode(FillerMode fillerMode) {
+    /**
+     * Defines how additional space is distributed in each row if dimension constraints have been
+     * set via {@link #setDimensionConstraints(Dimension[])}. See {@link FillerMode} for a
+     * description of each mode.
+     *
+     * @param fillerMode the filler mode
+     */
+    public void setFillerMode(FillerMode fillerMode) {
 		this.fillerMode = fillerMode;
 	}
 
-	/**
-	 * Returns the currently used {@link FillerMode}.
-	 */
-	public FillerMode getFillerMode() {
+    /**
+     * Returns the currently used {@link FillerMode}.
+     *
+     * @return the filler mode
+     */
+    public FillerMode getFillerMode() {
 		return fillerMode;
 	}
 
-	/**
-	 * Sets the {@link Dimension} constraints used by this panel. Each column uses exactly the
-	 * specified dimension, no more and no less.The constraints array has to consist of n entries
-	 * where n is the number of columns in the {@link TablePanelModel}. If the model is changed
-	 * after this method has been called and has more or less columns than the constraints specify,
-	 * the constraints are ignored! Set to <code>null</code> to remove the constraints. <br/>
-	 * See {@link #setFillerMode(FillerMode)} for options to distribute additional space
-	 *
-	 * @param constraints
-	 *            the {@link Dimension} array consisting of n entries, where n is the number of
-	 *            columns of the {@link TablePanelModel}.
-	 * @throws IllegalArgumentException
-	 *             if constraints.length != getModel().getColumnCount()
-	 */
-	public void setDimensionConstraints(Dimension[] constraints) throws IllegalArgumentException {
+    /**
+     * Sets the {@link Dimension} constraints used by this panel. Each column uses exactly the
+     * specified dimension, no more and no less.The constraints array has to consist of n entries
+     * where n is the number of columns in the {@link TablePanelModel}. If the model is changed
+     * after this method has been called and has more or less columns than the constraints specify,
+     * the constraints are ignored! Set to <code>null</code> to remove the constraints. <br/>
+     * See {@link #setFillerMode(FillerMode)} for options to distribute additional space
+     *
+     * @param constraints the {@link Dimension} array consisting of n entries, where n is the number of            columns of the {@link TablePanelModel}.
+     * @throws IllegalArgumentException if constraints.length != getModel().getColumnCount()
+     */
+    public void setDimensionConstraints(Dimension[] constraints) throws IllegalArgumentException {
 		if (constraints == null) {
 			this.constraints = null;
 			return;

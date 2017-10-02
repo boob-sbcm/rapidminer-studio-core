@@ -26,7 +26,7 @@ import com.rapidminer.gui.tools.logging.LogViewer;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ClearMessageAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class ClearMessageAction extends ResourceAction {
 
 	private LogViewer loggingViewer;
 
-	public ClearMessageAction(LogViewer loggingViewer) {
+    /**
+     * Instantiates a new Clear message action.
+     *
+     * @param loggingViewer the logging viewer
+     */
+    public ClearMessageAction(LogViewer loggingViewer) {
 		super(true, "clear_message_viewer");
 		this.loggingViewer = loggingViewer;
 	}

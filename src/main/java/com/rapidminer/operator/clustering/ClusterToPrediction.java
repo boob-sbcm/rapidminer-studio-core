@@ -44,7 +44,7 @@ import java.util.Vector;
 /**
  * This operator estimates a mapping between a given clustering and a prediction. It adjusts the
  * given clusters with the given labels and so estimates the best fitting pairs.
- * 
+ *
  * @author Regina Fritsch
  */
 public class ClusterToPrediction extends Operator {
@@ -54,7 +54,12 @@ public class ClusterToPrediction extends Operator {
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private final OutputPort clusterModelOutput = getOutputPorts().createPort("cluster model");
 
-	public ClusterToPrediction(OperatorDescription description) {
+    /**
+     * Instantiates a new Cluster to prediction.
+     *
+     * @param description the description
+     */
+    public ClusterToPrediction(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, -1, Attributes.LABEL_NAME,

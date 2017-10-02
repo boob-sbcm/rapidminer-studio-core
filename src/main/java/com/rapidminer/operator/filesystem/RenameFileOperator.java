@@ -33,21 +33,29 @@ import java.util.List;
 
 
 /**
- * 
  * This operator renames the selected file. If the file doesn't exist, an exception is thrown.
- * 
+ *
  * @author Philipp Kersting
- * 
  */
-
 public class RenameFileOperator extends Operator {
 
-	public static final String PARAMETER_FILE = "file";
-	public static final String PARAMETER_NEW_NAME = "new_name";
+    /**
+     * The constant PARAMETER_FILE.
+     */
+    public static final String PARAMETER_FILE = "file";
+    /**
+     * The constant PARAMETER_NEW_NAME.
+     */
+    public static final String PARAMETER_NEW_NAME = "new_name";
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public RenameFileOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Rename file operator.
+     *
+     * @param description the description
+     */
+    public RenameFileOperator(OperatorDescription description) {
 		super(description);
 		dummyPorts.start();
 		getTransformer().addRule(dummyPorts.makePassThroughRule());

@@ -67,14 +67,14 @@ import com.rapidminer.tools.io.Encoding;
  * specify attribute types. You can use the wizard of this operator or the tool Attribute Editor in
  * order to create those meta data .aml files for your datasets.
  * </p>
- *
+ * <p>
  * <p>
  * This operator supports the reading of data from multiple source files. Each attribute (including
  * special attributes like labels, weights, ...) might be read from another file. Please note that
  * only the minimum number of lines of all files will be read, i.e. if one of the data source files
  * has less lines than the others, only this number of examples will be read.
  * </p>
- *
+ * <p>
  * <p>
  * The split points can be defined with regular expressions (please refer to the annex of the
  * RapidMiner tutorial for an overview). The default split parameter &quot;,\s*|;\s*|\s+&quot;
@@ -90,12 +90,12 @@ import com.rapidminer.tools.io.Encoding;
  * A logical XOR is defined by &quot;|&quot;. Other useful separators might be &quot;\t&quot; for
  * tabulars, &quot; &quot; for a single whitespace, and &quot;\s&quot; for any whitespace.
  * </p>
- *
+ * <p>
  * <p>
  * Quoting is also possible with &quot;. You can escape quotes with a backslash, i.e. \&quot;.
  * Please note that you can change these characters by adjusting the corresponding settings.
  * </p>
- *
+ * <p>
  * <p>
  * Additionally you can specify comment characters which can be used at arbitrary locations of the
  * data lines. Any content after the comment character will be ignored. Unknown attribute values can
@@ -109,62 +109,89 @@ import com.rapidminer.tools.io.Encoding;
 @Deprecated
 public class ExampleSource extends AbstractExampleSource {
 
-	/**
-	 * The parameter name for &quot;Filename for the XML attribute description file. This file also
-	 * contains the names of the files to read the data from.&quot;
-	 */
-	public static final String PARAMETER_ATTRIBUTES = "attributes";
+    /**
+     * The parameter name for &quot;Filename for the XML attribute description file. This file also
+     * contains the names of the files to read the data from.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTES = "attributes";
 
 	static {
 		AbstractReader.registerReaderDescription(new ReaderDescription("aml", ExampleSource.class, PARAMETER_ATTRIBUTES));
 	}
 
-	/**
-	 * The parameter name for &quot;The fraction of the data set which should be read (1 = all; only
-	 * used if sample_size = -1)&quot;
-	 */
-	public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
+    /**
+     * The parameter name for &quot;The fraction of the data set which should be read (1 = all; only
+     * used if sample_size = -1)&quot;
+     */
+    public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
 
-	/**
-	 * The parameter name for &quot;The exact number of samples which should be read (-1 = use
-	 * sample ratio; if not -1, sample_ratio will not have any effect)&quot;
-	 */
-	public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
+    /**
+     * The parameter name for &quot;The exact number of samples which should be read (-1 = use
+     * sample ratio; if not -1, sample_ratio will not have any effect)&quot;
+     */
+    public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
 
-	/** The parameter name for &quot;Indicates if the loaded data should be permuted.&quot; */
-	public static final String PARAMETER_PERMUTATE = "permute";
+    /**
+     * The parameter name for &quot;Indicates if the loaded data should be permuted.&quot;
+     */
+    public static final String PARAMETER_PERMUTATE = "permute";
 
-	/** The parameter name for &quot;Column separators for data files (regular expression)&quot; */
-	public static final String PARAMETER_COLUMN_SEPARATORS = "column_separators";
+    /**
+     * The parameter name for &quot;Column separators for data files (regular expression)&quot;
+     */
+    public static final String PARAMETER_COLUMN_SEPARATORS = "column_separators";
 
-	/** The parameter name for &quot;Indicates if a comment character should be used&quot; */
-	public static final String PARAMETER_USE_COMMENT_CHARACTERS = "use_comment_characters";
+    /**
+     * The parameter name for &quot;Indicates if a comment character should be used&quot;
+     */
+    public static final String PARAMETER_USE_COMMENT_CHARACTERS = "use_comment_characters";
 
-	/** The parameter name for &quot;Lines beginning with these characters are ignored.&quot; */
-	public static final String PARAMETER_COMMENT_CHARS = "comment_chars";
+    /**
+     * The parameter name for &quot;Lines beginning with these characters are ignored.&quot;
+     */
+    public static final String PARAMETER_COMMENT_CHARS = "comment_chars";
 
-	/** The parameter name for &quot;Character that is used as decimal point.&quot; */
-	public static final String PARAMETER_DECIMAL_POINT_CHARACTER = "decimal_point_character";
+    /**
+     * The parameter name for &quot;Character that is used as decimal point.&quot;
+     */
+    public static final String PARAMETER_DECIMAL_POINT_CHARACTER = "decimal_point_character";
 
-	/** The parameter name for &quot;Indicates if quotes should be regarded (slower!).&quot; */
-	public static final String PARAMETER_USE_QUOTES = "use_quotes";
+    /**
+     * The parameter name for &quot;Indicates if quotes should be regarded (slower!).&quot;
+     */
+    public static final String PARAMETER_USE_QUOTES = "use_quotes";
 
-	/** Specifies the used quoting character. */
-	public static final String PARAMETER_QUOTE_CHARACTER = "quote_character";
+    /**
+     * Specifies the used quoting character.
+     */
+    public static final String PARAMETER_QUOTE_CHARACTER = "quote_character";
 
-	/** Specifies the used character for escaping quoting. */
-	public static final String PARAMETER_QUOTING_ESCAPE_CHARACTER = "quoting_escape_character";
+    /**
+     * Specifies the used character for escaping quoting.
+     */
+    public static final String PARAMETER_QUOTING_ESCAPE_CHARACTER = "quoting_escape_character";
 
-	/** Indicates if the lines should be trimmed during reading. */
-	public static final String PARAMETER_TRIM_LINES = "trim_lines";
+    /**
+     * Indicates if the lines should be trimmed during reading.
+     */
+    public static final String PARAMETER_TRIM_LINES = "trim_lines";
 
-	/** Indicates if lines leading to errors should be skipped. */
-	public static final String PARAMETER_SKIP_ERROR_LINES = "skip_error_lines";
+    /**
+     * Indicates if lines leading to errors should be skipped.
+     */
+    public static final String PARAMETER_SKIP_ERROR_LINES = "skip_error_lines";
 
-	/** The parameter name for &quot;Determines, how the data is represented internally.&quot; */
-	public static final String PARAMETER_DATAMANAGEMENT = ExampleSetGenerator.PARAMETER_DATAMANAGEMENT;
+    /**
+     * The parameter name for &quot;Determines, how the data is represented internally.&quot;
+     */
+    public static final String PARAMETER_DATAMANAGEMENT = ExampleSetGenerator.PARAMETER_DATAMANAGEMENT;
 
-	public ExampleSource(final OperatorDescription description) {
+    /**
+     * Instantiates a new Example source.
+     *
+     * @param description the description
+     */
+    public ExampleSource(final OperatorDescription description) {
 		super(description);
 	}
 

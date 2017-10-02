@@ -26,23 +26,36 @@ import com.rapidminer.operator.tools.AttributeSubsetSelector;
 
 /**
  * Evaluates resource consumption based on a simple polynomial function.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class PolynomialExampleSetResourceConsumptionEstimator extends ExampleSetResourceConsumptionEstimator {
 
 	private final PolynomialFunction cpuFunction;
 	private final PolynomialFunction memoryFunction;
 
-	public PolynomialExampleSetResourceConsumptionEstimator(InputPort in, AttributeSubsetSelector selector,
+    /**
+     * Instantiates a new Polynomial example set resource consumption estimator.
+     *
+     * @param in             the in
+     * @param selector       the selector
+     * @param cpuFunction    the cpu function
+     * @param memoryFunction the memory function
+     */
+    public PolynomialExampleSetResourceConsumptionEstimator(InputPort in, AttributeSubsetSelector selector,
 			PolynomialFunction cpuFunction, PolynomialFunction memoryFunction) {
 		super(in, selector);
 		this.cpuFunction = cpuFunction;
 		this.memoryFunction = memoryFunction;
 	}
 
-	protected int getNumberOfRelevantAttributes(ExampleSetMetaData emd) {
+    /**
+     * Gets number of relevant attributes.
+     *
+     * @param emd the emd
+     * @return the number of relevant attributes
+     */
+    protected int getNumberOfRelevantAttributes(ExampleSetMetaData emd) {
 		return emd.getNumberOfRegularAttributes();
 	}
 

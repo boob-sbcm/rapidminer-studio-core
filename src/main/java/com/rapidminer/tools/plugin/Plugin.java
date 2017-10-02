@@ -118,17 +118,17 @@ import com.rapidminer.tools.usagestats.ActionStatisticsCollector;
  */
 public class Plugin {
 
-	/**
-	 * The name for the manifest entry RapidMiner-Type which can be used to indicate that a jar file
-	 * is a RapidMiner plugin.
-	 */
-	public static final String RAPIDMINER_TYPE = "RapidMiner-Type";
+    /**
+     * The name for the manifest entry RapidMiner-Type which can be used to indicate that a jar file
+     * is a RapidMiner plugin.
+     */
+    public static final String RAPIDMINER_TYPE = "RapidMiner-Type";
 
-	/**
-	 * The value for the manifest entry RapidMiner-Type which indicates that a jar file is a
-	 * RapidMiner plugin.
-	 */
-	public static final String RAPIDMINER_TYPE_PLUGIN = "RapidMiner_Extension";
+    /**
+     * The value for the manifest entry RapidMiner-Type which indicates that a jar file is a
+     * RapidMiner plugin.
+     */
+    public static final String RAPIDMINER_TYPE_PLUGIN = "RapidMiner_Extension";
 
 	private static final ClassLoader MAJOR_CLASS_LOADER;
 
@@ -316,8 +316,13 @@ public class Plugin {
 	 */
 	private static final int LOADING_THRESHOLD = 10_000;
 
-	/** Creates a new plugin based on the plugin .jar file. */
-	public Plugin(File file) throws IOException {
+    /**
+     * Creates a new plugin based on the plugin .jar file.  @param file the file
+     *
+     * @param file the file
+     * @throws IOException the io exception
+     */
+    public Plugin(File file) throws IOException {
 		this.file = file;
 		this.archive = new JarFile(this.file);
 		this.classLoader = makeInitialClassloader();
@@ -345,13 +350,13 @@ public class Plugin {
 		return cl;
 	}
 
-	/**
-	 * This method will build the final class loader for this plugin that contains all class loaders
-	 * of all plugins this plugin depends on.
-	 *
-	 * This must be called after all plugins have been initially loaded.
-	 */
-	public void buildFinalClassLoader() {
+    /**
+     * This method will build the final class loader for this plugin that contains all class loaders
+     * of all plugins this plugin depends on.
+     * <p>
+     * This must be called after all plugins have been initially loaded.
+     */
+    public void buildFinalClassLoader() {
 		// add URLs of plugins this plugin depends on
 		for (Dependency dependency : this.pluginDependencies) {
 			final Plugin other = getPluginByExtensionId(dependency.getPluginExtensionId());
@@ -360,89 +365,150 @@ public class Plugin {
 
 	}
 
-	/** Returns the name of the plugin. */
-	public String getName() {
+    /**
+     * Returns the name of the plugin.  @return the name
+     *
+     * @return the name
+     */
+    public String getName() {
 		return name;
 	}
 
-	/** Returns the version of this plugin. */
-	public String getVersion() {
+    /**
+     * Returns the version of this plugin.  @return the version
+     *
+     * @return the version
+     */
+    public String getVersion() {
 		return version;
 	}
 
-	/** Returns the necessary RapidMiner version. */
-	public VersionNumber getNecessaryRapidMinerVersion() {
+    /**
+     * Returns the necessary RapidMiner version.  @return the necessary rapid miner version
+     *
+     * @return the necessary rapid miner version
+     */
+    public VersionNumber getNecessaryRapidMinerVersion() {
 		return new VersionNumber(requiredRapidMinerVersion);
 	}
 
-	/**
-	 * Returns the class name of the plugin init class
-	 */
-	public String getPluginInitClassName() {
+    /**
+     * Returns the class name of the plugin init class
+     *
+     * @return the plugin init class name
+     */
+    public String getPluginInitClassName() {
 		return pluginInitClassName;
 	}
 
-	public String getPluginParseRules() {
+    /**
+     * Gets plugin parse rules.
+     *
+     * @return the plugin parse rules
+     */
+    public String getPluginParseRules() {
 		return pluginParseRules;
 	}
 
-	public String getPluginGroupDescriptions() {
+    /**
+     * Gets plugin group descriptions.
+     *
+     * @return the plugin group descriptions
+     */
+    public String getPluginGroupDescriptions() {
 		return pluginGroupDescriptions;
 	}
 
-	public String getPluginErrorDescriptions() {
+    /**
+     * Gets plugin error descriptions.
+     *
+     * @return the plugin error descriptions
+     */
+    public String getPluginErrorDescriptions() {
 		return pluginErrorDescriptions;
 	}
 
-	public String getPluginUserErrorDescriptions() {
+    /**
+     * Gets plugin user error descriptions.
+     *
+     * @return the plugin user error descriptions
+     */
+    public String getPluginUserErrorDescriptions() {
 		return pluginUserErrorDescriptions;
 	}
 
-	public String getPluginGUIDescriptions() {
+    /**
+     * Gets plugin gui descriptions.
+     *
+     * @return the plugin gui descriptions
+     */
+    public String getPluginGUIDescriptions() {
 		return pluginGUIDescriptions;
 	}
 
-	public String getPluginSettingsDescriptions() {
+    /**
+     * Gets plugin settings descriptions.
+     *
+     * @return the plugin settings descriptions
+     */
+    public String getPluginSettingsDescriptions() {
 		return pluginSettingsDescriptions;
 	}
 
-	public String getPluginSettingsStructure() {
+    /**
+     * Gets plugin settings structure.
+     *
+     * @return the plugin settings structure
+     */
+    public String getPluginSettingsStructure() {
 		return pluginSettingsStructure;
 	}
 
-	/**
-	 * Returns the resource identifier of the xml file specifying the operators
-	 */
-	public String getPluginResourceOperators() {
+    /**
+     * Returns the resource identifier of the xml file specifying the operators
+     *
+     * @return the plugin resource operators
+     */
+    public String getPluginResourceOperators() {
 		return pluginResourceOperators;
 	}
 
-	/**
-	 * Returns the resource identifier of the IO Object descriptions.
-	 */
-	public String getPluginResourceObjects() {
+    /**
+     * Returns the resource identifier of the IO Object descriptions.
+     *
+     * @return the plugin resource objects
+     */
+    public String getPluginResourceObjects() {
 		return pluginResourceObjects;
 	}
 
-	/** Returns the plugin dependencies of this plugin. */
-	public List<Dependency> getPluginDependencies() {
+    /**
+     * Returns the plugin dependencies of this plugin.  @return the plugin dependencies
+     *
+     * @return the plugin dependencies
+     */
+    public List<Dependency> getPluginDependencies() {
 		return pluginDependencies;
 	}
 
-	/**
-	 * Returns the class loader of this plugin. This class loader should be used in cases where
-	 * Class.forName(...) should be used, e.g. for implementation finding in all classes (including
-	 * the core and the plugins).
-	 */
-	public PluginClassLoader getClassLoader() {
+    /**
+     * Returns the class loader of this plugin. This class loader should be used in cases where
+     * Class.forName(...) should be used, e.g. for implementation finding in all classes (including
+     * the core and the plugins).
+     *
+     * @return the class loader
+     */
+    public PluginClassLoader getClassLoader() {
 		return this.classLoader;
 	}
 
-	/**
-	 * Returns the class loader of this plugin. This class loader should be used in cases where
-	 * Class.forName(...) should find a class explicitly defined in this plugin jar.
-	 */
-	public ClassLoader getOriginalClassLoader() {
+    /**
+     * Returns the class loader of this plugin. This class loader should be used in cases where
+     * Class.forName(...) should find a class explicitly defined in this plugin jar.
+     *
+     * @return the original class loader
+     */
+    public ClassLoader getOriginalClassLoader() {
 		try {
 			// this.archive = new JarFile(this.file);
 			final URL url = new URL("file", null, this.file.getAbsolutePath());
@@ -586,7 +652,10 @@ public class Plugin {
 		pluginDependencies.addAll(Dependency.parse(dependencies));
 	}
 
-	public void registerOperators() {
+    /**
+     * Register operators.
+     */
+    public void registerOperators() {
 		if (disabled) {
 			LogService.getRoot().log(Level.WARNING, "com.rapidminer.tools.plugin.Plugin.registring_operators_error",
 					getName());
@@ -637,12 +706,12 @@ public class Plugin {
 		}
 	}
 
-	/**
-	 * Register all things delivered with this plugin.
-	 *
-	 * @throws PluginException
-	 */
-	public void registerDescriptions() throws PluginException {
+    /**
+     * Register all things delivered with this plugin.
+     *
+     * @throws PluginException the plugin exception
+     */
+    public void registerDescriptions() throws PluginException {
 		// make sure to not accidentally find resources from dependencies
 		this.classLoader.setIgnoreDependencyClassloaders(true);
 
@@ -698,8 +767,13 @@ public class Plugin {
 		this.classLoader.setIgnoreDependencyClassloaders(false);
 	}
 
-	/** Creates the about box for this plugin. */
-	public AboutBox createAboutBox(Frame owner) {
+    /**
+     * Creates the about box for this plugin.  @param owner the owner
+     *
+     * @param owner the owner
+     * @return the about box
+     */
+    public AboutBox createAboutBox(Frame owner) {
 		ClassLoader simpleClassLoader = makeInitialClassloader();
 		String about = "";
 		try {
@@ -837,16 +911,14 @@ public class Plugin {
 		return name + " " + version + " (" + archive.getName() + ") depending on " + pluginDependencies;
 	}
 
-	/**
-	 * Checks if the version of the extension with id extensionId is blacklisted.
-	 *
-	 * @param extensionId
-	 *            the id of the extension to check
-	 * @param version
-	 *            the version to check
-	 * @return {@code true} if the extension version is blacklisted
-	 */
-	public static boolean isExtensionVersionBlacklisted(String extensionId, VersionNumber version) {
+    /**
+     * Checks if the version of the extension with id extensionId is blacklisted.
+     *
+     * @param extensionId the id of the extension to check
+     * @param version     the version to check
+     * @return {@code true} if the extension version is blacklisted
+     */
+    public static boolean isExtensionVersionBlacklisted(String extensionId, VersionNumber version) {
 		if (PLUGIN_BLACKLIST.containsKey(extensionId)) {
 			Pair<VersionNumber, VersionNumber> versionRange = PLUGIN_BLACKLIST.get(extensionId);
 			if (versionRange != null && (versionRange.getSecond() != null && version.isAbove(versionRange.getSecond())
@@ -969,11 +1041,11 @@ public class Plugin {
 		return false;
 	}
 
-	/**
-	 * This method will check all needed dependencies of all currently registered plugin files and
-	 * will build the final class loaders for the extensions containing all dependencies.
-	 */
-	public static void finalizePluginLoading() {
+    /**
+     * This method will check all needed dependencies of all currently registered plugin files and
+     * will build the final class loaders for the extensions containing all dependencies.
+     */
+    public static void finalizePluginLoading() {
 		// building final class loader with all dependent extensions
 		LinkedList<Plugin> queue = new LinkedList<>(ALL_PLUGINS);
 		HashSet<Plugin> initialized = new HashSet<>();
@@ -1024,11 +1096,11 @@ public class Plugin {
 		}
 	}
 
-	/**
-	 * Registers all operators from the plugins previously found by a call of
-	 * registerAllPluginDescriptions
-	 */
-	public static void registerAllPluginOperators() {
+    /**
+     * Registers all operators from the plugins previously found by a call of
+     * registerAllPluginDescriptions
+     */
+    public static void registerAllPluginOperators() {
 		for (Plugin plugin : ALL_PLUGINS) {
 			long start = System.currentTimeMillis();
 			plugin.registerOperators();
@@ -1036,27 +1108,40 @@ public class Plugin {
 		}
 	}
 
-	/** Returns a class loader which is able to load all classes (core _and_ all plugins). */
-	public static ClassLoader getMajorClassLoader() {
+    /**
+     * Returns a class loader which is able to load all classes (core _and_ all plugins).  @return the major class loader
+     *
+     * @return the major class loader
+     */
+    public static ClassLoader getMajorClassLoader() {
 		return MAJOR_CLASS_LOADER;
 	}
 
-	/** Returns a sorted collection of all plugins. */
-	public static Collection<Plugin> getAllPlugins() {
+    /**
+     * Returns a sorted collection of all plugins.  @return the all plugins
+     *
+     * @return the all plugins
+     */
+    public static Collection<Plugin> getAllPlugins() {
 		return ALL_PLUGINS;
 	}
 
-	/**
-	 * Returns unmodifiable list of plugins that failed to load.
-	 *
-	 * @return the list of plugins
-	 */
-	public static Collection<Plugin> getIncompatiblePlugins() {
+    /**
+     * Returns unmodifiable list of plugins that failed to load.
+     *
+     * @return the list of plugins
+     */
+    public static Collection<Plugin> getIncompatiblePlugins() {
 		return Collections.unmodifiableCollection(INCOMPATIBLE_PLUGINS);
 	}
 
-	/** Returns the plugin with the given extension id. */
-	public static Plugin getPluginByExtensionId(String name) {
+    /**
+     * Returns the plugin with the given extension id.  @param name the name
+     *
+     * @param name the name
+     * @return the plugin by extension id
+     */
+    public static Plugin getPluginByExtensionId(String name) {
 		return getPluginByExtensionId(name, ALL_PLUGINS);
 	}
 
@@ -1072,32 +1157,43 @@ public class Plugin {
 		return null;
 	}
 
-	/**
-	 * This method will try to invoke the method void initGui(MainFrame) of PluginInit class of
-	 * every plugin.
-	 */
-	public static void initPluginGuis(MainFrame mainframe) {
+    /**
+     * This method will try to invoke the method void initGui(MainFrame) of PluginInit class of
+     * every plugin.
+     *
+     * @param mainframe the mainframe
+     */
+    public static void initPluginGuis(MainFrame mainframe) {
 		callPluginInitMethods("initGui", new Class[] { MainFrame.class }, new Object[] { mainframe }, false);
 	}
 
-	/**
-	 * This method will try to invoke the public static method initPlugin() of the class
-	 * com.rapidminer.PluginInit for arbitrary initializations of the plugins. It is called directly
-	 * after registering the plugins.
-	 */
-	public static void initPlugins() {
+    /**
+     * This method will try to invoke the public static method initPlugin() of the class
+     * com.rapidminer.PluginInit for arbitrary initializations of the plugins. It is called directly
+     * after registering the plugins.
+     */
+    public static void initPlugins() {
 		callPluginInitMethods("initPlugin", new Class[] {}, new Object[] {}, false);
 	}
 
-	public static void initPluginUpdateManager() {
+    /**
+     * Init plugin update manager.
+     */
+    public static void initPluginUpdateManager() {
 		callPluginInitMethods("initPluginManager", new Class[] {}, new Object[] {}, false);
 	}
 
-	public static void initFinalChecks() {
+    /**
+     * Init final checks.
+     */
+    public static void initFinalChecks() {
 		callPluginInitMethods("initFinalChecks", new Class[] {}, new Object[] {}, false);
 	}
 
-	public static void initPluginTests() {
+    /**
+     * Init plugin tests.
+     */
+    public static void initPluginTests() {
 		callPluginInitMethods("initPluginTests", new Class[] {}, new Object[] {}, false);
 	}
 
@@ -1159,18 +1255,33 @@ public class Plugin {
 		}
 	}
 
-	public static void initPluginSplashTexts(SplashScreen splashScreen) {
+    /**
+     * Init plugin splash texts.
+     *
+     * @param splashScreen the splash screen
+     */
+    public static void initPluginSplashTexts(SplashScreen splashScreen) {
 		if (!RapidMiner.getExecutionMode().isHeadless()) {
 			callPluginInitMethods("initSplashTexts", new Class[] { SplashScreen.class }, new Object[] { splashScreen },
 					false);
 		}
 	}
 
-	public static void initAboutTexts(Properties properties) {
+    /**
+     * Init about texts.
+     *
+     * @param properties the properties
+     */
+    public static void initAboutTexts(Properties properties) {
 		callPluginInitMethods("initAboutTexts", new Class[] { Properties.class }, new Object[] { properties }, false);
 	}
 
-	public boolean showAboutBox() {
+    /**
+     * Show about box boolean.
+     *
+     * @return the boolean
+     */
+    public boolean showAboutBox() {
 		if (pluginInitClassName == null) {
 			return true;
 		}
@@ -1185,12 +1296,12 @@ public class Plugin {
 		return true;
 	}
 
-	/**
-	 * Defines whether the extension is using the "extensions.EXTENSION_NAME" folder as tree root.
-	 *
-	 * @return {@code true} by default
-	 */
-	public synchronized boolean useExtensionTreeRoot() {
+    /**
+     * Defines whether the extension is using the "extensions.EXTENSION_NAME" folder as tree root.
+     *
+     * @return {@code true} by default
+     */
+    public synchronized boolean useExtensionTreeRoot() {
 		if (pluginInitClassName == null) {
 			return true;
 		}
@@ -1215,13 +1326,13 @@ public class Plugin {
 		return useExtensionTreeRoot.booleanValue();
 	}
 
-	/**
-	 * Initializes all plugins if {@link RapidMiner#PROPERTY_RAPIDMINER_INIT_PLUGINS} is set.
-	 * Plugins are searched for in the directory specified by
-	 * {@link RapidMiner#PROPERTY_RAPIDMINER_INIT_PLUGINS_LOCATION} or, if this is not set, in the
-	 * RapidMiner/lib/plugins directory.
-	 */
-	public static void initAll() {
+    /**
+     * Initializes all plugins if {@link RapidMiner#PROPERTY_RAPIDMINER_INIT_PLUGINS} is set.
+     * Plugins are searched for in the directory specified by
+     * {@link RapidMiner#PROPERTY_RAPIDMINER_INIT_PLUGINS_LOCATION} or, if this is not set, in the
+     * RapidMiner/lib/plugins directory.
+     */
+    public static void initAll() {
 		// only load managed extensions if execution modes indicates
 		if (RapidMiner.getExecutionMode().isLoadingManagedExtensions()) {
 			ManagedExtension.init();
@@ -1564,58 +1675,87 @@ public class Plugin {
 		return cacheDir;
 	}
 
-	/** Specifies whether plugins should be initialized on startup. */
-	public static void setInitPlugins(boolean init) {
+    /**
+     * Specifies whether plugins should be initialized on startup.  @param init the init
+     *
+     * @param init the init
+     */
+    public static void setInitPlugins(boolean init) {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_INIT_PLUGINS, Boolean.toString(init));
 	}
 
-	/** Specifies the main directory to scan for extensions. */
-	public static void setPluginLocation(String directory) {
+    /**
+     * Specifies the main directory to scan for extensions.  @param directory the directory
+     *
+     * @param directory the directory
+     */
+    public static void setPluginLocation(String directory) {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_INIT_PLUGINS_LOCATION, directory);
 	}
 
-	/**
-	 * Adds a directory to scan for RapidMiner extensions when initializing the RapidMiner
-	 * extensions.
-	 *
-	 * @param directory
-	 *            the absolute path to the directory which contains the RapidMiner extensions
-	 */
-	public static void addAdditionalExtensionDir(String directory) {
+    /**
+     * Adds a directory to scan for RapidMiner extensions when initializing the RapidMiner
+     * extensions.
+     *
+     * @param directory the absolute path to the directory which contains the RapidMiner extensions
+     */
+    public static void addAdditionalExtensionDir(String directory) {
 		additionalExtensionDirs.add(directory);
 	}
 
-	/**
-	 * Returns the prefix to be used in the operator keys (namespace). This is also used for the
-	 * Wiki URL.
-	 */
-	public String getPrefix() {
+    /**
+     * Returns the prefix to be used in the operator keys (namespace). This is also used for the
+     * Wiki URL.
+     *
+     * @return the prefix
+     */
+    public String getPrefix() {
 		return this.prefix;
 	}
 
-	public JarFile getArchive() {
+    /**
+     * Gets archive.
+     *
+     * @return the archive
+     */
+    public JarFile getArchive() {
 		return archive;
 	}
 
-	public File getFile() {
+    /**
+     * Gets file.
+     *
+     * @return the file
+     */
+    public File getFile() {
 		return file;
 	}
 
-	public String getExtensionId() {
+    /**
+     * Gets extension id.
+     *
+     * @return the extension id
+     */
+    public String getExtensionId() {
 		return extensionId;
 	}
 
-	/**
-	 * @return the directory where globally installed extension files are expected.
-	 */
-	public static File getPluginLocation() throws IOException {
+    /**
+     * Gets plugin location.
+     *
+     * @return the directory where globally installed extension files are expected.
+     * @throws IOException the io exception
+     */
+    public static File getPluginLocation() throws IOException {
 		return FileSystemService.getLibraryFile("plugins");
 	}
 
-	/**
-	 * This returns the Icon of the extension or null if not present.
-	 */
-	public ImageIcon getExtensionIcon() {
+    /**
+     * This returns the Icon of the extension or null if not present.
+     *
+     * @return the extension icon
+     */
+    public ImageIcon getExtensionIcon() {
 		URL iconURL = classLoader.findResource("META-INF/icon.png");
 		if (iconURL != null) {
 			return new ImageIcon(iconURL);
@@ -1623,10 +1763,10 @@ public class Plugin {
 		return null;
 	}
 
-	/**
-	 * <strong>Experimental method.</strong> Registers this plugin at runtime.
-	 */
-	public void reregister() {
+    /**
+     * <strong>Experimental method.</strong> Registers this plugin at runtime.
+     */
+    public void reregister() {
 		getAllPlugins().add(this);
 		try {
 			registerDescriptions();
@@ -1642,10 +1782,10 @@ public class Plugin {
 		}
 	}
 
-	/**
-	 * <strong>Experimental method.</strong> Finishes the initializing of this plugin.
-	 */
-	public void finishReregister() {
+    /**
+     * <strong>Experimental method.</strong> Finishes the initializing of this plugin.
+     */
+    public void finishReregister() {
 		buildFinalClassLoader();
 		callInitMethod("initPlugin", new Class[] {}, new Object[] {}, false);
 		callInitMethod("initGui", new Class[] { MainFrame.class }, new Object[] { RapidMinerGUI.getMainFrame() }, false);
@@ -1653,12 +1793,12 @@ public class Plugin {
 		callInitMethod("initPluginManager", new Class[] {}, new Object[] {}, false);
 	}
 
-	/**
-	 * <strong>Experimental method.</strong> Unregisters this plugin, all of its {@link Operator}s,
-	 * and calls tearDown() and optionally tearDownGUI(MainFrame) on the
-	 * {@link #pluginInitClassName}. Finally, removes the plugin from {@link #ALL_PLUGINS}.
-	 */
-	public void tearDown() {
+    /**
+     * <strong>Experimental method.</strong> Unregisters this plugin, all of its {@link Operator}s,
+     * and calls tearDown() and optionally tearDownGUI(MainFrame) on the
+     * {@link #pluginInitClassName}. Finally, removes the plugin from {@link #ALL_PLUGINS}.
+     */
+    public void tearDown() {
 		OperatorService.unregisterAll(this);
 		if (!RapidMiner.getExecutionMode().isHeadless()) {
 			callInitMethod("tearDownGUI", new Class[] { MainFrame.class }, new Object[] { RapidMinerGUI.getMainFrame() },

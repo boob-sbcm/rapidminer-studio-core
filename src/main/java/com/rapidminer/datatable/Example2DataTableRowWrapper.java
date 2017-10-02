@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * This class allows to use {@link com.rapidminer.example.Example}s as basis for
  * {@link com.rapidminer.datatable.DataTableRow}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Example2DataTableRowWrapper implements DataTableRow {
@@ -38,8 +38,14 @@ public class Example2DataTableRowWrapper implements DataTableRow {
 
 	private Attribute idAttribute;
 
-	/** Creates a new wrapper. If the Id Attribute is null, the DataTableRow will not contain an Id. */
-	public Example2DataTableRowWrapper(Example example, List<Attribute> allAttributes, Attribute idAttribute) {
+    /**
+     * Creates a new wrapper. If the Id Attribute is null, the DataTableRow will not contain an Id.  @param example the example
+     *
+     * @param example       the example
+     * @param allAttributes the all attributes
+     * @param idAttribute   the id attribute
+     */
+    public Example2DataTableRowWrapper(Example example, List<Attribute> allAttributes, Attribute idAttribute) {
 		this.example = example;
 		this.allAttributes = allAttributes;
 		this.idAttribute = idAttribute;

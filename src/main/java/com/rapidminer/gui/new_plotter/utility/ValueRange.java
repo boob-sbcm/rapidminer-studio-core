@@ -26,42 +26,59 @@ import com.rapidminer.gui.new_plotter.listener.ValueRangeListener;
  * Interface for value ranges. A value range is a collection of values. How these are specified
  * depends on the implementation. Possibilities are: a single value, a list of discrete or nominal
  * values, or a value range with x <= value <= y.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public interface ValueRange extends DataTableFilterCondition {
 
-	/**
-	 * Returns a representative value for the value range which is used for sorting and for color
-	 * mapping.
-	 */
-	public double getValue();
+    /**
+     * Returns a representative value for the value range which is used for sorting and for color
+     * mapping.
+     *
+     * @return the value
+     */
+    public double getValue();
 
 	@Override
 	public String toString();
 
 	public ValueRange clone();
 
-	/**
-	 * Implementations of ValueRange which define an upper and a lower bound should return true in
-	 * this function.
-	 */
-	public boolean definesUpperLowerBound();
+    /**
+     * Implementations of ValueRange which define an upper and a lower bound should return true in
+     * this function.
+     *
+     * @return the boolean
+     */
+    public boolean definesUpperLowerBound();
 
-	/**
-	 * Returns the upper bound if the implementation of ValueRange supports bound, or Double.NaN
-	 * otherwise.
-	 */
-	public double getUpperBound();
+    /**
+     * Returns the upper bound if the implementation of ValueRange supports bound, or Double.NaN
+     * otherwise.
+     *
+     * @return the upper bound
+     */
+    public double getUpperBound();
 
-	/**
-	 * Returns the lower bound if the implementation of ValueRange supports bound, or Double.NaN
-	 * otherwise.
-	 */
-	public double getLowerBound();
+    /**
+     * Returns the lower bound if the implementation of ValueRange supports bound, or Double.NaN
+     * otherwise.
+     *
+     * @return the lower bound
+     */
+    public double getLowerBound();
 
-	public void addValueRangeListener(ValueRangeListener l);
+    /**
+     * Add value range listener.
+     *
+     * @param l the l
+     */
+    public void addValueRangeListener(ValueRangeListener l);
 
-	public void removeValueRangeListener(ValueRangeListener l);
+    /**
+     * Remove value range listener.
+     *
+     * @param l the l
+     */
+    public void removeValueRangeListener(ValueRangeListener l);
 }

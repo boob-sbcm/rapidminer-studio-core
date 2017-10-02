@@ -31,7 +31,7 @@ import javax.swing.Icon;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ZoomInAction extends AbstractAction {
@@ -51,7 +51,13 @@ public class ZoomInAction extends AbstractAction {
 
 	private GraphViewer<?, ?> graphViewer;
 
-	public ZoomInAction(GraphViewer<?, ?> graphViewer, IconSize size) {
+    /**
+     * Instantiates a new Zoom in action.
+     *
+     * @param graphViewer the graph viewer
+     * @param size        the size
+     */
+    public ZoomInAction(GraphViewer<?, ?> graphViewer, IconSize size) {
 		super("Zoom In", ICONS[size.ordinal()]);
 		putValue(SHORT_DESCRIPTION, "Zooms into the graph view.");
 		putValue(MNEMONIC_KEY, Integer.valueOf(KeyEvent.VK_I));

@@ -27,9 +27,9 @@ import java.util.List;
 
 /**
  * A collection of similar IOObjects that can be created, e.g. in an iteration.
- * 
+ *
+ * @param <T> the type parameter
  * @author Simon Fischer
- * 
  */
 public class IOObjectCollection<T extends IOObject> extends ResultObjectAdapter {
 
@@ -37,27 +37,55 @@ public class IOObjectCollection<T extends IOObject> extends ResultObjectAdapter 
 
 	private List<T> objects;
 
-	public IOObjectCollection() {
+    /**
+     * Instantiates a new Io object collection.
+     */
+    public IOObjectCollection() {
 		this.objects = new LinkedList<T>();
 	}
 
-	public IOObjectCollection(List<T> objects) {
+    /**
+     * Instantiates a new Io object collection.
+     *
+     * @param objects the objects
+     */
+    public IOObjectCollection(List<T> objects) {
 		this.objects = objects;
 	}
 
-	public int size() {
+    /**
+     * Size int.
+     *
+     * @return the int
+     */
+    public int size() {
 		return objects.size();
 	}
 
-	public void add(T ioobject) {
+    /**
+     * Add.
+     *
+     * @param ioobject the ioobject
+     */
+    public void add(T ioobject) {
 		this.objects.add(ioobject);
 	}
 
-	public IOObjectCollection(T[] objects) {
+    /**
+     * Instantiates a new Io object collection.
+     *
+     * @param objects the objects
+     */
+    public IOObjectCollection(T[] objects) {
 		this(Arrays.asList(objects));
 	}
 
-	public List<T> getObjects() {
+    /**
+     * Gets objects.
+     *
+     * @return the objects
+     */
+    public List<T> getObjects() {
 		return Collections.unmodifiableList(objects);
 	}
 
@@ -90,7 +118,13 @@ public class IOObjectCollection<T extends IOObject> extends ResultObjectAdapter 
 		return "Collection of size " + objects.size();
 	}
 
-	public Class<? extends IOObject> getElementClass(boolean recursive) {
+    /**
+     * Gets element class.
+     *
+     * @param recursive the recursive
+     * @return the element class
+     */
+    public Class<? extends IOObject> getElementClass(boolean recursive) {
 		if (objects == null || objects.isEmpty()) {
 			return IOObject.class;
 		} else {
@@ -107,7 +141,12 @@ public class IOObjectCollection<T extends IOObject> extends ResultObjectAdapter 
 		}
 	}
 
-	public List<IOObject> getObjectsRecursive() {
+    /**
+     * Gets objects recursive.
+     *
+     * @return the objects recursive
+     */
+    public List<IOObject> getObjectsRecursive() {
 		ArrayList<IOObject> allChildren = new ArrayList<IOObject>();
 		getElementsRecursive(allChildren);
 		return allChildren;
@@ -124,7 +163,14 @@ public class IOObjectCollection<T extends IOObject> extends ResultObjectAdapter 
 		}
 	}
 
-	public IOObject getElement(int index, boolean recursive) {
+    /**
+     * Gets element.
+     *
+     * @param index     the index
+     * @param recursive the recursive
+     * @return the element
+     */
+    public IOObject getElement(int index, boolean recursive) {
 		if (!recursive) {
 			return objects.get(index);
 		} else {

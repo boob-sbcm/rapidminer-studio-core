@@ -25,7 +25,8 @@ import com.rapidminer.operator.learner.functions.HyperplaneModel;
 
 
 /**
- * 
+ * The type Hyperplane model renderer.
+ *
  * @author Sebastian Land
  */
 public class HyperplaneModelRenderer extends AbstractDataTableTableRenderer {

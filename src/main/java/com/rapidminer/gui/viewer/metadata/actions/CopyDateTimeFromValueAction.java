@@ -30,18 +30,17 @@ import javax.swing.JComponent;
 
 /**
  * This action is only to be used by the {@link AttributePopupMenu}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class CopyDateTimeFromValueAction extends ResourceAction {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Creates a new {@link CopyDateTimeFromValueAction} instance.
-	 */
-	public CopyDateTimeFromValueAction() {
+    /**
+     * Creates a new {@link CopyDateTimeFromValueAction} instance.
+     */
+    public CopyDateTimeFromValueAction() {
 		super(true, "meta_data_stats.copy_date_time_from");
 	}
 

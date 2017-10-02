@@ -43,8 +43,14 @@ public class ColorProvider {
 	/** used as default before Studio 7.5 */
 	private static final Color MAX_DEFAULT_COLOR_PRE_75 = new Color(255, 48, 48);
 
-	public static final Color MIN_DEFAULT_COLOR = new Color(73, 144, 226);
-	public static final Color MAX_DEFAULT_COLOR = new Color(232, 76, 61);
+    /**
+     * The constant MIN_DEFAULT_COLOR.
+     */
+    public static final Color MIN_DEFAULT_COLOR = new Color(73, 144, 226);
+    /**
+     * The constant MAX_DEFAULT_COLOR.
+     */
+    public static final Color MAX_DEFAULT_COLOR = new Color(232, 76, 61);
 
 	static {
 		// update colors when user changes them in the settings
@@ -93,38 +99,54 @@ public class ColorProvider {
 
 	private boolean reduceBrightness;
 
-	/**
-	 * Creates a new {@link ColorProvider}.
-	 */
-	public ColorProvider() {
+    /**
+     * Creates a new {@link ColorProvider}.
+     */
+    public ColorProvider() {
 		this(false);
 	}
 
-	/**
-	 * Creates a new {@link ColorProvider} which reduces the brightness of the returned colors.
-	 *
-	 * @param reduceBrightness
-	 *            if <code>true</code>, will reduce brightness of returned colors
-	 */
-	public ColorProvider(boolean reduceBrightness) {
+    /**
+     * Creates a new {@link ColorProvider} which reduces the brightness of the returned colors.
+     *
+     * @param reduceBrightness if <code>true</code>, will reduce brightness of returned colors
+     */
+    public ColorProvider(boolean reduceBrightness) {
 		this.reduceBrightness = reduceBrightness;
 	}
 
-	public Color getMinLegendColor() {
+    /**
+     * Gets min legend color.
+     *
+     * @return the min legend color
+     */
+    public Color getMinLegendColor() {
 		return minColor;
 	}
 
-	public Color getMaxLegendColor() {
+    /**
+     * Gets max legend color.
+     *
+     * @return the max legend color
+     */
+    public Color getMaxLegendColor() {
 		return maxColor;
 	}
 
-	/**
-	 * Helper methods which can be used to deliver a value for the point color. For nominal values
-	 * with two classes, this method tries to search another column with a name xxx(name) and
-	 * changes the color a bit to the opponent color if the values are not the same. This might be
-	 * nice for example in case of a predicted value and a real value.
-	 */
-	public double getPointColorValue(DataTable table, DataTableRow row, int column, double min, double max) {
+    /**
+     * Helper methods which can be used to deliver a value for the point color. For nominal values
+     * with two classes, this method tries to search another column with a name xxx(name) and
+     * changes the color a bit to the opponent color if the values are not the same. This might be
+     * nice for example in case of a predicted value and a real value.
+     *
+     * @param table  the table
+     * @param row    the row
+     * @param column the column
+     * @param min    the min
+     * @param max    the max
+     * @return the point color value
+     */
+    public double getPointColorValue(DataTable table, DataTableRow row, int column, double min, double max) {
 		double colorValue = row.getValue(column);
 		if (max == min && table.isNominal(column)) {
 			return colorValue / (table.getNumberOfValues(column) - 1);
@@ -165,7 +187,15 @@ public class ColorProvider {
 		}
 	}
 
-	public Color getPointBorderColor(DataTable table, DataTableRow row, int column) {
+    /**
+     * Gets point border color.
+     *
+     * @param table  the table
+     * @param row    the row
+     * @param column the column
+     * @return the point border color
+     */
+    public Color getPointBorderColor(DataTable table, DataTableRow row, int column) {
 		Color result = Color.BLACK;
 		if (table.isNominal(column)) { // nominal --> try to find compare column
 			double colorValue = row.getValue(column);
@@ -203,18 +233,25 @@ public class ColorProvider {
 		}
 	}
 
-	/**
-	 * Returns a color for the given value. The value must be normalized, i.e. between zero and one.
-	 */
-	public Color getPointColor(double value) {
+    /**
+     * Returns a color for the given value. The value must be normalized, i.e. between zero and one.
+     *
+     * @param value the value
+     * @return the point color
+     */
+    public Color getPointColor(double value) {
 		return getPointColor(value, 255);
 	}
 
-	/**
-	 * Returns a color for the given value. The value must be normalized, i.e. between zero and one.
-	 * Please note that high alpha values are more transparent.
-	 */
-	public Color getPointColor(double value, int alpha) {
+    /**
+     * Returns a color for the given value. The value must be normalized, i.e. between zero and one.
+     * Please note that high alpha values are more transparent.
+     *
+     * @param value the value
+     * @param alpha the alpha
+     * @return the point color
+     */
+    public Color getPointColor(double value, int alpha) {
 		if (Double.isNaN(value)) {
 			return Color.LIGHT_GRAY;
 		}
@@ -243,13 +280,13 @@ public class ColorProvider {
 		return color;
 	}
 
-	/**
-	 * Returns the original color, just slightly less bright.
-	 *
-	 * @param color
-	 * @return
-	 */
-	public static Color reduceColorBrightness(Color color) {
+    /**
+     * Returns the original color, just slightly less bright.
+     *
+     * @param color the color
+     * @return color color
+     */
+    public static Color reduceColorBrightness(Color color) {
 		// lower brightness to 85% and saturation to 85%
 		int r, g, b;
 		float[] hsb = new float[3];

@@ -20,22 +20,56 @@ package com.rapidminer.gui.dialog;
 
 /**
  * This interface wraps text components which provide the possibility to select segments.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface SearchableTextComponent {
 
-	public void select(int start, int end);
+    /**
+     * Select.
+     *
+     * @param start the start
+     * @param end   the end
+     */
+    public void select(int start, int end);
 
-	public void requestFocus();
+    /**
+     * Request focus.
+     */
+    public void requestFocus();
 
-	public void setCaretPosition(int pos);
+    /**
+     * Sets caret position.
+     *
+     * @param pos the pos
+     */
+    public void setCaretPosition(int pos);
 
-	public int getCaretPosition();
+    /**
+     * Gets caret position.
+     *
+     * @return the caret position
+     */
+    public int getCaretPosition();
 
-	public String getText();
+    /**
+     * Gets text.
+     *
+     * @return the text
+     */
+    public String getText();
 
-	public void replaceSelection(String newString);
+    /**
+     * Replace selection.
+     *
+     * @param newString the new string
+     */
+    public void replaceSelection(String newString);
 
-	public boolean canHandleCarriageReturn();
+    /**
+     * Can handle carriage return boolean.
+     *
+     * @return the boolean
+     */
+    public boolean canHandleCarriageReturn();
 }

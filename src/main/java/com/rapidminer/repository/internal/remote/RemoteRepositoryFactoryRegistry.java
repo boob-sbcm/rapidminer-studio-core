@@ -27,31 +27,32 @@ import com.rapidminer.repository.RepositoryException;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public enum RemoteRepositoryFactoryRegistry {
 
-	INSTANCE;
+    /**
+     * Instance remote repository factory registry.
+     */
+    INSTANCE;
 
 	private RemoteRepositoryFactory remoteRepo = null;
 
-	/**
-	 * @return the current {@link RemoteRepositoryFactory}. Might return <code>null</code> in case
-	 *         no factory has been registered yet.
-	 */
-	public RemoteRepositoryFactory get() {
+    /**
+     * Get remote repository factory.
+     *
+     * @return the current {@link RemoteRepositoryFactory}. Might return <code>null</code> in case         no factory has been registered yet.
+     */
+    public RemoteRepositoryFactory get() {
 		return remoteRepo;
 	}
 
-	/**
-	 * Sets the current {@link RemoteRepositoryFactory}.
-	 *
-	 * @param remoteRepoFactory
-	 *            the factory to set
-	 * @throws RepositoryException
-	 *             in case a factory for the same class or XML tag is already registered
-	 */
-	public void set(RemoteRepositoryFactory remoteRepoFactory) throws RepositoryException {
+    /**
+     * Sets the current {@link RemoteRepositoryFactory}.
+     *
+     * @param remoteRepoFactory the factory to set
+     * @throws RepositoryException in case a factory for the same class or XML tag is already registered
+     */
+    public void set(RemoteRepositoryFactory remoteRepoFactory) throws RepositoryException {
 		if (remoteRepoFactory == null) {
 			throw new IllegalArgumentException("Factory must not be null");
 		}

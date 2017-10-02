@@ -26,7 +26,6 @@ import com.rapidminer.gui.flow.processrendering.annotations.model.WorkflowAnnota
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public final class AnnotationStyle {
 
@@ -39,17 +38,20 @@ public final class AnnotationStyle {
 	/** the padding between text and border */
 	private int padding;
 
-	/**
-	 * Creates a workflow annotation style with a yellow color and left alignement.
-	 */
-	public AnnotationStyle() {
+    /**
+     * Creates a workflow annotation style with a yellow color and left alignement.
+     */
+    public AnnotationStyle() {
 		this(AnnotationColor.YELLOW, AnnotationAlignment.CENTER);
 	}
 
-	/**
-	 * Creates a workflow annotation style with a yellow color and left alignement.
-	 */
-	public AnnotationStyle(AnnotationColor color, AnnotationAlignment alignment) {
+    /**
+     * Creates a workflow annotation style with a yellow color and left alignement.
+     *
+     * @param color     the color
+     * @param alignment the alignment
+     */
+    public AnnotationStyle(AnnotationColor color, AnnotationAlignment alignment) {
 		if (color == null) {
 			throw new IllegalArgumentException("color must not be null!");
 		}
@@ -58,56 +60,54 @@ public final class AnnotationStyle {
 		this.padding = 5;
 	}
 
-	/**
-	 * Sets the annotation color.
-	 *
-	 * @param color
-	 *            the new color
-	 */
-	public void setAnnotationColor(AnnotationColor color) {
+    /**
+     * Sets the annotation color.
+     *
+     * @param color the new color
+     */
+    public void setAnnotationColor(AnnotationColor color) {
 		if (color == null) {
 			throw new IllegalArgumentException("color must not be null!");
 		}
 		this.color = color;
 	}
 
-	/**
-	 * Returns the annotation color.
-	 *
-	 * @return the color, never {@code null}
-	 */
-	public AnnotationColor getAnnotationColor() {
+    /**
+     * Returns the annotation color.
+     *
+     * @return the color, never {@code null}
+     */
+    public AnnotationColor getAnnotationColor() {
 		return color;
 	}
 
-	/**
-	 * Sets the annotation horizontal alignment.
-	 *
-	 * @param alignment
-	 *            the new alignment
-	 */
-	public void setAnnotationAlignment(AnnotationAlignment alignment) {
+    /**
+     * Sets the annotation horizontal alignment.
+     *
+     * @param alignment the new alignment
+     */
+    public void setAnnotationAlignment(AnnotationAlignment alignment) {
 		if (alignment == null) {
 			throw new IllegalArgumentException("alignment must not be null!");
 		}
 		this.alignment = alignment;
 	}
 
-	/**
-	 * Returns the annotation alignment.
-	 *
-	 * @return the alignment, never {@code null}
-	 */
-	public AnnotationAlignment getAnnotationAlignment() {
+    /**
+     * Returns the annotation alignment.
+     *
+     * @return the alignment, never {@code null}
+     */
+    public AnnotationAlignment getAnnotationAlignment() {
 		return alignment;
 	}
 
-	/**
-	 * Returns the inner padding between text and border.
-	 *
-	 * @return the padding, never < {@code 0}
-	 */
-	public int getPadding() {
+    /**
+     * Returns the inner padding between text and border.
+     *
+     * @return the padding, never < {@code 0}
+     */
+    public int getPadding() {
 		return padding;
 	}
 

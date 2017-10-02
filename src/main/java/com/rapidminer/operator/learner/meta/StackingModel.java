@@ -58,7 +58,16 @@ public class StackingModel extends PredictionModel implements MetaModel {
 
 	private boolean useAllAttributes;
 
-	public StackingModel(ExampleSet exampleSet, String modelName, List<Model> baseModels, Model stackingModel,
+    /**
+     * Instantiates a new Stacking model.
+     *
+     * @param exampleSet       the example set
+     * @param modelName        the model name
+     * @param baseModels       the base models
+     * @param stackingModel    the stacking model
+     * @param useAllAttributes the use all attributes
+     */
+    public StackingModel(ExampleSet exampleSet, String modelName, List<Model> baseModels, Model stackingModel,
 			boolean useAllAttributes) {
 		super(exampleSet, null, null);
 		this.modelName = modelName;

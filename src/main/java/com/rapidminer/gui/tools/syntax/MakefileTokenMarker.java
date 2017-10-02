@@ -31,7 +31,7 @@ import javax.swing.text.Segment;
 
 /**
  * Makefile token marker.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class MakefileTokenMarker extends TokenMarker {

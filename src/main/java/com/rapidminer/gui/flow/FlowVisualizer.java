@@ -62,7 +62,6 @@ import com.rapidminer.tools.FontTools;
  * This class lets the user view and edit the execution order of a process.
  *
  * @author Simon Fischer
- *
  */
 public class FlowVisualizer {
 
@@ -75,7 +74,10 @@ public class FlowVisualizer {
 			SwingTools.RAPIDMINER_LIGHT_ORANGE.getGreen(), SwingTools.RAPIDMINER_LIGHT_ORANGE.getBlue(), 125);
 	private static final Color GRAY_OUT = new Color(255, 255, 255, 100);
 
-	public final ToggleAction ALTER_EXECUTION_ORDER = new ToggleAction(true, "render_execution_order") {
+    /**
+     * The constant ALTER_EXECUTION_ORDER.
+     */
+    public final ToggleAction ALTER_EXECUTION_ORDER = new ToggleAction(true, "render_execution_order") {
 
 		private static final long serialVersionUID = -8333670355512143502L;
 
@@ -91,7 +93,10 @@ public class FlowVisualizer {
 
 	};
 
-	protected JToggleButton SHOW_ORDER_TOGGLEBUTTON = ALTER_EXECUTION_ORDER.createToggleButton();
+    /**
+     * The Show order togglebutton.
+     */
+    protected JToggleButton SHOW_ORDER_TOGGLEBUTTON = ALTER_EXECUTION_ORDER.createToggleButton();
 
 	private final Action BRING_TO_FRONT = new ResourceAction("bring_operator_to_front") {
 
@@ -295,7 +300,12 @@ public class FlowVisualizer {
 		}
 	};
 
-	public FlowVisualizer(ProcessRendererView processRenderer) {
+    /**
+     * Instantiates a new Flow visualizer.
+     *
+     * @param processRenderer the process renderer
+     */
+    public FlowVisualizer(ProcessRendererView processRenderer) {
 		this.view = processRenderer;
 
 		processRenderer.addEventDecorator(eventDecorator, RenderPhase.OVERLAY);
@@ -321,12 +331,12 @@ public class FlowVisualizer {
 		}
 	}
 
-	/**
-	 * Returns whether the flow visualizer is active.
-	 *
-	 * @return
-	 */
-	public boolean isActive() {
+    /**
+     * Returns whether the flow visualizer is active.
+     *
+     * @return boolean boolean
+     */
+    public boolean isActive() {
 		return active;
 	}
 

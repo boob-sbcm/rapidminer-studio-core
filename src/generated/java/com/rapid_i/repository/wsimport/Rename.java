@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for rename complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="rename">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "rename", propOrder = {
@@ -50,16 +48,19 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Rename {
 
+    /**
+     * The Location.
+     */
     protected String location;
+    /**
+     * The New name.
+     */
     protected String newName;
 
     /**
      * Gets the value of the location property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getLocation() {
         return location;
@@ -67,11 +68,8 @@ public class Rename {
 
     /**
      * Sets the value of the location property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setLocation(String value) {
         this.location = value;
@@ -79,11 +77,8 @@ public class Rename {
 
     /**
      * Gets the value of the newName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getNewName() {
         return newName;
@@ -91,11 +86,8 @@ public class Rename {
 
     /**
      * Sets the value of the newName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setNewName(String value) {
         this.newName = value;

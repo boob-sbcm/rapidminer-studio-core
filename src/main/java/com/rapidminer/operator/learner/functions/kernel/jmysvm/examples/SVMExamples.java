@@ -42,12 +42,12 @@ public class SVMExamples implements Serializable {
 
 	private static final long serialVersionUID = 7204578592570791663L;
 
-	/**
-	 * This class holds information aboud the means and variances of an attribute. This is needed to
-	 * use the same values for the test set if scaling is performed by an SVM operator instead of
-	 * using a preprocessing step.
-	 */
-	public static class MeanVariance implements Serializable {
+    /**
+     * This class holds information aboud the means and variances of an attribute. This is needed to
+     * use the same values for the test set if scaling is performed by an SVM operator instead of
+     * using a preprocessing step.
+     */
+    public static class MeanVariance implements Serializable {
 
 		private static final long serialVersionUID = 2700347887530126670L;
 
@@ -55,16 +55,32 @@ public class SVMExamples implements Serializable {
 
 		private double variance = 0.0d;
 
-		public MeanVariance(double mean, double variance) {
+        /**
+         * Instantiates a new Mean variance.
+         *
+         * @param mean     the mean
+         * @param variance the variance
+         */
+        public MeanVariance(double mean, double variance) {
 			this.mean = mean;
 			this.variance = variance;
 		}
 
-		public double getMean() {
+        /**
+         * Gets mean.
+         *
+         * @return the mean
+         */
+        public double getMean() {
 			return mean;
 		}
 
-		public double getVariance() {
+        /**
+         * Gets variance.
+         *
+         * @return the variance
+         */
+        public double getVariance() {
 			return variance;
 		}
 	}
@@ -77,16 +93,20 @@ public class SVMExamples implements Serializable {
 
 	// sparse representation of examples. public for avoiding invocation of a
 	// method (slower)
-	/** The known attribute values for each example. */
-	public double[][] atts;
+    /**
+     * The known attribute values for each example.
+     */
+    public double[][] atts;
 
-	/**
-	 * The corresponding indices for the known attribute values for each example.
-	 */
-	public int[][] index;
+    /**
+     * The corresponding indices for the known attribute values for each example.
+     */
+    public int[][] index;
 
-	/** The ids of all examples. */
-	public String[] ids;
+    /**
+     * The ids of all examples.
+     */
+    public String[] ids;
 
 	/** The SVM alpha values. Will be filled by learning. */
 	private double[] alphas;
@@ -117,8 +137,13 @@ public class SVMExamples implements Serializable {
 	 */
 	private Map<Integer, MeanVariance> meanVarianceMap = new HashMap<Integer, MeanVariance>();
 
-	/** Creates an empty example set of the given size. */
-	public SVMExamples(int size, double b) {
+    /**
+     * Creates an empty example set of the given size.  @param size the size
+     *
+     * @param size the size
+     * @param b    the b
+     */
+    public SVMExamples(int size, double b) {
 		this.train_size = size;
 		this.b = b;
 
@@ -158,15 +183,26 @@ public class SVMExamples implements Serializable {
 		return meanVariances;
 	}
 
-	public SVMExamples(com.rapidminer.example.ExampleSet exampleSet, Attribute labelAttribute, boolean scale) {
+    /**
+     * Instantiates a new Svm examples.
+     *
+     * @param exampleSet     the example set
+     * @param labelAttribute the label attribute
+     * @param scale          the scale
+     */
+    public SVMExamples(com.rapidminer.example.ExampleSet exampleSet, Attribute labelAttribute, boolean scale) {
 		this(exampleSet, labelAttribute, scale ? createMeanVariances(exampleSet) : new HashMap<Integer, MeanVariance>());
 	}
 
-	/**
-	 * Creates a fresh example set of the given size from the RapidMiner example reader. The alpha
-	 * values and b are zero, the label will be set if it is known.
-	 */
-	public SVMExamples(com.rapidminer.example.ExampleSet exampleSet, Attribute labelAttribute,
+    /**
+     * Creates a fresh example set of the given size from the RapidMiner example reader. The alpha
+     * values and b are zero, the label will be set if it is known.
+     *
+     * @param exampleSet     the example set
+     * @param labelAttribute the label attribute
+     * @param meanVariances  the mean variances
+     */
+    public SVMExamples(com.rapidminer.example.ExampleSet exampleSet, Attribute labelAttribute,
 			Map<Integer, MeanVariance> meanVariances) {
 		this(exampleSet.size(), 0.0d);
 		this.meanVarianceMap = meanVariances;
@@ -225,8 +261,13 @@ public class SVMExamples implements Serializable {
 		}
 	}
 
-	/** Reads an example set from the given input stream. */
-	public SVMExamples(ObjectInputStream in) throws IOException {
+    /**
+     * Reads an example set from the given input stream.  @param in the in
+     *
+     * @param in the in
+     * @throws IOException the io exception
+     */
+    public SVMExamples(ObjectInputStream in) throws IOException {
 		this(in.readInt(), in.readDouble());
 		this.dim = in.readInt();
 		String scaleString = in.readUTF();
@@ -252,11 +293,21 @@ public class SVMExamples implements Serializable {
 		}
 	}
 
-	public Map<Integer, MeanVariance> getMeanVariances() {
+    /**
+     * Gets mean variances.
+     *
+     * @return the mean variances
+     */
+    public Map<Integer, MeanVariance> getMeanVariances() {
 		return meanVarianceMap;
 	}
 
-	public int getNumberOfSupportVectors() {
+    /**
+     * Gets number of support vectors.
+     *
+     * @return the number of support vectors
+     */
+    public int getNumberOfSupportVectors() {
 		int result = 0;
 		for (int i = 0; i < alphas.length; i++) {
 			if (alphas[i] != 0.0d) {
@@ -266,8 +317,13 @@ public class SVMExamples implements Serializable {
 		return result;
 	}
 
-	/** Writes the example set into the given output stream. */
-	public void writeSupportVectors(ObjectOutputStream out) throws IOException {
+    /**
+     * Writes the example set into the given output stream.  @param out the out
+     *
+     * @param out the out
+     * @throws IOException the io exception
+     */
+    public void writeSupportVectors(ObjectOutputStream out) throws IOException {
 		out.writeInt(getNumberOfSupportVectors());
 		out.writeDouble(b);
 		out.writeInt(dim);
@@ -296,21 +352,21 @@ public class SVMExamples implements Serializable {
 		}
 	}
 
-	/**
-	 * Counts the training examples.
-	 *
-	 * @return Number of examples
-	 */
-	public int count_examples() {
+    /**
+     * Counts the training examples.
+     *
+     * @return Number of examples
+     */
+    public int count_examples() {
 		return train_size;
 	}
 
-	/**
-	 * Counts the positive training examples
-	 *
-	 * @return Number of positive examples
-	 */
-	public int count_pos_examples() {
+    /**
+     * Counts the positive training examples
+     *
+     * @return Number of positive examples
+     */
+    public int count_pos_examples() {
 		int result = 0;
 		for (int i = 0; i < train_size; i++) {
 			if (ys[i] > 0) {
@@ -320,91 +376,98 @@ public class SVMExamples implements Serializable {
 		return result;
 	}
 
-	/**
-	 * Gets the dimension of the examples
-	 *
-	 * @return dim
-	 */
-	public int get_dim() {
+    /**
+     * Gets the dimension of the examples
+     *
+     * @return dim dim
+     */
+    public int get_dim() {
 		return dim;
 	}
 
-	public void set_dim(int d) {
+    /**
+     * Sets dim.
+     *
+     * @param d the d
+     */
+    public void set_dim(int d) {
 		dim = d;
 	}
 
-	/**
-	 * Gets an example. Returns a thread-local instance with value set according to the desired
-	 * position.
-	 *
-	 * It always returns the same thread-local instance, so calling this method again in the same
-	 * thread will change the already acquired instance.
-	 *
-	 * @param pos
-	 *            Number of example
-	 * @return Array of example attributes in their default order
-	 */
-	public SVMExample get_example(int pos) {
+    /**
+     * Gets an example. Returns a thread-local instance with value set according to the desired
+     * position.
+     * <p>
+     * It always returns the same thread-local instance, so calling this method again in the same
+     * thread will change the already acquired instance.
+     *
+     * @param pos Number of example
+     * @return Array of example attributes in their default order
+     */
+    public SVMExample get_example(int pos) {
 		SVMExample result = x.get();
 		result.att = atts[pos];
 		result.index = index[pos];
 		return result;
 	}
 
-	/**
-	 * Gets an y-value.
-	 *
-	 * @param pos
-	 *            Number of example
-	 * @return y
-	 */
-	public double get_y(int pos) {
+    /**
+     * Gets an y-value.
+     *
+     * @param pos Number of example
+     * @return y y
+     */
+    public double get_y(int pos) {
 		return ys[pos];
 	}
 
-	/** Sets the label value for the specified example. */
-	public void set_y(int pos, double y) {
+    /**
+     * Sets the label value for the specified example.  @param pos the pos
+     *
+     * @param pos the pos
+     * @param y   the y
+     */
+    public void set_y(int pos, double y) {
 		ys[pos] = y;
 	}
 
-	/**
-	 * Gets the y array
-	 *
-	 * @return y
-	 */
-	public double[] get_ys() {
+    /**
+     * Gets the y array
+     *
+     * @return y double [ ]
+     */
+    public double[] get_ys() {
 		return ys;
 	}
 
-	/**
-	 * Gets an alpha-value. Please note that the alpha values are already multiplied by the
-	 * corresponding y-value.
-	 *
-	 * @param pos
-	 *            Number of example
-	 * @return alpha
-	 */
-	public double get_alpha(int pos) {
+    /**
+     * Gets an alpha-value. Please note that the alpha values are already multiplied by the
+     * corresponding y-value.
+     *
+     * @param pos Number of example
+     * @return alpha alpha
+     */
+    public double get_alpha(int pos) {
 		return alphas[pos];
 	}
 
-	/**
-	 * Gets the alpha array. Please note that the alpha values are already multiplied by the
-	 * corresponding y-value.
-	 *
-	 * @return alpha
-	 */
-	public double[] get_alphas() {
+    /**
+     * Gets the alpha array. Please note that the alpha values are already multiplied by the
+     * corresponding y-value.
+     *
+     * @return alpha double [ ]
+     */
+    public double[] get_alphas() {
 		return alphas;
 	}
 
-	/**
-	 * swap two training examples
-	 *
-	 * @param pos1
-	 * @param pos2
-	 */
-	public void swap(int pos1, int pos2) {
+    /**
+     * swap two training examples
+     *
+     * @param pos1 the pos 1
+     * @param pos2 the pos 2
+     */
+    public void swap(int pos1, int pos2) {
 		double[] dummyA = atts[pos1];
 		atts[pos1] = atts[pos2];
 		atts[pos2] = dummyA;
@@ -419,73 +482,115 @@ public class SVMExamples implements Serializable {
 		ys[pos2] = dummyd;
 	}
 
-	/**
-	 * get b
-	 *
-	 * @return b
-	 */
-	public double get_b() {
+    /**
+     * get b
+     *
+     * @return b b
+     */
+    public double get_b() {
 		return b;
 	}
 
-	/**
-	 * set b
-	 *
-	 * @param new_b
-	 */
-	public void set_b(double new_b) {
+    /**
+     * set b
+     *
+     * @param new_b the new b
+     */
+    public void set_b(double new_b) {
 		b = new_b;
 	}
 
-	/**
-	 * sets an alpha value.
-	 *
-	 * @param pos
-	 *            Number of example
-	 * @param alpha
-	 *            New value
-	 */
-	public void set_alpha(int pos, double alpha) {
+    /**
+     * sets an alpha value.
+     *
+     * @param pos   Number of example
+     * @param alpha New value
+     */
+    public void set_alpha(int pos, double alpha) {
 		alphas[pos] = alpha;
 	}
 
-	public void clearAlphas() {
+    /**
+     * Clear alphas.
+     */
+    public void clearAlphas() {
 		for (int i = 0; i < alphas.length; i++) {
 			alphas[i] = 0.0d;
 		}
 	}
 
-	public void setMeanVarianceMap(Map<Integer, MeanVariance> meanVarianceMap) {
+    /**
+     * Sets mean variance map.
+     *
+     * @param meanVarianceMap the mean variance map
+     */
+    public void setMeanVarianceMap(Map<Integer, MeanVariance> meanVarianceMap) {
 		this.meanVarianceMap = meanVarianceMap;
 	}
 
-	public double[] getYs() {
+    /**
+     * Get ys double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getYs() {
 		return ys;
 	}
 
-	public void setYs(double[] ys) {
+    /**
+     * Sets ys.
+     *
+     * @param ys the ys
+     */
+    public void setYs(double[] ys) {
 		this.ys = ys;
 	}
 
-	public int getTrain_size() {
+    /**
+     * Gets train size.
+     *
+     * @return the train size
+     */
+    public int getTrain_size() {
 		return train_size;
 	}
 
-	public void setTrain_size(int train_size) {
+    /**
+     * Sets train size.
+     *
+     * @param train_size the train size
+     */
+    public void setTrain_size(int train_size) {
 		this.train_size = train_size;
 	}
 
-	public double getB() {
+    /**
+     * Gets b.
+     *
+     * @return the b
+     */
+    public double getB() {
 		return b;
 	}
 
-	public void setB(double b) {
+    /**
+     * Sets b.
+     *
+     * @param b the b
+     */
+    public void setB(double b) {
 		this.b = b;
 	}
 
 	// ================================================================================
 
-	public String getId(int index) {
+    /**
+     * Gets id.
+     *
+     * @param index the index
+     * @return the id
+     */
+    public String getId(int index) {
 		return ids[index];
 	}
 
@@ -494,11 +599,24 @@ public class SVMExamples implements Serializable {
 		return toString(atts.length, false);
 	}
 
-	public String toString(boolean onlySV) {
+    /**
+     * To string string.
+     *
+     * @param onlySV the only sv
+     * @return the string
+     */
+    public String toString(boolean onlySV) {
 		return toString(atts.length, onlySV);
 	}
 
-	public String toString(int numberOfExamples, boolean onlySV) {
+    /**
+     * To string string.
+     *
+     * @param numberOfExamples the number of examples
+     * @param onlySV           the only sv
+     * @return the string
+     */
+    public String toString(int numberOfExamples, boolean onlySV) {
 		StringBuffer result = new StringBuffer("SVM Example Set ("
 				+ (onlySV ? (getNumberOfSupportVectors() + " support vectors") : (train_size + " examples")) + "):"
 				+ Tools.getLineSeparator() + "b: " + b + Tools.getLineSeparator());

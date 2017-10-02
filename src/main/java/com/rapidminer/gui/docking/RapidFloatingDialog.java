@@ -26,18 +26,28 @@ import java.awt.Frame;
 
 /**
  * Detached dialog.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class RapidFloatingDialog extends FloatingDialog {
 
 	private static final long serialVersionUID = -1623376048447949302L;
 
-	public RapidFloatingDialog(Dialog parent) {
+    /**
+     * Instantiates a new Rapid floating dialog.
+     *
+     * @param parent the parent
+     */
+    public RapidFloatingDialog(Dialog parent) {
 		super(parent);
 	}
 
-	public RapidFloatingDialog(Frame parent) {
+    /**
+     * Instantiates a new Rapid floating dialog.
+     *
+     * @param parent the parent
+     */
+    public RapidFloatingDialog(Frame parent) {
 		super(parent);
 	}
 

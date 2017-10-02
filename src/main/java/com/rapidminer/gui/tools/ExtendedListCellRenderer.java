@@ -32,11 +32,22 @@ import javax.swing.JList;
  */
 public class ExtendedListCellRenderer extends DefaultListCellRenderer {
 
-	public static final long serialVersionUID = 90320323254252311L;
+    /**
+     * The constant serialVersionUID.
+     */
+    public static final long serialVersionUID = 90320323254252311L;
 
-	ExtendedListModel<?> model;
+    /**
+     * The Model.
+     */
+    ExtendedListModel<?> model;
 
-	public ExtendedListCellRenderer(ExtendedListModel<?> model) {
+    /**
+     * Instantiates a new Extended list cell renderer.
+     *
+     * @param model the model
+     */
+    public ExtendedListCellRenderer(ExtendedListModel<?> model) {
 		this.model = model;
 	}
 

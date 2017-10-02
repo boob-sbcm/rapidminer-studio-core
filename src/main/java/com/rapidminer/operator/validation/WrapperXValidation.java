@@ -56,26 +56,28 @@ import com.rapidminer.tools.RandomGenerator;
  * performance indicator for the actual algorithm. This implementation of a MethodValidationChain
  * works similar to the {@link XValidation}.
  *
- * @see com.rapidminer.operator.validation.XValidation
  * @author Ingo Mierswa
+ * @see com.rapidminer.operator.validation.XValidation
  */
 public class WrapperXValidation extends WrapperValidationChain {
 
-	/** The parameter name for &quot;Number of subsets for the cross-validation&quot; */
-	public static final String PARAMETER_NUMBER_OF_VALIDATIONS = "number_of_validations";
+    /**
+     * The parameter name for &quot;Number of subsets for the cross-validation&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_VALIDATIONS = "number_of_validations";
 
-	/**
-	 * The parameter name for &quot;Set the number of validations to the number of examples. If set
-	 * to true, number_of_validations is ignored&quot;
-	 */
-	public static final String PARAMETER_LEAVE_ONE_OUT = "leave_one_out";
+    /**
+     * The parameter name for &quot;Set the number of validations to the number of examples. If set
+     * to true, number_of_validations is ignored&quot;
+     */
+    public static final String PARAMETER_LEAVE_ONE_OUT = "leave_one_out";
 
-	/**
-	 * The parameter name for &quot;Defines the sampling type of the cross validation (linear =
-	 * consecutive subsets, shuffled = random subsets, stratified = random subsets with class
-	 * distribution kept constant)&quot;
-	 */
-	public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
+    /**
+     * The parameter name for &quot;Defines the sampling type of the cross validation (linear =
+     * consecutive subsets, shuffled = random subsets, stratified = random subsets with class
+     * distribution kept constant)&quot;
+     */
+    public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
 
 	/** Total number of iterations. */
 	private int number;
@@ -83,7 +85,12 @@ public class WrapperXValidation extends WrapperValidationChain {
 	/** Current iteration. */
 	private int iteration;
 
-	public WrapperXValidation(OperatorDescription description) {
+    /**
+     * Instantiates a new Wrapper x validation.
+     *
+     * @param description the description
+     */
+    public WrapperXValidation(OperatorDescription description) {
 		super(description);
 		addValue(new ValueDouble("iteration", "The number of the current iteration.") {
 

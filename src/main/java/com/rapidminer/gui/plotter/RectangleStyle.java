@@ -24,24 +24,42 @@ import java.awt.Graphics2D;
 
 /**
  * Defines the style of plotted rectangles, i.e. the color.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RectangleStyle {
 
-	public static final int ALPHA = 80;
+    /**
+     * The constant ALPHA.
+     */
+    public static final int ALPHA = 80;
 
 	private Color color = null;
 
-	public RectangleStyle(Color color) {
+    /**
+     * Instantiates a new Rectangle style.
+     *
+     * @param color the color
+     */
+    public RectangleStyle(Color color) {
 		this.color = color;
 	}
 
-	public void set(Graphics2D g) {
+    /**
+     * Set.
+     *
+     * @param g the g
+     */
+    public void set(Graphics2D g) {
 		g.setColor(getColor());
 	}
 
-	public Color getColor() {
+    /**
+     * Gets color.
+     *
+     * @return the color
+     */
+    public Color getColor() {
 		return color;
 	}
 }

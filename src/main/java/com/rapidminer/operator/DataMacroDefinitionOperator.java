@@ -53,13 +53,13 @@ import com.rapidminer.tools.Tools;
  * properties of a given input example set, e.g. from properties like the number of examples or
  * attributes or from a specific data value.
  * </p>
- *
+ * <p>
  * <p>
  * You have to define the macro name (without the enclosing brackets) and the macro value. The
  * defined macro can then be used in all succeeding operators as parameter value for string type
  * parameters. A macro must then be enclosed by &quot;MACRO_START&quot; and &quot;MACRO_END&quot;.
  * </p>
- *
+ * <p>
  * <p>
  * There are several predefined macros:
  * </p>
@@ -71,7 +71,7 @@ import com.rapidminer.tools.Tools;
  * <li>MACRO_STARTprocess_pathMACRO_END: will be replaced by the complete absolute path of the
  * process file</li>
  * </ul>
- *
+ * <p>
  * <p>
  * In addition to those the user might define arbitrary other macros which will be replaced by
  * arbitrary string during the process run. Please note also that several other short macros exist,
@@ -87,44 +87,108 @@ public class DataMacroDefinitionOperator extends Operator {
 	private InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	/** The parameter name for &quot;The values of the user defined macros.&quot; */
-	public static final String PARAMETER_MACRO = "macro";
+    /**
+     * The parameter name for &quot;The values of the user defined macros.&quot;
+     */
+    public static final String PARAMETER_MACRO = "macro";
 
-	public static final String PARAMETER_MACRO_TYPE = "macro_type";
+    /**
+     * The constant PARAMETER_MACRO_TYPE.
+     */
+    public static final String PARAMETER_MACRO_TYPE = "macro_type";
 
-	public static final String PARAMETER_EXAMPLE_INDEX = "example_index";
+    /**
+     * The constant PARAMETER_EXAMPLE_INDEX.
+     */
+    public static final String PARAMETER_EXAMPLE_INDEX = "example_index";
 
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	public static final String PARAMETER_ATTRIBUTE_VALUE = "attribute_value";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_VALUE.
+     */
+    public static final String PARAMETER_ATTRIBUTE_VALUE = "attribute_value";
 
-	public static final String PARAMETER_STATISTICS = "statistics";
+    /**
+     * The constant PARAMETER_STATISTICS.
+     */
+    public static final String PARAMETER_STATISTICS = "statistics";
 
-	public static final String PARAMETER_LIST_MACROS = "additional_macros";
+    /**
+     * The constant PARAMETER_LIST_MACROS.
+     */
+    public static final String PARAMETER_LIST_MACROS = "additional_macros";
 
-	public static final String[] MACRO_TYPES = new String[] { "number_of_examples", "number_of_attributes", "data_value",
+    /**
+     * The constant MACRO_TYPES.
+     */
+    public static final String[] MACRO_TYPES = new String[] { "number_of_examples", "number_of_attributes", "data_value",
 	"statistics" };
 
-	public static final int MACRO_TYPE_EXAMPLES = 0;
-	public static final int MACRO_TYPE_ATTRIBUTES = 1;
-	public static final int MACRO_TYPE_DATA = 2;
-	public static final int MACRO_TYPE_STATISTICS = 3;
+    /**
+     * The constant MACRO_TYPE_EXAMPLES.
+     */
+    public static final int MACRO_TYPE_EXAMPLES = 0;
+    /**
+     * The constant MACRO_TYPE_ATTRIBUTES.
+     */
+    public static final int MACRO_TYPE_ATTRIBUTES = 1;
+    /**
+     * The constant MACRO_TYPE_DATA.
+     */
+    public static final int MACRO_TYPE_DATA = 2;
+    /**
+     * The constant MACRO_TYPE_STATISTICS.
+     */
+    public static final int MACRO_TYPE_STATISTICS = 3;
 
-	public static final String[] STATISTICS_TYPES = new String[] { "average", "deviation", "variance", "min", "max",
+    /**
+     * The constant STATISTICS_TYPES.
+     */
+    public static final String[] STATISTICS_TYPES = new String[] { "average", "deviation", "variance", "min", "max",
 		"count", "unknown" };
 
-	public static final int STATISTICS_TYPE_AVERAGE = 0;
-	public static final int STATISTICS_TYPE_DEVIATION = 1;
-	public static final int STATISTICS_TYPE_VARIANCE = 2;
-	public static final int STATISTICS_TYPE_MIN = 3;
-	public static final int STATISTICS_TYPE_MAX = 4;
-	public static final int STATISTICS_TYPE_COUNT = 5;
-	public static final int STATISTICS_TYPE_UNKNOWN = 6;
+    /**
+     * The constant STATISTICS_TYPE_AVERAGE.
+     */
+    public static final int STATISTICS_TYPE_AVERAGE = 0;
+    /**
+     * The constant STATISTICS_TYPE_DEVIATION.
+     */
+    public static final int STATISTICS_TYPE_DEVIATION = 1;
+    /**
+     * The constant STATISTICS_TYPE_VARIANCE.
+     */
+    public static final int STATISTICS_TYPE_VARIANCE = 2;
+    /**
+     * The constant STATISTICS_TYPE_MIN.
+     */
+    public static final int STATISTICS_TYPE_MIN = 3;
+    /**
+     * The constant STATISTICS_TYPE_MAX.
+     */
+    public static final int STATISTICS_TYPE_MAX = 4;
+    /**
+     * The constant STATISTICS_TYPE_COUNT.
+     */
+    public static final int STATISTICS_TYPE_COUNT = 5;
+    /**
+     * The constant STATISTICS_TYPE_UNKNOWN.
+     */
+    public static final int STATISTICS_TYPE_UNKNOWN = 6;
 
 	/** The last defined macro. */
 	private String macroValue = null;
 
-	public DataMacroDefinitionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Data macro definition operator.
+     *
+     * @param description the description
+     */
+    public DataMacroDefinitionOperator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ParameterConditionedPrecondition(exampleSetInput, new AttributeSetPrecondition(

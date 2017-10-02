@@ -60,7 +60,12 @@ public class DateFormatValueCellEditor extends AbstractCellEditor implements Pro
 	private AbstractButton selectButton;
 	private final ParameterTypeDateFormat type;
 
-	public DateFormatValueCellEditor(ParameterTypeDateFormat type_param) {
+    /**
+     * Instantiates a new Date format value cell editor.
+     *
+     * @param type_param the type param
+     */
+    public DateFormatValueCellEditor(ParameterTypeDateFormat type_param) {
 		this.type = type_param;
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();

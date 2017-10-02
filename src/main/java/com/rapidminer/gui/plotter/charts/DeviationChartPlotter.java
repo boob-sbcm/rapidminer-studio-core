@@ -57,7 +57,7 @@ import org.jfree.ui.RectangleInsets;
 
 /**
  * This is the deviation chart plotter.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DeviationChartPlotter extends LocalNormalizationPlotterAdapter {
@@ -77,12 +77,23 @@ public class DeviationChartPlotter extends LocalNormalizationPlotterAdapter {
 
 	private ChartPanel panel = new ChartPanel(null);
 
-	public DeviationChartPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Deviation chart plotter.
+     *
+     * @param settings the settings
+     */
+    public DeviationChartPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 	}
 
-	public DeviationChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Deviation chart plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public DeviationChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}

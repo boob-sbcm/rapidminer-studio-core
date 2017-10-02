@@ -36,7 +36,7 @@ import java.util.Map;
 
 /**
  * This renderer creates a plot view of the series (for integration in RapidMiner).
- * 
+ *
  * @author Marius Helf
  */
 public class ExpertDataTableRenderer extends AbstractRenderer {

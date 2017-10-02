@@ -72,23 +72,26 @@ public class BayBoostModel extends PredictionModel implements MetaModel {
 
 	private double threshold = 0.5;
 
-	/**
-	 * @param exampleSet
-	 *            the example set used for training
-	 * @param modelInfos
-	 *            a <code>List</code> of <code>Object[2]</code> arrays, each entry holding a model
-	 *            and a <code>double[][]</code> array containing weights for all prediction/label
-	 *            combinations.
-	 * @param priors
-	 *            an array of the prior probabilities of labels
-	 */
-	public BayBoostModel(ExampleSet exampleSet, List<BayBoostBaseModelInfo> modelInfos, double[] priors) {
+    /**
+     * Instantiates a new Bay boost model.
+     *
+     * @param exampleSet the example set used for training
+     * @param modelInfos a <code>List</code> of <code>Object[2]</code> arrays, each entry holding a model            and a <code>double[][]</code> array containing weights for all prediction/label            combinations.
+     * @param priors     an array of the prior probabilities of labels
+     */
+    public BayBoostModel(ExampleSet exampleSet, List<BayBoostBaseModelInfo> modelInfos, double[] priors) {
 		super(exampleSet, null, null);
 		this.modelInfo = modelInfos;
 		this.priors = priors;
 	}
 
-	public BayBoostBaseModelInfo getBayBoostBaseModelInfo(int index) {
+    /**
+     * Gets bay boost base model info.
+     *
+     * @param index the index
+     * @return the bay boost base model info
+     */
+    public BayBoostBaseModelInfo getBayBoostBaseModelInfo(int index) {
 		return this.modelInfo.get(index);
 	}
 
@@ -114,11 +117,13 @@ public class BayBoostModel extends PredictionModel implements MetaModel {
 		}
 	}
 
-	/**
-	 * Using this setter with a positive value makes the model discard all but the specified number
-	 * of base models. A value of -1 turns off this option.
-	 */
-	public void setMaxModelNumber(int numModels) {
+    /**
+     * Using this setter with a positive value makes the model discard all but the specified number
+     * of base models. A value of -1 turns off this option.
+     *
+     * @param numModels the num models
+     */
+    public void setMaxModelNumber(int numModels) {
 		this.maxModelNumber = numModels;
 	}
 
@@ -135,8 +140,12 @@ public class BayBoostModel extends PredictionModel implements MetaModel {
 		return result.toString();
 	}
 
-	/** @return the number of embedded models */
-	public int getNumberOfModels() {
+    /**
+     * Gets number of models.
+     *
+     * @return the number of embedded models
+     */
+    public int getNumberOfModels() {
 		if (this.maxModelNumber >= 0) {
 			return Math.min(this.maxModelNumber, modelInfo.size());
 		} else {
@@ -174,32 +183,34 @@ public class BayBoostModel extends PredictionModel implements MetaModel {
 		return this.priors[classIndex];
 	}
 
-	/** Getter for the prior array */
-	public double[] getPriors() {
+    /**
+     * Getter for the prior array  @return the double [ ]
+     *
+     * @return the double [ ]
+     */
+    public double[] getPriors() {
 		double[] result = new double[this.priors.length];
 		System.arraycopy(this.priors, 0, result, 0, result.length);
 		return result;
 	}
 
-	/**
-	 * Getter method for embedded models
-	 *
-	 * @param index
-	 *            the number of a model part of this boost model
-	 * @return binary or nominal decision model for the given classification index.
-	 */
-	public Model getModel(int index) {
+    /**
+     * Getter method for embedded models
+     *
+     * @param index the number of a model part of this boost model
+     * @return binary or nominal decision model for the given classification index.
+     */
+    public Model getModel(int index) {
 		return this.modelInfo.get(index).getModel();
 	}
 
-	/**
-	 * Getter method for a specific confusion matrix
-	 *
-	 * @param index
-	 *            the number of the model for which to read the confusion matrix
-	 * @return a <code>ConfusionMatrix</code> object
-	 */
-	public ContingencyMatrix getContingencyMatrix(int index) {
+    /**
+     * Getter method for a specific confusion matrix
+     *
+     * @param index the number of the model for which to read the confusion matrix
+     * @return a <code>ConfusionMatrix</code> object
+     */
+    public ContingencyMatrix getContingencyMatrix(int index) {
 		return this.modelInfo.get(index).getContingencyMatrix();
 	}
 
@@ -444,17 +455,14 @@ public class BayBoostModel extends PredictionModel implements MetaModel {
 		}
 	}
 
-	/**
-	 * Helper method to adjust the intermediate products during model application.
-	 *
-	 * @param products
-	 *            the intermediate products, these values are changed by the method
-	 * @param liftFactors
-	 *            the factor vector that applies for the prediction for the current example
-	 *
-	 * @return <code>true</code> iff the class is deterministically known after applying this method
-	 */
-	public static boolean adjustIntermediateProducts(double[] products, double[] liftFactors) {
+    /**
+     * Helper method to adjust the intermediate products during model application.
+     *
+     * @param products    the intermediate products, these values are changed by the method
+     * @param liftFactors the factor vector that applies for the prediction for the current example
+     * @return <code>true</code> iff the class is deterministically known after applying this method
+     */
+    public static boolean adjustIntermediateProducts(double[] products, double[] liftFactors) {
 		L: for (int i = 0; i < liftFactors.length; i++) {
 			// Change the intermediate estimates, take care about deterministic
 			// and non-applicable rules:
@@ -488,20 +496,21 @@ public class BayBoostModel extends PredictionModel implements MetaModel {
 		return false;
 	}
 
-	/**
-	 * This method is only supported for boolean target attributes. It computes a flattened version
-	 * of model weights. In constrast to the original version the final predictions are additive
-	 * logarithms of the lift ratios, additively rescaled so that the prediction <code>false</code>
-	 * of model i produces <code>-i</code> if <code>true</code> produces weight i. This means that
-	 * only one weight per model is required. The first component of the returned array is the part
-	 * that is independent of any prediction, the i-th component is the weight of model i. The
-	 * (log-)linear model predicts depending on whether the linear combination of predictions
-	 * (either -1 or 1) is greater than 0 or not. Infinite values are problematic, so a min/max
-	 * value is used.
-	 *
-	 * @return the flattened weights of all models
-	 */
-	public double[] getModelWeights() throws OperatorException {
+    /**
+     * This method is only supported for boolean target attributes. It computes a flattened version
+     * of model weights. In constrast to the original version the final predictions are additive
+     * logarithms of the lift ratios, additively rescaled so that the prediction <code>false</code>
+     * of model i produces <code>-i</code> if <code>true</code> produces weight i. This means that
+     * only one weight per model is required. The first component of the returned array is the part
+     * that is independent of any prediction, the i-th component is the weight of model i. The
+     * (log-)linear model predicts depending on whether the linear combination of predictions
+     * (either -1 or 1) is greater than 0 or not. Infinite values are problematic, so a min/max
+     * value is used.
+     *
+     * @return the flattened weights of all models
+     * @throws OperatorException the operator exception
+     */
+    public double[] getModelWeights() throws OperatorException {
 		if (this.getLabel().getMapping().size() != 2) {
 			throw new UserError(null, 114, "BayBoostModel", this.getLabel());
 		}

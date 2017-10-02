@@ -42,9 +42,8 @@ import javax.swing.event.ChangeListener;
 
 /**
  * A configuration Panel for {@link EquidistantFixedBinCountBinning}s.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class EquidistantFixedBinCountCardPanel extends AbstractGroupingCardPanel {
 
@@ -62,7 +61,13 @@ public class EquidistantFixedBinCountCardPanel extends AbstractGroupingCardPanel
 
 	private boolean changingAutoRange;
 
-	public EquidistantFixedBinCountCardPanel(final PlotInstance plotInstance, final PlotDimension dimension) {
+    /**
+     * Instantiates a new Equidistant fixed bin count card panel.
+     *
+     * @param plotInstance the plot instance
+     * @param dimension    the dimension
+     */
+    public EquidistantFixedBinCountCardPanel(final PlotInstance plotInstance, final PlotDimension dimension) {
 		super(plotInstance, dimension);
 		adaptGUI();
 	}
@@ -163,7 +168,10 @@ public class EquidistantFixedBinCountCardPanel extends AbstractGroupingCardPanel
 		}
 	}
 
-	protected void upperBoundChanged() {
+    /**
+     * Upper bound changed.
+     */
+    protected void upperBoundChanged() {
 		final DimensionConfig dimensionConfig = getPlotConfiguration().getDimensionConfig(getDimension());
 		if (dimensionConfig != null) {
 			final EquidistantFixedBinCountBinning grouping = (EquidistantFixedBinCountBinning) dimensionConfig.getGrouping();
@@ -185,7 +193,10 @@ public class EquidistantFixedBinCountCardPanel extends AbstractGroupingCardPanel
 		}
 	}
 
-	protected void lowerBoundChanged() {
+    /**
+     * Lower bound changed.
+     */
+    protected void lowerBoundChanged() {
 		final DimensionConfig dimensionConfig = getPlotConfiguration().getDimensionConfig(getDimension());
 		if (dimensionConfig != null) {
 			final EquidistantFixedBinCountBinning grouping = (EquidistantFixedBinCountBinning) dimensionConfig.getGrouping();

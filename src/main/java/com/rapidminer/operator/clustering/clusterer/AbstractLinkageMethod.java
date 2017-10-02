@@ -29,7 +29,7 @@ import java.util.Map;
  * minimum of all distances. To save time needed to copy the matrix if two clusters are joined, it
  * is not resized, instead one row and column is not used anymore. The other row and column are
  * updated by the agglomeration methods.
- * 
+ *
  * @author Sebastian Land
  */
 public abstract class AbstractLinkageMethod {
@@ -40,13 +40,26 @@ public abstract class AbstractLinkageMethod {
 
 	private int[] clusterIds;
 
-	public AbstractLinkageMethod(DistanceMatrix matrix, int[] clusterIds) {
+    /**
+     * Instantiates a new Abstract linkage method.
+     *
+     * @param matrix     the matrix
+     * @param clusterIds the cluster ids
+     */
+    public AbstractLinkageMethod(DistanceMatrix matrix, int[] clusterIds) {
 		this.matrix = matrix;
 		this.clusterIds = clusterIds;
 		this.isDeletedData = new boolean[matrix.getHeight()];
 	}
 
-	public Agglomeration getNextAgglomeration(int nextClusterId, Map<Integer, HierarchicalClusterNode> clusterMap) {
+    /**
+     * Gets next agglomeration.
+     *
+     * @param nextClusterId the next cluster id
+     * @param clusterMap    the cluster map
+     * @return the next agglomeration
+     */
+    public Agglomeration getNextAgglomeration(int nextClusterId, Map<Integer, HierarchicalClusterNode> clusterMap) {
 		// searching for miniumum
 		double minimalDistance = Double.POSITIVE_INFINITY;
 		int minimalX = -1;
@@ -76,6 +89,14 @@ public abstract class AbstractLinkageMethod {
 		return agglomeration;
 	}
 
-	public abstract void updateDistances(DistanceMatrix matrix, int updatedRow, int unionedRow,
+    /**
+     * Update distances.
+     *
+     * @param matrix     the matrix
+     * @param updatedRow the updated row
+     * @param unionedRow the unioned row
+     * @param clusterMap the cluster map
+     */
+    public abstract void updateDistances(DistanceMatrix matrix, int updatedRow, int unionedRow,
 			Map<Integer, HierarchicalClusterNode> clusterMap);
 }

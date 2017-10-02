@@ -46,7 +46,7 @@ import com.rapidminer.tools.OperatorService;
  * In order to retrieve the stored object and make it again accessible, you can use the operator
  * {@link IORetrievalOperator}. The combination of those two operators can be used to build complex
  * processes where an input object is used in completely different parts or loops of processes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class IOStorageOperator extends Operator {
@@ -54,15 +54,32 @@ public class IOStorageOperator extends Operator {
 	private final InputPort storeInput = getInputPorts().createPort("store");
 	private final OutputPort storedOutput = getOutputPorts().createPort("stored");
 
-	public static final String PARAMETER_NAME = "name";
+    /**
+     * The constant PARAMETER_NAME.
+     */
+    public static final String PARAMETER_NAME = "name";
 
-	public static final String PARAMETER_IO_OBJECT = "io_object";
+    /**
+     * The constant PARAMETER_IO_OBJECT.
+     */
+    public static final String PARAMETER_IO_OBJECT = "io_object";
 
-	public static final String PARAMETER_STORE_WHICH = "store_which";
+    /**
+     * The constant PARAMETER_STORE_WHICH.
+     */
+    public static final String PARAMETER_STORE_WHICH = "store_which";
 
-	public static final String PARAMETER_REMOVE_FROM_PROCESS = "remove_from_process";
+    /**
+     * The constant PARAMETER_REMOVE_FROM_PROCESS.
+     */
+    public static final String PARAMETER_REMOVE_FROM_PROCESS = "remove_from_process";
 
-	public IOStorageOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Io storage operator.
+     *
+     * @param description the description
+     */
+    public IOStorageOperator(OperatorDescription description) {
 		super(description);
 		storeInput.addPrecondition(new Precondition() {
 

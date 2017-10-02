@@ -28,15 +28,14 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryString
  * a nominal value.
  *
  * @author Thilo Kamradt
- *
  */
 public class Trim extends AbstractArbitraryStringInputStringOutputFunction {
 
-	/**
-	 * Creates a function which removes all spaces, tabs and new lines from the end and the
-	 * beginning of a nominal value
-	 */
-	public Trim() {
+    /**
+     * Creates a function which removes all spaces, tabs and new lines from the end and the
+     * beginning of a nominal value
+     */
+    public Trim() {
 		super("text_transformation.trim", 1);
 	}
 

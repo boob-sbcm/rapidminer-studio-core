@@ -27,11 +27,13 @@ import com.rapidminer.tools.expression.FunctionInputException;
  * A {@link Function} to rint numbers.
  *
  * @author Thilo Kamradt
- *
  */
 public class Rint extends Abstract1or2DoubleInputFunction {
 
-	public Rint() {
+    /**
+     * Instantiates a new Rint.
+     */
+    public Rint() {
 		super("rounding.rint", Ontology.NUMERICAL);
 	}
 

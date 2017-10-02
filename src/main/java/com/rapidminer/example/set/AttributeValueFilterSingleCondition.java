@@ -33,7 +33,7 @@ import java.util.regex.PatternSyntaxException;
 /**
  * The condition is fulfilled if an attribute has a value equal to, not equal to, less than, ... a
  * given value.
- * 
+ *
  * @author Ingo Mierswa, Nils Woehler
  */
 public class AttributeValueFilterSingleCondition implements Condition {
@@ -44,21 +44,45 @@ public class AttributeValueFilterSingleCondition implements Condition {
 
 	private static final String MISSING_ENCODING = "\\?";
 
-	public static final int LEQ = 0;
+    /**
+     * The constant LEQ.
+     */
+    public static final int LEQ = 0;
 
-	public static final int GEQ = 1;
+    /**
+     * The constant GEQ.
+     */
+    public static final int GEQ = 1;
 
-	public static final int NEQ1 = 2;
+    /**
+     * The constant NEQ1.
+     */
+    public static final int NEQ1 = 2;
 
-	public static final int NEQ2 = 3;
+    /**
+     * The constant NEQ2.
+     */
+    public static final int NEQ2 = 3;
 
-	public static final int EQUALS = 4;
+    /**
+     * The constant EQUALS.
+     */
+    public static final int EQUALS = 4;
 
-	public static final int LESS = 5;
+    /**
+     * The constant LESS.
+     */
+    public static final int LESS = 5;
 
-	public static final int GREATER = 6;
+    /**
+     * The constant GREATER.
+     */
+    public static final int GREATER = 6;
 
-	public static String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss Z";
+    /**
+     * The constant DATE_PATTERN.
+     */
+    public static String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss Z";
 
 	private int comparisonType = EQUALS;
 
@@ -73,24 +97,27 @@ public class AttributeValueFilterSingleCondition implements Condition {
 	private HashSet<Integer> allowedNominalValueIndices;
 	private boolean isMissingAllowed = false;
 
-	/**
-	 * Creates a new AttributeValueFilter. If attribute is not nominal, value must be either a
-	 * number or a date string.
-	 */
-	public AttributeValueFilterSingleCondition(Attribute attribute, int comparisonType, String value) {
+    /**
+     * Creates a new AttributeValueFilter. If attribute is not nominal, value must be either a
+     * number or a date string.
+     *
+     * @param attribute      the attribute
+     * @param comparisonType the comparison type
+     * @param value          the value
+     */
+    public AttributeValueFilterSingleCondition(Attribute attribute, int comparisonType, String value) {
 		this.attribute = attribute;
 		this.comparisonType = comparisonType;
 		setValue(value);
 	}
 
-	/**
-	 * Constructs an AttributeValueFilter for a given {@link ExampleSet} from a parameter string
-	 * 
-	 * @param parameterString
-	 *            Must be of the form attribute R value, where R is one out of =, !=, &lt&, &gt;,
-	 *            &lt;=, and &gt;=.
-	 */
-	public AttributeValueFilterSingleCondition(ExampleSet exampleSet, String parameterString) {
+    /**
+     * Constructs an AttributeValueFilter for a given {@link ExampleSet} from a parameter string
+     *
+     * @param exampleSet      the example set
+     * @param parameterString Must be of the form attribute R value, where R is one out of =, !=, &lt&, &gt;,            &lt;=, and &gt;=.
+     */
+    public AttributeValueFilterSingleCondition(ExampleSet exampleSet, String parameterString) {
 		if ((parameterString == null) || (parameterString.length() == 0)) {
 			throw new IllegalArgumentException("Parameter string must not be empty!");
 		}

@@ -30,43 +30,56 @@ import com.rapid_i.repository.wsimport.PluginInfo;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public interface RemoteInfoService {
 
-	/**
-	 * @return the free memory available
-	 */
-	public String getFreeMemory();
+    /**
+     * Gets free memory.
+     *
+     * @return the free memory available
+     */
+    public String getFreeMemory();
 
-	/**
-	 * @return the current system load average
-	 */
-	public double getSystemLoadAverage();
+    /**
+     * Gets system load average.
+     *
+     * @return the current system load average
+     */
+    public double getSystemLoadAverage();
 
-	/**
-	 * @return the total memory available
-	 */
-	public String getTotalMemory();
+    /**
+     * Gets total memory.
+     *
+     * @return the total memory available
+     */
+    public String getTotalMemory();
 
-	/**
-	 * @return the maximum memory available
-	 */
-	public String getMaxMemory();
+    /**
+     * Gets max memory.
+     *
+     * @return the maximum memory available
+     */
+    public String getMaxMemory();
 
-	/**
-	 * @return the server version
-	 */
-	public String getVersionNumber();
+    /**
+     * Gets version number.
+     *
+     * @return the server version
+     */
+    public String getVersionNumber();
 
-	/**
-	 * @return the time since the server has been booted
-	 */
-	public XMLGregorianCalendar getUpSince();
+    /**
+     * Gets up since.
+     *
+     * @return the time since the server has been booted
+     */
+    public XMLGregorianCalendar getUpSince();
 
-	/**
-	 * @return a list of installed extensions
-	 */
-	public List<PluginInfo> getInstalledExtensions();
+    /**
+     * Gets installed extensions.
+     *
+     * @return a list of installed extensions
+     */
+    public List<PluginInfo> getInstalledExtensions();
 
 }

@@ -30,25 +30,32 @@ import javax.swing.table.TableModel;
 
 /**
  * {@link TableModel} backing the {@link NominalValueDialog}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class NominalValueTableModel extends DefaultTableModel {
 
 	private static final long serialVersionUID = -5156301816523523916L;
 
-	/** index of the index column */
-	public static final int INDEX_INDEX = 0;
+    /**
+     * index of the index column
+     */
+    public static final int INDEX_INDEX = 0;
 
-	/** index of the value column */
-	public static final int INDEX_VALUE = 1;
+    /**
+     * index of the value column
+     */
+    public static final int INDEX_VALUE = 1;
 
-	/** index of the absolute count column */
-	public static final int INDEX_ABSOLUTE_COUNT = 2;
+    /**
+     * index of the absolute count column
+     */
+    public static final int INDEX_ABSOLUTE_COUNT = 2;
 
-	/** index of the relative count column */
-	public static final int INDEX_RELATIVE_COUNT = 3;
+    /**
+     * index of the relative count column
+     */
+    public static final int INDEX_RELATIVE_COUNT = 3;
 
 	/** the title of the index column */
 	private static final String NAME_COLUMN_INDEX = I18N.getMessage(I18N.getGUIBundle(),
@@ -72,13 +79,13 @@ public class NominalValueTableModel extends DefaultTableModel {
 	/** all value counts added */
 	private int totalCount;
 
-	/**
-	 * Creates a new {@link NominalValueTableModel} instance with the given list of nominal values
-	 * and their absolute count.
-	 * 
-	 * @param listOfValues
-	 */
-	public NominalValueTableModel(List<ValueAndCount> listOfValues) {
+    /**
+     * Creates a new {@link NominalValueTableModel} instance with the given list of nominal values
+     * and their absolute count.
+     *
+     * @param listOfValues the list of values
+     */
+    public NominalValueTableModel(List<ValueAndCount> listOfValues) {
 		super();
 		this.listOfValues = listOfValues;
 

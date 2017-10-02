@@ -29,6 +29,8 @@ import javax.swing.JOptionPane;
 
 
 /**
+ * The type Abstract quick fix.
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractQuickFix implements QuickFix {
@@ -37,20 +39,27 @@ public abstract class AbstractQuickFix implements QuickFix {
 	private int rating;
 	private boolean isInteractive;
 
-	/**
-	 * @param i18nKey
-	 *            is a key referencing an entry in a properties file that defines the action's text
-	 *            and icon.
-	 * @param i18nArgs
-	 *            arguments to pass to the text formatter
-	 */
-	public AbstractQuickFix(int rating, boolean isInteractive, String i18nKey, Object... i18nArgs) {
+    /**
+     * Instantiates a new Abstract quick fix.
+     *
+     * @param rating        the rating
+     * @param isInteractive the is interactive
+     * @param i18nKey       is a key referencing an entry in a properties file that defines the action's text            and icon.
+     * @param i18nArgs      arguments to pass to the text formatter
+     */
+    public AbstractQuickFix(int rating, boolean isInteractive, String i18nKey, Object... i18nArgs) {
 		this.isInteractive = isInteractive;
 		this.rating = rating;
 		seti18nKey(i18nKey, i18nArgs);
 	}
 
-	protected void seti18nKey(String i18nKey, Object... i18nArgs) {
+    /**
+     * Sets 18 n key.
+     *
+     * @param i18nKey  the 18 n key
+     * @param i18nArgs the 18 n args
+     */
+    protected void seti18nKey(String i18nKey, Object... i18nArgs) {
 		this.action = new AbstractAction(I18N.getMessage(I18N.getErrorBundle(), "metadata.quickfix." + i18nKey, i18nArgs)) {
 
 			private static final long serialVersionUID = 1L;

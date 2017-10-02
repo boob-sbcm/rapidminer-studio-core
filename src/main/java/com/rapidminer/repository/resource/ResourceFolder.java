@@ -54,7 +54,15 @@ public class ResourceFolder extends ResourceEntry implements Folder {
 	private final Lock readLock = lock.readLock();
 	private final Lock writeLock = lock.writeLock();
 
-	protected ResourceFolder(ResourceFolder parent, String name, String resource, ResourceRepository repository) {
+    /**
+     * Instantiates a new Resource folder.
+     *
+     * @param parent     the parent
+     * @param name       the name
+     * @param resource   the resource
+     * @param repository the repository
+     */
+    protected ResourceFolder(ResourceFolder parent, String name, String resource, ResourceRepository repository) {
 		super(parent, name, resource, repository);
 	}
 
@@ -132,15 +140,22 @@ public class ResourceFolder extends ResourceEntry implements Folder {
 		}
 	}
 
-	protected boolean isLoaded() {
+    /**
+     * Is loaded boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean isLoaded() {
 		return folders != null && data != null;
 	}
 
-	/**
-	 * Makes sure the corresponding content is loaded. This method will perform write operations,
-	 * you need to acquire the write lock before calling it.
-	 */
-	protected void ensureLoaded() throws RepositoryException {
+    /**
+     * Makes sure the corresponding content is loaded. This method will perform write operations,
+     * you need to acquire the write lock before calling it.
+     *
+     * @throws RepositoryException the repository exception
+     */
+    protected void ensureLoaded() throws RepositoryException {
 		if (isLoaded()) {
 			return;
 		}
@@ -235,14 +250,13 @@ public class ResourceFolder extends ResourceEntry implements Folder {
 		return containsEntry(childName);
 	}
 
-	/**
-	 * Adds a folder to the list of folders.
-	 *
-	 * @param folder
-	 *            the folder to add
-	 * @throws RepositoryException
-	 */
-	void addFolder(Folder folder) throws RepositoryException {
+    /**
+     * Adds a folder to the list of folders.
+     *
+     * @param folder the folder to add
+     * @throws RepositoryException the repository exception
+     */
+    void addFolder(Folder folder) throws RepositoryException {
 		acquireWriteLock();
 		try {
 			folders.add(folder);

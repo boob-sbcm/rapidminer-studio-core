@@ -57,25 +57,49 @@ import com.rapidminer.tools.RandomGenerator;
  */
 public class BootstrappingOperator extends AbstractSamplingOperator {
 
-	public static final String PARAMETER_SAMPLE = "sample";
+    /**
+     * The constant PARAMETER_SAMPLE.
+     */
+    public static final String PARAMETER_SAMPLE = "sample";
 
-	public static final String[] SAMPLE_MODES = { "absolute", "relative" };
+    /**
+     * The constant SAMPLE_MODES.
+     */
+    public static final String[] SAMPLE_MODES = { "absolute", "relative" };
 
-	public static final int SAMPLE_ABSOLUTE = 0;
+    /**
+     * The constant SAMPLE_ABSOLUTE.
+     */
+    public static final int SAMPLE_ABSOLUTE = 0;
 
-	public static final int SAMPLE_RELATIVE = 1;
+    /**
+     * The constant SAMPLE_RELATIVE.
+     */
+    public static final int SAMPLE_RELATIVE = 1;
 
-	/** The parameter name for &quot;The fraction of examples which should be sampled&quot; */
-	public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
+    /**
+     * The parameter name for &quot;The fraction of examples which should be sampled&quot;
+     */
+    public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
 
-	/** The parameter name for &quot;This ratio determines the size of the new example set.&quot; */
-	public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
+    /**
+     * The parameter name for &quot;This ratio determines the size of the new example set.&quot;
+     */
+    public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
 
-	public static final String PARAMETER_USE_WEIGHTS = "use_weights";
+    /**
+     * The constant PARAMETER_USE_WEIGHTS.
+     */
+    public static final String PARAMETER_USE_WEIGHTS = "use_weights";
 
 	private static final OperatorVersion VERSION_6_4_0 = new OperatorVersion(6, 4, 0);
 
-	public BootstrappingOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Bootstrapping operator.
+     *
+     * @param description the description
+     */
+    public BootstrappingOperator(OperatorDescription description) {
 		super(description);
 	}
 

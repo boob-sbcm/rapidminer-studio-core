@@ -57,24 +57,35 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class MassiveDataGenerator extends AbstractExampleSource {
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
 
-	/** The parameter name for &quot;The number of attributes.&quot; */
-	public static final String PARAMETER_NUMBER_ATTRIBUTES = "number_attributes";
+    /**
+     * The parameter name for &quot;The number of attributes.&quot;
+     */
+    public static final String PARAMETER_NUMBER_ATTRIBUTES = "number_attributes";
 
-	/** The parameter name for &quot;The fraction of default attributes.&quot; */
-	public static final String PARAMETER_SPARSE_FRACTION = "sparse_fraction";
+    /**
+     * The parameter name for &quot;The fraction of default attributes.&quot;
+     */
+    public static final String PARAMETER_SPARSE_FRACTION = "sparse_fraction";
 
-	/**
-	 * The parameter name for &quot;Indicates if the example should be internally represented in a
-	 * sparse format.&quot;
-	 */
-	public static final String PARAMETER_SPARSE_REPRESENTATION = "sparse_representation";
+    /**
+     * The parameter name for &quot;Indicates if the example should be internally represented in a
+     * sparse format.&quot;
+     */
+    public static final String PARAMETER_SPARSE_REPRESENTATION = "sparse_representation";
 
 	private static final int OPERATOR_PROGRESS_STEPS = 1_000_000;
 
-	public MassiveDataGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Massive data generator.
+     *
+     * @param description the description
+     */
+    public MassiveDataGenerator(OperatorDescription description) {
 		super(description);
 	}
 

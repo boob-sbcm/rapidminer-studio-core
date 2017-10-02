@@ -47,8 +47,8 @@ import com.rapidminer.parameter.ParameterTypeFile;
  * files). If the desired property is a directory, the button automatically opens a file chooser for
  * directories.
  *
- * @see com.rapidminer.gui.properties.celleditors.value.AttributeFileValueCellEditor
  * @author Simon Fischer, Ingo Mierswa, Nils Woehler
+ * @see com.rapidminer.gui.properties.celleditors.value.AttributeFileValueCellEditor
  */
 public abstract class FileValueCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {
 
@@ -62,7 +62,12 @@ public abstract class FileValueCellEditor extends AbstractCellEditor implements 
 
 	private final GridBagLayout gridBagLayout = new GridBagLayout();
 
-	public FileValueCellEditor(ParameterTypeFile type) {
+    /**
+     * Instantiates a new File value cell editor.
+     *
+     * @param type the type
+     */
+    public FileValueCellEditor(ParameterTypeFile type) {
 		this.type = type;
 		panel.setLayout(gridBagLayout);
 		panel.setToolTipText(type.getDescription());
@@ -97,7 +102,12 @@ public abstract class FileValueCellEditor extends AbstractCellEditor implements 
 		panel.add(textField);
 	}
 
-	protected JButton createFileChooserButton() {
+    /**
+     * Create file chooser button j button.
+     *
+     * @return the j button
+     */
+    protected JButton createFileChooserButton() {
 		JButton button = new JButton(new ResourceAction(true, "choose_file") {
 
 			private static final long serialVersionUID = 1L;
@@ -111,7 +121,13 @@ public abstract class FileValueCellEditor extends AbstractCellEditor implements 
 		return button;
 	}
 
-	protected void addButton(JButton button, int gridwidth) {
+    /**
+     * Add button.
+     *
+     * @param button    the button
+     * @param gridwidth the gridwidth
+     */
+    protected void addButton(JButton button, int gridwidth) {
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridwidth = gridwidth;
 		c.weightx = 0;
@@ -136,7 +152,12 @@ public abstract class FileValueCellEditor extends AbstractCellEditor implements 
 		}
 	}
 
-	protected void setText(File file) {
+    /**
+     * Sets text.
+     *
+     * @param file the file
+     */
+    protected void setText(File file) {
 		if (file == null) {
 			textField.setText("");
 		} else {

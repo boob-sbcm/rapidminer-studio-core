@@ -24,21 +24,44 @@ import java.util.ArrayList;
 
 /**
  * Simple data holding class to avoid shifting to much information over stack
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class CountingInformations implements Serializable {
 
 	private static final long serialVersionUID = 8189264534462569310L;
 
-	public double windowSize;
-	public double maxGap;
-	public double minGap;
-	public ArrayList<Sequence> allCandidates;
-	public boolean[] candidateCounter;
+    /**
+     * The Window size.
+     */
+    public double windowSize;
+    /**
+     * The Max gap.
+     */
+    public double maxGap;
+    /**
+     * The Min gap.
+     */
+    public double minGap;
+    /**
+     * The All candidates.
+     */
+    public ArrayList<Sequence> allCandidates;
+    /**
+     * The Candidate counter.
+     */
+    public boolean[] candidateCounter;
 
-	public CountingInformations(boolean[] candidateCounter, ArrayList<Sequence> allCandidates, double windowSize,
+    /**
+     * Instantiates a new Counting informations.
+     *
+     * @param candidateCounter the candidate counter
+     * @param allCandidates    the all candidates
+     * @param windowSize       the window size
+     * @param maxGap           the max gap
+     * @param minGap           the min gap
+     */
+    public CountingInformations(boolean[] candidateCounter, ArrayList<Sequence> allCandidates, double windowSize,
 			double maxGap, double minGap) {
 		this.candidateCounter = candidateCounter;
 		this.windowSize = windowSize;

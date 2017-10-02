@@ -38,7 +38,7 @@ import java.util.Iterator;
 /**
  * This similarity based example set is used for the operator
  * {@link ExampleSet2SimilarityExampleSet}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimilarityExampleSet extends AbstractExampleSet {
@@ -51,7 +51,12 @@ public class SimilarityExampleSet extends AbstractExampleSet {
 
 		private ExampleSet exampleSet;
 
-		public IndexExampleReader(ExampleSet exampleSet) {
+        /**
+         * Instantiates a new Index example reader.
+         *
+         * @param exampleSet the example set
+         */
+        public IndexExampleReader(ExampleSet exampleSet) {
 			this.exampleSet = exampleSet;
 		}
 
@@ -76,7 +81,13 @@ public class SimilarityExampleSet extends AbstractExampleSet {
 
 	private DistanceMeasure measure;
 
-	public SimilarityExampleSet(ExampleSet parent, DistanceMeasure measure) {
+    /**
+     * Instantiates a new Similarity example set.
+     *
+     * @param parent  the parent
+     * @param measure the measure
+     */
+    public SimilarityExampleSet(ExampleSet parent, DistanceMeasure measure) {
 		this.parent = parent;
 
 		this.parentIdAttribute = parent.getAttributes().getId();
@@ -111,8 +122,12 @@ public class SimilarityExampleSet extends AbstractExampleSet {
 		this.measure = measure;
 	}
 
-	/** Clone constructor. */
-	public SimilarityExampleSet(SimilarityExampleSet exampleSet) {
+    /**
+     * Clone constructor.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     */
+    public SimilarityExampleSet(SimilarityExampleSet exampleSet) {
 		this.parent = (ExampleSet) exampleSet.parent.clone();
 		this.parentIdAttribute = (Attribute) exampleSet.parentIdAttribute.clone();
 		this.attributes = (Attributes) exampleSet.attributes.clone();

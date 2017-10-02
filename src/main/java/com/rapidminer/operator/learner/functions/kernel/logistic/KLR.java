@@ -38,52 +38,118 @@ public class KLR implements SVMInterface {
 
 	private static final int OPERATOR_PROGRESS_STEPS = 20;
 
-	protected Kernel kernel;
+    /**
+     * The Kernel.
+     */
+    protected Kernel kernel;
 
-	protected SVMExamples examples;
+    /**
+     * The Examples.
+     */
+    protected SVMExamples examples;
 
-	int n; // #examples
+    /**
+     * The N.
+     */
+    int n; // #examples
 
-	double[] target;
+    /**
+     * The Target.
+     */
+    double[] target;
 
-	int n1;
+    /**
+     * The N 1.
+     */
+    int n1;
 
-	int n2;
+    /**
+     * The N 2.
+     */
+    int n2;
 
-	// internal vars
+    /**
+     * The Alphas.
+     */
+// internal vars
 	double[] alphas;
 
-	double[] hCache;
+    /**
+     * The H cache.
+     */
+    double[] hCache;
 
-	boolean[] atBound;
+    /**
+     * The At bound.
+     */
+    boolean[] atBound;
 
-	int iUp;
+    /**
+     * The Up.
+     */
+    int iUp;
 
-	int iLow;
+    /**
+     * The Low.
+     */
+    int iLow;
 
-	double b;
+    /**
+     * The B.
+     */
+    double b;
 
-	double bUp;
+    /**
+     * The B up.
+     */
+    double bUp;
 
-	double bLow;
+    /**
+     * The B low.
+     */
+    double bLow;
 
-	// user-defined params
+    /**
+     * The Tol.
+     */
+// user-defined params
 	double tol = 1e-3; // Genauigkeit f?r b (convergence_epsilon)
 
-	double C = 1.0d;
+    /**
+     * The C.
+     */
+    double C = 1.0d;
 
-	double epsilon; // Genauigkeit f?r t (is_zero)
+    /**
+     * The Epsilon.
+     */
+    double epsilon; // Genauigkeit f?r t (is_zero)
 
-	double mu; // Genauigkeit f?r bound (is_zero)
+    /**
+     * The Mu.
+     */
+    double mu; // Genauigkeit f?r bound (is_zero)
 
-	int maxIterations = 100000; // maximale Anzahl Iterationen im
+    /**
+     * The Max iterations.
+     */
+    int maxIterations = 100000; // maximale Anzahl Iterationen im
 								 // Newton-Raphson-Schritt
 
 	private OperatorProgress operatorProgress;
 
-	public KLR() {}
+    /**
+     * Instantiates a new Klr.
+     */
+    public KLR() {}
 
-	public KLR(Operator paramOperator) throws UndefinedParameterError {
+    /**
+     * Instantiates a new Klr.
+     *
+     * @param paramOperator the param operator
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public KLR(Operator paramOperator) throws UndefinedParameterError {
 		C = paramOperator.getParameterAsDouble(AbstractMySVMLearner.PARAMETER_C);
 		tol = paramOperator.getParameterAsDouble(AbstractMySVMLearner.PARAMETER_CONVERGENCE_EPSILON);
 		maxIterations = paramOperator.getParameterAsInt(AbstractMySVMLearner.PARAMETER_MAX_ITERATIONS);
@@ -107,12 +173,31 @@ public class KLR implements SVMInterface {
 		n2 = n - n1;
 	}
 
-	final double dG(double alpha) {
+    /**
+     * D g double.
+     *
+     * @param alpha the alpha
+     * @return the double
+     */
+    final double dG(double alpha) {
 		// return dG(alpha/C)
 		return Math.log(alpha / (C - alpha));
 	}
 
-	final double dPhi(double t, int i, int j, double ai, double aj, double Kii, double Kij, double Kjj) {
+    /**
+     * D phi double.
+     *
+     * @param t   the t
+     * @param i   the
+     * @param j   the j
+     * @param ai  the ai
+     * @param aj  the aj
+     * @param Kii the kii
+     * @param Kij the kij
+     * @param Kjj the kjj
+     * @return the double
+     */
+    final double dPhi(double t, int i, int j, double ai, double aj, double Kii, double Kij, double Kjj) {
 		// return Hi(alpha(t)) - Hj(alpha(t))
 		double result = 0.0;
 		double ydG = 0.0;
@@ -140,7 +225,20 @@ public class KLR implements SVMInterface {
 		return result;
 	}
 
-	final double d2Phi(double t, int i, int j, double ai, double aj, double Kii, double Kij, double Kjj) {
+    /**
+     * D 2 phi double.
+     *
+     * @param t   the t
+     * @param i   the
+     * @param j   the j
+     * @param ai  the ai
+     * @param aj  the aj
+     * @param Kii the kii
+     * @param Kij the kij
+     * @param Kjj the kjj
+     * @return the double
+     */
+    final double d2Phi(double t, int i, int j, double ai, double aj, double Kii, double Kij, double Kjj) {
 		double result;
 		double atilde;
 		if (target[i] > 0) {
@@ -163,7 +261,14 @@ public class KLR implements SVMInterface {
 		return result;
 	}
 
-	protected boolean takeStep(int i, int j) {
+    /**
+     * Take step boolean.
+     *
+     * @param i the
+     * @param j the j
+     * @return the boolean
+     */
+    protected boolean takeStep(int i, int j) {
 		double[] kernel_row_i = kernel.get_row(i);
 		double[] kernel_row_j = kernel.get_row(j);
 		double aio = alphas[i];
@@ -391,7 +496,12 @@ public class KLR implements SVMInterface {
 		return true;
 	} // end takeStep procedure
 
-	public void klr() throws ProcessStoppedException {
+    /**
+     * Klr.
+     *
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public void klr() throws ProcessStoppedException {
 		// main routine:
 
 		// precond: n, target, examples, kernel intialisiert

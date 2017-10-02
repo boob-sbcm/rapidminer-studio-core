@@ -27,24 +27,36 @@ import javax.swing.DefaultListModel;
  * Provides an extended list model which holds data for a {@link ExtendedJList}. Maintains a hash
  * map which provides tooltips for list entries.
  *
+ * @param <E> the type parameter
  * @author Tobias Malbrecht
  */
 public class ExtendedListModel<E> extends DefaultListModel<E> {
 
-	public static final long serialVersionUID = 90320323118402L;
+    /**
+     * The constant serialVersionUID.
+     */
+    public static final long serialVersionUID = 90320323118402L;
 
 	private LinkedHashMap<Object, String> toolTipMap;
 
 	private LinkedHashMap<Object, Boolean> enabledMap;
 
-	public ExtendedListModel() {
+    /**
+     * Instantiates a new Extended list model.
+     */
+    public ExtendedListModel() {
 		super();
 		toolTipMap = new LinkedHashMap<Object, String>();
 		enabledMap = new LinkedHashMap<Object, Boolean>();
 	}
 
-	/** Adds another list entry and the corresponding tooltip. */
-	public void addElement(E object, String tooltip) {
+    /**
+     * Adds another list entry and the corresponding tooltip.  @param object the object
+     *
+     * @param object  the object
+     * @param tooltip the tooltip
+     */
+    public void addElement(E object, String tooltip) {
 		super.addElement(object);
 		toolTipMap.put(object, tooltip);
 		enabledMap.put(object, true);
@@ -58,13 +70,23 @@ public class ExtendedListModel<E> extends DefaultListModel<E> {
 		return super.removeElement(object);
 	}
 
-	/** Enables or disables element. */
-	public void setEnabled(Object object, boolean enabled) {
+    /**
+     * Enables or disables element.  @param object the object
+     *
+     * @param object  the object
+     * @param enabled the enabled
+     */
+    public void setEnabled(Object object, boolean enabled) {
 		enabledMap.put(object, enabled);
 	}
 
-	/** Returns whether element is enabled or not. */
-	public boolean isEnabled(Object object) {
+    /**
+     * Returns whether element is enabled or not.  @param object the object
+     *
+     * @param object the object
+     * @return the boolean
+     */
+    public boolean isEnabled(Object object) {
 		if (enabledMap.containsKey(object)) {
 			return enabledMap.get(object);
 		} else {
@@ -72,13 +94,23 @@ public class ExtendedListModel<E> extends DefaultListModel<E> {
 		}
 	}
 
-	/** Returns the tooltip corresponding to a list entry. */
-	public String getToolTip(Object object) {
+    /**
+     * Returns the tooltip corresponding to a list entry.  @param object the object
+     *
+     * @param object the object
+     * @return the tool tip
+     */
+    public String getToolTip(Object object) {
 		return toolTipMap.get(object);
 	}
 
-	/** Returns the tooltip corresponding to a list entry specified as index. */
-	public String getToolTip(int index) {
+    /**
+     * Returns the tooltip corresponding to a list entry specified as index.  @param index the index
+     *
+     * @param index the index
+     * @return the tool tip
+     */
+    public String getToolTip(int index) {
 		if (index < 0) {
 			return null;
 		} else {

@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * Stores all distances in a map. Uses only a fixed maximum amount of entries for this map (default:
  * 10,000,000, enough for about 3000 examples).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MapBasedCache implements KernelCache {
@@ -41,11 +41,22 @@ public class MapBasedCache implements KernelCache {
 
 	private Map<Integer, Double> entries;
 
-	public MapBasedCache(int exampleSetSize) {
+    /**
+     * Instantiates a new Map based cache.
+     *
+     * @param exampleSetSize the example set size
+     */
+    public MapBasedCache(int exampleSetSize) {
 		this(10000000, exampleSetSize);
 	}
 
-	public MapBasedCache(int maxSize, int exampleSetSize) {
+    /**
+     * Instantiates a new Map based cache.
+     *
+     * @param maxSize        the max size
+     * @param exampleSetSize the example set size
+     */
+    public MapBasedCache(int maxSize, int exampleSetSize) {
 		this.maxSize = maxSize;
 		this.exampleSetSize = exampleSetSize;
 		this.accessMap = new HashMap<Integer, Integer>(maxSize);

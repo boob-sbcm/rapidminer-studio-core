@@ -33,7 +33,7 @@ import org.apache.commons.collections15.Transformer;
 /**
  * An adaptor for the graph creator interface. Subclasses might want to override some of the
  * implemented methods and have to define the {@link #createGraph()} method.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class GraphCreatorAdaptor implements GraphCreator<String, String> {

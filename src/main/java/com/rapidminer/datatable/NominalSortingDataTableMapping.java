@@ -31,24 +31,33 @@ import java.util.Map;
 /**
  * A view on a dataTable which changes the mapping of nominal values such that nominal values or
  * ordered lexically ascending or descending with increasing index values.
- * 
+ * <p>
  * Uses lazy initialization, i.e. the mapping is only created on first access.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class NominalSortingDataTableMapping implements BidirectionalMappingProvider, DataTableListener {
 
-	/**
-	 * Maps values from the parent table to the new values.
-	 */
-	Map<Double, Double> parentToChildMapping = null;
-	Map<Double, Double> childToParentMapping = null;
+    /**
+     * Maps values from the parent table to the new values.
+     */
+    Map<Double, Double> parentToChildMapping = null;
+    /**
+     * The Child to parent mapping.
+     */
+    Map<Double, Double> childToParentMapping = null;
 	private boolean ascending;
 	private int columnIdx;
 	private final DataTable originalDataTable;
 
-	public NominalSortingDataTableMapping(ValueMappingDataTableView dataTable, int columnIdx, boolean ascending) {
+    /**
+     * Instantiates a new Nominal sorting data table mapping.
+     *
+     * @param dataTable the data table
+     * @param columnIdx the column idx
+     * @param ascending the ascending
+     */
+    public NominalSortingDataTableMapping(ValueMappingDataTableView dataTable, int columnIdx, boolean ascending) {
 		if (!dataTable.isNominal(columnIdx)) {
 			throw new IllegalArgumentException("NominalSortingDataTableMapping can only work on nominal columns.");
 		}

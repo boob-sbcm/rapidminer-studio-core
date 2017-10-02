@@ -66,7 +66,6 @@ import com.rapidminer.tools.Tools;
  * Transfer handler that supports dragging and dropping operators and workflow annotations.
  *
  * @author Simon Fischer, Marius Helf, Michael Knopf, Marco Boeck
- *
  */
 public abstract class ReceivingOperatorTransferHandler extends OperatorTransferHandler {
 
@@ -74,7 +73,10 @@ public abstract class ReceivingOperatorTransferHandler extends OperatorTransferH
 
 	private final List<DataFlavor> acceptableFlavors = new LinkedList<>();
 
-	public ReceivingOperatorTransferHandler() {
+    /**
+     * Instantiates a new Receiving operator transfer handler.
+     */
+    public ReceivingOperatorTransferHandler() {
 		acceptableFlavors.add(TransferableOperator.LOCAL_TRANSFERRED_OPERATORS_FLAVOR);
 		acceptableFlavors.add(TransferableOperator.LOCAL_TRANSFERRED_REPOSITORY_LOCATION_FLAVOR);
 		acceptableFlavors.add(TransferableOperator.LOCAL_TRANSFERRED_REPOSITORY_LOCATION_LIST_FLAVOR);
@@ -84,23 +86,60 @@ public abstract class ReceivingOperatorTransferHandler extends OperatorTransferH
 		acceptableFlavors.add(DataFlavor.stringFlavor);
 	}
 
-	/**
-	 * Drops the operator at the given location. The location may be null, indicating that this is a
-	 * paste.
-	 */
-	protected abstract boolean dropNow(List<Operator> newOperators, Point loc);
+    /**
+     * Drops the operator at the given location. The location may be null, indicating that this is a
+     * paste.
+     *
+     * @param newOperators the new operators
+     * @param loc          the loc
+     * @return the boolean
+     */
+    protected abstract boolean dropNow(List<Operator> newOperators, Point loc);
 
-	protected abstract boolean dropNow(WorkflowAnnotation anno, Point loc);
+    /**
+     * Drop now boolean.
+     *
+     * @param anno the anno
+     * @param loc  the loc
+     * @return the boolean
+     */
+    protected abstract boolean dropNow(WorkflowAnnotation anno, Point loc);
 
-	protected abstract boolean dropNow(String processXML);
+    /**
+     * Drop now boolean.
+     *
+     * @param processXML the process xml
+     * @return the boolean
+     */
+    protected abstract boolean dropNow(String processXML);
 
-	protected abstract void markDropOver(Point dropPoint);
+    /**
+     * Mark drop over.
+     *
+     * @param dropPoint the drop point
+     */
+    protected abstract void markDropOver(Point dropPoint);
 
-	protected abstract boolean isDropLocationOk(List<Operator> operator, Point loc);
+    /**
+     * Is drop location ok boolean.
+     *
+     * @param operator the operator
+     * @param loc      the loc
+     * @return the boolean
+     */
+    protected abstract boolean isDropLocationOk(List<Operator> operator, Point loc);
 
-	protected abstract void dropEnds();
+    /**
+     * Drop ends.
+     */
+    protected abstract void dropEnds();
 
-	protected abstract Process getProcess();
+    /**
+     * Gets process.
+     *
+     * @return the process
+     */
+    protected abstract Process getProcess();
 
 	// Drop Support
 	@Override

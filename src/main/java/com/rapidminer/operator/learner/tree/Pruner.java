@@ -20,11 +20,16 @@ package com.rapidminer.operator.learner.tree;
 
 /**
  * The pruner for trees.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface Pruner {
 
-	public void prune(Tree node);
+    /**
+     * Prune.
+     *
+     * @param node the node
+     */
+    public void prune(Tree node);
 
 }

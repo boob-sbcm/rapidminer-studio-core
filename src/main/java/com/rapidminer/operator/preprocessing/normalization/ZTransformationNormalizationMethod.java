@@ -40,7 +40,7 @@ import java.util.HashMap;
 
 /**
  * The normalization method for the Z-Transformation
- * 
+ *
  * @author Sebastian Land
  */
 public class ZTransformationNormalizationMethod extends AbstractNormalizationMethod {

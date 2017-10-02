@@ -105,7 +105,12 @@ public abstract class AbstractSuggestionBoxValueCellEditor extends AbstractCellE
 		}
 	};
 
-	public AbstractSuggestionBoxValueCellEditor(final ParameterType type) {
+    /**
+     * Instantiates a new Abstract suggestion box value cell editor.
+     *
+     * @param type the type
+     */
+    public AbstractSuggestionBoxValueCellEditor(final ParameterType type) {
 		this.type = type;
 		this.model = new SuggestionComboBoxModel();
 		this.comboBox = new SuggestionComboBox(model);
@@ -125,31 +130,33 @@ public abstract class AbstractSuggestionBoxValueCellEditor extends AbstractCellE
 		container.add(comboBox, c);
 	}
 
-	/**
-	 * @return the parameter type of the suggestion box
-	 */
-	protected ParameterType getParameterType() {
+    /**
+     * Gets parameter type.
+     *
+     * @return the parameter type of the suggestion box
+     */
+    protected ParameterType getParameterType() {
 		return type;
 	}
 
-	/**
-	 * @return the combo box ui element displaying the selection
-	 */
-	protected SuggestionComboBox getSuggestionComboBox() {
+    /**
+     * Gets suggestion combo box.
+     *
+     * @return the combo box ui element displaying the selection
+     */
+    protected SuggestionComboBox getSuggestionComboBox() {
 		return comboBox;
 	}
 
-	/**
-	 * Classes extending the {@link AbstractSuggestionBoxValueCellEditor} have to provide
-	 * suggestions via this method. It is called whenever the combobox if opened.
-	 *
-	 * @param operator
-	 *            the operator which is being configured. <b>CAUTION</b>: Can be <code>null</code>
-	 *            if parameter type is used to e.g. configure {@link Configurable}s.
-	 * @param progressListener
-	 *            the progress listener to report the progress to
-	 */
-	public abstract List<Object> getSuggestions(Operator operator, ProgressListener progressListener);
+    /**
+     * Classes extending the {@link AbstractSuggestionBoxValueCellEditor} have to provide
+     * suggestions via this method. It is called whenever the combobox if opened.
+     *
+     * @param operator         the operator which is being configured. <b>CAUTION</b>: Can be <code>null</code>            if parameter type is used to e.g. configure {@link Configurable}s.
+     * @param progressListener the progress listener to report the progress to
+     * @return the suggestions
+     */
+    public abstract List<Object> getSuggestions(Operator operator, ProgressListener progressListener);
 
 	/**
 	 * @return the current value. If there is an operator, the operator is asked, otherwise the
@@ -195,7 +202,10 @@ public abstract class AbstractSuggestionBoxValueCellEditor extends AbstractCellE
 		this.operator = operator;
 	}
 
-	public class SuggestionComboBoxModelCellRenderer extends DefaultListCellRenderer {
+    /**
+     * The type Suggestion combo box model cell renderer.
+     */
+    public class SuggestionComboBoxModelCellRenderer extends DefaultListCellRenderer {
 
 		private static final long serialVersionUID = 1L;
 
@@ -215,13 +225,19 @@ public abstract class AbstractSuggestionBoxValueCellEditor extends AbstractCellE
 
 	}
 
-	class SuggestionComboBoxModel extends DefaultComboBoxModel<Object> {
+    /**
+     * The type Suggestion combo box model.
+     */
+    class SuggestionComboBoxModel extends DefaultComboBoxModel<Object> {
 
 		private static final long serialVersionUID = -2984664300141879731L;
 
 		private Object lock = new Object();
 
-		public void updateModel() {
+        /**
+         * Update model.
+         */
+        public void updateModel() {
 			fireEditingStopped();
 
 			final Object selected = getValue();
@@ -310,7 +326,10 @@ public abstract class AbstractSuggestionBoxValueCellEditor extends AbstractCellE
 		}
 	}
 
-	class SuggestionComboBox extends JComboBox<Object> {
+    /**
+     * The type Suggestion combo box.
+     */
+    class SuggestionComboBox extends JComboBox<Object> {
 
 		private static final long serialVersionUID = 4000279412600950101L;
 
@@ -359,11 +378,12 @@ public abstract class AbstractSuggestionBoxValueCellEditor extends AbstractCellE
 
 	}
 
-	/**
-	 * @param button
-	 *            adds a button the the right side of the ComboBox.
-	 */
-	protected void addConfigureButton(JButton button) {
+    /**
+     * Add configure button.
+     *
+     * @param button adds a button the the right side of the ComboBox.
+     */
+    protected void addConfigureButton(JButton button) {
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.BOTH;
 		c.weighty = 1;

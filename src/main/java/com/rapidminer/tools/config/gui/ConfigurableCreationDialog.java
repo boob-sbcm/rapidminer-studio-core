@@ -81,7 +81,6 @@ import com.rapidminer.tools.container.Pair;
  * This dialog can be used to create new {@link Configurable}s by specifying name and type.
  *
  * @author Marcel Michel, Sabrina Kirstein
- *
  */
 public class ConfigurableCreationDialog extends JDialog {
 
@@ -273,10 +272,16 @@ public class ConfigurableCreationDialog extends JDialog {
 		}
 	};
 
-	/**
-	 * Creates a new {@link ConfigurableCreationDialog} instance.
-	 */
-	public ConfigurableCreationDialog(ConfigurableDialog owner, ConfigurableController localController,
+    /**
+     * Creates a new {@link ConfigurableCreationDialog} instance.
+     *
+     * @param owner             the owner
+     * @param localController   the local controller
+     * @param remoteControllers the remote controllers
+     * @param source            the source
+     * @param preferredTypeId   the preferred type id
+     */
+    public ConfigurableCreationDialog(ConfigurableDialog owner, ConfigurableController localController,
 			Map<String, ConfigurableController> remoteControllers, RemoteRepository source, String preferredTypeId) {
 		super(owner);
 		this.owner = owner;

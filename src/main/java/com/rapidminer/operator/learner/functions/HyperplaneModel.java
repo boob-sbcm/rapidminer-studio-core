@@ -53,15 +53,35 @@ public class HyperplaneModel extends SimplePredictionModel {
 
 	private Kernel kernel;
 
-	public HyperplaneModel(ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Hyperplane model.
+     *
+     * @param exampleSet the example set
+     */
+    public HyperplaneModel(ExampleSet exampleSet) {
 		this(exampleSet, null, null);
 	}
 
-	public HyperplaneModel(ExampleSet exampleSet, String classNegative, String classPositive) {
+    /**
+     * Instantiates a new Hyperplane model.
+     *
+     * @param exampleSet    the example set
+     * @param classNegative the class negative
+     * @param classPositive the class positive
+     */
+    public HyperplaneModel(ExampleSet exampleSet, String classNegative, String classPositive) {
 		this(exampleSet, classNegative, classPositive, new DotKernel());
 	}
 
-	public HyperplaneModel(ExampleSet exampleSet, String classNegative, String classPositive, Kernel kernel) {
+    /**
+     * Instantiates a new Hyperplane model.
+     *
+     * @param exampleSet    the example set
+     * @param classNegative the class negative
+     * @param classPositive the class positive
+     * @param kernel        the kernel
+     */
+    public HyperplaneModel(ExampleSet exampleSet, String classNegative, String classPositive, Kernel kernel) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.EQUAL,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.coefficientNames = com.rapidminer.example.Tools.getRegularAttributeNames(exampleSet);
@@ -99,24 +119,50 @@ public class HyperplaneModel extends SimplePredictionModel {
 		}
 	}
 
-	public void init(double[] coefficients, double intercept) {
+    /**
+     * Init.
+     *
+     * @param coefficients the coefficients
+     * @param intercept    the intercept
+     */
+    public void init(double[] coefficients, double intercept) {
 		this.coefficients = coefficients;
 		this.intercept = intercept;
 	}
 
-	public double[] getCoefficients() {
+    /**
+     * Get coefficients double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getCoefficients() {
 		return coefficients;
 	}
 
-	public double getIntercept() {
+    /**
+     * Gets intercept.
+     *
+     * @return the intercept
+     */
+    public double getIntercept() {
 		return intercept;
 	}
 
-	public void setCoefficients(double[] coefficients) {
+    /**
+     * Sets coefficients.
+     *
+     * @param coefficients the coefficients
+     */
+    public void setCoefficients(double[] coefficients) {
 		this.coefficients = coefficients;
 	}
 
-	public void setIntercept(double intercept) {
+    /**
+     * Sets intercept.
+     *
+     * @param intercept the intercept
+     */
+    public void setIntercept(double intercept) {
 		this.intercept = intercept;
 	}
 
@@ -143,7 +189,12 @@ public class HyperplaneModel extends SimplePredictionModel {
 		return buffer.toString();
 	}
 
-	public DataTable createWeightsTable() {
+    /**
+     * Create weights table data table.
+     *
+     * @return the data table
+     */
+    public DataTable createWeightsTable() {
 		SimpleDataTable weightTable = new SimpleDataTable("Hyperplane Model Weights",
 				new String[] { "Attribute", "Weight" });
 		for (int j = 0; j < this.coefficientNames.length; j++) {

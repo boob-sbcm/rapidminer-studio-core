@@ -35,15 +35,21 @@ import java.util.List;
 
 
 /**
+ * The type Domain config manager data.
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class DomainConfigManagerData implements DimensionConfigListener {
 
 	private PlotInstance plotInstance;
 	private DimensionConfigChangeEvent lastProcessedEvent = null;
 
-	public DomainConfigManagerData(PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Domain config manager data.
+     *
+     * @param plotInstance the plot instance
+     */
+    public DomainConfigManagerData(PlotInstance plotInstance) {
 		if (plotInstance == null) {
 			throw new IllegalArgumentException("null not allowed");
 		}
@@ -52,7 +58,10 @@ public class DomainConfigManagerData implements DimensionConfigListener {
 		applySorting();
 	}
 
-	public void applySorting() {
+    /**
+     * Apply sorting.
+     */
+    public void applySorting() {
 		SortedDataTableView dataTable = plotInstance.getPlotData().getSortedDataTableWithoutImplicitUpdate();
 		DomainConfigManager domainConfigManager = plotInstance.getCurrentPlotConfigurationClone().getDomainConfigManager();
 		switch (domainConfigManager.getSortingMode()) {
@@ -82,7 +91,12 @@ public class DomainConfigManagerData implements DimensionConfigListener {
 		}
 	}
 
-	public List<PlotConfigurationError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<PlotConfigurationError> getErrors() {
 		// TODO check all preconditions
 
 		LinkedList<PlotConfigurationError> errorList = new LinkedList<PlotConfigurationError>();
@@ -96,13 +110,23 @@ public class DomainConfigManagerData implements DimensionConfigListener {
 		return errorList;
 	}
 
-	public List<PlotConfigurationError> getWarnings() {
+    /**
+     * Gets warnings.
+     *
+     * @return the warnings
+     */
+    public List<PlotConfigurationError> getWarnings() {
 		// TODO implement me
 		List<PlotConfigurationError> warnings = new LinkedList<PlotConfigurationError>();
 		return warnings;
 	}
 
-	public NumericalValueRange getEffectiveRange() {
+    /**
+     * Gets effective range.
+     *
+     * @return the effective range
+     */
+    public NumericalValueRange getEffectiveRange() {
 		DomainConfigManager domainConfigManager = plotInstance.getCurrentPlotConfigurationClone().getDomainConfigManager();
 		DefaultDimensionConfig domainConfig = domainConfigManager.getDomainConfig(domainConfigManager.isGrouping());
 		DimensionConfigData domainData = plotInstance.getPlotData().getDimensionConfigData(domainConfig);

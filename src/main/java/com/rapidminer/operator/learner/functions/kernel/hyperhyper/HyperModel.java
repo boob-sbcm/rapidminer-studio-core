@@ -55,7 +55,16 @@ public class HyperModel extends PredictionModel {
 
 	private double[] w;
 
-	public HyperModel(ExampleSet trainingExampleSet, double bias, double[] w, double[] x1, double[] x2) {
+    /**
+     * Instantiates a new Hyper model.
+     *
+     * @param trainingExampleSet the training example set
+     * @param bias               the bias
+     * @param w                  the w
+     * @param x1                 the x 1
+     * @param x2                 the x 2
+     */
+    public HyperModel(ExampleSet trainingExampleSet, double bias, double[] w, double[] x1, double[] x2) {
 		super(trainingExampleSet, ExampleSetUtilities.SetsCompareOption.EQUAL,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.coefficientNames = com.rapidminer.example.Tools.getRegularAttributeNames(trainingExampleSet);
@@ -65,7 +74,12 @@ public class HyperModel extends PredictionModel {
 		this.x2 = x2;
 	}
 
-	public int getNumberOfAttributes() {
+    /**
+     * Gets number of attributes.
+     *
+     * @return the number of attributes
+     */
+    public int getNumberOfAttributes() {
 		return x1.length;
 	}
 
@@ -156,7 +170,12 @@ public class HyperModel extends PredictionModel {
 		return weightTable;
 	}
 
-	public DataTable getWeightTable() {
+    /**
+     * Gets weight table.
+     *
+     * @return the weight table
+     */
+    public DataTable getWeightTable() {
 		return createWeightsTable();
 	}
 }

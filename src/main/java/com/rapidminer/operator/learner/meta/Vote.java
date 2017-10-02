@@ -32,12 +32,17 @@ import com.rapidminer.operator.learner.lazy.AttributeBasedVotingModel;
  * This class uses n+1 inner learners and generates n different models by using the last n learners.
  * The predictions of these n models are taken to create n new features for the example set, which
  * is finally used to serve as an input of the first inner learner.
- * 
+ *
  * @author Ingo Mierswa, Helge Homburg
  */
 public class Vote extends AbstractStacking {
 
-	public Vote(OperatorDescription description) {
+    /**
+     * Instantiates a new Vote.
+     *
+     * @param description the description
+     */
+    public Vote(OperatorDescription description) {
 		super(description, "Base Learner");
 	}
 

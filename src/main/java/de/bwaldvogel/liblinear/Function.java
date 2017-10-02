@@ -26,14 +26,40 @@
  */
 package de.bwaldvogel.liblinear;
 
+/**
+ * The interface Function.
+ */
 // origin: tron.h
 interface Function {
 
-	double fun(double[] w);
+    /**
+     * Fun double.
+     *
+     * @param w the w
+     * @return the double
+     */
+    double fun(double[] w);
 
-	void grad(double[] w, double[] g);
+    /**
+     * Grad.
+     *
+     * @param w the w
+     * @param g the g
+     */
+    void grad(double[] w, double[] g);
 
-	void Hv(double[] s, double[] Hs);
+    /**
+     * Hv.
+     *
+     * @param s  the s
+     * @param Hs the hs
+     */
+    void Hv(double[] s, double[] Hs);
 
-	int get_nr_variable();
+    /**
+     * Gets nr variable.
+     *
+     * @return the nr variable
+     */
+    int get_nr_variable();
 }

@@ -24,27 +24,38 @@ import java.io.OutputStream;
 
 /**
  * A byte blob with no specified contents.
- * 
+ *
  * @author Simon Fischer
- * */
+ */
 public interface BlobEntry extends DataEntry {
 
-	public static final String TYPE_NAME = "blob";
+    /**
+     * The constant TYPE_NAME.
+     */
+    public static final String TYPE_NAME = "blob";
 
-	/**
-	 * Opens a stream to read from this entry.
-	 * 
-	 * @throws RepositoryException
-	 */
-	public InputStream openInputStream() throws RepositoryException;
+    /**
+     * Opens a stream to read from this entry.
+     *
+     * @return the input stream
+     * @throws RepositoryException the repository exception
+     */
+    public InputStream openInputStream() throws RepositoryException;
 
-	/**
-	 * Opens a stream to this blob, setting its mime type to the given value.
-	 * 
-	 * @return TODO
-	 */
-	public OutputStream openOutputStream(String mimeType) throws RepositoryException;
+    /**
+     * Opens a stream to this blob, setting its mime type to the given value.
+     *
+     * @param mimeType the mime type
+     * @return TODO output stream
+     * @throws RepositoryException the repository exception
+     */
+    public OutputStream openOutputStream(String mimeType) throws RepositoryException;
 
-	public String getMimeType();
+    /**
+     * Gets mime type.
+     *
+     * @return the mime type
+     */
+    public String getMimeType();
 
 }

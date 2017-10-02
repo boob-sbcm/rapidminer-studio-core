@@ -24,19 +24,26 @@ import org.jfree.data.Range;
 
 /**
  * Wrapper class for {@link NumberAxis} that overrides the resizing behaviour.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class CustomNumberAxis extends NumberAxis implements LinkAndBrushAxis {
 
 	private static final long serialVersionUID = 1L;
 
-	public CustomNumberAxis() {
+    /**
+     * Instantiates a new Custom number axis.
+     */
+    public CustomNumberAxis() {
 		super();
 	}
 
-	public CustomNumberAxis(String label) {
+    /**
+     * Instantiates a new Custom number axis.
+     *
+     * @param label the label
+     */
+    public CustomNumberAxis(String label) {
 		super(label);
 	}
 

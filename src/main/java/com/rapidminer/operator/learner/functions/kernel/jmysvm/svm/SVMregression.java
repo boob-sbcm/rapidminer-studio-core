@@ -27,14 +27,27 @@ import com.rapidminer.tools.RandomGenerator;
 
 /**
  * Class for regression SVM
- * 
+ *
  * @author Stefan Rueping, Ingo Mierswa
  */
 public class SVMregression extends SVM {
 
-	public SVMregression() {}
+    /**
+     * Instantiates a new Sv mregression.
+     */
+    public SVMregression() {}
 
-	public SVMregression(Operator paramOperator, Kernel kernel, SVMExamples sVMExamples,
+    /**
+     * Instantiates a new Sv mregression.
+     *
+     * @param paramOperator      the param operator
+     * @param kernel             the kernel
+     * @param sVMExamples        the s vm examples
+     * @param rapidMinerExamples the rapid miner examples
+     * @param randomGenerator    the random generator
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public SVMregression(Operator paramOperator, Kernel kernel, SVMExamples sVMExamples,
 			com.rapidminer.example.ExampleSet rapidMinerExamples, RandomGenerator randomGenerator)
 			throws UndefinedParameterError {
 		super(paramOperator, kernel, sVMExamples, rapidMinerExamples, randomGenerator);

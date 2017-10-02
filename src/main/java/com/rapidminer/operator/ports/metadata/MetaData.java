@@ -41,11 +41,11 @@ import java.util.Map;
  * Meta data about an {@link IOObject}. Includes the specific class of the IOObject plus a map of
  * key-value pairs specifying more detailed properties. Additionally, may contain information about
  * which {@link OutputPort} originally generated this meta data. <br/>
- * 
+ * <p>
  * Subclasses representing the meta data for a class T (in particular those defined by plugins),
  * should implement a constructor accepting a T and a boolean and be registered with
  * {@link MetaDataFactory#registerIOObjectMetaData(Class, Class)}.
- * 
+ *
  * @author Simon Fischer
  */
 public class MetaData implements Serializable {
@@ -62,17 +62,20 @@ public class MetaData implements Serializable {
 
 	private Annotations annotations = new Annotations();
 
-	public MetaData() {
+    /**
+     * Instantiates a new Meta data.
+     */
+    public MetaData() {
 		this(IOObject.class);
 	}
 
-	/**
-	 * Restores an empty history.
-	 * 
-	 * @throws ClassNotFoundException
-	 * @throws IOException
-	 */
-	public Object readResolve() throws ObjectStreamException {
+    /**
+     * Restores an empty history.
+     *
+     * @return the object
+     * @throws ObjectStreamException the object stream exception
+     */
+    public Object readResolve() throws ObjectStreamException {
 		// in.defaultReadObject();
 		if (generationHistory == null) {
 			generationHistory = new LinkedList<OutputPort>();
@@ -83,28 +86,61 @@ public class MetaData implements Serializable {
 		return this;
 	}
 
-	public MetaData(Class<? extends IOObject> dataClass) {
+    /**
+     * Instantiates a new Meta data.
+     *
+     * @param dataClass the data class
+     */
+    public MetaData(Class<? extends IOObject> dataClass) {
 		this(dataClass, Collections.<String, Object> emptyMap());
 	}
 
-	public MetaData(Class<? extends IOObject> dataClass, String key, Object value) {
+    /**
+     * Instantiates a new Meta data.
+     *
+     * @param dataClass the data class
+     * @param key       the key
+     * @param value     the value
+     */
+    public MetaData(Class<? extends IOObject> dataClass, String key, Object value) {
 		this(dataClass, Collections.singletonMap(key, value));
 	}
 
-	public MetaData(Class<? extends IOObject> dataClass, Map<String, Object> keyValueMap) {
+    /**
+     * Instantiates a new Meta data.
+     *
+     * @param dataClass   the data class
+     * @param keyValueMap the key value map
+     */
+    public MetaData(Class<? extends IOObject> dataClass, Map<String, Object> keyValueMap) {
 		this.dataClass = dataClass;
 		this.keyValueMap.putAll(keyValueMap);
 	}
 
-	public void addToHistory(OutputPort generator) {
+    /**
+     * Add to history.
+     *
+     * @param generator the generator
+     */
+    public void addToHistory(OutputPort generator) {
 		this.generationHistory.addFirst(generator);
 	}
 
-	public List<OutputPort> getGenerationHistory() {
+    /**
+     * Gets generation history.
+     *
+     * @return the generation history
+     */
+    public List<OutputPort> getGenerationHistory() {
 		return Collections.unmodifiableList(generationHistory);
 	}
 
-	public String getGenerationHistoryAsHTML() {
+    /**
+     * Gets generation history as html.
+     *
+     * @return the generation history as html
+     */
+    public String getGenerationHistoryAsHTML() {
 		boolean first = true;
 		StringBuilder b = new StringBuilder();
 		if (generationHistory != null) {
@@ -123,15 +159,33 @@ public class MetaData implements Serializable {
 		return b.toString();
 	}
 
-	public Class<? extends IOObject> getObjectClass() {
+    /**
+     * Gets object class.
+     *
+     * @return the object class
+     */
+    public Class<? extends IOObject> getObjectClass() {
 		return dataClass;
 	}
 
-	public Object getMetaData(String key) {
+    /**
+     * Gets meta data.
+     *
+     * @param key the key
+     * @return the meta data
+     */
+    public Object getMetaData(String key) {
 		return keyValueMap.get(key);
 	}
 
-	public Object putMetaData(String key, Object value) {
+    /**
+     * Put meta data object.
+     *
+     * @param key   the key
+     * @param value the value
+     * @return the object
+     */
+    public Object putMetaData(String key, Object value) {
 		return keyValueMap.put(key, value);
 	}
 
@@ -164,7 +218,12 @@ public class MetaData implements Serializable {
 		return getObjectClass().getSimpleName() + (keyValueMap.isEmpty() ? "" : (" hints: " + keyValueMap.toString()));
 	}
 
-	public String getDescription() {
+    /**
+     * Gets description.
+     *
+     * @return the description
+     */
+    public String getDescription() {
 		String name = RendererService.getName(dataClass);
 		if (name == null) {
 			name = dataClass.getSimpleName();
@@ -184,24 +243,28 @@ public class MetaData implements Serializable {
 		return desc.toString();
 	}
 
-	/**
-	 * Returns true if isData is compatible with this meta data, where <code>this</code> represents
-	 * desired meta data and isData represents meta data that was actually delivered.
-	 */
-	public boolean isCompatible(MetaData isData, CompatibilityLevel level) {
+    /**
+     * Returns true if isData is compatible with this meta data, where <code>this</code> represents
+     * desired meta data and isData represents meta data that was actually delivered.
+     *
+     * @param isData the is data
+     * @param level  the level
+     * @return the boolean
+     */
+    public boolean isCompatible(MetaData isData, CompatibilityLevel level) {
 		return getErrorsForInput(null, isData, level).isEmpty();
 	}
 
-	/**
-	 * Returns a (possibly empty) list of errors specifying in what regard <code>isData</code>
-	 * differs from <code>this</code> meta data specification.
-	 * 
-	 * @param inputPort
-	 *            required for generating errors
-	 * @param isData
-	 *            the data received by the port
-	 */
-	public Collection<MetaDataError> getErrorsForInput(InputPort inputPort, MetaData isData, CompatibilityLevel level) {
+    /**
+     * Returns a (possibly empty) list of errors specifying in what regard <code>isData</code>
+     * differs from <code>this</code> meta data specification.
+     *
+     * @param inputPort required for generating errors
+     * @param isData    the data received by the port
+     * @param level     the level
+     * @return the errors for input
+     */
+    public Collection<MetaDataError> getErrorsForInput(InputPort inputPort, MetaData isData, CompatibilityLevel level) {
 		if (!this.dataClass.isAssignableFrom(isData.dataClass)) {
 			return Collections.<MetaDataError> singletonList(new InputMissingMetaDataError(inputPort, this.getObjectClass(),
 					isData.getObjectClass()));
@@ -219,24 +282,44 @@ public class MetaData implements Serializable {
 		return errors;
 	}
 
-	/**
-	 * This will return the meta data description of the given IOObject. If the shortened flag is
-	 * true, the meta data will be incomplete to avoid to generate too much data if this is
-	 * supported by the actual meta data implementation.
-	 */
-	public static MetaData forIOObject(IOObject ioo, boolean shortened) {
+    /**
+     * This will return the meta data description of the given IOObject. If the shortened flag is
+     * true, the meta data will be incomplete to avoid to generate too much data if this is
+     * supported by the actual meta data implementation.
+     *
+     * @param ioo       the ioo
+     * @param shortened the shortened
+     * @return the meta data
+     */
+    public static MetaData forIOObject(IOObject ioo, boolean shortened) {
 		return MetaDataFactory.getInstance().createMetaDataforIOObject(ioo, shortened);
 	}
 
-	public static MetaData forIOObject(IOObject ioo) {
+    /**
+     * For io object meta data.
+     *
+     * @param ioo the ioo
+     * @return the meta data
+     */
+    public static MetaData forIOObject(IOObject ioo) {
 		return forIOObject(ioo, false);
 	}
 
-	public Annotations getAnnotations() {
+    /**
+     * Gets annotations.
+     *
+     * @return the annotations
+     */
+    public Annotations getAnnotations() {
 		return annotations;
 	}
 
-	public void setAnnotations(Annotations annotations) {
+    /**
+     * Sets annotations.
+     *
+     * @param annotations the annotations
+     */
+    public void setAnnotations(Annotations annotations) {
 		this.annotations = annotations;
 	}
 }

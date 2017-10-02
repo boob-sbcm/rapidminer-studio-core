@@ -25,19 +25,21 @@ import com.rapidminer.operator.Operator;
 
 /**
  * Rule that defines how operators are imported from earlier RapidMiner versions.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public interface ParseRule {
 
-	/**
-	 * Applies the rule and possibly returns a message describing what has been modified. This takes
-	 * only place if the rule applies as well to the operator as to the version of the process we
-	 * are importing or the given processVersion is null. Null is returned if the rule did not
-	 * apply.
-	 * 
-	 * @param importer
-	 */
-	public String apply(Operator operator, VersionNumber processVersion, XMLImporter importer);
+    /**
+     * Applies the rule and possibly returns a message describing what has been modified. This takes
+     * only place if the rule applies as well to the operator as to the version of the process we
+     * are importing or the given processVersion is null. Null is returned if the rule did not
+     * apply.
+     *
+     * @param operator       the operator
+     * @param processVersion the process version
+     * @param importer       the importer
+     * @return the string
+     */
+    public String apply(Operator operator, VersionNumber processVersion, XMLImporter importer);
 }

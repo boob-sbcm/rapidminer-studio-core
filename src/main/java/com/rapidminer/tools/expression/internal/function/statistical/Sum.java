@@ -26,18 +26,16 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryDouble
 
 
 /**
- *
  * A {@link Function} for sum.
  *
  * @author David Arnu
- *
  */
 public class Sum extends AbstractArbitraryDoubleInputFunction {
 
-	/**
-	 * Constructs an sum function.
-	 */
-	public Sum() {
+    /**
+     * Constructs an sum function.
+     */
+    public Sum() {
 		super("statistical.sum", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, Ontology.NUMERICAL);
 
 	}

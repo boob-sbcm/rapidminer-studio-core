@@ -33,14 +33,22 @@ import java.io.OutputStream;
 
 /**
  * Reference on BLOB entries in the repository.
- * 
+ *
  * @author Simon Fischer
  */
 public class SimpleBlobEntry extends SimpleDataEntry implements BlobEntry {
 
 	private static final String BLOB_SUFFIX = ".blob";
 
-	SimpleBlobEntry(String name, SimpleFolder containingFolder, LocalRepository localRepository) throws RepositoryException {
+    /**
+     * Instantiates a new Simple blob entry.
+     *
+     * @param name             the name
+     * @param containingFolder the containing folder
+     * @param localRepository  the local repository
+     * @throws RepositoryException the repository exception
+     */
+    SimpleBlobEntry(String name, SimpleFolder containingFolder, LocalRepository localRepository) throws RepositoryException {
 		super(name, containingFolder, localRepository);
 		// create physical file here, otherwise it will not really exist and for example cause
 		// errors in the Binary Import Wizard

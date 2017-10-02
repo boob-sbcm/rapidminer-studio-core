@@ -26,6 +26,9 @@
  */
 package libsvm;
 
+/**
+ * The type Kernel.
+ */
 public abstract class Kernel extends QMatrix {
 
 	private svm_node[][] x;
@@ -76,7 +79,14 @@ public abstract class Kernel extends QMatrix {
 		return 1.0 - 2.0 / (e * e + 1);
 	}
 
-	public double kernel_function(int i, int j) {
+    /**
+     * Kernel function double.
+     *
+     * @param i the
+     * @param j the j
+     * @return the double
+     */
+    public double kernel_function(int i, int j) {
 		switch (kernel_type) {
 			case svm_parameter.LINEAR:
 				return dot(x[i], x[j]);
@@ -93,7 +103,14 @@ public abstract class Kernel extends QMatrix {
 		}
 	}
 
-	Kernel(int l, svm_node[][] x_, svm_parameter param) {
+    /**
+     * Instantiates a new Kernel.
+     *
+     * @param l     the l
+     * @param x_    the x
+     * @param param the param
+     */
+    Kernel(int l, svm_node[][] x_, svm_parameter param) {
 		this.kernel_type = param.kernel_type;
 		this.degree = param.degree;
 		this.gamma = param.gamma;
@@ -111,7 +128,14 @@ public abstract class Kernel extends QMatrix {
 		}
 	}
 
-	static double dot(svm_node[] x, svm_node[] y) {
+    /**
+     * Dot double.
+     *
+     * @param x the x
+     * @param y the y
+     * @return the double
+     */
+    static double dot(svm_node[] x, svm_node[] y) {
 		double sum = 0;
 		int xlen = x.length;
 		int ylen = y.length;
@@ -131,7 +155,15 @@ public abstract class Kernel extends QMatrix {
 		return sum;
 	}
 
-	static double k_function(svm_node[] x, svm_node[] y, svm_parameter param) {
+    /**
+     * K function double.
+     *
+     * @param x     the x
+     * @param y     the y
+     * @param param the param
+     * @return the double
+     */
+    static double k_function(svm_node[] x, svm_node[] y, svm_parameter param) {
 		switch (param.kernel_type) {
 			case svm_parameter.LINEAR:
 				return dot(x, y);

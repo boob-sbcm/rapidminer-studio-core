@@ -46,89 +46,136 @@ public abstract class Kernel implements Serializable {
 
 	private static final long serialVersionUID = 581189377433816413L;
 
-	/** The parameter name for &quot;The SVM kernel type&quot; */
-	public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
+    /**
+     * The parameter name for &quot;The SVM kernel type&quot;
+     */
+    public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
 
-	/** The parameter name for &quot;The SVM kernel parameter gamma (RBF, anova).&quot; */
-	public static final String PARAMETER_KERNEL_GAMMA = "kernel_gamma";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter gamma (RBF, anova).&quot;
+     */
+    public static final String PARAMETER_KERNEL_GAMMA = "kernel_gamma";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter sigma1 (Epanechnikov, Gaussian
-	 * Combination, Multiquadric).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_SIGMA1 = "kernel_sigma1";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma1 (Epanechnikov, Gaussian
+     * Combination, Multiquadric).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA1 = "kernel_sigma1";
 
-	/** The parameter name for &quot;The SVM kernel parameter sigma2 (Gaussian Combination).&quot; */
-	public static final String PARAMETER_KERNEL_SIGMA2 = "kernel_sigma2";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma2 (Gaussian Combination).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA2 = "kernel_sigma2";
 
-	/** The parameter name for &quot;The SVM kernel parameter sigma3 (Gaussian Combination).&quot; */
-	public static final String PARAMETER_KERNEL_SIGMA3 = "kernel_sigma3";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma3 (Gaussian Combination).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA3 = "kernel_sigma3";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter degree (polynomial, anova,
-	 * Epanechnikov).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_DEGREE = "kernel_degree";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter degree (polynomial, anova,
+     * Epanechnikov).&quot;
+     */
+    public static final String PARAMETER_KERNEL_DEGREE = "kernel_degree";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter shift (polynomial, Multiquadric).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_SHIFT = "kernel_shift";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter shift (polynomial, Multiquadric).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SHIFT = "kernel_shift";
 
-	/** The parameter name for &quot;The SVM kernel parameter a (neural).&quot; */
-	public static final String PARAMETER_KERNEL_A = "kernel_a";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter a (neural).&quot;
+     */
+    public static final String PARAMETER_KERNEL_A = "kernel_a";
 
-	/** The parameter name for &quot;The SVM kernel parameter b (neural).&quot; */
-	public static final String PARAMETER_KERNEL_B = "kernel_b";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter b (neural).&quot;
+     */
+    public static final String PARAMETER_KERNEL_B = "kernel_b";
 
-	/** The kernels which can be used for the EvoSVM. */
-	public static final String[] KERNEL_TYPES = { "dot", "radial", "polynomial", "sigmoid", "anova", "epanechnikov",
+    /**
+     * The kernels which can be used for the EvoSVM.
+     */
+    public static final String[] KERNEL_TYPES = { "dot", "radial", "polynomial", "sigmoid", "anova", "epanechnikov",
 			"gausian_combination", "multiquadric" };
 
-	/** Indicates a linear kernel. */
-	public static final int KERNEL_DOT = 0;
+    /**
+     * Indicates a linear kernel.
+     */
+    public static final int KERNEL_DOT = 0;
 
-	/** Indicates a rbf kernel. */
-	public static final int KERNEL_RADIAL = 1;
+    /**
+     * Indicates a rbf kernel.
+     */
+    public static final int KERNEL_RADIAL = 1;
 
-	/** Indicates a polynomial kernel. */
-	public static final int KERNEL_POLYNOMIAL = 2;
+    /**
+     * Indicates a polynomial kernel.
+     */
+    public static final int KERNEL_POLYNOMIAL = 2;
 
-	/** Indicates a sigmoid kernel. */
-	public static final int KERNEL_SIGMOID = 3;
+    /**
+     * Indicates a sigmoid kernel.
+     */
+    public static final int KERNEL_SIGMOID = 3;
 
-	/** Indicates an anova kernel. */
-	public static final int KERNEL_ANOVA = 4;
+    /**
+     * Indicates an anova kernel.
+     */
+    public static final int KERNEL_ANOVA = 4;
 
-	/** Indicates a Epanechnikov kernel. */
-	public static final int KERNEL_EPANECHNIKOV = 5;
+    /**
+     * Indicates a Epanechnikov kernel.
+     */
+    public static final int KERNEL_EPANECHNIKOV = 5;
 
-	/** Indicates a Gaussian combination kernel. */
-	public static final int KERNEL_GAUSSIAN_COMBINATION = 6;
+    /**
+     * Indicates a Gaussian combination kernel.
+     */
+    public static final int KERNEL_GAUSSIAN_COMBINATION = 6;
 
-	/** Indicates a multiquadric kernel. */
-	public static final int KERNEL_MULTIQUADRIC = 7;
+    /**
+     * Indicates a multiquadric kernel.
+     */
+    public static final int KERNEL_MULTIQUADRIC = 7;
 
 	/** The complete distance matrix for this kernel and a given example set. */
 	private transient KernelCache cache;
 
 	private ExampleSet exampleSet;
 
-	/**
-	 * Must return one out of KERNEL_DOT, KERNEL_RADIAL, KERNEL_POLYNOMIAL, KERNEL_SIGMOID,
-	 * KERNEL_ANOVA, KERNEL_EPANECHNIKOV, KERNEL_GAUSSIAN_COMBINATION, or KERNEL_MULTIQUADRIC.
-	 */
-	public abstract int getType();
+    /**
+     * Must return one out of KERNEL_DOT, KERNEL_RADIAL, KERNEL_POLYNOMIAL, KERNEL_SIGMOID,
+     * KERNEL_ANOVA, KERNEL_EPANECHNIKOV, KERNEL_GAUSSIAN_COMBINATION, or KERNEL_MULTIQUADRIC.
+     *
+     * @return the type
+     */
+    public abstract int getType();
 
-	/** Subclasses must implement this method. */
-	public abstract double calculateDistance(double[] x1, double[] x2);
+    /**
+     * Subclasses must implement this method.  @param x1 the x 1
+     *
+     * @param x1 the x 1
+     * @param x2 the x 2
+     * @return the double
+     */
+    public abstract double calculateDistance(double[] x1, double[] x2);
 
-	public abstract String getDistanceFormula(double[] x, String[] attributeNames);
+    /**
+     * Gets distance formula.
+     *
+     * @param x              the x
+     * @param attributeNames the attribute names
+     * @return the distance formula
+     */
+    public abstract String getDistanceFormula(double[] x, String[] attributeNames);
 
-	/**
-	 * Calculates all distances and store them in a matrix to speed up optimization.
-	 */
-	public void init(ExampleSet exampleSet) {
+    /**
+     * Calculates all distances and store them in a matrix to speed up optimization.
+     *
+     * @param exampleSet the example set
+     */
+    public void init(ExampleSet exampleSet) {
 		this.exampleSet = exampleSet;
 		int exampleSetSize = exampleSet.size();
 		if (exampleSetSize < 8000) {
@@ -138,8 +185,14 @@ public abstract class Kernel implements Serializable {
 		}
 	}
 
-	/** Returns the distance between the examples with the given indices. */
-	public double getDistance(int x1, int x2) {
+    /**
+     * Returns the distance between the examples with the given indices.  @param x1 the x 1
+     *
+     * @param x1 the x 1
+     * @param x2 the x 2
+     * @return the distance
+     */
+    public double getDistance(int x1, int x2) {
 		double result = cache.get(x1, x2);
 		if (Double.isNaN(result)) {
 			result = calculateDistance(getAttributeValues(x1), getAttributeValues(x2));
@@ -148,7 +201,13 @@ public abstract class Kernel implements Serializable {
 		return result;
 	}
 
-	public double[] getAttributeValues(int i) {
+    /**
+     * Get attribute values double [ ].
+     *
+     * @param i the
+     * @return the double [ ]
+     */
+    public double[] getAttributeValues(int i) {
 		Example example = this.exampleSet.getExample(i);
 		double[] values = new double[this.exampleSet.getAttributes().size()];
 		int x = 0;
@@ -158,8 +217,14 @@ public abstract class Kernel implements Serializable {
 		return values;
 	}
 
-	/** Calculates the inner product of the given vectors. */
-	public double innerProduct(double[] x1, double[] x2) {
+    /**
+     * Calculates the inner product of the given vectors.  @param x1 the x 1
+     *
+     * @param x1 the x 1
+     * @param x2 the x 2
+     * @return the double
+     */
+    public double innerProduct(double[] x1, double[] x2) {
 		double result = 0.0d;
 		for (int i = 0; i < x1.length; i++) {
 			result += x1[i] * x2[i];
@@ -167,8 +232,14 @@ public abstract class Kernel implements Serializable {
 		return result;
 	}
 
-	/** Calculates the L2-norm, i.e. ||x-y||^2. */
-	public double norm2(double[] x1, double[] x2) {
+    /**
+     * Calculates the L2-norm, i.e. ||x-y||^2.  @param x1 the x 1
+     *
+     * @param x1 the x 1
+     * @param x2 the x 2
+     * @return the double
+     */
+    public double norm2(double[] x1, double[] x2) {
 		double result = 0;
 		for (int i = 0; i < x1.length; i++) {
 			double factor = x1[i] - x2[i];
@@ -177,8 +248,14 @@ public abstract class Kernel implements Serializable {
 		return result;
 	}
 
-	/** Calculates w*x from the given support vectors using this kernel function. */
-	public double getSum(Collection<SupportVector> supportVectors, double[] currentX) {
+    /**
+     * Calculates w*x from the given support vectors using this kernel function.  @param supportVectors the support vectors
+     *
+     * @param supportVectors the support vectors
+     * @param currentX       the current x
+     * @return the sum
+     */
+    public double getSum(Collection<SupportVector> supportVectors, double[] currentX) {
 		double sum = 0;
 		for (SupportVector sv : supportVectors) {
 			sum += sv.getY() * sv.getAlpha() * calculateDistance(sv.getX(), currentX);
@@ -186,7 +263,14 @@ public abstract class Kernel implements Serializable {
 		return sum;
 	}
 
-	public static Kernel createKernel(ParameterHandler handler) throws UndefinedParameterError {
+    /**
+     * Create kernel kernel.
+     *
+     * @param handler the handler
+     * @return the kernel
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public static Kernel createKernel(ParameterHandler handler) throws UndefinedParameterError {
 		int kernelType = handler.getParameterAsInt(PARAMETER_KERNEL_TYPE);
 		if (kernelType == KERNEL_DOT) {
 			return new DotKernel();
@@ -230,7 +314,13 @@ public abstract class Kernel implements Serializable {
 		}
 	}
 
-	public static Collection<ParameterType> getParameters(Operator parameterHandler) {
+    /**
+     * Gets parameters.
+     *
+     * @param parameterHandler the parameter handler
+     * @return the parameters
+     */
+    public static Collection<ParameterType> getParameters(Operator parameterHandler) {
 		Collection<ParameterType> types = new LinkedList<ParameterType>();
 		ParameterType type = new ParameterTypeCategory(PARAMETER_KERNEL_TYPE, "The kernel type", Kernel.KERNEL_TYPES,
 				Kernel.KERNEL_RADIAL);

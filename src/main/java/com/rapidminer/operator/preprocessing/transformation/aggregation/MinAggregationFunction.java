@@ -25,19 +25,39 @@ import com.rapidminer.tools.Ontology;
 /**
  * This class implements the Min Aggregation function. This will calculate the minimum of a source
  * attribute for each group.
- * 
+ *
  * @author Sebastian Land
  */
 public class MinAggregationFunction extends NumericalAggregationFunction {
 
-	public static final String FUNCTION_MIN = "minimum";
+    /**
+     * The constant FUNCTION_MIN.
+     */
+    public static final String FUNCTION_MIN = "minimum";
 
-	public MinAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
+    /**
+     * Instantiates a new Min aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     */
+    public MinAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, FUNCTION_MIN, FUNCTION_SEPARATOR_OPEN,
 				FUNCTION_SEPARATOR_CLOSE);
 	}
 
-	public MinAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
+    /**
+     * Instantiates a new Min aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public MinAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
 			String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, separatorOpen, separatorClose);
 	}

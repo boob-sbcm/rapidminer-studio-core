@@ -39,7 +39,6 @@ import com.rapidminer.tools.SystemInfoUtilities.OperatingSystem;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public final class AnnotationDrawUtils {
 
@@ -58,8 +57,10 @@ public final class AnnotationDrawUtils {
 	/** divs are forbidden because we use them to style the annotation globally */
 	private static final String ANNOTATION_HTML_FORMATTING_MISC_DIV_END = "</div>";
 
-	/** the signal we fake everytime the user enters a newline */
-	public static final String ANNOTATION_HTML_NEWLINE_SIGNAL = "\r";
+    /**
+     * the signal we fake everytime the user enters a newline
+     */
+    public static final String ANNOTATION_HTML_NEWLINE_SIGNAL = "\r";
 
 	/**
 	 * Private constructor which throws if called.
@@ -68,30 +69,27 @@ public final class AnnotationDrawUtils {
 		throw new UnsupportedOperationException("Static utility class");
 	}
 
-	/**
-	 * Creates a HTML document which applies the style information from the given annotation.
-	 *
-	 * @param annotation
-	 *            the annotation for which to create the full HTML document
-	 * @return the HTML document as a string
-	 */
-	public static String createStyledCommentString(final WorkflowAnnotation annotation) {
+    /**
+     * Creates a HTML document which applies the style information from the given annotation.
+     *
+     * @param annotation the annotation for which to create the full HTML document
+     * @return the HTML document as a string
+     */
+    public static String createStyledCommentString(final WorkflowAnnotation annotation) {
 		if (annotation == null) {
 			throw new IllegalArgumentException("annotation must not be null!");
 		}
 		return createStyledCommentString(annotation.getComment(), annotation.getStyle());
 	}
 
-	/**
-	 * Creates a HTML document which applies the style information from the given annotation.
-	 *
-	 * @param comment
-	 *            the comment for which to create the full HTML document
-	 * @param style
-	 *            the style which should be used to style the comment
-	 * @return the HTML document as a string
-	 */
-	public static String createStyledCommentString(final String comment, final AnnotationStyle style) {
+    /**
+     * Creates a HTML document which applies the style information from the given annotation.
+     *
+     * @param comment the comment for which to create the full HTML document
+     * @param style   the style which should be used to style the comment
+     * @return the HTML document as a string
+     */
+    public static String createStyledCommentString(final String comment, final AnnotationStyle style) {
 		if (comment == null) {
 			throw new IllegalArgumentException("comment must not be null!");
 		}
@@ -101,19 +99,18 @@ public final class AnnotationDrawUtils {
 		return String.format(ANNOTATION_HTML_FORMAT, style.getPadding(), style.getAnnotationAlignment().getCSS(), comment);
 	}
 
-	/**
-	 * This method removes styling information from the HTML comment.
-	 * <p>
-	 * <strong>Attention:</strong> It is not possible to use Regex to parse arbitrary HTML!! This
-	 * will fail horribly in case the user entered complex HTML! Works fine for simple HTML without
-	 * tables etc.
-	 * </p>
-	 *
-	 * @param comment
-	 *            the comment to remove styling information from
-	 * @return the sanitized comment
-	 */
-	public static String removeStyleFromComment(final String comment) {
+    /**
+     * This method removes styling information from the HTML comment.
+     * <p>
+     * <strong>Attention:</strong> It is not possible to use Regex to parse arbitrary HTML!! This
+     * will fail horribly in case the user entered complex HTML! Works fine for simple HTML without
+     * tables etc.
+     * </p>
+     *
+     * @param comment the comment to remove styling information from
+     * @return the sanitized comment
+     */
+    public static String removeStyleFromComment(final String comment) {
 		if (comment == null) {
 			throw new IllegalArgumentException("comment must not be null!");
 		}
@@ -133,18 +130,16 @@ public final class AnnotationDrawUtils {
 		return newComment;
 	}
 
-	/**
-	 * Returns plain text from the editor.
-	 *
-	 * @param editor
-	 *            the editor from which to take the text.
-	 * @param onlySelected
-	 *            if {@code true} will only return the selected text
-	 * @return the text of the editor converted to plain text
-	 * @throws BadLocationException
-	 * @throws IOException
-	 */
-	public static String getPlaintextFromEditor(final JEditorPane editor, final boolean onlySelected)
+    /**
+     * Returns plain text from the editor.
+     *
+     * @param editor       the editor from which to take the text.
+     * @param onlySelected if {@code true} will only return the selected text
+     * @return the text of the editor converted to plain text
+     * @throws IOException          the io exception
+     * @throws BadLocationException the bad location exception
+     */
+    public static String getPlaintextFromEditor(final JEditorPane editor, final boolean onlySelected)
 			throws IOException, BadLocationException {
 		if (editor == null) {
 			throw new IllegalArgumentException("editor must not be null!");
@@ -168,17 +163,15 @@ public final class AnnotationDrawUtils {
 		return text;
 	}
 
-	/**
-	 * Calculates the preferred height of an editor pane with the given fixed width for the
-	 * specified string.
-	 *
-	 * @param comment
-	 *            the annotation comment string
-	 * @param width
-	 *            the width of the content
-	 * @return the preferred height given the comment
-	 */
-	public static int getContentHeight(final String comment, final int width) {
+    /**
+     * Calculates the preferred height of an editor pane with the given fixed width for the
+     * specified string.
+     *
+     * @param comment the annotation comment string
+     * @param width   the width of the content
+     * @return the preferred height given the comment
+     */
+    public static int getContentHeight(final String comment, final int width) {
 		if (comment == null) {
 			throw new IllegalArgumentException("comment must not be null!");
 		}

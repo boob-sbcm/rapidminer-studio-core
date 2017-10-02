@@ -64,7 +64,7 @@ import com.rapidminer.tools.math.MathFunctions;
  * attributes for classification learning (Fayyad,Irani) and b) Supervised and Unsupervised
  * Discretization (Dougherty,Kohavi,Sahami). Skips all special attributes including the label.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that this operator automatically removes all attributes with only one range (i.e.
  * those attributes which are not actually discretized since the entropy criterion is not
@@ -79,14 +79,16 @@ public class MinimalEntropyDiscretization extends AbstractDiscretizationOperator
 		registerDiscretizationOperator(FrequencyDiscretization.class);
 	}
 
-	/** Indicates if long range names should be used. */
-	public static final String PARAMETER_USE_LONG_RANGE_NAMES = "use_long_range_names";
+    /**
+     * Indicates if long range names should be used.
+     */
+    public static final String PARAMETER_USE_LONG_RANGE_NAMES = "use_long_range_names";
 
-	/**
-	 * Indicates if useless discretized attributes, i.e. such attributes with only a single range
-	 * after discretization should be removed.
-	 */
-	public static final String PARAMETER_REMOVE_USELESS = "remove_useless";
+    /**
+     * Indicates if useless discretized attributes, i.e. such attributes with only a single range
+     * after discretization should be removed.
+     */
+    public static final String PARAMETER_REMOVE_USELESS = "remove_useless";
 
 	/**
 	 * Incompatible version, old version writes into the exampleset, if original output port is not
@@ -94,7 +96,12 @@ public class MinimalEntropyDiscretization extends AbstractDiscretizationOperator
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public MinimalEntropyDiscretization(OperatorDescription description) {
+    /**
+     * Instantiates a new Minimal entropy discretization.
+     *
+     * @param description the description
+     */
+    public MinimalEntropyDiscretization(OperatorDescription description) {
 		super(description);
 	}
 

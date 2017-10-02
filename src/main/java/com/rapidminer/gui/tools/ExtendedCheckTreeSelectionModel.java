@@ -30,7 +30,7 @@ import javax.swing.tree.TreeSelectionModel;
 
 /**
  * This is the selection model for the check tree.
- * 
+ *
  * @author Santhosh Kumar, Ingo Mierswa
  */
 public class ExtendedCheckTreeSelectionModel extends DefaultTreeSelectionModel {
@@ -39,12 +39,23 @@ public class ExtendedCheckTreeSelectionModel extends DefaultTreeSelectionModel {
 
 	private TreeModel model;
 
-	public ExtendedCheckTreeSelectionModel(TreeModel model) {
+    /**
+     * Instantiates a new Extended check tree selection model.
+     *
+     * @param model the model
+     */
+    public ExtendedCheckTreeSelectionModel(TreeModel model) {
 		this.model = model;
 		setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
 	}
 
-	// tests whether there is any unselected node in the subtree of given path
+    /**
+     * Is partially selected boolean.
+     *
+     * @param path the path
+     * @return the boolean
+     */
+// tests whether there is any unselected node in the subtree of given path
 	public boolean isPartiallySelected(TreePath path) {
 		if (isPathSelected(path, true)) {
 			return false;
@@ -61,7 +72,14 @@ public class ExtendedCheckTreeSelectionModel extends DefaultTreeSelectionModel {
 		return false;
 	}
 
-	// tells whether given path is selected.
+    /**
+     * Is path selected boolean.
+     *
+     * @param path the path
+     * @param dig  the dig
+     * @return the boolean
+     */
+// tells whether given path is selected.
 	// if dig is true, then a path is assumed to be selected, if
 	// one of its ancestor is selected.
 	public boolean isPathSelected(TreePath path, boolean dig) {

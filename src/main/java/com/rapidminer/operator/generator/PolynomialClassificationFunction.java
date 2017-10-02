@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is positive if (att1*att1*att1 + att2*att2 - att3*att3 + att4) > 0.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PolynomialClassificationFunction extends ClassificationFunction {

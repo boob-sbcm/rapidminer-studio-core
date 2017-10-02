@@ -22,12 +22,17 @@ import java.awt.Color;
 
 
 /**
- * 
+ * The interface Color selection listener.
+ *
  * @author Ingo Mierswa
- * 
  */
 public interface ColorSelectionListener {
 
-	public void colorSelected(Color color);
+    /**
+     * Color selected.
+     *
+     * @param color the color
+     */
+    public void colorSelected(Color color);
 
 }

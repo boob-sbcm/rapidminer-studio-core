@@ -20,16 +20,27 @@ package com.rapidminer.tools.math.function.window;
 
 /**
  * A Hamming window function.
- * 
+ *
  * @author Tobias Malbrecht, Ingo Mierswa
  */
 public class HammingWindowFunction extends WindowFunction {
 
-	public HammingWindowFunction(Integer width) {
+    /**
+     * Instantiates a new Hamming window function.
+     *
+     * @param width the width
+     */
+    public HammingWindowFunction(Integer width) {
 		super(width);
 	}
 
-	public HammingWindowFunction(Integer width, Integer justification) {
+    /**
+     * Instantiates a new Hamming window function.
+     *
+     * @param width         the width
+     * @param justification the justification
+     */
+    public HammingWindowFunction(Integer width, Integer justification) {
 		super(width, justification);
 	}
 

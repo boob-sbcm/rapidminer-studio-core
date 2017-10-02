@@ -30,9 +30,9 @@ import com.rapidminer.tools.Tools;
 
 
 /**
+ * The type Zip entry object.
  *
  * @author Nils Woehler
- *
  */
 public class ZipEntryObject extends FileObject {
 
@@ -45,7 +45,13 @@ public class ZipEntryObject extends FileObject {
 	private ZipEntry entry;
 	private ZipFile zipFile;
 
-	public ZipEntryObject(ZipEntry entry, ZipFile zipFile) {
+    /**
+     * Instantiates a new Zip entry object.
+     *
+     * @param entry   the entry
+     * @param zipFile the zip file
+     */
+    public ZipEntryObject(ZipEntry entry, ZipFile zipFile) {
 		super();
 		this.entry = entry;
 		this.zipFile = zipFile;

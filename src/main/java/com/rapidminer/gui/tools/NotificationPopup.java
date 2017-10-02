@@ -49,37 +49,63 @@ import com.rapidminer.gui.RapidMinerGUI;
  * {@link #showFadingPopup(JPanel, JComponent, PopupLocation)} methods.
  *
  * @author Marco Boeck
- *
  */
 public class NotificationPopup extends JWindow {
 
-	/**
-	 * Listener for {@link NotificationPopup}s.
-	 *
-	 */
-	public static interface NotificationPopupListener {
+    /**
+     * Listener for {@link NotificationPopup}s.
+     */
+    public static interface NotificationPopupListener {
 
-		/**
-		 * Triggered when the popup is gone, either by having faded out or being closed via
-		 * mouse-click.
-		 *
-		 * @param popup
-		 */
-		public void popupClosed(NotificationPopup popup);
+        /**
+         * Triggered when the popup is gone, either by having faded out or being closed via
+         * mouse-click.
+         *
+         * @param popup the popup
+         */
+        public void popupClosed(NotificationPopup popup);
 	}
 
-	/**
-	 * Used to specifiy the location of the {@link NotificationPopup} on the parent component.
-	 *
-	 */
-	public static enum PopupLocation {
-		CENTER, CENTER_RIGHT, CENTER_LEFT, UPPER_LEFT, UPPER_CENTER, UPPER_RIGHT, LOWER_LEFT, LOWER_CENTER, LOWER_RIGHT;
+    /**
+     * Used to specifiy the location of the {@link NotificationPopup} on the parent component.
+     */
+    public static enum PopupLocation {
+        /**
+         * Center popup location.
+         */
+        CENTER, /**
+         * Center right popup location.
+         */
+        CENTER_RIGHT, /**
+         * Center left popup location.
+         */
+        CENTER_LEFT, /**
+         * Upper left popup location.
+         */
+        UPPER_LEFT, /**
+         * Upper center popup location.
+         */
+        UPPER_CENTER, /**
+         * Upper right popup location.
+         */
+        UPPER_RIGHT, /**
+         * Lower left popup location.
+         */
+        LOWER_LEFT, /**
+         * Lower center popup location.
+         */
+        LOWER_CENTER, /**
+         * Lower right popup location.
+         */
+        LOWER_RIGHT;
 	}
 
 	private static final long serialVersionUID = 3620229881624404350L;
 
-	/** the default time before the popup fades away in ms */
-	public static final int DEFAULT_DELAY = 3000;
+    /**
+     * the default time before the popup fades away in ms
+     */
+    public static final int DEFAULT_DELAY = 3000;
 
 	/** the timer used to fade the popup in */
 	private Timer fadeInTimer;
@@ -223,125 +249,97 @@ public class NotificationPopup extends JWindow {
 		super.dispose();
 	}
 
-	/**
-	 * Shows a fading popup panel which displays the given {@link JPanel} content on the parent
-	 * {@link JComponent} in the specified {@link PopupLocation}. The popup is shown immediately and
-	 * remains visible for the default delay. It can be closed by clicking on it or waiting the
-	 * default delay. If the parent component is not showing, the popup is not shown either.
-	 *
-	 * @param content
-	 *            the panel containing what should be shown in the popup
-	 * @param invoker
-	 *            the parent component on which the popup should be shown
-	 * @param location
-	 *            the location where on the parent component the popup should be shown
-	 * @return the popup or <code>null</code> if it is not showing
-	 */
-	public static NotificationPopup showFadingPopup(final JPanel content, final Component invoker,
+    /**
+     * Shows a fading popup panel which displays the given {@link JPanel} content on the parent
+     * {@link JComponent} in the specified {@link PopupLocation}. The popup is shown immediately and
+     * remains visible for the default delay. It can be closed by clicking on it or waiting the
+     * default delay. If the parent component is not showing, the popup is not shown either.
+     *
+     * @param content  the panel containing what should be shown in the popup
+     * @param invoker  the parent component on which the popup should be shown
+     * @param location the location where on the parent component the popup should be shown
+     * @return the popup or <code>null</code> if it is not showing
+     */
+    public static NotificationPopup showFadingPopup(final JPanel content, final Component invoker,
 			final PopupLocation location) {
 		return showFadingPopup(content, invoker, location, DEFAULT_DELAY);
 	}
 
-	/**
-	 * Shows a fading popup panel which displays the given {@link JPanel} content on the parent
-	 * {@link JComponent} in the specified {@link PopupLocation}. The popup is shown immediately and
-	 * remains visible for the specified delay. It can be closed by clicking on it or waiting the
-	 * specified delay. If the parent component is not showing, the popup is not shown either.
-	 *
-	 * @param content
-	 *            the panel containing what should be shown in the popup
-	 * @param invoker
-	 *            the parent component on which the popup should be shown
-	 * @param location
-	 *            the location where on the parent component the popup should be shown
-	 * @param delay
-	 *            the delay in milliseconds before the popup starts to fade out
-	 * @return the popup or <code>null</code> if it is not showing
-	 */
-	public static NotificationPopup showFadingPopup(final JPanel content, final Component invoker,
+    /**
+     * Shows a fading popup panel which displays the given {@link JPanel} content on the parent
+     * {@link JComponent} in the specified {@link PopupLocation}. The popup is shown immediately and
+     * remains visible for the specified delay. It can be closed by clicking on it or waiting the
+     * specified delay. If the parent component is not showing, the popup is not shown either.
+     *
+     * @param content  the panel containing what should be shown in the popup
+     * @param invoker  the parent component on which the popup should be shown
+     * @param location the location where on the parent component the popup should be shown
+     * @param delay    the delay in milliseconds before the popup starts to fade out
+     * @return the popup or <code>null</code> if it is not showing
+     */
+    public static NotificationPopup showFadingPopup(final JPanel content, final Component invoker,
 			final PopupLocation location, final int delay) {
 		return showFadingPopup(content, invoker, location, delay, 0, 0);
 	}
 
-	/**
-	 * Shows a fading popup panel which displays the given {@link JPanel} content on the parent
-	 * {@link JComponent} in the specified {@link PopupLocation}. The popup is shown immediately and
-	 * remains visible for the specified delay. It can be closed by clicking on it or waiting the
-	 * specified delay. If the parent component is not showing, the popup is not shown either.
-	 *
-	 * @param content
-	 *            the panel containing what should be shown in the popup
-	 * @param invoker
-	 *            the parent component on which the popup should be shown
-	 * @param location
-	 *            the location where on the parent component the popup should be shown
-	 * @param delay
-	 *            the delay in milliseconds before the popup starts to fade out
-	 * @param paddingX
-	 *            the distance in pixels from the horizontal parent component side
-	 * @param paddingY
-	 *            the distance in pixels from the vertical parent component side
-	 * @return the popup or <code>null</code> if it is not showing
-	 */
-	public static NotificationPopup showFadingPopup(final JPanel content, final Component invoker,
+    /**
+     * Shows a fading popup panel which displays the given {@link JPanel} content on the parent
+     * {@link JComponent} in the specified {@link PopupLocation}. The popup is shown immediately and
+     * remains visible for the specified delay. It can be closed by clicking on it or waiting the
+     * specified delay. If the parent component is not showing, the popup is not shown either.
+     *
+     * @param content  the panel containing what should be shown in the popup
+     * @param invoker  the parent component on which the popup should be shown
+     * @param location the location where on the parent component the popup should be shown
+     * @param delay    the delay in milliseconds before the popup starts to fade out
+     * @param paddingX the distance in pixels from the horizontal parent component side
+     * @param paddingY the distance in pixels from the vertical parent component side
+     * @return the popup or <code>null</code> if it is not showing
+     */
+    public static NotificationPopup showFadingPopup(final JPanel content, final Component invoker,
 			final PopupLocation location, final int delay, final int paddingX, final int paddingY) {
 		return showFadingPopup(content, invoker, location, delay, paddingX, paddingY,
 				BorderFactory.createLineBorder(Color.BLACK, 1, false));
 	}
 
-	/**
-	 * Shows a fading popup panel which displays the given {@link JPanel} content on the parent
-	 * {@link JComponent} in the specified {@link PopupLocation}. The popup is shown immediately and
-	 * remains visible for the specified delay. It can be closed by clicking on it or waiting the
-	 * specified delay. If the parent component is not showing, the popup is not shown either.
-	 *
-	 * @param content
-	 *            the panel containing what should be shown in the popup
-	 * @param invoker
-	 *            the parent component on which the popup should be shown
-	 * @param location
-	 *            the location where on the parent component the popup should be shown
-	 * @param delay
-	 *            the delay in milliseconds before the popup starts to fade out
-	 * @param paddingX
-	 *            the distance in pixels from the horizontal parent component side
-	 * @param paddingY
-	 *            the distance in pixels from the vertical parent component side
-	 * @param border
-	 *            the border to display around the notification
-	 * @return the popup or <code>null</code> if it is not showing
-	 */
-	public static NotificationPopup showFadingPopup(final JPanel content, final Component invoker,
+    /**
+     * Shows a fading popup panel which displays the given {@link JPanel} content on the parent
+     * {@link JComponent} in the specified {@link PopupLocation}. The popup is shown immediately and
+     * remains visible for the specified delay. It can be closed by clicking on it or waiting the
+     * specified delay. If the parent component is not showing, the popup is not shown either.
+     *
+     * @param content  the panel containing what should be shown in the popup
+     * @param invoker  the parent component on which the popup should be shown
+     * @param location the location where on the parent component the popup should be shown
+     * @param delay    the delay in milliseconds before the popup starts to fade out
+     * @param paddingX the distance in pixels from the horizontal parent component side
+     * @param paddingY the distance in pixels from the vertical parent component side
+     * @param border   the border to display around the notification
+     * @return the popup or <code>null</code> if it is not showing
+     */
+    public static NotificationPopup showFadingPopup(final JPanel content, final Component invoker,
 			final PopupLocation location, final int delay, final int paddingX, final int paddingY, final Border border) {
 		return showFadingPopup(content, invoker, location, delay, paddingX, paddingY,
 				BorderFactory.createLineBorder(Color.BLACK, 1, false), null);
 	}
 
-	/**
-	 * Shows a fading popup panel which displays the given {@link JPanel} content on the parent
-	 * {@link JComponent} in the specified {@link PopupLocation}. The popup is shown immediately and
-	 * remains visible for the specified delay. It can be closed by clicking on it or waiting the
-	 * specified delay. If the parent component is not showing, the popup is not shown either.
-	 *
-	 * @param content
-	 *            the panel containing what should be shown in the popup
-	 * @param invoker
-	 *            the parent component on which the popup should be shown
-	 * @param location
-	 *            the location where on the parent component the popup should be shown
-	 * @param delay
-	 *            the delay in milliseconds before the popup starts to fade out
-	 * @param paddingX
-	 *            the distance in pixels from the horizontal parent component side
-	 * @param paddingY
-	 *            the distance in pixels from the vertical parent component side
-	 * @param border
-	 *            the border to display around the notification
-	 * @param listener
-	 *            listener which is notified on events
-	 * @return the popup or <code>null</code> if it is not showing
-	 */
-	public static NotificationPopup showFadingPopup(final JPanel content, final Component invoker,
+    /**
+     * Shows a fading popup panel which displays the given {@link JPanel} content on the parent
+     * {@link JComponent} in the specified {@link PopupLocation}. The popup is shown immediately and
+     * remains visible for the specified delay. It can be closed by clicking on it or waiting the
+     * specified delay. If the parent component is not showing, the popup is not shown either.
+     *
+     * @param content  the panel containing what should be shown in the popup
+     * @param invoker  the parent component on which the popup should be shown
+     * @param location the location where on the parent component the popup should be shown
+     * @param delay    the delay in milliseconds before the popup starts to fade out
+     * @param paddingX the distance in pixels from the horizontal parent component side
+     * @param paddingY the distance in pixels from the vertical parent component side
+     * @param border   the border to display around the notification
+     * @param listener listener which is notified on events
+     * @return the popup or <code>null</code> if it is not showing
+     */
+    public static NotificationPopup showFadingPopup(final JPanel content, final Component invoker,
 			final PopupLocation location, final int delay, final int paddingX, final int paddingY, final Border border,
 			final NotificationPopupListener listener) {
 		if (content == null) {
@@ -421,12 +419,12 @@ public class NotificationPopup extends JWindow {
 		return popup;
 	}
 
-	/**
-	 * Restarts the timer until fadeout if notification has not started to fade out.
-	 *
-	 * @return {@code true} if the restart was successful
-	 */
-	public boolean restartTimer() {
+    /**
+     * Restarts the timer until fadeout if notification has not started to fade out.
+     *
+     * @return {@code true} if the restart was successful
+     */
+    public boolean restartTimer() {
 		if (fadeInTimer.isRunning()) {
 			// fadeOutTimer not started yet
 			return true;

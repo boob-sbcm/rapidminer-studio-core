@@ -37,41 +37,58 @@ import java.util.List;
 /**
  * Determines if the null hypothesis (all actual mean values are the same) holds for the input
  * performance vectors.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public abstract class SignificanceTestOperator extends Operator {
 
-	public static final String PARAMETER_ALPHA = "alpha";
+    /**
+     * The constant PARAMETER_ALPHA.
+     */
+    public static final String PARAMETER_ALPHA = "alpha";
 
 	private PortPairExtender performanceExtender = new PortPairExtender("performance", getInputPorts(), getOutputPorts(),
 			new MetaData(PerformanceVector.class));
 	private OutputPort significanceOutput = getOutputPorts().createPort("significance");
 
-	public SignificanceTestOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Significance test operator.
+     *
+     * @param description the description
+     */
+    public SignificanceTestOperator(OperatorDescription description) {
 		super(description);
 		performanceExtender.start();
 		getTransformer().addRule(new GenerateNewMDRule(significanceOutput, SignificanceTestResult.class));
 		getTransformer().addRule(performanceExtender.makePassThroughRule());
 	}
 
-	/**
-	 * Returns the result of the significance test for the given performance vector collection.
-	 */
-	public abstract SignificanceTestResult performSignificanceTest(PerformanceVector[] allVectors, double alpha)
+    /**
+     * Returns the result of the significance test for the given performance vector collection.
+     *
+     * @param allVectors the all vectors
+     * @param alpha      the alpha
+     * @return the significance test result
+     * @throws OperatorException the operator exception
+     */
+    public abstract SignificanceTestResult performSignificanceTest(PerformanceVector[] allVectors, double alpha)
 			throws OperatorException;
 
-	/**
-	 * Returns the minimum number of performance vectors which can be compared by this significance
-	 * test.
-	 */
-	public abstract int getMinSize();
+    /**
+     * Returns the minimum number of performance vectors which can be compared by this significance
+     * test.
+     *
+     * @return the min size
+     */
+    public abstract int getMinSize();
 
-	/**
-	 * Returns the maximum number of performance vectors which can be compared by this significance
-	 * test.
-	 */
-	public abstract int getMaxSize();
+    /**
+     * Returns the maximum number of performance vectors which can be compared by this significance
+     * test.
+     *
+     * @return the max size
+     */
+    public abstract int getMaxSize();
 
 	/** Writes the attribute set to a file. */
 	@Override

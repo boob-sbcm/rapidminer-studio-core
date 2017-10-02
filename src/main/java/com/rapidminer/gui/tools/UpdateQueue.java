@@ -27,15 +27,19 @@ import java.util.logging.Level;
 /**
  * A queue of runnables in which only execution of the last is relevant. Older runnables become
  * obsolete as soon as a new is inserted.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class UpdateQueue extends Thread {
 
 	private Runnable pending;
 
-	public UpdateQueue(String name) {
+    /**
+     * Instantiates a new Update queue.
+     *
+     * @param name the name
+     */
+    public UpdateQueue(String name) {
 		super("UpdateQueue-" + name);
 		setDaemon(true);
 	}
@@ -43,24 +47,28 @@ public class UpdateQueue extends Thread {
 	private Object lock = new Object();
 	private boolean shutdownRequested = false;
 
-	/**
-	 * Queues runnable for execution. Will be executed as soon as the current runnable has
-	 * terminated. If there is no current executable, will be executed immediately (in the thread
-	 * created by this instance). If this method is called again before the current runnable is
-	 * executed, runnable will be discarded in favor of the new.
-	 */
-	public void execute(Runnable runnable) {
+    /**
+     * Queues runnable for execution. Will be executed as soon as the current runnable has
+     * terminated. If there is no current executable, will be executed immediately (in the thread
+     * created by this instance). If this method is called again before the current runnable is
+     * executed, runnable will be discarded in favor of the new.
+     *
+     * @param runnable the runnable
+     */
+    public void execute(Runnable runnable) {
 		synchronized (lock) {
 			pending = runnable;
 			lock.notifyAll();
 		}
 	}
 
-	/**
-	 * Executes the given progress thread and waits for it, so only one will be enqueued at a time.
-	 * (The calling thread will *not* wait, only the queue waits!
-	 */
-	public void executeBackgroundJob(final ProgressThread progressThread) {
+    /**
+     * Executes the given progress thread and waits for it, so only one will be enqueued at a time.
+     * (The calling thread will *not* wait, only the queue waits!
+     *
+     * @param progressThread the progress thread
+     */
+    public void executeBackgroundJob(final ProgressThread progressThread) {
 		execute(new Runnable() {
 
 			@Override
@@ -102,7 +110,10 @@ public class UpdateQueue extends Thread {
 		}
 	}
 
-	public void shutdown() {
+    /**
+     * Shutdown.
+     */
+    public void shutdown() {
 		synchronized (lock) {
 			pending = null;
 			shutdownRequested = true;

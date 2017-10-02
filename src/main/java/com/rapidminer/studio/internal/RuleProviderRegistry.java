@@ -36,14 +36,23 @@ import com.rapidminer.security.PluginSandboxPolicy;
  */
 public enum RuleProviderRegistry {
 
-	INSTANCE;
+    /**
+     * Instance rule provider registry.
+     */
+    INSTANCE;
 
-	/** Static remote rules */
-	public static final int PRECEDENCE_REMOTE = 50;
-	/** License depending rules from nexus */
-	public static final int PRECEDENCE_NEXUS = 100;
-	/** Local rules for testing */
-	public static final int PRECEDENCE_LOCAL = 150;
+    /**
+     * Static remote rules
+     */
+    public static final int PRECEDENCE_REMOTE = 50;
+    /**
+     * License depending rules from nexus
+     */
+    public static final int PRECEDENCE_NEXUS = 100;
+    /**
+     * Local rules for testing
+     */
+    public static final int PRECEDENCE_LOCAL = 150;
 
 	private static final class Ordering {
 
@@ -53,18 +62,14 @@ public enum RuleProviderRegistry {
 	/** Descending sorted map */
 	private SortedMap<Integer, RuleProvider> ruleProvider = Collections.synchronizedSortedMap(new TreeMap<>(Ordering.DESC));
 
-	/**
-	 * Registers the rule provider.
-	 *
-	 * @param provider
-	 *            the rule provider to register
-	 * @param precedence
-	 *            the importance of this provider
-	 * @throws SecurityException
-	 *             if caller does not have {@link RuntimePermission} for
-	 *             {@code accessClassInPackage.rapidminer.internal}
-	 */
-	public void register(RuleProvider provider, int precedence) {
+    /**
+     * Registers the rule provider.
+     *
+     * @param provider   the rule provider to register
+     * @param precedence the importance of this provider
+     * @throws SecurityException if caller does not have {@link RuntimePermission} for             {@code accessClassInPackage.rapidminer.internal}
+     */
+    public void register(RuleProvider provider, int precedence) {
 		if (System.getSecurityManager() != null) {
 			AccessController.checkPermission(new RuntimePermission(PluginSandboxPolicy.RAPIDMINER_INTERNAL_PERMISSION));
 		}
@@ -80,12 +85,12 @@ public enum RuleProviderRegistry {
 
 	}
 
-	/**
-	 * Getter for the registered {@link RuleProvider}.
-	 *
-	 * @return The the registered rule Provider ordered by precedence
-	 */
-	public Collection<RuleProvider> getRuleProvider() {
+    /**
+     * Getter for the registered {@link RuleProvider}.
+     *
+     * @return The the registered rule Provider ordered by precedence
+     */
+    public Collection<RuleProvider> getRuleProvider() {
 		return ruleProvider.values();
 	}
 

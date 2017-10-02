@@ -229,84 +229,87 @@ public abstract class RemoteFileSystemView extends FileSystemView {
 		return new RemoteFile(dir.getParentFile().getPath(), true);
 	}
 
-	/**
-	 * Returns the root directory of the remote file system.
-	 *
-	 * @return the remote file that is the root of the remote file system
-	 */
-	public abstract RemoteFile getRootDirectory();
+    /**
+     * Returns the root directory of the remote file system.
+     *
+     * @return the remote file that is the root of the remote file system
+     */
+    public abstract RemoteFile getRootDirectory();
 
-	/**
-	 * Gets the list of {@link RemoteFile}s inside the directory dir.
-	 *
-	 * @param dir
-	 *            the directory
-	 * @return the files in the directory dir
-	 * @throws IOException
-	 *             when fetching the content of the remote directory fails
-	 * @throws UserError
-	 *             when fetching the content of the remote directory fails
-	 */
-	public abstract RemoteFile[] getRemoteFiles(RemoteFile dir) throws IOException, UserError;
+    /**
+     * Gets the list of {@link RemoteFile}s inside the directory dir.
+     *
+     * @param dir the directory
+     * @return the files in the directory dir
+     * @throws IOException when fetching the content of the remote directory fails
+     * @throws UserError   when fetching the content of the remote directory fails
+     */
+    public abstract RemoteFile[] getRemoteFiles(RemoteFile dir) throws IOException, UserError;
 
-	/**
-	 * Returns a flag for whether new folders can be created, <code>false</code> by default. This
-	 * flag is used by the {@link FileChooserUI} to decide if the control elements for creating a
-	 * new folder are shown.
-	 *
-	 */
-	public boolean isCreatingNewFolderEnabled() {
+    /**
+     * Returns a flag for whether new folders can be created, <code>false</code> by default. This
+     * flag is used by the {@link FileChooserUI} to decide if the control elements for creating a
+     * new folder are shown.
+     *
+     * @return the boolean
+     */
+    public boolean isCreatingNewFolderEnabled() {
 		return false;
 	}
 
-	/**
-	 * Returns a flag for whether files can be renamed, <code>false</code> by default. This flag is
-	 * used by the {@link FileChooserUI} to decide if the control elements for renaming files are
-	 * shown.
-	 *
-	 */
-	public boolean isRenamingEnabled() {
+    /**
+     * Returns a flag for whether files can be renamed, <code>false</code> by default. This flag is
+     * used by the {@link FileChooserUI} to decide if the control elements for renaming files are
+     * shown.
+     *
+     * @return the boolean
+     */
+    public boolean isRenamingEnabled() {
 		return false;
 	}
 
-	/**
-	 * Checks whether the parent of the given file exists.
-	 *
-	 * Used to open the folder in the {@link JFileChooser} if it exists. The default implementation
-	 * returns false, which leads to opening the root folder in the {@link JFileChooser}. Is not
-	 * related to {@link RemoteFile#exists()}
-	 *
-	 * @param file
-	 *            which should be checked
-	 * @return if the parent of the given file exists
-	 */
-	public boolean parentExists(String file) {
+    /**
+     * Checks whether the parent of the given file exists.
+     * <p>
+     * Used to open the folder in the {@link JFileChooser} if it exists. The default implementation
+     * returns false, which leads to opening the root folder in the {@link JFileChooser}. Is not
+     * related to {@link RemoteFile#exists()}
+     *
+     * @param file which should be checked
+     * @return if the parent of the given file exists
+     */
+    public boolean parentExists(String file) {
 		return false;
 	}
 
-	/**
-	 * Returns a flag for whether files can be deleted, <code>false</code> by default. This flag is
-	 * used by the {@link FileChooserUI} to decide if the control elements for deleting files are
-	 * shown.
-	 *
-	 */
-	public boolean isDeletingEnabled() {
+    /**
+     * Returns a flag for whether files can be deleted, <code>false</code> by default. This flag is
+     * used by the {@link FileChooserUI} to decide if the control elements for deleting files are
+     * shown.
+     *
+     * @return the boolean
+     */
+    public boolean isDeletingEnabled() {
 		return false;
 	}
 
-	/**
-	 * Method for checking the remote file system before the file chooser is opened. Used in
-	 * {@link RemoteFileValueCellEditor} before the file chooser is created.
-	 */
-	public abstract void checkFileSystemAvailability() throws UserError;
+    /**
+     * Method for checking the remote file system before the file chooser is opened. Used in
+     * {@link RemoteFileValueCellEditor} before the file chooser is created.
+     *
+     * @throws UserError the user error
+     */
+    public abstract void checkFileSystemAvailability() throws UserError;
 
-	/**
-	 * Returns the normalized path name of the file. The default implementation returns just
-	 * <code>file.getPath()</code>. This should be overwritten if the path of a file resulting from
-	 * the file chooser should not depend on the local file system.
-	 *
-	 */
-	public String getNormalizedPathName(File file) {
+    /**
+     * Returns the normalized path name of the file. The default implementation returns just
+     * <code>file.getPath()</code>. This should be overwritten if the path of a file resulting from
+     * the file chooser should not depend on the local file system.
+     *
+     * @param file the file
+     * @return the normalized path name
+     */
+    public String getNormalizedPathName(File file) {
 		return file.getPath();
 	}
 }

@@ -31,22 +31,30 @@ import java.util.List;
 
 /**
  * Creates one group for each distinct value in the data. No matter if it is nominal or numeric.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class DistinctValueGrouping extends AbstractValueGrouping {
 
 	private final GroupingType type = GroupingType.DISTINCT_VALUES;
 
-	public DistinctValueGrouping(DataTableColumn dataTableColumn, boolean isCategorical, DateFormat dateFormat) {
+    /**
+     * Instantiates a new Distinct value grouping.
+     *
+     * @param dataTableColumn the data table column
+     * @param isCategorical   the is categorical
+     * @param dateFormat      the date format
+     */
+    public DistinctValueGrouping(DataTableColumn dataTableColumn, boolean isCategorical, DateFormat dateFormat) {
 		super(dataTableColumn, isCategorical, dateFormat);
 	}
 
-	/**
-	 * Copy ctor.
-	 */
-	public DistinctValueGrouping(DistinctValueGrouping other) {
+    /**
+     * Copy ctor.
+     *
+     * @param other the other
+     */
+    public DistinctValueGrouping(DistinctValueGrouping other) {
 		super(other.getDataTableColumn(), other.isCategorical(), other.getDateFormat());
 	}
 

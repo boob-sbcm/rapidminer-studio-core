@@ -35,33 +35,65 @@ public class GroupDocumentation {
 	private final String name;
 	private final String help;
 
-	public GroupDocumentation(String key) {
+    /**
+     * Instantiates a new Group documentation.
+     *
+     * @param key the key
+     */
+    public GroupDocumentation(String key) {
 		this.key = key;
 		this.name = keyToUpperCase(key);
 		this.help = "The group '" + name + "'.";
 	}
 
-	public GroupDocumentation(String key, String name, String help) {
+    /**
+     * Instantiates a new Group documentation.
+     *
+     * @param key  the key
+     * @param name the name
+     * @param help the help
+     */
+    public GroupDocumentation(String key, String name, String help) {
 		this.key = key;
 		this.name = name;
 		this.help = help;
 	}
 
-	GroupDocumentation(Element element) {
+    /**
+     * Instantiates a new Group documentation.
+     *
+     * @param element the element
+     */
+    GroupDocumentation(Element element) {
 		this.key = XMLTools.getTagContents(element, "key");
 		this.name = XMLTools.getTagContents(element, "name");
 		this.help = XMLTools.getTagContents(element, "help");
 	}
 
-	public String getKey() {
+    /**
+     * Gets key.
+     *
+     * @return the key
+     */
+    public String getKey() {
 		return key;
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return name;
 	}
 
-	public String getHelp() {
+    /**
+     * Gets help.
+     *
+     * @return the help
+     */
+    public String getHelp() {
 		return help != null ? help : "";
 	}
 
@@ -70,7 +102,13 @@ public class GroupDocumentation {
 		return key + ": " + name;
 	}
 
-	public static String keyToUpperCase(String key) {
+    /**
+     * Key to upper case string.
+     *
+     * @param key the key
+     * @return the string
+     */
+    public static String keyToUpperCase(String key) {
 		String name = key;
 		if (name.indexOf('.') >= 0) {
 			name = name.substring(name.lastIndexOf('.') + 1);

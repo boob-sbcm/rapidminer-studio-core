@@ -47,9 +47,15 @@ import com.rapidminer.tools.io.Encoding;
  */
 public class FileEchoOperator extends Operator {
 
-	public static final String PARAMETER_FILE = "file";
+    /**
+     * The constant PARAMETER_FILE.
+     */
+    public static final String PARAMETER_FILE = "file";
 
-	public static final String PARAMETER_TEXT = "text";
+    /**
+     * The constant PARAMETER_TEXT.
+     */
+    public static final String PARAMETER_TEXT = "text";
 
 	private static final String PARAMETER_MODE = "mode";
 
@@ -62,7 +68,12 @@ public class FileEchoOperator extends Operator {
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public FileEchoOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new File echo operator.
+     *
+     * @param description the description
+     */
+    public FileEchoOperator(OperatorDescription description) {
 		super(description);
 
 		dummyPorts.start();

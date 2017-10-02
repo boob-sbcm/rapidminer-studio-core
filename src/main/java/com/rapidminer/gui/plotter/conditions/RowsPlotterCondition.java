@@ -24,7 +24,7 @@ import com.rapidminer.datatable.DataTable;
 /**
  * This condition accepts data tables with a number of rows in the specified range (including the
  * boundaries).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RowsPlotterCondition implements PlotterCondition {
@@ -32,11 +32,22 @@ public class RowsPlotterCondition implements PlotterCondition {
 	private int minRows;
 	private int maxRows;
 
-	public RowsPlotterCondition(int maxRows) {
+    /**
+     * Instantiates a new Rows plotter condition.
+     *
+     * @param maxRows the max rows
+     */
+    public RowsPlotterCondition(int maxRows) {
 		this(0, maxRows);
 	}
 
-	public RowsPlotterCondition(int minRows, int maxRows) {
+    /**
+     * Instantiates a new Rows plotter condition.
+     *
+     * @param minRows the min rows
+     * @param maxRows the max rows
+     */
+    public RowsPlotterCondition(int minRows, int maxRows) {
 		this.minRows = minRows;
 		this.maxRows = maxRows;
 	}

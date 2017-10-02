@@ -116,59 +116,166 @@ import com.vlsolutions.swing.docking.ui.DockingUISettings;
  */
 public class RapidMinerGUI extends RapidMiner {
 
-	public static final String PROPERTY_GEOMETRY_X = "rapidminer.gui.geometry.x";
-	public static final String PROPERTY_GEOMETRY_Y = "rapidminer.gui.geometry.y";
-	public static final String PROPERTY_GEOMETRY_EXTENDED_STATE = "rapidminer.gui.geometry.extendedstate";
-	public static final String PROPERTY_GEOMETRY_WIDTH = "rapidminer.gui.geometry.width";
-	public static final String PROPERTY_GEOMETRY_HEIGHT = "rapidminer.gui.geometry.height";
-	public static final String PROPERTY_GEOMETRY_DIVIDER_MAIN = "rapidminer.gui.geometry.divider.main";
-	public static final String PROPERTY_GEOMETRY_DIVIDER_EDITOR = "rapidminer.gui.geometry.divider.editor";;
-	public static final String PROPERTY_GEOMETRY_DIVIDER_LOGGING = "rapidminer.gui.geometry.divider.logging";
-	public static final String PROPERTY_GEOMETRY_DIVIDER_GROUPSELECTION = "rapidminer.gui.geometry.divider.groupselection";
-	public static final String PROPERTY_EXPERT_MODE = "rapidminer.gui.expertmode";
-	public static final String PROPERTY_SHOW_PARAMETER_HELP = "rapidminer.gui.show_parameter_help";
+    /**
+     * The constant PROPERTY_GEOMETRY_X.
+     */
+    public static final String PROPERTY_GEOMETRY_X = "rapidminer.gui.geometry.x";
+    /**
+     * The constant PROPERTY_GEOMETRY_Y.
+     */
+    public static final String PROPERTY_GEOMETRY_Y = "rapidminer.gui.geometry.y";
+    /**
+     * The constant PROPERTY_GEOMETRY_EXTENDED_STATE.
+     */
+    public static final String PROPERTY_GEOMETRY_EXTENDED_STATE = "rapidminer.gui.geometry.extendedstate";
+    /**
+     * The constant PROPERTY_GEOMETRY_WIDTH.
+     */
+    public static final String PROPERTY_GEOMETRY_WIDTH = "rapidminer.gui.geometry.width";
+    /**
+     * The constant PROPERTY_GEOMETRY_HEIGHT.
+     */
+    public static final String PROPERTY_GEOMETRY_HEIGHT = "rapidminer.gui.geometry.height";
+    /**
+     * The constant PROPERTY_GEOMETRY_DIVIDER_MAIN.
+     */
+    public static final String PROPERTY_GEOMETRY_DIVIDER_MAIN = "rapidminer.gui.geometry.divider.main";
+    /**
+     * The constant PROPERTY_GEOMETRY_DIVIDER_EDITOR.
+     */
+    public static final String PROPERTY_GEOMETRY_DIVIDER_EDITOR = "rapidminer.gui.geometry.divider.editor";;
+    /**
+     * The constant PROPERTY_GEOMETRY_DIVIDER_LOGGING.
+     */
+    public static final String PROPERTY_GEOMETRY_DIVIDER_LOGGING = "rapidminer.gui.geometry.divider.logging";
+    /**
+     * The constant PROPERTY_GEOMETRY_DIVIDER_GROUPSELECTION.
+     */
+    public static final String PROPERTY_GEOMETRY_DIVIDER_GROUPSELECTION = "rapidminer.gui.geometry.divider.groupselection";
+    /**
+     * The constant PROPERTY_EXPERT_MODE.
+     */
+    public static final String PROPERTY_EXPERT_MODE = "rapidminer.gui.expertmode";
+    /**
+     * The constant PROPERTY_SHOW_PARAMETER_HELP.
+     */
+    public static final String PROPERTY_SHOW_PARAMETER_HELP = "rapidminer.gui.show_parameter_help";
 
 	// GUI Properties
 
-	public static final String PROPERTY_RAPIDMINER_GUI_MAX_STATISTICS_ROWS = "rapidminer.gui.max_statistics_rows";
-	public static final String PROPERTY_RAPIDMINER_GUI_MAX_SORTABLE_ROWS = "rapidminer.gui.max_sortable_rows";
-	public static final String PROPERTY_RAPIDMINER_GUI_MAX_DISPLAYED_VALUES = "rapidminer.gui.max_displayed_values";
-	public static final String PROPERTY_RAPIDMINER_GUI_SNAP_TO_GRID = "rapidminer.gui.snap_to_grid";
-	/**
-	 * The property name for &quot;Maximum number of states in the undo list.&quot;
-	 *
-	 * @since 7.5
-	 */
-	public static final String PROPERTY_RAPIDMINER_GUI_UNDOLIST_SIZE = "rapidminer.gui.undolist.size";
-	public static final String PROPERTY_AUTOWIRE_INPUT = "rapidminer.gui.autowire_input";
-	public static final String PROPERTY_AUTOWIRE_OUTPUT = "rapidminer.gui.autowire_output";
-	public static final String PROPERTY_RESOLVE_RELATIVE_REPOSITORY_LOCATIONS = "rapidminer.gui.resolve_relative_repository_locations";
-	public static final String PROPERTY_CLOSE_RESULTS_BEFORE_RUN = "rapidminer.gui.close_results_before_run";
-	public static final String PROPERTY_ADD_BREAKPOINT_RESULTS_TO_HISTORY = "rapidminer.gui.add_breakpoint_results_to_history";
-	public static final String PROPERTY_CONFIRM_EXIT = "rapidminer.gui.confirm_exit";
-	public static final String PROPERTY_RUN_REMOTE_NOW = "rapidminer.gui.run_process_on_rapidanalytics_now";
-	public static final String PROPERTY_OPEN_IN_FILEBROWSER = "rapidminer.gui.entry_open_in_filebrowser";
-	public static final String PROPERTY_CLOSE_ALL_RESULTS_NOW = "rapidminer.gui.close_all_results_without_confirmation";
-	public static final String PROPERTY_FETCH_DATA_BASE_TABLES_NAMES = "rapidminer.gui.fetch_data_base_table_names";
-	public static final String PROPERTY_DISCONNECT_ON_DISABLE = "rapidminer.gui.disconnect_on_disable";
-	/** determines if a warning notification bubble is shown when no result ports are connected */
-	public static final String PROPERTY_SHOW_NO_RESULT_WARNING = "rapidminer.gui.no_result_port_connected";
-	public static final String PROPERTY_FONT_CONFIG = "rapidminer.gui.font_config";
+    /**
+     * The constant PROPERTY_RAPIDMINER_GUI_MAX_STATISTICS_ROWS.
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_MAX_STATISTICS_ROWS = "rapidminer.gui.max_statistics_rows";
+    /**
+     * The constant PROPERTY_RAPIDMINER_GUI_MAX_SORTABLE_ROWS.
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_MAX_SORTABLE_ROWS = "rapidminer.gui.max_sortable_rows";
+    /**
+     * The constant PROPERTY_RAPIDMINER_GUI_MAX_DISPLAYED_VALUES.
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_MAX_DISPLAYED_VALUES = "rapidminer.gui.max_displayed_values";
+    /**
+     * The constant PROPERTY_RAPIDMINER_GUI_SNAP_TO_GRID.
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_SNAP_TO_GRID = "rapidminer.gui.snap_to_grid";
+    /**
+     * The property name for &quot;Maximum number of states in the undo list.&quot;
+     *
+     * @since 7.5
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_UNDOLIST_SIZE = "rapidminer.gui.undolist.size";
+    /**
+     * The constant PROPERTY_AUTOWIRE_INPUT.
+     */
+    public static final String PROPERTY_AUTOWIRE_INPUT = "rapidminer.gui.autowire_input";
+    /**
+     * The constant PROPERTY_AUTOWIRE_OUTPUT.
+     */
+    public static final String PROPERTY_AUTOWIRE_OUTPUT = "rapidminer.gui.autowire_output";
+    /**
+     * The constant PROPERTY_RESOLVE_RELATIVE_REPOSITORY_LOCATIONS.
+     */
+    public static final String PROPERTY_RESOLVE_RELATIVE_REPOSITORY_LOCATIONS = "rapidminer.gui.resolve_relative_repository_locations";
+    /**
+     * The constant PROPERTY_CLOSE_RESULTS_BEFORE_RUN.
+     */
+    public static final String PROPERTY_CLOSE_RESULTS_BEFORE_RUN = "rapidminer.gui.close_results_before_run";
+    /**
+     * The constant PROPERTY_ADD_BREAKPOINT_RESULTS_TO_HISTORY.
+     */
+    public static final String PROPERTY_ADD_BREAKPOINT_RESULTS_TO_HISTORY = "rapidminer.gui.add_breakpoint_results_to_history";
+    /**
+     * The constant PROPERTY_CONFIRM_EXIT.
+     */
+    public static final String PROPERTY_CONFIRM_EXIT = "rapidminer.gui.confirm_exit";
+    /**
+     * The constant PROPERTY_RUN_REMOTE_NOW.
+     */
+    public static final String PROPERTY_RUN_REMOTE_NOW = "rapidminer.gui.run_process_on_rapidanalytics_now";
+    /**
+     * The constant PROPERTY_OPEN_IN_FILEBROWSER.
+     */
+    public static final String PROPERTY_OPEN_IN_FILEBROWSER = "rapidminer.gui.entry_open_in_filebrowser";
+    /**
+     * The constant PROPERTY_CLOSE_ALL_RESULTS_NOW.
+     */
+    public static final String PROPERTY_CLOSE_ALL_RESULTS_NOW = "rapidminer.gui.close_all_results_without_confirmation";
+    /**
+     * The constant PROPERTY_FETCH_DATA_BASE_TABLES_NAMES.
+     */
+    public static final String PROPERTY_FETCH_DATA_BASE_TABLES_NAMES = "rapidminer.gui.fetch_data_base_table_names";
+    /**
+     * The constant PROPERTY_DISCONNECT_ON_DISABLE.
+     */
+    public static final String PROPERTY_DISCONNECT_ON_DISABLE = "rapidminer.gui.disconnect_on_disable";
+    /**
+     * determines if a warning notification bubble is shown when no result ports are connected
+     */
+    public static final String PROPERTY_SHOW_NO_RESULT_WARNING = "rapidminer.gui.no_result_port_connected";
+    /**
+     * The constant PROPERTY_FONT_CONFIG.
+     */
+    public static final String PROPERTY_FONT_CONFIG = "rapidminer.gui.font_config";
 
-	public static final String PROPERTY_TRANSFER_USAGESTATS = "rapidminer.gui.transfer_usagestats";
-	public static final String[] PROPERTY_TRANSFER_USAGESTATS_ANSWERS = { "ask", "always", "never" };
+    /**
+     * The constant PROPERTY_TRANSFER_USAGESTATS.
+     */
+    public static final String PROPERTY_TRANSFER_USAGESTATS = "rapidminer.gui.transfer_usagestats";
+    /**
+     * The constant PROPERTY_TRANSFER_USAGESTATS_ANSWERS.
+     */
+    public static final String[] PROPERTY_TRANSFER_USAGESTATS_ANSWERS = { "ask", "always", "never" };
 
-	public static final String PROPERTY_DRAG_TARGET_HIGHLIGHTING = "rapidminer.gui.drag_target_highlighting";
-	public static final String[] PROPERTY_DRAG_TARGET_HIGHLIGHTING_VALUES = { "full", "border", "none" };
-	public static final int DRAG_TARGET_HIGHLIGHTING_FULL = 0;
+    /**
+     * The constant PROPERTY_DRAG_TARGET_HIGHLIGHTING.
+     */
+    public static final String PROPERTY_DRAG_TARGET_HIGHLIGHTING = "rapidminer.gui.drag_target_highlighting";
+    /**
+     * The constant PROPERTY_DRAG_TARGET_HIGHLIGHTING_VALUES.
+     */
+    public static final String[] PROPERTY_DRAG_TARGET_HIGHLIGHTING_VALUES = { "full", "border", "none" };
+    /**
+     * The constant DRAG_TARGET_HIGHLIGHTING_FULL.
+     */
+    public static final int DRAG_TARGET_HIGHLIGHTING_FULL = 0;
 
-	// GUI flag key for caching
+    /**
+     * The constant IS_GUI_PROCESS.
+     */
+// GUI flag key for caching
 	public static final String IS_GUI_PROCESS = "com.rapidminer.gui.isGUIProcess";
 
 	// Update Properties
 
-	public static final String PROPERTY_RAPIDMINER_GUI_PURCHASED_NOT_INSTALLED_CHECK = "rapidminer.update.purchased.not_installed.check";
-	public static final String PROPERTY_RAPIDMINER_GUI_UPDATE_CHECK = "rapidminer.update.check";
+    /**
+     * The constant PROPERTY_RAPIDMINER_GUI_PURCHASED_NOT_INSTALLED_CHECK.
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_PURCHASED_NOT_INSTALLED_CHECK = "rapidminer.update.purchased.not_installed.check";
+    /**
+     * The constant PROPERTY_RAPIDMINER_GUI_UPDATE_CHECK.
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_UPDATE_CHECK = "rapidminer.update.check";
 
 	static {
 
@@ -296,7 +403,13 @@ public class RapidMinerGUI extends RapidMiner {
 
 	// private static UpdateManager updateManager = new CommunityUpdateManager();
 
-	public synchronized void run(final String openLocation) throws Exception {
+    /**
+     * Run.
+     *
+     * @param openLocation the open location
+     * @throws Exception the exception
+     */
+    public synchronized void run(final String openLocation) throws Exception {
 		startupStarted = true;
 
 		// check if resources were copied
@@ -486,11 +599,13 @@ public class RapidMinerGUI extends RapidMiner {
 		manager.setReshowDelay(50);    // original: 500
 	}
 
-	/**
-	 * This default implementation only setup the tool tip durations. Subclasses might override this
-	 * method.
-	 */
-	protected void setupGUI() throws NoOpUserError {
+    /**
+     * This default implementation only setup the tool tip durations. Subclasses might override this
+     * method.
+     *
+     * @throws NoOpUserError the no op user error
+     */
+    protected void setupGUI() throws NoOpUserError {
 		System.setProperty(BookmarkIO.PROPERTY_BOOKMARKS_DIR, FileSystemService.getUserRapidMinerDir().getAbsolutePath());
 		System.setProperty(BookmarkIO.PROPERTY_BOOKMARKS_FILE, ".bookmarks");
 
@@ -515,23 +630,31 @@ public class RapidMinerGUI extends RapidMiner {
 		}
 	}
 
-	public static void setMainFrame(final MainFrame mf) {
+    /**
+     * Sets main frame.
+     *
+     * @param mf the mf
+     */
+    public static void setMainFrame(final MainFrame mf) {
 		mainFrame = mf;
 	}
 
-	public static MainFrame getMainFrame() {
+    /**
+     * Gets main frame.
+     *
+     * @return the main frame
+     */
+    public static MainFrame getMainFrame() {
 		return mainFrame;
 	}
 
-	/**
-	 * Checks whether the repository location belongs to the currently loaded process.
-	 *
-	 * @param location
-	 *            Repository location to check.
-	 * @return true if the process belonging to this entry is currently presented on the GUI, false
-	 *         otherwise.
-	 */
-	public static boolean isMainFrameProcessLocation(RepositoryLocation location) {
+    /**
+     * Checks whether the repository location belongs to the currently loaded process.
+     *
+     * @param location Repository location to check.
+     * @return true if the process belonging to this entry is currently presented on the GUI, false         otherwise.
+     */
+    public static boolean isMainFrameProcessLocation(RepositoryLocation location) {
 		if (getMainFrame() != null && getMainFrame().getProcess() != null) {
 			RepositoryLocation currentProcessLocation = getMainFrame().getProcess().getRepositoryLocation();
 			if (location.equals(currentProcessLocation)) {
@@ -541,26 +664,35 @@ public class RapidMinerGUI extends RapidMiner {
 		return false;
 	}
 
-	/**
-	 * Resets the location of the MainFrame process without reloading it. Use only if the currently
-	 * displayed process is stored in repository, and got renamed or moved.
-	 *
-	 * @param repositoryLocation
-	 *            The new process location.
-	 */
-	public static void resetProcessLocation(RepositoryProcessLocation repositoryLocation) {
+    /**
+     * Resets the location of the MainFrame process without reloading it. Use only if the currently
+     * displayed process is stored in repository, and got renamed or moved.
+     *
+     * @param repositoryLocation The new process location.
+     */
+    public static void resetProcessLocation(RepositoryProcessLocation repositoryLocation) {
 		getMainFrame().getProcess().setProcessLocation(repositoryLocation);
 		getMainFrame().setTitle();
 		addToRecentFiles(repositoryLocation);
 		getMainFrame().updateRecentFileList();
 	}
 
-	public static void useProcessFile(final Process process) {
+    /**
+     * Use process file.
+     *
+     * @param process the process
+     */
+    public static void useProcessFile(final Process process) {
 		ProcessLocation location = process.getProcessLocation();
 		addToRecentFiles(location);
 	}
 
-	public static void addToRecentFiles(final ProcessLocation location) {
+    /**
+     * Add to recent files.
+     *
+     * @param location the location
+     */
+    public static void addToRecentFiles(final ProcessLocation location) {
 		if (location != null) {
 			while (recentFiles.contains(location)) {
 				recentFiles.remove(location);
@@ -573,23 +705,30 @@ public class RapidMinerGUI extends RapidMiner {
 		}
 	}
 
-	public static List<ProcessLocation> getRecentFiles() {
+    /**
+     * Gets recent files.
+     *
+     * @return the recent files
+     */
+    public static List<ProcessLocation> getRecentFiles() {
 		return recentFiles;
 	}
 
-	/**
-	 * Returns the default {@link LogModel} for RapidMiner Studio.
-	 *
-	 * @return
-	 */
-	public static LogModel getDefaultLogModel() {
+    /**
+     * Returns the default {@link LogModel} for RapidMiner Studio.
+     *
+     * @return default log model
+     */
+    public static LogModel getDefaultLogModel() {
 		return defaultLogModel;
 	}
 
-	/**
-	 * @return the object that handles autosave information
-	 */
-	public static AutoSave getAutoSave() {
+    /**
+     * Gets auto save.
+     *
+     * @return the object that handles autosave information
+     */
+    public static AutoSave getAutoSave() {
 		return autosave;
 	}
 
@@ -736,7 +875,13 @@ public class RapidMinerGUI extends RapidMiner {
 		mainFrame.getPropertyPanel().setExpertMode(false);
 	}
 
-	public static void main(String[] args) throws Exception {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws Exception the exception
+     */
+    public static void main(String[] args) throws Exception {
 		Policy.setPolicy(new PluginSandboxPolicy());
 		System.setSecurityManager(new PluginSecurityManager());
 
@@ -801,18 +946,37 @@ public class RapidMinerGUI extends RapidMiner {
 		}
 	}
 
-	/**
-	 * @return the safeMode
-	 */
-	public static SafeMode getSafeMode() {
+    /**
+     * Gets safe mode.
+     *
+     * @return the safeMode
+     */
+    public static SafeMode getSafeMode() {
 		return safeMode;
 	}
 
-	public enum DragHighlightMode {
-		FULL, BORDER, NONE
+    /**
+     * The enum Drag highlight mode.
+     */
+    public enum DragHighlightMode {
+        /**
+         * Full drag highlight mode.
+         */
+        FULL, /**
+         * Border drag highlight mode.
+         */
+        BORDER, /**
+         * None drag highlight mode.
+         */
+        NONE
 	}
 
-	public static DragHighlightMode getDragHighlighteMode() {
+    /**
+     * Gets drag highlighte mode.
+     *
+     * @return the drag highlighte mode
+     */
+    public static DragHighlightMode getDragHighlighteMode() {
 		String dragParameter = ParameterService.getParameterValue(PROPERTY_DRAG_TARGET_HIGHLIGHTING);
 		if (dragParameter.equals(PROPERTY_DRAG_TARGET_HIGHLIGHTING_VALUES[0])) {
 			return DragHighlightMode.FULL;
@@ -823,11 +987,21 @@ public class RapidMinerGUI extends RapidMiner {
 		}
 	}
 
-	public static Color getBodyHighlightColor() {
+    /**
+     * Gets body highlight color.
+     *
+     * @return the body highlight color
+     */
+    public static Color getBodyHighlightColor() {
 		return new Color(255, 255, 242);
 	}
 
-	public static Color getBorderHighlightColor() {
+    /**
+     * Gets border highlight color.
+     *
+     * @return the border highlight color
+     */
+    public static Color getBorderHighlightColor() {
 		return SwingTools.RAPIDMINER_ORANGE;
 	}
 
@@ -884,15 +1058,13 @@ public class RapidMinerGUI extends RapidMiner {
 		}
 	}
 
-	/**
-	 * Register a {@link GUIStartupListener}.
-	 *
-	 * @param listener
-	 *            the listener to register
-	 * @throws IllegalStateException
-	 *             if the startup process has already been started
-	 */
-	public static synchronized void registerStartupListener(GUIStartupListener listener) {
+    /**
+     * Register a {@link GUIStartupListener}.
+     *
+     * @param listener the listener to register
+     * @throws IllegalStateException if the startup process has already been started
+     */
+    public static synchronized void registerStartupListener(GUIStartupListener listener) {
 		if (startupStarted) {
 			throw new IllegalStateException("Cannot register a Startup listener after startup has been started");
 		}

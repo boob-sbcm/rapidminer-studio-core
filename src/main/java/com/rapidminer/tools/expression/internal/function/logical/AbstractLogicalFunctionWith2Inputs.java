@@ -33,22 +33,16 @@ import com.rapidminer.tools.expression.internal.SimpleExpressionEvaluator;
  * Abstract class for a function that has 2 logical (numerical, true or false) inputs
  *
  * @author Sabrina Kirstein
- *
  */
 public abstract class AbstractLogicalFunctionWith2Inputs extends AbstractLogicalFunction {
 
-	/**
-	 * Constructs a logical AbstractFunction with 2 parameters with {@link FunctionDescription}
-	 * generated from the arguments and the function name generated from the description.
-	 *
-	 * @param i18nKey
-	 *            the key for the {@link FunctionDescription}. The functionName is read from
-	 *            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName
-	 *            from ".group", the description from ".description" and the function with
-	 *            parameters from ".parameters". If ".parameters" is not present, the ".name" is
-	 *            taken for the function with parameters.
-	 */
-	public AbstractLogicalFunctionWith2Inputs(String i18nKey) {
+    /**
+     * Constructs a logical AbstractFunction with 2 parameters with {@link FunctionDescription}
+     * generated from the arguments and the function name generated from the description.
+     *
+     * @param i18nKey the key for the {@link FunctionDescription}. The functionName is read from            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName            from ".group", the description from ".description" and the function with            parameters from ".parameters". If ".parameters" is not present, the ".name" is            taken for the function with parameters.
+     */
+    public AbstractLogicalFunctionWith2Inputs(String i18nKey) {
 		super(i18nKey, 2);
 	}
 
@@ -67,17 +61,19 @@ public abstract class AbstractLogicalFunctionWith2Inputs extends AbstractLogical
 		return new SimpleExpressionEvaluator(makeBooleanCallable(left, right), isResultConstant(inputEvaluators), type);
 	}
 
-	/**
-	 * Builds a boolean callable from evaluator using {@link #compute(double} or {@link
-	 * #compute(boolean}, where constant child results are evaluated.
-	 *
-	 * @param left
-	 *            evaluator
-	 * @param right
-	 *            evaluator
-	 * @return the resulting boolean callable
-	 */
-	protected Callable<Boolean> makeBooleanCallable(ExpressionEvaluator left, ExpressionEvaluator right) {
+    /**
+     * Builds a boolean callable from evaluator using {@link #compute(double} or {@link
+     * #compute(boolean}, where constant child results are evaluated.
+     *
+     * @param left  evaluator
+     * @param right evaluator
+     * @param left  the left
+     * @param right the right
+     * @param left  the left
+     * @param right the right
+     * @return the callable
+     */
+    protected Callable<Boolean> makeBooleanCallable(ExpressionEvaluator left, ExpressionEvaluator right) {
 		ExpressionType leftType = left.getType();
 		ExpressionType rightType = right.getType();
 
@@ -269,41 +265,41 @@ public abstract class AbstractLogicalFunctionWith2Inputs extends AbstractLogical
 		}
 	}
 
-	/**
-	 * Computes the result for two double values.
-	 *
-	 * @param left
-	 * @param right
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(double left, double right);
+    /**
+     * Computes the result for two double values.
+     *
+     * @param left  the left
+     * @param right the right
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(double left, double right);
 
-	/**
-	 * Computes the result for a double value and a boolean value.
-	 *
-	 * @param left
-	 * @param right
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(double left, Boolean right);
+    /**
+     * Computes the result for a double value and a boolean value.
+     *
+     * @param left  the left
+     * @param right the right
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(double left, Boolean right);
 
-	/**
-	 * Computes the result for a boolean value and a double value.
-	 *
-	 * @param left
-	 * @param right
-	 * @return the result of the computation.
-	 */
-	protected Boolean compute(Boolean left, double right) {
+    /**
+     * Computes the result for a boolean value and a double value.
+     *
+     * @param left  the left
+     * @param right the right
+     * @return the result of the computation.
+     */
+    protected Boolean compute(Boolean left, double right) {
 		return compute(right, left);
 	}
 
-	/**
-	 * Computes the result for two boolean values.
-	 *
-	 * @param left
-	 * @param right
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(Boolean left, Boolean right);
+    /**
+     * Computes the result for two boolean values.
+     *
+     * @param left  the left
+     * @param right the right
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(Boolean left, Boolean right);
 }

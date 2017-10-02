@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExitAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class ExitAction extends ResourceAction {
 
 	private MainFrame mainFrame;
 
-	public ExitAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Exit action.
+     *
+     * @param mainFrame the main frame
+     */
+    public ExitAction(MainFrame mainFrame) {
 		super("exit");
 		this.mainFrame = mainFrame;
 		setCondition(EDIT_IN_PROGRESS, DONT_CARE);

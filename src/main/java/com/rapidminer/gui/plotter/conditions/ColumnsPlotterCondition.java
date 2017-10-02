@@ -24,7 +24,7 @@ import com.rapidminer.datatable.DataTable;
 /**
  * This condition accepts data tables with a number of columns in the specified range (including the
  * boundaries).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ColumnsPlotterCondition implements PlotterCondition {
@@ -32,11 +32,22 @@ public class ColumnsPlotterCondition implements PlotterCondition {
 	private int minColumns;
 	private int maxColumns;
 
-	public ColumnsPlotterCondition(int maxColumns) {
+    /**
+     * Instantiates a new Columns plotter condition.
+     *
+     * @param maxColumns the max columns
+     */
+    public ColumnsPlotterCondition(int maxColumns) {
 		this(0, maxColumns);
 	}
 
-	public ColumnsPlotterCondition(int minColumns, int maxColumns) {
+    /**
+     * Instantiates a new Columns plotter condition.
+     *
+     * @param minColumns the min columns
+     * @param maxColumns the max columns
+     */
+    public ColumnsPlotterCondition(int minColumns, int maxColumns) {
 		this.minColumns = minColumns;
 		this.maxColumns = maxColumns;
 	}

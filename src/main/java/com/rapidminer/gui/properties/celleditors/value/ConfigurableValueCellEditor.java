@@ -45,7 +45,6 @@ import com.rapidminer.tools.container.Pair;
  * Provides a selection field for {@link Configurable}s.
  *
  * @author Marco Boeck, Sabrina Kirstein
- *
  */
 public class ConfigurableValueCellEditor extends AbstractSuggestionBoxValueCellEditor {
 
@@ -63,10 +62,12 @@ public class ConfigurableValueCellEditor extends AbstractSuggestionBoxValueCellE
 	/** the name of the source ({@link RemoteRepository}) of the process */
 	private String source;
 
-	/**
-	 * Creates a new {@link ConfigurableValueCellEditor} instance.
-	 */
-	public ConfigurableValueCellEditor(final ParameterTypeConfigurable type) {
+    /**
+     * Creates a new {@link ConfigurableValueCellEditor} instance.
+     *
+     * @param type the type
+     */
+    public ConfigurableValueCellEditor(final ParameterTypeConfigurable type) {
 		super(type);
 		this.typeId = type.getTypeId();
 		if (!ConfigurationManager.getInstance().hasTypeId(typeId)) {

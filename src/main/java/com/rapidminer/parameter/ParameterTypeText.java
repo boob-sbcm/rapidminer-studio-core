@@ -39,59 +39,93 @@ public class ParameterTypeText extends ParameterTypeString {
 
 	private String templateText;
 
-	public ParameterTypeText(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type text.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeText(Element element) throws XMLException {
 		super(element);
 
 		type = TextType.valueOf(element.getAttribute(ATTRIBUTE_TEXT_TYPE));
 	}
 
-	/** Creates a new optional parameter type for longer texts. */
-	public ParameterTypeText(String key, String description, TextType type) {
+    /**
+     * Creates a new optional parameter type for longer texts.  @param key the key
+     *
+     * @param key         the key
+     * @param description the description
+     * @param type        the type
+     */
+    public ParameterTypeText(String key, String description, TextType type) {
 		super(key, description, true);
 		setTextType(type);
 	}
 
-	/** Creates a new parameter type for longer texts with the given default value. */
-	public ParameterTypeText(String key, String description, TextType type, String defaultValue) {
+    /**
+     * Creates a new parameter type for longer texts with the given default value.  @param key the key
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param type         the type
+     * @param defaultValue the default value
+     */
+    public ParameterTypeText(String key, String description, TextType type, String defaultValue) {
 		super(key, description, defaultValue);
 		setTextType(type);
 	}
 
-	/** Creates a new parameter type for longer texts. */
-	public ParameterTypeText(String key, String description, TextType type, boolean optional) {
+    /**
+     * Creates a new parameter type for longer texts.  @param key the key
+     *
+     * @param key         the key
+     * @param description the description
+     * @param type        the type
+     * @param optional    the optional
+     */
+    public ParameterTypeText(String key, String description, TextType type, boolean optional) {
 		super(key, description, optional);
 		setTextType(type);
 	}
 
-	public void setTextType(TextType type) {
+    /**
+     * Sets text type.
+     *
+     * @param type the type
+     */
+    public void setTextType(TextType type) {
 		this.type = type;
 	}
 
-	public TextType getTextType() {
+    /**
+     * Gets text type.
+     *
+     * @return the text type
+     */
+    public TextType getTextType() {
 		return this.type;
 	}
 
-	/**
-	 * Sets the template text that is shown in the {@link TextPropertyDialog} if no text is set and
-	 * no default value defined.
-	 *
-	 * @param templateText
-	 *            the template text to show in the {@link TextPropertyDialog} if no text is set and
-	 *            no default value defined
-	 * @since 6.5
-	 */
-	public void setTemplateText(String templateText) {
+    /**
+     * Sets the template text that is shown in the {@link TextPropertyDialog} if no text is set and
+     * no default value defined.
+     *
+     * @param templateText the template text to show in the {@link TextPropertyDialog} if no text is set and            no default value defined
+     * @since 6.5
+     */
+    public void setTemplateText(String templateText) {
 		this.templateText = templateText;
 	}
 
-	/**
-	 * Returns the template text that is shown in the {@link TextPropertyDialog} if no text is set
-	 * and no default value defined.
-	 *
-	 * @return the template text
-	 * @since 6.5
-	 */
-	public String getTemplateText() {
+    /**
+     * Returns the template text that is shown in the {@link TextPropertyDialog} if no text is set
+     * and no default value defined.
+     *
+     * @return the template text
+     * @since 6.5
+     */
+    public String getTemplateText() {
 		return templateText;
 	}
 

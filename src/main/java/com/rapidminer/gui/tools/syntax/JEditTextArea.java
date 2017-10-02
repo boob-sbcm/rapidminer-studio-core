@@ -95,33 +95,45 @@ import javax.swing.undo.UndoableEdit;
  * It is also faster and doesn't have as many problems. It can be used in other applications; the
  * only other part of jEdit it depends on is the syntax package.
  * <p>
- * 
+ * <p>
  * To use it in your app, treat it like any other component, for example:
- * 
+ * <p>
  * <pre>
  * JEditTextArea ta = new JEditTextArea();
  * ta.setTokenMarker(new JavaTokenMarker());
- * ta.setText(&quot;public class Test {&quot; + &quot;    
- * public static void main(String[] args) {&quot; + &quot;        
- * System.out.println(\&quot;Hello World\&quot;);&quot; + &quot;    
+ * ta.setText(&quot;public class Test {&quot; + &quot;
+ * public static void main(String[] args) {&quot; + &quot;
+ * System.out.println(\&quot;Hello World\&quot;);&quot; + &quot;
  * }&quot; + &quot;}&quot;);
  * </pre>
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa, Tobias Malbrecht
  */
 public class JEditTextArea extends JComponent implements MouseWheelListener {
 
 	private static final long serialVersionUID = -3684547177167797759L;
 
-	public final transient Action COPY_ACTION = new ResourceActionTransmitter(true, "editor.copy", InputHandler.CLIP_COPY,
+    /**
+     * The Copy action.
+     */
+    public final transient Action COPY_ACTION = new ResourceActionTransmitter(true, "editor.copy", InputHandler.CLIP_COPY,
 			this);
 
-	public final transient Action CUT_ACTION = new ResourceActionTransmitter(true, "editor.cut", InputHandler.CLIP_CUT, this);
+    /**
+     * The Cut action.
+     */
+    public final transient Action CUT_ACTION = new ResourceActionTransmitter(true, "editor.cut", InputHandler.CLIP_CUT, this);
 
-	public final transient Action PASTE_ACTION = new ResourceActionTransmitter(true, "editor.paste",
+    /**
+     * The Paste action.
+     */
+    public final transient Action PASTE_ACTION = new ResourceActionTransmitter(true, "editor.paste",
 			InputHandler.CLIP_PASTE, this);
 
-	public final transient Action DELETE_ACTION = new ResourceAction(true, "editor.delete") {
+    /**
+     * The constant DELETE_ACTION.
+     */
+    public final transient Action DELETE_ACTION = new ResourceAction(true, "editor.delete") {
 
 		private static final long serialVersionUID = 4129393674027873044L;
 
@@ -131,32 +143,37 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	};
 
-	public final transient Action SELECT_ALL_ACTION = new ResourceActionTransmitter(true, "editor.select_all",
+    /**
+     * The Select all action.
+     */
+    public final transient Action SELECT_ALL_ACTION = new ResourceActionTransmitter(true, "editor.select_all",
 			InputHandler.SELECT_ALL, this);
 
-	public final transient Action SEARCH_AND_REPLACE_ACTION = new ResourceActionTransmitter(true, "editor.search_replace",
+    /**
+     * The Search and replace action.
+     */
+    public final transient Action SEARCH_AND_REPLACE_ACTION = new ResourceActionTransmitter(true, "editor.search_replace",
 			InputHandler.SEARCH_AND_REPLACE, this);
 
-	/**
-	 * Adding components with this name to the text area will place them left of the horizontal
-	 * scroll bar. In jEdit, the status bar is added this way.
-	 */
-	public static final String LEFT_OF_SCROLLBAR = "los";
+    /**
+     * Adding components with this name to the text area will place them left of the horizontal
+     * scroll bar. In jEdit, the status bar is added this way.
+     */
+    public static final String LEFT_OF_SCROLLBAR = "los";
 
-	/**
-	 * Creates a new JEditTextArea with the default settings.
-	 */
-	public JEditTextArea() {
+    /**
+     * Creates a new JEditTextArea with the default settings.
+     */
+    public JEditTextArea() {
 		this(TextAreaDefaults.getDefaults());
 	}
 
-	/**
-	 * Creates a new JEditTextArea with the specified settings.
-	 * 
-	 * @param defaults
-	 *            The default settings
-	 */
-	public JEditTextArea(TextAreaDefaults defaults) {
+    /**
+     * Creates a new JEditTextArea with the specified settings.
+     *
+     * @param defaults The default settings
+     */
+    public JEditTextArea(TextAreaDefaults defaults) {
 		// Enable the necessary events
 		enableEvents(AWTEvent.KEY_EVENT_MASK);
 
@@ -200,7 +217,12 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		setRightClickPopup(createTextPopupMenu());
 	}
 
-	protected Object readResolve() {
+    /**
+     * Read resolve object.
+     *
+     * @return the object
+     */
+    protected Object readResolve() {
 		documentHandler = new DocumentHandler();
 		lineSegment = new Segment();
 		return this;
@@ -236,44 +258,48 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		return true;
 	}
 
-	/**
-	 * Returns the object responsible for painting this text area.
-	 */
-	public final TextAreaPainter getPainter() {
+    /**
+     * Returns the object responsible for painting this text area.
+     *
+     * @return the painter
+     */
+    public final TextAreaPainter getPainter() {
 		return painter;
 	}
 
-	/**
-	 * Returns the input handler.
-	 */
-	public final InputHandler getInputHandler() {
+    /**
+     * Returns the input handler.
+     *
+     * @return the input handler
+     */
+    public final InputHandler getInputHandler() {
 		return inputHandler;
 	}
 
-	/**
-	 * Sets the input handler.
-	 * 
-	 * @param inputHandler
-	 *            The new input handler
-	 */
-	public void setInputHandler(InputHandler inputHandler) {
+    /**
+     * Sets the input handler.
+     *
+     * @param inputHandler The new input handler
+     */
+    public void setInputHandler(InputHandler inputHandler) {
 		this.inputHandler = inputHandler;
 	}
 
-	/**
-	 * Returns true if the caret is blinking, false otherwise.
-	 */
-	public final boolean isCaretBlinkEnabled() {
+    /**
+     * Returns true if the caret is blinking, false otherwise.
+     *
+     * @return the boolean
+     */
+    public final boolean isCaretBlinkEnabled() {
 		return caretBlinks;
 	}
 
-	/**
-	 * Toggles caret blinking.
-	 * 
-	 * @param caretBlinks
-	 *            True if the caret should blink, false otherwise
-	 */
-	public void setCaretBlinkEnabled(boolean caretBlinks) {
+    /**
+     * Toggles caret blinking.
+     *
+     * @param caretBlinks True if the caret should blink, false otherwise
+     */
+    public void setCaretBlinkEnabled(boolean caretBlinks) {
 		this.caretBlinks = caretBlinks;
 		if (!caretBlinks) {
 			blink = false;
@@ -282,30 +308,31 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		painter.invalidateSelectedLines();
 	}
 
-	/**
-	 * Returns true if the caret is visible, false otherwise.
-	 */
-	public final boolean isCaretVisible() {
+    /**
+     * Returns true if the caret is visible, false otherwise.
+     *
+     * @return the boolean
+     */
+    public final boolean isCaretVisible() {
 		return (!caretBlinks || blink) && caretVisible;
 	}
 
-	/**
-	 * Sets if the caret should be visible.
-	 * 
-	 * @param caretVisible
-	 *            True if the caret should be visible, false otherwise
-	 */
-	public void setCaretVisible(boolean caretVisible) {
+    /**
+     * Sets if the caret should be visible.
+     *
+     * @param caretVisible True if the caret should be visible, false otherwise
+     */
+    public void setCaretVisible(boolean caretVisible) {
 		this.caretVisible = caretVisible;
 		blink = true;
 
 		painter.invalidateSelectedLines();
 	}
 
-	/**
-	 * Blinks the caret.
-	 */
-	public final void blinkCaret() {
+    /**
+     * Blinks the caret.
+     */
+    public final void blinkCaret() {
 		if (caretBlinks) {
 			blink = !blink;
 			painter.invalidateSelectedLines();
@@ -314,28 +341,29 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Returns the number of lines from the top and button of the text area that are always visible.
-	 */
-	public final int getElectricScroll() {
+    /**
+     * Returns the number of lines from the top and button of the text area that are always visible.
+     *
+     * @return the electric scroll
+     */
+    public final int getElectricScroll() {
 		return electricScroll;
 	}
 
-	/**
-	 * Sets the number of lines from the top and bottom of the text area that are always visible
-	 * 
-	 * @param electricScroll
-	 *            The number of lines always visible from the top or bottom
-	 */
-	public final void setElectricScroll(int electricScroll) {
+    /**
+     * Sets the number of lines from the top and bottom of the text area that are always visible
+     *
+     * @param electricScroll The number of lines always visible from the top or bottom
+     */
+    public final void setElectricScroll(int electricScroll) {
 		this.electricScroll = electricScroll;
 	}
 
-	/**
-	 * Updates the state of the scroll bars. This should be called if the number of lines in the
-	 * document changes, or when the size of the text are changes.
-	 */
-	public void updateScrollBars() {
+    /**
+     * Updates the state of the scroll bars. This should be called if the number of lines in the
+     * document changes, or when the size of the text are changes.
+     */
+    public void updateScrollBars() {
 		if (vertical != null && visibleLines != 0) {
 			vertical.setValues(firstLine, visibleLines, 0, getLineCount());
 			vertical.setUnitIncrement(2);
@@ -350,17 +378,21 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Returns the line displayed at the text area's origin.
-	 */
-	public final int getFirstLine() {
+    /**
+     * Returns the line displayed at the text area's origin.
+     *
+     * @return the first line
+     */
+    public final int getFirstLine() {
 		return firstLine;
 	}
 
-	/**
-	 * Sets the line displayed at the text area's origin without updating the scroll bars.
-	 */
-	public void setFirstLine(int firstLine) {
+    /**
+     * Sets the line displayed at the text area's origin without updating the scroll bars.
+     *
+     * @param firstLine the first line
+     */
+    public void setFirstLine(int firstLine) {
 		if (firstLine == this.firstLine) {
 			return;
 		}
@@ -371,17 +403,19 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		painter.repaint();
 	}
 
-	/**
-	 * Returns the number of lines visible in this text area.
-	 */
-	public final int getVisibleLines() {
+    /**
+     * Returns the number of lines visible in this text area.
+     *
+     * @return the visible lines
+     */
+    public final int getVisibleLines() {
 		return visibleLines;
 	}
 
-	/**
-	 * Recalculates the number of visible lines. This should not be called directly.
-	 */
-	public final void recalculateVisibleLines() {
+    /**
+     * Recalculates the number of visible lines. This should not be called directly.
+     */
+    public final void recalculateVisibleLines() {
 		if (painter == null) {
 			return;
 		}
@@ -391,21 +425,22 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		updateScrollBars();
 	}
 
-	/**
-	 * Returns the horizontal offset of drawn lines.
-	 */
-	public final int getHorizontalOffset() {
+    /**
+     * Returns the horizontal offset of drawn lines.
+     *
+     * @return the horizontal offset
+     */
+    public final int getHorizontalOffset() {
 		return horizontalOffset;
 	}
 
-	/**
-	 * Sets the horizontal offset of drawn lines. This can be used to implement horizontal
-	 * scrolling.
-	 * 
-	 * @param horizontalOffset
-	 *            offset The new horizontal offset
-	 */
-	public void setHorizontalOffset(int horizontalOffset) {
+    /**
+     * Sets the horizontal offset of drawn lines. This can be used to implement horizontal
+     * scrolling.
+     *
+     * @param horizontalOffset offset The new horizontal offset
+     */
+    public void setHorizontalOffset(int horizontalOffset) {
 		if (horizontalOffset == this.horizontalOffset) {
 			return;
 		}
@@ -416,16 +451,14 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		painter.repaint();
 	}
 
-	/**
-	 * A fast way of changing both the first line and horizontal offset.
-	 * 
-	 * @param firstLine
-	 *            The new first line
-	 * @param horizontalOffset
-	 *            The new horizontal offset
-	 * @return True if any of the values were changed, false otherwise
-	 */
-	public boolean setOrigin(int firstLine, int horizontalOffset) {
+    /**
+     * A fast way of changing both the first line and horizontal offset.
+     *
+     * @param firstLine        The new first line
+     * @param horizontalOffset The new horizontal offset
+     * @return True if any of the values were changed, false otherwise
+     */
+    public boolean setOrigin(int firstLine, int horizontalOffset) {
 		boolean changed = false;
 
 		if (horizontalOffset != this.horizontalOffset) {
@@ -446,12 +479,12 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		return changed;
 	}
 
-	/**
-	 * Ensures that the caret is visible by scrolling the text area if necessary.
-	 * 
-	 * @return True if scrolling was actually performed, false if the caret was already visible
-	 */
-	public boolean scrollToCaret() {
+    /**
+     * Ensures that the caret is visible by scrolling the text area if necessary.
+     *
+     * @return True if scrolling was actually performed, false if the caret was already visible
+     */
+    public boolean scrollToCaret() {
 		int line = getCaretLine();
 		int lineStart = getLineStartOffset(line);
 		int offset = Math.max(0, Math.min(getLineLength(line) - 1, getCaretPosition() - lineStart));
@@ -459,18 +492,15 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		return scrollTo(line, offset);
 	}
 
-	/**
-	 * Ensures that the specified line and offset is visible by scrolling the text area if
-	 * necessary.
-	 * 
-	 * @param line
-	 *            The line to scroll to
-	 * @param offset
-	 *            The offset in the line to scroll to
-	 * @return True if scrolling was actually performed, false if the line and offset was already
-	 *         visible
-	 */
-	public boolean scrollTo(int line, int offset) {
+    /**
+     * Ensures that the specified line and offset is visible by scrolling the text area if
+     * necessary.
+     *
+     * @param line   The line to scroll to
+     * @param offset The offset in the line to scroll to
+     * @return True if scrolling was actually performed, false if the line and offset was already         visible
+     */
+    public boolean scrollTo(int line, int offset) {
 		// visibleLines == 0 before the component is realized
 		// we can't do any proper scrolling then, so we have
 		// this hack...
@@ -506,54 +536,52 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		return setOrigin(newFirstLine, newHorizontalOffset);
 	}
 
-	/**
-	 * Converts a line index to a y co-ordinate.
-	 * 
-	 * @param line
-	 *            The line
-	 */
-	public int lineToY(int line) {
+    /**
+     * Converts a line index to a y co-ordinate.
+     *
+     * @param line The line
+     * @return the int
+     */
+    public int lineToY(int line) {
 		FontMetrics fm = painter.getFontMetrics();
 		return (line - firstLine) * fm.getHeight() - (fm.getLeading() + fm.getMaxDescent());
 	}
 
-	/**
-	 * Converts a y co-ordinate to a line index.
-	 * 
-	 * @param y
-	 *            The y co-ordinate
-	 */
-	public int yToLine(int y) {
+    /**
+     * Converts a y co-ordinate to a line index.
+     *
+     * @param y The y co-ordinate
+     * @return the int
+     */
+    public int yToLine(int y) {
 		FontMetrics fm = painter.getFontMetrics();
 		int height = fm.getHeight();
 		return Math.max(0, Math.min(getLineCount() - 1, y / height + firstLine));
 	}
 
-	/**
-	 * Converts an offset in a line into an x co-ordinate. This is a slow version that can be used
-	 * any time.
-	 * 
-	 * @param line
-	 *            The line
-	 * @param offset
-	 *            The offset, from the start of the line
-	 */
-	public final int offsetToX(int line, int offset) {
+    /**
+     * Converts an offset in a line into an x co-ordinate. This is a slow version that can be used
+     * any time.
+     *
+     * @param line   The line
+     * @param offset The offset, from the start of the line
+     * @return the int
+     */
+    public final int offsetToX(int line, int offset) {
 		// don't use cached tokens
 		painter.currentLineTokens = null;
 		return _offsetToX(line, offset);
 	}
 
-	/**
-	 * Converts an offset in a line into an x co-ordinate. This is a fast version that should only
-	 * be used if no changes were made to the text since the last repaint.
-	 * 
-	 * @param line
-	 *            The line
-	 * @param offset
-	 *            The offset, from the start of the line
-	 */
-	public int _offsetToX(int line, int offset) {
+    /**
+     * Converts an offset in a line into an x co-ordinate. This is a fast version that should only
+     * be used if no changes were made to the text since the last repaint.
+     *
+     * @param line   The line
+     * @param offset The offset, from the start of the line
+     * @return the int
+     */
+    public int _offsetToX(int line, int offset) {
 		TokenMarker tokenMarker = getTokenMarker();
 
 		/* Use painter's cached info for speed */
@@ -611,15 +639,14 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Converts an x co-ordinate to an offset within a line.
-	 * 
-	 * @param line
-	 *            The line
-	 * @param x
-	 *            The x co-ordinate
-	 */
-	public int xToOffset(int line, int x) {
+    /**
+     * Converts an x co-ordinate to an offset within a line.
+     *
+     * @param line The line
+     * @param x    The x co-ordinate
+     * @return the int
+     */
+    public int xToOffset(int line, int x) {
 		TokenMarker tokenMarker = getTokenMarker();
 
 		/* Use painter's cached info for speed */
@@ -712,34 +739,34 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Converts a point to an offset, from the start of the text.
-	 * 
-	 * @param x
-	 *            The x co-ordinate of the point
-	 * @param y
-	 *            The y co-ordinate of the point
-	 */
-	public int xyToOffset(int x, int y) {
+    /**
+     * Converts a point to an offset, from the start of the text.
+     *
+     * @param x The x co-ordinate of the point
+     * @param y The y co-ordinate of the point
+     * @return the int
+     */
+    public int xyToOffset(int x, int y) {
 		int line = yToLine(y);
 		int start = getLineStartOffset(line);
 		return start + xToOffset(line, x);
 	}
 
-	/**
-	 * Returns the document this text area is editing.
-	 */
-	public final SyntaxDocument getDocument() {
+    /**
+     * Returns the document this text area is editing.
+     *
+     * @return the document
+     */
+    public final SyntaxDocument getDocument() {
 		return document;
 	}
 
-	/**
-	 * Sets the document this text area is editing.
-	 * 
-	 * @param document
-	 *            The document
-	 */
-	public void setDocument(SyntaxDocument document) {
+    /**
+     * Sets the document this text area is editing.
+     *
+     * @param document The document
+     */
+    public void setDocument(SyntaxDocument document) {
 		if (this.document == document) {
 			return;
 		}
@@ -755,58 +782,62 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		painter.repaint();
 	}
 
-	/**
-	 * Returns the document's token marker. Equivalent to calling
-	 * <code>getDocument().getTokenMarker()</code>.
-	 */
-	public final TokenMarker getTokenMarker() {
+    /**
+     * Returns the document's token marker. Equivalent to calling
+     * <code>getDocument().getTokenMarker()</code>.
+     *
+     * @return the token marker
+     */
+    public final TokenMarker getTokenMarker() {
 		return document.getTokenMarker();
 	}
 
-	/**
-	 * Sets the document's token marker. Equivalent to caling
-	 * <code>getDocument().setTokenMarker()</code>.
-	 * 
-	 * @param tokenMarker
-	 *            The token marker
-	 */
-	public final void setTokenMarker(TokenMarker tokenMarker) {
+    /**
+     * Sets the document's token marker. Equivalent to caling
+     * <code>getDocument().setTokenMarker()</code>.
+     *
+     * @param tokenMarker The token marker
+     */
+    public final void setTokenMarker(TokenMarker tokenMarker) {
 		document.setTokenMarker(tokenMarker);
 	}
 
-	/**
-	 * Returns the length of the document. Equivalent to calling
-	 * <code>getDocument().getLength()</code>.
-	 */
-	public final int getDocumentLength() {
+    /**
+     * Returns the length of the document. Equivalent to calling
+     * <code>getDocument().getLength()</code>.
+     *
+     * @return the document length
+     */
+    public final int getDocumentLength() {
 		return document.getLength();
 	}
 
-	/**
-	 * Returns the number of lines in the document.
-	 */
-	public final int getLineCount() {
+    /**
+     * Returns the number of lines in the document.
+     *
+     * @return the line count
+     */
+    public final int getLineCount() {
 		return document.getDefaultRootElement().getElementCount();
 	}
 
-	/**
-	 * Returns the line containing the specified offset.
-	 * 
-	 * @param offset
-	 *            The offset
-	 */
-	public final int getLineOfOffset(int offset) {
+    /**
+     * Returns the line containing the specified offset.
+     *
+     * @param offset The offset
+     * @return the line of offset
+     */
+    public final int getLineOfOffset(int offset) {
 		return document.getDefaultRootElement().getElementIndex(offset);
 	}
 
-	/**
-	 * Returns the start offset of the specified line.
-	 * 
-	 * @param line
-	 *            The line
-	 * @return The start offset of the specified line, or -1 if the line is invalid
-	 */
-	public int getLineStartOffset(int line) {
+    /**
+     * Returns the start offset of the specified line.
+     *
+     * @param line The line
+     * @return The start offset of the specified line, or -1 if the line is invalid
+     */
+    public int getLineStartOffset(int line) {
 		Element lineElement = document.getDefaultRootElement().getElement(line);
 		if (lineElement == null) {
 			return -1;
@@ -815,14 +846,13 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Returns the end offset of the specified line.
-	 * 
-	 * @param line
-	 *            The line
-	 * @return The end offset of the specified line, or -1 if the line is invalid.
-	 */
-	public int getLineEndOffset(int line) {
+    /**
+     * Returns the end offset of the specified line.
+     *
+     * @param line The line
+     * @return The end offset of the specified line, or -1 if the line is invalid.
+     */
+    public int getLineEndOffset(int line) {
 		Element lineElement = document.getDefaultRootElement().getElement(line);
 		if (lineElement == null) {
 			return -1;
@@ -831,13 +861,13 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Returns the length of the specified line.
-	 * 
-	 * @param line
-	 *            The line
-	 */
-	public int getLineLength(int line) {
+    /**
+     * Returns the length of the specified line.
+     *
+     * @param line The line
+     * @return the line length
+     */
+    public int getLineLength(int line) {
 		Element lineElement = document.getDefaultRootElement().getElement(line);
 		if (lineElement == null) {
 			return -1;
@@ -846,10 +876,12 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Returns the entire text of this text area.
-	 */
-	public String getText() {
+    /**
+     * Returns the entire text of this text area.
+     *
+     * @return the text
+     */
+    public String getText() {
 		try {
 			return document.getText(0, document.getLength());
 		} catch (BadLocationException bl) {
@@ -858,10 +890,12 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Sets the entire text of this text area.
-	 */
-	public void setText(String text) {
+    /**
+     * Sets the entire text of this text area.
+     *
+     * @param text the text
+     */
+    public void setText(String text) {
 		try {
 			document.beginCompoundEdit();
 			document.remove(0, document.getLength());
@@ -873,16 +907,14 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Returns the specified substring of the document.
-	 * 
-	 * @param start
-	 *            The start offset
-	 * @param len
-	 *            The length of the substring
-	 * @return The substring, or null if the offsets are invalid
-	 */
-	public final String getText(int start, int len) {
+    /**
+     * Returns the specified substring of the document.
+     *
+     * @param start The start offset
+     * @param len   The length of the substring
+     * @return The substring, or null if the offsets are invalid
+     */
+    public final String getText(int start, int len) {
 		try {
 			return document.getText(start, len);
 		} catch (BadLocationException bl) {
@@ -891,18 +923,15 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Copies the specified substring of the document into a segment. If the offsets are invalid,
-	 * the segment will contain a null string.
-	 * 
-	 * @param start
-	 *            The start offset
-	 * @param len
-	 *            The length of the substring
-	 * @param segment
-	 *            The segment
-	 */
-	public final void getText(int start, int len, Segment segment) {
+    /**
+     * Copies the specified substring of the document into a segment. If the offsets are invalid,
+     * the segment will contain a null string.
+     *
+     * @param start   The start offset
+     * @param len     The length of the substring
+     * @param segment The segment
+     */
+    public final void getText(int start, int len, Segment segment) {
 		try {
 			document.getText(start, len, segment);
 		} catch (BadLocationException bl) {
@@ -911,41 +940,45 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Returns the text on the specified line.
-	 * 
-	 * @param lineIndex
-	 *            The line
-	 * @return The text, or null if the line is invalid
-	 */
-	public final String getLineText(int lineIndex) {
+    /**
+     * Returns the text on the specified line.
+     *
+     * @param lineIndex The line
+     * @return The text, or null if the line is invalid
+     */
+    public final String getLineText(int lineIndex) {
 		int start = getLineStartOffset(lineIndex);
 		return getText(start, getLineEndOffset(lineIndex) - start - 1);
 	}
 
-	/**
-	 * Copies the text on the specified line into a segment. If the line is invalid, the segment
-	 * will contain a null string.
-	 * 
-	 * @param lineIndex
-	 *            The line
-	 */
-	public final void getLineText(int lineIndex, Segment segment) {
+    /**
+     * Copies the text on the specified line into a segment. If the line is invalid, the segment
+     * will contain a null string.
+     *
+     * @param lineIndex The line
+     * @param segment   the segment
+     */
+    public final void getLineText(int lineIndex, Segment segment) {
 		int start = getLineStartOffset(lineIndex);
 		getText(start, getLineEndOffset(lineIndex) - start - 1, segment);
 	}
 
-	/**
-	 * Returns the selection start offset.
-	 */
-	public final int getSelectionStart() {
+    /**
+     * Returns the selection start offset.
+     *
+     * @return the selection start
+     */
+    public final int getSelectionStart() {
 		return selectionStart;
 	}
 
-	/**
-	 * Returns the offset where the selection starts on the specified line.
-	 */
-	public int getSelectionStart(int line) {
+    /**
+     * Returns the offset where the selection starts on the specified line.
+     *
+     * @param line the line
+     * @return the selection start
+     */
+    public int getSelectionStart(int line) {
 		if (line == selectionStartLine) {
 			return selectionStart;
 		} else if (rectSelect) {
@@ -961,36 +994,42 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Returns the selection start line.
-	 */
-	public final int getSelectionStartLine() {
+    /**
+     * Returns the selection start line.
+     *
+     * @return the selection start line
+     */
+    public final int getSelectionStartLine() {
 		return selectionStartLine;
 	}
 
-	/**
-	 * Sets the selection start. The new selection will be the new selection start and the old
-	 * selection end.
-	 * 
-	 * @param selectionStart
-	 *            The selection start
-	 * @see #select(int,int)
-	 */
-	public final void setSelectionStart(int selectionStart) {
+    /**
+     * Sets the selection start. The new selection will be the new selection start and the old
+     * selection end.
+     *
+     * @param selectionStart The selection start
+     * @see #select(int, int) #select(int, int)#select(int,int)
+     */
+    public final void setSelectionStart(int selectionStart) {
 		select(selectionStart, selectionEnd);
 	}
 
-	/**
-	 * Returns the selection end offset.
-	 */
-	public final int getSelectionEnd() {
+    /**
+     * Returns the selection end offset.
+     *
+     * @return the selection end
+     */
+    public final int getSelectionEnd() {
 		return selectionEnd;
 	}
 
-	/**
-	 * Returns the offset where the selection ends on the specified line.
-	 */
-	public int getSelectionEnd(int line) {
+    /**
+     * Returns the offset where the selection ends on the specified line.
+     *
+     * @param line the line
+     * @return the selection end
+     */
+    public int getSelectionEnd(int line) {
 		if (line == selectionEndLine) {
 			return selectionEnd;
 		} else if (rectSelect) {
@@ -1006,93 +1045,98 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Returns the selection end line.
-	 */
-	public final int getSelectionEndLine() {
+    /**
+     * Returns the selection end line.
+     *
+     * @return the selection end line
+     */
+    public final int getSelectionEndLine() {
 		return selectionEndLine;
 	}
 
-	/**
-	 * Sets the selection end. The new selection will be the old selection start and the bew
-	 * selection end.
-	 * 
-	 * @param selectionEnd
-	 *            The selection end
-	 * @see #select(int,int)
-	 */
-	public final void setSelectionEnd(int selectionEnd) {
+    /**
+     * Sets the selection end. The new selection will be the old selection start and the bew
+     * selection end.
+     *
+     * @param selectionEnd The selection end
+     * @see #select(int, int) #select(int, int)#select(int,int)
+     */
+    public final void setSelectionEnd(int selectionEnd) {
 		select(selectionStart, selectionEnd);
 	}
 
-	/**
-	 * Returns the caret position. This will either be the selection start or the selection end,
-	 * depending on which direction the selection was made in.
-	 */
-	public final int getCaretPosition() {
+    /**
+     * Returns the caret position. This will either be the selection start or the selection end,
+     * depending on which direction the selection was made in.
+     *
+     * @return the caret position
+     */
+    public final int getCaretPosition() {
 		return (biasLeft ? selectionStart : selectionEnd);
 	}
 
-	/**
-	 * Returns the caret line.
-	 */
-	public final int getCaretLine() {
+    /**
+     * Returns the caret line.
+     *
+     * @return the caret line
+     */
+    public final int getCaretLine() {
 		return (biasLeft ? selectionStartLine : selectionEndLine);
 	}
 
-	/**
-	 * Returns the mark position. This will be the opposite selection bound to the caret position.
-	 * 
-	 * @see #getCaretPosition()
-	 */
-	public final int getMarkPosition() {
+    /**
+     * Returns the mark position. This will be the opposite selection bound to the caret position.
+     *
+     * @return the mark position
+     * @see #getCaretPosition() #getCaretPosition()#getCaretPosition()
+     */
+    public final int getMarkPosition() {
 		return (biasLeft ? selectionEnd : selectionStart);
 	}
 
-	/**
-	 * Returns the mark line.
-	 */
-	public final int getMarkLine() {
+    /**
+     * Returns the mark line.
+     *
+     * @return the mark line
+     */
+    public final int getMarkLine() {
 		return (biasLeft ? selectionEndLine : selectionStartLine);
 	}
 
-	/**
-	 * Sets the caret position. The new selection will consist of the caret position only (hence no
-	 * text will be selected)
-	 * 
-	 * @param caret
-	 *            The caret position
-	 * @see #select(int,int)
-	 */
-	public final void setCaretPosition(int caret) {
+    /**
+     * Sets the caret position. The new selection will consist of the caret position only (hence no
+     * text will be selected)
+     *
+     * @param caret The caret position
+     * @see #select(int, int) #select(int, int)#select(int,int)
+     */
+    public final void setCaretPosition(int caret) {
 		select(caret, caret);
 	}
 
-	/**
-	 * Selects all text in the document.
-	 */
-	public final void selectAll() {
+    /**
+     * Selects all text in the document.
+     */
+    public final void selectAll() {
 		select(0, getDocumentLength());
 	}
 
-	/**
-	 * Moves the mark to the caret position.
-	 */
-	public final void selectNone() {
+    /**
+     * Moves the mark to the caret position.
+     */
+    public final void selectNone() {
 		select(getCaretPosition(), getCaretPosition());
 	}
 
-	/**
-	 * Selects from the start offset to the end offset. This is the general selection method used by
-	 * all other selecting methods. The caret position will be start if start &lt; end, and end if
-	 * end &gt; start.
-	 * 
-	 * @param start
-	 *            The start offset
-	 * @param end
-	 *            The end offset
-	 */
-	public void select(int start, int end) {
+    /**
+     * Selects from the start offset to the end offset. This is the general selection method used by
+     * all other selecting methods. The caret position will be start if start &lt; end, and end if
+     * end &gt; start.
+     *
+     * @param start The start offset
+     * @param end   The end offset
+     */
+    public void select(int start, int end) {
 		int newStart, newEnd;
 		boolean newBias;
 		if (start <= end) {
@@ -1156,10 +1200,12 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		scrollToCaret();
 	}
 
-	/**
-	 * Returns the selected text, or null if no selection is active.
-	 */
-	public final String getSelectedText() {
+    /**
+     * Returns the selected text, or null if no selection is active.
+     *
+     * @return the selected text
+     */
+    public final String getSelectedText() {
 		if (selectionStart == selectionEnd) {
 			return null;
 		}
@@ -1205,13 +1251,12 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Replaces the selection with the specified text.
-	 * 
-	 * @param selectedText
-	 *            The replacement text for the selection
-	 */
-	public void setSelectedText(String selectedText) {
+    /**
+     * Replaces the selection with the specified text.
+     *
+     * @param selectedText The replacement text for the selection
+     */
+    public void setSelectedText(String selectedText) {
 		if (!editable) {
 			throw new InternalError("Text component" + " read only");
 		}
@@ -1281,69 +1326,71 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		setCaretPosition(selectionEnd);
 	}
 
-	/**
-	 * Returns true if this text area is editable, false otherwise.
-	 */
-	public final boolean isEditable() {
+    /**
+     * Returns true if this text area is editable, false otherwise.
+     *
+     * @return the boolean
+     */
+    public final boolean isEditable() {
 		return editable;
 	}
 
-	/**
-	 * Sets if this component is editable.
-	 * 
-	 * @param editable
-	 *            True if this text area should be editable, false otherwise
-	 */
-	public final void setEditable(boolean editable) {
+    /**
+     * Sets if this component is editable.
+     *
+     * @param editable True if this text area should be editable, false otherwise
+     */
+    public final void setEditable(boolean editable) {
 		this.editable = editable;
 	}
 
-	/**
-	 * Returns the right click popup menu.
-	 */
-	public final JPopupMenu getRightClickPopup() {
+    /**
+     * Returns the right click popup menu.
+     *
+     * @return the right click popup
+     */
+    public final JPopupMenu getRightClickPopup() {
 		return popup;
 	}
 
-	/**
-	 * Sets the right click popup menu.
-	 * 
-	 * @param popup
-	 *            The popup
-	 */
-	public final void setRightClickPopup(JPopupMenu popup) {
+    /**
+     * Sets the right click popup menu.
+     *
+     * @param popup The popup
+     */
+    public final void setRightClickPopup(JPopupMenu popup) {
 		this.popup = popup;
 	}
 
-	/**
-	 * Returns the `magic' caret position. This can be used to preserve the column position when
-	 * moving up and down lines.
-	 */
-	public final int getMagicCaretPosition() {
+    /**
+     * Returns the `magic' caret position. This can be used to preserve the column position when
+     * moving up and down lines.
+     *
+     * @return the magic caret position
+     */
+    public final int getMagicCaretPosition() {
 		return magicCaret;
 	}
 
-	/**
-	 * Sets the `magic' caret position. This can be used to preserve the column position when moving
-	 * up and down lines.
-	 * 
-	 * @param magicCaret
-	 *            The magic caret position
-	 */
-	public final void setMagicCaretPosition(int magicCaret) {
+    /**
+     * Sets the `magic' caret position. This can be used to preserve the column position when moving
+     * up and down lines.
+     *
+     * @param magicCaret The magic caret position
+     */
+    public final void setMagicCaretPosition(int magicCaret) {
 		this.magicCaret = magicCaret;
 	}
 
-	/**
-	 * Similar to <code>setSelectedText()</code>, but overstrikes the appropriate number of
-	 * characters if overwrite mode is enabled.
-	 * 
-	 * @param str
-	 *            The string
-	 * @see #setSelectedText(String)
-	 * @see #isOverwriteEnabled()
-	 */
-	public void overwriteSetSelectedText(String str) {
+    /**
+     * Similar to <code>setSelectedText()</code>, but overstrikes the appropriate number of
+     * characters if overwrite mode is enabled.
+     *
+     * @param str The string
+     * @see #setSelectedText(String) #setSelectedText(String)#setSelectedText(String)
+     * @see #isOverwriteEnabled() #isOverwriteEnabled()#isOverwriteEnabled()
+     */
+    public void overwriteSetSelectedText(String str) {
 		// Don't overstrike if there is a selection
 		if (!overwrite || selectionStart != selectionEnd) {
 			setSelectedText(str);
@@ -1371,91 +1418,95 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Returns true if overwrite mode is enabled, false otherwise.
-	 */
-	public final boolean isOverwriteEnabled() {
+    /**
+     * Returns true if overwrite mode is enabled, false otherwise.
+     *
+     * @return the boolean
+     */
+    public final boolean isOverwriteEnabled() {
 		return overwrite;
 	}
 
-	/**
-	 * Sets if overwrite mode should be enabled.
-	 * 
-	 * @param overwrite
-	 *            True if overwrite mode should be enabled, false otherwise.
-	 */
-	public final void setOverwriteEnabled(boolean overwrite) {
+    /**
+     * Sets if overwrite mode should be enabled.
+     *
+     * @param overwrite True if overwrite mode should be enabled, false otherwise.
+     */
+    public final void setOverwriteEnabled(boolean overwrite) {
 		this.overwrite = overwrite;
 		painter.invalidateSelectedLines();
 	}
 
-	/**
-	 * Returns true if the selection is rectangular, false otherwise.
-	 */
-	public final boolean isSelectionRectangular() {
+    /**
+     * Returns true if the selection is rectangular, false otherwise.
+     *
+     * @return the boolean
+     */
+    public final boolean isSelectionRectangular() {
 		return rectSelect;
 	}
 
-	/**
-	 * Sets if the selection should be rectangular.
-	 * 
-	 * @param rectSelect
-	 *            True if the selection should be rectangular, false otherwise.
-	 */
-	public final void setSelectionRectangular(boolean rectSelect) {
+    /**
+     * Sets if the selection should be rectangular.
+     *
+     * @param rectSelect True if the selection should be rectangular, false otherwise.
+     */
+    public final void setSelectionRectangular(boolean rectSelect) {
 		this.rectSelect = rectSelect;
 		painter.invalidateSelectedLines();
 	}
 
-	/**
-	 * Returns the position of the highlighted bracket (the bracket matching the one before the
-	 * caret)
-	 */
-	public final int getBracketPosition() {
+    /**
+     * Returns the position of the highlighted bracket (the bracket matching the one before the
+     * caret)
+     *
+     * @return the bracket position
+     */
+    public final int getBracketPosition() {
 		return bracketPosition;
 	}
 
-	/**
-	 * Returns the line of the highlighted bracket (the bracket matching the one before the caret)
-	 */
-	public final int getBracketLine() {
+    /**
+     * Returns the line of the highlighted bracket (the bracket matching the one before the caret)
+     *
+     * @return the bracket line
+     */
+    public final int getBracketLine() {
 		return bracketLine;
 	}
 
-	/**
-	 * Adds a caret change listener to this text area.
-	 * 
-	 * @param listener
-	 *            The listener
-	 */
-	public final void addCaretListener(CaretListener listener) {
+    /**
+     * Adds a caret change listener to this text area.
+     *
+     * @param listener The listener
+     */
+    public final void addCaretListener(CaretListener listener) {
 		listenerList.add(CaretListener.class, listener);
 	}
 
-	/**
-	 * Removes a caret change listener from this text area.
-	 * 
-	 * @param listener
-	 *            The listener
-	 */
-	public final void removeCaretListener(CaretListener listener) {
+    /**
+     * Removes a caret change listener from this text area.
+     *
+     * @param listener The listener
+     */
+    public final void removeCaretListener(CaretListener listener) {
 		listenerList.remove(CaretListener.class, listener);
 	}
 
-	/**
-	 * Deletes the selected text from the text area and places it into the clipboard.
-	 */
-	public void cut() {
+    /**
+     * Deletes the selected text from the text area and places it into the clipboard.
+     */
+    public void cut() {
 		if (editable) {
 			copy();
 			setSelectedText("");
 		}
 	}
 
-	/**
-	 * Places the selected text into the clipboard.
-	 */
-	public void copy() {
+    /**
+     * Places the selected text into the clipboard.
+     */
+    public void copy() {
 		if (selectionStart != selectionEnd) {
 			Clipboard clipboard = getToolkit().getSystemClipboard();
 
@@ -1471,10 +1522,10 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	/**
-	 * Inserts the clipboard contents into the text.
-	 */
-	public void paste() {
+    /**
+     * Inserts the clipboard contents into the text.
+     */
+    public void paste() {
 		if (editable) {
 			Clipboard clipboard = getToolkit().getSystemClipboard();
 			try {
@@ -1531,74 +1582,176 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	// protected members
+    /**
+     * The constant CENTER.
+     */
+// protected members
 	protected static final String CENTER = "center";
 
-	protected static final String RIGHT = "right";
+    /**
+     * The constant RIGHT.
+     */
+    protected static final String RIGHT = "right";
 
-	protected static final String BOTTOM = "bottom";
+    /**
+     * The constant BOTTOM.
+     */
+    protected static final String BOTTOM = "bottom";
 
-	protected static JEditTextArea focusedComponent;
+    /**
+     * The constant focusedComponent.
+     */
+    protected static JEditTextArea focusedComponent;
 
-	protected static final Timer caretTimer;
+    /**
+     * The constant caretTimer.
+     */
+    protected static final Timer caretTimer;
 
-	protected TextAreaPainter painter;
+    /**
+     * The Painter.
+     */
+    protected TextAreaPainter painter;
 
-	protected JPopupMenu popup;
+    /**
+     * The Popup.
+     */
+    protected JPopupMenu popup;
 
-	protected MutableCaretEvent caretEvent;
+    /**
+     * The Caret event.
+     */
+    protected MutableCaretEvent caretEvent;
 
-	protected boolean caretBlinks;
+    /**
+     * The Caret blinks.
+     */
+    protected boolean caretBlinks;
 
-	protected boolean caretVisible;
+    /**
+     * The Caret visible.
+     */
+    protected boolean caretVisible;
 
-	protected boolean blink;
+    /**
+     * The Blink.
+     */
+    protected boolean blink;
 
-	protected boolean editable;
+    /**
+     * The Editable.
+     */
+    protected boolean editable;
 
-	protected int firstLine;
+    /**
+     * The First line.
+     */
+    protected int firstLine;
 
-	protected int visibleLines;
+    /**
+     * The Visible lines.
+     */
+    protected int visibleLines;
 
-	protected int electricScroll;
+    /**
+     * The Electric scroll.
+     */
+    protected int electricScroll;
 
-	protected int horizontalOffset;
+    /**
+     * The Horizontal offset.
+     */
+    protected int horizontalOffset;
 
-	protected JScrollBar vertical;
+    /**
+     * The Vertical.
+     */
+    protected JScrollBar vertical;
 
-	protected JScrollBar horizontal;
+    /**
+     * The Horizontal.
+     */
+    protected JScrollBar horizontal;
 
-	protected boolean scrollBarsInitialized;
+    /**
+     * The Scroll bars initialized.
+     */
+    protected boolean scrollBarsInitialized;
 
-	protected transient InputHandler inputHandler;
+    /**
+     * The Input handler.
+     */
+    protected transient InputHandler inputHandler;
 
-	protected SyntaxDocument document;
+    /**
+     * The Document.
+     */
+    protected SyntaxDocument document;
 
-	protected transient DocumentHandler documentHandler;
+    /**
+     * The Document handler.
+     */
+    protected transient DocumentHandler documentHandler;
 
-	protected transient Segment lineSegment;
+    /**
+     * The Line segment.
+     */
+    protected transient Segment lineSegment;
 
-	protected int selectionStart;
+    /**
+     * The Selection start.
+     */
+    protected int selectionStart;
 
-	protected int selectionStartLine;
+    /**
+     * The Selection start line.
+     */
+    protected int selectionStartLine;
 
-	protected int selectionEnd;
+    /**
+     * The Selection end.
+     */
+    protected int selectionEnd;
 
-	protected int selectionEndLine;
+    /**
+     * The Selection end line.
+     */
+    protected int selectionEndLine;
 
-	protected boolean biasLeft;
+    /**
+     * The Bias left.
+     */
+    protected boolean biasLeft;
 
-	protected int bracketPosition;
+    /**
+     * The Bracket position.
+     */
+    protected int bracketPosition;
 
-	protected int bracketLine;
+    /**
+     * The Bracket line.
+     */
+    protected int bracketLine;
 
-	protected int magicCaret;
+    /**
+     * The Magic caret.
+     */
+    protected int magicCaret;
 
-	protected boolean overwrite;
+    /**
+     * The Overwrite.
+     */
+    protected boolean overwrite;
 
-	protected boolean rectSelect;
+    /**
+     * The Rect select.
+     */
+    protected boolean rectSelect;
 
-	protected void fireCaretEvent() {
+    /**
+     * Fire caret event.
+     */
+    protected void fireCaretEvent() {
 		Object[] listeners = listenerList.getListenerList();
 		for (int i = listeners.length - 2; i >= 0; i--) {
 			if (listeners[i] == CaretListener.class) {
@@ -1607,7 +1760,12 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	protected void updateBracketHighlight(int newCaretPosition) {
+    /**
+     * Update bracket highlight.
+     *
+     * @param newCaretPosition the new caret position
+     */
+    protected void updateBracketHighlight(int newCaretPosition) {
 		if (newCaretPosition == 0) {
 			bracketPosition = bracketLine = -1;
 			return;
@@ -1627,7 +1785,12 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		bracketLine = bracketPosition = -1;
 	}
 
-	protected void documentChanged(DocumentEvent evt) {
+    /**
+     * Document changed.
+     *
+     * @param evt the evt
+     */
+    protected void documentChanged(DocumentEvent evt) {
 		DocumentEvent.ElementChange ch = evt.getChange(document.getDefaultRootElement());
 
 		int count;
@@ -1652,7 +1815,10 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	class ScrollLayout implements LayoutManager {
+    /**
+     * The type Scroll layout.
+     */
+    class ScrollLayout implements LayoutManager {
 
 		@Override
 		public void addLayoutComponent(String name, Component comp) {
@@ -1756,7 +1922,10 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		private Vector<Component> leftOfScrollBar = new Vector<Component>();
 	}
 
-	static class CaretBlinker implements ActionListener {
+    /**
+     * The type Caret blinker.
+     */
+    static class CaretBlinker implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent evt) {
@@ -1766,11 +1935,17 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	class MutableCaretEvent extends CaretEvent {
+    /**
+     * The type Mutable caret event.
+     */
+    class MutableCaretEvent extends CaretEvent {
 
 		private static final long serialVersionUID = -4056904044868490875L;
 
-		MutableCaretEvent() {
+        /**
+         * Instantiates a new Mutable caret event.
+         */
+        MutableCaretEvent() {
 			super(JEditTextArea.this);
 		}
 
@@ -1785,7 +1960,10 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	class AdjustHandler implements AdjustmentListener {
+    /**
+     * The type Adjust handler.
+     */
+    class AdjustHandler implements AdjustmentListener {
 
 		@Override
 		public void adjustmentValueChanged(final AdjustmentEvent evt) {
@@ -1810,7 +1988,10 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	class ComponentHandler extends ComponentAdapter {
+    /**
+     * The type Component handler.
+     */
+    class ComponentHandler extends ComponentAdapter {
 
 		@Override
 		public void componentResized(ComponentEvent evt) {
@@ -1819,7 +2000,10 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	class DocumentHandler implements DocumentListener {
+    /**
+     * The type Document handler.
+     */
+    class DocumentHandler implements DocumentListener {
 
 		@Override
 		public void insertUpdate(DocumentEvent evt) {
@@ -1883,7 +2067,10 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		public void changedUpdate(DocumentEvent evt) {}
 	}
 
-	class DragHandler implements MouseMotionListener {
+    /**
+     * The type Drag handler.
+     */
+    class DragHandler implements MouseMotionListener {
 
 		@Override
 		public void mouseDragged(MouseEvent evt) {
@@ -1899,7 +2086,10 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		public void mouseMoved(MouseEvent evt) {}
 	}
 
-	class FocusHandler implements FocusListener {
+    /**
+     * The type Focus handler.
+     */
+    class FocusHandler implements FocusListener {
 
 		@Override
 		public void focusGained(FocusEvent evt) {
@@ -1914,7 +2104,10 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	class MouseHandler extends MouseAdapter {
+    /**
+     * The type Mouse handler.
+     */
+    class MouseHandler extends MouseAdapter {
 
 		@Override
 		public void mousePressed(MouseEvent evt) {
@@ -2024,7 +2217,10 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 		}
 	}
 
-	class CaretUndo extends AbstractUndoableEdit {
+    /**
+     * The type Caret undo.
+     */
+    class CaretUndo extends AbstractUndoableEdit {
 
 		private static final long serialVersionUID = -1921681901151099250L;
 
@@ -2032,7 +2228,13 @@ public class JEditTextArea extends JComponent implements MouseWheelListener {
 
 		private int end;
 
-		CaretUndo(int start, int end) {
+        /**
+         * Instantiates a new Caret undo.
+         *
+         * @param start the start
+         * @param end   the end
+         */
+        CaretUndo(int start, int end) {
 			this.start = start;
 			this.end = end;
 		}

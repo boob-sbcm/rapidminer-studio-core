@@ -27,7 +27,7 @@ import java.util.List;
  * This class holds the example set relevant information about a table attribute, i.e. its role
  * (either regular or special). If the described attribute is a special attribute, this class also
  * contains the corresponding special attribute name.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeRole implements Serializable, Cloneable {
@@ -42,7 +42,12 @@ public class AttributeRole implements Serializable, Cloneable {
 
 	private transient List<Attributes> owners = new LinkedList<Attributes>();
 
-	public AttributeRole(Attribute attribute) {
+    /**
+     * Instantiates a new Attribute role.
+     *
+     * @param attribute the attribute
+     */
+    public AttributeRole(Attribute attribute) {
 		this.attribute = attribute;
 	}
 
@@ -53,7 +58,12 @@ public class AttributeRole implements Serializable, Cloneable {
 		this.specialName = other.specialName;
 	}
 
-	public Object readResolve() {
+    /**
+     * Read resolve object.
+     *
+     * @return the object
+     */
+    public Object readResolve() {
 		if (owners == null) {
 			owners = new LinkedList<Attributes>();
 		}
@@ -66,39 +76,68 @@ public class AttributeRole implements Serializable, Cloneable {
 		return new AttributeRole(this);
 	}
 
-	/**
-	 * This method must not be called except by the {@link Attributes} to which this AttributeRole
-	 * is added.
-	 */
-	protected void addOwner(Attributes attributes) {
+    /**
+     * This method must not be called except by the {@link Attributes} to which this AttributeRole
+     * is added.
+     *
+     * @param attributes the attributes
+     */
+    protected void addOwner(Attributes attributes) {
 		this.owners.add(attributes);
 	}
 
-	/**
-	 * This method must not be called except by the {@link Attributes} to which this AttributeRole
-	 * is added.
-	 */
-	protected void removeOwner(Attributes attributes) {
+    /**
+     * This method must not be called except by the {@link Attributes} to which this AttributeRole
+     * is added.
+     *
+     * @param attributes the attributes
+     */
+    protected void removeOwner(Attributes attributes) {
 		this.owners.remove(attributes);
 	}
 
-	public Attribute getAttribute() {
+    /**
+     * Gets attribute.
+     *
+     * @return the attribute
+     */
+    public Attribute getAttribute() {
 		return attribute;
 	}
 
-	public void setAttribute(Attribute attribute) {
+    /**
+     * Sets attribute.
+     *
+     * @param attribute the attribute
+     */
+    public void setAttribute(Attribute attribute) {
 		this.attribute = attribute;
 	}
 
-	public boolean isSpecial() {
+    /**
+     * Is special boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSpecial() {
 		return special;
 	}
 
-	public String getSpecialName() {
+    /**
+     * Gets special name.
+     *
+     * @return the special name
+     */
+    public String getSpecialName() {
 		return specialName;
 	}
 
-	public void setSpecial(String specialName) {
+    /**
+     * Sets special.
+     *
+     * @param specialName the special name
+     */
+    public void setSpecial(String specialName) {
 		for (Attributes attributes : owners) {
 			attributes.rename(this, specialName);
 		}
@@ -110,7 +149,10 @@ public class AttributeRole implements Serializable, Cloneable {
 		}
 	}
 
-	public void changeToRegular() {
+    /**
+     * Change to regular.
+     */
+    public void changeToRegular() {
 		setSpecial(null);
 	}
 

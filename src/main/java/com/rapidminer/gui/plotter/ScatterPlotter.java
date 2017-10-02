@@ -57,7 +57,7 @@ import com.rapidminer.tools.math.MathFunctions;
 /**
  * The color plotter can display up to two dimensions and uses color schemes to indicate the third
  * dimension.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class ScatterPlotter extends PlotterAdapter {
@@ -66,17 +66,35 @@ public class ScatterPlotter extends PlotterAdapter {
 
 	private static final Font SCALED_LABEL_FONT = LABEL_FONT.deriveFont(AffineTransform.getScaleInstance(1, -1));
 
-	public static final String[] POINT_TYPES = new String[] { "lines_and_points", "lines", "points" };
+    /**
+     * The constant POINT_TYPES.
+     */
+    public static final String[] POINT_TYPES = new String[] { "lines_and_points", "lines", "points" };
 
-	public static final int LINES_AND_POINTS = 0;
+    /**
+     * The constant LINES_AND_POINTS.
+     */
+    public static final int LINES_AND_POINTS = 0;
 
-	public static final int LINES = 1;
+    /**
+     * The constant LINES.
+     */
+    public static final int LINES = 1;
 
-	public static final int POINTS = 2;
+    /**
+     * The constant POINTS.
+     */
+    public static final int POINTS = 2;
 
-	public static final int X_AXIS = 0;
+    /**
+     * The constant X_AXIS.
+     */
+    public static final int X_AXIS = 0;
 
-	public static final int Y_AXIS = 1;
+    /**
+     * The constant Y_AXIS.
+     */
+    public static final int Y_AXIS = 1;
 
 	private static final int LABEL_MARGIN_X = 15;
 
@@ -86,7 +104,10 @@ public class ScatterPlotter extends PlotterAdapter {
 
 	private transient DataTable dataTable;
 
-	protected List<Plot> plots = new LinkedList<>();
+    /**
+     * The Plots.
+     */
+    protected List<Plot> plots = new LinkedList<>();
 
 	private double minX, maxX, minY, maxY;
 
@@ -138,12 +159,25 @@ public class ScatterPlotter extends PlotterAdapter {
 
 	private int jitterAmount = 0;
 
-	/** The transformations from pixel space into data space. */
-	AffineTransform transform;
-	transient AxisTransformation xTransformation = new AxisTransformationId();
-	transient AxisTransformation yTransformation = new AxisTransformationId();
+    /**
+     * The transformations from pixel space into data space.
+     */
+    AffineTransform transform;
+    /**
+     * The X transformation.
+     */
+    transient AxisTransformation xTransformation = new AxisTransformationId();
+    /**
+     * The Y transformation.
+     */
+    transient AxisTransformation yTransformation = new AxisTransformationId();
 
-	public ScatterPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Scatter plotter.
+     *
+     * @param settings the settings
+     */
+    public ScatterPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 		this.pointTypeSelection = new JComboBox<>(POINT_TYPES);
@@ -157,7 +191,13 @@ public class ScatterPlotter extends PlotterAdapter {
 		});
 	}
 
-	public ScatterPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Scatter plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public ScatterPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -169,7 +209,12 @@ public class ScatterPlotter extends PlotterAdapter {
 		columns = new boolean[dataTable.getNumberOfColumns()];
 	}
 
-	public void setPointType(int pointType) {
+    /**
+     * Sets point type.
+     *
+     * @param pointType the point type
+     */
+    public void setPointType(int pointType) {
 		this.pointType = pointType;
 		repaint();
 	}
@@ -249,8 +294,10 @@ public class ScatterPlotter extends PlotterAdapter {
 		repaint();
 	}
 
-	/** Disables all plotting but does not invoke repaint. */
-	protected void clearPlotColumns() {
+    /**
+     * Disables all plotting but does not invoke repaint.
+     */
+    protected void clearPlotColumns() {
 		for (int i = 0; i < columns.length; i++) {
 			columns[i] = false;
 		}
@@ -269,11 +316,21 @@ public class ScatterPlotter extends PlotterAdapter {
 		return columns[index];
 	}
 
-	public void setDrawLegend(boolean drawLegend) {
+    /**
+     * Sets draw legend.
+     *
+     * @param drawLegend the draw legend
+     */
+    public void setDrawLegend(boolean drawLegend) {
 		this.drawLegend = drawLegend;
 	}
 
-	public boolean getDrawLegend() {
+    /**
+     * Gets draw legend.
+     *
+     * @return the draw legend
+     */
+    public boolean getDrawLegend() {
 		return this.drawLegend;
 	}
 
@@ -459,12 +516,22 @@ public class ScatterPlotter extends PlotterAdapter {
 		this.key = key;
 	}
 
-	public void setDrawAxes(boolean drawAxes) {
+    /**
+     * Sets draw axes.
+     *
+     * @param drawAxes the draw axes
+     */
+    public void setDrawAxes(boolean drawAxes) {
 		this.drawAxes = drawAxes;
 		repaint();
 	}
 
-	public void setDrawLabel(boolean drawLabel) {
+    /**
+     * Sets draw label.
+     *
+     * @param drawLabel the draw label
+     */
+    public void setDrawLabel(boolean drawLabel) {
 		this.drawLabel = drawLabel;
 		repaint();
 	}
@@ -529,7 +596,16 @@ public class ScatterPlotter extends PlotterAdapter {
 		repaint();
 	}
 
-	protected synchronized void drawPoints(Graphics2D g, double dx, double dy, double sx, double sy) {
+    /**
+     * Draw points.
+     *
+     * @param g  the g
+     * @param dx the dx
+     * @param dy the dy
+     * @param sx the sx
+     * @param sy the sy
+     */
+    protected synchronized void drawPoints(Graphics2D g, double dx, double dy, double sx, double sy) {
 		synchronized (plots) {
 			if (plots.size() == 0) {
 				return;
@@ -612,7 +688,16 @@ public class ScatterPlotter extends PlotterAdapter {
 		}
 	}
 
-	protected void drawGrid(Graphics2D g, double dx, double dy, double sx, double sy) {
+    /**
+     * Draw grid.
+     *
+     * @param g  the g
+     * @param dx the dx
+     * @param dy the dy
+     * @param sx the sx
+     * @param sy the sy
+     */
+    protected void drawGrid(Graphics2D g, double dx, double dy, double sx, double sy) {
 		g.setFont(SCALED_LABEL_FONT);
 		int numberOfXTics = (int) Math.ceil((maxX - minX) / xTicSize) + 1;
 		for (int i = 0; i < numberOfXTics; i++) {
@@ -753,7 +838,12 @@ public class ScatterPlotter extends PlotterAdapter {
 		paint2DPlots((Graphics2D) graphics);
 	}
 
-	public void paint2DPlots(Graphics2D g) {
+    /**
+     * Paint 2 d plots.
+     *
+     * @param g the g
+     */
+    public void paint2DPlots(Graphics2D g) {
 		int pixWidth = getWidth() - 2 * MARGIN;
 		int pixHeight = getHeight() - 2 * MARGIN;
 
@@ -852,11 +942,21 @@ public class ScatterPlotter extends PlotterAdapter {
 		drawDragRectangle(g);
 	}
 
-	public void setDraw2DLines(boolean v) {
+    /**
+     * Sets draw 2 d lines.
+     *
+     * @param v the v
+     */
+    public void setDraw2DLines(boolean v) {
 		this.draw2DLines = v;
 	}
 
-	public boolean getDraw2DLines() {
+    /**
+     * Gets draw 2 d lines.
+     *
+     * @return the draw 2 d lines
+     */
+    public boolean getDraw2DLines() {
 		return this.draw2DLines;
 	}
 

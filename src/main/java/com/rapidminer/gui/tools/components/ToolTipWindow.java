@@ -78,53 +78,82 @@ import com.rapidminer.tools.RMUrlHandler;
  * implement a {@link TipProvider} that generates tool tip texts depending on the a mouse position
  * relative to a component and pass this component and the tip provider to the constructor of this
  * class.
- *
+ * <p>
  * This class will listen to mouse events of the specified component and will display an undecorated
  * scrollable dialog whenever the mouse does not move for a certain time. The user can focus (an
  * then resize) the dialog by pressing F3.
- *
+ * <p>
  * It is also possible to specify the location relative to the mouse cursor. See
  * {@link TooltipLocation} which can be supplied via constructor.
  *
  * @author Simon Fischer, Marco Boeck
- *
  */
 public class ToolTipWindow {
 
-	/**
-	 * Used to specify the location of the popup in relation to the mouse cursor.
-	 *
-	 * @since 6.0.004
-	 */
-	public static enum TooltipLocation {
-		/** popup will open below the mouse; behavior as before this was implemented */
-		BELOW,
+    /**
+     * Used to specify the location of the popup in relation to the mouse cursor.
+     *
+     * @since 6.0.004
+     */
+    public static enum TooltipLocation {
+        /**
+         * popup will open below the mouse; behavior as before this was implemented
+         */
+        BELOW,
 
-		/** popup will open slightly to the right of the mouse */
-		RIGHT;
+        /**
+         * popup will open slightly to the right of the mouse
+         */
+        RIGHT;
 	}
 
-	public interface TipProvider {
+    /**
+     * The interface Tip provider.
+     */
+    public interface TipProvider {
 
-		/**
-		 * Returns the actual tip belonging to this point. Called after {@link #getIdUnder(Point)}.
-		 */
-		public String getTip(Object id);
+        /**
+         * Returns the actual tip belonging to this point. Called after {@link #getIdUnder(Point)}.
+         *
+         * @param id the id
+         * @return the tip
+         */
+        public String getTip(Object id);
 
-		/** Returns an additional tooltip component to be added below the text field. */
-		public Component getCustomComponent(Object id);
+        /**
+         * Returns an additional tooltip component to be added below the text field.  @param id the id
+         *
+         * @param id the id
+         * @return the custom component
+         */
+        public Component getCustomComponent(Object id);
 
-		/**
-		 * Returns an ID of the object under the given mouse position. This is only used to
-		 * determine whether the mouse has left the area corresponding to the current tool tip. We
-		 * could have called {@link #getTip(Object)} directly, however this may be a too time
-		 * consuming operation. Note: IDs are compared by == !
-		 */
-		public Object getIdUnder(Point point);
+        /**
+         * Returns an ID of the object under the given mouse position. This is only used to
+         * determine whether the mouse has left the area corresponding to the current tool tip. We
+         * could have called {@link #getTip(Object)} directly, however this may be a too time
+         * consuming operation. Note: IDs are compared by == !
+         *
+         * @param point the point
+         * @return the id under
+         */
+        public Object getIdUnder(Point point);
 	}
 
 	private enum State {
-		IDLE, SHOWING_TIP, IN_FOCUS, DISPOSED
+        /**
+         * Idle state.
+         */
+        IDLE, /**
+         * Showing tip state.
+         */
+        SHOWING_TIP, /**
+         * In focus state.
+         */
+        IN_FOCUS, /**
+         * Disposed state.
+         */
+        DISPOSED
 	}
 
 	/** Component observed by this object. */
@@ -224,67 +253,51 @@ public class ToolTipWindow {
 
 	private boolean onlyWhenFocussed = true;
 
-	/**
-	 * Registers the tooltip provider on the specified parent component. The tooltip will appear
-	 * below the cursor.
-	 *
-	 * @param tipProvider
-	 *            Generates tool tip texts whenever needed
-	 * @param parent
-	 *            The component to observe
-	 */
-	public ToolTipWindow(TipProvider tipProvider, JComponent parent) {
+    /**
+     * Registers the tooltip provider on the specified parent component. The tooltip will appear
+     * below the cursor.
+     *
+     * @param tipProvider Generates tool tip texts whenever needed
+     * @param parent      The component to observe
+     */
+    public ToolTipWindow(TipProvider tipProvider, JComponent parent) {
 		this(tipProvider, parent, TooltipLocation.BELOW);
 	}
 
-	/**
-	 * Registers the tooltip provider on the specified parent component. The tooltip will appear at
-	 * the specified location.
-	 *
-	 * @param tipProvider
-	 *            Generates tool tip texts whenever needed
-	 * @param parent
-	 *            The component to observe
-	 * @param tooltipLocation
-	 *            The location relative to the mouse cursor
-	 */
-	public ToolTipWindow(TipProvider tipProvider, JComponent parent, TooltipLocation tooltipLocation) {
+    /**
+     * Registers the tooltip provider on the specified parent component. The tooltip will appear at
+     * the specified location.
+     *
+     * @param tipProvider     Generates tool tip texts whenever needed
+     * @param parent          The component to observe
+     * @param tooltipLocation The location relative to the mouse cursor
+     */
+    public ToolTipWindow(TipProvider tipProvider, JComponent parent, TooltipLocation tooltipLocation) {
 		this(null, tipProvider, parent, tooltipLocation);
 	}
 
-	/**
-	 * Registers the tooltip provider on the specified parent component. The tooltip will appear
-	 * below the cursor.
-	 *
-	 * @param owner
-	 *            The owner of the tool tip dialog. If null, the {@link MainFrame} will be used. If
-	 *            this tool tip is for a component in a dialog, but the owner is not set, the tool
-	 *            tip will be displayed behind the dialog.
-	 * @param tipProvider
-	 *            Generates tool tip texts whenever needed
-	 * @param parent
-	 *            The component to observe
-	 */
-	public ToolTipWindow(Dialog owner, TipProvider tipProvider, final JComponent parent) {
+    /**
+     * Registers the tooltip provider on the specified parent component. The tooltip will appear
+     * below the cursor.
+     *
+     * @param owner       The owner of the tool tip dialog. If null, the {@link MainFrame} will be used. If            this tool tip is for a component in a dialog, but the owner is not set, the tool            tip will be displayed behind the dialog.
+     * @param tipProvider Generates tool tip texts whenever needed
+     * @param parent      The component to observe
+     */
+    public ToolTipWindow(Dialog owner, TipProvider tipProvider, final JComponent parent) {
 		this(owner, tipProvider, parent, TooltipLocation.BELOW);
 	}
 
-	/**
-	 * Registers the tooltip provider on the specified parent component. The tooltip will appear at
-	 * the specified location.
-	 *
-	 * @param owner
-	 *            The owner of the tool tip dialog. If null, the {@link MainFrame} will be used. If
-	 *            this tool tip is for a component in a dialog, but the owner is not set, the tool
-	 *            tip will be displayed behind the dialog.
-	 * @param tipProvider
-	 *            Generates tool tip texts whenever needed
-	 * @param parent
-	 *            The component to observe
-	 * @param location
-	 *            The location relative to the mouse cursor
-	 */
-	public ToolTipWindow(Dialog owner, TipProvider tipProvider, final JComponent parent, TooltipLocation location) {
+    /**
+     * Registers the tooltip provider on the specified parent component. The tooltip will appear at
+     * the specified location.
+     *
+     * @param owner       The owner of the tool tip dialog. If null, the {@link MainFrame} will be used. If            this tool tip is for a component in a dialog, but the owner is not set, the tool            tip will be displayed behind the dialog.
+     * @param tipProvider Generates tool tip texts whenever needed
+     * @param parent      The component to observe
+     * @param location    The location relative to the mouse cursor
+     */
+    public ToolTipWindow(Dialog owner, TipProvider tipProvider, final JComponent parent, TooltipLocation location) {
 		// TODO: Is there a way to find the owner elegantly? Travers ancestors?
 		this.owner = owner;
 		this.tipProvider = tipProvider;
@@ -672,46 +685,46 @@ public class ToolTipWindow {
 		}
 	}
 
-	/**
-	 * Returns whether the tooltip will only be shown when the parent is focused. Default is
-	 * <code>true</code>.
-	 *
-	 * @return
-	 */
-	public boolean isOnlyWhenFocussed() {
+    /**
+     * Returns whether the tooltip will only be shown when the parent is focused. Default is
+     * <code>true</code>.
+     *
+     * @return boolean boolean
+     */
+    public boolean isOnlyWhenFocussed() {
 		return onlyWhenFocussed;
 	}
 
-	/**
-	 * Controls whether the tooltip is shown only when the parent is focused or not. Default is
-	 * <code>true</code>.
-	 *
-	 * @param onlyWhenFocussed
-	 *
-	 * @return The {@link ToolTipWindow} instance for method chaining
-	 */
-	public ToolTipWindow setOnlyWhenFocussed(boolean onlyWhenFocussed) {
+    /**
+     * Controls whether the tooltip is shown only when the parent is focused or not. Default is
+     * <code>true</code>.
+     *
+     * @param onlyWhenFocussed the only when focussed
+     * @return The {@link ToolTipWindow} instance for method chaining
+     */
+    public ToolTipWindow setOnlyWhenFocussed(boolean onlyWhenFocussed) {
 		this.onlyWhenFocussed = onlyWhenFocussed;
 		return this;
 	}
 
-	/**
-	 * Controls whether the tooltip is shown, if the mouse is pressed.
-	 *
-	 * @return The {@link ToolTipWindow} instance for method chaining
-	 */
-	public ToolTipWindow setReactOnMousePressed(boolean reactOnMousePressed) {
+    /**
+     * Controls whether the tooltip is shown, if the mouse is pressed.
+     *
+     * @param reactOnMousePressed the react on mouse pressed
+     * @return The {@link ToolTipWindow} instance for method chaining
+     */
+    public ToolTipWindow setReactOnMousePressed(boolean reactOnMousePressed) {
 		this.reactOnMousePressed = reactOnMousePressed;
 		return this;
 	}
 
-	/**
-	 * Controls the delay until a tooltip is shown when hovering over the parent component.
-	 *
-	 * @param delayInMS
-	 *            the delay of the tooltip
-	 */
-	public ToolTipWindow setToolTipDelay(int delayInMS) {
+    /**
+     * Controls the delay until a tooltip is shown when hovering over the parent component.
+     *
+     * @param delayInMS the delay of the tooltip
+     * @return the tool tip delay
+     */
+    public ToolTipWindow setToolTipDelay(int delayInMS) {
 		showTipTimer.setInitialDelay(delayInMS);
 		return this;
 	}

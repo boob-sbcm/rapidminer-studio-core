@@ -28,7 +28,7 @@ import java.util.List;
  * divide and conquer algorithm. In each series it tries to find the maximum and then find other
  * peaks left and right from it. Makes sure that values of the current peak are excluded.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class BinaryPeakFinder implements PeakFinder {
@@ -65,7 +65,10 @@ public class BinaryPeakFinder implements PeakFinder {
 	/** The average of the current series. */
 	private double average;
 
-	public BinaryPeakFinder() {}
+    /**
+     * Instantiates a new Binary peak finder.
+     */
+    public BinaryPeakFinder() {}
 
 	// int sloppyValues, int minWidth, double toleranceOfVariance) {
 	// this.sloppyValues = sloppyValues;

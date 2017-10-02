@@ -33,9 +33,9 @@ import com.rapidminer.operator.ports.metadata.GenerateNewMDRule;
  * This operator extracts a prediction calculation formula from the given model and stores the
  * formula in a formula result object which can then be written to a file, e.g. with the
  * ResultWriter operator.
- * 
+ * <p>
  * Please note that not all RapidMiner models provide a formula.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class FormulaExtractor extends Operator {
@@ -46,7 +46,12 @@ public class FormulaExtractor extends Operator {
 
 		private String formula;
 
-		public FormulaResult(String formula) {
+        /**
+         * Instantiates a new Formula result.
+         *
+         * @param formula the formula
+         */
+        public FormulaResult(String formula) {
 			this.formula = formula;
 		}
 
@@ -65,7 +70,12 @@ public class FormulaExtractor extends Operator {
 	private OutputPort formulaOutput = getOutputPorts().createPort("formula");
 	private OutputPort modelOutput = getOutputPorts().createPort("model");
 
-	public FormulaExtractor(OperatorDescription description) {
+    /**
+     * Instantiates a new Formula extractor.
+     *
+     * @param description the description
+     */
+    public FormulaExtractor(OperatorDescription description) {
 		super(description);
 		getTransformer().addPassThroughRule(modelInput, modelOutput);
 		getTransformer().addRule(new GenerateNewMDRule(formulaOutput, FormulaResult.class));

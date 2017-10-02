@@ -36,27 +36,30 @@ import com.rapidminer.tools.LogService;
  * Handles the H2 Database Connection
  *
  * @author Joao Pedro Pinheiro
- *
  * @since 7.5.0
- *
  */
 enum CtaDataSource {
-	INSTANCE;
+    /**
+     * Instance cta data source.
+     */
+    INSTANCE;
 
-	/** Database name */
-	public static final String DATABASE = "cta";
-	/**
-	 * Params for h2
-	 * <dl>
-	 * <dt>AUTO_SERVER</dt>
-	 * <dd>Allow connections from multiple RapidMiner instances</dd>
-	 * <dt>FILE_LOCK</dt>
-	 * <dd>.lock file approach, compatible to all file systems</dd>
-	 * <dt>MV_STORE</dt>
-	 * <dd>we use the old pageStore since its using less disk space</dd>
-	 * </dl>
-	 */
-	public static final String PARAMS = ";AUTO_SERVER=TRUE;FILE_LOCK=FILE;MV_STORE=FALSE";
+    /**
+     * Database name
+     */
+    public static final String DATABASE = "cta";
+    /**
+     * Params for h2
+     * <dl>
+     * <dt>AUTO_SERVER</dt>
+     * <dd>Allow connections from multiple RapidMiner instances</dd>
+     * <dt>FILE_LOCK</dt>
+     * <dd>.lock file approach, compatible to all file systems</dd>
+     * <dt>MV_STORE</dt>
+     * <dd>we use the old pageStore since its using less disk space</dd>
+     * </dl>
+     */
+    public static final String PARAMS = ";AUTO_SERVER=TRUE;FILE_LOCK=FILE;MV_STORE=FALSE";
 	/** SQL Statements */
 	private static final String CREATE_EVENT_TABLE_STATEMENT = "CREATE CACHED TABLE IF NOT EXISTS event ( type VARCHAR, value VARCHAR, argument VARCHAR, count BIGINT, timestamp TIMESTAMP DEFAULT NOW())";
 	private static final String CREATE_RULE_TABLE_STATEMENT = "CREATE CACHED TABLE IF NOT EXISTS rule ( id VARCHAR, triggered TIMESTAMP DEFAULT NOW(), action VARCHAR)";
@@ -90,13 +93,13 @@ enum CtaDataSource {
 		}
 	}
 
-	/**
-	 * This method returns the connection to the DB
-	 *
-	 * @return The connection
-	 * @throws SQLException
-	 */
-	public Connection getConnection() throws SQLException {
+    /**
+     * This method returns the connection to the DB
+     *
+     * @return The connection
+     * @throws SQLException the sql exception
+     */
+    public Connection getConnection() throws SQLException {
 		if (connection == null) {
 			connection = DriverManager.getConnection(DB_CONNECTION);
 			try (Statement stmt = connection.createStatement()) {

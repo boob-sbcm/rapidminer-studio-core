@@ -34,13 +34,15 @@ import java.util.List;
 
 /**
  * Helper class containing some methods for Lift plots.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class LiftDataGenerator {
 
-	/** Defines the maximum amount of points which is plotted in the ROC curve. */
-	public static final int MAX_LIFT_POINTS = 500;
+    /**
+     * Defines the maximum amount of points which is plotted in the ROC curve.
+     */
+    public static final int MAX_LIFT_POINTS = 500;
 
 	private static final int TP = 0;
 	private static final int FP = 1;
@@ -49,15 +51,20 @@ public class LiftDataGenerator {
 
 	private double maxLift = 0;
 
-	/** Creates a new Lift data generator. */
-	public LiftDataGenerator() {}
+    /**
+     * Creates a new Lift data generator.
+     */
+    public LiftDataGenerator() {}
 
-	/**
-	 * Creates a list of ROC data poings from the given example set. The example set must have a
-	 * binary label attribute and confidence values for both values, i.e. a model must have been
-	 * applied on the data.
-	 */
-	public List<double[]> createLiftDataList(ExampleSet exampleSet) {
+    /**
+     * Creates a list of ROC data poings from the given example set. The example set must have a
+     * binary label attribute and confidence values for both values, i.e. a model must have been
+     * applied on the data.
+     *
+     * @param exampleSet the example set
+     * @return the list
+     */
+    public List<double[]> createLiftDataList(ExampleSet exampleSet) {
 		Attribute label = exampleSet.getAttributes().getLabel();
 		Attribute predictedLabel = exampleSet.getAttributes().getPredictedLabel();
 
@@ -118,8 +125,12 @@ public class LiftDataGenerator {
 		return tableData;
 	}
 
-	/** Creates a dialog containing a plotter for a given list of ROC data points. */
-	public void createLiftChartPlot(List<double[]> data) {
+    /**
+     * Creates a dialog containing a plotter for a given list of ROC data points.  @param data the data
+     *
+     * @param data the data
+     */
+    public void createLiftChartPlot(List<double[]> data) {
 		// create data table
 		DataTable dataTable = new SimpleDataTable("Lift Chart", new String[] { "Fraction", "Lift" });
 		int pointCounter = 0;

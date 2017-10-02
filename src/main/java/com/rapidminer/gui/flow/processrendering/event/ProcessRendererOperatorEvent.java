@@ -26,44 +26,47 @@ import com.rapidminer.gui.flow.processrendering.model.ProcessRendererModel;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public final class ProcessRendererOperatorEvent {
 
-	/**
-	 * Defines different kind of {@link ProcessRendererOperatorEvent}s.
-	 *
-	 */
-	public static enum OperatorEvent {
-		/** fired when the operator selection has changed */
-		SELECTED_OPERATORS_CHANGED,
+    /**
+     * Defines different kind of {@link ProcessRendererOperatorEvent}s.
+     */
+    public static enum OperatorEvent {
+        /**
+         * fired when the operator selection has changed
+         */
+        SELECTED_OPERATORS_CHANGED,
 
-		/** fired when operators changed their position */
-		OPERATORS_MOVED,
+        /**
+         * fired when operators changed their position
+         */
+        OPERATORS_MOVED,
 
-		/** fired when operators have changed their number of ports */
-		PORTS_CHANGED;
+        /**
+         * fired when operators have changed their number of ports
+         */
+        PORTS_CHANGED;
 	}
 
 	private final OperatorEvent type;
 
-	/**
-	 * Creates a new {@link ProcessRendererOperatorEvent} instance for the specified
-	 * {@link OperatorEvent}.
-	 *
-	 * @param type
-	 *            the event type
-	 */
-	public ProcessRendererOperatorEvent(final OperatorEvent type) {
+    /**
+     * Creates a new {@link ProcessRendererOperatorEvent} instance for the specified
+     * {@link OperatorEvent}.
+     *
+     * @param type the event type
+     */
+    public ProcessRendererOperatorEvent(final OperatorEvent type) {
 		this.type = type;
 	}
 
-	/**
-	 * Returns the {@link OperatorEvent}.
-	 *
-	 * @return the type of the event
-	 */
-	public OperatorEvent getEventType() {
+    /**
+     * Returns the {@link OperatorEvent}.
+     *
+     * @return the type of the event
+     */
+    public OperatorEvent getEventType() {
 		return type;
 	}
 }

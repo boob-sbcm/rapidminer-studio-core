@@ -43,7 +43,10 @@ public class ParameterTypeConfiguration extends ParameterType {
 
 	private static final long serialVersionUID = -3512071671355815277L;
 
-	public static final String PARAMETER_DEFAULT_CONFIGURATION_NAME = "configure_operator";
+    /**
+     * The constant PARAMETER_DEFAULT_CONFIGURATION_NAME.
+     */
+    public static final String PARAMETER_DEFAULT_CONFIGURATION_NAME = "configure_operator";
 
 	private Class<? extends ConfigurationWizardCreator> wizardCreatorClass;
 
@@ -51,20 +54,44 @@ public class ParameterTypeConfiguration extends ParameterType {
 
 	private Map<String, String> parameters = null;
 
-	public Object[] wizardConstructionArguments;
+    /**
+     * The Wizard construction arguments.
+     */
+    public Object[] wizardConstructionArguments;
 
-	public ParameterTypeConfiguration(Class<? extends ConfigurationWizardCreator> wizardCreatorClass,
+    /**
+     * Instantiates a new Parameter type configuration.
+     *
+     * @param wizardCreatorClass the wizard creator class
+     * @param wizardListener     the wizard listener
+     */
+    public ParameterTypeConfiguration(Class<? extends ConfigurationWizardCreator> wizardCreatorClass,
 			ConfigurationListener wizardListener) {
 		this(wizardCreatorClass, null, wizardListener);
 	}
 
-	public ParameterTypeConfiguration(Class<? extends ConfigurationWizardCreator> wizardCreatorClass,
+    /**
+     * Instantiates a new Parameter type configuration.
+     *
+     * @param wizardCreatorClass the wizard creator class
+     * @param parameters         the parameters
+     * @param wizardListener     the wizard listener
+     */
+    public ParameterTypeConfiguration(Class<? extends ConfigurationWizardCreator> wizardCreatorClass,
 			Map<String, String> parameters, ConfigurationListener wizardListener) {
 		this(wizardCreatorClass, parameters, wizardListener, null);
 
 	}
 
-	public ParameterTypeConfiguration(Class<? extends ConfigurationWizardCreator> wizardCreatorClass,
+    /**
+     * Instantiates a new Parameter type configuration.
+     *
+     * @param wizardCreatorClass   the wizard creator class
+     * @param parameters           the parameters
+     * @param wizardListener       the wizard listener
+     * @param constructorArguments the constructor arguments
+     */
+    public ParameterTypeConfiguration(Class<? extends ConfigurationWizardCreator> wizardCreatorClass,
 			Map<String, String> parameters, ConfigurationListener wizardListener, Object[] constructorArguments) {
 		super(PARAMETER_DEFAULT_CONFIGURATION_NAME, "Configure this operator by means of a Wizard.");
 		this.wizardCreatorClass = wizardCreatorClass;
@@ -73,11 +100,13 @@ public class ParameterTypeConfiguration extends ParameterType {
 		this.wizardConstructionArguments = constructorArguments;
 	}
 
-	/**
-	 * Returns a new instance of the wizard creator. If anything does not work this method will
-	 * return null.
-	 */
-	public ConfigurationWizardCreator getWizardCreator() {
+    /**
+     * Returns a new instance of the wizard creator. If anything does not work this method will
+     * return null.
+     *
+     * @return the wizard creator
+     */
+    public ConfigurationWizardCreator getWizardCreator() {
 		ConfigurationWizardCreator creator = null;
 		try {
 			if (wizardConstructionArguments == null) {
@@ -128,7 +157,12 @@ public class ParameterTypeConfiguration extends ParameterType {
 		return creator;
 	}
 
-	public ConfigurationListener getWizardListener() {
+    /**
+     * Gets wizard listener.
+     *
+     * @return the wizard listener
+     */
+    public ConfigurationListener getWizardListener() {
 		return wizardListener;
 	}
 

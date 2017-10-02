@@ -29,7 +29,7 @@ import org.jfree.chart.renderer.xy.XYBubbleRenderer;
 
 /**
  * This renderer provides colorized renderering not based on the series but on a numerical value.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ColorizedBubbleRenderer extends XYBubbleRenderer {
@@ -44,7 +44,12 @@ public class ColorizedBubbleRenderer extends XYBubbleRenderer {
 
 	private ColorProvider colorProvider = new ColorProvider(true);
 
-	public ColorizedBubbleRenderer(double[] colors) {
+    /**
+     * Instantiates a new Colorized bubble renderer.
+     *
+     * @param colors the colors
+     */
+    public ColorizedBubbleRenderer(double[] colors) {
 		super(XYBubbleRenderer.SCALE_ON_RANGE_AXIS);
 		this.minColor = Double.POSITIVE_INFINITY;
 		this.maxColor = Double.NEGATIVE_INFINITY;

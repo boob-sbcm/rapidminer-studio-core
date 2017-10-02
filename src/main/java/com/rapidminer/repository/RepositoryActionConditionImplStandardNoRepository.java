@@ -24,39 +24,31 @@ import java.util.List;
 /**
  * Same as {@link RepositoryActionConditionImplStandard}, but also does not show the action in case
  * of entry being a {@link Repository}.
- * 
+ *
  * @author Marco Boeck
  */
 public class RepositoryActionConditionImplStandardNoRepository extends RepositoryActionConditionImplStandard {
 
-	/**
-	 * Creates a new RepositoryActionCondition which can be used to check if the selected
-	 * {@link Entry}s meet the given conditions.
-	 * 
-	 * @param requiredSelectionTypeList
-	 *            a list with {@link Entry} types. Each selected {@link Entry} must be of one of the
-	 *            types on the list or the condition is not met.
-	 * @param requiredSelectionRepositoryTypeList
-	 *            a list with {@link Repository} types. Each selected {@link Entry} must be of the
-	 *            types on the list or the condition is not met.
-	 */
-	public RepositoryActionConditionImplStandardNoRepository(List<Class<?>> requiredSelectionTypeList,
+    /**
+     * Creates a new RepositoryActionCondition which can be used to check if the selected
+     * {@link Entry}s meet the given conditions.
+     *
+     * @param requiredSelectionTypeList           a list with {@link Entry} types. Each selected {@link Entry} must be of one of the            types on the list or the condition is not met.
+     * @param requiredSelectionRepositoryTypeList a list with {@link Repository} types. Each selected {@link Entry} must be of the            types on the list or the condition is not met.
+     */
+    public RepositoryActionConditionImplStandardNoRepository(List<Class<?>> requiredSelectionTypeList,
 			List<Class<?>> requiredSelectionRepositoryTypeList) {
 		super(requiredSelectionTypeList, requiredSelectionRepositoryTypeList);
 	}
 
-	/**
-	 * Creates a new RepositoryActionCondition which can be used to check if the selected
-	 * {@link Entry}s meet the given conditions.
-	 * 
-	 * @param requiredSelectionTypeList
-	 *            a list with {@link Entry} types. Each selected {@link Entry} must be of one of the
-	 *            types on the list or the condition is not met.
-	 * @param requiredSelectionRepositoryTypeList
-	 *            a list with {@link Repository} types. Each selected {@link Entry} must be of the
-	 *            types on the list or the condition is not met.
-	 */
-	public RepositoryActionConditionImplStandardNoRepository(Class<?>[] requiredSelectionTypes,
+    /**
+     * Creates a new RepositoryActionCondition which can be used to check if the selected
+     * {@link Entry}s meet the given conditions.
+     *
+     * @param requiredSelectionTypes           the required selection types
+     * @param requiredSelectionRepositoryTypes the required selection repository types
+     */
+    public RepositoryActionConditionImplStandardNoRepository(Class<?>[] requiredSelectionTypes,
 			Class<?>[] requiredSelectionRepositoryTypes) {
 		super(requiredSelectionTypes, requiredSelectionRepositoryTypes);
 	}

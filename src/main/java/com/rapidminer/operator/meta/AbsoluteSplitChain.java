@@ -45,17 +45,19 @@ import java.util.List;
  * child operator on the first part and applies the second child on the second part and the result
  * of the first child. The total result is the result of the second operator.
  * </p>
- * 
+ * <p>
  * <p>
  * The input example set will be splitted based on a user defined absolute numbers.
  * </p>
- * 
+ *
  * @author Peter B. Volk, Ingo Mierswa
  */
 public class AbsoluteSplitChain extends AbstractSplitChain {
 
-	/** The parameter name for &quot;Defines the sampling type of this operator.&quot; */
-	public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
+    /**
+     * The parameter name for &quot;Defines the sampling type of this operator.&quot;
+     */
+    public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
 
 	private static final String PARAMETER_NUMBER_TRAINING_EXAMPLES = "first_set_size";
 
@@ -63,7 +65,12 @@ public class AbsoluteSplitChain extends AbstractSplitChain {
 
 	private static final String PARAMETER_RESTRICT_FIRST = "restrict_first";
 
-	public AbsoluteSplitChain(OperatorDescription description) {
+    /**
+     * Instantiates a new Absolute split chain.
+     *
+     * @param description the description
+     */
+    public AbsoluteSplitChain(OperatorDescription description) {
 		super(description);
 	}
 

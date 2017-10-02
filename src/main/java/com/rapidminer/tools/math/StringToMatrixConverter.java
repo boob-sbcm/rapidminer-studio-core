@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
 /**
  * This class provides functions to convert a matrix given in single line Matlab format to standard
  * matrix representation and vice versa.
- * 
+ *
  * @author Helge Homburg
  */
 public class StringToMatrixConverter {
@@ -35,8 +35,13 @@ public class StringToMatrixConverter {
 	private static final String ROW_DELIMITER = ";";
 	private static final String VALUE_DELIMITER = " ";
 
-	/** creates a Matlab string from a given double matrix */
-	public static String createMatlabString(double[][] matrix) {
+    /**
+     * creates a Matlab string from a given double matrix  @param matrix the matrix
+     *
+     * @param matrix the matrix
+     * @return the string
+     */
+    public static String createMatlabString(double[][] matrix) {
 		StringBuffer matrixString = new StringBuffer();
 
 		if (matrix == null) {
@@ -62,8 +67,14 @@ public class StringToMatrixConverter {
 		return matrixString.toString();
 	}
 
-	/** parses a Matlab string to create a double matrix */
-	public static double[][] parseMatlabString(String matrixString) throws OperatorException {
+    /**
+     * parses a Matlab string to create a double matrix  @param matrixString the matrix string
+     *
+     * @param matrixString the matrix string
+     * @return the double [ ] [ ]
+     * @throws OperatorException the operator exception
+     */
+    public static double[][] parseMatlabString(String matrixString) throws OperatorException {
 
 		if (matrixString == null || matrixString.trim().length() == 0) {
 			return null;

@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * This class implements the condition if an attribute is numeric. All non-numerical attributes will
  * be removed.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class DateAttributeFilter extends AbstractAttributeFilterCondition {
@@ -53,7 +53,13 @@ public class DateAttributeFilter extends AbstractAttributeFilterCondition {
 		}
 	}
 
-	public List<ParameterType> getParameterTypes(ParameterHandler handler) {
+    /**
+     * Gets parameter types.
+     *
+     * @param handler the handler
+     * @return the parameter types
+     */
+    public List<ParameterType> getParameterTypes(ParameterHandler handler) {
 		return new LinkedList<ParameterType>();
 	}
 }

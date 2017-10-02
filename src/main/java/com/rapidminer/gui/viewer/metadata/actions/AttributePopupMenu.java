@@ -31,9 +31,8 @@ import javax.swing.JPopupMenu;
  * n*PAGE_SIZE actions each which all do the exact same thing. For that reason the latest
  * {@link AttributeStatisticsPanel} is stored when the popup is opened so it can be retrieved by the
  * actions later.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class AttributePopupMenu extends JPopupMenu {
 
@@ -56,12 +55,12 @@ public class AttributePopupMenu extends JPopupMenu {
 		}
 	}
 
-	/**
-	 * Returns the {@link AttributeStatisticsPanel} on which this popup was last opened.
-	 * 
-	 * @return
-	 */
-	AttributeStatisticsPanel getAttributeStatisticsPanel() {
+    /**
+     * Returns the {@link AttributeStatisticsPanel} on which this popup was last opened.
+     *
+     * @return attribute statistics panel
+     */
+    AttributeStatisticsPanel getAttributeStatisticsPanel() {
 		return asp;
 	}
 }

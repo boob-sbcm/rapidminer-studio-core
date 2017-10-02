@@ -25,7 +25,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * The model for the {@link com.rapidminer.gui.viewer.ConfusionMatrixViewerTable}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ConfusionMatrixViewerTableModel extends AbstractTableModel {
@@ -37,7 +37,13 @@ public class ConfusionMatrixViewerTableModel extends AbstractTableModel {
 	private double[] rowSums;
 	private double[] columnSums;
 
-	public ConfusionMatrixViewerTableModel(String[] classNames, double[][] counter) {
+    /**
+     * Instantiates a new Confusion matrix viewer table model.
+     *
+     * @param classNames the class names
+     * @param counter    the counter
+     */
+    public ConfusionMatrixViewerTableModel(String[] classNames, double[][] counter) {
 		this.classNames = classNames;
 		this.counter = counter;
 		this.rowSums = new double[classNames.length];

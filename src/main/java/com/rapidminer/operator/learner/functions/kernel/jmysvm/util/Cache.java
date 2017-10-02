@@ -20,37 +20,40 @@ package com.rapidminer.operator.learner.functions.kernel.jmysvm.util;
 
 /**
  * Implements a last recently used cache
- * 
+ *
  * @author Stefan Rueping
  */
 public class Cache {
 
-	/**
-	 * Cache rows
-	 */
-	protected Object[] elements;
+    /**
+     * Cache rows
+     */
+    protected Object[] elements;
 
-	/**
-	 * time index for last access
-	 */
-	long counter;
+    /**
+     * time index for last access
+     */
+    long counter;
 
-	/**
-	 * number of rows in cache
-	 */
-	int cache_size;
+    /**
+     * number of rows in cache
+     */
+    int cache_size;
 
-	/**
-	 * the heap
-	 */
-	long[] last_used;
+    /**
+     * the heap
+     */
+    long[] last_used;
 
-	int[] index;
+    /**
+     * The Index.
+     */
+    int[] index;
 
-	/**
-	 * constructor
-	 */
-	public Cache() {
+    /**
+     * constructor
+     */
+    public Cache() {
 		cache_size = 0;
 		elements = null;
 		last_used = null;
@@ -58,13 +61,13 @@ public class Cache {
 		counter = 0;
 	};
 
-	/**
-	 * constructor + init(size)
-	 * 
-	 * @param size
-	 *            number of elements to be cached
-	 */
-	public Cache(int size, int dim) {
+    /**
+     * constructor + init(size)
+     *
+     * @param size number of elements to be cached
+     * @param dim  the dim
+     */
+    public Cache(int size, int dim) {
 		cache_size = 0;
 		elements = null;
 		last_used = null;
@@ -73,13 +76,12 @@ public class Cache {
 		init(size);
 	};
 
-	/**
-	 * initialises the cache
-	 * 
-	 * @param size
-	 *            number of elements to be cached
-	 */
-	public void init(int size) {
+    /**
+     * initialises the cache
+     *
+     * @param size number of elements to be cached
+     */
+    public void init(int size) {
 		clean_cache();
 		cache_size = size;
 		// check if reserved memory big enough
@@ -99,7 +101,13 @@ public class Cache {
 		index[cache_size] = Integer.MAX_VALUE;
 	};
 
-	public void shrink(int size, int dim) {
+    /**
+     * Shrink.
+     *
+     * @param size the size
+     * @param dim  the dim
+     */
+    public void shrink(int size, int dim) {
 		// create cache with size elements where each element has size dim
 		// keep old cache if it fits already (size constant)
 
@@ -149,10 +157,10 @@ public class Cache {
 		cache_size = size;
 	};
 
-	/**
-	 * cleans the cache
-	 */
-	protected void clean_cache() {
+    /**
+     * cleans the cache
+     */
+    protected void clean_cache() {
 		for (int i = 0; i < cache_size; i++) {
 			elements[i] = null;
 		}
@@ -162,10 +170,13 @@ public class Cache {
 		index = null;
 	};
 
-	/**
-	 * get element from cache
-	 */
-	public Object get_element(int i) {
+    /**
+     * get element from cache
+     *
+     * @param i the
+     * @return the element
+     */
+    public Object get_element(int i) {
 		int pos = 0;
 		Object result = null;
 		// binary search for i in [low,high]
@@ -184,7 +195,12 @@ public class Cache {
 		return result;
 	};
 
-	public int get_lru_pos() {
+    /**
+     * Gets lru pos.
+     *
+     * @return the lru pos
+     */
+    public int get_lru_pos() {
 		long[] my_last_used = last_used;
 		long min_time = my_last_used[cache_size - 1]; // heuristic: empty
 														// entries are at the
@@ -205,7 +221,12 @@ public class Cache {
 		return low;
 	};
 
-	public Object get_lru_element() {
+    /**
+     * Gets lru element.
+     *
+     * @return the lru element
+     */
+    public Object get_lru_element() {
 		long[] my_last_used = last_used;
 		long min_time = my_last_used[cache_size - 1]; // heuristic: empty
 														// entries are at the
@@ -226,10 +247,13 @@ public class Cache {
 		return elements[low];
 	};
 
-	/**
-	 * put element in cache
-	 */
-	public void put_element(int i, Object o) {
+    /**
+     * put element in cache
+     *
+     * @param i the
+     * @param o the o
+     */
+    public void put_element(int i, Object o) {
 		int low = 0;
 		int high = cache_size;
 		int pos = 0;
@@ -281,7 +305,13 @@ public class Cache {
 		last_used[pos] = counter;
 	};
 
-	protected int lookup(int i) {
+    /**
+     * Lookup int.
+     *
+     * @param i the
+     * @return the int
+     */
+    protected int lookup(int i) {
 		// find row i in cache
 		// returns pos of element i if i in cache,
 		// returns pos of smallest element larger than i otherwise
@@ -306,10 +336,13 @@ public class Cache {
 		return high;
 	};
 
-	/**
-	 * is element at this position cached?
-	 */
-	public boolean cached(int i) {
+    /**
+     * is element at this position cached?
+     *
+     * @param i the
+     * @return the boolean
+     */
+    public boolean cached(int i) {
 		boolean ok;
 		int pos = lookup(i);
 		if (index[pos] == i) {
@@ -326,10 +359,12 @@ public class Cache {
 		return (ok);
 	};
 
-	/**
-	 * mark element as recently used
-	 */
-	public void renew(int i) {
+    /**
+     * mark element as recently used
+     *
+     * @param i the
+     */
+    public void renew(int i) {
 		int pos = lookup(i);
 		if (index[pos] == i) {
 			if (last_used[pos] > 0) {
@@ -341,10 +376,13 @@ public class Cache {
 		;
 	};
 
-	/**
-	 * swap elements in cache
-	 */
-	public void swap(int i, int j) {
+    /**
+     * swap elements in cache
+     *
+     * @param i the
+     * @param j the j
+     */
+    public void swap(int i, int j) {
 		// overwrites entry i with entry j
 		// WARNING: only to be used for shrinking!
 

@@ -60,14 +60,13 @@ public class Resources {
 
 	}
 
-	/**
-	 * Provides a {@link ConcurrencyContext} for the given {@link Operator}.
-	 *
-	 * @param operator
-	 *            the operator
-	 * @return the context
-	 */
-	public static ConcurrencyContext getConcurrencyContext(Operator operator) {
+    /**
+     * Provides a {@link ConcurrencyContext} for the given {@link Operator}.
+     *
+     * @param operator the operator
+     * @return the context
+     */
+    public static ConcurrencyContext getConcurrencyContext(Operator operator) {
 		if (operator == null) {
 			throw new IllegalArgumentException("operator must not be null");
 		}

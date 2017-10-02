@@ -27,11 +27,11 @@ import java.util.logging.Level;
 /**
  * A group tree manages operator descriptions in a tree like manner. This is useful to present the
  * operators in groups and subgroups and eases operator selection in the GUI.
- * 
+ * <p>
  * The group tree heavily depends on the associated OperatorService, since it reflects the
  * registered Operators of that Service. Each {@link OperatorService} can have multiple GroupTrees,
  * which register as listener to be able to update on new registration or unregistration events.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class GroupTreeNode extends GroupTree {
@@ -44,8 +44,14 @@ public class GroupTreeNode extends GroupTree {
 
 	private final GroupDocumentation documentation;
 
-	/** Creates a new group tree with no operators and children. */
-	GroupTreeNode(GroupTree parent, String key, OperatorDocBundle bundle) {
+    /**
+     * Creates a new group tree with no operators and children.  @param parent the parent
+     *
+     * @param parent the parent
+     * @param key    the key
+     * @param bundle the bundle
+     */
+    GroupTreeNode(GroupTree parent, String key, OperatorDocBundle bundle) {
 		this.parent = parent;
 		this.key = key;
 		if (bundle != null) {
@@ -59,8 +65,12 @@ public class GroupTreeNode extends GroupTree {
 		}
 	}
 
-	/** Clone constructor. */
-	GroupTreeNode(GroupTreeNode other) {
+    /**
+     * Clone constructor.  @param other the other
+     *
+     * @param other the other
+     */
+    GroupTreeNode(GroupTreeNode other) {
 		super(other);
 		this.key = other.key;
 		this.documentation = other.documentation;
@@ -81,8 +91,12 @@ public class GroupTreeNode extends GroupTree {
 		return documentation;
 	}
 
-	/** Sets the parent of this group. */
-	public void setParent(GroupTree parent) {
+    /**
+     * Sets the parent of this group.  @param parent the parent
+     *
+     * @param parent the parent
+     */
+    public void setParent(GroupTree parent) {
 		this.parent = parent;
 	}
 

@@ -35,8 +35,8 @@ import java.util.List;
  * set, creates new ones and deselect single attributes. The number of attributes remains until
  * longer or shorter example sets have proven to perform better.
  *
- * @see DirectedGGA
  * @author Ingo Mierswa ingomierswa Exp $
+ * @see DirectedGGA
  */
 public class DirectedGeneratingMutation extends ExampleSetBasedIndividualOperator {
 
@@ -54,7 +54,18 @@ public class DirectedGeneratingMutation extends ExampleSetBasedIndividualOperato
 
 	private RandomGenerator random;
 
-	public DirectedGeneratingMutation(Attribute[] originalAttributes, double p, List<FeatureGenerator> generators,
+    /**
+     * Instantiates a new Directed generating mutation.
+     *
+     * @param originalAttributes         the original attributes
+     * @param p                          the p
+     * @param generators                 the generators
+     * @param maxGeneratedAttributes     the max generated attributes
+     * @param maxAddedOriginalAttributes the max added original attributes
+     * @param unusableFunctions          the unusable functions
+     * @param random                     the random
+     */
+    public DirectedGeneratingMutation(Attribute[] originalAttributes, double p, List<FeatureGenerator> generators,
 			int maxGeneratedAttributes, int maxAddedOriginalAttributes, String[] unusableFunctions, RandomGenerator random) {
 		this.originalAttributes = originalAttributes;
 		this.p = p / (maxGeneratedAttributes + maxAddedOriginalAttributes);

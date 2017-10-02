@@ -37,14 +37,20 @@ import org.w3c.dom.Document;
 
 
 /**
- * 
+ * The type File process location.
+ *
  * @author Simon Fischer
  */
 public class FileProcessLocation implements ProcessLocation {
 
 	private final File file;
 
-	public FileProcessLocation(File file) {
+    /**
+     * Instantiates a new File process location.
+     *
+     * @param file the file
+     */
+    public FileProcessLocation(File file) {
 		this.file = file;
 	}
 
@@ -97,7 +103,12 @@ public class FileProcessLocation implements ProcessLocation {
 		}
 	}
 
-	public File getFile() {
+    /**
+     * Gets file.
+     *
+     * @return the file
+     */
+    public File getFile() {
 		return file;
 	}
 

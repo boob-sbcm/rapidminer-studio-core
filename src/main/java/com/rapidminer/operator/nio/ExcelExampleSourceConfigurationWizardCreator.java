@@ -27,9 +27,8 @@ import com.rapidminer.parameter.ParameterType;
 
 /**
  * Creates a {@link ExcelImportWizard}.
- * 
+ *
  * @author Sebastian Loh (06.05.2010)
- * 
  */
 public class ExcelExampleSourceConfigurationWizardCreator extends AbstractConfigurationWizardCreator {
 

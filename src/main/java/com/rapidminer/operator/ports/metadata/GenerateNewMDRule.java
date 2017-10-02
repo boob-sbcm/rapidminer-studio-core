@@ -35,11 +35,23 @@ public class GenerateNewMDRule implements MDTransformationRule {
 	private OutputPort outputPort;
 	private MetaData unmodifiedMetaData;
 
-	public GenerateNewMDRule(OutputPort outputPort, Class<? extends IOObject> clazz) {
+    /**
+     * Instantiates a new Generate new md rule.
+     *
+     * @param outputPort the output port
+     * @param clazz      the clazz
+     */
+    public GenerateNewMDRule(OutputPort outputPort, Class<? extends IOObject> clazz) {
 		this(outputPort, ExampleSet.class.equals(clazz) ? new ExampleSetMetaData() : new MetaData(clazz));
 	}
 
-	public GenerateNewMDRule(OutputPort outputPort, MetaData unmodifiedMetaData) {
+    /**
+     * Instantiates a new Generate new md rule.
+     *
+     * @param outputPort         the output port
+     * @param unmodifiedMetaData the unmodified meta data
+     */
+    public GenerateNewMDRule(OutputPort outputPort, MetaData unmodifiedMetaData) {
 		this.outputPort = outputPort;
 		this.unmodifiedMetaData = unmodifiedMetaData;
 	}
@@ -51,26 +63,33 @@ public class GenerateNewMDRule implements MDTransformationRule {
 		outputPort.deliverMD(modifyMetaData(clone));
 	}
 
-	/**
-	 * Modifies the standard meta data before it is passed to the output. Can be used if the
-	 * transformation depends on parameters etc. The default implementation just returns the
-	 * original. Subclasses may safely modify the meta data, since a copy is used for this method.
-	 */
-	public MetaData modifyMetaData(MetaData unmodifiedMetaData) {
+    /**
+     * Modifies the standard meta data before it is passed to the output. Can be used if the
+     * transformation depends on parameters etc. The default implementation just returns the
+     * original. Subclasses may safely modify the meta data, since a copy is used for this method.
+     *
+     * @param unmodifiedMetaData the unmodified meta data
+     * @return the meta data
+     */
+    public MetaData modifyMetaData(MetaData unmodifiedMetaData) {
 		return unmodifiedMetaData;
 	}
 
-	/**
-	 * @return a clone of the unmodified meta data object
-	 */
-	public MetaData getUnmodifiedMetaData() {
+    /**
+     * Gets unmodified meta data.
+     *
+     * @return a clone of the unmodified meta data object
+     */
+    public MetaData getUnmodifiedMetaData() {
 		return unmodifiedMetaData.clone();
 	}
 
-	/**
-	 * @return the {@link OutputPort} the MD rule is for
-	 */
-	public OutputPort getOutputPort() {
+    /**
+     * Gets output port.
+     *
+     * @return the {@link OutputPort} the MD rule is for
+     */
+    public OutputPort getOutputPort() {
 		return outputPort;
 	}
 

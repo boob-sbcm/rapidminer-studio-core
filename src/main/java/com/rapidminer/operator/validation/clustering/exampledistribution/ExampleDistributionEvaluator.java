@@ -39,13 +39,15 @@ import java.util.List;
 
 /**
  * Evaluates flat cluster models on how well the examples are distributed over the clusters.
- * 
+ *
  * @author Michael Wurst, Sebastian Land
- * 
  */
 public class ExampleDistributionEvaluator extends Operator {
 
-	public static final String PARAMETER_MEASURE = "measure";
+    /**
+     * The constant PARAMETER_MEASURE.
+     */
+    public static final String PARAMETER_MEASURE = "measure";
 
 	private final static String[] DEFAULT_MEASURES = {
 			"com.rapidminer.operator.validation.clustering.exampledistribution.SumOfSquares",
@@ -61,7 +63,12 @@ public class ExampleDistributionEvaluator extends Operator {
 	private OutputPort clusterModelOutput = getOutputPorts().createPort("cluster model");
 	private OutputPort performanceOutput = getOutputPorts().createPort("performance vector");
 
-	public ExampleDistributionEvaluator(OperatorDescription description) {
+    /**
+     * Instantiates a new Example distribution evaluator.
+     *
+     * @param description the description
+     */
+    public ExampleDistributionEvaluator(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addPassThroughRule(clusterModelInput, clusterModelOutput);

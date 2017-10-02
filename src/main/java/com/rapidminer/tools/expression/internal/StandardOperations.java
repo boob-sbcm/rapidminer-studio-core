@@ -45,11 +45,13 @@ import com.rapidminer.tools.expression.internal.function.logical.Or;
  * Singleton that holds the standard operations (+,-,*,...).
  *
  * @author Gisa Schaefer
- *
  */
 public enum StandardOperations implements ExpressionParserModule {
 
-	INSTANCE;
+    /**
+     * Instance standard operations.
+     */
+    INSTANCE;
 
 	private List<Function> standardOperations = new LinkedList<>();
 

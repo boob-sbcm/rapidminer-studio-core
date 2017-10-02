@@ -50,16 +50,23 @@ import com.rapidminer.tools.OperatorService;
  */
 public class AdditiveRegression extends AbstractMetaLearner {
 
-	/** The parameter name for &quot;The number of iterations.&quot; */
-	public static final String PARAMETER_ITERATIONS = "iterations";
+    /**
+     * The parameter name for &quot;The number of iterations.&quot;
+     */
+    public static final String PARAMETER_ITERATIONS = "iterations";
 
-	/**
-	 * The parameter name for &quot;Reducing this learning rate prevent overfitting but increases
-	 * the learning time.&quot;
-	 */
-	public static final String PARAMETER_SHRINKAGE = "shrinkage";
+    /**
+     * The parameter name for &quot;Reducing this learning rate prevent overfitting but increases
+     * the learning time.&quot;
+     */
+    public static final String PARAMETER_SHRINKAGE = "shrinkage";
 
-	public AdditiveRegression(OperatorDescription description) {
+    /**
+     * Instantiates a new Additive regression.
+     *
+     * @param description the description
+     */
+    public AdditiveRegression(OperatorDescription description) {
 		super(description);
 	}
 

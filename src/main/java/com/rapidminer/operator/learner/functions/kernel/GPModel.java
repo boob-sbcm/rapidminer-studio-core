@@ -41,7 +41,13 @@ public class GPModel extends KernelModel {
 
 	private com.rapidminer.operator.learner.functions.kernel.gaussianprocess.Model model = null;
 
-	public GPModel(ExampleSet exampleSet, com.rapidminer.operator.learner.functions.kernel.gaussianprocess.Model model) {
+    /**
+     * Instantiates a new Gp model.
+     *
+     * @param exampleSet the example set
+     * @param model      the model
+     */
+    public GPModel(ExampleSet exampleSet, com.rapidminer.operator.learner.functions.kernel.gaussianprocess.Model model) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.model = model;

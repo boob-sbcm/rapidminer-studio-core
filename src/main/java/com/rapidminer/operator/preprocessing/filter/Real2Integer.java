@@ -50,7 +50,10 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class Real2Integer extends AbstractFilteredDataProcessing {
 
-	public static final String PARAMETER_ROUND = "round_values";
+    /**
+     * The constant PARAMETER_ROUND.
+     */
+    public static final String PARAMETER_ROUND = "round_values";
 
 	/**
 	 * Incompatible version, old version writes into the exampleset, if original output port is not
@@ -58,7 +61,12 @@ public class Real2Integer extends AbstractFilteredDataProcessing {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public Real2Integer(OperatorDescription description) {
+    /**
+     * Instantiates a new Real 2 integer.
+     *
+     * @param description the description
+     */
+    public Real2Integer(OperatorDescription description) {
 		super(description);
 	}
 

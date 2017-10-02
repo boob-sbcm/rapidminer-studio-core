@@ -55,7 +55,14 @@ public class AdaBoostModel extends PredictionModel implements MetaModel {
 
 	private static final String MAX_MODEL_NUMBER = "iteration";
 
-	public AdaBoostModel(ExampleSet exampleSet, List<Model> models, List<Double> weights) {
+    /**
+     * Instantiates a new Ada boost model.
+     *
+     * @param exampleSet the example set
+     * @param models     the models
+     * @param weights    the weights
+     */
+    public AdaBoostModel(ExampleSet exampleSet, List<Model> models, List<Double> weights) {
 		super(exampleSet, null, null);
 		this.models = models;
 		this.weights = weights;
@@ -85,11 +92,13 @@ public class AdaBoostModel extends PredictionModel implements MetaModel {
 		}
 	}
 
-	/**
-	 * Using this setter with a positive value makes the model discard all but the specified number
-	 * of base models. A value of -1 turns off this option.
-	 */
-	public void setMaxModelNumber(int numModels) {
+    /**
+     * Using this setter with a positive value makes the model discard all but the specified number
+     * of base models. A value of -1 turns off this option.
+     *
+     * @param numModels the num models
+     */
+    public void setMaxModelNumber(int numModels) {
 		this.maxModelNumber = numModels;
 	}
 
@@ -107,8 +116,12 @@ public class AdaBoostModel extends PredictionModel implements MetaModel {
 		return result.toString();
 	}
 
-	/** @return the number of embedded models */
-	public int getNumberOfModels() {
+    /**
+     * Gets number of models.
+     *
+     * @return the number of embedded models
+     */
+    public int getNumberOfModels() {
 		if (this.maxModelNumber >= 0) {
 			return Math.min(this.maxModelNumber, this.models.size());
 		} else {
@@ -120,14 +133,13 @@ public class AdaBoostModel extends PredictionModel implements MetaModel {
 		return this.weights.get(modelNr);
 	}
 
-	/**
-	 * Getter method for embedded models
-	 *
-	 * @param index
-	 *            the number of a model part of this boost model
-	 * @return binary or nominal decision model
-	 */
-	public Model getModel(int index) {
+    /**
+     * Getter method for embedded models
+     *
+     * @param index the number of a model part of this boost model
+     * @return binary or nominal decision model
+     */
+    public Model getModel(int index) {
 		return this.models.get(index);
 	}
 

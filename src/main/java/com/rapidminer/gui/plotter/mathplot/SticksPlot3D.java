@@ -36,11 +36,22 @@ public class SticksPlot3D extends JMathPlotter3D {
 
 	private static final long serialVersionUID = -2241823488299009239L;
 
-	public SticksPlot3D(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Sticks plot 3 d.
+     *
+     * @param settings the settings
+     */
+    public SticksPlot3D(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
-	public SticksPlot3D(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Sticks plot 3 d.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public SticksPlot3D(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings, dataTable);
 	}
 

@@ -76,15 +76,32 @@ public class Similarity2ExampleSet extends Operator {
 	private final InputPort exampleSetInput = getInputPorts().createPort("exampleSet", ExampleSet.class);
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("exampleSet");
 
-	public static final String PARAMETER_TABLE_TYPE = "table_type";
+    /**
+     * The constant PARAMETER_TABLE_TYPE.
+     */
+    public static final String PARAMETER_TABLE_TYPE = "table_type";
 
-	public static final String[] TABLE_TYPES = { "long_table", "matrix" };
+    /**
+     * The constant TABLE_TYPES.
+     */
+    public static final String[] TABLE_TYPES = { "long_table", "matrix" };
 
-	public static final int TABLE_TYPE_LONG_TABLE = 0;
+    /**
+     * The constant TABLE_TYPE_LONG_TABLE.
+     */
+    public static final int TABLE_TYPE_LONG_TABLE = 0;
 
-	public static final int TABLE_TYPE_MATRIX = 1;
+    /**
+     * The constant TABLE_TYPE_MATRIX.
+     */
+    public static final int TABLE_TYPE_MATRIX = 1;
 
-	public Similarity2ExampleSet(OperatorDescription description) {
+    /**
+     * Instantiates a new Similarity 2 example set.
+     *
+     * @param description the description
+     */
+    public Similarity2ExampleSet(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, exampleSetOutput, SetRelation.EQUAL) {
 

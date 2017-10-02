@@ -27,14 +27,17 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class InfoOperatorAction extends ResourceAction {
 
 	private static final long serialVersionUID = 1764142570608930118L;
 
-	public InfoOperatorAction() {
+    /**
+     * Instantiates a new Info operator action.
+     */
+    public InfoOperatorAction() {
 		super(true, "operator_info");
 		setCondition(OPERATOR_SELECTED, MANDATORY);
 	}
@@ -48,5 +51,10 @@ public abstract class InfoOperatorAction extends ResourceAction {
 		}
 	}
 
-	protected abstract Operator getOperator();
+    /**
+     * Gets operator.
+     *
+     * @return the operator
+     */
+    protected abstract Operator getOperator();
 }

@@ -39,7 +39,6 @@ import com.rapidminer.operator.Operator;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public class AnnotationsModel {
 
@@ -61,35 +60,32 @@ public class AnnotationsModel {
 	/** the process renderer model */
 	private ProcessRendererModel model;
 
-	/**
-	 * Creates a new model backing the workflow annotations.
-	 *
-	 * @param model
-	 *            the process renderer model
-	 */
-	public AnnotationsModel(ProcessRendererModel model) {
+    /**
+     * Creates a new model backing the workflow annotations.
+     *
+     * @param model the process renderer model
+     */
+    public AnnotationsModel(ProcessRendererModel model) {
 		this.model = model;
 	}
 
-	/**
-	 * Returns the hovered {@link WorkflowAnnotation}.
-	 *
-	 * @return the hovered annotation or {@code null}
-	 */
-	public WorkflowAnnotation getHovered() {
+    /**
+     * Returns the hovered {@link WorkflowAnnotation}.
+     *
+     * @return the hovered annotation or {@code null}
+     */
+    public WorkflowAnnotation getHovered() {
 		return hovered;
 	}
 
-	/**
-	 * Sets the hovered annotation. If it changes, fires a process renderer model misc event to
-	 * trigger a repaint.
-	 *
-	 * @param hovered
-	 *            the new hovered annotation, can be {@code null}
-	 * @param hoveredResizeDirection
-	 *            the hovered resize corner, can be {@code null}
-	 */
-	public void setHovered(final WorkflowAnnotation hovered, final ResizeDirection hoveredResizeDirection) {
+    /**
+     * Sets the hovered annotation. If it changes, fires a process renderer model misc event to
+     * trigger a repaint.
+     *
+     * @param hovered                the new hovered annotation, can be {@code null}
+     * @param hoveredResizeDirection the hovered resize corner, can be {@code null}
+     */
+    public void setHovered(final WorkflowAnnotation hovered, final ResizeDirection hoveredResizeDirection) {
 		if (hovered == null) {
 			if (this.hovered != null) {
 				this.hovered = null;
@@ -113,23 +109,22 @@ public class AnnotationsModel {
 		}
 	}
 
-	/**
-	 * Returns the resize direction of the hovered annotation.
-	 *
-	 * @return the resize direction or {@code null}
-	 */
-	public ResizeDirection getHoveredResizeDirection() {
+    /**
+     * Returns the resize direction of the hovered annotation.
+     *
+     * @return the resize direction or {@code null}
+     */
+    public ResizeDirection getHoveredResizeDirection() {
 		return hoveredResizeDirection;
 	}
 
-	/**
-	 * Sets the hovered resize direction. If it changes, fires a process renderer model misc event
-	 * to trigger a repaint.
-	 *
-	 * @param hoveredResizeDirection
-	 *            the hovered resize direction
-	 */
-	public void setHoveredResizeDirection(final ResizeDirection hoveredResizeDirection) {
+    /**
+     * Sets the hovered resize direction. If it changes, fires a process renderer model misc event
+     * to trigger a repaint.
+     *
+     * @param hoveredResizeDirection the hovered resize direction
+     */
+    public void setHoveredResizeDirection(final ResizeDirection hoveredResizeDirection) {
 		if (hoveredResizeDirection != null) {
 			if (!hoveredResizeDirection.equals(this.hoveredResizeDirection)) {
 				this.hoveredResizeDirection = hoveredResizeDirection;
@@ -143,23 +138,22 @@ public class AnnotationsModel {
 		}
 	}
 
-	/**
-	 * Returns the selected {@link WorkflowAnnotation}.
-	 *
-	 * @return the selected annotation or {@code null}
-	 */
-	public WorkflowAnnotation getSelected() {
+    /**
+     * Returns the selected {@link WorkflowAnnotation}.
+     *
+     * @return the selected annotation or {@code null}
+     */
+    public WorkflowAnnotation getSelected() {
 		return selected;
 	}
 
-	/**
-	 * Sets the selected {@link WorkflowAnnotation}. If it changes, fires a process renderer model
-	 * annotation selection event to trigger a repaint.
-	 *
-	 * @param selected
-	 *            the selected annotation or {@code null}
-	 */
-	public void setSelected(WorkflowAnnotation selected) {
+    /**
+     * Sets the selected {@link WorkflowAnnotation}. If it changes, fires a process renderer model
+     * annotation selection event to trigger a repaint.
+     *
+     * @param selected the selected annotation or {@code null}
+     */
+    public void setSelected(WorkflowAnnotation selected) {
 		if (selected == null) {
 			if (getSelected() != null) {
 				this.selected = null;
@@ -173,57 +167,52 @@ public class AnnotationsModel {
 		}
 	}
 
-	/**
-	 * Returns the drag helper if an annotation is currently being dragged.
-	 *
-	 * @return the drag helper or {@code null}
-	 */
-	public AnnotationDragHelper getDragged() {
+    /**
+     * Returns the drag helper if an annotation is currently being dragged.
+     *
+     * @return the drag helper or {@code null}
+     */
+    public AnnotationDragHelper getDragged() {
 		return dragged;
 	}
 
-	/**
-	 * Sets the drag helper if an annotation is currently being dragged.
-	 *
-	 * @param dragged
-	 *            the drag helper or {@code null}
-	 */
-	public void setDragged(AnnotationDragHelper dragged) {
+    /**
+     * Sets the drag helper if an annotation is currently being dragged.
+     *
+     * @param dragged the drag helper or {@code null}
+     */
+    public void setDragged(AnnotationDragHelper dragged) {
 		this.dragged = dragged;
 	}
 
-	/**
-	 * Returns the resize helper if an annotation is currently being resized.
-	 *
-	 * @return the resize helper or {@code null}
-	 */
-	public AnnotationResizeHelper getResized() {
+    /**
+     * Returns the resize helper if an annotation is currently being resized.
+     *
+     * @return the resize helper or {@code null}
+     */
+    public AnnotationResizeHelper getResized() {
 		return resized;
 	}
 
-	/**
-	 * Sets the resize helper if an annotation is currently being resized.
-	 *
-	 * @param resized
-	 *            the resize helper or {@code null}
-	 */
-	public void setResized(AnnotationResizeHelper resized) {
+    /**
+     * Sets the resize helper if an annotation is currently being resized.
+     *
+     * @param resized the resize helper or {@code null}
+     */
+    public void setResized(AnnotationResizeHelper resized) {
 		this.resized = resized;
 	}
 
-	/**
-	 * Starts a drag or resizing of the selected annotation, depending on whether the drag starts on
-	 * the annotation or one of the resize "knobs". If no annotation is selected, does nothing. If
-	 * the triggering action was not a left-click, does nothing.
-	 *
-	 * @param e
-	 *            the mouse event triggering the drag/resize
-	 * @param origin
-	 *            the origin of the drag/resize event
-	 * @param allowResize
-	 *            if {@code true}, resize is allowed. Otherwise only a drag can be started
-	 */
-	public void startDragOrResize(final MouseEvent e, final Point origin, boolean allowResize) {
+    /**
+     * Starts a drag or resizing of the selected annotation, depending on whether the drag starts on
+     * the annotation or one of the resize "knobs". If no annotation is selected, does nothing. If
+     * the triggering action was not a left-click, does nothing.
+     *
+     * @param e           the mouse event triggering the drag/resize
+     * @param origin      the origin of the drag/resize event
+     * @param allowResize if {@code true}, resize is allowed. Otherwise only a drag can be started
+     */
+    public void startDragOrResize(final MouseEvent e, final Point origin, boolean allowResize) {
 		if (getSelected() == null) {
 			return;
 		}
@@ -246,14 +235,13 @@ public class AnnotationsModel {
 		}
 	}
 
-	/**
-	 * Updates the dragged position or the resizing of the selected annotation and fires a misc
-	 * model change for the process renderer. If no drag and resizing is in progress, does nothing.
-	 *
-	 * @param point
-	 *            the current location
-	 */
-	public void updateDragOrResize(final Point point) {
+    /**
+     * Updates the dragged position or the resizing of the selected annotation and fires a misc
+     * model change for the process renderer. If no drag and resizing is in progress, does nothing.
+     *
+     * @param point the current location
+     */
+    public void updateDragOrResize(final Point point) {
 		if (dragged == null && resized == null) {
 			return;
 		}
@@ -270,16 +258,13 @@ public class AnnotationsModel {
 
 	}
 
-	/**
-	 * Stops the drag or resizing of the selected annotation. If neither was in progress, does
-	 * nothing.
-	 *
-	 * @param destination
-	 *            the final destination of the drag/resize event. If {@code null}, dragging is
-	 *            assumed to be cancelled and no conversion from operator to process annotation or
-	 *            vice versa is performed.
-	 */
-	public void stopDragOrResize(final Point destination) {
+    /**
+     * Stops the drag or resizing of the selected annotation. If neither was in progress, does
+     * nothing.
+     *
+     * @param destination the final destination of the drag/resize event. If {@code null}, dragging is            assumed to be cancelled and no conversion from operator to process annotation or            vice versa is performed.
+     */
+    public void stopDragOrResize(final Point destination) {
 		if (dragged == null && resized == null) {
 			return;
 		}
@@ -362,14 +347,12 @@ public class AnnotationsModel {
 		resized = null;
 	}
 
-	/**
-	 * Deletes the given annotation and fires updates.
-	 *
-	 * @param toDelete
-	 *            the annotation to delete
-	 *
-	 */
-	public void deleteAnnotation(final WorkflowAnnotation toDelete) {
+    /**
+     * Deletes the given annotation and fires updates.
+     *
+     * @param toDelete the annotation to delete
+     */
+    public void deleteAnnotation(final WorkflowAnnotation toDelete) {
 		if (toDelete == null) {
 			throw new IllegalArgumentException("toDelete must not be null!");
 		}
@@ -387,13 +370,12 @@ public class AnnotationsModel {
 		model.fireAnnotationMiscChanged(null);
 	}
 
-	/**
-	 * Adds the given operator annotation and fires updates.
-	 *
-	 * @param anno
-	 *            the annotation to add
-	 */
-	public void addOperatorAnnotation(final OperatorAnnotation anno) {
+    /**
+     * Adds the given operator annotation and fires updates.
+     *
+     * @param anno the annotation to add
+     */
+    public void addOperatorAnnotation(final OperatorAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -405,13 +387,12 @@ public class AnnotationsModel {
 		model.fireAnnotationMoved(anno);
 	}
 
-	/**
-	 * Adds the given process annotation and fires updates.
-	 *
-	 * @param anno
-	 *            the annotation to add
-	 */
-	public void addProcessAnnotation(final ProcessAnnotation anno) {
+    /**
+     * Adds the given process annotation and fires updates.
+     *
+     * @param anno the annotation to add
+     */
+    public void addProcessAnnotation(final ProcessAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -423,15 +404,13 @@ public class AnnotationsModel {
 		model.fireAnnotationMoved(anno);
 	}
 
-	/**
-	 * Sets the color of the annotation and fires an event afterwards.
-	 *
-	 * @param anno
-	 *            the annotation which will have its color changed
-	 * @param color
-	 *            the new color
-	 */
-	public void setAnnotationColor(final WorkflowAnnotation anno, final AnnotationColor color) {
+    /**
+     * Sets the color of the annotation and fires an event afterwards.
+     *
+     * @param anno  the annotation which will have its color changed
+     * @param color the new color
+     */
+    public void setAnnotationColor(final WorkflowAnnotation anno, final AnnotationColor color) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -446,15 +425,13 @@ public class AnnotationsModel {
 		model.fireAnnotationMiscChanged(anno);
 	}
 
-	/**
-	 * Sets the alignment of the annotation and fires an event afterwards.
-	 *
-	 * @param anno
-	 *            the annotation which will have its alignment changed
-	 * @param alignment
-	 *            the new alignment
-	 */
-	public void setAnnotationAlignment(final WorkflowAnnotation anno, final AnnotationAlignment alignment) {
+    /**
+     * Sets the alignment of the annotation and fires an event afterwards.
+     *
+     * @param anno      the annotation which will have its alignment changed
+     * @param alignment the new alignment
+     */
+    public void setAnnotationAlignment(final WorkflowAnnotation anno, final AnnotationAlignment alignment) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -468,15 +445,13 @@ public class AnnotationsModel {
 		model.fireAnnotationMiscChanged(anno);
 	}
 
-	/**
-	 * Sets the comment of the annotation and fires an event afterwards.
-	 *
-	 * @param anno
-	 *            the annotation which will have its comment changed
-	 * @param comment
-	 *            the new comment
-	 */
-	public void setAnnotationComment(final WorkflowAnnotation anno, final String comment) {
+    /**
+     * Sets the comment of the annotation and fires an event afterwards.
+     *
+     * @param anno    the annotation which will have its comment changed
+     * @param comment the new comment
+     */
+    public void setAnnotationComment(final WorkflowAnnotation anno, final String comment) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -490,14 +465,13 @@ public class AnnotationsModel {
 		model.fireAnnotationMoved(anno);
 	}
 
-	/**
-	 * Bring the given annotation to the front. That annotation will be drawn over all other
-	 * annotations as well as receive events first.
-	 *
-	 * @param anno
-	 *            the annotation to bring to the front
-	 */
-	public void toFront(final WorkflowAnnotation anno) {
+    /**
+     * Bring the given annotation to the front. That annotation will be drawn over all other
+     * annotations as well as receive events first.
+     *
+     * @param anno the annotation to bring to the front
+     */
+    public void toFront(final WorkflowAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -507,13 +481,12 @@ public class AnnotationsModel {
 		model.fireAnnotationMiscChanged(anno);
 	}
 
-	/**
-	 * Brings the given annotation one layer forward.
-	 *
-	 * @param anno
-	 *            the annotation to bring forward
-	 */
-	public void sendForward(final WorkflowAnnotation anno) {
+    /**
+     * Brings the given annotation one layer forward.
+     *
+     * @param anno the annotation to bring forward
+     */
+    public void sendForward(final WorkflowAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -523,14 +496,13 @@ public class AnnotationsModel {
 		model.fireAnnotationMiscChanged(anno);
 	}
 
-	/**
-	 * Bring the given annotation to the back. That annotation will be drawn behind all other
-	 * annotations as well as receive events last.
-	 *
-	 * @param anno
-	 *            the annotation to bring to the front
-	 */
-	public void toBack(final WorkflowAnnotation anno) {
+    /**
+     * Bring the given annotation to the back. That annotation will be drawn behind all other
+     * annotations as well as receive events last.
+     *
+     * @param anno the annotation to bring to the front
+     */
+    public void toBack(final WorkflowAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -540,13 +512,12 @@ public class AnnotationsModel {
 		model.fireAnnotationMiscChanged(anno);
 	}
 
-	/**
-	 * Sends the given annotation one layer backward.
-	 *
-	 * @param anno
-	 *            the annotation to send backward
-	 */
-	public void sendBack(final WorkflowAnnotation anno) {
+    /**
+     * Sends the given annotation one layer backward.
+     *
+     * @param anno the annotation to send backward
+     */
+    public void sendBack(final WorkflowAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -556,10 +527,10 @@ public class AnnotationsModel {
 		model.fireAnnotationMiscChanged(anno);
 	}
 
-	/**
-	 * Resets model status as if the model was newly created
-	 */
-	public void reset() {
+    /**
+     * Resets model status as if the model was newly created
+     */
+    public void reset() {
 		this.hovered = null;
 		this.hoveredResizeDirection = null;
 		this.selected = null;

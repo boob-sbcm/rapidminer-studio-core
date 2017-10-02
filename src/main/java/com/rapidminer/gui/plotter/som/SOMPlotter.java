@@ -75,15 +75,33 @@ public class SOMPlotter extends PlotterAdapter implements ProgressListener {
 
 	private static final String[] MATRIX_TYPES = new String[] { "U-Matrix", "P-Matrix", "U*-Matrix" };
 
-	public static final int MATRIX_U = 0;
-	public static final int MATRIX_P = 1;
-	public static final int MATRIX_U_STAR = 2;
+    /**
+     * The constant MATRIX_U.
+     */
+    public static final int MATRIX_U = 0;
+    /**
+     * The constant MATRIX_P.
+     */
+    public static final int MATRIX_P = 1;
+    /**
+     * The constant MATRIX_U_STAR.
+     */
+    public static final int MATRIX_U_STAR = 2;
 
-	protected static final int IMAGE_WIDTH = 400;
+    /**
+     * The constant IMAGE_WIDTH.
+     */
+    protected static final int IMAGE_WIDTH = 400;
 
-	protected static final int IMAGE_HEIGHT = 300;
+    /**
+     * The constant IMAGE_HEIGHT.
+     */
+    protected static final int IMAGE_HEIGHT = 300;
 
-	protected int[] dimensions = { 40, 30 };
+    /**
+     * The Dimensions.
+     */
+    protected int[] dimensions = { 40, 30 };
 
 	private ArrayList<ExamplePlotterPoint> exampleCoordinates = new ArrayList<>();
 
@@ -101,9 +119,15 @@ public class SOMPlotter extends PlotterAdapter implements ProgressListener {
 
 	private double maxUStar;
 
-	protected transient DataTable dataTable;
+    /**
+     * The Data table.
+     */
+    protected transient DataTable dataTable;
 
-	protected boolean show = false;
+    /**
+     * The Show.
+     */
+    protected boolean show = false;
 
 	private String currentToolTip = null;
 
@@ -115,11 +139,17 @@ public class SOMPlotter extends PlotterAdapter implements ProgressListener {
 
 	private int showColor = 0;
 
-	protected int colorColumn = -1;
+    /**
+     * The Color column.
+     */
+    protected int colorColumn = -1;
 
 	private transient RandomDataContainer data = new RandomDataContainer();
 
-	protected transient KohonenNet net;
+    /**
+     * The Net.
+     */
+    protected transient KohonenNet net;
 
 	private JButton approveButton = new JButton(I18N.getGUILabel("SOMPlotter.calculateButton.label"));
 
@@ -147,9 +177,17 @@ public class SOMPlotter extends PlotterAdapter implements ProgressListener {
 
 	private int jitterAmount = 0;
 
-	protected transient BufferedImage image = null;
+    /**
+     * The Image.
+     */
+    protected transient BufferedImage image = null;
 
-	public SOMPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Som plotter.
+     *
+     * @param settings the settings
+     */
+    public SOMPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.WHITE);
 
@@ -216,22 +254,42 @@ public class SOMPlotter extends PlotterAdapter implements ProgressListener {
 		startCalculation(false);
 	}
 
-	protected Object readResolve() {
+    /**
+     * Read resolve object.
+     *
+     * @return the object
+     */
+    protected Object readResolve() {
 		this.data = new RandomDataContainer();
 		this.colorizer = new SOMMatrixColorizer[] { new SOMLandscapeColorizer(), new SOMGreyColorizer(),
 				new SOMFireColorizer() };
 		return this;
 	}
 
-	public void setColoredPoints(boolean coloredPoints) {
+    /**
+     * Sets colored points.
+     *
+     * @param coloredPoints the colored points
+     */
+    public void setColoredPoints(boolean coloredPoints) {
 		this.coloredPoints = coloredPoints;
 	}
 
-	public void setMatrixType(int matrixType) {
+    /**
+     * Sets matrix type.
+     *
+     * @param matrixType the matrix type
+     */
+    public void setMatrixType(int matrixType) {
 		this.showMatrix = matrixType;
 	}
 
-	public void startCalculation(boolean threadMode) {
+    /**
+     * Start calculation.
+     *
+     * @param threadMode the thread mode
+     */
+    public void startCalculation(boolean threadMode) {
 		show = false;
 		try {
 			dimensions[0] = Integer.parseInt(dimensionX.getText());
@@ -277,7 +335,12 @@ public class SOMPlotter extends PlotterAdapter implements ProgressListener {
 		}
 	}
 
-	public void paintSom(Graphics graphics) {
+    /**
+     * Paint som.
+     *
+     * @param graphics the graphics
+     */
+    public void paintSom(Graphics graphics) {
 		// init graphics
 		Graphics2D g = (Graphics2D) graphics;
 
@@ -297,7 +360,12 @@ public class SOMPlotter extends PlotterAdapter implements ProgressListener {
 		drawToolTip((Graphics2D) graphics);
 	}
 
-	protected void drawPoints(Graphics2D g) {
+    /**
+     * Draw points.
+     *
+     * @param g the g
+     */
+    protected void drawPoints(Graphics2D g) {
 		int pixWidth = getWidth() - 2 * MARGIN;
 		int pixHeight = getHeight() - 2 * MARGIN;
 		// painting data points
@@ -382,7 +450,15 @@ public class SOMPlotter extends PlotterAdapter implements ProgressListener {
 		repaint();
 	}
 
-	public void prepareSOM(DataTable dataTable, double adaptationRadius, int trainRounds, boolean threadMode) {
+    /**
+     * Prepare som.
+     *
+     * @param dataTable        the data table
+     * @param adaptationRadius the adaptation radius
+     * @param trainRounds      the train rounds
+     * @param threadMode       the thread mode
+     */
+    public void prepareSOM(DataTable dataTable, double adaptationRadius, int trainRounds, boolean threadMode) {
 		// reseting Data already applied flag
 		examplesApplied = false;
 		// generating data for SOM
@@ -444,7 +520,10 @@ public class SOMPlotter extends PlotterAdapter implements ProgressListener {
 		setProgress(0);
 	}
 
-	protected void createMatrices() {
+    /**
+     * Create matrices.
+     */
+    protected void createMatrices() {
 		uMatrix = getUMatrix(net, dimensions);
 		pMatrix = getPMatrix(net, data, dimensions);
 
@@ -484,7 +563,10 @@ public class SOMPlotter extends PlotterAdapter implements ProgressListener {
 		this.show = true;
 	}
 
-	protected void recalculateBackgroundImage() {
+    /**
+     * Recalculate background image.
+     */
+    protected void recalculateBackgroundImage() {
 		Vector<double[][]> printMatrix = new Vector<double[][]>();
 		double[] printScale = { maxU, maxP, maxUStar };
 		printMatrix.add(uMatrix);
@@ -504,7 +586,21 @@ public class SOMPlotter extends PlotterAdapter implements ProgressListener {
 		}
 	}
 
-	protected void interpolateRect(BufferedImage image, int posX, int posY, double width, double height, double[][] matrix,
+    /**
+     * Interpolate rect.
+     *
+     * @param image      the image
+     * @param posX       the pos x
+     * @param posY       the pos y
+     * @param width      the width
+     * @param height     the height
+     * @param matrix     the matrix
+     * @param matrixX    the matrix x
+     * @param matrixY    the matrix y
+     * @param colorScale the color scale
+     * @param colorizer  the colorizer
+     */
+    protected void interpolateRect(BufferedImage image, int posX, int posY, double width, double height, double[][] matrix,
 			int matrixX, int matrixY, double colorScale, SOMMatrixColorizer colorizer) {
 		// top-left
 		if (matrix != null) {
@@ -749,7 +845,12 @@ public class SOMPlotter extends PlotterAdapter implements ProgressListener {
 		repaint();
 	}
 
-	protected void drawToolTip(Graphics2D g) {
+    /**
+     * Draw tool tip.
+     *
+     * @param g the g
+     */
+    protected void drawToolTip(Graphics2D g) {
 		if (currentToolTip != null) {
 			g.setFont(LABEL_FONT);
 			Rectangle2D stringBounds = LABEL_FONT.getStringBounds(currentToolTip, g.getFontRenderContext());

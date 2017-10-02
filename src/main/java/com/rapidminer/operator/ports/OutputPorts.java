@@ -19,9 +19,9 @@
 package com.rapidminer.operator.ports;
 
 /**
- * 
+ * The interface Output ports.
+ *
  * @author Simon Fischer
- * 
  */
 public interface OutputPorts extends Ports<OutputPort> {
 

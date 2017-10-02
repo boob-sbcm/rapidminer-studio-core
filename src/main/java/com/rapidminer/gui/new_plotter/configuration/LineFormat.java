@@ -31,55 +31,121 @@ import java.util.List;
 
 
 /**
+ * The type Line format.
+ *
  * @author Marius Helf
  */
 public class LineFormat implements Cloneable {
 
 	private static class StrokeFactory {
 
-		static public BasicStroke getSolidStroke() {
+        /**
+         * Gets solid stroke.
+         *
+         * @return the solid stroke
+         */
+        static public BasicStroke getSolidStroke() {
 			return new BasicStroke(1, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
 		}
 
-		static public BasicStroke getDottedStroke() {
+        /**
+         * Gets dotted stroke.
+         *
+         * @return the dotted stroke
+         */
+        static public BasicStroke getDottedStroke() {
 			return new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, new float[] { 1f, 1f }, 0.0f);
 		}
 
-		static public BasicStroke getShortDashedStroke() {
+        /**
+         * Gets short dashed stroke.
+         *
+         * @return the short dashed stroke
+         */
+        static public BasicStroke getShortDashedStroke() {
 			return new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, new float[] { 4f, 2f }, 0.0f);
 		}
 
-		static public BasicStroke getLongDashedStroke() {
+        /**
+         * Gets long dashed stroke.
+         *
+         * @return the long dashed stroke
+         */
+        static public BasicStroke getLongDashedStroke() {
 			return new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, new float[] { 7f, 3f }, 0.0f);
 		}
 
-		static public BasicStroke getDashDotStroke() {
+        /**
+         * Gets dash dot stroke.
+         *
+         * @return the dash dot stroke
+         */
+        static public BasicStroke getDashDotStroke() {
 			return new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, new float[] { 6f, 2f, 1f, 2f },
 					0.0f);
 		}
 
-		static public BasicStroke getStripedStroke() {
+        /**
+         * Gets striped stroke.
+         *
+         * @return the striped stroke
+         */
+        static public BasicStroke getStripedStroke() {
 			return new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, new float[] { 0.2f, 0.2f }, 0.0f);
 		}
 	}
 
-	public enum LineStyle {
-		NONE(null, I18N.getGUILabel("plotter.linestyle.NONE.label")), SOLID(StrokeFactory.getSolidStroke(), I18N
-				.getGUILabel("plotter.linestyle.SOLID.label")), DOTS(StrokeFactory.getDottedStroke(), I18N
-				.getGUILabel("plotter.linestyle.DOTS.label")), SHORT_DASHES(StrokeFactory.getShortDashedStroke(), I18N
-				.getGUILabel("plotter.linestyle.SHORT_DASHES.label")), LONG_DASHES(StrokeFactory.getLongDashedStroke(), I18N
-				.getGUILabel("plotter.linestyle.LONG_DASHES.label")), DASH_DOT(StrokeFactory.getDashDotStroke(), I18N
-				.getGUILabel("plotter.linestyle.DASH_DOT.label")), STRIPES(StrokeFactory.getStripedStroke(), I18N
+    /**
+     * The enum Line style.
+     */
+    public enum LineStyle {
+        /**
+         * None line style.
+         */
+        NONE(null, I18N.getGUILabel("plotter.linestyle.NONE.label")), /**
+         * Solid line style.
+         */
+        SOLID(StrokeFactory.getSolidStroke(), I18N
+				.getGUILabel("plotter.linestyle.SOLID.label")), /**
+         * Dots line style.
+         */
+        DOTS(StrokeFactory.getDottedStroke(), I18N
+				.getGUILabel("plotter.linestyle.DOTS.label")), /**
+         * Short dashes line style.
+         */
+        SHORT_DASHES(StrokeFactory.getShortDashedStroke(), I18N
+				.getGUILabel("plotter.linestyle.SHORT_DASHES.label")), /**
+         * Long dashes line style.
+         */
+        LONG_DASHES(StrokeFactory.getLongDashedStroke(), I18N
+				.getGUILabel("plotter.linestyle.LONG_DASHES.label")), /**
+         * Dash dot line style.
+         */
+        DASH_DOT(StrokeFactory.getDashDotStroke(), I18N
+				.getGUILabel("plotter.linestyle.DASH_DOT.label")), /**
+         * Stripes line style.
+         */
+        STRIPES(StrokeFactory.getStripedStroke(), I18N
 				.getGUILabel("plotter.linestyle.STRIPES.label"));
 
 		private final BasicStroke stroke;
 		private final String name;
 
-		public BasicStroke getStroke() {
+        /**
+         * Gets stroke.
+         *
+         * @return the stroke
+         */
+        public BasicStroke getStroke() {
 			return stroke;
 		}
 
-		public String getName() {
+        /**
+         * Gets name.
+         *
+         * @return the name
+         */
+        public String getName() {
 			return name;
 		}
 
@@ -95,33 +161,63 @@ public class LineFormat implements Cloneable {
 	private Color color = Color.GRAY;
 	private float width = 1.0f;
 
-	public LineStyle getStyle() {
+    /**
+     * Gets style.
+     *
+     * @return the style
+     */
+    public LineStyle getStyle() {
 		return style;
 	}
 
-	public void setStyle(LineStyle style) {
+    /**
+     * Sets style.
+     *
+     * @param style the style
+     */
+    public void setStyle(LineStyle style) {
 		if (style != this.style) {
 			this.style = style;
 			fireStyleChanged();
 		}
 	}
 
-	public Color getColor() {
+    /**
+     * Gets color.
+     *
+     * @return the color
+     */
+    public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Color color) {
+    /**
+     * Sets color.
+     *
+     * @param color the color
+     */
+    public void setColor(Color color) {
 		if (color == null ? this.color != null : !color.equals(this.color)) {
 			this.color = color;
 			fireColorChanged();
 		}
 	}
 
-	public float getWidth() {
+    /**
+     * Gets width.
+     *
+     * @return the width
+     */
+    public float getWidth() {
 		return width;
 	}
 
-	public void setWidth(float width) {
+    /**
+     * Sets width.
+     *
+     * @param width the width
+     */
+    public void setWidth(float width) {
 		if (width != this.width) {
 			this.width = width;
 			fireWidthChanged();
@@ -161,7 +257,12 @@ public class LineFormat implements Cloneable {
 		return clone;
 	}
 
-	public BasicStroke getStroke() {
+    /**
+     * Gets stroke.
+     *
+     * @return the stroke
+     */
+    public BasicStroke getStroke() {
 		BasicStroke stroke = style.getStroke();
 
 		if (stroke != null) {
@@ -174,7 +275,12 @@ public class LineFormat implements Cloneable {
 		}
 	}
 
-	float[] getScaledDashArray() {
+    /**
+     * Get scaled dash array float [ ].
+     *
+     * @return the float [ ]
+     */
+    float[] getScaledDashArray() {
 		BasicStroke stroke = getStyle().getStroke();
 
 		if (stroke == null) {
@@ -198,11 +304,21 @@ public class LineFormat implements Cloneable {
 		return scaledDashArray;
 	}
 
-	public void addLineFormatListener(LineFormatListener l) {
+    /**
+     * Add line format listener.
+     *
+     * @param l the l
+     */
+    public void addLineFormatListener(LineFormatListener l) {
 		listeners.add(new WeakReference<LineFormatListener>(l));
 	}
 
-	public void removeLineFormatListener(LineFormatListener l) {
+    /**
+     * Remove line format listener.
+     *
+     * @param l the l
+     */
+    public void removeLineFormatListener(LineFormatListener l) {
 		Iterator<WeakReference<LineFormatListener>> it = listeners.iterator();
 		while (it.hasNext()) {
 			LineFormatListener listener = it.next().get();

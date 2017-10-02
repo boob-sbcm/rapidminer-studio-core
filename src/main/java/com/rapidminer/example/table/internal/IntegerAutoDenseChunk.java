@@ -40,7 +40,15 @@ final class IntegerAutoDenseChunk extends IntegerAutoChunk {
 
 	private int[] data = AutoColumnUtils.EMPTY_INTEGER_ARRAY;
 
-	IntegerAutoDenseChunk(int id, IntegerAutoChunk[] chunks, int size, DataManagement management) {
+    /**
+     * Instantiates a new Integer auto dense chunk.
+     *
+     * @param id         the id
+     * @param chunks     the chunks
+     * @param size       the size
+     * @param management the management
+     */
+    IntegerAutoDenseChunk(int id, IntegerAutoChunk[] chunks, int size, DataManagement management) {
 		super(id, chunks, management);
 		ensure(size);
 	}

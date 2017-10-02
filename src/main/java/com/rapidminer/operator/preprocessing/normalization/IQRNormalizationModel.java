@@ -34,7 +34,7 @@ import java.util.Map;
 
 /**
  * This is the normalization model for the IQR normalization method.
- * 
+ *
  * @author Brendon Bolin, Sebastian Land
  */
 public class IQRNormalizationModel extends AbstractNormalizationModel {
@@ -43,7 +43,13 @@ public class IQRNormalizationModel extends AbstractNormalizationModel {
 
 	private HashMap<String, Tupel<Double, Double>> attributeMeanSigmaMap;
 
-	public IQRNormalizationModel(ExampleSet exampleSet, HashMap<String, Tupel<Double, Double>> attributeMeanSigmaMap) {
+    /**
+     * Instantiates a new Iqr normalization model.
+     *
+     * @param exampleSet            the example set
+     * @param attributeMeanSigmaMap the attribute mean sigma map
+     */
+    public IQRNormalizationModel(ExampleSet exampleSet, HashMap<String, Tupel<Double, Double>> attributeMeanSigmaMap) {
 		super(exampleSet);
 		this.attributeMeanSigmaMap = attributeMeanSigmaMap;
 	}
@@ -92,8 +98,13 @@ public class IQRNormalizationModel extends AbstractNormalizationModel {
 			return (value - meanSigmaTupel.getFirst().doubleValue()) / sigma;
 		}
 	}
-	
-	public Map<String, Tupel<Double, Double>> getAttributeMeanSigmaMap() {
+
+    /**
+     * Gets attribute mean sigma map.
+     *
+     * @return the attribute mean sigma map
+     */
+    public Map<String, Tupel<Double, Double>> getAttributeMeanSigmaMap() {
 		return attributeMeanSigmaMap;
 	}
 }

@@ -31,15 +31,21 @@ import javax.swing.text.Segment;
 
 /**
  * TeX token marker.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class TeXTokenMarker extends TokenMarker {
 
-	// public members
+    /**
+     * The constant BDFORMULA.
+     */
+// public members
 	public static final byte BDFORMULA = Token.INTERNAL_FIRST;
 
-	public static final byte EDFORMULA = (byte) (Token.INTERNAL_FIRST + 1);
+    /**
+     * The constant EDFORMULA.
+     */
+    public static final byte EDFORMULA = (byte) (Token.INTERNAL_FIRST + 1);
 
 	@Override
 	public byte markTokensImpl(byte token, Segment line, int lineIndex) {

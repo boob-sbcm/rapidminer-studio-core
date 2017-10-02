@@ -73,20 +73,42 @@ import com.rapidminer.tools.parameter.internal.DataManagementParameterHelper;
  */
 public class Example2AttributePivoting extends ExampleSetTransformationOperator {
 
-	public static final String PARAMETER_GROUP_ATTRIBUTE = "group_attribute";
+    /**
+     * The constant PARAMETER_GROUP_ATTRIBUTE.
+     */
+    public static final String PARAMETER_GROUP_ATTRIBUTE = "group_attribute";
 
-	public static final String PARAMETER_INDEX_ATTRIBUTE = "index_attribute";
+    /**
+     * The constant PARAMETER_INDEX_ATTRIBUTE.
+     */
+    public static final String PARAMETER_INDEX_ATTRIBUTE = "index_attribute";
 
-	public static final String PARAMETER_CONSIDER_WEIGHTS = "consider_weights";
+    /**
+     * The constant PARAMETER_CONSIDER_WEIGHTS.
+     */
+    public static final String PARAMETER_CONSIDER_WEIGHTS = "consider_weights";
 
-	public static final String PARAMETER_WEIGHT_AGGREGATION = "weight_aggregation";
+    /**
+     * The constant PARAMETER_WEIGHT_AGGREGATION.
+     */
+    public static final String PARAMETER_WEIGHT_AGGREGATION = "weight_aggregation";
 
-	public static final String PARAMETER_SKIP_CONSTANT_ATTRIBUTES = "skip_constant_attributes";
+    /**
+     * The constant PARAMETER_SKIP_CONSTANT_ATTRIBUTES.
+     */
+    public static final String PARAMETER_SKIP_CONSTANT_ATTRIBUTES = "skip_constant_attributes";
 
-	/** The parameter name for &quot;Determines, how the data is represented internally.&quot; */
-	public static final String PARAMETER_DATAMANAGEMENT = ExampleSetGenerator.PARAMETER_DATAMANAGEMENT;
+    /**
+     * The parameter name for &quot;Determines, how the data is represented internally.&quot;
+     */
+    public static final String PARAMETER_DATAMANAGEMENT = ExampleSetGenerator.PARAMETER_DATAMANAGEMENT;
 
-	public Example2AttributePivoting(OperatorDescription description) {
+    /**
+     * Instantiates a new Example 2 attribute pivoting.
+     *
+     * @param description the description
+     */
+    public Example2AttributePivoting(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort()

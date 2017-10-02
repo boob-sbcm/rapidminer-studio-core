@@ -23,12 +23,26 @@ import com.rapidminer.gui.new_plotter.listener.events.LineFormatChangeEvent;
 
 
 /**
+ * The type Axis parallel line configuration change event.
+ *
  * @author Marius Helf
  */
 public class AxisParallelLineConfigurationChangeEvent {
 
-	enum AxisParallelLineConfigurationChangeType {
-		FORMAT, LABEL_VISIBLE, VALUE,
+    /**
+     * The enum Axis parallel line configuration change type.
+     */
+    enum AxisParallelLineConfigurationChangeType {
+        /**
+         * Format axis parallel line configuration change type.
+         */
+        FORMAT, /**
+         * Label visible axis parallel line configuration change type.
+         */
+        LABEL_VISIBLE, /**
+         * Value axis parallel line configuration change type.
+         */
+        VALUE,
 	}
 
 	private LineFormatChangeEvent lineFormatChange;
@@ -36,38 +50,76 @@ public class AxisParallelLineConfigurationChangeEvent {
 	private AxisParallelLineConfigurationChangeType type;
 	private boolean labelVisible;
 
-	public AxisParallelLineConfigurationChangeEvent(AxisParallelLineConfiguration axisParallelLineConfiguration,
+    /**
+     * Instantiates a new Axis parallel line configuration change event.
+     *
+     * @param axisParallelLineConfiguration the axis parallel line configuration
+     * @param e                             the e
+     */
+    public AxisParallelLineConfigurationChangeEvent(AxisParallelLineConfiguration axisParallelLineConfiguration,
 			LineFormatChangeEvent e) {
 		this.type = AxisParallelLineConfigurationChangeType.FORMAT;
 		this.source = axisParallelLineConfiguration;
 		this.lineFormatChange = e;
 	}
 
-	public AxisParallelLineConfigurationChangeEvent(AxisParallelLineConfiguration axisParallelLineConfiguration,
+    /**
+     * Instantiates a new Axis parallel line configuration change event.
+     *
+     * @param axisParallelLineConfiguration the axis parallel line configuration
+     * @param labelVisible                  the label visible
+     */
+    public AxisParallelLineConfigurationChangeEvent(AxisParallelLineConfiguration axisParallelLineConfiguration,
 			boolean labelVisible) {
 		this.source = axisParallelLineConfiguration;
 		this.type = AxisParallelLineConfigurationChangeType.LABEL_VISIBLE;
 		this.labelVisible = labelVisible;
 	}
 
-	public AxisParallelLineConfigurationChangeEvent(AxisParallelLineConfiguration axisParallelLineConfiguration, double value) {
+    /**
+     * Instantiates a new Axis parallel line configuration change event.
+     *
+     * @param axisParallelLineConfiguration the axis parallel line configuration
+     * @param value                         the value
+     */
+    public AxisParallelLineConfigurationChangeEvent(AxisParallelLineConfiguration axisParallelLineConfiguration, double value) {
 		this.type = AxisParallelLineConfigurationChangeType.VALUE;
 		this.source = axisParallelLineConfiguration;
 	}
 
-	public LineFormatChangeEvent getLineFormatChange() {
+    /**
+     * Gets line format change.
+     *
+     * @return the line format change
+     */
+    public LineFormatChangeEvent getLineFormatChange() {
 		return lineFormatChange;
 	}
 
-	public AxisParallelLineConfiguration getSource() {
+    /**
+     * Gets source.
+     *
+     * @return the source
+     */
+    public AxisParallelLineConfiguration getSource() {
 		return source;
 	}
 
-	public AxisParallelLineConfigurationChangeType getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public AxisParallelLineConfigurationChangeType getType() {
 		return type;
 	}
 
-	public boolean isLabelVisible() {
+    /**
+     * Is label visible boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLabelVisible() {
 		return labelVisible;
 	}
 }

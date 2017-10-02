@@ -32,7 +32,7 @@ import javax.swing.table.JTableHeader;
 
 /**
  * Can be used to display (parts of) the meta data by means of a JTable.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MetaDataViewerTable extends ExtendedJTable {
@@ -45,7 +45,10 @@ public class MetaDataViewerTable extends ExtendedJTable {
 
 	private MetaDataViewerTableModel model = null;
 
-	public MetaDataViewerTable() {
+    /**
+     * Instantiates a new Meta data viewer table.
+     */
+    public MetaDataViewerTable() {
 		setCellColorProvider(new CellColorProvider() {
 
 			@Override
@@ -71,12 +74,22 @@ public class MetaDataViewerTable extends ExtendedJTable {
 		installToolTip();
 	}
 
-	public MetaDataViewerTable(ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Meta data viewer table.
+     *
+     * @param exampleSet the example set
+     */
+    public MetaDataViewerTable(ExampleSet exampleSet) {
 		this();
 		setExampleSet(exampleSet);
 	}
 
-	public void setExampleSet(ExampleSet exampleSet) {
+    /**
+     * Sets example set.
+     *
+     * @param exampleSet the example set
+     */
+    public void setExampleSet(ExampleSet exampleSet) {
 		this.model = new MetaDataViewerTableModel(exampleSet);
 		setModel(this.model);
 		if (exampleSet != null) {
@@ -86,7 +99,12 @@ public class MetaDataViewerTable extends ExtendedJTable {
 		}
 	}
 
-	public MetaDataViewerTableModel getMetaDataModel() {
+    /**
+     * Gets meta data model.
+     *
+     * @return the meta data model
+     */
+    public MetaDataViewerTableModel getMetaDataModel() {
 		return this.model;
 	}
 

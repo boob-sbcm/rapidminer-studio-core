@@ -26,7 +26,7 @@ import com.rapidminer.gui.tools.logging.LogViewer;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Sabrina Kirstein
  */
 public class LogRefreshAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class LogRefreshAction extends ResourceAction {
 
 	private LogViewer loggingViewer;
 
-	public LogRefreshAction(LogViewer loggingViewer) {
+    /**
+     * Instantiates a new Log refresh action.
+     *
+     * @param loggingViewer the logging viewer
+     */
+    public LogRefreshAction(LogViewer loggingViewer) {
 		super(true, "refresh_log");
 		this.loggingViewer = loggingViewer;
 	}

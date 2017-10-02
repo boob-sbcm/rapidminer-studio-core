@@ -46,7 +46,6 @@ import com.rapidminer.tools.Ontology;
  * Model for {@link AttributeStatisticsPanel}s which are backed by a date_time {@link Attribute}.
  *
  * @author Marco Boeck
- *
  */
 public class DateTimeAttributeStatisticsModel extends AbstractAttributeStatisticsModel {
 
@@ -108,13 +107,13 @@ public class DateTimeAttributeStatisticsModel extends AbstractAttributeStatistic
 	/** array of charts for this model */
 	private final JFreeChart[] chartsArray;
 
-	/**
-	 * Creates a new {@link DateTimeAttributeStatisticsModel}.
-	 *
-	 * @param exampleSet
-	 * @param attribute
-	 */
-	public DateTimeAttributeStatisticsModel(final ExampleSet exampleSet, final Attribute attribute) {
+    /**
+     * Creates a new {@link DateTimeAttributeStatisticsModel}.
+     *
+     * @param exampleSet the example set
+     * @param attribute  the attribute
+     */
+    public DateTimeAttributeStatisticsModel(final ExampleSet exampleSet, final Attribute attribute) {
 		super(exampleSet, attribute);
 
 		chartsArray = new JFreeChart[1];
@@ -179,30 +178,30 @@ public class DateTimeAttributeStatisticsModel extends AbstractAttributeStatistic
 		fireStatisticsChangedEvent();
 	}
 
-	/**
-	 * Gets the duration of the date_time values.
-	 *
-	 * @return
-	 */
-	public String getDuration() {
+    /**
+     * Gets the duration of the date_time values.
+     *
+     * @return duration duration
+     */
+    public String getDuration() {
 		return duration;
 	}
 
-	/**
-	 * Gets the from value (min) of the date_time values.
-	 *
-	 * @return
-	 */
-	public String getFrom() {
+    /**
+     * Gets the from value (min) of the date_time values.
+     *
+     * @return from from
+     */
+    public String getFrom() {
 		return from;
 	}
 
-	/**
-	 * Gets the until value (max) of the date_time values.
-	 *
-	 * @return
-	 */
-	public String getUntil() {
+    /**
+     * Gets the until value (max) of the date_time values.
+     *
+     * @return until until
+     */
+    public String getUntil() {
 		return until;
 	}
 

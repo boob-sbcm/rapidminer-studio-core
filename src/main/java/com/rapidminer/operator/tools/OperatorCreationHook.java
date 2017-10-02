@@ -23,12 +23,16 @@ import com.rapidminer.operator.Operator;
 
 /**
  * Hook called whenever an operator is created.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public interface OperatorCreationHook {
 
-	public void operatorCreated(Operator op);
+    /**
+     * Operator created.
+     *
+     * @param op the op
+     */
+    public void operatorCreated(Operator op);
 
 }

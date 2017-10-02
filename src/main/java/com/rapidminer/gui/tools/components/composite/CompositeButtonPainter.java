@@ -47,16 +47,14 @@ class CompositeButtonPainter {
 	/** The button's position within the composition. */
 	private final int position;
 
-	/**
-	 * Creates a new {@code CompositeButtonPainter} for the given button. The position indicates the
-	 * painting style.
-	 *
-	 * @param button
-	 *            the button to paint
-	 * @param position
-	 *            the button's position
-	 */
-	public CompositeButtonPainter(AbstractButton button, int position) {
+    /**
+     * Creates a new {@code CompositeButtonPainter} for the given button. The position indicates the
+     * painting style.
+     *
+     * @param button   the button to paint
+     * @param position the button's position
+     */
+    public CompositeButtonPainter(AbstractButton button, int position) {
 		// button must not be null
 		if (button == null) {
 			throw new IllegalArgumentException("Button must not be null!");
@@ -75,13 +73,12 @@ class CompositeButtonPainter {
 		}
 	}
 
-	/**
-	 * Draws the component background.
-	 *
-	 * @param g
-	 *            the graphics context
-	 */
-	void paintComponent(Graphics g) {
+    /**
+     * Draws the component background.
+     *
+     * @param g the graphics context
+     */
+    void paintComponent(Graphics g) {
 		RectangularShape rectangle;
 		int radius = RapidLookAndFeel.CORNER_DEFAULT_RADIUS;
 		switch (position) {
@@ -100,13 +97,12 @@ class CompositeButtonPainter {
 		RapidLookTools.drawButton(button, g, rectangle);
 	}
 
-	/**
-	 * Draws the component border.
-	 *
-	 * @param graphics
-	 *            the graphics context
-	 */
-	void paintBorder(Graphics graphics) {
+    /**
+     * Draws the component border.
+     *
+     * @param graphics the graphics context
+     */
+    void paintBorder(Graphics graphics) {
 		Graphics2D g = (Graphics2D) graphics.create();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 

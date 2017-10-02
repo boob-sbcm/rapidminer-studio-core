@@ -56,7 +56,12 @@ public class ExampleVisualizer implements ObjectVisualizer {
 
 	private boolean isExampleSetRemapped = false;
 
-	public ExampleVisualizer(ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Example visualizer.
+     *
+     * @param exampleSet the example set
+     */
+    public ExampleVisualizer(ExampleSet exampleSet) {
 		this.exampleSet = exampleSet;
 		this.idAttribute = exampleSet.getAttributes().getId();
 	}
@@ -116,7 +121,13 @@ public class ExampleVisualizer implements ObjectVisualizer {
 		return "";
 	}
 
-	protected JComponent makeMainVisualizationComponent(Example example) {
+    /**
+     * Make main visualization component j component.
+     *
+     * @param example the example
+     * @return the j component
+     */
+    protected JComponent makeMainVisualizationComponent(Example example) {
 		JComponent main;
 		String[] columnNames = new String[] { "Attribute", "Value" };
 		String[][] data = new String[exampleSet.getAttributes().allSize()][2];

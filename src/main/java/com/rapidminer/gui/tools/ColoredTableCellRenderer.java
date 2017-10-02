@@ -52,27 +52,41 @@ public class ColoredTableCellRenderer implements TableCellRenderer {
 
 	private int dateFormat = ExtendedJTable.NO_DATE_FORMAT;
 
-	public void setColor(Color color) {
+    /**
+     * Sets color.
+     *
+     * @param color the color
+     */
+    public void setColor(Color color) {
 		defaultCellRenderer.setBackground(color);
 	}
 
-	public void setDateFormat(int dateFormat) {
+    /**
+     * Sets date format.
+     *
+     * @param dateFormat the date format
+     */
+    public void setDateFormat(int dateFormat) {
 		this.dateFormat = dateFormat;
 	}
 
-	/**
-	 * Use this method to set the maximal text length. Enter Integer.MAX_VALUE to disable text
-	 * cutting (default)
-	 */
-	public void setMaximalTextLength(int maxLength) {
+    /**
+     * Use this method to set the maximal text length. Enter Integer.MAX_VALUE to disable text
+     * cutting (default)
+     *
+     * @param maxLength the max length
+     */
+    public void setMaximalTextLength(int maxLength) {
 		this.maximalTextLength = maxLength;
 	}
 
-	/**
-	 * This enables or disables the cutting on the first linebreak of a string. Normally only one
-	 * line is shown, so this might be useful to speed up text rendering.
-	 */
-	public void setCutOnFirstLineBreak(boolean enable) {
+    /**
+     * This enables or disables the cutting on the first linebreak of a string. Normally only one
+     * line is shown, so this might be useful to speed up text rendering.
+     *
+     * @param enable the enable
+     */
+    public void setCutOnFirstLineBreak(boolean enable) {
 		this.cutOnFirstLineBreak = enable;
 	}
 

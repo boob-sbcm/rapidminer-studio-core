@@ -35,7 +35,7 @@ import com.rapidminer.tools.Tools;
  * attributes. It cannot be changed after construction. This simplifies applications that maintain
  * counts separately. Each attribute may be tested at most once. For two rules it can be tested
  * whether one subsumes the other. A method for refinement allows to create each rule just once.
- *
+ * <p>
  * This model may be used to query for the prediction of a single example, as well as to predict
  * complete ExampleSets.
  *
@@ -55,20 +55,42 @@ public class ConjunctiveRuleModel extends SimplePredictionModel {
 
 		private final double myValue;
 
-		public Literal(Attribute attribute, double testedValue) {
+        /**
+         * Instantiates a new Literal.
+         *
+         * @param attribute   the attribute
+         * @param testedValue the tested value
+         */
+        public Literal(Attribute attribute, double testedValue) {
 			this.myAttribute = attribute;
 			this.myValue = testedValue;
 		}
 
-		public Attribute getAttribute() {
+        /**
+         * Gets attribute.
+         *
+         * @return the attribute
+         */
+        public Attribute getAttribute() {
 			return this.myAttribute;
 		}
 
-		public double getValue() {
+        /**
+         * Gets value.
+         *
+         * @return the value
+         */
+        public double getValue() {
 			return this.myValue;
 		}
 
-		public boolean testExample(Example example) {
+        /**
+         * Test example boolean.
+         *
+         * @param example the example
+         * @return the boolean
+         */
+        public boolean testExample(Example example) {
 			return example.getValue(this.getAttribute()) == this.getValue();
 		}
 	}
@@ -81,44 +103,54 @@ public class ConjunctiveRuleModel extends SimplePredictionModel {
 	// the literals (body) of the rule to be combined conjunctively
 	private final Vector<Literal> myLiterals = new Vector<>();
 
-	/**
-	 * Constructor to create an empty rule that makes a default prediction
-	 *
-	 * @param exampleSet
-	 *            the example set used for training
-	 * @param predictedLabel
-	 *            specifies the head of the rule, i.e. which label to predict
-	 */
-	public ConjunctiveRuleModel(ExampleSet exampleSet, int predictedLabel) {
+    /**
+     * Constructor to create an empty rule that makes a default prediction
+     *
+     * @param exampleSet     the example set used for training
+     * @param predictedLabel specifies the head of the rule, i.e. which label to predict
+     */
+    public ConjunctiveRuleModel(ExampleSet exampleSet, int predictedLabel) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.EQUAL,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.predictedLabel = predictedLabel;
 	}
 
-	/**
-	 * Constructor to create an empty rule that makes a default prediction
-	 *
-	 * @param exampleSet
-	 *            the example set used for training
-	 * @param predictedLabel
-	 *            specifies the head of the rule, i.e. which label to predict
-	 */
-	public ConjunctiveRuleModel(ExampleSet exampleSet, int predictedLabel, int positives, int negatives) {
+    /**
+     * Constructor to create an empty rule that makes a default prediction
+     *
+     * @param exampleSet     the example set used for training
+     * @param predictedLabel specifies the head of the rule, i.e. which label to predict
+     * @param positives      the positives
+     * @param negatives      the negatives
+     */
+    public ConjunctiveRuleModel(ExampleSet exampleSet, int predictedLabel, int positives, int negatives) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.EQUAL,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.predictedLabel = predictedLabel;
 	}
 
-	/** Constructor to clone a rule, but to change the head (prediction) */
-	public ConjunctiveRuleModel(ConjunctiveRuleModel ruleToClone, int predictedLabel) {
+    /**
+     * Constructor to clone a rule, but to change the head (prediction)  @param ruleToClone the rule to clone
+     *
+     * @param ruleToClone    the rule to clone
+     * @param predictedLabel the predicted label
+     */
+    public ConjunctiveRuleModel(ConjunctiveRuleModel ruleToClone, int predictedLabel) {
 		super(ruleToClone.getTrainingHeader(), ExampleSetUtilities.SetsCompareOption.EQUAL,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.predictedLabel = predictedLabel;
 		this.myLiterals.addAll(ruleToClone.myLiterals);
 	}
 
-	/** Constructor to create an empty rule that makes a default prediction */
-	public ConjunctiveRuleModel(ConjunctiveRuleModel ruleToExtend, Attribute attribute, double testValue)
+    /**
+     * Constructor to create an empty rule that makes a default prediction  @param ruleToExtend the rule to extend
+     *
+     * @param ruleToExtend the rule to extend
+     * @param attribute    the attribute
+     * @param testValue    the test value
+     * @throws OperatorException the operator exception
+     */
+    public ConjunctiveRuleModel(ConjunctiveRuleModel ruleToExtend, Attribute attribute, double testValue)
 			throws OperatorException {
 		super(ruleToExtend.getTrainingHeader(), ExampleSetUtilities.SetsCompareOption.EQUAL,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
@@ -164,42 +196,51 @@ public class ConjunctiveRuleModel extends SimplePredictionModel {
 		return this.predictedLabel;
 	}
 
-	/** @return the number of literals */
-	public int getRuleLength() {
+    /**
+     * Gets rule length.
+     *
+     * @return the number of literals
+     */
+    public int getRuleLength() {
 		return this.myLiterals.size();
 	}
 
-	/** @return the label this rule predicts */
-	public int getConclusion() {
+    /**
+     * Gets conclusion.
+     *
+     * @return the label this rule predicts
+     */
+    public int getConclusion() {
 		return this.predictedLabel;
 	}
 
-	/**
-	 * @param literalNumber
-	 *            the number of the literal in the rule
-	 * @return the attribute tested in the specified literal
-	 */
-	public Attribute getAttributeOfLiteral(int literalNumber) {
+    /**
+     * Gets attribute of literal.
+     *
+     * @param literalNumber the number of the literal in the rule
+     * @return the attribute tested in the specified literal
+     */
+    public Attribute getAttributeOfLiteral(int literalNumber) {
 		return this.myLiterals.get(literalNumber).getAttribute();
 	}
 
-	/**
-	 * @param literalNumber
-	 *            the number of the literal in the rule
-	 * @return the value an attribute needs to have in order to pass the test of the specified
-	 *         literal
-	 */
-	public double getTestedValueAtLiteral(int literalNumber) {
+    /**
+     * Gets tested value at literal.
+     *
+     * @param literalNumber the number of the literal in the rule
+     * @return the value an attribute needs to have in order to pass the test of the specified         literal
+     */
+    public double getTestedValueAtLiteral(int literalNumber) {
 		return this.myLiterals.get(literalNumber).getValue();
 	}
 
-	/**
-	 * @param attribute
-	 *            to look for in the conjunctive rule
-	 * @return the position (which is unique) of the attribute in the (ordered) conjunctive rule, or
-	 *         -1, if the attribute has not been found
-	 */
-	public int getPositionOfAttributeInRule(Attribute attribute) {
+    /**
+     * Gets position of attribute in rule.
+     *
+     * @param attribute to look for in the conjunctive rule
+     * @return the position (which is unique) of the attribute in the (ordered) conjunctive rule, or         -1, if the attribute has not been found
+     */
+    public int getPositionOfAttributeInRule(Attribute attribute) {
 		int ruleLength = this.getRuleLength();
 
 		int index = 0;
@@ -210,14 +251,13 @@ public class ConjunctiveRuleModel extends SimplePredictionModel {
 		return index == ruleLength ? -1 : index;
 	}
 
-	/**
-	 * @param model
-	 *            another ConjuctiveRuleModel
-	 * @return true, if this rule is a refinement of the specified rule, or if both rules are equal.
-	 *         A rule refines another one, if it conatains all of its lietrals and predicts the same
-	 *         label.
-	 */
-	public boolean isRefinementOf(ConjunctiveRuleModel model) {
+    /**
+     * Is refinement of boolean.
+     *
+     * @param model another ConjuctiveRuleModel
+     * @return true, if this rule is a refinement of the specified rule, or if both rules are equal.         A rule refines another one, if it conatains all of its lietrals and predicts the same         label.
+     */
+    public boolean isRefinementOf(ConjunctiveRuleModel model) {
 		if (this == model) {
 			return true;
 		}
@@ -290,15 +330,15 @@ public class ConjunctiveRuleModel extends SimplePredictionModel {
 				^ myLiterals.hashCode();
 	}
 
-	/**
-	 * Helper method of <code>getAllRefinedRules</code>. Iterates through the Attributes of an
-	 * ExampleSet and compares them to those part of the rule.
-	 *
-	 * @param exampleSet
-	 * @return the index of the first attribute of the exampleSet that is not used in the rule, and
-	 *         for which no later Attribute is found in the rule, either.
-	 */
-	protected int getFirstUnusedAttribute(ExampleSet exampleSet, Attribute[] allAttributes) {
+    /**
+     * Helper method of <code>getAllRefinedRules</code>. Iterates through the Attributes of an
+     * ExampleSet and compares them to those part of the rule.
+     *
+     * @param exampleSet    the example set
+     * @param allAttributes the all attributes
+     * @return the index of the first attribute of the exampleSet that is not used in the rule, and         for which no later Attribute is found in the rule, either.
+     */
+    protected int getFirstUnusedAttribute(ExampleSet exampleSet, Attribute[] allAttributes) {
 		int numAttributes = allAttributes.length;
 		int firstUnusedAttribute = numAttributes;
 		for (int i = numAttributes - 1; i >= 0; i--) {
@@ -312,18 +352,18 @@ public class ConjunctiveRuleModel extends SimplePredictionModel {
 		return firstUnusedAttribute;
 	}
 
-	/**
-	 * A refinement method that - when applied sytematically during learning - generates all rules
-	 * for nominal attributes and a boolean target exactly once. The top-down refinement is
-	 * compatible with pruning, as long as scores decrerase monotonically in support in the typical
-	 * sense known from subgroup discovery. Attributes are added in the same order in which they
-	 * occur in the provided exampleSet.
-	 *
-	 * @param exampleSet
-	 *            used to identify attributes and their values for refinement
-	 * @return all refined ConjunctiveRuleModel objects
-	 */
-	public Collection<ConjunctiveRuleModel> getAllRefinedRules(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * A refinement method that - when applied sytematically during learning - generates all rules
+     * for nominal attributes and a boolean target exactly once. The top-down refinement is
+     * compatible with pruning, as long as scores decrerase monotonically in support in the typical
+     * sense known from subgroup discovery. Attributes are added in the same order in which they
+     * occur in the provided exampleSet.
+     *
+     * @param exampleSet used to identify attributes and their values for refinement
+     * @return all refined ConjunctiveRuleModel objects
+     * @throws OperatorException the operator exception
+     */
+    public Collection<ConjunctiveRuleModel> getAllRefinedRules(ExampleSet exampleSet) throws OperatorException {
 		Attribute[] allAttributes = exampleSet.getAttributes().createRegularAttributeArray();
 		int numAttributes = allAttributes.length;
 		int firstUnused = this.getFirstUnusedAttribute(exampleSet, allAttributes);

@@ -28,7 +28,7 @@ import org.xml.sax.SAXParseException;
 
 /**
  * A simple error handler collecting all errors.
- * 
+ *
  * @author Simon Fischer
  */
 public class XMLErrorHandler implements ErrorHandler {
@@ -37,7 +37,12 @@ public class XMLErrorHandler implements ErrorHandler {
 	private final List<SAXParseException> warnings = new LinkedList<SAXParseException>();
 	private final List<SAXParseException> errors = new LinkedList<SAXParseException>();
 
-	public XMLErrorHandler(String sourceName) {
+    /**
+     * Instantiates a new Xml error handler.
+     *
+     * @param sourceName the source name
+     */
+    public XMLErrorHandler(String sourceName) {
 		this.sourceName = sourceName;
 	}
 
@@ -91,7 +96,12 @@ public class XMLErrorHandler implements ErrorHandler {
 		return b.toString();
 	}
 
-	public boolean hasErrors() {
+    /**
+     * Has errors boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasErrors() {
 		return !errors.isEmpty();
 	}
 

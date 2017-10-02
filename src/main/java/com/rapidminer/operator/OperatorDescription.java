@@ -71,7 +71,10 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 
 	private static final int DEFAULT_PRIORITY = 0;
 
-	public static final String EXTENSIONS_GROUP_IDENTIFIER = "extensions";
+    /**
+     * The constant EXTENSIONS_GROUP_IDENTIFIER.
+     */
+    public static final String EXTENSIONS_GROUP_IDENTIFIER = "extensions";
 
 	private final String key;
 	private final Class<? extends Operator> clazz;
@@ -109,14 +112,20 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 	 */
 	private Boolean isSupportedByLicense;
 
-	/**
-	 * Parses an operator in the RM 5.0 xml standard for operator definitions. In contrast to
-	 * earlier versions, the {@link OperatorDescription} does not register themselves on the
-	 * OperatorTree. This is now handled centralized by the {@link OperatorService}.
-	 *
-	 * @param bundle
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * Parses an operator in the RM 5.0 xml standard for operator definitions. In contrast to
+     * earlier versions, the {@link OperatorDescription} does not register themselves on the
+     * OperatorTree. This is now handled centralized by the {@link OperatorService}.
+     *
+     * @param fullyQualifiedGroupKey the fully qualified group key
+     * @param element                the element
+     * @param classLoader            the class loader
+     * @param provider               the provider
+     * @param bundle                 the bundle
+     * @throws ClassNotFoundException the class not found exception
+     * @throws XMLException           the xml exception
+     */
+    @SuppressWarnings("unchecked")
 	public OperatorDescription(final String fullyQualifiedGroupKey, final Element element, final ClassLoader classLoader,
 			final Plugin provider, final OperatorDocBundle bundle) throws ClassNotFoundException, XMLException {
 		this.provider = provider;
@@ -167,21 +176,36 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		updateIcons();
 	}
 
-	/**
-	 * Constructor for programmatic (non-parsed) creation of OperatorDescriptions, e.g. by a
-	 * {@link GenericOperatorFactory}.
-	 */
-	public OperatorDescription(final String fullyQualifiedGroupKey, final String key, final Class<? extends Operator> clazz,
+    /**
+     * Constructor for programmatic (non-parsed) creation of OperatorDescriptions, e.g. by a
+     * {@link GenericOperatorFactory}.
+     *
+     * @param fullyQualifiedGroupKey the fully qualified group key
+     * @param key                    the key
+     * @param clazz                  the clazz
+     * @param classLoader            the class loader
+     * @param iconName               the icon name
+     * @param provider               the provider
+     */
+    public OperatorDescription(final String fullyQualifiedGroupKey, final String key, final Class<? extends Operator> clazz,
 			final ClassLoader classLoader, final String iconName, final Plugin provider) {
 		this(fullyQualifiedGroupKey, key, clazz, classLoader, iconName, provider, null);
 	}
 
-	/**
-	 * Constructor for programmatic (non-parsed) creation of OperatorDescriptions, e.g. by a
-	 * {@link GenericOperatorFactory}. Additionally this allows to specify an operator documentation
-	 * bundle where the docu is retrieved from.
-	 */
-	public OperatorDescription(final String fullyQualifiedGroupKey, final String key, final Class<? extends Operator> clazz,
+    /**
+     * Constructor for programmatic (non-parsed) creation of OperatorDescriptions, e.g. by a
+     * {@link GenericOperatorFactory}. Additionally this allows to specify an operator documentation
+     * bundle where the docu is retrieved from.
+     *
+     * @param fullyQualifiedGroupKey the fully qualified group key
+     * @param key                    the key
+     * @param clazz                  the clazz
+     * @param classLoader            the class loader
+     * @param iconName               the icon name
+     * @param provider               the provider
+     * @param bundle                 the bundle
+     */
+    public OperatorDescription(final String fullyQualifiedGroupKey, final String key, final Class<? extends Operator> clazz,
 			final ClassLoader classLoader, final String iconName, final Plugin provider, final OperatorDocBundle bundle) {
 		this.isSupportedByLicense = null;
 		this.key = key;
@@ -214,27 +238,46 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		updateIcons();
 	}
 
-	/**
-	 * Creates a new operator description object. If the corresponding operator is not marked as
-	 * deprecated the deprecation info string should be null. If the icon string is null, the group
-	 * icon will be used.
-	 *
-	 * @deprecated No I18N support.
-	 */
-	@Deprecated
+    /**
+     * Creates a new operator description object. If the corresponding operator is not marked as
+     * deprecated the deprecation info string should be null. If the icon string is null, the group
+     * icon will be used.
+     *
+     * @param classLoader     the class loader
+     * @param key             the key
+     * @param name            the name
+     * @param className       the class name
+     * @param group           the group
+     * @param iconName        the icon name
+     * @param deprecationInfo the deprecation info
+     * @param provider        the provider
+     * @throws ClassNotFoundException the class not found exception
+     * @deprecated No I18N support.
+     */
+    @Deprecated
 	public OperatorDescription(final ClassLoader classLoader, final String key, final String name, final String className,
 			final String group, final String iconName, final String deprecationInfo, final Plugin provider)
 					throws ClassNotFoundException {
 		this(classLoader, key, name, className, null, null, group, iconName, deprecationInfo, provider);
 	}
 
-	/**
-	 * Creates an operator description with the given fields.
-	 *
-	 * @deprecated This constructor cannot provide an internationalization mechanism since
-	 *             description is not taken from operator documentation bundle.
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * Creates an operator description with the given fields.
+     *
+     * @param classLoader      the class loader
+     * @param key              the key
+     * @param name             the name
+     * @param className        the class name
+     * @param shortDescription the short description
+     * @param longDescription  the long description
+     * @param groupName        the group name
+     * @param iconName         the icon name
+     * @param deprecationInfo  the deprecation info
+     * @param provider         the provider
+     * @throws ClassNotFoundException the class not found exception
+     * @deprecated This constructor cannot provide an internationalization mechanism since             description is not taken from operator documentation bundle.
+     */
+    @SuppressWarnings("unchecked")
 	@Deprecated
 	public OperatorDescription(final ClassLoader classLoader, final String key, final String name, final String className,
 			final String shortDescription, final String longDescription, final String groupName, final String iconName,
@@ -255,47 +298,92 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		updateIcons();
 	}
 
-	/**
-	 * This constructor remains for compatibility reasons. Please use one of the non deprecated
-	 * alternatives.
-	 */
-	@Deprecated
+    /**
+     * This constructor remains for compatibility reasons. Please use one of the non deprecated
+     * alternatives.
+     *
+     * @param key         the key
+     * @param clazz       the clazz
+     * @param group       the group
+     * @param classLoader the class loader
+     * @param iconName    the icon name
+     * @param provider    the provider
+     */
+    @Deprecated
 	public OperatorDescription(final String key, final Class<? extends Operator> clazz, final GroupTree group,
 			final ClassLoader classLoader, final String iconName, final Plugin provider) {
 		this(group.getFullyQualifiedKey(), key, clazz, classLoader, iconName, provider);
 	}
 
-	/**
-	 * This constructor remains for compatibility reasons. Please use one of the non deprecated
-	 * alternatives.
-	 */
-	@Deprecated
+    /**
+     * This constructor remains for compatibility reasons. Please use one of the non deprecated
+     * alternatives.
+     *
+     * @param key         the key
+     * @param clazz       the clazz
+     * @param groupTree   the group tree
+     * @param classLoader the class loader
+     * @param iconName    the icon name
+     * @param provider    the provider
+     * @param bundle      the bundle
+     */
+    @Deprecated
 	public OperatorDescription(final String key, final Class<? extends Operator> clazz, final GroupTree groupTree,
 			final ClassLoader classLoader, final String iconName, final Plugin provider, final OperatorDocBundle bundle) {
 		this(groupTree.getFullyQualifiedKey(), key, clazz, classLoader, iconName, provider);
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return getOperatorDocumentation().getName();
 	}
 
-	public String getShortName() {
+    /**
+     * Gets short name.
+     *
+     * @return the short name
+     */
+    public String getShortName() {
 		return getOperatorDocumentation().getShortName();
 	}
 
-	public List<String> getTags() {
+    /**
+     * Gets tags.
+     *
+     * @return the tags
+     */
+    public List<String> getTags() {
 		return getOperatorDocumentation().getTags();
 	}
 
-	public Class<? extends Operator> getOperatorClass() {
+    /**
+     * Gets operator class.
+     *
+     * @return the operator class
+     */
+    public Class<? extends Operator> getOperatorClass() {
 		return clazz;
 	}
 
-	public String getShortDescription() {
+    /**
+     * Gets short description.
+     *
+     * @return the short description
+     */
+    public String getShortDescription() {
 		return getOperatorDocumentation().getSynopsis();
 	}
 
-	public String getLongDescriptionHTML() {
+    /**
+     * Gets long description html.
+     *
+     * @return the long description html
+     */
+    public String getLongDescriptionHTML() {
 		OperatorDocumentation operatorDocumentation = getOperatorDocumentation();
 		if (operatorDocumentation.getDocumentation() != null) {
 			return operatorDocumentation.getDocumentation();
@@ -306,21 +394,30 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		return "";
 	}
 
-	public OperatorDocumentation getOperatorDocumentation() {
+    /**
+     * Gets operator documentation.
+     *
+     * @return the operator documentation
+     */
+    public OperatorDocumentation getOperatorDocumentation() {
 		return documentation;
 	}
 
-	/**
-	 * This returns the qualified, dot separated key of the containing group.
-	 */
-	public String getGroup() {
+    /**
+     * This returns the qualified, dot separated key of the containing group.
+     *
+     * @return the group
+     */
+    public String getGroup() {
 		return fullyQualifiedGroupKey;
 	}
 
-	/**
-	 * This returns the actual group name as displayed in RapidMiner.
-	 */
-	public String getGroupName() {
+    /**
+     * This returns the actual group name as displayed in RapidMiner.
+     *
+     * @return the group name
+     */
+    public String getGroupName() {
 		int pos = fullyQualifiedGroupKey.lastIndexOf(".");
 		if (pos == -1) {
 			return fullyQualifiedGroupKey;
@@ -329,22 +426,32 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		}
 	}
 
-	public ImageIcon getIcon() {
+    /**
+     * Gets icon.
+     *
+     * @return the icon
+     */
+    public ImageIcon getIcon() {
 		return getIcons()[1];
 	}
 
-	/**
-	 * The priority of the operator, defined in the operatorsXYZ.xml via the {@code <priority>} tag.
-	 * A higher value means the operator is sorted higher in the operator tree.<br/>
-	 * If no priority is defined, it will default to {@code 0}.
-	 *
-	 * @return
-	 */
-	public int getPriority() {
+    /**
+     * The priority of the operator, defined in the operatorsXYZ.xml via the {@code <priority>} tag.
+     * A higher value means the operator is sorted higher in the operator tree.<br/>
+     * If no priority is defined, it will default to {@code 0}.
+     *
+     * @return priority priority
+     */
+    public int getPriority() {
 		return priority;
 	}
 
-	public ImageIcon getSmallIcon() {
+    /**
+     * Gets small icon.
+     *
+     * @return the small icon
+     */
+    public ImageIcon getSmallIcon() {
 		ImageIcon[] icons2 = this.getIcons();
 		if (icons2[0] != null) {
 			return icons2[0];
@@ -353,7 +460,12 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		}
 	}
 
-	public ImageIcon getLargeIcon() {
+    /**
+     * Gets large icon.
+     *
+     * @return the large icon
+     */
+    public ImageIcon getLargeIcon() {
 		ImageIcon[] icons2 = this.getIcons();
 		if (icons2[2] != null) {
 			return icons2[2];
@@ -362,11 +474,21 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		}
 	}
 
-	public String getAbbreviatedClassName() {
+    /**
+     * Gets abbreviated class name.
+     *
+     * @return the abbreviated class name
+     */
+    public String getAbbreviatedClassName() {
 		return getOperatorClass().getName().replace("com.rapidminer.operator.", "c.r.o.");
 	}
 
-	public String getDeprecationInfo() {
+    /**
+     * Gets deprecation info.
+     *
+     * @return the deprecation info
+     */
+    public String getDeprecationInfo() {
 		if (deprecationInfo != null) {
 			return deprecationInfo;
 		} else {
@@ -374,26 +496,41 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		}
 	}
 
-	public boolean isDeprecated() {
+    /**
+     * Is deprecated boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isDeprecated() {
 		return getDeprecationInfo() != null;
 	}
 
-	public String getProviderName() {
+    /**
+     * Gets provider name.
+     *
+     * @return the provider name
+     */
+    public String getProviderName() {
 		return provider != null ? provider.getName() : OperatorService.RAPID_MINER_CORE_PREFIX;
 	}
 
-	/**
-	 * This defines the namespace of the provider. If is core,
-	 * OperatorService.RAPID_MINER_CORE_NAMESPACE is returned. Otherwise the namespace of the
-	 * extension is returned as defined by the manifest.xml
-	 *
-	 * @return
-	 */
-	public String getProviderNamespace() {
+    /**
+     * This defines the namespace of the provider. If is core,
+     * OperatorService.RAPID_MINER_CORE_NAMESPACE is returned. Otherwise the namespace of the
+     * extension is returned as defined by the manifest.xml
+     *
+     * @return provider namespace
+     */
+    public String getProviderNamespace() {
 		return provider != null ? provider.getExtensionId() : OperatorService.RAPID_MINER_CORE_NAMESPACE;
 	}
 
-	public String getKey() {
+    /**
+     * Gets key.
+     *
+     * @return the key
+     */
+    public String getKey() {
 		if (provider != null) {
 			return provider.getPrefix() + ":" + this.key;
 		} else {
@@ -401,22 +538,29 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		}
 	}
 
-	/**
-	 * Returns the key of this operator without any prefix.
-	 */
-	public String getKeyWithoutPrefix() {
+    /**
+     * Returns the key of this operator without any prefix.
+     *
+     * @return the key without prefix
+     */
+    public String getKeyWithoutPrefix() {
 		return this.key;
 	}
 
-	public void disable() {
+    /**
+     * Disable.
+     */
+    public void disable() {
 		this.enabled = false;
 	}
 
-	/**
-	 * Some operators may be disabled, e.g. because they cannot be applied inside an application
-	 * server (file access etc.)
-	 */
-	public boolean isEnabled() {
+    /**
+     * Some operators may be disabled, e.g. because they cannot be applied inside an application
+     * server (file access etc.)
+     *
+     * @return the boolean
+     */
+    public boolean isEnabled() {
 		return enabled;
 	}
 
@@ -449,11 +593,14 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		return this.getKey().hashCode();
 	}
 
-	/**
-	 * Creates a new operator based on the description. Subclasses that want to overwrite the
-	 * creation behavior should override
-	 */
-	public final Operator createOperatorInstance() throws OperatorCreationException {
+    /**
+     * Creates a new operator based on the description. Subclasses that want to overwrite the
+     * creation behavior should override
+     *
+     * @return the operator
+     * @throws OperatorCreationException the operator creation exception
+     */
+    public final Operator createOperatorInstance() throws OperatorCreationException {
 		if (!isEnabled()) {
 			throw new OperatorCreationException(OperatorCreationException.OPERATOR_DISABLED_ERROR,
 					key + "(" + clazz.getName() + ")", null);
@@ -481,12 +628,21 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		return operator;
 	}
 
-	/**
-	 * This method creates the actual instance of the {@link Operator} defined by the given
-	 * {@link OperatorDescription}. Subclasses might overwrite this method in order to change the
-	 * creation behavior or way.
-	 */
-	protected Operator createOperatorInstanceByDescription(final OperatorDescription description)
+    /**
+     * This method creates the actual instance of the {@link Operator} defined by the given
+     * {@link OperatorDescription}. Subclasses might overwrite this method in order to change the
+     * creation behavior or way.
+     *
+     * @param description the description
+     * @return the operator
+     * @throws IllegalArgumentException  the illegal argument exception
+     * @throws InstantiationException    the instantiation exception
+     * @throws IllegalAccessException    the illegal access exception
+     * @throws InvocationTargetException the invocation target exception
+     * @throws SecurityException         the security exception
+     * @throws NoSuchMethodException     the no such method exception
+     */
+    protected Operator createOperatorInstanceByDescription(final OperatorDescription description)
 			throws IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException,
 			SecurityException, NoSuchMethodException {
 		java.lang.reflect.Constructor<? extends Operator> constructor = clazz
@@ -494,15 +650,24 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		return constructor.newInstance(new Object[] { description });
 	}
 
-	public void setIsReplacementFor(final String opName) {
+    /**
+     * Sets is replacement for.
+     *
+     * @param opName the op name
+     */
+    public void setIsReplacementFor(final String opName) {
 		if (replacesDeprecatedKeys == null) {
 			replacesDeprecatedKeys = new LinkedList<>();
 		}
 		replacesDeprecatedKeys.add(opName);
 	}
 
-	/** Returns keys of deprecated operators replaced by this operator. */
-	public List<String> getReplacedKeys() {
+    /**
+     * Returns keys of deprecated operators replaced by this operator.  @return the replaced keys
+     *
+     * @return the replaced keys
+     */
+    public List<String> getReplacedKeys() {
 		if (replacesDeprecatedKeys != null) {
 			return replacesDeprecatedKeys;
 		} else {
@@ -510,14 +675,24 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		}
 	}
 
-	public String getIconName() {
+    /**
+     * Gets icon name.
+     *
+     * @return the icon name
+     */
+    public String getIconName() {
 		if (iconName != null) {
 			return iconName;
 		}
 		return null;
 	}
 
-	public void setIconName(final String iconName) {
+    /**
+     * Sets icon name.
+     *
+     * @param iconName the icon name
+     */
+    public void setIconName(final String iconName) {
 		this.iconName = iconName;
 		updateIcons();
 	}
@@ -541,14 +716,16 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		}
 	}
 
-	/**
-	 * This returns true if a specific icon already has been defined in this
-	 * {@link OperatorDescription}. It might be possible, that there's no such icon name defined.
-	 * Since each operator should have an icon, it will be read from the containing Group when the
-	 * {@link OperatorDescription} is registered using
-	 * {@link OperatorService#registerOperator(OperatorDescription)}.
-	 */
-	public boolean isIconDefined() {
+    /**
+     * This returns true if a specific icon already has been defined in this
+     * {@link OperatorDescription}. It might be possible, that there's no such icon name defined.
+     * Since each operator should have an icon, it will be read from the containing Group when the
+     * {@link OperatorDescription} is registered using
+     * {@link OperatorService#registerOperator(OperatorDescription)}.
+     *
+     * @return the boolean
+     */
+    public boolean isIconDefined() {
 		return iconName != null;
 	}
 
@@ -559,11 +736,21 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		return null;
 	}
 
-	public Plugin getProvider() {
+    /**
+     * Gets provider.
+     *
+     * @return the provider
+     */
+    public Plugin getProvider() {
 		return provider;
 	}
 
-	protected void setFullyQualifiedGroupKey(final String key) {
+    /**
+     * Sets fully qualified group key.
+     *
+     * @param key the key
+     */
+    protected void setFullyQualifiedGroupKey(final String key) {
 		this.fullyQualifiedGroupKey = key;
 	}
 
@@ -588,29 +775,30 @@ public class OperatorDescription implements Comparable<OperatorDescription> {
 		return isSupportedByLicense;
 	}
 
-	/**
-	 * Refreshes the {@link OperatorDescription}. Therefore the supported by license cache is
-	 * invalidated and the icons are updated.
-	 */
-	public void refresh() {
+    /**
+     * Refreshes the {@link OperatorDescription}. Therefore the supported by license cache is
+     * invalidated and the icons are updated.
+     */
+    public void refresh() {
 		isSupportedByLicense = null;
 		updateIcons();
 	}
 
-	/**
-	 * @return whether the operator is using the "extensions.EXTENSION_NAME group" group as tree
-	 *         root
-	 */
-	public boolean isUsingExtensionTreeRoot() {
+    /**
+     * Is using extension tree root boolean.
+     *
+     * @return whether the operator is using the "extensions.EXTENSION_NAME group" group as tree         root
+     */
+    public boolean isUsingExtensionTreeRoot() {
 		return isUsingExtensionTreeRoot;
 	}
 
-	/**
-	 * @param isUsingExtensionGrouping
-	 *            defines whether the operator using the "extensions.EXTENSION_NAME group" group as
-	 *            tree root
-	 */
-	public void setUseExtensionTreeRoot(boolean isUsingExtensionGrouping) {
+    /**
+     * Sets use extension tree root.
+     *
+     * @param isUsingExtensionGrouping defines whether the operator using the "extensions.EXTENSION_NAME group" group as            tree root
+     */
+    public void setUseExtensionTreeRoot(boolean isUsingExtensionGrouping) {
 		this.isUsingExtensionTreeRoot = isUsingExtensionGrouping;
 	}
 }

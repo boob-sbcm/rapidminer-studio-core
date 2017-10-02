@@ -77,7 +77,6 @@ import com.vlsolutions.swing.docking.event.DockingActionListener;
  * displays a result history overview.
  *
  * @author Simon Fischer
- *
  */
 public class DockableResultDisplay extends JPanel implements ResultDisplay {
 
@@ -97,7 +96,10 @@ public class DockableResultDisplay extends JPanel implements ResultDisplay {
 	 */
 	private Boolean closeResultsPerRun;
 
-	public DockableResultDisplay() {
+    /**
+     * Instantiates a new Dockable result display.
+     */
+    public DockableResultDisplay() {
 		this.dockKey.setDockGroup(MainFrame.DOCK_GROUP_RESULTS);
 		DockableActionCustomizer customizer = new DockableActionCustomizer() {
 

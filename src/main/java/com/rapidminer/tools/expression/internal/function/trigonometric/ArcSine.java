@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric arc sine of an angle.
  *
  * @author Denis Schernov
- *
  */
 public class ArcSine extends Abstract1DoubleInputFunction {
 
-	public ArcSine() {
+    /**
+     * Instantiates a new Arc sine.
+     */
+    public ArcSine() {
 		super("trigonometrical.asin", Ontology.NUMERICAL);
 	}
 

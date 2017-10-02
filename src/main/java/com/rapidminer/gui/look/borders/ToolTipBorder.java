@@ -29,7 +29,7 @@ import javax.swing.plaf.UIResource;
 
 /**
  * The border for tool tips.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ToolTipBorder extends AbstractBorder implements UIResource {

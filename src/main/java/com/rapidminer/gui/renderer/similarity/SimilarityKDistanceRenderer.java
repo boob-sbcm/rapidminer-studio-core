@@ -32,7 +32,7 @@ import java.awt.Component;
 
 /**
  * A renderer for the k-distance view of a similarity measure.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimilarityKDistanceRenderer extends AbstractRenderer {

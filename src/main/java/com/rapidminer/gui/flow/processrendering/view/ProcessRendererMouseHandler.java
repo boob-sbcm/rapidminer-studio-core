@@ -52,7 +52,6 @@ import com.rapidminer.tools.I18N;
  *
  * @author Simon Fischer, Marco Boeck
  * @since 6.4.0
- *
  */
 public class ProcessRendererMouseHandler {
 
@@ -83,31 +82,38 @@ public class ProcessRendererMouseHandler {
 	/** the controller instance */
 	private final ProcessRendererController controller;
 
-	public ProcessRendererMouseHandler(ProcessRendererView view, ProcessRendererModel model,
+    /**
+     * Instantiates a new Process renderer mouse handler.
+     *
+     * @param view       the view
+     * @param model      the model
+     * @param controller the controller
+     */
+    public ProcessRendererMouseHandler(ProcessRendererView view, ProcessRendererModel model,
 			ProcessRendererController controller) {
 		this.view = view;
 		this.model = model;
 		this.controller = controller;
 	}
 
-	/**
-	 * Call when the mouse has moved in the {@link ProcessRendererView}.
-	 *
-	 * @param e
-	 */
-	public void mouseMoved(final MouseEvent e) {
+    /**
+     * Call when the mouse has moved in the {@link ProcessRendererView}.
+     *
+     * @param e the e
+     */
+    public void mouseMoved(final MouseEvent e) {
 		if (model.getConnectingPortSource() != null) {
 			view.repaint();
 		}
 		updateHoveringState(e);
 	}
 
-	/**
-	 * Call when the mouse has been dragged in the {@link ProcessRendererView}.
-	 *
-	 * @param e
-	 */
-	public void mouseDragged(final MouseEvent e) {
+    /**
+     * Call when the mouse has been dragged in the {@link ProcessRendererView}.
+     *
+     * @param e the e
+     */
+    public void mouseDragged(final MouseEvent e) {
 		// Pan viewport
 		if ((e.getModifiers() & InputEvent.BUTTON2_MASK) != 0) {
 			if (view.getParent() instanceof JViewport) {
@@ -252,12 +258,12 @@ public class ProcessRendererMouseHandler {
 		}
 	}
 
-	/**
-	 * Call when the mouse has been pressed in the {@link ProcessRendererView}.
-	 *
-	 * @param e
-	 */
-	public void mousePressed(final MouseEvent e) {
+    /**
+     * Call when the mouse has been pressed in the {@link ProcessRendererView}.
+     *
+     * @param e the e
+     */
+    public void mousePressed(final MouseEvent e) {
 		pressHasSelected = false;
 		mousePositionAtDragStart = e.getPoint();
 		mousePositionAtLastEvaluation = e.getPoint();
@@ -435,13 +441,13 @@ public class ProcessRendererMouseHandler {
 		}
 	}
 
-	/**
-	 * Call when the mouse has been pressed in the {@link ProcessRendererView} and no
-	 * {@link RenderPhase} before the {@link RenderPhase#BACKGROUND} has consumed the event.
-	 *
-	 * @param e
-	 */
-	public void mousePressedBackground(MouseEvent e) {
+    /**
+     * Call when the mouse has been pressed in the {@link ProcessRendererView} and no
+     * {@link RenderPhase} before the {@link RenderPhase#BACKGROUND} has consumed the event.
+     *
+     * @param e the e
+     */
+    public void mousePressedBackground(MouseEvent e) {
 		// Popup will only be triggered if mouse has been released and no dragging was done
 		// CAUTION: Mac&Linux / Windows do different popup trigger handling. Because of this the
 		// popup trigger has to be checked in mousePressed AND mouseReleased
@@ -466,12 +472,12 @@ public class ProcessRendererMouseHandler {
 		}
 	}
 
-	/**
-	 * Call when the mouse has been released in the {@link ProcessRendererView}.
-	 *
-	 * @param e
-	 */
-	public void mouseReleased(final MouseEvent e) {
+    /**
+     * Call when the mouse has been released in the {@link ProcessRendererView}.
+     *
+     * @param e the e
+     */
+    public void mouseReleased(final MouseEvent e) {
 		if ((e.getModifiers() & InputEvent.BUTTON2_MASK) != 0) {
 			view.setCursor(Cursor.getDefaultCursor());
 			e.consume();
@@ -598,13 +604,13 @@ public class ProcessRendererMouseHandler {
 		view.repaint();
 	}
 
-	/**
-	 * Call when the mouse has been released in the {@link ProcessRendererView} and no
-	 * {@link RenderPhase} before the {@link RenderPhase#BACKGROUND} has consumed the event.
-	 *
-	 * @param e
-	 */
-	public void mouseReleasedBackground(final MouseEvent e) {
+    /**
+     * Call when the mouse has been released in the {@link ProcessRendererView} and no
+     * {@link RenderPhase} before the {@link RenderPhase#BACKGROUND} has consumed the event.
+     *
+     * @param e the e
+     */
+    public void mouseReleasedBackground(final MouseEvent e) {
 		// Popup will only be triggered if mouse has been released and no dragging was done
 		// CAUTION: Mac&Linux / Windows do different popup trigger handling. Because of this the
 		// popup trigger has to be checked in mousePressed AND mouseReleased
@@ -629,12 +635,12 @@ public class ProcessRendererMouseHandler {
 		}
 	}
 
-	/**
-	 * Call when the mouse has been clicked in the {@link ProcessRendererView}.
-	 *
-	 * @param e
-	 */
-	public void mouseClicked(final MouseEvent e) {
+    /**
+     * Call when the mouse has been clicked in the {@link ProcessRendererView}.
+     *
+     * @param e the e
+     */
+    public void mouseClicked(final MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			if (e.getClickCount() == 2) {
 				if (model.getHoveringOperator() != null) {
@@ -653,19 +659,19 @@ public class ProcessRendererMouseHandler {
 		}
 	}
 
-	/**
-	 * Call when the mouse has entered the {@link ProcessRendererView}.
-	 *
-	 * @param e
-	 */
-	public void mouseEntered(final MouseEvent e) {}
+    /**
+     * Call when the mouse has entered the {@link ProcessRendererView}.
+     *
+     * @param e the e
+     */
+    public void mouseEntered(final MouseEvent e) {}
 
-	/**
-	 * Call when the mouse has exited the {@link ProcessRendererView}.
-	 *
-	 * @param e
-	 */
-	public void mouseExited(final MouseEvent e) {
+    /**
+     * Call when the mouse has exited the {@link ProcessRendererView}.
+     *
+     * @param e the e
+     */
+    public void mouseExited(final MouseEvent e) {
 		controller.clearStatus();
 	};
 

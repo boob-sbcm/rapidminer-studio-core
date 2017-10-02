@@ -24,12 +24,19 @@ import com.rapidminer.report.Reportable;
 
 /**
  * This renderer can be used for objects not providing a true graphical representation.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class NonGraphicalRenderer extends AbstractRenderer {
 
-	public abstract Reportable createReportable(Object renderable, IOContainer ioContainer);
+    /**
+     * Create reportable reportable.
+     *
+     * @param renderable  the renderable
+     * @param ioContainer the io container
+     * @return the reportable
+     */
+    public abstract Reportable createReportable(Object renderable, IOContainer ioContainer);
 
 	@Override
 	public Reportable createReportable(Object renderable, IOContainer ioContainer, int desiredWidth, int desiredHeight) {

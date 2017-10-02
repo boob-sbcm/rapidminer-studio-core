@@ -49,16 +49,16 @@ import java.util.List;
  * number of literals of the generated hypotheses. The maximum depth of the search can be specified.
  * Furthermore the search space can be pruned by specifying a minimum coverage of the hypothesis or
  * by using only a given amount of hypotheses which have the highest coverage.
- * 
+ * <p>
  * From the hypotheses, rules are derived according to the users preference. The operator allows the
  * derivation of positive rules (Y+) and negative rules (Y-) separately or the combination by
  * deriving both rules or only the one which is the most probable due to the examples covered by the
  * hypothesis (hence: the actual prediction for that subset).
- * 
+ * <p>
  * All generated rules are evaluated on the example set by a user specified utility function and
  * stored in the final rule set if they (1) exceed a minimum utility threshold or (2) are among the
  * k best rules. The desired behavior can be specified as well.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class SubgroupDiscovery extends AbstractLearner {
@@ -67,9 +67,17 @@ public class SubgroupDiscovery extends AbstractLearner {
 	// the specified utility function
 	private static class RuleComparator implements Comparator<Rule> {
 
-		Class<? extends UtilityFunction> functionClass;
+        /**
+         * The Function class.
+         */
+        Class<? extends UtilityFunction> functionClass;
 
-		public RuleComparator(Class<? extends UtilityFunction> functionClass) {
+        /**
+         * Instantiates a new Rule comparator.
+         *
+         * @param functionClass the function class
+         */
+        public RuleComparator(Class<? extends UtilityFunction> functionClass) {
 			this.functionClass = functionClass;
 		}
 
@@ -87,31 +95,72 @@ public class SubgroupDiscovery extends AbstractLearner {
 		}
 	}
 
-	public static final String PARAMETER_DISCOVERY_MODE = "mode";
+    /**
+     * The constant PARAMETER_DISCOVERY_MODE.
+     */
+    public static final String PARAMETER_DISCOVERY_MODE = "mode";
 
-	public static final String[] DISCOVERY_MODES = { "above minimum utility", "k best rules" };
+    /**
+     * The constant DISCOVERY_MODES.
+     */
+    public static final String[] DISCOVERY_MODES = { "above minimum utility", "k best rules" };
 
-	public static final int DISCOVERY_MODE_ABOVE_MINIMUM_UTILITY = 0;
+    /**
+     * The constant DISCOVERY_MODE_ABOVE_MINIMUM_UTILITY.
+     */
+    public static final int DISCOVERY_MODE_ABOVE_MINIMUM_UTILITY = 0;
 
-	public static final int DISCOVERY_MODE_K_BEST_RULES = 1;
+    /**
+     * The constant DISCOVERY_MODE_K_BEST_RULES.
+     */
+    public static final int DISCOVERY_MODE_K_BEST_RULES = 1;
 
-	public static final String PARAMETER_UTILITY_FUNCTION = "utility_function";
+    /**
+     * The constant PARAMETER_UTILITY_FUNCTION.
+     */
+    public static final String PARAMETER_UTILITY_FUNCTION = "utility_function";
 
-	public static final String PARAMETER_RULE_GENERATION = "rule_generation";
+    /**
+     * The constant PARAMETER_RULE_GENERATION.
+     */
+    public static final String PARAMETER_RULE_GENERATION = "rule_generation";
 
-	public static final String[] RULE_GENERATION_MODES = Hypothesis.RULE_GENERATION_MODES;
+    /**
+     * The constant RULE_GENERATION_MODES.
+     */
+    public static final String[] RULE_GENERATION_MODES = Hypothesis.RULE_GENERATION_MODES;
 
-	public static final String PARAMETER_MAX_DEPTH = "max_depth";
+    /**
+     * The constant PARAMETER_MAX_DEPTH.
+     */
+    public static final String PARAMETER_MAX_DEPTH = "max_depth";
 
-	public static final String PARAMETER_MIN_UTILITY = "min_utility";
+    /**
+     * The constant PARAMETER_MIN_UTILITY.
+     */
+    public static final String PARAMETER_MIN_UTILITY = "min_utility";
 
-	public static final String PARAMETER_K_BEST_RULES = "k_best_rules";
+    /**
+     * The constant PARAMETER_K_BEST_RULES.
+     */
+    public static final String PARAMETER_K_BEST_RULES = "k_best_rules";
 
-	public static final String PARAMETER_MIN_COVERAGE = "min_coverage";
+    /**
+     * The constant PARAMETER_MIN_COVERAGE.
+     */
+    public static final String PARAMETER_MIN_COVERAGE = "min_coverage";
 
-	public static final String PARAMETER_MAX_CACHE = "max_cache";
+    /**
+     * The constant PARAMETER_MAX_CACHE.
+     */
+    public static final String PARAMETER_MAX_CACHE = "max_cache";
 
-	public SubgroupDiscovery(OperatorDescription description) {
+    /**
+     * Instantiates a new Subgroup discovery.
+     *
+     * @param description the description
+     */
+    public SubgroupDiscovery(OperatorDescription description) {
 		super(description);
 	}
 

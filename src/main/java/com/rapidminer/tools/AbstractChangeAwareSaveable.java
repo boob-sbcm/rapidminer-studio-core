@@ -23,11 +23,10 @@ import java.util.logging.Logger;
 
 
 /**
- * @param the
- *            argument that is expected when observing other classes
- * 
+ * The type Abstract change aware saveable.
+ *
+ * @param <O> the type parameter
  * @author Nils Woehler
- * 
  */
 public abstract class AbstractChangeAwareSaveable<O> extends AbstractObservable<ChangeAwareSaveable> implements
 		ChangeAwareSaveable {
@@ -39,13 +38,23 @@ public abstract class AbstractChangeAwareSaveable<O> extends AbstractObservable<
 	private DelegatingObserver<O, ChangeAwareSaveable> delegatingObserver = new DelegatingObserver<O, ChangeAwareSaveable>(
 			this, this);
 
-	protected void observeForChanges(Observable<O> observable) {
+    /**
+     * Observe for changes.
+     *
+     * @param observable the observable
+     */
+    protected void observeForChanges(Observable<O> observable) {
 		if (observable != null) {
 			observable.addObserver(delegatingObserver, false);
 		}
 	}
 
-	protected void stopObservingForChanges(Observable<O> observable) {
+    /**
+     * Stop observing for changes.
+     *
+     * @param observable the observable
+     */
+    protected void stopObservingForChanges(Observable<O> observable) {
 		if (observable != null) {
 			observable.removeObserver(delegatingObserver);
 		}
@@ -74,11 +83,12 @@ public abstract class AbstractChangeAwareSaveable<O> extends AbstractObservable<
 		return isModified;
 	}
 
-	/**
-	 * @param isModified
-	 *            the isModified to set
-	 */
-	public void setIsModified(boolean isModified) {
+    /**
+     * Sets is modified.
+     *
+     * @param isModified the isModified to set
+     */
+    public void setIsModified(boolean isModified) {
 		LOGGER.log(Level.FINE, "Set is modified to " + isModified);
 		this.isModified = isModified;
 	}

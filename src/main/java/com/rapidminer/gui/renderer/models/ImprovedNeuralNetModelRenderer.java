@@ -29,7 +29,8 @@ import java.awt.Component;
 
 
 /**
- * 
+ * The type Improved neural net model renderer.
+ *
  * @author Sebastian Land
  */
 public class ImprovedNeuralNetModelRenderer extends AbstractRenderer {

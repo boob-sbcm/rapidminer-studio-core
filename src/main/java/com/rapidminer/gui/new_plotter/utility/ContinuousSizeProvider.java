@@ -19,8 +19,9 @@
 package com.rapidminer.gui.new_plotter.utility;
 
 /**
+ * The type Continuous size provider.
+ *
  * @author Marius Helf
- * 
  */
 public class ContinuousSizeProvider implements SizeProvider {
 
@@ -30,7 +31,16 @@ public class ContinuousSizeProvider implements SizeProvider {
 	private double minValue;
 	private double maxValue;
 
-	public ContinuousSizeProvider(double minValue, double maxValue, double minSize, double maxSize, boolean logarithmic) {
+    /**
+     * Instantiates a new Continuous size provider.
+     *
+     * @param minValue    the min value
+     * @param maxValue    the max value
+     * @param minSize     the min size
+     * @param maxSize     the max size
+     * @param logarithmic the logarithmic
+     */
+    public ContinuousSizeProvider(double minValue, double maxValue, double minSize, double maxSize, boolean logarithmic) {
 		// sanity checks
 		if (minValue > maxValue) {
 			throw new IllegalArgumentException("minValue > maxValue not allowed");

@@ -30,13 +30,22 @@ import com.rapidminer.tools.Tools;
 
 
 /**
+ * The type Simple process entry.
+ *
  * @author Simon Fischer
  */
 public class SimpleProcessEntry extends SimpleDataEntry implements ProcessEntry {
 
 	private static final String RMP_SUFFIX = ".rmp";
 
-	SimpleProcessEntry(String name, SimpleFolder containingFolder, LocalRepository repository) {
+    /**
+     * Instantiates a new Simple process entry.
+     *
+     * @param name             the name
+     * @param containingFolder the containing folder
+     * @param repository       the repository
+     */
+    SimpleProcessEntry(String name, SimpleFolder containingFolder, LocalRepository repository) {
 		super(name, containingFolder, repository);
 	}
 

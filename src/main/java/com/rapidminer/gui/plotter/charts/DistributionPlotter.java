@@ -84,9 +84,15 @@ import com.rapidminer.tools.math.distribution.DiscreteDistribution;
  */
 public class DistributionPlotter extends RangeablePlotterAdapter {
 
-	public static final String RANGE_AXIS_NAME = "Density";
+    /**
+     * The constant RANGE_AXIS_NAME.
+     */
+    public static final String RANGE_AXIS_NAME = "Density";
 
-	public static final String MODEL_DOMAIN_AXIS_NAME = "Value";
+    /**
+     * The constant MODEL_DOMAIN_AXIS_NAME.
+     */
+    public static final String MODEL_DOMAIN_AXIS_NAME = "Value";
 
 	private static final long serialVersionUID = 2923008541302883925L;
 
@@ -105,12 +111,23 @@ public class DistributionPlotter extends RangeablePlotterAdapter {
 
 	private boolean createFromModel = false;
 
-	public DistributionPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Distribution plotter.
+     *
+     * @param settings the settings
+     */
+    public DistributionPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 
 	}
 
-	public DistributionPlotter(PlotterConfigurationModel settings, DistributionModel model) {
+    /**
+     * Instantiates a new Distribution plotter.
+     *
+     * @param settings the settings
+     * @param model    the model
+     */
+    public DistributionPlotter(PlotterConfigurationModel settings, DistributionModel model) {
 		this(settings);
 		this.model = model;
 		this.createFromModel = true;
@@ -119,7 +136,13 @@ public class DistributionPlotter extends RangeablePlotterAdapter {
 		updatePlotter();
 	}
 
-	public DistributionPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Distribution plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public DistributionPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -136,7 +159,10 @@ public class DistributionPlotter extends RangeablePlotterAdapter {
 		updatePlotter();
 	}
 
-	public void preparePlots() {
+    /**
+     * Prepare plots.
+     */
+    public void preparePlots() {
 		if (!createFromModel) {
 			if (groupColumn >= 0 && plotColumn >= 0 && groupColumn != plotColumn) {
 				ExampleSet wrappedExampleSet = DataTableExampleSetAdapter.createExampleSetFromDataTable(this.dataTable);

@@ -31,11 +31,18 @@ import java.util.List;
 
 
 /**
+ * The type Input ports.
+ *
  * @author Simon Fischer
  */
 public class InputPortsImpl extends AbstractPorts<InputPort> implements InputPorts {
 
-	public InputPortsImpl(PortOwner owner) {
+    /**
+     * Instantiates a new Input ports.
+     *
+     * @param owner the owner
+     */
+    public InputPortsImpl(PortOwner owner) {
 		super(owner);
 	}
 

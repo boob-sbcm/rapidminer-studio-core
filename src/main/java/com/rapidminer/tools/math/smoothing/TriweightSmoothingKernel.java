@@ -20,9 +20,8 @@ package com.rapidminer.tools.math.smoothing;
 
 /**
  * This class implements the Triweight Smoothing kernel
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class TriweightSmoothingKernel extends SmoothingKernel {
 

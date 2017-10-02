@@ -26,7 +26,7 @@ import com.rapidminer.tools.math.similarity.DistanceMeasure;
 
 /**
  * The euclidean distance.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa, Michael Wurst
  */
 public class EuclideanDistance extends DistanceMeasure {

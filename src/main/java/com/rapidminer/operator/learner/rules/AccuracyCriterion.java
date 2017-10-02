@@ -25,7 +25,7 @@ import com.rapidminer.example.ExampleSet;
 
 /**
  * Calculates the accuracy benefit.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class AccuracyCriterion extends AbstractCriterion {

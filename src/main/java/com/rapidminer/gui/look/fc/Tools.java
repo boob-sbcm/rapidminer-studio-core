@@ -58,7 +58,14 @@ public class Tools {
 
 	private static BufferedImage srcBImage;
 
-	public static ImageIcon getSmallSystemIcon(Image img) throws Exception {
+    /**
+     * Gets small system icon.
+     *
+     * @param img the img
+     * @return the small system icon
+     * @throws Exception the exception
+     */
+    public static ImageIcon getSmallSystemIcon(Image img) throws Exception {
 		if (img.getWidth(null) > 20 || img.getHeight(null) > 20) {
 			if (img.getWidth(null) > img.getHeight(null)) {
 				width = 18;
@@ -84,7 +91,14 @@ public class Tools {
 		return new ImageIcon(dest2);
 	}
 
-	public static ImageIcon getBigSystemIcon(Image image) throws Exception {
+    /**
+     * Gets big system icon.
+     *
+     * @param image the image
+     * @return the big system icon
+     * @throws Exception the exception
+     */
+    public static ImageIcon getBigSystemIcon(Image image) throws Exception {
 		if (image.getWidth(null) < 20 || image.getHeight(null) < 20) {
 			if (image.getWidth(null) > image.getHeight(null)) {
 				width = 24;
@@ -112,7 +126,14 @@ public class Tools {
 		return new ImageIcon(dest);
 	}
 
-	public static Image getScaledInstance(File file) throws Exception {
+    /**
+     * Gets scaled instance.
+     *
+     * @param file the file
+     * @return the scaled instance
+     * @throws Exception the exception
+     */
+    public static Image getScaledInstance(File file) throws Exception {
 		srcBImage = javax.imageio.ImageIO.read(file);
 
 		if (srcBImage.getWidth() > srcBImage.getHeight()) {

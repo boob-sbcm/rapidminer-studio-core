@@ -51,7 +51,10 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class Normalization extends PreprocessingOperator {
 
-	public static final OperatorVersion BEFORE_NON_FINITE_VALUES_HANDLING = new OperatorVersion(7, 5, 3);
+    /**
+     * The constant BEFORE_NON_FINITE_VALUES_HANDLING.
+     */
+    public static final OperatorVersion BEFORE_NON_FINITE_VALUES_HANDLING = new OperatorVersion(7, 5, 3);
 
 	private static final ArrayList<NormalizationMethod> METHODS = new ArrayList<NormalizationMethod>();
 
@@ -62,21 +65,37 @@ public class Normalization extends PreprocessingOperator {
 		registerNormalizationMethod(new IQRNormalizationMethod());
 	}
 
-	/**
-	 * This must not be modified outside this class!
-	 */
-	public static String[] NORMALIZATION_METHODS;
+    /**
+     * This must not be modified outside this class!
+     */
+    public static String[] NORMALIZATION_METHODS;
 
-	public static final int METHOD_Z_TRANSFORMATION = 0;
+    /**
+     * The constant METHOD_Z_TRANSFORMATION.
+     */
+    public static final int METHOD_Z_TRANSFORMATION = 0;
 
-	public static final int METHOD_RANGE_TRANSFORMATION = 1;
+    /**
+     * The constant METHOD_RANGE_TRANSFORMATION.
+     */
+    public static final int METHOD_RANGE_TRANSFORMATION = 1;
 
-	public static final int METHOD_PROPORTION_TRANSFORMATION = 2;
+    /**
+     * The constant METHOD_PROPORTION_TRANSFORMATION.
+     */
+    public static final int METHOD_PROPORTION_TRANSFORMATION = 2;
 
-	public static final String PARAMETER_NORMALIZATION_METHOD = "method";
+    /**
+     * The constant PARAMETER_NORMALIZATION_METHOD.
+     */
+    public static final String PARAMETER_NORMALIZATION_METHOD = "method";
 
-	/** Creates a new Normalization operator. */
-	public Normalization(OperatorDescription description) {
+    /**
+     * Creates a new Normalization operator.  @param description the description
+     *
+     * @param description the description
+     */
+    public Normalization(OperatorDescription description) {
 		super(description);
 	}
 
@@ -139,10 +158,12 @@ public class Normalization extends PreprocessingOperator {
 				attributeSelector);
 	}
 
-	/**
-	 * This method can be used for registering additional normalization methods.
-	 */
-	public static void registerNormalizationMethod(NormalizationMethod newMethod) {
+    /**
+     * This method can be used for registering additional normalization methods.
+     *
+     * @param newMethod the new method
+     */
+    public static void registerNormalizationMethod(NormalizationMethod newMethod) {
 		METHODS.add(newMethod);
 		NORMALIZATION_METHODS = new String[METHODS.size()];
 		int i = 0;

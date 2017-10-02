@@ -30,7 +30,7 @@ import com.rapidminer.tools.math.similarity.DistanceMeasure;
  * This class uses the approach of Schoelkopf (2001) The Kernel Trick for Distances. It hence
  * calculates the distances between two examples in the transformed space defined by the chosen
  * kernel.
- * 
+ *
  * @author Sebastian Land
  */
 public class KernelEuclideanDistance extends DistanceMeasure {
@@ -61,7 +61,13 @@ public class KernelEuclideanDistance extends DistanceMeasure {
 		init(parameterHandler);
 	}
 
-	public void init(ParameterHandler handler) throws OperatorException {
+    /**
+     * Init.
+     *
+     * @param handler the handler
+     * @throws OperatorException the operator exception
+     */
+    public void init(ParameterHandler handler) throws OperatorException {
 		kernel = Kernel.createKernel(handler);
 	}
 

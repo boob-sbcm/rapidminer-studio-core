@@ -20,7 +20,7 @@ package com.rapidminer.operator.learner.functions.kernel.jmysvm.kernel;
 
 /**
  * Radial Kernel
- * 
+ *
  * @author Stefan Rueping, Ingo Mierswa
  */
 public class KernelRadial extends Kernel {
@@ -35,14 +35,26 @@ public class KernelRadial extends Kernel {
 		return ("rbf(" + (-gamma) + ")");
 	};
 
-	/** Class constructor. */
-	public KernelRadial() {}
+    /**
+     * Class constructor.
+     */
+    public KernelRadial() {}
 
-	public double getGamma() {
+    /**
+     * Gets gamma.
+     *
+     * @return the gamma
+     */
+    public double getGamma() {
 		return -gamma;
 	}
 
-	public void setGamma(double gamma) {
+    /**
+     * Sets gamma.
+     *
+     * @param gamma the gamma
+     */
+    public void setGamma(double gamma) {
 		this.gamma = -gamma;
 	}
 

@@ -44,7 +44,12 @@ public class RefreshConfigurablesDropDownButton extends DropDownPopupButton {
 
 	private static final long serialVersionUID = -7638556190299142700L;
 
-	public RefreshConfigurablesDropDownButton(Map<String, ConfigurableController> remoteControllers) {
+    /**
+     * Instantiates a new Refresh configurables drop down button.
+     *
+     * @param remoteControllers the remote controllers
+     */
+    public RefreshConfigurablesDropDownButton(Map<String, ConfigurableController> remoteControllers) {
 		super("gui.label.configurable_dialog.refresh_config", new RefreshConfigurablesPopupProvider(remoteControllers));
 
 		setIcon(SwingTools.createIcon("24/" + I18N.getGUILabel("configurable_dialog.refresh_config.icon")));
@@ -82,7 +87,12 @@ public class RefreshConfigurablesDropDownButton extends DropDownPopupButton {
 		/** menu item to refresh all connections */
 		private JMenuItem allConnectionsItem;
 
-		public RefreshConfigurablesPopupProvider(Map<String, ConfigurableController> remoteControllers) {
+        /**
+         * Instantiates a new Refresh configurables popup provider.
+         *
+         * @param remoteControllers the remote controllers
+         */
+        public RefreshConfigurablesPopupProvider(Map<String, ConfigurableController> remoteControllers) {
 			this.remoteControllers = remoteControllers;
 			allConnectionsItem = new JMenuItem(REFRESH_ALL_ACTION);
 		}

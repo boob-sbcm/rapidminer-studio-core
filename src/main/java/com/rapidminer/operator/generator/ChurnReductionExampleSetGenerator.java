@@ -47,21 +47,43 @@ import com.rapidminer.tools.RandomGenerator;
  */
 public class ChurnReductionExampleSetGenerator extends AbstractExampleSource {
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
 
-	public static final int NEW_CREDIT_IDX = 0;
-	public static final int NOTHING_IDX = 1;
-	public static final int END_CREDIT_IDX = 2;
-	public static final int COLLECT_INFO_IDX = 3;
-	public static final int ADD_CREDIT_IDX = 4;
+    /**
+     * The constant NEW_CREDIT_IDX.
+     */
+    public static final int NEW_CREDIT_IDX = 0;
+    /**
+     * The constant NOTHING_IDX.
+     */
+    public static final int NOTHING_IDX = 1;
+    /**
+     * The constant END_CREDIT_IDX.
+     */
+    public static final int END_CREDIT_IDX = 2;
+    /**
+     * The constant COLLECT_INFO_IDX.
+     */
+    public static final int COLLECT_INFO_IDX = 3;
+    /**
+     * The constant ADD_CREDIT_IDX.
+     */
+    public static final int ADD_CREDIT_IDX = 4;
 	private static String[] POSSIBLE_VALUES = { "New Credit", "Nothing", "End Credit", "Collect Information",
 			"Additional Credit" };
 
 	/** the index of the label attribute */
 	private static final int LABEL_ATTR_IDX = 5;
 
-	public ChurnReductionExampleSetGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Churn reduction example set generator.
+     *
+     * @param description the description
+     */
+    public ChurnReductionExampleSetGenerator(OperatorDescription description) {
 		super(description);
 	}
 

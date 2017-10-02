@@ -47,14 +47,11 @@ import com.vlsolutions.swing.docking.Dockable;
 
 
 /**
- *
  * A Dockable, that can display all defined macros and their values and allows the user to modify
  * the while the process is running.
  *
  * @author Philipp Kersting
- *
  */
-
 public class MacroViewer extends JPanel implements Dockable, ProcessEditor {
 
 	private static final long serialVersionUID = 1L;
@@ -124,7 +121,10 @@ public class MacroViewer extends JPanel implements Dockable, ProcessEditor {
 
 	};
 
-	public MacroViewer() {
+    /**
+     * Instantiates a new Macro viewer.
+     */
+    public MacroViewer() {
 		setLayout(new BorderLayout());
 
 		macroTable = new ExtendedJTable(dataModel, true, false, true);

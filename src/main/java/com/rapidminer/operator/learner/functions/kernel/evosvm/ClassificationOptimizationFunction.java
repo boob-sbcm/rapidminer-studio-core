@@ -23,14 +23,19 @@ import com.rapidminer.tools.math.kernels.Kernel;
 
 /**
  * This function must be maximized for the search for an optimal hyperplane for classification.
- * 
+ *
  * @author Ingo Mierswa 15:35:48 ingomierswa Exp $
  */
 public class ClassificationOptimizationFunction implements OptimizationFunction {
 
 	private boolean multiobjective;
 
-	public ClassificationOptimizationFunction(boolean multiobjective) {
+    /**
+     * Instantiates a new Classification optimization function.
+     *
+     * @param multiobjective the multiobjective
+     */
+    public ClassificationOptimizationFunction(boolean multiobjective) {
 		this.multiobjective = multiobjective;
 	}
 

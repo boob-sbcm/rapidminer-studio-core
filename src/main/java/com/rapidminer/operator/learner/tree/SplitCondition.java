@@ -26,17 +26,38 @@ import java.io.Serializable;
 /**
  * A condition for a split in decision tree, rules etc. Subclasses should also implement a toString
  * method.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public interface SplitCondition extends Serializable {
 
-	public String getAttributeName();
+    /**
+     * Gets attribute name.
+     *
+     * @return the attribute name
+     */
+    public String getAttributeName();
 
-	public String getRelation();
+    /**
+     * Gets relation.
+     *
+     * @return the relation
+     */
+    public String getRelation();
 
-	public String getValueString();
+    /**
+     * Gets value string.
+     *
+     * @return the value string
+     */
+    public String getValueString();
 
-	public boolean test(Example example);
+    /**
+     * Test boolean.
+     *
+     * @param example the example
+     * @return the boolean
+     */
+    public boolean test(Example example);
 
 }

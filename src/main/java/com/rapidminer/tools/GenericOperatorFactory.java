@@ -24,12 +24,17 @@ import com.rapidminer.tools.plugin.Plugin;
 /**
  * Classes which implement this interface must have an empty constructor and must register
  * additional generic operators in the method {@link #registerOperators(ClassLoader)}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface GenericOperatorFactory {
 
-	/** Register additional generic operators. */
-	public void registerOperators(ClassLoader loader, Plugin you);
+    /**
+     * Register additional generic operators.  @param loader the loader
+     *
+     * @param loader the loader
+     * @param you    the you
+     */
+    public void registerOperators(ClassLoader loader, Plugin you);
 
 }

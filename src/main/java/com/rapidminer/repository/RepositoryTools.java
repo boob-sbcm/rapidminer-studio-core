@@ -30,7 +30,6 @@ import com.rapidminer.repository.RepositoryManager.RepositoryType;
  * {@link Folder}s.
  *
  * @author Denis Schernov, Marcel Seifert
- *
  * @since 7.3
  */
 public final class RepositoryTools {
@@ -45,21 +44,15 @@ public final class RepositoryTools {
 		throw new AssertionError("Utility class must not be instatiated!");
 	}
 
-	/**
-	 * Compares an {@link Entry} or {@link Folder} to another by comparing their names as
-	 * {@link String} using simple java comparison.
-	 *
-	 * @param entry1
-	 *            The {@link Entry} or {@link Folder} which should be compared to the second
-	 *            {@link Entry} or {@link Folder}.
-	 * @param entry2
-	 *            The {@link Entry} or {@link Folder} which should be compared to the first
-	 *            {@link Entry} or {@link Folder}.
-	 * @return one of -1, 0, or 1 according to whether first {@link Entry}s or {@link Folder}s name
-	 *         as a {@link String} is less, equal or higher than the second {@link Entry}s or
-	 *         {@link Folder}s name.
-	 */
-	public static final Comparator<Entry> SIMPLE_NAME_COMPARATOR = new Comparator<Entry>() {
+    /**
+     * Compares an {@link Entry} or {@link Folder} to another by comparing their names as
+     * {@link String} using simple java comparison.
+     *
+     * @param entry1 The {@link Entry} or {@link Folder} which should be compared to the second            {@link Entry} or {@link Folder}.
+     * @param entry2 The {@link Entry} or {@link Folder} which should be compared to the first            {@link Entry} or {@link Folder}.
+     * @return one of -1, 0, or 1 according to whether first {@link Entry}s or {@link Folder}s name         as a {@link String} is less, equal or higher than the second {@link Entry}s or         {@link Folder}s name.
+     */
+    public static final Comparator<Entry> SIMPLE_NAME_COMPARATOR = new Comparator<Entry>() {
 
 		@Override
 		public int compare(Entry entry1, Entry entry2) {
@@ -76,18 +69,15 @@ public final class RepositoryTools {
 
 	};
 
-	/**
-	 * Compares an {@link Entry} to another by comparing their names as {@link String} using
-	 * alphanumeric comparison.
-	 *
-	 * @param entry1
-	 *            The {@link Entry} which should be compared to the second {@link Entry}.
-	 * @param entry2
-	 *            The {@link Entry} which should be compared to the first {@link Entry}.
-	 * @return one of -1, 0, or 1 according to whether {@link Entry}1s name as a {@link String} is
-	 *         less, equal or higher than {@link Entry}2s name.
-	 */
-	public static final Comparator<Entry> ENTRY_COMPARATOR = new Comparator<Entry>() {
+    /**
+     * Compares an {@link Entry} to another by comparing their names as {@link String} using
+     * alphanumeric comparison.
+     *
+     * @param entry1 The {@link Entry} which should be compared to the second {@link Entry}.
+     * @param entry2 The {@link Entry} which should be compared to the first {@link Entry}.
+     * @return one of -1, 0, or 1 according to whether {@link Entry}1s name as a {@link String} is         less, equal or higher than {@link Entry}2s name.
+     */
+    public static final Comparator<Entry> ENTRY_COMPARATOR = new Comparator<Entry>() {
 
 		@Override
 		public int compare(Entry entry1, Entry entry2) {
@@ -104,19 +94,16 @@ public final class RepositoryTools {
 
 	};
 
-	/**
-	 * Compares an {@link Entry} to another by comparing their last modified dates {@link String}
-	 * descending from new to old.
-	 *
-	 * @param entry1
-	 *            The {@link Entry} which should be compared to the second {@link Entry}.
-	 * @param entry2
-	 *            The {@link Entry} which should be compared to the first {@link Entry}.
-	 * @return one of -1, 0, or 1 according to whether {@link Entry}1s date as a {@link String} is
-	 *         less, equal or higher than {@link Entry}2s date.
-	 * @since 7.4
-	 */
-	public static final Comparator<Entry> ENTRY_COMPARATOR_LAST_MODIFIED = new Comparator<Entry>() {
+    /**
+     * Compares an {@link Entry} to another by comparing their last modified dates {@link String}
+     * descending from new to old.
+     *
+     * @param entry1 The {@link Entry} which should be compared to the second {@link Entry}.
+     * @param entry2 The {@link Entry} which should be compared to the first {@link Entry}.
+     * @return one of -1, 0, or 1 according to whether {@link Entry}1s date as a {@link String} is         less, equal or higher than {@link Entry}2s date.
+     * @since 7.4
+     */
+    public static final Comparator<Entry> ENTRY_COMPARATOR_LAST_MODIFIED = new Comparator<Entry>() {
 
 		@Override
 		public int compare(Entry entry1, Entry entry2) {
@@ -139,23 +126,17 @@ public final class RepositoryTools {
 
 	};
 
-	/**
-	 * Compares two repositories, ordered by {@link RepositoryType} (Samples, DB, Local
-	 * Repositories, Remote Repositories, Others). If the {@link RepositoryType} of the
-	 * {@link Repository}s is identical then their names as {@link String} will be compared by
-	 * alphanumeric comparison.
-	 *
-	 * @param repository1
-	 *            The {@link Repository} which should be compared to the second {@link Repository}.
-	 * @param repository2
-	 *            The {@link Repository} which should be compared to the first {@link Repository}.
-	 * @return one of -1, 0, or 1 according to whether {@link Repository}1 {@link RepositoryType} is
-	 *         higher prioritized than the {@link RepositoryType} of {@link Repository}2. If both
-	 *         have the same {@link RepositoryType} it will return an {@link Integer} depending to
-	 *         whether {@link Repository}1 name as a {@link String} is less, equal or higher than
-	 *         {@link Repository}2 name.
-	 */
-	public static final Comparator<Repository> REPOSITORY_COMPARATOR = new Comparator<Repository>() {
+    /**
+     * Compares two repositories, ordered by {@link RepositoryType} (Samples, DB, Local
+     * Repositories, Remote Repositories, Others). If the {@link RepositoryType} of the
+     * {@link Repository}s is identical then their names as {@link String} will be compared by
+     * alphanumeric comparison.
+     *
+     * @param repository1 The {@link Repository} which should be compared to the second {@link Repository}.
+     * @param repository2 The {@link Repository} which should be compared to the first {@link Repository}.
+     * @return one of -1, 0, or 1 according to whether {@link Repository}1 {@link RepositoryType} is         higher prioritized than the {@link RepositoryType} of {@link Repository}2. If both         have the same {@link RepositoryType} it will return an {@link Integer} depending to         whether {@link Repository}1 name as a {@link String} is less, equal or higher than         {@link Repository}2 name.
+     */
+    public static final Comparator<Repository> REPOSITORY_COMPARATOR = new Comparator<Repository>() {
 
 		@Override
 		public int compare(Repository repository1, Repository repository2) {

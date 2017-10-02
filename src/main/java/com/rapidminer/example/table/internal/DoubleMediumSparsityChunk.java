@@ -30,7 +30,12 @@ final class DoubleMediumSparsityChunk extends AbstractMediumSparsityChunk implem
 
 	private double[] data = AutoColumnUtils.EMPTY_DOUBLE_ARRAY;
 
-	DoubleMediumSparsityChunk(double defaultValue) {
+    /**
+     * Instantiates a new Double medium sparsity chunk.
+     *
+     * @param defaultValue the default value
+     */
+    DoubleMediumSparsityChunk(double defaultValue) {
 		super(defaultValue);
 	}
 

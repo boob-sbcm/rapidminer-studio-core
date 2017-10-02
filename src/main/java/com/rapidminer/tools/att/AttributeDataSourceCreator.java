@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * This class can be used as a simple attribute data source creation factory for many types of table
  * like data.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeDataSourceCreator {
@@ -44,13 +44,39 @@ public class AttributeDataSourceCreator {
 	/** The list of the abstract attribute informations. */
 	private ArrayList<AttributeDataSource> sources = new ArrayList<AttributeDataSource>();
 
-	public AttributeDataSourceCreator() {}
+    /**
+     * Instantiates a new Attribute data source creator.
+     */
+    public AttributeDataSourceCreator() {}
 
-	public List<AttributeDataSource> getAttributeDataSources() {
+    /**
+     * Gets attribute data sources.
+     *
+     * @return the attribute data sources
+     */
+    public List<AttributeDataSource> getAttributeDataSources() {
 		return sources;
 	}
 
-	public void loadData(File file, char[] commentChars, String columnSeparators, char decimalPointCharacter,
+    /**
+     * Load data.
+     *
+     * @param file                  the file
+     * @param commentChars          the comment chars
+     * @param columnSeparators      the column separators
+     * @param decimalPointCharacter the decimal point character
+     * @param useQuotes             the use quotes
+     * @param quoteChar             the quote char
+     * @param escapeChar            the escape char
+     * @param trimLines             the trim lines
+     * @param firstLineAsNames      the first line as names
+     * @param maxCounter            the max counter
+     * @param skipErrorLines        the skip error lines
+     * @param encoding              the encoding
+     * @param logging               the logging
+     * @throws IOException the io exception
+     */
+    public void loadData(File file, char[] commentChars, String columnSeparators, char decimalPointCharacter,
 			boolean useQuotes, char quoteChar, char escapeChar, boolean trimLines, boolean firstLineAsNames, int maxCounter,
 			boolean skipErrorLines, Charset encoding, LoggingHandler logging) throws IOException {
 		this.sources.clear();
@@ -136,7 +162,15 @@ public class AttributeDataSourceCreator {
 		}
 	}
 
-	public static void guessValueTypes(String[] data, int[] valueTypes, boolean[] onlyMissing, char decimalPointCharacter) {
+    /**
+     * Guess value types.
+     *
+     * @param data                  the data
+     * @param valueTypes            the value types
+     * @param onlyMissing           the only missing
+     * @param decimalPointCharacter the decimal point character
+     */
+    public static void guessValueTypes(String[] data, int[] valueTypes, boolean[] onlyMissing, char decimalPointCharacter) {
 		for (int c = 0; c < valueTypes.length; c++) {
 			String value = data[c];
 			if ((value != null) && (!value.equals("?")) && (value.length() > 0)) {

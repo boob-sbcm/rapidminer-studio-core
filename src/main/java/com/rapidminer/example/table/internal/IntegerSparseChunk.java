@@ -26,34 +26,30 @@ package com.rapidminer.example.table.internal;
  */
 interface IntegerSparseChunk {
 
-	/**
-	 * Sets the value for the given row. Returns {@code true} if after this set the sparse chunk is
-	 * too full. Note that the density check only works if the total size was {@link #ensure}d
-	 * before.
-	 *
-	 * @param row
-	 *            the row for which to set the value
-	 * @param value
-	 *            the value to store
-	 * @return {@code true} if the maximal density is reached
-	 */
-	boolean set(int row, double value);
+    /**
+     * Sets the value for the given row. Returns {@code true} if after this set the sparse chunk is
+     * too full. Note that the density check only works if the total size was {@link #ensure}d
+     * before.
+     *
+     * @param row   the row for which to set the value
+     * @param value the value to store
+     * @return {@code true} if the maximal density is reached
+     */
+    boolean set(int row, double value);
 
-	/**
-	 * Returns the value stored for this row.
-	 *
-	 * @param row
-	 *            the row for which to obtain the stored value
-	 * @return the value stored for row
-	 */
-	double get(int row);
+    /**
+     * Returns the value stored for this row.
+     *
+     * @param row the row for which to obtain the stored value
+     * @return the value stored for row
+     */
+    double get(int row);
 
-	/**
-	 * Sets the total size.
-	 *
-	 * @param size
-	 *            the expected size
-	 */
-	void ensure(int size);
+    /**
+     * Sets the total size.
+     *
+     * @param size the expected size
+     */
+    void ensure(int size);
 
 }

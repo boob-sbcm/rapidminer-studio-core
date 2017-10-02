@@ -30,21 +30,24 @@ import com.rapidminer.tools.OperatorService;
 
 
 /**
+ * The type Change attribute role quick fix.
+ *
  * @author Sebastian Land
- * 
  */
 public class ChangeAttributeRoleQuickFix extends OperatorInsertionQuickFix {
 
 	private final InputPort inputPort;
 	private final String role;
 
-	/**
-	 * @param rating
-	 * @param isInteractive
-	 * @param i18nKey
-	 * @param i18nArgs
-	 */
-	public ChangeAttributeRoleQuickFix(InputPort inputPort, String role, String i18nKey, Object... i18nArgs) {
+    /**
+     * Instantiates a new Change attribute role quick fix.
+     *
+     * @param inputPort the input port
+     * @param role      the role
+     * @param i18nKey   the 18 n key
+     * @param i18nArgs  the 18 n args
+     */
+    public ChangeAttributeRoleQuickFix(InputPort inputPort, String role, String i18nKey, Object... i18nArgs) {
 		super(i18nKey, i18nArgs, 10, inputPort);
 		// super(3, true, i18nKey, i18nArgs);
 		this.inputPort = inputPort;

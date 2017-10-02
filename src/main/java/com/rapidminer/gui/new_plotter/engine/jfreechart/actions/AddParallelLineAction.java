@@ -28,9 +28,8 @@ import java.awt.event.ActionEvent;
 
 /**
  * This action allows the user to add parallel lines (horizontal/vertical) to the current chart.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class AddParallelLineAction extends ResourceAction {
 
@@ -48,13 +47,13 @@ public class AddParallelLineAction extends ResourceAction {
 
 	private static final long serialVersionUID = 7788302558857099622L;
 
-	/**
-	 * Creates a new {@link ResourceAction} which opens the add parallel line configuration dialog
-	 * when triggered. There a crosshair line can be configured and added to the chart.
-	 * 
-	 * @param engine
-	 */
-	public AddParallelLineAction(JFreeChartPlotEngine engine) {
+    /**
+     * Creates a new {@link ResourceAction} which opens the add parallel line configuration dialog
+     * when triggered. There a crosshair line can be configured and added to the chart.
+     *
+     * @param engine the engine
+     */
+    public AddParallelLineAction(JFreeChartPlotEngine engine) {
 		super(true, "plotter.popup_menu.add_parallel_line");
 		this.engine = engine;
 	}
@@ -64,23 +63,23 @@ public class AddParallelLineAction extends ResourceAction {
 		addParallelLine(engine, latestPopupLocation);
 	}
 
-	/**
-	 * Sets the location where the popup has been triggered. Used to determine the location of the
-	 * line
-	 * 
-	 * @param location
-	 */
-	public void setPopupLocation(Point location) {
+    /**
+     * Sets the location where the popup has been triggered. Used to determine the location of the
+     * line
+     *
+     * @param location the location
+     */
+    public void setPopupLocation(Point location) {
 		latestPopupLocation = location;
 	}
 
-	/**
-	 * Opens the add parallel line configuration dialog and then adds the line the user specified.
-	 * 
-	 * @param engine
-	 * @param latestPopupLocation
-	 */
-	public static synchronized void addParallelLine(final JFreeChartPlotEngine engine, Point latestPopupLocation) {
+    /**
+     * Opens the add parallel line configuration dialog and then adds the line the user specified.
+     *
+     * @param engine              the engine
+     * @param latestPopupLocation the latest popup location
+     */
+    public static synchronized void addParallelLine(final JFreeChartPlotEngine engine, Point latestPopupLocation) {
 		if (dialog == null) {
 			dialog = new AddParallelLineDialog();
 		}

@@ -43,14 +43,20 @@ import org.w3c.dom.Element;
  * corrected. If parameters are queried that are not set, their default value is returned. <br/>
  * Upon setting the parameters, observers are notified, where the argument to the
  * {@link Observer#update()} method will be the key of the changed parameter.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class Parameters extends AbstractObservable<String> implements Cloneable, Iterable<String> {
 
-	public static final char PAIR_SEPARATOR = '\u241D';
+    /**
+     * The constant PAIR_SEPARATOR.
+     */
+    public static final char PAIR_SEPARATOR = '\u241D';
 
-	public static final char RECORD_SEPARATOR = '\u241E';
+    /**
+     * The constant RECORD_SEPARATOR.
+     */
+    public static final char RECORD_SEPARATOR = '\u241E';
 
 	/** Maps parameter keys (i.e. Strings) to their value (Objects). */
 	private final Map<String, String> keyToValueMap = new LinkedHashMap<String, String>();
@@ -58,28 +64,39 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 	/** Maps parameter keys (i.e. Strings) to their <code>ParameterType</code>. */
 	private final Map<String, ParameterType> keyToTypeMap = new LinkedHashMap<String, ParameterType>();
 
-	/** Creates an empty parameters object without any parameter types. */
-	public Parameters() {}
+    /**
+     * Creates an empty parameters object without any parameter types.
+     */
+    public Parameters() {}
 
-	/**
-	 * Constructs an instance of <code>Parameters</code> for the given list of
-	 * <code>ParameterTypes</code>. The list might be empty but not null.
-	 */
-	public Parameters(List<ParameterType> parameterTypes) {
+    /**
+     * Constructs an instance of <code>Parameters</code> for the given list of
+     * <code>ParameterTypes</code>. The list might be empty but not null.
+     *
+     * @param parameterTypes the parameter types
+     */
+    public Parameters(List<ParameterType> parameterTypes) {
 		for (ParameterType type : parameterTypes) {
 			addParameterType(type);
 		}
 	}
 
-	/**
-	 * Returns a list of <tt>ParameterTypes</tt> describing the parameters of this operator. This
-	 * list will be generated during construction time of the Operator.
-	 */
-	public Collection<ParameterType> getParameterTypes() {
+    /**
+     * Returns a list of <tt>ParameterTypes</tt> describing the parameters of this operator. This
+     * list will be generated during construction time of the Operator.
+     *
+     * @return the parameter types
+     */
+    public Collection<ParameterType> getParameterTypes() {
 		return keyToTypeMap.values();
 	}
 
-	public void addParameterType(ParameterType type) {
+    /**
+     * Add parameter type.
+     *
+     * @param type the type
+     */
+    public void addParameterType(ParameterType type) {
 		keyToTypeMap.put(type.getKey(), type);
 	}
 
@@ -99,16 +116,25 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 		return keyToTypeMap.keySet().iterator();
 	}
 
-	/** Returns the type of the parameter with the given type. */
-	public ParameterType getParameterType(String key) {
+    /**
+     * Returns the type of the parameter with the given type.  @param key the key
+     *
+     * @param key the key
+     * @return the parameter type
+     */
+    public ParameterType getParameterType(String key) {
 		return keyToTypeMap.get(key);
 	}
 
-	/**
-	 * Sets the parameter for the given key after performing a range-check. This method returns true
-	 * if the type was known and false if no parameter type was defined for this key.
-	 */
-	public boolean setParameter(String key, String value) {
+    /**
+     * Sets the parameter for the given key after performing a range-check. This method returns true
+     * if the type was known and false if no parameter type was defined for this key.
+     *
+     * @param key   the key
+     * @param value the value
+     * @return the parameter
+     */
+    public boolean setParameter(String key, String value) {
 		ParameterType parameterType = keyToTypeMap.get(key);
 		if (value == null) {
 			keyToValueMap.remove(key);
@@ -122,24 +148,30 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 		return parameterType != null;
 	}
 
-	/**
-	 * Sets the parameter without performing a range and type check.
-	 * 
-	 * @deprecated Please use the method {@link #setParameter(String, String)} instead
-	 */
-	@Deprecated
+    /**
+     * Sets the parameter without performing a range and type check.
+     *
+     * @param key   the key
+     * @param value the value
+     * @deprecated Please use the method {@link #setParameter(String, String)} instead
+     */
+    @Deprecated
 	public void setParameterWithoutCheck(String key, String value) {
 		setParameter(key, value);
 	}
 
-	/**
-	 * Returns the value of the given parameter. If it was not yet set, the default value is set now
-	 * and a log message is issued. If the <code>ParameterType</code> does not provide a default
-	 * value, this may result in an error message. In subsequent calls of this method, the parameter
-	 * will be set. An OperatorException (UserError) will be thrown if a non-optional parameter was
-	 * not set.
-	 */
-	public String getParameter(String key) throws UndefinedParameterError {
+    /**
+     * Returns the value of the given parameter. If it was not yet set, the default value is set now
+     * and a log message is issued. If the <code>ParameterType</code> does not provide a default
+     * value, this may result in an error message. In subsequent calls of this method, the parameter
+     * will be set. An OperatorException (UserError) will be thrown if a non-optional parameter was
+     * not set.
+     *
+     * @param key the key
+     * @return the parameter
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public String getParameter(String key) throws UndefinedParameterError {
 		if (keyToValueMap.containsKey(key)) {
 			return keyToValueMap.get(key);
 		} else {
@@ -170,16 +202,24 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 		}
 	}
 
-	/**
-	 * Returns the value of the parameter as specified by the process definition file (without
-	 * substituting default values etc.)
-	 */
-	public String getParameterAsSpecified(String key) {
+    /**
+     * Returns the value of the parameter as specified by the process definition file (without
+     * substituting default values etc.)
+     *
+     * @param key the key
+     * @return the parameter as specified
+     */
+    public String getParameterAsSpecified(String key) {
 		return keyToValueMap.get(key);
 	}
 
-	/** As {@link #getParameter(String)}, but returns null rather than throwing an exception. */
-	public String getParameterOrNull(String key) {
+    /**
+     * As {@link #getParameter(String)}, but returns null rather than throwing an exception.  @param key the key
+     *
+     * @param key the key
+     * @return the parameter or null
+     */
+    public String getParameterOrNull(String key) {
 		if (keyToValueMap.containsKey(key)) {
 			return keyToValueMap.get(key);
 		} else {
@@ -207,20 +247,24 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 		}
 	}
 
-	/**
-	 * Returns a set view of all parameter keys defined by parameter types.
-	 */
-	public Set<String> getKeys() {
+    /**
+     * Returns a set view of all parameter keys defined by parameter types.
+     *
+     * @return the keys
+     */
+    public Set<String> getKeys() {
 		return keyToTypeMap.keySet();
 	}
 
-	/**
-	 * This method returns the keys of all defined values. This might be disjunct with the keys
-	 * defined in the keyToType map, because the operator might contain parameter values, which do
-	 * not correspond to any parameter type. This is used for example during import, when parameters
-	 * are renamed.
-	 */
-	public Set<String> getDefinedKeys() {
+    /**
+     * This method returns the keys of all defined values. This might be disjunct with the keys
+     * defined in the keyToType map, because the operator might contain parameter values, which do
+     * not correspond to any parameter type. This is used for example during import, when parameters
+     * are renamed.
+     *
+     * @return the defined keys
+     */
+    public Set<String> getDefinedKeys() {
 		return keyToValueMap.keySet();
 	}
 
@@ -242,8 +286,14 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 		return keyToValueMap.hashCode();
 	}
 
-	/** Appends the elements describing these Parameters to the given element. */
-	public void appendXML(Element toElement, boolean hideDefault, Document doc) {
+    /**
+     * Appends the elements describing these Parameters to the given element.  @param toElement the to element
+     *
+     * @param toElement   the to element
+     * @param hideDefault the hide default
+     * @param doc         the doc
+     */
+    public void appendXML(Element toElement, boolean hideDefault, Document doc) {
 		for (String key : keyToTypeMap.keySet()) {
 			String value = keyToValueMap.get(key);
 			ParameterType type = keyToTypeMap.get(key);
@@ -261,14 +311,16 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 		}
 	}
 
-	/**
-	 * Writes a portion of the xml configuration file specifying the parameters that differ from
-	 * their default value.
-	 * 
-	 * @deprecated Use the DOM version of this method (
-	 *             {@link #appendXML(Element, boolean, Document)}).
-	 */
-	@Deprecated
+    /**
+     * Writes a portion of the xml configuration file specifying the parameters that differ from
+     * their default value.
+     *
+     * @param indent      the indent
+     * @param hideDefault the hide default
+     * @return the xml
+     * @deprecated Use the DOM version of this method (             {@link #appendXML(Element, boolean, Document)}).
+     */
+    @Deprecated
 	public String getXML(String indent, boolean hideDefault) {
 		StringBuffer result = new StringBuffer();
 		Iterator<String> i = keyToTypeMap.keySet().iterator();
@@ -291,7 +343,13 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 		return this.keyToValueMap.toString();
 	}
 
-	@Deprecated
+    /**
+     * Transform list 2 string string.
+     *
+     * @param parameterList the parameter list
+     * @return the string
+     */
+    @Deprecated
 	/**
 	 * This method has been moved to ParameterTypeList
 	 */
@@ -299,7 +357,13 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 		return ParameterTypeList.transformList2String(parameterList);
 	}
 
-	@Deprecated
+    /**
+     * Transform string 2 list list.
+     *
+     * @param listString the list string
+     * @return the list
+     */
+    @Deprecated
 	/**
 	 * This method has been moved to ParameterTypeList
 	 */
@@ -307,7 +371,13 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 		return ParameterTypeList.transformString2List(listString);
 	}
 
-	public void notifyRenaming(String oldName, String newName) {
+    /**
+     * Notify renaming.
+     *
+     * @param oldName the old name
+     * @param newName the new name
+     */
+    public void notifyRenaming(String oldName, String newName) {
 		for (String key : keyToValueMap.keySet()) {
 			ParameterType type = keyToTypeMap.get(key);
 			String value = keyToValueMap.get(key);
@@ -317,8 +387,13 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 		}
 	}
 
-	/** Renames a parameter, e.g. during importing old XML process files. */
-	public void renameParameter(String oldAttributeName, String newAttributeName) {
+    /**
+     * Renames a parameter, e.g. during importing old XML process files.  @param oldAttributeName the old attribute name
+     *
+     * @param oldAttributeName the old attribute name
+     * @param newAttributeName the new attribute name
+     */
+    public void renameParameter(String oldAttributeName, String newAttributeName) {
 		String value = keyToValueMap.get(oldAttributeName);
 		if (value != null) {
 			keyToValueMap.remove(oldAttributeName);
@@ -326,12 +401,14 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 		}
 	}
 
-	/**
-	 * Returns true if the parameter is set or has a default value.
-	 * 
-	 * @see Parameters#isSpecified(String)
-	 */
-	public boolean isSet(String parameterKey) {
+    /**
+     * Returns true if the parameter is set or has a default value.
+     *
+     * @param parameterKey the parameter key
+     * @return the boolean
+     * @see Parameters#isSpecified(String) Parameters#isSpecified(String)Parameters#isSpecified(String)
+     */
+    public boolean isSet(String parameterKey) {
 		if (keyToValueMap.containsKey(parameterKey)) {
 			return true;
 		} else {
@@ -344,37 +421,45 @@ public class Parameters extends AbstractObservable<String> implements Cloneable,
 		}
 	}
 
-	/**
-	 * Returns true iff the parameter value was explicitly set (as opposed to {@link #isSet(String)}
-	 * which also takes into account a possible default value.
-	 */
-	public boolean isSpecified(String key) {
+    /**
+     * Returns true iff the parameter value was explicitly set (as opposed to {@link #isSet(String)}
+     * which also takes into account a possible default value.
+     *
+     * @param key the key
+     * @return the boolean
+     */
+    public boolean isSpecified(String key) {
 		return keyToValueMap.containsKey(key);
 	}
 
-	public void copyFrom(Parameters parameters) {
+    /**
+     * Copy from.
+     *
+     * @param parameters the parameters
+     */
+    public void copyFrom(Parameters parameters) {
 		this.keyToValueMap.putAll(parameters.keyToValueMap);
 	}
 
-	/**
-	 * Clears the parameters map and adds all given parameters. This will not reset the already
-	 * registered types so you have to keep track that you don't set parameters not defined for this
-	 * operator!
-	 * 
-	 * @param parameters
-	 */
-	public void setAll(Parameters parameters) {
+    /**
+     * Clears the parameters map and adds all given parameters. This will not reset the already
+     * registered types so you have to keep track that you don't set parameters not defined for this
+     * operator!
+     *
+     * @param parameters the parameters
+     */
+    public void setAll(Parameters parameters) {
 		keyToValueMap.clear();
 		keyToValueMap.putAll(parameters.keyToValueMap);
 		fireUpdate();
 	}
 
-	/**
-	 * Adds all Parameters to the parameters map.
-	 * 
-	 * @param parameters
-	 */
-	public void addAll(Parameters parameters) {
+    /**
+     * Adds all Parameters to the parameters map.
+     *
+     * @param parameters the parameters
+     */
+    public void addAll(Parameters parameters) {
 		keyToValueMap.putAll(parameters.keyToValueMap);
 		fireUpdate();
 	}

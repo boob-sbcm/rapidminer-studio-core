@@ -25,9 +25,8 @@ import javax.swing.SwingUtilities;
 
 /**
  * Thread that disables GUI components that interfere with process editing while running.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public abstract class EditBlockingProgressThread extends ProgressThread {
 
@@ -36,12 +35,19 @@ public abstract class EditBlockingProgressThread extends ProgressThread {
 	private boolean mustReenable = false;
 	private static AtomicInteger pendingThreads = new AtomicInteger(0);
 
-	public EditBlockingProgressThread(String i18nKey) {
+    /**
+     * Instantiates a new Edit blocking progress thread.
+     *
+     * @param i18nKey the 18 n key
+     */
+    public EditBlockingProgressThread(String i18nKey) {
 		super(i18nKey);
 	}
 
-	/** Implement this method rather than {@link #run()} to perform the actual task. */
-	public abstract void execute();
+    /**
+     * Implement this method rather than {@link #run()} to perform the actual task.
+     */
+    public abstract void execute();
 
 	@Override
 	public final void run() {
@@ -81,7 +87,12 @@ public abstract class EditBlockingProgressThread extends ProgressThread {
 		}
 	}
 
-	public static boolean isEditing() {
+    /**
+     * Is editing boolean.
+     *
+     * @return the boolean
+     */
+    public static boolean isEditing() {
 		return pendingThreads.get() > 0;
 	}
 }

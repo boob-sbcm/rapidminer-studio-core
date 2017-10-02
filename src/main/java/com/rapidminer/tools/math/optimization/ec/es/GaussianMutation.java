@@ -26,7 +26,7 @@ import java.util.Random;
 /**
  * Changes the values by adding a gaussian distribution multiplied with the current variance. Clips
  * the value range to [min,max].
- * 
+ *
  * @author Ingo Mierswa
  */
 public class GaussianMutation implements Mutation {
@@ -39,7 +39,16 @@ public class GaussianMutation implements Mutation {
 
 	private Random random;
 
-	public GaussianMutation(double[] sigma, double[] min, double[] max, OptimizationValueType[] valueTypes, Random random) {
+    /**
+     * Instantiates a new Gaussian mutation.
+     *
+     * @param sigma      the sigma
+     * @param min        the min
+     * @param max        the max
+     * @param valueTypes the value types
+     * @param random     the random
+     */
+    public GaussianMutation(double[] sigma, double[] min, double[] max, OptimizationValueType[] valueTypes, Random random) {
 		this.sigma = sigma;
 		this.min = min;
 		this.max = max;
@@ -47,11 +56,21 @@ public class GaussianMutation implements Mutation {
 		this.random = random;
 	}
 
-	public void setSigma(double[] sigma) {
+    /**
+     * Sets sigma.
+     *
+     * @param sigma the sigma
+     */
+    public void setSigma(double[] sigma) {
 		this.sigma = sigma;
 	}
 
-	public double[] getSigma() {
+    /**
+     * Get sigma double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getSigma() {
 		return this.sigma;
 	}
 

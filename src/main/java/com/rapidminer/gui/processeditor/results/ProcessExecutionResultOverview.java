@@ -61,7 +61,6 @@ import com.rapidminer.tools.Tools;
  * Summarizes the result of a single process execution.
  *
  * @author Simon Fischer, Marco Boeck
- *
  */
 public class ProcessExecutionResultOverview extends JPanel {
 
@@ -125,7 +124,15 @@ public class ProcessExecutionResultOverview extends JPanel {
 
 	private JPanel resultPanel;
 
-	public ProcessExecutionResultOverview(ResultOverview parent, Process process, List<IOObject> results,
+    /**
+     * Instantiates a new Process execution result overview.
+     *
+     * @param parent        the parent
+     * @param process       the process
+     * @param results       the results
+     * @param statusMessage the status message
+     */
+    public ProcessExecutionResultOverview(ResultOverview parent, Process process, List<IOObject> results,
 			String statusMessage) {
 		this.parent = parent;
 		this.process = process.getRootOperator().getXML(false);

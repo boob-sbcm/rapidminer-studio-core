@@ -32,16 +32,20 @@ import com.rapidminer.operator.ports.metadata.MetaData;
 
 /**
  * Turns a collection of collections into a flat collection.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class UnfoldOperator extends Operator {
 
 	private final InputPort collectionInput = getInputPorts().createPort("collection", new CollectionMetaData());
 	private final OutputPort flatOutput = getOutputPorts().createPort("flat");
 
-	public UnfoldOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Unfold operator.
+     *
+     * @param description the description
+     */
+    public UnfoldOperator(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new MDTransformationRule() {
 

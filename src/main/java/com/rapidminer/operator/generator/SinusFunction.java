@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is sin(att1*att2) + sin(att1+att2).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SinusFunction extends RegressionFunction {

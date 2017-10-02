@@ -26,7 +26,7 @@ import java.util.LinkedList;
  * This class is an extension of the HierarchicalClusterNode, representing the leaf nodes of a
  * hierarchical cluster tree. These Nodes are the only nodes containing the links to examples by
  * storing example ids.
- * 
+ *
  * @author Sebastian Land
  */
 public class HierarchicalClusterLeafNode extends HierarchicalClusterNode {
@@ -35,20 +35,43 @@ public class HierarchicalClusterLeafNode extends HierarchicalClusterNode {
 
 	private Collection<Object> exampleIds;
 
-	public HierarchicalClusterLeafNode(String clusterId) {
+    /**
+     * Instantiates a new Hierarchical cluster leaf node.
+     *
+     * @param clusterId the cluster id
+     */
+    public HierarchicalClusterLeafNode(String clusterId) {
 		super(clusterId);
 	}
 
-	public HierarchicalClusterLeafNode(String clusterId, Collection<Object> exampleIds) {
+    /**
+     * Instantiates a new Hierarchical cluster leaf node.
+     *
+     * @param clusterId  the cluster id
+     * @param exampleIds the example ids
+     */
+    public HierarchicalClusterLeafNode(String clusterId, Collection<Object> exampleIds) {
 		super(clusterId);
 		this.exampleIds = exampleIds;
 	}
 
-	public HierarchicalClusterLeafNode(int clusterId, Collection<Object> exampleIds) {
+    /**
+     * Instantiates a new Hierarchical cluster leaf node.
+     *
+     * @param clusterId  the cluster id
+     * @param exampleIds the example ids
+     */
+    public HierarchicalClusterLeafNode(int clusterId, Collection<Object> exampleIds) {
 		this(clusterId + "", exampleIds);
 	}
 
-	public HierarchicalClusterLeafNode(int clusterId, Object exampleId) {
+    /**
+     * Instantiates a new Hierarchical cluster leaf node.
+     *
+     * @param clusterId the cluster id
+     * @param exampleId the example id
+     */
+    public HierarchicalClusterLeafNode(int clusterId, Object exampleId) {
 		super(clusterId + "");
 		this.exampleIds = new LinkedList<Object>();
 		this.exampleIds.add(exampleId);
@@ -88,7 +111,12 @@ public class HierarchicalClusterLeafNode extends HierarchicalClusterNode {
 		return exampleIds.size();
 	}
 
-	public void addSubNode(HierarchicalClusterLeafNode node) {}
+    /**
+     * Add sub node.
+     *
+     * @param node the node
+     */
+    public void addSubNode(HierarchicalClusterLeafNode node) {}
 
 	@Override
 	public String toString() {

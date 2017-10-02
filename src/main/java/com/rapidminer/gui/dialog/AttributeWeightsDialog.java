@@ -53,7 +53,7 @@ import com.rapidminer.tools.Tools;
 /**
  * This weights dialog is used to show attribute weights created by the process, by the user, or
  * were loaded from a file. Several view modes and sorting are supported.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class AttributeWeightsDialog extends JDialog {
@@ -70,8 +70,12 @@ public class AttributeWeightsDialog extends JDialog {
 
 	private JLabel selectionCount = new JLabel();
 
-	/** Creates a new dialog for the given feature weights. */
-	public AttributeWeightsDialog(AttributeWeights weights) {
+    /**
+     * Creates a new dialog for the given feature weights.  @param weights the weights
+     *
+     * @param weights the weights
+     */
+    public AttributeWeightsDialog(AttributeWeights weights) {
 		super(ApplicationFrame.getApplicationFrame(), "Attribute Weights", true);
 		getContentPane().setLayout(new BorderLayout());
 
@@ -295,11 +299,21 @@ public class AttributeWeightsDialog extends JDialog {
 		}
 	}
 
-	public boolean isOk() {
+    /**
+     * Is ok boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isOk() {
 		return ok;
 	}
 
-	public AttributeWeights getAttributeWeights() {
+    /**
+     * Gets attribute weights.
+     *
+     * @return the attribute weights
+     */
+    public AttributeWeights getAttributeWeights() {
 		return attributeTableModel.getAttributeWeights();
 	}
 

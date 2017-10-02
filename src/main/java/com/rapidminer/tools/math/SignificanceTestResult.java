@@ -25,7 +25,7 @@ import com.rapidminer.operator.ResultObjectAdapter;
  * This class encapsulates the result of a statistical significance test. Subclasses may also want
  * to override the method getVisualizationComponent to provide a nicer graphical version for the
  * GUI.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class SignificanceTestResult extends ResultObjectAdapter {
@@ -40,14 +40,28 @@ public abstract class SignificanceTestResult extends ResultObjectAdapter {
 	@Override
 	public abstract String toString();
 
-	/** Returns the calculated probability value. */
-	public abstract double getProbability();
+    /**
+     * Returns the calculated probability value.  @return the probability
+     *
+     * @return the probability
+     */
+    public abstract double getProbability();
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "sgf";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "significance test";
 	}
 }

@@ -37,12 +37,10 @@ import java.util.Vector;
 /**
  * This grouping creates a fixed number of bins. All bins contain the same number of examples. That
  * implies that in general the width of the bins is not equal.
- * 
+ * <p>
  * Can currently only handle numerical values.
- * 
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class EqualDataFractionGrouping extends AbstractValueGrouping {
 
@@ -50,21 +48,16 @@ public class EqualDataFractionGrouping extends AbstractValueGrouping {
 	private final GroupingType type = GroupingType.EQUAL_DATA_FRACTION;
 	private Integer distinctValueCount = Integer.MAX_VALUE;
 
-	/**
-	 * Creates a new {@link EqualDataFractionGrouping}.
-	 * 
-	 * @param dataTableColumn
-	 *            the data table column for which the grouping will be created
-	 * @param binCount
-	 *            the number of bins in this grouping
-	 * @param categorical
-	 *            indicates if this grouping creates categorical groups
-	 * @param dateFormat
-	 *            the format to be used to format dates (if dataTableColumn is a date)
-	 * @throws ChartConfigurationException
-	 *             if the data table column is nominal (not supported by this grouping)
-	 */
-	public EqualDataFractionGrouping(DataTableColumn dataTableColumn, int binCount, boolean categorical,
+    /**
+     * Creates a new {@link EqualDataFractionGrouping}.
+     *
+     * @param dataTableColumn the data table column for which the grouping will be created
+     * @param binCount        the number of bins in this grouping
+     * @param categorical     indicates if this grouping creates categorical groups
+     * @param dateFormat      the format to be used to format dates (if dataTableColumn is a date)
+     * @throws ChartConfigurationException if the data table column is nominal (not supported by this grouping)
+     */
+    public EqualDataFractionGrouping(DataTableColumn dataTableColumn, int binCount, boolean categorical,
 			DateFormat dateFormat) throws ChartConfigurationException {
 		super(dataTableColumn, categorical, dateFormat);
 		if (dataTableColumn.isNominal()) {
@@ -74,20 +67,32 @@ public class EqualDataFractionGrouping extends AbstractValueGrouping {
 		this.binCount = binCount;
 	}
 
-	/**
-	 * Copy constructor
-	 */
-	protected EqualDataFractionGrouping(EqualDataFractionGrouping other) {
+    /**
+     * Copy constructor
+     *
+     * @param other the other
+     */
+    protected EqualDataFractionGrouping(EqualDataFractionGrouping other) {
 		super(other.getDataTableColumn(), other.isCategorical(), other.getDateFormat());
 		this.forceDataTableColumn(other.getDataTableColumn());
 		this.binCount = other.binCount;
 	}
 
-	public int getBinCount() {
+    /**
+     * Gets bin count.
+     *
+     * @return the bin count
+     */
+    public int getBinCount() {
 		return binCount;
 	}
 
-	public void setBinCount(int binCount) {
+    /**
+     * Sets bin count.
+     *
+     * @param binCount the bin count
+     */
+    public void setBinCount(int binCount) {
 		if (binCount != this.binCount) {
 			if (binCount < distinctValueCount) {
 				this.binCount = binCount;

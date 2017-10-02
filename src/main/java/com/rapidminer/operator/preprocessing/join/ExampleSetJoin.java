@@ -77,13 +77,26 @@ import com.rapidminer.tools.container.Pair;
  */
 public class ExampleSetJoin extends AbstractExampleSetJoin {
 
-	public static class DoubleArrayWrapper {
+    /**
+     * The type Double array wrapper.
+     */
+    public static class DoubleArrayWrapper {
 
-		public DoubleArrayWrapper(double[] data) {
+        /**
+         * Instantiates a new Double array wrapper.
+         *
+         * @param data the data
+         */
+        public DoubleArrayWrapper(double[] data) {
 			this.data = data;
 		}
 
-		public double[] getData() {
+        /**
+         * Get data double [ ].
+         *
+         * @return the double [ ]
+         */
+        public double[] getData() {
 			return data;
 		}
 
@@ -103,25 +116,66 @@ public class ExampleSetJoin extends AbstractExampleSetJoin {
 		}
 	}
 
-	public static final String PARAMETER_JOIN_TYPE = "join_type";
-	public static final String PARAMETER_LEFT_ATTRIBUTE_FOR_JOIN = "left_key_attributes";
-	public static final String PARAMETER_RIGHT_ATTRIBUTE_FOR_JOIN = "right_key_attributes";
-	public static final String PARAMETER_JOIN_ATTRIBUTES = "key_attributes";
-	public static final String PARAMETER_USE_ID = "use_id_attribute_as_key";
-	public static final String PARAMETER_KEEP_BOTH_JOIN_ATTRIBUTES = "keep_both_join_attributes";
-	public static final String PARAMETER_FILL_LEFT_ID = "";
+    /**
+     * The constant PARAMETER_JOIN_TYPE.
+     */
+    public static final String PARAMETER_JOIN_TYPE = "join_type";
+    /**
+     * The constant PARAMETER_LEFT_ATTRIBUTE_FOR_JOIN.
+     */
+    public static final String PARAMETER_LEFT_ATTRIBUTE_FOR_JOIN = "left_key_attributes";
+    /**
+     * The constant PARAMETER_RIGHT_ATTRIBUTE_FOR_JOIN.
+     */
+    public static final String PARAMETER_RIGHT_ATTRIBUTE_FOR_JOIN = "right_key_attributes";
+    /**
+     * The constant PARAMETER_JOIN_ATTRIBUTES.
+     */
+    public static final String PARAMETER_JOIN_ATTRIBUTES = "key_attributes";
+    /**
+     * The constant PARAMETER_USE_ID.
+     */
+    public static final String PARAMETER_USE_ID = "use_id_attribute_as_key";
+    /**
+     * The constant PARAMETER_KEEP_BOTH_JOIN_ATTRIBUTES.
+     */
+    public static final String PARAMETER_KEEP_BOTH_JOIN_ATTRIBUTES = "keep_both_join_attributes";
+    /**
+     * The constant PARAMETER_FILL_LEFT_ID.
+     */
+    public static final String PARAMETER_FILL_LEFT_ID = "";
 
-	public static final String[] JOIN_TYPES = { "inner", "left", "right", "outer" };
+    /**
+     * The constant JOIN_TYPES.
+     */
+    public static final String[] JOIN_TYPES = { "inner", "left", "right", "outer" };
 
-	public static final int JOIN_TYPE_INNER = 0;
+    /**
+     * The constant JOIN_TYPE_INNER.
+     */
+    public static final int JOIN_TYPE_INNER = 0;
 
-	public static final int JOIN_TYPE_LEFT = 1;
+    /**
+     * The constant JOIN_TYPE_LEFT.
+     */
+    public static final int JOIN_TYPE_LEFT = 1;
 
-	public static final int JOIN_TYPE_RIGHT = 2;
+    /**
+     * The constant JOIN_TYPE_RIGHT.
+     */
+    public static final int JOIN_TYPE_RIGHT = 2;
 
-	public static final int JOIN_TYPE_OUTER = 3;
+    /**
+     * The constant JOIN_TYPE_OUTER.
+     */
+    public static final int JOIN_TYPE_OUTER = 3;
 
-	public ExampleSetJoin(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set join.
+     *
+     * @param description the description
+     */
+    public ExampleSetJoin(OperatorDescription description) {
 		super(description);
 
 		getLeftInput().addPrecondition(new ParameterConditionedPrecondition(getLeftInput(),

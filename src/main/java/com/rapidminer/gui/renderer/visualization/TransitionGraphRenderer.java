@@ -27,7 +27,7 @@ import com.rapidminer.operator.visualization.dependencies.TransitionGraph;
 
 /**
  * A renderer for the transition graph view.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class TransitionGraphRenderer extends AbstractGraphRenderer {

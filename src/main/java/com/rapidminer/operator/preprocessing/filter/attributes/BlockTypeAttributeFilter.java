@@ -42,14 +42,23 @@ import java.util.Set;
  * parameter block_type. This can be useful e.g. for preprocessing operators that can handle only
  * series attributes. Features of the type mentioned in except_block_type are removed even if they
  * match block_type.
- * 
+ *
  * @author Sebastian Land
  */
 public class BlockTypeAttributeFilter extends AbstractAttributeFilterCondition {
 
-	public static final String PARAMETER_BLOCK_TYPE = "block_type";
-	public static final String PARAMETER_ADD_EXCEPTION = "use_block_type_exception";
-	public static final String PARAMETER_EXCEPT_BLOCK_TYPE = "except_block_type";
+    /**
+     * The constant PARAMETER_BLOCK_TYPE.
+     */
+    public static final String PARAMETER_BLOCK_TYPE = "block_type";
+    /**
+     * The constant PARAMETER_ADD_EXCEPTION.
+     */
+    public static final String PARAMETER_ADD_EXCEPTION = "use_block_type_exception";
+    /**
+     * The constant PARAMETER_EXCEPT_BLOCK_TYPE.
+     */
+    public static final String PARAMETER_EXCEPT_BLOCK_TYPE = "except_block_type";
 
 	private int blockType;
 	private int exceptBlockType;

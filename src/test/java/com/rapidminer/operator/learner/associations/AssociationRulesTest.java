@@ -32,11 +32,13 @@ import junit.framework.TestCase;
  * Calling toString with active Iterator failed
  *
  * @author Jonas Wilms-Pfau
- *
  */
 public class AssociationRulesTest extends TestCase {
 
-	@Test
+    /**
+     * Test to stringwith iterator function.
+     */
+    @Test
 	public void testToStringwithIteratorFunction() {
 		AssociationRules mockRules = new AssociationRules();
 		for (int i = 0; i < 100; i++) {

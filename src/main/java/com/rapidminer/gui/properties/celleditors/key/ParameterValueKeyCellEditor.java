@@ -45,7 +45,7 @@ import javax.swing.JTable;
 /**
  * Parameter editor for a {@link ParameterTypeValue}, i.e. a parameter name and value of a single
  * operator. This can for example be used by parameter optimization operators.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ParameterValueKeyCellEditor extends AbstractCellEditor implements PropertyKeyCellEditor {
@@ -66,9 +66,19 @@ public class ParameterValueKeyCellEditor extends AbstractCellEditor implements P
 
 	private boolean fireEvent = true;
 
-	public ParameterValueKeyCellEditor(ParameterTypeParameterValue type) {}
+    /**
+     * Instantiates a new Parameter value key cell editor.
+     *
+     * @param type the type
+     */
+    public ParameterValueKeyCellEditor(ParameterTypeParameterValue type) {}
 
-	protected Object readResolve() {
+    /**
+     * Read resolve object.
+     *
+     * @return the object
+     */
+    protected Object readResolve() {
 		this.process = this.parentOperator.getProcess();
 		return this;
 	}
@@ -184,11 +194,19 @@ public class ParameterValueKeyCellEditor extends AbstractCellEditor implements P
 		return getTableCellEditorComponent(table, value, isSelected, row, column);
 	}
 
-	public void setParameterChangeListener(ParameterChangeListener listener) {
+    /**
+     * Sets parameter change listener.
+     *
+     * @param listener the listener
+     */
+    public void setParameterChangeListener(ParameterChangeListener listener) {
 		this.listener = listener;
 	}
 
-	public void fireParameterChangedEvent() {
+    /**
+     * Fire parameter changed event.
+     */
+    public void fireParameterChangedEvent() {
 		if (fireEvent) {
 			if (listener != null) {
 				String operatorName = (String) operatorCombo.getSelectedItem();

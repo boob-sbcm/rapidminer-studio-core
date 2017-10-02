@@ -33,12 +33,23 @@ public class WeightVector implements ComponentVector {
 	private double eigenvalue;
 	private double[] weights;
 
-	public WeightVector(double[] weights, double eigenvalue) {
+    /**
+     * Instantiates a new Weight vector.
+     *
+     * @param weights    the weights
+     * @param eigenvalue the eigenvalue
+     */
+    public WeightVector(double[] weights, double eigenvalue) {
 		this.weights = weights;
 		this.eigenvalue = eigenvalue;
 	}
 
-	public double[] getWeights() {
+    /**
+     * Get weights double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getWeights() {
 		return this.weights;
 	}
 

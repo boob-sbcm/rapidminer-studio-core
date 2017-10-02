@@ -20,17 +20,25 @@ package com.rapidminer.operator.features;
 
 /**
  * An operator that modifies populations.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa Exp $
  */
 public interface PopulationOperator {
 
-	/** Modifies the population. */
-	public void operate(Population pop) throws Exception;
+    /**
+     * Modifies the population.  @param pop the pop
+     *
+     * @param pop the pop
+     * @throws Exception the exception
+     */
+    public void operate(Population pop) throws Exception;
 
-	/**
-	 * Indicates if the operation should be performed in the given generation. Allows pop ops which
-	 * works only in a part of the generations.
-	 */
-	public boolean performOperation(int generation);
+    /**
+     * Indicates if the operation should be performed in the given generation. Allows pop ops which
+     * works only in a part of the generations.
+     *
+     * @param generation the generation
+     * @return the boolean
+     */
+    public boolean performOperation(int generation);
 }

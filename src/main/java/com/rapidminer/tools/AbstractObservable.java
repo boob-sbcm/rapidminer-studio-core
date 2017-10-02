@@ -26,6 +26,9 @@ import javax.swing.SwingUtilities;
 
 
 /**
+ * The type Abstract observable.
+ *
+ * @param <A> the type parameter
  * @author Simon Fischer
  */
 public class AbstractObservable<A> implements Observable<A> {
@@ -86,13 +89,19 @@ public class AbstractObservable<A> implements Observable<A> {
 		}
 	}
 
-	/** Equivalent to <code>fireUpdate(null)</code>. */
-	protected void fireUpdate() {
+    /**
+     * Equivalent to <code>fireUpdate(null)</code>.
+     */
+    protected void fireUpdate() {
 		fireUpdate(null);
 	}
 
-	/** Updates all observers with the given argument. */
-	protected void fireUpdate(final A argument) {
+    /**
+     * Updates all observers with the given argument.  @param argument the argument
+     *
+     * @param argument the argument
+     */
+    protected void fireUpdate(final A argument) {
 		// lists are copied in order to avoid ConcurrentModification occurs if updating
 		// an observer triggers insertion of another
 		List<Observer<A>> copy;

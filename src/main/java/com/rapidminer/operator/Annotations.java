@@ -38,62 +38,126 @@ import org.w3c.dom.NodeList;
 
 /**
  * Instances of this class can be used to annotate {@link IOObject}s, {@link Attribute}s, etc.
- * 
+ *
  * @author Simon Fischer, Marius Helf
- * 
  */
 public class Annotations implements Serializable, Map<String, String>, Cloneable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final String ANNOTATIONS_TAG_NAME = "annotations";
+    /**
+     * The constant ANNOTATIONS_TAG_NAME.
+     */
+    public static final String ANNOTATIONS_TAG_NAME = "annotations";
 
 	// for IOObjects
 
-	/** Source, e.g. URI, or SQL query of data. */
-	public static final String KEY_SOURCE = "Source";
+    /**
+     * Source, e.g. URI, or SQL query of data.
+     */
+    public static final String KEY_SOURCE = "Source";
 
-	public static final String KEY_FILENAME = "Filename";
+    /**
+     * The constant KEY_FILENAME.
+     */
+    public static final String KEY_FILENAME = "Filename";
 
-	/** User defined comment. */
-	public static final String KEY_COMMENT = "Comment";
+    /**
+     * User defined comment.
+     */
+    public static final String KEY_COMMENT = "Comment";
 
 	// for Attribtues
 
-	/** Physical unit of attributes. */
-	public static final String KEY_UNIT = "Unit";
+    /**
+     * Physical unit of attributes.
+     */
+    public static final String KEY_UNIT = "Unit";
 
-	/** Colors for attribute values. */
-	public static final String KEY_COLOR_MAP = "Colors";
+    /**
+     * Colors for attribute values.
+     */
+    public static final String KEY_COLOR_MAP = "Colors";
 
 	// Dublin Core
 
-	public static final String KEY_DC_AUTHOR = "dc.author";
-	public static final String KEY_DC_TITLE = "dc.title";
-	public static final String KEY_DC_SUBJECT = "dc.subject";
-	public static final String KEY_DC_COVERAGE = "dc.coverage";
-	public static final String KEY_DC_DESCRIPTION = "dc.description";
-	public static final String KEY_DC_CREATOR = "dc.creator";
-	public static final String KEY_DC_PUBLISHER = "dc.publisher";
-	public static final String KEY_DC_CONTRIBUTOR = "dc.contributor";
-	public static final String KEY_DC_RIGHTS_HOLDER = "dc.rightsHolder";
-	public static final String KEY_DC_RIGHTS = "dc.rights";
-	public static final String KEY_DC_PROVENANCE = "dc.provenance";
-	public static final String KEY_DC_SOURCE = "dc.source";
-	public static final String KEY_DC_RELATION = "dc.relation";
-	public static final String KEY_DC_AUDIENCE = "dc.audience";
-	public static final String KEY_DC_INSTRUCTIONAL_METHOD = "dc.description";
+    /**
+     * The constant KEY_DC_AUTHOR.
+     */
+    public static final String KEY_DC_AUTHOR = "dc.author";
+    /**
+     * The constant KEY_DC_TITLE.
+     */
+    public static final String KEY_DC_TITLE = "dc.title";
+    /**
+     * The constant KEY_DC_SUBJECT.
+     */
+    public static final String KEY_DC_SUBJECT = "dc.subject";
+    /**
+     * The constant KEY_DC_COVERAGE.
+     */
+    public static final String KEY_DC_COVERAGE = "dc.coverage";
+    /**
+     * The constant KEY_DC_DESCRIPTION.
+     */
+    public static final String KEY_DC_DESCRIPTION = "dc.description";
+    /**
+     * The constant KEY_DC_CREATOR.
+     */
+    public static final String KEY_DC_CREATOR = "dc.creator";
+    /**
+     * The constant KEY_DC_PUBLISHER.
+     */
+    public static final String KEY_DC_PUBLISHER = "dc.publisher";
+    /**
+     * The constant KEY_DC_CONTRIBUTOR.
+     */
+    public static final String KEY_DC_CONTRIBUTOR = "dc.contributor";
+    /**
+     * The constant KEY_DC_RIGHTS_HOLDER.
+     */
+    public static final String KEY_DC_RIGHTS_HOLDER = "dc.rightsHolder";
+    /**
+     * The constant KEY_DC_RIGHTS.
+     */
+    public static final String KEY_DC_RIGHTS = "dc.rights";
+    /**
+     * The constant KEY_DC_PROVENANCE.
+     */
+    public static final String KEY_DC_PROVENANCE = "dc.provenance";
+    /**
+     * The constant KEY_DC_SOURCE.
+     */
+    public static final String KEY_DC_SOURCE = "dc.source";
+    /**
+     * The constant KEY_DC_RELATION.
+     */
+    public static final String KEY_DC_RELATION = "dc.relation";
+    /**
+     * The constant KEY_DC_AUDIENCE.
+     */
+    public static final String KEY_DC_AUDIENCE = "dc.audience";
+    /**
+     * The constant KEY_DC_INSTRUCTIONAL_METHOD.
+     */
+    public static final String KEY_DC_INSTRUCTIONAL_METHOD = "dc.description";
 
-	/** Custom keys defined by RapidMiner */
-	public static final String[] KEYS_RAPIDMINER_IOOBJECT = { KEY_SOURCE, KEY_COMMENT };
+    /**
+     * Custom keys defined by RapidMiner
+     */
+    public static final String[] KEYS_RAPIDMINER_IOOBJECT = { KEY_SOURCE, KEY_COMMENT };
 
-	/** Custom keys defined by the Dublin Core standard. */
-	public static final String[] KEYS_DUBLIN_CORE = { KEY_DC_AUTHOR, KEY_DC_TITLE, KEY_DC_SUBJECT, KEY_DC_COVERAGE,
+    /**
+     * Custom keys defined by the Dublin Core standard.
+     */
+    public static final String[] KEYS_DUBLIN_CORE = { KEY_DC_AUTHOR, KEY_DC_TITLE, KEY_DC_SUBJECT, KEY_DC_COVERAGE,
 			KEY_DC_DESCRIPTION, KEY_DC_CREATOR, KEY_DC_PUBLISHER, KEY_DC_CONTRIBUTOR, KEY_DC_RIGHTS_HOLDER, KEY_DC_RIGHTS,
 			KEY_DC_PROVENANCE, KEY_DC_SOURCE, KEY_DC_RELATION, KEY_DC_AUDIENCE, KEY_DC_INSTRUCTIONAL_METHOD, };
 
-	/** All keys that are supposed to be used with {@link IOObject}s. */
-	public static final String[] ALL_KEYS_IOOBJECT = { KEY_SOURCE, KEY_COMMENT, KEY_FILENAME,
+    /**
+     * All keys that are supposed to be used with {@link IOObject}s.
+     */
+    public static final String[] ALL_KEYS_IOOBJECT = { KEY_SOURCE, KEY_COMMENT, KEY_FILENAME,
 
 	KEY_DC_AUTHOR, KEY_DC_TITLE, KEY_DC_SUBJECT, KEY_DC_COVERAGE, KEY_DC_DESCRIPTION, KEY_DC_CREATOR, KEY_DC_PUBLISHER,
 			KEY_DC_CONTRIBUTOR, KEY_DC_RIGHTS_HOLDER, KEY_DC_RIGHTS, KEY_DC_PROVENANCE, KEY_DC_SOURCE, KEY_DC_RELATION,
@@ -101,39 +165,68 @@ public class Annotations implements Serializable, Map<String, String>, Cloneable
 
 	};
 
-	/**
-	 * Keys that can be assigned to {@link Attribute}s. If you extend this list, also extend
-	 * {@link MetaDataViewerTableModel#COLUMN_NAMES}.
-	 */
-	public static final String[] ALL_KEYS_ATTRIBUTE = { KEY_COMMENT, KEY_UNIT };
+    /**
+     * Keys that can be assigned to {@link Attribute}s. If you extend this list, also extend
+     * {@link MetaDataViewerTableModel#COLUMN_NAMES}.
+     */
+    public static final String[] ALL_KEYS_ATTRIBUTE = { KEY_COMMENT, KEY_UNIT };
 
 	private LinkedHashMap<String, String> keyValueMap = new LinkedHashMap<String, String>();
 
-	/** Pseudo-annotation to be used for attribute names. */
-	public static final String ANNOTATION_NAME = "Name";
+    /**
+     * Pseudo-annotation to be used for attribute names.
+     */
+    public static final String ANNOTATION_NAME = "Name";
 
-	public Annotations() {}
+    /**
+     * Instantiates a new Annotations.
+     */
+    public Annotations() {}
 
-	/**
-	 * Clone constructor.
-	 */
-	public Annotations(Annotations annotations) {
+    /**
+     * Clone constructor.
+     *
+     * @param annotations the annotations
+     */
+    public Annotations(Annotations annotations) {
 		this.keyValueMap = new LinkedHashMap<String, String>(annotations.keyValueMap);
 	}
 
-	public void setAnnotation(String key, String value) {
+    /**
+     * Sets annotation.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public void setAnnotation(String key, String value) {
 		keyValueMap.put(key, value);
 	}
 
-	public String getAnnotation(String key) {
+    /**
+     * Gets annotation.
+     *
+     * @param key the key
+     * @return the annotation
+     */
+    public String getAnnotation(String key) {
 		return keyValueMap.get(key);
 	}
 
-	public List<String> getKeys() {
+    /**
+     * Gets keys.
+     *
+     * @return the keys
+     */
+    public List<String> getKeys() {
 		return new ArrayList<String>(keyValueMap.keySet());
 	}
 
-	public void removeAnnotation(String key) {
+    /**
+     * Remove annotation.
+     *
+     * @param key the key
+     */
+    public void removeAnnotation(String key) {
 		keyValueMap.remove(key);
 	}
 
@@ -207,7 +300,13 @@ public class Annotations implements Serializable, Map<String, String>, Cloneable
 		return keyValueMap.toString();
 	}
 
-	public Element toXML(Document doc) {
+    /**
+     * To xml element.
+     *
+     * @param doc the doc
+     * @return the element
+     */
+    public Element toXML(Document doc) {
 		Element elem = doc.createElement(ANNOTATIONS_TAG_NAME);
 		for (Map.Entry<String, String> entry : keyValueMap.entrySet()) {
 			addAnnotationToXML(elem, entry.getKey(), entry.getValue());
@@ -215,8 +314,14 @@ public class Annotations implements Serializable, Map<String, String>, Cloneable
 		return elem;
 	}
 
-	/** Updates the XML representation to contain this annotation. */
-	public static void addAnnotationToXML(Element annotationsElement, String name, String value) {
+    /**
+     * Updates the XML representation to contain this annotation.  @param annotationsElement the annotations element
+     *
+     * @param annotationsElement the annotations element
+     * @param name               the name
+     * @param value              the value
+     */
+    public static void addAnnotationToXML(Element annotationsElement, String name, String value) {
 		if (value == null) {
 			deleteAnnotationFromXML(annotationsElement, name);
 		} else {
@@ -229,8 +334,13 @@ public class Annotations implements Serializable, Map<String, String>, Cloneable
 		}
 	}
 
-	/** Updates the XML representation removing this annotation. */
-	public static void deleteAnnotationFromXML(Element annotationsElement, String name) {
+    /**
+     * Updates the XML representation removing this annotation.  @param annotationsElement the annotations element
+     *
+     * @param annotationsElement the annotations element
+     * @param name               the name
+     */
+    public static void deleteAnnotationFromXML(Element annotationsElement, String name) {
 		// XMLTools.deleteTagContents(annotationsElement, name);
 		NodeList children = annotationsElement.getChildNodes();
 		for (int i = 0; i < children.getLength(); i++) {
@@ -241,7 +351,12 @@ public class Annotations implements Serializable, Map<String, String>, Cloneable
 		}
 	}
 
-	public void parseXML(Element annotationsElem) {
+    /**
+     * Parse xml.
+     *
+     * @param annotationsElem the annotations elem
+     */
+    public void parseXML(Element annotationsElem) {
 		NodeList children = annotationsElem.getElementsByTagName("annotation");
 		for (int i = 0; i < children.getLength(); i++) {
 			Node child = children.item(i);
@@ -252,7 +367,12 @@ public class Annotations implements Serializable, Map<String, String>, Cloneable
 		}
 	}
 
-	public List<String> getDefinedAnnotationNames() {
+    /**
+     * Gets defined annotation names.
+     *
+     * @return the defined annotation names
+     */
+    public List<String> getDefinedAnnotationNames() {
 		List<String> result = new LinkedList<String>();
 		result.addAll(keySet());
 		return result;
@@ -268,12 +388,13 @@ public class Annotations implements Serializable, Map<String, String>, Cloneable
 		return new Annotations(this);
 	}
 
-	/**
-	 * Copies all annotations from the input argument to this Annotations object. Existing entries
-	 * will be overwritten.
-	 * 
-	 */
-	public void addAll(Annotations annotations) {
+    /**
+     * Copies all annotations from the input argument to this Annotations object. Existing entries
+     * will be overwritten.
+     *
+     * @param annotations the annotations
+     */
+    public void addAll(Annotations annotations) {
 		if (annotations != null) {
 			this.keyValueMap.putAll(annotations);
 		}

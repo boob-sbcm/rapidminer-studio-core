@@ -23,7 +23,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * The distribution for a continous variable.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public abstract class ContinuousDistribution implements Distribution {
@@ -46,19 +46,23 @@ public abstract class ContinuousDistribution implements Distribution {
 	@Override
 	public abstract double getProbability(double x);
 
-	/**
-	 * This method returns a lower bound of values. This bound should be given by the distributions
-	 * tail, for example bounds should contain 95% interval. Nominal distributions should return
-	 * NaN.
-	 */
-	public abstract double getLowerBound();
+    /**
+     * This method returns a lower bound of values. This bound should be given by the distributions
+     * tail, for example bounds should contain 95% interval. Nominal distributions should return
+     * NaN.
+     *
+     * @return the lower bound
+     */
+    public abstract double getLowerBound();
 
-	/**
-	 * This method returns an upper bound of possible values. This bound should be given by the
-	 * distributions tail, for example bounds should contain 95% interval. Nominal distributions
-	 * should return NaN.
-	 */
-	public abstract double getUpperBound();
+    /**
+     * This method returns an upper bound of possible values. This bound should be given by the
+     * distributions tail, for example bounds should contain 95% interval. Nominal distributions
+     * should return NaN.
+     *
+     * @return the upper bound
+     */
+    public abstract double getUpperBound();
 
 	@Override
 	public String mapValue(double value) {

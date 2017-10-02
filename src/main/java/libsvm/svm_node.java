@@ -26,10 +26,19 @@
  */
 package libsvm;
 
+/**
+ * The type Svm node.
+ */
 public class svm_node implements java.io.Serializable {
 
 	private static final long serialVersionUID = -3046511301730620312L;
 
-	public int index;
-	public double value;
+    /**
+     * The Index.
+     */
+    public int index;
+    /**
+     * The Value.
+     */
+    public double value;
 }

@@ -73,7 +73,6 @@ import com.rapidminer.tools.math.function.aggregation.AggregationFunction;
 
 
 /**
- *
  * <p>
  * This operator creates a new example set from the input example set showing the results of
  * arbitrary aggregation functions (as SUM, COUNT etc. known from SQL). Before the values of
@@ -81,7 +80,7 @@ import com.rapidminer.tools.math.function.aggregation.AggregationFunction;
  * multiple attributes (similar to the group-by clause known from SQL). In this case a new line will
  * be created for each group.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that the known HAVING clause from SQL can be simulated by an additional
  * {@link ExampleFilter} operator following this one.
@@ -97,32 +96,76 @@ public class AggregationOperator extends AbstractDataProcessing {
 
 	private static class AggregationAttribute {
 
-		Attribute attribute;
-		String functionName;
-		int resultType;
+        /**
+         * The Attribute.
+         */
+        Attribute attribute;
+        /**
+         * The Function name.
+         */
+        String functionName;
+        /**
+         * The Result type.
+         */
+        int resultType;
 	}
 
-	public static final String PARAMETER_USE_DEFAULT_AGGREGATION = "use_default_aggregation";
-	public static final String PARAMETER_DEFAULT_AGGREGATION_FUNCTION = "default_aggregation_function";
-	public static final String PARAMETER_AGGREGATION_ATTRIBUTES = "aggregation_attributes";
+    /**
+     * The constant PARAMETER_USE_DEFAULT_AGGREGATION.
+     */
+    public static final String PARAMETER_USE_DEFAULT_AGGREGATION = "use_default_aggregation";
+    /**
+     * The constant PARAMETER_DEFAULT_AGGREGATION_FUNCTION.
+     */
+    public static final String PARAMETER_DEFAULT_AGGREGATION_FUNCTION = "default_aggregation_function";
+    /**
+     * The constant PARAMETER_AGGREGATION_ATTRIBUTES.
+     */
+    public static final String PARAMETER_AGGREGATION_ATTRIBUTES = "aggregation_attributes";
 
-	public static final String PARAMETER_AGGREGATION_FUNCTIONS = "aggregation_functions";
+    /**
+     * The constant PARAMETER_AGGREGATION_FUNCTIONS.
+     */
+    public static final String PARAMETER_AGGREGATION_FUNCTIONS = "aggregation_functions";
 
-	public static final String PARAMETER_GROUP_BY_ATTRIBUTES = "group_by_attributes";
+    /**
+     * The constant PARAMETER_GROUP_BY_ATTRIBUTES.
+     */
+    public static final String PARAMETER_GROUP_BY_ATTRIBUTES = "group_by_attributes";
 
-	public static final String PARAMETER_ONLY_DISTINCT = "only_distinct";
+    /**
+     * The constant PARAMETER_ONLY_DISTINCT.
+     */
+    public static final String PARAMETER_ONLY_DISTINCT = "only_distinct";
 
-	public static final String PARAMETER_IGNORE_MISSINGS = "ignore_missings";
+    /**
+     * The constant PARAMETER_IGNORE_MISSINGS.
+     */
+    public static final String PARAMETER_IGNORE_MISSINGS = "ignore_missings";
 
-	public static final String GENERIC_GROUP_NAME = "group";
+    /**
+     * The constant GENERIC_GROUP_NAME.
+     */
+    public static final String GENERIC_GROUP_NAME = "group";
 
-	public static final String GENERIC_ALL_NAME = "all";
+    /**
+     * The constant GENERIC_ALL_NAME.
+     */
+    public static final String GENERIC_ALL_NAME = "all";
 
-	public static final String PARAMETER_ALL_COMBINATIONS = "count_all_combinations";
+    /**
+     * The constant PARAMETER_ALL_COMBINATIONS.
+     */
+    public static final String PARAMETER_ALL_COMBINATIONS = "count_all_combinations";
 
 	private final AttributeSubsetSelector attributeSelector = new AttributeSubsetSelector(this, getExampleSetInputPort());
 
-	public AggregationOperator(OperatorDescription desc) {
+    /**
+     * Instantiates a new Aggregation operator.
+     *
+     * @param desc the desc
+     */
+    public AggregationOperator(OperatorDescription desc) {
 		super(desc);
 	}
 

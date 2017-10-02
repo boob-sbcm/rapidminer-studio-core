@@ -29,7 +29,6 @@ import com.rapidminer.tools.RMUrlHandler;
  * Opens a browser.
  *
  * @author Simon Fischer
- *
  */
 public class BrowseAction extends ResourceAction {
 
@@ -37,7 +36,13 @@ public class BrowseAction extends ResourceAction {
 
 	private URI uri;
 
-	public BrowseAction(String i18nKey, URI uri) {
+    /**
+     * Instantiates a new Browse action.
+     *
+     * @param i18nKey the 18 n key
+     * @param uri     the uri
+     */
+    public BrowseAction(String i18nKey, URI uri) {
 		super(i18nKey);
 		this.uri = uri;
 		setCondition(EDIT_IN_PROGRESS, DONT_CARE);

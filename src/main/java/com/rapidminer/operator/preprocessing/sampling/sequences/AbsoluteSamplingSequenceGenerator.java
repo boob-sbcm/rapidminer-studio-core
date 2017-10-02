@@ -24,7 +24,7 @@ import com.rapidminer.tools.RandomGenerator;
 /**
  * This sampling sequence guarantees that the resulting sequence will contain either all elements or
  * exactly as much as given as target.
- * 
+ *
  * @author Sebastian Land
  */
 public class AbsoluteSamplingSequenceGenerator extends SamplingSequenceGenerator {
@@ -33,7 +33,14 @@ public class AbsoluteSamplingSequenceGenerator extends SamplingSequenceGenerator
 
 	private int toAccept;
 
-	public AbsoluteSamplingSequenceGenerator(int source, int target, RandomGenerator random) {
+    /**
+     * Instantiates a new Absolute sampling sequence generator.
+     *
+     * @param source the source
+     * @param target the target
+     * @param random the random
+     */
+    public AbsoluteSamplingSequenceGenerator(int source, int target, RandomGenerator random) {
 		super(random);
 		this.toCome = source;
 		this.toAccept = target;

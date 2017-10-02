@@ -45,14 +45,19 @@ import com.rapidminer.tools.expression.ExpressionType;
  * JUnit Tests for the comparison functions of the Antlr ExpressionParser
  *
  * @author Thilo Kamradt
- *
  */
 public class AntlrParserComparisonTest extends AntlrParserTest {
 
-	// long value for some date entry
+    /**
+     * The constant sometime.
+     */
+// long value for some date entry
 	static long sometime = 1436792411000l;
 
-	// long value for some other date entry
+    /**
+     * The constant someothertime.
+     */
+// long value for some other date entry
 	static long someothertime = 1436792413450l;
 
 	private static ExampleSet makeDateExampleSet() {
@@ -74,7 +79,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 
 	// missing
 
-	@Test
+    /**
+     * Missing true nominal.
+     */
+    @Test
 	public void missingTrueNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("missing(MISSING_NOMINAL)");
@@ -85,7 +93,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Missing true numeric.
+     */
+    @Test
 	public void missingTrueNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("missing(MISSING_NUMERIC)");
@@ -96,7 +107,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Missing true date.
+     */
+    @Test
 	public void missingTrueDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("missing(MISSING_DATE)");
@@ -107,7 +121,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Missing true binominal.
+     */
+    @Test
 	public void missingTrueBinominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("missing(contains(MISSING_NOMINAL,\"test\"))");
@@ -118,7 +135,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Missing no arg.
+     */
+    @Test
 	public void missingNoArg() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("missing()");
@@ -130,7 +150,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Missing too many args.
+     */
+    @Test
 	public void missingTooManyArgs() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("missing(1,2,3,4)");
@@ -142,7 +165,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Missing false number.
+     */
+    @Test
 	public void missingFalseNumber() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("missing(1)");
@@ -153,7 +179,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Missing false nominal.
+     */
+    @Test
 	public void missingFalseNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("missing(\"HandsomeJack\")");
@@ -164,7 +193,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Missing false numeric.
+     */
+    @Test
 	public void missingFalseNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("missing(pi)");
@@ -175,7 +207,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Missing false boolean.
+     */
+    @Test
 	public void missingFalseBoolean() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("missing(TRUE)");
@@ -186,7 +221,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Missing false date.
+     */
+    @Test
 	public void missingFalseDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -201,7 +239,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	// <
+    /**
+     * Smaller true numeric.
+     */
+// <
 	@Test
 	public void smallerTrueNumeric() {
 		try {
@@ -213,7 +254,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller false numeric.
+     */
+    @Test
 	public void smallerFalseNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1.2 < 1.2");
@@ -224,7 +268,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller true nominal.
+     */
+    @Test
 	public void smallerTrueNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"bo\" < \"ca\"");
@@ -235,7 +282,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller false nominal.
+     */
+    @Test
 	public void smallerFalseNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"boom\" < \"baboom\"");
@@ -246,7 +296,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller nominal missing false.
+     */
+    @Test
 	public void smallerNominalMissingFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"boom\" < MISSING_NOMINAL");
@@ -257,7 +310,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller nominal missing error.
+     */
+    @Test
 	public void smallerNominalMissingError() {
 		try {
 			Expression expression = getExpressionWithFunctionContext(" MISSING_NOMINAL < 8");
@@ -269,7 +325,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller numeric missing false.
+     */
+    @Test
 	public void smallerNumericMissingFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("5 < MISSING_NUMERIC");
@@ -280,7 +339,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller numeric missing error.
+     */
+    @Test
 	public void smallerNumericMissingError() {
 		try {
 			Expression expression = getExpressionWithFunctionContext(" MISSING_NUMERIC < \"boom\"");
@@ -292,7 +354,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller date missing.
+     */
+    @Test
 	public void smallerDateMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"boom\" < MISSING_DATE");
@@ -304,7 +369,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller different types.
+     */
+    @Test
 	public void smallerDifferentTypes() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("8 < \"baboom\"");
@@ -316,7 +384,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller bool.
+     */
+    @Test
 	public void smallerBool() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("FALSE < TRUE");
@@ -328,7 +399,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller numeric bool.
+     */
+    @Test
 	public void smallerNumericBool() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("0 < TRUE");
@@ -340,7 +414,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller date.
+     */
+    @Test
 	public void smallerDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -358,7 +435,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 
 	// <=
 
-	@Test
+    /**
+     * Smaller equal true numeric.
+     */
+    @Test
 	public void smallerEqualTrueNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1.2 <= 1.2");
@@ -369,7 +449,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller equal false numeric.
+     */
+    @Test
 	public void smallerEqualFalseNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("2 <= 1.2");
@@ -380,7 +463,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller equal true nominal.
+     */
+    @Test
 	public void smallerEqualTrueNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"bo\" <= \"bo\"");
@@ -391,7 +477,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller equal false nominal.
+     */
+    @Test
 	public void smallerEqualFalseNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"boom\" <= \"baboom\"");
@@ -402,7 +491,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller equal nominal missing false.
+     */
+    @Test
 	public void smallerEqualNominalMissingFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"boom\" <= MISSING_NOMINAL");
@@ -413,7 +505,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller equal nominal missing error.
+     */
+    @Test
 	public void smallerEqualNominalMissingError() {
 		try {
 			Expression expression = getExpressionWithFunctionContext(" MISSING_NOMINAL <= 8");
@@ -425,7 +520,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller equal numeric missing false.
+     */
+    @Test
 	public void smallerEqualNumericMissingFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("5 <= MISSING_NUMERIC");
@@ -436,7 +534,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller equal numeric missing error.
+     */
+    @Test
 	public void smallerEqualNumericMissingError() {
 		try {
 			Expression expression = getExpressionWithFunctionContext(" MISSING_NUMERIC <= \"boom\"");
@@ -448,7 +549,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller equal date missing.
+     */
+    @Test
 	public void smallerEqualDateMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"boom\" <= MISSING_DATE");
@@ -460,7 +564,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller equal different types.
+     */
+    @Test
 	public void smallerEqualDifferentTypes() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("8 <= \"baboom\"");
@@ -472,7 +579,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller equal bool.
+     */
+    @Test
 	public void smallerEqualBool() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("FALSE <= TRUE");
@@ -484,7 +594,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller equal numeric bool.
+     */
+    @Test
 	public void smallerEqualNumericBool() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("0 <= TRUE");
@@ -496,7 +609,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Smaller equal date.
+     */
+    @Test
 	public void smallerEqualDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -514,7 +630,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 
 	// >
 
-	@Test
+    /**
+     * Greater true numeric.
+     */
+    @Test
 	public void greaterTrueNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1.2 > 1");
@@ -525,7 +644,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater false numeric.
+     */
+    @Test
 	public void greaterFalseNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1.2 > 1.2");
@@ -536,7 +658,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater true nominal.
+     */
+    @Test
 	public void greaterTrueNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"ca\" > \"bc\"");
@@ -547,7 +672,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater false nominal.
+     */
+    @Test
 	public void greaterFalseNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"baboom\" > \"boom\"");
@@ -558,7 +686,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater nominal missing false.
+     */
+    @Test
 	public void greaterNominalMissingFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"boom\" > MISSING_NOMINAL");
@@ -569,7 +700,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater nominal missing error.
+     */
+    @Test
 	public void greaterNominalMissingError() {
 		try {
 			Expression expression = getExpressionWithFunctionContext(" MISSING_NOMINAL > 8");
@@ -581,7 +715,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater numeric missing false.
+     */
+    @Test
 	public void greaterNumericMissingFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("5 > MISSING_NUMERIC");
@@ -592,7 +729,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater numeric missing error.
+     */
+    @Test
 	public void greaterNumericMissingError() {
 		try {
 			Expression expression = getExpressionWithFunctionContext(" MISSING_NUMERIC > \"boom\"");
@@ -604,7 +744,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater date missing.
+     */
+    @Test
 	public void greaterDateMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"boom\" > MISSING_DATE");
@@ -616,7 +759,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater different types.
+     */
+    @Test
 	public void greaterDifferentTypes() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("8 > \"baboom\"");
@@ -628,7 +774,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater bool.
+     */
+    @Test
 	public void greaterBool() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("FALSE > TRUE");
@@ -640,7 +789,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater numeric bool.
+     */
+    @Test
 	public void greaterNumericBool() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("0 > TRUE");
@@ -652,7 +804,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater date.
+     */
+    @Test
 	public void greaterDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -670,7 +825,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 
 	// >=
 
-	@Test
+    /**
+     * Greater equal true numeric.
+     */
+    @Test
 	public void greaterEqualTrueNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1.2 >= 1.2");
@@ -681,7 +839,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater equal false numeric.
+     */
+    @Test
 	public void greaterEqualFalseNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1.2 >= 2");
@@ -692,7 +853,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater equal true nominal.
+     */
+    @Test
 	public void greaterEqualTrueNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"ca\" >= \"bc\"");
@@ -703,7 +867,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater equal false nominal.
+     */
+    @Test
 	public void greaterEqualFalseNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"baboom\" >= \"boom\"");
@@ -714,7 +881,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater equal nominal missing false.
+     */
+    @Test
 	public void greaterEqualNominalMissingFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"boom\" >= MISSING_NOMINAL");
@@ -725,7 +895,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater equal nominal missing error.
+     */
+    @Test
 	public void greaterEqualNominalMissingError() {
 		try {
 			Expression expression = getExpressionWithFunctionContext(" MISSING_NOMINAL >= 8");
@@ -737,7 +910,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater equal numeric missing false.
+     */
+    @Test
 	public void greaterEqualNumericMissingFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("5 >= MISSING_NUMERIC");
@@ -748,7 +924,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater equal numeric missing error.
+     */
+    @Test
 	public void greaterEqualNumericMissingError() {
 		try {
 			Expression expression = getExpressionWithFunctionContext(" MISSING_NUMERIC >= \"boom\"");
@@ -760,7 +939,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater equal date missing.
+     */
+    @Test
 	public void greaterEqualDateMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"boom\" >= MISSING_DATE");
@@ -772,7 +954,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater equal different types.
+     */
+    @Test
 	public void greaterEqualDifferentTypes() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("8 >= \"baboom\"");
@@ -784,7 +969,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater equal bool.
+     */
+    @Test
 	public void greaterEqualBool() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("FALSE >= TRUE");
@@ -796,7 +984,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater equal numeric bool.
+     */
+    @Test
 	public void greaterEqualNumericBool() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("0 >= TRUE");
@@ -808,7 +999,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Greater equal date.
+     */
+    @Test
 	public void greaterEqualDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -826,7 +1020,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 
 	// isFinite() tests
 
-	@Test
+    /**
+     * Is finite true int.
+     */
+    @Test
 	public void isFiniteTrueInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("isFinite(234)");
@@ -837,7 +1034,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Is finite true double.
+     */
+    @Test
 	public void isFiniteTrueDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("isFinite(234.567)");
@@ -848,7 +1048,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Is finite false inf.
+     */
+    @Test
 	public void isFiniteFalseInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("isFinite(INFINITY)");
@@ -859,7 +1062,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Is finite false neg inf.
+     */
+    @Test
 	public void isFiniteFalseNegInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("isFinite(-INFINITY)");
@@ -870,7 +1076,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Is finite missing.
+     */
+    @Test
 	public void isFiniteMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("isFinite(MISSING_NUMERIC)");
@@ -881,7 +1090,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Is finite error no argument.
+     */
+    @Test
 	public void isFiniteErrorNoArgument() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("isFinite()");
@@ -893,7 +1105,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Is finite error too many arguments.
+     */
+    @Test
 	public void isFiniteErrorTooManyArguments() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("isFinite(23,\"blob\")");
@@ -905,7 +1120,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Is finite error wrong type date.
+     */
+    @Test
 	public void isFiniteErrorWrongTypeDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("isFinite(date_now())");
@@ -917,7 +1135,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Is finite error wrong type nominal.
+     */
+    @Test
 	public void isFiniteErrorWrongTypeNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("isFinite(\"Menschenmaterial\")");
@@ -929,7 +1150,10 @@ public class AntlrParserComparisonTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Is finite error wrong type bool.
+     */
+    @Test
 	public void isFiniteErrorWrongTypeBool() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("isFinite(TRUE)");

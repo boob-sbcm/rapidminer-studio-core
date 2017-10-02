@@ -26,18 +26,24 @@ import com.rapidminer.tools.math.MathFunctions;
 
 /**
  * A test for the {@link MathFunctions}.
- * 
+ *
  * @author Michael Wurst, Ingo Mierswa
  */
 public class MathUtilsTest {
 
-	@Test
+    /**
+     * Test variance.
+     */
+    @Test
 	public void testVariance() {
 		assertEquals(MathFunctions.variance(new double[] { 0.1, 0.1, 0.0, -0.1 }, Double.NEGATIVE_INFINITY), 0.006875, 0.001);
 		assertEquals(MathFunctions.variance(new double[] { 0.0, 0.0, 0.0 }, -1.0), 0.0);
 	}
 
-	@Test
+    /**
+     * Test correlation.
+     */
+    @Test
 	public void testCorrelation() {
 		assertEquals(MathFunctions.correlation(new double[] { 0.1, 0.2, -0.3, 0.0 }, new double[] { 0.0, 0.1, 0.1, -0.1 }), -0.161, 0.001);
 	}

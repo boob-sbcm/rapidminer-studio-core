@@ -29,7 +29,7 @@ import java.io.IOException;
  * files that can be accessed remotely. The file names are assumed to be of the following form
  * "/NameOfRemoteFileSystem/Folder/Subfolder(s)/Filename", for example
  * "/Dropbox/Photos/Sample Album" or "/Dropbox/Photos/Sample Album/sample.png".
- *
+ * <p>
  * <p>
  * Most of the methods of {@link File} cannot be used for {@link RemoteFile} since they access the
  * hard drive; thus they are overwritten by methods doing nothing. By default all remote files are
@@ -48,39 +48,32 @@ public class RemoteFile extends File {
 	private long modifiedLast = 0;
 	private long sizeInBytes = 0;
 
-	/**
-	 * Calls the constructor of {@link File}.
-	 *
-	 * @param pathname
-	 *            a path of the following form
-	 *            "/NameOfRemoteFileSystem/Folder/Subfolder(s)/Filename"
-	 */
-	public RemoteFile(String pathname) {
+    /**
+     * Calls the constructor of {@link File}.
+     *
+     * @param pathname a path of the following form            "/NameOfRemoteFileSystem/Folder/Subfolder(s)/Filename"
+     */
+    public RemoteFile(String pathname) {
 		super(pathname);
 	}
 
-	/**
-	 * Calls the constructor of {@link File}.
-	 *
-	 * @param parent
-	 *            a folder
-	 * @param fileName
-	 *            name of the file that is to be constructed inside the folder
-	 */
-	public RemoteFile(File parent, String fileName) {
+    /**
+     * Calls the constructor of {@link File}.
+     *
+     * @param parent   a folder
+     * @param fileName name of the file that is to be constructed inside the folder
+     */
+    public RemoteFile(File parent, String fileName) {
 		super(parent, fileName);
 	}
 
-	/**
-	 * Calls the constructor of {@link File} and sets the directoryProperty.
-	 *
-	 * @param pathname
-	 *            a path of the following form
-	 *            "/NameOfRemoteFileSystem/Folder/Subfolder(s)/Filename"
-	 * @param directoryProperty
-	 *            <code>true</code> if the constructed file is a directory
-	 */
-	public RemoteFile(String pathname, Boolean directoryProperty) {
+    /**
+     * Calls the constructor of {@link File} and sets the directoryProperty.
+     *
+     * @param pathname          a path of the following form            "/NameOfRemoteFileSystem/Folder/Subfolder(s)/Filename"
+     * @param directoryProperty <code>true</code> if the constructed file is a directory
+     */
+    public RemoteFile(String pathname, Boolean directoryProperty) {
 		super(pathname);
 		this.directoryProperty = directoryProperty;
 	}
@@ -93,14 +86,14 @@ public class RemoteFile extends File {
 		return false;
 	}
 
-	/**
-	 * Sets the flag which decides if the file is a directory. If this flag is not set or set to
-	 * <code> null </code> then {@link #isDirectory()} returns <code>false</code>, otherwise it
-	 * returns this flag.
-	 *
-	 * @param directoryProperty
-	 */
-	public void setDirectoryProperty(Boolean directoryProperty) {
+    /**
+     * Sets the flag which decides if the file is a directory. If this flag is not set or set to
+     * <code> null </code> then {@link #isDirectory()} returns <code>false</code>, otherwise it
+     * returns this flag.
+     *
+     * @param directoryProperty the directory property
+     */
+    public void setDirectoryProperty(Boolean directoryProperty) {
 		this.directoryProperty = directoryProperty;
 	}
 
@@ -258,14 +251,13 @@ public class RemoteFile extends File {
 		return sizeInBytes;
 	}
 
-	/**
-	 * Sets the size (in bytes) of a file - needed since remote files cannot get this information
-	 * from the hard drive.
-	 *
-	 * @param sizeInBytes
-	 *            non-negative number representing the size of the file in bytes
-	 */
-	public void setSizeInBytes(long sizeInBytes) {
+    /**
+     * Sets the size (in bytes) of a file - needed since remote files cannot get this information
+     * from the hard drive.
+     *
+     * @param sizeInBytes non-negative number representing the size of the file in bytes
+     */
+    public void setSizeInBytes(long sizeInBytes) {
 		if (sizeInBytes < 0) {
 			throw new IllegalArgumentException("Negative size");
 		}

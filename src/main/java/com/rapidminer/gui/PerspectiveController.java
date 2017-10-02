@@ -68,13 +68,12 @@ public class PerspectiveController {
 		}
 	};
 
-	/**
-	 * Creates a new {@link PerspectiveController} with the given docking context.
-	 *
-	 * @param context
-	 *            the docking context which should be used
-	 */
-	public PerspectiveController(final DockingContext context) {
+    /**
+     * Creates a new {@link PerspectiveController} with the given docking context.
+     *
+     * @param context the docking context which should be used
+     */
+    public PerspectiveController(final DockingContext context) {
 		this.context = context;
 		this.model = new PerspectiveModel();
 		context.setDockableResolver(new DockableResolver() {
@@ -97,23 +96,21 @@ public class PerspectiveController {
 		this.model.makePredefined();
 	}
 
-	/**
-	 * Displays the given perspective, identified by the name.
-	 *
-	 * @param perspective
-	 *            the perspective which should be shown.
-	 */
-	public void showPerspective(final String perspectiveName) {
+    /**
+     * Displays the given perspective, identified by the name.
+     *
+     * @param perspectiveName the perspective name
+     */
+    public void showPerspective(final String perspectiveName) {
 		showPerspective(model.getPerspective(perspectiveName));
 	}
 
-	/**
-	 * Displays the given perspective.
-	 *
-	 * @param perspective
-	 *            the perspective which should be shown.
-	 */
-	public void showPerspective(final Perspective perspective) {
+    /**
+     * Displays the given perspective.
+     *
+     * @param perspective the perspective which should be shown.
+     */
+    public void showPerspective(final Perspective perspective) {
 		if (perspective != null) {
 			Perspective oldPerspective = model.getSelectedPerspective();
 			if (oldPerspective == perspective) {
@@ -134,28 +131,26 @@ public class PerspectiveController {
 		}
 	}
 
-	/**
-	 * Removes the given perspective. If the perspective which should be deleted is also the
-	 * selected perspective, the first perspective will be shown.
-	 *
-	 * @param name
-	 *            the name of the perspective which should be removed
-	 */
-	public void removePerspective(String name) {
+    /**
+     * Removes the given perspective. If the perspective which should be deleted is also the
+     * selected perspective, the first perspective will be shown.
+     *
+     * @param name the name of the perspective which should be removed
+     */
+    public void removePerspective(String name) {
 		Perspective perspective = model.getPerspective(name);
 		if (perspective != null) {
 			removePerspective(perspective);
 		}
 	}
 
-	/**
-	 * Removes the given perspective. If the perspective which should be deleted is also the
-	 * selected perspective, the first perspective will be shown.
-	 *
-	 * @param perspective
-	 *            the perspective which should be deleted
-	 */
-	public void removePerspective(Perspective perspective) {
+    /**
+     * Removes the given perspective. If the perspective which should be deleted is also the
+     * selected perspective, the first perspective will be shown.
+     *
+     * @param perspective the perspective which should be deleted
+     */
+    public void removePerspective(Perspective perspective) {
 		if (!perspective.isUserDefined()) {
 			return;
 		}
@@ -165,23 +160,24 @@ public class PerspectiveController {
 		}
 	}
 
-	/**
-	 * Removes all perspectives and the given dockable.
-	 */
-	public void removeFromAllPerspectives(final Dockable dockable) {
+    /**
+     * Removes all perspectives and the given dockable.
+     *
+     * @param dockable the dockable
+     */
+    public void removeFromAllPerspectives(final Dockable dockable) {
 		context.unregisterDockable(dockable);
 		// Should also be removed from the workspaces, but the
 		// vldocking framework does not support this
 		removeFromInvisiblePerspectives(dockable);
 	}
 
-	/**
-	 * Removes the given {@link Dockable} from all perspectives except the one currently displayed.
-	 *
-	 * @param dockable
-	 *            the dockable to close
-	 */
-	public void removeFromInvisiblePerspectives(final Dockable dockable) {
+    /**
+     * Removes the given {@link Dockable} from all perspectives except the one currently displayed.
+     *
+     * @param dockable the dockable to close
+     */
+    public void removeFromInvisiblePerspectives(final Dockable dockable) {
 		WSDockKey key = new WSDockKey(dockable.getDockKey().getKey());
 		for (Perspective persp : model.getAllPerspectives()) {
 			if (persp == model.getSelectedPerspective()) {
@@ -191,10 +187,13 @@ public class PerspectiveController {
 		}
 	}
 
-	/**
-	 * Shows the tab as a child of the given dockable in all perspectives.
-	 */
-	public void showTabInAllPerspectives(final Dockable dockable, final Dockable parent) {
+    /**
+     * Shows the tab as a child of the given dockable in all perspectives.
+     *
+     * @param dockable the dockable
+     * @param parent   the parent
+     */
+    public void showTabInAllPerspectives(final Dockable dockable, final Dockable parent) {
 		DockableState dstate = context.getDockableState(dockable);
 		if (dstate != null && !dstate.isClosed()) {
 			return;
@@ -229,10 +228,10 @@ public class PerspectiveController {
 		}
 	}
 
-	/**
-	 * Saves all perspectives to the file system.
-	 */
-	public void saveAll() {
+    /**
+     * Saves all perspectives to the file system.
+     */
+    public void saveAll() {
 		LogService.getRoot().log(Level.CONFIG, "com.rapidminer.gui.ApplicationPerspectives.saving_perspectives");
 		if (model.getSelectedPerspective() != null) {
 			model.getSelectedPerspective().store(context);
@@ -242,10 +241,10 @@ public class PerspectiveController {
 		}
 	}
 
-	/**
-	 * Loads the default and user perspectives from the file system.
-	 */
-	public void loadAll() {
+    /**
+     * Loads the default and user perspectives from the file system.
+     */
+    public void loadAll() {
 		LogService.getRoot().log(Level.CONFIG, "com.rapidminer.gui.ApplicationPerspectives.loading_perspectives");
 		for (Perspective perspective : model.getAllPerspectives()) {
 			perspective.load();
@@ -266,11 +265,15 @@ public class PerspectiveController {
 		}
 	}
 
-	/**
-	 * Creates a user-defined perspectives, and possibly switches to this new perspective
-	 * immediately. The new perspective will be a copy of the current one.
-	 */
-	public Perspective createUserPerspective(final String name, final boolean show) {
+    /**
+     * Creates a user-defined perspectives, and possibly switches to this new perspective
+     * immediately. The new perspective will be a copy of the current one.
+     *
+     * @param name the name
+     * @param show the show
+     * @return the perspective
+     */
+    public Perspective createUserPerspective(final String name, final boolean show) {
 		Perspective perspective = model.addPerspective(name, true);
 		perspective.store(context);
 		if (show) {
@@ -279,21 +282,21 @@ public class PerspectiveController {
 		return perspective;
 	}
 
-	/**
-	 * Getter for the underlying model.
-	 *
-	 * @return The used {@link PerspectiveModel}
-	 */
-	public PerspectiveModel getModel() {
+    /**
+     * Getter for the underlying model.
+     *
+     * @return The used {@link PerspectiveModel}
+     */
+    public PerspectiveModel getModel() {
 		return model;
 	}
 
-	/**
-	 * Getter for the restore default action for a predefined perspective.
-	 *
-	 * @return the restore default {@link Action}
-	 */
-	public Action getRestoreDefaultAction() {
+    /**
+     * Getter for the restore default action for a predefined perspective.
+     *
+     * @return the restore default {@link Action}
+     */
+    public Action getRestoreDefaultAction() {
 		return restoreDefaultAction;
 	}
 }

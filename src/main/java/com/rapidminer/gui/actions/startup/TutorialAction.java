@@ -37,7 +37,10 @@ public class TutorialAction extends ResourceAction {
 
 	private static final long serialVersionUID = 1L;
 
-	public TutorialAction() {
+    /**
+     * Instantiates a new Tutorial action.
+     */
+    public TutorialAction() {
 		super("toolbar_resources.tutorials");
 	}
 

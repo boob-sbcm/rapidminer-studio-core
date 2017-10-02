@@ -37,31 +37,28 @@ import com.rapidminer.tools.expression.internal.antlr.FunctionExpressionParser;
  * Parser using antlr.
  *
  * @author Gisa Schaefer
- *
  */
 public class AntlrParser implements ExpressionParser {
 
 	private ExpressionContext lookup;
 
-	/**
-	 * Creates a Parser that parses using antlr.
-	 *
-	 * @param lookUp
-	 *            the {@link ExpressionContext} for looking up functions, variables and macros
-	 */
-	public AntlrParser(ExpressionContext lookup) {
+    /**
+     * Creates a Parser that parses using antlr.
+     *
+     * @param lookup the lookup
+     */
+    public AntlrParser(ExpressionContext lookup) {
 		this.lookup = lookup;
 	}
 
-	/**
-	 * Parses the expression using antlr, aborts the parsing on the first error.
-	 *
-	 * @param expression
-	 *            an expression, not {@code null}
-	 * @return a {@link ParseTree} for further processing
-	 * @throws ExpressionException
-	 */
-	ParseTree parseExpression(String expression) throws ExpressionException {
+    /**
+     * Parses the expression using antlr, aborts the parsing on the first error.
+     *
+     * @param expression an expression, not {@code null}
+     * @return a {@link ParseTree} for further processing
+     * @throws ExpressionException the expression exception
+     */
+    ParseTree parseExpression(String expression) throws ExpressionException {
 		if (expression == null) {
 			throw new IllegalArgumentException("expression must not be null");
 		}
@@ -118,18 +115,15 @@ public class AntlrParser implements ExpressionParser {
 		}
 	}
 
-	/**
-	 * Parses the expression to a tree and creates an {@link ExpressionEvaluator} out of it.
-	 *
-	 * @param expression
-	 *            the expression to parse
-	 * @return the ExpressionEvaluator for the result
-	 * @throws ExpressionParsingException
-	 *             if the creation of the ExpressionEvaluator failed
-	 * @throws ExpressionException
-	 *             if the parsing failed
-	 */
-	public ExpressionEvaluator parseToEvaluator(String expression) throws ExpressionParsingException, ExpressionException {
+    /**
+     * Parses the expression to a tree and creates an {@link ExpressionEvaluator} out of it.
+     *
+     * @param expression the expression to parse
+     * @return the ExpressionEvaluator for the result
+     * @throws ExpressionParsingException if the creation of the ExpressionEvaluator failed
+     * @throws ExpressionException        if the parsing failed
+     */
+    public ExpressionEvaluator parseToEvaluator(String expression) throws ExpressionParsingException, ExpressionException {
 		ParseTree tree = parseExpression(expression);
 		return new EvaluatorCreationVisitor(lookup).visit(tree);
 	}

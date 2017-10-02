@@ -36,7 +36,7 @@ import com.rapidminer.tools.Tools;
 /**
  * A model consisting of rules which are scored by utility values. Only the best rule (according to
  * its utility) is used for prediction at the moment.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class RuleSet extends SimplePredictionModel implements Iterable<Rule> {
@@ -49,23 +49,44 @@ public class RuleSet extends SimplePredictionModel implements Iterable<Rule> {
 
 	private LinkedHashSet<UtilityFunction> utilityFunctions = null;
 
-	public RuleSet(ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Rule set.
+     *
+     * @param exampleSet the example set
+     */
+    public RuleSet(ExampleSet exampleSet) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		rules = new LinkedList<>();
 		utilityFunctions = new LinkedHashSet<>();
 	}
 
-	public void addRule(Rule rule) {
+    /**
+     * Add rule.
+     *
+     * @param rule the rule
+     */
+    public void addRule(Rule rule) {
 		rules.add(rule);
 		utilityFunctions.addAll(rule.getUtilityFunctions());
 	}
 
-	public Rule getRule(int index) {
+    /**
+     * Gets rule.
+     *
+     * @param index the index
+     * @return the rule
+     */
+    public Rule getRule(int index) {
 		return rules.get(index);
 	}
 
-	public int getNumberOfRules() {
+    /**
+     * Gets number of rules.
+     *
+     * @return the number of rules
+     */
+    public int getNumberOfRules() {
 		return rules.size();
 	}
 
@@ -74,7 +95,12 @@ public class RuleSet extends SimplePredictionModel implements Iterable<Rule> {
 		return rules.iterator();
 	}
 
-	public LinkedList<Rule> getPositiveRules() {
+    /**
+     * Gets positive rules.
+     *
+     * @return the positive rules
+     */
+    public LinkedList<Rule> getPositiveRules() {
 		LinkedList<Rule> positiveRules = new LinkedList<>();
 		for (Rule rule : this) {
 			if (rule.predictsPositive()) {
@@ -84,7 +110,12 @@ public class RuleSet extends SimplePredictionModel implements Iterable<Rule> {
 		return positiveRules;
 	}
 
-	public LinkedList<Rule> getNegativeRules() {
+    /**
+     * Gets negative rules.
+     *
+     * @return the negative rules
+     */
+    public LinkedList<Rule> getNegativeRules() {
 		LinkedList<Rule> negativeRules = new LinkedList<>();
 		for (Rule rule : this) {
 			if (!rule.predictsPositive()) {
@@ -94,7 +125,12 @@ public class RuleSet extends SimplePredictionModel implements Iterable<Rule> {
 		return negativeRules;
 	}
 
-	public int size() {
+    /**
+     * Size int.
+     *
+     * @return the int
+     */
+    public int size() {
 		return getNumberOfRules();
 	}
 
@@ -108,7 +144,12 @@ public class RuleSet extends SimplePredictionModel implements Iterable<Rule> {
 		return predictUncoveredRules ? example.getAttributes().getLabel().getMapping().getNegativeIndex() : Double.NaN;
 	}
 
-	public UtilityFunction[] getUtilityFunctions() {
+    /**
+     * Get utility functions utility function [ ].
+     *
+     * @return the utility function [ ]
+     */
+    public UtilityFunction[] getUtilityFunctions() {
 		UtilityFunction[] functions = new UtilityFunction[utilityFunctions.size()];
 		functions = utilityFunctions.toArray(functions);
 		return functions;

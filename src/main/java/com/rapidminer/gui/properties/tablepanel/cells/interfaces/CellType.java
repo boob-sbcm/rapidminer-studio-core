@@ -26,9 +26,8 @@ import com.rapidminer.gui.properties.tablepanel.model.TablePanelModel;
  * This interface must be extended by all specific cell type interfaces for the
  * {@link TablePanelModel} (see {@link TablePanelModel#getColumnClass(int, int)} and
  * {@link TablePanel}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface CellType {
 

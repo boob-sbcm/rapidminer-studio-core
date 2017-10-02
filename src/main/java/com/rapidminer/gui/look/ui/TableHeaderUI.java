@@ -78,7 +78,13 @@ public class TableHeaderUI extends BasicTableHeaderUI {
 
 	private int pressedColumn = -1;
 
-	public static ComponentUI createUI(JComponent h) {
+    /**
+     * Create ui component ui.
+     *
+     * @param h the h
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent h) {
 		return new TableHeaderUI();
 	}
 
@@ -335,18 +341,18 @@ public class TableHeaderUI extends BasicTableHeaderUI {
 
 	}
 
-	/**
-	 * Creates the shape for a table header.
-	 *
-	 * @param x
-	 * @param y
-	 * @param w
-	 * @param h
-	 * @param isLeftmost
-	 * @param isRightmost
-	 * @return
-	 */
-	public static Path2D createHeaderShape(int x, int y, int w, int h, boolean isLeftmost, boolean isRightmost) {
+    /**
+     * Creates the shape for a table header.
+     *
+     * @param x           the x
+     * @param y           the y
+     * @param w           the w
+     * @param h           the h
+     * @param isLeftmost  the is leftmost
+     * @param isRightmost the is rightmost
+     * @return path 2 d
+     */
+    public static Path2D createHeaderShape(int x, int y, int w, int h, boolean isLeftmost, boolean isRightmost) {
 		double rTop = RapidLookAndFeel.CORNER_DEFAULT_RADIUS * 0.33;
 		Path2D path = new Path2D.Double();
 		h -= 1;

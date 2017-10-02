@@ -24,8 +24,9 @@ import java.util.Map;
 
 
 /**
+ * The type Categorical size provider.
+ *
  * @author Marius Helf
- * 
  */
 public class CategoricalSizeProvider implements SizeProvider {
 
@@ -35,12 +36,24 @@ public class CategoricalSizeProvider implements SizeProvider {
 	private double minScalingFactor;
 	private double maxScalingFactor;
 
-	public CategoricalSizeProvider(List<Double> categoryList, double minSize, double maxSize) {
+    /**
+     * Instantiates a new Categorical size provider.
+     *
+     * @param categoryList the category list
+     * @param minSize      the min size
+     * @param maxSize      the max size
+     */
+    public CategoricalSizeProvider(List<Double> categoryList, double minSize, double maxSize) {
 		this.sizeMap = createSizeMapping(categoryList, minSize, maxSize);
 		updateMinMaxScalingFactor();
 	}
 
-	public CategoricalSizeProvider(Map<Double, Double> sizeMap) {
+    /**
+     * Instantiates a new Categorical size provider.
+     *
+     * @param sizeMap the size map
+     */
+    public CategoricalSizeProvider(Map<Double, Double> sizeMap) {
 		this.sizeMap = sizeMap;
 		updateMinMaxScalingFactor();
 	}

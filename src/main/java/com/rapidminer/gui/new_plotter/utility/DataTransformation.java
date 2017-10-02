@@ -39,9 +39,8 @@ import java.util.regex.Pattern;
 
 /**
  * This is a utility class which can transform {@link ExampleSet}s for various needs.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class DataTransformation {
 
@@ -49,42 +48,30 @@ public class DataTransformation {
 	private static final String TO_REPLACE_WITH_NOM_TO_NUM_ATTRIBUTE_LIST = "TO_REPLACE_WITH_NOM_TO_NUM_ATTRIBUTE_LIST";
 	private static final String INVERT_NOM_TO_NUM_SELECTION = "INVERT_NOM_TO_NUM_SELECTION";
 
-	/**
-	 * Creates a de-pivotized meta data {@link ExampleSet} from a given {@link ExampleSet}. This set
-	 * de-pivots the given numerical attributes.
-	 * 
-	 * @param exampleSet
-	 *            the original {@link ExampleSet}
-	 * @param listOfNumericalAttributes
-	 *            list with the names of the numerical attributes to de-pivot
-	 * @param selectedNomToNumericAttributesList
-	 *            a list of nominal attributes that should be converted to be numerical afterwards
-	 * @return the meta data {@link ExampleSet} or {@code null} if there was an error/empty
-	 *         attribute list
-	 * @throws IOException
-	 *             thrown if the transformation process cannot be read
-	 */
-	public static ExampleSet createDePivotizedExampleSet(ExampleSet exampleSet, List<String> listOfNumericalAttributes) {
+    /**
+     * Creates a de-pivotized meta data {@link ExampleSet} from a given {@link ExampleSet}. This set
+     * de-pivots the given numerical attributes.
+     *
+     * @param exampleSet                the original {@link ExampleSet}
+     * @param listOfNumericalAttributes list with the names of the numerical attributes to de-pivot
+     * @return the meta data {@link ExampleSet} or {@code null} if there was an error/empty         attribute list
+     * @throws IOException thrown if the transformation process cannot be read
+     */
+    public static ExampleSet createDePivotizedExampleSet(ExampleSet exampleSet, List<String> listOfNumericalAttributes) {
 		return createDePivotizedExampleSet(exampleSet, listOfNumericalAttributes, null);
 	}
 
-	/**
-	 * Creates a de-pivotized meta data {@link ExampleSet} from a given {@link ExampleSet}. This set
-	 * de-pivots the given numerical attributes.
-	 * 
-	 * @param exampleSet
-	 *            the original {@link ExampleSet}
-	 * @param listOfNumericalAttributes
-	 *            list with the names of the numerical attributes to de-pivot
-	 * @param selectedNomToNumericAttributesList
-	 *            a list of nominal attributes that should be transformed to numerical attributes
-	 *            before depivotization
-	 * @return the meta data {@link ExampleSet} or {@code null} if there was an error/empty
-	 *         attribute list
-	 * @throws IOException
-	 *             thrown if the transformation process cannot be read
-	 */
-	public static ExampleSet createDePivotizedExampleSet(ExampleSet exampleSet, List<String> listOfNumericalAttributes,
+    /**
+     * Creates a de-pivotized meta data {@link ExampleSet} from a given {@link ExampleSet}. This set
+     * de-pivots the given numerical attributes.
+     *
+     * @param exampleSet                         the original {@link ExampleSet}
+     * @param listOfNumericalAttributes          list with the names of the numerical attributes to de-pivot
+     * @param selectedNomToNumericAttributesList a list of nominal attributes that should be transformed to numerical attributes            before depivotization
+     * @return the meta data {@link ExampleSet} or {@code null} if there was an error/empty         attribute list
+     * @throws IOException thrown if the transformation process cannot be read
+     */
+    public static ExampleSet createDePivotizedExampleSet(ExampleSet exampleSet, List<String> listOfNumericalAttributes,
 			Collection<String> selectedNomToNumericAttributesList) {
 		if (exampleSet == null) {
 			throw new IllegalArgumentException("exampleSet must not be null!");

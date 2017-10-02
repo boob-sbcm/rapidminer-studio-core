@@ -31,21 +31,33 @@ import Jama.Matrix;
  * hierarchy is complete nonsense and will be dropped with one of the next versions. So if you
  * implement using this class, please implement this little code fragment below again or build a
  * more fitting class hierarchy.
- * 
+ * <p>
  * This class represents an abstract framework for performing dimensionality reduction using the
  * JAMA package.
- * 
+ *
  * @author Michael Wurst, Ingo Mierswa
- * 
  */
 @Deprecated
 public abstract class JamaDimensionalityReduction extends DimensionalityReducer {
 
-	public JamaDimensionalityReduction(OperatorDescription description) {
+    /**
+     * Instantiates a new Jama dimensionality reduction.
+     *
+     * @param description the description
+     */
+    public JamaDimensionalityReduction(OperatorDescription description) {
 		super(description);
 	}
 
-	protected abstract Matrix callMatrixMethod(ExampleSet es, int dimension, Matrix in);
+    /**
+     * Call matrix method matrix.
+     *
+     * @param es        the es
+     * @param dimension the dimension
+     * @param in        the in
+     * @return the matrix
+     */
+    protected abstract Matrix callMatrixMethod(ExampleSet es, int dimension, Matrix in);
 
 	@Override
 	protected double[][] dimensionalityReduction(ExampleSet es, int dimensions) {

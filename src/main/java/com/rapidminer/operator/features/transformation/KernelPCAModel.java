@@ -60,11 +60,25 @@ public class KernelPCAModel extends AbstractModel {
 
 	private double[] means;
 
-	protected KernelPCAModel(ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Kernel pca model.
+     *
+     * @param exampleSet the example set
+     */
+    protected KernelPCAModel(ExampleSet exampleSet) {
 		super(exampleSet);
 	}
 
-	public KernelPCAModel(ExampleSet exampleSet, double[] means, Matrix eigenVectors, ArrayList<double[]> exampleValues,
+    /**
+     * Instantiates a new Kernel pca model.
+     *
+     * @param exampleSet    the example set
+     * @param means         the means
+     * @param eigenVectors  the eigen vectors
+     * @param exampleValues the example values
+     * @param kernel        the kernel
+     */
+    public KernelPCAModel(ExampleSet exampleSet, double[] means, Matrix eigenVectors, ArrayList<double[]> exampleValues,
 			Kernel kernel) {
 		super(exampleSet);
 		this.eigenVectors = eigenVectors;

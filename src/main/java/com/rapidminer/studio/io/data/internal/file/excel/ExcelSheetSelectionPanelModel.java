@@ -60,23 +60,23 @@ class ExcelSheetSelectionPanelModel {
 	private int headerRowIndex = 0;
 	private int sheetIndex = 0;
 
-	/**
-	 * Constructs a new {@link ExcelSheetSelectionPanelModel} instance.
-	 *
-	 * @param ds
-	 *            the {@link ExcelDataSource}
-	 * @param listener
-	 *            the listener which is informed about model changes
-	 */
-	ExcelSheetSelectionPanelModel(ExcelDataSource ds, ExcelSheetSelectionModelListener listener) {
+    /**
+     * Constructs a new {@link ExcelSheetSelectionPanelModel} instance.
+     *
+     * @param ds       the {@link ExcelDataSource}
+     * @param listener the listener which is informed about model changes
+     */
+    ExcelSheetSelectionPanelModel(ExcelDataSource ds, ExcelSheetSelectionModelListener listener) {
 		this.dataSource = ds;
 		this.listener = listener;
 	}
 
-	/**
-	 * Uses the current table selection to update the cell range selection.
-	 */
-	void updateCellRangeByTableSelection(JTable contentTable) {
+    /**
+     * Uses the current table selection to update the cell range selection.
+     *
+     * @param contentTable the content table
+     */
+    void updateCellRangeByTableSelection(JTable contentTable) {
 		int columnIndexStart = contentTable.getSelectedColumn();
 		int rowIndexStart = contentTable.getSelectedRow();
 		int columnIndexEnd = columnIndexStart + contentTable.getSelectedColumnCount() - 1;
@@ -84,13 +84,12 @@ class ExcelSheetSelectionPanelModel {
 		setCellRangeSelection(new CellRangeSelection(columnIndexStart, rowIndexStart, columnIndexEnd, rowIndexEnd));
 	}
 
-	/**
-	 * Updates the cell range selection
-	 *
-	 * @param newSelection
-	 *            the new selection
-	 */
-	void setCellRangeSelection(CellRangeSelection newSelection) {
+    /**
+     * Updates the cell range selection
+     *
+     * @param newSelection the new selection
+     */
+    void setCellRangeSelection(CellRangeSelection newSelection) {
 		if (newSelection != null) {
 			this.cellRangeSelection = new CellRangeSelection(newSelection);
 		} else {
@@ -99,11 +98,12 @@ class ExcelSheetSelectionPanelModel {
 		listener.cellRangeSelectionUpdate(newSelection);
 	}
 
-	/**
-	 * @return a copy of the current cell range selection or {@code null} in case the selection is
-	 *         invalid
-	 */
-	CellRangeSelection getCellRangeSelection() {
+    /**
+     * Gets cell range selection.
+     *
+     * @return a copy of the current cell range selection or {@code null} in case the selection is         invalid
+     */
+    CellRangeSelection getCellRangeSelection() {
 		if (cellRangeSelection == null) {
 			return null;
 		} else {
@@ -111,38 +111,41 @@ class ExcelSheetSelectionPanelModel {
 		}
 	}
 
-	/**
-	 * @param headerRowSpinner
-	 *            the new header row index
-	 */
-	void setHeaderRowIndex(int headerRowIndex) {
+    /**
+     * Sets header row index.
+     *
+     * @param headerRowIndex the header row index
+     */
+    void setHeaderRowIndex(int headerRowIndex) {
 		this.headerRowIndex = headerRowIndex;
 		listener.headerRowIndexUpdated(headerRowIndex);
 	}
 
-	/**
-	 * @return the 0-based index of the header row or {@link ResultSetAdapter#NO_HEADER_ROW} in case
-	 *         no header row is defined
-	 */
-	int getHeaderRowIndex() {
+    /**
+     * Gets header row index.
+     *
+     * @return the 0-based index of the header row or {@link ResultSetAdapter#NO_HEADER_ROW} in case         no header row is defined
+     */
+    int getHeaderRowIndex() {
 		return headerRowIndex;
 	}
 
-	/**
-	 * @return the selected sheet index
-	 */
-	int getSheetIndex() {
+    /**
+     * Gets sheet index.
+     *
+     * @return the selected sheet index
+     */
+    int getSheetIndex() {
 		return sheetIndex;
 	}
 
-	/**
-	 * Updates the selected sheet index and loads a new table model. As a side-effect both the cell
-	 * range selection and the header row index are reseted.
-	 *
-	 * @param newSheetIndex
-	 *            the new sheet index
-	 */
-	void setSheetIndex(final int newSheetIndex) {
+    /**
+     * Updates the selected sheet index and loads a new table model. As a side-effect both the cell
+     * range selection and the header row index are reseted.
+     *
+     * @param newSheetIndex the new sheet index
+     */
+    void setSheetIndex(final int newSheetIndex) {
 		int oldSheetIndex = this.sheetIndex;
 		if (oldSheetIndex != newSheetIndex) {
 			this.sheetIndex = newSheetIndex;
@@ -151,18 +154,15 @@ class ExcelSheetSelectionPanelModel {
 		}
 	}
 
-	/**
-	 * Updates the cell selection model with the provided new sheetIndex, headerRowIndex, and
-	 * {@link CellRangeSelection}.
-	 *
-	 * @param sheetIndex
-	 *            the new sheetIndex
-	 * @param headerRowIndex
-	 *            the new headerRowIndex
-	 * @param selection
-	 *            the new cell range selection
-	 */
-	void updateModel(final int sheetIndex, final int headerRowIndex, final CellRangeSelection selection) {
+    /**
+     * Updates the cell selection model with the provided new sheetIndex, headerRowIndex, and
+     * {@link CellRangeSelection}.
+     *
+     * @param sheetIndex     the new sheetIndex
+     * @param headerRowIndex the new headerRowIndex
+     * @param selection      the new cell range selection
+     */
+    void updateModel(final int sheetIndex, final int headerRowIndex, final CellRangeSelection selection) {
 
 		ProgressThread loadWorkbook = new ProgressThread(LOAD_WORKBOOK_PG_ID, false) {
 
@@ -248,17 +248,19 @@ class ExcelSheetSelectionPanelModel {
 
 	}
 
-	/**
-	 * @return whether the current table model is only showing a preview instead of the whole data
-	 */
-	boolean isShowingPreview() {
+    /**
+     * Is showing preview boolean.
+     *
+     * @return whether the current table model is only showing a preview instead of the whole data
+     */
+    boolean isShowingPreview() {
 		return isShowingPreview;
 	}
 
-	/**
-	 * Clears the table model cache.
-	 */
-	void clearTableModelCache() {
+    /**
+     * Clears the table model cache.
+     */
+    void clearTableModelCache() {
 		tableModelCache.clear();
 	}
 

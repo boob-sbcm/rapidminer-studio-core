@@ -37,19 +37,17 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
 
 
 /**
- *
  * A {@link Function} parsing a string or a number to a date with respect to the locale string.
  *
  * @author Marcel Seifert
- *
  */
 public class DateParseWithLocale extends AbstractFunction {
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 */
-	public DateParseWithLocale() {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     */
+    public DateParseWithLocale() {
 		super("conversion.date_parse_loc", 2, Ontology.DATE);
 	}
 
@@ -67,17 +65,14 @@ public class DateParseWithLocale extends AbstractFunction {
 		return new SimpleExpressionEvaluator(type, makeDateCallable(date, locale), isResultConstant(inputEvaluators));
 	}
 
-	/**
-	 * Builds a Date Callable from one String or double input argument and one String argument
-	 *
-	 * @param date
-	 *            the input date
-	 * @param locale
-	 *            the input locale
-	 *
-	 * @return the resulting callable<String>
-	 */
-	protected Callable<Date> makeDateCallable(final ExpressionEvaluator date, final ExpressionEvaluator locale) {
+    /**
+     * Builds a Date Callable from one String or double input argument and one String argument
+     *
+     * @param date   the input date
+     * @param locale the input locale
+     * @return the resulting callable<String>
+     */
+    protected Callable<Date> makeDateCallable(final ExpressionEvaluator date, final ExpressionEvaluator locale) {
 
 		final Callable<String> funcDateString = date.getType() == ExpressionType.STRING ? date.getStringFunction() : null;
 		final DoubleCallable funcDateDouble = date.getType() != ExpressionType.STRING ? date.getDoubleFunction() : null;
@@ -174,16 +169,14 @@ public class DateParseWithLocale extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result for a double input value and a locale string.
-	 *
-	 * @param value
-	 *            the input timestamp
-	 * @param the
-	 *            locale string
-	 * @return the result of the computation.
-	 */
-	protected Date compute(double value, String localeString) {
+    /**
+     * Computes the result for a double input value and a locale string.
+     *
+     * @param value        the input timestamp
+     * @param localeString the locale string
+     * @return the result of the computation.
+     */
+    protected Date compute(double value, String localeString) {
 
 		if (Double.isNaN(value) || localeString == null) {
 			return null;
@@ -196,16 +189,14 @@ public class DateParseWithLocale extends AbstractFunction {
 		return cal.getTime();
 	}
 
-	/**
-	 * Computes the result for a string input value and a locale string.
-	 *
-	 * @param dateString
-	 *            the date string
-	 * @param localeString
-	 *            the locale string
-	 * @return the result of the computation.
-	 */
-	protected Date compute(String dateString, String localeString) {
+    /**
+     * Computes the result for a string input value and a locale string.
+     *
+     * @param dateString   the date string
+     * @param localeString the locale string
+     * @return the result of the computation.
+     */
+    protected Date compute(String dateString, String localeString) {
 
 		if (dateString == null || localeString == null) {
 			return null;

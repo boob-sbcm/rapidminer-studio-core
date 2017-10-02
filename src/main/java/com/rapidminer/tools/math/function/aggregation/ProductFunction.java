@@ -23,17 +23,24 @@ import com.rapidminer.example.Attribute;
 
 /**
  * This aggregation function calculates the product of all given values.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class ProductFunction extends AbstractAggregationFunction {
 
 	private double product = 1d;
 
-	public ProductFunction() {}
+    /**
+     * Instantiates a new Product function.
+     */
+    public ProductFunction() {}
 
-	public ProductFunction(Boolean ignoreMissings) {
+    /**
+     * Instantiates a new Product function.
+     *
+     * @param ignoreMissings the ignore missings
+     */
+    public ProductFunction(Boolean ignoreMissings) {
 		super(ignoreMissings);
 	}
 

@@ -29,15 +29,20 @@ import javax.swing.JPanel;
 
 /**
  * A configuration panel for {@link DistinctValueGrouping}s.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class DistinctValueGroupingCardPanel extends AbstractGroupingCardPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public DistinctValueGroupingCardPanel(PlotInstance plotInstance, PlotDimension dimension) {
+    /**
+     * Instantiates a new Distinct value grouping card panel.
+     *
+     * @param plotInstance the plot instance
+     * @param dimension    the dimension
+     */
+    public DistinctValueGroupingCardPanel(PlotInstance plotInstance, PlotDimension dimension) {
 		super(plotInstance, dimension);
 	}
 

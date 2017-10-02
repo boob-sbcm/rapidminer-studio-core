@@ -98,9 +98,17 @@ public class CollapsibleErrorTable extends JPanel {
 	private final JLabel errorLabel = new JLabel();
 	private final JLabel openErrorLabel = new JLabel();
 	private boolean errorPanelCollapsed = true;
-	final JXCollapsiblePane collapsePane = new JXCollapsiblePane(Direction.UP);
+    /**
+     * The Collapse pane.
+     */
+    final JXCollapsiblePane collapsePane = new JXCollapsiblePane(Direction.UP);
 
-	public CollapsibleErrorTable(AbstractErrorWarningTableModel errorWarningTableModel) {
+    /**
+     * Instantiates a new Collapsible error table.
+     *
+     * @param errorWarningTableModel the error warning table model
+     */
+    public CollapsibleErrorTable(AbstractErrorWarningTableModel errorWarningTableModel) {
 		this.errorWarningTableModel = errorWarningTableModel;
 		errorTable = new JTable(errorWarningTableModel) {
 
@@ -166,10 +174,10 @@ public class CollapsibleErrorTable extends JPanel {
 		this.add(errorContainerPanel, BorderLayout.CENTER);
 	}
 
-	/**
-	 * Updates the content of the {@link #errorTable} and the label that is used to show it.
-	 */
-	public void update() {
+    /**
+     * Updates the content of the {@link #errorTable} and the label that is used to show it.
+     */
+    public void update() {
 		// calculate the size of the table
 		int rowCount = errorWarningTableModel.getRowCount();
 		int tableHeight = rowCount * errorTable.getRowHeight() + errorTable.getTableHeader().getHeight();
@@ -203,10 +211,12 @@ public class CollapsibleErrorTable extends JPanel {
 		}
 	}
 
-	/**
-	 * @return the underlying table
-	 */
-	public JTable getTable() {
+    /**
+     * Gets table.
+     *
+     * @return the underlying table
+     */
+    public JTable getTable() {
 		return errorTable;
 	}
 

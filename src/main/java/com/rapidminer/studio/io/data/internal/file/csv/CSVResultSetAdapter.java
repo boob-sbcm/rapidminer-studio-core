@@ -113,14 +113,16 @@ class CSVResultSetAdapter extends ResultSetAdapter {
 
 	private final CSVDataSource dataSource;
 
-	/**
-	 * Constructs a {@link DataSet} from the given resultSet using the given data.
-	 *
-	 * @throws DataSetException
-	 *             in case the creation of the {@link CSVResultSetAdapter} failed (e.g. because of
-	 *             file reading errors)
-	 */
-	public CSVResultSetAdapter(CSVDataSource dataSource, DataResultSet resultSet, int startRow, int endRow)
+    /**
+     * Constructs a {@link DataSet} from the given resultSet using the given data.
+     *
+     * @param dataSource the data source
+     * @param resultSet  the result set
+     * @param startRow   the start row
+     * @param endRow     the end row
+     * @throws DataSetException in case the creation of the {@link CSVResultSetAdapter} failed (e.g. because of             file reading errors)
+     */
+    public CSVResultSetAdapter(CSVDataSource dataSource, DataResultSet resultSet, int startRow, int endRow)
 			throws DataSetException {
 		super(resultSet, startRow, endRow);
 		this.dataSource = dataSource;
@@ -131,13 +133,12 @@ class CSVResultSetAdapter extends ResultSetAdapter {
 		return dataRow;
 	}
 
-	/**
-	 * Sets the maximal end row
-	 *
-	 * @param maxEndRow
-	 *            the maximal end row
-	 */
-	void setMaximumEndRow(int maxEndRow) {
+    /**
+     * Sets the maximal end row
+     *
+     * @param maxEndRow the maximal end row
+     */
+    void setMaximumEndRow(int maxEndRow) {
 		super.setMaxEndRow(maxEndRow);
 	}
 

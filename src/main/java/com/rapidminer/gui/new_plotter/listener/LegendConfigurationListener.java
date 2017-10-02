@@ -22,11 +22,16 @@ import com.rapidminer.gui.new_plotter.listener.events.LegendConfigurationChangeE
 
 
 /**
- * 
+ * The interface Legend configuration listener.
+ *
  * @author Nils Woehler
- * 
  */
 public interface LegendConfigurationListener {
 
-	public void legendConfigurationChanged(LegendConfigurationChangeEvent change);
+    /**
+     * Legend configuration changed.
+     *
+     * @param change the change
+     */
+    public void legendConfigurationChanged(LegendConfigurationChangeEvent change);
 }

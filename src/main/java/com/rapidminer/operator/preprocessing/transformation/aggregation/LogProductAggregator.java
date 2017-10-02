@@ -20,14 +20,19 @@ package com.rapidminer.operator.preprocessing.transformation.aggregation;
 
 /**
  * This is an {@link Aggregator} for the {@link LogProductAggregationFunction}
- * 
+ *
  * @author Sebastian Land
  */
 public class LogProductAggregator extends NumericalAggregator {
 
 	private double logSum = 0;
 
-	public LogProductAggregator(AggregationFunction function) {
+    /**
+     * Instantiates a new Log product aggregator.
+     *
+     * @param function the function
+     */
+    public LogProductAggregator(AggregationFunction function) {
 		super(function);
 	}
 

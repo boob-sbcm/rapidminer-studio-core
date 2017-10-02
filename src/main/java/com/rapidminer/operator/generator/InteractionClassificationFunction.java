@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is positive if att1 < 0 or att2 > 0 and att3 < 0.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class InteractionClassificationFunction extends ClassificationFunction {

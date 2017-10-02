@@ -64,7 +64,12 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class FourierTransform extends AbstractFeatureTransformation {
 
-	public FourierTransform(OperatorDescription description) {
+    /**
+     * Instantiates a new Fourier transform.
+     *
+     * @param description the description
+     */
+    public FourierTransform(OperatorDescription description) {
 		super(description);
 	}
 

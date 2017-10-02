@@ -48,8 +48,10 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class DirectMailingExampleSetGenerator extends AbstractExampleSource {
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
 
 	private static String[] ATTRIBUTE_NAMES = { "name", "age", "lifestyle", "zip code", "family status", "car", "sports",
 			"earnings" };
@@ -60,7 +62,12 @@ public class DirectMailingExampleSetGenerator extends AbstractExampleSource {
 	private static String[][] POSSIBLE_VALUES = { null, null, { "healthy", "active", "cozily" }, null,
 			{ "married", "single" }, { "practical", "expensive" }, { "soccer", "badminton", "athletics" }, null };
 
-	public DirectMailingExampleSetGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Direct mailing example set generator.
+     *
+     * @param description the description
+     */
+    public DirectMailingExampleSetGenerator(OperatorDescription description) {
 		super(description);
 	}
 

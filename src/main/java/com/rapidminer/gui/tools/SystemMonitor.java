@@ -72,7 +72,10 @@ public class SystemMonitor extends JPanel implements Dockable {
 
 	private static final int DELAY = 1000;
 
-	public static final String SYSTEM_MONITOR_DOCK_KEY = "system_monitor";
+    /**
+     * The constant SYSTEM_MONITOR_DOCK_KEY.
+     */
+    public static final String SYSTEM_MONITOR_DOCK_KEY = "system_monitor";
 	private final DockKey DOCK_KEY = new ResourceDockKey(SYSTEM_MONITOR_DOCK_KEY);
 
 	{
@@ -93,7 +96,10 @@ public class SystemMonitor extends JPanel implements Dockable {
 
 	private Font font;
 
-	public SystemMonitor() {
+    /**
+     * Instantiates a new System monitor.
+     */
+    public SystemMonitor() {
 		setBackground(backgroundColor);
 
 		// prevent VLDocking popup menu by eating events
@@ -101,7 +107,10 @@ public class SystemMonitor extends JPanel implements Dockable {
 		});
 	}
 
-	public void startMonitorThread() {
+    /**
+     * Start monitor thread.
+     */
+    public void startMonitorThread() {
 		new Timer(DELAY, new ActionListener() {
 
 			@Override
@@ -193,24 +202,49 @@ public class SystemMonitor extends JPanel implements Dockable {
 		return DOCK_KEY;
 	}
 
-	protected final void setBackgroundColor(Color color) {
+    /**
+     * Sets background color.
+     *
+     * @param color the color
+     */
+    protected final void setBackgroundColor(Color color) {
 		this.backgroundColor = color;
 		setBackground(backgroundColor);
 	}
 
-	protected final void setTextColor(Color color) {
+    /**
+     * Sets text color.
+     *
+     * @param color the color
+     */
+    protected final void setTextColor(Color color) {
 		this.textColor = color;
 	}
 
-	protected final void setMemoryColor(Color color) {
+    /**
+     * Sets memory color.
+     *
+     * @param color the color
+     */
+    protected final void setMemoryColor(Color color) {
 		this.memoryColor = color;
 	}
 
-	protected final void setGridColor(Color color) {
+    /**
+     * Sets grid color.
+     *
+     * @param color the color
+     */
+    protected final void setGridColor(Color color) {
 		this.gridColor = color;
 	}
 
-	protected final void setLineColor(Color color) {
+    /**
+     * Sets line color.
+     *
+     * @param color the color
+     */
+    protected final void setLineColor(Color color) {
 		this.lineColor = color;
 	}
 

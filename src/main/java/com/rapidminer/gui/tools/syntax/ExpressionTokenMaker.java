@@ -47,30 +47,28 @@ public class ExpressionTokenMaker extends AbstractTokenMaker {
 	/** list of all given {@link FunctionInput}s */
 	private static List<FunctionInput> functionInputs = new LinkedList<>();
 
-	/**
-	 * Adds the given {@link FunctionDescription}s to the list of functions that are highlighted
-	 *
-	 * @param functions
-	 *            list of {@link FunctionDescription}s
-	 */
-	public static void addFunctions(List<FunctionDescription> functions) {
+    /**
+     * Adds the given {@link FunctionDescription}s to the list of functions that are highlighted
+     *
+     * @param functions list of {@link FunctionDescription}s
+     */
+    public static void addFunctions(List<FunctionDescription> functions) {
 		ExpressionTokenMaker.functions.addAll(functions);
 	}
 
-	/**
-	 * Adds the given {@link FunctionInput}s to the list of highlighted variables
-	 *
-	 * @param functionInputs
-	 *            list of {@link FunctionInput}s
-	 */
-	public static void addFunctionInputs(List<FunctionInput> functionInputs) {
+    /**
+     * Adds the given {@link FunctionInput}s to the list of highlighted variables
+     *
+     * @param functionInputs list of {@link FunctionInput}s
+     */
+    public static void addFunctionInputs(List<FunctionInput> functionInputs) {
 		ExpressionTokenMaker.functionInputs.addAll(functionInputs);
 	}
 
-	/**
-	 * Removes all {@link FunctionInput}s from the list of highlighted variables
-	 */
-	public static void removeFunctionInputs() {
+    /**
+     * Removes all {@link FunctionInput}s from the list of highlighted variables
+     */
+    public static void removeFunctionInputs() {
 		ExpressionTokenMaker.functionInputs.clear();
 	}
 

@@ -27,7 +27,7 @@ import java.util.Iterator;
  * This example reader is based on the given mapping and skips all examples which are not part of
  * the mapping. If an index occurs more than once the example will be returned the number of desired
  * times. For performance reasons the mapping array must have been sorted beforehand.
- * 
+ *
  * @author Ingo Mierswa, Martin Scholz
  */
 public class MappedExampleReader extends AbstractExampleReader {
@@ -47,8 +47,13 @@ public class MappedExampleReader extends AbstractExampleReader {
 	/** The current index in the mapping. */
 	private int index = -1;
 
-	/** Constructs a new mapped example reader. */
-	public MappedExampleReader(Iterator<Example> parent, int[] mapping) {
+    /**
+     * Constructs a new mapped example reader.  @param parent the parent
+     *
+     * @param parent  the parent
+     * @param mapping the mapping
+     */
+    public MappedExampleReader(Iterator<Example> parent, int[] mapping) {
 		this.parent = parent;
 		this.currentExample = null;
 		this.mapping = mapping;

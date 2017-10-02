@@ -24,21 +24,33 @@ import java.awt.Color;
 
 
 /**
- * 
+ * The interface Color provider.
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public interface ColorProvider extends SeriesFormatListener {
 
-	/**
-	 * @param value
-	 * @return
-	 */
-	public Color getColorForValue(double value);
+    /**
+     * Gets color for value.
+     *
+     * @param value the value
+     * @return color for value
+     */
+    public Color getColorForValue(double value);
 
-	public boolean supportsCategoricalValues();
+    /**
+     * Supports categorical values boolean.
+     *
+     * @return the boolean
+     */
+    public boolean supportsCategoricalValues();
 
-	public boolean supportsNumericalValues();
+    /**
+     * Supports numerical values boolean.
+     *
+     * @return the boolean
+     */
+    public boolean supportsNumericalValues();
 
 	public ColorProvider clone();
 }

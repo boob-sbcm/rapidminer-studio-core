@@ -32,14 +32,23 @@ import com.rapidminer.gui.tools.dialogs.ConfirmDialog;
 
 
 /**
- * @author Nils Woehler
+ * The type Safe mode dialog.
  *
+ * @author Nils Woehler
  */
 public class SafeModeDialog extends ConfirmDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	public SafeModeDialog(String key, int mode, boolean showAskAgainCheckbox, Object... arguments) {
+    /**
+     * Instantiates a new Safe mode dialog.
+     *
+     * @param key                  the key
+     * @param mode                 the mode
+     * @param showAskAgainCheckbox the show ask again checkbox
+     * @param arguments            the arguments
+     */
+    public SafeModeDialog(String key, int mode, boolean showAskAgainCheckbox, Object... arguments) {
 		super(null, key, mode, showAskAgainCheckbox, arguments);
 	}
 
@@ -78,7 +87,15 @@ public class SafeModeDialog extends ConfirmDialog {
 		return noButton;
 	}
 
-	public static int showSafeModeDialog(final String key, final int mode, final Object... i18nArgs) {
+    /**
+     * Show safe mode dialog int.
+     *
+     * @param key      the key
+     * @param mode     the mode
+     * @param i18nArgs the 18 n args
+     * @return the int
+     */
+    public static int showSafeModeDialog(final String key, final int mode, final Object... i18nArgs) {
 		return SwingTools.invokeAndWaitWithResult(new ResultRunnable<Integer>() {
 
 			@Override

@@ -22,13 +22,32 @@ import com.rapidminer.gui.new_plotter.utility.ValueRange;
 
 
 /**
+ * The type Value range change event.
+ *
  * @author Nils Woehler
- * 
  */
 public class ValueRangeChangeEvent implements ConfigurationChangeEvent {
 
-	public enum ValueRangeChangeType {
-		UPPER_BOUND, LOWER_BOUND, USE_UPPER_BOUND, USE_LOWER_BOUND, RESET,
+    /**
+     * The enum Value range change type.
+     */
+    public enum ValueRangeChangeType {
+        /**
+         * Upper bound value range change type.
+         */
+        UPPER_BOUND, /**
+         * Lower bound value range change type.
+         */
+        LOWER_BOUND, /**
+         * Use upper bound value range change type.
+         */
+        USE_UPPER_BOUND, /**
+         * Use lower bound value range change type.
+         */
+        USE_LOWER_BOUND, /**
+         * Reset value range change type.
+         */
+        RESET,
 	}
 
 	private final ValueRange source;
@@ -39,10 +58,13 @@ public class ValueRangeChangeEvent implements ConfigurationChangeEvent {
 	private boolean useLowerBound;
 	private boolean useUpperBound;
 
-	/**
-	 * Allowed {@link ValueRangeChangeType}s are RESET or ABOUT_TO_CHANGE_AUTORANGE
-	 */
-	public ValueRangeChangeEvent(ValueRange source, ValueRangeChangeType type) {
+    /**
+     * Allowed {@link ValueRangeChangeType}s are RESET or ABOUT_TO_CHANGE_AUTORANGE
+     *
+     * @param source the source
+     * @param type   the type
+     */
+    public ValueRangeChangeEvent(ValueRange source, ValueRangeChangeType type) {
 		if ((type != ValueRangeChangeType.RESET)) {
 			throw new RuntimeException(type + " is not allowed calling this constructor.");
 		}
@@ -50,10 +72,14 @@ public class ValueRangeChangeEvent implements ConfigurationChangeEvent {
 		this.type = type;
 	}
 
-	/**
-	 * Allowed {@link ValueRangeChangeType}s are UPPER_BOUND or LOWER_BOUND
-	 */
-	public ValueRangeChangeEvent(ValueRange source, ValueRangeChangeType type, Double bound) {
+    /**
+     * Allowed {@link ValueRangeChangeType}s are UPPER_BOUND or LOWER_BOUND
+     *
+     * @param source the source
+     * @param type   the type
+     * @param bound  the bound
+     */
+    public ValueRangeChangeEvent(ValueRange source, ValueRangeChangeType type, Double bound) {
 		if ((type != ValueRangeChangeType.UPPER_BOUND) && (type != ValueRangeChangeType.LOWER_BOUND)) {
 			throw new RuntimeException(type + " is not allowed calling this constructor.");
 		}
@@ -66,7 +92,14 @@ public class ValueRangeChangeEvent implements ConfigurationChangeEvent {
 		}
 	}
 
-	public ValueRangeChangeEvent(ValueRange source, ValueRangeChangeType type, boolean useBoundary) {
+    /**
+     * Instantiates a new Value range change event.
+     *
+     * @param source      the source
+     * @param type        the type
+     * @param useBoundary the use boundary
+     */
+    public ValueRangeChangeEvent(ValueRange source, ValueRangeChangeType type, boolean useBoundary) {
 		if ((type != ValueRangeChangeType.USE_UPPER_BOUND) && (type != ValueRangeChangeType.USE_LOWER_BOUND)) {
 			throw new RuntimeException(type + " is not allowed calling this constructor.");
 		}
@@ -79,31 +112,39 @@ public class ValueRangeChangeEvent implements ConfigurationChangeEvent {
 		}
 	}
 
-	/**
-	 * @return the source
-	 */
-	public ValueRange getSource() {
+    /**
+     * Gets source.
+     *
+     * @return the source
+     */
+    public ValueRange getSource() {
 		return source;
 	}
 
-	/**
-	 * @return the type
-	 */
-	public ValueRangeChangeType getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public ValueRangeChangeType getType() {
 		return type;
 	}
 
-	/**
-	 * @return the upperBound
-	 */
-	public Double getUpperBound() {
+    /**
+     * Gets upper bound.
+     *
+     * @return the upperBound
+     */
+    public Double getUpperBound() {
 		return upperBound;
 	}
 
-	/**
-	 * @return the lowerBound
-	 */
-	public Double getLowerBound() {
+    /**
+     * Gets lower bound.
+     *
+     * @return the lowerBound
+     */
+    public Double getLowerBound() {
 		return lowerBound;
 	}
 
@@ -112,17 +153,21 @@ public class ValueRangeChangeEvent implements ConfigurationChangeEvent {
 		return ConfigurationChangeType.VALUE_RANGE_CHANGE;
 	}
 
-	/**
-	 * @return the useLowerBound
-	 */
-	public boolean getUseLowerBound() {
+    /**
+     * Gets use lower bound.
+     *
+     * @return the useLowerBound
+     */
+    public boolean getUseLowerBound() {
 		return useLowerBound;
 	}
 
-	/**
-	 * @return the useUpperBound
-	 */
-	public boolean getUseUpperBound() {
+    /**
+     * Gets use upper bound.
+     *
+     * @return the useUpperBound
+     */
+    public boolean getUseUpperBound() {
 		return useUpperBound;
 	}
 

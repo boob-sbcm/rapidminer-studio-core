@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for processStackTraceElement complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="processStackTraceElement">
  *   &lt;complexContent>
@@ -41,8 +41,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "processStackTraceElement", propOrder = {
@@ -52,13 +50,23 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ProcessStackTraceElement {
 
+    /**
+     * The Apply count.
+     */
     protected int applyCount;
+    /**
+     * The Execution time.
+     */
     protected long executionTime;
+    /**
+     * The Operator name.
+     */
     protected String operatorName;
 
     /**
      * Gets the value of the applyCount property.
-     * 
+     *
+     * @return the apply count
      */
     public int getApplyCount() {
         return applyCount;
@@ -66,7 +74,8 @@ public class ProcessStackTraceElement {
 
     /**
      * Sets the value of the applyCount property.
-     * 
+     *
+     * @param value the value
      */
     public void setApplyCount(int value) {
         this.applyCount = value;
@@ -74,7 +83,8 @@ public class ProcessStackTraceElement {
 
     /**
      * Gets the value of the executionTime property.
-     * 
+     *
+     * @return the execution time
      */
     public long getExecutionTime() {
         return executionTime;
@@ -82,7 +92,8 @@ public class ProcessStackTraceElement {
 
     /**
      * Sets the value of the executionTime property.
-     * 
+     *
+     * @param value the value
      */
     public void setExecutionTime(long value) {
         this.executionTime = value;
@@ -90,11 +101,8 @@ public class ProcessStackTraceElement {
 
     /**
      * Gets the value of the operatorName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getOperatorName() {
         return operatorName;
@@ -102,11 +110,8 @@ public class ProcessStackTraceElement {
 
     /**
      * Sets the value of the operatorName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setOperatorName(String value) {
         this.operatorName = value;

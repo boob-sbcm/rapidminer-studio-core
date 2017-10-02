@@ -61,31 +61,37 @@ import com.rapidminer.tools.ParameterService;
 /**
  * Provides an operator chain which operates on given parameters depending on specified values for
  * these parameters.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public abstract class ParameterIteratingOperatorChain extends OperatorChain {
 
-	/** Last version where errors in the inner process were not handled properly. */
-	public static final OperatorVersion CHANGE_6_0_3_ERROR_HANDLING = new OperatorVersion(6, 0, 3);
+    /**
+     * Last version where errors in the inner process were not handled properly.
+     */
+    public static final OperatorVersion CHANGE_6_0_3_ERROR_HANDLING = new OperatorVersion(6, 0, 3);
 
-	/**
-	 * The parameter name for &quot;Parameters to optimize in the format
-	 * OPERATORNAME.PARAMETERNAME.&quot;
-	 */
-	public static final String PARAMETER_PARAMETERS = "parameters";
+    /**
+     * The parameter name for &quot;Parameters to optimize in the format
+     * OPERATORNAME.PARAMETERNAME.&quot;
+     */
+    public static final String PARAMETER_PARAMETERS = "parameters";
 
-	/** A specification of the parameter values for a parameter.&quot; */
-	public static final String PARAMETER_VALUES = "values";
+    /**
+     * A specification of the parameter values for a parameter.&quot;
+     */
+    public static final String PARAMETER_VALUES = "values";
 
-	/**
-	 * Means that the parameter iteration scheme can only handle discrete parameter values (i.e.
-	 * lists or numerical grids).
-	 */
-	public static final int VALUE_MODE_DISCRETE = 0;
+    /**
+     * Means that the parameter iteration scheme can only handle discrete parameter values (i.e.
+     * lists or numerical grids).
+     */
+    public static final int VALUE_MODE_DISCRETE = 0;
 
-	/** Means that the parameter iteration scheme can only handle intervals of numerical values. */
-	public static final int VALUE_MODE_CONTINUOUS = 1;
+    /**
+     * Means that the parameter iteration scheme can only handle intervals of numerical values.
+     */
+    public static final int VALUE_MODE_CONTINUOUS = 1;
 
 	private static final int PARAMETER_VALUES_ARRAY_LENGTH_RANGE = 2;
 
@@ -99,23 +105,46 @@ public abstract class ParameterIteratingOperatorChain extends OperatorChain {
 
 	private static final String PARAMETER_PARAMETER = "parameter_name";
 
-	public static final String PARAMETER_ERROR_HANDLING = "error_handling";
+    /**
+     * The constant PARAMETER_ERROR_HANDLING.
+     */
+    public static final String PARAMETER_ERROR_HANDLING = "error_handling";
 
-	public static final String[] ERROR_HANDLING_METHOD = new String[] { "fail on error", "ignore error" };
+    /**
+     * The constant ERROR_HANDLING_METHOD.
+     */
+    public static final String[] ERROR_HANDLING_METHOD = new String[] { "fail on error", "ignore error" };
 
-	public static final int ERROR_FAIL = 0;
-	public static final int ERROR_IGNORE = 1;
+    /**
+     * The constant ERROR_FAIL.
+     */
+    public static final int ERROR_FAIL = 0;
+    /**
+     * The constant ERROR_IGNORE.
+     */
+    public static final int ERROR_IGNORE = 1;
 
 	private final PortPairExtender inputExtender = new PortPairExtender("input", getInputPorts(), getSubprocess(0)
 			.getInnerSources());
 	private final InputPort performanceInnerSink = getSubprocess(0).getInnerSinks().createPort("performance");
 	private final PortPairExtender innerSinkExtender;
 
-	public ParameterIteratingOperatorChain(OperatorDescription description) {
+    /**
+     * Instantiates a new Parameter iterating operator chain.
+     *
+     * @param description the description
+     */
+    public ParameterIteratingOperatorChain(OperatorDescription description) {
 		this(description, "Subprocess");
 	}
 
-	public ParameterIteratingOperatorChain(OperatorDescription description, String subprocessName) {
+    /**
+     * Instantiates a new Parameter iterating operator chain.
+     *
+     * @param description    the description
+     * @param subprocessName the subprocess name
+     */
+    public ParameterIteratingOperatorChain(OperatorDescription description, String subprocessName) {
 		super(description, subprocessName);
 		innerSinkExtender = makeInnerSinkExtender();
 		inputExtender.start();
@@ -128,32 +157,57 @@ public abstract class ParameterIteratingOperatorChain extends OperatorChain {
 		getTransformer().addRule(innerSinkExtender.makePassThroughRule());
 	}
 
-	protected abstract PortPairExtender makeInnerSinkExtender();
+    /**
+     * Make inner sink extender port pair extender.
+     *
+     * @return the port pair extender
+     */
+    protected abstract PortPairExtender makeInnerSinkExtender();
 
-	protected PortPairExtender getInnerSinkExtender() {
+    /**
+     * Gets inner sink extender.
+     *
+     * @return the inner sink extender
+     */
+    protected PortPairExtender getInnerSinkExtender() {
 		return innerSinkExtender;
 	}
 
-	protected InputPort getPerformanceInnerSink() {
+    /**
+     * Gets performance inner sink.
+     *
+     * @return the performance inner sink
+     */
+    protected InputPort getPerformanceInnerSink() {
 		return performanceInnerSink;
 	}
 
-	/** Signals whether the subprocess must create a performance vector. */
-	protected abstract boolean isPerformanceRequired();
+    /**
+     * Signals whether the subprocess must create a performance vector.  @return the boolean
+     *
+     * @return the boolean
+     */
+    protected abstract boolean isPerformanceRequired();
 
-	/**
-	 * Has to return one of the predefined modes which indicate whether the operator takes discrete
-	 * values or intervals as basis for optimization. The first option is to be taken for all
-	 * strategies that iterate over the given parameters. The latter option is to be taken for
-	 * strategies such as an evolutionary one in which allowed ranges of parameters have to be
-	 * specified.
-	 */
-	public abstract int getParameterValueMode();
+    /**
+     * Has to return one of the predefined modes which indicate whether the operator takes discrete
+     * values or intervals as basis for optimization. The first option is to be taken for all
+     * strategies that iterate over the given parameters. The latter option is to be taken for
+     * strategies such as an evolutionary one in which allowed ranges of parameters have to be
+     * specified.
+     *
+     * @return the parameter value mode
+     */
+    public abstract int getParameterValueMode();
 
-	/**
-	 * Parses a parameter list and creates the corresponding data structures.
-	 */
-	public List<ParameterValues> parseParameterValues(List<String[]> parameterList) throws OperatorException {
+    /**
+     * Parses a parameter list and creates the corresponding data structures.
+     *
+     * @param parameterList the parameter list
+     * @return the list
+     * @throws OperatorException the operator exception
+     */
+    public List<ParameterValues> parseParameterValues(List<String[]> parameterList) throws OperatorException {
 		if (getProcess() == null) {
 			getLogger().warning("Cannot parse parameters while operator is not attached to a process.");
 			return Collections.<ParameterValues> emptyList();
@@ -258,25 +312,35 @@ public abstract class ParameterIteratingOperatorChain extends OperatorChain {
 		return parameterValuesList;
 	}
 
-	protected void executeSubprocess() throws OperatorException {
+    /**
+     * Execute subprocess.
+     *
+     * @throws OperatorException the operator exception
+     */
+    protected void executeSubprocess() throws OperatorException {
 		getSubprocess(0).execute();
 	}
 
-	/**
-	 * Applies the inner operator and employs the PerformanceEvaluator for calculating a list of
-	 * performance criteria which is returned.
-	 * 
-	 * @deprecated As of version 6.0.4, replaced by {@link #getPerformanceVector()}
-	 */
-	@Deprecated
+    /**
+     * Applies the inner operator and employs the PerformanceEvaluator for calculating a list of
+     * performance criteria which is returned.
+     *
+     * @return the performance
+     * @deprecated As of version 6.0.4, replaced by {@link #getPerformanceVector()}
+     */
+    @Deprecated
 	protected PerformanceVector getPerformance() {
 		return getPerformance(true);
 	}
 
-	/**
-	 * @deprecated As of version 6.0.4, replaced by {@link #getPerformanceVector()}
-	 */
-	@Deprecated
+    /**
+     * Gets performance.
+     *
+     * @param cloneInput the clone input
+     * @return the performance
+     * @deprecated As of version 6.0.4, replaced by {@link #getPerformanceVector()}
+     */
+    @Deprecated
 	protected PerformanceVector getPerformance(boolean cloneInput) {
 		try {
 			return getPerformanceVector();
@@ -295,11 +359,14 @@ public abstract class ParameterIteratingOperatorChain extends OperatorChain {
 		}
 	}
 
-	/**
-	 * Applies the inner operator and employs the PerformanceEvaluator for calculating a list of
-	 * performance criteria which is returned.
-	 */
-	protected PerformanceVector getPerformanceVector() throws OperatorException {
+    /**
+     * Applies the inner operator and employs the PerformanceEvaluator for calculating a list of
+     * performance criteria which is returned.
+     *
+     * @return the performance vector
+     * @throws OperatorException the operator exception
+     */
+    protected PerformanceVector getPerformanceVector() throws OperatorException {
 		try {
 			inputExtender.passDataThrough();
 			executeSubprocess();
@@ -318,19 +385,22 @@ public abstract class ParameterIteratingOperatorChain extends OperatorChain {
 		}
 	}
 
-	/**
-	 * Returns the results at the inner sink port extender. Does not include a possible performance
-	 * vector at the respective input. {@link #executeSubprocess()} or
-	 * {@link #getPerformanceVector()} must have been called earlier.
-	 * 
-	 * @throws UserError
-	 */
-	protected Collection<IOObject> getInnerResults() throws UserError {
+    /**
+     * Returns the results at the inner sink port extender. Does not include a possible performance
+     * vector at the respective input. {@link #executeSubprocess()} or
+     * {@link #getPerformanceVector()} must have been called earlier.
+     *
+     * @return the inner results
+     * @throws UserError the user error
+     */
+    protected Collection<IOObject> getInnerResults() throws UserError {
 		return innerSinkExtender.getData(IOObject.class);
 	}
 
-	/** Passes data from the inner sinks to the output ports. */
-	public void passResultsThrough() {
+    /**
+     * Passes data from the inner sinks to the output ports.
+     */
+    public void passResultsThrough() {
 		innerSinkExtender.passDataThrough();
 	}
 

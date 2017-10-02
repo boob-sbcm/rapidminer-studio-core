@@ -23,7 +23,7 @@ import java.text.DecimalFormat;
 
 /**
  * Transforms the given value by applying a log function.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AxisTransformationLog implements AxisTransformation {

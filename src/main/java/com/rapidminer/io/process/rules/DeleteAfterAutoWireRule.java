@@ -26,12 +26,20 @@ import org.w3c.dom.Element;
 
 
 /**
- * 
+ * The type Delete after auto wire rule.
+ *
  * @author Sebastian Land
  */
 public class DeleteAfterAutoWireRule extends AbstractParseRule {
 
-	public DeleteAfterAutoWireRule(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Delete after auto wire rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public DeleteAfterAutoWireRule(String operatorTypeName, Element element) throws XMLException {
 		super(operatorTypeName, element);
 	}
 

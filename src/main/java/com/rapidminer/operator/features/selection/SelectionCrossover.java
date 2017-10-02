@@ -33,20 +33,32 @@ import java.util.Random;
  * fixed propability and a mating partner is determined randomly. Crossover can be either one point,
  * uniform or shuffled. Please note that shuffled crossover first uniformly determines the number of
  * attributes which should be swapped. Therefore uniform and shuffle crossover are not equivalent. <br>
- * 
+ * <p>
  * Only useful if all example sets have the same (number of) attributes.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa Exp $
  */
 public class SelectionCrossover implements PopulationOperator {
 
-	public static final String[] CROSSOVER_TYPES = { "one_point", "uniform", "shuffle" };
+    /**
+     * The constant CROSSOVER_TYPES.
+     */
+    public static final String[] CROSSOVER_TYPES = { "one_point", "uniform", "shuffle" };
 
-	public static final int ONE_POINT = 0;
+    /**
+     * The constant ONE_POINT.
+     */
+    public static final int ONE_POINT = 0;
 
-	public static final int UNIFORM = 1;
+    /**
+     * The constant UNIFORM.
+     */
+    public static final int UNIFORM = 1;
 
-	public static final int SHUFFLE = 2;
+    /**
+     * The constant SHUFFLE.
+     */
+    public static final int SHUFFLE = 2;
 
 	private int type;
 
@@ -60,7 +72,17 @@ public class SelectionCrossover implements PopulationOperator {
 
 	private int exactNumber;
 
-	public SelectionCrossover(int type, double prob, Random random, int minNumber, int maxNumber, int exactNumber) {
+    /**
+     * Instantiates a new Selection crossover.
+     *
+     * @param type        the type
+     * @param prob        the prob
+     * @param random      the random
+     * @param minNumber   the min number
+     * @param maxNumber   the max number
+     * @param exactNumber the exact number
+     */
+    public SelectionCrossover(int type, double prob, Random random, int minNumber, int maxNumber, int exactNumber) {
 		this.prob = prob;
 		this.type = type;
 		this.random = random;
@@ -75,11 +97,22 @@ public class SelectionCrossover implements PopulationOperator {
 		return true;
 	}
 
-	public int getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public int getType() {
 		return type;
 	}
 
-	public void crossover(double[] weights1, double[] weights2) {
+    /**
+     * Crossover.
+     *
+     * @param weights1 the weights 1
+     * @param weights2 the weights 2
+     */
+    public void crossover(double[] weights1, double[] weights2) {
 		switch (type) {
 			case ONE_POINT:
 				int n = 1 + random.nextInt(weights1.length - 1);

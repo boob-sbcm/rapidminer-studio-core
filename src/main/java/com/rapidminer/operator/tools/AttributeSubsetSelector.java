@@ -78,39 +78,71 @@ import com.rapidminer.tools.Ontology;
  */
 public class AttributeSubsetSelector {
 
-	/** The parameter name for &quot;Implementation of the condition.&quot; */
-	public static final String PARAMETER_FILTER_TYPE = "attribute_filter_type";
+    /**
+     * The parameter name for &quot;Implementation of the condition.&quot;
+     */
+    public static final String PARAMETER_FILTER_TYPE = "attribute_filter_type";
 
-	/**
-	 * The parameter name for &quot;Indicates if only examples should be accepted which would
-	 * normally filtered.&quot;
-	 */
-	public static final String PARAMETER_INVERT_SELECTION = "invert_selection";
+    /**
+     * The parameter name for &quot;Indicates if only examples should be accepted which would
+     * normally filtered.&quot;
+     */
+    public static final String PARAMETER_INVERT_SELECTION = "invert_selection";
 
-	public static final String PARAMETER_INCLUDE_SPECIAL_ATTRIBUTES = "include_special_attributes";
+    /**
+     * The constant PARAMETER_INCLUDE_SPECIAL_ATTRIBUTES.
+     */
+    public static final String PARAMETER_INCLUDE_SPECIAL_ATTRIBUTES = "include_special_attributes";
 
-	public static String[] CONDITION_NAMES = new String[] { "all", "single", "subset", "regular_expression", "value_type",
+    /**
+     * The constant CONDITION_NAMES.
+     */
+    public static String[] CONDITION_NAMES = new String[] { "all", "single", "subset", "regular_expression", "value_type",
 			"block_type", "no_missing_values", "numeric_value_filter" };
 
 	private static Class<?>[] CONDITION_IMPLEMENTATIONS = { TransparentAttributeFilter.class, SingleAttributeFilter.class,
 			SubsetAttributeFilter.class, RegexpAttributeFilter.class, ValueTypeAttributeFilter.class,
 			BlockTypeAttributeFilter.class, NoMissingValuesAttributeFilter.class, NumericValueAttributeFilter.class };
 
-	public static final int CONDITION_ALL = 0;
+    /**
+     * The constant CONDITION_ALL.
+     */
+    public static final int CONDITION_ALL = 0;
 
-	public static final int CONDITION_SINGLE = 1;
+    /**
+     * The constant CONDITION_SINGLE.
+     */
+    public static final int CONDITION_SINGLE = 1;
 
-	public static final int CONDITION_SUBSET = 2;
+    /**
+     * The constant CONDITION_SUBSET.
+     */
+    public static final int CONDITION_SUBSET = 2;
 
-	public static final int CONDITION_REGULAR_EXPRESSION = 3;
+    /**
+     * The constant CONDITION_REGULAR_EXPRESSION.
+     */
+    public static final int CONDITION_REGULAR_EXPRESSION = 3;
 
-	public static final int CONDITION_VALUE_TYPE = 5;
+    /**
+     * The constant CONDITION_VALUE_TYPE.
+     */
+    public static final int CONDITION_VALUE_TYPE = 5;
 
-	public static final int CONDITION_BLOCK_TYPE = 6;
+    /**
+     * The constant CONDITION_BLOCK_TYPE.
+     */
+    public static final int CONDITION_BLOCK_TYPE = 6;
 
-	public static final int CONDITION_NO_MISSING_VALUES = 7;
+    /**
+     * The constant CONDITION_NO_MISSING_VALUES.
+     */
+    public static final int CONDITION_NO_MISSING_VALUES = 7;
 
-	public static final int CONDITION_NUMERIC_VALUE_FILTER = 8;
+    /**
+     * The constant CONDITION_NUMERIC_VALUE_FILTER.
+     */
+    public static final int CONDITION_NUMERIC_VALUE_FILTER = 8;
 
 	private final ParameterHandler operator;
 
@@ -118,11 +150,24 @@ public class AttributeSubsetSelector {
 
 	private int[] valueTypes;
 
-	public AttributeSubsetSelector(ParameterHandler operator, InputPort inPort) {
+    /**
+     * Instantiates a new Attribute subset selector.
+     *
+     * @param operator the operator
+     * @param inPort   the in port
+     */
+    public AttributeSubsetSelector(ParameterHandler operator, InputPort inPort) {
 		this(operator, inPort, Ontology.ATTRIBUTE_VALUE);
 	}
 
-	public AttributeSubsetSelector(ParameterHandler operator, InputPort inPort, int... valueTypes) {
+    /**
+     * Instantiates a new Attribute subset selector.
+     *
+     * @param operator   the operator
+     * @param inPort     the in port
+     * @param valueTypes the value types
+     */
+    public AttributeSubsetSelector(ParameterHandler operator, InputPort inPort, int... valueTypes) {
 		this.operator = operator;
 		this.inPort = inPort;
 		if (valueTypes.length == 0) {
@@ -132,13 +177,18 @@ public class AttributeSubsetSelector {
 		}
 	}
 
-	/**
-	 * This method returns the meta data of an exampleset as if it would have been filtered. If
-	 * exceptions are thrown because of wrong or missing parameter settings, null will be returned.
-	 * Please keep in mind that the resulting ExampleSetMetaData are only a clone of the original
-	 * one. Changes must hence be performed on the orginial exampleSetMetaData object.
-	 */
-	public ExampleSetMetaData getMetaDataSubset(ExampleSetMetaData metaData, boolean keepSpecialIfNotIncluded,
+    /**
+     * This method returns the meta data of an exampleset as if it would have been filtered. If
+     * exceptions are thrown because of wrong or missing parameter settings, null will be returned.
+     * Please keep in mind that the resulting ExampleSetMetaData are only a clone of the original
+     * one. Changes must hence be performed on the orginial exampleSetMetaData object.
+     *
+     * @param metaData                 the meta data
+     * @param keepSpecialIfNotIncluded the keep special if not included
+     * @param errorOnMissing           the error on missing
+     * @return the meta data subset
+     */
+    public ExampleSetMetaData getMetaDataSubset(ExampleSetMetaData metaData, boolean keepSpecialIfNotIncluded,
 			boolean errorOnMissing) {
 		try {
 			Collection<AttributeMetaData> attributes = metaData.getAllAttributes();
@@ -244,13 +294,17 @@ public class AttributeSubsetSelector {
 		}
 	}
 
-	/**
-	 * This method returns the meta data of an exampleset as if it would have been filtered. If
-	 * exceptions are thrown because of wrong or missing parameter settings, null will be returned.
-	 * Please keep in mind that the resulting ExampleSetMetaData are only a clone of the original
-	 * one. Changes must hence be performed on the orginial exampleSetMetaData object.
-	 */
-	public ExampleSetMetaData getMetaDataSubset(ExampleSetMetaData metaData, boolean keepSpecialIfNotIncluded) {
+    /**
+     * This method returns the meta data of an exampleset as if it would have been filtered. If
+     * exceptions are thrown because of wrong or missing parameter settings, null will be returned.
+     * Please keep in mind that the resulting ExampleSetMetaData are only a clone of the original
+     * one. Changes must hence be performed on the orginial exampleSetMetaData object.
+     *
+     * @param metaData                 the meta data
+     * @param keepSpecialIfNotIncluded the keep special if not included
+     * @return the meta data subset
+     */
+    public ExampleSetMetaData getMetaDataSubset(ExampleSetMetaData metaData, boolean keepSpecialIfNotIncluded) {
 		return getMetaDataSubset(metaData, keepSpecialIfNotIncluded, false);
 	}
 
@@ -265,24 +319,17 @@ public class AttributeSubsetSelector {
 		return keep;
 	}
 
-	/**
-	 * Returns the example subset which has been filtered according to the parameter settings.
-	 *
-	 * @param parent
-	 *            the example set which should be filtered
-	 * @param keepSpecialIfNotIncluded
-	 *            keep the special attributes if they are note included
-	 * @param failOnMissing
-	 *            throws an UserError if the result Set does not contain all specified attributes
-	 *            (only relevant for subset- and single attribute-conditions)
-	 *
-	 * @return the filtered example set error
-	 * @throws UndefinedParameterError
-	 *             necessary parameter not defined
-	 * @throws UserError
-	 *             condition could not be created or specified Attributes does not exists
-	 */
-	public ExampleSet getSubset(ExampleSet parent, boolean keepSpecialIfNotIncluded, boolean failOnMissing)
+    /**
+     * Returns the example subset which has been filtered according to the parameter settings.
+     *
+     * @param parent                   the example set which should be filtered
+     * @param keepSpecialIfNotIncluded keep the special attributes if they are note included
+     * @param failOnMissing            throws an UserError if the result Set does not contain all specified attributes            (only relevant for subset- and single attribute-conditions)
+     * @return the filtered example set error
+     * @throws UndefinedParameterError necessary parameter not defined
+     * @throws UserError               condition could not be created or specified Attributes does not exists
+     */
+    public ExampleSet getSubset(ExampleSet parent, boolean keepSpecialIfNotIncluded, boolean failOnMissing)
 			throws UndefinedParameterError, UserError {
 		boolean includeSpecial = operator.getParameterAsBoolean(PARAMETER_INCLUDE_SPECIAL_ATTRIBUTES);
 		ExampleSet clone = (ExampleSet) parent.clone();
@@ -302,45 +349,34 @@ public class AttributeSubsetSelector {
 		return clone;
 	}
 
-	/**
-	 * Returns the example subset which has been filtered according to the parameter settings.
-	 *
-	 * @param parent
-	 *            the example set which should be filtered
-	 * @param keepSpecialIfNotIncluded
-	 *            keep the special attributes if they are note included
-	 *
-	 * @return the filtered example set error
-	 * @throws UndefinedParameterError
-	 *             necessary parameter not defined
-	 * @throws UserError
-	 *             condition could not be created or specified Attributes does not exists
-	 *
-	 */
-	public ExampleSet getSubset(ExampleSet parent, boolean keepSpecialIfNotIncluded)
+    /**
+     * Returns the example subset which has been filtered according to the parameter settings.
+     *
+     * @param parent                   the example set which should be filtered
+     * @param keepSpecialIfNotIncluded keep the special attributes if they are note included
+     * @return the filtered example set error
+     * @throws UndefinedParameterError necessary parameter not defined
+     * @throws UserError               condition could not be created or specified Attributes does not exists
+     */
+    public ExampleSet getSubset(ExampleSet parent, boolean keepSpecialIfNotIncluded)
 			throws UndefinedParameterError, UserError {
 		return getSubset(parent, keepSpecialIfNotIncluded, false);
 	}
 
-	/**
-	 * Returns a set of attributes containing the original (!) attributes of the given example set
-	 * which match the filter settings of the parameter. Please keep in mind that this method does
-	 * not clone the example set like the getSubset method. If you change the attributes in the
-	 * subset, you will alter them in the given example set.
-	 *
-	 * @param exampleSet
-	 *            the original example set
-	 * @param keepSpecialIfNotIncluded
-	 *            keep the special attributes if they are not included
-	 * @param failOnMissing
-	 *            throws an UserError if the result Set does not contain all specified attributes
-	 *            (only relevant for subset- and single attribute-conditions)
-	 *
-	 * @return a set of attributes matching the filters
-	 * @throws UndefinedParameterError
-	 * @throws UserError
-	 */
-	public Set<Attribute> getAttributeSubset(ExampleSet exampleSet, boolean keepSpecialIfNotIncluded, boolean failOnMissing)
+    /**
+     * Returns a set of attributes containing the original (!) attributes of the given example set
+     * which match the filter settings of the parameter. Please keep in mind that this method does
+     * not clone the example set like the getSubset method. If you change the attributes in the
+     * subset, you will alter them in the given example set.
+     *
+     * @param exampleSet               the original example set
+     * @param keepSpecialIfNotIncluded keep the special attributes if they are not included
+     * @param failOnMissing            throws an UserError if the result Set does not contain all specified attributes            (only relevant for subset- and single attribute-conditions)
+     * @return a set of attributes matching the filters
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws UserError               the user error
+     */
+    public Set<Attribute> getAttributeSubset(ExampleSet exampleSet, boolean keepSpecialIfNotIncluded, boolean failOnMissing)
 			throws UndefinedParameterError, UserError {
 		try {
 			boolean includeSpecial = operator.getParameterAsBoolean(PARAMETER_INCLUDE_SPECIAL_ATTRIBUTES);
@@ -529,32 +565,35 @@ public class AttributeSubsetSelector {
 		}
 	}
 
-	/**
-	 * Returns a set of attributes containing the original (!) attributes of the given example set
-	 * which match the filter settings of the parameter. Please keep in mind that this method does
-	 * not clone the example set like the getSubset method. If you change the attributes in the
-	 * subset, you will alter them in the given example set.
-	 *
-	 * @param exampleSet
-	 *            the original example set
-	 * @param keepSpecialIfNotIncluded
-	 *            keep the special attributes if they are not included
-	 * @return a set of attributes matching the filters
-	 * @throws UndefinedParameterError
-	 * @throws UserError
-	 */
-	public Set<Attribute> getAttributeSubset(ExampleSet exampleSet, boolean keepSpecialIfNotIncluded)
+    /**
+     * Returns a set of attributes containing the original (!) attributes of the given example set
+     * which match the filter settings of the parameter. Please keep in mind that this method does
+     * not clone the example set like the getSubset method. If you change the attributes in the
+     * subset, you will alter them in the given example set.
+     *
+     * @param exampleSet               the original example set
+     * @param keepSpecialIfNotIncluded keep the special attributes if they are not included
+     * @return a set of attributes matching the filters
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws UserError               the user error
+     */
+    public Set<Attribute> getAttributeSubset(ExampleSet exampleSet, boolean keepSpecialIfNotIncluded)
 			throws UndefinedParameterError, UserError {
 		return getAttributeSubset(exampleSet, keepSpecialIfNotIncluded, false);
 	}
 
-	/**
-	 * Checks if the given name is the short name of a known condition and creates it. If the name
-	 * is not known, this method creates a new instance of className which must be an implementation
-	 * of {@link Condition} by calling its two argument constructor passing it the example set and
-	 * the parameter string.
-	 */
-	public static AttributeFilterCondition createCondition(String name, ParameterHandler operator)
+    /**
+     * Checks if the given name is the short name of a known condition and creates it. If the name
+     * is not known, this method creates a new instance of className which must be an implementation
+     * of {@link Condition} by calling its two argument constructor passing it the example set and
+     * the parameter string.
+     *
+     * @param name     the name
+     * @param operator the operator
+     * @return the attribute filter condition
+     * @throws ConditionCreationException the condition creation exception
+     */
+    public static AttributeFilterCondition createCondition(String name, ParameterHandler operator)
 			throws ConditionCreationException {
 		try {
 			for (int i = 0; i < CONDITION_NAMES.length; i++) {
@@ -577,10 +616,13 @@ public class AttributeSubsetSelector {
 		}
 	}
 
-	/**
-	 * This method allows registering filter conditions defined in plugins.
-	 */
-	public static void registerCondition(String conditionName, Class<? extends AttributeFilterCondition> conditionClass) {
+    /**
+     * This method allows registering filter conditions defined in plugins.
+     *
+     * @param conditionName  the condition name
+     * @param conditionClass the condition class
+     */
+    public static void registerCondition(String conditionName, Class<? extends AttributeFilterCondition> conditionClass) {
 		String[] newConditionNames = new String[CONDITION_NAMES.length + 1];
 		System.arraycopy(CONDITION_NAMES, 0, newConditionNames, 0, CONDITION_NAMES.length);
 		newConditionNames[newConditionNames.length - 1] = conditionName;
@@ -592,10 +634,12 @@ public class AttributeSubsetSelector {
 		CONDITION_IMPLEMENTATIONS = newConditionClasses;
 	}
 
-	/**
-	 * This method creates the parameter types needed to filter attributes from example sets.
-	 */
-	public List<ParameterType> getParameterTypes() {
+    /**
+     * This method creates the parameter types needed to filter attributes from example sets.
+     *
+     * @return the parameter types
+     */
+    public List<ParameterType> getParameterTypes() {
 		List<ParameterType> types = new LinkedList<>();
 		ParameterType type = new ParameterTypeCategory(PARAMETER_FILTER_TYPE,
 				"The condition specifies which attributes are selected or affected by this operator.", CONDITION_NAMES, 0);
@@ -633,7 +677,12 @@ public class AttributeSubsetSelector {
 		return types;
 	}
 
-	public Precondition makePrecondition() {
+    /**
+     * Make precondition precondition.
+     *
+     * @return the precondition
+     */
+    public Precondition makePrecondition() {
 		return new Precondition() {
 
 			@Override

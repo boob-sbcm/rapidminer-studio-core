@@ -45,6 +45,7 @@ import com.rapidminer.tools.RandomGenerator;
 
 // TODO Verify results, add capability to specify sample size, move sample size parameters to
 // superclass
+
 /**
  * Sampling based on a model. Examples which are correctly predicted will removed with a higher
  * probability.
@@ -55,7 +56,12 @@ public class ModelBasedSampling extends AbstractSamplingOperator {
 
 	private InputPort modelInput = getInputPorts().createPort("model", PredictionModel.class);
 
-	public ModelBasedSampling(OperatorDescription description) {
+    /**
+     * Instantiates a new Model based sampling.
+     *
+     * @param description the description
+     */
+    public ModelBasedSampling(OperatorDescription description) {
 		super(description);
 	}
 

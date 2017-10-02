@@ -37,15 +37,21 @@ import org.w3c.dom.NodeList;
 
 /**
  * This is the super class of all ParseRules with depend on one or more conditions.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public abstract class AbstractConditionedParseRule extends AbstractParseRule {
 
 	private final List<ParseRuleCondition> conditions = new LinkedList<ParseRuleCondition>();
 
-	public AbstractConditionedParseRule(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Abstract conditioned parse rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public AbstractConditionedParseRule(String operatorTypeName, Element element) throws XMLException {
 		super(operatorTypeName, element);
 		NodeList children = element.getChildNodes();
 		for (int i = 0; i < children.getLength(); i++) {
@@ -59,7 +65,12 @@ public abstract class AbstractConditionedParseRule extends AbstractParseRule {
 		}
 	}
 
-	protected void parseCondition(Element childElem) {
+    /**
+     * Parse condition.
+     *
+     * @param childElem the child elem
+     */
+    protected void parseCondition(Element childElem) {
 		NodeList conditionNodes = childElem.getChildNodes();
 		for (int j = 0; j < conditionNodes.getLength(); j++) {
 			Node conditionNode = conditionNodes.item(j);
@@ -89,5 +100,13 @@ public abstract class AbstractConditionedParseRule extends AbstractParseRule {
 		return conditionedApply(operator, operatorTypeName, importer);
 	}
 
-	protected abstract String conditionedApply(Operator operator, String operatorTypeName, XMLImporter importer);
+    /**
+     * Conditioned apply string.
+     *
+     * @param operator         the operator
+     * @param operatorTypeName the operator type name
+     * @param importer         the importer
+     * @return the string
+     */
+    protected abstract String conditionedApply(Operator operator, String operatorTypeName, XMLImporter importer);
 }

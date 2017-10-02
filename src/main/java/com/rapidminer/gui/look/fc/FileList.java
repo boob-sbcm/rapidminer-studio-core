@@ -87,7 +87,12 @@ public class FileList extends JPanel implements PropertyChangeListener {
 
 		private final FileList fileList;
 
-		public MenuListener(FileList fileList) {
+        /**
+         * Instantiates a new Menu listener.
+         *
+         * @param fileList the file list
+         */
+        public MenuListener(FileList fileList) {
 			this.fileList = fileList;
 		}
 
@@ -124,7 +129,10 @@ public class FileList extends JPanel implements PropertyChangeListener {
 
 	private ButtonGroup orderButtonGroup;
 
-	protected ItemPanel itemPanel;
+    /**
+     * The Item panel.
+     */
+    protected ItemPanel itemPanel;
 
 	private ThumbGeneratorThread thumbGenerator = new ThumbGeneratorThread(this.itemPanel);
 
@@ -138,29 +146,56 @@ public class FileList extends JPanel implements PropertyChangeListener {
 
 	private JMenuItem menuItem;
 
-	protected JPanel cardPanel = new JPanel(new CardLayout());
+    /**
+     * The Card panel.
+     */
+    protected JPanel cardPanel = new JPanel(new CardLayout());
 
 	private final JScrollPane tableScrollPane = new JScrollPane();
 
-	protected FileTable tablePanel;
+    /**
+     * The Table panel.
+     */
+    protected FileTable tablePanel;
 
-	protected JScrollPane browseScrollPane = new JScrollPane();
+    /**
+     * The Browse scroll pane.
+     */
+    protected JScrollPane browseScrollPane = new JScrollPane();
 
 	private final TreeMap<String, Object[]> systemInfoCach = new TreeMap<String, Object[]>();
 
-	protected ItemPanelKeyboardListener keyListener = new ItemPanelKeyboardListener();
+    /**
+     * The Key listener.
+     */
+    protected ItemPanelKeyboardListener keyListener = new ItemPanelKeyboardListener();
 
-	protected Vector<Item> completeItemsList = new Vector<>(20);
+    /**
+     * The Complete items list.
+     */
+    protected Vector<Item> completeItemsList = new Vector<>(20);
 
-	protected Vector<Item> visibleItemsList = new Vector<Item>(20);
+    /**
+     * The Visible items list.
+     */
+    protected Vector<Item> visibleItemsList = new Vector<Item>(20);
 
-	protected Vector<Object> tempList = new Vector<Object>(20);
+    /**
+     * The Temp list.
+     */
+    protected Vector<Object> tempList = new Vector<Object>(20);
 
 	private final TreeMap<Item, Item> tempCompareTree = new TreeMap<Item, Item>();
 
-	protected Item lastSelected;
+    /**
+     * The Last selected.
+     */
+    protected Item lastSelected;
 
-	protected JPopupMenu panePopup;
+    /**
+     * The Pane popup.
+     */
+    protected JPopupMenu panePopup;
 
 	private JCheckBoxMenuItem showHiddenMenuItem;
 
@@ -168,33 +203,63 @@ public class FileList extends JPanel implements PropertyChangeListener {
 
 	private String tempExtension;
 
-	protected JFileChooser fc;
+    /**
+     * The Fc.
+     */
+    protected JFileChooser fc;
 
-	protected FileChooserUI filechooserUI;
+    /**
+     * The Filechooser ui.
+     */
+    protected FileChooserUI filechooserUI;
 
-	protected File tempFile, currentFile = null;
+    /**
+     * The Temp file.
+     */
+    protected File tempFile, /**
+     * The Current file.
+     */
+    currentFile = null;
 
 	private Object[] tempArray;
 
 	private File[] selectedFilesArray;
 
-	protected Vector<Item> selectedFilesVector = new Vector<>();
+    /**
+     * The Selected files vector.
+     */
+    protected Vector<Item> selectedFilesVector = new Vector<>();
 
 	private boolean tempFlag = false;
 
-	public static String ORDER_BY_FILE_NAME = I18N.getMessage(I18N.getGUIBundle(),
+    /**
+     * The constant ORDER_BY_FILE_NAME.
+     */
+    public static String ORDER_BY_FILE_NAME = I18N.getMessage(I18N.getGUIBundle(),
 			"gui.menu.file_chooser.sort_by.file_name");
 
-	public static String ORDER_BY_FILE_TYPE = I18N.getMessage(I18N.getGUIBundle(),
+    /**
+     * The constant ORDER_BY_FILE_TYPE.
+     */
+    public static String ORDER_BY_FILE_TYPE = I18N.getMessage(I18N.getGUIBundle(),
 			"gui.menu.file_chooser.sort_by.file_type");
 
-	public static String ORDER_BY_FILE_SIZE = I18N.getMessage(I18N.getGUIBundle(),
+    /**
+     * The constant ORDER_BY_FILE_SIZE.
+     */
+    public static String ORDER_BY_FILE_SIZE = I18N.getMessage(I18N.getGUIBundle(),
 			"gui.menu.file_chooser.sort_by.file_size");
 
-	public static String ORDER_BY_FILE_MODIFIED = I18N.getMessage(I18N.getGUIBundle(),
+    /**
+     * The constant ORDER_BY_FILE_MODIFIED.
+     */
+    public static String ORDER_BY_FILE_MODIFIED = I18N.getMessage(I18N.getGUIBundle(),
 			"gui.menu.file_chooser.sort_by.last_modified");
 
-	protected String ORDER_BY = ORDER_BY_FILE_NAME;
+    /**
+     * The Order by.
+     */
+    protected String ORDER_BY = ORDER_BY_FILE_NAME;
 
 	private JCheckBoxMenuItem autoArrangeCheckBox;
 
@@ -238,7 +303,17 @@ public class FileList extends JPanel implements PropertyChangeListener {
 	// bookmarkList.setVisibleRowCount(-1);
 	// }
 
-	protected ImageIcon getSystemIcon(File file, String filename, boolean isDir, boolean bigIcon) throws Exception {
+    /**
+     * Gets system icon.
+     *
+     * @param file     the file
+     * @param filename the filename
+     * @param isDir    the is dir
+     * @param bigIcon  the big icon
+     * @return the system icon
+     * @throws Exception the exception
+     */
+    protected ImageIcon getSystemIcon(File file, String filename, boolean isDir, boolean bigIcon) throws Exception {
 		if (!isDir) {
 			if (filename.indexOf('.') > -1) {
 				this.tempExtension = filename.substring(1 + file.getName().indexOf('.'));
@@ -311,7 +386,10 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	protected void changeCardForView() {
+    /**
+     * Change card for view.
+     */
+    protected void changeCardForView() {
 		stopThumbnailGeneration();
 
 		if (this.filechooserUI.getView().equals(FileChooserUI.FILECHOOSER_VIEW_DETAILS)) {
@@ -335,7 +413,14 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		updateViewMenuItemsGroup();
 	}
 
-	protected Object[] cachSystemDetails(File file, String filename) {
+    /**
+     * Cach system details object [ ].
+     *
+     * @param file     the file
+     * @param filename the filename
+     * @return the object [ ]
+     */
+    protected Object[] cachSystemDetails(File file, String filename) {
 		if (filename.indexOf('.') > -1) {
 			this.tempExtension = filename.substring(1 + file.getName().indexOf('.'));
 		} else {
@@ -373,11 +458,19 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	public void addToBookmarks() {
+    /**
+     * Add to bookmarks.
+     */
+    public void addToBookmarks() {
 		addToBookmarks(this.fc.getCurrentDirectory());
 	}
 
-	public void addToBookmarks(File f) {
+    /**
+     * Add to bookmarks.
+     *
+     * @param f the f
+     */
+    public void addToBookmarks(File f) {
 		String name = SwingTools.showInputDialog("file_chooser.bookmark_name", this.fc.getFileSystemView()
 				.getSystemDisplayName(f), this.fc.getFileSystemView().getSystemDisplayName(f));
 		if (name != null && !name.trim().equals("")) {
@@ -397,12 +490,22 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	public void deleteBookmark(Bookmark bookmark) {
+    /**
+     * Delete bookmark.
+     *
+     * @param bookmark the bookmark
+     */
+    public void deleteBookmark(Bookmark bookmark) {
 		this.bookmarksIO.deleteBookmark(bookmark);
 		updateBookmarks();
 	}
 
-	public void renameBookmark(Bookmark bookmark) {
+    /**
+     * Rename bookmark.
+     *
+     * @param bookmark the bookmark
+     */
+    public void renameBookmark(Bookmark bookmark) {
 		Container topLevelAncestor = getTopLevelAncestor();
 
 		BookmarkDialog dialog;
@@ -425,7 +528,13 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	public FileList(FileChooserUI tfcui, JFileChooser fc) {
+    /**
+     * Instantiates a new File list.
+     *
+     * @param tfcui the tfcui
+     * @param fc    the fc
+     */
+    public FileList(FileChooserUI tfcui, JFileChooser fc) {
 		try {
 			this.fc = fc;
 			this.filechooserUI = tfcui;
@@ -531,7 +640,10 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		});
 	}
 
-	protected void updateTablePanelSize() {
+    /**
+     * Update table panel size.
+     */
+    protected void updateTablePanelSize() {
 		if (this.tablePanel.getInitialHeight() < this.tableScrollPane.getSize().getHeight()) {
 			this.tablePanel.setPreferredSize(new Dimension(this.tablePanel.getWidth(), this.tableScrollPane.getHeight()
 					- this.tablePanel.getTableHeader().getHeight()));
@@ -544,23 +656,39 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	public void generateThumbs() {
+    /**
+     * Generate thumbs.
+     */
+    public void generateThumbs() {
 		this.thumbGenerator = new ThumbGeneratorThread(this.itemPanel);
 		this.thumbGenerator.start();
 	}
 
-	public void setSelectedFile(File f) {
+    /**
+     * Sets selected file.
+     *
+     * @param f the f
+     */
+    public void setSelectedFile(File f) {
 		this.filechooserUI.setCurrentDirectoryOfFileChooser(f);
 	}
 
-	public void updatePath(File file) {
+    /**
+     * Update path.
+     *
+     * @param file the file
+     */
+    public void updatePath(File file) {
 		this.fc.setCursor(this.waitCursor);
 		clearEveryThing();
 		exploreFolder(file);
 		this.fc.setCursor(this.normalCursor);
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Update thumbnail.
+     */
+    @SuppressWarnings("deprecation")
 	protected void updateThumbnail() {
 		if (this.itemPanel.getCurrentView().equals(FileChooserUI.FILECHOOSER_VIEW_THUMBNAIL)) {
 			this.thumbGenerator.stop();
@@ -569,7 +697,10 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	public void rescanDirectory() {
+    /**
+     * Rescan directory.
+     */
+    public void rescanDirectory() {
 		this.tempFile = this.fc.getCurrentDirectory();
 		try {
 			this.tempFile = this.tempFile.getCanonicalFile();
@@ -682,11 +813,19 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		repaint();
 	}
 
-	public FileSystemView getFSV() {
+    /**
+     * Gets fsv.
+     *
+     * @return the fsv
+     */
+    public FileSystemView getFSV() {
 		return this.fc.getFileSystemView();
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Stop thumbnail generation.
+     */
+    @SuppressWarnings("deprecation")
 	public void stopThumbnailGeneration() {
 		this.thumbGenerator.stop();
 		this.thumbGenerator = new ThumbGeneratorThread(this.itemPanel);
@@ -694,7 +833,10 @@ public class FileList extends JPanel implements PropertyChangeListener {
 
 	// //------------------------------------------------------------------------------
 
-	public void clearEveryThing() {
+    /**
+     * Clear every thing.
+     */
+    public void clearEveryThing() {
 		this.itemPanel.removeAll();
 		this.lastSelected = null;
 
@@ -711,7 +853,10 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	public void clearSelectedItemsList() {
+    /**
+     * Clear selected items list.
+     */
+    public void clearSelectedItemsList() {
 		for (Item item : selectedFilesVector) {
 			item.updateSelectionMode(false);
 			item.repaint();
@@ -723,11 +868,23 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		repaint();
 	}
 
-	public boolean isItemSelected(Item item) {
+    /**
+     * Is item selected boolean.
+     *
+     * @param item the item
+     * @return the boolean
+     */
+    public boolean isItemSelected(Item item) {
 		return this.selectedFilesVector.contains(item);
 	}
 
-	protected void updateFilechooserSelectedItems(Item t, boolean ctrl) {
+    /**
+     * Update filechooser selected items.
+     *
+     * @param t    the t
+     * @param ctrl the ctrl
+     */
+    protected void updateFilechooserSelectedItems(Item t, boolean ctrl) {
 		if (!ctrl || !this.fc.isMultiSelectionEnabled()) {
 			for (Item item : completeItemsList) {
 				item.updateSelectionMode(false);
@@ -761,7 +918,10 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	protected void synchFilechoserSelection() {
+    /**
+     * Synch filechoser selection.
+     */
+    protected void synchFilechoserSelection() {
 		int counter = 0;
 		this.selectedFilesArray = new File[this.selectedFilesVector.size()];
 
@@ -785,7 +945,12 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		this.fc.setSelectedFiles(this.selectedFilesArray);
 	}
 
-	protected JPopupMenu getPanePopup() {
+    /**
+     * Gets pane popup.
+     *
+     * @return the pane popup
+     */
+    protected JPopupMenu getPanePopup() {
 		if (this.panePopup != null) {
 			return this.panePopup;
 		}
@@ -881,11 +1046,22 @@ public class FileList extends JPanel implements PropertyChangeListener {
 
 	}
 
-	public boolean isAutoArrange() {
+    /**
+     * Is auto arrange boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isAutoArrange() {
 		return this.autoArrangeCheckBox.isSelected();
 	}
 
-	@SuppressWarnings("unchecked")
+    /**
+     * Order by.
+     *
+     * @param str     the str
+     * @param newPath the new path
+     */
+    @SuppressWarnings("unchecked")
 	public void orderBy(String str, boolean newPath) {
 		if (!newPath && this.ORDER_BY.equals(str)) {
 			this.tempList.clear();
@@ -926,7 +1102,10 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	public void doFilterChanged() {
+    /**
+     * Do filter changed.
+     */
+    public void doFilterChanged() {
 		findVisibleItems();
 		changeCardForView();
 
@@ -935,7 +1114,10 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	public void selectAll() {
+    /**
+     * Select all.
+     */
+    public void selectAll() {
 		if (this.fc.isMultiSelectionEnabled()) {
 			if (this.filechooserUI.getView().equals(FileChooserUI.FILECHOOSER_VIEW_DETAILS)) {
 				this.tablePanel.selectAll();
@@ -951,7 +1133,10 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	public void doDefaults() {
+    /**
+     * Do defaults.
+     */
+    public void doDefaults() {
 		orderBy(this.ORDER_BY, true);
 		changeCardForView();
 		if (this.visibleItemsList.size() > 0) {
@@ -959,7 +1144,10 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	protected void findVisibleItems() {
+    /**
+     * Find visible items.
+     */
+    protected void findVisibleItems() {
 		this.visibleItemsList.clear();
 		this.itemPanel.removeAll();
 
@@ -991,7 +1179,10 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	protected void updateTableData() {
+    /**
+     * Update table data.
+     */
+    protected void updateTableData() {
 		Vector<Object[]> vec2 = new Vector<>();
 
 		int ni = 0;
@@ -1052,7 +1243,12 @@ public class FileList extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	public String getOrder() {
+    /**
+     * Gets order.
+     *
+     * @return the order
+     */
+    public String getOrder() {
 		return this.ORDER_BY;
 	}
 }

@@ -32,11 +32,13 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * A {@link Function} that returns the current date.
  *
  * @author David Arnu
- *
  */
 public class DateNow extends AbstractFunction {
 
-	public DateNow() {
+    /**
+     * Instantiates a new Date now.
+     */
+    public DateNow() {
 		super("date.date_now", 0, Ontology.DATE_TIME);
 	}
 

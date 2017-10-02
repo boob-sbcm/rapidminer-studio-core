@@ -29,9 +29,8 @@ import java.util.List;
  * Declares a condition for {@link AbstractRepositoryAction}. If the conditions are met, the action
  * is shown, otherwise it will not be shown. This condition only evaluates to {@code true} if the
  * selected entries are ExampleSets.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class RepositoryActionConditionImplExampleSetsOnly implements RepositoryActionCondition {
 

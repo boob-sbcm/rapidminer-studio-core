@@ -37,7 +37,15 @@ final class DoubleAutoSparseChunk extends DoubleAutoChunk {
 	private int maxSetRow;
 	private boolean testingDefaultValue;
 
-	DoubleAutoSparseChunk(DoubleAutoChunk[] chunks, int id, double defaultValue, DataManagement management) {
+    /**
+     * Instantiates a new Double auto sparse chunk.
+     *
+     * @param chunks       the chunks
+     * @param id           the id
+     * @param defaultValue the default value
+     * @param management   the management
+     */
+    DoubleAutoSparseChunk(DoubleAutoChunk[] chunks, int id, double defaultValue, DataManagement management) {
 		super(id, chunks, management);
 		if (management == DataManagement.AUTO) {
 			sparse = new DoubleHighSparsityChunk(defaultValue);
@@ -46,13 +54,13 @@ final class DoubleAutoSparseChunk extends DoubleAutoChunk {
 		}
 	}
 
-	/**
-	 * When the default value was guessed instead of calculated from the first
-	 * {@link AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE} rows, call this to ensure that the guessed
-	 * value is the most common value wrt. the first
-	 * {@link AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE} rows.
-	 */
-	void hasGuessedDefault() {
+    /**
+     * When the default value was guessed instead of calculated from the first
+     * {@link AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE} rows, call this to ensure that the guessed
+     * value is the most common value wrt. the first
+     * {@link AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE} rows.
+     */
+    void hasGuessedDefault() {
 		testingDefaultValue = true;
 	}
 

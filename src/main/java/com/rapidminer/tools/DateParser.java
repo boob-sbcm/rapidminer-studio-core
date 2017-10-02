@@ -30,29 +30,56 @@ import java.util.List;
 
 /**
  * A parser class for dates to be utilized inside date handling operators.
- * 
+ *
  * @author Sebastian Land
  */
 public class DateParser extends SimpleDateFormat {
 
 	private static final long serialVersionUID = -950183600865410299L;
 
-	public static final String PARAMETER_DATE_FORMAT = "date_format";
+    /**
+     * The constant PARAMETER_DATE_FORMAT.
+     */
+    public static final String PARAMETER_DATE_FORMAT = "date_format";
 
-	public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
+    /**
+     * The constant DEFAULT_DATE_FORMAT.
+     */
+    public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
 
-	public static final String DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
+    /**
+     * The constant DEFAULT_DATE_TIME_FORMAT.
+     */
+    public static final String DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
 
-	public DateParser(String dateFormat) {
+    /**
+     * Instantiates a new Date parser.
+     *
+     * @param dateFormat the date format
+     */
+    public DateParser(String dateFormat) {
 		super(dateFormat);
 	}
 
-	public static DateParser getInstance(ParameterHandler handler) throws UndefinedParameterError {
+    /**
+     * Gets instance.
+     *
+     * @param handler the handler
+     * @return the instance
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public static DateParser getInstance(ParameterHandler handler) throws UndefinedParameterError {
 		String dateFormat = handler.getParameterAsString(PARAMETER_DATE_FORMAT);
 		return new DateParser(dateFormat);
 	}
 
-	// TODO add ParameterTypeDate and corresponding ValueCellEditor
+    /**
+     * Gets parameter types.
+     *
+     * @param handler the handler
+     * @return the parameter types
+     */
+// TODO add ParameterTypeDate and corresponding ValueCellEditor
 	// TODO integrate this parser into Nominal2Date, etc
 	public static List<ParameterType> getParameterTypes(ParameterHandler handler) {
 		List<ParameterType> types = new LinkedList<ParameterType>();

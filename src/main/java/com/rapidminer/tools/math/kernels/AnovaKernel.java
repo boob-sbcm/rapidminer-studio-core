@@ -23,7 +23,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Returns the value of the Anova (RBF) kernel of both examples.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AnovaKernel extends Kernel {
@@ -41,15 +41,30 @@ public class AnovaKernel extends Kernel {
 		return KERNEL_ANOVA;
 	}
 
-	public void setGamma(double gamma) {
+    /**
+     * Sets gamma.
+     *
+     * @param gamma the gamma
+     */
+    public void setGamma(double gamma) {
 		this.gamma = -gamma;
 	}
 
-	public void setDegree(double degree) {
+    /**
+     * Sets degree.
+     *
+     * @param degree the degree
+     */
+    public void setDegree(double degree) {
 		this.degree = degree;
 	}
 
-	public double getGamma() {
+    /**
+     * Gets gamma.
+     *
+     * @return the gamma
+     */
+    public double getGamma() {
 		return -gamma;
 	}
 

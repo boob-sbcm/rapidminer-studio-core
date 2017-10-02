@@ -53,16 +53,30 @@ import com.rapidminer.tools.metadata.MetaDataTools;
  */
 public class ExampleSet2ClusterModel extends Operator {
 
-	public static final String PARAMETER_ATTRIBUTE = "attribute";
-	public static final String PARAMETER_REMOVE_UNLABELED = "remove_unlabeled";
-	public static final String PARAMETER_ADD_AS_LABEL = "add_as_label";
+    /**
+     * The constant PARAMETER_ATTRIBUTE.
+     */
+    public static final String PARAMETER_ATTRIBUTE = "attribute";
+    /**
+     * The constant PARAMETER_REMOVE_UNLABELED.
+     */
+    public static final String PARAMETER_REMOVE_UNLABELED = "remove_unlabeled";
+    /**
+     * The constant PARAMETER_ADD_AS_LABEL.
+     */
+    public static final String PARAMETER_ADD_AS_LABEL = "add_as_label";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set");
 
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort modelOutput = getOutputPorts().createPort("cluster model");
 
-	public ExampleSet2ClusterModel(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set 2 cluster model.
+     *
+     * @param description the description
+     */
+    public ExampleSet2ClusterModel(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput));

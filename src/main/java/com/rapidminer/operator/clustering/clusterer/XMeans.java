@@ -42,7 +42,7 @@ import de.dfki.madm.operator.clustering.XMeansCore;
 /**
  * This operator represents an implementation of X-Means algorithm. It will create a cluster
  * attribute if not present yet.
- *
+ * <p>
  * The implementation is according to paper of Dan Pelleg an Andrew Moore: - X-means: Extending
  * K-means with Efficient Estimation of the Number of Clusters
  *
@@ -50,27 +50,39 @@ import de.dfki.madm.operator.clustering.XMeansCore;
  */
 public class XMeans extends RMAbstractClusterer {
 
-	/** Maximal number of Clusters */
-	public static final String PARAMETER_K_Max = "k_max";
+    /**
+     * Maximal number of Clusters
+     */
+    public static final String PARAMETER_K_Max = "k_max";
 
-	/** Minimal number of Clusters */
-	public static final String PARAMETER_K_Min = "k_min";
+    /**
+     * Minimal number of Clusters
+     */
+    public static final String PARAMETER_K_Min = "k_min";
 
-	/**
-	 * The parameter name for &quot;the maximal number of runs of the k method with random
-	 * initialization that are performed&quot;
-	 */
-	public static final String PARAMETER_MAX_RUNS = "max_runs";
+    /**
+     * The parameter name for &quot;the maximal number of runs of the k method with random
+     * initialization that are performed&quot;
+     */
+    public static final String PARAMETER_MAX_RUNS = "max_runs";
 
-	/**
-	 * The parameter name for &quot;the maximal number of iterations performed for one run of the
-	 * k-mean&quot;
-	 */
-	public static final String PARAMETER_MAX_OPTIMIZATION_STEPS = "max_optimization_steps";
+    /**
+     * The parameter name for &quot;the maximal number of iterations performed for one run of the
+     * k-mean&quot;
+     */
+    public static final String PARAMETER_MAX_OPTIMIZATION_STEPS = "max_optimization_steps";
 
-	OperatorDescription Description = null;
+    /**
+     * The Description.
+     */
+    OperatorDescription Description = null;
 
-	public XMeans(OperatorDescription description) {
+    /**
+     * Instantiates a new X means.
+     *
+     * @param description the description
+     */
+    public XMeans(OperatorDescription description) {
 		super(description);
 
 		Description = description;

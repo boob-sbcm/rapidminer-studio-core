@@ -33,16 +33,22 @@ import org.w3c.dom.Element;
 
 /**
  * Rearranges the ordering of two subprocesses.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class ExchangeSubprocessesRule extends AbstractParseRule {
 
 	private final int subprocess1;
 	private final int subprocess2;
 
-	public ExchangeSubprocessesRule(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Exchange subprocesses rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public ExchangeSubprocessesRule(String operatorTypeName, Element element) throws XMLException {
 		super(operatorTypeName, element);
 		subprocess1 = Integer.parseInt(XMLTools.getTagContents(element, "subprocess1"));
 		subprocess2 = Integer.parseInt(XMLTools.getTagContents(element, "subprocess2"));

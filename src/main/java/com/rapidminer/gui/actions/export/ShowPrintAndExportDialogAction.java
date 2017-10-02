@@ -29,36 +29,32 @@ import java.util.List;
 /**
  * Export action for {@link PrintableComponent}s. Executing this action shows the
  * {@link PrintAndExportDialog}.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class ShowPrintAndExportDialogAction extends ResourceAction {
 
 	private static final long serialVersionUID = 1L;
 	private PrintableComponent comp;
 
-	/**
-	 * Creates a export action for the single component provided.
-	 * 
-	 * @param comp
-	 *            the component that should be printed.
-	 * @param smallIcon
-	 *            whether the action should have a small icon or not
-	 */
-	public ShowPrintAndExportDialogAction(PrintableComponent comp, boolean smallIcon) {
+    /**
+     * Creates a export action for the single component provided.
+     *
+     * @param comp      the component that should be printed.
+     * @param smallIcon whether the action should have a small icon or not
+     */
+    public ShowPrintAndExportDialogAction(PrintableComponent comp, boolean smallIcon) {
 		this(smallIcon);
 		this.comp = comp;
 	}
 
-	/**
-	 * Creates an action for the current shown perspective. All found {@link PrintableComponent}
-	 * will be listed and can be printed.
-	 * 
-	 * @param smallIcon
-	 *            whether the action should have a small icon or not
-	 */
-	public ShowPrintAndExportDialogAction(boolean smallIcon) {
+    /**
+     * Creates an action for the current shown perspective. All found {@link PrintableComponent}
+     * will be listed and can be printed.
+     *
+     * @param smallIcon whether the action should have a small icon or not
+     */
+    public ShowPrintAndExportDialogAction(boolean smallIcon) {
 		super(smallIcon, "export_and_print");
 	}
 

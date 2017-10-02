@@ -34,7 +34,12 @@ public class NumericalMissingSplitCondition extends AbstractSplitCondition {
 	/** the symbol displayed in the decision tree for numerical missing values */
 	private static final String SYMBOL_MISSING_NUMERICAL = "?";
 
-	public NumericalMissingSplitCondition(Attribute attribute) {
+    /**
+     * Instantiates a new Numerical missing split condition.
+     *
+     * @param attribute the attribute
+     */
+    public NumericalMissingSplitCondition(Attribute attribute) {
 		super(attribute.getName());
 	}
 

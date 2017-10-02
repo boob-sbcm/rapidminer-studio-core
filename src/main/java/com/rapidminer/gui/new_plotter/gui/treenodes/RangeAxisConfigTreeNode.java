@@ -31,8 +31,9 @@ import javax.swing.tree.TreeNode;
 
 
 /**
+ * The type Range axis config tree node.
+ *
  * @author Nils Woehler
- * 
  */
 public class RangeAxisConfigTreeNode extends DefaultMutableTreeNode implements Transferable {
 
@@ -40,16 +41,27 @@ public class RangeAxisConfigTreeNode extends DefaultMutableTreeNode implements T
 
 	private final static String MIME_TYPE = DataFlavor.javaJVMLocalObjectMimeType + ";class="
 			+ RangeAxisConfig.class.getName();
-	public final static DataFlavor RANGE_AXIS_CONFIG_FLAVOR = new DataFlavor(MIME_TYPE, "RangeAxisConfigTreeNode");
+    /**
+     * The constant RANGE_AXIS_CONFIG_FLAVOR.
+     */
+    public final static DataFlavor RANGE_AXIS_CONFIG_FLAVOR = new DataFlavor(MIME_TYPE, "RangeAxisConfigTreeNode");
 
-	/**
-	 * @param rangeAxis
-	 */
-	public RangeAxisConfigTreeNode(RangeAxisConfig rangeAxis) {
+    /**
+     * Instantiates a new Range axis config tree node.
+     *
+     * @param rangeAxis the range axis
+     */
+    public RangeAxisConfigTreeNode(RangeAxisConfig rangeAxis) {
 		super(rangeAxis, true);
 	}
 
-	public int getValueSourceIndex(ValueSource valueSource) {
+    /**
+     * Gets value source index.
+     *
+     * @param valueSource the value source
+     * @return the value source index
+     */
+    public int getValueSourceIndex(ValueSource valueSource) {
 		if (children == null) {
 			return -1;
 		}
@@ -61,7 +73,13 @@ public class RangeAxisConfigTreeNode extends DefaultMutableTreeNode implements T
 		return -1;
 	}
 
-	public TreeNode getChild(ValueSource source) {
+    /**
+     * Gets child.
+     *
+     * @param source the source
+     * @return the child
+     */
+    public TreeNode getChild(ValueSource source) {
 		int valueSourceIndex = getValueSourceIndex(source);
 		if (valueSourceIndex < 0) {
 			return null;

@@ -36,7 +36,10 @@ import com.rapidminer.operator.learner.tree.criterions.Criterion;
  */
 public class TreeBuilder {
 
-	protected Terminator minLeafSizeTerminator;
+    /**
+     * The Min leaf size terminator.
+     */
+    protected Terminator minLeafSizeTerminator;
 
 	private List<Terminator> otherTerminators;
 
@@ -46,17 +49,42 @@ public class TreeBuilder {
 
 	private NumericalSplitter splitter;
 
-	protected SplitPreprocessing preprocessing = null;
+    /**
+     * The Preprocessing.
+     */
+    protected SplitPreprocessing preprocessing = null;
 
 	private Pruner pruner;
 
-	protected LeafCreator leafCreator = new DecisionTreeLeafCreator();
+    /**
+     * The Leaf creator.
+     */
+    protected LeafCreator leafCreator = new DecisionTreeLeafCreator();
 
-	protected int numberOfPrepruningAlternatives = 0;
+    /**
+     * The Number of prepruning alternatives.
+     */
+    protected int numberOfPrepruningAlternatives = 0;
 
-	protected boolean usePrePruning = true;
+    /**
+     * The Use pre pruning.
+     */
+    protected boolean usePrePruning = true;
 
-	public TreeBuilder(Criterion criterion, List<Terminator> terminationCriteria, Pruner pruner,
+    /**
+     * Instantiates a new Tree builder.
+     *
+     * @param criterion                      the criterion
+     * @param terminationCriteria            the termination criteria
+     * @param pruner                         the pruner
+     * @param preprocessing                  the preprocessing
+     * @param leafCreator                    the leaf creator
+     * @param noPrePruning                   the no pre pruning
+     * @param numberOfPrepruningAlternatives the number of prepruning alternatives
+     * @param minSizeForSplit                the min size for split
+     * @param minLeafSize                    the min leaf size
+     */
+    public TreeBuilder(Criterion criterion, List<Terminator> terminationCriteria, Pruner pruner,
 			SplitPreprocessing preprocessing, LeafCreator leafCreator, boolean noPrePruning,
 			int numberOfPrepruningAlternatives, int minSizeForSplit, int minLeafSize) {
 		this.minLeafSizeTerminator = new MinSizeTermination(minLeafSize);
@@ -74,7 +102,14 @@ public class TreeBuilder {
 		this.preprocessing = preprocessing;
 	}
 
-	public Tree learnTree(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Learn tree tree.
+     *
+     * @param exampleSet the example set
+     * @return the tree
+     * @throws OperatorException the operator exception
+     */
+    public Tree learnTree(ExampleSet exampleSet) throws OperatorException {
 
 		// grow tree
 		Tree root = new Tree((ExampleSet) exampleSet.clone());
@@ -92,12 +127,17 @@ public class TreeBuilder {
 		return root;
 	}
 
-	/**
-	 * This method calculates the benefit of the given attribute. This implementation utilizes the
-	 * defined {@link Criterion}. Subclasses might want to override this method in order to
-	 * calculate the benefit in other ways.
-	 */
-	public Benefit calculateBenefit(ExampleSet trainingSet, Attribute attribute) throws OperatorException {
+    /**
+     * This method calculates the benefit of the given attribute. This implementation utilizes the
+     * defined {@link Criterion}. Subclasses might want to override this method in order to
+     * calculate the benefit in other ways.
+     *
+     * @param trainingSet the training set
+     * @param attribute   the attribute
+     * @return the benefit
+     * @throws OperatorException the operator exception
+     */
+    public Benefit calculateBenefit(ExampleSet trainingSet, Attribute attribute) throws OperatorException {
 		if (attribute.isNominal()) {
 			return new Benefit(criterion.getNominalBenefit(trainingSet, attribute), attribute);
 		} else {
@@ -111,7 +151,14 @@ public class TreeBuilder {
 		}
 	}
 
-	protected boolean shouldStop(ExampleSet exampleSet, int depth) {
+    /**
+     * Should stop boolean.
+     *
+     * @param exampleSet the example set
+     * @param depth      the depth
+     * @return the boolean
+     */
+    protected boolean shouldStop(ExampleSet exampleSet, int depth) {
 		if (usePrePruning && exampleSet.size() < minSizeForSplit) {
 			return true;
 		} else {
@@ -124,7 +171,14 @@ public class TreeBuilder {
 		}
 	}
 
-	protected Vector<Benefit> calculateAllBenefits(ExampleSet trainingSet) throws OperatorException {
+    /**
+     * Calculate all benefits vector.
+     *
+     * @param trainingSet the training set
+     * @return the vector
+     * @throws OperatorException the operator exception
+     */
+    protected Vector<Benefit> calculateAllBenefits(ExampleSet trainingSet) throws OperatorException {
 		Vector<Benefit> benefits = new Vector<Benefit>();
 		for (Attribute attribute : trainingSet.getAttributes()) {
 			Benefit currentBenefit = calculateBenefit(trainingSet, attribute);
@@ -135,7 +189,15 @@ public class TreeBuilder {
 		return benefits;
 	}
 
-	protected void buildTree(Tree current, ExampleSet exampleSet, int depth) throws OperatorException {
+    /**
+     * Build tree.
+     *
+     * @param current    the current
+     * @param exampleSet the example set
+     * @param depth      the depth
+     * @throws OperatorException the operator exception
+     */
+    protected void buildTree(Tree current, ExampleSet exampleSet, int depth) throws OperatorException {
 		// terminate (beginning of recursive method!)
 		if (shouldStop(exampleSet, depth)) {
 			leafCreator.changeTreeToLeaf(current, exampleSet);

@@ -28,20 +28,34 @@ import org.antlr.v4.runtime.RecognitionException;
  * inadmissible symbol.
  *
  * @author Gisa Schaefer
- *
  */
 class CapitulatingFunctionExpressionLexer extends FunctionExpressionLexer {
 
-	CapitulatingFunctionExpressionLexer(CharStream input) {
+    /**
+     * Instantiates a new Capitulating function expression lexer.
+     *
+     * @param input the input
+     */
+    CapitulatingFunctionExpressionLexer(CharStream input) {
 		super(input);
 	}
 
-	@Override
+    /**
+     * Recover.
+     *
+     * @param e the e
+     */
+    @Override
 	public void recover(LexerNoViableAltException e) {
 		throw new CapitulatingRuntimeException();
 	}
 
-	@Override
+    /**
+     * Recover.
+     *
+     * @param re the re
+     */
+    @Override
 	public void recover(RecognitionException re) {
 		throw new CapitulatingRuntimeException();
 	}

@@ -28,9 +28,8 @@ import javax.swing.JPanel;
 /**
  * An abstract {@link JPanel} which displays an {@link IOObject} in a {@link ButtonBarCardPanel} and
  * can be printed/exported.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public abstract class AbstractPrintableIOObjectPanel extends JPanel implements PrintableComponent {
 
@@ -39,7 +38,13 @@ public abstract class AbstractPrintableIOObjectPanel extends JPanel implements P
 	private final String source;
 	private final String i18nKey;
 
-	public AbstractPrintableIOObjectPanel(IOObject ioObject, String i18NKey) {
+    /**
+     * Instantiates a new Abstract printable io object panel.
+     *
+     * @param ioObject the io object
+     * @param i18NKey  the 18 n key
+     */
+    public AbstractPrintableIOObjectPanel(IOObject ioObject, String i18NKey) {
 		i18nKey = i18NKey;
 		source = ioObject.getSource();
 	}

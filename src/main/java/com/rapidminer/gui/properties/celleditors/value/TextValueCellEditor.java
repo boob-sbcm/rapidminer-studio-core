@@ -65,7 +65,12 @@ public class TextValueCellEditor extends AbstractCellEditor implements PropertyV
 
 	private String text = null;
 
-	public TextValueCellEditor(ParameterTypeText type) {
+    /**
+     * Instantiates a new Text value cell editor.
+     *
+     * @param type the type
+     */
+    public TextValueCellEditor(ParameterTypeText type) {
 		this.type = type;
 		button.setMargin(new java.awt.Insets(0, 0, 0, 0));
 		button.setToolTipText(type.getDescription());

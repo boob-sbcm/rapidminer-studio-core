@@ -46,24 +46,29 @@ import java.util.List;
 /**
  * This operator removes the attributes of a given range. The first and last attribute of the range
  * will be removed, too. Counting starts with 1.
- * 
+ *
  * @author Sebastian Land
  */
 public class FeatureRangeRemoval extends AbstractFeatureSelection {
 
-	/**
-	 * The parameter name for &quot;The first attribute of the attribute range which should be
-	 * removed&quot;
-	 */
-	public static final String PARAMETER_FIRST_ATTRIBUTE = "first_attribute";
+    /**
+     * The parameter name for &quot;The first attribute of the attribute range which should be
+     * removed&quot;
+     */
+    public static final String PARAMETER_FIRST_ATTRIBUTE = "first_attribute";
 
-	/**
-	 * The parameter name for &quot;The last attribute of the attribute range which should be
-	 * removed&quot;
-	 */
-	public static final String PARAMETER_LAST_ATTRIBUTE = "last_attribute";
+    /**
+     * The parameter name for &quot;The last attribute of the attribute range which should be
+     * removed&quot;
+     */
+    public static final String PARAMETER_LAST_ATTRIBUTE = "last_attribute";
 
-	public FeatureRangeRemoval(OperatorDescription description) {
+    /**
+     * Instantiates a new Feature range removal.
+     *
+     * @param description the description
+     */
+    public FeatureRangeRemoval(OperatorDescription description) {
 		super(description);
 	}
 

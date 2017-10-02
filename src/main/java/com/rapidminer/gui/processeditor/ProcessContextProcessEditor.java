@@ -34,19 +34,25 @@ import javax.swing.JPanel;
 
 
 /**
- * 
+ * The type Process context process editor.
+ *
  * @author Simon Fischer
- * 
  */
 public class ProcessContextProcessEditor extends JPanel implements ProcessEditor, Dockable {
 
-	public static final String PROCESS_CONTEXT_DOCKKEY = "process_context";
+    /**
+     * The constant PROCESS_CONTEXT_DOCKKEY.
+     */
+    public static final String PROCESS_CONTEXT_DOCKKEY = "process_context";
 
 	private static final long serialVersionUID = 1L;
 
 	private final ProcessContextEditor editor = new ProcessContextEditor(null, null);
 
-	public ProcessContextProcessEditor() {
+    /**
+     * Instantiates a new Process context process editor.
+     */
+    public ProcessContextProcessEditor() {
 		super(null);
 		setLayout(new BorderLayout());
 		ViewToolBar toolBar = new ViewToolBar();

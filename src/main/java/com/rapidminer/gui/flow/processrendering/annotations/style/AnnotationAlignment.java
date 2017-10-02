@@ -32,18 +32,23 @@ import com.rapidminer.gui.tools.ResourceAction;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public enum AnnotationAlignment {
 
-	/** left align */
-	LEFT("left", "text-align: left"),
+    /**
+     * left align
+     */
+    LEFT("left", "text-align: left"),
 
-	/** center align */
-	CENTER("center", "text-align: center"),
+    /**
+     * center align
+     */
+    CENTER("center", "text-align: center"),
 
-	/** right align */
-	RIGHT("right", "text-align: right");
+    /**
+     * right align
+     */
+    RIGHT("right", "text-align: right");
 
 	private final String key;
 	private final String css;
@@ -53,35 +58,33 @@ public enum AnnotationAlignment {
 		this.css = css;
 	}
 
-	/**
-	 * Returns the alignment as a CSS alignment string.
-	 *
-	 * @return the alignment string representation, never {@code null}
-	 */
-	public String getCSS() {
+    /**
+     * Returns the alignment as a CSS alignment string.
+     *
+     * @return the alignment string representation, never {@code null}
+     */
+    public String getCSS() {
 		return css;
 	}
 
-	/**
-	 * Returns the identifier key for the alignment.
-	 *
-	 * @return the key, never {@code null}
-	 */
-	public String getKey() {
+    /**
+     * Returns the identifier key for the alignment.
+     *
+     * @return the key, never {@code null}
+     */
+    public String getKey() {
 		return key;
 	}
 
-	/**
-	 * Creates an action to change the alignment of the given annotation to the alignment of this
-	 * instance.
-	 *
-	 * @param model
-	 *            the annotation model instance
-	 * @param anno
-	 *            the annotation which should have its alignment changed
-	 * @return the menu item instance, never {@code null}
-	 */
-	public Action makeAlignmentChangeAction(final AnnotationsModel model, final WorkflowAnnotation anno) {
+    /**
+     * Creates an action to change the alignment of the given annotation to the alignment of this
+     * instance.
+     *
+     * @param model the annotation model instance
+     * @param anno  the annotation which should have its alignment changed
+     * @return the menu item instance, never {@code null}
+     */
+    public Action makeAlignmentChangeAction(final AnnotationsModel model, final WorkflowAnnotation anno) {
 		ResourceAction action = new ResourceAction(true, "workflow.annotation.alignment." + getKey()) {
 
 			private static final long serialVersionUID = 1L;
@@ -95,14 +98,13 @@ public enum AnnotationAlignment {
 		return action;
 	}
 
-	/**
-	 * Looks up the correct instance for the identifier key value.
-	 *
-	 * @param key
-	 *            the identifier key
-	 * @return the matching instance or {@link #LEFT} if no match is found
-	 */
-	public static AnnotationAlignment fromKey(String key) {
+    /**
+     * Looks up the correct instance for the identifier key value.
+     *
+     * @param key the identifier key
+     * @return the matching instance or {@link #LEFT} if no match is found
+     */
+    public static AnnotationAlignment fromKey(String key) {
 		for (AnnotationAlignment alignment : values()) {
 			if (alignment.getKey().equals(key)) {
 				return alignment;

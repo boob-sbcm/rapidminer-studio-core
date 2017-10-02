@@ -23,9 +23,8 @@ import com.rapidminer.gui.properties.tablepanel.TablePanel;
 
 /**
  * Indicates a default textfield cell for the {@link TablePanel}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface CellTypeTextFieldDefault extends CellType {
 }

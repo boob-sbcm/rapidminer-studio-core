@@ -23,7 +23,6 @@ import com.rapidminer.tools.I18N;
 
 
 /**
- *
  * Exception that is thrown when a given header row index is greater than the data start row index.
  *
  * @author Nils Woehler
@@ -35,10 +34,10 @@ public class HeaderRowBehindStartRowException extends DataSetException {
 
 	private static final String MESSAGE = I18N.getGUILabel("import_wizard.header_row_behind_start_row");
 
-	/**
-	 * Creates an exception indicating that the desired start row was not found in the data set.
-	 */
-	public HeaderRowBehindStartRowException() {
+    /**
+     * Creates an exception indicating that the desired start row was not found in the data set.
+     */
+    public HeaderRowBehindStartRowException() {
 		super(MESSAGE);
 	}
 

@@ -27,7 +27,7 @@ import java.math.BigInteger;
  * <code>while (x.hasMore()) {</code><br />
  * <code>int[] indices = x.getNext();</code><br />
  * <code>}</code>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CombinationGenerator {
@@ -38,7 +38,13 @@ public class CombinationGenerator {
 	private BigInteger numLeft;
 	private BigInteger total;
 
-	public CombinationGenerator(int n, int r) {
+    /**
+     * Instantiates a new Combination generator.
+     *
+     * @param n the n
+     * @param r the r
+     */
+    public CombinationGenerator(int n, int r) {
 		if (r > n) {
 			throw new IllegalArgumentException();
 		}
@@ -55,26 +61,40 @@ public class CombinationGenerator {
 		reset();
 	}
 
-	/** Resets this combination generator. */
-	public void reset() {
+    /**
+     * Resets this combination generator.
+     */
+    public void reset() {
 		for (int i = 0; i < a.length; i++) {
 			a[i] = i;
 		}
 		numLeft = new BigInteger(total.toString());
 	}
 
-	/** Return number of combinations not yet generated. */
-	public BigInteger getNumberOfCombinationsLeft() {
+    /**
+     * Return number of combinations not yet generated.  @return the number of combinations left
+     *
+     * @return the number of combinations left
+     */
+    public BigInteger getNumberOfCombinationsLeft() {
 		return numLeft;
 	}
 
-	/** Returns true if there are more combinations left. */
-	public boolean hasMore() {
+    /**
+     * Returns true if there are more combinations left.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean hasMore() {
 		return numLeft.compareTo(BigInteger.ZERO) == 1;
 	}
 
-	/** Returns the total number of combinations. */
-	public BigInteger getTotal() {
+    /**
+     * Returns the total number of combinations.  @return the total
+     *
+     * @return the total
+     */
+    public BigInteger getTotal() {
 		return total;
 	}
 
@@ -87,8 +107,12 @@ public class CombinationGenerator {
 		return fact;
 	}
 
-	/** Generates the next combination by using the algorithm proposed by Rosen. */
-	public int[] getNext() {
+    /**
+     * Generates the next combination by using the algorithm proposed by Rosen.  @return the int [ ]
+     *
+     * @return the int [ ]
+     */
+    public int[] getNext() {
 		if (numLeft.equals(total)) {
 			numLeft = numLeft.subtract(BigInteger.ONE);
 			return a;

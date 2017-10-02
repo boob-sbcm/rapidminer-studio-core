@@ -19,19 +19,29 @@
 package com.rapidminer.operator.ports;
 
 /**
+ * The enum Multiplicity.
+ *
  * @author Simon Fischer
  */
 public enum Multiplicity {
 
-	/** 0..1 */
-	OPTIONAL,
-	/** 1 */
-	MANDATORY,
+    /**
+     * 0..1
+     */
+    OPTIONAL,
+    /**
+     * 1
+     */
+    MANDATORY,
 
-	/** 0..oo */
-	OPTIONAL_MULTIPLE,
+    /**
+     * 0..oo
+     */
+    OPTIONAL_MULTIPLE,
 
-	/** 1..oo */
-	MULTIPLE
+    /**
+     * 1..oo
+     */
+    MULTIPLE
 
 }

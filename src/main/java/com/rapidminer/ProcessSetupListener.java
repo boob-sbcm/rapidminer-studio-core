@@ -26,30 +26,39 @@ import java.util.EventListener;
 
 /**
  * Listener for process setup, i.e. insertion, deletion and property changes of operators.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public interface ProcessSetupListener extends EventListener {
 
-	/** Called if a new operator was added to the process. */
-	public void operatorAdded(Operator operator);
+    /**
+     * Called if a new operator was added to the process.  @param operator the operator
+     *
+     * @param operator the operator
+     */
+    public void operatorAdded(Operator operator);
 
-	/**
-	 * Called if an operator was removed from the process.
-	 * 
-	 * @param oldIndex
-	 *            The former index of the operator within its {@link ExecutionUnit}.
-	 * @param oldIndexAmongEnabled
-	 *            The former index of the operator within its {@link ExecutionUnit} enabled
-	 *            operators
-	 */
-	public void operatorRemoved(Operator operator, int oldIndex, int oldIndexAmongEnabled);
+    /**
+     * Called if an operator was removed from the process.
+     *
+     * @param operator             the operator
+     * @param oldIndex             The former index of the operator within its {@link ExecutionUnit}.
+     * @param oldIndexAmongEnabled The former index of the operator within its {@link ExecutionUnit} enabled            operators
+     */
+    public void operatorRemoved(Operator operator, int oldIndex, int oldIndexAmongEnabled);
 
-	/** Called if an operator changed in any way, e.g. if it was renamed. */
-	public void operatorChanged(Operator operator);
+    /**
+     * Called if an operator changed in any way, e.g. if it was renamed.  @param operator the operator
+     *
+     * @param operator the operator
+     */
+    public void operatorChanged(Operator operator);
 
-	/** Called if the execution order within an ExecutionUnit changes. */
-	public void executionOrderChanged(ExecutionUnit unit);
+    /**
+     * Called if the execution order within an ExecutionUnit changes.  @param unit the unit
+     *
+     * @param unit the unit
+     */
+    public void executionOrderChanged(ExecutionUnit unit);
 
 }

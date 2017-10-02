@@ -25,26 +25,24 @@ import java.util.regex.Pattern;
 /**
  * A heuristic number parser. That tries to analyze a given String in a more flexible way than the
  * traditional Java number parse:
- * 
+ * <p>
  * 1. All "," are replaced by "." 2. &#188;,&#189;,&#190; are replaced by 0.25, 0.5, 0.75
  * respectively 3. Ranges ([number]-[number])are matched and the arithmetic average is used as
  * result 4. All Prefixes and suffices are ignored
- * 
+ * <p>
  * Example: "Weight: 8,5 - 10,5 g" would result in 9.5
- * 
+ *
  * @author Michael Wurst
- * 
  */
 public class NumberParser {
 
-	/**
-	 * Parse a number possibly surrounded by other information.
-	 * 
-	 * @param s
-	 *            the string
-	 * @return a double representation or NaN if it cannot be parsed
-	 */
-	public static double parse(String s) {
+    /**
+     * Parse a number possibly surrounded by other information.
+     *
+     * @param s the string
+     * @return a double representation or NaN if it cannot be parsed
+     */
+    public static double parse(String s) {
 
 		try {
 			return Double.parseDouble(s);
@@ -94,12 +92,16 @@ public class NumberParser {
 		return Double.NaN;
 	}
 
-	/**
-	 * This method parses the given string as double value. It first tries the normal parse method,
-	 * then tests if it is the ? and would return NaN in this case. Otherwise a NumberFormatExceptin
-	 * is thrown.
-	 */
-	public static double parseDouble(String s) throws NumberFormatException {
+    /**
+     * This method parses the given string as double value. It first tries the normal parse method,
+     * then tests if it is the ? and would return NaN in this case. Otherwise a NumberFormatExceptin
+     * is thrown.
+     *
+     * @param s the s
+     * @return the double
+     * @throws NumberFormatException the number format exception
+     */
+    public static double parseDouble(String s) throws NumberFormatException {
 		try {
 			return Double.parseDouble(s);
 		} catch (NumberFormatException e) {

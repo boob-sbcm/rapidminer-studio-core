@@ -52,16 +52,30 @@ import com.rapidminer.tools.RandomGenerator;
  */
 public class PartitionOperator extends Operator {
 
-	public static final String PARAMETER_PARTITIONS = "partitions";
+    /**
+     * The constant PARAMETER_PARTITIONS.
+     */
+    public static final String PARAMETER_PARTITIONS = "partitions";
 
-	public static final String PARAMETER_RATIO = "ratio";
+    /**
+     * The constant PARAMETER_RATIO.
+     */
+    public static final String PARAMETER_RATIO = "ratio";
 
-	public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
+    /**
+     * The constant PARAMETER_SAMPLING_TYPE.
+     */
+    public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private OutputPortExtender outExtender = new OutputPortExtender("partition", getOutputPorts());
 
-	public PartitionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Partition operator.
+     *
+     * @param description the description
+     */
+    public PartitionOperator(OperatorDescription description) {
 		super(description);
 		outExtender.start();
 		getTransformer().addRule(new OneToManyPassThroughRule(exampleSetInput, outExtender.getManagedPorts()) {
@@ -104,7 +118,15 @@ public class PartitionOperator extends Operator {
 		});
 	}
 
-	protected ExampleSetMetaData modifiyMetaData(ExampleSetMetaData metaData, int outputIndex)
+    /**
+     * Modifiy meta data example set meta data.
+     *
+     * @param metaData    the meta data
+     * @param outputIndex the output index
+     * @return the example set meta data
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected ExampleSetMetaData modifiyMetaData(ExampleSetMetaData metaData, int outputIndex)
 			throws UndefinedParameterError {
 		if (metaData.getNumberOfExamples().isKnown()) {
 			String[] ratioList = ParameterTypeEnumeration

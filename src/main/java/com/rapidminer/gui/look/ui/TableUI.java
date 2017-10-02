@@ -25,12 +25,18 @@ import javax.swing.plaf.basic.BasicTableUI;
 
 /**
  * The UI for tables. Simply uses the basic table UI.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class TableUI extends BasicTableUI {
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new BasicTableUI();
 	}
 

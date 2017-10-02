@@ -24,7 +24,7 @@ import com.rapidminer.operator.IOObject;
 /**
  * This interface is needed only as a tag for cluster models and hierarchical cluster models for
  * operators working on both classes.
- * 
+ *
  * @author Sebastian Land
  */
 public interface ClusterModelInterface extends IOObject {

@@ -20,9 +20,8 @@ package com.rapidminer.tools.math.smoothing;
 
 /**
  * This class implements the Epanechnikov smoothing kernel.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class EpanechnikovSmoothingKernel extends SmoothingKernel {
 

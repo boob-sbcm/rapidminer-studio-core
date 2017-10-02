@@ -46,14 +46,19 @@ import java.util.List;
  * set. As compared to SQL, both example sets neither need to have neither the same number of
  * columns nor the same data types. The operation does only depend on the ID columns of the example
  * sets.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class ExampleSetIntersect extends AbstractDataProcessing {
 
 	private InputPort secondInput = getInputPorts().createPort("second");
 
-	public ExampleSetIntersect(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set intersect.
+     *
+     * @param description the description
+     */
+    public ExampleSetIntersect(OperatorDescription description) {
 		super(description);
 		secondInput.addPrecondition(new ExampleSetPrecondition(secondInput, Ontology.ATTRIBUTE_VALUE, Attributes.ID_NAME));
 		((InputPort) getInputPort().getPorts().getPortByIndex(0)).addPrecondition(new ExampleSetPrecondition(

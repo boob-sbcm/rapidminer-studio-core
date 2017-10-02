@@ -23,19 +23,26 @@ import com.rapidminer.example.Attribute;
 
 /**
  * Calculates the sum.
- * 
+ *
  * @author Tobias Malbrecht, Ingo Mierswa
- * 
  */
 public class SumFunction extends AbstractAggregationFunction {
 
 	private double valueSum;
 
-	public SumFunction() {
+    /**
+     * Instantiates a new Sum function.
+     */
+    public SumFunction() {
 		this(DEFAULT_IGNORE_MISSINGS);
 	}
 
-	public SumFunction(Boolean ignoreMissings) {
+    /**
+     * Instantiates a new Sum function.
+     *
+     * @param ignoreMissings the ignore missings
+     */
+    public SumFunction(Boolean ignoreMissings) {
 		super(ignoreMissings);
 	}
 

@@ -49,9 +49,17 @@ import java.util.Map;
  */
 public class GeneratePredictionOperator extends AbstractExampleSetProcessing {
 
-	public static final String PARAMETER_PREDICTION_NAME = "prediction_name";
+    /**
+     * The constant PARAMETER_PREDICTION_NAME.
+     */
+    public static final String PARAMETER_PREDICTION_NAME = "prediction_name";
 
-	public GeneratePredictionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Generate prediction operator.
+     *
+     * @param description the description
+     */
+    public GeneratePredictionOperator(OperatorDescription description) {
 		super(description);
 		getExampleSetInputPort().addPrecondition(
 				new ExampleSetPrecondition(getExampleSetInputPort(), Attributes.CONFIDENCE_NAME, Ontology.NUMERICAL));

@@ -48,7 +48,10 @@ import jxl.read.biff.BiffException;
  */
 public class ExcelWorkbookPane extends JPanel {
 
-	public static class ExcelWorkbookSelection {
+    /**
+     * The type Excel workbook selection.
+     */
+    public static class ExcelWorkbookSelection {
 
 		/** Numbering starts at 0. */
 		private int sheetIndex;
@@ -57,7 +60,16 @@ public class ExcelWorkbookPane extends JPanel {
 		private int columnIndexEnd;
 		private int rowIndexEnd;
 
-		public ExcelWorkbookSelection(int sheetIndex, int columnIndexStart, int rowIndexStart, int columnIndexEnd,
+        /**
+         * Instantiates a new Excel workbook selection.
+         *
+         * @param sheetIndex       the sheet index
+         * @param columnIndexStart the column index start
+         * @param rowIndexStart    the row index start
+         * @param columnIndexEnd   the column index end
+         * @param rowIndexEnd      the row index end
+         */
+        public ExcelWorkbookSelection(int sheetIndex, int columnIndexStart, int rowIndexStart, int columnIndexEnd,
 				int rowIndexEnd) {
 			this.sheetIndex = sheetIndex;
 			this.columnIndexStart = columnIndexStart;
@@ -71,31 +83,66 @@ public class ExcelWorkbookPane extends JPanel {
 			return sheetIndex + ": " + columnIndexStart + ":" + rowIndexStart + " - " + columnIndexEnd + ":" + rowIndexEnd;
 		}
 
-		public int getSheetIndex() {
+        /**
+         * Gets sheet index.
+         *
+         * @return the sheet index
+         */
+        public int getSheetIndex() {
 			return sheetIndex;
 		}
 
-		public int getColumnIndexEnd() {
+        /**
+         * Gets column index end.
+         *
+         * @return the column index end
+         */
+        public int getColumnIndexEnd() {
 			return columnIndexEnd;
 		}
 
-		public int getColumnIndexStart() {
+        /**
+         * Gets column index start.
+         *
+         * @return the column index start
+         */
+        public int getColumnIndexStart() {
 			return columnIndexStart;
 		}
 
-		public int getRowIndexEnd() {
+        /**
+         * Gets row index end.
+         *
+         * @return the row index end
+         */
+        public int getRowIndexEnd() {
 			return rowIndexEnd;
 		}
 
-		public int getRowIndexStart() {
+        /**
+         * Gets row index start.
+         *
+         * @return the row index start
+         */
+        public int getRowIndexStart() {
 			return rowIndexStart;
 		}
 
-		public int getSelectionWidth() {
+        /**
+         * Gets selection width.
+         *
+         * @return the selection width
+         */
+        public int getSelectionWidth() {
 			return columnIndexEnd - columnIndexStart + 1;
 		}
 
-		public int getSelectionHeight() {
+        /**
+         * Gets selection height.
+         *
+         * @return the selection height
+         */
+        public int getSelectionHeight() {
 			return rowIndexEnd - rowIndexStart + 1;
 		}
 	}
@@ -107,7 +154,12 @@ public class ExcelWorkbookPane extends JPanel {
 	private ExtendedJTabbedPane sheetsPane;
 	private ExtendedJTable[] tables;
 
-	public ExcelWorkbookPane(ExcelResultSetConfiguration configuration) {
+    /**
+     * Instantiates a new Excel workbook pane.
+     *
+     * @param configuration the configuration
+     */
+    public ExcelWorkbookPane(ExcelResultSetConfiguration configuration) {
 		super();
 		this.configuration = configuration;
 
@@ -118,7 +170,10 @@ public class ExcelWorkbookPane extends JPanel {
 		this.add(sheetsPane);
 	}
 
-	public void loadWorkbook() {
+    /**
+     * Load workbook.
+     */
+    public void loadWorkbook() {
 		if (configuration.hasWorkbook()) {
 			// nothing to do
 			return;
@@ -182,7 +237,12 @@ public class ExcelWorkbookPane extends JPanel {
 		}.start();
 	}
 
-	public void setSelection(ExcelWorkbookSelection selection) {
+    /**
+     * Sets selection.
+     *
+     * @param selection the selection
+     */
+    public void setSelection(ExcelWorkbookSelection selection) {
 		final int sheetIndex = selection.getSheetIndex();
 		if (sheetIndex < sheetsPane.getTabCount()) {
 			sheetsPane.setSelectedIndex(sheetIndex);
@@ -200,11 +260,12 @@ public class ExcelWorkbookPane extends JPanel {
 		}
 	}
 
-	/**
-	 * @return the user selection of the range to be imported. Can be <code>null</code> in case no
-	 *         table was selected yet
-	 */
-	public ExcelWorkbookSelection getSelection() {
+    /**
+     * Gets selection.
+     *
+     * @return the user selection of the range to be imported. Can be <code>null</code> in case no         table was selected yet
+     */
+    public ExcelWorkbookSelection getSelection() {
 		ExtendedJTable selectedTable = getSelectedTable();
 		if (selectedTable == null) {
 			return null;
@@ -224,10 +285,12 @@ public class ExcelWorkbookPane extends JPanel {
 		}
 	}
 
-	/**
-	 * @return the selected table or null
-	 */
-	ExtendedJTable getSelectedTable() {
+    /**
+     * Gets selected table.
+     *
+     * @return the selected table or null
+     */
+    ExtendedJTable getSelectedTable() {
 		int sheetIndex = sheetsPane.getSelectedIndex();
 		if (tables == null || sheetIndex >= tables.length || sheetIndex < 0) {
 			return null;
@@ -235,19 +298,22 @@ public class ExcelWorkbookPane extends JPanel {
 		return tables[sheetIndex];
 	}
 
-	/**
-	 * @return whether the wizard step can proceed. It cannot proceed if the selected table does not
-	 *         contain any columns.
-	 */
-	boolean canProceed() {
+    /**
+     * Can proceed boolean.
+     *
+     * @return whether the wizard step can proceed. It cannot proceed if the selected table does not         contain any columns.
+     */
+    boolean canProceed() {
 		ExtendedJTable selectedTable = getSelectedTable();
 		return selectedTable != null ? selectedTable.getModel().getColumnCount() > 0 : false;
 	}
 
-	/**
-	 * @return the tabbed sheet pane
-	 */
-	public JTabbedPane getSheetTabbedPane() {
+    /**
+     * Gets sheet tabbed pane.
+     *
+     * @return the tabbed sheet pane
+     */
+    public JTabbedPane getSheetTabbedPane() {
 		return sheetsPane;
 	}
 }

@@ -37,7 +37,7 @@ import javax.swing.JTable;
 /**
  * Cell editor consisting of a colored button which opens a color chooser as action. Currently only
  * used for property setting, not for parameters.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ColorValueCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {
@@ -48,7 +48,12 @@ public class ColorValueCellEditor extends AbstractCellEditor implements Property
 
 	private JButton button;
 
-	public ColorValueCellEditor(final ParameterTypeColor type) {
+    /**
+     * Instantiates a new Color value cell editor.
+     *
+     * @param type the type
+     */
+    public ColorValueCellEditor(final ParameterTypeColor type) {
 		this.type = type;
 		button = new JButton("Choose Color...");
 		button.setToolTipText(type.getDescription());
@@ -71,7 +76,12 @@ public class ColorValueCellEditor extends AbstractCellEditor implements Property
 	@Override
 	public void setOperator(Operator operator) {}
 
-	public void setEditorColor(Color color) {
+    /**
+     * Sets editor color.
+     *
+     * @param color the color
+     */
+    public void setEditorColor(Color color) {
 		button.setIcon(new ColorIcon(color));
 	}
 

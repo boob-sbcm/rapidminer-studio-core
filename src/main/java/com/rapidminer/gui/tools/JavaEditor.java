@@ -25,14 +25,17 @@ import com.rapidminer.gui.tools.syntax.TextAreaDefaults;
 
 /**
  * A generic Java editor.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class JavaEditor extends JEditTextArea {
 
 	private static final long serialVersionUID = 7096580655099549058L;
 
-	public JavaEditor() {
+    /**
+     * Instantiates a new Java editor.
+     */
+    public JavaEditor() {
 		super(getDefaults());
 		setTokenMarker(new JavaTokenMarker());
 	}

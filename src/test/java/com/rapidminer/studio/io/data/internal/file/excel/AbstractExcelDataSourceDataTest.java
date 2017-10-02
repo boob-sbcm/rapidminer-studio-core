@@ -45,15 +45,29 @@ import com.rapidminer.tools.Tools;
  * Abstract super class for all Excel tests
  *
  * @author Nils Woehler
- *
  */
 public abstract class AbstractExcelDataSourceDataTest {
 
-	static File testFile;
-	static File nominalDateTestFile;
-	static File dateDateTestFile;
+    /**
+     * The Test file.
+     */
+    static File testFile;
+    /**
+     * The Nominal date test file.
+     */
+    static File nominalDateTestFile;
+    /**
+     * The Date date test file.
+     */
+    static File dateDateTestFile;
 
-	@Test
+    /**
+     * Default meta data test.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void defaultMetaDataTest() throws DataSetException, ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -121,7 +135,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test(expected = HeaderRowBehindStartRowException.class)
+    /**
+     * Header row behind start row.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test(expected = HeaderRowBehindStartRowException.class)
 	public void headerRowBehindStartRow() throws DataSetException, ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -136,7 +156,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test(expected = HeaderRowBehindStartRowException.class)
+    /**
+     * Header row behind start row 2.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test(expected = HeaderRowBehindStartRowException.class)
 	public void headerRowBehindStartRow2() throws DataSetException, ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -152,7 +178,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test(expected = StartRowNotFoundException.class)
+    /**
+     * Start row not available.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test(expected = StartRowNotFoundException.class)
 	public void startRowNotAvailable() throws DataSetException, ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -168,7 +200,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test(expected = HeaderRowNotFoundException.class)
+    /**
+     * Header row not found.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test(expected = HeaderRowNotFoundException.class)
 	public void headerRowNotFound() throws DataSetException, ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -179,7 +217,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Data content starts at fith row.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void dataContentStartsAtFithRow() throws DataSetException, ParseException {
 
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
@@ -248,7 +292,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * No header row defined.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void noHeaderRowDefined() throws DataSetException, ParseException {
 
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
@@ -314,17 +364,27 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	/**
-	 * @return result for categorical integer number
-	 */
-	protected abstract String getCategoricalInteger();
+    /**
+     * Gets categorical integer.
+     *
+     * @return result for categorical integer number
+     */
+    protected abstract String getCategoricalInteger();
 
-	/**
-	 * @return result for categorical number below 1.0
-	 */
-	protected abstract String getCategoricalBelowOne();
+    /**
+     * Gets categorical below one.
+     *
+     * @return result for categorical number below 1.0
+     */
+    protected abstract String getCategoricalBelowOne();
 
-	@Test
+    /**
+     * Missing in header row.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void missingInHeaderRow() throws DataSetException, ParseException {
 
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
@@ -345,7 +405,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Data content starts at fith row header row as second row.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void dataContentStartsAtFithRowHeaderRowAsSecondRow() throws DataSetException, ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -414,7 +480,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * First column skipped.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void firstColumnSkipped() throws DataSetException, ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -479,7 +551,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * First and second column skipped.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void firstAndSecondColumnSkipped() throws DataSetException, ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -541,7 +619,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Last column skipped.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void lastColumnSkipped() throws DataSetException, ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -606,7 +690,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * First and last column skipped.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void firstAndLastColumnSkipped() throws DataSetException, ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -669,7 +759,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Last row defined.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void lastRowDefined() throws DataSetException, ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -740,7 +836,13 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * First and last data row defined.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void firstAndLastDataRowDefined() throws DataSetException, ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -820,7 +922,12 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Caching test.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void cachingTest() throws DataSetException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -841,7 +948,12 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Only header row selected.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void onlyHeaderRowSelected() throws DataSetException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -855,7 +967,12 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Length test.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void lengthTest() throws DataSetException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
 			dataSource.setLocation(testFile.toPath());
@@ -882,7 +999,15 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Simple nominal to date test.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws ParseException            the parse exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void simpleNominalToDateTest()
 			throws DataSetException, ParseException, IndexOutOfBoundsException, java.text.ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
@@ -922,7 +1047,15 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test(expected = ParseException.class)
+    /**
+     * Wrong date format test.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws ParseException            the parse exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test(expected = ParseException.class)
 	public void wrongDateFormatTest()
 			throws DataSetException, ParseException, IndexOutOfBoundsException, java.text.ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
@@ -950,7 +1083,15 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Simple date to date test.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws ParseException            the parse exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void simpleDateToDateTest()
 			throws DataSetException, ParseException, IndexOutOfBoundsException, java.text.ParseException {
 		try (ExcelDataSource dataSource = new ExcelDataSource()) {
@@ -985,24 +1126,27 @@ public abstract class AbstractExcelDataSourceDataTest {
 		}
 	}
 
-	/**
-	 * @return the date value at row 20
-	 */
-	protected abstract long getDataToDateRow20();
+    /**
+     * Gets data to date row 20.
+     *
+     * @return the date value at row 20
+     */
+    protected abstract long getDataToDateRow20();
 
-	/**
-	 * @return the date value at row 50
-	 */
-	protected abstract long getDateToDateRow50();
+    /**
+     * Gets date to date row 50.
+     *
+     * @return the date value at row 50
+     */
+    protected abstract long getDateToDateRow50();
 
-	/**
-	 * Called by every test that uses a {@link ExcelDataSource} to adapt to XLS and XLSX special
-	 * configurations
-	 *
-	 * @param dataSource
-	 *            the data source to configure
-	 */
-	protected abstract void configureDataSource(ExcelDataSource dataSource);
+    /**
+     * Called by every test that uses a {@link ExcelDataSource} to adapt to XLS and XLSX special
+     * configurations
+     *
+     * @param dataSource the data source to configure
+     */
+    protected abstract void configureDataSource(ExcelDataSource dataSource);
 
 	private void assertFirstSheetRowContent(DataSetRow row) throws ParseException {
 		assertFirstSheetRowContent(row, 0, 5);

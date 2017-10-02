@@ -33,7 +33,6 @@ import org.junit.Test;
  * Tests the parsing of the operator documentation.
  *
  * @author Marcel Michel
- *
  */
 public class OperatorDescriptionTest {
 
@@ -65,14 +64,24 @@ public class OperatorDescriptionTest {
 		return (OperatorDocumentation) result;
 	}
 
-	@Test
+    /**
+     * No tags test.
+     *
+     * @throws IOException the io exception
+     */
+    @Test
 	public void noTagsTest() throws IOException {
 		OperatorDocumentation operatorDocumentation = parseOperatorDocumentation(OPERATOR_DOCUMENTATION_NO_TAGS,
 				OPERATOR_KEY_NO_TAGS);
 		assertEquals(0, operatorDocumentation.getTags().size());
 	}
 
-	@Test
+    /**
+     * Single tag test.
+     *
+     * @throws IOException the io exception
+     */
+    @Test
 	public void singleTagTest() throws IOException {
 		OperatorDocumentation operatorDocumentation = parseOperatorDocumentation(OPERATOR_DOCUMENTATION_SINGLE_TAG,
 				OPERATOR_KEY_SINGLE_TAG);
@@ -81,7 +90,12 @@ public class OperatorDescriptionTest {
 		assertEquals("First Tag", tagList.get(0));
 	}
 
-	@Test
+    /**
+     * Multiple tag test.
+     *
+     * @throws IOException the io exception
+     */
+    @Test
 	public void multipleTagTest() throws IOException {
 		OperatorDocumentation operatorDocumentation = parseOperatorDocumentation(OPERATOR_DOCUMENTATION_MULTIPLE_TAGS,
 				OPERATOR_KEY_MULTIPLE_TAGS);

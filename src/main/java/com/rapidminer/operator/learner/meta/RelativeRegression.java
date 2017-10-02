@@ -46,9 +46,17 @@ import com.rapidminer.tools.Ontology;
  */
 public class RelativeRegression extends AbstractMetaLearner {
 
-	public static final String PARAMETER_RELATIVE_ATTRIBUTE = "relative_attribute";
+    /**
+     * The constant PARAMETER_RELATIVE_ATTRIBUTE.
+     */
+    public static final String PARAMETER_RELATIVE_ATTRIBUTE = "relative_attribute";
 
-	public RelativeRegression(OperatorDescription description) {
+    /**
+     * Instantiates a new Relative regression.
+     *
+     * @param description the description
+     */
+    public RelativeRegression(OperatorDescription description) {
 		super(description);
 	}
 

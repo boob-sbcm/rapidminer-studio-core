@@ -46,11 +46,22 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class ExchangeAttributeRoles extends AbstractDataProcessing {
 
-	public static final String PARAMETER_FIRST_ATTRIBUTE = "first_attribute";
+    /**
+     * The constant PARAMETER_FIRST_ATTRIBUTE.
+     */
+    public static final String PARAMETER_FIRST_ATTRIBUTE = "first_attribute";
 
-	public static final String PARAMETER_SECOND_ATTRIBUTE = "second_attribute";
+    /**
+     * The constant PARAMETER_SECOND_ATTRIBUTE.
+     */
+    public static final String PARAMETER_SECOND_ATTRIBUTE = "second_attribute";
 
-	public ExchangeAttributeRoles(OperatorDescription description) {
+    /**
+     * Instantiates a new Exchange attribute roles.
+     *
+     * @param description the description
+     */
+    public ExchangeAttributeRoles(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(

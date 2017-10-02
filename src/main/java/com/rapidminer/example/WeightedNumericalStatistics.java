@@ -25,7 +25,7 @@ import java.util.logging.Level;
 
 /**
  * Attribute statistics object for weighted numerical attributes.
- * 
+ *
  * @author Ingo Mierswa, Tobias Malbrecht
  */
 public class WeightedNumericalStatistics implements Statistics {
@@ -40,7 +40,10 @@ public class WeightedNumericalStatistics implements Statistics {
 
 	private double count = 0.0d;
 
-	public WeightedNumericalStatistics() {}
+    /**
+     * Instantiates a new Weighted numerical statistics.
+     */
+    public WeightedNumericalStatistics() {}
 
 	/** Clone constructor. */
 	private WeightedNumericalStatistics(WeightedNumericalStatistics other) {

@@ -22,7 +22,7 @@ package com.rapidminer.operator;
  * This class is used to describe the required input of an operator and the operator's behavior with
  * respect to consumption of this input object. Input objects can be simply consumed (default) or
  * the consumption behavior can be defined with help of an parameter (user decision).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class InputDescription {
@@ -42,59 +42,89 @@ public class InputDescription {
 	/** The parameter name. */
 	private String parameterName;
 
-	/**
-	 * Creates a new input description for the given class. The input object is consumed.
-	 */
-	public InputDescription(Class<?> inputType) {
+    /**
+     * Creates a new input description for the given class. The input object is consumed.
+     *
+     * @param inputType the input type
+     */
+    public InputDescription(Class<?> inputType) {
 		this(inputType, false, false, null);
 	}
 
-	/**
-	 * Creates a new input description for the given class. The parameter keepDefault defines if the
-	 * input object is consumed.
-	 */
-	public InputDescription(Class<?> inputType, boolean keepDefault) {
+    /**
+     * Creates a new input description for the given class. The parameter keepDefault defines if the
+     * input object is consumed.
+     *
+     * @param inputType   the input type
+     * @param keepDefault the keep default
+     */
+    public InputDescription(Class<?> inputType, boolean keepDefault) {
 		this(inputType, keepDefault, false, null);
 	}
 
-	/**
-	 * Creates a new input description for the given class. The parameter keepDefault defines if the
-	 * input object is consumed per default.
-	 * <code>parameter<code> defines if the operator should provide a user parameter.
-	 */
-	public InputDescription(Class<?> inputType, boolean keepDefault, boolean parameter) {
+    /**
+     * Creates a new input description for the given class. The parameter keepDefault defines if the
+     * input object is consumed per default.
+     * <code>parameter<code> defines if the operator should provide a user parameter.
+     *
+     * @param inputType   the input type
+     * @param keepDefault the keep default
+     * @param parameter   the parameter
+     */
+    public InputDescription(Class<?> inputType, boolean keepDefault, boolean parameter) {
 		this(inputType, keepDefault, parameter, parameter ? convertClass2ParameterName(inputType) : null);
 	}
 
-	/**
-	 * Creates a new input description for the given class. The parameter keepDefault defines if the
-	 * input object is consumed per default.
-	 * <code>parameter<code> defines if the operator should provide a user parameter. This parameter utilizes the given name.
-	 */
-	public InputDescription(Class<?> inputType, boolean keepDefault, boolean parameter, String parameterName) {
+    /**
+     * Creates a new input description for the given class. The parameter keepDefault defines if the
+     * input object is consumed per default.
+     * <code>parameter<code> defines if the operator should provide a user parameter. This parameter utilizes the given name.
+     *
+     * @param inputType     the input type
+     * @param keepDefault   the keep default
+     * @param parameter     the parameter
+     * @param parameterName the parameter name
+     */
+    public InputDescription(Class<?> inputType, boolean keepDefault, boolean parameter, String parameterName) {
 		this.inputType = inputType;
 		this.keepDefault = keepDefault;
 		this.parameter = parameter;
 		this.parameterName = parameterName;
 	}
 
-	/** Returns the desired class of the input object. */
-	public Class<?> getInputType() {
+    /**
+     * Returns the desired class of the input object.  @return the input type
+     *
+     * @return the input type
+     */
+    public Class<?> getInputType() {
 		return inputType;
 	}
 
-	/** Indicates if the input should be consumed. */
-	public boolean getKeepDefault() {
+    /**
+     * Indicates if the input should be consumed.  @return the keep default
+     *
+     * @return the keep default
+     */
+    public boolean getKeepDefault() {
 		return keepDefault;
 	}
 
-	/** Indicates if a user parameter should be defined. */
-	public boolean showParameter() {
+    /**
+     * Indicates if a user parameter should be defined.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean showParameter() {
 		return parameter;
 	}
 
-	/** Returns the name of the user parameter. */
-	public String getParameterName() {
+    /**
+     * Returns the name of the user parameter.  @return the parameter name
+     *
+     * @return the parameter name
+     */
+    public String getParameterName() {
 		return parameterName;
 	}
 

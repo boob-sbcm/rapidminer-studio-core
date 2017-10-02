@@ -31,14 +31,17 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 
 /**
  * This renderer provides colorized renderering not based on the series but on a numerical value.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ColorizedLineAndShapeRenderer extends XYLineAndShapeRenderer {
 
 	private static final long serialVersionUID = 6884606136158793687L;
 
-	public static final Stroke STROKE = new BasicStroke(0.75f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
+    /**
+     * The constant STROKE.
+     */
+    public static final Stroke STROKE = new BasicStroke(0.75f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
 
 	private double[] colorValues;
 
@@ -48,7 +51,12 @@ public class ColorizedLineAndShapeRenderer extends XYLineAndShapeRenderer {
 
 	private ColorProvider colorProvider = new ColorProvider();
 
-	public ColorizedLineAndShapeRenderer(double[] colorValues) {
+    /**
+     * Instantiates a new Colorized line and shape renderer.
+     *
+     * @param colorValues the color values
+     */
+    public ColorizedLineAndShapeRenderer(double[] colorValues) {
 		this.colorValues = colorValues;
 		this.minColor = Double.POSITIVE_INFINITY;
 		this.maxColor = Double.NEGATIVE_INFINITY;
@@ -60,11 +68,21 @@ public class ColorizedLineAndShapeRenderer extends XYLineAndShapeRenderer {
 		}
 	}
 
-	public double getMinColorValue() {
+    /**
+     * Gets min color value.
+     *
+     * @return the min color value
+     */
+    public double getMinColorValue() {
 		return minColor;
 	}
 
-	public double getMaxColorValue() {
+    /**
+     * Gets max color value.
+     *
+     * @return the max color value
+     */
+    public double getMaxColorValue() {
 		return maxColor;
 	}
 

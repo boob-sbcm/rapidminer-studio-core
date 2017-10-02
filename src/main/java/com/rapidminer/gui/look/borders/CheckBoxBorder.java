@@ -27,7 +27,7 @@ import javax.swing.plaf.UIResource;
 
 /**
  * The UIResource for check box borders.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CheckBoxBorder extends AbstractBorder implements UIResource {

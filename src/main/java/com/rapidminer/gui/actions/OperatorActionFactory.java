@@ -34,71 +34,67 @@ import com.rapidminer.gui.tools.ResourceMenu;
  */
 public interface OperatorActionFactory {
 
-	/**
-	 * Wrapper class for {@link ResourceAction} and {@link ResourceMenu} instances. Intended to be
-	 * used only in conjunction with an {@link OperatorActionFactory}.
-	 *
-	 * @author Michael Knopf
-	 */
-	static final class ResourceEntry {
+    /**
+     * Wrapper class for {@link ResourceAction} and {@link ResourceMenu} instances. Intended to be
+     * used only in conjunction with an {@link OperatorActionFactory}.
+     *
+     * @author Michael Knopf
+     */
+    static final class ResourceEntry {
 
 		private final ResourceAction action;
 		private final ResourceMenu menu;
 
-		/**
-		 * Creates a new {@code ResourceEntry} wrapping the given {@link ResourceAction}.
-		 *
-		 * @param action
-		 *            the resource action to be wrapped
-		 */
-		public ResourceEntry(ResourceAction action) {
+        /**
+         * Creates a new {@code ResourceEntry} wrapping the given {@link ResourceAction}.
+         *
+         * @param action the resource action to be wrapped
+         */
+        public ResourceEntry(ResourceAction action) {
 			this.action = action;
 			this.menu = null;
 		}
 
-		/**
-		 * Creates a new {@code ResourceEntry} wrapping the given {@link ResourceMenu}.
-		 *
-		 * @param menu
-		 *            the resource menu to be wrapped
-		 */
-		public ResourceEntry(ResourceMenu menu) {
+        /**
+         * Creates a new {@code ResourceEntry} wrapping the given {@link ResourceMenu}.
+         *
+         * @param menu the resource menu to be wrapped
+         */
+        public ResourceEntry(ResourceMenu menu) {
 			this.action = null;
 			this.menu = menu;
 		}
 
-		/**
-		 * Tells whether the entry wraps a {@link ResourceMenu}.
-		 *
-		 * @return {@code true] iff the the entry wraps a resource menu, {@code false} iff the entry
-		 *         wraps a resource action
-		 */
-		public boolean isMenu() {
+        /**
+         * Tells whether the entry wraps a {@link ResourceMenu}.
+         *
+         * @return {@code true] iff the the entry wraps a resource menu, {@code false} iff the entry
+         * wraps a resource action
+         */
+        public boolean isMenu() {
 			return menu != null;
 		}
 
-		/**
-		 * Returns the wrapped {@link ResourceAction} (if any).
-		 *
-		 * @return the resource action
-		 * @throws UnsupportedOperationException
-		 *             if the entry does not wrap a resource action
-		 */
-		public ResourceAction getAction() {
+        /**
+         * Returns the wrapped {@link ResourceAction} (if any).
+         *
+         * @return the resource action
+         * @throws UnsupportedOperationException if the entry does not wrap a resource action
+         */
+        public ResourceAction getAction() {
 			if (action == null) {
 				throw new UnsupportedOperationException();
 			}
 			return action;
 		}
 
-		/**
-		 * Returns the wrapped {@link ResourceMenu} (if any).
-		 *
-		 * @return the wrapped menu
-		 * @throws UnsupportedOperationException
-		 *             if the entry does not wrap a resource menu
-		 */
-		public ResourceMenu getMenu() {
+        /**
+         * Returns the wrapped {@link ResourceMenu} (if any).
+         *
+         * @return the wrapped menu
+         * @throws UnsupportedOperationException if the entry does not wrap a resource menu
+         */
+        public ResourceMenu getMenu() {
 			if (menu == null) {
 				throw new UnsupportedOperationException();
 			}
@@ -107,18 +103,17 @@ public interface OperatorActionFactory {
 
 	}
 
-	/**
-	 * Creates a list of {@link ResourceEntry} instances ({@link ResourceAction}s and
-	 * {@link ResourceMenu}s) for the given {@link OperatorActionContext}.
-	 * <p>
-	 * Implementations must not return {@code null} but are allowed to return empty lists.
-	 * <p>
-	 * Implementations may reuse and pool resources.
-	 *
-	 * @param context
-	 *            the action context
-	 * @return the list of resource entries
-	 * @since 6.5
-	 */
-	public List<ResourceEntry> create(OperatorActionContext context);
+    /**
+     * Creates a list of {@link ResourceEntry} instances ({@link ResourceAction}s and
+     * {@link ResourceMenu}s) for the given {@link OperatorActionContext}.
+     * <p>
+     * Implementations must not return {@code null} but are allowed to return empty lists.
+     * <p>
+     * Implementations may reuse and pool resources.
+     *
+     * @param context the action context
+     * @return the list of resource entries
+     * @since 6.5
+     */
+    public List<ResourceEntry> create(OperatorActionContext context);
 }

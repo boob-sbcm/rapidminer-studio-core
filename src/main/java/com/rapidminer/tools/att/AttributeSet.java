@@ -41,7 +41,7 @@ import org.xml.sax.SAXException;
 /**
  * Set of regular and special attributes that need not necessarily be associated with an
  * {@link com.rapidminer.example.ExampleSet}.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class AttributeSet {
@@ -55,18 +55,27 @@ public class AttributeSet {
 	/** The default source file. */
 	private File defaultSource;
 
-	/** Creates an empty attribute set. */
-	public AttributeSet() {}
+    /**
+     * Creates an empty attribute set.
+     */
+    public AttributeSet() {}
 
-	/** Creates an empty attribute set. */
-	public AttributeSet(int initialCapacity) {
+    /**
+     * Creates an empty attribute set.  @param initialCapacity the initial capacity
+     *
+     * @param initialCapacity the initial capacity
+     */
+    public AttributeSet(int initialCapacity) {
 		regularAttributes = new ArrayList<Attribute>(initialCapacity);
 	}
 
-	/**
-	 * Creates an attribute set from the given collection of {@link AttributeDataSource}s.
-	 */
-	public AttributeSet(AttributeDataSources attributeDataSources) throws UserError {
+    /**
+     * Creates an attribute set from the given collection of {@link AttributeDataSource}s.
+     *
+     * @param attributeDataSources the attribute data sources
+     * @throws UserError the user error
+     */
+    public AttributeSet(AttributeDataSources attributeDataSources) throws UserError {
 		Iterator<AttributeDataSource> i = attributeDataSources.getDataSources().iterator();
 		while (i.hasNext()) {
 			AttributeDataSource ads = i.next();
@@ -88,68 +97,126 @@ public class AttributeSet {
 		this.defaultSource = attributeDataSources.getDefaultSource();
 	}
 
-	/** Reads an xml attribute description file and creates an attribute set. */
-	public AttributeSet(File attributeDescriptionFile, boolean sourceColRequired, LoggingHandler logging)
+    /**
+     * Reads an xml attribute description file and creates an attribute set.  @param attributeDescriptionFile the attribute description file
+     *
+     * @param attributeDescriptionFile the attribute description file
+     * @param sourceColRequired        the source col required
+     * @param logging                  the logging
+     * @throws XMLException                 the xml exception
+     * @throws ParserConfigurationException the parser configuration exception
+     * @throws SAXException                 the sax exception
+     * @throws IOException                  the io exception
+     * @throws UserError                    the user error
+     */
+    public AttributeSet(File attributeDescriptionFile, boolean sourceColRequired, LoggingHandler logging)
 			throws XMLException, ParserConfigurationException, SAXException, IOException, UserError {
 		this(AttributeDataSource.createAttributeDataSources(attributeDescriptionFile, sourceColRequired, logging));
 	}
 
-	public AttributeSet(List<Attribute> regularAttributes, Map<String, Attribute> specialAttributes) {
+    /**
+     * Instantiates a new Attribute set.
+     *
+     * @param regularAttributes the regular attributes
+     * @param specialAttributes the special attributes
+     */
+    public AttributeSet(List<Attribute> regularAttributes, Map<String, Attribute> specialAttributes) {
 		this.regularAttributes = regularAttributes;
 		this.specialAttributes = specialAttributes;
 	}
 
-	/** Returns the default file. */
-	public File getDefaultSource() {
+    /**
+     * Returns the default file.  @return the default source
+     *
+     * @return the default source
+     */
+    public File getDefaultSource() {
 		return defaultSource;
 	}
 
-	/** Returns an attribute by index. */
-	public Attribute getAttribute(int index) {
+    /**
+     * Returns an attribute by index.  @param index the index
+     *
+     * @param index the index
+     * @return the attribute
+     */
+    public Attribute getAttribute(int index) {
 		return regularAttributes.get(index);
 	}
 
-	/** Adds an attribute at the end of the list. */
-	public void addAttribute(Attribute attribute) {
+    /**
+     * Adds an attribute at the end of the list.  @param attribute the attribute
+     *
+     * @param attribute the attribute
+     */
+    public void addAttribute(Attribute attribute) {
 		regularAttributes.add(attribute);
 	}
 
-	/** Returns a special attribute by name. */
-	public Attribute getSpecialAttribute(String name) {
+    /**
+     * Returns a special attribute by name.  @param name the name
+     *
+     * @param name the name
+     * @return the special attribute
+     */
+    public Attribute getSpecialAttribute(String name) {
 		return specialAttributes.get(name);
 	}
 
-	/** Adds a named special attribute. */
-	public void setSpecialAttribute(String name, Attribute attribute) {
+    /**
+     * Adds a named special attribute.  @param name the name
+     *
+     * @param name      the name
+     * @param attribute the attribute
+     */
+    public void setSpecialAttribute(String name, Attribute attribute) {
 		specialAttributes.put(name, attribute);
 	}
 
-	/** Returns a list of all names (Strings) of all special attributes. */
-	public Set<String> getSpecialNames() {
+    /**
+     * Returns a list of all names (Strings) of all special attributes.  @return the special names
+     *
+     * @return the special names
+     */
+    public Set<String> getSpecialNames() {
 		return specialAttributes.keySet();
 	}
 
-	/** Returns a list of all regular attributes. */
-	public List<Attribute> getRegularAttributes() {
+    /**
+     * Returns a list of all regular attributes.  @return the regular attributes
+     *
+     * @return the regular attributes
+     */
+    public List<Attribute> getRegularAttributes() {
 		return regularAttributes;
 	}
 
-	/** Returns the number of regular attributes. */
-	public int getNumberOfRegularAttributes() {
+    /**
+     * Returns the number of regular attributes.  @return the number of regular attributes
+     *
+     * @return the number of regular attributes
+     */
+    public int getNumberOfRegularAttributes() {
 		return regularAttributes.size();
 	}
 
-	/** Returns a Map mapping names to special attributes. */
-	public Map<String, Attribute> getSpecialAttributes() {
+    /**
+     * Returns a Map mapping names to special attributes.  @return the special attributes
+     *
+     * @return the special attributes
+     */
+    public Map<String, Attribute> getSpecialAttributes() {
 		return specialAttributes;
 	}
 
-	/**
-	 * Returns a list of all, i.e. regular and special attributes. This method creates a list. The
-	 * first elements in the list will be the regular attributes, the last elements will be the
-	 * special attributes.
-	 */
-	public List<Attribute> getAllAttributes() {
+    /**
+     * Returns a list of all, i.e. regular and special attributes. This method creates a list. The
+     * first elements in the list will be the regular attributes, the last elements will be the
+     * special attributes.
+     *
+     * @return the all attributes
+     */
+    public List<Attribute> getAllAttributes() {
 		List<Attribute> attributes = new LinkedList<Attribute>();
 		attributes.addAll(regularAttributes);
 		attributes.addAll(specialAttributes.values());

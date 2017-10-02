@@ -34,7 +34,12 @@ import com.rapidminer.operator.features.PopulationOperator;
  */
 public class ForwardWeighting extends FeatureWeighting {
 
-	public ForwardWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Forward weighting.
+     *
+     * @param description the description
+     */
+    public ForwardWeighting(OperatorDescription description) {
 		super(description);
 	}
 

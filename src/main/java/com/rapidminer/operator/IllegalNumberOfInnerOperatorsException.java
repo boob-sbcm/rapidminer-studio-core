@@ -21,7 +21,7 @@ package com.rapidminer.operator;
 /**
  * Will be thrown if an operator chain has the wrong number of inner operators. Should be thrown
  * during validation.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer 15:35:42 ingomierswa Exp $
  */
 public class IllegalNumberOfInnerOperatorsException extends Exception {
@@ -30,12 +30,23 @@ public class IllegalNumberOfInnerOperatorsException extends Exception {
 
 	private transient OperatorChain operatorChain;
 
-	public IllegalNumberOfInnerOperatorsException(String message, OperatorChain operatorChain) {
+    /**
+     * Instantiates a new Illegal number of inner operators exception.
+     *
+     * @param message       the message
+     * @param operatorChain the operator chain
+     */
+    public IllegalNumberOfInnerOperatorsException(String message, OperatorChain operatorChain) {
 		super(message);
 		this.operatorChain = operatorChain;
 	}
 
-	public OperatorChain getOperatorChain() {
+    /**
+     * Gets operator chain.
+     *
+     * @return the operator chain
+     */
+    public OperatorChain getOperatorChain() {
 		return operatorChain;
 	}
 }

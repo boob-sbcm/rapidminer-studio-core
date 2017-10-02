@@ -60,24 +60,60 @@ public class DateAdjust extends AbstractDataProcessing {
 
 	private static final String ATTRIBUTE_NAME_POSTFIX = "_adjusted";
 
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	public static final String PARAMETER_KEEP_OLD_ATTRIBUTE = "keep_old_attribute";
+    /**
+     * The constant PARAMETER_KEEP_OLD_ATTRIBUTE.
+     */
+    public static final String PARAMETER_KEEP_OLD_ATTRIBUTE = "keep_old_attribute";
 
-	public static final String PARAMETER_ADJUSTMENTS = "adjustments";
+    /**
+     * The constant PARAMETER_ADJUSTMENTS.
+     */
+    public static final String PARAMETER_ADJUSTMENTS = "adjustments";
 
-	public static final String PARAMETER_DATE_UNIT = "date_unit";
+    /**
+     * The constant PARAMETER_DATE_UNIT.
+     */
+    public static final String PARAMETER_DATE_UNIT = "date_unit";
 
-	public static final String[] CALENDAR_FIELDS = new String[] { "Year", "Month", "Day", "Hour", "Minute", "Second",
+    /**
+     * The constant CALENDAR_FIELDS.
+     */
+    public static final String[] CALENDAR_FIELDS = new String[] { "Year", "Month", "Day", "Hour", "Minute", "Second",
 	"Millisecond" };
 
-	public static final int CALENDAR_FIELD_YEAR = 0;
-	public static final int CALENDAR_FIELD_MONTH = 1;
-	public static final int CALENDAR_FIELD_DAY = 2;
-	public static final int CALENDAR_FIELD_HOUR = 3;
-	public static final int CALENDAR_FIELD_MINUTE = 4;
-	public static final int CALENDAR_FIELD_SECOND = 5;
-	public static final int CALENDAR_FIELD_MILLISECOND = 6;
+    /**
+     * The constant CALENDAR_FIELD_YEAR.
+     */
+    public static final int CALENDAR_FIELD_YEAR = 0;
+    /**
+     * The constant CALENDAR_FIELD_MONTH.
+     */
+    public static final int CALENDAR_FIELD_MONTH = 1;
+    /**
+     * The constant CALENDAR_FIELD_DAY.
+     */
+    public static final int CALENDAR_FIELD_DAY = 2;
+    /**
+     * The constant CALENDAR_FIELD_HOUR.
+     */
+    public static final int CALENDAR_FIELD_HOUR = 3;
+    /**
+     * The constant CALENDAR_FIELD_MINUTE.
+     */
+    public static final int CALENDAR_FIELD_MINUTE = 4;
+    /**
+     * The constant CALENDAR_FIELD_SECOND.
+     */
+    public static final int CALENDAR_FIELD_SECOND = 5;
+    /**
+     * The constant CALENDAR_FIELD_MILLISECOND.
+     */
+    public static final int CALENDAR_FIELD_MILLISECOND = 6;
 
 	private static class Adjustment {
 
@@ -85,7 +121,13 @@ public class DateAdjust extends AbstractDataProcessing {
 		private int calendarField;
 		private int amount;
 
-		public Adjustment(int field, int amount) {
+        /**
+         * Instantiates a new Adjustment.
+         *
+         * @param field  the field
+         * @param amount the amount
+         */
+        public Adjustment(int field, int amount) {
 			this.originalField = field;
 
 			switch (field) {
@@ -115,11 +157,21 @@ public class DateAdjust extends AbstractDataProcessing {
 			this.amount = amount;
 		}
 
-		public int getField() {
+        /**
+         * Gets field.
+         *
+         * @return the field
+         */
+        public int getField() {
 			return this.calendarField;
 		}
 
-		public int getAmount() {
+        /**
+         * Gets amount.
+         *
+         * @return the amount
+         */
+        public int getAmount() {
 			return this.amount;
 		}
 
@@ -129,7 +181,12 @@ public class DateAdjust extends AbstractDataProcessing {
 		}
 	}
 
-	public DateAdjust(OperatorDescription description) {
+    /**
+     * Instantiates a new Date adjust.
+     *
+     * @param description the description
+     */
+    public DateAdjust(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(

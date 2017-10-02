@@ -24,37 +24,36 @@ import java.util.EventListener;
 /**
  * Listener which will be informed when a new {@link ProgressThread} is queued, executed, cancelled
  * or finished.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface ProgressThreadStateListener extends EventListener {
 
-	/**
-	 * Called when the {@link ProgressThread} has started execution.
-	 * 
-	 * @param pg
-	 */
-	public void progressThreadStarted(ProgressThread pg);
+    /**
+     * Called when the {@link ProgressThread} has started execution.
+     *
+     * @param pg the pg
+     */
+    public void progressThreadStarted(ProgressThread pg);
 
-	/**
-	 * Called when the {@link ProgressThread} has been queued.
-	 * 
-	 * @param pg
-	 */
-	public void progressThreadQueued(ProgressThread pg);
+    /**
+     * Called when the {@link ProgressThread} has been queued.
+     *
+     * @param pg the pg
+     */
+    public void progressThreadQueued(ProgressThread pg);
 
-	/**
-	 * Called when the {@link ProgressThread} has been cancelled.
-	 * 
-	 * @param pg
-	 */
-	public void progressThreadCancelled(ProgressThread pg);
+    /**
+     * Called when the {@link ProgressThread} has been cancelled.
+     *
+     * @param pg the pg
+     */
+    public void progressThreadCancelled(ProgressThread pg);
 
-	/**
-	 * Called when the {@link ProgressThread} has finished execution.
-	 * 
-	 * @param pg
-	 */
-	public void progressThreadFinished(ProgressThread pg);
+    /**
+     * Called when the {@link ProgressThread} has finished execution.
+     *
+     * @param pg the pg
+     */
+    public void progressThreadFinished(ProgressThread pg);
 }

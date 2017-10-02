@@ -36,13 +36,25 @@ public class ParameterTypeStringCategory extends ParameterTypeSingle {
 
 	private static final long serialVersionUID = 1620216625117563601L;
 
-	protected static final String ELEMENT_DEFAULT = "default";
+    /**
+     * The constant ELEMENT_DEFAULT.
+     */
+    protected static final String ELEMENT_DEFAULT = "default";
 
-	protected static final String ELEMENT_VALUES = "Values";
+    /**
+     * The constant ELEMENT_VALUES.
+     */
+    protected static final String ELEMENT_VALUES = "Values";
 
-	protected static final String ELEMENT_VALUE = "Value";
+    /**
+     * The constant ELEMENT_VALUE.
+     */
+    protected static final String ELEMENT_VALUE = "Value";
 
-	protected static final String ATTRIBUTE_IS_EDITABLE = "is-editable";
+    /**
+     * The constant ATTRIBUTE_IS_EDITABLE.
+     */
+    protected static final String ATTRIBUTE_IS_EDITABLE = "is-editable";
 
 	private String defaultValue = null;
 
@@ -50,7 +62,13 @@ public class ParameterTypeStringCategory extends ParameterTypeSingle {
 
 	private boolean editable = true;
 
-	public ParameterTypeStringCategory(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type string category.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeStringCategory(Element element) throws XMLException {
 		super(element);
 
 		editable = Boolean.valueOf(element.getAttribute(ATTRIBUTE_IS_EDITABLE));
@@ -62,15 +80,39 @@ public class ParameterTypeStringCategory extends ParameterTypeSingle {
 				ELEMENT_VALUE);
 	}
 
-	public ParameterTypeStringCategory(String key, String description, String[] categories) {
+    /**
+     * Instantiates a new Parameter type string category.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param categories  the categories
+     */
+    public ParameterTypeStringCategory(String key, String description, String[] categories) {
 		this(key, description, categories, null);
 	}
 
-	public ParameterTypeStringCategory(String key, String description, String[] categories, String defaultValue) {
+    /**
+     * Instantiates a new Parameter type string category.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param categories   the categories
+     * @param defaultValue the default value
+     */
+    public ParameterTypeStringCategory(String key, String description, String[] categories, String defaultValue) {
 		this(key, description, categories, defaultValue, true);
 	}
 
-	public ParameterTypeStringCategory(String key, String description, String[] categories, String defaultValue,
+    /**
+     * Instantiates a new Parameter type string category.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param categories   the categories
+     * @param defaultValue the default value
+     * @param editable     the editable
+     */
+    public ParameterTypeStringCategory(String key, String description, String[] categories, String defaultValue,
 			boolean editable) {
 		super(key, description);
 		this.categories = categories;
@@ -79,11 +121,21 @@ public class ParameterTypeStringCategory extends ParameterTypeSingle {
 		setOptional(defaultValue != null);
 	}
 
-	public void setEditable(boolean editable) {
+    /**
+     * Sets editable.
+     *
+     * @param editable the editable
+     */
+    public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
 
-	public boolean isEditable() {
+    /**
+     * Is editable boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isEditable() {
 		return editable;
 	}
 
@@ -102,7 +154,12 @@ public class ParameterTypeStringCategory extends ParameterTypeSingle {
 		return (String) value;
 	}
 
-	public String[] getValues() {
+    /**
+     * Get values string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getValues() {
 		return categories;
 	}
 

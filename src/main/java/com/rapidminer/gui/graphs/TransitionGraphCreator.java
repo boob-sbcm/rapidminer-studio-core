@@ -81,12 +81,23 @@ public class TransitionGraphCreator extends GraphCreatorAdaptor {
 
 		private final String label;
 
-		public SourceId(String id, String label) {
+        /**
+         * Instantiates a new Source id.
+         *
+         * @param id    the id
+         * @param label the label
+         */
+        public SourceId(String id, String label) {
 			this.id = id;
 			this.label = label;
 		}
 
-		public String getId() {
+        /**
+         * Gets id.
+         *
+         * @return the id
+         */
+        public String getId() {
 			return id;
 		}
 
@@ -182,7 +193,13 @@ public class TransitionGraphCreator extends GraphCreatorAdaptor {
 
 	private final DefaultObjectViewer objectViewer;
 
-	public TransitionGraphCreator(TransitionGraph transitionGraph, ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Transition graph creator.
+     *
+     * @param transitionGraph the transition graph
+     * @param exampleSet      the example set
+     */
+    public TransitionGraphCreator(TransitionGraph transitionGraph, ExampleSet exampleSet) {
 		this.sourceAttribute = exampleSet.getAttributes().get(transitionGraph.getSourceAttribute());
 		this.targetAttribute = exampleSet.getAttributes().get(transitionGraph.getTargetAttribute());
 		if (transitionGraph.getStrengthAttribute() != null) {

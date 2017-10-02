@@ -76,7 +76,7 @@ import com.rapidminer.tools.parameter.internal.DataManagementParameterHelper;
  * that case other preprocessing tools should be used which aggregates, joins, and merges tables
  * into one table which is then used by RapidMiner.
  * </p>
- *
+ * <p>
  * <p>
  * All input example sets must provide the same attribute signature. That means that all examples
  * sets must have the same number of (special) attributes and attribute names. If this is true this
@@ -121,10 +121,17 @@ public class ExampleSetMerge extends Operator {
 	};
 	private final OutputPort mergedOutput = getOutputPorts().createPort("merged set");
 
-	/** The parameter name for &quot;Determines, how the data is represented internally.&quot; */
-	public static final String PARAMETER_DATAMANAGEMENT = ExampleSetGenerator.PARAMETER_DATAMANAGEMENT;
+    /**
+     * The parameter name for &quot;Determines, how the data is represented internally.&quot;
+     */
+    public static final String PARAMETER_DATAMANAGEMENT = ExampleSetGenerator.PARAMETER_DATAMANAGEMENT;
 
-	public ExampleSetMerge(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set merge.
+     *
+     * @param description the description
+     */
+    public ExampleSetMerge(OperatorDescription description) {
 		super(description);
 
 		inputExtender.start();
@@ -179,7 +186,14 @@ public class ExampleSetMerge extends Operator {
 		mergedOutput.deliver(merge(allExampleSets));
 	}
 
-	public ExampleSet merge(List<ExampleSet> allExampleSets) throws OperatorException {
+    /**
+     * Merge example set.
+     *
+     * @param allExampleSets the all example sets
+     * @return the example set
+     * @throws OperatorException the operator exception
+     */
+    public ExampleSet merge(List<ExampleSet> allExampleSets) throws OperatorException {
 		// throw error if no example sets were available
 		if (allExampleSets.size() == 0) {
 			throw new MissingIOObjectException(ExampleSet.class);

@@ -42,17 +42,22 @@ public class ClassificationCostCriterion extends MeasuredPerformance {
 	private double costs;
 	private double totalCosts;
 	private double totalExampleCount;
-	Attribute label;
-	Attribute predictedLabel;
+    /**
+     * The Label.
+     */
+    Attribute label;
+    /**
+     * The Predicted label.
+     */
+    Attribute predictedLabel;
 	private final Map<String, Integer> classOrderMap;
 
-	/**
-	 * Clone constructor
-	 *
-	 * @param other
-	 *            the object to be cloned from
-	 */
-	public ClassificationCostCriterion(ClassificationCostCriterion other) {
+    /**
+     * Clone constructor
+     *
+     * @param other the object to be cloned from
+     */
+    public ClassificationCostCriterion(ClassificationCostCriterion other) {
 		super(other);
 		this.exampleCount = other.exampleCount;
 		this.costs = other.costs;
@@ -91,22 +96,31 @@ public class ClassificationCostCriterion extends MeasuredPerformance {
 		}
 	}
 
-	/**
-	 * This constructor is for counting with the order respective to the internal nominal mapping.
-	 * It is recommended to explicitly define the classOrder and use the
-	 * {@link #ClassificationCostCriterion(double[][], Map, Attribute, Attribute)} constructor
-	 * instead.
-	 */
-	public ClassificationCostCriterion(double[][] costMatrix, Attribute label, Attribute predictedLabel) {
+    /**
+     * This constructor is for counting with the order respective to the internal nominal mapping.
+     * It is recommended to explicitly define the classOrder and use the
+     * {@link #ClassificationCostCriterion(double[][], Map, Attribute, Attribute)} constructor
+     * instead.
+     *
+     * @param costMatrix     the cost matrix
+     * @param label          the label
+     * @param predictedLabel the predicted label
+     */
+    public ClassificationCostCriterion(double[][] costMatrix, Attribute label, Attribute predictedLabel) {
 		this(costMatrix, null, label, predictedLabel);
 	}
 
-	/**
-	 * Constructor to explicitly define the order of class names. Please take into account that the
-	 * cost matrix must have the same dimensions as the classorderMap has size and each interger
-	 * between 0 and size-1 must occur once in the classOrderMap.
-	 */
-	public ClassificationCostCriterion(double[][] costMatrix, Map<String, Integer> classOrderMap, Attribute label,
+    /**
+     * Constructor to explicitly define the order of class names. Please take into account that the
+     * cost matrix must have the same dimensions as the classorderMap has size and each interger
+     * between 0 and size-1 must occur once in the classOrderMap.
+     *
+     * @param costMatrix     the cost matrix
+     * @param classOrderMap  the class order map
+     * @param label          the label
+     * @param predictedLabel the predicted label
+     */
+    public ClassificationCostCriterion(double[][] costMatrix, Map<String, Integer> classOrderMap, Attribute label,
 			Attribute predictedLabel) {
 		this.classOrderMap = classOrderMap;
 		this.costMatrix = costMatrix;
@@ -170,21 +184,21 @@ public class ClassificationCostCriterion extends MeasuredPerformance {
 		return 0;
 	}
 
-	/**
-	 * Delivers the total amount of considered examples for the MikroAverange.
-	 *
-	 * @return total number of examples used
-	 */
-	protected double getTotalExampleCount() {
+    /**
+     * Delivers the total amount of considered examples for the MikroAverange.
+     *
+     * @return total number of examples used
+     */
+    protected double getTotalExampleCount() {
 		return totalExampleCount;
 	}
 
-	/**
-	 * Delivers the total amount of costs considered for the MikroAverange.
-	 *
-	 * @return total costs
-	 */
-	protected double getTotalCosts() {
+    /**
+     * Delivers the total amount of costs considered for the MikroAverange.
+     *
+     * @return total costs
+     */
+    protected double getTotalCosts() {
 		return totalCosts;
 	}
 

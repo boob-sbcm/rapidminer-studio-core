@@ -32,7 +32,7 @@ import com.rapidminer.test_utils.RapidAssert;
 /**
  * Tests creation and parsing of sparse and dense data rows, including missing
  * values.
- * 
+ *
  * @author Simon Fischer
  */
 public class DataRowTest {
@@ -41,14 +41,24 @@ public class DataRowTest {
 
 	private double[] expected;
 
-	@Before
+    /**
+     * Sets up.
+     *
+     * @throws Exception the exception
+     */
+    @Before
 	public void setUp() throws Exception {
 		//TestUtils.initRapidMiner();
 		attributes = ExampleTestTools.createFourAttributes();
 		expected = new double[] { 1, Double.NaN, 5.0, 2.3 };
 	}
-	
-	@After
+
+    /**
+     * Tear down.
+     *
+     * @throws Exception the exception
+     */
+    @After
 	public void tearDown() throws Exception {
 		attributes = null;
 		expected = null;
@@ -70,22 +80,34 @@ public class DataRowTest {
 		assertDataRow(message + " string", dataRow, expected);
 	}
 
-	@Test
+    /**
+     * Test double array strings.
+     */
+    @Test
 	public void testDoubleArrayStrings() {
 		objectTest("double_array", new DataRowFactory(DataRowFactory.TYPE_DOUBLE_ARRAY, '.'));
 	}
 
-	@Test
+    /**
+     * Test double array objects.
+     */
+    @Test
 	public void testDoubleArrayObjects() {
 		stringTest("double_array", new DataRowFactory(DataRowFactory.TYPE_DOUBLE_ARRAY, '.'));
 	}
 
-	@Test
+    /**
+     * Test sparse map strings.
+     */
+    @Test
 	public void testSparseMapStrings() {
 		stringTest("sparse_map", new DataRowFactory(DataRowFactory.TYPE_SPARSE_MAP, '.'));
 	}
 
-	@Test
+    /**
+     * Test sparse map objects.
+     */
+    @Test
 	public void testSparseMapObjects() {
 		objectTest("sparse_map", new DataRowFactory(DataRowFactory.TYPE_SPARSE_MAP, '.'));
 	}

@@ -47,23 +47,35 @@ public class MultiClassificationPerformance extends MeasuredPerformance {
 
 	private static final long serialVersionUID = 3068421566038331525L;
 
-	/** Indicates an undefined type (should not happen). */
-	public static final int UNDEFINED = -1;
+    /**
+     * Indicates an undefined type (should not happen).
+     */
+    public static final int UNDEFINED = -1;
 
-	/** Indicates accuracy. */
-	public static final int ACCURACY = 0;
+    /**
+     * Indicates accuracy.
+     */
+    public static final int ACCURACY = 0;
 
-	/** Indicates classification error. */
-	public static final int ERROR = 1;
+    /**
+     * Indicates classification error.
+     */
+    public static final int ERROR = 1;
 
-	/** Indicates kappa statistics. */
-	public static final int KAPPA = 2;
+    /**
+     * Indicates kappa statistics.
+     */
+    public static final int KAPPA = 2;
 
-	/** The names of the criteria. */
-	public static final String[] NAMES = { "accuracy", "classification_error", "kappa" };
+    /**
+     * The names of the criteria.
+     */
+    public static final String[] NAMES = { "accuracy", "classification_error", "kappa" };
 
-	/** The descriptions of the criteria. */
-	public static final String[] DESCRIPTIONS = { "Relative number of correctly classified examples",
+    /**
+     * The descriptions of the criteria.
+     */
+    public static final String[] DESCRIPTIONS = { "Relative number of correctly classified examples",
 		"Relative number of misclassified examples", "The kappa statistics for the classification" };
 
 	/**
@@ -89,18 +101,28 @@ public class MultiClassificationPerformance extends MeasuredPerformance {
 	/** The type of this performance: accuracy or classification error. */
 	private int type = ACCURACY;
 
-	/** Creates a MultiClassificationPerformance with undefined type. */
-	public MultiClassificationPerformance() {
+    /**
+     * Creates a MultiClassificationPerformance with undefined type.
+     */
+    public MultiClassificationPerformance() {
 		this(UNDEFINED);
 	}
 
-	/** Creates a MultiClassificationPerformance with the given type. */
-	public MultiClassificationPerformance(int type) {
+    /**
+     * Creates a MultiClassificationPerformance with the given type.  @param type the type
+     *
+     * @param type the type
+     */
+    public MultiClassificationPerformance(int type) {
 		this.type = type;
 	}
 
-	/** Clone constructor. */
-	public MultiClassificationPerformance(MultiClassificationPerformance m) {
+    /**
+     * Clone constructor.  @param m the m
+     *
+     * @param m the m
+     */
+    public MultiClassificationPerformance(MultiClassificationPerformance m) {
 		super(m);
 		this.type = m.type;
 		this.classNames = new String[m.classNames.length];
@@ -121,8 +143,13 @@ public class MultiClassificationPerformance extends MeasuredPerformance {
 		}
 	}
 
-	/** Creates a MultiClassificationPerformance with the given type. */
-	public static MultiClassificationPerformance newInstance(String name) {
+    /**
+     * Creates a MultiClassificationPerformance with the given type.  @param name the name
+     *
+     * @param name the name
+     * @return the multi classification performance
+     */
+    public static MultiClassificationPerformance newInstance(String name) {
 		for (int i = 0; i < NAMES.length; i++) {
 			if (NAMES[i].equals(name)) {
 				return new MultiClassificationPerformance(i);
@@ -357,15 +384,30 @@ public class MultiClassificationPerformance extends MeasuredPerformance {
 		return result.toString();
 	}
 
-	public String getTitle() {
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
+    public String getTitle() {
 		return super.toString();
 	}
 
-	public String[] getClassNames() {
+    /**
+     * Get class names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getClassNames() {
 		return classNames;
 	}
 
-	public double[][] getCounter() {
+    /**
+     * Get counter double [ ] [ ].
+     *
+     * @return the double [ ] [ ]
+     */
+    public double[][] getCounter() {
 		return counter;
 	}
 }

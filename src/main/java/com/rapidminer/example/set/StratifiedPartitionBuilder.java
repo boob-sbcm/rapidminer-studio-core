@@ -53,11 +53,23 @@ public class StratifiedPartitionBuilder implements PartitionBuilder {
 	/** Helper class for sorting according to class values. */
 	private static class ExampleIndex implements Comparable<ExampleIndex> {
 
-		int exampleIndex;
+        /**
+         * The Example index.
+         */
+        int exampleIndex;
 
-		String className;
+        /**
+         * The Class name.
+         */
+        String className;
 
-		public ExampleIndex(int exampleIndex, String className) {
+        /**
+         * Instantiates a new Example index.
+         *
+         * @param exampleIndex the example index
+         * @param className    the class name
+         */
+        public ExampleIndex(int exampleIndex, String className) {
 			this.exampleIndex = exampleIndex;
 			this.className = className;
 		}
@@ -92,7 +104,14 @@ public class StratifiedPartitionBuilder implements PartitionBuilder {
 
 	private Random random;
 
-	public StratifiedPartitionBuilder(ExampleSet exampleSet, boolean useLocalRandomSeed, int seed) {
+    /**
+     * Instantiates a new Stratified partition builder.
+     *
+     * @param exampleSet         the example set
+     * @param useLocalRandomSeed the use local random seed
+     * @param seed               the seed
+     */
+    public StratifiedPartitionBuilder(ExampleSet exampleSet, boolean useLocalRandomSeed, int seed) {
 		this.exampleSet = exampleSet;
 		this.random = RandomGenerator.getRandomGenerator(useLocalRandomSeed, seed);
 	}

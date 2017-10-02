@@ -22,12 +22,18 @@ package com.rapidminer.gui.tools;
  * This enumeration hold the information about all available icon sizes (mainly used for actions).
  * Currently, only icon sizes 24 and 32 are supported. 32 should be used for tool bars and 24 in
  * menus.
- * 
+ *
  * @author Ingo Mierswa
  */
 public enum IconSize {
 
-	SMALL(16), LARGE(24);
+    /**
+     * Small icon size.
+     */
+    SMALL(16), /**
+     * Large icon size.
+     */
+    LARGE(24);
 
 	private int size;
 
@@ -35,7 +41,12 @@ public enum IconSize {
 		this.size = size;
 	}
 
-	public int getSize() {
+    /**
+     * Gets size.
+     *
+     * @return the size
+     */
+    public int getSize() {
 		return size;
 	}
 }

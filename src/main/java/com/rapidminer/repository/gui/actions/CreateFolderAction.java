@@ -30,14 +30,19 @@ import javax.swing.SwingUtilities;
 
 /**
  * This action creates a new folder.
- * 
+ *
  * @author Simon Fischer
  */
 public class CreateFolderAction extends AbstractRepositoryAction<Folder> {
 
 	private static final long serialVersionUID = 1L;
 
-	public CreateFolderAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Create folder action.
+     *
+     * @param tree the tree
+     */
+    public CreateFolderAction(RepositoryTree tree) {
 		super(tree, Folder.class, false, "repository_create_folder");
 	}
 

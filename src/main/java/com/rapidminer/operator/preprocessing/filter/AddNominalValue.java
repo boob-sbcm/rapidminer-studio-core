@@ -54,16 +54,23 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class AddNominalValue extends AbstractDataProcessing {
 
-	/**
-	 * The parameter name for &quot;The name of the nominal attribute to which values should be
-	 * added.&quot;
-	 */
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The parameter name for &quot;The name of the nominal attribute to which values should be
+     * added.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	/** The parameter name for &quot;The value which should be added.&quot; */
-	public static final String PARAMETER_NEW_VALUE = "new_value";
+    /**
+     * The parameter name for &quot;The value which should be added.&quot;
+     */
+    public static final String PARAMETER_NEW_VALUE = "new_value";
 
-	public AddNominalValue(OperatorDescription description) {
+    /**
+     * Instantiates a new Add nominal value.
+     *
+     * @param description the description
+     */
+    public AddNominalValue(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(

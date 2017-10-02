@@ -36,14 +36,24 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
 
 
 /**
+ * The type Abstract iterating operator chain.
  *
  * @author Sebastian Land
  */
 public abstract class AbstractIteratingOperatorChain extends OperatorChain {
 
-	public static final String PARAMETER_SET_MACRO = "set_iteration_macro";
-	public static final String PARAMETER_MACRO_NAME = "macro_name";
-	public static final String PARAMETER_MACRO_START_VALUE = "macro_start_value";
+    /**
+     * The constant PARAMETER_SET_MACRO.
+     */
+    public static final String PARAMETER_SET_MACRO = "set_iteration_macro";
+    /**
+     * The constant PARAMETER_MACRO_NAME.
+     */
+    public static final String PARAMETER_MACRO_NAME = "macro_name";
+    /**
+     * The constant PARAMETER_MACRO_START_VALUE.
+     */
+    public static final String PARAMETER_MACRO_START_VALUE = "macro_start_value";
 
 	private final PortPairExtender inputPortPairExtender = new PortPairExtender("input", getInputPorts(), getSubprocess(0)
 			.getInnerSources());
@@ -52,7 +62,12 @@ public abstract class AbstractIteratingOperatorChain extends OperatorChain {
 
 	private int currentIteration = 0;
 
-	public AbstractIteratingOperatorChain(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract iterating operator chain.
+     *
+     * @param description the description
+     */
+    public AbstractIteratingOperatorChain(OperatorDescription description) {
 		super(description, "Iteration");
 
 		inputPortPairExtender.start();
@@ -102,11 +117,23 @@ public abstract class AbstractIteratingOperatorChain extends OperatorChain {
 		getProgress().complete();
 	}
 
-	protected int getIteration() {
+    /**
+     * Gets iteration.
+     *
+     * @return the iteration
+     */
+    protected int getIteration() {
 		return currentIteration;
 	}
 
-	abstract boolean shouldStop(IOContainer iterationResults) throws OperatorException;
+    /**
+     * Should stop boolean.
+     *
+     * @param iterationResults the iteration results
+     * @return the boolean
+     * @throws OperatorException the operator exception
+     */
+    abstract boolean shouldStop(IOContainer iterationResults) throws OperatorException;
 
 	@Override
 	public List<ParameterType> getParameterTypes() {

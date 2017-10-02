@@ -55,15 +55,27 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class ChangeAttributeName extends AbstractDataProcessing {
 
-	/** The parameter name for &quot;The old name of the attribute.&quot; */
-	public static final String PARAMETER_OLD_NAME = "old_name";
+    /**
+     * The parameter name for &quot;The old name of the attribute.&quot;
+     */
+    public static final String PARAMETER_OLD_NAME = "old_name";
 
-	/** The parameter name for &quot;The new name of the attribute.&quot; */
-	public static final String PARAMETER_NEW_NAME = "new_name";
+    /**
+     * The parameter name for &quot;The new name of the attribute.&quot;
+     */
+    public static final String PARAMETER_NEW_NAME = "new_name";
 
-	public static final String PARAMETER_RENAME_ATTRIBUTES = "rename_additional_attributes";
+    /**
+     * The constant PARAMETER_RENAME_ATTRIBUTES.
+     */
+    public static final String PARAMETER_RENAME_ATTRIBUTES = "rename_additional_attributes";
 
-	public ChangeAttributeName(OperatorDescription description) {
+    /**
+     * Instantiates a new Change attribute name.
+     *
+     * @param description the description
+     */
+    public ChangeAttributeName(OperatorDescription description) {
 		super(description);
 		getExampleSetInputPort().addPrecondition(
 				new AttributeSetPrecondition(getExampleSetInputPort(), AttributeSetPrecondition.getAttributesByParameter(

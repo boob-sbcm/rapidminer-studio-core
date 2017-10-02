@@ -55,9 +55,15 @@ public class SDEnsemble extends PredictionModel implements MetaModel {
 
 	private static final int OPERATOR_PROGRESS_STEPS = 5000;
 
-	public static final short RULE_COMBINE_ADDITIVE = 1;
+    /**
+     * The constant RULE_COMBINE_ADDITIVE.
+     */
+    public static final short RULE_COMBINE_ADDITIVE = 1;
 
-	public static final short RULE_COMBINE_MULTIPLY = 2;
+    /**
+     * The constant RULE_COMBINE_MULTIPLY.
+     */
+    public static final short RULE_COMBINE_MULTIPLY = 2;
 
 	// Holds the models and their weights in array format.
 	// Please access with getter methods.
@@ -80,17 +86,15 @@ public class SDEnsemble extends PredictionModel implements MetaModel {
 	// The classes priors in the training set, starting with index 0.
 	private double[] priors;
 
-	/**
-	 * @param exampleSet
-	 *            the example set used for training
-	 * @param modelInfo
-	 *            a <code>List</code> of <code>Object[2]</code> arrays, each entry holding a model
-	 *            and a <code>double[][]</code> array containing weights for all prediction/label
-	 *            combinations.
-	 * @param priors
-	 *            an array of the prior probabilities of labels
-	 */
-	public SDEnsemble(ExampleSet exampleSet, List<Pair<Model, double[][]>> modelInfo, double[] priors,
+    /**
+     * Instantiates a new Sd ensemble.
+     *
+     * @param exampleSet        the example set used for training
+     * @param modelInfo         a <code>List</code> of <code>Object[2]</code> arrays, each entry holding a model            and a <code>double[][]</code> array containing weights for all prediction/label            combinations.
+     * @param priors            an array of the prior probabilities of labels
+     * @param combinationMethod the combination method
+     */
+    public SDEnsemble(ExampleSet exampleSet, List<Pair<Model, double[][]>> modelInfo, double[] priors,
 			short combinationMethod) {
 		super(exampleSet, null, null);
 		this.modelInfo = modelInfo;
@@ -154,8 +158,12 @@ public class SDEnsemble extends PredictionModel implements MetaModel {
 		}
 	}
 
-	/** @return the number of embedded models */
-	public int getNumberOfModels() {
+    /**
+     * Gets number of models.
+     *
+     * @return the number of embedded models
+     */
+    public int getNumberOfModels() {
 		if (this.maxModelNumber >= 0) {
 			return Math.min(this.maxModelNumber, modelInfo.size());
 		} else {
@@ -192,14 +200,13 @@ public class SDEnsemble extends PredictionModel implements MetaModel {
 		return this.priors[classIndex];
 	}
 
-	/**
-	 * Getter method for embedded models
-	 *
-	 * @param index
-	 *            the number of a model part of this boost model
-	 * @return binary or nominal decision model for the given classification index.
-	 */
-	public Model getModel(int index) {
+    /**
+     * Getter method for embedded models
+     *
+     * @param index the number of a model part of this boost model
+     * @return binary or nominal decision model for the given classification index.
+     */
+    public Model getModel(int index) {
 		return this.modelInfo.get(index).getFirst();
 	}
 
@@ -320,11 +327,14 @@ public class SDEnsemble extends PredictionModel implements MetaModel {
 		return exampleSet;
 	}
 
-	/**
-	 * Creates a predicted label with the given name. If name is null, the name
-	 * &quot;prediction(labelname)&quot; is used.
-	 */
-	protected Attribute createPredictedLabel(ExampleSet exampleSet) {
+    /**
+     * Creates a predicted label with the given name. If name is null, the name
+     * &quot;prediction(labelname)&quot; is used.
+     *
+     * @param exampleSet the example set
+     * @return the attribute
+     */
+    protected Attribute createPredictedLabel(ExampleSet exampleSet) {
 		Attribute predictedLabel = super.createPredictedLabel(exampleSet, getLabel());
 		return exampleSet.getAttributes().replace(predictedLabel,
 				AttributeFactory.changeValueType(predictedLabel, Ontology.REAL));

@@ -28,14 +28,19 @@ import java.util.List;
 /**
  * Performs an aggregation mutation on integer arrays. Each feature value is mutated with
  * probability 1/n. Mutation is done by randomly selecting a new value between -1 and max(values).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AggregationMutation {
 
 	private RandomGenerator random;
 
-	public AggregationMutation(RandomGenerator random) {
+    /**
+     * Instantiates a new Aggregation mutation.
+     *
+     * @param random the random
+     */
+    public AggregationMutation(RandomGenerator random) {
 		this.random = random;
 	}
 
@@ -49,10 +54,12 @@ public class AggregationMutation {
 		return false;
 	}
 
-	/**
-	 * Invokes the method mutate(int[]) for each individual. The parents are kept.
-	 */
-	public void mutate(List<AggregationIndividual> population) {
+    /**
+     * Invokes the method mutate(int[]) for each individual. The parents are kept.
+     *
+     * @param population the population
+     */
+    public void mutate(List<AggregationIndividual> population) {
 		List<AggregationIndividual> children = new ArrayList<AggregationIndividual>();
 		Iterator<AggregationIndividual> i = population.iterator();
 		while (i.hasNext()) {

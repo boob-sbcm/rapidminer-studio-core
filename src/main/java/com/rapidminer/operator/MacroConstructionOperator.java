@@ -46,7 +46,7 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * macros. The names of the new macros and their construction description are defined in the
  * parameter list &quot;functions&quot;.
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>operators</em> are supported:
  * <ul>
@@ -67,7 +67,7 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * <li>Boolean Or: ||</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>log and exponential functions</em> are supported:
  * <ul>
@@ -78,7 +78,7 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * <li>Power: pow(x,y)</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>trigonometric functions</em> are supported:
  * <ul>
@@ -97,7 +97,7 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * <li>Inverse Hyperbolic Tangent: atanh(x)</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>statistical functions</em> are supported:
  * <ul>
@@ -107,7 +107,7 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * <li>Ceiling: ceil(x)</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>miscellaneous functions</em> are supported:
  * <ul>
@@ -116,7 +116,7 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * <li>Maximum: max(x,y,z...)</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>miscellaneous functions</em> are supported:
  * <ul>
@@ -131,13 +131,13 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * <li>Number to String: str(x)</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * Beside those operators and functions, this operator also supports the constants pi and e. You can
  * also use strings in formulas (for example in a conditioned if-formula) but the string values have
  * to be enclosed in double quotes.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that there are some restrictions for the usage of other macros. The values of used
  * macros have to fulfill the following in order to let this operator work properly:
@@ -148,7 +148,7 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * <li>Macro values containing parentheses are not allowed.</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * <br/>
  * <em>Examples:</em><br/>
@@ -160,8 +160,10 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  */
 public class MacroConstructionOperator extends Operator {
 
-	/** The parameter name for &quot;List of functions to generate.&quot; */
-	public static final String PARAMETER_FUNCTIONS = "function_descriptions";
+    /**
+     * The parameter name for &quot;List of functions to generate.&quot;
+     */
+    public static final String PARAMETER_FUNCTIONS = "function_descriptions";
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
@@ -169,7 +171,12 @@ public class MacroConstructionOperator extends Operator {
 
 	private static final OperatorVersion NUMBERFORMAT_WITHOUT_ZEROS = new OperatorVersion(6, 0, 3);
 
-	public MacroConstructionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Macro construction operator.
+     *
+     * @param description the description
+     */
+    public MacroConstructionOperator(OperatorDescription description) {
 		super(description);
 
 		dummyPorts.start();

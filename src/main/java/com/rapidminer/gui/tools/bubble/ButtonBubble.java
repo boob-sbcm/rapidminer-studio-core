@@ -32,11 +32,9 @@ import javax.swing.JButton;
  * ID. The bubble triggers two events which are obserable by the {@link BubbleListener}; either if
  * the close button was clicked, or if the corresponding button was used. The keys for the title and
  * the text must be of format gui.bubble.xxx.body or gui.bubble.xxx.title .
- * 
+ *
  * @author Thilo Kamradt
- * 
  */
-
 public class ButtonBubble extends BubbleWindow {
 
 	private static final long serialVersionUID = 8601169454504964237L;
@@ -47,104 +45,72 @@ public class ButtonBubble extends BubbleWindow {
 
 	private boolean addListener;
 
-	/**
-	 * Creates a Bubble which points to a Button.This Bubble will listen to the given Button and
-	 * calls {@link BubbleListener}.actionPerformed() if the Button is pressed. Also this Bubble
-	 * only will be viewable in one Perspective.
-	 * 
-	 * @param owner
-	 *            the {@link Window} on which this {@link BubbleWindow} should be shown.
-	 * @param preferredAlignment
-	 *            offer for alignment but the Class will calculate by itself whether the position is
-	 *            usable
-	 * @param i18nKey
-	 *            of the message which should be shown
-	 * @param buttonKeyToAttach
-	 *            i18nKey of the Button to which this {@link BubbleWindow} should be placed relative
-	 *            to
-	 * @param arguments
-	 *            arguments to pass thought to the I18N Object
-	 */
-	public ButtonBubble(Window owner, String nextDockableKey, AlignedSide preferredAlignment, String i18nKey,
+    /**
+     * Creates a Bubble which points to a Button.This Bubble will listen to the given Button and
+     * calls {@link BubbleListener}.actionPerformed() if the Button is pressed. Also this Bubble
+     * only will be viewable in one Perspective.
+     *
+     * @param owner              the {@link Window} on which this {@link BubbleWindow} should be shown.
+     * @param nextDockableKey    the next dockable key
+     * @param preferredAlignment offer for alignment but the Class will calculate by itself whether the position is            usable
+     * @param i18nKey            of the message which should be shown
+     * @param buttonKeyToAttach  i18nKey of the Button to which this {@link BubbleWindow} should be placed relative            to
+     * @param arguments          arguments to pass thought to the I18N Object
+     */
+    public ButtonBubble(Window owner, String nextDockableKey, AlignedSide preferredAlignment, String i18nKey,
 			String buttonKeyToAttach, Object... arguments) {
 		this(owner, nextDockableKey, preferredAlignment, i18nKey, buttonKeyToAttach, true, arguments);
 	}
 
-	/**
-	 * Creates a Bubble which points to a Button. This Bubble only will be viewable in one
-	 * Perspective.
-	 * 
-	 * @param owner
-	 *            the {@link Window} on which this {@link BubbleWindow} should be shown.
-	 * @param preferredAlignment
-	 *            offer for alignment but the Class will calculate by itself whether the position is
-	 *            usable
-	 * @param i18nKey
-	 *            of the message which should be shown
-	 * @param buttonKeyToAttach
-	 *            i18nKey of the Button to which this {@link BubbleWindow} should be placed relative
-	 *            to
-	 * @param addListener
-	 *            indicates whether the {@link BubbleWindow} closes if the Button was pressed or
-	 *            when another Listener added by a subclass of {@link Step} is fired.
-	 * @param arguments
-	 *            arguments to pass thought to the I18N Object
-	 */
-	public ButtonBubble(Window owner, String nextDockableKey, AlignedSide preferredAlignment, String i18nKey,
+    /**
+     * Creates a Bubble which points to a Button. This Bubble only will be viewable in one
+     * Perspective.
+     *
+     * @param owner              the {@link Window} on which this {@link BubbleWindow} should be shown.
+     * @param nextDockableKey    the next dockable key
+     * @param preferredAlignment offer for alignment but the Class will calculate by itself whether the position is            usable
+     * @param i18nKey            of the message which should be shown
+     * @param buttonKeyToAttach  i18nKey of the Button to which this {@link BubbleWindow} should be placed relative            to
+     * @param addListener        indicates whether the {@link BubbleWindow} closes if the Button was pressed or            when another Listener added by a subclass of {@link Step} is fired.
+     * @param arguments          arguments to pass thought to the I18N Object
+     */
+    public ButtonBubble(Window owner, String nextDockableKey, AlignedSide preferredAlignment, String i18nKey,
 			String buttonKeyToAttach, boolean addListener, Object... arguments) {
 		this(owner, nextDockableKey, preferredAlignment, i18nKey, buttonKeyToAttach, addListener, true, arguments);
 	}
 
-	/**
-	 * Creates a Bubble which points to a Button.
-	 * 
-	 * @param owner
-	 *            the {@link Window} on which this {@link BubbleWindow} should be shown.
-	 * @param preferredAlignment
-	 *            offer for alignment but the Class will calculate by itself whether the position is
-	 *            usable
-	 * @param i18nKey
-	 *            of the message which should be shown
-	 * @param buttonKeyToAttach
-	 *            i18nKey of the Button to which this {@link BubbleWindow} should be attached
-	 * @param addListener
-	 *            indicates whether the {@link BubbleWindow} closes if the Button was pressed or
-	 *            when another Listener added by a subclass of {@link Step} is fired.
-	 * @param listenToPerspective
-	 *            if true the {@link BubbleWindow} is only in one Perspective viewable
-	 * @param arguments
-	 *            arguments to pass thought to the I18N Object
-	 */
-	public ButtonBubble(Window owner, String nextDockableKey, AlignedSide preferredAlignment, String i18nKey,
+    /**
+     * Creates a Bubble which points to a Button.
+     *
+     * @param owner               the {@link Window} on which this {@link BubbleWindow} should be shown.
+     * @param nextDockableKey     the next dockable key
+     * @param preferredAlignment  offer for alignment but the Class will calculate by itself whether the position is            usable
+     * @param i18nKey             of the message which should be shown
+     * @param buttonKeyToAttach   i18nKey of the Button to which this {@link BubbleWindow} should be attached
+     * @param addListener         indicates whether the {@link BubbleWindow} closes if the Button was pressed or            when another Listener added by a subclass of {@link Step} is fired.
+     * @param listenToPerspective if true the {@link BubbleWindow} is only in one Perspective viewable
+     * @param arguments           arguments to pass thought to the I18N Object
+     */
+    public ButtonBubble(Window owner, String nextDockableKey, AlignedSide preferredAlignment, String i18nKey,
 			String buttonKeyToAttach, boolean addListener, boolean listenToPerspective, Object... arguments) {
 		this(owner, nextDockableKey, preferredAlignment, i18nKey, buttonKeyToAttach, addListener, listenToPerspective, null,
 				arguments);
 	}
 
-	/**
-	 * Creates a Bubble which points to a Button.
-	 * 
-	 * @param owner
-	 *            the {@link Window} on which this {@link BubbleWindow} should be shown.
-	 * @param preferredAlignment
-	 *            offer for alignment but the Class will calculate by itself whether the position is
-	 *            usable
-	 * @param i18nKey
-	 *            of the message which should be shown
-	 * @param buttonKeyToAttach
-	 *            i18nKey of the Button to which this {@link BubbleWindow} should be attached
-	 * @param addListener
-	 *            indicates whether the {@link BubbleWindow} closes if the Button was pressed or
-	 *            when another Listener added by a subclass of {@link Step} is fired.
-	 * @param listenToPerspective
-	 *            if true the {@link BubbleWindow} is only in one Perspective viewable
-	 * @param buttonsToAdd
-	 *            array of JButton's which will be added to the Bubble (null instead of the array
-	 *            won't throw an error).
-	 * @param arguments
-	 *            arguments to pass thought to the I18N Object
-	 */
-	public ButtonBubble(Window owner, String nextDockableKey, AlignedSide preferredAlignment, String i18nKey,
+    /**
+     * Creates a Bubble which points to a Button.
+     *
+     * @param owner               the {@link Window} on which this {@link BubbleWindow} should be shown.
+     * @param nextDockableKey     the next dockable key
+     * @param preferredAlignment  offer for alignment but the Class will calculate by itself whether the position is            usable
+     * @param i18nKey             of the message which should be shown
+     * @param buttonKeyToAttach   i18nKey of the Button to which this {@link BubbleWindow} should be attached
+     * @param addListener         indicates whether the {@link BubbleWindow} closes if the Button was pressed or            when another Listener added by a subclass of {@link Step} is fired.
+     * @param listenToPerspective if true the {@link BubbleWindow} is only in one Perspective viewable
+     * @param buttonsToAdd        array of JButton's which will be added to the Bubble (null instead of the array            won't throw an error).
+     * @param arguments           arguments to pass thought to the I18N Object
+     */
+    public ButtonBubble(Window owner, String nextDockableKey, AlignedSide preferredAlignment, String i18nKey,
 			String buttonKeyToAttach, boolean addListener, boolean listenToPerspective, JButton[] buttonsToAdd,
 			Object... arguments) {
 		super(owner, preferredAlignment, i18nKey, nextDockableKey, buttonsToAdd, arguments);

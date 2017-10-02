@@ -30,6 +30,7 @@ import javax.swing.border.Border;
 
 
 /**
+ * The type Rapid border.
  *
  * @author Simon Fischer
  */
@@ -40,7 +41,14 @@ public class RapidBorder implements Border {
 	private final int cornerSize;
 	private final int headerHeight;
 
-	protected RapidBorder(Color color, int cornerSize, int headerHeight) {
+    /**
+     * Instantiates a new Rapid border.
+     *
+     * @param color        the color
+     * @param cornerSize   the corner size
+     * @param headerHeight the header height
+     */
+    protected RapidBorder(Color color, int cornerSize, int headerHeight) {
 		super();
 		this.color = color;
 		this.cornerSize = cornerSize;

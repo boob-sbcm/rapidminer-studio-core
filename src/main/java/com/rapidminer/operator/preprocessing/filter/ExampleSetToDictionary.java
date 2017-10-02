@@ -76,7 +76,12 @@ public class ExampleSetToDictionary extends PreprocessingOperator {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public ExampleSetToDictionary(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set to dictionary.
+     *
+     * @param description the description
+     */
+    public ExampleSetToDictionary(OperatorDescription description) {
 		super(description);
 		dictionaryInput.addPrecondition(new ExampleSetPrecondition(dictionaryInput) {
 

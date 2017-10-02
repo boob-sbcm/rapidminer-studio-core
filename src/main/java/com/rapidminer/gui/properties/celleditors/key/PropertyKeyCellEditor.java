@@ -28,11 +28,17 @@ import javax.swing.table.TableCellRenderer;
 /**
  * Interface for all key cell renderers which can also be used as an editor of property / parameter
  * tables.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface PropertyKeyCellEditor extends TableCellEditor, TableCellRenderer {
 
-	public void setOperator(Operator operator, PropertyTable propertyTable);
+    /**
+     * Sets operator.
+     *
+     * @param operator      the operator
+     * @param propertyTable the property table
+     */
+    public void setOperator(Operator operator, PropertyTable propertyTable);
 
 }

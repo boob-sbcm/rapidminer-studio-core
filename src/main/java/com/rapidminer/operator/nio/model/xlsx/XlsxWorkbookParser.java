@@ -30,49 +30,56 @@ import com.rapidminer.operator.nio.model.xlsx.XlsxWorkbookParser.XlsxWorkbook;
 /**
  * SAX parser for XLSX Workbook.
  *
- * @see ECMA-376, 4th Edition, 18.2 Workbook (pp. 1537 ff.)
- *
  * @author Adrian Wilke, Nils Woehler
+ * @see ECMA-376, 4th Edition, 18.2 Workbook (pp. 1537 ff.)
  * @since 6.3.0
  */
 public class XlsxWorkbookParser extends AbstractXlsxSAXHandler<XlsxWorkbook> {
 
-	/**
-	 * Container for XLSX workbook.
-	 *
-	 * @see ECMA-376, 4th Edition, 18.2 Workbook (pp. 1537 ff.)
-	 */
-	public static final class XlsxWorkbook {
+    /**
+     * Container for XLSX workbook.
+     *
+     * @see ECMA-376, 4th Edition, 18.2 Workbook (pp. 1537 ff.)
+     */
+    public static final class XlsxWorkbook {
 
-		/** List of parsed Workbook Sheet elements */
-		public List<XlsxWorkbookSheet> xlsxWorkbookSheets = new LinkedList<>();
+        /**
+         * List of parsed Workbook Sheet elements
+         */
+        public List<XlsxWorkbookSheet> xlsxWorkbookSheets = new LinkedList<>();
 
-		/**
-		 * A boolean value that indicates whether the date systems used in the workbook starts in
-		 * 1904.
-		 *
-		 * The default value is false, meaning that the workbook uses the 1900 date system, where
-		 * 1/1/1900 is the first day in the system..
-		 */
-		public boolean isDate1904 = false;
+        /**
+         * A boolean value that indicates whether the date systems used in the workbook starts in
+         * 1904.
+         * <p>
+         * The default value is false, meaning that the workbook uses the 1900 date system, where
+         * 1/1/1900 is the first day in the system..
+         */
+        public boolean isDate1904 = false;
 
 	}
 
-	/**
-	 * Container for XLSX workbook sheets.
-	 *
-	 * @see ECMA-376, 4th Edition, 18.2.19 sheet (pp. 1563 ff.)
-	 */
-	public static final class XlsxWorkbookSheet {
+    /**
+     * Container for XLSX workbook sheets.
+     *
+     * @see ECMA-376, 4th Edition, 18.2.19 sheet (pp. 1563 ff.)
+     */
+    public static final class XlsxWorkbookSheet {
 
-		/** Sheet name (required) */
-		public String name;
+        /**
+         * Sheet name (required)
+         */
+        public String name;
 
-		/** Relationship ID (required) */
-		public String rId;
+        /**
+         * Relationship ID (required)
+         */
+        public String rId;
 
-		/** Sheet Tab ID (required) */
-		public int sheetId;
+        /**
+         * Sheet Tab ID (required)
+         */
+        public int sheetId;
 	}
 
 	/** Path of the embedded workbook file */

@@ -34,23 +34,23 @@ import com.rapidminer.operator.OperatorChain;
  */
 public interface OperatorActionContext {
 
-	/**
-	 * Return the currently displayed {@link OperatorChain}.
-	 *
-	 * @return the displayed operator chain
-	 * @since 6.5
-	 */
-	Operator getDisplayedChain();
+    /**
+     * Return the currently displayed {@link OperatorChain}.
+     *
+     * @return the displayed operator chain
+     * @since 6.5
+     */
+    Operator getDisplayedChain();
 
-	/**
-	 * Returns the list of operators covered by the context. I.e., the operators the action would be
-	 * applied to.
-	 * <p>
-	 * May be empty (but never {@code null}. May include the displayed {@link OperatorChain} (see
-	 * {@link #getDisplayedChain}).
-	 *
-	 * @return the list of operators
-	 * @since 6.5
-	 */
-	List<Operator> getOperators();
+    /**
+     * Returns the list of operators covered by the context. I.e., the operators the action would be
+     * applied to.
+     * <p>
+     * May be empty (but never {@code null}. May include the displayed {@link OperatorChain} (see
+     * {@link #getDisplayedChain}).
+     *
+     * @return the list of operators
+     * @since 6.5
+     */
+    List<Operator> getOperators();
 }

@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is positive if att1*att2 > 50 and att1 * att2 < 80.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimpleNonLinearClassificationFunction extends ClassificationFunction {

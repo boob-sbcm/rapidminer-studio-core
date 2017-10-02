@@ -29,12 +29,12 @@ import com.rapidminer.tools.math.Averagable;
  * Computes the empirical corelation coefficient 'r' between label and prediction. For
  * <code>P=prediction, L=label, V=Variance, Cov=Covariance</code> we calculate r by: <br>
  * <code>Cov(L,P) / sqrt(V(L)*V(P))</code>.
- * 
+ * <p>
  * Implementation hint: this implementation intensionally recomputes the mean and variance of
  * prediction and label despite the fact that they are available by the Attribute objects. The
  * reason: it can happen, that there are some examples which have a NaN as prediction or label, but
  * not both. In this case, mean and variance stored in tie Attributes and computed here can differ.
- * 
+ *
  * @author Robert Rudolph, Ingo Mierswa, Sebastian Land
  */
 public class CorrelationCriterion extends MeasuredPerformance {
@@ -59,9 +59,17 @@ public class CorrelationCriterion extends MeasuredPerformance {
 
 	private double sumPredictSqr;
 
-	public CorrelationCriterion() {}
+    /**
+     * Instantiates a new Correlation criterion.
+     */
+    public CorrelationCriterion() {}
 
-	public CorrelationCriterion(CorrelationCriterion sc) {
+    /**
+     * Instantiates a new Correlation criterion.
+     *
+     * @param sc the sc
+     */
+    public CorrelationCriterion(CorrelationCriterion sc) {
 		super(sc);
 		this.sumLabelPredict = sc.sumLabelPredict;
 		this.sumLabelSqr = sc.sumLabelSqr;

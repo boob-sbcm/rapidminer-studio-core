@@ -23,11 +23,18 @@ import com.rapidminer.operator.preprocessing.filter.AbstractFilteredDataProcessi
 
 
 /**
+ * The type Abstract value processing.
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractValueProcessing extends AbstractFilteredDataProcessing {
 
-	public AbstractValueProcessing(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract value processing.
+     *
+     * @param description the description
+     */
+    public AbstractValueProcessing(OperatorDescription description) {
 		super(description);
 	}
 

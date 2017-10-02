@@ -39,7 +39,7 @@ import javax.swing.plaf.basic.BasicComboBoxEditor;
 
 /**
  * An editor for a tuple of parameters.
- * 
+ *
  * @author Simon Fischer, Nils Woehler, Marius Helf
  */
 public class ParameterTupelCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {
@@ -58,7 +58,12 @@ public class ParameterTupelCellEditor extends AbstractCellEditor implements Prop
 
 	private final FocusListener focusListener;
 
-	public ParameterTupelCellEditor(ParameterTypeTupel type) {
+    /**
+     * Instantiates a new Parameter tupel cell editor.
+     *
+     * @param type the type
+     */
+    public ParameterTupelCellEditor(ParameterTypeTupel type) {
 		types = type.getParameterTypes();
 		focusListener = new FocusListener() {
 

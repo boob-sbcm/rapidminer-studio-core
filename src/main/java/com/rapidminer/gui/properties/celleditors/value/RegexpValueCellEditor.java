@@ -55,7 +55,12 @@ public class RegexpValueCellEditor extends AbstractCellEditor implements Propert
 
 	private JButton button;
 
-	public RegexpValueCellEditor(final ParameterTypeRegexp type) {
+    /**
+     * Instantiates a new Regexp value cell editor.
+     *
+     * @param type the type
+     */
+    public RegexpValueCellEditor(final ParameterTypeRegexp type) {
 		panel.setLayout(new GridBagLayout());
 		panel.setToolTipText(type.getDescription());
 		textField.setToolTipText(type.getDescription());

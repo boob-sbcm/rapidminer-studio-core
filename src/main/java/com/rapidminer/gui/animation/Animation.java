@@ -31,27 +31,26 @@ import java.awt.geom.AffineTransform;
  */
 public interface Animation {
 
-	/**
-	 * Checks if the animation needs to be redrawn.
-	 *
-	 * @return {@code true} if the animation needs to be redrawn
-	 */
-	boolean isRedrawRequired();
+    /**
+     * Checks if the animation needs to be redrawn.
+     *
+     * @return {@code true} if the animation needs to be redrawn
+     */
+    boolean isRedrawRequired();
 
-	/**
-	 * Draws the animation with the given graphics. The {@link Color} and the
-	 * {@link AffineTransform} of the graphics are not changed by this method.
-	 *
-	 * @param graphics
-	 *            the graphics to use for drawing
-	 */
-	void draw(Graphics2D graphics);
+    /**
+     * Draws the animation with the given graphics. The {@link Color} and the
+     * {@link AffineTransform} of the graphics are not changed by this method.
+     *
+     * @param graphics the graphics to use for drawing
+     */
+    void draw(Graphics2D graphics);
 
-	/**
-	 * Returns the bounds of the animation.
-	 *
-	 * @return the bounding rectangle of the animation
-	 */
-	Rectangle getBounds();
+    /**
+     * Returns the bounds of the animation.
+     *
+     * @return the bounding rectangle of the animation
+     */
+    Rectangle getBounds();
 
 }

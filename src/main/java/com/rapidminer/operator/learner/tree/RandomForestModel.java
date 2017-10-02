@@ -25,7 +25,6 @@ import com.rapidminer.operator.learner.meta.SimpleVoteModel;
 
 
 /**
- *
  * This model simply extends the SimpleVoteModel to avoid naming problems. The functionality remains
  * unchanged.
  *
@@ -37,7 +36,13 @@ public class RandomForestModel extends SimpleVoteModel {
 
 	private static final long serialVersionUID = 1L;
 
-	public RandomForestModel(ExampleSet exampleSet, List<TreeModel> baseModels) {
+    /**
+     * Instantiates a new Random forest model.
+     *
+     * @param exampleSet the example set
+     * @param baseModels the base models
+     */
+    public RandomForestModel(ExampleSet exampleSet, List<TreeModel> baseModels) {
 		super(exampleSet, baseModels);
 	}
 

@@ -33,12 +33,17 @@ import com.rapidminer.tools.ObjectVisualizerService;
  * corresponding example and the creation of a generic example visualizer. This visualizer simply
  * displays the attribute values of the example. Adding this operator is often necessary to enable
  * the visualization of single examples in the provided plotter components.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExampleVisualizationOperator extends AbstractExampleSetProcessing {
 
-	public ExampleVisualizationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Example visualization operator.
+     *
+     * @param description the description
+     */
+    public ExampleVisualizationOperator(OperatorDescription description) {
 		super(description);
 	}
 

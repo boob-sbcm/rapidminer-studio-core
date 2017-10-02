@@ -27,14 +27,19 @@ import java.awt.Graphics;
 
 /**
  * The default component renderer.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DefaultComponentRenderable implements Renderable {
 
 	private Component component;
 
-	public DefaultComponentRenderable(Component component) {
+    /**
+     * Instantiates a new Default component renderable.
+     *
+     * @param component the component
+     */
+    public DefaultComponentRenderable(Component component) {
 		this.component = component;
 	}
 

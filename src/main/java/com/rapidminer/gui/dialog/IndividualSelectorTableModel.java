@@ -31,7 +31,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * The table model for the individual selector dialog.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class IndividualSelectorTableModel extends AbstractTableModel {
@@ -46,7 +46,13 @@ public class IndividualSelectorTableModel extends AbstractTableModel {
 
 	private String[] attributeNames;
 
-	public IndividualSelectorTableModel(String[] attributeNames, Population population) {
+    /**
+     * Instantiates a new Individual selector table model.
+     *
+     * @param attributeNames the attribute names
+     * @param population     the population
+     */
+    public IndividualSelectorTableModel(String[] attributeNames, Population population) {
 		this.attributeNames = attributeNames;
 		this.population = population;
 		if (population.getNumberOfIndividuals() > 0) {

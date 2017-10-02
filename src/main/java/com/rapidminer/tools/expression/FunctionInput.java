@@ -34,8 +34,20 @@ import com.rapidminer.tools.Ontology;
  */
 public class FunctionInput {
 
-	public enum Category {
-		SCOPE, CONSTANT, DYNAMIC;
+    /**
+     * The enum Category.
+     */
+    public enum Category {
+        /**
+         * Scope category.
+         */
+        SCOPE, /**
+         * Constant category.
+         */
+        CONSTANT, /**
+         * Dynamic category.
+         */
+        DYNAMIC;
 	}
 
 	/** name of the function input */
@@ -59,41 +71,30 @@ public class FunctionInput {
 	/** option to hide a constant in the UI but recognize it in the parser */
 	private boolean invisible = false;
 
-	/**
-	 * Returns an instance of a function input with the given characteristics.
-	 *
-	 * @param category
-	 *            category of the function input
-	 * @param categoryName
-	 *            category name of the function input
-	 * @param name
-	 *            name of the function input
-	 * @param type
-	 *            type of the function input
-	 * @param additionalInformation
-	 *            role of the function input
-	 */
-	public FunctionInput(Category category, String categoryName, String name, int type, String additionalInformation) {
+    /**
+     * Returns an instance of a function input with the given characteristics.
+     *
+     * @param category              category of the function input
+     * @param categoryName          category name of the function input
+     * @param name                  name of the function input
+     * @param type                  type of the function input
+     * @param additionalInformation role of the function input
+     */
+    public FunctionInput(Category category, String categoryName, String name, int type, String additionalInformation) {
 		this(category, categoryName, name, type, additionalInformation, false);
 	}
 
-	/**
-	 * Returns an instance of a function input with the given characteristics.
-	 *
-	 * @param category
-	 *            category of the function input
-	 * @param categoryName
-	 *            category name of the function input
-	 * @param name
-	 *            name of the function input
-	 * @param type
-	 *            type of the function input
-	 * @param additionalInformation
-	 *            role of the function input
-	 * @param customIcon
-	 *            use a custom icon?
-	 */
-	public FunctionInput(Category category, String categoryName, String name, int type, String additionalInformation,
+    /**
+     * Returns an instance of a function input with the given characteristics.
+     *
+     * @param category              category of the function input
+     * @param categoryName          category name of the function input
+     * @param name                  name of the function input
+     * @param type                  type of the function input
+     * @param additionalInformation role of the function input
+     * @param customIcon            use a custom icon?
+     */
+    public FunctionInput(Category category, String categoryName, String name, int type, String additionalInformation,
 			boolean customIcon) {
 		this.category = category;
 		this.categoryName = categoryName;
@@ -103,85 +104,92 @@ public class FunctionInput {
 		this.useCustomIcon = customIcon;
 	}
 
-	/**
-	 * Returns an instance of a function input with the given characteristics.
-	 *
-	 * @param category
-	 *            category of the function input
-	 * @param categoryName
-	 *            category name of the function input
-	 * @param name
-	 *            name of the function input
-	 * @param type
-	 *            type of the function input
-	 * @param additionalInformation
-	 *            role of the function input
-	 * @param customIcon
-	 *            use a custom icon?
-	 * @param invisible
-	 *            option to hide a constant in the UI but recognize it in the parser
-	 */
-	public FunctionInput(Category category, String categoryName, String name, int type, String additionalInformation,
+    /**
+     * Returns an instance of a function input with the given characteristics.
+     *
+     * @param category              category of the function input
+     * @param categoryName          category name of the function input
+     * @param name                  name of the function input
+     * @param type                  type of the function input
+     * @param additionalInformation role of the function input
+     * @param customIcon            use a custom icon?
+     * @param invisible             option to hide a constant in the UI but recognize it in the parser
+     */
+    public FunctionInput(Category category, String categoryName, String name, int type, String additionalInformation,
 			boolean customIcon, boolean invisible) {
 		this(category, categoryName, name, type, additionalInformation, customIcon);
 		this.invisible = invisible;
 	}
 
-	/**
-	 * @return the name of the {@link FunctionInput}
-	 */
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name of the {@link FunctionInput}
+     */
+    public String getName() {
 		return name;
 	}
 
-	/**
-	 * @return the category of the {@link FunctionInput}
-	 */
-	public Category getCategory() {
+    /**
+     * Gets category.
+     *
+     * @return the category of the {@link FunctionInput}
+     */
+    public Category getCategory() {
 		return category;
 	}
 
-	/**
-	 * @return the category name of the {@link FunctionInput}
-	 */
-	public String getCategoryName() {
+    /**
+     * Gets category name.
+     *
+     * @return the category name of the {@link FunctionInput}
+     */
+    public String getCategoryName() {
 		return categoryName;
 	}
 
-	/**
-	 * @return the type of the {@link FunctionInput}
-	 */
-	public int getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type of the {@link FunctionInput}
+     */
+    public int getType() {
 		return type;
 	}
 
-	/**
-	 * @return the role of the {@link FunctionInput}
-	 */
-	public String getAdditionalInformation() {
+    /**
+     * Gets additional information.
+     *
+     * @return the role of the {@link FunctionInput}
+     */
+    public String getAdditionalInformation() {
 		return additionalInformation;
 	}
 
-	/**
-	 * Set additional information to information.
-	 *
-	 * @param information
-	 */
-	public void setAdditionalInformation(String information) {
+    /**
+     * Set additional information to information.
+     *
+     * @param information the information
+     */
+    public void setAdditionalInformation(String information) {
 		this.additionalInformation = information;
 	}
 
-	/**
-	 * @return if this {@link FunctionInput} should use a custom icon
-	 */
-	public boolean useCustomIcon() {
+    /**
+     * Use custom icon boolean.
+     *
+     * @return if this {@link FunctionInput} should use a custom icon
+     */
+    public boolean useCustomIcon() {
 		return useCustomIcon;
 	}
 
-	/**
-	 * @return if this {@link FunctionInput} should be visible in the UI
-	 */
-	public boolean isVisible() {
+    /**
+     * Is visible boolean.
+     *
+     * @return if this {@link FunctionInput} should be visible in the UI
+     */
+    public boolean isVisible() {
 		return !invisible;
 	}
 

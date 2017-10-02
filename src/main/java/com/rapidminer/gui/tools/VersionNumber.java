@@ -28,11 +28,19 @@ import java.util.Locale;
  */
 public class VersionNumber implements Comparable<VersionNumber> {
 
-	public class VersionNumberExcpetion extends RuntimeException {
+    /**
+     * The type Version number excpetion.
+     */
+    public class VersionNumberExcpetion extends RuntimeException {
 
 		private static final long serialVersionUID = 1L;
 
-		public VersionNumberExcpetion(String message) {
+        /**
+         * Instantiates a new Version number excpetion.
+         *
+         * @param message the message
+         */
+        public VersionNumberExcpetion(String message) {
 			super(message);
 		}
 	}
@@ -55,12 +63,14 @@ public class VersionNumber implements Comparable<VersionNumber> {
 
 	private final String classifier;
 
-	/**
-	 * Constructs a new VersionNumber object with the given versionString. The versionString should
-	 * use the format major.minor.patchlevel-classifier. Examples: 6.0 or 6.0.005-SNAPSHOT. Throws a
-	 * {@link VersionNumberExcpetion} if the given versionString is malformed.
-	 */
-	public VersionNumber(String versionString) {
+    /**
+     * Constructs a new VersionNumber object with the given versionString. The versionString should
+     * use the format major.minor.patchlevel-classifier. Examples: 6.0 or 6.0.005-SNAPSHOT. Throws a
+     * {@link VersionNumberExcpetion} if the given versionString is malformed.
+     *
+     * @param versionString the version string
+     */
+    public VersionNumber(String versionString) {
 		String version = versionString.toLowerCase().trim();
 		String[] numbers;
 		int classifierIndex = version.indexOf(CLASSIFIER_TAG);
@@ -105,25 +115,37 @@ public class VersionNumber implements Comparable<VersionNumber> {
 		}
 	}
 
-	/**
-	 * Constructs a new VersionNumber object with the given major and minor version.
-	 */
-	public VersionNumber(int majorNumber, int minorNumber) {
+    /**
+     * Constructs a new VersionNumber object with the given major and minor version.
+     *
+     * @param majorNumber the major number
+     * @param minorNumber the minor number
+     */
+    public VersionNumber(int majorNumber, int minorNumber) {
 		this(majorNumber, minorNumber, 0, null);
 	}
 
-	/**
-	 * Constructs a new VersionNumber object with the given major, minor version and patch level.
-	 */
-	public VersionNumber(int majorNumber, int minorNumber, int patchLevel) {
+    /**
+     * Constructs a new VersionNumber object with the given major, minor version and patch level.
+     *
+     * @param majorNumber the major number
+     * @param minorNumber the minor number
+     * @param patchLevel  the patch level
+     */
+    public VersionNumber(int majorNumber, int minorNumber, int patchLevel) {
 		this(majorNumber, minorNumber, patchLevel, null);
 	}
 
-	/**
-	 * Constructs a new VersionNumber object with the given major, minor version, patch level and
-	 * classifier. Note: A {@link #CLASSIFIER_TAG} will be added as prefix to the given classifier.
-	 */
-	public VersionNumber(int majorNumber, int minorNumber, int patchLevel, String classifier) {
+    /**
+     * Constructs a new VersionNumber object with the given major, minor version, patch level and
+     * classifier. Note: A {@link #CLASSIFIER_TAG} will be added as prefix to the given classifier.
+     *
+     * @param majorNumber the major number
+     * @param minorNumber the minor number
+     * @param patchLevel  the patch level
+     * @param classifier  the classifier
+     */
+    public VersionNumber(int majorNumber, int minorNumber, int patchLevel, String classifier) {
 		this.majorNumber = majorNumber;
 		this.minorNumber = minorNumber;
 		this.patchLevel = patchLevel;
@@ -134,10 +156,19 @@ public class VersionNumber implements Comparable<VersionNumber> {
 		}
 	}
 
-	/**
-	 * @deprecated Use {@link #VersionNumber(int, int, int, String)} instead.
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Version number.
+     *
+     * @param majorNumber the major number
+     * @param minorNumber the minor number
+     * @param patchLevel  the patch level
+     * @param alpha       the alpha
+     * @param alphaNumber the alpha number
+     * @param beta        the beta
+     * @param betaNumber  the beta number
+     * @deprecated Use {@link #VersionNumber(int, int, int, String)} instead.
+     */
+    @Deprecated
 	public VersionNumber(int majorNumber, int minorNumber, int patchLevel, boolean alpha, int alphaNumber, boolean beta,
 			int betaNumber) {
 		this.majorNumber = majorNumber;
@@ -194,38 +225,57 @@ public class VersionNumber implements Comparable<VersionNumber> {
 		return true;
 	}
 
-	/**
-	 * Returns if this number is at least as high as the given arguments.
-	 */
-	public boolean isAtLeast(int major, int minor, int buildNumber) {
+    /**
+     * Returns if this number is at least as high as the given arguments.
+     *
+     * @param major       the major
+     * @param minor       the minor
+     * @param buildNumber the build number
+     * @return the boolean
+     */
+    public boolean isAtLeast(int major, int minor, int buildNumber) {
 		return this.compareTo(new VersionNumber(major, minor, buildNumber)) >= 0;
 	}
 
-	/**
-	 * Returns if this number is at least as high as the given version number object.
-	 */
-	public boolean isAtLeast(VersionNumber other) {
+    /**
+     * Returns if this number is at least as high as the given version number object.
+     *
+     * @param other the other
+     * @return the boolean
+     */
+    public boolean isAtLeast(VersionNumber other) {
 		return this.compareTo(other) >= 0;
 	}
 
-	/**
-	 * Returns <code>true</code> if this number is at most as high as the given arguments.
-	 */
-	public boolean isAtMost(int major, int minor, int buildNumber) {
+    /**
+     * Returns <code>true</code> if this number is at most as high as the given arguments.
+     *
+     * @param major       the major
+     * @param minor       the minor
+     * @param buildNumber the build number
+     * @return the boolean
+     */
+    public boolean isAtMost(int major, int minor, int buildNumber) {
 		return this.compareTo(new VersionNumber(major, minor, buildNumber)) <= 0;
 	}
 
-	/**
-	 * Returns <code>true</code> if this VersionNumber is at most as high as the given argument.
-	 */
-	public boolean isAtMost(VersionNumber other) {
+    /**
+     * Returns <code>true</code> if this VersionNumber is at most as high as the given argument.
+     *
+     * @param other the other
+     * @return the boolean
+     */
+    public boolean isAtMost(VersionNumber other) {
 		return this.compareTo(other) <= 0;
 	}
 
-	/**
-	 * Returns <code>true</code> if this VersionNumber is above (greater than) the given argument.
-	 */
-	public boolean isAbove(VersionNumber other) {
+    /**
+     * Returns <code>true</code> if this VersionNumber is above (greater than) the given argument.
+     *
+     * @param other the other
+     * @return the boolean
+     */
+    public boolean isAbove(VersionNumber other) {
 		return !isAtMost(other);
 	}
 
@@ -255,55 +305,67 @@ public class VersionNumber implements Comparable<VersionNumber> {
 				+ (classifier != null ? classifier.toUpperCase(Locale.ENGLISH) : "");
 	}
 
-	/**
-	 * Returns the RapidMiner version in the format major.minor.patchlevel-classifier, with 3 digits
-	 * for patchlevel. Example: 6.0.005-SNAPSHOT
-	 */
-	public String getLongVersion() {
+    /**
+     * Returns the RapidMiner version in the format major.minor.patchlevel-classifier, with 3 digits
+     * for patchlevel. Example: 6.0.005-SNAPSHOT
+     *
+     * @return the long version
+     */
+    public String getLongVersion() {
 		return toString();
 	}
 
-	/**
-	 * Return the RapidMiner short version in the format major.minor. Example: 6.0
-	 */
-	public String getShortVersion() {
+    /**
+     * Return the RapidMiner short version in the format major.minor. Example: 6.0
+     *
+     * @return the short version
+     */
+    public String getShortVersion() {
 		return majorNumber + "." + minorNumber;
 	}
 
-	/**
-	 * Return the RapidMiner major version.
-	 */
-	public int getMajorNumber() {
+    /**
+     * Return the RapidMiner major version.
+     *
+     * @return the major number
+     */
+    public int getMajorNumber() {
 		return majorNumber;
 	}
 
-	/**
-	 * Return the RapidMiner minor version.
-	 */
-	public int getMinorNumber() {
+    /**
+     * Return the RapidMiner minor version.
+     *
+     * @return the minor number
+     */
+    public int getMinorNumber() {
 		return minorNumber;
 	}
 
-	/**
-	 * Return the RapidMiner path level.
-	 */
-	public int getPatchLevel() {
+    /**
+     * Return the RapidMiner path level.
+     *
+     * @return the patch level
+     */
+    public int getPatchLevel() {
 		return patchLevel;
 	}
 
-	/**
-	 * @return <code>true</code> if the current version is a development build (i.e. it has a
-	 *         classifier named SNAPSHOT or ALPHA or BETA or RC).
-	 */
-	public final boolean isDevelopmentBuild() {
+    /**
+     * Is development build boolean.
+     *
+     * @return <code>true</code> if the current version is a development build (i.e. it has a         classifier named SNAPSHOT or ALPHA or BETA or RC).
+     */
+    public final boolean isDevelopmentBuild() {
 		return isSnapshot() || isPreview(ALPHA_TAG) || isPreview(BETA_TAG) || isPreview(RELEASE_CANDIDATE);
 	}
 
-	/**
-	 * @return {@code true} if the current version is a snapshot build (exactly if it has a
-	 *         classifier named SNAPSHOT).
-	 */
-	public final boolean isSnapshot() {
+    /**
+     * Is snapshot boolean.
+     *
+     * @return {@code true} if the current version is a snapshot build (exactly if it has a         classifier named SNAPSHOT).
+     */
+    public final boolean isSnapshot() {
 		return classifier != null && classifier.equalsIgnoreCase(CLASSIFIER_TAG + SNAPSHOT);
 	}
 

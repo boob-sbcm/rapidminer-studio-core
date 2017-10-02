@@ -65,16 +65,16 @@ import java.util.Set;
  * steps which should be performed on special attributes (and are normally not performed on special
  * attributes).
  * </p>
- * 
+ * <p>
  * <p>
  * This operator is also able to deliver the additional results of the inner operator if desired.
  * </p>
- * 
+ * <p>
  * <p>
  * Afterwards, the remaining original attributes are added to the resulting example set if the
  * parameter &quot;keep_subset_only&quot; is set to false (default).
  * </p>
- * 
+ * <p>
  * <p>
  * Please note that this operator is very powerful and can be used to create new preprocessing
  * schemes by combining it with other preprocessing operators. However, there are two major
@@ -84,37 +84,45 @@ import java.util.Set;
  * since internally all special attributes will be changed to regular for the inner operators and
  * role changes can afterwards not be delivered.
  * </p>
- * 
+ *
  * @author Ingo Mierswa, Shevek
  */
 public class AttributeSubsetPreprocessing extends OperatorChain {
 
-	/**
-	 * The parameter name for &quot;Indicates if the additional results (other than example set) of
-	 * the inner operator should also be returned.&quot;
-	 */
-	public static final String PARAMETER_DELIVER_INNER_RESULTS = "deliver_inner_results";
+    /**
+     * The parameter name for &quot;Indicates if the additional results (other than example set) of
+     * the inner operator should also be returned.&quot;
+     */
+    public static final String PARAMETER_DELIVER_INNER_RESULTS = "deliver_inner_results";
 
-	/**
-	 * The parameter name for &quot;Indicates if the attributes which did not match the regular
-	 * expression should be removed by this operator.&quot;
-	 */
-	public static final String PARAMETER_KEEP_SUBSET_ONLY = "keep_subset_only";
+    /**
+     * The parameter name for &quot;Indicates if the attributes which did not match the regular
+     * expression should be removed by this operator.&quot;
+     */
+    public static final String PARAMETER_KEEP_SUBSET_ONLY = "keep_subset_only";
 
-	/** The parameter name for &quot;Indicates how to handle with doubling of Attributenames */
-	public static final String PARAMETER_ROLE_CONFLICT_HANDLING = "role_conflict_handling";
+    /**
+     * The parameter name for &quot;Indicates how to handle with doubling of Attributenames
+     */
+    public static final String PARAMETER_ROLE_CONFLICT_HANDLING = "role_conflict_handling";
 	private static final String[] HANDLE_ROLE_CONFLICT_MODES = { "error", "keep new", "keep original" };
 	private static final int HANDLE_ROLE_CONFLICT_ERROR = 0;
 	private static final int HANDLE_ROLE_CONFLICT_KEEP_NEW = 1;
 	private static final int HANDLE_ROLE_CONFLICT_KEEP_ORIGINAL = 2;
 
-	public static final String PARAMETER_NAME_CONFLICT_HANDLING = "name_conflict_handling";
+    /**
+     * The constant PARAMETER_NAME_CONFLICT_HANDLING.
+     */
+    public static final String PARAMETER_NAME_CONFLICT_HANDLING = "name_conflict_handling";
 	private static final String[] HANDLE_NAME_CONFLICT_MODES = { "error", "keep new", "keep original" };
 	private static final int HANDLE_NAME_CONFLICT_ERROR = 0;
 	private static final int HANDLE_NAME_CONFLICT_KEEP_NEW = 1;
 	private static final int HANDLE_NAME_CONFLICT_KEEP_ORIGINAL = 2;
 
-	public static final String PARAMETER_REMOVE_ROLES = "remove_roles";
+    /**
+     * The constant PARAMETER_REMOVE_ROLES.
+     */
+    public static final String PARAMETER_REMOVE_ROLES = "remove_roles";
 
 	private final InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private final OutputPort innerExampleSetSource = getSubprocess(0).getInnerSources().createPort("exampleSet");
@@ -126,7 +134,12 @@ public class AttributeSubsetPreprocessing extends OperatorChain {
 
 	private final AttributeSubsetSelector attributeSelector = new AttributeSubsetSelector(this, exampleSetInput);
 
-	public AttributeSubsetPreprocessing(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute subset preprocessing.
+     *
+     * @param description the description
+     */
+    public AttributeSubsetPreprocessing(OperatorDescription description) {
 		super(description, "Subset Process");
 		getTransformer().addRule(new AttributeSubsetPassThroughRule(exampleSetInput, innerExampleSetSource, this, false) {
 

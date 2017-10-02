@@ -44,19 +44,39 @@ import java.util.Vector;
  * {@link PlotConfiguration}. This manager is necessary, because switching between grouping types is
  * not possible all the time because of some constraints. The DimensionConfigManager enforces these
  * constraints.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class DomainConfigManager extends AbstractDimensionConfig implements DimensionConfigListener, Cloneable,
 		AxisParallelLinesConfigurationListener {
 
-	public static enum Sorting {
-		NONE, ASCENDING
+    /**
+     * The enum Sorting.
+     */
+    public static enum Sorting {
+        /**
+         * None sorting.
+         */
+        NONE, /**
+         * Ascending sorting.
+         */
+        ASCENDING
 	}
 
-	public enum GroupingState {
-		GROUPED, UNGROUPED, PARTIALLY_GROUPED
+    /**
+     * The enum Grouping state.
+     */
+    public enum GroupingState {
+        /**
+         * Grouped grouping state.
+         */
+        GROUPED, /**
+         * Ungrouped grouping state.
+         */
+        UNGROUPED, /**
+         * Partially grouped grouping state.
+         */
+        PARTIALLY_GROUPED
 	}
 
 	private static final Sorting DEFAULT_SORTING_MODE = Sorting.ASCENDING;
@@ -67,7 +87,13 @@ public class DomainConfigManager extends AbstractDimensionConfig implements Dime
 	private AxisParallelLinesConfiguration crosshairLines = new AxisParallelLinesConfiguration();
 	private final int id;
 
-	public DomainConfigManager(PlotConfiguration plotConfiguration, DataTableColumn domainColumn) {
+    /**
+     * Instantiates a new Domain config manager.
+     *
+     * @param plotConfiguration the plot configuration
+     * @param domainColumn      the domain column
+     */
+    public DomainConfigManager(PlotConfiguration plotConfiguration, DataTableColumn domainColumn) {
 		super(PlotDimension.DOMAIN);
 
 		if (plotConfiguration == null) {
@@ -102,7 +128,13 @@ public class DomainConfigManager extends AbstractDimensionConfig implements Dime
 		this.id = id;
 	}
 
-	public DefaultDimensionConfig getDomainConfig(boolean grouped) {
+    /**
+     * Gets domain config.
+     *
+     * @param grouped the grouped
+     * @return the domain config
+     */
+    public DefaultDimensionConfig getDomainConfig(boolean grouped) {
 		if (grouped) {
 			return groupedMasterDimensionConfig;
 		} else {
@@ -110,7 +142,12 @@ public class DomainConfigManager extends AbstractDimensionConfig implements Dime
 		}
 	}
 
-	public boolean isLogarithmicDomainAxis() {
+    /**
+     * Is logarithmic domain axis boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLogarithmicDomainAxis() {
 		return groupedMasterDimensionConfig.isLogarithmic();
 	}
 
@@ -119,7 +156,12 @@ public class DomainConfigManager extends AbstractDimensionConfig implements Dime
 		return groupedMasterDimensionConfig.getUserDefinedRangeClone(dataTable);
 	}
 
-	public DataTableColumn getDomainColumn() {
+    /**
+     * Gets domain column.
+     *
+     * @return the domain column
+     */
+    public DataTableColumn getDomainColumn() {
 		return ungroupedMasterDimensionConfig.getDataTableColumn();
 	}
 
@@ -181,11 +223,21 @@ public class DomainConfigManager extends AbstractDimensionConfig implements Dime
 		groupedMasterDimensionConfig.setDataTableColumn(column);
 	}
 
-	public Sorting getSortingMode() {
+    /**
+     * Gets sorting mode.
+     *
+     * @return the sorting mode
+     */
+    public Sorting getSortingMode() {
 		return sortingMode;
 	}
 
-	public void setSortingMode(Sorting sortingMode) {
+    /**
+     * Sets sorting mode.
+     *
+     * @param sortingMode the sorting mode
+     */
+    public void setSortingMode(Sorting sortingMode) {
 		if (sortingMode != this.sortingMode) {
 			this.sortingMode = sortingMode;
 			fireDimensionConfigChanged(new DimensionConfigChangeEvent(this, PlotDimension.DOMAIN, sortingMode));
@@ -348,7 +400,12 @@ public class DomainConfigManager extends AbstractDimensionConfig implements Dime
 		return false;
 	}
 
-	public GroupingState getGroupingState() {
+    /**
+     * Gets grouping state.
+     *
+     * @return the grouping state
+     */
+    public GroupingState getGroupingState() {
 		int groupingCounter = 0;
 		for (ValueSource valueSource : plotConfiguration.getAllValueSources()) {
 			if (valueSource.isUsingDomainGrouping()) {
@@ -501,7 +558,12 @@ public class DomainConfigManager extends AbstractDimensionConfig implements Dime
 		groupedMasterDimensionConfig.colorSchemeChanged();
 	}
 
-	public void setPlotConfiguration(PlotConfiguration plotConfiguration) {
+    /**
+     * Sets plot configuration.
+     *
+     * @param plotConfiguration the plot configuration
+     */
+    public void setPlotConfiguration(PlotConfiguration plotConfiguration) {
 		this.plotConfiguration = plotConfiguration;
 	}
 
@@ -510,7 +572,12 @@ public class DomainConfigManager extends AbstractDimensionConfig implements Dime
 		fireDimensionConfigChanged(new DimensionConfigChangeEvent(this, getDimension(), e));
 	}
 
-	public AxisParallelLinesConfiguration getCrosshairLines() {
+    /**
+     * Gets crosshair lines.
+     *
+     * @return the crosshair lines
+     */
+    public AxisParallelLinesConfiguration getCrosshairLines() {
 		return crosshairLines;
 	}
 
@@ -546,7 +613,10 @@ public class DomainConfigManager extends AbstractDimensionConfig implements Dime
 		return this.id;
 	}
 
-	public void resetToDefaults() {
+    /**
+     * Reset to defaults.
+     */
+    public void resetToDefaults() {
 		DataTableColumn domainColumn = new DataTableColumn(null, ValueType.INVALID);
 		setDataTableColumn(domainColumn);
 

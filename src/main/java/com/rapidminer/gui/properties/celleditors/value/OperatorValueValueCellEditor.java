@@ -42,8 +42,8 @@ import com.rapidminer.parameter.ParameterTypeValue.OperatorValueSelection;
  * Parameter editor for {@link ParameterTypeValue}, i.e. the parameter type for values which are
  * provided by operators.
  *
- * @see com.rapidminer.gui.properties.celleditors.value.DefaultPropertyValueCellEditor
  * @author Ingo Mierswa, Simon Fischer
+ * @see com.rapidminer.gui.properties.celleditors.value.DefaultPropertyValueCellEditor
  */
 public class OperatorValueValueCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {
 
@@ -61,7 +61,12 @@ public class OperatorValueValueCellEditor extends AbstractCellEditor implements 
 
 	private ParameterTypeValue type;
 
-	public OperatorValueValueCellEditor(ParameterTypeValue type) {
+    /**
+     * Instantiates a new Operator value value cell editor.
+     *
+     * @param type the type
+     */
+    public OperatorValueValueCellEditor(ParameterTypeValue type) {
 		this.type = type;
 	}
 
@@ -144,7 +149,12 @@ public class OperatorValueValueCellEditor extends AbstractCellEditor implements 
 		return ParameterTypeValue.transformOperatorValueSelection2String(selection);
 	}
 
-	public void setValue(String valueName) {
+    /**
+     * Sets value.
+     *
+     * @param valueName the value name
+     */
+    public void setValue(String valueName) {
 		if (valueName != null) {
 			OperatorValueSelection selection = ParameterTypeValue.transformString2OperatorValueSelection(valueName);
 			if (selection != null) {

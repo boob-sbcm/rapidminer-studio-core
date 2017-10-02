@@ -34,7 +34,7 @@ import java.awt.Window;
 /**
  * Dockable container factory for docking framework, that specifically handles new floating
  * dockables.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class RapidDockableContainerFactory extends TabFactory {

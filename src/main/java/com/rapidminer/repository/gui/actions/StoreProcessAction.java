@@ -35,14 +35,19 @@ import com.rapidminer.repository.gui.RepositoryTree;
 
 /**
  * This action stores the current process at the selected entry.
- * 
+ *
  * @author Simon Fischer
  */
 public class StoreProcessAction extends AbstractRepositoryAction<Entry> {
 
 	private static final long serialVersionUID = 1L;
 
-	public StoreProcessAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Store process action.
+     *
+     * @param tree the tree
+     */
+    public StoreProcessAction(RepositoryTree tree) {
 		super(tree, Entry.class, false, "repository_store_process");
 	}
 

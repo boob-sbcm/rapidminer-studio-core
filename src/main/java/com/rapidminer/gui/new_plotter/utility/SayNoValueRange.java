@@ -22,8 +22,9 @@ import com.rapidminer.datatable.DataTableRow;
 
 
 /**
+ * The type Say no value range.
+ *
  * @author Nils Woehler
- * 
  */
 public class SayNoValueRange extends AbstractValueRange {
 

@@ -31,12 +31,16 @@ import javax.swing.table.TableModel;
 
 
 /**
- * 
+ * The type Eigenvector model eigenvector renderer.
+ *
  * @author Sebastian Land
  */
 public class EigenvectorModelEigenvectorRenderer extends AbstractTableModelTableRenderer {
 
-	public static class EigenvectorTableModel extends AbstractTableModel {
+    /**
+     * The type Eigenvector table model.
+     */
+    public static class EigenvectorTableModel extends AbstractTableModel {
 
 		private static final long serialVersionUID = -9026248524043239399L;
 
@@ -46,7 +50,14 @@ public class EigenvectorModelEigenvectorRenderer extends AbstractTableModelTable
 
 		private int numberOfComponents;
 
-		public EigenvectorTableModel(List<? extends ComponentVector> eigenVectors, String[] attributeNames,
+        /**
+         * Instantiates a new Eigenvector table model.
+         *
+         * @param eigenVectors       the eigen vectors
+         * @param attributeNames     the attribute names
+         * @param numberOfComponents the number of components
+         */
+        public EigenvectorTableModel(List<? extends ComponentVector> eigenVectors, String[] attributeNames,
 				int numberOfComponents) {
 			this.eigenVectors = eigenVectors;
 			this.attributeNames = attributeNames;

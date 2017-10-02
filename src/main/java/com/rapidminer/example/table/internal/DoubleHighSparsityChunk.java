@@ -30,7 +30,12 @@ final class DoubleHighSparsityChunk extends AbstractHighSparsityChunk implements
 
 	private double[] data = AutoColumnUtils.EMPTY_DOUBLE_ARRAY;
 
-	DoubleHighSparsityChunk(double defaultValue) {
+    /**
+     * Instantiates a new Double high sparsity chunk.
+     *
+     * @param defaultValue the default value
+     */
+    DoubleHighSparsityChunk(double defaultValue) {
 		super(defaultValue);
 	}
 

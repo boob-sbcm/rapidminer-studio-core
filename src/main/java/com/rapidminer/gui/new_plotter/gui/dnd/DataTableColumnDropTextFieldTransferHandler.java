@@ -38,9 +38,8 @@ import javax.swing.tree.TreePath;
 
 /**
  * {@link TransferHandler} for TextFields that allow dropping {@link DataTableColumn}s on them.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class DataTableColumnDropTextFieldTransferHandler extends AbstractPatchedTransferHandler implements
 		TreeSelectionListener {
@@ -51,7 +50,14 @@ public class DataTableColumnDropTextFieldTransferHandler extends AbstractPatched
 	private ValueSource currentValueSource;
 	private final AttributeDropTextField aDTF;
 
-	public DataTableColumnDropTextFieldTransferHandler(JTree plotConfigTree, SeriesUsageType seriesUsage,
+    /**
+     * Instantiates a new Data table column drop text field transfer handler.
+     *
+     * @param plotConfigTree the plot config tree
+     * @param seriesUsage    the series usage
+     * @param aDTF           the a dtf
+     */
+    public DataTableColumnDropTextFieldTransferHandler(JTree plotConfigTree, SeriesUsageType seriesUsage,
 			AttributeDropTextField aDTF) {
 		seriesUsageType = seriesUsage;
 		plotConfigTree.addTreeSelectionListener(this);
@@ -81,7 +87,13 @@ public class DataTableColumnDropTextFieldTransferHandler extends AbstractPatched
 	 * ****************** IMPORT ******************
 	 */
 
-	public boolean doesSupportFlavor(TransferSupport support) {
+    /**
+     * Does support flavor boolean.
+     *
+     * @param support the support
+     * @return the boolean
+     */
+    public boolean doesSupportFlavor(TransferSupport support) {
 
 		// if attribute drop text field is not enabled, import is not possible
 		if (!aDTF.isEnabled()) {

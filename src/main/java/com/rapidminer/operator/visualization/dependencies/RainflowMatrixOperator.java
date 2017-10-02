@@ -55,15 +55,26 @@ import com.rapidminer.tools.Ontology;
  */
 public class RainflowMatrixOperator extends Operator {
 
-	public static final String PARAMETER_ATTRIBUTE = "attribute";
+    /**
+     * The constant PARAMETER_ATTRIBUTE.
+     */
+    public static final String PARAMETER_ATTRIBUTE = "attribute";
 
-	public static final String PARAMETER_SYMMETRICAL_MATRIX = "symmetrical_matrix";
+    /**
+     * The constant PARAMETER_SYMMETRICAL_MATRIX.
+     */
+    public static final String PARAMETER_SYMMETRICAL_MATRIX = "symmetrical_matrix";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort matrixOutput = getOutputPorts().createPort("transition matrix");
 
-	public RainflowMatrixOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Rainflow matrix operator.
+     *
+     * @param description the description
+     */
+    public RainflowMatrixOperator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new AttributeSetPrecondition(exampleSetInput, AttributeSetPrecondition

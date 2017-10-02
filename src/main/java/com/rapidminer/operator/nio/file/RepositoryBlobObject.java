@@ -32,12 +32,10 @@ import com.rapidminer.tools.Tools;
 
 
 /**
- *
  * Simple implementation of a {@link FileObject} backed by a {@link RepositoryLocation}. The
  * repository entry has to be of type 'blob'.
  *
  * @author Nils Woehler, Marius Helf
- *
  */
 public class RepositoryBlobObject extends FileObject {
 
@@ -46,7 +44,12 @@ public class RepositoryBlobObject extends FileObject {
 	private RepositoryLocation location;
 	private File file = null;
 
-	public RepositoryBlobObject(RepositoryLocation location) {
+    /**
+     * Instantiates a new Repository blob object.
+     *
+     * @param location the location
+     */
+    public RepositoryBlobObject(RepositoryLocation location) {
 		super();
 		this.location = location;
 	}

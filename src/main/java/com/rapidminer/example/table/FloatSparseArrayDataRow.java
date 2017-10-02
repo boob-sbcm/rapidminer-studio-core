@@ -23,7 +23,7 @@ package com.rapidminer.example.table;
  * 50% of the data is sparse. As fast (or even faster than map implementation) but needs
  * considerably less memory. This implementation uses float arrays instead of double arrays which
  * might reduce the used memory even more.
- * 
+ *
  * @author Ingo Mierswa, Shevek
  */
 public class FloatSparseArrayDataRow extends AbstractSparseArrayDataRow {
@@ -33,13 +33,19 @@ public class FloatSparseArrayDataRow extends AbstractSparseArrayDataRow {
 	/** Stores the used attribute values. */
 	private float[] values;
 
-	/** Creates an empty sparse array data row with size 0. */
-	public FloatSparseArrayDataRow() {
+    /**
+     * Creates an empty sparse array data row with size 0.
+     */
+    public FloatSparseArrayDataRow() {
 		this(0);
 	}
 
-	/** Creates a sparse array data row of the given size. */
-	public FloatSparseArrayDataRow(int size) {
+    /**
+     * Creates a sparse array data row of the given size.  @param size the size
+     *
+     * @param size the size
+     */
+    public FloatSparseArrayDataRow(int size) {
 		super(size);
 		values = new float[size];
 	}

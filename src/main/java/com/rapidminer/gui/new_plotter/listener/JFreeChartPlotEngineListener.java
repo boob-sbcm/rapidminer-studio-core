@@ -24,10 +24,17 @@ import org.jfree.chart.JFreeChart;
 
 
 /**
+ * The interface J free chart plot engine listener.
+ *
  * @author Nils Woehler
- * 
  */
 public interface JFreeChartPlotEngineListener {
 
-	public void chartChanged(JFreeChartPlotEngine source, JFreeChart chart);
+    /**
+     * Chart changed.
+     *
+     * @param source the source
+     * @param chart  the chart
+     */
+    public void chartChanged(JFreeChartPlotEngine source, JFreeChart chart);
 }

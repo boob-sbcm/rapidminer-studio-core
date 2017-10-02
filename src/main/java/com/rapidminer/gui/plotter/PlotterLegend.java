@@ -28,7 +28,7 @@ import javax.swing.JComponent;
 
 /**
  * This plotter legend component can be used by external plotter components.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class PlotterLegend extends JComponent {
@@ -41,7 +41,12 @@ public class PlotterLegend extends JComponent {
 
 	private int legendColumn = -1;
 
-	public PlotterLegend(PlotterAdapter adapter) {
+    /**
+     * Instantiates a new Plotter legend.
+     *
+     * @param adapter the adapter
+     */
+    public PlotterLegend(PlotterAdapter adapter) {
 		super();
 		this.adapter = adapter;
 	}
@@ -51,7 +56,13 @@ public class PlotterLegend extends JComponent {
 		return new Dimension(adapter.getWidth() - 2 * PlotterAdapter.MARGIN, PlotterAdapter.MARGIN);
 	}
 
-	public void setLegendColumn(DataTable dataTable, int legendColumn) {
+    /**
+     * Sets legend column.
+     *
+     * @param dataTable    the data table
+     * @param legendColumn the legend column
+     */
+    public void setLegendColumn(DataTable dataTable, int legendColumn) {
 		this.dataTable = dataTable;
 		this.legendColumn = legendColumn;
 		repaint();

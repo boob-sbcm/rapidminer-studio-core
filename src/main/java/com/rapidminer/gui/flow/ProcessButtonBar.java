@@ -28,6 +28,7 @@ import com.rapidminer.operator.Operator;
 
 
 /**
+ * The type Process button bar.
  *
  * @author Simon Fischer
  */
@@ -37,7 +38,12 @@ public class ProcessButtonBar extends ParentButtonPanel<Operator> {
 
 	private ProcessParentButtonModel model = new ProcessParentButtonModel(null);
 
-	public ProcessButtonBar(final MainFrame mainFrame) {
+    /**
+     * Instantiates a new Process button bar.
+     *
+     * @param mainFrame the main frame
+     */
+    public ProcessButtonBar(final MainFrame mainFrame) {
 		setModel(model);
 		addActionListener(new ActionListener() {
 
@@ -49,7 +55,12 @@ public class ProcessButtonBar extends ParentButtonPanel<Operator> {
 		});
 	}
 
-	public void setProcess(Process process) {
+    /**
+     * Sets process.
+     *
+     * @param process the process
+     */
+    public void setProcess(Process process) {
 		model.setProcess(process);
 	}
 }

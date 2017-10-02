@@ -41,10 +41,10 @@ public final class CSVDataSourceFactory extends FileDataSourceFactory<CSVDataSou
 			Arrays.asList("text/csv", "text/tab-separated-values", "text/plain"));
 	private static final Set<String> CSV_FILE_ENDINGS = new HashSet<>(Arrays.asList("csv", "tsv"));
 
-	/**
-	 * Constructs a new factory instance.
-	 */
-	public CSVDataSourceFactory() {
+    /**
+     * Constructs a new factory instance.
+     */
+    public CSVDataSourceFactory() {
 		super("csv", CSV_MIME_TYPES, CSV_FILE_ENDINGS, CSVFormatSpecificationWizardStep.CSV_FORMAT_SPECIFICATION_STEP_ID);
 	}
 

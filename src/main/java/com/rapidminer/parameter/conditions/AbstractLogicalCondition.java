@@ -35,7 +35,6 @@ import com.rapidminer.tools.XMLException;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public abstract class AbstractLogicalCondition extends ParameterCondition {
 
@@ -44,7 +43,13 @@ public abstract class AbstractLogicalCondition extends ParameterCondition {
 
 	private ParameterCondition[] conditions;
 
-	public AbstractLogicalCondition(Element element) throws XMLException {
+    /**
+     * Instantiates a new Abstract logical condition.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public AbstractLogicalCondition(Element element) throws XMLException {
 		super(element);
 		// get all condition xml-elements
 		Element conditionsElement = XMLTools.getChildElement(element, getXMLTag(), true);
@@ -69,13 +74,28 @@ public abstract class AbstractLogicalCondition extends ParameterCondition {
 		}
 	}
 
-	public AbstractLogicalCondition(ParameterHandler parameterHandler, boolean becomeMandatory,
+    /**
+     * Instantiates a new Abstract logical condition.
+     *
+     * @param parameterHandler the parameter handler
+     * @param becomeMandatory  the become mandatory
+     * @param conditions       the conditions
+     */
+    public AbstractLogicalCondition(ParameterHandler parameterHandler, boolean becomeMandatory,
 			ParameterCondition... conditions) {
 		super(parameterHandler, becomeMandatory);
 		this.conditions = conditions;
 	}
 
-	public AbstractLogicalCondition(ParameterHandler parameterHandler, String conditionParameter, boolean becomeMandatory,
+    /**
+     * Instantiates a new Abstract logical condition.
+     *
+     * @param parameterHandler   the parameter handler
+     * @param conditionParameter the condition parameter
+     * @param becomeMandatory    the become mandatory
+     * @param conditions         the conditions
+     */
+    public AbstractLogicalCondition(ParameterHandler parameterHandler, String conditionParameter, boolean becomeMandatory,
 			ParameterCondition... conditions) {
 		super(parameterHandler, conditionParameter, becomeMandatory);
 		this.conditions = conditions;
@@ -92,16 +112,20 @@ public abstract class AbstractLogicalCondition extends ParameterCondition {
 		}
 	}
 
-	/**
-	 * @return the conditions for this logical parameter condition
-	 */
-	protected ParameterCondition[] getConditions() {
+    /**
+     * Get conditions parameter condition [ ].
+     *
+     * @return the conditions for this logical parameter condition
+     */
+    protected ParameterCondition[] getConditions() {
 		return conditions;
 	}
 
-	/**
-	 * @return the XML tag for this condition
-	 */
-	abstract String getXMLTag();
+    /**
+     * Gets xml tag.
+     *
+     * @return the XML tag for this condition
+     */
+    abstract String getXMLTag();
 
 }

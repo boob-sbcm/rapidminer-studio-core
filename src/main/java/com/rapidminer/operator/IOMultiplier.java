@@ -25,16 +25,20 @@ import com.rapidminer.operator.ports.OutputPortExtender;
 
 /**
  * This operator copies its input to all connected output ports.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class IOMultiplier extends Operator {
 
 	private final InputPort inputPort = getInputPorts().createPort("input");
 	private final OutputPortExtender outputExtender = new OutputPortExtender("output", getOutputPorts());
 
-	public IOMultiplier(OperatorDescription description) {
+    /**
+     * Instantiates a new Io multiplier.
+     *
+     * @param description the description
+     */
+    public IOMultiplier(OperatorDescription description) {
 		super(description);
 		outputExtender.start();
 		getTransformer().addRule(outputExtender.makePassThroughRule(inputPort));
@@ -50,8 +54,12 @@ public class IOMultiplier extends Operator {
 		}
 	}
 
-	/** The port whose IOObject is copied. */
-	public InputPort getInputPort() {
+    /**
+     * The port whose IOObject is copied.  @return the input port
+     *
+     * @return the input port
+     */
+    public InputPort getInputPort() {
 		return inputPort;
 	}
 }

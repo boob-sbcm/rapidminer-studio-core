@@ -36,9 +36,8 @@ import org.xml.sax.Attributes;
 /**
  * StAX parser that extracts number formats from the XLSX styles file.
  *
- * @see ECMA-376, 4th Edition, 18.8 Styles (pp. 1744 ff.)
- *
  * @author Nils Woehler
+ * @see ECMA-376, 4th Edition, 18.8 Styles (pp. 1744 ff.)
  * @since 6.3.0
  */
 public class XlsxNumberFormatParser {
@@ -95,24 +94,27 @@ public class XlsxNumberFormatParser {
 	/** The path of the styles file */
 	private final String stylesPath;
 
-	public XlsxNumberFormatParser(File xlsxFile, String stylesPath, XMLInputFactory xmlFactory) {
+    /**
+     * Instantiates a new Xlsx number format parser.
+     *
+     * @param xlsxFile   the xlsx file
+     * @param stylesPath the styles path
+     * @param xmlFactory the xml factory
+     */
+    public XlsxNumberFormatParser(File xlsxFile, String stylesPath, XMLInputFactory xmlFactory) {
 		this.xlsxFile = xlsxFile;
 		this.stylesPath = stylesPath;
 		this.xmlFactory = xmlFactory;
 	}
 
-	/**
-	 * Parses the XLSX styles XML file (with UTF-8 encoding) and returns the parsed number formats.
-	 *
-	 * @return the number formats stored within a {@link XlsxNumberFormats} object
-	 * @throws IOException
-	 *             in case the Shared Strings Zip entry cannot be opened
-	 * @throws XMLStreamException
-	 *             in case the {@link XMLInputFactory} cannot create a {@link XMLStreamReader}
-	 * @throws XlsxException
-	 *             in case the shared string XML content is invalid
-	 */
-	public XlsxNumberFormats parseNumberFormats() throws XMLStreamException, IOException {
+    /**
+     * Parses the XLSX styles XML file (with UTF-8 encoding) and returns the parsed number formats.
+     *
+     * @return the number formats stored within a {@link XlsxNumberFormats} object
+     * @throws XMLStreamException in case the {@link XMLInputFactory} cannot create a {@link XMLStreamReader}
+     * @throws IOException        in case the Shared Strings Zip entry cannot be opened
+     */
+    public XlsxNumberFormats parseNumberFormats() throws XMLStreamException, IOException {
 
 		boolean isCellFormats = false;
 		int cellFormatIndex = 0;

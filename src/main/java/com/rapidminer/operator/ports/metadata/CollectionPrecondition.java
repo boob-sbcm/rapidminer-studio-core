@@ -21,15 +21,19 @@ package com.rapidminer.operator.ports.metadata;
 /**
  * This precondition checks whether the delivered object is of a given type or a collection of the
  * given type (or a collection of such collections etc.).
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class CollectionPrecondition implements Precondition {
 
 	private final Precondition nestedPrecondition;
 
-	public CollectionPrecondition(Precondition precondition) {
+    /**
+     * Instantiates a new Collection precondition.
+     *
+     * @param precondition the precondition
+     */
+    public CollectionPrecondition(Precondition precondition) {
 		this.nestedPrecondition = precondition;
 	}
 

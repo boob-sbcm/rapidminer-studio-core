@@ -33,19 +33,17 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
 
 
 /**
- *
  * A {@link Function} parsing a number to a string.
  *
  * @author Marcel Seifert
- *
  */
 public class NumericalToString extends AbstractFunction {
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 */
-	public NumericalToString() {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     */
+    public NumericalToString() {
 		super("conversion.str", 1, Ontology.NOMINAL);
 	}
 
@@ -62,14 +60,13 @@ public class NumericalToString extends AbstractFunction {
 		return new SimpleExpressionEvaluator(makeStringCallable(input), type, isResultConstant(inputEvaluators));
 	}
 
-	/**
-	 * Builds a String Callable from a double input argument
-	 *
-	 * @param inputEvaluator
-	 *            the input
-	 * @return the resulting callable<String>
-	 */
-	protected Callable<String> makeStringCallable(final ExpressionEvaluator inputEvaluator) {
+    /**
+     * Builds a String Callable from a double input argument
+     *
+     * @param inputEvaluator the input
+     * @return the resulting callable<String>
+     */
+    protected Callable<String> makeStringCallable(final ExpressionEvaluator inputEvaluator) {
 		final DoubleCallable func = inputEvaluator.getDoubleFunction();
 
 		try {
@@ -98,15 +95,13 @@ public class NumericalToString extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result for one input double value.
-	 *
-	 * @param value
-	 *            the double value to parse
-	 *
-	 * @return the result of the computation.
-	 */
-	protected String compute(double value) {
+    /**
+     * Computes the result for one input double value.
+     *
+     * @param value the double value to parse
+     * @return the result of the computation.
+     */
+    protected String compute(double value) {
 		if (Double.isNaN(value)) {
 			return null;
 		}

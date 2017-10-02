@@ -27,7 +27,7 @@ import com.rapidminer.operator.learner.tree.TreeModel;
 
 /**
  * A renderer for the graph view of a decision tree.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class TreeModelGraphRenderer extends AbstractGraphRenderer {

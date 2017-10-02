@@ -20,7 +20,7 @@ package com.rapidminer.operator.preprocessing.transformation.aggregation;
 
 /**
  * This is an {@link Aggregator} for the {@link MaxAggregationFunction}
- * 
+ *
  * @author Sebastian Land
  */
 public class MinAggregator extends NumericalAggregator {
@@ -28,7 +28,12 @@ public class MinAggregator extends NumericalAggregator {
 	private double min = Double.POSITIVE_INFINITY;
 	private boolean hasValue = false;
 
-	public MinAggregator(AggregationFunction function) {
+    /**
+     * Instantiates a new Min aggregator.
+     *
+     * @param function the function
+     */
+    public MinAggregator(AggregationFunction function) {
 		super(function);
 	}
 

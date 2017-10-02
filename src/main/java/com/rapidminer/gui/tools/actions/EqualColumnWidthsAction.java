@@ -31,7 +31,7 @@ import javax.swing.Icon;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class EqualColumnWidthsAction extends AbstractAction {
@@ -51,7 +51,13 @@ public class EqualColumnWidthsAction extends AbstractAction {
 
 	private ExtendedJTable table;
 
-	public EqualColumnWidthsAction(ExtendedJTable table, IconSize size) {
+    /**
+     * Instantiates a new Equal column widths action.
+     *
+     * @param table the table
+     * @param size  the size
+     */
+    public EqualColumnWidthsAction(ExtendedJTable table, IconSize size) {
 		super("Equal Column Widths", ICONS[size.ordinal()]);
 		this.table = table;
 		putValue(SHORT_DESCRIPTION, "Sets the width of all column to the same value.");

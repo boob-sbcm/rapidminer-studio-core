@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DeleteOperatorAction extends ResourceAction {
@@ -35,13 +35,21 @@ public class DeleteOperatorAction extends ResourceAction {
 
 	private static final String name = "delete";
 
-	public DeleteOperatorAction() {
+    /**
+     * Instantiates a new Delete operator action.
+     */
+    public DeleteOperatorAction() {
 		super(true, "delete");
 		setCondition(OPERATOR_SELECTED, MANDATORY);
 		setCondition(ROOT_SELECTED, DISALLOWED);
 	}
 
-	public static String getActionName() {
+    /**
+     * Gets action name.
+     *
+     * @return the action name
+     */
+    public static String getActionName() {
 		return name;
 	}
 

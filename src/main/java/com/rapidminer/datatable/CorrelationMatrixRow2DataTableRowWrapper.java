@@ -25,7 +25,7 @@ import com.rapidminer.operator.visualization.dependencies.NumericalMatrix;
  * This class allows to use the rows of a
  * {@link com.rapidminer.operator.visualization.dependencies.NumericalMatrix} as basis for
  * {@link com.rapidminer.datatable.DataTableRow}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CorrelationMatrixRow2DataTableRowWrapper implements DataTableRow {
@@ -34,8 +34,13 @@ public class CorrelationMatrixRow2DataTableRowWrapper implements DataTableRow {
 
 	private int rowIndex;
 
-	/** Creates a new wrapper. If the Id Attribute is null, the DataTableRow will not contain an Id. */
-	public CorrelationMatrixRow2DataTableRowWrapper(NumericalMatrix matrix, int rowIndex) {
+    /**
+     * Creates a new wrapper. If the Id Attribute is null, the DataTableRow will not contain an Id.  @param matrix the matrix
+     *
+     * @param matrix   the matrix
+     * @param rowIndex the row index
+     */
+    public CorrelationMatrixRow2DataTableRowWrapper(NumericalMatrix matrix, int rowIndex) {
 		this.matrix = matrix;
 		this.rowIndex = rowIndex;
 	}

@@ -47,8 +47,9 @@ import javax.swing.text.Document;
  * This combo box adds auto completion support to the ExtendedJComboBox. Please take into account
  * that only editors with an editor component inheriting from a JTextField are usable.
  *
+ * @param <E> the type parameter
  * @author Sebastian Land
- **/
+ */
 public class AutoCompletionComboBox<E> extends ExtendedJComboBox<E> {
 
 	private static final long serialVersionUID = 1L;
@@ -105,7 +106,12 @@ public class AutoCompletionComboBox<E> extends ExtendedJComboBox<E> {
 		private JTextField editorComponent;
 		private ComboBoxEditor editor;
 
-		public AutoCompletionComboBoxEditor(ComboBoxEditor editor) {
+        /**
+         * Instantiates a new Auto completion combo box editor.
+         *
+         * @param editor the editor
+         */
+        public AutoCompletionComboBoxEditor(ComboBoxEditor editor) {
 			if ((editor.getEditorComponent() instanceof JTextField)) {
 				this.editor = editor;
 				editorComponent = (JTextField) editor.getEditorComponent();
@@ -175,11 +181,26 @@ public class AutoCompletionComboBox<E> extends ExtendedJComboBox<E> {
 	/** the document listener for the combo box editor */
 	private final DocumentListener docListener = new AutoCompletionDocumentListener();
 
-	public AutoCompletionComboBox(boolean wide, ComboBoxModel<E> model) {
+    /**
+     * Instantiates a new Auto completion combo box.
+     *
+     * @param wide  the wide
+     * @param model the model
+     */
+    public AutoCompletionComboBox(boolean wide, ComboBoxModel<E> model) {
 		this(false, -1, -1, wide, model);
 	}
 
-	public AutoCompletionComboBox(boolean caseSensitive, int preferredWidth, int preferredHeight, boolean wide,
+    /**
+     * Instantiates a new Auto completion combo box.
+     *
+     * @param caseSensitive   the case sensitive
+     * @param preferredWidth  the preferred width
+     * @param preferredHeight the preferred height
+     * @param wide            the wide
+     * @param model           the model
+     */
+    public AutoCompletionComboBox(boolean caseSensitive, int preferredWidth, int preferredHeight, boolean wide,
 			ComboBoxModel<E> model) {
 		super(preferredWidth, preferredHeight, wide, model);
 

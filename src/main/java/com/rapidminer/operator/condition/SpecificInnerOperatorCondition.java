@@ -29,7 +29,7 @@ import com.rapidminer.operator.WrongNumberOfInnerOperatorsException;
  * A condition for a specific inner operator with a fixed index. Since in these cases often a
  * special name for this operator can be used, e.g. &quot;Training&quot; for the first operator of a
  * cross validation, this condition also allows the definition of a describing name.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 @SuppressWarnings("deprecation")
@@ -59,8 +59,15 @@ public class SpecificInnerOperatorCondition implements InnerOperatorCondition {
 	 */
 	private final Class<?>[] mustDeliver;
 
-	/** Creates an inner operator condition. */
-	public SpecificInnerOperatorCondition(String name, int index, Class<?>[] willGet, Class<?>[] mustDeliver) {
+    /**
+     * Creates an inner operator condition.  @param name the name
+     *
+     * @param name        the name
+     * @param index       the index
+     * @param willGet     the will get
+     * @param mustDeliver the must deliver
+     */
+    public SpecificInnerOperatorCondition(String name, int index, Class<?>[] willGet, Class<?>[] mustDeliver) {
 		this.name = name;
 		this.index = index;
 		this.willGet = willGet;

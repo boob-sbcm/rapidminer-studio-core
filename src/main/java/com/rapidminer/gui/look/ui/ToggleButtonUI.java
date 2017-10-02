@@ -48,7 +48,13 @@ public class ToggleButtonUI extends BasicToggleButtonUI {
 
 	private final static ToggleButtonUI TOGGLE_BUTTON_UI = new ToggleButtonUI();
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return TOGGLE_BUTTON_UI;
 	}
 

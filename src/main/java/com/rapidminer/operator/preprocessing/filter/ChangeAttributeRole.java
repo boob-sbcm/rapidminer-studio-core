@@ -49,7 +49,7 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  * This operator can be used to change the attribute type of an attribute of the input example set.
  * If you want to change the attribute name you should use the {@link ChangeAttributeName} operator.
  * </p>
- *
+ * <p>
  * <p>
  * The target type indicates if the attribute is a regular attribute (used by learning operators) or
  * a special attribute (e.g. a label or id attribute). The following target attribute types are
@@ -78,19 +78,22 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class ChangeAttributeRole extends AbstractDataProcessing {
 
-	/**
-	 * The parameter name for &quot;The name of the attribute of which the type should be
-	 * changed.&quot;
-	 */
-	public static final String PARAMETER_NAME = "attribute_name";
+    /**
+     * The parameter name for &quot;The name of the attribute of which the type should be
+     * changed.&quot;
+     */
+    public static final String PARAMETER_NAME = "attribute_name";
 
-	/**
-	 * The parameter name for &quot;The target type of the attribute (only changed if parameter
-	 * change_attribute_type is true).&quot;
-	 */
-	public static final String PARAMETER_TARGET_ROLE = "target_role";
+    /**
+     * The parameter name for &quot;The target type of the attribute (only changed if parameter
+     * change_attribute_type is true).&quot;
+     */
+    public static final String PARAMETER_TARGET_ROLE = "target_role";
 
-	public static final String PARAMETER_CHANGE_ATTRIBUTES = "set_additional_roles";
+    /**
+     * The constant PARAMETER_CHANGE_ATTRIBUTES.
+     */
+    public static final String PARAMETER_CHANGE_ATTRIBUTES = "set_additional_roles";
 
 	private static final String REGULAR_NAME = "regular";
 
@@ -115,7 +118,12 @@ public class ChangeAttributeRole extends AbstractDataProcessing {
 		return newIncompatibleVersionChanges;
 	}
 
-	public ChangeAttributeRole(OperatorDescription description) {
+    /**
+     * Instantiates a new Change attribute role.
+     *
+     * @param description the description
+     */
+    public ChangeAttributeRole(OperatorDescription description) {
 		super(description);
 		getExampleSetInputPort().addPrecondition(
 				new AttributeSetPrecondition(getExampleSetInputPort(), AttributeSetPrecondition.getAttributesByParameter(

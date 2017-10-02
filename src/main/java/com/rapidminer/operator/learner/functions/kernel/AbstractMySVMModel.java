@@ -54,7 +54,15 @@ public abstract class AbstractMySVMModel extends KernelModel implements FormulaP
 
 	private double[] weights = null;
 
-	public AbstractMySVMModel(ExampleSet exampleSet,
+    /**
+     * Instantiates a new Abstract my svm model.
+     *
+     * @param exampleSet the example set
+     * @param model      the model
+     * @param kernel     the kernel
+     * @param kernelType the kernel type
+     */
+    public AbstractMySVMModel(ExampleSet exampleSet,
 			com.rapidminer.operator.learner.functions.kernel.jmysvm.examples.SVMExamples model, Kernel kernel,
 			int kernelType) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
@@ -81,8 +89,12 @@ public abstract class AbstractMySVMModel extends KernelModel implements FormulaP
 		}
 	}
 
-	/** Creates a new SVM for prediction. */
-	public abstract SVMInterface createSVM();
+    /**
+     * Creates a new SVM for prediction.  @return the svm interface
+     *
+     * @return the svm interface
+     */
+    public abstract SVMInterface createSVM();
 
 	@Override
 	public boolean isClassificationModel() {
@@ -169,20 +181,31 @@ public abstract class AbstractMySVMModel extends KernelModel implements FormulaP
 		return svm.predict(sv);
 	}
 
-	/** Gets the kernel. */
-	public Kernel getKernel() {
+    /**
+     * Gets the kernel.  @return the kernel
+     *
+     * @return the kernel
+     */
+    public Kernel getKernel() {
 		return kernel;
 	}
 
-	/** Gets the model, i.e. an SVM example set. */
-	public com.rapidminer.operator.learner.functions.kernel.jmysvm.examples.SVMExamples getExampleSet() {
+    /**
+     * Gets the model, i.e. an SVM example set.  @return the example set
+     *
+     * @return the example set
+     */
+    public com.rapidminer.operator.learner.functions.kernel.jmysvm.examples.SVMExamples getExampleSet() {
 		return model;
 	}
 
-	/**
-	 * Sets the correct prediction to the example from the result value of the SVM.
-	 */
-	public abstract void setPrediction(Example example, double prediction);
+    /**
+     * Sets the correct prediction to the example from the result value of the SVM.
+     *
+     * @param example    the example
+     * @param prediction the prediction
+     */
+    public abstract void setPrediction(Example example, double prediction);
 
 	@Override
 	public ExampleSet performPrediction(ExampleSet exampleSet, Attribute predictedLabelAttribute) throws OperatorException {

@@ -39,22 +39,36 @@ import com.rapidminer.tools.OperatorService;
  * specified name. In order to store an object to make it again accessible, you can use the operator
  * {@link IOStorageOperator}. The combination of those two operator can be used to build complex
  * processes where an input object is used in completely different parts or loops of processes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class IORetrievalOperator extends Operator {
 
-	public static final String PARAMETER_NAME = "name";
+    /**
+     * The constant PARAMETER_NAME.
+     */
+    public static final String PARAMETER_NAME = "name";
 
-	public static final String PARAMETER_IO_OBJECT = "io_object";
+    /**
+     * The constant PARAMETER_IO_OBJECT.
+     */
+    public static final String PARAMETER_IO_OBJECT = "io_object";
 
-	public static final String PARAMETER_REMOVE_FROM_STORE = "remove_from_store";
+    /**
+     * The constant PARAMETER_REMOVE_FROM_STORE.
+     */
+    public static final String PARAMETER_REMOVE_FROM_STORE = "remove_from_store";
 
 	private String[] objectArray = null;
 
 	private final OutputPort resultOutput = getOutputPorts().createPort("result");
 
-	public IORetrievalOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Io retrieval operator.
+     *
+     * @param description the description
+     */
+    public IORetrievalOperator(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new MDTransformationRule() {
 

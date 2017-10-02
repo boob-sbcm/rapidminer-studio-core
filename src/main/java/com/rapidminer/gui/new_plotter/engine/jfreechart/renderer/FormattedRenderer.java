@@ -24,11 +24,15 @@ import com.rapidminer.gui.new_plotter.engine.jfreechart.RenderFormatDelegate;
 /**
  * Classes implementing this interface provide a color provider and data from which the color is
  * derived.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public interface FormattedRenderer {
 
-	RenderFormatDelegate getFormatDelegate();
+    /**
+     * Gets format delegate.
+     *
+     * @return the format delegate
+     */
+    RenderFormatDelegate getFormatDelegate();
 }

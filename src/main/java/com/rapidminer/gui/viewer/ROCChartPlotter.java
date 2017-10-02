@@ -58,7 +58,7 @@ import org.jfree.ui.RectangleInsets;
 
 /**
  * This is the ROC chart plotter.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ROCChartPlotter extends JPanel implements Renderable, PrintableComponent {
@@ -74,18 +74,33 @@ public class ROCChartPlotter extends JPanel implements Renderable, PrintableComp
 
 	private final ColorProvider colorProvider = new ColorProvider();
 
-	public ROCChartPlotter() {
+    /**
+     * Instantiates a new Roc chart plotter.
+     */
+    public ROCChartPlotter() {
 		super();
 		setBackground(Color.white);
 	}
 
-	public void addROCData(String name, ROCData singleROCData) {
+    /**
+     * Add roc data.
+     *
+     * @param name          the name
+     * @param singleROCData the single roc data
+     */
+    public void addROCData(String name, ROCData singleROCData) {
 		List<ROCData> tempList = new LinkedList<>();
 		tempList.add(singleROCData);
 		addROCData(name, tempList);
 	}
 
-	public void addROCData(String name, List<ROCData> averageROCData) {
+    /**
+     * Add roc data.
+     *
+     * @param name           the name
+     * @param averageROCData the average roc data
+     */
+    public void addROCData(String name, List<ROCData> averageROCData) {
 		rocDataLists.put(name, averageROCData);
 	}
 
@@ -210,7 +225,14 @@ public class ROCChartPlotter extends JPanel implements Renderable, PrintableComp
 		paintDeviationChart(g, getWidth(), getHeight());
 	}
 
-	public void paintDeviationChart(Graphics graphics, int width, int height) {
+    /**
+     * Paint deviation chart.
+     *
+     * @param graphics the graphics
+     * @param width    the width
+     * @param height   the height
+     */
+    public void paintDeviationChart(Graphics graphics, int width, int height) {
 		prepareData();
 
 		JFreeChart chart = createChart(this.dataset);

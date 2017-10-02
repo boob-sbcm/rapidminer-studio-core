@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is 3*att1*att1*att1 - att1*att1 + 1000 / abs(att1) + 2000 * abs(att1).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class OneVariableNonLinearFunction extends RegressionFunction {

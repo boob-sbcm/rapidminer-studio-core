@@ -29,23 +29,33 @@ import java.util.Set;
 
 
 /**
- * 
  * Abstract superclass of all clustering functions of the ExampleSetGenerator
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public abstract class ClusterFunction implements TargetFunction {
 
-	/** The number of attributes. */
-	protected int numberOfAttributes = 2;
-	protected int numberOfExamples = 0;
-	/** The lower bound for the dataset. */
-	protected double lowerBound = -10.0d;
-	/** The upper bound for the dataset. */
-	protected double upperBound = 10.0d;
+    /**
+     * The number of attributes.
+     */
+    protected int numberOfAttributes = 2;
+    /**
+     * The Number of examples.
+     */
+    protected int numberOfExamples = 0;
+    /**
+     * The lower bound for the dataset.
+     */
+    protected double lowerBound = -10.0d;
+    /**
+     * The upper bound for the dataset.
+     */
+    protected double upperBound = 10.0d;
 
-	public ClusterFunction() {
+    /**
+     * Instantiates a new Cluster function.
+     */
+    public ClusterFunction() {
 		super();
 	}
 
@@ -100,5 +110,10 @@ public abstract class ClusterFunction implements TargetFunction {
 		return Integer.MAX_VALUE;
 	}
 
-	protected abstract Set<String> getClusterSet();
+    /**
+     * Gets cluster set.
+     *
+     * @return the cluster set
+     */
+    protected abstract Set<String> getClusterSet();
 }

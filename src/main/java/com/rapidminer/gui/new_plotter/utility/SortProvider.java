@@ -22,36 +22,87 @@ import java.util.List;
 
 
 /**
+ * The interface Sort provider.
+ *
  * @author Marius Helf
- * 
  */
 public interface SortProvider {
 
-	public enum SortCriterion {
-		NUMERICAL, NOMINAL, NONE
+    /**
+     * The enum Sort criterion.
+     */
+    public enum SortCriterion {
+        /**
+         * Numerical sort criterion.
+         */
+        NUMERICAL, /**
+         * Nominal sort criterion.
+         */
+        NOMINAL, /**
+         * None sort criterion.
+         */
+        NONE
 	}
 
-	public enum SortOrder {
-		NONE, ASCENDING, DESCENDING
+    /**
+     * The enum Sort order.
+     */
+    public enum SortOrder {
+        /**
+         * None sort order.
+         */
+        NONE, /**
+         * Ascending sort order.
+         */
+        ASCENDING, /**
+         * Descending sort order.
+         */
+        DESCENDING
 	}
 
-	public void setSortCriterion(SortCriterion sortCriterion);
+    /**
+     * Sets sort criterion.
+     *
+     * @param sortCriterion the sort criterion
+     */
+    public void setSortCriterion(SortCriterion sortCriterion);
 
-	public void setSortOrder(SortOrder sortOrder);
+    /**
+     * Sets sort order.
+     *
+     * @param sortOrder the sort order
+     */
+    public void setSortOrder(SortOrder sortOrder);
 
-	public SortCriterion getSortCriterion();
+    /**
+     * Gets sort criterion.
+     *
+     * @return the sort criterion
+     */
+    public SortCriterion getSortCriterion();
 
-	public SortOrder getSortOrder();
+    /**
+     * Gets sort order.
+     *
+     * @return the sort order
+     */
+    public SortOrder getSortOrder();
 
-	/**
-	 * Sorts the provided list of values. Might change the original list.
-	 */
-	public List<Double> sortValues(List<Double> values);
+    /**
+     * Sorts the provided list of values. Might change the original list.
+     *
+     * @param values the values
+     * @return the list
+     */
+    public List<Double> sortValues(List<Double> values);
 
-	/**
-	 * Sorts the provided list of {@link ValueRange}s. Might change the original list.
-	 */
-	public List<ValueRange> sortGroups(List<ValueRange> valueGroups);
+    /**
+     * Sorts the provided list of {@link ValueRange}s. Might change the original list.
+     *
+     * @param valueGroups the value groups
+     * @return the list
+     */
+    public List<ValueRange> sortGroups(List<ValueRange> valueGroups);
 
 	public SortProvider clone();
 }

@@ -47,9 +47,17 @@ public class PolynominalMapping implements NominalMapping {
 	/** The map between indices of nominal values and the actual nominal value. */
 	private final List<String> indexToSymbolMap = new ArrayList<>();
 
-	public PolynominalMapping() {}
+    /**
+     * Instantiates a new Polynominal mapping.
+     */
+    public PolynominalMapping() {}
 
-	public PolynominalMapping(Map<Integer, String> map) {
+    /**
+     * Instantiates a new Polynominal mapping.
+     *
+     * @param map the map
+     */
+    public PolynominalMapping(Map<Integer, String> map) {
 		this.symbolToIndexMap.clear();
 		this.indexToSymbolMap.clear();
 		for (Map.Entry<Integer, String> entry : map.entrySet()) {
@@ -63,7 +71,12 @@ public class PolynominalMapping implements NominalMapping {
 		}
 	}
 
-	/* pp */ PolynominalMapping(NominalMapping mapping) {
+    /**
+     * Instantiates a new Polynominal mapping.
+     *
+     * @param mapping the mapping
+     */
+/* pp */ PolynominalMapping(NominalMapping mapping) {
 		this.symbolToIndexMap.clear();
 		this.indexToSymbolMap.clear();
 		for (int i = 0; i < mapping.size(); i++) {

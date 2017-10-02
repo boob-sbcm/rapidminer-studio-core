@@ -23,7 +23,7 @@ import java.io.Serializable;
 
 /**
  * Holds all information of a support vector, i.e. the attribute values, the label, and the alpha.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SupportVector implements Serializable {
@@ -36,26 +36,52 @@ public class SupportVector implements Serializable {
 
 	private double alpha;
 
-	/** Creates a new support vector. */
-	public SupportVector(double[] x, double y, double alpha) {
+    /**
+     * Creates a new support vector.  @param x the x
+     *
+     * @param x     the x
+     * @param y     the y
+     * @param alpha the alpha
+     */
+    public SupportVector(double[] x, double y, double alpha) {
 		this.x = x;
 		this.y = y;
 		this.alpha = alpha;
 	}
 
-	public double[] getX() {
+    /**
+     * Get x double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getX() {
 		return x;
 	}
 
-	public double getY() {
+    /**
+     * Gets y.
+     *
+     * @return the y
+     */
+    public double getY() {
 		return y;
 	}
 
-	public void setAlpha(double alpha) {
+    /**
+     * Sets alpha.
+     *
+     * @param alpha the alpha
+     */
+    public void setAlpha(double alpha) {
 		this.alpha = alpha;
 	}
 
-	public double getAlpha() {
+    /**
+     * Gets alpha.
+     *
+     * @return the alpha
+     */
+    public double getAlpha() {
 		return alpha;
 	}
 

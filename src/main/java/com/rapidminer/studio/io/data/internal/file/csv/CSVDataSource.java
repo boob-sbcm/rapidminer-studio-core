@@ -58,12 +58,12 @@ public class CSVDataSource extends FileDataSource {
 		configuration.setCsvFile(newLocation.toString());
 	}
 
-	/**
-	 * @return the {@link CSVResultSetConfiguration} for this data source. Changes to the
-	 *         configuration will affect the import process as it stores the internal import
-	 *         configuration
-	 */
-	public CSVResultSetConfiguration getResultSetConfiguration() {
+    /**
+     * Gets result set configuration.
+     *
+     * @return the {@link CSVResultSetConfiguration} for this data source. Changes to the         configuration will affect the import process as it stores the internal import         configuration
+     */
+    public CSVResultSetConfiguration getResultSetConfiguration() {
 		return configuration;
 	}
 
@@ -128,26 +128,26 @@ public class CSVDataSource extends FileDataSource {
 		return metaData;
 	}
 
-	/**
-	 * @return the number format associated to the configuration
-	 */
-	NumberFormat getNumberFormat() {
+    /**
+     * Gets number format.
+     *
+     * @return the number format associated to the configuration
+     */
+    NumberFormat getNumberFormat() {
 		return new StrictDecimalFormat(getResultSetConfiguration().getDecimalCharacter());
 	}
 
-	/**
-	 * Creates a new {@link DataSetMetaData} instance with the results of the
-	 * {@link CSVFormatSpecificationWizardStep} and assigns it to the {@link #metaData} field of
-	 * this {@link CSVDataSource}.
-	 * <p>
-	 * The method also checks if the header row and the starting row exist and throws an exception
-	 * otherwise.
-	 *
-	 * @throws DataSetException
-	 *             in case the starting row or header row do not exist or the specified CSV file
-	 *             could not be read because of IO issues
-	 */
-	public void createMetaData() throws DataSetException {
+    /**
+     * Creates a new {@link DataSetMetaData} instance with the results of the
+     * {@link CSVFormatSpecificationWizardStep} and assigns it to the {@link #metaData} field of
+     * this {@link CSVDataSource}.
+     * <p>
+     * The method also checks if the header row and the starting row exist and throws an exception
+     * otherwise.
+     *
+     * @throws DataSetException in case the starting row or header row do not exist or the specified CSV file             could not be read because of IO issues
+     */
+    public void createMetaData() throws DataSetException {
 
 		// create a new CSV ResultSet configuration which reads the whole selected file
 		// we cannot call getData() here as it might already skip the first lines

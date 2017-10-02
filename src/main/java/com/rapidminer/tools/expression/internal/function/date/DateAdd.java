@@ -33,11 +33,13 @@ import com.rapidminer.tools.expression.internal.ExpressionParserConstants;
  * A {@link Function} for setting a value of a given date.
  *
  * @author David Arnu
- *
  */
 public class DateAdd extends AbstractDateManipulationFunction {
 
-	public DateAdd() {
+    /**
+     * Instantiates a new Date add.
+     */
+    public DateAdd() {
 		super("date.date_add", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, Ontology.DATE_TIME);
 	}
 

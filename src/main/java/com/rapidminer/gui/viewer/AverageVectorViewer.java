@@ -36,6 +36,7 @@ import com.rapidminer.tools.math.AverageVector;
 
 
 /**
+ * The type Average vector viewer.
  *
  * @author Sebastian Land
  */
@@ -45,7 +46,13 @@ public class AverageVectorViewer extends JPanel implements Readable {
 
 	private AverageVector vector;
 
-	public AverageVectorViewer(AverageVector vector, IOContainer container) {
+    /**
+     * Instantiates a new Average vector viewer.
+     *
+     * @param vector    the vector
+     * @param container the container
+     */
+    public AverageVectorViewer(AverageVector vector, IOContainer container) {
 		setLayout(new GridLayout(1, 1));
 		this.vector = vector;
 

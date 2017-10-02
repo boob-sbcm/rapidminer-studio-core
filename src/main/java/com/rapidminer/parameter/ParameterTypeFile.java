@@ -44,7 +44,13 @@ public class ParameterTypeFile extends ParameterTypeString {
 	private String[] extensions = null;
 	private boolean addAllFileExtensionsFilter = false;
 
-	public ParameterTypeFile(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type file.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeFile(Element element) throws XMLException {
 		super(element);
 
 		List<String> exts = new ArrayList<String>();
@@ -62,49 +68,88 @@ public class ParameterTypeFile extends ParameterTypeString {
 		}
 	}
 
-	/**
-	 * Creates a new parameter type for files with the given extension. If the extension is null no
-	 * file filters will be used. If the parameter is not optional, it is set to be not expert.
-	 */
-	public ParameterTypeFile(String key, String description, boolean optional, String[] extensions) {
+    /**
+     * Creates a new parameter type for files with the given extension. If the extension is null no
+     * file filters will be used. If the parameter is not optional, it is set to be not expert.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     * @param extensions  the extensions
+     */
+    public ParameterTypeFile(String key, String description, boolean optional, String[] extensions) {
 		super(key, description, null);
 		setOptional(optional);
 		this.extensions = extensions;
 	}
 
-	/**
-	 * Creates a new parameter type for files with the given extension. If the extension is null no
-	 * file filters will be used. If the parameter is not optional, it is set to be not expert.
-	 */
-	public ParameterTypeFile(String key, String description, String extension, boolean optional) {
+    /**
+     * Creates a new parameter type for files with the given extension. If the extension is null no
+     * file filters will be used. If the parameter is not optional, it is set to be not expert.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param extension   the extension
+     * @param optional    the optional
+     */
+    public ParameterTypeFile(String key, String description, String extension, boolean optional) {
 		super(key, description, null);
 		setOptional(optional);
 		this.extensions = new String[] { extension };
 	}
 
-	/**
-	 * Creates a new parameter type for file with the given extension. If the extension is null no
-	 * file filters will be used. The parameter will be optional.
-	 */
-	public ParameterTypeFile(String key, String description, String extension, String defaultFileName) {
+    /**
+     * Creates a new parameter type for file with the given extension. If the extension is null no
+     * file filters will be used. The parameter will be optional.
+     *
+     * @param key             the key
+     * @param description     the description
+     * @param extension       the extension
+     * @param defaultFileName the default file name
+     */
+    public ParameterTypeFile(String key, String description, String extension, String defaultFileName) {
 		super(key, description, defaultFileName);
 		this.extensions = new String[] { extension };
 	}
 
-	public ParameterTypeFile(String key, String description, String extension, boolean optional, boolean expert) {
+    /**
+     * Instantiates a new Parameter type file.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param extension   the extension
+     * @param optional    the optional
+     * @param expert      the expert
+     */
+    public ParameterTypeFile(String key, String description, String extension, boolean optional, boolean expert) {
 		this(key, description, extension, optional);
 		setExpert(expert);
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return extensions[0];
 	}
 
-	public String[] getExtensions() {
+    /**
+     * Get extensions string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getExtensions() {
 		return extensions;
 	}
 
-	public String[] getKeys() {
+    /**
+     * Get keys string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getKeys() {
 		String[] keys = new String[extensions.length];
 		for (int i = 0; i < extensions.length; i++) {
 			keys[i] = getKey();
@@ -112,31 +157,39 @@ public class ParameterTypeFile extends ParameterTypeString {
 		return keys;
 	}
 
-	public void setExtension(String extension) {
+    /**
+     * Sets extension.
+     *
+     * @param extension the extension
+     */
+    public void setExtension(String extension) {
 		this.extensions[0] = extension;
 	}
 
-	public void setExtensions(String[] extensions) {
+    /**
+     * Sets extensions.
+     *
+     * @param extensions the extensions
+     */
+    public void setExtensions(String[] extensions) {
 		this.extensions = extensions;
 	}
 
-	/**
-	 * @param addAllFileFormatsFilter
-	 *            defines whether a filter for all file extension should be added as default filter
-	 *            for the file chooser dialog. This makes most sense for file reading operations
-	 *            that allow to read files with multiple file extensions. For file writing
-	 *            operations it is not recommended as the new filter will not add the correct file
-	 *            ending when entering the path of a file that does not exist.
-	 */
-	public void setAddAllFileExtensionsFilter(boolean addAllFileFormatsFilter) {
+    /**
+     * Sets add all file extensions filter.
+     *
+     * @param addAllFileFormatsFilter defines whether a filter for all file extension should be added as default filter            for the file chooser dialog. This makes most sense for file reading operations            that allow to read files with multiple file extensions. For file writing            operations it is not recommended as the new filter will not add the correct file            ending when entering the path of a file that does not exist.
+     */
+    public void setAddAllFileExtensionsFilter(boolean addAllFileFormatsFilter) {
 		this.addAllFileExtensionsFilter = addAllFileFormatsFilter;
 	}
 
-	/**
-	 * @return whether a filter all with supported file extensions should be added as default filter
-	 *         for the file chooser dialog
-	 */
-	public boolean isAddAllFileExtensionsFilter() {
+    /**
+     * Is add all file extensions filter boolean.
+     *
+     * @return whether a filter all with supported file extensions should be added as default filter         for the file chooser dialog
+     */
+    public boolean isAddAllFileExtensionsFilter() {
 		return addAllFileExtensionsFilter;
 	}
 

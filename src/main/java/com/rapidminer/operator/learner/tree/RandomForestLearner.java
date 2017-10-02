@@ -41,16 +41,22 @@ import com.rapidminer.tools.RandomGenerator;
  * tree models.
  *
  * @author Ingo Mierswa, Sebastian Land
- *
  * @deprecated use {@link ParallelRandomForestLearner} instead
  */
 @Deprecated
 public class RandomForestLearner extends RandomTreeLearner {
 
-	/** The parameter name for the number of trees. */
-	public static final String PARAMETER_NUMBER_OF_TREES = "number_of_trees";
+    /**
+     * The parameter name for the number of trees.
+     */
+    public static final String PARAMETER_NUMBER_OF_TREES = "number_of_trees";
 
-	public RandomForestLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Random forest learner.
+     *
+     * @param description the description
+     */
+    public RandomForestLearner(OperatorDescription description) {
 		super(description);
 	}
 

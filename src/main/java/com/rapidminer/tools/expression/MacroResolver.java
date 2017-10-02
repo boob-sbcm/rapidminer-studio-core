@@ -44,25 +44,22 @@ public class MacroResolver implements Resolver {
 
 	private static final String KEY_MACROS = I18N.getGUIMessage("gui.dialog.function_input.macros");
 
-	/**
-	 * Creates a {@link MacroResolver} that uses the given macroHandler.
-	 *
-	 * @param macroHandler
-	 *            the macro handler to resolve macros
-	 */
-	public MacroResolver(MacroHandler macroHandler) {
+    /**
+     * Creates a {@link MacroResolver} that uses the given macroHandler.
+     *
+     * @param macroHandler the macro handler to resolve macros
+     */
+    public MacroResolver(MacroHandler macroHandler) {
 		this(macroHandler, null);
 	}
 
-	/**
-	 * * Creates a {@link MacroResolver} that uses the given macroHandler and operator.
-	 * 
-	 * @param macroHandler
-	 *            the macro handler to resolve macros
-	 * @param operator
-	 *            the operator used for resolving operator dependent predefined macros
-	 */
-	public MacroResolver(MacroHandler macroHandler, Operator operator) {
+    /**
+     * * Creates a {@link MacroResolver} that uses the given macroHandler and operator.
+     *
+     * @param macroHandler the macro handler to resolve macros
+     * @param operator     the operator used for resolving operator dependent predefined macros
+     */
+    public MacroResolver(MacroHandler macroHandler, Operator operator) {
 		this.macroHandler = macroHandler;
 		this.operator = operator;
 	}

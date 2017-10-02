@@ -37,44 +37,55 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  * {@link GeneratingGeneticAlgorithm} generates new attributes and thus can change the length of an
  * individual. Therfore specialized mutation and crossover operators are being applied. Generators
  * are chosen at random from a list of generators specified by boolean parameters. <br/>
- * 
+ * <p>
  * Since this operator does not contain algorithms to extract features from value series, it is
  * restricted to example sets with only single attributes. For automatic feature extraction from
  * values series the value series plugin for RapidMiner written by Ingo Mierswa should be used. It
  * is available at <a href="http://rapidminer.com">http://rapidminer.com</a>
- * 
- * @rapidminer.reference Ritthoff/etal/2001a
+ *
  * @author Ingo Mierswa, Simon Fischer ingomierswa Exp $
+ * @rapidminer.reference Ritthoff /etal/2001a
  */
 public class GeneratingGeneticAlgorithm extends AbstractGeneratingGeneticAlgorithm {
 
-	/**
-	 * The parameter name for &quot;Max number of attributes to generate for an individual in one
-	 * generation.&quot;
-	 */
-	public static final String PARAMETER_MAX_NUMBER_OF_NEW_ATTRIBUTES = "max_number_of_new_attributes";
+    /**
+     * The parameter name for &quot;Max number of attributes to generate for an individual in one
+     * generation.&quot;
+     */
+    public static final String PARAMETER_MAX_NUMBER_OF_NEW_ATTRIBUTES = "max_number_of_new_attributes";
 
-	/**
-	 * The parameter name for &quot;Max total number of attributes in all generations (-1: no
-	 * maximum).&quot;
-	 */
-	public static final String PARAMETER_MAX_TOTAL_NUMBER_OF_ATTRIBUTES = "max_total_number_of_attributes";
-	public static final String PARAMETER_LIMIT_MAX_TOTAL_NUMBER_OF_ATTRIBUTES = "limit_max_total_number_of_attributes";
+    /**
+     * The parameter name for &quot;Max total number of attributes in all generations (-1: no
+     * maximum).&quot;
+     */
+    public static final String PARAMETER_MAX_TOTAL_NUMBER_OF_ATTRIBUTES = "max_total_number_of_attributes";
+    /**
+     * The constant PARAMETER_LIMIT_MAX_TOTAL_NUMBER_OF_ATTRIBUTES.
+     */
+    public static final String PARAMETER_LIMIT_MAX_TOTAL_NUMBER_OF_ATTRIBUTES = "limit_max_total_number_of_attributes";
 
-	/**
-	 * The parameter name for &quot;Probability for an individual to be selected for
-	 * generation.&quot;
-	 */
-	public static final String PARAMETER_P_GENERATE = "p_generate";
+    /**
+     * The parameter name for &quot;Probability for an individual to be selected for
+     * generation.&quot;
+     */
+    public static final String PARAMETER_P_GENERATE = "p_generate";
 
-	/**
-	 * The parameter name for &quot;Probability for an attribute to be changed (-1: 1 /
-	 * numberOfAtts).&quot;
-	 */
-	public static final String PARAMETER_P_MUTATION = "p_mutation";
-	public static final String PARAMETER_USE_HEURISTIC_MUTATION_PROBABILITY = "use_heuristic_mutation_probability";
+    /**
+     * The parameter name for &quot;Probability for an attribute to be changed (-1: 1 /
+     * numberOfAtts).&quot;
+     */
+    public static final String PARAMETER_P_MUTATION = "p_mutation";
+    /**
+     * The constant PARAMETER_USE_HEURISTIC_MUTATION_PROBABILITY.
+     */
+    public static final String PARAMETER_USE_HEURISTIC_MUTATION_PROBABILITY = "use_heuristic_mutation_probability";
 
-	public GeneratingGeneticAlgorithm(OperatorDescription description) {
+    /**
+     * Instantiates a new Generating genetic algorithm.
+     *
+     * @param description the description
+     */
+    public GeneratingGeneticAlgorithm(OperatorDescription description) {
 		super(description);
 	}
 

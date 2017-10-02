@@ -30,12 +30,15 @@ import java.util.NoSuchElementException;
 
 /**
  * A set of individuals. Stores generation number and best individuals.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExampleSetBasedPopulation {
 
-	public static final Comparator<ExampleSetBasedIndividual> PERFORMANCE_COMPARATOR = new Comparator<ExampleSetBasedIndividual>() {
+    /**
+     * The constant PERFORMANCE_COMPARATOR.
+     */
+    public static final Comparator<ExampleSetBasedIndividual> PERFORMANCE_COMPARATOR = new Comparator<ExampleSetBasedIndividual>() {
 
 		@Override
 		public int compare(ExampleSetBasedIndividual i1, ExampleSetBasedIndividual i2) {
@@ -66,70 +69,111 @@ public class ExampleSetBasedPopulation {
 	/** The currently best performance. */
 	private PerformanceVector currentBestPerformance;
 
-	/** Construct an empty generation. */
-	public ExampleSetBasedPopulation() {}
+    /**
+     * Construct an empty generation.
+     */
+    public ExampleSetBasedPopulation() {}
 
-	/** Removes all individuals. */
-	public void clear() {
+    /**
+     * Removes all individuals.
+     */
+    public void clear() {
 		individuals.clear();
 	}
 
-	/** Adds a single individual. */
-	public void add(ExampleSetBasedIndividual individual) {
+    /**
+     * Adds a single individual.  @param individual the individual
+     *
+     * @param individual the individual
+     */
+    public void add(ExampleSetBasedIndividual individual) {
 		individuals.add(individual);
 	}
 
-	/** Adds all individuals from the given collection. */
-	public void addAllIndividuals(Collection<ExampleSetBasedIndividual> newIndividuals) {
+    /**
+     * Adds all individuals from the given collection.  @param newIndividuals the new individuals
+     *
+     * @param newIndividuals the new individuals
+     */
+    public void addAllIndividuals(Collection<ExampleSetBasedIndividual> newIndividuals) {
 		individuals.addAll(newIndividuals);
 	}
 
-	/** Removes a single individual. */
-	public void remove(ExampleSetBasedIndividual individual) {
+    /**
+     * Removes a single individual.  @param individual the individual
+     *
+     * @param individual the individual
+     */
+    public void remove(ExampleSetBasedIndividual individual) {
 		individuals.remove(individual);
 	}
 
-	/** Removes a single individual. */
-	public void remove(int i) {
+    /**
+     * Removes a single individual.  @param i the
+     *
+     * @param i the
+     */
+    public void remove(int i) {
 		individuals.remove(i);
 	}
 
-	/** Returns a single individual. */
-	public ExampleSetBasedIndividual get(int i) {
+    /**
+     * Returns a single individual.  @param i the
+     *
+     * @param i the
+     * @return the example set based individual
+     */
+    public ExampleSetBasedIndividual get(int i) {
 		return individuals.get(i);
 	}
 
-	/** Returns the number of all individuals. */
-	public int getNumberOfIndividuals() {
+    /**
+     * Returns the number of all individuals.  @return the number of individuals
+     *
+     * @return the number of individuals
+     */
+    public int getNumberOfIndividuals() {
 		return individuals.size();
 	}
 
-	/** Returns true is the population contains no individuals. */
-	public boolean empty() {
+    /**
+     * Returns true is the population contains no individuals.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean empty() {
 		return individuals.size() == 0;
 	}
 
-	/** Increase the generation number by one. */
-	public void nextGeneration() {
+    /**
+     * Increase the generation number by one.
+     */
+    public void nextGeneration() {
 		generation++;
 	}
 
-	/** Returns the current number of the generation. */
-	public int getGeneration() {
+    /**
+     * Returns the current number of the generation.  @return the generation
+     *
+     * @return the generation
+     */
+    public int getGeneration() {
 		return generation;
 	}
 
-	/**
-	 * Returns the number of generations without improval.
-	 */
-	public int getGenerationsWithoutImproval() {
+    /**
+     * Returns the number of generations without improval.
+     *
+     * @return the generations without improval
+     */
+    public int getGenerationsWithoutImproval() {
 		return generation - generationOfLastImproval;
 	}
 
-	/**
-	 * Remember the current generation's best individual and update the best individual.
-	 */
-	public void updateEvaluation() {
+    /**
+     * Remember the current generation's best individual and update the best individual.
+     */
+    public void updateEvaluation() {
 		currentBest = searchBest();
 		currentBestPerformance = currentBest == null ? null : currentBest.getPerformance();
 		if (bestEver == null || currentBest != null && currentBestPerformance.compareTo(bestPerformanceEver) > 0) {
@@ -155,31 +199,47 @@ public class ExampleSetBasedPopulation {
 		}
 	}
 
-	/** Returns the best performance. */
-	public PerformanceVector getBestPerformanceEver() {
+    /**
+     * Returns the best performance.  @return the best performance ever
+     *
+     * @return the best performance ever
+     */
+    public PerformanceVector getBestPerformanceEver() {
 		return bestPerformanceEver;
 	}
 
-	/** Returns all generations' best individual. */
-	public ExampleSetBasedIndividual getBestIndividualEver() {
+    /**
+     * Returns all generations' best individual.  @return the best individual ever
+     *
+     * @return the best individual ever
+     */
+    public ExampleSetBasedIndividual getBestIndividualEver() {
 		return bestEver;
 	}
 
-	/** Returns the last generation's best individual. */
-	public ExampleSetBasedIndividual getCurrentBest() {
+    /**
+     * Returns the last generation's best individual.  @return the current best
+     *
+     * @return the current best
+     */
+    public ExampleSetBasedIndividual getCurrentBest() {
 		return currentBest;
 	}
 
-	/** Returns the last generation's best performance. */
-	public PerformanceVector getCurrentBestPerformance() {
+    /**
+     * Returns the last generation's best performance.  @return the current best performance
+     *
+     * @return the current best performance
+     */
+    public PerformanceVector getCurrentBestPerformance() {
 		return currentBestPerformance;
 	}
 
-	/**
-	 * Sorts the individuals in ascending order according to their performance, thus the best one
-	 * will be in last position.
-	 */
-	public void sort() {
+    /**
+     * Sorts the individuals in ascending order according to their performance, thus the best one
+     * will be in last position.
+     */
+    public void sort() {
 		Collections.sort(individuals, PERFORMANCE_COMPARATOR);
 	}
 

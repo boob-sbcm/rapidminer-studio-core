@@ -51,36 +51,46 @@ public class IOObjectCacheEntryPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	/** Layout constraints for the entry's icon (first columns). */
-	public static final GridBagConstraints ICON_CONSTRAINTS = new GridBagConstraints();
+    /**
+     * Layout constraints for the entry's icon (first columns).
+     */
+    public static final GridBagConstraints ICON_CONSTRAINTS = new GridBagConstraints();
 	static {
 		ICON_CONSTRAINTS.anchor = GridBagConstraints.CENTER;
 		ICON_CONSTRAINTS.insets = new Insets(1, 1, 1, 1);
 	}
 
-	/** CĹayout constraints for the entry's object type (second column). */
-	public static final GridBagConstraints TYPE_CONSTRAINTS = new GridBagConstraints();
+    /**
+     * CĹayout constraints for the entry's object type (second column).
+     */
+    public static final GridBagConstraints TYPE_CONSTRAINTS = new GridBagConstraints();
 	static {
 		TYPE_CONSTRAINTS.anchor = GridBagConstraints.WEST;
 		TYPE_CONSTRAINTS.insets = new Insets(1, 8, 1, 1);
 	}
 
-	/** Layout constraints for the entry's key name (third columnd). */
-	public static final GridBagConstraints KEY_CONSTRAINTS = new GridBagConstraints();
+    /**
+     * Layout constraints for the entry's key name (third columnd).
+     */
+    public static final GridBagConstraints KEY_CONSTRAINTS = new GridBagConstraints();
 	static {
 		KEY_CONSTRAINTS.anchor = GridBagConstraints.WEST;
 		KEY_CONSTRAINTS.insets = new Insets(1, 1, 1, 1);
 	}
 
-	/** Layout constraints for the entry's remove button (last column). */
-	public static final GridBagConstraints REMOVE_BUTTON_CONSTRAINTS = new GridBagConstraints();
+    /**
+     * Layout constraints for the entry's remove button (last column).
+     */
+    public static final GridBagConstraints REMOVE_BUTTON_CONSTRAINTS = new GridBagConstraints();
 	static {
 		REMOVE_BUTTON_CONSTRAINTS.anchor = GridBagConstraints.EAST;
 		REMOVE_BUTTON_CONSTRAINTS.insets = new Insets(1, 1, 1, 1);
 	}
 
-	/** The layout used for the panel. */
-	public static final GridBagLayout ENTRY_LAYOUT = new GridBagLayout();
+    /**
+     * The layout used for the panel.
+     */
+    public static final GridBagLayout ENTRY_LAYOUT = new GridBagLayout();
 	private static final int MAX_TYPE_WIDTH = 128;
 	static {
 		ENTRY_LAYOUT.columnWidths = new int[] { 32, MAX_TYPE_WIDTH + 9, 0, 0 };
@@ -159,19 +169,15 @@ public class IOObjectCacheEntryPanel extends JPanel {
 
 	};
 
-	/**
-	 * Creates a new {@link IOObjectCacheEntryPanel}.
-	 *
-	 * @param icon
-	 *            The {@link Icon} associated with the entry's type.
-	 * @param entryType
-	 *            Human readable representation of the entry's type (e.g., 'Data Table').
-	 * @param openAction
-	 *            The action to be performed when clicking in the entry.
-	 * @param removeAction
-	 *            An action triggering the removal of the entry.
-	 */
-	public IOObjectCacheEntryPanel(Icon icon, String entryType, Action openAction, Action removeAction) {
+    /**
+     * Creates a new {@link IOObjectCacheEntryPanel}.
+     *
+     * @param icon         The {@link Icon} associated with the entry's type.
+     * @param entryType    Human readable representation of the entry's type (e.g., 'Data Table').
+     * @param openAction   The action to be performed when clicking in the entry.
+     * @param removeAction An action triggering the removal of the entry.
+     */
+    public IOObjectCacheEntryPanel(Icon icon, String entryType, Action openAction, Action removeAction) {
 		super(ENTRY_LAYOUT);
 
 		this.openAction = openAction;
@@ -210,11 +216,12 @@ public class IOObjectCacheEntryPanel extends JPanel {
 		removeButton.addMouseListener(dispatchMouseListener);
 	}
 
-	/**
-	 * @param color
-	 *            The background {@link Color} use if the panel is not highlighted.
-	 */
-	public void setDefaultBackground(Color color) {
+    /**
+     * Sets default background.
+     *
+     * @param color The background {@link Color} use if the panel is not highlighted.
+     */
+    public void setDefaultBackground(Color color) {
 		this.defaultBackground = color;
 		this.setBackground(color);
 	}

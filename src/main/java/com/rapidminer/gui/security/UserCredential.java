@@ -23,9 +23,8 @@ import java.net.PasswordAuthentication;
 
 /**
  * The user credentials stored in a {@link Wallet}. Each username belongs to one URL.
- * 
+ *
  * @author Miguel Buescher
- * 
  */
 public class UserCredential {
 
@@ -33,34 +32,71 @@ public class UserCredential {
 	private String user;
 	private char[] password;
 
-	public UserCredential(String url, String user, char[] password) {
+    /**
+     * Instantiates a new User credential.
+     *
+     * @param url      the url
+     * @param user     the user
+     * @param password the password
+     */
+    public UserCredential(String url, String user, char[] password) {
 		super();
 		this.url = url;
 		this.user = user;
 		this.password = password;
 	}
 
-	public void setUser(String user) {
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
+    public void setUser(String user) {
 		this.user = user;
 	}
 
-	public void setPassword(char[] password) {
+    /**
+     * Sets password.
+     *
+     * @param password the password
+     */
+    public void setPassword(char[] password) {
 		this.password = password;
 	}
 
-	public String getURL() {
+    /**
+     * Gets url.
+     *
+     * @return the url
+     */
+    public String getURL() {
 		return url;
 	}
 
-	public String getUsername() {
+    /**
+     * Gets username.
+     *
+     * @return the username
+     */
+    public String getUsername() {
 		return user;
 	}
 
-	public char[] getPassword() {
+    /**
+     * Get password char [ ].
+     *
+     * @return the char [ ]
+     */
+    public char[] getPassword() {
 		return password;
 	}
 
-	public PasswordAuthentication makePasswordAuthentication() {
+    /**
+     * Make password authentication password authentication.
+     *
+     * @return the password authentication
+     */
+    public PasswordAuthentication makePasswordAuthentication() {
 		return new PasswordAuthentication(getUsername(), getPassword());
 	}
 

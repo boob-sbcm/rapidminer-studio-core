@@ -54,8 +54,9 @@ import com.rapidminer.tools.I18N;
 
 
 /**
- * @author Nils Woehler
+ * The type Global configuration panel.
  *
+ * @author Nils Woehler
  */
 public class GlobalConfigurationPanel extends AbstractConfigurationPanel {
 
@@ -83,7 +84,12 @@ public class GlobalConfigurationPanel extends AbstractConfigurationPanel {
 
 	private ChartTitleConfigurationContainer chartTitleConfigurationContainer;
 
-	public GlobalConfigurationPanel(PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Global configuration panel.
+     *
+     * @param plotInstance the plot instance
+     */
+    public GlobalConfigurationPanel(PlotInstance plotInstance) {
 		super(plotInstance);
 		axisConfigurationContainer = new AxisConfigurationContainer(plotInstance);
 		addPlotInstanceChangeListener(axisConfigurationContainer);

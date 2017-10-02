@@ -31,27 +31,28 @@ package com.rapidminer.tools.expression;
  */
 public interface Function {
 
-	/**
-	 * @return the {@link FunctionDescription} of the function
-	 */
-	public FunctionDescription getFunctionDescription();
+    /**
+     * Gets function description.
+     *
+     * @return the {@link FunctionDescription} of the function
+     */
+    public FunctionDescription getFunctionDescription();
 
-	/**
-	 * @return the function name of the function
-	 */
-	public String getFunctionName();
+    /**
+     * Gets function name.
+     *
+     * @return the function name of the function
+     */
+    public String getFunctionName();
 
-	/**
-	 * Creates an {@link ExpressionEvaluator} for this function with the given inputEvaluators as
-	 * arguments.
-	 *
-	 * @param inputEvaluators
-	 *            the {@link ExpressionEvaluators} containing the input arguments
-	 * @return an expression evaluator for this function applied to the inputEvaluators
-	 * @throws ExpressionParsingException
-	 *             if the creation of the ExpressionEvaluator fails, FunctionInputException if the
-	 *             cause for the failure is a wrong argument
-	 */
-	public ExpressionEvaluator compute(ExpressionEvaluator... inputEvaluators) throws ExpressionParsingException;
+    /**
+     * Creates an {@link ExpressionEvaluator} for this function with the given inputEvaluators as
+     * arguments.
+     *
+     * @param inputEvaluators the {@link ExpressionEvaluators} containing the input arguments
+     * @return an expression evaluator for this function applied to the inputEvaluators
+     * @throws ExpressionParsingException if the creation of the ExpressionEvaluator fails, FunctionInputException if the             cause for the failure is a wrong argument
+     */
+    public ExpressionEvaluator compute(ExpressionEvaluator... inputEvaluators) throws ExpressionParsingException;
 
 }

@@ -50,27 +50,36 @@ public class AttributeWeightedExampleSet extends AbstractExampleSet {
 
 	private AttributeWeights attributeWeights = new AttributeWeights();
 
-	/**
-	 * Constructs a new AttributeWeightedExampleSet. Initially all attributes are weighted with 1.0.
-	 */
-	protected AttributeWeightedExampleSet(ExampleSet exampleSet) {
+    /**
+     * Constructs a new AttributeWeightedExampleSet. Initially all attributes are weighted with 1.0.
+     *
+     * @param exampleSet the example set
+     */
+    protected AttributeWeightedExampleSet(ExampleSet exampleSet) {
 		this(exampleSet, null);
 	}
 
-	/**
-	 * Constructs a new AttributeWeightedExampleSet. The attributes are weighted with the given
-	 * weights. Attributes which are not stored in the map are weighted with 1.0.
-	 */
-	public AttributeWeightedExampleSet(ExampleSet exampleSet, AttributeWeights weights) {
+    /**
+     * Constructs a new AttributeWeightedExampleSet. The attributes are weighted with the given
+     * weights. Attributes which are not stored in the map are weighted with 1.0.
+     *
+     * @param exampleSet the example set
+     * @param weights    the weights
+     */
+    public AttributeWeightedExampleSet(ExampleSet exampleSet, AttributeWeights weights) {
 		this(exampleSet, weights, 1.0d);
 	}
 
-	/**
-	 * Constructs a new AttributeWeightedExampleSet. The attributes are weighted with the given
-	 * weights. Attributes which are not stored in the map are weighted with the given default
-	 * weight.
-	 */
-	public AttributeWeightedExampleSet(ExampleSet exampleSet, AttributeWeights weights, double defaultWeight) {
+    /**
+     * Constructs a new AttributeWeightedExampleSet. The attributes are weighted with the given
+     * weights. Attributes which are not stored in the map are weighted with the given default
+     * weight.
+     *
+     * @param exampleSet    the example set
+     * @param weights       the weights
+     * @param defaultWeight the default weight
+     */
+    public AttributeWeightedExampleSet(ExampleSet exampleSet, AttributeWeights weights, double defaultWeight) {
 		this.parent = (ExampleSet) exampleSet.clone();
 		this.attributeWeights = weights;
 		if (weights == null) {
@@ -90,8 +99,12 @@ public class AttributeWeightedExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	/** Clone constructor. */
-	public AttributeWeightedExampleSet(AttributeWeightedExampleSet exampleSet) {
+    /**
+     * Clone constructor.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     */
+    public AttributeWeightedExampleSet(AttributeWeightedExampleSet exampleSet) {
 		cloneAnnotationsFrom(exampleSet);
 		this.parent = (ExampleSet) exampleSet.parent.clone();
 		this.attributeWeights = (AttributeWeights) exampleSet.attributeWeights.clone();
@@ -106,12 +119,21 @@ public class AttributeWeightedExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	public AttributeWeights getAttributeWeights() {
+    /**
+     * Gets attribute weights.
+     *
+     * @return the attribute weights
+     */
+    public AttributeWeights getAttributeWeights() {
 		return this.attributeWeights;
 	}
 
-	/** Returns a clone where the zero weighted attributes are not delivered. */
-	public AttributeWeightedExampleSet createCleanClone() {
+    /**
+     * Returns a clone where the zero weighted attributes are not delivered.  @return the attribute weighted example set
+     *
+     * @return the attribute weighted example set
+     */
+    public AttributeWeightedExampleSet createCleanClone() {
 		AttributeWeightedExampleSet clone = new AttributeWeightedExampleSet(this);
 		Iterator<Attribute> a = clone.getAttributes().iterator();
 		while (a.hasNext()) {
@@ -129,8 +151,13 @@ public class AttributeWeightedExampleSet extends AbstractExampleSet {
 		return this.parent.getAttributes();
 	}
 
-	/** Returns the weight of the attribute. */
-	public double getWeight(Attribute attribute) {
+    /**
+     * Returns the weight of the attribute.  @param attribute the attribute
+     *
+     * @param attribute the attribute
+     * @return the weight
+     */
+    public double getWeight(Attribute attribute) {
 		if (this.attributeWeights == null) {
 			return 1.0d;
 		} else {
@@ -138,15 +165,22 @@ public class AttributeWeightedExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	/**
-	 * Sets the weight of the attribute.
-	 */
-	public void setWeight(Attribute attribute, double weightValue) {
+    /**
+     * Sets the weight of the attribute.
+     *
+     * @param attribute   the attribute
+     * @param weightValue the weight value
+     */
+    public void setWeight(Attribute attribute, double weightValue) {
 		this.attributeWeights.setWeight(attribute.getName(), weightValue);
 	}
 
-	/** Returns the number of selected attributes. */
-	public int getNumberOfUsedAttributes() {
+    /**
+     * Returns the number of selected attributes.  @return the number of used attributes
+     *
+     * @return the number of used attributes
+     */
+    public int getNumberOfUsedAttributes() {
 		int counter = 0;
 		for (Attribute attribute : getAttributes()) {
 			if (!Tools.isEqual(getWeight(attribute), 0.0d)) {
@@ -158,13 +192,17 @@ public class AttributeWeightedExampleSet extends AbstractExampleSet {
 
 	// -------------------- wrapper methods --------------------
 
-	/** Sets the weights of all attributes to 1.0. */
-	public void selectAll() {
+    /**
+     * Sets the weights of all attributes to 1.0.
+     */
+    public void selectAll() {
 		setAll(1.0d);
 	}
 
-	/** Sets the weights of all attributes to 0.0. */
-	public void deselectAll() {
+    /**
+     * Sets the weights of all attributes to 0.0.
+     */
+    public void deselectAll() {
 		setAll(0.0d);
 	}
 
@@ -177,32 +215,47 @@ public class AttributeWeightedExampleSet extends AbstractExampleSet {
 
 	// -------------------- selection methods --------------------
 
-	/** Returns the selection state of the attribute. */
-	public boolean isAttributeUsed(Attribute attribute) {
+    /**
+     * Returns the selection state of the attribute.  @param attribute the attribute
+     *
+     * @param attribute the attribute
+     * @return the boolean
+     */
+    public boolean isAttributeUsed(Attribute attribute) {
 		return getWeight(attribute) != 0.0d;
 	}
 
-	/** Sets the selection state of the attribute. */
-	public void setAttributeUsed(Attribute attribute, boolean selected) {
+    /**
+     * Sets the selection state of the attribute.  @param attribute the attribute
+     *
+     * @param attribute the attribute
+     * @param selected  the selected
+     */
+    public void setAttributeUsed(Attribute attribute, boolean selected) {
 		setWeight(attribute, (selected ? 1.0d : 0.0d));
 	}
 
-	/**
-	 * Flips the selection state of the attribute with the given index. (Convenience method for
-	 * evolutionary algorithms). If a block starts with this attribute the whole block will be
-	 * switched. Returns the index of the attribute which is the last one in the block or the index
-	 * of the given attribute itself if it is not the start attribute of a block.
-	 */
-	public void flipAttributeUsed(Attribute attribute) {
+    /**
+     * Flips the selection state of the attribute with the given index. (Convenience method for
+     * evolutionary algorithms). If a block starts with this attribute the whole block will be
+     * switched. Returns the index of the attribute which is the last one in the block or the index
+     * of the given attribute itself if it is not the start attribute of a block.
+     *
+     * @param attribute the attribute
+     */
+    public void flipAttributeUsed(Attribute attribute) {
 		setWeight(attribute, isAttributeUsed(attribute) ? 0.0d : 1.0d);
 	}
 
-	/**
-	 * Randomly selects approximately the given number of attributes. Will not throw an exception if
-	 * the given number exceeds the current number of features. If no attributes would be selected a
-	 * single attribute will be selected.
-	 */
-	public void selectRandomSubset(int n, Random random) {
+    /**
+     * Randomly selects approximately the given number of attributes. Will not throw an exception if
+     * the given number exceeds the current number of features. If no attributes would be selected a
+     * single attribute will be selected.
+     *
+     * @param n      the n
+     * @param random the random
+     */
+    public void selectRandomSubset(int n, Random random) {
 		double ratio = (double) n / (double) getAttributes().size();
 		for (Attribute attribute : getAttributes()) {
 			if (random.nextDouble() < ratio) {

@@ -41,7 +41,13 @@ public class RVMModel extends KernelModel {
 
 	private com.rapidminer.operator.learner.functions.kernel.rvm.Model model = null;
 
-	public RVMModel(ExampleSet exampleSet, com.rapidminer.operator.learner.functions.kernel.rvm.Model model) {
+    /**
+     * Instantiates a new Rvm model.
+     *
+     * @param exampleSet the example set
+     * @param model      the model
+     */
+    public RVMModel(ExampleSet exampleSet, com.rapidminer.operator.learner.functions.kernel.rvm.Model model) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.model = model;
@@ -102,8 +108,13 @@ public class RVMModel extends KernelModel {
 		return Double.NaN;
 	}
 
-	/** Create an input vector from an example */
-	public static double[] makeInputVector(Example e) {
+    /**
+     * Create an input vector from an example  @param e the e
+     *
+     * @param e the e
+     * @return the double [ ]
+     */
+    public static double[] makeInputVector(Example e) {
 		double[] vector = new double[e.getAttributes().size()];
 		int i = 0;
 		for (Attribute attribute : e.getAttributes()) {

@@ -48,16 +48,26 @@ import com.rapidminer.parameter.conditions.PortConnectedCondition;
  * This operator loops over the entries of a zip file.
  *
  * @author Marius Helf
- *
  */
 public class ZippedFileIterator extends AbstractFileIterator {
 
-	public static final String PARAMETER_ZIPFILE = "filename";
-	public static final String PARAMETER_INTERNAL_DIRECTORY = "internal_directory";
+    /**
+     * The constant PARAMETER_ZIPFILE.
+     */
+    public static final String PARAMETER_ZIPFILE = "filename";
+    /**
+     * The constant PARAMETER_INTERNAL_DIRECTORY.
+     */
+    public static final String PARAMETER_INTERNAL_DIRECTORY = "internal_directory";
 
 	private InputPort fileInputPort = getInputPorts().createPort("file");
 
-	public ZippedFileIterator(OperatorDescription description) {
+    /**
+     * Instantiates a new Zipped file iterator.
+     *
+     * @param description the description
+     */
+    public ZippedFileIterator(OperatorDescription description) {
 		super(description);
 
 		fileInputPort.addPrecondition(new SimplePrecondition(fileInputPort, new MetaData(FileObject.class)) {

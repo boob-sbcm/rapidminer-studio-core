@@ -26,16 +26,21 @@
  */
 package de.bwaldvogel.liblinear;
 
+/**
+ * The type Array sorter.
+ */
 final class ArraySorter {
 
-	/**
-	 * <p>
-	 * Sorts the specified array of doubles into <b>descending</b> order.
-	 * </p>
-	 *
-	 * <em>This code is borrowed from Sun's JDK 1.6.0.07</em>
-	 */
-	public static void reversedMergesort(double[] a) {
+    /**
+     * <p>
+     * Sorts the specified array of doubles into <b>descending</b> order.
+     * </p>
+     * <p>
+     * <em>This code is borrowed from Sun's JDK 1.6.0.07</em>
+     *
+     * @param a the a
+     */
+    public static void reversedMergesort(double[] a) {
 		reversedMergesort(a, 0, a.length);
 	}
 

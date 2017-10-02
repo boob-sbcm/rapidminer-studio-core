@@ -40,21 +40,26 @@ import java.util.List;
  * {@link BinominalClassificationPerformanceEvaluator}. You can even simply write your own
  * performance measure and calculate it with the operator {@link UserBasedPerformanceEvaluator}.
  * </p>
- * 
+ * <p>
  * <p>
  * The operator expects a test {@link ExampleSet} as input, whose elements have both true and
  * predicted labels, and delivers as output a list of most common performance values for the
  * provided learning task type (regression or (binary) classification. If an input performance
  * vector was already given, this is used for keeping the performance values.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimplePerformanceEvaluator extends AbstractPerformanceEvaluator {
 
 	private ExampleSet testSet = null;
 
-	public SimplePerformanceEvaluator(OperatorDescription description) {
+    /**
+     * Instantiates a new Simple performance evaluator.
+     *
+     * @param description the description
+     */
+    public SimplePerformanceEvaluator(OperatorDescription description) {
 		super(description);
 	}
 

@@ -19,7 +19,6 @@
 package com.rapidminer.operator.learner.tree.criterions;
 
 
-
 /**
  * The gain ratio divides the information gain by the prior split info in order to prevent id-like
  * attributes to be selected as the best.
@@ -30,9 +29,17 @@ public class GainRatioColumnCriterion extends InfoGainColumnCriterion {
 
 	private static double LOG_FACTOR = 1d / Math.log(2);
 
-	public GainRatioColumnCriterion() {}
+    /**
+     * Instantiates a new Gain ratio column criterion.
+     */
+    public GainRatioColumnCriterion() {}
 
-	public GainRatioColumnCriterion(double minimalGain) {
+    /**
+     * Instantiates a new Gain ratio column criterion.
+     *
+     * @param minimalGain the minimal gain
+     */
+    public GainRatioColumnCriterion(double minimalGain) {
 		super(minimalGain);
 	}
 
@@ -53,7 +60,13 @@ public class GainRatioColumnCriterion extends InfoGainColumnCriterion {
 		}
 	}
 
-	protected double getSplitInfo(double[][] weightCounts) {
+    /**
+     * Gets split info.
+     *
+     * @param weightCounts the weight counts
+     * @return the split info
+     */
+    protected double getSplitInfo(double[][] weightCounts) {
 		double[] splitCounts = new double[weightCounts.length];
 		for (int v = 0; v < weightCounts.length; v++) {
 			for (int l = 0; l < weightCounts[v].length; l++) {
@@ -76,7 +89,14 @@ public class GainRatioColumnCriterion extends InfoGainColumnCriterion {
 		return splitInfo;
 	}
 
-	protected double getSplitInfo(double[] partitionWeights, double totalWeight) {
+    /**
+     * Gets split info.
+     *
+     * @param partitionWeights the partition weights
+     * @param totalWeight      the total weight
+     * @return the split info
+     */
+    protected double getSplitInfo(double[] partitionWeights, double totalWeight) {
 		double splitInfo = 0;
 		for (double partitionWeight : partitionWeights) {
 			if (partitionWeight > 0) {

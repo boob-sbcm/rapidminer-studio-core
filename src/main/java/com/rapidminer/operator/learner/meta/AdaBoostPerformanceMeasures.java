@@ -28,18 +28,20 @@ import java.util.Iterator;
 
 /**
  * Helper class for the internal AdaBoost implementation.
- * 
+ *
  * @author Martin Scholz ingomierswa Exp $
  */
 public class AdaBoostPerformanceMeasures extends WeightedPerformanceMeasures {
 
 	private final double errorRate;
 
-	/**
-	 * @param exampleSet
-	 * @throws OperatorException
-	 */
-	public AdaBoostPerformanceMeasures(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Instantiates a new Ada boost performance measures.
+     *
+     * @param exampleSet the example set
+     * @throws OperatorException the operator exception
+     */
+    public AdaBoostPerformanceMeasures(ExampleSet exampleSet) throws OperatorException {
 		super(exampleSet);
 		int num = this.getNumberOfLabels();
 		double correct = 0;
@@ -49,21 +51,25 @@ public class AdaBoostPerformanceMeasures extends WeightedPerformanceMeasures {
 		this.errorRate = Math.max(0, Math.min(1, 1.0d - correct));
 	}
 
-	/** @return the error rate computed by the constructor */
-	public double getErrorRate() {
+    /**
+     * Gets error rate.
+     *
+     * @return the error rate computed by the constructor
+     */
+    public double getErrorRate() {
 		return this.errorRate;
 	}
 
-	/**
-	 * This method reweights the example set with respect to the performance measures. Please note
-	 * that the weights will not be reset at any time, because they continuously change from one
-	 * iteration to the next.
-	 * 
-	 * @param exampleSet
-	 *            <code>ExampleSet</code> to be reweighted
-	 * @return the total weight after reweighting.
-	 */
-	public double reweightExamples(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * This method reweights the example set with respect to the performance measures. Please note
+     * that the weights will not be reset at any time, because they continuously change from one
+     * iteration to the next.
+     *
+     * @param exampleSet <code>ExampleSet</code> to be reweighted
+     * @return the total weight after reweighting.
+     * @throws OperatorException the operator exception
+     */
+    public double reweightExamples(ExampleSet exampleSet) throws OperatorException {
 		double reweightRightPred, reweightWrongPred;
 		final double err = this.getErrorRate();
 		if (err == 0 || err == 1) {

@@ -65,7 +65,7 @@ import com.rapidminer.tools.Ontology;
  * performance values according to a list of performance criteria that it calculates. If an input
  * performance vector was already given, this is used for keeping the performance values.
  * </p>
- *
+ * <p>
  * <p>
  * All of the performance criteria can be switched on using boolean parameters. Their values can be
  * queried by a {@link com.rapidminer.operator.visualization.ProcessLogOperator} using the same
@@ -74,7 +74,7 @@ import com.rapidminer.tools.Ontology;
  * setups. If no other main criterion was selected, the first criterion in the resulting performance
  * vector will be assumed to be the main criterion.
  * </p>
- *
+ * <p>
  * <p>
  * The resulting performance vectors are usually compared with a standard performance comparator
  * which only compares the fitness values of the main criterion. Other implementations than this
@@ -89,20 +89,22 @@ import com.rapidminer.tools.Ontology;
  */
 public abstract class AbstractPerformanceEvaluator extends Operator implements CapabilityProvider {
 
-	/** The parameter name for &quot;The criterion used for comparing performance vectors.&quot; */
-	public static final String PARAMETER_MAIN_CRITERION = "main_criterion";
+    /**
+     * The parameter name for &quot;The criterion used for comparing performance vectors.&quot;
+     */
+    public static final String PARAMETER_MAIN_CRITERION = "main_criterion";
 
-	/**
-	 * The parameter name for &quot;If set to true, examples with undefined labels are
-	 * skipped.&quot;
-	 */
-	public static final String PARAMETER_SKIP_UNDEFINED_LABELS = "skip_undefined_labels";
+    /**
+     * The parameter name for &quot;If set to true, examples with undefined labels are
+     * skipped.&quot;
+     */
+    public static final String PARAMETER_SKIP_UNDEFINED_LABELS = "skip_undefined_labels";
 
-	/**
-	 * The parameter name for &quot;Fully qualified classname of the PerformanceComparator
-	 * implementation.&quot;
-	 */
-	public static final String PARAMETER_COMPARATOR_CLASS = "comparator_class";
+    /**
+     * The parameter name for &quot;Fully qualified classname of the PerformanceComparator
+     * implementation.&quot;
+     */
+    public static final String PARAMETER_COMPARATOR_CLASS = "comparator_class";
 
 	/** Indicates if example weights should be used for performance calculations. */
 	private static final String PARAMETER_USE_EXAMPLE_WEIGHTS = "use_example_weights";
@@ -117,7 +119,12 @@ public abstract class AbstractPerformanceEvaluator extends Operator implements C
 	 */
 	private PerformanceVector currentPerformanceVector = null;
 
-	public AbstractPerformanceEvaluator(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract performance evaluator.
+     *
+     * @param description the description
+     */
+    public AbstractPerformanceEvaluator(OperatorDescription description) {
 		super(description);
 
 		// exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput,
@@ -174,36 +181,47 @@ public abstract class AbstractPerformanceEvaluator extends Operator implements C
 		});
 	}
 
-	/**
-	 * Returns true iff this operator can evaluate labels of the given value type.
-	 *
-	 * @see Ontology.ATTRIBUTE_VALUE_TYPE
-	 */
-	protected abstract boolean canEvaluate(int valueType);
+    /**
+     * Returns true iff this operator can evaluate labels of the given value type.
+     *
+     * @param valueType the value type
+     * @return the boolean
+     * @see Ontology.ATTRIBUTE_VALUE_TYPE
+     */
+    protected abstract boolean canEvaluate(int valueType);
 
-	/**
-	 * Delivers the list of criteria which is able for this operator. Please note that all criteria
-	 * in the list must be freshly instantiated since no copy is created in different runs of this
-	 * operator. This is important in order to not mess up the results.
-	 *
-	 * This method must not return null but should return an empty list in this case.
-	 *
-	 * ATTENTION! This method is called during the creation of parameters. Do not try to get a
-	 * parameter value inside this method, since this will create an infinite loop!
-	 */
-	public abstract List<PerformanceCriterion> getCriteria();
+    /**
+     * Delivers the list of criteria which is able for this operator. Please note that all criteria
+     * in the list must be freshly instantiated since no copy is created in different runs of this
+     * operator. This is important in order to not mess up the results.
+     * <p>
+     * This method must not return null but should return an empty list in this case.
+     * <p>
+     * ATTENTION! This method is called during the creation of parameters. Do not try to get a
+     * parameter value inside this method, since this will create an infinite loop!
+     *
+     * @return the criteria
+     */
+    public abstract List<PerformanceCriterion> getCriteria();
 
-	/**
-	 * Delivers class weights for performance criteria which implement the
-	 * {@link ClassWeightedPerformance} interface. Might return null (for example for regression
-	 * task performance evaluators).
-	 *
-	 * @throws UserError
-	 */
-	protected abstract double[] getClassWeights(Attribute label) throws UserError;
+    /**
+     * Delivers class weights for performance criteria which implement the
+     * {@link ClassWeightedPerformance} interface. Might return null (for example for regression
+     * task performance evaluators).
+     *
+     * @param label the label
+     * @return the double [ ]
+     * @throws UserError the user error
+     */
+    protected abstract double[] getClassWeights(Attribute label) throws UserError;
 
-	/** Performs a check if this operator can be used for this type of exampel set at all. */
-	protected abstract void checkCompatibility(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Performs a check if this operator can be used for this type of exampel set at all.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     * @throws OperatorException the operator exception
+     */
+    protected abstract void checkCompatibility(ExampleSet exampleSet) throws OperatorException;
 
 	@Override
 	public boolean shouldAutoConnect(OutputPort port) {
@@ -214,32 +232,50 @@ public abstract class AbstractPerformanceEvaluator extends Operator implements C
 		}
 	}
 
-	/**
-	 * This method will be invoked before the actual calculation is started. The default
-	 * implementation does nothing. Subclasses might want to override this method.
-	 */
-	protected void init(ExampleSet exampleSet) {}
+    /**
+     * This method will be invoked before the actual calculation is started. The default
+     * implementation does nothing. Subclasses might want to override this method.
+     *
+     * @param exampleSet the example set
+     */
+    protected void init(ExampleSet exampleSet) {}
 
-	/** Subclasses might override this method and return false. */
-	protected boolean showSkipNaNLabelsParameter() {
+    /**
+     * Subclasses might override this method and return false.  @return the boolean
+     *
+     * @return the boolean
+     */
+    protected boolean showSkipNaNLabelsParameter() {
 		return true;
 	}
 
-	/** Subclasses might override this method and return false. */
-	protected boolean showComparatorParameter() {
+    /**
+     * Subclasses might override this method and return false.  @return the boolean
+     *
+     * @return the boolean
+     */
+    protected boolean showComparatorParameter() {
 		return true;
 	}
 
-	/** Subclasses might override this method and return false. */
-	protected boolean showCriteriaParameter() {
+    /**
+     * Subclasses might override this method and return false.  @return the boolean
+     *
+     * @return the boolean
+     */
+    protected boolean showCriteriaParameter() {
 		return true;
 	}
 
-	/**
-	 * Helper method if this operator is constructed anonymously. Assigns the exampleSet to the
-	 * input and returns the PerformanceVector from the output.
-	 */
-	public PerformanceVector doWork(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Helper method if this operator is constructed anonymously. Assigns the exampleSet to the
+     * input and returns the PerformanceVector from the output.
+     *
+     * @param exampleSet the example set
+     * @return the performance vector
+     * @throws OperatorException the operator exception
+     */
+    public PerformanceVector doWork(ExampleSet exampleSet) throws OperatorException {
 		exampleSetInput.receive(exampleSet);
 		doWork();
 		return performanceOutput.getData(PerformanceVector.class);
@@ -375,11 +411,16 @@ public abstract class AbstractPerformanceEvaluator extends Operator implements C
 		}
 	}
 
-	/**
-	 * Evaluates the given test set. All {@link PerformanceCriterion} instances in the given
-	 * {@link PerformanceVector} must be subclasses of {@link MeasuredPerformance}.
-	 */
-	protected PerformanceVector evaluate(ExampleSet testSet, PerformanceVector inputPerformance) throws OperatorException {
+    /**
+     * Evaluates the given test set. All {@link PerformanceCriterion} instances in the given
+     * {@link PerformanceVector} must be subclasses of {@link MeasuredPerformance}.
+     *
+     * @param testSet          the test set
+     * @param inputPerformance the input performance
+     * @return the performance vector
+     * @throws OperatorException the operator exception
+     */
+    protected PerformanceVector evaluate(ExampleSet testSet, PerformanceVector inputPerformance) throws OperatorException {
 		List<PerformanceCriterion> givenCriteria = new LinkedList<PerformanceCriterion>();
 		this.currentPerformanceVector = initialisePerformanceVector(testSet, inputPerformance, givenCriteria);
 
@@ -392,14 +433,19 @@ public abstract class AbstractPerformanceEvaluator extends Operator implements C
 		return currentPerformanceVector;
 	}
 
-	/**
-	 * Static version of {@link #evaluate(ExampleSet,PerformanceVector)}. This method was introduced
-	 * to enable testing of the method.
-	 *
-	 * @param evaluator
-	 *            Ususally this. May be null for testing. Only needed for exception.
-	 */
-	public static void evaluate(AbstractPerformanceEvaluator evaluator, ExampleSet testSet,
+    /**
+     * Static version of {@link #evaluate(ExampleSet, PerformanceVector)}. This method was introduced
+     * to enable testing of the method.
+     *
+     * @param evaluator           Ususally this. May be null for testing. Only needed for exception.
+     * @param testSet             the test set
+     * @param performanceCriteria the performance criteria
+     * @param givenCriteria       the given criteria
+     * @param skipUndefinedLabels the skip undefined labels
+     * @param useExampleWeights   the use example weights
+     * @throws OperatorException the operator exception
+     */
+    public static void evaluate(AbstractPerformanceEvaluator evaluator, ExampleSet testSet,
 			PerformanceVector performanceCriteria, List<PerformanceCriterion> givenCriteria, boolean skipUndefinedLabels,
 			boolean useExampleWeights) throws OperatorException {
 		if (testSet.getAttributes().getLabel() == null) {

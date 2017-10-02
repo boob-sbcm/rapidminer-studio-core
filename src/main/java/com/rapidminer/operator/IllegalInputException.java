@@ -21,7 +21,7 @@ package com.rapidminer.operator;
 /**
  * Will be thrown if an operator needs an input type which is not provided or gets the wrong input.
  * Should be thrown during validation, usually in the method {@link OperatorChain#checkIO(Class[])}.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer ingomierswa Exp $
  */
 public class IllegalInputException extends Exception {
@@ -30,23 +30,47 @@ public class IllegalInputException extends Exception {
 
 	private transient final Operator operator;
 
-	public IllegalInputException(Operator operator, Operator innerOperator, Class<?> clazz) {
+    /**
+     * Instantiates a new Illegal input exception.
+     *
+     * @param operator      the operator
+     * @param innerOperator the inner operator
+     * @param clazz         the clazz
+     */
+    public IllegalInputException(Operator operator, Operator innerOperator, Class<?> clazz) {
 		super(operator.getName() + ": Inner operator " + innerOperator.getName() + " does not provide "
 				+ clazz.getSimpleName());
 		this.operator = operator;
 	}
 
-	public IllegalInputException(Operator operator, Class<?> clazz) {
+    /**
+     * Instantiates a new Illegal input exception.
+     *
+     * @param operator the operator
+     * @param clazz    the clazz
+     */
+    public IllegalInputException(Operator operator, Class<?> clazz) {
 		super(operator.getName() + ": Missing input: " + clazz.getSimpleName());
 		this.operator = operator;
 	}
 
-	public IllegalInputException(Operator operator, String msg) {
+    /**
+     * Instantiates a new Illegal input exception.
+     *
+     * @param operator the operator
+     * @param msg      the msg
+     */
+    public IllegalInputException(Operator operator, String msg) {
 		super(msg);
 		this.operator = operator;
 	}
 
-	public Operator getOperator() {
+    /**
+     * Gets operator.
+     *
+     * @return the operator
+     */
+    public Operator getOperator() {
 		return operator;
 	}
 }

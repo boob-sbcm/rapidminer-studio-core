@@ -42,63 +42,83 @@ import com.rapidminer.tools.math.optimization.ec.es.ESOptimization;
  * This operator determines a logistic regression model.
  *
  * @author Ingo Mierswa, Tobias Malbrecht
- *
  * @deprecated This learner is not used anymore.
  */
 @Deprecated
 public class LogisticRegression extends AbstractLearner {
 
-	/** The parameter name for &quot;Determines whether to include an intercept.&quot; */
-	public static final String PARAMETER_ADD_INTERCEPT = "add_intercept";
+    /**
+     * The parameter name for &quot;Determines whether to include an intercept.&quot;
+     */
+    public static final String PARAMETER_ADD_INTERCEPT = "add_intercept";
 
-	/** The parameter name for &quot;Determines whether to return the performance.&quot; */
-	public static final String PARAMETER_RETURN_PERFORMANCE = "return_model_performance";
+    /**
+     * The parameter name for &quot;Determines whether to return the performance.&quot;
+     */
+    public static final String PARAMETER_RETURN_PERFORMANCE = "return_model_performance";
 
-	/** The parameter name for &quot;The type of start population initialization.&quot; */
-	public static final String PARAMETER_START_POPULATION_TYPE = "start_population_type";
+    /**
+     * The parameter name for &quot;The type of start population initialization.&quot;
+     */
+    public static final String PARAMETER_START_POPULATION_TYPE = "start_population_type";
 
-	/** The parameter name for &quot;Stop after this many evaluations&quot; */
-	public static final String PARAMETER_MAX_GENERATIONS = "max_generations";
+    /**
+     * The parameter name for &quot;Stop after this many evaluations&quot;
+     */
+    public static final String PARAMETER_MAX_GENERATIONS = "max_generations";
 
-	/**
-	 * The parameter name for &quot;Stop after this number of generations without improvement (-1:
-	 * optimize until max_iterations).&quot;
-	 */
-	public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
+    /**
+     * The parameter name for &quot;Stop after this number of generations without improvement (-1:
+     * optimize until max_iterations).&quot;
+     */
+    public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
 
-	/** The parameter name for &quot;The population size (-1: number of examples)&quot; */
-	public static final String PARAMETER_POPULATION_SIZE = "population_size";
+    /**
+     * The parameter name for &quot;The population size (-1: number of examples)&quot;
+     */
+    public static final String PARAMETER_POPULATION_SIZE = "population_size";
 
-	/**
-	 * The parameter name for &quot;The fraction of the population used for tournament
-	 * selection.&quot;
-	 */
-	public static final String PARAMETER_TOURNAMENT_FRACTION = "tournament_fraction";
+    /**
+     * The parameter name for &quot;The fraction of the population used for tournament
+     * selection.&quot;
+     */
+    public static final String PARAMETER_TOURNAMENT_FRACTION = "tournament_fraction";
 
-	/**
-	 * The parameter name for &quot;Indicates if the best individual should survive (elititst
-	 * selection).&quot;
-	 */
-	public static final String PARAMETER_KEEP_BEST = "keep_best";
+    /**
+     * The parameter name for &quot;Indicates if the best individual should survive (elititst
+     * selection).&quot;
+     */
+    public static final String PARAMETER_KEEP_BEST = "keep_best";
 
-	/** The parameter name for &quot;The type of the mutation operator.&quot; */
-	public static final String PARAMETER_MUTATION_TYPE = "mutation_type";
+    /**
+     * The parameter name for &quot;The type of the mutation operator.&quot;
+     */
+    public static final String PARAMETER_MUTATION_TYPE = "mutation_type";
 
-	/** The parameter name for &quot;The type of the selection operator.&quot; */
-	public static final String PARAMETER_SELECTION_TYPE = "selection_type";
+    /**
+     * The parameter name for &quot;The type of the selection operator.&quot;
+     */
+    public static final String PARAMETER_SELECTION_TYPE = "selection_type";
 
-	/** The parameter name for &quot;The probability for crossovers.&quot; */
-	public static final String PARAMETER_CROSSOVER_PROB = "crossover_prob";
+    /**
+     * The parameter name for &quot;The probability for crossovers.&quot;
+     */
+    public static final String PARAMETER_CROSSOVER_PROB = "crossover_prob";
 
-	/**
-	 * The parameter name for &quot;Indicates if a dialog with a convergence plot should be
-	 * drawn.&quot;
-	 */
-	public static final String PARAMETER_SHOW_CONVERGENCE_PLOT = "show_convergence_plot";
+    /**
+     * The parameter name for &quot;Indicates if a dialog with a convergence plot should be
+     * drawn.&quot;
+     */
+    public static final String PARAMETER_SHOW_CONVERGENCE_PLOT = "show_convergence_plot";
 
 	private PerformanceVector estimatedPerformance;
 
-	public LogisticRegression(OperatorDescription description) {
+    /**
+     * Instantiates a new Logistic regression.
+     *
+     * @param description the description
+     */
+    public LogisticRegression(OperatorDescription description) {
 		super(description);
 	}
 

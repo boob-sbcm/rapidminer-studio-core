@@ -31,14 +31,20 @@ import javax.swing.Icon;
 
 
 /**
- * 
+ * The type Process parent button model.
+ *
  * @author Simon Fischer
  */
 public class ProcessParentButtonModel implements ParentButtonModel<Operator> {
 
 	private Process process;
 
-	public ProcessParentButtonModel(Process process) {
+    /**
+     * Instantiates a new Process parent button model.
+     *
+     * @param process the process
+     */
+    public ProcessParentButtonModel(Process process) {
 		this.process = process;
 	}
 
@@ -87,7 +93,12 @@ public class ProcessParentButtonModel implements ParentButtonModel<Operator> {
 		return node.getName();
 	}
 
-	public void setProcess(Process process) {
+    /**
+     * Sets process.
+     *
+     * @param process the process
+     */
+    public void setProcess(Process process) {
 		this.process = process;
 	}
 

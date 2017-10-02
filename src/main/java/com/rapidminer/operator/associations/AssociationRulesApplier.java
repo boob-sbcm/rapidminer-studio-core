@@ -55,33 +55,61 @@ import java.util.Map;
  * This operator first creates for every given association rule an attribute. Then it checks for
  * every examples if the rule is applicable for this examples. If it is, the attribute of this rule
  * is set to true, otherwise false.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class AssociationRulesApplier extends Operator {
 
-	public static final String PARAMETER_POSITIVE_VALUE = "positive_value";
-	public static final String PARAMETER_CONFIDENCE_AGGREGATION = "confidence_aggregation_method";
+    /**
+     * The constant PARAMETER_POSITIVE_VALUE.
+     */
+    public static final String PARAMETER_POSITIVE_VALUE = "positive_value";
+    /**
+     * The constant PARAMETER_CONFIDENCE_AGGREGATION.
+     */
+    public static final String PARAMETER_CONFIDENCE_AGGREGATION = "confidence_aggregation_method";
 
-	public static final String[] AGGREGATION_METHOD = new String[] { "binary", "aggregated confidence",
+    /**
+     * The constant AGGREGATION_METHOD.
+     */
+    public static final String[] AGGREGATION_METHOD = new String[] { "binary", "aggregated confidence",
 			"aggregated conviction", "aggregated LaPlace", "aggregated gain", "aggregated lift" };
-	public static final int BINARY = 0;
-	public static final int MAX_CONFIDENCE = 1;
-	public static final int MAX_CONVICTION = 2;
-	public static final int MAX_LA_PLACE = 3;
-	public static final int MAX_GAIN = 4;
-	public static final int MAX_LIFT = 5;
+    /**
+     * The constant BINARY.
+     */
+    public static final int BINARY = 0;
+    /**
+     * The constant MAX_CONFIDENCE.
+     */
+    public static final int MAX_CONFIDENCE = 1;
+    /**
+     * The constant MAX_CONVICTION.
+     */
+    public static final int MAX_CONVICTION = 2;
+    /**
+     * The constant MAX_LA_PLACE.
+     */
+    public static final int MAX_LA_PLACE = 3;
+    /**
+     * The constant MAX_GAIN.
+     */
+    public static final int MAX_GAIN = 4;
+    /**
+     * The constant MAX_LIFT.
+     */
+    public static final int MAX_LIFT = 5;
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private InputPort associationRulesInput = getInputPorts().createPort("association rules", AssociationRules.class);
 
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	/**
-	 * @param description
-	 */
-	public AssociationRulesApplier(OperatorDescription description) {
+    /**
+     * Instantiates a new Association rules applier.
+     *
+     * @param description the description
+     */
+    public AssociationRulesApplier(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, exampleSetOutput, SetRelation.SUPERSET));

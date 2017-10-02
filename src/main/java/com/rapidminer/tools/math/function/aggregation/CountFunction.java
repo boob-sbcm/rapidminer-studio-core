@@ -25,19 +25,29 @@ import com.rapidminer.tools.Ontology;
 
 /**
  * Calculates the number of values.
- * 
+ *
  * @author Tobias Malbrecht, Ingo Mierswa
- * 
  */
 public class CountFunction extends AbstractAggregationFunction {
 
-	double totalWeightSum;
+    /**
+     * The Total weight sum.
+     */
+    double totalWeightSum;
 
-	public CountFunction() {
+    /**
+     * Instantiates a new Count function.
+     */
+    public CountFunction() {
 		this(DEFAULT_IGNORE_MISSINGS);
 	}
 
-	public CountFunction(Boolean ignoreMissings) {
+    /**
+     * Instantiates a new Count function.
+     *
+     * @param ignoreMissings the ignore missings
+     */
+    public CountFunction(Boolean ignoreMissings) {
 		super(ignoreMissings);
 	}
 

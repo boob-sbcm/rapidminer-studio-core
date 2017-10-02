@@ -39,9 +39,19 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 
+/**
+ * The type Train.
+ */
 public class Train {
 
-	public static void main(String[] args) throws IOException, InvalidInputDataException {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws IOException               the io exception
+     * @throws InvalidInputDataException the invalid input data exception
+     */
+    public static void main(String[] args) throws IOException, InvalidInputDataException {
 		new Train().run(args);
 	}
 
@@ -133,19 +143,39 @@ public class Train {
 		System.exit(1);
 	}
 
-	Problem getProblem() {
+    /**
+     * Gets problem.
+     *
+     * @return the problem
+     */
+    Problem getProblem() {
 		return prob;
 	}
 
-	double getBias() {
+    /**
+     * Gets bias.
+     *
+     * @return the bias
+     */
+    double getBias() {
 		return bias;
 	}
 
-	Parameter getParameter() {
+    /**
+     * Gets parameter.
+     *
+     * @return the parameter
+     */
+    Parameter getParameter() {
 		return param;
 	}
 
-	void parse_command_line(String argv[]) {
+    /**
+     * Parse command line.
+     *
+     * @param argv the argv
+     */
+    void parse_command_line(String argv[]) {
 		int i;
 
 		// eps: see setting below
@@ -247,17 +277,16 @@ public class Train {
 		}
 	}
 
-	/**
-	 * reads a problem from LibSVM format
-	 * 
-	 * @param file
-	 *            the SVM file
-	 * @throws IOException
-	 *             obviously in case of any I/O exception ;)
-	 * @throws InvalidInputDataException
-	 *             if the input file is not correctly formatted
-	 */
-	public static Problem readProblem(File file, double bias) throws IOException, InvalidInputDataException {
+    /**
+     * reads a problem from LibSVM format
+     *
+     * @param file the SVM file
+     * @param bias the bias
+     * @return the problem
+     * @throws IOException               obviously in case of any I/O exception ;)
+     * @throws InvalidInputDataException if the input file is not correctly formatted
+     */
+    public static Problem readProblem(File file, double bias) throws IOException, InvalidInputDataException {
 		BufferedReader fp = new BufferedReader(new FileReader(file));
 		List<Double> vy = new ArrayList<Double>();
 		List<Feature[]> vx = new ArrayList<Feature[]>();
@@ -335,7 +364,14 @@ public class Train {
 		}
 	}
 
-	void readProblem(String filename) throws IOException, InvalidInputDataException {
+    /**
+     * Read problem.
+     *
+     * @param filename the filename
+     * @throws IOException               the io exception
+     * @throws InvalidInputDataException the invalid input data exception
+     */
+    void readProblem(String filename) throws IOException, InvalidInputDataException {
 		prob = Train.readProblem(new File(filename), bias);
 	}
 

@@ -33,15 +33,22 @@ import java.util.List;
 
 /**
  * This operator stores IOObjects at a location in a repository.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class RepositoryStorer extends AbstractWriter<IOObject> {
 
-	public static final String PARAMETER_REPOSITORY_ENTRY = "repository_entry";
+    /**
+     * The constant PARAMETER_REPOSITORY_ENTRY.
+     */
+    public static final String PARAMETER_REPOSITORY_ENTRY = "repository_entry";
 
-	public RepositoryStorer(OperatorDescription description) {
+    /**
+     * Instantiates a new Repository storer.
+     *
+     * @param description the description
+     */
+    public RepositoryStorer(OperatorDescription description) {
 		super(description, IOObject.class);
 	}
 

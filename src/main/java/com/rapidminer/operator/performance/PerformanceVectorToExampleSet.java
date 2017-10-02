@@ -56,7 +56,12 @@ public class PerformanceVectorToExampleSet extends Operator {
 	private final String ATTRIBUTE_STANDARD_DEVIATION = "Standard Deviation";
 	private final String ATTRIBUTE_VARIANCE = "Variance";
 
-	public PerformanceVectorToExampleSet(OperatorDescription description) {
+    /**
+     * Instantiates a new Performance vector to example set.
+     *
+     * @param description the description
+     */
+    public PerformanceVectorToExampleSet(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addPassThroughRule(performanceInput, performanceOutput);

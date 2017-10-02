@@ -36,6 +36,7 @@ import com.rapidminer.operator.learner.meta.MetaModel;
 
 
 /**
+ * The type Collection tree cell renderer.
  *
  * @author Sebastian Land
  */
@@ -48,7 +49,12 @@ public class CollectionTreeCellRenderer extends DefaultTreeCellRenderer {
 
 	private final Map<IOObject, String> childNames = new HashMap<IOObject, String>();
 
-	public CollectionTreeCellRenderer(IOObject collection) {
+    /**
+     * Instantiates a new Collection tree cell renderer.
+     *
+     * @param collection the collection
+     */
+    public CollectionTreeCellRenderer(IOObject collection) {
 		if (collection instanceof MetaModel) {
 			MetaModel mm = (MetaModel) collection;
 			for (int i = 0; i < mm.getModels().size(); i++) {

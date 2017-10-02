@@ -62,7 +62,10 @@ public class RepositoryBrowser extends JPanel implements Dockable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final Action ADD_REPOSITORY_ACTION = new ResourceAction(true, "add_repository") {
+    /**
+     * The constant ADD_REPOSITORY_ACTION.
+     */
+    public static final Action ADD_REPOSITORY_ACTION = new ResourceAction(true, "add_repository") {
 
 		private static final long serialVersionUID = 1L;
 
@@ -82,16 +85,19 @@ public class RepositoryBrowser extends JPanel implements Dockable {
 
 	private final RepositoryTree tree;
 
-	public RepositoryBrowser() {
+    /**
+     * Instantiates a new Repository browser.
+     */
+    public RepositoryBrowser() {
 		this(null);
 	}
 
-	/**
-	 * @param dragListener
-	 *            registers a dragListener at the repository tree transferhandler. The listener is
-	 *            informed when a drag starts and a drag ends.
-	 */
-	public RepositoryBrowser(DragListener dragListener) {
+    /**
+     * Instantiates a new Repository browser.
+     *
+     * @param dragListener registers a dragListener at the repository tree transferhandler. The listener is            informed when a drag starts and a drag ends.
+     */
+    public RepositoryBrowser(DragListener dragListener) {
 		tree = new RepositoryTree();
 		if (dragListener != null) {
 			((AbstractPatchedTransferHandler) tree.getTransferHandler()).addDragListener(dragListener);
@@ -161,17 +167,20 @@ public class RepositoryBrowser extends JPanel implements Dockable {
 		NewRepositoryDialog.createNew();
 	}
 
-	/**
-	 * Returns the {@link RepositoryTree} managed by this browser.
-	 *
-	 * @return the repository tree
-	 * @since 7.0.0
-	 */
-	public RepositoryTree getRepositoryTree() {
+    /**
+     * Returns the {@link RepositoryTree} managed by this browser.
+     *
+     * @return the repository tree
+     * @since 7.0.0
+     */
+    public RepositoryTree getRepositoryTree() {
 		return tree;
 	}
 
-	public static final String REPOSITORY_BROWSER_DOCK_KEY = "repository_browser";
+    /**
+     * The constant REPOSITORY_BROWSER_DOCK_KEY.
+     */
+    public static final String REPOSITORY_BROWSER_DOCK_KEY = "repository_browser";
 	private final DockKey DOCK_KEY = new ResourceDockKey(REPOSITORY_BROWSER_DOCK_KEY);
 
 	{
@@ -188,10 +197,12 @@ public class RepositoryBrowser extends JPanel implements Dockable {
 		return DOCK_KEY;
 	}
 
-	/**
-	 * @param storedRepositoryLocation
-	 */
-	public void expandToRepositoryLocation(RepositoryLocation storedRepositoryLocation) {
+    /**
+     * Expand to repository location.
+     *
+     * @param storedRepositoryLocation the stored repository location
+     */
+    public void expandToRepositoryLocation(RepositoryLocation storedRepositoryLocation) {
 		tree.expandAndSelectIfExists(storedRepositoryLocation);
 	}
 }

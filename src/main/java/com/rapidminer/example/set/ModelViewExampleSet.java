@@ -46,26 +46,28 @@ public class ModelViewExampleSet extends AbstractExampleSet {
 
 	private Attributes attributes;
 
-	/**
-	 * @deprecated use static creation method {@link #create(ExampleSet, ViewModel)} instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Model view example set.
+     *
+     * @param parent the parent
+     * @param model  the model
+     * @deprecated use static creation method {@link #create(ExampleSet, ViewModel)} instead
+     */
+    @Deprecated
 	public ModelViewExampleSet(ExampleSet parent, ViewModel model) {
 		this.parent = (ExampleSet) parent.clone();
 		replaceAttributes(this.parent, model.getTargetAttributes(parent));
 	}
 
-	/**
-	 * Creates a new example set based on parent that has the attributes specified by the model.
-	 *
-	 * @param parent
-	 *            the example set from which to create the new one
-	 * @param model
-	 *            the model supplying the new attributes
-	 * @return an example set with attributes provided by the model
-	 * @since 7.5.1
-	 */
-	public static ExampleSet create(ExampleSet parent, ViewModel model) {
+    /**
+     * Creates a new example set based on parent that has the attributes specified by the model.
+     *
+     * @param parent the example set from which to create the new one
+     * @param model  the model supplying the new attributes
+     * @return an example set with attributes provided by the model
+     * @since 7.5.1
+     */
+    public static ExampleSet create(ExampleSet parent, ViewModel model) {
 		ExampleSet newSet = (ExampleSet) parent.clone();
 		replaceAttributes(newSet, model.getTargetAttributes(parent));
 		return newSet;
@@ -84,8 +86,12 @@ public class ModelViewExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	/** Clone constructor. */
-	public ModelViewExampleSet(ModelViewExampleSet other) {
+    /**
+     * Clone constructor.  @param other the other
+     *
+     * @param other the other
+     */
+    public ModelViewExampleSet(ModelViewExampleSet other) {
 		this.parent = (ExampleSet) other.parent.clone();
 	}
 

@@ -21,31 +21,51 @@ package com.rapidminer.gui.new_plotter;
 /**
  * An exception for errors which occur in the plotting framework. Don't use this class directly, but
  * use its subclasses to differentiate between plottime and configuration time errors.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public abstract class ChartCreationException extends Exception {
 
 	private static final long serialVersionUID = 1;
 	private ConfigurationChangeResponse changeResponse;
 
-	public ChartCreationException(ConfigurationChangeResponse changeResponse) {
+    /**
+     * Instantiates a new Chart creation exception.
+     *
+     * @param changeResponse the change response
+     */
+    public ChartCreationException(ConfigurationChangeResponse changeResponse) {
 		this.changeResponse = changeResponse;
 	}
 
-	public ChartCreationException(PlotConfigurationError error) {
+    /**
+     * Instantiates a new Chart creation exception.
+     *
+     * @param error the error
+     */
+    public ChartCreationException(PlotConfigurationError error) {
 		changeResponse = new ConfigurationChangeResponse();
 		changeResponse.addError(error);
 	}
 
-	public ChartCreationException(String string, Object... params) {
+    /**
+     * Instantiates a new Chart creation exception.
+     *
+     * @param string the string
+     * @param params the params
+     */
+    public ChartCreationException(String string, Object... params) {
 		PlotConfigurationError error = new PlotConfigurationError(string, params);
 		changeResponse = new ConfigurationChangeResponse();
 		changeResponse.addError(error);
 	}
 
-	public ConfigurationChangeResponse getResponse() {
+    /**
+     * Gets response.
+     *
+     * @return the response
+     */
+    public ConfigurationChangeResponse getResponse() {
 		return changeResponse;
 	}
 }

@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is att1*att2*att3 + att1*att2 + att2*att2.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class NonLinearFunction extends RegressionFunction {

@@ -20,18 +20,30 @@ package com.rapidminer.operator.learner.functions.kernel.jmysvm.optimizer;
 
 /**
  * A quadratic optimization problem.
- * 
+ *
  * @author Stefan Rueping Exp $
  */
 public class QuadraticProblemSMO extends QuadraticProblem {
 
-	protected double[] sum;
+    /**
+     * The Sum.
+     */
+    protected double[] sum;
 
-	protected double is_zero;
+    /**
+     * The Is zero.
+     */
+    protected double is_zero;
 
-	protected int max_iteration;
+    /**
+     * The Max iteration.
+     */
+    protected int max_iteration;
 
-	public QuadraticProblemSMO() {
+    /**
+     * Instantiates a new Quadratic problem smo.
+     */
+    public QuadraticProblemSMO() {
 		is_zero = 1e-10;
 		max_allowed_error = 1e-3;
 		max_iteration = 10000;
@@ -43,13 +55,29 @@ public class QuadraticProblemSMO extends QuadraticProblem {
 		sum = new double[n];
 	};
 
-	public QuadraticProblemSMO(double is_zero, double max_allowed_error, int max_iteration) {
+    /**
+     * Instantiates a new Quadratic problem smo.
+     *
+     * @param is_zero           the is zero
+     * @param max_allowed_error the max allowed error
+     * @param max_iteration     the max iteration
+     */
+    public QuadraticProblemSMO(double is_zero, double max_allowed_error, int max_iteration) {
 		this.is_zero = is_zero;
 		this.max_allowed_error = max_allowed_error;
 		this.max_iteration = max_iteration;
 	};
 
-	protected final double x2tox1(double x2, boolean id, double A1, double b) {
+    /**
+     * X 2 tox 1 double.
+     *
+     * @param x2 the x 2
+     * @param id the id
+     * @param A1 the a 1
+     * @param b  the b
+     * @return the double
+     */
+    protected final double x2tox1(double x2, boolean id, double A1, double b) {
 		double x1;
 		if (id) {
 			x1 = -x2;
@@ -66,7 +94,16 @@ public class QuadraticProblemSMO extends QuadraticProblem {
 		return x1;
 	};
 
-	protected final double x1tox2(double x1, boolean id, double A2, double b) {
+    /**
+     * X 1 tox 2 double.
+     *
+     * @param x1 the x 1
+     * @param id the id
+     * @param A2 the a 2
+     * @param b  the b
+     * @return the double
+     */
+    protected final double x1tox2(double x1, boolean id, double A2, double b) {
 		double x2;
 		if (id) {
 			x2 = -x1;
@@ -83,7 +120,24 @@ public class QuadraticProblemSMO extends QuadraticProblem {
 		return x2;
 	};
 
-	protected final void simple_solve(int i, int j, double H1, double H2, double c0, double c1, double c2, double A1,
+    /**
+     * Simple solve.
+     *
+     * @param i  the
+     * @param j  the j
+     * @param H1 the h 1
+     * @param H2 the h 2
+     * @param c0 the c 0
+     * @param c1 the c 1
+     * @param c2 the c 2
+     * @param A1 the a 1
+     * @param A2 the a 2
+     * @param l1 the l 1
+     * @param l2 the l 2
+     * @param u1 the u 1
+     * @param u2 the u 2
+     */
+    protected final void simple_solve(int i, int j, double H1, double H2, double c0, double c1, double c2, double A1,
 			double A2, double l1, double l2, double u1, double u2) {
 		double x1 = x[i];
 		double x2 = x[j];
@@ -233,7 +287,14 @@ public class QuadraticProblemSMO extends QuadraticProblem {
 		x[j] = x2;
 	};
 
-	protected final boolean minimize_ij(int i, int j) {
+    /**
+     * Minimize ij boolean.
+     *
+     * @param i the
+     * @param j the j
+     * @return the boolean
+     */
+    protected final boolean minimize_ij(int i, int j) {
 		// minimize xi, xi with simple_solve
 
 		double sum_i; // sum_k Hik x_k

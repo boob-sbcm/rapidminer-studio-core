@@ -25,7 +25,7 @@ import java.io.Serializable;
  * This class computes the contingency matrix of classifiers, supports weighted example sets and
  * contains some convenience methods to query for some evaluation metrics that can directly be
  * computed from this matrix.
- * 
+ *
  * @author Martin Scholz Exp $
  */
 public class ContingencyMatrix implements Serializable {
@@ -40,12 +40,12 @@ public class ContingencyMatrix implements Serializable {
 
 	private final double total;
 
-	/**
-	 * The contigency matrix in the format [true label][predicted label]
-	 * 
-	 * @param contigencyMatrix
-	 */
-	public ContingencyMatrix(double[][] contigencyMatrix) {
+    /**
+     * The contigency matrix in the format [true label][predicted label]
+     *
+     * @param contigencyMatrix the contigency matrix
+     */
+    public ContingencyMatrix(double[][] contigencyMatrix) {
 		this.matrix = new double[contigencyMatrix.length][];
 		for (int i = 0; i < matrix.length; i++) {
 			this.matrix[i] = new double[contigencyMatrix[i].length];
@@ -76,7 +76,12 @@ public class ContingencyMatrix implements Serializable {
 
 	}
 
-	public double[][] getMatrix() {
+    /**
+     * Get matrix double [ ] [ ].
+     *
+     * @return the double [ ] [ ]
+     */
+    public double[][] getMatrix() {
 		double[][] result = new double[this.matrix.length][];
 		for (int i = 0; i < result.length; i++) {
 			result[i] = new double[this.matrix[i].length];
@@ -85,15 +90,30 @@ public class ContingencyMatrix implements Serializable {
 		return result;
 	}
 
-	public int getNumberOfClasses() {
+    /**
+     * Gets number of classes.
+     *
+     * @return the number of classes
+     */
+    public int getNumberOfClasses() {
 		return this.rowSums.length;
 	}
 
-	public int getNumberOfPredictions() {
+    /**
+     * Gets number of predictions.
+     *
+     * @return the number of predictions
+     */
+    public int getNumberOfPredictions() {
 		return this.colSums.length;
 	}
 
-	public double[] getPriors() {
+    /**
+     * Get priors double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getPriors() {
 		double[] priors = new double[rowSums.length];
 		for (int i = 0; i < priors.length; i++) {
 			priors[i] = this.getPrior(i);
@@ -101,23 +121,56 @@ public class ContingencyMatrix implements Serializable {
 		return priors;
 	}
 
-	public double getPrior(int trueLabel) {
+    /**
+     * Gets prior.
+     *
+     * @param trueLabel the true label
+     * @return the prior
+     */
+    public double getPrior(int trueLabel) {
 		return rowSums[trueLabel] / total;
 	}
 
-	public double getCoverage(int predictedLabel) {
+    /**
+     * Gets coverage.
+     *
+     * @param predictedLabel the predicted label
+     * @return the coverage
+     */
+    public double getCoverage(int predictedLabel) {
 		return colSums[predictedLabel] / total;
 	}
 
-	public double getProbability(int trueLabel, int predictedLabel) {
+    /**
+     * Gets probability.
+     *
+     * @param trueLabel      the true label
+     * @param predictedLabel the predicted label
+     * @return the probability
+     */
+    public double getProbability(int trueLabel, int predictedLabel) {
 		return this.matrix[trueLabel][predictedLabel] / total;
 	}
 
-	public double getPrecision(int trueLabel, int predictedLabel) {
+    /**
+     * Gets precision.
+     *
+     * @param trueLabel      the true label
+     * @param predictedLabel the predicted label
+     * @return the precision
+     */
+    public double getPrecision(int trueLabel, int predictedLabel) {
 		return this.getProbability(trueLabel, predictedLabel) / this.getCoverage(predictedLabel);
 	}
 
-	public double getLift(int trueLabel, int predictedLabel) {
+    /**
+     * Gets lift.
+     *
+     * @param trueLabel      the true label
+     * @param predictedLabel the predicted label
+     * @return the lift
+     */
+    public double getLift(int trueLabel, int predictedLabel) {
 		if (this.getCoverage(predictedLabel) <= 0) {
 			return WeightedPerformanceMeasures.RULE_DOES_NOT_APPLY; // isNaN
 		}
@@ -125,7 +178,14 @@ public class ContingencyMatrix implements Serializable {
 		return (this.getPrecision(trueLabel, predictedLabel) / this.getPrior(trueLabel));
 	}
 
-	public double getLiftRatio(int trueLabel, int predictedLabel) {
+    /**
+     * Gets lift ratio.
+     *
+     * @param trueLabel      the true label
+     * @param predictedLabel the predicted label
+     * @return the lift ratio
+     */
+    public double getLiftRatio(int trueLabel, int predictedLabel) {
 		double liftPos = this.getLift(trueLabel, predictedLabel);
 
 		if (Double.isNaN(liftPos) || Double.isInfinite(liftPos)) {
@@ -143,7 +203,13 @@ public class ContingencyMatrix implements Serializable {
 		return (liftPos / liftNeg);
 	}
 
-	public double[] getLiftRatiosForPrediction(int predictedLabel) {
+    /**
+     * Get lift ratios for prediction double [ ].
+     *
+     * @param predictedLabel the predicted label
+     * @return the double [ ]
+     */
+    public double[] getLiftRatiosForPrediction(int predictedLabel) {
 		double[] liftRatios = new double[this.matrix.length];
 		for (int i = 0; i < liftRatios.length; i++) {
 			liftRatios[i] = this.getLiftRatio(i, predictedLabel);
@@ -151,7 +217,12 @@ public class ContingencyMatrix implements Serializable {
 		return liftRatios;
 	}
 
-	// makes sense only for square confusion matrices where
+    /**
+     * Gets accuracy.
+     *
+     * @return the accuracy
+     */
+// makes sense only for square confusion matrices where
 	// the diagonal captures the correct predictions
 	public double getAccuracy() {
 		double sum = 0;
@@ -163,13 +234,23 @@ public class ContingencyMatrix implements Serializable {
 		return (sum / total);
 	}
 
-	// makes sense only for square confusion matrices where
+    /**
+     * Gets error rate.
+     *
+     * @return the error rate
+     */
+// makes sense only for square confusion matrices where
 	// the diagonal captures the correct predictions
 	public double getErrorRate() {
 		return (1.0d - this.getAccuracy());
 	}
 
-	// Returns the total sum of the confusion matrix.
+    /**
+     * Gets total weight.
+     *
+     * @return the total weight
+     */
+// Returns the total sum of the confusion matrix.
 	// Only interesting if the matrix has not been normalized.
 	public double getTotalWeight() {
 		return this.total;

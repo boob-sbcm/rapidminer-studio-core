@@ -24,15 +24,17 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Linear Kernel
- * 
+ *
  * @author Stefan Rueping, Ingo Mierswa
  */
 public class KernelDot extends Kernel {
 
 	private static final long serialVersionUID = -6384697098131949237L;
 
-	/** Class constructor */
-	public KernelDot() {}
+    /**
+     * Class constructor
+     */
+    public KernelDot() {}
 
 	/** Output as String */
 	@Override
@@ -40,13 +42,13 @@ public class KernelDot extends Kernel {
 		return ("linear");
 	}
 
-	/**
-	 * Class constructor
-	 * 
-	 * @param examples
-	 *            Container for the examples.
-	 */
-	public KernelDot(SVMExamples examples, int cacheSize) {
+    /**
+     * Class constructor
+     *
+     * @param examples  Container for the examples.
+     * @param cacheSize the cache size
+     */
+    public KernelDot(SVMExamples examples, int cacheSize) {
 		init(examples, cacheSize);
 	}
 

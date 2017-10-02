@@ -49,7 +49,12 @@ public class ROCViewer extends JPanel implements Renderable, PrintableComponent 
 
 	private String criterionName;
 
-	public ROCViewer(AreaUnderCurve auc) {
+    /**
+     * Instantiates a new Roc viewer.
+     *
+     * @param auc the auc
+     */
+    public ROCViewer(AreaUnderCurve auc) {
 		setLayout(new BorderLayout());
 
 		String message = auc.toString();

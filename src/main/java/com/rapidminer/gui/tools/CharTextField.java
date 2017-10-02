@@ -31,14 +31,17 @@ import javax.swing.event.ChangeListener;
 
 /**
  * A text field which allows to input (only) a single character.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class CharTextField extends JTextField {
 
 	private static final long serialVersionUID = 2226618111016685226L;
 
-	public CharTextField() {
+    /**
+     * Instantiates a new Char text field.
+     */
+    public CharTextField() {
 		super();
 		addKeyListener(new KeyListener() {
 
@@ -75,7 +78,12 @@ public class CharTextField extends JTextField {
 		});
 	}
 
-	public CharTextField(char character) {
+    /**
+     * Instantiates a new Char text field.
+     *
+     * @param character the character
+     */
+    public CharTextField(char character) {
 		this();
 		setCharacter(character);
 	}
@@ -88,20 +96,40 @@ public class CharTextField extends JTextField {
 		selectAll();
 	}
 
-	public void setCharacter(char character) {
+    /**
+     * Sets character.
+     *
+     * @param character the character
+     */
+    public void setCharacter(char character) {
 		super.setText(String.valueOf(character));
 		selectAll();
 	}
 
-	public char getCharacter() {
+    /**
+     * Gets character.
+     *
+     * @return the character
+     */
+    public char getCharacter() {
 		return getText().charAt(0);
 	}
 
-	public boolean isSet() {
+    /**
+     * Is set boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSet() {
 		return getText().length() > 0;
 	}
 
-	public void addChangeListener(ChangeListener l) {
+    /**
+     * Add change listener.
+     *
+     * @param l the l
+     */
+    public void addChangeListener(ChangeListener l) {
 
 	}
 }

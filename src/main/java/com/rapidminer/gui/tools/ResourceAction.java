@@ -39,7 +39,7 @@ import com.rapidminer.tools.SystemInfoUtilities.OperatingSystem;
 /**
  * This will create an action, whose settings are take from a .properties file being part of the GUI
  * Resource bundles of RapidMiner. These might be accessed using the I18N class.
- *
+ * <p>
  * A resource action needs a key specifier, which will be used to build the complete keys of the
  * form: gui.action.<specifier>.label = Which will be the caption gui.action.<specifier>.icon = The
  * icon of this action. For examples used in menus or buttons gui.action.<specifier>.acc = The
@@ -59,88 +59,94 @@ public abstract class ResourceAction extends ConditionalAction {
 
 	private final IconType iconType;
 
-	/**
-	 * Specifies the style of the icon.
-	 */
-	public enum IconType {
-		/** standard, multi-colored icons for 24x24 and higher, grey for 16x16 */
-		NORMAL,
+    /**
+     * Specifies the style of the icon.
+     */
+    public enum IconType {
+        /**
+         * standard, multi-colored icons for 24x24 and higher, grey for 16x16
+         */
+        NORMAL,
 
-		/** flat, single-colored icons */
-		FLAT,
+        /**
+         * flat, single-colored icons
+         */
+        FLAT,
 
-		/** monochrome icons for 16x16 */
-		MONO
+        /**
+         * monochrome icons for 16x16
+         */
+        MONO
 	};
 
-	/**
-	 * Creates a new {@link ResourceAction} with the standard {@link IconType}.
-	 *
-	 * @param i18nKey
-	 * @param i18nArgs
-	 */
-	public ResourceAction(String i18nKey, Object... i18nArgs) {
+    /**
+     * Creates a new {@link ResourceAction} with the standard {@link IconType}.
+     *
+     * @param i18nKey  the 18 n key
+     * @param i18nArgs the 18 n args
+     */
+    public ResourceAction(String i18nKey, Object... i18nArgs) {
 		this(false, i18nKey, i18nArgs);
 
 		setCondition(EDIT_IN_PROGRESS, DONT_CARE);
 	}
 
-	/**
-	 * Creates a new {@link ResourceAction} with the specified {@link IconType}.
-	 *
-	 * @param i18nKey
-	 * @param iconType
-	 * @param i18nArgs
-	 */
-	public ResourceAction(String i18nKey, IconType iconType, Object... i18nArgs) {
+    /**
+     * Creates a new {@link ResourceAction} with the specified {@link IconType}.
+     *
+     * @param i18nKey  the 18 n key
+     * @param iconType the icon type
+     * @param i18nArgs the 18 n args
+     */
+    public ResourceAction(String i18nKey, IconType iconType, Object... i18nArgs) {
 		this(false, i18nKey, iconType, i18nArgs);
 
 		setCondition(EDIT_IN_PROGRESS, DONT_CARE);
 	}
 
-	/**
-	 * Creates a new {@link ResourceAction} with the standard {@link IconType}.
-	 *
-	 * @param smallIcon
-	 * @param i18nKey
-	 * @param i18nArgs
-	 */
-	public ResourceAction(boolean smallIcon, String i18nKey, Object... i18nArgs) {
+    /**
+     * Creates a new {@link ResourceAction} with the standard {@link IconType}.
+     *
+     * @param smallIcon the small icon
+     * @param i18nKey   the 18 n key
+     * @param i18nArgs  the 18 n args
+     */
+    public ResourceAction(boolean smallIcon, String i18nKey, Object... i18nArgs) {
 		this(smallIcon ? 16 : 24, i18nKey, i18nArgs);
 	}
 
-	/**
-	 * Creates a new {@link ResourceAction} with the standard {@link IconType}.
-	 *
-	 * @param iconSize
-	 * @param i18nKey
-	 * @param i18nArgs
-	 */
-	public ResourceAction(int iconSize, String i18nKey, Object... i18nArgs) {
+    /**
+     * Creates a new {@link ResourceAction} with the standard {@link IconType}.
+     *
+     * @param iconSize the icon size
+     * @param i18nKey  the 18 n key
+     * @param i18nArgs the 18 n args
+     */
+    public ResourceAction(int iconSize, String i18nKey, Object... i18nArgs) {
 		this(iconSize, i18nKey, IconType.NORMAL, i18nArgs);
 	}
 
-	/**
-	 * Creates a new {@link ResourceAction} with the specified {@link IconType}.
-	 *
-	 * @param smallIcon
-	 * @param i18nKey
-	 * @param iconType
-	 * @param i18nArgs
-	 */
-	public ResourceAction(boolean smallIcon, String i18nKey, IconType iconType, Object... i18nArgs) {
+    /**
+     * Creates a new {@link ResourceAction} with the specified {@link IconType}.
+     *
+     * @param smallIcon the small icon
+     * @param i18nKey   the 18 n key
+     * @param iconType  the icon type
+     * @param i18nArgs  the 18 n args
+     */
+    public ResourceAction(boolean smallIcon, String i18nKey, IconType iconType, Object... i18nArgs) {
 		this(smallIcon ? 16 : 24, i18nKey, iconType, i18nArgs);
 	}
 
-	/**
-	 * Creates a new {@link ResourceAction} with the specified {@link IconType}.
-	 *
-	 * @param iconSize
-	 * @param i18nKey
-	 * @param iconType
-	 * @param i18nArgs
-	 */
-	public ResourceAction(int iconSize, String i18nKey, IconType iconType, Object... i18nArgs) {
+    /**
+     * Creates a new {@link ResourceAction} with the specified {@link IconType}.
+     *
+     * @param iconSize the icon size
+     * @param i18nKey  the 18 n key
+     * @param iconType the icon type
+     * @param i18nArgs the 18 n args
+     */
+    public ResourceAction(int iconSize, String i18nKey, IconType iconType, Object... i18nArgs) {
 		super(i18nArgs == null || i18nArgs.length == 0 ? getMessage(i18nKey + ".label")
 				: MessageFormat.format(getMessage(i18nKey + ".label"), i18nArgs));
 		putValue(ACTION_COMMAND_KEY, i18nKey);
@@ -200,18 +206,16 @@ public abstract class ResourceAction extends ConditionalAction {
 		putValue("rm_id", i18nKey);
 	}
 
-	/**
-	 * Adds the action to the input and action map of the components.
-	 *
-	 * @param condition
-	 *            one out of {@link JComponent#WHEN_FOCUSED}, ...
-	 * @param disableOnFocusLost
-	 *            if <code>true</code>, will disable the action on FocusLost event and enable it
-	 *            again on FocusGained (if conditions of superclass are met).
-	 * @param components
-	 *            the {@link JComponent}s to register this action to
-	 */
-	public void addToActionMap(int condition, boolean disableOnFocusLost, boolean initiallyDisabled, String actionKey,
+    /**
+     * Adds the action to the input and action map of the components.
+     *
+     * @param condition          one out of {@link JComponent#WHEN_FOCUSED}, ...
+     * @param disableOnFocusLost if <code>true</code>, will disable the action on FocusLost event and enable it            again on FocusGained (if conditions of superclass are met).
+     * @param initiallyDisabled  the initially disabled
+     * @param actionKey          the action key
+     * @param components         the {@link JComponent}s to register this action to
+     */
+    public void addToActionMap(int condition, boolean disableOnFocusLost, boolean initiallyDisabled, String actionKey,
 			JComponent... components) {
 		for (JComponent comp : components) {
 			if (comp == null) {
@@ -267,38 +271,51 @@ public abstract class ResourceAction extends ConditionalAction {
 		}
 	}
 
-	/**
-	 * Adds the action to the input and action map of the component.
-	 *
-	 * @param condition
-	 *            one out of WHEN_IN_FOCUES, ...
-	 */
-	public void addToActionMap(JComponent component, int condition) {
+    /**
+     * Adds the action to the input and action map of the component.
+     *
+     * @param component the component
+     * @param condition one out of WHEN_IN_FOCUES, ...
+     */
+    public void addToActionMap(JComponent component, int condition) {
 		addToActionMap(component, null, condition);
 	}
 
-	/**
-	 * Adds the action to the input and action map of the component.
-	 *
-	 * @param condition
-	 *            one out of WHEN_IN_FOCUES, ...
-	 */
-	public void addToActionMap(JComponent component, String actionKey, int condition) {
+    /**
+     * Adds the action to the input and action map of the component.
+     *
+     * @param component the component
+     * @param actionKey the action key
+     * @param condition one out of WHEN_IN_FOCUES, ...
+     */
+    public void addToActionMap(JComponent component, String actionKey, int condition) {
 		addToActionMap(condition, false, false, actionKey, component);
 	}
 
-	/**
-	 * This returns the i18n key of this action.
-	 */
-	public String getKey() {
+    /**
+     * This returns the i18n key of this action.
+     *
+     * @return the key
+     */
+    public String getKey() {
 		return key;
 	}
 
-	public String getIconName() {
+    /**
+     * Gets icon name.
+     *
+     * @return the icon name
+     */
+    public String getIconName() {
 		return iconName;
 	}
 
-	public IconType getIconType() {
+    /**
+     * Gets icon type.
+     *
+     * @return the icon type
+     */
+    public IconType getIconType() {
 		return iconType;
 	}
 

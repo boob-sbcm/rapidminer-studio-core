@@ -47,7 +47,7 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  * rows will become the columns. Hence, this operator works very similar to the well know transpose
  * operation for matrices.
  * </p>
- *
+ * <p>
  * <p>
  * If an Id attribute is part of the given example set, the ids will become the names of the new
  * attributes. The names of the old attributes will be transformed into the id values of a new
@@ -56,13 +56,13 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  * {@link ChangeAttributeRole} operator in order to change one of these into a special type
  * afterwards.
  * </p>
- *
+ * <p>
  * <p>
  * If all old attribute have the same value type, all new attributes will have this value type.
  * Otherwise, the new value types will all be &quot;nominal&quot; if at least one nominal attribute
  * was part of the given example set and &quot;real&quot; if the types contained mixed numbers.
  * </p>
- *
+ * <p>
  * <p>
  * This operator produces a copy of the data in the main memory and it therefore not suggested to
  * use it on very large data sets.
@@ -72,7 +72,12 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class ExampleSetTranspose extends AbstractExampleSetProcessing {
 
-	public ExampleSetTranspose(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set transpose.
+     *
+     * @param description the description
+     */
+    public ExampleSetTranspose(OperatorDescription description) {
 		super(description);
 	}
 

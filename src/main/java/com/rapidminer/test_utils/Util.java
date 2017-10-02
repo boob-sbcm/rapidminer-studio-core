@@ -34,24 +34,26 @@ import java.util.Map;
 
 
 /**
- * 
+ * The type Util.
+ *
  * @author Marcin Skirzynski
- * 
  */
 public class Util {
 
-	/**
-	 * Token between the process name and the number for the expected results.
-	 */
-	public static final String EXPECTED_TOKEN = "-expected-port-";
+    /**
+     * Token between the process name and the number for the expected results.
+     */
+    public static final String EXPECTED_TOKEN = "-expected-port-";
 
-	/**
-	 * Returns all expected results for the specified process. These are all ioobjects which are
-	 * directly contained in the folder of the process.
-	 * 
-	 * @throws RepositoryException
-	 */
-	public static List<IOObject> getExpectedResult(Process process) throws RepositoryException {
+    /**
+     * Returns all expected results for the specified process. These are all ioobjects which are
+     * directly contained in the folder of the process.
+     *
+     * @param process the process
+     * @return the expected result
+     * @throws RepositoryException the repository exception
+     */
+    public static List<IOObject> getExpectedResult(Process process) throws RepositoryException {
 
 		Map<Integer, IOObject> results = new HashMap<Integer, IOObject>();
 
@@ -86,13 +88,13 @@ public class Util {
 		return sortedResults;
 	}
 
-	/**
-	 * Removes all stores expected results for the specified process.
-	 * 
-	 * @param process
-	 * @throws RepositoryException
-	 */
-	public static void removeExpectedResults(Process process) throws RepositoryException {
+    /**
+     * Removes all stores expected results for the specified process.
+     *
+     * @param process the process
+     * @throws RepositoryException the repository exception
+     */
+    public static void removeExpectedResults(Process process) throws RepositoryException {
 		Folder folder = process.getRepositoryLocation().locateEntry().getContainingFolder();
 
 		Collection<IOObjectEntry> toDelete = new ArrayList<IOObjectEntry>();

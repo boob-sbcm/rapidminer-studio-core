@@ -36,7 +36,10 @@ public class OpenAction extends ResourceAction {
 
 	private static final long serialVersionUID = 1L;
 
-	public OpenAction() {
+    /**
+     * Instantiates a new Open action.
+     */
+    public OpenAction() {
 		super("open");
 	}
 

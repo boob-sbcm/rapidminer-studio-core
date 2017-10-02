@@ -41,11 +41,23 @@ import edu.uci.ics.jung.visualization.transform.shape.GraphicsDecorator;
  * the original source) but it was changed so that the labels are always painted in the center
  * location of the edge.
  *
+ * @param <V> the type parameter
+ * @param <E> the type parameter
  * @author Ingo Mierswa
  */
 public class TreeModelEdgeLabelRenderer<V, E> implements Renderer.EdgeLabel<V, E> {
 
-	public Component prepareRenderer(RenderContext<V, E> rc, EdgeLabelRenderer graphLabelRenderer, Object value,
+    /**
+     * Prepare renderer component.
+     *
+     * @param rc                 the rc
+     * @param graphLabelRenderer the graph label renderer
+     * @param value              the value
+     * @param isSelected         the is selected
+     * @param edge               the edge
+     * @return the component
+     */
+    public Component prepareRenderer(RenderContext<V, E> rc, EdgeLabelRenderer graphLabelRenderer, Object value,
 			boolean isSelected, E edge) {
 		return rc.getEdgeLabelRenderer().<E> getEdgeLabelRendererComponent(rc.getScreenDevice(), value,
 				rc.getEdgeFontTransformer().transform(edge), isSelected, edge);

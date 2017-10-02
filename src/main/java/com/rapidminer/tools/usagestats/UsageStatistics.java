@@ -59,10 +59,8 @@ import com.rapidminer.tools.WebServiceTools;
  * Collects statistics about usage of operators. Statistics can be sent to a server collecting them.
  * Counting and resetting is thread safe.
  *
- * @see UsageStatsTransmissionDialog
- *
  * @author Simon Fischer
- *
+ * @see UsageStatsTransmissionDialog
  */
 public class UsageStatistics {
 
@@ -97,7 +95,12 @@ public class UsageStatistics {
 
 	private transient boolean failedToday = false;
 
-	public static UsageStatistics getInstance() {
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+    public static UsageStatistics getInstance() {
 		return INSTANCE;
 	}
 
@@ -179,12 +182,12 @@ public class UsageStatistics {
 						? HOURLY_TRANSMISSION_INTERVAL : DAILY_TRANSMISSION_INTERVAL;
 	}
 
-	/**
-	 * Checks whether the usage statistics should be transmitted on studio shutdown.
-	 *
-	 * @return {@code true} if the usage statistics should be transmitted
-	 */
-	boolean shouldTransmitOnShutdown() {
+    /**
+     * Checks whether the usage statistics should be transmitted on studio shutdown.
+     *
+     * @return {@code true} if the usage statistics should be transmitted
+     */
+    boolean shouldTransmitOnShutdown() {
 		return EULADialog.getEULAAccepted();
 	}
 
@@ -197,8 +200,10 @@ public class UsageStatistics {
 		return randomKey.toString();
 	}
 
-	/** Sets all current counters to 0 and sets the last reset date to the current time. */
-	public synchronized void reset() {
+    /**
+     * Sets all current counters to 0 and sets the last reset date to the current time.
+     */
+    public synchronized void reset() {
 		ActionStatisticsCollector.getInstance().clear();
 		this.lastReset = new Date();
 	}
@@ -258,8 +263,10 @@ public class UsageStatistics {
 		}
 	}
 
-	/** Saves the statistics to a user file. */
-	public void save() {
+    /**
+     * Saves the statistics to a user file.
+     */
+    public void save() {
 		if (RapidMiner.getExecutionMode().canAccessFilesystem()) {
 			File file = FileSystemService.getUserConfigFile("usagestats.xml");
 			try {
@@ -276,8 +283,12 @@ public class UsageStatistics {
 		}
 	}
 
-	/** Returns the statistics as a data table that can be displayed to the user. */
-	public TableModel getAsDataTable() {
+    /**
+     * Returns the statistics as a data table that can be displayed to the user.  @return the as data table
+     *
+     * @return the as data table
+     */
+    public TableModel getAsDataTable() {
 		return new ActionStatisticsTable(ActionStatisticsCollector.getInstance().getCounts());
 	}
 
@@ -285,11 +296,14 @@ public class UsageStatistics {
 		return DATE_FORMAT.get();
 	}
 
-	/**
-	 *
-	 * @return true on success
-	 */
-	public boolean transferUsageStats(ProgressListener progressListener) throws Exception {
+    /**
+     * Transfer usage stats boolean.
+     *
+     * @param progressListener the progress listener
+     * @return true on success
+     * @throws Exception the exception
+     */
+    public boolean transferUsageStats(ProgressListener progressListener) throws Exception {
 		progressListener.setCompleted(10);
 		String xml = XMLTools.toString(getXML());
 		progressListener.setCompleted(20);
@@ -314,42 +328,58 @@ public class UsageStatistics {
 		}
 	}
 
-	/** Sets the date for the next transmission. Starts no timers. */
-	void scheduleTransmission(boolean lastAttemptFailed) {
+    /**
+     * Sets the date for the next transmission. Starts no timers.  @param lastAttemptFailed the last attempt failed
+     *
+     * @param lastAttemptFailed the last attempt failed
+     */
+    void scheduleTransmission(boolean lastAttemptFailed) {
 		this.failedToday = lastAttemptFailed;
 		this.nextTransmission = new Date(lastReset.getTime() + getTransmissionInterval());
 	}
 
-	/**
-	 * Returns the user key for this session.
-	 *
-	 * @return the user key
-	 */
-	public String getUserKey() {
+    /**
+     * Returns the user key for this session.
+     *
+     * @return the user key
+     */
+    public String getUserKey() {
 		return randomKey;
 	}
 
-	/** Returns the date at which the next transmission should be scheduled. */
-	public Date getNextTransmission() {
+    /**
+     * Returns the date at which the next transmission should be scheduled.  @return the next transmission
+     *
+     * @return the next transmission
+     */
+    public Date getNextTransmission() {
 		if (nextTransmission == null) {
 			scheduleTransmissionFromNow();
 		}
 		return nextTransmission;
 	}
 
-	public void scheduleTransmissionFromNow() {
+    /**
+     * Schedule transmission from now.
+     */
+    public void scheduleTransmissionFromNow() {
 		this.nextTransmission = new Date(System.currentTimeMillis() + getTransmissionInterval());
 	}
 
-	public boolean hasFailedToday() {
+    /**
+     * Has failed today boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasFailedToday() {
 		return failedToday;
 	}
 
-	/**
-	 * Schedules a new transmission in 10 minutes. Restarts the timer for the transmission dialog if
-	 * not in headless mode.
-	 */
-	void scheduleTransmissionSoon() {
+    /**
+     * Schedules a new transmission in 10 minutes. Restarts the timer for the transmission dialog if
+     * not in headless mode.
+     */
+    void scheduleTransmissionSoon() {
 		this.nextTransmission = new Date(System.currentTimeMillis() + SOON_TRANSMISSION_INTERVAL);
 		if (!RapidMiner.getExecutionMode().isHeadless()) {
 			UsageStatsTransmissionDialog.startTimer();

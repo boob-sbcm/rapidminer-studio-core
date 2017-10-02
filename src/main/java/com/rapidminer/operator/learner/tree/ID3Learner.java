@@ -31,12 +31,17 @@ import java.util.List;
  * This operator learns decision trees without pruning using nominal attributes only. Decision trees
  * are powerful classification methods which often can also easily be understood. This decision tree
  * learner works similar to Quinlan's ID3.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ID3Learner extends AbstractTreeLearner {
 
-	public ID3Learner(OperatorDescription description) {
+    /**
+     * Instantiates a new Id 3 learner.
+     *
+     * @param description the description
+     */
+    public ID3Learner(OperatorDescription description) {
 		super(description);
 	}
 

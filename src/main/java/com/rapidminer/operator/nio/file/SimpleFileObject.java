@@ -30,7 +30,6 @@ import com.rapidminer.operator.OperatorException;
  * Simple implementation of a {@link FileObject} backed by a {@link File}.
  *
  * @author Nils Woehler
- *
  */
 public class SimpleFileObject extends FileObject {
 
@@ -38,7 +37,12 @@ public class SimpleFileObject extends FileObject {
 
 	private File file;
 
-	public SimpleFileObject(File file) {
+    /**
+     * Instantiates a new Simple file object.
+     *
+     * @param file the file
+     */
+    public SimpleFileObject(File file) {
 		super();
 		this.file = file;
 	}

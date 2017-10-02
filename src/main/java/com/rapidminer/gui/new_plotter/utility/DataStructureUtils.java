@@ -37,22 +37,31 @@ import java.util.Set;
 
 /**
  * Static only class with some useful helper functions to modify different kinds of data structures.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class DataStructureUtils {
 
-	/**
-	 * A comparator which compares Pairs based on the second part of the pair.
-	 * 
-	 * @author Marius Helf
-	 */
-	public static class PairComparator<U, T extends Comparable<T>> implements Comparator<Pair<U, T>> {
+    /**
+     * A comparator which compares Pairs based on the second part of the pair.
+     *
+     * @param <U> the type parameter
+     * @param <T> the type parameter
+     * @author Marius Helf
+     */
+    public static class PairComparator<U, T extends Comparable<T>> implements Comparator<Pair<U, T>> {
 
-		boolean ascending;
+        /**
+         * The Ascending.
+         */
+        boolean ascending;
 
-		public PairComparator(boolean ascending) {
+        /**
+         * Instantiates a new Pair comparator.
+         *
+         * @param ascending the ascending
+         */
+        public PairComparator(boolean ascending) {
 			super();
 			this.ascending = ascending;
 		}
@@ -67,34 +76,54 @@ public class DataStructureUtils {
 		}
 	}
 
-	/**
-	 * Clones a map (the returned map is always an instance of HashMap).
-	 */
-	public static <K, V> Map<K, V> getMapClone(Map<K, V> map) {
+    /**
+     * Clones a map (the returned map is always an instance of HashMap).
+     *
+     * @param <K> the type parameter
+     * @param <V> the type parameter
+     * @param map the map
+     * @return the map clone
+     */
+    public static <K, V> Map<K, V> getMapClone(Map<K, V> map) {
 		Map<K, V> clone = new HashMap<K, V>();
 		clone.putAll(map);
 		return clone;
 	}
 
-	/**
-	 * Returns the old color with new alpha value.
-	 */
-	public static Color setColorAlpha(Color color, int alpha) {
+    /**
+     * Returns the old color with new alpha value.
+     *
+     * @param color the color
+     * @param alpha the alpha
+     * @return the color alpha
+     */
+    public static Color setColorAlpha(Color color, int alpha) {
 		return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
 	}
 
-	/**
-	 * Multiplies two opacities with range [0,255]. First maps both values to [0,1], then calculates
-	 * the product and maps the result back to [0,255].
-	 */
-	public static int multiplyOpacities256(int opacity1, int opacity2) {
+    /**
+     * Multiplies two opacities with range [0,255]. First maps both values to [0,1], then calculates
+     * the product and maps the result back to [0,255].
+     *
+     * @param opacity1 the opacity 1
+     * @param opacity2 the opacity 2
+     * @return the int
+     */
+    public static int multiplyOpacities256(int opacity1, int opacity2) {
 		double op1 = opacity1 / 255.0;
 		double op2 = opacity2 / 255.0;
 		double resultOpacity = op1 * op2;
 		return (int) Math.round(resultOpacity * 255.0);
 	}
 
-	public static List<Double> getAllDataTableValues(DataTable table, int columnIdx) {
+    /**
+     * Gets all data table values.
+     *
+     * @param table     the table
+     * @param columnIdx the column idx
+     * @return the all data table values
+     */
+    public static List<Double> getAllDataTableValues(DataTable table, int columnIdx) {
 		List<Double> values = new LinkedList<Double>();
 		for (DataTableRow row : table) {
 			values.add(row.getValue(columnIdx));
@@ -102,7 +131,14 @@ public class DataStructureUtils {
 		return values;
 	}
 
-	public static <T> Set<T> getDistinctValues(T[] array) {
+    /**
+     * Gets distinct values.
+     *
+     * @param <T>   the type parameter
+     * @param array the array
+     * @return the distinct values
+     */
+    public static <T> Set<T> getDistinctValues(T[] array) {
 		Set<T> resultSet = new HashSet<T>();
 		for (int i = 0; i < array.length; ++i) {
 			resultSet.add(array[i]);
@@ -110,7 +146,14 @@ public class DataStructureUtils {
 		return resultSet;
 	}
 
-	public static <T> Set<T> getDistinctValues(Iterable<T> iterable) {
+    /**
+     * Gets distinct values.
+     *
+     * @param <T>      the type parameter
+     * @param iterable the iterable
+     * @return the distinct values
+     */
+    public static <T> Set<T> getDistinctValues(Iterable<T> iterable) {
 		Set<T> resultSet = new HashSet<T>();
 		for (T value : iterable) {
 			resultSet.add(value);
@@ -118,11 +161,15 @@ public class DataStructureUtils {
 		return resultSet;
 	}
 
-	/**
-	 * Returns all distinct values in one column of the table in the order of their appearance in
-	 * the table.
-	 */
-	public static List<Double> getDistinctDataTableValues(DataTable table, int columnIdx) {
+    /**
+     * Returns all distinct values in one column of the table in the order of their appearance in
+     * the table.
+     *
+     * @param table     the table
+     * @param columnIdx the column idx
+     * @return the distinct data table values
+     */
+    public static List<Double> getDistinctDataTableValues(DataTable table, int columnIdx) {
 		LinkedHashSet<Double> values = new LinkedHashSet<Double>();
 		for (DataTableRow row : table) {
 			double value = row.getValue(columnIdx);
@@ -136,7 +183,14 @@ public class DataStructureUtils {
 		return resultList;
 	}
 
-	public static float[] cloneAndMultiplyArray(float[] array, float factor) {
+    /**
+     * Clone and multiply array float [ ].
+     *
+     * @param array  the array
+     * @param factor the factor
+     * @return the float [ ]
+     */
+    public static float[] cloneAndMultiplyArray(float[] array, float factor) {
 		float[] result = new float[array.length];
 		for (int i = 0; i < array.length; ++i) {
 			result[i] = array[i] * factor;
@@ -144,13 +198,17 @@ public class DataStructureUtils {
 		return result;
 	}
 
-	/**
-	 * Calculates the optimal power of 10 for rounding. It is calculated based on min and max value.
-	 * 
-	 * If one of min, max or value is inifinity or NaN, or if min==max, then Integer.MAX_VALUE is
-	 * returned.
-	 */
-	public static int getOptimalPrecision(double min, double max) {
+    /**
+     * Calculates the optimal power of 10 for rounding. It is calculated based on min and max value.
+     * <p>
+     * If one of min, max or value is inifinity or NaN, or if min==max, then Integer.MAX_VALUE is
+     * returned.
+     *
+     * @param min the min
+     * @param max the max
+     * @return the optimal precision
+     */
+    public static int getOptimalPrecision(double min, double max) {
 		if (Double.isInfinite(min) || Double.isInfinite(max)) {
 			return Integer.MAX_VALUE;
 		}
@@ -172,7 +230,14 @@ public class DataStructureUtils {
 		return powerOf10;
 	}
 
-	public static String getRoundedString(double value, int powerOf10) {
+    /**
+     * Gets rounded string.
+     *
+     * @param value     the value
+     * @param powerOf10 the power of 10
+     * @return the rounded string
+     */
+    public static String getRoundedString(double value, int powerOf10) {
 		StringBuilder builder = new StringBuilder();
 		if (powerOf10 < Integer.MAX_VALUE - 100) {
 			value = roundToPowerOf10(value, powerOf10);
@@ -189,17 +254,24 @@ public class DataStructureUtils {
 		return builder.toString();
 	}
 
-	/**
-	 * Rounds value. The precision is calculated based on min and max value. With precisionModifier
-	 * the estimated best precision can be increased (positive values for precisionModifier) or
-	 * decreased.
-	 * 
-	 * preDecimalRound is currently unused.
-	 * 
-	 * If one of min, max or value is inifinity or NaN, or if min==max, then value is returned
-	 * unmodified.
-	 */
-	public static double intelligentRound(double min, double max, double value, int precisionModifier,
+    /**
+     * Rounds value. The precision is calculated based on min and max value. With precisionModifier
+     * the estimated best precision can be increased (positive values for precisionModifier) or
+     * decreased.
+     * <p>
+     * preDecimalRound is currently unused.
+     * <p>
+     * If one of min, max or value is inifinity or NaN, or if min==max, then value is returned
+     * unmodified.
+     *
+     * @param min               the min
+     * @param max               the max
+     * @param value             the value
+     * @param precisionModifier the precision modifier
+     * @param preDecimalRound   the pre decimal round
+     * @return the double
+     */
+    public static double intelligentRound(double min, double max, double value, int precisionModifier,
 			boolean preDecimalRound) {
 		int powerOf10 = getOptimalPrecision(min, max);
 
@@ -210,7 +282,14 @@ public class DataStructureUtils {
 		return roundToPowerOf10(value, powerOf10 + precisionModifier);
 	}
 
-	public static double roundToPowerOf10(double value, int powerOf10) {
+    /**
+     * Round to power of 10 double.
+     *
+     * @param value     the value
+     * @param powerOf10 the power of 10
+     * @return the double
+     */
+    public static double roundToPowerOf10(double value, int powerOf10) {
 		if (Double.isInfinite(value) || Double.isNaN(value)) {
 			return value;
 		}
@@ -221,15 +300,39 @@ public class DataStructureUtils {
 		return value;
 	}
 
-	public static boolean greaterOrAlmostEqual(float a, float b, float maxRelativeError) {
+    /**
+     * Greater or almost equal boolean.
+     *
+     * @param a                the a
+     * @param b                the b
+     * @param maxRelativeError the max relative error
+     * @return the boolean
+     */
+    public static boolean greaterOrAlmostEqual(float a, float b, float maxRelativeError) {
 		return almostEqual(a, b, maxRelativeError) ? true : (a > b);
 	}
 
-	public static boolean greaterOrAlmostEqual(double a, double b, double maxRelativeError) {
+    /**
+     * Greater or almost equal boolean.
+     *
+     * @param a                the a
+     * @param b                the b
+     * @param maxRelativeError the max relative error
+     * @return the boolean
+     */
+    public static boolean greaterOrAlmostEqual(double a, double b, double maxRelativeError) {
 		return almostEqual(a, b, maxRelativeError) ? true : (a > b);
 	}
 
-	public static boolean almostEqual(float a, float b, float maxRelativeError) {
+    /**
+     * Almost equal boolean.
+     *
+     * @param a                the a
+     * @param b                the b
+     * @param maxRelativeError the max relative error
+     * @return the boolean
+     */
+    public static boolean almostEqual(float a, float b, float maxRelativeError) {
 
 		if (Float.isNaN(a) || Float.isNaN(b)) {
 			return false;
@@ -252,7 +355,15 @@ public class DataStructureUtils {
 
 	}
 
-	public static boolean almostEqual(double a, double b, double maxRelativeError) {
+    /**
+     * Almost equal boolean.
+     *
+     * @param a                the a
+     * @param b                the b
+     * @param maxRelativeError the max relative error
+     * @return the boolean
+     */
+    public static boolean almostEqual(double a, double b, double maxRelativeError) {
 
 		if (Double.isNaN(a) || Double.isNaN(b)) {
 			return false;

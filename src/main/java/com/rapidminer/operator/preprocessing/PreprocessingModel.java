@@ -51,14 +51,23 @@ public abstract class PreprocessingModel extends AbstractModel implements ViewMo
 
 	private HashMap<String, Object> parameterMap = new HashMap<>();
 
-	protected PreprocessingModel(ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Preprocessing model.
+     *
+     * @param exampleSet the example set
+     */
+    protected PreprocessingModel(ExampleSet exampleSet) {
 		super(exampleSet);
 	}
 
-	/**
-	 * Applies the model by changing the underlying data.
-	 */
-	public abstract ExampleSet applyOnData(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Applies the model by changing the underlying data.
+     *
+     * @param exampleSet the example set
+     * @return the example set
+     * @throws OperatorException the operator exception
+     */
+    public abstract ExampleSet applyOnData(ExampleSet exampleSet) throws OperatorException;
 
 	@Override
 	public ExampleSet apply(ExampleSet exampleSet) throws OperatorException {
@@ -116,10 +125,12 @@ public abstract class PreprocessingModel extends AbstractModel implements ViewMo
 		return result;
 	}
 
-	/**
-	 * @return {@code true} if the parameter "create view" is selected
-	 */
-	protected boolean isCreateView() {
+    /**
+     * Is create view boolean.
+     *
+     * @return {@code true} if the parameter "create view" is selected
+     */
+    protected boolean isCreateView() {
 		boolean createView = false;
 		if (parameterMap.containsKey(PreprocessingOperator.PARAMETER_CREATE_VIEW)) {
 			Boolean booleanObject = (Boolean) parameterMap.get(PreprocessingOperator.PARAMETER_CREATE_VIEW);
@@ -147,43 +158,44 @@ public abstract class PreprocessingModel extends AbstractModel implements ViewMo
 		parameterMap.put(key, value);
 	}
 
-	/**
-	 * Subclasses which need to have the attribute roles must return true. Otherwise all selected
-	 * attributes are converted into regular and afterwards given their old roles.
-	 */
-	public boolean isSupportingAttributeRoles() {
+    /**
+     * Subclasses which need to have the attribute roles must return true. Otherwise all selected
+     * attributes are converted into regular and afterwards given their old roles.
+     *
+     * @return the boolean
+     */
+    public boolean isSupportingAttributeRoles() {
 		return false;
 	}
 
-	/**
-	 * Determines whether before the model application the nominal attributes should be remapped on
-	 * the fly such that their returned indices match the indices of the training set. Subclasses
-	 * should overwrite this to adjust to their needs. Note that only attributes that are not part
-	 * of the returned example set should be remapped.
-	 *
-	 * @see {@link RemappedExampleSet#RemappedExampleSet(ExampleSet, ExampleSet, boolean, boolean)}
-	 *
-	 * @return {@code true} by default for compatibility reasons
-	 * @since 7.4.0
-	 */
-	protected boolean needsRemapping() {
+    /**
+     * Determines whether before the model application the nominal attributes should be remapped on
+     * the fly such that their returned indices match the indices of the training set. Subclasses
+     * should overwrite this to adjust to their needs. Note that only attributes that are not part
+     * of the returned example set should be remapped.
+     *
+     * @return {@code true} by default for compatibility reasons
+     * @see {@link RemappedExampleSet#RemappedExampleSet(ExampleSet, ExampleSet, boolean, boolean)}
+     * @since 7.4.0
+     */
+    protected boolean needsRemapping() {
 		return true;
 	}
 
-	/**
-	 * Whether {@link #applyOnData(ExampleSet)} writes into existing data. If this method returns
-	 * {@code true} then the data is materialized before {@link #applyOnData(ExampleSet)} is called.
-	 * For the corresponding {@link PreprocessingOperator} the method
-	 * {@link PreprocessingOperator#writesIntoExistingData()} should return {@code false} to prevent
-	 * materializing twice.
-	 *
-	 * <strong>Note: </strong> Subclasses must implement this method if they write into the data.
-	 * The safe implementation would be to return true, however, for backwards compatibility, the
-	 * default implementation returns false.
-	 *
-	 * @return {@code true} if {@link #applyOnData(ExampleSet)} writes into existing data
-	 */
-	protected boolean writesIntoExistingData() {
+    /**
+     * Whether {@link #applyOnData(ExampleSet)} writes into existing data. If this method returns
+     * {@code true} then the data is materialized before {@link #applyOnData(ExampleSet)} is called.
+     * For the corresponding {@link PreprocessingOperator} the method
+     * {@link PreprocessingOperator#writesIntoExistingData()} should return {@code false} to prevent
+     * materializing twice.
+     * <p>
+     * <strong>Note: </strong> Subclasses must implement this method if they write into the data.
+     * The safe implementation would be to return true, however, for backwards compatibility, the
+     * default implementation returns false.
+     *
+     * @return {@code true} if {@link #applyOnData(ExampleSet)} writes into existing data
+     */
+    protected boolean writesIntoExistingData() {
 		return false;
 	}
 }

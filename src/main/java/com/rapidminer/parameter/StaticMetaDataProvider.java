@@ -24,15 +24,19 @@ import com.rapidminer.operator.ports.metadata.MetaData;
 
 /**
  * Always returns the same meta data. Listeners are ignored because meta data never changes.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class StaticMetaDataProvider implements MetaDataProvider {
 
 	private final MetaData metaData;
 
-	public StaticMetaDataProvider(MetaData metaData) {
+    /**
+     * Instantiates a new Static meta data provider.
+     *
+     * @param metaData the meta data
+     */
+    public StaticMetaDataProvider(MetaData metaData) {
 		this.metaData = metaData;
 	}
 

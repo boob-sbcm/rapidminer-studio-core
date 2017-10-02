@@ -24,9 +24,8 @@ import javax.swing.JLabel;
 
 /**
  * A label with fixed width in pixels breaking lines accordingly.
- * 
+ *
  * @author Simon Fischer, Tobias Malbrecht
- * 
  */
 public class FixedWidthLabel extends JLabel {
 
@@ -36,11 +35,24 @@ public class FixedWidthLabel extends JLabel {
 
 	private String rootlessHTML;
 
-	public FixedWidthLabel(int width, String rootlessHTML) {
+    /**
+     * Instantiates a new Fixed width label.
+     *
+     * @param width        the width
+     * @param rootlessHTML the rootless html
+     */
+    public FixedWidthLabel(int width, String rootlessHTML) {
 		this(width, rootlessHTML, null);
 	}
 
-	public FixedWidthLabel(int width, String rootlessHTML, Icon icon) {
+    /**
+     * Instantiates a new Fixed width label.
+     *
+     * @param width        the width
+     * @param rootlessHTML the rootless html
+     * @param icon         the icon
+     */
+    public FixedWidthLabel(int width, String rootlessHTML, Icon icon) {
 		this.width = width;
 		this.rootlessHTML = rootlessHTML;
 		setIcon(icon);
@@ -53,12 +65,20 @@ public class FixedWidthLabel extends JLabel {
 		updateLabel();
 	}
 
-	public void setWidth(int width) {
+    /**
+     * Sets width.
+     *
+     * @param width the width
+     */
+    public void setWidth(int width) {
 		this.width = width;
 		updateLabel();
 	}
 
-	public void updateLabel() {
+    /**
+     * Update label.
+     */
+    public void updateLabel() {
 		super.setText("<html><body><div style=\"width:" + width + "pt\">" + rootlessHTML + "</div></body></html>");
 	}
 }

@@ -31,39 +31,53 @@ import javax.swing.JComponent;
 
 /**
  * Panel to configure a repository.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public interface RepositoryConfigurationPanel {
 
-	/**
-	 * (Asynchronously) creates a new repository and adds it to the {@link RepositoryManager}.
-	 * 
-	 * @throws RepositoryException
-	 */
-	public void makeRepository() throws RepositoryException;
+    /**
+     * (Asynchronously) creates a new repository and adds it to the {@link RepositoryManager}.
+     *
+     * @throws RepositoryException the repository exception
+     */
+    public void makeRepository() throws RepositoryException;
 
-	/** Configures the UI elements to show the properties defined by the given repository. */
-	public void configureUIElementsFrom(Repository repository);
+    /**
+     * Configures the UI elements to show the properties defined by the given repository.  @param repository the repository
+     *
+     * @param repository the repository
+     */
+    public void configureUIElementsFrom(Repository repository);
 
-	/**
-	 * Configures given repository with the values entered into the dialog.
-	 * 
-	 * @return true if configuration is ok
-	 */
-	public boolean configure(Repository repository);
+    /**
+     * Configures given repository with the values entered into the dialog.
+     *
+     * @param repository the repository
+     * @return true if configuration is ok
+     */
+    public boolean configure(Repository repository);
 
-	/** Returns the actual component. */
-	public JComponent getComponent();
+    /**
+     * Returns the actual component.  @return the component
+     *
+     * @return the component
+     */
+    public JComponent getComponent();
 
-	/** This button should be disabled when invalid values are entered. */
-	public void setOkButton(JButton okButton);
+    /**
+     * This button should be disabled when invalid values are entered.  @param okButton the ok button
+     *
+     * @param okButton the ok button
+     */
+    public void setOkButton(JButton okButton);
 
-	/**
-	 * Additional buttons that will be shown left of the cancel button. If no additional buttons
-	 * should be added an empty list should be returned.
-	 */
-	public List<AbstractButton> getAdditionalButtons();
+    /**
+     * Additional buttons that will be shown left of the cancel button. If no additional buttons
+     * should be added an empty list should be returned.
+     *
+     * @return the additional buttons
+     */
+    public List<AbstractButton> getAdditionalButtons();
 
 }

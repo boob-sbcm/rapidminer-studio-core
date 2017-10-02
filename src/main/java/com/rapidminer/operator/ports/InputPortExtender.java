@@ -44,7 +44,7 @@ import com.rapidminer.operator.ports.metadata.Precondition;
  * objects. Delivered Collections might be unfolded automatically, so that the contained objects are
  * presented as if they would have been forwarded one by one to the operator. This port extender can
  * be configured to throw errors if the wrong type or to few inputs are connected.
- * 
+ *
  * @author Simon Fischer, Sebastian Land
  */
 public class InputPortExtender extends SinglePortExtender<InputPort> {
@@ -52,15 +52,37 @@ public class InputPortExtender extends SinglePortExtender<InputPort> {
 	private MetaData desiredMetaData;
 	private int numberOfMandatory;
 
-	public InputPortExtender(String name, Ports<InputPort> ports) {
+    /**
+     * Instantiates a new Input port extender.
+     *
+     * @param name  the name
+     * @param ports the ports
+     */
+    public InputPortExtender(String name, Ports<InputPort> ports) {
 		this(name, ports, null, 0);
 	}
 
-	public InputPortExtender(String name, Ports<InputPort> ports, MetaData desiredMetaData, boolean firstIsMandatory) {
+    /**
+     * Instantiates a new Input port extender.
+     *
+     * @param name             the name
+     * @param ports            the ports
+     * @param desiredMetaData  the desired meta data
+     * @param firstIsMandatory the first is mandatory
+     */
+    public InputPortExtender(String name, Ports<InputPort> ports, MetaData desiredMetaData, boolean firstIsMandatory) {
 		this(name, ports, desiredMetaData, firstIsMandatory ? 1 : 0);
 	}
 
-	public InputPortExtender(String name, Ports<InputPort> ports, MetaData desiredMetaData, int numberOfMandatory) {
+    /**
+     * Instantiates a new Input port extender.
+     *
+     * @param name              the name
+     * @param ports             the ports
+     * @param desiredMetaData   the desired meta data
+     * @param numberOfMandatory the number of mandatory
+     */
+    public InputPortExtender(String name, Ports<InputPort> ports, MetaData desiredMetaData, int numberOfMandatory) {
 		super(name, ports);
 		this.desiredMetaData = desiredMetaData;
 		this.numberOfMandatory = numberOfMandatory;
@@ -76,15 +98,15 @@ public class InputPortExtender extends SinglePortExtender<InputPort> {
 		return port;
 	}
 
-	/**
-	 * Returns a list of non-null data of all input ports.
-	 * 
-	 * @param unfold
-	 *            If true, collections are added as individual objects rather than as a collection.
-	 *            The unfolding is done recursively.
-	 * @deprecated use {@link #getData(Class, boolean)}
-	 */
-	@Deprecated
+    /**
+     * Returns a list of non-null data of all input ports.
+     *
+     * @param <T>    the type parameter
+     * @param unfold If true, collections are added as individual objects rather than as a collection.            The unfolding is done recursively.
+     * @return the data
+     * @deprecated use {@link #getData(Class, boolean)}
+     */
+    @Deprecated
 	@SuppressWarnings("unchecked")
 	public <T extends IOObject> List<T> getData(boolean unfold) {
 		List<IOObject> results = new LinkedList<IOObject>();
@@ -105,15 +127,16 @@ public class InputPortExtender extends SinglePortExtender<InputPort> {
 		return (List<T>) results;
 	}
 
-	/**
-	 * Returns a list of non-null data of all input ports.
-	 * 
-	 * @param unfold
-	 *            If true, collections are added as individual objects rather than as a collection.
-	 *            The unfolding is done recursively.
-	 * @throws UserError
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * Returns a list of non-null data of all input ports.
+     *
+     * @param <T>          the type parameter
+     * @param desiredClass the desired class
+     * @param unfold       If true, collections are added as individual objects rather than as a collection.            The unfolding is done recursively.
+     * @return the data
+     * @throws UserError the user error
+     */
+    @SuppressWarnings("unchecked")
 	public <T extends IOObject> List<T> getData(Class<T> desiredClass, boolean unfold) throws UserError {
 		List<T> results = new ArrayList<T>();
 		for (InputPort port : getManagedPorts()) {
@@ -158,10 +181,13 @@ public class InputPortExtender extends SinglePortExtender<InputPort> {
 		}
 	}
 
-	/**
-	 * Returns a list of non-null meta data of all input ports.
-	 */
-	public List<MetaData> getMetaData(boolean unfold) {
+    /**
+     * Returns a list of non-null meta data of all input ports.
+     *
+     * @param unfold the unfold
+     * @return the meta data
+     */
+    public List<MetaData> getMetaData(boolean unfold) {
 		List<MetaData> results = new LinkedList<MetaData>();
 		for (InputPort port : getManagedPorts()) {
 			MetaData data = port.getMetaData();
@@ -176,15 +202,25 @@ public class InputPortExtender extends SinglePortExtender<InputPort> {
 		return results;
 	}
 
-	/**
-	 * Subclasses might override this method in order to specify preconditions dependent on the
-	 * number of port. For example when a parameter lists the input types, etc...
-	 */
-	protected Precondition makePrecondition(final InputPort port, int portIndex) {
+    /**
+     * Subclasses might override this method in order to specify preconditions dependent on the
+     * number of port. For example when a parameter lists the input types, etc...
+     *
+     * @param port      the port
+     * @param portIndex the port index
+     * @return the precondition
+     */
+    protected Precondition makePrecondition(final InputPort port, int portIndex) {
 		return makePrecondition(port);
 	}
 
-	protected Precondition makePrecondition(final InputPort port) {
+    /**
+     * Make precondition precondition.
+     *
+     * @param port the port
+     * @return the precondition
+     */
+    protected Precondition makePrecondition(final InputPort port) {
 		if (desiredMetaData != null) {
 			return new Precondition() {
 
@@ -246,11 +282,23 @@ public class InputPortExtender extends SinglePortExtender<InputPort> {
 		return null;
 	}
 
-	public MDTransformationRule makePassThroughRule(OutputPort outputPort) {
+    /**
+     * Make pass through rule md transformation rule.
+     *
+     * @param outputPort the output port
+     * @return the md transformation rule
+     */
+    public MDTransformationRule makePassThroughRule(OutputPort outputPort) {
 		return new ManyToOnePassThroughRule(getManagedPorts(), outputPort);
 	}
 
-	public MDTransformationRule makeFlatteningPassThroughRule(OutputPort outputPort) {
+    /**
+     * Make flattening pass through rule md transformation rule.
+     *
+     * @param outputPort the output port
+     * @return the md transformation rule
+     */
+    public MDTransformationRule makeFlatteningPassThroughRule(OutputPort outputPort) {
 		return new FlatteningPassThroughRule(getManagedPorts(), outputPort);
 	}
 

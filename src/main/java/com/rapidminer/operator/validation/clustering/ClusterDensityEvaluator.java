@@ -44,7 +44,7 @@ import com.rapidminer.tools.math.similarity.DistanceMeasure;
  * This operator is used to evaluate a non-hierarchical cluster model based on the average within
  * cluster similarity/distance. It is computed by averaging all similarities / distances between
  * each pair of examples of a cluster.
- * 
+ *
  * @author Michael Wurst, Ingo Mierswa, Sebastian Land
  */
 public class ClusterDensityEvaluator extends Operator {
@@ -59,10 +59,12 @@ public class ClusterDensityEvaluator extends Operator {
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort performanceOutput = getOutputPorts().createPort("performance vector");
 
-	/**
-	 * Constructor for ClusterDensityEvaluator.
-	 */
-	public ClusterDensityEvaluator(OperatorDescription description) {
+    /**
+     * Constructor for ClusterDensityEvaluator.
+     *
+     * @param description the description
+     */
+    public ClusterDensityEvaluator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, Ontology.ATTRIBUTE_VALUE,

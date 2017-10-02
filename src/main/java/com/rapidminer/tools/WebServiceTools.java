@@ -36,17 +36,21 @@ import com.rapidminer.tools.parameter.ParameterChangeListener;
  * Some utility methods for web services and url connections.
  *
  * @author Simon Fischer, Marco Boeck
- *
  */
 public class WebServiceTools {
 
 	// three minutes
 	private static final int READ_TIMEOUT = 180000;
 
-	public static final String WEB_SERVICE_TIMEOUT = "connection.timeout";
+    /**
+     * The constant WEB_SERVICE_TIMEOUT.
+     */
+    public static final String WEB_SERVICE_TIMEOUT = "connection.timeout";
 
-	/** the timeout in ms used for url connections */
-	public static int TIMEOUT_URL_CONNECTION;
+    /**
+     * the timeout in ms used for url connections
+     */
+    public static int TIMEOUT_URL_CONNECTION;
 
 	static {
 		String timeoutStr = ParameterService.getParameterValue(WEB_SERVICE_TIMEOUT);
@@ -72,15 +76,23 @@ public class WebServiceTools {
 		});
 	}
 
-	public static void setTimeout(BindingProvider port) {
+    /**
+     * Sets timeout.
+     *
+     * @param port the port
+     */
+    public static void setTimeout(BindingProvider port) {
 		setTimeout(port, TIMEOUT_URL_CONNECTION);
 	}
 
-	/**
-	 * Sets the timeout for this web service client. Every port created by a JAX-WS can be cast to
-	 * BindingProvider.
-	 */
-	public static void setTimeout(BindingProvider port, int timeout) {
+    /**
+     * Sets the timeout for this web service client. Every port created by a JAX-WS can be cast to
+     * BindingProvider.
+     *
+     * @param port    the port
+     * @param timeout the timeout
+     */
+    public static void setTimeout(BindingProvider port, int timeout) {
 		if (port == null) {
 			throw new IllegalArgumentException("port must not be null!");
 		}
@@ -97,20 +109,26 @@ public class WebServiceTools {
 		// ctxt.put(BindingProviderProperties.CONNECT_TIMEOUT, timeout);
 	}
 
-	/** Pre-authenticates the Web service if password is not null. */
-	public static void setCredentials(BindingProvider bp, String username, char[] password) {
+    /**
+     * Pre-authenticates the Web service if password is not null.  @param bp the bp
+     *
+     * @param bp       the bp
+     * @param username the username
+     * @param password the password
+     */
+    public static void setCredentials(BindingProvider bp, String username, char[] password) {
 		if (password != null && password.length > 0) {
 			bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, username);
 			bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, new String(password));
 		}
 	}
 
-	/**
-	 * Sets some default settings for {@link URLConnection}s, e.g. timeouts.
-	 *
-	 * @param connection
-	 */
-	public static void setURLConnectionDefaults(URLConnection connection) {
+    /**
+     * Sets some default settings for {@link URLConnection}s, e.g. timeouts.
+     *
+     * @param connection the connection
+     */
+    public static void setURLConnectionDefaults(URLConnection connection) {
 		if (connection == null) {
 			throw new IllegalArgumentException("url must not be null!");
 		}
@@ -119,15 +137,15 @@ public class WebServiceTools {
 		connection.setReadTimeout(READ_TIMEOUT);
 	}
 
-	/**
-	 * Opens an {@link InputStream} from the given {@link URL} and calls
-	 * {@link #setURLConnectionDefaults(URLConnection)} on the {@link URLConnection} .
-	 *
-	 * @param url
-	 * @return
-	 * @throws IOException
-	 */
-	public static InputStream openStreamFromURL(URL url) throws IOException {
+    /**
+     * Opens an {@link InputStream} from the given {@link URL} and calls
+     * {@link #setURLConnectionDefaults(URLConnection)} on the {@link URLConnection} .
+     *
+     * @param url the url
+     * @return input stream
+     * @throws IOException the io exception
+     */
+    public static InputStream openStreamFromURL(URL url) throws IOException {
 		if (url == null) {
 			throw new IllegalArgumentException("url must not be null!");
 		}
@@ -137,11 +155,16 @@ public class WebServiceTools {
 		return connection.getInputStream();
 	}
 
-	/**
-	 * Opens an {@link InputStream} from the given {@link URL} and sets the read and connection
-	 * timeout provided by timeout.
-	 */
-	public static InputStream openStreamFromURL(URL url, int timeout) throws IOException {
+    /**
+     * Opens an {@link InputStream} from the given {@link URL} and sets the read and connection
+     * timeout provided by timeout.
+     *
+     * @param url     the url
+     * @param timeout the timeout
+     * @return the input stream
+     * @throws IOException the io exception
+     */
+    public static InputStream openStreamFromURL(URL url, int timeout) throws IOException {
 		if (url == null) {
 			throw new IllegalArgumentException("url must not be null!");
 		}
@@ -154,8 +177,10 @@ public class WebServiceTools {
 		return connection.getInputStream();
 	}
 
-	/** Clears all (Java-)cached credentials for Web services. */
-	public static void clearAuthCache() {
+    /**
+     * Clears all (Java-)cached credentials for Web services.
+     */
+    public static void clearAuthCache() {
 		try {
 			// this is evil, but there is no official way to clear the authentication cache...
 			// use of Reflection API so no sun classes are imported

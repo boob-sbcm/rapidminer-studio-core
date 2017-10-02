@@ -20,11 +20,16 @@ package com.rapidminer.datatable;
 
 /**
  * Listens to updates of a DataTable object.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public interface DataTableListener {
 
-	public void dataTableUpdated(DataTable source);
+    /**
+     * Data table updated.
+     *
+     * @param source the source
+     */
+    public void dataTableUpdated(DataTable source);
 
 }

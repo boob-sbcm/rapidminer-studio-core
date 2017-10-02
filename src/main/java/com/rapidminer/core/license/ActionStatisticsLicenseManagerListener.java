@@ -38,10 +38,12 @@ import com.rapidminer.tools.usagestats.ActionStatisticsCollector;
  * statistics.
  *
  * @author Nils Woehler
- *
  */
 public enum ActionStatisticsLicenseManagerListener implements LicenseManagerListener {
 
+	/**
+	 * Instance action statistics license manager listener.
+	 */
 	INSTANCE;
 
 	@Override

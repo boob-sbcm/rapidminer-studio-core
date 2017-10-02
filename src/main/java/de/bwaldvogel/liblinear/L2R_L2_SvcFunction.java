@@ -26,16 +26,40 @@
  */
 package de.bwaldvogel.liblinear;
 
+/**
+ * The type L 2 r l 2 svc function.
+ */
 class L2R_L2_SvcFunction implements Function {
 
-	protected final Problem prob;
-	protected final double[] C;
-	protected final int[] I;
-	protected final double[] z;
+    /**
+     * The Prob.
+     */
+    protected final Problem prob;
+    /**
+     * The C.
+     */
+    protected final double[] C;
+    /**
+     * The .
+     */
+    protected final int[] I;
+    /**
+     * The Z.
+     */
+    protected final double[] z;
 
-	protected int sizeI;
+    /**
+     * The Size i.
+     */
+    protected int sizeI;
 
-	public L2R_L2_SvcFunction(Problem prob, double[] C) {
+    /**
+     * Instantiates a new L 2 r l 2 svc function.
+     *
+     * @param prob the prob
+     * @param C    the c
+     */
+    public L2R_L2_SvcFunction(Problem prob, double[] C) {
 		int l = prob.l;
 
 		this.prob = prob;
@@ -113,7 +137,13 @@ class L2R_L2_SvcFunction implements Function {
 		}
 	}
 
-	protected void subXTv(double[] v, double[] XTv) {
+    /**
+     * Sub x tv.
+     *
+     * @param v   the v
+     * @param XTv the x tv
+     */
+    protected void subXTv(double[] v, double[] XTv) {
 		int i;
 		int w_size = get_nr_variable();
 
@@ -138,7 +168,13 @@ class L2R_L2_SvcFunction implements Function {
 		}
 	}
 
-	protected void Xv(double[] v, double[] Xv) {
+    /**
+     * Xv.
+     *
+     * @param v  the v
+     * @param Xv the xv
+     */
+    protected void Xv(double[] v, double[] Xv) {
 
 		for (int i = 0; i < prob.l; i++) {
 			Xv[i] = 0;

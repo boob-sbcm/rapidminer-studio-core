@@ -32,33 +32,58 @@ import java.awt.Component;
  * This is the renderer interface. A renderer is a visualization component for all types of objects.
  * In addition, it should also deliver an object of the interface {@link Reportable} in order to
  * support automatic reporting actions.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface Renderer extends ParameterHandler {
 
-	public String getName();
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName();
 
 	// TODO: Find a solution for non existing IOCOntainer
-	/**
-	 * @return the {@link Component} that visualizes the renderable. If if should be
-	 *         printable/exportable the component should extend the {@link PrintableComponent}
-	 *         interface.
-	 */
-	public Component getVisualizationComponent(Object renderable, IOContainer ioContainer);
 
-	// TODO: Find a solution for non existing IOCOntainer
+    /**
+     * Gets visualization component.
+     *
+     * @param renderable  the renderable
+     * @param ioContainer the io container
+     * @return the {@link Component} that visualizes the renderable. If if should be         printable/exportable the component should extend the {@link PrintableComponent}         interface.
+     */
+    public Component getVisualizationComponent(Object renderable, IOContainer ioContainer);
+
+    /**
+     * Create reportable reportable.
+     *
+     * @param renderable    the renderable
+     * @param ioContainer   the io container
+     * @param desiredWidth  the desired width
+     * @param desiredHeight the desired height
+     * @return the reportable
+     */
+// TODO: Find a solution for non existing IOCOntainer
 	public Reportable createReportable(Object renderable, IOContainer ioContainer, int desiredWidth, int desiredHeight);
 
 	@Override
 	public String toString();
 
-	public Parameters getParameters(InputPort inputPort);
+    /**
+     * Gets parameters.
+     *
+     * @param inputPort the input port
+     * @return the parameters
+     */
+    public Parameters getParameters(InputPort inputPort);
 
-	/**
-	 * This method overrides all existing parameters. It must be used to ensure, that input Port
-	 * referencing attributes are connected to the correct port, since they are only created once
-	 * and might be initialized from another operator.
-	 */
-	public void updateParameters(InputPort inputPort);
+    /**
+     * This method overrides all existing parameters. It must be used to ensure, that input Port
+     * referencing attributes are connected to the correct port, since they are only created once
+     * and might be initialized from another operator.
+     *
+     * @param inputPort the input port
+     */
+    public void updateParameters(InputPort inputPort);
 }

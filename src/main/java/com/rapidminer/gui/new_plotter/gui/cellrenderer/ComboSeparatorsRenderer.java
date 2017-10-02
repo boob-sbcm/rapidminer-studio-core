@@ -28,8 +28,10 @@ import javax.swing.ListCellRenderer;
 
 
 /**
- * @author Nils Woehler
+ * The type Combo separators renderer.
  *
+ * @param <E> the type parameter
+ * @author Nils Woehler
  */
 public abstract class ComboSeparatorsRenderer<E> implements ListCellRenderer<E> {
 
@@ -37,7 +39,12 @@ public abstract class ComboSeparatorsRenderer<E> implements ListCellRenderer<E> 
 	private JPanel separatorPanel = new JPanel(new BorderLayout());
 	private JSeparator separator = new JSeparator();
 
-	public ComboSeparatorsRenderer(ListCellRenderer<E> delegate) {
+    /**
+     * Instantiates a new Combo separators renderer.
+     *
+     * @param delegate the delegate
+     */
+    public ComboSeparatorsRenderer(ListCellRenderer<E> delegate) {
 		this.delegate = delegate;
 	}
 
@@ -55,5 +62,13 @@ public abstract class ComboSeparatorsRenderer<E> implements ListCellRenderer<E> 
 		}
 	}
 
-	protected abstract boolean addSeparatorAfter(JList<? extends E> list, Object value, int index);
+    /**
+     * Add separator after boolean.
+     *
+     * @param list  the list
+     * @param value the value
+     * @param index the index
+     * @return the boolean
+     */
+    protected abstract boolean addSeparatorAfter(JList<? extends E> list, Object value, int index);
 }

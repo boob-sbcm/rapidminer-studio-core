@@ -29,24 +29,29 @@ import com.rapidminer.tools.Tools;
 /**
  * This class holds all information on a single date attribute. In addition to the information of
  * the superclass, this is some statistics data like minimum, maximum and average of the values.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DateAttribute extends AbstractAttribute {
 
 	private static final long serialVersionUID = -685655991653799960L;
 
-	/**
-	 * Creates a simple attribute which is not part of a series and does not provide a unit string.
-	 */
-	protected DateAttribute(String name) {
+    /**
+     * Creates a simple attribute which is not part of a series and does not provide a unit string.
+     *
+     * @param name the name
+     */
+    protected DateAttribute(String name) {
 		this(name, Ontology.DATE);
 	}
 
-	/**
-	 * Creates a simple attribute which is not part of a series and does not provide a unit string.
-	 */
-	protected DateAttribute(String name, int valueType) {
+    /**
+     * Creates a simple attribute which is not part of a series and does not provide a unit string.
+     *
+     * @param name      the name
+     * @param valueType the value type
+     */
+    protected DateAttribute(String name, int valueType) {
 		super(name, valueType);
 		registerStatistics(new MinMaxStatistics());
 		registerStatistics(new UnknownStatistics());

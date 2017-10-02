@@ -46,11 +46,15 @@ import com.rapidminer.parameter.ParameterTypeCategory;
  */
 public class QuadraticParameterOptimizationOperator extends GridSearchParameterOptimizationOperator {
 
-	/** The parameter name for &quot;What to do if range is exceeded.&quot; */
-	public static final String PARAMETER_IF_EXCEEDS_REGION = "if_exceeds_region";
+    /**
+     * The parameter name for &quot;What to do if range is exceeded.&quot;
+     */
+    public static final String PARAMETER_IF_EXCEEDS_REGION = "if_exceeds_region";
 
-	/** The parameter name for &quot;What to do if range is exceeded.&quot; */
-	public static final String PARAMETER_IF_EXCEEDS_RANGE = "if_exceeds_range";
+    /**
+     * The parameter name for &quot;What to do if range is exceeded.&quot;
+     */
+    public static final String PARAMETER_IF_EXCEEDS_RANGE = "if_exceeds_range";
 	private static final String[] EXCEED_BEHAVIORS = { "ignore", "clip", "fail" };
 
 	private static final int IGNORE = 0;
@@ -61,7 +65,12 @@ public class QuadraticParameterOptimizationOperator extends GridSearchParameterO
 
 	private ParameterSet best;
 
-	public QuadraticParameterOptimizationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Quadratic parameter optimization operator.
+     *
+     * @param description the description
+     */
+    public QuadraticParameterOptimizationOperator(OperatorDescription description) {
 		super(description);
 	}
 

@@ -51,11 +51,22 @@ public class DetachedDockViewAsTab extends DockViewAsTab {
 
 	private static final long serialVersionUID = -2316449349513873264L;
 
-	protected Action attachAction;
+    /**
+     * The Attach action.
+     */
+    protected Action attachAction;
 
-	protected SmartIconJButton attachSmartIcon;
+    /**
+     * The Attach smart icon.
+     */
+    protected SmartIconJButton attachSmartIcon;
 
-	public DetachedDockViewAsTab(Dockable dockable) {
+    /**
+     * Instantiates a new Detached dock view as tab.
+     *
+     * @param dockable the dockable
+     */
+    public DetachedDockViewAsTab(Dockable dockable) {
 		super(dockable);
 	}
 

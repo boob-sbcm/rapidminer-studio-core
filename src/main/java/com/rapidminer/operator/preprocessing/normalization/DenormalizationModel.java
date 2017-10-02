@@ -38,7 +38,7 @@ import java.util.Map;
 
 /**
  * This Model can invert each possible linear transformation given by a normalization model.
- * 
+ *
  * @author Sebastian Land
  */
 public class DenormalizationModel extends AbstractNormalizationModel {
@@ -49,12 +49,27 @@ public class DenormalizationModel extends AbstractNormalizationModel {
 	private AbstractNormalizationModel invertedModel;
 	private boolean failOnMissing;
 
-	protected DenormalizationModel(ExampleSet exampleSet, Map<String, LinearTransformation> attributeTransformations,
+    /**
+     * Instantiates a new Denormalization model.
+     *
+     * @param exampleSet               the example set
+     * @param attributeTransformations the attribute transformations
+     * @param model                    the model
+     */
+    protected DenormalizationModel(ExampleSet exampleSet, Map<String, LinearTransformation> attributeTransformations,
 			AbstractNormalizationModel model) {
 		this(exampleSet, attributeTransformations, model, false);
 	}
 
-	protected DenormalizationModel(ExampleSet exampleSet, Map<String, LinearTransformation> attributeTransformations,
+    /**
+     * Instantiates a new Denormalization model.
+     *
+     * @param exampleSet               the example set
+     * @param attributeTransformations the attribute transformations
+     * @param model                    the model
+     * @param failOnMissingAttributes  the fail on missing attributes
+     */
+    protected DenormalizationModel(ExampleSet exampleSet, Map<String, LinearTransformation> attributeTransformations,
 			AbstractNormalizationModel model, boolean failOnMissingAttributes) {
 		super(exampleSet);
 		this.attributeTransformations = attributeTransformations;
@@ -114,15 +129,30 @@ public class DenormalizationModel extends AbstractNormalizationModel {
 		return super.applyOnData(exampleSet);
 	}
 
-	public Map<String, LinearTransformation> getAttributeTransformations() {
+    /**
+     * Gets attribute transformations.
+     *
+     * @return the attribute transformations
+     */
+    public Map<String, LinearTransformation> getAttributeTransformations() {
 		return attributeTransformations;
 	}
-	
-	public AbstractNormalizationModel getInvertedModel() {
+
+    /**
+     * Gets inverted model.
+     *
+     * @return the inverted model
+     */
+    public AbstractNormalizationModel getInvertedModel() {
 		return invertedModel;
 	}
-	
-	public boolean shouldFailOnMissing() {
+
+    /**
+     * Should fail on missing boolean.
+     *
+     * @return the boolean
+     */
+    public boolean shouldFailOnMissing() {
 		return failOnMissing;
 	}
 	

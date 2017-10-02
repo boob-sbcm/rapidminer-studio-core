@@ -30,7 +30,6 @@ import com.rapidminer.io.remote.RemoteFileSystemView;
  *
  * @author Gisa Schaefer
  * @since 6.1.0
- *
  */
 public class ParameterTypeRemoteFile extends ParameterTypeString {
 
@@ -40,51 +39,77 @@ public class ParameterTypeRemoteFile extends ParameterTypeString {
 
 	private int fileSelectionMode = JFileChooser.FILES_ONLY;
 
-	public ParameterTypeRemoteFile(String key, String description, RemoteFileSystemView remoteFileSystemView) {
+    /**
+     * Instantiates a new Parameter type remote file.
+     *
+     * @param key                  the key
+     * @param description          the description
+     * @param remoteFileSystemView the remote file system view
+     */
+    public ParameterTypeRemoteFile(String key, String description, RemoteFileSystemView remoteFileSystemView) {
 		super(key, description);
 		this.remoteFileSystemView = remoteFileSystemView;
 	}
 
-	public ParameterTypeRemoteFile(String key, String description, boolean optional,
+    /**
+     * Instantiates a new Parameter type remote file.
+     *
+     * @param key                  the key
+     * @param description          the description
+     * @param optional             the optional
+     * @param remoteFileSystemView the remote file system view
+     */
+    public ParameterTypeRemoteFile(String key, String description, boolean optional,
 			RemoteFileSystemView remoteFileSystemView) {
 		this(key, description, remoteFileSystemView);
 		setOptional(optional);
 	}
 
-	public ParameterTypeRemoteFile(String key, String description, boolean optional, boolean expert,
+    /**
+     * Instantiates a new Parameter type remote file.
+     *
+     * @param key                  the key
+     * @param description          the description
+     * @param optional             the optional
+     * @param expert               the expert
+     * @param remoteFileSystemView the remote file system view
+     */
+    public ParameterTypeRemoteFile(String key, String description, boolean optional, boolean expert,
 			RemoteFileSystemView remoteFileSystemView) {
 		this(key, description, remoteFileSystemView);
 		setExpert(expert);
 		setOptional(optional);
 	}
 
-	public RemoteFileSystemView getRemoteFileSystemView() {
+    /**
+     * Gets remote file system view.
+     *
+     * @return the remote file system view
+     */
+    public RemoteFileSystemView getRemoteFileSystemView() {
 		return remoteFileSystemView;
 	}
 
-	/**
-	 * Returns the file selection mode for the file chooser. See
-	 * {@link JFileChooser#getFileSelectionMode()}. Default is {@link JFileChooser#FILES_ONLY}, to
-	 * use a diffent mode, call {@link #setFileSelectionMode(int)}.
-	 *
-	 * @return one of {@link JFileChooser#FILES_ONLY}, {@link JFileChooser#FILES_AND_DIRECTORIES},
-	 *         and {@link JFileChooser#DIRECTORIES_ONLY}
-	 * @since 6.5.0
-	 */
-	public int getFileSelectionMode() {
+    /**
+     * Returns the file selection mode for the file chooser. See
+     * {@link JFileChooser#getFileSelectionMode()}. Default is {@link JFileChooser#FILES_ONLY}, to
+     * use a diffent mode, call {@link #setFileSelectionMode(int)}.
+     *
+     * @return one of {@link JFileChooser#FILES_ONLY}, {@link JFileChooser#FILES_AND_DIRECTORIES},         and {@link JFileChooser#DIRECTORIES_ONLY}
+     * @since 6.5.0
+     */
+    public int getFileSelectionMode() {
 		return fileSelectionMode;
 	}
 
-	/**
-	 * Sets the file selection mode for the file chooser. See
-	 * {@link JFileChooser#getFileSelectionMode()}. Default is {@link JFileChooser#FILES_ONLY}.
-	 *
-	 * @param fileSelectionMode
-	 *            one of {@link JFileChooser#FILES_ONLY}, {@link JFileChooser#FILES_AND_DIRECTORIES}
-	 *            , and {@link JFileChooser#DIRECTORIES_ONLY}
-	 * @since 6.5.0
-	 */
-	public void setFileSelectionMode(int fileSelectionMode) {
+    /**
+     * Sets the file selection mode for the file chooser. See
+     * {@link JFileChooser#getFileSelectionMode()}. Default is {@link JFileChooser#FILES_ONLY}.
+     *
+     * @param fileSelectionMode one of {@link JFileChooser#FILES_ONLY}, {@link JFileChooser#FILES_AND_DIRECTORIES}            , and {@link JFileChooser#DIRECTORIES_ONLY}
+     * @since 6.5.0
+     */
+    public void setFileSelectionMode(int fileSelectionMode) {
 		this.fileSelectionMode = fileSelectionMode;
 	}
 }

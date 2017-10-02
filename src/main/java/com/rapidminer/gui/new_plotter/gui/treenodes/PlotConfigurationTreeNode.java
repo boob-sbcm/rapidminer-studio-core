@@ -29,19 +29,29 @@ import javax.swing.tree.TreeNode;
 /**
  * Never use the setUserObject method of this class! Instead use the exchangePlotConfiguration in
  * PlotConfigurationTreeModel class.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class PlotConfigurationTreeNode extends DefaultMutableTreeNode {
 
 	private static final long serialVersionUID = 1L;
 
-	public PlotConfigurationTreeNode(PlotConfiguration plotConfig) {
+    /**
+     * Instantiates a new Plot configuration tree node.
+     *
+     * @param plotConfig the plot config
+     */
+    public PlotConfigurationTreeNode(PlotConfiguration plotConfig) {
 		super(plotConfig);
 	}
 
-	public int getRangeAxisIndex(RangeAxisConfig rangeAxis) {
+    /**
+     * Gets range axis index.
+     *
+     * @param rangeAxis the range axis
+     * @return the range axis index
+     */
+    public int getRangeAxisIndex(RangeAxisConfig rangeAxis) {
 		for (Object child : children) {
 			if (rangeAxis == ((DefaultMutableTreeNode) child).getUserObject()) {
 				return children.indexOf(child);
@@ -50,7 +60,13 @@ public class PlotConfigurationTreeNode extends DefaultMutableTreeNode {
 		return -1;
 	}
 
-	public int getDimensionConfigIndex(PlotDimension dimension) {
+    /**
+     * Gets dimension config index.
+     *
+     * @param dimension the dimension
+     * @return the dimension config index
+     */
+    public int getDimensionConfigIndex(PlotDimension dimension) {
 		for (Object child : children) {
 			if (child instanceof DimensionConfigTreeNode) {
 				if (((DimensionConfigTreeNode) child).getDimension() == dimension) {
@@ -62,7 +78,13 @@ public class PlotConfigurationTreeNode extends DefaultMutableTreeNode {
 		return -1;
 	}
 
-	public TreeNode getChild(RangeAxisConfig rangeAxis) {
+    /**
+     * Gets child.
+     *
+     * @param rangeAxis the range axis
+     * @return the child
+     */
+    public TreeNode getChild(RangeAxisConfig rangeAxis) {
 		int rangeAxisIndex = getRangeAxisIndex(rangeAxis);
 		if (rangeAxisIndex < 0) {
 			return null;
@@ -70,7 +92,13 @@ public class PlotConfigurationTreeNode extends DefaultMutableTreeNode {
 		return getChildAt(rangeAxisIndex);
 	}
 
-	public TreeNode getChild(PlotDimension dimension) {
+    /**
+     * Gets child.
+     *
+     * @param dimension the dimension
+     * @return the child
+     */
+    public TreeNode getChild(PlotDimension dimension) {
 		int dimensionConfigIndex = getDimensionConfigIndex(dimension);
 		if (dimensionConfigIndex < 0) {
 			return null;

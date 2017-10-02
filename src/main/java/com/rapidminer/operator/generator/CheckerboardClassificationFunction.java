@@ -21,7 +21,7 @@ package com.rapidminer.operator.generator;
 /**
  * Returns a checkerboard classification function. Each tile has size 5. Attribute values should be
  * positive.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CheckerboardClassificationFunction extends ClassificationFunction {

@@ -33,10 +33,13 @@ import Jama.Matrix;
  */
 public class MatrixTools {
 
-	/**
-	 * This method copies the complete data of the exampleSet into an Matrix backed by an array.
-	 */
-	public static final Matrix getDataAsMatrix(ExampleSet exampleSet) {
+    /**
+     * This method copies the complete data of the exampleSet into an Matrix backed by an array.
+     *
+     * @param exampleSet the example set
+     * @return the data as matrix
+     */
+    public static final Matrix getDataAsMatrix(ExampleSet exampleSet) {
 		Attributes attributes = exampleSet.getAttributes();
 		double[][] data = new double[exampleSet.size()][attributes.size()];
 		int c = 0;

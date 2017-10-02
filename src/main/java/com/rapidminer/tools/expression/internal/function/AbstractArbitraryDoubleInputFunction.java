@@ -30,24 +30,28 @@ import com.rapidminer.tools.expression.internal.SimpleExpressionEvaluator;
  * Abstract class for a {@link Function} that has arbitrary many arguments.
  *
  * @author David Arnu
- *
  */
 public abstract class AbstractArbitraryDoubleInputFunction extends AbstractFunction {
 
-	public AbstractArbitraryDoubleInputFunction(String i18n, int numberOfArgumentsToCheck, int returnType) {
+    /**
+     * Instantiates a new Abstract arbitrary double input function.
+     *
+     * @param i18n                     the 18 n
+     * @param numberOfArgumentsToCheck the number of arguments to check
+     * @param returnType               the return type
+     */
+    public AbstractArbitraryDoubleInputFunction(String i18n, int numberOfArgumentsToCheck, int returnType) {
 		super(i18n, numberOfArgumentsToCheck, returnType);
 	}
 
-	/**
-	 * Builds a double callable from an arbitrary number of inputs
-	 *
-	 * @param inputEvaluators
-	 *            the inputs
-	 * @return the resulting double callable
-	 *
-	 * @author David Arnu
-	 */
-	protected DoubleCallable makeDoubleCallable(final ExpressionEvaluator[] inputEvaluators) {
+    /**
+     * Builds a double callable from an arbitrary number of inputs
+     *
+     * @param inputEvaluators the inputs
+     * @return the resulting double callable
+     * @author David Arnu
+     */
+    protected DoubleCallable makeDoubleCallable(final ExpressionEvaluator[] inputEvaluators) {
 
 		final int inputLength = inputEvaluators.length;
 		final double[] constantValues = new double[inputLength];
@@ -125,12 +129,12 @@ public abstract class AbstractArbitraryDoubleInputFunction extends AbstractFunct
 		return new SimpleExpressionEvaluator(makeDoubleCallable(inputEvaluators), type, isResultConstant(inputEvaluators));
 	}
 
-	/**
-	 * Computes the result of a function with arbitrary many double values as input arguments
-	 *
-	 * @param values
-	 * @return the single value result of the computation
-	 */
-	protected abstract double compute(double... values);
+    /**
+     * Computes the result of a function with arbitrary many double values as input arguments
+     *
+     * @param values the values
+     * @return the single value result of the computation
+     */
+    protected abstract double compute(double... values);
 
 }

@@ -36,7 +36,6 @@ import com.rapidminer.tools.container.Pair;
  * Stores configurations in files (one file per {@link Configurator}.
  *
  * @author Simon Fischer
- *
  */
 public class ClientConfigurationManager extends ConfigurationManager {
 

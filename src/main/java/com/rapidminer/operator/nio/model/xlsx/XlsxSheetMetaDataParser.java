@@ -39,7 +39,7 @@ import com.rapidminer.operator.nio.model.xlsx.XlsxUtilities.XlsxCellCoordinates;
 
 /**
  * StAX parser for XLSX worksheet meta data.
- *
+ * <p>
  * FIXME adapt It opens the selected worksheet XML file and looks for the 'dimension' element to
  * extract the worksheet cell ranges. In case the 'dimension' element cannot be found or has invalid
  * content it has to perform a full scan of the worksheet XML to extract the cell range which can -
@@ -51,71 +51,73 @@ import com.rapidminer.operator.nio.model.xlsx.XlsxUtilities.XlsxCellCoordinates;
  */
 public class XlsxSheetMetaDataParser {
 
-	/**
-	 * This element specifies the used range of the worksheet. It specifies the row and column
-	 * bounds of used cells in the worksheet. This is optional and is not required. Used cells
-	 * include cells with formulas, text content, and cell formatting. When an entire column is
-	 * formatted, only the first cell in that column is considered used.
-	 *
-	 * @see ECMA-376, 4th Edition, 18.3.1.35 Worksheet dimensions (p. 1617). This tag is optional.
-	 */
-	public static final String TAG_DIMENSION = "dimension";
+    /**
+     * This element specifies the used range of the worksheet. It specifies the row and column
+     * bounds of used cells in the worksheet. This is optional and is not required. Used cells
+     * include cells with formulas, text content, and cell formatting. When an entire column is
+     * formatted, only the first cell in that column is considered used.
+     *
+     * @see ECMA-376, 4th Edition, 18.3.1.35 Worksheet dimensions (p. 1617). This tag is optional.
+     */
+    public static final String TAG_DIMENSION = "dimension";
 
-	/**
-	 * The row and column bounds of all cells in this worksheet. Corresponds to the range that would
-	 * contain all c elements written under sheetData. Does not support whole column or whole row
-	 * reference notation.
-	 *
-	 * @see ECMA-376, 4th Edition, 18.3.1.35 Worksheet dimensions (p. 1617)
-	 */
-	public static final String ATT_DIMENSION_REF = "ref";
+    /**
+     * The row and column bounds of all cells in this worksheet. Corresponds to the range that would
+     * contain all c elements written under sheetData. Does not support whole column or whole row
+     * reference notation.
+     *
+     * @see ECMA-376, 4th Edition, 18.3.1.35 Worksheet dimensions (p. 1617)
+     */
+    public static final String ATT_DIMENSION_REF = "ref";
 
-	/**
-	 * Optimization only, and not required. Specifies the range of non-empty columns (in the format
-	 * X:Y) for the block of rows to which the current row belongs. To achieve the optimization,
-	 * span attribute values in a single block should be the same.
-	 *
-	 * @see ECMA-376, 4th Edition, 18.3.1.73 Row (p. 1670)
-	 */
-	public static final String ATT_SPANS = "spans";
+    /**
+     * Optimization only, and not required. Specifies the range of non-empty columns (in the format
+     * X:Y) for the block of rows to which the current row belongs. To achieve the optimization,
+     * span attribute values in a single block should be the same.
+     *
+     * @see ECMA-376, 4th Edition, 18.3.1.73 Row (p. 1670)
+     */
+    public static final String ATT_SPANS = "spans";
 
-	/**
-	 * Currently, as of 16.01.2015, XLSX supports up to 104.857.76 rows per sheet.
-	 */
-	public static final int MAXIMUM_XLSX_ROW_INDEX = 104_857_75;
+    /**
+     * Currently, as of 16.01.2015, XLSX supports up to 104.857.76 rows per sheet.
+     */
+    public static final int MAXIMUM_XLSX_ROW_INDEX = 104_857_75;
 
-	/**
-	 * Currently, as of 16.01.2015, XLSX supports up to 16.384 columns per sheet.
-	 */
-	public static final int MAXIMUM_XLSX_COLUMN_INDEX = 16_383;
+    /**
+     * Currently, as of 16.01.2015, XLSX supports up to 16.384 columns per sheet.
+     */
+    public static final int MAXIMUM_XLSX_COLUMN_INDEX = 16_383;
 
 	private final File xlsxFile;
 	private final XMLInputFactory xmlInputFactory;
 	private final String workbookZipEntryPath;
 
-	public XlsxSheetMetaDataParser(File xlsxFile, String workbookZipEntryPath, XMLInputFactory xmlInputFactory) {
+    /**
+     * Instantiates a new Xlsx sheet meta data parser.
+     *
+     * @param xlsxFile             the xlsx file
+     * @param workbookZipEntryPath the workbook zip entry path
+     * @param xmlInputFactory      the xml input factory
+     */
+    public XlsxSheetMetaDataParser(File xlsxFile, String workbookZipEntryPath, XMLInputFactory xmlInputFactory) {
 		this.xlsxFile = xlsxFile;
 		this.workbookZipEntryPath = workbookZipEntryPath;
 		this.xmlInputFactory = xmlInputFactory;
 	}
 
-	/**
-	 * Parses the XLSX worksheet file to retrieve sheet meta data.
-	 *
-	 * @param configuration
-	 *            the result set configuration
-	 * @param readMode
-	 *
-	 * @return the parsed sheet meta data
-	 *
-	 * @throws XMLStreamException
-	 *             if there is an error processing the underlying XML source
-	 * @throws IOException
-	 *             if an I/O error has occurred
-	 * @throws UserError
-	 *             in case something is configured wrong (e.g. wrong cell parsing range)
-	 */
-	public XlsxSheetMetaData parseMetaData(Operator callingOperator, ExcelResultSetConfiguration configuration,
+    /**
+     * Parses the XLSX worksheet file to retrieve sheet meta data.
+     *
+     * @param callingOperator the calling operator
+     * @param configuration   the result set configuration
+     * @param readMode        the read mode
+     * @return the parsed sheet meta data
+     * @throws XMLStreamException if there is an error processing the underlying XML source
+     * @throws IOException        if an I/O error has occurred
+     * @throws UserError          in case something is configured wrong (e.g. wrong cell parsing range)
+     */
+    public XlsxSheetMetaData parseMetaData(Operator callingOperator, ExcelResultSetConfiguration configuration,
 			XlsxReadMode readMode) throws XMLStreamException, IOException, UserError {
 
 		// use 0 as first row index in case the whole column is specified

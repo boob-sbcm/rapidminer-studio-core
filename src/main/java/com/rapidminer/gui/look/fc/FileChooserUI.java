@@ -100,27 +100,54 @@ import sun.awt.shell.ShellFolder;
  */
 public class FileChooserUI extends BasicFileChooserUI {
 
-	public static final String FILECHOOSER_VIEW_TYPE = "FILECHOOSER_VIEW_TYPE";
+    /**
+     * The constant FILECHOOSER_VIEW_TYPE.
+     */
+    public static final String FILECHOOSER_VIEW_TYPE = "FILECHOOSER_VIEW_TYPE";
 
-	public static final String FILECHOOSER_VIEW_THUMBNAIL = I18N.getMessage(I18N.getGUIBundle(),
+    /**
+     * The constant FILECHOOSER_VIEW_THUMBNAIL.
+     */
+    public static final String FILECHOOSER_VIEW_THUMBNAIL = I18N.getMessage(I18N.getGUIBundle(),
 			"gui.menu.file_chooser.view.thumbnails.label");
 
-	public static final String FILECHOOSER_VIEW_ICON = I18N.getMessage(I18N.getGUIBundle(),
+    /**
+     * The constant FILECHOOSER_VIEW_ICON.
+     */
+    public static final String FILECHOOSER_VIEW_ICON = I18N.getMessage(I18N.getGUIBundle(),
 			"gui.menu.file_chooser.view.icons.label");
 
-	public static final String FILECHOOSER_VIEW_LIST = I18N.getMessage(I18N.getGUIBundle(),
+    /**
+     * The constant FILECHOOSER_VIEW_LIST.
+     */
+    public static final String FILECHOOSER_VIEW_LIST = I18N.getMessage(I18N.getGUIBundle(),
 			"gui.menu.file_chooser.view.list.label");
 
-	public static final String FILECHOOSER_VIEW_DETAILS = I18N.getMessage(I18N.getGUIBundle(),
+    /**
+     * The constant FILECHOOSER_VIEW_DETAILS.
+     */
+    public static final String FILECHOOSER_VIEW_DETAILS = I18N.getMessage(I18N.getGUIBundle(),
 			"gui.menu.file_chooser.view.details.label");
 
-	public static final Icon FILECHOOSER_OPEN_ICON = SwingTools.createIcon("24/folder_open.png");
+    /**
+     * The constant FILECHOOSER_OPEN_ICON.
+     */
+    public static final Icon FILECHOOSER_OPEN_ICON = SwingTools.createIcon("24/folder_open.png");
 
-	public static final Icon FILECHOOSER_SELECT_ICON = SwingTools.createIcon("24/folder_open.png");
+    /**
+     * The constant FILECHOOSER_SELECT_ICON.
+     */
+    public static final Icon FILECHOOSER_SELECT_ICON = SwingTools.createIcon("24/folder_open.png");
 
-	public static final Icon FILECHOOSER_SAVE_ICON = SwingTools.createIcon("24/floppy_disk.png");
+    /**
+     * The constant FILECHOOSER_SAVE_ICON.
+     */
+    public static final Icon FILECHOOSER_SAVE_ICON = SwingTools.createIcon("24/floppy_disk.png");
 
-	public static final Icon FILECHOOSER_CLOSE_ICON = SwingTools.createIcon("24/delete.png");
+    /**
+     * The constant FILECHOOSER_CLOSE_ICON.
+     */
+    public static final Icon FILECHOOSER_CLOSE_ICON = SwingTools.createIcon("24/delete.png");
 
 	/**
 	 * Creates a new folder.
@@ -129,7 +156,10 @@ public class FileChooserUI extends BasicFileChooserUI {
 
 		private static final long serialVersionUID = -119998626996460617L;
 
-		protected NewFolderAction() {
+        /**
+         * Instantiates a new New folder action.
+         */
+        protected NewFolderAction() {
 			super("file_chooser.new_folder");
 		}
 
@@ -179,7 +209,12 @@ public class FileChooserUI extends BasicFileChooserUI {
 
 		private int maxWidth = 0;
 
-		AlignedLabel(String text) {
+        /**
+         * Instantiates a new Aligned label.
+         *
+         * @param text the text
+         */
+        AlignedLabel(String text) {
 			super(text);
 			setAlignmentX(Component.LEFT_ALIGNMENT);
 		}
@@ -217,7 +252,10 @@ public class FileChooserUI extends BasicFileChooserUI {
 
 		private static final long serialVersionUID = -6851838331146924117L;
 
-		protected DirectoryComboBoxAction() {
+        /**
+         * Instantiates a new Directory combo box action.
+         */
+        protected DirectoryComboBoxAction() {
 			super("DirectoryComboBoxAction");
 		}
 
@@ -236,7 +274,10 @@ public class FileChooserUI extends BasicFileChooserUI {
 
 		private FileFilter[] filters;
 
-		protected FilterComboBoxModel() {
+        /**
+         * Instantiates a new Filter combo box model.
+         */
+        protected FilterComboBoxModel() {
 			super();
 			this.filters = getFileChooser().getChoosableFileFilters();
 		}
@@ -333,7 +374,10 @@ public class FileChooserUI extends BasicFileChooserUI {
 
 		private FileSystemView fileSystemView = this.chooser.getFileSystemView();
 
-		public DirectoryComboBoxModel() {
+        /**
+         * Instantiates a new Directory combo box model.
+         */
+        public DirectoryComboBoxModel() {
 			File dir = getFileChooser().getCurrentDirectory();
 			if (dir != null) {
 				addItem(dir);
@@ -404,7 +448,13 @@ public class FileChooserUI extends BasicFileChooserUI {
 			}
 		}
 
-		public int getDepth(int i) {
+        /**
+         * Gets depth.
+         *
+         * @param i the
+         * @return the depth
+         */
+        public int getDepth(int i) {
 			return this.depths != null && i >= 0 && i < this.depths.length ? this.depths[i] : 0;
 		}
 
@@ -521,7 +571,10 @@ public class FileChooserUI extends BasicFileChooserUI {
 
 		private static final long serialVersionUID = -654304868192207741L;
 
-		public BookmarkAction() {
+        /**
+         * Instantiates a new Bookmark action.
+         */
+        public BookmarkAction() {
 			super("file_chooser.add_to_bookmarks");
 		}
 
@@ -535,7 +588,10 @@ public class FileChooserUI extends BasicFileChooserUI {
 
 		private static final long serialVersionUID = 5132122622014626886L;
 
-		protected GoBackAction() {
+        /**
+         * Instantiates a new Go back action.
+         */
+        protected GoBackAction() {
 			super("file_chooser.go_back");
 		}
 
@@ -571,7 +627,10 @@ public class FileChooserUI extends BasicFileChooserUI {
 
 		private static final long serialVersionUID = -3805300411336163058L;
 
-		protected ChangeToParentDirectoryAction() {
+        /**
+         * Instantiates a new Change to parent directory action.
+         */
+        protected ChangeToParentDirectoryAction() {
 			super("file_chooser.change_to_parent_directory");
 		}
 
@@ -593,22 +652,43 @@ public class FileChooserUI extends BasicFileChooserUI {
 
 		private static final long serialVersionUID = 6720057807081456009L;
 
-		public ChangeViewAction() {
+        /**
+         * Instantiates a new Change view action.
+         */
+        public ChangeViewAction() {
 			super("file_chooser.view");
 		}
 	}
 
-	public transient final Action NEW_FOLDER_ACTION = new NewFolderAction();
+    /**
+     * The New folder action.
+     */
+    public transient final Action NEW_FOLDER_ACTION = new NewFolderAction();
 
-	public final ResourceActionAdapter CHANGE_VIEW_ACTION = new ChangeViewAction();
+    /**
+     * The Change view action.
+     */
+    public final ResourceActionAdapter CHANGE_VIEW_ACTION = new ChangeViewAction();
 
-	public final Action ADD_TO_BOOKMARKS_ACTION = new BookmarkAction();
+    /**
+     * The Add to bookmarks action.
+     */
+    public final Action ADD_TO_BOOKMARKS_ACTION = new BookmarkAction();
 
-	public final Action GO_BACK_ACTION = new GoBackAction();
+    /**
+     * The Go back action.
+     */
+    public final Action GO_BACK_ACTION = new GoBackAction();
 
-	public final Action GO_HOME_ACTION = new ResourceActionTransmitter("file_chooser.go_home", super.getGoHomeAction());
+    /**
+     * The Go home action.
+     */
+    public final Action GO_HOME_ACTION = new ResourceActionTransmitter("file_chooser.go_home", super.getGoHomeAction());
 
-	public final Action CHANGE_TO_PARENT_DIRECTORY = new ChangeToParentDirectoryAction();
+    /**
+     * The Change to parent directory.
+     */
+    public final Action CHANGE_TO_PARENT_DIRECTORY = new ChangeToParentDirectoryAction();
 
 	private static File userHomeDirectory;
 
@@ -616,11 +696,20 @@ public class FileChooserUI extends BasicFileChooserUI {
 
 	private ButtonGroup changeViewButtonGroup;
 
-	public String viewType = FILECHOOSER_VIEW_DETAILS;
+    /**
+     * The View type.
+     */
+    public String viewType = FILECHOOSER_VIEW_DETAILS;
 
-	protected Vector<String> backPathVector = new Vector<String>();
+    /**
+     * The Back path vector.
+     */
+    protected Vector<String> backPathVector = new Vector<String>();
 
-	protected JButton bookmarksButton;
+    /**
+     * The Bookmarks button.
+     */
+    protected JButton bookmarksButton;
 
 	private JPopupMenu changeViewPopup;
 
@@ -628,7 +717,10 @@ public class FileChooserUI extends BasicFileChooserUI {
 
 	private DropDownPopupButton changeViewButton;
 
-	protected FileList fileList;
+    /**
+     * The File list.
+     */
+    protected FileList fileList;
 
 	private JLabel lookInLabel;
 
@@ -676,15 +768,30 @@ public class FileChooserUI extends BasicFileChooserUI {
 
 	private LinkedList<ChangeListener> listeners = new LinkedList<ChangeListener>();
 
-	public void addChangeListener(ChangeListener l) {
+    /**
+     * Add change listener.
+     *
+     * @param l the l
+     */
+    public void addChangeListener(ChangeListener l) {
 		listeners.add(l);
 	}
 
-	public void removeChangeListener(ChangeListener l) {
+    /**
+     * Remove change listener.
+     *
+     * @param l the l
+     */
+    public void removeChangeListener(ChangeListener l) {
 		listeners.remove(l);
 	}
 
-	protected ActionMap createActions() {
+    /**
+     * Create actions action map.
+     *
+     * @return the action map
+     */
+    protected ActionMap createActions() {
 		final AbstractAction escAction = new AbstractAction() {
 
 			private static final long serialVersionUID = -3976059968191425942L;
@@ -716,15 +823,31 @@ public class FileChooserUI extends BasicFileChooserUI {
 		return this.approveSelectionAction;
 	}
 
-	public String getView() {
+    /**
+     * Gets view.
+     *
+     * @return the view
+     */
+    public String getView() {
 		return this.viewType;
 	}
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new FileChooserUI((JFileChooser) c);
 	}
 
-	public FileChooserUI(JFileChooser filechooser) {
+    /**
+     * Instantiates a new File chooser ui.
+     *
+     * @param filechooser the filechooser
+     */
+    public FileChooserUI(JFileChooser filechooser) {
 		super(filechooser);
 	}
 
@@ -1017,7 +1140,12 @@ public class FileChooserUI extends BasicFileChooserUI {
 		return newFolderAction;
 	}
 
-	protected JPanel getButtonPanel() {
+    /**
+     * Gets button panel.
+     *
+     * @return the button panel
+     */
+    protected JPanel getButtonPanel() {
 		if (this.buttonPanel == null) {
 			this.buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 			this.buttonPanel.setOpaque(false);
@@ -1026,7 +1154,12 @@ public class FileChooserUI extends BasicFileChooserUI {
 		return this.buttonPanel;
 	}
 
-	protected JPanel getBottomPanel() {
+    /**
+     * Gets bottom panel.
+     *
+     * @return the bottom panel
+     */
+    protected JPanel getBottomPanel() {
 		if (this.bottomPanel == null) {
 			this.bottomPanel = new JPanel();
 			this.bottomPanel.setOpaque(false);
@@ -1061,7 +1194,12 @@ public class FileChooserUI extends BasicFileChooserUI {
 		SwingUtilities.replaceUIActionMap(fc, actionMap);
 	}
 
-	protected ActionMap getActions() {
+    /**
+     * Gets actions.
+     *
+     * @return the actions
+     */
+    protected ActionMap getActions() {
 		return createActions();
 	}
 
@@ -1087,7 +1225,12 @@ public class FileChooserUI extends BasicFileChooserUI {
 		}
 	}
 
-	public boolean isFileSelected() {
+    /**
+     * Is file selected boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isFileSelected() {
 		return this.selected;
 	}
 
@@ -1305,19 +1448,35 @@ public class FileChooserUI extends BasicFileChooserUI {
 		};
 	}
 
-	protected void removeControlButtons() {
+    /**
+     * Remove control buttons.
+     */
+    protected void removeControlButtons() {
 		getBottomPanel().remove(getButtonPanel());
 	}
 
-	protected void addControlButtons() {
+    /**
+     * Add control buttons.
+     */
+    protected void addControlButtons() {
 		getBottomPanel().add(getButtonPanel());
 	}
 
-	public JButton getApproveButton() {
+    /**
+     * Gets approve button.
+     *
+     * @return the approve button
+     */
+    public JButton getApproveButton() {
 		return this.approveButton;
 	}
 
-	public JButton getCancelButton() {
+    /**
+     * Gets cancel button.
+     *
+     * @return the cancel button
+     */
+    public JButton getCancelButton() {
 		return this.cancelButton;
 	}
 
@@ -1366,23 +1525,50 @@ public class FileChooserUI extends BasicFileChooserUI {
 	@Override
 	public void setDirectoryName(String dirname) {}
 
-	protected DirectoryComboBoxRenderer createDirectoryComboBoxRenderer(JFileChooser fc) {
+    /**
+     * Create directory combo box renderer directory combo box renderer.
+     *
+     * @param fc the fc
+     * @return the directory combo box renderer
+     */
+    protected DirectoryComboBoxRenderer createDirectoryComboBoxRenderer(JFileChooser fc) {
 		return new DirectoryComboBoxRenderer();
 	}
 
-	protected DirectoryComboBoxModel createDirectoryComboBoxModel(JFileChooser fc) {
+    /**
+     * Create directory combo box model directory combo box model.
+     *
+     * @param fc the fc
+     * @return the directory combo box model
+     */
+    protected DirectoryComboBoxModel createDirectoryComboBoxModel(JFileChooser fc) {
 		return new DirectoryComboBoxModel();
 	}
 
-	protected FilterComboBoxRenderer createFilterComboBoxRenderer() {
+    /**
+     * Create filter combo box renderer filter combo box renderer.
+     *
+     * @return the filter combo box renderer
+     */
+    protected FilterComboBoxRenderer createFilterComboBoxRenderer() {
 		return new FilterComboBoxRenderer();
 	}
 
-	protected FilterComboBoxModel createFilterComboBoxModel() {
+    /**
+     * Create filter combo box model filter combo box model.
+     *
+     * @return the filter combo box model
+     */
+    protected FilterComboBoxModel createFilterComboBoxModel() {
 		return new FilterComboBoxModel();
 	}
 
-	public void valueChanged(ListSelectionEvent e) {
+    /**
+     * Value changed.
+     *
+     * @param e the e
+     */
+    public void valueChanged(ListSelectionEvent e) {
 		JFileChooser fc = getFileChooser();
 		File f = fc.getSelectedFile();
 		if (!e.getValueIsAdjusting() && f != null && !getFileChooser().isTraversable(f)) {
@@ -1391,7 +1577,12 @@ public class FileChooserUI extends BasicFileChooserUI {
 		}
 	}
 
-	protected void setCurrentDirectoryOfFileChooser(File f) {
+    /**
+     * Sets current directory of file chooser.
+     *
+     * @param f the f
+     */
+    protected void setCurrentDirectoryOfFileChooser(File f) {
 		getFileChooser().setCurrentDirectory(f);
 	}
 
@@ -1411,7 +1602,10 @@ public class FileChooserUI extends BasicFileChooserUI {
 		return this.fileView;
 	}
 
-	public void goBack() {
+    /**
+     * Go back.
+     */
+    public void goBack() {
 		if (this.backPathVector.size() > 0) {
 			setCurrentDirectoryOfFileChooser(new File(this.backPathVector.elementAt(this.backPathVector.size() - 1)));
 
@@ -1427,7 +1621,12 @@ public class FileChooserUI extends BasicFileChooserUI {
 		}
 	}
 
-	public Action getGoBackAction() {
+    /**
+     * Gets go back action.
+     *
+     * @return the go back action
+     */
+    public Action getGoBackAction() {
 		return GO_BACK_ACTION;
 	}
 
@@ -1441,7 +1640,12 @@ public class FileChooserUI extends BasicFileChooserUI {
 		return CHANGE_TO_PARENT_DIRECTORY;
 	}
 
-	public JPopupMenu createViewPopupMenu() {
+    /**
+     * Create view popup menu j popup menu.
+     *
+     * @return the j popup menu
+     */
+    public JPopupMenu createViewPopupMenu() {
 		JMenuItem menuItem;
 		changeViewActionListener mal = new changeViewActionListener();
 
@@ -1476,7 +1680,12 @@ public class FileChooserUI extends BasicFileChooserUI {
 		return this.changeViewPopup;
 	}
 
-	protected void updateView(String s) {
+    /**
+     * Update view.
+     *
+     * @param s the s
+     */
+    protected void updateView(String s) {
 		if (!s.equals(FILECHOOSER_VIEW_DETAILS) && !s.equals(FILECHOOSER_VIEW_ICON) && !s.equals(FILECHOOSER_VIEW_LIST)
 				&& !s.equals(FILECHOOSER_VIEW_THUMBNAIL)) {
 			return;

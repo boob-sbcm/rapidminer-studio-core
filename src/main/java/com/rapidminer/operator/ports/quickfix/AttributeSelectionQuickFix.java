@@ -24,6 +24,8 @@ import com.rapidminer.tools.Ontology;
 
 
 /**
+ * The type Attribute selection quick fix.
+ *
  * @author Simon Fischer
  */
 public class AttributeSelectionQuickFix extends DictionaryQuickFix {
@@ -31,12 +33,29 @@ public class AttributeSelectionQuickFix extends DictionaryQuickFix {
 	private final ParameterHandler handler;
 	private final String parameterName;
 
-	public AttributeSelectionQuickFix(ExampleSetMetaData metaData, String parameterName, ParameterHandler handler,
+    /**
+     * Instantiates a new Attribute selection quick fix.
+     *
+     * @param metaData      the meta data
+     * @param parameterName the parameter name
+     * @param handler       the handler
+     * @param currentValue  the current value
+     */
+    public AttributeSelectionQuickFix(ExampleSetMetaData metaData, String parameterName, ParameterHandler handler,
 			String currentValue) {
 		this(metaData, parameterName, handler, currentValue, Ontology.VALUE_TYPE);
 	}
 
-	public AttributeSelectionQuickFix(ExampleSetMetaData metaData, String parameterName, ParameterHandler handler,
+    /**
+     * Instantiates a new Attribute selection quick fix.
+     *
+     * @param metaData      the meta data
+     * @param parameterName the parameter name
+     * @param handler       the handler
+     * @param currentValue  the current value
+     * @param mustBeOfType  the must be of type
+     */
+    public AttributeSelectionQuickFix(ExampleSetMetaData metaData, String parameterName, ParameterHandler handler,
 			String currentValue, int mustBeOfType) {
 		super(parameterName, metaData.getAttributeNamesByType(mustBeOfType), currentValue, handler.getParameters()
 				.getParameterType(parameterName).getDescription());

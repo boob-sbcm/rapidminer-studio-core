@@ -26,64 +26,65 @@ import com.rapidminer.tools.config.gui.model.ConfigurableModel;
  * An event for the {@link ConfigurableModel}.
  *
  * @author Marco Boeck
- *
  */
 public class ConfigurableEvent {
 
-	/**
-	 * Defines different kind of {@link ConfigurableEvent}s.
-	 *
-	 */
-	public static enum EventType {
-		/** fired when a configurable has been added */
-		CONFIGURABLE_ADDED,
+    /**
+     * Defines different kind of {@link ConfigurableEvent}s.
+     */
+    public static enum EventType {
+        /**
+         * fired when a configurable has been added
+         */
+        CONFIGURABLE_ADDED,
 
-		/** fired when a configurable has been removed */
-		CONFIGURABLE_REMOVED,
+        /**
+         * fired when a configurable has been removed
+         */
+        CONFIGURABLE_REMOVED,
 
-		/**
-		 * fired when the existing configurables have changed and we don't know if one was
-		 * added/removed
-		 */
-		CONFIGURABLES_CHANGED,
+        /**
+         * fired when the existing configurables have changed and we don't know if one was
+         * added/removed
+         */
+        CONFIGURABLES_CHANGED,
 
-		/**
-		 * fired when configurables are completely loaded from a repository
-		 */
-		LOADED_FROM_REPOSITORY;
+        /**
+         * fired when configurables are completely loaded from a repository
+         */
+        LOADED_FROM_REPOSITORY;
 	}
 
 	private EventType type;
 
 	private Configurable configurable;
 
-	/**
-	 * Creates a new {@link ConfigurableEvent} instance for the specified {@link EventType}.
-	 *
-	 * @param type
-	 * @param configurable
-	 *            the {@link Configurable} for this event, can be <code>null</code>
-	 */
-	public ConfigurableEvent(EventType type, Configurable configurable) {
+    /**
+     * Creates a new {@link ConfigurableEvent} instance for the specified {@link EventType}.
+     *
+     * @param type         the type
+     * @param configurable the {@link Configurable} for this event, can be <code>null</code>
+     */
+    public ConfigurableEvent(EventType type, Configurable configurable) {
 		this.type = type;
 		this.configurable = configurable;
 	}
 
-	/**
-	 * Returns the {@link EventType}.
-	 *
-	 * @return
-	 */
-	public EventType getEventType() {
+    /**
+     * Returns the {@link EventType}.
+     *
+     * @return event type
+     */
+    public EventType getEventType() {
 		return type;
 	}
 
-	/**
-	 * Returns the {@link Configurable} associated with this event, or <code>null</code>.
-	 *
-	 * @return
-	 */
-	public Configurable getConfigurable() {
+    /**
+     * Returns the {@link Configurable} associated with this event, or <code>null</code>.
+     *
+     * @return configurable configurable
+     */
+    public Configurable getConfigurable() {
 		return configurable;
 	}
 }

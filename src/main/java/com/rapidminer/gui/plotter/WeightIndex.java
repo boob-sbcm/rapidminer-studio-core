@@ -21,7 +21,7 @@ package com.rapidminer.gui.plotter;
 /**
  * The weight index is used by several plotters to keep track of weights for specific data table
  * indices.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class WeightIndex implements Comparable<WeightIndex> {
@@ -29,16 +29,32 @@ public class WeightIndex implements Comparable<WeightIndex> {
 	private int index;
 	private double weight;
 
-	public WeightIndex(int index, double weight) {
+    /**
+     * Instantiates a new Weight index.
+     *
+     * @param index  the index
+     * @param weight the weight
+     */
+    public WeightIndex(int index, double weight) {
 		this.index = index;
 		this.weight = weight;
 	}
 
-	public int getIndex() {
+    /**
+     * Gets index.
+     *
+     * @return the index
+     */
+    public int getIndex() {
 		return this.index;
 	}
 
-	public double getWeight() {
+    /**
+     * Gets weight.
+     *
+     * @return the weight
+     */
+    public double getWeight() {
 		return this.weight;
 	}
 

@@ -26,12 +26,17 @@ import com.rapidminer.operator.learner.PredictionModel;
 /**
  * This class is the common super class of all KernelModel producing learners. It returns the
  * appropriate model class for metaData Processing.
- * 
+ *
  * @author Sebastian Land
  */
 public abstract class AbstractKernelBasedLearner extends AbstractLearner {
 
-	public AbstractKernelBasedLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract kernel based learner.
+     *
+     * @param description the description
+     */
+    public AbstractKernelBasedLearner(OperatorDescription description) {
 		super(description);
 
 	}

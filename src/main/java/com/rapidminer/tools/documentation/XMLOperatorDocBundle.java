@@ -44,9 +44,9 @@ import org.xml.sax.SAXException;
  * A resource bundle that maps operator names to {@link OperatorDocumentation} instances. Instances
  * of this class always return {@link OperatorDocumentation}s from their {@link #getObject(String)}
  * methods.
- * 
+ * <p>
  * The XML structure of the documentation is as follows: For every operator there is a tag
- * 
+ * <p>
  * <pre>
  *  &lt;operator&gt;
  *    &lt;synopsis&gt;SYNOPSIS&lt;/synopsis&gt;
@@ -60,9 +60,8 @@ import org.xml.sax.SAXException;
  *    &lt;/example&gt;
  *  &lt;/operator&gt;
  * </pre>
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class XMLOperatorDocBundle extends OperatorDocBundle {
 
@@ -121,17 +120,14 @@ public class XMLOperatorDocBundle extends OperatorDocBundle {
 		}
 	}
 
-	/**
-	 * Constructs a new OperatorDocBundle
-	 * 
-	 * @param url
-	 *            The URL from which we are reading.
-	 * @param resourceName
-	 *            The original resource name. This is the last part of the path of the URL and will
-	 *            be used to locate the source file, when this bundle is saved.
-	 * @throws IOException
-	 */
-	public XMLOperatorDocBundle(URL url, String resourceName) throws IOException {
+    /**
+     * Constructs a new OperatorDocBundle
+     *
+     * @param url          The URL from which we are reading.
+     * @param resourceName The original resource name. This is the last part of the path of the URL and will            be used to locate the source file, when this bundle is saved.
+     * @throws IOException the io exception
+     */
+    public XMLOperatorDocBundle(URL url, String resourceName) throws IOException {
 		Document document;
 		try {
 			document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(url.openStream());
@@ -185,8 +181,14 @@ public class XMLOperatorDocBundle extends OperatorDocBundle {
 				new Object[] { helpElements.getLength(), groupElements.getLength() });
 	}
 
-	/** Loads the default "OperatorDoc.xml" file from the given resource base name. */
-	public static OperatorDocBundle load(ClassLoader classLoader, String resource) {
+    /**
+     * Loads the default "OperatorDoc.xml" file from the given resource base name.  @param classLoader the class loader
+     *
+     * @param classLoader the class loader
+     * @param resource    the resource
+     * @return the operator doc bundle
+     */
+    public static OperatorDocBundle load(ClassLoader classLoader, String resource) {
 		return (OperatorDocBundle) ResourceBundle.getBundle(resource, Locale.getDefault(), classLoader, new XMLControl());
 	}
 }

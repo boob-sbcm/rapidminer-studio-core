@@ -35,13 +35,21 @@ public class BookmarkListModel extends AbstractListModel<Bookmark> {
 
 	private List<Bookmark> bookmarks = new ArrayList<Bookmark>();
 
-	public void removeAllBookmarks() {
+    /**
+     * Remove all bookmarks.
+     */
+    public void removeAllBookmarks() {
 		int oldSize = bookmarks.size();
 		bookmarks.clear();
 		fireIntervalRemoved(this, 0, oldSize);
 	}
 
-	public void addBookmark(Bookmark bookmark) {
+    /**
+     * Add bookmark.
+     *
+     * @param bookmark the bookmark
+     */
+    public void addBookmark(Bookmark bookmark) {
 		bookmarks.add(bookmark);
 		fireIntervalAdded(this, bookmarks.size(), bookmarks.size());
 	}

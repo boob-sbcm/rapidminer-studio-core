@@ -38,13 +38,24 @@ import java.util.Set;
 
 
 /**
+ * The type Value type attribute filter.
+ *
  * @author Tobias Malbrecht
  */
 public class ValueTypeAttributeFilter extends AbstractAttributeFilterCondition {
 
-	public static final String PARAMETER_VALUE_TYPE = "value_type";
-	public static final String PARAMETER_ADD_EXCEPTION = "use_value_type_exception";
-	public static final String PARAMETER_EXCEPT_VALUE_TYPE = "except_value_type";
+    /**
+     * The constant PARAMETER_VALUE_TYPE.
+     */
+    public static final String PARAMETER_VALUE_TYPE = "value_type";
+    /**
+     * The constant PARAMETER_ADD_EXCEPTION.
+     */
+    public static final String PARAMETER_ADD_EXCEPTION = "use_value_type_exception";
+    /**
+     * The constant PARAMETER_EXCEPT_VALUE_TYPE.
+     */
+    public static final String PARAMETER_EXCEPT_VALUE_TYPE = "except_value_type";
 
 	private int valueType;
 	private int exceptValueType;

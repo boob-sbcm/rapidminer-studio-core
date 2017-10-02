@@ -29,29 +29,40 @@ import com.rapidminer.operator.UserError;
 
 /**
  * A location in a repository. Format:
- *
+ * <p>
  * //Repository/path/to/object
- *
+ * <p>
  * All constructors throw IllegalArugmentExceptions if names are malformed, contain illegal
  * characters etc.
  *
  * @author Simon Fischer, Adrian Wilke
- *
  */
 public class RepositoryLocation {
 
-	public static final char SEPARATOR = '/';
-	public static final String REPOSITORY_PREFIX = "//";
-	public static final String[] BLACKLISTED_STRINGS = new String[] { "/", "\\", ":", "<", ">", "*", "?", "\"", "|" };
+    /**
+     * The constant SEPARATOR.
+     */
+    public static final char SEPARATOR = '/';
+    /**
+     * The constant REPOSITORY_PREFIX.
+     */
+    public static final String REPOSITORY_PREFIX = "//";
+    /**
+     * The constant BLACKLISTED_STRINGS.
+     */
+    public static final String[] BLACKLISTED_STRINGS = new String[] { "/", "\\", ":", "<", ">", "*", "?", "\"", "|" };
 
 	private String repositoryName;
 	private String[] path;
 	private RepositoryAccessor accessor;
 
-	/**
-	 * Constructs a RepositoryLocation from a string of the form //Repository/path/to/object.
-	 */
-	public RepositoryLocation(String absoluteLocation) throws MalformedRepositoryLocationException {
+    /**
+     * Constructs a RepositoryLocation from a string of the form //Repository/path/to/object.
+     *
+     * @param absoluteLocation the absolute location
+     * @throws MalformedRepositoryLocationException the malformed repository location exception
+     */
+    public RepositoryLocation(String absoluteLocation) throws MalformedRepositoryLocationException {
 		if (isAbsolute(absoluteLocation)) {
 			initializeFromAbsoluteLocation(absoluteLocation);
 		} else {
@@ -60,13 +71,15 @@ public class RepositoryLocation {
 		}
 	}
 
-	/**
-	 * Creates a RepositoryLocation for a given repository and a set of path components which will
-	 * be concatenated by a /.
-	 *
-	 * @throws MalformedRepositoryLocationException
-	 */
-	public RepositoryLocation(String repositoryName, String[] pathComponents) throws MalformedRepositoryLocationException {
+    /**
+     * Creates a RepositoryLocation for a given repository and a set of path components which will
+     * be concatenated by a /.
+     *
+     * @param repositoryName the repository name
+     * @param pathComponents the path components
+     * @throws MalformedRepositoryLocationException the malformed repository location exception
+     */
+    public RepositoryLocation(String repositoryName, String[] pathComponents) throws MalformedRepositoryLocationException {
 		// actually check submitted parameters
 		if (repositoryName == null || repositoryName.isEmpty()) {
 			throw new MalformedRepositoryLocationException("repositoryName must not contain null or empty!");
@@ -84,13 +97,15 @@ public class RepositoryLocation {
 		this.path = pathComponents;
 	}
 
-	/**
-	 * Appends a child entry to a given parent location. Child can be composed of subcomponents
-	 * separated by /. Dots ("..") will resolve to the parent folder.
-	 *
-	 * @throws MalformedRepositoryLocationException
-	 */
-	public RepositoryLocation(RepositoryLocation parent, String childName) throws MalformedRepositoryLocationException {
+    /**
+     * Appends a child entry to a given parent location. Child can be composed of subcomponents
+     * separated by /. Dots ("..") will resolve to the parent folder.
+     *
+     * @param parent    the parent
+     * @param childName the child name
+     * @throws MalformedRepositoryLocationException the malformed repository location exception
+     */
+    public RepositoryLocation(RepositoryLocation parent, String childName) throws MalformedRepositoryLocationException {
 		this.accessor = parent.accessor;
 		if (isAbsolute(childName)) {
 			initializeFromAbsoluteLocation(childName);
@@ -155,8 +170,12 @@ public class RepositoryLocation {
 		this.path = path.split("" + SEPARATOR);
 	}
 
-	/** Returns the absolute location of this RepoositoryLocation. */
-	public String getAbsoluteLocation() {
+    /**
+     * Returns the absolute location of this RepoositoryLocation.  @return the absolute location
+     *
+     * @return the absolute location
+     */
+    public String getAbsoluteLocation() {
 		StringBuilder b = new StringBuilder();
 		b.append(REPOSITORY_PREFIX);
 		b.append(repositoryName);
@@ -167,22 +186,31 @@ public class RepositoryLocation {
 		return b.toString();
 	}
 
-	/**
-	 * Returns the repository associated with this location.
-	 *
-	 * @throws RepositoryException
-	 */
-	public Repository getRepository() throws RepositoryException {
+    /**
+     * Returns the repository associated with this location.
+     *
+     * @return the repository
+     * @throws RepositoryException the repository exception
+     */
+    public Repository getRepository() throws RepositoryException {
 		return RepositoryManager.getInstance(getAccessor()).getRepository(repositoryName);
 	}
 
-	/** Returns the name of the repository associated with this location. */
-	public String getRepositoryName() {
+    /**
+     * Returns the name of the repository associated with this location.  @return the repository name
+     *
+     * @return the repository name
+     */
+    public String getRepositoryName() {
 		return repositoryName;
 	}
 
-	/** Returns the path within the repository. */
-	public String getPath() {
+    /**
+     * Returns the path within the repository.  @return the path
+     *
+     * @return the path
+     */
+    public String getPath() {
 		StringBuilder b = new StringBuilder();
 		for (String component : path) {
 			b.append(SEPARATOR);
@@ -191,14 +219,14 @@ public class RepositoryLocation {
 		return b.toString();
 	}
 
-	/**
-	 * Locates the corresponding entry in the repository. It returns null if it doesn't exist yet.
-	 * An exception is thrown if this location is invalid.
-	 *
-	 * @throws RepositoryException
-	 *             If repository can not be found or entry can not be located.
-	 * */
-	public Entry locateEntry() throws RepositoryException {
+    /**
+     * Locates the corresponding entry in the repository. It returns null if it doesn't exist yet.
+     * An exception is thrown if this location is invalid.
+     *
+     * @return the entry
+     * @throws RepositoryException If repository can not be found or entry can not be located.
+     */
+    public Entry locateEntry() throws RepositoryException {
 		Repository repos = getRepository();
 		if (repos != null) {
 			Entry entry = repos.locate(getPath());
@@ -208,8 +236,12 @@ public class RepositoryLocation {
 		}
 	}
 
-	/** Returns the last path component. */
-	public String getName() {
+    /**
+     * Returns the last path component.  @return the name
+     *
+     * @return the name
+     */
+    public String getName() {
 		if (path.length > 0) {
 			return path[path.length - 1];
 		} else {
@@ -217,7 +249,12 @@ public class RepositoryLocation {
 		}
 	}
 
-	public RepositoryLocation parent() {
+    /**
+     * Parent repository location.
+     *
+     * @return the repository location
+     */
+    public RepositoryLocation parent() {
 		if (path.length == 0) {
 			// we are at a root
 			return null;
@@ -241,11 +278,14 @@ public class RepositoryLocation {
 		return getAbsoluteLocation();
 	}
 
-	/**
-	 * Assume absoluteLocation == "//MyRepos/foo/bar/object" and
-	 * relativeToFolder=//MyRepos/foo/baz/, then this method will return ../bar/object.
-	 */
-	public String makeRelative(RepositoryLocation relativeToFolder) {
+    /**
+     * Assume absoluteLocation == "//MyRepos/foo/bar/object" and
+     * relativeToFolder=//MyRepos/foo/baz/, then this method will return ../bar/object.
+     *
+     * @param relativeToFolder the relative to folder
+     * @return the string
+     */
+    public String makeRelative(RepositoryLocation relativeToFolder) {
 		// can only do something if repositories match.
 		if (!this.repositoryName.equals(relativeToFolder.repositoryName)) {
 			return getAbsoluteLocation();
@@ -273,16 +313,23 @@ public class RepositoryLocation {
 		return result.toString();
 	}
 
-	public static boolean isAbsolute(String loc) {
+    /**
+     * Is absolute boolean.
+     *
+     * @param loc the loc
+     * @return the boolean
+     */
+    public static boolean isAbsolute(String loc) {
 		return loc.startsWith(RepositoryLocation.REPOSITORY_PREFIX);
 	}
 
-	/**
-	 * Creates this folder and its parents.
-	 *
-	 * @throws RepositoryException
-	 */
-	public Folder createFoldersRecursively() throws RepositoryException {
+    /**
+     * Creates this folder and its parents.
+     *
+     * @return the folder
+     * @throws RepositoryException the repository exception
+     */
+    public Folder createFoldersRecursively() throws RepositoryException {
 		Entry entry = locateEntry();
 		if (entry == null) {
 			Folder folder = parent().createFoldersRecursively();
@@ -307,22 +354,32 @@ public class RepositoryLocation {
 		return toString().hashCode();
 	}
 
-	public void setAccessor(RepositoryAccessor accessor) {
+    /**
+     * Sets accessor.
+     *
+     * @param accessor the accessor
+     */
+    public void setAccessor(RepositoryAccessor accessor) {
 		this.accessor = accessor;
 	}
 
-	public RepositoryAccessor getAccessor() {
+    /**
+     * Gets accessor.
+     *
+     * @return the accessor
+     */
+    public RepositoryAccessor getAccessor() {
 		return accessor;
 	}
 
-	/**
-	 * Checks if the given name is valid as a repository entry. Checks against a blacklist of
-	 * characters.
-	 *
-	 * @param name
-	 * @return
-	 */
-	public static boolean isNameValid(String name) {
+    /**
+     * Checks if the given name is valid as a repository entry. Checks against a blacklist of
+     * characters.
+     *
+     * @param name the name
+     * @return boolean boolean
+     */
+    public static boolean isNameValid(String name) {
 		if (name == null) {
 			throw new IllegalArgumentException("name must not be null!");
 		}
@@ -338,13 +395,14 @@ public class RepositoryLocation {
 		return true;
 	}
 
-	/**
-	 * Returns the sub{@link String} in the given name which is invalid or <code>null</code> if
-	 * there are no illegal characters.
-	 *
-	 * @return
-	 */
-	public static String getIllegalCharacterInName(String name) {
+    /**
+     * Returns the sub{@link String} in the given name which is invalid or <code>null</code> if
+     * there are no illegal characters.
+     *
+     * @param name the name
+     * @return illegal character in name
+     */
+    public static String getIllegalCharacterInName(String name) {
 		if (name == null || "".equals(name.trim())) {
 			return null;
 		}
@@ -357,14 +415,17 @@ public class RepositoryLocation {
 		return null;
 	}
 
-	/**
-	 * Removes locations from list, which are already included in others.
-	 *
-	 * If there are any problems requesting a repository, the input is returned.
-	 *
-	 * Example: [/1/2/3, /1, /1/2] becomes [/1]
-	 */
-	public static List<RepositoryLocation> removeIntersectedLocations(List<RepositoryLocation> repositoryLocations) {
+    /**
+     * Removes locations from list, which are already included in others.
+     * <p>
+     * If there are any problems requesting a repository, the input is returned.
+     * <p>
+     * Example: [/1/2/3, /1, /1/2] becomes [/1]
+     *
+     * @param repositoryLocations the repository locations
+     * @return the list
+     */
+    public static List<RepositoryLocation> removeIntersectedLocations(List<RepositoryLocation> repositoryLocations) {
 		List<RepositoryLocation> locations = new LinkedList<>(repositoryLocations);
 		try {
 			Set<RepositoryLocation> removeSet = new HashSet<>();
@@ -388,20 +449,16 @@ public class RepositoryLocation {
 		return locations;
 	}
 
-	/**
-	 * Returns the repository location for the provided path and operator. In case it is relative
-	 * the operators process is used base path.
-	 *
-	 * @param loc
-	 *            the relative or absolute repository location path as String
-	 * @param op
-	 *            the operator for which should be used as base path in case the location is
-	 *            relative
-	 * @return the repository location for the specified path
-	 * @throws UserError
-	 *             in case the location is malformed
-	 */
-	public static RepositoryLocation getRepositoryLocation(String loc, Operator op) throws UserError {
+    /**
+     * Returns the repository location for the provided path and operator. In case it is relative
+     * the operators process is used base path.
+     *
+     * @param loc the relative or absolute repository location path as String
+     * @param op  the operator for which should be used as base path in case the location is            relative
+     * @return the repository location for the specified path
+     * @throws UserError in case the location is malformed
+     */
+    public static RepositoryLocation getRepositoryLocation(String loc, Operator op) throws UserError {
 		com.rapidminer.Process process = op.getProcess();
 		if (process != null) {
 			RepositoryLocation result;

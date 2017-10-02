@@ -43,7 +43,10 @@ import com.rapidminer.studio.io.gui.internal.steps.AbstractWizardStep;
  */
 final class ExcelSheetSelectionWizardStep extends AbstractWizardStep {
 
-	static final String EXCEL_SHEET_SELECTION_STEP_ID = "excel.sheet_selection";
+    /**
+     * The Excel sheet selection step id.
+     */
+    static final String EXCEL_SHEET_SELECTION_STEP_ID = "excel.sheet_selection";
 
 	private final ExcelSheetSelectionPanel workbookSelectionPanel;
 	private final ExcelDataSource excelDataSource;
@@ -54,7 +57,13 @@ final class ExcelSheetSelectionWizardStep extends AbstractWizardStep {
 
 	private final ImportWizard wizard;
 
-	ExcelSheetSelectionWizardStep(ExcelDataSource excelDataSource, ImportWizard wizard) {
+    /**
+     * Instantiates a new Excel sheet selection wizard step.
+     *
+     * @param excelDataSource the excel data source
+     * @param wizard          the wizard
+     */
+    ExcelSheetSelectionWizardStep(ExcelDataSource excelDataSource, ImportWizard wizard) {
 		this.excelDataSource = excelDataSource;
 		this.wizard = wizard;
 		this.workbookSelectionPanel = new ExcelSheetSelectionPanel(excelDataSource);

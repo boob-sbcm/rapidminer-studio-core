@@ -31,28 +31,29 @@ import java.util.List;
  * A port extender automatically creates an additional port if ports are connected. It guarantees
  * that there is always exactly one unconnected port. A port extender works by adding itself as an
  * observer of a {@link Ports} object and creating or deleting ports as necessary on any update.
- * 
+ *
+ * @param <T> The type of port that is created.
  * @author Simon Fischer
  * @see PortPairExtender
  * @see MultiPortPairExtender
- * @param <T>
- *            The type of port that is created.
  */
 public class SinglePortExtender<T extends Port> implements PortExtender {
 
 	private final Ports<T> ports;
 	private final String name;
 
-	/** The number of ports that are guaranteed to exist. */
-	protected int minNumber = 0;
+    /**
+     * The number of ports that are guaranteed to exist.
+     */
+    protected int minNumber = 0;
 
 	private boolean isChanging = false;
 
-	/**
-	 * List of all Ports which are managed by this Class. Caution: to prevent failures in the GUI
-	 * mind that this list must be synchronized with the Ports-field!
-	 */
-	protected final List<T> managedPorts = new LinkedList<>();
+    /**
+     * List of all Ports which are managed by this Class. Caution: to prevent failures in the GUI
+     * mind that this list must be synchronized with the Ports-field!
+     */
+    protected final List<T> managedPorts = new LinkedList<>();
 
 	private int runningId = 0;
 
@@ -64,26 +65,25 @@ public class SinglePortExtender<T extends Port> implements PortExtender {
 		}
 	};
 
-	/**
-	 * 
-	 * @param name
-	 *            The name prefix for the generated ports. An underscore and a number will be added.
-	 * @param ports
-	 *            The port to which ports are added.
-	 */
-	public SinglePortExtender(String name, Ports<T> ports) {
+    /**
+     * Instantiates a new Single port extender.
+     *
+     * @param name  The name prefix for the generated ports. An underscore and a number will be added.
+     * @param ports The port to which ports are added.
+     */
+    public SinglePortExtender(String name, Ports<T> ports) {
 		this.ports = ports;
 		this.name = name;
 		ports.registerPortExtender(this);
 	}
 
-	/**
-	 * Deletes all unused (= not connected and not locked) ports, always keeping at least one free
-	 * port available. <br/>
-	 * Override only in special cases, e.g. when needing to control the number of ports depending on
-	 * parameters or other properties of the operator.
-	 */
-	protected void updatePorts() {
+    /**
+     * Deletes all unused (= not connected and not locked) ports, always keeping at least one free
+     * port available. <br/>
+     * Override only in special cases, e.g. when needing to control the number of ports depending on
+     * parameters or other properties of the operator.
+     */
+    protected void updatePorts() {
 		if (!isChanging) {
 			isChanging = true;
 			boolean first = true;
@@ -120,7 +120,12 @@ public class SinglePortExtender<T extends Port> implements PortExtender {
 		}
 	}
 
-	protected void deletePort(T port) {
+    /**
+     * Delete port.
+     *
+     * @param port the port
+     */
+    protected void deletePort(T port) {
 		if (port instanceof OutputPort) {
 			if (port.isConnected()) {
 				((OutputPort) port).disconnect();
@@ -129,13 +134,21 @@ public class SinglePortExtender<T extends Port> implements PortExtender {
 		ports.removePort(port);
 	}
 
-	protected T createPort() {
+    /**
+     * Create port t.
+     *
+     * @return the t
+     */
+    protected T createPort() {
 		runningId++;
 		T port = ports.createPort(name + " " + runningId);
 		return port;
 	}
 
-	protected void fixNames() {
+    /**
+     * Fix names.
+     */
+    protected void fixNames() {
 		runningId = 0;
 		for (T port : managedPorts) {
 			runningId++;
@@ -149,15 +162,21 @@ public class SinglePortExtender<T extends Port> implements PortExtender {
 
 	}
 
-	/** Creates an initial port and starts to listen. */
-	public void start() {
+    /**
+     * Creates an initial port and starts to listen.
+     */
+    public void start() {
 		managedPorts.add(createPort());
 		fixNames();
 		ports.addObserver(observer, false);
 	}
 
-	/** Returns an unmodifiable view of the ports created by this port extender. */
-	public List<T> getManagedPorts() {
+    /**
+     * Returns an unmodifiable view of the ports created by this port extender.  @return the managed ports
+     *
+     * @return the managed ports
+     */
+    public List<T> getManagedPorts() {
 		return Collections.unmodifiableList(managedPorts);
 	}
 
@@ -172,7 +191,12 @@ public class SinglePortExtender<T extends Port> implements PortExtender {
 		updatePorts();
 	}
 
-	protected Ports<T> getPorts() {
+    /**
+     * Gets ports.
+     *
+     * @return the ports
+     */
+    protected Ports<T> getPorts() {
 		return ports;
 	}
 }

@@ -29,15 +29,17 @@ import java.awt.event.ActionEvent;
 
 /**
  * Determines whether the process setup is validated automatically on any update.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class ValidateAutomaticallyAction extends ToggleAction {
 
 	private static final String PROPERTY_VALIDATE_AUTOMATICALLY = "rapidminer.gui.validate_automatically";
 
-	public ValidateAutomaticallyAction() {
+    /**
+     * Instantiates a new Validate automatically action.
+     */
+    public ValidateAutomaticallyAction() {
 		super(false, "validate_automatically");
 		setSelected(!"false".equals(ParameterService.getParameterValue(PROPERTY_VALIDATE_AUTOMATICALLY)));
 	}

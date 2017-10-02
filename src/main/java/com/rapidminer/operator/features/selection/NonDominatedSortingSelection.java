@@ -33,7 +33,7 @@ import java.util.List;
 
 /**
  * Performs the non dominated sorting selection from NSGA II.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class NonDominatedSortingSelection implements PopulationOperator {
@@ -47,7 +47,12 @@ public class NonDominatedSortingSelection implements PopulationOperator {
 
 		private int m;
 
-		public CriteriaComparator(int m) {
+        /**
+         * Instantiates a new Criteria comparator.
+         *
+         * @param m the m
+         */
+        public CriteriaComparator(int m) {
 			this.m = m;
 		}
 
@@ -74,7 +79,12 @@ public class NonDominatedSortingSelection implements PopulationOperator {
 
 	private int popSize;
 
-	public NonDominatedSortingSelection(int popSize) {
+    /**
+     * Instantiates a new Non dominated sorting selection.
+     *
+     * @param popSize the pop size
+     */
+    public NonDominatedSortingSelection(int popSize) {
 		this.popSize = popSize;
 	}
 
@@ -168,11 +178,15 @@ public class NonDominatedSortingSelection implements PopulationOperator {
 		return rank;
 	}
 
-	/**
-	 * Returns true if the second performance vector is better in all fitness criteria than the
-	 * first one (remember: the criteria should be maximized).
-	 */
-	public static boolean isDominated(Individual i1, Individual i2) {
+    /**
+     * Returns true if the second performance vector is better in all fitness criteria than the
+     * first one (remember: the criteria should be maximized).
+     *
+     * @param i1 the 1
+     * @param i2 the 2
+     * @return the boolean
+     */
+    public static boolean isDominated(Individual i1, Individual i2) {
 		PerformanceVector pv1 = i1.getPerformance();
 		PerformanceVector pv2 = i2.getPerformance();
 		double[][] performances = new double[pv1.getSize()][2];

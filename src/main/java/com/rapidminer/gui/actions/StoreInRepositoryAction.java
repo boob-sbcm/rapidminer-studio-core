@@ -34,21 +34,31 @@ import java.awt.event.ActionEvent;
 
 /**
  * An action to store IOObjects in the repository.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class StoreInRepositoryAction extends ResourceAction {
 
 	private final IOObject object;
 	private RepositoryLocation lastLocation;
 
-	public StoreInRepositoryAction(IOObject object) {
+    /**
+     * Instantiates a new Store in repository action.
+     *
+     * @param object the object
+     */
+    public StoreInRepositoryAction(IOObject object) {
 		super(true, "store_in_repository", ((object instanceof ResultObject) ? ((ResultObject) object).getName() : "result"));
 		this.object = object;
 	}
 
-	public StoreInRepositoryAction(IOObject object, RepositoryLocation initialLocation) {
+    /**
+     * Instantiates a new Store in repository action.
+     *
+     * @param object          the object
+     * @param initialLocation the initial location
+     */
+    public StoreInRepositoryAction(IOObject object, RepositoryLocation initialLocation) {
 		super(true, "store_in_repository", ((object instanceof ResultObject) ? ((ResultObject) object).getName() : "result"));
 		this.object = object;
 		this.lastLocation = initialLocation;

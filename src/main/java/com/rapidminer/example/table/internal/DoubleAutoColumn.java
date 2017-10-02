@@ -37,81 +37,81 @@ final class DoubleAutoColumn implements Column {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Building block of a {@link DoubleAutoColumn}.
-	 *
-	 * @author Gisa Schaefer
-	 *
-	 */
-	static abstract class DoubleAutoChunk implements Serializable {
+    /**
+     * Building block of a {@link DoubleAutoColumn}.
+     *
+     * @author Gisa Schaefer
+     */
+    static abstract class DoubleAutoChunk implements Serializable {
 
 		private static final long serialVersionUID = 1L;
 
-		/**
-		 * the position of this chunk in {@link DoubleAutoColumn#chunks}
-		 */
-		final int id;
+        /**
+         * the position of this chunk in {@link DoubleAutoColumn#chunks}
+         */
+        final int id;
 
-		/**
-		 * the chunk array {@link DoubleAutoColumn#chunks}
-		 */
-		final DoubleAutoChunk[] chunks;
+        /**
+         * the chunk array {@link DoubleAutoColumn#chunks}
+         */
+        final DoubleAutoChunk[] chunks;
 
-		/**
-		 * decides about sparsity thresholds
-		 */
-		final DataManagement management;
+        /**
+         * decides about sparsity thresholds
+         */
+        final DataManagement management;
 
-		DoubleAutoChunk(int id, DoubleAutoChunk[] chunks, DataManagement management) {
+        /**
+         * Instantiates a new Double auto chunk.
+         *
+         * @param id         the id
+         * @param chunks     the chunks
+         * @param management the management
+         */
+        DoubleAutoChunk(int id, DoubleAutoChunk[] chunks, DataManagement management) {
 			this.id = id;
 			this.chunks = chunks;
 			this.management = management;
 		}
 
-		/**
-		 * Sets the value at the specified row to the given value. This assumes that row is the
-		 * largest index set so far and no value for this row was set before. The necessary space
-		 * must be allocated by {@link #ensure(int)} beforehand.
-		 *
-		 * @param row
-		 *            the row that should be set
-		 * @param value
-		 *            the value that should be set at the row
-		 */
-		abstract void setLast(int row, double value);
+        /**
+         * Sets the value at the specified row to the given value. This assumes that row is the
+         * largest index set so far and no value for this row was set before. The necessary space
+         * must be allocated by {@link #ensure(int)} beforehand.
+         *
+         * @param row   the row that should be set
+         * @param value the value that should be set at the row
+         */
+        abstract void setLast(int row, double value);
 
-		/**
-		 * Ensures that the internal data structure can hold up to {@code size} values.
-		 *
-		 * @param size
-		 *            the size that should be ensured
-		 */
-		abstract void ensure(int size);
+        /**
+         * Ensures that the internal data structure can hold up to {@code size} values.
+         *
+         * @param size the size that should be ensured
+         */
+        abstract void ensure(int size);
 
-		/**
-		 * Gets the value at the specified row.
-		 *
-		 * @param row
-		 *            the row that should be looked up
-		 * @return the value at the specified row
-		 */
-		abstract double get(int row);
+        /**
+         * Gets the value at the specified row.
+         *
+         * @param row the row that should be looked up
+         * @return the value at the specified row
+         */
+        abstract double get(int row);
 
-		/**
-		 * Sets the value at the specified row to the given value.
-		 *
-		 * @param row
-		 *            the row that should be set
-		 * @param value
-		 *            the value that should be set at the row
-		 */
-		abstract void set(int row, double value);
+        /**
+         * Sets the value at the specified row to the given value.
+         *
+         * @param row   the row that should be set
+         * @param value the value that should be set at the row
+         */
+        abstract void set(int row, double value);
 
-		/**
-		 * Signals that no further calls to {@link #ensure(int)} and {@link #setLast(int,double)}
-		 * will be made.
-		 */
-		void complete() {}
+        /**
+         * Signals that no further calls to {@link #ensure(int)} and {@link #setLast(int, double)}
+         * will be made.
+         */
+        void complete() {}
 
 	}
 
@@ -120,13 +120,13 @@ final class DoubleAutoColumn implements Column {
 	private int ensuredSize = 0;
 	private final DataManagement management;
 
-	/**
-	 * Constructs a column with enough chunks to fit size values.
-	 *
-	 * @param size
-	 *            the size of the column
-	 */
-	DoubleAutoColumn(int size, DataManagement management) {
+    /**
+     * Constructs a column with enough chunks to fit size values.
+     *
+     * @param size       the size of the column
+     * @param management the management
+     */
+    DoubleAutoColumn(int size, DataManagement management) {
 		this.management = management;
 		ensure(size);
 	}

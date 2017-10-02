@@ -47,7 +47,12 @@ public class ChiSquaredWeighting extends AbstractWeighting {
 
 	private static final int PROGRESS_UPDATE_STEPS = 1_000_000;
 
-	public ChiSquaredWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Chi squared weighting.
+     *
+     * @param description the description
+     */
+    public ChiSquaredWeighting(OperatorDescription description) {
 		super(description, true);
 	}
 

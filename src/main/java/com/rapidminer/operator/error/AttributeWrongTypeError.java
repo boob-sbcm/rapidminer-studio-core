@@ -28,29 +28,26 @@ import com.rapidminer.tools.Ontology;
  * This exception will be thrown if the attribute selected in the parameters of an operator is of
  * the wrong type
  *
- *
  * @author Joao Pedro Pinheiro
- *
  * @since 7.3.0
  */
 public class AttributeWrongTypeError extends UserError {
 
-	/** Error code for when the attribute is of the wrong type */
-	public static final int ATTRIBUTE_WRONG_TYPE = 120;
+    /**
+     * Error code for when the attribute is of the wrong type
+     */
+    public static final int ATTRIBUTE_WRONG_TYPE = 120;
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Throw if the parameter of an operator specifies an attribute which is of the wrong type
-	 *
-	 * @param operator
-	 *            the operator in question
-	 * @param attribute
-	 *            the attribute that caused the error to be thrown
-	 * @param valueTypes
-	 *            the accepted parameter types for the operator in question
-	 */
-	public AttributeWrongTypeError(Operator operator, Attribute attribute, int... valueTypes) {
+    /**
+     * Throw if the parameter of an operator specifies an attribute which is of the wrong type
+     *
+     * @param operator   the operator in question
+     * @param attribute  the attribute that caused the error to be thrown
+     * @param valueTypes the accepted parameter types for the operator in question
+     */
+    public AttributeWrongTypeError(Operator operator, Attribute attribute, int... valueTypes) {
 		super(operator, ATTRIBUTE_WRONG_TYPE, attribute.getName(),
 				Ontology.ATTRIBUTE_VALUE_TYPE.mapIndexToDisplayName(attribute.getValueType()), makeReadable(valueTypes));
 	}

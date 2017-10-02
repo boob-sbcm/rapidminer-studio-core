@@ -27,12 +27,17 @@ import com.rapidminer.parameter.UndefinedParameterError;
 
 /**
  * The abstract superclass for example set transformations.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public abstract class ExampleSetTransformationOperator extends AbstractExampleSetProcessing {
 
-	public ExampleSetTransformationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set transformation operator.
+     *
+     * @param description the description
+     */
+    public ExampleSetTransformationOperator(OperatorDescription description) {
 		super(description);
 	}
 

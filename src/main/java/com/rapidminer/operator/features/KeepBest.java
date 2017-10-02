@@ -20,14 +20,19 @@ package com.rapidminer.operator.features;
 
 /**
  * Keeps the <i>n</i> best individuals and kicks out the rest.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class KeepBest implements PopulationOperator {
 
 	private int bestN;
 
-	public KeepBest(int bestN) {
+    /**
+     * Instantiates a new Keep best.
+     *
+     * @param bestN the best n
+     */
+    public KeepBest(int bestN) {
 		this.bestN = bestN;
 	}
 

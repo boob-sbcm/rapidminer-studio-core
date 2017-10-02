@@ -30,14 +30,34 @@ import com.rapidminer.tools.Ontology;
  */
 public class MedianAggregationFunctionLegacy extends NumericalAggregationFunction {
 
-	public static final String FUNCTION_MEDIAN = "median";
+    /**
+     * The constant FUNCTION_MEDIAN.
+     */
+    public static final String FUNCTION_MEDIAN = "median";
 
-	public MedianAggregationFunctionLegacy(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
+    /**
+     * Instantiates a new Median aggregation function legacy.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     */
+    public MedianAggregationFunctionLegacy(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, FUNCTION_MEDIAN, FUNCTION_SEPARATOR_OPEN,
 				FUNCTION_SEPARATOR_CLOSE);
 	}
 
-	public MedianAggregationFunctionLegacy(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
+    /**
+     * Instantiates a new Median aggregation function legacy.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public MedianAggregationFunctionLegacy(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
 			String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, separatorOpen, separatorClose);
 	}

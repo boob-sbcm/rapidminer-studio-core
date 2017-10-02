@@ -25,14 +25,13 @@ import com.rapidminer.tools.expression.Function;
  * A {@link Function} which computes the prefix of a given length from a nominal value
  *
  * @author Thilo Kamradt
- *
  */
 public class Prefix extends AbstractStringIntegerInputStringOutputFunction {
 
-	/**
-	 * Creates a function which computes the prefix of a given length from a nominal value
-	 */
-	public Prefix() {
+    /**
+     * Creates a function which computes the prefix of a given length from a nominal value
+     */
+    public Prefix() {
 		super("text_transformation.prefix", 2);
 	}
 

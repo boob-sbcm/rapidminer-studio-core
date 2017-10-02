@@ -33,14 +33,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract2DoubleInputFun
  * A {@link Function} for subtraction.
  *
  * @author Gisa Schaefer
- *
  */
 public class Minus extends Abstract2DoubleInputFunction {
 
-	/**
-	 * Constructs a subtraction function.
-	 */
-	public Minus() {
+    /**
+     * Constructs a subtraction function.
+     */
+    public Minus() {
 		super("basic.subtraction", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, Ontology.NUMERICAL);
 
 	}

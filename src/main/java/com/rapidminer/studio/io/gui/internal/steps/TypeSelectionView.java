@@ -124,13 +124,12 @@ public final class TypeSelectionView extends JPanel {
 	private final JPanel mainContentPanel;
 	private final List<JButton> dataSourceSelectionButtons = new ArrayList<>();
 
-	/**
-	 * Constructs a new type selection view instance.
-	 *
-	 * @param wizard
-	 *            the data import wizard
-	 */
-	public TypeSelectionView(final ImportWizard wizard) {
+    /**
+     * Constructs a new type selection view instance.
+     *
+     * @param wizard the data import wizard
+     */
+    public TypeSelectionView(final ImportWizard wizard) {
 		this.wizard = wizard;
 
 		JPanel dataSourcesPanel = new JPanel(new GridBagLayout());
@@ -457,10 +456,10 @@ public final class TypeSelectionView extends JPanel {
 		}
 	}
 
-	/**
-	 * Ensures that the data source buttons are enabled.
-	 */
-	void enableButtons() {
+    /**
+     * Ensures that the data source buttons are enabled.
+     */
+    void enableButtons() {
 		enableDataSourceButtons(true);
 	}
 

@@ -38,7 +38,6 @@ import com.rapidminer.gui.look.Colors;
 /**
  * The UI for split pane dividers.
  *
- *
  * @author Ingo Mierswa
  */
 public final class SplitPaneDividerUI extends BasicSplitPaneDivider {
@@ -47,7 +46,12 @@ public final class SplitPaneDividerUI extends BasicSplitPaneDivider {
 
 	private boolean horizontal;
 
-	public SplitPaneDividerUI(BasicSplitPaneUI ui) {
+    /**
+     * Instantiates a new Split pane divider ui.
+     *
+     * @param ui the ui
+     */
+    public SplitPaneDividerUI(BasicSplitPaneUI ui) {
 		super(ui);
 	}
 

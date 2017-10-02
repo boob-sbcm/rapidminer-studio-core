@@ -25,11 +25,9 @@ import java.util.Iterator;
 
 /**
  * The power set of a collection of items.
- * 
+ *
+ * @param <ItemT> the item type
  * @author Sebastian Land
- * 
- * @param <ItemT>
- *            the item type
  */
 public class PowerSet<ItemT> implements Iterable<Collection<ItemT>>, Iterator<Collection<ItemT>> {
 
@@ -37,7 +35,12 @@ public class PowerSet<ItemT> implements Iterable<Collection<ItemT>>, Iterator<Co
 
 	private boolean[] subSetIndicator;
 
-	public PowerSet(Collection<ItemT> collection) {
+    /**
+     * Instantiates a new Power set.
+     *
+     * @param collection the collection
+     */
+    public PowerSet(Collection<ItemT> collection) {
 		set = new ArrayList<ItemT>(collection);
 	}
 
@@ -46,7 +49,13 @@ public class PowerSet<ItemT> implements Iterable<Collection<ItemT>>, Iterator<Co
 		return new PowerSet<ItemT>(set);
 	}
 
-	public Collection<ItemT> getComplement(Collection<ItemT> collection) {
+    /**
+     * Gets complement.
+     *
+     * @param collection the collection
+     * @return the complement
+     */
+    public Collection<ItemT> getComplement(Collection<ItemT> collection) {
 		Collection<ItemT> complement = new ArrayList<ItemT>(set.size() - collection.size());
 		Iterator<ItemT> iterator = set.iterator();
 		for (ItemT item : collection) {

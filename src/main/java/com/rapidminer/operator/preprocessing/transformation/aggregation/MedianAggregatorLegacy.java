@@ -27,7 +27,6 @@ import java.util.List;
  * algorithm for computing the median, but also the memory consumption will grow (double) linearly
  * with the size of the dataset.
  *
- *
  * @author Sebastian Land
  */
 public class MedianAggregatorLegacy extends NumericalAggregator {
@@ -52,7 +51,12 @@ public class MedianAggregatorLegacy extends NumericalAggregator {
 	private MedianListElement currentElement = null;
 	private WeightedMedianListElement currentWeightedElement = null;
 
-	public MedianAggregatorLegacy(AggregationFunction function) {
+    /**
+     * Instantiates a new Median aggregator legacy.
+     *
+     * @param function the function
+     */
+    public MedianAggregatorLegacy(AggregationFunction function) {
 		super(function);
 	}
 

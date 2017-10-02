@@ -30,16 +30,38 @@ import com.vlsolutions.swing.docking.DockingContext;
 @Deprecated
 public class Perspectives extends ApplicationPerspectives {
 
-	public static final String WELCOME = "design";
-	public static final String RESULT = "result";
-	public static final String DESIGN = "design";
-	public static final String BUSINESS = "design";
+    /**
+     * The constant WELCOME.
+     */
+    public static final String WELCOME = "design";
+    /**
+     * The constant RESULT.
+     */
+    public static final String RESULT = "result";
+    /**
+     * The constant DESIGN.
+     */
+    public static final String DESIGN = "design";
+    /**
+     * The constant BUSINESS.
+     */
+    public static final String BUSINESS = "design";
 
-	public Perspectives(PerspectiveController perspectiveController) {
+    /**
+     * Instantiates a new Perspectives.
+     *
+     * @param perspectiveController the perspective controller
+     */
+    public Perspectives(PerspectiveController perspectiveController) {
 		super(perspectiveController);
 	}
 
-	public Perspectives(DockingContext context) {
+    /**
+     * Instantiates a new Perspectives.
+     *
+     * @param context the context
+     */
+    public Perspectives(DockingContext context) {
 		super(context);
 	}
 

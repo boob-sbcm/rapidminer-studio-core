@@ -34,16 +34,27 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  * The UI for internal frames.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class InternalFrameUI extends BasicInternalFrameUI {
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new InternalFrameUI((JInternalFrame) c);
 	}
 
-	public InternalFrameUI(JInternalFrame b) {
+    /**
+     * Instantiates a new Internal frame ui.
+     *
+     * @param b the b
+     */
+    public InternalFrameUI(JInternalFrame b) {
 		super(b);
 	}
 

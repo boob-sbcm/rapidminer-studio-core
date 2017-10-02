@@ -25,12 +25,10 @@ import com.rapidminer.example.Example;
 
 
 /**
- * 
  * SplitCondition for Radoop's Decision Tree. Returns true if the value of the desired attribute is
  * not in the given set.
- * 
+ *
  * @author Zsolt Toth
- * 
  */
 public class NotContainsSplitCondition extends AbstractSplitCondition {
 
@@ -39,7 +37,13 @@ public class NotContainsSplitCondition extends AbstractSplitCondition {
 	private int maxDisplayedCategories = 2;
 	private Set<String> categories;
 
-	public NotContainsSplitCondition(String attributeName, String[] splittingCategories) {
+    /**
+     * Instantiates a new Not contains split condition.
+     *
+     * @param attributeName       the attribute name
+     * @param splittingCategories the splitting categories
+     */
+    public NotContainsSplitCondition(String attributeName, String[] splittingCategories) {
 		super(attributeName);
 		categories = new HashSet<String>();
 		for (String cat : splittingCategories) {
@@ -98,11 +102,21 @@ public class NotContainsSplitCondition extends AbstractSplitCondition {
 		return sb.toString();
 	}
 
-	public void setMaxDisplayedCategories(int maxDisplayedCategories) {
+    /**
+     * Sets max displayed categories.
+     *
+     * @param maxDisplayedCategories the max displayed categories
+     */
+    public void setMaxDisplayedCategories(int maxDisplayedCategories) {
 		this.maxDisplayedCategories = maxDisplayedCategories;
 	}
 
-	public Set<String> getCategories() {
+    /**
+     * Gets categories.
+     *
+     * @return the categories
+     */
+    public Set<String> getCategories() {
 		return categories;
 	}
 }

@@ -38,13 +38,13 @@ import com.rapidminer.operator.ports.metadata.SimplePrecondition;
  * completely applied on new data or written into a file as once. This might become useful in cases
  * where preprocessing and prediction models should be applied together on new and unseen data.
  * </p>
- *
+ * <p>
  * <p>
  * This operator replaces the automatic model grouping known from previous versions of RapidMiner.
  * The explicit usage of this grouping operator gives the user more control about the grouping
  * procedure. A grouped model can be ungrouped with the {@link ModelUngrouper} operator.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that the input models will be added in reverse order, i.e. the last created model,
  * which is usually the first one at the start of the io object, queue will be added as the last
@@ -65,7 +65,12 @@ public class ModelGrouper extends Operator {
 	};
 	private final OutputPort modelOutput = getOutputPorts().createPort("model out");
 
-	public ModelGrouper(OperatorDescription description) {
+    /**
+     * Instantiates a new Model grouper.
+     *
+     * @param description the description
+     */
+    public ModelGrouper(OperatorDescription description) {
 		super(description);
 
 		modelInputExtender.ensureMinimumNumberOfPorts(2);

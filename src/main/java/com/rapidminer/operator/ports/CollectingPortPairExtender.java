@@ -27,15 +27,21 @@ import com.rapidminer.operator.ports.metadata.MetaData;
 /**
  * This port pair extender offers the ability to collect data at its input ports over several
  * iterations and deliver it to its output ports as a collection.<br/>
- * 
+ * <p>
  * Usage: call {@link #reset()} before beginning the loop and {@link #collect()} in every iteration.
- * 
- * 
+ *
  * @author Simon Fischer
  */
 public class CollectingPortPairExtender extends PortPairExtender {
 
-	public CollectingPortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts) {
+    /**
+     * Instantiates a new Collecting port pair extender.
+     *
+     * @param name     the name
+     * @param inPorts  the in ports
+     * @param outPorts the out ports
+     */
+    public CollectingPortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts) {
 		super(name, inPorts, outPorts);
 	}
 
@@ -44,11 +50,11 @@ public class CollectingPortPairExtender extends PortPairExtender {
 		return new CollectionMetaData(md);
 	}
 
-	/**
-	 * Resets all output ports by delivering empty collection to all output ports for which the
-	 * input port is connected and clearing others.
-	 */
-	public void reset() {
+    /**
+     * Resets all output ports by delivering empty collection to all output ports for which the
+     * input port is connected and clearing others.
+     */
+    public void reset() {
 		for (PortPair pair : getManagedPairs()) {
 			if (pair.getInputPort().isConnected()) {
 				pair.getOutputPort().deliver(new IOObjectCollection<IOObject>());
@@ -58,11 +64,11 @@ public class CollectingPortPairExtender extends PortPairExtender {
 		}
 	}
 
-	/**
-	 * For all input ports that have data, this data is added to the collection currently assigned
-	 * to the output port.
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * For all input ports that have data, this data is added to the collection currently assigned
+     * to the output port.
+     */
+    @SuppressWarnings("unchecked")
 	public void collect() {
 		synchronized (this) {
 			for (PortPair pair : getManagedPairs()) {

@@ -24,7 +24,7 @@ import com.rapidminer.operator.learner.subgroups.hypothesis.Rule;
 
 /**
  * Calculates the lift of a rule.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class Lift extends UtilityFunction {
@@ -34,7 +34,13 @@ public class Lift extends UtilityFunction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Lift(double totalWeight, double totalPositiveWeight) {
+    /**
+     * Instantiates a new Lift.
+     *
+     * @param totalWeight         the total weight
+     * @param totalPositiveWeight the total positive weight
+     */
+    public Lift(double totalWeight, double totalPositiveWeight) {
 		super(totalWeight, totalPositiveWeight);
 	}
 

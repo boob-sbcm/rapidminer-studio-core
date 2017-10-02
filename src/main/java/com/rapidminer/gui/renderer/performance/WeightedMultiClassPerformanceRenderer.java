@@ -28,7 +28,8 @@ import java.awt.Component;
 
 
 /**
- * 
+ * The type Weighted multi class performance renderer.
+ *
  * @author Sebastian Land
  */
 public class WeightedMultiClassPerformanceRenderer extends AbstractRenderer {

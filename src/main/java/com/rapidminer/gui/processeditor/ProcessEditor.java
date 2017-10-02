@@ -32,18 +32,30 @@ import java.util.List;
  * Interface for a GUI component that can display and/or edit an process. (e.g. the tree, the
  * xml-text...) Thus, several views on the process can be added to a tabbed pane. The methods of
  * this interface are mainly used to perform checks and to notify that the process has changed.
- * 
+ *
  * @author Ingo Mierswa
  * @see {@link ExtendedProcessEditor}
  */
 public interface ProcessEditor extends EventListener {
 
-	/** Notifies the component that the entire process has changed. */
-	public void processChanged(Process process);
+    /**
+     * Notifies the component that the entire process has changed.  @param process the process
+     *
+     * @param process the process
+     */
+    public void processChanged(Process process);
 
-	/** Sets the currently selected operator. */
-	public void setSelection(List<Operator> selection);
+    /**
+     * Sets the currently selected operator.  @param selection the selection
+     *
+     * @param selection the selection
+     */
+    public void setSelection(List<Operator> selection);
 
-	/** Notifies the component that process was updated in some way. */
-	public void processUpdated(Process process);
+    /**
+     * Notifies the component that process was updated in some way.  @param process the process
+     *
+     * @param process the process
+     */
+    public void processUpdated(Process process);
 }

@@ -20,7 +20,7 @@ package com.rapidminer.operator.learner.functions.kernel.jmysvm.kernel;
 
 /**
  * Anova Kernel
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KernelAnova extends Kernel {
@@ -30,10 +30,18 @@ public class KernelAnova extends Kernel {
 	private double sigma = 1;
 	private double degree = 1;
 
-	/** Class constructor. */
-	public KernelAnova() {}
+    /**
+     * Class constructor.
+     */
+    public KernelAnova() {}
 
-	public void setParameters(double sigma, double degree) {
+    /**
+     * Sets parameters.
+     *
+     * @param sigma  the sigma
+     * @param degree the degree
+     */
+    public void setParameters(double sigma, double degree) {
 		this.sigma = sigma;
 		this.degree = degree;
 	}

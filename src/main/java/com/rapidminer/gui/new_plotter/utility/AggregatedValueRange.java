@@ -29,15 +29,19 @@ import java.util.List;
 /**
  * A value range which holds a list of other value ranges. If one range in that list accepts a row,
  * also this value range accepts the row.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class AggregatedValueRange extends AbstractValueRange {
 
 	private List<ValueRange> subRanges = new LinkedList<ValueRange>();
 
-	public void addSubRange(ValueRange subRange) {
+    /**
+     * Add sub range.
+     *
+     * @param subRange the sub range
+     */
+    public void addSubRange(ValueRange subRange) {
 		subRanges.add(subRange);
 		fireValueRangeChanged(new ValueRangeChangeEvent(this, ValueRangeChangeType.RESET));
 	}

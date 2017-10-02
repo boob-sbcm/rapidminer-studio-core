@@ -38,8 +38,10 @@ import javax.swing.border.Border;
 
 
 /**
- * @author Nils Woehler
+ * The type Color rgb combo box cell renderer.
  *
+ * @param <E> the type parameter
+ * @author Nils Woehler
  */
 public class ColorRGBComboBoxCellRenderer<E> implements ListCellRenderer<E> {
 
@@ -84,7 +86,13 @@ public class ColorRGBComboBoxCellRenderer<E> implements ListCellRenderer<E> {
 		return listCellRendererComponent;
 	}
 
-	protected Icon createColoredRectangleIcon(Color color) {
+    /**
+     * Create colored rectangle icon icon.
+     *
+     * @param color the color
+     * @return the icon
+     */
+    protected Icon createColoredRectangleIcon(Color color) {
 		// create buffered image for colored icon
 		BufferedImage bufferedImage = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = bufferedImage.createGraphics();

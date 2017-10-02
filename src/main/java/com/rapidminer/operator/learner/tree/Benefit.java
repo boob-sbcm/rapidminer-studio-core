@@ -23,8 +23,7 @@ import com.rapidminer.example.Attribute;
 
 /**
  * Encapsulates some information about the benefit of a split.
- * 
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Benefit implements Comparable<Benefit> {
@@ -35,25 +34,53 @@ public class Benefit implements Comparable<Benefit> {
 
 	private double splitValue;
 
-	public Benefit(double benefit, Attribute attribute) {
+    /**
+     * Instantiates a new Benefit.
+     *
+     * @param benefit   the benefit
+     * @param attribute the attribute
+     */
+    public Benefit(double benefit, Attribute attribute) {
 		this(benefit, attribute, Double.NaN);
 	}
 
-	public Benefit(double benefit, Attribute attribute, double splitValue) {
+    /**
+     * Instantiates a new Benefit.
+     *
+     * @param benefit    the benefit
+     * @param attribute  the attribute
+     * @param splitValue the split value
+     */
+    public Benefit(double benefit, Attribute attribute, double splitValue) {
 		this.benefit = benefit;
 		this.attribute = attribute;
 		this.splitValue = splitValue;
 	}
 
-	public Attribute getAttribute() {
+    /**
+     * Gets attribute.
+     *
+     * @return the attribute
+     */
+    public Attribute getAttribute() {
 		return this.attribute;
 	}
 
-	public double getSplitValue() {
+    /**
+     * Gets split value.
+     *
+     * @return the split value
+     */
+    public double getSplitValue() {
 		return this.splitValue;
 	}
 
-	public double getBenefit() {
+    /**
+     * Gets benefit.
+     *
+     * @return the benefit
+     */
+    public double getBenefit() {
 		return this.benefit;
 	}
 

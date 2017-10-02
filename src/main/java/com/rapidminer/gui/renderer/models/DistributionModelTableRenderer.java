@@ -41,7 +41,12 @@ public class DistributionModelTableRenderer extends AbstractTableModelTableRende
 		private int[] rowDistributionIndices;
 		private int[] rowParameterIndices;
 
-		public DistributionTableModel(DistributionModel model) {
+        /**
+         * Instantiates a new Distribution table model.
+         *
+         * @param model the model
+         */
+        public DistributionTableModel(DistributionModel model) {
 			this.model = model;
 			for (int i = 0; i < model.getNumberOfAttributes(); i++) {
 				totalNumberOfParameters += model.getDistribution(0, i).getNumberOfParameters();

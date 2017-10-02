@@ -28,9 +28,8 @@ import java.awt.event.ActionEvent;
 
 /**
  * This action allows the user to manually zoom in/do a selection on the current chart.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class ManageZoomAction extends ResourceAction {
 
@@ -45,13 +44,13 @@ public class ManageZoomAction extends ResourceAction {
 
 	private static final long serialVersionUID = 7788302558857099622L;
 
-	/**
-	 * Creates a new {@link ResourceAction} which opens the manage zoom dialog when triggered. With
-	 * its help, the user can precisely define the zoom/selection area.
-	 * 
-	 * @param engine
-	 */
-	public ManageZoomAction(JFreeChartPlotEngine engine) {
+    /**
+     * Creates a new {@link ResourceAction} which opens the manage zoom dialog when triggered. With
+     * its help, the user can precisely define the zoom/selection area.
+     *
+     * @param engine the engine
+     */
+    public ManageZoomAction(JFreeChartPlotEngine engine) {
 		super(true, "plotter.popup_menu.manage_zoom");
 		this.engine = engine;
 	}
@@ -61,12 +60,12 @@ public class ManageZoomAction extends ResourceAction {
 		manageZoom(engine);
 	}
 
-	/**
-	 * Opens the manage zoom dialog.
-	 * 
-	 * @param engine
-	 */
-	public static synchronized void manageZoom(final JFreeChartPlotEngine engine) {
+    /**
+     * Opens the manage zoom dialog.
+     *
+     * @param engine the engine
+     */
+    public static synchronized void manageZoom(final JFreeChartPlotEngine engine) {
 		if (dialog == null) {
 			dialog = new ManageZoomDialog();
 		}

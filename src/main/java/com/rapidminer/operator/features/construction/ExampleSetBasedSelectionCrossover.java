@@ -32,20 +32,32 @@ import java.util.Random;
  * fixed propability and a mating partner is determined randomly. Crossover can be either one point,
  * uniform or shuffled. Please note that shuffled crossover first uniformly determines the number of
  * attributes which should be swapped. Therefore uniform and shuffle crossover are not equivalent. <br>
- * 
+ * <p>
  * Only useful if all example sets have the same (number of) attributes.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa Exp $
  */
 public class ExampleSetBasedSelectionCrossover implements ExampleSetBasedPopulationOperator {
 
-	public static final String[] CROSSOVER_TYPES = { "one_point", "uniform", "shuffle" };
+    /**
+     * The constant CROSSOVER_TYPES.
+     */
+    public static final String[] CROSSOVER_TYPES = { "one_point", "uniform", "shuffle" };
 
-	public static final int ONE_POINT = 0;
+    /**
+     * The constant ONE_POINT.
+     */
+    public static final int ONE_POINT = 0;
 
-	public static final int UNIFORM = 1;
+    /**
+     * The constant UNIFORM.
+     */
+    public static final int UNIFORM = 1;
 
-	public static final int SHUFFLE = 2;
+    /**
+     * The constant SHUFFLE.
+     */
+    public static final int SHUFFLE = 2;
 
 	private int type;
 
@@ -59,7 +71,17 @@ public class ExampleSetBasedSelectionCrossover implements ExampleSetBasedPopulat
 
 	private int exactNumber;
 
-	public ExampleSetBasedSelectionCrossover(int type, double prob, Random random, int minNumber, int maxNumber,
+    /**
+     * Instantiates a new Example set based selection crossover.
+     *
+     * @param type        the type
+     * @param prob        the prob
+     * @param random      the random
+     * @param minNumber   the min number
+     * @param maxNumber   the max number
+     * @param exactNumber the exact number
+     */
+    public ExampleSetBasedSelectionCrossover(int type, double prob, Random random, int minNumber, int maxNumber,
 			int exactNumber) {
 		this.prob = prob;
 		this.type = type;
@@ -75,11 +97,22 @@ public class ExampleSetBasedSelectionCrossover implements ExampleSetBasedPopulat
 		return true;
 	}
 
-	public int getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public int getType() {
 		return type;
 	}
 
-	public void crossover(AttributeWeightedExampleSet es1, AttributeWeightedExampleSet es2) {
+    /**
+     * Crossover.
+     *
+     * @param es1 the es 1
+     * @param es2 the es 2
+     */
+    public void crossover(AttributeWeightedExampleSet es1, AttributeWeightedExampleSet es2) {
 		switch (type) {
 			case ONE_POINT:
 				int n = 1 + random.nextInt(es1.getAttributes().size() - 1);

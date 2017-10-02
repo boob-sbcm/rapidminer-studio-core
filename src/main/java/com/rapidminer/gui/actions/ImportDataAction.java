@@ -29,30 +29,28 @@ import com.rapidminer.studio.io.gui.internal.DataImportWizardBuilder;
 
 /**
  * An action that opens the {@link com.rapidminer.studio.io.gui.internal.DataImportWizard
- * DataImportWizard}.
+ * DataImportWizard}**.
  *
  * @author Nils Woehler
  * @since 7.0.0
- *
  */
 public class ImportDataAction extends ResourceAction {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructs a new {@link ImportDataAction} instance with a big icon.
-	 */
-	public ImportDataAction() {
+    /**
+     * Constructs a new {@link ImportDataAction} instance with a big icon.
+     */
+    public ImportDataAction() {
 		super(false, "add_data");
 	}
 
-	/**
-	 * Constructs a new {@link ImportDataAction} instance.
-	 *
-	 * @param smallIcon
-	 *            specifies whether the icon should be small (16x16) or big (24x24).
-	 */
-	public ImportDataAction(boolean smallIcon) {
+    /**
+     * Constructs a new {@link ImportDataAction} instance.
+     *
+     * @param smallIcon specifies whether the icon should be small (16x16) or big (24x24).
+     */
+    public ImportDataAction(boolean smallIcon) {
 		super(smallIcon, "add_data");
 	}
 

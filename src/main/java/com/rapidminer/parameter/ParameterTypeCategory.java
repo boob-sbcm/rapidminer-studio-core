@@ -45,7 +45,13 @@ public class ParameterTypeCategory extends ParameterTypeSingle {
 
 	private String[] categories = new String[0];
 
-	public ParameterTypeCategory(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type category.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeCategory(Element element) throws XMLException {
 		super(element);
 
 		defaultValue = Integer.parseInt(element.getAttribute(ATTRIBUTE_DEFAULT));
@@ -53,18 +59,40 @@ public class ParameterTypeCategory extends ParameterTypeSingle {
 				ELEMENT_VALUE);
 	}
 
-	public ParameterTypeCategory(String key, String description, String[] categories, int defaultValue, boolean expert) {
+    /**
+     * Instantiates a new Parameter type category.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param categories   the categories
+     * @param defaultValue the default value
+     * @param expert       the expert
+     */
+    public ParameterTypeCategory(String key, String description, String[] categories, int defaultValue, boolean expert) {
 		this(key, description, categories, defaultValue);
 		setExpert(expert);
 	}
 
-	public ParameterTypeCategory(String key, String description, String[] categories, int defaultValue) {
+    /**
+     * Instantiates a new Parameter type category.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param categories   the categories
+     * @param defaultValue the default value
+     */
+    public ParameterTypeCategory(String key, String description, String[] categories, int defaultValue) {
 		super(key, description);
 		this.categories = categories;
 		this.defaultValue = defaultValue;
 	}
 
-	public int getDefault() {
+    /**
+     * Gets default.
+     *
+     * @return the default
+     */
+    public int getDefault() {
 		return defaultValue;
 	}
 
@@ -88,11 +116,23 @@ public class ParameterTypeCategory extends ParameterTypeSingle {
 		return false;
 	}
 
-	public String getCategory(int index) {
+    /**
+     * Gets category.
+     *
+     * @param index the index
+     * @return the category
+     */
+    public String getCategory(int index) {
 		return categories[index];
 	}
 
-	public int getIndex(String string) {
+    /**
+     * Gets index.
+     *
+     * @param string the string
+     * @return the index
+     */
+    public int getIndex(String string) {
 		for (int i = 0; i < categories.length; i++) {
 			if (categories[i].equals(string)) {
 				return Integer.valueOf(i);
@@ -122,7 +162,12 @@ public class ParameterTypeCategory extends ParameterTypeSingle {
 		}
 	}
 
-	public String[] getValues() {
+    /**
+     * Get values string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getValues() {
 		return categories;
 	}
 
@@ -138,7 +183,12 @@ public class ParameterTypeCategory extends ParameterTypeSingle {
 		return values.toString() + "; default: " + categories[defaultValue];
 	}
 
-	public int getNumberOfCategories() {
+    /**
+     * Gets number of categories.
+     *
+     * @return the number of categories
+     */
+    public int getNumberOfCategories() {
 		return categories.length;
 	}
 

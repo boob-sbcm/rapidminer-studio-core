@@ -74,21 +74,24 @@ import com.rapidminer.tools.math.container.Range;
  */
 public abstract class AbstractDataReader extends AbstractExampleSource {
 
-	public static final int PREVIEW_LINES = 300;
+    /**
+     * The constant PREVIEW_LINES.
+     */
+    public static final int PREVIEW_LINES = 300;
 
-	/**
-	 * DO NOT SET THIS PARAMETER DIRECTLY. USE THE
-	 * {@link AbstractDataReader#setErrorTolerant(boolean)} in order to cache the value.
-	 *
-	 * Indicates whether the reader tolerates values, which do not match a attributes value type.
-	 * <p>
-	 * For example if the value type is NUMERICAL and the reader reads a string. If
-	 * {@link AbstractDataReader#PARAMETER_ERROR_TOLERANT} is <code>true</code>, the reader writes a
-	 * missing value, if it is <code>false</code> the reader throws an exception. The reader
-	 * replaces also a binomial value type by nominal the attributes domain has more then two values
-	 * and this parameter is checked.
-	 */
-	public static final String PARAMETER_ERROR_TOLERANT = "read_not_matching_values_as_missings";
+    /**
+     * DO NOT SET THIS PARAMETER DIRECTLY. USE THE
+     * {@link AbstractDataReader#setErrorTolerant(boolean)} in order to cache the value.
+     * <p>
+     * Indicates whether the reader tolerates values, which do not match a attributes value type.
+     * <p>
+     * For example if the value type is NUMERICAL and the reader reads a string. If
+     * {@link AbstractDataReader#PARAMETER_ERROR_TOLERANT} is <code>true</code>, the reader writes a
+     * missing value, if it is <code>false</code> the reader throws an exception. The reader
+     * replaces also a binomial value type by nominal the attributes domain has more then two values
+     * and this parameter is checked.
+     */
+    public static final String PARAMETER_ERROR_TOLERANT = "read_not_matching_values_as_missings";
 
 	/**
 	 * Hidden parameter in order to remember whether attributes names, which are defined by the user
@@ -103,43 +106,46 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 	 */
 	private static final String PARAMETER_META_DATA = "data_set_meta_data_information";
 
-	/**
-	 * hidden parameter which is used to construct the
-	 * {@link AbstractDataReader#PARAMETER_META_DATA}
-	 */
-	public static final String PARAMETER_COLUMN_INDEX = "column_index";
+    /**
+     * hidden parameter which is used to construct the
+     * {@link AbstractDataReader#PARAMETER_META_DATA}
+     */
+    public static final String PARAMETER_COLUMN_INDEX = "column_index";
 
-	/**
-	 * hidden parameter which is used to construct the
-	 * {@link AbstractDataReader#PARAMETER_META_DATA}
-	 */
-	public static final String PARAMETER_COLUMN_META_DATA = "attribute_meta_data_information";
+    /**
+     * hidden parameter which is used to construct the
+     * {@link AbstractDataReader#PARAMETER_META_DATA}
+     */
+    public static final String PARAMETER_COLUMN_META_DATA = "attribute_meta_data_information";
 
-	/**
-	 * hidden parameter which is used to construct the
-	 * {@link AbstractDataReader#PARAMETER_META_DATA}
-	 */
-	public static final String PARAMETER_COLUMN_NAME = "attribute name";
+    /**
+     * hidden parameter which is used to construct the
+     * {@link AbstractDataReader#PARAMETER_META_DATA}
+     */
+    public static final String PARAMETER_COLUMN_NAME = "attribute name";
 
-	/**
-	 * hidden parameter which is used to construct the
-	 * {@link AbstractDataReader#PARAMETER_META_DATA}
-	 */
-	public static final String PARAMETER_COLUMN_SELECTED = "column_selected";
+    /**
+     * hidden parameter which is used to construct the
+     * {@link AbstractDataReader#PARAMETER_META_DATA}
+     */
+    public static final String PARAMETER_COLUMN_SELECTED = "column_selected";
 
-	/**
-	 * hidden parameter which is used to construct the
-	 * {@link AbstractDataReader#PARAMETER_META_DATA}
-	 */
-	public static final String PARAMETER_COLUM_VALUE_TYPE = "attribute_value_type";
+    /**
+     * hidden parameter which is used to construct the
+     * {@link AbstractDataReader#PARAMETER_META_DATA}
+     */
+    public static final String PARAMETER_COLUM_VALUE_TYPE = "attribute_value_type";
 
-	/**
-	 * hidden parameter which is used to construct the
-	 * {@link AbstractDataReader#PARAMETER_META_DATA}
-	 */
-	public static final String PARAMETER_COLUM_ROLE = "attribute_role";
+    /**
+     * hidden parameter which is used to construct the
+     * {@link AbstractDataReader#PARAMETER_META_DATA}
+     */
+    public static final String PARAMETER_COLUM_ROLE = "attribute_role";
 
-	public static final ArrayList<String> ROLE_NAMES = new ArrayList<String>();
+    /**
+     * The constant ROLE_NAMES.
+     */
+    public static final ArrayList<String> ROLE_NAMES = new ArrayList<String>();
 
 	{
 		ROLE_NAMES.clear();
@@ -157,7 +163,14 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 	 */
 	private List<OperatorException> importErrors = new LinkedList<OperatorException>();
 
-	protected abstract DataSet getDataSet() throws OperatorException, IOException;
+    /**
+     * Gets data set.
+     *
+     * @return the data set
+     * @throws OperatorException the operator exception
+     * @throws IOException       the io exception
+     */
+    protected abstract DataSet getDataSet() throws OperatorException, IOException;
 
 	/**
 	 * the row count is the number of row/lines which are read during the guessing process. It is
@@ -181,10 +194,10 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 
 	private boolean detectErrorsInPreview = false;
 
-	/**
-	 * cached flag in order to avoid reading the parameter every single row
-	 */
-	boolean isErrorTollerantCache = true;
+    /**
+     * cached flag in order to avoid reading the parameter every single row
+     */
+    boolean isErrorTollerantCache = true;
 
 	/**
 	 * Flag which interrupts the reading prcocess if it is set <code>true</code> . @see
@@ -192,22 +205,22 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 	 */
 	private boolean stopReading = false;
 
-	/**
-	 * Flag which interrupts the reading prcocess if it is set <code>true</code> . @see
-	 * {@link AbstractDataReader#stopReading()}
-	 */
-	protected boolean skipGuessingValueTypes = false;
+    /**
+     * Flag which interrupts the reading prcocess if it is set <code>true</code> . @see
+     * {@link AbstractDataReader#stopReading()}
+     */
+    protected boolean skipGuessingValueTypes = false;
 
-	/**
-	 * Data structure to manage the background highlighting for cells, which can not be parsed as
-	 * the specified value type.
-	 *
-	 * Maps the column to a set of row which in which the parsing failed.
-	 *
-	 * @see AbstractDataReader#hasParseError(int, int)
-	 * @see AbstractDataReader#hasParseErrorInColumn(int)
-	 */
-	TreeMap<Integer, TreeSet<Integer>> errorCells = new TreeMap<Integer, TreeSet<Integer>>();
+    /**
+     * Data structure to manage the background highlighting for cells, which can not be parsed as
+     * the specified value type.
+     * <p>
+     * Maps the column to a set of row which in which the parsing failed.
+     *
+     * @see AbstractDataReader#hasParseError(int, int) AbstractDataReader#hasParseError(int, int)AbstractDataReader#hasParseError(int, int)
+     * @see AbstractDataReader#hasParseErrorInColumn(int) AbstractDataReader#hasParseErrorInColumn(int)AbstractDataReader#hasParseErrorInColumn(int)
+     */
+    TreeMap<Integer, TreeSet<Integer>> errorCells = new TreeMap<Integer, TreeSet<Integer>>();
 
 	/**
 	 * The columns of the created {@link ExampleSet}.
@@ -217,18 +230,27 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 	 */
 	private List<AttributeColumn> attributeColumns = new ArrayList<AttributeColumn>();
 
-	public void clearAllReaderSettings() {
+    /**
+     * Clear all reader settings.
+     */
+    public void clearAllReaderSettings() {
 		clearReaderSettings();
 		deleteAttributeMetaDataParamters();
 	}
 
-	public void clearReaderSettings() {
+    /**
+     * Clear reader settings.
+     */
+    public void clearReaderSettings() {
 		stopReading();
 		attributeColumns.clear();
 		importErrors.clear();
 	}
 
-	public void deleteAttributeMetaDataParamters() {
+    /**
+     * Delete attribute meta data paramters.
+     */
+    public void deleteAttributeMetaDataParamters() {
 		setParameter(PARAMETER_META_DATA, null);
 		setAttributeNamesDefinedByUser(false);
 	}
@@ -240,24 +262,39 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 	// rowCountFromGuessing = 0;
 	// }
 
-	public AbstractDataReader(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract data reader.
+     *
+     * @param description the description
+     */
+    public AbstractDataReader(OperatorDescription description) {
 		super(description);
 	}
 
-	public boolean attributeNamesDefinedByUser() {
+    /**
+     * Attribute names defined by user boolean.
+     *
+     * @return the boolean
+     */
+    public boolean attributeNamesDefinedByUser() {
 		return getParameterAsBoolean(PARAMETER_ATTRIBUTE_NAMES_DEFINED_BY_USER);
 	}
 
-	public void setAttributeNamesDefinedByUser(boolean flag) {
+    /**
+     * Sets attribute names defined by user.
+     *
+     * @param flag the flag
+     */
+    public void setAttributeNamesDefinedByUser(boolean flag) {
 		setParameter(PARAMETER_ATTRIBUTE_NAMES_DEFINED_BY_USER, Boolean.toString(flag));
 	}
 
-	/**
-	 * Returns all <b>activated</b> attribute columns.
-	 *
-	 * @return
-	 */
-	public List<AttributeColumn> getActiveAttributeColumns() {
+    /**
+     * Returns all <b>activated</b> attribute columns.
+     *
+     * @return active attribute columns
+     */
+    public List<AttributeColumn> getActiveAttributeColumns() {
 		List<AttributeColumn> list = new LinkedList<AttributeColumn>();
 		for (AttributeColumn column : attributeColumns) {
 			if (column.isActivated()) {
@@ -267,83 +304,94 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		return list;
 	}
 
-	/**
-	 * Returns all attribute columns, despite they are activated or not.
-	 *
-	 * @return
-	 */
-	public List<AttributeColumn> getAllAttributeColumns() {
+    /**
+     * Returns all attribute columns, despite they are activated or not.
+     *
+     * @return all attribute columns
+     */
+    public List<AttributeColumn> getAllAttributeColumns() {
 		// List<AttributeColumn> list = new LinkedList<AttributeColumn>();
 		// list.addAll(attributeColumns);
 		// return list;
 		return Collections.unmodifiableList(attributeColumns);
 	}
 
-	/**
-	 * Returns the attribute column with the given index if it exists (it does not matter if the
-	 * column is activated or not). Else a {@link IllegalArgumentException} is thrown
-	 *
-	 * @param index
-	 *            the index of the requested column.
-	 * @return
-	 */
-	public AttributeColumn getAttributeColumn(int index) throws IllegalArgumentException {
+    /**
+     * Returns the attribute column with the given index if it exists (it does not matter if the
+     * column is activated or not). Else a {@link IllegalArgumentException} is thrown
+     *
+     * @param index the index of the requested column.
+     * @return attribute column
+     * @throws IllegalArgumentException the illegal argument exception
+     */
+    public AttributeColumn getAttributeColumn(int index) throws IllegalArgumentException {
 		if (index < attributeColumns.size()) {
 			return attributeColumns.get(index);
 		}
 		throw new IllegalArgumentException("The attribute column with index " + index + " does not exists.");
 	}
 
-	/**
-	 * Returns the index of the given {@link AttributeColumn} (it does not matter if it is activated
-	 * or not). If the attribute column does not exist, -1 is returned.
-	 *
-	 * @param column
-	 * @return the index of the attribute column, -1 else.
-	 */
-	public int getIndexOfAttributeColumn(AttributeColumn column) {
+    /**
+     * Returns the index of the given {@link AttributeColumn} (it does not matter if it is activated
+     * or not). If the attribute column does not exist, -1 is returned.
+     *
+     * @param column the column
+     * @return the index of the attribute column, -1 else.
+     */
+    public int getIndexOfAttributeColumn(AttributeColumn column) {
 		return attributeColumns.indexOf(column);
 	}
 
-	/**
-	 * Returns the index of the given <b>activated</b> {@link AttributeColumn}. Returns -1 if the
-	 * column is not activated or does not exist.
-	 *
-	 * @param column
-	 * @return
-	 */
-	public int getIndexOfActiveAttributeColumn(AttributeColumn column) {
+    /**
+     * Returns the index of the given <b>activated</b> {@link AttributeColumn}. Returns -1 if the
+     * column is not activated or does not exist.
+     *
+     * @param column the column
+     * @return index of active attribute column
+     */
+    public int getIndexOfActiveAttributeColumn(AttributeColumn column) {
 		return getActiveAttributeColumns().indexOf(column);
 	}
 
-	public void addAttributeColumn() {
+    /**
+     * Add attribute column.
+     */
+    public void addAttributeColumn() {
 		String name = getNewGenericColumnName(attributeColumns.size());
 		attributeColumns.add(new AttributeColumn(name));
 	}
 
-	public void addAttributeColumn(String attributeName) {
+    /**
+     * Add attribute column.
+     *
+     * @param attributeName the attribute name
+     */
+    public void addAttributeColumn(String attributeName) {
 		attributeColumns.add(new AttributeColumn(attributeName));
 	}
 
-	/**
-	 * Returns <code>true</code> when somebody called
-	 * {@link AbstractDataReader#fixMetaDataDefinition()}. Otherwise the operator MetaData is only
-	 * guessed (<code>metaDataFixed == false</code>) or
-	 *
-	 * @return
-	 */
-	public boolean isMetaDatafixed() {
+    /**
+     * Returns <code>true</code> when somebody called
+     * {@link AbstractDataReader#fixMetaDataDefinition()}. Otherwise the operator MetaData is only
+     * guessed (<code>metaDataFixed == false</code>) or
+     *
+     * @return boolean boolean
+     */
+    public boolean isMetaDatafixed() {
 		return metaDataFixed;
 	}
 
-	/**
-	 * Method to declare the operators MetaData as final.
-	 */
-	public void fixMetaDataDefinition() {
+    /**
+     * Method to declare the operators MetaData as final.
+     */
+    public void fixMetaDataDefinition() {
 		metaDataFixed = true;
 	}
 
-	public void writeMetaDataInParameter() {
+    /**
+     * Write meta data in parameter.
+     */
+    public void writeMetaDataInParameter() {
 		deleteAttributeMetaDataParamters();
 		setAttributeNamesDefinedByUser(true);
 		for (AttributeColumn col : getAllAttributeColumns()) {
@@ -351,7 +399,10 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		}
 	}
 
-	public void loadMetaDataFromParameters() {
+    /**
+     * Load meta data from parameters.
+     */
+    public void loadMetaDataFromParameters() {
 		List<AttributeColumn> oldColumns = attributeColumns;
 		attributeColumns.clear();
 		try {
@@ -377,12 +428,12 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		}
 	}
 
-	/**
-	 * Returns the number of all columns, regardless a column is activated or not.
-	 *
-	 * @return
-	 */
-	public int getColumnCount() {
+    /**
+     * Returns the number of all columns, regardless a column is activated or not.
+     *
+     * @return column count
+     */
+    public int getColumnCount() {
 		return attributeColumns.size();
 	}
 
@@ -575,12 +626,12 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		}
 	}
 
-	/**
-	 * Sets the name of each attribute to the given name.
-	 *
-	 * @param newColumnNames
-	 */
-	protected void setAttributeNames(String[] newColumnNames) {
+    /**
+     * Sets the name of each attribute to the given name.
+     *
+     * @param newColumnNames the new column names
+     */
+    protected void setAttributeNames(String[] newColumnNames) {
 
 		adjustAttributeColumnsNumbers(newColumnNames.length);
 		assert attributeColumns.size() == newColumnNames.length;
@@ -605,11 +656,11 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		}
 	}
 
-	/**
-	 * Resets the column names to a generic column name given by the method
-	 * {@link AbstractDataReader#getNewGenericColumnName(int)}.
-	 */
-	protected void resetColumnNames() {
+    /**
+     * Resets the column names to a generic column name given by the method
+     * {@link AbstractDataReader#getNewGenericColumnName(int)}.
+     */
+    protected void resetColumnNames() {
 		int i = 0;
 		for (AttributeColumn column : getAllAttributeColumns()) {
 			column.setName(getNewGenericColumnName(i));
@@ -617,15 +668,20 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		}
 	}
 
-	/**
-	 *
-	 */
-	public void stopReading() {
+    /**
+     * Stop reading.
+     */
+    public void stopReading() {
 		stopReading = true;
 
 	}
 
-	protected void setAnnotations(Annotations[] annotations) {
+    /**
+     * Sets annotations.
+     *
+     * @param annotations the annotations
+     */
+    protected void setAnnotations(Annotations[] annotations) {
 		assert getAllAttributeColumns().size() == annotations.length;
 		int i = 0;
 		for (AttributeColumn column : getAllAttributeColumns()) {
@@ -635,7 +691,13 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		}
 	}
 
-	protected void setValueTypes(List<Integer> valueTypesList) throws OperatorException {
+    /**
+     * Sets value types.
+     *
+     * @param valueTypesList the value types list
+     * @throws OperatorException the operator exception
+     */
+    protected void setValueTypes(List<Integer> valueTypesList) throws OperatorException {
 		if (getAllAttributeColumns().size() != valueTypesList.size()) {
 			throw new OperatorException(
 					"Internal error: The number of valueTypes does not match with the number of attributes.");
@@ -654,16 +716,37 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		importErrors.add(e);
 	}
 
-	public List<OperatorException> getImportErrors() {
+    /**
+     * Gets import errors.
+     *
+     * @return the import errors
+     */
+    public List<OperatorException> getImportErrors() {
 		return importErrors;
 	}
 
-	public List<Object[]> getShortPreviewAsList(ProgressListener progress, boolean trimAttributeColumns)
+    /**
+     * Gets short preview as list.
+     *
+     * @param progress             the progress
+     * @param trimAttributeColumns the trim attribute columns
+     * @return the short preview as list
+     * @throws OperatorException the operator exception
+     */
+    public List<Object[]> getShortPreviewAsList(ProgressListener progress, boolean trimAttributeColumns)
 			throws OperatorException {
 		return getPreviewAsList(progress, false, trimAttributeColumns, PREVIEW_LINES);
 	}
 
-	public List<Object[]> getPreviewAsList(ProgressListener progress, boolean trimAttributeColumns)
+    /**
+     * Gets preview as list.
+     *
+     * @param progress             the progress
+     * @param trimAttributeColumns the trim attribute columns
+     * @return the preview as list
+     * @throws OperatorException the operator exception
+     */
+    public List<Object[]> getPreviewAsList(ProgressListener progress, boolean trimAttributeColumns)
 			throws OperatorException {
 		if (detectErrorsInPreview) {
 			return getPreviewAsList(progress, true, trimAttributeColumns, -1);
@@ -672,7 +755,14 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		}
 	}
 
-	public List<Object[]> getErrorPreviewAsList(ProgressListener progress) throws OperatorException {
+    /**
+     * Gets error preview as list.
+     *
+     * @param progress the progress
+     * @return the error preview as list
+     * @throws OperatorException the operator exception
+     */
+    public List<Object[]> getErrorPreviewAsList(ProgressListener progress) throws OperatorException {
 		List<Object[]> preview = getPreviewAsList(progress, true, false, -1);
 		List<Object[]> errorPreview = new LinkedList<Object[]>();
 
@@ -688,14 +778,18 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		return errorPreview;
 	}
 
-	/**
-	 *
-	 * @see AbstractDataReader#PREVIEW_LINES
-	 *
-	 * @return
-	 * @throws OperatorException
-	 */
-	public List<Object[]> getPreviewAsList(ProgressListener progress, boolean enableErrorDetection,
+    /**
+     * Gets preview as list.
+     *
+     * @param progress             the progress
+     * @param enableErrorDetection the enable error detection
+     * @param trimAttributeColumns the trim attribute columns
+     * @param numberOfLinesRead    the number of lines read
+     * @return preview as list
+     * @throws OperatorException the operator exception
+     * @see AbstractDataReader#PREVIEW_LINES AbstractDataReader#PREVIEW_LINESAbstractDataReader#PREVIEW_LINES
+     */
+    public List<Object[]> getPreviewAsList(ProgressListener progress, boolean enableErrorDetection,
 			boolean trimAttributeColumns, int numberOfLinesRead) throws OperatorException {
 		stopReading = false;
 		int limit = numberOfLinesRead;
@@ -840,12 +934,24 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		treeSet.add(row);
 	}
 
-	public boolean hasParseErrorInColumn(int column) {
+    /**
+     * Has parse error in column boolean.
+     *
+     * @param column the column
+     * @return the boolean
+     */
+    public boolean hasParseErrorInColumn(int column) {
 		TreeSet<Integer> treeSet = errorCells.get(column);
 		return treeSet != null && !treeSet.isEmpty();
 	}
 
-	public boolean hasParseErrorInRow(int row) {
+    /**
+     * Has parse error in row boolean.
+     *
+     * @param row the row
+     * @return the boolean
+     */
+    public boolean hasParseErrorInRow(int row) {
 		for (int column : errorCells.keySet()) {
 			if (hasParseError(column, row)) {
 				return true;
@@ -854,7 +960,14 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		return false;
 	}
 
-	public boolean hasParseError(int column, int row) {
+    /**
+     * Has parse error boolean.
+     *
+     * @param column the column
+     * @param row    the row
+     * @return the boolean
+     */
+    public boolean hasParseError(int column, int row) {
 		TreeSet<Integer> treeSet = errorCells.get(column);
 		if (treeSet != null) {
 			return treeSet.contains(row);
@@ -862,11 +975,21 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		return false;
 	}
 
-	public boolean isDetectErrorsInPreview() {
+    /**
+     * Is detect errors in preview boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isDetectErrorsInPreview() {
 		return detectErrorsInPreview;
 	}
 
-	public void setDetectErrorsInPreview(boolean detectErrorsInPreview) {
+    /**
+     * Sets detect errors in preview.
+     *
+     * @param detectErrorsInPreview the detect errors in preview
+     */
+    public void setDetectErrorsInPreview(boolean detectErrorsInPreview) {
 		this.detectErrorsInPreview = detectErrorsInPreview;
 	}
 
@@ -875,13 +998,13 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		return true;
 	}
 
-	/**
-	 * Returns a new column name for new column to build. Probably something like "attribute_1".
-	 *
-	 * @param column
-	 * @return a unique column name
-	 */
-	protected String getNewGenericColumnName(int column) {
+    /**
+     * Returns a new column name for new column to build. Probably something like "attribute_1".
+     *
+     * @param column the column
+     * @return a unique column name
+     */
+    protected String getNewGenericColumnName(int column) {
 		HashSet<String> usedNames = new HashSet<String>();
 		for (AttributeColumn col : getAllAttributeColumns()) {
 			usedNames.add(col.getName());
@@ -928,15 +1051,15 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		return genericNames;
 	}
 
-	/**
-	 * Guesses the attribute value types based on the values in the first
-	 * {@link AbstractDataReader#PREVIEW_LINES} rows.
-	 *
-	 * @see {@link AbstractDataReader#PREVIEW_LINES}
-	 *
-	 * @throws OperatorException
-	 */
-	public void guessValueTypes(ProgressListener progress) throws OperatorException {
+    /**
+     * Guesses the attribute value types based on the values in the first
+     * {@link AbstractDataReader#PREVIEW_LINES} rows.
+     *
+     * @param progress the progress
+     * @throws OperatorException the operator exception
+     * @see {@link AbstractDataReader#PREVIEW_LINES}
+     */
+    public void guessValueTypes(ProgressListener progress) throws OperatorException {
 		stopReading = false;
 		// this.clearReaderSettings();
 
@@ -1281,39 +1404,43 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		return types;
 	}
 
-	/**
-	 * Use this method to set the parameter {@link AbstractDataReader#PARAMETER_ERROR_TOLERANT}. Do
-	 * not set the parameter directly because its value need to be cached.
-	 *
-	 * @param flag
-	 */
-	public void setErrorTolerant(boolean flag) {
+    /**
+     * Use this method to set the parameter {@link AbstractDataReader#PARAMETER_ERROR_TOLERANT}. Do
+     * not set the parameter directly because its value need to be cached.
+     *
+     * @param flag the flag
+     */
+    public void setErrorTolerant(boolean flag) {
 		isErrorTollerantCache = flag;
 		setParameter(PARAMETER_ERROR_TOLERANT, Boolean.toString(flag));
 	}
 
-	/**
-	 * @return the cached value of the parameter {@link AbstractDataReader#PARAMETER_ERROR_TOLERANT}
-	 *         . The parameter needs to be cached since it cost to much time to read the parameter
-	 *         every line.
-	 */
-	public boolean isErrorTolerant() {
+    /**
+     * Is error tolerant boolean.
+     *
+     * @return the cached value of the parameter {@link AbstractDataReader#PARAMETER_ERROR_TOLERANT}         . The parameter needs to be cached since it cost to much time to read the parameter         every line.
+     */
+    public boolean isErrorTolerant() {
 		return isErrorTollerantCache;
 	}
 
-	/**
-	 * Observer that clears the reader settings if the source file is changed. Only relevant for
-	 * {@link CSVDataReader} and {@link ExcelExampleSource}
-	 *
-	 * @author Sebastian Loh (14.07.2010)
-	 *
-	 */
-	protected class CacheResetParameterObserver implements Observer<String> {
+    /**
+     * Observer that clears the reader settings if the source file is changed. Only relevant for
+     * {@link CSVDataReader} and {@link ExcelExampleSource}
+     *
+     * @author Sebastian Loh (14.07.2010)
+     */
+    protected class CacheResetParameterObserver implements Observer<String> {
 
 		private String parameterKey;
 		private String oldFilename;
 
-		protected CacheResetParameterObserver(String parameterKey) {
+        /**
+         * Instantiates a new Cache reset parameter observer.
+         *
+         * @param parameterKey the parameter key
+         */
+        protected CacheResetParameterObserver(String parameterKey) {
 			this.parameterKey = parameterKey;
 		}
 
@@ -1334,85 +1461,114 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 
 		private int rowNumber = -1;
 		private int rowLenght = -1;
-		int expectedRowLenght = -1;
+        /**
+         * The Expected row lenght.
+         */
+        int expectedRowLenght = -1;
 
-		/**
-		 *
-		 */
-		public UnexpectedRowLenghtException(String message, int rowNumber, int rowLenght, int expectedRowLenght) {
+        /**
+         * Instantiates a new Unexpected row lenght exception.
+         *
+         * @param message           the message
+         * @param rowNumber         the row number
+         * @param rowLenght         the row lenght
+         * @param expectedRowLenght the expected row lenght
+         */
+        public UnexpectedRowLenghtException(String message, int rowNumber, int rowLenght, int expectedRowLenght) {
 			super(message);
 			this.rowNumber = rowNumber;
 			this.rowLenght = rowLenght;
 			this.expectedRowLenght = expectedRowLenght;
 		}
 
-		/**
-		 *
-		 */
-		public UnexpectedRowLenghtException(int rowNumber, int rowLenght, int expectedRowLenght) {
+        /**
+         * Instantiates a new Unexpected row lenght exception.
+         *
+         * @param rowNumber         the row number
+         * @param rowLenght         the row lenght
+         * @param expectedRowLenght the expected row lenght
+         */
+        public UnexpectedRowLenghtException(int rowNumber, int rowLenght, int expectedRowLenght) {
 			super("NO MESSAGE");
 			this.rowNumber = rowNumber;
 
 		}
 
-		/**
-		 * Returns the row where the error occurred. <b>Warning:</b> you might want to add +1 if you
-		 * intend to present this number to the user.
-		 *
-		 *
-		 * @return
-		 */
-		public int getRow() {
+        /**
+         * Returns the row where the error occurred. <b>Warning:</b> you might want to add +1 if you
+         * intend to present this number to the user.
+         *
+         * @return row row
+         */
+        public int getRow() {
 			return rowNumber;
 		}
 
-		/**
-		 * Returns the length of the the row {@link UnexpectedRowLenghtException#rowNumber}
-		 *
-		 * @return
-		 */
-		public int getRowLenght() {
+        /**
+         * Returns the length of the the row {@link UnexpectedRowLenghtException#rowNumber}
+         *
+         * @return row lenght
+         */
+        public int getRowLenght() {
 			return rowLenght;
 		}
 
-		public int getExpectedRowLenght() {
+        /**
+         * Gets expected row lenght.
+         *
+         * @return the expected row lenght
+         */
+        public int getExpectedRowLenght() {
 			return expectedRowLenght;
 		}
 	}
 
-	public class TooShortRowLengthException extends UnexpectedRowLenghtException {
+    /**
+     * The type Too short row length exception.
+     */
+    public class TooShortRowLengthException extends UnexpectedRowLenghtException {
 
 		private static final long serialVersionUID = -9183147637149034838L;
 
-		/**
-		 * @param rowNumber
-		 * @param rowLenght
-		 * @param expectedRowLenght
-		 */
-		public TooShortRowLengthException(int rowNumber, int rowLenght, int expectedRowLenght) {
+        /**
+         * Instantiates a new Too short row length exception.
+         *
+         * @param rowNumber         the row number
+         * @param rowLenght         the row lenght
+         * @param expectedRowLenght the expected row lenght
+         */
+        public TooShortRowLengthException(int rowNumber, int rowLenght, int expectedRowLenght) {
 			super("Row number <b>" + rowNumber + "<//b> is too <b>short<//b>. The row has <b>" + rowLenght
 					+ "<//b> columns but it is expected to have <b>" + expectedRowLenght + "<//b> columns.", rowNumber,
 					rowLenght, expectedRowLenght);
 		}
 	}
 
-	public class TooLongRowLengthException extends UnexpectedRowLenghtException {
+    /**
+     * The type Too long row length exception.
+     */
+    public class TooLongRowLengthException extends UnexpectedRowLenghtException {
 
 		private static final long serialVersionUID = -9079042758212112074L;
 
-		/**
-		 * @param rowNumber
-		 * @param rowLenght
-		 * @param expectedRowLenght
-		 */
-		public TooLongRowLengthException(int rowNumber, int rowLenght, int expectedRowLenght) {
+        /**
+         * Instantiates a new Too long row length exception.
+         *
+         * @param rowNumber         the row number
+         * @param rowLenght         the row lenght
+         * @param expectedRowLenght the expected row lenght
+         */
+        public TooLongRowLengthException(int rowNumber, int rowLenght, int expectedRowLenght) {
 			super("Row number <b>" + rowNumber + "</b> is too <b>long</b>. It has <b>" + rowLenght
 					+ "</b> columns but it is expected to have <b>" + expectedRowLenght + "</b> columns.", rowNumber,
 					rowLenght, expectedRowLenght);
 		}
 	}
 
-	public static class UnexpectedValueTypeException extends OperatorException {
+    /**
+     * The type Unexpected value type exception.
+     */
+    public static class UnexpectedValueTypeException extends OperatorException {
 
 		private static final long serialVersionUID = 1L;
 		private int expectedValueType = -1;
@@ -1420,7 +1576,16 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		private int column = -1;
 		private Object value = null;
 
-		public UnexpectedValueTypeException(String message, int expectedValueType, int column, int row, Object value) {
+        /**
+         * Instantiates a new Unexpected value type exception.
+         *
+         * @param message           the message
+         * @param expectedValueType the expected value type
+         * @param column            the column
+         * @param row               the row
+         * @param value             the value
+         */
+        public UnexpectedValueTypeException(String message, int expectedValueType, int column, int row, Object value) {
 			super(message);
 			this.expectedValueType = expectedValueType;
 			this.row = row;
@@ -1428,93 +1593,99 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 			this.value = value;
 		}
 
-		/**
-		 * Creates a proper error message;
-		 *
-		 * @param expectedValueType
-		 * @param column
-		 * @param row
-		 * @param value
-		 */
-		public UnexpectedValueTypeException(int expectedValueType, int column, int row, Object value) {
+        /**
+         * Creates a proper error message;
+         *
+         * @param expectedValueType the expected value type
+         * @param column            the column
+         * @param row               the row
+         * @param value             the value
+         */
+        public UnexpectedValueTypeException(int expectedValueType, int column, int row, Object value) {
 			this("Could not interpreted the value <b>" + value + "<//b> in row <b>" + row + "<//b> and column <b>" + column
 					+ "<//b> as a <b>" + Ontology.ATTRIBUTE_VALUE_TYPE.mapIndex(expectedValueType)
 					+ "<//b>. Plaese adjust to a proper value type or enable the operator's error tolerance.",
 					expectedValueType, column, row, value);
 		}
 
-		/**
-		 * Returns the row where the error occurred. <b>Warning:</b> you might want to add +1 if you
-		 * intend to present this number to the user.
-		 *
-		 * @return
-		 */
-		public int getRow() {
+        /**
+         * Returns the row where the error occurred. <b>Warning:</b> you might want to add +1 if you
+         * intend to present this number to the user.
+         *
+         * @return row row
+         */
+        public int getRow() {
 			return row;
 		}
 
-		/**
-		 * Returns the column where the error occurred. <b>Warning:</b> you might want to add +1 if
-		 * you intend to present this number to the user.
-		 *
-		 * @return
-		 */
-		public int getColumn() {
+        /**
+         * Returns the column where the error occurred. <b>Warning:</b> you might want to add +1 if
+         * you intend to present this number to the user.
+         *
+         * @return column column
+         */
+        public int getColumn() {
 			return column;
 		}
 
-		/**
-		 * Returns the value which caused the error
-		 *
-		 * @return
-		 */
-		public Object getValue() {
+        /**
+         * Returns the value which caused the error
+         *
+         * @return value value
+         */
+        public Object getValue() {
 			return value;
 		}
 
-		/**
-		 * @return the expectedValueType
-		 */
-		public int getExpectedValueType() {
+        /**
+         * Gets expected value type.
+         *
+         * @return the expectedValueType
+         */
+        public int getExpectedValueType() {
 			return expectedValueType;
 		}
 	}
 
-	/**
-	 * @author Sebastian Loh (28.04.2010)
-	 *
-	 *         <p>
-	 *         Private class describing a column of the created ExampleSet. Holds all information
-	 *         (name, value type, annotations) in order to create the actual attribute for this
-	 *         column. Despite that the class manages different properties - eg. the activation
-	 *         status (is the column actual selected to be read?) and missing values - in order to
-	 *         build proper meta data description.
-	 *         </p>
-	 *
-	 * @see AbstractDataReader#getGeneratedMetaData()
-	 * @see AbstractDataReader#guessValueTypes()
-	 * @see AbstractDataReader#createExampleSet(ExampleSetMetaData, int)
-	 *
-	 */
-	public class AttributeColumn {
+    /**
+     * The type Attribute column.
+     *
+     * @author Sebastian Loh (28.04.2010)         <p>         Private class describing a column of the created ExampleSet. Holds all information         (name, value type, annotations) in order to create the actual attribute for this         column. Despite that the class manages different properties - eg. the activation         status (is the column actual selected to be read?) and missing values - in order to         build proper meta data description.         </p>
+     * @see AbstractDataReader#getGeneratedMetaData() AbstractDataReader#getGeneratedMetaData()AbstractDataReader#getGeneratedMetaData()
+     * @see AbstractDataReader#guessValueTypes() AbstractDataReader#guessValueTypes()AbstractDataReader#guessValueTypes()
+     * @see AbstractDataReader#createExampleSet(ExampleSetMetaData, int) AbstractDataReader#createExampleSet(ExampleSetMetaData, int)AbstractDataReader#createExampleSet(ExampleSetMetaData, int)
+     */
+    public class AttributeColumn {
 
-		public static final int NAME_PARAMETER = 0;
+        /**
+         * The constant NAME_PARAMETER.
+         */
+        public static final int NAME_PARAMETER = 0;
 
-		public static final int IS_ACTIVATED_PARAMETER = 1;
+        /**
+         * The constant IS_ACTIVATED_PARAMETER.
+         */
+        public static final int IS_ACTIVATED_PARAMETER = 1;
 
-		public static final int VALUE_TYPE_PARAMETER = 2;
+        /**
+         * The constant VALUE_TYPE_PARAMETER.
+         */
+        public static final int VALUE_TYPE_PARAMETER = 2;
 
-		public static final int ROLE_PARAMETER = 3;
+        /**
+         * The constant ROLE_PARAMETER.
+         */
+        public static final int ROLE_PARAMETER = 3;
 
 		@Override
 		public String toString() {
 			return name + "," + isActivated + "," + valueType + "," + role + "," + annotations;
 		}
 
-		/**
-		 * ugly workaround to define regular role instead of role = null;
-		 */
-		public static final String REGULAR = "regular";
+        /**
+         * ugly workaround to define regular role instead of role = null;
+         */
+        public static final String REGULAR = "regular";
 
 		private String name;
 
@@ -1532,27 +1703,27 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		 */
 		private Annotations annotations = new Annotations();
 
-		/**
-		 * The minValue of this attribute. Only for the operator MetaData purposes.
-		 */
-		protected double minValue = Double.NEGATIVE_INFINITY;
+        /**
+         * The minValue of this attribute. Only for the operator MetaData purposes.
+         */
+        protected double minValue = Double.NEGATIVE_INFINITY;
 
-		/**
-		 * The maxValue of this attribute. Only for the operator MetaData purposes.
-		 */
-		protected double maxValue = Double.POSITIVE_INFINITY;
+        /**
+         * The maxValue of this attribute. Only for the operator MetaData purposes.
+         */
+        protected double maxValue = Double.POSITIVE_INFINITY;
 
-		/**
-		 * The valueSet of this attribute, in case it is (bi)nominal. Only for the operator MetaData
-		 * purposes.
-		 */
-		protected Set<String> valueSet = new LinkedHashSet<String>();
+        /**
+         * The valueSet of this attribute, in case it is (bi)nominal. Only for the operator MetaData
+         * purposes.
+         */
+        protected Set<String> valueSet = new LinkedHashSet<String>();
 
-		/**
-		 * The number of missing values which were read during the guessing. Only for the operator
-		 * MetaData purposes.
-		 */
-		protected int numberOfMissings = 0;
+        /**
+         * The number of missing values which were read during the guessing. Only for the operator
+         * MetaData purposes.
+         */
+        protected int numberOfMissings = 0;
 
 		/**
 		 * indicate whether this attribute is a candidate for value type real
@@ -1584,19 +1755,21 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 		 */
 		private Date lastDate = null;
 
-		/**
-		 * increase the number of read missing value by one.
-		 *
-		 * @return the number after the increasement.
-		 */
-		public int incNummerOfMissing() {
+        /**
+         * increase the number of read missing value by one.
+         *
+         * @return the number after the increasement.
+         */
+        public int incNummerOfMissing() {
 			return numberOfMissings++;
 		}
 
-		/**
-		 * @return
-		 */
-		public Annotations getAnnotations() {
+        /**
+         * Gets annotations.
+         *
+         * @return annotations annotations
+         */
+        public Annotations getAnnotations() {
 			return annotations;
 		}
 
@@ -1614,12 +1787,12 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 			return att;
 		}
 
-		/**
-		 * @return the columns {@link Attribute}. If a attribute was not created before, a new
-		 *         Attribute is created. Otherwise a new Attribute is created if the already
-		 *         existing Attribute does not match to the current AttributeColumn settings.
-		 */
-		public Attribute getAttribute() {
+        /**
+         * Gets attribute.
+         *
+         * @return the columns {@link Attribute}. If a attribute was not created before, a new         Attribute is created. Otherwise a new Attribute is created if the already         existing Attribute does not match to the current AttributeColumn settings.
+         */
+        public Attribute getAttribute() {
 			if (attribute == null) {
 				return createAttribute();
 			}
@@ -1639,77 +1812,80 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 			return attribute;
 		}
 
-		/**
-		 * Indicated whether this column is actual read/imported or if it is ignored. In other word,
-		 * returns <code>true</code> if the column is active
-		 */
-		public boolean isActivated() {
+        /**
+         * Indicated whether this column is actual read/imported or if it is ignored. In other word,
+         * returns <code>true</code> if the column is active
+         *
+         * @return the boolean
+         */
+        public boolean isActivated() {
 			return isActivated;
 		}
 
-		/**
-		 * Activates or deactivates this column.
-		 *
-		 * @param flag
-		 */
-		public void activateColumn(boolean flag) {
+        /**
+         * Activates or deactivates this column.
+         *
+         * @param flag the flag
+         */
+        public void activateColumn(boolean flag) {
 			isActivated = flag;
 		}
 
-		/**
-		 * Returns the value type of the columns attribute.
-		 *
-		 * @see Ontology
-		 *
-		 * @return
-		 */
-		public int getValueType() {
+        /**
+         * Returns the value type of the columns attribute.
+         *
+         * @return value type
+         * @see Ontology
+         */
+        public int getValueType() {
 			return valueType;
 		}
 
-		/**
-		 * Sets the value type of the columns attribute by actually replacing the existing attribute
-		 * with a new generated attribute with same name and the new type.
-		 *
-		 * @param newValueType
-		 */
-		public void setValueType(int newValueType) {
+        /**
+         * Sets the value type of the columns attribute by actually replacing the existing attribute
+         * with a new generated attribute with same name and the new type.
+         *
+         * @param newValueType the new value type
+         */
+        public void setValueType(int newValueType) {
 			valueType = newValueType;
 		}
 
-		/**
-		 * Returns the name of this column, which is also the name of the attribute that is created
-		 * from this column's properties.
-		 *
-		 * @return the name
-		 */
-		public String getName() {
+        /**
+         * Returns the name of this column, which is also the name of the attribute that is created
+         * from this column's properties.
+         *
+         * @return the name
+         */
+        public String getName() {
 			return name;
 			//
 		}
 
-		/**
-		 * @param name
-		 */
-		public void setName(String name) {
+        /**
+         * Sets name.
+         *
+         * @param name the name
+         */
+        public void setName(String name) {
 			this.name = name;
 		}
 
-		/**
-		 * Returns the attribute's role as a String.
-		 *
-		 * @return
-		 */
-		public String getRole() {
+        /**
+         * Returns the attribute's role as a String.
+         *
+         * @return role role
+         */
+        public String getRole() {
 			return role;
 		}
 
-		/**
-		 * Set the role of the attribute column
-		 *
-		 * @param role
-		 */
-		public void setRole(String role) {
+        /**
+         * Set the role of the attribute column
+         *
+         * @param role the role
+         */
+        public void setRole(String role) {
 			this.role = role;
 		}
 
@@ -1831,80 +2007,82 @@ public abstract class AbstractDataReader extends AbstractExampleSource {
 			}
 		}
 
-		/**
-		 * creates a new column and generated a attribute with the given name and nominal value type
-		 *
-		 * @param attributeName
-		 */
-		public AttributeColumn(String attributeName) {
+        /**
+         * creates a new column and generated a attribute with the given name and nominal value type
+         *
+         * @param attributeName the attribute name
+         */
+        public AttributeColumn(String attributeName) {
 			// default parameters for value type, ... are implicit created
 			this.setName(attributeName);
 			// this.setValueType(Ontology.NOMINAL);
 		}
 	}
 
-	protected abstract class DataSet {
+    /**
+     * The type Data set.
+     */
+    protected abstract class DataSet {
 
-		/**
-		 * Proceed to the next row if existent. Should return true if such a row exists or false, if
-		 * no such next row exists.
-		 *
-		 * @return
-		 */
-		public abstract boolean next();
+        /**
+         * Proceed to the next row if existent. Should return true if such a row exists or false, if
+         * no such next row exists.
+         *
+         * @return boolean boolean
+         */
+        public abstract boolean next();
 
-		/**
-		 * Returns the number of columns in the current row, i.e. the length of the row.
-		 *
-		 * @return
-		 */
-		public abstract int getNumberOfColumnsInCurrentRow();
+        /**
+         * Returns the number of columns in the current row, i.e. the length of the row.
+         *
+         * @return number of columns in current row
+         */
+        public abstract int getNumberOfColumnsInCurrentRow();
 
-		/**
-		 * Returns whether the value in the specified column in the current row is missing.
-		 *
-		 * @param columnIndex
-		 *            index of the column
-		 * @return
-		 */
-		public abstract boolean isMissing(int columnIndex);
+        /**
+         * Returns whether the value in the specified column in the current row is missing.
+         *
+         * @param columnIndex index of the column
+         * @return boolean boolean
+         */
+        public abstract boolean isMissing(int columnIndex);
 
-		/**
-		 * Returns a numerical value contained in the specified column in the current row. Should
-		 * return null if the value is not a numerical or if the value is missing.
-		 *
-		 * @param columnIndex
-		 * @return
-		 */
-		public abstract Number getNumber(int columnIndex);
+        /**
+         * Returns a numerical value contained in the specified column in the current row. Should
+         * return null if the value is not a numerical or if the value is missing.
+         *
+         * @param columnIndex the column index
+         * @return number number
+         */
+        public abstract Number getNumber(int columnIndex);
 
-		/**
-		 * Returns a nominal value contained in the specified column in the current row. Should
-		 * return null if the value is not a nominal or a kind of string type or if the value is
-		 * missing.
-		 *
-		 * @param columnIndex
-		 * @return
-		 */
-		public abstract String getString(int columnIndex);
+        /**
+         * Returns a nominal value contained in the specified column in the current row. Should
+         * return null if the value is not a nominal or a kind of string type or if the value is
+         * missing.
+         *
+         * @param columnIndex the column index
+         * @return string string
+         */
+        public abstract String getString(int columnIndex);
 
-		/**
-		 * Returns a date, time or date_time value contained in the specified column in the current
-		 * row. Should return null if the value is not a date or time value or if the value is
-		 * missing.
-		 *
-		 * @param columnIndex
-		 * @return
-		 */
-		public abstract Date getDate(int columnIndex);
+        /**
+         * Returns a date, time or date_time value contained in the specified column in the current
+         * row. Should return null if the value is not a date or time value or if the value is
+         * missing.
+         *
+         * @param columnIndex the column index
+         * @return date date
+         */
+        public abstract Date getDate(int columnIndex);
 
-		/**
-		 * Closes the data source. May tear down a database connection or close a file which is re`
-		 * from.
-		 *
-		 * @throws OperatorException
-		 */
-		public abstract void close() throws OperatorException;
+        /**
+         * Closes the data source. May tear down a database connection or close a file which is re`
+         * from.
+         *
+         * @throws OperatorException the operator exception
+         */
+        public abstract void close() throws OperatorException;
 	}
 
 }

@@ -40,7 +40,7 @@ import com.rapidminer.tools.Tools;
  * A simple vote model. For classification problems, the majority class is chosen. For regression
  * problems, the average prediction value is used. This model only supports simple prediction
  * models.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimpleVoteModel extends SimplePredictionModel implements MetaModel {
@@ -52,7 +52,13 @@ public class SimpleVoteModel extends SimplePredictionModel implements MetaModel 
 	private boolean labelIsNominal;
 	private List<Double> labelIndices;
 
-	public SimpleVoteModel(ExampleSet exampleSet, List<? extends SimplePredictionModel> baseModels) {
+    /**
+     * Instantiates a new Simple vote model.
+     *
+     * @param exampleSet the example set
+     * @param baseModels the base models
+     */
+    public SimpleVoteModel(ExampleSet exampleSet, List<? extends SimplePredictionModel> baseModels) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.EQUAL,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.baseModels = baseModels;

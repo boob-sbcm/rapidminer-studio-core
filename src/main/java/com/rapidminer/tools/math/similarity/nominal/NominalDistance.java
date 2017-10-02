@@ -27,7 +27,7 @@ import com.rapidminer.tools.math.similarity.DistanceMeasure;
 
 /**
  * A distance measure for nominal values accounting a value of one if two values are unequal.
- * 
+ *
  * @author Sebastian Land, Michael Wurst
  */
 public class NominalDistance extends DistanceMeasure {

@@ -52,95 +52,77 @@ public class InputDialog extends ButtonDialog {
 
 	private final JButton okButton;
 
-	/**
-	 * Creates an input dialog for the user to enter something.
-	 *
-	 * @param key
-	 *            i18n key
-	 * @deprecated use {@link #InputDialog(Window, String)} instead
-	 */
-	@Deprecated
+    /**
+     * Creates an input dialog for the user to enter something.
+     *
+     * @param key i18n key
+     * @deprecated use {@link #InputDialog(Window, String)} instead
+     */
+    @Deprecated
 	public InputDialog(String key) {
 		this(ApplicationFrame.getApplicationFrame(), key);
 	}
 
-	/**
-	 * Creates an input dialog for the user to enter something.
-	 *
-	 * @param key
-	 *            i18n key
-	 * @param text
-	 *            the text to display
-	 * @param arguments
-	 *            additional i18n arguments
-	 * @deprecated use {@link #InputDialog(Window, String, String, Object...)} instead
-	 */
-	@Deprecated
+    /**
+     * Creates an input dialog for the user to enter something.
+     *
+     * @param key       i18n key
+     * @param text      the text to display
+     * @param arguments additional i18n arguments
+     * @deprecated use {@link #InputDialog(Window, String, String, Object...)} instead
+     */
+    @Deprecated
 	public InputDialog(String key, String text, Object... arguments) {
 		this(ApplicationFrame.getApplicationFrame(), key, text, arguments);
 	}
 
-	/**
-	 * Creates an input dialog for the user to enter something.
-	 *
-	 * @param owner
-	 *            the owner window where this dialog is displayed in
-	 * @param key
-	 *            i18n key
-	 * @since 6.5.0
-	 */
-	public InputDialog(Window owner, String key) {
+    /**
+     * Creates an input dialog for the user to enter something.
+     *
+     * @param owner the owner window where this dialog is displayed in
+     * @param key   i18n key
+     * @since 6.5.0
+     */
+    public InputDialog(Window owner, String key) {
 		this(owner, key, null);
 	}
 
-	/**
-	 * Creates an input dialog for the user to enter something.
-	 *
-	 * @param owner
-	 *            the owner window where this dialog is displayed in
-	 * @param key
-	 *            i18n key
-	 * @param inputValidator
-	 *            used to validate the input and to show an error message
-	 * @since 7.0.0
-	 */
-	public InputDialog(Window owner, String key, InputValidator<String> inputValidator) {
+    /**
+     * Creates an input dialog for the user to enter something.
+     *
+     * @param owner          the owner window where this dialog is displayed in
+     * @param key            i18n key
+     * @param inputValidator used to validate the input and to show an error message
+     * @since 7.0.0
+     */
+    public InputDialog(Window owner, String key, InputValidator<String> inputValidator) {
 		this(owner, key, null, inputValidator);
 	}
 
-	/**
-	 * Creates an input dialog for the user to enter something.
-	 *
-	 * @param owner
-	 *            the owner window where this dialog is displayed in
-	 * @param key
-	 *            i18n key
-	 * @param text
-	 *            the text to display
-	 * @param arguments
-	 *            additional i18n arguments
-	 * @since 6.5.0
-	 */
-	public InputDialog(Window owner, String key, String text, Object... arguments) {
+    /**
+     * Creates an input dialog for the user to enter something.
+     *
+     * @param owner     the owner window where this dialog is displayed in
+     * @param key       i18n key
+     * @param text      the text to display
+     * @param arguments additional i18n arguments
+     * @since 6.5.0
+     */
+    public InputDialog(Window owner, String key, String text, Object... arguments) {
 		this(owner, key, text, null, arguments);
 	}
 
-	/**
-	 * Creates an input dialog for the user to enter something.
-	 *
-	 * @param owner
-	 *            the owner window where this dialog is displayed in
-	 * @param key
-	 *            i18n key
-	 * @param text
-	 *            the text to display
-	 * @param inputValidator
-	 *            used to validate the input and to show an error message
-	 * @param arguments
-	 *            additional i18n arguments
-	 * @since 7.0.0
-	 */
-	public InputDialog(Window owner, String key, String text, final InputValidator<String> inputValidator,
+    /**
+     * Creates an input dialog for the user to enter something.
+     *
+     * @param owner          the owner window where this dialog is displayed in
+     * @param key            i18n key
+     * @param text           the text to display
+     * @param inputValidator used to validate the input and to show an error message
+     * @param arguments      additional i18n arguments
+     * @since 7.0.0
+     */
+    public InputDialog(Window owner, String key, String text, final InputValidator<String> inputValidator,
 			Object... arguments) {
 		super(owner, "input." + key, ModalityType.APPLICATION_MODAL, arguments);
 		this.inputValidator = inputValidator;
@@ -214,7 +196,12 @@ public class InputDialog extends ButtonDialog {
 		}
 	}
 
-	public String getInputText() {
+    /**
+     * Gets input text.
+     *
+     * @return the input text
+     */
+    public String getInputText() {
 		return textField.getText();
 	}
 }

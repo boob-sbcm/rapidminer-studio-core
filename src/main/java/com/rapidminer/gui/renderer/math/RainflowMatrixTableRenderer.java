@@ -25,6 +25,7 @@ import com.rapidminer.operator.visualization.dependencies.RainflowMatrix;
 
 
 /**
+ * The type Rainflow matrix table renderer.
  *
  * @author Sebastian Land
  */

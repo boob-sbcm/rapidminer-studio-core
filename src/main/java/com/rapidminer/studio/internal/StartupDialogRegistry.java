@@ -29,31 +29,31 @@ import com.rapidminer.studio.internal.StartupDialogProvider.ToolbarButton;
  * @since 7.0.0
  */
 public enum StartupDialogRegistry {
-	INSTANCE;
+    /**
+     * Instance startup dialog registry.
+     */
+    INSTANCE;
 
 	private StartupDialogProvider provider;
 
-	/**
-	 * Registers the provider and disregards all previously registered {@link StartupDialogProvider}
-	 * s.
-	 *
-	 * @param provider
-	 *            the provider to register
-	 */
-	public void register(StartupDialogProvider provider) {
+    /**
+     * Registers the provider and disregards all previously registered {@link StartupDialogProvider}
+     * s.
+     *
+     * @param provider the provider to register
+     */
+    public void register(StartupDialogProvider provider) {
 		this.provider = provider;
 	}
 
-	/**
-	 * Shows the startup dialog provided by the registered provider with the tab of the startButton
-	 * opened.
-	 *
-	 * @param startButton
-	 *            the toolbar button to preselect
-	 * @throws NoStartupDialogRegistreredException
-	 *             if no {@link StartupDialogProvider} is registered
-	 */
-	public void showStartupDialog(final ToolbarButton startButton) throws NoStartupDialogRegistreredException {
+    /**
+     * Shows the startup dialog provided by the registered provider with the tab of the startButton
+     * opened.
+     *
+     * @param startButton the toolbar button to preselect
+     * @throws NoStartupDialogRegistreredException if no {@link StartupDialogProvider} is registered
+     */
+    public void showStartupDialog(final ToolbarButton startButton) throws NoStartupDialogRegistreredException {
 		if (provider == null) {
 			throw new NoStartupDialogRegistreredException();
 		} else {

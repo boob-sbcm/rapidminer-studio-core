@@ -32,7 +32,7 @@ import javax.swing.table.AbstractTableModel;
 /**
  * This is a basic property table which can be simply build from a {@link Parameters} object. This
  * property table does not rely on an operator.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class BasicPropertyTable extends PropertyTable {
@@ -90,11 +90,19 @@ public class BasicPropertyTable extends PropertyTable {
 		}
 	}
 
-	public BasicPropertyTable() {
+    /**
+     * Instantiates a new Basic property table.
+     */
+    public BasicPropertyTable() {
 		setModel(new BasicPropertyModel());
 	}
 
-	public void setParameters(Parameters parameters) {
+    /**
+     * Sets parameters.
+     *
+     * @param parameters the parameters
+     */
+    public void setParameters(Parameters parameters) {
 		this.parameters = parameters;
 		updateParameterTypes();
 	}
@@ -116,7 +124,13 @@ public class BasicPropertyTable extends PropertyTable {
 		updateEditorsAndRenderers();
 	}
 
-	public void setValue(String key, Object value) {
+    /**
+     * Sets value.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public void setValue(String key, Object value) {
 		this.parameters.setParameter(key, (String) value);
 		// updateParameterTypes();
 	}
@@ -141,12 +155,21 @@ public class BasicPropertyTable extends PropertyTable {
 		return this.shownParameterTypes[row];
 	}
 
-	public void clearParameterTypes() {
+    /**
+     * Clear parameter types.
+     */
+    public void clearParameterTypes() {
 		this.parameters = new Parameters();
 		updateParameterTypes();
 	}
 
-	public void setValue(int row, Object value) {
+    /**
+     * Sets value.
+     *
+     * @param row   the row
+     * @param value the value
+     */
+    public void setValue(int row, Object value) {
 		getModel().setValueAt(value, row, 1);
 	}
 }

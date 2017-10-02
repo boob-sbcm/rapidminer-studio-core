@@ -31,23 +31,35 @@ import com.rapidminer.operator.Operator;
 /**
  * This listener must be created after the GUI is set up. It will then register automatically with
  * every newly created or opened process.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public abstract class GeneralProcessListener implements ProcessListener {
 
 	private Process process;
 
-	public GeneralProcessListener(MainFrame mainFrame) {
+    /**
+     * Instantiates a new General process listener.
+     *
+     * @param mainFrame the main frame
+     */
+    public GeneralProcessListener(MainFrame mainFrame) {
 		register(mainFrame);
 	}
 
-	public GeneralProcessListener(ProcessRendererModel processModel) {
+    /**
+     * Instantiates a new General process listener.
+     *
+     * @param processModel the process model
+     */
+    public GeneralProcessListener(ProcessRendererModel processModel) {
 		register(processModel);
 	}
 
-	public GeneralProcessListener() {
+    /**
+     * Instantiates a new General process listener.
+     */
+    public GeneralProcessListener() {
 		this((MainFrame) null);
 	}
 

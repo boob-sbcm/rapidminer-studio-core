@@ -44,6 +44,9 @@ import com.rapidminer.tools.Observer;
 
 
 /**
+ * The type Abstract ports.
+ *
+ * @param <T> the type parameter
  * @author Simon Fischer
  */
 public abstract class AbstractPorts<T extends Port> extends AbstractObservable<Port> implements Ports<T> {
@@ -62,7 +65,12 @@ public abstract class AbstractPorts<T extends Port> extends AbstractObservable<P
 		}
 	};
 
-	public AbstractPorts(PortOwner owner) {
+    /**
+     * Instantiates a new Abstract ports.
+     *
+     * @param owner the owner
+     */
+    public AbstractPorts(PortOwner owner) {
 		this.owner = owner;
 		portNamesValid = false;
 	}

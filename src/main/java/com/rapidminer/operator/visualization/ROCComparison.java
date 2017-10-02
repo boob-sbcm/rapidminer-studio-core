@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  * This object can usually not be passed to other operators but can simply be used for the inline
  * visualization of a ROC comparison plot (without a dialog).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ROCComparison extends ResultObjectAdapter {
@@ -37,7 +37,12 @@ public class ROCComparison extends ResultObjectAdapter {
 
 	private Map<String, List<ROCData>> rocData;
 
-	public ROCComparison(Map<String, List<ROCData>> rocData) {
+    /**
+     * Instantiates a new Roc comparison.
+     *
+     * @param rocData the roc data
+     */
+    public ROCComparison(Map<String, List<ROCData>> rocData) {
 		this.rocData = rocData;
 	}
 
@@ -51,15 +56,30 @@ public class ROCComparison extends ResultObjectAdapter {
 		return "A comparison visualization based on the ROC plots for different classification schemes.";
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "roc";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "ROC comparison files";
 	}
 
-	public Map<String, List<ROCData>> getRocData() {
+    /**
+     * Gets roc data.
+     *
+     * @return the roc data
+     */
+    public Map<String, List<ROCData>> getRocData() {
 		return this.rocData;
 	}
 }

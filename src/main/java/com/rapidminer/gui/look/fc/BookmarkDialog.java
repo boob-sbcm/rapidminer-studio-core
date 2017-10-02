@@ -36,7 +36,7 @@ import javax.swing.JTextField;
 
 /**
  * A dialog for bookmarks.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class BookmarkDialog extends JDialog {
@@ -93,7 +93,13 @@ public class BookmarkDialog extends JDialog {
 
 	private boolean nameChanged;
 
-	public BookmarkDialog(Dialog top, boolean modal) {
+    /**
+     * Instantiates a new Bookmark dialog.
+     *
+     * @param top   the top
+     * @param modal the modal
+     */
+    public BookmarkDialog(Dialog top, boolean modal) {
 		super(top, modal);
 		try {
 			init();
@@ -101,7 +107,13 @@ public class BookmarkDialog extends JDialog {
 		}
 	}
 
-	public BookmarkDialog(Frame top, boolean modal) {
+    /**
+     * Instantiates a new Bookmark dialog.
+     *
+     * @param top   the top
+     * @param modal the modal
+     */
+    public BookmarkDialog(Frame top, boolean modal) {
 		super(top, modal);
 		try {
 			init();
@@ -109,7 +121,12 @@ public class BookmarkDialog extends JDialog {
 		}
 	}
 
-	public boolean isNameChanged() {
+    /**
+     * Is name changed boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isNameChanged() {
 		return this.nameChanged;
 	}
 
@@ -141,12 +158,23 @@ public class BookmarkDialog extends JDialog {
 		this.getContentPane().add(this.panel, BorderLayout.CENTER);
 	}
 
-	public void updateDefaults(String name, String path) {
+    /**
+     * Update defaults.
+     *
+     * @param name the name
+     * @param path the path
+     */
+    public void updateDefaults(String name, String path) {
 		this.nameTextField.setText(name);
 		this.pathTextField.setText(path);
 	}
 
-	public String getNewName() {
+    /**
+     * Gets new name.
+     *
+     * @return the new name
+     */
+    public String getNewName() {
 		return this.nameTextField.getText();
 	}
 }

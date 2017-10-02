@@ -20,24 +20,45 @@ package com.rapidminer.tools;
 
 /**
  * Implementations of this interface are able to handle different types of logging.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface LoggingHandler {
 
-	/** Logs a status message. */
-	public void log(String message);
+    /**
+     * Logs a status message.  @param message the message
+     *
+     * @param message the message
+     */
+    public void log(String message);
 
-	/** Logs a message with the given log level. */
-	public void log(String message, int level);
+    /**
+     * Logs a message with the given log level.  @param message the message
+     *
+     * @param message the message
+     * @param level   the level
+     */
+    public void log(String message, int level);
 
-	/** Logs a note message. */
-	public void logNote(String message);
+    /**
+     * Logs a note message.  @param message the message
+     *
+     * @param message the message
+     */
+    public void logNote(String message);
 
-	/** Logs a warning message. */
-	public void logWarning(String message);
+    /**
+     * Logs a warning message.  @param message the message
+     *
+     * @param message the message
+     */
+    public void logWarning(String message);
 
-	/** Logs an error message. */
-	public void logError(String message);
+    /**
+     * Logs an error message.  @param message the message
+     *
+     * @param message the message
+     */
+    public void logError(String message);
 
 }

@@ -24,18 +24,42 @@ import java.util.Random;
 
 /**
  * This interface describes the training data for a Kohonen net.
- * 
+ *
  * @author Sebastian Land
  */
 public interface KohonenTrainingsData extends Serializable {
 
-	public double[] getNext();
+    /**
+     * Get next double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getNext();
 
-	public int countData();
+    /**
+     * Count data int.
+     *
+     * @return the int
+     */
+    public int countData();
 
-	public void reset();
+    /**
+     * Reset.
+     */
+    public void reset();
 
-	public void setRandomGenerator(Random generator);
+    /**
+     * Sets random generator.
+     *
+     * @param generator the generator
+     */
+    public void setRandomGenerator(Random generator);
 
-	public double[] get(int index);
+    /**
+     * Get double [ ].
+     *
+     * @param index the index
+     * @return the double [ ]
+     */
+    public double[] get(int index);
 }

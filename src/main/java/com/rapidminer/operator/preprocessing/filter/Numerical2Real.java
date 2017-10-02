@@ -34,12 +34,17 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  * Converts all numerical attributes (especially integer attributes) to real valued attributes. Each
  * integer value is simply used as real value of the new attribute. If the value is missing, the new
  * value will be missing.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Numerical2Real extends AbstractFilteredDataProcessing {
 
-	public Numerical2Real(OperatorDescription description) {
+    /**
+     * Instantiates a new Numerical 2 real.
+     *
+     * @param description the description
+     */
+    public Numerical2Real(OperatorDescription description) {
 		super(description);
 	}
 

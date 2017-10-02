@@ -23,28 +23,59 @@ import com.rapidminer.operator.learner.functions.kernel.KernelModel;
 
 /**
  * This class wraps the data row of a kernel model.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KernelModelRow2DataTableRowWrapper implements DataTableRow {
 
-	static final String[] SPECIAL_COLUMN_NAMES = { "counter", "label", "function value", "alpha", "abs(alpha)",
+    /**
+     * The Special column names.
+     */
+    static final String[] SPECIAL_COLUMN_NAMES = { "counter", "label", "function value", "alpha", "abs(alpha)",
 			"support vector" };
 
-	public static final int COUNTER = 0;
-	public static final int LABEL = 1;
-	public static final int FUNCTION_VALUE = 2;
-	public static final int ALPHA = 3;
-	public static final int ABS_ALPHA = 4;
-	public static final int SUPPORT_VECTOR = 5;
+    /**
+     * The constant COUNTER.
+     */
+    public static final int COUNTER = 0;
+    /**
+     * The constant LABEL.
+     */
+    public static final int LABEL = 1;
+    /**
+     * The constant FUNCTION_VALUE.
+     */
+    public static final int FUNCTION_VALUE = 2;
+    /**
+     * The constant ALPHA.
+     */
+    public static final int ALPHA = 3;
+    /**
+     * The constant ABS_ALPHA.
+     */
+    public static final int ABS_ALPHA = 4;
+    /**
+     * The constant SUPPORT_VECTOR.
+     */
+    public static final int SUPPORT_VECTOR = 5;
 
-	public static final int NUMBER_OF_SPECIAL_COLUMNS = 6;
+    /**
+     * The constant NUMBER_OF_SPECIAL_COLUMNS.
+     */
+    public static final int NUMBER_OF_SPECIAL_COLUMNS = 6;
 
 	private KernelModel kernelModel;
 	private DataTableKernelModelAdapter adapter;
 	private int index;
 
-	public KernelModelRow2DataTableRowWrapper(KernelModel kernelModel, DataTableKernelModelAdapter adapter, int index) {
+    /**
+     * Instantiates a new Kernel model row 2 data table row wrapper.
+     *
+     * @param kernelModel the kernel model
+     * @param adapter     the adapter
+     * @param index       the index
+     */
+    public KernelModelRow2DataTableRowWrapper(KernelModel kernelModel, DataTableKernelModelAdapter adapter, int index) {
 		this.kernelModel = kernelModel;
 		this.adapter = adapter;
 		this.index = index;

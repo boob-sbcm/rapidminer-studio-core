@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for getGlobalProperty complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="getGlobalProperty">
  *   &lt;complexContent>
@@ -39,8 +39,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getGlobalProperty", propOrder = {
@@ -48,15 +46,15 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetGlobalProperty {
 
+    /**
+     * The Key.
+     */
     protected String key;
 
     /**
      * Gets the value of the key property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getKey() {
         return key;
@@ -64,11 +62,8 @@ public class GetGlobalProperty {
 
     /**
      * Sets the value of the key property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setKey(String value) {
         this.key = value;

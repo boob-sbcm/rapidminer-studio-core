@@ -33,7 +33,6 @@ import com.rapidminer.operator.Operator;
  *
  * @author Simon Fischer
  * @since 6.4.0
- *
  */
 public class SelectAllAction extends ResourceAction {
 
@@ -41,7 +40,12 @@ public class SelectAllAction extends ResourceAction {
 
 	private ProcessRendererView view;
 
-	public SelectAllAction(ProcessRendererView view) {
+    /**
+     * Instantiates a new Select all action.
+     *
+     * @param view the view
+     */
+    public SelectAllAction(ProcessRendererView view) {
 		super("select_all");
 
 		this.view = view;

@@ -53,10 +53,18 @@ public class MultipleLabelIterator extends OperatorChain {
 
 	private final InputPort exampleSetInput = getInputPorts().createPort("example set");
 	private final OutputPort exampleInnerSource = getSubprocess(0).getInnerSources().createPort("example set");
-	CollectingPortPairExtender outExtender = new CollectingPortPairExtender("out", getSubprocess(0).getInnerSinks(),
+    /**
+     * The Out extender.
+     */
+    CollectingPortPairExtender outExtender = new CollectingPortPairExtender("out", getSubprocess(0).getInnerSinks(),
 			getOutputPorts());
 
-	public MultipleLabelIterator(OperatorDescription description) {
+    /**
+     * Instantiates a new Multiple label iterator.
+     *
+     * @param description the description
+     */
+    public MultipleLabelIterator(OperatorDescription description) {
 		super(description, "Iteration");
 		outExtender.start();
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, exampleInnerSource, SetRelation.EQUAL) {

@@ -20,7 +20,7 @@ package com.rapidminer.gui.plotter;
 
 /**
  * Collects all necessary information about tool tips for plotters.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ToolTip {
@@ -31,21 +31,43 @@ public class ToolTip {
 
 	private int yPos;
 
-	public ToolTip(String toolTip, int xPos, int yPos) {
+    /**
+     * Instantiates a new Tool tip.
+     *
+     * @param toolTip the tool tip
+     * @param xPos    the x pos
+     * @param yPos    the y pos
+     */
+    public ToolTip(String toolTip, int xPos, int yPos) {
 		this.text = toolTip;
 		this.xPos = xPos;
 		this.yPos = yPos;
 	}
 
-	public String getText() {
+    /**
+     * Gets text.
+     *
+     * @return the text
+     */
+    public String getText() {
 		return text;
 	}
 
-	public int getX() {
+    /**
+     * Gets x.
+     *
+     * @return the x
+     */
+    public int getX() {
 		return xPos;
 	}
 
-	public int getY() {
+    /**
+     * Gets y.
+     *
+     * @return the y
+     */
+    public int getY() {
 		return yPos;
 	}
 }

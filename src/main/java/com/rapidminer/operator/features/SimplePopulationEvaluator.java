@@ -33,7 +33,13 @@ public class SimplePopulationEvaluator implements PopulationEvaluator {
 	private ExampleSet originalSet;
 	private FeatureOperator operator;
 
-	public SimplePopulationEvaluator(FeatureOperator operator, ExampleSet originalSet) {
+    /**
+     * Instantiates a new Simple population evaluator.
+     *
+     * @param operator    the operator
+     * @param originalSet the original set
+     */
+    public SimplePopulationEvaluator(FeatureOperator operator, ExampleSet originalSet) {
 		this.originalSet = originalSet;
 		this.operator = operator;
 	}

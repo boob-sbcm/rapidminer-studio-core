@@ -192,21 +192,42 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		}
 	}
 
-	public static final int LOAD_DATA = 0;
+    /**
+     * The constant LOAD_DATA.
+     */
+    public static final int LOAD_DATA = 0;
 
-	public static final int LOAD_SERIES_DATA = 1;
+    /**
+     * The constant LOAD_SERIES_DATA.
+     */
+    public static final int LOAD_SERIES_DATA = 1;
 
 	private static final int COLUMN_WIDTH = 120;
 
-	protected transient Action REMOVE_COLUMN_ACTION = new RemoveColumnAction(this);
+    /**
+     * The Remove column action.
+     */
+    protected transient Action REMOVE_COLUMN_ACTION = new RemoveColumnAction(this);
 
-	protected transient Action REMOVE_ROW_ACTION = new RemoveRowAction(this);
+    /**
+     * The Remove row action.
+     */
+    protected transient Action REMOVE_ROW_ACTION = new RemoveRowAction(this);
 
-	protected transient Action USE_ROW_AS_NAMES_ACTION = new UseRowAsNamesAction(this);
+    /**
+     * The Use row as names action.
+     */
+    protected transient Action USE_ROW_AS_NAMES_ACTION = new UseRowAsNamesAction(this);
 
-	protected transient Action GUESS_TYPE_ACTION = new GuessTypeAction(this);
+    /**
+     * The Guess type action.
+     */
+    protected transient Action GUESS_TYPE_ACTION = new GuessTypeAction(this);
 
-	protected transient Action GUESS_ALL_TYPES_ACTION = new GuessAllTypesAction(this);
+    /**
+     * The Guess all types action.
+     */
+    protected transient Action GUESS_ALL_TYPES_ACTION = new GuessAllTypesAction(this);
 
 	private static final int NAME_ROW = 0;
 
@@ -252,7 +273,13 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 
 	private final DataControl dataControl;
 
-	public AttributeEditor(Operator exampleSource, DataControl dataControl) {
+    /**
+     * Instantiates a new Attribute editor.
+     *
+     * @param exampleSource the example source
+     * @param dataControl   the data control
+     */
+    public AttributeEditor(Operator exampleSource, DataControl dataControl) {
 		super(null, false);
 		this.dataControl = dataControl;
 		setModel(model = new AttributeTableModel());
@@ -272,11 +299,21 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		return this;
 	}
 
-	public boolean hasDataChanged() {
+    /**
+     * Has data changed boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasDataChanged() {
 		return dataChanged;
 	}
 
-	public boolean hasMetaDataChanged() {
+    /**
+     * Has meta data changed boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasMetaDataChanged() {
 		return metaDataChanged;
 	}
 
@@ -397,7 +434,10 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		this.metaDataChanged = true;
 	}
 
-	public void clear() {
+    /**
+     * Clear.
+     */
+    public void clear() {
 		sourceList.clear();
 		dataColumnVector.clear();
 		rowCount = 0;
@@ -408,11 +448,15 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		this.metaDataChanged = false;
 	}
 
-	/**
-	 * Loads data from a file. The dataType defines if the data should be loaded as series data.
-	 * Must be one out of LOAD_DATA and LOAD_SERIES_DATA.
-	 */
-	public void readData(File file, int dataType) throws IOException {
+    /**
+     * Loads data from a file. The dataType defines if the data should be loaded as series data.
+     * Must be one out of LOAD_DATA and LOAD_SERIES_DATA.
+     *
+     * @param file     the file
+     * @param dataType the data type
+     * @throws IOException the io exception
+     */
+    public void readData(File file, int dataType) throws IOException {
 		int columnOffset = sourceList.size();
 		int numberOfNewColumns = 0;
 		int currentRow = -1;
@@ -503,14 +547,20 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		this.metaDataChanged = true;
 	}
 
-	public void guessColumnType() {
+    /**
+     * Guess column type.
+     */
+    public void guessColumnType() {
 		int column = getSelectedColumn();
 		if (column != -1) {
 			autoSetValueType(column);
 		}
 	}
 
-	public void guessAllColumnTypes() {
+    /**
+     * Guess all column types.
+     */
+    public void guessAllColumnTypes() {
 		for (int i = 0; i < getColumnCount(); i++) {
 			autoSetValueType(i);
 		}
@@ -602,7 +652,13 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		}
 	}
 
-	public JPopupMenu createPopupMenu(final int column) {
+    /**
+     * Create popup menu j popup menu.
+     *
+     * @param column the column
+     * @return the j popup menu
+     */
+    public JPopupMenu createPopupMenu(final int column) {
 		JPopupMenu menu = new JPopupMenu();
 		menu.add(GUESS_TYPE_ACTION);
 		menu.add(GUESS_ALL_TYPES_ACTION);
@@ -612,21 +668,32 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		return menu;
 	}
 
-	public void useRowAsNames() {
+    /**
+     * Use row as names.
+     */
+    public void useRowAsNames() {
 		int row = getSelectedRow() - NUM_OF_HEADER_ROWS;
 		if (row >= 0) {
 			useRowAsNames(row);
 		}
 	}
 
-	public void removeColumn() {
+    /**
+     * Remove column.
+     */
+    public void removeColumn() {
 		int column = getSelectedColumn();
 		if (column != -1) {
 			removeColumn(column);
 		}
 	}
 
-	public void removeColumn(int column) {
+    /**
+     * Remove column.
+     *
+     * @param column the column
+     */
+    public void removeColumn(int column) {
 		sourceList.remove(column);
 		dataColumnVector.removeElementAt(column);
 		rowCount = 0;
@@ -640,14 +707,22 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		this.metaDataChanged = true;
 	}
 
-	public void removeRow() {
+    /**
+     * Remove row.
+     */
+    public void removeRow() {
 		int row = getSelectedRow() - NUM_OF_HEADER_ROWS;
 		if (row != -1) {
 			removeRow(row);
 		}
 	}
 
-	public void removeRow(int row) {
+    /**
+     * Remove row.
+     *
+     * @param row the row
+     */
+    public void removeRow(int row) {
 		if (rowCount == 0 || row < 0) {
 			return;
 		}
@@ -661,7 +736,12 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		this.dataChanged = true;
 	}
 
-	public void useRowAsNames(int row) {
+    /**
+     * Use row as names.
+     *
+     * @param row the row
+     */
+    public void useRowAsNames(int row) {
 		if (rowCount == 0 || row < 0) {
 			return;
 		}
@@ -725,7 +805,13 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		}
 	}
 
-	public void writeData(File file) throws IOException {
+    /**
+     * Write data.
+     *
+     * @param file the file
+     * @throws IOException the io exception
+     */
+    public void writeData(File file) throws IOException {
 		if (sourceList.size() == 0) {
 			return;
 		}
@@ -767,14 +853,22 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		}
 	}
 
-	public void openAttributeFile() {
+    /**
+     * Open attribute file.
+     */
+    public void openAttributeFile() {
 		File file = SwingTools.chooseFile(this, null, true, "aml", "attribute description file");
 		if (file != null) {
 			openAttributeFile(file);
 		}
 	}
 
-	public void openAttributeFile(File file) {
+    /**
+     * Open attribute file.
+     *
+     * @param file the file
+     */
+    public void openAttributeFile(File file) {
 		AttributeDataSources attributeDataSources = null;
 		try {
 			attributeDataSources = AttributeDataSource.createAttributeDataSources(file, true, LogService.getGlobal());
@@ -851,7 +945,10 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		}
 	}
 
-	public void saveAttributeFile() {
+    /**
+     * Save attribute file.
+     */
+    public void saveAttributeFile() {
 		for (int i = 1; i < Attributes.KNOWN_ATTRIBUTE_TYPES.length; i++) {
 			ensureAttributeTypeIsUnique(Attributes.KNOWN_ATTRIBUTE_TYPES[i]);
 		}
@@ -912,7 +1009,12 @@ public class AttributeEditor extends ExtendedJTable implements MouseListener, Da
 		}
 	}
 
-	public File getFile() {
+    /**
+     * Gets file.
+     *
+     * @return the file
+     */
+    public File getFile() {
 		return file;
 	}
 

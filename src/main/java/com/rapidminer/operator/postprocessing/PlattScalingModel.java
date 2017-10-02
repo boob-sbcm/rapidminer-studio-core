@@ -43,7 +43,14 @@ public class PlattScalingModel extends PredictionModel {
 
 	private Model model;
 
-	public PlattScalingModel(ExampleSet exampleSet, Model model, PlattParameters parameters) {
+    /**
+     * Instantiates a new Platt scaling model.
+     *
+     * @param exampleSet the example set
+     * @param model      the model
+     * @param parameters the parameters
+     */
+    public PlattScalingModel(ExampleSet exampleSet, Model model, PlattParameters parameters) {
 		super(exampleSet, null, null);
 		this.model = model;
 		this.parameters = parameters;

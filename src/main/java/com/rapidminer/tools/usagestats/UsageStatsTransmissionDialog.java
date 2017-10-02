@@ -53,9 +53,18 @@ public class UsageStatsTransmissionDialog extends ButtonDialog {
 	private static final long MIN_FIRE_INTERVAL = 1000 * 60; // Wait at least 60 seconds after start
 	// of RM
 
-	public static final int ASK = 0;
-	public static final int ALWAYS = 1;
-	public static final int NEVER = 2;
+    /**
+     * The constant ASK.
+     */
+    public static final int ASK = 0;
+    /**
+     * The constant ALWAYS.
+     */
+    public static final int ALWAYS = 1;
+    /**
+     * The constant NEVER.
+     */
+    public static final int NEVER = 2;
 
 	private static final int YES = 0;
 	private static final int NO = 1;
@@ -113,8 +122,10 @@ public class UsageStatsTransmissionDialog extends ButtonDialog {
 		super.cancel();
 	}
 
-	/** Starts the first timer. */
-	public static void init() {
+    /**
+     * Starts the first timer.
+     */
+    public static void init() {
 		startTimer();
 		ActionStatisticsCollector.getInstance().start();
 	}
@@ -143,11 +154,11 @@ public class UsageStatsTransmissionDialog extends ButtonDialog {
 		}
 	}
 
-	/**
-	 * Schedules the next dialog popup to the next transmission time of the UsageStatistics, but at
-	 * least {@link #MIN_FIRE_INTERVAL} milliseconds from now.
-	 */
-	static void startTimer() {
+    /**
+     * Schedules the next dialog popup to the next transmission time of the UsageStatistics, but at
+     * least {@link #MIN_FIRE_INTERVAL} milliseconds from now.
+     */
+    static void startTimer() {
 		if (UsageStatistics.getInstance().hasFailedToday()) {
 			return;
 		}
@@ -200,11 +211,11 @@ public class UsageStatsTransmissionDialog extends ButtonDialog {
 		timer.start();
 	}
 
-	/**
-	 * Transmits user statistics data if required. Expects to be called from the shutdown hook on
-	 * the EDT.
-	 */
-	public static void transmitOnShutdown() {
+    /**
+     * Transmits user statistics data if required. Expects to be called from the shutdown hook on
+     * the EDT.
+     */
+    public static void transmitOnShutdown() {
 		if (UsageStatistics.getInstance().shouldTransmitOnShutdown()) {
 			if (UsageStatsTransmissionDialog.askForTransmission()) {
 				ProgressThread thread = new ProgressThread("transmit_usagestats", true) {

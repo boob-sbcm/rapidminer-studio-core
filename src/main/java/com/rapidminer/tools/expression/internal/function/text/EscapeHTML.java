@@ -28,14 +28,13 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryString
  * A {@link Function} which escapse all HTML tags of a nominal value.
  *
  * @author Thilo Kamradt
- *
  */
 public class EscapeHTML extends AbstractArbitraryStringInputStringOutputFunction {
 
-	/**
-	 * Creates a function which escapse all HTML tags of a nominal value.
-	 */
-	public EscapeHTML() {
+    /**
+     * Creates a function which escapse all HTML tags of a nominal value.
+     */
+    public EscapeHTML() {
 		super("text_transformation.escape_html", 1);
 	}
 

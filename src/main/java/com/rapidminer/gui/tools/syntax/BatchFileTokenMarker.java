@@ -31,7 +31,7 @@ import javax.swing.text.Segment;
 
 /**
  * Batch file token marker.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class BatchFileTokenMarker extends TokenMarker {

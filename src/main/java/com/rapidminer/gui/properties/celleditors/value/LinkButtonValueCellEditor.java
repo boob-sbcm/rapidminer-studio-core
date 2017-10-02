@@ -36,7 +36,6 @@ import com.rapidminer.parameter.ParameterTypeLinkButton;
 
 
 /**
- *
  * Cell editor consisting of either a {@link LinkLocalButton} or a {@link LinkRemoteButton} that
  * executes a {@link ResourceAction} when clicked upon.
  *
@@ -49,14 +48,13 @@ public class LinkButtonValueCellEditor extends DefaultRMCellEditor implements Pr
 
 	private final JPanel container;
 
-	/**
-	 * Creates either a {@link LinkLocalButton} or a {@link LinkRemoteButton} that executes the
-	 * action stored in type.
-	 *
-	 * @param type
-	 *            the type
-	 */
-	public LinkButtonValueCellEditor(final ParameterTypeLinkButton type) {
+    /**
+     * Creates either a {@link LinkLocalButton} or a {@link LinkRemoteButton} that executes the
+     * action stored in type.
+     *
+     * @param type the type
+     */
+    public LinkButtonValueCellEditor(final ParameterTypeLinkButton type) {
 		super(new JTextField());
 		this.container = new JPanel(new GridBagLayout());
 		this.container.setToolTipText(type.getDescription());

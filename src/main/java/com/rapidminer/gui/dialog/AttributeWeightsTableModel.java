@@ -35,33 +35,60 @@ import javax.swing.table.AbstractTableModel;
  * This table model is used by an {@link AttributeWeightsDialog}. It is used to show attribute
  * weights created by the process, by the user, or were loaded from a file. Several view modes and
  * sorting are supported.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class AttributeWeightsTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 6151252627227324898L;
 
-	public static final int VIEW_ALL = 0;
+    /**
+     * The constant VIEW_ALL.
+     */
+    public static final int VIEW_ALL = 0;
 
-	public static final int VIEW_FILE = 1;
+    /**
+     * The constant VIEW_FILE.
+     */
+    public static final int VIEW_FILE = 1;
 
-	public static final int VIEW_PROCESS = 2;
+    /**
+     * The constant VIEW_PROCESS.
+     */
+    public static final int VIEW_PROCESS = 2;
 
-	public static final int VIEW_UPDATED = 3;
+    /**
+     * The constant VIEW_UPDATED.
+     */
+    public static final int VIEW_UPDATED = 3;
 
-	public static final int VIEW_SELECTED = 4;
+    /**
+     * The constant VIEW_SELECTED.
+     */
+    public static final int VIEW_SELECTED = 4;
 
-	public static final String[] VIEW_MODES = { "Show all", "Show from file", "Show from process", "Show updated",
+    /**
+     * The constant VIEW_MODES.
+     */
+    public static final String[] VIEW_MODES = { "Show all", "Show from file", "Show from process", "Show updated",
 			"Show selected" };
 
 	private static class State {
 
-		public static final int SOURCE_PROCESS = 1;
+        /**
+         * The constant SOURCE_PROCESS.
+         */
+        public static final int SOURCE_PROCESS = 1;
 
-		public static final int SOURCE_FILE = 2;
+        /**
+         * The constant SOURCE_FILE.
+         */
+        public static final int SOURCE_FILE = 2;
 
-		public static final int SOURCE_BOTH = 3;
+        /**
+         * The constant SOURCE_BOTH.
+         */
+        public static final int SOURCE_BOTH = 3;
 
 		private int source = SOURCE_PROCESS;
 
@@ -69,28 +96,59 @@ public class AttributeWeightsTableModel extends AbstractTableModel {
 
 		private boolean updated = false;
 
-		public State(int source, double oldWeight) {
+        /**
+         * Instantiates a new State.
+         *
+         * @param source    the source
+         * @param oldWeight the old weight
+         */
+        public State(int source, double oldWeight) {
 			this.source = source;
 			this.oldWeight = oldWeight;
 		}
 
-		public int getSource() {
+        /**
+         * Gets source.
+         *
+         * @return the source
+         */
+        public int getSource() {
 			return source;
 		}
 
-		public void setSource(int source) {
+        /**
+         * Sets source.
+         *
+         * @param source the source
+         */
+        public void setSource(int source) {
 			this.source = source;
 		}
 
-		public boolean isUpdated() {
+        /**
+         * Is updated boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isUpdated() {
 			return updated;
 		}
 
-		public void setUpdated(boolean updated) {
+        /**
+         * Sets updated.
+         *
+         * @param updated the updated
+         */
+        public void setUpdated(boolean updated) {
 			this.updated = updated;
 		}
 
-		public double getOldWeight() {
+        /**
+         * Gets old weight.
+         *
+         * @return the old weight
+         */
+        public double getOldWeight() {
 			return oldWeight;
 		}
 	}
@@ -111,7 +169,12 @@ public class AttributeWeightsTableModel extends AbstractTableModel {
 
 	private int selectionCount = 0;
 
-	public AttributeWeightsTableModel(AttributeWeights weights) {
+    /**
+     * Instantiates a new Attribute weights table model.
+     *
+     * @param weights the weights
+     */
+    public AttributeWeightsTableModel(AttributeWeights weights) {
 		if (weights != null) {
 			this.weights = (AttributeWeights) weights.clone();
 		} else {
@@ -124,7 +187,12 @@ public class AttributeWeightsTableModel extends AbstractTableModel {
 		updateTable();
 	}
 
-	protected Object readResolve() {
+    /**
+     * Read resolve object.
+     *
+     * @return the object
+     */
+    protected Object readResolve() {
 		this.weights = new AttributeWeights();
 		return this;
 	}
@@ -183,35 +251,68 @@ public class AttributeWeightsTableModel extends AbstractTableModel {
 
 	// ================================================================================
 
-	public AttributeWeights getAttributeWeights() {
+    /**
+     * Gets attribute weights.
+     *
+     * @return the attribute weights
+     */
+    public AttributeWeights getAttributeWeights() {
 		return weights;
 	}
 
-	public PropertyValueCellEditor getWeightEditor(int row) {
+    /**
+     * Gets weight editor.
+     *
+     * @param row the row
+     * @return the weight editor
+     */
+    public PropertyValueCellEditor getWeightEditor(int row) {
 		return editors[row];
 	}
 
-	public void setViewMode(int mode) {
+    /**
+     * Sets view mode.
+     *
+     * @param mode the mode
+     */
+    public void setViewMode(int mode) {
 		this.viewMode = mode;
 	}
 
-	/**
-	 * Indicates if values which are merged with the current weights should overwrite them. Please
-	 * note that a value of zero always overwrites the current weight!
-	 */
-	public void setOverwriteMode(boolean overwrite) {
+    /**
+     * Indicates if values which are merged with the current weights should overwrite them. Please
+     * note that a value of zero always overwrites the current weight!
+     *
+     * @param overwrite the overwrite
+     */
+    public void setOverwriteMode(boolean overwrite) {
 		this.overwrite = overwrite;
 	}
 
-	public void setMinWeight(double minWeight) {
+    /**
+     * Sets min weight.
+     *
+     * @param minWeight the min weight
+     */
+    public void setMinWeight(double minWeight) {
 		this.minWeight = minWeight;
 	}
 
-	public double getMinWeight() {
+    /**
+     * Gets min weight.
+     *
+     * @return the min weight
+     */
+    public double getMinWeight() {
 		return minWeight;
 	}
 
-	public void mergeWeights(AttributeWeights fileWeights) {
+    /**
+     * Merge weights.
+     *
+     * @param fileWeights the file weights
+     */
+    public void mergeWeights(AttributeWeights fileWeights) {
 		for (String attributeName : fileWeights.getAttributeNames()) {
 			double fileWeight = fileWeights.getWeight(attributeName);
 			double processWeight = weights.getWeight(attributeName);
@@ -247,17 +348,30 @@ public class AttributeWeightsTableModel extends AbstractTableModel {
 		}
 	}
 
-	public int getNumberOfSelected() {
+    /**
+     * Gets number of selected.
+     *
+     * @return the number of selected
+     */
+    public int getNumberOfSelected() {
 		return selectionCount;
 	}
 
-	public int getTotalNumber() {
+    /**
+     * Gets total number.
+     *
+     * @return the total number
+     */
+    public int getTotalNumber() {
 		return this.weights.size();
 	}
 
 	// ================================================================================
 
-	public void updateTable() {
+    /**
+     * Update table.
+     */
+    public void updateTable() {
 		// attribute names
 		Iterator<String> i = this.weights.getAttributeNames().iterator();
 		List<String> names = new LinkedList<String>();

@@ -20,38 +20,76 @@ package com.rapidminer.operator.learner.functions.kernel.jmysvm.optimizer;
 
 /**
  * A quadratic optimization problem.
- * 
+ *
  * @author Stefan Rueping
  */
 public abstract class QuadraticProblem {
 
-	// Public variables that describe the quadratic problem
+    /**
+     * The N.
+     */
+// Public variables that describe the quadratic problem
 	protected int n; // number of variables
 
-	static int m = 1; // number of linear constraints, 1 for now
+    /**
+     * The M.
+     */
+    static int m = 1; // number of linear constraints, 1 for now
 
-	public double[] c;
+    /**
+     * The C.
+     */
+    public double[] c;
 
-	public double[] H; // c' * x + 1/2 x' * H * x -> min
+    /**
+     * The H.
+     */
+    public double[] H; // c' * x + 1/2 x' * H * x -> min
 
-	public double[] A;
+    /**
+     * The A.
+     */
+    public double[] A;
 
-	public double[] b; // A * x = b
+    /**
+     * The B.
+     */
+    public double[] b; // A * x = b
 
-	public double[] l;
+    /**
+     * The L.
+     */
+    public double[] l;
 
-	public double[] u; // l <= x <= u
+    /**
+     * The U.
+     */
+    public double[] u; // l <= x <= u
 
-	public double[] x;
+    /**
+     * The X.
+     */
+    public double[] x;
 
-	public double max_allowed_error;
+    /**
+     * The Max allowed error.
+     */
+    public double max_allowed_error;
 
-	public QuadraticProblem() {
+    /**
+     * Instantiates a new Quadratic problem.
+     */
+    public QuadraticProblem() {
 		n = 0;
 		lambda_eq = 0.0d;
 	};
 
-	public void set_n(int new_n) {
+    /**
+     * Sets n.
+     *
+     * @param new_n the new n
+     */
+    public void set_n(int new_n) {
 		n = new_n;
 		c = new double[n];
 		H = new double[n * n];
@@ -62,13 +100,29 @@ public abstract class QuadraticProblem {
 		x = new double[n];
 	};
 
-	public int get_n() {
+    /**
+     * Gets n.
+     *
+     * @return the n
+     */
+    public int get_n() {
 		return (n);
 	};
 
-	public double lambda_eq;
+    /**
+     * The Lambda eq.
+     */
+    public double lambda_eq;
 
-	protected abstract void calc_lambda_eq();
+    /**
+     * Calc lambda eq.
+     */
+    protected abstract void calc_lambda_eq();
 
-	public abstract int solve();
+    /**
+     * Solve int.
+     *
+     * @return the int
+     */
+    public abstract int solve();
 };

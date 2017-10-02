@@ -52,7 +52,7 @@ import com.rapidminer.tools.RandomGenerator;
  * {@link GridSearchParameterOptimizationOperator} which sets the fraction parameter to values
  * between 0 and 1. The advantage is, that this operator can then be used inside of a
  * {@link com.rapidminer.extension.concurrency.operator.validation.CrossValidationOperator
- * CrossValidationOperator}, which delivers more stable result estimations.
+ * CrossValidationOperator}**, which delivers more stable result estimations.
  *
  * @author Martin Mauch, Ingo Mierswa
  */
@@ -63,17 +63,24 @@ public class PartialExampleSetLearner extends OperatorChain {
 	private final OutputPort exampleSubsetInnerSource = getSubprocess(0).getInnerSources().createPort("example subset");
 	private final InputPort modelInnerSink = getSubprocess(0).getInnerSinks().createPort("model", Model.class);
 
-	/** The parameter name for &quot;The fraction of examples which shall be used.&quot; */
-	public static final String PARAMETER_FRACTION = "fraction";
+    /**
+     * The parameter name for &quot;The fraction of examples which shall be used.&quot;
+     */
+    public static final String PARAMETER_FRACTION = "fraction";
 
-	/**
-	 * The parameter name for &quot;Defines the sampling type (linear = consecutive subsets,
-	 * shuffled = random subsets, stratified = random subsets with class distribution kept
-	 * constant)&quot;
-	 */
-	public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
+    /**
+     * The parameter name for &quot;Defines the sampling type (linear = consecutive subsets,
+     * shuffled = random subsets, stratified = random subsets with class distribution kept
+     * constant)&quot;
+     */
+    public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
 
-	public PartialExampleSetLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Partial example set learner.
+     *
+     * @param description the description
+     */
+    public PartialExampleSetLearner(OperatorDescription description) {
 		super(description, "Learning Process");
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, new String[0], Ontology.VALUE_TYPE,

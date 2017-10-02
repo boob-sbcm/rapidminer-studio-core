@@ -24,14 +24,20 @@ import com.rapidminer.tools.math.distribution.EmpiricalDistribution;
 
 /**
  * A kernel based empirical distribution.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public abstract class KernelDistribution extends ContinuousDistribution implements EmpiricalDistribution {
 
-	public static final long serialVersionUID = -3298190542815818L;
+    /**
+     * The constant serialVersionUID.
+     */
+    public static final long serialVersionUID = -3298190542815818L;
 
-	protected static final double DEFAULT_BANDWIDTH = 0.2;
+    /**
+     * The constant DEFAULT_BANDWIDTH.
+     */
+    protected static final double DEFAULT_BANDWIDTH = 0.2;
 
 	@Override
 	public String getAttributeName() {

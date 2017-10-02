@@ -32,45 +32,45 @@ import javax.swing.text.SimpleAttributeSet;
  */
 public interface LogEntry {
 
-	/**
-	 * The {@link SimpleAttributeSet} used by swing {@link Document}s to style a portion of the
-	 * text. See {@link LogRecordEntry} for an example.
-	 *
-	 * @return the simple attribute set with formats or <code>null</code> if no styling is required
-	 */
-	public SimpleAttributeSet getSimpleAttributeSet();
+    /**
+     * The {@link SimpleAttributeSet} used by swing {@link Document}s to style a portion of the
+     * text. See {@link LogRecordEntry} for an example.
+     *
+     * @return the simple attribute set with formats or <code>null</code> if no styling is required
+     */
+    public SimpleAttributeSet getSimpleAttributeSet();
 
-	/**
-	 * Return the formatted log string. This string is expected to be styled in the desired way and
-	 * will be shown as-is in the GUI. See
-	 * {@link java.util.logging.Formatter#format(java.util.logging.LogRecord)} for an example on how
-	 * to do this.
-	 *
-	 * @return the formatted string
-	 */
-	public String getFormattedString();
+    /**
+     * Return the formatted log string. This string is expected to be styled in the desired way and
+     * will be shown as-is in the GUI. See
+     * {@link java.util.logging.Formatter#format(java.util.logging.LogRecord)} for an example on how
+     * to do this.
+     *
+     * @return the formatted string
+     */
+    public String getFormattedString();
 
-	/**
-	 * Return the unformatted plaintext string without any formatting.
-	 *
-	 * @return the initial unformatted string
-	 */
-	public String getInitialString();
+    /**
+     * Return the unformatted plaintext string without any formatting.
+     *
+     * @return the initial unformatted string
+     */
+    public String getInitialString();
 
-	/**
-	 * Return the log {@link Level} for this entry or <code>null</code>. The level controls if the
-	 * entry is displayed in the GUI or not, depending on the selected log level for the
-	 * {@link LogModel}. If the level is null, the entry is always displayed.
-	 *
-	 * @return a log level or null
-	 */
-	public Level getLogLevel();
+    /**
+     * Return the log {@link Level} for this entry or <code>null</code>. The level controls if the
+     * entry is displayed in the GUI or not, depending on the selected log level for the
+     * {@link LogModel}. If the level is null, the entry is always displayed.
+     *
+     * @return a log level or null
+     */
+    public Level getLogLevel();
 
-	/**
-	 * Returns whether this log entry makes use of formatting. When no formatting is used, the
-	 * {@link LogViewer} can make use of performance optimizations.
-	 *
-	 * @return <code>true</code> if Swing text formatting is used; <code>false</code> otherwise.
-	 */
-	public boolean isFormatted();
+    /**
+     * Returns whether this log entry makes use of formatting. When no formatting is used, the
+     * {@link LogViewer} can make use of performance optimizations.
+     *
+     * @return <code>true</code> if Swing text formatting is used; <code>false</code> otherwise.
+     */
+    public boolean isFormatted();
 }

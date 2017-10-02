@@ -48,7 +48,6 @@ import com.rapidminer.license.violation.LicenseViolation;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public class OpenSourceLicenseManager implements LicenseManager {
 

@@ -25,7 +25,7 @@ import com.rapidminer.example.Tools;
  * Implementation of DataRow that is backed by primitive arrays. Should always be used if more than
  * 50% of the data is sparse. As fast (or even faster than map implementation) but needs
  * considerably less memory.
- * 
+ *
  * @author Niraj Aswani, Julien Nioche, Ingo Mierswa, Shevek
  */
 public abstract class AbstractSparseArrayDataRow extends DataRow implements SparseDataRow {
@@ -41,8 +41,10 @@ public abstract class AbstractSparseArrayDataRow extends DataRow implements Spar
 	/** Number of inserted elements. */
 	private int counter = 0;
 
-	/** Creates an empty sparse array data row with size 0. */
-	public AbstractSparseArrayDataRow() {
+    /**
+     * Creates an empty sparse array data row with size 0.
+     */
+    public AbstractSparseArrayDataRow() {
 		this(0);
 	}
 
@@ -51,8 +53,12 @@ public abstract class AbstractSparseArrayDataRow extends DataRow implements Spar
 	 * is meant to be sparse - we never intend to have that many attributes.
 	 */
 
-	/** Creates a sparse array data row of the given size. */
-	public AbstractSparseArrayDataRow(int size) {
+    /**
+     * Creates a sparse array data row of the given size.  @param size the size
+     *
+     * @param size the size
+     */
+    public AbstractSparseArrayDataRow(int size) {
 		x = new int[size];
 		for (int i = 0; i < x.length; i++) {
 			x[i] = Integer.MAX_VALUE;
@@ -63,23 +69,56 @@ public abstract class AbstractSparseArrayDataRow extends DataRow implements Spar
 	// abstract methods
 	// ======================
 
-	/*
-	 * Implementations of this are not as optimal as the removal of a value from the indexes array,
+    /**
+     * Remove value.
+     *
+     * @param index the index
+     */
+/*
+     * Implementations of this are not as optimal as the removal of a value from the indexes array,
 	 * since the subclass does not have access to the count variable. This could be fixed, but ...
 	 * *shrug*. Shevek.
 	 */
 	protected abstract void removeValue(int index);
 
-	protected abstract void resizeValues(int length);
+    /**
+     * Resize values.
+     *
+     * @param length the length
+     */
+    protected abstract void resizeValues(int length);
 
-	protected abstract void setValue(int index, double value);
+    /**
+     * Sets value.
+     *
+     * @param index the index
+     * @param value the value
+     */
+    protected abstract void setValue(int index, double value);
 
-	protected abstract double getValue(int index);
+    /**
+     * Gets value.
+     *
+     * @param index the index
+     * @return the value
+     */
+    protected abstract double getValue(int index);
 
-	/* This could be implemented using get() and set() */
+    /**
+     * Swap values.
+     *
+     * @param a the a
+     * @param b the b
+     */
+/* This could be implemented using get() and set() */
 	protected abstract void swapValues(int a, int b);
 
-	/* This could be implemented using get() */
+    /**
+     * Get all values double [ ].
+     *
+     * @return the double [ ]
+     */
+/* This could be implemented using get() */
 	protected abstract double[] getAllValues();
 
 	/** Sorts the arrays in the given range. */
@@ -157,10 +196,13 @@ public abstract class AbstractSparseArrayDataRow extends DataRow implements Spar
 		return (x[a] < x[b] ? (x[b] < x[c] ? b : x[a] < x[c] ? c : a) : (x[b] > x[c] ? b : x[a] > x[c] ? c : a));
 	}
 
-	/**
-	 * Swaps x[a] with x[b].
-	 */
-	protected void swap(int a, int b) {
+    /**
+     * Swaps x[a] with x[b].
+     *
+     * @param a the a
+     * @param b the b
+     */
+    protected void swap(int a, int b) {
 		int t = x[a];
 		x[a] = x[b];
 		x[b] = t;

@@ -44,55 +44,69 @@ import java.util.List;
  * This learner uses the Java implementation of the support vector machine <em>mySVM</em> by Stefan
  * R&uuml;ping. This learning method can be used for both regression and classification and provides
  * a fast algorithm and good results for many learning tasks.
- * 
- * @rapidminer.reference Rueping/2000a
- * @rapidminer.reference Vapnik/98a
- * @rapidminer.index SVM
- * 
+ *
  * @author Ingo Mierswa
+ * @rapidminer.reference Rueping /2000a
+ * @rapidminer.reference Vapnik /98a
+ * @rapidminer.index SVM
  */
 public class JMySVMLearner extends AbstractMySVMLearner {
 
-	/**
-	 * The parameter name for &quot;Indicates if this learner should also return a performance
-	 * estimation.&quot;
-	 */
-	public static final String PARAMETER_ESTIMATE_PERFORMANCE = "estimate_performance";
+    /**
+     * The parameter name for &quot;Indicates if this learner should also return a performance
+     * estimation.&quot;
+     */
+    public static final String PARAMETER_ESTIMATE_PERFORMANCE = "estimate_performance";
 
-	/**
-	 * The parameter name for &quot;A factor for the SVM complexity constant for positive
-	 * examples&quot;
-	 */
-	public static final String PARAMETER_L_POS = "L_pos";
+    /**
+     * The parameter name for &quot;A factor for the SVM complexity constant for positive
+     * examples&quot;
+     */
+    public static final String PARAMETER_L_POS = "L_pos";
 
-	/**
-	 * The parameter name for &quot;A factor for the SVM complexity constant for negative
-	 * examples&quot;
-	 */
-	public static final String PARAMETER_L_NEG = "L_neg";
+    /**
+     * The parameter name for &quot;A factor for the SVM complexity constant for negative
+     * examples&quot;
+     */
+    public static final String PARAMETER_L_NEG = "L_neg";
 
-	/**
-	 * The parameter name for &quot;Insensitivity constant. No loss if prediction lies this close to
-	 * true value&quot;
-	 */
-	public static final String PARAMETER_EPSILON = "epsilon";
+    /**
+     * The parameter name for &quot;Insensitivity constant. No loss if prediction lies this close to
+     * true value&quot;
+     */
+    public static final String PARAMETER_EPSILON = "epsilon";
 
-	/** The parameter name for &quot;Epsilon for positive deviation only&quot; */
-	public static final String PARAMETER_EPSILON_PLUS = "epsilon_plus";
+    /**
+     * The parameter name for &quot;Epsilon for positive deviation only&quot;
+     */
+    public static final String PARAMETER_EPSILON_PLUS = "epsilon_plus";
 
-	/** The parameter name for &quot;Epsilon for negative deviation only&quot; */
-	public static final String PARAMETER_EPSILON_MINUS = "epsilon_minus";
+    /**
+     * The parameter name for &quot;Epsilon for negative deviation only&quot;
+     */
+    public static final String PARAMETER_EPSILON_MINUS = "epsilon_minus";
 
-	/** The parameter name for &quot;Adapts Cpos and Cneg to the relative size of the classes&quot; */
-	public static final String PARAMETER_BALANCE_COST = "balance_cost";
+    /**
+     * The parameter name for &quot;Adapts Cpos and Cneg to the relative size of the classes&quot;
+     */
+    public static final String PARAMETER_BALANCE_COST = "balance_cost";
 
-	/** The parameter name for &quot;Use quadratic loss for positive deviation&quot; */
-	public static final String PARAMETER_QUADRATIC_LOSS_POS = "quadratic_loss_pos";
+    /**
+     * The parameter name for &quot;Use quadratic loss for positive deviation&quot;
+     */
+    public static final String PARAMETER_QUADRATIC_LOSS_POS = "quadratic_loss_pos";
 
-	/** The parameter name for &quot;Use quadratic loss for negative deviation&quot; */
-	public static final String PARAMETER_QUADRATIC_LOSS_NEG = "quadratic_loss_neg";
+    /**
+     * The parameter name for &quot;Use quadratic loss for negative deviation&quot;
+     */
+    public static final String PARAMETER_QUADRATIC_LOSS_NEG = "quadratic_loss_neg";
 
-	public JMySVMLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new J my svm learner.
+     *
+     * @param description the description
+     */
+    public JMySVMLearner(OperatorDescription description) {
 		super(description);
 	}
 

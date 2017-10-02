@@ -48,7 +48,10 @@ import com.rapidminer.tools.Tools;
  */
 public enum SettingsItems {
 
-	INSTANCE;
+    /**
+     * Instance settings items.
+     */
+    INSTANCE;
 
 	/** Maps keys to SettingsItem objects */
 	private Map<String, SettingsItem> itemMap = new LinkedHashMap<>();
@@ -59,8 +62,10 @@ public enum SettingsItems {
 	/** Singleton: Empty private constructor */
 	private SettingsItems() {}
 
-	/** Removes empty subgroups and groups */
-	public void clean() {
+    /**
+     * Removes empty subgroups and groups
+     */
+    public void clean() {
 		List<SettingsItem> mapItems = getItems(Type.SUB_GROUP);
 		Iterator<SettingsItem> mapIterator = mapItems.iterator();
 		while (mapIterator.hasNext()) {
@@ -93,18 +98,33 @@ public enum SettingsItems {
 		}
 	};
 
-	/** Checks if a key is known. */
-	public boolean containsKey(String key) {
+    /**
+     * Checks if a key is known.  @param key the key
+     *
+     * @param key the key
+     * @return the boolean
+     */
+    public boolean containsKey(String key) {
 		return itemMap.containsKey(key);
 	}
 
-	/** Returns item or <code>null</code>, if key is unknown. */
-	public SettingsItem get(String key) {
+    /**
+     * Returns item or <code>null</code>, if key is unknown.  @param key the key
+     *
+     * @param key the key
+     * @return the settings item
+     */
+    public SettingsItem get(String key) {
 		return itemMap.get(key);
 	}
 
-	/** Returns all items of the specified type. */
-	public List<SettingsItem> getItems(Type type) {
+    /**
+     * Returns all items of the specified type.  @param type the type
+     *
+     * @param type the type
+     * @return the items
+     */
+    public List<SettingsItem> getItems(Type type) {
 		List<SettingsItem> settingsItems = new LinkedList<>();
 		for (SettingsItem settingsItem : itemMap.values()) {
 			if (settingsItem.getType().equals(type)) {
@@ -114,19 +134,23 @@ public enum SettingsItems {
 		return settingsItems;
 	}
 
-	/** Returns all known keys. */
-	public Collection<String> getKeys() {
+    /**
+     * Returns all known keys.  @return the keys
+     *
+     * @return the keys
+     */
+    public Collection<String> getKeys() {
 		return new HashSet<String>(itemMap.keySet());
 	}
 
-	/**
-	 * Parses XML file of RapidMiner Studio with settings structure.
-	 *
-	 * Sets {@link SettingsItems#studioXmlParsed} to the return value.
-	 *
-	 * @return <code>true</code>, if the XML was parsed successfully. <code>false</code>, if not.
-	 */
-	public boolean parseStudioXml() {
+    /**
+     * Parses XML file of RapidMiner Studio with settings structure.
+     * <p>
+     * Sets {@link SettingsItems#studioXmlParsed} to the return value.
+     *
+     * @return <code>true</code>, if the XML was parsed successfully. <code>false</code>, if not.
+     */
+    public boolean parseStudioXml() {
 		try {
 			itemMap = new SettingsXmlHandler().parse(Tools.getResource(SettingsXmlHandler.SETTINGS_XML_FILE).toURI());
 			studioXmlParsed = true;
@@ -142,11 +166,14 @@ public enum SettingsItems {
 		}
 	}
 
-	/**
-	 * Adds an item to the map of used SettingsItem objects. Checks for <code>null</code> and empty
-	 * values of the parameters.
-	 */
-	public void put(String key, SettingsItem item) {
+    /**
+     * Adds an item to the map of used SettingsItem objects. Checks for <code>null</code> and empty
+     * values of the parameters.
+     *
+     * @param key  the key
+     * @param item the item
+     */
+    public void put(String key, SettingsItem item) {
 		if (key == null || key.isEmpty()) {
 			throw new IllegalArgumentException("Key not set");
 		}
@@ -156,33 +183,26 @@ public enum SettingsItems {
 		itemMap.put(key, item);
 	}
 
-	/**
-	 * Removes item from {@link SettingsItems} and the {@link SettingsItem} internal hierarchy.
-	 *
-	 * @param key
-	 *            Key of item
-	 * @throws IllegalStateException
-	 *             If key is not known or related item has children
-	 */
-	public void remove(String key) throws IllegalStateException {
+    /**
+     * Removes item from {@link SettingsItems} and the {@link SettingsItem} internal hierarchy.
+     *
+     * @param key Key of item
+     * @throws IllegalStateException If key is not known or related item has children
+     */
+    public void remove(String key) throws IllegalStateException {
 		remove(key, true, true);
 	}
 
-	/**
-	 * Removes item from {@link SettingsItems} and/or the {@link SettingsItem} internal hierarchy.
-	 * The execution of the remove operation can be set for each of the both data structures.
-	 *
-	 * @param key
-	 *            Key of item
-	 * @param removeFromSettingsItems
-	 *            Remove from {@link SettingsItems} data structure
-	 * @param removeFromHierarchy
-	 *            Removes from {@link SettingsItem} internal hierarchy
-	 *
-	 * @throws IllegalStateException
-	 *             If key is not known or related item has children
-	 */
-	public void remove(String key, boolean removeFromSettingsItems, boolean removeFromHierarchy)
+    /**
+     * Removes item from {@link SettingsItems} and/or the {@link SettingsItem} internal hierarchy.
+     * The execution of the remove operation can be set for each of the both data structures.
+     *
+     * @param key                     Key of item
+     * @param removeFromSettingsItems Remove from {@link SettingsItems} data structure
+     * @param removeFromHierarchy     Removes from {@link SettingsItem} internal hierarchy
+     * @throws IllegalStateException If key is not known or related item has children
+     */
+    public void remove(String key, boolean removeFromSettingsItems, boolean removeFromHierarchy)
 			throws IllegalStateException {
 
 		if (!itemMap.containsKey(key)) {
@@ -205,8 +225,12 @@ public enum SettingsItems {
 		}
 	}
 
-	/** Removes all elements of type parameter, whose keys are not contained in keepKeys */
-	public void removeParameterInverse(Collection<String> keepKeys) {
+    /**
+     * Removes all elements of type parameter, whose keys are not contained in keepKeys  @param keepKeys the keep keys
+     *
+     * @param keepKeys the keep keys
+     */
+    public void removeParameterInverse(Collection<String> keepKeys) {
 		Iterator<Entry<String, SettingsItem>> itemMapIterator = itemMap.entrySet().iterator();
 		while (itemMapIterator.hasNext()) {
 			Entry<String, SettingsItem> itemMapEntry = itemMapIterator.next();
@@ -226,23 +250,24 @@ public enum SettingsItems {
 		}
 	}
 
-	/** Returns true if the XML file was parsed successfully. Returns false if not. */
-	public boolean isStudioXmlParsedSuccessfully() {
+    /**
+     * Returns true if the XML file was parsed successfully. Returns false if not.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean isStudioXmlParsedSuccessfully() {
 		return studioXmlParsed;
 	}
 
-	/**
-	 * Creates a SettingsItem and adds it to the item map. Parent items of the type GROUP are also
-	 * generated.
-	 *
-	 * @param key
-	 *            The key of the item
-	 * @param type
-	 *            The type of the item
-	 *
-	 * @return The created SettingsItem
-	 */
-	public static SettingsItem createAndAddItem(String key, Type type) {
+    /**
+     * Creates a SettingsItem and adds it to the item map. Parent items of the type GROUP are also
+     * generated.
+     *
+     * @param key  The key of the item
+     * @param type The type of the item
+     * @return The created SettingsItem
+     */
+    public static SettingsItem createAndAddItem(String key, Type type) {
 		if (key == null || key.isEmpty()) {
 			throw new IllegalArgumentException("Settings item has no key.");
 		}

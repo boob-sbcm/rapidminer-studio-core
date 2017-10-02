@@ -38,7 +38,7 @@ import java.util.TreeSet;
 /**
  * This operator compares a number of FrequentItemSet sets and removes every not unique
  * FrequentItemSet.
- * 
+ *
  * @author Sebastian Land
  */
 public class FrequentItemSetUnificator extends Operator {
@@ -84,7 +84,12 @@ public class FrequentItemSetUnificator extends Operator {
 	private PortPairExtender portExtender = new PortPairExtender("frequent item sets", getInputPorts(), getOutputPorts(),
 			new MetaData(FrequentItemSets.class));
 
-	public FrequentItemSetUnificator(OperatorDescription description) {
+    /**
+     * Instantiates a new Frequent item set unificator.
+     *
+     * @param description the description
+     */
+    public FrequentItemSetUnificator(OperatorDescription description) {
 		super(description);
 
 		portExtender.ensureMinimumNumberOfPorts(2);

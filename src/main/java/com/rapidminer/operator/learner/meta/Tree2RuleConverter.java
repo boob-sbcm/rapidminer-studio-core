@@ -39,12 +39,17 @@ import java.util.Iterator;
 /**
  * This meta learner uses an inner tree learner and creates a rule model from the learned decision
  * tree.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Tree2RuleConverter extends AbstractMetaLearner {
 
-	public Tree2RuleConverter(OperatorDescription description) {
+    /**
+     * Instantiates a new Tree 2 rule converter.
+     *
+     * @param description the description
+     */
+    public Tree2RuleConverter(OperatorDescription description) {
 		super(description);
 
 		innerModelSink.addPrecondition(new SimplePrecondition(innerModelSink, new PredictionModelMetaData(TreeModel.class)));

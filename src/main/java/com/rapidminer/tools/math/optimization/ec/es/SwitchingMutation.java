@@ -25,7 +25,7 @@ import java.util.Random;
 
 /**
  * Checks for each value if it should mutated. Sets a non-min value to min and a zero value to max.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class SwitchingMutation implements Mutation {
@@ -38,7 +38,16 @@ public class SwitchingMutation implements Mutation {
 
 	private Random random;
 
-	public SwitchingMutation(double prob, double[] min, double[] max, OptimizationValueType[] valueTypes, Random random) {
+    /**
+     * Instantiates a new Switching mutation.
+     *
+     * @param prob       the prob
+     * @param min        the min
+     * @param max        the max
+     * @param valueTypes the value types
+     * @param random     the random
+     */
+    public SwitchingMutation(double prob, double[] min, double[] max, OptimizationValueType[] valueTypes, Random random) {
 		this.prob = prob;
 		this.min = min;
 		this.max = max;

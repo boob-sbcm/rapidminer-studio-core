@@ -48,7 +48,12 @@ public class ANOVAMatrixViewer extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public ANOVAMatrixViewer(ANOVAMatrix matrix) {
+    /**
+     * Instantiates a new Anova matrix viewer.
+     *
+     * @param matrix the matrix
+     */
+    public ANOVAMatrixViewer(ANOVAMatrix matrix) {
 		super(new BorderLayout());
 
 		JPanel panel = new JPanel(new GridBagLayout());

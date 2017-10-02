@@ -33,24 +33,32 @@ public class RepositoryLocationList {
 
 	private List<RepositoryLocation> repositoryLocations = new LinkedList<>();
 
-	/** Add single repository location. */
-	public void add(RepositoryLocation repositoryLocation) {
+    /**
+     * Add single repository location.  @param repositoryLocation the repository location
+     *
+     * @param repositoryLocation the repository location
+     */
+    public void add(RepositoryLocation repositoryLocation) {
 		repositoryLocations.add(repositoryLocation);
 	}
 
-	/** Gets all repository locations. */
-	public List<RepositoryLocation> getAll() {
+    /**
+     * Gets all repository locations.  @return the all
+     *
+     * @return the all
+     */
+    public List<RepositoryLocation> getAll() {
 		return repositoryLocations;
 	}
 
-	/**
-	 * Removes locations from list, which are already included in others.
-	 *
-	 * If there are any problems requesting a repository, the input is returned.
-	 *
-	 * Example: [/1/2/3, /1, /1/2] becomes [/1].
-	 */
-	public void removeIntersectedLocations() {
+    /**
+     * Removes locations from list, which are already included in others.
+     * <p>
+     * If there are any problems requesting a repository, the input is returned.
+     * <p>
+     * Example: [/1/2/3, /1, /1/2] becomes [/1].
+     */
+    public void removeIntersectedLocations() {
 		repositoryLocations = RepositoryLocation.removeIntersectedLocations(repositoryLocations);
 	}
 

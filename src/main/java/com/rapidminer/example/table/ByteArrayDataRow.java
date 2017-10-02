@@ -22,7 +22,7 @@ package com.rapidminer.example.table;
  * Implementation of DataRow that is backed by a byte array. Please note that using this data row is
  * quite efficient but only supports 256 different values (integers between -127 and 128 or 256
  * different nominal values for each column).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ByteArrayDataRow extends DataRow {
@@ -32,8 +32,12 @@ public class ByteArrayDataRow extends DataRow {
 	/** Holds the data for all attributes. */
 	private byte[] data;
 
-	/** Creates a new data row backed by an primitive array. */
-	public ByteArrayDataRow(byte[] data) {
+    /**
+     * Creates a new data row backed by an primitive array.  @param data the data
+     *
+     * @param data the data
+     */
+    public ByteArrayDataRow(byte[] data) {
 		this.data = data;
 	}
 

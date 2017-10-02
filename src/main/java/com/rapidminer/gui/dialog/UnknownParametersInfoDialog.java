@@ -40,7 +40,7 @@ import javax.swing.table.AbstractTableModel;
 /**
  * This dialog is shown after loading a process in cases where some of the parameters were unknown.
  * This can for example happen if parameters are removed / renamed and the user should notice this.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class UnknownParametersInfoDialog extends JDialog {
@@ -55,7 +55,12 @@ public class UnknownParametersInfoDialog extends JDialog {
 
 		private List<UnknownParameterInformation> unknownParameters;
 
-		public UnknownParametersTableModel(List<UnknownParameterInformation> unknownParameters) {
+        /**
+         * Instantiates a new Unknown parameters table model.
+         *
+         * @param unknownParameters the unknown parameters
+         */
+        public UnknownParametersTableModel(List<UnknownParameterInformation> unknownParameters) {
 			this.unknownParameters = unknownParameters;
 		}
 
@@ -98,7 +103,13 @@ public class UnknownParametersInfoDialog extends JDialog {
 
 	}
 
-	public UnknownParametersInfoDialog(Frame owner, List<UnknownParameterInformation> unknownParameters) {
+    /**
+     * Instantiates a new Unknown parameters info dialog.
+     *
+     * @param owner             the owner
+     * @param unknownParameters the unknown parameters
+     */
+    public UnknownParametersInfoDialog(Frame owner, List<UnknownParameterInformation> unknownParameters) {
 		super(owner, "Unknown Parameters", true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -140,7 +151,10 @@ public class UnknownParametersInfoDialog extends JDialog {
 		setLocationRelativeTo(owner);
 	}
 
-	public void ok() {
+    /**
+     * Ok.
+     */
+    public void ok() {
 		dispose();
 	}
 }

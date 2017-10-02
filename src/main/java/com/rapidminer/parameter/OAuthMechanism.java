@@ -21,44 +21,42 @@ package com.rapidminer.parameter;
 /**
  * Connections may require an OAuth. This interface defines the basic authentication steps which are
  * used by the {@link ParameterTypeOAuth} to link RapidMiner with the connection type.
- * 
- * 
+ *
  * @author Marcel Michel
  * @since 6.0.003
- * 
  */
 public interface OAuthMechanism {
 
-	/**
-	 * Starts the OAuth mechanism. Returns the authorization URL as string.
-	 * 
-	 * @return
-	 */
-	public abstract String startOAuth();
+    /**
+     * Starts the OAuth mechanism. Returns the authorization URL as string.
+     *
+     * @return string string
+     */
+    public abstract String startOAuth();
 
-	/**
-	 * Called at the end of the OAuth. Return <code>null</code> if the code is valid otherwise the
-	 * error message. If {@link #isOAuth2()} returns false code will be null; otherwise the input
-	 * code by the user, which is always != <code>null</code>
-	 * 
-	 * @param code
-	 * 
-	 * @return
-	 */
-	public abstract String endOAuth(String code);
+    /**
+     * Called at the end of the OAuth. Return <code>null</code> if the code is valid otherwise the
+     * error message. If {@link #isOAuth2()} returns false code will be null; otherwise the input
+     * code by the user, which is always != <code>null</code>
+     *
+     * @param code the code
+     * @return string string
+     */
+    public abstract String endOAuth(String code);
 
-	/**
-	 * If the OAuth was successful return the access token, otherwise <code>null</code>
-	 * 
-	 * @return
-	 */
-	public abstract String getToken();
+    /**
+     * If the OAuth was successful return the access token, otherwise <code>null</code>
+     *
+     * @return token token
+     */
+    public abstract String getToken();
 
-	/**
-	 * Returns true if auth mechanism is an instance of OAuth 2.0 and therefore requires a
-	 * confirmation code.
-	 * 
-	 */
-	public abstract boolean isOAuth2();
+    /**
+     * Returns true if auth mechanism is an instance of OAuth 2.0 and therefore requires a
+     * confirmation code.
+     *
+     * @return the boolean
+     */
+    public abstract boolean isOAuth2();
 
 }

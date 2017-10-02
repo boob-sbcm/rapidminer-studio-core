@@ -31,7 +31,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * The table model for the association rules visualization.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AssociationRuleTableModel extends AbstractTableModel {
@@ -56,7 +56,12 @@ public class AssociationRuleTableModel extends AbstractTableModel {
 
 	private int[] mapping = null;
 
-	public AssociationRuleTableModel(AssociationRules rules) {
+    /**
+     * Instantiates a new Association rule table model.
+     *
+     * @param rules the rules
+     */
+    public AssociationRuleTableModel(AssociationRules rules) {
 		this.rules = rules;
 		createCompleteMapping();
 	}
@@ -133,7 +138,12 @@ public class AssociationRuleTableModel extends AbstractTableModel {
 		return result.toString();
 	}
 
-	public void setFilter(boolean[] filter) {
+    /**
+     * Sets filter.
+     *
+     * @param filter the filter
+     */
+    public void setFilter(boolean[] filter) {
 		List<Integer> indices = new LinkedList<Integer>();
 		for (int i = 0; i < filter.length; i++) {
 			if (filter[i]) {

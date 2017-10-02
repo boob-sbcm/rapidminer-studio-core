@@ -42,18 +42,34 @@ import java.util.Set;
 
 
 /**
+ * The type Hierarchical learner.
+ *
  * @author Tobias Malbrecht, Sebastian Land
  */
 @Deprecated
 public class HierarchicalLearner extends AbstractMetaLearner {
 
-	public static final String PARAMETER_HIERARCHY = "hierarchy";
+    /**
+     * The constant PARAMETER_HIERARCHY.
+     */
+    public static final String PARAMETER_HIERARCHY = "hierarchy";
 
-	public static final String PARAMETER_PARENT_CLASS = "parent_class";
+    /**
+     * The constant PARAMETER_PARENT_CLASS.
+     */
+    public static final String PARAMETER_PARENT_CLASS = "parent_class";
 
-	public static final String PARAMETER_CHILD_CLASS = "child_class";
+    /**
+     * The constant PARAMETER_CHILD_CLASS.
+     */
+    public static final String PARAMETER_CHILD_CLASS = "child_class";
 
-	public HierarchicalLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Hierarchical learner.
+     *
+     * @param description the description
+     */
+    public HierarchicalLearner(OperatorDescription description) {
 		super(description);
 	}
 

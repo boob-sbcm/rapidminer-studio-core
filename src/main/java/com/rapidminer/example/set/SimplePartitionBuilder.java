@@ -20,7 +20,7 @@ package com.rapidminer.example.set;
 
 /**
  * Creates a simple non-shuffled partition for an example set.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class SimplePartitionBuilder implements PartitionBuilder {

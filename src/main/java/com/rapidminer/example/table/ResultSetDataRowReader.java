@@ -30,11 +30,11 @@ import java.util.logging.Level;
 /**
  * Unlike a {@link FileDataRowReader} that reads examples from a file, objects of this class read
  * examples from a {@link ResultSet}, a data structure that is returned from a database query.
- * 
+ *
+ * @author Simon Fischer, Ingo Mierswa ingomierswa Exp $
  * @see com.rapidminer.tools.jdbc.DatabaseHandler
  * @see com.rapidminer.operator.io.DatabaseDataReader
  * @see com.rapidminer.operator.io.KDBExampleSource
- * @author Simon Fischer, Ingo Mierswa ingomierswa Exp $
  */
 public class ResultSetDataRowReader extends AbstractDataRowReader {
 
@@ -50,15 +50,14 @@ public class ResultSetDataRowReader extends AbstractDataRowReader {
 
 	private int hasNext = DONT_KNOW_YET;
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param attributeList
-	 *            List of attributes
-	 * @param resultSet
-	 *            A ResultSet as returned from a database query
-	 */
-	public ResultSetDataRowReader(DataRowFactory dataRowFactory, List<Attribute> attributeList, ResultSet resultSet) {
+    /**
+     * Constructor.
+     *
+     * @param dataRowFactory the data row factory
+     * @param attributeList  List of attributes
+     * @param resultSet      A ResultSet as returned from a database query
+     */
+    public ResultSetDataRowReader(DataRowFactory dataRowFactory, List<Attribute> attributeList, ResultSet resultSet) {
 		super(dataRowFactory);
 		this.resultSet = resultSet;
 		this.attributes = new Attribute[attributeList.size()];

@@ -33,6 +33,7 @@ import java.util.List;
 
 
 /**
+ * The type Passthrough shortcut rule.
  *
  * @author Sebastian Land
  */

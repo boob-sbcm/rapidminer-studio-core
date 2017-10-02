@@ -35,20 +35,32 @@ import javax.swing.plaf.UIResource;
 
 /**
  * The UIResource for shadowed popup menu borders.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ShadowedPopupMenuBorder extends AbstractBorder implements UIResource {
 
 	private static final long serialVersionUID = 1446180576173319227L;
 
-	public final static Image POPUP_TOP_RIGHT = SwingTools.createImage("plaf/popupShadowTopRight.png").getImage();
+    /**
+     * The constant POPUP_TOP_RIGHT.
+     */
+    public final static Image POPUP_TOP_RIGHT = SwingTools.createImage("plaf/popupShadowTopRight.png").getImage();
 
-	public final static Image POPUP_TOP_LEFT = SwingTools.createImage("plaf/popupShadowTopLeft.png").getImage();
+    /**
+     * The constant POPUP_TOP_LEFT.
+     */
+    public final static Image POPUP_TOP_LEFT = SwingTools.createImage("plaf/popupShadowTopLeft.png").getImage();
 
-	public final static Image POPUP_BOTTOM_LEFT = SwingTools.createImage("plaf/popupShadowBottomLeft.png").getImage();
+    /**
+     * The constant POPUP_BOTTOM_LEFT.
+     */
+    public final static Image POPUP_BOTTOM_LEFT = SwingTools.createImage("plaf/popupShadowBottomLeft.png").getImage();
 
-	public final static Image POPUP_BOTTOM_RIGHT = SwingTools.createImage("plaf/popupShadowBottomRight.png").getImage();
+    /**
+     * The constant POPUP_BOTTOM_RIGHT.
+     */
+    public final static Image POPUP_BOTTOM_RIGHT = SwingTools.createImage("plaf/popupShadowBottomRight.png").getImage();
 
 	private Image topRight;
 	private Image topLeft;

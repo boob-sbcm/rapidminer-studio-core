@@ -23,21 +23,39 @@ import com.rapidminer.operator.Operator;
 
 /**
  * Listens to events during the run of an process.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public interface ProcessListener {
 
-	/** Will be invoked during process start. */
-	public void processStarts(Process process);
+    /**
+     * Will be invoked during process start.  @param process the process
+     *
+     * @param process the process
+     */
+    public void processStarts(Process process);
 
-	/** Will be invoked every time another operator is started in the process. */
-	public void processStartedOperator(Process process, Operator op);
+    /**
+     * Will be invoked every time another operator is started in the process.  @param process the process
+     *
+     * @param process the process
+     * @param op      the op
+     */
+    public void processStartedOperator(Process process, Operator op);
 
-	/** Will be invoked every time an operator is finished */
-	public void processFinishedOperator(Process process, Operator op);
+    /**
+     * Will be invoked every time an operator is finished  @param process the process
+     *
+     * @param process the process
+     * @param op      the op
+     */
+    public void processFinishedOperator(Process process, Operator op);
 
-	/** Will invoked when the process was successfully finished. */
-	public void processEnded(Process process);
+    /**
+     * Will invoked when the process was successfully finished.  @param process the process
+     *
+     * @param process the process
+     */
+    public void processEnded(Process process);
 
 }

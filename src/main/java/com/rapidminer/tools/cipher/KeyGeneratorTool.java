@@ -38,7 +38,7 @@ import com.rapidminer.tools.LogService;
  * This class can be used to generate a new key and store it in the user directory. Please note that
  * by default existing keys will be overwritten by objects of this class. That means that passwords
  * stored with &quot;old&quot; keys can no longer be decrypted.
- *
+ * <p>
  * Note that the class provides methods to override the default key storage location. Furthermore,
  * it is possible to suppress the storage of keys completely. These methods are implemented thread
  * safe to allow for scenarios in which the encryption key has to be exchanged (in separate
@@ -79,23 +79,23 @@ public class KeyGeneratorTool {
 		}
 	};
 
-	/**
-	 * Generates a new random key.
-	 *
-	 * @return The new random key.
-	 * @throws KeyGenerationException
-	 */
-	public static SecretKey createSecretKey() throws KeyGenerationException {
+    /**
+     * Generates a new random key.
+     *
+     * @return The new random key.
+     * @throws KeyGenerationException the key generation exception
+     */
+    public static SecretKey createSecretKey() throws KeyGenerationException {
 		return cipherKeyProvider.createKey(KEY_LENGTH, GENERATOR_TYPE);
 	}
 
-	/**
-	 * Generates and stores a new random key. Key storage can be suppressed using
-	 * {@link KeyGeneratorTool#setSaveKeyToDisk(boolean)}.
-	 *
-	 * @throws KeyGenerationException
-	 */
-	public static void createAndStoreKey() throws KeyGenerationException {
+    /**
+     * Generates and stores a new random key. Key storage can be suppressed using
+     * {@link KeyGeneratorTool#setSaveKeyToDisk(boolean)}.
+     *
+     * @throws KeyGenerationException the key generation exception
+     */
+    public static void createAndStoreKey() throws KeyGenerationException {
 
 		if (!RapidMiner.getExecutionMode().canAccessFilesystem()) {
 			LogService.getRoot().log(Level.CONFIG, "com.rapidminer.tools.cipher.KeyGeneratorTool.skip_key_generation",
@@ -128,14 +128,14 @@ public class KeyGeneratorTool {
 		}
 	}
 
-	/**
-	 * Stores the specified {@link Key} bytes[] in the given file.
-	 *
-	 * @param rawKey
-	 * @param keyPath
-	 * @throws KeyGenerationException
-	 */
-	public static void storeKey(byte[] rawKey, Path keyPath) throws IOException {
+    /**
+     * Stores the specified {@link Key} bytes[] in the given file.
+     *
+     * @param rawKey  the raw key
+     * @param keyPath the key path
+     * @throws IOException the io exception
+     */
+    public static void storeKey(byte[] rawKey, Path keyPath) throws IOException {
 		Files.deleteIfExists(keyPath);
 		try (FileOutputStream fos = new FileOutputStream(keyPath.toFile());
 				ObjectOutputStream out = new ObjectOutputStream(fos)) {
@@ -144,13 +144,13 @@ public class KeyGeneratorTool {
 		}
 	}
 
-	/**
-	 * Return the user encryption key stored on disk. The key is only loaded once per session.
-	 *
-	 * @return The user encryption key.
-	 * @throws IOException
-	 */
-	public static Key getUserKey() throws IOException {
+    /**
+     * Return the user encryption key stored on disk. The key is only loaded once per session.
+     *
+     * @return The user encryption key.
+     * @throws IOException the io exception
+     */
+    public static Key getUserKey() throws IOException {
 		if (localKey.get() == null) {
 			try {
 				localKey.set(cipherKeyProvider.loadKey());
@@ -161,47 +161,43 @@ public class KeyGeneratorTool {
 		return localKey.get();
 	}
 
-	/**
-	 * Sets the new user encryption key for the <strong>current thread</strong>.
-	 * <p>
-	 * <strong>THIS KEY IS NEVER STORED ON THE FILESYSTEM!</strong>
-	 * </p>
-	 *
-	 * @param newKey
-	 *            the new key
-	 */
-	public static void setUserKey(Key newKey) {
+    /**
+     * Sets the new user encryption key for the <strong>current thread</strong>.
+     * <p>
+     * <strong>THIS KEY IS NEVER STORED ON THE FILESYSTEM!</strong>
+     * </p>
+     *
+     * @param newKey the new key
+     */
+    public static void setUserKey(Key newKey) {
 		localKey.set(newKey);
 	}
 
-	/**
-	 * Converts a raw key into a {@link SecretKeySpec}.
-	 *
-	 * @param rawKey
-	 *            The raw key.
-	 * @return
-	 */
-	public static SecretKeySpec makeKey(final byte[] rawKey) {
+    /**
+     * Converts a raw key into a {@link SecretKeySpec}.
+     *
+     * @param rawKey The raw key.
+     * @return secret key spec
+     */
+    public static SecretKeySpec makeKey(final byte[] rawKey) {
 		return new SecretKeySpec(rawKey, GENERATOR_TYPE);
 	}
 
-	/**
-	 * Controls whether newly generated keys should be stored permanently.
-	 *
-	 * @param saveKey
-	 *            whether the new key should be stored to disk
-	 */
-	public static void setSaveKeyToDisk(boolean saveKey) {
+    /**
+     * Controls whether newly generated keys should be stored permanently.
+     *
+     * @param saveKey whether the new key should be stored to disk
+     */
+    public static void setSaveKeyToDisk(boolean saveKey) {
 		saveKeyToDisk.set(saveKey);
 	}
 
-	/**
-	 * Sets the {@link CipherKeyProvider} for the {@link KeyGeneratorTool} utility class
-	 *
-	 * @param keyProvider
-	 *            the {@link CipherKeyProvider} to be used
-	 */
-	public static void setCipherKeyProvider(CipherKeyProvider keyProvider) {
+    /**
+     * Sets the {@link CipherKeyProvider} for the {@link KeyGeneratorTool} utility class
+     *
+     * @param keyProvider the {@link CipherKeyProvider} to be used
+     */
+    public static void setCipherKeyProvider(CipherKeyProvider keyProvider) {
 		cipherKeyProvider = keyProvider;
 	}
 }

@@ -38,7 +38,13 @@ public class ConfusionMatrixViewerTable extends ExtendedJTable {
 
 	private static final long serialVersionUID = 1L;
 
-	public ConfusionMatrixViewerTable(String[] classNames, double[][] counter) {
+    /**
+     * Instantiates a new Confusion matrix viewer table.
+     *
+     * @param classNames the class names
+     * @param counter    the counter
+     */
+    public ConfusionMatrixViewerTable(String[] classNames, double[][] counter) {
 		super(new ConfusionMatrixViewerTableModel(classNames, counter), false, false, true);
 		setShowPopupMenu(true);
 		setRowHeight(PropertyPanel.VALUE_CELL_EDITOR_HEIGHT);

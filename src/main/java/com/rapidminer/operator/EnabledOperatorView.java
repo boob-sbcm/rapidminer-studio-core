@@ -25,15 +25,19 @@ import java.util.Iterator;
 
 /**
  * An unmodifyable view of a collection of Operators that hides disabled operators.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class EnabledOperatorView extends AbstractList<Operator> {
 
 	private Collection<Operator> base;
 
-	public EnabledOperatorView(Collection<Operator> base) {
+    /**
+     * Instantiates a new Enabled operator view.
+     *
+     * @param base the base
+     */
+    public EnabledOperatorView(Collection<Operator> base) {
 		super();
 		this.base = base;
 	}

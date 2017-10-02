@@ -34,15 +34,35 @@ public class ParameterTypeColor extends ParameterTypeString {
 
 	private static final long serialVersionUID = 2205857626001106753L;
 
-	public ParameterTypeColor(String key, String description, Color defaultColor) {
+    /**
+     * Instantiates a new Parameter type color.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultColor the default color
+     */
+    public ParameterTypeColor(String key, String description, Color defaultColor) {
 		super(key, description, color2String(defaultColor));
 	}
 
-	public ParameterTypeColor(String key, String description, String defaultColor) {
+    /**
+     * Instantiates a new Parameter type color.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultColor the default color
+     */
+    public ParameterTypeColor(String key, String description, String defaultColor) {
 		super(key, description, defaultColor);
 	}
 
-	public static String color2String(Color color) {
+    /**
+     * Color 2 string string.
+     *
+     * @param color the color
+     * @return the string
+     */
+    public static String color2String(Color color) {
 		return color.getRed() + "," + color.getGreen() + "," + color.getBlue();
 	}
 
@@ -61,7 +81,13 @@ public class ParameterTypeColor extends ParameterTypeString {
 		return false;
 	}
 
-	public static Color string2Color(String colorString) {
+    /**
+     * String 2 color color.
+     *
+     * @param colorString the color string
+     * @return the color
+     */
+    public static Color string2Color(String colorString) {
 		try {
 			return Color.decode(colorString);
 		} catch (Exception e) {

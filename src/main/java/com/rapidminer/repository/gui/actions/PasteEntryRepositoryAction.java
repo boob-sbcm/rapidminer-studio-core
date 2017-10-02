@@ -28,14 +28,19 @@ import javax.swing.Action;
 
 /**
  * This action is the standard paste action.
- * 
+ *
  * @author Simon Fischer
  */
 public class PasteEntryRepositoryAction extends AbstractRepositoryAction<Entry> {
 
 	private static final long serialVersionUID = 1L;
 
-	public PasteEntryRepositoryAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Paste entry repository action.
+     *
+     * @param tree the tree
+     */
+    public PasteEntryRepositoryAction(RepositoryTree tree) {
 		super(tree, Entry.class, false, "repository_paste");
 		putValue(ACTION_COMMAND_KEY, "paste");
 	}

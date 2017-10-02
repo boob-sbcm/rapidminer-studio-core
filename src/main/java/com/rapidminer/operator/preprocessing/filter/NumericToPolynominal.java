@@ -37,7 +37,12 @@ import com.rapidminer.tools.Tools;
  */
 public class NumericToPolynominal extends NumericToNominal {
 
-	public NumericToPolynominal(OperatorDescription description) {
+    /**
+     * Instantiates a new Numeric to polynominal.
+     *
+     * @param description the description
+     */
+    public NumericToPolynominal(OperatorDescription description) {
 		super(description);
 	}
 

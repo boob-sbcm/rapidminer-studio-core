@@ -80,30 +80,30 @@ public class FunctionDescriptionModel extends AbstractObservable<FunctionDescrip
 		}
 	};
 
-	public FunctionDescriptionModel() {
+    /**
+     * Instantiates a new Function description model.
+     */
+    public FunctionDescriptionModel() {
 		clearContent();
 	}
 
-	/**
-	 * Clears all model content.
-	 */
-	public void clearContent() {
+    /**
+     * Clears all model content.
+     */
+    public void clearContent() {
 		modelMap.clear();
 		filteredModelMap.clear();
 		filterNameString = "";
 		filterNameStringLowerCase = "";
 	}
 
-	/**
-	 * Add the given functions for the key (function group name). Applies filtering and sorting
-	 * implicitly.
-	 *
-	 * @param key
-	 *            function group
-	 * @param functions
-	 *            list of functions in the given function group
-	 */
-	public void addContent(List<FunctionDescription> functions) {
+    /**
+     * Add the given functions for the key (function group name). Applies filtering and sorting
+     * implicitly.
+     *
+     * @param functions list of functions in the given function group
+     */
+    public void addContent(List<FunctionDescription> functions) {
 		for (FunctionDescription function : functions) {
 			if (modelMap.containsKey(function.getGroupName())) {
 				modelMap.get(function.getGroupName()).add(function);
@@ -116,42 +116,41 @@ public class FunctionDescriptionModel extends AbstractObservable<FunctionDescrip
 		applySorting();
 	}
 
-	/**
-	 * Returns the filtered {@link Map} of {@link List}s of {@link FunctionDescription}s.
-	 *
-	 * @return
-	 */
-	public Map<String, List<FunctionDescription>> getFilteredModel() {
+    /**
+     * Returns the filtered {@link Map} of {@link List}s of {@link FunctionDescription}s.
+     *
+     * @return filtered model
+     */
+    public Map<String, List<FunctionDescription>> getFilteredModel() {
 		return filteredModelMap;
 	}
 
-	/**
-	 * returns the filtered list of {@link FunctionDecription}s for one specific function group
-	 * (defined by the group name)
-	 *
-	 * @param functionGroupName
-	 * @return
-	 */
-	public List<FunctionDescription> getFilteredModel(String functionGroupName) {
+    /**
+     * returns the filtered list of {@link FunctionDecription}s for one specific function group
+     * (defined by the group name)
+     *
+     * @param functionGroupName the function group name
+     * @return filtered model
+     */
+    public List<FunctionDescription> getFilteredModel(String functionGroupName) {
 		return filteredModelMap.get(functionGroupName);
 	}
 
-	/**
-	 * returns the filter name
-	 *
-	 * @return
-	 */
-	public String getFilterNameString() {
+    /**
+     * returns the filter name
+     *
+     * @return filter name string
+     */
+    public String getFilterNameString() {
 		return filterNameString;
 	}
 
-	/**
-	 * Filters the list of {@link FunctionDescription}s using the filterNameString.
-	 *
-	 * @param filterNameString
-	 *            search word which is used to filter functions
-	 */
-	public synchronized void setFilterNameString(String filterNameString) {
+    /**
+     * Filters the list of {@link FunctionDescription}s using the filterNameString.
+     *
+     * @param filterNameString search word which is used to filter functions
+     */
+    public synchronized void setFilterNameString(String filterNameString) {
 		if (filterNameString == null) {
 			filterNameString = "";
 		}

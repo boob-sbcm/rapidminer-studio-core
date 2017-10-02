@@ -66,11 +66,15 @@ public class UserBasedDiscretization extends AbstractDiscretizationOperator {
 		registerDiscretizationOperator(UserBasedDiscretization.class);
 	}
 
-	/** The parameter name for the upper limit. */
-	public static final String PARAMETER_UPPER_LIMIT = "upper_limit";
+    /**
+     * The parameter name for the upper limit.
+     */
+    public static final String PARAMETER_UPPER_LIMIT = "upper_limit";
 
-	/** The parameter name for &quot;Defines the classes and the upper limits of each class.&quot; */
-	public static final String PARAMETER_RANGE_NAMES = "classes";
+    /**
+     * The parameter name for &quot;Defines the classes and the upper limits of each class.&quot;
+     */
+    public static final String PARAMETER_RANGE_NAMES = "classes";
 
 	private static final String PARAMETER_CLASS_NAME = "class_names";
 
@@ -80,7 +84,12 @@ public class UserBasedDiscretization extends AbstractDiscretizationOperator {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public UserBasedDiscretization(OperatorDescription description) {
+    /**
+     * Instantiates a new User based discretization.
+     *
+     * @param description the description
+     */
+    public UserBasedDiscretization(OperatorDescription description) {
 		super(description);
 	}
 

@@ -20,13 +20,16 @@ package com.rapidminer.gui;
 
 /**
  * Listener to observe changes of the current Perspective.
- * 
+ *
  * @author Thilo Kamradt
- * 
  */
 public interface PerspectiveChangeListener {
 
-	/** will be called if the current perspective changes */
-	public void perspectiveChangedTo(Perspective perspective);
+    /**
+     * will be called if the current perspective changes  @param perspective the perspective
+     *
+     * @param perspective the perspective
+     */
+    public void perspectiveChangedTo(Perspective perspective);
 
 }

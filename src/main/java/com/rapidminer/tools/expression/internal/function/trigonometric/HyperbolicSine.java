@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric hyperbolic sine of an angle.
  *
  * @author Denis Schernov
- *
  */
 public class HyperbolicSine extends Abstract1DoubleInputFunction {
 
-	public HyperbolicSine() {
+    /**
+     * Instantiates a new Hyperbolic sine.
+     */
+    public HyperbolicSine() {
 		super("trigonometrical.sinh", Ontology.NUMERICAL);
 	}
 

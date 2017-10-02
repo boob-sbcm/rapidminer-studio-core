@@ -51,13 +51,22 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class NumericToBinominal extends NumericToNominal {
 
-	/** The parameter name for &quot;The minimal value which is mapped to false (included).&quot; */
-	public static final String PARAMETER_MIN = "min";
+    /**
+     * The parameter name for &quot;The minimal value which is mapped to false (included).&quot;
+     */
+    public static final String PARAMETER_MIN = "min";
 
-	/** The parameter name for &quot;The maximal value which is mapped to false (included).&quot; */
-	public static final String PARAMETER_MAX = "max";
+    /**
+     * The parameter name for &quot;The maximal value which is mapped to false (included).&quot;
+     */
+    public static final String PARAMETER_MAX = "max";
 
-	public NumericToBinominal(OperatorDescription description) {
+    /**
+     * Instantiates a new Numeric to binominal.
+     *
+     * @param description the description
+     */
+    public NumericToBinominal(OperatorDescription description) {
 		super(description);
 	}
 

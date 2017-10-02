@@ -37,9 +37,8 @@ import org.jfree.ui.RectangleEdge;
 
 /**
  * A {@link CrosshairOverlay} which supports multiple range axes.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class MultiAxesCrosshairOverlay extends CrosshairOverlay {
 
@@ -55,7 +54,13 @@ public class MultiAxesCrosshairOverlay extends CrosshairOverlay {
 		addRangeCrosshair(0, crosshair);
 	}
 
-	public void addRangeCrosshair(int axisIdx, Crosshair crosshair) {
+    /**
+     * Add range crosshair.
+     *
+     * @param axisIdx   the axis idx
+     * @param crosshair the crosshair
+     */
+    public void addRangeCrosshair(int axisIdx, Crosshair crosshair) {
 		while (rangeCrosshairs.size() < axisIdx + 1) {
 			rangeCrosshairs.add(new ArrayList<Crosshair>());
 		}
@@ -72,7 +77,13 @@ public class MultiAxesCrosshairOverlay extends CrosshairOverlay {
 		removeRangeCrosshair(0, crosshair);
 	}
 
-	public void removeRangeCrosshair(int axisIdx, Crosshair crosshair) {
+    /**
+     * Remove range crosshair.
+     *
+     * @param axisIdx   the axis idx
+     * @param crosshair the crosshair
+     */
+    public void removeRangeCrosshair(int axisIdx, Crosshair crosshair) {
 		if (rangeCrosshairs.size() > axisIdx) {
 			ArrayList<Crosshair> crosshairsForRange = rangeCrosshairs.get(axisIdx);
 			crosshairsForRange.remove(crosshair);

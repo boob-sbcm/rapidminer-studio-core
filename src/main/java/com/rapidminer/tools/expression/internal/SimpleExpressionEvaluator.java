@@ -32,7 +32,6 @@ import com.rapidminer.tools.expression.ExpressionType;
  * that is not {@code null} is satisfied.
  *
  * @author Gisa Schaefer
- *
  */
 public class SimpleExpressionEvaluator implements ExpressionEvaluator {
 
@@ -44,10 +43,17 @@ public class SimpleExpressionEvaluator implements ExpressionEvaluator {
 	private final ExpressionType type;
 	private final boolean isConstant;
 
-	/**
-	 * Initializes the fields.
-	 */
-	protected SimpleExpressionEvaluator(ExpressionType type, Callable<String> stringCallable, DoubleCallable doubleCallable,
+    /**
+     * Initializes the fields.
+     *
+     * @param type            the type
+     * @param stringCallable  the string callable
+     * @param doubleCallable  the double callable
+     * @param booleanCallable the boolean callable
+     * @param dateCallable    the date callable
+     * @param isConstant      the is constant
+     */
+    protected SimpleExpressionEvaluator(ExpressionType type, Callable<String> stringCallable, DoubleCallable doubleCallable,
 			Callable<Boolean> booleanCallable, Callable<Date> dateCallable, boolean isConstant) {
 		this.stringCallable = stringCallable;
 		this.dateCallable = dateCallable;
@@ -57,129 +63,107 @@ public class SimpleExpressionEvaluator implements ExpressionEvaluator {
 		this.isConstant = isConstant;
 	}
 
-	/**
-	 * Creates an {@link ExpressionEvaluator} with the given data where the other callables are
-	 * {@code null}. type must be ExpressionType.INTEGER or ExpressionType.DOUBLE.
-	 *
-	 * @param doubleCallable
-	 *            the callable to store
-	 * @param type
-	 *            the type of the result of the callable, must be ExpressionType.INTEGER or
-	 *            ExpressionType.DOUBLE
-	 * @param isConstant
-	 *            whether the result of the callable is constant
-	 */
-	public SimpleExpressionEvaluator(DoubleCallable doubleCallable, ExpressionType type, boolean isConstant) {
+    /**
+     * Creates an {@link ExpressionEvaluator} with the given data where the other callables are
+     * {@code null}. type must be ExpressionType.INTEGER or ExpressionType.DOUBLE.
+     *
+     * @param doubleCallable the callable to store
+     * @param type           the type of the result of the callable, must be ExpressionType.INTEGER or            ExpressionType.DOUBLE
+     * @param isConstant     whether the result of the callable is constant
+     */
+    public SimpleExpressionEvaluator(DoubleCallable doubleCallable, ExpressionType type, boolean isConstant) {
 		this(type, null, doubleCallable, null, null, isConstant);
 		if (type != ExpressionType.DOUBLE && type != ExpressionType.INTEGER) {
 			throw new IllegalArgumentException("Invalid type " + type + "for Callable");
 		}
 	}
 
-	/**
-	 * Creates an {@link ExpressionEvaluator} with the given data where the other callables are
-	 * {@code null}. type must be ExpressionType.STRING.
-	 *
-	 * @param stringCallable
-	 *            the callable to store
-	 * @param type
-	 *            the type of the result of the callable, must be ExpressionType.STRING
-	 * @param isConstant
-	 *            whether the result of the callable is constant
-	 */
-	public SimpleExpressionEvaluator(Callable<String> stringCallable, ExpressionType type, boolean isConstant) {
+    /**
+     * Creates an {@link ExpressionEvaluator} with the given data where the other callables are
+     * {@code null}. type must be ExpressionType.STRING.
+     *
+     * @param stringCallable the callable to store
+     * @param type           the type of the result of the callable, must be ExpressionType.STRING
+     * @param isConstant     whether the result of the callable is constant
+     */
+    public SimpleExpressionEvaluator(Callable<String> stringCallable, ExpressionType type, boolean isConstant) {
 		this(type, stringCallable, null, null, null, isConstant);
 		if (type != ExpressionType.STRING) {
 			throw new IllegalArgumentException("Invalid type " + type + "for Callable");
 		}
 	}
 
-	/**
-	 * Creates an {@link ExpressionEvaluator} with the given data where the other callables are
-	 * {@code null}. type must be ExpressionType.STRING.
-	 *
-	 * @param dateCallable
-	 *            the callable to store
-	 * @param type
-	 *            the type of the result of the callable, must be ExpressionType.DATE
-	 * @param isConstant
-	 *            whether the result of the callable is constant
-	 */
-	public SimpleExpressionEvaluator(ExpressionType type, Callable<Date> dateCallable, boolean isConstant) {
+    /**
+     * Creates an {@link ExpressionEvaluator} with the given data where the other callables are
+     * {@code null}. type must be ExpressionType.STRING.
+     *
+     * @param type         the type of the result of the callable, must be ExpressionType.DATE
+     * @param dateCallable the callable to store
+     * @param isConstant   whether the result of the callable is constant
+     */
+    public SimpleExpressionEvaluator(ExpressionType type, Callable<Date> dateCallable, boolean isConstant) {
 		this(type, null, null, null, dateCallable, isConstant);
 		if (type != ExpressionType.DATE) {
 			throw new IllegalArgumentException("Invalid type " + type + "for Callable");
 		}
 	}
 
-	/**
-	 * Creates an {@link ExpressionEvaluator} with the given data where the other callables are
-	 * {@code null}. type must be ExpressionType.BOOLEAN.
-	 *
-	 * @param booleanCallable
-	 *            the callable to store
-	 * @param type
-	 *            the type of the result of the callable, must be ExpressionType.BOOLEAN
-	 * @param isConstant
-	 *            whether the result of the callable is constant
-	 */
-	public SimpleExpressionEvaluator(Callable<Boolean> booleanCallable, boolean isConstant, ExpressionType type) {
+    /**
+     * Creates an {@link ExpressionEvaluator} with the given data where the other callables are
+     * {@code null}. type must be ExpressionType.BOOLEAN.
+     *
+     * @param booleanCallable the callable to store
+     * @param isConstant      whether the result of the callable is constant
+     * @param type            the type of the result of the callable, must be ExpressionType.BOOLEAN
+     */
+    public SimpleExpressionEvaluator(Callable<Boolean> booleanCallable, boolean isConstant, ExpressionType type) {
 		this(type, null, null, booleanCallable, null, isConstant);
 		if (type != ExpressionType.BOOLEAN) {
 			throw new IllegalArgumentException("Invalid type " + type + "for Callable");
 		}
 	}
 
-	/**
-	 * Creates an {@link ExpressionEvaluator} with a {@link DoubleCallable} returning constantly
-	 * doubleValue. type must be ExpressionType.INTEGER or ExpressionType.DOUBLE.
-	 *
-	 * @param doubleValue
-	 *            the constant double return value
-	 * @param type
-	 *            the type of the result of the callable, must be ExpressionType.INTEGER or
-	 *            ExpressionType.DOUBLE
-	 */
-	public SimpleExpressionEvaluator(double doubleValue, ExpressionType type) {
+    /**
+     * Creates an {@link ExpressionEvaluator} with a {@link DoubleCallable} returning constantly
+     * doubleValue. type must be ExpressionType.INTEGER or ExpressionType.DOUBLE.
+     *
+     * @param doubleValue the constant double return value
+     * @param type        the type of the result of the callable, must be ExpressionType.INTEGER or            ExpressionType.DOUBLE
+     */
+    public SimpleExpressionEvaluator(double doubleValue, ExpressionType type) {
 		this(makeConstantCallable(doubleValue), type, true);
 	}
 
-	/**
-	 * Creates an {@link ExpressionEvaluator} with a {@link Callable<String>} returning constantly
-	 * stringValue. type must be ExpressionType.STRING.
-	 *
-	 * @param stringValue
-	 *            the constant String return value
-	 * @param type
-	 *            the type of the result of the callable, must be ExpressionType.STRING
-	 */
-	public SimpleExpressionEvaluator(String stringValue, ExpressionType type) {
+    /**
+     * Creates an {@link ExpressionEvaluator} with a {@link Callable<String>} returning constantly
+     * stringValue. type must be ExpressionType.STRING.
+     *
+     * @param stringValue the constant String return value
+     * @param type        the type of the result of the callable, must be ExpressionType.STRING
+     */
+    public SimpleExpressionEvaluator(String stringValue, ExpressionType type) {
 		this(makeConstantCallable(stringValue), type, true);
 	}
 
-	/**
-	 * Creates an {@link ExpressionEvaluator} with a {@link Callable<Boolean>} returning constantly
-	 * booleanValue.
-	 *
-	 * @param booleanValue
-	 *            the constant Boolean return value
-	 * @param type
-	 *            the type of the result of the callable, must be ExpressionType.BOOLEAN
-	 */
-	public SimpleExpressionEvaluator(Boolean booleanValue, ExpressionType type) {
+    /**
+     * Creates an {@link ExpressionEvaluator} with a {@link Callable<Boolean>} returning constantly
+     * booleanValue.
+     *
+     * @param booleanValue the constant Boolean return value
+     * @param type         the type of the result of the callable, must be ExpressionType.BOOLEAN
+     */
+    public SimpleExpressionEvaluator(Boolean booleanValue, ExpressionType type) {
 		this(makeConstantCallable(booleanValue), true, type);
 	}
 
-	/**
-	 * Creates an {@link ExpressionEvaluator} with a {@link Callable<Date>} returning constantly
-	 * dateValue.
-	 *
-	 * @param dateValue
-	 *            the constant Date return value
-	 * @param type
-	 *            type the type of the result of the callable, must be ExpressionType.DATE
-	 */
-	public SimpleExpressionEvaluator(Date dateValue, ExpressionType type) {
+    /**
+     * Creates an {@link ExpressionEvaluator} with a {@link Callable<Date>} returning constantly
+     * dateValue.
+     *
+     * @param dateValue the constant Date return value
+     * @param type      type the type of the result of the callable, must be ExpressionType.DATE
+     */
+    public SimpleExpressionEvaluator(Date dateValue, ExpressionType type) {
 		this(type, makeConstantCallable(dateValue), true);
 	}
 

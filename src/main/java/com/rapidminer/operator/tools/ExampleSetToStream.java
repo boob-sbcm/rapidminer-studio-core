@@ -55,67 +55,116 @@ import com.rapidminer.tools.Ontology;
  * Writes and reads a example sets to and from from streams. TODO: Implement sparse counterpart.
  *
  * @author Simon Fischer
- *
  */
 public class ExampleSetToStream {
 
-	/** Original version, used for RapidMiner beta 5 */
-	public static final int VERSION_1 = 1;
+    /**
+     * Original version, used for RapidMiner beta 5
+     */
+    public static final int VERSION_1 = 1;
 
-	/**
-	 * Fixes a problem with long strings in DataOutput.writeUTF() which restricts the length to 65k
-	 * bytes. Used since RapidMiner 5.0 final release, revision 7197.
-	 */
-	public static final int VERSION_2 = 2;
+    /**
+     * Fixes a problem with long strings in DataOutput.writeUTF() which restricts the length to 65k
+     * bytes. Used since RapidMiner 5.0 final release, revision 7197.
+     */
+    public static final int VERSION_2 = 2;
 
-	/**
-	 * Adds support for {@link Annotations} Used since revision 7430.
-	 */
-	public static final int VERSION_3 = 3;
+    /**
+     * Adds support for {@link Annotations} Used since revision 7430.
+     */
+    public static final int VERSION_3 = 3;
 
-	/**
-	 * Current version of the stream protocol. To add a new version: - Add a constant here, and
-	 * redirect the constant CURRENT_VERSION to the new constant. - Add SVN revision to the comment
-	 * of the new version - In {@link SerializationType} add a new enum constant for the new version
-	 * and make it the default
-	 * */
-	public static final int CURRENT_VERSION = VERSION_3;
+    /**
+     * Current version of the stream protocol. To add a new version: - Add a constant here, and
+     * redirect the constant CURRENT_VERSION to the new constant. - Add SVN revision to the comment
+     * of the new version - In {@link SerializationType} add a new enum constant for the new version
+     * and make it the default
+     */
+    public static final int CURRENT_VERSION = VERSION_3;
 
 	private static final Charset STRING_CHARSET = Charset.forName("UTF-8");
 
-	public enum ColumnType {
-		NOMINAL_BYTE, NOMINAL_SHORT, NOMINAL_INTEGER, DOUBLE, INTEGER;
+    /**
+     * The enum Column type.
+     */
+    public enum ColumnType {
+        /**
+         * Nominal byte column type.
+         */
+        NOMINAL_BYTE, /**
+         * Nominal short column type.
+         */
+        NOMINAL_SHORT, /**
+         * Nominal integer column type.
+         */
+        NOMINAL_INTEGER, /**
+         * Double column type.
+         */
+        DOUBLE, /**
+         * Integer column type.
+         */
+        INTEGER;
 	}
 
-	public static class Header {
+    /**
+     * The type Header.
+     */
+    public static class Header {
 
 		private final Annotations annotations;
 		private final List<AttributeRole> allRoles;
 		private final boolean sparse;
 
-		protected Header(final Annotations annotations, final List<AttributeRole> allRoles, final boolean sparse) {
+        /**
+         * Instantiates a new Header.
+         *
+         * @param annotations the annotations
+         * @param allRoles    the all roles
+         * @param sparse      the sparse
+         */
+        protected Header(final Annotations annotations, final List<AttributeRole> allRoles, final boolean sparse) {
 			super();
 			this.allRoles = allRoles;
 			this.sparse = sparse;
 			this.annotations = annotations;
 		}
 
-		public List<AttributeRole> getAllRoles() {
+        /**
+         * Gets all roles.
+         *
+         * @return the all roles
+         */
+        public List<AttributeRole> getAllRoles() {
 			return allRoles;
 		}
 
-		public boolean isSparse() {
+        /**
+         * Is sparse boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isSparse() {
 			return sparse;
 		}
 
-		public Annotations getAnnotations() {
+        /**
+         * Gets annotations.
+         *
+         * @return the annotations
+         */
+        public Annotations getAnnotations() {
 			return annotations;
 		}
 	}
 
 	private final int version;
 
-	public ExampleSetToStream(final int version) {
+    /**
+     * Instantiates a new Example set to stream.
+     *
+     * @param version the version
+     */
+    public ExampleSetToStream(final int version) {
 		this.version = version;
 		if (version != CURRENT_VERSION) {
 			LogService.getRoot().log(Level.FINE,
@@ -123,8 +172,14 @@ public class ExampleSetToStream {
 		}
 	}
 
-	/** Writes header and data of the example set to the stream. */
-	public void write(final ExampleSet exampleSet, final OutputStream outputStream) throws IOException {
+    /**
+     * Writes header and data of the example set to the stream.  @param exampleSet the example set
+     *
+     * @param exampleSet   the example set
+     * @param outputStream the output stream
+     * @throws IOException the io exception
+     */
+    public void write(final ExampleSet exampleSet, final OutputStream outputStream) throws IOException {
 		DataOutputStream out = new DataOutputStream(outputStream);
 		List<AttributeRole> allRoles = new LinkedList<>();
 		Iterator<AttributeRole> i = exampleSet.getAttributes().allAttributeRoles();
@@ -175,16 +230,22 @@ public class ExampleSetToStream {
 		}
 	}
 
-	/**
-	 * Writes the annotations, meta data, including nominal mappings, to the stream, in the
-	 * following order: - annotations {@link #writeAnnotations(DataOutput, Annotations)} - number of
-	 * attributes to come - For each attribute - name - special name (empty string if not special!)
-	 * - value type name - block type name - If nominal, the number of nominal values, and for each
-	 * nominal value - the index - the string - the annotations of the attribute After that follows
-	 * a boolean indicating whether we are using sparse format. If yes, all default values will be
-	 * sent as doubles, one per attribute.
-	 */
-	public void writeHeader(final Annotations annotations, final List<AttributeRole> allAttributes,
+    /**
+     * Writes the annotations, meta data, including nominal mappings, to the stream, in the
+     * following order: - annotations {@link #writeAnnotations(DataOutput, Annotations)} - number of
+     * attributes to come - For each attribute - name - special name (empty string if not special!)
+     * - value type name - block type name - If nominal, the number of nominal values, and for each
+     * nominal value - the index - the string - the annotations of the attribute After that follows
+     * a boolean indicating whether we are using sparse format. If yes, all default values will be
+     * sent as doubles, one per attribute.
+     *
+     * @param annotations   the annotations
+     * @param allAttributes the all attributes
+     * @param out           the out
+     * @param sparse        the sparse
+     * @throws IOException the io exception
+     */
+    public void writeHeader(final Annotations annotations, final List<AttributeRole> allAttributes,
 			final DataOutputStream out, final boolean sparse) throws IOException {
 		writeAnnotations(out, annotations);
 		out.writeInt(allAttributes.size());
@@ -217,8 +278,14 @@ public class ExampleSetToStream {
 		}
 	}
 
-	/** Reads an example set as written by {@link #write(ExampleSet, OutputStream)}. */
-	public ExampleSet read(final InputStream inputStream) throws IOException {
+    /**
+     * Reads an example set as written by {@link #write(ExampleSet, OutputStream)}.  @param inputStream the input stream
+     *
+     * @param inputStream the input stream
+     * @return the example set
+     * @throws IOException the io exception
+     */
+    public ExampleSet read(final InputStream inputStream) throws IOException {
 		DataInputStream in = new DataInputStream(inputStream);
 
 		// Extract Header information
@@ -269,11 +336,15 @@ public class ExampleSetToStream {
 		return exampleSet;
 	}
 
-	/**
-	 * Reads meta data information as written by {@link #writeHeader(List, DataOutputStream)}. TODO:
-	 * This must return an ExampleSetHeader including the roles and the sparse flag.
-	 */
-	public Header readHeader(final DataInputStream in) throws IOException {
+    /**
+     * Reads meta data information as written by {@link #writeHeader(List, DataOutputStream)}. TODO:
+     * This must return an ExampleSetHeader including the roles and the sparse flag.
+     *
+     * @param in the in
+     * @return the header
+     * @throws IOException the io exception
+     */
+    public Header readHeader(final DataInputStream in) throws IOException {
 		Annotations annotations = readAnnotations(in);
 		int numAttributes = in.readInt();
 		List<AttributeRole> allRoles = new LinkedList<>();
@@ -334,8 +405,13 @@ public class ExampleSetToStream {
 		return new Header(annotations, allRoles, sparse);
 	}
 
-	/** Extracts column types such that they have minimal memory consumption. */
-	public ColumnType[] convertToColumnTypes(final List<AttributeRole> allRoles) {
+    /**
+     * Extracts column types such that they have minimal memory consumption.  @param allRoles the all roles
+     *
+     * @param allRoles the all roles
+     * @return the column type [ ]
+     */
+    public ColumnType[] convertToColumnTypes(final List<AttributeRole> allRoles) {
 		ColumnType columnTypes[] = new ColumnType[allRoles.size()];
 		for (int i = 0; i < columnTypes.length; i++) {
 			Attribute att = allRoles.get(i).getAttribute();
@@ -360,11 +436,19 @@ public class ExampleSetToStream {
 		return columnTypes;
 	}
 
-	/**
-	 * Writes a single datum with the given index. The data type is specified by the parameter
-	 * columnType. If sparse is true, the value is prefixed by the given attributeIndex.
-	 */
-	public final void writeDatum(final double value, final int attributeIndex, final Attribute attribute,
+    /**
+     * Writes a single datum with the given index. The data type is specified by the parameter
+     * columnType. If sparse is true, the value is prefixed by the given attributeIndex.
+     *
+     * @param value          the value
+     * @param attributeIndex the attribute index
+     * @param attribute      the attribute
+     * @param columnType     the column type
+     * @param out            the out
+     * @param sparse         the sparse
+     * @throws IOException the io exception
+     */
+    public final void writeDatum(final double value, final int attributeIndex, final Attribute attribute,
 			final ColumnType columnType, final DataOutput out, final boolean sparse) throws IOException {
 		if (sparse) {
 			if (Tools.isDefault(attribute.getDefault(), value)) {
@@ -465,8 +549,17 @@ public class ExampleSetToStream {
 		}
 	}
 
-	/** Reads a single row from the stream. */
-	public void readRow(final DataInputStream in, final double[] data, final ColumnType[] columnTypes, final boolean sparse,
+    /**
+     * Reads a single row from the stream.  @param in the in
+     *
+     * @param in             the in
+     * @param data           the data
+     * @param columnTypes    the column types
+     * @param sparse         the sparse
+     * @param sparseDefaults the sparse defaults
+     * @throws IOException the io exception
+     */
+    public void readRow(final DataInputStream in, final double[] data, final ColumnType[] columnTypes, final boolean sparse,
 			final double[] sparseDefaults) throws IOException {
 		if (sparse) {
 			System.arraycopy(sparseDefaults, 0, data, 0, sparseDefaults.length);
@@ -519,16 +612,25 @@ public class ExampleSetToStream {
 		}
 	}
 
-	public int getVersion() {
+    /**
+     * Gets version.
+     *
+     * @return the version
+     */
+    public int getVersion() {
 		return version;
 	}
 
-	/**
-	 * One integer for size For each annotation - one string (
-	 * {@link #writeString(DataOutput, String)} for key - one string (
-	 * {@link #writeString(DataOutput, String)} for value
-	 * */
-	public void writeAnnotations(final DataOutput out, final Annotations annotations) throws IOException {
+    /**
+     * One integer for size For each annotation - one string (
+     * {@link #writeString(DataOutput, String)} for key - one string (
+     * {@link #writeString(DataOutput, String)} for value
+     *
+     * @param out         the out
+     * @param annotations the annotations
+     * @throws IOException the io exception
+     */
+    public void writeAnnotations(final DataOutput out, final Annotations annotations) throws IOException {
 		if (version < VERSION_3) {
 			// LogService.getRoot().warning("Ignoring annotations in example set stream version "+version);
 			LogService.getRoot().log(Level.WARNING, "com.rapidminer.operator.tools.ExampleSetToStream.ignoring_annotations",
@@ -546,7 +648,14 @@ public class ExampleSetToStream {
 		}
 	}
 
-	public Annotations readAnnotations(final DataInput in) throws IOException {
+    /**
+     * Read annotations annotations.
+     *
+     * @param in the in
+     * @return the annotations
+     * @throws IOException the io exception
+     */
+    public Annotations readAnnotations(final DataInput in) throws IOException {
 		if (version < VERSION_3) {
 			return new Annotations();
 		} else {

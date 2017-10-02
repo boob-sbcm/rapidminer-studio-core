@@ -27,27 +27,26 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryString
  * defined by a regular expression
  *
  * @author David Arnu
- *
  */
 public class ReplaceAll extends AbstractArbitraryStringInputStringOutputFunction {
 
-	/**
-	 * Creates a function for replacing parts of a string by an other
-	 */
-	public ReplaceAll() {
+    /**
+     * Creates a function for replacing parts of a string by an other
+     */
+    public ReplaceAll() {
 		super("text_transformation.replace_all", 3);
 	}
 
-	/**
-	 * Replaces all occurences of <code>regex</code> in <code>text</code> with
-	 * <code>replacement</code>
-	 *
-	 * @param text
-	 * @param regex
-	 * @param replacement
-	 * @return the string with replacements
-	 */
-	protected String compute(String text, String regex, String replacement) {
+    /**
+     * Replaces all occurences of <code>regex</code> in <code>text</code> with
+     * <code>replacement</code>
+     *
+     * @param text        the text
+     * @param regex       the regex
+     * @param replacement the replacement
+     * @return the string with replacements
+     */
+    protected String compute(String text, String regex, String replacement) {
 
 		// missing values are not changed
 		if (text == null || regex == null || replacement == null) {

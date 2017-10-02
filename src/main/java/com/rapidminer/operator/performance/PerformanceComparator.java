@@ -24,7 +24,7 @@ import java.util.Comparator;
 
 /**
  * Compares two {@link PerformanceVector}s.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public interface PerformanceComparator extends Comparator<PerformanceVector>, Serializable {

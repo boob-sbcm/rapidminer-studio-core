@@ -49,12 +49,11 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Tests for concurrent repository access for different {@link Folder} implementations.
- *
+ * <p>
  * Each test spawns a number of threads with mixed operations and checks if the folder is in a
  * consistent state.
  *
  * @author Peter Csaszar, Marcel Michel
- *
  */
 public class ConcurrentRepositoryTest {
 
@@ -100,7 +99,12 @@ public class ConcurrentRepositoryTest {
 		return folder;
 	}
 
-	@Test
+    /**
+     * Resource folder data entries.
+     *
+     * @throws Exception the exception
+     */
+    @Test
 	public void resourceFolder_DataEntries() throws Exception {
 		Folder reference = getTestResourceFolder("data");
 		Folder test = getTestResourceFolder("data");
@@ -108,14 +112,24 @@ public class ConcurrentRepositoryTest {
 				EXPECTED_RESOURCE_DATA_ENTRIES);
 	}
 
-	@Test
+    /**
+     * Simple folder data entries.
+     *
+     * @throws Exception the exception
+     */
+    @Test
 	public void simpleFolder_DataEntries() throws Exception {
 		Folder reference = getTestResourceFolderAsSimpleFolder();
 		Folder test = getTestResourceFolderAsSimpleFolder();
 		testLoadWithRefresh(test, reference.getDataEntries().size(), reference.getSubfolders().size());
 	}
 
-	@Test
+    /**
+     * Simple folder create items.
+     *
+     * @throws Exception the exception
+     */
+    @Test
 	public void simpleFolder_CreateItems() throws Exception {
 		File root = Files.createTempDirectory("testfolder_").toFile();
 		root.deleteOnExit();

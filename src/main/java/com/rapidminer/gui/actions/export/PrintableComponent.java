@@ -26,40 +26,44 @@ import java.awt.Component;
  * and an export as image action is called. If a subclass of {@link AbstractPrintComponentAction}
  * finds a {@link Component} that implements this interface, only the {@link Component} returned by
  * {@link #getComponent()} will be exported/printed.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public interface PrintableComponent {
 
-	/**
-	 * @return the component that should be exported/printed. Can be the implementing component
-	 *         itself or a subcomponent of the implementing component. Can also return
-	 *         <code>null</code> if exporting/printing of component is currently not supported.
-	 */
-	public Component getExportComponent();
+    /**
+     * Gets export component.
+     *
+     * @return the component that should be exported/printed. Can be the implementing component         itself or a subcomponent of the implementing component. Can also return         <code>null</code> if exporting/printing of component is currently not supported.
+     */
+    public Component getExportComponent();
 
-	/**
-	 * @return the name that should be used when exporting. Must not be <code>null</code>.
-	 */
-	public String getExportName();
+    /**
+     * Gets export name.
+     *
+     * @return the name that should be used when exporting. Must not be <code>null</code>.
+     */
+    public String getExportName();
 
-	/**
-	 * @return the identifier that will be shown below the export name in the export dialog. Can be
-	 *         be <code>null</code>.
-	 */
-	public String getIdentifier();
+    /**
+     * Gets identifier.
+     *
+     * @return the identifier that will be shown below the export name in the export dialog. Can be         be <code>null</code>.
+     */
+    public String getIdentifier();
 
-	/**
-	 * @return the name of the 24x24 icon that is displayed in the print dialog. Must not be
-	 *         <code>null</code>. An icon with the specified name must be present in the icons/24
-	 *         folder.
-	 */
-	public String getExportIconName();
+    /**
+     * Gets export icon name.
+     *
+     * @return the name of the 24x24 icon that is displayed in the print dialog. Must not be         <code>null</code>. An icon with the specified name must be present in the icons/24         folder.
+     */
+    public String getExportIconName();
 
-	/**
-	 * @return <code>true</code> if the exported component currently is shown on screen.
-	 */
-	public boolean isShowing();
+    /**
+     * Is showing boolean.
+     *
+     * @return <code>true</code> if the exported component currently is shown on screen.
+     */
+    public boolean isShowing();
 
 }

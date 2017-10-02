@@ -29,11 +29,13 @@ import com.rapidminer.operator.nio.model.xlsx.XlsxUtilities.XlsxCellCoordinates;
  * Unit tests for methods from {@link XlsxUtilities} class.
  *
  * @author Nils Woehler
- *
  */
 public class XlsxUtiliesTest {
 
-	@Test
+    /**
+     * Convert to column index test.
+     */
+    @Test
 	public void convertToColumnIndexTest() {
 		assertEquals(-1, XlsxUtilities.convertToColumnIndex(""));
 		assertEquals(0, XlsxUtilities.convertToColumnIndex("A"));
@@ -48,7 +50,10 @@ public class XlsxUtiliesTest {
 		assertEquals(16_383, XlsxUtilities.convertToColumnIndex("XFD"));
 	}
 
-	@Test
+    /**
+     * Convert to column name test.
+     */
+    @Test
 	public void convertToColumnNameTest() {
 		assertEquals("A", XlsxUtilities.convertToColumnName(0));
 		assertEquals("B", XlsxUtilities.convertToColumnName(1));
@@ -62,12 +67,18 @@ public class XlsxUtiliesTest {
 		assertEquals("XFD", XlsxUtilities.convertToColumnName(16_383));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+    /**
+     * Convert to column name illegal argument test.
+     */
+    @Test(expected = IllegalArgumentException.class)
 	public void convertToColumnNameIllegalArgumentTest() {
 		XlsxUtilities.convertToColumnName(-1);
 	}
 
-	@Test
+    /**
+     * Convert cell ref to coordinates test.
+     */
+    @Test
 	public void convertCellRefToCoordinatesTest() {
 		assertEquals(new XlsxCellCoordinates(0, 0), XlsxUtilities.convertCellRefToCoordinates("A1"));
 		assertEquals(new XlsxCellCoordinates(0, 1), XlsxUtilities.convertCellRefToCoordinates("A2"));
@@ -80,13 +91,19 @@ public class XlsxUtiliesTest {
 		assertEquals(new XlsxCellCoordinates(16_383, 1_048_575), XlsxUtilities.convertCellRefToCoordinates("XFD1048576"));
 	}
 
-	@Test
+    /**
+     * Convert to cell ref to coordinates illegal argument no digit test.
+     */
+    @Test
 	public void convertToCellRefToCoordinatesIllegalArgumentNoDigitTest() {
 		assertEquals(new XlsxCellCoordinates(26, XlsxCellCoordinates.NO_ROW_NUMBER),
 				XlsxUtilities.convertCellRefToCoordinates("AA"));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+    /**
+     * Convert to cell ref to coordinates illegal argument not letter test.
+     */
+    @Test(expected = IllegalArgumentException.class)
 	public void convertToCellRefToCoordinatesIllegalArgumentNotLetterTest() {
 		XlsxUtilities.convertCellRefToCoordinates("1");
 	}

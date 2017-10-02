@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  * The model for the {@link com.rapidminer.gui.viewer.DataTableViewerTable}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DataTableColumnEditTableModel extends DataTableViewerTableModel {
@@ -36,7 +36,13 @@ public class DataTableColumnEditTableModel extends DataTableViewerTableModel {
 	private List<String> editableColumnNames;
 	private Object[][] editableColumnValues;
 
-	public DataTableColumnEditTableModel(DataTable dataTable, List<String> editableColumnNames) {
+    /**
+     * Instantiates a new Data table column edit table model.
+     *
+     * @param dataTable           the data table
+     * @param editableColumnNames the editable column names
+     */
+    public DataTableColumnEditTableModel(DataTable dataTable, List<String> editableColumnNames) {
 		super(dataTable);
 		this.dataTable = dataTable;
 		this.editableColumnNames = editableColumnNames;
@@ -90,7 +96,13 @@ public class DataTableColumnEditTableModel extends DataTableViewerTableModel {
 		return super.getColumnName(col - editableColumnNames.size());
 	}
 
-	public Object[] getEnteredValues(int column) {
+    /**
+     * Get entered values object [ ].
+     *
+     * @param column the column
+     * @return the object [ ]
+     */
+    public Object[] getEnteredValues(int column) {
 		return editableColumnValues[column];
 	}
 }

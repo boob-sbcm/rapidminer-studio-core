@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for getProcessIdsForJobId complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="getProcessIdsForJobId">
  *   &lt;complexContent>
@@ -39,8 +39,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getProcessIdsForJobId", propOrder = {
@@ -48,11 +46,15 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetProcessIdsForJobId {
 
+    /**
+     * The Job id.
+     */
     protected int jobId;
 
     /**
      * Gets the value of the jobId property.
-     * 
+     *
+     * @return the job id
      */
     public int getJobId() {
         return jobId;
@@ -60,7 +62,8 @@ public class GetProcessIdsForJobId {
 
     /**
      * Sets the value of the jobId property.
-     * 
+     *
+     * @param value the value
      */
     public void setJobId(int value) {
         this.jobId = value;

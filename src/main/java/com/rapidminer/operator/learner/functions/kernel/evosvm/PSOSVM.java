@@ -42,53 +42,66 @@ import java.util.List;
  * This is a SVM implementation using a particle swarm optimization (PSO) approach to solve the dual
  * optimization problem of a SVM. It turns out that on many datasets this simple implementation is
  * as fast and accurate as the usual SVM implementations.
- * 
- * @rapidminer.index SVM
- * 
+ *
  * @author Ingo Mierswa
+ * @rapidminer.index SVM
  */
 public class PSOSVM extends AbstractKernelBasedLearner {
 
-	/**
-	 * The parameter name for &quot;Indicates if a dialog with a convergence plot should be
-	 * drawn.&quot;
-	 */
-	public static final String PARAMETER_SHOW_CONVERGENCE_PLOT = "show_convergence_plot";
+    /**
+     * The parameter name for &quot;Indicates if a dialog with a convergence plot should be
+     * drawn.&quot;
+     */
+    public static final String PARAMETER_SHOW_CONVERGENCE_PLOT = "show_convergence_plot";
 
-	/**
-	 * The parameter name for &quot;The SVM complexity constant (0: calculates probably good
-	 * value).&quot;
-	 */
-	public static final String PARAMETER_C = "C";
+    /**
+     * The parameter name for &quot;The SVM complexity constant (0: calculates probably good
+     * value).&quot;
+     */
+    public static final String PARAMETER_C = "C";
 
-	/** The parameter name for &quot;Stop after this many evaluations&quot; */
-	public static final String PARAMETER_MAX_EVALUATIONS = "max_evaluations";
+    /**
+     * The parameter name for &quot;Stop after this many evaluations&quot;
+     */
+    public static final String PARAMETER_MAX_EVALUATIONS = "max_evaluations";
 
-	/**
-	 * The parameter name for &quot;Stop after this number of generations without improvement (-1:
-	 * optimize until max_iterations).&quot;
-	 */
-	public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
+    /**
+     * The parameter name for &quot;Stop after this number of generations without improvement (-1:
+     * optimize until max_iterations).&quot;
+     */
+    public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
 
-	/** The parameter name for &quot;The population size (-1: number of examples)&quot; */
-	public static final String PARAMETER_POPULATION_SIZE = "population_size";
+    /**
+     * The parameter name for &quot;The population size (-1: number of examples)&quot;
+     */
+    public static final String PARAMETER_POPULATION_SIZE = "population_size";
 
-	/** The parameter name for &quot;The (initial) weight for the old weighting.&quot; */
-	public static final String PARAMETER_INERTIA_WEIGHT = "inertia_weight";
+    /**
+     * The parameter name for &quot;The (initial) weight for the old weighting.&quot;
+     */
+    public static final String PARAMETER_INERTIA_WEIGHT = "inertia_weight";
 
-	/** The parameter name for &quot;The weight for the individual's best position during run.&quot; */
-	public static final String PARAMETER_LOCAL_BEST_WEIGHT = "local_best_weight";
+    /**
+     * The parameter name for &quot;The weight for the individual's best position during run.&quot;
+     */
+    public static final String PARAMETER_LOCAL_BEST_WEIGHT = "local_best_weight";
 
-	/** The parameter name for &quot;The weight for the population's best position during run.&quot; */
-	public static final String PARAMETER_GLOBAL_BEST_WEIGHT = "global_best_weight";
+    /**
+     * The parameter name for &quot;The weight for the population's best position during run.&quot;
+     */
+    public static final String PARAMETER_GLOBAL_BEST_WEIGHT = "global_best_weight";
 
-	/** The parameter name for &quot;If set to true the inertia weight is improved during run.&quot; */
-	public static final String PARAMETER_DYNAMIC_INERTIA_WEIGHT = "dynamic_inertia_weight";
+    /**
+     * The parameter name for &quot;If set to true the inertia weight is improved during run.&quot;
+     */
+    public static final String PARAMETER_DYNAMIC_INERTIA_WEIGHT = "dynamic_inertia_weight";
 
-	/**
-	 * Creates a new SVM which uses a particle swarm optimization approach for optimization.
-	 */
-	public PSOSVM(OperatorDescription description) {
+    /**
+     * Creates a new SVM which uses a particle swarm optimization approach for optimization.
+     *
+     * @param description the description
+     */
+    public PSOSVM(OperatorDescription description) {
 		super(description);
 	}
 

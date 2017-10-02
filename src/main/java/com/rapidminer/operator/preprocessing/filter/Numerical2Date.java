@@ -44,7 +44,6 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
 
 
 /**
- *
  * This operator transforms a {@link Ontology#NUMERICAL} attribute into a {@link Ontology#DATE_TIME}
  * attribute. It take the numerical value as the milliseconds since 1.1.1970 00:00:00:00 and adds
  * the specified offset
@@ -53,13 +52,27 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class Numerical2Date extends AbstractDateDataProcessing {
 
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	public static final String PARAMETER_KEEP_OLD_ATTRIBUTE = "keep_old_attribute";
+    /**
+     * The constant PARAMETER_KEEP_OLD_ATTRIBUTE.
+     */
+    public static final String PARAMETER_KEEP_OLD_ATTRIBUTE = "keep_old_attribute";
 
-	public static final String PARMETER_TIME_OFFSET = "time_offset";
+    /**
+     * The constant PARMETER_TIME_OFFSET.
+     */
+    public static final String PARMETER_TIME_OFFSET = "time_offset";
 
-	public Numerical2Date(OperatorDescription description) {
+    /**
+     * Instantiates a new Numerical 2 date.
+     *
+     * @param description the description
+     */
+    public Numerical2Date(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(

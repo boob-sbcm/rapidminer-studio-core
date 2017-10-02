@@ -31,16 +31,25 @@ import javax.swing.text.Segment;
 
 /**
  * C token marker.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class CTokenMarker extends TokenMarker {
 
-	public CTokenMarker() {
+    /**
+     * Instantiates a new C token marker.
+     */
+    public CTokenMarker() {
 		this(true, getKeywords());
 	}
 
-	public CTokenMarker(boolean cpp, KeywordMap keywords) {
+    /**
+     * Instantiates a new C token marker.
+     *
+     * @param cpp      the cpp
+     * @param keywords the keywords
+     */
+    public CTokenMarker(boolean cpp, KeywordMap keywords) {
 		this.cpp = cpp;
 		this.keywords = keywords;
 	}
@@ -200,7 +209,12 @@ public class CTokenMarker extends TokenMarker {
 		return token;
 	}
 
-	public static KeywordMap getKeywords() {
+    /**
+     * Gets keywords.
+     *
+     * @return the keywords
+     */
+    public static KeywordMap getKeywords() {
 		if (cKeywords == null) {
 			KeywordMap cKeywords = new KeywordMap(false);
 			cKeywords.add("char", Token.KEYWORD3);

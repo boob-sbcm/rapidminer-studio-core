@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RemoveRowAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class RemoveRowAction extends ResourceAction {
 
 	private final AttributeEditor attributeEditor;
 
-	public RemoveRowAction(AttributeEditor attributeEditor) {
+    /**
+     * Instantiates a new Remove row action.
+     *
+     * @param attributeEditor the attribute editor
+     */
+    public RemoveRowAction(AttributeEditor attributeEditor) {
 		super("attribute_editor.remove_row");
 		this.attributeEditor = attributeEditor;
 	}

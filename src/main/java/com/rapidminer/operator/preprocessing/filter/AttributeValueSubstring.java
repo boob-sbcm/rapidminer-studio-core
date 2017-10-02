@@ -49,16 +49,27 @@ import java.util.TreeSet;
  * is &quot;RapidMiner&quot; and the first index is set to 6 and the last index is set to 9 the
  * result will be &quot;Mine&quot;. If the last index is larger than the length of the word, the
  * resulting substrings will end with the last character.
- * 
+ *
  * @author Ingo Mierswa, Tobias Malbrecht
  */
 public class AttributeValueSubstring extends AbstractValueProcessing {
 
-	public static final String PARAMETER_FIRST = "first_character_index";
+    /**
+     * The constant PARAMETER_FIRST.
+     */
+    public static final String PARAMETER_FIRST = "first_character_index";
 
-	public static final String PARAMETER_LAST = "last_character_index";
+    /**
+     * The constant PARAMETER_LAST.
+     */
+    public static final String PARAMETER_LAST = "last_character_index";
 
-	public AttributeValueSubstring(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute value substring.
+     *
+     * @param description the description
+     */
+    public AttributeValueSubstring(OperatorDescription description) {
 		super(description);
 	}
 

@@ -26,7 +26,12 @@ package com.rapidminer.operator.learner.tree;
  */
 public interface AttributePreprocessing {
 
-	/** Will be invoked before each new split. */
-	public int[] preprocess(int[] attributeSelection);
+    /**
+     * Will be invoked before each new split.  @param attributeSelection the attribute selection
+     *
+     * @param attributeSelection the attribute selection
+     * @return the int [ ]
+     */
+    public int[] preprocess(int[] attributeSelection);
 
 }

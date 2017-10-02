@@ -27,9 +27,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for executeProcessSimple complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="executeProcessSimple">
  *   &lt;complexContent>
@@ -43,8 +43,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "executeProcessSimple", propOrder = {
@@ -54,18 +52,24 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class ExecuteProcessSimple {
 
+    /**
+     * The Process location.
+     */
     protected String processLocation;
+    /**
+     * The Execution time.
+     */
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar executionTime;
+    /**
+     * The Process context.
+     */
     protected ProcessContextWrapper processContext;
 
     /**
      * Gets the value of the processLocation property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getProcessLocation() {
         return processLocation;
@@ -73,11 +77,8 @@ public class ExecuteProcessSimple {
 
     /**
      * Sets the value of the processLocation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setProcessLocation(String value) {
         this.processLocation = value;
@@ -85,11 +86,8 @@ public class ExecuteProcessSimple {
 
     /**
      * Gets the value of the executionTime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is     {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getExecutionTime() {
         return executionTime;
@@ -97,11 +95,8 @@ public class ExecuteProcessSimple {
 
     /**
      * Sets the value of the executionTime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is     {@link XMLGregorianCalendar }
      */
     public void setExecutionTime(XMLGregorianCalendar value) {
         this.executionTime = value;
@@ -109,11 +104,8 @@ public class ExecuteProcessSimple {
 
     /**
      * Gets the value of the processContext property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ProcessContextWrapper }
-     *     
+     *
+     * @return possible object is     {@link ProcessContextWrapper }
      */
     public ProcessContextWrapper getProcessContext() {
         return processContext;
@@ -121,11 +113,8 @@ public class ExecuteProcessSimple {
 
     /**
      * Sets the value of the processContext property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProcessContextWrapper }
-     *     
+     *
+     * @param value allowed object is     {@link ProcessContextWrapper }
      */
     public void setProcessContext(ProcessContextWrapper value) {
         this.processContext = value;

@@ -35,12 +35,17 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  * This operator replaces the names of the regular attributes by the corresponding construction
  * descriptions if the attribute was constructed at all.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Construction2Names extends AbstractDataProcessing {
 
-	public Construction2Names(OperatorDescription description) {
+    /**
+     * Instantiates a new Construction 2 names.
+     *
+     * @param description the description
+     */
+    public Construction2Names(OperatorDescription description) {
 		super(description);
 	}
 

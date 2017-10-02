@@ -59,33 +59,23 @@ public final class ResultSetAdapterUtils {
 		throw new AssertionError("Utility class");
 	}
 
-	/**
-	 * Creates a new {@link DataSetMetaData} instance for the provided {@link DataResultSet} based
-	 * on the provided data range and header row index (if any). This includes reading the column
-	 * names and guessing the column types for the selected columns. For guessing the column types
-	 * the logic from {@link DataResultSetTranslator} is used.
-	 *
-	 * @param resultSet
-	 *            the {@link DataResultSet} that should be used to extract the meta data
-	 * @param numberFormat
-	 *            the number format that should be used during column type guessing
-	 * @param startingRowIndex
-	 *            the 0-based index of the first data row (not including the header row)
-	 * @param headerRowIndex
-	 *            the 0-based index for the header row (if any,
-	 *            {@link ResultSetAdapter#NO_HEADER_ROW} otherwise)
-	 * @return the new {@link DataSetMetaData} instance which contains meta data retrieved from the
-	 *         column name extraction and column type guessing
-	 * @throws HeaderRowNotFoundException
-	 *             if the header row was not found
-	 * @throws StartRowNotFoundException
-	 *             if the data start row was not found
-	 * @throws HeaderRowBehindStartRowException
-	 *             in case the headerRowIndex > startingRowIndex
-	 * @throws DataSetException
-	 *             if the meta data fetching fails
-	 */
-	public static DataSetMetaData createMetaData(DataResultSet resultSet, NumberFormat numberFormat, int startingRowIndex,
+    /**
+     * Creates a new {@link DataSetMetaData} instance for the provided {@link DataResultSet} based
+     * on the provided data range and header row index (if any). This includes reading the column
+     * names and guessing the column types for the selected columns. For guessing the column types
+     * the logic from {@link DataResultSetTranslator} is used.
+     *
+     * @param resultSet        the {@link DataResultSet} that should be used to extract the meta data
+     * @param numberFormat     the number format that should be used during column type guessing
+     * @param startingRowIndex the 0-based index of the first data row (not including the header row)
+     * @param headerRowIndex   the 0-based index for the header row (if any,            {@link ResultSetAdapter#NO_HEADER_ROW} otherwise)
+     * @return the new {@link DataSetMetaData} instance which contains meta data retrieved from the         column name extraction and column type guessing
+     * @throws HeaderRowNotFoundException       if the header row was not found
+     * @throws StartRowNotFoundException        if the data start row was not found
+     * @throws HeaderRowBehindStartRowException in case the headerRowIndex > startingRowIndex
+     * @throws DataSetException                 if the meta data fetching fails
+     */
+    public static DataSetMetaData createMetaData(DataResultSet resultSet, NumberFormat numberFormat, int startingRowIndex,
 			int headerRowIndex) throws HeaderRowNotFoundException, StartRowNotFoundException,
 					HeaderRowBehindStartRowException, DataSetException {
 
@@ -222,10 +212,13 @@ public final class ResultSetAdapterUtils {
 		}
 	}
 
-	/**
-	 * Transforms a {@link Ontology#ATTRIBUTE_VALUE_TYPE} into a {@link ColumnType}.
-	 */
-	public static ColumnType transformValueType(int valueType) {
+    /**
+     * Transforms a {@link Ontology#ATTRIBUTE_VALUE_TYPE} into a {@link ColumnType}.
+     *
+     * @param valueType the value type
+     * @return the column type
+     */
+    public static ColumnType transformValueType(int valueType) {
 		switch (valueType) {
 			case Ontology.TIME:
 				return ColumnType.TIME;
@@ -245,10 +238,13 @@ public final class ResultSetAdapterUtils {
 		}
 	}
 
-	/**
-	 * Transforms a {@link ColumnType} into a {@link Ontology#ATTRIBUTE_VALUE_TYPE} .
-	 */
-	public static int transformColumnType(ColumnType columnType) {
+    /**
+     * Transforms a {@link ColumnType} into a {@link Ontology#ATTRIBUTE_VALUE_TYPE} .
+     *
+     * @param columnType the column type
+     * @return the int
+     */
+    public static int transformColumnType(ColumnType columnType) {
 		switch (columnType) {
 			case DATETIME:
 				return Ontology.DATE_TIME;

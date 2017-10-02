@@ -20,7 +20,7 @@ package com.rapidminer.operator.learner.functions.kernel.jmysvm.kernel;
 
 /**
  * Epanechnikov Kernel
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KernelEpanechnikov extends Kernel {
@@ -36,10 +36,18 @@ public class KernelEpanechnikov extends Kernel {
 		return ("epanechnikov(s=" + sigma + ",d=" + degree + ")");
 	};
 
-	/** Class constructor. */
-	public KernelEpanechnikov() {}
+    /**
+     * Class constructor.
+     */
+    public KernelEpanechnikov() {}
 
-	public void setParameters(double sigma, double degree) {
+    /**
+     * Sets parameters.
+     *
+     * @param sigma  the sigma
+     * @param degree the degree
+     */
+    public void setParameters(double sigma, double degree) {
 		this.sigma = sigma;
 		this.degree = degree;
 	}

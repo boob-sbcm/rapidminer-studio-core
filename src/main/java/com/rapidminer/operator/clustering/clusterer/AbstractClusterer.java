@@ -57,9 +57,17 @@ public abstract class AbstractClusterer extends Operator {
 	private OutputPort modelOutput = getOutputPorts().createPort("cluster model");
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("clustered set");
 
-	protected static final OperatorVersion BEFORE_EMPTY_CHECKS = new OperatorVersion(7, 5, 3);
+    /**
+     * The constant BEFORE_EMPTY_CHECKS.
+     */
+    protected static final OperatorVersion BEFORE_EMPTY_CHECKS = new OperatorVersion(7, 5, 3);
 
-	public AbstractClusterer(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract clusterer.
+     *
+     * @param description the description
+     */
+    public AbstractClusterer(OperatorDescription description) {
 		super(description);
 		exampleSetInput.addPrecondition(new SimplePrecondition(exampleSetInput, new ExampleSetMetaData()));
 		getTransformer().addRule(new GenerateNewMDRule(modelOutput, new MetaData(getClusterModelClass())));
@@ -80,34 +88,35 @@ public abstract class AbstractClusterer extends Operator {
 		});
 	}
 
-	/**
-	 * Generates a cluster model from an example set. Called by {@link #apply()}. Checks for
-	 * additional preconditions to allow easy programmatic access.
-	 *
-	 * @see #additionalChecks(ExampleSet)
-	 */
-	public ClusterModel generateClusterModel(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Generates a cluster model from an example set. Called by {@link #apply()}. Checks for
+     * additional preconditions to allow easy programmatic access.
+     *
+     * @param exampleSet the example set
+     * @return the cluster model
+     * @throws OperatorException the operator exception
+     * @see #additionalChecks(ExampleSet) #additionalChecks(ExampleSet)#additionalChecks(ExampleSet)
+     */
+    public ClusterModel generateClusterModel(ExampleSet exampleSet) throws OperatorException {
 		additionalChecks(exampleSet);
 		return generateInternalClusterModel(exampleSet);
 	}
 
-	/**
-	 * Performs additional checks on the given {@link ExampleSet} before
-	 * {@link #generateInternalClusterModel(ExampleSet)}. By default will check for non-emptiness of
-	 * the example set, i.e. there are at least one example and one regular attribute. Will log a
-	 * warning or throw a {@link UserError}, depending on the compatibility level.
-	 *
-	 * @param exampleSet
-	 *            the example set to check
-	 * @throws UserError
-	 *             if a check fails
-	 * @since 7.6
-	 * @see Tools#isNonEmpty(ExampleSet)
-	 * @see #checksForExamples()
-	 * @see Tools#hasRegularAttributes(ExampleSet)
-	 * @see #checksForRegularAttributes()
-	 */
-	protected void additionalChecks(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Performs additional checks on the given {@link ExampleSet} before
+     * {@link #generateInternalClusterModel(ExampleSet)}. By default will check for non-emptiness of
+     * the example set, i.e. there are at least one example and one regular attribute. Will log a
+     * warning or throw a {@link UserError}, depending on the compatibility level.
+     *
+     * @param exampleSet the example set to check
+     * @throws OperatorException the operator exception
+     * @see Tools#isNonEmpty(ExampleSet) Tools#isNonEmpty(ExampleSet)Tools#isNonEmpty(ExampleSet)
+     * @see #checksForExamples() #checksForExamples()#checksForExamples()
+     * @see Tools#hasRegularAttributes(ExampleSet) Tools#hasRegularAttributes(ExampleSet)Tools#hasRegularAttributes(ExampleSet)
+     * @see #checksForRegularAttributes() #checksForRegularAttributes()#checksForRegularAttributes()
+     * @since 7.6
+     */
+    protected void additionalChecks(ExampleSet exampleSet) throws OperatorException {
 		try {
 			Tools.isNonEmpty(exampleSet);
 		} catch (UserError ue) {
@@ -126,69 +135,86 @@ public abstract class AbstractClusterer extends Operator {
 		}
 	}
 
-	/**
-	 * Indicates whether this clusterer checks the example set for no examples. Returns {@code true}
-	 * by default.
-	 *
-	 * @since 7.6
-	 * @see #additionalChecks(ExampleSet)
-	 */
-	protected boolean checksForExamples() {
+    /**
+     * Indicates whether this clusterer checks the example set for no examples. Returns {@code true}
+     * by default.
+     *
+     * @return the boolean
+     * @see #additionalChecks(ExampleSet) #additionalChecks(ExampleSet)#additionalChecks(ExampleSet)
+     * @since 7.6
+     */
+    protected boolean checksForExamples() {
 		return true;
 	}
 
-	/**
-	 * Indicates whether this clusterer checks the example set for no regular attributes. Returns
-	 * {@code true} by default.
-	 *
-	 * @since 7.6
-	 * @see #additionalChecks(ExampleSet)
-	 */
-	protected boolean checksForRegularAttributes() {
+    /**
+     * Indicates whether this clusterer checks the example set for no regular attributes. Returns
+     * {@code true} by default.
+     *
+     * @return the boolean
+     * @see #additionalChecks(ExampleSet) #additionalChecks(ExampleSet)#additionalChecks(ExampleSet)
+     * @since 7.6
+     */
+    protected boolean checksForRegularAttributes() {
 		return true;
 	}
 
-	/**
-	 * Indicates whether the implementation was affected by the error handling fix connected to
-	 * {@link #BEFORE_EMPTY_CHECKS}.
-	 *
-	 * @since 7.6
-	 */
-	protected boolean affectedByEmptyCheck() {
+    /**
+     * Indicates whether the implementation was affected by the error handling fix connected to
+     * {@link #BEFORE_EMPTY_CHECKS}.
+     *
+     * @return the boolean
+     * @since 7.6
+     */
+    protected boolean affectedByEmptyCheck() {
 		return false;
 	}
 
-	/**
-	 * Generates a cluster model from an example set. Called by
-	 * {@link #generateClusterModel(ExampleSet)}. Protected to prevent unchecked access (empty
-	 * example set) and allow generic checks. Subclasses should override this instead of
-	 * {@link #generateClusterModel(ExampleSet)}.
-	 *
-	 * @since 7.6
-	 */
-	protected abstract ClusterModel generateInternalClusterModel(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Generates a cluster model from an example set. Called by
+     * {@link #generateClusterModel(ExampleSet)}. Protected to prevent unchecked access (empty
+     * example set) and allow generic checks. Subclasses should override this instead of
+     * {@link #generateClusterModel(ExampleSet)}.
+     *
+     * @param exampleSet the example set
+     * @return the cluster model
+     * @throws OperatorException the operator exception
+     * @since 7.6
+     */
+    protected abstract ClusterModel generateInternalClusterModel(ExampleSet exampleSet) throws OperatorException;
 
-	/** Indicates whether {@link #doWork()} will add a cluster attribute to the example set. */
-	protected abstract boolean addsClusterAttribute();
+    /**
+     * Indicates whether {@link #doWork()} will add a cluster attribute to the example set.  @return the boolean
+     *
+     * @return the boolean
+     */
+    protected abstract boolean addsClusterAttribute();
 
-	/**
-	 * Indicates whether the cluster attribute is set as cluster or label role. Returns
-	 * {@code false} by default.
-	 *
-	 * @since 7.6
-	 */
-	protected boolean addsLabelAttribute() {
+    /**
+     * Indicates whether the cluster attribute is set as cluster or label role. Returns
+     * {@code false} by default.
+     *
+     * @return the boolean
+     * @since 7.6
+     */
+    protected boolean addsLabelAttribute() {
 		return false;
 	}
 
-	/** Indicates whether {@link #doWork()} will add an id attribute to the example set. */
-	protected abstract boolean addsIdAttribute();
+    /**
+     * Indicates whether {@link #doWork()} will add an id attribute to the example set.  @return the boolean
+     *
+     * @return the boolean
+     */
+    protected abstract boolean addsIdAttribute();
 
-	/**
-	 * Subclasses might override this method in order to add additional attributes to the
-	 * metaDataSet
-	 */
-	protected Collection<AttributeMetaData> getAdditionalAttributes() {
+    /**
+     * Subclasses might override this method in order to add additional attributes to the
+     * metaDataSet
+     *
+     * @return the additional attributes
+     */
+    protected Collection<AttributeMetaData> getAdditionalAttributes() {
 		return new LinkedList<AttributeMetaData>();
 	}
 
@@ -208,11 +234,13 @@ public abstract class AbstractClusterer extends Operator {
 		exampleSetOutput.deliver(output); // generateClusterModel() may have added cluster attribute
 	}
 
-	/**
-	 * Subclasses might overwrite this method in order to return the appropriate class of their
-	 * model if postprocessing is needed.
-	 */
-	public Class<? extends ClusterModel> getClusterModelClass() {
+    /**
+     * Subclasses might overwrite this method in order to return the appropriate class of their
+     * model if postprocessing is needed.
+     *
+     * @return the cluster model class
+     */
+    public Class<? extends ClusterModel> getClusterModelClass() {
 		return ClusterModel.class;
 	}
 
@@ -226,7 +254,12 @@ public abstract class AbstractClusterer extends Operator {
 		}
 	}
 
-	public InputPort getExampleSetInputPort() {
+    /**
+     * Gets example set input port.
+     *
+     * @return the example set input port
+     */
+    public InputPort getExampleSetInputPort() {
 		return exampleSetInput;
 	}
 

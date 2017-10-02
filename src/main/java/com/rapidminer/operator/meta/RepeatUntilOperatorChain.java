@@ -48,54 +48,91 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  */
 public class RepeatUntilOperatorChain extends AbstractIteratingOperatorChain {
 
-	public static final String PARAMETER_CONDITION_EXAMPLES = "condition_on_data";
+    /**
+     * The constant PARAMETER_CONDITION_EXAMPLES.
+     */
+    public static final String PARAMETER_CONDITION_EXAMPLES = "condition_on_data";
 
-	/** The parameter name for &quot;Minimal number of attributes in first example set&quot; */
-	public static final String PARAMETER_MIN_ATTRIBUTES = "min_attributes";
+    /**
+     * The parameter name for &quot;Minimal number of attributes in first example set&quot;
+     */
+    public static final String PARAMETER_MIN_ATTRIBUTES = "min_attributes";
 
-	/** The parameter name for &quot;Maximal number of attributes in first example set&quot; */
-	public static final String PARAMETER_MAX_ATTRIBUTES = "max_attributes";
+    /**
+     * The parameter name for &quot;Maximal number of attributes in first example set&quot;
+     */
+    public static final String PARAMETER_MAX_ATTRIBUTES = "max_attributes";
 
-	/** The parameter name for &quot;Minimal number of examples in first example set&quot; */
-	public static final String PARAMETER_MIN_EXAMPLES = "min_examples";
+    /**
+     * The parameter name for &quot;Minimal number of examples in first example set&quot;
+     */
+    public static final String PARAMETER_MIN_EXAMPLES = "min_examples";
 
-	/** The parameter name for &quot;Maximal number of examples in first example set&quot; */
-	public static final String PARAMETER_MAX_EXAMPLES = "max_examples";
+    /**
+     * The parameter name for &quot;Maximal number of examples in first example set&quot;
+     */
+    public static final String PARAMETER_MAX_EXAMPLES = "max_examples";
 
-	/** The parameter name for &quot;Minimal main criterion in first performance vector&quot; */
-	public static final String PARAMETER_MIN_CRITERION = "min_criterion";
+    /**
+     * The parameter name for &quot;Minimal main criterion in first performance vector&quot;
+     */
+    public static final String PARAMETER_MIN_CRITERION = "min_criterion";
 
-	public static final String PARAMETER_CONDITION_PERFORMANCE = "condition_on_performance";
+    /**
+     * The constant PARAMETER_CONDITION_PERFORMANCE.
+     */
+    public static final String PARAMETER_CONDITION_PERFORMANCE = "condition_on_performance";
 
-	/** The parameter name for &quot;Maximal main criterion in first performance vector&quot; */
-	public static final String PARAMETER_MAX_CRITERION = "max_criterion";
+    /**
+     * The parameter name for &quot;Maximal main criterion in first performance vector&quot;
+     */
+    public static final String PARAMETER_MAX_CRITERION = "max_criterion";
 
-	/** The parameter name for &quot;Maximum number of iterations&quot; */
-	public static final String PARAMETER_MAX_ITERATIONS = "max_iterations";
+    /**
+     * The parameter name for &quot;Maximum number of iterations&quot;
+     */
+    public static final String PARAMETER_MAX_ITERATIONS = "max_iterations";
 
-	public static final String PARAMETER_LIMIT_TIME = "limit_time";
+    /**
+     * The constant PARAMETER_LIMIT_TIME.
+     */
+    public static final String PARAMETER_LIMIT_TIME = "limit_time";
 
-	/** The parameter name for &quot;Timeout in minutes (-1 = no timeout)&quot; */
-	public static final String PARAMETER_TIMEOUT = "timeout";
+    /**
+     * The parameter name for &quot;Timeout in minutes (-1 = no timeout)&quot;
+     */
+    public static final String PARAMETER_TIMEOUT = "timeout";
 
-	/**
-	 * The parameter name for &quot;Stop when performance of inner chain behaves like this.&quot;
-	 */
-	public static final String PARAMETER_PERFORMANCE_CHANGE = "performance_change";
+    /**
+     * The parameter name for &quot;Stop when performance of inner chain behaves like this.&quot;
+     */
+    public static final String PARAMETER_PERFORMANCE_CHANGE = "performance_change";
 
-	/**
-	 * The parameter name for &quot;Evaluate condition before inner chain is applied (true) or
-	 * after?&quot;
-	 */
-	public static final String PARAMETER_CONDITION_BEFORE = "condition_before";
+    /**
+     * The parameter name for &quot;Evaluate condition before inner chain is applied (true) or
+     * after?&quot;
+     */
+    public static final String PARAMETER_CONDITION_BEFORE = "condition_before";
 
-	public static final String[] COMPARISONS = { "none", "decreasing", "non-increasing" };
+    /**
+     * The constant COMPARISONS.
+     */
+    public static final String[] COMPARISONS = { "none", "decreasing", "non-increasing" };
 
-	public static final int NONE = 0;
+    /**
+     * The constant NONE.
+     */
+    public static final int NONE = 0;
 
-	public static final int DECREASING = 1;
+    /**
+     * The constant DECREASING.
+     */
+    public static final int DECREASING = 1;
 
-	public static final int NONINCREASING = 2;
+    /**
+     * The constant NONINCREASING.
+     */
+    public static final int NONINCREASING = 2;
 
 	private long stoptime;
 
@@ -116,7 +153,12 @@ public class RepeatUntilOperatorChain extends AbstractIteratingOperatorChain {
 	private final InputPort performanceConditionInput = getSubprocess(0).getInnerSinks().createPort("performance");
 	private final InputPort exampleSetConditionInput = getSubprocess(0).getInnerSinks().createPort("example set");
 
-	public RepeatUntilOperatorChain(OperatorDescription description) {
+    /**
+     * Instantiates a new Repeat until operator chain.
+     *
+     * @param description the description
+     */
+    public RepeatUntilOperatorChain(OperatorDescription description) {
 		super(description);
 		performanceConditionInput
 				.addPrecondition(new SimplePrecondition(performanceConditionInput, new MetaData(PerformanceVector.class)) {

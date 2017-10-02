@@ -22,6 +22,8 @@ import com.rapidminer.tools.ProgressListener;
 
 
 /**
+ * The type Progress display.
+ *
  * @author Tobias Malbrecht
  */
 class ProgressDisplay {
@@ -70,24 +72,50 @@ class ProgressDisplay {
 	};
 	private ProgressThread progressThread;
 
-	public ProgressDisplay(String label, ProgressThread progressThread) {
+    /**
+     * Instantiates a new Progress display.
+     *
+     * @param label          the label
+     * @param progressThread the progress thread
+     */
+    public ProgressDisplay(String label, ProgressThread progressThread) {
 		super();
 		this.progressThread = progressThread;
 	}
 
-	public ProgressListener getListener() {
+    /**
+     * Gets listener.
+     *
+     * @return the listener
+     */
+    public ProgressListener getListener() {
 		return progressListener;
 	}
 
-	public int getCompleted() {
+    /**
+     * Gets completed.
+     *
+     * @return the completed
+     */
+    public int getCompleted() {
 		return completed;
 	}
 
-	public int getTotal() {
+    /**
+     * Gets total.
+     *
+     * @return the total
+     */
+    public int getTotal() {
 		return total;
 	}
 
-	public String getMessage() {
+    /**
+     * Gets message.
+     *
+     * @return the message
+     */
+    public String getMessage() {
 		return message;
 	}
 

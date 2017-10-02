@@ -20,7 +20,7 @@ package com.rapidminer.tools.math.smoothing;
 
 /**
  * This class implements the Tricube kernel
- * 
+ *
  * @author Sebastian Land
  */
 public class TricubeSmoothingKernel extends SmoothingKernel {

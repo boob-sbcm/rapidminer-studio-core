@@ -28,7 +28,7 @@ import com.rapidminer.operator.clustering.HierarchicalClusterModel;
 
 /**
  * A renderer for the graph view of cluster models.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ClusterModelGraphRenderer extends AbstractGraphRenderer {

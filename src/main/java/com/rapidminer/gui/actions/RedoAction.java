@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RedoAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class RedoAction extends ResourceAction {
 
 	private MainFrame mainFrame;
 
-	public RedoAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Redo action.
+     *
+     * @param mainFrame the main frame
+     */
+    public RedoAction(MainFrame mainFrame) {
 		super("redo");
 		this.mainFrame = mainFrame;
 		setCondition(EDIT_IN_PROGRESS, DISALLOWED);

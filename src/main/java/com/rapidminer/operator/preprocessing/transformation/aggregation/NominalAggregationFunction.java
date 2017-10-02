@@ -27,14 +27,24 @@ import com.rapidminer.tools.Ontology;
  * This class implements an abstract superclass for all Nominal aggregation functions, the new
  * attribute will have an empty mapping. All subclasses must take care to modify the mapping
  * accordingly, if adding new nominal values.
- * 
+ *
  * @author Sebastian Land
  */
 public abstract class NominalAggregationFunction extends AggregationFunction {
 
 	private Attribute targetAttribute;
 
-	public NominalAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
+    /**
+     * Instantiates a new Nominal aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public NominalAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
 			String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct);
 		if (sourceAttribute.isNominal()) {

@@ -29,7 +29,7 @@ import javax.swing.table.TableModel;
 
 /**
  * This is an renderer for {@link SVDModel}s. It shows the Singular Values in a table view.
- * 
+ *
  * @author Sebastian Land
  */
 public class SVDModelValueRenderer extends AbstractTableModelTableRenderer {
@@ -40,7 +40,12 @@ public class SVDModelValueRenderer extends AbstractTableModelTableRenderer {
 
 		private SVDModel model;
 
-		public SVDModelValueTableModel(SVDModel model) {
+        /**
+         * Instantiates a new Svd model value table model.
+         *
+         * @param model the model
+         */
+        public SVDModelValueTableModel(SVDModel model) {
 			this.model = model;
 		}
 

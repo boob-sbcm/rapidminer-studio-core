@@ -53,7 +53,6 @@ import com.rapidminer.tools.container.Pair;
  * The backing model of the {@link ConfigurableDialog}.
  *
  * @author Marco Boeck, Sabrina Kirstein
- *
  */
 public class ConfigurableModel implements Observer<Pair<EventType, Configurable>> {
 
@@ -109,26 +108,24 @@ public class ConfigurableModel implements Observer<Pair<EventType, Configurable>
 	 */
 	private boolean adminRights = false;
 
-	/**
-	 * Creates a new {@link ConfigurableModel} instance including all available {@link Configurable}
-	 * s.
-	 */
-	public ConfigurableModel() {
+    /**
+     * Creates a new {@link ConfigurableModel} instance including all available {@link Configurable}
+     * s.
+     */
+    public ConfigurableModel() {
 
 		this.eventListener = new EventListenerList();
 		// creates the model with all available configurables for all sources
 		initModel(true, null);
 	}
 
-	/**
-	 * Creates a new {@link ConfigurableModel} instance including all available {@link Configurable}
-	 * s of the given {@link RemoteRepository}.
-	 *
-	 * @param source
-	 *            only {@link Configurable}s of this {@link RemoteRepository} are stored in the
-	 *            model, can be null for local connections
-	 */
-	public ConfigurableModel(RemoteRepository source) {
+    /**
+     * Creates a new {@link ConfigurableModel} instance including all available {@link Configurable}
+     * s of the given {@link RemoteRepository}.
+     *
+     * @param source only {@link Configurable}s of this {@link RemoteRepository} are stored in the            model, can be null for local connections
+     */
+    public ConfigurableModel(RemoteRepository source) {
 
 		this.eventListener = new EventListenerList();
 		// creates one model per source (and adds only the configurables with the same source of the
@@ -211,11 +208,11 @@ public class ConfigurableModel implements Observer<Pair<EventType, Configurable>
 		}
 	}
 
-	/**
-	 * checks if the source is a instance of {@link RemoteRepository}, if the editing of the
-	 * containing configurables is possible
-	 */
-	public void checkVersion() {
+    /**
+     * checks if the source is a instance of {@link RemoteRepository}, if the editing of the
+     * containing configurables is possible
+     */
+    public void checkVersion() {
 		if (source != null) {
 			if (!checkDone) {
 				// check the server version
@@ -235,32 +232,32 @@ public class ConfigurableModel implements Observer<Pair<EventType, Configurable>
 		}
 	}
 
-	/**
-	 * Adds a {@link ConfigurableModelEventListener} which will be informed of all changes to this
-	 * model.
-	 *
-	 * @param listener
-	 */
-	public void registerEventListener(final ConfigurableModelEventListener listener) {
+    /**
+     * Adds a {@link ConfigurableModelEventListener} which will be informed of all changes to this
+     * model.
+     *
+     * @param listener the listener
+     */
+    public void registerEventListener(final ConfigurableModelEventListener listener) {
 		eventListener.add(ConfigurableModelEventListener.class, listener);
 	}
 
-	/**
-	 * Removes the {@link ConfigurableModelEventListener} from this model.
-	 *
-	 * @param listener
-	 */
-	public void removeEventListener(final ConfigurableModelEventListener listener) {
+    /**
+     * Removes the {@link ConfigurableModelEventListener} from this model.
+     *
+     * @param listener the listener
+     */
+    public void removeEventListener(final ConfigurableModelEventListener listener) {
 		eventListener.remove(ConfigurableModelEventListener.class, listener);
 	}
 
-	/**
-	 * Returns a list of the user defined names for all {@link Configurable}s of the specified type.
-	 *
-	 * @param typeId
-	 * @return
-	 */
-	public List<String> getListOfUniqueNamesForType(String typeId) {
+    /**
+     * Returns a list of the user defined names for all {@link Configurable}s of the specified type.
+     *
+     * @param typeId the type id
+     * @return list of unique names for type
+     */
+    public List<String> getListOfUniqueNamesForType(String typeId) {
 		List<String> list = new LinkedList<>();
 		for (Configurable c : listOfConfigurables) {
 			if (c.getTypeId().equals(typeId)) {
@@ -271,48 +268,51 @@ public class ConfigurableModel implements Observer<Pair<EventType, Configurable>
 		return list;
 	}
 
-	/**
-	 * @return the source of the configurables in the model, can be null (if local)
-	 */
-	public RemoteRepository getSource() {
+    /**
+     * Gets source.
+     *
+     * @return the source of the configurables in the model, can be null (if local)
+     */
+    public RemoteRepository getSource() {
 		return source;
 	}
 
-	/**
-	 * This method returns all {@link Configurable}s which have existed during construction, as well
-	 * as the parameters at that time.
-	 *
-	 * @return
-	 */
-	public Map<Configurable, Map<String, String>> getBackupParameters() {
+    /**
+     * This method returns all {@link Configurable}s which have existed during construction, as well
+     * as the parameters at that time.
+     *
+     * @return backup parameters
+     */
+    public Map<Configurable, Map<String, String>> getBackupParameters() {
 		return new HashMap<>(originalParameters);
 	}
 
-	/**
-	 * This method returns all {@link Configurable}s which have existed during construction, as well
-	 * as their names at that time.
-	 *
-	 * @return
-	 */
-	public Map<Configurable, String> getBackupNames() {
+    /**
+     * This method returns all {@link Configurable}s which have existed during construction, as well
+     * as their names at that time.
+     *
+     * @return backup names
+     */
+    public Map<Configurable, String> getBackupNames() {
 		return new HashMap<>(originalNames);
 	}
 
-	/**
-	 * This method returns all user groups which were originally permitted to have access to the
-	 * configurables
-	 *
-	 * @return
-	 */
-	public Map<Configurable, Set<String>> getBackupPermittedUserGroups() {
+    /**
+     * This method returns all user groups which were originally permitted to have access to the
+     * configurables
+     *
+     * @return backup permitted user groups
+     */
+    public Map<Configurable, Set<String>> getBackupPermittedUserGroups() {
 		return originalPermittedUserGroups;
 	}
 
-	/**
-	 *
-	 * @return if the editing of the contained configurables is possible
-	 */
-	public boolean isEditingPossible() {
+    /**
+     * Is editing possible boolean.
+     *
+     * @return if the editing of the contained configurables is possible
+     */
+    public boolean isEditingPossible() {
 		if (!wasVersionCheckDone()) {
 			try {
 				checkVersion();
@@ -324,19 +324,19 @@ public class ConfigurableModel implements Observer<Pair<EventType, Configurable>
 		return editingPossible;
 	}
 
-	/**
-	 *
-	 * @return if the check if the editing of the contained configurables is possible was done
-	 *         already
-	 */
-	public boolean wasVersionCheckDone() {
+    /**
+     * Was version check done boolean.
+     *
+     * @return if the check if the editing of the contained configurables is possible was done         already
+     */
+    public boolean wasVersionCheckDone() {
 		return checkDone;
 	}
 
-	/**
-	 * checks whether the user logged in has admin rights
-	 */
-	public void checkForAdminRights() {
+    /**
+     * checks whether the user logged in has admin rights
+     */
+    public void checkForAdminRights() {
 		if (source == null) {
 			adminRights = true;
 		} else if (source.getUsername().equals(ConfigurationManager.RM_SERVER_CONFIGURATION_USER_ADMIN)) {
@@ -344,20 +344,21 @@ public class ConfigurableModel implements Observer<Pair<EventType, Configurable>
 		}
 	}
 
-	/**
-	 *
-	 * @return whether the user is allowed to edit, add, remove and save configurables
-	 */
-	public boolean hasAdminRights() {
+    /**
+     * Has admin rights boolean.
+     *
+     * @return whether the user is allowed to edit, add, remove and save configurables
+     */
+    public boolean hasAdminRights() {
 		return adminRights;
 	}
 
-	/**
-	 * Adds a new {@link Configurable}.
-	 *
-	 * @param configurable
-	 */
-	public void addConfigurable(Configurable configurable) {
+    /**
+     * Adds a new {@link Configurable}.
+     *
+     * @param configurable the configurable
+     */
+    public void addConfigurable(Configurable configurable) {
 
 		boolean sameLocalSource = configurable.getSource() == null && this.source == null;
 		boolean sameRemoteSource = configurable.getSource() != null && this.source != null
@@ -371,24 +372,24 @@ public class ConfigurableModel implements Observer<Pair<EventType, Configurable>
 		}
 	}
 
-	/**
-	 * Removes the given {@link Configurable}.
-	 *
-	 * @param configurable
-	 */
-	public void removeConfigurable(Configurable configurable) {
+    /**
+     * Removes the given {@link Configurable}.
+     *
+     * @param configurable the configurable
+     */
+    public void removeConfigurable(Configurable configurable) {
 		listOfConfigurables.remove(configurable);
 		ConfigurationManager.getInstance().setPermittedGroupsForConfigurable(configurable, new HashSet<String>());
 
 		fireConfigurableRemovedEvent(configurable);
 	}
 
-	/**
-	 * Get all {@link Configurable}s in this model.
-	 *
-	 * @return
-	 */
-	public List<Configurable> getConfigurables() {
+    /**
+     * Get all {@link Configurable}s in this model.
+     *
+     * @return configurables configurables
+     */
+    public List<Configurable> getConfigurables() {
 		return new LinkedList<>(listOfConfigurables);
 	}
 
@@ -480,10 +481,10 @@ public class ConfigurableModel implements Observer<Pair<EventType, Configurable>
 
 	}
 
-	/**
-	 * Resets the configurables in the cache.
-	 */
-	public void resetConfigurables() {
+    /**
+     * Resets the configurables in the cache.
+     */
+    public void resetConfigurables() {
 		if (source != null) {
 			for (Configurable originalConfig : originalNames.keySet()) {
 				ConfigurationManager.getInstance().removeConfigurable(originalConfig.getTypeId(),
@@ -493,13 +494,12 @@ public class ConfigurableModel implements Observer<Pair<EventType, Configurable>
 		}
 	}
 
-	/**
-	 * Resets the connection to the {@link RemoteRepository} of this model
-	 *
-	 * @throws RepositoryException
-	 *             if the connection could not be established
-	 */
-	public void resetConnection() throws RepositoryException {
+    /**
+     * Resets the connection to the {@link RemoteRepository} of this model
+     *
+     * @throws RepositoryException if the connection could not be established
+     */
+    public void resetConnection() throws RepositoryException {
 		RepositoryException firstException = null;
 		RepositoryException secondException = null;
 		try {
@@ -526,10 +526,10 @@ public class ConfigurableModel implements Observer<Pair<EventType, Configurable>
 		}
 	}
 
-	/**
-	 * Resets the credentials of the {@link RemoteRepository} of this model if they have changed
-	 */
-	public void resetCredentials() {
+    /**
+     * Resets the credentials of the {@link RemoteRepository} of this model if they have changed
+     */
+    public void resetCredentials() {
 
 		// if the original credentials are given and changed
 		if (originalCredentials != null) {

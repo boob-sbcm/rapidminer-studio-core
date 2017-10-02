@@ -23,7 +23,7 @@ package com.rapidminer.example.table;
  * 50% of the data is sparse. As fast (or even faster than map implementation) but needs
  * considerably less memory. This implementation uses integer arrays instead of double arrays which
  * will reduce the used memory even more.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class IntSparseArrayDataRow extends AbstractSparseArrayDataRow {
@@ -33,13 +33,19 @@ public class IntSparseArrayDataRow extends AbstractSparseArrayDataRow {
 	/** Stores the used attribute values. */
 	private int[] values;
 
-	/** Creates an empty sparse array data row with size 0. */
-	public IntSparseArrayDataRow() {
+    /**
+     * Creates an empty sparse array data row with size 0.
+     */
+    public IntSparseArrayDataRow() {
 		this(0);
 	}
 
-	/** Creates a sparse array data row of the given size. */
-	public IntSparseArrayDataRow(int size) {
+    /**
+     * Creates a sparse array data row of the given size.  @param size the size
+     *
+     * @param size the size
+     */
+    public IntSparseArrayDataRow(int size) {
 		super(size);
 		values = new int[size];
 	}

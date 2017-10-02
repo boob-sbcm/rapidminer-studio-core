@@ -119,7 +119,6 @@ import com.rapidminer.tools.Ontology;
  * values.
  *
  * @author Marco Boeck
- *
  */
 public class MetaDataStatisticsViewer extends JPanel implements Renderable, PrintableComponent {
 
@@ -152,20 +151,30 @@ public class MetaDataStatisticsViewer extends JPanel implements Renderable, Prin
 	/** arrow icon with two arrows pointing left */
 	private static final ImageIcon ICON_ARROW_FIRST = SwingTools.createIcon("16/" + "navigate_left2.png");
 
-	/** arrow icon with an arrow pointing left */
-	static final ImageIcon ICON_ARROW_LEFT = SwingTools.createIcon("16/" + "navigate_left.png");
+    /**
+     * arrow icon with an arrow pointing left
+     */
+    static final ImageIcon ICON_ARROW_LEFT = SwingTools.createIcon("16/" + "navigate_left.png");
 
-	/** arrow icon with an arrow pointing right */
-	static final ImageIcon ICON_ARROW_RIGHT = SwingTools.createIcon("16/" + "navigate_right.png");
+    /**
+     * arrow icon with an arrow pointing right
+     */
+    static final ImageIcon ICON_ARROW_RIGHT = SwingTools.createIcon("16/" + "navigate_right.png");
 
-	/** arrow icon with two arrows pointing right */
-	static final ImageIcon ICON_ARROW_LAST = SwingTools.createIcon("16/" + "navigate_right2.png");
+    /**
+     * arrow icon with two arrows pointing right
+     */
+    static final ImageIcon ICON_ARROW_LAST = SwingTools.createIcon("16/" + "navigate_right2.png");
 
-	/** arrow icon with an arrow pointing up */
-	static final ImageIcon ICON_ARROW_UP = SwingTools.createIcon("16/" + "navigate_up.png");
+    /**
+     * arrow icon with an arrow pointing up
+     */
+    static final ImageIcon ICON_ARROW_UP = SwingTools.createIcon("16/" + "navigate_up.png");
 
-	/** arrow icon with an arrow pointing down */
-	static final ImageIcon ICON_ARROW_DOWN = SwingTools.createIcon("16/" + "navigate_down.png");
+    /**
+     * arrow icon with an arrow pointing down
+     */
+    static final ImageIcon ICON_ARROW_DOWN = SwingTools.createIcon("16/" + "navigate_down.png");
 
 	/**
 	 * icon used in the {@link TextFieldWithAction} when the filter remove action is hovered
@@ -264,7 +273,12 @@ public class MetaDataStatisticsViewer extends JPanel implements Renderable, Prin
 
 		private final JButton button;
 
-		public HoverBorderMouseListener(final JButton pageButton) {
+        /**
+         * Instantiates a new Hover border mouse listener.
+         *
+         * @param pageButton the page button
+         */
+        public HoverBorderMouseListener(final JButton pageButton) {
 			this.button = pageButton;
 
 		}
@@ -294,7 +308,10 @@ public class MetaDataStatisticsViewer extends JPanel implements Renderable, Prin
 
 	private final class ResizeAttributeNameMouseListener extends MouseAdapter {
 
-		int startingX = -1;
+        /**
+         * The Starting x.
+         */
+        int startingX = -1;
 
 		@Override
 		public void mousePressed(final MouseEvent e) {
@@ -387,13 +404,12 @@ public class MetaDataStatisticsViewer extends JPanel implements Renderable, Prin
 
 	};
 
-	/**
-	 * Creates a new {@link MetaDataStatisticsViewer} instance.
-	 *
-	 * @param model
-	 *            the {@link MetaDataStatisticsModel} backing the GUI
-	 */
-	public MetaDataStatisticsViewer(final MetaDataStatisticsModel model) {
+    /**
+     * Creates a new {@link MetaDataStatisticsViewer} instance.
+     *
+     * @param model the {@link MetaDataStatisticsModel} backing the GUI
+     */
+    public MetaDataStatisticsViewer(final MetaDataStatisticsModel model) {
 		this.model = model;
 		this.controller = new MetaDataStatisticsController(this, model);
 
@@ -1258,10 +1274,10 @@ public class MetaDataStatisticsViewer extends JPanel implements Renderable, Prin
 		return I18N.getGUIMessage("gui.cards.result_view.meta_data_view.icon");
 	}
 
-	/**
-	 * Stops the statistics calculation.
-	 */
-	public void stop() {
+    /**
+     * Stops the statistics calculation.
+     */
+    public void stop() {
 		controller.stop();
 	}
 

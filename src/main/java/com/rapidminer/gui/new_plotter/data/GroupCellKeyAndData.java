@@ -22,36 +22,72 @@ import com.rapidminer.gui.new_plotter.configuration.GroupCellKey;
 
 
 /**
+ * The type Group cell key and data.
+ *
  * @author Marius Helf
- * 
  */
 public class GroupCellKeyAndData {
 
-	GroupCellKey key = new GroupCellKey();
-	GroupCellData data = new GroupCellData();
+    /**
+     * The Key.
+     */
+    GroupCellKey key = new GroupCellKey();
+    /**
+     * The Data.
+     */
+    GroupCellData data = new GroupCellData();
 
-	public GroupCellKeyAndData() {
+    /**
+     * Instantiates a new Group cell key and data.
+     */
+    public GroupCellKeyAndData() {
 		super();
 	}
 
-	public GroupCellKeyAndData(GroupCellKey key, GroupCellData data) {
+    /**
+     * Instantiates a new Group cell key and data.
+     *
+     * @param key  the key
+     * @param data the data
+     */
+    public GroupCellKeyAndData(GroupCellKey key, GroupCellData data) {
 		this.key = key;
 		this.data = data;
 	}
 
-	public GroupCellKey getKey() {
+    /**
+     * Gets key.
+     *
+     * @return the key
+     */
+    public GroupCellKey getKey() {
 		return key;
 	}
 
-	public GroupCellData getData() {
+    /**
+     * Gets data.
+     *
+     * @return the data
+     */
+    public GroupCellData getData() {
 		return data;
 	}
 
-	public void setKey(GroupCellKey key) {
+    /**
+     * Sets key.
+     *
+     * @param key the key
+     */
+    public void setKey(GroupCellKey key) {
 		this.key = key;
 	}
 
-	public void setData(GroupCellData data) {
+    /**
+     * Sets data.
+     *
+     * @param data the data
+     */
+    public void setData(GroupCellData data) {
 		this.data = data;
 	}
 }

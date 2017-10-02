@@ -28,7 +28,7 @@ import java.util.Random;
 
 /**
  * Changes the weight for all attributes by multiplying them with a gaussian distribution.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class WeightingMutation extends IndividualOperator {
@@ -43,7 +43,16 @@ public class WeightingMutation extends IndividualOperator {
 
 	private double nominalMutationProb;
 
-	public WeightingMutation(double variance, boolean bounded, boolean[] isNominal, double nominalMutationProb, Random random) {
+    /**
+     * Instantiates a new Weighting mutation.
+     *
+     * @param variance            the variance
+     * @param bounded             the bounded
+     * @param isNominal           the is nominal
+     * @param nominalMutationProb the nominal mutation prob
+     * @param random              the random
+     */
+    public WeightingMutation(double variance, boolean bounded, boolean[] isNominal, double nominalMutationProb, Random random) {
 		this.variance = variance;
 		this.bounded = bounded;
 		this.random = random;
@@ -51,11 +60,21 @@ public class WeightingMutation extends IndividualOperator {
 		this.nominalMutationProb = nominalMutationProb;
 	}
 
-	public void setVariance(double variance) {
+    /**
+     * Sets variance.
+     *
+     * @param variance the variance
+     */
+    public void setVariance(double variance) {
 		this.variance = variance;
 	}
 
-	public double getVariance() {
+    /**
+     * Gets variance.
+     *
+     * @return the variance
+     */
+    public double getVariance() {
 		return variance;
 	}
 

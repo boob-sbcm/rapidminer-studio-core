@@ -27,22 +27,40 @@ import javax.swing.PopupFactory;
 
 /**
  * The factory for popups in form of rounded rectangles.
- * 
+ *
  * @author Ingo Mierswa
  */
 public final class RoundedPopupFactory extends PopupFactory {
 
-	public static final BufferedImage TOP_LEFT_PIC = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
+    /**
+     * The constant TOP_LEFT_PIC.
+     */
+    public static final BufferedImage TOP_LEFT_PIC = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
 
-	public static final BufferedImage TOP_RIGHT_PIC = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
+    /**
+     * The constant TOP_RIGHT_PIC.
+     */
+    public static final BufferedImage TOP_RIGHT_PIC = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
 
-	public static final BufferedImage BOTTOM_LEFT_PIC = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
+    /**
+     * The constant BOTTOM_LEFT_PIC.
+     */
+    public static final BufferedImage BOTTOM_LEFT_PIC = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
 
-	public static final BufferedImage BOTTOM_RIGHT_PIC = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
+    /**
+     * The constant BOTTOM_RIGHT_PIC.
+     */
+    public static final BufferedImage BOTTOM_RIGHT_PIC = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
 
-	public static final BufferedImage RIGHT_PIC = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
+    /**
+     * The constant RIGHT_PIC.
+     */
+    public static final BufferedImage RIGHT_PIC = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
 
-	public static final BufferedImage BOTTOM_PIC = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
+    /**
+     * The constant BOTTOM_PIC.
+     */
+    public static final BufferedImage BOTTOM_PIC = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
 
 	private final PopupFactory storedFactory;
 
@@ -50,7 +68,10 @@ public final class RoundedPopupFactory extends PopupFactory {
 		this.storedFactory = storedFactory;
 	}
 
-	public static void install() {
+    /**
+     * Install.
+     */
+    public static void install() {
 		PopupFactory factory = PopupFactory.getSharedInstance();
 		if (factory instanceof RoundedPopupFactory) {
 			return;
@@ -58,7 +79,10 @@ public final class RoundedPopupFactory extends PopupFactory {
 		PopupFactory.setSharedInstance(new RoundedPopupFactory(factory));
 	}
 
-	public static void uninstall() {
+    /**
+     * Uninstall.
+     */
+    public static void uninstall() {
 		PopupFactory factory = PopupFactory.getSharedInstance();
 		if (!(factory instanceof RoundedPopupFactory)) {
 			return;

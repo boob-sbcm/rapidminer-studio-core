@@ -27,15 +27,21 @@ import java.util.logging.Level;
 
 
 /**
+ * The type Dominating class finder.
+ *
+ * @param <T> the type parameter
  * @author Nils Woehler
- * 
  */
 public class DominatingClassFinder<T> {
 
-	/**
-	 * @return Returns the next dominating or parent class found in the list of available classes.
-	 */
-	public Class<? extends T> findNextDominatingClass(Class<? extends T> clazz,
+    /**
+     * Find next dominating class class.
+     *
+     * @param clazz            the clazz
+     * @param availableClasses the available classes
+     * @return Returns the next dominating or parent class found in the list of available classes.
+     */
+    public Class<? extends T> findNextDominatingClass(Class<? extends T> clazz,
 			Collection<Class<? extends T>> availableClasses) {
 
 		Set<Class<? extends T>> candidates = new HashSet<Class<? extends T>>();

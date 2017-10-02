@@ -24,15 +24,24 @@ import javax.swing.JSlider;
 
 
 /**
+ * The type Listening j slider.
+ *
  * @author Sebastian Land
- * 
  */
 public class ListeningJSlider extends JSlider implements PlotterSettingsChangedListener {
 
 	private static final long serialVersionUID = -3145893699784702675L;
 	private String generalKey;
 
-	public ListeningJSlider(String generalKey, int min, int max, int initValue) {
+    /**
+     * Instantiates a new Listening j slider.
+     *
+     * @param generalKey the general key
+     * @param min        the min
+     * @param max        the max
+     * @param initValue  the init value
+     */
+    public ListeningJSlider(String generalKey, int min, int max, int initValue) {
 		super(min, max, initValue);
 		if (generalKey.startsWith("_")) {
 			this.generalKey = generalKey;

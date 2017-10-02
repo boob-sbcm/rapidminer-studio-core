@@ -22,7 +22,7 @@ package com.rapidminer.tools.math.similarity;
  * This empty interface only indicates if a measure is more primary a similarity measure than a
  * distance measure. Nevertheless both measure types have to implement both methods properly, so
  * this interface is only for programmers orientation NOT for testing with instanceof!
- * 
+ *
  * @author Sebastian Land
  */
 public abstract class SimilarityMeasure extends DistanceMeasure {

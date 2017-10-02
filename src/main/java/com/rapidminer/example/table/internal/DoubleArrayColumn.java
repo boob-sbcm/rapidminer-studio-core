@@ -32,16 +32,22 @@ import com.rapidminer.tools.Ontology;
  * @see Column
  * @see ColumnarExampleTable
  * @since 7.3
- *
  */
 class DoubleArrayColumn implements Column {
 
 	private static final long serialVersionUID = 1L;
 
-	protected double[] data;
+    /**
+     * The Data.
+     */
+    protected double[] data;
 
-	/** Creates a new {@code DoubleArrayColumn} with a capacity for {@code size} double values. */
-	DoubleArrayColumn(int size) {
+    /**
+     * Creates a new {@code DoubleArrayColumn} with a capacity for {@code size} double values.  @param size the size
+     *
+     * @param size the size
+     */
+    DoubleArrayColumn(int size) {
 		data = new double[size];
 	}
 

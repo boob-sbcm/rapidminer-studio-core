@@ -23,23 +23,35 @@ import java.io.Serializable;
 
 /**
  * This interface provides the methods for adapting nodes to an input.
- * 
+ *
  * @author Sebastian Land
  */
 public interface AdaptationFunction extends Serializable {
 
-	/**
-	 * This method returns the new value of a node, after it had adopted to a stimulus. The stimulus
-	 * and the old node value are given. The distance from the impact of the stimulus may influence
-	 * the strength of the adoption to the stimulus, as may the current trainingsphase (time) and
-	 * the total number of trainingsphases (timemax)
-	 */
-	public double[] adapt(double[] stimulus, double[] nodeValue, double distanceFromImpact, int time, int timemax);
+    /**
+     * This method returns the new value of a node, after it had adopted to a stimulus. The stimulus
+     * and the old node value are given. The distance from the impact of the stimulus may influence
+     * the strength of the adoption to the stimulus, as may the current trainingsphase (time) and
+     * the total number of trainingsphases (timemax)
+     *
+     * @param stimulus           the stimulus
+     * @param nodeValue          the node value
+     * @param distanceFromImpact the distance from impact
+     * @param time               the time
+     * @param timemax            the timemax
+     * @return the double [ ]
+     */
+    public double[] adapt(double[] stimulus, double[] nodeValue, double distanceFromImpact, int time, int timemax);
 
-	/**
-	 * This method returns the maximum adaption radius, given the input stimulus, the current
-	 * trainingsphase (time) and the total number of trainingsphases (timemax). It may be used for
-	 * finding all nodes effected by the stimulus.
-	 */
-	public double getAdaptationRadius(double[] stimulus, int time, int timemax);
+    /**
+     * This method returns the maximum adaption radius, given the input stimulus, the current
+     * trainingsphase (time) and the total number of trainingsphases (timemax). It may be used for
+     * finding all nodes effected by the stimulus.
+     *
+     * @param stimulus the stimulus
+     * @param time     the time
+     * @param timemax  the timemax
+     * @return the adaptation radius
+     */
+    public double getAdaptationRadius(double[] stimulus, int time, int timemax);
 }

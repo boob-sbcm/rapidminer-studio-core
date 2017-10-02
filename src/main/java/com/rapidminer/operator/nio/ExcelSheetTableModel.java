@@ -27,14 +27,13 @@ import jxl.Sheet;
 
 /**
  * Returns values backed by an operned excel workbook.
- *
+ * <p>
  * Note: This model used to be created in
  * {@link ExcelResultSetConfiguration#makePreviewTableModel(com.rapidminer.tools.ProgressListener),
  * but this lead to problems because effects like empty columns or rows (e.g.
  * {@link ExcelResultSet#emptyColumns) were not respected.}
  *
- * @author Simon Fischer
- *
+ * @author Simon Fischer**
  */
 public class ExcelSheetTableModel extends AbstractTableModel {
 
@@ -42,7 +41,12 @@ public class ExcelSheetTableModel extends AbstractTableModel {
 
 	private Sheet sheet;
 
-	public ExcelSheetTableModel(Sheet sheet) {
+    /**
+     * Instantiates a new Excel sheet table model.
+     *
+     * @param sheet the sheet
+     */
+    public ExcelSheetTableModel(Sheet sheet) {
 		this.sheet = sheet;
 	}
 

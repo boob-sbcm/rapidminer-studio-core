@@ -31,7 +31,6 @@ import com.rapidminer.tools.XMLException;
  * This rule changes the specified parameter value into the new one.
  *
  * @author Simon Fischer
- *
  */
 public class ChangeParameterValueRule extends AbstractConditionedParseRule {
 
@@ -39,7 +38,14 @@ public class ChangeParameterValueRule extends AbstractConditionedParseRule {
 	private String oldValue;
 	private String newValue;
 
-	public ChangeParameterValueRule(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Change parameter value rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public ChangeParameterValueRule(String operatorTypeName, Element element) throws XMLException {
 		super(operatorTypeName, element);
 		NodeList children = element.getChildNodes();
 		for (int i = 0; i < children.getLength(); i++) {

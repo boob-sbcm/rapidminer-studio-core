@@ -57,7 +57,7 @@ import javax.swing.table.TableCellRenderer;
  * settings). Hence, it has two columns, one for the key and one for the value. This class does not
  * do very much, but as we want such tables to appear at several places, we use this superclass for
  * formatting and as a factory for CellEditors.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public abstract class PropertyTable extends ExtendedJTable {
@@ -92,11 +92,19 @@ public abstract class PropertyTable extends ExtendedJTable {
 
 	private final PropertyTableParameterChangeListener changeListener = new PropertyTableParameterChangeListener(this);
 
-	public PropertyTable() {
+    /**
+     * Instantiates a new Property table.
+     */
+    public PropertyTable() {
 		this(new String[] { "Key", "Value" });
 	}
 
-	public PropertyTable(String[] columnNames) {
+    /**
+     * Instantiates a new Property table.
+     *
+     * @param columnNames the column names
+     */
+    public PropertyTable(String[] columnNames) {
 		super(null, false, false);
 
 		this.columnNames = columnNames;
@@ -116,19 +124,45 @@ public abstract class PropertyTable extends ExtendedJTable {
 		setShowPopupMenu(false);
 	}
 
-	public abstract ParameterType getParameterType(int row);
+    /**
+     * Gets parameter type.
+     *
+     * @param row the row
+     * @return the parameter type
+     */
+    public abstract ParameterType getParameterType(int row);
 
-	public ParameterType getKeyParameterType(int row) {
+    /**
+     * Gets key parameter type.
+     *
+     * @param row the row
+     * @return the key parameter type
+     */
+    public ParameterType getKeyParameterType(int row) {
 		return getParameterType(row);
 	}
 
-	public abstract Operator getOperator(int row);
+    /**
+     * Gets operator.
+     *
+     * @param row the row
+     * @return the operator
+     */
+    public abstract Operator getOperator(int row);
 
-	public DefaultTableModel getDefaultModel() {
+    /**
+     * Gets default model.
+     *
+     * @return the default model
+     */
+    public DefaultTableModel getDefaultModel() {
 		return model;
 	}
 
-	protected void updateEditorsAndRenderers() {
+    /**
+     * Update editors and renderers.
+     */
+    protected void updateEditorsAndRenderers() {
 		valueEditors.clear();
 		keyEditors.clear();
 		toolTips.clear();
@@ -153,11 +187,22 @@ public abstract class PropertyTable extends ExtendedJTable {
 		}
 	}
 
-	public int getNumberOfKeyEditors() {
+    /**
+     * Gets number of key editors.
+     *
+     * @return the number of key editors
+     */
+    public int getNumberOfKeyEditors() {
 		return this.keyEditors.size();
 	}
 
-	protected PropertyKeyCellEditor getKeyEditor(int index) {
+    /**
+     * Gets key editor.
+     *
+     * @param index the index
+     * @return the key editor
+     */
+    protected PropertyKeyCellEditor getKeyEditor(int index) {
 		if (keyEditors.size() == 0) {
 			return null;
 		} else {
@@ -165,20 +210,41 @@ public abstract class PropertyTable extends ExtendedJTable {
 		}
 	}
 
-	protected void updateTableData(int rows) {
+    /**
+     * Update table data.
+     *
+     * @param rows the rows
+     */
+    protected void updateTableData(int rows) {
 		setModel(new DefaultTableModel(columnNames, rows));
 	}
 
-	public void setModel(DefaultTableModel model) {
+    /**
+     * Sets model.
+     *
+     * @param model the model
+     */
+    public void setModel(DefaultTableModel model) {
 		this.model = model;
 		super.setModel(model);
 	}
 
-	public int getNumberOfValueEditors() {
+    /**
+     * Gets number of value editors.
+     *
+     * @return the number of value editors
+     */
+    public int getNumberOfValueEditors() {
 		return valueEditors.size();
 	}
 
-	public PropertyValueCellEditor getValueEditor(int index) {
+    /**
+     * Gets value editor.
+     *
+     * @param index the index
+     * @return the value editor
+     */
+    public PropertyValueCellEditor getValueEditor(int index) {
 		return valueEditors.get(index);
 	}
 
@@ -302,17 +368,36 @@ public abstract class PropertyTable extends ExtendedJTable {
 		};
 	}
 
-	public static void registerPropertyValueCellEditor(Class<? extends ParameterType> typeClass,
+    /**
+     * Register property value cell editor.
+     *
+     * @param typeClass the type class
+     * @param editor    the editor
+     */
+    public static void registerPropertyValueCellEditor(Class<? extends ParameterType> typeClass,
 			Class<? extends PropertyValueCellEditor> editor) {
 		knownValueEditors.put(typeClass, editor);
 	}
 
-	public static void registerPropertyKeyCellEditor(Class<? extends ParameterType> typeClass,
+    /**
+     * Register property key cell editor.
+     *
+     * @param typeClass the type class
+     * @param editor    the editor
+     */
+    public static void registerPropertyKeyCellEditor(Class<? extends ParameterType> typeClass,
 			Class<? extends PropertyKeyCellEditor> editor) {
 		knownKeyEditors.put(typeClass, editor);
 	}
 
-	public static PropertyValueCellEditor createPropertyValueCellEditor(ParameterType type, Operator operator) {
+    /**
+     * Create property value cell editor property value cell editor.
+     *
+     * @param type     the type
+     * @param operator the operator
+     * @return the property value cell editor
+     */
+    public static PropertyValueCellEditor createPropertyValueCellEditor(ParameterType type, Operator operator) {
 		Class<? extends PropertyValueCellEditor> clazz = knownValueEditors.get(type.getClass());
 		Class<?> usedClass = type.getClass();
 		if (clazz == null) {
@@ -374,7 +459,16 @@ public abstract class PropertyTable extends ExtendedJTable {
 		}
 	}
 
-	public static PropertyKeyCellEditor createPropertyKeyCellEditor(PropertyTable table, ParameterType type,
+    /**
+     * Create property key cell editor property key cell editor.
+     *
+     * @param table          the table
+     * @param type           the type
+     * @param operator       the operator
+     * @param changeListener the change listener
+     * @return the property key cell editor
+     */
+    public static PropertyKeyCellEditor createPropertyKeyCellEditor(PropertyTable table, ParameterType type,
 			Operator operator, PropertyTableParameterChangeListener changeListener) {
 		Class<? extends PropertyKeyCellEditor> clazz = knownKeyEditors.get(type.getClass());
 		Class<?> usedClass = type.getClass();

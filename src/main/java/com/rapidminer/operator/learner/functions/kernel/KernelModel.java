@@ -40,66 +40,127 @@ public abstract class KernelModel extends PredictionModel {
 
 	private final String[] attributeConstructions;
 
-	/**
-	 * Creates a new {@link KernelModel} which was built on the given example set. Please note that
-	 * the given example set is automatically transformed into a {@link HeaderExampleSet} which
-	 * means that no reference to the data itself is kept but only to the header, i.e. to the
-	 * attribute meta descriptions.
-	 *
-	 * @deprecated Since RapidMiner Studio 6.0.009. Please use the new Constructor
-	 *             {@link #KernelModel(ExampleSet, com.rapidminer.example.set.ExampleSetUtilities.SetsCompareOption, com.rapidminer.example.set.ExampleSetUtilities.TypesCompareOption)}
-	 *             which offers the possibility to check for AttributeType and kind of ExampleSet
-	 *             before execution.
-	 */
-	@Deprecated
+    /**
+     * Creates a new {@link KernelModel} which was built on the given example set. Please note that
+     * the given example set is automatically transformed into a {@link HeaderExampleSet} which
+     * means that no reference to the data itself is kept but only to the header, i.e. to the
+     * attribute meta descriptions.
+     *
+     * @param exampleSet the example set
+     * @deprecated Since RapidMiner Studio 6.0.009. Please use the new Constructor             {@link #KernelModel(ExampleSet, com.rapidminer.example.set.ExampleSetUtilities.SetsCompareOption, com.rapidminer.example.set.ExampleSetUtilities.TypesCompareOption)}             which offers the possibility to check for AttributeType and kind of ExampleSet             before execution.
+     */
+    @Deprecated
 	public KernelModel(ExampleSet exampleSet) {
 		this(exampleSet, null, null);
 	}
 
-	/**
-	 * Creates a new {@link KernelModel} which is build based on the given {@link ExampleSet}.
-	 * Please note that the given ExampleSet is automatically transformed into a
-	 * {@link HeaderExampleSet} which means that no reference to the data itself is kept but only to
-	 * the header, i.e., to the attribute meta descriptions.
-	 *
-	 * @param sizeCompareOperator
-	 *            describes the allowed relations between the given ExampleSet and future
-	 *            ExampleSets on which this Model will be applied. If this parameter is null no
-	 *            error will be thrown.
-	 * @param typeCompareOperator
-	 *            describes the allowed relations between the types of the attributes of the given
-	 *            ExampleSet and the types of future attributes of ExampleSet on which this Model
-	 *            will be applied. If this parameter is null no error will be thrown.
-	 */
-	public KernelModel(ExampleSet exampleSet, ExampleSetUtilities.SetsCompareOption sizeCompareOperator,
+    /**
+     * Creates a new {@link KernelModel} which is build based on the given {@link ExampleSet}.
+     * Please note that the given ExampleSet is automatically transformed into a
+     * {@link HeaderExampleSet} which means that no reference to the data itself is kept but only to
+     * the header, i.e., to the attribute meta descriptions.
+     *
+     * @param exampleSet          the example set
+     * @param sizeCompareOperator describes the allowed relations between the given ExampleSet and future            ExampleSets on which this Model will be applied. If this parameter is null no            error will be thrown.
+     * @param typeCompareOperator describes the allowed relations between the types of the attributes of the given            ExampleSet and the types of future attributes of ExampleSet on which this Model            will be applied. If this parameter is null no error will be thrown.
+     */
+    public KernelModel(ExampleSet exampleSet, ExampleSetUtilities.SetsCompareOption sizeCompareOperator,
 			ExampleSetUtilities.TypesCompareOption typeCompareOperator) {
 		super(exampleSet, sizeCompareOperator, typeCompareOperator);
 		this.attributeConstructions = com.rapidminer.example.Tools.getRegularAttributeConstructions(exampleSet);
 	}
 
-	public abstract double getBias();
+    /**
+     * Gets bias.
+     *
+     * @return the bias
+     */
+    public abstract double getBias();
 
-	public abstract double getAlpha(int index);
+    /**
+     * Gets alpha.
+     *
+     * @param index the index
+     * @return the alpha
+     */
+    public abstract double getAlpha(int index);
 
-	public abstract double getFunctionValue(int index);
+    /**
+     * Gets function value.
+     *
+     * @param index the index
+     * @return the function value
+     */
+    public abstract double getFunctionValue(int index);
 
-	public abstract boolean isClassificationModel();
+    /**
+     * Is classification model boolean.
+     *
+     * @return the boolean
+     */
+    public abstract boolean isClassificationModel();
 
-	public abstract String getClassificationLabel(int index);
+    /**
+     * Gets classification label.
+     *
+     * @param index the index
+     * @return the classification label
+     */
+    public abstract String getClassificationLabel(int index);
 
-	public abstract double getRegressionLabel(int index);
+    /**
+     * Gets regression label.
+     *
+     * @param index the index
+     * @return the regression label
+     */
+    public abstract double getRegressionLabel(int index);
 
-	public abstract String getId(int index);
+    /**
+     * Gets id.
+     *
+     * @param index the index
+     * @return the id
+     */
+    public abstract String getId(int index);
 
-	public abstract SupportVector getSupportVector(int index);
+    /**
+     * Gets support vector.
+     *
+     * @param index the index
+     * @return the support vector
+     */
+    public abstract SupportVector getSupportVector(int index);
 
-	public abstract int getNumberOfSupportVectors();
+    /**
+     * Gets number of support vectors.
+     *
+     * @return the number of support vectors
+     */
+    public abstract int getNumberOfSupportVectors();
 
-	public abstract int getNumberOfAttributes();
+    /**
+     * Gets number of attributes.
+     *
+     * @return the number of attributes
+     */
+    public abstract int getNumberOfAttributes();
 
-	public abstract double getAttributeValue(int exampleIndex, int attributeIndex);
+    /**
+     * Gets attribute value.
+     *
+     * @param exampleIndex   the example index
+     * @param attributeIndex the attribute index
+     * @return the attribute value
+     */
+    public abstract double getAttributeValue(int exampleIndex, int attributeIndex);
 
-	public String[] getAttributeConstructions() {
+    /**
+     * Get attribute constructions string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getAttributeConstructions() {
 		return this.attributeConstructions;
 	}
 
@@ -148,7 +209,12 @@ public abstract class KernelModel extends PredictionModel {
 		return result.toString();
 	}
 
-	public DataTable createWeightsTable() {
+    /**
+     * Create weights table data table.
+     *
+     * @return the data table
+     */
+    public DataTable createWeightsTable() {
 		String[] attributeNames = com.rapidminer.example.Tools.getRegularAttributeNames(getTrainingHeader());
 
 		SimpleDataTable weightTable = new SimpleDataTable("Kernel Model Weights", new String[] { "Attribute", "Weight" });

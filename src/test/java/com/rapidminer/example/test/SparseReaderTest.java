@@ -48,7 +48,15 @@ public class SparseReaderTest {
 
 	private static final String[] LABEL = { "yes", "no", "no", "yes" };
 
-	public void readerTest(int format, Reader input, Reader labelInput) throws Exception {
+    /**
+     * Reader test.
+     *
+     * @param format     the format
+     * @param input      the input
+     * @param labelInput the label input
+     * @throws Exception the exception
+     */
+    public void readerTest(int format, Reader input, Reader labelInput) throws Exception {
 		AttributeSet attributeSet = new AttributeSet();
 		Attribute att1 = ExampleTestTools.attributeDogCatMouse();
 		Attribute att2 = ExampleTestTools.attributeReal(1);
@@ -105,7 +113,12 @@ public class SparseReaderTest {
 		assertEquals("example 4, label", "yes", e.getValueAsString(att6));
 	}
 
-	@Test
+    /**
+     * Test format xy.
+     *
+     * @throws Exception the exception
+     */
+    @Test
 	public void testFormatXY() throws Exception {
 		StringBuffer input = new StringBuffer("# comment" + Tools.getLineSeparator());
 		for (int i = 0; i < ATTRIBUTE_STRINGS.length; i++) {
@@ -114,7 +127,12 @@ public class SparseReaderTest {
 		readerTest(SparseFormatDataRowReader.FORMAT_XY, new StringReader(input.toString()), null);
 	}
 
-	@Test
+    /**
+     * Test format yx.
+     *
+     * @throws Exception the exception
+     */
+    @Test
 	public void testFormatYX() throws Exception {
 		StringBuffer input = new StringBuffer("# comment" + Tools.getLineSeparator());
 		for (int i = 0; i < ATTRIBUTE_STRINGS.length; i++) {
@@ -123,7 +141,12 @@ public class SparseReaderTest {
 		readerTest(SparseFormatDataRowReader.FORMAT_YX, new StringReader(input.toString()), null);
 	}
 
-	@Test
+    /**
+     * Test format prefix.
+     *
+     * @throws Exception the exception
+     */
+    @Test
 	public void testFormatPrefix() throws Exception {
 		StringBuffer input = new StringBuffer("# comment" + Tools.getLineSeparator());
 		for (int i = 0; i < ATTRIBUTE_STRINGS.length; i++) {
@@ -132,7 +155,12 @@ public class SparseReaderTest {
 		readerTest(SparseFormatDataRowReader.FORMAT_PREFIX, new StringReader(input.toString()), null);
 	}
 
-	@Test
+    /**
+     * Test format separate.
+     *
+     * @throws Exception the exception
+     */
+    @Test
 	public void testFormatSeparate() throws Exception {
 		StringBuffer input = new StringBuffer("# comment" + Tools.getLineSeparator());
 		StringBuffer label = new StringBuffer();

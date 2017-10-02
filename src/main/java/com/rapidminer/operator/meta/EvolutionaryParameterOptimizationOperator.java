@@ -53,22 +53,52 @@ import com.rapidminer.tools.math.optimization.ec.es.OptimizationValueType;
  * external applications. Each line is of the form <center>
  * <code>operator_name.parameter_name = value</code></center> <br/>
  * Please refer to section {@rapidminer.ref sec:parameter_optimization|Advanced Processes/Parameter
- * and performance analysis} for an example application.
+ * and performance analysis}** for an example application.
  *
  * @author Ingo Mierswa, Tobias Malbrecht
  */
 public class EvolutionaryParameterOptimizationOperator extends ParameterOptimizationOperator {
 
-	public static final String PARAMETER_MAX_GENERATIONS = ESOptimization.PARAMETER_MAX_GENERATIONS;
-	public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = ESOptimization.PARAMETER_GENERATIONS_WITHOUT_IMPROVAL;
-	public static final String PARAMETER_POPULATION_SIZE = ESOptimization.PARAMETER_POPULATION_SIZE;
-	public static final String PARAMETER_TOURNAMENT_FRACTION = ESOptimization.PARAMETER_TOURNAMENT_FRACTION;
-	public static final String PARAMETER_KEEP_BEST = ESOptimization.PARAMETER_KEEP_BEST;
-	public static final String PARAMETER_MUTATION_TYPE = ESOptimization.PARAMETER_MUTATION_TYPE;
-	public static final String PARAMETER_SELECTION_TYPE = ESOptimization.PARAMETER_SELECTION_TYPE;
-	public static final String PARAMETER_CROSSOVER_PROB = ESOptimization.PARAMETER_CROSSOVER_PROB;
-	public static final String PARAMETER_SHOW_CONVERGENCE_PLOT = ESOptimization.PARAMETER_SHOW_CONVERGENCE_PLOT;
-	public static final String PARAMETER_SPECIFIY_POPULATION_SIZE = ESOptimization.PARAMETER_SPECIFIY_POPULATION_SIZE;
+    /**
+     * The constant PARAMETER_MAX_GENERATIONS.
+     */
+    public static final String PARAMETER_MAX_GENERATIONS = ESOptimization.PARAMETER_MAX_GENERATIONS;
+    /**
+     * The constant PARAMETER_GENERATIONS_WITHOUT_IMPROVAL.
+     */
+    public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = ESOptimization.PARAMETER_GENERATIONS_WITHOUT_IMPROVAL;
+    /**
+     * The constant PARAMETER_POPULATION_SIZE.
+     */
+    public static final String PARAMETER_POPULATION_SIZE = ESOptimization.PARAMETER_POPULATION_SIZE;
+    /**
+     * The constant PARAMETER_TOURNAMENT_FRACTION.
+     */
+    public static final String PARAMETER_TOURNAMENT_FRACTION = ESOptimization.PARAMETER_TOURNAMENT_FRACTION;
+    /**
+     * The constant PARAMETER_KEEP_BEST.
+     */
+    public static final String PARAMETER_KEEP_BEST = ESOptimization.PARAMETER_KEEP_BEST;
+    /**
+     * The constant PARAMETER_MUTATION_TYPE.
+     */
+    public static final String PARAMETER_MUTATION_TYPE = ESOptimization.PARAMETER_MUTATION_TYPE;
+    /**
+     * The constant PARAMETER_SELECTION_TYPE.
+     */
+    public static final String PARAMETER_SELECTION_TYPE = ESOptimization.PARAMETER_SELECTION_TYPE;
+    /**
+     * The constant PARAMETER_CROSSOVER_PROB.
+     */
+    public static final String PARAMETER_CROSSOVER_PROB = ESOptimization.PARAMETER_CROSSOVER_PROB;
+    /**
+     * The constant PARAMETER_SHOW_CONVERGENCE_PLOT.
+     */
+    public static final String PARAMETER_SHOW_CONVERGENCE_PLOT = ESOptimization.PARAMETER_SHOW_CONVERGENCE_PLOT;
+    /**
+     * The constant PARAMETER_SPECIFIY_POPULATION_SIZE.
+     */
+    public static final String PARAMETER_SPECIFIY_POPULATION_SIZE = ESOptimization.PARAMETER_SPECIFIY_POPULATION_SIZE;
 
 	// private IOContainer input;
 
@@ -86,7 +116,12 @@ public class EvolutionaryParameterOptimizationOperator extends ParameterOptimiza
 	/** The parameter types. */
 	private OptimizationValueType[] types;
 
-	public EvolutionaryParameterOptimizationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Evolutionary parameter optimization operator.
+     *
+     * @param description the description
+     */
+    public EvolutionaryParameterOptimizationOperator(OperatorDescription description) {
 		super(description);
 		addValue(new ValueDouble("best", "best performance ever") {
 
@@ -97,15 +132,30 @@ public class EvolutionaryParameterOptimizationOperator extends ParameterOptimiza
 		});
 	}
 
-	public Operator[] getOptimizationOperators() {
+    /**
+     * Get optimization operators operator [ ].
+     *
+     * @return the operator [ ]
+     */
+    public Operator[] getOptimizationOperators() {
 		return this.operators;
 	}
 
-	public String[] getOptimizationParameters() {
+    /**
+     * Get optimization parameters string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getOptimizationParameters() {
 		return this.parameters;
 	}
 
-	public OptimizationValueType[] getOptimizationValueTypes() {
+    /**
+     * Get optimization value types optimization value type [ ].
+     *
+     * @return the optimization value type [ ]
+     */
+    public OptimizationValueType[] getOptimizationValueTypes() {
 		return this.types;
 	}
 
@@ -216,8 +266,14 @@ public class EvolutionaryParameterOptimizationOperator extends ParameterOptimiza
 		deliver(bestSet);
 	}
 
-	/** This method creates a apropriate optimizer */
-	protected ESOptimization createOptimizer(RandomGenerator random) throws UndefinedParameterError {
+    /**
+     * This method creates a apropriate optimizer  @param random the random
+     *
+     * @param random the random
+     * @return the es optimization
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected ESOptimization createOptimizer(RandomGenerator random) throws UndefinedParameterError {
 		return new ESParameterOptimization(this, operators.length, ESOptimization.INIT_TYPE_RANDOM,
 				getParameterAsInt(PARAMETER_MAX_GENERATIONS), getParameterAsInt(PARAMETER_GENERATIONS_WITHOUT_IMPROVAL),
 				getParameterAsInt(PARAMETER_POPULATION_SIZE), getParameterAsInt(PARAMETER_SELECTION_TYPE),
@@ -226,11 +282,23 @@ public class EvolutionaryParameterOptimizationOperator extends ParameterOptimiza
 				getParameterAsBoolean(PARAMETER_SHOW_CONVERGENCE_PLOT), random, this);
 	}
 
-	public ESOptimization getOptimization() {
+    /**
+     * Gets optimization.
+     *
+     * @return the optimization
+     */
+    public ESOptimization getOptimization() {
 		return optimizer;
 	}
 
-	public PerformanceVector setParametersAndEvaluate(Individual individual) throws OperatorException {
+    /**
+     * Sets parameters and evaluate.
+     *
+     * @param individual the individual
+     * @return the parameters and evaluate
+     * @throws OperatorException the operator exception
+     */
+    public PerformanceVector setParametersAndEvaluate(Individual individual) throws OperatorException {
 		double[] currentValues = individual.getValues();
 		for (int j = 0; j < currentValues.length; j++) {
 			String value;
@@ -252,7 +320,12 @@ public class EvolutionaryParameterOptimizationOperator extends ParameterOptimiza
 		return types;
 	}
 
-	public int getNumberOfOptimizationParameters() {
+    /**
+     * Gets number of optimization parameters.
+     *
+     * @return the number of optimization parameters
+     */
+    public int getNumberOfOptimizationParameters() {
 		return this.parameters.length;
 	}
 }

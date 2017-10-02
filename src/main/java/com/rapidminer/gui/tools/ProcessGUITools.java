@@ -72,7 +72,6 @@ import com.rapidminer.tools.ParameterService;
  *
  * @author Marco Boeck
  * @since 6.5.0
- *
  */
 public class ProcessGUITools {
 
@@ -99,15 +98,14 @@ public class ProcessGUITools {
 		throw new UnsupportedOperationException("Static utility class");
 	}
 
-	/**
-	 * Displays the best machting error bubble depending on the given {@link UserError}. If no
-	 * explicit match can be found, displays a generic error bubble.
-	 *
-	 * @param error
-	 *            the error in question, must not be {@code null}
-	 * @return the bubble instance, never {@code null}
-	 */
-	public static BubbleWindow displayBubbleForUserError(final UserError error) {
+    /**
+     * Displays the best machting error bubble depending on the given {@link UserError}. If no
+     * explicit match can be found, displays a generic error bubble.
+     *
+     * @param error the error in question, must not be {@code null}
+     * @return the bubble instance, never {@code null}
+     */
+    public static BubbleWindow displayBubbleForUserError(final UserError error) {
 		if (error == null) {
 			throw new IllegalArgumentException("userError must not be null!");
 		}
@@ -174,19 +172,18 @@ public class ProcessGUITools {
 		}
 	}
 
-	/**
-	 * Displays a warning bubble that alerts the user that he failed to connect any of the process
-	 * result ports.
-	 *
-	 * The bubble is located at the first result port of the outermost process and the process view
-	 * will change to said port. The {@link ResultWarningPreventionRegistry} contains a list with
-	 * Operators which can suppress this warning.
-	 *
-	 * @param process
-	 *            the process in question
-	 * @return the {@link PortInfoBubble} instance, never {@code null}
-	 */
-	public static PortInfoBubble displayPrecheckNoResultPortInformation(final Process process) {
+    /**
+     * Displays a warning bubble that alerts the user that he failed to connect any of the process
+     * result ports.
+     * <p>
+     * The bubble is located at the first result port of the outermost process and the process view
+     * will change to said port. The {@link ResultWarningPreventionRegistry} contains a list with
+     * Operators which can suppress this warning.
+     *
+     * @param process the process in question
+     * @return the {@link PortInfoBubble} instance, never {@code null}
+     */
+    public static PortInfoBubble displayPrecheckNoResultPortInformation(final Process process) {
 		if (process == null) {
 			throw new IllegalArgumentException("port must not be null!");
 		}
@@ -276,38 +273,33 @@ public class ProcessGUITools {
 		return noResultConnectionBubble;
 	}
 
-	/**
-	 * Displays a warning bubble that alerts the user that a mandatory parameter of an operator
-	 * needs a value because it has no default value. The bubble is located at the operator and the
-	 * process view will change to said operator. This is a bubble which occurs during the check for
-	 * errors before process execution so it contains a link button to run the process anyway.
-	 *
-	 * @param op
-	 *            the operator for which to display the warning
-	 * @param param
-	 *            the parameter for which to display the warning
-	 * @return the {@link OperatorInfoBubble} instance, never {@code null}
-	 */
-	public static OperatorInfoBubble displayPrecheckMissingMandatoryParameterWarning(final Operator op,
+    /**
+     * Displays a warning bubble that alerts the user that a mandatory parameter of an operator
+     * needs a value because it has no default value. The bubble is located at the operator and the
+     * process view will change to said operator. This is a bubble which occurs during the check for
+     * errors before process execution so it contains a link button to run the process anyway.
+     *
+     * @param op    the operator for which to display the warning
+     * @param param the parameter for which to display the warning
+     * @return the {@link OperatorInfoBubble} instance, never {@code null}
+     */
+    public static OperatorInfoBubble displayPrecheckMissingMandatoryParameterWarning(final Operator op,
 			final ParameterType param) {
 		return displayPrecheckMissingMandatoryParameterWarning(op, param, true);
 	}
 
-	/**
-	 * Displays a warning bubble that alerts the user that a mandatory parameter of an operator
-	 * needs a value because it has no default value. The bubble is located at the operator and the
-	 * process view will change to said operator. This is a bubble which occurs during the check for
-	 * errors before process execution so it contains a link button to run the process anyway.
-	 *
-	 * @param op
-	 *            the operator for which to display the warning
-	 * @param param
-	 *            the parameter for which to display the warning
-	 * @param showRunAnyway
-	 *            whether the run anyway button should be shown
-	 * @return the {@link OperatorInfoBubble} instance, never {@code null}
-	 */
-	public static OperatorInfoBubble displayPrecheckMissingMandatoryParameterWarning(final Operator op,
+    /**
+     * Displays a warning bubble that alerts the user that a mandatory parameter of an operator
+     * needs a value because it has no default value. The bubble is located at the operator and the
+     * process view will change to said operator. This is a bubble which occurs during the check for
+     * errors before process execution so it contains a link button to run the process anyway.
+     *
+     * @param op            the operator for which to display the warning
+     * @param param         the parameter for which to display the warning
+     * @param showRunAnyway whether the run anyway button should be shown
+     * @return the {@link OperatorInfoBubble} instance, never {@code null}
+     */
+    public static OperatorInfoBubble displayPrecheckMissingMandatoryParameterWarning(final Operator op,
 			final ParameterType param, boolean showRunAnyway) {
 		if (op == null) {
 			throw new IllegalArgumentException("op must not be null!");
@@ -322,34 +314,31 @@ public class ProcessGUITools {
 				"process_precheck_mandatory_parameter_unset", opName, param.getKey());
 	}
 
-	/**
-	 * Displays a warning bubble that alerts the user that an input port of an operator expects
-	 * input but is not connected. The bubble is located at the port and the process view will
-	 * change to said port. This is a bubble which occurs during the check for errors before process
-	 * execution so it contains a link button to run the process anyway.
-	 *
-	 * @param port
-	 *            the port for which to display the error
-	 * @return the {@link PortInfoBubble} instance, never {@code null}
-	 */
-	public static PortInfoBubble displayPrecheckInputPortDisconnectedWarning(final Port port) {
+    /**
+     * Displays a warning bubble that alerts the user that an input port of an operator expects
+     * input but is not connected. The bubble is located at the port and the process view will
+     * change to said port. This is a bubble which occurs during the check for errors before process
+     * execution so it contains a link button to run the process anyway.
+     *
+     * @param port the port for which to display the error
+     * @return the {@link PortInfoBubble} instance, never {@code null}
+     */
+    public static PortInfoBubble displayPrecheckInputPortDisconnectedWarning(final Port port) {
 		return displayPrecheckInputPortDisconnectedWarning(port, true);
 	}
 
-	/**
-	 * Displays a warning bubble that alerts the user that an input port of an operator expects
-	 * input but is not connected. The bubble is located at the port and the process view will
-	 * change to said port. This is a bubble which occurs during the check for errors before process
-	 * execution so it contains a link button to run the process anyway if showRunAnyway is
-	 * {@code true}.
-	 *
-	 * @param port
-	 *            the port for which to display the error
-	 * @param showRunAnyway
-	 *            whether the run anyway button should be shown
-	 * @return the {@link PortInfoBubble} instance, never {@code null}
-	 */
-	public static PortInfoBubble displayPrecheckInputPortDisconnectedWarning(final Port port, boolean showRunAnyway) {
+    /**
+     * Displays a warning bubble that alerts the user that an input port of an operator expects
+     * input but is not connected. The bubble is located at the port and the process view will
+     * change to said port. This is a bubble which occurs during the check for errors before process
+     * execution so it contains a link button to run the process anyway if showRunAnyway is
+     * {@code true}.
+     *
+     * @param port          the port for which to display the error
+     * @param showRunAnyway whether the run anyway button should be shown
+     * @return the {@link PortInfoBubble} instance, never {@code null}
+     */
+    public static PortInfoBubble displayPrecheckInputPortDisconnectedWarning(final Port port, boolean showRunAnyway) {
 		if (port == null) {
 			throw new IllegalArgumentException("port must not be null!");
 		}
@@ -366,17 +355,15 @@ public class ProcessGUITools {
 		return displayPrecheckMissingInputPortWarning(port, true, false, showRunAnyway, key);
 	}
 
-	/**
-	 * Displays an error bubble that alerts the user that the attribute specified in the parameters
-	 * of an operator was not found. The bubble is located at the operator and the process view will
-	 * change to said port. This method is used after the error occurred during process execution.
-	 *
-	 * @param error
-	 *            the error containing all the information about the operator, the parameter and the
-	 *            name of the attribute which was not found
-	 * @return the {@link OperatorInfoBubble} instance, never {@code null}
-	 */
-	public static OperatorInfoBubble displayAttributeNotFoundParameterInformation(final AttributeNotFoundError error) {
+    /**
+     * Displays an error bubble that alerts the user that the attribute specified in the parameters
+     * of an operator was not found. The bubble is located at the operator and the process view will
+     * change to said port. This method is used after the error occurred during process execution.
+     *
+     * @param error the error containing all the information about the operator, the parameter and the            name of the attribute which was not found
+     * @return the {@link OperatorInfoBubble} instance, never {@code null}
+     */
+    public static OperatorInfoBubble displayAttributeNotFoundParameterInformation(final AttributeNotFoundError error) {
 		if (error == null) {
 			throw new IllegalArgumentException("error must not be null!");
 		}
@@ -399,19 +386,17 @@ public class ProcessGUITools {
 		return displayAttributeNotFoundParameterInformation(error, true, key, error.getAttributeName(), error.getKey());
 	}
 
-	/**
-	 * Displays an error bubble that alerts the user that a mandatory parameter of an operator was
-	 * not set and has no default value. The bubble is located at the operator and the process view
-	 * will change to said port. This method is used after the error occurred during process
-	 * execution.
-	 *
-	 * @param op
-	 *            the operator for which to display the error
-	 * @param param
-	 *            the parameter for which to display the error
-	 * @return the {@link OperatorInfoBubble} instance, never {@code null}
-	 */
-	public static OperatorInfoBubble displayMissingMandatoryParameterInformation(final Operator op,
+    /**
+     * Displays an error bubble that alerts the user that a mandatory parameter of an operator was
+     * not set and has no default value. The bubble is located at the operator and the process view
+     * will change to said port. This method is used after the error occurred during process
+     * execution.
+     *
+     * @param op    the operator for which to display the error
+     * @param param the parameter for which to display the error
+     * @return the {@link OperatorInfoBubble} instance, never {@code null}
+     */
+    public static OperatorInfoBubble displayMissingMandatoryParameterInformation(final Operator op,
 			final ParameterType param) {
 		if (op == null) {
 			throw new IllegalArgumentException("op must not be null!");
@@ -426,16 +411,15 @@ public class ProcessGUITools {
 		return displayMissingMandatoryParameterInformation(op, param, true, key, opName, param.getKey());
 	}
 
-	/**
-	 * Displays an error bubble that alerts the user that an input port of an operator expected
-	 * input but did not receive any. The bubble is located at the port and the process view will
-	 * change to said port. This method is used after the error occurred during process execution.
-	 *
-	 * @param port
-	 *            the port for which to display the error
-	 * @return the {@link PortInfoBubble} instance, never {@code null}
-	 */
-	public static PortInfoBubble displayInputPortNoDataInformation(final Port port) {
+    /**
+     * Displays an error bubble that alerts the user that an input port of an operator expected
+     * input but did not receive any. The bubble is located at the port and the process view will
+     * change to said port. This method is used after the error occurred during process execution.
+     *
+     * @param port the port for which to display the error
+     * @return the {@link PortInfoBubble} instance, never {@code null}
+     */
+    public static PortInfoBubble displayInputPortNoDataInformation(final Port port) {
 		if (port == null) {
 			throw new IllegalArgumentException("port must not be null!");
 		}
@@ -465,21 +449,18 @@ public class ProcessGUITools {
 		return displayMissingInputPortInformation(port, !port.isConnected(), true, key, opName);
 	}
 
-	/**
-	 * Displays an error bubble that alerts the user that an input port of an operator expected
-	 * input of a certain type but received the wrong type. The bubble is located at the port and
-	 * the process view will change to said port. This method is used after the error occurred
-	 * during process execution.
-	 *
-	 * @param port
-	 *            the port for which to display the error
-	 * @param expectedType
-	 *            the expected data type for the port
-	 * @param actualType
-	 *            the actually delivered type for the port
-	 * @return the {@link PortInfoBubble} instance, never {@code null}
-	 */
-	public static PortInfoBubble displayInputPortWrongTypeInformation(final Port port, final Class<?> expectedType,
+    /**
+     * Displays an error bubble that alerts the user that an input port of an operator expected
+     * input of a certain type but received the wrong type. The bubble is located at the port and
+     * the process view will change to said port. This method is used after the error occurred
+     * during process execution.
+     *
+     * @param port         the port for which to display the error
+     * @param expectedType the expected data type for the port
+     * @param actualType   the actually delivered type for the port
+     * @return the {@link PortInfoBubble} instance, never {@code null}
+     */
+    public static PortInfoBubble displayInputPortWrongTypeInformation(final Port port, final Class<?> expectedType,
 			final Class<?> actualType) {
 		if (port == null) {
 			throw new IllegalArgumentException("port must not be null!");
@@ -496,29 +477,27 @@ public class ProcessGUITools {
 				RendererService.getName(actualType));
 	}
 
-	/**
-	 * Displays an information bubble pointing to an ExecuteProcess operator to indicate a
-	 * {@link UserError} occurred inside the process executed by the operator.
-	 *
-	 * @param userError
-	 *            the error instance
-	 * @return the {@link OperatorInfoBubble} instance, never {@code null}
-	 */
-	public static OperatorInfoBubble displayUserErrorInExecutedProcess(final ProcessExecutionUserErrorError userError) {
+    /**
+     * Displays an information bubble pointing to an ExecuteProcess operator to indicate a
+     * {@link UserError} occurred inside the process executed by the operator.
+     *
+     * @param userError the error instance
+     * @return the {@link OperatorInfoBubble} instance, never {@code null}
+     */
+    public static OperatorInfoBubble displayUserErrorInExecutedProcess(final ProcessExecutionUserErrorError userError) {
 		String referencedOperatorName = userError.getUserError().getOperator().getName();
 		return displayUserErrorInExecutedProcess(userError, "executed_process_usererror", referencedOperatorName,
 				userError.getUserError().getDetails());
 	}
 
-	/**
-	 * Displays an information bubble pointing to an operator to indicate a {@link UserError} was
-	 * thrown by the operator.
-	 *
-	 * @param userError
-	 *            the error instance
-	 * @return the {@link OperatorInfoBubble} instance, never {@code null}
-	 */
-	public static OperatorInfoBubble displayGenericUserError(final UserError userError) {
+    /**
+     * Displays an information bubble pointing to an operator to indicate a {@link UserError} was
+     * thrown by the operator.
+     *
+     * @param userError the error instance
+     * @return the {@link OperatorInfoBubble} instance, never {@code null}
+     */
+    public static OperatorInfoBubble displayGenericUserError(final UserError userError) {
 		if (userError == null) {
 			throw new IllegalArgumentException("userError must not be null!");
 		}
@@ -526,15 +505,14 @@ public class ProcessGUITools {
 		return displayGenericUserError(userError, "generic_usererror");
 	}
 
-	/**
-	 * Displays an information bubble pointing to a port to indicate a {@link PortUserError} was
-	 * thrown.
-	 *
-	 * @param portError
-	 *            the error instance
-	 * @return the {@link PortInfoBubble} instance, never {@code null}
-	 */
-	public static PortInfoBubble displayGenericPortError(final PortUserError portError) {
+    /**
+     * Displays an information bubble pointing to a port to indicate a {@link PortUserError} was
+     * thrown.
+     *
+     * @param portError the error instance
+     * @return the {@link PortInfoBubble} instance, never {@code null}
+     */
+    public static PortInfoBubble displayGenericPortError(final PortUserError portError) {
 		if (portError == null) {
 			throw new IllegalArgumentException("portError must not be null!");
 		}
@@ -542,15 +520,14 @@ public class ProcessGUITools {
 		return displayGenericPortError(portError, "generic_usererror");
 	}
 
-	/**
-	 * Displays an information bubble pointing to an operator to indicate a {@link UserError} was
-	 * thrown by the operator.
-	 *
-	 * @param userError
-	 *            the error instance
-	 * @return the {@link OperatorInfoBubble} instance, never {@code null}
-	 */
-	public static OperatorInfoBubble displayGenericParameterError(final ParameterError userError) {
+    /**
+     * Displays an information bubble pointing to an operator to indicate a {@link UserError} was
+     * thrown by the operator.
+     *
+     * @param userError the error instance
+     * @return the {@link OperatorInfoBubble} instance, never {@code null}
+     */
+    public static OperatorInfoBubble displayGenericParameterError(final ParameterError userError) {
 		if (userError == null) {
 			throw new IllegalArgumentException("userError must not be null!");
 		}
@@ -1119,15 +1096,14 @@ public class ProcessGUITools {
 		return userErrorBubble;
 	}
 
-	/**
-	 * Displays an information bubble pointing to an operator to indicate a
-	 * {@link ProcessSetupError} for that operator.
-	 *
-	 * @param processSetupError
-	 *            the {@link ProcessSetupError} to display
-	 * @return the {@link OperatorInfoBubble} instance, never {@code null}
-	 */
-	public static OperatorInfoBubble displayProcessSetupError(final ProcessSetupError processSetupError) {
+    /**
+     * Displays an information bubble pointing to an operator to indicate a
+     * {@link ProcessSetupError} for that operator.
+     *
+     * @param processSetupError the {@link ProcessSetupError} to display
+     * @return the {@link OperatorInfoBubble} instance, never {@code null}
+     */
+    public static OperatorInfoBubble displayProcessSetupError(final ProcessSetupError processSetupError) {
 		final String i18nKey = "process_setup_error";
 		final JButton ackButton = new JButton(I18N.getGUIMessage("gui.bubble." + i18nKey + ".button.label"));
 		ackButton.setToolTipText(I18N.getGUIMessage("gui.bubble." + i18nKey + ".button.tip"));

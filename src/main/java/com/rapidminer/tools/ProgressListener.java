@@ -20,20 +20,34 @@ package com.rapidminer.tools;
 
 /**
  * Interface for time consuming tasks.
- * 
+ *
  * @author Simon Fischer
  */
 public interface ProgressListener {
 
-	/** Sets the total amount of work to do, on an arbitrary scale. */
-	public void setTotal(int total);
+    /**
+     * Sets the total amount of work to do, on an arbitrary scale.  @param total the total
+     *
+     * @param total the total
+     */
+    public void setTotal(int total);
 
-	/** Sets the amount of work completed, in the range [0, {@link #getTotal()}. */
-	public void setCompleted(int completed);
+    /**
+     * Sets the amount of work completed, in the range [0, {@link #getTotal()}.  @param completed the completed
+     *
+     * @param completed the completed
+     */
+    public void setCompleted(int completed);
 
-	/** Notifies the listener that the task is complete. */
-	public void complete();
+    /**
+     * Notifies the listener that the task is complete.
+     */
+    public void complete();
 
-	/** An optional message to display to the user. */
-	public void setMessage(String message);
+    /**
+     * An optional message to display to the user.  @param message the message
+     *
+     * @param message the message
+     */
+    public void setMessage(String message);
 }

@@ -25,10 +25,18 @@ package com.rapidminer.repository;
  */
 public interface DataEntry extends DateEntry {
 
-	/** Returns the revision number of this entry. */
-	public int getRevision();
+    /**
+     * Returns the revision number of this entry.  @return the revision
+     *
+     * @return the revision
+     */
+    public int getRevision();
 
-	/** Returns the size of this entry in bytes. */
-	public long getSize();
+    /**
+     * Returns the size of this entry in bytes.  @return the size
+     *
+     * @return the size
+     */
+    public long getSize();
 
 }

@@ -49,17 +49,33 @@ public class MultiModelByRegression extends PredictionModel implements MetaModel
 
 	private Model[] models;
 
-	public MultiModelByRegression(ExampleSet exampleSet, Model[] models) {
+    /**
+     * Instantiates a new Multi model by regression.
+     *
+     * @param exampleSet the example set
+     * @param models     the models
+     */
+    public MultiModelByRegression(ExampleSet exampleSet, Model[] models) {
 		super(exampleSet, null, null);
 		this.models = models;
 	}
 
-	public int getNumberOfModels() {
+    /**
+     * Gets number of models.
+     *
+     * @return the number of models
+     */
+    public int getNumberOfModels() {
 		return models.length;
 	}
 
-	/** Returns a binary decision model for the given classification index. */
-	public Model getModel(int index) {
+    /**
+     * Returns a binary decision model for the given classification index.  @param index the index
+     *
+     * @param index the index
+     * @return the model
+     */
+    public Model getModel(int index) {
 		return models[index];
 	}
 

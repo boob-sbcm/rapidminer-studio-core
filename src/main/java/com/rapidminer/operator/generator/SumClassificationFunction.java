@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is positive if the sum of all arguments is positive.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SumClassificationFunction extends ClassificationFunction {

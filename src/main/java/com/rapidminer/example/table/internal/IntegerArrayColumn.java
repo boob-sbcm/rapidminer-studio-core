@@ -32,16 +32,22 @@ import com.rapidminer.tools.Ontology;
  * @see Column
  * @see ColumnarExampleTable
  * @since 7.3
- *
  */
 class IntegerArrayColumn implements Column {
 
 	private static final long serialVersionUID = 1L;
 
-	protected int[] data;
+    /**
+     * The Data.
+     */
+    protected int[] data;
 
-	/** Creates a new {@code IntegerArrayColumn} with a capacity for {@code size} integer values. */
-	IntegerArrayColumn(int size) {
+    /**
+     * Creates a new {@code IntegerArrayColumn} with a capacity for {@code size} integer values.  @param size the size
+     *
+     * @param size the size
+     */
+    IntegerArrayColumn(int size) {
 		data = new int[size];
 	}
 

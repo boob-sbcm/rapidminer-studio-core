@@ -25,15 +25,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract2DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric arc tangent of two values.
  *
  * @author Denis Schernov
- *
  */
 public class ArcTangent2 extends Abstract2DoubleInputFunction {
 
-	public ArcTangent2() {
+    /**
+     * Instantiates a new Arc tangent 2.
+     */
+    public ArcTangent2() {
 		super("trigonometrical.atan2", 2, Ontology.NUMERICAL);
 	}
 

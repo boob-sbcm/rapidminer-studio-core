@@ -46,11 +46,15 @@ import com.rapidminer.gui.properties.SettingsItem.Type;
  */
 public class SettingsXmlHandler extends DefaultHandler {
 
-	/** XML file with settings structure */
-	public static final String SETTINGS_XML_FILE = "settings.xml";
+    /**
+     * XML file with settings structure
+     */
+    public static final String SETTINGS_XML_FILE = "settings.xml";
 
-	/** Prefix of subgroups in settings XML */
-	public final static String SUBGROUP_PREFIX = "rapidminer.preferences.subgroup.";
+    /**
+     * Prefix of subgroups in settings XML
+     */
+    public final static String SUBGROUP_PREFIX = "rapidminer.preferences.subgroup.";
 
 	/** Maximum number of nested group tags */
 	private final static int MAX_GROUP_LEVEL = 2;
@@ -67,20 +71,17 @@ public class SettingsXmlHandler extends DefaultHandler {
 	/* Parser state */
 	private List<SettingsItem> itemStack = new LinkedList<>();
 
-	/**
-	 * Parses Settings XML file.
-	 *
-	 * @param xmlFileUri
-	 *            The URI of the related XML settings file.
-	 *
-	 * @return Map containing item IDs which identify the related {@link SettingsItem}s.
-	 *
-	 * @throws ParserConfigurationException
-	 * @throws SAXException
-	 * @throws IOException
-	 * @throws URISyntaxException
-	 */
-	public Map<String, SettingsItem> parse(URI xmlFileUri) throws ParserConfigurationException, SAXException, IOException,
+    /**
+     * Parses Settings XML file.
+     *
+     * @param xmlFileUri The URI of the related XML settings file.
+     * @return Map containing item IDs which identify the related {@link SettingsItem}s.
+     * @throws ParserConfigurationException the parser configuration exception
+     * @throws SAXException                 the sax exception
+     * @throws IOException                  the io exception
+     * @throws URISyntaxException           the uri syntax exception
+     */
+    public Map<String, SettingsItem> parse(URI xmlFileUri) throws ParserConfigurationException, SAXException, IOException,
 			URISyntaxException {
 		SAXParser saxParser = SAXParserFactory.newInstance().newSAXParser();
 		saxParser.parse(xmlFileUri.toString(), this);

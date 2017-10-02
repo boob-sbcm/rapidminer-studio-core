@@ -32,14 +32,18 @@ import java.util.List;
 
 
 /**
+ * The type Nearest neighbor neighborhood.
+ *
  * @author Sebastian Land
- * 
  */
 public class NearestNeighborNeighborhood implements Neighborhood {
 
 	private static final long serialVersionUID = 3449482421551746223L;
 
-	public static final String PARAMETER_K = "k";
+    /**
+     * The constant PARAMETER_K.
+     */
+    public static final String PARAMETER_K = "k";
 
 	private int k = 1;
 

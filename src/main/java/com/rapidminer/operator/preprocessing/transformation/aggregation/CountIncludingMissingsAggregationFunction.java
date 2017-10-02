@@ -28,20 +28,40 @@ import com.rapidminer.tools.Ontology;
  * within a group. Examples with a missing value in the attribute won't be counted. To count all of
  * them use the CountMAggreagationFunction. TODO: Needs to be checked whether this is same as in old
  * operator.
- * 
+ *
  * @author Sebastian Land
  */
 public class CountIncludingMissingsAggregationFunction extends NumericalAggregationFunction {
 
-	public static final String FUNCTION_COUNT = "countWithMissings";
+    /**
+     * The constant FUNCTION_COUNT.
+     */
+    public static final String FUNCTION_COUNT = "countWithMissings";
 
-	public CountIncludingMissingsAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings,
+    /**
+     * Instantiates a new Count including missings aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     */
+    public CountIncludingMissingsAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings,
 			boolean countOnlyDisctinct) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, FUNCTION_COUNT, FUNCTION_SEPARATOR_OPEN,
 				FUNCTION_SEPARATOR_CLOSE);
 	}
 
-	public CountIncludingMissingsAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings,
+    /**
+     * Instantiates a new Count including missings aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public CountIncludingMissingsAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings,
 			boolean countOnlyDisctinct, String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, separatorOpen, separatorClose);
 	}

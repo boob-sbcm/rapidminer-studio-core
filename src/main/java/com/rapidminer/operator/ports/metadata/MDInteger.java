@@ -19,24 +19,36 @@
 package com.rapidminer.operator.ports.metadata;
 
 /**
+ * The type Md integer.
+ *
  * @author Simon Fischer
  */
 public class MDInteger extends MDNumber<Integer> {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * This constructor will build a unkown number
-	 */
-	public MDInteger() {
+    /**
+     * This constructor will build a unkown number
+     */
+    public MDInteger() {
 		super(0);
 	}
 
-	public MDInteger(int i) {
+    /**
+     * Instantiates a new Md integer.
+     *
+     * @param i the
+     */
+    public MDInteger(int i) {
 		super(i);
 	}
 
-	public MDInteger(MDInteger integer) {
+    /**
+     * Instantiates a new Md integer.
+     *
+     * @param integer the integer
+     */
+    public MDInteger(MDInteger integer) {
 		super(integer);
 	}
 
@@ -46,7 +58,12 @@ public class MDInteger extends MDNumber<Integer> {
 		return this;
 	}
 
-	public void add(MDInteger add) {
+    /**
+     * Add.
+     *
+     * @param add the add
+     */
+    public void add(MDInteger add) {
 		setNumber(getNumber() + add.getNumber());
 		switch (add.getRelation()) {
 			case AT_LEAST:
@@ -70,7 +87,13 @@ public class MDInteger extends MDNumber<Integer> {
 		return this;
 	}
 
-	public MDInteger subtract(int subtrahend) {
+    /**
+     * Subtract md integer.
+     *
+     * @param subtrahend the subtrahend
+     * @return the md integer
+     */
+    public MDInteger subtract(int subtrahend) {
 		Integer current = getNumber();
 		if (current != null) {
 			setNumber(current - subtrahend);

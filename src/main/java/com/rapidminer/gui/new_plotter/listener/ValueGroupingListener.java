@@ -22,10 +22,16 @@ import com.rapidminer.gui.new_plotter.listener.events.ValueGroupingChangeEvent;
 
 
 /**
+ * The interface Value grouping listener.
+ *
  * @author Nils Woehler
- * 
  */
 public interface ValueGroupingListener {
 
-	public void valueGroupingChanged(ValueGroupingChangeEvent e);
+    /**
+     * Value grouping changed.
+     *
+     * @param e the e
+     */
+    public void valueGroupingChanged(ValueGroupingChangeEvent e);
 }

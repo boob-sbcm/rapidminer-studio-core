@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for getProcessContentsResponse complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="getProcessContentsResponse">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getProcessContentsResponse", propOrder = {
@@ -49,16 +47,16 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetProcessContentsResponse {
 
+    /**
+     * The Return.
+     */
     @XmlElement(name = "return")
     protected ProcessContentsResponse _return;
 
     /**
      * Gets the value of the return property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ProcessContentsResponse }
-     *     
+     *
+     * @return possible object is     {@link ProcessContentsResponse }
      */
     public ProcessContentsResponse getReturn() {
         return _return;
@@ -66,11 +64,8 @@ public class GetProcessContentsResponse {
 
     /**
      * Sets the value of the return property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProcessContentsResponse }
-     *     
+     *
+     * @param value allowed object is     {@link ProcessContentsResponse }
      */
     public void setReturn(ProcessContentsResponse value) {
         this._return = value;

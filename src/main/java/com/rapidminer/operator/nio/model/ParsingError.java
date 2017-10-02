@@ -25,14 +25,40 @@ import java.util.List;
  * An error that occurred during parsing.
  *
  * @author Simon Fischer
- *
  */
 public class ParsingError {
 
-	public static enum ErrorCode {
-		UNPARSEABLE_DATE("unparseable date"), UNPARSEABLE_INTEGER("unparseable integer"), UNPARSEABLE_REAL(
-				"unparseable real number"), MORE_THAN_TWO_VALUES("more than two values for binominal attribute"), ROW_TOO_LONG(
-				"row too long"), FILE_SYNTAX_ERROR("file syntax error"), SAME_ROLE_FOR_MULTIPLE_COLUMNS("duplicate role"), SAME_NAME_FOR_MULTIPLE_COLUMNS(
+    /**
+     * The enum Error code.
+     */
+    public static enum ErrorCode {
+        /**
+         * The Unparseable date.
+         */
+        UNPARSEABLE_DATE("unparseable date"), /**
+         * The Unparseable integer.
+         */
+        UNPARSEABLE_INTEGER("unparseable integer"), /**
+         * The Unparseable real.
+         */
+        UNPARSEABLE_REAL(
+				"unparseable real number"), /**
+         * The More than two values.
+         */
+        MORE_THAN_TWO_VALUES("more than two values for binominal attribute"), /**
+         * The Row too long.
+         */
+        ROW_TOO_LONG(
+				"row too long"), /**
+         * The File syntax error.
+         */
+        FILE_SYNTAX_ERROR("file syntax error"), /**
+         * The Same role for multiple columns.
+         */
+        SAME_ROLE_FOR_MULTIPLE_COLUMNS("duplicate role"), /**
+         * The Same name for multiple columns.
+         */
+        SAME_NAME_FOR_MULTIPLE_COLUMNS(
 				"duplicate attribute name");
 
 		private final String message;
@@ -41,7 +67,12 @@ public class ParsingError {
 			this.message = message;
 		}
 
-		public String getMessage() {
+        /**
+         * Gets message.
+         *
+         * @return the message
+         */
+        public String getMessage() {
 			return message;
 		}
 	}
@@ -67,16 +98,40 @@ public class ParsingError {
 
 	private final Throwable cause;
 
-	public ParsingError(List<Integer> columns, ErrorCode errorCode, Object originalValue) {
+    /**
+     * Instantiates a new Parsing error.
+     *
+     * @param columns       the columns
+     * @param errorCode     the error code
+     * @param originalValue the original value
+     */
+    public ParsingError(List<Integer> columns, ErrorCode errorCode, Object originalValue) {
 		this(-1, -1, errorCode, originalValue, null);
 		this.columns = columns;
 	}
 
-	public ParsingError(int row, int column, ErrorCode errorCode, Object originalValue) {
+    /**
+     * Instantiates a new Parsing error.
+     *
+     * @param row           the row
+     * @param column        the column
+     * @param errorCode     the error code
+     * @param originalValue the original value
+     */
+    public ParsingError(int row, int column, ErrorCode errorCode, Object originalValue) {
 		this(row, column, errorCode, originalValue, null);
 	}
 
-	public ParsingError(int row, int column, ErrorCode errorCode, Object originalValue, Throwable cause) {
+    /**
+     * Instantiates a new Parsing error.
+     *
+     * @param row           the row
+     * @param column        the column
+     * @param errorCode     the error code
+     * @param originalValue the original value
+     * @param cause         the cause
+     */
+    public ParsingError(int row, int column, ErrorCode errorCode, Object originalValue, Throwable cause) {
 		super();
 		this.row = row;
 		this.column = column;
@@ -86,42 +141,84 @@ public class ParsingError {
 		this.cause = cause;
 	}
 
-	public int getRow() {
+    /**
+     * Gets row.
+     *
+     * @return the row
+     */
+    public int getRow() {
 		return row;
 	}
 
-	public int getColumn() {
+    /**
+     * Gets column.
+     *
+     * @return the column
+     */
+    public int getColumn() {
 		return column;
 	}
 
-	public List<Integer> getColumns() {
+    /**
+     * Gets columns.
+     *
+     * @return the columns
+     */
+    public List<Integer> getColumns() {
 		return columns;
 	}
 
-	public Object getOriginalValue() {
+    /**
+     * Gets original value.
+     *
+     * @return the original value
+     */
+    public Object getOriginalValue() {
 		return originalValue;
 	}
 
-	public ErrorCode getErrorCode() {
+    /**
+     * Gets error code.
+     *
+     * @return the error code
+     */
+    public ErrorCode getErrorCode() {
 		return errorCode;
 	}
 
-	public void setExampleIndex(int exampleIndex) {
+    /**
+     * Sets example index.
+     *
+     * @param exampleIndex the example index
+     */
+    public void setExampleIndex(int exampleIndex) {
 		this.exampleIndex = exampleIndex;
 	}
 
-	public int getExampleIndex() {
+    /**
+     * Gets example index.
+     *
+     * @return the example index
+     */
+    public int getExampleIndex() {
 		return exampleIndex;
 	}
 
-	public Throwable getCause() {
+    /**
+     * Gets cause.
+     *
+     * @return the cause
+     */
+    public Throwable getCause() {
 		return cause;
 	}
 
-	/**
-	 * @return the error message without location reference
-	 */
-	public String getMessage() {
+    /**
+     * Gets message.
+     *
+     * @return the error message without location reference
+     */
+    public String getMessage() {
 		return getErrorCode().getMessage() + ": \"" + getOriginalValue() + "\"";
 	}
 

@@ -56,7 +56,6 @@ import com.rapidminer.tools.math.RunVector;
  * </ul>
  *
  * @author Martin Scholz
- *
  * @deprecated This learner is not used anymore.
  */
 @Deprecated
@@ -64,13 +63,13 @@ public class BayBoostStream extends AbstractMetaLearner {
 
 	private OutputPort runVectorOutput = getOutputPorts().createPort("run vector");
 
-	/**
-	 * Class that filters an ExampleSet by the value of a special attribute. The constructor is
-	 * provided with the attribute and the selected value. Neither this value nor the values of the
-	 * attribute in the data are supposed to change. Please note, that the batch number is compared
-	 * with greater or equal, which is comfortable for the case of merging a sequence of batches.
-	 */
-	public static class BatchFilterCondition implements Condition {
+    /**
+     * Class that filters an ExampleSet by the value of a special attribute. The constructor is
+     * provided with the attribute and the selected value. Neither this value nor the values of the
+     * attribute in the data are supposed to change. Please note, that the batch number is compared
+     * with greater or equal, which is comfortable for the case of merging a sequence of batches.
+     */
+    public static class BatchFilterCondition implements Condition {
 
 		private static final long serialVersionUID = 7910713773299060449L;
 
@@ -78,7 +77,13 @@ public class BayBoostStream extends AbstractMetaLearner {
 
 		private final Attribute attribute;
 
-		public BatchFilterCondition(Attribute attribute, int batchNumber) {
+        /**
+         * Instantiates a new Batch filter condition.
+         *
+         * @param attribute   the attribute
+         * @param batchNumber the batch number
+         */
+        public BatchFilterCondition(Attribute attribute, int batchNumber) {
 			this.batchNumber = batchNumber;
 			this.attribute = attribute;
 		}
@@ -94,32 +99,38 @@ public class BayBoostStream extends AbstractMetaLearner {
 		}
 	}
 
-	/**
-	 * Name of the variable specifying the maximal number of iterations of the learner.
-	 */
-	public static final String PARAMETER_BATCH_SIZE = "batch_size";
+    /**
+     * Name of the variable specifying the maximal number of iterations of the learner.
+     */
+    public static final String PARAMETER_BATCH_SIZE = "batch_size";
 
-	/**
-	 * Boolean parameter to specify whether the label priors should be equally likely after first
-	 * iteration.
-	 */
-	public static final String PARAMETER_RESCALE_LABEL_PRIORS = "rescale_label_priors";
+    /**
+     * Boolean parameter to specify whether the label priors should be equally likely after first
+     * iteration.
+     */
+    public static final String PARAMETER_RESCALE_LABEL_PRIORS = "rescale_label_priors";
 
-	/** Parameter name to activate a hold out set for tuning. */
-	public static final String PARAMETER_FRACTION_HOLD_OUT_SET = "fraction_hold_out_set";
+    /**
+     * Parameter name to activate a hold out set for tuning.
+     */
+    public static final String PARAMETER_FRACTION_HOLD_OUT_SET = "fraction_hold_out_set";
 
-	/** Discard models with an advantage of less than the specified value. */
-	public static final double MIN_ADVANTAGE = 0.02;
+    /**
+     * Discard models with an advantage of less than the specified value.
+     */
+    public static final double MIN_ADVANTAGE = 0.02;
 
-	/** Name of the special attribute with additional stream control information. */
-	public static final String STREAM_CONTROL_ATTRIB_NAME = "BayBoostStream.StreamControl";
+    /**
+     * Name of the special attribute with additional stream control information.
+     */
+    public static final String STREAM_CONTROL_ATTRIB_NAME = "BayBoostStream.StreamControl";
 
-	/**
-	 * The probabilistic prediction of soft classifiers is restricted, similar to a confidence
-	 * bound. If the lift is close to 0 it is replaced by the minimum lift below. Analogously a
-	 * maximum lift value is defined by (1 / MIN_LIFT_RATIO_SOFT_CLASSIFIER).
-	 */
-	public static final double MIN_LIFT_RATIO_SOFT_CLASSIFIER = 0.2;
+    /**
+     * The probabilistic prediction of soft classifiers is restricted, similar to a confidence
+     * bound. If the lift is close to 0 it is replaced by the minimum lift below. Analogously a
+     * maximum lift value is defined by (1 / MIN_LIFT_RATIO_SOFT_CLASSIFIER).
+     */
+    public static final double MIN_LIFT_RATIO_SOFT_CLASSIFIER = 0.2;
 
 	// the accuracy results over time
 	private RunVector runVector;
@@ -135,8 +146,12 @@ public class BayBoostStream extends AbstractMetaLearner {
 
 	private int batchSize;
 
-	/** Constructor. */
-	public BayBoostStream(OperatorDescription description) {
+    /**
+     * Constructor.  @param description the description
+     *
+     * @param description the description
+     */
+    public BayBoostStream(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addRule(new GenerateNewMDRule(runVectorOutput, RunVector.class));
@@ -173,7 +188,12 @@ public class BayBoostStream extends AbstractMetaLearner {
 		}
 	}
 
-	protected void prepareWeights(ExampleSet exampleSet) {
+    /**
+     * Prepare weights.
+     *
+     * @param exampleSet the example set
+     */
+    protected void prepareWeights(ExampleSet exampleSet) {
 		Attribute weightAttr = exampleSet.getAttributes().getWeight();
 		if (weightAttr == null) {
 			this.oldWeights = null;

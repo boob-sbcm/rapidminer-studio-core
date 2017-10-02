@@ -42,7 +42,7 @@ import com.rapidminer.tools.math.ContingencyTableTools;
  * This operator calculates the relevance of an attribute by measuring the symmetrical uncertainty
  * with respect to the class. The formulaization for this is:
  * </p>
- *
+ * <p>
  * <code>relevance = 2 * (P(Class) - P(Class | Attribute)) / P(Class) + P(Attribute)</code>
  *
  * @author Ingo Mierswa
@@ -51,7 +51,12 @@ public class SymmetricalUncertaintyOperator extends AbstractWeighting {
 
 	private static final int PROGRESS_UPDATE_STEPS = 1_000_000;
 
-	public SymmetricalUncertaintyOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Symmetrical uncertainty operator.
+     *
+     * @param description the description
+     */
+    public SymmetricalUncertaintyOperator(OperatorDescription description) {
 		super(description, true);
 	}
 

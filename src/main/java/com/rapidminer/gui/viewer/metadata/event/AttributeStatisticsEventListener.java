@@ -27,12 +27,16 @@ import java.util.EventListener;
  * An object listening for {@link AttributeStatisticsEvent}s on the
  * {@link AbstractAttributeStatisticsModel} must implement this interface and register itself as a
  * listener to the model.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface AttributeStatisticsEventListener extends EventListener {
 
-	public void modelChanged(AttributeStatisticsEvent e);
+    /**
+     * Model changed.
+     *
+     * @param e the e
+     */
+    public void modelChanged(AttributeStatisticsEvent e);
 
 }

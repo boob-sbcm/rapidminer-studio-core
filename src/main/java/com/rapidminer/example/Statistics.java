@@ -23,32 +23,93 @@ import java.io.Serializable;
 
 /**
  * The superclass for all attribute statistics objects.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface Statistics extends Serializable, Cloneable {
 
-	public static final String UNKNOWN = "unknown";
-	public static final String AVERAGE = "average";
-	public static final String AVERAGE_WEIGHTED = "average_weighted";
-	public static final String VARIANCE = "variance";
-	public static final String VARIANCE_WEIGHTED = "variance_weighted";
-	public static final String MINIMUM = "minimum";
-	public static final String MAXIMUM = "maximum";
-	public static final String MODE = "mode";
-	public static final String LEAST = "least";
-	public static final String COUNT = "count";
-	public static final String SUM = "sum";
-	public static final String SUM_WEIGHTED = "sum_weighted";
+    /**
+     * The constant UNKNOWN.
+     */
+    public static final String UNKNOWN = "unknown";
+    /**
+     * The constant AVERAGE.
+     */
+    public static final String AVERAGE = "average";
+    /**
+     * The constant AVERAGE_WEIGHTED.
+     */
+    public static final String AVERAGE_WEIGHTED = "average_weighted";
+    /**
+     * The constant VARIANCE.
+     */
+    public static final String VARIANCE = "variance";
+    /**
+     * The constant VARIANCE_WEIGHTED.
+     */
+    public static final String VARIANCE_WEIGHTED = "variance_weighted";
+    /**
+     * The constant MINIMUM.
+     */
+    public static final String MINIMUM = "minimum";
+    /**
+     * The constant MAXIMUM.
+     */
+    public static final String MAXIMUM = "maximum";
+    /**
+     * The constant MODE.
+     */
+    public static final String MODE = "mode";
+    /**
+     * The constant LEAST.
+     */
+    public static final String LEAST = "least";
+    /**
+     * The constant COUNT.
+     */
+    public static final String COUNT = "count";
+    /**
+     * The constant SUM.
+     */
+    public static final String SUM = "sum";
+    /**
+     * The constant SUM_WEIGHTED.
+     */
+    public static final String SUM_WEIGHTED = "sum_weighted";
 
 	public Object clone();
 
-	public void startCounting(Attribute attribute);
+    /**
+     * Start counting.
+     *
+     * @param attribute the attribute
+     */
+    public void startCounting(Attribute attribute);
 
-	public void count(double value, double weight);
+    /**
+     * Count.
+     *
+     * @param value  the value
+     * @param weight the weight
+     */
+    public void count(double value, double weight);
 
-	public boolean handleStatistics(String statisticsName);
+    /**
+     * Handle statistics boolean.
+     *
+     * @param statisticsName the statistics name
+     * @return the boolean
+     */
+    public boolean handleStatistics(String statisticsName);
 
-	public double getStatistics(Attribute attribute, String statisticsName, String parameter);
+    /**
+     * Gets statistics.
+     *
+     * @param attribute      the attribute
+     * @param statisticsName the statistics name
+     * @param parameter      the parameter
+     * @return the statistics
+     */
+    public double getStatistics(Attribute attribute, String statisticsName, String parameter);
 
 }

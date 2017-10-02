@@ -74,7 +74,17 @@ public final class RoundedRectanglePopup extends Popup {
 
 	private static Rectangle bufferRectangle = new Rectangle();
 
-	static Popup getInstance(Component owner, Component contents, int x, int y, Popup delegate) {
+    /**
+     * Gets instance.
+     *
+     * @param owner    the owner
+     * @param contents the contents
+     * @param x        the x
+     * @param y        the y
+     * @param delegate the delegate
+     * @return the instance
+     */
+    static Popup getInstance(Component owner, Component contents, int x, int y, Popup delegate) {
 		RoundedRectanglePopup popup;
 
 		synchronized (RoundedRectanglePopup.class) {

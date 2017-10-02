@@ -23,20 +23,57 @@ import javax.swing.Icon;
 
 /**
  * Model for a {@link ParentButtonPanel}.
- * 
+ *
+ * @param <T> the type parameter
  * @author Simon Fischer
  */
 public interface ParentButtonModel<T> {
 
-	public T getRoot();
+    /**
+     * Gets root.
+     *
+     * @return the root
+     */
+    public T getRoot();
 
-	public T getParent(T child);
+    /**
+     * Gets parent.
+     *
+     * @param child the child
+     * @return the parent
+     */
+    public T getParent(T child);
 
-	public int getNumberOfChildren(T node);
+    /**
+     * Gets number of children.
+     *
+     * @param node the node
+     * @return the number of children
+     */
+    public int getNumberOfChildren(T node);
 
-	public T getChild(T node, int index);
+    /**
+     * Gets child.
+     *
+     * @param node  the node
+     * @param index the index
+     * @return the child
+     */
+    public T getChild(T node, int index);
 
-	public String toString(T node);
+    /**
+     * To string string.
+     *
+     * @param node the node
+     * @return the string
+     */
+    public String toString(T node);
 
-	public Icon getIcon(T node);
+    /**
+     * Gets icon.
+     *
+     * @param node the node
+     * @return the icon
+     */
+    public Icon getIcon(T node);
 }

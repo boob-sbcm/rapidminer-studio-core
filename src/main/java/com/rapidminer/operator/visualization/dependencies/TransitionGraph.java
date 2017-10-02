@@ -26,7 +26,7 @@ import com.rapidminer.tools.Tools;
 /**
  * This is the result of the TransitionGraphOperator, i.e. a graph representing connections between
  * items (can be used for network visualizations).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class TransitionGraph extends ResultObjectAdapter {
@@ -45,7 +45,17 @@ public class TransitionGraph extends ResultObjectAdapter {
 
 	private ExampleSet exampleSet;
 
-	public TransitionGraph(ExampleSet exampleSet, String sourceAttribute, String targetAttribute, String strengthAttribute,
+    /**
+     * Instantiates a new Transition graph.
+     *
+     * @param exampleSet        the example set
+     * @param sourceAttribute   the source attribute
+     * @param targetAttribute   the target attribute
+     * @param strengthAttribute the strength attribute
+     * @param typeAttribute     the type attribute
+     * @param nodeDescription   the node description
+     */
+    public TransitionGraph(ExampleSet exampleSet, String sourceAttribute, String targetAttribute, String strengthAttribute,
 			String typeAttribute, String nodeDescription) {
 		this.sourceAttribute = sourceAttribute;
 		this.targetAttribute = targetAttribute;
@@ -55,23 +65,48 @@ public class TransitionGraph extends ResultObjectAdapter {
 		this.exampleSet = exampleSet;
 	}
 
-	public String getSourceAttribute() {
+    /**
+     * Gets source attribute.
+     *
+     * @return the source attribute
+     */
+    public String getSourceAttribute() {
 		return sourceAttribute;
 	}
 
-	public String getTargetAttribute() {
+    /**
+     * Gets target attribute.
+     *
+     * @return the target attribute
+     */
+    public String getTargetAttribute() {
 		return targetAttribute;
 	}
 
-	public String getStrengthAttribute() {
+    /**
+     * Gets strength attribute.
+     *
+     * @return the strength attribute
+     */
+    public String getStrengthAttribute() {
 		return strengthAttribute;
 	}
 
-	public String getTypeAttribute() {
+    /**
+     * Gets type attribute.
+     *
+     * @return the type attribute
+     */
+    public String getTypeAttribute() {
 		return typeAttribute;
 	}
 
-	public String getNodeDescription() {
+    /**
+     * Gets node description.
+     *
+     * @return the node description
+     */
+    public String getNodeDescription() {
 		return nodeDescription;
 	}
 
@@ -94,15 +129,30 @@ public class TransitionGraph extends ResultObjectAdapter {
 		return "Transition Graph";
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "tgr";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "Transition Graph";
 	}
 
-	public ExampleSet getExampleSet() {
+    /**
+     * Gets example set.
+     *
+     * @return the example set
+     */
+    public ExampleSet getExampleSet() {
 		return exampleSet;
 	}
 }

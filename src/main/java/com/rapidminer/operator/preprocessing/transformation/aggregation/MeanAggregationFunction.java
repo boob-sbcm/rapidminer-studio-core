@@ -25,19 +25,39 @@ import com.rapidminer.tools.Ontology;
 /**
  * This class implements the Mean Aggregation function. This will calculate the mean of a source
  * attribute for each group.
- * 
+ *
  * @author Sebastian Land
  */
 public class MeanAggregationFunction extends NumericalAggregationFunction {
 
-	public static final String FUNCTION_AVERAGE = "average";
+    /**
+     * The constant FUNCTION_AVERAGE.
+     */
+    public static final String FUNCTION_AVERAGE = "average";
 
-	public MeanAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
+    /**
+     * Instantiates a new Mean aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     */
+    public MeanAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, FUNCTION_AVERAGE, FUNCTION_SEPARATOR_OPEN,
 				FUNCTION_SEPARATOR_CLOSE);
 	}
 
-	public MeanAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
+    /**
+     * Instantiates a new Mean aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public MeanAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
 			String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, separatorOpen, separatorClose);
 	}

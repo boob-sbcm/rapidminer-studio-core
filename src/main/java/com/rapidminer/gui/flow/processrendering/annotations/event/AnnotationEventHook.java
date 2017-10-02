@@ -61,7 +61,6 @@ import com.rapidminer.tools.SystemInfoUtilities.OperatingSystem;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public final class AnnotationEventHook {
 
@@ -463,7 +462,17 @@ public final class AnnotationEventHook {
 		}
 	};
 
-	public AnnotationEventHook(final AnnotationsDecorator decorator, final AnnotationsModel model,
+    /**
+     * Instantiates a new Annotation event hook.
+     *
+     * @param decorator     the decorator
+     * @param model         the model
+     * @param visualizer    the visualizer
+     * @param drawer        the drawer
+     * @param view          the view
+     * @param rendererModel the renderer model
+     */
+    public AnnotationEventHook(final AnnotationsDecorator decorator, final AnnotationsModel model,
 			final AnnotationsVisualizer visualizer, final AnnotationDrawer drawer, final ProcessRendererView view,
 			final ProcessRendererModel rendererModel) {
 		this.decorator = decorator;
@@ -474,10 +483,10 @@ public final class AnnotationEventHook {
 		this.rendererModel = rendererModel;
 	}
 
-	/**
-	 * Registers the event hooks and draw decorators to the process renderer.
-	 */
-	public void registerDecorators() {
+    /**
+     * Registers the event hooks and draw decorators to the process renderer.
+     */
+    public void registerDecorators() {
 		view.addEventDecorator(processAnnotationEvents, RenderPhase.ANNOTATIONS);
 		view.addEventDecorator(operatorAnnotationEvents, RenderPhase.OPERATOR_ANNOTATIONS);
 		view.addEventDecorator(workflowAnnotationSelectedEvents, RenderPhase.OVERLAY);
@@ -485,10 +494,10 @@ public final class AnnotationEventHook {
 		rendererModel.registerEventListener(modelListener);
 	}
 
-	/**
-	 * Removes the event hooks and draw decorators from the process renderer.
-	 */
-	public void unregisterEventHooks() {
+    /**
+     * Removes the event hooks and draw decorators from the process renderer.
+     */
+    public void unregisterEventHooks() {
 		view.removeEventDecorator(processAnnotationEvents, RenderPhase.ANNOTATIONS);
 		view.removeEventDecorator(operatorAnnotationEvents, RenderPhase.OPERATOR_ANNOTATIONS);
 		view.removeEventDecorator(workflowAnnotationSelectedEvents, RenderPhase.OVERLAY);

@@ -39,17 +39,35 @@ public class TransformedRegressionModel extends PredictionModel implements Deleg
 
 	private static final long serialVersionUID = -1273082758742436998L;
 
-	public static final String[] METHODS = { "log", "logistic link", "exp", "rank", "none" };
+    /**
+     * The constant METHODS.
+     */
+    public static final String[] METHODS = { "log", "logistic link", "exp", "rank", "none" };
 
-	public static final int LOG = 0;
+    /**
+     * The constant LOG.
+     */
+    public static final int LOG = 0;
 
-	public static final int LOG_LINK = 1;
+    /**
+     * The constant LOG_LINK.
+     */
+    public static final int LOG_LINK = 1;
 
-	public static final int EXP = 2;
+    /**
+     * The constant EXP.
+     */
+    public static final int EXP = 2;
 
-	public static final int RANK = 3;
+    /**
+     * The constant RANK.
+     */
+    public static final int RANK = 3;
 
-	public static final int NONE = 4;
+    /**
+     * The constant NONE.
+     */
+    public static final int NONE = 4;
 
 	private int method;
 
@@ -65,7 +83,19 @@ public class TransformedRegressionModel extends PredictionModel implements Deleg
 
 	private boolean zscale;
 
-	public TransformedRegressionModel(ExampleSet exampleSet, int method, double[] rank, Model model, boolean zscale,
+    /**
+     * Instantiates a new Transformed regression model.
+     *
+     * @param exampleSet  the example set
+     * @param method      the method
+     * @param rank        the rank
+     * @param model       the model
+     * @param zscale      the zscale
+     * @param mean        the mean
+     * @param stddev      the stddev
+     * @param interpolate the interpolate
+     */
+    public TransformedRegressionModel(ExampleSet exampleSet, int method, double[] rank, Model model, boolean zscale,
 			double mean, double stddev, boolean interpolate) {
 		super(exampleSet, null, null);
 		this.method = method;

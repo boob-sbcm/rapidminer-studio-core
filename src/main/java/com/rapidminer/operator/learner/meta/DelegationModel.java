@@ -22,12 +22,23 @@ import com.rapidminer.operator.Model;
 
 
 /**
- * 
+ * The interface Delegation model.
+ *
  * @author Sebastian Land
  */
 public interface DelegationModel {
 
-	public Model getBaseModel();
+    /**
+     * Gets base model.
+     *
+     * @return the base model
+     */
+    public Model getBaseModel();
 
-	public String getShortInfo();
+    /**
+     * Gets short info.
+     *
+     * @return the short info
+     */
+    public String getShortInfo();
 }

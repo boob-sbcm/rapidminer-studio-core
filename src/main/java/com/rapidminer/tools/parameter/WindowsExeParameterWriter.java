@@ -35,16 +35,19 @@ import java.util.logging.Logger;
  * A writer that will export the defined parameters that are preStart Parameters to a config file in
  * the user directory that is used by the exe start program to set Environment Variables before
  * actual JVM starts.
- * 
+ * <p>
  * The format is line separated as follows: - mode: Mode is either "append" or "overwrite". On
  * Append the new value is appended ; separeted - name: Name of the environment variable to set -
  * value: The value of the variable
- * 
+ *
  * @author Sebastian Land
  */
 public class WindowsExeParameterWriter implements ParameterWriter {
 
-	public static final String CONFIG_FILE_NAME = "config.win";
+    /**
+     * The constant CONFIG_FILE_NAME.
+     */
+    public static final String CONFIG_FILE_NAME = "config.win";
 
 	private static final Logger LOGGER = Logger.getLogger(WindowsExeParameterWriter.class.getSimpleName());
 

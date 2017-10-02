@@ -21,10 +21,15 @@ package com.rapidminer.gui.tools;
 /**
  * A filter listener which can be added to the {@link FilterTextField}. May be implemented by list
  * or tree models to filter the view according to the filter value contained in the text field.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public interface FilterListener {
 
-	public void valueChanged(String value);
+    /**
+     * Value changed.
+     *
+     * @param value the value
+     */
+    public void valueChanged(String value);
 }

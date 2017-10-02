@@ -22,6 +22,8 @@ import com.rapidminer.operator.IOObject;
 
 
 /**
+ * The type Dummy meta data.
+ *
  * @author Simon Fischer
  */
 public class DummyMetaData extends MetaData {
@@ -32,11 +34,19 @@ public class DummyMetaData extends MetaData {
 	private static final long serialVersionUID = 1L;
 	private String message;
 
-	public DummyMetaData() {
+    /**
+     * Instantiates a new Dummy meta data.
+     */
+    public DummyMetaData() {
 		this("");
 	}
 
-	public DummyMetaData(String message) {
+    /**
+     * Instantiates a new Dummy meta data.
+     *
+     * @param message the message
+     */
+    public DummyMetaData(String message) {
 		super(IOObject.class);
 		this.message = message;
 	}

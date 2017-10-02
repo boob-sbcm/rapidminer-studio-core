@@ -37,9 +37,10 @@ import java.util.List;
 /**
  * Superclass of all operators that take a single object as input, save it to disk and return the
  * same object as output. This class is mainly a tribute to the e-LICO DMO.
- * 
+ * <p>
  * It defines precondition and a pass through rule for its output port.
- * 
+ *
+ * @param <T> the type parameter
  * @author Simon Fischer
  */
 public abstract class AbstractWriter<T extends IOObject> extends Operator {
@@ -48,19 +49,27 @@ public abstract class AbstractWriter<T extends IOObject> extends Operator {
 	private OutputPort outputPort = getOutputPorts().createPort("through");
 	private Class<T> savedClass;
 
-	public AbstractWriter(OperatorDescription description, Class<T> savedClass) {
+    /**
+     * Instantiates a new Abstract writer.
+     *
+     * @param description the description
+     * @param savedClass  the saved class
+     */
+    public AbstractWriter(OperatorDescription description, Class<T> savedClass) {
 		super(description);
 		this.savedClass = savedClass;
 		inputPort.addPrecondition(new SimplePrecondition(inputPort, new MetaData(savedClass)));
 		getTransformer().addRule(new PassThroughRule(inputPort, outputPort, false));
 	}
 
-	/**
-	 * Creates (or reads) the ExampleSet that will be returned by {@link #apply()}.
-	 * 
-	 * @return the written IOObject itself
-	 */
-	public abstract T write(T ioobject) throws OperatorException;
+    /**
+     * Creates (or reads) the ExampleSet that will be returned by {@link #apply()}.
+     *
+     * @param ioobject the ioobject
+     * @return the written IOObject itself
+     * @throws OperatorException the operator exception
+     */
+    public abstract T write(T ioobject) throws OperatorException;
 
 	@Override
 	public final void doWork() throws OperatorException {
@@ -69,7 +78,12 @@ public abstract class AbstractWriter<T extends IOObject> extends Operator {
 		outputPort.deliver(ioobject);
 	}
 
-	protected boolean supportsEncoding() {
+    /**
+     * Supports encoding boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean supportsEncoding() {
 		return false;
 	}
 

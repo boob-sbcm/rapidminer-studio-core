@@ -27,7 +27,8 @@ import java.awt.Component;
 
 
 /**
- * 
+ * The type Average vector renderer.
+ *
  * @author Simon Fischer
  */
 public class AverageVectorRenderer extends AbstractRenderer {

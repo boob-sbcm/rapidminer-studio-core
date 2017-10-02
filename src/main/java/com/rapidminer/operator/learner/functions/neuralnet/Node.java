@@ -27,16 +27,25 @@ import java.io.Serializable;
  * A node is the abstract superclass for all types of neural net nodes and also represents the
  * connection between other nodes of the neural net. It performs most of the calculations and the
  * feedforward / backpropagation mechanism.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public abstract class Node implements Serializable {
 
 	private static final long serialVersionUID = -4888796462060891114L;
 
-	public static final int INPUT = -1;
-	public static final int HIDDEN = 0;
-	public static final int OUTPUT = -2;
+    /**
+     * The constant INPUT.
+     */
+    public static final int INPUT = -1;
+    /**
+     * The constant HIDDEN.
+     */
+    public static final int HIDDEN = 0;
+    /**
+     * The constant OUTPUT.
+     */
+    public static final int OUTPUT = -2;
 
 	private int layerIndex;
 
@@ -46,48 +55,112 @@ public abstract class Node implements Serializable {
 
 	private boolean weightsAreUpdated = false;
 
-	protected Node[] inputNodes = new Node[0];
+    /**
+     * The Input nodes.
+     */
+    protected Node[] inputNodes = new Node[0];
 
-	protected Node[] outputNodes = new Node[0];
+    /**
+     * The Output nodes.
+     */
+    protected Node[] outputNodes = new Node[0];
 
-	protected int[] inputNodeOutputIndices = new int[0];
+    /**
+     * The Input node output indices.
+     */
+    protected int[] inputNodeOutputIndices = new int[0];
 
-	protected int[] outputNodeInputIndices = new int[0];
+    /**
+     * The Output node input indices.
+     */
+    protected int[] outputNodeInputIndices = new int[0];
 
-	protected double currentValue = Double.NaN;
+    /**
+     * The Current value.
+     */
+    protected double currentValue = Double.NaN;
 
-	protected double currentError = Double.NaN;
+    /**
+     * The Current error.
+     */
+    protected double currentError = Double.NaN;
 
-	public Node(String nodeName, int layerIndex, int nodeType) {
+    /**
+     * Instantiates a new Node.
+     *
+     * @param nodeName   the node name
+     * @param layerIndex the layer index
+     * @param nodeType   the node type
+     */
+    public Node(String nodeName, int layerIndex, int nodeType) {
 		this.layerIndex = layerIndex;
 		this.nodeName = nodeName;
 		this.nodeType = nodeType;
 	}
 
-	/** Calculates the output for this node. */
-	public abstract double calculateValue(boolean calculate, Example example);
+    /**
+     * Calculates the output for this node.  @param calculate the calculate
+     *
+     * @param calculate the calculate
+     * @param example   the example
+     * @return the double
+     */
+    public abstract double calculateValue(boolean calculate, Example example);
 
-	/** Calculates the error for this node. */
-	public abstract double calculateError(boolean calculate, Example example);
+    /**
+     * Calculates the error for this node.  @param calculate the calculate
+     *
+     * @param calculate the calculate
+     * @param example   the example
+     * @return the double
+     */
+    public abstract double calculateError(boolean calculate, Example example);
 
-	/** Returns 1. Subclasses should overwrite this method. */
-	public double getWeight(int n) {
+    /**
+     * Returns 1. Subclasses should overwrite this method.  @param n the n
+     *
+     * @param n the n
+     * @return the weight
+     */
+    public double getWeight(int n) {
 		return 1;
 	}
 
-	public int getLayerIndex() {
+    /**
+     * Gets layer index.
+     *
+     * @return the layer index
+     */
+    public int getLayerIndex() {
 		return this.layerIndex;
 	}
 
-	public String getNodeName() {
+    /**
+     * Gets node name.
+     *
+     * @return the node name
+     */
+    public String getNodeName() {
 		return this.nodeName;
 	}
 
-	public int getNodeType() {
+    /**
+     * Gets node type.
+     *
+     * @return the node type
+     */
+    public int getNodeType() {
 		return this.nodeType;
 	}
 
-	public void update(Example example, double learningRate, double momentum) {
+    /**
+     * Update.
+     *
+     * @param example      the example
+     * @param learningRate the learning rate
+     * @param momentum     the momentum
+     */
+    public void update(Example example, double learningRate, double momentum) {
 		if (!weightsAreUpdated) {
 			for (int i = 0; i < inputNodes.length; i++) {
 				inputNodes[i].update(example, learningRate, momentum);
@@ -96,11 +169,19 @@ public abstract class Node implements Serializable {
 		}
 	}
 
-	public boolean areWeightsUpdated() {
+    /**
+     * Are weights updated boolean.
+     *
+     * @return the boolean
+     */
+    public boolean areWeightsUpdated() {
 		return this.weightsAreUpdated;
 	}
 
-	public void reset() {
+    /**
+     * Reset.
+     */
+    public void reset() {
 		if (!Double.isNaN(currentValue) || !Double.isNaN(currentError)) {
 			weightsAreUpdated = false;
 			currentValue = Double.NaN;
@@ -111,23 +192,50 @@ public abstract class Node implements Serializable {
 		}
 	}
 
-	public Node[] getInputNodes() {
+    /**
+     * Get input nodes node [ ].
+     *
+     * @return the node [ ]
+     */
+    public Node[] getInputNodes() {
 		return inputNodes;
 	}
 
-	public Node[] getOutputNodes() {
+    /**
+     * Get output nodes node [ ].
+     *
+     * @return the node [ ]
+     */
+    public Node[] getOutputNodes() {
 		return outputNodes;
 	}
 
-	public int[] getInputNodeOutputIndices() {
+    /**
+     * Get input node output indices int [ ].
+     *
+     * @return the int [ ]
+     */
+    public int[] getInputNodeOutputIndices() {
 		return inputNodeOutputIndices;
 	}
 
-	public int[] getOutputNodeInputIndices() {
+    /**
+     * Get output node input indices int [ ].
+     *
+     * @return the int [ ]
+     */
+    public int[] getOutputNodeInputIndices() {
 		return outputNodeInputIndices;
 	}
 
-	protected boolean connectInput(Node inputNode, int inputNodeOutputIndex) {
+    /**
+     * Connect input boolean.
+     *
+     * @param inputNode            the input node
+     * @param inputNodeOutputIndex the input node output index
+     * @return the boolean
+     */
+    protected boolean connectInput(Node inputNode, int inputNodeOutputIndex) {
 		Node[] newInputNodes = new Node[inputNodes.length + 1];
 		System.arraycopy(inputNodes, 0, newInputNodes, 0, inputNodes.length);
 		newInputNodes[newInputNodes.length - 1] = inputNode;
@@ -141,7 +249,14 @@ public abstract class Node implements Serializable {
 		return true;
 	}
 
-	protected boolean connectOutput(Node outputNode, int outputNodeInputIndex) {
+    /**
+     * Connect output boolean.
+     *
+     * @param outputNode           the output node
+     * @param outputNodeInputIndex the output node input index
+     * @return the boolean
+     */
+    protected boolean connectOutput(Node outputNode, int outputNodeInputIndex) {
 		Node[] newOutputNodes = new Node[outputNodes.length + 1];
 		System.arraycopy(outputNodes, 0, newOutputNodes, 0, outputNodes.length);
 		newOutputNodes[newOutputNodes.length - 1] = outputNode;
@@ -155,7 +270,14 @@ public abstract class Node implements Serializable {
 		return true;
 	}
 
-	protected boolean disconnectInput(Node inputNode, int inputNodeOutputIndex) {
+    /**
+     * Disconnect input boolean.
+     *
+     * @param inputNode            the input node
+     * @param inputNodeOutputIndex the input node output index
+     * @return the boolean
+     */
+    protected boolean disconnectInput(Node inputNode, int inputNodeOutputIndex) {
 		int deleteIndex = -1;
 		boolean removed = false;
 		int numberOfInputs = inputNodes.length;
@@ -191,7 +313,14 @@ public abstract class Node implements Serializable {
 		return removed;
 	}
 
-	protected boolean disconnectOutput(Node outputNode, int outputNodeInputIndex) {
+    /**
+     * Disconnect output boolean.
+     *
+     * @param outputNode           the output node
+     * @param outputNodeInputIndex the output node input index
+     * @return the boolean
+     */
+    protected boolean disconnectOutput(Node outputNode, int outputNodeInputIndex) {
 		int deleteIndex = -1;
 		boolean removed = false;
 		int numberOfOutputs = outputNodes.length;
@@ -227,7 +356,14 @@ public abstract class Node implements Serializable {
 		return removed;
 	}
 
-	public static boolean connect(Node firstNode, Node secondNode) {
+    /**
+     * Connect boolean.
+     *
+     * @param firstNode  the first node
+     * @param secondNode the second node
+     * @return the boolean
+     */
+    public static boolean connect(Node firstNode, Node secondNode) {
 		disconnect(firstNode, secondNode);
 
 		if (!firstNode.connectOutput(secondNode, secondNode.inputNodes.length)) {
@@ -242,7 +378,14 @@ public abstract class Node implements Serializable {
 		return true;
 	}
 
-	public static boolean disconnect(Node firstNode, Node secondNode) {
+    /**
+     * Disconnect boolean.
+     *
+     * @param firstNode  the first node
+     * @param secondNode the second node
+     * @return the boolean
+     */
+    public static boolean disconnect(Node firstNode, Node secondNode) {
 		return firstNode.disconnectOutput(secondNode, -1) && secondNode.disconnectInput(firstNode, -1);
 	}
 }

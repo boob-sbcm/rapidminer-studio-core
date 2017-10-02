@@ -35,12 +35,9 @@ import com.rapidminer.parameter.ParameterType;
  * The I18N key conventions can be found in the {@link Configurable} interface.
  * </p>
  *
- * @deprecated Please ALWAYS extend {@link AbstractConfigurator} instead of extending this class
- *             directly. Reason is that the {@link Configurator} class was not changed for
- *             compatibility reasons and the {@link AbstractConfigurator} contains vital methods for
- *             parameter dependencies handling.
- *
+ * @param <T> the type parameter
  * @author Simon Fischer, Dominik Halfkann, Marco Boeck, Adrian Wilke
+ * @deprecated Please ALWAYS extend {@link AbstractConfigurator} instead of extending this class             directly. Reason is that the {@link Configurator} class was not changed for             compatibility reasons and the {@link AbstractConfigurator} contains vital methods for             parameter dependencies handling.
  */
 @Deprecated
 public abstract class Configurator<T extends Configurable> extends AbstractConfigurator<T> {
@@ -63,16 +60,14 @@ public abstract class Configurator<T extends Configurable> extends AbstractConfi
 	/** This can be used for parameter dependencies */
 	private final ParameterHandler defaultParamHandler = new DefaultParameterHandler();
 
-	/**
-	 * @return the {@link ParameterHandler} for this instance. Can be used for parameter
-	 *         dependencies.
-	 * @since 6.0.9
-	 * @deprecated This method returns one {@link ParameterHandler} for all {@link Configurable}s.
-	 *             Extend the class {@link AbstractConfigurator} instead of this class and implement
-	 *             {@link #getParameterTypes(ParameterHandler)} for correct parameter dependency
-	 *             handling.
-	 */
-	@Deprecated
+    /**
+     * Gets parameter handler.
+     *
+     * @return the {@link ParameterHandler} for this instance. Can be used for parameter         dependencies.
+     * @since 6.0.9
+     * @deprecated This method returns one {@link ParameterHandler} for all {@link Configurable}s.             Extend the class {@link AbstractConfigurator} instead of this class and implement             {@link #getParameterTypes(ParameterHandler)} for correct parameter dependency             handling.
+     */
+    @Deprecated
 	public final ParameterHandler getParameterHandler() {
 		return defaultParamHandler;
 	}
@@ -87,17 +82,16 @@ public abstract class Configurator<T extends Configurable> extends AbstractConfi
 		return getParameterTypes();
 	}
 
-	/**
-	 * In its default implementation this method returns an empty list of parameter types. Classes
-	 * that still extend {@link Configurator} will override it with an actual list of parameter
-	 * types and {@link Configurator#getParameterTypes(ParameterHandler parameterHandler)} will
-	 * return the list of parameter types without correct dependency handling.
-	 *
-	 * @deprecated This method is not capable of handling parameter type dependencies correctly.
-	 *             Extend the class {@link AbstractConfigurator} instead of {@link Configurator} and
-	 *             implement {@link #getParameterTypes(ParameterHandler)}.
-	 */
-	@Deprecated
+    /**
+     * In its default implementation this method returns an empty list of parameter types. Classes
+     * that still extend {@link Configurator} will override it with an actual list of parameter
+     * types and {@link Configurator#getParameterTypes(ParameterHandler parameterHandler)} will
+     * return the list of parameter types without correct dependency handling.
+     *
+     * @return the parameter types
+     * @deprecated This method is not capable of handling parameter type dependencies correctly.             Extend the class {@link AbstractConfigurator} instead of {@link Configurator} and             implement {@link #getParameterTypes(ParameterHandler)}.
+     */
+    @Deprecated
 	public abstract List<ParameterType> getParameterTypes();
 
 }

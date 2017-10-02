@@ -63,25 +63,41 @@ import java.util.List;
  * operator LocalPolynomialExampleWeighting might be used as a preprocessing step instead of
  * checking the parameter. The effect is, that outlier will be downweighted so that the least
  * squares fitting will not be affected by them anymore.
- * 
+ * <p>
  * Since it is a local method, the computational need for training is minimal: In fact, each example
  * is only stored in a way which provides a fast neighborhood search during application time. Since
  * all calculations are performed during application time, it is slower than for example SVM,
  * LinearRegression or NaiveBayes. In fact it really much depends on the number of training examples
  * and the number of attributes. If a higher degree than 1 is used, the calculations take much
  * longer, because implicitly the polynomial expansion must be calculated.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class LocalPolynomialRegressionOperator extends AbstractLearner {
 
-	public static final String PARAMETER_DEGREE = "degree";
-	public static final String PARAMETER_RIDGE = "ridge_factor";
-	public static final String PARAMETER_USE_EXAMPLE_WEIGHTS = "use_weights";
-	public static final String PARAMETER_USE_ROBUST_ESTIMATION = "use_robust_estimation";
+    /**
+     * The constant PARAMETER_DEGREE.
+     */
+    public static final String PARAMETER_DEGREE = "degree";
+    /**
+     * The constant PARAMETER_RIDGE.
+     */
+    public static final String PARAMETER_RIDGE = "ridge_factor";
+    /**
+     * The constant PARAMETER_USE_EXAMPLE_WEIGHTS.
+     */
+    public static final String PARAMETER_USE_EXAMPLE_WEIGHTS = "use_weights";
+    /**
+     * The constant PARAMETER_USE_ROBUST_ESTIMATION.
+     */
+    public static final String PARAMETER_USE_ROBUST_ESTIMATION = "use_robust_estimation";
 
-	public LocalPolynomialRegressionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Local polynomial regression operator.
+     *
+     * @param description the description
+     */
+    public LocalPolynomialRegressionOperator(OperatorDescription description) {
 		super(description);
 	}
 

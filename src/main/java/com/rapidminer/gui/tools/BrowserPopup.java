@@ -75,29 +75,27 @@ import netscape.javascript.JSObject;
 
 /**
  * Displays a Browser popup with sliding animations
- *
+ * <p>
  * <p>
  * The HTML content must contain an initialize() JS method
  * </p>
  *
  * @author Jonas Wilms-Pfau
  * @since 7.5.0
- *
  */
 public class BrowserPopup extends JDialog implements Supplier<String> {
 
-	/**
-	 * Provides functions invokable within the JavaScript of the web page displayed in the webview.
-	 */
-	public final class CTACallbacks {
+    /**
+     * Provides functions invokable within the JavaScript of the web page displayed in the webview.
+     */
+    public final class CTACallbacks {
 
-		/**
-		 * Opens the given url in the system browser.
-		 *
-		 * @param url
-		 * 		the url to open
-		 */
-		public void openLink(String url) {
+        /**
+         * Opens the given url in the system browser.
+         *
+         * @param url the url to open
+         */
+        public void openLink(String url) {
 			if (url != null) {
 				closeWithReason(url);
 				// It is freezing on Linux otherwise
@@ -107,15 +105,26 @@ public class BrowserPopup extends JDialog implements Supplier<String> {
 			}
 		}
 
-		public void close() {
+        /**
+         * Close.
+         */
+        public void close() {
 			closeWithReason(Reason.CLOSED);
 		}
 
-		public void maybeLater() {
+        /**
+         * Maybe later.
+         */
+        public void maybeLater() {
 			closeWithReason(Reason.LATER);
 		}
 
-		public void closeWithReason(String reason) {
+        /**
+         * Close with reason.
+         *
+         * @param reason the reason
+         */
+        public void closeWithReason(String reason) {
 			// Store the reason
 			reasonQueue.offer(reason);
 			if (!closed.compareAndSet(false, true)) {
@@ -148,13 +157,34 @@ public class BrowserPopup extends JDialog implements Supplier<String> {
 	 * Predefined reasons for the closing of the CTA window.
 	 */
 	private final class Reason {
-		public static final String CLOSED = "closed";
-		public static final String UNKNOWN = "unknown";
-		public static final String LATER = "later";
-		public static final String CANCELED = "canceled";
-		public static final String JS_INVALID = "js_invalid";
-		public static final String FAILED_LOADING = "failed_loading";
-		public static final String TIMEOUT = "loading_timeout";
+        /**
+         * The constant CLOSED.
+         */
+        public static final String CLOSED = "closed";
+        /**
+         * The constant UNKNOWN.
+         */
+        public static final String UNKNOWN = "unknown";
+        /**
+         * The constant LATER.
+         */
+        public static final String LATER = "later";
+        /**
+         * The constant CANCELED.
+         */
+        public static final String CANCELED = "canceled";
+        /**
+         * The constant JS_INVALID.
+         */
+        public static final String JS_INVALID = "js_invalid";
+        /**
+         * The constant FAILED_LOADING.
+         */
+        public static final String FAILED_LOADING = "failed_loading";
+        /**
+         * The constant TIMEOUT.
+         */
+        public static final String TIMEOUT = "loading_timeout";
 
 		private Reason() {
 			throw new UnsupportedOperationException("Static utility class");
@@ -280,20 +310,23 @@ public class BrowserPopup extends JDialog implements Supplier<String> {
 	/** Used to decrease shadow quality for transition */
 	private final transient DropShadow dropShadow = new DropShadow(BORDER_PADDING, SHADOW_OFFSET_X, SHADOW_OFFSET_Y, SHADOW_COLOR);
 
-	/**
-	 * Creates a 500x200 Browser Popup
-	 *
-	 * @param html
-	 */
-	public BrowserPopup(String html) {
+    /**
+     * Creates a 500x200 Browser Popup
+     *
+     * @param html the html
+     */
+    public BrowserPopup(String html) {
 		this(html, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	}
 
-	/**
-	 * @param onboardingDialog
-	 * 		the parent dialog
-	 */
-	public BrowserPopup(String html, int width, int height) {
+    /**
+     * Instantiates a new Browser popup.
+     *
+     * @param html   the html
+     * @param width  the width
+     * @param height the height
+     */
+    public BrowserPopup(String html, int width, int height) {
 		super(RapidMinerGUI.getMainFrame());
 		this.width = width;
 		this.height = height;

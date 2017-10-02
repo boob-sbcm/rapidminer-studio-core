@@ -60,7 +60,12 @@ public class FrequentItemSetVisualization extends JPanel {
 
 	private JLabel minItemSetSizeLabel = new JLabel();
 
-	public FrequentItemSetVisualization(final FrequentItemSets frequentSets) {
+    /**
+     * Instantiates a new Frequent item set visualization.
+     *
+     * @param frequentSets the frequent sets
+     */
+    public FrequentItemSetVisualization(final FrequentItemSets frequentSets) {
 		setLayout(new BorderLayout());
 
 		// main panel

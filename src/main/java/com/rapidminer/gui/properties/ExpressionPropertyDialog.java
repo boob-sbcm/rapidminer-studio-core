@@ -95,12 +95,10 @@ import com.rapidminer.tools.expression.MacroResolver;
 
 
 /**
- *
  * The {@link ExpressionPropertyDialog} enables to enter an expression out of functions, attribute
  * values, constants and macro values and validates the expression's syntax.
  *
  * @author Ingo Mierswa, Marco Boeck, Sabrina Kirstein
- *
  */
 public class ExpressionPropertyDialog extends PropertyDialog {
 
@@ -225,7 +223,12 @@ public class ExpressionPropertyDialog extends PropertyDialog {
 
 		private final JButton button;
 
-		public HoverBorderMouseListener(final JButton pageButton) {
+        /**
+         * Instantiates a new Hover border mouse listener.
+         *
+         * @param pageButton the page button
+         */
+        public HoverBorderMouseListener(final JButton pageButton) {
 			this.button = pageButton;
 
 		}
@@ -439,28 +442,28 @@ public class ExpressionPropertyDialog extends PropertyDialog {
 	/** typical filter icon */
 	private static final ImageIcon ICON_FILTER = SwingTools.createIcon("16/" + "funnel.png");
 
-	/**
-	 * Creates an {@link ExpressionPropertyDialog} with the given initial value.
-	 *
-	 * @param type
-	 * @param initialValue
-	 */
-	public ExpressionPropertyDialog(final ParameterTypeExpression type, String initialValue) {
+    /**
+     * Creates an {@link ExpressionPropertyDialog} with the given initial value.
+     *
+     * @param type         the type
+     * @param initialValue the initial value
+     */
+    public ExpressionPropertyDialog(final ParameterTypeExpression type, String initialValue) {
 		this(type, null, initialValue);
 	}
 
-	/**
-	 * Creates an {@link ExpressionPropertyDialog} with the given initial value, controlling
-	 * process, expression parser, input model and function model
-	 *
-	 * @param type
-	 * @param process
-	 * @param inputs
-	 * @param functions
-	 * @param parser
-	 * @param initialValue
-	 */
-	public ExpressionPropertyDialog(ParameterTypeExpression type, Process process, List<FunctionInput> inputs,
+    /**
+     * Creates an {@link ExpressionPropertyDialog} with the given initial value, controlling
+     * process, expression parser, input model and function model
+     *
+     * @param type         the type
+     * @param process      the process
+     * @param inputs       the inputs
+     * @param functions    the functions
+     * @param parser       the parser
+     * @param initialValue the initial value
+     */
+    public ExpressionPropertyDialog(ParameterTypeExpression type, Process process, List<FunctionInput> inputs,
 			List<FunctionDescription> functions, ExpressionParser parser, String initialValue) {
 		super(type, "expression");
 
@@ -484,15 +487,15 @@ public class ExpressionPropertyDialog extends PropertyDialog {
 		updateFunctions();
 	}
 
-	/**
-	 * Creates an {@link ExpressionPropertyDialog} with the given initial value and a controlling
-	 * process
-	 *
-	 * @param type
-	 * @param process
-	 * @param initialValue
-	 */
-	public ExpressionPropertyDialog(ParameterTypeExpression type, Process process, String initialValue) {
+    /**
+     * Creates an {@link ExpressionPropertyDialog} with the given initial value and a controlling
+     * process
+     *
+     * @param type         the type
+     * @param process      the process
+     * @param initialValue the initial value
+     */
+    public ExpressionPropertyDialog(ParameterTypeExpression type, Process process, String initialValue) {
 		super(type, "expression");
 
 		// add observers to receive model updates
@@ -571,13 +574,12 @@ public class ExpressionPropertyDialog extends PropertyDialog {
 		}
 	}
 
-	/**
-	 * Initializes the UI of the dialog.
-	 *
-	 * @param initialValue
-	 *            of the expression
-	 */
-	public void initGui(String initialValue) {
+    /**
+     * Initializes the UI of the dialog.
+     *
+     * @param initialValue of the expression
+     */
+    public void initGui(String initialValue) {
 
 		// this is the only way to set colors for the JXTaskPane component
 		/* background color */
@@ -986,10 +988,12 @@ public class ExpressionPropertyDialog extends PropertyDialog {
 		setResizable(false);
 	}
 
-	/**
-	 * @return current expression
-	 */
-	public String getExpression() {
+    /**
+     * Gets expression.
+     *
+     * @return current expression
+     */
+    public String getExpression() {
 		return currentExpression.getText();
 	}
 

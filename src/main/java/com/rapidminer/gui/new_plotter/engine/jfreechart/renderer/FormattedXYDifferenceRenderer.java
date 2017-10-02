@@ -29,6 +29,8 @@ import org.jfree.chart.renderer.xy.XYDifferenceRenderer;
 
 
 /**
+ * The type Formatted xy difference renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedXYDifferenceRenderer extends XYDifferenceRenderer implements FormattedRenderer {
@@ -45,7 +47,12 @@ public class FormattedXYDifferenceRenderer extends XYDifferenceRenderer implemen
 	 */
 	private int trueSeriesIdx;
 
-	public FormattedXYDifferenceRenderer(int trueSeriesIdx) {
+    /**
+     * Instantiates a new Formatted xy difference renderer.
+     *
+     * @param trueSeriesIdx the true series idx
+     */
+    public FormattedXYDifferenceRenderer(int trueSeriesIdx) {
 		super();
 		this.trueSeriesIdx = trueSeriesIdx;
 	}

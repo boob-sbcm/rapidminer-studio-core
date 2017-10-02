@@ -32,19 +32,28 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Provides a transferable wrapper for Operators in order to drag-n-drop them in the Process-Tree.
- * 
- * @see com.rapidminer.gui.operatortree.OperatorTree
+ *
  * @author Helge Homburg, Michael Knopf, Adrian Wilke
+ * @see com.rapidminer.gui.operatortree.OperatorTree
  */
 public class TransferableOperator implements Transferable {
 
-	public static final DataFlavor LOCAL_TRANSFERRED_OPERATORS_FLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType
+    /**
+     * The constant LOCAL_TRANSFERRED_OPERATORS_FLAVOR.
+     */
+    public static final DataFlavor LOCAL_TRANSFERRED_OPERATORS_FLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType
 			+ ";class=" + Operator.class.getName(), "RapidMiner operator");
 
-	public static final DataFlavor LOCAL_TRANSFERRED_REPOSITORY_LOCATION_FLAVOR = new DataFlavor(
+    /**
+     * The constant LOCAL_TRANSFERRED_REPOSITORY_LOCATION_FLAVOR.
+     */
+    public static final DataFlavor LOCAL_TRANSFERRED_REPOSITORY_LOCATION_FLAVOR = new DataFlavor(
 			DataFlavor.javaJVMLocalObjectMimeType + ";class=" + RepositoryLocation.class.getName(), "repository location");
 
-	public static final DataFlavor LOCAL_TRANSFERRED_REPOSITORY_LOCATION_LIST_FLAVOR = new DataFlavor(
+    /**
+     * The constant LOCAL_TRANSFERRED_REPOSITORY_LOCATION_LIST_FLAVOR.
+     */
+    public static final DataFlavor LOCAL_TRANSFERRED_REPOSITORY_LOCATION_LIST_FLAVOR = new DataFlavor(
 			DataFlavor.javaJVMLocalObjectMimeType + ";class=" + RepositoryLocationList.class.getName(),
 			"repository locations");
 
@@ -55,7 +64,12 @@ public class TransferableOperator implements Transferable {
 
 	private final Operator[] clonedOperators;
 
-	public TransferableOperator(Operator[] operators) {
+    /**
+     * Instantiates a new Transferable operator.
+     *
+     * @param operators the operators
+     */
+    public TransferableOperator(Operator[] operators) {
 		// references to original operators (required to delete operators in case of a cut and paste
 		// event)
 		this.originalOperators = operators;
@@ -92,10 +106,12 @@ public class TransferableOperator implements Transferable {
 		return DATA_FLAVORS;
 	}
 
-	/**
-	 * @return an array that contains references to the original cloned operators.
-	 */
-	protected Operator[] getOperators() {
+    /**
+     * Get operators operator [ ].
+     *
+     * @return an array that contains references to the original cloned operators.
+     */
+    protected Operator[] getOperators() {
 		return this.originalOperators;
 	}
 }

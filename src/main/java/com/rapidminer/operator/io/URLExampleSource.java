@@ -55,7 +55,7 @@ import com.rapidminer.tools.io.Encoding;
  * Comments are not allowed, unknown attribute values can be marked with empty strings or a question
  * mark.
  * </p>
- *
+ * <p>
  * <p>
  * This operator is not nearly as powerful as the operators ExampleSource or SimpleExampleSource but
  * is on the other hand able to read data from arbitrary places as long as the format fits the
@@ -63,29 +63,48 @@ import com.rapidminer.tools.io.Encoding;
  * meta data description which might lead to problems if the meta data between training and test set
  * differ in a learning scenario.
  * </p>
- *
+ * <p>
  * <p>
  * Attribute roles can not be directly set during loading but the operator ChangeAttributeRole has
  * to be used after loading in order to change the roles.
  * </p>
  *
- * @rapidminer.index url
  * @author Ingo Mierswa
+ * @rapidminer.index url
  */
 public class URLExampleSource extends AbstractExampleSource {
 
-	public static final String PARAMETER_URL = "url";
+    /**
+     * The constant PARAMETER_URL.
+     */
+    public static final String PARAMETER_URL = "url";
 
-	public static final String PARAMETER_COLUMN_SEPARATORS = "column_separators";
+    /**
+     * The constant PARAMETER_COLUMN_SEPARATORS.
+     */
+    public static final String PARAMETER_COLUMN_SEPARATORS = "column_separators";
 
-	/** The parameter name for &quot;Character that is used as decimal point.&quot; */
-	public static final String PARAMETER_DECIMAL_POINT_CHARACTER = "decimal_point_character";
+    /**
+     * The parameter name for &quot;Character that is used as decimal point.&quot;
+     */
+    public static final String PARAMETER_DECIMAL_POINT_CHARACTER = "decimal_point_character";
 
-	public static final String PARAMETER_READ_ATTRIBUTE_NAMES = "read_attribute_names";
+    /**
+     * The constant PARAMETER_READ_ATTRIBUTE_NAMES.
+     */
+    public static final String PARAMETER_READ_ATTRIBUTE_NAMES = "read_attribute_names";
 
-	public static final String PARAMETER_SKIP_ERROR_LINES = "skip_error_lines";
+    /**
+     * The constant PARAMETER_SKIP_ERROR_LINES.
+     */
+    public static final String PARAMETER_SKIP_ERROR_LINES = "skip_error_lines";
 
-	public URLExampleSource(final OperatorDescription description) {
+    /**
+     * Instantiates a new Url example source.
+     *
+     * @param description the description
+     */
+    public URLExampleSource(final OperatorDescription description) {
 		super(description);
 	}
 

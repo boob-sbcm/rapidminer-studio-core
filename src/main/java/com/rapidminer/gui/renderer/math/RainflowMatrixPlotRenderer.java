@@ -25,7 +25,8 @@ import com.rapidminer.operator.visualization.dependencies.RainflowMatrix;
 
 
 /**
- * 
+ * The type Rainflow matrix plot renderer.
+ *
  * @author Sebastian Land
  */
 public class RainflowMatrixPlotRenderer extends AbstractDataTablePlotterRenderer {

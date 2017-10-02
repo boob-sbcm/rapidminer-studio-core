@@ -26,9 +26,8 @@ import com.rapidminer.operator.tools.AttributeSubsetSelector;
 
 /**
  * Computes resource consumption based on an example set taken from a given port.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public abstract class ExampleSetResourceConsumptionEstimator implements ResourceConsumptionEstimator {
 
@@ -36,15 +35,33 @@ public abstract class ExampleSetResourceConsumptionEstimator implements Resource
 
 	private AttributeSubsetSelector selector;
 
-	public ExampleSetResourceConsumptionEstimator(InputPort inputPort, AttributeSubsetSelector selector) {
+    /**
+     * Instantiates a new Example set resource consumption estimator.
+     *
+     * @param inputPort the input port
+     * @param selector  the selector
+     */
+    public ExampleSetResourceConsumptionEstimator(InputPort inputPort, AttributeSubsetSelector selector) {
 		super();
 		this.inputPort = inputPort;
 		this.selector = selector;
 	}
 
-	public abstract long estimateMemory(ExampleSetMetaData exampleSet);
+    /**
+     * Estimate memory long.
+     *
+     * @param exampleSet the example set
+     * @return the long
+     */
+    public abstract long estimateMemory(ExampleSetMetaData exampleSet);
 
-	public abstract long estimateRuntime(ExampleSetMetaData exampleSet);
+    /**
+     * Estimate runtime long.
+     *
+     * @param exampleSet the example set
+     * @return the long
+     */
+    public abstract long estimateRuntime(ExampleSetMetaData exampleSet);
 
 	@Override
 	public long estimateMemoryConsumption() {
@@ -66,7 +83,12 @@ public abstract class ExampleSetResourceConsumptionEstimator implements Resource
 		}
 	}
 
-	protected ExampleSetMetaData getExampleSet() {
+    /**
+     * Gets example set.
+     *
+     * @return the example set
+     */
+    protected ExampleSetMetaData getExampleSet() {
 		final MetaData md = inputPort.getMetaData();
 		if (md instanceof ExampleSetMetaData) {
 			if (selector != null) {

@@ -36,30 +36,32 @@ import java.awt.event.MouseEvent;
  *
  * @author Marco Boeck
  * @since 7.0.0
- *
  */
 public abstract class ExtendedMouseClickedAdapter extends MouseAdapter {
 
-	/** detect mouse click + drag + release on component */
-	Point armed;
+    /**
+     * detect mouse click + drag + release on component
+     */
+    Point armed;
 
-	boolean onlyLeftClick;
+    /**
+     * The Only left click.
+     */
+    boolean onlyLeftClick;
 
-	/**
-	 * Creates a new adapter which only fires the {@link #click(MouseEvent)} method for left clicks.
-	 */
-	public ExtendedMouseClickedAdapter() {
+    /**
+     * Creates a new adapter which only fires the {@link #click(MouseEvent)} method for left clicks.
+     */
+    public ExtendedMouseClickedAdapter() {
 		this(true);
 	}
 
-	/**
-	 * Creates a new adapter which fires the action either for all clicks or only for left clicks.
-	 *
-	 * @param onlyLeftClick
-	 *            if {@code true}, only left clicks will trigger the {@link #click(MouseEvent)}
-	 *            method
-	 */
-	public ExtendedMouseClickedAdapter(boolean onlyLeftClick) {
+    /**
+     * Creates a new adapter which fires the action either for all clicks or only for left clicks.
+     *
+     * @param onlyLeftClick if {@code true}, only left clicks will trigger the {@link #click(MouseEvent)}            method
+     */
+    public ExtendedMouseClickedAdapter(boolean onlyLeftClick) {
 		this.onlyLeftClick = onlyLeftClick;
 	}
 
@@ -103,20 +105,18 @@ public abstract class ExtendedMouseClickedAdapter extends MouseAdapter {
 		armed = null;
 	}
 
-	/**
-	 * This method is called when a mouse click occured on the listened ocmponent.
-	 *
-	 * @param e
-	 *            the mouse event which triggered the click
-	 */
-	public abstract void click(MouseEvent e);
+    /**
+     * This method is called when a mouse click occured on the listened ocmponent.
+     *
+     * @param e the mouse event which triggered the click
+     */
+    public abstract void click(MouseEvent e);
 
-	/**
-	 * This method is called when a popup trigger click occured on the listened ocmponent.
-	 *
-	 * @param point
-	 *            the relative coordinates within the target component of the click
-	 */
-	public void showContextMenu(Point point) {};
+    /**
+     * This method is called when a popup trigger click occured on the listened ocmponent.
+     *
+     * @param point the relative coordinates within the target component of the click
+     */
+    public void showContextMenu(Point point) {};
 
 }

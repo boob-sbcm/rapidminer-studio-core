@@ -40,7 +40,12 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class MissingValueReplenishmentView extends AbstractDataProcessing {
 
-	public MissingValueReplenishmentView(OperatorDescription description) {
+    /**
+     * Instantiates a new Missing value replenishment view.
+     *
+     * @param description the description
+     */
+    public MissingValueReplenishmentView(OperatorDescription description) {
 		super(description);
 	}
 

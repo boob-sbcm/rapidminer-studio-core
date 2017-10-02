@@ -20,15 +20,27 @@ package com.rapidminer.operator.io;
 
 /**
  * This enumeration contains the possible save types.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface OutputTypes {
 
-	public static final int OUTPUT_TYPE_XML = 0;
-	public static final int OUTPUT_TYPE_XML_ZIPPED = 1;
-	public static final int OUTPUT_TYPE_BINARY = 2;
+    /**
+     * The constant OUTPUT_TYPE_XML.
+     */
+    public static final int OUTPUT_TYPE_XML = 0;
+    /**
+     * The constant OUTPUT_TYPE_XML_ZIPPED.
+     */
+    public static final int OUTPUT_TYPE_XML_ZIPPED = 1;
+    /**
+     * The constant OUTPUT_TYPE_BINARY.
+     */
+    public static final int OUTPUT_TYPE_BINARY = 2;
 
-	public static final String[] OUTPUT_TYPES = { "XML", "XML Zipped", "Binary" };
+    /**
+     * The constant OUTPUT_TYPES.
+     */
+    public static final String[] OUTPUT_TYPES = { "XML", "XML Zipped", "Binary" };
 
 }

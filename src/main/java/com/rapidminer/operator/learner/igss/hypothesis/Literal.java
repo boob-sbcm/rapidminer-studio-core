@@ -25,7 +25,7 @@ import java.io.Serializable;
 
 /**
  * Objects of this class represent a literal in a conjunctive rule.
- * 
+ *
  * @author Dirk Dach
  */
 public class Literal implements Serializable {
@@ -44,36 +44,57 @@ public class Literal implements Serializable {
 	/** Counts the total number literals that have been constructed. */
 	private static int numberOfLiterals;
 
-	/** Constructs a new Literal. */
-	public Literal(Attribute a, int v) {
+    /**
+     * Constructs a new Literal.  @param a the a
+     *
+     * @param a the a
+     * @param v the v
+     */
+    public Literal(Attribute a, int v) {
 		attribute = a;
 		value = v;
 		numberOfLiterals++;
 	}
 
-	/** Constructs a new Literal. */
-	public Literal(Attribute a, int v, int i) {
+    /**
+     * Constructs a new Literal.  @param a the a
+     *
+     * @param a the a
+     * @param v the v
+     * @param i the
+     */
+    public Literal(Attribute a, int v, int i) {
 		attribute = a;
 		value = v;
 		index = i;
 		numberOfLiterals++;
 	}
 
-	/** Returns the attribute of this literals. */
-	public Attribute getAttribute() {
+    /**
+     * Returns the attribute of this literals.  @return the attribute
+     *
+     * @return the attribute
+     */
+    public Attribute getAttribute() {
 		return attribute;
 	}
 
-	/** Returns the index of the value of this literals' attribute. */
-	public int getValue() {
+    /**
+     * Returns the index of the value of this literals' attribute.  @return the value
+     *
+     * @return the value
+     */
+    public int getValue() {
 		return value;
 	}
 
-	/**
-	 * Returns the literals' index(1.dimension) in the allLiterals[][] array of the class
-	 * ConjunctiveRule.
-	 */
-	public int getIndex() {
+    /**
+     * Returns the literals' index(1.dimension) in the allLiterals[][] array of the class
+     * ConjunctiveRule.
+     *
+     * @return the index
+     */
+    public int getIndex() {
 		return index;
 	}
 

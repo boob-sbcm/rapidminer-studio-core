@@ -141,11 +141,21 @@ public class ProcessPanel extends JPanel implements Dockable, ProcessEditor {
 			drawn = true;
 		}
 
-		public void setOperator(Operator op) {
+        /**
+         * Sets operator.
+         *
+         * @param op the op
+         */
+        public void setOperator(Operator op) {
 			this.op = op;
 		}
 
-		public boolean isFinished() {
+        /**
+         * Is finished boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isFinished() {
 			return drawn;
 		}
 
@@ -161,7 +171,10 @@ public class ProcessPanel extends JPanel implements Dockable, ProcessEditor {
 
 	private static final long serialVersionUID = -4419160224916991497L;
 
-	public static final String SCROLLER_UPDATE = "rm.scroller_update";
+    /**
+     * The constant SCROLLER_UPDATE.
+     */
+    public static final String SCROLLER_UPDATE = "rm.scroller_update";
 
 	/** the process renderer instance */
 	private final ProcessRendererView renderer;
@@ -188,7 +201,12 @@ public class ProcessPanel extends JPanel implements Dockable, ProcessEditor {
 
 	private final JScrollPane scrollPane;
 
-	public ProcessPanel(final MainFrame mainFrame) {
+    /**
+     * Instantiates a new Process panel.
+     *
+     * @param mainFrame the main frame
+     */
+    public ProcessPanel(final MainFrame mainFrame) {
 		setOpaque(true);
 		setBackground(Colors.PANEL_BACKGROUND);
 		processButtonBar = new ProcessButtonBar(mainFrame);
@@ -430,15 +448,13 @@ public class ProcessPanel extends JPanel implements Dockable, ProcessEditor {
 		renderer.getModel().prepareProcessZoomWillChange(center, index);
 	}
 
-	/**
-	 * Shows the specified {@link OperatorChain} in the {@link ProcessRendererView}.
-	 *
-	 * @param operatorChain
-	 *            the operator chain to show, must not be {@code null}
-	 * @deprecated use {@link ProcessRendererModel#setDisplayedChain(OperatorChain)} and
-	 *             {@link ProcessRendererModel#fireDisplayedChainChanged()} instead
-	 */
-	@Deprecated
+    /**
+     * Shows the specified {@link OperatorChain} in the {@link ProcessRendererView}.
+     *
+     * @param operatorChain the operator chain to show, must not be {@code null}
+     * @deprecated use {@link ProcessRendererModel#setDisplayedChain(OperatorChain)} and             {@link ProcessRendererModel#fireDisplayedChainChanged()} instead
+     */
+    @Deprecated
 	public void showOperatorChain(OperatorChain operatorChain) {
 		if (operatorChain == null) {
 			throw new IllegalArgumentException("operatorChain must not be null!");
@@ -470,44 +486,47 @@ public class ProcessPanel extends JPanel implements Dockable, ProcessEditor {
 		}
 	}
 
-	/**
-	 * The {@link ProcessRendererView} which is responsible for displaying the current process as
-	 * well as interaction with it
-	 *
-	 * @return the instance, never {@code null}
-	 */
-	public ProcessRendererView getProcessRenderer() {
+    /**
+     * The {@link ProcessRendererView} which is responsible for displaying the current process as
+     * well as interaction with it
+     *
+     * @return the instance, never {@code null}
+     */
+    public ProcessRendererView getProcessRenderer() {
 		return renderer;
 	}
 
-	/**
-	 * The {@link FlowVisualizer} instance tied to the process renderer.
-	 *
-	 * @return the instance, never {@code null}
-	 */
-	public FlowVisualizer getFlowVisualizer() {
+    /**
+     * The {@link FlowVisualizer} instance tied to the process renderer.
+     *
+     * @return the instance, never {@code null}
+     */
+    public FlowVisualizer getFlowVisualizer() {
 		return flowVisualizer;
 	}
 
-	/**
-	 * The {@link AnnotationsVisualizer} instance tied to the process renderer.
-	 *
-	 * @return the instance, never {@code null}
-	 */
-	public AnnotationsVisualizer getAnnotationsHandler() {
+    /**
+     * The {@link AnnotationsVisualizer} instance tied to the process renderer.
+     *
+     * @return the instance, never {@code null}
+     */
+    public AnnotationsVisualizer getAnnotationsHandler() {
 		return annotationsHandler;
 	}
 
-	/**
-	 * The {@link ProcessBackgroundImageVisualizer} instance tied to the process renderer.
-	 *
-	 * @return the instance, never {@code null}
-	 */
-	public ProcessBackgroundImageVisualizer getBackgroundImageHandler() {
+    /**
+     * The {@link ProcessBackgroundImageVisualizer} instance tied to the process renderer.
+     *
+     * @return the instance, never {@code null}
+     */
+    public ProcessBackgroundImageVisualizer getBackgroundImageHandler() {
 		return backgroundImageHandler;
 	}
 
-	public static final String PROCESS_PANEL_DOCK_KEY = "process_panel";
+    /**
+     * The constant PROCESS_PANEL_DOCK_KEY.
+     */
+    public static final String PROCESS_PANEL_DOCK_KEY = "process_panel";
 	private final DockKey DOCK_KEY = new ResourceDockKey(PROCESS_PANEL_DOCK_KEY);
 
 	{
@@ -524,44 +543,50 @@ public class ProcessPanel extends JPanel implements Dockable, ProcessEditor {
 		return DOCK_KEY;
 	}
 
-	public JViewport getViewPort() {
+    /**
+     * Gets view port.
+     *
+     * @return the view port
+     */
+    public JViewport getViewPort() {
 		return scrollPane.getViewport();
 	}
 
-	/** Returns the center position of the current view. */
-	public Point getCurrentViewCenter() {
+    /**
+     * Returns the center position of the current view.  @return the current view center
+     *
+     * @return the current view center
+     */
+    public Point getCurrentViewCenter() {
 		Rectangle viewRect = getViewPort().getViewRect();
 		Point center = new Point((int) viewRect.getCenterX(), (int) viewRect.getCenterY());
 		return center;
 	}
 
-	/**
-	 * Scrolls the view to the specified {@link Operator}, making it visible. Will not force
-	 * centering
-	 *
-	 * @param operator
-	 *            the operator to focus on
-	 * @return whether the scrolling was successful
-	 * @since 7.5
-	 * @see #scrollToOperator(Operator, boolean)
-	 */
-	public boolean scrollToOperator(Operator operator) {
+    /**
+     * Scrolls the view to the specified {@link Operator}, making it visible. Will not force
+     * centering
+     *
+     * @param operator the operator to focus on
+     * @return whether the scrolling was successful
+     * @see #scrollToOperator(Operator, boolean) #scrollToOperator(Operator, boolean)#scrollToOperator(Operator, boolean)
+     * @since 7.5
+     */
+    public boolean scrollToOperator(Operator operator) {
 		return scrollToOperator(operator, false);
 	}
 
-	/**
-	 * Scrolls the view to the specified {@link Operator}, making it the center of the view if
-	 * necessary, indicated by the flag.
-	 *
-	 * @param operator
-	 *            the operator to focus on
-	 * @param toCenter
-	 *            flag to indicate whether to force centering
-	 * @return whether the scrolling was successful
-	 * @since 7.5
-	 * @see #scrollToViewPosition(Point)
-	 */
-	public boolean scrollToOperator(Operator operator, boolean toCenter) {
+    /**
+     * Scrolls the view to the specified {@link Operator}, making it the center of the view if
+     * necessary, indicated by the flag.
+     *
+     * @param operator the operator to focus on
+     * @param toCenter flag to indicate whether to force centering
+     * @return whether the scrolling was successful
+     * @see #scrollToViewPosition(Point) #scrollToViewPosition(Point)#scrollToViewPosition(Point)
+     * @since 7.5
+     */
+    public boolean scrollToOperator(Operator operator, boolean toCenter) {
 		Rectangle2D opRect = renderer.getModel().getOperatorRect(operator);
 		if (opRect == null) {
 			return false;
@@ -609,29 +634,26 @@ public class ProcessPanel extends JPanel implements Dockable, ProcessEditor {
 		return target;
 	}
 
-	/**
-	 * Scrolls the view to the specified {@link Point center point}.
-	 *
-	 * @param center
-	 *            the point to focus on
-	 * @since 7.5
-	 * @see #scrollToProcessPosition(Point)
-	 */
-	public void scrollToViewPosition(Point center) {
+    /**
+     * Scrolls the view to the specified {@link Point center point}.
+     *
+     * @param center the point to focus on
+     * @see #scrollToProcessPosition(Point) #scrollToProcessPosition(Point)#scrollToProcessPosition(Point)
+     * @since 7.5
+     */
+    public void scrollToViewPosition(Point center) {
 		getViewPort().scrollRectToVisible(getScrollRectangle(center));
 	}
 
-	/**
-	 * Scrolls the view to the specified {@link Point process point}.
-	 *
-	 * @param center
-	 *            the point to focus on
-	 * @param processIndex
-	 *            the index of the process to focus on
-	 * @since 7.5
-	 * @see #scrollToViewPosition(Point)
-	 */
-	public void scrollToProcessPosition(Point center, int processIndex) {
+    /**
+     * Scrolls the view to the specified {@link Point process point}.
+     *
+     * @param center       the point to focus on
+     * @param processIndex the index of the process to focus on
+     * @see #scrollToViewPosition(Point) #scrollToViewPosition(Point)#scrollToViewPosition(Point)
+     * @since 7.5
+     */
+    public void scrollToProcessPosition(Point center, int processIndex) {
 		scrollToViewPosition(renderer.fromProcessSpace(center, processIndex));
 	}
 
@@ -651,12 +673,12 @@ public class ProcessPanel extends JPanel implements Dockable, ProcessEditor {
 		return new Rectangle(newViewPoint, currentViewRect.getSize());
 	}
 
-	/**
-	 * Returns the handler for operator warning bubbles.
-	 *
-	 * @return the handler for operator warnings, never {@code null}
-	 */
-	public OperatorWarningHandler getOperatorWarningHandler() {
+    /**
+     * Returns the handler for operator warning bubbles.
+     *
+     * @return the handler for operator warnings, never {@code null}
+     */
+    public OperatorWarningHandler getOperatorWarningHandler() {
 		return operatorWarningHandler;
 	}
 

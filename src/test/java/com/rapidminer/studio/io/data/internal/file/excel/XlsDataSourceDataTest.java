@@ -34,14 +34,19 @@ import com.rapidminer.studio.io.data.internal.file.excel.ExcelDataSource;
  * Unit tests for the {@link ExcelDataSource#getData()} method with XLS files.
  *
  * @author Nils Woehler
- *
  */
 public class XlsDataSourceDataTest extends AbstractExcelDataSourceDataTest {
 
 	// remember system locale
 	private static Locale systemLocale = Locale.getDefault();
 
-	@BeforeClass
+    /**
+     * Sets .
+     *
+     * @throws URISyntaxException the uri syntax exception
+     * @throws IOException        the io exception
+     */
+    @BeforeClass
 	public static void setup() throws URISyntaxException, IOException {
 		testFile = new File(XlsDataSourceDataTest.class.getResource("test.xls").toURI());
 		nominalDateTestFile = new File(XlsDataSourceDataTest.class.getResource("nominal_date_1.xls").toURI());
@@ -52,7 +57,10 @@ public class XlsDataSourceDataTest extends AbstractExcelDataSourceDataTest {
 		Locale.setDefault(Locale.ENGLISH);
 	}
 
-	@AfterClass
+    /**
+     * Tear down.
+     */
+    @AfterClass
 	public static void tearDown() {
 		// restore system locale
 		Locale.setDefault(systemLocale);

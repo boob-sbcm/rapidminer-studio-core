@@ -60,7 +60,6 @@ import com.rapidminer.tools.math.MathFunctions;
  * This is the bubble chart plotter.
  *
  * @author Ingo Mierswa
- *
  */
 public class BubbleChartPlotter extends RangeablePlotterAdapter {
 
@@ -104,12 +103,23 @@ public class BubbleChartPlotter extends RangeablePlotterAdapter {
 
 	private boolean nominal = true;
 
-	public BubbleChartPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Bubble chart plotter.
+     *
+     * @param settings the settings
+     */
+    public BubbleChartPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 	}
 
-	public BubbleChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Bubble chart plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public BubbleChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}

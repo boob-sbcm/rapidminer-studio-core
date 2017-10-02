@@ -53,7 +53,7 @@ import javax.swing.text.BadLocationException;
  * To listen to the event (firing a simple {@link Boolean} to signal valid (<code>true</code>) and
  * invalid (<code>false</code>) entries), register your listener via
  * {@link #addObserver(Observer, boolean)} or {@link #addObserverAsFirst(Observer, boolean)}.
- * 
+ *
  * @author Marco Boeck
  */
 public class RepositoryEntryTextField extends JPanel implements Observable<Boolean> {
@@ -77,10 +77,10 @@ public class RepositoryEntryTextField extends JPanel implements Observable<Boole
 
 	private Object lock = new Object();
 
-	/**
-	 * Standard constructor.
-	 */
-	public RepositoryEntryTextField() {
+    /**
+     * Standard constructor.
+     */
+    public RepositoryEntryTextField() {
 		super();
 
 		standardIcon = null;
@@ -268,28 +268,28 @@ public class RepositoryEntryTextField extends JPanel implements Observable<Boole
 		}
 	}
 
-	/**
-	 * Sets a text in the textfield.
-	 * 
-	 * @param text
-	 */
-	public void setText(String text) {
+    /**
+     * Sets a text in the textfield.
+     *
+     * @param text the text
+     */
+    public void setText(String text) {
 		entryTextField.setText(text);
 	}
 
-	/**
-	 * Return the entered text.
-	 * 
-	 * @return
-	 */
-	public String getText() {
+    /**
+     * Return the entered text.
+     *
+     * @return text text
+     */
+    public String getText() {
 		return entryTextField.getText();
 	}
 
-	/**
-	 * Triggers a new check if the entered name is valid. Will notify all {@link Observer}s!
-	 */
-	public void triggerCheck() {
+    /**
+     * Triggers a new check if the entered name is valid. Will notify all {@link Observer}s!
+     */
+    public void triggerCheck() {
 		checkName();
 	}
 

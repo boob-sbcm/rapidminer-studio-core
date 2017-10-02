@@ -28,7 +28,7 @@ import java.util.Random;
  * proportional to the individuals' rank based on their fitness values. Optionally keep the best
  * individual. Since the individuals are sorted accordingly to their rank this selection operator
  * needs m log m time for population size m.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RankSelection implements PopulationOperator {
@@ -39,14 +39,26 @@ public class RankSelection implements PopulationOperator {
 
 	private Random random;
 
-	public RankSelection(int popSize, boolean keepBest, Random random) {
+    /**
+     * Instantiates a new Rank selection.
+     *
+     * @param popSize  the pop size
+     * @param keepBest the keep best
+     * @param random   the random
+     */
+    public RankSelection(int popSize, boolean keepBest, Random random) {
 		this.popSize = popSize;
 		this.keepBest = keepBest;
 		this.random = random;
 	}
 
-	/** The default implementation returns true for every generation. */
-	public boolean performOperation(int generation) {
+    /**
+     * The default implementation returns true for every generation.  @param generation the generation
+     *
+     * @param generation the generation
+     * @return the boolean
+     */
+    public boolean performOperation(int generation) {
 		return true;
 	}
 

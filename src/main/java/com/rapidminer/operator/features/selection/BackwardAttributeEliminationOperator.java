@@ -67,34 +67,66 @@ import com.rapidminer.tools.math.SignificanceTestResult;
  * <li><b>with significant decrease</b> stops as soon as the decrease is significant to the
  * specified level.</li>
  * </ul>
- *
+ * <p>
  * The parameter speculative_rounds defines how many rounds will be performed in a row, after a
  * first time the stopping criterion was fulfilled. If the performance increases again during the
  * speculative rounds, the elimination will be continued. Otherwise all additionally eliminated
  * attributes will be restored, as if no speculative rounds would have been executed. This might
  * help to avoid getting stuck in local optima.
- *
+ * <p>
  * The operator provides a value for logging the performance in each round using a ProcessLog.
  *
  * @author Sebastian Land
- *
  */
 public class BackwardAttributeEliminationOperator extends OperatorChain {
 
-	public static final String PARAMETER_STOPPING_BEHAVIOR = "stopping_behavior";
-	public static final String PARAMETER_MAX_ATTRIBUTES = "maximal_number_of_eliminations";
-	public static final String PARAMETER_MAX_RELATIVE_DECREASE = "maximal_relative_decrease";
-	public static final String PARAMETER_MAX_ABSOLUT_DECREASE = "maximal_absolute_decrease";
-	public static final String PARAMETER_USE_RELATIVE_DECREASE = "use_relative_decrease";
-	public static final String PARAMETER_ALPHA = "alpha";
-	public static final String PARAMETER_ALLOWED_CONSECUTIVE_FAILS = "speculative_rounds";
+    /**
+     * The constant PARAMETER_STOPPING_BEHAVIOR.
+     */
+    public static final String PARAMETER_STOPPING_BEHAVIOR = "stopping_behavior";
+    /**
+     * The constant PARAMETER_MAX_ATTRIBUTES.
+     */
+    public static final String PARAMETER_MAX_ATTRIBUTES = "maximal_number_of_eliminations";
+    /**
+     * The constant PARAMETER_MAX_RELATIVE_DECREASE.
+     */
+    public static final String PARAMETER_MAX_RELATIVE_DECREASE = "maximal_relative_decrease";
+    /**
+     * The constant PARAMETER_MAX_ABSOLUT_DECREASE.
+     */
+    public static final String PARAMETER_MAX_ABSOLUT_DECREASE = "maximal_absolute_decrease";
+    /**
+     * The constant PARAMETER_USE_RELATIVE_DECREASE.
+     */
+    public static final String PARAMETER_USE_RELATIVE_DECREASE = "use_relative_decrease";
+    /**
+     * The constant PARAMETER_ALPHA.
+     */
+    public static final String PARAMETER_ALPHA = "alpha";
+    /**
+     * The constant PARAMETER_ALLOWED_CONSECUTIVE_FAILS.
+     */
+    public static final String PARAMETER_ALLOWED_CONSECUTIVE_FAILS = "speculative_rounds";
 
-	public static final String[] STOPPING_BEHAVIORS = new String[] { "with decrease", "with decrease of more than",
+    /**
+     * The constant STOPPING_BEHAVIORS.
+     */
+    public static final String[] STOPPING_BEHAVIORS = new String[] { "with decrease", "with decrease of more than",
 			"with significant decrease" };
 
-	public static final int WITH_DECREASE = 0;
-	public static final int WITH_DECREASE_EXCEEDS = 1;
-	public static final int WITH_DECREASE_SIGNIFICANT = 2;
+    /**
+     * The constant WITH_DECREASE.
+     */
+    public static final int WITH_DECREASE = 0;
+    /**
+     * The constant WITH_DECREASE_EXCEEDS.
+     */
+    public static final int WITH_DECREASE_EXCEEDS = 1;
+    /**
+     * The constant WITH_DECREASE_SIGNIFICANT.
+     */
+    public static final int WITH_DECREASE_SIGNIFICANT = 2;
 
 	private double currentNumberOfFeatures = 0;
 	private Attributes currentAttributes;
@@ -109,7 +141,12 @@ public class BackwardAttributeEliminationOperator extends OperatorChain {
 	private OutputPort weightsOutput = getOutputPorts().createPort("attribute weights");
 	private OutputPort performanceOutput = getOutputPorts().createPort("performance");
 
-	public BackwardAttributeEliminationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Backward attribute elimination operator.
+     *
+     * @param description the description
+     */
+    public BackwardAttributeEliminationOperator(OperatorDescription description) {
 		super(description, "Learning Process");
 
 		getTransformer().addPassThroughRule(exampleSetInput, innerExampleSetSource);

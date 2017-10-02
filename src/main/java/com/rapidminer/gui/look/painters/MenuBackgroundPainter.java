@@ -34,13 +34,31 @@ import com.rapidminer.gui.look.Colors;
  */
 public class MenuBackgroundPainter extends AbstractCachedPainter {
 
-	public static final MenuBackgroundPainter SINGLETON = new MenuBackgroundPainter(7);
+    /**
+     * The constant SINGLETON.
+     */
+    public static final MenuBackgroundPainter SINGLETON = new MenuBackgroundPainter(7);
 
-	MenuBackgroundPainter(int count) {
+    /**
+     * Instantiates a new Menu background painter.
+     *
+     * @param count the count
+     */
+    MenuBackgroundPainter(int count) {
 		super(count);
 	}
 
-	public synchronized void paint(Component c, Graphics g, int x, int y, int w, int h) {
+    /**
+     * Paint.
+     *
+     * @param c the c
+     * @param g the g
+     * @param x the x
+     * @param y the y
+     * @param w the w
+     * @param h the h
+     */
+    public synchronized void paint(Component c, Graphics g, int x, int y, int w, int h) {
 		paint(c, g, x, y, w, h, new Object[] {});
 	}
 

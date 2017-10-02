@@ -23,9 +23,8 @@ import java.awt.Component;
 
 /**
  * A simple printable component with no identifier.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class SimplePrintableComponent implements PrintableComponent {
 
@@ -33,27 +32,26 @@ public class SimplePrintableComponent implements PrintableComponent {
 	private final String componentName;
 	private String iconName;
 
-	/**
-	 * @param comp
-	 *            the wrapped component.
-	 * @param componentName
-	 *            the component name. Must not be <code>null</code>.
-	 * @param iconName
-	 *            the name of an icon of size 32x132. Must not be <code>null</code>.
-	 */
-	public SimplePrintableComponent(Component comp, String componentName, String iconName) {
+    /**
+     * Instantiates a new Simple printable component.
+     *
+     * @param comp          the wrapped component.
+     * @param componentName the component name. Must not be <code>null</code>.
+     * @param iconName      the name of an icon of size 32x132. Must not be <code>null</code>.
+     */
+    public SimplePrintableComponent(Component comp, String componentName, String iconName) {
 		this.comp = comp;
 		this.componentName = componentName;
 		this.iconName = iconName;
 	}
 
-	/**
-	 * @param comp
-	 *            the wrapped component.
-	 * @param componentName
-	 *            the component name. Must not be <code>null</code>.
-	 */
-	public SimplePrintableComponent(Component comp, String componentName) {
+    /**
+     * Instantiates a new Simple printable component.
+     *
+     * @param comp          the wrapped component.
+     * @param componentName the component name. Must not be <code>null</code>.
+     */
+    public SimplePrintableComponent(Component comp, String componentName) {
 		this.comp = comp;
 		this.componentName = componentName;
 		this.iconName = "printer.png";

@@ -62,13 +62,15 @@ public abstract class AbstractAttribute implements Attribute {
 
 	// --------------------------------------------------------------------------------
 
-	/**
-	 * Creates a simple attribute which is not part of a series and does not provide a unit string.
-	 * This constructor should only be used for attributes which were not generated with help of a
-	 * generator, i.e. this attribute has no function arguments. Only the last transformation is
-	 * cloned, the other transformations are cloned by reference.
-	 */
-	protected AbstractAttribute(AbstractAttribute attribute) {
+    /**
+     * Creates a simple attribute which is not part of a series and does not provide a unit string.
+     * This constructor should only be used for attributes which were not generated with help of a
+     * generator, i.e. this attribute has no function arguments. Only the last transformation is
+     * cloned, the other transformations are cloned by reference.
+     *
+     * @param attribute the attribute
+     */
+    protected AbstractAttribute(AbstractAttribute attribute) {
 		this.attributeDescription = attribute.attributeDescription;
 
 		// copy statistics
@@ -95,12 +97,15 @@ public abstract class AbstractAttribute implements Attribute {
 		annotations.putAll(attribute.getAnnotations());
 	}
 
-	/**
-	 * Creates a simple attribute which is not part of a series and does not provide a unit string.
-	 * This constructor should only be used for attributes which were not generated with help of a
-	 * generator, i.e. this attribute has no function arguments.
-	 */
-	protected AbstractAttribute(String name, int valueType) {
+    /**
+     * Creates a simple attribute which is not part of a series and does not provide a unit string.
+     * This constructor should only be used for attributes which were not generated with help of a
+     * generator, i.e. this attribute has no function arguments.
+     *
+     * @param name      the name
+     * @param valueType the value type
+     */
+    protected AbstractAttribute(String name, int valueType) {
 		this.attributeDescription = new AttributeDescription(this, name, valueType, Ontology.SINGLE_VALUE, 0.0d,
 				UNDEFINED_ATTRIBUTE_INDEX);
 		this.constructionDescription = name;

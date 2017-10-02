@@ -42,22 +42,22 @@ import java.util.List;
  * formats (specified by the parameter 'format') can be used. Attribute description files may be
  * generated for dense and sparse format as well. These formats can be read using the
  * {@link ExampleSource} and {@link SparseFormatExampleSource} operators.
- * 
+ * <p>
  * <dl>
  * <dt>dense:</dt>
  * <dd>Each line of the generated data file is of the form<br/>
  * <center>
- * 
+ * <p>
  * <pre>
  * regular attributes &lt;special attributes&gt;
  * </pre>
- * 
+ * <p>
  * </center> For example, each line could have the form <center>
- * 
+ * <p>
  * <pre>
  * value1 value2 ... valueN &lt;id&gt; &lt;label&gt; &lt;prediction&gt; ... &lt;confidences&gt;
  * </pre>
- * 
+ * <p>
  * </center> Values in parenthesis are optional and are only printed if they are available. The
  * confidences are only given for nominal predictions. Other special attributes might be the example
  * weight or the cluster number.</dd>
@@ -65,24 +65,31 @@ import java.util.List;
  * <dd>Only non 0 values are written to the file, prefixed by a column index. See the description of
  * {@link SparseFormatExampleSource} for details.</dd>
  * </dl>
- * 
- * @see com.rapidminer.example.ExampleSet
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
+ * @see com.rapidminer.example.ExampleSet
  */
 public class ExampleSetWriter extends AppendingExampleSetWriter {
 
-	/** The parameter name for &quot;File to save the example set to.&quot; */
-	public static final String PARAMETER_EXAMPLE_SET_FILE = "example_set_file";
+    /**
+     * The parameter name for &quot;File to save the example set to.&quot;
+     */
+    public static final String PARAMETER_EXAMPLE_SET_FILE = "example_set_file";
 
-	/** The parameter name for &quot;File to save the attribute descriptions to.&quot; */
-	public static final String PARAMETER_ATTRIBUTE_DESCRIPTION_FILE = "attribute_description_file";
+    /**
+     * The parameter name for &quot;File to save the attribute descriptions to.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTE_DESCRIPTION_FILE = "attribute_description_file";
 
-	/** The parameter name for &quot;Format to use for output.&quot; */
-	public static final String PARAMETER_FORMAT = "format";
+    /**
+     * The parameter name for &quot;Format to use for output.&quot;
+     */
+    public static final String PARAMETER_FORMAT = "format";
 
-	/** The parameter name for &quot;Indicates if the data file content should be zipped.&quot; */
-	public static final String PARAMETER_ZIPPED = "zipped";
+    /**
+     * The parameter name for &quot;Indicates if the data file content should be zipped.&quot;
+     */
+    public static final String PARAMETER_ZIPPED = "zipped";
 
 	private static final String[] FORMAT_NAMES = new String[SparseFormatDataRowReader.FORMAT_NAMES.length + 1];
 
@@ -95,7 +102,12 @@ public class ExampleSetWriter extends AppendingExampleSetWriter {
 		}
 	}
 
-	public ExampleSetWriter(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set writer.
+     *
+     * @param description the description
+     */
+    public ExampleSetWriter(OperatorDescription description) {
 		super(description);
 	}
 

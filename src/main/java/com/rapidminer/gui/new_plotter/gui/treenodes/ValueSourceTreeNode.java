@@ -29,24 +29,35 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 
 /**
+ * The type Value source tree node.
+ *
  * @author Nils Woehler
- * 
  */
 public class ValueSourceTreeNode extends DefaultMutableTreeNode implements Transferable {
 
 	private static final long serialVersionUID = 1L;
 
 	private final static String MIME_TYPE = DataFlavor.javaJVMLocalObjectMimeType + ";class=" + ValueSource.class.getName();
-	public final static DataFlavor VALUE_SOURCE_FLAVOR = new DataFlavor(MIME_TYPE, "ValueSourceTreeNode");
+    /**
+     * The constant VALUE_SOURCE_FLAVOR.
+     */
+    public final static DataFlavor VALUE_SOURCE_FLAVOR = new DataFlavor(MIME_TYPE, "ValueSourceTreeNode");
 
-	/**
-	 * @param source
-	 */
-	public ValueSourceTreeNode(ValueSource source) {
+    /**
+     * Instantiates a new Value source tree node.
+     *
+     * @param source the source
+     */
+    public ValueSourceTreeNode(ValueSource source) {
 		super(source, false);
 	}
 
-	public ValueSourceTreeNode(ValueSourceTreeNode node) {
+    /**
+     * Instantiates a new Value source tree node.
+     *
+     * @param node the node
+     */
+    public ValueSourceTreeNode(ValueSourceTreeNode node) {
 		// shallow copy -- the new node has no parent or children
 		super(node.getUserObject(), false);
 	}

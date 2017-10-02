@@ -62,9 +62,8 @@ import com.rapidminer.tools.I18N;
 
 /**
  * This dialog allows the user to configure the addition of a crosshair line in the new charts.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class AddParallelLineDialog extends JDialog {
 
@@ -118,10 +117,10 @@ public class AddParallelLineDialog extends JDialog {
 
 	private static final long serialVersionUID = 1932257219370926682L;
 
-	/**
-	 * Creates a new {@link AddParallelLineDialog}.
-	 */
-	public AddParallelLineDialog() {
+    /**
+     * Creates a new {@link AddParallelLineDialog}.
+     */
+    public AddParallelLineDialog() {
 		super(ApplicationFrame.getApplicationFrame());
 		x = 1.0;
 		y = 1.0;
@@ -343,12 +342,12 @@ public class AddParallelLineDialog extends JDialog {
 		});
 	}
 
-	/**
-	 * Sets the mouse position (defines preselected x/y values).
-	 * 
-	 * @param mousePosition
-	 */
-	public void setMousePosition(Point mousePosition) {
+    /**
+     * Sets the mouse position (defines preselected x/y values).
+     *
+     * @param mousePosition the mouse position
+     */
+    public void setMousePosition(Point mousePosition) {
 		if (mousePosition == null) {
 			throw new IllegalArgumentException("mousePosition must not be null!");
 		}
@@ -356,12 +355,12 @@ public class AddParallelLineDialog extends JDialog {
 		this.mousePosition = mousePosition;
 	}
 
-	/**
-	 * Sets the current {@link JFreeChartPlotEngine} for this dialog.
-	 * 
-	 * @param engine
-	 */
-	public void setChartEngine(JFreeChartPlotEngine engine) {
+    /**
+     * Sets the current {@link JFreeChartPlotEngine} for this dialog.
+     *
+     * @param engine the engine
+     */
+    public void setChartEngine(JFreeChartPlotEngine engine) {
 		if (engine == null) {
 			throw new IllegalArgumentException("engine must not be null!");
 		}
@@ -370,10 +369,10 @@ public class AddParallelLineDialog extends JDialog {
 		setPlotConfiguration(engine.getPlotInstance().getMasterPlotConfiguration());
 	}
 
-	/**
-	 * Shows the dialog.
-	 */
-	public void showDialog() {
+    /**
+     * Shows the dialog.
+     */
+    public void showDialog() {
 		if (line == null) {
 			line = createLine(1.0);
 		} else {

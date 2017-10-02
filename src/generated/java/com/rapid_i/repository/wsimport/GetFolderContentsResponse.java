@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for getFolderContentsResponse complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="getFolderContentsResponse">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getFolderContentsResponse", propOrder = {
@@ -49,16 +47,16 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetFolderContentsResponse {
 
+    /**
+     * The Return.
+     */
     @XmlElement(name = "return")
     protected FolderContentsResponse _return;
 
     /**
      * Gets the value of the return property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FolderContentsResponse }
-     *     
+     *
+     * @return possible object is     {@link FolderContentsResponse }
      */
     public FolderContentsResponse getReturn() {
         return _return;
@@ -66,11 +64,8 @@ public class GetFolderContentsResponse {
 
     /**
      * Sets the value of the return property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FolderContentsResponse }
-     *     
+     *
+     * @param value allowed object is     {@link FolderContentsResponse }
      */
     public void setReturn(FolderContentsResponse value) {
         this._return = value;

@@ -23,7 +23,7 @@ import com.rapidminer.tools.math.Averagable;
 
 /**
  * Helper class containing the name of an attribute and the corresponding weight.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeWeight extends Averagable implements Comparable<AttributeWeight> {
@@ -42,18 +42,26 @@ public class AttributeWeight extends Averagable implements Comparable<AttributeW
 	/** The parent attribute weights. */
 	private AttributeWeights weights;
 
-	/** Creates a new attribute weight object. */
-	public AttributeWeight(AttributeWeights weights, String name, double weight) {
+    /**
+     * Creates a new attribute weight object.  @param weights the weights
+     *
+     * @param weights the weights
+     * @param name    the name
+     * @param weight  the weight
+     */
+    public AttributeWeight(AttributeWeights weights, String name, double weight) {
 		this.weights = weights;
 		this.name = name;
 		this.weight = weight;
 	}
 
-	/**
-	 * Clone constructor. The name and the weight are deep cloned, the reference to the
-	 * AttributeWeights object is only a shallow copy.
-	 */
-	public AttributeWeight(AttributeWeight attWeight) {
+    /**
+     * Clone constructor. The name and the weight are deep cloned, the reference to the
+     * AttributeWeights object is only a shallow copy.
+     *
+     * @param attWeight the att weight
+     */
+    public AttributeWeight(AttributeWeight attWeight) {
 		super(attWeight);
 		this.weights = attWeight.weights;
 		this.name = attWeight.name;
@@ -66,13 +74,21 @@ public class AttributeWeight extends Averagable implements Comparable<AttributeW
 		return name;
 	}
 
-	/** Returns the weight of the attribute. */
-	public double getWeight() {
+    /**
+     * Returns the weight of the attribute.  @return the weight
+     *
+     * @return the weight
+     */
+    public double getWeight() {
 		return weight / counter;
 	}
 
-	/** Sets the weight of the attribute. */
-	public void setWeight(double weight) {
+    /**
+     * Sets the weight of the attribute.  @param weight the weight
+     *
+     * @param weight the weight
+     */
+    public void setWeight(double weight) {
 		this.weight = weight;
 	}
 

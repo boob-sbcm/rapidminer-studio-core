@@ -64,47 +64,91 @@ import com.rapidminer.tools.container.Pair;
  */
 public abstract class AbstractExampleSetJoin extends Operator {
 
-	public static final OperatorVersion VERSION_SWAPPED_INPUT_PORTS = new OperatorVersion(5, 1, 8);
+    /**
+     * The constant VERSION_SWAPPED_INPUT_PORTS.
+     */
+    public static final OperatorVersion VERSION_SWAPPED_INPUT_PORTS = new OperatorVersion(5, 1, 8);
 
-	protected static final String LEFT_EXAMPLE_SET_INPUT = "left";
-	protected static final String RIGHT_EXAMPLE_SET_INPUT = "right";
+    /**
+     * The constant LEFT_EXAMPLE_SET_INPUT.
+     */
+    protected static final String LEFT_EXAMPLE_SET_INPUT = "left";
+    /**
+     * The constant RIGHT_EXAMPLE_SET_INPUT.
+     */
+    protected static final String RIGHT_EXAMPLE_SET_INPUT = "right";
 
 	private InputPort leftInput = getInputPorts().createPort(LEFT_EXAMPLE_SET_INPUT);
 	private InputPort rightInput = getInputPorts().createPort(RIGHT_EXAMPLE_SET_INPUT);
 	private OutputPort joinOutput = getOutputPorts().createPort("join");
 
-	/**
-	 * The parameter name for &quot;Indicates if double attributes should be removed or
-	 * renamed&quot;
-	 */
-	public static final String PARAMETER_REMOVE_DOUBLE_ATTRIBUTES = "remove_double_attributes";
+    /**
+     * The parameter name for &quot;Indicates if double attributes should be removed or
+     * renamed&quot;
+     */
+    public static final String PARAMETER_REMOVE_DOUBLE_ATTRIBUTES = "remove_double_attributes";
 
-	/** Helper class to find the correct data for all union attributes. */
-	protected static class AttributeSource {
+    /**
+     * Helper class to find the correct data for all union attributes.
+     */
+    protected static class AttributeSource {
 
-		protected static final int FIRST_SOURCE = 1;
+        /**
+         * The constant FIRST_SOURCE.
+         */
+        protected static final int FIRST_SOURCE = 1;
 
-		protected static final int SECOND_SOURCE = 2;
+        /**
+         * The constant SECOND_SOURCE.
+         */
+        protected static final int SECOND_SOURCE = 2;
 
-		protected int source;
+        /**
+         * The Source.
+         */
+        protected int source;
 
-		protected Attribute attribute;
+        /**
+         * The Attribute.
+         */
+        protected Attribute attribute;
 
-		public AttributeSource(int source, Attribute attribute) {
+        /**
+         * Instantiates a new Attribute source.
+         *
+         * @param source    the source
+         * @param attribute the attribute
+         */
+        public AttributeSource(int source, Attribute attribute) {
 			this.source = source;
 			this.attribute = attribute;
 		}
 
-		protected int getSource() {
+        /**
+         * Gets source.
+         *
+         * @return the source
+         */
+        protected int getSource() {
 			return source;
 		}
 
-		protected Attribute getAttribute() {
+        /**
+         * Gets attribute.
+         *
+         * @return the attribute
+         */
+        protected Attribute getAttribute() {
 			return attribute;
 		}
 	}
 
-	public AbstractExampleSetJoin(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract example set join.
+     *
+     * @param description the description
+     */
+    public AbstractExampleSetJoin(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new ExampleSetUnionRule(leftInput, rightInput, joinOutput, "_from_ES2") {
 
@@ -124,22 +168,52 @@ public abstract class AbstractExampleSetJoin extends Operator {
 
 	}
 
-	public InputPort getLeftInput() {
+    /**
+     * Gets left input.
+     *
+     * @return the left input
+     */
+    public InputPort getLeftInput() {
 		return leftInput;
 	}
 
-	public InputPort getRightInput() {
+    /**
+     * Gets right input.
+     *
+     * @return the right input
+     */
+    public InputPort getRightInput() {
 		return rightInput;
 	}
 
-	public OutputPort getJoinOutput() {
+    /**
+     * Gets join output.
+     *
+     * @return the join output
+     */
+    public OutputPort getJoinOutput() {
 		return joinOutput;
 	}
 
-	protected abstract ExampleSetBuilder joinData(ExampleSet es1, ExampleSet es2,
+    /**
+     * Join data example set builder.
+     *
+     * @param es1                      the es 1
+     * @param es2                      the es 2
+     * @param originalAttributeSources the original attribute sources
+     * @param unionAttributeList       the union attribute list
+     * @return the example set builder
+     * @throws OperatorException the operator exception
+     */
+    protected abstract ExampleSetBuilder joinData(ExampleSet es1, ExampleSet es2,
 			List<AttributeSource> originalAttributeSources, List<Attribute> unionAttributeList) throws OperatorException;
 
-	protected abstract boolean isIdNeeded();
+    /**
+     * Is id needed boolean.
+     *
+     * @return the boolean
+     */
+    protected abstract boolean isIdNeeded();
 
 	@Override
 	public void doWork() throws OperatorException {
@@ -281,20 +355,28 @@ public abstract class AbstractExampleSetJoin extends Operator {
 		joinOutput.deliver(result);
 	}
 
-	/**
-	 * The method isKeyAttribute can be overwritten by subclasses which are using key attributes, in
-	 * order to determine if a specific attribute is used as a join key. By default, there is no use
-	 * of key attributes, so the method returns false.
-	 */
-	protected boolean isKeyAttribute(AttributeRole attributeRole) throws OperatorException {
+    /**
+     * The method isKeyAttribute can be overwritten by subclasses which are using key attributes, in
+     * order to determine if a specific attribute is used as a join key. By default, there is no use
+     * of key attributes, so the method returns false.
+     *
+     * @param attributeRole the attribute role
+     * @return the boolean
+     * @throws OperatorException the operator exception
+     */
+    protected boolean isKeyAttribute(AttributeRole attributeRole) throws OperatorException {
 		return false;
 	}
 
-	/**
-	 * Returns a list of AttributeMetaData which contains the correctly joined MetaData arising from
-	 * both input ports.
-	 */
-	protected List<AttributeMetaData> getUnionAttributesMetaData(ExampleSetMetaData emd1, ExampleSetMetaData emd2) {
+    /**
+     * Returns a list of AttributeMetaData which contains the correctly joined MetaData arising from
+     * both input ports.
+     *
+     * @param emd1 the emd 1
+     * @param emd2 the emd 2
+     * @return the union attributes meta data
+     */
+    protected List<AttributeMetaData> getUnionAttributesMetaData(ExampleSetMetaData emd1, ExampleSetMetaData emd2) {
 		if (!leftInput.isConnected() || !rightInput.isConnected()) {
 			return new LinkedList<>();
 		}
@@ -378,29 +460,43 @@ public abstract class AbstractExampleSetJoin extends Operator {
 
 	}
 
-	/**
-	 * Returns a set of original attributes which will not be copied to the output example set. The
-	 * default implementation returns an empty set.
-	 */
-	protected Set<Pair<Integer, Attribute>> getExcludedAttributes(ExampleSet es1, ExampleSet es2) throws OperatorException {
+    /**
+     * Returns a set of original attributes which will not be copied to the output example set. The
+     * default implementation returns an empty set.
+     *
+     * @param es1 the es 1
+     * @param es2 the es 2
+     * @return the excluded attributes
+     * @throws OperatorException the operator exception
+     */
+    protected Set<Pair<Integer, Attribute>> getExcludedAttributes(ExampleSet es1, ExampleSet es2) throws OperatorException {
 		return new HashSet<>();
 	}
 
-	/**
-	 * Returns a set of original attributes which will not be copied to the output example set. The
-	 * default implementation returns an empty set.
-	 */
-	protected Set<Pair<Integer, AttributeMetaData>> getExcludedAttributesMD(ExampleSetMetaData esm1, ExampleSetMetaData esm2)
+    /**
+     * Returns a set of original attributes which will not be copied to the output example set. The
+     * default implementation returns an empty set.
+     *
+     * @param esm1 the esm 1
+     * @param esm2 the esm 2
+     * @return the excluded attributes md
+     * @throws OperatorException the operator exception
+     */
+    protected Set<Pair<Integer, AttributeMetaData>> getExcludedAttributesMD(ExampleSetMetaData esm1, ExampleSetMetaData esm2)
 			throws OperatorException {
 		return new HashSet<>();
 	}
 
-	/**
-	 * Returns true if the list already contains an attribute with the given name. The method
-	 * contains from List cannot be used since the equals method of Attribute also checks for the
-	 * same table index which is not applicable here.
-	 */
-	public boolean containsAttribute(List<Attribute> attributeList, Attribute attribute) {
+    /**
+     * Returns true if the list already contains an attribute with the given name. The method
+     * contains from List cannot be used since the equals method of Attribute also checks for the
+     * same table index which is not applicable here.
+     *
+     * @param attributeList the attribute list
+     * @param attribute     the attribute
+     * @return the boolean
+     */
+    public boolean containsAttribute(List<Attribute> attributeList, Attribute attribute) {
 		Iterator<Attribute> i = attributeList.iterator();
 		while (i.hasNext()) {
 			if (i.next().getName().equals(attribute.getName())) {
@@ -410,12 +506,16 @@ public abstract class AbstractExampleSetJoin extends Operator {
 		return false;
 	}
 
-	/**
-	 * Returns true if the list already contains an attribute with the given name. The method
-	 * contains from List cannot be used since the equals method of Attribute also checks for the
-	 * same table index which is not applicable here.
-	 */
-	public boolean containsAttributeMD(List<AttributeMetaData> attributeMDList, AttributeMetaData attributeMD) {
+    /**
+     * Returns true if the list already contains an attribute with the given name. The method
+     * contains from List cannot be used since the equals method of Attribute also checks for the
+     * same table index which is not applicable here.
+     *
+     * @param attributeMDList the attribute md list
+     * @param attributeMD     the attribute md
+     * @return the boolean
+     */
+    public boolean containsAttributeMD(List<AttributeMetaData> attributeMDList, AttributeMetaData attributeMD) {
 		Iterator<AttributeMetaData> i = attributeMDList.iterator();
 		while (i.hasNext()) {
 			if (i.next().getName().equals(attributeMD.getName())) {

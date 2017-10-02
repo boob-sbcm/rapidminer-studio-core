@@ -17,9 +17,10 @@ import edu.uci.ics.jung.visualization.control.TranslatingGraphMousePlugin;
  * This graph mouse does offer no mode selection but instead has all necessary features in its
  * default mode.
  *
+ * @param <V> the type parameter
+ * @param <E> the type parameter
  * @author Marco Boeck
  * @since 7.5.0
- *
  */
 public class SingleDefaultGraphMouse<V, E> extends PluggableGraphMouse {
 
@@ -33,18 +34,23 @@ public class SingleDefaultGraphMouse<V, E> extends PluggableGraphMouse {
 	private TranslatingGraphMousePlugin translatingPlugin;
 	private ScalingGraphMousePlugin scalingPlugin;
 
-	public SingleDefaultGraphMouse(float in, float out) {
+    /**
+     * Instantiates a new Single default graph mouse.
+     *
+     * @param in  the in
+     * @param out the out
+     */
+    public SingleDefaultGraphMouse(float in, float out) {
 		this.in = in;
 		this.out = out;
 
 		loadPlugins();
 	}
 
-	/**
-	 * Create and load the plugins to use.
-	 *
-	 */
-	protected void loadPlugins() {
+    /**
+     * Create and load the plugins to use.
+     */
+    protected void loadPlugins() {
 		pickingPlugin = new ExtendedPickingGraphMousePlugin<V, E>();
 		pickingPlugin.setRectangleSelectionEnabled(false);
 		translatingPlugin = new TranslatingGraphMousePlugin(InputEvent.BUTTON1_MASK);

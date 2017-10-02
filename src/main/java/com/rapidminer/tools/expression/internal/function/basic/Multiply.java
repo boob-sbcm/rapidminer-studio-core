@@ -26,14 +26,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract2DoubleInputFun
  * A {@link Function} for multiplication.
  *
  * @author Gisa Schaefer
- *
  */
 public class Multiply extends Abstract2DoubleInputFunction {
 
-	/**
-	 * Constructs a multiplication function.
-	 */
-	public Multiply() {
+    /**
+     * Constructs a multiplication function.
+     */
+    public Multiply() {
 		super("basic.multiplication", 2, Ontology.NUMERICAL);
 	}
 

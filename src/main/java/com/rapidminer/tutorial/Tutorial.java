@@ -47,7 +47,7 @@ import com.rapidminer.tools.XMLException;
 
 /**
  * A tutorial is a folder in the {@link TutorialGroup} zip file containing
- *
+ * <p>
  * <ul>
  * <li>a {@code tutorial.properties} file which contains the default English properties</li>
  * <li>an arbitrarily number of localized {@code tutorial_xy.properties} files (e.g.
@@ -69,17 +69,17 @@ import com.rapidminer.tools.XMLException;
  * {@value #TUTORIALS_PATH} + {@link #name} + "/" + {@link #folder}. All resources which are used in
  * the tutorial process needs to adapt the resource location accordingly.
  *
- * @since 7.0.0
  * @author Gisa Schaefer, Marcel Michel
- * @see TutorialGroup Description of the .tutorial file contents
+ * @see TutorialGroupDescriptionof the .tutorial file contents
+ * @since 7.0.0
  */
 public class Tutorial implements ZipStreamResource {
 
-	/**
-	 * User data key to flag processes as tutorial process: If the root operator's entry for this
-	 * key is non-null, the process is considered a tutorial.
-	 */
-	public static final String KEY_USER_DATA_FLAG = "com.rapidminer.tutorial.Tutorial";
+    /**
+     * User data key to flag processes as tutorial process: If the root operator's entry for this
+     * key is non-null, the process is considered a tutorial.
+     */
+    public static final String KEY_USER_DATA_FLAG = "com.rapidminer.tutorial.Tutorial";
 
 	/** key of the description in property files */
 	private static final String KEY_TUTORIAL_DESCRIPTION = "tutorial.description";
@@ -112,11 +112,28 @@ public class Tutorial implements ZipStreamResource {
 	private final TutorialGroup group;
 	private final String folder;
 
-	Tutorial(TutorialGroup group, String folder) throws IOException, RepositoryException {
+    /**
+     * Instantiates a new Tutorial.
+     *
+     * @param group  the group
+     * @param folder the folder
+     * @throws IOException         the io exception
+     * @throws RepositoryException the repository exception
+     */
+    Tutorial(TutorialGroup group, String folder) throws IOException, RepositoryException {
 		this(group, null, folder);
 	}
 
-	Tutorial(TutorialGroup group, Path path, String folder) throws IOException, RepositoryException {
+    /**
+     * Instantiates a new Tutorial.
+     *
+     * @param group  the group
+     * @param path   the path
+     * @param folder the folder
+     * @throws IOException         the io exception
+     * @throws RepositoryException the repository exception
+     */
+    Tutorial(TutorialGroup group, Path path, String folder) throws IOException, RepositoryException {
 		this.group = group;
 		this.path = path;
 		this.folder = folder;
@@ -146,38 +163,50 @@ public class Tutorial implements ZipStreamResource {
 		return folder;
 	}
 
-	/**
-	 * @return the name of the process behind this tutorial
-	 */
-	public String getProcessName() {
+    /**
+     * Gets process name.
+     *
+     * @return the name of the process behind this tutorial
+     */
+    public String getProcessName() {
 		return processName;
 	}
 
-	/**
-	 * @return the list of demo data names
-	 */
-	public List<String> getDemoData() {
+    /**
+     * Gets demo data.
+     *
+     * @return the list of demo data names
+     */
+    public List<String> getDemoData() {
 		return demoData;
 	}
 
-	/**
-	 * @return the identifier for this tutorial
-	 */
-	public String getIdentifier() {
+    /**
+     * Gets identifier.
+     *
+     * @return the identifier for this tutorial
+     */
+    public String getIdentifier() {
 		return getGroup().getName() + "-" + folder;
 	}
 
-	/**
-	 * @return the group which contains the tutorial
-	 */
-	public TutorialGroup getGroup() {
+    /**
+     * Gets group.
+     *
+     * @return the group which contains the tutorial
+     */
+    public TutorialGroup getGroup() {
 		return group;
 	}
 
-	/**
-	 * @return the steps.xml file as {@link InputStream}, or {@code null}
-	 */
-	public InputStream getSteps() throws IOException, RepositoryException {
+    /**
+     * Gets steps.
+     *
+     * @return the steps.xml file as {@link InputStream}, or {@code null}
+     * @throws IOException         the io exception
+     * @throws RepositoryException the repository exception
+     */
+    public InputStream getSteps() throws IOException, RepositoryException {
 		String localeStepsName = getStepsFileName();
 		boolean localeAvailable = false;
 		// sadly we need to traverse the zip file two times,
@@ -215,13 +244,15 @@ public class Tutorial implements ZipStreamResource {
 		return null;
 	}
 
-	/**
-	 * @return a new process that contains the tutorial process
-	 * @throws XMLException
-	 * @throws IOException
-	 * @throws MalformedRepositoryLocationException
-	 */
-	public Process makeProcess() throws IOException, XMLException, MalformedRepositoryLocationException {
+    /**
+     * Make process process.
+     *
+     * @return a new process that contains the tutorial process
+     * @throws IOException                          the io exception
+     * @throws XMLException                         the xml exception
+     * @throws MalformedRepositoryLocationException the malformed repository location exception
+     */
+    public Process makeProcess() throws IOException, XMLException, MalformedRepositoryLocationException {
 		String processLocation = TUTORIALS_PATH + getGroup().getName() + "/" + folder + processName;
 		RepositoryProcessLocation repoLocation = new RepositoryProcessLocation(new RepositoryLocation(processLocation));
 		Process newProcess = new Process(repoLocation.getRawXML());

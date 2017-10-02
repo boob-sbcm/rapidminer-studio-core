@@ -38,17 +38,30 @@ import java.util.List;
  * An Operator to rename repository entries. The user can select the entry to rename, a new name and
  * if an already existing entry should be overwritten or not. If overwriting is not allowed (default
  * case) a user error is thrown if there already exists another element with the new name.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class RepositoryEntryRenameOperator extends AbstractRepositoryManagerOperator {
 
-	public static final String ELEMENT_TO_RENAME = "entry_to_rename";
-	public static final String NEW_ELEMENT_NAME = "new_name";
-	public static final String OVERWRITE = "overwrite";
+    /**
+     * The constant ELEMENT_TO_RENAME.
+     */
+    public static final String ELEMENT_TO_RENAME = "entry_to_rename";
+    /**
+     * The constant NEW_ELEMENT_NAME.
+     */
+    public static final String NEW_ELEMENT_NAME = "new_name";
+    /**
+     * The constant OVERWRITE.
+     */
+    public static final String OVERWRITE = "overwrite";
 
-	public RepositoryEntryRenameOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Repository entry rename operator.
+     *
+     * @param description the description
+     */
+    public RepositoryEntryRenameOperator(OperatorDescription description) {
 		super(description);
 	}
 

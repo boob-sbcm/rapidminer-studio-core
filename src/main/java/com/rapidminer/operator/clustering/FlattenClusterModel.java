@@ -50,16 +50,30 @@ import com.rapidminer.tools.Ontology;
  */
 public class FlattenClusterModel extends Operator {
 
-	public static final String PARAMETER_NUMBER_OF_CLUSTER = "number_of_clusters";
-	public static final String PARAMETER_REMOVE_UNLABELED = "remove_unlabeled";
-	public static final String PARAMETER_ADD_AS_LABEL = "add_as_label";
+    /**
+     * The constant PARAMETER_NUMBER_OF_CLUSTER.
+     */
+    public static final String PARAMETER_NUMBER_OF_CLUSTER = "number_of_clusters";
+    /**
+     * The constant PARAMETER_REMOVE_UNLABELED.
+     */
+    public static final String PARAMETER_REMOVE_UNLABELED = "remove_unlabeled";
+    /**
+     * The constant PARAMETER_ADD_AS_LABEL.
+     */
+    public static final String PARAMETER_ADD_AS_LABEL = "add_as_label";
 
 	private InputPort hierarchicalInput = getInputPorts().createPort("hierarchical", HierarchicalClusterModel.class);
 	private InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private OutputPort flatOutput = getOutputPorts().createPort("flat");
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	public FlattenClusterModel(OperatorDescription description) {
+    /**
+     * Instantiates a new Flatten cluster model.
+     *
+     * @param description the description
+     */
+    public FlattenClusterModel(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new GenerateNewMDRule(flatOutput, ClusterModel.class));
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, exampleSetOutput, SetRelation.EQUAL) {
@@ -80,7 +94,15 @@ public class FlattenClusterModel extends Operator {
 		flatOutput.deliver(flatten(hierarchicalModel, exampleSet));
 	}
 
-	public ClusterModel flatten(HierarchicalClusterModel model, ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Flatten cluster model.
+     *
+     * @param model      the model
+     * @param exampleSet the example set
+     * @return the cluster model
+     * @throws OperatorException the operator exception
+     */
+    public ClusterModel flatten(HierarchicalClusterModel model, ExampleSet exampleSet) throws OperatorException {
 		HierarchicalClusterNode root = model.getRootNode();
 		int numberOfClusters = getParameterAsInt(PARAMETER_NUMBER_OF_CLUSTER);
 

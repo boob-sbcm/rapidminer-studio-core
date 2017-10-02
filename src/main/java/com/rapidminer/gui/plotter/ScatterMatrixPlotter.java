@@ -52,7 +52,10 @@ public class ScatterMatrixPlotter extends PlotterAdapter {
 
 	private static final long serialVersionUID = 9049081889010883621L;
 
-	static final int MAX_NUMBER_OF_COLUMNS = 50;
+    /**
+     * The Max number of columns.
+     */
+    static final int MAX_NUMBER_OF_COLUMNS = 50;
 
 	private ScatterPlotter plotter;
 
@@ -70,7 +73,12 @@ public class ScatterMatrixPlotter extends PlotterAdapter {
 
 	private boolean stopUpdates = false;
 
-	public ScatterMatrixPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Scatter matrix plotter.
+     *
+     * @param settings the settings
+     */
+    public ScatterMatrixPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 
@@ -98,7 +106,13 @@ public class ScatterMatrixPlotter extends PlotterAdapter {
 		progressBar.setToolTipText("Shows the progress of the Scatter Matrix calculation.");
 	}
 
-	public ScatterMatrixPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Scatter matrix plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public ScatterMatrixPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}

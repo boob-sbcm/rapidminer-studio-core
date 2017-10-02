@@ -31,7 +31,6 @@ import javax.swing.text.TextAction;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 final class PasteAnnotationProxyAction extends TextAction {
 
@@ -42,14 +41,14 @@ final class PasteAnnotationProxyAction extends TextAction {
 	/** original paste action */
 	private final Action action;
 
-	/**
-	 * Creates a new proxy which calls the original paste action and then makes sure the editor
-	 * content is updated by calling {@link AnnotationsDecorator#updateEditorContent()}.
-	 *
-	 * @param action
-	 *            the original paste action which is called by this action
-	 */
-	public PasteAnnotationProxyAction(final Action action, final AnnotationsDecorator decorator) {
+    /**
+     * Creates a new proxy which calls the original paste action and then makes sure the editor
+     * content is updated by calling {@link AnnotationsDecorator#updateEditorContent()}.
+     *
+     * @param action    the original paste action which is called by this action
+     * @param decorator the decorator
+     */
+    public PasteAnnotationProxyAction(final Action action, final AnnotationsDecorator decorator) {
 		super(DefaultEditorKit.pasteAction);
 		this.action = action;
 		this.decorator = decorator;

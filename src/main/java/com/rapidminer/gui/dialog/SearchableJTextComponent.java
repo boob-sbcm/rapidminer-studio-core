@@ -24,14 +24,19 @@ import javax.swing.text.JTextComponent;
 /**
  * This is the implementation of a searchable text componend which is based on Swing's
  * JTextComponents.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SearchableJTextComponent implements SearchableTextComponent {
 
 	private JTextComponent component;
 
-	public SearchableJTextComponent(JTextComponent component) {
+    /**
+     * Instantiates a new Searchable j text component.
+     *
+     * @param component the component
+     */
+    public SearchableJTextComponent(JTextComponent component) {
 		this.component = component;
 	}
 

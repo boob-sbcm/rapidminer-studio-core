@@ -31,7 +31,7 @@ import javax.swing.Icon;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class FitAllColumnWidthsAction extends AbstractAction {
@@ -51,7 +51,13 @@ public class FitAllColumnWidthsAction extends AbstractAction {
 
 	private ExtendedJTable table;
 
-	public FitAllColumnWidthsAction(ExtendedJTable table, IconSize size) {
+    /**
+     * Instantiates a new Fit all column widths action.
+     *
+     * @param table the table
+     * @param size  the size
+     */
+    public FitAllColumnWidthsAction(ExtendedJTable table, IconSize size) {
 		super("Fit all Column Widths", ICONS[size.ordinal()]);
 		this.table = table;
 		putValue(SHORT_DESCRIPTION, "Adapt the widths of all columns to the content");

@@ -31,7 +31,7 @@ import java.util.Random;
  * Similar to a the roulette wheel selection the fitness values of all individuals build a partition
  * of the 360 degrees of a wheel. The wheel is turned only once and the individuals are selected
  * based on equidistant marks on the wheel. Optionally the best individual is also kept.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class StochasticUniversalSampling implements PopulationOperator {
@@ -42,7 +42,14 @@ public class StochasticUniversalSampling implements PopulationOperator {
 
 	private Random random;
 
-	public StochasticUniversalSampling(int popSize, boolean keepBest, Random random) {
+    /**
+     * Instantiates a new Stochastic universal sampling.
+     *
+     * @param popSize  the pop size
+     * @param keepBest the keep best
+     * @param random   the random
+     */
+    public StochasticUniversalSampling(int popSize, boolean keepBest, Random random) {
 		this.popSize = popSize;
 		this.keepBest = keepBest;
 		this.random = random;
@@ -54,12 +61,15 @@ public class StochasticUniversalSampling implements PopulationOperator {
 		return true;
 	}
 
-	/**
-	 * Subclasses may override this method and recalculate the fitness based on the given one, e.g.
-	 * Boltzmann selection or scaled selection. The default implementation simply returns the given
-	 * fitness.
-	 */
-	public double filterFitness(double fitness) {
+    /**
+     * Subclasses may override this method and recalculate the fitness based on the given one, e.g.
+     * Boltzmann selection or scaled selection. The default implementation simply returns the given
+     * fitness.
+     *
+     * @param fitness the fitness
+     * @return the double
+     */
+    public double filterFitness(double fitness) {
 		return fitness;
 	}
 

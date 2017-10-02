@@ -81,7 +81,6 @@ import com.rapidminer.tools.I18N;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public class ProcessRendererController {
 
@@ -94,39 +93,37 @@ public class ProcessRendererController {
 	/** the model behind the process renderer */
 	private ProcessRendererModel model;
 
-	/**
-	 * Creates a new process renderer controller which is responsible to intercept and react to user
-	 * interaction with the view and manipulating the model.
-	 *
-	 * @param view
-	 * @param model
-	 */
-	public ProcessRendererController(ProcessRendererView view, ProcessRendererModel model) {
+    /**
+     * Creates a new process renderer controller which is responsible to intercept and react to user
+     * interaction with the view and manipulating the model.
+     *
+     * @param view  the view
+     * @param model the model
+     */
+    public ProcessRendererController(ProcessRendererView view, ProcessRendererModel model) {
 		this.view = view;
 		this.model = model;
 	}
 
-	/**
-	 * Automatically arranges the operators in the specified process according to a layouting
-	 * algorithm.
-	 *
-	 * @param process
-	 *            the operators of this process will be arranged
-	 */
-	public void autoArrange(final ExecutionUnit process) {
+    /**
+     * Automatically arranges the operators in the specified process according to a layouting
+     * algorithm.
+     *
+     * @param process the operators of this process will be arranged
+     */
+    public void autoArrange(final ExecutionUnit process) {
 		List<ExecutionUnit> list = new ArrayList<>(1);
 		list.add(0, process);
 		autoArrange(list);
 	}
 
-	/**
-	 * Automatically arranges the operators in the specified process according to a layouting
-	 * algorithm.
-	 *
-	 * @param process
-	 *            the operators of this process will be arranged
-	 */
-	public void autoArrange(final List<ExecutionUnit> processes) {
+    /**
+     * Automatically arranges the operators in the specified process according to a layouting
+     * algorithm.
+     *
+     * @param processes the processes
+     */
+    public void autoArrange(final List<ExecutionUnit> processes) {
 		int unitNumber = processes.size();
 		List<Map<Operator, Rectangle2D>> newPositions = new ArrayList<>(unitNumber);
 
@@ -211,10 +208,10 @@ public class ProcessRendererController {
 		moveOperators(processes, newPositions, 10, 100);
 	}
 
-	/**
-	 * Automatically adapts the size of all processes to fit the available space.
-	 */
-	public synchronized void autoFit() {
+    /**
+     * Automatically adapts the size of all processes to fit the available space.
+     */
+    public synchronized void autoFit() {
 		for (ExecutionUnit unit : model.getProcesses()) {
 			ensureOperatorsHaveLocation(unit);
 			autoFit(unit, false);
@@ -224,17 +221,15 @@ public class ProcessRendererController {
 		view.updateExtensionButtons();
 	}
 
-	/**
-	 * Calculates the position of an operator.
-	 *
-	 * @param op
-	 * @param index
-	 * @param setPosition
-	 *            If {@code true}, will actually change the position of the operator, otherwise will
-	 *            not move the operator
-	 * @return the position and size of the operator, never {@code null}
-	 */
-	public Rectangle2D autoPosition(Operator op, int index, boolean setPosition) {
+    /**
+     * Calculates the position of an operator.
+     *
+     * @param op          the op
+     * @param index       the index
+     * @param setPosition If {@code true}, will actually change the position of the operator, otherwise will            not move the operator
+     * @return the position and size of the operator, never {@code null}
+     */
+    public Rectangle2D autoPosition(Operator op, int index, boolean setPosition) {
 		int maxPerRow = (int) Math.max(1,
 				Math.floor(model.getProcessWidth(op.getExecutionUnit()) / (ProcessDrawer.GRID_AUTOARRANGE_WIDTH + 10)));
 		int col = index % maxPerRow;
@@ -261,33 +256,30 @@ public class ProcessRendererController {
 		return rect;
 	}
 
-	/**
-	 * Opens a rename textfield at the location of the specified operator.
-	 *
-	 * @param op
-	 *            the operator to be renamed
-	 */
-	public void rename(final Operator op) {
+    /**
+     * Opens a rename textfield at the location of the specified operator.
+     *
+     * @param op the operator to be renamed
+     */
+    public void rename(final Operator op) {
 		view.rename(op);
 	}
 
-	/**
-	 * Select the given operator.
-	 *
-	 * @param op
-	 *            the operator to select
-	 * @param clear
-	 *            if {@code true}, an existing selection will be cleared
-	 */
-	void selectOperator(final Operator op, final boolean clear) {
+    /**
+     * Select the given operator.
+     *
+     * @param op    the operator to select
+     * @param clear if {@code true}, an existing selection will be cleared
+     */
+    void selectOperator(final Operator op, final boolean clear) {
 		selectOperator(op, clear, false);
 	}
 
-	/**
-	 * Makes sure the current processes are up to date when the displayed chain changes. Also auto
-	 * fits in case the view is actually being shown right now.
-	 */
-	void processDisplayedChainChanged() {
+    /**
+     * Makes sure the current processes are up to date when the displayed chain changes. Also auto
+     * fits in case the view is actually being shown right now.
+     */
+    void processDisplayedChainChanged() {
 		List<ExecutionUnit> processes;
 		OperatorChain op = model.getDisplayedChain();
 		if (op == null) {
@@ -304,14 +296,13 @@ public class ProcessRendererController {
 		}
 	}
 
-	/**
-	 * Makes sure the process still fits the new height of the operator whose ports have changed.
-	 * Also triggers height recalculation of the operator itself.
-	 *
-	 * @param op
-	 *            the operator which had his ports changed
-	 */
-	void processPortsChanged(Operator op) {
+    /**
+     * Makes sure the process still fits the new height of the operator whose ports have changed.
+     * Also triggers height recalculation of the operator itself.
+     *
+     * @param op the operator which had his ports changed
+     */
+    void processPortsChanged(Operator op) {
 		if (model.getOperatorRect(op) != null) {
 			model.setOperatorRect(op, model.getOperatorRect(op));
 			// make sure that process size fits new size of operators
@@ -319,18 +310,14 @@ public class ProcessRendererController {
 		}
 	}
 
-	/**
-	 * Select the given operator.
-	 *
-	 * @param op
-	 *            the operator to select
-	 * @param clear
-	 *            if {@code true}, an existing selection will be cleared
-	 * @param range
-	 *            if true, select interval from last already selected operator to now selected
-	 *            operator
-	 */
-	void selectOperator(final Operator op, final boolean clear, final boolean range) {
+    /**
+     * Select the given operator.
+     *
+     * @param op    the operator to select
+     * @param clear if {@code true}, an existing selection will be cleared
+     * @param range if true, select interval from last already selected operator to now selected            operator
+     */
+    void selectOperator(final Operator op, final boolean clear, final boolean range) {
 		boolean changed = false;
 		LinkedList<Operator> selectedOperators = new LinkedList<>(model.getSelectedOperators());
 		if (clear || op == null) {
@@ -397,13 +384,12 @@ public class ProcessRendererController {
 		}
 	}
 
-	/**
-	 * Starting from the current selection, selects the first operator in the given direction.
-	 *
-	 * @param e
-	 *            the key event which triggered the selection
-	 */
-	void selectInDirection(final KeyEvent e) {
+    /**
+     * Starting from the current selection, selects the first operator in the given direction.
+     *
+     * @param e the key event which triggered the selection
+     */
+    void selectInDirection(final KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if (model.getSelectedOperators().isEmpty()) {
 			for (ExecutionUnit unit : model.getProcesses()) {
@@ -456,14 +442,13 @@ public class ProcessRendererController {
 		}
 	}
 
-	/**
-	 * Returns whether an operator has is connected to either output or input ports.
-	 *
-	 * @param op
-	 *            the operator in question
-	 * @return {@code true} if the operator has a connection; {@code false} otherwise
-	 */
-	boolean hasConnections(final Operator op) {
+    /**
+     * Returns whether an operator has is connected to either output or input ports.
+     *
+     * @param op the operator in question
+     * @return {@code true} if the operator has a connection; {@code false} otherwise
+     */
+    boolean hasConnections(final Operator op) {
 		for (Port port : op.getInputPorts().getAllPorts()) {
 			if (port.isConnected()) {
 				return true;
@@ -477,14 +462,13 @@ public class ProcessRendererController {
 		return false;
 	}
 
-	/**
-	 * Returns whether the given {@link Transferable} can be accepted as a drop or not.
-	 *
-	 * @param t
-	 *            the transferable
-	 * @return {@code true} if the process renderer can handle the drop; {@code false} otherwise
-	 */
-	boolean canImportTransferable(final Transferable t) {
+    /**
+     * Returns whether the given {@link Transferable} can be accepted as a drop or not.
+     *
+     * @param t the transferable
+     * @return {@code true} if the process renderer can handle the drop; {@code false} otherwise
+     */
+    boolean canImportTransferable(final Transferable t) {
 		for (DataFlavor flavor : t.getTransferDataFlavors()) {
 
 			// check if folder is being dragged. Folders cannot be dropped on the process panel
@@ -513,15 +497,13 @@ public class ProcessRendererController {
 		return true;
 	}
 
-	/**
-	 * Connects the operators specified by the output and input port and enables them.
-	 *
-	 * @param out
-	 *            the output port
-	 * @param in
-	 *            the input port
-	 */
-	void connect(final OutputPort out, final InputPort in) {
+    /**
+     * Connects the operators specified by the output and input port and enables them.
+     *
+     * @param out the output port
+     * @param in  the input port
+     */
+    void connect(final OutputPort out, final InputPort in) {
 		Operator inOp = in.getPorts().getOwner().getOperator();
 		if (!inOp.isEnabled()) {
 			inOp.setEnabled(true);
@@ -533,15 +515,13 @@ public class ProcessRendererController {
 		out.connectTo(in);
 	}
 
-	/**
-	 * Ensures that the process is at least width wide.
-	 *
-	 * @param executionUnit
-	 *            the process to ensure the minimum width
-	 * @param width
-	 *            the mininum width
-	 */
-	void ensureWidth(final ExecutionUnit executionUnit, final int width) {
+    /**
+     * Ensures that the process is at least width wide.
+     *
+     * @param executionUnit the process to ensure the minimum width
+     * @param width         the mininum width
+     */
+    void ensureWidth(final ExecutionUnit executionUnit, final int width) {
 		Dimension old = new Dimension((int) model.getProcessWidth(executionUnit),
 				(int) model.getProcessHeight(executionUnit));
 		if (width > old.getWidth()) {
@@ -551,15 +531,13 @@ public class ProcessRendererController {
 		}
 	}
 
-	/**
-	 * Ensures that the process is at least height heigh.
-	 *
-	 * @param executionUnit
-	 *            the process to ensure the minimum height
-	 * @param width
-	 *            the mininum height
-	 */
-	void ensureHeight(final ExecutionUnit executionUnit, final int height) {
+    /**
+     * Ensures that the process is at least height heigh.
+     *
+     * @param executionUnit the process to ensure the minimum height
+     * @param height        the height
+     */
+    void ensureHeight(final ExecutionUnit executionUnit, final int height) {
 		Dimension old = new Dimension((int) model.getProcessWidth(executionUnit),
 				(int) model.getProcessHeight(executionUnit));
 		if (height > old.getHeight()) {
@@ -569,16 +547,14 @@ public class ProcessRendererController {
 		}
 	}
 
-	/**
-	 * Increases the process size if necessary for the given operator.
-	 *
-	 * @param process
-	 *            the process for which the size should be checked
-	 * @param location
-	 *            the location which must fit inside the process
-	 * @return {@code true} if process was resized; {@code false} otherwise
-	 */
-	boolean ensureProcessSizeFits(final ExecutionUnit process, final Rectangle2D rect) {
+    /**
+     * Increases the process size if necessary for the given operator.
+     *
+     * @param process the process for which the size should be checked
+     * @param rect    the rect
+     * @return {@code true} if process was resized; {@code false} otherwise
+     */
+    boolean ensureProcessSizeFits(final ExecutionUnit process, final Rectangle2D rect) {
 		Dimension processSize = model.getProcessSize(process);
 		if (processSize == null) {
 			return false;
@@ -624,20 +600,16 @@ public class ProcessRendererController {
 		return false;
 	}
 
-	/**
-	 * Checks whether we have a port under the given point (in process space) and, as a side effect,
-	 * remembers the hovering port and potentially resets the hovering operator.
-	 *
-	 * @param ports
-	 *            the ports to be checked
-	 * @param x
-	 *            the x coordinate
-	 * @param y
-	 *            the y coordinate
-	 * @return {@code true} if a port of the given list lies under the coordinates; {@code false}
-	 *         otherwise
-	 */
-	boolean checkPortUnder(final Ports<? extends Port> ports, final int x, final int y) {
+    /**
+     * Checks whether we have a port under the given point (in process space) and, as a side effect,
+     * remembers the hovering port and potentially resets the hovering operator.
+     *
+     * @param ports the ports to be checked
+     * @param x     the x coordinate
+     * @param y     the y coordinate
+     * @return {@code true} if a port of the given list lies under the coordinates; {@code false}         otherwise
+     */
+    boolean checkPortUnder(final Ports<? extends Port> ports, final int x, final int y) {
 		for (Port port : ports.getAllPorts()) {
 			Point2D location = ProcessDrawUtils.createPortLocation(port, model);
 			if (location == null) {
@@ -662,14 +634,13 @@ public class ProcessRendererController {
 		return false;
 	}
 
-	/**
-	 * Returns the index of the specified process in the current list of processes.
-	 *
-	 * @param executionUnit
-	 *            the process we want to get the index of
-	 * @return the index of the process or -1 if it is not currently displayed
-	 */
-	int getIndex(final ExecutionUnit executionUnit) {
+    /**
+     * Returns the index of the specified process in the current list of processes.
+     *
+     * @param executionUnit the process we want to get the index of
+     * @return the index of the process or -1 if it is not currently displayed
+     */
+    int getIndex(final ExecutionUnit executionUnit) {
 		for (int i = 0; i < model.getProcesses().size(); i++) {
 			if (model.getProcess(i) == executionUnit) {
 				return i;
@@ -678,12 +649,12 @@ public class ProcessRendererController {
 		return -1;
 	}
 
-	/**
-	 * Returns the total height the process renderer occupies.
-	 *
-	 * @return the height including the padding to the top and bottom
-	 */
-	double getTotalHeight() {
+    /**
+     * Returns the total height the process renderer occupies.
+     *
+     * @return the height including the padding to the top and bottom
+     */
+    double getTotalHeight() {
 		double height = 0;
 		for (ExecutionUnit u : model.getProcesses()) {
 			double h = model.getProcessHeight(u);
@@ -694,12 +665,12 @@ public class ProcessRendererController {
 		return height;
 	}
 
-	/**
-	 * Returns the total width the process renderer occupies.
-	 *
-	 * @return the width including the walls to the left and right
-	 */
-	double getTotalWidth() {
+    /**
+     * Returns the total width the process renderer occupies.
+     *
+     * @return the width including the walls to the left and right
+     */
+    double getTotalWidth() {
 		double width = 0;
 		int count = 0;
 		for (ExecutionUnit u : model.getProcesses()) {
@@ -714,11 +685,10 @@ public class ProcessRendererController {
 		return width;
 	}
 
-	/**
-	 * Sets the initial sizes of all processes if the model does not already contain them.
-	 *
-	 */
-	void setInitialSizes() {
+    /**
+     * Sets the initial sizes of all processes if the model does not already contain them.
+     */
+    void setInitialSizes() {
 		List<ExecutionUnit> units = model.getProcesses();
 		for (ExecutionUnit unit : units) {
 			Dimension size = model.getProcessSize(unit);
@@ -729,17 +699,15 @@ public class ProcessRendererController {
 		}
 	}
 
-	/**
-	 * Returns the first connected {@link OutputPort} for which the specified point lies inside the
-	 * connector shape.
-	 *
-	 * @param p
-	 *            the point in question
-	 * @param unit
-	 *            the process for which to check
-	 * @return an output port for which the point lies inside the connector or {@code null}
-	 */
-	OutputPort getPortForConnectorNear(final Point p, final ExecutionUnit unit) {
+    /**
+     * Returns the first connected {@link OutputPort} for which the specified point lies inside the
+     * connector shape.
+     *
+     * @param p    the point in question
+     * @param unit the process for which to check
+     * @return an output port for which the point lies inside the connector or {@code null}
+     */
+    OutputPort getPortForConnectorNear(final Point p, final ExecutionUnit unit) {
 		List<OutputPort> candidates = new LinkedList<>();
 		candidates.addAll(unit.getInnerSources().getAllPorts());
 		for (Operator op : unit.getOperators()) {
@@ -760,16 +728,14 @@ public class ProcessRendererController {
 		return null;
 	}
 
-	/**
-	 * Returns the closest operator to the left of the given point and process.
-	 *
-	 * @param p
-	 *            looks for an operator to the left of this location
-	 * @param unit
-	 *            the process for the location
-	 * @return the closest operator or {@code null}
-	 */
-	Operator getClosestLeftNeighbour(final Point2D p, final ExecutionUnit unit) {
+    /**
+     * Returns the closest operator to the left of the given point and process.
+     *
+     * @param p    looks for an operator to the left of this location
+     * @param unit the process for the location
+     * @return the closest operator or {@code null}
+     */
+    Operator getClosestLeftNeighbour(final Point2D p, final ExecutionUnit unit) {
 		Operator closest = null;
 		double minDist = Double.POSITIVE_INFINITY;
 		for (Operator op : unit.getOperators()) {
@@ -788,13 +754,12 @@ public class ProcessRendererController {
 		return closest;
 	}
 
-	/**
-	 * Insert the specified operator into the currently hovered connection.
-	 *
-	 * @param operator
-	 *            the operator to be inserted
-	 */
-	@SuppressWarnings("deprecation")
+    /**
+     * Insert the specified operator into the currently hovered connection.
+     *
+     * @param operator the operator to be inserted
+     */
+    @SuppressWarnings("deprecation")
 	void insertIntoHoveringConnection(final Operator operator) {
 		OutputPort hoveringConnectionSource = model.getHoveringConnectionSource();
 		if (hoveringConnectionSource == null) {
@@ -859,16 +824,14 @@ public class ProcessRendererController {
 		}
 	}
 
-	/**
-	 * Set spacing and reduce spacing for successor if possible.
-	 *
-	 * @param port
-	 *            the port to be moved
-	 * @param delta
-	 *            by how much the port spacing should be changed
-	 * @return how much the port was moved
-	 */
-	double shiftPortSpacing(final Port port, final double delta) {
+    /**
+     * Set spacing and reduce spacing for successor if possible.
+     *
+     * @param port  the port to be moved
+     * @param delta by how much the port spacing should be changed
+     * @return how much the port was moved
+     */
+    double shiftPortSpacing(final Port port, final double delta) {
 		// remember old spacing
 		final Ports<? extends Port> ports = port.getPorts();
 		final int myIndex = ports.getAllPorts().indexOf(port);
@@ -932,15 +895,14 @@ public class ProcessRendererController {
 		}
 	}
 
-	/**
-	 * Returns a {@link Rectangle2D} representing an {@link Operator}. First tries to look up the
-	 * data from the model, if that fails determines a position it automatically.
-	 *
-	 * @param op
-	 *            the operator for which a rectangle should be created
-	 * @return the rectangle representing the operator, never {@code null}
-	 */
-	Rectangle2D createOperatorPosition(Operator op) {
+    /**
+     * Returns a {@link Rectangle2D} representing an {@link Operator}. First tries to look up the
+     * data from the model, if that fails determines a position it automatically.
+     *
+     * @param op the operator for which a rectangle should be created
+     * @return the rectangle representing the operator, never {@code null}
+     */
+    Rectangle2D createOperatorPosition(Operator op) {
 		Rectangle2D rect = model.getOperatorRect(op);
 		if (rect != null) {
 			return rect;
@@ -983,14 +945,13 @@ public class ProcessRendererController {
 		return rect;
 	}
 
-	/**
-	 * Ensures that each operator in the given {@link ExecutionUnit} has a location.
-	 *
-	 * @param unit
-	 *            the process in question
-	 * @return the list of operators that did not have a location and now have one
-	 */
-	List<Operator> ensureOperatorsHaveLocation(ExecutionUnit unit) {
+    /**
+     * Ensures that each operator in the given {@link ExecutionUnit} has a location.
+     *
+     * @param unit the process in question
+     * @return the list of operators that did not have a location and now have one
+     */
+    List<Operator> ensureOperatorsHaveLocation(ExecutionUnit unit) {
 		List<Operator> movedOperators = new LinkedList<>();
 		for (Operator op : unit.getOperators()) {
 
@@ -1005,20 +966,19 @@ public class ProcessRendererController {
 		return movedOperators;
 	}
 
-	/**
-	 * Shows the given message in the main GUI status bar.
-	 *
-	 * @param msg
-	 *            the message
-	 */
-	void showStatus(final String msg) {
+    /**
+     * Shows the given message in the main GUI status bar.
+     *
+     * @param msg the message
+     */
+    void showStatus(final String msg) {
 		RapidMinerGUI.getMainFrame().getStatusBar().setSpecialText(msg);
 	}
 
-	/**
-	 * Clears the main GUI status bar message.
-	 */
-	void clearStatus() {
+    /**
+     * Clears the main GUI status bar message.
+     */
+    void clearStatus() {
 		RapidMinerGUI.getMainFrame().getStatusBar().clearSpecialText();
 	}
 

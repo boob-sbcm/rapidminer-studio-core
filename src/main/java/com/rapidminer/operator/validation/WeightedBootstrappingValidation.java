@@ -35,13 +35,13 @@ import java.util.Random;
  * not sampled, build a test set on which the model is evaluated. This process is repeated for the
  * specified number of iterations after which the average performance is calculated.
  * </p>
- * 
+ * <p>
  * <p>
  * The basic setup is the same as for the usual cross validation operator. The first inner operator
  * must provide a model and the second a performance vector. Please note that this operator does not
  * regard example weights, i.e. weights specified in a weight column.
  * </p>
- * 
+ * <p>
  * <p>
  * This validation operator provides several values which can be logged by means of a
  * {@link ProcessLogOperator}. All performance estimation operators of RapidMiner provide access to
@@ -57,12 +57,17 @@ import java.util.Random;
  * <li>for the main criterion, also the variance and the standard deviation can be accessed where
  * applicable.</li>
  * </ul>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class WeightedBootstrappingValidation extends AbstractBootstrappingValidation {
 
-	public WeightedBootstrappingValidation(OperatorDescription description) {
+    /**
+     * Instantiates a new Weighted bootstrapping validation.
+     *
+     * @param description the description
+     */
+    public WeightedBootstrappingValidation(OperatorDescription description) {
 		super(description);
 	}
 

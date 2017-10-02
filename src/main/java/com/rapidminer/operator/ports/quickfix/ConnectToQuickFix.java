@@ -23,6 +23,8 @@ import com.rapidminer.operator.ports.OutputPort;
 
 
 /**
+ * The type Connect to quick fix.
+ *
  * @author Simon Fischer
  */
 public class ConnectToQuickFix extends AbstractQuickFix {
@@ -30,7 +32,13 @@ public class ConnectToQuickFix extends AbstractQuickFix {
 	private InputPort inputPort;
 	private OutputPort outputPort;
 
-	public ConnectToQuickFix(InputPort inputPort, OutputPort outputPort) {
+    /**
+     * Instantiates a new Connect to quick fix.
+     *
+     * @param inputPort  the input port
+     * @param outputPort the output port
+     */
+    public ConnectToQuickFix(InputPort inputPort, OutputPort outputPort) {
 		super(MAX_RATING, false, inputPort.isConnected() ? "reconnect_to" : "connect_to", new Object[] { outputPort
 				.getSpec() });
 		this.inputPort = inputPort;

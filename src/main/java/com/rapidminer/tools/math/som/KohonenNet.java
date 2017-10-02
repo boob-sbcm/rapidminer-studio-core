@@ -69,13 +69,25 @@ public class KohonenNet implements Serializable {
 
 	private volatile boolean stopTraining = false;
 
-	public KohonenNet(KohonenTrainingsData data) {
+    /**
+     * Instantiates a new Kohonen net.
+     *
+     * @param data the data
+     */
+    public KohonenNet(KohonenTrainingsData data) {
 		this.distanceFunction = new EuclideanDistance();
 		this.adaptationFunction = new RitterAdaptation();
 		this.data = data;
 	}
 
-	public void init(int dataDimension, int[] netDimensions, boolean hexagonal) {
+    /**
+     * Init.
+     *
+     * @param dataDimension the data dimension
+     * @param netDimensions the net dimensions
+     * @param hexagonal     the hexagonal
+     */
+    public void init(int dataDimension, int[] netDimensions, boolean hexagonal) {
 		// TODO
 		// this.dataDimension = dataDimension;
 		// if (netDimensions.length == 2) {
@@ -107,10 +119,10 @@ public class KohonenNet implements Serializable {
 		updateProgressListener(10);
 	}
 
-	/**
-	 * trains the KohonenNet
-	 */
-	public void train() {
+    /**
+     * trains the KohonenNet
+     */
+    public void train() {
 		try {
 			this.train(null);
 		} catch (ProcessStoppedException e) {
@@ -118,16 +130,14 @@ public class KohonenNet implements Serializable {
 		}
 	}
 
-	/**
-	 * Performs exactly the same action as {@link KohonenNet}.train() with the difference that this
-	 * method checks whether the process was stopped.
-	 *
-	 * @param executingOperator
-	 *            the Operator which executes this method
-	 * @throws ProcessStoppedException
-	 *             if the currently running Process was stopped
-	 */
-	public void train(Operator executingOperator) throws ProcessStoppedException {
+    /**
+     * Performs exactly the same action as {@link KohonenNet}.train() with the difference that this
+     * method checks whether the process was stopped.
+     *
+     * @param executingOperator the Operator which executes this method
+     * @throws ProcessStoppedException if the currently running Process was stopped
+     */
+    public void train(Operator executingOperator) throws ProcessStoppedException {
 		if (phase == 1) {
 			this.stopTraining = false;
 			data.setRandomGenerator(this.randomGenerator);
@@ -203,7 +213,13 @@ public class KohonenNet implements Serializable {
 		cubeNodeCounter = 0;
 	}
 
-	public int[] apply(double[] data) {
+    /**
+     * Apply int [ ].
+     *
+     * @param data the data
+     * @return the int [ ]
+     */
+    public int[] apply(double[] data) {
 		if (phase == 2) {
 			int bestNode = getBestFittingNode(data);
 			return getCoordinatesOfIndex(bestNode);
@@ -212,37 +228,76 @@ public class KohonenNet implements Serializable {
 		}
 	}
 
-	public void setRandomSeed(long seed) {
+    /**
+     * Sets random seed.
+     *
+     * @param seed the seed
+     */
+    public void setRandomSeed(long seed) {
 		if (phase == 0) {
 			randomSeed = seed;
 		}
 	}
 
-	public void setDistanceFunction(DistanceFunction function) {
+    /**
+     * Sets distance function.
+     *
+     * @param function the function
+     */
+    public void setDistanceFunction(DistanceFunction function) {
 		if (phase == 0) {
 			this.distanceFunction = function;
 		}
 	}
 
-	public void setAdaptationFunction(AdaptationFunction function) {
+    /**
+     * Sets adaptation function.
+     *
+     * @param function the function
+     */
+    public void setAdaptationFunction(AdaptationFunction function) {
 		if (phase == 0) {
 			this.adaptationFunction = function;
 		}
 	}
 
-	public void setTrainingRounds(int rounds) {
+    /**
+     * Sets training rounds.
+     *
+     * @param rounds the rounds
+     */
+    public void setTrainingRounds(int rounds) {
 		this.trainingSteps = Math.max(rounds, 1);
 	}
 
-	public double getDistance(double[] point1, double[] point2) {
+    /**
+     * Gets distance.
+     *
+     * @param point1 the point 1
+     * @param point2 the point 2
+     * @return the distance
+     */
+    public double getDistance(double[] point1, double[] point2) {
 		return distanceFunction.getDistance(point1, point2);
 	}
 
-	public double[] getNodeWeights(int[] coords) {
+    /**
+     * Get node weights double [ ].
+     *
+     * @param coords the coords
+     * @return the double [ ]
+     */
+    public double[] getNodeWeights(int[] coords) {
 		return nodes[getIndexOfCoordinates(coords)].getWeights();
 	}
 
-	public double getNodeDistance(int nodeIndex) {
+    /**
+     * Gets node distance.
+     *
+     * @param nodeIndex the node index
+     * @return the node distance
+     */
+    public double getNodeDistance(int nodeIndex) {
 		cube(3, getCoordinatesOfIndex(nodeIndex));
 		double distance = 0;
 		while (cubeHasNext()) {
@@ -280,7 +335,13 @@ public class KohonenNet implements Serializable {
 		return getCoordinatesOfIndex(index, netDimensions);
 	}
 
-	public int getIndexOfCoordinates(int[] coordinates) {
+    /**
+     * Gets index of coordinates.
+     *
+     * @param coordinates the coordinates
+     * @return the index of coordinates
+     */
+    public int getIndexOfCoordinates(int[] coordinates) {
 		return getIndexOfCoordinates(coordinates, netDimensions);
 	}
 
@@ -319,22 +380,40 @@ public class KohonenNet implements Serializable {
 		return array;
 	}
 
-	public void addProgressListener(ProgressListener listener) {
+    /**
+     * Add progress listener.
+     *
+     * @param listener the listener
+     */
+    public void addProgressListener(ProgressListener listener) {
 		progressListener.add(listener);
 	}
 
-	public void removeProgressListener(ProgressListener listener) {
+    /**
+     * Remove progress listener.
+     *
+     * @param listener the listener
+     */
+    public void removeProgressListener(ProgressListener listener) {
 		progressListener.remove(listener);
 	}
 
-	public void updateProgressListener(int value) {
+    /**
+     * Update progress listener.
+     *
+     * @param value the value
+     */
+    public void updateProgressListener(int value) {
 		Iterator<ProgressListener> iterator = progressListener.iterator();
 		while (iterator.hasNext()) {
 			iterator.next().setProgress(value);
 		}
 	}
 
-	public void informProgressExit() {
+    /**
+     * Inform progress exit.
+     */
+    public void informProgressExit() {
 		// we need to make a copy of the list, because progressFinsihed
 		// may remove the listener from the progressListener list
 		Iterator<ProgressListener> iterator = new ArrayList<>(progressListener).iterator();
@@ -343,13 +422,13 @@ public class KohonenNet implements Serializable {
 		}
 	}
 
-	/**
-	 * If this Method is called the {@link KohonenNet} will stop the training as far as possible.
-	 *
-	 * NOTE: you can only use this method if train() is performed in another thread. Otherwise this
-	 * method will have no effect.
-	 */
-	public void stopTrain() {
+    /**
+     * If this Method is called the {@link KohonenNet} will stop the training as far as possible.
+     * <p>
+     * NOTE: you can only use this method if train() is performed in another thread. Otherwise this
+     * method will have no effect.
+     */
+    public void stopTrain() {
 		this.stopTraining = true;
 	}
 }

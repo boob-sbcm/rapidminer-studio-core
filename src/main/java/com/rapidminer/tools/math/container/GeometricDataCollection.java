@@ -28,76 +28,77 @@ import java.util.Collection;
  * This interface provides the methods for multidimensional data structures providing efficient
  * search in data space for the next k neighbors and its distances, or the next neighbors in a
  * specified distance. Also a mixed mode with distance but at least as many is supported.
- * 
+ *
+ * @param <T> The type of the values stored within each point in data space
  * @author Sebastian Land
- * 
- * @param <T>
- *            The type of the values stored within each point in data space
  */
 public interface GeometricDataCollection<T extends Serializable> extends Serializable, Iterable<T> {
 
-	/**
-	 * This method has to be called in order to insert new values into the data structure
-	 * 
-	 * @param values
-	 *            specifies the geometric coordinates in data space
-	 * @param storeValue
-	 *            specifies the value at the given point
-	 */
+    /**
+     * This method has to be called in order to insert new values into the data structure
+     *
+     * @param values     specifies the geometric coordinates in data space
+     * @param storeValue specifies the value at the given point
+     */
+    public abstract void add(double[] values, T storeValue);
 
-	public abstract void add(double[] values, T storeValue);
+    /**
+     * This method returns a collection of the stored data values from the k nearest sample points.
+     *
+     * @param k      the number of neighbours
+     * @param values the coordinate of the querry point in the sample dimension
+     * @return the nearest values
+     */
+    public abstract Collection<T> getNearestValues(int k, double[] values);
 
-	/**
-	 * This method returns a collection of the stored data values from the k nearest sample points.
-	 * 
-	 * @param k
-	 *            the number of neighbours
-	 * @param values
-	 *            the coordinate of the querry point in the sample dimension
-	 */
-	public abstract Collection<T> getNearestValues(int k, double[] values);
+    /**
+     * This method returns a collection of data from the k nearest sample points. This collection
+     * consists of Tupels containing the distance from querrypoint to the samplepoint and in the
+     * second component the contained value of the sample point.
+     *
+     * @param k      the number of neighbours
+     * @param values the coordinate of the querry point in the sample dimension
+     * @return the nearest value distances
+     */
+    public abstract Collection<Tupel<Double, T>> getNearestValueDistances(int k, double[] values);
 
-	/**
-	 * This method returns a collection of data from the k nearest sample points. This collection
-	 * consists of Tupels containing the distance from querrypoint to the samplepoint and in the
-	 * second component the contained value of the sample point.
-	 * 
-	 * @param k
-	 *            the number of neighbours
-	 * @param values
-	 *            the coordinate of the querry point in the sample dimension
-	 */
-	public abstract Collection<Tupel<Double, T>> getNearestValueDistances(int k, double[] values);
+    /**
+     * This method returns a collection of data from all sample points inside the specified
+     * distance. This collection consists of Tupels containing the distance from querrypoint to the
+     * samplepoint and in the second component the contained value of the sample point.
+     *
+     * @param withinDistance the within distance
+     * @param values         the coordinate of the querry point in the sample dimension
+     * @return the nearest value distances
+     */
+    public abstract Collection<Tupel<Double, T>> getNearestValueDistances(double withinDistance, double[] values);
 
-	/**
-	 * This method returns a collection of data from all sample points inside the specified
-	 * distance. This collection consists of Tupels containing the distance from querrypoint to the
-	 * samplepoint and in the second component the contained value of the sample point.
-	 * 
-	 * @param values
-	 *            the coordinate of the querry point in the sample dimension
-	 */
-	public abstract Collection<Tupel<Double, T>> getNearestValueDistances(double withinDistance, double[] values);
-
-	/**
-	 * This method returns a collection of data from all sample points inside the specified distance
-	 * but at least k points. So the distance might be enlarged if density is to low. This
-	 * collection consists of Tupels containing the distance from querrypoint to the samplepoint and
-	 * in the second component the contained value of the sample point.
-	 * 
-	 * @param values
-	 *            the coordinate of the querry point in the sample dimension
-	 */
-	public abstract Collection<Tupel<Double, T>> getNearestValueDistances(double withinDistance, int butAtLeastK,
+    /**
+     * This method returns a collection of data from all sample points inside the specified distance
+     * but at least k points. So the distance might be enlarged if density is to low. This
+     * collection consists of Tupels containing the distance from querrypoint to the samplepoint and
+     * in the second component the contained value of the sample point.
+     *
+     * @param withinDistance the within distance
+     * @param butAtLeastK    the but at least k
+     * @param values         the coordinate of the querry point in the sample dimension
+     * @return the nearest value distances
+     */
+    public abstract Collection<Tupel<Double, T>> getNearestValueDistances(double withinDistance, int butAtLeastK,
 			double[] values);
 
-	/**
-	 * This method has to return the number of stored data points.
-	 */
-	public abstract int size();
+    /**
+     * This method has to return the number of stored data points.
+     *
+     * @return the int
+     */
+    public abstract int size();
 
-	/**
-	 * This returns the index-th value added to this collection.
-	 */
-	public abstract T get(int index);
+    /**
+     * This returns the index-th value added to this collection.
+     *
+     * @param index the index
+     * @return the t
+     */
+    public abstract T get(int index);
 }

@@ -43,6 +43,8 @@ import com.rapidminer.tools.Tools;
 
 
 /**
+ * The type Simple folder.
+ *
  * @author Simon Fischer
  */
 public class SimpleFolder extends SimpleEntry implements Folder, DateEntry {
@@ -54,11 +56,23 @@ public class SimpleFolder extends SimpleEntry implements Folder, DateEntry {
 	private final Lock readLock = lock.readLock();
 	private final Lock writeLock = lock.writeLock();
 
-	SimpleFolder(String name, SimpleFolder parent, LocalRepository repository) {
+    /**
+     * Instantiates a new Simple folder.
+     *
+     * @param name       the name
+     * @param parent     the parent
+     * @param repository the repository
+     */
+    SimpleFolder(String name, SimpleFolder parent, LocalRepository repository) {
 		super(name, parent, repository);
 	}
 
-	protected void mkdir() throws RepositoryException {
+    /**
+     * Mkdir.
+     *
+     * @throws RepositoryException the repository exception
+     */
+    protected void mkdir() throws RepositoryException {
 		File file = getFile();
 		if (!file.exists()) {
 			if (!file.mkdirs()) {
@@ -77,7 +91,12 @@ public class SimpleFolder extends SimpleEntry implements Folder, DateEntry {
 		moveFile(getFile(), ((SimpleFolder) newParent).getFile(), newName, "");
 	}
 
-	protected File getFile() {
+    /**
+     * Gets file.
+     *
+     * @return the file
+     */
+    protected File getFile() {
 		return new File(((SimpleFolder) getContainingFolder()).getFile(), getName());
 	}
 
@@ -290,7 +309,13 @@ public class SimpleFolder extends SimpleEntry implements Folder, DateEntry {
 		}
 	}
 
-	void removeChild(SimpleEntry child) throws RepositoryException {
+    /**
+     * Remove child.
+     *
+     * @param child the child
+     * @throws RepositoryException the repository exception
+     */
+    void removeChild(SimpleEntry child) throws RepositoryException {
 		int index;
 		acquireWriteLock();
 		try {
@@ -308,7 +333,13 @@ public class SimpleFolder extends SimpleEntry implements Folder, DateEntry {
 		getRepository().fireEntryRemoved(child, this, index);
 	}
 
-	void addChild(SimpleEntry child) throws RepositoryException {
+    /**
+     * Add child.
+     *
+     * @param child the child
+     * @throws RepositoryException the repository exception
+     */
+    void addChild(SimpleEntry child) throws RepositoryException {
 		acquireWriteLock();
 		try {
 			ensureLoaded();

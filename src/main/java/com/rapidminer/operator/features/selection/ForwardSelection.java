@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * This PopulationOperator realises forward selection, i.e. creates a list of clones of each
  * individual and switches on one attribute in each of the clones.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class ForwardSelection extends IndividualOperator {

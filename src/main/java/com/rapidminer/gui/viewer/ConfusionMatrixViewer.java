@@ -61,7 +61,15 @@ public class ConfusionMatrixViewer extends JPanel implements Tableable, Printabl
 
 	private String performanceName;
 
-	public ConfusionMatrixViewer(String performanceName, String performanceString, String[] classNames, double[][] counter) {
+    /**
+     * Instantiates a new Confusion matrix viewer.
+     *
+     * @param performanceName   the performance name
+     * @param performanceString the performance string
+     * @param classNames        the class names
+     * @param counter           the counter
+     */
+    public ConfusionMatrixViewer(String performanceName, String performanceString, String[] classNames, double[][] counter) {
 		this.performanceName = performanceName;
 		setLayout(new BorderLayout());
 

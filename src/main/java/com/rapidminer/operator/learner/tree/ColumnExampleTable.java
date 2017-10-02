@@ -40,20 +40,19 @@ import com.rapidminer.studio.internal.Resources;
  * values by attribute. It is useful for algorithms that iterate over (subsets of) the example set
  * multiple times. It is not useful for algorithms that consist of only one iteration over the
  * example set because of the cost for creating this representation.
- *
+ * <p>
  * A {@link ColumnExampleTable} should be viewed as a table consisting of the columns representing
  * all nominal attributes followed by the columns representing all numerical attributes. To consider
  * only a subset of the attributes, a selection can be represented by the numbers of the columns
  * that are selected. Analogously, if only a subset of the examples (rows) should be considered, a
  * selection can be represented by the numbers of the selected rows.
- *
+ * <p>
  * The {@link ExampleSet} is stored inside a table of arrays. The values at numerical attributes are
  * stored as double values while the values at numerical attributes are stored as byte values coming
  * from their {@link NominalMapping} or, if they are missing values, as the size of the mapping. The
  * label must not have missing values.
  *
  * @author Gisa Schaefer
- *
  */
 public class ColumnExampleTable {
 
@@ -105,20 +104,19 @@ public class ColumnExampleTable {
 	 */
 	private double[][] numericalColumnTable;
 
-	/**
-	 * The nominal column table is initialized with the values of the regular nominal attributes,
-	 * the numerical column table with the ones of the regular numeric attributes. The values of the
-	 * label attribute are stored in the label column and if a weight attribute exists, its values
-	 * are stored in the weight column. Nominal values are stored by their number in the
-	 * {@link NominalMapping} as byte if they are not missing, otherwise as the size of the mapping.
-	 *
-	 * @param parallelAllowed
-	 *            if the table creation can be done in parallel
-	 * @throws OperatorException
-	 *             if the label has missing values
-	 *
-	 */
-	public ColumnExampleTable(ExampleSet exampleSet, Operator operator, boolean parallelAllowed) throws OperatorException {
+    /**
+     * The nominal column table is initialized with the values of the regular nominal attributes,
+     * the numerical column table with the ones of the regular numeric attributes. The values of the
+     * label attribute are stored in the label column and if a weight attribute exists, its values
+     * are stored in the weight column. Nominal values are stored by their number in the
+     * {@link NominalMapping} as byte if they are not missing, otherwise as the size of the mapping.
+     *
+     * @param exampleSet      the example set
+     * @param operator        the operator
+     * @param parallelAllowed if the table creation can be done in parallel
+     * @throws OperatorException if the label has missing values
+     */
+    public ColumnExampleTable(ExampleSet exampleSet, Operator operator, boolean parallelAllowed) throws OperatorException {
 		numberOfExamples = exampleSet.size();
 		label = exampleSet.getAttributes().getLabel();
 		weight = exampleSet.getAttributes().getWeight();
@@ -282,106 +280,136 @@ public class ColumnExampleTable {
 				&& ((long) numberOfRegularNominalAttributes + numberOfRegularNumericalAttributes) * numberOfExamples > THRESHOLD_PRODUCT_PARALLEL;
 	}
 
-	/**
-	 * @return the number of examples in table
-	 */
-	public int getNumberOfExamples() {
+    /**
+     * Gets number of examples.
+     *
+     * @return the number of examples in table
+     */
+    public int getNumberOfExamples() {
 		return numberOfExamples;
 	}
 
-	/**
-	 * @return the label attribute
-	 */
-	public Attribute getLabel() {
+    /**
+     * Gets label.
+     *
+     * @return the label attribute
+     */
+    public Attribute getLabel() {
 		return label;
 	}
 
-	/**
-	 * @return a int array containing the values of the nominal label column via the
-	 *         {@link NominalMapping}.
-	 */
-	public int[] getLabelColumn() {
+    /**
+     * Get label column int [ ].
+     *
+     * @return a int array containing the values of the nominal label column via the         {@link NominalMapping}.
+     */
+    public int[] getLabelColumn() {
 		return labelColumn;
 	}
 
-	/**
-	 * @return the weight attribute, if it exists, <code>null</code> otherwise
-	 */
-	public Attribute getWeight() {
+    /**
+     * Gets weight.
+     *
+     * @return the weight attribute, if it exists, <code>null</code> otherwise
+     */
+    public Attribute getWeight() {
 		return weight;
 	}
 
-	/**
-	 * @return the values of the weight attribute, if it exits, <code>null</code> otherwise
-	 */
-	public double[] getWeightColumn() {
+    /**
+     * Get weight column double [ ].
+     *
+     * @return the values of the weight attribute, if it exits, <code>null</code> otherwise
+     */
+    public double[] getWeightColumn() {
 		return weightColumn;
 	}
 
-	/**
-	 * @param attributeNumber
-	 *            a number that represents a nominal attribute
-	 * @return the column containing the values of the represented nominal attribute
-	 */
-	public byte[] getNominalAttributeColumn(int attributeNumber) {
+    /**
+     * Get nominal attribute column byte [ ].
+     *
+     * @param attributeNumber a number that represents a nominal attribute
+     * @return the column containing the values of the represented nominal attribute
+     */
+    public byte[] getNominalAttributeColumn(int attributeNumber) {
 		return nominalColumnTable[attributeNumber];
 	}
 
-	/**
-	 * @param attributeNumber
-	 *            a number that represents a numerical attribute
-	 * @return the column containing the values of the represented numerical attribute
-	 */
-	public double[] getNumericalAttributeColumn(int attributeNumber) {
+    /**
+     * Get numerical attribute column double [ ].
+     *
+     * @param attributeNumber a number that represents a numerical attribute
+     * @return the column containing the values of the represented numerical attribute
+     */
+    public double[] getNumericalAttributeColumn(int attributeNumber) {
 		return numericalColumnTable[attributeNumber - numberOfRegularNominalAttributes];
 	}
 
-	/**
-	 * @param attributeNumber
-	 * @return <code>true</code> if the attributeNumber represents a nominal attribute
-	 */
-	public boolean representsNominalAttribute(int attributeNumber) {
+    /**
+     * Represents nominal attribute boolean.
+     *
+     * @param attributeNumber the attribute number
+     * @return <code>true</code> if the attributeNumber represents a nominal attribute
+     */
+    public boolean representsNominalAttribute(int attributeNumber) {
 		return attributeNumber < numberOfRegularNominalAttributes;
 	}
 
-	/**
-	 * @param attributeNumber
-	 * @return <code>true</code> if the attributeNumber represents a numerical attribute
-	 */
-	public boolean representsNumericalAttribute(int attributeNumber) {
+    /**
+     * Represents numerical attribute boolean.
+     *
+     * @param attributeNumber the attribute number
+     * @return <code>true</code> if the attributeNumber represents a numerical attribute
+     */
+    public boolean representsNumericalAttribute(int attributeNumber) {
 		return attributeNumber >= numberOfRegularNominalAttributes;
 	}
 
-	public int getTotalNumberOfRegularAttributes() {
+    /**
+     * Gets total number of regular attributes.
+     *
+     * @return the total number of regular attributes
+     */
+    public int getTotalNumberOfRegularAttributes() {
 		return numberOfRegularNominalAttributes + numberOfRegularNumericalAttributes;
 	}
 
-	/**
-	 * Returns the nominal attribute represented by the attributeNumber.
-	 *
-	 * @param attributeNumber
-	 * @return
-	 */
-	public Attribute getNominalAttribute(int attributeNumber) {
+    /**
+     * Returns the nominal attribute represented by the attributeNumber.
+     *
+     * @param attributeNumber the attribute number
+     * @return nominal attribute
+     */
+    public Attribute getNominalAttribute(int attributeNumber) {
 		return regularNominalAttributes[attributeNumber];
 
 	}
 
-	/**
-	 * Returns the numerical attribute represented by the attributeNumber.
-	 *
-	 * @param attributeNumber
-	 * @return
-	 */
-	public Attribute getNumericalAttribute(int attributeNumber) {
+    /**
+     * Returns the numerical attribute represented by the attributeNumber.
+     *
+     * @param attributeNumber the attribute number
+     * @return numerical attribute
+     */
+    public Attribute getNumericalAttribute(int attributeNumber) {
 		return regularNumericalAttributes[attributeNumber - numberOfRegularNominalAttributes];
 	}
 
-	public int getNumberOfRegularNominalAttributes() {
+    /**
+     * Gets number of regular nominal attributes.
+     *
+     * @return the number of regular nominal attributes
+     */
+    public int getNumberOfRegularNominalAttributes() {
 		return numberOfRegularNominalAttributes;
 	}
 
-	public int getNumberOfRegularNumericalAttributes() {
+    /**
+     * Gets number of regular numerical attributes.
+     *
+     * @return the number of regular numerical attributes
+     */
+    public int getNumberOfRegularNumericalAttributes() {
 		return numberOfRegularNumericalAttributes;
 	}
 

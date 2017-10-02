@@ -45,7 +45,7 @@ import javax.swing.JPanel;
  * This dialog can be used to create a simple plot dialog from a given {@link DataTable}. This might
  * be useful if an operator should display some data or results. This class supports some of the
  * main options of plotting like axis selection or draw range selection.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimplePlotterDialog extends JDialog implements MouseMotionListener, MouseListener {
@@ -58,15 +58,36 @@ public class SimplePlotterDialog extends JDialog implements MouseMotionListener,
 
 	private JButton createOtherPlottersButton = null;
 
-	public SimplePlotterDialog(DataTable dataTable) {
+    /**
+     * Instantiates a new Simple plotter dialog.
+     *
+     * @param dataTable the data table
+     */
+    public SimplePlotterDialog(DataTable dataTable) {
 		this(dataTable, true);
 	}
 
-	public SimplePlotterDialog(DataTable dataTable, boolean modal) {
+    /**
+     * Instantiates a new Simple plotter dialog.
+     *
+     * @param dataTable the data table
+     * @param modal     the modal
+     */
+    public SimplePlotterDialog(DataTable dataTable, boolean modal) {
 		this(RapidMinerGUI.getMainFrame(), dataTable, -1, -1, false, modal);
 	}
 
-	public SimplePlotterDialog(Frame owner, final DataTable dataTable, int width, int height,
+    /**
+     * Instantiates a new Simple plotter dialog.
+     *
+     * @param owner                    the owner
+     * @param dataTable                the data table
+     * @param width                    the width
+     * @param height                   the height
+     * @param createPlotterPanelButton the create plotter panel button
+     * @param modal                    the modal
+     */
+    public SimplePlotterDialog(Frame owner, final DataTable dataTable, int width, int height,
 			boolean createPlotterPanelButton, boolean modal) {
 		super(owner, dataTable.getName(), modal);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -129,37 +150,81 @@ public class SimplePlotterDialog extends JDialog implements MouseMotionListener,
 		setLocationRelativeTo(owner);
 	}
 
-	public void setCreateOtherPlottersEnabled(boolean enabled) {
+    /**
+     * Sets create other plotters enabled.
+     *
+     * @param enabled the enabled
+     */
+    public void setCreateOtherPlottersEnabled(boolean enabled) {
 		if (this.createOtherPlottersButton != null) {
 			this.createOtherPlottersButton.setEnabled(enabled);
 		}
 	}
 
-	public void setDrawRange(double minX, double maxX, double minY, double maxY) {
+    /**
+     * Sets draw range.
+     *
+     * @param minX the min x
+     * @param maxX the max x
+     * @param minY the min y
+     * @param maxY the max y
+     */
+    public void setDrawRange(double minX, double maxX, double minY, double maxY) {
 		plotter.setDrawRange(minX, maxX, minY, maxY);
 	}
 
-	public void setXAxis(int index) {
+    /**
+     * Sets x axis.
+     *
+     * @param index the index
+     */
+    public void setXAxis(int index) {
 		plotter.setAxis(ScatterPlotter.X_AXIS, index);
 	}
 
-	public void setYAxis(int index) {
+    /**
+     * Sets y axis.
+     *
+     * @param index the index
+     */
+    public void setYAxis(int index) {
 		plotter.setAxis(ScatterPlotter.Y_AXIS, index);
 	}
 
-	public void plotColumn(int index, boolean plot) {
+    /**
+     * Plot column.
+     *
+     * @param index the index
+     * @param plot  the plot
+     */
+    public void plotColumn(int index, boolean plot) {
 		plotter.setPlotColumn(index, plot);
 	}
 
-	public void setPointType(int pointType) {
+    /**
+     * Sets point type.
+     *
+     * @param pointType the point type
+     */
+    public void setPointType(int pointType) {
 		plotter.setPointType(pointType);
 	}
 
-	public void setDrawLabel(boolean v) {
+    /**
+     * Sets draw label.
+     *
+     * @param v the v
+     */
+    public void setDrawLabel(boolean v) {
 		plotter.setDrawLabel(v);
 	}
 
-	public void setKey(String key) {
+    /**
+     * Sets key.
+     *
+     * @param key the key
+     */
+    public void setKey(String key) {
 		plotter.setKey(key);
 	}
 
@@ -171,11 +236,21 @@ public class SimplePlotterDialog extends JDialog implements MouseMotionListener,
 	// Mouse Events
 	// ================================================================================
 
-	public void addObjectVisualizer(ObjectVisualizer visualizer) {
+    /**
+     * Add object visualizer.
+     *
+     * @param visualizer the visualizer
+     */
+    public void addObjectVisualizer(ObjectVisualizer visualizer) {
 		visualizers.add(visualizer);
 	}
 
-	public void removeObjectVisualizer(ObjectVisualizer visualizer) {
+    /**
+     * Remove object visualizer.
+     *
+     * @param visualizer the visualizer
+     */
+    public void removeObjectVisualizer(ObjectVisualizer visualizer) {
 		visualizers.remove(visualizer);
 	}
 

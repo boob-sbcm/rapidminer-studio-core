@@ -22,52 +22,77 @@ package com.rapidminer.tools.math;
  * Window functions apply a weight to each value of a value series depending on the length of the
  * series. Window Functions like Hanning windows are usually applied before a Fourier
  * transformation.
- * 
+ * <p>
  * TODO: remove class and transfer calls to com.rapidminer.tools.math.function.window.WindowFunction
- * 
+ *
  * @author Ingo Mierswa
  */
 public class WindowFunction {
 
-	/** The currently implemented window functions. */
-	public static final String[] FUNCTIONS = { "None", "Hanning", "Hamming", "Blackman", "Blackman-Harris", "Bartlett",
+    /**
+     * The currently implemented window functions.
+     */
+    public static final String[] FUNCTIONS = { "None", "Hanning", "Hamming", "Blackman", "Blackman-Harris", "Bartlett",
 			"Rectangle" };
 
-	/** The constant for the function Hanning. */
-	public static final int NONE = 0;
+    /**
+     * The constant for the function Hanning.
+     */
+    public static final int NONE = 0;
 
-	/** The constant for the function Hanning. */
-	public static final int HANNING = 1;
+    /**
+     * The constant for the function Hanning.
+     */
+    public static final int HANNING = 1;
 
-	/** The constant for the function Hamming. */
-	public static final int HAMMING = 2;
+    /**
+     * The constant for the function Hamming.
+     */
+    public static final int HAMMING = 2;
 
-	/** The constant for the function Blackman. */
-	public static final int BLACKMAN = 3;
+    /**
+     * The constant for the function Blackman.
+     */
+    public static final int BLACKMAN = 3;
 
-	/** The constant for the function Blackman-Harris. */
-	public static final int BLACKMAN_HARRIS = 4;
+    /**
+     * The constant for the function Blackman-Harris.
+     */
+    public static final int BLACKMAN_HARRIS = 4;
 
-	/** The constant for the function Bartlett. */
-	public static final int BARTLETT = 5;
+    /**
+     * The constant for the function Bartlett.
+     */
+    public static final int BARTLETT = 5;
 
-	/** The constant for the function Rectangle. */
-	public static final int RECTANGLE = 6;
+    /**
+     * The constant for the function Rectangle.
+     */
+    public static final int RECTANGLE = 6;
 
 	private int type;
 
 	private int length;
 
-	public WindowFunction(int type, int maxIndex) {
+    /**
+     * Instantiates a new Window function.
+     *
+     * @param type     the type
+     * @param maxIndex the max index
+     */
+    public WindowFunction(int type, int maxIndex) {
 		this.type = type;
 		this.length = maxIndex;
 	}
 
-	/**
-	 * Returns the weighting factor for the current value n in a window of the given length. The
-	 * calculation of this factor is done in dependance of the function type.
-	 */
-	public double getFactor(int n) {
+    /**
+     * Returns the weighting factor for the current value n in a window of the given length. The
+     * calculation of this factor is done in dependance of the function type.
+     *
+     * @param n the n
+     * @return the factor
+     */
+    public double getFactor(int n) {
 		switch (type) {
 			case HANNING:
 				return 0.5 - 0.5 * Math.cos(2 * Math.PI * n / length);

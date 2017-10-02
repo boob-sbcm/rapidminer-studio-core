@@ -24,19 +24,26 @@ import java.util.Iterator;
 /**
  * This class delegates all method calls to the delegate object. Subclasses might want to override
  * only some of the methods.
- * 
+ *
  * @author Ingo Mierswa
- * @deprecated Please extend {@link AbstractAttributes} instead since using this class might lead to
- *             stack overflow errors in cases where a large amount of iterations is performed
+ * @deprecated Please extend {@link AbstractAttributes} instead since using this class might lead to             stack overflow errors in cases where a large amount of iterations is performed
  */
 @Deprecated
 public class DelegateAttributes extends AbstractAttributes {
 
 	private static final long serialVersionUID = 8476188336349012916L;
 
-	protected Attributes delegate;
+    /**
+     * The Delegate.
+     */
+    protected Attributes delegate;
 
-	public DelegateAttributes(Attributes delegate) {
+    /**
+     * Instantiates a new Delegate attributes.
+     *
+     * @param delegate the delegate
+     */
+    public DelegateAttributes(Attributes delegate) {
 		this.delegate = delegate;
 	}
 

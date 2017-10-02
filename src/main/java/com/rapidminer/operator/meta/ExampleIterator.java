@@ -42,7 +42,7 @@ import com.rapidminer.parameter.ParameterTypeString;
  * examples of the input data is. Inner operators can access the current example number (begins with
  * 0) by a macro, whose name can be specified via the parameter <code>iteration_macro</code>.
  * </p>
- *
+ * <p>
  * <p>
  * As input example will be used either the {@link ExampleSet} delivered on the {@link OutputPort}
  * of this operator or if not connected the initial unmodified {@link ExampleSet}.
@@ -52,8 +52,14 @@ import com.rapidminer.parameter.ParameterTypeString;
  */
 public class ExampleIterator extends OperatorChain {
 
-	public static final String PARAMETER_ITERATION_MACRO = "iteration_macro";
-	public static final String DEFAULT_ITERATION_MACRO_NAME = "example";
+    /**
+     * The constant PARAMETER_ITERATION_MACRO.
+     */
+    public static final String PARAMETER_ITERATION_MACRO = "iteration_macro";
+    /**
+     * The constant DEFAULT_ITERATION_MACRO_NAME.
+     */
+    public static final String DEFAULT_ITERATION_MACRO_NAME = "example";
 
 	private final InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
@@ -67,7 +73,12 @@ public class ExampleIterator extends OperatorChain {
 	 */
 	private int iteration;
 
-	public ExampleIterator(OperatorDescription description) {
+    /**
+     * Instantiates a new Example iterator.
+     *
+     * @param description the description
+     */
+    public ExampleIterator(OperatorDescription description) {
 		super(description, "Example Process");
 		outExtender.start();
 

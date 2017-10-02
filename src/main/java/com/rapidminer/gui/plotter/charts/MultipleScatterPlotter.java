@@ -73,27 +73,44 @@ import org.jfree.ui.RectangleEdge;
 
 /**
  * This is a multiple scatter plotter.
- * 
+ *
  * @author Ingo Mierswa
- * 
  */
 public class MultipleScatterPlotter extends LabelRotatingPlotterAdapter {
 
 	private static final long serialVersionUID = 4568273282283350833L;
 
-	public static final String PARAMETER_POINTS_AND_LINES = "points_and_lines";
+    /**
+     * The constant PARAMETER_POINTS_AND_LINES.
+     */
+    public static final String PARAMETER_POINTS_AND_LINES = "points_and_lines";
 
-	public static final String PARAMETER_LINES = "show_lines";
+    /**
+     * The constant PARAMETER_LINES.
+     */
+    public static final String PARAMETER_LINES = "show_lines";
 
-	public static final String PARAMETER_POINTS = "show_points";
+    /**
+     * The constant PARAMETER_POINTS.
+     */
+    public static final String PARAMETER_POINTS = "show_points";
 
-	public static class SeriesAndItem {
+    /**
+     * The type Series and item.
+     */
+    public static class SeriesAndItem {
 
 		private int series;
 
 		private int item;
 
-		public SeriesAndItem(int series, int item) {
+        /**
+         * Instantiates a new Series and item.
+         *
+         * @param series the series
+         * @param item   the item
+         */
+        public SeriesAndItem(int series, int item) {
 			this.series = series;
 			this.item = item;
 		}
@@ -140,7 +157,12 @@ public class MultipleScatterPlotter extends LabelRotatingPlotterAdapter {
 
 	private boolean[] showLines;
 
-	public MultipleScatterPlotter(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Multiple scatter plotter.
+     *
+     * @param settings the settings
+     */
+    public MultipleScatterPlotter(final PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 
@@ -155,7 +177,13 @@ public class MultipleScatterPlotter extends LabelRotatingPlotterAdapter {
 		});
 	}
 
-	public MultipleScatterPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Multiple scatter plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public MultipleScatterPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -205,11 +233,23 @@ public class MultipleScatterPlotter extends LabelRotatingPlotterAdapter {
 		}
 	}
 
-	public void setShowLines(int index, boolean show) {
+    /**
+     * Sets show lines.
+     *
+     * @param index the index
+     * @param show  the show
+     */
+    public void setShowLines(int index, boolean show) {
 		this.showLines[index] = show;
 	}
 
-	public void setShowPoints(int index, boolean show) {
+    /**
+     * Sets show points.
+     *
+     * @param index the index
+     * @param show  the show
+     */
+    public void setShowPoints(int index, boolean show) {
 		this.showPoints[index] = show;
 	}
 

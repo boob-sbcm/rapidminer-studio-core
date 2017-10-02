@@ -36,24 +36,29 @@ import java.util.List;
  * optimizing or iterating operators this operator can be used to dynamically change the process
  * setup which might be useful in order to test different layouts, e.g. the gain by using different
  * preprocessing steps.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class OperatorEnabler extends SimpleOperatorChain {
 
-	/**
-	 * The parameter name for &quot;The name of the operator which should be disabled or
-	 * enabled&quot;
-	 */
-	public static final String PARAMETER_OPERATOR_NAME = "operator_name";
+    /**
+     * The parameter name for &quot;The name of the operator which should be disabled or
+     * enabled&quot;
+     */
+    public static final String PARAMETER_OPERATOR_NAME = "operator_name";
 
-	/**
-	 * The parameter name for &quot;Indicates if the operator should be enabled (true) or disabled
-	 * (false)&quot;
-	 */
-	public static final String PARAMETER_ENABLE = "enable";
+    /**
+     * The parameter name for &quot;Indicates if the operator should be enabled (true) or disabled
+     * (false)&quot;
+     */
+    public static final String PARAMETER_ENABLE = "enable";
 
-	public OperatorEnabler(OperatorDescription description) {
+    /**
+     * Instantiates a new Operator enabler.
+     *
+     * @param description the description
+     */
+    public OperatorEnabler(OperatorDescription description) {
 		super(description, "Subprocess");
 	}
 

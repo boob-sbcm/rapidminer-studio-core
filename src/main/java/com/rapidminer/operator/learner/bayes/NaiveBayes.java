@@ -40,9 +40,17 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class NaiveBayes extends AbstractLearner {
 
-	public static final String PARAMETER_LAPLACE_CORRECTION = "laplace_correction";
+    /**
+     * The constant PARAMETER_LAPLACE_CORRECTION.
+     */
+    public static final String PARAMETER_LAPLACE_CORRECTION = "laplace_correction";
 
-	public NaiveBayes(OperatorDescription description) {
+    /**
+     * Instantiates a new Naive bayes.
+     *
+     * @param description the description
+     */
+    public NaiveBayes(OperatorDescription description) {
 		super(description);
 	}
 

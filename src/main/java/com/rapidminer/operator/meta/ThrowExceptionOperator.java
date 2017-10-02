@@ -30,20 +30,25 @@ import java.util.List;
 
 
 /**
- * 
  * This operator throws an exception with an user-defined message.
- * 
+ *
  * @author Philipp
- * 
  */
-
 public class ThrowExceptionOperator extends Operator {
 
-	public static final String PARAMETER_MESSAGE = "message";
+    /**
+     * The constant PARAMETER_MESSAGE.
+     */
+    public static final String PARAMETER_MESSAGE = "message";
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public ThrowExceptionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Throw exception operator.
+     *
+     * @param description the description
+     */
+    public ThrowExceptionOperator(OperatorDescription description) {
 		super(description);
 		dummyPorts.start();
 		getTransformer().addRule(dummyPorts.makePassThroughRule());

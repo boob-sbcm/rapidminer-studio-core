@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is 5 * sin(att1) + sin(30 * att1).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimpleSuperpositionFunction extends RegressionFunction {

@@ -20,7 +20,7 @@ package com.rapidminer.operator.features;
 
 /**
  * Ensures that every individual appears only once.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa Exp $
  */
 public class RedundanceRemoval implements PopulationOperator {

@@ -43,12 +43,20 @@ import com.rapidminer.tools.container.Pair;
 
 
 /**
+ * The type Simple entry.
+ *
  * @author Simon Fischer
  */
 public abstract class SimpleEntry implements Entry {
 
-	protected static final String PROPERTIES_SUFFIX = ".properties";
-	protected static final String DOT = ".";
+    /**
+     * The constant PROPERTIES_SUFFIX.
+     */
+    protected static final String PROPERTIES_SUFFIX = ".properties";
+    /**
+     * The constant DOT.
+     */
+    protected static final String DOT = ".";
 
 	private Properties properties;
 
@@ -56,22 +64,43 @@ public abstract class SimpleEntry implements Entry {
 	private LocalRepository repository;
 	private SimpleFolder containingFolder;
 
-	SimpleEntry(String name, SimpleFolder containingFolder, LocalRepository repository) {
+    /**
+     * Instantiates a new Simple entry.
+     *
+     * @param name             the name
+     * @param containingFolder the containing folder
+     * @param repository       the repository
+     */
+    SimpleEntry(String name, SimpleFolder containingFolder, LocalRepository repository) {
 		this.name = name;
 		this.repository = repository;
 		this.containingFolder = containingFolder;
 	}
 
-	protected LocalRepository getRepository() {
+    /**
+     * Gets repository.
+     *
+     * @return the repository
+     */
+    protected LocalRepository getRepository() {
 		return repository;
 	}
 
-	protected void setRepository(LocalRepository repository) {
+    /**
+     * Sets repository.
+     *
+     * @param repository the repository
+     */
+    protected void setRepository(LocalRepository repository) {
 		this.repository = repository;
 	}
 
-	/** Sets the name but does not fire any events. */
-	void setName(String name) {
+    /**
+     * Sets the name but does not fire any events.  @param name the name
+     *
+     * @param name the name
+     */
+    void setName(String name) {
 		this.name = name;
 	}
 
@@ -100,7 +129,13 @@ public abstract class SimpleEntry implements Entry {
 		return true;
 	}
 
-	protected abstract void handleRename(String newName) throws RepositoryException;
+    /**
+     * Handle rename.
+     *
+     * @param newName the new name
+     * @throws RepositoryException the repository exception
+     */
+    protected abstract void handleRename(String newName) throws RepositoryException;
 
 	@Override
 	public String toString() {
@@ -130,28 +165,30 @@ public abstract class SimpleEntry implements Entry {
 		}
 	}
 
-	/**
-	 * Renames the file, keeping the extension and directory unchanged. If the file does not exist,
-	 * returns silently.
-	 */
-	void renameFile(File file, String newBaseName) throws RepositoryException {
+    /**
+     * Renames the file, keeping the extension and directory unchanged. If the file does not exist,
+     * returns silently.
+     *
+     * @param file        the file
+     * @param newBaseName the new base name
+     * @throws RepositoryException the repository exception
+     */
+    void renameFile(File file, String newBaseName) throws RepositoryException {
 		renameFile(file, newBaseName, null, null);
 	}
 
-	/**
-	 * Renames a file, keeping the extension, and moves it to the selected target directory. If the
-	 * file does not exist, returns silently.
-	 * 
-	 * @param newBaseName
-	 *            The new name without extension (e.g. 'file1' for a file called 'file.dat' before).
-	 * @param extensionSuffix
-	 *            The extension suffix of file without the dot (e.g. 'dat' for 'file.dat'). If null,
-	 *            it is extracted from the current file.
-	 * @param targetDirectory
-	 *            The target directory for the renamed file, if <code>null</code> the current
-	 *            directory of the file will be used.
-	 * */
-	boolean renameFile(File file, String newBaseName, String extensionSuffix, File targetDirectory)
+    /**
+     * Renames a file, keeping the extension, and moves it to the selected target directory. If the
+     * file does not exist, returns silently.
+     *
+     * @param file            the file
+     * @param newBaseName     The new name without extension (e.g. 'file1' for a file called 'file.dat' before).
+     * @param extensionSuffix The extension suffix of file without the dot (e.g. 'dat' for 'file.dat'). If null,            it is extracted from the current file.
+     * @param targetDirectory The target directory for the renamed file, if <code>null</code> the current            directory of the file will be used.
+     * @return the boolean
+     * @throws RepositoryException the repository exception
+     */
+    boolean renameFile(File file, String newBaseName, String extensionSuffix, File targetDirectory)
 			throws RepositoryException {
 
 		if (!file.exists()) {
@@ -241,25 +278,30 @@ public abstract class SimpleEntry implements Entry {
 		return new Pair<String, String>(name, suffix);
 	}
 
-	/**
-	 * Moves a file to the new target directory without renaming it.
-	 */
-	boolean moveFile(File file, File targetDirectory) throws RepositoryException {
+    /**
+     * Moves a file to the new target directory without renaming it.
+     *
+     * @param file            the file
+     * @param targetDirectory the target directory
+     * @return the boolean
+     * @throws RepositoryException the repository exception
+     */
+    boolean moveFile(File file, File targetDirectory) throws RepositoryException {
 		Pair<String, String> nameAndSuffix = extractNameAndSuffix(file);
 		return renameFile(file, nameAndSuffix.getFirst(), nameAndSuffix.getSecond(), targetDirectory);
 	}
 
-	/**
-	 * Moves the file to a new location.
-	 * 
-	 * @param newEntryName
-	 *            The {@link Entry}'s new name (without file extension). If newEntryName is null the
-	 *            old name will be used.
-	 * @param extensionSuffix
-	 *            The {@link Entry}'s extension suffix with the dot (e.g. '.dat'). Will be used if
-	 *            newEntryName is not null to keep the correct suffix.
-	 */
-	boolean moveFile(File file, File targetDirectory, String newEntryName, String extensionSuffix)
+    /**
+     * Moves the file to a new location.
+     *
+     * @param file            the file
+     * @param targetDirectory the target directory
+     * @param newEntryName    The {@link Entry}'s new name (without file extension). If newEntryName is null the            old name will be used.
+     * @param extensionSuffix The {@link Entry}'s extension suffix with the dot (e.g. '.dat'). Will be used if            newEntryName is not null to keep the correct suffix.
+     * @return the boolean
+     * @throws RepositoryException the repository exception
+     */
+    boolean moveFile(File file, File targetDirectory, String newEntryName, String extensionSuffix)
 			throws RepositoryException {
 		String name;
 		String suffix;
@@ -305,7 +347,14 @@ public abstract class SimpleEntry implements Entry {
 		return true;
 	}
 
-	protected abstract void handleMove(Folder newParent, String newName) throws RepositoryException;
+    /**
+     * Handle move.
+     *
+     * @param newParent the new parent
+     * @param newName   the new name
+     * @throws RepositoryException the repository exception
+     */
+    protected abstract void handleMove(Folder newParent, String newName) throws RepositoryException;
 
 	/*
 	 * Properties We store the owner in a properties file because there is no system independent way
@@ -384,14 +433,26 @@ public abstract class SimpleEntry implements Entry {
 		return properties;
 	}
 
-	protected void putProperty(String key, String value) {
+    /**
+     * Put property.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    protected void putProperty(String key, String value) {
 		if (value != null) {
 			getProperties().setProperty(key, value);
 			storeProperties();
 		}
 	}
 
-	protected String getProperty(String key) {
+    /**
+     * Gets property.
+     *
+     * @param key the key
+     * @return the property
+     */
+    protected String getProperty(String key) {
 		return getProperties().getProperty(key);
 	}
 

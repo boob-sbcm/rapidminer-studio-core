@@ -50,13 +50,21 @@ import com.rapidminer.tools.container.Pair;
  */
 public class TransitionMatrixOperator extends Operator {
 
-	public static final String PARAMETER_ATTRIBUTE = "attribute";
+    /**
+     * The constant PARAMETER_ATTRIBUTE.
+     */
+    public static final String PARAMETER_ATTRIBUTE = "attribute";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set");
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort matrixOutput = getOutputPorts().createPort("transition matrix");
 
-	public TransitionMatrixOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Transition matrix operator.
+     *
+     * @param description the description
+     */
+    public TransitionMatrixOperator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new AttributeSetPrecondition(exampleSetInput, AttributeSetPrecondition

@@ -30,7 +30,7 @@ import javax.swing.Icon;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ClearAction extends ResourceAction {
@@ -50,7 +50,12 @@ public class ClearAction extends ResourceAction {
 
 	private final AttributeEditor attributeEditor;
 
-	public ClearAction(AttributeEditor attributeEditor) {
+    /**
+     * Instantiates a new Clear action.
+     *
+     * @param attributeEditor the attribute editor
+     */
+    public ClearAction(AttributeEditor attributeEditor) {
 		super("attribute_editor.clear");
 		this.attributeEditor = attributeEditor;
 	}

@@ -37,7 +37,10 @@ public class NewAction extends ResourceAction {
 
 	private static final long serialVersionUID = 1L;
 
-	public NewAction() {
+    /**
+     * Instantiates a new New action.
+     */
+    public NewAction() {
 		super("new");
 	}
 

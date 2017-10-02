@@ -45,7 +45,6 @@ import com.rapidminer.tools.XMLException;
  * A repository backed by the local file system. Each entry is backed by one or more files.
  *
  * @author Simon Fischer
- *
  */
 public class LocalRepository extends SimpleFolder implements Repository {
 
@@ -53,8 +52,17 @@ public class LocalRepository extends SimpleFolder implements Repository {
 
 	private File root;
 
-	public enum LocalState {
-		ACCESSIBLE(null), NOT_ACCESSIBLE(I18N.getMessage(I18N.getGUIBundle(), "gui.repository.not_accessible.message"));
+    /**
+     * The enum Local state.
+     */
+    public enum LocalState {
+        /**
+         * Accessible local state.
+         */
+        ACCESSIBLE(null), /**
+         * Not accessible local state.
+         */
+        NOT_ACCESSIBLE(I18N.getMessage(I18N.getGUIBundle(), "gui.repository.not_accessible.message"));
 
 		private String state;
 
@@ -67,22 +75,36 @@ public class LocalRepository extends SimpleFolder implements Repository {
 			return state;
 		}
 
-		public static String valueOf(LocalState state) {
+        /**
+         * Value of string.
+         *
+         * @param state the state
+         * @return the string
+         */
+        public static String valueOf(LocalState state) {
 			return state.toString();
 		}
 	}
 
-	/**
-	 * Creates a file-based repository in a default location.
-	 *
-	 * @see #getDefaultRepositoryFolder(String)
-	 */
-	public LocalRepository(String name) throws RepositoryException {
+    /**
+     * Creates a file-based repository in a default location.
+     *
+     * @param name the name
+     * @throws RepositoryException the repository exception
+     * @see #getDefaultRepositoryFolder(String) #getDefaultRepositoryFolder(String)#getDefaultRepositoryFolder(String)
+     */
+    public LocalRepository(String name) throws RepositoryException {
 		this(name, getDefaultRepositoryFolder(name));
 	}
 
-	/** Creates a file-based repository in the given location. */
-	public LocalRepository(String name, File root) throws RepositoryException {
+    /**
+     * Creates a file-based repository in the given location.  @param name the name
+     *
+     * @param name the name
+     * @param root the root
+     * @throws RepositoryException the repository exception
+     */
+    public LocalRepository(String name, File root) throws RepositoryException {
 		super(name, null, null);
 		this.root = root;
 		mkdir();
@@ -95,7 +117,12 @@ public class LocalRepository extends SimpleFolder implements Repository {
 		setRepository(this);
 	}
 
-	public File getRoot() {
+    /**
+     * Gets root.
+     *
+     * @return the root
+     */
+    public File getRoot() {
 		return this.root;
 	}
 
@@ -111,7 +138,12 @@ public class LocalRepository extends SimpleFolder implements Repository {
 		return getRoot();
 	}
 
-	public void setRoot(File root) {
+    /**
+     * Sets root.
+     *
+     * @param root the root
+     */
+    public void setRoot(File root) {
 		this.root = root;
 	}
 
@@ -125,26 +157,49 @@ public class LocalRepository extends SimpleFolder implements Repository {
 		listeners.remove(RepositoryListener.class, l);
 	}
 
-	protected void fireEntryRenamed(final Entry entry) {
+    /**
+     * Fire entry renamed.
+     *
+     * @param entry the entry
+     */
+    protected void fireEntryRenamed(final Entry entry) {
 		for (RepositoryListener l : listeners.getListeners(RepositoryListener.class)) {
 			l.entryChanged(entry);
 		}
 
 	}
 
-	protected void fireEntryAdded(final Entry newEntry, final Folder parent) {
+    /**
+     * Fire entry added.
+     *
+     * @param newEntry the new entry
+     * @param parent   the parent
+     */
+    protected void fireEntryAdded(final Entry newEntry, final Folder parent) {
 		for (RepositoryListener l : listeners.getListeners(RepositoryListener.class)) {
 			l.entryAdded(newEntry, parent);
 		}
 	}
 
-	public void fireRefreshed(final Folder folder) {
+    /**
+     * Fire refreshed.
+     *
+     * @param folder the folder
+     */
+    public void fireRefreshed(final Folder folder) {
 		for (RepositoryListener l : listeners.getListeners(RepositoryListener.class)) {
 			l.folderRefreshed(folder);
 		}
 	}
 
-	protected void fireEntryRemoved(final Entry removedEntry, final Folder parent, final int index) {
+    /**
+     * Fire entry removed.
+     *
+     * @param removedEntry the removed entry
+     * @param parent       the parent
+     * @param index        the index
+     */
+    protected void fireEntryRemoved(final Entry removedEntry, final Folder parent, final int index) {
 		for (RepositoryListener l : listeners.getListeners(RepositoryListener.class)) {
 			l.entryRemoved(removedEntry, parent, index);
 		}
@@ -198,7 +253,15 @@ public class LocalRepository extends SimpleFolder implements Repository {
 		return repositoryElement;
 	}
 
-	public static LocalRepository fromXML(Element element) throws XMLException, RepositoryException {
+    /**
+     * From xml local repository.
+     *
+     * @param element the element
+     * @return the local repository
+     * @throws XMLException        the xml exception
+     * @throws RepositoryException the repository exception
+     */
+    public static LocalRepository fromXML(Element element) throws XMLException, RepositoryException {
 		return new LocalRepository(XMLTools.getTagContents(element, "alias", true), new File(XMLTools.getTagContents(
 				element, "file", true)));
 	}
@@ -238,8 +301,13 @@ public class LocalRepository extends SimpleFolder implements Repository {
 		return dir;
 	}
 
-	/** Returns the default folder in which a repository with this alias would be stored. */
-	public static final File getDefaultRepositoryFolder(String forAlias) {
+    /**
+     * Returns the default folder in which a repository with this alias would be stored.  @param forAlias the for alias
+     *
+     * @param forAlias the for alias
+     * @return the default repository folder
+     */
+    public static final File getDefaultRepositoryFolder(String forAlias) {
 		return new File(getDefaultRepositoryContainerFolder(), forAlias);
 	}
 

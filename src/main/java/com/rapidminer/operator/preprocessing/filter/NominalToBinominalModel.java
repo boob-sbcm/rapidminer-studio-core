@@ -64,7 +64,14 @@ public class NominalToBinominalModel extends PreprocessingModel {
 
 	private boolean useOnlyUnderscoreInNames = false;
 
-	public NominalToBinominalModel(ExampleSet exampleSet, boolean translateBinominals, boolean useOnlyUnderscoreInNames) {
+    /**
+     * Instantiates a new Nominal to binominal model.
+     *
+     * @param exampleSet               the example set
+     * @param translateBinominals      the translate binominals
+     * @param useOnlyUnderscoreInNames the use only underscore in names
+     */
+    public NominalToBinominalModel(ExampleSet exampleSet, boolean translateBinominals, boolean useOnlyUnderscoreInNames) {
 		super(exampleSet);
 		this.binominalAttributeValueMap = new LinkedHashMap<Attribute, Double>();
 		this.useOnlyUnderscoreInNames = useOnlyUnderscoreInNames;
@@ -263,19 +270,39 @@ public class NominalToBinominalModel extends PreprocessingModel {
 		}
 	}
 
-	public Set<String> getDichotomizationAttributeNames() {
+    /**
+     * Gets dichotomization attribute names.
+     *
+     * @return the dichotomization attribute names
+     */
+    public Set<String> getDichotomizationAttributeNames() {
 		return dichotomizationAttributeNames;
 	}
 
-	public Set<String> getChangeTypeAttributeNames() {
+    /**
+     * Gets change type attribute names.
+     *
+     * @return the change type attribute names
+     */
+    public Set<String> getChangeTypeAttributeNames() {
 		return changeTypeAttributeNames;
 	}
 
-	public Map<Attribute, Double> getBinominalAttributeValueMap() {
+    /**
+     * Gets binominal attribute value map.
+     *
+     * @return the binominal attribute value map
+     */
+    public Map<Attribute, Double> getBinominalAttributeValueMap() {
 		return binominalAttributeValueMap;
 	}
 
-	public boolean shouldUseOnlyUnderscoreInNames() {
+    /**
+     * Should use only underscore in names boolean.
+     *
+     * @return the boolean
+     */
+    public boolean shouldUseOnlyUnderscoreInNames() {
 		return useOnlyUnderscoreInNames;
 	}
 

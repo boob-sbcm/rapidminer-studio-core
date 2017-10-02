@@ -47,12 +47,10 @@ import com.rapidminer.tools.expression.MacroResolver;
 
 
 /**
- *
  * A collections of utility functions for the expression parser.
  *
  * @author David Arnu, Nils Woehler
  * @since 6.5.0
- *
  */
 public final class ExpressionParserUtils {
 
@@ -60,13 +58,16 @@ public final class ExpressionParserUtils {
 		throw new UnsupportedOperationException("Static utility class");
 	}
 
-	/**
-	 * Creates attribute meta data that represents the attribute that will be generated for the
-	 * provided arguments.
-	 *
-	 * @return the {@link AttributeMetaData} for the provided arguments
-	 */
-	public static AttributeMetaData generateAttributeMetaData(ExampleSetMetaData emd, String name,
+    /**
+     * Creates attribute meta data that represents the attribute that will be generated for the
+     * provided arguments.
+     *
+     * @param emd            the emd
+     * @param name           the name
+     * @param expressionType the expression type
+     * @return the {@link AttributeMetaData} for the provided arguments
+     */
+    public static AttributeMetaData generateAttributeMetaData(ExampleSetMetaData emd, String name,
 			ExpressionType expressionType) {
 
 		AttributeMetaData newAttribute = null;
@@ -92,13 +93,16 @@ public final class ExpressionParserUtils {
 		return newAttribute;
 	}
 
-	/**
-	 * Creates attribute meta data that represents the attribute that will be generated for the
-	 * provided arguments.
-	 *
-	 * @return the {@link AttributeMetaData} for the provided arguments
-	 */
-	public static AttributeMetaData generateAttributeMetaData(ExampleSet exampleSet, String name,
+    /**
+     * Creates attribute meta data that represents the attribute that will be generated for the
+     * provided arguments.
+     *
+     * @param exampleSet     the example set
+     * @param name           the name
+     * @param expressionType the expression type
+     * @return the {@link AttributeMetaData} for the provided arguments
+     */
+    public static AttributeMetaData generateAttributeMetaData(ExampleSet exampleSet, String name,
 			ExpressionType expressionType) {
 
 		AttributeMetaData newAttribute = null;
@@ -124,37 +128,27 @@ public final class ExpressionParserUtils {
 		return newAttribute;
 	}
 
-	/**
-	 * Parses the provided expression and iterates over the {@link ExampleSet}, interprets
-	 * attributes as variables, evaluates the function and creates a new attribute with the given
-	 * name that takes the expression's value. The type of the attribute depends on the expression
-	 * type and is {@link Ontology#NOMINAL} for strings, {@link Ontology#INTEGER} for integers,
-	 * {@link Ontology#REAL} for reals, {@link Ontology#DATE_TIME} for Dates, and
-	 * {@link Ontology#BINOMINAL} with values &quot;true&quot; and &quot;false&quot; for booleans.
-	 * If the executing operator is defined, there will be a check for stop before the calculation
-	 * of each example.
-	 *
-	 * @param exampleSet
-	 *            the example set to which the generated attribute is added
-	 * @param name
-	 *            the new attribute name
-	 * @param expression
-	 *            the expression used to generate attribute values
-	 * @param parser
-	 *            the expression parser used to parse the expression argument
-	 * @param resolver
-	 *            the example resolver which is used by the parser to resolve example values
-	 * @param executingOperator
-	 *            the operator calling this method. <code>null</code> is allowed. If not null the
-	 *            operator will be used to check for stop
-	 *
-	 * @throws ProcessStoppedException
-	 *             in case the process was stopped by the user
-	 * @throws ExpressionException
-	 *             in case parsing the expression fails
-	 *
-	 */
-	public static Attribute addAttribute(ExampleSet exampleSet, String name, String expression, ExpressionParser parser,
+    /**
+     * Parses the provided expression and iterates over the {@link ExampleSet}, interprets
+     * attributes as variables, evaluates the function and creates a new attribute with the given
+     * name that takes the expression's value. The type of the attribute depends on the expression
+     * type and is {@link Ontology#NOMINAL} for strings, {@link Ontology#INTEGER} for integers,
+     * {@link Ontology#REAL} for reals, {@link Ontology#DATE_TIME} for Dates, and
+     * {@link Ontology#BINOMINAL} with values &quot;true&quot; and &quot;false&quot; for booleans.
+     * If the executing operator is defined, there will be a check for stop before the calculation
+     * of each example.
+     *
+     * @param exampleSet        the example set to which the generated attribute is added
+     * @param name              the new attribute name
+     * @param expression        the expression used to generate attribute values
+     * @param parser            the expression parser used to parse the expression argument
+     * @param resolver          the example resolver which is used by the parser to resolve example values
+     * @param executingOperator the operator calling this method. <code>null</code> is allowed. If not null the            operator will be used to check for stop
+     * @return the attribute
+     * @throws ProcessStoppedException in case the process was stopped by the user
+     * @throws ExpressionException     in case parsing the expression fails
+     */
+    public static Attribute addAttribute(ExampleSet exampleSet, String name, String expression, ExpressionParser parser,
 			ExampleResolver resolver, Operator executingOperator) throws ProcessStoppedException, ExpressionException {
 
 		// parse the expression
@@ -244,35 +238,30 @@ public final class ExpressionParserUtils {
 		return newAttribute;
 	}
 
-	/**
-	 * Adds the {@link ExpressionParserBuilder#OLD_EXPRESSION_PARSER_FUNCTIONS} operator version as
-	 * incompatible version change by increasing the array size by one and adding the
-	 * {@link OperatorVersion} at the end of the array.
-	 *
-	 * @param incompatibleVersions
-	 *            all prior incompatible version changes
-	 * @return an array which contains
-	 *         {@link ExpressionParserBuilder#OLD_EXPRESSION_PARSER_FUNCTIONS} as last element
-	 */
-	public static OperatorVersion[] addIncompatibleExpressionParserChange(OperatorVersion... incompatibleVersions) {
+    /**
+     * Adds the {@link ExpressionParserBuilder#OLD_EXPRESSION_PARSER_FUNCTIONS} operator version as
+     * incompatible version change by increasing the array size by one and adding the
+     * {@link OperatorVersion} at the end of the array.
+     *
+     * @param incompatibleVersions all prior incompatible version changes
+     * @return an array which contains         {@link ExpressionParserBuilder#OLD_EXPRESSION_PARSER_FUNCTIONS} as last element
+     */
+    public static OperatorVersion[] addIncompatibleExpressionParserChange(OperatorVersion... incompatibleVersions) {
 		OperatorVersion[] extendedIncompatibleVersions = Arrays.copyOf(incompatibleVersions,
 				incompatibleVersions.length + 1);
 		extendedIncompatibleVersions[incompatibleVersions.length] = ExpressionParserBuilder.OLD_EXPRESSION_PARSER_FUNCTIONS;
 		return extendedIncompatibleVersions;
 	}
 
-	/**
-	 * Uses the {@link ExpressionParserBuilder} to create an {@link ExpressionParser} with all
-	 * modules that are registered to the {@link ExpressionRegistry}.
-	 *
-	 * @param op
-	 *            the operator to create the {@link ExpressionParser} for. Must not be {@code null}
-	 * @param exampleResolver
-	 *            the {@link ExampleResolver} which is used to lookup example values. Might be
-	 *            {@code null} in case no {@link ExampleResolver} is available
-	 * @return the build expression parser
-	 */
-	public static ExpressionParser createAllModulesParser(final Operator op, final ExampleResolver exampleResolver) {
+    /**
+     * Uses the {@link ExpressionParserBuilder} to create an {@link ExpressionParser} with all
+     * modules that are registered to the {@link ExpressionRegistry}.
+     *
+     * @param op              the operator to create the {@link ExpressionParser} for. Must not be {@code null}
+     * @param exampleResolver the {@link ExampleResolver} which is used to lookup example values. Might be            {@code null} in case no {@link ExampleResolver} is available
+     * @return the build expression parser
+     */
+    public static ExpressionParser createAllModulesParser(final Operator op, final ExampleResolver exampleResolver) {
 		ExpressionParserBuilder builder = new ExpressionParserBuilder();
 
 		// decide which functions should be available
@@ -291,19 +280,16 @@ public final class ExpressionParserUtils {
 		return builder.build();
 	}
 
-	/**
-	 * Converts a {@link ExpressionException} into a {@link UserError}.
-	 *
-	 * @param op
-	 *            the calling operator
-	 * @param function
-	 *            the entered function
-	 * @param e
-	 *            the exception
-	 * @throws UserError
-	 *             the converted {@link UserError}
-	 */
-	public static UserError convertToUserError(Operator op, String function, ExpressionException e) {
+    /**
+     * Converts a {@link ExpressionException} into a {@link UserError}.
+     *
+     * @param op       the calling operator
+     * @param function the entered function
+     * @param e        the exception
+     * @return the user error
+     * @throws UserError the converted {@link UserError}
+     */
+    public static UserError convertToUserError(Operator op, String function, ExpressionException e) {
 
 		// only show up to 15 characters of the function string
 		String shortenedFunction = function;

@@ -27,9 +27,8 @@ import com.rapidminer.parameter.UndefinedParameterError;
  * This precondition wraps around another precondition and performs the check only if a parameter
  * combination is fulfilled. If not, no checks will be performed. This might be used for parameter
  * dependency aware checking.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class ParameterConditionedPrecondition extends AbstractPrecondition {
 
@@ -38,7 +37,16 @@ public class ParameterConditionedPrecondition extends AbstractPrecondition {
 	private final String parameterValue;
 	private final ParameterHandler handler;
 
-	public ParameterConditionedPrecondition(InputPort inputPort, Precondition condition, ParameterHandler handler,
+    /**
+     * Instantiates a new Parameter conditioned precondition.
+     *
+     * @param inputPort      the input port
+     * @param condition      the condition
+     * @param handler        the handler
+     * @param parameterKey   the parameter key
+     * @param parameterValue the parameter value
+     */
+    public ParameterConditionedPrecondition(InputPort inputPort, Precondition condition, ParameterHandler handler,
 			String parameterKey, String parameterValue) {
 		super(inputPort);
 		this.condition = condition;

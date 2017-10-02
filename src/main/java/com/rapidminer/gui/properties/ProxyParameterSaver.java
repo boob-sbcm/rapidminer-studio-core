@@ -26,7 +26,6 @@ import com.rapidminer.tools.ProxySettings;
  *
  * @author Jonas Wilms-Pfau
  * @since 7.3.0
- *
  */
 public class ProxyParameterSaver implements com.rapidminer.tools.parameter.ParameterChangeListener {
 

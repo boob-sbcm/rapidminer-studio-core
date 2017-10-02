@@ -48,7 +48,7 @@ import java.util.Set;
  * &quot;&gt; 6 ANDAND &lt; 11&quot; or &quot;&lt;= 5 || &lt; 0&quot;. But ANDAND and || must not be
  * mixed. Please note that ANDAND has to be replaced by two ampers ands.
  * </p>
- * 
+ * <p>
  * <p>
  * The attribute_name_filter keeps all attributes which names match the given regular expression.
  * The nominal_value_filter keeps all numeric attribute and all nominal attributes containing at
@@ -58,14 +58,19 @@ import java.util.Set;
  * &quot;sunny&quot;. ANDAND and || are not allowed to be mixed. And again, ANDAND has to be
  * replaced by two ampers ands.
  * </p>
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class AttributeFilter extends AbstractFeatureSelection {
 
 	private final AttributeSubsetSelector attributeSelector = new AttributeSubsetSelector(this, getExampleSetInputPort());
 
-	public AttributeFilter(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute filter.
+     *
+     * @param description the description
+     */
+    public AttributeFilter(OperatorDescription description) {
 		super(description);
 
 	}

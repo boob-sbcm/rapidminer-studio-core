@@ -27,14 +27,13 @@ import com.rapidminer.tools.expression.FunctionDescription;
  * Class for the EQUALS function that has 2 arbitrary inputs
  *
  * @author Sabrina Kirstein
- *
  */
 public class Equals extends AbstractEqualityFunctionWith2Inputs {
 
-	/**
-	 * Constructs a EQUALS Function with 2 parameters with {@link FunctionDescription}
-	 */
-	public Equals() {
+    /**
+     * Constructs a EQUALS Function with 2 parameters with {@link FunctionDescription}
+     */
+    public Equals() {
 		super("comparison.equals");
 	}
 

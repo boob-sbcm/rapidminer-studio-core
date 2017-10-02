@@ -48,7 +48,6 @@ import com.rapidminer.repository.RepositoryLocation;
  * Cell editor that allows to select a repository entry by pressing a button.
  *
  * @author Marcel Seifert, Nils Woehler
- *
  */
 public class ProcessLocationValueCellEditor extends RepositoryLocationValueCellEditor {
 
@@ -98,7 +97,12 @@ public class ProcessLocationValueCellEditor extends RepositoryLocationValueCellE
 		}
 	};
 
-	public ProcessLocationValueCellEditor(final ParameterTypeProcessLocation type) {
+    /**
+     * Instantiates a new Process location value cell editor.
+     *
+     * @param type the type
+     */
+    public ProcessLocationValueCellEditor(final ParameterTypeProcessLocation type) {
 		super(type);
 		openProcessButton.setEnabled(false);
 

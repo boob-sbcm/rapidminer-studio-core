@@ -26,17 +26,16 @@ import java.util.List;
 /**
  * Declares a condition for {@link AbstractRepositoryAction}. If the entry is a configurable
  * repository, the action is shown, otherwise it will not be shown.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class RepositoryActionConditionImplConfigRepository implements RepositoryActionCondition {
 
-	/**
-	 * Creates a new RepositoryActionCondition which can be used to check if the selected
-	 * {@link Entry}s are of the type {@link Repository} and are configurable.
-	 */
-	public RepositoryActionConditionImplConfigRepository() {
+    /**
+     * Creates a new RepositoryActionCondition which can be used to check if the selected
+     * {@link Entry}s are of the type {@link Repository} and are configurable.
+     */
+    public RepositoryActionConditionImplConfigRepository() {
 
 	}
 

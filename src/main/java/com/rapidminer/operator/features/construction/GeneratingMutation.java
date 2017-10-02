@@ -33,9 +33,9 @@ import java.util.List;
 /**
  * The mutation operator for YAGGA. This operator adds single attributes from the original set,
  * creates new ones and deselect single attributes.
- * 
- * @see YAGGA
+ *
  * @author Ingo Mierswa, Simon Fischer Exp $
+ * @see YAGGA
  */
 public class GeneratingMutation extends ExampleSetBasedIndividualOperator {
 
@@ -51,7 +51,16 @@ public class GeneratingMutation extends ExampleSetBasedIndividualOperator {
 
 	private String[] unusedFunctions = new String[0];
 
-	public GeneratingMutation(List<Attribute> originalAttributes, double prob, int maxNumberOfAttributes,
+    /**
+     * Instantiates a new Generating mutation.
+     *
+     * @param originalAttributes    the original attributes
+     * @param prob                  the prob
+     * @param maxNumberOfAttributes the max number of attributes
+     * @param generators            the generators
+     * @param random                the random
+     */
+    public GeneratingMutation(List<Attribute> originalAttributes, double prob, int maxNumberOfAttributes,
 			List<FeatureGenerator> generators, RandomGenerator random) {
 		this.originalAttributes = originalAttributes;
 		this.prob = prob;
@@ -60,7 +69,12 @@ public class GeneratingMutation extends ExampleSetBasedIndividualOperator {
 		this.random = random;
 	}
 
-	public void setUnusedFunctions(String[] functions) {
+    /**
+     * Sets unused functions.
+     *
+     * @param functions the functions
+     */
+    public void setUnusedFunctions(String[] functions) {
 		this.unusedFunctions = functions;
 	}
 

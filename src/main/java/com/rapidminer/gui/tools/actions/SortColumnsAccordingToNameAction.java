@@ -31,7 +31,7 @@ import javax.swing.Icon;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SortColumnsAccordingToNameAction extends AbstractAction {
@@ -51,7 +51,13 @@ public class SortColumnsAccordingToNameAction extends AbstractAction {
 
 	private ExtendedJTable table;
 
-	public SortColumnsAccordingToNameAction(ExtendedJTable table, IconSize size) {
+    /**
+     * Instantiates a new Sort columns according to name action.
+     *
+     * @param table the table
+     * @param size  the size
+     */
+    public SortColumnsAccordingToNameAction(ExtendedJTable table, IconSize size) {
 		super("Sort Columns by Names", ICONS[size.ordinal()]);
 		this.table = table;
 		putValue(SHORT_DESCRIPTION, "Rearrange all columns according to the natural order of the column names.");

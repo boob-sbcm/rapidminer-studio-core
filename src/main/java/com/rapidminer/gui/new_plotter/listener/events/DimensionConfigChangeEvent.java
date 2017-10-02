@@ -31,23 +31,72 @@ import java.text.DateFormat;
 
 
 /**
+ * The type Dimension config change event.
+ *
  * @author Nils Woehler
- * 
  */
 public class DimensionConfigChangeEvent implements ConfigurationChangeEvent {
 
-	public enum DimensionConfigChangeType {
-		RESET, ABOUT_TO_CHANGE_GROUPING, 	// informing listernes that grouping will change
-		GROUPING_CHANGED,			// the grouping has been changed its values
-		RANGE,						// the user range has been changed or exchanged
-		COLUMN,						// the datatable column has been changed or exchange
-		SCALING,					// scaling for dimension config has changed (i.e. logarithmic or linear)
-		LABEL,						// the dimensions label has changed
-		COLOR_PROVIDER,				// the color provider has been changed or exchanged
-		SHAPE_PROVIDER,				// the shape provider has been changed or exchanged
-		SIZE_PROVIDER, 				// the size provider has been changed or exchanged
-		SORTING,					// the sorting has been changed or exchanged
-		AUTO_NAMING, COLOR_SCHEME, CROSSHAIR_LINES_CHANGED, DATE_FORMAT_CHANGED,
+    /**
+     * The enum Dimension config change type.
+     */
+    public enum DimensionConfigChangeType {
+        /**
+         * Reset dimension config change type.
+         */
+        RESET, /**
+         * About to change grouping dimension config change type.
+         */
+        ABOUT_TO_CHANGE_GROUPING, 	// informing listernes that grouping will change
+        /**
+         * Grouping changed dimension config change type.
+         */
+        GROUPING_CHANGED,			// the grouping has been changed its values
+        /**
+         * Range dimension config change type.
+         */
+        RANGE,						// the user range has been changed or exchanged
+        /**
+         * Column dimension config change type.
+         */
+        COLUMN,						// the datatable column has been changed or exchange
+        /**
+         * Scaling dimension config change type.
+         */
+        SCALING,					// scaling for dimension config has changed (i.e. logarithmic or linear)
+        /**
+         * Label dimension config change type.
+         */
+        LABEL,						// the dimensions label has changed
+        /**
+         * Color provider dimension config change type.
+         */
+        COLOR_PROVIDER,				// the color provider has been changed or exchanged
+        /**
+         * Shape provider dimension config change type.
+         */
+        SHAPE_PROVIDER,				// the shape provider has been changed or exchanged
+        /**
+         * Size provider dimension config change type.
+         */
+        SIZE_PROVIDER, 				// the size provider has been changed or exchanged
+        /**
+         * Sorting dimension config change type.
+         */
+        SORTING,					// the sorting has been changed or exchanged
+        /**
+         * Auto naming dimension config change type.
+         */
+        AUTO_NAMING, /**
+         * Color scheme dimension config change type.
+         */
+        COLOR_SCHEME, /**
+         * Crosshair lines changed dimension config change type.
+         */
+        CROSSHAIR_LINES_CHANGED, /**
+         * Date format changed dimension config change type.
+         */
+        DATE_FORMAT_CHANGED,
 	}
 
 	private final DimensionConfigChangeType type;
@@ -69,11 +118,15 @@ public class DimensionConfigChangeEvent implements ConfigurationChangeEvent {
 	private AxisParallelLinesConfigurationChangeEvent crosshairLinesChange;
 	private DateFormat dateFormat;
 
-	/**
-	 * Allowed {@link DimensionConfigChangeType}s are ABOUT_TO_CHANGE_GROUPING or RESET or
-	 * COLOR_SCHEME
-	 */
-	public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, DimensionConfigChangeType type) {
+    /**
+     * Allowed {@link DimensionConfigChangeType}s are ABOUT_TO_CHANGE_GROUPING or RESET or
+     * COLOR_SCHEME
+     *
+     * @param source    the source
+     * @param dimension the dimension
+     * @param type      the type
+     */
+    public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, DimensionConfigChangeType type) {
 		if ((type != DimensionConfigChangeType.ABOUT_TO_CHANGE_GROUPING) && (type != DimensionConfigChangeType.RESET)
 				&& (type != DimensionConfigChangeType.COLOR_SCHEME)) {
 			throw new RuntimeException(type + " is not allowed calling this constructor.");
@@ -83,7 +136,14 @@ public class DimensionConfigChangeEvent implements ConfigurationChangeEvent {
 		this.dimension = dimension;
 	}
 
-	public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension,
+    /**
+     * Instantiates a new Dimension config change event.
+     *
+     * @param source              the source
+     * @param dimension           the dimension
+     * @param groupingChangeEvent the grouping change event
+     */
+    public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension,
 			ValueGroupingChangeEvent groupingChangeEvent) {
 		this.source = source;
 		this.type = DimensionConfigChangeType.GROUPING_CHANGED;
@@ -91,7 +151,14 @@ public class DimensionConfigChangeEvent implements ConfigurationChangeEvent {
 		this.dimension = dimension;
 	}
 
-	public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension,
+    /**
+     * Instantiates a new Dimension config change event.
+     *
+     * @param source                 the source
+     * @param dimension              the dimension
+     * @param valueRangeChangedEvent the value range changed event
+     */
+    public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension,
 			ValueRangeChangeEvent valueRangeChangedEvent) {
 		this.source = source;
 		this.type = DimensionConfigChangeType.RANGE;
@@ -99,14 +166,29 @@ public class DimensionConfigChangeEvent implements ConfigurationChangeEvent {
 		this.dimension = dimension;
 	}
 
-	public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, DataTableColumn column) {
+    /**
+     * Instantiates a new Dimension config change event.
+     *
+     * @param source    the source
+     * @param dimension the dimension
+     * @param column    the column
+     */
+    public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, DataTableColumn column) {
 		this.source = source;
 		this.type = DimensionConfigChangeType.COLUMN;
 		this.column = column;
 		this.dimension = dimension;
 	}
 
-	public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, Boolean bool,
+    /**
+     * Instantiates a new Dimension config change event.
+     *
+     * @param source    the source
+     * @param dimension the dimension
+     * @param bool      the bool
+     * @param type      the type
+     */
+    public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, Boolean bool,
 			DimensionConfigChangeType type) {
 		if ((type != DimensionConfigChangeType.SCALING) && (type != DimensionConfigChangeType.AUTO_NAMING)) {
 			throw new RuntimeException(type + " is not allowed calling this constructor.");
@@ -123,35 +205,70 @@ public class DimensionConfigChangeEvent implements ConfigurationChangeEvent {
 		this.dimension = dimension;
 	}
 
-	public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, String label) {
+    /**
+     * Instantiates a new Dimension config change event.
+     *
+     * @param source    the source
+     * @param dimension the dimension
+     * @param label     the label
+     */
+    public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, String label) {
 		this.source = source;
 		this.type = DimensionConfigChangeType.LABEL;
 		this.label = label;
 		this.dimension = dimension;
 	}
 
-	public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, ColorProvider colorProvider) {
+    /**
+     * Instantiates a new Dimension config change event.
+     *
+     * @param source        the source
+     * @param dimension     the dimension
+     * @param colorProvider the color provider
+     */
+    public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, ColorProvider colorProvider) {
 		this.source = source;
 		this.type = DimensionConfigChangeType.COLOR_PROVIDER;
 		this.colorProvider = colorProvider;
 		this.dimension = dimension;
 	}
 
-	public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, SizeProvider sizeProvider) {
+    /**
+     * Instantiates a new Dimension config change event.
+     *
+     * @param source       the source
+     * @param dimension    the dimension
+     * @param sizeProvider the size provider
+     */
+    public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, SizeProvider sizeProvider) {
 		this.source = source;
 		this.type = DimensionConfigChangeType.SIZE_PROVIDER;
 		this.sizeProvider = sizeProvider;
 		this.dimension = dimension;
 	}
 
-	public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, ShapeProvider shapeProvider) {
+    /**
+     * Instantiates a new Dimension config change event.
+     *
+     * @param source        the source
+     * @param dimension     the dimension
+     * @param shapeProvider the shape provider
+     */
+    public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension, ShapeProvider shapeProvider) {
 		this.source = source;
 		this.type = DimensionConfigChangeType.SHAPE_PROVIDER;
 		this.shapeProvider = shapeProvider;
 		this.dimension = dimension;
 	}
 
-	public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension,
+    /**
+     * Instantiates a new Dimension config change event.
+     *
+     * @param source      the source
+     * @param dimension   the dimension
+     * @param sortingMode the sorting mode
+     */
+    public DimensionConfigChangeEvent(DimensionConfig source, PlotDimension dimension,
 			DomainConfigManager.Sorting sortingMode) {
 		this.source = source;
 		this.type = DimensionConfigChangeType.SORTING;
@@ -159,7 +276,14 @@ public class DimensionConfigChangeEvent implements ConfigurationChangeEvent {
 		this.dimension = dimension;
 	}
 
-	public DimensionConfigChangeEvent(DomainConfigManager source, PlotDimension dimension,
+    /**
+     * Instantiates a new Dimension config change event.
+     *
+     * @param source    the source
+     * @param dimension the dimension
+     * @param e         the e
+     */
+    public DimensionConfigChangeEvent(DomainConfigManager source, PlotDimension dimension,
 			AxisParallelLinesConfigurationChangeEvent e) {
 		this.type = DimensionConfigChangeType.CROSSHAIR_LINES_CHANGED;
 		this.dimension = dimension;
@@ -167,94 +291,124 @@ public class DimensionConfigChangeEvent implements ConfigurationChangeEvent {
 		this.crosshairLinesChange = e;
 	}
 
-	public DimensionConfigChangeEvent(DimensionConfig source, DateFormat dateFormat) {
+    /**
+     * Instantiates a new Dimension config change event.
+     *
+     * @param source     the source
+     * @param dateFormat the date format
+     */
+    public DimensionConfigChangeEvent(DimensionConfig source, DateFormat dateFormat) {
 		this.source = source;
 		this.dimension = source.getDimension();
 		this.type = DimensionConfigChangeType.DATE_FORMAT_CHANGED;
 		this.dateFormat = dateFormat;
 	}
 
-	/**
-	 * @return the column
-	 */
-	public DataTableColumn getDataTableColumn() {
+    /**
+     * Gets data table column.
+     *
+     * @return the column
+     */
+    public DataTableColumn getDataTableColumn() {
 		return column;
 	}
 
-	/**
-	 * @return the groupingChangeEvent
-	 */
-	public ValueGroupingChangeEvent getGroupingChangeEvent() {
+    /**
+     * Gets grouping change event.
+     *
+     * @return the groupingChangeEvent
+     */
+    public ValueGroupingChangeEvent getGroupingChangeEvent() {
 		return groupingChangeEvent;
 	}
 
-	/**
-	 * @return the valueRangeChangedEvent
-	 */
-	public ValueRangeChangeEvent getValueRangeChangedEvent() {
+    /**
+     * Gets value range changed event.
+     *
+     * @return the valueRangeChangedEvent
+     */
+    public ValueRangeChangeEvent getValueRangeChangedEvent() {
 		return valueRangeChangedEvent;
 	}
 
-	/**
-	 * @return the logarithmic
-	 */
-	public Boolean getLogarithmic() {
+    /**
+     * Gets logarithmic.
+     *
+     * @return the logarithmic
+     */
+    public Boolean getLogarithmic() {
 		return logarithmic;
 	}
 
-	/**
-	 * @return the label
-	 */
-	public String getLabel() {
+    /**
+     * Gets label.
+     *
+     * @return the label
+     */
+    public String getLabel() {
 		return label;
 	}
 
-	/**
-	 * @return the colorProvider
-	 */
-	public ColorProvider getColorProvider() {
+    /**
+     * Gets color provider.
+     *
+     * @return the colorProvider
+     */
+    public ColorProvider getColorProvider() {
 		return colorProvider;
 	}
 
-	/**
-	 * @return the sizeProvider
-	 */
-	public SizeProvider getSizeProvider() {
+    /**
+     * Gets size provider.
+     *
+     * @return the sizeProvider
+     */
+    public SizeProvider getSizeProvider() {
 		return sizeProvider;
 	}
 
-	/**
-	 * @return the shapeProvider
-	 */
-	public ShapeProvider getShapeProvider() {
+    /**
+     * Gets shape provider.
+     *
+     * @return the shapeProvider
+     */
+    public ShapeProvider getShapeProvider() {
 		return shapeProvider;
 	}
 
-	/**
-	 * @return the type
-	 */
-	public DimensionConfigChangeType getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public DimensionConfigChangeType getType() {
 		return type;
 	}
 
-	/**
-	 * @return the source
-	 */
-	public DimensionConfig getSource() {
+    /**
+     * Gets source.
+     *
+     * @return the source
+     */
+    public DimensionConfig getSource() {
 		return source;
 	}
 
-	/**
-	 * @return the sortProvider
-	 */
-	public DomainConfigManager.Sorting getSortingMode() {
+    /**
+     * Gets sorting mode.
+     *
+     * @return the sortProvider
+     */
+    public DomainConfigManager.Sorting getSortingMode() {
 		return sortingMode;
 	}
 
-	/**
-	 * @return
-	 */
-	public PlotDimension getDimension() {
+    /**
+     * Gets dimension.
+     *
+     * @return dimension dimension
+     */
+    public PlotDimension getDimension() {
 		return dimension;
 	}
 
@@ -263,17 +417,21 @@ public class DimensionConfigChangeEvent implements ConfigurationChangeEvent {
 		return ConfigurationChangeType.DIMENSION_CONFIG_CHANGE;
 	}
 
-	/**
-	 * @return the includeZero
-	 */
-	public Boolean getIncludeZero() {
+    /**
+     * Gets include zero.
+     *
+     * @return the includeZero
+     */
+    public Boolean getIncludeZero() {
 		return includeZero;
 	}
 
-	/**
-	 * @return the autoNaming
-	 */
-	public Boolean getAutoNaming() {
+    /**
+     * Gets auto naming.
+     *
+     * @return the autoNaming
+     */
+    public Boolean getAutoNaming() {
 		return autoNaming;
 	}
 
@@ -282,11 +440,21 @@ public class DimensionConfigChangeEvent implements ConfigurationChangeEvent {
 		return getType().toString();
 	}
 
-	public AxisParallelLinesConfigurationChangeEvent getCrosshairLinesChange() {
+    /**
+     * Gets crosshair lines change.
+     *
+     * @return the crosshair lines change
+     */
+    public AxisParallelLinesConfigurationChangeEvent getCrosshairLinesChange() {
 		return crosshairLinesChange;
 	}
 
-	public DateFormat getDateFormat() {
+    /**
+     * Gets date format.
+     *
+     * @return the date format
+     */
+    public DateFormat getDateFormat() {
 		return dateFormat;
 	}
 }

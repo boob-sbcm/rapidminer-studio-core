@@ -35,9 +35,17 @@ public class GainRatioCriterion extends InfoGainCriterion {
 
 	private FrequencyCalculator frequencyCalculator = new FrequencyCalculator();
 
-	public GainRatioCriterion() {}
+    /**
+     * Instantiates a new Gain ratio criterion.
+     */
+    public GainRatioCriterion() {}
 
-	public GainRatioCriterion(double minimalGain) {
+    /**
+     * Instantiates a new Gain ratio criterion.
+     *
+     * @param minimalGain the minimal gain
+     */
+    public GainRatioCriterion(double minimalGain) {
 		super(minimalGain);
 	}
 
@@ -66,7 +74,13 @@ public class GainRatioCriterion extends InfoGainCriterion {
 		}
 	}
 
-	protected double getSplitInfo(double[][] weightCounts) {
+    /**
+     * Gets split info.
+     *
+     * @param weightCounts the weight counts
+     * @return the split info
+     */
+    protected double getSplitInfo(double[][] weightCounts) {
 		double[] splitCounts = new double[weightCounts.length];
 		for (int v = 0; v < weightCounts.length; v++) {
 			for (int l = 0; l < weightCounts[v].length; l++) {
@@ -89,7 +103,14 @@ public class GainRatioCriterion extends InfoGainCriterion {
 		return splitInfo;
 	}
 
-	protected double getSplitInfo(double[] partitionWeights, double totalWeight) {
+    /**
+     * Gets split info.
+     *
+     * @param partitionWeights the partition weights
+     * @param totalWeight      the total weight
+     * @return the split info
+     */
+    protected double getSplitInfo(double[] partitionWeights, double totalWeight) {
 		double splitInfo = 0;
 		for (double partitionWeight : partitionWeights) {
 			if (partitionWeight > 0) {

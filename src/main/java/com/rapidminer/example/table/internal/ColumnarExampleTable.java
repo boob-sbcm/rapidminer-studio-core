@@ -68,7 +68,12 @@ public class ColumnarExampleTable extends AbstractExampleTable implements Growin
 
 		private final int row;
 
-		public RowView(int index) {
+        /**
+         * Instantiates a new Row view.
+         *
+         * @param index the index
+         */
+        public RowView(int index) {
 			row = index;
 		}
 
@@ -138,28 +143,23 @@ public class ColumnarExampleTable extends AbstractExampleTable implements Growin
 
 	private DataManagement management = DataManagement.AUTO;
 
-	/**
-	 * Creates a new, empty data table with the given attributes.
-	 *
-	 * @param attributes
-	 *            the table's attributes
-	 */
-	public ColumnarExampleTable(List<Attribute> attributes) {
+    /**
+     * Creates a new, empty data table with the given attributes.
+     *
+     * @param attributes the table's attributes
+     */
+    public ColumnarExampleTable(List<Attribute> attributes) {
 		this(attributes, DataManagement.AUTO, false);
 	}
 
-	/**
-	 * Creates a new, empty data table with the given attributes.
-	 *
-	 * @param attributes
-	 *            the table's attributes
-	 * @param management
-	 *            the data management optimization type to use
-	 * @param completable
-	 *            whether {@link #complete()} will be called when the number of rows is final and
-	 *            before the first reading of values
-	 */
-	public ColumnarExampleTable(List<Attribute> attributes, DataManagement management, boolean completable) {
+    /**
+     * Creates a new, empty data table with the given attributes.
+     *
+     * @param attributes  the table's attributes
+     * @param management  the data management optimization type to use
+     * @param completable whether {@link #complete()} will be called when the number of rows is final and            before the first reading of values
+     */
+    public ColumnarExampleTable(List<Attribute> attributes, DataManagement management, boolean completable) {
 		super(attributes);
 		int attributeCount = super.getNumberOfAttributes();
 
@@ -248,13 +248,12 @@ public class ColumnarExampleTable extends AbstractExampleTable implements Growin
 		size++;
 	}
 
-	/**
-	 * Adds a copy of the given row to the example table.
-	 *
-	 * @param row
-	 *            the row as double array
-	 */
-	public void addRow(double[] row) {
+    /**
+     * Adds a copy of the given row to the example table.
+     *
+     * @param row the row as double array
+     */
+    public void addRow(double[] row) {
 		ensureHeight(size + 1);
 		int min = Math.min(super.getNumberOfAttributes(), row.length);
 		for (int i = 0; i < min; i++) {
@@ -263,14 +262,13 @@ public class ColumnarExampleTable extends AbstractExampleTable implements Growin
 		size++;
 	}
 
-	/**
-	 * Adds numberOfRows blank rows to the table. These rows can be filled afterwards by
-	 * {@link #fillColumn} or using {@link #getDataRowReader}.
-	 *
-	 * @param numberOfRows
-	 *            the number of empty rows to add
-	 */
-	public void addBlankRows(int numberOfRows) {
+    /**
+     * Adds numberOfRows blank rows to the table. These rows can be filled afterwards by
+     * {@link #fillColumn} or using {@link #getDataRowReader}.
+     *
+     * @param numberOfRows the number of empty rows to add
+     */
+    public void addBlankRows(int numberOfRows) {
 		if (numberOfRows > 0) {
 			int newSize = size + numberOfRows;
 			if (newSize > sizeLimit) {
@@ -280,71 +278,65 @@ public class ColumnarExampleTable extends AbstractExampleTable implements Growin
 		}
 	}
 
-	/**
-	 * Fills the column associated with the attribute using the function.
-	 *
-	 * @param attribute
-	 *            the attribute whose column should be filled with values
-	 * @param function
-	 *            the function providing the values to fill the column
-	 */
-	public void fillColumn(Attribute attribute, IntToDoubleFunction function) {
+    /**
+     * Fills the column associated with the attribute using the function.
+     *
+     * @param attribute the attribute whose column should be filled with values
+     * @param function  the function providing the values to fill the column
+     */
+    public void fillColumn(Attribute attribute, IntToDoubleFunction function) {
 		Column column = columns[attribute.getTableIndex()];
 		for (int i = 0; i < size; i++) {
 			column.setLast(i, function.applyAsDouble(i));
 		}
 	}
 
-	/**
-	 * Resets the column associated with the attribute. The reset is necessary if there were already
-	 * rows added in case auto columns are used because this overwrites the values, so the automatic
-	 * detection needs to be reset.
-	 *
-	 * @param attribute
-	 *            the attribute whose column should be reset
-	 */
-	public void resetColumn(Attribute attribute) {
+    /**
+     * Resets the column associated with the attribute. The reset is necessary if there were already
+     * rows added in case auto columns are used because this overwrites the values, so the automatic
+     * detection needs to be reset.
+     *
+     * @param attribute the attribute whose column should be reset
+     */
+    public void resetColumn(Attribute attribute) {
 		updateColumn(attribute.getTableIndex(), attribute);
 		columns[attribute.getTableIndex()].ensure(sizeLimit);
 
 	}
 
-	/**
-	 * Sets the expected number of rows. Use this if you know in advance how many rows will be added
-	 * by {@link #addRow} or {@link #addDataRow}. Using this method prevents unnecessary resizing if
-	 * the container for row values becomes to small.
-	 *
-	 * @param expectedNumberOfRows
-	 *            the expected number of rows
-	 */
-	public void setExpectedSize(int expectedNumberOfRows) {
+    /**
+     * Sets the expected number of rows. Use this if you know in advance how many rows will be added
+     * by {@link #addRow} or {@link #addDataRow}. Using this method prevents unnecessary resizing if
+     * the container for row values becomes to small.
+     *
+     * @param expectedNumberOfRows the expected number of rows
+     */
+    public void setExpectedSize(int expectedNumberOfRows) {
 		if (expectedNumberOfRows <= sizeLimit) {
 			return;
 		}
 		updateHeight(expectedNumberOfRows);
 	}
 
-	/**
-	 * Signals that the number of rows is final. Must be called when using the constructor
-	 * {@link #ColumnarExampleTable(List, boolean)} with completable {@code true} before the first
-	 * time that values are read.
-	 */
-	public void complete() {
+    /**
+     * Signals that the number of rows is final. Must be called when using the constructor
+     * {@link #ColumnarExampleTable(List, boolean)} with completable {@code true} before the first
+     * time that values are read.
+     */
+    public void complete() {
 		completable = false;
 		for (Column column : columns) {
 			column.complete();
 		}
 	}
 
-	/**
-	 * Creates a shallow clone of the table and removes all columns not contained in attributes.
-	 *
-	 * @param attributes
-	 *            the attributes to determine which columns to keep
-	 * @return a new table with only column data when the column is associated to an attribute from
-	 *         attributes
-	 */
-	public ColumnarExampleTable columnCleanupClone(Attributes attributes) {
+    /**
+     * Creates a shallow clone of the table and removes all columns not contained in attributes.
+     *
+     * @param attributes the attributes to determine which columns to keep
+     * @return a new table with only column data when the column is associated to an attribute from         attributes
+     */
+    public ColumnarExampleTable columnCleanupClone(Attributes attributes) {
 		ColumnarExampleTable newTable = createClone();
 		// check which table indices are still in use
 		int attributeCount = newTable.getNumberOfAttributes();

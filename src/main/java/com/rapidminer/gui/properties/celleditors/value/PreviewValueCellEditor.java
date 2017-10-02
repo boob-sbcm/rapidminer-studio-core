@@ -33,7 +33,7 @@ import javax.swing.JTable;
 
 /**
  * Cell editor consisting of a simple button which opens a preview for the corresponding operator.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PreviewValueCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {
@@ -44,7 +44,12 @@ public class PreviewValueCellEditor extends AbstractCellEditor implements Proper
 
 	private JButton button;
 
-	public PreviewValueCellEditor(ParameterTypePreview type) {
+    /**
+     * Instantiates a new Preview value cell editor.
+     *
+     * @param type the type
+     */
+    public PreviewValueCellEditor(ParameterTypePreview type) {
 		this.type = type;
 		button = new JButton("Show Preview...");
 		button.setToolTipText(type.getDescription());

@@ -23,7 +23,7 @@ import org.jfree.data.statistics.HistogramDataset;
 
 /**
  * This is a helper class for applying a logarithmic transformation on histogram datasets.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RapidHistogramDataset extends HistogramDataset {
@@ -32,7 +32,12 @@ public class RapidHistogramDataset extends HistogramDataset {
 
 	private boolean isLog = false;
 
-	public RapidHistogramDataset(boolean isLog) {
+    /**
+     * Instantiates a new Rapid histogram dataset.
+     *
+     * @param isLog the is log
+     */
+    public RapidHistogramDataset(boolean isLog) {
 		this.isLog = isLog;
 	}
 

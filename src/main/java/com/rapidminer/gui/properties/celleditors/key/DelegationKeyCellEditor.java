@@ -36,18 +36,28 @@ import javax.swing.event.CellEditorListener;
  * This is the key renderer for the ParameterTypeList to enable special parameter types as
  * attributes. Or regular expressions. Therefore it uses a delegation concept and tries to create
  * the appropriate editor for the given type.
- * 
+ *
  * @author Sebastian Land
  */
 public class DelegationKeyCellEditor implements PropertyKeyCellEditor {
 
 	private PropertyValueCellEditor delegationEditor;
 
-	public DelegationKeyCellEditor(ParameterTypeList type) {
+    /**
+     * Instantiates a new Delegation key cell editor.
+     *
+     * @param type the type
+     */
+    public DelegationKeyCellEditor(ParameterTypeList type) {
 		delegationEditor = PropertyPanel.instantiateValueCellEditor(type.getKeyType(), null);
 	}
 
-	public DelegationKeyCellEditor(ParameterTypeEnumeration type) {
+    /**
+     * Instantiates a new Delegation key cell editor.
+     *
+     * @param type the type
+     */
+    public DelegationKeyCellEditor(ParameterTypeEnumeration type) {
 		delegationEditor = PropertyPanel.instantiateValueCellEditor(type.getValueType(), null);
 	}
 

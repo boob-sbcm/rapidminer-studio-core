@@ -39,7 +39,6 @@ import com.rapidminer.tools.Ontology;
  * This class provides the preprocessing model for all value replacing operators.
  *
  * @author Sebastian Land
- *
  */
 public class ValueReplenishmentModel extends PreprocessingModel {
 
@@ -52,7 +51,15 @@ public class ValueReplenishmentModel extends PreprocessingModel {
 
 	private HashMap<Attribute, Double> attributeReplacementMap = new HashMap<Attribute, Double>();
 
-	public ValueReplenishmentModel(ExampleSet exampleSet, double replacedValue,
+    /**
+     * Instantiates a new Value replenishment model.
+     *
+     * @param exampleSet                     the example set
+     * @param replacedValue                  the replaced value
+     * @param numericalAndDateReplacementMap the numerical and date replacement map
+     * @param nominalReplacementMap          the nominal replacement map
+     */
+    public ValueReplenishmentModel(ExampleSet exampleSet, double replacedValue,
 			HashMap<String, Double> numericalAndDateReplacementMap, HashMap<String, String> nominalReplacementMap) {
 		super(exampleSet);
 		this.replaceWhat = replacedValue;
@@ -161,19 +168,39 @@ public class ValueReplenishmentModel extends PreprocessingModel {
 		}
 	}
 
-	public Map<String, Double> getNumericalAndDateReplacementMap() {
+    /**
+     * Gets numerical and date replacement map.
+     *
+     * @return the numerical and date replacement map
+     */
+    public Map<String, Double> getNumericalAndDateReplacementMap() {
 		return numericalAndDateReplacementMap;
 	}
 
-	public Map<String, String> getNominalReplacementMap() {
+    /**
+     * Gets nominal replacement map.
+     *
+     * @return the nominal replacement map
+     */
+    public Map<String, String> getNominalReplacementMap() {
 		return nominalReplacementMap;
 	}
 
-	public double getReplaceWhat() {
+    /**
+     * Gets replace what.
+     *
+     * @return the replace what
+     */
+    public double getReplaceWhat() {
 		return replaceWhat;
 	}
 
-	public Map<Attribute, Double> getAttributeReplacementMap() {
+    /**
+     * Gets attribute replacement map.
+     *
+     * @return the attribute replacement map
+     */
+    public Map<Attribute, Double> getAttributeReplacementMap() {
 		return attributeReplacementMap;
 	}
 

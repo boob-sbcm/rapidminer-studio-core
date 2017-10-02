@@ -36,14 +36,13 @@ import com.rapidminer.tools.expression.internal.antlr.AntlrParser;
  * Tests the results of {@link AntlrParser#parse(String)} for mathematical functions.
  *
  * @author David Arnu, Marcel Seifert
- *
  */
 public class AntlrParserMathematicalTest extends AntlrParserTest {
 
-	/**
-	 * Sqrt tests
-	 */
-	@Test
+    /**
+     * Sqrt tests
+     */
+    @Test
 	public void sqrtInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sqrt(16)");
@@ -54,7 +53,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sqrt double.
+     */
+    @Test
 	public void sqrtDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sqrt(12.5)");
@@ -65,7 +67,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sqrt neg.
+     */
+    @Test
 	public void sqrtNeg() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sqrt(-4)");
@@ -76,7 +81,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sqrt na n.
+     */
+    @Test
 	public void sqrtNaN() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sqrt(MISSING_NUMERICAL)");
@@ -87,7 +95,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sqrt empty.
+     */
+    @Test
 	public void sqrtEmpty() {
 		try {
 			getExpressionWithFunctionContext("sqrt()");
@@ -97,7 +108,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sqrt string.
+     */
+    @Test
 	public void sqrtString() {
 		try {
 			getExpressionWithFunctionContext("sqrt( \"blup\")");
@@ -107,10 +121,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	/**
-	 * exp tests
-	 */
-	@Test
+    /**
+     * exp tests
+     */
+    @Test
 	public void expInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("exp(1)");
@@ -121,7 +135,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Exp double.
+     */
+    @Test
 	public void expDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("exp(1.0)");
@@ -132,7 +149,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Exp neg inf.
+     */
+    @Test
 	public void expNegInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("exp(-INFINITY)");
@@ -143,7 +163,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Exp pos inf.
+     */
+    @Test
 	public void expPosInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("exp(INFINITY)");
@@ -154,7 +177,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Exp zero.
+     */
+    @Test
 	public void expZero() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("exp(0)");
@@ -165,7 +191,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Exp na n.
+     */
+    @Test
 	public void expNaN() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("exp(MISSING_NUMERICAL)");
@@ -176,7 +205,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Exp empty.
+     */
+    @Test
 	public void expEmpty() {
 		try {
 			getExpressionWithFunctionContext("exp()");
@@ -186,7 +218,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Exp string.
+     */
+    @Test
 	public void expString() {
 		try {
 			getExpressionWithFunctionContext("exp( \"blup\")");
@@ -196,10 +231,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	/**
-	 * ln tests
-	 */
-	@Test
+    /**
+     * ln tests
+     */
+    @Test
 	public void lnInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ln(1)");
@@ -210,7 +245,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ln double.
+     */
+    @Test
 	public void lnDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ln(1.0)");
@@ -221,7 +259,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ln negative.
+     */
+    @Test
 	public void lnNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ln(-1.0)");
@@ -232,7 +273,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ln neg inf.
+     */
+    @Test
 	public void lnNegInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ln(-INFINITY)");
@@ -243,7 +287,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ln pos inf.
+     */
+    @Test
 	public void lnPosInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ln(INFINITY)");
@@ -254,7 +301,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ln zero.
+     */
+    @Test
 	public void lnZero() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ln(0.0)");
@@ -265,7 +315,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ln na n.
+     */
+    @Test
 	public void lnNaN() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ln(MISSING_NUMERICAL)");
@@ -276,7 +329,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ln empty.
+     */
+    @Test
 	public void lnEmpty() {
 		try {
 			getExpressionWithFunctionContext("ln()");
@@ -286,7 +342,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ln string.
+     */
+    @Test
 	public void lnString() {
 		try {
 			getExpressionWithFunctionContext("ln( \"blup\")");
@@ -296,10 +355,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	/**
-	 * log tests
-	 */
-	@Test
+    /**
+     * log tests
+     */
+    @Test
 	public void logInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("log(1)");
@@ -310,7 +369,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Log double.
+     */
+    @Test
 	public void logDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("log(1.0)");
@@ -321,7 +383,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Log negative.
+     */
+    @Test
 	public void logNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("log(-1.0)");
@@ -332,7 +397,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Log neg inf.
+     */
+    @Test
 	public void logNegInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("log(-INFINITY)");
@@ -343,7 +411,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Log pos inf.
+     */
+    @Test
 	public void logPosInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("log(INFINITY)");
@@ -354,7 +425,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Log zero.
+     */
+    @Test
 	public void logZero() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("log(0.0)");
@@ -365,7 +439,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Log na n.
+     */
+    @Test
 	public void logNaN() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("log(MISSING_NUMERICAL)");
@@ -376,7 +453,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Log empty.
+     */
+    @Test
 	public void logEmpty() {
 		try {
 			getExpressionWithFunctionContext("log()");
@@ -386,7 +466,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Log string.
+     */
+    @Test
 	public void logString() {
 		try {
 			getExpressionWithFunctionContext("log( \"blup\")");
@@ -396,10 +479,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	/**
-	 * ld tests
-	 */
-	@Test
+    /**
+     * ld tests
+     */
+    @Test
 	public void ldInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ld(1)");
@@ -410,7 +493,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ld double.
+     */
+    @Test
 	public void ldDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ld(1.0)");
@@ -421,7 +507,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ld negative.
+     */
+    @Test
 	public void ldNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ld(-1.0)");
@@ -432,7 +521,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ld neg inf.
+     */
+    @Test
 	public void ldNegInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ld(-INFINITY)");
@@ -443,7 +535,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ld pos inf.
+     */
+    @Test
 	public void ldPosInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ld(INFINITY)");
@@ -454,7 +549,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ld zero.
+     */
+    @Test
 	public void ldZero() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ld(0.0)");
@@ -465,7 +563,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ld na n.
+     */
+    @Test
 	public void ldNaN() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ld(MISSING_NUMERICAL)");
@@ -476,7 +577,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ld empty.
+     */
+    @Test
 	public void ldEmpty() {
 		try {
 			getExpressionWithFunctionContext("ld()");
@@ -486,7 +590,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ld string.
+     */
+    @Test
 	public void ldString() {
 		try {
 			getExpressionWithFunctionContext("ld( \"blup\")");
@@ -496,10 +603,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	/**
-	 * sgn tests
-	 */
-	@Test
+    /**
+     * sgn tests
+     */
+    @Test
 	public void sgnInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sgn(1)");
@@ -510,7 +617,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sgn double.
+     */
+    @Test
 	public void sgnDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sgn(5.4)");
@@ -521,7 +631,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sgn negative.
+     */
+    @Test
 	public void sgnNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sgn(-8.7)");
@@ -532,7 +645,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sgn neg inf.
+     */
+    @Test
 	public void sgnNegInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sgn(-INFINITY)");
@@ -543,7 +659,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sgn pos inf.
+     */
+    @Test
 	public void sgnPosInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sgn(INFINITY)");
@@ -554,7 +673,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sgn zero.
+     */
+    @Test
 	public void sgnZero() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sgn(0.0)");
@@ -565,7 +687,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sgn neg zero.
+     */
+    @Test
 	public void sgnNegZero() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sgn(-0.0)");
@@ -576,7 +701,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sgn na n.
+     */
+    @Test
 	public void sgnNaN() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sgn(MISSING_NUMERICAL)");
@@ -587,7 +715,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sgn missing int.
+     */
+    @Test
 	public void sgnMissingInt() {
 		try {
 			ExampleSet exampleSet = makeMissingIntegerExampleSet();
@@ -601,7 +732,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sgn empty.
+     */
+    @Test
 	public void sgnEmpty() {
 		try {
 			getExpressionWithFunctionContext("sgn()");
@@ -611,7 +745,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sgn string.
+     */
+    @Test
 	public void sgnString() {
 		try {
 			getExpressionWithFunctionContext("sgn( \"blup\")");
@@ -621,10 +758,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	/**
-	 * abs tests
-	 */
-	@Test
+    /**
+     * abs tests
+     */
+    @Test
 	public void absInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("abs(1)");
@@ -635,7 +772,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Abs double.
+     */
+    @Test
 	public void absDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("abs(5.4)");
@@ -646,7 +786,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Abs negative.
+     */
+    @Test
 	public void absNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("abs(-8.7)");
@@ -657,7 +800,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Abs neg inf.
+     */
+    @Test
 	public void absNegInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("abs(-INFINITY)");
@@ -668,7 +814,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Abs pos inf.
+     */
+    @Test
 	public void absPosInf() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("abs(INFINITY)");
@@ -679,7 +828,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Abs zero.
+     */
+    @Test
 	public void absZero() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("abs(0)");
@@ -690,7 +842,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Abs na n.
+     */
+    @Test
 	public void absNaN() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sgn(MISSING_NUMERICAL)");
@@ -701,7 +856,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Abs missing int.
+     */
+    @Test
 	public void absMissingInt() {
 		try {
 			ExampleSet exampleSet = makeMissingIntegerExampleSet();
@@ -715,7 +873,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Abs empty.
+     */
+    @Test
 	public void absEmpty() {
 		try {
 			getExpressionWithFunctionContext("abs()");
@@ -725,7 +886,10 @@ public class AntlrParserMathematicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Abs string.
+     */
+    @Test
 	public void absString() {
 		try {
 			getExpressionWithFunctionContext("abs( \"blup\")");

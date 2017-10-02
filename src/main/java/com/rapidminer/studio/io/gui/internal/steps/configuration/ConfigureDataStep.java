@@ -56,11 +56,13 @@ public final class ConfigureDataStep extends AbstractWizardStep {
 
 	private final ImportWizard wizard;
 
-	/**
-	 * Constructor for the {@link ConfigureDataStep}. It creates the {@link ConfigureDataView}
-	 * instance and adds a change listener.
-	 */
-	public ConfigureDataStep(ImportWizard wizard) {
+    /**
+     * Constructor for the {@link ConfigureDataStep}. It creates the {@link ConfigureDataView}
+     * instance and adds a change listener.
+     *
+     * @param wizard the wizard
+     */
+    public ConfigureDataStep(ImportWizard wizard) {
 		this.wizard = wizard;
 		this.view = new ConfigureDataView(wizard.getDialog());
 		this.view.addChangeListener(changeListener);

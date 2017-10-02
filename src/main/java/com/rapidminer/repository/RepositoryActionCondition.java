@@ -24,21 +24,19 @@ import java.util.List;
 /**
  * Can be used to declare repository action conditions based upon the given list of repository
  * {@link Entry}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface RepositoryActionCondition {
 
-	/**
-	 * If the condition is met, returns true, otherwise returns false.
-	 * <p>
-	 * An empty list will always return true!</br> A {@code null} list will always return false!
-	 * 
-	 * @param entryList
-	 *            a list of repository {@link Entry} or {@code null}
-	 * @return true if the condition is met; false otherwise
-	 */
-	public boolean evaluateCondition(List<Entry> entryList);
+    /**
+     * If the condition is met, returns true, otherwise returns false.
+     * <p>
+     * An empty list will always return true!</br> A {@code null} list will always return false!
+     *
+     * @param entryList a list of repository {@link Entry} or {@code null}
+     * @return true if the condition is met; false otherwise
+     */
+    public boolean evaluateCondition(List<Entry> entryList);
 
 }

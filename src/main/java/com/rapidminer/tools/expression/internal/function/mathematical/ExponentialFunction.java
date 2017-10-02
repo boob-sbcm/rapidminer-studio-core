@@ -26,11 +26,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
  * A {@link Function} computing Euler's number e raised to the power of a double value of a number.
  *
  * @author Marcel Seifert
- *
  */
 public class ExponentialFunction extends Abstract1DoubleInputFunction {
 
-	public ExponentialFunction() {
+    /**
+     * Instantiates a new Exponential function.
+     */
+    public ExponentialFunction() {
 		super("mathematical.exp", Ontology.NUMERICAL);
 	}
 

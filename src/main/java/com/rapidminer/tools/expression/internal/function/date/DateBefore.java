@@ -25,11 +25,13 @@ import java.util.Date;
  * A {@link Function} for comparing two dates.
  *
  * @author David Arnu
- *
  */
 public class DateBefore extends Abstract2DateInputBooleanOutput {
 
-	public DateBefore() {
+    /**
+     * Instantiates a new Date before.
+     */
+    public DateBefore() {
 		super("date.date_before");
 	}
 

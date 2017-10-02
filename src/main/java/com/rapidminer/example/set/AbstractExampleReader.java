@@ -24,7 +24,7 @@ import com.rapidminer.example.ExampleReader;
 /**
  * Abstract implementation which implements the method remove by throwing a
  * {@link java.lang.UnsupportedOperationException}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class AbstractExampleReader implements ExampleReader {

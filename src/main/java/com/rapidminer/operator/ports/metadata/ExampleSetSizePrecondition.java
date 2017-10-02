@@ -32,9 +32,8 @@ import java.util.Collections;
  * This Precondition checks whether two example indices given by parameters lying in the size of the
  * example set. If only a starting Parameter is given and the end parameter is null, it will be
  * treated as single index.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class ExampleSetSizePrecondition extends AbstractPrecondition {
 
@@ -42,11 +41,26 @@ public class ExampleSetSizePrecondition extends AbstractPrecondition {
 	private String endParameter;
 	private Operator operator;
 
-	public ExampleSetSizePrecondition(InputPort inputPort, Operator operator, String startParameter) {
+    /**
+     * Instantiates a new Example set size precondition.
+     *
+     * @param inputPort      the input port
+     * @param operator       the operator
+     * @param startParameter the start parameter
+     */
+    public ExampleSetSizePrecondition(InputPort inputPort, Operator operator, String startParameter) {
 		this(inputPort, operator, startParameter, null);
 	}
 
-	public ExampleSetSizePrecondition(InputPort inputPort, Operator operator, String startParameter, String endParameter) {
+    /**
+     * Instantiates a new Example set size precondition.
+     *
+     * @param inputPort      the input port
+     * @param operator       the operator
+     * @param startParameter the start parameter
+     * @param endParameter   the end parameter
+     */
+    public ExampleSetSizePrecondition(InputPort inputPort, Operator operator, String startParameter, String endParameter) {
 		super(inputPort);
 
 		this.startParameter = startParameter;

@@ -28,7 +28,8 @@ import java.awt.Component;
 
 
 /**
- * 
+ * The type Multi classification performance renderer.
+ *
  * @author Sebastian Land
  */
 public class MultiClassificationPerformanceRenderer extends AbstractRenderer {

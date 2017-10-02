@@ -123,14 +123,14 @@ import com.rapidminer.tools.I18N;
 
 /**
  * This class creates a JFreeChart from a PlotConfiguration.
- *
+ * <p>
  * Using the listener mechanism, the chart is updated or recreated each time the plot configuration
  * changes.
- *
+ * <p>
  * Classes implementing the interface {@link JFreeChartPlotEngineListener} can register at the
  * Plotter2D via addListener() and will be informed when the chart has changed.
- *
- *
+ * <p>
+ * <p>
  * Dataset and Renderer Chart: Series type categorical grouped stacking error bars Renderer Dataset
  * Plot Constraints L - irrelevant n/a - XYLineAndShapeRenderer XYDataset, e.g. DefaultXYDataset
  * XYPlot L - irrelevant n/a bars XYErrorRenderer IntervalXYDataset XYPlot L - irrelevant n/a band
@@ -158,9 +158,8 @@ import com.rapidminer.tools.I18N;
  * CategoryDataset, e.g. DefaultCategoryDataset CategoryPlot A X irrelevant percentage -
  * StackedAreaRenderer CategoryDataset, e.g. DefaultCategoryDataset CategoryPlot A irrelevant
  * irrelevant irrelevant != none not supported by JFreeChart n/a n/a
- *
+ * <p>
  * Series types: L -> Lines and Shapes B -> Bar A -> Area
- *
  *
  * @author Marius Helf, Nils Woehler
  */
@@ -238,7 +237,13 @@ public class JFreeChartPlotEngine
 		};
 	}
 
-	public JFreeChartPlotEngine(PlotInstance plotInstanceForEngine, boolean zoomInOnSelection) {
+    /**
+     * Instantiates a new J free chart plot engine.
+     *
+     * @param plotInstanceForEngine the plot instance for engine
+     * @param zoomInOnSelection     the zoom in on selection
+     */
+    public JFreeChartPlotEngine(PlotInstance plotInstanceForEngine, boolean zoomInOnSelection) {
 
 		this.plotInstance = plotInstanceForEngine;
 		updatingChart = new AtomicBoolean(false);
@@ -253,7 +258,14 @@ public class JFreeChartPlotEngine
 		subscribeAtPlotInstance(plotInstance);
 	}
 
-	public JFreeChartPlotEngine(PlotInstance plotInstanceForEngine, boolean zoomInOnSelection, boolean useBuffer) {
+    /**
+     * Instantiates a new J free chart plot engine.
+     *
+     * @param plotInstanceForEngine the plot instance for engine
+     * @param zoomInOnSelection     the zoom in on selection
+     * @param useBuffer             the use buffer
+     */
+    public JFreeChartPlotEngine(PlotInstance plotInstanceForEngine, boolean zoomInOnSelection, boolean useBuffer) {
 
 		this.plotInstance = plotInstanceForEngine;
 		updatingChart = new AtomicBoolean(false);
@@ -279,16 +291,23 @@ public class JFreeChartPlotEngine
 		initializing = false;
 	}
 
-	public boolean updatingChart() {
+    /**
+     * Updating chart boolean.
+     *
+     * @return the boolean
+     */
+    public boolean updatingChart() {
 		return updatingChart.get();
 	}
 
-	/**
-	 * Use to retrieve the current {@link JFreeChart} chart, stored and shown in the
-	 * {@link ChartPanel}. The chart may not reflect the current {@link PlotConfiguration} and may
-	 * be replaced by another chart shortly after it has been fetched.
-	 */
-	public JFreeChart getCurrentChart() {
+    /**
+     * Use to retrieve the current {@link JFreeChart} chart, stored and shown in the
+     * {@link ChartPanel}. The chart may not reflect the current {@link PlotConfiguration} and may
+     * be replaced by another chart shortly after it has been fetched.
+     *
+     * @return the current chart
+     */
+    public JFreeChart getCurrentChart() {
 		JFreeChart currentChart = chartPanel.getChart();
 		if (currentChart == null) {
 			return new JFreeChart(new CategoryPlot());
@@ -440,14 +459,20 @@ public class JFreeChartPlotEngine
 
 	}
 
-	public void endInitializing() {
+    /**
+     * End initializing.
+     */
+    public void endInitializing() {
 		if (initializing) {
 			initializing = false;
 			plotInstance.triggerReplot();
 		}
 	}
 
-	public void startInitializing() {
+    /**
+     * Start initializing.
+     */
+    public void startInitializing() {
 		initializing = true;
 	}
 
@@ -525,13 +550,15 @@ public class JFreeChartPlotEngine
 		cachedLegendItems = null;
 	}
 
-	/**
-	 * Is called to clear the {@link MasterOfDesaster}, invalidate the {@link JFreeChartPlotEngine}
-	 * cache and update the {@link ChartPanel}s chart. This should only be called if a
-	 * {@link PlotConfigurationChangeEvent} is processed. If initializing it returns
-	 * <code>true</code>, <code>false</code> otherwise.
-	 */
-	public boolean replot() {
+    /**
+     * Is called to clear the {@link MasterOfDesaster}, invalidate the {@link JFreeChartPlotEngine}
+     * cache and update the {@link ChartPanel}s chart. This should only be called if a
+     * {@link PlotConfigurationChangeEvent} is processed. If initializing it returns
+     * <code>true</code>, <code>false</code> otherwise.
+     *
+     * @return the boolean
+     */
+    public boolean replot() {
 		if (initializing) {
 			return true;
 		}
@@ -1340,14 +1367,13 @@ public class JFreeChartPlotEngine
 		setChartBackgroundColor(chartBackgroundColor);
 	}
 
-	/**
-	 * Sets the plot configuration and adapts all subscriptions of this Plotter2D to event
-	 * providers.
-	 *
-	 * @param plotInstance
-	 *            The new PlotConfiguration. null not allowed.
-	 */
-	public void setPlotInstance(PlotInstance plotInstance) {
+    /**
+     * Sets the plot configuration and adapts all subscriptions of this Plotter2D to event
+     * providers.
+     *
+     * @param plotInstance The new PlotConfiguration. null not allowed.
+     */
+    public void setPlotInstance(PlotInstance plotInstance) {
 		if (plotInstance == null) {
 			throw new IllegalArgumentException("null PlotConfiguration not allowed");
 		}
@@ -1703,18 +1729,30 @@ public class JFreeChartPlotEngine
 		}
 	}
 
-	/**
-	 * Returns the {@link ChartPanel} that is controlled by this {@link JFreeChartPlotEngine}.
-	 */
-	public LinkAndBrushChartPanel getChartPanel() {
+    /**
+     * Returns the {@link ChartPanel} that is controlled by this {@link JFreeChartPlotEngine}.
+     *
+     * @return the chart panel
+     */
+    public LinkAndBrushChartPanel getChartPanel() {
 		return chartPanel;
 	}
 
-	public void addPlotEngineListener(JFreeChartPlotEngineListener l) {
+    /**
+     * Add plot engine listener.
+     *
+     * @param l the l
+     */
+    public void addPlotEngineListener(JFreeChartPlotEngineListener l) {
 		listeners.add(new WeakReference<JFreeChartPlotEngineListener>(l));
 	}
 
-	public void removePlotEngineListener(JFreeChartPlotEngineListener l) {
+    /**
+     * Remove plot engine listener.
+     *
+     * @param l the l
+     */
+    public void removePlotEngineListener(JFreeChartPlotEngineListener l) {
 		Iterator<WeakReference<JFreeChartPlotEngineListener>> it = listeners.iterator();
 		while (it.hasNext()) {
 			JFreeChartPlotEngineListener listener = it.next().get();
@@ -1724,10 +1762,12 @@ public class JFreeChartPlotEngine
 		}
 	}
 
-	/**
-	 * This method sets the coordinate transformation for this component.
-	 */
-	public void setCoordinateTransformation(CoordinateTransformation transformation) {
+    /**
+     * This method sets the coordinate transformation for this component.
+     *
+     * @param transformation the transformation
+     */
+    public void setCoordinateTransformation(CoordinateTransformation transformation) {
 		this.coordinateTransformation = transformation;
 		this.chartPanel.setCoordinateTransformation(transformation);
 	}

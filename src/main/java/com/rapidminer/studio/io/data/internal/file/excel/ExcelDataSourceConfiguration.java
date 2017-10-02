@@ -31,15 +31,22 @@ import com.rapidminer.core.io.data.source.DataSourceConfiguration;
  *
  * @author Nils Woehler
  * @since 7.0.0
- *
  */
 final class ExcelDataSourceConfiguration implements DataSourceConfiguration {
 
-	public static final String HEADER_ROW_INDEX_KEX = "excel.headerRowIndex";
+    /**
+     * The constant HEADER_ROW_INDEX_KEX.
+     */
+    public static final String HEADER_ROW_INDEX_KEX = "excel.headerRowIndex";
 
 	private final Map<String, String> parameters = new HashMap<>();
 
-	ExcelDataSourceConfiguration(ExcelDataSource dataSource) {
+    /**
+     * Instantiates a new Excel data source configuration.
+     *
+     * @param dataSource the data source
+     */
+    ExcelDataSourceConfiguration(ExcelDataSource dataSource) {
 		parameters.put(HEADER_ROW_INDEX_KEX, String.valueOf(dataSource.getHeaderRowIndex()));
 
 		// add parameters from excel result set configuration

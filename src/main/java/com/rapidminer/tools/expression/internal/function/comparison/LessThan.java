@@ -28,10 +28,10 @@ import com.rapidminer.tools.expression.FunctionDescription;
  */
 public class LessThan extends AbstractComparisonFunctionWith2Inputs {
 
-	/**
-	 * Constructs a LESS THAN Function with 2 parameters with {@link FunctionDescription}
-	 */
-	public LessThan() {
+    /**
+     * Constructs a LESS THAN Function with 2 parameters with {@link FunctionDescription}
+     */
+    public LessThan() {
 		super("comparison.less_than");
 	}
 

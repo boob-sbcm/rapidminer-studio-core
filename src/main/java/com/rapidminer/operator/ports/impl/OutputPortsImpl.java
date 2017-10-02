@@ -28,11 +28,18 @@ import java.util.List;
 
 
 /**
+ * The type Output ports.
+ *
  * @author Simon Fischer
  */
 public class OutputPortsImpl extends AbstractPorts<OutputPort> implements OutputPorts {
 
-	public OutputPortsImpl(PortOwner owner) {
+    /**
+     * Instantiates a new Output ports.
+     *
+     * @param owner the owner
+     */
+    public OutputPortsImpl(PortOwner owner) {
 		super(owner);
 	}
 

@@ -51,23 +51,37 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
 
 /**
  * This operator simply sets the value for the specified example and attribute to the given value.
- *
+ * <p>
  * If offers the possibility to define more than one attribute value pair.
- *
  *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class SetData extends AbstractDataProcessing {
 
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	public static final String PARAMETER_EXAMPLE_INDEX = "example_index";
+    /**
+     * The constant PARAMETER_EXAMPLE_INDEX.
+     */
+    public static final String PARAMETER_EXAMPLE_INDEX = "example_index";
 
-	public static final String PARAMETER_COUNT_BACKWARDS = "count_backwards";
+    /**
+     * The constant PARAMETER_COUNT_BACKWARDS.
+     */
+    public static final String PARAMETER_COUNT_BACKWARDS = "count_backwards";
 
-	public static final String PARAMETER_VALUE = "value";
+    /**
+     * The constant PARAMETER_VALUE.
+     */
+    public static final String PARAMETER_VALUE = "value";
 
-	public static final String PARAMETER_ADDITIONAL_VALUES = "additional_values";
+    /**
+     * The constant PARAMETER_ADDITIONAL_VALUES.
+     */
+    public static final String PARAMETER_ADDITIONAL_VALUES = "additional_values";
 
 	/**
 	 * Incompatible version, old version writes into the exampleset, if original output port is not
@@ -75,7 +89,12 @@ public class SetData extends AbstractDataProcessing {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public SetData(OperatorDescription description) {
+    /**
+     * Instantiates a new Set data.
+     *
+     * @param description the description
+     */
+    public SetData(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(

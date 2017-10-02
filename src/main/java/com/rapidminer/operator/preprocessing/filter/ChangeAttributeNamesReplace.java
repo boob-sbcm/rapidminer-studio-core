@@ -51,18 +51,29 @@ import java.util.regex.PatternSyntaxException;
  * replace_by parameter can be defined as an arbitrary string. Empty strings are also allowed.
  * Capturing groups of the defined regular expression can be accessed with $1, $2, $3...
  * </p>
- * 
+ *
  * @author Ingo Mierswa, Tobias Malbrecht
  */
 public class ChangeAttributeNamesReplace extends AbstractDataProcessing {
 
-	public static final String PARAMETER_REPLACE_WHAT = "replace_what";
+    /**
+     * The constant PARAMETER_REPLACE_WHAT.
+     */
+    public static final String PARAMETER_REPLACE_WHAT = "replace_what";
 
-	public static final String PARAMETER_REPLACE_BY = "replace_by";
+    /**
+     * The constant PARAMETER_REPLACE_BY.
+     */
+    public static final String PARAMETER_REPLACE_BY = "replace_by";
 
 	private final AttributeSubsetSelector attributeSelector = new AttributeSubsetSelector(this, getExampleSetInputPort());
 
-	public ChangeAttributeNamesReplace(OperatorDescription description) {
+    /**
+     * Instantiates a new Change attribute names replace.
+     *
+     * @param description the description
+     */
+    public ChangeAttributeNamesReplace(OperatorDescription description) {
 		super(description);
 	}
 

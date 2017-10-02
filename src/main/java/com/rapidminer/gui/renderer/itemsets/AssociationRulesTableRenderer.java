@@ -31,7 +31,7 @@ import javax.swing.table.TableModel;
 
 /**
  * A renderer for the table view of association rules.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AssociationRulesTableRenderer extends AbstractTableModelTableRenderer {

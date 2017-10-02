@@ -48,8 +48,10 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class SalesExampleSetGenerator extends AbstractExampleSource {
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
 
 	private static final int MAX_STORES = 15;
 
@@ -70,7 +72,12 @@ public class SalesExampleSetGenerator extends AbstractExampleSource {
 	private static final String[] PRODUCT_CATEGORIES = new String[] { "Books", "Movies", "Electronics", "Home/Garden",
 			"Health", "Toys", "Sports", "Clothing" };
 
-	public SalesExampleSetGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Sales example set generator.
+     *
+     * @param description the description
+     */
+    public SalesExampleSetGenerator(OperatorDescription description) {
 		super(description);
 	}
 

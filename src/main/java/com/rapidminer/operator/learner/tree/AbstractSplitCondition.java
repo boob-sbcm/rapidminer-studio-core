@@ -20,7 +20,7 @@ package com.rapidminer.operator.learner.tree;
 
 /**
  * The abstract super class for all split conditions.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class AbstractSplitCondition implements SplitCondition {
@@ -31,7 +31,12 @@ public abstract class AbstractSplitCondition implements SplitCondition {
 	private static final long serialVersionUID = 6990047305990853177L;
 	private String attributeName;
 
-	public AbstractSplitCondition(String attributeName) {
+    /**
+     * Instantiates a new Abstract split condition.
+     *
+     * @param attributeName the attribute name
+     */
+    public AbstractSplitCondition(String attributeName) {
 		this.attributeName = attributeName;
 	}
 

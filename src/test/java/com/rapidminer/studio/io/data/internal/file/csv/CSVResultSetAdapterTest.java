@@ -47,20 +47,32 @@ import com.rapidminer.studio.io.data.internal.file.csv.CSVResultSetAdapter;
  * A test case for the {@link CSVResultSetAdapter}.
  *
  * @author Nils Woehler, Gisa Schaefer
- *
  */
 public class CSVResultSetAdapterTest {
 
 	private static File simpleTestFile;
 	private static File missingsTestFile;
 
-	@BeforeClass
+    /**
+     * Sets .
+     *
+     * @throws URISyntaxException the uri syntax exception
+     */
+    @BeforeClass
 	public static void setup() throws URISyntaxException {
 		simpleTestFile = new File(CSVResultSetAdapterTest.class.getResource("resultSetTest.csv").toURI());
 		missingsTestFile = new File(CSVResultSetAdapterTest.class.getResource("missingsResultSetTest.csv").toURI());
 	}
 
-	@Test
+    /**
+     * Test simple import.
+     *
+     * @throws DataSetException   the data set exception
+     * @throws OperatorException  the operator exception
+     * @throws URISyntaxException the uri syntax exception
+     * @throws ParseException     the parse exception
+     */
+    @Test
 	public void testSimpleImport() throws DataSetException, OperatorException, URISyntaxException, ParseException {
 		try (CSVResultSetConfiguration configuration = new CSVResultSetConfiguration()) {
 			// configure data import
@@ -115,7 +127,16 @@ public class CSVResultSetAdapterTest {
 		assertEquals(FileDataSourceTestUtils.getUtf8Label(), row.getString(5));
 	}
 
-	@Test
+    /**
+     * Test date import.
+     *
+     * @throws DataSetException   the data set exception
+     * @throws OperatorException  the operator exception
+     * @throws URISyntaxException the uri syntax exception
+     * @throws ParseException     the parse exception
+     * @throws ParseException     the parse exception
+     */
+    @Test
 	public void testDateImport()
 			throws DataSetException, OperatorException, URISyntaxException, ParseException, java.text.ParseException {
 		try (CSVResultSetConfiguration configuration = new CSVResultSetConfiguration()) {
@@ -158,7 +179,16 @@ public class CSVResultSetAdapterTest {
 		}
 	}
 
-	@Test(expected = ParseException.class)
+    /**
+     * Test date import without date pattern.
+     *
+     * @throws DataSetException   the data set exception
+     * @throws OperatorException  the operator exception
+     * @throws URISyntaxException the uri syntax exception
+     * @throws ParseException     the parse exception
+     * @throws ParseException     the parse exception
+     */
+    @Test(expected = ParseException.class)
 	public void testDateImportWithoutDatePattern()
 			throws DataSetException, OperatorException, URISyntaxException, ParseException, java.text.ParseException {
 		try (CSVResultSetConfiguration configuration = new CSVResultSetConfiguration()) {
@@ -192,7 +222,16 @@ public class CSVResultSetAdapterTest {
 		}
 	}
 
-	@Test
+    /**
+     * Test date import as string.
+     *
+     * @throws DataSetException   the data set exception
+     * @throws OperatorException  the operator exception
+     * @throws URISyntaxException the uri syntax exception
+     * @throws ParseException     the parse exception
+     * @throws ParseException     the parse exception
+     */
+    @Test
 	public void testDateImportAsString()
 			throws DataSetException, OperatorException, URISyntaxException, ParseException, java.text.ParseException {
 		try (CSVResultSetConfiguration configuration = new CSVResultSetConfiguration()) {
@@ -224,7 +263,16 @@ public class CSVResultSetAdapterTest {
 		}
 	}
 
-	@Test
+    /**
+     * Test import missings.
+     *
+     * @throws DataSetException   the data set exception
+     * @throws OperatorException  the operator exception
+     * @throws URISyntaxException the uri syntax exception
+     * @throws ParseException     the parse exception
+     * @throws ParseException     the parse exception
+     */
+    @Test
 	public void testImportMissings()
 			throws DataSetException, OperatorException, URISyntaxException, ParseException, java.text.ParseException {
 		try (CSVResultSetConfiguration configuration = new CSVResultSetConfiguration()) {
@@ -265,7 +313,16 @@ public class CSVResultSetAdapterTest {
 		}
 	}
 
-	@Test
+    /**
+     * Test fith row as start row.
+     *
+     * @throws DataSetException   the data set exception
+     * @throws OperatorException  the operator exception
+     * @throws URISyntaxException the uri syntax exception
+     * @throws ParseException     the parse exception
+     * @throws ParseException     the parse exception
+     */
+    @Test
 	public void testFithRowAsStartRow()
 			throws DataSetException, OperatorException, URISyntaxException, ParseException, java.text.ParseException {
 		try (CSVResultSetConfiguration configuration = new CSVResultSetConfiguration()) {
@@ -306,7 +363,16 @@ public class CSVResultSetAdapterTest {
 		}
 	}
 
-	@Test
+    /**
+     * Test fith row as start and ninth row as end row.
+     *
+     * @throws DataSetException   the data set exception
+     * @throws OperatorException  the operator exception
+     * @throws URISyntaxException the uri syntax exception
+     * @throws ParseException     the parse exception
+     * @throws ParseException     the parse exception
+     */
+    @Test
 	public void testFithRowAsStartAndNinthRowAsEndRow()
 			throws DataSetException, OperatorException, URISyntaxException, ParseException, java.text.ParseException {
 		try (CSVResultSetConfiguration configuration = new CSVResultSetConfiguration()) {
@@ -347,7 +413,16 @@ public class CSVResultSetAdapterTest {
 		}
 	}
 
-	@Test
+    /**
+     * Test end row behind actual data.
+     *
+     * @throws DataSetException   the data set exception
+     * @throws OperatorException  the operator exception
+     * @throws URISyntaxException the uri syntax exception
+     * @throws ParseException     the parse exception
+     * @throws ParseException     the parse exception
+     */
+    @Test
 	public void testEndRowBehindActualData()
 			throws DataSetException, OperatorException, URISyntaxException, ParseException, java.text.ParseException {
 		try (CSVResultSetConfiguration configuration = new CSVResultSetConfiguration()) {
@@ -389,7 +464,15 @@ public class CSVResultSetAdapterTest {
 		}
 	}
 
-	@Test(expected = IndexOutOfBoundsException.class)
+    /**
+     * Test access out of column bounds import.
+     *
+     * @throws DataSetException   the data set exception
+     * @throws OperatorException  the operator exception
+     * @throws URISyntaxException the uri syntax exception
+     * @throws ParseException     the parse exception
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
 	public void testAccessOutOfColumnBoundsImport()
 			throws DataSetException, OperatorException, URISyntaxException, ParseException {
 		try (CSVResultSetConfiguration configuration = new CSVResultSetConfiguration()) {
@@ -406,7 +489,15 @@ public class CSVResultSetAdapterTest {
 		}
 	}
 
-	@Test(expected = NoSuchElementException.class)
+    /**
+     * Test access next row out of bounds import.
+     *
+     * @throws DataSetException   the data set exception
+     * @throws OperatorException  the operator exception
+     * @throws URISyntaxException the uri syntax exception
+     * @throws ParseException     the parse exception
+     */
+    @Test(expected = NoSuchElementException.class)
 	public void testAccessNextRowOutOfBoundsImport()
 			throws DataSetException, OperatorException, URISyntaxException, ParseException {
 		try (CSVResultSetConfiguration configuration = new CSVResultSetConfiguration()) {

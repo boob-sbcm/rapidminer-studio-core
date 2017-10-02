@@ -19,7 +19,8 @@
 package com.rapidminer.gui.tools;
 
 /**
- * 
+ * The type Progress thread stopped exception.
+ *
  * @author Simon Fischer
  */
 public class ProgressThreadStoppedException extends RuntimeException {

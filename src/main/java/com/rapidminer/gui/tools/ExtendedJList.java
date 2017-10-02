@@ -27,19 +27,34 @@ import javax.swing.JList;
 /**
  * Extended JList which provides tool tips in combination with an {@link ExtendedListModel}.
  *
+ * @param <E> the type parameter
  * @author Tobias Malbrecht, Ingo Mierswa
  */
 public class ExtendedJList<E> extends JList<E> {
 
-	public static final long serialVersionUID = 9032182018402L;
+    /**
+     * The constant serialVersionUID.
+     */
+    public static final long serialVersionUID = 9032182018402L;
 
 	private int preferredWidth = -1;
 
-	public ExtendedJList(ExtendedListModel<E> model) {
+    /**
+     * Instantiates a new Extended j list.
+     *
+     * @param model the model
+     */
+    public ExtendedJList(ExtendedListModel<E> model) {
 		this(model, -1);
 	}
 
-	public ExtendedJList(ExtendedListModel<E> model, int preferredWidth) {
+    /**
+     * Instantiates a new Extended j list.
+     *
+     * @param model          the model
+     * @param preferredWidth the preferred width
+     */
+    public ExtendedJList(ExtendedListModel<E> model, int preferredWidth) {
 		super(model);
 		this.setCellRenderer(new ExtendedListCellRenderer(model));
 		this.preferredWidth = preferredWidth;

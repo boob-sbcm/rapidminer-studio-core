@@ -50,7 +50,12 @@ public class AttributeWeights2ExampleSet extends Operator {
 	private InputPort weightInput = getInputPorts().createPort("attribute weights", AttributeWeights.class);
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	public AttributeWeights2ExampleSet(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute weights 2 example set.
+     *
+     * @param description the description
+     */
+    public AttributeWeights2ExampleSet(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addRule(new GenerateNewExampleSetMDRule(exampleSetOutput) {

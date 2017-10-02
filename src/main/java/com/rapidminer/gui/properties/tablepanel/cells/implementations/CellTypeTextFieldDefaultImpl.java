@@ -46,29 +46,27 @@ import org.jdesktop.swingx.prompt.PromptSupport.FocusBehavior;
 
 /**
  * GUI component for the {@link TablePanel} for e.g. {@link CellTypeTextFieldDefault}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class CellTypeTextFieldDefaultImpl extends JPanel implements CellTypeTextFieldDefault, CellTypeTextFieldInteger,
 		CellTypeTextFieldNumerical, CellTypeTextFieldTime {
 
 	private static final long serialVersionUID = 5923158263372081013L;
 
-	/**
-	 * Creates a {@link JFormattedTextField} for the specified cell. If a formatter is given, will
-	 * apply it to the field. Does not validate the model, so make sure this call works!
-	 * 
-	 * @param model
-	 * @param rowIndex
-	 * @param columnIndex
-	 * @param cellClass
-	 * @param formatter
-	 *            the formatter or <code>null</code> if none is required
-	 * @param hideUnavailableContentAssist
-	 * @return
-	 */
-	public CellTypeTextFieldDefaultImpl(final TablePanelModel model, final int rowIndex, final int columnIndex,
+    /**
+     * Creates a {@link JFormattedTextField} for the specified cell. If a formatter is given, will
+     * apply it to the field. Does not validate the model, so make sure this call works!
+     *
+     * @param model                        the model
+     * @param rowIndex                     the row index
+     * @param columnIndex                  the column index
+     * @param cellClass                    the cell class
+     * @param formatter                    the formatter or <code>null</code> if none is required
+     * @param hideUnavailableContentAssist the hide unavailable content assist
+     * @return
+     */
+    public CellTypeTextFieldDefaultImpl(final TablePanelModel model, final int rowIndex, final int columnIndex,
 			final Class<? extends CellType> cellClass, AbstractFormatter formatter, boolean hideUnavailableContentAssist) {
 		super();
 

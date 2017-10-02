@@ -33,7 +33,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * A simple data table implementation which stores the data itself.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class SimpleDataTable extends AbstractDataTable implements Serializable {
@@ -53,11 +53,24 @@ public class SimpleDataTable extends AbstractDataTable implements Serializable {
 
 	private int[] currentIndices;
 
-	public SimpleDataTable(String name, String[] columns) {
+    /**
+     * Instantiates a new Simple data table.
+     *
+     * @param name    the name
+     * @param columns the columns
+     */
+    public SimpleDataTable(String name, String[] columns) {
 		this(name, columns, null);
 	}
 
-	public SimpleDataTable(String name, String[] columns, double[] weights) {
+    /**
+     * Instantiates a new Simple data table.
+     *
+     * @param name    the name
+     * @param columns the columns
+     * @param weights the weights
+     */
+    public SimpleDataTable(String name, String[] columns, double[] weights) {
 		super(name);
 		this.columns = columns;
 		this.weights = weights;
@@ -142,7 +155,13 @@ public class SimpleDataTable extends AbstractDataTable implements Serializable {
 		return specialColumns[index];
 	}
 
-	public void setSpecial(int index, boolean special) {
+    /**
+     * Sets special.
+     *
+     * @param index   the index
+     * @param special the special
+     */
+    public void setSpecial(int index, boolean special) {
 		this.specialColumns[index] = special;
 	}
 
@@ -210,7 +229,10 @@ public class SimpleDataTable extends AbstractDataTable implements Serializable {
 		return index2StringMap.get(column).size();
 	}
 
-	public void cleanMappingTables() {
+    /**
+     * Clean mapping tables.
+     */
+    public void cleanMappingTables() {
 		Map<Integer, Set<String>> allValues = new HashMap<>();
 		for (Map.Entry<Integer, Map<String, Integer>> entry : this.string2IndexMap.entrySet()) {
 			Integer key = entry.getKey();
@@ -291,7 +313,12 @@ public class SimpleDataTable extends AbstractDataTable implements Serializable {
 		}
 	}
 
-	public synchronized void remove(DataTableRow row) {
+    /**
+     * Remove.
+     *
+     * @param row the row
+     */
+    public synchronized void remove(DataTableRow row) {
 		synchronized (data) {
 			data.remove(row);
 			fireEvent();
@@ -321,7 +348,10 @@ public class SimpleDataTable extends AbstractDataTable implements Serializable {
 		return result;
 	}
 
-	public void clear() {
+    /**
+     * Clear.
+     */
+    public void clear() {
 		data.clear();
 		fireEvent();
 	}

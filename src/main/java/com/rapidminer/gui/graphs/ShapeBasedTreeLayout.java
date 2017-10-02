@@ -42,6 +42,8 @@ import edu.uci.ics.jung.graph.Tree;
  * This layout algorithm takes the shapes of the trees into account and performs a non-overlapping
  * layout.
  *
+ * @param <V> the type parameter
+ * @param <E> the type parameter
  * @author Ingo Mierswa
  */
 public class ShapeBasedTreeLayout<V, E> implements Layout<V, E> {
@@ -56,7 +58,10 @@ public class ShapeBasedTreeLayout<V, E> implements Layout<V, E> {
 
 	private Forest<V, E> graph;
 
-	protected Map<V, Point2D> locations = LazyMap.decorate(new HashMap<V, Point2D>(), new Transformer<V, Point2D>() {
+    /**
+     * The Locations.
+     */
+    protected Map<V, Point2D> locations = LazyMap.decorate(new HashMap<V, Point2D>(), new Transformer<V, Point2D>() {
 
 		@Override
 		public Point2D transform(V arg0) {
@@ -64,7 +69,13 @@ public class ShapeBasedTreeLayout<V, E> implements Layout<V, E> {
 		}
 	});
 
-	public List<V> getAtomics(V p) {
+    /**
+     * Gets atomics.
+     *
+     * @param p the p
+     * @return the atomics
+     */
+    public List<V> getAtomics(V p) {
 		List<V> v = new ArrayList<V>();
 		getAtomics(p, v);
 		return v;
@@ -84,7 +95,13 @@ public class ShapeBasedTreeLayout<V, E> implements Layout<V, E> {
 
 	private Transformer<V, Shape> shapeTransformer;
 
-	public ShapeBasedTreeLayout(Forest<V, E> g, Transformer<V, Shape> shapeTransformer) {
+    /**
+     * Instantiates a new Shape based tree layout.
+     *
+     * @param g                the g
+     * @param shapeTransformer the shape transformer
+     */
+    public ShapeBasedTreeLayout(Forest<V, E> g, Transformer<V, Shape> shapeTransformer) {
 		this.graph = g;
 		this.roots = getRoots(g);
 		this.shapeTransformer = shapeTransformer;
@@ -99,7 +116,12 @@ public class ShapeBasedTreeLayout<V, E> implements Layout<V, E> {
 		return roots;
 	}
 
-	public Dimension getCurrentSize() {
+    /**
+     * Gets current size.
+     *
+     * @return the current size
+     */
+    public Dimension getCurrentSize() {
 		return size;
 	}
 
@@ -117,7 +139,14 @@ public class ShapeBasedTreeLayout<V, E> implements Layout<V, E> {
 		}
 	}
 
-	void calculateLocations(V v, double xOffset, double yOffset) {
+    /**
+     * Calculate locations.
+     *
+     * @param v       the v
+     * @param xOffset the x offset
+     * @param yOffset the y offset
+     */
+    void calculateLocations(V v, double xOffset, double yOffset) {
 		double currentWidth = calculateWidth(v);
 		double currentHeight = calculateHeight(v);
 
@@ -231,7 +260,12 @@ public class ShapeBasedTreeLayout<V, E> implements Layout<V, E> {
 	@Override
 	public void setInitializer(Transformer<V, Point2D> initializer) {}
 
-	public Point2D getCenter() {
+    /**
+     * Gets center.
+     *
+     * @return the center
+     */
+    public Point2D getCenter() {
 		return new Point2D.Double(size.getWidth() / 2, size.getHeight() / 2);
 	}
 

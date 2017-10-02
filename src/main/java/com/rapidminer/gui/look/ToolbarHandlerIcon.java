@@ -32,7 +32,7 @@ import javax.swing.Icon;
 
 /**
  * This class is used for drawing a handler icon.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ToolbarHandlerIcon implements Icon {
@@ -49,15 +49,34 @@ public class ToolbarHandlerIcon implements Icon {
 
 	private ToolbarHandlerBuffer buffer;
 
-	public ToolbarHandlerIcon(Dimension bumpArea) {
+    /**
+     * Instantiates a new Toolbar handler icon.
+     *
+     * @param bumpArea the bump area
+     */
+    public ToolbarHandlerIcon(Dimension bumpArea) {
 		this(bumpArea.width, bumpArea.height);
 	}
 
-	public ToolbarHandlerIcon(int width, int height) {
+    /**
+     * Instantiates a new Toolbar handler icon.
+     *
+     * @param width  the width
+     * @param height the height
+     */
+    public ToolbarHandlerIcon(int width, int height) {
 		this(width, height, RapidLookAndFeel.getPrimaryControlHighlight(), RapidLookAndFeel.getPrimaryControlDarkShadow());
 	}
 
-	public ToolbarHandlerIcon(int width, int height, Color newTopColor, Color newShadowColor) {
+    /**
+     * Instantiates a new Toolbar handler icon.
+     *
+     * @param width          the width
+     * @param height         the height
+     * @param newTopColor    the new top color
+     * @param newShadowColor the new shadow color
+     */
+    public ToolbarHandlerIcon(int width, int height, Color newTopColor, Color newShadowColor) {
 		setBumpArea(width, height);
 		setBumpColors(newTopColor, newShadowColor);
 	}
@@ -82,16 +101,33 @@ public class ToolbarHandlerIcon implements Icon {
 		return result;
 	}
 
-	public void setBumpArea(Dimension bumpArea) {
+    /**
+     * Sets bump area.
+     *
+     * @param bumpArea the bump area
+     */
+    public void setBumpArea(Dimension bumpArea) {
 		setBumpArea(bumpArea.width, bumpArea.height);
 	}
 
-	public void setBumpArea(int width, int height) {
+    /**
+     * Sets bump area.
+     *
+     * @param width  the width
+     * @param height the height
+     */
+    public void setBumpArea(int width, int height) {
 		this.xBumps = width / 2;
 		this.yBumps = height / 2;
 	}
 
-	public void setBumpColors(Color newTopColor, Color newShadowColor) {
+    /**
+     * Sets bump colors.
+     *
+     * @param newTopColor    the new top color
+     * @param newShadowColor the new shadow color
+     */
+    public void setBumpColors(Color newTopColor, Color newShadowColor) {
 		this.topColor = newTopColor;
 		this.shadowColor = newShadowColor;
 	}

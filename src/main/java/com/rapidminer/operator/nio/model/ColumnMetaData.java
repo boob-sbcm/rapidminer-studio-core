@@ -28,9 +28,8 @@ import com.rapidminer.operator.ports.metadata.AttributeMetaData;
 /**
  * The meta data either guessed by RapidMiner or specified by the user for a column of an excel
  * file, csv file, etc.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class ColumnMetaData extends Observable {
 
@@ -42,11 +41,23 @@ public class ColumnMetaData extends Observable {
 	private String role;
 	private boolean selected;
 
-	public ColumnMetaData() {
+    /**
+     * Instantiates a new Column meta data.
+     */
+    public ColumnMetaData() {
 
 	}
 
-	public ColumnMetaData(String originalAttributeName, String userDefinedAttributeName, int attributeValueType,
+    /**
+     * Instantiates a new Column meta data.
+     *
+     * @param originalAttributeName    the original attribute name
+     * @param userDefinedAttributeName the user defined attribute name
+     * @param attributeValueType       the attribute value type
+     * @param role                     the role
+     * @param selected                 the selected
+     */
+    public ColumnMetaData(String originalAttributeName, String userDefinedAttributeName, int attributeValueType,
 			String role, boolean selected) {
 		super();
 		this.originalAttributeName = originalAttributeName;
@@ -62,11 +73,21 @@ public class ColumnMetaData extends Observable {
 		super.addObserver(o);
 	}
 
-	public String getOriginalAttributeName() {
+    /**
+     * Gets original attribute name.
+     *
+     * @return the original attribute name
+     */
+    public String getOriginalAttributeName() {
 		return originalAttributeName;
 	}
 
-	public void setOriginalAttributeName(String originalAttributeName) {
+    /**
+     * Sets original attribute name.
+     *
+     * @param originalAttributeName the original attribute name
+     */
+    public void setOriginalAttributeName(String originalAttributeName) {
 		if (equals(this.originalAttributeName, originalAttributeName)) {
 			return;
 		}
@@ -75,11 +96,21 @@ public class ColumnMetaData extends Observable {
 		notifyObservers();
 	}
 
-	public String getUserDefinedAttributeName() {
+    /**
+     * Gets user defined attribute name.
+     *
+     * @return the user defined attribute name
+     */
+    public String getUserDefinedAttributeName() {
 		return userDefinedAttributeName;
 	}
 
-	public void setUserDefinedAttributeName(String userDefinedAttributeName) {
+    /**
+     * Sets user defined attribute name.
+     *
+     * @param userDefinedAttributeName the user defined attribute name
+     */
+    public void setUserDefinedAttributeName(String userDefinedAttributeName) {
 		if (equals(this.userDefinedAttributeName, userDefinedAttributeName)) {
 			return;
 		}
@@ -88,11 +119,21 @@ public class ColumnMetaData extends Observable {
 		notifyObservers();
 	}
 
-	public int getAttributeValueType() {
+    /**
+     * Gets attribute value type.
+     *
+     * @return the attribute value type
+     */
+    public int getAttributeValueType() {
 		return attributeValueType;
 	}
 
-	public void setAttributeValueType(int attributeValueType) {
+    /**
+     * Sets attribute value type.
+     *
+     * @param attributeValueType the attribute value type
+     */
+    public void setAttributeValueType(int attributeValueType) {
 		if (attributeValueType == this.attributeValueType) {
 			return;
 		}
@@ -101,11 +142,21 @@ public class ColumnMetaData extends Observable {
 		notifyObservers();
 	}
 
-	public String getRole() {
+    /**
+     * Gets role.
+     *
+     * @return the role
+     */
+    public String getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+    /**
+     * Sets role.
+     *
+     * @param role the role
+     */
+    public void setRole(String role) {
 		if (equals(role, this.role)) {
 			return;
 		}
@@ -114,11 +165,21 @@ public class ColumnMetaData extends Observable {
 		notifyObservers();
 	}
 
-	public boolean isSelected() {
+    /**
+     * Is selected boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSelected() {
 		return selected;
 	}
 
-	public void setSelected(boolean selected) {
+    /**
+     * Sets selected.
+     *
+     * @param selected the selected
+     */
+    public void setSelected(boolean selected) {
 		this.selected = selected;
 		setChanged();
 		notifyObservers();
@@ -130,7 +191,12 @@ public class ColumnMetaData extends Observable {
 				+ getAttributeValueType() + " " + (isSelected() ? "x" : "-");
 	}
 
-	public AttributeMetaData getAttributeMetaData() {
+    /**
+     * Gets attribute meta data.
+     *
+     * @return the attribute meta data
+     */
+    public AttributeMetaData getAttributeMetaData() {
 		String roleId = getRole();
 		if (!Attributes.ATTRIBUTE_NAME.equals(roleId)) {
 			return new AttributeMetaData(getUserDefinedAttributeName(), getAttributeValueType(), roleId);
@@ -139,8 +205,12 @@ public class ColumnMetaData extends Observable {
 		}
 	}
 
-	/** Returns whether the user specified a name different from the default. */
-	public boolean isAttributeNameSpecified() {
+    /**
+     * Returns whether the user specified a name different from the default.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean isAttributeNameSpecified() {
 		if (userDefinedAttributeName == null) {
 			return false;
 		}

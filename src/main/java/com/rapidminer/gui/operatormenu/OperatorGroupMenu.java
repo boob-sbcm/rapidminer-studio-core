@@ -29,7 +29,7 @@ import javax.swing.event.MenuListener;
 
 /**
  * A menu for operator groups.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class OperatorGroupMenu extends ResourceMenu {
@@ -42,7 +42,12 @@ public class OperatorGroupMenu extends ResourceMenu {
 	private final Icon closedFolderIcon = SwingTools.createIcon("16/"
 			+ I18N.getMessage(I18N.getGUIBundle(), "gui.action.menu.operator_group.closed.icon"));
 
-	public OperatorGroupMenu(String groupName) {
+    /**
+     * Instantiates a new Operator group menu.
+     *
+     * @param groupName the group name
+     */
+    public OperatorGroupMenu(String groupName) {
 		super("operator_group");
 		setText(groupName);
 		setToolTipText(I18N.getMessage(I18N.getGUIBundle(), "gui.action.menu.operator_group.tip", groupName));

@@ -42,7 +42,7 @@ import java.util.List;
  * This class uses n+1 inner learners and generates n different models by using the last n learners.
  * The predictions of these n models are taken to create n new features for the example set, which
  * is finally used to serve as an input of the first inner learner.
- * 
+ *
  * @author Ingo Mierswa, Helge Homburg
  */
 public class Stacking extends AbstractStacking {
@@ -52,9 +52,17 @@ public class Stacking extends AbstractStacking {
 	private final InputPort stackingModelInnerSink = getSubprocess(1).getInnerSinks().createPort("stacking model",
 			PredictionModel.class);
 
-	public static final String PARAMETER_KEEP_ALL_ATTRIBUTES = "keep_all_attributes";
+    /**
+     * The constant PARAMETER_KEEP_ALL_ATTRIBUTES.
+     */
+    public static final String PARAMETER_KEEP_ALL_ATTRIBUTES = "keep_all_attributes";
 
-	public Stacking(OperatorDescription description) {
+    /**
+     * Instantiates a new Stacking.
+     *
+     * @param description the description
+     */
+    public Stacking(OperatorDescription description) {
 		super(description, "Base Learner", "Stacking Model Learner");
 		getTransformer().addRule(new MDTransformationRule() {
 

@@ -30,7 +30,7 @@ import org.jfree.util.PublicCloneable;
 
 /**
  * This is the item label generator for the Pareto chart plotter.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ParetoChartItemLabelGenerator extends AbstractCategoryItemLabelGenerator implements CategoryItemLabelGenerator,
@@ -38,15 +38,19 @@ public class ParetoChartItemLabelGenerator extends AbstractCategoryItemLabelGene
 
 	private static final long serialVersionUID = 3475336746667135258L;
 
-	/** The default format string. */
-	public static final String DEFAULT_LABEL_FORMAT_STRING = "{2}";
+    /**
+     * The default format string.
+     */
+    public static final String DEFAULT_LABEL_FORMAT_STRING = "{2}";
 
 	private Map<String, String> itemLabels;
 
-	/**
-	 * Creates a new generator with a default number formatter.
-	 */
-	public ParetoChartItemLabelGenerator(Map<String, String> itemLabels) {
+    /**
+     * Creates a new generator with a default number formatter.
+     *
+     * @param itemLabels the item labels
+     */
+    public ParetoChartItemLabelGenerator(Map<String, String> itemLabels) {
 		super(DEFAULT_LABEL_FORMAT_STRING, NumberFormat.getInstance());
 		this.itemLabels = itemLabels;
 	}

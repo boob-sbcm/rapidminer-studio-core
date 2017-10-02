@@ -23,17 +23,40 @@ import java.util.EventListener;
 
 /**
  * A listener listening to changes of a repository.
- * 
+ *
  * @author Simon Fischer
  */
 public interface RepositoryListener extends EventListener {
 
-	public void entryAdded(Entry newEntry, Folder parent);
+    /**
+     * Entry added.
+     *
+     * @param newEntry the new entry
+     * @param parent   the parent
+     */
+    public void entryAdded(Entry newEntry, Folder parent);
 
-	public void entryChanged(Entry entry);
+    /**
+     * Entry changed.
+     *
+     * @param entry the entry
+     */
+    public void entryChanged(Entry entry);
 
-	public void entryRemoved(Entry removedEntry, Folder parent, int oldIndex);
+    /**
+     * Entry removed.
+     *
+     * @param removedEntry the removed entry
+     * @param parent       the parent
+     * @param oldIndex     the old index
+     */
+    public void entryRemoved(Entry removedEntry, Folder parent, int oldIndex);
 
-	public void folderRefreshed(Folder folder);
+    /**
+     * Folder refreshed.
+     *
+     * @param folder the folder
+     */
+    public void folderRefreshed(Folder folder);
 
 }

@@ -45,7 +45,7 @@ import javax.swing.JScrollPane;
 
 /**
  * A dialog to select a subset of attributes.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class AttributesPropertyDialog extends PropertyDialog {
@@ -104,7 +104,13 @@ public class AttributesPropertyDialog extends PropertyDialog {
 		}
 	};
 
-	public AttributesPropertyDialog(final ParameterTypeAttributes type, Collection<String> preselectedItems) {
+    /**
+     * Instantiates a new Attributes property dialog.
+     *
+     * @param type             the type
+     * @param preselectedItems the preselected items
+     */
+    public AttributesPropertyDialog(final ParameterTypeAttributes type, Collection<String> preselectedItems) {
 		super(type, "attributes");
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -321,7 +327,12 @@ public class AttributesPropertyDialog extends PropertyDialog {
 		layoutDefault(panel, NORMAL, makeOkButton("attributes_property_dialog_apply"), makeCancelButton());
 	}
 
-	public Collection<String> getSelectedAttributeNames() {
+    /**
+     * Gets selected attribute names.
+     *
+     * @return the selected attribute names
+     */
+    public Collection<String> getSelectedAttributeNames() {
 		return selectedItems;
 	}
 }

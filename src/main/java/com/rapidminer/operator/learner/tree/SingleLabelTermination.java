@@ -27,12 +27,15 @@ import java.util.Iterator;
 
 /**
  * This criterion terminates if only one single label is left.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class SingleLabelTermination implements Terminator {
 
-	public SingleLabelTermination() {}
+    /**
+     * Instantiates a new Single label termination.
+     */
+    public SingleLabelTermination() {}
 
 	@Override
 	public boolean shouldStop(ExampleSet exampleSet, int depth) {

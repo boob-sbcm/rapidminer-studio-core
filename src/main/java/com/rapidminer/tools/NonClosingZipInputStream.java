@@ -32,7 +32,12 @@ import java.util.zip.ZipInputStream;
  */
 public final class NonClosingZipInputStream extends ZipInputStream {
 
-	public NonClosingZipInputStream(InputStream in) {
+    /**
+     * Instantiates a new Non closing zip input stream.
+     *
+     * @param in the in
+     */
+    public NonClosingZipInputStream(InputStream in) {
 		super(in);
 	}
 
@@ -41,7 +46,12 @@ public final class NonClosingZipInputStream extends ZipInputStream {
 		// noop to prevent utility methods from closing the zip.
 	}
 
-	public void close2() throws IOException {
+    /**
+     * Close 2.
+     *
+     * @throws IOException the io exception
+     */
+    public void close2() throws IOException {
 		super.close();
 	}
 }

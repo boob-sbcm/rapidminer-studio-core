@@ -33,7 +33,6 @@ import com.rapidminer.operator.learner.PredictionModel;
  * learn time.
  *
  * @author Sebastian Land
- *
  */
 public class AttributeDefaultModel extends PredictionModel {
 
@@ -43,7 +42,13 @@ public class AttributeDefaultModel extends PredictionModel {
 
 	private String sourceAttributeName;
 
-	protected AttributeDefaultModel(ExampleSet trainingExampleSet, String sourceAttribute) {
+    /**
+     * Instantiates a new Attribute default model.
+     *
+     * @param trainingExampleSet the training example set
+     * @param sourceAttribute    the source attribute
+     */
+    protected AttributeDefaultModel(ExampleSet trainingExampleSet, String sourceAttribute) {
 		super(trainingExampleSet, null, null);
 		this.sourceAttributeName = sourceAttribute;
 	}

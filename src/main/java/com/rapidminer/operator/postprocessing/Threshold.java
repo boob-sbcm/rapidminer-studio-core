@@ -24,7 +24,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * A threshold for soft2crisp classifying.
- * 
+ *
  * @author Ingo Mierswa, Martin Scholz
  */
 public class Threshold extends ResultObjectAdapter {
@@ -40,29 +40,61 @@ public class Threshold extends ResultObjectAdapter {
 	/** The second class. */
 	private String oneClass;
 
-	public Threshold(double threshold, String zeroClass, String oneClass) {
+    /**
+     * Instantiates a new Threshold.
+     *
+     * @param threshold the threshold
+     * @param zeroClass the zero class
+     * @param oneClass  the one class
+     */
+    public Threshold(double threshold, String zeroClass, String oneClass) {
 		this.threshold = threshold;
 		this.zeroClass = zeroClass;
 		this.oneClass = oneClass;
 	}
 
-	public double getThreshold() {
+    /**
+     * Gets threshold.
+     *
+     * @return the threshold
+     */
+    public double getThreshold() {
 		return this.threshold;
 	}
 
-	public String getZeroClass() {
+    /**
+     * Gets zero class.
+     *
+     * @return the zero class
+     */
+    public String getZeroClass() {
 		return zeroClass;
 	}
 
-	public String getOneClass() {
+    /**
+     * Gets one class.
+     *
+     * @return the one class
+     */
+    public String getOneClass() {
 		return oneClass;
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "thr";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "threshold file";
 	}
 

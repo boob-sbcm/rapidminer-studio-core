@@ -26,20 +26,19 @@ import com.rapidminer.tools.Tools;
  * Provides methods to count label value occurrences.
  *
  * @author Gisa Schaefer
- *
  */
 public class ColumnFrequencyCalculator {
 
-	/**
-	 * Counts the weighted number of label value occurrences in each splitting class. Each attribute
-	 * values is a class, where missing values are an extra class.
-	 *
-	 * @param columnTable
-	 * @param selection
-	 * @param attributeNumber
-	 * @return
-	 */
-	public static double[][] getNominalWeightCounts(ColumnExampleTable columnTable, int[] selection, int attributeNumber) {
+    /**
+     * Counts the weighted number of label value occurrences in each splitting class. Each attribute
+     * values is a class, where missing values are an extra class.
+     *
+     * @param columnTable     the column table
+     * @param selection       the selection
+     * @param attributeNumber the attribute number
+     * @return double [ ] [ ]
+     */
+    public static double[][] getNominalWeightCounts(ColumnExampleTable columnTable, int[] selection, int attributeNumber) {
 		Attribute label = columnTable.getLabel();
 		int numberOfLabels = label.getMapping().size();
 		// maximal as many values as size of the mapping and one more for potential NaNs
@@ -64,18 +63,18 @@ public class ColumnFrequencyCalculator {
 		return weightCounts;
 	}
 
-	/**
-	 * Counts the weighted number of label value occurrences in each splitting class. One class
-	 * consists of all attribute values smaller than the splitValue, one of those bigger and if
-	 * there are missing values they are an extra class.
-	 *
-	 * @param columnTable
-	 * @param selection
-	 * @param attributeNumber
-	 * @param splitValue
-	 * @return
-	 */
-	public static double[][] getNumericalWeightCounts(ColumnExampleTable columnTable, int[] selection, int attributeNumber,
+    /**
+     * Counts the weighted number of label value occurrences in each splitting class. One class
+     * consists of all attribute values smaller than the splitValue, one of those bigger and if
+     * there are missing values they are an extra class.
+     *
+     * @param columnTable     the column table
+     * @param selection       the selection
+     * @param attributeNumber the attribute number
+     * @param splitValue      the split value
+     * @return double [ ] [ ]
+     */
+    public static double[][] getNumericalWeightCounts(ColumnExampleTable columnTable, int[] selection, int attributeNumber,
 			double splitValue) {
 		Attribute label = columnTable.getLabel();
 		int numberOfLabels = label.getMapping().size();

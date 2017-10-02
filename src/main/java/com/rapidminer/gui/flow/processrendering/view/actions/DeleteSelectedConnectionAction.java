@@ -32,7 +32,6 @@ import com.rapidminer.operator.Operator;
  *
  * @author Simon Fischer
  * @since 6.4.0
- *
  */
 public class DeleteSelectedConnectionAction extends ResourceAction {
 
@@ -40,7 +39,12 @@ public class DeleteSelectedConnectionAction extends ResourceAction {
 
 	private ProcessRendererView view;
 
-	public DeleteSelectedConnectionAction(ProcessRendererView view) {
+    /**
+     * Instantiates a new Delete selected connection action.
+     *
+     * @param view the view
+     */
+    public DeleteSelectedConnectionAction(ProcessRendererView view) {
 		super("delete_selected_connection");
 
 		this.view = view;

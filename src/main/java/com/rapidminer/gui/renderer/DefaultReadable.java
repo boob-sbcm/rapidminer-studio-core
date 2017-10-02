@@ -23,7 +23,7 @@ import com.rapidminer.report.Readable;
 
 /**
  * A simple default readable just build from a given text.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DefaultReadable implements Readable {
@@ -31,11 +31,22 @@ public class DefaultReadable implements Readable {
 	private String text;
 	private boolean isInTargetEncoding = false;
 
-	public DefaultReadable(String text) {
+    /**
+     * Instantiates a new Default readable.
+     *
+     * @param text the text
+     */
+    public DefaultReadable(String text) {
 		this.text = text;
 	}
 
-	public DefaultReadable(String text, boolean isInTargetEncoding) {
+    /**
+     * Instantiates a new Default readable.
+     *
+     * @param text               the text
+     * @param isInTargetEncoding the is in target encoding
+     */
+    public DefaultReadable(String text, boolean isInTargetEncoding) {
 		this.text = text;
 		this.isInTargetEncoding = isInTargetEncoding;
 	}

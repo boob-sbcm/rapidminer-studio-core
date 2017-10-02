@@ -61,13 +61,15 @@ import com.vlsolutions.swing.docking.DockableActionCustomizer;
  * Dockable containing a single result.
  *
  * @author Simon Fischer
- *
  */
 public class ResultTab extends JPanel implements Dockable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final String DOCKKEY_PREFIX = "result_";
+    /**
+     * The constant DOCKKEY_PREFIX.
+     */
+    public static final String DOCKKEY_PREFIX = "result_";
 
 	/** the max length of dockkey names */
 	private static final int MAX_DOCKNAME_LENGTH = 80;
@@ -79,7 +81,12 @@ public class ResultTab extends JPanel implements Dockable {
 	private ResultObject resultObject = null;
 	private LicenseManagerListener licenseListener;
 
-	public ResultTab(String id) {
+    /**
+     * Instantiates a new Result tab.
+     *
+     * @param id the id
+     */
+    public ResultTab(String id) {
 		setLayout(new BorderLayout());
 		this.id = id;
 		this.dockKey = new DockKey(id, "Result " + id);
@@ -151,12 +158,14 @@ public class ResultTab extends JPanel implements Dockable {
 		LicenseManagerRegistry.INSTANCE.get().registerLicenseManagerListener(licenseListener);
 	}
 
-	/**
-	 * Creates a component for this object and displays it. This method does not have to be called
-	 * on the EDT. It executes a time consuming task and should be called from a
-	 * {@link ProgressThread}.
-	 */
-	public void showResult(final ResultObject resultObject) {
+    /**
+     * Creates a component for this object and displays it. This method does not have to be called
+     * on the EDT. It executes a time consuming task and should be called from a
+     * {@link ProgressThread}.
+     *
+     * @param resultObject the result object
+     */
+    public void showResult(final ResultObject resultObject) {
 		if (resultObject != null) {
 			this.resultObject = resultObject;
 		}
@@ -258,7 +267,10 @@ public class ResultTab extends JPanel implements Dockable {
 		return dockKey;
 	}
 
-	public void freeResources() {
+    /**
+     * Free resources.
+     */
+    public void freeResources() {
 		if (component != null) {
 			stopStatisticsRecursively(component);
 			remove(component);
@@ -285,10 +297,12 @@ public class ResultTab extends JPanel implements Dockable {
 		}
 	}
 
-	/**
-	 * @return the panel which displays the actual result
-	 */
-	public JPanel getResultViewComponent() {
+    /**
+     * Gets result view component.
+     *
+     * @return the panel which displays the actual result
+     */
+    public JPanel getResultViewComponent() {
 		return component;
 	}
 }

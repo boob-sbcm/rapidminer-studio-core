@@ -60,7 +60,7 @@ import com.rapidminer.parameter.conditions.EqualTypeCondition;
  * This operator records almost arbitrary data. It can be written to a file which can then be read,
  * e.g., by gnuplot. Alternatively, the collected data can be plotted by the GUI. This is even
  * possible during process runtime (i.e. online plotting).<br/>
- *
+ * <p>
  * Parameters in the list <code>log</code> are interpreted as follows: The <var>key</var> gives the
  * name for the column name (e.g. for use in the plotter). The <var>value</var> specifies where to
  * retrieve the value from. This is best explained by an example:
@@ -78,40 +78,79 @@ import com.rapidminer.parameter.conditions.EqualTypeCondition;
  * writes the collected data rows to a file (if specified). In GUI mode, 2D or 3D plots are
  * automatically generated and displayed in the result viewer. <br/>
  * Please refer to section {@rapidminer.ref sec:parameter_optimization|Advanced Processes/Parameter
- * and performance analysis} for an example application.
+ * and performance analysis}** for an example application.
  *
- * @rapidminer.todo Use IOObjects for logging as well (e.g.
- *                  {@link com.rapidminer.operator.performance.PerformanceVector})
  * @author Simon Fischer, Ingo Mierswa
+ * @rapidminer.todo Use IOObjects for logging as well (e.g.                  {@link com.rapidminer.operator.performance.PerformanceVector})
  */
 public class ProcessLogOperator extends Operator {
 
-	public static final String PARAMETER_COLUMN_NAME = "column_name";
+    /**
+     * The constant PARAMETER_COLUMN_NAME.
+     */
+    public static final String PARAMETER_COLUMN_NAME = "column_name";
 
-	/** The parameter name for &quot;operator.OPERATORNAME.[value|parameter].VALUE_NAME&quot; */
-	public static final String PARAMETER_COLUMN_VALUE = "value";
+    /**
+     * The parameter name for &quot;operator.OPERATORNAME.[value|parameter].VALUE_NAME&quot;
+     */
+    public static final String PARAMETER_COLUMN_VALUE = "value";
 
-	public static final String PARAMETER_FILENAME = "filename";
+    /**
+     * The constant PARAMETER_FILENAME.
+     */
+    public static final String PARAMETER_FILENAME = "filename";
 
-	public static final String PARAMETER_LOG = "log";
+    /**
+     * The constant PARAMETER_LOG.
+     */
+    public static final String PARAMETER_LOG = "log";
 
-	public static final String PARAMETER_PERSISTENT = "persistent";
+    /**
+     * The constant PARAMETER_PERSISTENT.
+     */
+    public static final String PARAMETER_PERSISTENT = "persistent";
 
-	public static final String PARAMETER_SORTING_TYPE = "sorting_type";
+    /**
+     * The constant PARAMETER_SORTING_TYPE.
+     */
+    public static final String PARAMETER_SORTING_TYPE = "sorting_type";
 
-	public static final String PARAMETER_SORTING_DIMENSION = "sorting_dimension";
+    /**
+     * The constant PARAMETER_SORTING_DIMENSION.
+     */
+    public static final String PARAMETER_SORTING_DIMENSION = "sorting_dimension";
 
-	public static final String PARAMETER_SORTING_K = "sorting_k";
+    /**
+     * The constant PARAMETER_SORTING_K.
+     */
+    public static final String PARAMETER_SORTING_K = "sorting_k";
 
-	public static final String[] SORTING_TYPES = { "none", "top-k", "bottom-k" };
+    /**
+     * The constant SORTING_TYPES.
+     */
+    public static final String[] SORTING_TYPES = { "none", "top-k", "bottom-k" };
 
-	public static final int SORTING_TYPE_NONE = 0;
-	public static final int SORTING_TYPE_TOP_K = 1;
-	public static final int SORTING_TYPE_BOTTOM_K = 2;
+    /**
+     * The constant SORTING_TYPE_NONE.
+     */
+    public static final int SORTING_TYPE_NONE = 0;
+    /**
+     * The constant SORTING_TYPE_TOP_K.
+     */
+    public static final int SORTING_TYPE_TOP_K = 1;
+    /**
+     * The constant SORTING_TYPE_BOTTOM_K.
+     */
+    public static final int SORTING_TYPE_BOTTOM_K = 2;
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public ProcessLogOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Process log operator.
+     *
+     * @param description the description
+     */
+    public ProcessLogOperator(OperatorDescription description) {
 		super(description);
 
 		dummyPorts.start();
@@ -189,7 +228,12 @@ public class ProcessLogOperator extends Operator {
 		return valueSelections;
 	}
 
-	public void createDataTable() throws OperatorException {
+    /**
+     * Create data table.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void createDataTable() throws OperatorException {
 		getProcess().addDataTable(new SimpleDataTable(getName(), getColumnNames()));
 	}
 

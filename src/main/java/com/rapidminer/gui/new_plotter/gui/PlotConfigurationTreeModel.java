@@ -45,8 +45,9 @@ import javax.swing.tree.TreePath;
 
 
 /**
+ * The type Plot configuration tree model.
+ *
  * @author Nils Woehler
- * 
  */
 public class PlotConfigurationTreeModel extends DefaultTreeModel implements PlotConfigurationListener {
 
@@ -54,12 +55,19 @@ public class PlotConfigurationTreeModel extends DefaultTreeModel implements Plot
 	private final PlotConfigurationTree plotConfigTree;
 	private PlotConfiguration plotConfig;
 
-	public static int NUMBER_OF_PERMANENT_DIMENSIONS = 4;
+    /**
+     * The constant NUMBER_OF_PERMANENT_DIMENSIONS.
+     */
+    public static int NUMBER_OF_PERMANENT_DIMENSIONS = 4;
 
-	/**
-	 * @param root
-	 */
-	public PlotConfigurationTreeModel(DefaultMutableTreeNode root, PlotConfiguration plotConfig,
+    /**
+     * Instantiates a new Plot configuration tree model.
+     *
+     * @param root           the root
+     * @param plotConfig     the plot config
+     * @param plotConfigTree the plot config tree
+     */
+    public PlotConfigurationTreeModel(DefaultMutableTreeNode root, PlotConfiguration plotConfig,
 			PlotConfigurationTree plotConfigTree) {
 		super(root);
 		this.plotConfig = plotConfig;
@@ -281,7 +289,12 @@ public class PlotConfigurationTreeModel extends DefaultTreeModel implements Plot
 
 	}
 
-	public void exchangePlotConfiguration(PlotConfiguration newPlotConfig) {
+    /**
+     * Exchange plot configuration.
+     *
+     * @param newPlotConfig the new plot config
+     */
+    public void exchangePlotConfiguration(PlotConfiguration newPlotConfig) {
 		if (plotConfig != null) {
 			plotConfig.removePlotConfigurationListener(this);
 		}

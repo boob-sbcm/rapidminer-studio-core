@@ -29,8 +29,9 @@ import javax.swing.tree.TreePath;
 
 
 /**
+ * The type Abstract tree selection dependent panel.
+ *
  * @author Nils Woehler
- * 
  */
 public abstract class AbstractTreeSelectionDependentPanel extends AbstractConfigurationPanel implements
 		TreeSelectionListener {
@@ -41,19 +42,32 @@ public abstract class AbstractTreeSelectionDependentPanel extends AbstractConfig
 
 	private ValueSourceTreeNode valueSourceNode = null;
 
-	public AbstractTreeSelectionDependentPanel(JTree plotConfigurationTree, PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Abstract tree selection dependent panel.
+     *
+     * @param plotConfigurationTree the plot configuration tree
+     * @param plotInstance          the plot instance
+     */
+    public AbstractTreeSelectionDependentPanel(JTree plotConfigurationTree, PlotInstance plotInstance) {
 		super(plotInstance);
 		plotConfigurationTree.addTreeSelectionListener(this);
 	}
 
-	/**
-	 * @return the currentValueSource
-	 */
-	public ValueSource getSelectedValueSource() {
+    /**
+     * Gets selected value source.
+     *
+     * @return the currentValueSource
+     */
+    public ValueSource getSelectedValueSource() {
 		return currentValueSource;
 	}
 
-	public ValueSourceTreeNode getSelectedValueSourceTreeNode() {
+    /**
+     * Gets selected value source tree node.
+     *
+     * @return the selected value source tree node
+     */
+    public ValueSourceTreeNode getSelectedValueSourceTreeNode() {
 		return valueSourceNode;
 	}
 

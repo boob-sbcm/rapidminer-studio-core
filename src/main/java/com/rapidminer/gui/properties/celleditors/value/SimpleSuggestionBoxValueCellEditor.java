@@ -29,14 +29,19 @@ import javax.swing.JButton;
 
 /**
  * Renderer for {@link ParameterTypeSuggestion}.
- * 
+ *
  * @author Nils Woehler
  */
 public class SimpleSuggestionBoxValueCellEditor extends AbstractSuggestionBoxValueCellEditor {
 
 	private static final long serialVersionUID = 1L;
 
-	public SimpleSuggestionBoxValueCellEditor(ParameterTypeSuggestion type) {
+    /**
+     * Instantiates a new Simple suggestion box value cell editor.
+     *
+     * @param type the type
+     */
+    public SimpleSuggestionBoxValueCellEditor(ParameterTypeSuggestion type) {
 		super(type);
 		if (type.getSuggestionProvider().getAction() != null) {
 			addConfigureButton(new JButton(type.getSuggestionProvider().getAction()));

@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * An abstract super class for the creators of configuration handling providing some basic parameter
  * handling.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class AbstractConfigurationWizardCreator implements ConfigurationWizardCreator {

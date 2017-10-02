@@ -31,6 +31,7 @@ import com.rapidminer.gui.tools.ExtendedJScrollPane;
 
 
 /**
+ * The type Long message dialog.
  *
  * @author Tobias Malbrecht
  */
@@ -38,36 +39,29 @@ public class LongMessageDialog extends ButtonDialog {
 
 	private static final long serialVersionUID = -2647548699663292273L;
 
-	/**
-	 * Creates a dialog to display a long message.
-	 *
-	 * @param i18nKey
-	 *            the i18n key
-	 * @param message
-	 *            the actual message
-	 * @param i18nArgs
-	 *            additional i18n arguments
-	 * @deprecated use {@link #LongMessageDialog(Window, String, String, Object...)} instead
-	 */
-	@Deprecated
+    /**
+     * Creates a dialog to display a long message.
+     *
+     * @param i18nKey  the i18n key
+     * @param message  the actual message
+     * @param i18nArgs additional i18n arguments
+     * @deprecated use {@link #LongMessageDialog(Window, String, String, Object...)} instead
+     */
+    @Deprecated
 	public LongMessageDialog(String i18nKey, String message, Object... i18nArgs) {
 		this(ApplicationFrame.getApplicationFrame(), i18nKey, message, i18nArgs);
 	}
 
-	/**
-	 * Creates a dialog to display a long message.
-	 *
-	 * @param owner
-	 *            the owner window in which the dialog is displayed
-	 * @param i18nKey
-	 *            the i18n key
-	 * @param message
-	 *            the actual message
-	 * @param i18nArgs
-	 *            additional i18n arguments
-	 * @since 6.5.0
-	 */
-	public LongMessageDialog(Window owner, String i18nKey, String message, Object... i18nArgs) {
+    /**
+     * Creates a dialog to display a long message.
+     *
+     * @param owner    the owner window in which the dialog is displayed
+     * @param i18nKey  the i18n key
+     * @param message  the actual message
+     * @param i18nArgs additional i18n arguments
+     * @since 6.5.0
+     */
+    public LongMessageDialog(Window owner, String i18nKey, String message, Object... i18nArgs) {
 		super(owner, i18nKey, ModalityType.APPLICATION_MODAL, i18nArgs);
 		JEditorPane textComponent = new ExtendedHTMLJEditorPane("text/html", message);
 		// so it does not steel ENTER from the default button

@@ -37,132 +37,131 @@ import javax.swing.table.TableModel;
 
 /**
  * The model for a {@link TablePanel}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface TablePanelModel extends TableModel {
 
-	/**
-	 * Appends a new row to the model. Has to fire a {@link TableModelEvent}.
-	 */
-	public void appendRow();
+    /**
+     * Appends a new row to the model. Has to fire a {@link TableModelEvent}.
+     */
+    public void appendRow();
 
-	/**
-	 * Removes a new row from the model. Will do nothing if there are no rows left. Has to fire a
-	 * {@link TableModelEvent}.
-	 * 
-	 * @param rowIndex
-	 */
-	public void removeRow(int rowIndex);
+    /**
+     * Removes a new row from the model. Will do nothing if there are no rows left. Has to fire a
+     * {@link TableModelEvent}.
+     *
+     * @param rowIndex the row index
+     */
+    public void removeRow(int rowIndex);
 
-	/**
-	 * Returns the column class for a specific cell. Returned classes can include all interfaces
-	 * from the cells subpackage, e.g.:
-	 * <ul>
-	 * <li>{@link CellTypeComboBox}</li>
-	 * <li>{@link CellTypeTextFieldDefault}</li>
-	 * <li>{@link CellTypeTextFieldNumerical}</li>
-	 * <li>{@link CellTypeDate}</li>
-	 * <li>{@link CellTypeTextFieldTime}</li>
-	 * <li>{@link CellTypeDateTime}</li>
-	 * <li>{@link CellTypeCheckBox}</li>
-	 * </ul>
-	 * 
-	 * @param rowIndex
-	 * @param columnIndex
-	 * @return
-	 */
-	public Class<? extends CellType> getColumnClass(int rowIndex, int columnIndex);
+    /**
+     * Returns the column class for a specific cell. Returned classes can include all interfaces
+     * from the cells subpackage, e.g.:
+     * <ul>
+     * <li>{@link CellTypeComboBox}</li>
+     * <li>{@link CellTypeTextFieldDefault}</li>
+     * <li>{@link CellTypeTextFieldNumerical}</li>
+     * <li>{@link CellTypeDate}</li>
+     * <li>{@link CellTypeTextFieldTime}</li>
+     * <li>{@link CellTypeDateTime}</li>
+     * <li>{@link CellTypeCheckBox}</li>
+     * </ul>
+     *
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     * @return column class
+     */
+    public Class<? extends CellType> getColumnClass(int rowIndex, int columnIndex);
 
-	/**
-	 * Returns a help text containing information about the selected cell. If no helptext is
-	 * available, returns <code>null</code>.
-	 * 
-	 * @param rowIndex
-	 * @param columnIndex
-	 * @return
-	 */
-	public String getHelptextAt(int rowIndex, int columnIndex);
+    /**
+     * Returns a help text containing information about the selected cell. If no helptext is
+     * available, returns <code>null</code>.
+     *
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     * @return helptext at
+     */
+    public String getHelptextAt(int rowIndex, int columnIndex);
 
-	/**
-	 * Returns a {@link String} which exemplarily displays the syntax required for this cell. If no
-	 * syntax help is available, returns <code>null</code>.
-	 * 
-	 * @param rowIndex
-	 * @param columnIndex
-	 * @return
-	 */
-	public String getSyntaxHelpAt(int rowIndex, int columnIndex);
+    /**
+     * Returns a {@link String} which exemplarily displays the syntax required for this cell. If no
+     * syntax help is available, returns <code>null</code>.
+     *
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     * @return syntax help at
+     */
+    public String getSyntaxHelpAt(int rowIndex, int columnIndex);
 
-	/**
-	 * Returns a {@link List} of the possible values for a given cell. If the selected cells' class
-	 * is not a {@link Collection} or {@link #isContentAssistPossibleForCell(int, int)} is
-	 * <code>false</code>, returns <code>null</code>.
-	 * 
-	 * @param rowIndex
-	 * @param columnIndex
-	 * @return
-	 * @throws IllegalArgumentException
-	 *             if the row/column index is out of range
-	 */
-	public List<String> getPossibleValuesForCellOrNull(int rowIndex, int columnIndex) throws IllegalArgumentException;
+    /**
+     * Returns a {@link List} of the possible values for a given cell. If the selected cells' class
+     * is not a {@link Collection} or {@link #isContentAssistPossibleForCell(int, int)} is
+     * <code>false</code>, returns <code>null</code>.
+     *
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     * @return possible values for cell or null
+     * @throws IllegalArgumentException if the row/column index is out of range
+     */
+    public List<String> getPossibleValuesForCellOrNull(int rowIndex, int columnIndex) throws IllegalArgumentException;
 
-	/**
-	 * Returns <code>true</code> if there is content assist available for the specified cell (see
-	 * {@link #getPossibleValuesForCellOrNull(int, int)} to get content assist values);
-	 * <code>false</code> otherwise.
-	 * 
-	 * @param rowIndex
-	 * @param columnIndex
-	 * @return
-	 */
-	public boolean isContentAssistPossibleForCell(int rowIndex, int columnIndex);
+    /**
+     * Returns <code>true</code> if there is content assist available for the specified cell (see
+     * {@link #getPossibleValuesForCellOrNull(int, int)} to get content assist values);
+     * <code>false</code> otherwise.
+     *
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     * @return boolean boolean
+     */
+    public boolean isContentAssistPossibleForCell(int rowIndex, int columnIndex);
 
-	/**
-	 * Returns <code>true</code> if multiple values can be entered into one cell. Can only return
-	 * <code>true</code> when {@link #isContentAssistPossibleForCell(int, int)} also returns
-	 * <code>true</code>, however this may return <code>false</code> anyway.
-	 * 
-	 * @param rowIndex
-	 * @param columnIndex
-	 * @return
-	 */
-	public boolean canCellHaveMultipleValues(int rowIndex, int columnIndex);
+    /**
+     * Returns <code>true</code> if multiple values can be entered into one cell. Can only return
+     * <code>true</code> when {@link #isContentAssistPossibleForCell(int, int)} also returns
+     * <code>true</code>, however this may return <code>false</code> anyway.
+     *
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     * @return boolean boolean
+     */
+    public boolean canCellHaveMultipleValues(int rowIndex, int columnIndex);
 
-	/**
-	 * Converts a given encoded {@link String} (for value cells where multiple values can be
-	 * entered; see {@link #canCellHaveMultipleValues(int, int)} ) to a {@link List} of Strings
-	 * which contains all separated values.
-	 * 
-	 * @param encodedValue
-	 * @return
-	 */
-	public List<String> convertEncodedStringValueToList(String encodedValue);
+    /**
+     * Converts a given encoded {@link String} (for value cells where multiple values can be
+     * entered; see {@link #canCellHaveMultipleValues(int, int)} ) to a {@link List} of Strings
+     * which contains all separated values.
+     *
+     * @param encodedValue the encoded value
+     * @return list list
+     */
+    public List<String> convertEncodedStringValueToList(String encodedValue);
 
-	/**
-	 * Converts a {@link List} of Strings to an encoded {@link String} (for value cells where
-	 * multiple values can be entered; see {@link #canCellHaveMultipleValues(int, int)}).
-	 * 
-	 * @param listOfStrings
-	 * @return
-	 */
-	public String encodeListOfStringsToValue(List<String> listOfStrings);
+    /**
+     * Converts a {@link List} of Strings to an encoded {@link String} (for value cells where
+     * multiple values can be entered; see {@link #canCellHaveMultipleValues(int, int)}).
+     *
+     * @param listOfStrings the list of strings
+     * @return string string
+     */
+    public String encodeListOfStringsToValue(List<String> listOfStrings);
 
-	/**
-	 * Returns a {@link List} of {@link String} arrays where each list entry represents a row in
-	 * this model.
-	 * 
-	 * @return
-	 */
-	public List<String[]> getRowTupels();
+    /**
+     * Returns a {@link List} of {@link String} arrays where each list entry represents a row in
+     * this model.
+     *
+     * @return row tupels
+     */
+    public List<String[]> getRowTupels();
 
-	/**
-	 * Sets the rows of this model (Overrides any existing rows). Each list entry should represent a
-	 * row in this model.
-	 * 
-	 * @return
-	 */
-	public void setRowTupels(List<String[]> tupelList);
+    /**
+     * Sets the rows of this model (Overrides any existing rows). Each list entry should represent a
+     * row in this model.
+     *
+     * @param tupelList the tupel list
+     * @return
+     */
+    public void setRowTupels(List<String[]> tupelList);
 
 }

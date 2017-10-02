@@ -41,6 +41,8 @@ import com.vlsolutions.swing.docking.Dockable;
 
 
 /**
+ * The type Operator tree panel.
+ *
  * @author Tobias Malbrecht
  */
 public class OperatorTreePanel extends JPanel implements Dockable, ProcessEditor, PrintableComponent {
@@ -49,7 +51,12 @@ public class OperatorTreePanel extends JPanel implements Dockable, ProcessEditor
 
 	private final OperatorTree operatorTree;
 
-	public OperatorTreePanel(final MainFrame mainFrame) {
+    /**
+     * Instantiates a new Operator tree panel.
+     *
+     * @param mainFrame the main frame
+     */
+    public OperatorTreePanel(final MainFrame mainFrame) {
 		operatorTree = new OperatorTree(mainFrame);
 
 		setLayout(new BorderLayout());
@@ -122,7 +129,12 @@ public class OperatorTreePanel extends JPanel implements Dockable, ProcessEditor
 		operatorTree.setSelection(selection);
 	}
 
-	public OperatorTree getOperatorTree() {
+    /**
+     * Gets operator tree.
+     *
+     * @return the operator tree
+     */
+    public OperatorTree getOperatorTree() {
 		return operatorTree;
 	}
 }

@@ -35,8 +35,12 @@ public class CutEntryRepositoryAction extends AbstractRepositoryAction<Entry> {
 
 	private static final long serialVersionUID = 1L;
 
-	/** Sets the i18n key and the action command key */
-	public CutEntryRepositoryAction(RepositoryTree tree) {
+    /**
+     * Sets the i18n key and the action command key  @param tree the tree
+     *
+     * @param tree the tree
+     */
+    public CutEntryRepositoryAction(RepositoryTree tree) {
 		super(tree, Entry.class, true, "repository_cut");
 		putValue(ACTION_COMMAND_KEY, "cut");
 	}

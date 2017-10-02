@@ -33,9 +33,17 @@ public class AccuracyColumnCriterion extends AbstractColumnCriterion implements 
 
 	private FrequencyCalculator frequencyCalculator = new FrequencyCalculator();
 
-	public AccuracyColumnCriterion() {}
+    /**
+     * Instantiates a new Accuracy column criterion.
+     */
+    public AccuracyColumnCriterion() {}
 
-	public AccuracyColumnCriterion(double minimalGain) {
+    /**
+     * Instantiates a new Accuracy column criterion.
+     *
+     * @param minimalGain the minimal gain
+     */
+    public AccuracyColumnCriterion(double minimalGain) {
 		this.minimalGain = minimalGain;
 	}
 

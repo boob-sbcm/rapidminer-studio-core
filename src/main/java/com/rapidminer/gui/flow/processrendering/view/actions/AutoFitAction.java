@@ -29,7 +29,6 @@ import com.rapidminer.gui.tools.ResourceAction;
  *
  * @author Simon Fischer
  * @since 6.4.0
- *
  */
 public class AutoFitAction extends ResourceAction {
 
@@ -37,7 +36,12 @@ public class AutoFitAction extends ResourceAction {
 
 	private ProcessRendererController controller;
 
-	public AutoFitAction(ProcessRendererController controller) {
+    /**
+     * Instantiates a new Auto fit action.
+     *
+     * @param controller the controller
+     */
+    public AutoFitAction(ProcessRendererController controller) {
 		super(true, "auto_fit");
 
 		this.controller = controller;

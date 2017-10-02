@@ -44,9 +44,8 @@ import javax.swing.JCheckBox;
  * <p>
  * When subclassing this Panel the methods adaptGUI and createComponents should overloaded to fill
  * the GUI.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class AbstractGroupingCardPanel extends AbstractConfigurationPanel {
 
@@ -57,7 +56,13 @@ public class AbstractGroupingCardPanel extends AbstractConfigurationPanel {
 	private ResourceLabel categoricalLabel;
 	private JCheckBox categoricalCheckBox;
 
-	public AbstractGroupingCardPanel(PlotInstance plotInstance, PlotDimension dimension) {
+    /**
+     * Instantiates a new Abstract grouping card panel.
+     *
+     * @param plotInstance the plot instance
+     * @param dimension    the dimension
+     */
+    public AbstractGroupingCardPanel(PlotInstance plotInstance, PlotDimension dimension) {
 		super(plotInstance);
 		this.dimension = dimension;
 		createComponents();
@@ -65,7 +70,10 @@ public class AbstractGroupingCardPanel extends AbstractConfigurationPanel {
 		adaptGUI();
 	}
 
-	protected void createComponents() {
+    /**
+     * Create components.
+     */
+    protected void createComponents() {
 
 		// add categorical row
 		{
@@ -113,10 +121,12 @@ public class AbstractGroupingCardPanel extends AbstractConfigurationPanel {
 		}
 	}
 
-	/**
-	 * @return the dimension
-	 */
-	public PlotDimension getDimension() {
+    /**
+     * Gets dimension.
+     *
+     * @return the dimension
+     */
+    public PlotDimension getDimension() {
 		return dimension;
 	}
 

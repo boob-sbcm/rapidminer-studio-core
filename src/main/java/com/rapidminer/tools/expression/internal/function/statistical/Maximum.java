@@ -24,18 +24,16 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryDouble
 
 
 /**
- *
  * A {@link Function} for maximum.
  *
  * @author David Arnu
- *
  */
 public class Maximum extends AbstractArbitraryDoubleInputFunction {
 
-	/**
-	 * Constructs an minimum function.
-	 */
-	public Maximum() {
+    /**
+     * Constructs an minimum function.
+     */
+    public Maximum() {
 		super("statistical.max", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, Ontology.NUMERICAL);
 
 	}

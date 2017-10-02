@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  * A container class for all attribute data sources and a default source file.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer ingomierswa Exp $
  */
 public class AttributeDataSources {
@@ -39,21 +39,43 @@ public class AttributeDataSources {
 	/** The charset of the default source */
 	private Charset encoding;
 
-	public AttributeDataSources(List<AttributeDataSource> attributeDataSources, File defaultSource, Charset encoding) {
+    /**
+     * Instantiates a new Attribute data sources.
+     *
+     * @param attributeDataSources the attribute data sources
+     * @param defaultSource        the default source
+     * @param encoding             the encoding
+     */
+    public AttributeDataSources(List<AttributeDataSource> attributeDataSources, File defaultSource, Charset encoding) {
 		this.attributeDataSources = attributeDataSources;
 		this.defaultSource = defaultSource;
 		this.encoding = encoding;
 	}
 
-	public List<AttributeDataSource> getDataSources() {
+    /**
+     * Gets data sources.
+     *
+     * @return the data sources
+     */
+    public List<AttributeDataSource> getDataSources() {
 		return attributeDataSources;
 	}
 
-	public File getDefaultSource() {
+    /**
+     * Gets default source.
+     *
+     * @return the default source
+     */
+    public File getDefaultSource() {
 		return defaultSource;
 	}
 
-	public Charset getEncoding() {
+    /**
+     * Gets encoding.
+     *
+     * @return the encoding
+     */
+    public Charset getEncoding() {
 		return encoding;
 	}
 

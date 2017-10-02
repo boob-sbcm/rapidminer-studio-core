@@ -24,10 +24,16 @@ import java.util.List;
 
 
 /**
+ * The interface Asserter factory.
+ *
  * @author Marius Helf
- * 
  */
 public interface AsserterFactory {
 
-	public List<Asserter> createAsserters();
+    /**
+     * Create asserters list.
+     *
+     * @return the list
+     */
+    public List<Asserter> createAsserters();
 }

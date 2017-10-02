@@ -53,8 +53,9 @@ import com.rapidminer.tools.math.AverageVector;
 
 
 /**
- * @author Marius Helf
+ * The type Asserter factory rapid miner.
  *
+ * @author Marius Helf
  */
 public class AsserterFactoryRapidMiner implements AsserterFactory {
 

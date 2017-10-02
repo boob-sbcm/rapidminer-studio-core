@@ -31,12 +31,15 @@ import javax.swing.text.Segment;
 
 /**
  * Java properties/DOS INI token marker.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class PropsTokenMarker extends TokenMarker {
 
-	public static final byte VALUE = Token.INTERNAL_FIRST;
+    /**
+     * The constant VALUE.
+     */
+    public static final byte VALUE = Token.INTERNAL_FIRST;
 
 	@Override
 	public byte markTokensImpl(byte token, Segment line, int lineIndex) {

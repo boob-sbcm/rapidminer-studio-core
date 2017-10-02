@@ -45,10 +45,17 @@ import com.rapidminer.tools.Ontology;
  */
 public class LinearCombinationOperator extends AbstractFeatureConstruction {
 
-	/** The parameter name for &quot;Indicates if the all old attributes should be kept.&quot; */
-	public static final String PARAMETER_KEEP_ALL = "keep_all";
+    /**
+     * The parameter name for &quot;Indicates if the all old attributes should be kept.&quot;
+     */
+    public static final String PARAMETER_KEEP_ALL = "keep_all";
 
-	public LinearCombinationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Linear combination operator.
+     *
+     * @param description the description
+     */
+    public LinearCombinationOperator(OperatorDescription description) {
 		super(description);
 	}
 

@@ -19,13 +19,19 @@
 package com.rapidminer.datatable;
 
 /**
- * 
+ * The interface Data table sort provider.
+ *
  * @author Marius Helf
- * 
  */
 public interface DataTableSortProvider extends Cloneable {
 
-	public int[] getIndexMapping(DataTable dataTable);
+    /**
+     * Get index mapping int [ ].
+     *
+     * @param dataTable the data table
+     * @return the int [ ]
+     */
+    public int[] getIndexMapping(DataTable dataTable);
 
 	public DataTableSortProvider clone();
 }

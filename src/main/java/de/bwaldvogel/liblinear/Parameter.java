@@ -29,49 +29,87 @@ package de.bwaldvogel.liblinear;
 import static de.bwaldvogel.liblinear.Linear.copyOf;
 
 
+/**
+ * The type Parameter.
+ */
 public final class Parameter {
 
-	double C;
+    /**
+     * The C.
+     */
+    double C;
 
-	/** stopping criteria */
-	double eps;
+    /**
+     * stopping criteria
+     */
+    double eps;
 
-	SolverType solverType;
+    /**
+     * The Solver type.
+     */
+    SolverType solverType;
 
-	double[] weight = null;
+    /**
+     * The Weight.
+     */
+    double[] weight = null;
 
-	int[] weightLabel = null;
+    /**
+     * The Weight label.
+     */
+    int[] weightLabel = null;
 
-	double p;
+    /**
+     * The P.
+     */
+    double p;
 
-	public Parameter(SolverType solver, double C, double eps) {
+    /**
+     * Instantiates a new Parameter.
+     *
+     * @param solver the solver
+     * @param C      the c
+     * @param eps    the eps
+     */
+    public Parameter(SolverType solver, double C, double eps) {
 		this(solver, C, eps, 0.1);
 	}
 
-	public Parameter(SolverType solverType, double C, double eps, double p) {
+    /**
+     * Instantiates a new Parameter.
+     *
+     * @param solverType the solver type
+     * @param C          the c
+     * @param eps        the eps
+     * @param p          the p
+     */
+    public Parameter(SolverType solverType, double C, double eps, double p) {
 		setSolverType(solverType);
 		setC(C);
 		setEps(eps);
 		setP(p);
 	}
 
-	/**
-	 * <p>
-	 * nr_weight, weight_label, and weight are used to change the penalty for some classes (If the
-	 * weight for a class is not changed, it is set to 1). This is useful for training classifier
-	 * using unbalanced input data or with asymmetric misclassification cost.
-	 * </p>
-	 *
-	 * <p>
-	 * Each weight[i] corresponds to weight_label[i], meaning that the penalty of class
-	 * weight_label[i] is scaled by a factor of weight[i].
-	 * </p>
-	 *
-	 * <p>
-	 * If you do not want to change penalty for any of the classes, just set nr_weight to 0.
-	 * </p>
-	 */
-	public void setWeights(double[] weights, int[] weightLabels) {
+    /**
+     * <p>
+     * nr_weight, weight_label, and weight are used to change the penalty for some classes (If the
+     * weight for a class is not changed, it is set to 1). This is useful for training classifier
+     * using unbalanced input data or with asymmetric misclassification cost.
+     * </p>
+     * <p>
+     * <p>
+     * Each weight[i] corresponds to weight_label[i], meaning that the penalty of class
+     * weight_label[i] is scaled by a factor of weight[i].
+     * </p>
+     * <p>
+     * <p>
+     * If you do not want to change penalty for any of the classes, just set nr_weight to 0.
+     * </p>
+     *
+     * @param weights      the weights
+     * @param weightLabels the weight labels
+     */
+    public void setWeights(double[] weights, int[] weightLabels) {
 		if (weights == null) {
 			throw new IllegalArgumentException("'weight' must not be null");
 		}
@@ -82,82 +120,120 @@ public final class Parameter {
 		this.weight = copyOf(weights, weights.length);
 	}
 
-	/**
-	 * @see #setWeights(double[], int[])
-	 */
-	public double[] getWeights() {
+    /**
+     * Get weights double [ ].
+     *
+     * @return the double [ ]
+     * @see #setWeights(double[], int[]) #setWeights(double[], int[])#setWeights(double[], int[])
+     */
+    public double[] getWeights() {
 		return copyOf(weight, weight.length);
 	}
 
-	/**
-	 * @see #setWeights(double[], int[])
-	 */
-	public int[] getWeightLabels() {
+    /**
+     * Get weight labels int [ ].
+     *
+     * @return the int [ ]
+     * @see #setWeights(double[], int[]) #setWeights(double[], int[])#setWeights(double[], int[])
+     */
+    public int[] getWeightLabels() {
 		return copyOf(weightLabel, weightLabel.length);
 	}
 
-	/**
-	 * the number of weights
-	 * 
-	 * @see #setWeights(double[], int[])
-	 */
-	public int getNumWeights() {
+    /**
+     * the number of weights
+     *
+     * @return the num weights
+     * @see #setWeights(double[], int[]) #setWeights(double[], int[])#setWeights(double[], int[])
+     */
+    public int getNumWeights() {
 		if (weight == null) {
 			return 0;
 		}
 		return weight.length;
 	}
 
-	/**
-	 * C is the cost of constraints violation. (we usually use 1 to 1000)
-	 */
-	public void setC(double C) {
+    /**
+     * C is the cost of constraints violation. (we usually use 1 to 1000)
+     *
+     * @param C the c
+     */
+    public void setC(double C) {
 		if (C <= 0) {
 			throw new IllegalArgumentException("C must not be <= 0");
 		}
 		this.C = C;
 	}
 
-	public double getC() {
+    /**
+     * Gets c.
+     *
+     * @return the c
+     */
+    public double getC() {
 		return C;
 	}
 
-	/**
-	 * eps is the stopping criterion. (we usually use 0.01).
-	 */
-	public void setEps(double eps) {
+    /**
+     * eps is the stopping criterion. (we usually use 0.01).
+     *
+     * @param eps the eps
+     */
+    public void setEps(double eps) {
 		if (eps <= 0) {
 			throw new IllegalArgumentException("eps must not be <= 0");
 		}
 		this.eps = eps;
 	}
 
-	public double getEps() {
+    /**
+     * Gets eps.
+     *
+     * @return the eps
+     */
+    public double getEps() {
 		return eps;
 	}
 
-	public void setSolverType(SolverType solverType) {
+    /**
+     * Sets solver type.
+     *
+     * @param solverType the solver type
+     */
+    public void setSolverType(SolverType solverType) {
 		if (solverType == null) {
 			throw new IllegalArgumentException("solver type must not be null");
 		}
 		this.solverType = solverType;
 	}
 
-	public SolverType getSolverType() {
+    /**
+     * Gets solver type.
+     *
+     * @return the solver type
+     */
+    public SolverType getSolverType() {
 		return solverType;
 	}
 
-	/**
-	 * set the epsilon in loss function of epsilon-SVR (default 0.1)
-	 */
-	public void setP(double p) {
+    /**
+     * set the epsilon in loss function of epsilon-SVR (default 0.1)
+     *
+     * @param p the p
+     */
+    public void setP(double p) {
 		if (p < 0) {
 			throw new IllegalArgumentException("p must not be less than 0");
 		}
 		this.p = p;
 	}
 
-	public double getP() {
+    /**
+     * Gets p.
+     *
+     * @return the p
+     */
+    public double getP() {
 		return p;
 	}
 }

@@ -20,14 +20,20 @@ package com.rapidminer.gui.graphs;
 
 /**
  * A helper class for sorting edges between two vertices according to the edge value.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SortableEdge implements Comparable<SortableEdge> {
 
-	public static final int DIRECTION_INCREASE = -1;
+    /**
+     * The constant DIRECTION_INCREASE.
+     */
+    public static final int DIRECTION_INCREASE = -1;
 
-	public static final int DIRECTION_DECREASE = 1;
+    /**
+     * The constant DIRECTION_DECREASE.
+     */
+    public static final int DIRECTION_DECREASE = 1;
 
 	private String vertex1;
 
@@ -39,7 +45,16 @@ public class SortableEdge implements Comparable<SortableEdge> {
 
 	private int direction;
 
-	public SortableEdge(String v1, String v2, String edgeName, double strength, int direction) {
+    /**
+     * Instantiates a new Sortable edge.
+     *
+     * @param v1        the v 1
+     * @param v2        the v 2
+     * @param edgeName  the edge name
+     * @param strength  the strength
+     * @param direction the direction
+     */
+    public SortableEdge(String v1, String v2, String edgeName, double strength, int direction) {
 		this.vertex1 = v1;
 		this.vertex2 = v2;
 		this.strength = strength;
@@ -65,19 +80,39 @@ public class SortableEdge implements Comparable<SortableEdge> {
 		return direction * Double.compare(this.strength, o.strength);
 	}
 
-	public double getEdgeValue() {
+    /**
+     * Gets edge value.
+     *
+     * @return the edge value
+     */
+    public double getEdgeValue() {
 		return this.strength;
 	}
 
-	public String getFirstVertex() {
+    /**
+     * Gets first vertex.
+     *
+     * @return the first vertex
+     */
+    public String getFirstVertex() {
 		return this.vertex1;
 	}
 
-	public String getSecondVertex() {
+    /**
+     * Gets second vertex.
+     *
+     * @return the second vertex
+     */
+    public String getSecondVertex() {
 		return this.vertex2;
 	}
 
-	public String getEdgeName() {
+    /**
+     * Gets edge name.
+     *
+     * @return the edge name
+     */
+    public String getEdgeName() {
 		return this.edgeName;
 	}
 

@@ -31,13 +31,18 @@ import org.junit.Test;
  * Tests the parser method of {@link StrictDecimalFormat}.
  *
  * @author Peter Hellinger
- *
  */
 public class StrictDecimalFormatTest {
 
-	StrictDecimalFormat strictDecimalFormat = new StrictDecimalFormat('.');
+    /**
+     * The Strict decimal format.
+     */
+    StrictDecimalFormat strictDecimalFormat = new StrictDecimalFormat('.');
 
-	@Test
+    /**
+     * Parse upper case e.
+     */
+    @Test
 	public void parseUpperCaseE() {
 		try {
 			assertEquals(12300000L, strictDecimalFormat.parse("1.23E7"));
@@ -47,7 +52,10 @@ public class StrictDecimalFormatTest {
 		}
 	}
 
-	@Test
+    /**
+     * Parse lower case e.
+     */
+    @Test
 	public void parseLowerCaseE() {
 		try {
 			assertEquals(12330000L, strictDecimalFormat.parse("1.233e7"));
@@ -57,7 +65,10 @@ public class StrictDecimalFormatTest {
 		}
 	}
 
-	@Test
+    /**
+     * Parse invalid exponent.
+     */
+    @Test
 	public void parseInvalidExponent() {
 		try {
 			strictDecimalFormat.parse("1.233eE7");
@@ -67,7 +78,10 @@ public class StrictDecimalFormatTest {
 		}
 	}
 
-	@Test
+    /**
+     * Parse invalid decimal separator.
+     */
+    @Test
 	public void parseInvalidDecimalSeparator() {
 		try {
 			strictDecimalFormat.parse("1,2337");
@@ -77,7 +91,10 @@ public class StrictDecimalFormatTest {
 		}
 	}
 
-	@Test
+    /**
+     * Parse comma decimal separator.
+     */
+    @Test
 	public void parseCommaDecimalSeparator() {
 		StrictDecimalFormat strictDecimalFormatComma = new StrictDecimalFormat(',');
 		try {

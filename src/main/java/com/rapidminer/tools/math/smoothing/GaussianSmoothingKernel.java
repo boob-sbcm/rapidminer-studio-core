@@ -21,9 +21,8 @@ package com.rapidminer.tools.math.smoothing;
 /**
  * This class implements the gaussian smoothing kernel. On distance 0, the weight is normalized to
  * 1, and on distance 1 it is nearly 0. But this kernel will never vanish completely.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class GaussianSmoothingKernel extends SmoothingKernel {
 

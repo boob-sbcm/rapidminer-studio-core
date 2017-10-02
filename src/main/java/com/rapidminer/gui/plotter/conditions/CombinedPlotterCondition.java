@@ -27,14 +27,19 @@ import java.util.List;
 
 /**
  * This condition accepts data tables which fulfills all child conditions.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CombinedPlotterCondition implements PlotterCondition {
 
 	private List<PlotterCondition> conditions = new LinkedList<PlotterCondition>();
 
-	public void addPlotterCondition(PlotterCondition condition) {
+    /**
+     * Add plotter condition.
+     *
+     * @param condition the condition
+     */
+    public void addPlotterCondition(PlotterCondition condition) {
 		conditions.add(condition);
 	}
 

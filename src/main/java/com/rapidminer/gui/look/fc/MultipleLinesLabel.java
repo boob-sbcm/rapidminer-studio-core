@@ -67,23 +67,52 @@ public class MultipleLinesLabel extends JComponent implements SwingConstants {
 
 	private boolean needUpdate = true;
 
-	public MultipleLinesLabel() {
+    /**
+     * Instantiates a new Multiple lines label.
+     */
+    public MultipleLinesLabel() {
 		this("", CENTER, CENTER, TOP);
 	}
 
-	public MultipleLinesLabel(String text) {
+    /**
+     * Instantiates a new Multiple lines label.
+     *
+     * @param text the text
+     */
+    public MultipleLinesLabel(String text) {
 		this(text, LEADING, LEADING, TOP);
 	}
 
-	public MultipleLinesLabel(String text, int horizontalAlignment) {
+    /**
+     * Instantiates a new Multiple lines label.
+     *
+     * @param text                the text
+     * @param horizontalAlignment the horizontal alignment
+     */
+    public MultipleLinesLabel(String text, int horizontalAlignment) {
 		this(text, horizontalAlignment, LEADING, CENTER);
 	}
 
-	public MultipleLinesLabel(String text, int horizontalAlignment, int textAlignment) {
+    /**
+     * Instantiates a new Multiple lines label.
+     *
+     * @param text                the text
+     * @param horizontalAlignment the horizontal alignment
+     * @param textAlignment       the text alignment
+     */
+    public MultipleLinesLabel(String text, int horizontalAlignment, int textAlignment) {
 		this(text, horizontalAlignment, textAlignment, CENTER);
 	}
 
-	public MultipleLinesLabel(String str, int horizontalAlignment, int textAlignment, int verticalAlignment) {
+    /**
+     * Instantiates a new Multiple lines label.
+     *
+     * @param str                 the str
+     * @param horizontalAlignment the horizontal alignment
+     * @param textAlignment       the text alignment
+     * @param verticalAlignment   the vertical alignment
+     */
+    public MultipleLinesLabel(String str, int horizontalAlignment, int textAlignment, int verticalAlignment) {
 		this.setForeground(UIManager.getColor("Label.foreground"));
 		this.setBackground(UIManager.getColor("textHighlight"));
 		this.setFont(labelFont);
@@ -199,7 +228,12 @@ public class MultipleLinesLabel extends JComponent implements SwingConstants {
 		return new Dimension(10, 20);
 	}
 
-	public Dimension getMinimumSize1() {
+    /**
+     * Gets minimum size 1.
+     *
+     * @return the minimum size 1
+     */
+    public Dimension getMinimumSize1() {
 		if (this.maxWidth == -1 || this.textHeight == -1) {
 			recalculateDimension();
 		}
@@ -324,7 +358,12 @@ public class MultipleLinesLabel extends JComponent implements SwingConstants {
 		this.needUpdate = false;
 	}
 
-	public void setText(String str) {
+    /**
+     * Sets text.
+     *
+     * @param str the str
+     */
+    public void setText(String str) {
 		this.text = str;
 
 		this.fontMetrics = getFontMetrics(getFont());
@@ -348,55 +387,110 @@ public class MultipleLinesLabel extends JComponent implements SwingConstants {
 		return ha;
 	}
 
-	public int getVerticalAlignment() {
+    /**
+     * Gets vertical alignment.
+     *
+     * @return the vertical alignment
+     */
+    public int getVerticalAlignment() {
 		return this.verticalAlignment;
 	}
 
-	public void setVerticalAlignment(int verticalAlignment) {
+    /**
+     * Sets vertical alignment.
+     *
+     * @param verticalAlignment the vertical alignment
+     */
+    public void setVerticalAlignment(int verticalAlignment) {
 		this.verticalAlignment = verticalAlignment;
 		this.needUpdate = true;
 		repaint();
 	}
 
-	public int getHorizontalAlignment() {
+    /**
+     * Gets horizontal alignment.
+     *
+     * @return the horizontal alignment
+     */
+    public int getHorizontalAlignment() {
 		return this.horizontalAlignment;
 	}
 
-	public void setHorizontalAlignment(int horizontalAlignment) {
+    /**
+     * Sets horizontal alignment.
+     *
+     * @param horizontalAlignment the horizontal alignment
+     */
+    public void setHorizontalAlignment(int horizontalAlignment) {
 		this.horizontalAlignment = horizontalAlignment;
 		this.needUpdate = true;
 		repaint();
 	}
 
-	public int getTextAlignment() {
+    /**
+     * Gets text alignment.
+     *
+     * @return the text alignment
+     */
+    public int getTextAlignment() {
 		return this.textAlignment;
 	}
 
-	public void setTextAlignment(int textAlignment) {
+    /**
+     * Sets text alignment.
+     *
+     * @param textAlignment the text alignment
+     */
+    public void setTextAlignment(int textAlignment) {
 		this.textAlignment = textAlignment;
 		this.needUpdate = true;
 		repaint();
 	}
 
-	public void setMultiLine(boolean b) {
+    /**
+     * Sets multi line.
+     *
+     * @param b the b
+     */
+    public void setMultiLine(boolean b) {
 		this.multiLine = b;
 		this.needUpdate = true;
 		updateInfo();
 	}
 
-	public void setNeed_update(boolean need_update) {
+    /**
+     * Sets need update.
+     *
+     * @param need_update the need update
+     */
+    public void setNeed_update(boolean need_update) {
 		this.needUpdate = need_update;
 	}
 
-	public int getPreferredLineWidth() {
+    /**
+     * Gets preferred line width.
+     *
+     * @return the preferred line width
+     */
+    public int getPreferredLineWidth() {
 		return this.fontMetrics.stringWidth(this.text);
 	}
 
-	public int getPreferredLineHeight() {
+    /**
+     * Gets preferred line height.
+     *
+     * @return the preferred line height
+     */
+    public int getPreferredLineHeight() {
 		return this.fontMetrics.getHeight();
 	}
 
-	public int getLineDiff() {
+    /**
+     * Gets line diff.
+     *
+     * @return the line diff
+     */
+    public int getLineDiff() {
 		if (this.vector.size() > 1) {
 			return this.fontMetrics.getHeight() * (this.vector.size() - 1);
 		} else {

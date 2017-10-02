@@ -24,15 +24,19 @@ import com.rapidminer.tools.Tools;
 /**
  * This class provides some helper tool for calculations around contingency tables like chi-squared
  * tests etc.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ContingencyTableTools {
 
-	/**
-	 * This method calculates the chi-squared statistic for the given contingency table.
-	 */
-	public static double getChiSquaredStatistics(double[][] matrix, boolean useYatesCorrection) {
+    /**
+     * This method calculates the chi-squared statistic for the given contingency table.
+     *
+     * @param matrix             the matrix
+     * @param useYatesCorrection the use yates correction
+     * @return the chi squared statistics
+     */
+    public static double getChiSquaredStatistics(double[][] matrix, boolean useYatesCorrection) {
 		int numberOfRows = matrix.length;
 		int numberOfColumns = matrix[0].length;
 		double[] rowSums = new double[numberOfRows];
@@ -90,10 +94,13 @@ public class ContingencyTableTools {
 		return (difference * difference / expectedFrequency);
 	}
 
-	/**
-	 * This method deletes all zero rows and columns.
-	 */
-	public static double[][] deleteEmpty(double[][] matrix) {
+    /**
+     * This method deletes all zero rows and columns.
+     *
+     * @param matrix the matrix
+     * @return the double [ ] [ ]
+     */
+    public static double[][] deleteEmpty(double[][] matrix) {
 		int numberOfRows = matrix.length;
 		int numberOfColumns = matrix[0].length;
 		double[] rowSums = new double[numberOfRows];
@@ -137,10 +144,13 @@ public class ContingencyTableTools {
 		return result;
 	}
 
-	/**
-	 * Calculates the symmetrical uncertainty.
-	 */
-	public static double symmetricalUncertainty(double matrix[][]) {
+    /**
+     * Calculates the symmetrical uncertainty.
+     *
+     * @param matrix the matrix
+     * @return the double
+     */
+    public static double symmetricalUncertainty(double matrix[][]) {
 		// columns
 		double columnSum = 0.0d;
 		double columnEntropy = 0.0d;

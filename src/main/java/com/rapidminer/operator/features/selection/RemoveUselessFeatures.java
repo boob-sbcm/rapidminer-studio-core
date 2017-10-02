@@ -44,33 +44,38 @@ import java.util.List;
  * <li>numerical attributes which standard deviation is less or equal to a given deviation threshold
  * <code>t</code>.</li>
  * </ul>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RemoveUselessFeatures extends AbstractFeatureSelection {
 
-	/**
-	 * The parameter name for &quot;Removes all numerical attributes with standard deviation less or
-	 * equal to this threshold.&quot;
-	 */
-	public static final String PARAMETER_NUMERICAL_MIN_DEVIATION = "numerical_min_deviation";
+    /**
+     * The parameter name for &quot;Removes all numerical attributes with standard deviation less or
+     * equal to this threshold.&quot;
+     */
+    public static final String PARAMETER_NUMERICAL_MIN_DEVIATION = "numerical_min_deviation";
 
-	/**
-	 * The parameter name for &quot;Removes all nominal attributes which provides more than the
-	 * given amount of only one value.&quot;
-	 */
-	public static final String PARAMETER_NOMINAL_SINGLE_VALUE_UPPER = "nominal_useless_above";
+    /**
+     * The parameter name for &quot;Removes all nominal attributes which provides more than the
+     * given amount of only one value.&quot;
+     */
+    public static final String PARAMETER_NOMINAL_SINGLE_VALUE_UPPER = "nominal_useless_above";
 
-	/**
-	 * The parameter name for &quot;Removes all nominal attributes which provides less than the
-	 * given amount of at least one value (-1: remove attributes with values occuring only
-	 * once).&quot;
-	 */
-	public static final String PARAMETER_NOMINAL_SINGLE_VALUE_LOWER = "nominal_useless_below";
+    /**
+     * The parameter name for &quot;Removes all nominal attributes which provides less than the
+     * given amount of at least one value (-1: remove attributes with values occuring only
+     * once).&quot;
+     */
+    public static final String PARAMETER_NOMINAL_SINGLE_VALUE_LOWER = "nominal_useless_below";
 
 	private static final String PARAMETER_REMOVE_ID_LIKE = "nominal_remove_id_like";
 
-	public RemoveUselessFeatures(OperatorDescription description) {
+    /**
+     * Instantiates a new Remove useless features.
+     *
+     * @param description the description
+     */
+    public RemoveUselessFeatures(OperatorDescription description) {
 		super(description);
 	}
 

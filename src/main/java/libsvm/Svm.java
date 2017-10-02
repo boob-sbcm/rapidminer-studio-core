@@ -38,6 +38,9 @@ import com.rapidminer.operator.ProcessStoppedException;
 import com.rapidminer.tools.RandomGenerator;
 
 
+/**
+ * The type Cache.
+ */
 //
 // Kernel Cache
 //
@@ -51,15 +54,33 @@ class Cache {
 
 	private final class head_t {
 
-		head_t prev, next;	// a cicular list
-		float[] data;
-		int len;		// data[0,len) is cached in this entry
+        /**
+         * The Prev.
+         */
+        head_t prev, /**
+         * The Next.
+         */
+        next;	// a cicular list
+        /**
+         * The Data.
+         */
+        float[] data;
+        /**
+         * The Len.
+         */
+        int len;		// data[0,len) is cached in this entry
 	}
 
 	private final head_t[] head;
 	private head_t lru_head;
 
-	Cache(int l_, long size_) {
+    /**
+     * Instantiates a new Cache.
+     *
+     * @param l_    the l
+     * @param size_ the size
+     */
+    Cache(int l_, long size_) {
 		l = l_;
 		size = size_;
 		head = new head_t[l];
@@ -87,7 +108,15 @@ class Cache {
 		h.next.prev = h;
 	}
 
-	// request data [0,len)
+    /**
+     * Gets data.
+     *
+     * @param index the index
+     * @param data  the data
+     * @param len   the len
+     * @return the data
+     */
+// request data [0,len)
 	// return some position p where [p,len) need to be filled
 	// (p >= len if nothing needs to be filled)
 	// java: simulate pointer using single-element array
@@ -127,7 +156,13 @@ class Cache {
 		return len;
 	}
 
-	void swap_index(int i, int j) {
+    /**
+     * Swap index.
+     *
+     * @param i the
+     * @param j the j
+     */
+    void swap_index(int i, int j) {
 		if (i == j) {
 			return;
 		}
@@ -183,6 +218,9 @@ class Cache {
 }
 
 
+/**
+ * The type Q matrix.
+ */
 //
 // Kernel evaluation
 //
@@ -192,14 +230,35 @@ class Cache {
 //
 abstract class QMatrix {
 
-	abstract float[] get_Q(int column, int len);
+    /**
+     * Get q float [ ].
+     *
+     * @param column the column
+     * @param len    the len
+     * @return the float [ ]
+     */
+    abstract float[] get_Q(int column, int len);
 
-	abstract float[] get_QD();
+    /**
+     * Get qd float [ ].
+     *
+     * @return the float [ ]
+     */
+    abstract float[] get_QD();
 
-	abstract void swap_index(int i, int j);
+    /**
+     * Swap index.
+     *
+     * @param i the
+     * @param j the j
+     */
+    abstract void swap_index(int i, int j);
 };
 
 
+/**
+ * The type Solver.
+ */
 // An SMO algorithm in Fan et al., JMLR 6(2005), p. 1889--1918
 // Solves:
 //
@@ -220,31 +279,99 @@ abstract class QMatrix {
 //
 class Solver {
 
-	int active_size;
-	byte[] y;
-	double[] G;		// gradient of objective function
-	static final byte LOWER_BOUND = 0;
-	static final byte UPPER_BOUND = 1;
-	static final byte FREE = 2;
-	byte[] alpha_status;	// LOWER_BOUND, UPPER_BOUND, FREE
-	double[] alpha;
-	QMatrix Q;
-	float[] QD;
-	double eps;
-	double Cp, Cn;
-	double[] p;
-	int[] active_set;
-	double[] G_bar;		// gradient, if we treat free variables as 0
-	int l;
-	boolean unshrinked;
+    /**
+     * The Active size.
+     */
+    int active_size;
+    /**
+     * The Y.
+     */
+    byte[] y;
+    /**
+     * The G.
+     */
+    double[] G;		// gradient of objective function
+    /**
+     * The Lower bound.
+     */
+    static final byte LOWER_BOUND = 0;
+    /**
+     * The Upper bound.
+     */
+    static final byte UPPER_BOUND = 1;
+    /**
+     * The Free.
+     */
+    static final byte FREE = 2;
+    /**
+     * The Alpha status.
+     */
+    byte[] alpha_status;	// LOWER_BOUND, UPPER_BOUND, FREE
+    /**
+     * The Alpha.
+     */
+    double[] alpha;
+    /**
+     * The Q.
+     */
+    QMatrix Q;
+    /**
+     * The Qd.
+     */
+    float[] QD;
+    /**
+     * The Eps.
+     */
+    double eps;
+    /**
+     * The Cp.
+     */
+    double Cp, /**
+     * The Cn.
+     */
+    Cn;
+    /**
+     * The P.
+     */
+    double[] p;
+    /**
+     * The Active set.
+     */
+    int[] active_set;
+    /**
+     * The G bar.
+     */
+    double[] G_bar;		// gradient, if we treat free variables as 0
+    /**
+     * The L.
+     */
+    int l;
+    /**
+     * The Unshrinked.
+     */
+    boolean unshrinked;
 
-	static final double INF = java.lang.Double.POSITIVE_INFINITY;
+    /**
+     * The Inf.
+     */
+    static final double INF = java.lang.Double.POSITIVE_INFINITY;
 
-	double get_C(int i) {
+    /**
+     * Gets c.
+     *
+     * @param i the
+     * @return the c
+     */
+    double get_C(int i) {
 		return y[i] > 0 ? Cp : Cn;
 	}
 
-	void update_alpha_status(int i) {
+    /**
+     * Update alpha status.
+     *
+     * @param i the
+     */
+    void update_alpha_status(int i) {
 		if (alpha[i] >= get_C(i)) {
 			alpha_status[i] = UPPER_BOUND;
 		} else if (alpha[i] <= 0) {
@@ -254,30 +381,72 @@ class Solver {
 		}
 	}
 
-	boolean is_upper_bound(int i) {
+    /**
+     * Is upper bound boolean.
+     *
+     * @param i the
+     * @return the boolean
+     */
+    boolean is_upper_bound(int i) {
 		return alpha_status[i] == UPPER_BOUND;
 	}
 
-	boolean is_lower_bound(int i) {
+    /**
+     * Is lower bound boolean.
+     *
+     * @param i the
+     * @return the boolean
+     */
+    boolean is_lower_bound(int i) {
 		return alpha_status[i] == LOWER_BOUND;
 	}
 
-	boolean is_free(int i) {
+    /**
+     * Is free boolean.
+     *
+     * @param i the
+     * @return the boolean
+     */
+    boolean is_free(int i) {
 		return alpha_status[i] == FREE;
 	}
 
-	// java: information about solution except alpha,
+    /**
+     * The type Solution info.
+     */
+// java: information about solution except alpha,
 	// because we cannot return multiple values otherwise...
 	static class SolutionInfo {
 
-		double obj;
-		double rho;
-		double upper_bound_p;
-		double upper_bound_n;
-		double r;	// for Solver_NU
+        /**
+         * The Obj.
+         */
+        double obj;
+        /**
+         * The Rho.
+         */
+        double rho;
+        /**
+         * The Upper bound p.
+         */
+        double upper_bound_p;
+        /**
+         * The Upper bound n.
+         */
+        double upper_bound_n;
+        /**
+         * The R.
+         */
+        double r;	// for Solver_NU
 	}
 
-	void swap_index(int i, int j) {
+    /**
+     * Swap index.
+     *
+     * @param i the
+     * @param j the j
+     */
+    void swap_index(int i, int j) {
 		Q.swap_index(i, j);
 		do {
 			byte _ = y[i];
@@ -316,7 +485,10 @@ class Solver {
 		} while (false);
 	}
 
-	void reconstruct_gradient() {
+    /**
+     * Reconstruct gradient.
+     */
+    void reconstruct_gradient() {
 		// reconstruct inactive elements of G from G_bar and free variables
 
 		if (active_size == l) {
@@ -339,7 +511,21 @@ class Solver {
 		}
 	}
 
-	void Solve(int l, QMatrix Q, double[] p_, byte[] y_, double[] alpha_, double Cp, double Cn, double eps, SolutionInfo si,
+    /**
+     * Solve.
+     *
+     * @param l         the l
+     * @param Q         the q
+     * @param p_        the p
+     * @param y_        the y
+     * @param alpha_    the alpha
+     * @param Cp        the cp
+     * @param Cn        the cn
+     * @param eps       the eps
+     * @param si        the si
+     * @param shrinking the shrinking
+     */
+    void Solve(int l, QMatrix Q, double[] p_, byte[] y_, double[] alpha_, double Cp, double Cn, double eps, SolutionInfo si,
 			int shrinking) {
 		try {
 			this.Solve(l, Q, p_, y_, alpha_, Cp, Cn, eps, si, shrinking, null);
@@ -348,7 +534,23 @@ class Solver {
 		}
 	}
 
-	void Solve(int l, QMatrix Q, double[] p_, byte[] y_, double[] alpha_, double Cp, double Cn, double eps, SolutionInfo si,
+    /**
+     * Solve.
+     *
+     * @param l                 the l
+     * @param Q                 the q
+     * @param p_                the p
+     * @param y_                the y
+     * @param alpha_            the alpha
+     * @param Cp                the cp
+     * @param Cn                the cn
+     * @param eps               the eps
+     * @param si                the si
+     * @param shrinking         the shrinking
+     * @param executingOperator the executing operator
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    void Solve(int l, QMatrix Q, double[] p_, byte[] y_, double[] alpha_, double Cp, double Cn, double eps, SolutionInfo si,
 			int shrinking, Operator executingOperator) throws ProcessStoppedException {
 		this.l = l;
 		this.Q = Q;
@@ -590,7 +792,13 @@ class Solver {
 		si.upper_bound_n = Cn;
 	}
 
-	// return 1 if already optimal, return 0 otherwise
+    /**
+     * Select working set int.
+     *
+     * @param working_set the working set
+     * @return the int
+     */
+// return 1 if already optimal, return 0 otherwise
 	int select_working_set(int[] working_set) {
 		// return i,j such that
 		// i: maximizes -y_i * grad(f)_i, i in I_up(\alpha)
@@ -701,7 +909,10 @@ class Solver {
 		}
 	}
 
-	void do_shrinking() {
+    /**
+     * Do shrinking.
+     */
+    void do_shrinking() {
 		int i;
 		double Gmax1 = -INF;		// max { -y_i * grad(f)_i | i in I_up(\alpha) }
 		double Gmax2 = -INF;		// max { y_i * grad(f)_i | i in I_low(\alpha) }
@@ -771,7 +982,12 @@ class Solver {
 		}
 	}
 
-	double calculate_rho() {
+    /**
+     * Calculate rho double.
+     *
+     * @return the double
+     */
+    double calculate_rho() {
 		double r;
 		int nr_free = 0;
 		double ub = INF, lb = -INF, sum_free = 0;
@@ -808,6 +1024,9 @@ class Solver {
 }
 
 
+/**
+ * The type Solver nu.
+ */
 //
 // Solver for nu-svm classification and regression
 //
@@ -1072,6 +1291,9 @@ final class Solver_NU extends Solver {
 }
 
 
+/**
+ * The type Svc q.
+ */
 //
 // Q matrices for various formulations
 //
@@ -1081,7 +1303,14 @@ class SVC_Q extends Kernel {
 	private final Cache cache;
 	private final float[] QD;
 
-	SVC_Q(svm_problem prob, svm_parameter param, byte[] y_) {
+    /**
+     * Instantiates a new Svc q.
+     *
+     * @param prob  the prob
+     * @param param the param
+     * @param y_    the y
+     */
+    SVC_Q(svm_problem prob, svm_parameter param, byte[] y_) {
 		super(prob.l, prob.x, param);
 		y = y_.clone();
 		cache = new Cache(prob.l, (long) (param.cache_size * (1 << 20)));
@@ -1126,12 +1355,21 @@ class SVC_Q extends Kernel {
 }
 
 
+/**
+ * The type One class q.
+ */
 class ONE_CLASS_Q extends Kernel {
 
 	private final Cache cache;
 	private final float[] QD;
 
-	ONE_CLASS_Q(svm_problem prob, svm_parameter param) {
+    /**
+     * Instantiates a new One class q.
+     *
+     * @param prob  the prob
+     * @param param the param
+     */
+    ONE_CLASS_Q(svm_problem prob, svm_parameter param) {
 		super(prob.l, prob.x, param);
 		cache = new Cache(prob.l, (long) (param.cache_size * (1 << 20)));
 		QD = new float[prob.l];
@@ -1170,6 +1408,9 @@ class ONE_CLASS_Q extends Kernel {
 }
 
 
+/**
+ * The type Svr q.
+ */
 class SVR_Q extends Kernel {
 
 	private final int l;
@@ -1180,7 +1421,13 @@ class SVR_Q extends Kernel {
 	private float[][] buffer;
 	private final float[] QD;
 
-	SVR_Q(svm_problem prob, svm_parameter param) {
+    /**
+     * Instantiates a new Svr q.
+     *
+     * @param prob  the prob
+     * @param param the param
+     */
+    SVR_Q(svm_problem prob, svm_parameter param) {
 		super(prob.l, prob.x, param);
 		l = prob.l;
 		cache = new Cache(l, (long) (param.cache_size * (1 << 20)));
@@ -1245,6 +1492,9 @@ class SVR_Q extends Kernel {
 }
 
 
+/**
+ * The type Svm.
+ */
 public class Svm {
 
 	//
@@ -1459,16 +1709,34 @@ public class Svm {
 		}
 	}
 
-	//
+    /**
+     * The type Decision function.
+     */
+//
 	// decision_function
 	//
 	static class decision_function {
 
-		double[] alpha;
-		double rho;
+        /**
+         * The Alpha.
+         */
+        double[] alpha;
+        /**
+         * The Rho.
+         */
+        double rho;
 	};
 
-	static decision_function svm_train_one(svm_problem prob, svm_parameter param, double Cp, double Cn) {
+    /**
+     * Svm train one decision function.
+     *
+     * @param prob  the prob
+     * @param param the param
+     * @param Cp    the cp
+     * @param Cn    the cn
+     * @return the decision function
+     */
+    static decision_function svm_train_one(svm_problem prob, svm_parameter param, double Cp, double Cn) {
 		try {
 			return svm_train_one(prob, param, Cp, Cn, null);
 		} catch (ProcessStoppedException e) {
@@ -1476,7 +1744,18 @@ public class Svm {
 		}
 	}
 
-	static decision_function svm_train_one(svm_problem prob, svm_parameter param, double Cp, double Cn,
+    /**
+     * Svm train one decision function.
+     *
+     * @param prob              the prob
+     * @param param             the param
+     * @param Cp                the cp
+     * @param Cn                the cn
+     * @param executingOperator the executing operator
+     * @return the decision function
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    static decision_function svm_train_one(svm_problem prob, svm_parameter param, double Cp, double Cn,
 			Operator executingOperator) throws ProcessStoppedException {
 		double[] alpha = new double[prob.l];
 		Solver.SolutionInfo si = new Solver.SolutionInfo();
@@ -1637,7 +1916,15 @@ public class Svm {
 		probAB[1] = B;
 	}
 
-	public static double sigmoid_predict(double decision_value, double A, double B) {
+    /**
+     * Sigmoid predict double.
+     *
+     * @param decision_value the decision value
+     * @param A              the a
+     * @param B              the b
+     * @return the double
+     */
+    public static double sigmoid_predict(double decision_value, double A, double B) {
 		double fApB = decision_value * A + B;
 		if (fApB >= 0) {
 			return Math.exp(-fApB) / (1.0 + Math.exp(-fApB));
@@ -1646,7 +1933,14 @@ public class Svm {
 		}
 	}
 
-	// Method 2 from the multiclass_prob paper by Wu, Lin, and Weng
+    /**
+     * Multiclass probability.
+     *
+     * @param k the k
+     * @param r the r
+     * @param p the p
+     */
+// Method 2 from the multiclass_prob paper by Wu, Lin, and Weng
 	public static void multiclass_probability(int k, double[][] r, double[] p) {
 		int t, j;
 		int iter = 0, max_iter = Math.max(100, k);
@@ -1874,7 +2168,14 @@ public class Svm {
 		count_ret[0] = count;
 	}
 
-	//
+    /**
+     * Svm train svm model.
+     *
+     * @param prob  the prob
+     * @param param the param
+     * @return the svm model
+     */
+//
 	// Interface functions
 	//
 	public static svm_model svm_train(svm_problem prob, svm_parameter param) {
@@ -1885,13 +2186,17 @@ public class Svm {
 		}
 	}
 
-	/**
-	 * exactly the same function as the Svm.svm_train but this one checks for Stop if
-	 * executingOperator is not equal null
-	 *
-	 * @throws ProcessStoppedException
-	 */
-	public static svm_model svm_train(svm_problem prob, svm_parameter param, Operator executingOperator)
+    /**
+     * exactly the same function as the Svm.svm_train but this one checks for Stop if
+     * executingOperator is not equal null
+     *
+     * @param prob              the prob
+     * @param param             the param
+     * @param executingOperator the executing operator
+     * @return the svm model
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public static svm_model svm_train(svm_problem prob, svm_parameter param, Operator executingOperator)
 			throws ProcessStoppedException {
 		svm_model model = new svm_model();
 		model.param = param;
@@ -2161,7 +2466,15 @@ public class Svm {
 		return model;
 	}
 
-	// Stratified cross validation
+    /**
+     * Svm cross validation.
+     *
+     * @param prob    the prob
+     * @param param   the param
+     * @param nr_fold the nr fold
+     * @param target  the target
+     */
+// Stratified cross validation
 	public static void svm_cross_validation(svm_problem prob, svm_parameter param, int nr_fold, double[] target) {
 		int i;
 		int[] fold_start = new int[nr_fold + 1];
@@ -2277,15 +2590,33 @@ public class Svm {
 		}
 	}
 
-	public static int svm_get_svm_type(svm_model model) {
+    /**
+     * Svm get svm type int.
+     *
+     * @param model the model
+     * @return the int
+     */
+    public static int svm_get_svm_type(svm_model model) {
 		return model.param.svm_type;
 	}
 
-	public static int svm_get_nr_class(svm_model model) {
+    /**
+     * Svm get nr class int.
+     *
+     * @param model the model
+     * @return the int
+     */
+    public static int svm_get_nr_class(svm_model model) {
 		return model.nr_class;
 	}
 
-	public static void svm_get_labels(svm_model model, int[] label) {
+    /**
+     * Svm get labels.
+     *
+     * @param model the model
+     * @param label the label
+     */
+    public static void svm_get_labels(svm_model model, int[] label) {
 		if (model.label != null) {
 			for (int i = 0; i < model.nr_class; i++) {
 				label[i] = model.label[i];
@@ -2293,7 +2624,13 @@ public class Svm {
 		}
 	}
 
-	public static double svm_get_svr_probability(svm_model model) {
+    /**
+     * Svm get svr probability double.
+     *
+     * @param model the model
+     * @return the double
+     */
+    public static double svm_get_svr_probability(svm_model model) {
 		if ((model.param.svm_type == svm_parameter.EPSILON_SVR || model.param.svm_type == svm_parameter.NU_SVR)
 				&& model.probA != null) {
 			return model.probA[0];
@@ -2302,7 +2639,14 @@ public class Svm {
 		}
 	}
 
-	public static void svm_predict_values(svm_model model, svm_node[] x, double[] dec_values) {
+    /**
+     * Svm predict values.
+     *
+     * @param model      the model
+     * @param x          the x
+     * @param dec_values the dec values
+     */
+    public static void svm_predict_values(svm_model model, svm_node[] x, double[] dec_values) {
 		if (model.param.svm_type == svm_parameter.ONE_CLASS || model.param.svm_type == svm_parameter.EPSILON_SVR
 				|| model.param.svm_type == svm_parameter.NU_SVR) {
 			double[] sv_coef = model.sv_coef[0];
@@ -2354,7 +2698,14 @@ public class Svm {
 		}
 	}
 
-	public static double svm_predict(svm_model model, svm_node[] x) {
+    /**
+     * Svm predict double.
+     *
+     * @param model the model
+     * @param x     the x
+     * @return the double
+     */
+    public static double svm_predict(svm_model model, svm_node[] x) {
 		if (model.param.svm_type == svm_parameter.ONE_CLASS || model.param.svm_type == svm_parameter.EPSILON_SVR
 				|| model.param.svm_type == svm_parameter.NU_SVR) {
 			double[] res = new double[1];
@@ -2396,7 +2747,15 @@ public class Svm {
 		}
 	}
 
-	public static double svm_predict_probability(svm_model model, svm_node[] x, double[] prob_estimates) {
+    /**
+     * Svm predict probability double.
+     *
+     * @param model          the model
+     * @param x              the x
+     * @param prob_estimates the prob estimates
+     * @return the double
+     */
+    public static double svm_predict_probability(svm_model model, svm_node[] x, double[] prob_estimates) {
 		if ((model.param.svm_type == svm_parameter.C_SVC || model.param.svm_type == svm_parameter.NU_SVC)
 				&& model.probA != null && model.probB != null) {
 			int i;
@@ -2431,11 +2790,24 @@ public class Svm {
 		}
 	}
 
-	static final String svm_type_table[] = { "c_svc", "nu_svc", "one_class", "epsilon_svr", "nu_svr", };
+    /**
+     * The Svm type table.
+     */
+    static final String svm_type_table[] = { "c_svc", "nu_svc", "one_class", "epsilon_svr", "nu_svr", };
 
-	static final String kernel_type_table[] = { "linear", "polynomial", "rbf", "sigmoid", "precomputed" };
+    /**
+     * The Kernel type table.
+     */
+    static final String kernel_type_table[] = { "linear", "polynomial", "rbf", "sigmoid", "precomputed" };
 
-	public static void svm_save_model(String model_file_name, svm_model model) throws IOException {
+    /**
+     * Svm save model.
+     *
+     * @param model_file_name the model file name
+     * @param model           the model
+     * @throws IOException the io exception
+     */
+    public static void svm_save_model(String model_file_name, svm_model model) throws IOException {
 		try (FileOutputStream fos = new FileOutputStream(model_file_name); DataOutputStream fp = new DataOutputStream(fos)) {
 			svm_parameter param = model.param;
 
@@ -2530,7 +2902,14 @@ public class Svm {
 		return Integer.parseInt(s);
 	}
 
-	public static svm_model svm_load_model(String model_file_name) throws IOException {
+    /**
+     * Svm load model svm model.
+     *
+     * @param model_file_name the model file name
+     * @return the svm model
+     * @throws IOException the io exception
+     */
+    public static svm_model svm_load_model(String model_file_name) throws IOException {
 		try (FileReader fr = new FileReader(model_file_name); BufferedReader fp = new BufferedReader(fr)) {
 			// read parameters
 			svm_model model = new svm_model();
@@ -2647,7 +3026,14 @@ public class Svm {
 		}
 	}
 
-	public static String svm_check_parameter(svm_problem prob, svm_parameter param) {
+    /**
+     * Svm check parameter string.
+     *
+     * @param prob  the prob
+     * @param param the param
+     * @return the string
+     */
+    public static String svm_check_parameter(svm_problem prob, svm_parameter param) {
 		// svm_type
 
 		int svm_type = param.svm_type;
@@ -2768,7 +3154,13 @@ public class Svm {
 		return null;
 	}
 
-	public static int svm_check_probability_model(svm_model model) {
+    /**
+     * Svm check probability model int.
+     *
+     * @param model the model
+     * @return the int
+     */
+    public static int svm_check_probability_model(svm_model model) {
 		if ((model.param.svm_type == svm_parameter.C_SVC || model.param.svm_type == svm_parameter.NU_SVC)
 				&& model.probA != null && model.probB != null
 				|| (model.param.svm_type == svm_parameter.EPSILON_SVR || model.param.svm_type == svm_parameter.NU_SVR)
@@ -2779,7 +3171,14 @@ public class Svm {
 		}
 	}
 
-	public static Kernel getGenericKernel(svm_problem prob, svm_parameter param) {
+    /**
+     * Gets generic kernel.
+     *
+     * @param prob  the prob
+     * @param param the param
+     * @return the generic kernel
+     */
+    public static Kernel getGenericKernel(svm_problem prob, svm_parameter param) {
 		return new SVC_Q(prob, param, new byte[prob.l]);
 	}
 }

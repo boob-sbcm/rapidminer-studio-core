@@ -28,6 +28,7 @@ import com.rapidminer.gui.tools.SwingTools;
 
 
 /**
+ * The type Result view dialog.
  *
  * @author Tobias Malbrecht
  */
@@ -35,35 +36,28 @@ public class ResultViewDialog extends ButtonDialog {
 
 	private static final long serialVersionUID = -1111667366524535499L;
 
-	/**
-	 * Displays a dialog with the given result component.
-	 *
-	 * @param i18nKey
-	 *            the i18n key
-	 * @param results
-	 *            the result component to display
-	 * @param i18nArgs
-	 *            the i18n arguments
-	 * @deprecated use {@link #ResultViewDialog(Window, String, JComponent, Object...)} instead
-	 */
-	@Deprecated
+    /**
+     * Displays a dialog with the given result component.
+     *
+     * @param i18nKey  the i18n key
+     * @param results  the result component to display
+     * @param i18nArgs the i18n arguments
+     * @deprecated use {@link #ResultViewDialog(Window, String, JComponent, Object...)} instead
+     */
+    @Deprecated
 	public ResultViewDialog(String i18nKey, JComponent results, Object... i18nArgs) {
 		this(ApplicationFrame.getApplicationFrame(), i18nKey, results, i18nArgs);
 	}
 
-	/**
-	 * Displays a dialog with the given result component.
-	 *
-	 * @param owner
-	 *            the owner where the dialog is shown in
-	 * @param i18nKey
-	 *            the i18n key
-	 * @param results
-	 *            the result component to display
-	 * @param i18nArgs
-	 *            the i18n arguments
-	 */
-	public ResultViewDialog(Window owner, String i18nKey, JComponent results, Object... i18nArgs) {
+    /**
+     * Displays a dialog with the given result component.
+     *
+     * @param owner    the owner where the dialog is shown in
+     * @param i18nKey  the i18n key
+     * @param results  the result component to display
+     * @param i18nArgs the i18n arguments
+     */
+    public ResultViewDialog(Window owner, String i18nKey, JComponent results, Object... i18nArgs) {
 		super(owner, "results." + i18nKey, ModalityType.APPLICATION_MODAL, i18nArgs);
 		results.setBorder(createBorder());
 		layoutDefault(results, ButtonDialog.LARGE, makeCloseButton());

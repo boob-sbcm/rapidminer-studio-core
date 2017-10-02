@@ -37,33 +37,75 @@ public class ParameterTypeChar extends ParameterTypeSingle {
 
 	private char defaultValue = '\0';
 
-	public ParameterTypeChar(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type char.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeChar(Element element) throws XMLException {
 		super(element);
 
 		defaultValue = element.getAttribute(ATTRIBUTE_DEFAULT).charAt(0);
 	}
 
-	public ParameterTypeChar(String key, String description, boolean optional, boolean expert) {
+    /**
+     * Instantiates a new Parameter type char.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     * @param expert      the expert
+     */
+    public ParameterTypeChar(String key, String description, boolean optional, boolean expert) {
 		this(key, description, optional);
 		setExpert(expert);
 	}
 
-	public ParameterTypeChar(String key, String description, boolean optional) {
+    /**
+     * Instantiates a new Parameter type char.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     */
+    public ParameterTypeChar(String key, String description, boolean optional) {
 		super(key, description);
 		this.defaultValue = '\0';
 		setOptional(optional);
 	}
 
-	public ParameterTypeChar(String key, String description) {
+    /**
+     * Instantiates a new Parameter type char.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ParameterTypeChar(String key, String description) {
 		this(key, description, true);
 	}
 
-	public ParameterTypeChar(String key, String description, char defaultValue, boolean expert) {
+    /**
+     * Instantiates a new Parameter type char.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultValue the default value
+     * @param expert       the expert
+     */
+    public ParameterTypeChar(String key, String description, char defaultValue, boolean expert) {
 		this(key, description, defaultValue);
 		setExpert(expert);
 	}
 
-	public ParameterTypeChar(String key, String description, char defaultValue) {
+    /**
+     * Instantiates a new Parameter type char.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultValue the default value
+     */
+    public ParameterTypeChar(String key, String description, char defaultValue) {
 		this(key, description);
 		this.defaultValue = defaultValue;
 	}

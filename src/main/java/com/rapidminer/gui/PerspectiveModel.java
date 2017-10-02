@@ -46,8 +46,14 @@ import com.vlsolutions.swing.docking.ws.WSDockKey;
  */
 public class PerspectiveModel extends AbstractObservable<List<Perspective>> {
 
-	public static final String RESULT = "result";
-	public static final String DESIGN = "design";
+    /**
+     * The constant RESULT.
+     */
+    public static final String RESULT = "result";
+    /**
+     * The constant DESIGN.
+     */
+    public static final String DESIGN = "design";
 
 	private final Map<String, Perspective> perspectives = new LinkedHashMap<>();
 
@@ -55,14 +61,16 @@ public class PerspectiveModel extends AbstractObservable<List<Perspective>> {
 
 	private LinkedList<PerspectiveChangeListener> perspectiveChangeListenerList;
 
-	/**
-	 * Creates a new perspective, and possibly switches to this new perspective immediately. The new
-	 * perspective will be a copy of the current one.
-	 *
-	 * @throws IllegalArgumentException
-	 *             if name is already used
-	 */
-	public Perspective addPerspective(final String name, final boolean userDefined) {
+    /**
+     * Creates a new perspective, and possibly switches to this new perspective immediately. The new
+     * perspective will be a copy of the current one.
+     *
+     * @param name        the name
+     * @param userDefined the user defined
+     * @return the perspective
+     * @throws IllegalArgumentException if name is already used
+     */
+    public Perspective addPerspective(final String name, final boolean userDefined) {
 		final Perspective p = new Perspective(this, name);
 		if (!isValidName(name)) {
 			throw new IllegalArgumentException("Invalid or duplicate view name: " + name);
@@ -74,25 +82,23 @@ public class PerspectiveModel extends AbstractObservable<List<Perspective>> {
 		return p;
 	}
 
-	/**
-	 * Removes the given perspective by name from the model.
-	 *
-	 * @param name
-	 *            the name of the perspective which should be removed
-	 */
-	public void deletePerspective(final String name) {
+    /**
+     * Removes the given perspective by name from the model.
+     *
+     * @param name the name of the perspective which should be removed
+     */
+    public void deletePerspective(final String name) {
 		if (perspectives.containsKey(name)) {
 			deletePerspective(perspectives.get(name));
 		}
 	}
 
-	/**
-	 * Removes the given perspective from the model.
-	 *
-	 * @param name
-	 *            the perspective which should be removed
-	 */
-	public void deletePerspective(final Perspective p) {
+    /**
+     * Removes the given perspective from the model.
+     *
+     * @param p the p
+     */
+    public void deletePerspective(final Perspective p) {
 		if (!p.isUserDefined()) {
 			return;
 		}
@@ -101,27 +107,24 @@ public class PerspectiveModel extends AbstractObservable<List<Perspective>> {
 		fireUpdate(new ArrayList<>(perspectives.values()));
 	}
 
-	/**
-	 * Adds the default perspectives to the model.
-	 */
-	public void makePredefined() {
+    /**
+     * Adds the default perspectives to the model.
+     */
+    public void makePredefined() {
 		addPerspective(DESIGN, false);
 		restoreDefault(DESIGN);
 		addPerspective(RESULT, false);
 		restoreDefault(RESULT);
 	}
 
-	/**
-	 * Restores the default layout of the perspectives. This method only works for predefined
-	 * perspectives (like {@link #DESIGN} and {@link #RESULT}).
-	 *
-	 * @param perspectiveName
-	 *            the name of the perspective which should be restored
-	 *
-	 * @throws IllegalAccessException
-	 *             if the perspective is not known
-	 */
-	public void restoreDefault(String perspectiveName) {
+    /**
+     * Restores the default layout of the perspectives. This method only works for predefined
+     * perspectives (like {@link #DESIGN} and {@link #RESULT}).
+     *
+     * @param perspectiveName the name of the perspective which should be restored
+     * @throws IllegalAccessException if the perspective is not known
+     */
+    public void restoreDefault(String perspectiveName) {
 		WSDockKey processPanelKey = new WSDockKey(ProcessPanel.PROCESS_PANEL_DOCK_KEY);
 		WSDockKey propertyTableKey = new WSDockKey(OperatorPropertyPanel.PROPERTY_EDITOR_DOCK_KEY);
 		WSDockKey resultsKey = new WSDockKey(ResultDisplay.RESULT_DOCK_KEY);
@@ -149,16 +152,14 @@ public class PerspectiveModel extends AbstractObservable<List<Perspective>> {
 		}
 	}
 
-	/**
-	 * Gets a perspective by name.
-	 *
-	 * @param name
-	 *            the name of the perspective
-	 * @return the resolved {@link Perspective}
-	 * @throws NoSuchElementException
-	 *             if the perspective is not known
-	 */
-	public Perspective getPerspective(final String name) {
+    /**
+     * Gets a perspective by name.
+     *
+     * @param name the name of the perspective
+     * @return the resolved {@link Perspective}
+     * @throws NoSuchElementException if the perspective is not known
+     */
+    public Perspective getPerspective(final String name) {
 		Perspective result = perspectives.get(name);
 		if (result != null) {
 			return result;
@@ -167,22 +168,21 @@ public class PerspectiveModel extends AbstractObservable<List<Perspective>> {
 		}
 	}
 
-	/**
-	 * Getter for all registered perspectives
-	 *
-	 * @return all perspectives as {@link List}
-	 */
-	public List<Perspective> getAllPerspectives() {
+    /**
+     * Getter for all registered perspectives
+     *
+     * @return all perspectives as {@link List}
+     */
+    public List<Perspective> getAllPerspectives() {
 		return new ArrayList<>(perspectives.values());
 	}
 
-	/**
-	 * Registers a new {@link PerspectiveChangeListener}.
-	 *
-	 * @param listener
-	 *            the listener which should be notified about perspective changes.
-	 */
-	public void addPerspectiveChangeListener(final PerspectiveChangeListener listener) {
+    /**
+     * Registers a new {@link PerspectiveChangeListener}.
+     *
+     * @param listener the listener which should be notified about perspective changes.
+     */
+    public void addPerspectiveChangeListener(final PerspectiveChangeListener listener) {
 		if (listener == null) {
 			return;
 		}
@@ -192,48 +192,45 @@ public class PerspectiveModel extends AbstractObservable<List<Perspective>> {
 		perspectiveChangeListenerList.add(listener);
 	}
 
-	/**
-	 * Removes the given {@link PerspectiveChangeListener} from the listener list.
-	 *
-	 * @param listener
-	 *            the listener which should be removed
-	 * @return {@code true} if the listener could be removed, otherwise {@code false}
-	 */
-	public boolean removePerspectiveChangeListener(final PerspectiveChangeListener listener) {
+    /**
+     * Removes the given {@link PerspectiveChangeListener} from the listener list.
+     *
+     * @param listener the listener which should be removed
+     * @return {@code true} if the listener could be removed, otherwise {@code false}
+     */
+    public boolean removePerspectiveChangeListener(final PerspectiveChangeListener listener) {
 		if (perspectiveChangeListenerList == null) {
 			return false;
 		}
 		return perspectiveChangeListenerList.remove(listener);
 	}
 
-	/**
-	 * Getter for the current selected perspective.
-	 *
-	 * @return the selected perspective
-	 */
-	public Perspective getSelectedPerspective() {
+    /**
+     * Getter for the current selected perspective.
+     *
+     * @return the selected perspective
+     */
+    public Perspective getSelectedPerspective() {
 		return selectedPerspective;
 	}
 
-	/**
-	 * Updates the selected perspective and notifies the {@link PerspectiveChangeListener}.
-	 *
-	 * @param name
-	 *            the name of the new selected perspective
-	 */
-	public void setSelectedPerspective(String name) {
+    /**
+     * Updates the selected perspective and notifies the {@link PerspectiveChangeListener}.
+     *
+     * @param name the name of the new selected perspective
+     */
+    public void setSelectedPerspective(String name) {
 		if (perspectives.containsKey(name)) {
 			setSelectedPerspective(perspectives.get(name));
 		}
 	}
 
-	/**
-	 * Updates the selected perspective and notifies the {@link PerspectiveChangeListener}.
-	 *
-	 * @param perspective
-	 *            the new selected perspective
-	 */
-	public void setSelectedPerspective(Perspective perspective) {
+    /**
+     * Updates the selected perspective and notifies the {@link PerspectiveChangeListener}.
+     *
+     * @param perspective the new selected perspective
+     */
+    public void setSelectedPerspective(Perspective perspective) {
 		if (selectedPerspective == perspective) {
 			return;
 		}
@@ -241,13 +238,13 @@ public class PerspectiveModel extends AbstractObservable<List<Perspective>> {
 		this.notifyChangeListener();
 	}
 
-	/**
-	 * Checks if the given string is valid as name of a new perspective.
-	 *
-	 * @param name
-	 * @return validity
-	 */
-	public boolean isValidName(final String name) {
+    /**
+     * Checks if the given string is valid as name of a new perspective.
+     *
+     * @param name the name
+     * @return validity boolean
+     */
+    public boolean isValidName(final String name) {
 		if (name == null) {
 			return false;
 		}
@@ -262,11 +259,11 @@ public class PerspectiveModel extends AbstractObservable<List<Perspective>> {
 		return true;
 	}
 
-	/**
-	 * Notifies the registered {@link PerspectiveChangeListener}s about the
-	 * {@link #selectedPerspective}.
-	 */
-	public void notifyChangeListener() {
+    /**
+     * Notifies the registered {@link PerspectiveChangeListener}s about the
+     * {@link #selectedPerspective}.
+     */
+    public void notifyChangeListener() {
 		// do not fire these in the EDT
 		new Thread(new Runnable() {
 

@@ -70,11 +70,13 @@ public class OperatorWarningHandler implements ProcessEventDecorator {
 	 */
 	private ProcessSetupError lastProcessSetupError;
 
-	/**
-	 * Creates decorator that checks if the warning icon of an operator was clicked and displays
-	 * operator warnings in that case.
-	 */
-	public OperatorWarningHandler(ProcessRendererModel model) {
+    /**
+     * Creates decorator that checks if the warning icon of an operator was clicked and displays
+     * operator warnings in that case.
+     *
+     * @param model the model
+     */
+    public OperatorWarningHandler(ProcessRendererModel model) {
 		this.model = model;
 	}
 
@@ -112,25 +114,24 @@ public class OperatorWarningHandler implements ProcessEventDecorator {
 		// not needed
 	}
 
-	/**
-	 * Kills the operator warning bubble.
-	 */
-	public void killWarningBubble() {
+    /**
+     * Kills the operator warning bubble.
+     */
+    public void killWarningBubble() {
 		if (operatorWarningBubble != null) {
 			operatorWarningBubble.killBubble(true);
 		}
 	}
 
-	/**
-	 * Shows the first setup warning for the operator via an error bubble. Checks missing mandatory
-	 * parameters and missing port connections for the operator and its sub-operators first, then
-	 * displays the first {@link ProcessSetupError} from the operator error list. Hides the error
-	 * bubble instead of showing the same bubble again.
-	 *
-	 * @param operator
-	 *            the operator for which to show the warnings
-	 */
-	public void showOperatorWarning(Operator operator) {
+    /**
+     * Shows the first setup warning for the operator via an error bubble. Checks missing mandatory
+     * parameters and missing port connections for the operator and its sub-operators first, then
+     * displays the first {@link ProcessSetupError} from the operator error list. Hides the error
+     * bubble instead of showing the same bubble again.
+     *
+     * @param operator the operator for which to show the warnings
+     */
+    public void showOperatorWarning(Operator operator) {
 		Pair<Operator, ParameterType> missingParamPair = ProcessTools.getOperatorWithoutMandatoryParameter(operator);
 		if (missingParamPair != null) {
 			if (operatorWarningBubble != null) {

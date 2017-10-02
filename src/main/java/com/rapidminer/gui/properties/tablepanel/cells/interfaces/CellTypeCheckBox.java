@@ -23,9 +23,8 @@ import com.rapidminer.gui.properties.tablepanel.TablePanel;
 
 /**
  * Indicates a checkbox cell for the {@link TablePanel}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface CellTypeCheckBox extends CellType {
 }

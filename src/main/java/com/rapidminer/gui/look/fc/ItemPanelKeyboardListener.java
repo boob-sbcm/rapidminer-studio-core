@@ -26,7 +26,7 @@ import javax.swing.JComponent;
 
 /**
  * A keyboard listener used for the item panel.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ItemPanelKeyboardListener implements java.awt.event.KeyListener {

@@ -44,13 +44,12 @@ import com.rapidminer.tools.math.StringToMatrixConverter;
 
 /**
  * The default {@link ParameterHandler} implementation for {@link Configurator}s.
- *
+ * <p>
  * The method {@link #getParameterTypes()} has to be implemented to handle {@link ParameterType}
  * dependencies of {@link Configurable}s.
  *
- * @since 6.1.1 Extracted to public class
- *
  * @author Simon Fischer, Dominik Halfkann, Marco Boeck, Adrian Wilke
+ * @since 6.1.1 Extracted to public class
  */
 public abstract class ConfiguratorParameterHandler implements ParameterHandler {
 

@@ -29,22 +29,72 @@ import java.util.regex.PatternSyntaxException;
 
 
 /**
+ * The type Line parser.
+ *
  * @author Tobias Malbrecht, Marco Boeck, Nils Woehler
  */
 public class LineParser {
 
 	private enum SplitMachineState {
-		NEW_SPLIT, START_WHITESPACE, WRITE_NOT_QUOTE, QUOTE_OPENED, QUOTE_CLOSED, WRITE_QUOTE, ERROR, END_OF_LINE
+        /**
+         * New split split machine state.
+         */
+        NEW_SPLIT, /**
+         * Start whitespace split machine state.
+         */
+        START_WHITESPACE, /**
+         * Write not quote split machine state.
+         */
+        WRITE_NOT_QUOTE, /**
+         * Quote opened split machine state.
+         */
+        QUOTE_OPENED, /**
+         * Quote closed split machine state.
+         */
+        QUOTE_CLOSED, /**
+         * Write quote split machine state.
+         */
+        WRITE_QUOTE, /**
+         * Error split machine state.
+         */
+        ERROR, /**
+         * End of line split machine state.
+         */
+        END_OF_LINE
 	}
 
-	public static final String DEFAULT_COMMENT_CHARACTER_STRING = "#";
-	public static final String DEFAULT_SPLIT_EXPRESSION = ",\\s*|;\\s*";
-	public static final String SPLIT_BY_TAB_EXPRESSION = "\t";
-	public static final String SPLIT_BY_SPACE_EXPRESSION = "\\s";
-	public static final String SPLIT_BY_COMMA_EXPRESSION = ",";
-	public static final String SPLIT_BY_SEMICOLON_EXPRESSION = ";";
-	public static final char DEFAULT_QUOTE_CHARACTER = '"';
-	public static final char DEFAULT_QUOTE_ESCAPE_CHARACTER = '\\';
+    /**
+     * The constant DEFAULT_COMMENT_CHARACTER_STRING.
+     */
+    public static final String DEFAULT_COMMENT_CHARACTER_STRING = "#";
+    /**
+     * The constant DEFAULT_SPLIT_EXPRESSION.
+     */
+    public static final String DEFAULT_SPLIT_EXPRESSION = ",\\s*|;\\s*";
+    /**
+     * The constant SPLIT_BY_TAB_EXPRESSION.
+     */
+    public static final String SPLIT_BY_TAB_EXPRESSION = "\t";
+    /**
+     * The constant SPLIT_BY_SPACE_EXPRESSION.
+     */
+    public static final String SPLIT_BY_SPACE_EXPRESSION = "\\s";
+    /**
+     * The constant SPLIT_BY_COMMA_EXPRESSION.
+     */
+    public static final String SPLIT_BY_COMMA_EXPRESSION = ",";
+    /**
+     * The constant SPLIT_BY_SEMICOLON_EXPRESSION.
+     */
+    public static final String SPLIT_BY_SEMICOLON_EXPRESSION = ";";
+    /**
+     * The constant DEFAULT_QUOTE_CHARACTER.
+     */
+    public static final char DEFAULT_QUOTE_CHARACTER = '"';
+    /**
+     * The constant DEFAULT_QUOTE_ESCAPE_CHARACTER.
+     */
+    public static final char DEFAULT_QUOTE_ESCAPE_CHARACTER = '\\';
 	private static final char NONE = 0;
 
 	private Charset encoding;
@@ -56,62 +106,137 @@ public class LineParser {
 	private char quoteEscapeCharacter = DEFAULT_QUOTE_ESCAPE_CHARACTER;
 	private boolean trimLine = true;
 
-	public LineParser() {}
+    /**
+     * Instantiates a new Line parser.
+     */
+    public LineParser() {}
 
-	public LineParser(CSVResultSetConfiguration configuration) throws OperatorException {
+    /**
+     * Instantiates a new Line parser.
+     *
+     * @param configuration the configuration
+     * @throws OperatorException the operator exception
+     */
+    public LineParser(CSVResultSetConfiguration configuration) throws OperatorException {
 		this();
 		configure(configuration);
 	}
 
-	public void setEncoding(Charset encoding) {
+    /**
+     * Sets encoding.
+     *
+     * @param encoding the encoding
+     */
+    public void setEncoding(Charset encoding) {
 		this.encoding = encoding;
 	}
 
-	public Charset getEncoding() {
+    /**
+     * Gets encoding.
+     *
+     * @return the encoding
+     */
+    public Charset getEncoding() {
 		return encoding;
 	}
 
-	public boolean isTrimLine() {
+    /**
+     * Is trim line boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isTrimLine() {
 		return trimLine;
 	}
 
-	public boolean isSkipComments() {
+    /**
+     * Is skip comments boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSkipComments() {
 		return skipComments;
 	}
 
-	public String getSplitExpression() {
+    /**
+     * Gets split expression.
+     *
+     * @return the split expression
+     */
+    public String getSplitExpression() {
 		return splitPattern.toString();
 	}
 
-	public String getCommentCharacters() {
+    /**
+     * Gets comment characters.
+     *
+     * @return the comment characters
+     */
+    public String getCommentCharacters() {
 		return commentCharacterString;
 	}
 
-	public boolean isUseQuotes() {
+    /**
+     * Is use quotes boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isUseQuotes() {
 		return useQuotes;
 	}
 
-	public char getQuoteCharacter() {
+    /**
+     * Gets quote character.
+     *
+     * @return the quote character
+     */
+    public char getQuoteCharacter() {
 		return quoteCharacter;
 	}
 
-	public char getQuoteEscapeCharacter() {
+    /**
+     * Gets quote escape character.
+     *
+     * @return the quote escape character
+     */
+    public char getQuoteEscapeCharacter() {
 		return quoteEscapeCharacter;
 	}
 
-	public void setTrimLine(boolean trimLine) {
+    /**
+     * Sets trim line.
+     *
+     * @param trimLine the trim line
+     */
+    public void setTrimLine(boolean trimLine) {
 		this.trimLine = trimLine;
 	}
 
-	public void setSkipComments(boolean skipComments) {
+    /**
+     * Sets skip comments.
+     *
+     * @param skipComments the skip comments
+     */
+    public void setSkipComments(boolean skipComments) {
 		this.skipComments = skipComments;
 	}
 
-	public void setCommentCharacters(String commentCharacters) {
+    /**
+     * Sets comment characters.
+     *
+     * @param commentCharacters the comment characters
+     */
+    public void setCommentCharacters(String commentCharacters) {
 		this.commentCharacterString = commentCharacters;
 	}
 
-	public void setSplitExpression(String splitExpression) throws OperatorException {
+    /**
+     * Sets split expression.
+     *
+     * @param splitExpression the split expression
+     * @throws OperatorException the operator exception
+     */
+    public void setSplitExpression(String splitExpression) throws OperatorException {
 		try {
 			if (splitExpression == null) {
 				splitExpression = "";
@@ -122,19 +247,41 @@ public class LineParser {
 		}
 	}
 
-	public void setUseQuotes(boolean useQuotes) {
+    /**
+     * Sets use quotes.
+     *
+     * @param useQuotes the use quotes
+     */
+    public void setUseQuotes(boolean useQuotes) {
 		this.useQuotes = useQuotes;
 	}
 
-	public void setQuoteCharacter(char quoteCharacter) {
+    /**
+     * Sets quote character.
+     *
+     * @param quoteCharacter the quote character
+     */
+    public void setQuoteCharacter(char quoteCharacter) {
 		this.quoteCharacter = quoteCharacter;
 	}
 
-	public void setQuoteEscapeCharacter(char quoteEscapeCharacter) {
+    /**
+     * Sets quote escape character.
+     *
+     * @param quoteEscapeCharacter the quote escape character
+     */
+    public void setQuoteEscapeCharacter(char quoteEscapeCharacter) {
 		this.quoteEscapeCharacter = quoteEscapeCharacter;
 	}
 
-	public String[] parse(String line) throws CSVParseException {
+    /**
+     * Parse string [ ].
+     *
+     * @param line the line
+     * @return the string [ ]
+     * @throws CSVParseException the csv parse exception
+     */
+    public String[] parse(String line) throws CSVParseException {
 		line = removeComment(line);
 		if (line == null || "".equals(line.trim())) {
 			return null;
@@ -142,7 +289,13 @@ public class LineParser {
 		return split(line);
 	}
 
-	public String removeComment(String line) {
+    /**
+     * Remove comment string.
+     *
+     * @param line the line
+     * @return the string
+     */
+    public String removeComment(String line) {
 		String resultingLine = line;
 		if (skipComments) {
 			for (int i = 0; i < commentCharacterString.length(); i++) {
@@ -158,7 +311,14 @@ public class LineParser {
 		return resultingLine;
 	}
 
-	public String[] split(String line) throws CSVParseException {
+    /**
+     * Split string [ ].
+     *
+     * @param line the line
+     * @return the string [ ]
+     * @throws CSVParseException the csv parse exception
+     */
+    public String[] split(String line) throws CSVParseException {
 		if (splitPattern == null) {
 			return new String[] { line };
 		}
@@ -178,12 +338,32 @@ public class LineParser {
 		// }
 	}
 
-	public static String[] split(String line, Pattern splitPattern, boolean trimLine) throws CSVParseException {
+    /**
+     * Split string [ ].
+     *
+     * @param line         the line
+     * @param splitPattern the split pattern
+     * @param trimLine     the trim line
+     * @return the string [ ]
+     * @throws CSVParseException the csv parse exception
+     */
+    public static String[] split(String line, Pattern splitPattern, boolean trimLine) throws CSVParseException {
 		String[] splittedString = splitPattern.split(trimLine ? line.trim() : line);
 		return splittedString;
 	}
 
-	public static String[] split(String line, Pattern splitPattern, boolean trimLine, char quoteCharacter,
+    /**
+     * Split string [ ].
+     *
+     * @param line                 the line
+     * @param splitPattern         the split pattern
+     * @param trimLine             the trim line
+     * @param quoteCharacter       the quote character
+     * @param quoteEscapeCharacter the quote escape character
+     * @return the string [ ]
+     * @throws CSVParseException the csv parse exception
+     */
+    public static String[] split(String line, Pattern splitPattern, boolean trimLine, char quoteCharacter,
 			char quoteEscapeCharacter) throws CSVParseException {
 		// String s = Tools.escapeQuoteCharsInQuotes(trimLine ? line.trim() : line, splitPattern,
 		// quoteCharacter, quoteEscapeCharacter, true);
@@ -191,29 +371,19 @@ public class LineParser {
 		return Tools.quotedSplit(trimLine ? s.trim() : s, splitPattern, quoteCharacter, quoteEscapeCharacter);
 	}
 
-	/**
-	 * Splits the given line at each split character which is not in quotes and not following an
-	 * escape character.
-	 * 
-	 * @param line
-	 *            the string to be splitted
-	 * @param splitChar
-	 *            the character which seperates the values, e.g. for the line
-	 *            {@code value1;"30.545";value3} it would be ';'
-	 * @param trimLine
-	 *            true if preceding and appending whitespaces of the line should be removed; false
-	 *            otherwise
-	 * @param quoteChar
-	 *            the character used for value quotes, e.g. for the line
-	 *            {@code value1;"30.545";value3} it would be '"'
-	 * @param escapeChar
-	 *            the character used to escape the following character. The character following an
-	 *            escape character will always be part of the result and will not be used as a quote
-	 *            or split character. For example, if set to '\', the line
-	 *            {@code val\;ue1;"30.545";value3} would result in [val;ue1],[30.545],[value3]
-	 * @return an array with the splitted strings
-	 */
-	public static String[] fastSplit(String line, char splitChar, boolean trimLine, char quoteChar, char escapeChar)
+    /**
+     * Splits the given line at each split character which is not in quotes and not following an
+     * escape character.
+     *
+     * @param line       the string to be splitted
+     * @param splitChar  the character which seperates the values, e.g. for the line            {@code value1;"30.545";value3} it would be ';'
+     * @param trimLine   true if preceding and appending whitespaces of the line should be removed; false            otherwise
+     * @param quoteChar  the character used for value quotes, e.g. for the line            {@code value1;"30.545";value3} it would be '"'
+     * @param escapeChar the character used to escape the following character. The character following an            escape character will always be part of the result and will not be used as a quote            or split character. For example, if set to '\', the line            {@code val\;ue1;"30.545";value3} would result in [val;ue1],[30.545],[value3]
+     * @return an array with the splitted strings
+     * @throws CSVParseException the csv parse exception
+     */
+    public static String[] fastSplit(String line, char splitChar, boolean trimLine, char quoteChar, char escapeChar)
 			throws CSVParseException {
 		List<String> resultList = new ArrayList<String>();
 		/** holding the temporary split string */
@@ -599,7 +769,13 @@ public class LineParser {
 		return resultArray;
 	}
 
-	public void configure(CSVResultSetConfiguration configuration) throws OperatorException {
+    /**
+     * Configure.
+     *
+     * @param configuration the configuration
+     * @throws OperatorException the operator exception
+     */
+    public void configure(CSVResultSetConfiguration configuration) throws OperatorException {
 		setTrimLine(configuration.isTrimLines());
 		setSkipComments(configuration.isSkipComments());
 		setSplitExpression(configuration.getColumnSeparators());

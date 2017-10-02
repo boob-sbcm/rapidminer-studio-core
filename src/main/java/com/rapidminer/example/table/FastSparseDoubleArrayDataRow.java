@@ -26,7 +26,7 @@ import java.util.Arrays;
 /**
  * This implementation of a sparse DataRow makes use of the binary search index to maintain a sorted
  * list of indices to save the effort of re sorting on adding a new index.
- * 
+ *
  * @author Sebastian Land, Tobias Malbrecht
  */
 public class FastSparseDoubleArrayDataRow extends DataRow {
@@ -38,7 +38,12 @@ public class FastSparseDoubleArrayDataRow extends DataRow {
 
 	private int numberOfValues = 0;
 
-	public FastSparseDoubleArrayDataRow(int initialSize) {
+    /**
+     * Instantiates a new Fast sparse double array data row.
+     *
+     * @param initialSize the initial size
+     */
+    public FastSparseDoubleArrayDataRow(int initialSize) {
 		this.values = new double[initialSize];
 		this.tableIndices = new int[initialSize];
 	}

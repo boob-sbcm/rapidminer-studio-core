@@ -62,28 +62,51 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class NominalNumbers2Numerical extends AbstractFilteredDataProcessing {
 
-	/** Last version where unparsable values were being ignored. */
-	public static final OperatorVersion CHANGE_6_0_3_UNPARSABLE_VALUES_ACTION = new OperatorVersion(6, 0, 3);
+    /**
+     * Last version where unparsable values were being ignored.
+     */
+    public static final OperatorVersion CHANGE_6_0_3_UNPARSABLE_VALUES_ACTION = new OperatorVersion(6, 0, 3);
 
-	/**
-	 * The parameter name for &quot;Character that is used as decimal point.&quot;
-	 */
-	public static final String PARAMETER_DECIMAL_POINT_CHARACTER = "decimal_point_character";
+    /**
+     * The parameter name for &quot;Character that is used as decimal point.&quot;
+     */
+    public static final String PARAMETER_DECIMAL_POINT_CHARACTER = "decimal_point_character";
 
-	/** Used for separation of digits (1,000,000.0 or 1.000.000,0) . */
-	public static final String PARAMETER_GROUP_SEPARATOR = "group_separator";
+    /**
+     * Used for separation of digits (1,000,000.0 or 1.000.000,0) .
+     */
+    public static final String PARAMETER_GROUP_SEPARATOR = "group_separator";
 
-	/** Allow unparsable values, use missing values instead. */
-	public static final String PARAMETER_UNPARSABLE_VALUE_HANDLING = "unparsable_value_handling";
+    /**
+     * Allow unparsable values, use missing values instead.
+     */
+    public static final String PARAMETER_UNPARSABLE_VALUE_HANDLING = "unparsable_value_handling";
 
-	public static final String[] UNPARSABLE_VALUES_HANDLING_METHOD = new String[] { "skip attribute", "fail",
+    /**
+     * The constant UNPARSABLE_VALUES_HANDLING_METHOD.
+     */
+    public static final String[] UNPARSABLE_VALUES_HANDLING_METHOD = new String[] { "skip attribute", "fail",
 			"replace with missing values" };
 
-	public static final int IGNORE = 0;
-	public static final int COMPLAIN = 1;
-	public static final int REPLACE_WITH_MISSING_VALUES = 2;
+    /**
+     * The constant IGNORE.
+     */
+    public static final int IGNORE = 0;
+    /**
+     * The constant COMPLAIN.
+     */
+    public static final int COMPLAIN = 1;
+    /**
+     * The constant REPLACE_WITH_MISSING_VALUES.
+     */
+    public static final int REPLACE_WITH_MISSING_VALUES = 2;
 
-	public NominalNumbers2Numerical(OperatorDescription description) {
+    /**
+     * Instantiates a new Nominal numbers 2 numerical.
+     *
+     * @param description the description
+     */
+    public NominalNumbers2Numerical(OperatorDescription description) {
 		super(description);
 	}
 

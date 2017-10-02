@@ -20,7 +20,7 @@ package com.rapidminer.operator.learner.functions.kernel.jmysvm.kernel;
 
 /**
  * Gaussian Combination Kernel
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KernelGaussianCombination extends Kernel {
@@ -37,10 +37,19 @@ public class KernelGaussianCombination extends Kernel {
 		return ("gaussian_combination(s1=" + sigma1 + ",s2=" + sigma2 + ",s3=" + sigma3 + ")");
 	};
 
-	/** Class constructor. */
-	public KernelGaussianCombination() {}
+    /**
+     * Class constructor.
+     */
+    public KernelGaussianCombination() {}
 
-	public void setParameters(double sigma1, double sigma2, double sigma3) {
+    /**
+     * Sets parameters.
+     *
+     * @param sigma1 the sigma 1
+     * @param sigma2 the sigma 2
+     * @param sigma3 the sigma 3
+     */
+    public void setParameters(double sigma1, double sigma2, double sigma3) {
 		this.sigma1 = sigma1;
 		this.sigma2 = sigma2;
 		this.sigma3 = sigma3;

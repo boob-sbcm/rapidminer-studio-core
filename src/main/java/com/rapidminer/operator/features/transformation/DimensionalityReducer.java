@@ -49,16 +49,18 @@ import java.util.List;
  * hierarchy is complete nonsense and will be dropped with one of the next versions. So if you
  * implement using this class, please implement this little code fragment below again or build a
  * more fitting class hierarchy.
- * 
+ * <p>
  * Abstract class representing some common functionality of dimensionality reduction methods.
- * 
+ *
  * @author Michael Wurst, Ingo Mierswa
  */
 @Deprecated
 public abstract class DimensionalityReducer extends Operator implements CapabilityProvider {
 
-	/** The parameter name for &quot;the number of dimensions in the result representation&quot; */
-	public static final String PARAMETER_DIMENSIONS = "dimensions";
+    /**
+     * The parameter name for &quot;the number of dimensions in the result representation&quot;
+     */
+    public static final String PARAMETER_DIMENSIONS = "dimensions";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set input");
 
@@ -66,7 +68,12 @@ public abstract class DimensionalityReducer extends Operator implements Capabili
 	private OutputPort originalOutput = getOutputPorts().createPort("original");
 	private OutputPort modelOutput = getOutputPorts().createPort("preprocessing model");
 
-	public DimensionalityReducer(OperatorDescription description) {
+    /**
+     * Instantiates a new Dimensionality reducer.
+     *
+     * @param description the description
+     */
+    public DimensionalityReducer(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new CapabilityPrecondition(this, exampleSetInput));
@@ -87,10 +94,14 @@ public abstract class DimensionalityReducer extends Operator implements Capabili
 		getTransformer().addRule(new PassThroughRule(exampleSetInput, originalOutput, false));
 	}
 
-	/**
-	 * Perform the actual dimensionality reduction.
-	 */
-	protected abstract double[][] dimensionalityReduction(ExampleSet es, int dimensions);
+    /**
+     * Perform the actual dimensionality reduction.
+     *
+     * @param es         the es
+     * @param dimensions the dimensions
+     * @return the double [ ] [ ]
+     */
+    protected abstract double[][] dimensionalityReduction(ExampleSet es, int dimensions);
 
 	@Override
 	public void doWork() throws OperatorException {

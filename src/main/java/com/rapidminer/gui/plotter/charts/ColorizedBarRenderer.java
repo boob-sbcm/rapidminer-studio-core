@@ -44,7 +44,12 @@ public class ColorizedBarRenderer extends BarRenderer {
 
 	private ColorProvider colorProvider = new ColorProvider(true);
 
-	public ColorizedBarRenderer(double[] colorValues) {
+    /**
+     * Instantiates a new Colorized bar renderer.
+     *
+     * @param colorValues the color values
+     */
+    public ColorizedBarRenderer(double[] colorValues) {
 		this.colorValues = colorValues;
 		this.minColor = Double.POSITIVE_INFINITY;
 		this.maxColor = Double.NEGATIVE_INFINITY;

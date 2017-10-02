@@ -25,11 +25,18 @@ import com.rapidminer.operator.Operator;
 /**
  * This listeners listens for changes of a {@link ParameterValueKeyCellEditor} and notifies the
  * corresponding value cell editors.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface ParameterChangeListener {
 
-	public void parameterSelectionChanged(Operator parentOperator, String operatorName, String parameterName);
+    /**
+     * Parameter selection changed.
+     *
+     * @param parentOperator the parent operator
+     * @param operatorName   the operator name
+     * @param parameterName  the parameter name
+     */
+    public void parameterSelectionChanged(Operator parentOperator, String operatorName, String parameterName);
 
 }

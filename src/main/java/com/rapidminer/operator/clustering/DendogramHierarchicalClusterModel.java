@@ -20,18 +20,28 @@ package com.rapidminer.operator.clustering;
 
 /**
  * This class only indicates that this model is providing information for plotting a dendogram.
- * 
+ *
  * @author Sebastian Land
  */
 public class DendogramHierarchicalClusterModel extends HierarchicalClusterModel {
 
 	private static final long serialVersionUID = 941706772535944222L;
 
-	public DendogramHierarchicalClusterModel(ClusterModel clusterModel) {
+    /**
+     * Instantiates a new Dendogram hierarchical cluster model.
+     *
+     * @param clusterModel the cluster model
+     */
+    public DendogramHierarchicalClusterModel(ClusterModel clusterModel) {
 		super(clusterModel);
 	}
 
-	public DendogramHierarchicalClusterModel(HierarchicalClusterNode root) {
+    /**
+     * Instantiates a new Dendogram hierarchical cluster model.
+     *
+     * @param root the root
+     */
+    public DendogramHierarchicalClusterModel(HierarchicalClusterNode root) {
 		super(root);
 	}
 }

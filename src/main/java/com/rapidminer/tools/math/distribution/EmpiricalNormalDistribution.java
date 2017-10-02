@@ -31,15 +31,30 @@ public class EmpiricalNormalDistribution extends NormalDistribution implements E
 
 	private static final long serialVersionUID = -1819042904676198636L;
 
-	protected boolean recentlyUpdated;
+    /**
+     * The Recently updated.
+     */
+    protected boolean recentlyUpdated;
 
-	protected double sum;
+    /**
+     * The Sum.
+     */
+    protected double sum;
 
-	protected double squaredSum;
+    /**
+     * The Squared sum.
+     */
+    protected double squaredSum;
 
-	protected double totalWeightSum;
+    /**
+     * The Total weight sum.
+     */
+    protected double totalWeightSum;
 
-	public EmpiricalNormalDistribution() {
+    /**
+     * Instantiates a new Empirical normal distribution.
+     */
+    public EmpiricalNormalDistribution() {
 		super(Double.NaN, Double.MIN_VALUE);
 		sum = 0;
 		squaredSum = 0;
@@ -63,7 +78,12 @@ public class EmpiricalNormalDistribution extends NormalDistribution implements E
 		recentlyUpdated = true;
 	}
 
-	public void update(EmpiricalNormalDistribution distribution) {
+    /**
+     * Update.
+     *
+     * @param distribution the distribution
+     */
+    public void update(EmpiricalNormalDistribution distribution) {
 		this.sum += distribution.sum;
 		this.squaredSum += distribution.squaredSum;
 		this.totalWeightSum += distribution.totalWeightSum;
@@ -75,7 +95,10 @@ public class EmpiricalNormalDistribution extends NormalDistribution implements E
 		return null;
 	}
 
-	protected void updateDistributionProperties() {
+    /**
+     * Update distribution properties.
+     */
+    protected void updateDistributionProperties() {
 		if (recentlyUpdated) {
 			mean = sum / totalWeightSum;
 			standardDeviation = totalWeightSum > 1 ? Math.sqrt((squaredSum - sum * sum / totalWeightSum)

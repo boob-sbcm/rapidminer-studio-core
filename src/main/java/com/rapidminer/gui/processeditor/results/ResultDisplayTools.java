@@ -63,14 +63,26 @@ import com.rapidminer.tools.usagestats.ActionStatisticsCollector;
  * Static methods to generate result visualization components etc.
  *
  * @author Simon Fischer
- * */
+ */
 public class ResultDisplayTools {
 
-	public static final String IOOBJECT_USER_DATA_KEY_RENDERER = ResultDisplayTools.class.getName() + ".renderer";
+    /**
+     * The constant IOOBJECT_USER_DATA_KEY_RENDERER.
+     */
+    public static final String IOOBJECT_USER_DATA_KEY_RENDERER = ResultDisplayTools.class.getName() + ".renderer";
 
-	static final String CLIENT_PROPERTY_RAPIDMINER_RESULT_NAME_HTML = "rapidminer.result.name.html";
-	static final String CLIENT_PROPERTY_RAPIDMINER_RESULT_ICON = "rapidminer.result.icon";
-	static final String CLIENT_PROPERTY_RAPIDMINER_RESULT_NAME = "rapidminer.result.name";
+    /**
+     * The Client property rapidminer result name html.
+     */
+    static final String CLIENT_PROPERTY_RAPIDMINER_RESULT_NAME_HTML = "rapidminer.result.name.html";
+    /**
+     * The Client property rapidminer result icon.
+     */
+    static final String CLIENT_PROPERTY_RAPIDMINER_RESULT_ICON = "rapidminer.result.icon";
+    /**
+     * The Client property rapidminer result name.
+     */
+    static final String CLIENT_PROPERTY_RAPIDMINER_RESULT_NAME = "rapidminer.result.name";
 
 	private static final String DEFAULT_RESULT_ICON_NAME = "presentation_chart.png";
 
@@ -90,31 +102,42 @@ public class ResultDisplayTools {
 		defaultResultIcon = SwingTools.createIcon("16/" + DEFAULT_RESULT_ICON_NAME);
 	}
 
-	public static JPanel createVisualizationComponent(IOObject resultObject, IOContainer resultContainer,
+    /**
+     * Create visualization component j panel.
+     *
+     * @param resultObject    the result object
+     * @param resultContainer the result container
+     * @param usedResultName  the used result name
+     * @return the j panel
+     */
+    public static JPanel createVisualizationComponent(IOObject resultObject, IOContainer resultContainer,
 			String usedResultName) {
 		return createVisualizationComponent(resultObject, resultContainer, usedResultName, true);
 	}
 
-	/**
-	 * Creates a panel which centers an error message.
-	 *
-	 * @param error
-	 *            the message to display
-	 * @return
-	 */
-	public static JPanel createErrorComponent(String error) {
+    /**
+     * Creates a panel which centers an error message.
+     *
+     * @param error the message to display
+     * @return j panel
+     */
+    public static JPanel createErrorComponent(String error) {
 		JPanel panel = new JPanel(new BorderLayout());
 		JLabel label = new JLabel(error, ERROR_ICON, SwingConstants.CENTER);
 		panel.add(label, BorderLayout.CENTER);
 		return panel;
 	}
 
-	/**
-	 * @param showCards
-	 *            if <code>false</code> the cards on the left side of the visualization component
-	 *            will not be shown
-	 */
-	public static JPanel createVisualizationComponent(IOObject result, final IOContainer resultContainer,
+    /**
+     * Create visualization component j panel.
+     *
+     * @param result          the result
+     * @param resultContainer the result container
+     * @param usedResultName  the used result name
+     * @param showCards       if <code>false</code> the cards on the left side of the visualization component            will not be shown
+     * @return the j panel
+     */
+    public static JPanel createVisualizationComponent(IOObject result, final IOContainer resultContainer,
 			String usedResultName, final boolean showCards) {
 		final String resultName = RendererService.getName(result.getClass());
 		ButtonBarCardPanel visualisationComponent;
@@ -265,7 +288,12 @@ public class ResultDisplayTools {
 		return name.toLowerCase().replace(' ', '_');
 	}
 
-	public static ResultDisplay makeResultDisplay() {
+    /**
+     * Make result display result display.
+     *
+     * @return the result display
+     */
+    public static ResultDisplay makeResultDisplay() {
 		return new DockableResultDisplay();
 	}
 

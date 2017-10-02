@@ -31,9 +31,8 @@ import java.util.List;
 
 /**
  * Indicates that the process data flow contains a loop.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class OperatorLoopError implements MetaDataError {
 
@@ -43,14 +42,24 @@ public class OperatorLoopError implements MetaDataError {
 
 	private final QuickFix fix;
 
-	public OperatorLoopError(InputPort port) {
+    /**
+     * Instantiates a new Operator loop error.
+     *
+     * @param port the port
+     */
+    public OperatorLoopError(InputPort port) {
 		this.port = port;
 		this.inputPort = port;
 		this.outputPort = port.getSource();
 		fix = new DisconnectQuickFix(outputPort, inputPort);
 	}
 
-	public OperatorLoopError(OutputPort port) {
+    /**
+     * Instantiates a new Operator loop error.
+     *
+     * @param port the port
+     */
+    public OperatorLoopError(OutputPort port) {
 		this.port = port;
 		this.outputPort = port;
 		this.inputPort = port.getDestination();

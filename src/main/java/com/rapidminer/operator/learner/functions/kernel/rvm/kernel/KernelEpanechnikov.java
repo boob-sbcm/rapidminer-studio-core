@@ -20,7 +20,7 @@ package com.rapidminer.operator.learner.functions.kernel.rvm.kernel;
 
 /**
  * Returns the value of the Epanechnikov kernel of both examples.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KernelEpanechnikov extends Kernel {
@@ -33,14 +33,22 @@ public class KernelEpanechnikov extends Kernel {
 	/** The parameter degree of the Epanechnikov kernel. */
 	private double degree = 1;
 
-	/** Constructor(s) */
-	public KernelEpanechnikov(double sigma, double degree) {
+    /**
+     * Constructor(s)  @param sigma the sigma
+     *
+     * @param sigma  the sigma
+     * @param degree the degree
+     */
+    public KernelEpanechnikov(double sigma, double degree) {
 		super();
 		this.sigma = sigma;
 		this.degree = degree;
 	}
 
-	public KernelEpanechnikov() {
+    /**
+     * Instantiates a new Kernel epanechnikov.
+     */
+    public KernelEpanechnikov() {
 		super();
 	}
 

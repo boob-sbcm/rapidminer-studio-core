@@ -23,7 +23,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Returns the simple inner product of both examples.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DotKernel extends Kernel {

@@ -24,16 +24,25 @@ import com.rapidminer.example.table.DataRow;
 
 
 /**
+ * The type Concat aggregator.
+ *
  * @author Marius Helf
- * 
  */
 public class ConcatAggregator implements Aggregator {
 
 	private ConcatAggregationFunction function;
-	boolean first = true;
+    /**
+     * The First.
+     */
+    boolean first = true;
 	private StringBuilder concatenation = new StringBuilder();
 
-	public ConcatAggregator(ConcatAggregationFunction concatAggregationFunction) {
+    /**
+     * Instantiates a new Concat aggregator.
+     *
+     * @param concatAggregationFunction the concat aggregation function
+     */
+    public ConcatAggregator(ConcatAggregationFunction concatAggregationFunction) {
 		this.function = concatAggregationFunction;
 	}
 

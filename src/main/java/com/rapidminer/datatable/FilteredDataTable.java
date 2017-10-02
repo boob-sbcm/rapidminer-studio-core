@@ -27,22 +27,36 @@ import java.util.Vector;
 /**
  * This DataTable filters the contained rows using a stack of FilterConditions. Each time the stack
  * is modified, it informs it's DataTableFilteredListener that they need to update the table.
- * 
+ *
  * @author Sebastian Land, Marius Helf
  */
 public class FilteredDataTable extends DataTableView {
 
-	public static enum ConditionCombination {
-		AND,	// all conditions must match
-		OR		// at least one condition must match
+    /**
+     * The enum Condition combination.
+     */
+    public static enum ConditionCombination {
+        /**
+         * And condition combination.
+         */
+        AND,	// all conditions must match
+        /**
+         * The Or.
+         */
+        OR		// at least one condition must match
 	}
 
-	public static interface DataTableFilteredListener {
+    /**
+     * The interface Data table filtered listener.
+     */
+    public static interface DataTableFilteredListener {
 
-		/**
-		 * This method is called by a datatable, if its content is changed.
-		 */
-		public void informDataTableChange(DataTable dataTable);
+        /**
+         * This method is called by a datatable, if its content is changed.
+         *
+         * @param dataTable the data table
+         */
+        public void informDataTableChange(DataTable dataTable);
 	}
 
 	private List<DataTableFilteredListener> listeners = new LinkedList<DataTableFilteredListener>();
@@ -51,22 +65,33 @@ public class FilteredDataTable extends DataTableView {
 
 	private final ConditionCombination conditionCombination;
 
-	public FilteredDataTable(DataTable parentDataTable) {
+    /**
+     * Instantiates a new Filtered data table.
+     *
+     * @param parentDataTable the parent data table
+     */
+    public FilteredDataTable(DataTable parentDataTable) {
 		super(parentDataTable);
 		this.conditionCombination = ConditionCombination.AND;
 	}
 
-	public FilteredDataTable(DataTable parentDataTable, ConditionCombination conditionCombination) {
+    /**
+     * Instantiates a new Filtered data table.
+     *
+     * @param parentDataTable      the parent data table
+     * @param conditionCombination the condition combination
+     */
+    public FilteredDataTable(DataTable parentDataTable, ConditionCombination conditionCombination) {
 		super(parentDataTable);
 		this.conditionCombination = conditionCombination;
 	}
 
-	/**
-	 * Adds a new condition. null arguments will be ignored.
-	 * 
-	 * @param condition
-	 */
-	public void addCondition(DataTableFilterCondition condition) {
+    /**
+     * Adds a new condition. null arguments will be ignored.
+     *
+     * @param condition the condition
+     */
+    public void addCondition(DataTableFilterCondition condition) {
 		if (condition == null) {
 			return;
 		}
@@ -75,14 +100,13 @@ public class FilteredDataTable extends DataTableView {
 		informDataTableFilteredListener();
 	}
 
-	/**
-	 * Adds a batch of conditions. The listeners will be only informed after all of the conditions
-	 * have been added. Null conditions will be ignored.
-	 * 
-	 * @param conditions
-	 *            The collection of the conditions to be added. Must not be null.
-	 */
-	public void addConditions(Iterable<? extends DataTableFilterCondition> conditions) {
+    /**
+     * Adds a batch of conditions. The listeners will be only informed after all of the conditions
+     * have been added. Null conditions will be ignored.
+     *
+     * @param conditions The collection of the conditions to be added. Must not be null.
+     */
+    public void addConditions(Iterable<? extends DataTableFilterCondition> conditions) {
 		boolean changed = false;
 		for (DataTableFilterCondition condition : conditions) {
 			if (condition != null) {
@@ -96,7 +120,10 @@ public class FilteredDataTable extends DataTableView {
 		}
 	}
 
-	public void removeCondition() {
+    /**
+     * Remove condition.
+     */
+    public void removeCondition() {
 		if (conditionStack.size() > 0) {
 			conditionStack.remove(conditionStack.size() - 1);
 			setSelectedIndices(updateSelection());
@@ -104,7 +131,10 @@ public class FilteredDataTable extends DataTableView {
 		}
 	}
 
-	public void removeAllConditions() {
+    /**
+     * Remove all conditions.
+     */
+    public void removeAllConditions() {
 		if (conditionStack.size() > 0) {
 			conditionStack.clear();
 			setSelectedIndices(updateSelection());
@@ -112,10 +142,12 @@ public class FilteredDataTable extends DataTableView {
 		}
 	}
 
-	/**
-	 * Replaces all conditions. See addConditions for parameter description.
-	 */
-	public void replaceConditions(Iterable<? extends DataTableFilterCondition> newConditions) {
+    /**
+     * Replaces all conditions. See addConditions for parameter description.
+     *
+     * @param newConditions the new conditions
+     */
+    public void replaceConditions(Iterable<? extends DataTableFilterCondition> newConditions) {
 		int oldSize = conditionStack.size();
 		conditionStack.clear();
 		if (!newConditions.iterator().hasNext() && oldSize > 0) {
@@ -171,14 +203,24 @@ public class FilteredDataTable extends DataTableView {
 		return selectedIndices;
 	}
 
-	/*
-	 * Listener Methods
+    /**
+     * Add data table filtered listener.
+     *
+     * @param listener the listener
+     */
+/*
+     * Listener Methods
 	 */
 	public void addDataTableFilteredListener(DataTableFilteredListener listener) {
 		this.listeners.add(listener);
 	}
 
-	public void removeDataTableFilteredListewner(DataTableFilteredListener listener) {
+    /**
+     * Remove data table filtered listewner.
+     *
+     * @param listener the listener
+     */
+    public void removeDataTableFilteredListewner(DataTableFilteredListener listener) {
 		this.listeners.remove(listener);
 	}
 

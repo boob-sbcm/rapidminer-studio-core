@@ -66,20 +66,17 @@ import com.vlsolutions.swing.docking.RelativeDockablePosition;
  *
  * @author Marco Boeck
  * @since 6.5.0
- *
  */
-
 public class PortInfoBubble extends BubbleWindow {
 
-	/**
-	 * Builder for {@link PortInfoBubble}s. After calling all relevant setters, call
-	 * {@link #build()} to create the actual dialog instance.
-	 *
-	 * @author Marco Boeck
-	 * @since 6.5.0
-	 *
-	 */
-	public static class PortBubbleBuilder extends BubbleWindowBuilder<PortInfoBubble, PortBubbleBuilder> {
+    /**
+     * Builder for {@link PortInfoBubble}s. After calling all relevant setters, call
+     * {@link #build()} to create the actual dialog instance.
+     *
+     * @author Marco Boeck
+     * @since 6.5.0
+     */
+    public static class PortBubbleBuilder extends BubbleWindowBuilder<PortInfoBubble, PortBubbleBuilder> {
 
 		private Port attachTo;
 		private boolean hideOnConnection;
@@ -88,77 +85,75 @@ public class PortInfoBubble extends BubbleWindow {
 		private boolean ensureVisible;
 		private boolean killOnPerspectiveChange;
 
-		public PortBubbleBuilder(final Window owner, final Port attachTo, final String i18nKey, final Object... arguments) {
+        /**
+         * Instantiates a new Port bubble builder.
+         *
+         * @param owner     the owner
+         * @param attachTo  the attach to
+         * @param i18nKey   the 18 n key
+         * @param arguments the arguments
+         */
+        public PortBubbleBuilder(final Window owner, final Port attachTo, final String i18nKey, final Object... arguments) {
 			super(owner, i18nKey, arguments);
 			this.attachTo = attachTo;
 			this.killOnPerspectiveChange = true;
 		}
 
-		/**
-		 * Sets whether to hide the bubble when the port is connected. Defaults to {@code false}.
-		 *
-		 * @param hideOnConnection
-		 *            {@code true} if the bubble should be hidden upon connection; {@code false}
-		 *            otherwise
-		 * @return the builder instance
-		 */
-		public PortBubbleBuilder setHideOnConnection(final boolean hideOnConnection) {
+        /**
+         * Sets whether to hide the bubble when the port is connected. Defaults to {@code false}.
+         *
+         * @param hideOnConnection {@code true} if the bubble should be hidden upon connection; {@code false}            otherwise
+         * @return the builder instance
+         */
+        public PortBubbleBuilder setHideOnConnection(final boolean hideOnConnection) {
 			this.hideOnConnection = hideOnConnection;
 			return this;
 		}
 
-		/**
-		 * Sets whether to hide the bubble when the operator the port is attached to is disabled.
-		 * Defaults to {@code false}.
-		 *
-		 * @param hideOnDisable
-		 *            {@code true} if the bubble should be hidden upon disable; {@code false}
-		 *            otherwise
-		 * @return the builder instance
-		 */
-		public PortBubbleBuilder setHideOnDisable(final boolean hideOnDisable) {
+        /**
+         * Sets whether to hide the bubble when the operator the port is attached to is disabled.
+         * Defaults to {@code false}.
+         *
+         * @param hideOnDisable {@code true} if the bubble should be hidden upon disable; {@code false}            otherwise
+         * @return the builder instance
+         */
+        public PortBubbleBuilder setHideOnDisable(final boolean hideOnDisable) {
 			this.hideOnDisable = hideOnDisable;
 			return this;
 		}
 
-		/**
-		 * Sets whether to hide the bubble when the process is run. Defaults to {@code false}.
-		 *
-		 * @param hideOnRun
-		 *            {@code true} if the bubble should be hidden upon running a process;
-		 *            {@code false} otherwise
-		 * @return the builder instance
-		 */
-		public PortBubbleBuilder setHideOnProcessRun(final boolean hideOnRun) {
+        /**
+         * Sets whether to hide the bubble when the process is run. Defaults to {@code false}.
+         *
+         * @param hideOnRun {@code true} if the bubble should be hidden upon running a process;            {@code false} otherwise
+         * @return the builder instance
+         */
+        public PortBubbleBuilder setHideOnProcessRun(final boolean hideOnRun) {
 			this.hideOnRun = hideOnRun;
 			return this;
 		}
 
-		/**
-		 * Sets whether to make sure the bubble is visible by automatically switching perspective,
-		 * opening/showing the process dockable and changing the subprocess. Defaults to
-		 * {@code false}.
-		 *
-		 * @param ensureVisible
-		 *            {@code true} if the bubble should be hidden upon disable; {@code false}
-		 *            otherwise
-		 * @return the builder instance
-		 */
-		public PortBubbleBuilder setEnsureVisible(final boolean ensureVisible) {
+        /**
+         * Sets whether to make sure the bubble is visible by automatically switching perspective,
+         * opening/showing the process dockable and changing the subprocess. Defaults to
+         * {@code false}.
+         *
+         * @param ensureVisible {@code true} if the bubble should be hidden upon disable; {@code false}            otherwise
+         * @return the builder instance
+         */
+        public PortBubbleBuilder setEnsureVisible(final boolean ensureVisible) {
 			this.ensureVisible = ensureVisible;
 			return this;
 		}
 
-		/**
-		 * Sets whether the bubble should be automatically killed by switching perspective. Defaults
-		 * to {@code true}.
-		 *
-		 * @param killOnPerspectiveChange
-		 *            {@code true} if the bubble should be killed on perspective change;
-		 *            {@code false} otherwise
-		 * @return the builder instance
-		 */
-		public PortBubbleBuilder setKillOnPerspectiveChange(final boolean killOnPerspectiveChange) {
+        /**
+         * Sets whether the bubble should be automatically killed by switching perspective. Defaults
+         * to {@code true}.
+         *
+         * @param killOnPerspectiveChange {@code true} if the bubble should be killed on perspective change;            {@code false} otherwise
+         * @return the builder instance
+         */
+        public PortBubbleBuilder setKillOnPerspectiveChange(final boolean killOnPerspectiveChange) {
 			this.killOnPerspectiveChange = killOnPerspectiveChange;
 			return this;
 		}

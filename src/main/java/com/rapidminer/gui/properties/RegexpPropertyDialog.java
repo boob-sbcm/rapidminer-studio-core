@@ -83,7 +83,7 @@ import groovy.swing.impl.DefaultAction;
  * expression (normally a previously set value). A collection of item strings can be given to the
  * dialog which are then available as shortcuts. Additionally, a list shows which of these items
  * match the regular expression. If the item collection is null, both lists will not be visible.
- *
+ * <p>
  * The dialog shows an inline preview displaying where the given pattern matches. It also shows a
  * list of matches, together with their matching groups.
  *
@@ -168,11 +168,26 @@ public class RegexpPropertyDialog extends ButtonDialog {
 
 	private JButton okButton;
 
-	JCheckBox cbCaseInsensitive;
-	JCheckBox cbComments;
-	JCheckBox cbMultiline;
-	JCheckBox cbDotall;
-	JCheckBox cbUnicodeCase;
+    /**
+     * The Cb case insensitive.
+     */
+    JCheckBox cbCaseInsensitive;
+    /**
+     * The Cb comments.
+     */
+    JCheckBox cbComments;
+    /**
+     * The Cb multiline.
+     */
+    JCheckBox cbMultiline;
+    /**
+     * The Cb dotall.
+     */
+    JCheckBox cbDotall;
+    /**
+     * The Cb unicode case.
+     */
+    JCheckBox cbUnicodeCase;
 
 	/** Class representing a single regexp search result. **/
 	private class RegExpResult {
@@ -182,13 +197,23 @@ public class RegexpPropertyDialog extends ButtonDialog {
 		private int number;
 		private boolean empty = false;
 
-		public RegExpResult(String match, String[] groups, int number) {
+        /**
+         * Instantiates a new Reg exp result.
+         *
+         * @param match  the match
+         * @param groups the groups
+         * @param number the number
+         */
+        public RegExpResult(String match, String[] groups, int number) {
 			this.match = match;
 			this.groups = groups;
 			this.number = number;
 		}
 
-		public RegExpResult() {
+        /**
+         * Instantiates a new Reg exp result.
+         */
+        public RegExpResult() {
 			// empty result
 			empty = true;
 		}
@@ -231,8 +256,14 @@ public class RegexpPropertyDialog extends ButtonDialog {
 
 		private Matcher matcher = Pattern.compile("").matcher("");
 
-		Style keyStyle;
-		Style rootStyle;
+        /**
+         * The Key style.
+         */
+        Style keyStyle;
+        /**
+         * The Root style.
+         */
+        Style rootStyle;
 
 		{
 			rootStyle = addStyle("root", null);
@@ -289,12 +320,20 @@ public class RegexpPropertyDialog extends ButtonDialog {
 			}
 		}
 
-		public void updatePattern(String pattern) {
+        /**
+         * Update pattern.
+         *
+         * @param pattern the pattern
+         */
+        public void updatePattern(String pattern) {
 			this.matcher = Pattern.compile(pattern).matcher("");
 			checkDocument();
 		}
 
-		public void clearResults() {
+        /**
+         * Clear results.
+         */
+        public void clearResults() {
 			resultsListModel.clear();
 			resultsListModel.addElement(new RegExpResult());
 			testExp.setTitleAt(1,
@@ -310,11 +349,19 @@ public class RegexpPropertyDialog extends ButtonDialog {
 
 		private static final long serialVersionUID = 1L;
 
-		public RegexpReplaceStyledDocument() {
+        /**
+         * Instantiates a new Regexp replace styled document.
+         */
+        public RegexpReplaceStyledDocument() {
 			super();
 		}
 
-		public void setText(String text) {
+        /**
+         * Sets text.
+         *
+         * @param text the text
+         */
+        public void setText(String text) {
 			try {
 				remove(0, getLength());
 				insertString(0, text, null);
@@ -324,7 +371,14 @@ public class RegexpPropertyDialog extends ButtonDialog {
 		}
 	}
 
-	public RegexpPropertyDialog(final Collection<String> items, String predefinedRegexp, String description) {
+    /**
+     * Instantiates a new Regexp property dialog.
+     *
+     * @param items            the items
+     * @param predefinedRegexp the predefined regexp
+     * @param description      the description
+     */
+    public RegexpPropertyDialog(final Collection<String> items, String predefinedRegexp, String description) {
 		super(ApplicationFrame.getApplicationFrame(), "parameter.regexp", ModalityType.APPLICATION_MODAL, new Object[] {});
 		this.items = items;
 		this.supportsItems = items != null;
@@ -840,7 +894,13 @@ public class RegexpPropertyDialog extends ButtonDialog {
 		private static final long serialVersionUID = -5185173378762191200L;
 		private final String insertionString;
 
-		public InsertionAction(String title, String insertionString) {
+        /**
+         * Instantiates a new Insertion action.
+         *
+         * @param title           the title
+         * @param insertionString the insertion string
+         */
+        public InsertionAction(String title, String insertionString) {
 			putValue(Action.NAME, title);
 			this.insertionString = insertionString;
 		}
@@ -894,19 +954,24 @@ public class RegexpPropertyDialog extends ButtonDialog {
 		}
 	}
 
-	/**
-	 * Sets the text of the search field.
-	 *
-	 * @param text
-	 */
-	public void setSearchFieldText(String text) {
+    /**
+     * Sets the text of the search field.
+     *
+     * @param text the text
+     */
+    public void setSearchFieldText(String text) {
 		try {
 			this.inlineSearchDocument.insertString(0, text, new SimpleAttributeSet());
 		} catch (BadLocationException e) {
 		}
 	}
 
-	public String getRegexp() {
+    /**
+     * Gets regexp.
+     *
+     * @return the regexp
+     */
+    public String getRegexp() {
 		return regexpTextField.getText();
 	}
 

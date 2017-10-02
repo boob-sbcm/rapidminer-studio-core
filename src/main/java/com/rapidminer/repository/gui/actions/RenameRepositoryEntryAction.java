@@ -26,14 +26,19 @@ import com.rapidminer.repository.gui.RepositoryTree;
 
 /**
  * This action renames the selected entry.
- * 
+ *
  * @author Simon Fischer
  */
 public class RenameRepositoryEntryAction extends AbstractRepositoryAction<Entry> {
 
 	private static final long serialVersionUID = 1L;
 
-	public RenameRepositoryEntryAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Rename repository entry action.
+     *
+     * @param tree the tree
+     */
+    public RenameRepositoryEntryAction(RepositoryTree tree) {
 		super(tree, Entry.class, false, "repository_rename_entry");
 	}
 

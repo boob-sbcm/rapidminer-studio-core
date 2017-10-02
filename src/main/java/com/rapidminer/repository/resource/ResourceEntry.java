@@ -30,9 +30,9 @@ import com.rapidminer.repository.RepositoryLocation;
 
 
 /**
+ * The type Resource entry.
  *
  * @author Simon Fischer
- *
  */
 public abstract class ResourceEntry implements Entry {
 
@@ -41,7 +41,15 @@ public abstract class ResourceEntry implements Entry {
 	private String path;
 	private ResourceRepository repository;
 
-	protected ResourceEntry(ResourceFolder parent, String name, String path, ResourceRepository repository) {
+    /**
+     * Instantiates a new Resource entry.
+     *
+     * @param parent     the parent
+     * @param name       the name
+     * @param path       the path
+     * @param repository the repository
+     */
+    protected ResourceEntry(ResourceFolder parent, String name, String path, ResourceRepository repository) {
 		this.container = parent;
 		this.name = name;
 		this.path = path;
@@ -102,19 +110,39 @@ public abstract class ResourceEntry implements Entry {
 		return false;
 	}
 
-	protected String getResource() {
+    /**
+     * Gets resource.
+     *
+     * @return the resource
+     */
+    protected String getResource() {
 		return getRepository().getResourceRoot() + getPath();
 	}
 
-	protected String getPath() {
+    /**
+     * Gets path.
+     *
+     * @return the path
+     */
+    protected String getPath() {
 		return path;
 	}
 
-	protected ResourceRepository getRepository() {
+    /**
+     * Gets repository.
+     *
+     * @return the repository
+     */
+    protected ResourceRepository getRepository() {
 		return repository;
 	}
 
-	protected void setRepository(ResourceRepository resourceRepository) {
+    /**
+     * Sets repository.
+     *
+     * @param resourceRepository the resource repository
+     */
+    protected void setRepository(ResourceRepository resourceRepository) {
 		this.repository = resourceRepository;
 	}
 

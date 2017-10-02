@@ -29,35 +29,82 @@ import org.w3c.dom.Element;
 /**
  * A parameter type for ordering rules of attributes. This parameter type has been introduced to
  * allow a different cell rendered for this class.
- * 
+ *
  * @author Nils Woehler
  */
 public class ParameterTypeAttributeOrderingRules extends ParameterTypeAttribute {
 
 	private static final long serialVersionUID = 1L;
 
-	public ParameterTypeAttributeOrderingRules(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type attribute ordering rules.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeAttributeOrderingRules(Element element) throws XMLException {
 		super(element);
 	}
 
-	public ParameterTypeAttributeOrderingRules(final String key, String description, InputPort inPort) {
+    /**
+     * Instantiates a new Parameter type attribute ordering rules.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     */
+    public ParameterTypeAttributeOrderingRules(final String key, String description, InputPort inPort) {
 		this(key, description, inPort, true, Ontology.ATTRIBUTE_VALUE);
 	}
 
-	public ParameterTypeAttributeOrderingRules(final String key, String description, InputPort inPort, int... valueTypes) {
+    /**
+     * Instantiates a new Parameter type attribute ordering rules.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     * @param valueTypes  the value types
+     */
+    public ParameterTypeAttributeOrderingRules(final String key, String description, InputPort inPort, int... valueTypes) {
 		this(key, description, inPort, true, valueTypes);
 	}
 
-	public ParameterTypeAttributeOrderingRules(final String key, String description, InputPort inPort, boolean optional) {
+    /**
+     * Instantiates a new Parameter type attribute ordering rules.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     * @param optional    the optional
+     */
+    public ParameterTypeAttributeOrderingRules(final String key, String description, InputPort inPort, boolean optional) {
 		this(key, description, inPort, optional, Ontology.ATTRIBUTE_VALUE);
 	}
 
-	public ParameterTypeAttributeOrderingRules(final String key, String description, InputPort inPort, boolean optional,
+    /**
+     * Instantiates a new Parameter type attribute ordering rules.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     * @param optional    the optional
+     * @param valueTypes  the value types
+     */
+    public ParameterTypeAttributeOrderingRules(final String key, String description, InputPort inPort, boolean optional,
 			int... valueTypes) {
 		super(key, description, inPort, optional, valueTypes);
 	}
 
-	public ParameterTypeAttributeOrderingRules(final String key, String description, InputPort inPort, boolean optional,
+    /**
+     * Instantiates a new Parameter type attribute ordering rules.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     * @param optional    the optional
+     * @param expert      the expert
+     */
+    public ParameterTypeAttributeOrderingRules(final String key, String description, InputPort inPort, boolean optional,
 			boolean expert) {
 		this(key, description, inPort, optional);
 		setExpert(expert);

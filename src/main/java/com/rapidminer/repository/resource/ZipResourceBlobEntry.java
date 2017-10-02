@@ -43,7 +43,16 @@ public class ZipResourceBlobEntry extends ResourceDataEntry implements BlobEntry
 
 	private String mimeType;
 
-	protected ZipResourceBlobEntry(ResourceFolder parent, String name, String resource, ResourceRepository repository,
+    /**
+     * Instantiates a new Zip resource blob entry.
+     *
+     * @param parent     the parent
+     * @param name       the name
+     * @param resource   the resource
+     * @param repository the repository
+     * @param zipStream  the zip stream
+     */
+    protected ZipResourceBlobEntry(ResourceFolder parent, String name, String resource, ResourceRepository repository,
 			ZipStreamResource zipStream) {
 		super(parent, name, resource, repository);
 		this.zipStream = zipStream;

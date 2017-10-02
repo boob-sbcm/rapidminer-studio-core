@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class LogSearchAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class LogSearchAction extends ResourceAction {
 
 	private LogViewer loggingViewer;
 
-	public LogSearchAction(LogViewer loggingViewer) {
+    /**
+     * Instantiates a new Log search action.
+     *
+     * @param loggingViewer the logging viewer
+     */
+    public LogSearchAction(LogViewer loggingViewer) {
 		super(true, "search_log");
 		this.loggingViewer = loggingViewer;
 	}

@@ -29,21 +29,38 @@ import javax.swing.JPopupMenu;
 /**
  * Interface for callbacks received from the {@link ProcessRendererView} when the user opens a context
  * menu.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public interface ProcessInteractionListener {
 
-	/** Called on right-clicking an operator. */
-	public void operatorContextMenuWillOpen(JPopupMenu menu, Operator operator);
+    /**
+     * Called on right-clicking an operator.  @param menu the menu
+     *
+     * @param menu     the menu
+     * @param operator the operator
+     */
+    public void operatorContextMenuWillOpen(JPopupMenu menu, Operator operator);
 
-	/** Called on right-clicking a port. */
-	public void portContextMenuWillOpen(JPopupMenu menu, Port port);
+    /**
+     * Called on right-clicking a port.  @param menu the menu
+     *
+     * @param menu the menu
+     * @param port the port
+     */
+    public void portContextMenuWillOpen(JPopupMenu menu, Port port);
 
-	/** Called when an operator is moved. */
-	public void operatorMoved(Operator op);
+    /**
+     * Called when an operator is moved.  @param op the op
+     *
+     * @param op the op
+     */
+    public void operatorMoved(Operator op);
 
-	/** Called when the currently displayed {@link OperatorChain} changed. */
-	public void displayedChainChanged(OperatorChain displayedChain);
+    /**
+     * Called when the currently displayed {@link OperatorChain} changed.  @param displayedChain the displayed chain
+     *
+     * @param displayedChain the displayed chain
+     */
+    public void displayedChainChanged(OperatorChain displayedChain);
 }

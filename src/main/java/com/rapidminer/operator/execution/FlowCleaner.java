@@ -34,7 +34,10 @@ import com.rapidminer.tools.parameter.ParameterChangeListener;
  */
 enum FlowCleaner {
 
-	INSTANCE;
+    /**
+     * Instance flow cleaner.
+     */
+    INSTANCE;
 
 	/** the cleanup is only possible if beta features are activated */
 	private boolean cleanupPossible = !Boolean
@@ -58,17 +61,15 @@ enum FlowCleaner {
 		});
 	}
 
-	/**
-	 * Checks if the data is a {@link ExampleSet} that can be cleaned via
-	 * {@link ExampleSet#cleanup()}. Does the cleanup if it is necessary.
-	 *
-	 * @param data
-	 *            the current data at the inputPort
-	 * @param inputPort
-	 *            the input port to which the data belongs
-	 * @return the cleaned up data or the unchanged data
-	 */
-	IOObject checkCleanup(IOObject data, InputPort inputPort) {
+    /**
+     * Checks if the data is a {@link ExampleSet} that can be cleaned via
+     * {@link ExampleSet#cleanup()}. Does the cleanup if it is necessary.
+     *
+     * @param data      the current data at the inputPort
+     * @param inputPort the input port to which the data belongs
+     * @return the cleaned up data or the unchanged data
+     */
+    IOObject checkCleanup(IOObject data, InputPort inputPort) {
 		if (cleanupPossible && data instanceof ExampleSet) {
 			ExampleSet exampleSet = (ExampleSet) data;
 			// do cleanup if there are unused columns

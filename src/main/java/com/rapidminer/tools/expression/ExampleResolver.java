@@ -51,69 +51,70 @@ public class ExampleResolver implements Resolver {
 
 	private final ExampleSetMetaData metaData;
 
-	public static final String KEY_ATTRIBUTES = I18N.getGUIMessage("gui.dialog.function_input.regular_attributes");
-	public static final String KEY_SPECIAL_ATTRIBUTES = I18N.getGUIMessage("gui.dialog.function_input.special_attributes");
+    /**
+     * The constant KEY_ATTRIBUTES.
+     */
+    public static final String KEY_ATTRIBUTES = I18N.getGUIMessage("gui.dialog.function_input.regular_attributes");
+    /**
+     * The constant KEY_SPECIAL_ATTRIBUTES.
+     */
+    public static final String KEY_SPECIAL_ATTRIBUTES = I18N.getGUIMessage("gui.dialog.function_input.special_attributes");
 
-	/**
-	 * Creates an {@link ExampleResolver} that can bind {@link Example}s that have the same meta
-	 * data as the given exampleSet.
-	 *
-	 * @param exampleSet
-	 *            the {@link ExampleSet} from which this resolver should bind examples, cannot be
-	 *            {@code null}
-	 */
-	public ExampleResolver(ExampleSet exampleSet) {
+    /**
+     * Creates an {@link ExampleResolver} that can bind {@link Example}s that have the same meta
+     * data as the given exampleSet.
+     *
+     * @param exampleSet the {@link ExampleSet} from which this resolver should bind examples, cannot be            {@code null}
+     */
+    public ExampleResolver(ExampleSet exampleSet) {
 		if (exampleSet == null) {
 			throw new IllegalArgumentException("exampleSet must not be null");
 		}
 		this.metaData = new ExampleSetMetaData(exampleSet, false, false);
 	}
 
-	/**
-	 * Creates an {@link ExampleResolver} that can bind {@link Example}s that have the given meta
-	 * data.
-	 *
-	 * @param metaData
-	 *            the meta data for which the resolver is used, cannot be {@code null}
-	 */
-	public ExampleResolver(ExampleSetMetaData metaData) {
+    /**
+     * Creates an {@link ExampleResolver} that can bind {@link Example}s that have the given meta
+     * data.
+     *
+     * @param metaData the meta data for which the resolver is used, cannot be {@code null}
+     */
+    public ExampleResolver(ExampleSetMetaData metaData) {
 		if (metaData == null) {
 			throw new IllegalArgumentException("metaData must not be null");
 		}
 		this.metaData = metaData;
 	}
 
-	/**
-	 * Sets the current Example to example. This Example must have the same meta data as what this
-	 * {@link ExampleResolver} was constructed with. The current example is thread local so this
-	 * method can be called in parallel.
-	 * <p>
-	 * Don't forget to call {@link #unbind()} once the expression parser function has been evaluated
-	 * to avoid memory leaks.
-	 *
-	 * @param example
-	 *            an example with the same meta data as the resolver was constructed with
-	 */
-	public void bind(Example example) {
+    /**
+     * Sets the current Example to example. This Example must have the same meta data as what this
+     * {@link ExampleResolver} was constructed with. The current example is thread local so this
+     * method can be called in parallel.
+     * <p>
+     * Don't forget to call {@link #unbind()} once the expression parser function has been evaluated
+     * to avoid memory leaks.
+     *
+     * @param example an example with the same meta data as the resolver was constructed with
+     */
+    public void bind(Example example) {
 		exampleThreadLocal.set(example);
 	}
 
-	/**
-	 * Removes the binding of the current example for this {@link ExampleResolver}. Make sure to
-	 * call this method only after the expression parser function has been evaluated. Otherwise this
-	 * might result in an undefined state.
-	 */
-	public void unbind() {
+    /**
+     * Removes the binding of the current example for this {@link ExampleResolver}. Make sure to
+     * call this method only after the expression parser function has been evaluated. Otherwise this
+     * might result in an undefined state.
+     */
+    public void unbind() {
 		exampleThreadLocal.remove();
 	}
 
-	/**
-	 * Adds a new {@link AttributeMetaData} object to the current {@link ExampleSetMetaData}.
-	 *
-	 * @param amd
-	 *            the new attribute meta data to add
-	 */
-	public void addAttributeMetaData(AttributeMetaData amd) {
+    /**
+     * Adds a new {@link AttributeMetaData} object to the current {@link ExampleSetMetaData}.
+     *
+     * @param amd the new attribute meta data to add
+     */
+    public void addAttributeMetaData(AttributeMetaData amd) {
 		this.metaData.addAttribute(amd);
 	}
 

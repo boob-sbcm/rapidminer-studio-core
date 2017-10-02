@@ -24,12 +24,17 @@ import com.rapidminer.operator.OperatorDescription;
 
 /**
  * Abstract super type of example set writing operators.
- * 
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractExampleSetWriter extends AbstractWriter<ExampleSet> {
 
-	public AbstractExampleSetWriter(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract example set writer.
+     *
+     * @param description the description
+     */
+    public AbstractExampleSetWriter(OperatorDescription description) {
 		super(description, ExampleSet.class);
 	}
 }

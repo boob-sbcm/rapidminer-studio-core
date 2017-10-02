@@ -24,7 +24,7 @@ import com.rapidminer.example.Example;
 
 /**
  * The base node for reading the data from examples and feeding it into the neural net.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class InputNode extends Node {
@@ -39,11 +39,24 @@ public class InputNode extends Node {
 
 	private boolean normalize;
 
-	public InputNode(String nodeName) {
+    /**
+     * Instantiates a new Input node.
+     *
+     * @param nodeName the node name
+     */
+    public InputNode(String nodeName) {
 		super(nodeName, INPUT, INPUT);
 	}
 
-	public void setAttribute(Attribute attribute, double attributeRange, double attributeBase, boolean normalize) {
+    /**
+     * Sets attribute.
+     *
+     * @param attribute      the attribute
+     * @param attributeRange the attribute range
+     * @param attributeBase  the attribute base
+     * @param normalize      the normalize
+     */
+    public void setAttribute(Attribute attribute, double attributeRange, double attributeBase, boolean normalize) {
 		this.attribute = attribute;
 		this.attributeRange = attributeRange;
 		this.attributeBase = attributeBase;
@@ -83,23 +96,48 @@ public class InputNode extends Node {
 		return currentError;
 	}
 
-	public Attribute getAttribute() {
+    /**
+     * Gets attribute.
+     *
+     * @return the attribute
+     */
+    public Attribute getAttribute() {
 		return attribute;
 	}
 
-	public double getAttributeRange() {
+    /**
+     * Gets attribute range.
+     *
+     * @return the attribute range
+     */
+    public double getAttributeRange() {
 		return attributeRange;
 	}
 
-	public double getAttributeBase() {
+    /**
+     * Gets attribute base.
+     *
+     * @return the attribute base
+     */
+    public double getAttributeBase() {
 		return attributeBase;
 	}
 
-	public boolean isNormalize() {
+    /**
+     * Is normalize boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isNormalize() {
 		return normalize;
 	}
 
-	public double getCurrentValue() {
+    /**
+     * Gets current value.
+     *
+     * @return the current value
+     */
+    public double getCurrentValue() {
 		return currentValue;
 	}
 }

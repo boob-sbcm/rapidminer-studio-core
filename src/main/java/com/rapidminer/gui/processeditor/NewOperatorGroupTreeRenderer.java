@@ -42,7 +42,10 @@ public class NewOperatorGroupTreeRenderer extends DefaultTreeCellRenderer {
 	/** border so the operators have a little bit more breathing space */
 	private static final Border EMPTY_BORDER = BorderFactory.createEmptyBorder(4, 0, 4, 0);
 
-	public NewOperatorGroupTreeRenderer() {
+    /**
+     * Instantiates a new New operator group tree renderer.
+     */
+    public NewOperatorGroupTreeRenderer() {
 		setLeafIcon(getDefaultClosedIcon());
 	}
 

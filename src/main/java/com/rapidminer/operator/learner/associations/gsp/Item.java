@@ -22,8 +22,9 @@ import java.io.Serializable;
 
 
 /**
+ * The type Item.
+ *
  * @author Sebastian Land
- * 
  */
 public class Item implements Comparable<Item>, Serializable {
 
@@ -31,7 +32,13 @@ public class Item implements Comparable<Item>, Serializable {
 	private String name;
 	private int index;
 
-	public Item(String name, int i) {
+    /**
+     * Instantiates a new Item.
+     *
+     * @param name the name
+     * @param i    the
+     */
+    public Item(String name, int i) {
 		this.name = name;
 		this.index = i;
 	}
@@ -41,7 +48,12 @@ public class Item implements Comparable<Item>, Serializable {
 		return index;
 	}
 
-	public int getIndex() {
+    /**
+     * Gets index.
+     *
+     * @return the index
+     */
+    public int getIndex() {
 		return index;
 	}
 

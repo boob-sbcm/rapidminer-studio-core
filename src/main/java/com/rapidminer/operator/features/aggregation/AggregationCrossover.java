@@ -25,19 +25,25 @@ import java.util.Random;
 
 /**
  * Performs a usual GA crossover on integer arrays. Supports one-point and uniform crossover.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class AggregationCrossover {
 
-	/** The names for the crossover types. */
-	public static final String[] CROSSOVER_TYPES = { "one_point", "uniform" };
+    /**
+     * The names for the crossover types.
+     */
+    public static final String[] CROSSOVER_TYPES = { "one_point", "uniform" };
 
-	/** Indicates a one-point crossover type. */
-	public static final int CROSSOVER_ONE_POINT = 0;
+    /**
+     * Indicates a one-point crossover type.
+     */
+    public static final int CROSSOVER_ONE_POINT = 0;
 
-	/** Indicates a uniform crossover type. */
-	public static final int CROSSOVER_UNIFORM = 1;
+    /**
+     * Indicates a uniform crossover type.
+     */
+    public static final int CROSSOVER_UNIFORM = 1;
 
 	/** The crossover type. */
 	private int crossoverType = CROSSOVER_UNIFORM;
@@ -47,8 +53,14 @@ public class AggregationCrossover {
 
 	private Random random;
 
-	/** Creates a new aggregation crossover operator. */
-	public AggregationCrossover(int type, double probability, Random random) {
+    /**
+     * Creates a new aggregation crossover operator.  @param type the type
+     *
+     * @param type        the type
+     * @param probability the probability
+     * @param random      the random
+     */
+    public AggregationCrossover(int type, double probability, Random random) {
 		this.crossoverType = type;
 		this.crossoverProb = probability;
 		this.random = random;
@@ -64,10 +76,12 @@ public class AggregationCrossover {
 		return false;
 	}
 
-	/**
-	 * Randomly selects parents from the population and performs crossover. The parents are kept.
-	 */
-	public void crossover(List<AggregationIndividual> population) {
+    /**
+     * Randomly selects parents from the population and performs crossover. The parents are kept.
+     *
+     * @param population the population
+     */
+    public void crossover(List<AggregationIndividual> population) {
 		List<AggregationIndividual> children = new ArrayList<AggregationIndividual>();
 		for (int i = 0; i < population.size(); i++) {
 			if (random.nextDouble() < crossoverProb) {

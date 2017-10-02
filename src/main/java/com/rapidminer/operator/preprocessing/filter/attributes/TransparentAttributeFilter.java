@@ -30,7 +30,7 @@ import com.rapidminer.parameter.ParameterHandler;
  * This filter actually does nothing and removes no attribute. It is needed to create a behavior
  * consistent with earlier versions and to allow to bundle the filtering with an
  * AttributeSubsetPreprocessing operator.
- * 
+ *
  * @author Sebastian Land
  */
 public class TransparentAttributeFilter extends AbstractAttributeFilterCondition {

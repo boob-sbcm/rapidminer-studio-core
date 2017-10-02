@@ -34,7 +34,7 @@ import javax.swing.JTable;
 /**
  * Cell editor consisting of a simple button which opens a configuration wizard for the
  * corresponding operator.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ConfigurationWizardValueCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {
@@ -45,7 +45,12 @@ public class ConfigurationWizardValueCellEditor extends AbstractCellEditor imple
 
 	private final JButton button;
 
-	public ConfigurationWizardValueCellEditor(ParameterTypeConfiguration type) {
+    /**
+     * Instantiates a new Configuration wizard value cell editor.
+     *
+     * @param type the type
+     */
+    public ConfigurationWizardValueCellEditor(ParameterTypeConfiguration type) {
 		this.type = type;
 		button = new JButton(new ResourceAction(true, "wizard." + type.getWizardCreator().getI18NKey()) {
 

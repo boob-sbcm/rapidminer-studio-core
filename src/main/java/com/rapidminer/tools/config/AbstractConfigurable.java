@@ -41,7 +41,6 @@ import com.rapidminer.tools.config.actions.ConfigurableAction;
  * </p>
  *
  * @author Simon Fischer, Dominik Halfkann, Marco Boeck
- *
  */
 public abstract class AbstractConfigurable implements Configurable {
 
@@ -86,30 +85,27 @@ public abstract class AbstractConfigurable implements Configurable {
 		return parameters.get(key);
 	}
 
-	/**
-	 * Returns the xml representation of this parameter value.
-	 *
-	 * @param key
-	 * @return
-	 */
-	public String getParameterAsXMLString(String key) {
+    /**
+     * Returns the xml representation of this parameter value.
+     *
+     * @param key the key
+     * @return parameter as xml string
+     */
+    public String getParameterAsXMLString(String key) {
 		return parameters.get(key);
 	}
 
-	/**
-	 * Returns the xml representation of this parameter value. If the {@link ParameterType} uses
-	 * encryption, will decrypt the value with the given old key and encrypt it again with the
-	 * specified new key.
-	 *
-	 * @param key
-	 *            key of the parameter
-	 * @param decryptKey
-	 *            used to decrypt the parameter values
-	 * @param encryptKey
-	 *            used to encrypt the parameter values again
-	 * @return
-	 */
-	public String getParameterAndChangeEncryption(String key, Key decryptKey, Key encryptKey) {
+    /**
+     * Returns the xml representation of this parameter value. If the {@link ParameterType} uses
+     * encryption, will decrypt the value with the given old key and encrypt it again with the
+     * specified new key.
+     *
+     * @param key        key of the parameter
+     * @param decryptKey used to decrypt the parameter values
+     * @param encryptKey used to encrypt the parameter values again
+     * @return parameter and change encryption
+     */
+    public String getParameterAndChangeEncryption(String key, Key decryptKey, Key encryptKey) {
 		String value = parameters.get(key);
 		// we only have a map of key - value Strings here, but we need to apply special handling,
 		// e.g. for ParameterTypePassword
@@ -222,13 +218,13 @@ public abstract class AbstractConfigurable implements Configurable {
 		return isEmptyOrDefault((AbstractConfigurator<? extends Configurable>) configurator);
 	}
 
-	/**
-	 * Checks if the Configurable is empty (has no values/only empty values/default values)
-	 *
-	 * @param configurator
-	 *            The configurator to resolve the default values from
-	 **/
-	public boolean isEmptyOrDefault(AbstractConfigurator<? extends Configurable> configurator) {
+    /**
+     * Checks if the Configurable is empty (has no values/only empty values/default values)
+     *
+     * @param configurator The configurator to resolve the default values from
+     * @return the boolean
+     */
+    public boolean isEmptyOrDefault(AbstractConfigurator<? extends Configurable> configurator) {
 		if (this.getName() != null && !this.getName().equals("")) {
 			return false;
 		} else if (this.getParameters() != null && this.getParameters().size() > 0) {
@@ -251,41 +247,41 @@ public abstract class AbstractConfigurable implements Configurable {
 		return true;
 	}
 
-	/**
-	 * Returns a list of {@link ConfigurableAction}s. They can be used to perform various tasks
-	 * associated with this configuration type, e.g. clearing a cache.
-	 * <p>
-	 * If no actions are required for this configuration type, returns <code>null</code>.
-	 * </p>
-	 * These actions can be defined per {@link Configurable} instance, so two {@link Configurable}s
-	 * of the same {@link Configurator} type can have different actions. </p>
-	 * <p>
-	 * Also the actions can be changed dynamically, as they are retrieved each time they are
-	 * required.
-	 * </p>
-	 *
-	 * @return
-	 */
-	public Collection<ConfigurableAction> getActions() {
+    /**
+     * Returns a list of {@link ConfigurableAction}s. They can be used to perform various tasks
+     * associated with this configuration type, e.g. clearing a cache.
+     * <p>
+     * If no actions are required for this configuration type, returns <code>null</code>.
+     * </p>
+     * These actions can be defined per {@link Configurable} instance, so two {@link Configurable}s
+     * of the same {@link Configurator} type can have different actions. </p>
+     * <p>
+     * Also the actions can be changed dynamically, as they are retrieved each time they are
+     * required.
+     * </p>
+     *
+     * @return actions actions
+     */
+    public Collection<ConfigurableAction> getActions() {
 		return null;
 	}
 
-	/**
-	 * Returns a {@link TestConfigurableAction} which tests the settings for the
-	 * {@link Configurable}, e.g. a connection.
-	 * <p>
-	 * If no test action is required, returns <code>null</code>.
-	 * </p>
-	 * These actions can be defined per {@link Configurable} instance, so two {@link Configurable}s
-	 * of the same {@link Configurator} type can have different actions. </p>
-	 * <p>
-	 * Also the actions can be changed dynamically, as they are retrieved each time they are
-	 * required.
-	 * </p>
-	 *
-	 * @return
-	 */
-	public TestConfigurableAction getTestAction() {
+    /**
+     * Returns a {@link TestConfigurableAction} which tests the settings for the
+     * {@link Configurable}, e.g. a connection.
+     * <p>
+     * If no test action is required, returns <code>null</code>.
+     * </p>
+     * These actions can be defined per {@link Configurable} instance, so two {@link Configurable}s
+     * of the same {@link Configurator} type can have different actions. </p>
+     * <p>
+     * Also the actions can be changed dynamically, as they are retrieved each time they are
+     * required.
+     * </p>
+     *
+     * @return test action
+     */
+    public TestConfigurableAction getTestAction() {
 		return null;
 	}
 }

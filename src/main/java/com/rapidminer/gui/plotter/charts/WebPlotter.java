@@ -77,13 +77,18 @@ import com.rapidminer.tools.math.function.aggregation.AverageFunction;
  * Web plotter based on the Spiderweb-plotter of JFreechart.
  *
  * @author David Arnu
- *
  */
 public class WebPlotter extends LabelRotatingPlotterAdapter implements ChangeListener {
 
-	public static final String PARAMETER_AGGREGATION = "aggregation";
+    /**
+     * The constant PARAMETER_AGGREGATION.
+     */
+    public static final String PARAMETER_AGGREGATION = "aggregation";
 
-	public static final String PARAMETER_USE_DISTINCT = "use_distinct";
+    /**
+     * The constant PARAMETER_USE_DISTINCT.
+     */
+    public static final String PARAMETER_USE_DISTINCT = "use_distinct";
 
 	private static final long serialVersionUID = 1208210421840512091L;
 
@@ -127,7 +132,12 @@ public class WebPlotter extends LabelRotatingPlotterAdapter implements ChangeLis
 
 	private boolean showScrollbar = true;
 
-	public WebPlotter(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Web plotter.
+     *
+     * @param settings the settings
+     */
+    public WebPlotter(final PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 
@@ -162,7 +172,13 @@ public class WebPlotter extends LabelRotatingPlotterAdapter implements ChangeLis
 
 	}
 
-	public WebPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Web plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public WebPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -242,7 +258,12 @@ public class WebPlotter extends LabelRotatingPlotterAdapter implements ChangeLis
 		}
 	}
 
-	protected int getNumberOfPlots() {
+    /**
+     * Gets number of plots.
+     *
+     * @return the number of plots
+     */
+    protected int getNumberOfPlots() {
 		int counter = 0;
 		for (boolean column : columns) {
 			if (column) {

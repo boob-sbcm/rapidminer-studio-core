@@ -20,12 +20,16 @@ package com.rapidminer.gui.tools;
 
 /**
  * The listener interface for receiving events from the ProgressThread.
- * 
+ *
  * @author Dominik Halfkann
  */
 public interface ProgressThreadListener {
 
-	/** Invoked when the ProgressThread is finished working. **/
-	public void threadFinished(ProgressThread thread);
+    /**
+     * Invoked when the ProgressThread is finished working.  @param thread the thread
+     *
+     * @param thread the thread
+     */
+    public void threadFinished(ProgressThread thread);
 
 }

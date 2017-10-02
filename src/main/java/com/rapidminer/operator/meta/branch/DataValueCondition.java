@@ -34,10 +34,10 @@ import com.rapidminer.parameter.UndefinedParameterError;
  */
 public class DataValueCondition implements ProcessBranchCondition {
 
-	/**
-	 * Constructor used by reflection.
-	 */
-	public DataValueCondition() {}
+    /**
+     * Constructor used by reflection.
+     */
+    public DataValueCondition() {}
 
 	/**
 	 * This method checks if the file with pathname value exists.

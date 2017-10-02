@@ -24,7 +24,7 @@ import com.rapidminer.operator.learner.subgroups.hypothesis.Rule;
 
 /**
  * Calculates the odds of a rule.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class Odds extends UtilityFunction {
@@ -34,7 +34,13 @@ public class Odds extends UtilityFunction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Odds(double totalWeight, double totalPositiveWeight) {
+    /**
+     * Instantiates a new Odds.
+     *
+     * @param totalWeight         the total weight
+     * @param totalPositiveWeight the total positive weight
+     */
+    public Odds(double totalWeight, double totalPositiveWeight) {
 		super(totalWeight, totalPositiveWeight);
 	}
 

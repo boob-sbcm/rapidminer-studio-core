@@ -29,7 +29,7 @@ import javax.swing.plaf.UIResource;
 
 /**
  * The UIResource for split pane borders.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SplitPaneBorder extends AbstractBorder implements UIResource {

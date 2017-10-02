@@ -35,7 +35,12 @@ public class PropagateRealMetaDataAction extends ToggleAction {
 
 	private static final long serialVersionUID = -1317229512005928906L;
 
-	public PropagateRealMetaDataAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Propagate real meta data action.
+     *
+     * @param mainFrame the main frame
+     */
+    public PropagateRealMetaDataAction(MainFrame mainFrame) {
 		super(true, "process_debug_mode");
 
 		this.mainFrame = mainFrame;

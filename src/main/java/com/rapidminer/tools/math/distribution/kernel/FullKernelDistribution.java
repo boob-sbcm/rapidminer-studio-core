@@ -26,12 +26,15 @@ import java.util.Map;
 
 /**
  * An updatable estimated kernel density distribution. Uses one kernel for each value.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class FullKernelDistribution extends KernelDistribution {
 
-	public static final long serialVersionUID = -3205432422815818L;
+    /**
+     * The constant serialVersionUID.
+     */
+    public static final long serialVersionUID = -3205432422815818L;
 
 	private boolean heuristicBandwidthSelection;
 
@@ -51,7 +54,10 @@ public class FullKernelDistribution extends KernelDistribution {
 
 	private static final double STANDARD_NORMAL_UPPER_BOUND = NormalDistribution.getUpperBound(0, 1);
 
-	public FullKernelDistribution() {
+    /**
+     * Instantiates a new Full kernel distribution.
+     */
+    public FullKernelDistribution() {
 		super();
 		valueWeightMap = new HashMap<Double, Double>();
 		weightSum = 0;
@@ -61,7 +67,12 @@ public class FullKernelDistribution extends KernelDistribution {
 		recentlyUpdated = false;
 	}
 
-	public FullKernelDistribution(double bandwidth) {
+    /**
+     * Instantiates a new Full kernel distribution.
+     *
+     * @param bandwidth the bandwidth
+     */
+    public FullKernelDistribution(double bandwidth) {
 		super();
 		this.bandwidth = bandwidth;
 		valueWeightMap = new HashMap<Double, Double>();

@@ -51,34 +51,39 @@ import java.util.List;
  * applied. Please note, that the logistic link function will only work for probabilities or other
  * labels with a range from 0 to 1 exclusive. If a value exceeds this range, it is set to the
  * nearest possible element within this range.
- * 
+ *
  * @author Stefan Rueping, Ingo Mierswa
  * @author Stefan Rueping, Ingo Mierswa, Sebastian Land
  */
 public class TransformedRegression extends AbstractMetaLearner {
 
-	/**
-	 * The parameter name for &quot;Type of transformation to use on the labels (log, exp, transform
-	 * to mean 0 and variance 1, rank, or none).&quot;
-	 */
-	public static final String PARAMETER_TRANSFORMATION_METHOD = "transformation_method";
+    /**
+     * The parameter name for &quot;Type of transformation to use on the labels (log, exp, transform
+     * to mean 0 and variance 1, rank, or none).&quot;
+     */
+    public static final String PARAMETER_TRANSFORMATION_METHOD = "transformation_method";
 
-	/**
-	 * The parameter name for &quot;Scale transformed values to mean 0 and standard deviation
-	 * 1?&quot;
-	 */
-	public static final String PARAMETER_Z_SCALE = "z_scale";
+    /**
+     * The parameter name for &quot;Scale transformed values to mean 0 and standard deviation
+     * 1?&quot;
+     */
+    public static final String PARAMETER_Z_SCALE = "z_scale";
 
-	/**
-	 * The parameter name for &quot;Interpolate prediction if predicted rank is not an
-	 * integer?&quot;
-	 */
-	public static final String PARAMETER_INTERPOLATE_RANK = "interpolate_rank";
+    /**
+     * The parameter name for &quot;Interpolate prediction if predicted rank is not an
+     * integer?&quot;
+     */
+    public static final String PARAMETER_INTERPOLATE_RANK = "interpolate_rank";
 
 	private final PortPairExtender through = new PortPairExtender("through", getSubprocess(0).getInnerSinks(),
 			getOutputPorts());
 
-	public TransformedRegression(OperatorDescription description) {
+    /**
+     * Instantiates a new Transformed regression.
+     *
+     * @param description the description
+     */
+    public TransformedRegression(OperatorDescription description) {
 		super(description);
 
 		through.start();

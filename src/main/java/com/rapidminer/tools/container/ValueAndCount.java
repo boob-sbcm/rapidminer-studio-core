@@ -21,7 +21,7 @@ package com.rapidminer.tools.container;
 /**
  * Helper class which stores a {@link String} and a count value and implements the
  * {@link Comparable} interface.
- * 
+ *
  * @author Marco Boeck
  */
 public class ValueAndCount implements Comparable<ValueAndCount> {
@@ -29,32 +29,32 @@ public class ValueAndCount implements Comparable<ValueAndCount> {
 	private String value;
 	private int count;
 
-	/**
-	 * Creates a new {@link ValueAndCount} instance.
-	 * 
-	 * @param value
-	 * @param count
-	 */
-	public ValueAndCount(String value, int count) {
+    /**
+     * Creates a new {@link ValueAndCount} instance.
+     *
+     * @param value the value
+     * @param count the count
+     */
+    public ValueAndCount(String value, int count) {
 		this.value = value;
 		this.count = count;
 	}
 
-	/**
-	 * Returns the {@link String} value.
-	 * 
-	 * @return
-	 */
-	public String getValue() {
+    /**
+     * Returns the {@link String} value.
+     *
+     * @return value value
+     */
+    public String getValue() {
 		return value;
 	}
 
-	/**
-	 * Returns the count.
-	 * 
-	 * @return
-	 */
-	public int getCount() {
+    /**
+     * Returns the count.
+     *
+     * @return count count
+     */
+    public int getCount() {
 		return count;
 	}
 

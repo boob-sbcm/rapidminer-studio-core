@@ -43,21 +43,36 @@ import com.rapidminer.tools.LogService;
 
 
 /**
+ * The type Store data wizard step.
  *
  * @author Simon Fischer
- *
  */
 public final class StoreDataWizardStep extends RepositoryLocationSelectionWizardStep {
 
 	private WizardState state;
 
-	public StoreDataWizardStep(AbstractWizard parent, WizardState state, String preselectedLocation,
+    /**
+     * Instantiates a new Store data wizard step.
+     *
+     * @param parent                    the parent
+     * @param state                     the state
+     * @param preselectedLocation       the preselected location
+     * @param onlyWriteableRepositories the only writeable repositories
+     */
+    public StoreDataWizardStep(AbstractWizard parent, WizardState state, String preselectedLocation,
 			boolean onlyWriteableRepositories) {
 		super(parent, preselectedLocation, true, onlyWriteableRepositories);
 		this.state = state;
 	}
 
-	public StoreDataWizardStep(AbstractWizard parent, WizardState state, String preselectedLocation) {
+    /**
+     * Instantiates a new Store data wizard step.
+     *
+     * @param parent              the parent
+     * @param state               the state
+     * @param preselectedLocation the preselected location
+     */
+    public StoreDataWizardStep(AbstractWizard parent, WizardState state, String preselectedLocation) {
 		this(parent, state, preselectedLocation, false);
 	}
 

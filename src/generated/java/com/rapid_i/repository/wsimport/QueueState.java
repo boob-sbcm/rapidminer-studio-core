@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for queueState complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="queueState">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "queueState", propOrder = {
@@ -50,12 +48,19 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class QueueState {
 
+    /**
+     * The Backlog.
+     */
     protected int backlog;
+    /**
+     * The Number of running processes.
+     */
     protected int numberOfRunningProcesses;
 
     /**
      * Gets the value of the backlog property.
-     * 
+     *
+     * @return the backlog
      */
     public int getBacklog() {
         return backlog;
@@ -63,7 +68,8 @@ public class QueueState {
 
     /**
      * Sets the value of the backlog property.
-     * 
+     *
+     * @param value the value
      */
     public void setBacklog(int value) {
         this.backlog = value;
@@ -71,7 +77,8 @@ public class QueueState {
 
     /**
      * Gets the value of the numberOfRunningProcesses property.
-     * 
+     *
+     * @return the number of running processes
      */
     public int getNumberOfRunningProcesses() {
         return numberOfRunningProcesses;
@@ -79,7 +86,8 @@ public class QueueState {
 
     /**
      * Sets the value of the numberOfRunningProcesses property.
-     * 
+     *
+     * @param value the value
      */
     public void setNumberOfRunningProcesses(int value) {
         this.numberOfRunningProcesses = value;

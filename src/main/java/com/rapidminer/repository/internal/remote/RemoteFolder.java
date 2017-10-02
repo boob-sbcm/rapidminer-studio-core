@@ -27,7 +27,6 @@ import com.rapidminer.repository.Folder;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public interface RemoteFolder extends Folder, RemoteEntry {
 

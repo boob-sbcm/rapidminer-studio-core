@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is positive if att1 < 0.3333 and negative else.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class OneThirdClassification extends ClassificationFunction {

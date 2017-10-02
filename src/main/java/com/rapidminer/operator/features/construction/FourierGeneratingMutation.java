@@ -37,9 +37,9 @@ import java.util.List;
  * The mutation operator for FourierGGA. This operator adds single attributes from the original set,
  * creates new ones and deselect single attributes. For each freshly added attribute a fourier
  * generation will will be performed.
- * 
- * @see FourierGGA
+ *
  * @author Ingo Mierswa ingomierswa Exp $
+ * @see FourierGGA
  */
 public class FourierGeneratingMutation extends ExampleSetBasedIndividualOperator {
 
@@ -59,7 +59,22 @@ public class FourierGeneratingMutation extends ExampleSetBasedIndividualOperator
 
 	private RandomGenerator random;
 
-	public FourierGeneratingMutation(List<Attribute> originalAttributes, double p, List<FeatureGenerator> generators,
+    /**
+     * Instantiates a new Fourier generating mutation.
+     *
+     * @param originalAttributes  the original attributes
+     * @param p                   the p
+     * @param generators          the generators
+     * @param numberOfConstructed the number of constructed
+     * @param numberOfOriginal    the number of original
+     * @param maxPeaks            the max peaks
+     * @param adaptionType        the adaption type
+     * @param attributesPerPeak   the attributes per peak
+     * @param epsilon             the epsilon
+     * @param unusableFunctions   the unusable functions
+     * @param random              the random
+     */
+    public FourierGeneratingMutation(List<Attribute> originalAttributes, double p, List<FeatureGenerator> generators,
 			int numberOfConstructed, int numberOfOriginal, int maxPeaks, int adaptionType, int attributesPerPeak,
 			double epsilon, String[] unusableFunctions, RandomGenerator random) {
 		this.originalAttributes = originalAttributes;

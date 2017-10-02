@@ -33,21 +33,25 @@ import java.util.logging.Level;
  * lock file is deleted in {@link #launchComplete()}. If RapidMiner starts, and the lock file still
  * exists when {@link #launchStarts()} is called, This class will ask the user whether they want to
  * go into safe mode, which disables loading of all plugins.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class SafeMode {
 
 	private File lockFile;
 	private boolean safeMode = false;
 
-	public SafeMode() {
+    /**
+     * Instantiates a new Safe mode.
+     */
+    public SafeMode() {
 		lockFile = FileSystemService.getUserConfigFile("safeMode.lock");
 	}
 
-	/** Call at the beginning of the startup phase. */
-	public void launchStarts() {
+    /**
+     * Call at the beginning of the startup phase.
+     */
+    public void launchStarts() {
 		if (lockFile.exists()) {
 			// Lock file not deleted? Crashed during last startup
 			LogService.getRoot().log(Level.INFO, "com.rapidminer.gui.safemode.SafeMode.lock_left_behind", lockFile);
@@ -67,7 +71,10 @@ public class SafeMode {
 		}
 	}
 
-	public void launchComplete() {
+    /**
+     * Launch complete.
+     */
+    public void launchComplete() {
 		if (lockFile.exists()) {
 			// Delete lock on end of startup
 			if (!lockFile.delete()) {
@@ -77,7 +84,12 @@ public class SafeMode {
 		}
 	}
 
-	public boolean isSafeMode() {
+    /**
+     * Is safe mode boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSafeMode() {
 		return safeMode;
 	}
 

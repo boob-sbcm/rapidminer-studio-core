@@ -42,7 +42,6 @@ import com.rapidminer.tools.expression.FunctionInput.Category;
  * {@link ExpressionPropertyDialog}.
  *
  * @author Sabrina Kirstein
- *
  */
 public class FunctionInputsModel extends AbstractObservable<FunctionInputPanel> {
 
@@ -103,17 +102,17 @@ public class FunctionInputsModel extends AbstractObservable<FunctionInputPanel> 
 		}
 	};
 
-	/**
-	 * Creates a model for the possible {@link FunctionDescription} inputs
-	 */
-	public FunctionInputsModel() {
+    /**
+     * Creates a model for the possible {@link FunctionDescription} inputs
+     */
+    public FunctionInputsModel() {
 		clearContent();
 	}
 
-	/**
-	 * Clears all model content.
-	 */
-	public void clearContent() {
+    /**
+     * Clears all model content.
+     */
+    public void clearContent() {
 		modelMap = new LinkedHashMap<>();
 		filteredModelMap = new LinkedHashMap<>();
 		filterNameString = "";
@@ -122,13 +121,12 @@ public class FunctionInputsModel extends AbstractObservable<FunctionInputPanel> 
 		dateTimeFilter = false;
 	}
 
-	/**
-	 * Add the given inputs for the key (type of input)
-	 *
-	 * @param key
-	 * @param inputs
-	 */
-	public void addContent(List<FunctionInput> inputs) {
+    /**
+     * Add the given inputs for the key (type of input)
+     *
+     * @param inputs the inputs
+     */
+    public void addContent(List<FunctionInput> inputs) {
 		Collections.sort(inputs, FUNCTION_INPUT_COMPARATOR);
 		for (FunctionInput input : inputs) {
 			if (input.isVisible()) {
@@ -143,40 +141,40 @@ public class FunctionInputsModel extends AbstractObservable<FunctionInputPanel> 
 		applyFilter();
 	}
 
-	/**
-	 * Returns the filtered {@link Map} of {@link List}s of Strings.
-	 *
-	 * @return
-	 */
-	public Map<String, List<FunctionInput>> getFilteredModel() {
+    /**
+     * Returns the filtered {@link Map} of {@link List}s of Strings.
+     *
+     * @return filtered model
+     */
+    public Map<String, List<FunctionInput>> getFilteredModel() {
 		return filteredModelMap;
 	}
 
-	/**
-	 * returns the filtered map of Strings for one specific input type (defined by the type name)
-	 *
-	 * @param type
-	 * @return
-	 */
-	public List<FunctionInput> getFilteredModel(String type) {
+    /**
+     * returns the filtered map of Strings for one specific input type (defined by the type name)
+     *
+     * @param type the type
+     * @return filtered model
+     */
+    public List<FunctionInput> getFilteredModel(String type) {
 		return filteredModelMap.get(type);
 	}
 
-	/**
-	 * returns the filter name
-	 *
-	 * @return
-	 */
-	public String getFilterNameString() {
+    /**
+     * returns the filter name
+     *
+     * @return filter name string
+     */
+    public String getFilterNameString() {
 		return filterNameString;
 	}
 
-	/**
-	 * Filters the list of inputs using the filterNameString.
-	 *
-	 * @param filterNameString
-	 */
-	public synchronized void setFilterNameString(String filterNameString) {
+    /**
+     * Filters the list of inputs using the filterNameString.
+     *
+     * @param filterNameString the filter name string
+     */
+    public synchronized void setFilterNameString(String filterNameString) {
 		// do nothing on equal filter name
 		if (filterNameString.equals(this.filterNameString)) {
 			return;
@@ -187,63 +185,63 @@ public class FunctionInputsModel extends AbstractObservable<FunctionInputPanel> 
 		fireUpdate();
 	}
 
-	/**
-	 * set the filter to show the nominal attributes and constants
-	 *
-	 * @param filterToggled
-	 */
-	public void setNominalFilter(boolean filterToggled) {
+    /**
+     * set the filter to show the nominal attributes and constants
+     *
+     * @param filterToggled the filter toggled
+     */
+    public void setNominalFilter(boolean filterToggled) {
 		nominalFilter = filterToggled;
 		applyFilter();
 		fireUpdate();
 	}
 
-	/**
-	 * get the nominal filter state
-	 *
-	 * @return if the nominal filter is toggled
-	 */
-	public boolean isNominalFilterToggled() {
+    /**
+     * get the nominal filter state
+     *
+     * @return if the nominal filter is toggled
+     */
+    public boolean isNominalFilterToggled() {
 		return nominalFilter;
 	}
 
-	/**
-	 * set the filter to show the numeric attributes and constants
-	 *
-	 * @param filterToggled
-	 */
-	public void setNumericFilter(boolean filterToggled) {
+    /**
+     * set the filter to show the numeric attributes and constants
+     *
+     * @param filterToggled the filter toggled
+     */
+    public void setNumericFilter(boolean filterToggled) {
 		numericFilter = filterToggled;
 		applyFilter();
 		fireUpdate();
 	}
 
-	/**
-	 * get the numeric filter state
-	 *
-	 * @return if the numeric filter is toggled
-	 */
-	public boolean isNumericFilterToggled() {
+    /**
+     * get the numeric filter state
+     *
+     * @return if the numeric filter is toggled
+     */
+    public boolean isNumericFilterToggled() {
 		return numericFilter;
 	}
 
-	/**
-	 * set the filter to show the date time attributes and constants
-	 *
-	 * @param filterToggled
-	 */
-	public void setDateTimeFilter(boolean filterToggled) {
+    /**
+     * set the filter to show the date time attributes and constants
+     *
+     * @param filterToggled the filter toggled
+     */
+    public void setDateTimeFilter(boolean filterToggled) {
 		dateTimeFilter = filterToggled;
 		applyFilter();
 		fireUpdate();
 	}
 
-	/**
-	 * get the date time filter state
-	 *
-	 * @return if the date time filter is toggled
-	 */
-	public boolean isDateTimeFilterToggled() {
+    /**
+     * get the date time filter state
+     *
+     * @return if the date time filter is toggled
+     */
+    public boolean isDateTimeFilterToggled() {
 		return dateTimeFilter;
 	}
 

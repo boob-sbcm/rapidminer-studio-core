@@ -64,7 +64,13 @@ public class ParameterTypeTupel extends CombinedParameterType {
 
 	private ParameterType[] types;
 
-	public ParameterTypeTupel(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type tupel.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeTupel(Element element) throws XMLException {
 		super(element);
 
 		Element childTypesElement = XMLTools.getChildElement(element, ELEMENT_CHILD_TYPES, true);
@@ -93,7 +99,14 @@ public class ParameterTypeTupel extends CombinedParameterType {
 		}
 	}
 
-	public ParameterTypeTupel(String key, String description, ParameterType... parameterTypes) {
+    /**
+     * Instantiates a new Parameter type tupel.
+     *
+     * @param key            the key
+     * @param description    the description
+     * @param parameterTypes the parameter types
+     */
+    public ParameterTypeTupel(String key, String description, ParameterType... parameterTypes) {
 		super(key, description, parameterTypes);
 		this.types = parameterTypes;
 	}
@@ -182,19 +195,40 @@ public class ParameterTypeTupel extends CombinedParameterType {
 		this.defaultValues = (Object[]) defaultValue;
 	}
 
-	public ParameterType getFirstParameterType() {
+    /**
+     * Gets first parameter type.
+     *
+     * @return the first parameter type
+     */
+    public ParameterType getFirstParameterType() {
 		return types[0];
 	}
 
-	public ParameterType getSecondParameterType() {
+    /**
+     * Gets second parameter type.
+     *
+     * @return the second parameter type
+     */
+    public ParameterType getSecondParameterType() {
 		return types[1];
 	}
 
-	public ParameterType[] getParameterTypes() {
+    /**
+     * Get parameter types parameter type [ ].
+     *
+     * @return the parameter type [ ]
+     */
+    public ParameterType[] getParameterTypes() {
 		return types;
 	}
 
-	public static String[] transformString2Tupel(String parameterValue) {
+    /**
+     * Transform string 2 tupel string [ ].
+     *
+     * @param parameterValue the parameter value
+     * @return the string [ ]
+     */
+    public static String[] transformString2Tupel(String parameterValue) {
 		if (parameterValue == null || parameterValue.isEmpty()) {
 			return new String[2];
 		}
@@ -206,16 +240,35 @@ public class ParameterTypeTupel extends CombinedParameterType {
 		return split.toArray(new String[split.size()]);
 	}
 
-	public static String transformTupel2String(String firstValue, String secondValue) {
+    /**
+     * Transform tupel 2 string string.
+     *
+     * @param firstValue  the first value
+     * @param secondValue the second value
+     * @return the string
+     */
+    public static String transformTupel2String(String firstValue, String secondValue) {
 		return Tools.escape(firstValue, ESCAPE_CHAR, INTERNAL_SPECIAL_CHARACTERS) + INTERNAL_SEPERATOR_CHAR
 				+ Tools.escape(secondValue, ESCAPE_CHAR, INTERNAL_SPECIAL_CHARACTERS);
 	}
 
-	public static String transformTupel2String(Pair<String, String> pair) {
+    /**
+     * Transform tupel 2 string string.
+     *
+     * @param pair the pair
+     * @return the string
+     */
+    public static String transformTupel2String(Pair<String, String> pair) {
 		return transformTupel2String(pair.getFirst(), pair.getSecond());
 	}
 
-	public static String transformTupel2String(String[] tupel) {
+    /**
+     * Transform tupel 2 string string.
+     *
+     * @param tupel the tupel
+     * @return the string
+     */
+    public static String transformTupel2String(String[] tupel) {
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < tupel.length; i++) {
 			if (i > 0) {
@@ -253,7 +306,13 @@ public class ParameterTypeTupel extends CombinedParameterType {
 		return internalEncoded.toString();
 	}
 
-	public static String escapeForInternalRepresentation(String string) {
+    /**
+     * Escape for internal representation string.
+     *
+     * @param string the string
+     * @return the string
+     */
+    public static String escapeForInternalRepresentation(String string) {
 		return Tools.escape(string, ESCAPE_CHAR, INTERNAL_SPECIAL_CHARACTERS);
 	}
 

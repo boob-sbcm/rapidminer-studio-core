@@ -34,14 +34,18 @@ import com.rapidminer.tools.usagestats.ActionStatisticsCollector.Key;
  * Presents counts from an {@link ActionStatisticsCollector} as a {@link TableModel}.
  *
  * @author Simon Fischer
- *
  */
 class ActionStatisticsTable implements TableModel {
 
 	private Map<Key, Long> counts;
 	private List<Key> sortedKeys = new ArrayList<>();
 
-	ActionStatisticsTable(Map<ActionStatisticsCollector.Key, Long> counts) {
+    /**
+     * Instantiates a new Action statistics table.
+     *
+     * @param counts the counts
+     */
+    ActionStatisticsTable(Map<ActionStatisticsCollector.Key, Long> counts) {
 		this.counts = counts;
 		sortedKeys.addAll(counts.keySet());
 		Collections.sort(sortedKeys, new Comparator<Key>() {

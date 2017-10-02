@@ -43,7 +43,12 @@ public class InternalFrameTitlePane extends BasicInternalFrameTitlePane {
 
 		private final InternalFrameTitlePane pane;
 
-		RapidLookTitlePaneLayout(InternalFrameTitlePane pane) {
+        /**
+         * Instantiates a new Rapid look title pane layout.
+         *
+         * @param pane the pane
+         */
+        RapidLookTitlePaneLayout(InternalFrameTitlePane pane) {
 			this.pane = pane;
 		}
 
@@ -102,7 +107,12 @@ public class InternalFrameTitlePane extends BasicInternalFrameTitlePane {
 
 	private Icon rolloverMaximumIcon;
 
-	public InternalFrameTitlePane(JInternalFrame f) {
+    /**
+     * Instantiates a new Internal frame title pane.
+     *
+     * @param f the f
+     */
+    public InternalFrameTitlePane(JInternalFrame f) {
 		super(f);
 	}
 

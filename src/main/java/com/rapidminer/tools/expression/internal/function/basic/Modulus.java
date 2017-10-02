@@ -26,18 +26,24 @@ import com.rapidminer.tools.expression.internal.function.Abstract2DoubleInputFun
  * A {@link Function} for computing the modulus.
  *
  * @author Gisa Schaefer
- *
  */
 public class Modulus extends Abstract2DoubleInputFunction {
 
-	/**
-	 * Constructs a modulo function.
-	 */
-	public Modulus() {
+    /**
+     * Constructs a modulo function.
+     */
+    public Modulus() {
 		super("basic.modulus", 2, Ontology.NUMERICAL);
 	}
 
-	protected Modulus(String i18n, int numberOfArgumentsToCheck, int returnType) {
+    /**
+     * Instantiates a new Modulus.
+     *
+     * @param i18n                     the 18 n
+     * @param numberOfArgumentsToCheck the number of arguments to check
+     * @param returnType               the return type
+     */
+    protected Modulus(String i18n, int numberOfArgumentsToCheck, int returnType) {
 		super(i18n, numberOfArgumentsToCheck, returnType);
 	}
 

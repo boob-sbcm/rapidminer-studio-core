@@ -34,7 +34,7 @@ import com.rapidminer.tools.math.optimization.ec.es.Individual;
 
 /**
  * Evolutionary Strategy approach for optimization of the logistic regression problem.
- * 
+ *
  * @author Ingo Mierswa, Tobias Malbrecht
  */
 public class LogisticRegressionOptimization extends ESOptimization {
@@ -47,10 +47,30 @@ public class LogisticRegressionOptimization extends ESOptimization {
 
 	private boolean addIntercept;
 
-	LoggingHandler logging;
+    /**
+     * The Logging.
+     */
+    LoggingHandler logging;
 
-	/** Creates a new evolutionary optimization. */
-	@Deprecated
+    /**
+     * Creates a new evolutionary optimization.  @param exampleSet the example set
+     *
+     * @param exampleSet                    the example set
+     * @param addIntercept                  the add intercept
+     * @param initType                      the init type
+     * @param maxIterations                 the max iterations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param popSize                       the pop size
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param crossoverProb                 the crossover prob
+     * @param showConvergencePlot           the show convergence plot
+     * @param random                        the random
+     * @param logging                       the logging
+     */
+    @Deprecated
 	public LogisticRegressionOptimization(ExampleSet exampleSet, // training data
 			boolean addIntercept, // add intercept
 			int initType, // start population creation type para
@@ -62,8 +82,26 @@ public class LogisticRegressionOptimization extends ESOptimization {
 				tournamentFraction, keepBest, mutationType, crossoverProb, showConvergencePlot, random, logging, null);
 	}
 
-	/** Creates a new evolutionary optimization. */
-	public LogisticRegressionOptimization(
+    /**
+     * Creates a new evolutionary optimization.  @param exampleSet the example set
+     *
+     * @param exampleSet                    the example set
+     * @param addIntercept                  the add intercept
+     * @param initType                      the init type
+     * @param maxIterations                 the max iterations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param popSize                       the pop size
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param crossoverProb                 the crossover prob
+     * @param showConvergencePlot           the show convergence plot
+     * @param random                        the random
+     * @param logging                       the logging
+     * @param executingOperator             the executing operator
+     */
+    public LogisticRegressionOptimization(
 			ExampleSet exampleSet, // training data
 			boolean addIntercept, // add intercept
 			int initType, // start population creation type para
@@ -122,7 +160,13 @@ public class LogisticRegressionOptimization extends ESOptimization {
 		return performanceVector;
 	}
 
-	public LogisticRegressionModel train() throws OperatorException {
+    /**
+     * Train logistic regression model.
+     *
+     * @return the logistic regression model
+     * @throws OperatorException the operator exception
+     */
+    public LogisticRegressionModel train() throws OperatorException {
 		optimize();
 		return new LogisticRegressionModel(this.exampleSet, getBestValuesEver(), estimateVariance(), addIntercept);
 	}
@@ -200,7 +244,12 @@ public class LogisticRegressionOptimization extends ESOptimization {
 		}
 	}
 
-	public PerformanceVector getPerformance() {
+    /**
+     * Gets performance.
+     *
+     * @return the performance
+     */
+    public PerformanceVector getPerformance() {
 		double[] beta = getBestValuesEver();
 		double numberOfSlopes = addIntercept ? beta.length - 1 : beta.length;
 		double logLikelihood = getBestFitnessEver();

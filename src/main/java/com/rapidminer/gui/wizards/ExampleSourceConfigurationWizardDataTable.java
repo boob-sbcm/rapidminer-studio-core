@@ -30,7 +30,7 @@ import javax.swing.table.TableColumnModel;
 
 /**
  * This class display a small data view corresponding on the current wizard settings.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExampleSourceConfigurationWizardDataTable extends ExtendedJTable {
@@ -45,7 +45,13 @@ public class ExampleSourceConfigurationWizardDataTable extends ExtendedJTable {
 
 		private List<String[]> data;
 
-		public ExampleSourceConfigurationWizardDataTableModel(List<AttributeDataSource> sources, List<String[]> data) {
+        /**
+         * Instantiates a new Example source configuration wizard data table model.
+         *
+         * @param sources the sources
+         * @param data    the data
+         */
+        public ExampleSourceConfigurationWizardDataTableModel(List<AttributeDataSource> sources, List<String[]> data) {
 			this.sources = sources;
 			this.data = data;
 		}
@@ -76,14 +82,23 @@ public class ExampleSourceConfigurationWizardDataTable extends ExtendedJTable {
 		}
 	}
 
-	public ExampleSourceConfigurationWizardDataTable(List<AttributeDataSource> sources, List<String[]> data) {
+    /**
+     * Instantiates a new Example source configuration wizard data table.
+     *
+     * @param sources the sources
+     * @param data    the data
+     */
+    public ExampleSourceConfigurationWizardDataTable(List<AttributeDataSource> sources, List<String[]> data) {
 		super();
 		setAutoResizeMode(AUTO_RESIZE_OFF);
 		setModel(new ExampleSourceConfigurationWizardDataTableModel(sources, data));
 		update();
 	}
 
-	public void update() {
+    /**
+     * Update.
+     */
+    public void update() {
 		((AbstractTableModel) getModel()).fireTableStructureChanged();
 		TableColumnModel columnModel = getColumnModel();
 		for (int i = 0; i < columnModel.getColumnCount(); i++) {

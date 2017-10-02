@@ -24,7 +24,7 @@ import java.awt.Color;
 /**
  * This class provides a visualization for the SOMPlotter. Therefore it converts the value of a
  * point to a color of scheme, representing something like an landscape map.
- * 
+ *
  * @author Sebastian Land
  */
 public class SOMLandscapeColorizer implements SOMMatrixColorizer {

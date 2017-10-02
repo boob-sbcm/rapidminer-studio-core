@@ -47,8 +47,9 @@ import com.rapidminer.tools.math.function.aggregation.AggregationFunction;
 
 
 /**
- * @author Marius Helf, Nils Woehler
+ * The type Value source data.
  *
+ * @author Marius Helf, Nils Woehler
  */
 public class ValueSourceData {
 
@@ -78,17 +79,33 @@ public class ValueSourceData {
 
 	private Set<Double> cachedDistinctValues = null;
 
-	public ValueSourceData(ValueSource valueSource, PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Value source data.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     */
+    public ValueSourceData(ValueSource valueSource, PlotInstance plotInstance) {
 		this.valueSource = valueSource;
 		this.plotInstance = plotInstance;
 		updateDataTableColumns();
 	}
 
-	public void clearCache() {
+    /**
+     * Clear cache.
+     */
+    public void clearCache() {
 		invalidateGroupingCache();
 	}
 
-	public double getAggregatedValueForGroupCell(SeriesUsageType seriesUsage, GroupCellKey groups) {
+    /**
+     * Gets aggregated value for group cell.
+     *
+     * @param seriesUsage the series usage
+     * @param groups      the groups
+     * @return the aggregated value for group cell
+     */
+    public double getAggregatedValueForGroupCell(SeriesUsageType seriesUsage, GroupCellKey groups) {
 		DataTable data = getDataTableForGroupCell(groups);
 		if (data == null) {
 			return Double.NaN;
@@ -122,17 +139,25 @@ public class ValueSourceData {
 		}
 	}
 
-	/**
-	 * Returns the filtered data for a single group cell.
-	 */
-	public DataTable getDataTableForGroupCell(GroupCellKey groupCellKey) {
+    /**
+     * Returns the filtered data for a single group cell.
+     *
+     * @param groupCellKey the group cell key
+     * @return the data table for group cell
+     */
+    public DataTable getDataTableForGroupCell(GroupCellKey groupCellKey) {
 		if (cachedGroupCellToDataTableMap == null) {
 			applyGrouping();
 		}
 		return cachedGroupCellToDataTableMap.get(groupCellKey);
 	}
 
-	public Set<GroupCellKey> getNonEmptyGroupCells() {
+    /**
+     * Gets non empty group cells.
+     *
+     * @return the non empty group cells
+     */
+    public Set<GroupCellKey> getNonEmptyGroupCells() {
 		if (cachedGroupCellToDataTableMap == null) {
 			applyGrouping();
 		}
@@ -258,15 +283,17 @@ public class ValueSourceData {
 				null);
 	}
 
-	/**
-	 * Returns a list of GroupCellKeyAndData which contains contains data for each group cell. The
-	 * data in this list represents data series ready to be plotted, i.e. aggregated etc. It does
-	 * not contain data tables, but double[] arrays for each SeriesUsageType and each Dimension.
-	 *
-	 * Since the generation of this list is usually quite expensive, implementations are strongly
-	 * encouraged to provide a caching mechanism.
-	 */
-	public GroupCellSeriesData getSeriesDataForAllGroupCells() {
+    /**
+     * Returns a list of GroupCellKeyAndData which contains contains data for each group cell. The
+     * data in this list represents data series ready to be plotted, i.e. aggregated etc. It does
+     * not contain data tables, but double[] arrays for each SeriesUsageType and each Dimension.
+     * <p>
+     * Since the generation of this list is usually quite expensive, implementations are strongly
+     * encouraged to provide a caching mechanism.
+     *
+     * @return the series data for all group cells
+     */
+    public GroupCellSeriesData getSeriesDataForAllGroupCells() {
 		synchronized (this) {
 			if (cachedSeriesDataForAllGroupCells == null) {
 				Vector<PlotDimension> dimensions = new Vector<PlotDimension>();
@@ -457,7 +484,12 @@ public class ValueSourceData {
 		return dataForAllGroupCells;
 	}
 
-	public int getSeriesCount() {
+    /**
+     * Gets series count.
+     *
+     * @return the series count
+     */
+    public int getSeriesCount() {
 		if (getSeriesDataForAllGroupCells() != null) {
 			return getSeriesDataForAllGroupCells().groupCellCount();
 		} else {
@@ -465,14 +497,18 @@ public class ValueSourceData {
 		}
 	}
 
-	/**
-	 * Returns values of utility series for upper or lower case.
-	 *
-	 * Returns null if {@link SeriesUsageType} UTILITY1 is not set or {@link IndicatorType} is NONE.
-	 * If {@link IndicatorType} is DIFFERENCE and secondary is <code>false</code> a List with NaNs
-	 * is returned.
-	 */
-	public double[] getAbsoluteUtilityValues(GroupCellKeyAndData groupCellKeyAndData, boolean secondary) {
+    /**
+     * Returns values of utility series for upper or lower case.
+     * <p>
+     * Returns null if {@link SeriesUsageType} UTILITY1 is not set or {@link IndicatorType} is NONE.
+     * If {@link IndicatorType} is DIFFERENCE and secondary is <code>false</code> a List with NaNs
+     * is returned.
+     *
+     * @param groupCellKeyAndData the group cell key and data
+     * @param secondary           the secondary
+     * @return the double [ ]
+     */
+    public double[] getAbsoluteUtilityValues(GroupCellKeyAndData groupCellKeyAndData, boolean secondary) {
 		IndicatorType errorIndicator = valueSource.getSeriesFormat().getUtilityUsage();
 
 		// only the UTILITY_1 is used for the DIFFERENCE plot
@@ -530,11 +566,13 @@ public class ValueSourceData {
 		return relativeValues;
 	}
 
-	/**
-	 * Returns the min and max value of this value source. If applicable, includes error bars/bands
-	 * etc.
-	 */
-	public Pair<Double, Double> getMinAndMaxValue() {
+    /**
+     * Returns the min and max value of this value source. If applicable, includes error bars/bands
+     * etc.
+     *
+     * @return the min and max value
+     */
+    public Pair<Double, Double> getMinAndMaxValue() {
 		if (Double.isNaN(cachedMinValue) || Double.isNaN(cachedMaxValue)) {
 			IndicatorType errorIndicator = valueSource.getSeriesFormat().getUtilityUsage();
 			if (errorIndicator == IndicatorType.NONE) {
@@ -631,14 +669,24 @@ public class ValueSourceData {
 		return minMaxValues;
 	}
 
-	public double getMinValue() {
+    /**
+     * Gets min value.
+     *
+     * @return the min value
+     */
+    public double getMinValue() {
 		if (Double.isNaN(cachedMinValue)) {
 			getMinAndMaxValue();
 		}
 		return cachedMinValue;
 	}
 
-	public double getMaxValue() {
+    /**
+     * Gets max value.
+     *
+     * @return the max value
+     */
+    public double getMaxValue() {
 		if (Double.isNaN(cachedMaxValue)) {
 			getMinAndMaxValue();
 		}
@@ -674,7 +722,14 @@ public class ValueSourceData {
 		}
 	}
 
-	public String getStringForValue(SeriesUsageType seriesUsage, double y) {
+    /**
+     * Gets string for value.
+     *
+     * @param seriesUsage the series usage
+     * @param y           the y
+     * @return the string for value
+     */
+    public String getStringForValue(SeriesUsageType seriesUsage, double y) {
 		if (valueSource.isNominal()) {
 			return plotInstance.getPlotData().getValueMappingDataTable()
 					.mapIndex(getDataTableColumnIdx(seriesUsage), (int) y);
@@ -683,7 +738,13 @@ public class ValueSourceData {
 		}
 	}
 
-	public void valueSourceChanged(ValueSourceChangeEvent e, ValueSource clonedValueSource) {
+    /**
+     * Value source changed.
+     *
+     * @param e                 the e
+     * @param clonedValueSource the cloned value source
+     */
+    public void valueSourceChanged(ValueSourceChangeEvent e, ValueSource clonedValueSource) {
 		if (e == null || e == lastProcessedEvent) {
 			return;
 		}
@@ -714,23 +775,43 @@ public class ValueSourceData {
 
 	}
 
-	public ValueSource getValueSource() {
+    /**
+     * Gets value source.
+     *
+     * @return the value source
+     */
+    public ValueSource getValueSource() {
 		return valueSource;
 	}
 
-	public List<PlotConfigurationError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<PlotConfigurationError> getErrors() {
 		// TODO implement me
 		List<PlotConfigurationError> errorList = new LinkedList<PlotConfigurationError>();
 		return errorList;
 	}
 
-	public List<PlotConfigurationError> getWarnings() {
+    /**
+     * Gets warnings.
+     *
+     * @return the warnings
+     */
+    public List<PlotConfigurationError> getWarnings() {
 		// TODO implement me
 		List<PlotConfigurationError> warnings = new LinkedList<PlotConfigurationError>();
 		return warnings;
 	}
 
-	public Set<Double> getDistinctValues() {
+    /**
+     * Gets distinct values.
+     *
+     * @return the distinct values
+     */
+    public Set<Double> getDistinctValues() {
 		if (cachedDistinctValues == null) {
 			updateDistinctValues();
 		}

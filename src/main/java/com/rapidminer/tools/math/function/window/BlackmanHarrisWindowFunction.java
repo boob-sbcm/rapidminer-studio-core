@@ -20,16 +20,27 @@ package com.rapidminer.tools.math.function.window;
 
 /**
  * A Blackman-Harris window function.
- * 
+ *
  * @author Tobias Malbrecht, Ingo Mierswa
  */
 public class BlackmanHarrisWindowFunction extends WindowFunction {
 
-	public BlackmanHarrisWindowFunction(Integer width) {
+    /**
+     * Instantiates a new Blackman harris window function.
+     *
+     * @param width the width
+     */
+    public BlackmanHarrisWindowFunction(Integer width) {
 		super(width);
 	}
 
-	public BlackmanHarrisWindowFunction(Integer width, Integer justification) {
+    /**
+     * Instantiates a new Blackman harris window function.
+     *
+     * @param width         the width
+     * @param justification the justification
+     */
+    public BlackmanHarrisWindowFunction(Integer width, Integer justification) {
 		super(width, justification);
 	}
 

@@ -52,31 +52,31 @@ public final class RapidLookTools {
 
 	private static boolean vlDockingAvailable = true;
 
-	/**
-	 * The client property of a {@link JProgressBar} if the text should not appear below it but
-	 * instead the progress bar should have full height and the text should appear in front of it.
-	 * Expected type: {@link Boolean}
-	 *
-	 * @since 7.0.0
-	 */
-	public static final String PROPERTY_PROGRESSBAR_COMPRESSED = "progressbar_compressed";
+    /**
+     * The client property of a {@link JProgressBar} if the text should not appear below it but
+     * instead the progress bar should have full height and the text should appear in front of it.
+     * Expected type: {@link Boolean}
+     *
+     * @since 7.0.0
+     */
+    public static final String PROPERTY_PROGRESSBAR_COMPRESSED = "progressbar_compressed";
 
-	/**
-	 * The client property of a {@link JTableHeader} if the background should not be the default
-	 * background color. Expected type: {@link ColorUIResource}
-	 *
-	 * @since 7.0.0
-	 */
-	public static final String PROPERTY_TABLE_HEADER_BACKGROUND = "table_header_bg";
+    /**
+     * The client property of a {@link JTableHeader} if the background should not be the default
+     * background color. Expected type: {@link ColorUIResource}
+     *
+     * @since 7.0.0
+     */
+    public static final String PROPERTY_TABLE_HEADER_BACKGROUND = "table_header_bg";
 
-	/**
-	 * The client property of a few {@link JComponent}s (currently supported by: {@link JComboBox})
-	 * which take input and should not be displayed in a bright theme but rather in a dark theme.
-	 * Expected type: {@link Boolean}
-	 *
-	 * @since 7.0.0
-	 */
-	public static final String PROPERTY_INPUT_BACKGROUND_DARK = "input_dark_bg";
+    /**
+     * The client property of a few {@link JComponent}s (currently supported by: {@link JComboBox})
+     * which take input and should not be displayed in a bright theme but rather in a dark theme.
+     * Expected type: {@link Boolean}
+     *
+     * @since 7.0.0
+     */
+    public static final String PROPERTY_INPUT_BACKGROUND_DARK = "input_dark_bg";
 
 	static {
 		try {
@@ -86,11 +86,20 @@ public final class RapidLookTools {
 		}
 	}
 
-	public static void clearMenuCache() {
+    /**
+     * Clear menu cache.
+     */
+    public static void clearMenuCache() {
 		CachedPainter.clearMenuCache();
 	}
 
-	public static void drawMenuItemBackground(Graphics g, JMenuItem menuItem) {
+    /**
+     * Draw menu item background.
+     *
+     * @param g        the g
+     * @param menuItem the menu item
+     */
+    public static void drawMenuItemBackground(Graphics g, JMenuItem menuItem) {
 		Color oldColor = g.getColor();
 		ButtonModel model = menuItem.getModel();
 		int w = menuItem.getWidth();
@@ -105,7 +114,14 @@ public final class RapidLookTools {
 		g.setColor(oldColor);
 	}
 
-	public static boolean drawMenuItemFading(Component c, Graphics g) {
+    /**
+     * Draw menu item fading boolean.
+     *
+     * @param c the c
+     * @param g the g
+     * @return the boolean
+     */
+    public static boolean drawMenuItemFading(Component c, Graphics g) {
 		int w = c.getWidth();
 		int h = c.getHeight();
 		if (h < 0 || w < 0) {
@@ -117,23 +133,33 @@ public final class RapidLookTools {
 		return true;
 	}
 
-	public static boolean isToolbarButton(JComponent b) {
+    /**
+     * Is toolbar button boolean.
+     *
+     * @param b the b
+     * @return the boolean
+     */
+    public static boolean isToolbarButton(JComponent b) {
 		return b.getParent() instanceof JToolBar || vlDockingAvailable && isVLToolbarButton(b);
 	}
 
-	public static boolean isVLToolbarButton(JComponent b) {
+    /**
+     * Is vl toolbar button boolean.
+     *
+     * @param b the b
+     * @return the boolean
+     */
+    public static boolean isVLToolbarButton(JComponent b) {
 		return b.getParent() instanceof VLToolBar;
 	}
 
-	/**
-	 * Drasw a button in a toolbar.
-	 *
-	 * @param b
-	 *            the button
-	 * @param g
-	 *            the graphics instance
-	 */
-	public static void drawToolbarButton(Graphics g, AbstractButton b) {
+    /**
+     * Drasw a button in a toolbar.
+     *
+     * @param g the graphics instance
+     * @param b the button
+     */
+    public static void drawToolbarButton(Graphics g, AbstractButton b) {
 		if (!b.isEnabled()) {
 			return;
 		}
@@ -153,22 +179,32 @@ public final class RapidLookTools {
 		}
 	}
 
-	public static boolean isLeftToRight(Component c) {
+    /**
+     * Is left to right boolean.
+     *
+     * @param c the c
+     * @return the boolean
+     */
+    public static boolean isLeftToRight(Component c) {
 		return c.getComponentOrientation().isLeftToRight();
 	}
 
-	public static Colors getColors() {
+    /**
+     * Gets colors.
+     *
+     * @return the colors
+     */
+    public static Colors getColors() {
 		return RapidLookAndFeel.getColors();
 	}
 
-	/**
-	 * Creates the default {@link Shape} for the given button.
-	 *
-	 * @param b
-	 *            the button to create the shape for
-	 * @return the shape instance
-	 */
-	public static Shape createShapeForButton(AbstractButton b) {
+    /**
+     * Creates the default {@link Shape} for the given button.
+     *
+     * @param b the button to create the shape for
+     * @return the shape instance
+     */
+    public static Shape createShapeForButton(AbstractButton b) {
 		int w = b.getWidth();
 		int h = b.getHeight();
 
@@ -176,14 +212,13 @@ public final class RapidLookTools {
 				RapidLookAndFeel.CORNER_DEFAULT_RADIUS);
 	}
 
-	/**
-	 * Creates the border {@link Shape} for the given button.
-	 *
-	 * @param b
-	 *            the button to create the border shape for
-	 * @return the border shape instance
-	 */
-	public static Shape createBorderShapeForButton(AbstractButton b) {
+    /**
+     * Creates the border {@link Shape} for the given button.
+     *
+     * @param b the button to create the border shape for
+     * @return the border shape instance
+     */
+    public static Shape createBorderShapeForButton(AbstractButton b) {
 		int w = b.getWidth();
 		int h = b.getHeight();
 
@@ -191,14 +226,14 @@ public final class RapidLookTools {
 				RapidLookAndFeel.CORNER_DEFAULT_RADIUS);
 	}
 
-	/**
-	 * Draws the given button border with the specified shape.
-	 *
-	 * @param b
-	 * @param g
-	 * @param shape
-	 */
-	public static void drawButtonBorder(AbstractButton b, Graphics g, Shape shape) {
+    /**
+     * Draws the given button border with the specified shape.
+     *
+     * @param b     the b
+     * @param g     the g
+     * @param shape the shape
+     */
+    public static void drawButtonBorder(AbstractButton b, Graphics g, Shape shape) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -215,14 +250,14 @@ public final class RapidLookTools {
 		g2.draw(shape);
 	}
 
-	/**
-	 * Draws the given button with the specified shape.
-	 *
-	 * @param b
-	 * @param g
-	 * @param shape
-	 */
-	public static void drawButton(AbstractButton b, Graphics g, Shape shape) {
+    /**
+     * Draws the given button with the specified shape.
+     *
+     * @param b     the b
+     * @param g     the g
+     * @param shape the shape
+     */
+    public static void drawButton(AbstractButton b, Graphics g, Shape shape) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 

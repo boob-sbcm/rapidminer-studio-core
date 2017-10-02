@@ -25,11 +25,18 @@ import com.rapidminer.operator.OperatorException;
 /**
  * This is an interface for models holding several components for feature transformation. For each
  * component the <code>AttributeWeights</code> have to be available.
- * 
+ *
  * @author Daniel Hakenjos ingomierswa Exp $
  */
 public interface ComponentWeightsCreatable {
 
-	public AttributeWeights getWeightsOfComponent(int component) throws OperatorException;
+    /**
+     * Gets weights of component.
+     *
+     * @param component the component
+     * @return the weights of component
+     * @throws OperatorException the operator exception
+     */
+    public AttributeWeights getWeightsOfComponent(int component) throws OperatorException;
 
 }

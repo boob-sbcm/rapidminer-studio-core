@@ -34,7 +34,6 @@ import javax.swing.event.EventListenerList;
  *
  * @author Simon Fischer
  * @since 6.4.0
- *
  */
 class ProcessRendererDropTarget extends DropTarget {
 
@@ -43,7 +42,13 @@ class ProcessRendererDropTarget extends DropTarget {
 	private EventListenerList dropTragetListenerList;
 	private ProcessRendererView view;
 
-	public ProcessRendererDropTarget(final ProcessRendererView view, final DropTargetListener dropTargetListener) {
+    /**
+     * Instantiates a new Process renderer drop target.
+     *
+     * @param view               the view
+     * @param dropTargetListener the drop target listener
+     */
+    public ProcessRendererDropTarget(final ProcessRendererView view, final DropTargetListener dropTargetListener) {
 		super(view, TransferHandler.COPY_OR_MOVE | TransferHandler.LINK, null);
 		this.view = view;
 		try {

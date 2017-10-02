@@ -33,8 +33,7 @@ import javax.swing.table.TableColumnModel;
 /**
  * This is an component of the {@link EditableHeaderJTable}. It was retrieved from
  * http://www.java2s.com/Code/Java/Swing-Components/EditableHeaderTableExample2.htm
- * 
- * 
+ *
  * @author Sebastian Land
  */
 class EditableTableHeaderUI extends TableHeaderUI {
@@ -44,13 +43,24 @@ class EditableTableHeaderUI extends TableHeaderUI {
 		return new MouseInputHandler((EditableTableHeader) header);
 	}
 
-	public class MouseInputHandler extends BasicTableHeaderUI.MouseInputHandler {
+    /**
+     * The type Mouse input handler.
+     */
+    public class MouseInputHandler extends BasicTableHeaderUI.MouseInputHandler {
 
 		private Component dispatchComponent;
 
-		protected EditableTableHeader header;
+        /**
+         * The Header.
+         */
+        protected EditableTableHeader header;
 
-		public MouseInputHandler(EditableTableHeader header) {
+        /**
+         * Instantiates a new Mouse input handler.
+         *
+         * @param header the header
+         */
+        public MouseInputHandler(EditableTableHeader header) {
 			this.header = header;
 		}
 

@@ -28,16 +28,24 @@ package com.rapidminer.gui.tools.syntax;
 
 /**
  * JavaScript token marker.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class JavaScriptTokenMarker extends CTokenMarker {
 
-	public JavaScriptTokenMarker() {
+    /**
+     * Instantiates a new Java script token marker.
+     */
+    public JavaScriptTokenMarker() {
 		super(false, getKeywords());
 	}
 
-	public static KeywordMap getKeywords() {
+    /**
+     * Gets keywords.
+     *
+     * @return the keywords
+     */
+    public static KeywordMap getKeywords() {
 		if (javaScriptKeywords == null) {
 			KeywordMap javaScriptKeywords = new KeywordMap(false);
 			javaScriptKeywords.add("function", Token.KEYWORD3);

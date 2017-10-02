@@ -27,7 +27,6 @@ import java.security.Permission;
  *
  * @author Marco Boeck
  * @since 7.2
- *
  */
 public final class PluginSecurityManager extends SecurityManager {
 

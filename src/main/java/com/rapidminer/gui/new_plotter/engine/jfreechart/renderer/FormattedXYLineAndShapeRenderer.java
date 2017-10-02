@@ -29,6 +29,8 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 
 
 /**
+ * The type Formatted xy line and shape renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedXYLineAndShapeRenderer extends XYLineAndShapeRenderer implements FormattedRenderer {
@@ -37,11 +39,20 @@ public class FormattedXYLineAndShapeRenderer extends XYLineAndShapeRenderer impl
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedXYLineAndShapeRenderer() {
+    /**
+     * Instantiates a new Formatted xy line and shape renderer.
+     */
+    public FormattedXYLineAndShapeRenderer() {
 		super();
 	}
 
-	public FormattedXYLineAndShapeRenderer(boolean lines, boolean shapes) {
+    /**
+     * Instantiates a new Formatted xy line and shape renderer.
+     *
+     * @param lines  the lines
+     * @param shapes the shapes
+     */
+    public FormattedXYLineAndShapeRenderer(boolean lines, boolean shapes) {
 		super(lines, shapes);
 	}
 

@@ -60,24 +60,33 @@ import Jama.Matrix;
  */
 public class GHA extends Operator {
 
-	/**
-	 * The parameter name for &quot;Number of components to compute. If '-1' the number of
-	 * attributes is taken.'&quot;
-	 */
-	public static final String PARAMETER_NUMBER_OF_COMPONENTS = "number_of_components";
+    /**
+     * The parameter name for &quot;Number of components to compute. If '-1' the number of
+     * attributes is taken.'&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_COMPONENTS = "number_of_components";
 
-	/** The parameter name for &quot;Number of Iterations to apply the update rule.&quot; */
-	public static final String PARAMETER_NUMBER_OF_ITERATIONS = "number_of_iterations";
+    /**
+     * The parameter name for &quot;Number of Iterations to apply the update rule.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_ITERATIONS = "number_of_iterations";
 
-	/** The parameter name for &quot;The learning rate for GHA (small)&quot; */
-	public static final String PARAMETER_LEARNING_RATE = "learning_rate";
+    /**
+     * The parameter name for &quot;The learning rate for GHA (small)&quot;
+     */
+    public static final String PARAMETER_LEARNING_RATE = "learning_rate";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set input");
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set output");
 	private OutputPort originalOutput = getOutputPorts().createPort("original");
 	private OutputPort modelOutput = getOutputPorts().createPort("preprocessing model");
 
-	public GHA(OperatorDescription description) {
+    /**
+     * Instantiates a new Gha.
+     *
+     * @param description the description
+     */
+    public GHA(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, Ontology.NUMERICAL));

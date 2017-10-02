@@ -33,13 +33,15 @@ import java.util.logging.Level;
  * This private class cares about <i>weighted</i> performance measures as used by the
  * <code>BayesianBoosting</code> algorithm and the similarly working <code>ModelBasedSampling</code>
  * operator.
- * 
+ *
  * @author Martin Scholz
  */
 public class WeightedPerformanceMeasures {
 
-	/** This constant is used to express that no examples have been observed. */
-	public static final double RULE_DOES_NOT_APPLY = Double.NaN;
+    /**
+     * This constant is used to express that no examples have been observed.
+     */
+    public static final double RULE_DOES_NOT_APPLY = Double.NaN;
 
 	private double[] predictions;
 
@@ -50,14 +52,14 @@ public class WeightedPerformanceMeasures {
 	// The total number of examples without considering any weights:
 	private int[][] unweighted_num_pred_label;
 
-	/**
-	 * Constructor. Reads an example set, calculates its weighted performance values and caches them
-	 * internally for later requests.
-	 * 
-	 * @param exampleSet
-	 *            the <code>ExampleSet</code> this object shall hold the performance measures for
-	 */
-	public WeightedPerformanceMeasures(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Constructor. Reads an example set, calculates its weighted performance values and caches them
+     * internally for later requests.
+     *
+     * @param exampleSet the <code>ExampleSet</code> this object shall hold the performance measures for
+     * @throws OperatorException the operator exception
+     */
+    public WeightedPerformanceMeasures(ExampleSet exampleSet) throws OperatorException {
 		{
 			int numberOfClasses = exampleSet.getAttributes().getLabel().getMapping().getValues().size();
 			this.labels = new double[numberOfClasses];
@@ -138,16 +140,14 @@ public class WeightedPerformanceMeasures {
 		}
 	}
 
-	/**
-	 * Method to query for the unweighted absolute number of covered examples of each class, given a
-	 * specific prediction
-	 * 
-	 * @param prediction
-	 *            the value predicted by the model (internal index number)
-	 * @return an <code>int[]</code> array with the number of examples of class <code>i</code>
-	 *         (internal index number) stored at index <code>i</code>.
-	 */
-	public int[] getCoveredExamplesNumForPred(int prediction) {
+    /**
+     * Method to query for the unweighted absolute number of covered examples of each class, given a
+     * specific prediction
+     *
+     * @param prediction the value predicted by the model (internal index number)
+     * @return an <code>int[]</code> array with the number of examples of class <code>i</code>         (internal index number) stored at index <code>i</code>.
+     */
+    public int[] getCoveredExamplesNumForPred(int prediction) {
 		int length = this.unweighted_num_pred_label.length;
 		if (prediction >= 0 && prediction < length) {
 			return this.unweighted_num_pred_label[prediction];
@@ -156,80 +156,74 @@ public class WeightedPerformanceMeasures {
 		}
 	}
 
-	/**
-	 * @return the number of classes, namely different values of this object's example set's label
-	 *         attribute
-	 */
-	public int getNumberOfLabels() {
+    /**
+     * Gets number of labels.
+     *
+     * @return the number of classes, namely different values of this object's example set's label         attribute
+     */
+    public int getNumberOfLabels() {
 		return this.labels.length;
 	}
 
-	/**
-	 * @return number of predictions or nominal classes predicted by the embedded learner. Not
-	 *         necessarily the same as the number of class labels.
-	 */
-	public int getNumberOfPredictions() {
+    /**
+     * Gets number of predictions.
+     *
+     * @return number of predictions or nominal classes predicted by the embedded learner. Not         necessarily the same as the number of class labels.
+     */
+    public int getNumberOfPredictions() {
 		return this.predictions.length;
 	}
 
-	/**
-	 * Method to query for the probability of one of the prediction/label subsets
-	 * 
-	 * @param label
-	 *            the (correct) class label of the example as it comes from the internal index
-	 * @param prediction
-	 *            the boolean value predicted by the model (premise) (internal index number)
-	 * @return the joint probability of label and prediction
-	 */
-	public double getProbability(int label, int prediction) {
+    /**
+     * Method to query for the probability of one of the prediction/label subsets
+     *
+     * @param label      the (correct) class label of the example as it comes from the internal index
+     * @param prediction the boolean value predicted by the model (premise) (internal index number)
+     * @return the joint probability of label and prediction
+     */
+    public double getProbability(int label, int prediction) {
 		return this.pred_label[prediction][label];
 	}
 
-	/**
-	 * Method to query for the &quot;prior&quot; probability of one of the labels.
-	 * 
-	 * @param label
-	 *            the nominal class label
-	 * @return the probability of seeing an example with this label
-	 */
-	public double getProbabilityLabel(int label) {
+    /**
+     * Method to query for the &quot;prior&quot; probability of one of the labels.
+     *
+     * @param label the nominal class label
+     * @return the probability of seeing an example with this label
+     */
+    public double getProbabilityLabel(int label) {
 		return this.labels[label];
 	}
 
-	/**
-	 * Method to query for the &quot;prior&quot; probability of one of the predictions.
-	 * 
-	 * @param premise
-	 *            the prediction of a model
-	 * @return the probability of drawing an example so that the model makes this prediction
-	 */
-	public double getProbabilityPrediction(int premise) {
+    /**
+     * Method to query for the &quot;prior&quot; probability of one of the predictions.
+     *
+     * @param premise the prediction of a model
+     * @return the probability of drawing an example so that the model makes this prediction
+     */
+    public double getProbabilityPrediction(int premise) {
 		return this.predictions[premise];
 	}
 
-	/**
-	 * The lift of the rule specified by the nominal variable's indices.
-	 * <code>RULE_DOES_NOT_APPLY</code> is returned to indicate that no such example has ever been
-	 * observed, <code>Double.POSITIVE_INFINITY</code> is returned if the class membership can
-	 * deterministically be concluded from the prediction.
-	 * 
-	 * Important: In the multi-class case some of the classes might not be observed at all when a
-	 * specific rule applies, but still the rule does not necessarily have a deterministic part. In
-	 * this case the remaining number of classes is considered to be the complete set of classes
-	 * when calculating the default values and lifts! This does not affect the prediction of the
-	 * most likely class label, because the classes not observed have a probability of one, the
-	 * other estimates increase proportionally. However, to calculate probabilities it is necessary
-	 * to normalize the estimates in the class <code>BayBoostModel</code>.
-	 * 
-	 * @param label
-	 *            the true label
-	 * @param prediction
-	 *            the predicted label
-	 * @return the LIFT, which is a value >= 0, positive infinity if all examples with this
-	 *         prediction belong to that class (deterministic rule), or
-	 *         <code>RULE_DOES_NOT_APPLY</code> if no prediction can be made.
-	 */
-	public double getLift(int label, int prediction) {
+    /**
+     * The lift of the rule specified by the nominal variable's indices.
+     * <code>RULE_DOES_NOT_APPLY</code> is returned to indicate that no such example has ever been
+     * observed, <code>Double.POSITIVE_INFINITY</code> is returned if the class membership can
+     * deterministically be concluded from the prediction.
+     * <p>
+     * Important: In the multi-class case some of the classes might not be observed at all when a
+     * specific rule applies, but still the rule does not necessarily have a deterministic part. In
+     * this case the remaining number of classes is considered to be the complete set of classes
+     * when calculating the default values and lifts! This does not affect the prediction of the
+     * most likely class label, because the classes not observed have a probability of one, the
+     * other estimates increase proportionally. However, to calculate probabilities it is necessary
+     * to normalize the estimates in the class <code>BayBoostModel</code>.
+     *
+     * @param label      the true label
+     * @param prediction the predicted label
+     * @return the LIFT, which is a value >= 0, positive infinity if all examples with this         prediction belong to that class (deterministic rule), or         <code>RULE_DOES_NOT_APPLY</code> if no prediction can be made.
+     */
+    public double getLift(int label, int prediction) {
 		double prLabel = this.getProbabilityLabel(label);
 		double prPred = this.getProbabilityPrediction(prediction);
 		double prJoint = this.getProbability(label, prediction);
@@ -246,17 +240,14 @@ public class WeightedPerformanceMeasures {
 		return lift;
 	}
 
-	/**
-	 * The factor to be applied (pn-ratio) for each label if the model yields the specific
-	 * prediction.
-	 * 
-	 * @param prediction
-	 *            the predicted class
-	 * @return a <code>double[]</code> array containing one factor for each class. The result should
-	 *         either consist of well defined lifts >= 0, or all fields should mutually contain the
-	 *         constant <code>RULE_DOES_NOT_APPLY</code>.
-	 */
-	public double[] getPnRatios(int prediction) {
+    /**
+     * The factor to be applied (pn-ratio) for each label if the model yields the specific
+     * prediction.
+     *
+     * @param prediction the predicted class
+     * @return a <code>double[]</code> array containing one factor for each class. The result should         either consist of well defined lifts >= 0, or all fields should mutually contain the         constant <code>RULE_DOES_NOT_APPLY</code>.
+     */
+    public double[] getPnRatios(int prediction) {
 		double[] lifts = new double[this.labels.length];
 		for (int i = 0; i < lifts.length; i++) {
 			int rapidMinerLabelIndex = i;
@@ -282,11 +273,12 @@ public class WeightedPerformanceMeasures {
 		return lifts;
 	}
 
-	/**
-	 * @return a matrix with one pn-factor per prediction/label combination, or the priors of
-	 *         predictions for the case of soft base classifiers.
-	 */
-	public double[][] createLiftRatioMatrix() {
+    /**
+     * Create lift ratio matrix double [ ] [ ].
+     *
+     * @return a matrix with one pn-factor per prediction/label combination, or the priors of         predictions for the case of soft base classifiers.
+     */
+    public double[][] createLiftRatioMatrix() {
 		int numPredictions = this.getNumberOfPredictions();
 		double[][] liftRatioMatrix = new double[numPredictions][];
 		for (int i = 0; i < numPredictions; i++) {
@@ -295,10 +287,12 @@ public class WeightedPerformanceMeasures {
 		return liftRatioMatrix;
 	}
 
-	/**
-	 * @return a <code>double[]</code> with the prior probabilities of all class labels.
-	 */
-	public double[] getLabelPriors() {
+    /**
+     * Get label priors double [ ].
+     *
+     * @return a <code>double[]</code> with the prior probabilities of all class labels.
+     */
+    public double[] getLabelPriors() {
 		double[] priors = new double[this.getNumberOfLabels()];
 		for (int i = 0; i < priors.length; i++) {
 			priors[i] = this.getProbabilityLabel(i);
@@ -306,10 +300,12 @@ public class WeightedPerformanceMeasures {
 		return priors;
 	}
 
-	/**
-	 * @return the number of classes with strictly positive weight
-	 */
-	public int getNumberOfNonEmptyClasses() {
+    /**
+     * Gets number of non empty classes.
+     *
+     * @return the number of classes with strictly positive weight
+     */
+    public int getNumberOfNonEmptyClasses() {
 		int nonEmpty = 0;
 		for (int i = 0; i < this.getNumberOfLabels(); i++) {
 			if (this.getProbabilityLabel(i) > 0) {
@@ -319,8 +315,12 @@ public class WeightedPerformanceMeasures {
 		return nonEmpty;
 	}
 
-	/** converts the deprecated representation into the new form */
-	public ContingencyMatrix getContingencyMatrix() {
+    /**
+     * converts the deprecated representation into the new form  @return the contingency matrix
+     *
+     * @return the contingency matrix
+     */
+    public ContingencyMatrix getContingencyMatrix() {
 
 		if (this.pred_label.length == 0 || this.pred_label[0].length == 0) {
 			return new ContingencyMatrix(new double[0][0]); // doesn't make sense
@@ -346,25 +346,21 @@ public class WeightedPerformanceMeasures {
 		return new ContingencyMatrix(matrix);
 	}
 
-	/**
-	 * Helper method of the <code>BayesianBoosting</code> operator
-	 * 
-	 * This method reweights the example set with respect to the
-	 * <code>WeightedPerformanceMeasures</code> object. Please note that the weights will not be
-	 * reset at any time, because they continuously change from one iteration to the next. This
-	 * method does not change the priors of the classes.
-	 * 
-	 * @param exampleSet
-	 *            <code>ExampleSet</code> to be reweighted
-	 * @param cm
-	 *            the <code>ContingencyMatrix</code> as e.g. returned by
-	 *            <code>WeightedPerformanceMeasures</code>
-	 * @param allowMarginalSkews
-	 *            indicates whether the weight of covered and uncovered subsets are allowed to
-	 *            change.
-	 * @return the total weight
-	 */
-	public static double reweightExamples(ExampleSet exampleSet, ContingencyMatrix cm, boolean allowMarginalSkews)
+    /**
+     * Helper method of the <code>BayesianBoosting</code> operator
+     * <p>
+     * This method reweights the example set with respect to the
+     * <code>WeightedPerformanceMeasures</code> object. Please note that the weights will not be
+     * reset at any time, because they continuously change from one iteration to the next. This
+     * method does not change the priors of the classes.
+     *
+     * @param exampleSet         <code>ExampleSet</code> to be reweighted
+     * @param cm                 the <code>ContingencyMatrix</code> as e.g. returned by            <code>WeightedPerformanceMeasures</code>
+     * @param allowMarginalSkews indicates whether the weight of covered and uncovered subsets are allowed to            change.
+     * @return the total weight
+     * @throws OperatorException the operator exception
+     */
+    public static double reweightExamples(ExampleSet exampleSet, ContingencyMatrix cm, boolean allowMarginalSkews)
 			throws OperatorException {
 		Iterator<Example> reader = exampleSet.iterator();
 		double totalWeight = 0;

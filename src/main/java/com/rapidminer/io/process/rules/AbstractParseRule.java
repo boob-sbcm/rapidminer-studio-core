@@ -29,9 +29,8 @@ import org.w3c.dom.Element;
 /**
  * This superclass of all parse rules retrieves the operatorType affected by this rule. Subclasses
  * might access them by using the operatorTypeName.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public abstract class AbstractParseRule implements ParseRule {
 
@@ -40,11 +39,27 @@ public abstract class AbstractParseRule implements ParseRule {
 	private static final String APPLIES_BEFORE_VERSION_DEFAULT = "5.0.000";
 	private static final String APPLIES_SINCE_VERSION_DEFAULT = "1.0.000";
 
-	protected String operatorTypeName;
-	protected VersionNumber appliesBefore;
-	protected VersionNumber appliesSince;
+    /**
+     * The Operator type name.
+     */
+    protected String operatorTypeName;
+    /**
+     * The Applies before.
+     */
+    protected VersionNumber appliesBefore;
+    /**
+     * The Applies since.
+     */
+    protected VersionNumber appliesSince;
 
-	public AbstractParseRule(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Abstract parse rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public AbstractParseRule(String operatorTypeName, Element element) throws XMLException {
 		this.operatorTypeName = operatorTypeName;
 		String beforeVersion = element.getAttribute(APPLIES_BEFORE_VERSION);
 		String afterVersion = element.getAttribute(APPLIES_SINCE_VERSION);
@@ -69,5 +84,13 @@ public abstract class AbstractParseRule implements ParseRule {
 		return null;
 	}
 
-	protected abstract String apply(Operator operator, String operatorTypeName, XMLImporter importer);
+    /**
+     * Apply string.
+     *
+     * @param operator         the operator
+     * @param operatorTypeName the operator type name
+     * @param importer         the importer
+     * @return the string
+     */
+    protected abstract String apply(Operator operator, String operatorTypeName, XMLImporter importer);
 }

@@ -29,17 +29,34 @@ import com.rapidminer.parameter.UndefinedParameterError;
 
 
 /**
- * 
+ * The type Attribute subset pass through rule.
+ *
  * @author Sebastian Land
- * 
  */
 public class AttributeSubsetPassThroughRule extends ExampleSetPassThroughRule {
 
-	protected final Operator operator;
-	protected final boolean keepSpecialIfNotIncluded;
-	protected final AttributeSubsetSelector selector;
+    /**
+     * The Operator.
+     */
+    protected final Operator operator;
+    /**
+     * The Keep special if not included.
+     */
+    protected final boolean keepSpecialIfNotIncluded;
+    /**
+     * The Selector.
+     */
+    protected final AttributeSubsetSelector selector;
 
-	public AttributeSubsetPassThroughRule(InputPort inputPort, OutputPort outputPort, Operator operator,
+    /**
+     * Instantiates a new Attribute subset pass through rule.
+     *
+     * @param inputPort                the input port
+     * @param outputPort               the output port
+     * @param operator                 the operator
+     * @param keepSpecialIfNotIncluded the keep special if not included
+     */
+    public AttributeSubsetPassThroughRule(InputPort inputPort, OutputPort outputPort, Operator operator,
 			boolean keepSpecialIfNotIncluded) {
 		super(inputPort, outputPort, SetRelation.EQUAL);
 		this.operator = operator;

@@ -26,7 +26,7 @@ import com.rapidminer.tools.math.similarity.DistanceMeasure;
 
 /**
  * The Manhattan distance.
- * 
+ *
  * @author Sebastian Land, Michael Wurst
  */
 public class ManhattanDistance extends DistanceMeasure {

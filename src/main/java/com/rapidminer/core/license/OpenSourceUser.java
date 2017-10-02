@@ -31,7 +31,6 @@ import com.rapidminer.license.LicenseUser;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public class OpenSourceUser implements LicenseUser {
 

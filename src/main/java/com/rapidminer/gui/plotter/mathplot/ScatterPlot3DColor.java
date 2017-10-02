@@ -32,18 +32,29 @@ import org.math.plot.Plot3DPanel;
 /**
  * This plotter can be used to create 3D scatter plots where a 4th dimension can be shown by using a
  * color scale.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class ScatterPlot3DColor extends JMathPlotter3D {
 
 	private static final long serialVersionUID = 6967871061963724679L;
 
-	public ScatterPlot3DColor(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Scatter plot 3 d color.
+     *
+     * @param settings the settings
+     */
+    public ScatterPlot3DColor(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
-	public ScatterPlot3DColor(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Scatter plot 3 d color.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public ScatterPlot3DColor(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings, dataTable);
 	}
 

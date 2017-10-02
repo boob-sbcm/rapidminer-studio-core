@@ -28,7 +28,6 @@ import com.rapidminer.operator.Annotations;
  * Dummy IOObject for testing purposes.
  *
  * @author Peter Csaszar, Marcel Michel
- *
  */
 class TestIOObject extends AbstractIOObject implements Serializable {
 

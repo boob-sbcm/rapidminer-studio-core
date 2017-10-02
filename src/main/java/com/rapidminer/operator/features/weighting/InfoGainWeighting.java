@@ -26,12 +26,17 @@ import com.rapidminer.operator.learner.tree.criterions.InfoGainCriterion;
 /**
  * This operator calculates the relevance of a feature by computing the information gain in class
  * distribution, if exampleSet would be splitted after the feature.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class InfoGainWeighting extends AbstractEntropyWeighting {
 
-	public InfoGainWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Info gain weighting.
+     *
+     * @param description the description
+     */
+    public InfoGainWeighting(OperatorDescription description) {
 		super(description);
 	}
 

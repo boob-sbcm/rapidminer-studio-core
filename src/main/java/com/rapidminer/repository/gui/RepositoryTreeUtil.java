@@ -35,7 +35,6 @@ import com.rapidminer.tools.LogService;
  * A utility class to save and restore expansion states and selection paths of the repository tree.
  *
  * @author Nils Woehler, Venkatesh Umaashankar, Adrian Wilke
- *
  */
 public class RepositoryTreeUtil {
 
@@ -48,39 +47,45 @@ public class RepositoryTreeUtil {
 	/** Saved expanded repositories */
 	private HashSet<String> expandedRepositories;
 
-	/** Saves single path */
-	public void saveSelectionPath(TreePath treePath) {
+    /**
+     * Saves single path  @param treePath the tree path
+     *
+     * @param treePath the tree path
+     */
+    public void saveSelectionPath(TreePath treePath) {
 		TreePath[] treePaths = new TreePath[1];
 		treePaths[0] = treePath;
 		selectedPaths = treePaths;
 	}
 
-	/** Saves multiple paths */
-	public void saveSelectionPaths(TreePath[] treePaths) {
+    /**
+     * Saves multiple paths  @param treePaths the tree paths
+     *
+     * @param treePaths the tree paths
+     */
+    public void saveSelectionPaths(TreePath[] treePaths) {
 		selectedPaths = treePaths;
 	}
 
-	/**
-	 * Sets selected paths to the previous path(s) saved by {@link #saveSelectionPath(TreePath)} or
-	 * ##{@link #saveSelectionPaths(TreePath[])}. Scrolls to the first selected path.
-	 *
-	 * @param tree
-	 *            The related tree, containing the path(s)
-	 */
-	public void restoreSelectionPaths(JTree tree) {
+    /**
+     * Sets selected paths to the previous path(s) saved by {@link #saveSelectionPath(TreePath)} or
+     * ##{@link #saveSelectionPaths(TreePath[])}. Scrolls to the first selected path.
+     *
+     * @param tree The related tree, containing the path(s)
+     */
+    public void restoreSelectionPaths(JTree tree) {
 		if (selectedPaths != null) {
 			tree.setSelectionPaths(selectedPaths);
 			tree.scrollPathToVisible(tree.getSelectionPath());
 		}
 	}
 
-	/**
-	 * Saves the currently selected paths and saves all expanded repositories and nodes.
-	 *
-	 * @param tree
-	 *            The related tree, containing the path(s)
-	 */
-	public void saveExpansionState(JTree tree) {
+    /**
+     * Saves the currently selected paths and saves all expanded repositories and nodes.
+     *
+     * @param tree The related tree, containing the path(s)
+     */
+    public void saveExpansionState(JTree tree) {
 
 		saveSelectionPaths(tree.getSelectionPaths());
 
@@ -102,14 +107,13 @@ public class RepositoryTreeUtil {
 		}
 	}
 
-	/**
-	 * Expands all repositories and nodes, which have been saved before. Restores selected paths,
-	 * which have been saved proviously.
-	 *
-	 * @param tree
-	 *            The related tree, containing the path(s)
-	 */
-	public void restoreExpansionState(JTree tree) {
+    /**
+     * Expands all repositories and nodes, which have been saved before. Restores selected paths,
+     * which have been saved proviously.
+     *
+     * @param tree The related tree, containing the path(s)
+     */
+    public void restoreExpansionState(JTree tree) {
 		for (int i = 0; i < tree.getRowCount(); i++) {
 			TreePath path = tree.getPathForRow(i);
 			Object entryObject = path.getLastPathComponent();
@@ -125,12 +129,12 @@ public class RepositoryTreeUtil {
 		restoreSelectionPaths(tree);
 	}
 
-	/**
-	 * Calls {@link RepositoryLocation###locateEntry()} on every node which was saved with ##
-	 * {@link #saveExpansionState(JTree)}. This calls {@link RepositoryManager###locate(Repository,
-	 * String, boolean)} which refreshes parent folders of missed entries.
-	 */
-	public void locateExpandedEntries() {
+    /**
+     * Calls {@link RepositoryLocation###locateEntry()} on every node which was saved with ##
+     * {@link #saveExpansionState(JTree)}. This calls {@link RepositoryManager###locate(Repository,
+     * String, boolean)}** which refreshes parent folders of missed entries.
+     */
+    public void locateExpandedEntries() {
 		for (String absoluteLocation : expandedNodes) {
 			try {
 				RepositoryLocation repositoryLocation = new RepositoryLocation(absoluteLocation);

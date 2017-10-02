@@ -26,6 +26,8 @@ import java.util.Collection;
 
 
 /**
+ * The type Dictionary quick fix.
+ *
  * @author Sebastian Land
  */
 public abstract class DictionaryQuickFix extends AbstractQuickFix {
@@ -34,7 +36,15 @@ public abstract class DictionaryQuickFix extends AbstractQuickFix {
 	private String[] options;
 	private int nearestOption;
 
-	public DictionaryQuickFix(String fixWhat, Collection<String> alternativeValues, final String currentValue,
+    /**
+     * Instantiates a new Dictionary quick fix.
+     *
+     * @param fixWhat           the fix what
+     * @param alternativeValues the alternative values
+     * @param currentValue      the current value
+     * @param description       the description
+     */
+    public DictionaryQuickFix(String fixWhat, Collection<String> alternativeValues, final String currentValue,
 			String description) {
 		super(1, true, "replace_by_dictionary", fixWhat);
 		this.options = alternativeValues.toArray(new String[alternativeValues.size()]);
@@ -54,7 +64,14 @@ public abstract class DictionaryQuickFix extends AbstractQuickFix {
 		}
 	}
 
-	public DictionaryQuickFix(String arg, Collection<String> alternativeValues, final String currentValue) {
+    /**
+     * Instantiates a new Dictionary quick fix.
+     *
+     * @param arg               the arg
+     * @param alternativeValues the alternative values
+     * @param currentValue      the current value
+     */
+    public DictionaryQuickFix(String arg, Collection<String> alternativeValues, final String currentValue) {
 		this(arg, alternativeValues, currentValue, "Select the appropriate value");
 	}
 
@@ -67,8 +84,10 @@ public abstract class DictionaryQuickFix extends AbstractQuickFix {
 		}
 	}
 
-	/**
-	 * This method must be overridden from subclasses to use the chosen option
-	 */
-	public abstract void insertChosenOption(String chosenOption);
+    /**
+     * This method must be overridden from subclasses to use the chosen option
+     *
+     * @param chosenOption the chosen option
+     */
+    public abstract void insertChosenOption(String chosenOption);
 }

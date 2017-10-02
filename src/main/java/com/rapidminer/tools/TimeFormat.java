@@ -27,24 +27,39 @@ import java.text.NumberFormat;
  * This class provides some utility functions useful to format elapsed time (usually given in
  * milliseconds).
  * </p>
- * 
+ *
  * @author Christian Bockermann
  */
 public class TimeFormat {
 
-	/* Milliseconds of one second */
+    /**
+     * The constant SEC_MS.
+     */
+/* Milliseconds of one second */
 	public final static long SEC_MS = 1000;
 
-	/* Milliseconds of one minute */
+    /**
+     * The constant MIN_MS.
+     */
+/* Milliseconds of one minute */
 	public final static long MIN_MS = 60 * SEC_MS;
 
-	/* Milliseconds of one hour */
+    /**
+     * The constant HOUR_MS.
+     */
+/* Milliseconds of one hour */
 	public final static long HOUR_MS = 60 * MIN_MS;
 
-	/* Milliseconds of one day */
+    /**
+     * The constant DAY_MS.
+     */
+/* Milliseconds of one day */
 	public final static long DAY_MS = 24 * HOUR_MS;
 
-	/* Milliseconds of a week */
+    /**
+     * The constant WEEK_MS.
+     */
+/* Milliseconds of a week */
 	public final static long WEEK_MS = 7 * DAY_MS;
 
 	// do not use months and years since the number of days vary!!!
@@ -52,41 +67,42 @@ public class TimeFormat {
 	/* The number format for formatting the seconds */
 	private NumberFormat numberFormat = null;
 
-	/**
-	 * Creates a new TimeFormat instance.
-	 */
-	public TimeFormat() {
+    /**
+     * Creates a new TimeFormat instance.
+     */
+    public TimeFormat() {
 		this(new DecimalFormat("0"));
 	}
 
-	/**
-	 * Create a new time formatter object which uses the given NumberFormat to display the number of
-	 * seconds. This can be used to support a fine granulated display of seconds.
-	 */
-	public TimeFormat(NumberFormat numberFormat) {
+    /**
+     * Create a new time formatter object which uses the given NumberFormat to display the number of
+     * seconds. This can be used to support a fine granulated display of seconds.
+     *
+     * @param numberFormat the number format
+     */
+    public TimeFormat(NumberFormat numberFormat) {
 		this.numberFormat = numberFormat;
 	}
 
-	/**
-	 * <p>
-	 * This method takes the given number of milliseconds, <code>time</code>, and creates a new
-	 * String containing a description of the time by means of days, hours, minutes and seconds. If
-	 * <code>time</code> is less than any of the mentioned properties, then this field will not be
-	 * printed, e.g.
-	 * <ul>
-	 * <li>calling <code>format( 1000 )</code> will result in the string <code>&quot;1s&quot;</code>
-	 * </li>
-	 * 
-	 * <li>calling <code>format( 90000 * 1000 )</code>, i.e. milliseconds of one day + 1 hour, will
-	 * result in <code>&quot;1 day 1h&quot;</code>.</li>
-	 * </ul>
-	 * </p>
-	 * 
-	 * @param timeInMilliseconds
-	 *            The time as an amount of milliseconds.
-	 * @return The time formatted as printable string.
-	 */
-	public String format(long timeInMilliseconds) {
+    /**
+     * <p>
+     * This method takes the given number of milliseconds, <code>time</code>, and creates a new
+     * String containing a description of the time by means of days, hours, minutes and seconds. If
+     * <code>time</code> is less than any of the mentioned properties, then this field will not be
+     * printed, e.g.
+     * <ul>
+     * <li>calling <code>format( 1000 )</code> will result in the string <code>&quot;1s&quot;</code>
+     * </li>
+     * <p>
+     * <li>calling <code>format( 90000 * 1000 )</code>, i.e. milliseconds of one day + 1 hour, will
+     * result in <code>&quot;1 day 1h&quot;</code>.</li>
+     * </ul>
+     * </p>
+     *
+     * @param timeInMilliseconds The time as an amount of milliseconds.
+     * @return The time formatted as printable string.
+     */
+    public String format(long timeInMilliseconds) {
 		StringBuffer result = new StringBuffer();
 
 		// weeks

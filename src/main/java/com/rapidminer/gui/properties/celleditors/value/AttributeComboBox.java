@@ -36,7 +36,6 @@ import com.rapidminer.parameter.ParameterTypeAttribute;
  * data changes.
  *
  * @author Simon Fischer, Sebastian Land
- *
  */
 public class AttributeComboBox extends JComboBox<String> {
 
@@ -49,7 +48,12 @@ public class AttributeComboBox extends JComboBox<String> {
 		private ParameterTypeAttribute attributeType;
 		private Vector<String> attributes = new Vector<String>();
 
-		public AttributeComboBoxModel(ParameterTypeAttribute attributeType) {
+        /**
+         * Instantiates a new Attribute combo box model.
+         *
+         * @param attributeType the attribute type
+         */
+        public AttributeComboBoxModel(ParameterTypeAttribute attributeType) {
 			this.attributeType = attributeType;
 			MetaData metaData = attributeType.getMetaData();
 			// InputPort inputPort = attributeType.getInputPort();
@@ -68,21 +72,21 @@ public class AttributeComboBox extends JComboBox<String> {
 			return attributes.get(index);
 		}
 
-		/**
-		 * This method will cause this model to register as a MetaDataChangeListener on the given
-		 * input port. Attention! Make sure, it will be proper unregistered to avoid a memory leak!
-		 */
-		protected void registerListener() {
+        /**
+         * This method will cause this model to register as a MetaDataChangeListener on the given
+         * input port. Attention! Make sure, it will be proper unregistered to avoid a memory leak!
+         */
+        protected void registerListener() {
 			MetaDataProvider mdp = attributeType.getMetaDataProvider();
 			if (mdp != null) {
 				mdp.addMetaDataChangeListener(this);
 			}
 		}
 
-		/**
-		 * This method will unregister this model from the InputPort.
-		 */
-		protected void unregisterListener() {
+        /**
+         * This method will unregister this model from the InputPort.
+         */
+        protected void unregisterListener() {
 			MetaDataProvider mdp = attributeType.getMetaDataProvider();
 			if (mdp != null) {
 				mdp.removeMetaDataChangeListener(this);
@@ -104,7 +108,12 @@ public class AttributeComboBox extends JComboBox<String> {
 
 	private AttributeComboBoxModel model;
 
-	public AttributeComboBox(ParameterTypeAttribute type) {
+    /**
+     * Instantiates a new Attribute combo box.
+     *
+     * @param type the type
+     */
+    public AttributeComboBox(ParameterTypeAttribute type) {
 		super(new AttributeComboBoxModel(type));
 		model = (AttributeComboBoxModel) getModel();
 		AutoCompleteComboBoxAddition autoCompleteCBA = new AutoCompleteComboBoxAddition(this);

@@ -46,6 +46,7 @@ import com.rapidminer.tools.Tools;
 
 
 /**
+ * The type T test significance test renderer.
  *
  * @author Sebastian Land, Marco Boeck
  */

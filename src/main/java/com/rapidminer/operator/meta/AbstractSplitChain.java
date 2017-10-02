@@ -41,11 +41,11 @@ import com.rapidminer.parameter.UndefinedParameterError;
  * child operator on the first part and applies the second child on the second part and the result
  * of the first child. The total result is the result of the second operator.
  * </p>
- * 
+ * <p>
  * <p>
  * Subclasses must define how the example set is divided.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class AbstractSplitChain extends OperatorChain {
@@ -62,7 +62,12 @@ public abstract class AbstractSplitChain extends OperatorChain {
 	private final PortPairExtender secondToOutputExtender = new PortPairExtender("through",
 			getSubprocess(1).getInnerSinks(), getOutputPorts());
 
-	public AbstractSplitChain(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract split chain.
+     *
+     * @param description the description
+     */
+    public AbstractSplitChain(OperatorDescription description) {
 		super(description, "First Part", "Second Part");
 		firstToSecondExtender.start();
 		secondToOutputExtender.start();
@@ -94,15 +99,33 @@ public abstract class AbstractSplitChain extends OperatorChain {
 		getTransformer().addRule(secondToOutputExtender.makePassThroughRule());
 	}
 
-	protected abstract MDInteger getNumberOfExamplesFirst(MDInteger numberOfExamples) throws UndefinedParameterError;
+    /**
+     * Gets number of examples first.
+     *
+     * @param numberOfExamples the number of examples
+     * @return the number of examples first
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected abstract MDInteger getNumberOfExamplesFirst(MDInteger numberOfExamples) throws UndefinedParameterError;
 
-	protected abstract MDInteger getNumberOfExamplesSecond(MDInteger numberOfExamples) throws UndefinedParameterError;
+    /**
+     * Gets number of examples second.
+     *
+     * @param numberOfExamples the number of examples
+     * @return the number of examples second
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected abstract MDInteger getNumberOfExamplesSecond(MDInteger numberOfExamples) throws UndefinedParameterError;
 
-	/**
-	 * Creates the splitted example set for this operator. Please note that the results must contain
-	 * two parts.
-	 */
-	protected abstract SplittedExampleSet createSplittedExampleSet(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Creates the splitted example set for this operator. Please note that the results must contain
+     * two parts.
+     *
+     * @param exampleSet the example set
+     * @return the splitted example set
+     * @throws OperatorException the operator exception
+     */
+    protected abstract SplittedExampleSet createSplittedExampleSet(ExampleSet exampleSet) throws OperatorException;
 
 	@Override
 	public void doWork() throws OperatorException {
@@ -121,7 +144,12 @@ public abstract class AbstractSplitChain extends OperatorChain {
 		secondToOutputExtender.passDataThrough();
 	}
 
-	protected InputPort getExampleSetInputPort() {
+    /**
+     * Gets example set input port.
+     *
+     * @return the example set input port
+     */
+    protected InputPort getExampleSetInputPort() {
 		return exampleSetInput;
 	}
 }

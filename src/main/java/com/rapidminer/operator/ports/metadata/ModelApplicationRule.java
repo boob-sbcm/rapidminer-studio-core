@@ -24,14 +24,22 @@ import com.rapidminer.operator.ports.OutputPort;
 
 /**
  * This rule might be used, if a model is applied on a data set.
- * 
+ *
  * @author Sebastian Land
  */
 public class ModelApplicationRule extends PassThroughRule {
 
 	private InputPort modelInput;
 
-	public ModelApplicationRule(InputPort inputPort, OutputPort outputPort, InputPort modelInput, boolean mandatory) {
+    /**
+     * Instantiates a new Model application rule.
+     *
+     * @param inputPort  the input port
+     * @param outputPort the output port
+     * @param modelInput the model input
+     * @param mandatory  the mandatory
+     */
+    public ModelApplicationRule(InputPort inputPort, OutputPort outputPort, InputPort modelInput, boolean mandatory) {
 		super(inputPort, outputPort, mandatory);
 		this.modelInput = modelInput;
 	}

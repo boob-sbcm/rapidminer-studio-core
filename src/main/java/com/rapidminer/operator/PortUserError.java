@@ -26,7 +26,6 @@ import com.rapidminer.operator.ports.Port;
  *
  * @author Marco Boeck
  * @since 6.5.0
- *
  */
 public class PortUserError extends UserError {
 
@@ -41,86 +40,81 @@ public class PortUserError extends UserError {
 	/** the actually delivered data type for this port, can be null */
 	private transient Class<?> actualType;
 
-	/**
-	 * Creates a new user error for a port.
-	 *
-	 * @param operator
-	 *            The {@link Port} which caused the error.
-	 * @param code
-	 *            The error code referring to a message in the file
-	 *            <code>UserErrorMessages.properties</code>
-	 * @param arguments
-	 *            Arguments for the short or long message.
-	 */
-	public PortUserError(Port port, int code, Object... arguments) {
+    /**
+     * Creates a new user error for a port.
+     *
+     * @param port      the port
+     * @param code      The error code referring to a message in the file            <code>UserErrorMessages.properties</code>
+     * @param arguments Arguments for the short or long message.
+     */
+    public PortUserError(Port port, int code, Object... arguments) {
 		super(port.getPorts().getOwner().getOperator(), code, arguments);
 		this.port = port;
 	}
 
-	/**
-	 * Creates a new user error for a port.
-	 *
-	 * @param operator
-	 *            The {@link Port} which caused the error.
-	 * @param errorId
-	 *            The error id referring to a message in the file
-	 *            <code>UserErrorMessages.properties</code>
-	 * @param arguments
-	 *            Arguments for the short or long message.
-	 */
-	public PortUserError(Port port, String errorId, Object... arguments) {
+    /**
+     * Creates a new user error for a port.
+     *
+     * @param port      the port
+     * @param errorId   The error id referring to a message in the file            <code>UserErrorMessages.properties</code>
+     * @param arguments Arguments for the short or long message.
+     */
+    public PortUserError(Port port, String errorId, Object... arguments) {
 		super(port.getPorts().getOwner().getOperator(), errorId, arguments);
 		this.port = port;
 	}
 
-	/**
-	 * @return the port which caused the error.
-	 */
-	public Port getPort() {
+    /**
+     * Gets port.
+     *
+     * @return the port which caused the error.
+     */
+    public Port getPort() {
 		return port;
 	}
 
-	/**
-	 * Setter for the port which causes the error.
-	 *
-	 * @param port
-	 *            the port
-	 */
-	public void setPort(Port port) {
+    /**
+     * Setter for the port which causes the error.
+     *
+     * @param port the port
+     */
+    public void setPort(Port port) {
 		this.port = port;
 	}
 
-	/**
-	 * Sets the expected data type.
-	 *
-	 * @param expectedType
-	 *            the type
-	 */
-	public void setExpectedType(Class<?> expectedType) {
+    /**
+     * Sets the expected data type.
+     *
+     * @param expectedType the type
+     */
+    public void setExpectedType(Class<?> expectedType) {
 		this.expectedType = expectedType;
 	}
 
-	/**
-	 * @return the expected data type for this port. Can be {@code null}
-	 */
-	public Class<?> getExpectedType() {
+    /**
+     * Gets expected type.
+     *
+     * @return the expected data type for this port. Can be {@code null}
+     */
+    public Class<?> getExpectedType() {
 		return expectedType;
 	}
 
-	/**
-	 * Sets the actual delivered data type.
-	 *
-	 * @param actualType
-	 *            the type
-	 */
-	public void setActualType(Class<?> actualType) {
+    /**
+     * Sets the actual delivered data type.
+     *
+     * @param actualType the type
+     */
+    public void setActualType(Class<?> actualType) {
 		this.actualType = actualType;
 	}
 
-	/**
-	 * @return the actual data type delivered for this port. Can be {@code null}
-	 */
-	public Class<?> getActualType() {
+    /**
+     * Gets actual type.
+     *
+     * @return the actual data type delivered for this port. Can be {@code null}
+     */
+    public Class<?> getActualType() {
 		return actualType;
 	}
 }

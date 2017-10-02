@@ -52,8 +52,9 @@ import com.rapidminer.tools.LogService;
 
 
 /**
+ * The type Dimension config data.
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class DimensionConfigData {
 
@@ -74,25 +75,36 @@ public class DimensionConfigData {
 	private DimensionConfigChangeEvent lastProcessedEvent = null;
 	private int dimensionConfigId;
 
-	public DimensionConfigData(PlotInstance plotInstance, DefaultDimensionConfig dimensionConfig) {
+    /**
+     * Instantiates a new Dimension config data.
+     *
+     * @param plotInstance    the plot instance
+     * @param dimensionConfig the dimension config
+     */
+    public DimensionConfigData(PlotInstance plotInstance, DefaultDimensionConfig dimensionConfig) {
 		this.dimensionConfigId = dimensionConfig.getId();
 		this.plotInstance = plotInstance;
 		DataTable dataTable = plotInstance.getPlotData().getSortedDataTableWithoutImplicitUpdate();
 		this.columnIdx = new DataTableColumnIndex(getDimensionConfig().getDataTableColumn(), dataTable);
 	}
 
-	/**
-	 * The returned values are sorted and filtered according to the selected sort order and value
-	 * range.
-	 */
-	public List<Double> getValues() {
+    /**
+     * The returned values are sorted and filtered according to the selected sort order and value
+     * range.
+     *
+     * @return the values
+     */
+    public List<Double> getValues() {
 		if (cachedValues == null) {
 			updateValueCache();
 		}
 		return cachedValues;
 	}
 
-	protected void updateShapeProvider() {
+    /**
+     * Update shape provider.
+     */
+    protected void updateShapeProvider() {
 		if (getDimensionConfig().isNominal()) {
 			List<Double> categoryList = new LinkedList<Double>();
 			if (getDimensionConfig().isGrouping()) {
@@ -114,16 +126,19 @@ public class DimensionConfigData {
 		}
 	}
 
-	/**
-	 * If isNominal() returns true, returns a string for the given value. If isGrouping() returns
-	 * true, value must be an integer and this function returns the toString() method of the
-	 * valueGroup with value==valueGroup.getValue(). If no grouping is found with
-	 * value==valueGroup.getValue() return <code>null</code>. If isGrouping() returns false, calls
-	 * the mapIndex() function of the underlying DataTable with value.
-	 * 
-	 * If isNominal() returns false, this functions returns null.
-	 */
-	public String getStringForValue(double value) {
+    /**
+     * If isNominal() returns true, returns a string for the given value. If isGrouping() returns
+     * true, value must be an integer and this function returns the toString() method of the
+     * valueGroup with value==valueGroup.getValue(). If no grouping is found with
+     * value==valueGroup.getValue() return <code>null</code>. If isGrouping() returns false, calls
+     * the mapIndex() function of the underlying DataTable with value.
+     * <p>
+     * If isNominal() returns false, this functions returns null.
+     *
+     * @param value the value
+     * @return the string for value
+     */
+    public String getStringForValue(double value) {
 		if (getDimensionConfig().isNominal()) {
 			if (getDimensionConfig().isGrouping()) {
 				List<ValueRange> groupingModel = getGroupingModel();
@@ -194,15 +209,17 @@ public class DimensionConfigData {
 		}
 	}
 
-	/**
-	 * May not contain null values. If there are no value groups (because this dimension is not
-	 * grouping), this function returns null.
-	 * 
-	 * Classes implementing this method are strongly advised to cache to list of value ranges, since
-	 * this method might be called quite often, and the calculation of the grouping might be quite
-	 * expensive.
-	 */
-	public List<ValueRange> getGroupingModel() {
+    /**
+     * May not contain null values. If there are no value groups (because this dimension is not
+     * grouping), this function returns null.
+     * <p>
+     * Classes implementing this method are strongly advised to cache to list of value ranges, since
+     * this method might be called quite often, and the calculation of the grouping might be quite
+     * expensive.
+     *
+     * @return the grouping model
+     */
+    public List<ValueRange> getGroupingModel() {
 		if (getDimensionConfig().isGrouping()) {
 			if (cachedValueGroups == null) {
 				updateGroupingModel();
@@ -213,14 +230,24 @@ public class DimensionConfigData {
 		}
 	}
 
-	public ColorProvider getColorProvider() {
+    /**
+     * Gets color provider.
+     *
+     * @return the color provider
+     */
+    public ColorProvider getColorProvider() {
 		if (colorProvider == null) {
 			updateColorProvider();
 		}
 		return colorProvider;
 	}
 
-	public SizeProvider getSizeProvider() {
+    /**
+     * Gets size provider.
+     *
+     * @return the size provider
+     */
+    public SizeProvider getSizeProvider() {
 		if (sizeProvider == null) {
 			updateSizeProvider();
 		}
@@ -231,10 +258,12 @@ public class DimensionConfigData {
 		this.colorProvider = colorProvider;
 	}
 
-	/**
-	 * @return a sorted list of all distinct values in this domain.
-	 */
-	public List<Double> getDistinctValues() {
+    /**
+     * Gets distinct values.
+     *
+     * @return a sorted list of all distinct values in this domain.
+     */
+    public List<Double> getDistinctValues() {
 		if (cachedDistinctValues == null) {
 			cachedDistinctValues = new LinkedList<Double>();
 			if (getDimensionConfig().isGrouping()) {
@@ -263,14 +292,22 @@ public class DimensionConfigData {
 
 	}
 
-	public ShapeProvider getShapeProvider() {
+    /**
+     * Gets shape provider.
+     *
+     * @return the shape provider
+     */
+    public ShapeProvider getShapeProvider() {
 		if (shapeProvider == null) {
 			updateShapeProvider();
 		}
 		return shapeProvider;
 	}
 
-	public void clearCache() {
+    /**
+     * Clear cache.
+     */
+    public void clearCache() {
 		cachedValues = null;
 		cachedValueGroups = null;
 		cachedDistinctValues = null;
@@ -282,10 +319,10 @@ public class DimensionConfigData {
 		invalidateFormatProviders();
 	}
 
-	/**
-	 * Updates the cache of ungrouped values.
-	 */
-	protected void updateValueCache() {
+    /**
+     * Updates the cache of ungrouped values.
+     */
+    protected void updateValueCache() {
 		DataTable dataTable = plotInstance.getPlotData().getDataTable();
 
 		cachedValues = new LinkedList<Double>();
@@ -355,7 +392,12 @@ public class DimensionConfigData {
 		}
 	}
 
-	public NumericalValueRange getEffectiveRange() {
+    /**
+     * Gets effective range.
+     *
+     * @return the effective range
+     */
+    public NumericalValueRange getEffectiveRange() {
 		if (getDimensionConfig().isNominal()) {
 			return null;
 		}
@@ -393,7 +435,10 @@ public class DimensionConfigData {
 		}
 	}
 
-	protected void updateColorProvider() {
+    /**
+     * Update color provider.
+     */
+    protected void updateColorProvider() {
 		if (getDimensionConfig().isNominal()) {
 			List<Double> categoryList;
 			categoryList = getDistinctValues();
@@ -404,7 +449,10 @@ public class DimensionConfigData {
 		}
 	}
 
-	protected void updateSizeProvider() {
+    /**
+     * Update size provider.
+     */
+    protected void updateSizeProvider() {
 		PlotConfiguration plotConfiguration = plotInstance.getCurrentPlotConfigurationClone();
 		if (getDimensionConfig().isNominal()) {
 			List<Double> categoryList;
@@ -423,11 +471,13 @@ public class DimensionConfigData {
 		this.sizeProvider = sizeProvider;
 	}
 
-	/**
-	 * If getRange() is a NumericalValueRange, returns the same as getRange().getLowerBound(). Else
-	 * returns the smallest value in getAllValues(), excluding NEG_INFINITY and NaNs.
-	 */
-	public double getMinValue() {
+    /**
+     * If getRange() is a NumericalValueRange, returns the same as getRange().getLowerBound(). Else
+     * returns the smallest value in getAllValues(), excluding NEG_INFINITY and NaNs.
+     *
+     * @return the min value
+     */
+    public double getMinValue() {
 		if (getDimensionConfig().isGrouping()) {
 			if (Double.isNaN(cachedMinGroupValue)) {
 				updateGroupingModel();
@@ -441,11 +491,13 @@ public class DimensionConfigData {
 		}
 	}
 
-	/**
-	 * If getRange() is not null, returns the same as getRange().getUpperBound(). Else returns the
-	 * greatest value in getAllValues(), excluding POS_INFINITY and NaNs.
-	 */
-	public double getMaxValue() {
+    /**
+     * If getRange() is not null, returns the same as getRange().getUpperBound(). Else returns the
+     * greatest value in getAllValues(), excluding POS_INFINITY and NaNs.
+     *
+     * @return the max value
+     */
+    public double getMaxValue() {
 		if (getDimensionConfig().isGrouping()) {
 			if (Double.isNaN(cachedMaxGroupValue)) {
 				updateGroupingModel();
@@ -459,7 +511,12 @@ public class DimensionConfigData {
 		}
 	}
 
-	public int getValueCount() {
+    /**
+     * Gets value count.
+     *
+     * @return the value count
+     */
+    public int getValueCount() {
 		if (getDimensionConfig().isGrouping()) {
 			return getGroupingModel().size();
 		} else {
@@ -467,12 +524,22 @@ public class DimensionConfigData {
 		}
 	}
 
-	public boolean hasDuplicateValues() {
+    /**
+     * Has duplicate values boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasDuplicateValues() {
 		int distinctValueCount = getDistinctValues().size();
 		return distinctValueCount < getValueCount();
 	}
 
-	public boolean isLogarithmicPossible() {
+    /**
+     * Is logarithmic possible boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLogarithmicPossible() {
 		if (getMinValue() < 0.0) {
 			return false;
 		}
@@ -482,11 +549,21 @@ public class DimensionConfigData {
 		return true;
 	}
 
-	public int getDistinctValueCount() {
+    /**
+     * Gets distinct value count.
+     *
+     * @return the distinct value count
+     */
+    public int getDistinctValueCount() {
 		return getDistinctValues().size();
 	}
 
-	public void dimensionConfigChanged(DimensionConfigChangeEvent e) {
+    /**
+     * Dimension config changed.
+     *
+     * @param e the e
+     */
+    public void dimensionConfigChanged(DimensionConfigChangeEvent e) {
 		if (e == null || e == lastProcessedEvent) {
 			return;
 		}
@@ -517,7 +594,12 @@ public class DimensionConfigData {
 		}
 	}
 
-	public List<PlotConfigurationError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<PlotConfigurationError> getErrors() {
 		List<PlotConfigurationError> errorList = new LinkedList<PlotConfigurationError>();
 
 		if (cachedValueGroups != null) {
@@ -548,7 +630,12 @@ public class DimensionConfigData {
 		return errorList;
 	}
 
-	public List<PlotConfigurationError> getWarnings() {
+    /**
+     * Gets warnings.
+     *
+     * @return the warnings
+     */
+    public List<PlotConfigurationError> getWarnings() {
 		List<PlotConfigurationError> warnings = new LinkedList<PlotConfigurationError>();
 
 		// check if there are enough defined colors for all categories, or if we use darker.darker
@@ -582,7 +669,12 @@ public class DimensionConfigData {
 		return warnings;
 	}
 
-	public int getColumnIdx() {
+    /**
+     * Gets column idx.
+     *
+     * @return the column idx
+     */
+    public int getColumnIdx() {
 		dimensionConfigChanged(lastProcessedEvent);
 		return columnIdx.getIndex();
 	}
@@ -592,15 +684,21 @@ public class DimensionConfigData {
 		return "DimensionConfigData for " + getDimensionConfig().toString();
 	}
 
-	public void setDataTable(DataTable dataTable) {
+    /**
+     * Sets data table.
+     *
+     * @param dataTable the data table
+     */
+    public void setDataTable(DataTable dataTable) {
 		columnIdx.setDataTable(dataTable);
 	}
 
-	/**
-	 * @return The dimension config with the id of this {@link DimensionConfigData} of the
-	 *         {@link PlotInstance#getCurrentPlotConfigurationClone()}.
-	 */
-	public DefaultDimensionConfig getDimensionConfig() {
+    /**
+     * Gets dimension config.
+     *
+     * @return The dimension config with the id of this {@link DimensionConfigData} of the         {@link PlotInstance#getCurrentPlotConfigurationClone()}.
+     */
+    public DefaultDimensionConfig getDimensionConfig() {
 		return plotInstance.getCurrentPlotConfigurationClone().getDefaultDimensionConfigById(dimensionConfigId);
 	}
 

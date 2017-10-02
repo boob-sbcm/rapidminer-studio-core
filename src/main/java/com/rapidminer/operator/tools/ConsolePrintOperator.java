@@ -33,15 +33,22 @@ import com.rapidminer.parameter.ParameterTypeString;
  * This operator will log a parameter value to the console
  *
  * @author Sebastian Land, Sebastian Loh
- *
  */
 public class ConsolePrintOperator extends Operator {
 
-	public static final String PARAMETER_LOG_VALUE = "log_value";
+    /**
+     * The constant PARAMETER_LOG_VALUE.
+     */
+    public static final String PARAMETER_LOG_VALUE = "log_value";
 
 	private DummyPortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public ConsolePrintOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Console print operator.
+     *
+     * @param description the description
+     */
+    public ConsolePrintOperator(OperatorDescription description) {
 		super(description);
 
 		// start extender

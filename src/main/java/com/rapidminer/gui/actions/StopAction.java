@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class StopAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class StopAction extends ResourceAction {
 
 	private final MainFrame mainFrame;
 
-	public StopAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Stop action.
+     *
+     * @param mainFrame the main frame
+     */
+    public StopAction(MainFrame mainFrame) {
 		super("stop");
 		setCondition(PROCESS_STOPPED, DISALLOWED);
 		this.mainFrame = mainFrame;

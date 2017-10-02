@@ -42,10 +42,15 @@ public class SaveAction extends ResourceAction {
 
 	private static final long serialVersionUID = -2226200404990114956L;
 
-	/** key of the progress thread to save */
-	public static final String SAVE_PROGRESS_KEY = "save_action";
+    /**
+     * key of the progress thread to save
+     */
+    public static final String SAVE_PROGRESS_KEY = "save_action";
 
-	public SaveAction() {
+    /**
+     * Instantiates a new Save action.
+     */
+    public SaveAction() {
 		super("save");
 
 		setCondition(EDIT_IN_PROGRESS, DONT_CARE);
@@ -56,17 +61,16 @@ public class SaveAction extends ResourceAction {
 		saveAsync(RapidMinerGUI.getMainFrame().getProcess());
 	}
 
-	/**
-	 * Saves the specified process to its {@link ProcessLocation}. If it has none, will open the
-	 * SaveAs dialog. <br/>
-	 * <strong>Note:</strong> This call executes in the calling thread. In other words, this would
-	 * block the GUI if called from the EDT!
-	 *
-	 * @param process
-	 *            the {@link Process} to save
-	 * @return true on success, false on failure
-	 */
-	public static boolean save(final Process process) {
+    /**
+     * Saves the specified process to its {@link ProcessLocation}. If it has none, will open the
+     * SaveAs dialog. <br/>
+     * <strong>Note:</strong> This call executes in the calling thread. In other words, this would
+     * block the GUI if called from the EDT!
+     *
+     * @param process the {@link Process} to save
+     * @return true on success, false on failure
+     */
+    public static boolean save(final Process process) {
 
 		if (process.hasSaveDestination()) {
 			if (confirmOverwriteWithNewVersion(process)) {
@@ -100,16 +104,15 @@ public class SaveAction extends ResourceAction {
 		}
 	}
 
-	/**
-	 * Saves the specified process to its {@link ProcessLocation}. If it has none, will open the
-	 * SaveAs dialog. <br/>
-	 * <strong>Note:</strong> This call executes in a {@link ProgressThread} with the key
-	 * {@link #SAVE_PROGRESS_KEY}. In other words, this method can return immediately!
-	 *
-	 * @param process
-	 *            the {@link Process} to save
-	 */
-	public static void saveAsync(final Process process) {
+    /**
+     * Saves the specified process to its {@link ProcessLocation}. If it has none, will open the
+     * SaveAs dialog. <br/>
+     * <strong>Note:</strong> This call executes in a {@link ProgressThread} with the key
+     * {@link #SAVE_PROGRESS_KEY}. In other words, this method can return immediately!
+     *
+     * @param process the {@link Process} to save
+     */
+    public static void saveAsync(final Process process) {
 		if (process.hasSaveDestination()) {
 			if (confirmOverwriteWithNewVersion(process)) {
 				// user wants to save

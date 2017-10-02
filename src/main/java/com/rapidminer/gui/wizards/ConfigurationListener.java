@@ -25,15 +25,30 @@ import com.rapidminer.parameter.Parameters;
 /**
  * Classes implementing this interface should be able to listen to parameter changes indicated by a
  * given XML string.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface ConfigurationListener {
 
-	public Parameters getParameters();
+    /**
+     * Gets parameters.
+     *
+     * @return the parameters
+     */
+    public Parameters getParameters();
 
-	public void setParameters(Parameters parameters);
+    /**
+     * Sets parameters.
+     *
+     * @param parameters the parameters
+     */
+    public void setParameters(Parameters parameters);
 
-	public Process getProcess();
+    /**
+     * Gets process.
+     *
+     * @return the process
+     */
+    public Process getProcess();
 
 }

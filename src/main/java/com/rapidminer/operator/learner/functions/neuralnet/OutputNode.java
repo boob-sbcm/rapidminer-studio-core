@@ -26,7 +26,7 @@ import com.rapidminer.example.Example;
  * This node represents the output node(s) of a neural network. It uses a sigmoid activation
  * function for classification tasks (one node for each class) and a linear function for regression
  * tasks.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class OutputNode extends Node {
@@ -41,18 +41,36 @@ public class OutputNode extends Node {
 
 	private double labelBase;
 
-	public OutputNode(String nodeName, Attribute label, double labelRange, double labelBase) {
+    /**
+     * Instantiates a new Output node.
+     *
+     * @param nodeName   the node name
+     * @param label      the label
+     * @param labelRange the label range
+     * @param labelBase  the label base
+     */
+    public OutputNode(String nodeName, Attribute label, double labelRange, double labelBase) {
 		super(nodeName, OUTPUT, OUTPUT);
 		this.label = label;
 		this.labelRange = labelRange;
 		this.labelBase = labelBase;
 	}
 
-	public void setClassIndex(int classIndex) {
+    /**
+     * Sets class index.
+     *
+     * @param classIndex the class index
+     */
+    public void setClassIndex(int classIndex) {
 		this.classIndex = classIndex;
 	}
 
-	public int getClassIndex() {
+    /**
+     * Gets class index.
+     *
+     * @return the class index
+     */
+    public int getClassIndex() {
 		return this.classIndex;
 	}
 
@@ -91,19 +109,39 @@ public class OutputNode extends Node {
 		return currentError;
 	}
 
-	public Attribute getLabel() {
+    /**
+     * Gets label.
+     *
+     * @return the label
+     */
+    public Attribute getLabel() {
 		return label;
 	}
 
-	public double getLabelRange() {
+    /**
+     * Gets label range.
+     *
+     * @return the label range
+     */
+    public double getLabelRange() {
 		return labelRange;
 	}
 
-	public double getLabelBase() {
+    /**
+     * Gets label base.
+     *
+     * @return the label base
+     */
+    public double getLabelBase() {
 		return labelBase;
 	}
 
-	public double getCurrentValue() {
+    /**
+     * Gets current value.
+     *
+     * @return the current value
+     */
+    public double getCurrentValue() {
 		return currentValue;
 	}
 }

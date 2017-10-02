@@ -29,7 +29,7 @@ import javax.swing.table.AbstractTableModel;
 /**
  * Table model returning values from the list of string pairs. Column types are determined by
  * {@link ParameterType}s.
- * 
+ *
  * @author Simon Fischer
  */
 public class ListTableModel extends AbstractTableModel {
@@ -38,7 +38,13 @@ public class ListTableModel extends AbstractTableModel {
 	private List<String[]> parameterList;
 	private ParameterType[] types;
 
-	public ListTableModel(ParameterType[] types, List<String[]> parameterList) {
+    /**
+     * Instantiates a new List table model.
+     *
+     * @param types         the types
+     * @param parameterList the parameter list
+     */
+    public ListTableModel(ParameterType[] types, List<String[]> parameterList) {
 		super();
 		this.types = types;
 		this.parameterList = new ArrayList<String[]>(parameterList);
@@ -79,7 +85,10 @@ public class ListTableModel extends AbstractTableModel {
 		return parameterList.get(rowIndex)[columnIndex];
 	}
 
-	void addRow() {
+    /**
+     * Add row.
+     */
+    void addRow() {
 		String[] initialValues = new String[types.length];
 		for (int i = 0; i < initialValues.length; i++) {
 			initialValues[i] = types[i].getDefaultValueAsString();
@@ -88,13 +97,23 @@ public class ListTableModel extends AbstractTableModel {
 		fireTableRowsInserted(parameterList.size() - 1, parameterList.size() - 1);
 	}
 
-	public void removeRow(int selectedRow) {
+    /**
+     * Remove row.
+     *
+     * @param selectedRow the selected row
+     */
+    public void removeRow(int selectedRow) {
 		parameterList.remove(selectedRow);
 		// fireTableStructureChanged();
 		fireTableRowsDeleted(selectedRow, selectedRow);
 	}
 
-	public List<String[]> getParameterList() {
+    /**
+     * Gets parameter list.
+     *
+     * @return the parameter list
+     */
+    public List<String[]> getParameterList() {
 		return parameterList;
 	}
 

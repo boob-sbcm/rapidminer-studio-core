@@ -40,8 +40,10 @@ import com.rapidminer.tools.math.SignificanceTestResult;
  */
 public class TTestSignificanceTestOperator extends SignificanceTestOperator {
 
-	/** The result for a paired t-test. */
-	public static class TTestSignificanceTestResult extends SignificanceTestResult implements Readable {
+    /**
+     * The result for a paired t-test.
+     */
+    public static class TTestSignificanceTestResult extends SignificanceTestResult implements Readable {
 
 		private static final long serialVersionUID = -5412090499056975997L;
 
@@ -51,7 +53,14 @@ public class TTestSignificanceTestOperator extends SignificanceTestOperator {
 
 		private double alpha = 0.05d;
 
-		public TTestSignificanceTestResult(PerformanceVector[] allVectors, double[][] probMatrix, double alpha) {
+        /**
+         * Instantiates a new T test significance test result.
+         *
+         * @param allVectors the all vectors
+         * @param probMatrix the prob matrix
+         * @param alpha      the alpha
+         */
+        public TTestSignificanceTestResult(PerformanceVector[] allVectors, double[][] probMatrix, double alpha) {
 			this.allVectors = allVectors;
 			this.probMatrix = probMatrix;
 			this.alpha = alpha;
@@ -98,20 +107,40 @@ public class TTestSignificanceTestOperator extends SignificanceTestOperator {
 			return false;
 		}
 
-		public PerformanceVector[] getAllVectors() {
+        /**
+         * Get all vectors performance vector [ ].
+         *
+         * @return the performance vector [ ]
+         */
+        public PerformanceVector[] getAllVectors() {
 			return allVectors;
 		}
 
-		public double[][] getProbMatrix() {
+        /**
+         * Get prob matrix double [ ] [ ].
+         *
+         * @return the double [ ] [ ]
+         */
+        public double[][] getProbMatrix() {
 			return this.probMatrix;
 		}
 
-		public double getAlpha() {
+        /**
+         * Gets alpha.
+         *
+         * @return the alpha
+         */
+        public double getAlpha() {
 			return this.alpha;
 		}
 	}
 
-	public TTestSignificanceTestOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new T test significance test operator.
+     *
+     * @param description the description
+     */
+    public TTestSignificanceTestOperator(OperatorDescription description) {
 		super(description);
 	}
 

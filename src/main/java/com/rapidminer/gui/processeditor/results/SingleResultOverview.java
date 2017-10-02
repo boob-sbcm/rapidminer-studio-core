@@ -74,7 +74,6 @@ import com.rapidminer.tools.ReferenceCache;
  * Displays an overview of a single IOObject. Does not remember the IOObject itself.
  *
  * @author Simon Fischer, Marco Boeck
- *
  */
 public class SingleResultOverview extends JPanel {
 
@@ -90,8 +89,14 @@ public class SingleResultOverview extends JPanel {
 	private RepositoryLocation processFolderLocation = null;
 	private ReferenceCache<ResultObject>.Reference ioObject;
 
-	static final int MIN_HEIGHT = 300;
-	static final int MIN_WIDTH = 300;
+    /**
+     * The Min height.
+     */
+    static final int MIN_HEIGHT = 300;
+    /**
+     * The Min width.
+     */
+    static final int MIN_WIDTH = 300;
 
 	private final Action RESTORE_FROM_REPOSITORY = new ResourceAction("resulthistory.restore_data") {
 
@@ -143,7 +148,14 @@ public class SingleResultOverview extends JPanel {
 
 	private BufferedImage img;
 
-	public SingleResultOverview(IOObject result, Process process, int resultIndex) {
+    /**
+     * Instantiates a new Single result overview.
+     *
+     * @param result      the result
+     * @param process     the process
+     * @param resultIndex the result index
+     */
+    public SingleResultOverview(IOObject result, Process process, int resultIndex) {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;

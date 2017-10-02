@@ -25,7 +25,7 @@ import com.rapidminer.example.Example;
  * This function represents a linear activation function by calculating the identity function on the
  * weighted sum. The linear activation function is usually used for the output layer of regression
  * problems.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class LinearFunction extends ActivationFunction {

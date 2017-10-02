@@ -26,9 +26,7 @@ import java.util.regex.PatternSyntaxException;
  * Matches, e.g. BiDi to BinDiscretization if first character is upper case and checks for case
  * sensitive contains. Otherwise does case insensitive contains.
  *
- *
  * @author Simon Fischer, Gisa Schaefer
- *
  */
 public class CamelCaseFilter {
 
@@ -36,10 +34,12 @@ public class CamelCaseFilter {
 	private Pattern pattern = null;
 	private boolean caseSensitive;
 
-	/**
-	 * This is the constructor. Only non-null values might be passed!
-	 */
-	public CamelCaseFilter(String filterString) {
+    /**
+     * This is the constructor. Only non-null values might be passed!
+     *
+     * @param filterString the filter string
+     */
+    public CamelCaseFilter(String filterString) {
 		if (filterString != null && filterString.trim().length() > 0) {
 
 			caseSensitive = Character.isUpperCase(filterString.charAt(0)) ? true : false;
@@ -83,7 +83,13 @@ public class CamelCaseFilter {
 
 	}
 
-	public boolean matches(String string) {
+    /**
+     * Matches boolean.
+     *
+     * @param string the string
+     * @return the boolean
+     */
+    public boolean matches(String string) {
 		if (string == null) {
 			return false;
 		} else {

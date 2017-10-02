@@ -28,14 +28,19 @@ import javax.swing.table.TableCellRenderer;
 /**
  * A TableCellRenderer that renders the cell by using a TableCellEditor, i.e. the same component is
  * shown during editing and rendering.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer Exp $
  */
 public class EditorCellRenderer implements TableCellRenderer {
 
 	private TableCellEditor editor;
 
-	public EditorCellRenderer(TableCellEditor editor) {
+    /**
+     * Instantiates a new Editor cell renderer.
+     *
+     * @param editor the editor
+     */
+    public EditorCellRenderer(TableCellEditor editor) {
 		this.editor = editor;
 	}
 

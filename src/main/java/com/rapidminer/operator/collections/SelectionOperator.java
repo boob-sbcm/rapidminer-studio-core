@@ -38,20 +38,30 @@ import java.util.List;
 
 /**
  * Selects a single object from an {@link IOObjectCollection}.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class SelectionOperator extends Operator {
 
-	public static final String PARAMETER_INDEX = "index";
-	public static final String PARAMETER_UNFOLD = "unfold";
+    /**
+     * The constant PARAMETER_INDEX.
+     */
+    public static final String PARAMETER_INDEX = "index";
+    /**
+     * The constant PARAMETER_UNFOLD.
+     */
+    public static final String PARAMETER_UNFOLD = "unfold";
 
 	private final InputPort collectionInput = getInputPorts().createPort("collection",
 			new CollectionMetaData(new MetaData()));
 	private final OutputPort selectedOutput = getOutputPorts().createPort("selected");
 
-	public SelectionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Selection operator.
+     *
+     * @param description the description
+     */
+    public SelectionOperator(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new MDTransformationRule() {
 

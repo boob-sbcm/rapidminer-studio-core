@@ -66,8 +66,10 @@ import com.rapidminer.tools.plugin.PluginClassLoader;
  */
 public final class PluginSandboxPolicy extends Policy {
 
-	/** Internal permission for {@link RuntimePermission}s */
-	public static final String RAPIDMINER_INTERNAL_PERMISSION = "accessClassInPackage.rapidminer.internal";
+    /**
+     * Internal permission for {@link RuntimePermission}s
+     */
+    public static final String RAPIDMINER_INTERNAL_PERMISSION = "accessClassInPackage.rapidminer.internal";
 
 	/** The key pair algorithm for our signed extensions */
 	private static final String KEY_ALGORITHM = "RSA";

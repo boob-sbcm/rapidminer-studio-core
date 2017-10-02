@@ -24,6 +24,8 @@ import java.io.Serializable;
 
 
 /**
+ * The type Range.
+ *
  * @author Sebastian Land
  */
 public class Range implements Serializable {
@@ -33,12 +35,21 @@ public class Range implements Serializable {
 	private double lower;
 	private double upper;
 
-	public Range() {
+    /**
+     * Instantiates a new Range.
+     */
+    public Range() {
 		this.lower = Double.NaN;
 		this.upper = Double.NaN;
 	}
 
-	public Range(double lowerBound, double upperBound) {
+    /**
+     * Instantiates a new Range.
+     *
+     * @param lowerBound the lower bound
+     * @param upperBound the upper bound
+     */
+    public Range(double lowerBound, double upperBound) {
 		if (lowerBound > upperBound) {
 			// TODO: This must be resolved but currently causes some read operators to quit
 			// operation.
@@ -50,7 +61,12 @@ public class Range implements Serializable {
 		this.upper = upperBound;
 	}
 
-	public Range(Range valueRange) {
+    /**
+     * Instantiates a new Range.
+     *
+     * @param valueRange the value range
+     */
+    public Range(Range valueRange) {
 		if (valueRange != null) {
 			this.lower = valueRange.getLower();
 			this.upper = valueRange.getUpper();
@@ -61,10 +77,12 @@ public class Range implements Serializable {
 
 	}
 
-	/**
-	 * This method increases the range size, if the value is not lying in between
-	 */
-	public void add(double value) {
+    /**
+     * This method increases the range size, if the value is not lying in between
+     *
+     * @param value the value
+     */
+    public void add(double value) {
 		if (value < lower || Double.isNaN(lower)) {
 			lower = value;
 		}
@@ -73,12 +91,23 @@ public class Range implements Serializable {
 		}
 	}
 
-	public void union(Range range) {
+    /**
+     * Union.
+     *
+     * @param range the range
+     */
+    public void union(Range range) {
 		add(range.getLower());
 		add(range.getUpper());
 	}
 
-	public boolean contains(double value) {
+    /**
+     * Contains boolean.
+     *
+     * @param value the value
+     * @return the boolean
+     */
+    public boolean contains(double value) {
 		return value > lower && value < upper;
 	}
 
@@ -90,32 +119,68 @@ public class Range implements Serializable {
 		return "[" + Tools.formatIntegerIfPossible(lower) + " \u2013 " + Tools.formatIntegerIfPossible(upper) + "]";
 	}
 
-	public double getUpper() {
+    /**
+     * Gets upper.
+     *
+     * @return the upper
+     */
+    public double getUpper() {
 		return upper;
 	}
 
-	public double getLower() {
+    /**
+     * Gets lower.
+     *
+     * @return the lower
+     */
+    public double getLower() {
 		return lower;
 	}
 
-	public double getSize() {
+    /**
+     * Gets size.
+     *
+     * @return the size
+     */
+    public double getSize() {
 		return upper - lower;
 	}
 
-	public void setRange(double lower, double upper) {
+    /**
+     * Sets range.
+     *
+     * @param lower the lower
+     * @param upper the upper
+     */
+    public void setRange(double lower, double upper) {
 		this.lower = lower;
 		this.upper = upper;
 	}
 
-	public void setRange(Range theNewRange) {
+    /**
+     * Sets range.
+     *
+     * @param theNewRange the the new range
+     */
+    public void setRange(Range theNewRange) {
 		setRange(theNewRange.getLower(), theNewRange.getUpper());
 	}
 
-	public void setLower(double newLowerBound) {
+    /**
+     * Sets lower.
+     *
+     * @param newLowerBound the new lower bound
+     */
+    public void setLower(double newLowerBound) {
 		this.lower = newLowerBound;
 	}
 
-	public void setUpper(double newUpperBound) {
+    /**
+     * Sets upper.
+     *
+     * @param newUpperBound the new upper bound
+     */
+    public void setUpper(double newUpperBound) {
 		this.upper = newUpperBound;
 	}
 
@@ -128,7 +193,13 @@ public class Range implements Serializable {
 		return false;
 	}
 
-	public boolean contains(Range range) {
+    /**
+     * Contains boolean.
+     *
+     * @param range the range
+     * @return the boolean
+     */
+    public boolean contains(Range range) {
 		return (this.lower <= range.lower && this.upper >= range.upper);
 	}
 

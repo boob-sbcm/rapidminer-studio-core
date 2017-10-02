@@ -106,44 +106,35 @@ public class NominalToNumericModel extends PreprocessingModel {
 	// how unexpected values are handled. One of ALL_ZEROES_AND_WARNING or ERROR_AND_ABORT.
 	private int unexpectedValueHandling = NominalToNumeric.ALL_ZEROES_AND_WARNING;
 
-	/**
-	 * Constructs a new model. Use this ctor to create a model for value encoding.
-	 *
-	 * @param exampleSet
-	 * @param codingType
-	 *            the coding type. Should be NominalToNumeric.INTEGERS when called manually.
-	 */
-	public NominalToNumericModel(ExampleSet exampleSet, int codingType) {
+    /**
+     * Constructs a new model. Use this ctor to create a model for value encoding.
+     *
+     * @param exampleSet the example set
+     * @param codingType the coding type. Should be NominalToNumeric.INTEGERS when called manually.
+     */
+    public NominalToNumericModel(ExampleSet exampleSet, int codingType) {
 		super(exampleSet);
 		this.codingType = codingType;
 	}
 
-	/**
-	 * Constructs a new model. Use this ctor to create a model for dummy encoding or effect
-	 * encoding.
-	 *
-	 * @param exampleSet
-	 * @param codingType
-	 *            the coding type. Should be NominalToNumeric.EFFECT_CODING or DUMMY_CODING.
-	 * @param useUnderscoreInName
-	 * @see NominalToNumericModel#useUnderscoreInName
-	 * @param sourceAttributeToComparisonGroupMap
-	 * @see NominalToNumericModel#sourceAttributeToComparisonGroupMap @see
-	 *      NominalToNumeric#getSourceAttributeToComparisonGroupMap
-	 * @param attributeTo1ValueMap
-	 * @see NominalToNumericModel#attributeTo1ValueMap be non-null for dummy coding, should be null
-	 *      for effect coding. @see NominalToNumeric#getAttributeTo1ValueMap
-	 * @param attributeToValuesMap
-	 * @see NominalToNumericModel#attributeToValuesMap be non-null for effect coding, should be null
-	 *      for dummy coding. @see NominalToNumeric#getAttributeToValuesMap
-	 * @param useComparisonGroup
-	 *            Indicates if comparison groups for dummy coding should be used. Is ignored if
-	 *            codingType == EFFECT_CODING.
-	 * @param unexpectedValueHandling
-	 *            Defines how unexpected values are handled. @see
-	 *            NominalToNumericModel#unexpectedValueHandling.
-	 */
-	public NominalToNumericModel(ExampleSet exampleSet, int codingType, boolean useUnderscoreInName,
+    /**
+     * Constructs a new model. Use this ctor to create a model for dummy encoding or effect
+     * encoding.
+     *
+     * @param exampleSet                          the example set
+     * @param codingType                          the coding type. Should be NominalToNumeric.EFFECT_CODING or DUMMY_CODING.
+     * @param useUnderscoreInName                 the use underscore in name
+     * @param sourceAttributeToComparisonGroupMap the source attribute to comparison group map
+     * @param attributeTo1ValueMap                the attribute to 1 value map
+     * @param attributeToValuesMap                the attribute to values map
+     * @param useComparisonGroups                 the use comparison groups
+     * @param unexpectedValueHandling             Defines how unexpected values are handled. @see            NominalToNumericModel#unexpectedValueHandling.
+     * @see NominalToNumericModel#useUnderscoreInName NominalToNumericModel#useUnderscoreInNameNominalToNumericModel#useUnderscoreInName
+     * @see NominalToNumericModel#sourceAttributeToComparisonGroupMap NominalToNumericModel#sourceAttributeToComparisonGroupMapNominalToNumericModel#sourceAttributeToComparisonGroupMap@see      NominalToNumeric#getSourceAttributeToComparisonGroupMap
+     * @see NominalToNumericModel#attributeTo1ValueMap NominalToNumericModel#attributeTo1ValueMapNominalToNumericModel#attributeTo1ValueMapbe non-null for dummy coding, should be null      for effect coding. @see NominalToNumeric#getAttributeTo1ValueMap
+     * @see NominalToNumericModel#attributeToValuesMap NominalToNumericModel#attributeToValuesMapNominalToNumericModel#attributeToValuesMapbe non-null for effect coding, should be null      for dummy coding. @see NominalToNumeric#getAttributeToValuesMap
+     */
+    public NominalToNumericModel(ExampleSet exampleSet, int codingType, boolean useUnderscoreInName,
 			Map<String, Double> sourceAttributeToComparisonGroupMap, Map<String, Double> attributeTo1ValueMap,
 			Map<String, Pair<Double, Double>> attributeToValuesMap, boolean useComparisonGroups,
 			int unexpectedValueHandling) {
@@ -501,39 +492,84 @@ public class NominalToNumericModel extends PreprocessingModel {
 		return builder.toString();
 	}
 
-	public int getCodingType() {
+    /**
+     * Gets coding type.
+     *
+     * @return the coding type
+     */
+    public int getCodingType() {
 		return codingType;
 	}
 
-	public Map<String, Double> getAttributeTo1ValueMap() {
+    /**
+     * Gets attribute to 1 value map.
+     *
+     * @return the attribute to 1 value map
+     */
+    public Map<String, Double> getAttributeTo1ValueMap() {
 		return attributeTo1ValueMap;
 	}
 
-	public Map<String, Pair<Double, Double>> getAttributeToValuesMap() {
+    /**
+     * Gets attribute to values map.
+     *
+     * @return the attribute to values map
+     */
+    public Map<String, Pair<Double, Double>> getAttributeToValuesMap() {
 		return attributeToValuesMap;
 	}
 
-	public Map<String, List<String>> getAttributeToAllNominalValues() {
+    /**
+     * Gets attribute to all nominal values.
+     *
+     * @return the attribute to all nominal values
+     */
+    public Map<String, List<String>> getAttributeToAllNominalValues() {
 		return attributeToAllNominalValues;
 	}
 
-	public Map<String, Double> getSourceAttributeToComparisonGroupMap() {
+    /**
+     * Gets source attribute to comparison group map.
+     *
+     * @return the source attribute to comparison group map
+     */
+    public Map<String, Double> getSourceAttributeToComparisonGroupMap() {
 		return sourceAttributeToComparisonGroupMap;
 	}
 
-	public Map<String, String> getTargetAttributeToSourceAttributeMap() {
+    /**
+     * Gets target attribute to source attribute map.
+     *
+     * @return the target attribute to source attribute map
+     */
+    public Map<String, String> getTargetAttributeToSourceAttributeMap() {
 		return targetAttributeToSourceAttributeMap;
 	}
 
-	public boolean shouldUseUnderscoreInName() {
+    /**
+     * Should use underscore in name boolean.
+     *
+     * @return the boolean
+     */
+    public boolean shouldUseUnderscoreInName() {
 		return useUnderscoreInName;
 	}
 
-	public boolean shouldUseComparisonGroups() {
+    /**
+     * Should use comparison groups boolean.
+     *
+     * @return the boolean
+     */
+    public boolean shouldUseComparisonGroups() {
 		return useComparisonGroups;
 	}
 
-	public int getUnexpectedValueHandling() {
+    /**
+     * Gets unexpected value handling.
+     *
+     * @return the unexpected value handling
+     */
+    public int getUnexpectedValueHandling() {
 		return unexpectedValueHandling;
 	}
 

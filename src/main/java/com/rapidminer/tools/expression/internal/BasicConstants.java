@@ -32,11 +32,13 @@ import com.rapidminer.tools.expression.Function;
  * Singleton that stores the basic constants that can be used by the {@link ExpressionParser}.
  *
  * @author Gisa Schaefer
- *
  */
 public enum BasicConstants implements ExpressionParserModule {
 
-	INSTANCE;
+    /**
+     * Instance basic constants.
+     */
+    INSTANCE;
 
 	private List<Constant> constants;
 

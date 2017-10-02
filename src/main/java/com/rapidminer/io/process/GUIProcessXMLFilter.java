@@ -35,7 +35,7 @@ import com.rapidminer.operator.ports.Port;
  * {@link ProcessXMLFilter} to handle position data for operators and ports as well as operator
  * annotations and background images. The filter provides a set of static utility methods to work
  * with the loaded user data.
- *
+ * <p>
  * It combines the logic of {@link AnnotationProcessXMLFilter},
  * {@link BackgroundImageProcessXMLFilter}, and {@link ProcessLayoutXMLFilter}.
  *
@@ -43,25 +43,38 @@ import com.rapidminer.operator.ports.Port;
  */
 public class GUIProcessXMLFilter implements ProcessXMLFilter {
 
-	/** @deprecated use {@link AnnotationProcessXMLFilter#KEY_OPERATOR_ANNOTATION} instead */
-	@Deprecated
+    /**
+     * The constant KEY_OPERATOR_ANNOTATION.
+     *
+     * @deprecated use {@link AnnotationProcessXMLFilter#KEY_OPERATOR_ANNOTATION} instead
+     */
+    @Deprecated
 	public static final String KEY_OPERATOR_ANNOTATION = AnnotationProcessXMLFilter.KEY_OPERATOR_ANNOTATION;
 
-	/** @deprecated use {@link AnnotationProcessXMLFilter#KEY_PROCESS_ANNOTATION} instead */
-	@Deprecated
+    /**
+     * The constant KEY_PROCESS_ANNOTATION.
+     *
+     * @deprecated use {@link AnnotationProcessXMLFilter#KEY_PROCESS_ANNOTATION} instead
+     */
+    @Deprecated
 	public static final String KEY_PROCESS_ANNOTATION = AnnotationProcessXMLFilter.KEY_PROCESS_ANNOTATION;
 
-	/**
-	 * @deprecated use {@link BackgroundImageProcessXMLFilter#KEY_PROCESS_BACKGROUND_IMAGE} instead
-	 */
-	@Deprecated
+    /**
+     * The constant KEY_PROCESS_BACKGROUND_IMAGE.
+     *
+     * @deprecated use {@link BackgroundImageProcessXMLFilter#KEY_PROCESS_BACKGROUND_IMAGE} instead
+     */
+    @Deprecated
 	public static final String KEY_PROCESS_BACKGROUND_IMAGE = BackgroundImageProcessXMLFilter.KEY_PROCESS_BACKGROUND_IMAGE;
 
 	private final AnnotationProcessXMLFilter annotationProcessXMLFilter;
 	private final ProcessLayoutXMLFilter layoutProcessXMLFilter;
 	private final BackgroundImageProcessXMLFilter backgroundImageProcessXMLFilter;
 
-	public GUIProcessXMLFilter() {
+    /**
+     * Instantiates a new Gui process xml filter.
+     */
+    public GUIProcessXMLFilter() {
 		layoutProcessXMLFilter = new ProcessLayoutXMLFilter();
 		annotationProcessXMLFilter = new AnnotationProcessXMLFilter();
 		backgroundImageProcessXMLFilter = new BackgroundImageProcessXMLFilter();
@@ -95,203 +108,174 @@ public class GUIProcessXMLFilter implements ProcessXMLFilter {
 		backgroundImageProcessXMLFilter.executionUnitImported(process, element);
 	}
 
-	/**
-	 * Looks up the spacing of the specified {@link Port}.
-	 *
-	 * @param port
-	 *            The port.
-	 * @return Additional spacing.
-	 * @deprecated use {@link ProcessLayoutXMLFilter#lookupPortSpacing(Port)} instead
-	 */
-	@Deprecated
+    /**
+     * Looks up the spacing of the specified {@link Port}.
+     *
+     * @param port The port.
+     * @return Additional spacing.
+     * @deprecated use {@link ProcessLayoutXMLFilter#lookupPortSpacing(Port)} instead
+     */
+    @Deprecated
 	public static int lookupPortSpacing(Port port) {
 		return ProcessLayoutXMLFilter.lookupPortSpacing(port);
 	}
 
-	/**
-	 * Sets the spacing of the specified {@link Port}.
-	 *
-	 * @param port
-	 *            The port.
-	 * @param spacing
-	 *            The additional spacing.
-	 * @deprecated use {@link ProcessLayoutXMLFilter#setPortSpacing(Port, Integer)} instead
-	 */
-	@Deprecated
+    /**
+     * Sets the spacing of the specified {@link Port}.
+     *
+     * @param port    The port.
+     * @param spacing The additional spacing.
+     * @deprecated use {@link ProcessLayoutXMLFilter#setPortSpacing(Port, Integer)} instead
+     */
+    @Deprecated
 	public static void setPortSpacing(Port port, Integer spacing) {
 		ProcessLayoutXMLFilter.setPortSpacing(port, spacing);
 	}
 
-	/**
-	 * Resets the spacing of the specified {@link Port}.
-	 *
-	 * @param port
-	 *            The port.
-	 * @deprecated use {@link ProcessLayoutXMLFilter#resetPortSpacing(Port)} instead
-	 */
-	@Deprecated
+    /**
+     * Resets the spacing of the specified {@link Port}.
+     *
+     * @param port The port.
+     * @deprecated use {@link ProcessLayoutXMLFilter#resetPortSpacing(Port)} instead
+     */
+    @Deprecated
 	public static void resetPortSpacing(Port port) {
 		ProcessLayoutXMLFilter.resetPortSpacing(port);
 	}
 
-	/**
-	 * Looks up the position rectangle of the specified {@link Operator}.
-	 *
-	 * @param operator
-	 *            The operator.
-	 * @return The rectangle or null.
-	 * @deprecated use {@link ProcessLayoutXMLFilter#lookupOperatorRectangle(Operator)} instead
-	 */
-	@Deprecated
+    /**
+     * Looks up the position rectangle of the specified {@link Operator}.
+     *
+     * @param operator The operator.
+     * @return The rectangle or null.
+     * @deprecated use {@link ProcessLayoutXMLFilter#lookupOperatorRectangle(Operator)} instead
+     */
+    @Deprecated
 	public static Rectangle2D lookupOperatorRectangle(Operator operator) {
 		return ProcessLayoutXMLFilter.lookupOperatorRectangle(operator);
 	}
 
-	/**
-	 * Sets the position rectangle of the specified {@link Operator}.
-	 *
-	 * @param operator
-	 *            The operator.
-	 * @param rect
-	 *            The rectangle.
-	 * @deprecated use {@link ProcessLayoutXMLFilter#setOperatorRectangle(Operator, Rectangle2D)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Sets the position rectangle of the specified {@link Operator}.
+     *
+     * @param operator The operator.
+     * @param rect     The rectangle.
+     * @deprecated use {@link ProcessLayoutXMLFilter#setOperatorRectangle(Operator, Rectangle2D)}             instead
+     */
+    @Deprecated
 	public static void setOperatorRectangle(Operator operator, Rectangle2D rect) {
 		ProcessLayoutXMLFilter.setOperatorRectangle(operator, rect);
 	}
 
-	/**
-	 * Resets the position rectangle of the specified {@link Operator}.
-	 *
-	 * @param operator
-	 *            The operator.
-	 * @deprecated use {@link ProcessLayoutXMLFilter#resetOperatorRectangle(Operator)} instead
-	 */
-	@Deprecated
+    /**
+     * Resets the position rectangle of the specified {@link Operator}.
+     *
+     * @param operator The operator.
+     * @deprecated use {@link ProcessLayoutXMLFilter#resetOperatorRectangle(Operator)} instead
+     */
+    @Deprecated
 	public static void resetOperatorRectangle(Operator operator) {
 		ProcessLayoutXMLFilter.resetOperatorRectangle(operator);
 	}
 
-	/**
-	 * Returns the operator annotations for the given operator.
-	 *
-	 * @param operator
-	 *            the operator in question
-	 * @return the annotations or {@code null} if there are none
-	 * @deprecated use {@link AnnotationProcessXMLFilter#lookupOperatorAnnotations(Operator)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Returns the operator annotations for the given operator.
+     *
+     * @param operator the operator in question
+     * @return the annotations or {@code null} if there are none
+     * @deprecated use {@link AnnotationProcessXMLFilter#lookupOperatorAnnotations(Operator)}             instead
+     */
+    @Deprecated
 	public static WorkflowAnnotations lookupOperatorAnnotations(Operator operator) {
 		return AnnotationProcessXMLFilter.lookupOperatorAnnotations(operator);
 	}
 
-	/**
-	 * Adds a {@link OperatorAnnotation} to the {@link Operator}.
-	 *
-	 * @param annotation
-	 *            the new annotation
-	 * @deprecated use {@link AnnotationProcessXMLFilter#addOperatorAnnotation(OperatorAnnotation)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Adds a {@link OperatorAnnotation} to the {@link Operator}.
+     *
+     * @param annotation the new annotation
+     * @deprecated use {@link AnnotationProcessXMLFilter#addOperatorAnnotation(OperatorAnnotation)}             instead
+     */
+    @Deprecated
 	public static void addOperatorAnnotation(OperatorAnnotation annotation) {
 		AnnotationProcessXMLFilter.addOperatorAnnotation(annotation);
 	}
 
-	/**
-	 * Removes the given {@link OperatorAnnotation}.
-	 *
-	 * @param annotation
-	 *            the annotation to remove
-	 * @deprecated use
-	 *             {@link AnnotationProcessXMLFilter#removeOperatorAnnotation(OperatorAnnotation)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Removes the given {@link OperatorAnnotation}.
+     *
+     * @param annotation the annotation to remove
+     * @deprecated use {@link AnnotationProcessXMLFilter#removeOperatorAnnotation(OperatorAnnotation)}             instead
+     */
+    @Deprecated
 	public static void removeOperatorAnnotation(OperatorAnnotation annotation) {
 		AnnotationProcessXMLFilter.removeOperatorAnnotation(annotation);
 	}
 
-	/**
-	 * Returns the process annotations for the given execution unit.
-	 *
-	 * @param process
-	 *            the execution unit in question
-	 * @return the annotations or {@code null} if there are none
-	 * @deprecated use {@link AnnotationProcessXMLFilter#lookupProcessAnnotations(ExecutionUnit)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Returns the process annotations for the given execution unit.
+     *
+     * @param process the execution unit in question
+     * @return the annotations or {@code null} if there are none
+     * @deprecated use {@link AnnotationProcessXMLFilter#lookupProcessAnnotations(ExecutionUnit)}             instead
+     */
+    @Deprecated
 	public static WorkflowAnnotations lookupProcessAnnotations(ExecutionUnit process) {
 		return AnnotationProcessXMLFilter.lookupProcessAnnotations(process);
 	}
 
-	/**
-	 * Adds a {@link ProcessAnnotation}.
-	 *
-	 * @param annotation
-	 *            the new annotation
-	 * @deprecated use {@link AnnotationProcessXMLFilter#addProcessAnnotation(ProcessAnnotation)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Adds a {@link ProcessAnnotation}.
+     *
+     * @param annotation the new annotation
+     * @deprecated use {@link AnnotationProcessXMLFilter#addProcessAnnotation(ProcessAnnotation)}             instead
+     */
+    @Deprecated
 	public static void addProcessAnnotation(ProcessAnnotation annotation) {
 		AnnotationProcessXMLFilter.addProcessAnnotation(annotation);
 	}
 
-	/**
-	 * Removes the given {@link ProcessAnnotation}.
-	 *
-	 * @param annotation
-	 *            the annotation to remove
-	 * @deprecated use {@link AnnotationProcessXMLFilter#removeProcessAnnotation(ProcessAnnotation)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Removes the given {@link ProcessAnnotation}.
+     *
+     * @param annotation the annotation to remove
+     * @deprecated use {@link AnnotationProcessXMLFilter#removeProcessAnnotation(ProcessAnnotation)}             instead
+     */
+    @Deprecated
 	public static void removeProcessAnnotation(ProcessAnnotation annotation) {
 		AnnotationProcessXMLFilter.removeProcessAnnotation(annotation);
 	}
 
-	/**
-	 * Returns the background image for the given execution unit.
-	 *
-	 * @param process
-	 *            the execution unit in question
-	 * @return the background image or {@code null} if there is none
-	 * @deprecated use {@link BackgroundImageProcessXMLFilter#lookupBackgroundImage(ExecutionUnit)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Returns the background image for the given execution unit.
+     *
+     * @param process the execution unit in question
+     * @return the background image or {@code null} if there is none
+     * @deprecated use {@link BackgroundImageProcessXMLFilter#lookupBackgroundImage(ExecutionUnit)}             instead
+     */
+    @Deprecated
 	public static ProcessBackgroundImage lookupBackgroundImage(ExecutionUnit process) {
 		return BackgroundImageProcessXMLFilter.lookupBackgroundImage(process);
 	}
 
-	/**
-	 * Adds a {@link ProcessBackgroundImage}.
-	 *
-	 * @param image
-	 *            the new background image
-	 * @deprecated use
-	 *             {@link BackgroundImageProcessXMLFilter#setBackgroundImage(ProcessBackgroundImage)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Adds a {@link ProcessBackgroundImage}.
+     *
+     * @param image the new background image
+     * @deprecated use {@link BackgroundImageProcessXMLFilter#setBackgroundImage(ProcessBackgroundImage)}             instead
+     */
+    @Deprecated
 	public static void setBackgroundImage(ProcessBackgroundImage image) {
 		BackgroundImageProcessXMLFilter.setBackgroundImage(image);
 	}
 
-	/**
-	 * Removes the given {@link ProcessBackgroundImage}.
-	 *
-	 * @param process
-	 *            the execution unit for which to remove the background image
-	 * @deprecated use {@link BackgroundImageProcessXMLFilter#removeBackgroundImage(ExecutionUnit)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Removes the given {@link ProcessBackgroundImage}.
+     *
+     * @param process the execution unit for which to remove the background image
+     * @deprecated use {@link BackgroundImageProcessXMLFilter#removeBackgroundImage(ExecutionUnit)}             instead
+     */
+    @Deprecated
 	public static void removeBackgroundImage(ExecutionUnit process) {
 		BackgroundImageProcessXMLFilter.removeBackgroundImage(process);
 	}

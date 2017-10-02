@@ -82,39 +82,39 @@ class LocalFileDataSource extends FileDataSource {
 		this.fileLocation = selectedLocation;
 	}
 
-	/**
-	 * @return the {@link FileDataSource} for this {@link DataSource}. Can be {@code null} in case
-	 *         no file has been selected yet.
-	 */
-	FileDataSource getFileDataSource() {
+    /**
+     * Gets file data source.
+     *
+     * @return the {@link FileDataSource} for this {@link DataSource}. Can be {@code null} in case         no file has been selected yet.
+     */
+    FileDataSource getFileDataSource() {
 		return fileDataSource;
 	}
 
-	/**
-	 * Updates the {@link FileDataSource} for this {@link LocalFileDataSource}.
-	 *
-	 * @param fileDataSource
-	 *            the new {@link FileDataSource}
-	 */
-	void setFileDataSource(FileDataSource fileDataSource) {
+    /**
+     * Updates the {@link FileDataSource} for this {@link LocalFileDataSource}.
+     *
+     * @param fileDataSource the new {@link FileDataSource}
+     */
+    void setFileDataSource(FileDataSource fileDataSource) {
 		this.fileDataSource = fileDataSource;
 	}
 
-	/**
-	 * @return the current {@link FileDataSourceFactory}. Might be {@code null} in case no factory
-	 *         was specified yet.
-	 */
-	FileDataSourceFactory<?> getFileDataSourceFactory() {
+    /**
+     * Gets file data source factory.
+     *
+     * @return the current {@link FileDataSourceFactory}. Might be {@code null} in case no factory         was specified yet.
+     */
+    FileDataSourceFactory<?> getFileDataSourceFactory() {
 		return fileDataSourceFactory;
 	}
 
-	/**
-	 * Updates the {@link FileDataSourceFactory} for this {@link DataSource}.
-	 *
-	 * @param fileDataSourceFactory
-	 *            the new factory instance
-	 */
-	void setFileDataSourceFactory(FileDataSourceFactory<?> fileDataSourceFactory) {
+    /**
+     * Updates the {@link FileDataSourceFactory} for this {@link DataSource}.
+     *
+     * @param fileDataSourceFactory the new factory instance
+     */
+    void setFileDataSourceFactory(FileDataSourceFactory<?> fileDataSourceFactory) {
 		this.fileDataSourceFactory = fileDataSourceFactory;
 	}
 

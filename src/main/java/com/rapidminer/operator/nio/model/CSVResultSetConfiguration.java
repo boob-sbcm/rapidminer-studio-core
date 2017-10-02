@@ -62,15 +62,18 @@ public class CSVResultSetConfiguration implements DataResultSetFactory {
 
 	private List<ParsingError> errors;
 
-	/**
-	 * This will create a completely empty result set configuration
-	 */
-	public CSVResultSetConfiguration() {}
+    /**
+     * This will create a completely empty result set configuration
+     */
+    public CSVResultSetConfiguration() {}
 
-	/**
-	 * This constructor reads all settings from the parameters of the given operator.
-	 */
-	public CSVResultSetConfiguration(CSVExampleSource csvExampleSource) throws OperatorException {
+    /**
+     * This constructor reads all settings from the parameters of the given operator.
+     *
+     * @param csvExampleSource the csv example source
+     * @throws OperatorException the operator exception
+     */
+    public CSVResultSetConfiguration(CSVExampleSource csvExampleSource) throws OperatorException {
 		// if (csvExampleSource.isParameterSet(CSVExampleSource.PARAMETER_CSV_FILE)) {
 		// setCsvFile(csvExampleSource.getParameterAsString(CSVExampleSource.PARAMETER_CSV_FILE));
 		// }
@@ -130,119 +133,264 @@ public class CSVResultSetConfiguration implements DataResultSetFactory {
 		return preview;
 	}
 
-	public void setCsvFile(String csvFile) {
+    /**
+     * Sets csv file.
+     *
+     * @param csvFile the csv file
+     */
+    public void setCsvFile(String csvFile) {
 		this.csvFile = csvFile;
 	}
 
-	public String getCsvFile() {
+    /**
+     * Gets csv file.
+     *
+     * @return the csv file
+     */
+    public String getCsvFile() {
 		return csvFile;
 	}
 
-	public File getCsvFileAsFile() {
+    /**
+     * Gets csv file as file.
+     *
+     * @return the csv file as file
+     */
+    public File getCsvFileAsFile() {
 		return csvFile == null ? null : new File(csvFile);
 	}
 
-	public void setUseQuotes(boolean useQuotes) {
+    /**
+     * Sets use quotes.
+     *
+     * @param useQuotes the use quotes
+     */
+    public void setUseQuotes(boolean useQuotes) {
 		this.useQuotes = useQuotes;
 	}
 
-	public boolean isUseQuotes() {
+    /**
+     * Is use quotes boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isUseQuotes() {
 		return useQuotes;
 	}
 
-	public boolean hasHeaderRow() {
+    /**
+     * Has header row boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasHeaderRow() {
 		return hasHeaderRow;
 	}
 
-	public void setHasHeaderRow(boolean hasHeaderRow) {
+    /**
+     * Sets has header row.
+     *
+     * @param hasHeaderRow the has header row
+     */
+    public void setHasHeaderRow(boolean hasHeaderRow) {
 		this.hasHeaderRow = hasHeaderRow;
 	}
 
-	public void setSkipComments(boolean skipComments) {
+    /**
+     * Sets skip comments.
+     *
+     * @param skipComments the skip comments
+     */
+    public void setSkipComments(boolean skipComments) {
 		this.skipComments = skipComments;
 	}
 
-	public boolean isSkipComments() {
+    /**
+     * Is skip comments boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSkipComments() {
 		return skipComments;
 	}
 
-	public void setColumnSeparators(String columnSeparators) {
+    /**
+     * Sets column separators.
+     *
+     * @param columnSeparators the column separators
+     */
+    public void setColumnSeparators(String columnSeparators) {
 		this.columnSeparators = columnSeparators;
 	}
 
-	public String getColumnSeparators() {
+    /**
+     * Gets column separators.
+     *
+     * @return the column separators
+     */
+    public String getColumnSeparators() {
 		return columnSeparators;
 	}
 
-	public void setCommentCharacters(String commentCharacters) {
+    /**
+     * Sets comment characters.
+     *
+     * @param commentCharacters the comment characters
+     */
+    public void setCommentCharacters(String commentCharacters) {
 		this.commentCharacters = commentCharacters;
 	}
 
-	public String getCommentCharacters() {
+    /**
+     * Gets comment characters.
+     *
+     * @return the comment characters
+     */
+    public String getCommentCharacters() {
 		return commentCharacters;
 	}
 
-	public void setEscapeCharacter(char escapeCharacter) {
+    /**
+     * Sets escape character.
+     *
+     * @param escapeCharacter the escape character
+     */
+    public void setEscapeCharacter(char escapeCharacter) {
 		this.escapeCharacter = escapeCharacter;
 	}
 
-	public char getEscapeCharacter() {
+    /**
+     * Gets escape character.
+     *
+     * @return the escape character
+     */
+    public char getEscapeCharacter() {
 		return escapeCharacter;
 	}
 
-	public void setQuoteCharacter(char quoteCharacter) {
+    /**
+     * Sets quote character.
+     *
+     * @param quoteCharacter the quote character
+     */
+    public void setQuoteCharacter(char quoteCharacter) {
 		this.quoteCharacter = quoteCharacter;
 	}
 
-	public char getQuoteCharacter() {
+    /**
+     * Gets quote character.
+     *
+     * @return the quote character
+     */
+    public char getQuoteCharacter() {
 		return quoteCharacter;
 	}
 
-	public void setDecimalCharacter(char decimalCharacter) {
+    /**
+     * Sets decimal character.
+     *
+     * @param decimalCharacter the decimal character
+     */
+    public void setDecimalCharacter(char decimalCharacter) {
 		this.decimalCharacter = decimalCharacter;
 	}
 
-	public char getDecimalCharacter() {
+    /**
+     * Gets decimal character.
+     *
+     * @return the decimal character
+     */
+    public char getDecimalCharacter() {
 		return decimalCharacter;
 	}
 
-	public void setTrimLines(boolean trimLines) {
+    /**
+     * Sets trim lines.
+     *
+     * @param trimLines the trim lines
+     */
+    public void setTrimLines(boolean trimLines) {
 		this.trimLines = trimLines;
 	}
 
-	public boolean isTrimLines() {
+    /**
+     * Is trim lines boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isTrimLines() {
 		return trimLines;
 	}
 
-	public void setEncoding(Charset encoding) {
+    /**
+     * Sets encoding.
+     *
+     * @param encoding the encoding
+     */
+    public void setEncoding(Charset encoding) {
 		this.encoding = encoding;
 	}
 
-	public Charset getEncoding() {
+    /**
+     * Gets encoding.
+     *
+     * @return the encoding
+     */
+    public Charset getEncoding() {
 		return encoding;
 	}
 
-	public boolean isSkippingUTF8BOM() {
+    /**
+     * Is skipping utf 8 bom boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSkippingUTF8BOM() {
 		return skipUTF8BOM;
 	}
 
-	public void setSkipUTF8BOM(boolean skipUTF8BOM) {
+    /**
+     * Sets skip utf 8 bom.
+     *
+     * @param skipUTF8BOM the skip utf 8 bom
+     */
+    public void setSkipUTF8BOM(boolean skipUTF8BOM) {
 		this.skipUTF8BOM = skipUTF8BOM;
 	}
 
-	public int getStartingRow() {
+    /**
+     * Gets starting row.
+     *
+     * @return the starting row
+     */
+    public int getStartingRow() {
 		return startingRow;
 	}
 
-	public void setStartingRow(int startingRow) {
+    /**
+     * Sets starting row.
+     *
+     * @param startingRow the starting row
+     */
+    public void setStartingRow(int startingRow) {
 		this.startingRow = startingRow;
 	}
 
-	public int getHeaderRow() {
+    /**
+     * Gets header row.
+     *
+     * @return the header row
+     */
+    public int getHeaderRow() {
 		return headerRow;
 	}
 
-	public void setHeaderRow(int headerRow) {
+    /**
+     * Sets header row.
+     *
+     * @param headerRow the header row
+     */
+    public void setHeaderRow(int headerRow) {
 		this.headerRow = headerRow;
 	}
 
@@ -256,17 +404,24 @@ public class CSVResultSetConfiguration implements DataResultSetFactory {
 		return new ExampleSetMetaData();
 	}
 
-	public List<ParsingError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<ParsingError> getErrors() {
 		return errors;
 	}
 
 	@Override
 	public void close() {}
 
-	/**
-	 * @return a map containing all fieldNames and their values
-	 */
-	public Map<String, String> getParameterMap() {
+    /**
+     * Gets parameter map.
+     *
+     * @return a map containing all fieldNames and their values
+     */
+    public Map<String, String> getParameterMap() {
 		Map<String, String> parameterMap = new HashMap<>();
 		parameterMap.put("csvFile", getCsvFile());
 		parameterMap.put("useQuotes", String.valueOf(isUseQuotes()));

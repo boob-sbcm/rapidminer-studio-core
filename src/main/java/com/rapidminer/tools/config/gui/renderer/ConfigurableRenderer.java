@@ -34,7 +34,6 @@ import com.rapidminer.tools.config.ConfigurationManager;
  * The renderer for the {@link JList} displaying {@link Configurable}s.
  *
  * @author Marco Boeck
- *
  */
 public class ConfigurableRenderer extends DefaultListCellRenderer {
 

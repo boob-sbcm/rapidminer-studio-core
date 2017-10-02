@@ -66,52 +66,71 @@ public class EMClusterer extends RMAbstractClusterer {
 
 	private static final OperatorVersion BEFORE_MEASURE_PARAM = new OperatorVersion(7, 5, 3);
 
-	/** The parameter name for &quot;the maximal number of clusters&quot; */
-	public static final String PARAMETER_K = "k";
+    /**
+     * The parameter name for &quot;the maximal number of clusters&quot;
+     */
+    public static final String PARAMETER_K = "k";
 
-	/**
-	 * The parameter name for &quot;the maximal number of runs of the k method with random
-	 * initialization that are performed&quot;
-	 */
-	public static final String PARAMETER_MAX_RUNS = "max_runs";
+    /**
+     * The parameter name for &quot;the maximal number of runs of the k method with random
+     * initialization that are performed&quot;
+     */
+    public static final String PARAMETER_MAX_RUNS = "max_runs";
 
-	/**
-	 * The parameter name for &quot;the maximal number of iterations performed for one run of the k
-	 * method&quot;
-	 */
-	public static final String PARAMETER_MAX_OPTIMIZATION_STEPS = "max_optimization_steps";
+    /**
+     * The parameter name for &quot;the maximal number of iterations performed for one run of the k
+     * method&quot;
+     */
+    public static final String PARAMETER_MAX_OPTIMIZATION_STEPS = "max_optimization_steps";
 
-	/**
-	 * The parameter name for &quot;the quality, which has to be fulfilled for the stopping of the
-	 * soft clustering&quot;
-	 */
-	public static final String PARAMETER_QUALITY = "quality";
+    /**
+     * The parameter name for &quot;the quality, which has to be fulfilled for the stopping of the
+     * soft clustering&quot;
+     */
+    public static final String PARAMETER_QUALITY = "quality";
 
-	/**
-	 * The parameter name for &quot;Indicates if the probabilities will be shown in example
-	 * table&quot;
-	 */
-	public static final String PARAMETER_SHOW_PROBABILITIES = "show_probabilities";
+    /**
+     * The parameter name for &quot;Indicates if the probabilities will be shown in example
+     * table&quot;
+     */
+    public static final String PARAMETER_SHOW_PROBABILITIES = "show_probabilities";
 
-	/** The parameter name for &quot;Indicates the initialization distribution&quot; */
-	public static final String PARAMETER_INITIALIZATION_DISTRIBUTION = "inital_distribution";
+    /**
+     * The parameter name for &quot;Indicates the initialization distribution&quot;
+     */
+    public static final String PARAMETER_INITIALIZATION_DISTRIBUTION = "inital_distribution";
 
-	/** The parameter name for &quot;List of the different init distributions&quot; */
-	public static final String[] INIT_DISTRIBUTION = { "randomly assigned examples", "k-means run", "average parameters" };
+    /**
+     * The parameter name for &quot;List of the different init distributions&quot;
+     */
+    public static final String[] INIT_DISTRIBUTION = { "randomly assigned examples", "k-means run", "average parameters" };
 
-	/** The parameter value for &quot;Init distributions randomly assigned&quot; */
-	public static final int RANDOMLY_ASSIGNED = 0;
+    /**
+     * The parameter value for &quot;Init distributions randomly assigned&quot;
+     */
+    public static final int RANDOMLY_ASSIGNED = 0;
 
-	/** The parameter value for &quot;Init distributions hard clustering&quot; */
-	public static final int K_MEANS = 1;
+    /**
+     * The parameter value for &quot;Init distributions hard clustering&quot;
+     */
+    public static final int K_MEANS = 1;
 
-	/** The parameter value for &quot;Init distributions average parameters&quot; */
-	public static final int AVERAGE_PARAMETERS = 2;
+    /**
+     * The parameter value for &quot;Init distributions average parameters&quot;
+     */
+    public static final int AVERAGE_PARAMETERS = 2;
 
-	/** The parameter name for &quot;Indicates if the example set has correlated attributes&quot; */
-	public static final String PARAMETER_CORRELATED = "correlated_attributes";
+    /**
+     * The parameter name for &quot;Indicates if the example set has correlated attributes&quot;
+     */
+    public static final String PARAMETER_CORRELATED = "correlated_attributes";
 
-	public EMClusterer(OperatorDescription description) {
+    /**
+     * Instantiates a new Em clusterer.
+     *
+     * @param description the description
+     */
+    public EMClusterer(OperatorDescription description) {
 		super(description);
 	}
 
@@ -130,8 +149,15 @@ public class EMClusterer extends RMAbstractClusterer {
 		return propAttributes;
 	}
 
-	/*
-	 * Creates the Clustermodel.
+    /**
+     * Create cluster model cluster model.
+     *
+     * @param exampleSet the example set
+     * @return the cluster model
+     * @throws OperatorException the operator exception
+     */
+/*
+     * Creates the Clustermodel.
 	 */
 	public ClusterModel createClusterModel(ExampleSet exampleSet) throws OperatorException {
 		FlatFuzzyClusterModel bestModel = null;
@@ -502,8 +528,17 @@ public class EMClusterer extends RMAbstractClusterer {
 	 * END: INIT SECTOR
 	 */
 
-	/*
-	 * Computes to which cluster an example fits best.
+    /**
+     * Best index int.
+     *
+     * @param exampleIndex                the example index
+     * @param k                           the k
+     * @param exampleInClusterProbability the example in cluster probability
+     * @return the int
+     * @throws Exception the exception
+     */
+/*
+     * Computes to which cluster an example fits best.
 	 */
 	protected int bestIndex(int exampleIndex, int k, double[][] exampleInClusterProbability) throws Exception {
 		int bestIndex = -1;
@@ -517,8 +552,16 @@ public class EMClusterer extends RMAbstractClusterer {
 		return bestIndex;
 	}
 
-	/*
-	 * Computes the probabilities for each example with each cluster (exampleClusterProbs). (with
+    /**
+     * Expectation non correlated.
+     *
+     * @param exampleSet                  the example set
+     * @param k                           the k
+     * @param exampleInClusterProbability the example in cluster probability
+     * @param oldResult                   the old result
+     */
+/*
+     * Computes the probabilities for each example with each cluster (exampleClusterProbs). (with
 	 * StdDev)
 	 */
 	protected void expectationNonCorrelated(ExampleSet exampleSet, int k, double[][] exampleInClusterProbability,
@@ -548,8 +591,17 @@ public class EMClusterer extends RMAbstractClusterer {
 		}
 	}
 
-	/*
-	 * Computes the probabilities for each example with each cluster (exampleClusterProbs). (with
+    /**
+     * Expectation correlated.
+     *
+     * @param exampleSet                  the example set
+     * @param k                           the k
+     * @param exampleInClusterProbability the example in cluster probability
+     * @param oldResult                   the old result
+     * @throws Exception the exception
+     */
+/*
+     * Computes the probabilities for each example with each cluster (exampleClusterProbs). (with
 	 * covarianceMatrix)
 	 */
 	protected void expectationCorrelated(ExampleSet exampleSet, int k, double[][] exampleInClusterProbability,
@@ -607,8 +659,16 @@ public class EMClusterer extends RMAbstractClusterer {
 		}
 	}
 
-	/*
-	 * Computes the new values of: - cluster means [my_i] AND - clusterprobabilities [P(Cluster_i)]
+    /**
+     * Maximization.
+     *
+     * @param exampleSet                  the example set
+     * @param k                           the k
+     * @param exampleInClusterProbability the example in cluster probability
+     * @param result                      the result
+     */
+/*
+     * Computes the new values of: - cluster means [my_i] AND - clusterprobabilities [P(Cluster_i)]
 	 * AND - cluster standard deviation [sigma_i] OR - cluster covariance matrix [Sigma_i] with the
 	 * probabilities of each example to each cluster [P(Cluster_i|example)]
 	 */
@@ -676,8 +736,16 @@ public class EMClusterer extends RMAbstractClusterer {
 		}
 	}
 
-	/*
-	 * Computes the loglikelyhood.
+    /**
+     * Compute log likelyhood double.
+     *
+     * @param k                           the k
+     * @param exampleInClusterProbability the example in cluster probability
+     * @param resultModel                 the result model
+     * @return the double
+     */
+/*
+     * Computes the loglikelyhood.
 	 */
 	protected double computeLogLikelyhood(int k, double[][] exampleInClusterProbability, FlatFuzzyClusterModel resultModel) {
 		double result = 0;

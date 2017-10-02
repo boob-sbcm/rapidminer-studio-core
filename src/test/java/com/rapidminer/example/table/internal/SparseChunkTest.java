@@ -27,14 +27,16 @@ import org.junit.Test;
 
 
 /**
- *
+ * The type Sparse chunk test.
  *
  * @author Jan Czogalla
- *
  */
 public class SparseChunkTest {
 
-	@Test
+    /**
+     * Fill with defaults.
+     */
+    @Test
 	public void fillWithDefaults() {
 		IntegerHighSparsityChunk iasc = new IntegerHighSparsityChunk(0);
 		DoubleHighSparsityChunk dasc = new DoubleHighSparsityChunk(0);
@@ -48,7 +50,10 @@ public class SparseChunkTest {
 		}
 	}
 
-	@Test
+    /**
+     * Fill with defaults na n.
+     */
+    @Test
 	public void fillWithDefaultsNaN() {
 		IntegerHighSparsityChunk iasc = new IntegerHighSparsityChunk(Double.NaN);
 		DoubleHighSparsityChunk dasc = new DoubleHighSparsityChunk(Double.NaN);
@@ -62,7 +67,10 @@ public class SparseChunkTest {
 		}
 	}
 
-	@Test
+    /**
+     * Fill dense.
+     */
+    @Test
 	public void fillDense() {
 		IntegerHighSparsityChunk iasc = new IntegerHighSparsityChunk(0);
 		DoubleHighSparsityChunk dasc = new DoubleHighSparsityChunk(0);
@@ -76,7 +84,10 @@ public class SparseChunkTest {
 		}
 	}
 
-	@Test
+    /**
+     * Fill dense na n.
+     */
+    @Test
 	public void fillDenseNaN() {
 		IntegerHighSparsityChunk iasc = new IntegerHighSparsityChunk(0);
 		DoubleHighSparsityChunk dasc = new DoubleHighSparsityChunk(0);
@@ -90,7 +101,10 @@ public class SparseChunkTest {
 		}
 	}
 
-	@Test
+    /**
+     * Fill sparse.
+     */
+    @Test
 	public void fillSparse() {
 		IntegerHighSparsityChunk iasc = new IntegerHighSparsityChunk(0);
 		DoubleHighSparsityChunk dasc = new DoubleHighSparsityChunk(0);
@@ -104,7 +118,10 @@ public class SparseChunkTest {
 		}
 	}
 
-	@Test
+    /**
+     * Fill over threshold.
+     */
+    @Test
 	public void fillOverThreshold() {
 		IntegerHighSparsityChunk iasc = new IntegerHighSparsityChunk(0);
 		DoubleHighSparsityChunk dasc = new DoubleHighSparsityChunk(0);
@@ -124,7 +141,10 @@ public class SparseChunkTest {
 		assertEquals(true, dasc.set(nonDefaultValues, 3));
 	}
 
-	@Test
+    /**
+     * Remove indices back to front.
+     */
+    @Test
 	public void removeIndicesBackToFront() {
 		IntegerHighSparsityChunk iasc = new IntegerHighSparsityChunk(0);
 		DoubleHighSparsityChunk dasc = new DoubleHighSparsityChunk(0);
@@ -142,7 +162,10 @@ public class SparseChunkTest {
 		}
 	}
 
-	@Test
+    /**
+     * Remove indices front to back.
+     */
+    @Test
 	public void removeIndicesFrontToBack() {
 		IntegerHighSparsityChunk iasc = new IntegerHighSparsityChunk(0);
 		DoubleHighSparsityChunk dasc = new DoubleHighSparsityChunk(0);
@@ -160,7 +183,10 @@ public class SparseChunkTest {
 		}
 	}
 
-	@Test
+    /**
+     * Add and remove random order.
+     */
+    @Test
 	public void addAndRemoveRandomOrder() {
 		ThreadLocalRandom random = ThreadLocalRandom.current();
 		int[] indices = new int[1000];

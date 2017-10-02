@@ -28,18 +28,34 @@ import java.util.Map;
 
 
 /**
+ * The type Group cell data.
+ *
  * @author Marius Helf
- * 
  */
 public class GroupCellData {
 
-	Map<SeriesUsageType, Map<PlotDimension, double[]>> dimensionToDataMap = new HashMap<ValueSource.SeriesUsageType, Map<PlotDimension, double[]>>();
+    /**
+     * The Dimension to data map.
+     */
+    Map<SeriesUsageType, Map<PlotDimension, double[]>> dimensionToDataMap = new HashMap<ValueSource.SeriesUsageType, Map<PlotDimension, double[]>>();
 
-	public Map<PlotDimension, double[]> getDataForUsageType(SeriesUsageType usageType) {
+    /**
+     * Gets data for usage type.
+     *
+     * @param usageType the usage type
+     * @return the data for usage type
+     */
+    public Map<PlotDimension, double[]> getDataForUsageType(SeriesUsageType usageType) {
 		return dimensionToDataMap.get(usageType);
 	}
 
-	public void setDataForUsageType(SeriesUsageType usageType, Map<PlotDimension, double[]> data) {
+    /**
+     * Sets data for usage type.
+     *
+     * @param usageType the usage type
+     * @param data      the data
+     */
+    public void setDataForUsageType(SeriesUsageType usageType, Map<PlotDimension, double[]> data) {
 		if (data != null) {
 			dimensionToDataMap.put(usageType, data);
 		} else {
@@ -47,11 +63,13 @@ public class GroupCellData {
 		}
 	}
 
-	/**
-	 * Returns the number of data points in the DOMAIN dimension of the MAIN_SERIES series of this
-	 * GroupCellData. All other usage types should have the same number of values.
-	 */
-	public int getSize() {
+    /**
+     * Returns the number of data points in the DOMAIN dimension of the MAIN_SERIES series of this
+     * GroupCellData. All other usage types should have the same number of values.
+     *
+     * @return the size
+     */
+    public int getSize() {
 		Map<PlotDimension, double[]> mainData = getDataForUsageType(SeriesUsageType.MAIN_SERIES);
 		if (mainData == null) {
 			return 0;
@@ -65,13 +83,18 @@ public class GroupCellData {
 		return domainData.length;
 	}
 
-	/**
-	 * Initializes a map from Dimension to double[] for the given SeriesUsageType. Each double array
-	 * is initialized with size valueCount.
-	 * 
-	 * The created map is added to this GroupCellData and then returned to the caller.
-	 */
-	public Map<PlotDimension, double[]> initDataForUsageType(SeriesUsageType usageType, Iterable<PlotDimension> dimensions,
+    /**
+     * Initializes a map from Dimension to double[] for the given SeriesUsageType. Each double array
+     * is initialized with size valueCount.
+     * <p>
+     * The created map is added to this GroupCellData and then returned to the caller.
+     *
+     * @param usageType  the usage type
+     * @param dimensions the dimensions
+     * @param valueCount the value count
+     * @return the map
+     */
+    public Map<PlotDimension, double[]> initDataForUsageType(SeriesUsageType usageType, Iterable<PlotDimension> dimensions,
 			int valueCount) {
 		Map<PlotDimension, double[]> data = new HashMap<DimensionConfig.PlotDimension, double[]>();
 		for (PlotDimension dimension : dimensions) {

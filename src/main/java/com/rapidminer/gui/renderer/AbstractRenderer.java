@@ -44,21 +44,30 @@ import java.util.List;
 /**
  * This is the abstract renderer superclass for all renderers which provide some basic methods for
  * parameter handling.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class AbstractRenderer implements Renderer {
 
 	private Parameters parameters;
 
-	public AbstractRenderer() {}
+    /**
+     * Instantiates a new Abstract renderer.
+     */
+    public AbstractRenderer() {}
 
 	@Override
 	public final List<ParameterType> getParameterTypes() {
 		return getParameterTypes(null);
 	}
 
-	public List<ParameterType> getParameterTypes(InputPort inputPort) {
+    /**
+     * Gets parameter types.
+     *
+     * @param inputPort the input port
+     * @return the parameter types
+     */
+    public List<ParameterType> getParameterTypes(InputPort inputPort) {
 		return new LinkedList<ParameterType>();
 	}
 

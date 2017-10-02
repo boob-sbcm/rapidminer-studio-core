@@ -24,19 +24,39 @@ import com.rapidminer.example.Attribute;
 /**
  * This class implements the Least Aggregation function. This will calculate the least value of the
  * attribute of the examples within a group.
- * 
+ *
  * @author Sebastian Land
  */
 public class LeastAggregationFunction extends NominalAggregationFunction {
 
-	public static final String FUNCTION_LEAST = "least";
+    /**
+     * The constant FUNCTION_LEAST.
+     */
+    public static final String FUNCTION_LEAST = "least";
 
-	public LeastAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
+    /**
+     * Instantiates a new Least aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     */
+    public LeastAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, FUNCTION_LEAST, FUNCTION_SEPARATOR_OPEN,
 				FUNCTION_SEPARATOR_CLOSE);
 	}
 
-	public LeastAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
+    /**
+     * Instantiates a new Least aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public LeastAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
 			String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, separatorOpen, separatorClose);
 	}

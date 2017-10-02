@@ -20,31 +20,56 @@ package com.rapidminer.operator;
 
 /**
  * Exception class whose instances are thrown during the creation of operators.
- * 
+ *
  * @author Ingo Mierswa, Peter B. Volk ingomierswa Exp $
  */
 public class OperatorCreationException extends Exception {
 
 	private static final long serialVersionUID = 805882946295847566L;
 
-	public static final int INSTANTIATION_ERROR = 0;
+    /**
+     * The constant INSTANTIATION_ERROR.
+     */
+    public static final int INSTANTIATION_ERROR = 0;
 
-	public static final int ILLEGAL_ACCESS_ERROR = 1;
+    /**
+     * The constant ILLEGAL_ACCESS_ERROR.
+     */
+    public static final int ILLEGAL_ACCESS_ERROR = 1;
 
-	public static final int NO_CONSTRUCTOR_ERROR = 2;
+    /**
+     * The constant NO_CONSTRUCTOR_ERROR.
+     */
+    public static final int NO_CONSTRUCTOR_ERROR = 2;
 
-	public static final int CONSTRUCTION_ERROR = 3;
+    /**
+     * The constant CONSTRUCTION_ERROR.
+     */
+    public static final int CONSTRUCTION_ERROR = 3;
 
-	public static final int NO_DESCRIPTION_ERROR = 4;
+    /**
+     * The constant NO_DESCRIPTION_ERROR.
+     */
+    public static final int NO_DESCRIPTION_ERROR = 4;
 
-	public static final int NO_UNIQUE_DESCRIPTION_ERROR = 5;
+    /**
+     * The constant NO_UNIQUE_DESCRIPTION_ERROR.
+     */
+    public static final int NO_UNIQUE_DESCRIPTION_ERROR = 5;
 
-	public static final int OPERATOR_DISABLED_ERROR = 6;
+    /**
+     * The constant OPERATOR_DISABLED_ERROR.
+     */
+    public static final int OPERATOR_DISABLED_ERROR = 6;
 
-	/**
-	 * Code must be one of the constants of this class. The classname should define the operator.
-	 */
-	public OperatorCreationException(int code, String className, Throwable cause) {
+    /**
+     * Code must be one of the constants of this class. The classname should define the operator.
+     *
+     * @param code      the code
+     * @param className the class name
+     * @param cause     the cause
+     */
+    public OperatorCreationException(int code, String className, Throwable cause) {
 		super(createMessage(code, className, cause), cause);
 	}
 

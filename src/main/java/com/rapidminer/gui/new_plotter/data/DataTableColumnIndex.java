@@ -25,9 +25,8 @@ import com.rapidminer.gui.new_plotter.configuration.DataTableColumn;
 
 /**
  * This class stores the column index of a {@link DataTableColumn}.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class DataTableColumnIndex implements DataTableListener {
 
@@ -36,16 +35,32 @@ public class DataTableColumnIndex implements DataTableListener {
 	private boolean upToDate = false;
 	private DataTable dataTable;
 
-	public DataTableColumnIndex(DataTableColumn dataTableColumn, DataTable dataTable) {
+    /**
+     * Instantiates a new Data table column index.
+     *
+     * @param dataTableColumn the data table column
+     * @param dataTable       the data table
+     */
+    public DataTableColumnIndex(DataTableColumn dataTableColumn, DataTable dataTable) {
 		this.dataTableColumn = dataTableColumn;
 		this.dataTable = dataTable;
 	}
 
-	public DataTableColumn getDataTableColumn() {
+    /**
+     * Gets data table column.
+     *
+     * @return the data table column
+     */
+    public DataTableColumn getDataTableColumn() {
 		return dataTableColumn;
 	}
 
-	public void setDataTableColumn(DataTableColumn dataTableColumn) {
+    /**
+     * Sets data table column.
+     *
+     * @param dataTableColumn the data table column
+     */
+    public void setDataTableColumn(DataTableColumn dataTableColumn) {
 		if (dataTableColumn != this.dataTableColumn) {
 			this.dataTableColumn = dataTableColumn;
 			index = -1;
@@ -53,11 +68,21 @@ public class DataTableColumnIndex implements DataTableListener {
 		}
 	}
 
-	public DataTable getDataTable() {
+    /**
+     * Gets data table.
+     *
+     * @return the data table
+     */
+    public DataTable getDataTable() {
 		return dataTable;
 	}
 
-	public void setDataTable(DataTable dataTable) {
+    /**
+     * Sets data table.
+     *
+     * @param dataTable the data table
+     */
+    public void setDataTable(DataTable dataTable) {
 		if (dataTable != this.dataTable) {
 			if (this.dataTable != null) {
 				dataTable.removeDataTableListener(this);
@@ -71,14 +96,22 @@ public class DataTableColumnIndex implements DataTableListener {
 		}
 	}
 
-	public int getIndex() {
+    /**
+     * Gets index.
+     *
+     * @return the index
+     */
+    public int getIndex() {
 		if (!upToDate) {
 			update();
 		}
 		return index;
 	}
 
-	public void invalidate() {
+    /**
+     * Invalidate.
+     */
+    public void invalidate() {
 		upToDate = false;
 	}
 

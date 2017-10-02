@@ -70,38 +70,44 @@ import Jama.Matrix;
  * model selection: - M5Prime using Akaike criterion for model selection. - A greedy implementation
  * - A T-Test based selection - No selection. Further selections can be added using the static
  * method
- *
+ * <p>
  * </p>
  *
  * @author Ingo Mierswa
  */
 public class LinearRegression extends AbstractLearner {
 
-	/**
-	 * The parameter name for &quot;The feature selection method used during regression.&quot;
-	 */
-	public static final String PARAMETER_FEATURE_SELECTION = "feature_selection";
+    /**
+     * The parameter name for &quot;The feature selection method used during regression.&quot;
+     */
+    public static final String PARAMETER_FEATURE_SELECTION = "feature_selection";
 
-	/**
-	 * The parameter name for &quot;Indicates if the algorithm should try to delete colinear
-	 * features during the regression.&quot;
-	 */
-	public static final String PARAMETER_ELIMINATE_COLINEAR_FEATURES = "eliminate_colinear_features";
+    /**
+     * The parameter name for &quot;Indicates if the algorithm should try to delete colinear
+     * features during the regression.&quot;
+     */
+    public static final String PARAMETER_ELIMINATE_COLINEAR_FEATURES = "eliminate_colinear_features";
 
-	public static final String PARAMETER_USE_BIAS = "use_bias";
+    /**
+     * The constant PARAMETER_USE_BIAS.
+     */
+    public static final String PARAMETER_USE_BIAS = "use_bias";
 
-	/**
-	 * The parameter name for &quot;The minimum tolerance for the removal of colinear
-	 * features.&quot;
-	 */
-	public static final String PARAMETER_MIN_TOLERANCE = "min_tolerance";
+    /**
+     * The parameter name for &quot;The minimum tolerance for the removal of colinear
+     * features.&quot;
+     */
+    public static final String PARAMETER_MIN_TOLERANCE = "min_tolerance";
 
-	/**
-	 * The parameter name for &quot;The ridge parameter used during ridge regression.&quot;
-	 */
-	public static final String PARAMETER_RIDGE = "ridge";
+    /**
+     * The parameter name for &quot;The ridge parameter used during ridge regression.&quot;
+     */
+    public static final String PARAMETER_RIDGE = "ridge";
 
-	public static final Map<String, Class<? extends LinearRegressionMethod>> SELECTION_METHODS = new LinkedHashMap<>();
+    /**
+     * The constant SELECTION_METHODS.
+     */
+    public static final Map<String, Class<? extends LinearRegressionMethod>> SELECTION_METHODS = new LinkedHashMap<>();
 
 	static {
 		SELECTION_METHODS.put("none", PlainLinearRegressionMethod.class);
@@ -111,24 +117,39 @@ public class LinearRegression extends AbstractLearner {
 		SELECTION_METHODS.put("Iterative T-Test", IterativeTTestLinearRegressionMethod.class);
 	}
 
-	/** Attribute selection method: No attribute selection */
-	public static final int NO_SELECTION = 0;
+    /**
+     * Attribute selection method: No attribute selection
+     */
+    public static final int NO_SELECTION = 0;
 
-	/** Attribute selection method: M5 method */
-	public static final int M5_PRIME = 1;
+    /**
+     * Attribute selection method: M5 method
+     */
+    public static final int M5_PRIME = 1;
 
-	/** Attribute selection method: Greedy method */
-	public static final int GREEDY = 2;
+    /**
+     * Attribute selection method: Greedy method
+     */
+    public static final int GREEDY = 2;
 
-	/** Attribute selection method: T-Test method */
-	public static final int T_TEST = 3;
+    /**
+     * Attribute selection method: T-Test method
+     */
+    public static final int T_TEST = 3;
 
-	/** Attribute selection method: Iterative T-Test method */
-	public static final int ITERATIVE_T_TEST = 4;
+    /**
+     * Attribute selection method: Iterative T-Test method
+     */
+    public static final int ITERATIVE_T_TEST = 4;
 
 	private OutputPort weightOutput = getOutputPorts().createPort("weights");
 
-	public LinearRegression(OperatorDescription description) {
+    /**
+     * Instantiates a new Linear regression.
+     *
+     * @param description the description
+     */
+    public LinearRegression(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addGenerationRule(weightOutput, AttributeWeights.class);
@@ -523,7 +544,19 @@ public class LinearRegression extends AbstractLearner {
 				standardizedCoefficients, tolerances, tStatistics, pValues, useBias, firstClassName, secondClassName);
 	}
 
-	double getTolerance(ExampleSet exampleSet, boolean[] isUsedAttribute, int testAttributeIndex, double ridge,
+    /**
+     * Gets tolerance.
+     *
+     * @param exampleSet         the example set
+     * @param isUsedAttribute    the is used attribute
+     * @param testAttributeIndex the test attribute index
+     * @param ridge              the ridge
+     * @param useIntercept       the use intercept
+     * @return the tolerance
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    double getTolerance(ExampleSet exampleSet, boolean[] isUsedAttribute, int testAttributeIndex, double ridge,
 			boolean useIntercept) throws UndefinedParameterError, ProcessStoppedException {
 		List<Attribute> attributeList = new LinkedList<>();
 		Attribute currentAttribute = null;
@@ -566,12 +599,17 @@ public class LinearRegression extends AbstractLearner {
 		return tolerance;
 	}
 
-	/**
-	 * Calculates the squared error of a regression model on the training data.
-	 *
-	 * @throws ProcessStoppedException
-	 */
-	double getSquaredError(ExampleSet exampleSet, boolean[] selectedAttributes, double[] coefficients, boolean useIntercept)
+    /**
+     * Calculates the squared error of a regression model on the training data.
+     *
+     * @param exampleSet         the example set
+     * @param selectedAttributes the selected attributes
+     * @param coefficients       the coefficients
+     * @param useIntercept       the use intercept
+     * @return the squared error
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    double getSquaredError(ExampleSet exampleSet, boolean[] selectedAttributes, double[] coefficients, boolean useIntercept)
 			throws ProcessStoppedException {
 		double error = 0;
 		for (Example example : exampleSet) {
@@ -583,7 +621,16 @@ public class LinearRegression extends AbstractLearner {
 		return error;
 	}
 
-	double getCorrelation(ExampleSet exampleSet, boolean[] selectedAttributes, double[] coefficients, boolean useIntercept) {
+    /**
+     * Gets correlation.
+     *
+     * @param exampleSet         the example set
+     * @param selectedAttributes the selected attributes
+     * @param coefficients       the coefficients
+     * @param useIntercept       the use intercept
+     * @return the correlation
+     */
+    double getCorrelation(ExampleSet exampleSet, boolean[] selectedAttributes, double[] coefficients, boolean useIntercept) {
 		double[] labelValues = new double[exampleSet.size()];
 		double[] predictions = new double[exampleSet.size()];
 		int index = 0;
@@ -615,15 +662,21 @@ public class LinearRegression extends AbstractLearner {
 		return prediction;
 	}
 
-	/**
-	 * Calculate a linear regression only from the selected attributes. The method returns the
-	 * calculated coefficients.
-	 *
-	 * @param means
-	 *            the means of all regular attributes
-	 * @throws ProcessStoppedException
-	 */
-	double[] performRegression(ExampleSet exampleSet, boolean[] selectedAttributes, double[] means, double labelMean,
+    /**
+     * Calculate a linear regression only from the selected attributes. The method returns the
+     * calculated coefficients.
+     *
+     * @param exampleSet         the example set
+     * @param selectedAttributes the selected attributes
+     * @param means              the means of all regular attributes
+     * @param labelMean          the label mean
+     * @param ridge              the ridge
+     * @param useBias            the use bias
+     * @return the double [ ]
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    double[] performRegression(ExampleSet exampleSet, boolean[] selectedAttributes, double[] means, double labelMean,
 			double ridge, boolean useBias) throws UndefinedParameterError, ProcessStoppedException {
 
 		int currentlySelectedAttributes = 0;
@@ -651,13 +704,20 @@ public class LinearRegression extends AbstractLearner {
 				ridge, useBias);
 	}
 
-	/**
-	 * Calculate a linear regression only from the used attributes. The method returns the
-	 * calculated coefficients.
-	 *
-	 * @throws ProcessStoppedException
-	 */
-	double[] performRegression(ExampleSet exampleSet, Attribute[] usedAttributes, Attribute label, double ridge,
+    /**
+     * Calculate a linear regression only from the used attributes. The method returns the
+     * calculated coefficients.
+     *
+     * @param exampleSet     the example set
+     * @param usedAttributes the used attributes
+     * @param label          the label
+     * @param ridge          the ridge
+     * @param useBias        the use bias
+     * @return the double [ ]
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    double[] performRegression(ExampleSet exampleSet, Attribute[] usedAttributes, Attribute label, double ridge,
 			boolean useBias) throws UndefinedParameterError, ProcessStoppedException {
 		double labelMean = exampleSet.getStatistics(label, Statistics.AVERAGE);
 		double[] means = new double[usedAttributes.length];
@@ -669,16 +729,22 @@ public class LinearRegression extends AbstractLearner {
 
 	}
 
-	/**
-	 * Calculate a linear regression only from the used attributes. The method returns the
-	 * calculated coefficients.
-	 *
-	 * @param means
-	 *            means of the usedAttributes with same indices
-	 *
-	 * @throws ProcessStoppedException
-	 */
-	double[] performRegression(ExampleSet exampleSet, Attribute[] usedAttributes, Attribute label, double[] means,
+    /**
+     * Calculate a linear regression only from the used attributes. The method returns the
+     * calculated coefficients.
+     *
+     * @param exampleSet     the example set
+     * @param usedAttributes the used attributes
+     * @param label          the label
+     * @param means          means of the usedAttributes with same indices
+     * @param labelMean      the label mean
+     * @param ridge          the ridge
+     * @param useBias        the use bias
+     * @return the double [ ]
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    double[] performRegression(ExampleSet exampleSet, Attribute[] usedAttributes, Attribute label, double[] means,
 			double labelMean, double ridge, boolean useBias) throws UndefinedParameterError, ProcessStoppedException {
 
 		Matrix independent = null;

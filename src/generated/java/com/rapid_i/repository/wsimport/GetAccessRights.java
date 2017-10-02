@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for getAccessRights complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="getAccessRights">
  *   &lt;complexContent>
@@ -39,8 +39,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getAccessRights", propOrder = {
@@ -48,15 +46,15 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetAccessRights {
 
+    /**
+     * The Entry location.
+     */
     protected String entryLocation;
 
     /**
      * Gets the value of the entryLocation property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getEntryLocation() {
         return entryLocation;
@@ -64,11 +62,8 @@ public class GetAccessRights {
 
     /**
      * Sets the value of the entryLocation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setEntryLocation(String value) {
         this.entryLocation = value;

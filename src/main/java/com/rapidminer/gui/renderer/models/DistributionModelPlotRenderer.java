@@ -70,20 +70,40 @@ import com.rapidminer.report.Reportable;
  */
 public class DistributionModelPlotRenderer extends AbstractRenderer {
 
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	public static final String PARAMETER_ROTATE_LABELS = "rotate_labels";
+    /**
+     * The constant PARAMETER_ROTATE_LABELS.
+     */
+    public static final String PARAMETER_ROTATE_LABELS = "rotate_labels";
 
-	public static final String PARAMETER_RANGE = "range_";
-	public static final String PARAMETER_RANGE_MIN = "range_min";
-	public static final String PARAMETER_RANGE_MAX = "range_max";
+    /**
+     * The constant PARAMETER_RANGE.
+     */
+    public static final String PARAMETER_RANGE = "range_";
+    /**
+     * The constant PARAMETER_RANGE_MIN.
+     */
+    public static final String PARAMETER_RANGE_MIN = "range_min";
+    /**
+     * The constant PARAMETER_RANGE_MAX.
+     */
+    public static final String PARAMETER_RANGE_MAX = "range_max";
 
 	private static final class DistributionModelPlotVisualizer extends AbstractPrintableIOObjectPanel {
 
 		private static final long serialVersionUID = 1L;
 		private JComponent plotterComponent;
 
-		public DistributionModelPlotVisualizer(DistributionModel distributionModel) {
+        /**
+         * Instantiates a new Distribution model plot visualizer.
+         *
+         * @param distributionModel the distribution model
+         */
+        public DistributionModelPlotVisualizer(DistributionModel distributionModel) {
 			super(distributionModel, "plot_view");
 			setLayout(new BorderLayout());
 			DataTable table = new SimpleDataTable("Dummy", distributionModel.getAttributeNames());

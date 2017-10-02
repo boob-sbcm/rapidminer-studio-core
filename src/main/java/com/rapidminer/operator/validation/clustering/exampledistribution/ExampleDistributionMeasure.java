@@ -20,12 +20,18 @@ package com.rapidminer.operator.validation.clustering.exampledistribution;
 
 /**
  * Evaluates how well items are distributed over a set of classes.
- * 
+ *
  * @author Michael Wurst
- * 
  */
 public interface ExampleDistributionMeasure {
 
-	public double evaluate(int[] x, int n);
+    /**
+     * Evaluate double.
+     *
+     * @param x the x
+     * @param n the n
+     * @return the double
+     */
+    public double evaluate(int[] x, int n);
 
 }

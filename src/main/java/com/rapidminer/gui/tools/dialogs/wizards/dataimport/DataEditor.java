@@ -37,6 +37,8 @@ import javax.swing.table.TableCellEditor;
 
 
 /**
+ * The type Data editor.
+ *
  * @author Tobias Malbrecht
  */
 public class DataEditor extends ExtendedJTable {
@@ -53,7 +55,12 @@ public class DataEditor extends ExtendedJTable {
 
 		private static final long serialVersionUID = 7954919612214223430L;
 
-		@SuppressWarnings("unchecked")
+        /**
+         * Instantiates a new Value type cell editor.
+         *
+         * @param valueType the value type
+         */
+        @SuppressWarnings("unchecked")
 		public ValueTypeCellEditor(final int valueType) {
 			super(new JComboBox<String>());
 			ComboBoxModel<String> model = new DefaultComboBoxModel<String>() {
@@ -206,7 +213,10 @@ public class DataEditor extends ExtendedJTable {
 
 	private ValueTypeCellEditor[] valueTypeCellEditors = null;
 
-	public DataEditor() {
+    /**
+     * Instantiates a new Data editor.
+     */
+    public DataEditor() {
 		super(null, false, false, false, false, false);
 		setModel(model);
 		setDefaultRenderer(String.class, cellRenderer);
@@ -215,18 +225,35 @@ public class DataEditor extends ExtendedJTable {
 		setCellSelectionEnabled(false);
 	}
 
-	public DataEditor(boolean showValueTypes) {
+    /**
+     * Instantiates a new Data editor.
+     *
+     * @param showValueTypes the show value types
+     */
+    public DataEditor(boolean showValueTypes) {
 		this();
 		this.showValueTypes = showValueTypes;
 	}
 
-	public DataEditor(boolean showValueTypes, boolean editValueTypes) {
+    /**
+     * Instantiates a new Data editor.
+     *
+     * @param showValueTypes the show value types
+     * @param editValueTypes the edit value types
+     */
+    public DataEditor(boolean showValueTypes, boolean editValueTypes) {
 		this();
 		this.showValueTypes = true;
 		this.editValueTypes = editValueTypes;
 	}
 
-	public void setData(ExampleSetMetaData metaData, List<Object[]> data) {
+    /**
+     * Sets data.
+     *
+     * @param metaData the meta data
+     * @param data     the data
+     */
+    public void setData(ExampleSetMetaData metaData, List<Object[]> data) {
 		valueTypeCellEditors = new ValueTypeCellEditor[metaData.getAllAttributes().size()];
 		int i = 0;
 		for (AttributeMetaData amd : metaData.getAllAttributes()) {

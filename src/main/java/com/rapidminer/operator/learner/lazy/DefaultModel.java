@@ -45,16 +45,25 @@ public class DefaultModel extends PredictionModel {
 	/** The confidence values for all predictions. */
 	private double[] confidences;
 
-	/** Can be used to create a default model for regression tasks. */
-	public DefaultModel(ExampleSet exampleSet, double value) {
+    /**
+     * Can be used to create a default model for regression tasks.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     * @param value      the value
+     */
+    public DefaultModel(ExampleSet exampleSet, double value) {
 		this(exampleSet, value, null);
 	}
 
-	/**
-	 * Can be used to create a default model for classification tasks (confidence values should not
-	 * be null in this case).
-	 */
-	public DefaultModel(ExampleSet exampleSet, double value, double[] confidences) {
+    /**
+     * Can be used to create a default model for classification tasks (confidence values should not
+     * be null in this case).
+     *
+     * @param exampleSet  the example set
+     * @param value       the value
+     * @param confidences the confidences
+     */
+    public DefaultModel(ExampleSet exampleSet, double value, double[] confidences) {
 		super(exampleSet, null, null);
 		this.value = value;
 		this.confidences = confidences;
@@ -90,11 +99,21 @@ public class DefaultModel extends PredictionModel {
 				+ (getLabel().isNominal() ? getLabel().getMapping().mapIndex((int) value) : value + "");
 	}
 
-	public double getValue() {
+    /**
+     * Gets value.
+     *
+     * @return the value
+     */
+    public double getValue() {
 		return value;
 	}
 
-	public double[] getConfidences() {
+    /**
+     * Get confidences double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getConfidences() {
 		return confidences;
 	}
 }

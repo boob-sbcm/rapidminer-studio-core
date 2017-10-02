@@ -23,9 +23,8 @@ import com.rapidminer.gui.properties.tablepanel.TablePanel;
 
 /**
  * Indicates a textfield cell for time values for the {@link TablePanel}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface CellTypeTextFieldTime extends CellType {
 }

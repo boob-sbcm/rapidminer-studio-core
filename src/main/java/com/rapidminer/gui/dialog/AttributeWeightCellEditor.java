@@ -39,7 +39,7 @@ import javax.swing.JTextField;
  * Editor for attribute weights. A text field for numeric values and three buttons. The first button
  * sets the weight to zero, the second button to 1, and the third resets the value to the old
  * weight. This editor is used by an {@link AttributeWeightsTableModel}.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class AttributeWeightCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {
@@ -52,7 +52,12 @@ public class AttributeWeightCellEditor extends AbstractCellEditor implements Pro
 
 	private GridBagLayout gridBagLayout = new GridBagLayout();
 
-	public AttributeWeightCellEditor(double oldValue) {
+    /**
+     * Instantiates a new Attribute weight cell editor.
+     *
+     * @param oldValue the old value
+     */
+    public AttributeWeightCellEditor(double oldValue) {
 		super();
 		panel.setLayout(gridBagLayout);
 		panel.setToolTipText("The weight for this attribute.");
@@ -73,7 +78,14 @@ public class AttributeWeightCellEditor extends AbstractCellEditor implements Pro
 	@Override
 	public void setOperator(Operator operator) {}
 
-	protected JButton createValueButton(String name, final String newValue) {
+    /**
+     * Create value button j button.
+     *
+     * @param name     the name
+     * @param newValue the new value
+     * @return the j button
+     */
+    protected JButton createValueButton(String name, final String newValue) {
 		JButton button = new JButton(name);
 		button.setMargin(new Insets(0, 0, 0, 0));
 		button.addActionListener(new ActionListener() {
@@ -88,7 +100,13 @@ public class AttributeWeightCellEditor extends AbstractCellEditor implements Pro
 		return button;
 	}
 
-	protected void addButton(JButton button, int gridwidth) {
+    /**
+     * Add button.
+     *
+     * @param button    the button
+     * @param gridwidth the gridwidth
+     */
+    protected void addButton(JButton button, int gridwidth) {
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridwidth = gridwidth;
 		c.weightx = 0;

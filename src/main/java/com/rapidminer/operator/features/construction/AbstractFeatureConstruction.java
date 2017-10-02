@@ -27,12 +27,17 @@ import com.rapidminer.parameter.UndefinedParameterError;
 
 /**
  * Abstract superclass of all feature processing operators who generate new features.
- * 
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractFeatureConstruction extends AbstractFeatureProcessing {
 
-	public AbstractFeatureConstruction(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract feature construction.
+     *
+     * @param description the description
+     */
+    public AbstractFeatureConstruction(OperatorDescription description) {
 		super(description);
 	}
 

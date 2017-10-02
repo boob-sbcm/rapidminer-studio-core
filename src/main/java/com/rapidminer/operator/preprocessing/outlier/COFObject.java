@@ -29,149 +29,207 @@ import java.util.PriorityQueue;
  * set in the core of the class outlier operators. Such an object is able to store all relevant
  * values, coordinates, dimensions, etc. for an object (e.g. from an Example from a RapidMiner
  * ExampleSet) as well as perform various operations, such as computeCOF, and ComputeDistance
- * 
+ *
  * @author Motaz K. Saad
  */
 public class COFObject implements Comparable<COFObject> {
 
-	double[] values;
-	double cof;
-	int id;
-	double pcl;
-	double deviation;
-	double kDist;
-	double label;
+    /**
+     * The Values.
+     */
+    double[] values;
+    /**
+     * The Cof.
+     */
+    double cof;
+    /**
+     * The Id.
+     */
+    int id;
+    /**
+     * The Pcl.
+     */
+    double pcl;
+    /**
+     * The Deviation.
+     */
+    double deviation;
+    /**
+     * The K dist.
+     */
+    double kDist;
+    /**
+     * The Label.
+     */
+    double label;
 
-	public COFObject() {
+    /**
+     * Instantiates a new Cof object.
+     */
+    public COFObject() {
 		this.cof = Double.POSITIVE_INFINITY;
 		this.id = -1;
 	}
 
-	public COFObject(double[] vals, double label, double cof, int id) {
+    /**
+     * Instantiates a new Cof object.
+     *
+     * @param vals  the vals
+     * @param label the label
+     * @param cof   the cof
+     * @param id    the id
+     */
+    public COFObject(double[] vals, double label, double cof, int id) {
 		this.cof = cof;
 		this.id = id;
 		this.values = vals;
 		this.label = label;
 	}
 
-	/**
-	 * @return the values
-	 */
-	public double[] getValues() {
+    /**
+     * Get values double [ ].
+     *
+     * @return the values
+     */
+    public double[] getValues() {
 		return values;
 	}
 
-	/**
-	 * @param values
-	 *            the values to set
-	 */
-	public void setValues(double[] values) {
+    /**
+     * Sets values.
+     *
+     * @param values the values to set
+     */
+    public void setValues(double[] values) {
 		this.values = values;
 	}
 
-	/**
-	 * @return the value[dim]
-	 */
-	public double getValMember(int dim) {
+    /**
+     * Gets val member.
+     *
+     * @param dim the dim
+     * @return the value[dim]
+     */
+    public double getValMember(int dim) {
 		return this.values[dim];
 	}
 
-	/**
-	 * Provides the (integer) number of dimensions of the Object. Remark: some methods actually use
-	 * the this.dimensions reference which is used by this, but this method would be able to provide
-	 * the dimensions externally.
-	 */
-	public int getDimensions() {
+    /**
+     * Provides the (integer) number of dimensions of the Object. Remark: some methods actually use
+     * the this.dimensions reference which is used by this, but this method would be able to provide
+     * the dimensions externally.
+     *
+     * @return the dimensions
+     */
+    public int getDimensions() {
 		return (this.values.length);
 	}
 
-	/**
-	 * @return the cof
-	 */
-	public double getCOF() {
+    /**
+     * Gets cof.
+     *
+     * @return the cof
+     */
+    public double getCOF() {
 		return cof;
 	}
 
-	/**
-	 * @param cof
-	 *            the cof to set
-	 */
-	public void setCOF(double cof) {
+    /**
+     * Sets cof.
+     *
+     * @param cof the cof to set
+     */
+    public void setCOF(double cof) {
 		this.cof = cof;
 	}
 
-	/**
-	 * @return the id
-	 */
-	public int getId() {
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
 		return id;
 	}
 
-	/**
-	 * @param id
-	 *            the this.id to set
-	 */
-	public void setId(int id) {
+    /**
+     * Sets id.
+     *
+     * @param id the this.id to set
+     */
+    public void setId(int id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return the deviation
-	 */
-	public double getDeviation() {
+    /**
+     * Gets deviation.
+     *
+     * @return the deviation
+     */
+    public double getDeviation() {
 		return deviation;
 	}
 
-	/**
-	 * @param deviation
-	 *            the deviation to set
-	 */
-	public void setDeviation(double deviation) {
+    /**
+     * Sets deviation.
+     *
+     * @param deviation the deviation to set
+     */
+    public void setDeviation(double deviation) {
 		this.deviation = deviation;
 	}
 
-	/**
-	 * @return the kDist
-	 */
-	public double getKDist() {
+    /**
+     * Gets k dist.
+     *
+     * @return the kDist
+     */
+    public double getKDist() {
 		return kDist;
 	}
 
-	/**
-	 * @param dist
-	 *            the kDist to set
-	 */
-	public void setKDist(double dist) {
+    /**
+     * Sets k dist.
+     *
+     * @param dist the kDist to set
+     */
+    public void setKDist(double dist) {
 		kDist = dist;
 	}
 
-	/**
-	 * @return the label
-	 */
-	public double getLabel() {
+    /**
+     * Gets label.
+     *
+     * @return the label
+     */
+    public double getLabel() {
 		return label;
 	}
 
-	/**
-	 * @param label
-	 *            the label to set
-	 */
-	public void setLabel(double label) {
+    /**
+     * Sets label.
+     *
+     * @param label the label to set
+     */
+    public void setLabel(double label) {
 		this.label = label;
 	}
 
-	/**
-	 * @return the pcl
-	 */
-	public double getPcl() {
+    /**
+     * Gets pcl.
+     *
+     * @return the pcl
+     */
+    public double getPcl() {
 		return pcl;
 	}
 
-	/**
-	 * @param pcl
-	 *            the pcl to set
-	 */
-	public void setPcl(double pcl) {
+    /**
+     * Sets pcl.
+     *
+     * @param pcl the pcl to set
+     */
+    public void setPcl(double pcl) {
 		this.pcl = pcl;
 	}
 
@@ -188,11 +246,26 @@ public class COFObject implements Comparable<COFObject> {
 		}
 	}
 
-	public void recomputeCOF(double minDev, double maxDev, double minkDist, double maxkDist) {
+    /**
+     * Recompute cof.
+     *
+     * @param minDev   the min dev
+     * @param maxDev   the max dev
+     * @param minkDist the mink dist
+     * @param maxkDist the maxk dist
+     */
+    public void recomputeCOF(double minDev, double maxDev, double minkDist, double maxkDist) {
 		cof = pcl - ((deviation - minDev) / (maxDev - minDev)) + ((kDist - minkDist) / (maxkDist - minkDist));
 	}
 
-	public void computeCOF(ArrayList<COFObject> cofobjectList, int k, DistanceMeasure measure) {
+    /**
+     * Compute cof.
+     *
+     * @param cofobjectList the cofobject list
+     * @param k             the k
+     * @param measure       the measure
+     */
+    public void computeCOF(ArrayList<COFObject> cofobjectList, int k, DistanceMeasure measure) {
 
 		// define a list of knn for each cof object
 		PriorityQueue<COFKnn> knnList = new PriorityQueue<COFKnn>();

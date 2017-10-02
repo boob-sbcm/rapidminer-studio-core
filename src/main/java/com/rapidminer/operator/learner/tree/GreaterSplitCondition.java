@@ -36,7 +36,13 @@ public class GreaterSplitCondition extends AbstractSplitCondition {
 	private double value;
 	private final int attValueType;
 
-	public GreaterSplitCondition(Attribute attribute, double value) {
+    /**
+     * Instantiates a new Greater split condition.
+     *
+     * @param attribute the attribute
+     * @param value     the value
+     */
+    public GreaterSplitCondition(Attribute attribute, double value) {
 		super(attribute.getName());
 		this.value = value;
 		this.attValueType = attribute.getValueType();
@@ -52,7 +58,12 @@ public class GreaterSplitCondition extends AbstractSplitCondition {
 		return ">";
 	}
 
-	public double getValue() {
+    /**
+     * Gets value.
+     *
+     * @return the value
+     */
+    public double getValue() {
 		return value;
 	}
 

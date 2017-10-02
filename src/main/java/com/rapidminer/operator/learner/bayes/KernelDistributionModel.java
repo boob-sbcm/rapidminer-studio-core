@@ -38,10 +38,10 @@ import com.rapidminer.tools.math.distribution.kernel.KernelDistribution;
 /**
  * KernelDistributionModel is a model for learners which estimate distributions of attribute values
  * from example sets like NaiveBayes.
- *
+ * <p>
  * Predictions are calculated as product of the conditional probabilities for all attributes times
  * the class probability.
- *
+ * <p>
  * The basic learning concept is to simply count occurrences of classes and attribute values. This
  * means no probabilities are calculated during the learning step. This is only done before output.
  * Optionally, this calculation can apply a Laplace correction which means in particular that zero
@@ -113,10 +113,10 @@ public class KernelDistributionModel extends DistributionModel {
 	 */
 	private KernelDistribution[][] kernelDistributions;
 
-	/**
-	 * Captures if laplace correction should be applied when calculating probabilities.
-	 */
-	boolean laplaceCorrectionEnabled;
+    /**
+     * Captures if laplace correction should be applied when calculating probabilities.
+     */
+    boolean laplaceCorrectionEnabled;
 
 	/**
 	 * Indicates if the model has recently been updated and the actual probabilities have to be
@@ -130,7 +130,18 @@ public class KernelDistributionModel extends DistributionModel {
 
 	private int gridSize = 200;
 
-	public KernelDistributionModel(ExampleSet exampleSet, boolean laplaceCorrectionEnabled, int estimationMode,
+    /**
+     * Instantiates a new Kernel distribution model.
+     *
+     * @param exampleSet               the example set
+     * @param laplaceCorrectionEnabled the laplace correction enabled
+     * @param estimationMode           the estimation mode
+     * @param bandwidthSelectionMode   the bandwidth selection mode
+     * @param bandwidth                the bandwidth
+     * @param numberOfKernels          the number of kernels
+     * @param gridSize                 the grid size
+     */
+    public KernelDistributionModel(ExampleSet exampleSet, boolean laplaceCorrectionEnabled, int estimationMode,
 			int bandwidthSelectionMode, double bandwidth, int numberOfKernels, int gridSize) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
@@ -406,11 +417,21 @@ public class KernelDistributionModel extends DistributionModel {
 		return exampleSet;
 	}
 
-	public void setLaplaceCorrectionEnabled(boolean laplaceCorrectionEnabled) {
+    /**
+     * Sets laplace correction enabled.
+     *
+     * @param laplaceCorrectionEnabled the laplace correction enabled
+     */
+    public void setLaplaceCorrectionEnabled(boolean laplaceCorrectionEnabled) {
 		this.laplaceCorrectionEnabled = laplaceCorrectionEnabled;
 	}
 
-	public boolean getLaplaceCorrectionEnabled() {
+    /**
+     * Gets laplace correction enabled.
+     *
+     * @return the laplace correction enabled
+     */
+    public boolean getLaplaceCorrectionEnabled() {
 		return laplaceCorrectionEnabled;
 	}
 

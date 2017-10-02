@@ -41,7 +41,7 @@ import com.rapidminer.tools.I18N;
  * A {@link CompositeToggleButton} that can be used to display {@link Action}s in a
  * {@link JPopupMenu}. The button itself will only be selected if one of the defined
  * {@link JMenuItem}s items will be selected.
- *
+ * <p>
  * Whether the {@code CompositeButton} is the left-most, a center, or the right-most element of the
  * composition can be specified in the constructors via the Swing constants
  * {@link SwingConstants#LEFT}, {@link SwingConstants#CENTER}, and {@link SwingConstants#RIGHT}
@@ -57,28 +57,37 @@ class CompositeMenuToggleButton extends CompositeToggleButton {
 	private static final String DOWN_ARROW_ADDER = "<html>%s<span style=\"color: 4F4F4F;\">" + Ionicon.ARROW_DOWN_B.getHtml()
 			+ "</span></html>";
 
-	protected int arrowSize;
+    /**
+     * The Arrow size.
+     */
+    protected int arrowSize;
 
-	protected String text;
+    /**
+     * The Text.
+     */
+    protected String text;
 
-	protected final JPopupMenu popupMenu;
+    /**
+     * The Popup menu.
+     */
+    protected final JPopupMenu popupMenu;
 
-	protected final ButtonGroup popupMenuGroup = new ButtonGroup();
+    /**
+     * The Popup menu group.
+     */
+    protected final ButtonGroup popupMenuGroup = new ButtonGroup();
 
 	/** Remember the last time the popup was closed. */
 	private long lastPopupCloseTime = 0;
 
-	/**
-	 * Creates a new {@code CompositeMenuToggleButton} with the given {@link Action} to be used at
-	 * the given position.
-	 *
-	 * @param action
-	 *            the button action
-	 * @param position
-	 *            the position in the composite element ({@link SwingConstants#LEFT},
-	 *            {@link SwingConstants#CENTER}, or {@link SwingConstants#RIGHT})
-	 */
-	public CompositeMenuToggleButton(int position, Action... actions) {
+    /**
+     * Creates a new {@code CompositeMenuToggleButton} with the given {@link Action} to be used at
+     * the given position.
+     *
+     * @param position the position in the composite element ({@link SwingConstants#LEFT},            {@link SwingConstants#CENTER}, or {@link SwingConstants#RIGHT})
+     * @param actions  the actions
+     */
+    public CompositeMenuToggleButton(int position, Action... actions) {
 		super(I18N.getGUILabel("workspace_more"), position);
 		popupMenu = new JPopupMenu();
 		addActions(actions);
@@ -114,13 +123,12 @@ class CompositeMenuToggleButton extends CompositeToggleButton {
 		});
 	}
 
-	/**
-	 * Adds the given {@link Action}s to the {@link #popupMenu}.
-	 *
-	 * @param actions
-	 *            the actions which should be added to the menu
-	 */
-	public void addActions(Action... actions) {
+    /**
+     * Adds the given {@link Action}s to the {@link #popupMenu}.
+     *
+     * @param actions the actions which should be added to the menu
+     */
+    public void addActions(Action... actions) {
 		for (Action action : actions) {
 			JRadioButtonMenuItem item = new JRadioButtonMenuItem(action);
 
@@ -136,38 +144,37 @@ class CompositeMenuToggleButton extends CompositeToggleButton {
 		}
 	}
 
-	/**
-	 * Updates the selection status of the toggle button in regard to the menu selection.
-	 */
-	protected void updateSelectionStatus() {
+    /**
+     * Updates the selection status of the toggle button in regard to the menu selection.
+     */
+    protected void updateSelectionStatus() {
 		setSelected(isPopupMenuItemSelected());
 	}
 
-	/**
-	 * Clears the selection of the button and also the toggle button.
-	 */
-	protected void clearMenuSelection() {
+    /**
+     * Clears the selection of the button and also the toggle button.
+     */
+    protected void clearMenuSelection() {
 		popupMenuGroup.clearSelection();
 		updateSelectionStatus();
 	}
 
-	/**
-	 * Getter for the selection state of the menu.
-	 *
-	 * @return {@code true} if an item of the menu is selected otherwise {@code false}
-	 */
-	public boolean isPopupMenuItemSelected() {
+    /**
+     * Getter for the selection state of the menu.
+     *
+     * @return {@code true} if an item of the menu is selected otherwise {@code false}
+     */
+    public boolean isPopupMenuItemSelected() {
 		return popupMenuGroup.getSelection() != null;
 	}
 
-	/**
-	 * Selects the given action in the menu. This methods also updates the selection status of the
-	 * toggle button.
-	 *
-	 * @param action
-	 *            the action which should be selected
-	 */
-	public void setSelected(Action action) {
+    /**
+     * Selects the given action in the menu. This methods also updates the selection status of the
+     * toggle button.
+     *
+     * @param action the action which should be selected
+     */
+    public void setSelected(Action action) {
 		Enumeration<AbstractButton> menuEnum = popupMenuGroup.getElements();
 		boolean found = false;
 		while (menuEnum.hasMoreElements()) {

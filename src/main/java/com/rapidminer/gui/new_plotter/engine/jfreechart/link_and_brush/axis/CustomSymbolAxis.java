@@ -24,15 +24,20 @@ import org.jfree.data.Range;
 
 /**
  * Wrapper class for {@link SymbolAxis} that overrides the resizing behaviour.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class CustomSymbolAxis extends SymbolAxis implements LinkAndBrushAxis {
 
 	private static final long serialVersionUID = 1L;
 
-	public CustomSymbolAxis(String label, String[] sv) {
+    /**
+     * Instantiates a new Custom symbol axis.
+     *
+     * @param label the label
+     * @param sv    the sv
+     */
+    public CustomSymbolAxis(String label, String[] sv) {
 		super(label, sv);
 	}
 

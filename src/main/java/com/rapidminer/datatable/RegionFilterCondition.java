@@ -27,21 +27,31 @@ import java.util.Map.Entry;
 
 /**
  * This FilterCondition is a multidimensional equivalent to the RangeFilterCondition.
- * 
+ *
  * @author Sebastian Land
  */
 public class RegionFilterCondition implements DataTableFilterCondition {
 
-	public static final class Region {
+    /**
+     * The type Region.
+     */
+    public static final class Region {
 
-		Map<Integer, Range> delimiters = new LinkedHashMap<Integer, Range>();
+        /**
+         * The Delimiters.
+         */
+        Map<Integer, Range> delimiters = new LinkedHashMap<Integer, Range>();
 
-		/**
-		 * This method will return true if this region is restricted by adding the given range in
-		 * the given dimension. If it remains unchanged, because the range covers this region
-		 * completely, this method will return false;
-		 */
-		public boolean addRestrictingRange(int dimension, Range range) {
+        /**
+         * This method will return true if this region is restricted by adding the given range in
+         * the given dimension. If it remains unchanged, because the range covers this region
+         * completely, this method will return false;
+         *
+         * @param dimension the dimension
+         * @param range     the range
+         * @return the boolean
+         */
+        public boolean addRestrictingRange(int dimension, Range range) {
 			Range existing = delimiters.get(dimension);
 			if (existing == null) {
 				delimiters.put(dimension, range);
@@ -55,7 +65,13 @@ public class RegionFilterCondition implements DataTableFilterCondition {
 			return false;
 		}
 
-		public boolean containsRow(DataTableRow row) {
+        /**
+         * Contains row boolean.
+         *
+         * @param row the row
+         * @return the boolean
+         */
+        public boolean containsRow(DataTableRow row) {
 			for (Entry<Integer, Range> pair : delimiters.entrySet()) {
 				if (!pair.getValue().contains(row.getValue(pair.getKey()))) {
 					return false;
@@ -83,7 +99,12 @@ public class RegionFilterCondition implements DataTableFilterCondition {
 
 	private Region region;
 
-	public RegionFilterCondition(Region region) {
+    /**
+     * Instantiates a new Region filter condition.
+     *
+     * @param region the region
+     */
+    public RegionFilterCondition(Region region) {
 		this.region = region;
 	}
 
@@ -92,11 +113,13 @@ public class RegionFilterCondition implements DataTableFilterCondition {
 		return region.containsRow(row);
 	}
 
-	/**
-	 * This returns a region object, which stores all ranged in all dimensions. They might be
-	 * successively added by calling the addRange method.
-	 */
-	public static final Region createRegion() {
+    /**
+     * This returns a region object, which stores all ranged in all dimensions. They might be
+     * successively added by calling the addRange method.
+     *
+     * @return the region
+     */
+    public static final Region createRegion() {
 		return new Region();
 	}
 }

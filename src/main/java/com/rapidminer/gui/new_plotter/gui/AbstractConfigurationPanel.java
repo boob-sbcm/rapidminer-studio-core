@@ -47,14 +47,24 @@ import javax.swing.SwingConstants;
 
 
 /**
+ * The type Abstract configuration panel.
+ *
  * @author Nils Woehler
- * 
  */
 public abstract class AbstractConfigurationPanel extends JPanel implements PlotConfigurationListener,
 		PlotInstanceChangedListener {
 
-	public enum DatasetTransformationType {
-		ORIGINAL, DE_PIVOTED
+    /**
+     * The enum Dataset transformation type.
+     */
+    public enum DatasetTransformationType {
+        /**
+         * Original dataset transformation type.
+         */
+        ORIGINAL, /**
+         * De pivoted dataset transformation type.
+         */
+        DE_PIVOTED
 	}
 
 	private transient List<PlotInstanceChangedListener> plotInstanceChangeListener = new LinkedList<>();
@@ -69,28 +79,55 @@ public abstract class AbstractConfigurationPanel extends JPanel implements PlotC
 
 	private DatasetTransformationType currentType = DatasetTransformationType.ORIGINAL;
 
-	public AbstractConfigurationPanel(PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Abstract configuration panel.
+     *
+     * @param plotInstance the plot instance
+     */
+    public AbstractConfigurationPanel(PlotInstance plotInstance) {
 		this.setLayout(new GridBagLayout());
 		typeToInstanceMap.put(DatasetTransformationType.ORIGINAL, plotInstance);
 	}
 
-	protected void registerAsPlotConfigurationListener() {
+    /**
+     * Register as plot configuration listener.
+     */
+    protected void registerAsPlotConfigurationListener() {
 		getCurrentPlotInstance().getMasterPlotConfiguration().addPlotConfigurationListener(this);
 	}
 
-	protected void unregisterAsPlotConfigurationListener() {
+    /**
+     * Unregister as plot configuration listener.
+     */
+    protected void unregisterAsPlotConfigurationListener() {
 		getCurrentPlotInstance().getMasterPlotConfiguration().removePlotConfigurationListener(this);
 	}
 
-	protected PlotConfiguration getPlotConfiguration() {
+    /**
+     * Gets plot configuration.
+     *
+     * @return the plot configuration
+     */
+    protected PlotConfiguration getPlotConfiguration() {
 		return getPlotInstance(currentType).getMasterPlotConfiguration();
 	}
 
-	protected PlotInstance getCurrentPlotInstance() {
+    /**
+     * Gets current plot instance.
+     *
+     * @return the current plot instance
+     */
+    protected PlotInstance getCurrentPlotInstance() {
 		return typeToInstanceMap.get(currentType);
 	}
 
-	protected void setPlotInstance(PlotInstance instance, DatasetTransformationType type) {
+    /**
+     * Sets plot instance.
+     *
+     * @param instance the instance
+     * @param type     the type
+     */
+    protected void setPlotInstance(PlotInstance instance, DatasetTransformationType type) {
 		PlotInstance oldPlotInstance = getCurrentPlotInstance();
 		this.typeToInstanceMap.put(type, instance);
 		this.currentType = type;
@@ -99,19 +136,41 @@ public abstract class AbstractConfigurationPanel extends JPanel implements PlotC
 		}
 	}
 
-	protected DatasetTransformationType getCurrentTranformationType() {
+    /**
+     * Gets current tranformation type.
+     *
+     * @return the current tranformation type
+     */
+    protected DatasetTransformationType getCurrentTranformationType() {
 		return currentType;
 	}
 
-	protected void addPlotInstanceChangeListener(PlotInstanceChangedListener l) {
+    /**
+     * Add plot instance change listener.
+     *
+     * @param l the l
+     */
+    protected void addPlotInstanceChangeListener(PlotInstanceChangedListener l) {
 		plotInstanceChangeListener.add(l);
 	}
 
-	protected void removePlotInstanceChangeListener(PlotInstanceChangedListener l) {
+    /**
+     * Remove plot instance change listener.
+     *
+     * @param l the l
+     */
+    protected void removePlotInstanceChangeListener(PlotInstanceChangedListener l) {
 		plotInstanceChangeListener.remove(l);
 	}
 
-	protected void informPlotInstanceChangeListener(PlotInstance oldPlotInstance, PlotInstance newPlotInstance,
+    /**
+     * Inform plot instance change listener.
+     *
+     * @param oldPlotInstance the old plot instance
+     * @param newPlotInstance the new plot instance
+     * @param newType         the new type
+     */
+    protected void informPlotInstanceChangeListener(PlotInstance oldPlotInstance, PlotInstance newPlotInstance,
 			DatasetTransformationType newType) {
 		for (PlotInstanceChangedListener l : plotInstanceChangeListener) {
 			l.plotInstanceChanged(oldPlotInstance, newPlotInstance, newType);
@@ -127,11 +186,24 @@ public abstract class AbstractConfigurationPanel extends JPanel implements PlotC
 		adaptGUI();
 	}
 
-	protected PlotInstance getPlotInstance(DatasetTransformationType type) {
+    /**
+     * Gets plot instance.
+     *
+     * @param type the type
+     * @return the plot instance
+     */
+    protected PlotInstance getPlotInstance(DatasetTransformationType type) {
 		return typeToInstanceMap.get(type);
 	}
 
-	protected void addTwoComponentRow(JPanel addTarget, JComponent first, JComponent second) {
+    /**
+     * Add two component row.
+     *
+     * @param addTarget the add target
+     * @param first     the first
+     * @param second    the second
+     */
+    protected void addTwoComponentRow(JPanel addTarget, JComponent first, JComponent second) {
 		if (!(addTarget.getLayout() instanceof GridBagLayout)) {
 			throw new RuntimeException("JPanel with GridBagLayout is mandatory!");
 		}
@@ -155,11 +227,24 @@ public abstract class AbstractConfigurationPanel extends JPanel implements PlotC
 		addTarget.add(second, itemConstraint);
 	}
 
-	protected Insets getStandardInsets() {
+    /**
+     * Gets standard insets.
+     *
+     * @return the standard insets
+     */
+    protected Insets getStandardInsets() {
 		return standardInset;
 	}
 
-	protected void addThreeComponentRow(JPanel addTarget, JLabel label, JComponent second, JComponent third) {
+    /**
+     * Add three component row.
+     *
+     * @param addTarget the add target
+     * @param label     the label
+     * @param second    the second
+     * @param third     the third
+     */
+    protected void addThreeComponentRow(JPanel addTarget, JLabel label, JComponent second, JComponent third) {
 		if (!(addTarget.getLayout() instanceof GridBagLayout)) {
 			throw new RuntimeException("JPanel with GridBagLayout is mandatory!");
 		}
@@ -194,7 +279,12 @@ public abstract class AbstractConfigurationPanel extends JPanel implements PlotC
 		addTarget.add(third, itemConstraint);
 	}
 
-	protected void addSeperatorToPanel(JPanel addTarget) {
+    /**
+     * Add seperator to panel.
+     *
+     * @param addTarget the add target
+     */
+    protected void addSeperatorToPanel(JPanel addTarget) {
 		if (!(addTarget.getLayout() instanceof GridBagLayout)) {
 			throw new RuntimeException("JPanel with GridBagLayout is mandatory!");
 		}
@@ -211,7 +301,13 @@ public abstract class AbstractConfigurationPanel extends JPanel implements PlotC
 		addTarget.add(separator, itemConstraint);
 	}
 
-	protected Icon createColoredRectangleIcon(Color color) {
+    /**
+     * Create colored rectangle icon icon.
+     *
+     * @param color the color
+     * @return the icon
+     */
+    protected Icon createColoredRectangleIcon(Color color) {
 		// create buffered image for colored icon
 		BufferedImage bufferedImage = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = bufferedImage.createGraphics();
@@ -245,25 +341,39 @@ public abstract class AbstractConfigurationPanel extends JPanel implements PlotC
 	// return new ImageIcon();
 	// }
 
-	public void disableAllComponents() {
+    /**
+     * Disable all components.
+     */
+    public void disableAllComponents() {
 		if (enabled) {
 			SwingTools.setEnabledRecursive(this, false);
 			enabled = false;
 		}
 	}
 
-	public void enableAllComponents() {
+    /**
+     * Enable all components.
+     */
+    public void enableAllComponents() {
 		if (!enabled) {
 			SwingTools.setEnabledRecursive(this, true);
 			enabled = true;
 		}
 	}
 
-	protected void processPlotConfigurationMetaChange(PlotConfigurationChangeEvent change) {
+    /**
+     * Process plot configuration meta change.
+     *
+     * @param change the change
+     */
+    protected void processPlotConfigurationMetaChange(PlotConfigurationChangeEvent change) {
 		for (PlotConfigurationChangeEvent e : change.getPlotConfigChangeEvents()) {
 			plotConfigurationChanged(e);
 		}
 	}
 
-	protected abstract void adaptGUI();
+    /**
+     * Adapt gui.
+     */
+    protected abstract void adaptGUI();
 }

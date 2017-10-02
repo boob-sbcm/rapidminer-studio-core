@@ -44,8 +44,7 @@ import java.util.List;
  * each line corresponds to the value of the data row with respect to the drawn column. Maximal
  * three dimensions can be selected in order to sort the dataset before the data is displayed, in
  * addition another color column can be selected.
- * 
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SurveyPlotter extends PlotterAdapter implements MouseListener {
@@ -116,13 +115,24 @@ public class SurveyPlotter extends PlotterAdapter implements MouseListener {
 
 	private transient ToolTip toolTip = null;
 
-	public SurveyPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Survey plotter.
+     *
+     * @param settings the settings
+     */
+    public SurveyPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 		addMouseListener(this);
 	}
 
-	public SurveyPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Survey plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public SurveyPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -234,7 +244,12 @@ public class SurveyPlotter extends PlotterAdapter implements MouseListener {
 		return new Dimension(getWidth(), this.dataTable.getNumberOfRows() + 3 * MARGIN);
 	}
 
-	public void setToolTip(ToolTip toolTip) {
+    /**
+     * Sets tool tip.
+     *
+     * @param toolTip the tool tip
+     */
+    public void setToolTip(ToolTip toolTip) {
 		this.toolTip = toolTip;
 		repaint();
 	}
@@ -288,7 +303,12 @@ public class SurveyPlotter extends PlotterAdapter implements MouseListener {
 		paintSurveyPlot(g);
 	}
 
-	public void paintSurveyPlot(Graphics graphics) {
+    /**
+     * Paint survey plot.
+     *
+     * @param graphics the graphics
+     */
+    public void paintSurveyPlot(Graphics graphics) {
 		prepareData();
 
 		// legend

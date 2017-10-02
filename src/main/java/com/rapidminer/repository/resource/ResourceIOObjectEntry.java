@@ -35,15 +35,23 @@ import java.io.ObjectInputStream;
 
 
 /**
- * 
+ * The type Resource io object entry.
+ *
  * @author Simon Fischer
- * 
  */
 public class ResourceIOObjectEntry extends ResourceDataEntry implements IOObjectEntry {
 
 	private MetaData metaData;
 
-	protected ResourceIOObjectEntry(ResourceFolder parent, String name, String resource, ResourceRepository repository) {
+    /**
+     * Instantiates a new Resource io object entry.
+     *
+     * @param parent     the parent
+     * @param name       the name
+     * @param resource   the resource
+     * @param repository the repository
+     */
+    protected ResourceIOObjectEntry(ResourceFolder parent, String name, String resource, ResourceRepository repository) {
 		super(parent, name, resource, repository);
 	}
 

@@ -37,7 +37,7 @@ import javax.swing.JTable;
 
 /**
  * Parameter editor for {@link com.rapidminer.parameter.ParameterTypeInnerOperator}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class InnerOperatorValueCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {// ,
@@ -50,7 +50,12 @@ public class InnerOperatorValueCellEditor extends AbstractCellEditor implements 
 
 	private transient OperatorChain parentOperator;
 
-	public InnerOperatorValueCellEditor(ParameterTypeInnerOperator type) {}
+    /**
+     * Instantiates a new Inner operator value cell editor.
+     *
+     * @param type the type
+     */
+    public InnerOperatorValueCellEditor(ParameterTypeInnerOperator type) {}
 
 	@Override
 	public void setOperator(Operator parentOperator) {
@@ -94,7 +99,12 @@ public class InnerOperatorValueCellEditor extends AbstractCellEditor implements 
 		return operatorCombo.getSelectedItem();
 	}
 
-	public void setValue(String valueName) {
+    /**
+     * Sets value.
+     *
+     * @param valueName the value name
+     */
+    public void setValue(String valueName) {
 		if (valueName != null) {
 			operatorCombo.setSelectedItem(valueName);
 		} else {

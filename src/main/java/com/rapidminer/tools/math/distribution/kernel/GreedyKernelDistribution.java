@@ -26,12 +26,15 @@ import java.util.TreeSet;
 /**
  * An updatable estimated kernel density distribution. Update strategy greedily creates and merges
  * kernels and assigns value to these kernels.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class GreedyKernelDistribution extends KernelDistribution {
 
-	public static final long serialVersionUID = -3298190542815818L;
+    /**
+     * The constant serialVersionUID.
+     */
+    public static final long serialVersionUID = -3298190542815818L;
 
 	private static final double DEFAULT_MINIMUM_BANDWIDTH = 0.1;
 
@@ -43,11 +46,20 @@ public class GreedyKernelDistribution extends KernelDistribution {
 
 	private TreeSet<NormalKernel> kernels;
 
-	public GreedyKernelDistribution() {
+    /**
+     * Instantiates a new Greedy kernel distribution.
+     */
+    public GreedyKernelDistribution() {
 		this(DEFAULT_MINIMUM_BANDWIDTH, DEFAULT_NUMBER_OF_KERNELS);
 	}
 
-	public GreedyKernelDistribution(double minBandwidth, int numberOfKernels) {
+    /**
+     * Instantiates a new Greedy kernel distribution.
+     *
+     * @param minBandwidth    the min bandwidth
+     * @param numberOfKernels the number of kernels
+     */
+    public GreedyKernelDistribution(double minBandwidth, int numberOfKernels) {
 		this.numberOfKernels = numberOfKernels;
 		this.minBandwidth = minBandwidth;
 		kernels = new TreeSet<NormalKernel>();

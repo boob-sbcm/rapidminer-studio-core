@@ -79,7 +79,18 @@ public class FastICAModel extends AbstractModel implements ComponentWeightsCreat
 
 	private boolean keepAttributes = false;
 
-	public FastICAModel(ExampleSet exampleSet, int numberOfComponents, double[] means, boolean rowNorm, Matrix kMatrix,
+    /**
+     * Instantiates a new Fast ica model.
+     *
+     * @param exampleSet         the example set
+     * @param numberOfComponents the number of components
+     * @param means              the means
+     * @param rowNorm            the row norm
+     * @param kMatrix            the k matrix
+     * @param wMatrix            the w matrix
+     * @param aMatrix            the a matrix
+     */
+    public FastICAModel(ExampleSet exampleSet, int numberOfComponents, double[] means, boolean rowNorm, Matrix kMatrix,
 			Matrix wMatrix, Matrix aMatrix) {
 		super(exampleSet);
 		this.attributeNames = com.rapidminer.example.Tools.getRegularAttributeNames(exampleSet);
@@ -205,7 +216,12 @@ public class FastICAModel extends AbstractModel implements ComponentWeightsCreat
 		return testSet;
 	}
 
-	public void setNumberOfComponents(int number) {
+    /**
+     * Sets number of components.
+     *
+     * @param number the number
+     */
+    public void setNumberOfComponents(int number) {
 		this.numberOfComponents = number;
 	}
 

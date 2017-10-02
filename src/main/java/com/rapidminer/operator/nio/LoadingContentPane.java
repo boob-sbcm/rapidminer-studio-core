@@ -31,7 +31,7 @@ import javax.swing.JPanel;
 /**
  * This class is a swing component which shows a loading panel when you call initLoading() and is
  * able to switch to the loaded content when you call finishedLoading()
- * 
+ *
  * @author Dominik Halfkann
  */
 public class LoadingContentPane extends JPanel implements ProgressThreadListener {
@@ -40,7 +40,13 @@ public class LoadingContentPane extends JPanel implements ProgressThreadListener
 	private String label;
 	private boolean loading = false;
 
-	public LoadingContentPane(String label, JComponent content) {
+    /**
+     * Instantiates a new Loading content pane.
+     *
+     * @param label   the label
+     * @param content the content
+     */
+    public LoadingContentPane(String label, JComponent content) {
 		this.label = label;
 		setLayout(new CardLayout());
 		add(createDummyPanel());
@@ -53,27 +59,31 @@ public class LoadingContentPane extends JPanel implements ProgressThreadListener
 		return dummy;
 	}
 
-	/** Initializes the LoadingContentPane with a loading screen until loadingFinished() is called. **/
-	public void init() {
+    /**
+     * Initializes the LoadingContentPane with a loading screen until loadingFinished() is called.
+     */
+    public void init() {
 		((CardLayout) (getLayout())).first(this);
 		loading = true;
 	}
 
-	/**
-	 * Initializes the LoadingContentPane with a loading screen and waits for the ProgressThread to
-	 * be finished.
-	 **/
-	public void init(ProgressThread thread) {
+    /**
+     * Initializes the LoadingContentPane with a loading screen and waits for the ProgressThread to
+     * be finished.
+     *
+     * @param thread the thread
+     */
+    public void init(ProgressThread thread) {
 		((CardLayout) (getLayout())).first(this);
 		loading = true;
 		thread.addProgressThreadListener(this);
 	}
 
-	/**
-	 * Tells the LoadingContentPane that the content has finished loading, switches to the actual
-	 * content pane.
-	 **/
-	public void loadingFinished() {
+    /**
+     * Tells the LoadingContentPane that the content has finished loading, switches to the actual
+     * content pane.
+     */
+    public void loadingFinished() {
 		if (loading) {
 			((CardLayout) (getLayout())).last(LoadingContentPane.this);
 			loading = false;

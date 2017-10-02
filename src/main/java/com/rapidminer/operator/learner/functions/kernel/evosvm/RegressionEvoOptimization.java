@@ -40,7 +40,7 @@ import java.util.List;
 /**
  * Evolutionary Strategy approach for SVM optimization. Currently only classification problems are
  * supported.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RegressionEvoOptimization extends ESOptimization implements EvoOptimization {
@@ -63,8 +63,28 @@ public class RegressionEvoOptimization extends ESOptimization implements EvoOpti
 	/** This function is to maximize. */
 	private OptimizationFunction optimizationFunction;
 
-	/** Creates a new evolutionary SVM optimization. */
-	@Deprecated
+    /**
+     * Creates a new evolutionary SVM optimization.  @param exampleSet the example set
+     *
+     * @param exampleSet                    the example set
+     * @param kernel                        the kernel
+     * @param c                             the c
+     * @param epsilon                       the epsilon
+     * @param initType                      the init type
+     * @param maxIterations                 the max iterations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param popSize                       the pop size
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param crossoverProb                 the crossover prob
+     * @param showConvergencePlot           the show convergence plot
+     * @param showPopulationPlot            the show population plot
+     * @param random                        the random
+     * @param logging                       the logging
+     */
+    @Deprecated
 	public RegressionEvoOptimization(
 			ExampleSet exampleSet, // training data
 			Kernel kernel, double c,
@@ -82,8 +102,29 @@ public class RegressionEvoOptimization extends ESOptimization implements EvoOpti
 				logging, null);
 	}
 
-	/** Creates a new evolutionary SVM optimization. */
-	public RegressionEvoOptimization(
+    /**
+     * Creates a new evolutionary SVM optimization.  @param exampleSet the example set
+     *
+     * @param exampleSet                    the example set
+     * @param kernel                        the kernel
+     * @param c                             the c
+     * @param epsilon                       the epsilon
+     * @param initType                      the init type
+     * @param maxIterations                 the max iterations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param popSize                       the pop size
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param crossoverProb                 the crossover prob
+     * @param showConvergencePlot           the show convergence plot
+     * @param showPopulationPlot            the show population plot
+     * @param random                        the random
+     * @param logging                       the logging
+     * @param executingOperator             the executing operator
+     */
+    public RegressionEvoOptimization(
 			ExampleSet exampleSet, // training data
 			Kernel kernel, double c,
 			double epsilon, // SVM paras

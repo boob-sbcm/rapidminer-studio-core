@@ -45,7 +45,7 @@ import com.rapidminer.parameter.value.ParameterValues;
  * configuring the parameters for the inner operators as a sort of meta step (e.g. learning curve
  * generation).
  * </p>
- *
+ * <p>
  * <p>
  * This operator iterates through a set of parameters by using all possible parameter combinations.
  * The parameter <var>parameters</var> is a list of key value pairs where the keys are of the form
@@ -53,7 +53,7 @@ import com.rapidminer.parameter.value.ParameterValues;
  * values (e.g. 10,15,20,25) or an interval definition in the format [start;end;stepsize] (e.g.
  * [10;25;5]). Additionally, the format [start;end;steps;scale] is allowed.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that this operator has two modes: synchronized and non-synchronized. In the latter,
  * all parameter combinations are generated and the inner operators are applied for each
@@ -62,7 +62,7 @@ import com.rapidminer.parameter.value.ParameterValues;
  * no difference between both modes. Please note that the number of parameter possibilities must be
  * the same for all parameters in the synchronized mode.
  * </p>
- *
+ * <p>
  * Compatibility note: This operator no longer returns all of its input. In most applications all
  * that can be done with such a collection of IOOBjects is iterating over them again, and that can
  * as well be done inside the ParameterIteration. Where this is not possible, please group them into
@@ -72,11 +72,15 @@ import com.rapidminer.parameter.value.ParameterValues;
  */
 public class ParameterIteration extends ParameterIteratingOperatorChain {
 
-	/** The parameter name for &quot;A list of parameters to optimize&quot; */
-	public static final String PARAMETER_PARAMETERS = "parameters";
+    /**
+     * The parameter name for &quot;A list of parameters to optimize&quot;
+     */
+    public static final String PARAMETER_PARAMETERS = "parameters";
 
-	/** The parameter name for &quot;Synchronize parameter iteration&quot; */
-	public static final String PARAMETER_SYNCHRONIZE = "synchronize";
+    /**
+     * The parameter name for &quot;Synchronize parameter iteration&quot;
+     */
+    public static final String PARAMETER_SYNCHRONIZE = "synchronize";
 
 	// /** Deprecated: The parameter name for &quot;Keep the output of the last operator in the
 	// operator chain&quot; */
@@ -86,7 +90,12 @@ public class ParameterIteration extends ParameterIteratingOperatorChain {
 
 	private int iteration = 0;
 
-	public ParameterIteration(OperatorDescription description) {
+    /**
+     * Instantiates a new Parameter iteration.
+     *
+     * @param description the description
+     */
+    public ParameterIteration(OperatorDescription description) {
 		super(description);
 		addValue(new ValueDouble("performance", "The last performance.") {
 
@@ -222,7 +231,13 @@ public class ParameterIteration extends ParameterIteratingOperatorChain {
 		getProgress().complete();
 	}
 
-	protected void evaluateParameterSet(ParameterSet set) throws OperatorException {
+    /**
+     * Evaluate parameter set.
+     *
+     * @param set the set
+     * @throws OperatorException the operator exception
+     */
+    protected void evaluateParameterSet(ParameterSet set) throws OperatorException {
 		if (getLogger().isLoggable(Level.FINE)) {
 			getLogger().fine("Evaluating parameter set: " + set.toString());
 		}

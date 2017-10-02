@@ -49,11 +49,13 @@ import com.rapidminer.tools.expression.internal.function.logical.Or;
  * ExpressionParser
  *
  * @author Thilo Kamradt, Sabrina Kirstein
- *
  */
 public class AntlrParserLogicalTest extends AntlrParserTest {
 
-	// long value for some date entry
+    /**
+     * The constant sometime.
+     */
+// long value for some date entry
 	static long sometime = 1436792411000l;
 
 	private static ExampleSet makeTestExampleSet() {
@@ -71,7 +73,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 
 	// and
 
-	@Test
+    /**
+     * And boolean false.
+     */
+    @Test
 	public void andBooleanFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("TRUE && FALSE");
@@ -82,7 +87,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * And boolean true.
+     */
+    @Test
 	public void andBooleanTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("TRUE && TRUE");
@@ -93,7 +101,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * And numeric false.
+     */
+    @Test
 	public void andNumericFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1 && 0");
@@ -104,7 +115,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * And numeric true.
+     */
+    @Test
 	public void andNumericTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("45.654321 && -45");
@@ -115,7 +129,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * And mixed false.
+     */
+    @Test
 	public void andMixedFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("5456 && FALSE");
@@ -126,7 +143,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * And mixed true.
+     */
+    @Test
 	public void andMixedTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("5456 && TRUE");
@@ -137,7 +157,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * And boolean missing.
+     */
+    @Test
 	public void andBooleanMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("contains(MISSING_NOMINAL,\"Luke\") && FALSE");
@@ -148,7 +171,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * And double missing.
+     */
+    @Test
 	public void andDoubleMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("MISSING_NUMERIC && FALSE");
@@ -159,7 +185,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * And wrong type nominal.
+     */
+    @Test
 	public void andWrongTypeNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("TRUE && \"baboom\"");
@@ -171,7 +200,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * And wrong type date.
+     */
+    @Test
 	public void andWrongTypeDate() {
 		try {
 			ExampleSet exampleSet = makeTestExampleSet();
@@ -189,7 +221,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 
 	// or
 
-	@Test
+    /**
+     * Or boolean false.
+     */
+    @Test
 	public void orBooleanFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("FALSE || FALSE");
@@ -200,7 +235,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Or boolean true.
+     */
+    @Test
 	public void orBooleanTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("FALSE || TRUE");
@@ -211,7 +249,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Or numeric false.
+     */
+    @Test
 	public void orNumericFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("0 || 0");
@@ -222,7 +263,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Or numeric true.
+     */
+    @Test
 	public void orNumericTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("0 || 45");
@@ -233,7 +277,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Or mixed false.
+     */
+    @Test
 	public void orMixedFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("0 || FALSE");
@@ -244,7 +291,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Or mixed true.
+     */
+    @Test
 	public void orMixedTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("5456 || TRUE");
@@ -255,7 +305,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Or boolean missing.
+     */
+    @Test
 	public void orBooleanMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("contains(MISSING_NOMINAL,\"Luke\") || FALSE");
@@ -266,7 +319,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Or double missing.
+     */
+    @Test
 	public void orDoubleMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("MISSING_NUMERIC || TRUE");
@@ -277,7 +333,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Or wrong type nominal.
+     */
+    @Test
 	public void orWrongTypeNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("TRUE || \"baboom\"");
@@ -289,7 +348,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Or wrong type date.
+     */
+    @Test
 	public void orWrongTypeDate() {
 		try {
 			ExampleSet exampleSet = makeTestExampleSet();
@@ -307,7 +369,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 
 	// not
 
-	@Test
+    /**
+     * Not boolean true.
+     */
+    @Test
 	public void notBooleanTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("!FALSE");
@@ -318,7 +383,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not boolean false.
+     */
+    @Test
 	public void notBooleanFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("!TRUE");
@@ -329,7 +397,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not numeric true.
+     */
+    @Test
 	public void notNumericTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("!0");
@@ -340,7 +411,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not numeric false.
+     */
+    @Test
 	public void notNumericFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("!45");
@@ -351,7 +425,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not boolean missing.
+     */
+    @Test
 	public void notBooleanMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("!contains(MISSING_NOMINAL,\"Luke\")");
@@ -362,7 +439,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not numeric missing.
+     */
+    @Test
 	public void notNumericMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("!MISSING_NUMERIC");
@@ -373,7 +453,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not wrong type nominal.
+     */
+    @Test
 	public void notWrongTypeNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("!\"baboom\"");
@@ -385,7 +468,10 @@ public class AntlrParserLogicalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not wrong type date.
+     */
+    @Test
 	public void notWrongTypeDate() {
 		try {
 			ExampleSet exampleSet = makeTestExampleSet();

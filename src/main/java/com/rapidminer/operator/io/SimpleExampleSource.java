@@ -64,7 +64,7 @@ import com.rapidminer.tools.io.Encoding;
  * the {@link CSVExampleSource} operator itself since you can better control some of the necessary
  * settings like column separators etc.
  * </p>
- *
+ * <p>
  * <p>
  * In contrast to the usual ExampleSource operator this operator is able to read the attribute names
  * from the first line of the data file. However, there is one restriction: the data can only be
@@ -72,7 +72,7 @@ import com.rapidminer.tools.io.Encoding;
  * loading you should use the more powerful ExampleSource operator which also provides more
  * parameters tuning for example the quoting mechanism and other specialized settings.
  * </p>
- *
+ * <p>
  * <p>
  * The column split points can be defined with regular expressions (please refer to the annex of the
  * RapidMiner tutorial). The default split parameter &quot;,\s*|;\s*|\s+&quot; should work for most
@@ -87,7 +87,7 @@ import com.rapidminer.tools.io.Encoding;
  * A logical XOR is defined by &quot;|&quot;. Other useful separators might be &quot;\t&quot; for
  * tabulars, &quot; &quot; for a single whitespace, and &quot;\s&quot; for any whitespace.
  * </p>
- *
+ * <p>
  * <p>
  * Quoting is also possible with &quot;. Escaping a quote is done with \&quot;. Additionally you can
  * specify comment characters which can be used at arbitrary locations of the data lines and will
@@ -95,82 +95,117 @@ import com.rapidminer.tools.io.Encoding;
  * or a question mark.
  * </p>
  *
- * @rapidminer.index csv
  * @author Ingo Mierswa
+ * @rapidminer.index csv
  */
-
 @Deprecated
 public class SimpleExampleSource extends AbstractExampleSource {
 
-	/**
-	 * The parameter name for &quot;Name of the label attribute (if empty, the column defined by
-	 * label_column will be used)&quot;
-	 */
-	public static final String PARAMETER_LABEL_NAME = "label_name";
+    /**
+     * The parameter name for &quot;Name of the label attribute (if empty, the column defined by
+     * label_column will be used)&quot;
+     */
+    public static final String PARAMETER_LABEL_NAME = "label_name";
 
-	/**
-	 * The parameter name for &quot;Column number of the label attribute (only used if label_name is
-	 * empty; 0 = none; negative values are counted from the last column)&quot;
-	 */
-	public static final String PARAMETER_LABEL_COLUMN = "label_column";
+    /**
+     * The parameter name for &quot;Column number of the label attribute (only used if label_name is
+     * empty; 0 = none; negative values are counted from the last column)&quot;
+     */
+    public static final String PARAMETER_LABEL_COLUMN = "label_column";
 
-	/**
-	 * The parameter name for &quot;Name of the id attribute (if empty, the column defined by
-	 * id_column will be used)&quot;
-	 */
-	public static final String PARAMETER_ID_NAME = "id_name";
+    /**
+     * The parameter name for &quot;Name of the id attribute (if empty, the column defined by
+     * id_column will be used)&quot;
+     */
+    public static final String PARAMETER_ID_NAME = "id_name";
 
-	/**
-	 * The parameter name for &quot;Column number of the id attribute (only used if id_name is
-	 * empty; 0 = none; negative values are counted from the last column)&quot;
-	 */
-	public static final String PARAMETER_ID_COLUMN = "id_column";
+    /**
+     * The parameter name for &quot;Column number of the id attribute (only used if id_name is
+     * empty; 0 = none; negative values are counted from the last column)&quot;
+     */
+    public static final String PARAMETER_ID_COLUMN = "id_column";
 
-	/**
-	 * The parameter name for &quot;Name of the weight attribute (if empty, the column defined by
-	 * weight_column will be used)&quot;
-	 */
-	public static final String PARAMETER_WEIGHT_NAME = "weight_name";
+    /**
+     * The parameter name for &quot;Name of the weight attribute (if empty, the column defined by
+     * weight_column will be used)&quot;
+     */
+    public static final String PARAMETER_WEIGHT_NAME = "weight_name";
 
-	/**
-	 * The parameter name for &quot;Column number of the weight attribute (only used if weight_name
-	 * is empty; 0 = none, negative values are counted from the last column)&quot;
-	 */
-	public static final String PARAMETER_WEIGHT_COLUMN = "weight_column";
+    /**
+     * The parameter name for &quot;Column number of the weight attribute (only used if weight_name
+     * is empty; 0 = none, negative values are counted from the last column)&quot;
+     */
+    public static final String PARAMETER_WEIGHT_COLUMN = "weight_column";
 
-	/**
-	 * The parameter name for &quot;The fraction of the data set which should be read (1 = all; only
-	 * used if sample_size = -1)&quot;
-	 */
-	public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
+    /**
+     * The parameter name for &quot;The fraction of the data set which should be read (1 = all; only
+     * used if sample_size = -1)&quot;
+     */
+    public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
 
-	/**
-	 * The parameter name for &quot;The exact number of samples which should be read (-1 = use
-	 * sample ratio; if not -1, sample_ratio will not have any effect)&quot;
-	 */
-	public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
+    /**
+     * The parameter name for &quot;The exact number of samples which should be read (-1 = use
+     * sample ratio; if not -1, sample_ratio will not have any effect)&quot;
+     */
+    public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
 
-	public static final String PARAMETER_FILENAME = "file_name";
+    /**
+     * The constant PARAMETER_FILENAME.
+     */
+    public static final String PARAMETER_FILENAME = "file_name";
 
-	public static final String PARAMETER_USE_FIRST_ROW_AS_ATTRIBUTE_NAMES = "use_first_row_as_attribute_names";
+    /**
+     * The constant PARAMETER_USE_FIRST_ROW_AS_ATTRIBUTE_NAMES.
+     */
+    public static final String PARAMETER_USE_FIRST_ROW_AS_ATTRIBUTE_NAMES = "use_first_row_as_attribute_names";
 
-	public static final String PARAMETER_TRIM_LINES = "trim_lines";
+    /**
+     * The constant PARAMETER_TRIM_LINES.
+     */
+    public static final String PARAMETER_TRIM_LINES = "trim_lines";
 
-	public static final String PARAMETER_SKIP_COMMENTS = "skip_comments";
+    /**
+     * The constant PARAMETER_SKIP_COMMENTS.
+     */
+    public static final String PARAMETER_SKIP_COMMENTS = "skip_comments";
 
-	public static final String PARAMETER_COMMENT_CHARS = "comment_characters";
+    /**
+     * The constant PARAMETER_COMMENT_CHARS.
+     */
+    public static final String PARAMETER_COMMENT_CHARS = "comment_characters";
 
-	public static final String PARAMETER_USE_QUOTES = "use_quotes";
+    /**
+     * The constant PARAMETER_USE_QUOTES.
+     */
+    public static final String PARAMETER_USE_QUOTES = "use_quotes";
 
-	public static final String PARAMETER_QUOTES_CHARACTER = "quotes_character";
+    /**
+     * The constant PARAMETER_QUOTES_CHARACTER.
+     */
+    public static final String PARAMETER_QUOTES_CHARACTER = "quotes_character";
 
-	public static final String PARAMETER_COLUMN_SEPARATORS = "column_separators";
+    /**
+     * The constant PARAMETER_COLUMN_SEPARATORS.
+     */
+    public static final String PARAMETER_COLUMN_SEPARATORS = "column_separators";
 
-	public SimpleExampleSource(OperatorDescription description) {
+    /**
+     * Instantiates a new Simple example source.
+     *
+     * @param description the description
+     */
+    public SimpleExampleSource(OperatorDescription description) {
 		super(description);
 	}
 
-	public CSVFileReader createReader(File file) throws UndefinedParameterError {
+    /**
+     * Create reader csv file reader.
+     *
+     * @param file the file
+     * @return the csv file reader
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public CSVFileReader createReader(File file) throws UndefinedParameterError {
 		final LineParser parser = new LineParser();
 		parser.setTrimLine(getParameterAsBoolean(PARAMETER_TRIM_LINES));
 		parser.setSkipComments(getParameterAsBoolean(PARAMETER_SKIP_COMMENTS));
@@ -215,7 +250,33 @@ public class SimpleExampleSource extends AbstractExampleSource {
 		return result;
 	}
 
-	public static ExampleSet createExampleSet(File file, boolean firstRowAsColumnNames, double sampleRatio, int maxLines,
+    /**
+     * Create example set example set.
+     *
+     * @param file                  the file
+     * @param firstRowAsColumnNames the first row as column names
+     * @param sampleRatio           the sample ratio
+     * @param maxLines              the max lines
+     * @param separatorRegExpr      the separator reg expr
+     * @param comments              the comments
+     * @param dataRowType           the data row type
+     * @param useQuotes             the use quotes
+     * @param trimLines             the trim lines
+     * @param skipErrorLines        the skip error lines
+     * @param decimalPointCharacter the decimal point character
+     * @param encoding              the encoding
+     * @param labelName             the label name
+     * @param labelColumn           the label column
+     * @param idName                the id name
+     * @param idColumn              the id column
+     * @param weightName            the weight name
+     * @param weightColumn          the weight column
+     * @return the example set
+     * @throws IOException               the io exception
+     * @throws UserError                 the user error
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     */
+    public static ExampleSet createExampleSet(File file, boolean firstRowAsColumnNames, double sampleRatio, int maxLines,
 			String separatorRegExpr, char[] comments, int dataRowType, boolean useQuotes, boolean trimLines,
 			boolean skipErrorLines, char decimalPointCharacter, Charset encoding, String labelName, int labelColumn,
 			String idName, int idColumn, String weightName, int weightColumn) throws IOException, UserError,

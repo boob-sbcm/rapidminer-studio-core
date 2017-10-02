@@ -50,14 +50,19 @@ import java.util.Iterator;
  * combined into a classification model. In order to determine the prediction for an unlabeled
  * example, all models are applied and the class belonging to the regression model which predicts
  * the greatest value is chosen.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class ClassificationByRegression extends AbstractMetaLearner {
 
 	private int numberOfClasses;
 
-	public ClassificationByRegression(OperatorDescription description) {
+    /**
+     * Instantiates a new Classification by regression.
+     *
+     * @param description the description
+     */
+    public ClassificationByRegression(OperatorDescription description) {
 		super(description);
 	}
 

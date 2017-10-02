@@ -28,15 +28,20 @@ import java.io.ObjectStreamClass;
 
 /**
  * Uses {@link Plugin#getMajorClassLoader()} to load classes.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class RMObjectInputStream extends ObjectInputStream {
 
 	private ClassLoader classLoader = Plugin.getMajorClassLoader();
 
-	public RMObjectInputStream(InputStream in) throws IOException {
+    /**
+     * Instantiates a new Rm object input stream.
+     *
+     * @param in the in
+     * @throws IOException the io exception
+     */
+    public RMObjectInputStream(InputStream in) throws IOException {
 		super(in);
 	}
 

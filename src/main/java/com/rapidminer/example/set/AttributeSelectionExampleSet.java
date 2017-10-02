@@ -39,36 +39,34 @@ public class AttributeSelectionExampleSet extends AbstractExampleSet {
 
 	private ExampleSet parent;
 
-	/**
-	 * Constructs a new AttributeSelectionExampleSet. Only those attributes with a true value in the
-	 * selection mask will be used. If the given mask is null, all regular attributes of the parent
-	 * example set will be used.
-	 *
-	 * @deprecated use static creation method {@link #create(ExampleSet, boolean[])} instead
-	 */
-	@Deprecated
+    /**
+     * Constructs a new AttributeSelectionExampleSet. Only those attributes with a true value in the
+     * selection mask will be used. If the given mask is null, all regular attributes of the parent
+     * example set will be used.
+     *
+     * @param exampleSet    the example set
+     * @param selectionMask the selection mask
+     * @deprecated use static creation method {@link #create(ExampleSet, boolean[])} instead
+     */
+    @Deprecated
 	public AttributeSelectionExampleSet(ExampleSet exampleSet, boolean[] selectionMask) {
 		this.parent = (ExampleSet) exampleSet.clone();
 		selectAttributes(selectionMask, parent);
 	}
 
-	/**
-	 * Creates a new example set with only the regular attributes selected by the selection mask.
-	 * Only those attributes with a true value in the selection mask will be used. If the given mask
-	 * is null, all regular attributes of the parent example set will be used. The special
-	 * attributes stay the same.
-	 *
-	 * @param exampleSet
-	 *            the example set to start from
-	 * @param selectionMask
-	 *            the mask defining which attributes to use
-	 * @return an example set which the specified attributes selected
-	 * @throws IllegalArgumentException
-	 *             if the selectionMask has not the same number of entries as regular attributes in
-	 *             the example set
-	 * @since 7.5.1
-	 */
-	public static ExampleSet create(ExampleSet exampleSet, boolean[] selectionMask) {
+    /**
+     * Creates a new example set with only the regular attributes selected by the selection mask.
+     * Only those attributes with a true value in the selection mask will be used. If the given mask
+     * is null, all regular attributes of the parent example set will be used. The special
+     * attributes stay the same.
+     *
+     * @param exampleSet    the example set to start from
+     * @param selectionMask the mask defining which attributes to use
+     * @return an example set which the specified attributes selected
+     * @throws IllegalArgumentException if the selectionMask has not the same number of entries as regular attributes in             the example set
+     * @since 7.5.1
+     */
+    public static ExampleSet create(ExampleSet exampleSet, boolean[] selectionMask) {
 		ExampleSet newSet = (ExampleSet) exampleSet.clone();
 		selectAttributes(selectionMask, newSet);
 		return newSet;
@@ -100,8 +98,12 @@ public class AttributeSelectionExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	/** Clone constructor. */
-	public AttributeSelectionExampleSet(AttributeSelectionExampleSet exampleSet) {
+    /**
+     * Clone constructor.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     */
+    public AttributeSelectionExampleSet(AttributeSelectionExampleSet exampleSet) {
 		cloneAnnotationsFrom(exampleSet);
 		this.parent = (ExampleSet) exampleSet.parent.clone();
 	}

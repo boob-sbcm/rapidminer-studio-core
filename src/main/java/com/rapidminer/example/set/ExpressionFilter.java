@@ -49,18 +49,17 @@ public class ExpressionFilter implements Condition {
 
 	private Expression result;
 
-	/**
-	 * Creates a new {@link ExpressionFilter} instance with the given expression. The expression is
-	 * evaluated via the expression parser and examples are ok if the expression evaluates to
-	 * <code>true</code>.
-	 *
-	 * @param exampleSet
-	 * @param expression
-	 * @param process
-	 * @param compatibilityLevel
-	 * @throws ExpressionException
-	 */
-	public ExpressionFilter(ExampleSet exampleSet, String expression, Operator operator) throws ExpressionException {
+    /**
+     * Creates a new {@link ExpressionFilter} instance with the given expression. The expression is
+     * evaluated via the expression parser and examples are ok if the expression evaluates to
+     * <code>true</code>.
+     *
+     * @param exampleSet the example set
+     * @param expression the expression
+     * @param operator   the operator
+     * @throws ExpressionException the expression exception
+     */
+    public ExpressionFilter(ExampleSet exampleSet, String expression, Operator operator) throws ExpressionException {
 		if (exampleSet == null) {
 			throw new IllegalArgumentException("exampleSet must not be null!");
 		}
@@ -78,16 +77,17 @@ public class ExpressionFilter implements Condition {
 		this.type = result.getExpressionType();
 	}
 
-	/**
-	 * The sole purpose of this constructor is to provide a constructor that matches the expected
-	 * signature for the {@link ConditionedExampleSet} reflection invocation. However, this class
-	 * cannot be instantiated by an ExampleSet and a String, so we <b>always</b> throw an
-	 * {@link IllegalArgumentException} to signal this filter cannot be instantiated that way.
-	 *
-	 * @throws IllegalArgumentException
-	 *             <b>ALWAYS THROWN!</b>
-	 */
-	@Deprecated
+    /**
+     * The sole purpose of this constructor is to provide a constructor that matches the expected
+     * signature for the {@link ConditionedExampleSet} reflection invocation. However, this class
+     * cannot be instantiated by an ExampleSet and a String, so we <b>always</b> throw an
+     * {@link IllegalArgumentException} to signal this filter cannot be instantiated that way.
+     *
+     * @param exampleSet      the example set
+     * @param parameterString the parameter string
+     * @throws IllegalArgumentException <b>ALWAYS THROWN!</b>
+     */
+    @Deprecated
 	public ExpressionFilter(ExampleSet exampleSet, String parameterString) throws IllegalArgumentException {
 		throw new IllegalArgumentException("This condition cannot be instantiated this way!");
 	}

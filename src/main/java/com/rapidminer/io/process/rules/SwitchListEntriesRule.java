@@ -32,14 +32,21 @@ import org.w3c.dom.NodeList;
 
 /**
  * A rule, which switches the sides of entries in a list parameter.
- * 
+ *
  * @author Sebastian Land
  */
 public class SwitchListEntriesRule extends AbstractConditionedParseRule {
 
 	private String parameter;
 
-	public SwitchListEntriesRule(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Switch list entries rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public SwitchListEntriesRule(String operatorTypeName, Element element) throws XMLException {
 		super(operatorTypeName, element);
 		assert (element.getTagName().equals("switchListEntries"));
 		NodeList children = element.getChildNodes();

@@ -48,17 +48,14 @@ class CompositeToggleButton extends JToggleButton {
 	/** Paints the component background and border. */
 	private final CompositeButtonPainter painter;
 
-	/**
-	 * Creates a new {@code CompositeToggleButton} with the given label to be used at the given
-	 * position.
-	 *
-	 * @param label
-	 *            the button label
-	 * @param position
-	 *            the position in the composite element ({@link SwingConstants#LEFT},
-	 *            {@link SwingConstants#CENTER}, or {@link SwingConstants#RIGHT})
-	 */
-	public CompositeToggleButton(String label, int position) {
+    /**
+     * Creates a new {@code CompositeToggleButton} with the given label to be used at the given
+     * position.
+     *
+     * @param label    the button label
+     * @param position the position in the composite element ({@link SwingConstants#LEFT},            {@link SwingConstants#CENTER}, or {@link SwingConstants#RIGHT})
+     */
+    public CompositeToggleButton(String label, int position) {
 		super(label);
 		// the parent should never draw its background
 		super.setContentAreaFilled(false);
@@ -66,17 +63,14 @@ class CompositeToggleButton extends JToggleButton {
 		painter = new CompositeButtonPainter(this, position);
 	}
 
-	/**
-	 * Creates a new {@code CompositeToggleButton} with the given {@link Action} to be used at the
-	 * given position.
-	 *
-	 * @param action
-	 *            the button action
-	 * @param position
-	 *            the position in the composite element ({@link SwingConstants#LEFT},
-	 *            {@link SwingConstants#CENTER}, or {@link SwingConstants#RIGHT})
-	 */
-	public CompositeToggleButton(Action action, int position) {
+    /**
+     * Creates a new {@code CompositeToggleButton} with the given {@link Action} to be used at the
+     * given position.
+     *
+     * @param action   the button action
+     * @param position the position in the composite element ({@link SwingConstants#LEFT},            {@link SwingConstants#CENTER}, or {@link SwingConstants#RIGHT})
+     */
+    public CompositeToggleButton(Action action, int position) {
 		super(action);
 		// the parent should never draw its background
 		super.setContentAreaFilled(false);

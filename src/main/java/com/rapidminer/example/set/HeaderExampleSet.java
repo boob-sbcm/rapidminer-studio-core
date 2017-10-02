@@ -30,7 +30,7 @@ import java.util.Iterator;
  * This example set is a clone of the attributes without reference to any data. Therefore it can be
  * used as a data header description. Since no data reference exist, all example based methods will
  * throw an {@link UnsupportedOperationException}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class HeaderExampleSet extends AbstractExampleSet {
@@ -40,13 +40,22 @@ public class HeaderExampleSet extends AbstractExampleSet {
 	/** The parent example set. */
 	private Attributes attributes;
 
-	public HeaderExampleSet(ExampleSet parent) {
+    /**
+     * Instantiates a new Header example set.
+     *
+     * @param parent the parent
+     */
+    public HeaderExampleSet(ExampleSet parent) {
 		cloneAnnotationsFrom(parent);
 		this.attributes = (Attributes) parent.getAttributes().clone();
 	}
 
-	/** Header example set clone constructor. */
-	public HeaderExampleSet(HeaderExampleSet other) {
+    /**
+     * Header example set clone constructor.  @param other the other
+     *
+     * @param other the other
+     */
+    public HeaderExampleSet(HeaderExampleSet other) {
 		cloneAnnotationsFrom(other);
 		this.attributes = (Attributes) other.attributes.clone();
 	}

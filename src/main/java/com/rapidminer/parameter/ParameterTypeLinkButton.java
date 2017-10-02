@@ -40,59 +40,49 @@ public class ParameterTypeLinkButton extends ParameterTypeSingle {
 
 	private final boolean isLocalAction;
 
-	/**
-	 * Creates a parameter type that shows either a {@link LinkLocalButton} which executes the
-	 * action.
-	 *
-	 * @param key
-	 *            the parameter key
-	 * @param description
-	 *            the parameter description
-	 * @param action
-	 *            the action to execute when the button is clicked
-	 */
-	public ParameterTypeLinkButton(String key, String description, ResourceAction action) {
+    /**
+     * Creates a parameter type that shows either a {@link LinkLocalButton} which executes the
+     * action.
+     *
+     * @param key         the parameter key
+     * @param description the parameter description
+     * @param action      the action to execute when the button is clicked
+     */
+    public ParameterTypeLinkButton(String key, String description, ResourceAction action) {
 		this(key, description, action, true);
 	}
 
-	/**
-	 * Creates a parameter type that shows either a {@link LinkLocalButton} or a
-	 * {@link LinkRemoteButton} which executes the action.
-	 *
-	 * @param key
-	 *            the parameter key
-	 * @param description
-	 *            the parameter description
-	 * @param action
-	 *            the action to execute when the button is clicked
-	 * @param isLocalAction
-	 *            if {@code true}, a {@link LinkLocalButton} will be used to indicate the action is
-	 *            only triggering an in-application action. If {@code false}, a
-	 *            {@link LinkRemoteButton} is used to indicate a website will be opened in the
-	 *            browser
-	 */
-	public ParameterTypeLinkButton(String key, String description, ResourceAction action, boolean isLocalAction) {
+    /**
+     * Creates a parameter type that shows either a {@link LinkLocalButton} or a
+     * {@link LinkRemoteButton} which executes the action.
+     *
+     * @param key           the parameter key
+     * @param description   the parameter description
+     * @param action        the action to execute when the button is clicked
+     * @param isLocalAction if {@code true}, a {@link LinkLocalButton} will be used to indicate the action is            only triggering an in-application action. If {@code false}, a            {@link LinkRemoteButton} is used to indicate a website will be opened in the            browser
+     */
+    public ParameterTypeLinkButton(String key, String description, ResourceAction action, boolean isLocalAction) {
 		super(key, description);
 		this.action = action;
 		this.isLocalAction = isLocalAction;
 		setExpert(false);
 	}
 
-	/**
-	 * Returns the action to execute when the button is clicked.
-	 *
-	 * @return the action
-	 */
-	public ResourceAction getAction() {
+    /**
+     * Returns the action to execute when the button is clicked.
+     *
+     * @return the action
+     */
+    public ResourceAction getAction() {
 		return action;
 	}
 
-	/**
-	 * Returns whether this action is only an in-application action or opens a browser.
-	 *
-	 * @return {@code true} for in-application; {@code false} for browser
-	 */
-	public boolean isLocalAction() {
+    /**
+     * Returns whether this action is only an in-application action or opens a browser.
+     *
+     * @return {@code true} for in-application; {@code false} for browser
+     */
+    public boolean isLocalAction() {
 		return isLocalAction;
 	}
 

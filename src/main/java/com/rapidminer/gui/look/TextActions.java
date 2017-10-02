@@ -29,22 +29,37 @@ import javax.swing.text.TextAction;
 
 /**
  * The basic actions of the look and feel components for text components.
- * 
+ *
  * @author Ingo Mierswa
  */
 public final class TextActions {
 
-	public static final String CLEAR_ALL_ACTION = "Clear All";
+    /**
+     * The constant CLEAR_ALL_ACTION.
+     */
+    public static final String CLEAR_ALL_ACTION = "Clear All";
 
-	public static final String SELECT_ALL_ACTION = "Select All";
+    /**
+     * The constant SELECT_ALL_ACTION.
+     */
+    public static final String SELECT_ALL_ACTION = "Select All";
 
-	public static final String DELETE_TEXT_ACTION = "Delete";
+    /**
+     * The constant DELETE_TEXT_ACTION.
+     */
+    public static final String DELETE_TEXT_ACTION = "Delete";
 
-	public static class SelectAllAction extends TextAction {
+    /**
+     * The type Select all action.
+     */
+    public static class SelectAllAction extends TextAction {
 
 		private static final long serialVersionUID = 7009424030828006069L;
 
-		public SelectAllAction() {
+        /**
+         * Instantiates a new Select all action.
+         */
+        public SelectAllAction() {
 			super(SELECT_ALL_ACTION);
 		}
 
@@ -59,11 +74,17 @@ public final class TextActions {
 		}
 	}
 
-	public static class DeleteTextAction extends TextAction {
+    /**
+     * The type Delete text action.
+     */
+    public static class DeleteTextAction extends TextAction {
 
 		private static final long serialVersionUID = 6412033584635198994L;
 
-		public DeleteTextAction() {
+        /**
+         * Instantiates a new Delete text action.
+         */
+        public DeleteTextAction() {
 			super(DELETE_TEXT_ACTION);
 		}
 
@@ -90,11 +111,17 @@ public final class TextActions {
 		}
 	}
 
-	public static class ClearAction extends TextAction {
+    /**
+     * The type Clear action.
+     */
+    public static class ClearAction extends TextAction {
 
 		private static final long serialVersionUID = -8717559424063560794L;
 
-		public ClearAction() {
+        /**
+         * Instantiates a new Clear action.
+         */
+        public ClearAction() {
 			super(CLEAR_ALL_ACTION);
 		}
 

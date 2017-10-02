@@ -39,9 +39,7 @@ import com.rapidminer.gui.ApplicationFrame;
 /**
  * Dialog with a selection input field and an input validation.
  *
- * @param <T>
- *            the class for the combobox model
- *
+ * @param <T> the class for the combobox model
  * @author Tobias Malbrecht, Marcel Michel
  */
 public class SelectionInputDialog<T> extends ButtonDialog {
@@ -56,155 +54,119 @@ public class SelectionInputDialog<T> extends ButtonDialog {
 
 	private JLabel errorLabel;
 
-	/**
-	 * Create a SelectionInputDIalog.
-	 *
-	 * @param key
-	 *            i18n key
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @deprecated use {@link #SelectionInputDialog(Window, String, Object[], Object)}
-	 */
-	@Deprecated
+    /**
+     * Create a SelectionInputDIalog.
+     *
+     * @param key                   i18n key
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @deprecated use {@link #SelectionInputDialog(Window, String, Object[], Object)}
+     */
+    @Deprecated
 	public SelectionInputDialog(String key, T[] selectionValues, T initialSelectionValue) {
 		this(ApplicationFrame.getApplicationFrame(), key, selectionValues, initialSelectionValue);
 	}
 
-	/**
-	 * Create a SelectionInputDIalog.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @param keyArguments
-	 *            additional i18n arguments
-	 * @deprecated use {@link #SelectionInputDialog(Window, String, Object[], Object, Object...)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Create a SelectionInputDIalog.
+     *
+     * @param key                   the i18n key
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @param keyArguments          additional i18n arguments
+     * @deprecated use {@link #SelectionInputDialog(Window, String, Object[], Object, Object...)}             instead
+     */
+    @Deprecated
 	public SelectionInputDialog(String key, T[] selectionValues, T initialSelectionValue, Object... keyArguments) {
 		this(ApplicationFrame.getApplicationFrame(), key, selectionValues, initialSelectionValue, keyArguments);
 	}
 
-	/**
-	 * Create a SelectionInputDIalog whose Combobox can be editable.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param editable
-	 *            if the selection should be editable
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @param keyArguments
-	 *            additional i18n arguments
-	 * @deprecated use
-	 *             {@link #SelectionInputDialog(Window, String, boolean, Collection, Object, Object...)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Create a SelectionInputDIalog whose Combobox can be editable.
+     *
+     * @param key                   the i18n key
+     * @param editable              if the selection should be editable
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @param keyArguments          additional i18n arguments
+     * @deprecated use {@link #SelectionInputDialog(Window, String, boolean, Collection, Object, Object...)}             instead
+     */
+    @Deprecated
 	public SelectionInputDialog(String key, boolean editable, Collection<T> selectionValues, T initialSelectionValue,
 			Object... keyArguments) {
 		this(ApplicationFrame.getApplicationFrame(), key, editable, selectionValues, initialSelectionValue, keyArguments);
 	}
 
-	/**
-	 * Create a SelectionInputDIalog whose Combobox can be editable.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param editable
-	 *            if the selection should be editable
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @param keyArguments
-	 *            additional i18n arguments
-	 * @deprecated use
-	 *             {@link #SelectionInputDialog(Window, String, boolean, Object[], Object, Object...)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Create a SelectionInputDIalog whose Combobox can be editable.
+     *
+     * @param key                   the i18n key
+     * @param editable              if the selection should be editable
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @param keyArguments          additional i18n arguments
+     * @deprecated use {@link #SelectionInputDialog(Window, String, boolean, Object[], Object, Object...)}             instead
+     */
+    @Deprecated
 	public SelectionInputDialog(String key, boolean editable, T[] selectionValues, T initialSelectionValue,
 			Object... keyArguments) {
 		this(ApplicationFrame.getApplicationFrame(), key, editable, selectionValues, initialSelectionValue, keyArguments);
 	}
 
-	/**
-	 * Create a SelectionInputDIalog.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @param keyArguments
-	 *            additional i18n arguments
-	 * @deprecated use {@link #SelectionInputDialog(Window, String, Collection, Object, Object...)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Create a SelectionInputDIalog.
+     *
+     * @param key                   the i18n key
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @param keyArguments          additional i18n arguments
+     * @deprecated use {@link #SelectionInputDialog(Window, String, Collection, Object, Object...)}             instead
+     */
+    @Deprecated
 	public SelectionInputDialog(String key, Collection<T> selectionValues, T initialSelectionValue, Object... keyArguments) {
 		this(ApplicationFrame.getApplicationFrame(), key, selectionValues, initialSelectionValue, keyArguments);
 	}
 
-	/**
-	 * Create a SelectionInputDIalog.
-	 *
-	 * @param key
-	 *            i18n key
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @since 6.5.0
-	 */
-	public SelectionInputDialog(Window owner, String key, T[] selectionValues, T initialSelectionValue) {
+    /**
+     * Create a SelectionInputDIalog.
+     *
+     * @param owner                 the owner
+     * @param key                   i18n key
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @since 6.5.0
+     */
+    public SelectionInputDialog(Window owner, String key, T[] selectionValues, T initialSelectionValue) {
 		this(owner, key, selectionValues, initialSelectionValue, new Object[] {});
 	}
 
-	/**
-	 * Create a SelectionInputDIalog.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @param keyArguments
-	 *            additional i18n arguments
-	 * @since 6.5.0
-	 */
-	public SelectionInputDialog(Window owner, String key, T[] selectionValues, T initialSelectionValue,
+    /**
+     * Create a SelectionInputDIalog.
+     *
+     * @param owner                 the owner
+     * @param key                   the i18n key
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @param keyArguments          additional i18n arguments
+     * @since 6.5.0
+     */
+    public SelectionInputDialog(Window owner, String key, T[] selectionValues, T initialSelectionValue,
 			Object... keyArguments) {
 		this(owner, key, selectionValues, initialSelectionValue, null, keyArguments);
 	}
 
-	/**
-	 * Create a SelectionInputDIalog.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @param inputValidator
-	 *            used to validate the input and to show an error message
-	 * @param keyArguments
-	 *            additional i18n arguments
-	 * @since 7.0.0
-	 */
-	public SelectionInputDialog(Window owner, String key, T[] selectionValues, T initialSelectionValue,
+    /**
+     * Create a SelectionInputDIalog.
+     *
+     * @param owner                 the owner
+     * @param key                   the i18n key
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @param inputValidator        used to validate the input and to show an error message
+     * @param keyArguments          additional i18n arguments
+     * @since 7.0.0
+     */
+    public SelectionInputDialog(Window owner, String key, T[] selectionValues, T initialSelectionValue,
 			InputValidator<T> inputValidator, Object... keyArguments) {
 		super(owner, "input." + key, ModalityType.APPLICATION_MODAL, keyArguments);
 		this.inputValidator = inputValidator;
@@ -216,126 +178,103 @@ public class SelectionInputDialog<T> extends ButtonDialog {
 		initGui();
 	}
 
-	/**
-	 * Create a SelectionInputDIalog whose Combobox can be editable.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param editable
-	 *            if the selection should be editable
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @param inputValidator
-	 *            used to validate the input and to show an error message
-	 * @param keyArguments
-	 *            additional i18n arguments
-	 * @since 7.0.0
-	 */
-	public SelectionInputDialog(Window owner, String key, boolean editable, Collection<T> selectionValues,
+    /**
+     * Create a SelectionInputDIalog whose Combobox can be editable.
+     *
+     * @param owner                 the owner
+     * @param key                   the i18n key
+     * @param editable              if the selection should be editable
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @param inputValidator        used to validate the input and to show an error message
+     * @param keyArguments          additional i18n arguments
+     * @since 7.0.0
+     */
+    public SelectionInputDialog(Window owner, String key, boolean editable, Collection<T> selectionValues,
 			T initialSelectionValue, InputValidator<T> inputValidator, Object... keyArguments) {
 		this(owner, key, selectionValues, initialSelectionValue, inputValidator, keyArguments);
 		comboBox.setEditable(editable);
 	}
 
-	/**
-	 * Create a SelectionInputDIalog whose Combobox can be editable.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param editable
-	 *            if the selection should be editable
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @param keyArguments
-	 *            additional i18n arguments
-	 * @since 6.5.0
-	 */
-	public SelectionInputDialog(Window owner, String key, boolean editable, Collection<T> selectionValues,
+    /**
+     * Create a SelectionInputDIalog whose Combobox can be editable.
+     *
+     * @param owner                 the owner
+     * @param key                   the i18n key
+     * @param editable              if the selection should be editable
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @param keyArguments          additional i18n arguments
+     * @since 6.5.0
+     */
+    public SelectionInputDialog(Window owner, String key, boolean editable, Collection<T> selectionValues,
 			T initialSelectionValue, Object... keyArguments) {
 		this(owner, key, selectionValues, initialSelectionValue, keyArguments);
 		comboBox.setEditable(editable);
 	}
 
-	/**
-	 * Create a SelectionInputDialog whose Combobox can be editable.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param editable
-	 *            if the selection should be editable
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @param keyArguments
-	 *            additional i18n arguments
-	 * @since 6.5.0
-	 */
-	public SelectionInputDialog(Window owner, String key, boolean editable, T[] selectionValues, T initialSelectionValue,
+    /**
+     * Create a SelectionInputDialog whose Combobox can be editable.
+     *
+     * @param owner                 the owner
+     * @param key                   the i18n key
+     * @param editable              if the selection should be editable
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @param keyArguments          additional i18n arguments
+     * @since 6.5.0
+     */
+    public SelectionInputDialog(Window owner, String key, boolean editable, T[] selectionValues, T initialSelectionValue,
 			Object... keyArguments) {
 		this(owner, key, selectionValues, initialSelectionValue, keyArguments);
 		comboBox.setEditable(editable);
 	}
 
-	/**
-	 * Create a SelectionInputDialog whose Combobox can be editable.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param editable
-	 *            if the selection should be editable
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @param keyArguments
-	 *            additional i18n arguments
-	 * @since 7.0.0
-	 */
-	public SelectionInputDialog(Window owner, String key, boolean editable, T[] selectionValues, T initialSelectionValue,
+    /**
+     * Create a SelectionInputDialog whose Combobox can be editable.
+     *
+     * @param owner                 the owner
+     * @param key                   the i18n key
+     * @param editable              if the selection should be editable
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @param inputValidator        the input validator
+     * @param keyArguments          additional i18n arguments
+     * @since 7.0.0
+     */
+    public SelectionInputDialog(Window owner, String key, boolean editable, T[] selectionValues, T initialSelectionValue,
 			InputValidator<T> inputValidator, Object... keyArguments) {
 		this(owner, key, selectionValues, initialSelectionValue, inputValidator, keyArguments);
 		comboBox.setEditable(editable);
 	}
 
-	/**
-	 * Create a SelectionInputDialog.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @param keyArguments
-	 *            additional i18n arguments
-	 * @since 6.5.0
-	 */
-	public SelectionInputDialog(Window owner, String key, Collection<T> selectionValues, T initialSelectionValue,
+    /**
+     * Create a SelectionInputDialog.
+     *
+     * @param owner                 the owner
+     * @param key                   the i18n key
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @param keyArguments          additional i18n arguments
+     * @since 6.5.0
+     */
+    public SelectionInputDialog(Window owner, String key, Collection<T> selectionValues, T initialSelectionValue,
 			Object... keyArguments) {
 		this(owner, key, selectionValues, initialSelectionValue, null, keyArguments);
 	}
 
-	/**
-	 * Create a SelectionInputiIalog.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param selectionValues
-	 *            the available selection values
-	 * @param initialSelectionValue
-	 *            the initially selected value
-	 * @param inputValidator
-	 *            used to validate the input and to show an error message
-	 * @param keyArguments
-	 *            additional i18n arguments
-	 * @since 6.5.0
-	 */
-	public SelectionInputDialog(Window owner, String key, Collection<T> selectionValues, T initialSelectionValue,
+    /**
+     * Create a SelectionInputiIalog.
+     *
+     * @param owner                 the owner
+     * @param key                   the i18n key
+     * @param selectionValues       the available selection values
+     * @param initialSelectionValue the initially selected value
+     * @param inputValidator        used to validate the input and to show an error message
+     * @param keyArguments          additional i18n arguments
+     * @since 6.5.0
+     */
+    public SelectionInputDialog(Window owner, String key, Collection<T> selectionValues, T initialSelectionValue,
 			InputValidator<T> inputValidator, Object... keyArguments) {
 		super(owner, "input." + key, ModalityType.APPLICATION_MODAL, keyArguments);
 		this.inputValidator = inputValidator;
@@ -405,14 +344,12 @@ public class SelectionInputDialog<T> extends ButtonDialog {
 		}
 	}
 
-	/**
-	 * @return the selected input in case the dialog was confirmed or {@code null} in case the user
-	 *         aborted the dialog.
-	 *         <p>
-	 *         In case the {@link #comboBox} model also contains {@code null} as a possible value
-	 *         check via {@link #wasConfirmed()} whether the dialog was confirmed.
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * Gets input selection.
+     *
+     * @return the selected input in case the dialog was confirmed or {@code null} in case the user         aborted the dialog.         <p>         In case the {@link #comboBox} model also contains {@code null} as a possible value         check via {@link #wasConfirmed()} whether the dialog was confirmed.
+     */
+    @SuppressWarnings("unchecked")
 	public T getInputSelection() {
 		return wasConfirmed() ? (T) comboBox.getSelectedItem() : null;
 	}

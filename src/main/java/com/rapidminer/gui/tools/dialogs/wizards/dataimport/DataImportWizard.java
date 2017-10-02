@@ -35,6 +35,8 @@ import com.rapidminer.tools.ProgressListener;
 
 
 /**
+ * The type Data import wizard.
+ *
  * @author Tobias Malbrecht
  * @deprecated was replaced by the {@link com.rapidminer.studio.io.gui.internal.DataImportWizard}
  */
@@ -43,11 +45,24 @@ public class DataImportWizard extends AbstractWizard {
 
 	private static final long serialVersionUID = 6361602131820283501L;
 
-	public DataImportWizard(String key, Object... arguments) {
+    /**
+     * Instantiates a new Data import wizard.
+     *
+     * @param key       the key
+     * @param arguments the arguments
+     */
+    public DataImportWizard(String key, Object... arguments) {
 		super(RapidMinerGUI.getMainFrame(), key, arguments);
 	}
 
-	protected boolean transferData(final AbstractExampleSource reader, final String repositoryLocationPath) {
+    /**
+     * Transfer data boolean.
+     *
+     * @param reader                 the reader
+     * @param repositoryLocationPath the repository location path
+     * @return the boolean
+     */
+    protected boolean transferData(final AbstractExampleSource reader, final String repositoryLocationPath) {
 		if (repositoryLocationPath == null) {
 			return false;
 		}

@@ -32,11 +32,22 @@ public class InfoGainColumnCriterion extends AbstractColumnCriterion implements 
 
 	private static double LOG_FACTOR = 1d / Math.log(2);
 
-	protected double minimalGain = 0.1;
+    /**
+     * The Minimal gain.
+     */
+    protected double minimalGain = 0.1;
 
-	public InfoGainColumnCriterion() {}
+    /**
+     * Instantiates a new Info gain column criterion.
+     */
+    public InfoGainColumnCriterion() {}
 
-	public InfoGainColumnCriterion(double minimalGain) {
+    /**
+     * Instantiates a new Info gain column criterion.
+     *
+     * @param minimalGain the minimal gain
+     */
+    public InfoGainColumnCriterion(double minimalGain) {
 		this.minimalGain = minimalGain;
 	}
 
@@ -50,17 +61,15 @@ public class InfoGainColumnCriterion extends AbstractColumnCriterion implements 
 		return getBenefit(weightCounts, true);
 	}
 
-	/**
-	 * Calculates the information gain. Only sets the information gain to zero in case it is below
-	 * the minimal gain if trim is <code>true</code>.
-	 *
-	 * @param weightCounts
-	 * @param trim
-	 *            if <code>true</code> the benefit is set to zero if the gain is not at least
-	 *            minimalGain of the entropy
-	 * @return
-	 */
-	public double getBenefit(double[][] weightCounts, boolean trim) {
+    /**
+     * Calculates the information gain. Only sets the information gain to zero in case it is below
+     * the minimal gain if trim is <code>true</code>.
+     *
+     * @param weightCounts the weight counts
+     * @param trim         if <code>true</code> the benefit is set to zero if the gain is not at least            minimalGain of the entropy
+     * @return benefit benefit
+     */
+    public double getBenefit(double[][] weightCounts, boolean trim) {
 		int numberOfValues = weightCounts.length;
 		int numberOfLabels = weightCounts[0].length;
 
@@ -130,7 +139,14 @@ public class InfoGainColumnCriterion extends AbstractColumnCriterion implements 
 		return informationGain;
 	}
 
-	protected double getEntropy(double[] labelWeights, double totalWeight) {
+    /**
+     * Gets entropy.
+     *
+     * @param labelWeights the label weights
+     * @param totalWeight  the total weight
+     * @return the entropy
+     */
+    protected double getEntropy(double[] labelWeights, double totalWeight) {
 		double entropy = 0;
 		for (int i = 0; i < labelWeights.length; i++) {
 			if (labelWeights[i] > 0) {

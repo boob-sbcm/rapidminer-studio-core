@@ -23,11 +23,15 @@ import com.rapidminer.gui.new_plotter.listener.events.SeriesFormatChangeEvent;
 
 /**
  * Change listener for series format.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public interface SeriesFormatListener {
 
-	public void seriesFormatChanged(SeriesFormatChangeEvent e);
+    /**
+     * Series format changed.
+     *
+     * @param e the e
+     */
+    public void seriesFormatChanged(SeriesFormatChangeEvent e);
 }

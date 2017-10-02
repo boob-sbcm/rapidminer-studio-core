@@ -19,15 +19,48 @@
 package com.rapidminer.gui.new_plotter.listener.events;
 
 /**
+ * The interface Configuration change event.
+ *
  * @author Nils Woehler
- * 
  */
 public interface ConfigurationChangeEvent {
 
-	public enum ConfigurationChangeType {
-		PLOT_CONFIGURATION_CHANGE, RANGE_AXIS_CONFIG_CHANGE, VALUE_SOURCE_CHANGE, SERIES_FORMAT_CHANGE, VALUE_GROUPING_CHANGE, VALUE_RANGE_CHANGE, DIMENSION_CONFIG_CHANGE, DOMAIN_DIMENSION_CHANGE
+    /**
+     * The enum Configuration change type.
+     */
+    public enum ConfigurationChangeType {
+        /**
+         * Plot configuration change configuration change type.
+         */
+        PLOT_CONFIGURATION_CHANGE, /**
+         * Range axis config change configuration change type.
+         */
+        RANGE_AXIS_CONFIG_CHANGE, /**
+         * Value source change configuration change type.
+         */
+        VALUE_SOURCE_CHANGE, /**
+         * Series format change configuration change type.
+         */
+        SERIES_FORMAT_CHANGE, /**
+         * Value grouping change configuration change type.
+         */
+        VALUE_GROUPING_CHANGE, /**
+         * Value range change configuration change type.
+         */
+        VALUE_RANGE_CHANGE, /**
+         * Dimension config change configuration change type.
+         */
+        DIMENSION_CONFIG_CHANGE, /**
+         * Domain dimension change configuration change type.
+         */
+        DOMAIN_DIMENSION_CHANGE
 	}
 
-	public ConfigurationChangeType getConfigurationChangeType();
+    /**
+     * Gets configuration change type.
+     *
+     * @return the configuration change type
+     */
+    public ConfigurationChangeType getConfigurationChangeType();
 
 }

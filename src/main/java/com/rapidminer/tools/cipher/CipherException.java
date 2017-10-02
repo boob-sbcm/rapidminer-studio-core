@@ -20,14 +20,19 @@ package com.rapidminer.tools.cipher;
 
 /**
  * This exception will be thrown if a problem during encryption or decryption occurs.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CipherException extends Exception {
 
 	private static final long serialVersionUID = -5070414835484266101L;
 
-	public CipherException(String message) {
+    /**
+     * Instantiates a new Cipher exception.
+     *
+     * @param message the message
+     */
+    public CipherException(String message) {
 		super(message);
 	}
 }

@@ -36,50 +36,50 @@ import com.rapidminer.operator.OperatorProgress;
  */
 public enum ProcessAnimationManager {
 
-	INSTANCE;
+    /**
+     * Instance process animation manager.
+     */
+    INSTANCE;
 
 	/** the map from operator name to animation */
 	private final Map<String, Animation> animations = Collections.synchronizedMap(new HashMap<>());
 
-	/**
-	 * Retrieves the {@link Animation} associated with the operator if it exists.
-	 *
-	 * @param operator
-	 *            the operator for which to get the animation
-	 * @return the animation for the operator or {@code null}
-	 */
-	public Animation getAnimationForOperator(Operator operator) {
+    /**
+     * Retrieves the {@link Animation} associated with the operator if it exists.
+     *
+     * @param operator the operator for which to get the animation
+     * @return the animation for the operator or {@code null}
+     */
+    public Animation getAnimationForOperator(Operator operator) {
 		return animations.get(operator.getName());
 	}
 
-	/**
-	 * Creates an {@link Animation} that displays the progress of the operator and associates it
-	 * with the operator.
-	 *
-	 * @param operator
-	 *            the operator for which a animation is added
-	 */
-	void addAnimationForOperator(Operator operator) {
+    /**
+     * Creates an {@link Animation} that displays the progress of the operator and associates it
+     * with the operator.
+     *
+     * @param operator the operator for which a animation is added
+     */
+    void addAnimationForOperator(Operator operator) {
 		Animation operatorAnimation = createAnimationForOperator(operator);
 		animations.put(operator.getName(), operatorAnimation);
 	}
 
-	/**
-	 * Removes the {@link Animation} registered for the operator if it exists.
-	 *
-	 * @param operator
-	 *            the operator for which to remove the animation
-	 */
-	void removeAnimationForOperator(Operator operator) {
+    /**
+     * Removes the {@link Animation} registered for the operator if it exists.
+     *
+     * @param operator the operator for which to remove the animation
+     */
+    void removeAnimationForOperator(Operator operator) {
 		animations.remove(operator.getName());
 	}
 
-	/**
-	 * Checks if one of the animations requires a repaint.
-	 *
-	 * @return whether at least one of the animations need a repaint
-	 */
-	boolean isRepaintRequired() {
+    /**
+     * Checks if one of the animations requires a repaint.
+     *
+     * @return whether at least one of the animations need a repaint
+     */
+    boolean isRepaintRequired() {
 		List<Animation> animationList;
 		synchronized (animations) {
 			animationList = new ArrayList<>(animations.values());

@@ -66,7 +66,7 @@ import java.util.regex.PatternSyntaxException;
  * note that no attribute value combinations are supported and hence only subgroups defined by
  * exactly one attribute are considered at a time.
  * </p>
- * 
+ * <p>
  * <p>
  * A subset is build (and an inner operator application is executed) for each possible attribute
  * value of the specified attributes if <code>all</code> is selected for the <code>values</code>
@@ -74,49 +74,84 @@ import java.util.regex.PatternSyntaxException;
  * exhibit an occurrence ratio of at least p. This may be helpful, if only large subgroups should be
  * considered.
  * </p>
- * 
+ * <p>
  * <p>
  * The parameter <code>filter_attribute</code> specifies, if the subgroup defining attribute should
  * be filtered from the subsets.
  * </p>
- * 
+ * <p>
  * <p>
  * The parameter <code>apply_on_complete_set</code> specifies, if the inner operators should be
  * applied on the completed example set in addition to the subset iterations.
  * </p>
- * 
+ * <p>
  * <p>
  * The current value of the loop can be accessed with the specified macro name.
  * </p>
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class ValueSubgroupIteration extends OperatorChain {
 
-	public static final String PARAMETER_ATTRIBUTES = "attributes";
+    /**
+     * The constant PARAMETER_ATTRIBUTES.
+     */
+    public static final String PARAMETER_ATTRIBUTES = "attributes";
 
-	public static final String PARAMETER_VALUES = "values";
+    /**
+     * The constant PARAMETER_VALUES.
+     */
+    public static final String PARAMETER_VALUES = "values";
 
-	public static final String[] VALUE_OPTIONS = { "all", "above p" };
+    /**
+     * The constant VALUE_OPTIONS.
+     */
+    public static final String[] VALUE_OPTIONS = { "all", "above p" };
 
-	public static final int VALUE_OPTION_ALL = 0;
+    /**
+     * The constant VALUE_OPTION_ALL.
+     */
+    public static final int VALUE_OPTION_ALL = 0;
 
-	public static final int VALUE_OPTION_ABOVE_P = 1;
+    /**
+     * The constant VALUE_OPTION_ABOVE_P.
+     */
+    public static final int VALUE_OPTION_ABOVE_P = 1;
 
-	public static final String PARAMETER_P = "p";
+    /**
+     * The constant PARAMETER_P.
+     */
+    public static final String PARAMETER_P = "p";
 
-	public static final String PARAMETER_FILTER_ATTRIBUTE = "filter_attribute";
+    /**
+     * The constant PARAMETER_FILTER_ATTRIBUTE.
+     */
+    public static final String PARAMETER_FILTER_ATTRIBUTE = "filter_attribute";
 
-	public static final String PARAMETER_APPLY_ON_COMPLETE_SET = "apply_on_complete_set";
+    /**
+     * The constant PARAMETER_APPLY_ON_COMPLETE_SET.
+     */
+    public static final String PARAMETER_APPLY_ON_COMPLETE_SET = "apply_on_complete_set";
 
-	public static final String PARAMETER_ITERATION_MACRO = "iteration_macro";
+    /**
+     * The constant PARAMETER_ITERATION_MACRO.
+     */
+    public static final String PARAMETER_ITERATION_MACRO = "iteration_macro";
 
-	public static final String DEFAULT_ITERATION_MACRO_NAME = "loop_value";
+    /**
+     * The constant DEFAULT_ITERATION_MACRO_NAME.
+     */
+    public static final String DEFAULT_ITERATION_MACRO_NAME = "loop_value";
 
 	private final InputPort exampleSetInput = getInputPorts().createPort("example set in");
 	private final OutputPort innerExampleSetSource = getSubprocess(0).getInnerSources().createPort("example set source");
 
-	public ValueSubgroupIteration(OperatorDescription description) {
+    /**
+     * Instantiates a new Value subgroup iteration.
+     *
+     * @param description the description
+     */
+    public ValueSubgroupIteration(OperatorDescription description) {
 		super(description, "Subset Processing");
 
 		exampleSetInput.addPrecondition(new AttributeSetPrecondition(exampleSetInput, new AttributeNameProvider() {

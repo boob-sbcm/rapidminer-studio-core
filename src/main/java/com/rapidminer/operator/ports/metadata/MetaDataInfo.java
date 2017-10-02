@@ -24,15 +24,29 @@ import java.io.Serializable;
 /**
  * An answer to a meta data question that cannot always be answered with certainty. In that case
  * {@link #UNKNOWN} is returned.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public enum MetaDataInfo implements Serializable {
 
-	YES, NO, UNKNOWN;
+    /**
+     * Yes meta data info.
+     */
+    YES, /**
+     * No meta data info.
+     */
+    NO, /**
+     * Unknown meta data info.
+     */
+    UNKNOWN;
 
-	public static MetaDataInfo fromBoolean(boolean b) {
+    /**
+     * From boolean meta data info.
+     *
+     * @param b the b
+     * @return the meta data info
+     */
+    public static MetaDataInfo fromBoolean(boolean b) {
 		return b ? YES : NO;
 	}
 

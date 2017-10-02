@@ -32,19 +32,38 @@ import java.util.List;
 /**
  * This interface provides methods to construct a neighborhood from a specified geometric data
  * collection. The center of neighborhood is specified to.
- * 
+ * <p>
  * Additionally, each subclass implementing Neighboorhood must be able to init themself from the
  * parameter they specify in their getParameterTypes method.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public interface Neighborhood extends Serializable {
 
-	public <T extends Serializable> Collection<Tupel<Double, T>> getNeighbourhood(GeometricDataCollection<T> samples,
+    /**
+     * Gets neighbourhood.
+     *
+     * @param <T>        the type parameter
+     * @param samples    the samples
+     * @param probePoint the probe point
+     * @return the neighbourhood
+     */
+    public <T extends Serializable> Collection<Tupel<Double, T>> getNeighbourhood(GeometricDataCollection<T> samples,
 			double[] probePoint);
 
-	public void init(ParameterHandler handler) throws UndefinedParameterError;
+    /**
+     * Init.
+     *
+     * @param handler the handler
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public void init(ParameterHandler handler) throws UndefinedParameterError;
 
-	public List<ParameterType> getParameterTypes(ParameterHandler handler);
+    /**
+     * Gets parameter types.
+     *
+     * @param handler the handler
+     * @return the parameter types
+     */
+    public List<ParameterType> getParameterTypes(ParameterHandler handler);
 }

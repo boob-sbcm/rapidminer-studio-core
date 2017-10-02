@@ -23,7 +23,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Returns the value of the Gaussian combination kernel of both examples.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class GaussianCombinationKernel extends Kernel {
@@ -44,27 +44,57 @@ public class GaussianCombinationKernel extends Kernel {
 		return KERNEL_GAUSSIAN_COMBINATION;
 	}
 
-	public void setSigma1(double sigma1) {
+    /**
+     * Sets sigma 1.
+     *
+     * @param sigma1 the sigma 1
+     */
+    public void setSigma1(double sigma1) {
 		this.sigma1 = sigma1;
 	}
 
-	public void setSigma2(double sigma2) {
+    /**
+     * Sets sigma 2.
+     *
+     * @param sigma2 the sigma 2
+     */
+    public void setSigma2(double sigma2) {
 		this.sigma2 = sigma2;
 	}
 
-	public void setSigma3(double sigma3) {
+    /**
+     * Sets sigma 3.
+     *
+     * @param sigma3 the sigma 3
+     */
+    public void setSigma3(double sigma3) {
 		this.sigma3 = sigma3;
 	}
 
-	public double getSigma1() {
+    /**
+     * Gets sigma 1.
+     *
+     * @return the sigma 1
+     */
+    public double getSigma1() {
 		return sigma1;
 	}
 
-	public double getSigma2() {
+    /**
+     * Gets sigma 2.
+     *
+     * @return the sigma 2
+     */
+    public double getSigma2() {
 		return sigma2;
 	}
 
-	public double getSigma3() {
+    /**
+     * Gets sigma 3.
+     *
+     * @return the sigma 3
+     */
+    public double getSigma3() {
 		return sigma3;
 	}
 

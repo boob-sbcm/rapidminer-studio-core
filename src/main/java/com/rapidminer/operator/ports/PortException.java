@@ -25,6 +25,8 @@ import javax.swing.JOptionPane;
 
 
 /**
+ * The type Port exception.
+ *
  * @author Simon Fischer
  */
 public class PortException extends RuntimeException {
@@ -34,19 +36,41 @@ public class PortException extends RuntimeException {
 	 */
 	private static final long serialVersionUID = -3144885811799953716L;
 
-	public PortException(String message) {
+    /**
+     * Instantiates a new Port exception.
+     *
+     * @param message the message
+     */
+    public PortException(String message) {
 		super(message);
 	}
 
-	public PortException(Port port, String message) {
+    /**
+     * Instantiates a new Port exception.
+     *
+     * @param port    the port
+     * @param message the message
+     */
+    public PortException(Port port, String message) {
 		super("Exception at " + port.getSpec() + ": " + message);
 	}
 
-	public boolean hasRepairOptions() {
+    /**
+     * Has repair options boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasRepairOptions() {
 		return false;
 	}
 
-	public void showRepairPopup(Component parent, Point popupLocation) {
+    /**
+     * Show repair popup.
+     *
+     * @param parent        the parent
+     * @param popupLocation the popup location
+     */
+    public void showRepairPopup(Component parent, Point popupLocation) {
 		JOptionPane.showMessageDialog(parent, getMessage(), "Port exception", JOptionPane.ERROR_MESSAGE);
 	}
 }

@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class OpenAttributeFileAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class OpenAttributeFileAction extends ResourceAction {
 
 	private final AttributeEditor attributeEditor;
 
-	public OpenAttributeFileAction(AttributeEditor attributeEditor) {
+    /**
+     * Instantiates a new Open attribute file action.
+     *
+     * @param attributeEditor the attribute editor
+     */
+    public OpenAttributeFileAction(AttributeEditor attributeEditor) {
 		super("attribute_editor.open_aml_file");
 		this.attributeEditor = attributeEditor;
 	}

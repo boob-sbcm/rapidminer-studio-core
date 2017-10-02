@@ -108,7 +108,10 @@ public class NewOperatorGroupTree extends JPanel implements FilterListener, Sele
 
 	private final ImageIcon CLEAR_FILTER_HOVERED_ICON = SwingTools.createIcon("16/x-mark_orange.png");
 
-	public transient final Action INFO_OPERATOR_ACTION = new InfoOperatorAction() {
+    /**
+     * The constant INFO_OPERATOR_ACTION.
+     */
+    public transient final Action INFO_OPERATOR_ACTION = new InfoOperatorAction() {
 
 		private static final long serialVersionUID = 7157100643209732656L;
 
@@ -120,12 +123,12 @@ public class NewOperatorGroupTree extends JPanel implements FilterListener, Sele
 
 	private NewOperatorGroupTreeRenderer renderer;
 
-	/**
-	 *
-	 * @param editor
-	 *            NewOperatorEditor is no longer used
-	 */
-	public NewOperatorGroupTree(final NewOperatorEditor editor) {
+    /**
+     * Instantiates a new New operator group tree.
+     *
+     * @param editor NewOperatorEditor is no longer used
+     */
+    public NewOperatorGroupTree(final NewOperatorEditor editor) {
 		setLayout(new BorderLayout());
 
 		operatorGroupTree.setShowsRootHandles(true);
@@ -421,15 +424,30 @@ public class NewOperatorGroupTree extends JPanel implements FilterListener, Sele
 		}
 	}
 
-	public boolean shouldAutoConnectNewOperatorsInputs() {
+    /**
+     * Should auto connect new operators inputs boolean.
+     *
+     * @return the boolean
+     */
+    public boolean shouldAutoConnectNewOperatorsInputs() {
 		return "true".equals(ParameterService.getParameterValue(RapidMinerGUI.PROPERTY_AUTOWIRE_INPUT));
 	}
 
-	public boolean shouldAutoConnectNewOperatorsOutputs() {
+    /**
+     * Should auto connect new operators outputs boolean.
+     *
+     * @return the boolean
+     */
+    public boolean shouldAutoConnectNewOperatorsOutputs() {
 		return "true".equals(ParameterService.getParameterValue(RapidMinerGUI.PROPERTY_AUTOWIRE_OUTPUT));
 	}
 
-	public JTree getTree() {
+    /**
+     * Gets tree.
+     *
+     * @return the tree
+     */
+    public JTree getTree() {
 		return this.operatorGroupTree;
 	}
 
@@ -527,7 +545,12 @@ public class NewOperatorGroupTree extends JPanel implements FilterListener, Sele
 		insertSelected();
 	}
 
-	public AbstractPatchedTransferHandler getOperatorTreeTransferhandler() {
+    /**
+     * Gets operator tree transferhandler.
+     *
+     * @return the operator tree transferhandler
+     */
+    public AbstractPatchedTransferHandler getOperatorTreeTransferhandler() {
 		return (AbstractPatchedTransferHandler) operatorGroupTree.getTransferHandler();
 	}
 
@@ -542,7 +565,12 @@ public class NewOperatorGroupTree extends JPanel implements FilterListener, Sele
 		ActionStatisticsCollector.INSTANCE.log(ActionStatisticsCollector.TYPE_OPERATOR_SEARCH, event, searchText);
 	}
 
-	public FilterTextField getFilterField() {
+    /**
+     * Gets filter field.
+     *
+     * @return the filter field
+     */
+    public FilterTextField getFilterField() {
 		return filterField;
 	}
 }

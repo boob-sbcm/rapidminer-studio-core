@@ -25,7 +25,7 @@ import java.awt.Color;
 
 /**
  * This class provides the color calculation for the classification areas of the SOMMOdelPlotter.
- * 
+ *
  * @author Sebastian Land
  */
 public class SOMClassColorizer implements SOMMatrixColorizer {
@@ -34,7 +34,12 @@ public class SOMClassColorizer implements SOMMatrixColorizer {
 
 	private ColorProvider colorProvider = new ColorProvider(true);
 
-	public SOMClassColorizer(int numberOfClasses) {
+    /**
+     * Instantiates a new Som class colorizer.
+     *
+     * @param numberOfClasses the number of classes
+     */
+    public SOMClassColorizer(int numberOfClasses) {
 		this.numberOfClasses = numberOfClasses;
 	}
 

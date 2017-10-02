@@ -38,14 +38,19 @@ import java.util.Map;
  * type. Simple operators can be by other simple operators or operator chains, operator chains can
  * only be replaced by other chains. This operator menu is available in the context menu of an
  * operator in tree view.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer, Tobias Malbrecht
  */
 public class ReplaceOperatorMenu extends OperatorMenu {
 
 	private static final long serialVersionUID = -663404687013352042L;
 
-	protected ReplaceOperatorMenu(boolean onlyChains) {
+    /**
+     * Instantiates a new Replace operator menu.
+     *
+     * @param onlyChains the only chains
+     */
+    protected ReplaceOperatorMenu(boolean onlyChains) {
 		super("replace_operator", onlyChains);
 	}
 

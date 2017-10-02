@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for processContextWrapper complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="processContextWrapper">
  *   &lt;complexContent>
@@ -44,8 +44,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "processContextWrapper", propOrder = {
@@ -55,34 +53,43 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ProcessContextWrapper {
 
+    /**
+     * The Input repository locations.
+     */
     @XmlElement(nillable = true)
     protected List<String> inputRepositoryLocations;
+    /**
+     * The Macros.
+     */
     @XmlElement(nillable = true)
     protected List<MacroDefinition> macros;
+    /**
+     * The Output repository locations.
+     */
     @XmlElement(nillable = true)
     protected List<String> outputRepositoryLocations;
 
     /**
      * Gets the value of the inputRepositoryLocations property.
-     * 
+     * <p>
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the inputRepositoryLocations property.
-     * 
+     * <p>
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getInputRepositoryLocations().add(newItem);
      * </pre>
-     * 
-     * 
+     * <p>
+     * <p>
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link String }
-     * 
-     * 
+     *
+     * @return the input repository locations
      */
     public List<String> getInputRepositoryLocations() {
         if (inputRepositoryLocations == null) {
@@ -93,25 +100,25 @@ public class ProcessContextWrapper {
 
     /**
      * Gets the value of the macros property.
-     * 
+     * <p>
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the macros property.
-     * 
+     * <p>
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getMacros().add(newItem);
      * </pre>
-     * 
-     * 
+     * <p>
+     * <p>
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link MacroDefinition }
-     * 
-     * 
+     *
+     * @return the macros
      */
     public List<MacroDefinition> getMacros() {
         if (macros == null) {
@@ -122,25 +129,25 @@ public class ProcessContextWrapper {
 
     /**
      * Gets the value of the outputRepositoryLocations property.
-     * 
+     * <p>
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the outputRepositoryLocations property.
-     * 
+     * <p>
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getOutputRepositoryLocations().add(newItem);
      * </pre>
-     * 
-     * 
+     * <p>
+     * <p>
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link String }
-     * 
-     * 
+     *
+     * @return the output repository locations
      */
     public List<String> getOutputRepositoryLocations() {
         if (outputRepositoryLocations == null) {

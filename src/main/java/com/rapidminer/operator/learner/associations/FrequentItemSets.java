@@ -29,7 +29,7 @@ import java.util.Iterator;
 
 /**
  * Contains a collection of {@link FrequentItemSet}s.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class FrequentItemSets extends ResultObjectAdapter implements Iterable<FrequentItemSet> {
@@ -44,31 +44,50 @@ public class FrequentItemSets extends ResultObjectAdapter implements Iterable<Fr
 
 	private ArrayList<FrequentItemSet> frequentSets;
 
-	public FrequentItemSets(int numberOfTransactions) {
+    /**
+     * Instantiates a new Frequent item sets.
+     *
+     * @param numberOfTransactions the number of transactions
+     */
+    public FrequentItemSets(int numberOfTransactions) {
 		this.numberOfTransactions = numberOfTransactions;
 		this.frequentSets = new ArrayList<FrequentItemSet>();
 	}
 
-	/**
-	 * Adds a frequent item set to this container. ConditionalItems and frequentItems are merged.
-	 * 
-	 * @param itemSet
-	 *            the frequent set
-	 */
-	public void addFrequentSet(FrequentItemSet itemSet) {
+    /**
+     * Adds a frequent item set to this container. ConditionalItems and frequentItems are merged.
+     *
+     * @param itemSet the frequent set
+     */
+    public void addFrequentSet(FrequentItemSet itemSet) {
 		frequentSets.add(itemSet);
 		maximumSetSize = Math.max(itemSet.getNumberOfItems(), maximumSetSize);
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "frq";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "frequent item set";
 	}
 
-	public int getMaximumSetSize() {
+    /**
+     * Gets maximum set size.
+     *
+     * @return the maximum set size
+     */
+    public int getMaximumSetSize() {
 		return this.maximumSetSize;
 	}
 
@@ -77,23 +96,47 @@ public class FrequentItemSets extends ResultObjectAdapter implements Iterable<Fr
 		return frequentSets.iterator();
 	}
 
-	public FrequentItemSet getItemSet(int index) {
+    /**
+     * Gets item set.
+     *
+     * @param index the index
+     * @return the item set
+     */
+    public FrequentItemSet getItemSet(int index) {
 		return frequentSets.get(index);
 	}
 
-	public void sortSets() {
+    /**
+     * Sort sets.
+     */
+    public void sortSets() {
 		Collections.sort(frequentSets);
 	}
 
-	public void sortSets(Comparator<FrequentItemSet> comparator) {
+    /**
+     * Sort sets.
+     *
+     * @param comparator the comparator
+     */
+    public void sortSets(Comparator<FrequentItemSet> comparator) {
 		Collections.sort(frequentSets, comparator);
 	}
 
-	public int size() {
+    /**
+     * Size int.
+     *
+     * @return the int
+     */
+    public int size() {
 		return frequentSets.size();
 	}
 
-	public int getNumberOfTransactions() {
+    /**
+     * Gets number of transactions.
+     *
+     * @return the number of transactions
+     */
+    public int getNumberOfTransactions() {
 		return this.numberOfTransactions;
 	}
 
@@ -115,8 +158,13 @@ public class FrequentItemSets extends ResultObjectAdapter implements Iterable<Fr
 		return toString(MAX_NUMBER_OF_ITEMSETS);
 	}
 
-	/** This method generates the a string representation of this object. */
-	public String toString(int maxNumber) {
+    /**
+     * This method generates the a string representation of this object.  @param maxNumber the max number
+     *
+     * @param maxNumber the max number
+     * @return the string
+     */
+    public String toString(int maxNumber) {
 		StringBuffer output = new StringBuffer("Frequent Item Sets (" + size() + "):" + Tools.getLineSeparator());
 		if (frequentSets.size() == 0) {
 			output.append("no itemsets found");

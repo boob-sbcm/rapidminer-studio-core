@@ -29,7 +29,6 @@ import com.rapidminer.core.io.data.source.DataSource;
  * files).
  *
  * @author Nils Woehler
- *
  */
 public class FileDataSourceTestUtils {
 
@@ -44,30 +43,36 @@ public class FileDataSourceTestUtils {
 		}
 	}
 
-	/**
-	 * @return the UTF-8 label stored under the 'labelHeader' key
-	 */
-	public static String getUtf8Label() {
+    /**
+     * Gets utf 8 label.
+     *
+     * @return the UTF-8 label stored under the 'labelHeader' key
+     */
+    public static String getUtf8Label() {
 		if (!PROPERTIES.containsKey("labelHeader")) {
 			throw new IllegalArgumentException("Label header not part of utf8 properties file");
 		}
 		return PROPERTIES.getProperty("labelHeader");
 	}
 
-	/**
-	 * @return the UTF-8 label stored under the 'entryUTF8' key
-	 */
-	public static String getUtf8Entry() {
+    /**
+     * Gets utf 8 entry.
+     *
+     * @return the UTF-8 label stored under the 'entryUTF8' key
+     */
+    public static String getUtf8Entry() {
 		if (!PROPERTIES.containsKey("entryUTF8")) {
 			throw new IllegalArgumentException("entryUTF8 not part of utf8 properties file");
 		}
 		return PROPERTIES.getProperty("entryUTF8");
 	}
 
-	/**
-	 * @return the UTF-8 label stored under the 'entryWindows' key
-	 */
-	public static String getWindowsEntry() {
+    /**
+     * Gets windows entry.
+     *
+     * @return the UTF-8 label stored under the 'entryWindows' key
+     */
+    public static String getWindowsEntry() {
 		if (!PROPERTIES.containsKey("entryWindows")) {
 			throw new IllegalArgumentException("entryWindows not part of utf8 properties file");
 		}

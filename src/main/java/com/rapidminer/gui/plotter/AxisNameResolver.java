@@ -24,12 +24,24 @@ import java.util.Collection;
 /**
  * An interface providing methods for the AbstractChartPanel to resolve it's currently shown
  * dimensions.
- * 
+ *
  * @author Sebastian Land
  */
 public interface AxisNameResolver {
 
-	public Collection<String> resolveXAxis(int axisIndex);
+    /**
+     * Resolve x axis collection.
+     *
+     * @param axisIndex the axis index
+     * @return the collection
+     */
+    public Collection<String> resolveXAxis(int axisIndex);
 
-	public Collection<String> resolveYAxis(int axisIndex);
+    /**
+     * Resolve y axis collection.
+     *
+     * @param axisIndex the axis index
+     * @return the collection
+     */
+    public Collection<String> resolveYAxis(int axisIndex);
 }

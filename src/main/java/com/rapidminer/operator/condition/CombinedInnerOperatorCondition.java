@@ -31,7 +31,7 @@ import java.util.List;
  * This condition is a container for other (simple) inner operator conditions. This can for example
  * be used to define several {@link SpecificInnerOperatorCondition} conditions for a chain. The
  * output of the last added condition is used as total output.
- * 
+ *
  * @author Ingo Mierswa
  * @deprecated
  */
@@ -40,9 +40,17 @@ public class CombinedInnerOperatorCondition implements InnerOperatorCondition {
 
 	private final List<InnerOperatorCondition> conditions = new LinkedList<InnerOperatorCondition>();
 
-	public CombinedInnerOperatorCondition() {}
+    /**
+     * Instantiates a new Combined inner operator condition.
+     */
+    public CombinedInnerOperatorCondition() {}
 
-	public void addCondition(InnerOperatorCondition condition) {
+    /**
+     * Add condition.
+     *
+     * @param condition the condition
+     */
+    public void addCondition(InnerOperatorCondition condition) {
 		this.conditions.add(condition);
 	}
 

@@ -19,6 +19,8 @@
 package com.rapidminer.operator.nio.model;
 
 /**
+ * The type Parse exception.
+ *
  * @author Simon Fischer
  */
 public class ParseException extends Exception {
@@ -27,12 +29,22 @@ public class ParseException extends Exception {
 
 	private final ParsingError error;
 
-	public ParseException(ParsingError error) {
+    /**
+     * Instantiates a new Parse exception.
+     *
+     * @param error the error
+     */
+    public ParseException(ParsingError error) {
 		super(error.getMessage());
 		this.error = error;
 	}
 
-	public ParsingError getError() {
+    /**
+     * Gets error.
+     *
+     * @return the error
+     */
+    public ParsingError getError() {
 		return error;
 	}
 }

@@ -23,20 +23,34 @@ import java.util.Iterator;
 
 
 /**
- * @author Sebastian Land
+ * The type Sequence.
  *
+ * @author Sebastian Land
  */
 public class Sequence extends ArrayList<Transaction> implements Comparable<Sequence> {
 
 	private static final long serialVersionUID = -5774432548086375L;
 
-	public Sequence() {};
+    /**
+     * Instantiates a new Sequence.
+     */
+    public Sequence() {};
 
-	public Sequence(Sequence sequence) {
+    /**
+     * Instantiates a new Sequence.
+     *
+     * @param sequence the sequence
+     */
+    public Sequence(Sequence sequence) {
 		addAll(sequence);
 	}
 
-	public int getNumberOfItems() {
+    /**
+     * Gets number of items.
+     *
+     * @return the number of items
+     */
+    public int getNumberOfItems() {
 		int size = 0;
 		for (Transaction transaction : this) {
 			size += transaction.size();
@@ -44,10 +58,13 @@ public class Sequence extends ArrayList<Transaction> implements Comparable<Seque
 		return size;
 	}
 
-	/**
-	 * This method returns the n-th item in the sequence counting all items in every transaction
-	 */
-	public Item getItem(int n) {
+    /**
+     * This method returns the n-th item in the sequence counting all items in every transaction
+     *
+     * @param n the n
+     * @return the item
+     */
+    public Item getItem(int n) {
 		for (Transaction transaction : this) {
 			if (n - transaction.size() < 0) {
 				return transaction.get(n);
@@ -57,15 +74,25 @@ public class Sequence extends ArrayList<Transaction> implements Comparable<Seque
 		return null;
 	}
 
-	public Transaction getLastTransaction() {
+    /**
+     * Gets last transaction.
+     *
+     * @return the last transaction
+     */
+    public Transaction getLastTransaction() {
 		return get(size() - 1);
 	}
 
-	/**
-	 * This method implements an enhanced equals method where the specified elements of the
-	 * sequences are treated as if not existent. This avoids construction of new sequences.
-	 */
-	public boolean equals(int ignoreOwnElement, Sequence sequence, int ignoreItsElement) {
+    /**
+     * This method implements an enhanced equals method where the specified elements of the
+     * sequences are treated as if not existent. This avoids construction of new sequences.
+     *
+     * @param ignoreOwnElement the ignore own element
+     * @param sequence         the sequence
+     * @param ignoreItsElement the ignore its element
+     * @return the boolean
+     */
+    public boolean equals(int ignoreOwnElement, Sequence sequence, int ignoreItsElement) {
 		int ownIndex = 0;
 		int itsIndex = 0;
 		Iterator<Item> ownIterator = itemIterator();
@@ -99,7 +126,12 @@ public class Sequence extends ArrayList<Transaction> implements Comparable<Seque
 		}
 	}
 
-	public Iterator<Item> itemIterator() {
+    /**
+     * Item iterator iterator.
+     *
+     * @return the iterator
+     */
+    public Iterator<Item> itemIterator() {
 		return new Iterator<Item>() {
 
 			private Iterator<Transaction> transactionIterator = iterator();
@@ -136,21 +168,29 @@ public class Sequence extends ArrayList<Transaction> implements Comparable<Seque
 		};
 	}
 
-	/**
-	 * This method returns a Sequence, with the specified transaction appended. It has to take care,
-	 * that neither the original sequence nor the original transaction is altered.
-	 */
-	public static Sequence appendTransaction(Sequence sequence1, Transaction lastTransaction) {
+    /**
+     * This method returns a Sequence, with the specified transaction appended. It has to take care,
+     * that neither the original sequence nor the original transaction is altered.
+     *
+     * @param sequence1       the sequence 1
+     * @param lastTransaction the last transaction
+     * @return the sequence
+     */
+    public static Sequence appendTransaction(Sequence sequence1, Transaction lastTransaction) {
 		Sequence result = new Sequence(sequence1);
 		result.add(lastTransaction);
 		return result;
 	}
 
-	/**
-	 * This method returns a Sequence, with the specified item appended on the last transaction. It
-	 * has to take care, that neither the original sequence nor the original transaction is altered.
-	 */
-	public static Sequence appendItem(Sequence sequence1, Item lastItem) {
+    /**
+     * This method returns a Sequence, with the specified item appended on the last transaction. It
+     * has to take care, that neither the original sequence nor the original transaction is altered.
+     *
+     * @param sequence1 the sequence 1
+     * @param lastItem  the last item
+     * @return the sequence
+     */
+    public static Sequence appendItem(Sequence sequence1, Item lastItem) {
 		Sequence result = new Sequence(sequence1);
 		int lastIndex = result.size() - 1;
 		Transaction newTransaction = new Transaction(result.get(lastIndex));
@@ -162,7 +202,15 @@ public class Sequence extends ArrayList<Transaction> implements Comparable<Seque
 		return result;
 	}
 
-	public static Sequence removeItem(Sequence candidate, int transactionIndex, int itemIndex) {
+    /**
+     * Remove item sequence.
+     *
+     * @param candidate        the candidate
+     * @param transactionIndex the transaction index
+     * @param itemIndex        the item index
+     * @return the sequence
+     */
+    public static Sequence removeItem(Sequence candidate, int transactionIndex, int itemIndex) {
 		Sequence result = new Sequence(candidate);
 		Transaction newTransaction = new Transaction(result.get(transactionIndex));
 		newTransaction.remove(itemIndex);

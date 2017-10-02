@@ -34,7 +34,7 @@ import java.util.Iterator;
  * error, the square root of the relative squared error is taken to give it the same dimensions as
  * the predicted values themselves. Also, just like root mean-squared error, this exaggerates the
  * cases in which the prediction error was significantly greater than the mean error.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class RootRelativeSquaredError extends MeasuredPerformance {
@@ -55,9 +55,17 @@ public class RootRelativeSquaredError extends MeasuredPerformance {
 
 	private double exampleCounter = 0;
 
-	public RootRelativeSquaredError() {}
+    /**
+     * Instantiates a new Root relative squared error.
+     */
+    public RootRelativeSquaredError() {}
 
-	public RootRelativeSquaredError(RootRelativeSquaredError rse) {
+    /**
+     * Instantiates a new Root relative squared error.
+     *
+     * @param rse the rse
+     */
+    public RootRelativeSquaredError(RootRelativeSquaredError rse) {
 		super(rse);
 		this.deviationSum = rse.deviationSum;
 		this.relativeSum = rse.relativeSum;

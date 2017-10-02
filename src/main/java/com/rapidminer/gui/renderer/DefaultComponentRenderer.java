@@ -28,7 +28,7 @@ import java.awt.Component;
  * This is the abstract renderer superclass for all renderers which should simply use a Java
  * component. Basically, this class only exists to allow for dirty hacks and should not be used in
  * general.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DefaultComponentRenderer extends AbstractRenderer {
@@ -37,7 +37,13 @@ public class DefaultComponentRenderer extends AbstractRenderer {
 
 	private Component component;
 
-	public DefaultComponentRenderer(String name, Component component) {
+    /**
+     * Instantiates a new Default component renderer.
+     *
+     * @param name      the name
+     * @param component the component
+     */
+    public DefaultComponentRenderer(String name, Component component) {
 		this.name = name;
 		this.component = component;
 	}

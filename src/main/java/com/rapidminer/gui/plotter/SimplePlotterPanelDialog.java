@@ -36,22 +36,42 @@ import javax.swing.JPanel;
  * This dialog can be used to create a plot dialog containing a complete plotter panel (including
  * all options and user interfaces) from a given {@link DataTable}. This might be useful if an
  * operator should display some data or results.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimplePlotterPanelDialog extends JDialog {
 
 	private static final long serialVersionUID = -3618058787783237559L;
 
-	public SimplePlotterPanelDialog(DataTable dataTable) {
+    /**
+     * Instantiates a new Simple plotter panel dialog.
+     *
+     * @param dataTable the data table
+     */
+    public SimplePlotterPanelDialog(DataTable dataTable) {
 		this(dataTable, true);
 	}
 
-	public SimplePlotterPanelDialog(DataTable dataTable, boolean modal) {
+    /**
+     * Instantiates a new Simple plotter panel dialog.
+     *
+     * @param dataTable the data table
+     * @param modal     the modal
+     */
+    public SimplePlotterPanelDialog(DataTable dataTable, boolean modal) {
 		this(RapidMinerGUI.getMainFrame(), dataTable, -1, -1, modal);
 	}
 
-	public SimplePlotterPanelDialog(Frame owner, final DataTable dataTable, int width, int height, boolean modal) {
+    /**
+     * Instantiates a new Simple plotter panel dialog.
+     *
+     * @param owner     the owner
+     * @param dataTable the data table
+     * @param width     the width
+     * @param height    the height
+     * @param modal     the modal
+     */
+    public SimplePlotterPanelDialog(Frame owner, final DataTable dataTable, int width, int height, boolean modal) {
 		super(owner, dataTable.getName(), modal);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		PlotterPanel plotterPanel = new PlotterPanel(dataTable, PlotterConfigurationModel.DATA_SET_PLOTTER_SELECTION);

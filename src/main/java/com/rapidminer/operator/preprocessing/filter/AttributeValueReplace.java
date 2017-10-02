@@ -62,11 +62,22 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class AttributeValueReplace extends AbstractValueProcessing {
 
-	public static final String PARAMETER_REPLACE_WHAT = "replace_what";
+    /**
+     * The constant PARAMETER_REPLACE_WHAT.
+     */
+    public static final String PARAMETER_REPLACE_WHAT = "replace_what";
 
-	public static final String PARAMETER_REPLACE_BY = "replace_by";
+    /**
+     * The constant PARAMETER_REPLACE_BY.
+     */
+    public static final String PARAMETER_REPLACE_BY = "replace_by";
 
-	public AttributeValueReplace(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute value replace.
+     *
+     * @param description the description
+     */
+    public AttributeValueReplace(OperatorDescription description) {
 		super(description);
 	}
 

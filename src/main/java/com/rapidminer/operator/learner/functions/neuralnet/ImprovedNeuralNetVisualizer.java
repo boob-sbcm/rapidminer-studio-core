@@ -85,7 +85,13 @@ public class ImprovedNeuralNetVisualizer extends AbstractPrintableIOObjectPanel 
 
 	private Map<Integer, List<Node>> layers = new LinkedHashMap<Integer, List<Node>>();
 
-	public ImprovedNeuralNetVisualizer(ImprovedNeuralNetModel neuralNet, String[] attributeNames) {
+    /**
+     * Instantiates a new Improved neural net visualizer.
+     *
+     * @param neuralNet      the neural net
+     * @param attributeNames the attribute names
+     */
+    public ImprovedNeuralNetVisualizer(ImprovedNeuralNetModel neuralNet, String[] attributeNames) {
 		super(neuralNet, "improved_neural_net");
 		this.neuralNet = neuralNet;
 		this.attributeNames = attributeNames;

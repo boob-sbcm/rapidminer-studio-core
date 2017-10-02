@@ -32,7 +32,6 @@ import com.rapidminer.operator.UserData;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public class WorkflowAnnotations implements UserData<Object> {
 
@@ -44,55 +43,54 @@ public class WorkflowAnnotations implements UserData<Object> {
 
 	private final Object lock;
 
-	/**
-	 * Creates an empty workflow annotations container.
-	 */
-	public WorkflowAnnotations() {
+    /**
+     * Creates an empty workflow annotations container.
+     */
+    public WorkflowAnnotations() {
 		// two lists for performance reasons. Otherwise we'd have to reverse the list each event
 		this.annotationsDrawOrder = new LinkedList<>();
 		this.annotationsEventOrder = new LinkedList<>();
 		this.lock = new Object();
 	}
 
-	/**
-	 * Returns the {@link WorkflowAnnotation}s contained in this container in drawing order. In
-	 * other words, the first element will be drawn first, the last element drawn last.
-	 *
-	 * @return the list of annotations, never {@code null}
-	 */
-	public List<WorkflowAnnotation> getAnnotationsDrawOrder() {
+    /**
+     * Returns the {@link WorkflowAnnotation}s contained in this container in drawing order. In
+     * other words, the first element will be drawn first, the last element drawn last.
+     *
+     * @return the list of annotations, never {@code null}
+     */
+    public List<WorkflowAnnotation> getAnnotationsDrawOrder() {
 		return annotationsDrawOrder;
 	}
 
-	/**
-	 * Returns the {@link WorkflowAnnotation}s contained in this container in event handling order.
-	 * That order is exactly the reversed drawning order. In other words, the first element will be
-	 * receive events last, the last element will recieve them first.
-	 *
-	 * @return the list of annotations, never {@code null}
-	 */
-	public List<WorkflowAnnotation> getAnnotationsEventOrder() {
+    /**
+     * Returns the {@link WorkflowAnnotation}s contained in this container in event handling order.
+     * That order is exactly the reversed drawning order. In other words, the first element will be
+     * receive events last, the last element will recieve them first.
+     *
+     * @return the list of annotations, never {@code null}
+     */
+    public List<WorkflowAnnotation> getAnnotationsEventOrder() {
 		return annotationsEventOrder;
 	}
 
-	/**
-	 * Returns whether this container contains any actual annotations.
-	 *
-	 * @return {@code true} if there are annotations; {@code false} otherwise
-	 */
-	public boolean isEmpty() {
+    /**
+     * Returns whether this container contains any actual annotations.
+     *
+     * @return {@code true} if there are annotations; {@code false} otherwise
+     */
+    public boolean isEmpty() {
 		synchronized (lock) {
 			return annotationsDrawOrder.isEmpty();
 		}
 	}
 
-	/**
-	 * Adds the given annotation.
-	 *
-	 * @param newAnnotation
-	 *            the new annotation to be added
-	 */
-	public void addAnnotation(final WorkflowAnnotation newAnnotation) {
+    /**
+     * Adds the given annotation.
+     *
+     * @param newAnnotation the new annotation to be added
+     */
+    public void addAnnotation(final WorkflowAnnotation newAnnotation) {
 		if (newAnnotation == null) {
 			throw new IllegalArgumentException("newAnnotation must not be null!");
 		}
@@ -102,13 +100,12 @@ public class WorkflowAnnotations implements UserData<Object> {
 		}
 	}
 
-	/**
-	 * Removes the given annotation.
-	 *
-	 * @param toDelete
-	 *            the annotation to be removed
-	 */
-	public void removeAnnotation(final WorkflowAnnotation toDelete) {
+    /**
+     * Removes the given annotation.
+     *
+     * @param toDelete the annotation to be removed
+     */
+    public void removeAnnotation(final WorkflowAnnotation toDelete) {
 		if (toDelete == null) {
 			throw new IllegalArgumentException("toDelete must not be null!");
 		}
@@ -118,14 +115,13 @@ public class WorkflowAnnotations implements UserData<Object> {
 		}
 	}
 
-	/**
-	 * Bring the given annotation to the front. That annotation will be drawn over all other
-	 * annotations as well as recieve events first.
-	 *
-	 * @param anno
-	 *            the annotation to bring to the front
-	 */
-	public void toFront(final WorkflowAnnotation anno) {
+    /**
+     * Bring the given annotation to the front. That annotation will be drawn over all other
+     * annotations as well as recieve events first.
+     *
+     * @param anno the annotation to bring to the front
+     */
+    public void toFront(final WorkflowAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -139,13 +135,12 @@ public class WorkflowAnnotations implements UserData<Object> {
 		}
 	}
 
-	/**
-	 * Brings the given annotation one layer forward.
-	 *
-	 * @param anno
-	 *            the annotation to bring forward
-	 */
-	public void sendForward(final WorkflowAnnotation anno) {
+    /**
+     * Brings the given annotation one layer forward.
+     *
+     * @param anno the annotation to bring forward
+     */
+    public void sendForward(final WorkflowAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -169,14 +164,13 @@ public class WorkflowAnnotations implements UserData<Object> {
 		}
 	}
 
-	/**
-	 * Bring the given annotation to the back. That annotation will be drawn behind all other
-	 * annotations as well as recieve events last.
-	 *
-	 * @param anno
-	 *            the annotation to bring to the front
-	 */
-	public void toBack(final WorkflowAnnotation anno) {
+    /**
+     * Bring the given annotation to the back. That annotation will be drawn behind all other
+     * annotations as well as recieve events last.
+     *
+     * @param anno the annotation to bring to the front
+     */
+    public void toBack(final WorkflowAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -190,13 +184,12 @@ public class WorkflowAnnotations implements UserData<Object> {
 		}
 	}
 
-	/**
-	 * Sends the given annotation one layer backward.
-	 *
-	 * @param anno
-	 *            the annotation to send backward
-	 */
-	public void sendBack(final WorkflowAnnotation anno) {
+    /**
+     * Sends the given annotation one layer backward.
+     *
+     * @param anno the annotation to send backward
+     */
+    public void sendBack(final WorkflowAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}

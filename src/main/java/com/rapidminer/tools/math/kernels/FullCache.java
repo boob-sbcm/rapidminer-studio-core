@@ -34,7 +34,13 @@ public class FullCache implements KernelCache {
 
 	private double[][] distances;
 
-	public FullCache(ExampleSet exampleSet, Kernel kernel) {
+    /**
+     * Instantiates a new Full cache.
+     *
+     * @param exampleSet the example set
+     * @param kernel     the kernel
+     */
+    public FullCache(ExampleSet exampleSet, Kernel kernel) {
 		int size = exampleSet.size();
 		this.distances = new double[size][size];
 		Iterator<Example> reader = exampleSet.iterator();

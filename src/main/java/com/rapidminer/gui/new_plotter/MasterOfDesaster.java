@@ -32,9 +32,8 @@ import java.util.List;
 /**
  * This class can be used to register errors which occur during plotting and cannot be caught during
  * the configuration of the plot.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class MasterOfDesaster {
 
@@ -48,7 +47,10 @@ public class MasterOfDesaster {
 	private static final String NO_PROBLEMS_LABEL = I18N
 			.getGUILabel("plotter.master_of_desaster.no_problems_detected.label");
 
-	public void clearAll() {
+    /**
+     * Clear all.
+     */
+    public void clearAll() {
 		configChangeResponseList.clear();
 		fireChanged();
 	}
@@ -62,7 +64,10 @@ public class MasterOfDesaster {
 		}
 	}
 
-	public void clearWarnings() {
+    /**
+     * Clear warnings.
+     */
+    public void clearWarnings() {
 		for (ConfigurationChangeResponse change : configChangeResponseList) {
 			change.clearWarnings();
 		}
@@ -70,7 +75,10 @@ public class MasterOfDesaster {
 		fireChanged();
 	}
 
-	public void clearErrors() {
+    /**
+     * Clear errors.
+     */
+    public void clearErrors() {
 		for (ConfigurationChangeResponse change : configChangeResponseList) {
 			change.clearErrors();
 		}
@@ -78,12 +86,22 @@ public class MasterOfDesaster {
 		fireChanged();
 	}
 
-	public void removeConfigurationChangeResponse(ConfigurationChangeResponse response) {
+    /**
+     * Remove configuration change response.
+     *
+     * @param response the response
+     */
+    public void removeConfigurationChangeResponse(ConfigurationChangeResponse response) {
 		configChangeResponseList.remove(response);
 		fireChanged();
 	}
 
-	public void registerConfigurationChangeResponse(ConfigurationChangeResponse error) {
+    /**
+     * Register configuration change response.
+     *
+     * @param error the error
+     */
+    public void registerConfigurationChangeResponse(ConfigurationChangeResponse error) {
 		if (calculating) {
 			calculating = false;
 		}
@@ -91,7 +109,12 @@ public class MasterOfDesaster {
 		fireChanged();
 	}
 
-	public List<ConfigurationChangeResponse> getConfigurationChangeResponses() {
+    /**
+     * Gets configuration change responses.
+     *
+     * @return the configuration change responses
+     */
+    public List<ConfigurationChangeResponse> getConfigurationChangeResponses() {
 		return configChangeResponseList;
 	}
 
@@ -112,11 +135,21 @@ public class MasterOfDesaster {
 		}
 	}
 
-	public void addListener(MasterOfDesasterListener l) {
+    /**
+     * Add listener.
+     *
+     * @param l the l
+     */
+    public void addListener(MasterOfDesasterListener l) {
 		listeners.add(new WeakReference<MasterOfDesasterListener>(l));
 	}
 
-	public void removeListener(MasterOfDesasterListener l) {
+    /**
+     * Remove listener.
+     *
+     * @param l the l
+     */
+    public void removeListener(MasterOfDesasterListener l) {
 		Iterator<WeakReference<MasterOfDesasterListener>> it = listeners.iterator();
 		while (it.hasNext()) {
 			MasterOfDesasterListener listener = it.next().get();
@@ -138,10 +171,12 @@ public class MasterOfDesaster {
 		return builder.toString();
 	}
 
-	/**
-	 * @return
-	 */
-	public String toHtmlString() {
+    /**
+     * To html string string.
+     *
+     * @return string string
+     */
+    public String toHtmlString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<html>");
 		if (calculating) {
@@ -168,10 +203,12 @@ public class MasterOfDesaster {
 		return builder.toString();
 	}
 
-	/**
-	 * 
-	 */
-	public void setCalculating(boolean calculating) {
+    /**
+     * Sets calculating.
+     *
+     * @param calculating the calculating
+     */
+    public void setCalculating(boolean calculating) {
 		this.calculating = calculating;
 		fireChanged();
 	}

@@ -38,7 +38,10 @@ public class NumericalStatistics implements Statistics {
 
 	private int valueCounter = 0;
 
-	public NumericalStatistics() {}
+    /**
+     * Instantiates a new Numerical statistics.
+     */
+    public NumericalStatistics() {}
 
 	/** Clone constructor. */
 	private NumericalStatistics(NumericalStatistics other) {

@@ -43,7 +43,6 @@ import com.rapidminer.tools.I18N;
  * inserted into the {@link ExpressionPropertyDialog}, as a value or as an interpreted expression.
  *
  * @author Sabrina Kirstein
- *
  */
 public class MacroSelectionDialog extends JDialog {
 
@@ -124,34 +123,35 @@ public class MacroSelectionDialog extends JDialog {
 	/** end of the expression, when the user selects the expression part */
 	private static final String EXPRESSION_CALL_END_DEPRECATED = "}";
 
-	/**
-	 * Creates a dialog for a given {@link FunctionInputType#MACRO} to choose between inserting the
-	 * macro as a pure value or as an interpreted expression.
-	 *
-	 * @param macroPanel
-	 * @param deprecated
-	 *            if deprecated, use old macro handling
-	 */
-	public MacroSelectionDialog(FunctionInputPanel macroPanel, boolean deprecated) {
+    /**
+     * Creates a dialog for a given {@link FunctionInputType#MACRO} to choose between inserting the
+     * macro as a pure value or as an interpreted expression.
+     *
+     * @param macroPanel the macro panel
+     * @param deprecated if deprecated, use old macro handling
+     */
+    public MacroSelectionDialog(FunctionInputPanel macroPanel, boolean deprecated) {
 		this.deprecated = deprecated;
 		initGui(macroPanel);
 		expressionPanel.requestFocusInWindow();
 	}
 
-	/**
-	 * Creates a dialog for a given {@link FunctionInputType#MACRO} to choose between inserting the
-	 * macro as a pure value or as an interpreted expression.
-	 *
-	 * @param macroPanel
-	 */
-	public MacroSelectionDialog(FunctionInputPanel macroPanel) {
+    /**
+     * Creates a dialog for a given {@link FunctionInputType#MACRO} to choose between inserting the
+     * macro as a pure value or as an interpreted expression.
+     *
+     * @param macroPanel the macro panel
+     */
+    public MacroSelectionDialog(FunctionInputPanel macroPanel) {
 		this(macroPanel, false);
 	}
 
-	/**
-	 * @return the selected expression which will be added to the {@link ExpressionPropertyDialog}
-	 */
-	public String getExpression() {
+    /**
+     * Gets expression.
+     *
+     * @return the selected expression which will be added to the {@link ExpressionPropertyDialog}
+     */
+    public String getExpression() {
 		return expression;
 	}
 

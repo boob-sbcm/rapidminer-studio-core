@@ -39,7 +39,7 @@ import com.rapidminer.tools.Ontology;
 
 /**
  * The model for the {@link com.rapidminer.gui.viewer.MetaDataViewerTable}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DataViewerTableModel extends AbstractTableModel {
@@ -52,7 +52,12 @@ public class DataViewerTableModel extends AbstractTableModel {
 
 	private ExampleSet exampleSet;
 
-	public DataViewerTableModel(ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Data viewer table model.
+     *
+     * @param exampleSet the example set
+     */
+    public DataViewerTableModel(ExampleSet exampleSet) {
 		this.exampleSet = exampleSet;
 
 		this.regularAttributes = new Attribute[exampleSet.getAttributes().size()];
@@ -144,14 +149,14 @@ public class DataViewerTableModel extends AbstractTableModel {
 		}
 	}
 
-	/**
-	 * Returns the {@link Attribute} for the given column or <code>null</code> if this is no column
-	 * denoting an {@link Attribute} in the {@link ExampleSet}.
-	 * 
-	 * @param column
-	 * @return
-	 */
-	public Attribute getColumnAttribute(int column) {
+    /**
+     * Returns the {@link Attribute} for the given column or <code>null</code> if this is no column
+     * denoting an {@link Attribute} in the {@link ExampleSet}.
+     *
+     * @param column the column
+     * @return column attribute
+     */
+    public Attribute getColumnAttribute(int column) {
 		if (column == 0) {
 			return null;
 		}

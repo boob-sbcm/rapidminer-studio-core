@@ -32,7 +32,7 @@ import com.rapidminer.repository.gui.RepositoryLocationChooser;
 
 /**
  * This is a WizardStep for selecting a repository location.
- * 
+ *
  * @author Tobias Malbrecht, Sebastian Land
  */
 public class RepositoryLocationSelectionWizardStep extends WizardStep {
@@ -40,33 +40,46 @@ public class RepositoryLocationSelectionWizardStep extends WizardStep {
 	private final RepositoryLocationChooser locationChooser;
 	private AbstractWizard owner;
 
-	/**
-	 * This constructor is only left for compatibility issues with the paren extension. Hence it
-	 * doesn't make any sense please refer to the
-	 * {@link #RepositoryLocationSelectionWizardStep(AbstractWizard, String)} Constructor instead.
-	 */
-	@Deprecated
+    /**
+     * This constructor is only left for compatibility issues with the paren extension. Hence it
+     * doesn't make any sense please refer to the
+     * {@link #RepositoryLocationSelectionWizardStep(AbstractWizard, String)} Constructor instead.
+     *
+     * @param notUsed      the not used
+     * @param parent       the parent
+     * @param notUsedToo   the not used too
+     * @param initialValue the initial value
+     */
+    @Deprecated
 	public RepositoryLocationSelectionWizardStep(String notUsed, AbstractWizard parent, RepositoryLocation notUsedToo,
 			String initialValue) {
 		this(parent, initialValue);
 	}
 
-	/**
-	 * This constructor is only left for compatibility issues with the paren extension. Hence it
-	 * doesn't make any sense please refer to the
-	 * {@link #RepositoryLocationSelectionWizardStep(AbstractWizard, String, boolean)} Constructor
-	 * instead.
-	 */
-	@Deprecated
+    /**
+     * This constructor is only left for compatibility issues with the paren extension. Hence it
+     * doesn't make any sense please refer to the
+     * {@link #RepositoryLocationSelectionWizardStep(AbstractWizard, String, boolean)} Constructor
+     * instead.
+     *
+     * @param parent       the parent
+     * @param initialValue the initial value
+     */
+    @Deprecated
 	public RepositoryLocationSelectionWizardStep(AbstractWizard parent, String initialValue) {
 		this(parent, initialValue, false);
 	}
 
-	/**
-	 * Constructor for this wizard step. If storeWizard is set to <code>true</code>, will enforce
-	 * valid repository entry names.
-	 */
-	public RepositoryLocationSelectionWizardStep(AbstractWizard parent, String initialValue, boolean storeWizard,
+    /**
+     * Constructor for this wizard step. If storeWizard is set to <code>true</code>, will enforce
+     * valid repository entry names.
+     *
+     * @param parent                    the parent
+     * @param initialValue              the initial value
+     * @param storeWizard               the store wizard
+     * @param onlyWriteableRepositories the only writeable repositories
+     */
+    public RepositoryLocationSelectionWizardStep(AbstractWizard parent, String initialValue, boolean storeWizard,
 			boolean onlyWriteableRepositories) {
 		super("select_repository_location");
 		this.owner = parent;
@@ -78,7 +91,14 @@ public class RepositoryLocationSelectionWizardStep extends WizardStep {
 		}
 	}
 
-	public RepositoryLocationSelectionWizardStep(AbstractWizard parent, String initialValue, boolean storeWizard) {
+    /**
+     * Instantiates a new Repository location selection wizard step.
+     *
+     * @param parent       the parent
+     * @param initialValue the initial value
+     * @param storeWizard  the store wizard
+     */
+    public RepositoryLocationSelectionWizardStep(AbstractWizard parent, String initialValue, boolean storeWizard) {
 		this(parent, initialValue, storeWizard, false);
 	}
 
@@ -97,11 +117,21 @@ public class RepositoryLocationSelectionWizardStep extends WizardStep {
 		return locationChooser;
 	}
 
-	public Window getOwner() {
+    /**
+     * Gets owner.
+     *
+     * @return the owner
+     */
+    public Window getOwner() {
 		return owner;
 	}
 
-	public String getRepositoryLocation() {
+    /**
+     * Gets repository location.
+     *
+     * @return the repository location
+     */
+    public String getRepositoryLocation() {
 		try {
 			return locationChooser.getRepositoryLocation();
 		} catch (MalformedRepositoryLocationException e) {

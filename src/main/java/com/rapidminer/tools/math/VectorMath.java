@@ -23,12 +23,19 @@ import java.util.Arrays;
 
 /**
  * This class provides basic operations on vectors like subtraction, multiply and division.
- * 
+ *
  * @author Regina Fritsch
  */
 public class VectorMath {
 
-	public static final double[] vectorSubtraction(double[] x, double[] y) {
+    /**
+     * Vector subtraction double [ ].
+     *
+     * @param x the x
+     * @param y the y
+     * @return the double [ ]
+     */
+    public static final double[] vectorSubtraction(double[] x, double[] y) {
 		if (y == null || x == null) {
 			throw new RuntimeException("Cannot substract vectors: one vector is null");
 		} else if (x.length != y.length) {
@@ -42,7 +49,14 @@ public class VectorMath {
 		return result;
 	}
 
-	public static final double[] vectorAddition(double[] x, double[] y) {
+    /**
+     * Vector addition double [ ].
+     *
+     * @param x the x
+     * @param y the y
+     * @return the double [ ]
+     */
+    public static final double[] vectorAddition(double[] x, double[] y) {
 		if (x.length != y.length) {
 			throw new RuntimeException("Cannot add vectors: incompatible numbers of attributes (" + x.length + " != "
 					+ y.length + ")!");
@@ -54,7 +68,14 @@ public class VectorMath {
 		return result;
 	}
 
-	public static final double vectorMultiplication(double[] vec1, double[] vec2) {
+    /**
+     * Vector multiplication double.
+     *
+     * @param vec1 the vec 1
+     * @param vec2 the vec 2
+     * @return the double
+     */
+    public static final double vectorMultiplication(double[] vec1, double[] vec2) {
 		if (vec1.length != vec2.length) {
 			throw new RuntimeException("Cannot multiply vectors: incompatible numbers of attributes (" + vec1.length
 					+ " != " + vec2.length + ")!");
@@ -74,7 +95,14 @@ public class VectorMath {
 		}
 	}
 
-	public static final double[] vectorMultiplication(double[] x, double y) {
+    /**
+     * Vector multiplication double [ ].
+     *
+     * @param x the x
+     * @param y the y
+     * @return the double [ ]
+     */
+    public static final double[] vectorMultiplication(double[] x, double y) {
 		double result[] = new double[x.length];
 		for (int i = 0; i < x.length; i++) {
 			result[i] = x[i] * y;
@@ -82,7 +110,14 @@ public class VectorMath {
 		return result;
 	}
 
-	public static final double[] vectorDivision(double[] x, double y) {
+    /**
+     * Vector division double [ ].
+     *
+     * @param x the x
+     * @param y the y
+     * @return the double [ ]
+     */
+    public static final double[] vectorDivision(double[] x, double y) {
 		double result[] = new double[x.length];
 		for (int i = 0; i < x.length; i++) {
 			result[i] = x[i] / y;
@@ -90,7 +125,14 @@ public class VectorMath {
 		return result;
 	}
 
-	public static final double[][] matrixDivision(double[][] x, double y) {
+    /**
+     * Matrix division double [ ] [ ].
+     *
+     * @param x the x
+     * @param y the y
+     * @return the double [ ] [ ]
+     */
+    public static final double[][] matrixDivision(double[][] x, double y) {
 		double result[][] = null;
 		if (x.length != 0) {
 			result = new double[x.length][x[0].length];
@@ -103,11 +145,24 @@ public class VectorMath {
 		return result;
 	}
 
-	public static double[] squareComponents(final double[] a) {
+    /**
+     * Square components double [ ].
+     *
+     * @param a the a
+     * @return the double [ ]
+     */
+    public static double[] squareComponents(final double[] a) {
 		return multiplyComponents(a, a);
 	}
 
-	public static double[] multiplyComponents(final double[] a, final double[] b) {
+    /**
+     * Multiply components double [ ].
+     *
+     * @param a the a
+     * @param b the b
+     * @return the double [ ]
+     */
+    public static double[] multiplyComponents(final double[] a, final double[] b) {
 		double[] prods = new double[a.length];
 		for (int i = 0; i < a.length; i++) {
 			prods[i] = a[i] * b[i];
@@ -115,7 +170,13 @@ public class VectorMath {
 		return prods;
 	}
 
-	public static double sum(final double[] a) {
+    /**
+     * Sum double.
+     *
+     * @param a the a
+     * @return the double
+     */
+    public static double sum(final double[] a) {
 		double sum = 0;
 		for (int i = 0; i < a.length; i++) {
 			sum += a[i];
@@ -123,7 +184,14 @@ public class VectorMath {
 		return sum;
 	}
 
-	public static double[] subtractComponents(final double[] a, final double[] b) {
+    /**
+     * Subtract components double [ ].
+     *
+     * @param a the a
+     * @param b the b
+     * @return the double [ ]
+     */
+    public static double[] subtractComponents(final double[] a, final double[] b) {
 		double[] result = new double[a.length];
 		for (int i = 0; i < a.length; i++) {
 			result[i] = a[i] - b[i];
@@ -131,7 +199,14 @@ public class VectorMath {
 		return result;
 	}
 
-	public static double[] scalarProduct(final double[] a, final double s) {
+    /**
+     * Scalar product double [ ].
+     *
+     * @param a the a
+     * @param s the s
+     * @return the double [ ]
+     */
+    public static double[] scalarProduct(final double[] a, final double s) {
 		double[] result = new double[a.length];
 		for (int i = 0; i < a.length; i++) {
 			result[i] = a[i] * s;
@@ -139,7 +214,14 @@ public class VectorMath {
 		return result;
 	}
 
-	public static double[] sumComponents(final double[] a, final double[] b) {
+    /**
+     * Sum components double [ ].
+     *
+     * @param a the a
+     * @param b the b
+     * @return the double [ ]
+     */
+    public static double[] sumComponents(final double[] a, final double[] b) {
 		double[] result = new double[a.length];
 		for (int i = 0; i < a.length; i++) {
 			result[i] = a[i] + b[i];
@@ -147,22 +229,27 @@ public class VectorMath {
 		return result;
 	}
 
-	public double angle(final double[] a, final double[] b) {
+    /**
+     * Angle double.
+     *
+     * @param a the a
+     * @param b the b
+     * @return the double
+     */
+    public double angle(final double[] a, final double[] b) {
 		return Math.acos(dot(a, b) / (vectorNorm(a) * vectorNorm(b)));
 	}
 
-	/**
-	 * Perpendicular bisector of two Points. Works in any dimension. The coefficients are returned
-	 * as a Point of one higher dimension (e.g., (A,B,C,D) for an equation of the form Ax + By + Cz
-	 * + D = 0).
-	 * 
-	 * @param a
-	 *            the first point
-	 * @param a
-	 *            the other point
-	 * @return the coefficients of the perpendicular bisector
-	 */
-	public double[] bisector(final double[] a, final double[] b) {
+    /**
+     * Perpendicular bisector of two Points. Works in any dimension. The coefficients are returned
+     * as a Point of one higher dimension (e.g., (A,B,C,D) for an equation of the form Ax + By + Cz
+     * + D = 0).
+     *
+     * @param a the first point
+     * @param b the b
+     * @return the coefficients of the perpendicular bisector
+     */
+    public double[] bisector(final double[] a, final double[] b) {
 		double[] diff = subtractComponents(a, b);
 		double[] sum = sumComponents(a, b);
 		double dot = dot(diff, sum);
@@ -172,7 +259,13 @@ public class VectorMath {
 		return result;
 	}
 
-	public static double vectorNorm(final double[] a) {
+    /**
+     * Vector norm double.
+     *
+     * @param a the a
+     * @return the double
+     */
+    public static double vectorNorm(final double[] a) {
 		double quadSum = 0;
 		for (double comp : a) {
 			quadSum += comp * comp;
@@ -180,7 +273,14 @@ public class VectorMath {
 		return Math.sqrt(quadSum);
 	}
 
-	public static double dot(final double[] a, final double[] b) {
+    /**
+     * Dot double.
+     *
+     * @param a the a
+     * @param b the b
+     * @return the double
+     */
+    public static double dot(final double[] a, final double[] b) {
 		double sum = 0;
 		for (int i = 0; i < a.length; i++) {
 			sum += a[i] * b[i];
@@ -188,7 +288,15 @@ public class VectorMath {
 		return sum;
 	}
 
-	public static double[] normalize(final double[] array, double lowerBound, double upperBound) {
+    /**
+     * Normalize double [ ].
+     *
+     * @param array      the array
+     * @param lowerBound the lower bound
+     * @param upperBound the upper bound
+     * @return the double [ ]
+     */
+    public static double[] normalize(final double[] array, double lowerBound, double upperBound) {
 		double min = Double.POSITIVE_INFINITY;
 		double max = Double.NEGATIVE_INFINITY;
 		for (int i = 0; i < array.length; i++) {
@@ -210,12 +318,16 @@ public class VectorMath {
 		return result;
 	}
 
-	/**
-	 * This method expands the given vector with the polynomial bases of the given degree. For
-	 * example if degree is 2 and the vector x consists of 2 components x1, x2, the result would be:
-	 * 1, x1, x2, x1^2, x1x2, x2^2 So the constant 1 will always be added, do not include it into x!
-	 */
-	public static final double[] polynomialExpansion(double[] x, int degree) {
+    /**
+     * This method expands the given vector with the polynomial bases of the given degree. For
+     * example if degree is 2 and the vector x consists of 2 components x1, x2, the result would be:
+     * 1, x1, x2, x1^2, x1x2, x2^2 So the constant 1 will always be added, do not include it into x!
+     *
+     * @param x      the x
+     * @param degree the degree
+     * @return the double [ ]
+     */
+    public static final double[] polynomialExpansion(double[] x, int degree) {
 		double[] result = new double[getPolynomialExpansionSize(x.length, degree)];
 		int current = 0;
 
@@ -266,11 +378,15 @@ public class VectorMath {
 		return true;
 	}
 
-	/**
-	 * This method returns the number of dimensions, a vector will have after a polynomial
-	 * expansion.
-	 */
-	public static final int getPolynomialExpansionSize(int numberOfComponents, int degree) {
+    /**
+     * This method returns the number of dimensions, a vector will have after a polynomial
+     * expansion.
+     *
+     * @param numberOfComponents the number of components
+     * @param degree             the degree
+     * @return the polynomial expansion size
+     */
+    public static final int getPolynomialExpansionSize(int numberOfComponents, int degree) {
 		// initialize
 		int[] result = new int[numberOfComponents];
 		Arrays.fill(result, 1);
@@ -292,22 +408,28 @@ public class VectorMath {
 		return totalSum;
 	}
 
-	/**
-	 * This method returns the median value of the given double array. This is a slow
-	 * implementation, because one sorting is needed.
-	 * 
-	 * TODO : Implementing using fast linear time algorithm
-	 */
-	public static final double getMedian(double[] residuals) {
+    /**
+     * This method returns the median value of the given double array. This is a slow
+     * implementation, because one sorting is needed.
+     * <p>
+     * TODO : Implementing using fast linear time algorithm
+     *
+     * @param residuals the residuals
+     * @return the median
+     */
+    public static final double getMedian(double[] residuals) {
 		double[] copy = residuals.clone();
 		Arrays.sort(copy);
 		return copy[copy.length / 2];
 	}
 
-	/**
-	 * This method returns the maximal skalar inside this vector.
-	 */
-	public static double maximalElement(double[] values) {
+    /**
+     * This method returns the maximal skalar inside this vector.
+     *
+     * @param values the values
+     * @return the double
+     */
+    public static double maximalElement(double[] values) {
 		double maximal = Double.NEGATIVE_INFINITY;
 		for (int i = 0; i < values.length; i++) {
 			maximal = (values[i] > maximal) ? values[i] : maximal;
@@ -315,10 +437,13 @@ public class VectorMath {
 		return maximal;
 	}
 
-	/**
-	 * This method returns the smallest skalar inside this vector
-	 */
-	public static double minimalElement(double[] values) {
+    /**
+     * This method returns the smallest skalar inside this vector
+     *
+     * @param values the values
+     * @return the double
+     */
+    public static double minimalElement(double[] values) {
 		double minimal = Double.POSITIVE_INFINITY;
 		for (int i = 0; i < values.length; i++) {
 			minimal = (values[i] < minimal) ? values[i] : minimal;

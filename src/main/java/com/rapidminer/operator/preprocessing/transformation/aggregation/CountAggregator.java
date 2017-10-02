@@ -28,7 +28,7 @@ import java.util.HashSet;
 /**
  * This is an {@link Aggregator} for the {@link CountAggregationFunction} It counts all non-NaN
  * values.
- * 
+ *
  * @author Sebastian Land
  */
 public class CountAggregator implements Aggregator {
@@ -40,7 +40,12 @@ public class CountAggregator implements Aggregator {
 	private boolean isCountingOnlyDistinct = false;
 	private HashSet<Double> valuesOccured = null;
 
-	public CountAggregator(AggregationFunction function) {
+    /**
+     * Instantiates a new Count aggregator.
+     *
+     * @param function the function
+     */
+    public CountAggregator(AggregationFunction function) {
 		this.sourceAttribute = function.getSourceAttribute();
 		this.isIgnoringMissings = function.isIgnoringMissings();
 		this.isCountingOnlyDistinct = function.isCountingOnlyDistinct();
@@ -76,11 +81,21 @@ public class CountAggregator implements Aggregator {
 		row.set(attribute, count);
 	}
 
-	public double getCount() {
+    /**
+     * Gets count.
+     *
+     * @return the count
+     */
+    public double getCount() {
 		return count;
 	}
 
-	public void setCount(double count) {
+    /**
+     * Sets count.
+     *
+     * @param count the count
+     */
+    public void setCount(double count) {
 		this.count = count;
 	}
 }

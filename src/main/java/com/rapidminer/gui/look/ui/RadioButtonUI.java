@@ -48,7 +48,10 @@ public class RadioButtonUI extends BasicRadioButtonUI {
 
 	private boolean initialized = false;
 
-	public RadioButtonUI() {}
+    /**
+     * Instantiates a new Radio button ui.
+     */
+    public RadioButtonUI() {}
 
 	@Override
 	protected void paintText(Graphics g, AbstractButton c, Rectangle textRect, String text) {
@@ -71,7 +74,13 @@ public class RadioButtonUI extends BasicRadioButtonUI {
 		this.initialized = false;
 	}
 
-	public static ComponentUI createUI(JComponent jcomponent) {
+    /**
+     * Create ui component ui.
+     *
+     * @param jcomponent the jcomponent
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent jcomponent) {
 		return radioButtonUI;
 	}
 

@@ -27,12 +27,15 @@ import java.util.logging.Level;
  * This class has one numerical input attribute and one output attribute. Calculates the signum of
  * the input attribute, i.e. -1 for values smaller than 0, 0 for zero, and 1 for values larger than
  * zero.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class SignumGenerator extends SingularNumericalGenerator {
 
-	public SignumGenerator() {}
+    /**
+     * Instantiates a new Signum generator.
+     */
+    public SignumGenerator() {}
 
 	@Override
 	public FeatureGenerator newInstance() {

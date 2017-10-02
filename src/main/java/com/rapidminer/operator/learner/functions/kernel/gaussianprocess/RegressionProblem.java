@@ -23,15 +23,24 @@ import com.rapidminer.operator.learner.functions.kernel.rvm.kernel.Kernel;
 
 /**
  * Models a Regression-Problem.
- * 
+ *
  * @author Piotr Kasprzak
- * 
  */
 public class RegressionProblem extends Problem {
 
-	double[][] y; // Target vectors
+    /**
+     * The Y.
+     */
+    double[][] y; // Target vectors
 
-	public RegressionProblem(double[][] x, double[][] y, Kernel kernel) {
+    /**
+     * Instantiates a new Regression problem.
+     *
+     * @param x      the x
+     * @param y      the y
+     * @param kernel the kernel
+     */
+    public RegressionProblem(double[][] x, double[][] y, Kernel kernel) {
 		super(x, kernel);
 		this.y = y;
 	}
@@ -41,7 +50,12 @@ public class RegressionProblem extends Problem {
 		return y[0].length;
 	}
 
-	public double[][] getTargetVectors() {
+    /**
+     * Get target vectors double [ ] [ ].
+     *
+     * @return the double [ ] [ ]
+     */
+    public double[][] getTargetVectors() {
 		return y;
 	}
 }

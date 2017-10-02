@@ -28,10 +28,10 @@ import javax.swing.table.TableColumnModel;
 
 /**
  * This table allows to specify a component to perform editing in the table header.
- * 
+ * <p>
  * Additionally this class offers static methods for attaching editable headers to any previously
  * created JTable.
- * 
+ *
  * @author Sebastian Land
  * @deprecated This class was never used anywhere
  */
@@ -66,13 +66,18 @@ public class EditableHeaderJTable extends ExtendedJTable {
 	// return this.getColumnModel().getColumn(column).getHeaderValue();
 	// }
 
-	/**
-	 * This method installs the given renderer and editors to the header of the given table. The
-	 * previous header names will be discarded and replaced by the objects given as initivalValues.
-	 * These might be changed by the editor components. After this, they might be returned by
-	 * getHeaderValue.
-	 */
-	public static void installEditableHeader(JTable table, TableCellRenderer headerRenderer, TableCellEditor headerEditor,
+    /**
+     * This method installs the given renderer and editors to the header of the given table. The
+     * previous header names will be discarded and replaced by the objects given as initivalValues.
+     * These might be changed by the editor components. After this, they might be returned by
+     * getHeaderValue.
+     *
+     * @param table          the table
+     * @param headerRenderer the header renderer
+     * @param headerEditor   the header editor
+     * @param initialValues  the initial values
+     */
+    public static void installEditableHeader(JTable table, TableCellRenderer headerRenderer, TableCellEditor headerEditor,
 			Object[] initialValues) {
 		TableColumnModel columnModel = table.getColumnModel();
 		table.setTableHeader(new EditableTableHeader(columnModel));

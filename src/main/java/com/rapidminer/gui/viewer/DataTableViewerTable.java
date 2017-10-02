@@ -40,11 +40,24 @@ public class DataTableViewerTable extends ExtendedJTable implements DataTableLis
 
 	private DataTableViewerTableModel model;
 
-	public DataTableViewerTable(boolean autoResize) {
+    /**
+     * Instantiates a new Data table viewer table.
+     *
+     * @param autoResize the auto resize
+     */
+    public DataTableViewerTable(boolean autoResize) {
 		this(null, true, false, autoResize);
 	}
 
-	public DataTableViewerTable(DataTable dataTable, boolean sortable, boolean columnMovable, boolean autoResize) {
+    /**
+     * Instantiates a new Data table viewer table.
+     *
+     * @param dataTable     the data table
+     * @param sortable      the sortable
+     * @param columnMovable the column movable
+     * @param autoResize    the auto resize
+     */
+    public DataTableViewerTable(DataTable dataTable, boolean sortable, boolean columnMovable, boolean autoResize) {
 		super(sortable, columnMovable, autoResize);
 		if (dataTable != null) {
 			setDataTable(dataTable);
@@ -64,7 +77,12 @@ public class DataTableViewerTable extends ExtendedJTable implements DataTableLis
 		}
 	}
 
-	public void setDataTable(DataTable dataTable) {
+    /**
+     * Sets data table.
+     *
+     * @param dataTable the data table
+     */
+    public void setDataTable(DataTable dataTable) {
 		this.model = new DataTableViewerTableModel(dataTable);
 		setModel(model);
 

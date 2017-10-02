@@ -25,23 +25,50 @@ import com.rapidminer.tools.ProgressListener;
 
 
 /**
+ * The interface Io object entry.
+ *
  * @author Simon Fischer
  */
 public interface IOObjectEntry extends DataEntry {
 
-	public static final String TYPE_NAME = "data";
+    /**
+     * The constant TYPE_NAME.
+     */
+    public static final String TYPE_NAME = "data";
 
-	public IOObject retrieveData(ProgressListener l) throws RepositoryException;
+    /**
+     * Retrieve data io object.
+     *
+     * @param l the l
+     * @return the io object
+     * @throws RepositoryException the repository exception
+     */
+    public IOObject retrieveData(ProgressListener l) throws RepositoryException;
 
-	public MetaData retrieveMetaData() throws RepositoryException;
+    /**
+     * Retrieve meta data meta data.
+     *
+     * @return the meta data
+     * @throws RepositoryException the repository exception
+     */
+    public MetaData retrieveMetaData() throws RepositoryException;
 
-	/**
-	 * This method returns the class of the stored object or null, if it is not an object known to
-	 * this RapidMiner Client.
-	 */
-	public Class<? extends IOObject> getObjectClass();
+    /**
+     * This method returns the class of the stored object or null, if it is not an object known to
+     * this RapidMiner Client.
+     *
+     * @return the object class
+     */
+    public Class<? extends IOObject> getObjectClass();
 
-	/** Stores data in this entry. */
-	public void storeData(IOObject data, Operator callingOperator, ProgressListener l) throws RepositoryException;
+    /**
+     * Stores data in this entry.  @param data the data
+     *
+     * @param data            the data
+     * @param callingOperator the calling operator
+     * @param l               the l
+     * @throws RepositoryException the repository exception
+     */
+    public void storeData(IOObject data, Operator callingOperator, ProgressListener l) throws RepositoryException;
 
 }

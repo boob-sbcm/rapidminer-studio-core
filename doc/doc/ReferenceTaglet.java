@@ -22,7 +22,7 @@ import com.sun.tools.doclets.Taglet;
  * A taglet with name &quot;@rapidminer.reference&quot; can be used in the Javadoc comments of an operator to produce a
  * reference to literature including the bibtex entry. Unfortunately this can only be used in the Artificial
  * Intelligence Unit of the University of Dortmund.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class ReferenceTaglet implements Taglet {
@@ -31,35 +31,75 @@ public class ReferenceTaglet implements Taglet {
 
 	private static final String NAME = "rapidminer.reference";
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return NAME;
 	}
 
-	public boolean inField() {
+    /**
+     * In field boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inField() {
 		return true;
 	}
 
-	public boolean inConstructor() {
+    /**
+     * In constructor boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inConstructor() {
 		return true;
 	}
 
-	public boolean inMethod() {
+    /**
+     * In method boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inMethod() {
 		return true;
 	}
 
-	public boolean inOverview() {
+    /**
+     * In overview boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inOverview() {
 		return true;
 	}
 
-	public boolean inPackage() {
+    /**
+     * In package boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inPackage() {
 		return true;
 	}
 
-	public boolean inType() {
+    /**
+     * In type boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inType() {
 		return true;
 	}
 
-	public boolean isInlineTag() {
+    /**
+     * Is inline tag boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isInlineTag() {
 		return true;
 	}
 
@@ -97,7 +137,12 @@ public class ReferenceTaglet implements Taglet {
 		}
 	}
 
-	public static void register(Map<String, Taglet> tagletMap) {
+    /**
+     * Register.
+     *
+     * @param tagletMap the taglet map
+     */
+    public static void register(Map<String, Taglet> tagletMap) {
 		ReferenceTaglet tag = new ReferenceTaglet();
 		Taglet t = tagletMap.get(tag.getName());
 		if (t != null) {
@@ -106,11 +151,23 @@ public class ReferenceTaglet implements Taglet {
 		tagletMap.put(tag.getName(), tag);
 	}
 
-	public String toString(Tag tag) {
+    /**
+     * To string string.
+     *
+     * @param tag the tag
+     * @return the string
+     */
+    public String toString(Tag tag) {
 		return toString(new Tag[] { tag });
 	}
 
-	public String toString(Tag[] tags) {
+    /**
+     * To string string.
+     *
+     * @param tags the tags
+     * @return the string
+     */
+    public String toString(Tag[] tags) {
 		if (tags.length == 0) {
 			return null;
 		}

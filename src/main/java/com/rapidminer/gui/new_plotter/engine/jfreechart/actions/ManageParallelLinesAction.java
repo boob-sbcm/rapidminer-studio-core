@@ -28,9 +28,8 @@ import java.awt.event.ActionEvent;
 /**
  * This action opens a dialog which can be used to manage existing parallel lines of the current
  * chart.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class ManageParallelLinesAction extends ResourceAction {
 
@@ -45,13 +44,13 @@ public class ManageParallelLinesAction extends ResourceAction {
 
 	private static final long serialVersionUID = 7788302558857099622L;
 
-	/**
-	 * Creates a new {@link ResourceAction} which opens the {@link ManageParallelLinesDialog} when
-	 * triggered.
-	 * 
-	 * @param engine
-	 */
-	public ManageParallelLinesAction(JFreeChartPlotEngine engine) {
+    /**
+     * Creates a new {@link ResourceAction} which opens the {@link ManageParallelLinesDialog} when
+     * triggered.
+     *
+     * @param engine the engine
+     */
+    public ManageParallelLinesAction(JFreeChartPlotEngine engine) {
 		super(true, "plotter.popup_menu.manage_parallel_lines");
 		this.engine = engine;
 	}
@@ -61,12 +60,12 @@ public class ManageParallelLinesAction extends ResourceAction {
 		manageParallelLines(engine);
 	}
 
-	/**
-	 * Opens the manage parallel lines dialog.
-	 * 
-	 * @param engine
-	 */
-	public static synchronized void manageParallelLines(final JFreeChartPlotEngine engine) {
+    /**
+     * Opens the manage parallel lines dialog.
+     *
+     * @param engine the engine
+     */
+    public static synchronized void manageParallelLines(final JFreeChartPlotEngine engine) {
 		if (dialog == null) {
 			dialog = new ManageParallelLinesDialog();
 		}

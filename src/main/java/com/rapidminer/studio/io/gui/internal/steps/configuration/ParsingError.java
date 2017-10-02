@@ -31,51 +31,54 @@ final class ParsingError {
 	private String originalValue;
 	private String message;
 
-	/**
-	 * Creates a new parsing error with the given data.
-	 *
-	 * @param column
-	 *            the column index of the erroneous cell
-	 * @param row
-	 *            the row index of the erroneous cell
-	 * @param originalValue
-	 *            the original value that could not be parsed, can be {@code null}
-	 * @param message
-	 *            the error message
-	 */
-	ParsingError(int column, int row, String originalValue, String message) {
+    /**
+     * Creates a new parsing error with the given data.
+     *
+     * @param column        the column index of the erroneous cell
+     * @param row           the row index of the erroneous cell
+     * @param originalValue the original value that could not be parsed, can be {@code null}
+     * @param message       the error message
+     */
+    ParsingError(int column, int row, String originalValue, String message) {
 		this.column = column;
 		this.row = row;
 		this.originalValue = originalValue;
 		this.message = message;
 	}
 
-	/**
-	 * @return the column where the error happened
-	 */
-	int getColumn() {
+    /**
+     * Gets column.
+     *
+     * @return the column where the error happened
+     */
+    int getColumn() {
 		return column;
 	}
 
-	/**
-	 * @return the row where the error happened
-	 */
-	int getRow() {
+    /**
+     * Gets row.
+     *
+     * @return the row where the error happened
+     */
+    int getRow() {
 		return row;
 	}
 
-	/**
-	 * @return the original value that could not be parsed, can be {@code null} if the original
-	 *         value cannot be accessed
-	 */
-	String getOriginalValue() {
+    /**
+     * Gets original value.
+     *
+     * @return the original value that could not be parsed, can be {@code null} if the original         value cannot be accessed
+     */
+    String getOriginalValue() {
 		return originalValue;
 	}
 
-	/**
-	 * @return the error message
-	 */
-	String getMessage() {
+    /**
+     * Gets message.
+     *
+     * @return the error message
+     */
+    String getMessage() {
 		return message;
 	}
 

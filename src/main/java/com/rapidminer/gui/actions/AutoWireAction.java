@@ -33,7 +33,6 @@ import com.rapidminer.operator.ports.metadata.CompatibilityLevel;
  * Wires the current process (only visible parts).
  *
  * @author Simon Fischer, Tobias Malbrecht
- *
  */
 public class AutoWireAction extends ResourceAction {
 
@@ -41,7 +40,12 @@ public class AutoWireAction extends ResourceAction {
 
 	private final MainFrame mainFrame;
 
-	public AutoWireAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Auto wire action.
+     *
+     * @param mainFrame the main frame
+     */
+    public AutoWireAction(MainFrame mainFrame) {
 		super(true, "wire");
 		setCondition(OPERATOR_SELECTED, MANDATORY);
 		this.mainFrame = mainFrame;

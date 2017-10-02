@@ -44,12 +44,26 @@ import com.rapidminer.operator.OperatorProgress;
  */
 public class RemoveUnusedNominalValuesModel extends PreprocessingModel {
 
-	public static class MappingTranslation {
+    /**
+     * The type Mapping translation.
+     */
+    public static class MappingTranslation {
 
-		NominalMapping originalMapping;
-		NominalMapping newMapping;
+        /**
+         * The Original mapping.
+         */
+        NominalMapping originalMapping;
+        /**
+         * The New mapping.
+         */
+        NominalMapping newMapping;
 
-		public MappingTranslation(NominalMapping originalMapping) {
+        /**
+         * Instantiates a new Mapping translation.
+         *
+         * @param originalMapping the original mapping
+         */
+        public MappingTranslation(NominalMapping originalMapping) {
 			this.originalMapping = originalMapping;
 			if (originalMapping instanceof PolynominalMapping) {
 				this.newMapping = new PolynominalMapping();
@@ -65,7 +79,13 @@ public class RemoveUnusedNominalValuesModel extends PreprocessingModel {
 
 	private Map<String, MappingTranslation> translations;
 
-	protected RemoveUnusedNominalValuesModel(ExampleSet exampleSet, Map<String, MappingTranslation> translations) {
+    /**
+     * Instantiates a new Remove unused nominal values model.
+     *
+     * @param exampleSet   the example set
+     * @param translations the translations
+     */
+    protected RemoveUnusedNominalValuesModel(ExampleSet exampleSet, Map<String, MappingTranslation> translations) {
 		super(exampleSet);
 
 		this.translations = translations;

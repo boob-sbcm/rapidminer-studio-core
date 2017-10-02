@@ -36,13 +36,17 @@ import com.rapidminer.operator.learner.meta.Vote;
  * meta learning scheme, e.g. by {@link Vote}.
  *
  * @author Ingo Mierswa
- *
  * @deprecated This learner is not used anymore.
  */
 @Deprecated
 public class AttributeBasedVotingLearner extends AbstractLearner {
 
-	public AttributeBasedVotingLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute based voting learner.
+     *
+     * @param description the description
+     */
+    public AttributeBasedVotingLearner(OperatorDescription description) {
 		super(description);
 	}
 

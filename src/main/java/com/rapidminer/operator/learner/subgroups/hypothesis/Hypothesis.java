@@ -29,7 +29,7 @@ import com.rapidminer.example.Example;
 
 /**
  * This is a hypothesis for subgroup discovery.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class Hypothesis implements Serializable {
@@ -53,15 +53,30 @@ public class Hypothesis implements Serializable {
 
 	private static final long serialVersionUID = 8694312785374243323L;
 
-	public static final int POSITIVE_RULE = 0;
+    /**
+     * The constant POSITIVE_RULE.
+     */
+    public static final int POSITIVE_RULE = 0;
 
-	public static final int NEGATIVE_RULE = 1;
+    /**
+     * The constant NEGATIVE_RULE.
+     */
+    public static final int NEGATIVE_RULE = 1;
 
-	public static final int PREDICTION_RULE = 2;
+    /**
+     * The constant PREDICTION_RULE.
+     */
+    public static final int PREDICTION_RULE = 2;
 
-	public static final int POSITIVE_AND_NEGATIVE_RULES = 3;
+    /**
+     * The constant POSITIVE_AND_NEGATIVE_RULES.
+     */
+    public static final int POSITIVE_AND_NEGATIVE_RULES = 3;
 
-	public static final String[] RULE_GENERATION_MODES = { "positive", "negative", "prediction", "both" };
+    /**
+     * The constant RULE_GENERATION_MODES.
+     */
+    public static final String[] RULE_GENERATION_MODES = { "positive", "negative", "prediction", "both" };
 
 	private LinkedHashMap<Attribute, Literal> literalMap = null;
 
@@ -71,18 +86,31 @@ public class Hypothesis implements Serializable {
 
 	private double positiveWeight = 0.0d;
 
-	public Hypothesis() {
+    /**
+     * Instantiates a new Hypothesis.
+     */
+    public Hypothesis() {
 		literalMap = new LinkedHashMap<>();
 	}
 
-	public Hypothesis(Collection<Literal> literals) {
+    /**
+     * Instantiates a new Hypothesis.
+     *
+     * @param literals the literals
+     */
+    public Hypothesis(Collection<Literal> literals) {
 		this();
 		for (Literal literal : literals) {
 			literalMap.put(literal.getAttribute(), literal);
 		}
 	}
 
-	public void apply(Example example) {
+    /**
+     * Apply.
+     *
+     * @param example the example
+     */
+    public void apply(Example example) {
 		if (applicable(example)) {
 			double weight = 1.0d;
 			if (example.getAttributes().getWeight() != null) {
@@ -95,7 +123,13 @@ public class Hypothesis implements Serializable {
 		}
 	}
 
-	public boolean applicable(Example example) {
+    /**
+     * Applicable boolean.
+     *
+     * @param example the example
+     * @return the boolean
+     */
+    public boolean applicable(Example example) {
 		for (Literal literal : literalMap.values()) {
 			if (!literal.applicable(example)) {
 				return false;
@@ -110,7 +144,13 @@ public class Hypothesis implements Serializable {
 		return hypothesis;
 	}
 
-	public LinkedList<Hypothesis> refine(Iterable<Attribute> attributes) {
+    /**
+     * Refine linked list.
+     *
+     * @param attributes the attributes
+     * @return the linked list
+     */
+    public LinkedList<Hypothesis> refine(Iterable<Attribute> attributes) {
 		LinkedList<Hypothesis> hypotheses = new LinkedList<>();
 		for (Attribute attribute : attributes) {
 			if (!literalMap.containsKey(attribute)) {
@@ -122,7 +162,13 @@ public class Hypothesis implements Serializable {
 		return hypotheses;
 	}
 
-	public LinkedList<Hypothesis> restrictedRefine(Iterable<Attribute> attributes) {
+    /**
+     * Restricted refine linked list.
+     *
+     * @param attributes the attributes
+     * @return the linked list
+     */
+    public LinkedList<Hypothesis> restrictedRefine(Iterable<Attribute> attributes) {
 		AttributeQueue restrictedAttributes = new AttributeQueue(attributes);
 		LinkedList<Hypothesis> hypotheses = new LinkedList<>();
 		Attribute attribute = null;
@@ -138,14 +184,25 @@ public class Hypothesis implements Serializable {
 		return hypotheses;
 	}
 
-	public LinkedList<Hypothesis> restrictedRefine() {
+    /**
+     * Restricted refine linked list.
+     *
+     * @return the linked list
+     */
+    public LinkedList<Hypothesis> restrictedRefine() {
 		if (restrictedAttributes == null) {
 			return null;
 		}
 		return restrictedRefine(restrictedAttributes);
 	}
 
-	public Hypothesis subsume(Hypothesis otherHypothesis) {
+    /**
+     * Subsume hypothesis.
+     *
+     * @param otherHypothesis the other hypothesis
+     * @return the hypothesis
+     */
+    public Hypothesis subsume(Hypothesis otherHypothesis) {
 		LinkedList<Literal> newLiterals = new LinkedList<>();
 		for (Literal otherLiteral : otherHypothesis.literalMap.values()) {
 			Literal correspondingLiteral = literalMap.get(otherLiteral.getAttribute());
@@ -163,7 +220,13 @@ public class Hypothesis implements Serializable {
 		return new Hypothesis(newLiterals);
 	}
 
-	public Hypothesis combine(Hypothesis otherHypothesis) {
+    /**
+     * Combine hypothesis.
+     *
+     * @param otherHypothesis the other hypothesis
+     * @return the hypothesis
+     */
+    public Hypothesis combine(Hypothesis otherHypothesis) {
 		LinkedList<Literal> newLiterals = new LinkedList<>();
 		for (Literal otherLiteral : otherHypothesis.literalMap.values()) {
 			Literal correspondingLiteral = literalMap.get(otherLiteral.getAttribute());
@@ -200,7 +263,14 @@ public class Hypothesis implements Serializable {
 		return new Rule(this, new Literal(label, label.getMapping().getNegativeIndex()));
 	}
 
-	public LinkedList<Rule> generateRules(int ruleGenerationMode, Attribute label) {
+    /**
+     * Generate rules linked list.
+     *
+     * @param ruleGenerationMode the rule generation mode
+     * @param label              the label
+     * @return the linked list
+     */
+    public LinkedList<Rule> generateRules(int ruleGenerationMode, Attribute label) {
 		LinkedList<Rule> rules = new LinkedList<>();
 		switch (ruleGenerationMode) {
 			case POSITIVE_RULE:
@@ -228,15 +298,30 @@ public class Hypothesis implements Serializable {
 		return literalMap.values();
 	}
 
-	public int getNumberOfLiterals() {
+    /**
+     * Gets number of literals.
+     *
+     * @return the number of literals
+     */
+    public int getNumberOfLiterals() {
 		return literalMap.size();
 	}
 
-	public double getCoveredWeight() {
+    /**
+     * Gets covered weight.
+     *
+     * @return the covered weight
+     */
+    public double getCoveredWeight() {
 		return coveredWeight;
 	}
 
-	public double getPositiveWeight() {
+    /**
+     * Gets positive weight.
+     *
+     * @return the positive weight
+     */
+    public double getPositiveWeight() {
 		return positiveWeight;
 	}
 

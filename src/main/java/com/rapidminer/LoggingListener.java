@@ -24,13 +24,23 @@ import com.rapidminer.datatable.DataTable;
 /**
  * This listener can be used to register to process log changes (adding, removing, and changing data
  * tables).
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface LoggingListener {
 
-	public void addDataTable(DataTable dataTable);
+    /**
+     * Add data table.
+     *
+     * @param dataTable the data table
+     */
+    public void addDataTable(DataTable dataTable);
 
-	public void removeDataTable(DataTable dataTable);
+    /**
+     * Remove data table.
+     *
+     * @param dataTable the data table
+     */
+    public void removeDataTable(DataTable dataTable);
 
 }

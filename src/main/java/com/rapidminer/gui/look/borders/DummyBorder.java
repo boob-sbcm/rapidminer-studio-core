@@ -28,7 +28,7 @@ import javax.swing.plaf.UIResource;
 
 /**
  * The UIResource for dummy (empty) borders.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DummyBorder extends AbstractBorder implements UIResource {

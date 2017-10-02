@@ -67,21 +67,29 @@ import com.rapidminer.tools.Tools;
  * <dt>$]:</dt>
  * <dd>The ']' character</dd>
  * </dl>
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa Exp $
  */
 public class ExampleFormatter {
 
-	/** Represents one piece of formatting. */
-	public static interface FormatCommand {
+    /**
+     * Represents one piece of formatting.
+     */
+    public static interface FormatCommand {
 
-		public String format(Example example);
+        /**
+         * Format string.
+         *
+         * @param example the example
+         * @return the string
+         */
+        public String format(Example example);
 	}
 
-	/**
-	 * Implements some simple format commands like 'a' for all attributes or 'l' for the label.
-	 */
-	public static class SimpleCommand implements FormatCommand {
+    /**
+     * Implements some simple format commands like 'a' for all attributes or 'l' for the label.
+     */
+    public static class SimpleCommand implements FormatCommand {
 
 		private char command;
 
@@ -221,8 +229,10 @@ public class ExampleFormatter {
 		}
 	}
 
-	/** Returns the value of an argument which must be an attribute's name. */
-	public static class ValueCommand implements FormatCommand {
+    /**
+     * Returns the value of an argument which must be an attribute's name.
+     */
+    public static class ValueCommand implements FormatCommand {
 
 		private Attribute attribute;
 
@@ -230,7 +240,17 @@ public class ExampleFormatter {
 
 		private boolean quoteWhitespace = false;
 
-		public ValueCommand(char command, String[] arguments, ExampleSet exampleSet, int fractionDigits,
+        /**
+         * Instantiates a new Value command.
+         *
+         * @param command         the command
+         * @param arguments       the arguments
+         * @param exampleSet      the example set
+         * @param fractionDigits  the fraction digits
+         * @param quoteWhitespace the quote whitespace
+         * @throws FormatterException the formatter exception
+         */
+        public ValueCommand(char command, String[] arguments, ExampleSet exampleSet, int fractionDigits,
 				boolean quoteWhitespace) throws FormatterException {
 			this.fractionDigits = fractionDigits;
 			this.quoteWhitespace = quoteWhitespace;
@@ -278,8 +298,10 @@ public class ExampleFormatter {
 		}
 	}
 
-	/** Returns simply the given text. */
-	public static class TextCommand implements FormatCommand {
+    /**
+     * Returns simply the given text.
+     */
+    public static class TextCommand implements FormatCommand {
 
 		private String text;
 
@@ -296,19 +318,28 @@ public class ExampleFormatter {
 	/** The commands used subsequently to format the example. */
 	private FormatCommand[] formatCommands;
 
-	/**
-	 * Constructs a new ExampleFormatter that executes the given array of formatting commands. The
-	 * preferred way of creating an instance of ExampleFormatter is to
-	 * {@link ExampleFormatter#compile(String, ExampleSet, int, boolean)} a format string.
-	 */
-	public ExampleFormatter(FormatCommand[] formatCommands) {
+    /**
+     * Constructs a new ExampleFormatter that executes the given array of formatting commands. The
+     * preferred way of creating an instance of ExampleFormatter is to
+     * {@link ExampleFormatter#compile(String, ExampleSet, int, boolean)} a format string.
+     *
+     * @param formatCommands the format commands
+     */
+    public ExampleFormatter(FormatCommand[] formatCommands) {
 		this.formatCommands = formatCommands;
 	}
 
-	/**
-	 * Factory method that compiles a format string and creates an instance of ExampleFormatter.
-	 */
-	public static ExampleFormatter compile(String formatString, ExampleSet exampleSet, int fractionDigits,
+    /**
+     * Factory method that compiles a format string and creates an instance of ExampleFormatter.
+     *
+     * @param formatString    the format string
+     * @param exampleSet      the example set
+     * @param fractionDigits  the fraction digits
+     * @param quoteWhitespace the quote whitespace
+     * @return the example formatter
+     * @throws FormatterException the formatter exception
+     */
+    public static ExampleFormatter compile(String formatString, ExampleSet exampleSet, int fractionDigits,
 			boolean quoteWhitespace) throws FormatterException {
 		List<FormatCommand> commandList = new LinkedList<FormatCommand>();
 		compile(formatString, exampleSet, commandList, fractionDigits, quoteWhitespace);
@@ -374,8 +405,13 @@ public class ExampleFormatter {
 		}
 	}
 
-	/** Formats a single example. */
-	public String format(Example example) {
+    /**
+     * Formats a single example.  @param example the example
+     *
+     * @param example the example
+     * @return the string
+     */
+    public String format(Example example) {
 		StringBuffer str = new StringBuffer();
 		for (int i = 0; i < formatCommands.length; i++) {
 			str.append(formatCommands[i].format(example));

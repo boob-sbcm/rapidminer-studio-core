@@ -41,8 +41,9 @@ import com.rapidminer.tools.I18N;
 
 
 /**
- * @author Nils Woehler
+ * The type Axis configuration container.
  *
+ * @author Nils Woehler
  */
 public class AxisConfigurationContainer extends AbstractConfigurationPanel {
 
@@ -54,7 +55,12 @@ public class AxisConfigurationContainer extends AbstractConfigurationPanel {
 
 	private final int fontSize = 12;
 
-	public AxisConfigurationContainer(PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Axis configuration container.
+     *
+     * @param plotInstance the plot instance
+     */
+    public AxisConfigurationContainer(PlotInstance plotInstance) {
 		super(plotInstance);
 		createComponents();
 		registerAsPlotConfigurationListener();

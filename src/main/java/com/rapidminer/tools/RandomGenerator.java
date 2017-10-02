@@ -48,12 +48,20 @@ public class RandomGenerator extends Random {
 
 	private static final long serialVersionUID = 7562534107359981433L;
 
-	public static final String PARAMETER_USE_LOCAL_RANDOM_SEED = "use_local_random_seed";
+    /**
+     * The constant PARAMETER_USE_LOCAL_RANDOM_SEED.
+     */
+    public static final String PARAMETER_USE_LOCAL_RANDOM_SEED = "use_local_random_seed";
 
-	public static final String PARAMETER_LOCAL_RANDOM_SEED = "local_random_seed";
+    /**
+     * The constant PARAMETER_LOCAL_RANDOM_SEED.
+     */
+    public static final String PARAMETER_LOCAL_RANDOM_SEED = "local_random_seed";
 
-	/** The default seed (used by the ProcessRootOperator) */
-	public static final int DEFAULT_SEED = 2001;
+    /**
+     * The default seed (used by the ProcessRootOperator)
+     */
+    public static final int DEFAULT_SEED = 2001;
 
 	/** Class name of the BackgroundExecutionProcess */
 	private static final String BACKGROUND_EXECUTION_PROCESS_CLASS_NAME = "com.rapidminer.extension.concurrency.execution.BackgroundExecutionProcess";
@@ -105,15 +113,23 @@ public class RandomGenerator extends Random {
 		super();
 	}
 
-	/** Initializes the random number generator with the given <code>seed</code> */
-	public RandomGenerator(long seed) {
+    /**
+     * Initializes the random number generator with the given <code>seed</code>  @param seed the seed
+     *
+     * @param seed the seed
+     */
+    public RandomGenerator(long seed) {
 		super(seed);
 	}
 
 	// ================================================================================
 
-	/** Returns the global random number generator for the given context/thread. */
-	public static RandomGenerator getGlobalRandomGenerator() {
+    /**
+     * Returns the global random number generator for the given context/thread.  @return the global random generator
+     *
+     * @return the global random generator
+     */
+    public static RandomGenerator getGlobalRandomGenerator() {
 		RandomGenerator rg = GLOBAL_RANDOM_GENERATOR.get();
 		if (rg != null) {
 			return rg;
@@ -131,29 +147,31 @@ public class RandomGenerator extends Random {
 		return GLOBAL_RANDOM_GENERATOR_MAP.get(null);
 	}
 
-	/**
-	 * Returns the global random number generator if useLocalGenerator is false and a new
-	 * RandomGenerator with the given seed if the seed is positive or zero. This way is is possible
-	 * to allow for local random seeds. Operators like learners or validation operators should
-	 * definitely make use of such a local random generator.
-	 */
-	public static RandomGenerator getRandomGenerator(boolean useLocalGenerator, int localSeed) {
+    /**
+     * Returns the global random number generator if useLocalGenerator is false and a new
+     * RandomGenerator with the given seed if the seed is positive or zero. This way is is possible
+     * to allow for local random seeds. Operators like learners or validation operators should
+     * definitely make use of such a local random generator.
+     *
+     * @param useLocalGenerator the use local generator
+     * @param localSeed         the local seed
+     * @return the random generator
+     */
+    public static RandomGenerator getRandomGenerator(boolean useLocalGenerator, int localSeed) {
 		return useLocalGenerator ? getRandomGenerator(null, localSeed) : getGlobalRandomGenerator();
 	}
 
-	/**
-	 * Returns the global random number generator if the seed is negative and a new RandomGenerator
-	 * with the given seed if the seed is positive or zero. This way is is possible to allow for
-	 * local random seeds. Operators like learners or validation operators should definitely make
-	 * use of such a local random generator.
-	 *
-	 * @param process
-	 *            Used to get the corresponding random generator
-	 * @param seed
-	 *            The seed to use in the RandomGenerator
-	 * @return new RandomGenerator if seed >=0, globalRandomGenerator otherwise
-	 */
-	public static RandomGenerator getRandomGenerator(Process process, int seed) {
+    /**
+     * Returns the global random number generator if the seed is negative and a new RandomGenerator
+     * with the given seed if the seed is positive or zero. This way is is possible to allow for
+     * local random seeds. Operators like learners or validation operators should definitely make
+     * use of such a local random generator.
+     *
+     * @param process Used to get the corresponding random generator
+     * @param seed    The seed to use in the RandomGenerator
+     * @return new RandomGenerator if seed >=0, globalRandomGenerator otherwise
+     */
+    public static RandomGenerator getRandomGenerator(Process process, int seed) {
 		if (seed < 0) {
 			if (process == null) {
 				return getGlobalRandomGenerator();
@@ -165,12 +183,14 @@ public class RandomGenerator extends Random {
 		}
 	}
 
-	/**
-	 * Instantiates the global random number generator for the given process and initializes it with
-	 * the random number generator seed specified in the <code>global</code> section of the
-	 * configuration file. Should be invoked before the process starts.
-	 */
-	public static void init(Process process) {
+    /**
+     * Instantiates the global random number generator for the given process and initializes it with
+     * the random number generator seed specified in the <code>global</code> section of the
+     * configuration file. Should be invoked before the process starts.
+     *
+     * @param process the process
+     */
+    public static void init(Process process) {
 		long seed = DEFAULT_SEED;
 		if (process != null) {
 			try {
@@ -197,14 +217,14 @@ public class RandomGenerator extends Random {
 		}
 	}
 
-	/**
-	 * This method returns a list of parameters usable to conveniently provide parameters for random
-	 * generator use within operators
-	 *
-	 * @param operator
-	 *            the operator
-	 */
-	public static List<ParameterType> getRandomGeneratorParameters(Operator operator) {
+    /**
+     * This method returns a list of parameters usable to conveniently provide parameters for random
+     * generator use within operators
+     *
+     * @param operator the operator
+     * @return the random generator parameters
+     */
+    public static List<ParameterType> getRandomGeneratorParameters(Operator operator) {
 		List<ParameterType> types = new LinkedList<>();
 
 		types.add(new ParameterTypeBoolean(PARAMETER_USE_LOCAL_RANDOM_SEED,
@@ -219,15 +239,16 @@ public class RandomGenerator extends Random {
 		return types;
 	}
 
-	/**
-	 * This method returns the appropriate RandomGenerator for the user chosen parameter
-	 * combination. If the operator does not use a local random generator, use the appropriate
-	 * process related random generator.
-	 *
-	 * @param operator
-	 * @throws UndefinedParameterError
-	 */
-	public static RandomGenerator getRandomGenerator(Operator operator) throws UndefinedParameterError {
+    /**
+     * This method returns the appropriate RandomGenerator for the user chosen parameter
+     * combination. If the operator does not use a local random generator, use the appropriate
+     * process related random generator.
+     *
+     * @param operator the operator
+     * @return the random generator
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public static RandomGenerator getRandomGenerator(Operator operator) throws UndefinedParameterError {
 		if (operator.getParameterAsBoolean(PARAMETER_USE_LOCAL_RANDOM_SEED)) {
 			return new RandomGenerator(operator.getParameterAsInt(PARAMETER_LOCAL_RANDOM_SEED));
 		} else {
@@ -236,15 +257,18 @@ public class RandomGenerator extends Random {
 	}
 
 	// ================================================================================
-	/**
-	 * Returns the next pseudorandom, uniformly distributed <code>double</code> value between
-	 * <code>lowerBound</code> and <code>upperBound</code> from this random number generator's
-	 * sequence (exclusive of the interval endpoint values).
-	 *
-	 * @throws IllegalArgumentException
-	 *             if upperBound < lowerBound
-	 */
-	public double nextDoubleInRange(double lowerBound, double upperBound) throws IllegalArgumentException {
+
+    /**
+     * Returns the next pseudorandom, uniformly distributed <code>double</code> value between
+     * <code>lowerBound</code> and <code>upperBound</code> from this random number generator's
+     * sequence (exclusive of the interval endpoint values).
+     *
+     * @param lowerBound the lower bound
+     * @param upperBound the upper bound
+     * @return the double
+     * @throws IllegalArgumentException if upperBound < lowerBound
+     */
+    public double nextDoubleInRange(double lowerBound, double upperBound) throws IllegalArgumentException {
 		if (upperBound < lowerBound) {
 			throw new IllegalArgumentException("RandomGenerator.nextDoubleInRange : the upper bound of the "
 					+ "random number range should be greater than the lower bound.");
@@ -252,12 +276,16 @@ public class RandomGenerator extends Random {
 		return nextDouble() * (upperBound - lowerBound) + lowerBound;
 	}
 
-	/**
-	 * returns the next pseudorandom, uniformly distributed <code>long</code> value between
-	 * <code>lowerBound</code> and <code>upperBound</code> from this random number generator's
-	 * sequence (exclusive of the interval endpoint values).
-	 */
-	public long nextLongInRange(long lowerBound, long upperBound) {
+    /**
+     * returns the next pseudorandom, uniformly distributed <code>long</code> value between
+     * <code>lowerBound</code> and <code>upperBound</code> from this random number generator's
+     * sequence (exclusive of the interval endpoint values).
+     *
+     * @param lowerBound the lower bound
+     * @param upperBound the upper bound
+     * @return the long
+     */
+    public long nextLongInRange(long lowerBound, long upperBound) {
 		if (upperBound <= lowerBound) {
 			throw new IllegalArgumentException("RandomGenerator.nextLongInRange : the upper bound of the "
 					+ "random number range should be greater than the lower bound.");
@@ -265,12 +293,16 @@ public class RandomGenerator extends Random {
 		return (long) (nextDouble() * (upperBound - lowerBound + 1)) + lowerBound;
 	}
 
-	/**
-	 * Returns the next pseudorandom, uniformly distributed <code>int</code> value between
-	 * <code>lowerBound</code> and <code>upperBound</code> from this random number generator's
-	 * sequence (lower bound inclusive, upper bound exclusive).
-	 */
-	public int nextIntInRange(int lowerBound, int upperBound) {
+    /**
+     * Returns the next pseudorandom, uniformly distributed <code>int</code> value between
+     * <code>lowerBound</code> and <code>upperBound</code> from this random number generator's
+     * sequence (lower bound inclusive, upper bound exclusive).
+     *
+     * @param lowerBound the lower bound
+     * @param upperBound the upper bound
+     * @return the int
+     */
+    public int nextIntInRange(int lowerBound, int upperBound) {
 		if (upperBound <= lowerBound) {
 			throw new IllegalArgumentException("RandomGenerator.nextIntInRange : the upper bound of the "
 					+ "random number range should be greater than the lower bound.");
@@ -278,8 +310,13 @@ public class RandomGenerator extends Random {
 		return nextInt(upperBound - lowerBound) + lowerBound;
 	}
 
-	/** Returns a random String of the given length. */
-	public String nextString(int length) {
+    /**
+     * Returns a random String of the given length.  @param length the length
+     *
+     * @param length the length
+     * @return the string
+     */
+    public String nextString(int length) {
 		char[] chars = new char[length];
 		for (int i = 0; i < chars.length; i++) {
 			chars[i] = ALPHABET.charAt(nextInt(ALPHABET.length()));
@@ -287,11 +324,14 @@ public class RandomGenerator extends Random {
 		return new String(chars);
 	}
 
-	/**
-	 * Returns a randomly selected integer between 0 and the length of the given array. Uses the
-	 * given probabilities to determine the index, all values in this array must sum up to 1.
-	 */
-	public int randomIndex(double[] probs) {
+    /**
+     * Returns a randomly selected integer between 0 and the length of the given array. Uses the
+     * given probabilities to determine the index, all values in this array must sum up to 1.
+     *
+     * @param probs the probs
+     * @return the int
+     */
+    public int randomIndex(double[] probs) {
 		double r = nextDouble();
 		double sum = 0.0d;
 		for (int i = 0; i < probs.length; i++) {
@@ -303,14 +343,13 @@ public class RandomGenerator extends Random {
 		return probs.length - 1;
 	}
 
-	/**
-	 * This method returns a randomly filled array of given length
-	 *
-	 * @param length
-	 *            the length of the returned array
-	 * @return the filled array
-	 */
-	public double[] nextDoubleArray(int length) {
+    /**
+     * This method returns a randomly filled array of given length
+     *
+     * @param length the length of the returned array
+     * @return the filled array
+     */
+    public double[] nextDoubleArray(int length) {
 		double[] values = new double[length];
 		for (int i = 0; i < length; i++) {
 			values[i] = nextDouble();
@@ -318,13 +357,26 @@ public class RandomGenerator extends Random {
 		return values;
 	}
 
-	/** Returns a random date between the given ones. */
-	public Date nextDateInRange(Date start, Date end) {
+    /**
+     * Returns a random date between the given ones.  @param start the start
+     *
+     * @param start the start
+     * @param end   the end
+     * @return the date
+     */
+    public Date nextDateInRange(Date start, Date end) {
 		return new Date(nextLongInRange(start.getTime(), end.getTime()));
 	}
 
-	/** Returns a set of integer within the given range and given size */
-	public Set<Integer> nextIntSetWithRange(int lowerBound, int upperBound, int size) {
+    /**
+     * Returns a set of integer within the given range and given size  @param lowerBound the lower bound
+     *
+     * @param lowerBound the lower bound
+     * @param upperBound the upper bound
+     * @param size       the size
+     * @return the set
+     */
+    public Set<Integer> nextIntSetWithRange(int lowerBound, int upperBound, int size) {
 		if (upperBound <= lowerBound) {
 			throw new IllegalArgumentException("RandomGenerator.nextIntInRange : the upper bound of the "
 					+ "random number range should be greater than the lower bound.");

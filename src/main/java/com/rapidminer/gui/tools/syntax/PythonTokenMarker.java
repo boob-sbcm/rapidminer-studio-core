@@ -32,7 +32,7 @@ import javax.swing.text.Segment;
 
 /**
  * Python token marker.
- * 
+ *
  * @author Jonathan Revusky, Ingo Mierswa
  */
 public class PythonTokenMarker extends TokenMarker {
@@ -41,7 +41,10 @@ public class PythonTokenMarker extends TokenMarker {
 
 	private static final byte TRIPLEQUOTE2 = Token.INTERNAL_LAST;
 
-	public PythonTokenMarker() {
+    /**
+     * Instantiates a new Python token marker.
+     */
+    public PythonTokenMarker() {
 		this.keywords = getKeywords();
 	}
 
@@ -170,7 +173,12 @@ public class PythonTokenMarker extends TokenMarker {
 		return token;
 	}
 
-	public static KeywordMap getKeywords() {
+    /**
+     * Gets keywords.
+     *
+     * @return the keywords
+     */
+    public static KeywordMap getKeywords() {
 		if (pyKeywords == null) {
 			KeywordMap pyKeywords = new KeywordMap(false);
 			pyKeywords.add("and", Token.KEYWORD3);

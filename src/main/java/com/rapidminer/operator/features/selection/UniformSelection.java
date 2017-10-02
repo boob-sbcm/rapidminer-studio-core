@@ -30,7 +30,7 @@ import java.util.Random;
 /**
  * Selects a given fixed number of individuals by uniformly sampling from the current population
  * until the desired population size is reached.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class UniformSelection implements PopulationOperator {
@@ -41,7 +41,14 @@ public class UniformSelection implements PopulationOperator {
 
 	private Random random;
 
-	public UniformSelection(int popSize, boolean keepBest, Random random) {
+    /**
+     * Instantiates a new Uniform selection.
+     *
+     * @param popSize  the pop size
+     * @param keepBest the keep best
+     * @param random   the random
+     */
+    public UniformSelection(int popSize, boolean keepBest, Random random) {
 		this.popSize = popSize;
 		this.keepBest = keepBest;
 		this.random = random;

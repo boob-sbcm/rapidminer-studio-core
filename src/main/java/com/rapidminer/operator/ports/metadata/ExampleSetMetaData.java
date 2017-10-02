@@ -54,68 +54,93 @@ public class ExampleSetMetaData extends MetaData {
 
 	private boolean nominalDataWasShrinked = false;
 
-	public ExampleSetMetaData() {
+    /**
+     * Instantiates a new Example set meta data.
+     */
+    public ExampleSetMetaData() {
 		super(ExampleSet.class);
 	}
 
-	public ExampleSetMetaData(Map<String, Object> keyValueMap) {
+    /**
+     * Instantiates a new Example set meta data.
+     *
+     * @param keyValueMap the key value map
+     */
+    public ExampleSetMetaData(Map<String, Object> keyValueMap) {
 		super(ExampleSet.class, keyValueMap);
 	}
 
-	public ExampleSetMetaData(String key, Object value) {
+    /**
+     * Instantiates a new Example set meta data.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public ExampleSetMetaData(String key, Object value) {
 		super(ExampleSet.class, key, value);
 	}
 
-	public ExampleSetMetaData(List<AttributeMetaData> attributeMetaData) {
+    /**
+     * Instantiates a new Example set meta data.
+     *
+     * @param attributeMetaData the attribute meta data
+     */
+    public ExampleSetMetaData(List<AttributeMetaData> attributeMetaData) {
 		super(ExampleSet.class);
 		addAllAttributes(attributeMetaData);
 	}
 
-	public ExampleSetMetaData(Class<? extends ExampleSet> clazz) {
+    /**
+     * Instantiates a new Example set meta data.
+     *
+     * @param clazz the clazz
+     */
+    public ExampleSetMetaData(Class<? extends ExampleSet> clazz) {
 		super(clazz);
 	}
 
-	public ExampleSetMetaData(Class<? extends ExampleSet> clazz, List<AttributeMetaData> attributeMetaData) {
+    /**
+     * Instantiates a new Example set meta data.
+     *
+     * @param clazz             the clazz
+     * @param attributeMetaData the attribute meta data
+     */
+    public ExampleSetMetaData(Class<? extends ExampleSet> clazz, List<AttributeMetaData> attributeMetaData) {
 		super(clazz);
 		addAllAttributes(attributeMetaData);
 	}
 
-	/**
-	 * This constructor will generate a complete meta data description of the given example set.
-	 * Please pay attention to the fact that it might be very big since the meta data will contain
-	 * each nominal value stored in the data. With large, id-like data this will become very big.
-	 */
-	public ExampleSetMetaData(ExampleSet exampleSet) {
+    /**
+     * This constructor will generate a complete meta data description of the given example set.
+     * Please pay attention to the fact that it might be very big since the meta data will contain
+     * each nominal value stored in the data. With large, id-like data this will become very big.
+     *
+     * @param exampleSet the example set
+     */
+    public ExampleSetMetaData(ExampleSet exampleSet) {
 		this(exampleSet, false, true);
 	}
 
-	/**
-	 * Creates an {@link ExampleSetMetaData} object for the provided ExampleSet object.
-	 *
-	 * @param exampleSet
-	 *            the ExampleSet object the meta-data should be constructed for
-	 * @param shortened
-	 *            whether the meta data should be shortened AND whether the statistics should be
-	 *            recalculated
-	 * @deprecated use {@link #ExampleSetMetaData(ExampleSet, boolean, boolean)} instead
-	 */
-	@Deprecated
+    /**
+     * Creates an {@link ExampleSetMetaData} object for the provided ExampleSet object.
+     *
+     * @param exampleSet the ExampleSet object the meta-data should be constructed for
+     * @param shortened  whether the meta data should be shortened AND whether the statistics should be            recalculated
+     * @deprecated use {@link #ExampleSetMetaData(ExampleSet, boolean, boolean)} instead
+     */
+    @Deprecated
 	public ExampleSetMetaData(ExampleSet exampleSet, boolean shortened) {
 		this(exampleSet, shortened, !shortened);
 	}
 
-	/**
-	 * Creates an {@link ExampleSetMetaData} object for the provided ExampleSet object.
-	 *
-	 * @param exampleSet
-	 *            the ExampleSet object the meta-data should be constructed for
-	 * @param shortened
-	 *            whether the meta data should be shortened. In case it should be shortened the
-	 *            meta-data will contain at most {@link #getMaximumNumberOfAttributes()} attributes
-	 * @param recalculateStatistics
-	 *            defines whether the ExampleSet statistics should be recalculated
-	 */
-	public ExampleSetMetaData(ExampleSet exampleSet, boolean shortened, boolean recalculateStatistics) {
+    /**
+     * Creates an {@link ExampleSetMetaData} object for the provided ExampleSet object.
+     *
+     * @param exampleSet            the ExampleSet object the meta-data should be constructed for
+     * @param shortened             whether the meta data should be shortened. In case it should be shortened the            meta-data will contain at most {@link #getMaximumNumberOfAttributes()} attributes
+     * @param recalculateStatistics defines whether the ExampleSet statistics should be recalculated
+     */
+    public ExampleSetMetaData(ExampleSet exampleSet, boolean shortened, boolean recalculateStatistics) {
 		super(ExampleSet.class);
 		int maxNumber = Integer.MAX_VALUE;
 		if (shortened) {
@@ -140,11 +165,23 @@ public class ExampleSetMetaData extends MetaData {
 		numberOfExamples = new MDInteger(exampleSet.size());
 	}
 
-	public AttributeMetaData getAttributeByName(String name) {
+    /**
+     * Gets attribute by name.
+     *
+     * @param name the name
+     * @return the attribute by name
+     */
+    public AttributeMetaData getAttributeByName(String name) {
 		return attributeMetaData.get(name);
 	}
 
-	public AttributeMetaData getAttributeByRole(String role) {
+    /**
+     * Gets attribute by role.
+     *
+     * @param role the role
+     * @return the attribute by role
+     */
+    public AttributeMetaData getAttributeByRole(String role) {
 		for (AttributeMetaData amd : attributeMetaData.values()) {
 			String currentRole = amd.getRole();
 			if (currentRole != null && currentRole.equals(role)) {
@@ -154,7 +191,12 @@ public class ExampleSetMetaData extends MetaData {
 		return null;
 	}
 
-	public void addAllAttributes(Collection<AttributeMetaData> attributes) {
+    /**
+     * Add all attributes.
+     *
+     * @param attributes the attributes
+     */
+    public void addAllAttributes(Collection<AttributeMetaData> attributes) {
 		for (AttributeMetaData amd : attributes) {
 			addAttribute(amd);
 		}
@@ -165,15 +207,30 @@ public class ExampleSetMetaData extends MetaData {
 	 * attributeMetaData.removeAll(attributes); }
 	 */
 
-	public Collection<AttributeMetaData> getAllAttributes() {
+    /**
+     * Gets all attributes.
+     *
+     * @return the all attributes
+     */
+    public Collection<AttributeMetaData> getAllAttributes() {
 		return attributeMetaData.values();
 	}
 
-	public void removeAttribute(AttributeMetaData attribute) {
+    /**
+     * Remove attribute.
+     *
+     * @param attribute the attribute
+     */
+    public void removeAttribute(AttributeMetaData attribute) {
 		attributeMetaData.remove(attribute.getName());
 	}
 
-	public void addAttribute(AttributeMetaData attribute) {
+    /**
+     * Add attribute.
+     *
+     * @param attribute the attribute
+     */
+    public void addAttribute(AttributeMetaData attribute) {
 		if (attributeMetaData == null) {
 			attributeMetaData = new LinkedHashMap<String, AttributeMetaData>();
 		}
@@ -213,7 +270,12 @@ public class ExampleSetMetaData extends MetaData {
 		return buf.toString();
 	}
 
-	public void setAttributes(List<AttributeMetaData> attributes) {
+    /**
+     * Sets attributes.
+     *
+     * @param attributes the attributes
+     */
+    public void setAttributes(List<AttributeMetaData> attributes) {
 		attributeMetaData.clear();
 		addAllAttributes(attributes);
 	}
@@ -233,7 +295,14 @@ public class ExampleSetMetaData extends MetaData {
 		return clone;
 	}
 
-	public MetaDataInfo containsAttributesWithValueType(int type, boolean includeSpecials) {
+    /**
+     * Contains attributes with value type meta data info.
+     *
+     * @param type            the type
+     * @param includeSpecials the include specials
+     * @return the meta data info
+     */
+    public MetaDataInfo containsAttributesWithValueType(int type, boolean includeSpecials) {
 		if (attributeMetaData != null) {
 			for (AttributeMetaData amd : attributeMetaData.values()) {
 				SetRelation relation;
@@ -263,7 +332,13 @@ public class ExampleSetMetaData extends MetaData {
 		}
 	}
 
-	public AttributeMetaData getSpecial(String role) {
+    /**
+     * Gets special.
+     *
+     * @param role the role
+     * @return the special
+     */
+    public AttributeMetaData getSpecial(String role) {
 		if (attributeMetaData != null) {
 			for (AttributeMetaData amd : attributeMetaData.values()) {
 				if (role.equals(amd.getRole())) {
@@ -274,16 +349,24 @@ public class ExampleSetMetaData extends MetaData {
 		return null;
 	}
 
-	public AttributeMetaData getLabelMetaData() {
+    /**
+     * Gets label meta data.
+     *
+     * @return the label meta data
+     */
+    public AttributeMetaData getLabelMetaData() {
 		return getSpecial(Attributes.LABEL_NAME);
 	}
 
-	/**
-	 * This returns if an attribute with the given role exists in the example set. If the role is
-	 * confidence, then it checks not whether exactly the same role occurs, but if any role starts
-	 * with the confidence stem.
-	 */
-	public MetaDataInfo hasSpecial(String role) {
+    /**
+     * This returns if an attribute with the given role exists in the example set. If the role is
+     * confidence, then it checks not whether exactly the same role occurs, but if any role starts
+     * with the confidence stem.
+     *
+     * @param role the role
+     * @return the meta data info
+     */
+    public MetaDataInfo hasSpecial(String role) {
 		if (attributeMetaData == null) {
 			return MetaDataInfo.UNKNOWN;
 		}
@@ -314,14 +397,14 @@ public class ExampleSetMetaData extends MetaData {
 		}
 	}
 
-	/**
-	 * Joins the attributes of both example sets.
-	 *
-	 * @param prefixForDuplicates
-	 *            If this is non-null, attributes with duplicate names will be renamed. Otherwise,
-	 *            only one will be kept.
-	 */
-	public ExampleSetMetaData joinAttributes(ExampleSetMetaData es2, String prefixForDuplicates) {
+    /**
+     * Joins the attributes of both example sets.
+     *
+     * @param es2                 the es 2
+     * @param prefixForDuplicates If this is non-null, attributes with duplicate names will be renamed. Otherwise,            only one will be kept.
+     * @return the example set meta data
+     */
+    public ExampleSetMetaData joinAttributes(ExampleSetMetaData es2, String prefixForDuplicates) {
 		ExampleSetMetaData result = this.clone();
 		if (this.attributeMetaData == null || es2.attributeMetaData == null) {
 			return result;
@@ -360,7 +443,13 @@ public class ExampleSetMetaData extends MetaData {
 		return result;
 	}
 
-	public MetaDataInfo containsAttributeName(String name) {
+    /**
+     * Contains attribute name meta data info.
+     *
+     * @param name the name
+     * @return the meta data info
+     */
+    public MetaDataInfo containsAttributeName(String name) {
 		if (attributeMetaData != null) {
 			boolean contains = attributeMetaData.containsKey(name);
 			switch (attributesRelation) {
@@ -379,7 +468,13 @@ public class ExampleSetMetaData extends MetaData {
 		}
 	}
 
-	public MetaDataInfo containsSpecialAttribute(String role) {
+    /**
+     * Contains special attribute meta data info.
+     *
+     * @param role the role
+     * @return the meta data info
+     */
+    public MetaDataInfo containsSpecialAttribute(String role) {
 		if (attributeMetaData != null) {
 			boolean contains = false;
 			for (AttributeMetaData amd : getAllAttributes()) {
@@ -407,60 +502,83 @@ public class ExampleSetMetaData extends MetaData {
 		}
 	}
 
-	/**
-	 * Changes the knowledge about the attributes in this set. Example: If we had full knowledge (
-	 * {@link SetRelation#EQUAL) and <code>relation</code> if {@link SetRelation#SUBSET}, our
-	 * knowledge changes to {@link SetRelation#SUBSET}. If the current knowledge is
-	 * {@link SetRelation#SUBSET} and <code>relation</code> is {@link SetRelation#SUPERSET}, our
-	 * knowledge changes to {@link SetRelation#UNKNOWN}
-	 */
-	public void mergeSetRelation(SetRelation relation) {
+    /**
+     * Changes the knowledge about the attributes in this set. Example: If we had full knowledge (
+     * {@link SetRelation#EQUAL) and <code>relation</code> if {@link SetRelation#SUBSET}, our
+     * knowledge changes to {@link SetRelation#SUBSET}. If the current knowledge is
+     * {@link SetRelation#SUBSET} and <code>relation</code> is {@link SetRelation#SUPERSET}, our
+     * knowledge changes to {@link SetRelation#UNKNOWN}*
+     *
+     * @param relation the relation*
+     * @param relation the relation
+     */
+    public void mergeSetRelation(SetRelation relation) {
 		this.attributesRelation = this.attributesRelation.merge(relation);
 	}
 
-	public SetRelation getAttributeSetRelation() {
+    /**
+     * Gets attribute set relation.
+     *
+     * @return the attribute set relation
+     */
+    public SetRelation getAttributeSetRelation() {
 		return attributesRelation;
 	}
 
-	public void attributesAreKnown() {
+    /**
+     * Attributes are known.
+     */
+    public void attributesAreKnown() {
 		attributesRelation = SetRelation.EQUAL;
 	}
 
-	/**
-	 * Declares that the attributes in this example set are a superset of {@link #attributeMetaData}
-	 * .
-	 */
-	public void attributesAreSuperset() {
+    /**
+     * Declares that the attributes in this example set are a superset of {@link #attributeMetaData}
+     * .
+     */
+    public void attributesAreSuperset() {
 		mergeSetRelation(SetRelation.SUPERSET);
 	}
 
-	/**
-	 * Declares that the attributes in this example set are only a subset of
-	 * {@link #attributeMetaData}.
-	 */
-	public void attributesAreSubset() {
+    /**
+     * Declares that the attributes in this example set are only a subset of
+     * {@link #attributeMetaData}.
+     */
+    public void attributesAreSubset() {
 		mergeSetRelation(SetRelation.SUBSET);
 	}
 
-	/**
-	 * Convenience method for setting the number of examples if the number is known exactly.
-	 */
-	public void setNumberOfExamples(int num) {
+    /**
+     * Convenience method for setting the number of examples if the number is known exactly.
+     *
+     * @param num the num
+     */
+    public void setNumberOfExamples(int num) {
 		numberOfExamples = new MDInteger(num);
 	}
 
-	/**
-	 * Method for setting the number of examples.
-	 */
-	public void setNumberOfExamples(MDInteger num) {
+    /**
+     * Method for setting the number of examples.
+     *
+     * @param num the num
+     */
+    public void setNumberOfExamples(MDInteger num) {
 		numberOfExamples = num;
 	}
 
-	public void numberOfExamplesIsUnkown() {
+    /**
+     * Number of examples is unkown.
+     */
+    public void numberOfExamplesIsUnkown() {
 		numberOfExamples.setUnkown();
 	}
 
-	public MDInteger getNumberOfExamples() {
+    /**
+     * Gets number of examples.
+     *
+     * @return the number of examples
+     */
+    public MDInteger getNumberOfExamples() {
 		return numberOfExamples;
 	}
 
@@ -475,7 +593,12 @@ public class ExampleSetMetaData extends MetaData {
 		return buffer.toString();
 	}
 
-	public MetaData transpose() {
+    /**
+     * Transpose meta data.
+     *
+     * @return the meta data
+     */
+    public MetaData transpose() {
 		ExampleSetMetaData transposedMD = new ExampleSetMetaData();
 		transposedMD.addAttribute(new AttributeMetaData(Attributes.ID_NAME, Ontology.NOMINAL, Attributes.ID_NAME));
 		if (this.numberOfExamples.isKnown()) {
@@ -516,10 +639,10 @@ public class ExampleSetMetaData extends MetaData {
 		return transposedMD;
 	}
 
-	/**
-	 * This method removes all regular attributes from this exampleSet meta data
-	 */
-	public void clearRegular() {
+    /**
+     * This method removes all regular attributes from this exampleSet meta data
+     */
+    public void clearRegular() {
 		Iterator<AttributeMetaData> iterator = getAllAttributes().iterator();
 		while (iterator.hasNext()) {
 			AttributeMetaData amd = iterator.next();
@@ -529,14 +652,19 @@ public class ExampleSetMetaData extends MetaData {
 		}
 	}
 
-	/**
-	 * This method removes every attribute
-	 */
-	public void clear() {
+    /**
+     * This method removes every attribute
+     */
+    public void clear() {
 		getAllAttributes().clear();
 	}
 
-	public int getNumberOfRegularAttributes() {
+    /**
+     * Gets number of regular attributes.
+     *
+     * @return the number of regular attributes
+     */
+    public int getNumberOfRegularAttributes() {
 		int regular = 0;
 		for (AttributeMetaData amd : getAllAttributes()) {
 			if (!amd.isSpecial()) {
@@ -546,8 +674,13 @@ public class ExampleSetMetaData extends MetaData {
 		return regular;
 	}
 
-	/** Checks if the attribute sets are equal. */
-	public MetaDataInfo equalHeader(ExampleSetMetaData other) {
+    /**
+     * Checks if the attribute sets are equal.  @param other the other
+     *
+     * @param other the other
+     * @return the meta data info
+     */
+    public MetaDataInfo equalHeader(ExampleSetMetaData other) {
 		if (other == this) {
 			return MetaDataInfo.YES;
 		}
@@ -577,7 +710,13 @@ public class ExampleSetMetaData extends MetaData {
 		return MetaDataInfo.UNKNOWN;
 	}
 
-	public Collection<String> getAttributeNamesByType(int mustBeOfType) {
+    /**
+     * Gets attribute names by type.
+     *
+     * @param mustBeOfType the must be of type
+     * @return the attribute names by type
+     */
+    public Collection<String> getAttributeNamesByType(int mustBeOfType) {
 		Collection<String> names = new LinkedList<String>();
 		for (AttributeMetaData attribute : getAllAttributes()) {
 			if (Ontology.ATTRIBUTE_VALUE_TYPE.isA(attribute.getValueType(), mustBeOfType)) {
@@ -587,7 +726,12 @@ public class ExampleSetMetaData extends MetaData {
 		return names;
 	}
 
-	public String getShortDescription() {
+    /**
+     * Gets short description.
+     *
+     * @return the short description
+     */
+    public String getShortDescription() {
 		StringBuilder buf = new StringBuilder(super.getDescription());
 		buf.append("<br/>Number of examples ");
 		buf.append(numberOfExamples.toString());
@@ -615,28 +759,41 @@ public class ExampleSetMetaData extends MetaData {
 		return buf.toString();
 	}
 
-	/**
-	 * This method must be called by attributes in order to inform the example set that they have
-	 * been renamed. Before calling this method, the amd already must have its new name.
-	 */
-	/* pp */void attributeRenamed(AttributeMetaData amd, String oldName) {
+    /**
+     * This method must be called by attributes in order to inform the example set that they have
+     * been renamed. Before calling this method, the amd already must have its new name.
+     *
+     * @param amd     the amd
+     * @param oldName the old name
+     */
+/* pp */void attributeRenamed(AttributeMetaData amd, String oldName) {
 		attributeMetaData.remove(oldName);
 		attributeMetaData.put(amd.getName(), amd);
 	}
 
-	public void removeAllAttributes() {
+    /**
+     * Remove all attributes.
+     */
+    public void removeAllAttributes() {
 		attributeMetaData.clear();
 	}
 
-	public void setNominalDataWasShrinked(boolean b) {
+    /**
+     * Sets nominal data was shrinked.
+     *
+     * @param b the b
+     */
+    public void setNominalDataWasShrinked(boolean b) {
 		nominalDataWasShrinked = true;
 	}
 
-	/**
-	 * Returns the maximum number of attributes to be used for shortened meta data generation as
-	 * specified by {@link RapidMiner#PROPERTY_RAPIDMINER_GENERAL_MAX_META_DATA_ATTRIBUTES}.
-	 */
-	public static int getMaximumNumberOfAttributes() {
+    /**
+     * Returns the maximum number of attributes to be used for shortened meta data generation as
+     * specified by {@link RapidMiner#PROPERTY_RAPIDMINER_GENERAL_MAX_META_DATA_ATTRIBUTES}.
+     *
+     * @return the maximum number of attributes
+     */
+    public static int getMaximumNumberOfAttributes() {
 		int maxSize = 250;
 		String maxSizeString = ParameterService
 		        .getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_GENERAL_MAX_META_DATA_ATTRIBUTES);

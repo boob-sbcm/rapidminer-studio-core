@@ -50,7 +50,13 @@ public class ProgressBarUI extends BasicProgressBarUI {
 	/** the length of each individual part of the intermediate animation */
 	private static final int ANIMATION_BAR_LENGTH = 20;
 
-	public static ComponentUI createUI(JComponent x) {
+    /**
+     * Create ui component ui.
+     *
+     * @param x the x
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent x) {
 		return new ProgressBarUI();
 	}
 

@@ -108,11 +108,13 @@ import com.rapidminer.tools.expression.internal.function.trigonometric.Tangent;
  * The standard functions do not include the operations (+,-,*...).
  *
  * @author Gisa Schaefer
- *
  */
 public enum StandardFunctionsWithConstants implements ExpressionParserModule {
 
-	INSTANCE;
+    /**
+     * Instance standard functions with constants.
+     */
+    INSTANCE;
 
 	private List<Function> standardFunctions = new LinkedList<>();
 	private List<Constant> functionConstants = new LinkedList<>();

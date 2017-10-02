@@ -35,19 +35,17 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
 
 
 /**
- *
  * A {@link Function} parsing a date to a string with respect to the size, format and locale.
  *
  * @author Marcel Seifert
- *
  */
 public class DateStringLocale extends AbstractFunction {
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 */
-	public DateStringLocale() {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     */
+    public DateStringLocale() {
 		super("conversion.date_str_loc", 4, Ontology.NOMINAL);
 	}
 
@@ -68,18 +66,16 @@ public class DateStringLocale extends AbstractFunction {
 				isResultConstant(inputEvaluators));
 	}
 
-	/**
-	 * Builds a String Callable from one date and three string arguments
-	 *
-	 * @param date
-	 *            the input date
-	 * @param size
-	 *            the input size
-	 * @param format
-	 *            the input format
-	 * @return the resulting callable<String>
-	 */
-	protected Callable<String> makeStringCallable(final ExpressionEvaluator date, final ExpressionEvaluator size,
+    /**
+     * Builds a String Callable from one date and three string arguments
+     *
+     * @param date   the input date
+     * @param size   the input size
+     * @param format the input format
+     * @param locale the locale
+     * @return the resulting callable<String>
+     */
+    protected Callable<String> makeStringCallable(final ExpressionEvaluator date, final ExpressionEvaluator size,
 			final ExpressionEvaluator format, final ExpressionEvaluator locale) {
 
 		final Callable<Date> funcDate = date.getDateFunction();
@@ -259,20 +255,16 @@ public class DateStringLocale extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result for one date and three string input values.
-	 *
-	 * @param dateDate
-	 *            the date
-	 * @param sizeString
-	 *            the sizeString from {@link ExpressionParserConstants}
-	 * @param formatString
-	 *            the formatString from {@link ExpressionParserConstants}
-	 * @param localeString
-	 *            the locale string
-	 * @return the result of the computation.
-	 */
-	protected String compute(Date dateDate, String sizeString, String formatString, String localeString) {
+    /**
+     * Computes the result for one date and three string input values.
+     *
+     * @param dateDate     the date
+     * @param sizeString   the sizeString from {@link ExpressionParserConstants}
+     * @param formatString the formatString from {@link ExpressionParserConstants}
+     * @param localeString the locale string
+     * @return the result of the computation.
+     */
+    protected String compute(Date dateDate, String sizeString, String formatString, String localeString) {
 		if (dateDate == null || sizeString == null || formatString == null || localeString == null) {
 			return null;
 		}

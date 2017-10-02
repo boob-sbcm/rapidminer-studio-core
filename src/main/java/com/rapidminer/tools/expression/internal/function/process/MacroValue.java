@@ -30,31 +30,27 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryString
  * not exist.
  *
  * @author Gisa Schaefer
- *
  */
 public class MacroValue extends AbstractArbitraryStringInputStringOutputFunction {
 
 	private final MacroHandler handler;
 
-	/**
-	 * Creates a function that can look up a macro value.
-	 *
-	 * @param process
-	 *            the process with the {@link MacroHandler} that should be used for finding the
-	 *            macro
-	 */
-	public MacroValue(Process process) {
+    /**
+     * Creates a function that can look up a macro value.
+     *
+     * @param process the process with the {@link MacroHandler} that should be used for finding the            macro
+     */
+    public MacroValue(Process process) {
 		super("process.macro", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS);
 		handler = process.getMacroHandler();
 	}
 
-	/**
-	 * Creates a function that can look up a macro value.
-	 *
-	 * @param handler
-	 *            the {@link MacroHandler} that should be used for finding the macro
-	 */
-	public MacroValue(MacroHandler handler) {
+    /**
+     * Creates a function that can look up a macro value.
+     *
+     * @param handler the {@link MacroHandler} that should be used for finding the macro
+     */
+    public MacroValue(MacroHandler handler) {
 		super("process.macro", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS);
 		this.handler = handler;
 	}

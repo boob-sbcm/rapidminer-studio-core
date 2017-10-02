@@ -30,18 +30,17 @@ import javax.swing.JComponent;
 
 /**
  * This action is only to be used by the {@link AttributePopupMenu}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class CopyNumMaximumValueAction extends ResourceAction {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Creates a new {@link CopyNumMaximumValueAction} instance.
-	 */
-	public CopyNumMaximumValueAction() {
+    /**
+     * Creates a new {@link CopyNumMaximumValueAction} instance.
+     */
+    public CopyNumMaximumValueAction() {
 		super(true, "meta_data_stats.copy_numeric_max");
 	}
 

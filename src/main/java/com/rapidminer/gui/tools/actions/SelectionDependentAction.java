@@ -29,30 +29,39 @@ import java.awt.event.ActionEvent;
  * depending on it. Additionally if included somewhere these actions can be enabled or disabled
  * depending on the current selection. GUI classes using this kind of action need to call
  * {@link #selectionChanged()} whenever the selection changes to update the state of the action.
- * 
+ *
  * @author Sebastian Land
  */
 public abstract class SelectionDependentAction extends ResourceAction {
 
-	/**
-	 * Interface for all selection dependencies. These actions can for example be dependent on a
-	 * Tree selection, or list selection.
-	 * 
-	 * @author Sebastian Land
-	 */
-	public static interface SelectionDependency {
+    /**
+     * Interface for all selection dependencies. These actions can for example be dependent on a
+     * Tree selection, or list selection.
+     *
+     * @author Sebastian Land
+     */
+    public static interface SelectionDependency {
 
-		/**
-		 * This method has to return the currently selected object or null if nothing is selected.
-		 */
-		public Object getSelectedObject();
+        /**
+         * This method has to return the currently selected object or null if nothing is selected.
+         *
+         * @return the selected object
+         */
+        public Object getSelectedObject();
 	}
 
 	private static final long serialVersionUID = 1L;
 
 	private SelectionDependency dependency = null;
 
-	public SelectionDependentAction(boolean smallIcon, String i18nKey, Object... i18nArgs) {
+    /**
+     * Instantiates a new Selection dependent action.
+     *
+     * @param smallIcon the small icon
+     * @param i18nKey   the 18 n key
+     * @param i18nArgs  the 18 n args
+     */
+    public SelectionDependentAction(boolean smallIcon, String i18nKey, Object... i18nArgs) {
 		super(smallIcon, i18nKey, i18nArgs);
 	}
 
@@ -63,35 +72,43 @@ public abstract class SelectionDependentAction extends ResourceAction {
 		}
 	}
 
-	/**
-	 * Subclasses need to implement this method in order to be able to perform the action on the
-	 * given object. The selectedObject might be null, since some actions might be performable
-	 * without a selection.
-	 */
-	protected abstract void actionPerformed(ActionEvent e, Object selectedObject);
+    /**
+     * Subclasses need to implement this method in order to be able to perform the action on the
+     * given object. The selectedObject might be null, since some actions might be performable
+     * without a selection.
+     *
+     * @param e              the e
+     * @param selectedObject the selected object
+     */
+    protected abstract void actionPerformed(ActionEvent e, Object selectedObject);
 
-	/**
-	 * This might be called whenever the selection of the given {@link SelectionDependency} changes.
-	 * The state of this action will then be adapted automatically.
-	 */
-	public void selectionChanged() {
+    /**
+     * This might be called whenever the selection of the given {@link SelectionDependency} changes.
+     * The state of this action will then be adapted automatically.
+     */
+    public void selectionChanged() {
 		setEnabled(dependency != null && isEnabledForSelection(dependency.getSelectedObject()));
 	}
 
-	/**
-	 * This sets the dependency of this action. This method has to be called before the first action
-	 * can be performed.
-	 */
-	public void setDependency(SelectionDependency dependency) {
+    /**
+     * This sets the dependency of this action. This method has to be called before the first action
+     * can be performed.
+     *
+     * @param dependency the dependency
+     */
+    public void setDependency(SelectionDependency dependency) {
 		this.dependency = dependency;
 	}
 
-	/**
-	 * This method must be implemented by subclasses to indicate if this action is available for
-	 * this kind of object. The selected object might be null since some actions might be possible
-	 * even without selection.
-	 */
-	protected abstract boolean isEnabledForSelection(Object selectedObject);
+    /**
+     * This method must be implemented by subclasses to indicate if this action is available for
+     * this kind of object. The selected object might be null since some actions might be possible
+     * even without selection.
+     *
+     * @param selectedObject the selected object
+     * @return the boolean
+     */
+    protected abstract boolean isEnabledForSelection(Object selectedObject);
 
 	/**
 	 * Creates a clone of this action.

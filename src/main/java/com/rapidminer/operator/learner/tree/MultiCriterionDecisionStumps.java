@@ -46,7 +46,6 @@ import com.rapidminer.tools.Tools;
  * handle boolean class labels.
  *
  * @author Martin Scholz
- *
  * @deprecated This learner is not used anymore.
  */
 @Deprecated
@@ -62,7 +61,10 @@ public class MultiCriterionDecisionStumps extends AbstractLearner {
 	private static final String[] UTILITY_FUNCTION_LIST = new String[] { ENTROPY, ACC, SQRT_PN, GINI, CHI_SQUARE };
 	private static final String PARAMETER_UTILITY_FUNCTION = "utility_function";
 
-	public static class DecisionStumpModel extends SimplePredictionModel {
+    /**
+     * The type Decision stump model.
+     */
+    public static class DecisionStumpModel extends SimplePredictionModel {
 
 		private static final long serialVersionUID = -261158567126510415L;
 
@@ -72,7 +74,16 @@ public class MultiCriterionDecisionStumps extends AbstractLearner {
 		private boolean includeNaNs;
 		private final boolean numerical;
 
-		// nominal attribute: test is "equals"
+        /**
+         * Instantiates a new Decision stump model.
+         *
+         * @param attribute   the attribute
+         * @param testValue   the test value
+         * @param exampleSet  the example set
+         * @param prediction  the prediction
+         * @param includeNaNs the include na ns
+         */
+// nominal attribute: test is "equals"
 		// numerical attribute: test is "<="
 		// if true, then the provided prediction is made
 		public DecisionStumpModel(Attribute attribute, double testValue, ExampleSet exampleSet, boolean prediction,
@@ -145,7 +156,12 @@ public class MultiCriterionDecisionStumps extends AbstractLearner {
 
 	private String utilityFunction;
 
-	public MultiCriterionDecisionStumps(OperatorDescription description) {
+    /**
+     * Instantiates a new Multi criterion decision stumps.
+     *
+     * @param description the description
+     */
+    public MultiCriterionDecisionStumps(OperatorDescription description) {
 		super(description);
 	}
 
@@ -176,13 +192,20 @@ public class MultiCriterionDecisionStumps extends AbstractLearner {
 		return false;
 	}
 
-	protected void initHighscore() {
+    /**
+     * Init highscore.
+     */
+    protected void initHighscore() {
 		this.bestModel = null;
 		this.bestScore = Double.NEGATIVE_INFINITY;
 	}
 
-	/** @return the best decision stump found */
-	protected Model getBestModel() {
+    /**
+     * Gets best model.
+     *
+     * @return the best decision stump found
+     */
+    protected Model getBestModel() {
 		return this.bestModel;
 	}
 
@@ -374,17 +397,39 @@ public class MultiCriterionDecisionStumps extends AbstractLearner {
 	// Helper class.
 	private static class ScoreNaNInfo {
 
-		public double score;
-		public boolean includeNaNs;
-		public boolean predicted;
+        /**
+         * The Score.
+         */
+        public double score;
+        /**
+         * The Include na ns.
+         */
+        public boolean includeNaNs;
+        /**
+         * The Predicted.
+         */
+        public boolean predicted;
 
-		ScoreNaNInfo(double score, boolean includeNaNs, boolean predicted) {
+        /**
+         * Instantiates a new Score na n info.
+         *
+         * @param score       the score
+         * @param includeNaNs the include na ns
+         * @param predicted   the predicted
+         */
+        ScoreNaNInfo(double score, boolean includeNaNs, boolean predicted) {
 			this.score = score;
 			this.includeNaNs = includeNaNs;
 			this.predicted = predicted;
 		}
 
-		public ScoreNaNInfo max(ScoreNaNInfo other) {
+        /**
+         * Max score na n info.
+         *
+         * @param other the other
+         * @return the score na n info
+         */
+        public ScoreNaNInfo max(ScoreNaNInfo other) {
 			if (this.score >= other.score) {
 				return this;
 			} else {
@@ -424,10 +469,14 @@ public class MultiCriterionDecisionStumps extends AbstractLearner {
 		return snp;
 	}
 
-	/**
-	 * Computes the score for the specified utility function, the provided counts and class.
-	 */
-	protected double getScore(double[] counts, boolean predictPositives) {
+    /**
+     * Computes the score for the specified utility function, the provided counts and class.
+     *
+     * @param counts           the counts
+     * @param predictPositives the predict positives
+     * @return the score
+     */
+    protected double getScore(double[] counts, boolean predictPositives) {
 		double p = counts[0];
 		double n = counts[1];
 
@@ -504,12 +553,13 @@ public class MultiCriterionDecisionStumps extends AbstractLearner {
 		}
 	}
 
-	/**
-	 * @param exampleSet
-	 *            the exampleSet to get the weighted priors for
-	 * @return a double[2] object, first parameter is p, second is n.
-	 */
-	protected double[] computePriors(ExampleSet exampleSet) {
+    /**
+     * Compute priors double [ ].
+     *
+     * @param exampleSet the exampleSet to get the weighted priors for
+     * @return a double[2] object, first parameter is p, second is n.
+     */
+    protected double[] computePriors(ExampleSet exampleSet) {
 		Attribute weightAttr = exampleSet.getAttributes().getWeight();
 		double p = 0;
 		double n = 0;

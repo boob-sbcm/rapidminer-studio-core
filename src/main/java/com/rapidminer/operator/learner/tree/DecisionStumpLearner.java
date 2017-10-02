@@ -31,12 +31,17 @@ import java.util.List;
 /**
  * This operator learns decision stumps, i.e. a small decision tree with only one single split. This
  * decision stump works on both numerical and nominal attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DecisionStumpLearner extends AbstractTreeLearner {
 
-	public DecisionStumpLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Decision stump learner.
+     *
+     * @param description the description
+     */
+    public DecisionStumpLearner(OperatorDescription description) {
 		super(description);
 	}
 

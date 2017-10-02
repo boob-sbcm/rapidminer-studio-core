@@ -64,11 +64,20 @@ public class HistogramColorChart extends HistogramChart {
 
 	private static final long serialVersionUID = 9140046811324105445L;
 
-	public static final int MIN_BIN_NUMBER = 2;
+    /**
+     * The constant MIN_BIN_NUMBER.
+     */
+    public static final int MIN_BIN_NUMBER = 2;
 
-	public static final int MAX_BIN_NUMBER = 100;
+    /**
+     * The constant MAX_BIN_NUMBER.
+     */
+    public static final int MAX_BIN_NUMBER = 100;
 
-	public static final int DEFAULT_BIN_NUMBER = 40;
+    /**
+     * The constant DEFAULT_BIN_NUMBER.
+     */
+    public static final int DEFAULT_BIN_NUMBER = 40;
 
 	private HistogramDataset histogramDataset;
 
@@ -86,12 +95,23 @@ public class HistogramColorChart extends HistogramChart {
 
 	private boolean absolute = false;
 
-	public HistogramColorChart(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Histogram color chart.
+     *
+     * @param settings the settings
+     */
+    public HistogramColorChart(PlotterConfigurationModel settings) {
 		super(settings);
 
 	}
 
-	public HistogramColorChart(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Histogram color chart.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public HistogramColorChart(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}

@@ -30,15 +30,17 @@ import java.io.File;
 
 /**
  * Opens a process from a file.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class ImportProcessAction extends ResourceAction {
 
 	private static final long serialVersionUID = 1L;
 
-	public ImportProcessAction() {
+    /**
+     * Instantiates a new Import process action.
+     */
+    public ImportProcessAction() {
 		super("import_process");
 		setCondition(EDIT_IN_PROGRESS, DISALLOWED);
 	}
@@ -53,7 +55,12 @@ public class ImportProcessAction extends ResourceAction {
 		open(file);
 	}
 
-	public static void open(final File file) {
+    /**
+     * Open.
+     *
+     * @param file the file
+     */
+    public static void open(final File file) {
 		OpenAction.open(new FileProcessLocation(file), true);
 	}
 }

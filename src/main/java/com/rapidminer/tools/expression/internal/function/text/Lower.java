@@ -29,14 +29,13 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryString
  * A {@link Function} which transforms a nominal value to its lower case representation.
  *
  * @author Thilo Kamradt
- *
  */
 public class Lower extends AbstractArbitraryStringInputStringOutputFunction {
 
-	/**
-	 * Creates a function that transforms a nominal value to its lower case representation
-	 */
-	public Lower() {
+    /**
+     * Creates a function that transforms a nominal value to its lower case representation
+     */
+    public Lower() {
 		super("text_transformation.lower", 1);
 	}
 

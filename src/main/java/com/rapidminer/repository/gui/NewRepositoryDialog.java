@@ -42,7 +42,6 @@ import com.rapidminer.tools.container.Pair;
  * A dialog to create new remote or local repositories.
  *
  * @author Simon Fischer, Nils Woehler
- *
  */
 public class NewRepositoryDialog extends MultiPageDialog {
 
@@ -86,7 +85,10 @@ public class NewRepositoryDialog extends MultiPageDialog {
 		layoutDefault(cards);
 	}
 
-	public static void createNew() {
+    /**
+     * Create new.
+     */
+    public static void createNew() {
 		NewRepositoryDialog d = new NewRepositoryDialog();
 		d.setVisible(true);
 	}

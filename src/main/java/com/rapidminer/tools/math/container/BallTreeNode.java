@@ -23,12 +23,9 @@ import java.io.Serializable;
 
 /**
  * The node for a ball tree.
- * 
+ *
+ * @param <T> This is the type of value with is stored with the points and retrieved on nearest            neighbour search
  * @author Sebastian Land
- * 
- * @param <T>
- *            This is the type of value with is stored with the points and retrieved on nearest
- *            neighbour search
  */
 public class BallTreeNode<T> implements Serializable {
 
@@ -40,37 +37,80 @@ public class BallTreeNode<T> implements Serializable {
 	private BallTreeNode<T> leftChild;
 	private BallTreeNode<T> rightChild;
 
-	public BallTreeNode(double[] center, double radius, T value) {
+    /**
+     * Instantiates a new Ball tree node.
+     *
+     * @param center the center
+     * @param radius the radius
+     * @param value  the value
+     */
+    public BallTreeNode(double[] center, double radius, T value) {
 		this.center = center;
 		this.radius = radius;
 		this.value = value;
 	}
 
-	public BallTreeNode<T> getLeftChild() {
+    /**
+     * Gets left child.
+     *
+     * @return the left child
+     */
+    public BallTreeNode<T> getLeftChild() {
 		return leftChild;
 	}
 
-	public void setLeftChild(BallTreeNode<T> leftChild) {
+    /**
+     * Sets left child.
+     *
+     * @param leftChild the left child
+     */
+    public void setLeftChild(BallTreeNode<T> leftChild) {
 		this.leftChild = leftChild;
 	}
 
-	public BallTreeNode<T> getRightChild() {
+    /**
+     * Gets right child.
+     *
+     * @return the right child
+     */
+    public BallTreeNode<T> getRightChild() {
 		return rightChild;
 	}
 
-	public void setRightChild(BallTreeNode<T> rightChild) {
+    /**
+     * Sets right child.
+     *
+     * @param rightChild the right child
+     */
+    public void setRightChild(BallTreeNode<T> rightChild) {
 		this.rightChild = rightChild;
 	}
 
-	public double[] getCenter() {
+    /**
+     * Get center double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getCenter() {
 		return center;
 	}
 
-	public double getRadius() {
+    /**
+     * Gets radius.
+     *
+     * @return the radius
+     */
+    public double getRadius() {
 		return radius;
 	}
 
-	public void replaceChild(BallTreeNode<T> replaceNode, BallTreeNode<T> replacementNode) {
+    /**
+     * Replace child.
+     *
+     * @param replaceNode     the replace node
+     * @param replacementNode the replacement node
+     */
+    public void replaceChild(BallTreeNode<T> replaceNode, BallTreeNode<T> replacementNode) {
 		if (leftChild == replaceNode) {
 			leftChild = replacementNode;
 		}
@@ -91,23 +131,40 @@ public class BallTreeNode<T> implements Serializable {
 		return buffer.toString();
 	}
 
-	public void setRadius(double radius) {
+    /**
+     * Sets radius.
+     *
+     * @param radius the radius
+     */
+    public void setRadius(double radius) {
 		this.radius = radius;
 	}
 
-	public boolean isLeaf() {
+    /**
+     * Is leaf boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLeaf() {
 		return getLeftChild() == null && getRightChild() == null;
 	}
 
-	public boolean hasTwoChilds() {
+    /**
+     * Has two childs boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasTwoChilds() {
 		return (getLeftChild() != null && getRightChild() != null);
 	}
 
-	/**
-	 * This method returns the left child if existing or the right child if left doesnt exist. If
-	 * right is null either, then null is returned
-	 */
-	public BallTreeNode<T> getChild() {
+    /**
+     * This method returns the left child if existing or the right child if left doesnt exist. If
+     * right is null either, then null is returned
+     *
+     * @return the child
+     */
+    public BallTreeNode<T> getChild() {
 		if (getLeftChild() != null) {
 			return getLeftChild();
 		} else {
@@ -115,7 +172,12 @@ public class BallTreeNode<T> implements Serializable {
 		}
 	}
 
-	public void setChild(BallTreeNode<T> node) {
+    /**
+     * Sets child.
+     *
+     * @param node the node
+     */
+    public void setChild(BallTreeNode<T> node) {
 		if (!hasLeftChild()) {
 			setLeftChild(node);
 		} else {
@@ -123,15 +185,30 @@ public class BallTreeNode<T> implements Serializable {
 		}
 	}
 
-	public T getStoreValue() {
+    /**
+     * Gets store value.
+     *
+     * @return the store value
+     */
+    public T getStoreValue() {
 		return value;
 	}
 
-	public boolean hasLeftChild() {
+    /**
+     * Has left child boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasLeftChild() {
 		return this.leftChild != null;
 	}
 
-	public boolean hasRightChild() {
+    /**
+     * Has right child boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasRightChild() {
 		return this.rightChild != null;
 	}
 }

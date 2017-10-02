@@ -29,16 +29,22 @@ import org.w3c.dom.NodeList;
 
 /**
  * Rule to set parameters.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class SetParameterRule extends AbstractConditionedParseRule {
 
 	private String attributeName;
 	private String value;
 
-	public SetParameterRule(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Set parameter rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public SetParameterRule(String operatorTypeName, Element element) throws XMLException {
 		super(operatorTypeName, element);
 		assert (element.getTagName().equals("setParameter"));
 		NodeList children = element.getChildNodes();

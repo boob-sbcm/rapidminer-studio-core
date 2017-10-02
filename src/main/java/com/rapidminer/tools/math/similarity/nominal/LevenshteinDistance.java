@@ -20,14 +20,22 @@ package com.rapidminer.tools.math.similarity.nominal;
 
 /**
  * This calculates the levenshtein distance of two strings. This is not a valid distance measure.
- * 
+ * <p>
  * TODO: Extend this to become a valid distance measure
- * 
+ *
  * @author Sebastian Land
  */
 public class LevenshteinDistance {
 
-	public static int getDistance(String value1, String value2, int substitutionCost) {
+    /**
+     * Gets distance.
+     *
+     * @param value1           the value 1
+     * @param value2           the value 2
+     * @param substitutionCost the substitution cost
+     * @return the distance
+     */
+    public static int getDistance(String value1, String value2, int substitutionCost) {
 		byte[] s = value1.getBytes();
 		byte[] t = value2.getBytes();
 		int n = s.length + 1;

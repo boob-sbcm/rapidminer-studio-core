@@ -62,7 +62,7 @@ import com.rapidminer.tools.XMLException;
 
 /**
  * Implements wrapper methods of abstract example set. Implements all ResultObject methods.<br>
- *
+ * <p>
  * Apart from the interface methods the implementing classes must have a public single argument
  * clone constructor. This constructor is invoked by reflection from the clone method. Do not forget
  * to call the superclass method.
@@ -128,14 +128,17 @@ public abstract class AbstractExampleSet extends ResultObjectAdapter implements 
 		return str.toString();
 	}
 
-	/**
-	 * This method is used to create a {@link DataTable} from this example set. The default
-	 * implementation returns an instance of {@link DataTableExampleSetAdapter}. The given
-	 * IOContainer is used to check if there are compatible attribute weights which would used as
-	 * column weights of the returned table. Subclasses might want to override this method in order
-	 * to allow for other data tables.
-	 */
-	public DataTable createDataTable(IOContainer container) {
+    /**
+     * This method is used to create a {@link DataTable} from this example set. The default
+     * implementation returns an instance of {@link DataTableExampleSetAdapter}. The given
+     * IOContainer is used to check if there are compatible attribute weights which would used as
+     * column weights of the returned table. Subclasses might want to override this method in order
+     * to allow for other data tables.
+     *
+     * @param container the container
+     * @return the data table
+     */
+    public DataTable createDataTable(IOContainer container) {
 		AttributeWeights weights = null;
 		if (container != null) {
 			try {
@@ -320,11 +323,21 @@ public abstract class AbstractExampleSet extends ResultObjectAdapter implements 
 		return attributeElement;
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "aml";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "attribute description file";
 	}
 

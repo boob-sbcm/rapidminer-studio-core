@@ -50,7 +50,7 @@ import org.jfree.ui.RectangleInsets;
 
 /**
  * This is the multiple series chart plotter.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MultipleSeriesChartPlotter extends RangeablePlotterAdapter {
@@ -67,12 +67,23 @@ public class MultipleSeriesChartPlotter extends RangeablePlotterAdapter {
 	/** The column which is used for the values. */
 	private boolean[] columns;
 
-	public MultipleSeriesChartPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Multiple series chart plotter.
+     *
+     * @param settings the settings
+     */
+    public MultipleSeriesChartPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 	}
 
-	public MultipleSeriesChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Multiple series chart plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public MultipleSeriesChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}

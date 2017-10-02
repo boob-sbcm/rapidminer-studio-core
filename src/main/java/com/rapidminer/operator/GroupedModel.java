@@ -46,27 +46,25 @@ public class GroupedModel extends AbstractModel implements Iterable<Model>, Meta
 	/** Contains all models. */
 	private List<Model> models = new ArrayList<Model>();
 
-	/**
-	 * @deprecated Using this constructor results in a GroupedModel without a training header
-	 *             example set. This can cause NPE in places where the {@link Model} is assumed to
-	 *             have a training header set (for example when the model is connected to the
-	 *             process result port). Use {@link GroupedModel#GroupedModel(ExampleSet)} instead.
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Grouped model.
+     *
+     * @deprecated Using this constructor results in a GroupedModel without a training header             example set. This can cause NPE in places where the {@link Model} is assumed to             have a training header set (for example when the model is connected to the             process result port). Use {@link GroupedModel#GroupedModel(ExampleSet)} instead.
+     */
+    @Deprecated
 	public GroupedModel() {
 		super(null);
 	}
 
-	/**
-	 * Creates a GroupedModel with a training header example set. The training header example set
-	 * should correspond to the last (in the order in which the models are added and will be applied
-	 * to the group model) model.
-	 *
-	 * @param exampleSet
-	 *            The {@link ExampleSet} from which to create the training header example set
-	 * @since 7.4.0
-	 */
-	public GroupedModel(ExampleSet exampleSet) {
+    /**
+     * Creates a GroupedModel with a training header example set. The training header example set
+     * should correspond to the last (in the order in which the models are added and will be applied
+     * to the group model) model.
+     *
+     * @param exampleSet The {@link ExampleSet} from which to create the training header example set
+     * @since 7.4.0
+     */
+    public GroupedModel(ExampleSet exampleSet) {
 		super(exampleSet);
 	}
 
@@ -158,35 +156,60 @@ public class GroupedModel extends AbstractModel implements Iterable<Model>, Meta
 		return "GroupedModel";
 	}
 
-	/** Adds the given model to the container. */
-	public void prependModel(Model model) {
+    /**
+     * Adds the given model to the container.  @param model the model
+     *
+     * @param model the model
+     */
+    public void prependModel(Model model) {
 		models.add(0, model);
 	}
 
-	/** Adds the given model to the container. */
-	public void addModel(Model model) {
+    /**
+     * Adds the given model to the container.  @param model the model
+     *
+     * @param model the model
+     */
+    public void addModel(Model model) {
 		models.add(model);
 	}
 
-	/** Removes the given model from the container. */
-	public void removeModel(Model model) {
+    /**
+     * Removes the given model from the container.  @param model the model
+     *
+     * @param model the model
+     */
+    public void removeModel(Model model) {
 		models.remove(model);
 	}
 
-	/** Returns the total number of models. */
-	public int getNumberOfModels() {
+    /**
+     * Returns the total number of models.  @return the number of models
+     *
+     * @return the number of models
+     */
+    public int getNumberOfModels() {
 		return models.size();
 	}
 
-	/** Returns the i-th model. */
-	public Model getModel(int index) {
+    /**
+     * Returns the i-th model.  @param index the index
+     *
+     * @param index the index
+     * @return the model
+     */
+    public Model getModel(int index) {
 		return models.get(index);
 	}
 
-	/**
-	 * Returns the first model in this container with the desired class. A cast is not necessary.
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * Returns the first model in this container with the desired class. A cast is not necessary.
+     *
+     * @param <T>          the type parameter
+     * @param desiredClass the desired class
+     * @return the model
+     */
+    @SuppressWarnings("unchecked")
 	public <T extends Model> T getModel(Class<T> desiredClass) {
 		Iterator<Model> i = models.iterator();
 		while (i.hasNext()) {

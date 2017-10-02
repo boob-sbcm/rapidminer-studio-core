@@ -23,7 +23,7 @@ import com.rapidminer.operator.performance.PerformanceVector;
 
 /**
  * Individuals store information about the value vectors and the fitness.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Individual implements Cloneable {
@@ -34,7 +34,12 @@ public class Individual implements Cloneable {
 
 	private double crowdingDistance;
 
-	public Individual(double[] values) {
+    /**
+     * Instantiates a new Individual.
+     *
+     * @param values the values
+     */
+    public Individual(double[] values) {
 		this.values = values;
 	}
 
@@ -46,23 +51,48 @@ public class Individual implements Cloneable {
 		return clone;
 	}
 
-	public void setCrowdingDistance(double cd) {
+    /**
+     * Sets crowding distance.
+     *
+     * @param cd the cd
+     */
+    public void setCrowdingDistance(double cd) {
 		this.crowdingDistance = cd;
 	}
 
-	public double getCrowdingDistance() {
+    /**
+     * Gets crowding distance.
+     *
+     * @return the crowding distance
+     */
+    public double getCrowdingDistance() {
 		return crowdingDistance;
 	}
 
-	public double[] getValues() {
+    /**
+     * Get values double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getValues() {
 		return values;
 	}
 
-	public void setValues(double[] values) {
+    /**
+     * Sets values.
+     *
+     * @param values the values
+     */
+    public void setValues(double[] values) {
 		this.values = values;
 	}
 
-	public double[] getFitnessValues() {
+    /**
+     * Get fitness values double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getFitnessValues() {
 		double[] fitnessValues = new double[fitness.getSize()];
 		for (int i = 0; i < fitnessValues.length; i++) {
 			fitnessValues[i] = fitness.getCriterion(i).getFitness();
@@ -70,11 +100,21 @@ public class Individual implements Cloneable {
 		return fitnessValues;
 	}
 
-	public PerformanceVector getFitness() {
+    /**
+     * Gets fitness.
+     *
+     * @return the fitness
+     */
+    public PerformanceVector getFitness() {
 		return fitness;
 	}
 
-	public void setFitness(PerformanceVector fitness) {
+    /**
+     * Sets fitness.
+     *
+     * @param fitness the fitness
+     */
+    public void setFitness(PerformanceVector fitness) {
 		this.fitness = fitness;
 	}
 

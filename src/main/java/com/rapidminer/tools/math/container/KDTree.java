@@ -33,12 +33,9 @@ import java.util.Stack;
  * This class is an implementation of a KD-Tree for organizing multidimensional datapoints in a
  * fashion supporting the search for nearest neighbours. This is only working well in low
  * dimensions.
- * 
+ *
+ * @param <T> This is the type of value with is stored with the points and retrieved on nearest            neighbour search
  * @author Sebastian Land
- * 
- * @param <T>
- *            This is the type of value with is stored with the points and retrieved on nearest
- *            neighbour search
  */
 public class KDTree<T extends Serializable> implements GeometricDataCollection<T> {
 
@@ -49,7 +46,13 @@ public class KDTree<T extends Serializable> implements GeometricDataCollection<T
 	private int size = 0;
 	private ArrayList<T> values = new ArrayList<T>();
 
-	public KDTree(int numberOfDimensions, DistanceMeasure distance) {
+    /**
+     * Instantiates a new Kd tree.
+     *
+     * @param numberOfDimensions the number of dimensions
+     * @param distance           the distance
+     */
+    public KDTree(int numberOfDimensions, DistanceMeasure distance) {
 		this.k = numberOfDimensions;
 		this.distance = distance;
 	}

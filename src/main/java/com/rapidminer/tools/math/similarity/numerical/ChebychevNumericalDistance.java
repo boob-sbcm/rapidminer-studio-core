@@ -26,7 +26,7 @@ import com.rapidminer.tools.math.similarity.DistanceMeasure;
 
 /**
  * This measure returns the maximal individual absolute distance of both examples in any component.
- * 
+ *
  * @author Sebastian Land, Michael Wurst
  */
 public class ChebychevNumericalDistance extends DistanceMeasure {

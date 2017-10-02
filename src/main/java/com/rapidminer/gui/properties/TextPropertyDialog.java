@@ -60,7 +60,14 @@ public class TextPropertyDialog extends PropertyDialog {
 
 	private JButton resizeButton = new JButton();
 
-	public TextPropertyDialog(final ParameterTypeText type, String text, Operator operator) {
+    /**
+     * Instantiates a new Text property dialog.
+     *
+     * @param type     the type
+     * @param text     the text
+     * @param operator the operator
+     */
+    public TextPropertyDialog(final ParameterTypeText type, String text, Operator operator) {
 		super(type, "text");
 		this.text = text;
 		ResourceAction resizeAction = new ResourceAction(false, "text_dialog.enlarge") {
@@ -149,7 +156,12 @@ public class TextPropertyDialog extends PropertyDialog {
 		return this.ok;
 	}
 
-	public String getText() {
+    /**
+     * Gets text.
+     *
+     * @return the text
+     */
+    public String getText() {
 		return this.text;
 	}
 }

@@ -27,20 +27,32 @@ import org.w3c.dom.Element;
 
 /**
  * A {@link ParameterType} which offers a selection field for {@link Configurable}s.
- * 
+ *
  * @author Dominik Halfkann
- * 
  */
 public class ParameterTypeConfigurable extends ParameterTypeSingle {
 
 	private static final long serialVersionUID = 1047207381362696112L;
 	private String typeId;
 
-	public ParameterTypeConfigurable(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type configurable.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeConfigurable(Element element) throws XMLException {
 		super(element);
 	}
 
-	public ParameterTypeConfigurable(String key, String description, String typeId) {
+    /**
+     * Instantiates a new Parameter type configurable.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param typeId      the type id
+     */
+    public ParameterTypeConfigurable(String key, String description, String typeId) {
 		super(key, description);
 		if (!ConfigurationManager.getInstance().hasTypeId(typeId)) {
 			throw new IllegalArgumentException("Unknown configurable type: " + typeId);
@@ -49,7 +61,12 @@ public class ParameterTypeConfigurable extends ParameterTypeSingle {
 		setExpert(false);
 	}
 
-	public String getTypeId() {
+    /**
+     * Gets type id.
+     *
+     * @return the type id
+     */
+    public String getTypeId() {
 		return typeId;
 	}
 

@@ -31,7 +31,7 @@ import java.awt.image.IndexColorModel;
 
 /**
  * The buffer used for drawing toolbar handlers.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ToolbarHandlerBuffer {
@@ -48,7 +48,14 @@ public class ToolbarHandlerBuffer {
 
 	private GraphicsConfiguration gc;
 
-	public ToolbarHandlerBuffer(GraphicsConfiguration gc, Color aTopColor, Color aShadowColor) {
+    /**
+     * Instantiates a new Toolbar handler buffer.
+     *
+     * @param gc           the gc
+     * @param aTopColor    the a top color
+     * @param aShadowColor the a shadow color
+     */
+    public ToolbarHandlerBuffer(GraphicsConfiguration gc, Color aTopColor, Color aShadowColor) {
 		this.gc = gc;
 		this.topColor = aTopColor;
 		this.shadowColor = aShadowColor;
@@ -56,7 +63,15 @@ public class ToolbarHandlerBuffer {
 		fillBumpBuffer();
 	}
 
-	public boolean hasSameConfiguration(GraphicsConfiguration gc, Color aTopColor, Color aShadowColor) {
+    /**
+     * Has same configuration boolean.
+     *
+     * @param gc           the gc
+     * @param aTopColor    the a top color
+     * @param aShadowColor the a shadow color
+     * @return the boolean
+     */
+    public boolean hasSameConfiguration(GraphicsConfiguration gc, Color aTopColor, Color aShadowColor) {
 		if (this.gc != null) {
 			if (!this.gc.equals(gc)) {
 				return false;
@@ -67,11 +82,21 @@ public class ToolbarHandlerBuffer {
 		return this.topColor.equals(aTopColor) && this.shadowColor.equals(aShadowColor);
 	}
 
-	public Image getImage() {
+    /**
+     * Gets image.
+     *
+     * @return the image
+     */
+    public Image getImage() {
 		return this.image;
 	}
 
-	public Dimension getImageSize() {
+    /**
+     * Gets image size.
+     *
+     * @return the image size
+     */
+    public Dimension getImageSize() {
 		return imageSize;
 	}
 

@@ -38,13 +38,17 @@ import com.rapidminer.tools.OperatorService;
  * Uses the factors of one of the principal components (default is the first) as feature weights.
  * Please note that the PCA weighting operator is currently the only one which also works on data
  * sets without a label, i.e. for unsupervised learning.
- * 
+ *
  * @author Ingo Mierswa
- * 
  */
 public class PCAWeighting extends AbstractWeighting {
 
-	public PCAWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Pca weighting.
+     *
+     * @param description the description
+     */
+    public PCAWeighting(OperatorDescription description) {
 		super(description, false);
 	}
 

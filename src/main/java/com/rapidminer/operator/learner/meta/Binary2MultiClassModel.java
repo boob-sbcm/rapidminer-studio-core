@@ -63,7 +63,15 @@ public class Binary2MultiClassModel extends PredictionModel implements MetaModel
 
 	private final int classificationType;
 
-	public Binary2MultiClassModel(ExampleSet exampleSet, Model[] models, int classificationType,
+    /**
+     * Instantiates a new Binary 2 multi class model.
+     *
+     * @param exampleSet         the example set
+     * @param models             the models
+     * @param classificationType the classification type
+     * @param modelNames         the model names
+     */
+    public Binary2MultiClassModel(ExampleSet exampleSet, Model[] models, int classificationType,
 			LinkedList<String> modelNames) {
 		super(exampleSet, null, null);
 		this.models = models;
@@ -71,19 +79,37 @@ public class Binary2MultiClassModel extends PredictionModel implements MetaModel
 		this.modelNames = modelNames;
 	}
 
-	public Binary2MultiClassModel(ExampleSet exampleSet, Model[] models, int classificationType, String[][] codeMatrix) {
+    /**
+     * Instantiates a new Binary 2 multi class model.
+     *
+     * @param exampleSet         the example set
+     * @param models             the models
+     * @param classificationType the classification type
+     * @param codeMatrix         the code matrix
+     */
+    public Binary2MultiClassModel(ExampleSet exampleSet, Model[] models, int classificationType, String[][] codeMatrix) {
 		super(exampleSet, null, null);
 		this.models = models;
 		this.classificationType = classificationType;
 		this.codeMatrix = codeMatrix;
 	}
 
-	public int getNumberOfModels() {
+    /**
+     * Gets number of models.
+     *
+     * @return the number of models
+     */
+    public int getNumberOfModels() {
 		return models.length;
 	}
 
-	/** Returns a binary decision model for the given classification index. */
-	public Model getModel(int index) {
+    /**
+     * Returns a binary decision model for the given classification index.  @param index the index
+     *
+     * @param index the index
+     * @return the model
+     */
+    public Model getModel(int index) {
 		return models[index];
 	}
 

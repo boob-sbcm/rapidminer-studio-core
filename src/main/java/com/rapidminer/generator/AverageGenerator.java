@@ -27,12 +27,15 @@ import com.rapidminer.tools.Ontology;
 /**
  * This class has two numerical input attributes and one output attribute. The result will be the
  * average of the input attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AverageGenerator extends BinaryNumericalGenerator {
 
-	public AverageGenerator() {}
+    /**
+     * Instantiates a new Average generator.
+     */
+    public AverageGenerator() {}
 
 	@Override
 	public Attribute[] getOutputAttributes(ExampleTable input) {

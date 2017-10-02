@@ -28,11 +28,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
  * A {@link Function} to calculate the complement of the bit representation of an integer.
  *
  * @author Thilo Kamradt
- *
  */
 public class BitNot extends Abstract1DoubleInputFunction {
 
-	public BitNot() {
+    /**
+     * Instantiates a new Bit not.
+     */
+    public BitNot() {
 		super("bitwise.bit_not", Ontology.INTEGER);
 	}
 

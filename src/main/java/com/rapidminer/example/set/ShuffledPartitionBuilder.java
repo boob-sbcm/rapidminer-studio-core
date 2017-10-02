@@ -28,14 +28,20 @@ import java.util.Random;
  * backwards, from the last element up to the second, repeatedly swapping a randomly selected
  * element into the "current position". Elements are randomly selected from the portion of the list
  * that runs from the first element to the current position, inclusive.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ShuffledPartitionBuilder extends SimplePartitionBuilder {
 
 	private Random random;
 
-	public ShuffledPartitionBuilder(boolean useLocalRandomSeed, int seed) {
+    /**
+     * Instantiates a new Shuffled partition builder.
+     *
+     * @param useLocalRandomSeed the use local random seed
+     * @param seed               the seed
+     */
+    public ShuffledPartitionBuilder(boolean useLocalRandomSeed, int seed) {
 		this.random = RandomGenerator.getRandomGenerator(useLocalRandomSeed, seed);
 	}
 

@@ -25,7 +25,6 @@ import com.rapidminer.operator.ports.InputPort;
  * A ParameterType for DateFormats.
  *
  * @author Simon Fischer
- *
  */
 public class ParameterTypeDateFormat extends ParameterTypeStringCategory {
 
@@ -35,37 +34,62 @@ public class ParameterTypeDateFormat extends ParameterTypeStringCategory {
 
 	private ParameterTypeAttribute attributeParameter;
 
-	public static final String[] PREDEFINED_DATE_FORMATS = new String[] { "", "MM/dd/yyyy", "MM/dd/yyyy h:mm a",
+    /**
+     * The constant PREDEFINED_DATE_FORMATS.
+     */
+    public static final String[] PREDEFINED_DATE_FORMATS = new String[] { "", "MM/dd/yyyy", "MM/dd/yyyy h:mm a",
 			"dd/MM/yyyy", "dd/MM/yyyy HH:mm", "yyyy.MM.dd G 'at' HH:mm:ss z", "EEE, MMM d, ''yy", "h:mm a",
 			"hh 'o''clock' a, zzzz", "K:mm a, z", "yyyy.MMMMM.dd GGG hh:mm aaa", "EEE, d MMM yyyy HH:mm:ss Z",
 			"yyMMddHHmmssZ", "yyyy-MM-dd'T'HH:mm:ss.SSSZ", "yyyy-MM-dd HH:mm:ss", "M/d/yy h:mm a" };
 
-	/**
-	 * This is the constructor for date format if no example set meta data is available.
-	 */
-	public ParameterTypeDateFormat(String key, String description, boolean expert) {
+    /**
+     * This is the constructor for date format if no example set meta data is available.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param expert      the expert
+     */
+    public ParameterTypeDateFormat(String key, String description, boolean expert) {
 		this(null, key, description, null, expert);
 	}
 
-	/**
-	 * This is the constructor for date format if no example set meta data is available.
-	 */
-	public ParameterTypeDateFormat(String key, String description, String defaultValue, boolean expert) {
+    /**
+     * This is the constructor for date format if no example set meta data is available.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultValue the default value
+     * @param expert       the expert
+     */
+    public ParameterTypeDateFormat(String key, String description, String defaultValue, boolean expert) {
 		this(null, key, description, defaultValue, null, expert);
 	}
 
-	/**
-	 * This is the constructor for parameter types of operators which transform an example set.
-	 */
-	public ParameterTypeDateFormat(ParameterTypeAttribute attributeParameter, String key, String description,
+    /**
+     * This is the constructor for parameter types of operators which transform an example set.
+     *
+     * @param attributeParameter the attribute parameter
+     * @param key                the key
+     * @param description        the description
+     * @param inPort             the in port
+     * @param expert             the expert
+     */
+    public ParameterTypeDateFormat(ParameterTypeAttribute attributeParameter, String key, String description,
 			InputPort inPort, boolean expert) {
 		this(attributeParameter, key, description, "", inPort, expert);
 	}
 
-	/**
-	 * This is the constructor for parameter types of operators which transform an example set.
-	 */
-	public ParameterTypeDateFormat(ParameterTypeAttribute attributeParameter, String key, String description,
+    /**
+     * This is the constructor for parameter types of operators which transform an example set.
+     *
+     * @param attributeParameter the attribute parameter
+     * @param key                the key
+     * @param description        the description
+     * @param defaultValue       the default value
+     * @param inPort             the in port
+     * @param expert             the expert
+     */
+    public ParameterTypeDateFormat(ParameterTypeAttribute attributeParameter, String key, String description,
 			String defaultValue, InputPort inPort, boolean expert) {
 		super(key, description, PREDEFINED_DATE_FORMATS, defaultValue, true);
 		setExpert(expert);
@@ -73,14 +97,21 @@ public class ParameterTypeDateFormat extends ParameterTypeStringCategory {
 		this.attributeParameter = attributeParameter;
 	}
 
-	public InputPort getInputPort() {
+    /**
+     * Gets input port.
+     *
+     * @return the input port
+     */
+    public InputPort getInputPort() {
 		return inPort;
 	}
 
-	/**
-	 * This method returns the referenced attribute parameter or null if non exists.
-	 */
-	public ParameterTypeAttribute getAttributeParameterType() {
+    /**
+     * This method returns the referenced attribute parameter or null if non exists.
+     *
+     * @return the attribute parameter type
+     */
+    public ParameterTypeAttribute getAttributeParameterType() {
 		return attributeParameter;
 	}
 

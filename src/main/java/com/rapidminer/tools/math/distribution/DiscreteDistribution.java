@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 /**
  * The distribution for a discrete variable.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class DiscreteDistribution implements Distribution {
@@ -38,7 +38,14 @@ public class DiscreteDistribution implements Distribution {
 
 	private String[] valueNames;
 
-	public DiscreteDistribution(String attributeName, double[] probabilities, String[] valueNames) {
+    /**
+     * Instantiates a new Discrete distribution.
+     *
+     * @param attributeName the attribute name
+     * @param probabilities the probabilities
+     * @param valueNames    the value names
+     */
+    public DiscreteDistribution(String attributeName, double[] probabilities, String[] valueNames) {
 		this.attributeName = attributeName;
 		this.probabilities = probabilities;
 		this.valueNames = valueNames;
@@ -70,11 +77,13 @@ public class DiscreteDistribution implements Distribution {
 		return attributeName;
 	}
 
-	/**
-	 * This method returns a collection of all nominal attribute values. TODO: This is not fully
-	 * legally: not guaranteed that the indices are in a sequence, starting with 0!!!
-	 * */
-	public ArrayList<Double> getValues() {
+    /**
+     * This method returns a collection of all nominal attribute values. TODO: This is not fully
+     * legally: not guaranteed that the indices are in a sequence, starting with 0!!!
+     *
+     * @return the values
+     */
+    public ArrayList<Double> getValues() {
 		ArrayList<Double> values = new ArrayList<Double>();
 		for (int i = 0; i < probabilities.length; i++) {
 			values.add((double) i);
@@ -130,7 +139,12 @@ public class DiscreteDistribution implements Distribution {
 		return probabilities[index];
 	}
 
-	public String[] getValueNames() {
+    /**
+     * Get value names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getValueNames() {
 		return valueNames;
 	}
 }

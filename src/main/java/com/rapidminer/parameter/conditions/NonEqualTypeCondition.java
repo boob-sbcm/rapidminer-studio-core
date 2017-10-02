@@ -26,16 +26,31 @@ import org.w3c.dom.Element;
 
 /**
  * This condition checks if a type parameter (category) has NOT a certain value.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class NonEqualTypeCondition extends EqualTypeCondition {
 
-	public NonEqualTypeCondition(Element element) throws XMLException {
+    /**
+     * Instantiates a new Non equal type condition.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public NonEqualTypeCondition(Element element) throws XMLException {
 		super(element);
 	}
 
-	public NonEqualTypeCondition(ParameterHandler handler, String conditionParameter, String[] options,
+    /**
+     * Instantiates a new Non equal type condition.
+     *
+     * @param handler            the handler
+     * @param conditionParameter the condition parameter
+     * @param options            the options
+     * @param becomeMandatory    the become mandatory
+     * @param types              the types
+     */
+    public NonEqualTypeCondition(ParameterHandler handler, String conditionParameter, String[] options,
 			boolean becomeMandatory, int... types) {
 		super(handler, conditionParameter, options, becomeMandatory, types);
 	}

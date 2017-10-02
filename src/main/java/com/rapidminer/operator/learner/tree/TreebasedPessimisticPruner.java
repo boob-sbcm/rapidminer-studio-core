@@ -39,7 +39,13 @@ public class TreebasedPessimisticPruner implements Pruner {
 
 	private double confidenceLevel;
 
-	public TreebasedPessimisticPruner(double confidenceLevel, LeafCreator leafCreator) {
+    /**
+     * Instantiates a new Treebased pessimistic pruner.
+     *
+     * @param confidenceLevel the confidence level
+     * @param leafCreator     the leaf creator
+     */
+    public TreebasedPessimisticPruner(double confidenceLevel, LeafCreator leafCreator) {
 		this.confidenceLevel = confidenceLevel;
 	}
 
@@ -156,14 +162,13 @@ public class TreebasedPessimisticPruner implements Pruner {
 		return errors;
 	}
 
-	/**
-	 * Calculates the label a node would have if it became a leaf.
-	 *
-	 * @param node
-	 *            a node that is not a leaf
-	 * @return the majority label
-	 */
-	public String prunedLabel(Tree node) {
+    /**
+     * Calculates the label a node would have if it became a leaf.
+     *
+     * @param node a node that is not a leaf
+     * @return the majority label
+     */
+    public String prunedLabel(Tree node) {
 		Map<String, Integer> counterMap = node.getSubtreeCounterMap();
 		int maximum = 0;
 		String label = "";
@@ -177,15 +182,15 @@ public class TreebasedPessimisticPruner implements Pruner {
 		return label;
 	}
 
-	/**
-	 * Calculates the pessimistic number of errors, using some confidence level.
-	 *
-	 * @param numberOfExamples
-	 * @param errorRate
-	 * @param confidenceLevel
-	 * @return
-	 */
-	public double pessimisticErrors(double numberOfExamples, double errorRate, double confidenceLevel) {
+    /**
+     * Calculates the pessimistic number of errors, using some confidence level.
+     *
+     * @param numberOfExamples the number of examples
+     * @param errorRate        the error rate
+     * @param confidenceLevel  the confidence level
+     * @return double double
+     */
+    public double pessimisticErrors(double numberOfExamples, double errorRate, double confidenceLevel) {
 		if (errorRate < 1E-6) {
 			return errorRate + numberOfExamples * (1.0 - Math.exp(Math.log(confidenceLevel) / numberOfExamples));
 		} else if (errorRate + 0.5 >= numberOfExamples) {

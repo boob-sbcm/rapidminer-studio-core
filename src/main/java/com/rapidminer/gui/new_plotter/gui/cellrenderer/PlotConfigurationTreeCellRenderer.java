@@ -64,7 +64,6 @@ import com.rapidminer.tools.I18N;
  * A renderer for plot configuration tree cells that displays the configuration's icon and name.
  *
  * @author Nils Woehler
- *
  */
 public class PlotConfigurationTreeCellRenderer extends DefaultTreeCellRenderer implements DragListener {
 
@@ -100,7 +99,10 @@ public class PlotConfigurationTreeCellRenderer extends DefaultTreeCellRenderer i
 		private final int CELL_WIDTH = 355;
 		private final int CELL_HEIGTH = 18;
 
-		public DimensionAndRangeAxisTreeCellPanel() {
+        /**
+         * Instantiates a new Dimension and range axis tree cell panel.
+         */
+        public DimensionAndRangeAxisTreeCellPanel() {
 			this.setLayout(new BorderLayout());
 			this.setPreferredSize(new Dimension(CELL_WIDTH, CELL_HEIGTH));
 
@@ -121,12 +123,36 @@ public class PlotConfigurationTreeCellRenderer extends DefaultTreeCellRenderer i
 			this.add(errorIconLabel, BorderLayout.EAST);
 		}
 
-		public void updateTreeCell(JTree tree, RangeAxisConfigTreeNode value, boolean selected, boolean expanded,
+        /**
+         * Update tree cell.
+         *
+         * @param tree     the tree
+         * @param value    the value
+         * @param selected the selected
+         * @param expanded the expanded
+         * @param leaf     the leaf
+         * @param row      the row
+         * @param hasFocus the has focus
+         * @param dragging the dragging
+         */
+        public void updateTreeCell(JTree tree, RangeAxisConfigTreeNode value, boolean selected, boolean expanded,
 				boolean leaf, int row, boolean hasFocus, boolean dragging) {
 			adaptRangeAxisCell(tree, value, selected, expanded, leaf, row, hasFocus, dragging);
 		}
 
-		public void updateTreeCell(JTree tree, DimensionConfigTreeNode value, boolean selected, boolean expanded,
+        /**
+         * Update tree cell.
+         *
+         * @param tree     the tree
+         * @param value    the value
+         * @param selected the selected
+         * @param expanded the expanded
+         * @param leaf     the leaf
+         * @param row      the row
+         * @param hasFocus the has focus
+         * @param dragging the dragging
+         */
+        public void updateTreeCell(JTree tree, DimensionConfigTreeNode value, boolean selected, boolean expanded,
 				boolean leaf, int row, boolean hasFocus, boolean dragging) {
 			adaptDimensionCell(tree, value, selected, expanded, leaf, row, hasFocus, dragging);
 		}
@@ -415,7 +441,10 @@ public class PlotConfigurationTreeCellRenderer extends DefaultTreeCellRenderer i
 
 		private JLabel errorIconLabel;
 
-		public GlobalAndValueSourceTreeCellPanel() {
+        /**
+         * Instantiates a new Global and value source tree cell panel.
+         */
+        public GlobalAndValueSourceTreeCellPanel() {
 			this.setLayout(new BorderLayout());
 
 			nameLabel = new JLabel("");
@@ -430,13 +459,37 @@ public class PlotConfigurationTreeCellRenderer extends DefaultTreeCellRenderer i
 
 		}
 
-		public void updateTreeCell(JTree tree, PlotConfigurationTreeNode value, boolean selected, boolean expanded,
+        /**
+         * Update tree cell.
+         *
+         * @param tree     the tree
+         * @param value    the value
+         * @param selected the selected
+         * @param expanded the expanded
+         * @param leaf     the leaf
+         * @param row      the row
+         * @param hasFocus the has focus
+         * @param dragging the dragging
+         */
+        public void updateTreeCell(JTree tree, PlotConfigurationTreeNode value, boolean selected, boolean expanded,
 				boolean leaf, int row, boolean hasFocus, boolean dragging) {
 			adaptPlotConfigurationCell(tree, value, selected, expanded, leaf, row, hasFocus);
 			adaptContainerStyle(tree, value, selected, expanded, leaf, row, hasFocus, dragging, true);
 		}
 
-		public void updateTreeCell(JTree tree, ValueSourceTreeNode value, boolean selected, boolean expanded, boolean leaf,
+        /**
+         * Update tree cell.
+         *
+         * @param tree     the tree
+         * @param value    the value
+         * @param selected the selected
+         * @param expanded the expanded
+         * @param leaf     the leaf
+         * @param row      the row
+         * @param hasFocus the has focus
+         * @param dragging the dragging
+         */
+        public void updateTreeCell(JTree tree, ValueSourceTreeNode value, boolean selected, boolean expanded, boolean leaf,
 				int row, boolean hasFocus, boolean dragging) {
 			adaptValueSource(tree, value, selected, expanded, leaf, row, hasFocus, dragging);
 		}
@@ -609,7 +662,12 @@ public class PlotConfigurationTreeCellRenderer extends DefaultTreeCellRenderer i
 
 	private Border draggingNotFocusedBorder;
 
-	public PlotConfigurationTreeCellRenderer(DataTableColumnListTransferHandler aTH) {
+    /**
+     * Instantiates a new Plot configuration tree cell renderer.
+     *
+     * @param aTH the a th
+     */
+    public PlotConfigurationTreeCellRenderer(DataTableColumnListTransferHandler aTH) {
 		aTH.addDragListener(this);
 
 		ERROR_ICON = SwingTools.createIcon(
@@ -650,7 +708,13 @@ public class PlotConfigurationTreeCellRenderer extends DefaultTreeCellRenderer i
 
 	}
 
-	protected Color getValueTypeColor(ValueType type) {
+    /**
+     * Gets value type color.
+     *
+     * @param type the type
+     * @return the value type color
+     */
+    protected Color getValueTypeColor(ValueType type) {
 		switch (type) {
 			case DATE_TIME:
 				return TreeNodeColors.getDateColor();

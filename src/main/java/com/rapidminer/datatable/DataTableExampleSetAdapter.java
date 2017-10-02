@@ -61,15 +61,24 @@ public class DataTableExampleSetAdapter extends AbstractDataTable {
 
 	private Attribute idAttribute;
 
-	public DataTableExampleSetAdapter(ExampleSet exampleSet, AttributeWeights weights) {
+    /**
+     * Instantiates a new Data table example set adapter.
+     *
+     * @param exampleSet the example set
+     * @param weights    the weights
+     */
+    public DataTableExampleSetAdapter(ExampleSet exampleSet, AttributeWeights weights) {
 		this(exampleSet, weights, true);
 	}
 
-	/**
-	 * @param ignoreId
-	 *            If this variable is true, the id will not be visible in the data table.
-	 */
-	public DataTableExampleSetAdapter(ExampleSet exampleSet, AttributeWeights weights, boolean ignoreId) {
+    /**
+     * Instantiates a new Data table example set adapter.
+     *
+     * @param exampleSet the example set
+     * @param weights    the weights
+     * @param ignoreId   If this variable is true, the id will not be visible in the data table.
+     */
+    public DataTableExampleSetAdapter(ExampleSet exampleSet, AttributeWeights weights, boolean ignoreId) {
 		super("Data Table");
 		this.exampleSet = exampleSet;
 		this.weights = weights;
@@ -93,7 +102,12 @@ public class DataTableExampleSetAdapter extends AbstractDataTable {
 		registerVisualizerForMe(exampleSet);
 	}
 
-	public DataTableExampleSetAdapter(DataTableExampleSetAdapter dataTableExampleSetAdapter) {
+    /**
+     * Instantiates a new Data table example set adapter.
+     *
+     * @param dataTableExampleSetAdapter the data table example set adapter
+     */
+    public DataTableExampleSetAdapter(DataTableExampleSetAdapter dataTableExampleSetAdapter) {
 		super(dataTableExampleSetAdapter.getName());
 		this.exampleSet = dataTableExampleSetAdapter.exampleSet; // shallow clone
 		this.allAttributes = dataTableExampleSetAdapter.allAttributes; // shallow clone
@@ -140,7 +154,12 @@ public class DataTableExampleSetAdapter extends AbstractDataTable {
 		return Ontology.ATTRIBUTE_VALUE_TYPE.isA(allAttributes.get(index).getValueType(), Ontology.NUMERICAL);
 	}
 
-	public String getLabelName() {
+    /**
+     * Gets label name.
+     *
+     * @return the label name
+     */
+    public String getLabelName() {
 		if (this.exampleSet.getAttributes().getLabel() != null) {
 			return this.exampleSet.getAttributes().getLabel().getName();
 		} else {
@@ -148,7 +167,12 @@ public class DataTableExampleSetAdapter extends AbstractDataTable {
 		}
 	}
 
-	public String getClusterName() {
+    /**
+     * Gets cluster name.
+     *
+     * @return the cluster name
+     */
+    public String getClusterName() {
 		if (this.exampleSet.getAttributes().getCluster() != null) {
 			return this.exampleSet.getAttributes().getCluster().getName();
 		} else {
@@ -156,7 +180,12 @@ public class DataTableExampleSetAdapter extends AbstractDataTable {
 		}
 	}
 
-	public boolean isLabelNominal() {
+    /**
+     * Is label nominal boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLabelNominal() {
 		if (this.exampleSet.getAttributes().getLabel() != null) {
 			return this.exampleSet.getAttributes().getLabel().getValueType() == Ontology.NOMINAL;
 		} else {
@@ -164,7 +193,12 @@ public class DataTableExampleSetAdapter extends AbstractDataTable {
 		}
 	}
 
-	public boolean hasId() {
+    /**
+     * Has id boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasId() {
 		if (exampleSet.getAttributes().getId() == null) {
 			return false;
 		} else {
@@ -281,7 +315,13 @@ public class DataTableExampleSetAdapter extends AbstractDataTable {
 		return result;
 	}
 
-	public static ExampleSet createExampleSetFromDataTable(DataTable table) {
+    /**
+     * Create example set from data table example set.
+     *
+     * @param table the table
+     * @return the example set
+     */
+    public static ExampleSet createExampleSetFromDataTable(DataTable table) {
 		List<Attribute> attributes = new ArrayList<Attribute>();
 
 		for (int i = 0; i < table.getNumberOfColumns(); i++) {

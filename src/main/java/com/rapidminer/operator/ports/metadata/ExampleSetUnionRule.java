@@ -25,7 +25,7 @@ import com.rapidminer.operator.ports.OutputPort;
 /**
  * Delivers the union of two example sets to an output port. If a prefix is specified, duplicate
  * names will be renamed. Otherwise, duplicates are skipped.
- * 
+ *
  * @author Simon Fischer
  */
 public class ExampleSetUnionRule implements MDTransformationRule {
@@ -35,14 +35,27 @@ public class ExampleSetUnionRule implements MDTransformationRule {
 	private final OutputPort outputPort;
 	private final String prefixForDuplicates;
 
-	public ExampleSetUnionRule(InputPort inputPort1, InputPort inputPort2, OutputPort outputPort, String prefixForDuplicates) {
+    /**
+     * Instantiates a new Example set union rule.
+     *
+     * @param inputPort1          the input port 1
+     * @param inputPort2          the input port 2
+     * @param outputPort          the output port
+     * @param prefixForDuplicates the prefix for duplicates
+     */
+    public ExampleSetUnionRule(InputPort inputPort1, InputPort inputPort2, OutputPort outputPort, String prefixForDuplicates) {
 		this.inputPort1 = inputPort1;
 		this.inputPort2 = inputPort2;
 		this.outputPort = outputPort;
 		this.prefixForDuplicates = prefixForDuplicates;
 	}
 
-	protected String getPrefix() {
+    /**
+     * Gets prefix.
+     *
+     * @return the prefix
+     */
+    protected String getPrefix() {
 		return prefixForDuplicates;
 	}
 
@@ -64,11 +77,24 @@ public class ExampleSetUnionRule implements MDTransformationRule {
 		}
 	}
 
-	protected void transformAddedAttributeMD(ExampleSetMetaData emd, AttributeMetaData newAttribute) {
+    /**
+     * Transform added attribute md.
+     *
+     * @param emd          the emd
+     * @param newAttribute the new attribute
+     */
+    protected void transformAddedAttributeMD(ExampleSetMetaData emd, AttributeMetaData newAttribute) {
 
 	}
 
-	protected ExampleSetMetaData modifyMetaData(ExampleSetMetaData leftEMD, ExampleSetMetaData rightEMD) {
+    /**
+     * Modify meta data example set meta data.
+     *
+     * @param leftEMD  the left emd
+     * @param rightEMD the right emd
+     * @return the example set meta data
+     */
+    protected ExampleSetMetaData modifyMetaData(ExampleSetMetaData leftEMD, ExampleSetMetaData rightEMD) {
 		// Just merge the left and right input together
 		ExampleSetMetaData mergedEmd = new ExampleSetMetaData();
 		mergedEmd.addAllAttributes(leftEMD.getAllAttributes());

@@ -46,31 +46,41 @@ import com.rapidminer.tools.container.Pair;
 
 
 /**
+ * The type Xml exporter.
  *
  * @author Simon Fischer
  */
 public class XMLExporter {
 
-	public static final String ELEMENT_PROCESS = "process";
+    /**
+     * The constant ELEMENT_PROCESS.
+     */
+    public static final String ELEMENT_PROCESS = "process";
 	private boolean onlyCoreElements = false;
 
-	public XMLExporter() {
+    /**
+     * Instantiates a new Xml exporter.
+     */
+    public XMLExporter() {
 		this(false);
 	}
 
-	/**
-	 *
-	 * @param onlyCoreElements
-	 *            If true, GUI and other additional information will be ignored.
-	 */
-	public XMLExporter(boolean onlyCoreElements) {
+    /**
+     * Instantiates a new Xml exporter.
+     *
+     * @param onlyCoreElements If true, GUI and other additional information will be ignored.
+     */
+    public XMLExporter(boolean onlyCoreElements) {
 		this.onlyCoreElements = onlyCoreElements;
 	}
 
-	/**
-	 * This method will return append the description of this process to the given father element.
-	 */
-	public void exportProcess(Element fatherElement, Process process) {
+    /**
+     * This method will return append the description of this process to the given father element.
+     *
+     * @param fatherElement the father element
+     * @param process       the process
+     */
+    public void exportProcess(Element fatherElement, Process process) {
 		Element rootElement = XMLTools.addTag(fatherElement, ELEMENT_PROCESS);
 
 		rootElement.setAttribute("version", RapidMiner.getLongVersion());
@@ -85,11 +95,16 @@ public class XMLExporter {
 		rootElement.appendChild(exportOperator(process.getRootOperator(), false, doc));
 	}
 
-	/**
-	 * This method will create a document, append the complete process that contains the given
-	 * operator. The {@link Document} is then returned.
-	 */
-	public Document exportProcess(Operator operator, boolean hideDefault) throws IOException {
+    /**
+     * This method will create a document, append the complete process that contains the given
+     * operator. The {@link Document} is then returned.
+     *
+     * @param operator    the operator
+     * @param hideDefault the hide default
+     * @return the document
+     * @throws IOException the io exception
+     */
+    public Document exportProcess(Operator operator, boolean hideDefault) throws IOException {
 		try {
 			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 			Element rootElement = doc.createElement(ELEMENT_PROCESS);
@@ -110,7 +125,14 @@ public class XMLExporter {
 		}
 	}
 
-	public Document exportSingleOperator(Operator operator) throws IOException {
+    /**
+     * Export single operator document.
+     *
+     * @param operator the operator
+     * @return the document
+     * @throws IOException the io exception
+     */
+    public Document exportSingleOperator(Operator operator) throws IOException {
 		try {
 			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 			doc.appendChild(exportOperator(operator, false, doc));

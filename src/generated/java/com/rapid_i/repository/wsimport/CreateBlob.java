@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for createBlob complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="createBlob">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "createBlob", propOrder = {
@@ -50,16 +48,19 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class CreateBlob {
 
+    /**
+     * The Parent location.
+     */
     protected String parentLocation;
+    /**
+     * The Blob name.
+     */
     protected String blobName;
 
     /**
      * Gets the value of the parentLocation property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getParentLocation() {
         return parentLocation;
@@ -67,11 +68,8 @@ public class CreateBlob {
 
     /**
      * Sets the value of the parentLocation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setParentLocation(String value) {
         this.parentLocation = value;
@@ -79,11 +77,8 @@ public class CreateBlob {
 
     /**
      * Gets the value of the blobName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getBlobName() {
         return blobName;
@@ -91,11 +86,8 @@ public class CreateBlob {
 
     /**
      * Sets the value of the blobName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setBlobName(String value) {
         this.blobName = value;

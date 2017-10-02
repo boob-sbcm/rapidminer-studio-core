@@ -82,22 +82,57 @@ public class ExcelExampleSetWriter extends AbstractStreamWriter {
 
 	private static final String RAPID_MINER_DATA = "RapidMiner Data";
 
-	/** The parameter name for &quot;The Excel spreadsheet file which should be written.&quot; */
-	public static final String PARAMETER_EXCEL_FILE = "excel_file";
+    /**
+     * The parameter name for &quot;The Excel spreadsheet file which should be written.&quot;
+     */
+    public static final String PARAMETER_EXCEL_FILE = "excel_file";
 
-	public static final String FILE_FORMAT_XLS = "xls";
-	public static final String FILE_FORMAT_XLSX = "xlsx";
-	public static final String[] FILE_FORMAT_CATEGORIES = new String[] { FILE_FORMAT_XLS, FILE_FORMAT_XLSX };
-	public static final int FILE_FORMAT_XLS_INDEX = 0;
-	public static final int FILE_FORMAT_XLSX_INDEX = 1;
+    /**
+     * The constant FILE_FORMAT_XLS.
+     */
+    public static final String FILE_FORMAT_XLS = "xls";
+    /**
+     * The constant FILE_FORMAT_XLSX.
+     */
+    public static final String FILE_FORMAT_XLSX = "xlsx";
+    /**
+     * The constant FILE_FORMAT_CATEGORIES.
+     */
+    public static final String[] FILE_FORMAT_CATEGORIES = new String[] { FILE_FORMAT_XLS, FILE_FORMAT_XLSX };
+    /**
+     * The constant FILE_FORMAT_XLS_INDEX.
+     */
+    public static final int FILE_FORMAT_XLS_INDEX = 0;
+    /**
+     * The constant FILE_FORMAT_XLSX_INDEX.
+     */
+    public static final int FILE_FORMAT_XLSX_INDEX = 1;
 
-	public static final String PARAMETER_FILE_FORMAT = "file_format";
-	public static final String PARAMETER_DATE_FORMAT = "date_format";
-	public static final String PARAMETER_NUMBER_FORMAT = "number_format";
-	public static final String PARAMETER_SHEET_NAME = "sheet_name";
+    /**
+     * The constant PARAMETER_FILE_FORMAT.
+     */
+    public static final String PARAMETER_FILE_FORMAT = "file_format";
+    /**
+     * The constant PARAMETER_DATE_FORMAT.
+     */
+    public static final String PARAMETER_DATE_FORMAT = "date_format";
+    /**
+     * The constant PARAMETER_NUMBER_FORMAT.
+     */
+    public static final String PARAMETER_NUMBER_FORMAT = "number_format";
+    /**
+     * The constant PARAMETER_SHEET_NAME.
+     */
+    public static final String PARAMETER_SHEET_NAME = "sheet_name";
 
-	public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
-	public static final String DEFAULT_NUMBER_FORMAT = "#.0";
+    /**
+     * The constant DEFAULT_DATE_FORMAT.
+     */
+    public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    /**
+     * The constant DEFAULT_NUMBER_FORMAT.
+     */
+    public static final String DEFAULT_NUMBER_FORMAT = "#.0";
 
 	/**
 	 * the limit of an excel cell, see the <a href=
@@ -107,26 +142,27 @@ public class ExcelExampleSetWriter extends AbstractStreamWriter {
 	private static final int CHARACTER_CELL_LIMIT = 32_767;
 	private static final String CROP_INDICATOR = "[...]";
 
-	public ExcelExampleSetWriter(OperatorDescription description) {
+    /**
+     * Instantiates a new Excel example set writer.
+     *
+     * @param description the description
+     */
+    public ExcelExampleSetWriter(OperatorDescription description) {
 		super(description);
 	}
 
-	/**
-	 * Writes the example set into a excel file with XLS format. If you want to write it in XLSX
-	 * format use {@link #writeXLSX(ExampleSet, String, String, String, OutputStream)}
-	 *
-	 * @param exampleSet
-	 *            the exampleSet to write.
-	 * @param encoding
-	 *            the Charset to use for the file.
-	 * @param out
-	 *            the stream to use.
-	 *
-	 * @deprecated please use
-	 *             {@link ExcelExampleSetWriter#write(ExampleSet, Charset, OutputStream, Operator)}
-	 *             to support checkForStop.
-	 */
-	@Deprecated
+    /**
+     * Writes the example set into a excel file with XLS format. If you want to write it in XLSX
+     * format use {@link #writeXLSX(ExampleSet, String, String, String, OutputStream)}
+     *
+     * @param exampleSet the exampleSet to write.
+     * @param encoding   the Charset to use for the file.
+     * @param out        the stream to use.
+     * @throws IOException    the io exception
+     * @throws WriteException the write exception
+     * @deprecated please use             {@link ExcelExampleSetWriter#write(ExampleSet, Charset, OutputStream, Operator)}             to support checkForStop.
+     */
+    @Deprecated
 	public static void write(ExampleSet exampleSet, Charset encoding, OutputStream out) throws IOException, WriteException {
 		try {
 			write(exampleSet, encoding, out, null);
@@ -135,20 +171,19 @@ public class ExcelExampleSetWriter extends AbstractStreamWriter {
 		}
 	}
 
-	/**
-	 * Writes the example set into a excel file with XLS format. If you want to write it in XLSX
-	 * format use {@link #writeXLSX(ExampleSet, String, String, String, OutputStream)}
-	 *
-	 * @param exampleSet
-	 *            the exampleSet to write.
-	 * @param encoding
-	 *            the Charset to use for the file.
-	 * @param out
-	 *            the stream to use.
-	 * @param op
-	 *            will be used to provide checkForStop.
-	 */
-	public static void write(ExampleSet exampleSet, Charset encoding, OutputStream out, Operator op)
+    /**
+     * Writes the example set into a excel file with XLS format. If you want to write it in XLSX
+     * format use {@link #writeXLSX(ExampleSet, String, String, String, OutputStream)}
+     *
+     * @param exampleSet the exampleSet to write.
+     * @param encoding   the Charset to use for the file.
+     * @param out        the stream to use.
+     * @param op         will be used to provide checkForStop.
+     * @throws IOException             the io exception
+     * @throws WriteException          the write exception
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public static void write(ExampleSet exampleSet, Charset encoding, OutputStream out, Operator op)
 			throws IOException, WriteException, ProcessStoppedException {
 		try {
 			// .xls files can only store up to 256 columns, so throw error in case of more
@@ -328,26 +363,20 @@ public class ExcelExampleSetWriter extends AbstractStreamWriter {
 		}
 	}
 
-	/**
-	 * Writes the example set into a excel file with XLSX format. If you want to write it in XLS
-	 * format use {@link #write(ExampleSet, Charset, OutputStream)}.
-	 *
-	 * @param exampleSet
-	 *            the exampleSet to write
-	 * @param sheetName
-	 *            name of the excel sheet which will be created.
-	 * @param dateFormat
-	 *            a string which describes the format used for dates.
-	 * @param numberFormat
-	 *            a string which describes the format used for numbers.
-	 * @param outputStream
-	 *            the stream to write the file to
-	 *
-	 * @deprecated please use
-	 *             {@link ExcelExampleSetWriter#writeXLSX(ExampleSet, String, String, String, OutputStream, Operator)}
-	 *             to support checkForStop.
-	 */
-	@Deprecated
+    /**
+     * Writes the example set into a excel file with XLSX format. If you want to write it in XLS
+     * format use {@link #write(ExampleSet, Charset, OutputStream)}.
+     *
+     * @param exampleSet   the exampleSet to write
+     * @param sheetName    name of the excel sheet which will be created.
+     * @param dateFormat   a string which describes the format used for dates.
+     * @param numberFormat a string which describes the format used for numbers.
+     * @param outputStream the stream to write the file to
+     * @throws WriteException the write exception
+     * @throws IOException    the io exception
+     * @deprecated please use             {@link ExcelExampleSetWriter#writeXLSX(ExampleSet, String, String, String, OutputStream, Operator)}             to support checkForStop.
+     */
+    @Deprecated
 	public static void writeXLSX(ExampleSet exampleSet, String sheetName, String dateFormat, String numberFormat,
 			OutputStream outputStream) throws WriteException, IOException {
 		try {
@@ -357,24 +386,21 @@ public class ExcelExampleSetWriter extends AbstractStreamWriter {
 		}
 	}
 
-	/**
-	 * Writes the example set into a excel file with XLSX format. If you want to write it in XLS
-	 * format use {@link #write(ExampleSet, Charset, OutputStream)}.
-	 *
-	 * @param exampleSet
-	 *            the exampleSet to write
-	 * @param sheetName
-	 *            name of the excel sheet which will be created.
-	 * @param dateFormat
-	 *            a string which describes the format used for dates.
-	 * @param numberFormat
-	 *            a string which describes the format used for numbers.
-	 * @param outputStream
-	 *            the stream to write the file to
-	 * @param op
-	 *            needed for checkForStop
-	 */
-	public static void writeXLSX(ExampleSet exampleSet, String sheetName, String dateFormat, String numberFormat,
+    /**
+     * Writes the example set into a excel file with XLSX format. If you want to write it in XLS
+     * format use {@link #write(ExampleSet, Charset, OutputStream)}.
+     *
+     * @param exampleSet   the exampleSet to write
+     * @param sheetName    name of the excel sheet which will be created.
+     * @param dateFormat   a string which describes the format used for dates.
+     * @param numberFormat a string which describes the format used for numbers.
+     * @param outputStream the stream to write the file to
+     * @param op           needed for checkForStop
+     * @throws WriteException          the write exception
+     * @throws IOException             the io exception
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public static void writeXLSX(ExampleSet exampleSet, String sheetName, String dateFormat, String numberFormat,
 			OutputStream outputStream, Operator op) throws WriteException, IOException, ProcessStoppedException {
 		// .xlsx files can only store up to 16384 columns, so throw error in case of more
 		if (exampleSet.getAttributes().allSize() > 16384) {

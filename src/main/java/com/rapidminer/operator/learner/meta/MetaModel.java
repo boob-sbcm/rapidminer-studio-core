@@ -27,13 +27,23 @@ import java.util.List;
  * This interface provides methods for accessing the different models encapsulated in this model for
  * graphical representation. Models implementing this interface might be rendered using the the
  * MetaModelRenderer.
- * 
+ *
  * @author Sebastian Land
  */
 public interface MetaModel {
 
-	public List<? extends Model> getModels();
+    /**
+     * Gets models.
+     *
+     * @return the models
+     */
+    public List<? extends Model> getModels();
 
-	public List<String> getModelNames();
+    /**
+     * Gets model names.
+     *
+     * @return the model names
+     */
+    public List<String> getModelNames();
 
 }

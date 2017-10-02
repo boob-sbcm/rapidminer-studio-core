@@ -36,14 +36,17 @@ import com.rapidminer.repository.gui.RepositoryLocationChooser;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa, Marco Boeck
  */
 public class SaveAsAction extends ResourceAction {
 
 	private static final long serialVersionUID = -6107588898380953147L;
 
-	public SaveAsAction() {
+    /**
+     * Instantiates a new Save as action.
+     */
+    public SaveAsAction() {
 		super("save_as");
 
 		setCondition(EDIT_IN_PROGRESS, DONT_CARE);
@@ -54,29 +57,23 @@ public class SaveAsAction extends ResourceAction {
 		saveAs(RapidMinerGUI.getMainFrame().getProcess());
 	}
 
-	/**
-	 * Opens a location choser for the user to select where the save the process.
-	 * 
-	 * @param process
-	 *            the process to be saved
-	 * 
-	 * 
-	 */
-	public static void saveAs(Process process) {
+    /**
+     * Opens a location choser for the user to select where the save the process.
+     *
+     * @param process the process to be saved
+     */
+    public static void saveAs(Process process) {
 		saveAs(process, true);
 	}
 
-	/**
-	 * Opens a location choser for the user to select where the save the process.
-	 * 
-	 * @param process
-	 *            the process to be saved
-	 * @param async
-	 *            if <code>true</code>, will save the process asynchronously after the user has
-	 *            selected a location; if <code>false</code> saves it synchronously.
-	 * @return true on success, false on failure, and null if async=true
-	 */
-	public static Boolean saveAs(Process process, boolean async) {
+    /**
+     * Opens a location choser for the user to select where the save the process.
+     *
+     * @param process the process to be saved
+     * @param async   if <code>true</code>, will save the process asynchronously after the user has            selected a location; if <code>false</code> saves it synchronously.
+     * @return true on success, false on failure, and null if async=true
+     */
+    public static Boolean saveAs(Process process, boolean async) {
 		String initial = null;
 		if (process.getRepositoryLocation() != null) {
 			initial = process.getRepositoryLocation().toString();

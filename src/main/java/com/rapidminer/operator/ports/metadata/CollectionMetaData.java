@@ -24,9 +24,8 @@ import com.rapidminer.operator.IOObjectCollection;
 /**
  * MetaData for a {@link IOObjectCollection}. The collection's elements are represented by
  * {@link #elementMetaData} which represents the "union" of all elements.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class CollectionMetaData extends MetaData {
 
@@ -36,16 +35,28 @@ public class CollectionMetaData extends MetaData {
 	private static final long serialVersionUID = 1L;
 	private MetaData elementMetaData;
 
-	/** Keep for clone! */
-	public CollectionMetaData() {}
+    /**
+     * Keep for clone!
+     */
+    public CollectionMetaData() {}
 
-	public CollectionMetaData(MetaData elementMetaData) {
+    /**
+     * Instantiates a new Collection meta data.
+     *
+     * @param elementMetaData the element meta data
+     */
+    public CollectionMetaData(MetaData elementMetaData) {
 		super(IOObjectCollection.class);
 		this.elementMetaData = elementMetaData;
 	}
 
-	/** Factory constructor for {@link MetaDataFactory}. */
-	public CollectionMetaData(IOObjectCollection<?> col, boolean shortened) {
+    /**
+     * Factory constructor for {@link MetaDataFactory}.  @param col the col
+     *
+     * @param col       the col
+     * @param shortened the shortened
+     */
+    public CollectionMetaData(IOObjectCollection<?> col, boolean shortened) {
 		super(IOObjectCollection.class);
 		if (col.size() > 0) {
 			this.elementMetaData = MetaData.forIOObject(col.getElement(0, false), shortened);
@@ -63,7 +74,12 @@ public class CollectionMetaData extends MetaData {
 		}
 	}
 
-	public MetaData getElementMetaData() {
+    /**
+     * Gets element meta data.
+     *
+     * @return the element meta data
+     */
+    public MetaData getElementMetaData() {
 		return elementMetaData;
 	}
 
@@ -74,7 +90,12 @@ public class CollectionMetaData extends MetaData {
 		return clone;
 	}
 
-	public MetaData getElementMetaDataRecursive() {
+    /**
+     * Gets element meta data recursive.
+     *
+     * @return the element meta data recursive
+     */
+    public MetaData getElementMetaDataRecursive() {
 		if (elementMetaData instanceof CollectionMetaData) {
 			return ((CollectionMetaData) elementMetaData).getElementMetaData();
 		} else {

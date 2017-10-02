@@ -45,7 +45,6 @@ import com.rapidminer.tools.ParameterService;
  * Summarizes the results recent process executions.
  *
  * @author Simon Fischer, Marco Boeck
- *
  */
 public class ResultOverview extends JPanel {
 
@@ -55,7 +54,10 @@ public class ResultOverview extends JPanel {
 
 	private final LinkedList<ProcessExecutionResultOverview> processOverviews = new LinkedList<ProcessExecutionResultOverview>();
 
-	protected final Action CLEAR_HISTORY_ACTION = new ResourceAction("resulthistory.clear_history") {
+    /**
+     * The constant CLEAR_HISTORY_ACTION.
+     */
+    protected final Action CLEAR_HISTORY_ACTION = new ResourceAction("resulthistory.clear_history") {
 
 		private static final long serialVersionUID = 1L;
 
@@ -73,7 +75,10 @@ public class ResultOverview extends JPanel {
 
 	private GridBagConstraints gbc;
 
-	public ResultOverview() {
+    /**
+     * Instantiates a new Result overview.
+     */
+    public ResultOverview() {
 		setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
@@ -114,14 +119,14 @@ public class ResultOverview extends JPanel {
 		gbc.gridy = 0;
 	}
 
-	/**
-	 * Adds a new result entry for the results of the given process.
-	 *
-	 * @param process
-	 * @param results
-	 * @param statusMessage
-	 */
-	public void addResults(Process process, List<IOObject> results, String statusMessage) {
+    /**
+     * Adds a new result entry for the results of the given process.
+     *
+     * @param process       the process
+     * @param results       the results
+     * @param statusMessage the status message
+     */
+    public void addResults(Process process, List<IOObject> results, String statusMessage) {
 		if (process.getProcessState() != Process.PROCESS_STATE_PAUSED
 				|| "true".equals(ParameterService
 						.getParameterValue(RapidMinerGUI.PROPERTY_ADD_BREAKPOINT_RESULTS_TO_HISTORY))) {
@@ -152,12 +157,12 @@ public class ResultOverview extends JPanel {
 		}
 	}
 
-	/**
-	 * Remove the given result from the overview.
-	 * 
-	 * @param processExecutionResultOverview
-	 */
-	void removeProcessOverview(ProcessExecutionResultOverview processExecutionResultOverview) {
+    /**
+     * Remove the given result from the overview.
+     *
+     * @param processExecutionResultOverview the process execution result overview
+     */
+    void removeProcessOverview(ProcessExecutionResultOverview processExecutionResultOverview) {
 		remove(processExecutionResultOverview);
 		processOverviews.remove(processExecutionResultOverview);
 

@@ -27,24 +27,38 @@ import java.util.logging.Level;
  * This class has one numerical input attribute and one output attribute. Depending on the mode
  * specified in the constructor the result will be the exponential or the logarithm function of the
  * input attribute.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class ExponentialFunctionGenerator extends SingularNumericalGenerator {
 
-	public static final int EXP = 0;
+    /**
+     * The constant EXP.
+     */
+    public static final int EXP = 0;
 
-	public static final int LOG = 1;
+    /**
+     * The constant LOG.
+     */
+    public static final int LOG = 1;
 
 	private static final String[] FUNCTION_NAMES = { "exp", "log" };
 
 	private int mode;
 
-	public ExponentialFunctionGenerator(int mode) {
+    /**
+     * Instantiates a new Exponential function generator.
+     *
+     * @param mode the mode
+     */
+    public ExponentialFunctionGenerator(int mode) {
 		this.mode = mode;
 	}
 
-	public ExponentialFunctionGenerator() {}
+    /**
+     * Instantiates a new Exponential function generator.
+     */
+    public ExponentialFunctionGenerator() {}
 
 	@Override
 	public FeatureGenerator newInstance() {

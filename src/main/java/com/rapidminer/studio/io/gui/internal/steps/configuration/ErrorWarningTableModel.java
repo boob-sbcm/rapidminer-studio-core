@@ -69,7 +69,12 @@ class ErrorWarningTableModel extends AbstractErrorWarningTableModel {
 	private List<ColumnMetaData> columnMetaData;
 	private boolean faultTolerant;
 
-	ErrorWarningTableModel(final ConfigureDataValidator validator) {
+    /**
+     * Instantiates a new Error warning table model.
+     *
+     * @param validator the validator
+     */
+    ErrorWarningTableModel(final ConfigureDataValidator validator) {
 		final Observer<Set<Integer>> observer = new Observer<Set<Integer>>() {
 
 			@Override
@@ -187,24 +192,22 @@ class ErrorWarningTableModel extends AbstractErrorWarningTableModel {
 		this.columnErrors.addAll(errors);
 	}
 
-	/**
-	 * Sets the column meta data
-	 *
-	 * @param columnMetaData
-	 *            the column meta data
-	 */
-	void setColumnMetaData(List<ColumnMetaData> columnMetaData) {
+    /**
+     * Sets the column meta data
+     *
+     * @param columnMetaData the column meta data
+     */
+    void setColumnMetaData(List<ColumnMetaData> columnMetaData) {
 		this.columnMetaData = columnMetaData;
 	}
 
-	/**
-	 * Sets whether the model is fault tolerant with respect to parsing errors. Notifies listeners
-	 * that the table content may have changed.
-	 *
-	 * @param faultTolerant
-	 *            the value to set
-	 */
-	void setFaultTolerant(boolean faultTolerant) {
+    /**
+     * Sets whether the model is fault tolerant with respect to parsing errors. Notifies listeners
+     * that the table content may have changed.
+     *
+     * @param faultTolerant the value to set
+     */
+    void setFaultTolerant(boolean faultTolerant) {
 		this.faultTolerant = faultTolerant;
 		fireTableDataChanged();
 	}

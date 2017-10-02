@@ -30,36 +30,44 @@ import com.rapidminer.tools.plugin.Plugin;
  * {@link Operator#getCompatibilityLevel()} will return 5.0.003, whereas
  * {@link Operator#getIncompatibleVersionChanges()} will return [5.0.003] (or a superset thereof) in
  * version [5.0.004], so that we can detect that the behavior changed.
- * 
- * 
+ * <p>
+ * <p>
  * <strong>Note:</strong> The version numbers always refer to the plugin the operator is loaded
  * from. If it is not loaded from a plugin, it refers to the RapidMiner version.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class OperatorVersion extends VersionNumber {
 
-	/**
-	 * Parses a version string of the form x.xx.xxx
-	 * 
-	 * @throws VersionNumberExcpetion
-	 *             for malformed strings.
-	 */
-	public OperatorVersion(String versionString) {
+    /**
+     * Parses a version string of the form x.xx.xxx
+     *
+     * @param versionString the version string
+     * @throws VersionNumberExcpetion for malformed strings.
+     */
+    public OperatorVersion(String versionString) {
 		super(versionString);
 	}
 
-	public OperatorVersion(int major, int minor, int buildNumber) {
+    /**
+     * Instantiates a new Operator version.
+     *
+     * @param major       the major
+     * @param minor       the minor
+     * @param buildNumber the build number
+     */
+    public OperatorVersion(int major, int minor, int buildNumber) {
 		super(major, minor, buildNumber);
 	}
 
-	/**
-	 * Creates an {@link OperatorVersion} from any other {@link VersionNumber}.
-	 * 
-	 * @since 7.6
-	 */
-	public static OperatorVersion asNewOperatorVersion(VersionNumber vn) {
+    /**
+     * Creates an {@link OperatorVersion} from any other {@link VersionNumber}.
+     *
+     * @param vn the vn
+     * @return the operator version
+     * @since 7.6
+     */
+    public static OperatorVersion asNewOperatorVersion(VersionNumber vn) {
 		try {
 			return new OperatorVersion(vn.getLongVersion());
 		} catch (VersionNumberExcpetion vne) {
@@ -67,7 +75,13 @@ public class OperatorVersion extends VersionNumber {
 		}
 	}
 
-	public static OperatorVersion getLatestVersion(OperatorDescription desc) {
+    /**
+     * Gets latest version.
+     *
+     * @param desc the desc
+     * @return the latest version
+     */
+    public static OperatorVersion getLatestVersion(OperatorDescription desc) {
 		Plugin plugin = desc.getProvider();
 		if (plugin == null) {
 			return asNewOperatorVersion(RapidMiner.getVersion());

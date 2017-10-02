@@ -31,7 +31,7 @@ import javax.swing.text.Segment;
 
 /**
  * Patch/diff token marker.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class PatchTokenMarker extends TokenMarker {

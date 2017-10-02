@@ -26,21 +26,55 @@ import java.awt.Color;
 
 
 /**
+ * The type Range axis config change event.
+ *
  * @author Nils Woehler
- * 
  */
 public class RangeAxisConfigChangeEvent implements ConfigurationChangeEvent {
 
-	public enum RangeAxisConfigChangeType {
-		VALUE_SOURCE_ADDED, // a value source was added
-		VALUE_SOURCE_REMOVED, // a value source was removed
-		VALUE_SOURCE_MOVED, // a value sources index was changed
-		VALUE_SOURCE_CHANGED, CLEARED, // all value sources were removed
-		LABEL, // range axis label has changed
-		SCALING, // range axis scaling has changed
-		AUTO_NAMING,  // auto naming has been toggled
-		RANGE_CHANGED, // there has been some changed concerning the value range
-		CROSSHAIR_LINES_CHANGED,
+    /**
+     * The enum Range axis config change type.
+     */
+    public enum RangeAxisConfigChangeType {
+        /**
+         * Value source added range axis config change type.
+         */
+        VALUE_SOURCE_ADDED, // a value source was added
+        /**
+         * Value source removed range axis config change type.
+         */
+        VALUE_SOURCE_REMOVED, // a value source was removed
+        /**
+         * Value source moved range axis config change type.
+         */
+        VALUE_SOURCE_MOVED, // a value sources index was changed
+        /**
+         * Value source changed range axis config change type.
+         */
+        VALUE_SOURCE_CHANGED, /**
+         * Cleared range axis config change type.
+         */
+        CLEARED, // all value sources were removed
+        /**
+         * Label range axis config change type.
+         */
+        LABEL, // range axis label has changed
+        /**
+         * Scaling range axis config change type.
+         */
+        SCALING, // range axis scaling has changed
+        /**
+         * Auto naming range axis config change type.
+         */
+        AUTO_NAMING,  // auto naming has been toggled
+        /**
+         * Range changed range axis config change type.
+         */
+        RANGE_CHANGED, // there has been some changed concerning the value range
+        /**
+         * Crosshair lines changed range axis config change type.
+         */
+        CROSSHAIR_LINES_CHANGED,
 	}
 
 	private final RangeAxisConfigChangeType type;
@@ -62,19 +96,26 @@ public class RangeAxisConfigChangeEvent implements ConfigurationChangeEvent {
 	private ValueRangeChangeEvent valueRangeChange = null;
 	private AxisParallelLinesConfigurationChangeEvent crosshairChange;
 
-	/**
-	 * Creates a {@link RangeAxisConfigChangeEvent} with {@link RangeAxisConfigChangeType} CLEARED.
-	 */
-	public RangeAxisConfigChangeEvent(RangeAxisConfig source) {
+    /**
+     * Creates a {@link RangeAxisConfigChangeEvent} with {@link RangeAxisConfigChangeType} CLEARED.
+     *
+     * @param source the source
+     */
+    public RangeAxisConfigChangeEvent(RangeAxisConfig source) {
 		this.source = source;
 		this.type = RangeAxisConfigChangeType.CLEARED;
 	}
 
-	/**
-	 * Allowed {@link RangeAxisConfigChangeType}s are VALUE_SOURCE_ADDED, VALUE_SOURCE_REMOVED or
-	 * VALUE_SOURCE_MOVED
-	 */
-	public RangeAxisConfigChangeEvent(RangeAxisConfig source, RangeAxisConfigChangeType type, ValueSource valueSource,
+    /**
+     * Allowed {@link RangeAxisConfigChangeType}s are VALUE_SOURCE_ADDED, VALUE_SOURCE_REMOVED or
+     * VALUE_SOURCE_MOVED
+     *
+     * @param source      the source
+     * @param type        the type
+     * @param valueSource the value source
+     * @param index       the index
+     */
+    public RangeAxisConfigChangeEvent(RangeAxisConfig source, RangeAxisConfigChangeType type, ValueSource valueSource,
 			Integer index) {
 		this.type = type;
 		if ((type != RangeAxisConfigChangeType.VALUE_SOURCE_ADDED)
@@ -87,16 +128,26 @@ public class RangeAxisConfigChangeEvent implements ConfigurationChangeEvent {
 		this.index = index;
 	}
 
-	public RangeAxisConfigChangeEvent(RangeAxisConfig source, String label) {
+    /**
+     * Instantiates a new Range axis config change event.
+     *
+     * @param source the source
+     * @param label  the label
+     */
+    public RangeAxisConfigChangeEvent(RangeAxisConfig source, String label) {
 		this.type = RangeAxisConfigChangeType.LABEL;
 		this.source = source;
 		this.label = label;
 	}
 
-	/**
-	 * Allowed {@link RangeAxisConfigChangeType}s are INCLUDE_ZERO, AUTO_NAMING or SCALING
-	 */
-	public RangeAxisConfigChangeEvent(RangeAxisConfig source, RangeAxisConfigChangeType type, Boolean bool) {
+    /**
+     * Allowed {@link RangeAxisConfigChangeType}s are INCLUDE_ZERO, AUTO_NAMING or SCALING
+     *
+     * @param source the source
+     * @param type   the type
+     * @param bool   the bool
+     */
+    public RangeAxisConfigChangeEvent(RangeAxisConfig source, RangeAxisConfigChangeType type, Boolean bool) {
 		this.type = type;
 		if ((type != RangeAxisConfigChangeType.SCALING) && (type != RangeAxisConfigChangeType.AUTO_NAMING)) {
 			throw new RuntimeException(type + " is not allowed calling this constructor.");
@@ -109,81 +160,120 @@ public class RangeAxisConfigChangeEvent implements ConfigurationChangeEvent {
 		}
 	}
 
-	public RangeAxisConfigChangeEvent(RangeAxisConfig source, ValueRangeChangeEvent valueRangeChange) {
+    /**
+     * Instantiates a new Range axis config change event.
+     *
+     * @param source           the source
+     * @param valueRangeChange the value range change
+     */
+    public RangeAxisConfigChangeEvent(RangeAxisConfig source, ValueRangeChangeEvent valueRangeChange) {
 		this.source = source;
 		this.type = RangeAxisConfigChangeType.RANGE_CHANGED;
 		this.valueRangeChange = valueRangeChange;
 	}
 
-	public RangeAxisConfigChangeEvent(RangeAxisConfig source, ValueSourceChangeEvent valueSourceChange) {
+    /**
+     * Instantiates a new Range axis config change event.
+     *
+     * @param source            the source
+     * @param valueSourceChange the value source change
+     */
+    public RangeAxisConfigChangeEvent(RangeAxisConfig source, ValueSourceChangeEvent valueSourceChange) {
 		this.source = source;
 		this.type = RangeAxisConfigChangeType.VALUE_SOURCE_CHANGED;
 		this.valueSourceChange = valueSourceChange;
 	}
 
-	public RangeAxisConfigChangeEvent(RangeAxisConfig rangeAxisConfig, AxisParallelLinesConfigurationChangeEvent e) {
+    /**
+     * Instantiates a new Range axis config change event.
+     *
+     * @param rangeAxisConfig the range axis config
+     * @param e               the e
+     */
+    public RangeAxisConfigChangeEvent(RangeAxisConfig rangeAxisConfig, AxisParallelLinesConfigurationChangeEvent e) {
 		this.type = RangeAxisConfigChangeType.CROSSHAIR_LINES_CHANGED;
 		this.source = rangeAxisConfig;
 		this.crosshairChange = e;
 	}
 
-	public ValueSourceChangeEvent getValueSourceChange() {
+    /**
+     * Gets value source change.
+     *
+     * @return the value source change
+     */
+    public ValueSourceChangeEvent getValueSourceChange() {
 		return valueSourceChange;
 	}
 
-	/**
-	 * @return the valueSource
-	 */
-	public ValueSource getValueSource() {
+    /**
+     * Gets value source.
+     *
+     * @return the valueSource
+     */
+    public ValueSource getValueSource() {
 		return valueSource;
 	}
 
-	/**
-	 * @return the index
-	 */
-	public Integer getIndex() {
+    /**
+     * Gets index.
+     *
+     * @return the index
+     */
+    public Integer getIndex() {
 		return index;
 	}
 
-	/**
-	 * @return the label
-	 */
-	public String getLabel() {
+    /**
+     * Gets label.
+     *
+     * @return the label
+     */
+    public String getLabel() {
 		return label;
 	}
 
-	/**
-	 * @return the logarithmic
-	 */
-	public Boolean getLogarithmic() {
+    /**
+     * Gets logarithmic.
+     *
+     * @return the logarithmic
+     */
+    public Boolean getLogarithmic() {
 		return logarithmic;
 	}
 
-	/**
-	 * @return the includeZero
-	 */
-	public Boolean getIncludeZero() {
+    /**
+     * Gets include zero.
+     *
+     * @return the includeZero
+     */
+    public Boolean getIncludeZero() {
 		return includeZero;
 	}
 
-	/**
-	 * @return the type
-	 */
-	public RangeAxisConfigChangeType getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public RangeAxisConfigChangeType getType() {
 		return type;
 	}
 
-	/**
-	 * @return the valueRangeChange
-	 */
-	public ValueRangeChangeEvent getValueRangeChange() {
+    /**
+     * Gets value range change.
+     *
+     * @return the valueRangeChange
+     */
+    public ValueRangeChangeEvent getValueRangeChange() {
 		return valueRangeChange;
 	}
 
-	/**
-	 * @return the source
-	 */
-	public RangeAxisConfig getSource() {
+    /**
+     * Gets source.
+     *
+     * @return the source
+     */
+    public RangeAxisConfig getSource() {
 		return source;
 	}
 
@@ -192,7 +282,12 @@ public class RangeAxisConfigChangeEvent implements ConfigurationChangeEvent {
 		return ConfigurationChangeType.RANGE_AXIS_CONFIG_CHANGE;
 	}
 
-	public Boolean getAutoNaming() {
+    /**
+     * Gets auto naming.
+     *
+     * @return the auto naming
+     */
+    public Boolean getAutoNaming() {
 		return autoNaming;
 	}
 
@@ -201,21 +296,30 @@ public class RangeAxisConfigChangeEvent implements ConfigurationChangeEvent {
 		return getType().toString();
 	}
 
-	/**
-	 * @return
-	 */
-	public Color getRangeAxisLineColor() {
+    /**
+     * Gets range axis line color.
+     *
+     * @return range axis line color
+     */
+    public Color getRangeAxisLineColor() {
 		return rangeAxisLineColor;
 	}
 
-	/**
-	 * @return
-	 */
-	public Float getRangeAxisLineWidth() {
+    /**
+     * Gets range axis line width.
+     *
+     * @return range axis line width
+     */
+    public Float getRangeAxisLineWidth() {
 		return rangeAxisLineWidth;
 	}
 
-	public AxisParallelLinesConfigurationChangeEvent getCrosshairChange() {
+    /**
+     * Gets crosshair change.
+     *
+     * @return the crosshair change
+     */
+    public AxisParallelLinesConfigurationChangeEvent getCrosshairChange() {
 		return crosshairChange;
 	}
 }

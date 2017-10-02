@@ -33,11 +33,13 @@ import com.rapidminer.tools.expression.internal.ExpressionParserConstants;
  * A {@link Function} for setting a value of a given date.
  *
  * @author David Arnu
- *
  */
 public class DateSet extends AbstractDateManipulationFunction {
 
-	public DateSet() {
+    /**
+     * Instantiates a new Date set.
+     */
+    public DateSet() {
 		super("date.date_set", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, Ontology.DATE_TIME);
 	}
 

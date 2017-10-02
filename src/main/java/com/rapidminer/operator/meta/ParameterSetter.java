@@ -63,22 +63,27 @@ import java.util.Map;
  * list <var>name_map</var> was introduced. Each parameter in this list maps the name of an operator
  * that was used during optimization (in our case this is &quot;Learner&quot;) to an operator that
  * should now use these parameters (in our case this is &quot;OptimalLearner&quot;).
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class ParameterSetter extends Operator {
 
-	/**
-	 * The parameter name for &quot;A list mapping operator names from the set to operator names in
-	 * the process setup.&quot;
-	 */
-	public static final String PARAMETER_NAME_MAP = "name_map";
+    /**
+     * The parameter name for &quot;A list mapping operator names from the set to operator names in
+     * the process setup.&quot;
+     */
+    public static final String PARAMETER_NAME_MAP = "name_map";
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 	private InputPort parameterInput = getInputPorts().createPort("parameter set", ParameterSet.class);
 	private OutputPort parameterPassThrough = getOutputPorts().createPassThroughPort("parameter set");
 
-	public ParameterSetter(OperatorDescription description) {
+    /**
+     * Instantiates a new Parameter setter.
+     *
+     * @param description the description
+     */
+    public ParameterSetter(OperatorDescription description) {
 		super(description);
 		dummyPorts.start();
 		getTransformer().addRule(dummyPorts.makePassThroughRule());

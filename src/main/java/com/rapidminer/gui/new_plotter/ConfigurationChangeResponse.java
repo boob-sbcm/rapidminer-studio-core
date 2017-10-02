@@ -26,6 +26,8 @@ import java.util.List;
 
 
 /**
+ * The type Configuration change response.
+ *
  * @author Marius Helf, Nils Woehler
  */
 public class ConfigurationChangeResponse {
@@ -35,43 +37,89 @@ public class ConfigurationChangeResponse {
 	private static final URL ERROR_ICON_URL = Tools.getResource("icons/16/error.png");
 	private static final URL WARNING_ICON_URL = Tools.getResource("icons/16/sign_warning.png");
 
-	public boolean hasErrors() {
+    /**
+     * Has errors boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasErrors() {
 		return !errorList.isEmpty();
 	}
 
-	public boolean hasWarnings() {
+    /**
+     * Has warnings boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasWarnings() {
 		return !warningList.isEmpty();
 	}
 
-	public boolean hasErrorsOrWarnings() {
+    /**
+     * Has errors or warnings boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasErrorsOrWarnings() {
 		return !errorList.isEmpty() || !warningList.isEmpty();
 	}
 
-	public List<PlotConfigurationError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<PlotConfigurationError> getErrors() {
 		return errorList;
 	}
 
-	public List<PlotConfigurationError> getWarnings() {
+    /**
+     * Gets warnings.
+     *
+     * @return the warnings
+     */
+    public List<PlotConfigurationError> getWarnings() {
 		return warningList;
 	}
 
-	public void addError(PlotConfigurationError error) {
+    /**
+     * Add error.
+     *
+     * @param error the error
+     */
+    public void addError(PlotConfigurationError error) {
 		errorList.add(error);
 	}
 
-	public void addWarning(PlotConfigurationError warning) {
+    /**
+     * Add warning.
+     *
+     * @param warning the warning
+     */
+    public void addWarning(PlotConfigurationError warning) {
 		warningList.add(warning);
 	}
 
-	public void clearWarnings() {
+    /**
+     * Clear warnings.
+     */
+    public void clearWarnings() {
 		warningList.clear();
 	}
 
-	public void clearErrors() {
+    /**
+     * Clear errors.
+     */
+    public void clearErrors() {
 		errorList.clear();
 	}
 
-	public void append(ConfigurationChangeResponse other) {
+    /**
+     * Append.
+     *
+     * @param other the other
+     */
+    public void append(ConfigurationChangeResponse other) {
 		errorList.addAll(other.errorList);
 		warningList.addAll(other.warningList);
 	}
@@ -103,10 +151,12 @@ public class ConfigurationChangeResponse {
 		return builder.toString();
 	}
 
-	/**
-	 * @return
-	 */
-	public String toHtmlString() {
+    /**
+     * To html string string.
+     *
+     * @return string string
+     */
+    public String toHtmlString() {
 		StringBuilder builder = new StringBuilder();
 		if (hasErrors()) {
 			builder.append("<div style=\"color:#cc0000;\">");
@@ -160,7 +210,12 @@ public class ConfigurationChangeResponse {
 		return true;
 	}
 
-	public boolean isEmpty() {
+    /**
+     * Is empty boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isEmpty() {
 		return !(hasErrors() || hasWarnings());
 	}
 }

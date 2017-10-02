@@ -37,52 +37,47 @@ import com.rapidminer.studio.io.data.StartRowNotFoundException;
  */
 public abstract class ResultSetAdapter implements DataSet {
 
-	/**
-	 * A flag that indicates that the whole {@link DataResultSet} should be read.
-	 */
-	public static final int NO_END_ROW = -1;
+    /**
+     * A flag that indicates that the whole {@link DataResultSet} should be read.
+     */
+    public static final int NO_END_ROW = -1;
 
-	/**
-	 * A flag that indicates that no header row is defined.
-	 */
-	public static final int NO_HEADER_ROW = -1;
+    /**
+     * A flag that indicates that no header row is defined.
+     */
+    public static final int NO_HEADER_ROW = -1;
 
-	/**
-	 * A flag that indicates that no end column is defined.
-	 */
-	public static final int NO_COLUMN_END_INDEX = -1;
+    /**
+     * A flag that indicates that no end column is defined.
+     */
+    public static final int NO_COLUMN_END_INDEX = -1;
 
 	private final DataResultSet resultSet;
 	private final int startRow;
 	private int maxEndRow;
 
-	/**
-	 * Creates a new {@link ResultSetAdapter} which wraps a {@link DataResultSet} into a
-	 * {@link DataSet}.
-	 *
-	 * @param resultSet
-	 *            the {@link DataResultSet} which should be wrapped into a {@link DataSet}
-	 * @param startRow
-	 *            the row index of the actual data content (it must <strong>not</strong> include the
-	 *            header row index)
-	 * @param maxEndRow
-	 *            the maximum row index to read or {@link #NO_END_ROW} in case the whole
-	 *            {@link DataResultSet} should be read
-	 * @throws DataSetException
-	 *             in case the underlying {@link DataResultSet} could not be reset (e.g. because of
-	 *             file reading issues)
-	 */
-	public ResultSetAdapter(DataResultSet resultSet, int startRow, int maxEndRow) throws DataSetException {
+    /**
+     * Creates a new {@link ResultSetAdapter} which wraps a {@link DataResultSet} into a
+     * {@link DataSet}.
+     *
+     * @param resultSet the {@link DataResultSet} which should be wrapped into a {@link DataSet}
+     * @param startRow  the row index of the actual data content (it must <strong>not</strong> include the            header row index)
+     * @param maxEndRow the maximum row index to read or {@link #NO_END_ROW} in case the whole            {@link DataResultSet} should be read
+     * @throws DataSetException in case the underlying {@link DataResultSet} could not be reset (e.g. because of             file reading issues)
+     */
+    public ResultSetAdapter(DataResultSet resultSet, int startRow, int maxEndRow) throws DataSetException {
 		this.resultSet = resultSet;
 		this.startRow = startRow;
 		this.maxEndRow = maxEndRow;
 		reset();
 	}
 
-	/**
-	 * @return the {@link DataResultSet} which is wrapped by this class
-	 */
-	public DataResultSet getResultSet() {
+    /**
+     * Gets result set.
+     *
+     * @return the {@link DataResultSet} which is wrapped by this class
+     */
+    public DataResultSet getResultSet() {
 		return resultSet;
 	}
 
@@ -146,24 +141,24 @@ public abstract class ResultSetAdapter implements DataSet {
 		}
 	}
 
-	/**
-	 * @return the index of the data start row
-	 */
-	protected final int getDataStartRow() {
+    /**
+     * Gets data start row.
+     *
+     * @return the index of the data start row
+     */
+    protected final int getDataStartRow() {
 		return startRow;
 	}
 
-	/**
-	 * Skips the first non-data rows until the index returned by
-	 * {@link #resultSet#getCurrentRowIndex()} is equal to the index right before the
-	 * {@link #startRow}.
-	 *
-	 * @throws StartRowNotFoundException
-	 *             in case the start row index is behind the actual data content size
-	 * @throws OperatorException
-	 *             in case of other {@link DataResultSet} errors (e.g. file reading errors)
-	 */
-	protected final void skipToDataStartRow() throws StartRowNotFoundException, OperatorException {
+    /**
+     * Skips the first non-data rows until the index returned by
+     * {@link #resultSet#getCurrentRowIndex()} is equal to the index right before the
+     * {@link #startRow}.
+     *
+     * @throws StartRowNotFoundException in case the start row index is behind the actual data content size
+     * @throws OperatorException         in case of other {@link DataResultSet} errors (e.g. file reading errors)
+     */
+    protected final void skipToDataStartRow() throws StartRowNotFoundException, OperatorException {
 		while (resultSet.getCurrentRow() < startRow - 1) {
 			if (!hasNext()) {
 				throw new StartRowNotFoundException();
@@ -172,17 +167,19 @@ public abstract class ResultSetAdapter implements DataSet {
 		}
 	}
 
-	/**
-	 * @return the current row of the {@link DataResultSet} wrapped in a {@link DataSetRow}
-	 */
-	protected abstract DataSetRow getDataRow();
+    /**
+     * Gets data row.
+     *
+     * @return the current row of the {@link DataResultSet} wrapped in a {@link DataSetRow}
+     */
+    protected abstract DataSetRow getDataRow();
 
-	/**
-	 * Sets the maximum end row
-	 *
-	 * @param maxEndRow
-	 */
-	protected void setMaxEndRow(int maxEndRow) {
+    /**
+     * Sets the maximum end row
+     *
+     * @param maxEndRow the max end row
+     */
+    protected void setMaxEndRow(int maxEndRow) {
 		this.maxEndRow = maxEndRow;
 	}
 

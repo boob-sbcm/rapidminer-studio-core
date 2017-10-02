@@ -44,9 +44,8 @@ import org.jfree.data.statistics.MultiValueCategoryDataset;
 
 /**
  * An adapter which wraps a value source inside a MultiValueCategoryDataset.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class ValueSourceToMultiValueCategoryDatasetAdapter extends AbstractDataset implements MultiValueCategoryDataset,
 		RangeInfo, Cloneable {
@@ -68,7 +67,13 @@ public class ValueSourceToMultiValueCategoryDatasetAdapter extends AbstractDatas
 	private transient Map<GroupCellKey, Map<Integer, Vector<Double>>> groupCellKeyToDomainValueToValuesCache = null;
 	private transient Map<GroupCellKey, Map<Integer, Vector<Integer>>> groupCellKeyToDomainValueToValueIdxCache = null;
 
-	public ValueSourceToMultiValueCategoryDatasetAdapter(ValueSourceData valueSourceData, PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Value source to multi value category dataset adapter.
+     *
+     * @param valueSourceData the value source data
+     * @param plotInstance    the plot instance
+     */
+    public ValueSourceToMultiValueCategoryDatasetAdapter(ValueSourceData valueSourceData, PlotInstance plotInstance) {
 		if (valueSourceData == null || plotInstance == null) {
 			throw new IllegalArgumentException("null not allowed");
 		}
@@ -265,10 +270,15 @@ public class ValueSourceToMultiValueCategoryDatasetAdapter extends AbstractDatas
 		}
 	}
 
-	/**
-	 * This function maps from DataSet index to ValueSource index.
-	 */
-	public int getValueIndex(int row, int column, int valueIdx) {
+    /**
+     * This function maps from DataSet index to ValueSource index.
+     *
+     * @param row      the row
+     * @param column   the column
+     * @param valueIdx the value idx
+     * @return the value index
+     */
+    public int getValueIndex(int row, int column, int valueIdx) {
 		if (groupCellKeyToDomainValueToValueIdxCache == null) {
 			updateValuesCache();
 		}

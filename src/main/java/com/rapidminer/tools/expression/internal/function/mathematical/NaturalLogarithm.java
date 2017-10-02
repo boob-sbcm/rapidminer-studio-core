@@ -26,11 +26,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
  * A {@link Function} computing the natural logarithm (base e) of a number.
  *
  * @author Marcel Seifert
- *
  */
 public class NaturalLogarithm extends Abstract1DoubleInputFunction {
 
-	public NaturalLogarithm() {
+    /**
+     * Instantiates a new Natural logarithm.
+     */
+    public NaturalLogarithm() {
 		super("mathematical.ln", Ontology.NUMERICAL);
 	}
 

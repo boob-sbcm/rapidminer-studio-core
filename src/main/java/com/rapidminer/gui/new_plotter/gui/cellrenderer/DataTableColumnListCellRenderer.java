@@ -45,7 +45,6 @@ import com.rapidminer.tools.I18N;
  * blue.
  *
  * @author Nils Woehler
- *
  */
 public class DataTableColumnListCellRenderer implements ListCellRenderer<DataTableColumn> {
 
@@ -54,7 +53,10 @@ public class DataTableColumnListCellRenderer implements ListCellRenderer<DataTab
 	private Border noFocusBorder, focusBorder;
 	private JLabel tableColumnLabel;
 
-	public DataTableColumnListCellRenderer() {
+    /**
+     * Instantiates a new Data table column list cell renderer.
+     */
+    public DataTableColumnListCellRenderer() {
 
 		container = new JPanel(new GridBagLayout());
 

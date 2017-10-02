@@ -22,21 +22,42 @@ import com.rapidminer.example.Attribute;
 
 
 /**
+ * The type Concat aggregation function.
+ *
  * @author Marius Helf
- * 
  */
 public class ConcatAggregationFunction extends NominalAggregationFunction {
 
-	public static final String FUNCTION_CONCAT = "concat";
+    /**
+     * The constant FUNCTION_CONCAT.
+     */
+    public static final String FUNCTION_CONCAT = "concat";
 
 	private static final String SEPARATOR = "|";
 
-	public ConcatAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
+    /**
+     * Instantiates a new Concat aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     */
+    public ConcatAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, FUNCTION_CONCAT, FUNCTION_SEPARATOR_OPEN,
 				FUNCTION_SEPARATOR_CLOSE);
 	}
 
-	public ConcatAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
+    /**
+     * Instantiates a new Concat aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public ConcatAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
 			String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, separatorOpen, separatorClose);
 	}
@@ -46,7 +67,12 @@ public class ConcatAggregationFunction extends NominalAggregationFunction {
 		return new ConcatAggregator(this);
 	}
 
-	public String getSeparator() {
+    /**
+     * Gets separator.
+     *
+     * @return the separator
+     */
+    public String getSeparator() {
 		return SEPARATOR;
 	}
 

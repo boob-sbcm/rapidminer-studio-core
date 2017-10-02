@@ -36,8 +36,10 @@ import com.rapidminer.operator.ResultObject;
  */
 public interface ExampleSet extends ResultObject, Cloneable, Iterable<Example> {
 
-	/** necessary since default method was added */
-	static final long serialVersionUID = 4100925167567270064L;
+    /**
+     * necessary since default method was added
+     */
+    static final long serialVersionUID = 4100925167567270064L;
 
 	// ------------- Misc -----------------------------
 
@@ -54,122 +56,172 @@ public interface ExampleSet extends ResultObject, Cloneable, Iterable<Example> {
 	@Override
 	public int hashCode();
 
-	/**
-	 * Frees unused resources, if supported by the implementation. Does nothing by default.
-	 *
-	 * Should only be used on freshly {@link #clone}ed {@link ExampleSet}s to ensure that the
-	 * cleaned up resources are not requested afterwards.
-	 *
-	 * @since 7.3
-	 */
-	public default void cleanup() {
+    /**
+     * Frees unused resources, if supported by the implementation. Does nothing by default.
+     * <p>
+     * Should only be used on freshly {@link #clone}ed {@link ExampleSet}s to ensure that the
+     * cleaned up resources are not requested afterwards.
+     *
+     * @since 7.3
+     */
+    public default void cleanup() {
 		// does nothing by default
 	}
 
 	// -------------------- attributes --------------------
 
-	/**
-	 * Returns the data structure holding all attributes. NOTE! if you intend to iterate over all
-	 * Attributes of this ExampleSet then you need to create an Iterator by calling
-	 * {@link ExampleSet#getAttributes()#getAttributes()} and use it instead.
-	 */
-	public Attributes getAttributes();
+    /**
+     * Returns the data structure holding all attributes. NOTE! if you intend to iterate over all
+     * Attributes of this ExampleSet then you need to create an Iterator by calling
+     * {@link ExampleSet#getAttributes()#getAttributes()} and use it instead.
+     *
+     * @return the attributes
+     */
+    public Attributes getAttributes();
 
 	// -------------------- Examples --------------------
 
-	/**
-	 * Returns the number of examples in this example set. This number should not be used to create
-	 * for-loops to iterate through all examples.
-	 */
-	public int size();
+    /**
+     * Returns the number of examples in this example set. This number should not be used to create
+     * for-loops to iterate through all examples.
+     *
+     * @return the int
+     */
+    public int size();
 
-	/**
-	 * Returns the underlying example table. Most operators should operate on the example set and
-	 * manipulate example to change table data instead of using the table directly.
-	 */
-	public ExampleTable getExampleTable();
+    /**
+     * Returns the underlying example table. Most operators should operate on the example set and
+     * manipulate example to change table data instead of using the table directly.
+     *
+     * @return the example table
+     */
+    public ExampleTable getExampleTable();
 
-	/**
-	 * Returns the example with the given id value. If the example set does not contain an id
-	 * attribute this method should return null. Call {@link #remapIds()} before using this method.
-	 */
-	public Example getExampleFromId(double value);
+    /**
+     * Returns the example with the given id value. If the example set does not contain an id
+     * attribute this method should return null. Call {@link #remapIds()} before using this method.
+     *
+     * @param value the value
+     * @return the example from id
+     */
+    public Example getExampleFromId(double value);
 
-	/**
-	 * Returns all examples which have the given id. Should return null in the case that there are
-	 * no examples matching that id.
-	 */
-	public int[] getExampleIndicesFromId(double value);
+    /**
+     * Returns all examples which have the given id. Should return null in the case that there are
+     * no examples matching that id.
+     *
+     * @param value the value
+     * @return the int [ ]
+     */
+    public int[] getExampleIndicesFromId(double value);
 
-	/**
-	 * Returns the i-th example. It is not guaranteed that asking for an example by using the index
-	 * in the example table is efficiently implemented. Therefore for-loops for iterations are not
-	 * an option and an {@link ExampleReader} should be used.
-	 */
-	public Example getExample(int index);
+    /**
+     * Returns the i-th example. It is not guaranteed that asking for an example by using the index
+     * in the example table is efficiently implemented. Therefore for-loops for iterations are not
+     * an option and an {@link ExampleReader} should be used.
+     *
+     * @param index the index
+     * @return the example
+     */
+    public Example getExample(int index);
 
-	/**
-	 * Remaps all ids. This method should be invoked before the method
-	 * {@link #getExampleFromId(double)} is used.
-	 */
-	public void remapIds();
+    /**
+     * Remaps all ids. This method should be invoked before the method
+     * {@link #getExampleFromId(double)} is used.
+     */
+    public void remapIds();
 
 	// -------------------- File Writing --------------------
 
-	/** Writes the data and the attribute description to a file. */
-	public void writeDataFile(File dataFile, int fractionDigits, boolean quoteNominal, boolean zipped, boolean append,
+    /**
+     * Writes the data and the attribute description to a file.  @param dataFile the data file
+     *
+     * @param dataFile       the data file
+     * @param fractionDigits the fraction digits
+     * @param quoteNominal   the quote nominal
+     * @param zipped         the zipped
+     * @param append         the append
+     * @param encoding       the encoding
+     * @throws IOException the io exception
+     */
+    public void writeDataFile(File dataFile, int fractionDigits, boolean quoteNominal, boolean zipped, boolean append,
 			Charset encoding) throws IOException;
 
-	/**
-	 * Writes the attribute meta descriptions into a file. The data file is used in order to
-	 * determine the relative file positions and is not allowed to be null.
-	 */
-	public void writeAttributeFile(File attFile, File dataFile, Charset encoding) throws IOException;
+    /**
+     * Writes the attribute meta descriptions into a file. The data file is used in order to
+     * determine the relative file positions and is not allowed to be null.
+     *
+     * @param attFile  the att file
+     * @param dataFile the data file
+     * @param encoding the encoding
+     * @throws IOException the io exception
+     */
+    public void writeAttributeFile(File attFile, File dataFile, Charset encoding) throws IOException;
 
-	/**
-	 * Writes the data and the attribute description to a sparse data file.
-	 *
-	 * @param dataFile
-	 *            the file to write the data to
-	 * @param format
-	 *            specified by {@link com.rapidminer.operator.io.SparseFormatExampleSource}
-	 * @param fractionDigits
-	 *            the number of fraction digits (-1 for all possible digits)
-	 */
-	public void writeSparseDataFile(File dataFile, int format, int fractionDigits, boolean quoteNominal, boolean zipped,
+    /**
+     * Writes the data and the attribute description to a sparse data file.
+     *
+     * @param dataFile       the file to write the data to
+     * @param format         specified by {@link com.rapidminer.operator.io.SparseFormatExampleSource}
+     * @param fractionDigits the number of fraction digits (-1 for all possible digits)
+     * @param quoteNominal   the quote nominal
+     * @param zipped         the zipped
+     * @param append         the append
+     * @param encoding       the encoding
+     * @throws IOException the io exception
+     */
+    public void writeSparseDataFile(File dataFile, int format, int fractionDigits, boolean quoteNominal, boolean zipped,
 			boolean append, Charset encoding) throws IOException;
 
-	/**
-	 * Writes the attribute meta descriptions for a sparse data file into a file. The data file is
-	 * used in order to determine the relative file positions and is not allowed to be null.
-	 *
-	 * @param format
-	 *            specified by {@link com.rapidminer.operator.io.SparseFormatExampleSource}
-	 */
-	public void writeSparseAttributeFile(File attFile, File dataFile, int format, Charset encoding) throws IOException;
+    /**
+     * Writes the attribute meta descriptions for a sparse data file into a file. The data file is
+     * used in order to determine the relative file positions and is not allowed to be null.
+     *
+     * @param attFile  the att file
+     * @param dataFile the data file
+     * @param format   specified by {@link com.rapidminer.operator.io.SparseFormatExampleSource}
+     * @param encoding the encoding
+     * @throws IOException the io exception
+     */
+    public void writeSparseAttributeFile(File attFile, File dataFile, int format, Charset encoding) throws IOException;
 
 	// ------------------- Statistics ---------------
 
-	/** Recalculate all attribute statistics. */
-	public void recalculateAllAttributeStatistics();
+    /**
+     * Recalculate all attribute statistics.
+     */
+    public void recalculateAllAttributeStatistics();
 
-	/** Recalculate the attribute statistics of the given attribute. */
-	public void recalculateAttributeStatistics(Attribute attribute);
+    /**
+     * Recalculate the attribute statistics of the given attribute.  @param attribute the attribute
+     *
+     * @param attribute the attribute
+     */
+    public void recalculateAttributeStatistics(Attribute attribute);
 
-	/**
-	 * Returns the desired statistic for the given attribute. This method should be preferred over
-	 * the deprecated method Attribute#getStatistics(String) since it correctly calculates and keep
-	 * the statistics for the current example set and does not overwrite the statistics in the
-	 * attribute.
-	 */
-	public double getStatistics(Attribute attribute, String statisticsName);
+    /**
+     * Returns the desired statistic for the given attribute. This method should be preferred over
+     * the deprecated method Attribute#getStatistics(String) since it correctly calculates and keep
+     * the statistics for the current example set and does not overwrite the statistics in the
+     * attribute.
+     *
+     * @param attribute      the attribute
+     * @param statisticsName the statistics name
+     * @return the statistics
+     */
+    public double getStatistics(Attribute attribute, String statisticsName);
 
-	/**
-	 * Returns the desired statistic for the given attribute. This method should be preferred over
-	 * the deprecated method Attribute#getStatistics(String) since it correctly calculates and keep
-	 * the statistics for the current example set and does not overwrite the statistics in the
-	 * attribute.
-	 */
-	public double getStatistics(Attribute attribute, String statisticsName, String statisticsParameter);
+    /**
+     * Returns the desired statistic for the given attribute. This method should be preferred over
+     * the deprecated method Attribute#getStatistics(String) since it correctly calculates and keep
+     * the statistics for the current example set and does not overwrite the statistics in the
+     * attribute.
+     *
+     * @param attribute           the attribute
+     * @param statisticsName      the statistics name
+     * @param statisticsParameter the statistics parameter
+     * @return the statistics
+     */
+    public double getStatistics(Attribute attribute, String statisticsName, String statisticsParameter);
 
 }

@@ -40,19 +40,16 @@ public class DefaultDataSetMetaData implements DataSetMetaData {
 	private ThreadLocal<DateFormat> dateFormat;
 	private boolean isFaultTolerant;
 
-	/**
-	 * Creates a {@link DataSetMetaData} from the given names and types, which must have the same
-	 * size. All columns will have the default role ({@code null}). To add a role to a column use
-	 * {@code getColumnMetaData(index).setRole()}.
-	 *
-	 * @param names
-	 *            a list of column names
-	 * @param types
-	 *            a list of column types
-	 * @throws IllegalArgumentException
-	 *             if the two lists do not have the same size
-	 */
-	public DefaultDataSetMetaData(List<String> names, List<ColumnType> types) {
+    /**
+     * Creates a {@link DataSetMetaData} from the given names and types, which must have the same
+     * size. All columns will have the default role ({@code null}). To add a role to a column use
+     * {@code getColumnMetaData(index).setRole()}.
+     *
+     * @param names a list of column names
+     * @param types a list of column types
+     * @throws IllegalArgumentException if the two lists do not have the same size
+     */
+    public DefaultDataSetMetaData(List<String> names, List<ColumnType> types) {
 		int listSize = names.size();
 		if (listSize != types.size()) {
 			throw new IllegalArgumentException("names and types lists must have the same size");

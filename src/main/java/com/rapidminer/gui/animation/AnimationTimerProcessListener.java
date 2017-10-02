@@ -44,7 +44,10 @@ class AnimationTimerProcessListener implements ProcessStateListener {
 
 	private Timer timer;
 
-	AnimationTimerProcessListener() {
+    /**
+     * Instantiates a new Animation timer process listener.
+     */
+    AnimationTimerProcessListener() {
 		ActionListener timerListener = new ActionListener() {
 
 			@Override
@@ -78,17 +81,17 @@ class AnimationTimerProcessListener implements ProcessStateListener {
 		stopTimer();
 	}
 
-	/**
-	 * Starts the timer.
-	 */
-	void startTimer() {
+    /**
+     * Starts the timer.
+     */
+    void startTimer() {
 		timer.start();
 	}
 
-	/**
-	 * Stops the timer.
-	 */
-	void stopTimer() {
+    /**
+     * Stops the timer.
+     */
+    void stopTimer() {
 		timer.stop();
 	}
 

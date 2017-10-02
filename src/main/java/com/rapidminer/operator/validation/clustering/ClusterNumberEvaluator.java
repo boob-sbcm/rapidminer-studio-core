@@ -36,9 +36,8 @@ import com.rapidminer.operator.ports.metadata.SimplePrecondition;
 /**
  * This operator does actually not compute a performance criterion but simply provides the number of
  * clusters as a value.
- * 
+ *
  * @author Cedric Copy, Timm Euler, Ingo Mierswa, Michael Wurst
- * 
  */
 public class ClusterNumberEvaluator extends Operator {
 
@@ -49,10 +48,12 @@ public class ClusterNumberEvaluator extends Operator {
 	private InputPort performanceInput = getInputPorts().createPort("performance");
 	private OutputPort performanceOutput = getOutputPorts().createPort("performance");
 
-	/**
-	 * Constructor for ClusterNumberEvaluator.
-	 */
-	public ClusterNumberEvaluator(OperatorDescription description) {
+    /**
+     * Constructor for ClusterNumberEvaluator.
+     *
+     * @param description the description
+     */
+    public ClusterNumberEvaluator(OperatorDescription description) {
 		super(description);
 
 		performanceInput.addPrecondition(new SimplePrecondition(performanceInput, new MetaData(PerformanceVector.class),

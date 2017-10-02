@@ -26,13 +26,19 @@ import com.rapidminer.operator.performance.PerformanceCriterion;
 
 /**
  * Tests the given performance  criterion.
- * 
- * @author Simon Fischer
- *          Exp $
+ *
+ * @author Simon Fischer          Exp $
  */
 public abstract class AbstractCriterionTestCase {
 
-	public static void assertAllValuesEqual(String message, PerformanceCriterion expected, PerformanceCriterion actual) {
+    /**
+     * Assert all values equal.
+     *
+     * @param message  the message
+     * @param expected the expected
+     * @param actual   the actual
+     */
+    public static void assertAllValuesEqual(String message, PerformanceCriterion expected, PerformanceCriterion actual) {
 		message += " " + expected.getName();
 		assertEquals(message + " value", expected.getMikroAverage(), actual.getMikroAverage(), 0.000000001);
 		assertEqualsNaN(message + " variance", expected.getMikroVariance(), actual.getMikroVariance());
@@ -42,7 +48,13 @@ public abstract class AbstractCriterionTestCase {
 		assertEquals(message + " class", expected.getClass(), actual.getClass());
 	}
 
-	public void cloneTest(String message, PerformanceCriterion pc) {
+    /**
+     * Clone test.
+     *
+     * @param message the message
+     * @param pc      the pc
+     */
+    public void cloneTest(String message, PerformanceCriterion pc) {
 		try {
 			assertAllValuesEqual(message, pc, (PerformanceCriterion) pc.clone());
 		} catch (CloneNotSupportedException e) {

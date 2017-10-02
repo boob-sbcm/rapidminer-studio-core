@@ -39,9 +39,8 @@ import com.rapidminer.operator.UserError;
 /**
  * StAX parser for XLSX Shared String Table.
  *
- * @see ECMA-376, 4th Edition, 18.4 Shared String Table (pp. 1709 ff.)
- *
  * @author Nils Woehler
+ * @see ECMA-376, 4th Edition, 18.4 Shared String Table (pp. 1709 ff.)
  * @since 6.3.0
  */
 public class XlsxSharedStringsParser {
@@ -121,26 +120,30 @@ public class XlsxSharedStringsParser {
 	 */
 	private final String sharedStringsFilePath;
 
-	public XlsxSharedStringsParser(File xlsxFile, String sharedStringsFilePath, XMLInputFactory xmlFactory) {
+    /**
+     * Instantiates a new Xlsx shared strings parser.
+     *
+     * @param xlsxFile              the xlsx file
+     * @param sharedStringsFilePath the shared strings file path
+     * @param xmlFactory            the xml factory
+     */
+    public XlsxSharedStringsParser(File xlsxFile, String sharedStringsFilePath, XMLInputFactory xmlFactory) {
 		this.xlsxFile = xlsxFile;
 		this.sharedStringsFilePath = sharedStringsFilePath;
 		this.xmlFactory = xmlFactory;
 	}
 
-	/**
-	 * Parses the XLSX shared strings XML file and returns the parsed Strings as an array.
-	 *
-	 * @return the parsed shared strings as an array
-	 * @throws IOException
-	 *             in case the Shared Strings Zip entry cannot be opened
-	 * @throws XMLStreamException
-	 *             in case the {@link XMLInputFactory} cannot create a {@link XMLStreamReader}
-	 * @throws UserError
-	 *             in case the shared string content is malformed
-	 * @throws XlsxException
-	 *             in case the shared string XML content is invalid
-	 */
-	public String[] parseSharedStrings(Operator op, Charset encoding) throws XMLStreamException, IOException, UserError {
+    /**
+     * Parses the XLSX shared strings XML file and returns the parsed Strings as an array.
+     *
+     * @param op       the op
+     * @param encoding the encoding
+     * @return the parsed shared strings as an array
+     * @throws XMLStreamException in case the {@link XMLInputFactory} cannot create a {@link XMLStreamReader}
+     * @throws IOException        in case the Shared Strings Zip entry cannot be opened
+     * @throws UserError          in case the shared string content is malformed
+     */
+    public String[] parseSharedStrings(Operator op, Charset encoding) throws XMLStreamException, IOException, UserError {
 
 		boolean isCurrentTagText = false;
 		int numberOfItems = 0;

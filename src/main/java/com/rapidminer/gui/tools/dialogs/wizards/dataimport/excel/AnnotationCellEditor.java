@@ -32,14 +32,19 @@ import javax.swing.JTable;
 /**
  * This is the cell editor for annotation cells. They are by default colored in light gray to
  * separate them from the actual value column.
- * 
+ *
  * @author Simon Fischer, Sebastian Land
- * 
  */
 public class AnnotationCellEditor extends DefaultRMCellEditor {
 
-	public static final String NONE = "-";
-	public static final String NAME = Annotations.ANNOTATION_NAME;
+    /**
+     * The constant NONE.
+     */
+    public static final String NONE = "-";
+    /**
+     * The constant NAME.
+     */
+    public static final String NAME = Annotations.ANNOTATION_NAME;
 
 	private static final long serialVersionUID = 1L;
 	private Color background;
@@ -54,11 +59,19 @@ public class AnnotationCellEditor extends DefaultRMCellEditor {
 		return new JComboBox<>(values);
 	}
 
-	public AnnotationCellEditor() {
+    /**
+     * Instantiates a new Annotation cell editor.
+     */
+    public AnnotationCellEditor() {
 		super(makeComboBox());
 	}
 
-	public AnnotationCellEditor(Color background) {
+    /**
+     * Instantiates a new Annotation cell editor.
+     *
+     * @param background the background
+     */
+    public AnnotationCellEditor(Color background) {
 		this();
 		this.background = background;
 	}

@@ -28,7 +28,7 @@ import java.util.Vector;
 /**
  * This class wraps a given {@link OperatorLibrary} into a {@link OperatorDocBundle} to provide the
  * necessary information to have a nice GUI integration.
- * 
+ *
  * @author Sebastian Land
  */
 public class OperatorLibraryDocBundle extends OperatorDocBundle {
@@ -37,7 +37,12 @@ public class OperatorLibraryDocBundle extends OperatorDocBundle {
 	private GroupDocumentation libraryGroupDoc;
 	private String namespace;
 
-	public OperatorLibraryDocBundle(OperatorLibrary library) {
+    /**
+     * Instantiates a new Operator library doc bundle.
+     *
+     * @param library the library
+     */
+    public OperatorLibraryDocBundle(OperatorLibrary library) {
 		this.library = library;
 		this.namespace = library.getNamespace() + ":" + library.getName();
 		this.libraryGroupDoc = new GroupDocumentation(namespace, library.getName(), library.getSynopsis());

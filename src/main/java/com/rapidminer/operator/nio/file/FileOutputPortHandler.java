@@ -38,7 +38,7 @@ import java.io.OutputStream;
 
 /**
  * Provides methods for creating and working with a file InputPort. Used by reading operators.
- * 
+ *
  * @author Dominik Halfkann
  */
 public class FileOutputPortHandler {
@@ -47,17 +47,27 @@ public class FileOutputPortHandler {
 	private String fileParameterName;
 	private Operator operator;
 
-	public FileOutputPortHandler(Operator operator, OutputPort fileOutputPort, String fileParameterName) {
+    /**
+     * Instantiates a new File output port handler.
+     *
+     * @param operator          the operator
+     * @param fileOutputPort    the file output port
+     * @param fileParameterName the file parameter name
+     */
+    public FileOutputPortHandler(Operator operator, OutputPort fileOutputPort, String fileParameterName) {
 		this.fileOutputPort = fileOutputPort;
 		this.fileParameterName = fileParameterName;
 		this.operator = operator;
 	}
 
-	/**
-	 * Returns an OutputStream, depending on whether the {@link #fileOutputPort} is connected or a
-	 * file name is given.
-	 */
-	public OutputStream openSelectedFile() throws OperatorException {
+    /**
+     * Returns an OutputStream, depending on whether the {@link #fileOutputPort} is connected or a
+     * file name is given.
+     *
+     * @return the output stream
+     * @throws OperatorException the operator exception
+     */
+    public OutputStream openSelectedFile() throws OperatorException {
 		if (!fileOutputPort.isConnected()) {
 			try {
 				return new FileOutputStream(operator.getParameterAsFile(fileParameterName, true));
@@ -76,11 +86,15 @@ public class FileOutputPortHandler {
 		}
 	}
 
-	/**
-	 * Returns an OutputStream, depending on whether the {@link #fileOutputPort} is connected, a
-	 * file name is given and it should be appended to the end of the file.
-	 */
-	public OutputStream openSelectedFile(boolean append) throws OperatorException {
+    /**
+     * Returns an OutputStream, depending on whether the {@link #fileOutputPort} is connected, a
+     * file name is given and it should be appended to the end of the file.
+     *
+     * @param append the append
+     * @return the output stream
+     * @throws OperatorException the operator exception
+     */
+    public OutputStream openSelectedFile(boolean append) throws OperatorException {
 		if (!fileOutputPort.isConnected()) {
 			try {
 				return new FileOutputStream(operator.getParameterAsFile(fileParameterName, true), append);
@@ -120,11 +134,13 @@ public class FileOutputPortHandler {
 	 * fileOutputPort.getData(FileObject.class).openStream(); } }
 	 */
 
-	/**
-	 * Same as {@link #getSelectedFile()}, but returns true if file is specified (in the respective
-	 * way).
-	 * */
-	public boolean isFileSpecified() {
+    /**
+     * Same as {@link #getSelectedFile()}, but returns true if file is specified (in the respective
+     * way).
+     *
+     * @return the boolean
+     */
+    public boolean isFileSpecified() {
 		if (!fileOutputPort.isConnected()) {
 			return operator.isParameterSet(fileParameterName);
 		} else {
@@ -137,11 +153,17 @@ public class FileOutputPortHandler {
 
 	}
 
-	/**
-	 * Creates the file parameter named by fileParameterName that depends on whether or not the port
-	 * returned by the given PortProvider is connected.
-	 */
-	public static ParameterType makeFileParameterType(ParameterHandler parameterHandler, String parameterName,
+    /**
+     * Creates the file parameter named by fileParameterName that depends on whether or not the port
+     * returned by the given PortProvider is connected.
+     *
+     * @param parameterHandler the parameter handler
+     * @param parameterName    the parameter name
+     * @param fileExtension    the file extension
+     * @param portProvider     the port provider
+     * @return the parameter type
+     */
+    public static ParameterType makeFileParameterType(ParameterHandler parameterHandler, String parameterName,
 			String fileExtension, PortProvider portProvider) {
 		final ParameterTypeFile fileParam = new ParameterTypeFile(parameterName, "Name of the file to write the data in.",
 				true, new String[] { fileExtension });
@@ -150,11 +172,17 @@ public class FileOutputPortHandler {
 		return fileParam;
 	}
 
-	/**
-	 * Creates the file parameter named by fileParameterName that depends on whether or not the port
-	 * returned by the given PortProvider is connected.
-	 */
-	public static ParameterType makeFileParameterType(ParameterHandler parameterHandler, String parameterName,
+    /**
+     * Creates the file parameter named by fileParameterName that depends on whether or not the port
+     * returned by the given PortProvider is connected.
+     *
+     * @param parameterHandler the parameter handler
+     * @param parameterName    the parameter name
+     * @param portProvider     the port provider
+     * @param fileExtension    the file extension
+     * @return the parameter type
+     */
+    public static ParameterType makeFileParameterType(ParameterHandler parameterHandler, String parameterName,
 			PortProvider portProvider, String... fileExtension) {
 		final ParameterTypeFile fileParam = new ParameterTypeFile(parameterName, "Name of the file to write the data in.",
 				true, fileExtension);
@@ -163,25 +191,25 @@ public class FileOutputPortHandler {
 		return fileParam;
 	}
 
-	/**
-	 * Adds a new (file-)OutputPortNotConnectedCondition for a given parameter.
-	 * 
-	 * @param parameter
-	 * @param parameterHandler
-	 * @param portProvider
-	 */
-	public static void addFileDependencyCondition(ParameterType parameter, ParameterHandler parameterHandler,
+    /**
+     * Adds a new (file-)OutputPortNotConnectedCondition for a given parameter.
+     *
+     * @param parameter        the parameter
+     * @param parameterHandler the parameter handler
+     * @param portProvider     the port provider
+     */
+    public static void addFileDependencyCondition(ParameterType parameter, ParameterHandler parameterHandler,
 			PortProvider portProvider) {
 		parameter.registerDependencyCondition(new PortConnectedCondition(parameterHandler, portProvider, true, false));
 	}
 
-	/**
-	 * Returns the specified filename or "OutputFileObject" if the file OutputPort is connected.
-	 * 
-	 * @return
-	 * @throws OperatorException
-	 */
-	public String getSelectedFileDescription() throws OperatorException {
+    /**
+     * Returns the specified filename or "OutputFileObject" if the file OutputPort is connected.
+     *
+     * @return selected file description
+     * @throws OperatorException the operator exception
+     */
+    public String getSelectedFileDescription() throws OperatorException {
 		if (!fileOutputPort.isConnected()) {
 			return operator.getParameterAsString(fileParameterName);
 		} else {

@@ -31,7 +31,7 @@ import java.awt.print.PrinterException;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa, Nils Woehler
  */
 public class PrintAction extends ResourceAction {
@@ -42,7 +42,13 @@ public class PrintAction extends ResourceAction {
 	private final String componentName;
 	private boolean canceled = false;
 
-	public PrintAction(Component component, String componentName) {
+    /**
+     * Instantiates a new Print action.
+     *
+     * @param component     the component
+     * @param componentName the component name
+     */
+    public PrintAction(Component component, String componentName) {
 		super("print", componentName);
 		this.component = component;
 		this.componentName = componentName;
@@ -64,7 +70,12 @@ public class PrintAction extends ResourceAction {
 		}
 	}
 
-	public boolean wasCanceled() {
+    /**
+     * Was canceled boolean.
+     *
+     * @return the boolean
+     */
+    public boolean wasCanceled() {
 		return canceled;
 	}
 }

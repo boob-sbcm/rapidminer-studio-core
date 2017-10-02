@@ -114,7 +114,13 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 	private final Observer<Operator> delegatingOperatorObserver = new DelegatingObserver<Operator, ExecutionUnit>(this,
 			this);
 
-	public ExecutionUnit(OperatorChain enclosingOperator, String name) {
+    /**
+     * Instantiates a new Execution unit.
+     *
+     * @param enclosingOperator the enclosing operator
+     * @param name              the name
+     */
+    public ExecutionUnit(OperatorChain enclosingOperator, String name) {
 		this.name = name;
 
 		innerInputPorts = enclosingOperator.createInnerSinks(portOwner);
@@ -136,30 +142,42 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		} while (index != 0);
 	}
 
-	public InputPorts getInnerSinks() {
+    /**
+     * Gets inner sinks.
+     *
+     * @return the inner sinks
+     */
+    public InputPorts getInnerSinks() {
 		return innerInputPorts;
 	}
 
-	public OutputPorts getInnerSources() {
+    /**
+     * Gets inner sources.
+     *
+     * @return the inner sources
+     */
+    public OutputPorts getInnerSources() {
 		return innerOutputPorts;
 	}
 
-	/**
-	 * Same as {@link #addOperator(Operator, boolean)}.
-	 */
-	public int addOperator(Operator operator) {
+    /**
+     * Same as {@link #addOperator(Operator, boolean)}.
+     *
+     * @param operator the operator
+     * @return the int
+     */
+    public int addOperator(Operator operator) {
 		return addOperator(operator, true);
 	}
 
-	/**
-	 * Adds the operator to this execution unit.
-	 *
-	 * @param registerWithProcess
-	 *            Typically true. If false, the operator will not be registered with its parent
-	 *            process.
-	 * @return the new index of the operator.
-	 */
-	public int addOperator(Operator operator, boolean registerWithProcess) {
+    /**
+     * Adds the operator to this execution unit.
+     *
+     * @param operator            the operator
+     * @param registerWithProcess Typically true. If false, the operator will not be registered with its parent            process.
+     * @return the new index of the operator.
+     */
+    public int addOperator(Operator operator, boolean registerWithProcess) {
 		if (operator == null) {
 			throw new NullPointerException("operator cannot be null!");
 		}
@@ -172,11 +190,14 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		return operators.size() - 1;
 	}
 
-	/**
-	 * Adds the operator to this execution unit. The operator at this index and all subsequent
-	 * operators are shifted to the right. The operator is registered automatically.
-	 */
-	public void addOperator(Operator operator, int index) {
+    /**
+     * Adds the operator to this execution unit. The operator at this index and all subsequent
+     * operators are shifted to the right. The operator is registered automatically.
+     *
+     * @param operator the operator
+     * @param index    the index
+     */
+    public void addOperator(Operator operator, int index) {
 		if (operator == null) {
 			throw new NullPointerException("operator cannot be null!");
 		}
@@ -188,18 +209,23 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		registerOperator(operator, true);
 	}
 
-	public int getIndexOfOperator(Operator operator) {
+    /**
+     * Gets index of operator.
+     *
+     * @param operator the operator
+     * @return the index of operator
+     */
+    public int getIndexOfOperator(Operator operator) {
 		return operators.indexOf(operator);
 	}
 
-	/**
-	 * Looks up {@link UserData} entries. Returns null if key is unknown.
-	 *
-	 * @param The
-	 *            key of the user data.
-	 * @return The user data.
-	 */
-	public UserData<Object> getUserData(String key) {
+    /**
+     * Looks up {@link UserData} entries. Returns null if key is unknown.
+     *
+     * @param key the key
+     * @return The user data.
+     */
+    public UserData<Object> getUserData(String key) {
 		synchronized (this.userDataLock) {
 			if (this.userData == null) {
 				return null;
@@ -209,15 +235,13 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		}
 	}
 
-	/**
-	 * Stores arbitrary {@link UserData}.
-	 *
-	 * @param key
-	 *            The key to used to identify the data.
-	 * @param data
-	 *            The user data.
-	 */
-	public void setUserData(String key, UserData<Object> data) {
+    /**
+     * Stores arbitrary {@link UserData}.
+     *
+     * @param key  The key to used to identify the data.
+     * @param data The user data.
+     */
+    public void setUserData(String key, UserData<Object> data) {
 		synchronized (this.userDataLock) {
 			if (this.userData == null) {
 				this.userData = new TreeMap<>();
@@ -244,11 +268,13 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		operator.removeObserver(delegatingOperatorObserver);
 	}
 
-	/**
-	 * Removes the given operator. Don't call this method directly but call
-	 * {@link Operator#remove()}.
-	 */
-	protected void removeOperator(Operator operator) {
+    /**
+     * Removes the given operator. Don't call this method directly but call
+     * {@link Operator#remove()}.
+     *
+     * @param operator the operator
+     */
+    protected void removeOperator(Operator operator) {
 		if (!operators.contains(operator)) {
 			throw new NoSuchElementException("Operator " + operator.getName() + " not contained in " + getName() + "!");
 		}
@@ -264,7 +290,12 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		fireUpdate(this);
 	}
 
-	public void clear(int clearFlags) {
+    /**
+     * Clear.
+     *
+     * @param clearFlags the clear flags
+     */
+    public void clear(int clearFlags) {
 		for (Operator operator : operators) {
 			operator.clear(clearFlags);
 		}
@@ -316,12 +347,14 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		}
 	}
 
-	/**
-	 * Sorts the operators topologically, i.e. such that operator <var>i</var> in the returned
-	 * ordering has dependencies (i.e. connected {@link InputPort}s) only from operators
-	 * <var>0..i-1</var>.
-	 */
-	public Vector<Operator> topologicalSort() {
+    /**
+     * Sorts the operators topologically, i.e. such that operator <var>i</var> in the returned
+     * ordering has dependencies (i.e. connected {@link InputPort}s) only from operators
+     * <var>0..i-1</var>.
+     *
+     * @return the vector
+     */
+    public Vector<Operator> topologicalSort() {
 		final Map<Operator, Integer> originalIndices = new HashMap<Operator, Integer>();
 		for (int i = 0; i < operators.size(); i++) {
 			originalIndices.put(operators.get(i), i);
@@ -362,7 +395,10 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		return sorted;
 	}
 
-	protected void updateExecutionOrder() {
+    /**
+     * Update execution order.
+     */
+    protected void updateExecutionOrder() {
 		this.executionOrder = topologicalSort();
 		if (!this.executionOrder.equals(operators)) {
 			if (operators.size() != executionOrder.size()) {
@@ -377,7 +413,10 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		}
 	}
 
-	public void transformMetaData() {
+    /**
+     * Transform meta data.
+     */
+    public void transformMetaData() {
 		List<Operator> sorted = topologicalSort();
 		for (Operator op : sorted) {
 			op.transformMetaData();
@@ -403,34 +442,58 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		getInnerSinks().checkPreconditions();
 	}
 
-	/** Returns an unmodifiable view of the operators contained in this process. */
-	public List<Operator> getOperators() {
+    /**
+     * Returns an unmodifiable view of the operators contained in this process.  @return the operators
+     *
+     * @return the operators
+     */
+    public List<Operator> getOperators() {
 		return Collections.unmodifiableList(new ArrayList<>(operators));
 	}
 
-	/**
-	 * Use this method only in cases where you are sure that you don't want a
-	 * ConcurrentModificationException to occur when the list of operators is modified.
-	 */
-	public Enumeration<Operator> getOperatorEnumeration() {
+    /**
+     * Use this method only in cases where you are sure that you don't want a
+     * ConcurrentModificationException to occur when the list of operators is modified.
+     *
+     * @return the operator enumeration
+     */
+    public Enumeration<Operator> getOperatorEnumeration() {
 		return operators.elements();
 	}
 
-	/** Returns an unmodifiable view of the operators contained in this process. */
-	public List<Operator> getEnabledOperators() {
+    /**
+     * Returns an unmodifiable view of the operators contained in this process.  @return the enabled operators
+     *
+     * @return the enabled operators
+     */
+    public List<Operator> getEnabledOperators() {
 		return new EnabledOperatorView(operators);
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
+    public void setName(String name) {
 		this.name = name;
 	}
 
-	/** Returns the operator that contains this process as a subprocess. */
-	public OperatorChain getEnclosingOperator() {
+    /**
+     * Returns the operator that contains this process as a subprocess.  @return the enclosing operator
+     *
+     * @return the enclosing operator
+     */
+    public OperatorChain getEnclosingOperator() {
 		return enclosingOperator;
 	}
 
@@ -507,23 +570,20 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		getEnclosingOperator().transformMetaData();
 	}
 
-	/**
-	 * Connects the ports automatically in a first-fit approach. Operators are connected in their
-	 * ordering within the {@link #operators} list. Every input of every operator is connected to
-	 * the first compatible output of an operator "left" of this operator. This corresponds to the
-	 * way, IOObjects were consumed in the pre-5.0 version. Disabled operators are skipped.
-	 *
-	 * <br/>
-	 *
-	 * @param level
-	 *            If level is {@link CompatibilityLevel#VERSION_5}, an input is considered
-	 *            compatible only if it satisfies all meta data constraints. For
-	 *            {@link CompatibilityLevel#PRE_VERSION_5} we only consider the classes.
-	 *
-	 * @param keepConnections
-	 *            if true, don't unwire old connections before rewiring.
-	 */
-	public void autoWire(CompatibilityLevel level, boolean keepConnections, boolean recursive) throws PortException {
+    /**
+     * Connects the ports automatically in a first-fit approach. Operators are connected in their
+     * ordering within the {@link #operators} list. Every input of every operator is connected to
+     * the first compatible output of an operator "left" of this operator. This corresponds to the
+     * way, IOObjects were consumed in the pre-5.0 version. Disabled operators are skipped.
+     * <p>
+     * <br/>
+     *
+     * @param level           If level is {@link CompatibilityLevel#VERSION_5}, an input is considered            compatible only if it satisfies all meta data constraints. For            {@link CompatibilityLevel#PRE_VERSION_5} we only consider the classes.
+     * @param keepConnections if true, don't unwire old connections before rewiring.
+     * @param recursive       the recursive
+     * @throws PortException the port exception
+     */
+    public void autoWire(CompatibilityLevel level, boolean keepConnections, boolean recursive) throws PortException {
 		if (!keepConnections) {
 			unwire(recursive);
 		}
@@ -573,15 +633,15 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		transformMDNeighbourhood();
 	}
 
-	/**
-	 * Automatically wires inputs and outputs of a single operator in this execution unit.
-	 *
-	 * @param inputs
-	 *            Wire inputs?
-	 * @param outputs
-	 *            Wire outputs?
-	 */
-	public void autoWireSingle(Operator operator, CompatibilityLevel level, boolean inputs, boolean outputs) {
+    /**
+     * Automatically wires inputs and outputs of a single operator in this execution unit.
+     *
+     * @param operator the operator
+     * @param level    the level
+     * @param inputs   Wire inputs?
+     * @param outputs  Wire outputs?
+     */
+    public void autoWireSingle(Operator operator, CompatibilityLevel level, boolean inputs, boolean outputs) {
 		// auto wire inputs
 		if (inputs) {
 			transformMDNeighbourhood();
@@ -636,11 +696,13 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		}
 	}
 
-	/**
-	 * Returns a list of all available output ports within this process, including inner sources and
-	 * output ports of enclosed operators.
-	 */
-	public Collection<OutputPort> getAllOutputPorts() {
+    /**
+     * Returns a list of all available output ports within this process, including inner sources and
+     * output ports of enclosed operators.
+     *
+     * @return the all output ports
+     */
+    public Collection<OutputPort> getAllOutputPorts() {
 		Collection<OutputPort> outputPorts = new LinkedList<OutputPort>();
 		outputPorts.addAll(getInnerSources().getAllPorts());
 		for (Operator operator : operators) {
@@ -649,7 +711,13 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		return outputPorts;
 	}
 
-	public Operator getOperatorByName(String toOp) {
+    /**
+     * Gets operator by name.
+     *
+     * @param toOp the to op
+     * @return the operator by name
+     */
+    public Operator getOperatorByName(String toOp) {
 		for (Operator op : operators) {
 			if (op.getName().equals(toOp)) {
 				return op;
@@ -658,20 +726,23 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		return null;
 	}
 
-	public int getNumberOfOperators() {
+    /**
+     * Gets number of operators.
+     *
+     * @return the number of operators
+     */
+    public int getNumberOfOperators() {
 		return operators.size();
 	}
 
-	/**
-	 * Clones operators contained in <code>original</code>, adds them to this execution unit and
-	 * wires them as they were originally.
-	 *
-	 * @param forParallelExecution
-	 *            Indicates whether this clone is supposed to be executed in parallel. If yes, the
-	 *            clone will not be registered with the parent process and will share its
-	 *            {@link Operator#applyCount} with the original.
-	 */
-	public void cloneExecutionUnitFrom(ExecutionUnit original, boolean forParallelExecution) {
+    /**
+     * Clones operators contained in <code>original</code>, adds them to this execution unit and
+     * wires them as they were originally.
+     *
+     * @param original             the original
+     * @param forParallelExecution Indicates whether this clone is supposed to be executed in parallel. If yes, the            clone will not be registered with the parent process and will share its            {@link Operator#applyCount} with the original.
+     */
+    public void cloneExecutionUnitFrom(ExecutionUnit original, boolean forParallelExecution) {
 		// Clone operators
 		Map<String, Operator> clonedOperatorsByName = new HashMap<String, Operator>();
 		for (Operator originalChild : original.operators) {
@@ -765,8 +836,12 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		}
 	}
 
-	/** Returns all nested operators. */
-	public Collection<Operator> getChildOperators() {
+    /**
+     * Returns all nested operators.  @return the child operators
+     *
+     * @return the child operators
+     */
+    public Collection<Operator> getChildOperators() {
 		List<Operator> children = new LinkedList<Operator>();
 		for (Operator operator : operators) {
 			children.add(operator);
@@ -774,8 +849,12 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		return children;
 	}
 
-	/** Recursively returns all nested operators. */
-	public List<Operator> getAllInnerOperators() {
+    /**
+     * Recursively returns all nested operators.  @return the all inner operators
+     *
+     * @return the all inner operators
+     */
+    public List<Operator> getAllInnerOperators() {
 		List<Operator> children = new LinkedList<Operator>();
 		for (Operator operator : operators) {
 			children.add(operator);
@@ -786,7 +865,17 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		return children;
 	}
 
-	protected List<String> createProcessTreeList(int indent, String selfPrefix, String childPrefix, Operator markOperator,
+    /**
+     * Create process tree list list.
+     *
+     * @param indent       the indent
+     * @param selfPrefix   the self prefix
+     * @param childPrefix  the child prefix
+     * @param markOperator the mark operator
+     * @param mark         the mark
+     * @return the list
+     */
+    protected List<String> createProcessTreeList(int indent, String selfPrefix, String childPrefix, Operator markOperator,
 			String mark) {
 		List<String> treeList = new LinkedList<>();
 		treeList.add(Tools.indent(indent) + " subprocess '" + getName() + "'");
@@ -798,8 +887,12 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		return treeList;
 	}
 
-	/** Executes the inner operators. */
-	public void execute() throws OperatorException {
+    /**
+     * Executes the inner operators.  @throws OperatorException the operator exception
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void execute() throws OperatorException {
 		UnitExecutor executor = UnitExecutionFactory.getInstance().getExecutor(this);
 		// check only the callstack of nested operators, otherwise execution units of
 		// unsigned extensions might not be able to execute trusted operators
@@ -827,44 +920,65 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		}
 	}
 
-	/** Frees memory used by inner sinks. */
-	public void freeMemory() {
+    /**
+     * Frees memory used by inner sinks.
+     */
+    public void freeMemory() {
 		getInnerSources().freeMemory();
 		getInnerSinks().freeMemory();
 	}
 
 	private boolean expanded = true;
 
-	/** Sets the expansion mode which indicates if this operator is drawn expanded or not. */
-	public void setExpanded(boolean expanded) {
+    /**
+     * Sets the expansion mode which indicates if this operator is drawn expanded or not.  @param expanded the expanded
+     *
+     * @param expanded the expanded
+     */
+    public void setExpanded(boolean expanded) {
 		this.expanded = expanded;
 	}
 
-	/** Returns true if this operator should be painted expanded. */
-	public boolean isExpanded() {
+    /**
+     * Returns true if this operator should be painted expanded.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean isExpanded() {
 		return expanded;
 	}
 
-	public void processStarts() throws OperatorException {
+    /**
+     * Process starts.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void processStarts() throws OperatorException {
 		for (Operator operator : operators) {
 			operator.processStarts();
 		}
 		updateExecutionOrder();
 	}
 
-	public void processFinished() throws OperatorException {
+    /**
+     * Process finished.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void processFinished() throws OperatorException {
 		for (Operator operator : operators) {
 			operator.processFinished();
 		}
 	}
 
-	/**
-	 * Moves the operators from this process to another process, keeping all connections intact.
-	 * TODO: Test more rigorously. Do we register/unregister everything correctly?
-	 *
-	 * @return the number of ports the connections of which could not be restored
-	 */
-	public int stealOperatorsFrom(ExecutionUnit otherUnit) {
+    /**
+     * Moves the operators from this process to another process, keeping all connections intact.
+     * TODO: Test more rigorously. Do we register/unregister everything correctly?
+     *
+     * @param otherUnit the other unit
+     * @return the number of ports the connections of which could not be restored
+     */
+    public int stealOperatorsFrom(ExecutionUnit otherUnit) {
 		int failedReconnects = 0;
 
 		// remember source and sink connections so we can reconnect them later.
@@ -923,11 +1037,14 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		return failedReconnects;
 	}
 
-	/**
-	 * Moves an operator to the given index. (If the old index is smaller than the new one, the new
-	 * one will automatically be reduced by one.)
-	 */
-	public void moveToIndex(Operator op, int newIndex) {
+    /**
+     * Moves an operator to the given index. (If the old index is smaller than the new one, the new
+     * one will automatically be reduced by one.)
+     *
+     * @param op       the op
+     * @param newIndex the new index
+     */
+    public void moveToIndex(Operator op, int newIndex) {
 		int oldIndex = operators.indexOf(op);
 		Process process = getEnclosingOperator().getProcess();
 		if (oldIndex != -1) {
@@ -948,11 +1065,14 @@ public class ExecutionUnit extends AbstractObservable<ExecutionUnit> {
 		}
 	}
 
-	/**
-	 * Re-arranges the execution order such that the specified operators immediately follow
-	 * <code>insertAfter</code>.
-	 */
-	public void bringToFront(Collection<Operator> movedOperators, Operator insertAfter) {
+    /**
+     * Re-arranges the execution order such that the specified operators immediately follow
+     * <code>insertAfter</code>.
+     *
+     * @param movedOperators the moved operators
+     * @param insertAfter    the insert after
+     */
+    public void bringToFront(Collection<Operator> movedOperators, Operator insertAfter) {
 		this.operators.removeAll(movedOperators);
 		int index = this.operators.indexOf(insertAfter) + 1;
 		for (Operator op : movedOperators) {

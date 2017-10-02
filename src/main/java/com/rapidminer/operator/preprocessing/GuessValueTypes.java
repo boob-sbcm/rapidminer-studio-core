@@ -53,11 +53,15 @@ import com.rapidminer.tools.Tools;
  */
 public class GuessValueTypes extends AbstractDataProcessing {
 
-	/** The parameter name for &quot;Character that is used as decimal point.&quot; */
-	public static final String PARAMETER_DECIMAL_POINT_CHARACTER = "decimal_point_character";
+    /**
+     * The parameter name for &quot;Character that is used as decimal point.&quot;
+     */
+    public static final String PARAMETER_DECIMAL_POINT_CHARACTER = "decimal_point_character";
 
-	/** The parameter name for &quot;Character that is used as decimal point.&quot; */
-	public static final String PARAMETER_NUMBER_GROUPING_CHARACTER = "number_grouping_character";
+    /**
+     * The parameter name for &quot;Character that is used as decimal point.&quot;
+     */
+    public static final String PARAMETER_NUMBER_GROUPING_CHARACTER = "number_grouping_character";
 
 	private AttributeSubsetSelector attributeSelector = new AttributeSubsetSelector(this, getExampleSetInputPort());
 
@@ -67,7 +71,12 @@ public class GuessValueTypes extends AbstractDataProcessing {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public GuessValueTypes(OperatorDescription description) {
+    /**
+     * Instantiates a new Guess value types.
+     *
+     * @param description the description
+     */
+    public GuessValueTypes(OperatorDescription description) {
 		super(description);
 	}
 

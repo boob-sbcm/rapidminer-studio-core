@@ -28,7 +28,7 @@ import com.rapidminer.tools.math.Averagable;
  * the criteria which should be averaged. Maximizing the minimum instead of the average could lead
  * to a more robust behaviour and generalization capacity. Furthermore, this criterion can be build
  * arbitrarily weighted linear combinations of both the minimum and the normal average.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MinMaxCriterion extends MeasuredPerformance {
@@ -47,10 +47,18 @@ public class MinMaxCriterion extends MeasuredPerformance {
 
 	private int counter = 0;
 
-	/** Necessary for newInstance() during loading. */
-	public MinMaxCriterion() {}
+    /**
+     * Necessary for newInstance() during loading.
+     */
+    public MinMaxCriterion() {}
 
-	public MinMaxCriterion(MeasuredPerformance delegate, double weight) {
+    /**
+     * Instantiates a new Min max criterion.
+     *
+     * @param delegate the delegate
+     * @param weight   the weight
+     */
+    public MinMaxCriterion(MeasuredPerformance delegate, double weight) {
 		this.delegate = delegate;
 		this.weight = weight;
 		if (!Double.isNaN(delegate.getFitness())) {
@@ -60,7 +68,12 @@ public class MinMaxCriterion extends MeasuredPerformance {
 		}
 	}
 
-	public MinMaxCriterion(MinMaxCriterion mmc) {
+    /**
+     * Instantiates a new Min max criterion.
+     *
+     * @param mmc the mmc
+     */
+    public MinMaxCriterion(MinMaxCriterion mmc) {
 		super(mmc);
 		this.delegate = mmc.delegate;
 		this.fitness = mmc.fitness;

@@ -40,7 +40,7 @@ import java.util.Map;
  * This class holds informations about plotter settings in the processing history since the
  * RapidMiner startup. They might be used for pre-initilizing the plotter with settings from the
  * past processing history.
- * 
+ *
  * @author Sebastian Land, Marius Helf
  */
 public final class PlotConfigurationHistory {
@@ -52,7 +52,14 @@ public final class PlotConfigurationHistory {
 	 */
 	private PlotConfigurationHistory() {};
 
-	public static Map<DatasetTransformationType, PlotConfiguration> getPlotConfigurationMap(IOObject object,
+    /**
+     * Gets plot configuration map.
+     *
+     * @param object    the object
+     * @param dataTable the data table
+     * @return the plot configuration map
+     */
+    public static Map<DatasetTransformationType, PlotConfiguration> getPlotConfigurationMap(IOObject object,
 			DataTable dataTable) {
 		List<ProcessingStep> steps = object.getProcessingHistory();
 		ListIterator<ProcessingStep> iterator = steps.listIterator(steps.size());

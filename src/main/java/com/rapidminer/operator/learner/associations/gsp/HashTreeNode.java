@@ -22,15 +22,38 @@ import java.util.ArrayList;
 
 
 /**
+ * The interface Hash tree node.
+ *
  * @author Sebastian Land
- * 
  */
 public interface HashTreeNode {
 
-	public void replaceNode(Item which, HashTreeNode replacement);
+    /**
+     * Replace node.
+     *
+     * @param which       the which
+     * @param replacement the replacement
+     */
+    public void replaceNode(Item which, HashTreeNode replacement);
 
-	public void addSequence(Sequence candidate, int candidateIndex, int depth, HashTreeNode father,
+    /**
+     * Add sequence.
+     *
+     * @param candidate      the candidate
+     * @param candidateIndex the candidate index
+     * @param depth          the depth
+     * @param father         the father
+     * @param allCandidates  the all candidates
+     */
+    public void addSequence(Sequence candidate, int candidateIndex, int depth, HashTreeNode father,
 			ArrayList<Sequence> allCandidates);
 
-	public void countCoveredCandidates(DataSequence sequence, double t, CountingInformations counting);
+    /**
+     * Count covered candidates.
+     *
+     * @param sequence the sequence
+     * @param t        the t
+     * @param counting the counting
+     */
+    public void countCoveredCandidates(DataSequence sequence, double t, CountingInformations counting);
 }

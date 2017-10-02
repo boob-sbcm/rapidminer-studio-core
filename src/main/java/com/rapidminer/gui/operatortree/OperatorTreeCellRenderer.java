@@ -108,7 +108,10 @@ public class OperatorTreeCellRenderer extends DefaultTreeCellRenderer {
 
 		private boolean hasFocus = false;
 
-		public OperatorPanel() {
+        /**
+         * Instantiates a new Operator panel.
+         */
+        public OperatorPanel() {
 			setBackground(new java.awt.Color(0, 0, 0, 0));
 			setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 
@@ -157,7 +160,15 @@ public class OperatorTreeCellRenderer extends DefaultTreeCellRenderer {
 			add(error);
 		}
 
-		public void updateOperator(JTree tree, Operator operator, boolean selected, boolean focus) {
+        /**
+         * Update operator.
+         *
+         * @param tree     the tree
+         * @param operator the operator
+         * @param selected the selected
+         * @param focus    the focus
+         */
+        public void updateOperator(JTree tree, Operator operator, boolean selected, boolean focus) {
 			this.isSelected = selected;
 			this.hasFocus = focus;
 
@@ -244,7 +255,10 @@ public class OperatorTreeCellRenderer extends DefaultTreeCellRenderer {
 
 	private final OperatorPanel operatorPanel = new OperatorPanel();
 
-	public OperatorTreeCellRenderer() {}
+    /**
+     * Instantiates a new Operator tree cell renderer.
+     */
+    public OperatorTreeCellRenderer() {}
 
 	@Override
 	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded,

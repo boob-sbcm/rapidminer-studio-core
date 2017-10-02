@@ -55,11 +55,15 @@ public class RapidLookAndFeel extends BasicLookAndFeel {
 
 	private static final long serialVersionUID = 1616331528047010458L;
 
-	/** the radius of RoundedRect corners */
-	public static final int CORNER_DEFAULT_RADIUS = 5;
+    /**
+     * the radius of RoundedRect corners
+     */
+    public static final int CORNER_DEFAULT_RADIUS = 5;
 
-	/** the radius of RoundedRect corners for tabs */
-	public static final int CORNER_TAB_RADIUS = 5;
+    /**
+     * the radius of RoundedRect corners for tabs
+     */
+    public static final int CORNER_TAB_RADIUS = 5;
 
 	/** the control key is not used on Mac for the same things it is used on Windows/Linux */
 	private static final String CONTROL_ID = SystemInfoUtilities.getOperatingSystem() != OperatingSystem.OSX ? "control"
@@ -69,19 +73,26 @@ public class RapidLookAndFeel extends BasicLookAndFeel {
 
 	private Map<String, Object> customUIDefaults = new HashMap<>();
 
-	public static Colors getColors() {
+    /**
+     * Gets colors.
+     *
+     * @return the colors
+     */
+    public static Colors getColors() {
 		return COLORS;
 	}
 
-	/**
-	 * Default empty constructor.
-	 */
-	public RapidLookAndFeel() {}
+    /**
+     * Default empty constructor.
+     */
+    public RapidLookAndFeel() {}
 
-	/**
-	 * OS X Constructor
-	 */
-	public RapidLookAndFeel(Map<String, Object> customUIDefaults) {
+    /**
+     * OS X Constructor
+     *
+     * @param customUIDefaults the custom ui defaults
+     */
+    public RapidLookAndFeel(Map<String, Object> customUIDefaults) {
 		this.customUIDefaults = customUIDefaults;
 	}
 
@@ -645,100 +656,220 @@ public class RapidLookAndFeel extends BasicLookAndFeel {
 		return super.getDisabledIcon(component, icon);
 	}
 
-	public static ColorUIResource getDesktopColor() {
+    /**
+     * Gets desktop color.
+     *
+     * @return the desktop color
+     */
+    public static ColorUIResource getDesktopColor() {
 		return new ColorUIResource(0, 0, 0);
 	}
 
-	public static ColorUIResource getControlShadow() {
+    /**
+     * Gets control shadow.
+     *
+     * @return the control shadow
+     */
+    public static ColorUIResource getControlShadow() {
 		return new ColorUIResource(50, 50, 50);
 	}
 
-	public static ColorUIResource getControlDarkShadow() {
+    /**
+     * Gets control dark shadow.
+     *
+     * @return the control dark shadow
+     */
+    public static ColorUIResource getControlDarkShadow() {
 		return new ColorUIResource(0, 0, 0);
 	}
 
-	public static ColorUIResource getControlHighlight() {
+    /**
+     * Gets control highlight.
+     *
+     * @return the control highlight
+     */
+    public static ColorUIResource getControlHighlight() {
 		return new ColorUIResource(255, 255, 255);
 	}
 
-	public static ColorUIResource getPrimaryControlShadow() {
+    /**
+     * Gets primary control shadow.
+     *
+     * @return the primary control shadow
+     */
+    public static ColorUIResource getPrimaryControlShadow() {
 		return new ColorUIResource(180, 180, 180);
 	}
 
-	public static ColorUIResource getPrimaryControlDarkShadow() {
+    /**
+     * Gets primary control dark shadow.
+     *
+     * @return the primary control dark shadow
+     */
+    public static ColorUIResource getPrimaryControlDarkShadow() {
 		return new ColorUIResource(70, 70, 70);
 	}
 
-	public static ColorUIResource getPrimaryControlHighlight() {
+    /**
+     * Gets primary control highlight.
+     *
+     * @return the primary control highlight
+     */
+    public static ColorUIResource getPrimaryControlHighlight() {
 		return new ColorUIResource(255, 255, 255);
 	}
 
-	public static ColorUIResource getSystemTextColor() {
+    /**
+     * Gets system text color.
+     *
+     * @return the system text color
+     */
+    public static ColorUIResource getSystemTextColor() {
 		return new ColorUIResource(0, 0, 0);
 	}
 
-	public static ColorUIResource getControlTextColor() {
+    /**
+     * Gets control text color.
+     *
+     * @return the control text color
+     */
+    public static ColorUIResource getControlTextColor() {
 		return new ColorUIResource(0, 0, 0);
 	}
 
-	public static ColorUIResource getInactiveControlTextColor() {
+    /**
+     * Gets inactive control text color.
+     *
+     * @return the inactive control text color
+     */
+    public static ColorUIResource getInactiveControlTextColor() {
 		return new ColorUIResource(150, 150, 150);
 	}
 
-	public static ColorUIResource getTextBackground() {
+    /**
+     * Gets text background.
+     *
+     * @return the text background
+     */
+    public static ColorUIResource getTextBackground() {
 		return new ColorUIResource(255, 255, 255);
 	}
 
-	public static ColorUIResource getUserTextColor() {
+    /**
+     * Gets user text color.
+     *
+     * @return the user text color
+     */
+    public static ColorUIResource getUserTextColor() {
 		return new ColorUIResource(0, 0, 0);
 	}
 
-	public static ColorUIResource getInactiveSystemTextColor() {
+    /**
+     * Gets inactive system text color.
+     *
+     * @return the inactive system text color
+     */
+    public static ColorUIResource getInactiveSystemTextColor() {
 		return new ColorUIResource(180, 180, 180);
 	}
 
-	// TODO: This is for the internal docking frame titles
+    /**
+     * Gets window title background.
+     *
+     * @return the window title background
+     */
+// TODO: This is for the internal docking frame titles
 	public static ColorUIResource getWindowTitleBackground() {
 		return new ColorUIResource(220, 225, 230);
 	}
 
-	public static ColorUIResource getWindowTitleForeground() {
+    /**
+     * Gets window title foreground.
+     *
+     * @return the window title foreground
+     */
+    public static ColorUIResource getWindowTitleForeground() {
 		return new ColorUIResource(255, 255, 255);
 	}
 
-	public static ColorUIResource getMenuBackground() {
+    /**
+     * Gets menu background.
+     *
+     * @return the menu background
+     */
+    public static ColorUIResource getMenuBackground() {
 		return new ColorUIResource(250, 250, 250);
 	}
 
-	public static ColorUIResource getMenuForeground() {
+    /**
+     * Gets menu foreground.
+     *
+     * @return the menu foreground
+     */
+    public static ColorUIResource getMenuForeground() {
 		return new ColorUIResource(0, 0, 0);
 	}
 
-	public static ColorUIResource getMenuSelectedBackground() {
+    /**
+     * Gets menu selected background.
+     *
+     * @return the menu selected background
+     */
+    public static ColorUIResource getMenuSelectedBackground() {
 		return new ColorUIResource(40, 115, 217);
 	}
 
-	public static ColorUIResource getMenuSelectedForeground() {
+    /**
+     * Gets menu selected foreground.
+     *
+     * @return the menu selected foreground
+     */
+    public static ColorUIResource getMenuSelectedForeground() {
 		return new ColorUIResource(255, 255, 255);
 	}
 
-	public static ColorUIResource getMenuDisabledForeground() {
+    /**
+     * Gets menu disabled foreground.
+     *
+     * @return the menu disabled foreground
+     */
+    public static ColorUIResource getMenuDisabledForeground() {
 		return new ColorUIResource(180, 180, 180);
 	}
 
-	public static ColorUIResource getMenuSelectedBack() {
+    /**
+     * Gets menu selected back.
+     *
+     * @return the menu selected back
+     */
+    public static ColorUIResource getMenuSelectedBack() {
 		return new ColorUIResource(90, 110, 170);
 	}
 
-	public static FontUIResource getMainFont() {
+    /**
+     * Gets main font.
+     *
+     * @return the main font
+     */
+    public static FontUIResource getMainFont() {
 		return new FontUIResource(FontTools.getFont(Font.DIALOG, 0, 12));
 	}
 
-	public static FontUIResource getTextfieldFont() {
+    /**
+     * Gets textfield font.
+     *
+     * @return the textfield font
+     */
+    public static FontUIResource getTextfieldFont() {
 		return new FontUIResource(FontTools.getFont(Font.DIALOG, 0, 12));
 	}
 
-	public ColorUIResource getTextHighlightColor() {
+    /**
+     * Gets text highlight color.
+     *
+     * @return the text highlight color
+     */
+    public ColorUIResource getTextHighlightColor() {
 		return Colors.TEXT_HIGHLIGHT_BACKGROUND;
 	}
 }

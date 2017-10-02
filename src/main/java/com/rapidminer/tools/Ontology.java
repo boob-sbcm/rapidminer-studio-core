@@ -28,9 +28,15 @@ package com.rapidminer.tools;
  */
 public class Ontology {
 
-	public static final int VALUE_TYPE = 0;
+    /**
+     * The constant VALUE_TYPE.
+     */
+    public static final int VALUE_TYPE = 0;
 
-	public static final int BLOCK_TYPE = 1;
+    /**
+     * The constant BLOCK_TYPE.
+     */
+    public static final int BLOCK_TYPE = 1;
 
 	/**
 	 * The parent's index in the array. Root has parent -1.
@@ -40,39 +46,83 @@ public class Ontology {
 	/** Human readable string representations. */
 	private final String names[];
 
-	public static final int NO_PARENT = -1;
+    /**
+     * The constant NO_PARENT.
+     */
+    public static final int NO_PARENT = -1;
 
 	// -------------------- VALUE TYPE --------------------
 
-	public static final int ATTRIBUTE_VALUE = 0;
+    /**
+     * The constant ATTRIBUTE_VALUE.
+     */
+    public static final int ATTRIBUTE_VALUE = 0;
 
-	public static final int NOMINAL = 1;
+    /**
+     * The constant NOMINAL.
+     */
+    public static final int NOMINAL = 1;
 
-	public static final int NUMERICAL = 2;
+    /**
+     * The constant NUMERICAL.
+     */
+    public static final int NUMERICAL = 2;
 
-	public static final int INTEGER = 3;
+    /**
+     * The constant INTEGER.
+     */
+    public static final int INTEGER = 3;
 
-	public static final int REAL = 4;
+    /**
+     * The constant REAL.
+     */
+    public static final int REAL = 4;
 
-	public static final int STRING = 5;
+    /**
+     * The constant STRING.
+     */
+    public static final int STRING = 5;
 
-	public static final int BINOMINAL = 6; // nominal, only +1 and -1
+    /**
+     * The constant BINOMINAL.
+     */
+    public static final int BINOMINAL = 6; // nominal, only +1 and -1
 
-	public static final int POLYNOMINAL = 7;
+    /**
+     * The constant POLYNOMINAL.
+     */
+    public static final int POLYNOMINAL = 7;
 
-	public static final int FILE_PATH = 8; // path to a file
+    /**
+     * The constant FILE_PATH.
+     */
+    public static final int FILE_PATH = 8; // path to a file
 
-	public static final int DATE_TIME = 9;
+    /**
+     * The constant DATE_TIME.
+     */
+    public static final int DATE_TIME = 9;
 
-	public static final int DATE = 10;
+    /**
+     * The constant DATE.
+     */
+    public static final int DATE = 10;
 
-	public static final int TIME = 11;
+    /**
+     * The constant TIME.
+     */
+    public static final int TIME = 11;
 
-	public static final String[] VALUE_TYPE_NAMES = { "attribute_value", "nominal", "numeric", "integer", "real", "text",
+    /**
+     * The constant VALUE_TYPE_NAMES.
+     */
+    public static final String[] VALUE_TYPE_NAMES = { "attribute_value", "nominal", "numeric", "integer", "real", "text",
 		"binominal", "polynominal", "file_path", "date_time", "date", "time" };
 
-	/** An ontology for value types (nominal, numerical...) */
-	public static final Ontology ATTRIBUTE_VALUE_TYPE = new Ontology(new int[] { NO_PARENT,       // attribute_value
+    /**
+     * An ontology for value types (nominal, numerical...)
+     */
+    public static final Ontology ATTRIBUTE_VALUE_TYPE = new Ontology(new int[] { NO_PARENT,       // attribute_value
 			// (parent
 			// type)
 			ATTRIBUTE_VALUE, // nominal
@@ -90,30 +140,62 @@ public class Ontology {
 
 	// -------------------- BLOCK TYPE --------------------
 
-	public static final int ATTRIBUTE_BLOCK = 0;
+    /**
+     * The constant ATTRIBUTE_BLOCK.
+     */
+    public static final int ATTRIBUTE_BLOCK = 0;
 
-	public static final int SINGLE_VALUE = 1;
+    /**
+     * The constant SINGLE_VALUE.
+     */
+    public static final int SINGLE_VALUE = 1;
 
-	public static final int VALUE_SERIES = 2;
+    /**
+     * The constant VALUE_SERIES.
+     */
+    public static final int VALUE_SERIES = 2;
 
-	public static final int VALUE_SERIES_START = 3;
+    /**
+     * The constant VALUE_SERIES_START.
+     */
+    public static final int VALUE_SERIES_START = 3;
 
-	public static final int VALUE_SERIES_END = 4;
+    /**
+     * The constant VALUE_SERIES_END.
+     */
+    public static final int VALUE_SERIES_END = 4;
 
-	public static final int VALUE_MATRIX = 5;
+    /**
+     * The constant VALUE_MATRIX.
+     */
+    public static final int VALUE_MATRIX = 5;
 
-	public static final int VALUE_MATRIX_START = 6;
+    /**
+     * The constant VALUE_MATRIX_START.
+     */
+    public static final int VALUE_MATRIX_START = 6;
 
-	public static final int VALUE_MATRIX_END = 7;
+    /**
+     * The constant VALUE_MATRIX_END.
+     */
+    public static final int VALUE_MATRIX_END = 7;
 
-	public static final int VALUE_MATRIX_ROW_START = 8;
+    /**
+     * The constant VALUE_MATRIX_ROW_START.
+     */
+    public static final int VALUE_MATRIX_ROW_START = 8;
 
-	public static final String[] BLOCK_TYPE_NAMES = { "attribute_block", "single_value", "value_series",
+    /**
+     * The constant BLOCK_TYPE_NAMES.
+     */
+    public static final String[] BLOCK_TYPE_NAMES = { "attribute_block", "single_value", "value_series",
 		"value_series_start", "value_series_end", "value_matrix", "value_matrix_start", "value_matrix_end",
 	"value_matrix_row_start" };
 
-	/** An ontology for block types (single, time series...) */
-	public static final Ontology ATTRIBUTE_BLOCK_TYPE = new Ontology(new int[] { NO_PARENT,        // attribute
+    /**
+     * An ontology for block types (single, time series...)
+     */
+    public static final Ontology ATTRIBUTE_BLOCK_TYPE = new Ontology(new int[] { NO_PARENT,        // attribute
 			// block
 			ATTRIBUTE_BLOCK,  // single value
 			ATTRIBUTE_BLOCK,  // value series
@@ -131,8 +213,14 @@ public class Ontology {
 		this.names = names;
 	}
 
-	/** Returns true if child is a parent. */
-	public boolean isA(int child, int parent) {
+    /**
+     * Returns true if child is a parent.  @param child the child
+     *
+     * @param child  the child
+     * @param parent the parent
+     * @return the boolean
+     */
+    public boolean isA(int child, int parent) {
 		while (child != parent) {
 			child = parentId[child];
 			if (child == -1) {
@@ -142,8 +230,13 @@ public class Ontology {
 		return true;
 	}
 
-	/** Maps the name of a class to its index or -1 if unknown. */
-	public int mapName(String name) {
+    /**
+     * Maps the name of a class to its index or -1 if unknown.  @param name the name
+     *
+     * @param name the name
+     * @return the int
+     */
+    public int mapName(String name) {
 		for (int i = 0; i < names.length; i++) {
 			if (names[i].equals(name)) {
 				return i;
@@ -152,8 +245,13 @@ public class Ontology {
 		return -1;
 	}
 
-	/** Maps an index to its name. */
-	public String mapIndex(int index) {
+    /**
+     * Maps an index to its name.  @param index the index
+     *
+     * @param index the index
+     * @return the string
+     */
+    public String mapIndex(int index) {
 		if (index >= 0 && index < names.length) {
 			return names[index];
 		} else {
@@ -161,24 +259,36 @@ public class Ontology {
 		}
 	}
 
-	/**
-	 * Maps an index to a display name.
-	 *
-	 * @param index
-	 * @since 6.5.0
-	 */
-	public String mapIndexToDisplayName(int index) {
+    /**
+     * Maps an index to a display name.
+     *
+     * @param index the index
+     * @return the string
+     * @since 6.5.0
+     */
+    public String mapIndexToDisplayName(int index) {
 		String valueTypeString = mapIndex(index);
 		valueTypeString = valueTypeString.replaceAll("_", " ");
 		valueTypeString = String.valueOf(valueTypeString.charAt(0)).toUpperCase() + valueTypeString.substring(1);
 		return valueTypeString;
 	}
 
-	public String[] getNames() {
+    /**
+     * Get names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getNames() {
 		return names;
 	}
 
-	public int getParent(int child) {
+    /**
+     * Gets parent.
+     *
+     * @param child the child
+     * @return the parent
+     */
+    public int getParent(int child) {
 		return parentId[child];
 	}
 }

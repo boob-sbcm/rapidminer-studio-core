@@ -38,10 +38,10 @@ import com.rapidminer.tools.math.distribution.NormalDistribution;
 /**
  * DistributionModel is a model for learners which estimate distributions of attribute values from
  * example sets like NaiveBayes.
- *
+ * <p>
  * Predictions are calculated as product of the conditional probabilities for all attributes times
  * the class probability.
- *
+ * <p>
  * The basic learning concept is to simply count occurrences of classes and attribute values. This
  * means no probabilities are calculated during the learning step. This is only done before output.
  * Optionally, this calculation can apply a Laplace correction which means in particular that zero
@@ -55,17 +55,35 @@ public class SimpleDistributionModel extends DistributionModel {
 
 	private static final String UNKNOWN_VALUE_NAME = "unknown";
 
-	public static final int INDEX_VALUE_SUM = 0;
+    /**
+     * The constant INDEX_VALUE_SUM.
+     */
+    public static final int INDEX_VALUE_SUM = 0;
 
-	public static final int INDEX_SQUARED_VALUE_SUM = 1;
+    /**
+     * The constant INDEX_SQUARED_VALUE_SUM.
+     */
+    public static final int INDEX_SQUARED_VALUE_SUM = 1;
 
-	public static final int INDEX_MISSING_WEIGHTS = 2;
+    /**
+     * The constant INDEX_MISSING_WEIGHTS.
+     */
+    public static final int INDEX_MISSING_WEIGHTS = 2;
 
-	public static final int INDEX_MEAN = 0;
+    /**
+     * The constant INDEX_MEAN.
+     */
+    public static final int INDEX_MEAN = 0;
 
-	public static final int INDEX_STANDARD_DEVIATION = 1;
+    /**
+     * The constant INDEX_STANDARD_DEVIATION.
+     */
+    public static final int INDEX_STANDARD_DEVIATION = 1;
 
-	public static final int INDEX_LOG_FACTOR = 2;
+    /**
+     * The constant INDEX_LOG_FACTOR.
+     */
+    public static final int INDEX_LOG_FACTOR = 2;
 
 	private static final int OPERATOR_PROGRESS_STEPS = 200;
 
@@ -120,10 +138,10 @@ public class SimpleDistributionModel extends DistributionModel {
 	 */
 	private double[][][] distributionProperties;
 
-	/**
-	 * Captures if laplace correction should be applied when calculating probabilities.
-	 */
-	boolean laplaceCorrectionEnabled;
+    /**
+     * Captures if laplace correction should be applied when calculating probabilities.
+     */
+    boolean laplaceCorrectionEnabled;
 
 	/**
 	 * Indicates if the model has recently been updated and the actual probabilities have to be
@@ -131,14 +149,18 @@ public class SimpleDistributionModel extends DistributionModel {
 	 */
 	private boolean modelRecentlyUpdated;
 
-	/**
-	 * This constructor allows to build a distribution model from the given data characteristics. It
-	 * is fully updateable. For details on weightsSums, please take a look at the member variable
-	 * weightSums. The ExampleSet is only used for storing the header. The attributes and their
-	 * values, including the class values, must be in the same order in the headerSet as they are in
-	 * the encoded in the weight sums.
-	 */
-	public SimpleDistributionModel(ExampleSet headerSet, double classWeights[], double[][][] weightSums) {
+    /**
+     * This constructor allows to build a distribution model from the given data characteristics. It
+     * is fully updateable. For details on weightsSums, please take a look at the member variable
+     * weightSums. The ExampleSet is only used for storing the header. The attributes and their
+     * values, including the class values, must be in the same order in the headerSet as they are in
+     * the encoded in the weight sums.
+     *
+     * @param headerSet    the header set
+     * @param classWeights the class weights
+     * @param weightSums   the weight sums
+     */
+    public SimpleDistributionModel(ExampleSet headerSet, double classWeights[], double[][][] weightSums) {
 		super(headerSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		Attributes attributes = headerSet.getAttributes();
@@ -195,19 +217,24 @@ public class SimpleDistributionModel extends DistributionModel {
 		updateDistributionProperties();
 	}
 
-	/**
-	 * This constructor will derive a complete distribution model on basis of the given trainings
-	 * data with Laplace correcture enabled.
-	 */
-	public SimpleDistributionModel(ExampleSet trainExampleSet) {
+    /**
+     * This constructor will derive a complete distribution model on basis of the given trainings
+     * data with Laplace correcture enabled.
+     *
+     * @param trainExampleSet the train example set
+     */
+    public SimpleDistributionModel(ExampleSet trainExampleSet) {
 		this(trainExampleSet, true);
 	}
 
-	/**
-	 * This constructor will derive a complete distribution model on basis of the given trainings
-	 * data with Laplace correcture depending on the parameter.
-	 */
-	public SimpleDistributionModel(ExampleSet trainExampleSet, boolean laplaceCorrectionEnabled) {
+    /**
+     * This constructor will derive a complete distribution model on basis of the given trainings
+     * data with Laplace correcture depending on the parameter.
+     *
+     * @param trainExampleSet          the train example set
+     * @param laplaceCorrectionEnabled the laplace correction enabled
+     */
+    public SimpleDistributionModel(ExampleSet trainExampleSet, boolean laplaceCorrectionEnabled) {
 		super(trainExampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		createSimpleDistributionModel(trainExampleSet, laplaceCorrectionEnabled);
@@ -219,15 +246,18 @@ public class SimpleDistributionModel extends DistributionModel {
 		updateDistributionProperties();
 	}
 
-	/**
-	 * This constructor will derive a complete distribution model on basis of the given trainings
-	 * data with Laplace correcture depending on the parameter.
-	 *
-	 * The OperatorProgress is used to update it.
-	 *
-	 * @throws ProcessStoppedException
-	 */
-	public SimpleDistributionModel(ExampleSet trainExampleSet, boolean laplaceCorrectionEnabled, OperatorProgress opProg)
+    /**
+     * This constructor will derive a complete distribution model on basis of the given trainings
+     * data with Laplace correcture depending on the parameter.
+     * <p>
+     * The OperatorProgress is used to update it.
+     *
+     * @param trainExampleSet          the train example set
+     * @param laplaceCorrectionEnabled the laplace correction enabled
+     * @param opProg                   the op prog
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public SimpleDistributionModel(ExampleSet trainExampleSet, boolean laplaceCorrectionEnabled, OperatorProgress opProg)
 			throws ProcessStoppedException {
 		super(trainExampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
@@ -299,18 +329,20 @@ public class SimpleDistributionModel extends DistributionModel {
 		return this.attributeNames.length;
 	}
 
-	/**
-	 * Updates the model by counting the occurrences of classes and attribute values in combination
-	 * with the class values.
-	 *
-	 * ATTENTION: only updates the weight counters, distribution properties are not updated, call
-	 * updateDistributionProperties() to accomplish this task.
-	 *
-	 * The OperatorProgress is used to update it.
-	 *
-	 * @throws ProcessStoppedException
-	 */
-	public void update(ExampleSet exampleSet, OperatorProgress opProg) throws ProcessStoppedException {
+    /**
+     * Updates the model by counting the occurrences of classes and attribute values in combination
+     * with the class values.
+     * <p>
+     * ATTENTION: only updates the weight counters, distribution properties are not updated, call
+     * updateDistributionProperties() to accomplish this task.
+     * <p>
+     * The OperatorProgress is used to update it.
+     *
+     * @param exampleSet the example set
+     * @param opProg     the op prog
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public void update(ExampleSet exampleSet, OperatorProgress opProg) throws ProcessStoppedException {
 		Attribute weightAttribute = exampleSet.getAttributes().getWeight();
 		if (opProg != null) {
 			opProg.setTotal(exampleSet.size());
@@ -520,11 +552,21 @@ public class SimpleDistributionModel extends DistributionModel {
 		return exampleSet;
 	}
 
-	public void setLaplaceCorrectionEnabled(boolean laplaceCorrectionEnabled) {
+    /**
+     * Sets laplace correction enabled.
+     *
+     * @param laplaceCorrectionEnabled the laplace correction enabled
+     */
+    public void setLaplaceCorrectionEnabled(boolean laplaceCorrectionEnabled) {
 		this.laplaceCorrectionEnabled = laplaceCorrectionEnabled;
 	}
 
-	public boolean getLaplaceCorrectionEnabled() {
+    /**
+     * Gets laplace correction enabled.
+     *
+     * @return the laplace correction enabled
+     */
+    public boolean getLaplaceCorrectionEnabled() {
 		return laplaceCorrectionEnabled;
 	}
 
@@ -591,11 +633,15 @@ public class SimpleDistributionModel extends DistributionModel {
 		return classValues[index];
 	}
 
-	/**
-	 * This returns the raw numerical parameters of the distribution. Depends on the attribute value
-	 * type! Use with caution.
-	 */
-	public double[] getRawDistributionParameter(int classIndex, int attributeIndex) {
+    /**
+     * This returns the raw numerical parameters of the distribution. Depends on the attribute value
+     * type! Use with caution.
+     *
+     * @param classIndex     the class index
+     * @param attributeIndex the attribute index
+     * @return the double [ ]
+     */
+    public double[] getRawDistributionParameter(int classIndex, int attributeIndex) {
 		return distributionProperties[attributeIndex][classIndex];
 	}
 
@@ -613,15 +659,30 @@ public class SimpleDistributionModel extends DistributionModel {
 		}
 	}
 
-	public double getTotalWeight() {
+    /**
+     * Gets total weight.
+     *
+     * @return the total weight
+     */
+    public double getTotalWeight() {
 		return totalWeight;
 	}
 
-	public double[] getClassWeights() {
+    /**
+     * Get class weights double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getClassWeights() {
 		return classWeights;
 	}
 
-	public double[] getAprioriProbabilities() {
+    /**
+     * Get apriori probabilities double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getAprioriProbabilities() {
 		return priors;
 	}
 

@@ -22,9 +22,16 @@ import com.rapidminer.gui.new_plotter.listener.events.LineFormatChangeEvent;
 
 
 /**
+ * The interface Line format listener.
+ *
  * @author Marius Helf
  */
 public interface LineFormatListener {
 
-	public void lineFormatChanged(LineFormatChangeEvent e);
+    /**
+     * Line format changed.
+     *
+     * @param e the e
+     */
+    public void lineFormatChanged(LineFormatChangeEvent e);
 }

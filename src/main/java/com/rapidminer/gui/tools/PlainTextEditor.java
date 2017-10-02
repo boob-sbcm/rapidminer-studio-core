@@ -24,14 +24,17 @@ import com.rapidminer.gui.tools.syntax.TextAreaDefaults;
 
 /**
  * A generic text editor.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PlainTextEditor extends JEditTextArea {
 
 	private static final long serialVersionUID = -13322093427862217L;
 
-	public PlainTextEditor() {
+    /**
+     * Instantiates a new Plain text editor.
+     */
+    public PlainTextEditor() {
 		super(getDefaults());
 	}
 

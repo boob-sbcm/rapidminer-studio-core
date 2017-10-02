@@ -44,15 +44,26 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  * subprocesses are collected and returned as collections.
  *
  * @author Simon Fischer
- *
  */
 public class CollectionIterationOperator extends OperatorChain {
 
-	protected static final String PARAMETER_SET_MACRO = "set_iteration_macro";
-	protected static final String PARAMETER_MACRO_NAME = "macro_name";
-	protected static final String PARAMETER_MACRO_START_VALUE = "macro_start_value";
+    /**
+     * The constant PARAMETER_SET_MACRO.
+     */
+    protected static final String PARAMETER_SET_MACRO = "set_iteration_macro";
+    /**
+     * The constant PARAMETER_MACRO_NAME.
+     */
+    protected static final String PARAMETER_MACRO_NAME = "macro_name";
+    /**
+     * The constant PARAMETER_MACRO_START_VALUE.
+     */
+    protected static final String PARAMETER_MACRO_START_VALUE = "macro_start_value";
 
-	protected static final String PARAMETER_UNFOLD = "unfold";
+    /**
+     * The constant PARAMETER_UNFOLD.
+     */
+    protected static final String PARAMETER_UNFOLD = "unfold";
 
 	private final InputPort collectionInput = getInputPorts().createPort("collection",
 			new CollectionMetaData(new MetaData()));
@@ -62,7 +73,12 @@ public class CollectionIterationOperator extends OperatorChain {
 
 	private int currentIteration = 0;
 
-	public CollectionIterationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Collection iteration operator.
+     *
+     * @param description the description
+     */
+    public CollectionIterationOperator(OperatorDescription description) {
 		super(description, "Iteration");
 		outExtender.start();
 		getTransformer().addRule(new MDTransformationRule() {

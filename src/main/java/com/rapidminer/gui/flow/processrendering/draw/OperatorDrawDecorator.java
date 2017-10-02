@@ -35,37 +35,28 @@ import com.rapidminer.operator.Operator;
  * </p>
  *
  * @author Marco Boeck
+ * @see ProcessDrawer#addOperatorDecorator(OperatorDrawDecorator) ProcessDrawer#addOperatorDecorator(OperatorDrawDecorator)ProcessDrawer#addOperatorDecorator(OperatorDrawDecorator)
  * @since 6.4.0
- * @see ProcessDrawer#addOperatorDecorator(OperatorDrawDecorator)
- *
  */
 public interface OperatorDrawDecorator {
 
-	/**
-	 * Draws the decoration directly after the operator itself was drawn. This method is called when
-	 * {@link ProcessRendererView#paintComponent(java.awt.Graphics)} was called.
-	 *
-	 * @param operator
-	 *            the operator which can be decorated.
-	 * @param g2
-	 *            the graphics context to draw upon. Coordinates start at (0,0) aka the top left
-	 *            corner and extend to {@link ProcessRendererModel#getProcessSize(ExecutionUnit)}
-	 * @param model
-	 *            the model backing the process rendering
-	 */
-	public void draw(final Operator operator, final Graphics2D g2, final ProcessRendererModel model);
+    /**
+     * Draws the decoration directly after the operator itself was drawn. This method is called when
+     * {@link ProcessRendererView#paintComponent(java.awt.Graphics)} was called.
+     *
+     * @param operator the operator which can be decorated.
+     * @param g2       the graphics context to draw upon. Coordinates start at (0,0) aka the top left            corner and extend to {@link ProcessRendererModel#getProcessSize(ExecutionUnit)}
+     * @param model    the model backing the process rendering
+     */
+    public void draw(final Operator operator, final Graphics2D g2, final ProcessRendererModel model);
 
-	/**
-	 * Prints the decoration directly after the operator itself was drawn. This method is called
-	 * when {@link ProcessRendererView#printComponent(java.awt.Graphics)} was called.
-	 *
-	 * @param operator
-	 *            the operator which can be decorated.
-	 * @param g2
-	 *            the graphics context to draw upon. Coordinates start at (0,0) aka the top left
-	 *            corner and extend to {@link ProcessRendererModel#getProcessSize(ExecutionUnit)}
-	 * @param model
-	 *            the model backing the process rendering
-	 */
-	public void print(final Operator operator, final Graphics2D g2, final ProcessRendererModel model);
+    /**
+     * Prints the decoration directly after the operator itself was drawn. This method is called
+     * when {@link ProcessRendererView#printComponent(java.awt.Graphics)} was called.
+     *
+     * @param operator the operator which can be decorated.
+     * @param g2       the graphics context to draw upon. Coordinates start at (0,0) aka the top left            corner and extend to {@link ProcessRendererModel#getProcessSize(ExecutionUnit)}
+     * @param model    the model backing the process rendering
+     */
+    public void print(final Operator operator, final Graphics2D g2, final ProcessRendererModel model);
 }

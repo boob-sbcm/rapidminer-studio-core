@@ -67,7 +67,15 @@ public class CSVFileReader {
 
 	private final DataEvaluator dataEvaluator;
 
-	public CSVFileReader(final File file, boolean useFirstRowAsColumnNames, LineParser parser, NumberFormat numberFormat) {
+    /**
+     * Instantiates a new Csv file reader.
+     *
+     * @param file                     the file
+     * @param useFirstRowAsColumnNames the use first row as column names
+     * @param parser                   the parser
+     * @param numberFormat             the number format
+     */
+    public CSVFileReader(final File file, boolean useFirstRowAsColumnNames, LineParser parser, NumberFormat numberFormat) {
 		this.file = file;
 		this.useFirstRowAsColumnNames = useFirstRowAsColumnNames;
 		this.parser = parser;
@@ -81,7 +89,14 @@ public class CSVFileReader {
 		};
 	}
 
-	public LinkedList<String[]> readData(int maxLines) throws IOException {
+    /**
+     * Read data linked list.
+     *
+     * @param maxLines the max lines
+     * @return the linked list
+     * @throws IOException the io exception
+     */
+    public LinkedList<String[]> readData(int maxLines) throws IOException {
 		String line = null;
 		eofReached = false;
 		boolean first = true;
@@ -118,12 +133,24 @@ public class CSVFileReader {
 		readData(MAX_LINES);
 	}
 
-	public MetaData getMetaData() throws IOException {
+    /**
+     * Gets meta data.
+     *
+     * @return the meta data
+     * @throws IOException the io exception
+     */
+    public MetaData getMetaData() throws IOException {
 		guessMetaData();
 		return dataEvaluator.getMetaData();
 	}
 
-	public ExampleSet createExampleSet() throws IOException {
+    /**
+     * Create example set example set.
+     *
+     * @return the example set
+     * @throws IOException the io exception
+     */
+    public ExampleSet createExampleSet() throws IOException {
 		guessMetaData();
 		ExampleSetMetaData metaData = dataEvaluator.getMetaData();
 		ArrayList<Attribute> attributes = new ArrayList<Attribute>(metaData.getAllAttributes().size());
@@ -133,7 +160,13 @@ public class CSVFileReader {
 		return ExampleSets.from(attributes).withDataRowReader(getDataRowReader(attributes)).build();
 	}
 
-	public Iterator<String[]> getDataReader() throws IOException {
+    /**
+     * Gets data reader.
+     *
+     * @return the data reader
+     * @throws IOException the io exception
+     */
+    public Iterator<String[]> getDataReader() throws IOException {
 		Iterator<String[]> iterator = new Iterator<String[]>() {
 
 			private String line = null;
@@ -185,7 +218,14 @@ public class CSVFileReader {
 		return iterator;
 	}
 
-	public DataRowReader getDataRowReader(final List<Attribute> attributeList) throws IOException {
+    /**
+     * Gets data row reader.
+     *
+     * @param attributeList the attribute list
+     * @return the data row reader
+     * @throws IOException the io exception
+     */
+    public DataRowReader getDataRowReader(final List<Attribute> attributeList) throws IOException {
 		DataRowReader dataRowReader = new DataRowReader() {
 
 			private Iterator<String[]> iterator = getDataReader();

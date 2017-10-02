@@ -45,7 +45,14 @@ public class WeightBasedSymbolAxis extends SymbolAxis {
 
 	private double maxWeight;
 
-	public WeightBasedSymbolAxis(String name, String[] symbols, double[] weights) {
+    /**
+     * Instantiates a new Weight based symbol axis.
+     *
+     * @param name    the name
+     * @param symbols the symbols
+     * @param weights the weights
+     */
+    public WeightBasedSymbolAxis(String name, String[] symbols, double[] weights) {
 		super(name, symbols);
 		this.weights = weights;
 		for (double d : weights) {

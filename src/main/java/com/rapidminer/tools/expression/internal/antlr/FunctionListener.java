@@ -31,24 +31,27 @@ import com.rapidminer.tools.expression.internal.antlr.FunctionExpressionParser.O
  * are valid functions and have the right number of arguments.
  *
  * @author Gisa Schaefer
- *
  */
 class FunctionListener extends FunctionExpressionParserBaseListener {
 
 	private ExpressionContext lookup;
 
-	/**
-	 * Creates a listener that checks if operators and function names in the expression are known by
-	 * the lookup and have the right number of arguments.
-	 *
-	 * @param lookup
-	 *            the ExpressionContext that administers the valid functions
-	 */
-	FunctionListener(ExpressionContext lookup) {
+    /**
+     * Creates a listener that checks if operators and function names in the expression are known by
+     * the lookup and have the right number of arguments.
+     *
+     * @param lookup the ExpressionContext that administers the valid functions
+     */
+    FunctionListener(ExpressionContext lookup) {
 		this.lookup = lookup;
 	}
 
-	@Override
+    /**
+     * Enter operation exp.
+     *
+     * @param ctx the ctx
+     */
+    @Override
 	public void enterOperationExp(OperationExpContext ctx) {
 		if (ctx.op == null) {
 			return;
@@ -61,7 +64,12 @@ class FunctionListener extends FunctionExpressionParserBaseListener {
 		}
 	}
 
-	@Override
+    /**
+     * Enter function.
+     *
+     * @param ctx the ctx
+     */
+    @Override
 	public void enterFunction(FunctionContext ctx) {
 		String functionName = ctx.NAME().getText();
 		Function function = lookup.getFunction(functionName);

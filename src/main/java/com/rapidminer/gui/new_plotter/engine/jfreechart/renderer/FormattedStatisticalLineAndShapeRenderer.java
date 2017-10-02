@@ -32,6 +32,8 @@ import org.jfree.chart.renderer.category.StatisticalLineAndShapeRenderer;
 
 
 /**
+ * The type Formatted statistical line and shape renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedStatisticalLineAndShapeRenderer extends StatisticalLineAndShapeRenderer implements FormattedRenderer,
@@ -41,12 +43,21 @@ public class FormattedStatisticalLineAndShapeRenderer extends StatisticalLineAnd
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedStatisticalLineAndShapeRenderer() {
+    /**
+     * Instantiates a new Formatted statistical line and shape renderer.
+     */
+    public FormattedStatisticalLineAndShapeRenderer() {
 		super();
 		formatDelegate.addListener(this);
 	}
 
-	public FormattedStatisticalLineAndShapeRenderer(boolean linesVisible, boolean shapesVisible) {
+    /**
+     * Instantiates a new Formatted statistical line and shape renderer.
+     *
+     * @param linesVisible  the lines visible
+     * @param shapesVisible the shapes visible
+     */
+    public FormattedStatisticalLineAndShapeRenderer(boolean linesVisible, boolean shapesVisible) {
 		super(linesVisible, shapesVisible);
 	}
 

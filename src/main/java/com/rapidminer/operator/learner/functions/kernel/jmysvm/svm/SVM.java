@@ -40,7 +40,7 @@ import java.util.logging.Level;
 
 /**
  * Abstract base class for all SVMs
- * 
+ *
  * @author Stefan Rueping, Ingo Mierswa
  */
 public abstract class SVM implements SVMInterface {
@@ -48,88 +48,200 @@ public abstract class SVM implements SVMInterface {
 	private static final int[] RAPID_MINER_VERBOSITY = { LogService.STATUS, LogService.STATUS, LogService.STATUS,
 			LogService.MINIMUM, LogService.MINIMUM };
 
-	protected Kernel the_kernel;
+    /**
+     * The The kernel.
+     */
+    protected Kernel the_kernel;
 
-	protected SVMExamples the_examples;
+    /**
+     * The The examples.
+     */
+    protected SVMExamples the_examples;
 
-	double[] alphas;
+    /**
+     * The Alphas.
+     */
+    double[] alphas;
 
-	double[] ys;
+    /**
+     * The Ys.
+     */
+    double[] ys;
 
-	protected int examples_total;
+    /**
+     * The Examples total.
+     */
+    protected int examples_total;
 
-	// protected int verbosity;
+    /**
+     * The Target count.
+     */
+// protected int verbosity;
 	protected int target_count;
 
-	protected double convergence_epsilon = 1e-3;
+    /**
+     * The Convergence epsilon.
+     */
+    protected double convergence_epsilon = 1e-3;
 
-	protected double lambda_factor;
+    /**
+     * The Lambda factor.
+     */
+    protected double lambda_factor;
 
-	protected int[] at_bound;
+    /**
+     * The At bound.
+     */
+    protected int[] at_bound;
 
-	protected double[] sum;
+    /**
+     * The Sum.
+     */
+    protected double[] sum;
 
-	protected boolean[] which_alpha;
+    /**
+     * The Which alpha.
+     */
+    protected boolean[] which_alpha;
 
-	protected int[] working_set;
+    /**
+     * The Working set.
+     */
+    protected int[] working_set;
 
-	protected double[] primal;
+    /**
+     * The Primal.
+     */
+    protected double[] primal;
 
-	protected double sum_alpha;
+    /**
+     * The Sum alpha.
+     */
+    protected double sum_alpha;
 
-	protected double lambda_eq;
+    /**
+     * The Lambda eq.
+     */
+    protected double lambda_eq;
 
-	protected int to_shrink;
+    /**
+     * The To shrink.
+     */
+    protected int to_shrink;
 
-	protected double feasible_epsilon;
+    /**
+     * The Feasible epsilon.
+     */
+    protected double feasible_epsilon;
 
-	protected double lambda_WS;
+    /**
+     * The Lambda ws.
+     */
+    protected double lambda_WS;
 
-	protected boolean quadraticLossPos = false;
+    /**
+     * The Quadratic loss pos.
+     */
+    protected boolean quadraticLossPos = false;
 
-	protected boolean quadraticLossNeg = false;
+    /**
+     * The Quadratic loss neg.
+     */
+    protected boolean quadraticLossNeg = false;
 
-	boolean shrinked;
+    /**
+     * The Shrinked.
+     */
+    boolean shrinked;
 
-	protected double epsilon_pos = 0.0d;
+    /**
+     * The Epsilon pos.
+     */
+    protected double epsilon_pos = 0.0d;
 
-	protected double epsilon_neg = 0.0d;
+    /**
+     * The Epsilon neg.
+     */
+    protected double epsilon_neg = 0.0d;
 
 	private int max_iterations = 100000;
 
-	protected int working_set_size = 10;
+    /**
+     * The Working set size.
+     */
+    protected int working_set_size = 10;
 
-	protected int parameters_working_set_size = 10; // was set in parameters
+    /**
+     * The Parameters working set size.
+     */
+    protected int parameters_working_set_size = 10; // was set in parameters
 
-	protected double is_zero = 1e-10;
+    /**
+     * The Is zero.
+     */
+    protected double is_zero = 1e-10;
 
-	protected int shrink_const = 50;
+    /**
+     * The Shrink const.
+     */
+    protected int shrink_const = 50;
 
-	protected double C = 1.0d;
+    /**
+     * The C.
+     */
+    protected double C = 1.0d;
 
-	protected double[] cPos;
+    /**
+     * The C pos.
+     */
+    protected double[] cPos;
 
-	protected double[] cNeg;
+    /**
+     * The C neg.
+     */
+    protected double[] cNeg;
 
-	protected double descend = 1e-15;
+    /**
+     * The Descend.
+     */
+    protected double descend = 1e-15;
 
-	MinHeap heap_min;
+    /**
+     * The Heap min.
+     */
+    MinHeap heap_min;
 
-	MaxHeap heap_max;
+    /**
+     * The Heap max.
+     */
+    MaxHeap heap_max;
 
-	protected QuadraticProblem qp;
+    /**
+     * The Qp.
+     */
+    protected QuadraticProblem qp;
 
 	private Operator paramOperator;
 
 	private RandomGenerator randomGenerator;
 
-	public SVM() {}
+    /**
+     * Instantiates a new Svm.
+     */
+    public SVM() {}
 
-	/**
-	 * class constructor. Throws an operator exception if a non-optional parameter was not set and
-	 * has no default value.
-	 */
-	public SVM(Operator paramOperator, Kernel new_kernel, SVMExamples new_examples,
+    /**
+     * class constructor. Throws an operator exception if a non-optional parameter was not set and
+     * has no default value.
+     *
+     * @param paramOperator      the param operator
+     * @param new_kernel         the new kernel
+     * @param new_examples       the new examples
+     * @param rapidMinerExamples the rapid miner examples
+     * @param randomGenerator    the random generator
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public SVM(Operator paramOperator, Kernel new_kernel, SVMExamples new_examples,
 			com.rapidminer.example.ExampleSet rapidMinerExamples, RandomGenerator randomGenerator)
 			throws UndefinedParameterError {
 		this.paramOperator = paramOperator;
@@ -377,10 +489,10 @@ public abstract class SVM implements SVMInterface {
 		exit_optimizer();
 	};
 
-	/**
-	 * print statistics about result
-	 */
-	protected void print_statistics() {
+    /**
+     * print statistics about result
+     */
+    protected void print_statistics() {
 		int dim = the_examples.get_dim();
 		int i, j;
 		double alpha;
@@ -500,17 +612,19 @@ public abstract class SVM implements SVMInterface {
 		return the_examples.get_b();
 	}
 
-	/**
-	 * Gets the complexity constant of the svm.
-	 */
-	public double getC() {
+    /**
+     * Gets the complexity constant of the svm.
+     *
+     * @return the c
+     */
+    public double getC() {
 		return C;
 	}
 
-	/**
-	 * init the optimizer
-	 */
-	protected void init_optimizer() {
+    /**
+     * init the optimizer
+     */
+    protected void init_optimizer() {
 		which_alpha = new boolean[working_set_size];
 		primal = new double[working_set_size];
 		sum = new double[examples_total];
@@ -567,17 +681,17 @@ public abstract class SVM implements SVMInterface {
 		qp.set_n(working_set_size);
 	};
 
-	/**
-	 * exit the optimizer
-	 */
-	protected void exit_optimizer() {
+    /**
+     * exit the optimizer
+     */
+    protected void exit_optimizer() {
 		qp = null;
 	};
 
-	/**
-	 * shrink the variables
-	 */
-	protected void shrink() {
+    /**
+     * shrink the variables
+     */
+    protected void shrink() {
 		// move shrinked examples to back
 		if (to_shrink > examples_total / 10) {
 			int i;
@@ -614,10 +728,10 @@ public abstract class SVM implements SVMInterface {
 		;
 	};
 
-	/**
-	 * reset the shrinked variables
-	 */
-	protected void reset_shrinked() {
+    /**
+     * reset the shrinked variables
+     */
+    protected void reset_shrinked() {
 		int old_ex_tot = examples_total;
 		target_count = 0;
 		examples_total = the_examples.count_examples();
@@ -649,10 +763,10 @@ public abstract class SVM implements SVMInterface {
 		logln(5, "Resetting shrinked from " + old_ex_tot + " to " + examples_total);
 	};
 
-	/**
-	 * Project variables to constraints
-	 */
-	protected void project_to_constraint() {
+    /**
+     * Project variables to constraints
+     */
+    protected void project_to_constraint() {
 		// project alphas to match the constraint
 		double alpha_sum = sum_alpha;
 		int SVcount = 0;
@@ -683,13 +797,12 @@ public abstract class SVM implements SVMInterface {
 		;
 	};
 
-	/**
-	 * Calculates the working set
-	 * 
-	 * @exception Exception
-	 *                on any error
-	 */
-	protected void calculate_working_set() {
+    /**
+     * Calculates the working set
+     *
+     * @throws Exception on any error
+     */
+    protected void calculate_working_set() {
 		// reset WSS
 		if (working_set_size < parameters_working_set_size) {
 			working_set_size = parameters_working_set_size;
@@ -925,10 +1038,10 @@ public abstract class SVM implements SVMInterface {
 		;
 	};
 
-	/**
-	 * Updates the working set
-	 */
-	protected void update_working_set() {
+    /**
+     * Updates the working set
+     */
+    protected void update_working_set() {
 		// setup subproblem
 		int i, j;
 		int pos_i, pos_j;
@@ -1012,13 +1125,12 @@ public abstract class SVM implements SVMInterface {
 		;
 	};
 
-	/**
-	 * Initialises the working set
-	 * 
-	 * @exception Exception
-	 *                on any error
-	 */
-	protected void init_working_set() {
+    /**
+     * Initialises the working set
+     *
+     * @throws Exception on any error
+     */
+    protected void init_working_set() {
 		// calculate sum
 		int i, j;
 
@@ -1048,15 +1160,15 @@ public abstract class SVM implements SVMInterface {
 		update_working_set();
 	};
 
-	/**
-	 * Calls the optimizer
-	 */
-	protected abstract void optimize();
+    /**
+     * Calls the optimizer
+     */
+    protected abstract void optimize();
 
-	/**
-	 * Stores the optimizer results
-	 */
-	protected void put_optimizer_values() {
+    /**
+     * Stores the optimizer results
+     */
+    protected void put_optimizer_values() {
 		// update nabla, sum, examples.
 		// sum[i] += (primal_j^*-primal_j-alpha_j^*+alpha_j)K(i,j)
 		// check for |nabla| < is_zero (nabla <-> nabla*)
@@ -1095,12 +1207,12 @@ public abstract class SVM implements SVMInterface {
 		;
 	};
 
-	/**
-	 * Checks if the optimization converged
-	 * 
-	 * @return boolean true optimzation if converged
-	 */
-	protected boolean convergence() {
+    /**
+     * Checks if the optimization converged
+     *
+     * @return boolean true optimzation if converged
+     */
+    protected boolean convergence() {
 		double the_lambda_eq = 0;
 		int total = 0;
 		double alpha_sum = 0;
@@ -1186,16 +1298,21 @@ public abstract class SVM implements SVMInterface {
 		return result;
 	};
 
-	protected abstract double nabla(int i);
+    /**
+     * Nabla double.
+     *
+     * @param i the
+     * @return the double
+     */
+    protected abstract double nabla(int i);
 
-	/**
-	 * lagrangion multiplier of variable i
-	 * 
-	 * @param i
-	 *            variable index
-	 * @return lambda
-	 */
-	protected double lambda(int i) {
+    /**
+     * lagrangion multiplier of variable i
+     *
+     * @param i variable index
+     * @return lambda double
+     */
+    protected double lambda(int i) {
 		double alpha;
 		double result;
 		if (is_alpha_neg(i)) {
@@ -1231,7 +1348,13 @@ public abstract class SVM implements SVMInterface {
 		return result;
 	};
 
-	protected boolean feasible(int i) {
+    /**
+     * Feasible boolean.
+     *
+     * @param i the
+     * @return the boolean
+     */
+    protected boolean feasible(int i) {
 		boolean is_feasible = true;
 		double alpha = alphas[i];
 		double the_lambda = lambda(i);
@@ -1281,17 +1404,21 @@ public abstract class SVM implements SVMInterface {
 		return is_feasible;
 	}
 
-	protected abstract boolean is_alpha_neg(int i);
+    /**
+     * Is alpha neg boolean.
+     *
+     * @param i the
+     * @return the boolean
+     */
+    protected abstract boolean is_alpha_neg(int i);
 
-	/**
-	 * log the output plus newline
-	 * 
-	 * @param level
-	 *            warning level
-	 * @param message
-	 *            Message test
-	 */
-	protected void logln(int level, String message) {
+    /**
+     * log the output plus newline
+     *
+     * @param level   warning level
+     * @param message Message test
+     */
+    protected void logln(int level, String message) {
 		Level mappedLevel = WrapperLoggingHandler.LEVELS[RAPID_MINER_VERBOSITY[level - 1]];
 		if (paramOperator != null) {
 			paramOperator.getLogger().log(mappedLevel, message);
@@ -1300,7 +1427,12 @@ public abstract class SVM implements SVMInterface {
 		}
 	}
 
-	protected void logWarning(String message) {
+    /**
+     * Log warning.
+     *
+     * @param message the message
+     */
+    protected void logWarning(String message) {
 		paramOperator.getLogger().warning(message);
 	}
 
@@ -1323,7 +1455,13 @@ public abstract class SVM implements SVMInterface {
 		logln(4, "Prediction generated");
 	};
 
-	public double predict(int i) {
+    /**
+     * Predict double.
+     *
+     * @param i the
+     * @return the double
+     */
+    public double predict(int i) {
 		return predict(the_examples.get_example(i));
 	}
 
@@ -1350,10 +1488,10 @@ public abstract class SVM implements SVMInterface {
 		return the_sum;
 	};
 
-	/**
-	 * check internal variables, for debugging only
-	 */
-	protected void check() {
+    /**
+     * check internal variables, for debugging only
+     */
+    protected void check() {
 		double tsum;
 		int i, j;
 		double s = 0;
@@ -1382,11 +1520,14 @@ public abstract class SVM implements SVMInterface {
 		;
 	};
 
-	/**
-	 * Returns a double array of estimated performance values. These are accuracy, precision and
-	 * recall. Works only for classification SVMs.
-	 */
-	public double[] getXiAlphaEstimation(Kernel kernel) {
+    /**
+     * Returns a double array of estimated performance values. These are accuracy, precision and
+     * recall. Works only for classification SVMs.
+     *
+     * @param kernel the kernel
+     * @return the double [ ]
+     */
+    public double[] getXiAlphaEstimation(Kernel kernel) {
 		double r_delta = 0.0d;
 
 		for (int j = 0; j < examples_total; j++) {

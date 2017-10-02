@@ -27,7 +27,7 @@ import org.w3c.dom.Element;
  * A parameter type for double values. Operators ask for the double value with
  * {@link com.rapidminer.operator.Operator#getParameterAsDouble(String)}. For infinite ranges
  * Double.POSITIVE_INFINITY and Double.NEGATIVE_INFINITY should be used.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class ParameterTypeDouble extends ParameterTypeNumber {
@@ -48,7 +48,13 @@ public class ParameterTypeDouble extends ParameterTypeNumber {
 
 	private boolean noDefault = true;
 
-	public ParameterTypeDouble(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type double.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeDouble(Element element) throws XMLException {
 		super(element);
 
 		noDefault = element.hasAttribute(ATTRIBUTE_DEFAULT);
@@ -59,18 +65,44 @@ public class ParameterTypeDouble extends ParameterTypeNumber {
 		min = Double.parseDouble(element.getAttribute(ATTRIBUTE_MIN));
 	}
 
-	public ParameterTypeDouble(String key, String description, double min, double max) {
+    /**
+     * Instantiates a new Parameter type double.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param min         the min
+     * @param max         the max
+     */
+    public ParameterTypeDouble(String key, String description, double min, double max) {
 		this(key, description, min, max, Double.NaN);
 		this.noDefault = true;
 	}
 
-	public ParameterTypeDouble(String key, String description, double min, double max, boolean optional) {
+    /**
+     * Instantiates a new Parameter type double.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param min         the min
+     * @param max         the max
+     * @param optional    the optional
+     */
+    public ParameterTypeDouble(String key, String description, double min, double max, boolean optional) {
 		this(key, description, min, max, Double.NaN);
 		this.noDefault = true;
 		setOptional(optional);
 	}
 
-	public ParameterTypeDouble(String key, String description, double min, double max, double defaultValue) {
+    /**
+     * Instantiates a new Parameter type double.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param min          the min
+     * @param max          the max
+     * @param defaultValue the default value
+     */
+    public ParameterTypeDouble(String key, String description, double min, double max, double defaultValue) {
 		super(key, description);
 		this.defaultValue = defaultValue;
 		this.min = min;
@@ -78,7 +110,17 @@ public class ParameterTypeDouble extends ParameterTypeNumber {
 		setExpert(false);
 	}
 
-	public ParameterTypeDouble(String key, String description, double min, double max, double defaultValue, boolean expert) {
+    /**
+     * Instantiates a new Parameter type double.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param min          the min
+     * @param max          the max
+     * @param defaultValue the default value
+     * @param expert       the expert
+     */
+    public ParameterTypeDouble(String key, String description, double min, double max, double defaultValue, boolean expert) {
 		super(key, description);
 		this.defaultValue = defaultValue;
 		this.min = min;

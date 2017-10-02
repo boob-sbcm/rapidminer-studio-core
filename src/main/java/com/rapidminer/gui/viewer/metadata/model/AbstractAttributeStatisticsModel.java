@@ -41,7 +41,6 @@ import com.rapidminer.tools.FontTools;
  * Abstract model for the {@link AttributeStatisticsPanel}. See implementations for details.
  *
  * @author Marco Boeck
- *
  */
 public abstract class AbstractAttributeStatisticsModel {
 
@@ -63,8 +62,10 @@ public abstract class AbstractAttributeStatisticsModel {
 	/** if true, the construction value will be displayed */
 	private boolean showConstruction;
 
-	/** the number of missing values */
-	protected double missing;
+    /**
+     * the number of missing values
+     */
+    protected double missing;
 
 	/** the construction value for the attribute */
 	private final String construction;
@@ -72,13 +73,13 @@ public abstract class AbstractAttributeStatisticsModel {
 	/** event listener for this model */
 	private final EventListenerList eventListener;
 
-	/**
-	 * Inits the
-	 *
-	 * @param exampleSet
-	 * @param attribute
-	 */
-	protected AbstractAttributeStatisticsModel(final ExampleSet exampleSet, final Attribute attribute) {
+    /**
+     * Inits the
+     *
+     * @param exampleSet the example set
+     * @param attribute  the attribute
+     */
+    protected AbstractAttributeStatisticsModel(final ExampleSet exampleSet, final Attribute attribute) {
 		this.attribute = attribute;
 		this.weakExampleSet = new WeakReference<>(exampleSet);
 		this.specialAttName = exampleSet.getAttributes().findRoleByName(attribute.getName()).getSpecialName();
@@ -87,32 +88,32 @@ public abstract class AbstractAttributeStatisticsModel {
 		this.eventListener = new EventListenerList();
 	}
 
-	/**
-	 * Adds a {@link AttributeStatisticsEventListener} which will be informed of all changes to this
-	 * model.
-	 *
-	 * @param listener
-	 */
-	public void registerEventListener(final AttributeStatisticsEventListener listener) {
+    /**
+     * Adds a {@link AttributeStatisticsEventListener} which will be informed of all changes to this
+     * model.
+     *
+     * @param listener the listener
+     */
+    public void registerEventListener(final AttributeStatisticsEventListener listener) {
 		eventListener.add(AttributeStatisticsEventListener.class, listener);
 	}
 
-	/**
-	 * Removes the {@link AttributeStatisticsEventListener} from this model.
-	 *
-	 * @param listener
-	 */
-	public void removeEventListener(final AttributeStatisticsEventListener listener) {
+    /**
+     * Removes the {@link AttributeStatisticsEventListener} from this model.
+     *
+     * @param listener the listener
+     */
+    public void removeEventListener(final AttributeStatisticsEventListener listener) {
 		eventListener.remove(AttributeStatisticsEventListener.class, listener);
 	}
 
-	/**
-	 * Sets if this panel should be drawn in an alternating color scheme (slightly darker) to make
-	 * reading of many rows easier.
-	 *
-	 * @param alternating
-	 */
-	public void setAlternating(final boolean alternating) {
+    /**
+     * Sets if this panel should be drawn in an alternating color scheme (slightly darker) to make
+     * reading of many rows easier.
+     *
+     * @param alternating the alternating
+     */
+    public void setAlternating(final boolean alternating) {
 		if (this.alternating != alternating) {
 			this.alternating = alternating;
 
@@ -120,30 +121,30 @@ public abstract class AbstractAttributeStatisticsModel {
 		}
 	}
 
-	/**
-	 * Returns <code>true</code> if this is an alternating attribute statistics model.
-	 *
-	 * @return
-	 */
-	public boolean isAlternating() {
+    /**
+     * Returns <code>true</code> if this is an alternating attribute statistics model.
+     *
+     * @return boolean boolean
+     */
+    public boolean isAlternating() {
 		return alternating;
 	}
 
-	/**
-	 * Gets the enlarged status which determines how many information to display.
-	 *
-	 * @return
-	 */
-	public boolean isEnlarged() {
+    /**
+     * Gets the enlarged status which determines how many information to display.
+     *
+     * @return boolean boolean
+     */
+    public boolean isEnlarged() {
 		return enlarged;
 	}
 
-	/**
-	 * Sets the enlarged status.
-	 *
-	 * @param enlarged
-	 */
-	public void setEnlarged(final boolean enlarged) {
+    /**
+     * Sets the enlarged status.
+     *
+     * @param enlarged the enlarged
+     */
+    public void setEnlarged(final boolean enlarged) {
 		this.enlarged = enlarged;
 		if (enlarged && getExampleSetOrNull() != null) {
 			prepareCharts();
@@ -152,99 +153,99 @@ public abstract class AbstractAttributeStatisticsModel {
 		fireEnlargedChangedEvent();
 	}
 
-	/**
-	 * Gets the show construction status which determines if the construction value is shown.
-	 *
-	 * @return
-	 */
-	public boolean isShowConstruction() {
+    /**
+     * Gets the show construction status which determines if the construction value is shown.
+     *
+     * @return boolean boolean
+     */
+    public boolean isShowConstruction() {
 		return showConstruction;
 	}
 
-	/**
-	 * Sets the show construction status.
-	 *
-	 * @param showConstruction
-	 */
-	public void setShowConstruction(final boolean showConstruction) {
+    /**
+     * Sets the show construction status.
+     *
+     * @param showConstruction the show construction
+     */
+    public void setShowConstruction(final boolean showConstruction) {
 		this.showConstruction = showConstruction;
 
 		fireShowConstructionChangedEvent();
 	}
 
-	/**
-	 * Returns <code>true</code> if this attribute has a special {@link AttributeRole};
-	 * <code>false</code> otherwise.
-	 *
-	 * @return
-	 */
-	public boolean isSpecialAtt() {
+    /**
+     * Returns <code>true</code> if this attribute has a special {@link AttributeRole};
+     * <code>false</code> otherwise.
+     *
+     * @return boolean boolean
+     */
+    public boolean isSpecialAtt() {
 		return specialAttName != null;
 	}
 
-	/**
-	 * Returns the name of the special {@link AttributeRole} for this {@link Attribute}. If this is
-	 * not a special attribute, returns <code>null</code> .
-	 *
-	 * @return
-	 */
-	public String getSpecialAttName() {
+    /**
+     * Returns the name of the special {@link AttributeRole} for this {@link Attribute}. If this is
+     * not a special attribute, returns <code>null</code> .
+     *
+     * @return special att name
+     */
+    public String getSpecialAttName() {
 		return specialAttName;
 	}
 
-	/**
-	 * Gets the {@link Attribute} backing this model.
-	 *
-	 * @return
-	 */
-	public Attribute getAttribute() {
+    /**
+     * Gets the {@link Attribute} backing this model.
+     *
+     * @return attribute attribute
+     */
+    public Attribute getAttribute() {
 		return attribute;
 	}
 
-	/**
-	 * Gets the {@link ExampleSet} backing this model or <code>null</code> if the
-	 * {@link WeakReference} to it was removed.
-	 *
-	 * @return
-	 */
-	public ExampleSet getExampleSetOrNull() {
+    /**
+     * Gets the {@link ExampleSet} backing this model or <code>null</code> if the
+     * {@link WeakReference} to it was removed.
+     *
+     * @return example set or null
+     */
+    public ExampleSet getExampleSetOrNull() {
 		return weakExampleSet.get();
 	}
 
-	/**
-	 * Fire when the show construction status has changed.
-	 */
-	protected void fireShowConstructionChangedEvent() {
+    /**
+     * Fire when the show construction status has changed.
+     */
+    protected void fireShowConstructionChangedEvent() {
 		fireEvent(EventType.SHOW_CONSTRUCTION_CHANGED);
 	}
 
-	/**
-	 * Fire when the enlarged status has changed.
-	 */
-	protected void fireEnlargedChangedEvent() {
+    /**
+     * Fire when the enlarged status has changed.
+     */
+    protected void fireEnlargedChangedEvent() {
 		fireEvent(EventType.ENLARGED_CHANGED);
 	}
 
-	/**
-	 * Fire when the statistics of an attribute have changed.
-	 */
-	protected void fireStatisticsChangedEvent() {
+    /**
+     * Fire when the statistics of an attribute have changed.
+     */
+    protected void fireStatisticsChangedEvent() {
 		fireEvent(EventType.STATISTICS_CHANGED);
 	}
 
-	/**
-	 * Fire when alternation has changed.
-	 */
-	protected void fireAlternatingChangedEvent() {
+    /**
+     * Fire when alternation has changed.
+     */
+    protected void fireAlternatingChangedEvent() {
 		fireEvent(EventType.ALTERNATING_CHANGED);
 	}
 
-	/**
-	 * Fires the given {@link EventType}.
-	 *
-	 * @param type
-	 */
-	protected void fireEvent(final EventType type) {
+    /**
+     * Fires the given {@link EventType}.
+     *
+     * @param type the type
+     */
+    protected void fireEvent(final EventType type) {
 		Object[] listeners = eventListener.getListenerList();
 		// Process the listeners last to first
 		for (int i = listeners.length - 2; i >= 0; i -= 2) {
@@ -255,56 +256,53 @@ public abstract class AbstractAttributeStatisticsModel {
 		}
 	}
 
-	/**
-	 * Updates the statistics of this model via the given {@link ExampleSet}.
-	 *
-	 * @param exampleSet
-	 *            the {@link ExampleSet} for which the attribute statistics should be updated. No
-	 *            reference to it is stored to prevent memory leaks.
-	 */
-	public abstract void updateStatistics(ExampleSet exampleSet);
+    /**
+     * Updates the statistics of this model via the given {@link ExampleSet}.
+     *
+     * @param exampleSet the {@link ExampleSet} for which the attribute statistics should be updated. No            reference to it is stored to prevent memory leaks.
+     */
+    public abstract void updateStatistics(ExampleSet exampleSet);
 
-	/**
-	 * Returns the number of missing values.
-	 *
-	 * @return
-	 */
-	public double getNumberOfMissingValues() {
+    /**
+     * Returns the number of missing values.
+     *
+     * @return number of missing values
+     */
+    public double getNumberOfMissingValues() {
 		return missing;
 	}
 
-	/**
-	 * Returns the construction value for this attribute.
-	 *
-	 * @return
-	 */
-	public String getConstruction() {
+    /**
+     * Returns the construction value for this attribute.
+     *
+     * @return construction construction
+     */
+    public String getConstruction() {
 		return construction;
 	}
 
-	/**
-	 * Returns the given {@link JFreeChart} for the given index. If the given index is invalid,
-	 * returns <code>null</code>.
-	 *
-	 * @param index
-	 * @return
-	 */
-	public abstract JFreeChart getChartOrNull(int index);
+    /**
+     * Returns the given {@link JFreeChart} for the given index. If the given index is invalid,
+     * returns <code>null</code>.
+     *
+     * @param index the index
+     * @return chart or null
+     */
+    public abstract JFreeChart getChartOrNull(int index);
 
-	/**
-	 * Prepares the charts if needed.
-	 */
-	protected abstract void prepareCharts();
+    /**
+     * Prepares the charts if needed.
+     */
+    protected abstract void prepareCharts();
 
-	/**
-	 * Changes the font of {@link JFreeChart}s to Sans Serif. This method uses a
-	 * {@link StandardChartTheme} to do so, so any changes to the look of the chart must be done
-	 * after calling this method.
-	 *
-	 * @param chart
-	 *            the chart to change fonts for
-	 */
-	protected static void setDefaultChartFonts(JFreeChart chart) {
+    /**
+     * Changes the font of {@link JFreeChart}s to Sans Serif. This method uses a
+     * {@link StandardChartTheme} to do so, so any changes to the look of the chart must be done
+     * after calling this method.
+     *
+     * @param chart the chart to change fonts for
+     */
+    protected static void setDefaultChartFonts(JFreeChart chart) {
 		final ChartTheme chartTheme = StandardChartTheme.createJFreeTheme();
 
 		if (StandardChartTheme.class.isAssignableFrom(chartTheme.getClass())) {

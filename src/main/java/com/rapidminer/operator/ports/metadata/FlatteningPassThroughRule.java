@@ -27,16 +27,21 @@ import java.util.List;
 /**
  * Passes meta data through and recursively unfolds element meta data if CollectionMetaData is
  * found.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class FlatteningPassThroughRule implements MDTransformationRule {
 
 	private final List<InputPort> inputPorts;
 	private final OutputPort outputPort;
 
-	public FlatteningPassThroughRule(List<InputPort> inputPorts, OutputPort outputPort) {
+    /**
+     * Instantiates a new Flattening pass through rule.
+     *
+     * @param inputPorts the input ports
+     * @param outputPort the output port
+     */
+    public FlatteningPassThroughRule(List<InputPort> inputPorts, OutputPort outputPort) {
 		this.inputPorts = inputPorts;
 		this.outputPort = outputPort;
 	}
@@ -60,7 +65,13 @@ public class FlatteningPassThroughRule implements MDTransformationRule {
 		outputPort.deliverMD(null);
 	}
 
-	protected MetaData modifyMetaData(MetaData metaData) {
+    /**
+     * Modify meta data meta data.
+     *
+     * @param metaData the meta data
+     * @return the meta data
+     */
+    protected MetaData modifyMetaData(MetaData metaData) {
 		return metaData;
 	}
 }

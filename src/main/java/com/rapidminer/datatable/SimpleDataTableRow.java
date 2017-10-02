@@ -24,7 +24,7 @@ import java.io.Serializable;
 /**
  * A data list that contains Object arrays that record process results or other data. Each row can
  * consist of an id and an object array which represents the data.
- * 
+ *
  * @author Ingo Mierswa, Marius Helf
  */
 public class SimpleDataTableRow implements DataTableRow, Serializable {
@@ -35,18 +35,31 @@ public class SimpleDataTableRow implements DataTableRow, Serializable {
 
 	private String id;
 
-	/**
-	 * Creates a SimpleDataTableRow with the same values as other.
-	 */
-	public SimpleDataTableRow(DataTableRow other) {
+    /**
+     * Creates a SimpleDataTableRow with the same values as other.
+     *
+     * @param other the other
+     */
+    public SimpleDataTableRow(DataTableRow other) {
 		copyValuesFromOtherRow(other);
 	}
 
-	public SimpleDataTableRow(double[] row) {
+    /**
+     * Instantiates a new Simple data table row.
+     *
+     * @param row the row
+     */
+    public SimpleDataTableRow(double[] row) {
 		this(row, null);
 	}
 
-	public SimpleDataTableRow(double[] row, String id) {
+    /**
+     * Instantiates a new Simple data table row.
+     *
+     * @param row the row
+     * @param id  the id
+     */
+    public SimpleDataTableRow(double[] row, String id) {
 		this.row = row;
 		this.id = id;
 	}
@@ -66,7 +79,12 @@ public class SimpleDataTableRow implements DataTableRow, Serializable {
 		return row.length;
 	}
 
-	public void copyValuesFromOtherRow(DataTableRow other) {
+    /**
+     * Copy values from other row.
+     *
+     * @param other the other
+     */
+    public void copyValuesFromOtherRow(DataTableRow other) {
 		int numberOfValues = other.getNumberOfValues();
 		row = new double[numberOfValues];
 		for (int i = 0; i < numberOfValues; ++i) {

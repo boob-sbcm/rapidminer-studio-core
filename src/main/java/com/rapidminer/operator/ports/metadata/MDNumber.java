@@ -27,37 +27,71 @@ import java.io.Serializable;
  * A number which is not known exactly, but maybe only in terms of upper or lower bounds. E.g. after
  * applying an attribute filter, the number of examples is at most the number it was before, but the
  * exact value is unknown.
- * 
+ *
+ * @param <T> the type parameter
  * @author Simon Fischer
- * 
  */
 public abstract class MDNumber<T extends Number> implements Serializable, Comparable<MDNumber<T>> {
 
 	private static final long serialVersionUID = 1L;
 
-	public enum Relation {
-		AT_LEAST, EQUAL, AT_MOST, UNKNOWN
+    /**
+     * The enum Relation.
+     */
+    public enum Relation {
+        /**
+         * At least relation.
+         */
+        AT_LEAST, /**
+         * Equal relation.
+         */
+        EQUAL, /**
+         * At most relation.
+         */
+        AT_MOST, /**
+         * Unknown relation.
+         */
+        UNKNOWN
 	}
 
 	private Relation relation = Relation.UNKNOWN;
 	private T number;
 
-	public MDNumber() {
+    /**
+     * Instantiates a new Md number.
+     */
+    public MDNumber() {
 		relation = Relation.UNKNOWN;
 		setNumber(null);
 	}
 
-	protected MDNumber(MDNumber<T> other) {
+    /**
+     * Instantiates a new Md number.
+     *
+     * @param other the other
+     */
+    protected MDNumber(MDNumber<T> other) {
 		this.setNumber(other.getNumber());
 		this.relation = other.relation;
 	}
 
-	public MDNumber(T number) {
+    /**
+     * Instantiates a new Md number.
+     *
+     * @param number the number
+     */
+    public MDNumber(T number) {
 		this.setNumber(number);
 		this.relation = Relation.EQUAL;
 	}
 
-	public MetaDataInfo equals(T value) {
+    /**
+     * Equals meta data info.
+     *
+     * @param value the value
+     * @return the meta data info
+     */
+    public MetaDataInfo equals(T value) {
 		if ((relation == Relation.EQUAL) && this.getNumber().equals(value)) {
 			return MetaDataInfo.YES;
 		} else {
@@ -65,7 +99,13 @@ public abstract class MDNumber<T extends Number> implements Serializable, Compar
 		}
 	}
 
-	public MetaDataInfo isAtMost(T value) {
+    /**
+     * Is at most meta data info.
+     *
+     * @param value the value
+     * @return the meta data info
+     */
+    public MetaDataInfo isAtMost(T value) {
 		switch (relation) {
 			case AT_LEAST:
 				return MetaDataInfo.UNKNOWN;
@@ -87,7 +127,13 @@ public abstract class MDNumber<T extends Number> implements Serializable, Compar
 		}
 	}
 
-	public MetaDataInfo isAtLeast(T value) {
+    /**
+     * Is at least meta data info.
+     *
+     * @param value the value
+     * @return the meta data info
+     */
+    public MetaDataInfo isAtLeast(T value) {
 		switch (relation) {
 			case AT_MOST:
 				return MetaDataInfo.UNKNOWN;
@@ -109,7 +155,10 @@ public abstract class MDNumber<T extends Number> implements Serializable, Compar
 		}
 	}
 
-	public void increaseByUnknownAmount() {
+    /**
+     * Increase by unknown amount.
+     */
+    public void increaseByUnknownAmount() {
 		switch (relation) {
 			case AT_MOST:
 				relation = Relation.UNKNOWN;
@@ -124,7 +173,10 @@ public abstract class MDNumber<T extends Number> implements Serializable, Compar
 		}
 	}
 
-	public void reduceByUnknownAmount() {
+    /**
+     * Reduce by unknown amount.
+     */
+    public void reduceByUnknownAmount() {
 		switch (relation) {
 			case AT_LEAST:
 				relation = Relation.UNKNOWN;
@@ -139,19 +191,29 @@ public abstract class MDNumber<T extends Number> implements Serializable, Compar
 		}
 	}
 
-	public boolean isKnown() {
+    /**
+     * Is known boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isKnown() {
 		return relation == Relation.EQUAL;
 	}
 
-	public void setUnkown() {
+    /**
+     * Sets unkown.
+     */
+    public void setUnkown() {
 		this.relation = Relation.UNKNOWN;
 	}
 
-	/**
-	 * Returns the value. Call this method only if {@link #isKnown()} returns true. Otherwise, a
-	 * runtime exception will be thrown.
-	 */
-	public T getValue() {
+    /**
+     * Returns the value. Call this method only if {@link #isKnown()} returns true. Otherwise, a
+     * runtime exception will be thrown.
+     *
+     * @return the value
+     */
+    public T getValue() {
 		if (isKnown()) {
 			return getNumber();
 		} else {
@@ -159,7 +221,12 @@ public abstract class MDNumber<T extends Number> implements Serializable, Compar
 		}
 	}
 
-	public Relation getRelation() {
+    /**
+     * Gets relation.
+     *
+     * @return the relation
+     */
+    public Relation getRelation() {
 		return relation;
 	}
 
@@ -178,23 +245,47 @@ public abstract class MDNumber<T extends Number> implements Serializable, Compar
 		}
 	}
 
-	public abstract MDNumber<T> copy();
+    /**
+     * Copy md number.
+     *
+     * @return the md number
+     */
+    public abstract MDNumber<T> copy();
 
-	protected void setNumber(T number) {
+    /**
+     * Sets number.
+     *
+     * @param number the number
+     */
+    protected void setNumber(T number) {
 		this.number = number;
 	}
 
-	/**
-	 * This returns the estimated number regardless of relation. Please take care to handle the
-	 * relation correctly.
-	 */
-	public T getNumber() {
+    /**
+     * This returns the estimated number regardless of relation. Please take care to handle the
+     * relation correctly.
+     *
+     * @return the number
+     */
+    public T getNumber() {
 		return number;
 	}
 
-	public abstract MDNumber<T> add(T add);
+    /**
+     * Add md number.
+     *
+     * @param add the add
+     * @return the md number
+     */
+    public abstract MDNumber<T> add(T add);
 
-	public abstract MDNumber<T> multiply(double factor);
+    /**
+     * Multiply md number.
+     *
+     * @param factor the factor
+     * @return the md number
+     */
+    public abstract MDNumber<T> multiply(double factor);
 
 	@Override
 	public int compareTo(MDNumber<T> other) {

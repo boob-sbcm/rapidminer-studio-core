@@ -28,11 +28,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
  * A {@link Function} to calculate the floor of a numerical value.
  *
  * @author Thilo Kamradt
- *
  */
 public class Floor extends Abstract1DoubleInputFunction {
 
-	public Floor() {
+    /**
+     * Instantiates a new Floor.
+     */
+    public Floor() {
 		super("rounding.floor", Ontology.INTEGER);
 	}
 

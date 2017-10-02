@@ -20,23 +20,37 @@ package com.rapidminer.repository.gui.process;
 
 /**
  * Required to wrap around string for instanceof check in tree model.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class ExceptionWrapper {
 
 	private String exception;
 
-	public ExceptionWrapper(String exception) {
+    /**
+     * Instantiates a new Exception wrapper.
+     *
+     * @param exception the exception
+     */
+    public ExceptionWrapper(String exception) {
 		setException(exception);
 	}
 
-	public void setException(String exception) {
+    /**
+     * Sets exception.
+     *
+     * @param exception the exception
+     */
+    public void setException(String exception) {
 		this.exception = exception;
 	}
 
-	public String getException() {
+    /**
+     * Gets exception.
+     *
+     * @return the exception
+     */
+    public String getException() {
 		return exception;
 	}
 

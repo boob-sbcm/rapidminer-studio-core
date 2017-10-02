@@ -19,8 +19,9 @@
 package com.rapidminer.operator.learner.associations.gsp;
 
 /**
+ * The type Hash tree root node.
+ *
  * @author Sebastian Land
- * 
  */
 public class HashTreeRootNode extends HashTreeInnerNode {
 

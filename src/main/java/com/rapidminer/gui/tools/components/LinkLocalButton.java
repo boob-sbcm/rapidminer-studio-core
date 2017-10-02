@@ -37,13 +37,17 @@ import com.rapidminer.gui.look.Colors;
  *
  * @author Marco Boeck
  * @since 7.0.0
- *
  */
 public class LinkLocalButton extends AbstractLinkButton {
 
 	private static final long serialVersionUID = 1L;
 
-	public LinkLocalButton(final Action action) {
+    /**
+     * Instantiates a new Link local button.
+     *
+     * @param action the action
+     */
+    public LinkLocalButton(final Action action) {
 		super(action, Colors.LINKBUTTON_LOCAL);
 	}
 

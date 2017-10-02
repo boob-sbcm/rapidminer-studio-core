@@ -37,30 +37,50 @@ import org.jfree.chart.entity.StandardEntityCollection;
  * A {@link BlockContainer} with a colored background. Additionally brutally enforces a vertically
  * centered alignment of its contents, and thus probably only works as long as the contents is
  * arranged in exactly one horizontal line.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class ColoredBlockContainer extends BlockContainer {
 
 	private static final long serialVersionUID = 1L;
 	private Paint fillPaint;
 
-	public ColoredBlockContainer(Paint fillPaint) {
+    /**
+     * Instantiates a new Colored block container.
+     *
+     * @param fillPaint the fill paint
+     */
+    public ColoredBlockContainer(Paint fillPaint) {
 		super();
 		this.fillPaint = fillPaint;
 	}
 
-	public ColoredBlockContainer(Paint fillPaint, Arrangement arrangement) {
+    /**
+     * Instantiates a new Colored block container.
+     *
+     * @param fillPaint   the fill paint
+     * @param arrangement the arrangement
+     */
+    public ColoredBlockContainer(Paint fillPaint, Arrangement arrangement) {
 		super(arrangement);
 		this.fillPaint = fillPaint;
 	}
 
-	public Paint getFillPaint() {
+    /**
+     * Gets fill paint.
+     *
+     * @return the fill paint
+     */
+    public Paint getFillPaint() {
 		return fillPaint;
 	}
 
-	public void setFillPaint(Paint fillPaint) {
+    /**
+     * Sets fill paint.
+     *
+     * @param fillPaint the fill paint
+     */
+    public void setFillPaint(Paint fillPaint) {
 		this.fillPaint = fillPaint;
 	}
 

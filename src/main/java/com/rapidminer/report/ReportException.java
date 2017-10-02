@@ -20,7 +20,7 @@ package com.rapidminer.report;
 
 /**
  * An exception which will be thrown if any error occurs during the generation of a report.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class ReportException extends Exception {
@@ -29,14 +29,25 @@ public class ReportException extends Exception {
 
 	private final String reason;
 
-	public ReportException(Exception e, String reason) {
+    /**
+     * Instantiates a new Report exception.
+     *
+     * @param e      the e
+     * @param reason the reason
+     */
+    public ReportException(Exception e, String reason) {
 		if (e != null) {
 			this.setStackTrace(e.getStackTrace());
 		}
 		this.reason = reason;
 	}
 
-	public String getReason() {
+    /**
+     * Gets reason.
+     *
+     * @return the reason
+     */
+    public String getReason() {
 		return reason;
 	}
 

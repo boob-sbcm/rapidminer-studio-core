@@ -38,10 +38,16 @@ import com.rapidminer.gui.flow.processrendering.annotations.model.WorkflowAnnota
  */
 public class TransferableAnnotation implements Transferable {
 
-	public static final DataFlavor LOCAL_OPERATOR_ANNOTATION_FLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType
+    /**
+     * The constant LOCAL_OPERATOR_ANNOTATION_FLAVOR.
+     */
+    public static final DataFlavor LOCAL_OPERATOR_ANNOTATION_FLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType
 			+ ";class=" + OperatorAnnotation.class.getName(), "RapidMiner operator annotation");
 
-	public static final DataFlavor LOCAL_PROCESS_ANNOTATION_FLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType
+    /**
+     * The constant LOCAL_PROCESS_ANNOTATION_FLAVOR.
+     */
+    public static final DataFlavor LOCAL_PROCESS_ANNOTATION_FLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType
 			+ ";class=" + ProcessAnnotation.class.getName(), "RapidMiner process annotation");
 
 	private static final DataFlavor[] DATA_FLAVORS = { LOCAL_OPERATOR_ANNOTATION_FLAVOR, LOCAL_PROCESS_ANNOTATION_FLAVOR };
@@ -50,7 +56,12 @@ public class TransferableAnnotation implements Transferable {
 
 	private final WorkflowAnnotation clonedAnnotation;
 
-	public TransferableAnnotation(WorkflowAnnotation annotation) {
+    /**
+     * Instantiates a new Transferable annotation.
+     *
+     * @param annotation the annotation
+     */
+    public TransferableAnnotation(WorkflowAnnotation annotation) {
 		// reference to original annotation (required to delete annotation in case of cut event)
 		this.originalAnnotation = annotation;
 		// cloning the annotation ensures that further editing does not affect the copied elements
@@ -82,10 +93,12 @@ public class TransferableAnnotation implements Transferable {
 		return DATA_FLAVORS;
 	}
 
-	/**
-	 * @return the original annotation
-	 */
-	protected WorkflowAnnotation getAnnotation() {
+    /**
+     * Gets annotation.
+     *
+     * @return the original annotation
+     */
+    protected WorkflowAnnotation getAnnotation() {
 		return this.originalAnnotation;
 	}
 }

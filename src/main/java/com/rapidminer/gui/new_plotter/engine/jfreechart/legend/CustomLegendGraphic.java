@@ -34,15 +34,20 @@ import org.jfree.util.ShapeUtilities;
 /**
  * A {@link LegendGraphic} which correctly translates gradients, such that they begin at the correct
  * position instead of the left screen edge.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class CustomLegendGraphic extends LegendGraphic {
 
 	private static final long serialVersionUID = 1L;
 
-	public CustomLegendGraphic(Shape shape, Paint fillPaint) {
+    /**
+     * Instantiates a new Custom legend graphic.
+     *
+     * @param shape     the shape
+     * @param fillPaint the fill paint
+     */
+    public CustomLegendGraphic(Shape shape, Paint fillPaint) {
 		super(shape, fillPaint);
 	}
 

@@ -45,19 +45,25 @@ import org.jfree.chart.plot.XYPlot;
  * Use &larr; and &rarr; to shift the plot left and right; <br>
  * Use &uarr; and &darr; to shift the plot up and down; <br>
  * Press the SHIFT key to increase the shift by a factor of 10.
- * 
+ *
  * @author Gustavo H. Sberze Ribas (CPqD), Ingo Mierswa
  */
 public class ChartPanelShiftController implements MouseMotionListener, MouseListener {
 
-	/** PAN plot by a fixed percentual of the range (eg. 1%) */
-	public static final int SHIFT_PERCENTUAL = 1;
+    /**
+     * PAN plot by a fixed percentual of the range (eg. 1%)
+     */
+    public static final int SHIFT_PERCENTUAL = 1;
 
-	/** PAN plot by a fixed number of pixels (eg. 1px) */
-	public static final int SHIFT_PIXEL = 2;
+    /**
+     * PAN plot by a fixed number of pixels (eg. 1px)
+     */
+    public static final int SHIFT_PIXEL = 2;
 
-	/** PAN plot by a fixed amout (eg. 5 range units) */
-	public static final int SHIFT_FIXED = 3;
+    /**
+     * PAN plot by a fixed amout (eg. 5 range units)
+     */
+    public static final int SHIFT_FIXED = 3;
 
 	/** The chart panel we're using */
 	private ChartPanel chartPanel;
@@ -85,13 +91,12 @@ public class ChartPanelShiftController implements MouseMotionListener, MouseList
 
 	private boolean onlyXShift = false;
 
-	/**
-	 * Creates a new controller to handle plot shifts.
-	 * 
-	 * @param chartPanel
-	 *            The panel displaying the plot.
-	 */
-	public ChartPanelShiftController(ChartPanel chartPanel) {
+    /**
+     * Creates a new controller to handle plot shifts.
+     *
+     * @param chartPanel The panel displaying the plot.
+     */
+    public ChartPanelShiftController(ChartPanel chartPanel) {
 		super();
 		this.chartPanel = chartPanel;
 
@@ -103,17 +108,22 @@ public class ChartPanelShiftController implements MouseMotionListener, MouseList
 		}
 	}
 
-	public void setOnlyXShift(boolean onlyXShift) {
+    /**
+     * Sets only x shift.
+     *
+     * @param onlyXShift the only x shift
+     */
+    public void setOnlyXShift(boolean onlyXShift) {
 		this.onlyXShift = onlyXShift;
 	}
 
-	/**
-	 * Returns the plot orientation.
-	 * 
-	 * @return True = {@link org.jfree.chart.plot.PlotOrientation#VERTICAL VERTICAL}; False =
-	 *         {@link org.jfree.chart.plot.PlotOrientation#HORIZONTAL HORIZONTAL}
-	 */
-	protected boolean isHorizontalPlot(Plot plot) {
+    /**
+     * Returns the plot orientation.
+     *
+     * @param plot the plot
+     * @return True = {@link org.jfree.chart.plot.PlotOrientation#VERTICAL VERTICAL}; False =         {@link org.jfree.chart.plot.PlotOrientation#HORIZONTAL HORIZONTAL}
+     */
+    protected boolean isHorizontalPlot(Plot plot) {
 		if (plot instanceof XYPlot) {
 			return ((XYPlot) plot).getOrientation() == PlotOrientation.HORIZONTAL;
 		}
@@ -123,16 +133,14 @@ public class ChartPanelShiftController implements MouseMotionListener, MouseList
 		return false;
 	}
 
-	/**
-	 * Returns the ValueAxis for the plot or <code>null</code> if the plot doesn't have one.
-	 * 
-	 * @param chart
-	 *            The chart
-	 * @param domain
-	 *            True = get Domain axis. False = get Range axis.
-	 * @return The selected ValueAxis or <code>null</code> if the plot doesn't have one.
-	 */
-	protected ValueAxis[] getPlotAxis(JFreeChart chart, boolean domain) {
+    /**
+     * Returns the ValueAxis for the plot or <code>null</code> if the plot doesn't have one.
+     *
+     * @param chart  The chart
+     * @param domain True = get Domain axis. False = get Range axis.
+     * @return The selected ValueAxis or <code>null</code> if the plot doesn't have one.
+     */
+    protected ValueAxis[] getPlotAxis(JFreeChart chart, boolean domain) {
 		// Where's the Shiftable interface when we need it ?? ;)
 		Plot plot = chart.getPlot();
 		if (plot instanceof XYPlot) {
@@ -159,10 +167,12 @@ public class ChartPanelShiftController implements MouseMotionListener, MouseList
 		return null;
 	}
 
-	/**
-	 * Pan / Shifts a plot if the arrow keys are pressed.
-	 */
-	public void keyPressed(KeyEvent e) {
+    /**
+     * Pan / Shifts a plot if the arrow keys are pressed.
+     *
+     * @param e the e
+     */
+    public void keyPressed(KeyEvent e) {
 		if (!plotSupported) {
 			return;
 		}
@@ -292,75 +302,72 @@ public class ChartPanelShiftController implements MouseMotionListener, MouseList
 	@Override
 	public void mouseExited(MouseEvent mouseEvent) {}
 
-	/**
-	 * Returns the fixed shift step for the domain axis.
-	 * 
-	 * @return the fixed shift step for the domain axis.
-	 */
-	public double getFixedDomainShiftUnits() {
+    /**
+     * Returns the fixed shift step for the domain axis.
+     *
+     * @return the fixed shift step for the domain axis.
+     */
+    public double getFixedDomainShiftUnits() {
 		return fixedDomainShiftUnits;
 	}
 
-	/**
-	 * Sets the fixed shift step for the domain axis.
-	 * 
-	 * @param fixedDomainShiftUnits
-	 *            the fixed shift step for the domain axis.
-	 */
-	public void setFixedDomainShiftUnits(double fixedDomainShiftUnits) {
+    /**
+     * Sets the fixed shift step for the domain axis.
+     *
+     * @param fixedDomainShiftUnits the fixed shift step for the domain axis.
+     */
+    public void setFixedDomainShiftUnits(double fixedDomainShiftUnits) {
 		this.fixedDomainShiftUnits = fixedDomainShiftUnits;
 	}
 
-	/**
-	 * Returns the fixed shift step for the range axis.
-	 * 
-	 * @return the fixed shift step for the range axis.
-	 */
-	public double getFixedRangeShiftUnits() {
+    /**
+     * Returns the fixed shift step for the range axis.
+     *
+     * @return the fixed shift step for the range axis.
+     */
+    public double getFixedRangeShiftUnits() {
 		return fixedRangeShiftUnits;
 	}
 
-	/**
-	 * Sets the fixed shift step for the range axis.
-	 * 
-	 * @param fixedRangeShiftUnits
-	 *            the fixed shift step for the range axis.
-	 */
-	public void setFixedRangeShiftUnits(double fixedRangeShiftUnits) {
+    /**
+     * Sets the fixed shift step for the range axis.
+     *
+     * @param fixedRangeShiftUnits the fixed shift step for the range axis.
+     */
+    public void setFixedRangeShiftUnits(double fixedRangeShiftUnits) {
 		this.fixedRangeShiftUnits = fixedRangeShiftUnits;
 	}
 
-	/**
-	 * Returns the current shift type.
-	 * 
-	 * @return the current shift type.
-	 * @see #SHIFT_FIXED
-	 * @see #SHIFT_PERCENTUAL
-	 * @see #SHIFT_PIXEL
-	 */
-	public int getShiftType() {
+    /**
+     * Returns the current shift type.
+     *
+     * @return the current shift type.
+     * @see #SHIFT_FIXED #SHIFT_FIXED#SHIFT_FIXED
+     * @see #SHIFT_PERCENTUAL #SHIFT_PERCENTUAL#SHIFT_PERCENTUAL
+     * @see #SHIFT_PIXEL #SHIFT_PIXEL#SHIFT_PIXEL
+     */
+    public int getShiftType() {
 		return shiftType;
 	}
 
-	/**
-	 * Sets the shift type.
-	 * 
-	 * @param shiftType
-	 *            the new shift type.
-	 * @see #SHIFT_FIXED
-	 * @see #SHIFT_PERCENTUAL
-	 * @see #SHIFT_PIXEL
-	 */
-	public void setShiftType(int shiftType) {
+    /**
+     * Sets the shift type.
+     *
+     * @param shiftType the new shift type.
+     * @see #SHIFT_FIXED #SHIFT_FIXED#SHIFT_FIXED
+     * @see #SHIFT_PERCENTUAL #SHIFT_PERCENTUAL#SHIFT_PERCENTUAL
+     * @see #SHIFT_PIXEL #SHIFT_PIXEL#SHIFT_PIXEL
+     */
+    public void setShiftType(int shiftType) {
 		this.shiftType = shiftType;
 	}
 
-	/**
-	 * Returns whether or not the plot supports shifting.
-	 * 
-	 * @return True if plot can be shifted.
-	 */
-	public boolean isPlotSupported() {
+    /**
+     * Returns whether or not the plot supports shifting.
+     *
+     * @return True if plot can be shifted.
+     */
+    public boolean isPlotSupported() {
 		return plotSupported;
 	}
 }

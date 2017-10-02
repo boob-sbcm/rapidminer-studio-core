@@ -39,14 +39,14 @@ import com.rapidminer.tools.Ontology;
  */
 public class ExampleSetUtilities {
 
-	/**
-	 * This {@link Comparator} compares {@link AttributeRole}s according to their Role. It can be
-	 * used to sort the (special) Attributes of an {@link ExampleSet}.
-	 *
-	 * It enforces the following order for Attributes: ID -> Label -> Prediction -> Confidence ->
-	 * Cluster -> Weight -> Other Special Attributes -> Other Regular Attributes
-	 */
-	public static final Comparator<AttributeRole> SPECIAL_ATTRIBUTES_ROLE_COMPARATOR = new Comparator<AttributeRole>() {
+    /**
+     * This {@link Comparator} compares {@link AttributeRole}s according to their Role. It can be
+     * used to sort the (special) Attributes of an {@link ExampleSet}.
+     * <p>
+     * It enforces the following order for Attributes: ID -> Label -> Prediction -> Confidence ->
+     * Cluster -> Weight -> Other Special Attributes -> Other Regular Attributes
+     */
+    public static final Comparator<AttributeRole> SPECIAL_ATTRIBUTES_ROLE_COMPARATOR = new Comparator<AttributeRole>() {
 
 		private List<String> priorityList = Arrays.asList(new String[] { Attributes.ID_NAME, Attributes.LABEL_NAME,
 				Attributes.PREDICTION_NAME, Attributes.CONFIDENCE_NAME, Attributes.CLUSTER_NAME, Attributes.WEIGHT_NAME });
@@ -79,49 +79,70 @@ public class ExampleSetUtilities {
 
 	};
 
-	/** Determines how to compare the sets of Attributes. */
-	public static enum SetsCompareOption {
-		/** Both sets of Attributes must be the same. */
-		EQUAL,
-		/** The second set of Attributes must be a subset of the first one. */
-		ALLOW_SUBSET,
-		/** The second set of Attributes must be a superset of the first one. */
-		ALLOW_SUPERSET,
-		/** Just compare matching Attributes from both sets (intersection). */
-		USE_INTERSECTION
+    /**
+     * Determines how to compare the sets of Attributes.
+     */
+    public static enum SetsCompareOption {
+        /**
+         * Both sets of Attributes must be the same.
+         */
+        EQUAL,
+        /**
+         * The second set of Attributes must be a subset of the first one.
+         */
+        ALLOW_SUBSET,
+        /**
+         * The second set of Attributes must be a superset of the first one.
+         */
+        ALLOW_SUPERSET,
+        /**
+         * Just compare matching Attributes from both sets (intersection).
+         */
+        USE_INTERSECTION
 	}
 
-	/** Determines how to compare the matching Attributes regarding their types. */
-	public static enum TypesCompareOption {
-		/**
-		 * An Attribute from the second set must be of the same type as the corresponding Attribute
-		 * from the first set.
-		 */
-		EQUAL,
-		/**
-		 * An Attribute from the second set must be a subtype of the corresponding Attribute from
-		 * the first set.
-		 */
-		ALLOW_SUBTYPES,
-		/**
-		 * An Attribute from the second set must be a supertype of the corresponding Attribute from
-		 * the first set.
-		 */
-		ALLOW_SUPERTYPES,
-		/**
-		 * An Attribute from the second set must have the same parent as the corresponding Attribute
-		 * from the first set.
-		 */
-		ALLOW_SAME_PARENTS,
-		/** ignores different Types of the Attributes */
-		DONT_CARE
+    /**
+     * Determines how to compare the matching Attributes regarding their types.
+     */
+    public static enum TypesCompareOption {
+        /**
+         * An Attribute from the second set must be of the same type as the corresponding Attribute
+         * from the first set.
+         */
+        EQUAL,
+        /**
+         * An Attribute from the second set must be a subtype of the corresponding Attribute from
+         * the first set.
+         */
+        ALLOW_SUBTYPES,
+        /**
+         * An Attribute from the second set must be a supertype of the corresponding Attribute from
+         * the first set.
+         */
+        ALLOW_SUPERTYPES,
+        /**
+         * An Attribute from the second set must have the same parent as the corresponding Attribute
+         * from the first set.
+         */
+        ALLOW_SAME_PARENTS,
+        /**
+         * ignores different Types of the Attributes
+         */
+        DONT_CARE
 	}
 
-	/**
-	 * Check if two sets of Attributes are matching. Throws an {@link UserError} if they are not
-	 * equal with regard to the specified {@link SetsCompareOption} and {@link TypesCompareOption}.
-	 */
-	public static void checkAttributesMatching(Operator op, Attributes originalAttributes, Attributes comparedAttributes,
+    /**
+     * Check if two sets of Attributes are matching. Throws an {@link UserError} if they are not
+     * equal with regard to the specified {@link SetsCompareOption} and {@link TypesCompareOption}.
+     *
+     * @param op                 the op
+     * @param originalAttributes the original attributes
+     * @param comparedAttributes the compared attributes
+     * @param compareSets        the compare sets
+     * @param compareTypes       the compare types
+     * @throws UserError the user error
+     */
+    public static void checkAttributesMatching(Operator op, Attributes originalAttributes, Attributes comparedAttributes,
 			SetsCompareOption compareSets, TypesCompareOption compareTypes) throws UserError {
 
 		for (Attribute originalAttribute : originalAttributes) {

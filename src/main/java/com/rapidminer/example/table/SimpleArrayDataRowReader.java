@@ -25,7 +25,7 @@ import java.util.Iterator;
 
 /**
  * Creates a data row reader which uses an iterator over SimpleArrayData.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class SimpleArrayDataRowReader extends AbstractDataRowReader {
@@ -34,7 +34,14 @@ public class SimpleArrayDataRowReader extends AbstractDataRowReader {
 
 	private Attribute[] attributes;
 
-	public SimpleArrayDataRowReader(DataRowFactory factory, Attribute[] attributes, Iterator<SimpleArrayData> simpleData) {
+    /**
+     * Instantiates a new Simple array data row reader.
+     *
+     * @param factory    the factory
+     * @param attributes the attributes
+     * @param simpleData the simple data
+     */
+    public SimpleArrayDataRowReader(DataRowFactory factory, Attribute[] attributes, Iterator<SimpleArrayData> simpleData) {
 		super(factory);
 		this.attributes = attributes;
 		this.simpleData = simpleData;

@@ -38,25 +38,29 @@ import com.rapidminer.parameter.ParameterTypeSuggestion;
  * {@link IORecallfromAppOperator}. The combination of those two operators can be used to cache
  * {@link IOObject}s during a RapidMiner Server App session and use those cached {@link IOObject}s
  * multiple times in the app without executing the same process several times.
- *
+ * <p>
  * This operator is used to manipulate a RapidMiner Server App. If the operator is executed in
  * RapidMiner Studio, the {@link IOObject} is stored in the cache in
  * {@link RapidMiner#getGlobalIOObjectCache()}.
  *
  * @author Sabrina Kirstein
- *
  */
 public class IOPublishToAppOperator extends Operator {
 
 	private final InputPort storeInput = getInputPorts().createPort("store");
 	private final OutputPort storedOutput = getOutputPorts().createPort("stored");
 
-	public static final String PARAMETER_NAME = "name";
+    /**
+     * The constant PARAMETER_NAME.
+     */
+    public static final String PARAMETER_NAME = "name";
 
-	/**
-	 * @param description
-	 */
-	public IOPublishToAppOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Io publish to app operator.
+     *
+     * @param description the description
+     */
+    public IOPublishToAppOperator(OperatorDescription description) {
 		super(description);
 		storeInput.addPrecondition(new SimplePrecondition(storeInput, new MetaData(IOObject.class)));
 		getTransformer().addRule(new PassThroughRule(storeInput, storedOutput, false));

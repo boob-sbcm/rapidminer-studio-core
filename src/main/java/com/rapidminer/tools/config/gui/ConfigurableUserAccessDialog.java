@@ -62,11 +62,10 @@ import com.rapidminer.tools.config.ConfigurationManager;
  * This dialog can be used to modify the user access rights of a {@link Configurable}s, which has a
  * remote source. The dialog shows two lists. One with users that have no access to a remote
  * {@link Configurable} and one list with users that have access.
- *
+ * <p>
  * A user is able to select one or multiple user groups and put it to the other list.
  *
  * @author Sabrina Kirstein
- *
  */
 public class ConfigurableUserAccessDialog extends ButtonDialog {
 
@@ -86,7 +85,13 @@ public class ConfigurableUserAccessDialog extends ButtonDialog {
 
 	private boolean confirmed = false;
 
-	public ConfigurableUserAccessDialog(Window owner, Configurable configurable) {
+    /**
+     * Instantiates a new Configurable user access dialog.
+     *
+     * @param owner        the owner
+     * @param configurable the configurable
+     */
+    public ConfigurableUserAccessDialog(Window owner, Configurable configurable) {
 		super(owner, "configurable_user_access_dialog", ModalityType.MODELESS);
 		this.configurable = configurable;
 
@@ -374,11 +379,12 @@ public class ConfigurableUserAccessDialog extends ButtonDialog {
 		return -1;
 	}
 
-	/**
-	 *
-	 * @return the selected user groups that have access to the configurable
-	 */
-	public Set<String> getPermittedUserGroups() {
+    /**
+     * Gets permitted user groups.
+     *
+     * @return the selected user groups that have access to the configurable
+     */
+    public Set<String> getPermittedUserGroups() {
 
 		Set<String> permittedUserGroups = new HashSet<>();
 		if (confirmed) {

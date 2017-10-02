@@ -29,6 +29,8 @@ import com.rapidminer.operator.ports.metadata.CompatibilityLevel;
 
 
 /**
+ * The type Add compatible operator quick fix.
+ *
  * @author Simon Fischer
  */
 public class AddCompatibleOperatorQuickFix extends AbstractQuickFix {
@@ -36,7 +38,13 @@ public class AddCompatibleOperatorQuickFix extends AbstractQuickFix {
 	private final InputPort inputPort;
 	private final Class<? extends IOObject> neededClass;
 
-	public AddCompatibleOperatorQuickFix(InputPort inputPort, Class<? extends IOObject> clazz) {
+    /**
+     * Instantiates a new Add compatible operator quick fix.
+     *
+     * @param inputPort the input port
+     * @param clazz     the clazz
+     */
+    public AddCompatibleOperatorQuickFix(InputPort inputPort, Class<? extends IOObject> clazz) {
 		super(MAX_RATING - 1, false, "add_compatible", clazz.getSimpleName());
 		this.inputPort = inputPort;
 		this.neededClass = clazz;

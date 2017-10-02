@@ -20,23 +20,42 @@ package com.rapidminer.tools.math.function.window;
 
 /**
  * A gaussian window function.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class GaussianWindowFunction extends WindowFunction {
 
 	private double sigma;
 
-	public GaussianWindowFunction(Integer width, double sigma) {
+    /**
+     * Instantiates a new Gaussian window function.
+     *
+     * @param width the width
+     * @param sigma the sigma
+     */
+    public GaussianWindowFunction(Integer width, double sigma) {
 		super(width);
 		this.sigma = sigma;
 	}
 
-	public GaussianWindowFunction(Integer width, Integer justification) {
+    /**
+     * Instantiates a new Gaussian window function.
+     *
+     * @param width         the width
+     * @param justification the justification
+     */
+    public GaussianWindowFunction(Integer width, Integer justification) {
 		this(width, justification, 0.5d);
 	}
 
-	public GaussianWindowFunction(Integer width, Integer justification, double sigma) {
+    /**
+     * Instantiates a new Gaussian window function.
+     *
+     * @param width         the width
+     * @param justification the justification
+     * @param sigma         the sigma
+     */
+    public GaussianWindowFunction(Integer width, Integer justification, double sigma) {
 		super(width, justification);
 		this.sigma = sigma;
 	}

@@ -31,21 +31,27 @@ import com.rapidminer.parameter.ParameterTypeTupel;
 import com.rapidminer.tools.Tools;
 import com.rapidminer.tools.container.Pair;
 
-/** Tests {@link Tools#escape(String, char, char[])} and {@link Tools#unescape(String, char, char[], char)}.
- * 
- * @author Simon Fischer
+/**
+ * Tests {@link Tools#escape(String, char, char[])} and {@link Tools#unescape(String, char, char[], char)}.
  *
+ * @author Simon Fischer
  */
 public class EscapeTest {
 
-	@Test
+    /**
+     * Test escape.
+     */
+    @Test
 	public void testEscape() {
 		assertEquals("test\\\\tost", Tools.escape("test\\tost", '\\', new char[0]));
 		assertEquals("test\\\ntost", Tools.escape("test\ntost", '\\', new char[] {'\n'}));		
 		assertEquals("one\\.two\\.three\\.\\.five", Tools.escape("one.two.three..five", '\\', new char[] {'.'}));
 	}
-	
-	@Test
+
+    /**
+     * Test unescape.
+     */
+    @Test
 	public void testUnescape() {
 		List<String> result = new LinkedList<String>();
 		result.add("test\\tost");
@@ -58,13 +64,19 @@ public class EscapeTest {
 		result.add("last.line");
 		assertEquals(result, Tools.unescape("line1.line\\.two..last\\.line", '\\', new char[0], '.'));
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
+
+    /**
+     * Test exception.
+     */
+    @Test(expected=IllegalArgumentException.class)
 	public void testException() {
 		Tools.unescape("illegal\\escape character", '\\', new char[] {'a', 'b'}, (char)-1);
 	}
-	
-	@Test
+
+    /**
+     * Test parameter type tuple.
+     */
+    @Test
 	public void testParameterTypeTuple() {
 		//final char internalSeparator = Parameters.PAIR_SEPARATOR;
 		final char internalSeparator = '.';
@@ -74,8 +86,11 @@ public class EscapeTest {
 		assertEquals("fi\\"+internalSeparator+"rst"+internalSeparator+"sec\\"+internalSeparator+"ond", ParameterTypeTupel.transformTupel2String(new String[] { "fi"+internalSeparator+"rst", "sec"+internalSeparator+"ond" }));
 		assertEquals("fi\\"+internalSeparator+"rst"+internalSeparator+"sec\\"+internalSeparator+"ond", ParameterTypeTupel.transformTupel2String(new Pair<String,String>("fi"+internalSeparator+"rst", "sec"+internalSeparator+"ond")));
 	}
-	
-	@Test
+
+    /**
+     * Test parameter type enumeration.
+     */
+    @Test
 	public void testParameterTypeEnumeration() {
 		//final char internalRecordSeparator = Parameters.RECORD_SEPARATOR;
 		final char internalRecordSeparator = ',';

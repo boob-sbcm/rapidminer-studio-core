@@ -23,23 +23,38 @@ import java.io.IOException;
 
 /**
  * Exception that will be thrown if an image export via the {@link ImageExporter} fails.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class ImageExportException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	public ImageExportException(String message, Throwable cause) {
+    /**
+     * Instantiates a new Image export exception.
+     *
+     * @param message the message
+     * @param cause   the cause
+     */
+    public ImageExportException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
-	public ImageExportException(String message) {
+    /**
+     * Instantiates a new Image export exception.
+     *
+     * @param message the message
+     */
+    public ImageExportException(String message) {
 		super(message);
 	}
 
-	public ImageExportException(IOException e) {
+    /**
+     * Instantiates a new Image export exception.
+     *
+     * @param e the e
+     */
+    public ImageExportException(IOException e) {
 		super(e);
 	}
 

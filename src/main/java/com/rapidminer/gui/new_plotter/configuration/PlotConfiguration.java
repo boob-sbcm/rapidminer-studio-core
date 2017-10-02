@@ -71,23 +71,37 @@ import com.rapidminer.tools.ParameterService;
 
 
 /**
+ * The type Plot configuration.
+ *
  * @author Marius Helf, Nils Woehler
  */
 public class PlotConfiguration implements DimensionConfigListener, RangeAxisConfigListener, Cloneable,
 		LinkAndBrushSelectionListener, LegendConfigurationListener, LinkAndBrushListener {
 
-	public static final Paint DEFAULT_SERIES_OUTLINE_PAINT = Color.BLACK;
+    /**
+     * The constant DEFAULT_SERIES_OUTLINE_PAINT.
+     */
+    public static final Paint DEFAULT_SERIES_OUTLINE_PAINT = Color.BLACK;
 
-	public static final Font DEFAULT_AXES_FONT = FontTools.getFont(Font.DIALOG, Font.PLAIN, 10);
+    /**
+     * The constant DEFAULT_AXES_FONT.
+     */
+    public static final Font DEFAULT_AXES_FONT = FontTools.getFont(Font.DIALOG, Font.PLAIN, 10);
 
-	public static final Color DEFAULT_OUTLINE_COLOR = Color.BLACK;
+    /**
+     * The constant DEFAULT_OUTLINE_COLOR.
+     */
+    public static final Color DEFAULT_OUTLINE_COLOR = Color.BLACK;
 
 	private boolean initializing = false;
 
 	private static final double MIN_SHAPE_SCALING_FACTOR = 0.4;
 	private static final double MAX_SHAPE_SCALING_FACTOR = 5.0;
 
-	public static final int GUI_PLOTTER_ROWS_MAXIMUM_IF_RAPIDMINER_PROPERTY_NOT_READABLE = 5000;
+    /**
+     * The constant GUI_PLOTTER_ROWS_MAXIMUM_IF_RAPIDMINER_PROPERTY_NOT_READABLE.
+     */
+    public static final int GUI_PLOTTER_ROWS_MAXIMUM_IF_RAPIDMINER_PROPERTY_NOT_READABLE = 5000;
 
 	private static final String DEFAULT_TITLE_TEXT = null;
 	private static final Font DEFAULT_TITLE_FONT = FontTools.getFont("Arial", Font.PLAIN, 20);
@@ -100,7 +114,10 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 
 	private static final Color DEFAULT_AXIS_COLOR = Color.black;
 
-	public static final Color DEFAULT_TITLE_COLOR = Color.black;
+    /**
+     * The constant DEFAULT_TITLE_COLOR.
+     */
+    public static final Color DEFAULT_TITLE_COLOR = Color.black;
 
 	private final List<RangeAxisConfig> rangeAxisConfigs = new LinkedList<RangeAxisConfig>();
 	private final DomainConfigManager domainConfigManager;
@@ -164,12 +181,12 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 
 	private Color titleColor = DEFAULT_TITLE_COLOR;
 
-	/**
-	 * Creates a plot configuration with one empty {@link RangeAxisConfig}.
-	 *
-	 * @param domainColumn
-	 */
-	public PlotConfiguration(DataTableColumn domainColumn) {
+    /**
+     * Creates a plot configuration with one empty {@link RangeAxisConfig}.
+     *
+     * @param domainColumn the domain column
+     */
+    public PlotConfiguration(DataTableColumn domainColumn) {
 		this.domainConfigManager = new DomainConfigManager(this, domainColumn);
 		this.linkAndBrushMaster = new LinkAndBrushMaster(this);
 		this.linkAndBrushMaster.addLinkAndBrushListener(this);
@@ -252,7 +269,14 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		this.activeSchemeName = colorScheme.getName();
 	}
 
-	public PlotConfiguration(DataTableColumn domainColumn, ColorScheme activeColorScheme,
+    /**
+     * Instantiates a new Plot configuration.
+     *
+     * @param domainColumn      the domain column
+     * @param activeColorScheme the active color scheme
+     * @param colorSchemes      the color schemes
+     */
+    public PlotConfiguration(DataTableColumn domainColumn, ColorScheme activeColorScheme,
 			Map<String, ColorScheme> colorSchemes) {
 		this(domainColumn);
 
@@ -277,71 +301,115 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		legendConfiguration.addListener(this);
 	}
 
-	/**
-	 * Returns the list of all {@link RangeAxisConfig}. All plot value configurations of a plot
-	 * range axis *must* refer to the same column of the underlying DataTable.
-	 *
-	 * All x-Dimensions must use either the same categories, or all x-Dimensions must be numerical.
-	 */
-	public List<RangeAxisConfig> getRangeAxisConfigs() {
+    /**
+     * Returns the list of all {@link RangeAxisConfig}. All plot value configurations of a plot
+     * range axis *must* refer to the same column of the underlying DataTable.
+     * <p>
+     * All x-Dimensions must use either the same categories, or all x-Dimensions must be numerical.
+     *
+     * @return the range axis configs
+     */
+    public List<RangeAxisConfig> getRangeAxisConfigs() {
 		return rangeAxisConfigs;
 	}
 
-	public void addRangeAxisConfig(int index, RangeAxisConfig rangeAxis) {
+    /**
+     * Add range axis config.
+     *
+     * @param index     the index
+     * @param rangeAxis the range axis
+     */
+    public void addRangeAxisConfig(int index, RangeAxisConfig rangeAxis) {
 
 		rangeAxisConfigs.add(index, rangeAxis);
 		fireRangeAxisAdded(index, rangeAxis);
 		rangeAxis.addRangeAxisConfigListener(this);
 	}
 
-	/**
-	 * Adds a PlotRangeAxis to this PlotConfiguration.
-	 *
-	 * See also the comment of getPlotRangeAxis() for the contract for the x-Dimension.
-	 */
-	public void addRangeAxisConfig(RangeAxisConfig rangeAxis) {
+    /**
+     * Adds a PlotRangeAxis to this PlotConfiguration.
+     * <p>
+     * See also the comment of getPlotRangeAxis() for the contract for the x-Dimension.
+     *
+     * @param rangeAxis the range axis
+     */
+    public void addRangeAxisConfig(RangeAxisConfig rangeAxis) {
 		addRangeAxisConfig(rangeAxisConfigs.size(), rangeAxis);
 	}
 
-	public void removeRangeAxisConfig(RangeAxisConfig rangeAxis) {
+    /**
+     * Remove range axis config.
+     *
+     * @param rangeAxis the range axis
+     */
+    public void removeRangeAxisConfig(RangeAxisConfig rangeAxis) {
 		final int index = rangeAxisConfigs.indexOf(rangeAxis);
 		removeRangeAxisConfig(index);
 	}
 
-	public int getNextId() {
+    /**
+     * Gets next id.
+     *
+     * @return the next id
+     */
+    public int getNextId() {
 		++idCounter;
 		return idCounter;
 	}
 
-	public void changeIndex(int index, RangeAxisConfig rangeAxis) {
+    /**
+     * Change index.
+     *
+     * @param index     the index
+     * @param rangeAxis the range axis
+     */
+    public void changeIndex(int index, RangeAxisConfig rangeAxis) {
 		if (ListUtility.changeIndex(rangeAxisConfigs, rangeAxis, index)) {
 			linkAndBrushMaster.clearZooming(false);
 			fireRangeAxisMoved(index, rangeAxis);
 		}
 	}
 
-	public int getRangeAxisCount() {
+    /**
+     * Gets range axis count.
+     *
+     * @return the range axis count
+     */
+    public int getRangeAxisCount() {
 		return rangeAxisConfigs.size();
 	}
 
-	public void removeRangeAxisConfig(int index) {
+    /**
+     * Remove range axis config.
+     *
+     * @param index the index
+     */
+    public void removeRangeAxisConfig(int index) {
 		RangeAxisConfig rangeAxis = rangeAxisConfigs.get(index);
 		rangeAxis.removeRangeAxisConfigListener(this);
 		rangeAxisConfigs.remove(index);
 		fireRangeAxisRemoved(index, rangeAxis);
 	}
 
-	public void addPlotConfigurationListener(PlotConfigurationListener l) {
+    /**
+     * Add plot configuration listener.
+     *
+     * @param l the l
+     */
+    public void addPlotConfigurationListener(PlotConfigurationListener l) {
 		addPlotConfigurationListener(l, false);
 	}
 
-	/**
-	 * This functions registers a {@link PlotConfigurationListener} as prioritized. This means that
-	 * is is being informed at first when new events are being processed. At the moment only one
-	 * prioritized listener may be registered at the same time. Check if you may register via
-	 * getPrioritizedListenerCount().
-	 */
-	public void addPlotConfigurationListener(PlotConfigurationListener l, boolean prioritized) {
+    /**
+     * This functions registers a {@link PlotConfigurationListener} as prioritized. This means that
+     * is is being informed at first when new events are being processed. At the moment only one
+     * prioritized listener may be registered at the same time. Check if you may register via
+     * getPrioritizedListenerCount().
+     *
+     * @param l           the l
+     * @param prioritized the prioritized
+     */
+    public void addPlotConfigurationListener(PlotConfigurationListener l, boolean prioritized) {
 		if (prioritized) {
 			synchronized (prioritizedListeners) {
 				prioritizedListeners.add(new WeakReference<PlotConfigurationListener>(l));
@@ -353,16 +421,23 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		}
 	}
 
-	public int getPrioritizedListenerCount() {
+    /**
+     * Gets prioritized listener count.
+     *
+     * @return the prioritized listener count
+     */
+    public int getPrioritizedListenerCount() {
 		synchronized (prioritizedListeners) {
 			return prioritizedListeners.size();
 		}
 	}
 
-	/**
-	 * Removes prioritized and default listeners if contained in one of these lists.
-	 */
-	public void removePlotConfigurationListener(PlotConfigurationListener l) {
+    /**
+     * Removes prioritized and default listeners if contained in one of these lists.
+     *
+     * @param l the l
+     */
+    public void removePlotConfigurationListener(PlotConfigurationListener l) {
 		synchronized (prioritizedListeners) {
 			Iterator<WeakReference<PlotConfigurationListener>> it = prioritizedListeners.iterator();
 			while (it.hasNext()) {
@@ -384,82 +459,96 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		}
 	}
 
-	/**
-	 * @return the title
-	 */
-	public String getTitleText() {
+    /**
+     * Gets title text.
+     *
+     * @return the title
+     */
+    public String getTitleText() {
 		return titleText;
 	}
 
-	/**
-	 * @param title
-	 *            the title to set
-	 */
-	public void setTitleText(String title) {
+    /**
+     * Sets title text.
+     *
+     * @param title the title to set
+     */
+    public void setTitleText(String title) {
 		if (!Objects.equals(this.titleText, title)) {
 			this.titleText = title;
 			fireTitleChanged();
 		}
 	}
 
-	/**
-	 * @return the titleFont
-	 */
-	public Font getTitleFont() {
+    /**
+     * Gets title font.
+     *
+     * @return the titleFont
+     */
+    public Font getTitleFont() {
 		return titleFont;
 	}
 
-	/**
-	 * @param titleFont
-	 *            the titleFont to set
-	 */
-	public void setTitleFont(Font titleFont) {
+    /**
+     * Sets title font.
+     *
+     * @param titleFont the titleFont to set
+     */
+    public void setTitleFont(Font titleFont) {
 		if (!titleFont.equals(this.titleFont)) {
 			this.titleFont = titleFont;
 			fireTitleChanged();
 		}
 	}
 
-	/**
-	 * @return the backGroundColor
-	 */
-	public Color getPlotBackgroundColor() {
+    /**
+     * Gets plot background color.
+     *
+     * @return the backGroundColor
+     */
+    public Color getPlotBackgroundColor() {
 		return plotBackgroundColor;
 	}
 
-	/**
-	 * @param backgroundColor
-	 *            the backGroundColor to set
-	 */
-	public void setPlotBackgroundColor(Color backgroundColor) {
+    /**
+     * Sets plot background color.
+     *
+     * @param backgroundColor the backGroundColor to set
+     */
+    public void setPlotBackgroundColor(Color backgroundColor) {
 		if (!backgroundColor.equals(this.plotBackgroundColor)) {
 			this.plotBackgroundColor = backgroundColor;
 			firePlotBackgroundColorChanged();
 		}
 	}
 
-	/**
-	 * @return the axesFont
-	 */
-	public Font getAxesFont() {
+    /**
+     * Gets axes font.
+     *
+     * @return the axesFont
+     */
+    public Font getAxesFont() {
 		return axesFont;
 	}
 
-	/**
-	 * @param axesFont
-	 *            the axesFont to set
-	 */
-	public void setAxesFont(Font axesFont) {
+    /**
+     * Sets axes font.
+     *
+     * @param axesFont the axesFont to set
+     */
+    public void setAxesFont(Font axesFont) {
 		if (axesFont != this.axesFont) {
 			this.axesFont = axesFont;
 			fireAxesFontChanged();
 		}
 	}
 
-	/**
-	 * Returns the next free color for a value source based on the active color schema.
-	 */
-	public Color getNextColor() {
+    /**
+     * Returns the next free color for a value source based on the active color schema.
+     *
+     * @return the next color
+     */
+    public Color getNextColor() {
 		int idx = 0;
 		Set<Color> usedColors = new HashSet<Color>();
 		for (ValueSource valueSource : getAllValueSources()) {
@@ -472,49 +561,63 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		return CategoricalColorProvider.getColorForCategoryIdx(idx, colorScheme);
 	}
 
-	/**
-	 * @return the orientation
-	 */
-	public PlotOrientation getOrientation() {
+    /**
+     * Gets orientation.
+     *
+     * @return the orientation
+     */
+    public PlotOrientation getOrientation() {
 		return orientation;
 	}
 
-	/**
-	 * @param orientation
-	 *            the orientation to set
-	 */
-	public void setOrientation(PlotOrientation orientation) {
+    /**
+     * Sets orientation.
+     *
+     * @param orientation the orientation to set
+     */
+    public void setOrientation(PlotOrientation orientation) {
 		if (!this.orientation.equals(orientation)) {
 			this.orientation = orientation;
 			firePlotConfigurationChanged(new PlotConfigurationChangeEvent(this, orientation));
 		}
 	}
 
-	/**
-	 * @return the domainAxisLineStroke
-	 */
-	public float getAxisLineWidth() {
+    /**
+     * Gets axis line width.
+     *
+     * @return the domainAxisLineStroke
+     */
+    public float getAxisLineWidth() {
 		return axisLineWidth;
 	}
 
-	/**
-	 * @return the domainAxisLineColor
-	 */
-	public Color getAxisLineColor() {
+    /**
+     * Gets axis line color.
+     *
+     * @return the domainAxisLineColor
+     */
+    public Color getAxisLineColor() {
 		return axisLineColor;
 	}
 
-	/**
-	 * @param axisLineWidth
-	 */
-	public void setAxisLineWidth(float axisLineWidth) {
+    /**
+     * Sets axis line width.
+     *
+     * @param axisLineWidth the axis line width
+     */
+    public void setAxisLineWidth(float axisLineWidth) {
 		if (axisLineWidth != this.axisLineWidth) {
 			this.axisLineWidth = axisLineWidth;
 			firePlotConfigurationChanged(new PlotConfigurationChangeEvent(this, axisLineWidth));
 		}
 	}
 
-	public void setAxisLineColor(Color axisLineColor) {
+    /**
+     * Sets axis line color.
+     *
+     * @param axisLineColor the axis line color
+     */
+    public void setAxisLineColor(Color axisLineColor) {
 		if (!axisLineColor.equals(this.axisLineColor)) {
 			this.axisLineColor = axisLineColor;
 			firePlotConfigurationChanged(
@@ -522,15 +625,21 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		}
 	}
 
-	public Color getChartBackgroundColor() {
+    /**
+     * Gets chart background color.
+     *
+     * @return the chart background color
+     */
+    public Color getChartBackgroundColor() {
 		return frameBackgroundColor;
 	}
 
-	/**
-	 * @param frameBackgroundColor
-	 *            the chartBackgroundColor to set
-	 */
-	public void setFrameBackgroundColor(Color frameBackgroundColor) {
+    /**
+     * Sets frame background color.
+     *
+     * @param frameBackgroundColor the chartBackgroundColor to set
+     */
+    public void setFrameBackgroundColor(Color frameBackgroundColor) {
 		if (!frameBackgroundColor.equals(this.frameBackgroundColor)) {
 			this.frameBackgroundColor = frameBackgroundColor;
 			fireChartBackgroundChanged();
@@ -579,16 +688,13 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		}
 	}
 
-	/**
-	 * Sets the dimension config for a specific dimension.
-	 *
-	 * @param dimension
-	 *            The dimension for which the config is specified. Must not be VALUE or DOMAIN.
-	 * @param dimensionConfig
-	 *            The new dimension config for the dimension. null means to remove the dimension
-	 *            config.
-	 */
-	public void setDimensionConfig(PlotDimension dimension, DefaultDimensionConfig dimensionConfig) {
+    /**
+     * Sets the dimension config for a specific dimension.
+     *
+     * @param dimension       The dimension for which the config is specified. Must not be VALUE or DOMAIN.
+     * @param dimensionConfig The new dimension config for the dimension. null means to remove the dimension            config.
+     */
+    public void setDimensionConfig(PlotDimension dimension, DefaultDimensionConfig dimensionConfig) {
 		DimensionConfig currentDimensionConfig = dimensionConfigMap.get(dimension);
 		if (dimensionConfig != currentDimensionConfig) {
 			if (dimensionConfig == null) {
@@ -626,11 +732,13 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		}
 	}
 
-	/**
-	 * Returns a list of all {@link ValueSource}s, no matter in which {@link RangeAxisConfig}
-	 * they are located.
-	 */
-	public List<ValueSource> getAllValueSources() {
+    /**
+     * Returns a list of all {@link ValueSource}s, no matter in which {@link RangeAxisConfig}
+     * they are located.
+     *
+     * @return the all value sources
+     */
+    public List<ValueSource> getAllValueSources() {
 		List<ValueSource> resultList = new LinkedList<ValueSource>();
 		for (RangeAxisConfig rangeAxisConfig : getRangeAxisConfigs()) {
 			resultList.addAll(rangeAxisConfig.getValueSources());
@@ -638,28 +746,37 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		return resultList;
 	}
 
-	/**
-	 * Returns the dimension config for the specified dimension. May return <code>null</code> if not
-	 * existing.
-	 */
-	public DimensionConfig getDimensionConfig(PlotDimension dimension) {
+    /**
+     * Returns the dimension config for the specified dimension. May return <code>null</code> if not
+     * existing.
+     *
+     * @param dimension the dimension
+     * @return the dimension config
+     */
+    public DimensionConfig getDimensionConfig(PlotDimension dimension) {
 		if (dimension == PlotDimension.DOMAIN) {
 			return domainConfigManager;
 		}
 		return dimensionConfigMap.get(dimension);
 	}
 
-	/**
-	 * Returns all existing dimension configurations except the DOMAIN dimension config. This has to
-	 * be fetched be getDomainConfigManager().
-	 *
-	 * @return
-	 */
-	public Map<PlotDimension, DefaultDimensionConfig> getDefaultDimensionConfigs() {
+    /**
+     * Returns all existing dimension configurations except the DOMAIN dimension config. This has to
+     * be fetched be getDomainConfigManager().
+     *
+     * @return default dimension configs
+     */
+    public Map<PlotDimension, DefaultDimensionConfig> getDefaultDimensionConfigs() {
 		return dimensionConfigMap;
 	}
 
-	public SeriesFormat getAutomaticSeriesFormatForNextValueSource(RangeAxisConfig rangeAxisConfig) {
+    /**
+     * Gets automatic series format for next value source.
+     *
+     * @param rangeAxisConfig the range axis config
+     * @return the automatic series format for next value source
+     */
+    public SeriesFormat getAutomaticSeriesFormatForNextValueSource(RangeAxisConfig rangeAxisConfig) {
 		SeriesFormat seriesFormat = new SeriesFormat();
 
 		List<ValueSource> valueSourceList = rangeAxisConfig.getValueSources();
@@ -747,12 +864,12 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		}
 	}
 
-	/**
-	 * Tells the {@link PlotConfiguration} that the current event has been processed. If all
-	 * Listeners have processed the last current event this triggers the next event to be processed
-	 * if another is available.
-	 */
-	public synchronized void plotConfigurationChangeEventProcessed() {
+    /**
+     * Tells the {@link PlotConfiguration} that the current event has been processed. If all
+     * Listeners have processed the last current event this triggers the next event to be processed
+     * if another is available.
+     */
+    public synchronized void plotConfigurationChangeEventProcessed() {
 		eventProcessed(false);
 	}
 
@@ -774,15 +891,17 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		processQueueEvent();
 	}
 
-	/**
-	 * If this parameter is true, events that happen inside this PlotConfiguration, e.g. changes of
-	 * RangeAxis, ValueSource etc. are process by the event queue. If this parameter is false, no
-	 * events are processed.
-	 *
-	 * Best Practice to use it: boolean processing = isProcessingEvents(); setProcessEvents(false);
-	 * OTHER CODE setProcessEvents(processing);
-	 */
-	public synchronized void setProcessEvents(Boolean process) {
+    /**
+     * If this parameter is true, events that happen inside this PlotConfiguration, e.g. changes of
+     * RangeAxis, ValueSource etc. are process by the event queue. If this parameter is false, no
+     * events are processed.
+     * <p>
+     * Best Practice to use it: boolean processing = isProcessingEvents(); setProcessEvents(false);
+     * OTHER CODE setProcessEvents(processing);
+     *
+     * @param process the process
+     */
+    public synchronized void setProcessEvents(Boolean process) {
 		this.processEvents = process;
 
 		if (processEvents) {
@@ -790,7 +909,12 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		}
 	}
 
-	public synchronized boolean isProcessingEvents() {
+    /**
+     * Is processing events boolean.
+     *
+     * @return the boolean
+     */
+    public synchronized boolean isProcessingEvents() {
 		return processEvents.booleanValue();
 	}
 
@@ -956,7 +1080,12 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		}
 	}
 
-	public DomainConfigManager getDomainConfigManager() {
+    /**
+     * Gets domain config manager.
+     *
+     * @return the domain config manager
+     */
+    public DomainConfigManager getDomainConfigManager() {
 		return domainConfigManager;
 	}
 
@@ -1032,7 +1161,12 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		firePlotConfigurationChanged(new PlotConfigurationChangeEvent(this, e));
 	}
 
-	public List<PlotConfigurationError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<PlotConfigurationError> getErrors() {
 		List<PlotConfigurationError> errors = new LinkedList<PlotConfigurationError>();
 
 		errors.addAll(domainConfigManager.getErrors());
@@ -1049,7 +1183,12 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		return errors;
 	}
 
-	public List<PlotConfigurationError> getWarnings() {
+    /**
+     * Gets warnings.
+     *
+     * @return the warnings
+     */
+    public List<PlotConfigurationError> getWarnings() {
 		List<PlotConfigurationError> warnings = new LinkedList<PlotConfigurationError>();
 
 		warnings.addAll(domainConfigManager.getWarnings());
@@ -1080,7 +1219,13 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		return warnings;
 	}
 
-	public boolean isDimensionUsed(PlotDimension dimension) {
+    /**
+     * Is dimension used boolean.
+     *
+     * @param dimension the dimension
+     * @return the boolean
+     */
+    public boolean isDimensionUsed(PlotDimension dimension) {
 		if (dimension != PlotDimension.DOMAIN) {
 			DimensionConfig dimensionConfig = getDimensionConfig(dimension);
 			if (dimensionConfig == null) {
@@ -1097,15 +1242,30 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		}
 	}
 
-	public boolean isValid() {
+    /**
+     * Is valid boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isValid() {
 		return getErrors().isEmpty();
 	}
 
-	public double getMinShapeSize() {
+    /**
+     * Gets min shape size.
+     *
+     * @return the min shape size
+     */
+    public double getMinShapeSize() {
 		return MIN_SHAPE_SCALING_FACTOR;
 	}
 
-	public double getMaxShapeSize() {
+    /**
+     * Gets max shape size.
+     *
+     * @return the max shape size
+     */
+    public double getMaxShapeSize() {
 		return MAX_SHAPE_SCALING_FACTOR;
 	}
 
@@ -1161,7 +1321,12 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		return clone;
 	}
 
-	public ColorScheme getDefaultColorScheme() {
+    /**
+     * Gets default color scheme.
+     *
+     * @return the default color scheme
+     */
+    public ColorScheme getDefaultColorScheme() {
 		List<ColorRGB> listOfColors = new LinkedList<ColorRGB>();
 		Color minColor = getColorFromProperty(MainFrame.PROPERTY_RAPIDMINER_GUI_PLOTTER_LEGEND_MINCOLOR, Color.BLUE);
 		ColorRGB minColorRGB = ColorRGB.convertColorToColorRGB(minColor);
@@ -1183,11 +1348,13 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 				maxColorRGB);
 	}
 
-	/**
-	 * @param colorSchemes
-	 *            the colorScheme to set
-	 */
-	public void setColorSchemes(Map<String, ColorScheme> colorSchemes, String activeColorSchemeName) {
+    /**
+     * Sets color schemes.
+     *
+     * @param colorSchemes          the colorScheme to set
+     * @param activeColorSchemeName the active color scheme name
+     */
+    public void setColorSchemes(Map<String, ColorScheme> colorSchemes, String activeColorSchemeName) {
 		boolean changed = false;
 
 		ColorScheme oldActiveScheme = getActiveColorScheme();
@@ -1205,7 +1372,12 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		}
 	}
 
-	public Map<String, ColorScheme> getColorSchemes() {
+    /**
+     * Gets color schemes.
+     *
+     * @return the color schemes
+     */
+    public Map<String, ColorScheme> getColorSchemes() {
 		return colorSchemes;
 	}
 
@@ -1234,7 +1406,12 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		setProcessEvents(processEvents);
 	}
 
-	public void setActiveColorScheme(String name) {
+    /**
+     * Sets active color scheme.
+     *
+     * @param name the name
+     */
+    public void setActiveColorScheme(String name) {
 
 		// check if colorscheme has changed
 		if (!this.activeSchemeName.equals(name)) {
@@ -1244,10 +1421,12 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		}
 	}
 
-	/**
-	 * @return the colorScheme
-	 */
-	public ColorScheme getActiveColorScheme() {
+    /**
+     * Gets active color scheme.
+     *
+     * @return the colorScheme
+     */
+    public ColorScheme getActiveColorScheme() {
 		ColorScheme activeColorScheme = colorSchemes.get(activeSchemeName);
 		if (activeColorScheme == null) {
 			return getDefaultColorScheme();
@@ -1255,51 +1434,67 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		return activeColorScheme;
 	}
 
-	public PlotConfigurationChangeEvent getCurrentEvent() {
+    /**
+     * Gets current event.
+     *
+     * @return the current event
+     */
+    public PlotConfigurationChangeEvent getCurrentEvent() {
 		return currentEvent;
 	}
 
-	/**
-	 * Adds a {@link ColorScheme} to the existing ones. If another {@link ColorScheme} with same
-	 * name already exists it will be overwritten.
-	 */
-	public void addColorScheme(ColorScheme colorScheme) {
+    /**
+     * Adds a {@link ColorScheme} to the existing ones. If another {@link ColorScheme} with same
+     * name already exists it will be overwritten.
+     *
+     * @param colorScheme the color scheme
+     */
+    public void addColorScheme(ColorScheme colorScheme) {
 		colorSchemes.put(colorScheme.getName(), colorScheme);
 	}
 
-	/**
-	 * Adds a {@link ColorScheme} to the existing ones. If another {@link ColorScheme} with same
-	 * name already exists it will be overwritten. Afterwards it is set to be the active
-	 * {@link ColorScheme}.
-	 */
-	public void addColorSchemeAndSetActive(ColorScheme colorScheme) {
+    /**
+     * Adds a {@link ColorScheme} to the existing ones. If another {@link ColorScheme} with same
+     * name already exists it will be overwritten. Afterwards it is set to be the active
+     * {@link ColorScheme}.
+     *
+     * @param colorScheme the color scheme
+     */
+    public void addColorSchemeAndSetActive(ColorScheme colorScheme) {
 		addColorScheme(colorScheme);
 		setActiveScheme(colorScheme.getName());
 		firePlotConfigurationChanged(new PlotConfigurationChangeEvent(this, getActiveColorScheme()));
 	}
 
-	/**
-	 * Removes {@link ColorScheme} with parameter name if present.
-	 */
-	public void removeColorScheme(String name) {
+    /**
+     * Removes {@link ColorScheme} with parameter name if present.
+     *
+     * @param name the name
+     */
+    public void removeColorScheme(String name) {
 		colorSchemes.remove(name);
 	}
 
-	/**
-	 * @return the link and brush master
-	 */
-	public LinkAndBrushMaster getLinkAndBrushMaster() {
+    /**
+     * Gets link and brush master.
+     *
+     * @return the link and brush master
+     */
+    public LinkAndBrushMaster getLinkAndBrushMaster() {
 		return linkAndBrushMaster;
 	}
 
-	/**
-	 * Returns whether grouping is required or not. Grouping of new {@link ValueSource}s is required
-	 * if a containing {@link ValueSource} is grouped and the selected grouping is categorical.
-	 *
-	 * Lives here and not in {@link RangeAxisConfig} because needs the domain config manager of this
-	 * {@link PlotConfiguration}.
-	 */
-	public boolean isGroupingRequiredForNewValueSource(RangeAxisConfig rangeAxis) {
+    /**
+     * Returns whether grouping is required or not. Grouping of new {@link ValueSource}s is required
+     * if a containing {@link ValueSource} is grouped and the selected grouping is categorical.
+     * <p>
+     * Lives here and not in {@link RangeAxisConfig} because needs the domain config manager of this
+     * {@link PlotConfiguration}.
+     *
+     * @param rangeAxis the range axis
+     * @return the boolean
+     */
+    public boolean isGroupingRequiredForNewValueSource(RangeAxisConfig rangeAxis) {
 		List<ValueSource> valueSources = rangeAxis.getValueSources();
 		for (ValueSource source : valueSources) {
 			if (source.isUsingDomainGrouping() && getDomainConfigManager().isNominal()) {
@@ -1314,7 +1509,12 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		linkAndBrushMaster.selectedLinkAndBrushRectangle(e);
 	}
 
-	public static int getMaxAllowedValueCount() {
+    /**
+     * Gets max allowed value count.
+     *
+     * @return the max allowed value count
+     */
+    public static int getMaxAllowedValueCount() {
 		String parameterValue = ParameterService.getParameterValue(MainFrame.PROPERTY_RAPIDMINER_GUI_PLOTTER_ROWS_MAXIMUM);
 		if (parameterValue != null) {
 			return Integer.parseInt(parameterValue);
@@ -1328,15 +1528,20 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		fireLegendChanged(change);
 	}
 
-	public LegendConfiguration getLegendConfiguration() {
+    /**
+     * Gets legend configuration.
+     *
+     * @return the legend configuration
+     */
+    public LegendConfiguration getLegendConfiguration() {
 		return legendConfiguration;
 	}
 
-	/**
-	 * Removes all value sources, dimension configs and range axes, and resets all options to their
-	 * default values.
-	 */
-	public void resetToDefaults() {
+    /**
+     * Removes all value sources, dimension configs and range axes, and resets all options to their
+     * default values.
+     */
+    public void resetToDefaults() {
 		boolean processing = isProcessingEvents();
 
 		// do it this strange way to counter concurrent modification exception
@@ -1366,13 +1571,23 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		setProcessEvents(processing);
 	}
 
-	public void addPlotConfigurationProcessingListener(PlotConfigurationProcessingListener l) {
+    /**
+     * Add plot configuration processing listener.
+     *
+     * @param l the l
+     */
+    public void addPlotConfigurationProcessingListener(PlotConfigurationProcessingListener l) {
 		synchronized (processingListeners) {
 			processingListeners.add(new WeakReference<PlotConfigurationProcessingListener>(l));
 		}
 	}
 
-	public void removePlotConfigurationProcessingListener(PlotConfigurationProcessingListener l) {
+    /**
+     * Remove plot configuration processing listener.
+     *
+     * @param l the l
+     */
+    public void removePlotConfigurationProcessingListener(PlotConfigurationProcessingListener l) {
 		synchronized (processingListeners) {
 			Iterator<WeakReference<PlotConfigurationProcessingListener>> it = processingListeners.iterator();
 			while (it.hasNext()) {
@@ -1384,7 +1599,13 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		}
 	}
 
-	public RangeAxisConfig getRangeAxisConfigById(int id) {
+    /**
+     * Gets range axis config by id.
+     *
+     * @param id the id
+     * @return the range axis config by id
+     */
+    public RangeAxisConfig getRangeAxisConfigById(int id) {
 		for (RangeAxisConfig rangeAxisConfig : getRangeAxisConfigs()) {
 			if (rangeAxisConfig.getId() == id) {
 				return rangeAxisConfig;
@@ -1394,13 +1615,13 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		return null;
 	}
 
-	/**
-	 * Returns the index of the {@link RangeAxisConfig} with a given id.
-	 *
-	 * @param id
-	 * @return The index of the range axis, or -1 if no such range axis exists.
-	 */
-	public int getIndexOfRangeAxisConfigById(int id) {
+    /**
+     * Returns the index of the {@link RangeAxisConfig} with a given id.
+     *
+     * @param id the id
+     * @return The index of the range axis, or -1 if no such range axis exists.
+     */
+    public int getIndexOfRangeAxisConfigById(int id) {
 		int idx = 0;
 		for (RangeAxisConfig rangeAxisConfig : getRangeAxisConfigs()) {
 			if (rangeAxisConfig.getId() == id) {
@@ -1412,7 +1633,13 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		return -1;
 	}
 
-	public DefaultDimensionConfig getDefaultDimensionConfigById(int dimensionConfigId) {
+    /**
+     * Gets default dimension config by id.
+     *
+     * @param dimensionConfigId the dimension config id
+     * @return the default dimension config by id
+     */
+    public DefaultDimensionConfig getDefaultDimensionConfigById(int dimensionConfigId) {
 		if (domainConfigManager.getDomainConfig(true).getId() == dimensionConfigId) {
 			return domainConfigManager.getDomainConfig(true);
 		}
@@ -1428,22 +1655,29 @@ public class PlotConfiguration implements DimensionConfigListener, RangeAxisConf
 		return null;
 	}
 
-	/**
-	 * @return
-	 */
-	public Color getTitleColor() {
+    /**
+     * Gets title color.
+     *
+     * @return title color
+     */
+    public Color getTitleColor() {
 		return titleColor;
 	}
 
-	public void setTitleColor(Color titleColor) {
+    /**
+     * Sets title color.
+     *
+     * @param titleColor the title color
+     */
+    public void setTitleColor(Color titleColor) {
 		this.titleColor = titleColor;
 		fireTitleChanged();
 	}
 
-	/**
-	 * This function can be used to fire a TRIGGER_REPLOT event.
-	 */
-	public void triggerReplot() {
+    /**
+     * This function can be used to fire a TRIGGER_REPLOT event.
+     */
+    public void triggerReplot() {
 		firePlotConfigurationChanged(new PlotConfigurationChangeEvent(this));
 	}
 

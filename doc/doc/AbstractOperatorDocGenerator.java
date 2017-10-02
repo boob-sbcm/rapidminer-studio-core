@@ -37,84 +37,194 @@ import com.sun.tools.doclets.Taglet;
 /**
  * This generator provides useful methods to generate documentation from the Javadoc comments and abstract methods of an
  * operator. Subclasses can be implemented to deliver different target formats like LaTeX or HTML.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public abstract class AbstractOperatorDocGenerator implements OperatorDocGenerator {
 
-	public final static int OPERATOR = 0;
+    /**
+     * The constant OPERATOR.
+     */
+    public final static int OPERATOR = 0;
 
-	public final static int OPERATOR_NAME = 1;
+    /**
+     * The constant OPERATOR_NAME.
+     */
+    public final static int OPERATOR_NAME = 1;
 
-	public final static int GROUP_NAME = 2;
+    /**
+     * The constant GROUP_NAME.
+     */
+    public final static int GROUP_NAME = 2;
 
-	public final static int PARAMETER_LIST = 3;
+    /**
+     * The constant PARAMETER_LIST.
+     */
+    public final static int PARAMETER_LIST = 3;
 
-	public final static int PARAMETER_ITEM = 4;
+    /**
+     * The constant PARAMETER_ITEM.
+     */
+    public final static int PARAMETER_ITEM = 4;
 
-	public final static int PARAMETER_NAME_REQ = 5;
+    /**
+     * The constant PARAMETER_NAME_REQ.
+     */
+    public final static int PARAMETER_NAME_REQ = 5;
 
-	public final static int PARAMETER_NAME_OPT = 6;
+    /**
+     * The constant PARAMETER_NAME_OPT.
+     */
+    public final static int PARAMETER_NAME_OPT = 6;
 
-	public final static int PARAMETER_DESCRIPTION = 7;
+    /**
+     * The constant PARAMETER_DESCRIPTION.
+     */
+    public final static int PARAMETER_DESCRIPTION = 7;
 
-	public final static int SHORT_DESCRIPTION = 8;
+    /**
+     * The constant SHORT_DESCRIPTION.
+     */
+    public final static int SHORT_DESCRIPTION = 8;
 
-	public final static int OPERATOR_DESCRIPTION = 9;
+    /**
+     * The constant OPERATOR_DESCRIPTION.
+     */
+    public final static int OPERATOR_DESCRIPTION = 9;
 
-	public final static int INPUT_CLASSES_LIST = 10;
+    /**
+     * The constant INPUT_CLASSES_LIST.
+     */
+    public final static int INPUT_CLASSES_LIST = 10;
 
-	public final static int OUTPUT_CLASSES_LIST = 11;
+    /**
+     * The constant OUTPUT_CLASSES_LIST.
+     */
+    public final static int OUTPUT_CLASSES_LIST = 11;
 
-	public final static int IO_CLASS = 12;
+    /**
+     * The constant IO_CLASS.
+     */
+    public final static int IO_CLASS = 12;
 
-	public final static int INNER_OPERATOR = 13;
+    /**
+     * The constant INNER_OPERATOR.
+     */
+    public final static int INNER_OPERATOR = 13;
 
-	public final static int VALUE_LIST = 14;
+    /**
+     * The constant VALUE_LIST.
+     */
+    public final static int VALUE_LIST = 14;
 
-	public final static int VALUE_ITEM = 15;
+    /**
+     * The constant VALUE_ITEM.
+     */
+    public final static int VALUE_ITEM = 15;
 
-	public final static int VALUE_NAME = 16;
+    /**
+     * The constant VALUE_NAME.
+     */
+    public final static int VALUE_NAME = 16;
 
-	public final static int VALUE_DESCRIPTION = 17;
+    /**
+     * The constant VALUE_DESCRIPTION.
+     */
+    public final static int VALUE_DESCRIPTION = 17;
 
-	public final static int INDEX_ENTRY = 18;
+    /**
+     * The constant INDEX_ENTRY.
+     */
+    public final static int INDEX_ENTRY = 18;
 
-	public final static int REFERENCE_SECTION = 19;
+    /**
+     * The constant REFERENCE_SECTION.
+     */
+    public final static int REFERENCE_SECTION = 19;
 
-	public final static int REFERENCE_ENTRY = 20;
+    /**
+     * The constant REFERENCE_ENTRY.
+     */
+    public final static int REFERENCE_ENTRY = 20;
 
-	public final static int TECHNICAL_INFORMATION = 21;
+    /**
+     * The constant TECHNICAL_INFORMATION.
+     */
+    public final static int TECHNICAL_INFORMATION = 21;
 
-	public final static int DEPRECATION_INFO = 22;
+    /**
+     * The constant DEPRECATION_INFO.
+     */
+    public final static int DEPRECATION_INFO = 22;
 
-	public final static int LEARNER_CAPABILITIES = 23;
+    /**
+     * The constant LEARNER_CAPABILITIES.
+     */
+    public final static int LEARNER_CAPABILITIES = 23;
 
 	private Map<String, Taglet> tagletMap = new HashMap<String, Taglet>();
 
-	/**
-	 * Transform the HTML-comment to the respective output language. The class and operator name are only given for
-	 * debugging purposes.
-	 */
-	 public abstract String transformHTMLJavadocComment(String comment, Class clazz, String operatorName);
+    /**
+     * Transform the HTML-comment to the respective output language. The class and operator name are only given for
+     * debugging purposes.
+     *
+     * @param comment      the comment
+     * @param clazz        the clazz
+     * @param operatorName the operator name
+     * @return the string
+     */
+    public abstract String transformHTMLJavadocComment(String comment, Class clazz, String operatorName);
 
-	 /** Replace any special characters by an escaped version. */
-	 public abstract String escape(String toEscape);
+    /**
+     * Replace any special characters by an escaped version.  @param toEscape the to escape
+     *
+     * @param toEscape the to escape
+     * @return the string
+     */
+    public abstract String escape(String toEscape);
 
-	 public abstract String getOpenTag(int tagNo);
+    /**
+     * Gets open tag.
+     *
+     * @param tagNo the tag no
+     * @return the open tag
+     */
+    public abstract String getOpenTag(int tagNo);
 
-	 public abstract String getCloseTag(int tagNo);
+    /**
+     * Gets close tag.
+     *
+     * @param tagNo the tag no
+     * @return the close tag
+     */
+    public abstract String getCloseTag(int tagNo);
 
-	 public abstract String marginIcon(String iconName);
+    /**
+     * Margin icon string.
+     *
+     * @param iconName the icon name
+     * @return the string
+     */
+    public abstract String marginIcon(String iconName);
 
-	 public AbstractOperatorDocGenerator() {
+    /**
+     * Instantiates a new Abstract operator doc generator.
+     */
+    public AbstractOperatorDocGenerator() {
 		 CiteTaglet.register(tagletMap);
 		 MathTaglet.register(tagletMap);
 		 RefTaglet.register(tagletMap);
 		 XMLExampleTaglet.register(tagletMap);
 	 }
 
-	 public void generateDoc(Operator op, RootDoc rootDoc, PrintWriter out) {
+    /**
+     * Generate doc.
+     *
+     * @param op      the op
+     * @param rootDoc the root doc
+     * @param out     the out
+     */
+    public void generateDoc(Operator op, RootDoc rootDoc, PrintWriter out) {
 		 ClassDoc opDoc = rootDoc.classNamed(op.getClass().getName());
 
 		 out.println(getOpenTag(OPERATOR));

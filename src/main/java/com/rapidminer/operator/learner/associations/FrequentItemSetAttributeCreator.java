@@ -51,7 +51,12 @@ public class FrequentItemSetAttributeCreator extends Operator {
 
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	public FrequentItemSetAttributeCreator(OperatorDescription description) {
+    /**
+     * Instantiates a new Frequent item set attribute creator.
+     *
+     * @param description the description
+     */
+    public FrequentItemSetAttributeCreator(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, exampleSetOutput, SetRelation.SUPERSET));

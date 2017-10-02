@@ -33,7 +33,6 @@ import com.rapidminer.tools.Observer;
  * This map of {@link IOObject}s is used to make {@link IOObject}s accessible for a given scope.
  *
  * @author Sabrina Kirstein, Marco Boeck
- *
  */
 public class IOObjectMap {
 
@@ -58,27 +57,32 @@ public class IOObjectMap {
 
 	private Object LOCK = new Object();
 
-	/**
-	 * Adds an observer, which receives updates when the map changes, i.e. an object is
-	 * added/removed/changed or multiple objects are added/removed at the same time.
-	 *
-	 * @param observer
-	 */
-	public void addMapObserver(Observer<IOObjectMapEvent> observer) {
+    /**
+     * Adds an observer, which receives updates when the map changes, i.e. an object is
+     * added/removed/changed or multiple objects are added/removed at the same time.
+     *
+     * @param observer the observer
+     */
+    public void addMapObserver(Observer<IOObjectMapEvent> observer) {
 		mapObservable.addObserver(observer, false);
 	}
 
-	/**
-	 * Removes the observer. The observer receives no longer updates if the map changes.
-	 *
-	 * @param observer
-	 */
-	public void removeMapObserver(Observer<IOObjectMapEvent> observer) {
+    /**
+     * Removes the observer. The observer receives no longer updates if the map changes.
+     *
+     * @param observer the observer
+     */
+    public void removeMapObserver(Observer<IOObjectMapEvent> observer) {
 		mapObservable.removeObserver(observer);
 	}
 
-	/** Cache a given {@link IOObject} with an associated name. */
-	public void store(String name, IOObject object) {
+    /**
+     * Cache a given {@link IOObject} with an associated name.  @param name the name
+     *
+     * @param name   the name
+     * @param object the object
+     */
+    public void store(String name, IOObject object) {
 		IOObject previous = null;
 		synchronized (LOCK) {
 			previous = cacheMap.put(name, object);
@@ -92,41 +96,45 @@ public class IOObjectMap {
 		}
 	}
 
-	/**
-	 * Return an {@link IOObject} with the given name or <code>null</code> is none exists.
-	 */
-	public IOObject get(String name) {
+    /**
+     * Return an {@link IOObject} with the given name or <code>null</code> is none exists.
+     *
+     * @param name the name
+     * @return the io object
+     */
+    public IOObject get(String name) {
 		return cacheMap.get(name);
 	}
 
-	/**
-	 * Returns all cached {@link IOObject}s
-	 *
-	 * @return
-	 */
-	public Map<String, IOObject> getAll() {
+    /**
+     * Returns all cached {@link IOObject}s
+     *
+     * @return all all
+     */
+    public Map<String, IOObject> getAll() {
 		synchronized (LOCK) {
 			return Collections.unmodifiableMap(cacheMap);
 		}
 	}
 
-	/**
-	 * Returns the keys of all cached {@link IOObject}s
-	 *
-	 * @return
-	 */
-	public Set<String> getAllKeys() {
+    /**
+     * Returns the keys of all cached {@link IOObject}s
+     *
+     * @return all keys
+     */
+    public Set<String> getAllKeys() {
 		synchronized (LOCK) {
 			return Collections.unmodifiableSet(cacheMap.keySet());
 		}
 	}
 
-	/**
-	 * Removes an {@link IOObject} with the given name
-	 *
-	 * @return the removed {@link IOObject} or <code>null</code> if it does not exist
-	 */
-	public IOObject remove(String name) {
+    /**
+     * Removes an {@link IOObject} with the given name
+     *
+     * @param name the name
+     * @return the removed {@link IOObject} or <code>null</code> if it does not exist
+     */
+    public IOObject remove(String name) {
 		IOObject removedObject;
 		synchronized (LOCK) {
 			removedObject = cacheMap.remove(name);
@@ -135,8 +143,10 @@ public class IOObjectMap {
 		return removedObject;
 	}
 
-	/** Clears all stored {@link IOObject}s. */
-	public void clearStorage() {
+    /**
+     * Clears all stored {@link IOObject}s.
+     */
+    public void clearStorage() {
 		synchronized (LOCK) {
 			cacheMap.clear();
 		}

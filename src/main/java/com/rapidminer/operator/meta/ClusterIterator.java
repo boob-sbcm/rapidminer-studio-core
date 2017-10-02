@@ -56,7 +56,12 @@ public class ClusterIterator extends OperatorChain {
 
 	private int numberOfClusters = 0;
 
-	public ClusterIterator(OperatorDescription description) {
+    /**
+     * Instantiates a new Cluster iterator.
+     *
+     * @param description the description
+     */
+    public ClusterIterator(OperatorDescription description) {
 		super(description, "Cluster Iteration");
 		inputExtender.start();
 		outputExtender.start();

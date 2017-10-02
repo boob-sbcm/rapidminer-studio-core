@@ -36,15 +36,20 @@ import java.util.List;
 
 /**
  * Collection of static helper methods to add and evaluate parameters to specify an encoding.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class Encoding {
 
-	public static final String PARAMETER_ENCODING = "encoding";
+    /**
+     * The constant PARAMETER_ENCODING.
+     */
+    public static final String PARAMETER_ENCODING = "encoding";
 
-	public static final String[] CHARSETS;
+    /**
+     * The constant CHARSETS.
+     */
+    public static final String[] CHARSETS;
 	static {
 		CHARSETS = new String[Charset.availableCharsets().size() + 1];
 		CHARSETS[0] = RapidMiner.SYSTEM_ENCODING_NAME;
@@ -55,7 +60,15 @@ public class Encoding {
 		}
 	}
 
-	public static Charset getEncoding(Operator handler) throws UndefinedParameterError, UserError {
+    /**
+     * Gets encoding.
+     *
+     * @param handler the handler
+     * @return the encoding
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws UserError               the user error
+     */
+    public static Charset getEncoding(Operator handler) throws UndefinedParameterError, UserError {
 		String selectedCharsetName = handler.getParameterAsString(PARAMETER_ENCODING);
 		if (RapidMiner.SYSTEM_ENCODING_NAME.equals(selectedCharsetName)) {
 			return Charset.defaultCharset();
@@ -72,14 +85,26 @@ public class Encoding {
 		}
 	}
 
-	public static Charset getEncoding(String charsetName) {
+    /**
+     * Gets encoding.
+     *
+     * @param charsetName the charset name
+     * @return the encoding
+     */
+    public static Charset getEncoding(String charsetName) {
 		if (RapidMiner.SYSTEM_ENCODING_NAME.equals(charsetName)) {
 			return Charset.defaultCharset();
 		}
 		return Charset.forName(charsetName);
 	}
 
-	public static List<ParameterType> getParameterTypes(ParameterHandler handler) {
+    /**
+     * Gets parameter types.
+     *
+     * @param handler the handler
+     * @return the parameter types
+     */
+    public static List<ParameterType> getParameterTypes(ParameterHandler handler) {
 		List<ParameterType> types = new LinkedList<ParameterType>();
 
 		String encoding = RapidMiner.SYSTEM_ENCODING_NAME;

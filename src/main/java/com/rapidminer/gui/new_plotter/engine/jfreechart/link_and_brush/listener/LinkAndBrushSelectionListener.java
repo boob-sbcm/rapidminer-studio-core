@@ -19,10 +19,16 @@
 package com.rapidminer.gui.new_plotter.engine.jfreechart.link_and_brush.listener;
 
 /**
+ * The interface Link and brush selection listener.
+ *
  * @author Nils Woehler
- * 
  */
 public interface LinkAndBrushSelectionListener {
 
-	public void selectedLinkAndBrushRectangle(LinkAndBrushSelection e);
+    /**
+     * Selected link and brush rectangle.
+     *
+     * @param e the e
+     */
+    public void selectedLinkAndBrushRectangle(LinkAndBrushSelection e);
 }

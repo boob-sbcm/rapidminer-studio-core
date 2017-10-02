@@ -91,8 +91,14 @@ final class ConfigureDataView extends JPanel {
 
 	private static final String PROGRESS_THREAD_ID = "io.dataimport.step.data_column_configuration.prepare_data_preview";
 
-	public static final Color BACKGROUND_COLUMN_DISABLED = new Color(232, 232, 232);
-	public static final Color FOREGROUND_COLUMN_DISABLED = new Color(189, 189, 189);
+    /**
+     * The constant BACKGROUND_COLUMN_DISABLED.
+     */
+    public static final Color BACKGROUND_COLUMN_DISABLED = new Color(232, 232, 232);
+    /**
+     * The constant FOREGROUND_COLUMN_DISABLED.
+     */
+    public static final Color FOREGROUND_COLUMN_DISABLED = new Color(189, 189, 189);
 	private static final String ERROR_TOOLTIP_CONTENT = "<p style=\"padding-bottom:4px\">"
 			+ I18N.getGUILabel("io.dataimport.step.data_column_configuration.replace_errors_checkbox.tip") + "</p>";
 
@@ -155,10 +161,12 @@ final class ConfigureDataView extends JPanel {
 
 	private boolean fatalError;
 
-	/**
-	 * The constructor that creates a new {@link ConfigureDataView} instance.
-	 */
-	public ConfigureDataView(JDialog owner) {
+    /**
+     * The constructor that creates a new {@link ConfigureDataView} instance.
+     *
+     * @param owner the owner
+     */
+    public ConfigureDataView(JDialog owner) {
 		this.owner = owner;
 		validator = new ConfigureDataValidator();
 		errorTableModel = new ErrorWarningTableModel(validator);
@@ -242,16 +250,14 @@ final class ConfigureDataView extends JPanel {
 		collapsibleErrorTable.setVisible(false);
 	}
 
-	/**
-	 * Takes the current data source, copies the meta data and configures the view according to the
-	 * data and meta data within a progress thread.
-	 *
-	 * @param dataSource
-	 *            the data source to retrieve the meta data and preview data from
-	 * @throws InvalidConfigurationException
-	 *             in case the meta data could not be retrieved
-	 */
-	void updatePreviewContent(final DataSource dataSource) throws InvalidConfigurationException {
+    /**
+     * Takes the current data source, copies the meta data and configures the view according to the
+     * data and meta data within a progress thread.
+     *
+     * @param dataSource the data source to retrieve the meta data and preview data from
+     * @throws InvalidConfigurationException in case the meta data could not be retrieved
+     */
+    void updatePreviewContent(final DataSource dataSource) throws InvalidConfigurationException {
 		fatalError = false;
 
 		// copy meta data to work on copy instead of real instance
@@ -449,7 +455,13 @@ final class ConfigureDataView extends JPanel {
 		collapsibleErrorTable.setVisible(true);
 	}
 
-	void showErrorNotification(String i18nKey, Object... arguments) {
+    /**
+     * Show error notification.
+     *
+     * @param i18nKey   the 18 n key
+     * @param arguments the arguments
+     */
+    void showErrorNotification(String i18nKey, Object... arguments) {
 		showNotificationLabel(i18nKey, arguments);
 		fatalError = true;
 		fireStateChanged();
@@ -492,34 +504,33 @@ final class ConfigureDataView extends JPanel {
 		centerPanel.repaint();
 	}
 
-	/**
-	 * @return the meta data for the current view.
-	 */
-	DataSetMetaData getMetaData() {
+    /**
+     * Gets meta data.
+     *
+     * @return the meta data for the current view.
+     */
+    DataSetMetaData getMetaData() {
 		dataSetMetaData.setFaultTolerant(errorHandlingCheckBox.isSelected());
 		return dataSetMetaData;
 	}
 
-	/**
-	 * Checks whether the current view configuration is valid.
-	 *
-	 * @throws InvalidConfigurationException
-	 *             in case the configuration is invalid
-	 *
-	 */
-	public void validateConfiguration() throws InvalidConfigurationException {
+    /**
+     * Checks whether the current view configuration is valid.
+     *
+     * @throws InvalidConfigurationException in case the configuration is invalid
+     */
+    public void validateConfiguration() throws InvalidConfigurationException {
 		if (fatalError || tableModel != null && (tableModel.getRowCount() == 0 || errorTableModel.getErrorCount() > 0)) {
 			throw new InvalidConfigurationException();
 		}
 	}
 
-	/**
-	 * Registers a new change listener.
-	 *
-	 * @param changeListener
-	 *            the listener to register
-	 */
-	void addChangeListener(ChangeListener changeListener) {
+    /**
+     * Registers a new change listener.
+     *
+     * @param changeListener the listener to register
+     */
+    void addChangeListener(ChangeListener changeListener) {
 		this.changeListeners.add(changeListener);
 	}
 

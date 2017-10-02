@@ -21,12 +21,20 @@ package com.rapidminer.tools.math.som;
 /**
  * This listener will be notified each time a step in progress was performed. It will also be
  * notified after the process has finished.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public interface ProgressListener {
 
-	public void setProgress(int value);
+    /**
+     * Sets progress.
+     *
+     * @param value the value
+     */
+    public void setProgress(int value);
 
-	public void progressFinished();
+    /**
+     * Progress finished.
+     */
+    public void progressFinished();
 }

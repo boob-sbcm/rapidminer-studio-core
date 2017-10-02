@@ -40,31 +40,41 @@ import com.rapidminer.tools.RandomGenerator;
 
 
 /**
- *
- * @rapidminer.index Neural Net
+ * The type Auto mlp improved neural net learner.
  *
  * @author Ingo Mierswa, modified by Syed Atif Mehdi (01/09/2010)
+ * @rapidminer.index Neural Net
  */
-
 public class AutoMLPImprovedNeuralNetLearner extends AbstractLearner {
 
 	// hidden layers have been removed. - atif
 
-	/**
-	 * The parameter name for &quot;The number of training cycles used for the neural network
-	 * training.&quot;
-	 */
-	public static final String PARAMETER_TRAINING_CYCLES = "training_cycles";
+    /**
+     * The parameter name for &quot;The number of training cycles used for the neural network
+     * training.&quot;
+     */
+    public static final String PARAMETER_TRAINING_CYCLES = "training_cycles";
 
 	private static final String PARAMETER_MAX_GENERATIONS = "number_of_generations";
 
 	private static final String PARAMETER_NUMBER_ENSEMBLES = "number_of_esemble_mlps";
 
-	RandomGenerator randomGenerator;
+    /**
+     * The Random generator.
+     */
+    RandomGenerator randomGenerator;
 
-	protected PerformanceVector performance;
+    /**
+     * The Performance.
+     */
+    protected PerformanceVector performance;
 
-	public AutoMLPImprovedNeuralNetLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Auto mlp improved neural net learner.
+     *
+     * @param description the description
+     */
+    public AutoMLPImprovedNeuralNetLearner(OperatorDescription description) {
 		super(description);
 	}
 
@@ -374,7 +384,14 @@ public class AutoMLPImprovedNeuralNetLearner extends AbstractLearner {
 
 	}
 
-	protected float calculateError(ExampleSet exampleSet, AutoMLPImprovedNeuralNetModel model) {
+    /**
+     * Calculate error float.
+     *
+     * @param exampleSet the example set
+     * @param model      the model
+     * @return the float
+     */
+    protected float calculateError(ExampleSet exampleSet, AutoMLPImprovedNeuralNetModel model) {
 		Attribute predictedLabel = exampleSet.getAttributes().getLabel();
 		long count = 0;
 		long misclassified = 0;
@@ -413,24 +430,86 @@ public class AutoMLPImprovedNeuralNetLearner extends AbstractLearner {
 }
 
 
+/**
+ * The type Auto mlp threaded.
+ */
 class AutoMlpThreaded extends Thread {
 
-	AutoMLPImprovedNeuralNetModel[] model;
-	int nensembles = 1;
-	ExampleSet exampleSet;
-	List<String[]>[] hiddenLayers;
-	int maxCycles;
-	double maxError;
-	double[] learningRate;
-	double momentum;
-	boolean decay;
-	boolean shuffle;
-	boolean normalize;
-	RandomGenerator randomGenerator;
-	boolean[] isOldModels;
-	AutoMLPImprovedNeuralNetModel[] oldModels;
+    /**
+     * The Model.
+     */
+    AutoMLPImprovedNeuralNetModel[] model;
+    /**
+     * The Nensembles.
+     */
+    int nensembles = 1;
+    /**
+     * The Example set.
+     */
+    ExampleSet exampleSet;
+    /**
+     * The Hidden layers.
+     */
+    List<String[]>[] hiddenLayers;
+    /**
+     * The Max cycles.
+     */
+    int maxCycles;
+    /**
+     * The Max error.
+     */
+    double maxError;
+    /**
+     * The Learning rate.
+     */
+    double[] learningRate;
+    /**
+     * The Momentum.
+     */
+    double momentum;
+    /**
+     * The Decay.
+     */
+    boolean decay;
+    /**
+     * The Shuffle.
+     */
+    boolean shuffle;
+    /**
+     * The Normalize.
+     */
+    boolean normalize;
+    /**
+     * The Random generator.
+     */
+    RandomGenerator randomGenerator;
+    /**
+     * The Is old models.
+     */
+    boolean[] isOldModels;
+    /**
+     * The Old models.
+     */
+    AutoMLPImprovedNeuralNetModel[] oldModels;
 
-	AutoMlpThreaded(ExampleSet example, int nn, List<String[]>[] hidden_layers, int max_cycles, double max_Error,
+    /**
+     * Instantiates a new Auto mlp threaded.
+     *
+     * @param example          the example
+     * @param nn               the nn
+     * @param hidden_layers    the hidden layers
+     * @param max_cycles       the max cycles
+     * @param max_Error        the max error
+     * @param learning_Rate    the learning rate
+     * @param moment           the moment
+     * @param is_decay         the is decay
+     * @param is_shuffle       the is shuffle
+     * @param is_normalize     the is normalize
+     * @param random_Generator the random generator
+     * @param is_old_models    the is old models
+     * @param old_models       the old models
+     */
+    AutoMlpThreaded(ExampleSet example, int nn, List<String[]>[] hidden_layers, int max_cycles, double max_Error,
 			double[] learning_Rate, double moment, boolean is_decay, boolean is_shuffle, boolean is_normalize,
 			RandomGenerator random_Generator, boolean[] is_old_models, AutoMLPImprovedNeuralNetModel[] old_models) {
 		exampleSet = example;
@@ -461,11 +540,19 @@ class AutoMlpThreaded extends Thread {
 		}
 	}
 
-	public void StartTraining() {
+    /**
+     * Start training.
+     */
+    public void StartTraining() {
 		start(); // start the thread
 	}
 
-	void CrossValidate(ExampleSet splittedES) {
+    /**
+     * Cross validate.
+     *
+     * @param splittedES the splitted es
+     */
+    void CrossValidate(ExampleSet splittedES) {
 		for (int i = 0; i < nensembles; i++) {
 			int maxSize = splittedES.size();
 			double error = 0.0;
@@ -479,7 +566,12 @@ class AutoMlpThreaded extends Thread {
 		}
 	}
 
-	public double[] GetModelsErrors() {
+    /**
+     * Get models errors double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] GetModelsErrors() {
 		double[] errors = new double[nensembles];
 		for (int i = 0; i < nensembles; i++) {
 			errors[i] = model[i].getError();
@@ -487,7 +579,13 @@ class AutoMlpThreaded extends Thread {
 		return errors;
 	}
 
-	public AutoMLPImprovedNeuralNetModel GetModel(int index) {
+    /**
+     * Get model auto mlp improved neural net model.
+     *
+     * @param index the index
+     * @return the auto mlp improved neural net model
+     */
+    public AutoMLPImprovedNeuralNetModel GetModel(int index) {
 		return model[index];
 	}
 }

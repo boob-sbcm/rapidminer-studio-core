@@ -31,7 +31,6 @@ import com.rapidminer.operator.learner.tree.ColumnExampleTable;
  * missing attribute values, they are counted separately.
  *
  * @author Gisa Schaefer
- *
  */
 public class WeightDistribution {
 
@@ -62,10 +61,14 @@ public class WeightDistribution {
 	/** indicates whether there are missing attribute values in the example selection */
 	private boolean hasMissings = false;
 
-	/**
-	 * Initializes the counting arrays with the start distribution.
-	 */
-	public WeightDistribution(ColumnExampleTable columnTable, int[] selection, int attributeNumber) {
+    /**
+     * Initializes the counting arrays with the start distribution.
+     *
+     * @param columnTable     the column table
+     * @param selection       the selection
+     * @param attributeNumber the attribute number
+     */
+    public WeightDistribution(ColumnExampleTable columnTable, int[] selection, int attributeNumber) {
 		calculateLabelWeights(columnTable, selection, attributeNumber);
 		leftLabelWeights = new double[totalLabelWeights.length];
 		leftWeight = 0;
@@ -108,80 +111,98 @@ public class WeightDistribution {
 
 	}
 
-	/**
-	 * Increments the left label weights at the given position by the given weight and decrements
-	 * the right label weights. Updates the sum of all left and right label weights respectively.
-	 *
-	 * @param position
-	 * @param weight
-	 */
-	public void increment(int position, double weight) {
+    /**
+     * Increments the left label weights at the given position by the given weight and decrements
+     * the right label weights. Updates the sum of all left and right label weights respectively.
+     *
+     * @param position the position
+     * @param weight   the weight
+     */
+    public void increment(int position, double weight) {
 		leftLabelWeights[position] += weight;
 		rightLabelWeights[position] -= weight;
 		leftWeight += weight;
 		rightWeight -= weight;
 	}
 
-	/**
-	 * @return the sum of the weighted label value occurrences to the left of the split point.
-	 */
-	public double getLeftWeigth() {
+    /**
+     * Gets left weigth.
+     *
+     * @return the sum of the weighted label value occurrences to the left of the split point.
+     */
+    public double getLeftWeigth() {
 		return leftWeight;
 	}
 
-	/**
-	 * @return the sum of the weighted label value occurrences to the right of the split point.
-	 */
-	public double getRightWeigth() {
+    /**
+     * Gets right weigth.
+     *
+     * @return the sum of the weighted label value occurrences to the right of the split point.
+     */
+    public double getRightWeigth() {
 		return rightWeight;
 	}
 
-	/**
-	 * @return the total sum of the weighted label value occurrences.
-	 */
-	public double getTotalWeigth() {
+    /**
+     * Gets total weigth.
+     *
+     * @return the total sum of the weighted label value occurrences.
+     */
+    public double getTotalWeigth() {
 		return totalWeight;
 	}
 
-	/**
-	 * @return the sum of the weighted label value occurrences at missing values of the attribute.
-	 */
-	public double getMissingsWeigth() {
+    /**
+     * Gets missings weigth.
+     *
+     * @return the sum of the weighted label value occurrences at missing values of the attribute.
+     */
+    public double getMissingsWeigth() {
 		return missingsWeight;
 	}
 
-	/**
-	 * @return the weighted occurrences of each label value to the left of the split point
-	 */
-	public double[] getLeftLabelWeigths() {
+    /**
+     * Get left label weigths double [ ].
+     *
+     * @return the weighted occurrences of each label value to the left of the split point
+     */
+    public double[] getLeftLabelWeigths() {
 		return leftLabelWeights;
 	}
 
-	/**
-	 * @return the weighted occurrences of each label value to the right of the split point
-	 */
-	public double[] getRightLabelWeigths() {
+    /**
+     * Get right label weigths double [ ].
+     *
+     * @return the weighted occurrences of each label value to the right of the split point
+     */
+    public double[] getRightLabelWeigths() {
 		return rightLabelWeights;
 	}
 
-	/**
-	 * @return the weighted total occurrences of each label value
-	 */
-	public double[] getTotalLabelWeigths() {
+    /**
+     * Get total label weigths double [ ].
+     *
+     * @return the weighted total occurrences of each label value
+     */
+    public double[] getTotalLabelWeigths() {
 		return totalLabelWeights;
 	}
 
-	/**
-	 * @return the weighted occurrences of each label value among the missing values
-	 */
-	public double[] getMissingsLabelWeigths() {
+    /**
+     * Get missings label weigths double [ ].
+     *
+     * @return the weighted occurrences of each label value among the missing values
+     */
+    public double[] getMissingsLabelWeigths() {
 		return missingsLabelWeights;
 	}
 
-	/**
-	 * @return <code>true</code> if the attribute has missing values among the current selection
-	 */
-	public boolean hasMissingValues() {
+    /**
+     * Has missing values boolean.
+     *
+     * @return <code>true</code> if the attribute has missing values among the current selection
+     */
+    public boolean hasMissingValues() {
 		return hasMissings;
 	}
 

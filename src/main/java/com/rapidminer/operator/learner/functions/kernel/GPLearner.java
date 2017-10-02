@@ -52,66 +52,96 @@ import java.util.List;
 /**
  * Gaussian Process (GP) Learner. The GP is a probabilistic method both for classification and
  * regression.
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
  * @rapidminer.index GP
  */
 public class GPLearner extends AbstractKernelBasedLearner {
 
-	/** The parameter name for &quot;Regression&quot; */
-	public static final String PARAMETER_GP_TYPE = "gp_type";
+    /**
+     * The parameter name for &quot;Regression&quot;
+     */
+    public static final String PARAMETER_GP_TYPE = "gp_type";
 
-	/** The parameter name for &quot;The kind of kernel.&quot; */
-	public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
+    /**
+     * The parameter name for &quot;The kind of kernel.&quot;
+     */
+    public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
 
-	/**
-	 * The parameter name for &quot;The lengthscale r for rbf kernel functions (exp{-1.0 * r^-2 *
-	 * ||x - bla||}).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_LENGTHSCALE = "kernel_lengthscale";
+    /**
+     * The parameter name for &quot;The lengthscale r for rbf kernel functions (exp{-1.0 * r^-2 *
+     * ||x - bla||}).&quot;
+     */
+    public static final String PARAMETER_KERNEL_LENGTHSCALE = "kernel_lengthscale";
 
-	/** The parameter name for &quot;The degree used in the poly kernel.&quot; */
-	public static final String PARAMETER_KERNEL_DEGREE = "kernel_degree";
+    /**
+     * The parameter name for &quot;The degree used in the poly kernel.&quot;
+     */
+    public static final String PARAMETER_KERNEL_DEGREE = "kernel_degree";
 
-	/** The parameter name for &quot;The bias used in the poly kernel.&quot; */
-	public static final String PARAMETER_KERNEL_BIAS = "kernel_bias";
+    /**
+     * The parameter name for &quot;The bias used in the poly kernel.&quot;
+     */
+    public static final String PARAMETER_KERNEL_BIAS = "kernel_bias";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter sigma1 (Epanechnikov, Gaussian
-	 * Combination, Multiquadric).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_SIGMA1 = "kernel_sigma1";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma1 (Epanechnikov, Gaussian
+     * Combination, Multiquadric).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA1 = "kernel_sigma1";
 
-	/** The parameter name for &quot;The SVM kernel parameter sigma2 (Gaussian Combination).&quot; */
-	public static final String PARAMETER_KERNEL_SIGMA2 = "kernel_sigma2";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma2 (Gaussian Combination).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA2 = "kernel_sigma2";
 
-	/** The parameter name for &quot;The SVM kernel parameter sigma3 (Gaussian Combination).&quot; */
-	public static final String PARAMETER_KERNEL_SIGMA3 = "kernel_sigma3";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma3 (Gaussian Combination).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA3 = "kernel_sigma3";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter shift (polynomial, Multiquadric).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_SHIFT = "kernel_shift";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter shift (polynomial, Multiquadric).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SHIFT = "kernel_shift";
 
-	/** The parameter name for &quot;The SVM kernel parameter a (neural).&quot; */
-	public static final String PARAMETER_KERNEL_A = "kernel_a";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter a (neural).&quot;
+     */
+    public static final String PARAMETER_KERNEL_A = "kernel_a";
 
-	/** The parameter name for &quot;The SVM kernel parameter b (neural).&quot; */
-	public static final String PARAMETER_KERNEL_B = "kernel_b";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter b (neural).&quot;
+     */
+    public static final String PARAMETER_KERNEL_B = "kernel_b";
 
-	/** The parameter name for &quot;Maximum number of basis vectors to be used.&quot; */
-	public static final String PARAMETER_MAX_BASIS_VECTORS = "max_basis_vectors";
+    /**
+     * The parameter name for &quot;Maximum number of basis vectors to be used.&quot;
+     */
+    public static final String PARAMETER_MAX_BASIS_VECTORS = "max_basis_vectors";
 
-	/** The parameter name for &quot;Tolerance for gamma induced projections&quot; */
-	public static final String PARAMETER_EPSILON_TOL = "epsilon_tol";
+    /**
+     * The parameter name for &quot;Tolerance for gamma induced projections&quot;
+     */
+    public static final String PARAMETER_EPSILON_TOL = "epsilon_tol";
 
-	/** The parameter name for &quot;Tolerance for geometry induced projections&quot; */
-	public static final String PARAMETER_GEOMETRICAL_TOL = "geometrical_tol";
-	// public static final String[] GP_TYPES = { "Regression", "Classification" };
+    /**
+     * The parameter name for &quot;Tolerance for geometry induced projections&quot;
+     */
+    public static final String PARAMETER_GEOMETRICAL_TOL = "geometrical_tol";
+    /**
+     * The constant KERNEL_TYPES.
+     */
+// public static final String[] GP_TYPES = { "Regression", "Classification" };
 	public static final String[] KERNEL_TYPES = { "rbf", "cauchy", "laplace", "poly", "sigmoid", "Epanechnikov",
 			"gaussian combination", "multiquadric" };
 
-	public GPLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Gp learner.
+     *
+     * @param description the description
+     */
+    public GPLearner(OperatorDescription description) {
 		super(description);
 	}
 
@@ -227,11 +257,13 @@ public class GPLearner extends AbstractKernelBasedLearner {
 		return new GPModel(exampleSet, model);
 	}
 
-	/**
-	 * Create the appropriate kernel function depending on the RapidMiner - ui settings.
-	 */
-
-	public Kernel createKernel() throws OperatorException {
+    /**
+     * Create the appropriate kernel function depending on the RapidMiner - ui settings.
+     *
+     * @return the kernel
+     * @throws OperatorException the operator exception
+     */
+    public Kernel createKernel() throws OperatorException {
 
 		Kernel kernel = null;
 

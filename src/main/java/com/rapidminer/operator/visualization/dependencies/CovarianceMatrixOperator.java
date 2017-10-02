@@ -49,7 +49,12 @@ public class CovarianceMatrixOperator extends Operator {
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort covarianceOutput = getOutputPorts().createPort("covariance");
 
-	public CovarianceMatrixOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Covariance matrix operator.
+     *
+     * @param description the description
+     */
+    public CovarianceMatrixOperator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput) {

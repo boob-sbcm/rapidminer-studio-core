@@ -79,20 +79,29 @@ import javax.swing.table.TableModel;
  * @author Brendon McLean
  * @author Dan van Enckevort
  * @author Parwinder Sekhon
- * @author Ingo Mierswa
- *
- *         (only for Java 5 generics parts and some other small enhancements)
- *
+ * @author Ingo Mierswa         (only for Java 5 generics parts and some other small enhancements)
  */
 public class ExtendedJTableSorterModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = -4206702130247556242L;
 
-	protected TableModel tableModel;
+    /**
+     * The Table model.
+     */
+    protected TableModel tableModel;
 
-	public static final int DESCENDING = -1;
-	public static final int NOT_SORTED = 0;
-	public static final int ASCENDING = 1;
+    /**
+     * The constant DESCENDING.
+     */
+    public static final int DESCENDING = -1;
+    /**
+     * The constant NOT_SORTED.
+     */
+    public static final int NOT_SORTED = 0;
+    /**
+     * The constant ASCENDING.
+     */
+    public static final int ASCENDING = 1;
 
 	private static Directive EMPTY_DIRECTIVE = new Directive(-1, NOT_SORTED);
 
@@ -129,22 +138,41 @@ public class ExtendedJTableSorterModel extends AbstractTableModel {
 	private Map<Class<?>, Comparator<?>> columnComparators = new HashMap<Class<?>, Comparator<?>>();
 	private List<Directive> sortingColumns = new ArrayList<Directive>();
 
-	public ExtendedJTableSorterModel() {
+    /**
+     * Instantiates a new Extended j table sorter model.
+     */
+    public ExtendedJTableSorterModel() {
 		super();
 	}
 
-	public ExtendedJTableSorterModel(TableModel tableModel) {
+    /**
+     * Instantiates a new Extended j table sorter model.
+     *
+     * @param tableModel the table model
+     */
+    public ExtendedJTableSorterModel(TableModel tableModel) {
 		this();
 		setTableModel(tableModel);
 	}
 
-	public ExtendedJTableSorterModel(TableModel tableModel, JTableHeader tableHeader) {
+    /**
+     * Instantiates a new Extended j table sorter model.
+     *
+     * @param tableModel  the table model
+     * @param tableHeader the table header
+     */
+    public ExtendedJTableSorterModel(TableModel tableModel, JTableHeader tableHeader) {
 		this();
 		setTableHeader(tableHeader);
 		setTableModel(tableModel);
 	}
 
-	protected Object readResolve() {
+    /**
+     * Read resolve object.
+     *
+     * @return the object
+     */
+    protected Object readResolve() {
 		this.mouseListener = new MouseHandler();
 		this.tableModelListener = new TableModelHandler();
 		return this;
@@ -155,11 +183,21 @@ public class ExtendedJTableSorterModel extends AbstractTableModel {
 		modelToView = null;
 	}
 
-	public TableModel getTableModel() {
+    /**
+     * Gets table model.
+     *
+     * @return the table model
+     */
+    public TableModel getTableModel() {
 		return tableModel;
 	}
 
-	public void setTableModel(TableModel tableModel) {
+    /**
+     * Sets table model.
+     *
+     * @param tableModel the table model
+     */
+    public void setTableModel(TableModel tableModel) {
 		if (this.tableModel != null) {
 			this.tableModel.removeTableModelListener(tableModelListener);
 		}
@@ -173,11 +211,21 @@ public class ExtendedJTableSorterModel extends AbstractTableModel {
 		fireTableStructureChanged();
 	}
 
-	public JTableHeader getTableHeader() {
+    /**
+     * Gets table header.
+     *
+     * @return the table header
+     */
+    public JTableHeader getTableHeader() {
 		return tableHeader;
 	}
 
-	public void setTableHeader(JTableHeader tableHeader) {
+    /**
+     * Sets table header.
+     *
+     * @param tableHeader the table header
+     */
+    public void setTableHeader(JTableHeader tableHeader) {
 		if (this.tableHeader != null) {
 			this.tableHeader.removeMouseListener(mouseListener);
 		}
@@ -187,7 +235,12 @@ public class ExtendedJTableSorterModel extends AbstractTableModel {
 		}
 	}
 
-	public boolean isSorting() {
+    /**
+     * Is sorting boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSorting() {
 		return sortingColumns.size() != 0;
 	}
 
@@ -201,11 +254,20 @@ public class ExtendedJTableSorterModel extends AbstractTableModel {
 		return EMPTY_DIRECTIVE;
 	}
 
-	public int getSortingStatus(int column) {
+    /**
+     * Gets sorting status.
+     *
+     * @param column the column
+     * @return the sorting status
+     */
+    public int getSortingStatus(int column) {
 		return getDirective(column).direction;
 	}
 
-	public void sortingStatusChanged() {
+    /**
+     * Sorting status changed.
+     */
+    public void sortingStatusChanged() {
 		clearSortingState();
 		fireTableDataChanged();
 		if (tableHeader != null) {
@@ -213,7 +275,13 @@ public class ExtendedJTableSorterModel extends AbstractTableModel {
 		}
 	}
 
-	public void setSortingStatus(int column, int status) {
+    /**
+     * Sets sorting status.
+     *
+     * @param column the column
+     * @param status the status
+     */
+    public void setSortingStatus(int column, int status) {
 		Directive directive = getDirective(column);
 		if (directive != EMPTY_DIRECTIVE) {
 			sortingColumns.remove(directive);
@@ -224,12 +292,21 @@ public class ExtendedJTableSorterModel extends AbstractTableModel {
 		sortingStatusChanged();
 	}
 
-	public void cancelSorting() {
+    /**
+     * Cancel sorting.
+     */
+    public void cancelSorting() {
 		sortingColumns.clear();
 		sortingStatusChanged();
 	}
 
-	public void setColumnComparator(Class<?> type, Comparator<?> comparator) {
+    /**
+     * Sets column comparator.
+     *
+     * @param type       the type
+     * @param comparator the comparator
+     */
+    public void setColumnComparator(Class<?> type, Comparator<?> comparator) {
 		if (comparator == null) {
 			columnComparators.remove(type);
 		} else {
@@ -237,7 +314,13 @@ public class ExtendedJTableSorterModel extends AbstractTableModel {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
+    /**
+     * Gets comparator.
+     *
+     * @param column the column
+     * @return the comparator
+     */
+    @SuppressWarnings("rawtypes")
 	protected Comparator getComparator(int column) {
 		Class<?> columnType = tableModel.getColumnClass(column);
 		Comparator<?> comparator = columnComparators.get(columnType);
@@ -266,7 +349,13 @@ public class ExtendedJTableSorterModel extends AbstractTableModel {
 		return viewToModel;
 	}
 
-	public int modelIndex(int viewIndex) {
+    /**
+     * Model index int.
+     *
+     * @param viewIndex the view index
+     * @return the int
+     */
+    public int modelIndex(int viewIndex) {
 		if (viewIndex >= 0 && viewIndex < getViewToModel().length) {
 			return getViewToModel()[viewIndex].modelIndex;
 		} else {
@@ -328,7 +417,12 @@ public class ExtendedJTableSorterModel extends AbstractTableModel {
 
 		private int modelIndex;
 
-		public Row(int index) {
+        /**
+         * Instantiates a new Row.
+         *
+         * @param index the index
+         */
+        public Row(int index) {
 			this.modelIndex = index;
 		}
 
@@ -484,7 +578,13 @@ public class ExtendedJTableSorterModel extends AbstractTableModel {
 		private int column;
 		private int direction;
 
-		public Directive(int column, int direction) {
+        /**
+         * Instantiates a new Directive.
+         *
+         * @param column    the column
+         * @param direction the direction
+         */
+        public Directive(int column, int direction) {
 			this.column = column;
 			this.direction = direction;
 		}

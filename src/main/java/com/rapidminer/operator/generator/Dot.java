@@ -20,24 +20,47 @@ package com.rapidminer.operator.generator;
 
 /**
  * Helper class containing all information about a dot.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Dot {
 
-	double x;
+    /**
+     * The X.
+     */
+    double x;
 
-	double y;
+    /**
+     * The Y.
+     */
+    double y;
 
-	double radius;
+    /**
+     * The Radius.
+     */
+    double radius;
 
-	Dot(double x, double y, double radius) {
+    /**
+     * Instantiates a new Dot.
+     *
+     * @param x      the x
+     * @param y      the y
+     * @param radius the radius
+     */
+    Dot(double x, double y, double radius) {
 		this.x = x;
 		this.y = y;
 		this.radius = radius;
 	}
 
-	public boolean contains(double x, double y) {
+    /**
+     * Contains boolean.
+     *
+     * @param x the x
+     * @param y the y
+     * @return the boolean
+     */
+    public boolean contains(double x, double y) {
 		double xDiff = this.x - x;
 		double yDiff = this.y - y;
 		return Math.sqrt(xDiff * xDiff + yDiff * yDiff) < this.radius;

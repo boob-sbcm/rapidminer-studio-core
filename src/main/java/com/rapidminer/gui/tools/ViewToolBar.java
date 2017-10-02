@@ -36,23 +36,43 @@ public class ViewToolBar extends JToolBar {
 
 	private static final long serialVersionUID = -9219638829666999431L;
 
-	public static final int LEFT = 0;
+    /**
+     * The constant LEFT.
+     */
+    public static final int LEFT = 0;
 
-	public static final int TOP = 0;
+    /**
+     * The constant TOP.
+     */
+    public static final int TOP = 0;
 
-	public static final int RIGHT = 1;
+    /**
+     * The constant RIGHT.
+     */
+    public static final int RIGHT = 1;
 
-	public static final int BOTTOM = 1;
+    /**
+     * The constant BOTTOM.
+     */
+    public static final int BOTTOM = 1;
 
 	private JToolBar leftToolBar = new JToolBar();
 
 	private JToolBar rightToolBar = new JToolBar();
 
-	public ViewToolBar() {
+    /**
+     * Instantiates a new View tool bar.
+     */
+    public ViewToolBar() {
 		this(HORIZONTAL);
 	}
 
-	public ViewToolBar(int orientation) {
+    /**
+     * Instantiates a new View tool bar.
+     *
+     * @param orientation the orientation
+     */
+    public ViewToolBar(int orientation) {
 		super();
 		setFloatable(false);
 		setRollover(true);
@@ -99,7 +119,12 @@ public class ViewToolBar extends JToolBar {
 		return c;
 	}
 
-	public void addSeparator(int alignment) {
+    /**
+     * Add separator.
+     *
+     * @param alignment the alignment
+     */
+    public void addSeparator(int alignment) {
 		switch (alignment) {
 			case LEFT:
 				leftToolBar.addSeparator();
@@ -118,7 +143,14 @@ public class ViewToolBar extends JToolBar {
 		return add(a, LEFT);
 	}
 
-	public JButton add(Action a, int alignment) {
+    /**
+     * Add j button.
+     *
+     * @param a         the a
+     * @param alignment the alignment
+     * @return the j button
+     */
+    public JButton add(Action a, int alignment) {
 		switch (alignment) {
 			case LEFT:
 				return leftToolBar.add(a);

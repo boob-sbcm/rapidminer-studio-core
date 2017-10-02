@@ -35,7 +35,12 @@ public class NewAction extends ResourceAction {
 
 	private MainFrame mainFrame;
 
-	public NewAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new New action.
+     *
+     * @param mainFrame the main frame
+     */
+    public NewAction(MainFrame mainFrame) {
 		super("new");
 		this.mainFrame = mainFrame;
 

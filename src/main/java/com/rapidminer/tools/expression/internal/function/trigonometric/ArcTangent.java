@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric arc tangent of an angle.
  *
  * @author Denis Schernov
- *
  */
 public class ArcTangent extends Abstract1DoubleInputFunction {
 
-	public ArcTangent() {
+    /**
+     * Instantiates a new Arc tangent.
+     */
+    public ArcTangent() {
 		super("trigonometrical.atan", Ontology.NUMERICAL);
 	}
 

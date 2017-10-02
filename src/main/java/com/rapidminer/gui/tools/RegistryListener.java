@@ -19,18 +19,19 @@
 package com.rapidminer.gui.tools;
 
 /**
- * 
  * Listener which listens for {@link RegistryEvent}s and {@link UnregisterEvent}s contains the new
  * registered or unregistered object, which caused the event
- * 
+ *
+ * @param <T> the type parameter
  * @author Sabrina Kirstein
- * 
  */
 public interface RegistryListener<T> {
 
-	/**
-	 * this method is called when a new {@link RegisterEvent<T>} happened
-	 */
-	public void eventTriggered(RegistryEvent<T> event);
+    /**
+     * this method is called when a new {@link RegisterEvent<T>} happened
+     *
+     * @param event the event
+     */
+    public void eventTriggered(RegistryEvent<T> event);
 
 }

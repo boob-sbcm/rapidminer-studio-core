@@ -30,27 +30,38 @@ import com.rapidminer.parameter.ParameterType;
  */
 public class Parameter {
 
-	ParameterType type = null;
-	String group;
-	String value;
+    /**
+     * The Type.
+     */
+    ParameterType type = null;
+    /**
+     * The Group.
+     */
+    String group;
+    /**
+     * The Value.
+     */
+    String value;
 	private ParameterScope scope = new ParameterScope();
 
-	/**
-	 * This creates a new implicit Parameter.
-	 */
-	public Parameter(String value) {
+    /**
+     * This creates a new implicit Parameter.
+     *
+     * @param value the value
+     */
+    public Parameter(String value) {
 
 	}
 
-	/**
-	 * This creates a new defined Parameter with a default scope and an undefined value.
-	 *
-	 * The group of the Parameter is set automatically by the second segment of the dot separated
-	 * key. For setting the group explicitly, please use {@link #Parameter(ParameterType, String)}.
-	 *
-	 * @param type
-	 */
-	public Parameter(ParameterType type) {
+    /**
+     * This creates a new defined Parameter with a default scope and an undefined value.
+     * <p>
+     * The group of the Parameter is set automatically by the second segment of the dot separated
+     * key. For setting the group explicitly, please use {@link #Parameter(ParameterType, String)}.
+     *
+     * @param type the type
+     */
+    public Parameter(ParameterType type) {
 		this.type = type;
 		this.value = type.getDefaultValueAsString();
 		if (value == null) {
@@ -65,7 +76,13 @@ public class Parameter {
 		}
 	}
 
-	public Parameter(ParameterType type, String group) {
+    /**
+     * Instantiates a new Parameter.
+     *
+     * @param type  the type
+     * @param group the group
+     */
+    public Parameter(ParameterType type, String group) {
 		this.type = type;
 		this.group = group;
 		this.value = type.getDefaultValueAsString();
@@ -75,11 +92,13 @@ public class Parameter {
 
 	}
 
-	/**
-	 * Sets the value of this parameter. If the given value is null, it is automatically converted
-	 * to an empty String.
-	 */
-	public void setValue(String value) {
+    /**
+     * Sets the value of this parameter. If the given value is null, it is automatically converted
+     * to an empty String.
+     *
+     * @param value the value
+     */
+    public void setValue(String value) {
 		if (value == null) {
 			throw new NullPointerException();
 		} else {
@@ -87,47 +106,59 @@ public class Parameter {
 		}
 	}
 
-	/**
-	 * This method returns whether this parameter is a defined type. With a description, valid value
-	 * range and name. Only defined types can be edited in the GUI, all others can only be set
-	 * directly using system properties.
-	 */
-	public boolean isDefined() {
+    /**
+     * This method returns whether this parameter is a defined type. With a description, valid value
+     * range and name. Only defined types can be edited in the GUI, all others can only be set
+     * directly using system properties.
+     *
+     * @return the boolean
+     */
+    public boolean isDefined() {
 		return type != null;
 	}
 
-	/**
-	 * This returns the scope of this parameter if it is a defined parameter.
-	 */
-	public ParameterScope getScope() {
+    /**
+     * This returns the scope of this parameter if it is a defined parameter.
+     *
+     * @return the scope
+     */
+    public ParameterScope getScope() {
 		return scope;
 	}
 
-	/**
-	 * Returns the actual value or an empty String if no values has been set.
-	 */
-	public String getValue() {
+    /**
+     * Returns the actual value or an empty String if no values has been set.
+     *
+     * @return the value
+     */
+    public String getValue() {
 		return value;
 	}
 
-	/**
-	 * This returns the group of this parameter.
-	 */
-	public String getGroup() {
+    /**
+     * This returns the group of this parameter.
+     *
+     * @return the group
+     */
+    public String getGroup() {
 		return group;
 	}
 
-	/**
-	 * Returns the type of this parameter.
-	 */
-	public ParameterType getType() {
+    /**
+     * Returns the type of this parameter.
+     *
+     * @return the type
+     */
+    public ParameterType getType() {
 		return type;
 	}
 
-	/**
-	 * This converts this parameter from an implicit Parameter into a defined one.
-	 */
-	public void setType(ParameterType type) {
+    /**
+     * This converts this parameter from an implicit Parameter into a defined one.
+     *
+     * @param type the type
+     */
+    public void setType(ParameterType type) {
 		this.type = type;
 		String[] parts = type.getKey().split("\\.");
 		if ("rapidminer".equals(parts[0])) {
@@ -137,17 +168,21 @@ public class Parameter {
 		}
 	}
 
-	/**
-	 * This sets the scope to the given one.
-	 */
-	public void setScope(ParameterScope scope) {
+    /**
+     * This sets the scope to the given one.
+     *
+     * @param scope the scope
+     */
+    public void setScope(ParameterScope scope) {
 		this.scope = scope;
 	}
 
-	/**
-	 * This method allows to set the group explicitly.
-	 */
-	public void setGroup(String group) {
+    /**
+     * This method allows to set the group explicitly.
+     *
+     * @param group the group
+     */
+    public void setGroup(String group) {
 		this.group = group;
 	}
 }

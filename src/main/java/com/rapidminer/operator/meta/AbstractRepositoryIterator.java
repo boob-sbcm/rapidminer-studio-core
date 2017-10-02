@@ -61,28 +61,75 @@ public abstract class AbstractRepositoryIterator extends OperatorChain {
 	private final String PORT_INNER_FILE_SOURCE = "repository object";
 	private final OutputPort innerFileSource = getSubprocess(0).getInnerSources().createPort(PORT_INNER_FILE_SOURCE);
 
-	public static final String PARAMETER_ENTRY_TYPE = "entry_type";
-	public static final String PARAMETER_FILTER = "filter";
+    /**
+     * The constant PARAMETER_ENTRY_TYPE.
+     */
+    public static final String PARAMETER_ENTRY_TYPE = "entry_type";
+    /**
+     * The constant PARAMETER_FILTER.
+     */
+    public static final String PARAMETER_FILTER = "filter";
 
-	public static final String PARAMETER_ENTRY_NAME_MACRO = "entry_name_macro";
-	public static final String PARAMETER_REPOSITORY_PATH_MACRO = "repository_path_macro";
-	public static final String PARAMETER_PARENT_FOLDER_MACRO = "parent_folder_macro";
+    /**
+     * The constant PARAMETER_ENTRY_NAME_MACRO.
+     */
+    public static final String PARAMETER_ENTRY_NAME_MACRO = "entry_name_macro";
+    /**
+     * The constant PARAMETER_REPOSITORY_PATH_MACRO.
+     */
+    public static final String PARAMETER_REPOSITORY_PATH_MACRO = "repository_path_macro";
+    /**
+     * The constant PARAMETER_PARENT_FOLDER_MACRO.
+     */
+    public static final String PARAMETER_PARENT_FOLDER_MACRO = "parent_folder_macro";
 
-	public static final String PARAMETER_RECURSIVE = "recursive";
+    /**
+     * The constant PARAMETER_RECURSIVE.
+     */
+    public static final String PARAMETER_RECURSIVE = "recursive";
 
-	public static final String PARAMETER_FILTERED_STRING = "filtered_string";
+    /**
+     * The constant PARAMETER_FILTERED_STRING.
+     */
+    public static final String PARAMETER_FILTERED_STRING = "filtered_string";
 
-	public static final String[] PARAMETERS_ENTRY_TYPE = new String[] { "IOObject", "blob" };
-	public static final int IO_OBJECT = 0;
-	public static final int BLOB = 1;
+    /**
+     * The constant PARAMETERS_ENTRY_TYPE.
+     */
+    public static final String[] PARAMETERS_ENTRY_TYPE = new String[] { "IOObject", "blob" };
+    /**
+     * The constant IO_OBJECT.
+     */
+    public static final int IO_OBJECT = 0;
+    /**
+     * The constant BLOB.
+     */
+    public static final int BLOB = 1;
 
-	public static final int FILTERED_STRING_FILE_NAME = 0;
-	public static final int FILTERED_STRING_FILE_PATH = 1;
-	public static final int FILTERED_STRING_PARENT_FOLDER_NAME = 2;
-	public static final String[] FILTERED_STRINGS = { "file name (last part of the path)",
+    /**
+     * The constant FILTERED_STRING_FILE_NAME.
+     */
+    public static final int FILTERED_STRING_FILE_NAME = 0;
+    /**
+     * The constant FILTERED_STRING_FILE_PATH.
+     */
+    public static final int FILTERED_STRING_FILE_PATH = 1;
+    /**
+     * The constant FILTERED_STRING_PARENT_FOLDER_NAME.
+     */
+    public static final int FILTERED_STRING_PARENT_FOLDER_NAME = 2;
+    /**
+     * The constant FILTERED_STRINGS.
+     */
+    public static final String[] FILTERED_STRINGS = { "file name (last part of the path)",
 			"full path (including file name)", "parent folder name" };
 
-	public AbstractRepositoryIterator(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract repository iterator.
+     *
+     * @param description the description
+     */
+    public AbstractRepositoryIterator(OperatorDescription description) {
 		super(description, "Nested Process");
 		inputExtender.start();
 		outputExtender.start();
@@ -135,10 +182,28 @@ public abstract class AbstractRepositoryIterator extends OperatorChain {
 	private String pathNameMacro;
 	private String parentFolderMacro;
 
-	abstract protected void iterate(Object currentParent, Pattern filter, boolean recursive, int type)
+    /**
+     * Iterate.
+     *
+     * @param currentParent the current parent
+     * @param filter        the filter
+     * @param recursive     the recursive
+     * @param type          the type
+     * @throws OperatorException the operator exception
+     */
+    abstract protected void iterate(Object currentParent, Pattern filter, boolean recursive, int type)
 			throws OperatorException;
 
-	protected void doWorkForSingleIterationStep(String fileName, String fullPath, String parentName, IOObject fileObject)
+    /**
+     * Do work for single iteration step.
+     *
+     * @param fileName   the file name
+     * @param fullPath   the full path
+     * @param parentName the parent name
+     * @param fileObject the file object
+     * @throws OperatorException the operator exception
+     */
+    protected void doWorkForSingleIterationStep(String fileName, String fullPath, String parentName, IOObject fileObject)
 			throws OperatorException {
 		clearAllInnerSinks();
 
@@ -165,7 +230,16 @@ public abstract class AbstractRepositoryIterator extends OperatorChain {
 		return new OperatorVersion[] { OPERATOR_VERSION_OUT_PORTS };
 	}
 
-	protected boolean matchesFilter(Pattern filter, String fileName, String fullPath, String parentPath) {
+    /**
+     * Matches filter boolean.
+     *
+     * @param filter     the filter
+     * @param fileName   the file name
+     * @param fullPath   the full path
+     * @param parentPath the parent path
+     * @return the boolean
+     */
+    protected boolean matchesFilter(Pattern filter, String fileName, String fullPath, String parentPath) {
 		if (filter != null) {
 			int matchWhat;
 			try {

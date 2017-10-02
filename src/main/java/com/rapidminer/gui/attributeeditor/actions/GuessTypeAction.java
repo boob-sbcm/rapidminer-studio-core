@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class GuessTypeAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class GuessTypeAction extends ResourceAction {
 
 	private final AttributeEditor attributeEditor;
 
-	public GuessTypeAction(AttributeEditor attributeEditor) {
+    /**
+     * Instantiates a new Guess type action.
+     *
+     * @param attributeEditor the attribute editor
+     */
+    public GuessTypeAction(AttributeEditor attributeEditor) {
 		super("attribute_editor.guess_value_type");
 		this.attributeEditor = attributeEditor;
 	}

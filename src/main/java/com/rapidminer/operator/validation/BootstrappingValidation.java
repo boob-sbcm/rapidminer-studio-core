@@ -43,13 +43,13 @@ import com.rapidminer.tools.RandomGenerator;
  * not sampled, build a test set on which the model is evaluated. This process is repeated for the
  * specified number of iterations after which the average performance is calculated.
  * </p>
- *
+ * <p>
  * <p>
  * The basic setup is the same as for the usual cross validation operator. The first inner operator
  * must provide a model and the second a performance vector. Please note that this operator does not
  * regard example weights, i.e. weights specified in a weight column.
  * </p>
- *
+ * <p>
  * <p>
  * This validation operator provides several values which can be logged by means of a
  * {@link ProcessLogOperator}. All performance estimation operators of RapidMiner provide access to
@@ -70,19 +70,36 @@ import com.rapidminer.tools.RandomGenerator;
  */
 public class BootstrappingValidation extends ValidationChain {
 
-	public static final String PARAMETER_NUMBER_OF_VALIDATIONS = "number_of_validations";
+    /**
+     * The constant PARAMETER_NUMBER_OF_VALIDATIONS.
+     */
+    public static final String PARAMETER_NUMBER_OF_VALIDATIONS = "number_of_validations";
 
-	public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
+    /**
+     * The constant PARAMETER_SAMPLE_RATIO.
+     */
+    public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
 
-	public static final String PARAMETER_USE_WEIGHTS = "use_weights";
+    /**
+     * The constant PARAMETER_USE_WEIGHTS.
+     */
+    public static final String PARAMETER_USE_WEIGHTS = "use_weights";
 
-	public static final String PARAMETER_AVERAGE_PERFORMANCES_ONLY = "average_performances_only";
+    /**
+     * The constant PARAMETER_AVERAGE_PERFORMANCES_ONLY.
+     */
+    public static final String PARAMETER_AVERAGE_PERFORMANCES_ONLY = "average_performances_only";
 
 	private int number;
 
 	private int iteration;
 
-	public BootstrappingValidation(OperatorDescription description) {
+    /**
+     * Instantiates a new Bootstrapping validation.
+     *
+     * @param description the description
+     */
+    public BootstrappingValidation(OperatorDescription description) {
 		super(description);
 		addValue(new ValueDouble("iteration", "The number of the current iteration.") {
 

@@ -26,14 +26,19 @@ import com.rapidminer.repository.gui.RepositoryTree;
 
 /**
  * This action opens the selected entry.
- * 
+ *
  * @author Tobias Malbrecht, Sebastian Land
  */
 public class OpenEntryAction extends AbstractRepositoryAction<DataEntry> {
 
 	private static final long serialVersionUID = 1L;
 
-	public OpenEntryAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Open entry action.
+     *
+     * @param tree the tree
+     */
+    public OpenEntryAction(RepositoryTree tree) {
 		super(tree, DataEntry.class, false, "open_repository_entry");
 	}
 

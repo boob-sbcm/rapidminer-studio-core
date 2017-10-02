@@ -52,7 +52,7 @@ import java.util.Set;
 
 /**
  * A source for actual plot values.
- * 
+ * <p>
  * Each ValueSource holds a reference to a DimensionConfig which configures the domain for this
  * value source. Since all value sources share the same domain axis but hold individual domain
  * configurations, there are some constraints for these configurations. Because of that the contract
@@ -60,15 +60,27 @@ import java.util.Set;
  * of the domain must be passed through the {@link DomainConfigManager} of the the
  * {@link PlotConfiguration} and may not be called directly on the object returned by
  * getDomainConfig().
- * 
+ *
  * @author Marius Helf, Nils Woehler
  */
 public class ValueSource implements AggregationWindowingListener, SeriesFormatListener {
 
-	public enum SeriesUsageType {
-		MAIN_SERIES,		// The main series, used for plotting the values of a series
-		INDICATOR_1,    // Errors of the main series. If INDICATOR_2 is not set,
-		// symmetric error bars are generated based on INDICATOR_1.
+    /**
+     * The enum Series usage type.
+     */
+    public enum SeriesUsageType {
+        /**
+         * Main series series usage type.
+         */
+        MAIN_SERIES,		// The main series, used for plotting the values of a series
+        /**
+         * Indicator 1 series usage type.
+         */
+        INDICATOR_1,    // Errors of the main series. If INDICATOR_2 is not set,
+        /**
+         * The Indicator 2.
+         */
+// symmetric error bars are generated based on INDICATOR_1.
 		// Otherwise INDICATOR_1 defines the upper error. The series
 		// must contain error values (like stdev or variance), not the
 		// absolute position of the error bars in the coordinate system.
@@ -96,11 +108,16 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 	private final int Id;
 	private DomainConfigManager domainConfigManager;
 
-	/**
-	 * Constructor for a default value source. Check if grouping is required by calling
-	 * isGroupingRequired() at the destinated {@link RangeAxisConfig} parent.
-	 */
-	public ValueSource(PlotConfiguration plotConfiguration, DataTableColumn mainDataTableColumn,
+    /**
+     * Constructor for a default value source. Check if grouping is required by calling
+     * isGroupingRequired() at the destinated {@link RangeAxisConfig} parent.
+     *
+     * @param plotConfiguration       the plot configuration
+     * @param mainDataTableColumn     the main data table column
+     * @param aggregationFunctionType the aggregation function type
+     * @param grouped                 the grouped
+     */
+    public ValueSource(PlotConfiguration plotConfiguration, DataTableColumn mainDataTableColumn,
 			AggregationFunctionType aggregationFunctionType, boolean grouped) {
 		this(plotConfiguration.getDomainConfigManager(), mainDataTableColumn, aggregationFunctionType, grouped,
 				plotConfiguration.getNextId());
@@ -130,21 +147,31 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		this.setAutoNaming(true);
 	}
 
-	public AggregationFunction getAggregationFunction(SeriesUsageType usageType) {
+    /**
+     * Gets aggregation function.
+     *
+     * @param usageType the usage type
+     * @return the aggregation function
+     */
+    public AggregationFunction getAggregationFunction(SeriesUsageType usageType) {
 		return aggregationFunctionMap.get(usageType);
 	}
 
-	/**
-	 * Returns the name of the {@link RangeAxisConfig}. Maybe <code>null</code>.
-	 */
-	public String getLabel() {
+    /**
+     * Returns the name of the {@link RangeAxisConfig}. Maybe <code>null</code>.
+     *
+     * @return the label
+     */
+    public String getLabel() {
 		return label;
 	}
 
-	/**
-	 * Sets the name of the plot range axis
-	 */
-	public void setLabel(String label) {
+    /**
+     * Sets the name of the plot range axis
+     *
+     * @param label the label
+     */
+    public void setLabel(String label) {
 		if (label == null ? label != this.label : !label.equals(this.label)) {
 			this.label = label;
 			fireValueSourceChanged(new ValueSourceChangeEvent(this, label));
@@ -157,14 +184,21 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		}
 	}
 
-	/**
-	 * @return the autoName
-	 */
-	public boolean isAutoNaming() {
+    /**
+     * Is auto naming boolean.
+     *
+     * @return the autoName
+     */
+    public boolean isAutoNaming() {
 		return autoNaming;
 	}
 
-	public String getAutoLabel() {
+    /**
+     * Gets auto label.
+     *
+     * @return the auto label
+     */
+    public String getAutoLabel() {
 		DataTableColumn dataTableColumn = getDataTableColumn(SeriesUsageType.MAIN_SERIES);
 		if (dataTableColumn != null) {
 			String label = dataTableColumn.getName();
@@ -177,11 +211,12 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		}
 	}
 
-	/**
-	 * @param autoName
-	 *            the autoName to set
-	 */
-	public void setAutoNaming(boolean autoName) {
+    /**
+     * Sets auto naming.
+     *
+     * @param autoName the autoName to set
+     */
+    public void setAutoNaming(boolean autoName) {
 		if (autoName != this.autoNaming) {
 			this.autoNaming = autoName;
 			setAutoLabelIfEnabled();
@@ -189,7 +224,14 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		}
 	}
 
-	public void setDataTableColumn(SeriesUsageType seriesUsage, DataTableColumn dataTableColumn)
+    /**
+     * Sets data table column.
+     *
+     * @param seriesUsage     the series usage
+     * @param dataTableColumn the data table column
+     * @throws ChartConfigurationException the chart configuration exception
+     */
+    public void setDataTableColumn(SeriesUsageType seriesUsage, DataTableColumn dataTableColumn)
 			throws ChartConfigurationException {
 		DataTableColumn oldDataTableColumn = dataTableColumnMap.get(seriesUsage);
 
@@ -217,7 +259,13 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 
 	}
 
-	public void setAggregationFunction(SeriesUsageType seriesUsage, AggregationFunctionType functionType) {
+    /**
+     * Sets aggregation function.
+     *
+     * @param seriesUsage  the series usage
+     * @param functionType the function type
+     */
+    public void setAggregationFunction(SeriesUsageType seriesUsage, AggregationFunctionType functionType) {
 		if (functionType == null) {
 			aggregationFunctionMap.remove(seriesUsage);
 			if (seriesUsage == SeriesUsageType.MAIN_SERIES) {
@@ -261,15 +309,23 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		}
 	}
 
-	public boolean isNominal() {
+    /**
+     * Is nominal boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isNominal() {
 		return getValueType() == ValueType.NOMINAL;
 	}
 
-	/**
-	 * Returns the {@link ValueType} of the output values of this value source (which are not the
-	 * necessarily the input values).
-	 */
-	public ValueType getValueType(SeriesUsageType usageType) {
+    /**
+     * Returns the {@link ValueType} of the output values of this value source (which are not the
+     * necessarily the input values).
+     *
+     * @param usageType the usage type
+     * @return the value type
+     */
+    public ValueType getValueType(SeriesUsageType usageType) {
 		if (!getDefinedUsageTypes().contains(usageType)) {
 			return ValueType.INVALID;
 		}
@@ -286,31 +342,51 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		}
 	}
 
-	/**
-	 * Returns the associated domain config's value type.
-	 */
-	public ValueType getDomainConfigValueType() {
+    /**
+     * Returns the associated domain config's value type.
+     *
+     * @return the domain config value type
+     */
+    public ValueType getDomainConfigValueType() {
 		return getDomainConfig().getValueType();
 	}
 
-	public ValueType getValueType() {
+    /**
+     * Gets value type.
+     *
+     * @return the value type
+     */
+    public ValueType getValueType() {
 		return getValueType(SeriesUsageType.MAIN_SERIES);
 	}
 
-	public boolean isDate() {
+    /**
+     * Is date boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isDate() {
 		return getValueType() == ValueType.DATE_TIME;
 	}
 
-	/**
-	 * Returns true if the output values of this value source (not the necessarily the input values)
-	 * are numerical, either because the input data itself is numerical, or the applied grouping and
-	 * aggregation function results in numerical values.
-	 */
-	public boolean isNumerical() {
+    /**
+     * Returns true if the output values of this value source (not the necessarily the input values)
+     * are numerical, either because the input data itself is numerical, or the applied grouping and
+     * aggregation function results in numerical values.
+     *
+     * @return the boolean
+     */
+    public boolean isNumerical() {
 		return getValueType() == ValueType.NUMERICAL;
 	}
 
-	public AggregationFunctionType getAggregationFunctionType(SeriesUsageType usageType) {
+    /**
+     * Gets aggregation function type.
+     *
+     * @param usageType the usage type
+     * @return the aggregation function type
+     */
+    public AggregationFunctionType getAggregationFunctionType(SeriesUsageType usageType) {
 		AggregationFunction aggregationFunction = aggregationFunctionMap.get(usageType);
 		if (aggregationFunction != null) {
 			return AggregationFunctionType.valueOf(aggregationFunction.getName());
@@ -319,7 +395,12 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		}
 	}
 
-	public Set<SeriesUsageType> getDefinedUsageTypes() {
+    /**
+     * Gets defined usage types.
+     *
+     * @return the defined usage types
+     */
+    public Set<SeriesUsageType> getDefinedUsageTypes() {
 		return dataTableColumnMap.keySet();
 	}
 
@@ -359,7 +440,14 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 	// RuntimeException("Should not happen, one of the above conditions should always be true.");
 	// }
 
-	public boolean useSeriesFormatForDimension(PlotConfiguration plotConfig, PlotDimension dimension) {
+    /**
+     * Use series format for dimension boolean.
+     *
+     * @param plotConfig the plot config
+     * @param dimension  the dimension
+     * @return the boolean
+     */
+    public boolean useSeriesFormatForDimension(PlotConfiguration plotConfig, PlotDimension dimension) {
 		DefaultDimensionConfig dimensionConfig = (DefaultDimensionConfig) plotConfig.getDimensionConfig(dimension);
 		if (dimensionConfig == null) {
 			return true; // use value from SeriesFormat
@@ -376,11 +464,21 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		return false;
 	}
 
-	public void addValueSourceListener(ValueSourceListener l) {
+    /**
+     * Add value source listener.
+     *
+     * @param l the l
+     */
+    public void addValueSourceListener(ValueSourceListener l) {
 		listeners.add(new WeakReference<ValueSourceListener>(l));
 	}
 
-	public void removeValueSourceListener(ValueSourceListener l) {
+    /**
+     * Remove value source listener.
+     *
+     * @param l the l
+     */
+    public void removeValueSourceListener(ValueSourceListener l) {
 		Iterator<WeakReference<ValueSourceListener>> it = listeners.iterator();
 		while (it.hasNext()) {
 			ValueSourceListener listener = it.next().get();
@@ -390,11 +488,21 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		}
 	}
 
-	public SeriesFormat getSeriesFormat() {
+    /**
+     * Gets series format.
+     *
+     * @return the series format
+     */
+    public SeriesFormat getSeriesFormat() {
 		return format;
 	}
 
-	public void setSeriesFormat(SeriesFormat format) {
+    /**
+     * Sets series format.
+     *
+     * @param format the format
+     */
+    public void setSeriesFormat(SeriesFormat format) {
 		if (format != this.format) {
 			if (this.format != null) {
 				format.removeChangeListener(this);
@@ -433,11 +541,19 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		fireValueSourceChanged(new ValueSourceChangeEvent(this, column, seriesUsage));
 	}
 
-	public void removeAllListeners() {
+    /**
+     * Remove all listeners.
+     */
+    public void removeAllListeners() {
 		listeners.clear();
 	}
 
-	public DefaultDimensionConfig getDomainConfig() {
+    /**
+     * Gets domain config.
+     *
+     * @return the domain config
+     */
+    public DefaultDimensionConfig getDomainConfig() {
 		return domainConfigManager.getDomainConfig(useDomainGrouping);
 	}
 
@@ -446,18 +562,22 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		fireValueSourceChanged(new ValueSourceChangeEvent(this, e));
 	}
 
-	/**
-	 * Returns true if this ValueSource delivers aggregated values of some kind.
-	 */
-	public boolean isUsingDomainGrouping() {
+    /**
+     * Returns true if this ValueSource delivers aggregated values of some kind.
+     *
+     * @return the boolean
+     */
+    public boolean isUsingDomainGrouping() {
 		return useDomainGrouping;
 	}
 
-	/**
-	 * Defines if this ValueSource uses the domain grouping provided by the
-	 * {@link DomainConfigManager}.
-	 */
-	public void setUseDomainGrouping(boolean useDomainGrouping) {
+    /**
+     * Defines if this ValueSource uses the domain grouping provided by the
+     * {@link DomainConfigManager}.
+     *
+     * @param useDomainGrouping the use domain grouping
+     */
+    public void setUseDomainGrouping(boolean useDomainGrouping) {
 		if (this.useDomainGrouping != useDomainGrouping) {
 			this.useDomainGrouping = useDomainGrouping;
 			setAutoLabelIfEnabled();
@@ -465,7 +585,12 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		}
 	}
 
-	public void dimensionConfigChanged(DimensionConfigChangeEvent e) {
+    /**
+     * Dimension config changed.
+     *
+     * @param e the e
+     */
+    public void dimensionConfigChanged(DimensionConfigChangeEvent e) {
 		switch (e.getType()) {
 			case RESET:
 			case SORTING:
@@ -478,14 +603,21 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		}
 	}
 
-	/**
-	 * Returns the {@link AggregationWindowing} for the domain dimension. Never returns null.
-	 */
-	public AggregationWindowing getAggregationWindowing() {
+    /**
+     * Returns the {@link AggregationWindowing} for the domain dimension. Never returns null.
+     *
+     * @return the aggregation windowing
+     */
+    public AggregationWindowing getAggregationWindowing() {
 		return aggregationWindowing;
 	}
 
-	public void setAggregationWindowing(AggregationWindowing aggregationWindowing) {
+    /**
+     * Sets aggregation windowing.
+     *
+     * @param aggregationWindowing the aggregation windowing
+     */
+    public void setAggregationWindowing(AggregationWindowing aggregationWindowing) {
 		if (aggregationWindowing == null) {
 			throw new IllegalArgumentException("null not allowed for aggregationWindowing");
 		}
@@ -501,11 +633,21 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		fireAggregationWindowingChanged();
 	}
 
-	public boolean isUsingRelativeIndicator() {
+    /**
+     * Is using relative indicator boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isUsingRelativeIndicator() {
 		return useRelativeUtilities;
 	}
 
-	public void setUseRelativeUtilities(boolean relativeUtilities) {
+    /**
+     * Sets use relative utilities.
+     *
+     * @param relativeUtilities the relative utilities
+     */
+    public void setUseRelativeUtilities(boolean relativeUtilities) {
 		if (relativeUtilities != this.useRelativeUtilities) {
 			this.useRelativeUtilities = relativeUtilities;
 			fireValueSourceChanged(new ValueSourceChangeEvent(this, ValueSourceChangeType.USE_RELATIVE_UTILITIES,
@@ -534,14 +676,24 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		return clone;
 	}
 
-	/**
-	 * Returns the {@link DataTableColumn} associated with the specified {@link SeriesUsageType}.
-	 */
-	public DataTableColumn getDataTableColumn(SeriesUsageType seriesUsage) {
+    /**
+     * Returns the {@link DataTableColumn} associated with the specified {@link SeriesUsageType}.
+     *
+     * @param seriesUsage the series usage
+     * @return the data table column
+     */
+    public DataTableColumn getDataTableColumn(SeriesUsageType seriesUsage) {
 		return dataTableColumnMap.get(seriesUsage);
 	}
 
-	public boolean doesAggregationFunctionSupportValueType(AggregationFunction function, ValueType valueType) {
+    /**
+     * Does aggregation function support value type boolean.
+     *
+     * @param function  the function
+     * @param valueType the value type
+     * @return the boolean
+     */
+    public boolean doesAggregationFunctionSupportValueType(AggregationFunction function, ValueType valueType) {
 		switch (valueType) {
 			case DATE_TIME:
 				return function.supportsValueType(Ontology.DATE_TIME);
@@ -557,7 +709,12 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		}
 	}
 
-	public List<PlotConfigurationError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<PlotConfigurationError> getErrors() {
 		List<PlotConfigurationError> errors = new LinkedList<PlotConfigurationError>();
 
 		if (useDomainGrouping) {
@@ -593,7 +750,12 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		return errors;
 	}
 
-	public List<PlotConfigurationError> getWarnings() {
+    /**
+     * Gets warnings.
+     *
+     * @return the warnings
+     */
+    public List<PlotConfigurationError> getWarnings() {
 		List<PlotConfigurationError> warnings = new LinkedList<PlotConfigurationError>();
 
 		if (format.getSeriesType() == VisualizationType.LINES_AND_SHAPES) {
@@ -621,13 +783,15 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		return warnings;
 	}
 
-	/**
-	 * Returns true iff this {@link ValueSource} suggests to sample the data if it is large. Large
-	 * is defined as being larger than the RapidMiner property rapidminer.gui.plotter.rows.maximum.<br>
-	 * 
-	 * Currently this function returns true for non-aggregated scatter plots and false otherwise.
-	 */
-	public boolean isSamplingSuggested() {
+    /**
+     * Returns true iff this {@link ValueSource} suggests to sample the data if it is large. Large
+     * is defined as being larger than the RapidMiner property rapidminer.gui.plotter.rows.maximum.<br>
+     * <p>
+     * Currently this function returns true for non-aggregated scatter plots and false otherwise.
+     *
+     * @return the boolean
+     */
+    public boolean isSamplingSuggested() {
 		if (!isUsingDomainGrouping()) {
 			return true;
 		} else {
@@ -635,18 +799,22 @@ public class ValueSource implements AggregationWindowingListener, SeriesFormatLi
 		}
 	}
 
-	/**
-	 * @return the id
-	 */
-	public int getId() {
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
 		return Id;
 	}
 
-	/**
-	 * Exchanges the domainConfigManager of this ValueSource. Should only be called directly after
-	 * cloning.
-	 */
-	void setDomainConfigManager(DomainConfigManager domainConfigManager) {
+    /**
+     * Exchanges the domainConfigManager of this ValueSource. Should only be called directly after
+     * cloning.
+     *
+     * @param domainConfigManager the domain config manager
+     */
+    void setDomainConfigManager(DomainConfigManager domainConfigManager) {
 		this.domainConfigManager = domainConfigManager;
 	}
 }

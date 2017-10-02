@@ -29,25 +29,17 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * Abstract class for a function that has arbitrary logical (numerical, true or false) inputs
  *
  * @author Sabrina Kirstein
- *
  */
 public abstract class AbstractLogicalFunction extends AbstractFunction {
 
-	/**
-	 * Constructs a logical AbstractFunction with {@link FunctionDescription} generated from the
-	 * arguments and the function name generated from the description.
-	 *
-	 * @param i18nKey
-	 *            the key for the {@link FunctionDescription}. The functionName is read from
-	 *            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName
-	 *            from ".group", the description from ".description" and the function with
-	 *            parameters from ".parameters". If ".parameters" is not present, the ".name" is
-	 *            taken for the function with parameters.
-	 * @param numberOfArgumentsToCheck
-	 *            the fixed number of parameters this functions expects or
-	 *            {@link FunctionDescription#UNFIXED_NUMBER_OF_ARGUMENTS}
-	 */
-	public AbstractLogicalFunction(String i18nKey, int numberOfArgumentsToCheck) {
+    /**
+     * Constructs a logical AbstractFunction with {@link FunctionDescription} generated from the
+     * arguments and the function name generated from the description.
+     *
+     * @param i18nKey                  the key for the {@link FunctionDescription}. The functionName is read from            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName            from ".group", the description from ".description" and the function with            parameters from ".parameters". If ".parameters" is not present, the ".name" is            taken for the function with parameters.
+     * @param numberOfArgumentsToCheck the fixed number of parameters this functions expects or            {@link FunctionDescription#UNFIXED_NUMBER_OF_ARGUMENTS}
+     */
+    public AbstractLogicalFunction(String i18nKey, int numberOfArgumentsToCheck) {
 		super(i18nKey, numberOfArgumentsToCheck, Ontology.BINOMINAL);
 	}
 

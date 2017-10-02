@@ -24,17 +24,29 @@ import com.rapidminer.tools.ParameterService;
 
 
 /**
- * 
+ * The type Import wizard utils.
+ *
  * @author Simon Fischer
- * 
  */
 public class ImportWizardUtils {
 
-	public static void showErrorMessage(String resource, String message, Throwable exception) {
+    /**
+     * Show error message.
+     *
+     * @param resource  the resource
+     * @param message   the message
+     * @param exception the exception
+     */
+    public static void showErrorMessage(String resource, String message, Throwable exception) {
 		SwingTools.showSimpleErrorMessage("importwizard.io_error", exception, resource, message);
 	}
 
-	public static int getPreviewLength() {
+    /**
+     * Gets preview length.
+     *
+     * @return the preview length
+     */
+    public static int getPreviewLength() {
 		try {
 			return Integer
 					.parseInt(ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_GENERAL_MAX_TEST_ROWS));

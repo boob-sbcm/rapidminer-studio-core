@@ -37,7 +37,7 @@ import com.rapidminer.studio.internal.Resources;
  * examples and attributes at a node are represented by numbers coming from numbering all examples
  * and attributes at the beginning. In this numbering all nominal attributes come before all
  * numerical attributes. During the tree growing process the nodes are split into smaller ones.
- *
+ * <p>
  * This class should be extended to specify if and how the calculations should be parallelized. By
  * implementing the method {@link #startTree} using {@link #splitNode} one can decide if and in
  * which direction the process of splitting the nodes should be parallelized. By implementing the
@@ -49,39 +49,91 @@ import com.rapidminer.studio.internal.Resources;
  */
 public abstract class AbstractParallelTreeBuilder {
 
-	final protected Operator operator;
+    /**
+     * The Operator.
+     */
+    final protected Operator operator;
 
-	final protected ColumnTerminator minLeafSizeTerminator;
+    /**
+     * The Min leaf size terminator.
+     */
+    final protected ColumnTerminator minLeafSizeTerminator;
 
-	final protected List<ColumnTerminator> otherTerminators;
+    /**
+     * The Other terminators.
+     */
+    final protected List<ColumnTerminator> otherTerminators;
 
-	final protected int minSizeForSplit;
+    /**
+     * The Min size for split.
+     */
+    final protected int minSizeForSplit;
 
-	final protected ColumnCriterion criterion;
+    /**
+     * The Criterion.
+     */
+    final protected ColumnCriterion criterion;
 
-	protected BenefitCalculator benefitCalculator;
+    /**
+     * The Benefit calculator.
+     */
+    protected BenefitCalculator benefitCalculator;
 
-	protected SelectionCreator selectionCreator;
+    /**
+     * The Selection creator.
+     */
+    protected SelectionCreator selectionCreator;
 
-	final protected AttributePreprocessing preprocessing;
+    /**
+     * The Preprocessing.
+     */
+    final protected AttributePreprocessing preprocessing;
 
-	final protected Pruner pruner;
+    /**
+     * The Pruner.
+     */
+    final protected Pruner pruner;
 
-	final protected ParallelDecisionTreeLeafCreator leafCreator = new ParallelDecisionTreeLeafCreator();
+    /**
+     * The Leaf creator.
+     */
+    final protected ParallelDecisionTreeLeafCreator leafCreator = new ParallelDecisionTreeLeafCreator();
 
-	protected int numberOfPrepruningAlternatives = 0;
+    /**
+     * The Number of prepruning alternatives.
+     */
+    protected int numberOfPrepruningAlternatives = 0;
 
-	final protected boolean usePrePruning;
+    /**
+     * The Use pre pruning.
+     */
+    final protected boolean usePrePruning;
 
-	protected ColumnExampleTable columnTable;
+    /**
+     * The Column table.
+     */
+    protected ColumnExampleTable columnTable;
 
-	final protected boolean parallelAllowed;
+    /**
+     * The Parallel allowed.
+     */
+    final protected boolean parallelAllowed;
 
-	/**
-	 * Initializes the fields.
-	 *
-	 */
-	public AbstractParallelTreeBuilder(Operator operator, ColumnCriterion criterion,
+    /**
+     * Initializes the fields.
+     *
+     * @param operator                       the operator
+     * @param criterion                      the criterion
+     * @param terminationCriteria            the termination criteria
+     * @param pruner                         the pruner
+     * @param preprocessing                  the preprocessing
+     * @param prePruning                     the pre pruning
+     * @param numberOfPrepruningAlternatives the number of prepruning alternatives
+     * @param minSizeForSplit                the min size for split
+     * @param minLeafSize                    the min leaf size
+     * @param parallelAllowed                the parallel allowed
+     */
+    public AbstractParallelTreeBuilder(Operator operator, ColumnCriterion criterion,
 			List<ColumnTerminator> terminationCriteria, Pruner pruner, AttributePreprocessing preprocessing,
 			boolean prePruning, int numberOfPrepruningAlternatives, int minSizeForSplit, int minLeafSize,
 			boolean parallelAllowed) {
@@ -112,15 +164,15 @@ public abstract class AbstractParallelTreeBuilder {
 		this.parallelAllowed = parallelAllowed;
 	}
 
-	/**
-	 * Creates a copy of the example set in form of the {@link ColumnExampleTable}, starts the tree
-	 * growing procedure and prunes the finished tree.
-	 *
-	 * @param exampleSet
-	 * @return
-	 * @throws OperatorException
-	 */
-	public Tree learnTree(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Creates a copy of the example set in form of the {@link ColumnExampleTable}, starts the tree
+     * growing procedure and prunes the finished tree.
+     *
+     * @param exampleSet the example set
+     * @return tree tree
+     * @throws OperatorException the operator exception
+     */
+    public Tree learnTree(ExampleSet exampleSet) throws OperatorException {
 
 		// preprocess example set before creating the table
 		exampleSet = preprocessExampleSet(exampleSet);
@@ -149,23 +201,23 @@ public abstract class AbstractParallelTreeBuilder {
 		return root;
 	}
 
-	/**
-	 * Hook for preprocessing the example set before building the {@link ColumnExampleTable}.
-	 *
-	 * @param exampleSet
-	 * @return
-	 */
-	protected ExampleSet preprocessExampleSet(ExampleSet exampleSet) {
+    /**
+     * Hook for preprocessing the example set before building the {@link ColumnExampleTable}.
+     *
+     * @param exampleSet the example set
+     * @return example set
+     */
+    protected ExampleSet preprocessExampleSet(ExampleSet exampleSet) {
 		return exampleSet;
 	}
 
-	/**
-	 * Creates for every numerical attribute a sorted start selection, possibly in parallel.
-	 *
-	 * @return
-	 * @throws OperatorException
-	 */
-	protected Map<Integer, int[]> createExampleStartSelection() throws OperatorException {
+    /**
+     * Creates for every numerical attribute a sorted start selection, possibly in parallel.
+     *
+     * @return map map
+     * @throws OperatorException the operator exception
+     */
+    protected Map<Integer, int[]> createExampleStartSelection() throws OperatorException {
 		Map<Integer, int[]> allSelectedExamples;
 		if (doStartSelectionInParallel() && operator != null) {
 			allSelectedExamples = selectionCreator.getStartSelectionParallel(operator);
@@ -175,36 +227,34 @@ public abstract class AbstractParallelTreeBuilder {
 		return allSelectedExamples;
 	}
 
-	/**
-	 * Decides whether the start selection should be created in parallel.
-	 *
-	 * @return
-	 */
-	abstract boolean doStartSelectionInParallel();
+    /**
+     * Decides whether the start selection should be created in parallel.
+     *
+     * @return boolean boolean
+     */
+    abstract boolean doStartSelectionInParallel();
 
-	/**
-	 * Starts the tree building process for the given parameters.
-	 *
-	 * @param root
-	 * @param allSelectedExamples
-	 * @param selectedAttributes
-	 * @param depth
-	 * @throws OperatorException
-	 */
-	abstract void startTree(Tree root, Map<Integer, int[]> allSelectedExamples, int[] selectedAttributes, int depth)
+    /**
+     * Starts the tree building process for the given parameters.
+     *
+     * @param root                the root
+     * @param allSelectedExamples the all selected examples
+     * @param selectedAttributes  the selected attributes
+     * @param depth               the depth
+     * @throws OperatorException the operator exception
+     */
+    abstract void startTree(Tree root, Map<Integer, int[]> allSelectedExamples, int[] selectedAttributes, int depth)
 			throws OperatorException;
 
-	/**
-	 * Splits the node given by the nodeData by calculating the attribute with the best benefit.
-	 *
-	 * @param nodeData
-	 * @param attributeParallel
-	 *            if <code>true</code> the calculation of the benefits is done in parallel by
-	 *            attributes
-	 * @return
-	 * @throws OperatorException
-	 */
-	protected Collection<NodeData> splitNode(NodeData nodeData, boolean attributeParallel) throws OperatorException {
+    /**
+     * Splits the node given by the nodeData by calculating the attribute with the best benefit.
+     *
+     * @param nodeData          the node data
+     * @param attributeParallel if <code>true</code> the calculation of the benefits is done in parallel by            attributes
+     * @return collection collection
+     * @throws OperatorException the operator exception
+     */
+    protected Collection<NodeData> splitNode(NodeData nodeData, boolean attributeParallel) throws OperatorException {
 		// check if operator was stopped
 		if (operator != null) {
 			Resources.getConcurrencyContext(operator).checkStatus();
@@ -289,16 +339,16 @@ public abstract class AbstractParallelTreeBuilder {
 		return Collections.emptyList();
 	}
 
-	/**
-	 * Checks if the tree building should stop. The terminators are checked and, when prepruning is
-	 * activated, the minimal size for a split is checked as well.
-	 *
-	 * @param selectedExamples
-	 * @param selectedAttributes
-	 * @param depth
-	 * @return
-	 */
-	protected boolean shouldStop(int[] selectedExamples, int[] selectedAttributes, int depth) {
+    /**
+     * Checks if the tree building should stop. The terminators are checked and, when prepruning is
+     * activated, the minimal size for a split is checked as well.
+     *
+     * @param selectedExamples   the selected examples
+     * @param selectedAttributes the selected attributes
+     * @param depth              the depth
+     * @return boolean boolean
+     */
+    protected boolean shouldStop(int[] selectedExamples, int[] selectedAttributes, int depth) {
 		if (usePrePruning && selectedExamples.length < minSizeForSplit) {
 			return true;
 		} else {
@@ -311,17 +361,17 @@ public abstract class AbstractParallelTreeBuilder {
 		}
 	}
 
-	/**
-	 * For each attribute calculate the benefit for splitting there, possibly in parallel if
-	 * attributeParalle is <code>true</code>.
-	 *
-	 * @param allSelectedExamples
-	 * @param selectedAttributes
-	 * @param attributeParallel
-	 * @return
-	 * @throws OperatorException
-	 */
-	protected List<ParallelBenefit> getBenefits(Map<Integer, int[]> allSelectedExamples, int[] selectedAttributes,
+    /**
+     * For each attribute calculate the benefit for splitting there, possibly in parallel if
+     * attributeParalle is <code>true</code>.
+     *
+     * @param allSelectedExamples the all selected examples
+     * @param selectedAttributes  the selected attributes
+     * @param attributeParallel   the attribute parallel
+     * @return benefits benefits
+     * @throws OperatorException the operator exception
+     */
+    protected List<ParallelBenefit> getBenefits(Map<Integer, int[]> allSelectedExamples, int[] selectedAttributes,
 			boolean attributeParallel) throws OperatorException {
 		List<ParallelBenefit> benefits;
 		if (attributeParallel && operator != null) {
@@ -391,36 +441,76 @@ public abstract class AbstractParallelTreeBuilder {
 		parent.addChild(child, condition);
 	}
 
-	/**
-	 * Class to bundle the parameters of {@link AbstractParallelTreeBuilder#splitNode(NodeData)}.
-	 */
-	protected class NodeData {
+    /**
+     * Class to bundle the parameters of {@link AbstractParallelTreeBuilder#splitNode(NodeData)}.
+     */
+    protected class NodeData {
 
-		Tree tree;
-		Map<Integer, int[]> allSelectedExamples;
-		int[] selectedAttributes;
-		int depth;
+        /**
+         * The Tree.
+         */
+        Tree tree;
+        /**
+         * The All selected examples.
+         */
+        Map<Integer, int[]> allSelectedExamples;
+        /**
+         * The Selected attributes.
+         */
+        int[] selectedAttributes;
+        /**
+         * The Depth.
+         */
+        int depth;
 
-		NodeData(Tree tree, Map<Integer, int[]> allSelectedExamples, int[] selectedAttributes, int depth) {
+        /**
+         * Instantiates a new Node data.
+         *
+         * @param tree                the tree
+         * @param allSelectedExamples the all selected examples
+         * @param selectedAttributes  the selected attributes
+         * @param depth               the depth
+         */
+        NodeData(Tree tree, Map<Integer, int[]> allSelectedExamples, int[] selectedAttributes, int depth) {
 			this.tree = tree;
 			this.allSelectedExamples = allSelectedExamples;
 			this.selectedAttributes = selectedAttributes;
 			this.depth = depth;
 		}
 
-		Tree getTree() {
+        /**
+         * Gets tree.
+         *
+         * @return the tree
+         */
+        Tree getTree() {
 			return tree;
 		}
 
-		Map<Integer, int[]> getAllSelectedExamples() {
+        /**
+         * Gets all selected examples.
+         *
+         * @return the all selected examples
+         */
+        Map<Integer, int[]> getAllSelectedExamples() {
 			return allSelectedExamples;
 		}
 
-		int[] getSelectedAttributes() {
+        /**
+         * Get selected attributes int [ ].
+         *
+         * @return the int [ ]
+         */
+        int[] getSelectedAttributes() {
 			return selectedAttributes;
 		}
 
-		int getDepth() {
+        /**
+         * Gets depth.
+         *
+         * @return the depth
+         */
+        int getDepth() {
 			return depth;
 		}
 	}

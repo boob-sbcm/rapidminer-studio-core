@@ -40,34 +40,47 @@ import java.util.List;
  * results after short time if the features indeed are not highly correlated. <br />
  * The ideas of forward selection and backward elimination can easily be used for the weighting with
  * help of a {@link SimpleWeighting}.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public abstract class FeatureWeighting extends FeatureOperator {
 
-	/** The parameter name for &quot;Keep the best n individuals in each generation.&quot; */
-	public static final String PARAMETER_KEEP_BEST = "keep_best";
+    /**
+     * The parameter name for &quot;Keep the best n individuals in each generation.&quot;
+     */
+    public static final String PARAMETER_KEEP_BEST = "keep_best";
 
-	/**
-	 * The parameter name for &quot;Stop after n generations without improvement of the
-	 * performance.&quot;
-	 */
-	public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
+    /**
+     * The parameter name for &quot;Stop after n generations without improvement of the
+     * performance.&quot;
+     */
+    public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
 
-	/**
-	 * The parameter name for &quot;Use these weights for the creation of individuals in each
-	 * generation.&quot;
-	 */
-	public static final String PARAMETER_WEIGHTS = "weights";
+    /**
+     * The parameter name for &quot;Use these weights for the creation of individuals in each
+     * generation.&quot;
+     */
+    public static final String PARAMETER_WEIGHTS = "weights";
 	private List<PopulationOperator> preOps = new LinkedList<PopulationOperator>();
 
 	private List<PopulationOperator> postOps = new LinkedList<PopulationOperator>();
 
 	private int generationsWOImp = 0;
 
-	public abstract PopulationOperator getWeightingOperator(String parameter);
+    /**
+     * Gets weighting operator.
+     *
+     * @param parameter the parameter
+     * @return the weighting operator
+     */
+    public abstract PopulationOperator getWeightingOperator(String parameter);
 
-	public FeatureWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Feature weighting.
+     *
+     * @param description the description
+     */
+    public FeatureWeighting(OperatorDescription description) {
 		super(description);
 	}
 

@@ -28,15 +28,14 @@ import com.rapidminer.tools.expression.FunctionInputException;
  * expression.
  *
  * @author Thilo Kamradt
- *
  */
 public class Finds extends Abstract2StringInputBooleanOutputFunction {
 
-	/**
-	 * Creates a function which checks whether any substring of a nominal Value matches a regular
-	 * expression
-	 */
-	public Finds() {
+    /**
+     * Creates a function which checks whether any substring of a nominal Value matches a regular
+     * expression
+     */
+    public Finds() {
 		super("text_information.finds");
 	}
 

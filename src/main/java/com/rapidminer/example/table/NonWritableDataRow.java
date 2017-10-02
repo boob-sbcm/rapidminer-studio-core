@@ -21,7 +21,7 @@ package com.rapidminer.example.table;
 /**
  * This data row can be wrapped around another data row (delegate) in order to prevent writing
  * access. This might be useful, for example, for database access.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class NonWritableDataRow extends DataRow {
@@ -30,7 +30,12 @@ public class NonWritableDataRow extends DataRow {
 
 	private DataRow delegate;
 
-	public NonWritableDataRow(DataRow delegate) {
+    /**
+     * Instantiates a new Non writable data row.
+     *
+     * @param delegate the delegate
+     */
+    public NonWritableDataRow(DataRow delegate) {
 		this.delegate = delegate;
 	}
 

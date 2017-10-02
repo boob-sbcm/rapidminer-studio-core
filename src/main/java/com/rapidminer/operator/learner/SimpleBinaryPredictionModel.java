@@ -47,15 +47,25 @@ public abstract class SimpleBinaryPredictionModel extends PredictionModel {
 
 	private double threshold = 0.0d;
 
-	protected SimpleBinaryPredictionModel(ExampleSet exampleSet, double threshold) {
+    /**
+     * Instantiates a new Simple binary prediction model.
+     *
+     * @param exampleSet the example set
+     * @param threshold  the threshold
+     */
+    protected SimpleBinaryPredictionModel(ExampleSet exampleSet, double threshold) {
 		super(exampleSet, null, null);
 		this.threshold = threshold;
 	}
 
-	/**
-	 * Applies the model to a single example and returns the predicted class value.
-	 */
-	public abstract double predict(Example example) throws OperatorException;
+    /**
+     * Applies the model to a single example and returns the predicted class value.
+     *
+     * @param example the example
+     * @return the double
+     * @throws OperatorException the operator exception
+     */
+    public abstract double predict(Example example) throws OperatorException;
 
 	/** Iterates over all examples and applies the model to them. */
 	@Override

@@ -27,7 +27,7 @@ import com.rapidminer.tools.math.similarity.SimilarityMeasure;
 /**
  * Cosine similarity that supports feature weights. If both vectors are empty or null vectors, NaN
  * is returned.
- * 
+ *
  * @author Michael Wurst
  */
 public class CosineSimilarity extends SimilarityMeasure {

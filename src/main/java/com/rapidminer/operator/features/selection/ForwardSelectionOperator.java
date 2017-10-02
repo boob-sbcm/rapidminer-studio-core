@@ -42,17 +42,19 @@ import java.util.List;
 
 /**
  * This operator realizes a simple forward selection.
- * 
+ * <p>
  * This class has been replaced by the {@link ForwardAttributeSelectionOperator} class which offers
  * many additional functionalities.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 @Deprecated
 public class ForwardSelectionOperator extends OperatorChain {
 
-	public static final String PARAMETER_NUMBER_OF_STEPS = "number_of_steps";
+    /**
+     * The constant PARAMETER_NUMBER_OF_STEPS.
+     */
+    public static final String PARAMETER_NUMBER_OF_STEPS = "number_of_steps";
 
 	private final InputPort exampleSetInput = getInputPorts().createPort("training set", ExampleSet.class);
 	private final OutputPort innerExampleSource = getSubprocess(0).getInnerSources().createPort("training set");
@@ -62,7 +64,12 @@ public class ForwardSelectionOperator extends OperatorChain {
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private final OutputPort attributeWeightsOutput = getOutputPorts().createPort("attribute weights");
 
-	public ForwardSelectionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Forward selection operator.
+     *
+     * @param description the description
+     */
+    public ForwardSelectionOperator(OperatorDescription description) {
 		super(description, "Learning Process");
 		getTransformer().addRule(new PassThroughRule(exampleSetInput, innerExampleSource, true));
 		getTransformer().addRule(new SubprocessTransformRule(getSubprocess(0)));

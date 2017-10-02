@@ -28,13 +28,20 @@ import com.rapidminer.operator.ports.metadata.MetaData;
 
 
 /**
+ * The type Output port.
+ *
  * @author Simon Fischer
  */
-
 public class OutputPortImpl extends AbstractOutputPort {
 
-	/** Use the factory method {@link OutputPorts#createPort()} to create OutputPorts. */
-	protected OutputPortImpl(Ports<? extends Port> owner, String name, boolean simulatesStack) {
+    /**
+     * Use the factory method {@link OutputPorts#createPort()} to create OutputPorts.  @param owner the owner
+     *
+     * @param owner          the owner
+     * @param name           the name
+     * @param simulatesStack the simulates stack
+     */
+    protected OutputPortImpl(Ports<? extends Port> owner, String name, boolean simulatesStack) {
 		super(owner, name, simulatesStack);
 	}
 

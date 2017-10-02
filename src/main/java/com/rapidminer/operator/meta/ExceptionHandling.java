@@ -44,7 +44,7 @@ import com.rapidminer.tools.LogService;
  * error occurs during this subprocess, this error will be neglected and this operator simply will
  * return no additional input.
  * </p>
- *
+ * <p>
  * <p>
  * Please use this operator with care since it will also cover errors which are not expected by the
  * analyst. In combination with a process branch, however, it can be used to handle exceptions in
@@ -55,7 +55,10 @@ import com.rapidminer.tools.LogService;
  */
 public class ExceptionHandling extends OperatorChain {
 
-	public static final String PARAMETER_EXCEPTION_MACRO = "exception_macro";
+    /**
+     * The constant PARAMETER_EXCEPTION_MACRO.
+     */
+    public static final String PARAMETER_EXCEPTION_MACRO = "exception_macro";
 
 	private boolean withoutError = true;
 	private Throwable throwable;
@@ -68,7 +71,12 @@ public class ExceptionHandling extends OperatorChain {
 	private final MultiInputPortPairExtender outputExtender = new MultiInputPortPairExtender("out", getOutputPorts(),
 			new InputPorts[] { getSubprocess(0).getInnerSinks(), getSubprocess(1).getInnerSinks() });
 
-	public ExceptionHandling(OperatorDescription description) {
+    /**
+     * Instantiates a new Exception handling.
+     *
+     * @param description the description
+     */
+    public ExceptionHandling(OperatorDescription description) {
 		super(description, "Try", "Catch");
 
 		inputExtender.start();

@@ -66,28 +66,31 @@ import com.rapidminer.parameter.ParameterTypeStringCategory;
 @SuppressWarnings("deprecation")
 public class ForestBasedWeighting extends Operator {
 
-	/**
-	 * The parameter name for &quot;Specifies the used criterion for selecting attributes and
-	 * numerical splits.&quot;
-	 */
-	public static final String PARAMETER_CRITERION = "criterion";
+    /**
+     * The parameter name for &quot;Specifies the used criterion for selecting attributes and
+     * numerical splits.&quot;
+     */
+    public static final String PARAMETER_CRITERION = "criterion";
 
 	private InputPort forestInput = getInputPorts().createPort("random forest");
 	private OutputPort weightsOutput = getOutputPorts().createPort("weights");
 	private OutputPort forestOutput = getOutputPorts().createPort("random forest");
 
-	/**
-	 * {@link ModelMetaData} that accepts both {@link RandomForestModel}s and
-	 * {@link ConfigurableRandomForestModel}s.
-	 *
-	 * @author Michael Knopf
-	 * @since 7.0.0
-	 */
-	public static class RandomForestModelMetaData extends ModelMetaData {
+    /**
+     * {@link ModelMetaData} that accepts both {@link RandomForestModel}s and
+     * {@link ConfigurableRandomForestModel}s.
+     *
+     * @author Michael Knopf
+     * @since 7.0.0
+     */
+    public static class RandomForestModelMetaData extends ModelMetaData {
 
 		private static final long serialVersionUID = 1L;
 
-		public RandomForestModelMetaData() {
+        /**
+         * Instantiates a new Random forest model meta data.
+         */
+        public RandomForestModelMetaData() {
 			super(ConfigurableRandomForestModel.class, new ExampleSetMetaData());
 		}
 
@@ -101,7 +104,12 @@ public class ForestBasedWeighting extends Operator {
 		}
 	}
 
-	public ForestBasedWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Forest based weighting.
+     *
+     * @param description the description
+     */
+    public ForestBasedWeighting(OperatorDescription description) {
 		super(description);
 		forestInput.addPrecondition(new SimplePrecondition(forestInput, new RandomForestModelMetaData(), true));
 		getTransformer().addPassThroughRule(forestInput, forestOutput);

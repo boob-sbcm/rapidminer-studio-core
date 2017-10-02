@@ -30,7 +30,7 @@ import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 
 /**
  * A generic SQL editor.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SQLEditor extends RSyntaxTextArea {
@@ -60,7 +60,10 @@ public class SQLEditor extends RSyntaxTextArea {
 
 	};
 
-	public SQLEditor() {
+    /**
+     * Instantiates a new Sql editor.
+     */
+    public SQLEditor() {
 		super(new RSyntaxDocument(TextType.SQL.getSyntaxIdentifier()));
 		setAnimateBracketMatching(true);
 		setAutoIndentEnabled(true);

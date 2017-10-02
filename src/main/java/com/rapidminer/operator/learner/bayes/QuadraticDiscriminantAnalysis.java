@@ -29,16 +29,23 @@ import com.rapidminer.operator.OperatorDescription;
  * identical.
  * </p>
  *
+ * @author Sebastian Land, Jan Czogalla
  * @see RegularizedDiscriminantAnalysis
  * @see LinearDiscriminantAnalysis
- * @author Sebastian Land, Jan Czogalla
  */
 public class QuadraticDiscriminantAnalysis extends RegularizedDiscriminantAnalysis {
 
-	/** The special alpha value for QDA */
-	static final double QDA_ALPHA = 0d;
+    /**
+     * The special alpha value for QDA
+     */
+    static final double QDA_ALPHA = 0d;
 
-	public QuadraticDiscriminantAnalysis(OperatorDescription description) {
+    /**
+     * Instantiates a new Quadratic discriminant analysis.
+     *
+     * @param description the description
+     */
+    public QuadraticDiscriminantAnalysis(OperatorDescription description) {
 		super(description);
 	}
 

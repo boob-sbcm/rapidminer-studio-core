@@ -20,16 +20,27 @@ package com.rapidminer.tools.math.function.window;
 
 /**
  * A triangular window function.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class TriangularWindowFunction extends WindowFunction {
 
-	public TriangularWindowFunction(Integer width) {
+    /**
+     * Instantiates a new Triangular window function.
+     *
+     * @param width the width
+     */
+    public TriangularWindowFunction(Integer width) {
 		super(width);
 	}
 
-	public TriangularWindowFunction(Integer width, Integer justification) {
+    /**
+     * Instantiates a new Triangular window function.
+     *
+     * @param width         the width
+     * @param justification the justification
+     */
+    public TriangularWindowFunction(Integer width, Integer justification) {
 		super(width, justification);
 	}
 

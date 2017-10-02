@@ -106,8 +106,9 @@ import com.rapidminer.tools.math.function.aggregation.AbstractAggregationFunctio
 
 
 /**
- * @author Nils Woehler
+ * The type Color scheme dialog.
  *
+ * @author Nils Woehler
  */
 public class ColorSchemeDialog extends ButtonDialog implements PlotConfigurationListener {
 
@@ -116,10 +117,18 @@ public class ColorSchemeDialog extends ButtonDialog implements PlotConfiguration
 		private static final long serialVersionUID = 1L;
 		private LinearGradientPaint gradientPaint;
 
-		public static final int WIDTH = 50;
+        /**
+         * The constant WIDTH.
+         */
+        public static final int WIDTH = 50;
 		private static final int HEIGHT = 30;
 
-		public GradientPreview(LinearGradientPaint paint) {
+        /**
+         * Instantiates a new Gradient preview.
+         *
+         * @param paint the paint
+         */
+        public GradientPreview(LinearGradientPaint paint) {
 			this.gradientPaint = paint;
 			this.setSize(new Dimension(WIDTH, HEIGHT));
 			this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -136,7 +145,12 @@ public class ColorSchemeDialog extends ButtonDialog implements PlotConfiguration
 			g2d.fillRect(0, 0, getWidth(), getHeight());
 		}
 
-		public void setGradientPaint(LinearGradientPaint gradientPaint) {
+        /**
+         * Sets gradient paint.
+         *
+         * @param gradientPaint the gradient paint
+         */
+        public void setGradientPaint(LinearGradientPaint gradientPaint) {
 			this.gradientPaint = gradientPaint;
 		}
 	}
@@ -199,11 +213,15 @@ public class ColorSchemeDialog extends ButtonDialog implements PlotConfiguration
 
 	private JMenuItem moveDownColorMenuItem;
 
-	/**
-	 * @param key
-	 * @param arguments
-	 */
-	public ColorSchemeDialog(Component actionComp, String key, PlotConfiguration plotConfig, Object... arguments) {
+    /**
+     * Instantiates a new Color scheme dialog.
+     *
+     * @param actionComp the action comp
+     * @param key        the key
+     * @param plotConfig the plot config
+     * @param arguments  the arguments
+     */
+    public ColorSchemeDialog(Component actionComp, String key, PlotConfiguration plotConfig, Object... arguments) {
 		super(actionComp != null ? SwingUtilities.getWindowAncestor(actionComp) : null, key, ModalityType.APPLICATION_MODAL,
 				arguments);
 		this.plotConfig = plotConfig;

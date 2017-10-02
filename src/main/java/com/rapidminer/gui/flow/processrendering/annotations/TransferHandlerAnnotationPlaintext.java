@@ -40,7 +40,6 @@ import com.rapidminer.gui.flow.processrendering.annotations.model.WorkflowAnnota
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 final class TransferHandlerAnnotationPlaintext extends TransferHandler {
 
@@ -79,13 +78,12 @@ final class TransferHandlerAnnotationPlaintext extends TransferHandler {
 	/** the editor for which the handler is */
 	private JEditorPane editor;
 
-	/**
-	 * Creates a new plain text transfer handler for the annotation editor.
-	 *
-	 * @param editor
-	 *            the editor instance
-	 */
-	public TransferHandlerAnnotationPlaintext(final JEditorPane editor) {
+    /**
+     * Creates a new plain text transfer handler for the annotation editor.
+     *
+     * @param editor the editor instance
+     */
+    public TransferHandlerAnnotationPlaintext(final JEditorPane editor) {
 		if (editor == null) {
 			throw new IllegalArgumentException("editor must not be null!");
 		}

@@ -28,7 +28,7 @@ import org.w3c.dom.Element;
 
 /**
  * This condition checks if a type parameter (category) has a certain value.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class EqualTypeCondition extends ParameterCondition {
@@ -41,7 +41,13 @@ public class EqualTypeCondition extends ParameterCondition {
 	private int[] fulfillingOptions;
 	private String[] possibleOptions;
 
-	public EqualTypeCondition(Element element) throws XMLException {
+    /**
+     * Instantiates a new Equal type condition.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public EqualTypeCondition(Element element) throws XMLException {
 		super(element);
 
 		// possible options
@@ -52,7 +58,16 @@ public class EqualTypeCondition extends ParameterCondition {
 		fulfillingOptions = XMLTools.getChildTagsContentAsIntArray(fulfillingOptionsElement, ELEMENT_FULFILLING_OPTION);
 	}
 
-	public EqualTypeCondition(ParameterHandler handler, String conditionParameter, String[] options,
+    /**
+     * Instantiates a new Equal type condition.
+     *
+     * @param handler            the handler
+     * @param conditionParameter the condition parameter
+     * @param options            the options
+     * @param becomeMandatory    the become mandatory
+     * @param types              the types
+     */
+    public EqualTypeCondition(ParameterHandler handler, String conditionParameter, String[] options,
 			boolean becomeMandatory, int... types) {
 		super(handler, conditionParameter, becomeMandatory);
 		this.fulfillingOptions = types;

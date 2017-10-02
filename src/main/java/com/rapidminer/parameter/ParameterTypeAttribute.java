@@ -44,12 +44,11 @@ import com.rapidminer.tools.XMLException;
  */
 public class ParameterTypeAttribute extends ParameterTypeString {
 
-	/**
-	 * A {@link MetaDataProvider} which provides metadata by querying the provided input port.
-	 * It is used by the Web Client to retrieve input port data for attribute parameters.
-	 *
-	 */
-	public static final class InputPortMetaDataProvider implements MetaDataProvider {
+    /**
+     * A {@link MetaDataProvider} which provides metadata by querying the provided input port.
+     * It is used by the Web Client to retrieve input port data for attribute parameters.
+     */
+    public static final class InputPortMetaDataProvider implements MetaDataProvider {
 
 		private final InputPort inPort;
 
@@ -77,7 +76,12 @@ public class ParameterTypeAttribute extends ParameterTypeString {
 
 		}
 
-		public InputPort getInputPort() {
+        /**
+         * Gets input port.
+         *
+         * @return the input port
+         */
+        public InputPort getInputPort() {
 			return inPort;
 		}
 	}
@@ -93,7 +97,13 @@ public class ParameterTypeAttribute extends ParameterTypeString {
 
 	private int[] allowedValueTypes;
 
-	public ParameterTypeAttribute(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type attribute.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeAttribute(Element element) throws XMLException {
 		super(element);
 
 		allowedValueTypes = XMLTools.getChildTagsContentAsIntArray(
@@ -101,41 +111,97 @@ public class ParameterTypeAttribute extends ParameterTypeString {
 		// operator.getInputPorts().getPortByName(element.getAttribute(ATTRIBUTE_INPUT_PORT));
 	}
 
-	public ParameterTypeAttribute(final String key, String description, InputPort inPort) {
+    /**
+     * Instantiates a new Parameter type attribute.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     */
+    public ParameterTypeAttribute(final String key, String description, InputPort inPort) {
 		this(key, description, inPort, false);
 	}
 
-	public ParameterTypeAttribute(final String key, String description, InputPort inPort, int... valueTypes) {
+    /**
+     * Instantiates a new Parameter type attribute.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     * @param valueTypes  the value types
+     */
+    public ParameterTypeAttribute(final String key, String description, InputPort inPort, int... valueTypes) {
 		this(key, description, inPort, false, valueTypes);
 	}
 
-	public ParameterTypeAttribute(final String key, String description, InputPort inPort, boolean optional) {
+    /**
+     * Instantiates a new Parameter type attribute.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     * @param optional    the optional
+     */
+    public ParameterTypeAttribute(final String key, String description, InputPort inPort, boolean optional) {
 		this(key, description, inPort, optional, Ontology.ATTRIBUTE_VALUE);
 	}
 
-	public ParameterTypeAttribute(final String key, String description, InputPort inPort, boolean optional, boolean expert) {
+    /**
+     * Instantiates a new Parameter type attribute.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     * @param optional    the optional
+     * @param expert      the expert
+     */
+    public ParameterTypeAttribute(final String key, String description, InputPort inPort, boolean optional, boolean expert) {
 		this(key, description, inPort, optional, Ontology.ATTRIBUTE_VALUE);
 		setExpert(expert);
 	}
 
-	public ParameterTypeAttribute(final String key, String description, InputPort inPort, boolean optional, boolean expert,
+    /**
+     * Instantiates a new Parameter type attribute.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     * @param optional    the optional
+     * @param expert      the expert
+     * @param valueTypes  the value types
+     */
+    public ParameterTypeAttribute(final String key, String description, InputPort inPort, boolean optional, boolean expert,
 			int... valueTypes) {
 		this(key, description, inPort, optional, Ontology.ATTRIBUTE_VALUE);
 		setExpert(expert);
 		allowedValueTypes = valueTypes;
 	}
 
-	public ParameterTypeAttribute(final String key, String description, final InputPort inPort, boolean optional,
+    /**
+     * Instantiates a new Parameter type attribute.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     * @param optional    the optional
+     * @param valueTypes  the value types
+     */
+    public ParameterTypeAttribute(final String key, String description, final InputPort inPort, boolean optional,
 			int... valueTypes) {
 		this(key, description, new InputPortMetaDataProvider(inPort), optional, valueTypes);
 	}
 
-	/**
-	 * @deprecated use
-	 *             {@link ParameterTypeAttribute#ParameterTypeAttribute(String, String, InputPort, boolean, boolean, int...)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Parameter type attribute.
+     *
+     * @param key              the key
+     * @param description      the description
+     * @param metaDataProvider the meta data provider
+     * @param optional         the optional
+     * @param valueTypes       the value types
+     * @deprecated use {@link ParameterTypeAttribute#ParameterTypeAttribute(String, String, InputPort, boolean, boolean, int...)}             instead
+     */
+    @Deprecated
 	public ParameterTypeAttribute(final String key, String description, MetaDataProvider metaDataProvider, boolean optional,
 			int... valueTypes) {
 		super(key, description, optional);
@@ -143,7 +209,12 @@ public class ParameterTypeAttribute extends ParameterTypeString {
 		allowedValueTypes = valueTypes;
 	}
 
-	public Vector<String> getAttributeNames() {
+    /**
+     * Gets attribute names.
+     *
+     * @return the attribute names
+     */
+    public Vector<String> getAttributeNames() {
 		Vector<String> names = new Vector<>();
 		Vector<String> regularNames = new Vector<>();
 
@@ -197,23 +268,35 @@ public class ParameterTypeAttribute extends ParameterTypeString {
 		return "";
 	}
 
-	/**
-	 * This method might be overridden by subclasses in order to select attributes which are
-	 * applicable
-	 */
-	protected boolean isFilteredOut(AttributeMetaData amd) {
+    /**
+     * This method might be overridden by subclasses in order to select attributes which are
+     * applicable
+     *
+     * @param amd the amd
+     * @return the boolean
+     */
+    protected boolean isFilteredOut(AttributeMetaData amd) {
 		return false;
 	};
 
-	// public InputPort getInputPort() {
+    /**
+     * Gets meta data provider.
+     *
+     * @return the meta data provider
+     */
+// public InputPort getInputPort() {
 	// return inPort;
 	// }
 	public MetaDataProvider getMetaDataProvider() {
 		return metaDataProvider;
 	}
 
-	/** Returns the meta data currently available by the {@link #metaDataProvider}. */
-	public MetaData getMetaData() {
+    /**
+     * Returns the meta data currently available by the {@link #metaDataProvider}.  @return the meta data
+     *
+     * @return the meta data
+     */
+    public MetaData getMetaData() {
 		MetaData metaData = null;
 		if (metaDataProvider != null) {
 			metaData = metaDataProvider.getMetaData();

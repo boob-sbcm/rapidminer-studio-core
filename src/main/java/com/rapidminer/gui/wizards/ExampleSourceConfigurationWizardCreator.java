@@ -24,15 +24,17 @@ import com.rapidminer.parameter.ParameterType;
 /**
  * This creator can be used to create wizards for the
  * {@link com.rapidminer.operator.io.ExampleSource} operator.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExampleSourceConfigurationWizardCreator extends AbstractConfigurationWizardCreator {
 
 	private static final long serialVersionUID = 2690870634059674565L;
 
-	/** Necessary for construction by reflection. */
-	public ExampleSourceConfigurationWizardCreator() {}
+    /**
+     * Necessary for construction by reflection.
+     */
+    public ExampleSourceConfigurationWizardCreator() {}
 
 	@Override
 	public String getI18NKey() {

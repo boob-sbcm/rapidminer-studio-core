@@ -20,11 +20,16 @@ package com.rapidminer.gui.plotter;
 
 /**
  * This class handles coordinate informations.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface CoordinatesHandler {
 
-	public void updateCoordinates(String coordinateInfo);
+    /**
+     * Update coordinates.
+     *
+     * @param coordinateInfo the coordinate info
+     */
+    public void updateCoordinates(String coordinateInfo);
 
 }

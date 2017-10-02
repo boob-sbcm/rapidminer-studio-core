@@ -76,9 +76,8 @@ import com.rapidminer.tools.LogService;
  * to three axis and other options depending on the plotter like a plot amount slider or option
  * buttons.
  *
- * @see PlotterPanel
  * @author Simon Fischer, Michael Knopf
- *
+ * @see PlotterPanel
  */
 public class PlotterControlPanel extends JPanel implements PlotterChangedListener {
 
@@ -99,7 +98,12 @@ public class PlotterControlPanel extends JPanel implements PlotterChangedListene
 		}
 	};
 
-	public PlotterControlPanel(PlotterConfigurationModel plotterSettings) {
+    /**
+     * Instantiates a new Plotter control panel.
+     *
+     * @param plotterSettings the plotter settings
+     */
+    public PlotterControlPanel(PlotterConfigurationModel plotterSettings) {
 		this.plotterSettings = plotterSettings;
 		this.plotterCombo.setSettings(plotterSettings);
 		this.setLayout(new GridBagLayout());
@@ -465,7 +469,10 @@ public class PlotterControlPanel extends JPanel implements PlotterChangedListene
 
 	}
 
-	public void updatePlotterCombo() {
+    /**
+     * Update plotter combo.
+     */
+    public void updatePlotterCombo() {
 		plotterCombo.removeItemListener(plotterComboListener);
 		plotterCombo.removeAllItems();
 		Iterator<String> n = plotterSettings.getAvailablePlotters().keySet().iterator();

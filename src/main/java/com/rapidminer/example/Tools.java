@@ -58,7 +58,13 @@ public class Tools {
 	// -------------------- Tools --------------------
 	// ================================================================================
 
-	public static String[] getAllAttributeNames(ExampleSet exampleSet) {
+    /**
+     * Get all attribute names string [ ].
+     *
+     * @param exampleSet the example set
+     * @return the string [ ]
+     */
+    public static String[] getAllAttributeNames(ExampleSet exampleSet) {
 		String[] attributeNames = new String[exampleSet.getAttributes().allSize()];
 		int counter = 0;
 		Iterator<Attribute> a = exampleSet.getAttributes().allAttributes();
@@ -69,7 +75,13 @@ public class Tools {
 		return attributeNames;
 	}
 
-	public static String[] getRegularAttributeNames(ExampleSet exampleSet) {
+    /**
+     * Get regular attribute names string [ ].
+     *
+     * @param exampleSet the example set
+     * @return the string [ ]
+     */
+    public static String[] getRegularAttributeNames(ExampleSet exampleSet) {
 		String[] attributeNames = new String[exampleSet.getAttributes().size()];
 		int counter = 0;
 		for (Attribute attribute : exampleSet.getAttributes()) {
@@ -78,7 +90,13 @@ public class Tools {
 		return attributeNames;
 	}
 
-	public static String[] getRegularAttributeConstructions(ExampleSet exampleSet) {
+    /**
+     * Get regular attribute constructions string [ ].
+     *
+     * @param exampleSet the example set
+     * @return the string [ ]
+     */
+    public static String[] getRegularAttributeConstructions(ExampleSet exampleSet) {
 		String[] attributeNames = new String[exampleSet.getAttributes().size()];
 		int counter = 0;
 		for (Attribute attribute : exampleSet.getAttributes()) {
@@ -96,7 +114,13 @@ public class Tools {
 	// -------------------- GENERATION --------------------
 	// ================================================================================
 
-	public static Attribute[] createRegularAttributeArray(ExampleSet exampleSet) {
+    /**
+     * Create regular attribute array attribute [ ].
+     *
+     * @param exampleSet the example set
+     * @return the attribute [ ]
+     */
+    public static Attribute[] createRegularAttributeArray(ExampleSet exampleSet) {
 		Attribute[] attributes = new Attribute[exampleSet.getAttributes().size()];
 		int counter = 0;
 		for (Attribute attribute : exampleSet.getAttributes()) {
@@ -105,7 +129,16 @@ public class Tools {
 		return attributes;
 	}
 
-	public static Attribute[] getRandomCompatibleAttributes(ExampleSet exampleSet, FeatureGenerator generator,
+    /**
+     * Get random compatible attributes attribute [ ].
+     *
+     * @param exampleSet the example set
+     * @param generator  the generator
+     * @param functions  the functions
+     * @param random     the random
+     * @return the attribute [ ]
+     */
+    public static Attribute[] getRandomCompatibleAttributes(ExampleSet exampleSet, FeatureGenerator generator,
 			String[] functions, Random random) {
 		List<Attribute[]> inputAttributes = generator.getInputCandidates(exampleSet, functions);
 		if (inputAttributes.size() > 0) {
@@ -115,7 +148,16 @@ public class Tools {
 		}
 	}
 
-	public static Attribute[] getWeightedCompatibleAttributes(AttributeWeightedExampleSet exampleSet,
+    /**
+     * Get weighted compatible attributes attribute [ ].
+     *
+     * @param exampleSet the example set
+     * @param generator  the generator
+     * @param functions  the functions
+     * @param random     the random
+     * @return the attribute [ ]
+     */
+    public static Attribute[] getWeightedCompatibleAttributes(AttributeWeightedExampleSet exampleSet,
 			FeatureGenerator generator, String[] functions, RandomGenerator random) {
 		List<Attribute[]> inputAttributes = generator.getInputCandidates(exampleSet, functions);
 		double[] probs = new double[inputAttributes.size()];
@@ -136,25 +178,39 @@ public class Tools {
 		return inputAttributes.get(random.randomIndex(probs));
 	}
 
-	/**
-	 * Creates and adds the new attributes to the given example set
-	 */
-	public static Attribute createSpecialAttribute(ExampleSet exampleSet, String name, int valueType) {
+    /**
+     * Creates and adds the new attributes to the given example set
+     *
+     * @param exampleSet the example set
+     * @param name       the name
+     * @param valueType  the value type
+     * @return the attribute
+     */
+    public static Attribute createSpecialAttribute(ExampleSet exampleSet, String name, int valueType) {
 		Attribute attribute = AttributeFactory.createAttribute(name, valueType);
 		exampleSet.getExampleTable().addAttribute(attribute);
 		exampleSet.getAttributes().setSpecialAttribute(attribute, name);
 		return attribute;
 	}
 
-	public static AttributeMetaData createWeightAttributeMetaData(ExampleSetMetaData emd) {
+    /**
+     * Create weight attribute meta data attribute meta data.
+     *
+     * @param emd the emd
+     * @return the attribute meta data
+     */
+    public static AttributeMetaData createWeightAttributeMetaData(ExampleSetMetaData emd) {
 		return new AttributeMetaData(Attributes.WEIGHT_NAME, Ontology.REAL, Attributes.WEIGHT_NAME);
 	}
 
-	/**
-	 * This method adds a new Weight Attribute initialized with 1.0d for each example to the example
-	 * table as well as to the given ExampleSet.
-	 */
-	public static Attribute createWeightAttribute(ExampleSet exampleSet) {
+    /**
+     * This method adds a new Weight Attribute initialized with 1.0d for each example to the example
+     * table as well as to the given ExampleSet.
+     *
+     * @param exampleSet the example set
+     * @return the attribute
+     */
+    public static Attribute createWeightAttribute(ExampleSet exampleSet) {
 		Attribute weight = exampleSet.getAttributes().getWeight();
 		if (weight != null) {
 			exampleSet.getLog().logWarning("ExampleSet.createWeightAttribute(): Overwriting old weight attribute!");
@@ -170,7 +226,14 @@ public class Tools {
 		return weight;
 	}
 
-	public static boolean containsValueType(ExampleSet exampleSet, int valueType) {
+    /**
+     * Contains value type boolean.
+     *
+     * @param exampleSet the example set
+     * @param valueType  the value type
+     * @return the boolean
+     */
+    public static boolean containsValueType(ExampleSet exampleSet, int valueType) {
 		for (Attribute attribute : exampleSet.getAttributes()) {
 			if (Ontology.ATTRIBUTE_VALUE_TYPE.isA(attribute.getValueType(), valueType)) {
 				return true;
@@ -179,11 +242,15 @@ public class Tools {
 		return false;
 	}
 
-	/**
-	 * Replaces the given real value by the new one. Please note that this method will only work for
-	 * nominal attributes.
-	 */
-	public static void replaceValue(Attribute attribute, String oldValue, String newValue) {
+    /**
+     * Replaces the given real value by the new one. Please note that this method will only work for
+     * nominal attributes.
+     *
+     * @param attribute the attribute
+     * @param oldValue  the old value
+     * @param newValue  the new value
+     */
+    public static void replaceValue(Attribute attribute, String oldValue, String newValue) {
 		if (!attribute.isNominal()) {
 			throw new RuntimeException("Example-Tools: replaceValue is only supported for nominal attributes.");
 		}
@@ -196,10 +263,15 @@ public class Tools {
 		mapping.setMapping(newValue, oldIndex);
 	}
 
-	/**
-	 * Replaces the given value by the new one. This method will only work for nominal attributes.
-	 */
-	public static void replaceValue(ExampleSet exampleSet, Attribute attribute, String oldValue, String newValue) {
+    /**
+     * Replaces the given value by the new one. This method will only work for nominal attributes.
+     *
+     * @param exampleSet the example set
+     * @param attribute  the attribute
+     * @param oldValue   the old value
+     * @param newValue   the new value
+     */
+    public static void replaceValue(ExampleSet exampleSet, Attribute attribute, String oldValue, String newValue) {
 		if (!attribute.isNominal()) {
 			throw new RuntimeException("Example-Tools: replaceValue is only supported for nominal attributes.");
 		}
@@ -239,12 +311,17 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * Replaces the given real value by the new one. Please note that this method will only properly
-	 * work for numerical attributes since for nominal attributes no remapping is performed. Please
-	 * note also that this method performs a data scan.
-	 */
-	public static void replaceValue(ExampleSet exampleSet, Attribute attribute, double oldValue, double newValue) {
+    /**
+     * Replaces the given real value by the new one. Please note that this method will only properly
+     * work for numerical attributes since for nominal attributes no remapping is performed. Please
+     * note also that this method performs a data scan.
+     *
+     * @param exampleSet the example set
+     * @param attribute  the attribute
+     * @param oldValue   the old value
+     * @param newValue   the new value
+     */
+    public static void replaceValue(ExampleSet exampleSet, Attribute attribute, double oldValue, double newValue) {
 		for (Example example : exampleSet) {
 			double value = example.getValue(attribute);
 			if (Double.isNaN(oldValue) && Double.isNaN(value)) {
@@ -257,11 +334,15 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * Returns true if value and block types of the first attribute are subtypes of value and block
-	 * type of the second.
-	 */
-	public static boolean compatible(Attribute first, Attribute second) {
+    /**
+     * Returns true if value and block types of the first attribute are subtypes of value and block
+     * type of the second.
+     *
+     * @param first  the first
+     * @param second the second
+     * @return the boolean
+     */
+    public static boolean compatible(Attribute first, Attribute second) {
 		return Ontology.ATTRIBUTE_VALUE_TYPE.isA(first.getValueType(), second.getValueType())
 				&& Ontology.ATTRIBUTE_BLOCK_TYPE.isA(first.getBlockType(), second.getBlockType());
 	}
@@ -270,7 +351,13 @@ public class Tools {
 	// P r o b a b i l t i e s
 	// ================================================================================
 
-	public static double getAverageWeight(AttributeWeightedExampleSet exampleSet) {
+    /**
+     * Gets average weight.
+     *
+     * @param exampleSet the example set
+     * @return the average weight
+     */
+    public static double getAverageWeight(AttributeWeightedExampleSet exampleSet) {
 		int counter = 0;
 		double weightSum = 0.0d;
 		for (Attribute attribute : exampleSet.getAttributes()) {
@@ -283,21 +370,40 @@ public class Tools {
 		return weightSum / counter;
 	}
 
-	public static double[] getProbabilitiesFromWeights(Attribute[] attributes, AttributeWeightedExampleSet exampleSet) {
+    /**
+     * Get probabilities from weights double [ ].
+     *
+     * @param attributes the attributes
+     * @param exampleSet the example set
+     * @return the double [ ]
+     */
+    public static double[] getProbabilitiesFromWeights(Attribute[] attributes, AttributeWeightedExampleSet exampleSet) {
 		return getProbabilitiesFromWeights(attributes, exampleSet, false);
 	}
 
-	public static double[] getInverseProbabilitiesFromWeights(Attribute[] attributes, AttributeWeightedExampleSet exampleSet) {
+    /**
+     * Get inverse probabilities from weights double [ ].
+     *
+     * @param attributes the attributes
+     * @param exampleSet the example set
+     * @return the double [ ]
+     */
+    public static double[] getInverseProbabilitiesFromWeights(Attribute[] attributes, AttributeWeightedExampleSet exampleSet) {
 		return getProbabilitiesFromWeights(attributes, exampleSet, true);
 	}
 
-	/**
-	 * Calculates probabilities for attribute selection purposes based on the given weight.
-	 * Attributes whose weight is not defined in the weight vector get a probability corresponding
-	 * to the average weight. Inverse probabilities can be calculated for cases where attributes
-	 * with a high weight should be selected with small probability.
-	 */
-	public static double[] getProbabilitiesFromWeights(Attribute[] attributes, AttributeWeightedExampleSet exampleSet,
+    /**
+     * Calculates probabilities for attribute selection purposes based on the given weight.
+     * Attributes whose weight is not defined in the weight vector get a probability corresponding
+     * to the average weight. Inverse probabilities can be calculated for cases where attributes
+     * with a high weight should be selected with small probability.
+     *
+     * @param attributes the attributes
+     * @param exampleSet the example set
+     * @param inverse    the inverse
+     * @return the double [ ]
+     */
+    public static double[] getProbabilitiesFromWeights(Attribute[] attributes, AttributeWeightedExampleSet exampleSet,
 			boolean inverse) {
 		double weightSum = 0.0d;
 		int counter = 0;
@@ -323,7 +429,15 @@ public class Tools {
 		return probs;
 	}
 
-	public static Attribute selectAttribute(Attribute[] attributes, double[] probs, Random random) {
+    /**
+     * Select attribute attribute.
+     *
+     * @param attributes the attributes
+     * @param probs      the probs
+     * @param random     the random
+     * @return the attribute
+     */
+    public static Attribute selectAttribute(Attribute[] attributes, double[] probs, Random random) {
 		double r = random.nextDouble();
 		double sum = 0.0d;
 		for (int i = 0; i < attributes.length; i++) {
@@ -335,7 +449,14 @@ public class Tools {
 		return attributes[attributes.length - 1];
 	}
 
-	public static boolean isDefault(double defaultValue, double value) {
+    /**
+     * Is default boolean.
+     *
+     * @param defaultValue the default value
+     * @param value        the value
+     * @return the boolean
+     */
+    public static boolean isDefault(double defaultValue, double value) {
 		if (Double.isNaN(defaultValue)) {
 			return Double.isNaN(value);
 		}
@@ -345,32 +466,29 @@ public class Tools {
 		return defaultValue == value;
 	}
 
-	/**
-	 * The data set is not allowed to contain missing values. If it does, a {@link UserError} is
-	 * thrown.
-	 *
-	 * @param exampleSet
-	 *            the {@link ExampleSet} to check
-	 * @param task
-	 *            will be shown as the origin of the error
-	 **/
-	@Deprecated
+    /**
+     * The data set is not allowed to contain missing values. If it does, a {@link UserError} is
+     * thrown.
+     *
+     * @param exampleSet the {@link ExampleSet} to check
+     * @param task       will be shown as the origin of the error
+     * @throws OperatorException the operator exception
+     */
+    @Deprecated
 	public static void onlyNonMissingValues(ExampleSet exampleSet, String task) throws OperatorException {
 		onlyNonMissingValues(exampleSet, task, null, new String[] {});
 	}
 
-	/**
-	 * The data set is not allowed to contain missing values. If it does, a {@link UserError} is
-	 * thrown.
-	 *
-	 * @param exampleSet
-	 *            the {@link ExampleSet} to check
-	 * @param task
-	 *            will be shown as the origin of the error
-	 * @param operator
-	 *            the offending operator. Can be <code>null</code>
-	 **/
-	public static void onlyNonMissingValues(ExampleSet exampleSet, String task, Operator operator) throws OperatorException {
+    /**
+     * The data set is not allowed to contain missing values. If it does, a {@link UserError} is
+     * thrown.
+     *
+     * @param exampleSet the {@link ExampleSet} to check
+     * @param task       will be shown as the origin of the error
+     * @param operator   the offending operator. Can be <code>null</code>
+     * @throws OperatorException the operator exception
+     */
+    public static void onlyNonMissingValues(ExampleSet exampleSet, String task, Operator operator) throws OperatorException {
 		List<String> specialAttList = new LinkedList<>();
 		Iterator<AttributeRole> specialAttributes = exampleSet.getAttributes().specialAttributes();
 		while (specialAttributes.hasNext()) {
@@ -379,23 +497,19 @@ public class Tools {
 		onlyNonMissingValues(exampleSet, task, operator, specialAttList.toArray(new String[specialAttList.size()]));
 	}
 
-	/**
-	 * The data set is not allowed to contain missing values. If it does, a {@link UserError} is
-	 * thrown. Special attributes will be ignored, except they are explicitly listed at
-	 * specialAttributes. Furthermore, if a specified special attribute does not exist a
-	 * {@link UserError} is also thrown!
-	 *
-	 * @param exampleSet
-	 *            the {@link ExampleSet} to check
-	 * @param task
-	 *            will be shown as the origin of the error
-	 * @param operator
-	 *            the offending operator. Can be <code>null</code>
-	 * @param specialAttributes
-	 *            contains the special attributes which have to be checked. If a listed attribute
-	 *            does not exist or contains missing values, a {@link UserError} is thrown
-	 **/
-	public static void onlyNonMissingValues(ExampleSet exampleSet, String task, Operator operator,
+    /**
+     * The data set is not allowed to contain missing values. If it does, a {@link UserError} is
+     * thrown. Special attributes will be ignored, except they are explicitly listed at
+     * specialAttributes. Furthermore, if a specified special attribute does not exist a
+     * {@link UserError} is also thrown!
+     *
+     * @param exampleSet        the {@link ExampleSet} to check
+     * @param task              will be shown as the origin of the error
+     * @param operator          the offending operator. Can be <code>null</code>
+     * @param specialAttributes contains the special attributes which have to be checked. If a listed attribute            does not exist or contains missing values, a {@link UserError} is thrown
+     * @throws OperatorException the operator exception
+     */
+    public static void onlyNonMissingValues(ExampleSet exampleSet, String task, Operator operator,
 			String... specialAttributes) throws OperatorException {
 		HashSet<Attribute> specialToCheck = new HashSet<>();
 
@@ -425,38 +539,35 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * The data set is not allowed to contain non-finite values. If it does, a {@link UserError} is
-	 * thrown.
-	 *
-	 * @param exampleSet
-	 *            the {@link ExampleSet} to check
-	 * @param task
-	 *            will be shown as the origin of the error
-	 * @param operator
-	 *            the offending operator. Can be <code>null</code>
-	 * @since 7.6
-	 **/
-	public static void onlyFiniteValues(ExampleSet exampleSet, String task, Operator operator)
+    /**
+     * The data set is not allowed to contain non-finite values. If it does, a {@link UserError} is
+     * thrown.
+     *
+     * @param exampleSet the {@link ExampleSet} to check
+     * @param task       will be shown as the origin of the error
+     * @param operator   the offending operator. Can be <code>null</code>
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws UserError               the user error
+     * @since 7.6
+     */
+    public static void onlyFiniteValues(ExampleSet exampleSet, String task, Operator operator)
 			throws ProcessStoppedException, UserError {
 		onlyFiniteValues(exampleSet, false, task, operator);
 	}
 
-	/**
-	 * The data set is not allowed to contain infinite and, if indicated, missing values. If it
-	 * does, a {@link UserError} is thrown.
-	 *
-	 * @param exampleSet
-	 *            the {@link ExampleSet} to check
-	 * @param allowMissing
-	 *            indicates whether {@link Double#NaN} should be ignored
-	 * @param task
-	 *            will be shown as the origin of the error
-	 * @param operator
-	 *            the offending operator. Can be <code>null</code>
-	 * @since 7.6
-	 **/
-	public static void onlyFiniteValues(ExampleSet exampleSet, boolean allowMissing, String task, Operator operator)
+    /**
+     * The data set is not allowed to contain infinite and, if indicated, missing values. If it
+     * does, a {@link UserError} is thrown.
+     *
+     * @param exampleSet   the {@link ExampleSet} to check
+     * @param allowMissing indicates whether {@link Double#NaN} should be ignored
+     * @param task         will be shown as the origin of the error
+     * @param operator     the offending operator. Can be <code>null</code>
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws UserError               the user error
+     * @since 7.6
+     */
+    public static void onlyFiniteValues(ExampleSet exampleSet, boolean allowMissing, String task, Operator operator)
 			throws ProcessStoppedException, UserError {
 		List<String> specialAttList = new LinkedList<>();
 		Iterator<AttributeRole> specialAttributes = exampleSet.getAttributes().specialAttributes();
@@ -466,48 +577,41 @@ public class Tools {
 		onlyFiniteValues(exampleSet, task, operator, specialAttList.toArray(new String[specialAttList.size()]));
 	}
 
-	/**
-	 * The data set is not allowed to contain non-finite values. If it does, a {@link UserError} is
-	 * thrown. Special attributes will be ignored, except they are explicitly listed at
-	 * specialAttributes. Furthermore, if a specified special attribute does not exist a
-	 * {@link UserError} is also thrown!
-	 *
-	 * @param exampleSet
-	 *            the {@link ExampleSet} to check
-	 * @param task
-	 *            will be shown as the origin of the error
-	 * @param operator
-	 *            the offending operator. Can be <code>null</code>
-	 * @param specialAttributes
-	 *            contains the special attributes which have to be checked. If a listed attribute
-	 *            does not exist or contains non-finite values, a {@link UserError} is thrown
-	 * @since 7.6
-	 **/
-	public static void onlyFiniteValues(ExampleSet exampleSet, String task, Operator operator, String... specialAttributes)
+    /**
+     * The data set is not allowed to contain non-finite values. If it does, a {@link UserError} is
+     * thrown. Special attributes will be ignored, except they are explicitly listed at
+     * specialAttributes. Furthermore, if a specified special attribute does not exist a
+     * {@link UserError} is also thrown!
+     *
+     * @param exampleSet        the {@link ExampleSet} to check
+     * @param task              will be shown as the origin of the error
+     * @param operator          the offending operator. Can be <code>null</code>
+     * @param specialAttributes contains the special attributes which have to be checked. If a listed attribute            does not exist or contains non-finite values, a {@link UserError} is thrown
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws UserError               the user error
+     * @since 7.6
+     */
+    public static void onlyFiniteValues(ExampleSet exampleSet, String task, Operator operator, String... specialAttributes)
 			throws ProcessStoppedException, UserError {
 		onlyFiniteValues(exampleSet, false, task, operator, specialAttributes);
 	}
 
-	/**
-	 * The data set is not allowed to contain infinite and, if indicated, missing values. If it
-	 * does, a {@link UserError} is thrown. Special attributes will be ignored, except they are
-	 * explicitly listed at specialAttributes. Furthermore, if a specified special attribute does
-	 * not exist a {@link UserError} is also thrown!
-	 *
-	 * @param exampleSet
-	 *            the {@link ExampleSet} to check
-	 * @param allowMissing
-	 *            indicates whether {@link Double#NaN} should be ignored
-	 * @param task
-	 *            will be shown as the origin of the error
-	 * @param operator
-	 *            the offending operator. Can be <code>null</code>
-	 * @param specialAttributes
-	 *            contains the special attributes which have to be checked. If a listed attribute
-	 *            does not exist or contains not-allowed values, a {@link UserError} is thrown
-	 * @since 7.6
-	 **/
-	public static void onlyFiniteValues(ExampleSet exampleSet, boolean allowMissing, String task, Operator operator,
+    /**
+     * The data set is not allowed to contain infinite and, if indicated, missing values. If it
+     * does, a {@link UserError} is thrown. Special attributes will be ignored, except they are
+     * explicitly listed at specialAttributes. Furthermore, if a specified special attribute does
+     * not exist a {@link UserError} is also thrown!
+     *
+     * @param exampleSet        the {@link ExampleSet} to check
+     * @param allowMissing      indicates whether {@link Double#NaN} should be ignored
+     * @param task              will be shown as the origin of the error
+     * @param operator          the offending operator. Can be <code>null</code>
+     * @param specialAttributes contains the special attributes which have to be checked. If a listed attribute            does not exist or contains not-allowed values, a {@link UserError} is thrown
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws UserError               the user error
+     * @since 7.6
+     */
+    public static void onlyFiniteValues(ExampleSet exampleSet, boolean allowMissing, String task, Operator operator,
 			String... specialAttributes) throws ProcessStoppedException, UserError {
 		HashSet<Attribute> specialToCheck = new HashSet<>();
 
@@ -541,25 +645,25 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * The attributes all have to be numerical.
-	 *
-	 * @param es
-	 *            the example set
-	 * @throws UserError
-	 */
-	public static void onlyNumericalAttributes(ExampleSet es, String task) throws UserError {
+    /**
+     * The attributes all have to be numerical.
+     *
+     * @param es   the example set
+     * @param task the task
+     * @throws UserError the user error
+     */
+    public static void onlyNumericalAttributes(ExampleSet es, String task) throws UserError {
 		onlyNumericalAttributes(es.getAttributes(), task);
 	}
 
-	/**
-	 * The attributes all have to be numerical.
-	 *
-	 * @param es
-	 *            the example set
-	 * @throws UserError
-	 */
-	public static void onlyNumericalAttributes(Attributes attributes, String task) throws UserError {
+    /**
+     * The attributes all have to be numerical.
+     *
+     * @param attributes the attributes
+     * @param task       the task
+     * @throws UserError the user error
+     */
+    public static void onlyNumericalAttributes(Attributes attributes, String task) throws UserError {
 		for (Attribute attribute : attributes) {
 			if (!Ontology.ATTRIBUTE_VALUE_TYPE.isA(attribute.getValueType(), Ontology.NUMERICAL)) {
 				throw new UserError(null, 104, task, attribute.getName());
@@ -567,23 +671,25 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * The attributes all have to be nominal or binary.
-	 *
-	 * @param es
-	 *            the example set
-	 * @throws UserError
-	 */
-	public static void onlyNominalAttributes(ExampleSet es, String task) throws UserError {
+    /**
+     * The attributes all have to be nominal or binary.
+     *
+     * @param es   the example set
+     * @param task the task
+     * @throws UserError the user error
+     */
+    public static void onlyNominalAttributes(ExampleSet es, String task) throws UserError {
 		onlyNominalAttributes(es.getAttributes(), task);
 	}
 
-	/**
-	 * The attributes all have to be nominal or binary.
-	 *
-	 * @throws UserError
-	 */
-	public static void onlyNominalAttributes(Attributes attributes, String task) throws UserError {
+    /**
+     * The attributes all have to be nominal or binary.
+     *
+     * @param attributes the attributes
+     * @param task       the task
+     * @throws UserError the user error
+     */
+    public static void onlyNominalAttributes(Attributes attributes, String task) throws UserError {
 		for (Attribute attribute : attributes) {
 			if (!Ontology.ATTRIBUTE_VALUE_TYPE.isA(attribute.getValueType(), Ontology.NOMINAL)) {
 				throw new UserError(null, 103, task, attribute.getName());
@@ -591,15 +697,14 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * The attributes all have to be nominal and have a maximum of two values or binominal.
-	 *
-	 * @param exampleSet
-	 *            the example set
-	 * @throws UserError
-	 *
-	 */
-	public static void maximumTwoNominalAttributes(ExampleSet exampleSet, String task) throws UserError {
+    /**
+     * The attributes all have to be nominal and have a maximum of two values or binominal.
+     *
+     * @param exampleSet the example set
+     * @param task       the task
+     * @throws UserError the user error
+     */
+    public static void maximumTwoNominalAttributes(ExampleSet exampleSet, String task) throws UserError {
 		for (Attribute attribute : exampleSet.getAttributes()) {
 			int valueType = attribute.getValueType();
 			boolean throwError = false;
@@ -617,41 +722,38 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * The example set has to contain labels.
-	 *
-	 * @param es
-	 *            the example set
-	 * @throws UserError
-	 */
-	public static void isLabelled(ExampleSet es) throws UserError {
+    /**
+     * The example set has to contain labels.
+     *
+     * @param es the example set
+     * @throws UserError the user error
+     */
+    public static void isLabelled(ExampleSet es) throws UserError {
 		if (es.getAttributes().getLabel() == null) {
 			throw new UserError(null, 105);
 		}
 	}
 
-	/**
-	 * The example set has to be tagged with ids.
-	 *
-	 * @param es
-	 *            the example set
-	 * @throws UserError
-	 */
-	public static void isIdTagged(ExampleSet es) throws UserError {
+    /**
+     * The example set has to be tagged with ids.
+     *
+     * @param es the example set
+     * @throws UserError the user error
+     */
+    public static void isIdTagged(ExampleSet es) throws UserError {
 		if (es.getAttributes().getId() == null) {
 			throw new UserError(null, 129);
 		}
 	}
 
-	/**
-	 * The example set has to have ids. If no id attribute is available, it will be automatically
-	 * created with help of the IDTagging operator.
-	 *
-	 * @param es
-	 *            the example set
-	 * @throws OperatorException
-	 */
-	public static void checkAndCreateIds(ExampleSet es) throws OperatorException {
+    /**
+     * The example set has to have ids. If no id attribute is available, it will be automatically
+     * created with help of the IDTagging operator.
+     *
+     * @param es the example set
+     * @throws OperatorException the operator exception
+     */
+    public static void checkAndCreateIds(ExampleSet es) throws OperatorException {
 		if (es.getAttributes().getId() == null) {
 			try {
 				// create ids (and visualization)
@@ -663,37 +765,40 @@ public class Tools {
 		}
 	}
 
-	public static void checkIds(ExampleSet exampleSet) throws UserError {
+    /**
+     * Check ids.
+     *
+     * @param exampleSet the example set
+     * @throws UserError the user error
+     */
+    public static void checkIds(ExampleSet exampleSet) throws UserError {
 		if (exampleSet.getAttributes().getId() == null) {
 			throw new UserError(null, 129);
 		}
 	}
 
-	/**
-	 * The example set has to have nominal labels.
-	 *
-	 * @param es
-	 *            the example set
-	 * @see #hasNominalLabels(ExampleSet, String) hasNominalLabels(ExampleSet, "clustering")
-	 * @throws UserError
-	 */
-	public static void hasNominalLabels(ExampleSet es) throws UserError {
+    /**
+     * The example set has to have nominal labels.
+     *
+     * @param es the example set
+     * @throws UserError the user error
+     * @see #hasNominalLabels(ExampleSet, String) #hasNominalLabels(ExampleSet, String)#hasNominalLabels(ExampleSet, String)hasNominalLabels(ExampleSet, "clustering")
+     */
+    public static void hasNominalLabels(ExampleSet es) throws UserError {
 		hasNominalLabels(es, "clustering");
 	}
 
-	/**
-	 * The example set has to have nominal labels. Generalized form allows for better use with other
-	 * algorithms than clustering.
-	 *
-	 * @param es
-	 *            the example set
-	 * @param algorithm
-	 *            the name of the algorithm
-	 * @throws UserError
-	 * @since 7.6
-	 * @see #hasNominalLabels(ExampleSet)
-	 */
-	public static void hasNominalLabels(ExampleSet es, String algorithm) throws UserError {
+    /**
+     * The example set has to have nominal labels. Generalized form allows for better use with other
+     * algorithms than clustering.
+     *
+     * @param es        the example set
+     * @param algorithm the name of the algorithm
+     * @throws UserError the user error
+     * @see #hasNominalLabels(ExampleSet) #hasNominalLabels(ExampleSet)#hasNominalLabels(ExampleSet)
+     * @since 7.6
+     */
+    public static void hasNominalLabels(ExampleSet es, String algorithm) throws UserError {
 		isLabelled(es);
 		Attribute a = es.getAttributes().getLabel();
 		if (!Ontology.ATTRIBUTE_VALUE_TYPE.isA(a.getValueType(), Ontology.NOMINAL)) {
@@ -701,37 +806,40 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * The example set has to contain at least one example.
-	 *
-	 * @param es
-	 *            the example set
-	 * @throws UserError
-	 */
-	public static void isNonEmpty(ExampleSet es) throws UserError {
+    /**
+     * The example set has to contain at least one example.
+     *
+     * @param es the example set
+     * @throws UserError the user error
+     */
+    public static void isNonEmpty(ExampleSet es) throws UserError {
 		if (es.size() == 0) {
 			throw new UserError(null, 117);
 		}
 	}
 
-	/**
-	 * The example set has to contain at least one regular attribute.
-	 *
-	 * @param es
-	 *            the example set
-	 * @throws UserError
-	 * @since 7.6
-	 */
-	public static void hasRegularAttributes(ExampleSet es) throws UserError {
+    /**
+     * The example set has to contain at least one regular attribute.
+     *
+     * @param es the example set
+     * @throws UserError the user error
+     * @since 7.6
+     */
+    public static void hasRegularAttributes(ExampleSet es) throws UserError {
 		if (es.getAttributes().size() == 0) {
 			throw new UserError(null, 106);
 		}
 	}
 
-	/**
-	 * Returns a new example set based on a fresh memory example table sampled from the given set.
-	 */
-	public static ExampleSet getLinearSubsetCopy(ExampleSet exampleSet, int size, int offset) {
+    /**
+     * Returns a new example set based on a fresh memory example table sampled from the given set.
+     *
+     * @param exampleSet the example set
+     * @param size       the size
+     * @param offset     the offset
+     * @return the linear subset copy
+     */
+    public static ExampleSet getLinearSubsetCopy(ExampleSet exampleSet, int size, int offset) {
 		Map<Attribute, String> specialMap = new LinkedHashMap<>();
 		List<Attribute> attributes = new LinkedList<>();
 		Iterator<AttributeRole> a = exampleSet.getAttributes().allAttributeRoles();
@@ -760,10 +868,15 @@ public class Tools {
 		return builder.withRoles(specialMap).build();
 	}
 
-	/**
-	 * Returns a new example set based on a fresh memory example table sampled from the given set.
-	 */
-	public static ExampleSet getShuffledSubsetCopy(ExampleSet exampleSet, int size, RandomGenerator randomGenerator) {
+    /**
+     * Returns a new example set based on a fresh memory example table sampled from the given set.
+     *
+     * @param exampleSet      the example set
+     * @param size            the size
+     * @param randomGenerator the random generator
+     * @return the shuffled subset copy
+     */
+    public static ExampleSet getShuffledSubsetCopy(ExampleSet exampleSet, int size, RandomGenerator randomGenerator) {
 		int[] selectedIndices = OrderedSamplingWithoutReplacement.getSampledIndices(randomGenerator, exampleSet.size(),
 				size);
 		Map<Attribute, String> specialMap = new LinkedHashMap<>();
@@ -794,17 +907,14 @@ public class Tools {
 		return builder.withRoles(specialMap).build();
 	}
 
-	/**
-	 * Check if the childMapping is a subset of the superMapping or equal to it.
-	 *
-	 * @param childMapping
-	 *            the potential subset you want to check
-	 * @param superMapping
-	 *            the {@link NominalMapping} you want to check against
-	 * @return will return true if the {@link NominalMapping} is a subset or equal else false will
-	 *         be returned
-	 */
-	public static boolean isNominalMappingSubsetOrEqualTo(NominalMapping childMapping, NominalMapping superMapping) {
+    /**
+     * Check if the childMapping is a subset of the superMapping or equal to it.
+     *
+     * @param childMapping the potential subset you want to check
+     * @param superMapping the {@link NominalMapping} you want to check against
+     * @return will return true if the {@link NominalMapping} is a subset or equal else false will         be returned
+     */
+    public static boolean isNominalMappingSubsetOrEqualTo(NominalMapping childMapping, NominalMapping superMapping) {
 		if (childMapping.size() > superMapping.size()) {
 			return false;
 		}

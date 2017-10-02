@@ -41,22 +41,49 @@ public abstract class DistanceMeasure implements Serializable {
 
 	private static final long serialVersionUID = 1290079829430640414L;
 
-	protected class DistanceMeasureConfig {
+    /**
+     * The type Distance measure config.
+     */
+    protected class DistanceMeasureConfig {
 
-		Attribute[] firstSetAttributes;
-		Attribute[] secondSetAttributes;
-		// this indicates if a distance can be calculated at all
+        /**
+         * The First set attributes.
+         */
+        Attribute[] firstSetAttributes;
+        /**
+         * The Second set attributes.
+         */
+        Attribute[] secondSetAttributes;
+        /**
+         * The Is matching.
+         */
+// this indicates if a distance can be calculated at all
 		boolean isMatching = true;
 
-		public boolean isMatching() {
+        /**
+         * Is matching boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isMatching() {
 			return isMatching;
 		}
 
-		public Attribute[] getFirstSetAttributes() {
+        /**
+         * Get first set attributes attribute [ ].
+         *
+         * @return the attribute [ ]
+         */
+        public Attribute[] getFirstSetAttributes() {
 			return firstSetAttributes;
 		}
 
-		public Attribute[] getSecondSetAttributes() {
+        /**
+         * Get second set attributes attribute [ ].
+         *
+         * @return the attribute [ ]
+         */
+        public Attribute[] getSecondSetAttributes() {
 			return secondSetAttributes;
 		}
 	}
@@ -69,19 +96,16 @@ public abstract class DistanceMeasure implements Serializable {
 
 	private transient ReferenceCache<DistanceMeasureConfig>.Reference initConfig = CONFIG_CACHE.newReference(null);
 
-	/**
-	 * If you intend to use the method {@link #calculateDistance(Example, Example)} or
-	 * {@link #calculateSimilarity(Example, Example)} on examples of two different
-	 * {@link ExampleSet}s, you need to call this init method instead of {@link #init(ExampleSet)}.
-	 *
-	 * @param firstSet
-	 *            : The exampleset of the first example given to the
-	 *            {@link #calculateDistance(Example, Example)} method.
-	 * @param secondSet
-	 *            : The exampleset of the second example given to the
-	 *            {@link #calculateDistance(Example, Example)} method.
-	 */
-	public DistanceMeasureConfig init(Attributes firstSetAttributes, Attributes secondSetAttributes) {
+    /**
+     * If you intend to use the method {@link #calculateDistance(Example, Example)} or
+     * {@link #calculateSimilarity(Example, Example)} on examples of two different
+     * {@link ExampleSet}s, you need to call this init method instead of {@link #init(ExampleSet)}.
+     *
+     * @param firstSetAttributes  the first set attributes
+     * @param secondSetAttributes the second set attributes
+     * @return the distance measure config
+     */
+    public DistanceMeasureConfig init(Attributes firstSetAttributes, Attributes secondSetAttributes) {
 		DistanceMeasureConfig config = new DistanceMeasureConfig();
 
 		config.firstSetAttributes = new Attribute[firstSetAttributes.size()];
@@ -116,87 +140,88 @@ public abstract class DistanceMeasure implements Serializable {
 		return config;
 	}
 
-	/**
-	 * Before using a similarity measure, it is needed to initialize. Subclasses might use
-	 * initializing for remembering the exampleset properties like attribute type or test if
-	 * applicable to exampleSet at all. Please note that it might be necessary to also override the
-	 * other init methods if this measure should make use of parameters or other IOObjects.
-	 *
-	 * Attention! Subclasses must call this super method to ensure correct initialization!
-	 *
-	 * @param exampleSet
-	 *            the exampleset
-	 */
-	public void init(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Before using a similarity measure, it is needed to initialize. Subclasses might use
+     * initializing for remembering the exampleset properties like attribute type or test if
+     * applicable to exampleSet at all. Please note that it might be necessary to also override the
+     * other init methods if this measure should make use of parameters or other IOObjects.
+     * <p>
+     * Attention! Subclasses must call this super method to ensure correct initialization!
+     *
+     * @param exampleSet the exampleset
+     * @throws OperatorException the operator exception
+     */
+    public void init(ExampleSet exampleSet) throws OperatorException {
 		init(exampleSet.getAttributes(), exampleSet.getAttributes());
 	}
 
-	/**
-	 * If using this measure only on examples of the same example set, you can use this method.
-	 * Otherwise please refer to {@link #init(ExampleSet, ExampleSet)}.
-	 *
-	 * Before using a similarity measure, it is needed to initialize. Subclasses might use
-	 * initializing for remembering the exampleset properties like attribute type or test if
-	 * applicable to exampleSet at all. This init method calls init(exampleSet) per default and
-	 * ignores the parameterHandler and the ioContainer. Subclasses might use the parameterHandler
-	 * to evaluate parameter settings and the IOContainer to access other objects.
-	 *
-	 * @param exampleSet
-	 *            the exampleset
-	 * @param parameterHandler
-	 *            the handler to ask for parameter values
-	 */
-	public void init(ExampleSet exampleSet, ParameterHandler parameterHandler) throws OperatorException {
+    /**
+     * If using this measure only on examples of the same example set, you can use this method.
+     * Otherwise please refer to {@link #init(ExampleSet, ExampleSet)}.
+     * <p>
+     * Before using a similarity measure, it is needed to initialize. Subclasses might use
+     * initializing for remembering the exampleset properties like attribute type or test if
+     * applicable to exampleSet at all. This init method calls init(exampleSet) per default and
+     * ignores the parameterHandler and the ioContainer. Subclasses might use the parameterHandler
+     * to evaluate parameter settings and the IOContainer to access other objects.
+     *
+     * @param exampleSet       the exampleset
+     * @param parameterHandler the handler to ask for parameter values
+     * @throws OperatorException the operator exception
+     */
+    public void init(ExampleSet exampleSet, ParameterHandler parameterHandler) throws OperatorException {
 		init(exampleSet);
 	}
 
-	/**
-	 * This method does the calculation of the distance between two double arrays. The meanings of
-	 * the double values might be remembered from the init method.
-	 *
-	 * @param value1
-	 * @param value2
-	 * @return the distance
-	 */
-	public abstract double calculateDistance(double[] value1, double[] value2);
+    /**
+     * This method does the calculation of the distance between two double arrays. The meanings of
+     * the double values might be remembered from the init method.
+     *
+     * @param value1 the value 1
+     * @param value2 the value 2
+     * @return the distance
+     */
+    public abstract double calculateDistance(double[] value1, double[] value2);
 
-	/**
-	 * This method does the similarity of the distance between two double arrays. The meanings of
-	 * the double values might be remembered from the init method.
-	 *
-	 * @param value1
-	 * @param value2
-	 * @return the distance
-	 */
-	public abstract double calculateSimilarity(double[] value1, double[] value2);
+    /**
+     * This method does the similarity of the distance between two double arrays. The meanings of
+     * the double values might be remembered from the init method.
+     *
+     * @param value1 the value 1
+     * @param value2 the value 2
+     * @return the distance
+     */
+    public abstract double calculateSimilarity(double[] value1, double[] value2);
 
-	/**
-	 * This method returns a boolean whether this measure is a distance measure
-	 *
-	 * @return true if is distance
-	 */
-	public boolean isDistance() {
+    /**
+     * This method returns a boolean whether this measure is a distance measure
+     *
+     * @return true if is distance
+     */
+    public boolean isDistance() {
 		return true;
 	}
 
-	/**
-	 * This method returns a boolean whether this measure is a similarity measure
-	 *
-	 * @return true if is similarity
-	 */
-	public final boolean isSimilarity() {
+    /**
+     * This method returns a boolean whether this measure is a similarity measure
+     *
+     * @return true if is similarity
+     */
+    public final boolean isSimilarity() {
 		return !isDistance();
 	}
 
-	/**
-	 * This is a convenient method for calculating the distance between examples. All attributes
-	 * will be used to form a double array, used for the calculateDistance method.
-	 *
-	 * It will call the {@link #init(ExampleSet, ExampleSet)} if not initialized yet.
-	 *
-	 * @return the distance
-	 */
-	public double calculateDistance(Example firstExample, Example secondExample) {
+    /**
+     * This is a convenient method for calculating the distance between examples. All attributes
+     * will be used to form a double array, used for the calculateDistance method.
+     * <p>
+     * It will call the {@link #init(ExampleSet, ExampleSet)} if not initialized yet.
+     *
+     * @param firstExample  the first example
+     * @param secondExample the second example
+     * @return the distance
+     */
+    public double calculateDistance(Example firstExample, Example secondExample) {
 		DistanceMeasureConfig config = null;
 		if (initConfig != null) {
 			config = initConfig.get();
@@ -221,13 +246,15 @@ public abstract class DistanceMeasure implements Serializable {
 		}
 	}
 
-	/**
-	 * This is a convenient method for calculating the distance between examples and double arrays.
-	 * All attributes will be used to form a double array, used for the calculateDistance method.
-	 *
-	 * @return the distance
-	 */
-	public final double calculateDistance(Example firstExample, double[] second) {
+    /**
+     * This is a convenient method for calculating the distance between examples and double arrays.
+     * All attributes will be used to form a double array, used for the calculateDistance method.
+     *
+     * @param firstExample the first example
+     * @param second       the second
+     * @return the distance
+     */
+    public final double calculateDistance(Example firstExample, double[] second) {
 		Attributes attributes = firstExample.getAttributes();
 		double[] firstValues = new double[attributes.size()];
 
@@ -240,13 +267,15 @@ public abstract class DistanceMeasure implements Serializable {
 		return calculateDistance(firstValues, second);
 	}
 
-	/**
-	 * This is a convenient method for calculating the similarity between examples. All attributes
-	 * will be used to form a double array, used for the calculateDistance method.
-	 *
-	 * @return the distance
-	 */
-	public double calculateSimilarity(Example firstExample, Example secondExample) {
+    /**
+     * This is a convenient method for calculating the similarity between examples. All attributes
+     * will be used to form a double array, used for the calculateDistance method.
+     *
+     * @param firstExample  the first example
+     * @param secondExample the second example
+     * @return the distance
+     */
+    public double calculateSimilarity(Example firstExample, Example secondExample) {
 		DistanceMeasureConfig config = null;
 		if (initConfig != null) {
 			config = initConfig.get();
@@ -271,14 +300,16 @@ public abstract class DistanceMeasure implements Serializable {
 		}
 	}
 
-	/**
-	 * This is a convenient method for calculating the similarity between examples and a double
-	 * array. All attributes will be used to form a double array, used for the calculateDistance
-	 * method.
-	 *
-	 * @return the distance
-	 */
-	public final double calculateSimilarity(Example firstExample, double[] second) {
+    /**
+     * This is a convenient method for calculating the similarity between examples and a double
+     * array. All attributes will be used to form a double array, used for the calculateDistance
+     * method.
+     *
+     * @param firstExample the first example
+     * @param second       the second
+     * @return the distance
+     */
+    public final double calculateSimilarity(Example firstExample, double[] second) {
 		Attributes attributes = firstExample.getAttributes();
 		double[] firstValues = new double[attributes.size()];
 
@@ -291,19 +322,23 @@ public abstract class DistanceMeasure implements Serializable {
 		return calculateSimilarity(firstValues, second);
 	}
 
-	/**
-	 * If the computation of this distance measure depends on additional {@link IOObject}s, this
-	 * method can be overridden to install additional ports at the operator which uses this distance
-	 * measure. If this method is overridden, subclasses can make use of the data received at the
-	 * created ports in their {@link #init(ExampleSet, ParameterHandler)} method. <br/>
-	 * The default implementation does nothing.
-	 */
-	public void installAdditionalPorts(InputPorts inputPorts, ParameterHandler parameterHandler) {}
+    /**
+     * If the computation of this distance measure depends on additional {@link IOObject}s, this
+     * method can be overridden to install additional ports at the operator which uses this distance
+     * measure. If this method is overridden, subclasses can make use of the data received at the
+     * created ports in their {@link #init(ExampleSet, ParameterHandler)} method. <br/>
+     * The default implementation does nothing.
+     *
+     * @param inputPorts       the input ports
+     * @param parameterHandler the parameter handler
+     */
+    public void installAdditionalPorts(InputPorts inputPorts, ParameterHandler parameterHandler) {}
 
-	/**
-	 * Undoes what {@link #installAdditionalPorts(InputPorts, ParameterHandler)} did.
-	 *
-	 * @see #installAdditionalPorts(InputPorts, ParameterHandler)
-	 */
-	public void uninstallAdditionalPorts(InputPorts inputPorts) {}
+    /**
+     * Undoes what {@link #installAdditionalPorts(InputPorts, ParameterHandler)} did.
+     *
+     * @param inputPorts the input ports
+     * @see #installAdditionalPorts(InputPorts, ParameterHandler) #installAdditionalPorts(InputPorts, ParameterHandler)#installAdditionalPorts(InputPorts, ParameterHandler)
+     */
+    public void uninstallAdditionalPorts(InputPorts inputPorts) {}
 }

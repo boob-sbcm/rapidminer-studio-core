@@ -26,30 +26,29 @@ import java.util.LinkedList;
 
 /**
  * A modified cholesky factorization.
- * 
+ * <p>
  * Given a n x n matrix A this decomposition produces a matrix L, such that L * L' = A + E, with E
  * being a minimal diagonal matrix making the sum of both matrices positive definite (and regular).
  * In contrast to the standard cholesky decomposition (as implemented in e.g. Jama) the matrix A
  * doesn't have to be regular and positive definite as often happens due to numerical instabilities.
  * The determination of the diagonal elements of E is based on Gerschgorin's circle theorem
  * minimizing ||E||_inf.
- * 
+ * <p>
  * The a-priori upper bound of ||E||_inf is linear in n;
- * 
+ * <p>
  * REFERENCES:
- * 
+ * <p>
  * Robert B. Schnabel and Elizabeth Eskow. 1990. "A New Modified Cholesky Factorization," SIAM
  * Journal of Scientific Statistical Computating, 11, 6: 1136-58.
- * 
+ * <p>
  * Robert B. Schnabel and Elizabeth Eskow. 1999.
  * "A revised modified Cholesky factorization algorithm," SIAM J. Optim., 9, 4: 1135--1148
  * (electronic)
- * 
+ * <p>
  * Jeff Gill and Gary King. 1998. "`Hessian not Invertable.' Help!" manuscript in progress, Harvard
  * University.
- * 
+ *
  * @author Piotr Kasprzak
- * 
  */
 public class SECholeskyDecomposition {
 
@@ -77,10 +76,22 @@ public class SECholeskyDecomposition {
 	 */
 	private static class PivotTransform {
 
-		int pos1;
-		int pos2;
+        /**
+         * The Pos 1.
+         */
+        int pos1;
+        /**
+         * The Pos 2.
+         */
+        int pos2;
 
-		PivotTransform(int pos1, int pos2) {
+        /**
+         * Instantiates a new Pivot transform.
+         *
+         * @param pos1 the pos 1
+         * @param pos2 the pos 2
+         */
+        PivotTransform(int pos1, int pos2) {
 			this.pos1 = pos1;
 			this.pos2 = pos2;
 		}
@@ -96,17 +107,21 @@ public class SECholeskyDecomposition {
 
 	private int n = 0;			// Size of A
 
-	/**
-	 * Constructors.
-	 * 
-	 * @param A
-	 */
-
-	public SECholeskyDecomposition(double[][] A) {
+    /**
+     * Constructors.
+     *
+     * @param A the a
+     */
+    public SECholeskyDecomposition(double[][] A) {
 		this.decompose(new Matrix(A));
 	}
 
-	public SECholeskyDecomposition(Matrix A) {
+    /**
+     * Instantiates a new Se cholesky decomposition.
+     *
+     * @param A the a
+     */
+    public SECholeskyDecomposition(Matrix A) {
 		this.decompose(A);
 	}
 
@@ -500,37 +515,42 @@ public class SECholeskyDecomposition {
 		}
 	}
 
-	/**
-	 * Return the lower triangle matrix factor of the cholesky decomposition.
-	 */
-
-	public Matrix getL() {
+    /**
+     * Return the lower triangle matrix factor of the cholesky decomposition.
+     *
+     * @return the l
+     */
+    public Matrix getL() {
 		return L;
 	}
 
-	/**
-	 * Return the matrix PTR with PTR * (L * L') * PTR' = A + E.
-	 */
-
-	public Matrix getPTR() {
+    /**
+     * Return the matrix PTR with PTR * (L * L') * PTR' = A + E.
+     *
+     * @return the ptr
+     */
+    public Matrix getPTR() {
 		if (PTR == null) {
 			buildPTR();
 		}
 		return PTR;
 	}
 
-	/**
-	 * Return the diagonal of error-matrix E with the pivoting still applied.
-	 */
-	public double[] getE_Diagonal() {
+    /**
+     * Return the diagonal of error-matrix E with the pivoting still applied.
+     *
+     * @return the double [ ]
+     */
+    public double[] getE_Diagonal() {
 		return E_Diagonal;
 	}
 
-	/**
-	 * Return the error-matrix E with pivoting reversed.
-	 */
-
-	public Matrix getE() {
+    /**
+     * Return the error-matrix E with pivoting reversed.
+     *
+     * @return the e
+     */
+    public Matrix getE() {
 
 		if (E == null) {
 
@@ -557,19 +577,21 @@ public class SECholeskyDecomposition {
 		return this.E;
 	}
 
-	/**
-	 * Return the infinity norm of matrix E.
-	 */
-
-	public double getENorm() {
+    /**
+     * Return the infinity norm of matrix E.
+     *
+     * @return the e norm
+     */
+    public double getENorm() {
 		return this.ENorm;
 	}
 
-	/**
-	 * Return the determinant of L.
-	 */
-
-	public double getDetL() {
+    /**
+     * Return the determinant of L.
+     *
+     * @return the det l
+     */
+    public double getDetL() {
 
 		if (detL == 0) {
 
@@ -584,11 +606,12 @@ public class SECholeskyDecomposition {
 		return detL;
 	}
 
-	/**
-	 * Return the determinant of A.
-	 */
-
-	public double getDetA() {
+    /**
+     * Return the determinant of A.
+     *
+     * @return the det a
+     */
+    public double getDetA() {
 		return (getDetL() * getDetL());
 	}
 }

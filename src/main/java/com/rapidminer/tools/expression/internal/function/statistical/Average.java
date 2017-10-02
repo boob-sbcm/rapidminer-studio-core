@@ -29,14 +29,13 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryDouble
  * A {@link Function} for average.
  *
  * @author David Arnu
- *
  */
 public class Average extends AbstractArbitraryDoubleInputFunction {
 
-	/**
-	 * Constructs an average function.
-	 */
-	public Average() {
+    /**
+     * Constructs an average function.
+     */
+    public Average() {
 		super("statistical.avg", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, Ontology.NUMERICAL);
 
 	}

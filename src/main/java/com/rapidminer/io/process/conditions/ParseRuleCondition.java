@@ -22,10 +22,17 @@ import com.rapidminer.operator.Operator;
 
 
 /**
- * 
+ * The interface Parse rule condition.
+ *
  * @author Sebastian Land
  */
 public interface ParseRuleCondition {
 
-	public boolean isSatisfied(Operator operator);
+    /**
+     * Is satisfied boolean.
+     *
+     * @param operator the operator
+     * @return the boolean
+     */
+    public boolean isSatisfied(Operator operator);
 }

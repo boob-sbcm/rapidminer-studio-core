@@ -107,7 +107,12 @@ public class AttributeSelectionDialog extends ButtonDialog {
 		}
 	};
 
-	public AttributeSelectionDialog(final List<DataTableColumn> columns) {
+    /**
+     * Instantiates a new Attribute selection dialog.
+     *
+     * @param columns the columns
+     */
+    public AttributeSelectionDialog(final List<DataTableColumn> columns) {
 		super(ApplicationFrame.getApplicationFrame(), "plotter.attribute_selection", ModalityType.APPLICATION_MODAL,
 				new Object[] {});
 		JPanel panel = new JPanel(new GridBagLayout());
@@ -284,7 +289,12 @@ public class AttributeSelectionDialog extends ButtonDialog {
 		layoutDefault(panel, NORMAL, makeOkButton(), makeCancelButton());
 	}
 
-	public Collection<String> getSelectedAttributeNames() {
+    /**
+     * Gets selected attribute names.
+     *
+     * @return the selected attribute names
+     */
+    public Collection<String> getSelectedAttributeNames() {
 		return selectedItems;
 	}
 }

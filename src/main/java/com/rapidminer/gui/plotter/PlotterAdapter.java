@@ -72,7 +72,7 @@ import com.rapidminer.tools.math.MathFunctions;
  * {@link #paintComponent(Graphics)} method (which must be invoked by super.paintComponent in order
  * to get the correct color schemes), plotter updates should be initiated by invoking
  * {@link #repaint()}.
- *
+ * <p>
  * Subclasses should at least react to {@link #setDataTable(DataTable)} in order to properly update
  * the plotter. Another method usually overridden is {@link #setPlotColumn(int, boolean)}. Other
  * overridden methods might include the methods for plot column and axis column handling.
@@ -81,62 +81,140 @@ import com.rapidminer.tools.math.MathFunctions;
  */
 public abstract class PlotterAdapter extends JPanel implements Plotter {
 
-	public static final String PARAMETER_SUFFIX_LOG_SCALE = "_log_scale";
+    /**
+     * The constant PARAMETER_SUFFIX_LOG_SCALE.
+     */
+    public static final String PARAMETER_SUFFIX_LOG_SCALE = "_log_scale";
 
-	public static final String PARAMETER_SUFFIX_ABSOLUTE_VALUES = "_absolute_values";
+    /**
+     * The constant PARAMETER_SUFFIX_ABSOLUTE_VALUES.
+     */
+    public static final String PARAMETER_SUFFIX_ABSOLUTE_VALUES = "_absolute_values";
 
-	public static final String PARAMETER_SUFFIX_AXIS = "_axis_";
+    /**
+     * The constant PARAMETER_SUFFIX_AXIS.
+     */
+    public static final String PARAMETER_SUFFIX_AXIS = "_axis_";
 
-	public static final String PARAMETER_PLOT_COLUMNS = "_plot_columns";
+    /**
+     * The constant PARAMETER_PLOT_COLUMNS.
+     */
+    public static final String PARAMETER_PLOT_COLUMNS = "_plot_columns";
 
-	public static final String PARAMETER_PLOT_COLUMN = "_plot_column";
+    /**
+     * The constant PARAMETER_PLOT_COLUMN.
+     */
+    public static final String PARAMETER_PLOT_COLUMN = "_plot_column";
 
-	public static final String PARAMETER_SUFFIX_ZOOM_FACTOR = "_zoom_factor";
+    /**
+     * The constant PARAMETER_SUFFIX_ZOOM_FACTOR.
+     */
+    public static final String PARAMETER_SUFFIX_ZOOM_FACTOR = "_zoom_factor";
 
-	public static final String PARAMETER_JITTER_AMOUNT = "_jitter_amount";
+    /**
+     * The constant PARAMETER_JITTER_AMOUNT.
+     */
+    public static final String PARAMETER_JITTER_AMOUNT = "_jitter_amount";
 
-	public static final String PARAMETER_SUFFIX_SORTING = "_sorting";
+    /**
+     * The constant PARAMETER_SUFFIX_SORTING.
+     */
+    public static final String PARAMETER_SUFFIX_SORTING = "_sorting";
 
 	private static final long serialVersionUID = -8994113034200480325L;
 
-	public static final double POINTSIZE = 7.0d;
+    /**
+     * The constant POINTSIZE.
+     */
+    public static final double POINTSIZE = 7.0d;
 
 	private static final int[] TICS = { 1, 2, 5 };
 
-	public static final int MARGIN = 20;
+    /**
+     * The constant MARGIN.
+     */
+    public static final int MARGIN = 20;
 
-	public static final int WEIGHT_BORDER_WIDTH = 5;
+    /**
+     * The constant WEIGHT_BORDER_WIDTH.
+     */
+    public static final int WEIGHT_BORDER_WIDTH = 5;
 
-	public static final Font LABEL_FONT_BOLD = FontTools.getFont(Font.SANS_SERIF, Font.BOLD, 11);
+    /**
+     * The constant LABEL_FONT_BOLD.
+     */
+    public static final Font LABEL_FONT_BOLD = FontTools.getFont(Font.SANS_SERIF, Font.BOLD, 11);
 
-	public static final Font LABEL_FONT = FontTools.getFont(Font.SANS_SERIF, Font.PLAIN, 11);
+    /**
+     * The constant LABEL_FONT.
+     */
+    public static final Font LABEL_FONT = FontTools.getFont(Font.SANS_SERIF, Font.PLAIN, 11);
 
-	protected static final Color GRID_COLOR = Color.lightGray;
+    /**
+     * The constant GRID_COLOR.
+     */
+    protected static final Color GRID_COLOR = Color.lightGray;
 
-	protected static final Color TOOLTIP_COLOR = new Color(170, 150, 240, 210);
+    /**
+     * The constant TOOLTIP_COLOR.
+     */
+    protected static final Color TOOLTIP_COLOR = new Color(170, 150, 240, 210);
 
-	protected static final PointStyle ELLIPSOID_POINT_STYLE = new EllipsoidPointStyle();
-	protected static final PointStyle RECTANGLE_POINT_STYLE = new RectanglePointStyle();
-	protected static final PointStyle TRIANGUALAR_POINT_STYLE = new TriangularPointStyle();
-	protected static final PointStyle TURNED_TRIANGUALAR_POINT_STYLE = new TurnedTriangularPointStyle();
-	protected static final PointStyle STAR_POINT_STYLE = new StarPointStyle();
+    /**
+     * The constant ELLIPSOID_POINT_STYLE.
+     */
+    protected static final PointStyle ELLIPSOID_POINT_STYLE = new EllipsoidPointStyle();
+    /**
+     * The constant RECTANGLE_POINT_STYLE.
+     */
+    protected static final PointStyle RECTANGLE_POINT_STYLE = new RectanglePointStyle();
+    /**
+     * The constant TRIANGUALAR_POINT_STYLE.
+     */
+    protected static final PointStyle TRIANGUALAR_POINT_STYLE = new TriangularPointStyle();
+    /**
+     * The constant TURNED_TRIANGUALAR_POINT_STYLE.
+     */
+    protected static final PointStyle TURNED_TRIANGUALAR_POINT_STYLE = new TurnedTriangularPointStyle();
+    /**
+     * The constant STAR_POINT_STYLE.
+     */
+    protected static final PointStyle STAR_POINT_STYLE = new StarPointStyle();
 
-	protected static final Color[] LINE_COLORS = { new Color(255, 0, 0), new Color(0, 255, 0), new Color(0, 0, 255),
+    /**
+     * The constant LINE_COLORS.
+     */
+    protected static final Color[] LINE_COLORS = { new Color(255, 0, 0), new Color(0, 255, 0), new Color(0, 0, 255),
 			new Color(255, 0, 255), Color.ORANGE, new Color(255, 255, 0), new Color(0, 255, 255), new Color(200, 100, 0),
 			new Color(100, 200, 0), new Color(0, 100, 200), };
 
-	protected static final PointStyle[] KNOWN_POINT_STYLES = { ELLIPSOID_POINT_STYLE, RECTANGLE_POINT_STYLE,
+    /**
+     * The constant KNOWN_POINT_STYLES.
+     */
+    protected static final PointStyle[] KNOWN_POINT_STYLES = { ELLIPSOID_POINT_STYLE, RECTANGLE_POINT_STYLE,
 			TRIANGUALAR_POINT_STYLE, TURNED_TRIANGUALAR_POINT_STYLE, STAR_POINT_STYLE, ELLIPSOID_POINT_STYLE,
 			RECTANGLE_POINT_STYLE, TRIANGUALAR_POINT_STYLE, TURNED_TRIANGUALAR_POINT_STYLE, STAR_POINT_STYLE };
 
-	// stroked lines are very slow!!!
+    /**
+     * The constant LINE_STROKES.
+     */
+// stroked lines are very slow!!!
 	protected static final Stroke[] LINE_STROKES = { new BasicStroke(2.0f) };
 
-	protected static final LineStyle[] LINE_STYLES = new LineStyle[LINE_COLORS.length * LINE_STROKES.length];
+    /**
+     * The constant LINE_STYLES.
+     */
+    protected static final LineStyle[] LINE_STYLES = new LineStyle[LINE_COLORS.length * LINE_STROKES.length];
 
-	protected static final PointStyle[] POINT_STYLES = new PointStyle[LINE_COLORS.length * LINE_STROKES.length];
+    /**
+     * The constant POINT_STYLES.
+     */
+    protected static final PointStyle[] POINT_STYLES = new PointStyle[LINE_COLORS.length * LINE_STROKES.length];
 
-	protected final static Icon[] LINE_STYLE_ICONS = new LineStyleIcon[LINE_STYLES.length];
+    /**
+     * The constant LINE_STYLE_ICONS.
+     */
+    protected final static Icon[] LINE_STYLE_ICONS = new LineStyleIcon[LINE_STYLES.length];
 
 	static {
 		for (int i = 0; i < LINE_STROKES.length; i++) {
@@ -156,11 +234,11 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		}
 	}
 
-	/**
-	 * This icon is displayed before the columns to indicate the color and line style (as a legend
-	 * or key).
-	 */
-	protected static class LineStyleIcon implements Icon {
+    /**
+     * This icon is displayed before the columns to indicate the color and line style (as a legend
+     * or key).
+     */
+    protected static class LineStyleIcon implements Icon {
 
 		private int index;
 
@@ -185,15 +263,20 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		}
 	}
 
-	/**
-	 * This icon is displayed before the columns to indicate the color and line style (as a legend
-	 * or key).
-	 */
-	protected static class LineColorIcon implements Icon {
+    /**
+     * This icon is displayed before the columns to indicate the color and line style (as a legend
+     * or key).
+     */
+    protected static class LineColorIcon implements Icon {
 
 		private Color color;
 
-		public LineColorIcon(Color color) {
+        /**
+         * Instantiates a new Line color icon.
+         *
+         * @param color the color
+         */
+        public LineColorIcon(Color color) {
 			this.color = color;
 		}
 
@@ -214,12 +297,12 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		}
 	}
 
-	/**
-	 * The line style that should be used for plotting lines. Please note that rendering dashed
-	 * lines might be very slow which was the reason that only solid lines can be used in recent
-	 * releases.
-	 */
-	protected static class LineStyle {
+    /**
+     * The line style that should be used for plotting lines. Please note that rendering dashed
+     * lines might be very slow which was the reason that only solid lines can be used in recent
+     * releases.
+     */
+    protected static class LineStyle {
 
 		private Color color;
 
@@ -230,33 +313,55 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 			this.stroke = stroke;
 		}
 
-		public void set(Graphics2D g) {
+        /**
+         * Set.
+         *
+         * @param g the g
+         */
+        public void set(Graphics2D g) {
 			g.setColor(color);
 			g.setStroke(stroke);
 		}
 
-		public Color getColor() {
+        /**
+         * Gets color.
+         *
+         * @return the color
+         */
+        public Color getColor() {
 			return color;
 		}
 
-		public Stroke getStroke() {
+        /**
+         * Gets stroke.
+         *
+         * @return the stroke
+         */
+        public Stroke getStroke() {
 			return this.stroke;
 		}
 	}
 
-	/**
-	 * The point style that should be used for plotting points.
-	 */
-	protected static interface PointStyle {
+    /**
+     * The point style that should be used for plotting points.
+     */
+    protected static interface PointStyle {
 
-		public Shape createShape(double x, double y);
+        /**
+         * Create shape shape.
+         *
+         * @param x the x
+         * @param y the y
+         * @return the shape
+         */
+        public Shape createShape(double x, double y);
 
 	}
 
-	/**
-	 * The point style that should be used for plotting points.
-	 */
-	protected static class EllipsoidPointStyle implements PointStyle {
+    /**
+     * The point style that should be used for plotting points.
+     */
+    protected static class EllipsoidPointStyle implements PointStyle {
 
 		@Override
 		public Shape createShape(double x, double y) {
@@ -264,10 +369,10 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		}
 	}
 
-	/**
-	 * The point style that should be used for plotting points.
-	 */
-	protected static class RectanglePointStyle implements PointStyle {
+    /**
+     * The point style that should be used for plotting points.
+     */
+    protected static class RectanglePointStyle implements PointStyle {
 
 		@Override
 		public Shape createShape(double x, double y) {
@@ -275,10 +380,10 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		}
 	}
 
-	/**
-	 * The point style that should be used for plotting points.
-	 */
-	protected static class TriangularPointStyle implements PointStyle {
+    /**
+     * The point style that should be used for plotting points.
+     */
+    protected static class TriangularPointStyle implements PointStyle {
 
 		@Override
 		public Shape createShape(double x, double y) {
@@ -290,10 +395,10 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		}
 	}
 
-	/**
-	 * The point style that should be used for plotting points.
-	 */
-	protected static class TurnedTriangularPointStyle implements PointStyle {
+    /**
+     * The point style that should be used for plotting points.
+     */
+    protected static class TurnedTriangularPointStyle implements PointStyle {
 
 		@Override
 		public Shape createShape(double x, double y) {
@@ -305,10 +410,10 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		}
 	}
 
-	/**
-	 * The point style that should be used for plotting points.
-	 */
-	protected static class StarPointStyle implements PointStyle {
+    /**
+     * The point style that should be used for plotting points.
+     */
+    protected static class StarPointStyle implements PointStyle {
 
 		@Override
 		public Shape createShape(double x, double y) {
@@ -329,11 +434,19 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		}
 	}
 
-	protected PlotterConfigurationModel settings;
+    /**
+     * The Settings.
+     */
+    protected PlotterConfigurationModel settings;
 
 	// ===============================================================================================
 
-	public PlotterAdapter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Plotter adapter.
+     *
+     * @param settings the settings
+     */
+    public PlotterAdapter(PlotterConfigurationModel settings) {
 		this.settings = settings;
 	}
 
@@ -673,11 +786,13 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 	@Override
 	public void setSorting(boolean sorting) {}
 
-	/**
-	 * Invokes {@link #repaint()}. Will be invoked since all plotters are
-	 * {@link com.rapidminer.datatable.DataTableListener}s.
-	 */
-	public final void dataTableUpdated(DataTable source) {
+    /**
+     * Invokes {@link #repaint()}. Will be invoked since all plotters are
+     * {@link com.rapidminer.datatable.DataTableListener}s.
+     *
+     * @param source the source
+     */
+    public final void dataTableUpdated(DataTable source) {
 		int maxRowNumber = PlotterPanel.DEFAULT_MAX_NUMBER_OF_DATA_POINTS;
 		String maxRowNumberString = ParameterService
 				.getParameterValue(MainFrame.PROPERTY_RAPIDMINER_GUI_PLOTTER_ROWS_MAXIMUM);
@@ -714,31 +829,59 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 	// Helper methods
 	// ===================================================================================
 
-	public ColorProvider getColorProvider() {
+    /**
+     * Gets color provider.
+     *
+     * @return the color provider
+     */
+    public ColorProvider getColorProvider() {
 		return new ColorProvider();
 	}
 
-	/**
-	 * Creates a new {@link ColorProvider} which reduces the brightness of the returned colors.
-	 *
-	 * @param reduceBrightness
-	 *            if <code>true</code>, will reduce brightness of returned colors
-	 */
-	public ColorProvider getColorProvider(boolean reduceBrightness) {
+    /**
+     * Creates a new {@link ColorProvider} which reduces the brightness of the returned colors.
+     *
+     * @param reduceBrightness if <code>true</code>, will reduce brightness of returned colors
+     * @return the color provider
+     */
+    public ColorProvider getColorProvider(boolean reduceBrightness) {
 		return new ColorProvider(reduceBrightness);
 	}
 
-	protected PointStyle getPointStyle(int styleIndex) {
+    /**
+     * Gets point style.
+     *
+     * @param styleIndex the style index
+     * @return the point style
+     */
+    protected PointStyle getPointStyle(int styleIndex) {
 		return POINT_STYLES[styleIndex % POINT_STYLES.length];
 	}
 
-	/** This helper method can be used to draw a point in the given graphics object. */
-	protected void drawPoint(Graphics2D g, double x, double y, Color color, Color borderColor) {
+    /**
+     * This helper method can be used to draw a point in the given graphics object.  @param g the g
+     *
+     * @param g           the g
+     * @param x           the x
+     * @param y           the y
+     * @param color       the color
+     * @param borderColor the border color
+     */
+    protected void drawPoint(Graphics2D g, double x, double y, Color color, Color borderColor) {
 		drawPoint(g, ELLIPSOID_POINT_STYLE, x, y, color, borderColor);
 	}
 
-	/** This helper method can be used to draw a point in the given graphics object. */
-	protected void drawPoint(Graphics2D g, PointStyle pointStyle, double x, double y, Color color, Color borderColor) {
+    /**
+     * This helper method can be used to draw a point in the given graphics object.  @param g the g
+     *
+     * @param g           the g
+     * @param pointStyle  the point style
+     * @param x           the x
+     * @param y           the y
+     * @param color       the color
+     * @param borderColor the border color
+     */
+    protected void drawPoint(Graphics2D g, PointStyle pointStyle, double x, double y, Color color, Color borderColor) {
 		Shape pointShape = pointStyle.createShape(x, y);
 		g.setColor(color);
 		g.fill(pointShape);
@@ -746,13 +889,27 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		g.draw(pointShape);
 	}
 
-	/** This method can be used to draw a legend on the given graphics context. */
-	protected void drawLegend(Graphics graphics, DataTable table, int legendColumn) {
+    /**
+     * This method can be used to draw a legend on the given graphics context.  @param graphics the graphics
+     *
+     * @param graphics     the graphics
+     * @param table        the table
+     * @param legendColumn the legend column
+     */
+    protected void drawLegend(Graphics graphics, DataTable table, int legendColumn) {
 		drawLegend(graphics, table, legendColumn, 0, 255);
 	}
 
-	/** This method can be used to draw a legend on the given graphics context. */
-	protected void drawLegend(Graphics graphics, DataTable table, int legendColumn, int xOffset, int alpha) {
+    /**
+     * This method can be used to draw a legend on the given graphics context.  @param graphics the graphics
+     *
+     * @param graphics     the graphics
+     * @param table        the table
+     * @param legendColumn the legend column
+     * @param xOffset      the x offset
+     * @param alpha        the alpha
+     */
+    protected void drawLegend(Graphics graphics, DataTable table, int legendColumn, int xOffset, int alpha) {
 		if (legendColumn < 0 || legendColumn > table.getNumberOfColumns() - 1) {
 			return;
 		}
@@ -881,8 +1038,17 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		drawNumericalLegend(graphics, getWidth(), minColorString, maxColorString, legendColumnName, alpha);
 	}
 
-	/** This method can be used to draw a legend on the given graphics context. */
-	public void drawNumericalLegend(Graphics graphics, int width, String minColorString, String maxColorString,
+    /**
+     * This method can be used to draw a legend on the given graphics context.  @param graphics the graphics
+     *
+     * @param graphics         the graphics
+     * @param width            the width
+     * @param minColorString   the min color string
+     * @param maxColorString   the max color string
+     * @param legendColumnName the legend column name
+     * @param alpha            the alpha
+     */
+    public void drawNumericalLegend(Graphics graphics, int width, String minColorString, String maxColorString,
 			String legendColumnName, int alpha) {
 		Graphics2D g = (Graphics2D) graphics.create();
 
@@ -915,8 +1081,17 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		g.drawString(maxColorString, keyX, keyY);
 	}
 
-	/** This method can be used to draw a legend on the given graphics context. */
-	public void drawSimpleNumericalLegend(Graphics graphics, int x, int y, String legendColumnName, String minColorString,
+    /**
+     * This method can be used to draw a legend on the given graphics context.  @param graphics the graphics
+     *
+     * @param graphics         the graphics
+     * @param x                the x
+     * @param y                the y
+     * @param legendColumnName the legend column name
+     * @param minColorString   the min color string
+     * @param maxColorString   the max color string
+     */
+    public void drawSimpleNumericalLegend(Graphics graphics, int x, int y, String legendColumnName, String minColorString,
 			String maxColorString) {
 		Graphics2D g = (Graphics2D) graphics.create();
 
@@ -951,7 +1126,18 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		g.drawString(maxColorString, keyX, keyY + 1);
 	}
 
-	public void drawSimpleDateLegend(Graphics graphics, int x, int y, DataTable table, int legendColumn, double min,
+    /**
+     * Draw simple date legend.
+     *
+     * @param graphics     the graphics
+     * @param x            the x
+     * @param y            the y
+     * @param table        the table
+     * @param legendColumn the legend column
+     * @param min          the min
+     * @param max          the max
+     */
+    public void drawSimpleDateLegend(Graphics graphics, int x, int y, DataTable table, int legendColumn, double min,
 			double max) {
 		String minColorString = null;
 		String maxColorString = null;
@@ -972,7 +1158,17 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		drawSimpleNumericalLegend(graphics, x, y, table.getColumnName(legendColumn), minColorString, maxColorString);
 	}
 
-	protected void drawGenericNominalLegend(Graphics graphics, String[] names, PointStyle[] pointStyles, Color[] colors,
+    /**
+     * Draw generic nominal legend.
+     *
+     * @param graphics    the graphics
+     * @param names       the names
+     * @param pointStyles the point styles
+     * @param colors      the colors
+     * @param xOffset     the x offset
+     * @param alpha       the alpha
+     */
+    protected void drawGenericNominalLegend(Graphics graphics, String[] names, PointStyle[] pointStyles, Color[] colors,
 			int xOffset, int alpha) {
 		Graphics2D g = (Graphics2D) graphics.create();
 		g.translate(xOffset, 0);
@@ -999,7 +1195,13 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		}
 	}
 
-	protected void drawToolTip(Graphics2D g, ToolTip toolTip) {
+    /**
+     * Draw tool tip.
+     *
+     * @param g       the g
+     * @param toolTip the tool tip
+     */
+    protected void drawToolTip(Graphics2D g, ToolTip toolTip) {
 		if (toolTip != null) {
 			g.setFont(LABEL_FONT);
 			Rectangle2D stringBounds = LABEL_FONT.getStringBounds(toolTip.getText(), g.getFontRenderContext());
@@ -1014,7 +1216,13 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		}
 	}
 
-	protected int getNumberOfPlots(DataTable table) {
+    /**
+     * Gets number of plots.
+     *
+     * @param table the table
+     * @return the number of plots
+     */
+    protected int getNumberOfPlots(DataTable table) {
 		int counter = 0;
 		for (int i = 0; i < table.getNumberOfColumns(); i++) {
 			if (getPlotColumn(i)) {
@@ -1024,7 +1232,16 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		return counter;
 	}
 
-	protected double getTicSize(DataTable dataTable, int column, double min, double max) {
+    /**
+     * Gets tic size.
+     *
+     * @param dataTable the data table
+     * @param column    the column
+     * @param min       the min
+     * @param max       the max
+     * @return the tic size
+     */
+    protected double getTicSize(DataTable dataTable, int column, double min, double max) {
 		if (column < 0) {
 			return Double.NaN;
 		}
@@ -1039,7 +1256,14 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		}
 	}
 
-	protected double getNumericalTicSize(double min, double max) {
+    /**
+     * Gets numerical tic size.
+     *
+     * @param min the min
+     * @param max the max
+     * @return the numerical tic size
+     */
+    protected double getNumericalTicSize(double min, double max) {
 		double delta = (max - min) / 5;
 		double e = Math.floor(Math.log(delta) / Math.log(10));
 		double factor = Math.pow(10, e);
@@ -1051,7 +1275,13 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		return factor;
 	}
 
-	protected double getMaxWeight(DataTable dataTable) {
+    /**
+     * Gets max weight.
+     *
+     * @param dataTable the data table
+     * @return the max weight
+     */
+    protected double getMaxWeight(DataTable dataTable) {
 		double maxWeight = Double.NaN;
 		if (dataTable.isSupportingColumnWeights()) {
 			maxWeight = Double.NEGATIVE_INFINITY;
@@ -1065,11 +1295,15 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		return maxWeight;
 	}
 
-	/**
-	 * Returns a color for the given weight. If weight or maxWeight are Double.NaN, just Color.white
-	 * will be returned.
-	 */
-	public static Color getWeightColor(double weight, double maxWeight) {
+    /**
+     * Returns a color for the given weight. If weight or maxWeight are Double.NaN, just Color.white
+     * will be returned.
+     *
+     * @param weight    the weight
+     * @param maxWeight the max weight
+     * @return the weight color
+     */
+    public static Color getWeightColor(double weight, double maxWeight) {
 		Color weightColor = Color.white;
 		if (!Double.isNaN(weight) && !Double.isNaN(maxWeight)) {
 			weightColor = new Color(255, 255, 0, (int) (Math.abs(weight) / maxWeight * 100));
@@ -1077,7 +1311,16 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		return weightColor;
 	}
 
-	protected void drawWeightRectangle(Graphics2D newSpace, DataTable dataTable, int column, double maxWeight,
+    /**
+     * Draw weight rectangle.
+     *
+     * @param newSpace    the new space
+     * @param dataTable   the data table
+     * @param column      the column
+     * @param maxWeight   the max weight
+     * @param plotterSize the plotter size
+     */
+    protected void drawWeightRectangle(Graphics2D newSpace, DataTable dataTable, int column, double maxWeight,
 			int plotterSize) {
 		if (dataTable.isSupportingColumnWeights()) {
 			newSpace.setColor(getWeightColor(dataTable.getColumnWeight(column), maxWeight));
@@ -1137,11 +1380,22 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 	// Parameter Handling
 	// =======================================================
 
-	public PlotterConfigurationModel getPlotterSettings() {
+    /**
+     * Gets plotter settings.
+     *
+     * @return the plotter settings
+     */
+    public PlotterConfigurationModel getPlotterSettings() {
 		return settings;
 	}
 
-	public static String transformParameterName(String name) {
+    /**
+     * Transform parameter name string.
+     *
+     * @param name the name
+     * @return the string
+     */
+    public static String transformParameterName(String name) {
 		if (name == null) {
 			return "default";
 		}
@@ -1278,20 +1532,24 @@ public abstract class PlotterAdapter extends JPanel implements Plotter {
 		}
 	}
 
-	/**
-	 * The default implementation delivers an empty set.
-	 *
-	 * @param inputPort
-	 */
-	public List<ParameterType> getAdditionalParameterKeys(InputPort inputPort) {
+    /**
+     * The default implementation delivers an empty set.
+     *
+     * @param inputPort the input port
+     * @return the additional parameter keys
+     */
+    public List<ParameterType> getAdditionalParameterKeys(InputPort inputPort) {
 		return new LinkedList<>();
 	}
 
-	/**
-	 * If subclasses override this method, the MUST call the super implementation, since many
-	 * parameters are evaluated there.
-	 */
-	public void setAdditionalParameter(String key, String value) {}
+    /**
+     * If subclasses override this method, the MUST call the super implementation, since many
+     * parameters are evaluated there.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public void setAdditionalParameter(String key, String value) {}
 
 	@Override
 	public List<ParameterType> getParameterTypes(InputPort inputPort) {

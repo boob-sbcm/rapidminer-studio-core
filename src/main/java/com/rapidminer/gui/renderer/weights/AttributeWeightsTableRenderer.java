@@ -34,12 +34,15 @@ import java.util.regex.Pattern;
 
 /**
  * A renderer for the table view of attribute weights.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeWeightsTableRenderer extends AbstractDataTableTableRenderer {
 
-	public static final String PARAMETER_ATTRIBUTE_SELECTION = "include_attributes";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_SELECTION.
+     */
+    public static final String PARAMETER_ATTRIBUTE_SELECTION = "include_attributes";
 
 	@Override
 	public DataTable getDataTable(Object renderable, IOContainer ioContainer, boolean isRendering) {

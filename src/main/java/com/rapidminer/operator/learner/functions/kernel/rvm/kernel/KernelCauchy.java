@@ -20,17 +20,24 @@ package com.rapidminer.operator.learner.functions.kernel.rvm.kernel;
 
 /**
  * Cauchy kernel: K(x, y) = 1 / (1 + lengthScale^{-2} * ||x - y||^2)
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
  */
 public class KernelCauchy extends KernelRadial {
 
 	private static final long serialVersionUID = 4933996037410512408L;
 
-	/** Constructor(s) */
-	public KernelCauchy() {}
+    /**
+     * Constructor(s)
+     */
+    public KernelCauchy() {}
 
-	public KernelCauchy(double lengthScale) {
+    /**
+     * Instantiates a new Kernel cauchy.
+     *
+     * @param lengthScale the length scale
+     */
+    public KernelCauchy(double lengthScale) {
 		super(lengthScale);
 	}
 

@@ -55,9 +55,17 @@ import com.rapidminer.tools.LogService;
 public class OperatorInfoPanel extends JPanel {
 
 	private static final long serialVersionUID = 3610550973456646750L;
-	public static final Icon WARNING_ICON = SwingTools.createIcon("16/sign_warning.png");
+    /**
+     * The constant WARNING_ICON.
+     */
+    public static final Icon WARNING_ICON = SwingTools.createIcon("16/sign_warning.png");
 
-	public OperatorInfoPanel(OperatorDescription description) {
+    /**
+     * Instantiates a new Operator info panel.
+     *
+     * @param description the description
+     */
+    public OperatorInfoPanel(OperatorDescription description) {
 		if (description == null) {
 			add(new JLabel("No operator selected!"));
 		} else {

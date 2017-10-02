@@ -35,16 +35,22 @@ import org.w3c.dom.NodeList;
 /**
  * This rule will insert a SetRole operator. The target role is defined by tag, while the name of
  * the attribute is retrieved from a parameter, which again is defined by a tag.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class SetRoleByNameRule extends AbstractConditionedParseRule {
 
 	private String parameterName;
 	private String targetRole;
 
-	public SetRoleByNameRule(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Set role by name rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public SetRoleByNameRule(String operatorTypeName, Element element) throws XMLException {
 		super(operatorTypeName, element);
 		NodeList children = element.getChildNodes();
 		for (int i = 0; i < children.getLength(); i++) {

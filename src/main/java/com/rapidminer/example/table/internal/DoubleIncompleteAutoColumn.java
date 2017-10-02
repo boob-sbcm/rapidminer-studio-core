@@ -36,63 +36,65 @@ final class DoubleIncompleteAutoColumn implements Column {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Building block of a {@link DoubleIncompleteAutoColumn}.
-	 *
-	 * @author Gisa Schaefer
-	 *
-	 */
-	static abstract class DoubleIncompleteAutoChunk implements Serializable {
+    /**
+     * Building block of a {@link DoubleIncompleteAutoColumn}.
+     *
+     * @author Gisa Schaefer
+     */
+    static abstract class DoubleIncompleteAutoChunk implements Serializable {
 
 		private static final long serialVersionUID = 1L;
 
-		/**
-		 * the position of this chunk in {@link DoubleIncompleteAutoColumn#chunks}
-		 */
-		final int id;
+        /**
+         * the position of this chunk in {@link DoubleIncompleteAutoColumn#chunks}
+         */
+        final int id;
 
-		/**
-		 * the chunk array {@link DoubleIncompleteAutoColumn#chunks}
-		 */
-		final DoubleIncompleteAutoChunk[] chunks;
+        /**
+         * the chunk array {@link DoubleIncompleteAutoColumn#chunks}
+         */
+        final DoubleIncompleteAutoChunk[] chunks;
 
-		/**
-		 * decides about sparsity thresholds
-		 */
-		final DataManagement management;
+        /**
+         * decides about sparsity thresholds
+         */
+        final DataManagement management;
 
-		DoubleIncompleteAutoChunk(int id, DoubleIncompleteAutoChunk[] chunks, DataManagement management) {
+        /**
+         * Instantiates a new Double incomplete auto chunk.
+         *
+         * @param id         the id
+         * @param chunks     the chunks
+         * @param management the management
+         */
+        DoubleIncompleteAutoChunk(int id, DoubleIncompleteAutoChunk[] chunks, DataManagement management) {
 			this.id = id;
 			this.chunks = chunks;
 			this.management = management;
 		}
 
-		/**
-		 * Ensures that the internal data structure can hold up to {@code size} values.
-		 *
-		 * @param size
-		 *            the size that should be ensured
-		 */
-		abstract void ensure(int size);
+        /**
+         * Ensures that the internal data structure can hold up to {@code size} values.
+         *
+         * @param size the size that should be ensured
+         */
+        abstract void ensure(int size);
 
-		/**
-		 * Gets the value at the specified row.
-		 *
-		 * @param row
-		 *            the row that should be looked up
-		 * @return the value at the specified row
-		 */
-		abstract double get(int row);
+        /**
+         * Gets the value at the specified row.
+         *
+         * @param row the row that should be looked up
+         * @return the value at the specified row
+         */
+        abstract double get(int row);
 
-		/**
-		 * Sets the value at the specified row to the given value.
-		 *
-		 * @param row
-		 *            the row that should be set
-		 * @param value
-		 *            the value that should be set at the row
-		 */
-		abstract void set(int row, double value);
+        /**
+         * Sets the value at the specified row to the given value.
+         *
+         * @param row   the row that should be set
+         * @param value the value that should be set at the row
+         */
+        abstract void set(int row, double value);
 
 	}
 
@@ -102,13 +104,13 @@ final class DoubleIncompleteAutoColumn implements Column {
 
 	private final DataManagement management;
 
-	/**
-	 * Constructs a column with enough chunks to fit size values.
-	 *
-	 * @param size
-	 *            the size of the column
-	 */
-	DoubleIncompleteAutoColumn(int size, DataManagement management) {
+    /**
+     * Constructs a column with enough chunks to fit size values.
+     *
+     * @param size       the size of the column
+     * @param management the management
+     */
+    DoubleIncompleteAutoColumn(int size, DataManagement management) {
 		this.management = management;
 		ensure(size);
 	}

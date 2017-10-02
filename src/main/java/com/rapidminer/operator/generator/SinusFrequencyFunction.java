@@ -21,7 +21,7 @@ package com.rapidminer.operator.generator;
 /**
  * The label is 10 * sin(3 * att1) + 12 * sin(7 * att1) + 11 * sin(5 * att2) + 9 * sin(10 * att2) +
  * 10 * sin(8 * (att1 + att2)).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SinusFrequencyFunction extends RegressionFunction {

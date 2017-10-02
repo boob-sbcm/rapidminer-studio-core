@@ -25,19 +25,39 @@ import com.rapidminer.tools.Ontology;
 /**
  * This class implements the Standard Deviation Aggregation function. This will calculate the
  * standard deviation of a source attribute for each group.
- * 
+ *
  * @author Sebastian Land
  */
 public class StandardDeviationAggregationFunction extends NumericalAggregationFunction {
 
-	public static final String FUNCTION_STANDARD_DEVIATION = "standard_deviation";
+    /**
+     * The constant FUNCTION_STANDARD_DEVIATION.
+     */
+    public static final String FUNCTION_STANDARD_DEVIATION = "standard_deviation";
 
-	public StandardDeviationAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
+    /**
+     * Instantiates a new Standard deviation aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     */
+    public StandardDeviationAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, FUNCTION_STANDARD_DEVIATION, FUNCTION_SEPARATOR_OPEN,
 				FUNCTION_SEPARATOR_CLOSE);
 	}
 
-	public StandardDeviationAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings,
+    /**
+     * Instantiates a new Standard deviation aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public StandardDeviationAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings,
 			boolean countOnlyDisctinct, String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, separatorOpen, separatorClose);
 	}

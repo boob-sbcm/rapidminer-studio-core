@@ -19,13 +19,31 @@
 package com.rapidminer.repository;
 
 /**
- * 
+ * The enum Remote process state.
+ *
  * @author Simon Fischer
- * 
  */
 public enum RemoteProcessState {
-	PENDING(false, false, "clock_run.png"), RUNNING(false, false, "media_play.png"), COMPLETED(true, true, "check.png"), FAILED(
-			true, false, "error.png"), STOPPED(true, false, "media_stop.png"), ZOMBIE(true, false, "skull.png");
+    /**
+     * Pending remote process state.
+     */
+    PENDING(false, false, "clock_run.png"), /**
+     * Running remote process state.
+     */
+    RUNNING(false, false, "media_play.png"), /**
+     * Completed remote process state.
+     */
+    COMPLETED(true, true, "check.png"), /**
+     * Failed remote process state.
+     */
+    FAILED(
+			true, false, "error.png"), /**
+     * Stopped remote process state.
+     */
+    STOPPED(true, false, "media_stop.png"), /**
+     * Zombie remote process state.
+     */
+    ZOMBIE(true, false, "skull.png");
 
 	// STOP_REQUESTED(false, "media_stop.png");
 
@@ -39,15 +57,30 @@ public enum RemoteProcessState {
 		this.iconName = iconName;
 	}
 
-	public boolean isTerminated() {
+    /**
+     * Is terminated boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isTerminated() {
 		return terminated;
 	}
 
-	public String getIconName() {
+    /**
+     * Gets icon name.
+     *
+     * @return the icon name
+     */
+    public String getIconName() {
 		return iconName;
 	}
 
-	public boolean isSuccessful() {
+    /**
+     * Is successful boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSuccessful() {
 		return successful;
 	}
 }

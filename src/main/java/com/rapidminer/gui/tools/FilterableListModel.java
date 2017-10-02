@@ -31,13 +31,23 @@ import javax.swing.AbstractListModel;
  * the filter, i.e. the visible list is filtered according to the given filter value. If the value
  * is null, the view is set back to include all actual kept list values.
  *
+ * @param <E> the type parameter
  * @author Tobias Malbrecht
  */
 public class FilterableListModel<E> extends AbstractListModel<E> implements FilterListener {
 
-	public abstract static class FilterCondition {
+    /**
+     * The type Filter condition.
+     */
+    public abstract static class FilterCondition {
 
-		public abstract boolean matches(Object o);
+        /**
+         * Matches boolean.
+         *
+         * @param o the o
+         * @return the boolean
+         */
+        public abstract boolean matches(Object o);
 	}
 
 	private static final long serialVersionUID = 552254394780900171L;
@@ -52,7 +62,10 @@ public class FilterableListModel<E> extends AbstractListModel<E> implements Filt
 
 	private LinkedList<FilterCondition> conditions = new LinkedList<FilterCondition>();
 
-	public FilterableListModel() {
+    /**
+     * Instantiates a new Filterable list model.
+     */
+    public FilterableListModel() {
 		list = new LinkedList<>();
 		filteredList = new LinkedList<>();
 		comparator = (e1, e2) -> e1.toString().compareTo(e2.toString());
@@ -81,7 +94,12 @@ public class FilterableListModel<E> extends AbstractListModel<E> implements Filt
 		filterValue = value;
 	}
 
-	public void addElement(E e) {
+    /**
+     * Add element.
+     *
+     * @param e the e
+     */
+    public void addElement(E e) {
 		list.add(e);
 		Collections.sort(list, comparator);
 		if (filterValue == null) {
@@ -95,7 +113,12 @@ public class FilterableListModel<E> extends AbstractListModel<E> implements Filt
 		fireContentsChanged(this, 0, filteredList.size() - 1);
 	}
 
-	public void removeElement(Object o) {
+    /**
+     * Remove element.
+     *
+     * @param o the o
+     */
+    public void removeElement(Object o) {
 		list.remove(o);
 		Collections.sort(list, comparator);
 		if (filteredList.contains(o)) {
@@ -104,11 +127,22 @@ public class FilterableListModel<E> extends AbstractListModel<E> implements Filt
 		fireContentsChanged(this, filteredList.size() - 2, filteredList.size() - 1);
 	}
 
-	public boolean contains(Object o) {
+    /**
+     * Contains boolean.
+     *
+     * @param o the o
+     * @return the boolean
+     */
+    public boolean contains(Object o) {
 		return list.contains(o);
 	}
 
-	public void removeElementAt(int index) {
+    /**
+     * Remove element at.
+     *
+     * @param index the index
+     */
+    public void removeElementAt(int index) {
 		list.remove(filteredList.remove(index));
 		fireContentsChanged(this, index, index);
 	}
@@ -118,7 +152,13 @@ public class FilterableListModel<E> extends AbstractListModel<E> implements Filt
 		return filteredList.get(index);
 	}
 
-	public int indexOf(Object o) {
+    /**
+     * Index of int.
+     *
+     * @param o the o
+     * @return the int
+     */
+    public int indexOf(Object o) {
 		return filteredList.indexOf(o);
 	}
 
@@ -136,26 +176,49 @@ public class FilterableListModel<E> extends AbstractListModel<E> implements Filt
 		return false;
 	}
 
-	public void addCondition(FilterCondition c) {
+    /**
+     * Add condition.
+     *
+     * @param c the c
+     */
+    public void addCondition(FilterCondition c) {
 		conditions.add(c);
 		filterConditionsChanged();
 	}
 
-	public void addConditions(Collection<FilterCondition> c) {
+    /**
+     * Add conditions.
+     *
+     * @param c the c
+     */
+    public void addConditions(Collection<FilterCondition> c) {
 		conditions.addAll(c);
 		filterConditionsChanged();
 	}
 
-	public void setComparator(Comparator<E> comparator) {
+    /**
+     * Sets comparator.
+     *
+     * @param comparator the comparator
+     */
+    public void setComparator(Comparator<E> comparator) {
 		this.comparator = comparator;
 	}
 
-	public void removeCondition(FilterCondition c) {
+    /**
+     * Remove condition.
+     *
+     * @param c the c
+     */
+    public void removeCondition(FilterCondition c) {
 		conditions.remove(c);
 		filterConditionsChanged();
 	}
 
-	public void removeAllConditions() {
+    /**
+     * Remove all conditions.
+     */
+    public void removeAllConditions() {
 		conditions.clear();
 		filterConditionsChanged();
 	}

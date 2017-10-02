@@ -29,6 +29,9 @@ package de.bwaldvogel.liblinear;
 import java.io.File;
 
 
+/**
+ * The type Invalid input data exception.
+ */
 public class InvalidInputDataException extends Exception {
 
 	private static final long serialVersionUID = 2945131732407207308L;
@@ -37,41 +40,82 @@ public class InvalidInputDataException extends Exception {
 
 	private File _file;
 
-	public InvalidInputDataException(String message, File file, int line) {
+    /**
+     * Instantiates a new Invalid input data exception.
+     *
+     * @param message the message
+     * @param file    the file
+     * @param line    the line
+     */
+    public InvalidInputDataException(String message, File file, int line) {
 		super(message);
 		_file = file;
 		_line = line;
 	}
 
-	public InvalidInputDataException(String message, String filename, int line) {
+    /**
+     * Instantiates a new Invalid input data exception.
+     *
+     * @param message  the message
+     * @param filename the filename
+     * @param line     the line
+     */
+    public InvalidInputDataException(String message, String filename, int line) {
 		this(message, new File(filename), line);
 	}
 
-	public InvalidInputDataException(String message, File file, int lineNr, Exception cause) {
+    /**
+     * Instantiates a new Invalid input data exception.
+     *
+     * @param message the message
+     * @param file    the file
+     * @param lineNr  the line nr
+     * @param cause   the cause
+     */
+    public InvalidInputDataException(String message, File file, int lineNr, Exception cause) {
 		super(message, cause);
 		_file = file;
 		_line = lineNr;
 	}
 
-	public InvalidInputDataException(String message, String filename, int lineNr, Exception cause) {
+    /**
+     * Instantiates a new Invalid input data exception.
+     *
+     * @param message  the message
+     * @param filename the filename
+     * @param lineNr   the line nr
+     * @param cause    the cause
+     */
+    public InvalidInputDataException(String message, String filename, int lineNr, Exception cause) {
 		this(message, new File(filename), lineNr, cause);
 	}
 
-	public File getFile() {
+    /**
+     * Gets file.
+     *
+     * @return the file
+     */
+    public File getFile() {
 		return _file;
 	}
 
-	/**
-	 * This methods returns the path of the file. The method name might be misleading.
-	 *
-	 * @deprecated use {@link #getFile()} instead
-	 */
-	@Deprecated
+    /**
+     * This methods returns the path of the file. The method name might be misleading.
+     *
+     * @return the filename
+     * @deprecated use {@link #getFile()} instead
+     */
+    @Deprecated
 	public String getFilename() {
 		return _file.getPath();
 	}
 
-	public int getLine() {
+    /**
+     * Gets line.
+     *
+     * @return the line
+     */
+    public int getLine() {
 		return _line;
 	}
 

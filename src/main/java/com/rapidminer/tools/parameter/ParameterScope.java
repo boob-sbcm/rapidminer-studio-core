@@ -22,9 +22,9 @@ package com.rapidminer.tools.parameter;
  * The ParameterScope defines where the associated Parameter is used. PreStartParameters will be
  * exported with the key of their parameter type as an environment variable. This can be used for
  * example for setting up things that need to be influenced before the jvm starts.
- * 
+ * <p>
  * ModifyingPreStartParameters will be appended to existing environment variables.
- * 
+ *
  * @author Sebastian Land
  */
 public class ParameterScope {
@@ -34,27 +34,49 @@ public class ParameterScope {
 	private boolean isGuiParameter = false;
 	private boolean isFileAccessParameter = false;
 
-	/**
-	 * This is this a preStartParameter, this will return the name of the environment variable that
-	 * should be set by this parameter. Otherwise null is returned.
-	 */
-	public String getPreStartName() {
+    /**
+     * This is this a preStartParameter, this will return the name of the environment variable that
+     * should be set by this parameter. Otherwise null is returned.
+     *
+     * @return the pre start name
+     */
+    public String getPreStartName() {
 		return preStartName;
 	}
 
-	public boolean isPreStartParameter() {
+    /**
+     * Is pre start parameter boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isPreStartParameter() {
 		return preStartName == null;
 	}
 
-	public boolean isGuiParameter() {
+    /**
+     * Is gui parameter boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isGuiParameter() {
 		return isGuiParameter;
 	}
 
-	public boolean isFileAccessParameter() {
+    /**
+     * Is file access parameter boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isFileAccessParameter() {
 		return isFileAccessParameter;
 	}
 
-	public boolean isModifyingPreStartParameter() {
+    /**
+     * Is modifying pre start parameter boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isModifyingPreStartParameter() {
 		return isModifyingPreStartParameter;
 	}
 }

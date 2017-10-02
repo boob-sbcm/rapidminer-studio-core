@@ -34,9 +34,15 @@ import com.rapidminer.example.ExampleSetFactory;
  */
 public class SplittedExampleSetCompositionTest {
 
-	ExampleSet es = ExampleSetFactory.createExampleSet(new double[][] { { 0 }, { 1 }, { 2 }, { 3 }, { 4 }, { 5 } });
+    /**
+     * The Es.
+     */
+    ExampleSet es = ExampleSetFactory.createExampleSet(new double[][] { { 0 }, { 1 }, { 2 }, { 3 }, { 4 }, { 5 } });
 
-	@Test
+    /**
+     * Composition test 1 partion selected.
+     */
+    @Test
 	public void compositionTest1PartionSelected() {
 		Partition outer = new Partition(new int[] { 1, 0, 0, 2, 0, 2 }, 3);
 
@@ -65,7 +71,10 @@ public class SplittedExampleSetCompositionTest {
 		}
 	}
 
-	@Test
+    /**
+     * Composition test 2 partitions selected.
+     */
+    @Test
 	public void compositionTest2PartitionsSelected() {
 		Partition outer = new Partition(new int[] { 1, 0, 0, 2, 0, 2 }, 3);
 		SplittedExampleSet outerEs = new SplittedExampleSet(es, outer);
@@ -93,7 +102,10 @@ public class SplittedExampleSetCompositionTest {
 		}
 	}
 
-	@Test
+    /**
+     * Composition test size not matching.
+     */
+    @Test
 	public void compositionTestSizeNotMatching() {
 		Partition outer = new Partition(new int[] { 1, 0, 0, 2, 0, 2 }, 3);
 		SplittedExampleSet outerEs = new SplittedExampleSet(es, outer);
@@ -112,7 +124,10 @@ public class SplittedExampleSetCompositionTest {
 		}
 	}
 
-	@Test
+    /**
+     * Composition with partition composition.
+     */
+    @Test
 	public void compositionWithPartitionComposition() {
 		Partition outer = new Partition(new int[] { 1, 0, 0, 2, 0, 2 }, 3);
 

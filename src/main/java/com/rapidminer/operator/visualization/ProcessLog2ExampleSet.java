@@ -49,12 +49,20 @@ import com.rapidminer.tools.Ontology;
  */
 public class ProcessLog2ExampleSet extends Operator {
 
-	public static final String PARAMETER_LOG_NAME = "log_name";
+    /**
+     * The constant PARAMETER_LOG_NAME.
+     */
+    public static final String PARAMETER_LOG_NAME = "log_name";
 
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("exampleSet");
 	private final PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public ProcessLog2ExampleSet(OperatorDescription description) {
+    /**
+     * Instantiates a new Process log 2 example set.
+     *
+     * @param description the description
+     */
+    public ProcessLog2ExampleSet(OperatorDescription description) {
 		super(description);
 		ExampleSetMetaData newEMD = new ExampleSetMetaData();
 		newEMD.attributesAreSuperset();

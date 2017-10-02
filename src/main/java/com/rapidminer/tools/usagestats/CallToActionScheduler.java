@@ -48,8 +48,10 @@ import com.rapidminer.tools.usagestats.ActionStatisticsCollector.Key;
  */
 public enum CallToActionScheduler {
 
-	/** the singleton instance */
-	INSTANCE;
+    /**
+     * the singleton instance
+     */
+    INSTANCE;
 
 	/** Pull every 5 seconds */
 	private static final int DELAY = 5;
@@ -70,10 +72,10 @@ public enum CallToActionScheduler {
 
 	private ScheduledExecutorService exec;
 
-	/**
-	 * Trigger class initialization. If not in {@link ExecutionMode#UI}, does nothing.
-	 */
-	public void init() {
+    /**
+     * Trigger class initialization. If not in {@link ExecutionMode#UI}, does nothing.
+     */
+    public void init() {
 		// Only initialize in UI mode
 		if (!RapidMiner.getExecutionMode().equals(ExecutionMode.UI)) {
 			return;
@@ -125,11 +127,11 @@ public enum CallToActionScheduler {
 		}, CLEAN_DELAY, CLEAN_INTERVAL, TimeUnit.HOURS);
 	}
 
-	/**
-	 * Tries to terminate the CTA scheduler. Will wait for a couple seconds for the currently
-	 * running task to complete before aborting.
-	 */
-	public void shutdown() {
+    /**
+     * Tries to terminate the CTA scheduler. Will wait for a couple seconds for the currently
+     * running task to complete before aborting.
+     */
+    public void shutdown() {
 		boolean terminatedGracefully = false;
 		try {
 			LogService.getRoot().log(Level.INFO, "com.rapidminer.tools.usagestats.CallToActionScheduler.shutdown.start");

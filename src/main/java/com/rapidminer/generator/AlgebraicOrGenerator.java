@@ -27,12 +27,15 @@ import com.rapidminer.tools.Ontology;
 /**
  * This class has two numerical input attributes and one output attribute. The result will be the
  * algebraic or (s-norm) of the input attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AlgebraicOrGenerator extends BinaryNumericalGenerator {
 
-	public AlgebraicOrGenerator() {}
+    /**
+     * Instantiates a new Algebraic or generator.
+     */
+    public AlgebraicOrGenerator() {}
 
 	@Override
 	public Attribute[] getOutputAttributes(ExampleTable input) {

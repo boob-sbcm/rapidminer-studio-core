@@ -37,7 +37,7 @@ import java.util.Iterator;
  * interface of RapidMiner. Since they cannot be displayed with the command line version of
  * RapidMiner this operator can be used as a workaround in cases where the graphical user interface
  * cannot be used.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class DataStatisticsOperator extends Operator {
@@ -46,8 +46,12 @@ public class DataStatisticsOperator extends Operator {
 	private OutputPort statisticsOutput = getOutputPorts().createPort("statistics");
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	/** Creates a new data statistics operator. */
-	public DataStatisticsOperator(OperatorDescription description) {
+    /**
+     * Creates a new data statistics operator.  @param description the description
+     *
+     * @param description the description
+     */
+    public DataStatisticsOperator(OperatorDescription description) {
 		super(description);
 		getTransformer().addPassThroughRule(exampleSetInput, exampleSetOutput);
 		getTransformer().addRule(new GenerateNewMDRule(statisticsOutput, DataStatistics.class));

@@ -25,14 +25,13 @@ import com.rapidminer.tools.expression.FunctionDescription;
  * Class for the AND function that has 2 logical (numerical, true or false) inputs
  *
  * @author Sabrina Kirstein
- *
  */
 public class And extends AbstractLogicalFunctionWith2Inputs {
 
-	/**
-	 * Constructs a AND Function with 2 parameters with {@link FunctionDescription}
-	 */
-	public And() {
+    /**
+     * Constructs a AND Function with 2 parameters with {@link FunctionDescription}
+     */
+    public And() {
 		super("logical.and");
 	}
 

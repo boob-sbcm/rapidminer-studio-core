@@ -55,9 +55,15 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class InfiniteValueReplenishment extends ValueReplenishment {
 
-	public static final String PARAMETER_REPLENISHMENT_VALUE = "replenishment_value";
+    /**
+     * The constant PARAMETER_REPLENISHMENT_VALUE.
+     */
+    public static final String PARAMETER_REPLENISHMENT_VALUE = "replenishment_value";
 
-	public static final String PARAMETER_REPLENISHMENT_WHAT = "replenish_what";
+    /**
+     * The constant PARAMETER_REPLENISHMENT_WHAT.
+     */
+    public static final String PARAMETER_REPLENISHMENT_WHAT = "replenish_what";
 
 	private static final int NONE = 0;
 
@@ -76,7 +82,12 @@ public class InfiniteValueReplenishment extends ValueReplenishment {
 	private static final String[] REP_NAMES = { "none", "zero", "max_byte", "max_int", "max_double", "missing", "value" };
 	private static final String[] WHAT_NAMES = { "positive_infinity", "negative_infinity" };
 
-	public InfiniteValueReplenishment(OperatorDescription description) {
+    /**
+     * Instantiates a new Infinite value replenishment.
+     *
+     * @param description the description
+     */
+    public InfiniteValueReplenishment(OperatorDescription description) {
 		super(description);
 	}
 

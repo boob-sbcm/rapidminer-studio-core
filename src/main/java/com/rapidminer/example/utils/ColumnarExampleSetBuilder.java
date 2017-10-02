@@ -61,26 +61,24 @@ class ColumnarExampleSetBuilder extends ExampleSetBuilder {
 	/** the expected number of rows */
 	private int numberOfRows;
 
-	/**
-	 * Creates a builder that stores values in a {@link ColumnarExampleTable} based on the given
-	 * attributes.
-	 *
-	 * @param attributes
-	 *            the {@link Attribute}s that the {@link ExampleSet} should contain
-	 */
-	ColumnarExampleSetBuilder(List<Attribute> attributes) {
+    /**
+     * Creates a builder that stores values in a {@link ColumnarExampleTable} based on the given
+     * attributes.
+     *
+     * @param attributes the {@link Attribute}s that the {@link ExampleSet} should contain
+     */
+    ColumnarExampleSetBuilder(List<Attribute> attributes) {
 		super(attributes);
 		setTableIndices();
 	}
 
-	/**
-	 * Creates a builder that stores values in a {@link ColumnarExampleTable} based on the given
-	 * attributes.
-	 *
-	 * @param attributes
-	 *            the {@link Attribute}s that the {@link ExampleSet} should contain
-	 */
-	ColumnarExampleSetBuilder(Attribute... attributes) {
+    /**
+     * Creates a builder that stores values in a {@link ColumnarExampleTable} based on the given
+     * attributes.
+     *
+     * @param attributes the {@link Attribute}s that the {@link ExampleSet} should contain
+     */
+    ColumnarExampleSetBuilder(Attribute... attributes) {
 		super(attributes);
 		setTableIndices();
 	}

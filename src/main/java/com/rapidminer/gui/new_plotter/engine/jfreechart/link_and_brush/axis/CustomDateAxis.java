@@ -26,8 +26,9 @@ import org.jfree.data.Range;
 
 
 /**
+ * The type Custom date axis.
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class CustomDateAxis extends DateAxis implements LinkAndBrushAxis {
 
@@ -39,15 +40,30 @@ public class CustomDateAxis extends DateAxis implements LinkAndBrushAxis {
 	private double upperBoundWithoutMargin = Double.NEGATIVE_INFINITY;
 	private double lowerBoundWithoutMargin = Double.POSITIVE_INFINITY;
 
-	public CustomDateAxis() {
+    /**
+     * Instantiates a new Custom date axis.
+     */
+    public CustomDateAxis() {
 		super();
 	}
 
-	public CustomDateAxis(String label) {
+    /**
+     * Instantiates a new Custom date axis.
+     *
+     * @param label the label
+     */
+    public CustomDateAxis(String label) {
 		super(label);
 	}
 
-	public CustomDateAxis(String label, TimeZone zone, Locale locale) {
+    /**
+     * Instantiates a new Custom date axis.
+     *
+     * @param label  the label
+     * @param zone   the zone
+     * @param locale the locale
+     */
+    public CustomDateAxis(String label, TimeZone zone, Locale locale) {
 		super(label, zone, locale);
 	}
 

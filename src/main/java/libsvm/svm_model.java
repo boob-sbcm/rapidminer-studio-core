@@ -26,25 +26,61 @@
  */
 package libsvm;
 
+/**
+ * The type Svm model.
+ */
 public class svm_model implements java.io.Serializable {
 
 	private static final long serialVersionUID = 7974831813044169852L;
 
-	public svm_parameter param;	// parameter
-	public int nr_class;		// number of classes, = 2 in regression/one class svm
-	public int l;			// total #SV
-	public svm_node[][] SV;	// SVs (SV[l])
-	public double[][] sv_coef;	// coefficients for SVs in decision functions (sv_coef[k-1][l])
-	public double[] rho;		// constants in decision functions (rho[k*(k-1)/2])
-	public double[] probA;         // pariwise probability information
-	public double[] probB;
+    /**
+     * The Param.
+     */
+    public svm_parameter param;	// parameter
+    /**
+     * The Nr class.
+     */
+    public int nr_class;		// number of classes, = 2 in regression/one class svm
+    /**
+     * The L.
+     */
+    public int l;			// total #SV
+    /**
+     * The Sv.
+     */
+    public svm_node[][] SV;	// SVs (SV[l])
+    /**
+     * The Sv coef.
+     */
+    public double[][] sv_coef;	// coefficients for SVs in decision functions (sv_coef[k-1][l])
+    /**
+     * The Rho.
+     */
+    public double[] rho;		// constants in decision functions (rho[k*(k-1)/2])
+    /**
+     * The Prob a.
+     */
+    public double[] probA;         // pariwise probability information
+    /**
+     * The Prob b.
+     */
+    public double[] probB;
 
 	// for classification only
 
-	public int[] label;		// label of each class (label[k])
-	public int[] nSV;		// number of SVs for each class (nSV[k])
+    /**
+     * The Label.
+     */
+    public int[] label;		// label of each class (label[k])
+    /**
+     * The N sv.
+     */
+    public int[] nSV;		// number of SVs for each class (nSV[k])
 	// nSV[0] + nSV[1] + ... + nSV[k-1] = l
 
-	public double[] labelValues; // actual label values for all support vectors (only used for
+    /**
+     * The Label values.
+     */
+    public double[] labelValues; // actual label values for all support vectors (only used for
 	// displaying)
 }

@@ -22,43 +22,45 @@ package com.rapidminer.operator;
  * Describes an event which can occur on a {@link Process} {@link IOObjectMap}.
  *
  * @author Marco Boeck
- *
  */
 public class IOObjectMapEvent {
 
-	/**
-	 * All available event types for {@link IOObjectMap} changes.
-	 */
-	public static enum IOObjectMapEventType {
-		/** a single {@link IOObject} has been added to the map */
-		ADDED,
+    /**
+     * All available event types for {@link IOObjectMap} changes.
+     */
+    public static enum IOObjectMapEventType {
+        /**
+         * a single {@link IOObject} has been added to the map
+         */
+        ADDED,
 
-		/** a single {@link IOObject} has been removed from the map */
-		REMOVED,
+        /**
+         * a single {@link IOObject} has been removed from the map
+         */
+        REMOVED,
 
-		/** a single {@link IOObject} that was already in the map has changed */
-		CHANGED,
+        /**
+         * a single {@link IOObject} that was already in the map has changed
+         */
+        CHANGED,
 
-		/**
-		 * either multiple elements have been added or multiple elements have been removed at the
-		 * same time
-		 */
-		STRUCTURE_CHANGED;
+        /**
+         * either multiple elements have been added or multiple elements have been removed at the
+         * same time
+         */
+        STRUCTURE_CHANGED;
 	}
 
 	private final IOObjectMapEventType type;
 	private final String ioobjectName;
 
-	/**
-	 * Creates a new event with the specified type for the given ioobject.
-	 *
-	 * @param type
-	 *            the type of the event
-	 * @param name
-	 *            the name of the ioobject which has changed. Can be <code>null</code> for type
-	 *            {@link IOObjectMapEventType#STRUCTURE_CHANGED}
-	 */
-	public IOObjectMapEvent(IOObjectMapEventType type, String name) {
+    /**
+     * Creates a new event with the specified type for the given ioobject.
+     *
+     * @param type the type of the event
+     * @param name the name of the ioobject which has changed. Can be <code>null</code> for type            {@link IOObjectMapEventType#STRUCTURE_CHANGED}
+     */
+    public IOObjectMapEvent(IOObjectMapEventType type, String name) {
 		if (type == null) {
 			throw new IllegalArgumentException("type must not be null!");
 		}
@@ -67,22 +69,21 @@ public class IOObjectMapEvent {
 		this.ioobjectName = name;
 	}
 
-	/**
-	 * The name of the {@link IOObject} which has changed in the {@link IOObjectMap}.
-	 *
-	 * @return the name of the changed ioobject or <code>null</code> if {@link #getType()} is
-	 *         {@link IOObjectMapEventType#STRUCTURE_CHANGED}
-	 */
-	public String getName() {
+    /**
+     * The name of the {@link IOObject} which has changed in the {@link IOObjectMap}.
+     *
+     * @return the name of the changed ioobject or <code>null</code> if {@link #getType()} is         {@link IOObjectMapEventType#STRUCTURE_CHANGED}
+     */
+    public String getName() {
 		return ioobjectName;
 	}
 
-	/**
-	 * The {@link IOObjectMapEventType} which occured on the map.
-	 *
-	 * @return the type of the event
-	 */
-	public IOObjectMapEventType getType() {
+    /**
+     * The {@link IOObjectMapEventType} which occured on the map.
+     *
+     * @return the type of the event
+     */
+    public IOObjectMapEventType getType() {
 		return type;
 	}
 }

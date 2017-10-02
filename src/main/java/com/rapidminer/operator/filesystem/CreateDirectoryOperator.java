@@ -33,22 +33,30 @@ import java.util.List;
 
 
 /**
- * 
  * This operator creates a new directory. If the directory can't be created or it already exists, an
  * exeption will be thrown.
- * 
+ *
  * @author Philipp Kersting
- * 
  */
-
 public class CreateDirectoryOperator extends Operator {
 
-	public static final String PARAMETER_LOCATION = "location";
-	public static final String PARAMETER_NAME = "name";
+    /**
+     * The constant PARAMETER_LOCATION.
+     */
+    public static final String PARAMETER_LOCATION = "location";
+    /**
+     * The constant PARAMETER_NAME.
+     */
+    public static final String PARAMETER_NAME = "name";
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public CreateDirectoryOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Create directory operator.
+     *
+     * @param description the description
+     */
+    public CreateDirectoryOperator(OperatorDescription description) {
 		super(description);
 
 		dummyPorts.start();

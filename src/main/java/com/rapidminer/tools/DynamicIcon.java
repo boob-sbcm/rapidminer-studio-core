@@ -35,35 +35,30 @@ import java.awt.Graphics2D;
  * where the first number after the identifier is the width of the icon in px, the second number is
  * the height in px and the third number is the percentage (0-100).
  * </p>
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface DynamicIcon {
 
-	/**
-	 * Draws the icon on the graphics context. To use the icon in an HTML document, see the
-	 * following paragraph.
-	 * <p>
-	 * Usage: <br/>
-	 * If the identifier is <code>progress</code>, the HTML icon tag would look like this:
-	 * </p>
-	 * <p>
-	 * <code>&lt;img src=\"dynicon://progress/100/14/50&gt;</code>
-	 * </p>
-	 * <p>
-	 * where the first number after the identifier is the width of the icon in px, the second number
-	 * is the height in px and the third number is the percentage (0-100).
-	 * </p>
-	 * 
-	 * @param g2
-	 * @param width
-	 *            the width of the icon to draw in px
-	 * @param height
-	 *            the height of the icon to draw in px
-	 * @param percentage
-	 *            the percentage which should be used to draw the appropriate icon. 0 <=
-	 *            <code>value</code> <= 100
-	 */
-	public void drawIcon(Graphics2D g2, int width, int height, int percentage);
+    /**
+     * Draws the icon on the graphics context. To use the icon in an HTML document, see the
+     * following paragraph.
+     * <p>
+     * Usage: <br/>
+     * If the identifier is <code>progress</code>, the HTML icon tag would look like this:
+     * </p>
+     * <p>
+     * <code>&lt;img src=\"dynicon://progress/100/14/50&gt;</code>
+     * </p>
+     * <p>
+     * where the first number after the identifier is the width of the icon in px, the second number
+     * is the height in px and the third number is the percentage (0-100).
+     * </p>
+     *
+     * @param g2         the g 2
+     * @param width      the width of the icon to draw in px
+     * @param height     the height of the icon to draw in px
+     * @param percentage the percentage which should be used to draw the appropriate icon. 0 <=            <code>value</code> <= 100
+     */
+    public void drawIcon(Graphics2D g2, int width, int height, int percentage);
 }

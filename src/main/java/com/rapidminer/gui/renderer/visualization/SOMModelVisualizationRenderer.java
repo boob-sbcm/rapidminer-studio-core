@@ -33,7 +33,8 @@ import java.awt.Component;
 
 
 /**
- * 
+ * The type Som model visualization renderer.
+ *
  * @author Sebastian Land
  */
 public class SOMModelVisualizationRenderer extends AbstractRenderer {

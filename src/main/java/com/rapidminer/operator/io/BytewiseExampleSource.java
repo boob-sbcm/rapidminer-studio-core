@@ -49,31 +49,56 @@ import com.rapidminer.tools.parameter.internal.DataManagementParameterHelper;
  */
 public abstract class BytewiseExampleSource extends AbstractExampleSource {
 
-	/** The parameter name for &quot;Name of the file to read the data from.&quot; */
-	public static final String PARAMETER_FILENAME = "filename";
+    /**
+     * The parameter name for &quot;Name of the file to read the data from.&quot;
+     */
+    public static final String PARAMETER_FILENAME = "filename";
 
-	/** The parameter name for &quot;Determines, how the data is represented internally.&quot; */
-	public static final String PARAMETER_DATAMANAGEMENT = ExampleSetGenerator.PARAMETER_DATAMANAGEMENT;
+    /**
+     * The parameter name for &quot;Determines, how the data is represented internally.&quot;
+     */
+    public static final String PARAMETER_DATAMANAGEMENT = ExampleSetGenerator.PARAMETER_DATAMANAGEMENT;
 
-	/** A generic wrong file format error message. */
-	protected static final String GENERIC_ERROR_MESSAGE = "Wrong file format";
+    /**
+     * A generic wrong file format error message.
+     */
+    protected static final String GENERIC_ERROR_MESSAGE = "Wrong file format";
 
-	/** A even more generic error message. */
-	protected static final String UNSPECIFIED_ERROR_MESSAGE = "Unspecified error";
+    /**
+     * A even more generic error message.
+     */
+    protected static final String UNSPECIFIED_ERROR_MESSAGE = "Unspecified error";
 
-	/** The length of a byte measured in bytes. */
-	protected static final int LENGTH_BYTE = 1;
+    /**
+     * The length of a byte measured in bytes.
+     */
+    protected static final int LENGTH_BYTE = 1;
 
-	/** The length of an int measured in bytes. */
-	protected static final int LENGTH_INT_32 = 4;
+    /**
+     * The length of an int measured in bytes.
+     */
+    protected static final int LENGTH_INT_32 = 4;
 
-	/** The length of a double measured in bytes. */
-	protected static final int LENGTH_DOUBLE = 8;
+    /**
+     * The length of a double measured in bytes.
+     */
+    protected static final int LENGTH_DOUBLE = 8;
 
-	protected InputPort fileInputPort = getInputPorts().createPort("file");
-	protected FileInputPortHandler filePortHandler = new FileInputPortHandler(this, fileInputPort, PARAMETER_FILENAME);
+    /**
+     * The File input port.
+     */
+    protected InputPort fileInputPort = getInputPorts().createPort("file");
+    /**
+     * The File port handler.
+     */
+    protected FileInputPortHandler filePortHandler = new FileInputPortHandler(this, fileInputPort, PARAMETER_FILENAME);
 
-	public BytewiseExampleSource(OperatorDescription description) {
+    /**
+     * Instantiates a new Bytewise example source.
+     *
+     * @param description the description
+     */
+    public BytewiseExampleSource(OperatorDescription description) {
 		super(description);
 	}
 
@@ -105,31 +130,52 @@ public abstract class BytewiseExampleSource extends AbstractExampleSource {
 		return result;
 	}
 
-	/**
-	 * Returns the suffix of the files which should be read by the input operator.
-	 */
-	protected abstract String getFileSuffix();
+    /**
+     * Returns the suffix of the files which should be read by the input operator.
+     *
+     * @return the file suffix
+     */
+    protected abstract String getFileSuffix();
 
-	/**
-	 * Reads the given file and constructs an example set from the read data.
-	 */
-	protected abstract ExampleSet readStream(InputStream inputStream, DataRowFactory dataRowFactory) throws IOException,
+    /**
+     * Reads the given file and constructs an example set from the read data.
+     *
+     * @param inputStream    the input stream
+     * @param dataRowFactory the data row factory
+     * @return the example set
+     * @throws IOException             the io exception
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected abstract ExampleSet readStream(InputStream inputStream, DataRowFactory dataRowFactory) throws IOException,
 			UndefinedParameterError;
 
-	/**
-	 * Reads a number (specified by length) of bytes from a given file reader into a byte array
-	 * beginning at index 0.
-	 */
-	protected int read(InputStream inputStream, byte[] buffer, int length) throws IOException {
+    /**
+     * Reads a number (specified by length) of bytes from a given file reader into a byte array
+     * beginning at index 0.
+     *
+     * @param inputStream the input stream
+     * @param buffer      the buffer
+     * @param length      the length
+     * @return the int
+     * @throws IOException the io exception
+     */
+    protected int read(InputStream inputStream, byte[] buffer, int length) throws IOException {
 		final int offset = 0;
 		return read(inputStream, buffer, offset, length);
 	}
 
-	/**
-	 * Reads a number (specified by length) of bytes from a given file reader into a byte array
-	 * beginning at the given offset.
-	 */
-	protected int read(InputStream inputStream, byte[] buffer, int offset, int length) throws IOException {
+    /**
+     * Reads a number (specified by length) of bytes from a given file reader into a byte array
+     * beginning at the given offset.
+     *
+     * @param inputStream the input stream
+     * @param buffer      the buffer
+     * @param offset      the offset
+     * @param length      the length
+     * @return the int
+     * @throws IOException the io exception
+     */
+    protected int read(InputStream inputStream, byte[] buffer, int offset, int length) throws IOException {
 		int readLength = inputStream.read(buffer, offset, length);
 		if (readLength != length) {
 			throw new IOException("wrong byte length");
@@ -137,19 +183,31 @@ public abstract class BytewiseExampleSource extends AbstractExampleSource {
 		return readLength;
 	}
 
-	/**
-	 * Reads a number (specified by length) of bytes from a given file reader into a byte array
-	 * beginning at index 0. No read length verification is performed.
-	 */
-	protected int readWithoutLengthCheck(InputStream inputStream, byte[] buffer, int length) throws IOException {
+    /**
+     * Reads a number (specified by length) of bytes from a given file reader into a byte array
+     * beginning at index 0. No read length verification is performed.
+     *
+     * @param inputStream the input stream
+     * @param buffer      the buffer
+     * @param length      the length
+     * @return the int
+     * @throws IOException the io exception
+     */
+    protected int readWithoutLengthCheck(InputStream inputStream, byte[] buffer, int length) throws IOException {
 		return inputStream.read(buffer, 0, length);
 	}
 
-	/**
-	 * Reads bytes from a given file reader until either a certain character is read, the buffer is
-	 * completely filled or the end of file is reached.
-	 */
-	protected int read(InputStream inputStream, byte[] buffer, char divider) throws IOException {
+    /**
+     * Reads bytes from a given file reader until either a certain character is read, the buffer is
+     * completely filled or the end of file is reached.
+     *
+     * @param inputStream the input stream
+     * @param buffer      the buffer
+     * @param divider     the divider
+     * @return the int
+     * @throws IOException the io exception
+     */
+    protected int read(InputStream inputStream, byte[] buffer, char divider) throws IOException {
 		int index = 0;
 		do {
 			byte readByte = (byte) (0x000000FF & inputStream.read());
@@ -162,11 +220,17 @@ public abstract class BytewiseExampleSource extends AbstractExampleSource {
 		return index;
 	}
 
-	/**
-	 * Reads bytes from a given file reader until either a specified character sequence is read, the
-	 * buffer is completely filled or the end of file is reached.
-	 */
-	protected int read(InputStream inputStream, byte[] buffer, char[] divider) throws IOException {
+    /**
+     * Reads bytes from a given file reader until either a specified character sequence is read, the
+     * buffer is completely filled or the end of file is reached.
+     *
+     * @param inputStream the input stream
+     * @param buffer      the buffer
+     * @param divider     the divider
+     * @return the int
+     * @throws IOException the io exception
+     */
+    protected int read(InputStream inputStream, byte[] buffer, char[] divider) throws IOException {
 		int index = 0;
 		int dividerIndex = 0;
 		do {
@@ -193,10 +257,15 @@ public abstract class BytewiseExampleSource extends AbstractExampleSource {
 		return index;
 	}
 
-	/**
-	 * Extracts a 2-byte (short) int from a byte array.
-	 */
-	protected int extract2ByteInt(byte[] buffer, int offset, boolean reverseEndian) {
+    /**
+     * Extracts a 2-byte (short) int from a byte array.
+     *
+     * @param buffer        the buffer
+     * @param offset        the offset
+     * @param reverseEndian the reverse endian
+     * @return the int
+     */
+    protected int extract2ByteInt(byte[] buffer, int offset, boolean reverseEndian) {
 		int r = 0;
 		if (reverseEndian) {
 			r = (buffer[offset + 1] << 8) + (0x000000FF & buffer[offset]);
@@ -206,10 +275,15 @@ public abstract class BytewiseExampleSource extends AbstractExampleSource {
 		return r;
 	}
 
-	/**
-	 * Extracts an int from a byte array.
-	 */
-	protected int extractInt(byte[] buffer, int offset, boolean reverseEndian) {
+    /**
+     * Extracts an int from a byte array.
+     *
+     * @param buffer        the buffer
+     * @param offset        the offset
+     * @param reverseEndian the reverse endian
+     * @return the int
+     */
+    protected int extractInt(byte[] buffer, int offset, boolean reverseEndian) {
 		int r = 0;
 		if (reverseEndian) {
 			for (int i = offset + 3; i >= offset; i--) {
@@ -225,10 +299,15 @@ public abstract class BytewiseExampleSource extends AbstractExampleSource {
 		return r;
 	}
 
-	/**
-	 * Extracts a float from a byte array.
-	 */
-	protected float extractFloat(byte[] value, int offset, boolean reverseEndian) {
+    /**
+     * Extracts a float from a byte array.
+     *
+     * @param value         the value
+     * @param offset        the offset
+     * @param reverseEndian the reverse endian
+     * @return the float
+     */
+    protected float extractFloat(byte[] value, int offset, boolean reverseEndian) {
 		int bits = 0;
 		if (reverseEndian) {
 			for (int i = offset + 3; i >= offset; i--) {
@@ -244,10 +323,15 @@ public abstract class BytewiseExampleSource extends AbstractExampleSource {
 		return java.lang.Float.intBitsToFloat(bits);
 	}
 
-	/**
-	 * Extracts a double from a byte array.
-	 */
-	protected double extractDouble(byte[] value, int offset, boolean reverseEndian) {
+    /**
+     * Extracts a double from a byte array.
+     *
+     * @param value         the value
+     * @param offset        the offset
+     * @param reverseEndian the reverse endian
+     * @return the double
+     */
+    protected double extractDouble(byte[] value, int offset, boolean reverseEndian) {
 		long bits = 0;
 		if (reverseEndian) {
 			for (int i = offset + 7; i >= offset; i--) {
@@ -263,10 +347,15 @@ public abstract class BytewiseExampleSource extends AbstractExampleSource {
 		return java.lang.Double.longBitsToDouble(bits);
 	}
 
-	/**
-	 * Extracts string from byte array.
-	 */
-	protected String extractString(byte[] value, int offset, int length) {
+    /**
+     * Extracts string from byte array.
+     *
+     * @param value  the value
+     * @param offset the offset
+     * @param length the length
+     * @return the string
+     */
+    protected String extractString(byte[] value, int offset, int length) {
 		/* TODO: Shevek suggests this use a Charset for safety. */
 		return (new String(value, offset, length)).trim();
 	}

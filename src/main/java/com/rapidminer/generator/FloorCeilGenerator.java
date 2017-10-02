@@ -27,26 +27,43 @@ import java.util.logging.Level;
  * This class has one numerical input attribute and one output attribute. Depending on the mode
  * specified in the constructor the result will be the floor or the ceil function of the input
  * attribute.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class FloorCeilGenerator extends SingularNumericalGenerator {
 
-	public static final int FLOOR = 0;
+    /**
+     * The constant FLOOR.
+     */
+    public static final int FLOOR = 0;
 
-	public static final int CEIL = 1;
+    /**
+     * The constant CEIL.
+     */
+    public static final int CEIL = 1;
 
-	public static final int ROUND = 2;
+    /**
+     * The constant ROUND.
+     */
+    public static final int ROUND = 2;
 
 	private static final String[] FUNCTION_NAMES = { "floor", "ceil", "round" };
 
 	private int mode;
 
-	public FloorCeilGenerator(int mode) {
+    /**
+     * Instantiates a new Floor ceil generator.
+     *
+     * @param mode the mode
+     */
+    public FloorCeilGenerator(int mode) {
 		this.mode = mode;
 	}
 
-	public FloorCeilGenerator() {}
+    /**
+     * Instantiates a new Floor ceil generator.
+     */
+    public FloorCeilGenerator() {}
 
 	@Override
 	public FeatureGenerator newInstance() {

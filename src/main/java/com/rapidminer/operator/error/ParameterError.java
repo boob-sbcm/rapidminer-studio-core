@@ -36,29 +36,62 @@ public class ParameterError extends UserError {
 	/** the parameter key which caused the error */
 	private String key;
 
-	public ParameterError(Operator operator, int code, String parameterkey, String additionalText) {
+    /**
+     * Instantiates a new Parameter error.
+     *
+     * @param operator       the operator
+     * @param code           the code
+     * @param parameterkey   the parameterkey
+     * @param additionalText the additional text
+     */
+    public ParameterError(Operator operator, int code, String parameterkey, String additionalText) {
 		this(operator, code, parameterkey, new Object[] { parameterkey, additionalText });
 	}
 
-	public ParameterError(Operator operator, int code, String parameterkey, Object... arguments) {
+    /**
+     * Instantiates a new Parameter error.
+     *
+     * @param operator     the operator
+     * @param code         the code
+     * @param parameterkey the parameterkey
+     * @param arguments    the arguments
+     */
+    public ParameterError(Operator operator, int code, String parameterkey, Object... arguments) {
 		super(operator, code, arguments);
 		this.key = parameterkey;
 	}
 
-	public ParameterError(Operator operator, String code, String parameterkey, String additionalText) {
+    /**
+     * Instantiates a new Parameter error.
+     *
+     * @param operator       the operator
+     * @param code           the code
+     * @param parameterkey   the parameterkey
+     * @param additionalText the additional text
+     */
+    public ParameterError(Operator operator, String code, String parameterkey, String additionalText) {
 		this(operator, code, parameterkey, new Object[] { parameterkey, additionalText });
 	}
 
-	public ParameterError(Operator operator, String code, String parameterkey, Object... arguments) {
+    /**
+     * Instantiates a new Parameter error.
+     *
+     * @param operator     the operator
+     * @param code         the code
+     * @param parameterkey the parameterkey
+     * @param arguments    the arguments
+     */
+    public ParameterError(Operator operator, String code, String parameterkey, Object... arguments) {
 		super(operator, code, arguments);
 		this.key = parameterkey;
 	}
 
-	/**
-	 * @return the key of the parameter which caused the error. Can be {@code null} in very rare
-	 *         cases
-	 */
-	public String getKey() {
+    /**
+     * Gets key.
+     *
+     * @return the key of the parameter which caused the error. Can be {@code null} in very rare         cases
+     */
+    public String getKey() {
 		return key;
 	}
 }

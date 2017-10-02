@@ -20,7 +20,7 @@ package com.rapidminer.operator;
 
 /**
  * Exception class whose instances are thrown by MailUtilities if mail cannot be send.
- * 
+ *
  * @author Nils Woehler
  */
 public class MailNotSentException extends Exception {
@@ -29,50 +29,59 @@ public class MailNotSentException extends Exception {
 	private String errorKey;
 	private Object[] arguments;
 
-	/**
-	 * @param errorKey
-	 *            I18N error key that can be used by {@link UserError}s
-	 */
-	public MailNotSentException(String message, String errorKey) {
+    /**
+     * Instantiates a new Mail not sent exception.
+     *
+     * @param message  the message
+     * @param errorKey I18N error key that can be used by {@link UserError}s
+     */
+    public MailNotSentException(String message, String errorKey) {
 		super(message);
 		this.errorKey = errorKey;
 	}
 
-	/**
-	 * @param errorKey
-	 *            I18N error key that can be used by {@link UserError}s
-	 * @param arguments
-	 *            for formatting I18N messages
-	 */
-	public MailNotSentException(String message, String errorKey, Object... arguments) {
-		super(message);
-		this.errorKey = errorKey;
-		this.arguments = arguments;
-	}
-
-	/**
-	 * @param errorKey
-	 *            I18N error key that can be used by {@link UserError}s
-	 * @param arguments
-	 *            for formatting I18N messages
-	 */
-	public MailNotSentException(String message, Throwable cause, String errorKey, Object... arguments) {
+    /**
+     * Instantiates a new Mail not sent exception.
+     *
+     * @param message   the message
+     * @param errorKey  I18N error key that can be used by {@link UserError}s
+     * @param arguments for formatting I18N messages
+     */
+    public MailNotSentException(String message, String errorKey, Object... arguments) {
 		super(message);
 		this.errorKey = errorKey;
 		this.arguments = arguments;
 	}
 
-	/**
-	 * @return the errorKey
-	 */
-	public String getErrorKey() {
+    /**
+     * Instantiates a new Mail not sent exception.
+     *
+     * @param message   the message
+     * @param cause     the cause
+     * @param errorKey  I18N error key that can be used by {@link UserError}s
+     * @param arguments for formatting I18N messages
+     */
+    public MailNotSentException(String message, Throwable cause, String errorKey, Object... arguments) {
+		super(message);
+		this.errorKey = errorKey;
+		this.arguments = arguments;
+	}
+
+    /**
+     * Gets error key.
+     *
+     * @return the errorKey
+     */
+    public String getErrorKey() {
 		return this.errorKey;
 	}
 
-	/**
-	 * @return the arguments
-	 */
-	public Object[] getArguments() {
+    /**
+     * Get arguments object [ ].
+     *
+     * @return the arguments
+     */
+    public Object[] getArguments() {
 		return this.arguments;
 	}
 

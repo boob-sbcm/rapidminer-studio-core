@@ -24,14 +24,19 @@ import java.util.Iterator;
 /**
  * Iterates over a list of DataRows. Actually a misnomer because this class does not use a list but
  * an iterator over an arbitrary collection.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class ListDataRowReader implements DataRowReader {
 
 	private Iterator<DataRow> iterator;
 
-	public ListDataRowReader(Iterator<DataRow> i) {
+    /**
+     * Instantiates a new List data row reader.
+     *
+     * @param i the
+     */
+    public ListDataRowReader(Iterator<DataRow> i) {
 		this.iterator = i;
 	}
 

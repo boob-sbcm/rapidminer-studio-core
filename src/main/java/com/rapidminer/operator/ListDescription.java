@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * This helper class contains information about the XML definition of a list.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ListDescription {
@@ -31,16 +31,32 @@ public class ListDescription {
 	private String key;
 	private List<String[]> list;
 
-	public ListDescription(String key, List<String[]> list) {
+    /**
+     * Instantiates a new List description.
+     *
+     * @param key  the key
+     * @param list the list
+     */
+    public ListDescription(String key, List<String[]> list) {
 		this.key = key;
 		this.list = list;
 	}
 
-	public String getKey() {
+    /**
+     * Gets key.
+     *
+     * @return the key
+     */
+    public String getKey() {
 		return key;
 	}
 
-	public List<String[]> getList() {
+    /**
+     * Gets list.
+     *
+     * @return the list
+     */
+    public List<String[]> getList() {
 		return list;
 	}
 

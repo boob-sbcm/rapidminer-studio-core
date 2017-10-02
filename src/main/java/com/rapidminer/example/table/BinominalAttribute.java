@@ -26,7 +26,7 @@ import com.rapidminer.tools.Ontology;
  * attribute fields this class keeps information about the both values and the value to index
  * mappings. If one of the methods designed for numerical attributes was invoked a RuntimeException
  * will be thrown.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class BinominalAttribute extends NominalAttribute {
@@ -35,11 +35,13 @@ public class BinominalAttribute extends NominalAttribute {
 
 	private NominalMapping nominalMapping = new BinominalMapping();
 
-	/**
-	 * Creates a simple binary attribute which is not part of a series and does not provide a unit
-	 * string.
-	 */
-	/* pp */BinominalAttribute(String name) {
+    /**
+     * Creates a simple binary attribute which is not part of a series and does not provide a unit
+     * string.
+     *
+     * @param name the name
+     */
+/* pp */BinominalAttribute(String name) {
 		super(name, Ontology.BINOMINAL);
 	}
 

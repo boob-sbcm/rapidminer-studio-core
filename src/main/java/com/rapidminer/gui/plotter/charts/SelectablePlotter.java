@@ -23,22 +23,23 @@ import com.rapidminer.gui.plotter.charts.AbstractChartPanel.SelectionListener;
 
 /**
  * This interface provides the hook for registering own selection listener.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public interface SelectablePlotter {
 
-	/**
-	 * This method will add the given selection listener to the list of objects which will be
-	 * notified as soon as a selection is made.
-	 */
-	public void registerSelectionListener(SelectionListener listener);
+    /**
+     * This method will add the given selection listener to the list of objects which will be
+     * notified as soon as a selection is made.
+     *
+     * @param listener the listener
+     */
+    public void registerSelectionListener(SelectionListener listener);
 
-	/**
-	 * This one clears the complete list of registered selection listeners. This might be useful if
-	 * a default listener should be replaced.
-	 */
-	public void clearSelectionListener();
+    /**
+     * This one clears the complete list of registered selection listeners. This might be useful if
+     * a default listener should be replaced.
+     */
+    public void clearSelectionListener();
 
 }

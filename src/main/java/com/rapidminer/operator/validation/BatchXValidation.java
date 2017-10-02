@@ -44,7 +44,7 @@ import com.rapidminer.parameter.UndefinedParameterError;
  * using {@rapidminer.math S_i} as the test set (input of the second inner operator) and
  * {@rapidminer.math S\backslash S_i} training set (input of the first inner operator).
  * </p>
- *
+ * <p>
  * <p>
  * In contrast to the usual cross validation operator (see {@link XValidation}) this operator does
  * not (randomly) split the data itself but uses the partition defined by the special attribute
@@ -52,14 +52,14 @@ import com.rapidminer.parameter.UndefinedParameterError;
  * value occurs at least once (since many learning schemes depend on this minimum number of
  * examples).
  * </p>
- *
+ * <p>
  * <p>
  * The first inner operator must accept an {@link com.rapidminer.example.ExampleSet} while the
  * second must accept an {@link com.rapidminer.example.ExampleSet} and the output of the first
  * (which is in most cases a {@link com.rapidminer.operator.Model}) and must produce a
  * {@link com.rapidminer.operator.performance.PerformanceVector}.
  * </p>
- *
+ * <p>
  * <p>
  * The cross validation operator provides several values which can be logged by means of a
  * {@link ProcessLogOperator}. Of course the number of the current iteration can be logged which
@@ -83,14 +83,19 @@ import com.rapidminer.parameter.UndefinedParameterError;
 @Deprecated
 public class BatchXValidation extends ValidationChain {
 
-	/**
-	 * The parameter name for &quot;Indicates if only performance vectors should be averaged or all
-	 * types of averagable result vectors&quot;
-	 */
-	public static final String PARAMETER_AVERAGE_PERFORMANCES_ONLY = "average_performances_only";
+    /**
+     * The parameter name for &quot;Indicates if only performance vectors should be averaged or all
+     * types of averagable result vectors&quot;
+     */
+    public static final String PARAMETER_AVERAGE_PERFORMANCES_ONLY = "average_performances_only";
 	private int iteration;
 
-	public BatchXValidation(OperatorDescription description) {
+    /**
+     * Instantiates a new Batch x validation.
+     *
+     * @param description the description
+     */
+    public BatchXValidation(OperatorDescription description) {
 		super(description);
 		addValue(new ValueDouble("iteration", "The number of the current iteration.") {
 

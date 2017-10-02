@@ -23,13 +23,22 @@ import com.rapidminer.operator.ports.OutputPort;
 
 
 /**
+ * The type Attribute adding example set pass through rule.
+ *
  * @author Simon Fischer
  */
 public class AttributeAddingExampleSetPassThroughRule extends PassThroughRule {
 
 	private AttributeMetaData amd;
 
-	public AttributeAddingExampleSetPassThroughRule(InputPort inputPort, OutputPort outputPort, AttributeMetaData amd) {
+    /**
+     * Instantiates a new Attribute adding example set pass through rule.
+     *
+     * @param inputPort  the input port
+     * @param outputPort the output port
+     * @param amd        the amd
+     */
+    public AttributeAddingExampleSetPassThroughRule(InputPort inputPort, OutputPort outputPort, AttributeMetaData amd) {
 		super(inputPort, outputPort, false);
 		this.amd = amd;
 	}

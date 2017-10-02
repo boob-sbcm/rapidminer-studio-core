@@ -171,7 +171,13 @@ public class ConfigureParameterOptimizationDialog extends PropertyDialog {
 
 	private final LinkedHashMap<String, ParameterValues> parameterValuesMap;
 
-	public ConfigureParameterOptimizationDialog(ParameterType type, ConfigurationListener listener) {
+    /**
+     * Instantiates a new Configure parameter optimization dialog.
+     *
+     * @param type     the type
+     * @param listener the listener
+     */
+    public ConfigureParameterOptimizationDialog(ParameterType type, ConfigurationListener listener) {
 		super(type, "parameter_optimization");
 		this.listener = listener;
 		process = listener.getProcess();

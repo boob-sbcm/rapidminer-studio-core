@@ -35,11 +35,13 @@ import com.rapidminer.parameter.UndefinedParameterError;
  * will filter out all attributes whose coefficient is not significantly different from 0.
  *
  * @author Sebastian Land, Ingo Mierswa
- *
  */
 public class TTestLinearRegressionMethod implements LinearRegressionMethod {
 
-	public static final String PARAMETER_SIGNIFICANCE_LEVEL = "alpha";
+    /**
+     * The constant PARAMETER_SIGNIFICANCE_LEVEL.
+     */
+    public static final String PARAMETER_SIGNIFICANCE_LEVEL = "alpha";
 
 	@Override
 	public LinearRegressionResult applyMethod(LinearRegression regression, boolean useBias, double ridge,
@@ -53,13 +55,26 @@ public class TTestLinearRegressionMethod implements LinearRegressionMethod {
 		return result;
 	}
 
-	/**
-	 * This method filters the selected attributes depending on their p-value in respect to the
-	 * significance niveau alpha.
-	 *
-	 * @throws ProcessStoppedException
-	 */
-	protected LinearRegressionResult filterByPValue(LinearRegression regression, boolean useBias, double ridge,
+    /**
+     * This method filters the selected attributes depending on their p-value in respect to the
+     * significance niveau alpha.
+     *
+     * @param regression             the regression
+     * @param useBias                the use bias
+     * @param ridge                  the ridge
+     * @param exampleSet             the example set
+     * @param isUsedAttribute        the is used attribute
+     * @param means                  the means
+     * @param labelMean              the label mean
+     * @param standardDeviations     the standard deviations
+     * @param labelStandardDeviation the label standard deviation
+     * @param coefficientsOnFullData the coefficients on full data
+     * @param alpha                  the alpha
+     * @return the linear regression result
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    protected LinearRegressionResult filterByPValue(LinearRegression regression, boolean useBias, double ridge,
 			ExampleSet exampleSet, boolean[] isUsedAttribute, double[] means, double labelMean, double[] standardDeviations,
 			double labelStandardDeviation, double[] coefficientsOnFullData, double alpha) throws UndefinedParameterError,
 			ProcessStoppedException {
@@ -102,13 +117,26 @@ public class TTestLinearRegressionMethod implements LinearRegressionMethod {
 		return result;
 	}
 
-	/**
-	 * Returns the PValue of the attributeIndex-th attribute that expresses the probability that the
-	 * coefficient is only random.
-	 *
-	 * @throws ProcessStoppedException
-	 */
-	protected double getPValue(double coefficient, int attributeIndex, LinearRegression regression, boolean useBias,
+    /**
+     * Returns the PValue of the attributeIndex-th attribute that expresses the probability that the
+     * coefficient is only random.
+     *
+     * @param coefficient            the coefficient
+     * @param attributeIndex         the attribute index
+     * @param regression             the regression
+     * @param useBias                the use bias
+     * @param ridge                  the ridge
+     * @param exampleSet             the example set
+     * @param isUsedAttribute        the is used attribute
+     * @param standardDeviations     the standard deviations
+     * @param labelStandardDeviation the label standard deviation
+     * @param fdistribution          the fdistribution
+     * @param generalCorrelation     the general correlation
+     * @return the p value
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    protected double getPValue(double coefficient, int attributeIndex, LinearRegression regression, boolean useBias,
 			double ridge, ExampleSet exampleSet, boolean[] isUsedAttribute, double[] standardDeviations,
 			double labelStandardDeviation, FDistribution fdistribution, double generalCorrelation)
 			throws UndefinedParameterError, ProcessStoppedException {

@@ -30,14 +30,20 @@ import javax.swing.plaf.basic.BasicDesktopIconUI;
 
 /**
  * The UI for desktop icons.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DesktopIconUI extends BasicDesktopIconUI {
 
 	private InternalFrameTitlePane iconPane;
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new DesktopIconUI();
 	}
 

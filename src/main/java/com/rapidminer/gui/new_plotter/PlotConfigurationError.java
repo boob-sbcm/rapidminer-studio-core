@@ -30,8 +30,9 @@ import java.util.ResourceBundle;
 
 
 /**
+ * The type Plot configuration error.
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class PlotConfigurationError {
 
@@ -60,20 +61,40 @@ public class PlotConfigurationError {
 	// */
 	// private Object location;
 
-	public PlotConfigurationError(String errorId, Object... messageParameters) {
+    /**
+     * Instantiates a new Plot configuration error.
+     *
+     * @param errorId           the error id
+     * @param messageParameters the message parameters
+     */
+    public PlotConfigurationError(String errorId, Object... messageParameters) {
 		super();
 		this.errorId = errorId;
 		this.messageParameters = messageParameters;
 	}
 
-	public PlotConfigurationError(String errorId, PlotConfigurationQuickFix quickFix, Object... messageParameters) {
+    /**
+     * Instantiates a new Plot configuration error.
+     *
+     * @param errorId           the error id
+     * @param quickFix          the quick fix
+     * @param messageParameters the message parameters
+     */
+    public PlotConfigurationError(String errorId, PlotConfigurationQuickFix quickFix, Object... messageParameters) {
 		super();
 		this.errorId = errorId;
 		this.messageParameters = messageParameters;
 		possiblesFixes.add(quickFix);
 	}
 
-	public PlotConfigurationError(String errorId, PlotConfigurationChangeEvent changeForQuickFix,
+    /**
+     * Instantiates a new Plot configuration error.
+     *
+     * @param errorId           the error id
+     * @param changeForQuickFix the change for quick fix
+     * @param messageParameters the message parameters
+     */
+    public PlotConfigurationError(String errorId, PlotConfigurationChangeEvent changeForQuickFix,
 			Object... messageParameters) {
 		super();
 		this.errorId = errorId;
@@ -81,15 +102,30 @@ public class PlotConfigurationError {
 		possiblesFixes.add(new PlotConfigurationQuickFix(changeForQuickFix));
 	}
 
-	public void addQuickFix(PlotConfigurationQuickFix quickFix) {
+    /**
+     * Add quick fix.
+     *
+     * @param quickFix the quick fix
+     */
+    public void addQuickFix(PlotConfigurationQuickFix quickFix) {
 		possiblesFixes.add(quickFix);
 	}
 
-	public List<PlotConfigurationQuickFix> getQuickFixes() {
+    /**
+     * Gets quick fixes.
+     *
+     * @return the quick fixes
+     */
+    public List<PlotConfigurationQuickFix> getQuickFixes() {
 		return possiblesFixes;
 	}
 
-	public String getErrorName() {
+    /**
+     * Gets error name.
+     *
+     * @return the error name
+     */
+    public String getErrorName() {
 		String deflt = "Unnamed plotter error.";
 		if (Boolean.valueOf(ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_GENERAL_DEBUGMODE))) {
 			deflt += " (" + errorId + ")";
@@ -98,38 +134,56 @@ public class PlotConfigurationError {
 		return getResourceString(errorId, NAME_KEY, deflt);
 	}
 
-	public String getErrorMessage() {
+    /**
+     * Gets error message.
+     *
+     * @return the error message
+     */
+    public String getErrorMessage() {
 		return getErrorMessage(errorId, messageParameters);
 	}
 
-	public Object[] getMessageParameters() {
+    /**
+     * Get message parameters object [ ].
+     *
+     * @return the object [ ]
+     */
+    public Object[] getMessageParameters() {
 		return messageParameters;
 	}
 
-	public String getErrorId() {
+    /**
+     * Gets error id.
+     *
+     * @return the error id
+     */
+    public String getErrorId() {
 		return errorId;
 	}
 
-	public String getErrorDescription() {
+    /**
+     * Gets error description.
+     *
+     * @return the error description
+     */
+    public String getErrorDescription() {
 		return getResourceString(errorId, EXPLANATION_KEY, "");
 	}
 
-	/**
-	 * This returns a resource message of the internationalized error messages identified by an id.
-	 * Compared to the legacy method {@link #getResourceString(int, String, String)} this supports a
-	 * more detailed identifier. This makes it easier to ensure extensions don't reuse already
-	 * defined core errors. It is common sense to add the extensions namespace identifier as second
-	 * part of the key, just after error. For example: error.rmx_web.operator.unusable = This
-	 * operator {0} is unusable.
-	 * 
-	 * @param id
-	 *            The identifier of the error. "gui.plotter.error." will be automatically prepended-
-	 * @param key
-	 *            The part of the error description that should be shown.
-	 * @param deflt
-	 *            The default if no resource bundle is available.
-	 */
-	public static String getResourceString(String id, String key, String deflt) {
+    /**
+     * This returns a resource message of the internationalized error messages identified by an id.
+     * Compared to the legacy method {@link #getResourceString(int, String, String)} this supports a
+     * more detailed identifier. This makes it easier to ensure extensions don't reuse already
+     * defined core errors. It is common sense to add the extensions namespace identifier as second
+     * part of the key, just after error. For example: error.rmx_web.operator.unusable = This
+     * operator {0} is unusable.
+     *
+     * @param id    The identifier of the error. "gui.plotter.error." will be automatically prepended-
+     * @param key   The part of the error description that should be shown.
+     * @param deflt The default if no resource bundle is available.
+     * @return the resource string
+     */
+    public static String getResourceString(String id, String key, String deflt) {
 		if (messages == null) {
 			return deflt;
 		}
@@ -140,7 +194,14 @@ public class PlotConfigurationError {
 		}
 	}
 
-	public static String getErrorMessage(String identifier, Object[] arguments) {
+    /**
+     * Gets error message.
+     *
+     * @param identifier the identifier
+     * @param arguments  the arguments
+     * @return the error message
+     */
+    public static String getErrorMessage(String identifier, Object[] arguments) {
 		String message = getResourceString(identifier, MESSAGE_KEY, "No message.");
 		try {
 			formatter.applyPattern(message);

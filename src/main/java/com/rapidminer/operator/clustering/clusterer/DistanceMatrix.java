@@ -21,7 +21,7 @@ package com.rapidminer.operator.clustering.clusterer;
 /**
  * This class implements an symmetrical matrix for distances, thus saving half the memory by saving
  * only the upper right triangle
- * 
+ *
  * @author Sebastian Land
  */
 public class DistanceMatrix {
@@ -29,7 +29,12 @@ public class DistanceMatrix {
 	private double[][] matrix;
 	private int size;
 
-	public DistanceMatrix(int size) {
+    /**
+     * Instantiates a new Distance matrix.
+     *
+     * @param size the size
+     */
+    public DistanceMatrix(int size) {
 		this.size = size;
 		matrix = new double[size][];
 		for (int i = 0; i < size; i++) {
@@ -40,7 +45,14 @@ public class DistanceMatrix {
 		}
 	}
 
-	public void set(int x, int y, double d) {
+    /**
+     * Set.
+     *
+     * @param x the x
+     * @param y the y
+     * @param d the d
+     */
+    public void set(int x, int y, double d) {
 		if (x < y) {
 			matrix[x][y - x - 1] = d;
 		}
@@ -49,15 +61,32 @@ public class DistanceMatrix {
 		}
 	}
 
-	public int getWidth() {
+    /**
+     * Gets width.
+     *
+     * @return the width
+     */
+    public int getWidth() {
 		return size;
 	}
 
-	public int getHeight() {
+    /**
+     * Gets height.
+     *
+     * @return the height
+     */
+    public int getHeight() {
 		return size;
 	}
 
-	public double get(int x, int y) {
+    /**
+     * Get double.
+     *
+     * @param x the x
+     * @param y the y
+     * @return the double
+     */
+    public double get(int x, int y) {
 		if (x < y) {
 			return matrix[x][y - x - 1];
 		}

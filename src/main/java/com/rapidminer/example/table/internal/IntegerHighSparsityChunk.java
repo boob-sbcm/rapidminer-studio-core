@@ -30,7 +30,12 @@ final class IntegerHighSparsityChunk extends AbstractHighSparsityChunk implement
 
 	private int[] data = AutoColumnUtils.EMPTY_INTEGER_ARRAY;
 
-	IntegerHighSparsityChunk(double defaultValue) {
+    /**
+     * Instantiates a new Integer high sparsity chunk.
+     *
+     * @param defaultValue the default value
+     */
+    IntegerHighSparsityChunk(double defaultValue) {
 		super(defaultValue);
 	}
 

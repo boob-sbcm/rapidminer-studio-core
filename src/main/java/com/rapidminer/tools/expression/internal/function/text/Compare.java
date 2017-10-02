@@ -19,19 +19,17 @@
 package com.rapidminer.tools.expression.internal.function.text;
 
 
-
 /**
  * A {@link Function} for comparing two Strings.
  *
  * @author David Arnu
- *
  */
 public class Compare extends Abstract2StringInputIntegerOutputFunction {
 
-	/**
-	 * Creates a function for comparing two Strings
-	 */
-	public Compare() {
+    /**
+     * Creates a function for comparing two Strings
+     */
+    public Compare() {
 		super("text_information.compare", 2);
 	}
 

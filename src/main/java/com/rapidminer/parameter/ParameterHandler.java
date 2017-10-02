@@ -31,118 +31,202 @@ import java.util.List;
 /**
  * This interface defines that instance are able to handle parameters. In RapidMiner, this if for
  * example true for the class {@link Operator} but also for the {@link Renderer}s.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface ParameterHandler {
 
-	/** Returns a collection of all parameters of this parameter handler. */
-	public Parameters getParameters();
+    /**
+     * Returns a collection of all parameters of this parameter handler.  @return the parameters
+     *
+     * @return the parameters
+     */
+    public Parameters getParameters();
 
-	/**
-	 * Sets all parameters of this operator. The given parameters are not allowed to be null and
-	 * must correspond to the parameter types defined by this parameter handler.
-	 */
-	public void setParameters(Parameters parameters);
+    /**
+     * Sets all parameters of this operator. The given parameters are not allowed to be null and
+     * must correspond to the parameter types defined by this parameter handler.
+     *
+     * @param parameters the parameters
+     */
+    public void setParameters(Parameters parameters);
 
-	/**
-	 * Sets the given single parameter to the Parameters object of this operator. For parameter list
-	 * the method {@link #setListParameter(String, List)} should be used.
-	 */
-	public void setParameter(String key, String value);
+    /**
+     * Sets the given single parameter to the Parameters object of this operator. For parameter list
+     * the method {@link #setListParameter(String, List)} should be used.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public void setParameter(String key, String value);
 
-	/**
-	 * Sets the given parameter list to the Parameters object of this operator. For single
-	 * parameters the method {@link #setParameter(String, String)} should be used.
-	 */
-	public void setListParameter(String key, List<String[]> list);
+    /**
+     * Sets the given parameter list to the Parameters object of this operator. For single
+     * parameters the method {@link #setParameter(String, String)} should be used.
+     *
+     * @param key  the key
+     * @param list the list
+     */
+    public void setListParameter(String key, List<String[]> list);
 
-	/**
-	 * Returns a single parameter retrieved from the {@link Parameters} of this Operator.
-	 */
-	public Object getParameter(String key) throws UndefinedParameterError;
+    /**
+     * Returns a single parameter retrieved from the {@link Parameters} of this Operator.
+     *
+     * @param key the key
+     * @return the parameter
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public Object getParameter(String key) throws UndefinedParameterError;
 
-	/** Returns true iff the parameter with the given name is set. */
-	public boolean isParameterSet(String key) throws UndefinedParameterError;
+    /**
+     * Returns true iff the parameter with the given name is set.  @param key the key
+     *
+     * @param key the key
+     * @return the boolean
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public boolean isParameterSet(String key) throws UndefinedParameterError;
 
-	/** Returns a single named parameter and casts it to String. */
-	public String getParameterAsString(String key) throws UndefinedParameterError;
+    /**
+     * Returns a single named parameter and casts it to String.  @param key the key
+     *
+     * @param key the key
+     * @return the parameter as string
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public String getParameterAsString(String key) throws UndefinedParameterError;
 
-	/** Returns a single named parameter and casts it to char. */
-	public char getParameterAsChar(String key) throws UndefinedParameterError;
+    /**
+     * Returns a single named parameter and casts it to char.  @param key the key
+     *
+     * @param key the key
+     * @return the parameter as char
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public char getParameterAsChar(String key) throws UndefinedParameterError;
 
-	/** Returns a single named parameter and casts it to int. */
-	public int getParameterAsInt(String key) throws UndefinedParameterError;
+    /**
+     * Returns a single named parameter and casts it to int.  @param key the key
+     *
+     * @param key the key
+     * @return the parameter as int
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public int getParameterAsInt(String key) throws UndefinedParameterError;
 
-	/** Returns a single named parameter and casts it to double. */
-	public double getParameterAsDouble(String key) throws UndefinedParameterError;
+    /**
+     * Returns a single named parameter and casts it to double.  @param key the key
+     *
+     * @param key the key
+     * @return the parameter as double
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public double getParameterAsDouble(String key) throws UndefinedParameterError;
 
-	/** Returns a single named parameter and casts it to long. */
-	public long getParameterAsLong(String key) throws UndefinedParameterError;
+    /**
+     * Returns a single named parameter and casts it to long.  @param key the key
+     *
+     * @param key the key
+     * @return the parameter as long
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public long getParameterAsLong(String key) throws UndefinedParameterError;
 
-	/**
-	 * Returns a single named parameter and casts it to boolean. This method never throws an
-	 * exception since there are no non-optional boolean parameters.
-	 */
-	public boolean getParameterAsBoolean(String key);
+    /**
+     * Returns a single named parameter and casts it to boolean. This method never throws an
+     * exception since there are no non-optional boolean parameters.
+     *
+     * @param key the key
+     * @return the parameter as boolean
+     */
+    public boolean getParameterAsBoolean(String key);
 
-	/**
-	 * Returns a single named parameter and casts it to List. The list returned by this method
-	 * contains the user defined key-value pairs. Each element is an String array of length 2. The
-	 * first element is the key, the second the parameter value.
-	 */
-	public List<String[]> getParameterList(String key) throws UndefinedParameterError;
+    /**
+     * Returns a single named parameter and casts it to List. The list returned by this method
+     * contains the user defined key-value pairs. Each element is an String array of length 2. The
+     * first element is the key, the second the parameter value.
+     *
+     * @param key the key
+     * @return the parameter list
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public List<String[]> getParameterList(String key) throws UndefinedParameterError;
 
-	/**
-	 * Returns a Pair of Strings, the Strings are in the order of type definition of the subtypes.
-	 */
-	public String[] getParameterTupel(String key) throws UndefinedParameterError;
+    /**
+     * Returns a Pair of Strings, the Strings are in the order of type definition of the subtypes.
+     *
+     * @param key the key
+     * @return the string [ ]
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public String[] getParameterTupel(String key) throws UndefinedParameterError;
 
-	/** Returns a single named parameter and casts it to Color. */
-	public java.awt.Color getParameterAsColor(String key) throws UndefinedParameterError;
+    /**
+     * Returns a single named parameter and casts it to Color.  @param key the key
+     *
+     * @param key the key
+     * @return the parameter as color
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public java.awt.Color getParameterAsColor(String key) throws UndefinedParameterError;
 
-	/**
-	 * Returns a single named parameter and tries to handle it as URL. If this works, this method
-	 * creates an input stream from this URL and delivers it. If not, this method tries to cast the
-	 * parameter value to a file. This file is already resolved against the process definition file.
-	 * If the parameter name defines a non-optional parameter which is not set and has no default
-	 * value, a UndefinedParameterError will be thrown. If the parameter is optional and was not set
-	 * this method returns null. Operators should always use this method instead of directly using
-	 * the method {@link Process#resolveFileName(String)}.
-	 * 
-	 * @throws DirectoryCreationError
-	 * @throws UserError
-	 */
-	public InputStream getParameterAsInputStream(String key) throws IOException, UserError;
+    /**
+     * Returns a single named parameter and tries to handle it as URL. If this works, this method
+     * creates an input stream from this URL and delivers it. If not, this method tries to cast the
+     * parameter value to a file. This file is already resolved against the process definition file.
+     * If the parameter name defines a non-optional parameter which is not set and has no default
+     * value, a UndefinedParameterError will be thrown. If the parameter is optional and was not set
+     * this method returns null. Operators should always use this method instead of directly using
+     * the method {@link Process#resolveFileName(String)}.
+     *
+     * @param key the key
+     * @return the parameter as input stream
+     * @throws IOException the io exception
+     * @throws UserError   the user error
+     */
+    public InputStream getParameterAsInputStream(String key) throws IOException, UserError;
 
-	/**
-	 * Returns a single named parameter and casts it to File. This file is already resolved against
-	 * the process definition file. If the parameter name defines a non-optional parameter which is
-	 * not set and has no default value, a UndefinedParameterError will be thrown. If the parameter
-	 * is optional and was not set this method returns null. Operators should always use this method
-	 * instead of directly using the method {@link Process#resolveFileName(String)}.
-	 * 
-	 * @throws DirectoryCreationError
-	 * @throws UserError
-	 */
-	public java.io.File getParameterAsFile(String key) throws UserError;
+    /**
+     * Returns a single named parameter and casts it to File. This file is already resolved against
+     * the process definition file. If the parameter name defines a non-optional parameter which is
+     * not set and has no default value, a UndefinedParameterError will be thrown. If the parameter
+     * is optional and was not set this method returns null. Operators should always use this method
+     * instead of directly using the method {@link Process#resolveFileName(String)}.
+     *
+     * @param key the key
+     * @return the parameter as file
+     * @throws UserError the user error
+     */
+    public java.io.File getParameterAsFile(String key) throws UserError;
 
-	/**
-	 * Returns a single named parameter and casts it to File. This file is already resolved against
-	 * the process definition file. If the parameter name defines a non-optional parameter which is
-	 * not set and has no default value, a UndefinedParameterError will be thrown. If the parameter
-	 * is optional and was not set this method returns null. Operators should always use this method
-	 * instead of directly using the method {@link Process#resolveFileName(String)}.
-	 * 
-	 * @throws DirectoryCreationError
-	 * @throws UserError
-	 */
-	public java.io.File getParameterAsFile(String key, boolean createMissingDirectories) throws UserError;
+    /**
+     * Returns a single named parameter and casts it to File. This file is already resolved against
+     * the process definition file. If the parameter name defines a non-optional parameter which is
+     * not set and has no default value, a UndefinedParameterError will be thrown. If the parameter
+     * is optional and was not set this method returns null. Operators should always use this method
+     * instead of directly using the method {@link Process#resolveFileName(String)}.
+     *
+     * @param key                      the key
+     * @param createMissingDirectories the create missing directories
+     * @return the parameter as file
+     * @throws UserError the user error
+     */
+    public java.io.File getParameterAsFile(String key, boolean createMissingDirectories) throws UserError;
 
-	/** Returns a single named parameter and casts it to a double matrix. */
-	public double[][] getParameterAsMatrix(String key) throws UndefinedParameterError;
+    /**
+     * Returns a single named parameter and casts it to a double matrix.  @param key the key
+     *
+     * @param key the key
+     * @return the double [ ] [ ]
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public double[][] getParameterAsMatrix(String key) throws UndefinedParameterError;
 
-	/** Returns a list of all defined parameter types for this handler. */
-	public List<ParameterType> getParameterTypes();
+    /**
+     * Returns a list of all defined parameter types for this handler.  @return the parameter types
+     *
+     * @return the parameter types
+     */
+    public List<ParameterType> getParameterTypes();
 
 }

@@ -28,14 +28,19 @@ import javax.swing.table.TableColumnModel;
 
 /**
  * This is a packer class for the extended JTable.
- * 
+ *
  * @author Santhosh Kumar, Ingo Mierswa
  */
 public class ExtendedJTablePacker {
 
 	private boolean distributeExtraArea = true;
 
-	public ExtendedJTablePacker(boolean distributeExtraArea) {
+    /**
+     * Instantiates a new Extended j table packer.
+     *
+     * @param distributeExtraArea the distribute extra area
+     */
+    public ExtendedJTablePacker(boolean distributeExtraArea) {
 		this.distributeExtraArea = distributeExtraArea;
 	}
 
@@ -69,7 +74,12 @@ public class ExtendedJTablePacker {
 		return width + table.getIntercellSpacing().width;
 	}
 
-	public void pack(ExtendedJTable table) {
+    /**
+     * Pack.
+     *
+     * @param table the table
+     */
+    public void pack(ExtendedJTable table) {
 		if (!table.isShowing()) {
 			// throw new IllegalStateException("Table must be showed in order to pack it.");
 			// return silently;

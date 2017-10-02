@@ -36,7 +36,7 @@ import com.rapidminer.tools.expression.ExpressionParserBuilder;
 /**
  * This attribute type supports the user by letting him define an expression with a user interface
  * known from calculators.
- *
+ * <p>
  * For knowing attribute names before process execution a valid meta data transformation must be
  * performed. Otherwise the user might type in the name, instead of choosing.
  *
@@ -52,20 +52,19 @@ public class ParameterTypeExpression extends ParameterTypeString {
 
 	private Callable<OperatorVersion> operatorVersion;
 
-	/**
-	 * A simple functional which allows to query the current operator compatibility level.
-	 */
-	public static final class OperatorVersionCallable implements Callable<OperatorVersion> {
+    /**
+     * A simple functional which allows to query the current operator compatibility level.
+     */
+    public static final class OperatorVersionCallable implements Callable<OperatorVersion> {
 
 		private final Operator op;
 
-		/**
-		 * Constructor for the {@link OperatorVersionCallable}.
-		 *
-		 * @param op
-		 *            the operator. Must not be {@code null}
-		 */
-		public OperatorVersionCallable(Operator op) {
+        /**
+         * Constructor for the {@link OperatorVersionCallable}.
+         *
+         * @param op the operator. Must not be {@code null}
+         */
+        public OperatorVersionCallable(Operator op) {
 			if (op == null) {
 				throw new IllegalArgumentException("Operator must not be null");
 			}
@@ -80,51 +79,75 @@ public class ParameterTypeExpression extends ParameterTypeString {
 
 	}
 
-	public ParameterTypeExpression(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type expression.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeExpression(Element element) throws XMLException {
 		super(element);
 	}
 
-	/**
-	 * This constructor will generate a ParameterType that does not use the {@link MetaData} of an
-	 * associated {@link InputPort} to verify the expressions.
-	 *
-	 * @param key
-	 * @param description
-	 *
-	 * @deprecated use {@link #ParameterTypeExpression(String, String, OperatorVersionCallable)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * This constructor will generate a ParameterType that does not use the {@link MetaData} of an
+     * associated {@link InputPort} to verify the expressions.
+     *
+     * @param key         the key
+     * @param description the description
+     * @deprecated use {@link #ParameterTypeExpression(String, String, OperatorVersionCallable)}             instead
+     */
+    @Deprecated
 	public ParameterTypeExpression(final String key, String description) {
 		this(key, description, null, false);
 	}
 
-	/**
-	 * This constructor will generate a ParameterType that does not use the {@link MetaData} of an
-	 * associated {@link InputPort} to verify the expressions.
-	 *
-	 * @param key
-	 *            the parameter key
-	 * @param description
-	 *            the parameter description
-	 * @param operatorVersion
-	 *            a functional which allows to query the current operator version. Must not be
-	 *            {@code null} and must not return null
-	 */
-	public ParameterTypeExpression(final String key, String description, OperatorVersionCallable operatorVersion) {
+    /**
+     * This constructor will generate a ParameterType that does not use the {@link MetaData} of an
+     * associated {@link InputPort} to verify the expressions.
+     *
+     * @param key             the parameter key
+     * @param description     the parameter description
+     * @param operatorVersion a functional which allows to query the current operator version. Must not be            {@code null} and must not return null
+     */
+    public ParameterTypeExpression(final String key, String description, OperatorVersionCallable operatorVersion) {
 		this(key, description, null, false, operatorVersion);
 	}
 
-	public ParameterTypeExpression(final String key, String description, InputPort inPort) {
+    /**
+     * Instantiates a new Parameter type expression.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     */
+    public ParameterTypeExpression(final String key, String description, InputPort inPort) {
 		this(key, description, inPort, false);
 	}
 
-	public ParameterTypeExpression(final String key, String description, InputPort inPort, boolean optional, boolean expert) {
+    /**
+     * Instantiates a new Parameter type expression.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     * @param optional    the optional
+     * @param expert      the expert
+     */
+    public ParameterTypeExpression(final String key, String description, InputPort inPort, boolean optional, boolean expert) {
 		this(key, description, inPort, optional);
 		setExpert(expert);
 	}
 
-	public ParameterTypeExpression(final String key, String description, final InputPort inPort, boolean optional) {
+    /**
+     * Instantiates a new Parameter type expression.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     * @param optional    the optional
+     */
+    public ParameterTypeExpression(final String key, String description, final InputPort inPort, boolean optional) {
 		this(key, description, inPort, optional, new Callable<OperatorVersion>() {
 
 			@Override
@@ -161,10 +184,12 @@ public class ParameterTypeExpression extends ParameterTypeString {
 		return "";
 	}
 
-	/**
-	 * Returns the input port associated with this ParameterType. This might be null!
-	 */
-	public InputPort getInputPort() {
+    /**
+     * Returns the input port associated with this ParameterType. This might be null!
+     *
+     * @return the input port
+     */
+    public InputPort getInputPort() {
 		return inPort;
 	}
 

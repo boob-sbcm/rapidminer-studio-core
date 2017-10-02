@@ -33,7 +33,7 @@ import java.util.Collection;
 
 /**
  * This operator provides basic functions for all other parameter optimization operators.
- * 
+ *
  * @author Ingo Mierswa, Helge Homburg, Tobias Malbrecht
  */
 public abstract class ParameterOptimizationOperator extends ParameterIteratingOperatorChain {
@@ -41,7 +41,12 @@ public abstract class ParameterOptimizationOperator extends ParameterIteratingOp
 	private final OutputPort performanceOutput = getOutputPorts().createPort("performance");
 	private final OutputPort parameterOutput = getOutputPorts().createPort("parameter");
 
-	public ParameterOptimizationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Parameter optimization operator.
+     *
+     * @param description the description
+     */
+    public ParameterOptimizationOperator(OperatorDescription description) {
 		super(description, "Optimization Process");
 
 		getTransformer().addPassThroughRule(getPerformanceInnerSink(), performanceOutput);
@@ -61,9 +66,20 @@ public abstract class ParameterOptimizationOperator extends ParameterIteratingOp
 		return new PortPairExtender("result", getSubprocess(0).getInnerSinks(), getOutputPorts());
 	}
 
-	public abstract double getCurrentBestPerformance();
+    /**
+     * Gets current best performance.
+     *
+     * @return the current best performance
+     */
+    public abstract double getCurrentBestPerformance();
 
-	protected void deliver(ParameterSet parameterSet) throws UserError {
+    /**
+     * Deliver.
+     *
+     * @param parameterSet the parameter set
+     * @throws UserError the user error
+     */
+    protected void deliver(ParameterSet parameterSet) throws UserError {
 		if (parameterSet != null) {
 			parameterOutput.deliver(parameterSet);
 			performanceOutput.deliver(parameterSet.getPerformance());
@@ -77,10 +93,15 @@ public abstract class ParameterOptimizationOperator extends ParameterIteratingOp
 		return true;
 	}
 
-	/**
-	 * @Deprecated Call {@link #getPerformance()} to apply inner operators.
-	 */
-	@Deprecated
+    /**
+     * Gets performance.
+     *
+     * @param input     the input
+     * @param operators the operators
+     * @return the performance
+     * @Deprecated Call {@link #getPerformance()} to apply inner operators.
+     */
+    @Deprecated
 	protected PerformanceVector getPerformance(IOContainer input, Collection<Operator> operators) {
 		throw new UnsupportedOperationException(
 				"getPerformance(IOContainer,Collection<Operator>) is deprecated. Please call getPerformance().");

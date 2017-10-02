@@ -30,7 +30,7 @@ import java.util.List;
 
 /**
  * This PopulationOperator generates new random constant attribute in an individual's example table.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class ConstantGeneration extends ExampleSetBasedIndividualOperator {
@@ -40,8 +40,13 @@ public class ConstantGeneration extends ExampleSetBasedIndividualOperator {
 
 	private RandomGenerator random;
 
-	/** Creates a new constant generator. */
-	public ConstantGeneration(double prob, RandomGenerator random) {
+    /**
+     * Creates a new constant generator.  @param prob the prob
+     *
+     * @param prob   the prob
+     * @param random the random
+     */
+    public ConstantGeneration(double prob, RandomGenerator random) {
 		this.prob = prob;
 		this.random = random;
 	}

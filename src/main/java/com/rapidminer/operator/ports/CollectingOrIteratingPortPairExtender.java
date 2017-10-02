@@ -36,22 +36,32 @@ import com.rapidminer.operator.ports.metadata.MetaData;
  */
 public class CollectingOrIteratingPortPairExtender extends CollectingPortPairExtender {
 
-	/**
-	 * The mode for the {@link CollectingOrIteratingPortPairExtender} which defines if the ports
-	 * should pass on collections or single data entries.
-	 *
-	 */
-	public static enum PortOutputMode {
-		/** ports pass on a collection of {@link IOObject}s */
-		COLLECTING,
+    /**
+     * The mode for the {@link CollectingOrIteratingPortPairExtender} which defines if the ports
+     * should pass on collections or single data entries.
+     */
+    public static enum PortOutputMode {
+        /**
+         * ports pass on a collection of {@link IOObject}s
+         */
+        COLLECTING,
 
-		/** ports pass on single {@link IOObject}s */
-		ITERATING;
+        /**
+         * ports pass on single {@link IOObject}s
+         */
+        ITERATING;
 	}
 
 	private PortOutputMode outputMode = PortOutputMode.COLLECTING;
 
-	public CollectingOrIteratingPortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts) {
+    /**
+     * Instantiates a new Collecting or iterating port pair extender.
+     *
+     * @param name     the name
+     * @param inPorts  the in ports
+     * @param outPorts the out ports
+     */
+    public CollectingOrIteratingPortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts) {
 		super(name, inPorts, outPorts);
 	}
 
@@ -60,13 +70,12 @@ public class CollectingOrIteratingPortPairExtender extends CollectingPortPairExt
 		return outputMode == PortOutputMode.COLLECTING ? new CollectionMetaData(md) : md;
 	}
 
-	/**
-	 * Changes the output mode of the port pair extender. See {@link PortOutputMode} for details.
-	 *
-	 * @param outputMode
-	 *            one of {@link PortOutputMode}, must not be {@code null}
-	 */
-	public void setOutputMode(PortOutputMode outputMode) {
+    /**
+     * Changes the output mode of the port pair extender. See {@link PortOutputMode} for details.
+     *
+     * @param outputMode one of {@link PortOutputMode}, must not be {@code null}
+     */
+    public void setOutputMode(PortOutputMode outputMode) {
 		if (outputMode == null) {
 			throw new IllegalArgumentException("outputMode must not be null!");
 		}
@@ -74,12 +83,12 @@ public class CollectingOrIteratingPortPairExtender extends CollectingPortPairExt
 		this.outputMode = outputMode;
 	}
 
-	/**
-	 * Returns the output mode of the port pair extender. See {@link PortOutputMode} for details.
-	 *
-	 * @return the mode, never {@code null}
-	 */
-	public PortOutputMode getOutputMode() {
+    /**
+     * Returns the output mode of the port pair extender. See {@link PortOutputMode} for details.
+     *
+     * @return the mode, never {@code null}
+     */
+    public PortOutputMode getOutputMode() {
 		return outputMode;
 	}
 

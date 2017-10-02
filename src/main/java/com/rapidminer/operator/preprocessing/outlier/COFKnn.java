@@ -20,50 +20,64 @@ package com.rapidminer.operator.preprocessing.outlier;
 
 /**
  * The COFKnn class creates the k nearest Objects for an cof object
- * 
+ *
  * @author Motaz K. Saad
  */
 public class COFKnn implements Comparable<COFKnn> {
 
-	COFObject cofobject;
-	double distance;
+    /**
+     * The Cofobject.
+     */
+    COFObject cofobject;
+    /**
+     * The Distance.
+     */
+    double distance;
 
-	/**
-	 * @param values
-	 * @param distance
-	 */
-	public COFKnn(COFObject cofobject, double distance) {
+    /**
+     * Instantiates a new Cof knn.
+     *
+     * @param cofobject the cofobject
+     * @param distance  the distance
+     */
+    public COFKnn(COFObject cofobject, double distance) {
 		this.cofobject = cofobject;
 		this.distance = distance;
 	}
 
-	/**
-	 * @return the cofobject
-	 */
-	public COFObject getCofobject() {
+    /**
+     * Gets cofobject.
+     *
+     * @return the cofobject
+     */
+    public COFObject getCofobject() {
 		return cofobject;
 	}
 
-	/**
-	 * @param cofobject
-	 *            the cofobject to set
-	 */
-	public void setCofobject(COFObject cofobject) {
+    /**
+     * Sets cofobject.
+     *
+     * @param cofobject the cofobject to set
+     */
+    public void setCofobject(COFObject cofobject) {
 		this.cofobject = cofobject;
 	}
 
-	/**
-	 * @return the distance
-	 */
-	public double getDistance() {
+    /**
+     * Gets distance.
+     *
+     * @return the distance
+     */
+    public double getDistance() {
 		return distance;
 	}
 
-	/**
-	 * @param distance
-	 *            the distance to set
-	 */
-	public void setDistance(double distance) {
+    /**
+     * Sets distance.
+     *
+     * @param distance the distance to set
+     */
+    public void setDistance(double distance) {
 		this.distance = distance;
 	}
 

@@ -33,16 +33,22 @@ import java.util.List;
 /**
  * An operator to delete repository entries within a process. If the entry does not exists it won't
  * throw an error but continue silently.
- * 
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class RepositoryEntryDeleteOperator extends AbstractRepositoryManagerOperator {
 
-	public static final String ELEMENT_TO_DELETE = "entry_to_delete";
+    /**
+     * The constant ELEMENT_TO_DELETE.
+     */
+    public static final String ELEMENT_TO_DELETE = "entry_to_delete";
 
-	public RepositoryEntryDeleteOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Repository entry delete operator.
+     *
+     * @param description the description
+     */
+    public RepositoryEntryDeleteOperator(OperatorDescription description) {
 		super(description);
 	}
 

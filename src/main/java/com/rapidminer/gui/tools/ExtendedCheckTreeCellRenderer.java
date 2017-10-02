@@ -30,7 +30,7 @@ import javax.swing.tree.TreePath;
 
 /**
  * This is the combined renderer for the check tree.
- * 
+ *
  * @author Santhosh Kumar, Ingo Mierswa 16:58:56 ingomierswa Exp $
  */
 public class ExtendedCheckTreeCellRenderer extends JPanel implements TreeCellRenderer {
@@ -43,7 +43,13 @@ public class ExtendedCheckTreeCellRenderer extends JPanel implements TreeCellRen
 
 	private ExtendedTriStateCheckBox checkBox = new ExtendedTriStateCheckBox();
 
-	public ExtendedCheckTreeCellRenderer(TreeCellRenderer delegate, ExtendedCheckTreeSelectionModel selectionModel) {
+    /**
+     * Instantiates a new Extended check tree cell renderer.
+     *
+     * @param delegate       the delegate
+     * @param selectionModel the selection model
+     */
+    public ExtendedCheckTreeCellRenderer(TreeCellRenderer delegate, ExtendedCheckTreeSelectionModel selectionModel) {
 		this.delegate = delegate;
 		this.selectionModel = selectionModel;
 		setLayout(new BorderLayout());

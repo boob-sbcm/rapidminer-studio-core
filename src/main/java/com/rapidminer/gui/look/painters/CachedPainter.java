@@ -29,15 +29,32 @@ import java.awt.Graphics;
  */
 public class CachedPainter {
 
-	public static void clearMenuCache() {
+    /**
+     * Clear menu cache.
+     */
+    public static void clearMenuCache() {
 		AbstractCachedPainter.clearCache();
 	}
 
-	public static void clearCashedImages() {
+    /**
+     * Clear cashed images.
+     */
+    public static void clearCashedImages() {
 		AbstractCachedPainter.clearCache();
 	}
 
-	public static boolean drawMenuBackground(Component c, Graphics g, int x, int y, int w, int h) {
+    /**
+     * Draw menu background boolean.
+     *
+     * @param c the c
+     * @param g the g
+     * @param x the x
+     * @param y the y
+     * @param w the w
+     * @param h the h
+     * @return the boolean
+     */
+    public static boolean drawMenuBackground(Component c, Graphics g, int x, int y, int w, int h) {
 		if (h < 0 || w < 0) {
 			return true;
 		}
@@ -45,7 +62,18 @@ public class CachedPainter {
 		return true;
 	}
 
-	public static boolean drawMenuBarBackground(Component c, Graphics g, int x, int y, int w, int h) {
+    /**
+     * Draw menu bar background boolean.
+     *
+     * @param c the c
+     * @param g the g
+     * @param x the x
+     * @param y the y
+     * @param w the w
+     * @param h the h
+     * @return the boolean
+     */
+    public static boolean drawMenuBarBackground(Component c, Graphics g, int x, int y, int w, int h) {
 		if (h < 0 || w < 0) {
 			return true;
 		}
@@ -53,7 +81,14 @@ public class CachedPainter {
 		return true;
 	}
 
-	public static boolean drawMenuSeparator(Component c, Graphics g) {
+    /**
+     * Draw menu separator boolean.
+     *
+     * @param c the c
+     * @param g the g
+     * @return the boolean
+     */
+    public static boolean drawMenuSeparator(Component c, Graphics g) {
 		int w = c.getWidth();
 		int h = c.getHeight();
 		if (h < 0 || w < 0) {

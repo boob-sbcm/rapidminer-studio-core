@@ -23,9 +23,8 @@ import com.rapidminer.gui.properties.tablepanel.TablePanel;
 
 /**
  * Indicates a cell for date_time values for the {@link TablePanel}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface CellTypeDateTime extends CellType {
 }

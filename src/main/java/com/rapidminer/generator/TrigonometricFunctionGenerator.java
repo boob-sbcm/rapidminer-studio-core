@@ -27,28 +27,48 @@ import com.rapidminer.tools.LogService;
  * This class has one numerical input attribute and one output attribute. Depending on the mode
  * specified in the constructor the result will be the sinus, cosinus, tangens, arc sinus, arc
  * cosinus, or arc tangens.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class TrigonometricFunctionGenerator extends SingularNumericalGenerator {
 
-	public static final int SINUS = 0;
+    /**
+     * The constant SINUS.
+     */
+    public static final int SINUS = 0;
 
-	public static final int COSINUS = 1;
+    /**
+     * The constant COSINUS.
+     */
+    public static final int COSINUS = 1;
 
-	public static final int TANGENS = 2;
+    /**
+     * The constant TANGENS.
+     */
+    public static final int TANGENS = 2;
 
-	public static final int ARC_TANGENS = 3;
+    /**
+     * The constant ARC_TANGENS.
+     */
+    public static final int ARC_TANGENS = 3;
 
 	private static final String[] FUNCTION_NAMES = { "sin", "cos", "tan", "atan" };
 
 	private int mode = SINUS;
 
-	public TrigonometricFunctionGenerator(int mode) {
+    /**
+     * Instantiates a new Trigonometric function generator.
+     *
+     * @param mode the mode
+     */
+    public TrigonometricFunctionGenerator(int mode) {
 		this.mode = mode;
 	}
 
-	public TrigonometricFunctionGenerator() {}
+    /**
+     * Instantiates a new Trigonometric function generator.
+     */
+    public TrigonometricFunctionGenerator() {}
 
 	@Override
 	public FeatureGenerator newInstance() {

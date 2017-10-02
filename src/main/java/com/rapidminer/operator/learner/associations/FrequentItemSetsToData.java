@@ -50,19 +50,31 @@ import com.rapidminer.tools.parameter.internal.DataManagementParameterHelper;
 
 
 /**
+ * The type Frequent item sets to data.
  *
  * @author Tobias Malbrecht
  */
 public class FrequentItemSetsToData extends Operator {
 
-	public static final String PARAMETER_GENERATE_ITEM_SET_INDICATORS = "generate_item_set_indicators";
-	public static final String PARAMETER_DATAMANAGEMENT = ExampleSetGenerator.PARAMETER_DATAMANAGEMENT;
+    /**
+     * The constant PARAMETER_GENERATE_ITEM_SET_INDICATORS.
+     */
+    public static final String PARAMETER_GENERATE_ITEM_SET_INDICATORS = "generate_item_set_indicators";
+    /**
+     * The constant PARAMETER_DATAMANAGEMENT.
+     */
+    public static final String PARAMETER_DATAMANAGEMENT = ExampleSetGenerator.PARAMETER_DATAMANAGEMENT;
 
 	private InputPort frequentItemSetsInput = getInputPorts().createPort("frequent item sets", FrequentItemSets.class);
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort frequentItemSetsOutput = getOutputPorts().createPort("frequent item sets");
 
-	public FrequentItemSetsToData(OperatorDescription description) {
+    /**
+     * Instantiates a new Frequent item sets to data.
+     *
+     * @param description the description
+     */
+    public FrequentItemSetsToData(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new GenerateNewExampleSetMDRule(exampleSetOutput) {
 

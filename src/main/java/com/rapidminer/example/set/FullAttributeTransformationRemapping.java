@@ -41,11 +41,21 @@ public class FullAttributeTransformationRemapping implements AttributeTransforma
 
 	private NominalMapping baseMapping;
 
-	public FullAttributeTransformationRemapping(NominalMapping baseMapping) {
+    /**
+     * Instantiates a new Full attribute transformation remapping.
+     *
+     * @param baseMapping the base mapping
+     */
+    public FullAttributeTransformationRemapping(NominalMapping baseMapping) {
 		this.baseMapping = baseMapping;
 	}
 
-	public FullAttributeTransformationRemapping(FullAttributeTransformationRemapping other) {
+    /**
+     * Instantiates a new Full attribute transformation remapping.
+     *
+     * @param other the other
+     */
+    public FullAttributeTransformationRemapping(FullAttributeTransformationRemapping other) {
 		this.baseMapping = (NominalMapping) other.baseMapping.clone();
 	}
 
@@ -54,7 +64,12 @@ public class FullAttributeTransformationRemapping implements AttributeTransforma
 		return new FullAttributeTransformationRemapping(this);
 	}
 
-	public void setNominalMapping(NominalMapping mapping) {
+    /**
+     * Sets nominal mapping.
+     *
+     * @param mapping the mapping
+     */
+    public void setNominalMapping(NominalMapping mapping) {
 		this.baseMapping = mapping;
 	}
 

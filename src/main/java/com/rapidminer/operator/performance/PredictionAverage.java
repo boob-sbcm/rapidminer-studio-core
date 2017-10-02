@@ -30,7 +30,7 @@ import com.rapidminer.tools.math.Averagable;
  * learning scheme predicts nonsense, e.g. always make the same error. This criterion is not
  * suitable for evaluating the performance and should never be used as main criterion. The
  * {@link #getFitness()} method always returns 0.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class PredictionAverage extends MeasuredPerformance {
@@ -47,9 +47,17 @@ public class PredictionAverage extends MeasuredPerformance {
 
 	private Attribute weightAttribute;
 
-	public PredictionAverage() {}
+    /**
+     * Instantiates a new Prediction average.
+     */
+    public PredictionAverage() {}
 
-	public PredictionAverage(PredictionAverage pa) {
+    /**
+     * Instantiates a new Prediction average.
+     *
+     * @param pa the pa
+     */
+    public PredictionAverage(PredictionAverage pa) {
 		super(pa);
 		this.sum = pa.sum;
 		this.squaredSum = pa.squaredSum;

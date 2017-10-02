@@ -57,52 +57,50 @@ public abstract class PredictionModel extends AbstractModel {
 	 */
 	private ExampleSetUtilities.SetsCompareOption compareSetSize;
 
-	/**
-	 * Created a new prediction model which was built on the given example set. Please note that the
-	 * given example set is automatically transformed into a {@link HeaderExampleSet} which means
-	 * that no reference to the data itself is kept but only to the header, i.e. to the attribute
-	 * meta descriptions.
-	 *
-	 * @deprecated Since RapidMiner Studio 6.0.009. Please use the new Constructor
-	 *             {@link #PredictionModel(ExampleSet, com.rapidminer.example.set.ExampleSetUtilities.SetsCompareOption, com.rapidminer.example.set.ExampleSetUtilities.TypesCompareOption)}
-	 *             which offers the possibility to check for AttributeType and kind of ExampleSet
-	 *             before execution.
-	 */
-	@Deprecated
+    /**
+     * Created a new prediction model which was built on the given example set. Please note that the
+     * given example set is automatically transformed into a {@link HeaderExampleSet} which means
+     * that no reference to the data itself is kept but only to the header, i.e. to the attribute
+     * meta descriptions.
+     *
+     * @param trainingExampleSet the training example set
+     * @deprecated Since RapidMiner Studio 6.0.009. Please use the new Constructor             {@link #PredictionModel(ExampleSet, com.rapidminer.example.set.ExampleSetUtilities.SetsCompareOption, com.rapidminer.example.set.ExampleSetUtilities.TypesCompareOption)}             which offers the possibility to check for AttributeType and kind of ExampleSet             before execution.
+     */
+    @Deprecated
 	protected PredictionModel(ExampleSet trainingExampleSet) {
 		super(trainingExampleSet);
 		compareDataType = null;
 		compareSetSize = null;
 	}
 
-	/**
-	 * Creates a new prediction model which is build based on the given {@link ExampleSet}. Please
-	 * note that the given ExampleSet is automatically transformed into a {@link HeaderExampleSet}
-	 * which means that no reference to the data itself is kept but only to the header, i.e., to the
-	 * attribute meta descriptions.
-	 *
-	 * @param sizeCompareOperator
-	 *            describes the allowed relations between the given ExampleSet and future
-	 *            ExampleSets on which this Model will be applied. If this parameter is null no
-	 *            error will be thrown.
-	 * @param typeCompareOperator
-	 *            describes the allowed relations between the types of the attributes of the given
-	 *            ExampleSet and the types of future attributes of ExampleSet on which this Model
-	 *            will be applied. If this parameter is null no error will be thrown.
-	 */
-	protected PredictionModel(ExampleSet trainingExampleSet, ExampleSetUtilities.SetsCompareOption sizeCompareOperator,
+    /**
+     * Creates a new prediction model which is build based on the given {@link ExampleSet}. Please
+     * note that the given ExampleSet is automatically transformed into a {@link HeaderExampleSet}
+     * which means that no reference to the data itself is kept but only to the header, i.e., to the
+     * attribute meta descriptions.
+     *
+     * @param trainingExampleSet  the training example set
+     * @param sizeCompareOperator describes the allowed relations between the given ExampleSet and future            ExampleSets on which this Model will be applied. If this parameter is null no            error will be thrown.
+     * @param typeCompareOperator describes the allowed relations between the types of the attributes of the given            ExampleSet and the types of future attributes of ExampleSet on which this Model            will be applied. If this parameter is null no error will be thrown.
+     */
+    protected PredictionModel(ExampleSet trainingExampleSet, ExampleSetUtilities.SetsCompareOption sizeCompareOperator,
 			ExampleSetUtilities.TypesCompareOption typeCompareOperator) {
 		super(trainingExampleSet);
 		this.compareDataType = typeCompareOperator;
 		this.compareSetSize = sizeCompareOperator;
 	}
 
-	/**
-	 * Subclasses should iterate through the given example set and set the prediction for each
-	 * example. The given predicted label attribute was already be added to the example set and
-	 * should be used to set the predicted values.
-	 */
-	public abstract ExampleSet performPrediction(ExampleSet exampleSet, Attribute predictedLabel) throws OperatorException;
+    /**
+     * Subclasses should iterate through the given example set and set the prediction for each
+     * example. The given predicted label attribute was already be added to the example set and
+     * should be used to set the predicted values.
+     *
+     * @param exampleSet     the example set
+     * @param predictedLabel the predicted label
+     * @return the example set
+     * @throws OperatorException the operator exception
+     */
+    public abstract ExampleSet performPrediction(ExampleSet exampleSet, Attribute predictedLabel) throws OperatorException;
 
 	/**
 	 * Applies the model by creating a predicted label attribute and setting the predicted label
@@ -123,18 +121,25 @@ public abstract class PredictionModel extends AbstractModel {
 		return exampleSet;
 	}
 
-	/** Returns the label attribute. */
-	public Attribute getLabel() {
+    /**
+     * Returns the label attribute.  @return the label
+     *
+     * @return the label
+     */
+    public Attribute getLabel() {
 		return getTrainingHeader().getAttributes().getLabel();
 	}
 
-	/**
-	 * This method is invoked before the model is actually applied. The default implementation
-	 * performs some basic compatibility checks and writes warnings if the given example set (for
-	 * applying the model) does not fit the training example set. Subclasses might override this
-	 * method and might throw exceptions which will prevent the application of the model.
-	 */
-	protected void checkCompatibility(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * This method is invoked before the model is actually applied. The default implementation
+     * performs some basic compatibility checks and writes warnings if the given example set (for
+     * applying the model) does not fit the training example set. Subclasses might override this
+     * method and might throw exceptions which will prevent the application of the model.
+     *
+     * @param exampleSet the example set
+     * @throws OperatorException the operator exception
+     */
+    protected void checkCompatibility(ExampleSet exampleSet) throws OperatorException {
 		ExampleSet trainingHeaderSet = getTrainingHeader();
 		// check given constraints (might throw an UserError)
 		ExampleSetUtilities.checkAttributesMatching(getOperator(), trainingHeaderSet.getAttributes(),
@@ -195,10 +200,14 @@ public abstract class PredictionModel extends AbstractModel {
 		}
 	}
 
-	/**
-	 * This method creates prediction attributes like the predicted label and confidences if needed.
-	 */
-	protected Attribute createPredictionAttributes(ExampleSet exampleSet, Attribute label) {
+    /**
+     * This method creates prediction attributes like the predicted label and confidences if needed.
+     *
+     * @param exampleSet the example set
+     * @param label      the label
+     * @return the attribute
+     */
+    protected Attribute createPredictionAttributes(ExampleSet exampleSet, Attribute label) {
 		// create and add prediction attribute
 		Attribute predictedLabel = AttributeFactory.createAttribute(label, Attributes.PREDICTION_NAME);
 		predictedLabel.clearTransformations();
@@ -218,25 +227,32 @@ public abstract class PredictionModel extends AbstractModel {
 		return predictedLabel;
 	}
 
-	/**
-	 * This method determines if confidence attributes are created depending on the current label.
-	 * Usually this depends only on the fact that the label is nominal, but subclasses might
-	 * override this to avoid attribute construction for confidences.
-	 */
-	protected boolean supportsConfidences(Attribute label) {
+    /**
+     * This method determines if confidence attributes are created depending on the current label.
+     * Usually this depends only on the fact that the label is nominal, but subclasses might
+     * override this to avoid attribute construction for confidences.
+     *
+     * @param label the label
+     * @return the boolean
+     */
+    protected boolean supportsConfidences(Attribute label) {
 		return label != null && label.isNominal();
 	}
 
-	/**
-	 * Creates a predicted label for the given example set based on the label attribute defined for
-	 * this prediction model. Subclasses which override this method should first invoke
-	 * super.createPredictedLabel(exampleSet) and should then replace the attribute with a new
-	 * predicted label attribute via a method call like
-	 * <code>exampleSet.replaceAttribute(predictedLabel, AttributeFactory.changeValueType(predictedLabel, Ontology.REAL)); </code>
-	 * . This might be useful in cases where a crisp nominal prediction should be replaced by
-	 * confidence predictions.
-	 */
-	public static Attribute createPredictedLabel(ExampleSet exampleSet, Attribute label) {
+    /**
+     * Creates a predicted label for the given example set based on the label attribute defined for
+     * this prediction model. Subclasses which override this method should first invoke
+     * super.createPredictedLabel(exampleSet) and should then replace the attribute with a new
+     * predicted label attribute via a method call like
+     * <code>exampleSet.replaceAttribute(predictedLabel, AttributeFactory.changeValueType(predictedLabel, Ontology.REAL)); </code>
+     * . This might be useful in cases where a crisp nominal prediction should be replaced by
+     * confidence predictions.
+     *
+     * @param exampleSet the example set
+     * @param label      the label
+     * @return the attribute
+     */
+    public static Attribute createPredictedLabel(ExampleSet exampleSet, Attribute label) {
 		// create and add prediction attribute
 		Attribute predictedLabel = AttributeFactory.createAttribute(label, Attributes.PREDICTION_NAME);
 		predictedLabel.clearTransformations();
@@ -261,21 +277,27 @@ public abstract class PredictionModel extends AbstractModel {
 		return getName() + " (prediction model for label " + getTrainingHeader().getAttributes().getLabel().getName() + ")";
 	}
 
-	/**
-	 * Helper method in order to reduce memory consumption. This method should be invoked after a
-	 * predicted label and confidence are not longer needed, e.g. after each iteration of a
-	 * crossvalidation or after a meta learning iteration.
-	 */
-	public static void removePredictedLabel(ExampleSet exampleSet) {
+    /**
+     * Helper method in order to reduce memory consumption. This method should be invoked after a
+     * predicted label and confidence are not longer needed, e.g. after each iteration of a
+     * crossvalidation or after a meta learning iteration.
+     *
+     * @param exampleSet the example set
+     */
+    public static void removePredictedLabel(ExampleSet exampleSet) {
 		removePredictedLabel(exampleSet, true, true);
 	}
 
-	/**
-	 * Helper method in order to lower memory consumption. This method should be invoked after a
-	 * predicted label and confidence are not longer needed, e.g. after each crossvalidation run or
-	 * after a meta learning iteration.
-	 */
-	public static void removePredictedLabel(ExampleSet exampleSet, boolean removePredictionFromTable,
+    /**
+     * Helper method in order to lower memory consumption. This method should be invoked after a
+     * predicted label and confidence are not longer needed, e.g. after each crossvalidation run or
+     * after a meta learning iteration.
+     *
+     * @param exampleSet                 the example set
+     * @param removePredictionFromTable  the remove prediction from table
+     * @param removeConfidencesFromTable the remove confidences from table
+     */
+    public static void removePredictedLabel(ExampleSet exampleSet, boolean removePredictionFromTable,
 			boolean removeConfidencesFromTable) {
 		Attribute predictedLabel = exampleSet.getAttributes().getPredictedLabel();
 		if (predictedLabel != null) { // remove old predicted label
@@ -298,11 +320,14 @@ public abstract class PredictionModel extends AbstractModel {
 		}
 	}
 
-	/**
-	 * Copies the predicted label from the source example set to the destination example set. Does
-	 * nothing if the source does not contain a predicted label.
-	 */
-	public static void copyPredictedLabel(ExampleSet source, ExampleSet destination) {
+    /**
+     * Copies the predicted label from the source example set to the destination example set. Does
+     * nothing if the source does not contain a predicted label.
+     *
+     * @param source      the source
+     * @param destination the destination
+     */
+    public static void copyPredictedLabel(ExampleSet source, ExampleSet destination) {
 		Attribute predictedLabel = source.getAttributes().getPredictedLabel();
 		if (predictedLabel != null) {
 			// remove attributes but do not delete the columns from the table, otherwise copying is

@@ -44,7 +44,9 @@ import com.rapidminer.tools.I18N;
 
 
 /**
+ * The type Parent button panel.
  *
+ * @param <T> the type parameter
  * @author Tobias Malbrecht
  */
 public class ParentButtonPanel<T> extends ExtendedJToolBar {
@@ -86,11 +88,19 @@ public class ParentButtonPanel<T> extends ExtendedJToolBar {
 		}
 	});
 
-	public ParentButtonPanel() {
+    /**
+     * Instantiates a new Parent button panel.
+     */
+    public ParentButtonPanel() {
 		this(null);
 	}
 
-	public ParentButtonPanel(ParentButtonModel<T> model) {
+    /**
+     * Instantiates a new Parent button panel.
+     *
+     * @param model the model
+     */
+    public ParentButtonPanel(ParentButtonModel<T> model) {
 		setModel(model);
 		setOpaque(false);
 
@@ -120,13 +130,23 @@ public class ParentButtonPanel<T> extends ExtendedJToolBar {
 		return result;
 	}
 
-	public void setSelectedNode(T node) {
+    /**
+     * Sets selected node.
+     *
+     * @param node the node
+     */
+    public void setSelectedNode(T node) {
 		this.currentNode = node;
 		upButton.setEnabled(model.getParent(currentNode) != null);
 		setup();
 	}
 
-	public void setModel(ParentButtonModel<T> model) {
+    /**
+     * Sets model.
+     *
+     * @param model the model
+     */
+    public void setModel(ParentButtonModel<T> model) {
 		this.model = model;
 		setup();
 	}
@@ -280,28 +300,51 @@ public class ParentButtonPanel<T> extends ExtendedJToolBar {
 		return menu;
 	}
 
-	public T getSelectedNode() {
+    /**
+     * Gets selected node.
+     *
+     * @return the selected node
+     */
+    public T getSelectedNode() {
 		return selectedNode;
 	}
 
 	private EventListenerList listeners = new EventListenerList();
 
-	public void addActionListener(ActionListener l) {
+    /**
+     * Add action listener.
+     *
+     * @param l the l
+     */
+    public void addActionListener(ActionListener l) {
 		listeners.add(ActionListener.class, l);
 	}
 
-	public void removeActionListener(ActionListener l) {
+    /**
+     * Remove action listener.
+     *
+     * @param l the l
+     */
+    public void removeActionListener(ActionListener l) {
 		listeners.remove(ActionListener.class, l);
 	}
 
 	private int eventId = 0;
 
-	public void clearHistory() {
+    /**
+     * Clear history.
+     */
+    public void clearHistory() {
 		backward.clear();
 		forward.clear();
 	}
 
-	public void addToHistory(T node) {
+    /**
+     * Add to history.
+     *
+     * @param node the node
+     */
+    public void addToHistory(T node) {
 		if (node == null) {
 			return;
 		}

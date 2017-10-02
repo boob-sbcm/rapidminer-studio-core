@@ -136,13 +136,13 @@ public class FunctionDescriptionPanel extends JPanel {
 	/** defines when the width of function names is cropped */
 	private static int MAX_WIDTH_OF_TEXT = 600;
 
-	/**
-	 * Creates a panel for the given {@link FunctionDescription}. When the panel is expanded, the
-	 * extra information is shown.
-	 *
-	 * @param functionEntry
-	 */
-	public FunctionDescriptionPanel(FunctionDescription functionEntry) {
+    /**
+     * Creates a panel for the given {@link FunctionDescription}. When the panel is expanded, the
+     * extra information is shown.
+     *
+     * @param functionEntry the function entry
+     */
+    public FunctionDescriptionPanel(FunctionDescription functionEntry) {
 		this.functionEntry = functionEntry;
 
 		initGUI();
@@ -163,14 +163,21 @@ public class FunctionDescriptionPanel extends JPanel {
 		initialized = true;
 	}
 
-	/**
-	 * Register an observer to react on click events
-	 */
-	public void registerObserver(Observer<FunctionDescription> observer) {
+    /**
+     * Register an observer to react on click events
+     *
+     * @param observer the observer
+     */
+    public void registerObserver(Observer<FunctionDescription> observer) {
 		observable.addObserver(observer, false);
 	}
 
-	public static void updateMaximalWidth(int maxWidth) {
+    /**
+     * Update maximal width.
+     *
+     * @param maxWidth the max width
+     */
+    public static void updateMaximalWidth(int maxWidth) {
 		MAX_WIDTH_OF_TEXT = maxWidth - 15;
 	}
 

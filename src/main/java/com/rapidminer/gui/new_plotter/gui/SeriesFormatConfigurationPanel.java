@@ -28,8 +28,9 @@ import javax.swing.JTree;
 
 
 /**
+ * The type Series format configuration panel.
+ *
  * @author Nils Woehler
- * 
  */
 public class SeriesFormatConfigurationPanel extends AbstractTreeSelectionDependentPanel {
 
@@ -41,7 +42,14 @@ public class SeriesFormatConfigurationPanel extends AbstractTreeSelectionDepende
 	private LineChartConfigurationPanel lineChartPanel;
 	private AreaAndBarChartConfigurationPanel areaAndBarChartPanel;
 
-	public SeriesFormatConfigurationPanel(boolean smallIcons, JTree plotConfigurationTree, PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Series format configuration panel.
+     *
+     * @param smallIcons            the small icons
+     * @param plotConfigurationTree the plot configuration tree
+     * @param plotInstance          the plot instance
+     */
+    public SeriesFormatConfigurationPanel(boolean smallIcons, JTree plotConfigurationTree, PlotInstance plotInstance) {
 		super(plotConfigurationTree, plotInstance);
 
 		this.setLayout(new CardLayout());

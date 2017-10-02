@@ -59,12 +59,22 @@ public abstract class AbstractLogModel extends AbstractObservable<List<LogEntry>
 		private int head = 0;
 		private int tail = 0;
 
-		public CircularArrayList(int capacity) {
+        /**
+         * Instantiates a new Circular array list.
+         *
+         * @param capacity the capacity
+         */
+        public CircularArrayList(int capacity) {
 			n = capacity + 1;
 			buf = new ArrayList<E>(Collections.nCopies(n, (E) null));
 		}
 
-		@SuppressWarnings("unused")
+        /**
+         * Capacity int.
+         *
+         * @return the int
+         */
+        @SuppressWarnings("unused")
 		public int capacity() {
 			return n - 1;
 		}
@@ -141,10 +151,10 @@ public abstract class AbstractLogModel extends AbstractObservable<List<LogEntry>
 	/** the min and max size of an icon (if set) */
 	private static final int ICON_SIZE = 16;
 
-	/**
-	 * the max size of log entries, if this size is exceeded the first elements will be dismissed
-	 */
-	public static final int DEFAULT_MAX_LOG_ENTRIES = 100_000;
+    /**
+     * the max size of log entries, if this size is exceeded the first elements will be dismissed
+     */
+    public static final int DEFAULT_MAX_LOG_ENTRIES = 100_000;
 
 	/** icon which is used if a log specifies no own icon */
 	private static final ImageIcon FALLBACK_ICON = SwingTools
@@ -168,41 +178,30 @@ public abstract class AbstractLogModel extends AbstractObservable<List<LogEntry>
 	/** Log Level of the model */
 	private Level logLevel;
 
-	/**
-	 * Creates a new log model with max {@value #DEFAULT_MAX_LOG_ENTRIES} log entries. If the size
-	 * is exceeded old entries will be overwritten.
-	 *
-	 * @param modelIcon
-	 *            can be <code>null</code>. If not <code>null</code>, must be 16x16 pixel
-	 * @param modelName
-	 *            cannot be <code>null</code> or empty. Must not exceed
-	 *            {@link LogModel#MAX_NAME_LENGTH} characters
-	 * @param logMode
-	 *            see {@link LogMode#PULL} and {@link LogMode#PUSH}
-	 * @param isClosable
-	 *            if <code>true</code>, the user can close the log via a button in the GUI
-	 */
-	public AbstractLogModel(Icon modelIcon, String modelName, LogMode logMode, boolean isClosable) {
+    /**
+     * Creates a new log model with max {@value #DEFAULT_MAX_LOG_ENTRIES} log entries. If the size
+     * is exceeded old entries will be overwritten.
+     *
+     * @param modelIcon  can be <code>null</code>. If not <code>null</code>, must be 16x16 pixel
+     * @param modelName  cannot be <code>null</code> or empty. Must not exceed            {@link LogModel#MAX_NAME_LENGTH} characters
+     * @param logMode    see {@link LogMode#PULL} and {@link LogMode#PUSH}
+     * @param isClosable if <code>true</code>, the user can close the log via a button in the GUI
+     */
+    public AbstractLogModel(Icon modelIcon, String modelName, LogMode logMode, boolean isClosable) {
 		this(modelIcon, modelName, logMode, isClosable, DEFAULT_MAX_LOG_ENTRIES);
 	}
 
-	/**
-	 * Creates a new log model with the defined size of log entries. If the size is exceeded old
-	 * entries will be overwritten.
-	 *
-	 * @param modelIcon
-	 *            can be <code>null</code>. If not <code>null</code>, must be 16x16 pixel
-	 * @param modelName
-	 *            cannot be <code>null</code> or empty. Must not exceed
-	 *            {@link LogModel#MAX_NAME_LENGTH} characters
-	 * @param logMode
-	 *            see {@link LogMode#PULL} and {@link LogMode#PUSH}
-	 * @param isClosable
-	 *            if <code>true</code>, the user can close the log via a button in the GUI
-	 * @param maxLogEntries
-	 *            the maximum size of log entries
-	 */
-	public AbstractLogModel(Icon modelIcon, String modelName, LogMode logMode, boolean isClosable, int maxLogEntries) {
+    /**
+     * Creates a new log model with the defined size of log entries. If the size is exceeded old
+     * entries will be overwritten.
+     *
+     * @param modelIcon     can be <code>null</code>. If not <code>null</code>, must be 16x16 pixel
+     * @param modelName     cannot be <code>null</code> or empty. Must not exceed            {@link LogModel#MAX_NAME_LENGTH} characters
+     * @param logMode       see {@link LogMode#PULL} and {@link LogMode#PUSH}
+     * @param isClosable    if <code>true</code>, the user can close the log via a button in the GUI
+     * @param maxLogEntries the maximum size of log entries
+     */
+    public AbstractLogModel(Icon modelIcon, String modelName, LogMode logMode, boolean isClosable, int maxLogEntries) {
 		if (modelName == null || "".equals(modelName.trim())) {
 			throw new IllegalArgumentException("modelName must not be null or empty!");
 		}

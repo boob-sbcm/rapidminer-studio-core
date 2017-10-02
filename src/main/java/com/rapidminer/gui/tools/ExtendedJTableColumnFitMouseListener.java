@@ -32,7 +32,7 @@ import javax.swing.table.TableColumn;
 
 /**
  * This is a the listener for double clicks on column separators in order to pack the left column.
- * 
+ *
  * @author Santhosh Kumar, Ingo Mierswa
  */
 public class ExtendedJTableColumnFitMouseListener extends MouseAdapter {

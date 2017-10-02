@@ -46,31 +46,35 @@ import de.dfki.madm.operator.KMeanspp;
 /**
  * This operator represents an implementation of k-means. This operator will create a cluster
  * attribute if not present yet.
- *
+ * <p>
  * The implementation is according to paper of C. Elkan: - Using the Triangle Inequality to
  * Accelerate k-Means - Proceedings of the Twentieth International Conference on Machine Learning
  * (ICML-2003), Washington DC, 2003
  *
  * @author Alexander Arimond
  */
-
 public class FastKMeans extends RMAbstractClusterer {
 
-	/** The parameter name for &quot;the maximal number of clusters&quot; */
-	public static final String PARAMETER_K = "k";
+    /**
+     * The parameter name for &quot;the maximal number of clusters&quot;
+     */
+    public static final String PARAMETER_K = "k";
 
-	/**
-	 * The parameter name for &quot;the maximal number of runs of the k method with random
-	 * initialization that are performed&quot;
-	 */
-	public static final String PARAMETER_MAX_RUNS = "max_runs";
-	boolean kpp = getParameterAsBoolean(KMeanspp.PARAMETER_USE_KPP);
+    /**
+     * The parameter name for &quot;the maximal number of runs of the k method with random
+     * initialization that are performed&quot;
+     */
+    public static final String PARAMETER_MAX_RUNS = "max_runs";
+    /**
+     * The Kpp.
+     */
+    boolean kpp = getParameterAsBoolean(KMeanspp.PARAMETER_USE_KPP);
 
-	/**
-	 * The parameter name for &quot;the maximal number of iterations performed for one run of the k
-	 * method&quot;
-	 */
-	public static final String PARAMETER_MAX_OPTIMIZATION_STEPS = "max_optimization_steps";
+    /**
+     * The parameter name for &quot;the maximal number of iterations performed for one run of the k
+     * method&quot;
+     */
+    public static final String PARAMETER_MAX_OPTIMIZATION_STEPS = "max_optimization_steps";
 
 	/**
 	 * Overrides the measure specified by the operator parameters. If set to null, parameters will
@@ -81,7 +85,12 @@ public class FastKMeans extends RMAbstractClusterer {
 		super.setPresetMeasure(me);
 	}
 
-	public FastKMeans(OperatorDescription description) {
+    /**
+     * Instantiates a new Fast k means.
+     *
+     * @param description the description
+     */
+    public FastKMeans(OperatorDescription description) {
 		super(description);
 	}
 

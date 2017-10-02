@@ -26,21 +26,36 @@ import java.util.regex.PatternSyntaxException;
 /**
  * This class provides the functionality to translate a GLOB expression into a standard regular
  * expression.
- * 
+ * <p>
  * GLOB provides a subset of the functionality of regular expressions: '?' Matches one unknown
  * character '*' Matches any number of unknown characters '[abc]' Matches a, b or c, or more general
  * any inserted character '{abc,def}' Matches abc or def.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class GlobCompiler {
 
 	private enum Commands {
-		UNBRACED, SQUARE_BRACKETS, CURLY_BRACKETS
+        /**
+         * Unbraced commands.
+         */
+        UNBRACED, /**
+         * Square brackets commands.
+         */
+        SQUARE_BRACKETS, /**
+         * Curly brackets commands.
+         */
+        CURLY_BRACKETS
 	}
 
-	public static Pattern compileGlob(final String glob) throws PatternSyntaxException {
+    /**
+     * Compile glob pattern.
+     *
+     * @param glob the glob
+     * @return the pattern
+     * @throws PatternSyntaxException the pattern syntax exception
+     */
+    public static Pattern compileGlob(final String glob) throws PatternSyntaxException {
 		// use stack to keep track if inside braces. Start unbraced...
 		Stack<Commands> currentMode = new Stack<Commands>();
 		currentMode.push(Commands.UNBRACED);

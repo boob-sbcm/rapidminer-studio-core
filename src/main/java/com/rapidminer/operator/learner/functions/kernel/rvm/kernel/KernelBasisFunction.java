@@ -23,42 +23,66 @@ import java.io.Serializable;
 
 /**
  * A basis function for kernels.
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
  */
 public class KernelBasisFunction implements Serializable {
 
 	private static final long serialVersionUID = 6468092358201066159L;
 
-	/** Dimension of the basis vector (= dimension of input vectors) */
-	protected int dim = 0;
+    /**
+     * Dimension of the basis vector (= dimension of input vectors)
+     */
+    protected int dim = 0;
 
-	/** Vector */
-	protected double[] y = null;
+    /**
+     * Vector
+     */
+    protected double[] y = null;
 
-	/** The kernel to be used as a basis */
-	protected Kernel kernel = null;
+    /**
+     * The kernel to be used as a basis
+     */
+    protected Kernel kernel = null;
 
-	/** Constructor(s) */
-
-	public KernelBasisFunction(Kernel kernel, double[] y_vector) {
+    /**
+     * Constructor(s)  @param kernel the kernel
+     *
+     * @param kernel   the kernel
+     * @param y_vector the y vector
+     */
+    public KernelBasisFunction(Kernel kernel, double[] y_vector) {
 		y = y_vector;
 		dim = y.length;
 
 		this.kernel = kernel;
 	}
 
-	public KernelBasisFunction(Kernel kernel) {
+    /**
+     * Instantiates a new Kernel basis function.
+     *
+     * @param kernel the kernel
+     */
+    public KernelBasisFunction(Kernel kernel) {
 		this.kernel = kernel;
 	}
 
-	/** Evaluate KernelBasisFunction */
-	public double eval(double[] x) {
+    /**
+     * Evaluate KernelBasisFunction  @param x the x
+     *
+     * @param x the x
+     * @return the double
+     */
+    public double eval(double[] x) {
 		return kernel.eval(x, y);
 	}
 
-	/** Get basis vector */
-	public double[] getBasisVector() {
+    /**
+     * Get basis vector  @return the double [ ]
+     *
+     * @return the double [ ]
+     */
+    public double[] getBasisVector() {
 		return this.y;
 	}
 }

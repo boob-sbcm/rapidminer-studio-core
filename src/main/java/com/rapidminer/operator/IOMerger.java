@@ -25,16 +25,20 @@ import com.rapidminer.operator.ports.OutputPort;
 
 /**
  * This operator returns the first non-null input it receives.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class IOMerger extends Operator {
 
 	private final OutputPort outputPort = getOutputPorts().createPort("output");
 	private final InputPortExtender inputExtender = new InputPortExtender("input", getInputPorts());
 
-	public IOMerger(OperatorDescription description) {
+    /**
+     * Instantiates a new Io merger.
+     *
+     * @param description the description
+     */
+    public IOMerger(OperatorDescription description) {
 		super(description);
 		inputExtender.start();
 		getTransformer().addRule(inputExtender.makePassThroughRule(outputPort));

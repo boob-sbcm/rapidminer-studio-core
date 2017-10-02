@@ -36,20 +36,17 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
 
 
 /**
- *
  * A {@link Function} parsing a string or a number to a date.
  *
  * @author Marcel Seifert
- *
  */
 public class DateParse extends AbstractFunction {
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 *
-	 */
-	public DateParse() {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     */
+    public DateParse() {
 		super("conversion.date_parse", 1, Ontology.DATE);
 	}
 
@@ -66,14 +63,13 @@ public class DateParse extends AbstractFunction {
 		return new SimpleExpressionEvaluator(type, makeDateCallable(input), isResultConstant(inputEvaluators));
 	}
 
-	/**
-	 * Builds a Date Callable from one String or one double input argument
-	 *
-	 * @param inputEvaluator
-	 *            the input
-	 * @return the resulting callable<String>
-	 */
-	protected Callable<Date> makeDateCallable(final ExpressionEvaluator inputEvaluator) {
+    /**
+     * Builds a Date Callable from one String or one double input argument
+     *
+     * @param inputEvaluator the input
+     * @return the resulting callable<String>
+     */
+    protected Callable<Date> makeDateCallable(final ExpressionEvaluator inputEvaluator) {
 
 		final Callable<String> funcString = inputEvaluator.getType() == ExpressionType.STRING ? inputEvaluator
 				.getStringFunction() : null;
@@ -129,15 +125,13 @@ public class DateParse extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result for one input double value.
-	 *
-	 * @param value
-	 *            the input timestamp
-	 *
-	 * @return the result of the computation.
-	 */
-	protected Date compute(double value) {
+    /**
+     * Computes the result for one input double value.
+     *
+     * @param value the input timestamp
+     * @return the result of the computation.
+     */
+    protected Date compute(double value) {
 
 		if (Double.isNaN(value)) {
 			return null;
@@ -150,15 +144,13 @@ public class DateParse extends AbstractFunction {
 		return cal.getTime();
 	}
 
-	/**
-	 * Computes the result for one input string value.
-	 *
-	 * @param value
-	 *            the input date string
-	 *
-	 * @return the result of the computation
-	 */
-	protected Date compute(String dateString) {
+    /**
+     * Computes the result for one input string value.
+     *
+     * @param dateString the date string
+     * @return the result of the computation
+     */
+    protected Date compute(String dateString) {
 		if (dateString == null) {
 			return null;
 		}

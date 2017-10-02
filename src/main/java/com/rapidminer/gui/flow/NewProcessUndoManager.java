@@ -52,10 +52,22 @@ public class NewProcessUndoManager {
 	 */
 	private static class ProcessUndoState {
 
-		String processXML;
-		String displayedChain;
-		List<String> selectedOperators;
-		List<String> viewUserData;
+        /**
+         * The Process xml.
+         */
+        String processXML;
+        /**
+         * The Displayed chain.
+         */
+        String displayedChain;
+        /**
+         * The Selected operators.
+         */
+        List<String> selectedOperators;
+        /**
+         * The View user data.
+         */
+        List<String> viewUserData;
 
 	}
 
@@ -63,24 +75,30 @@ public class NewProcessUndoManager {
 	private ProcessUndoState lastSnapshot;
 	private ProcessUndoState snapshot;
 
-	/** Resets the list of undo states, removes all stored states. */
-	public void reset() {
+    /**
+     * Resets the list of undo states, removes all stored states.
+     */
+    public void reset() {
 		undoList.clear();
 		clearSnapshot();
 	}
 
-	/** Returns the number of currently stored states. */
-	public int getNumberOfUndos() {
+    /**
+     * Returns the number of currently stored states.  @return the number of undos
+     *
+     * @return the number of undos
+     */
+    public int getNumberOfUndos() {
 		return undoList.size();
 	}
 
-	/**
-	 * Returns the XML string representing the {@link Process} at the given undo index.
-	 *
-	 * @param index
-	 * @return the XML or {@code null} if no undo step existed for the given index
-	 */
-	public String getXML(int index) {
+    /**
+     * Returns the XML string representing the {@link Process} at the given undo index.
+     *
+     * @param index the index
+     * @return the XML or {@code null} if no undo step existed for the given index
+     */
+    public String getXML(int index) {
 		try {
 			return undoList.get(index).processXML;
 		} catch (IndexOutOfBoundsException e) {
@@ -88,41 +106,48 @@ public class NewProcessUndoManager {
 		}
 	}
 
-	/** Removes the last undo step. If there is none, does nothing. */
-	public void removeLast() {
+    /**
+     * Removes the last undo step. If there is none, does nothing.
+     */
+    public void removeLast() {
 		if (undoList.isEmpty()) {
 			return;
 		}
 		undoList.remove(undoList.size() - 1);
 	}
 
-	/** Removes the first undo step. If there is none, does nothing. */
-	public void removeFirst() {
+    /**
+     * Removes the first undo step. If there is none, does nothing.
+     */
+    public void removeFirst() {
 		if (undoList.isEmpty()) {
 			return;
 		}
 		undoList.remove(0);
 	}
 
-	/** Returns whether the process has changed between snapshots. */
-	public boolean snapshotDiffers() {
+    /**
+     * Returns whether the process has changed between snapshots.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean snapshotDiffers() {
 		ProcessUndoState last = lastSnapshot;
 		ProcessUndoState current = snapshot;
 		return last != null && last != current && !last.processXML.equals(current.processXML);
 	}
 
-	/**
-	 * Adds an undo step that was previously created by
-	 * {@link #takeSnapshot(String, OperatorChain, Collection, Collection)}. Will add the current
-	 * snapshot if so indicated; usually, the current snapshot will be used when a view change
-	 * occurred,and the last snapshot if the XML of the process changed in some way
-	 *
-	 * @param useCurrent
-	 *            indicates whether the current or last snapshot should be used
-	 * @return if the state was actually added
-	 * @see ProcessRendererModel#addToUndoList(boolean)
-	 */
-	public boolean add(boolean useCurrent) {
+    /**
+     * Adds an undo step that was previously created by
+     * {@link #takeSnapshot(String, OperatorChain, Collection, Collection)}. Will add the current
+     * snapshot if so indicated; usually, the current snapshot will be used when a view change
+     * occurred,and the last snapshot if the XML of the process changed in some way
+     *
+     * @param useCurrent indicates whether the current or last snapshot should be used
+     * @return if the state was actually added
+     * @see ProcessRendererModel#addToUndoList(boolean) ProcessRendererModel#addToUndoList(boolean)ProcessRendererModel#addToUndoList(boolean)
+     */
+    public boolean add(boolean useCurrent) {
 		ProcessUndoState state = useCurrent ? snapshot : lastSnapshot;
 		// ProcessUndoState state = lastSnapshot;
 		if (state != null && state.processXML != null) {
@@ -132,12 +157,17 @@ public class NewProcessUndoManager {
 		return false;
 	}
 
-	/**
-	 * Takes a snapshot, consisting of the (non-null) {@link Process} XML, the currently displayed
-	 * {@link OperatorChain}, the list of currently selected {@link Operator Operators} and a list
-	 * of all {@link Operator Operators} present in the process.
-	 */
-	public void takeSnapshot(String processXML, OperatorChain displayedChain, Collection<Operator> selectedOperators,
+    /**
+     * Takes a snapshot, consisting of the (non-null) {@link Process} XML, the currently displayed
+     * {@link OperatorChain}, the list of currently selected {@link Operator Operators} and a list
+     * of all {@link Operator Operators} present in the process.
+     *
+     * @param processXML        the process xml
+     * @param displayedChain    the displayed chain
+     * @param selectedOperators the selected operators
+     * @param allOperators      the all operators
+     */
+    public void takeSnapshot(String processXML, OperatorChain displayedChain, Collection<Operator> selectedOperators,
 			Collection<Operator> allOperators) {
 		if (processXML == null) {
 			throw new IllegalArgumentException("processXML must not be null!");
@@ -151,20 +181,24 @@ public class NewProcessUndoManager {
 		snapshot = state;
 	}
 
-	/** Clears both tiers of snapshots. */
-	public void clearSnapshot() {
+    /**
+     * Clears both tiers of snapshots.
+     */
+    public void clearSnapshot() {
 		snapshot = lastSnapshot = null;
 	}
 
-	/**
-	 * Restores a {@link Process} from the given undo index if possible, setting the user data from
-	 * the stored state. May skip unreadable user data. Throws an Exception if an error occurs while
-	 * parsing the XML string ({@link Process#Process(String)}).
-	 *
-	 * @return the restored process or null if the index is invalid
-	 *
-	 */
-	public Process restoreProcess(int index) throws IOException, XMLException {
+    /**
+     * Restores a {@link Process} from the given undo index if possible, setting the user data from
+     * the stored state. May skip unreadable user data. Throws an Exception if an error occurs while
+     * parsing the XML string ({@link Process#Process(String)}).
+     *
+     * @param index the index
+     * @return the restored process or null if the index is invalid
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     */
+    public Process restoreProcess(int index) throws IOException, XMLException {
 		ProcessUndoState state;
 		try {
 			state = undoList.get(index);
@@ -179,11 +213,15 @@ public class NewProcessUndoManager {
 		return p;
 	}
 
-	/**
-	 * Restores the viewed {@link OperatorChain} from the given undo index and {@link Process}. Will
-	 * return null if the index is invalid or the process does not contain the stored chain.
-	 */
-	public OperatorChain restoreDisplayedChain(Process p, int index) {
+    /**
+     * Restores the viewed {@link OperatorChain} from the given undo index and {@link Process}. Will
+     * return null if the index is invalid or the process does not contain the stored chain.
+     *
+     * @param p     the p
+     * @param index the index
+     * @return the operator chain
+     */
+    public OperatorChain restoreDisplayedChain(Process p, int index) {
 		ProcessUndoState state;
 		try {
 			state = undoList.get(index);
@@ -194,12 +232,16 @@ public class NewProcessUndoManager {
 		return (OperatorChain) p.getOperator(state.displayedChain);
 	}
 
-	/**
-	 * Restores the list of {@link Operator Operators} from the given undo index and
-	 * {@link Process}. Will return null if the index is invalid or no operator from the stored
-	 * state is present in the process.
-	 */
-	public List<Operator> restoreSelectedOperators(Process p, int index) {
+    /**
+     * Restores the list of {@link Operator Operators} from the given undo index and
+     * {@link Process}. Will return null if the index is invalid or no operator from the stored
+     * state is present in the process.
+     *
+     * @param p     the p
+     * @param index the index
+     * @return the list
+     */
+    public List<Operator> restoreSelectedOperators(Process p, int index) {
 		ProcessUndoState state;
 		try {
 			state = undoList.get(index);

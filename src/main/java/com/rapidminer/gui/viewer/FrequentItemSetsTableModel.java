@@ -31,7 +31,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * This table model can be used as visualization for a set of frequent item sets.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class FrequentItemSetsTableModel extends AbstractTableModel {
@@ -47,7 +47,12 @@ public class FrequentItemSetsTableModel extends AbstractTableModel {
 
 	private int maxItemSetSize = 0;
 
-	public FrequentItemSetsTableModel(FrequentItemSets frequentSets) {
+    /**
+     * Instantiates a new Frequent item sets table model.
+     *
+     * @param frequentSets the frequent sets
+     */
+    public FrequentItemSetsTableModel(FrequentItemSets frequentSets) {
 		this.frequentSets = frequentSets;
 		updateFilter(0, Integer.MAX_VALUE, null);
 	}
@@ -90,7 +95,14 @@ public class FrequentItemSetsTableModel extends AbstractTableModel {
 		}
 	}
 
-	public void updateFilter(int min, int max, String itemName) {
+    /**
+     * Update filter.
+     *
+     * @param min      the min
+     * @param max      the max
+     * @param itemName the item name
+     */
+    public void updateFilter(int min, int max, String itemName) {
 		List<Integer> indices = new LinkedList<Integer>();
 		int index = 0;
 		this.maxItemSetSize = 0;

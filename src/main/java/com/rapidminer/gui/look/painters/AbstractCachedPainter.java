@@ -35,16 +35,43 @@ import java.util.Map;
  */
 public abstract class AbstractCachedPainter {
 
-	protected static final Map<Object, Cache> cacheMap = new HashMap<Object, Cache>();
+    /**
+     * The constant cacheMap.
+     */
+    protected static final Map<Object, Cache> cacheMap = new HashMap<Object, Cache>();
 
-	public AbstractCachedPainter(int cacheCount) {
+    /**
+     * Instantiates a new Abstract cached painter.
+     *
+     * @param cacheCount the cache count
+     */
+    public AbstractCachedPainter(int cacheCount) {
 		getCache(getClass()).setMaxCount(cacheCount);
 	}
 
-	/** Paints the representation to cache to the supplied Graphics. */
-	protected abstract void paintToImage(Component c, Graphics g, int w, int h, Object[] args);
+    /**
+     * Paints the representation to cache to the supplied Graphics.  @param c the c
+     *
+     * @param c    the c
+     * @param g    the g
+     * @param w    the w
+     * @param h    the h
+     * @param args the args
+     */
+    protected abstract void paintToImage(Component c, Graphics g, int w, int h, Object[] args);
 
-	public void paint(Component c, Graphics g, int x, int y, int w, int h, Object[] args) {
+    /**
+     * Paint.
+     *
+     * @param c    the c
+     * @param g    the g
+     * @param x    the x
+     * @param y    the y
+     * @param w    the w
+     * @param h    the h
+     * @param args the args
+     */
+    public void paint(Component c, Graphics g, int x, int y, int w, int h, Object[] args) {
 		if (w <= 0 || h <= 0) {
 			return;
 		}
@@ -81,15 +108,39 @@ public abstract class AbstractCachedPainter {
 		} while (image instanceof VolatileImage && ((VolatileImage) image).contentsLost() && ++attempts < 3);
 	}
 
-	protected void paintImage(Component c, Graphics g, int x, int y, int w, int h, Image image, Object[] args) {
+    /**
+     * Paint image.
+     *
+     * @param c     the c
+     * @param g     the g
+     * @param x     the x
+     * @param y     the y
+     * @param w     the w
+     * @param h     the h
+     * @param image the image
+     * @param args  the args
+     */
+    protected void paintImage(Component c, Graphics g, int x, int y, int w, int h, Image image, Object[] args) {
 		g.drawImage(image, x, y, null);
 	}
 
-	protected Image createImage(Component c, int w, int h, GraphicsConfiguration config) {
+    /**
+     * Create image image.
+     *
+     * @param c      the c
+     * @param w      the w
+     * @param h      the h
+     * @param config the config
+     * @return the image
+     */
+    protected Image createImage(Component c, int w, int h, GraphicsConfiguration config) {
 		return new BufferedImage(w, h, BufferedImage.TYPE_4BYTE_ABGR);
 	}
 
-	public static void clearCache() {
+    /**
+     * Clear cache.
+     */
+    public static void clearCache() {
 		synchronized (cacheMap) {
 			cacheMap.clear();
 		}

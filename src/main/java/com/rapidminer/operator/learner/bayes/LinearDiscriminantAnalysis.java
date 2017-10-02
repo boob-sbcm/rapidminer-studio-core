@@ -31,7 +31,7 @@ import com.rapidminer.operator.OperatorDescription;
  * dependent variable is a numerical quantity, while for LDA it is a categorical variable (i.e. the
  * class label).
  * </p>
- *
+ * <p>
  * <p>
  * LDA is also closely related to principal component analysis (PCA) and factor analysis in that
  * both look for linear combinations of variables which best explain the data. LDA explicitly
@@ -39,16 +39,23 @@ import com.rapidminer.operator.OperatorDescription;
  * into account any difference in class.
  * </p>
  *
+ * @author Sebastian Land, Jan Czogalla
  * @see RegularizedDiscriminantAnalysis
  * @see QuadraticDiscriminantAnalysis
- * @author Sebastian Land, Jan Czogalla
  */
 public class LinearDiscriminantAnalysis extends RegularizedDiscriminantAnalysis {
 
-	/** The special alpha value for LDA */
-	static final double LDA_ALPHA = 1d;
+    /**
+     * The special alpha value for LDA
+     */
+    static final double LDA_ALPHA = 1d;
 
-	public LinearDiscriminantAnalysis(OperatorDescription description) {
+    /**
+     * Instantiates a new Linear discriminant analysis.
+     *
+     * @param description the description
+     */
+    public LinearDiscriminantAnalysis(OperatorDescription description) {
 		super(description);
 	}
 

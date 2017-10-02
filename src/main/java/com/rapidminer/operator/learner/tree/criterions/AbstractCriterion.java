@@ -41,14 +41,38 @@ public abstract class AbstractCriterion implements Criterion {
 
 	// data for incremental calculation
 
-	protected double leftWeight;
-	protected double rightWeight;
-	protected double totalWeight;
-	protected double[] totalLabelWeights;
-	protected double[] leftLabelWeights;
-	protected double[] rightLabelWeights;
-	protected Attribute labelAttribute;
-	protected Attribute weightAttribute;
+    /**
+     * The Left weight.
+     */
+    protected double leftWeight;
+    /**
+     * The Right weight.
+     */
+    protected double rightWeight;
+    /**
+     * The Total weight.
+     */
+    protected double totalWeight;
+    /**
+     * The Total label weights.
+     */
+    protected double[] totalLabelWeights;
+    /**
+     * The Left label weights.
+     */
+    protected double[] leftLabelWeights;
+    /**
+     * The Right label weights.
+     */
+    protected double[] rightLabelWeights;
+    /**
+     * The Label attribute.
+     */
+    protected Attribute labelAttribute;
+    /**
+     * The Weight attribute.
+     */
+    protected Attribute weightAttribute;
 
 	@Override
 	public boolean supportsIncrementalCalculation() {
@@ -88,10 +112,15 @@ public abstract class AbstractCriterion implements Criterion {
 		return 0;
 	}
 
-	/**
-	 * This method returns the criterion specified by the respective parameters.
-	 */
-	public static Criterion createCriterion(ParameterHandler handler, double minimalGain) throws OperatorException {
+    /**
+     * This method returns the criterion specified by the respective parameters.
+     *
+     * @param handler     the handler
+     * @param minimalGain the minimal gain
+     * @return the criterion
+     * @throws OperatorException the operator exception
+     */
+    public static Criterion createCriterion(ParameterHandler handler, double minimalGain) throws OperatorException {
 		String criterionName = handler.getParameterAsString(PARAMETER_CRITERION);
 		Class<?> criterionClass = null;
 		for (int i = 0; i < CRITERIA_NAMES.length; i++) {

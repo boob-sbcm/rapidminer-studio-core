@@ -32,24 +32,35 @@ import java.util.List;
 
 
 /**
- * 
  * This Operator moves a file to another location. If the destination is a directory, the file is
  * moved in there. If the target already exists and overwriting is enabled, the existing file will
  * be overwritten. Else, an exception is thrown.
- * 
+ *
  * @author Philipp Kersting
- * 
  */
-
 public class MoveFileOperator extends Operator {
 
-	public static final String PARAMETER_FILE = "file";
-	public static final String PARAMETER_DESTINATION = "destination";
-	public static final String PARAMETER_OVERWRITE = "overwrite";
+    /**
+     * The constant PARAMETER_FILE.
+     */
+    public static final String PARAMETER_FILE = "file";
+    /**
+     * The constant PARAMETER_DESTINATION.
+     */
+    public static final String PARAMETER_DESTINATION = "destination";
+    /**
+     * The constant PARAMETER_OVERWRITE.
+     */
+    public static final String PARAMETER_OVERWRITE = "overwrite";
 
 	private PortPairExtender dummyPorts = new PortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public MoveFileOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Move file operator.
+     *
+     * @param description the description
+     */
+    public MoveFileOperator(OperatorDescription description) {
 		super(description);
 		dummyPorts.start();
 		getTransformer().addRule(dummyPorts.makePassThroughRule());

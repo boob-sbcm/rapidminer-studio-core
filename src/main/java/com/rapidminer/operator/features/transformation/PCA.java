@@ -66,25 +66,40 @@ import com.rapidminer.tools.math.matrix.CovarianceMatrix;
  */
 public class PCA extends Operator {
 
-	/**
-	 * The parameter name for &quot;Keep the all components with a cumulative variance smaller than
-	 * the given threshold.&quot;
-	 */
-	public static final String PARAMETER_VARIANCE_THRESHOLD = "variance_threshold";
+    /**
+     * The parameter name for &quot;Keep the all components with a cumulative variance smaller than
+     * the given threshold.&quot;
+     */
+    public static final String PARAMETER_VARIANCE_THRESHOLD = "variance_threshold";
 
-	/**
-	 * The parameter name for &quot;Keep this number of components. If '-1' then keep all
-	 * components.'&quot;
-	 */
-	public static final String PARAMETER_NUMBER_OF_COMPONENTS = "number_of_components";
+    /**
+     * The parameter name for &quot;Keep this number of components. If '-1' then keep all
+     * components.'&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_COMPONENTS = "number_of_components";
 
-	public static final String PARAMETER_REDUCTION_TYPE = "dimensionality_reduction";
+    /**
+     * The constant PARAMETER_REDUCTION_TYPE.
+     */
+    public static final String PARAMETER_REDUCTION_TYPE = "dimensionality_reduction";
 
-	public static final String[] REDUCTION_METHODS = new String[] { "none", "keep variance", "fixed number" };
+    /**
+     * The constant REDUCTION_METHODS.
+     */
+    public static final String[] REDUCTION_METHODS = new String[] { "none", "keep variance", "fixed number" };
 
-	public static final int REDUCTION_NONE = 0;
-	public static final int REDUCTION_VARIANCE = 1;
-	public static final int REDUCTION_FIXED = 2;
+    /**
+     * The constant REDUCTION_NONE.
+     */
+    public static final int REDUCTION_NONE = 0;
+    /**
+     * The constant REDUCTION_VARIANCE.
+     */
+    public static final int REDUCTION_VARIANCE = 1;
+    /**
+     * The constant REDUCTION_FIXED.
+     */
+    public static final int REDUCTION_FIXED = 2;
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set input");
 
@@ -92,7 +107,12 @@ public class PCA extends Operator {
 	private OutputPort originalOutput = getOutputPorts().createPort("original");
 	private OutputPort modelOutput = getOutputPorts().createPort("preprocessing model");
 
-	public PCA(OperatorDescription description) {
+    /**
+     * Instantiates a new Pca.
+     *
+     * @param description the description
+     */
+    public PCA(OperatorDescription description) {
 		super(description);
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, Ontology.NUMERICAL));
 
@@ -129,8 +149,14 @@ public class PCA extends Operator {
 		getTransformer().addRule(new PassThroughRule(exampleSetInput, originalOutput, false));
 	}
 
-	/** Helper method for anonymous operators. */
-	public Model doWork(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Helper method for anonymous operators.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     * @return the model
+     * @throws OperatorException the operator exception
+     */
+    public Model doWork(ExampleSet exampleSet) throws OperatorException {
 		exampleSetInput.receive(exampleSet);
 		doWork();
 		return modelOutput.getData(Model.class);

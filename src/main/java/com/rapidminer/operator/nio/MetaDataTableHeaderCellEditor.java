@@ -45,9 +45,9 @@ import com.rapidminer.tools.Ontology;
 
 
 /**
+ * The type Meta data table header cell editor.
  *
  * @author Simon Fischer
- *
  */
 public class MetaDataTableHeaderCellEditor extends JPanel implements TableCellEditor, TableCellRenderer {
 
@@ -64,7 +64,10 @@ public class MetaDataTableHeaderCellEditor extends JPanel implements TableCellEd
 
 	private MetaDataValidator validator;
 
-	public MetaDataTableHeaderCellEditor() {
+    /**
+     * Instantiates a new Meta data table header cell editor.
+     */
+    public MetaDataTableHeaderCellEditor() {
 		super(new GridLayout(4, 1));
 		roleBox.setEditable(true);
 
@@ -122,7 +125,12 @@ public class MetaDataTableHeaderCellEditor extends JPanel implements TableCellEd
 		});
 	}
 
-	public MetaDataTableHeaderCellEditor(MetaDataValidator headerValidator) {
+    /**
+     * Instantiates a new Meta data table header cell editor.
+     *
+     * @param headerValidator the header validator
+     */
+    public MetaDataTableHeaderCellEditor(MetaDataValidator headerValidator) {
 		this();
 		validator = headerValidator;
 	}
@@ -221,7 +229,10 @@ public class MetaDataTableHeaderCellEditor extends JPanel implements TableCellEd
 		}
 	}
 
-	public void updateColumnMetaData() {
+    /**
+     * Update column meta data.
+     */
+    public void updateColumnMetaData() {
 		if (value != null) {
 			// value type
 			value.setAttributeValueType(valueTypeBox.getSelectedIndex());

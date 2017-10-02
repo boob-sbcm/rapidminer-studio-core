@@ -27,18 +27,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract2DoubleInputFun
 
 
 /**
- *
  * A {@link Function} for binominal coefficents.
  *
  * @author David Arnu
- *
  */
 public class Binominal extends Abstract2DoubleInputFunction {
 
-	/**
-	 * Constructs a binominal function.
-	 */
-	public Binominal() {
+    /**
+     * Constructs a binominal function.
+     */
+    public Binominal() {
 		super("statistical.binom", 2, Ontology.INTEGER);
 	}
 

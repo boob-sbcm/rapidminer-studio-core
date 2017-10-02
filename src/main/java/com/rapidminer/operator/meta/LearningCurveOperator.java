@@ -59,30 +59,30 @@ public class LearningCurveOperator extends OperatorChain {
 	private InputPort performanceInnerSink = getSubprocess(1).getInnerSinks().createPort("performance",
 			PerformanceVector.class);
 
-	/**
-	 * The parameter name for &quot;The fraction of examples which shall be maximal used for
-	 * training (dynamically growing), the rest is used for testing (fixed)&quot;
-	 */
-	public static final String PARAMETER_TRAINING_RATIO = "training_ratio";
+    /**
+     * The parameter name for &quot;The fraction of examples which shall be maximal used for
+     * training (dynamically growing), the rest is used for testing (fixed)&quot;
+     */
+    public static final String PARAMETER_TRAINING_RATIO = "training_ratio";
 
-	/**
-	 * The parameter name for &quot;The fraction of examples which would be additionally used in
-	 * each step.&quot;
-	 */
-	public static final String PARAMETER_STEP_FRACTION = "step_fraction";
+    /**
+     * The parameter name for &quot;The fraction of examples which would be additionally used in
+     * each step.&quot;
+     */
+    public static final String PARAMETER_STEP_FRACTION = "step_fraction";
 
-	/**
-	 * The parameter name for &quot;Starts with this fraction of the training data and iteratively
-	 * add step_fraction examples from the training data (-1: use step_fraction).&quot;
-	 */
-	public static final String PARAMETER_START_FRACTION = "start_fraction";
+    /**
+     * The parameter name for &quot;Starts with this fraction of the training data and iteratively
+     * add step_fraction examples from the training data (-1: use step_fraction).&quot;
+     */
+    public static final String PARAMETER_START_FRACTION = "start_fraction";
 
-	/**
-	 * The parameter name for &quot;Defines the sampling type of the cross validation (linear =
-	 * consecutive subsets, shuffled = random subsets, stratified = random subsets with class
-	 * distribution kept constant)&quot;
-	 */
-	public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
+    /**
+     * The parameter name for &quot;Defines the sampling type of the cross validation (linear =
+     * consecutive subsets, shuffled = random subsets, stratified = random subsets with class
+     * distribution kept constant)&quot;
+     */
+    public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
 
 	private double lastFraction = Double.NaN;
 
@@ -90,7 +90,12 @@ public class LearningCurveOperator extends OperatorChain {
 
 	private double lastDeviation = Double.NaN;
 
-	public LearningCurveOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Learning curve operator.
+     *
+     * @param description the description
+     */
+    public LearningCurveOperator(OperatorDescription description) {
 		super(description, "Training", "Test");
 		throughExtender.start();
 

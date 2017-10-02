@@ -22,7 +22,7 @@ package com.rapidminer.operator;
  * Will be thrown if an operator chain needs a specific number of inner operators which is not
  * fulfilled. Should be thrown during validation, usually in the method
  * {@link OperatorChain#checkIO(Class[])}.
- * 
+ *
  * @author Ingo Mierswa 15:35:42 ingomierswa Exp $
  */
 public class WrongNumberOfInnerOperatorsException extends Exception {
@@ -31,13 +31,26 @@ public class WrongNumberOfInnerOperatorsException extends Exception {
 
 	private transient Operator operator;
 
-	public WrongNumberOfInnerOperatorsException(OperatorChain operator, int min, int max, int actual) {
+    /**
+     * Instantiates a new Wrong number of inner operators exception.
+     *
+     * @param operator the operator
+     * @param min      the min
+     * @param max      the max
+     * @param actual   the actual
+     */
+    public WrongNumberOfInnerOperatorsException(OperatorChain operator, int min, int max, int actual) {
 		super(operator.getName() + " needs between " + min + " and " + (max == Integer.MAX_VALUE ? "infinity" : "" + max)
 				+ " inner operators, was " + actual);
 		this.operator = operator;
 	}
 
-	public Operator getOperator() {
+    /**
+     * Gets operator.
+     *
+     * @return the operator
+     */
+    public Operator getOperator() {
 		return operator;
 	}
 }

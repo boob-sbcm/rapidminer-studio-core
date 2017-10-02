@@ -33,7 +33,7 @@ import javax.swing.JRadioButton;
 /**
  * This Class provides an panel for multiple content, allowing the user to switch between content
  * using a radio selection button group.
- * 
+ *
  * @author Sebastian Land
  */
 public class JRadioSelectionPanel extends JPanel {
@@ -45,25 +45,25 @@ public class JRadioSelectionPanel extends JPanel {
 
 	private HashMap<Object, Component> buttonComponentMap = new HashMap<Object, Component>();
 
-	public JRadioSelectionPanel() {
+    /**
+     * Instantiates a new J radio selection panel.
+     */
+    public JRadioSelectionPanel() {
 		super();
 		setLayout(new BorderLayout());
 		add(togglePanel, BorderLayout.NORTH);
 	}
 
-	/**
-	 * This method allows to add a component to this container. Hence the container provides radio
-	 * buttons to toggle between components, it is needed to specify a name for the components and
-	 * toolTips.
-	 * 
-	 * @param selectionName
-	 *            is the name of the component
-	 * @param component
-	 *            is the component to add
-	 * @param toolTip
-	 *            is the tool tip of corresponding radio button
-	 */
-	public void addComponent(String selectionName, Component component, String toolTip) {
+    /**
+     * This method allows to add a component to this container. Hence the container provides radio
+     * buttons to toggle between components, it is needed to specify a name for the components and
+     * toolTips.
+     *
+     * @param selectionName is the name of the component
+     * @param component     is the component to add
+     * @param toolTip       is the tool tip of corresponding radio button
+     */
+    public void addComponent(String selectionName, Component component, String toolTip) {
 		boolean isFirstButton = buttonComponentMap.size() == 0;
 		final JRadioButton selectionButton = new JRadioButton(selectionName, isFirstButton);
 		buttonComponentMap.put(selectionButton, component);

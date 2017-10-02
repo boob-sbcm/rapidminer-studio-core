@@ -52,18 +52,38 @@ public class Rule implements Serializable {
 
 	private int frequencySum = 0;
 
-	public Rule() {}
+    /**
+     * Instantiates a new Rule.
+     */
+    public Rule() {}
 
-	public Rule(String labelName) {
+    /**
+     * Instantiates a new Rule.
+     *
+     * @param labelName the label name
+     */
+    public Rule(String labelName) {
 		this.labelName = labelName;
 	}
 
-	public Rule(String labelName, SplitCondition term) {
+    /**
+     * Instantiates a new Rule.
+     *
+     * @param labelName the label name
+     * @param term      the term
+     */
+    public Rule(String labelName, SplitCondition term) {
 		this.labelName = labelName;
 		terms.add(term);
 	}
 
-	public Rule(String labelName, Collection<SplitCondition> terms) {
+    /**
+     * Instantiates a new Rule.
+     *
+     * @param labelName the label name
+     * @param terms     the terms
+     */
+    public Rule(String labelName, Collection<SplitCondition> terms) {
 		this.labelName = labelName;
 		this.terms.addAll(terms);
 	}
@@ -89,11 +109,22 @@ public class Rule implements Serializable {
 		return new Rule(this);
 	}
 
-	public void setLabel(String labelName) {
+    /**
+     * Sets label.
+     *
+     * @param labelName the label name
+     */
+    public void setLabel(String labelName) {
 		this.labelName = labelName;
 	}
 
-	public boolean coversExample(Example example) {
+    /**
+     * Covers example boolean.
+     *
+     * @param example the example
+     * @return the boolean
+     */
+    public boolean coversExample(Example example) {
 		boolean result = true;
 		for (SplitCondition term : terms) {
 			result &= term.test(example);
@@ -101,7 +132,12 @@ public class Rule implements Serializable {
 		return result;
 	}
 
-	public void setFrequencies(int[] frequencies) {
+    /**
+     * Sets frequencies.
+     *
+     * @param frequencies the frequencies
+     */
+    public void setFrequencies(int[] frequencies) {
 		this.frequencies = frequencies;
 		this.frequencySum = 0;
 		if (frequencies != null) {
@@ -111,11 +147,21 @@ public class Rule implements Serializable {
 		}
 	}
 
-	public int[] getFrequencies() {
+    /**
+     * Get frequencies int [ ].
+     *
+     * @return the int [ ]
+     */
+    public int[] getFrequencies() {
 		return this.frequencies;
 	}
 
-	public double[] getConfidences() {
+    /**
+     * Get confidences double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getConfidences() {
 		if (frequencies != null) {
 			double[] confidences = new double[this.frequencies.length];
 			for (int i = 0; i < this.frequencies.length; i++) {
@@ -161,33 +207,56 @@ public class Rule implements Serializable {
 		return buffer.toString();
 	}
 
-	/**
-	 * This method adds a condition to the conjunction in the rule's head
-	 *
-	 * @param condition
-	 *            This condition is added
-	 */
-	public void addTerm(SplitCondition condition) {
+    /**
+     * This method adds a condition to the conjunction in the rule's head
+     *
+     * @param condition This condition is added
+     */
+    public void addTerm(SplitCondition condition) {
 		terms.add(condition);
 	}
 
-	public void removeLastTerm() {
+    /**
+     * Remove last term.
+     */
+    public void removeLastTerm() {
 		terms.removeLast();
 	}
 
-	public List<SplitCondition> getTerms() {
+    /**
+     * Gets terms.
+     *
+     * @return the terms
+     */
+    public List<SplitCondition> getTerms() {
 		return terms;
 	}
 
-	public void setTerms(LinkedList<SplitCondition> terms) {
+    /**
+     * Sets terms.
+     *
+     * @param terms the terms
+     */
+    public void setTerms(LinkedList<SplitCondition> terms) {
 		this.terms = terms;
 	}
 
-	public String getLabel() {
+    /**
+     * Gets label.
+     *
+     * @return the label
+     */
+    public String getLabel() {
 		return this.labelName;
 	}
 
-	public ExampleSet getCovered(ExampleSet exampleSet) {
+    /**
+     * Gets covered.
+     *
+     * @param exampleSet the example set
+     * @return the covered
+     */
+    public ExampleSet getCovered(ExampleSet exampleSet) {
 		int[] partition = new int[exampleSet.size()];
 		int counter = 0;
 		for (Example e : exampleSet) {
@@ -201,7 +270,13 @@ public class Rule implements Serializable {
 		return result;
 	}
 
-	public ExampleSet removeCovered(ExampleSet exampleSet) {
+    /**
+     * Remove covered example set.
+     *
+     * @param exampleSet the example set
+     * @return the example set
+     */
+    public ExampleSet removeCovered(ExampleSet exampleSet) {
 		int[] partition = new int[exampleSet.size()];
 		int counter = 0;
 		for (Example e : exampleSet) {
@@ -215,7 +290,14 @@ public class Rule implements Serializable {
 		return result;
 	}
 
-	public boolean isPure(ExampleSet exampleSet, double pureness) {
+    /**
+     * Is pure boolean.
+     *
+     * @param exampleSet the example set
+     * @param pureness   the pureness
+     * @return the boolean
+     */
+    public boolean isPure(ExampleSet exampleSet, double pureness) {
 		Attribute label = exampleSet.getAttributes().getLabel();
 		exampleSet.recalculateAttributeStatistics(label);
 		return exampleSet.getStatistics(label, Statistics.COUNT, getLabel()) >= pureness * exampleSet.size();

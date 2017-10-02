@@ -45,7 +45,12 @@ public class DataTableKernelModelAdapter extends AbstractDataTable {
 
 		private DataTableKernelModelAdapter adapter;
 
-		public KernelModelIterator(DataTableKernelModelAdapter adapter) {
+        /**
+         * Instantiates a new Kernel model iterator.
+         *
+         * @param adapter the adapter
+         */
+        public KernelModelIterator(DataTableKernelModelAdapter adapter) {
 			this.adapter = adapter;
 		}
 
@@ -78,7 +83,12 @@ public class DataTableKernelModelAdapter extends AbstractDataTable {
 	private Map<Integer, String> index2LabelMap = new HashMap<>();
 	private Map<String, Integer> label2IndexMap = new HashMap<>();
 
-	public DataTableKernelModelAdapter(KernelModel kernelModel) {
+    /**
+     * Instantiates a new Data table kernel model adapter.
+     *
+     * @param kernelModel the kernel model
+     */
+    public DataTableKernelModelAdapter(KernelModel kernelModel) {
 		super("Kernel Model Support Vectors");
 		this.kernelModel = kernelModel;
 		int labelCounter = 0;
@@ -102,7 +112,12 @@ public class DataTableKernelModelAdapter extends AbstractDataTable {
 		}
 	}
 
-	public DataTableKernelModelAdapter(DataTableKernelModelAdapter dataTableKernelModelAdapter) {
+    /**
+     * Instantiates a new Data table kernel model adapter.
+     *
+     * @param dataTableKernelModelAdapter the data table kernel model adapter
+     */
+    public DataTableKernelModelAdapter(DataTableKernelModelAdapter dataTableKernelModelAdapter) {
 		super(dataTableKernelModelAdapter.getName());
 		this.kernelModel = dataTableKernelModelAdapter.kernelModel; // shallow clone
 		this.index2LabelMap = dataTableKernelModelAdapter.index2LabelMap; // shallow clone

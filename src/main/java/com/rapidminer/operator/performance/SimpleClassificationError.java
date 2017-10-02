@@ -22,16 +22,24 @@ package com.rapidminer.operator.performance;
  * This class calculates the classification error without determining the complete contingency
  * table. This criterion should be used if several different accuracy measurements are averaged. The
  * usual classification error criterion cannot be used in cases where the number of classes differ.
- * 
+ *
  * @author Michael Wurst, Ingo Mierswa
  */
 public class SimpleClassificationError extends SimpleCriterion {
 
 	private static final long serialVersionUID = -2679855049315180163L;
 
-	public SimpleClassificationError() {}
+    /**
+     * Instantiates a new Simple classification error.
+     */
+    public SimpleClassificationError() {}
 
-	public SimpleClassificationError(SimpleClassificationError sc) {
+    /**
+     * Instantiates a new Simple classification error.
+     *
+     * @param sc the sc
+     */
+    public SimpleClassificationError(SimpleClassificationError sc) {
 		super(sc);
 	}
 

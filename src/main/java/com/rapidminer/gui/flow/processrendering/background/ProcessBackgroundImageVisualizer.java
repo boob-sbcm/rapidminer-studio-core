@@ -40,7 +40,6 @@ import com.rapidminer.repository.gui.RepositoryLocationChooser;
  *
  * @author Marco Boeck
  * @since 7.0.0
- *
  */
 public final class ProcessBackgroundImageVisualizer {
 
@@ -50,13 +49,12 @@ public final class ProcessBackgroundImageVisualizer {
 	/** the draw decorator */
 	private final ProcessBackgroundImageDecorator decorator;
 
-	/**
-	 * Creates the visualizer for {@link ProcessBackgroundImage}s.
-	 *
-	 * @param view
-	 *            the proces renderer instance
-	 */
-	public ProcessBackgroundImageVisualizer(final ProcessRendererView view) {
+    /**
+     * Creates the visualizer for {@link ProcessBackgroundImage}s.
+     *
+     * @param view the proces renderer instance
+     */
+    public ProcessBackgroundImageVisualizer(final ProcessRendererView view) {
 		this.view = view;
 		this.decorator = new ProcessBackgroundImageDecorator(view);
 
@@ -64,15 +62,13 @@ public final class ProcessBackgroundImageVisualizer {
 		decorator.registerDecorators();
 	}
 
-	/**
-	 * Creates an action which can be used to set the {@link ProcessBackgroundImage}.
-	 *
-	 * @param process
-	 *            the process for which to set the background image. Can be {@code null} for first
-	 *            process at action event time
-	 * @return the action, never {@code null}
-	 */
-	public ResourceAction makeSetBackgroundImageAction(final ExecutionUnit process) {
+    /**
+     * Creates an action which can be used to set the {@link ProcessBackgroundImage}.
+     *
+     * @param process the process for which to set the background image. Can be {@code null} for first            process at action event time
+     * @return the action, never {@code null}
+     */
+    public ResourceAction makeSetBackgroundImageAction(final ExecutionUnit process) {
 		ResourceAction setBackgroundImage = new ResourceAction(true, "process_background.set") {
 
 			private static final long serialVersionUID = 1L;
@@ -90,15 +86,13 @@ public final class ProcessBackgroundImageVisualizer {
 		return setBackgroundImage;
 	}
 
-	/**
-	 * Creates an action which can be used to remove the {@link ProcessBackgroundImage}.
-	 *
-	 * @param process
-	 *            the process for which to remove the background image. Can be {@code null} for
-	 *            first process at action event time
-	 * @return the action, never {@code null}
-	 */
-	public ResourceAction makeRemoveBackgroundImageAction(final ExecutionUnit process) {
+    /**
+     * Creates an action which can be used to remove the {@link ProcessBackgroundImage}.
+     *
+     * @param process the process for which to remove the background image. Can be {@code null} for            first process at action event time
+     * @return the action, never {@code null}
+     */
+    public ResourceAction makeRemoveBackgroundImageAction(final ExecutionUnit process) {
 		ResourceAction removeBackgroundImage = new ResourceAction(true, "process_background.remove") {
 
 			private static final long serialVersionUID = 1L;

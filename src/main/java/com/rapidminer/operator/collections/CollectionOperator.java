@@ -39,17 +39,25 @@ import java.util.List;
 
 /**
  * Takes several objects as an input at converts them into a collection.
- * 
+ *
  * @author Simon Fischer
  */
 public class CollectionOperator extends Operator {
 
-	public static final String PARAMETER_UNFOLD = "unfold";
+    /**
+     * The constant PARAMETER_UNFOLD.
+     */
+    public static final String PARAMETER_UNFOLD = "unfold";
 
 	private final InputPortExtender inExtender = new InputPortExtender("input", getInputPorts());
 	private final OutputPort collectionOutput = getOutputPorts().createPort("collection");
 
-	public CollectionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Collection operator.
+     *
+     * @param description the description
+     */
+    public CollectionOperator(OperatorDescription description) {
 		super(description);
 		inExtender.start();
 		getTransformer().addRule(new MDTransformationRule() {

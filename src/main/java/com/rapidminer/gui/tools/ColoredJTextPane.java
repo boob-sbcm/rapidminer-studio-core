@@ -31,15 +31,17 @@ import javax.swing.text.StyleContext;
 
 /**
  * This is a JTextPane that will assign each word a color specified by the getColor method.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public abstract class ColoredJTextPane extends JTextPane {
 
 	private static final long serialVersionUID = 1L;
 
-	public ColoredJTextPane() {
+    /**
+     * Instantiates a new Colored j text pane.
+     */
+    public ColoredJTextPane() {
 		super();
 		setDocument(new DefaultStyledDocument() {
 
@@ -74,9 +76,12 @@ public abstract class ColoredJTextPane extends JTextPane {
 
 	}
 
-	/**
-	 * This must return the color of the given word.
-	 */
-	protected abstract Color getColor(String word);
+    /**
+     * This must return the color of the given word.
+     *
+     * @param word the word
+     * @return the color
+     */
+    protected abstract Color getColor(String word);
 
 }

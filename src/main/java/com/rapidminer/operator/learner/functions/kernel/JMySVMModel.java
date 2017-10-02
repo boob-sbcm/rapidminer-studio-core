@@ -29,14 +29,22 @@ import com.rapidminer.operator.learner.functions.kernel.jmysvm.svm.SVMregression
 
 /**
  * The implementation for the mySVM model (Java version) by Stefan Rueping.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class JMySVMModel extends AbstractMySVMModel {
 
 	private static final long serialVersionUID = 7748169156351553025L;
 
-	public JMySVMModel(ExampleSet exampleSet,
+    /**
+     * Instantiates a new J my svm model.
+     *
+     * @param exampleSet the example set
+     * @param model      the model
+     * @param kernel     the kernel
+     * @param kernelType the kernel type
+     */
+    public JMySVMModel(ExampleSet exampleSet,
 			com.rapidminer.operator.learner.functions.kernel.jmysvm.examples.SVMExamples model, Kernel kernel, int kernelType) {
 		super(exampleSet, model, kernel, kernelType);
 	}

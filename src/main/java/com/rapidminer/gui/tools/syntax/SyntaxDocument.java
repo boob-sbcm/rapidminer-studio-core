@@ -36,29 +36,30 @@ import javax.swing.undo.UndoableEdit;
 
 /**
  * A document implementation that can be tokenized by the syntax highlighting system.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class SyntaxDocument extends PlainDocument {
 
 	private static final long serialVersionUID = 5959684700222385821L;
 
-	/**
-	 * Returns the token marker that is to be used to split lines of this document up into tokens.
-	 * May return null if this document is not to be colorized.
-	 */
-	public TokenMarker getTokenMarker() {
+    /**
+     * Returns the token marker that is to be used to split lines of this document up into tokens.
+     * May return null if this document is not to be colorized.
+     *
+     * @return the token marker
+     */
+    public TokenMarker getTokenMarker() {
 		return tokenMarker;
 	}
 
-	/**
-	 * Sets the token marker that is to be used to split lines of this document up into tokens. May
-	 * throw an exception if this is not supported for this type of document.
-	 * 
-	 * @param tm
-	 *            The new token marker
-	 */
-	public void setTokenMarker(TokenMarker tm) {
+    /**
+     * Sets the token marker that is to be used to split lines of this document up into tokens. May
+     * throw an exception if this is not supported for this type of document.
+     *
+     * @param tm The new token marker
+     */
+    public void setTokenMarker(TokenMarker tm) {
 		tokenMarker = tm;
 		if (tm == null) {
 			return;
@@ -67,24 +68,22 @@ public class SyntaxDocument extends PlainDocument {
 		tokenizeLines();
 	}
 
-	/**
-	 * Reparses the document, by passing all lines to the token marker. This should be called after
-	 * the document is first loaded.
-	 */
-	public void tokenizeLines() {
+    /**
+     * Reparses the document, by passing all lines to the token marker. This should be called after
+     * the document is first loaded.
+     */
+    public void tokenizeLines() {
 		tokenizeLines(0, getDefaultRootElement().getElementCount());
 	}
 
-	/**
-	 * Reparses the document, by passing the specified lines to the token marker. This should be
-	 * called after a large quantity of text is first inserted.
-	 * 
-	 * @param start
-	 *            The first line to parse
-	 * @param len
-	 *            The number of lines, after the first one to parse
-	 */
-	public void tokenizeLines(int start, int len) {
+    /**
+     * Reparses the document, by passing the specified lines to the token marker. This should be
+     * called after a large quantity of text is first inserted.
+     *
+     * @param start The first line to parse
+     * @param len   The number of lines, after the first one to parse
+     */
+    public void tokenizeLines(int start, int len) {
 		if (tokenMarker == null || !tokenMarker.supportsMultilineTokens()) {
 			return;
 		}
@@ -106,30 +105,31 @@ public class SyntaxDocument extends PlainDocument {
 		}
 	}
 
-	/**
-	 * Starts a compound edit that can be undone in one operation. Subclasses that implement undo
-	 * should override this method; this class has no undo functionality so this method is empty.
-	 */
-	public void beginCompoundEdit() {}
+    /**
+     * Starts a compound edit that can be undone in one operation. Subclasses that implement undo
+     * should override this method; this class has no undo functionality so this method is empty.
+     */
+    public void beginCompoundEdit() {}
 
-	/**
-	 * Ends a compound edit that can be undone in one operation. Subclasses that implement undo
-	 * should override this method; this class has no undo functionality so this method is empty.
-	 */
-	public void endCompoundEdit() {}
+    /**
+     * Ends a compound edit that can be undone in one operation. Subclasses that implement undo
+     * should override this method; this class has no undo functionality so this method is empty.
+     */
+    public void endCompoundEdit() {}
 
-	/**
-	 * Adds an undoable edit to this document's undo list. The edit should be ignored if something
-	 * is currently being undone.
-	 * 
-	 * @param edit
-	 *            The undoable edit
-	 * 
-	 * @since jEdit 2.2pre1
-	 */
-	public void addUndoableEdit(UndoableEdit edit) {}
+    /**
+     * Adds an undoable edit to this document's undo list. The edit should be ignored if something
+     * is currently being undone.
+     *
+     * @param edit The undoable edit
+     * @since jEdit 2.2pre1
+     */
+    public void addUndoableEdit(UndoableEdit edit) {}
 
-	// protected members
+    /**
+     * The Token marker.
+     */
+// protected members
 	protected transient TokenMarker tokenMarker;
 
 	/**

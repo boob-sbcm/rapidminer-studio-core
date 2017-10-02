@@ -30,31 +30,55 @@ import java.util.Set;
 
 /**
  * Contains a list of {@link GroupCellKeyAndData}.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class GroupCellSeriesData implements Iterable<GroupCellKeyAndData> {
 
 	private List<GroupCellKeyAndData> groupCellSeriesData = new LinkedList<GroupCellKeyAndData>();
 
-	public void addGroupCell(GroupCellKeyAndData groupCellKeyAndData) {
+    /**
+     * Add group cell.
+     *
+     * @param groupCellKeyAndData the group cell key and data
+     */
+    public void addGroupCell(GroupCellKeyAndData groupCellKeyAndData) {
 		groupCellSeriesData.add(groupCellKeyAndData);
 	}
 
-	public void clear() {
+    /**
+     * Clear.
+     */
+    public void clear() {
 		groupCellSeriesData.clear();
 	}
 
-	public int groupCellCount() {
+    /**
+     * Group cell count int.
+     *
+     * @return the int
+     */
+    public int groupCellCount() {
 		return groupCellSeriesData.size();
 	}
 
-	public boolean isEmpty() {
+    /**
+     * Is empty boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isEmpty() {
 		return groupCellSeriesData.isEmpty();
 	}
 
-	public Set<Double> getDistinctValues(SeriesUsageType usageType, PlotDimension dimension) {
+    /**
+     * Gets distinct values.
+     *
+     * @param usageType the usage type
+     * @param dimension the dimension
+     * @return the distinct values
+     */
+    public Set<Double> getDistinctValues(SeriesUsageType usageType, PlotDimension dimension) {
 		Set<Double> distinctValuesSet = new HashSet<Double>();
 		for (GroupCellKeyAndData groupCellKeyAndData : groupCellSeriesData) {
 			GroupCellData groupCellData = groupCellKeyAndData.getData();
@@ -74,7 +98,13 @@ public class GroupCellSeriesData implements Iterable<GroupCellKeyAndData> {
 		return i;
 	}
 
-	public GroupCellKeyAndData getGroupCellKeyAndData(int seriesIdx) {
+    /**
+     * Gets group cell key and data.
+     *
+     * @param seriesIdx the series idx
+     * @return the group cell key and data
+     */
+    public GroupCellKeyAndData getGroupCellKeyAndData(int seriesIdx) {
 		return groupCellSeriesData.get(seriesIdx);
 	}
 }

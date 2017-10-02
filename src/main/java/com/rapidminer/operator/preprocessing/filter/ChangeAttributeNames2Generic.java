@@ -42,16 +42,24 @@ import java.util.Set;
  * This operator replaces the attribute names of the input example set by generic names like att1,
  * att2, att3 etc.
  * </p>
- * 
+ *
  * @author Ingo Mierswa, Tobias Malbrecht
  */
 public class ChangeAttributeNames2Generic extends AbstractDataProcessing {
 
-	public static final String PARAMETER_NAME_STEM = "generic_name_stem";
+    /**
+     * The constant PARAMETER_NAME_STEM.
+     */
+    public static final String PARAMETER_NAME_STEM = "generic_name_stem";
 
 	private final AttributeSubsetSelector attributeSelector = new AttributeSubsetSelector(this, getExampleSetInputPort());
 
-	public ChangeAttributeNames2Generic(OperatorDescription description) {
+    /**
+     * Instantiates a new Change attribute names 2 generic.
+     *
+     * @param description the description
+     */
+    public ChangeAttributeNames2Generic(OperatorDescription description) {
 		super(description);
 	}
 

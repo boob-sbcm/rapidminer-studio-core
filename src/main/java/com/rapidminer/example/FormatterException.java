@@ -21,15 +21,19 @@ package com.rapidminer.example;
 /**
  * This exception is thrown by the ExampleFormatter if the user specified format is not applicable
  * to an example set.
- * 
+ *
  * @author Ingo Mierswa
- * 
  */
 public class FormatterException extends Exception {
 
 	private static final long serialVersionUID = -2759316022177605234L;
 
-	public FormatterException(String message) {
+    /**
+     * Instantiates a new Formatter exception.
+     *
+     * @param message the message
+     */
+    public FormatterException(String message) {
 		super(message);
 	}
 }

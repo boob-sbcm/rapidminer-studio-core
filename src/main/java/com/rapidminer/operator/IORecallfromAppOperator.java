@@ -39,30 +39,40 @@ import com.rapidminer.parameter.UndefinedParameterError;
  * operator {@link IOPublishToAppOperator}. The combination of those two operators can be used
  * to cache {@link IOObject}s during a RapidMiner Server App session and use those cached
  * {@link IOObject}s multiple times in the app without executing the same process several times.
- *
+ * <p>
  * This operator is used to manipulate a RapidMiner Server App. If the operator is executed in
  * RapidMiner Studio, the {@link IOObject} is retrieved from the cache in
  * {@link RapidMiner#getGlobalIOObjectCache()}.
  *
  * @author Sabrina Kirstein
- *
  */
 public class IORecallfromAppOperator extends Operator {
 
-	public static final String PARAMETER_NAME = "name";
+    /**
+     * The constant PARAMETER_NAME.
+     */
+    public static final String PARAMETER_NAME = "name";
 
-	public static final String PARAMETER_IO_OBJECT = "io_object";
+    /**
+     * The constant PARAMETER_IO_OBJECT.
+     */
+    public static final String PARAMETER_IO_OBJECT = "io_object";
 
-	public static final String PARAMETER_REMOVE_FROM_APP = "remove_from_app";
+    /**
+     * The constant PARAMETER_REMOVE_FROM_APP.
+     */
+    public static final String PARAMETER_REMOVE_FROM_APP = "remove_from_app";
 
 	private final OutputPort resultOutput = getOutputPorts().createPort("result");
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	/**
-	 * @param description
-	 */
-	public IORecallfromAppOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Io recallfrom app operator.
+     *
+     * @param description the description
+     */
+    public IORecallfromAppOperator(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new MDTransformationRule() {
 

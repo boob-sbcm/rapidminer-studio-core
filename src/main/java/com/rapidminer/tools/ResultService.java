@@ -40,7 +40,7 @@ import java.util.logging.Level;
  * Some statical methods to write results in a file. The class must be set up properly before you
  * can use these methods. Therefore the destination file is read from the global part of the process
  * configuration file.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ResultService {
@@ -54,15 +54,13 @@ public class ResultService {
 		out = new PrintWriter(System.out);
 	}
 
-	/**
-	 * Initializes the ResultService.
-	 * 
-	 * @param filename
-	 *            destination file.
-	 * @param process
-	 *            the process which is used to resolve the filename
-	 */
-	public static void init(String filename, Process process) {
+    /**
+     * Initializes the ResultService.
+     *
+     * @param filename destination file.
+     * @param process  the process which is used to resolve the filename
+     */
+    public static void init(String filename, Process process) {
 		if (filename == null) {
 			process.getLogger().log(Level.INFO, "No filename given for result file, using stdout for logging results!");
 			init(new PrintWriter(System.out));
@@ -104,18 +102,21 @@ public class ResultService {
 		}
 	}
 
-	/**
-	 * Initializes the ResultService.
-	 * 
-	 * @param outWriter
-	 *            writer to write the results to.
-	 */
-	public static void init(PrintWriter outWriter) {
+    /**
+     * Initializes the ResultService.
+     *
+     * @param outWriter writer to write the results to.
+     */
+    public static void init(PrintWriter outWriter) {
 		ResultService.out = outWriter;
 	}
 
-	/** Initializes the ResultService. */
-	public static void init(Process process) {
+    /**
+     * Initializes the ResultService.  @param process the process
+     *
+     * @param process the process
+     */
+    public static void init(Process process) {
 		String filename = null;
 		try {
 			filename = process.getRootOperator().getParameterAsString(ProcessRootOperator.PARAMETER_RESULTFILE);
@@ -126,30 +127,50 @@ public class ResultService {
 		init(filename, process);
 	}
 
-	/** Closes the stream. */
-	public static void close() {
+    /**
+     * Closes the stream.
+     */
+    public static void close() {
 		if (!systemStream) {
 			out.close();
 		}
 	}
 
-	/** Writes the string in the general result file. */
-	public static void logResult(String result) {
+    /**
+     * Writes the string in the general result file.  @param result the result
+     *
+     * @param result the result
+     */
+    public static void logResult(String result) {
 		logResult(result, out);
 	}
 
-	/** Writes the string in the given stream. */
-	public static void logResult(String result, PrintWriter localOut) {
+    /**
+     * Writes the string in the given stream.  @param result the result
+     *
+     * @param result   the result
+     * @param localOut the local out
+     */
+    public static void logResult(String result, PrintWriter localOut) {
 		localOut.println(getTime() + " " + result);
 	}
 
-	/** Writes the result string from the given result object in the result file. */
-	public static void logResult(ResultObject resultObject) {
+    /**
+     * Writes the result string from the given result object in the result file.  @param resultObject the result object
+     *
+     * @param resultObject the result object
+     */
+    public static void logResult(ResultObject resultObject) {
 		logResult(resultObject, out);
 	}
 
-	/** Writes the result string from the given result object in the result file. */
-	public static void logResult(ResultObject resultObject, PrintWriter localOut) {
+    /**
+     * Writes the result string from the given result object in the result file.  @param resultObject the result object
+     *
+     * @param resultObject the result object
+     * @param localOut     the local out
+     */
+    public static void logResult(ResultObject resultObject, PrintWriter localOut) {
 		logResult(resultObject.toResultString(), localOut);
 	}
 

@@ -114,14 +114,14 @@ import com.rapidminer.tools.usagestats.ActionStatisticsCollector;
  * process definition is created. It is also necessary for file name resolving and breakpoint
  * handling.
  * </p>
- *
+ * <p>
  * <p>
  * If you want to use RapidMiner from your own application the best way is often to create a process
  * definition from scratch (by adding the complete operator tree to the process' root operator) or
  * from a file (for example created with the GUI beforehand) and start it by invoking the
  * {@link #run()} method.
  * </p>
- *
+ * <p>
  * <p>
  * Observers can listen to changes of the associated file, repository location, and context.
  * </p>
@@ -131,10 +131,22 @@ import com.rapidminer.tools.usagestats.ActionStatisticsCollector;
  */
 public class Process extends AbstractObservable<Process> implements Cloneable {
 
-	public static final int PROCESS_STATE_UNKNOWN = -1;
-	public static final int PROCESS_STATE_STOPPED = 0;
-	public static final int PROCESS_STATE_PAUSED = 1;
-	public static final int PROCESS_STATE_RUNNING = 2;
+    /**
+     * The constant PROCESS_STATE_UNKNOWN.
+     */
+    public static final int PROCESS_STATE_UNKNOWN = -1;
+    /**
+     * The constant PROCESS_STATE_STOPPED.
+     */
+    public static final int PROCESS_STATE_STOPPED = 0;
+    /**
+     * The constant PROCESS_STATE_PAUSED.
+     */
+    public static final int PROCESS_STATE_PAUSED = 1;
+    /**
+     * The constant PROCESS_STATE_RUNNING.
+     */
+    public static final int PROCESS_STATE_RUNNING = 2;
 
 	/** The root operator of the process. */
 	private ProcessRootOperator rootOperator = null;
@@ -246,8 +258,10 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	// Constructors
 	// -------------------
 
-	/** Constructs an process consisting only of a SimpleOperatorChain. */
-	public Process() {
+    /**
+     * Constructs an process consisting only of a SimpleOperatorChain.
+     */
+    public Process() {
 		try {
 			ProcessRootOperator root = OperatorService.createOperator(ProcessRootOperator.class);
 			root.rename(root.getOperatorDescription().getName());
@@ -258,15 +272,27 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		initContext();
 	}
 
-	public Process(final File file) throws IOException, XMLException {
+    /**
+     * Instantiates a new Process.
+     *
+     * @param file the file
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     */
+    public Process(final File file) throws IOException, XMLException {
 		this(file, null);
 	}
 
-	/**
-	 * Creates a new process from the given process file. This might have been created with the GUI
-	 * beforehand.
-	 */
-	public Process(final File file, final ProgressListener progressListener) throws IOException, XMLException {
+    /**
+     * Creates a new process from the given process file. This might have been created with the GUI
+     * beforehand.
+     *
+     * @param file             the file
+     * @param progressListener the progress listener
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     */
+    public Process(final File file, final ProgressListener progressListener) throws IOException, XMLException {
 		this.processLocation = new FileProcessLocation(file);
 		initContext();
 		try (FileInputStream fis = new FileInputStream(file); Reader in = new InputStreamReader(fis, "UTF-8")) {
@@ -274,44 +300,78 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/**
-	 * Creates a new process from the given XML copying state information not covered by the XML
-	 * from the parameter process.
-	 */
-	public Process(final String xml, final Process process) throws IOException, XMLException {
+    /**
+     * Creates a new process from the given XML copying state information not covered by the XML
+     * from the parameter process.
+     *
+     * @param xml     the xml
+     * @param process the process
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     */
+    public Process(final String xml, final Process process) throws IOException, XMLException {
 		this(xml);
 		this.processLocation = process.processLocation;
 	}
 
-	/** Reads an process configuration from an XML String. */
-	public Process(final String xmlString) throws IOException, XMLException {
+    /**
+     * Reads an process configuration from an XML String.  @param xmlString the xml string
+     *
+     * @param xmlString the xml string
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     */
+    public Process(final String xmlString) throws IOException, XMLException {
 		initContext();
 		StringReader in = new StringReader(xmlString);
 		readProcess(in);
 		in.close();
 	}
 
-	/** Reads an process configuration from the given reader. */
-	public Process(final Reader in) throws IOException, XMLException {
+    /**
+     * Reads an process configuration from the given reader.  @param in the in
+     *
+     * @param in the in
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     */
+    public Process(final Reader in) throws IOException, XMLException {
 		initContext();
 		readProcess(in);
 	}
 
-	/** Reads an process configuration from the given stream. */
-	public Process(final InputStream in) throws IOException, XMLException {
+    /**
+     * Reads an process configuration from the given stream.  @param in the in
+     *
+     * @param in the in
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     */
+    public Process(final InputStream in) throws IOException, XMLException {
 		initContext();
 		readProcess(new InputStreamReader(in, XMLImporter.PROCESS_FILE_CHARSET));
 	}
 
-	/** Reads an process configuration from the given URL. */
-	public Process(final URL url) throws IOException, XMLException {
+    /**
+     * Reads an process configuration from the given URL.  @param url the url
+     *
+     * @param url the url
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     */
+    public Process(final URL url) throws IOException, XMLException {
 		initContext();
 		Reader in = new InputStreamReader(WebServiceTools.openStreamFromURL(url), getEncoding(null));
 		readProcess(in);
 		in.close();
 	}
 
-	protected Logger makeLogger() {
+    /**
+     * Make logger logger.
+     *
+     * @return the logger
+     */
+    protected Logger makeLogger() {
 		return Logger.getLogger(Process.class.getName());
 	}
 
@@ -348,10 +408,13 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		return new Process(this);
 	}
 
-	/**
-	 * @deprecated Use {@link #setProcessState(int)} instead
-	 */
-	@Deprecated
+    /**
+     * Sets experiment state.
+     *
+     * @param state the state
+     * @deprecated Use {@link #setProcessState(int)} instead
+     */
+    @Deprecated
 	public synchronized void setExperimentState(final int state) {
 		setProcessState(state);
 	}
@@ -362,28 +425,45 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		fireProcessStateChanged(oldState, state);
 	}
 
-	/**
-	 * @deprecated Use {@link #getProcessState()} instead
-	 */
-	@Deprecated
+    /**
+     * Gets experiment state.
+     *
+     * @return the experiment state
+     * @deprecated Use {@link #getProcessState()} instead
+     */
+    @Deprecated
 	public synchronized int getExperimentState() {
 		return getProcessState();
 	}
 
-	public int getProcessState() {
+    /**
+     * Gets process state.
+     *
+     * @return the process state
+     */
+    public int getProcessState() {
 		return this.processState;
 	}
 
 	// -------------------------
 	// User initiated state changes
 	// ---------------------------
-	/** Adds the given process state listener. */
-	public void addProcessStateListener(ProcessStateListener processStateListener) {
+
+    /**
+     * Adds the given process state listener.  @param processStateListener the process state listener
+     *
+     * @param processStateListener the process state listener
+     */
+    public void addProcessStateListener(ProcessStateListener processStateListener) {
 		this.processStateListeners.add(processStateListener);
 	}
 
-	/** Removes the given process state listener. */
-	public void removeProcessStateListener(ProcessStateListener processStateListener) {
+    /**
+     * Removes the given process state listener.  @param processStateListener the process state listener
+     *
+     * @param processStateListener the process state listener
+     */
+    public void removeProcessStateListener(ProcessStateListener processStateListener) {
 		this.processStateListeners.remove(processStateListener);
 	}
 
@@ -420,15 +500,23 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	// Logging
 	// -------------------------
 
-	/**
-	 * @deprecated use {@link #getLogger()} instead
-	 */
-	@Deprecated
+    /**
+     * Gets log.
+     *
+     * @return the log
+     * @deprecated use {@link #getLogger()} instead
+     */
+    @Deprecated
 	public LoggingHandler getLog() {
 		return this.logService;
 	}
 
-	public Logger getLogger() {
+    /**
+     * Gets logger.
+     *
+     * @return the logger
+     */
+    public Logger getLogger() {
 		return this.logger;
 	}
 
@@ -436,13 +524,19 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	// Macro Handler
 	// -------------------------
 
-	/** Returns the macro handler. */
-	public MacroHandler getMacroHandler() {
+    /**
+     * Returns the macro handler.  @return the macro handler
+     *
+     * @return the macro handler
+     */
+    public MacroHandler getMacroHandler() {
 		return this.macroHandler;
 	}
 
-	/** Clears all macros. */
-	public void clearMacros() {
+    /**
+     * Clears all macros.
+     */
+    public void clearMacros() {
 		this.getMacroHandler().clear();
 	}
 
@@ -450,13 +544,24 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	// IOObject Storage
 	// -------------------------
 
-	/** Stores the object with the given name. */
-	public void store(final String name, final IOObject object) {
+    /**
+     * Stores the object with the given name.  @param name the name
+     *
+     * @param name   the name
+     * @param object the object
+     */
+    public void store(final String name, final IOObject object) {
 		this.storageMap.put(name, object);
 	}
 
-	/** Retrieves the stored object. */
-	public IOObject retrieve(final String name, final boolean remove) {
+    /**
+     * Retrieves the stored object.  @param name the name
+     *
+     * @param name   the name
+     * @param remove the remove
+     * @return the io object
+     */
+    public IOObject retrieve(final String name, final boolean remove) {
 		if (remove) {
 			return this.storageMap.remove(name);
 		} else {
@@ -464,8 +569,10 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/** Clears all macros. */
-	public void clearStorage() {
+    /**
+     * Clears all macros.
+     */
+    public void clearStorage() {
 		this.storageMap.clear();
 	}
 
@@ -473,25 +580,27 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	// State storage
 	// -------------------------
 
-	/**
-	 * Injects another {@link IOObject} cache (to remember and recall {@link IOObject}s during a
-	 * long-term scope)
-	 *
-	 * If {@link #ioObjectCache} is null, the setter does not have any effect
-	 */
-	public void setIOObjectCache(IOObjectMap ioObjectCache) {
+    /**
+     * Injects another {@link IOObject} cache (to remember and recall {@link IOObject}s during a
+     * long-term scope)
+     * <p>
+     * If {@link #ioObjectCache} is null, the setter does not have any effect
+     *
+     * @param ioObjectCache the io object cache
+     */
+    public void setIOObjectCache(IOObjectMap ioObjectCache) {
 		if (ioObjectCache != null) {
 			this.ioObjectCache = ioObjectCache;
 		}
 	}
 
-	/**
-	 * Returns the {@link IOObject} cache (to remember and recall {@link IOObject}s during a
-	 * long-term scope), designed to be manipulated by operators in the process
-	 *
-	 * @return the IOObjectCache of the process
-	 */
-	public IOObjectMap getIOObjectCache() {
+    /**
+     * Returns the {@link IOObject} cache (to remember and recall {@link IOObject}s during a
+     * long-term scope), designed to be manipulated by operators in the process
+     *
+     * @return the IOObjectCache of the process
+     */
+    public IOObjectMap getIOObjectCache() {
 		return ioObjectCache;
 	}
 
@@ -499,25 +608,40 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	// Data Tables (Logging)
 	// -------------------------
 
-	/** Adds the given logging listener. */
-	public void addLoggingListener(final LoggingListener loggingListener) {
+    /**
+     * Adds the given logging listener.  @param loggingListener the logging listener
+     *
+     * @param loggingListener the logging listener
+     */
+    public void addLoggingListener(final LoggingListener loggingListener) {
 		this.loggingListeners.add(loggingListener);
 	}
 
-	/** Removes the given logging listener. */
-	public void removeLoggingListener(final LoggingListener loggingListener) {
+    /**
+     * Removes the given logging listener.  @param loggingListener the logging listener
+     *
+     * @param loggingListener the logging listener
+     */
+    public void removeLoggingListener(final LoggingListener loggingListener) {
 		this.loggingListeners.remove(loggingListener);
 	}
 
-	/** Returns true if a data table object with the given name exists. */
-	public boolean dataTableExists(final String name) {
+    /**
+     * Returns true if a data table object with the given name exists.  @param name the name
+     *
+     * @param name the name
+     * @return the boolean
+     */
+    public boolean dataTableExists(final String name) {
 		return dataTableMap.get(name) != null;
 	}
 
-	/**
-	 * Adds the given data table.
-	 */
-	public void addDataTable(final DataTable table) {
+    /**
+     * Adds the given data table.
+     *
+     * @param table the table
+     */
+    public void addDataTable(final DataTable table) {
 		dataTableMap.put(table.getName(), table);
 		synchronized (loggingListeners) {
 			for (LoggingListener listener : loggingListeners) {
@@ -526,8 +650,12 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/** Clears a single data table, i.e. removes all entries. */
-	public void clearDataTable(final String name) {
+    /**
+     * Clears a single data table, i.e. removes all entries.  @param name the name
+     *
+     * @param name the name
+     */
+    public void clearDataTable(final String name) {
 		DataTable table = getDataTable(name);
 		if (table != null) {
 			if (table instanceof SimpleDataTable) {
@@ -536,8 +664,12 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/** Deletes a single data table. */
-	public void deleteDataTable(final String name) {
+    /**
+     * Deletes a single data table.  @param name the name
+     *
+     * @param name the name
+     */
+    public void deleteDataTable(final String name) {
 		if (dataTableExists(name)) {
 			DataTable table = dataTableMap.remove(name);
 			synchronized (loggingListeners) {
@@ -548,16 +680,23 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/**
-	 * Returns the data table associated with the given name. If the name was not used yet, an empty
-	 * DataTable object is created with the given columnNames.
-	 */
-	public DataTable getDataTable(final String name) {
+    /**
+     * Returns the data table associated with the given name. If the name was not used yet, an empty
+     * DataTable object is created with the given columnNames.
+     *
+     * @param name the name
+     * @return the data table
+     */
+    public DataTable getDataTable(final String name) {
 		return dataTableMap.get(name);
 	}
 
-	/** Returns all data tables. */
-	public Collection<DataTable> getDataTables() {
+    /**
+     * Returns all data tables.  @return the data tables
+     *
+     * @return the data tables
+     */
+    public Collection<DataTable> getDataTables() {
 		return dataTableMap.values();
 	}
 
@@ -570,17 +709,22 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	// Report Streams
 	// ------------------------------
 
-	/**
-	 * This method adds a new report stream with the given name
-	 */
-	public void addReportStream(final ReportStream stream) {
+    /**
+     * This method adds a new report stream with the given name
+     *
+     * @param stream the stream
+     */
+    public void addReportStream(final ReportStream stream) {
 		reportStreamMap.put(stream.getName(), stream);
 	}
 
-	/**
-	 * Returns the reportStream with given name
-	 */
-	public ReportStream getReportStream(final String name) {
+    /**
+     * Returns the reportStream with given name
+     *
+     * @param name the name
+     * @return the report stream
+     */
+    public ReportStream getReportStream(final String name) {
 		if (name == null || name.length() == 0) {
 			if (reportStreamMap.size() == 1) {
 				return reportStreamMap.values().iterator().next();
@@ -592,18 +736,20 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/**
-	 * Removes this reportStream from process. This report Stream will not be notified about new
-	 * report items.
-	 *
-	 * @param name
-	 *            of the report stream given in the ReportGenerator operator
-	 */
-	public void removeReportStream(final String name) {
+    /**
+     * Removes this reportStream from process. This report Stream will not be notified about new
+     * report items.
+     *
+     * @param name of the report stream given in the ReportGenerator operator
+     */
+    public void removeReportStream(final String name) {
 		reportStreamMap.remove(name);
 	}
 
-	public void clearReportStreams() {
+    /**
+     * Clear report streams.
+     */
+    public void clearReportStreams() {
 		reportStreamMap.clear();
 	}
 
@@ -611,8 +757,12 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	// Operator Handling
 	// ----------------------
 
-	/** Sets the current root operator. This might lead to a new registering of operator names. */
-	public void setRootOperator(final ProcessRootOperator root) {
+    /**
+     * Sets the current root operator. This might lead to a new registering of operator names.  @param root the root
+     *
+     * @param root the root
+     */
+    public void setRootOperator(final ProcessRootOperator root) {
 		if (this.rootOperator != null) {
 			this.rootOperator.removeObserver(delegatingOperatorObserver);
 		}
@@ -622,30 +772,51 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		this.rootOperator.setProcess(this);
 	}
 
-	/** Delivers the current root operator. */
-	public ProcessRootOperator getRootOperator() {
+    /**
+     * Delivers the current root operator.  @return the root operator
+     *
+     * @return the root operator
+     */
+    public ProcessRootOperator getRootOperator() {
 		return rootOperator;
 	}
 
-	/** Returns the operator with the given name. */
-	public Operator getOperator(final String name) {
+    /**
+     * Returns the operator with the given name.  @param name the name
+     *
+     * @param name the name
+     * @return the operator
+     */
+    public Operator getOperator(final String name) {
 		return operatorNameMap.get(name);
 	}
 
-	/** Returns the operator that is currently being executed. */
-	public Operator getCurrentOperator() {
+    /**
+     * Returns the operator that is currently being executed.  @return the current operator
+     *
+     * @return the current operator
+     */
+    public Operator getCurrentOperator() {
 		return currentOperator;
 	}
 
-	/** Returns a Collection view of all operators. */
-	public Collection<Operator> getAllOperators() {
+    /**
+     * Returns a Collection view of all operators.  @return the all operators
+     *
+     * @return the all operators
+     */
+    public Collection<Operator> getAllOperators() {
 		List<Operator> result = rootOperator.getAllInnerOperators();
 		result.add(0, rootOperator);
 		return result;
 	}
 
-	/** Returns a Set view of all operator names (i.e. Strings). */
-	public Collection<String> getAllOperatorNames() {
+    /**
+     * Returns a Set view of all operator names (i.e. Strings).  @return the all operator names
+     *
+     * @return the all operator names
+     */
+    public Collection<String> getAllOperatorNames() {
 		Collection<String> allNames = new LinkedList<>();
 		for (Operator o : getAllOperators()) {
 			allNames.add(o.getName());
@@ -653,8 +824,12 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		return allNames;
 	}
 
-	/** Sets the operator that is currently being executed. */
-	public void setCurrentOperator(final Operator operator) {
+    /**
+     * Sets the operator that is currently being executed.  @param operator the operator
+     *
+     * @param operator the operator
+     */
+    public void setCurrentOperator(final Operator operator) {
 		this.currentOperator = operator;
 	}
 
@@ -665,8 +840,14 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	/** We synchronize on this object to wait and resume operation. */
 	private final Object breakpointLock = new Object();
 
-	/** Pauses the process at a breakpoint. */
-	public void pause(final Operator operator, final IOContainer iocontainer, final int breakpointType) {
+    /**
+     * Pauses the process at a breakpoint.  @param operator the operator
+     *
+     * @param operator       the operator
+     * @param iocontainer    the iocontainer
+     * @param breakpointType the breakpoint type
+     */
+    public void pause(final Operator operator, final IOContainer iocontainer, final int breakpointType) {
 		setProcessState(PROCESS_STATE_PAUSED);
 		fireBreakpointEvent(operator, iocontainer, breakpointType);
 		while (getProcessState() == Process.PROCESS_STATE_PAUSED) {
@@ -679,8 +860,10 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/** Resumes the process after it has been paused. */
-	public void resume() {
+    /**
+     * Resumes the process after it has been paused.
+     */
+    public void resume() {
 		setProcessState(PROCESS_STATE_RUNNING);
 		synchronized (breakpointLock) {
 			breakpointLock.notifyAll();
@@ -688,26 +871,38 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		fireResumeEvent();
 	}
 
-	/** Stops the process as soon as possible. */
-	public void stop() {
+    /**
+     * Stops the process as soon as possible.
+     */
+    public void stop() {
 		this.setProcessState(PROCESS_STATE_STOPPED);
 		synchronized (breakpointLock) {
 			breakpointLock.notifyAll();
 		}
 	}
 
-	/** Stops the process as soon as possible. */
-	public void pause() {
+    /**
+     * Stops the process as soon as possible.
+     */
+    public void pause() {
 		this.setProcessState(PROCESS_STATE_PAUSED);
 	}
 
-	/** Returns true iff the process should be stopped. */
-	public boolean shouldStop() {
+    /**
+     * Returns true iff the process should be stopped.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean shouldStop() {
 		return getProcessState() == PROCESS_STATE_STOPPED;
 	}
 
-	/** Returns true iff the process should be stopped. */
-	public boolean shouldPause() {
+    /**
+     * Returns true iff the process should be stopped.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean shouldPause() {
 		return getProcessState() == PROCESS_STATE_PAUSED;
 	}
 
@@ -715,17 +910,16 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	// Filters between operators handling
 	// --------------------
 
-	/**
-	 * Add a new {@link ProcessFlowFilter} to this process. The filter will be called directly
-	 * before and after each operator. Refer to {@link ProcessFlowFilter} for more information.
-	 * <p>
-	 * If the given filter instance is already registered, it will not be added a second time.
-	 * </p>
-	 *
-	 * @param filter
-	 *            the filter instance to add
-	 */
-	public void addProcessFlowFilter(ProcessFlowFilter filter) {
+    /**
+     * Add a new {@link ProcessFlowFilter} to this process. The filter will be called directly
+     * before and after each operator. Refer to {@link ProcessFlowFilter} for more information.
+     * <p>
+     * If the given filter instance is already registered, it will not be added a second time.
+     * </p>
+     *
+     * @param filter the filter instance to add
+     */
+    public void addProcessFlowFilter(ProcessFlowFilter filter) {
 		if (filter == null) {
 			throw new IllegalArgumentException("filter must not be null!");
 		}
@@ -734,32 +928,28 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/**
-	 * Remove a {@link ProcessFlowFilter} from this process. Does nothing if the filter is unknown.
-	 *
-	 * @param filter
-	 *            the filter instance to remove
-	 */
-	public void removeProcessFlowFilter(ProcessFlowFilter filter) {
+    /**
+     * Remove a {@link ProcessFlowFilter} from this process. Does nothing if the filter is unknown.
+     *
+     * @param filter the filter instance to remove
+     */
+    public void removeProcessFlowFilter(ProcessFlowFilter filter) {
 		if (filter == null) {
 			throw new IllegalArgumentException("filter must not be null!");
 		}
 		processFlowFilters.remove(filter);
 	}
 
-	/**
-	 * Notifies all registered {@link ProcessFlowFilter}s that the next operator in the process is
-	 * about to be executed.
-	 *
-	 * @param previousOperator
-	 *            the previous operator; may be {@code null} for the first operator in a subprocess
-	 * @param nextOperator
-	 *            the next operator to be called, never {@code null}
-	 * @param input
-	 *            the list of all input data for the next operator. If {@code null}, an empty list
-	 *            will be used
-	 */
-	public void fireProcessFlowBeforeOperator(Operator previousOperator, Operator nextOperator, List<FlowData> input)
+    /**
+     * Notifies all registered {@link ProcessFlowFilter}s that the next operator in the process is
+     * about to be executed.
+     *
+     * @param previousOperator the previous operator; may be {@code null} for the first operator in a subprocess
+     * @param nextOperator     the next operator to be called, never {@code null}
+     * @param input            the list of all input data for the next operator. If {@code null}, an empty list            will be used
+     * @throws OperatorException the operator exception
+     */
+    public void fireProcessFlowBeforeOperator(Operator previousOperator, Operator nextOperator, List<FlowData> input)
 			throws OperatorException {
 		if (nextOperator == null) {
 			throw new IllegalArgumentException("nextOperator must not be null!");
@@ -774,20 +964,16 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/**
-	 * Notifies all registered {@link ProcessFlowFilter}s that an operator in the process has just
-	 * finished execution.
-	 *
-	 * @param previousOperator
-	 *            the operator which just finished, never {@code null}
-	 * @param nextOperator
-	 *            the next operator to be called; may be {@code null} if this was the last operator
-	 *            in a subprocess
-	 * @param output
-	 *            the list of all output data from the previous operator. If {@code null}, an empty
-	 *            list will be used
-	 */
-	public void fireProcessFlowAfterOperator(Operator previousOperator, Operator nextOperator, List<FlowData> output)
+    /**
+     * Notifies all registered {@link ProcessFlowFilter}s that an operator in the process has just
+     * finished execution.
+     *
+     * @param previousOperator the operator which just finished, never {@code null}
+     * @param nextOperator     the next operator to be called; may be {@code null} if this was the last operator            in a subprocess
+     * @param output           the list of all output data from the previous operator. If {@code null}, an empty            list will be used
+     * @throws OperatorException the operator exception
+     */
+    public void fireProcessFlowAfterOperator(Operator previousOperator, Operator nextOperator, List<FlowData> output)
 			throws OperatorException {
 		if (previousOperator == null) {
 			throw new IllegalArgumentException("previousOperator must not be null!");
@@ -802,15 +988,13 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/**
-	 * Copies the registered {@link ProcessFlowFilter}s of this process to the given process
-	 * instance.
-	 *
-	 * @param otherProcess
-	 *            the process who should get all process flow listeners which are registered to this
-	 *            process instance
-	 */
-	public void copyProcessFlowListenersToOtherProcess(Process otherProcess) {
+    /**
+     * Copies the registered {@link ProcessFlowFilter}s of this process to the given process
+     * instance.
+     *
+     * @param otherProcess the process who should get all process flow listeners which are registered to this            process instance
+     */
+    public void copyProcessFlowListenersToOtherProcess(Process otherProcess) {
 		if (otherProcess == null) {
 			throw new IllegalArgumentException("otherProcess must not be null!");
 		}
@@ -826,13 +1010,21 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	// Breakpoint Handling
 	// --------------------
 
-	/** Adds a breakpoint listener. */
-	public void addBreakpointListener(final BreakpointListener listener) {
+    /**
+     * Adds a breakpoint listener.  @param listener the listener
+     *
+     * @param listener the listener
+     */
+    public void addBreakpointListener(final BreakpointListener listener) {
 		breakpointListeners.add(listener);
 	}
 
-	/** Removes a breakpoint listener. */
-	public void removeBreakpointListener(final BreakpointListener listener) {
+    /**
+     * Removes a breakpoint listener.  @param listener the listener
+     *
+     * @param listener the listener
+     */
+    public void removeBreakpointListener(final BreakpointListener listener) {
 		breakpointListeners.remove(listener);
 	}
 
@@ -845,8 +1037,10 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/** Fires the event that the process was resumed. */
-	public void fireResumeEvent() {
+    /**
+     * Fires the event that the process was resumed.
+     */
+    public void fireResumeEvent() {
 		LinkedList<BreakpointListener> l;
 		synchronized (breakpointListeners) {
 			l = new LinkedList<>(breakpointListeners);
@@ -860,34 +1054,43 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	// Checks
 	// -----------------
 
-	/**
-	 * Delivers the information about unknown parameter types which occurred during process creation
-	 * (from streams or files).
-	 */
-	public List<UnknownParameterInformation> getUnknownParameters() {
+    /**
+     * Delivers the information about unknown parameter types which occurred during process creation
+     * (from streams or files).
+     *
+     * @return the unknown parameters
+     */
+    public List<UnknownParameterInformation> getUnknownParameters() {
 		return this.unknownParameterInformation;
 	}
 
-	/**
-	 * Clears the information about unknown parameter types which occurred during process creation
-	 * (from streams or files).
-	 */
-	public void clearUnknownParameters() {
+    /**
+     * Clears the information about unknown parameter types which occurred during process creation
+     * (from streams or files).
+     */
+    public void clearUnknownParameters() {
 		this.unknownParameterInformation.clear();
 	}
 
-	/**
-	 * Checks for correct number of inner operators, properties, and io.
-	 *
-	 * @deprecated Use {@link #checkProcess(IOContainer)} instead
-	 */
-	@Deprecated
+    /**
+     * Checks for correct number of inner operators, properties, and io.
+     *
+     * @param inputContainer the input container
+     * @return the boolean
+     * @deprecated Use {@link #checkProcess(IOContainer)} instead
+     */
+    @Deprecated
 	public boolean checkExperiment(final IOContainer inputContainer) {
 		return checkProcess(inputContainer);
 	}
 
-	/** Checks for correct number of inner operators, properties, and io. */
-	public boolean checkProcess(final IOContainer inputContainer) {
+    /**
+     * Checks for correct number of inner operators, properties, and io.  @param inputContainer the input container
+     *
+     * @param inputContainer the input container
+     * @return the boolean
+     */
+    public boolean checkProcess(final IOContainer inputContainer) {
 		rootOperator.checkAll();
 		return true;
 	}
@@ -948,30 +1151,25 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		return false;
 	}
 
-	/**
-	 * Loads results from the repository if specified in the {@link ProcessContext}.
-	 *
-	 * @param firstPort
-	 *            Specifies the first port which is read from the ProcessContext. This enables the
-	 *            possibility to skip ports for which input is already specified via the input
-	 *            parameter of the run() method.
-	 */
-	protected void loadInitialData(final int firstPort) throws UserError {
+    /**
+     * Loads results from the repository if specified in the {@link ProcessContext}.
+     *
+     * @param firstPort Specifies the first port which is read from the ProcessContext. This enables the            possibility to skip ports for which input is already specified via the input            parameter of the run() method.
+     * @throws UserError the user error
+     */
+    protected void loadInitialData(final int firstPort) throws UserError {
 		loadInitialData(firstPort, null);
 	}
 
-	/**
-	 * Loads results from the repository if specified in the {@link ProcessContext}. Will also show
-	 * the progress of loading if a {@link ProgressListener} is specified.
-	 *
-	 * @param firstPort
-	 *            Specifies the first port which is read from the ProcessContext. This enables the
-	 *            possibility to skip ports for which input is already specified via the input
-	 *            parameter of the run() method.
-	 * @param progressListener
-	 *            The progress listener for loading the data. Can be null.
-	 */
-	protected void loadInitialData(final int firstPort, ProgressListener progressListener) throws UserError {
+    /**
+     * Loads results from the repository if specified in the {@link ProcessContext}. Will also show
+     * the progress of loading if a {@link ProgressListener} is specified.
+     *
+     * @param firstPort        Specifies the first port which is read from the ProcessContext. This enables the            possibility to skip ports for which input is already specified via the input            parameter of the run() method.
+     * @param progressListener The progress listener for loading the data. Can be null.
+     * @throws UserError the user error
+     */
+    protected void loadInitialData(final int firstPort, ProgressListener progressListener) throws UserError {
 		ProcessContext context = getContext();
 		if (context.getInputRepositoryLocations().isEmpty()) {
 			if (progressListener != null) {
@@ -1058,8 +1256,12 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/** Stores the results in the repository if specified in the {@link ProcessContext}. */
-	protected void saveResults() throws UserError {
+    /**
+     * Stores the results in the repository if specified in the {@link ProcessContext}.  @throws UserError the user error
+     *
+     * @throws UserError the user error
+     */
+    protected void saveResults() throws UserError {
 		ProcessContext context = getContext();
 		if (context.getOutputRepositoryLocations().isEmpty()) {
 			return;
@@ -1101,95 +1303,151 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	public void applyContextMacros() {
+    /**
+     * Apply context macros.
+     */
+    public void applyContextMacros() {
 		for (Pair<String, String> macro : context.getMacros()) {
 			getLogger().fine("Defining context macro: " + macro.getFirst() + " = " + macro.getSecond() + ".");
 			getMacroHandler().addMacro(macro.getFirst(), macro.getSecond());
 		}
 	}
 
-	/** Starts the process with no input. */
-	public final IOContainer run() throws OperatorException {
+    /**
+     * Starts the process with no input.  @return the io container
+     *
+     * @return the io container
+     * @throws OperatorException the operator exception
+     */
+    public final IOContainer run() throws OperatorException {
 		return run(new IOContainer());
 	}
 
-	/** Starts the process with the given log verbosity. */
-	public final IOContainer run(final int logVerbosity) throws OperatorException {
+    /**
+     * Starts the process with the given log verbosity.  @param logVerbosity the log verbosity
+     *
+     * @param logVerbosity the log verbosity
+     * @return the io container
+     * @throws OperatorException the operator exception
+     */
+    public final IOContainer run(final int logVerbosity) throws OperatorException {
 		return run(new IOContainer(), logVerbosity);
 	}
 
-	/** Starts the process with the given input. */
-	public final IOContainer run(final IOContainer input) throws OperatorException {
+    /**
+     * Starts the process with the given input.  @param input the input
+     *
+     * @param input the input
+     * @return the io container
+     * @throws OperatorException the operator exception
+     */
+    public final IOContainer run(final IOContainer input) throws OperatorException {
 		return run(input, LogService.UNKNOWN_LEVEL);
 	}
 
-	/** Starts the process with the given input. The process uses the given log verbosity. */
-	public final IOContainer run(final IOContainer input, final int logVerbosity) throws OperatorException {
+    /**
+     * Starts the process with the given input. The process uses the given log verbosity.  @param input the input
+     *
+     * @param input        the input
+     * @param logVerbosity the log verbosity
+     * @return the io container
+     * @throws OperatorException the operator exception
+     */
+    public final IOContainer run(final IOContainer input, final int logVerbosity) throws OperatorException {
 		return run(input, logVerbosity, null);
 	}
 
-	/**
-	 * Starts the process with the given input. The process uses a default log verbosity. The
-	 * boolean flag indicates if some static initializations should be cleaned before the process is
-	 * started. This should usually be true but it might be useful to set this to false if, for
-	 * example, several process runs uses the same object visualizer which would have been cleaned
-	 * otherwise.
-	 */
-	@Deprecated
+    /**
+     * Starts the process with the given input. The process uses a default log verbosity. The
+     * boolean flag indicates if some static initializations should be cleaned before the process is
+     * started. This should usually be true but it might be useful to set this to false if, for
+     * example, several process runs uses the same object visualizer which would have been cleaned
+     * otherwise.
+     *
+     * @param input  the input
+     * @param unused the unused
+     * @return the io container
+     * @throws OperatorException the operator exception
+     */
+    @Deprecated
 	public final IOContainer run(final IOContainer input, final boolean unused) throws OperatorException {
 		return run(input, LogService.UNKNOWN_LEVEL);
 	}
 
-	/**
-	 * Starts the process with the given input. The process uses the given log verbosity. The
-	 * boolean flag indicates if some static initializations should be cleaned before the process is
-	 * started. This should usually be true but it might be useful to set this to false if, for
-	 * example, several process runs uses the same object visualizer which would have been cleaned
-	 * otherwise.
-	 */
-	@Deprecated
+    /**
+     * Starts the process with the given input. The process uses the given log verbosity. The
+     * boolean flag indicates if some static initializations should be cleaned before the process is
+     * started. This should usually be true but it might be useful to set this to false if, for
+     * example, several process runs uses the same object visualizer which would have been cleaned
+     * otherwise.
+     *
+     * @param input        the input
+     * @param logVerbosity the log verbosity
+     * @param cleanUp      the clean up
+     * @return the io container
+     * @throws OperatorException the operator exception
+     */
+    @Deprecated
 	public final IOContainer run(final IOContainer input, final int logVerbosity, final boolean cleanUp)
 			throws OperatorException {
 		return run(input, logVerbosity, null);
 	}
 
-	/**
-	 * Starts the process with the given input. The process uses the given log verbosity. The
-	 * boolean flag indicates if some static initializations should be cleaned before the process is
-	 * started. This should usually be true but it might be useful to set this to false if, for
-	 * example, several process runs uses the same object visualizer which would have been cleaned
-	 * otherwise.
-	 *
-	 * Since the macros are cleaned then as well it is not possible to set macros to a process but
-	 * with the given macroMap of this method.
-	 */
-	@Deprecated
+    /**
+     * Starts the process with the given input. The process uses the given log verbosity. The
+     * boolean flag indicates if some static initializations should be cleaned before the process is
+     * started. This should usually be true but it might be useful to set this to false if, for
+     * example, several process runs uses the same object visualizer which would have been cleaned
+     * otherwise.
+     * <p>
+     * Since the macros are cleaned then as well it is not possible to set macros to a process but
+     * with the given macroMap of this method.
+     *
+     * @param input        the input
+     * @param logVerbosity the log verbosity
+     * @param cleanUp      the clean up
+     * @param macroMap     the macro map
+     * @return the io container
+     * @throws OperatorException the operator exception
+     */
+    @Deprecated
 	public final IOContainer run(final IOContainer input, final int logVerbosity, final boolean cleanUp,
 			final Map<String, String> macroMap) throws OperatorException {
 		return run(input, logVerbosity, macroMap);
 
 	}
 
-	public final IOContainer run(final IOContainer input, final int logVerbosity, final Map<String, String> macroMap)
+    /**
+     * Run io container.
+     *
+     * @param input        the input
+     * @param logVerbosity the log verbosity
+     * @param macroMap     the macro map
+     * @return the io container
+     * @throws OperatorException the operator exception
+     */
+    public final IOContainer run(final IOContainer input, final int logVerbosity, final Map<String, String> macroMap)
 			throws OperatorException {
 		return run(input, logVerbosity, macroMap, true);
 	}
 
-	/**
-	 * Starts the process with the given input. The process uses the given log verbosity.
-	 *
-	 * If input is not null, it is delivered to the input ports of the process. If it is null or
-	 * empty, the input is read instead from the locations specified in the {@link ProcessContext}.
-	 *
-	 * If input contains less IOObjects than are specified in the context, the remaining ones are
-	 * read according to the context.
-	 *
-	 * @param storeOutput
-	 *            Specifies if the output of the process should be saved. This is useful, if you
-	 *            embed a process using the Execute Process operator, and do not want to store the
-	 *            output as specified by the process context.
-	 */
-	public final IOContainer run(final IOContainer input, int logVerbosity, final Map<String, String> macroMap,
+    /**
+     * Starts the process with the given input. The process uses the given log verbosity.
+     * <p>
+     * If input is not null, it is delivered to the input ports of the process. If it is null or
+     * empty, the input is read instead from the locations specified in the {@link ProcessContext}.
+     * <p>
+     * If input contains less IOObjects than are specified in the context, the remaining ones are
+     * read according to the context.
+     *
+     * @param input        the input
+     * @param logVerbosity the log verbosity
+     * @param macroMap     the macro map
+     * @param storeOutput  Specifies if the output of the process should be saved. This is useful, if you            embed a process using the Execute Process operator, and do not want to store the            output as specified by the process context.
+     * @return the io container
+     * @throws OperatorException the operator exception
+     */
+    public final IOContainer run(final IOContainer input, int logVerbosity, final Map<String, String> macroMap,
 			final boolean storeOutput) throws OperatorException {
 		// make sure the process flow filter is registered
 		ProcessFlowFilter filter = ProcessFlowFilterRegistry.INSTANCE.getProcessFlowFilter();
@@ -1395,7 +1653,13 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 	// Process IO
 	// ----------------------
 
-	public static Charset getEncoding(String encoding) {
+    /**
+     * Gets encoding.
+     *
+     * @param encoding the encoding
+     * @return the encoding
+     */
+    public static Charset getEncoding(String encoding) {
 		if (encoding == null) {
 			encoding = ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_GENERAL_DEFAULT_ENCODING);
 			if (encoding == null || encoding.trim().length() == 0) {
@@ -1420,8 +1684,12 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		return result;
 	}
 
-	/** Saves the process to the process file. */
-	public void save() throws IOException {
+    /**
+     * Saves the process to the process file.  @throws IOException the io exception
+     *
+     * @throws IOException the io exception
+     */
+    public void save() throws IOException {
 		try {
 			Process.checkIfSavable(this);
 		} catch (Exception e) {
@@ -1435,8 +1703,13 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/** Saves the process to the given process file. */
-	public void save(final File file) throws IOException {
+    /**
+     * Saves the process to the given process file.  @param file the file
+     *
+     * @param file the file
+     * @throws IOException the io exception
+     */
+    public void save(final File file) throws IOException {
 		try {
 			Process.checkIfSavable(this);
 		} catch (Exception e) {
@@ -1445,10 +1718,13 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		new FileProcessLocation(file).store(this, null);
 	}
 
-	/**
-	 * Resolves the given filename against the directory containing the process file.
-	 */
-	public File resolveFileName(final String name) {
+    /**
+     * Resolves the given filename against the directory containing the process file.
+     *
+     * @param name the name
+     * @return the file
+     */
+    public File resolveFileName(final String name) {
 		File absolute = new File(name);
 		if (absolute.isAbsolute()) {
 			return absolute;
@@ -1470,12 +1746,26 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 
 	}
 
-	/** Reads the process setup from the given input stream. */
-	public void readProcess(final Reader in) throws XMLException, IOException {
+    /**
+     * Reads the process setup from the given input stream.  @param in the in
+     *
+     * @param in the in
+     * @throws XMLException the xml exception
+     * @throws IOException  the io exception
+     */
+    public void readProcess(final Reader in) throws XMLException, IOException {
 		readProcess(in, null);
 	}
 
-	public void readProcess(final Reader in, final ProgressListener progressListener) throws XMLException, IOException {
+    /**
+     * Read process.
+     *
+     * @param in               the in
+     * @param progressListener the progress listener
+     * @throws XMLException the xml exception
+     * @throws IOException  the io exception
+     */
+    public void readProcess(final Reader in, final ProgressListener progressListener) throws XMLException, IOException {
 		Map<String, Operator> nameMapBackup = operatorNameMap;
 		operatorNameMap = new HashMap<>(); // no invocation of clear (see below)
 
@@ -1508,11 +1798,15 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/**
-	 * Returns a &quot;name (i)&quot; if name is already in use. This new name should then be used
-	 * as operator name.
-	 */
-	public String registerName(final String name, final Operator operator) {
+    /**
+     * Returns a &quot;name (i)&quot; if name is already in use. This new name should then be used
+     * as operator name.
+     *
+     * @param name     the name
+     * @param operator the operator
+     * @return the string
+     */
+    public String registerName(final String name, final Operator operator) {
 		if (operatorNameMap.get(name) != null) {
 			String baseName = name;
 			int index = baseName.indexOf(" (");
@@ -1532,12 +1826,22 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/** This method is used for unregistering a name from the operator name map. */
-	public void unregisterName(final String name) {
+    /**
+     * This method is used for unregistering a name from the operator name map.  @param name the name
+     *
+     * @param name the name
+     */
+    public void unregisterName(final String name) {
 		operatorNameMap.remove(name);
 	}
 
-	public void notifyRenaming(final String oldName, final String newName) {
+    /**
+     * Notify renaming.
+     *
+     * @param oldName the old name
+     * @param newName the new name
+     */
+    public void notifyRenaming(final String oldName, final String newName) {
 		rootOperator.notifyRenaming(oldName, newName);
 	}
 
@@ -1568,59 +1872,118 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	};
 
-	public void addProcessSetupListener(final ProcessSetupListener listener) {
+    /**
+     * Add process setup listener.
+     *
+     * @param listener the listener
+     */
+    public void addProcessSetupListener(final ProcessSetupListener listener) {
 		processSetupListeners.add(ProcessSetupListener.class, listener);
 	}
 
-	public void removeProcessSetupListener(final ProcessSetupListener listener) {
+    /**
+     * Remove process setup listener.
+     *
+     * @param listener the listener
+     */
+    public void removeProcessSetupListener(final ProcessSetupListener listener) {
 		processSetupListeners.remove(ProcessSetupListener.class, listener);
 	}
 
-	public void fireOperatorAdded(final Operator operator) {
+    /**
+     * Fire operator added.
+     *
+     * @param operator the operator
+     */
+    public void fireOperatorAdded(final Operator operator) {
 		for (ProcessSetupListener l : processSetupListeners.getListeners(ProcessSetupListener.class)) {
 			l.operatorAdded(operator);
 		}
 	}
 
-	public void fireOperatorChanged(final Operator operator) {
+    /**
+     * Fire operator changed.
+     *
+     * @param operator the operator
+     */
+    public void fireOperatorChanged(final Operator operator) {
 		for (ProcessSetupListener l : processSetupListeners.getListeners(ProcessSetupListener.class)) {
 			l.operatorChanged(operator);
 		}
 	}
 
-	public void fireOperatorRemoved(final Operator operator, final int oldIndex, final int oldIndexAmongEnabled) {
+    /**
+     * Fire operator removed.
+     *
+     * @param operator             the operator
+     * @param oldIndex             the old index
+     * @param oldIndexAmongEnabled the old index among enabled
+     */
+    public void fireOperatorRemoved(final Operator operator, final int oldIndex, final int oldIndexAmongEnabled) {
 		for (ProcessSetupListener l : processSetupListeners.getListeners(ProcessSetupListener.class)) {
 			l.operatorRemoved(operator, oldIndex, oldIndexAmongEnabled);
 		}
 	}
 
-	public void fireExecutionOrderChanged(final ExecutionUnit unit) {
+    /**
+     * Fire execution order changed.
+     *
+     * @param unit the unit
+     */
+    public void fireExecutionOrderChanged(final ExecutionUnit unit) {
 		for (ProcessSetupListener l : processSetupListeners.getListeners(ProcessSetupListener.class)) {
 			l.executionOrderChanged(unit);
 		}
 	}
 
-	public ExecutionMode getExecutionMode() {
+    /**
+     * Gets execution mode.
+     *
+     * @return the execution mode
+     */
+    public ExecutionMode getExecutionMode() {
 		return executionMode;
 	}
 
-	public void setExecutionMode(final ExecutionMode mode) {
+    /**
+     * Sets execution mode.
+     *
+     * @param mode the mode
+     */
+    public void setExecutionMode(final ExecutionMode mode) {
 		this.executionMode = mode;
 	}
 
-	public DebugMode getDebugMode() {
+    /**
+     * Gets debug mode.
+     *
+     * @return the debug mode
+     */
+    public DebugMode getDebugMode() {
 		return debugMode;
 	}
 
-	public void setDebugMode(final DebugMode mode) {
+    /**
+     * Sets debug mode.
+     *
+     * @param mode the mode
+     */
+    public void setDebugMode(final DebugMode mode) {
 		this.debugMode = mode;
 		if (mode == DebugMode.DEBUG_OFF) {
 			getRootOperator().clear(Port.CLEAR_REAL_METADATA);
 		}
 	}
 
-	/** Resolves a repository location relative to {@link #getRepositoryLocation()}. */
-	public RepositoryLocation resolveRepositoryLocation(final String loc)
+    /**
+     * Resolves a repository location relative to {@link #getRepositoryLocation()}.  @param loc the loc
+     *
+     * @param loc the loc
+     * @return the repository location
+     * @throws UserError                            the user error
+     * @throws MalformedRepositoryLocationException the malformed repository location exception
+     */
+    public RepositoryLocation resolveRepositoryLocation(final String loc)
 			throws UserError, MalformedRepositoryLocationException {
 		if (RepositoryLocation.isAbsolute(loc)) {
 			RepositoryLocation repositoryLocation = new RepositoryLocation(loc);
@@ -1637,8 +2000,13 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/** Turns loc into a repository location relative to {@link #getRepositoryLocation()}. */
-	public String makeRelativeRepositoryLocation(final RepositoryLocation loc) {
+    /**
+     * Turns loc into a repository location relative to {@link #getRepositoryLocation()}.  @param loc the loc
+     *
+     * @param loc the loc
+     * @return the string
+     */
+    public String makeRelativeRepositoryLocation(final RepositoryLocation loc) {
 		RepositoryLocation repositoryLocation = getRepositoryLocation();
 		if (repositoryLocation != null) {
 			return loc.makeRelative(repositoryLocation.parent());
@@ -1647,7 +2015,12 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	public void setContext(final ProcessContext context) {
+    /**
+     * Sets context.
+     *
+     * @param context the context
+     */
+    public void setContext(final ProcessContext context) {
 		if (this.context != null) {
 			this.context.removeObserver(delegatingContextObserver);
 		}
@@ -1656,60 +2029,82 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		fireUpdate();
 	}
 
-	public ProcessContext getContext() {
+    /**
+     * Gets context.
+     *
+     * @return the context
+     */
+    public ProcessContext getContext() {
 		return context;
 	}
 
-	public void setImportMessage(final String importMessage) {
+    /**
+     * Sets import message.
+     *
+     * @param importMessage the import message
+     */
+    public void setImportMessage(final String importMessage) {
 		this.importMessage = importMessage;
 	}
 
-	/**
-	 * This returns true if the process has been imported and ImportRules have been applied during
-	 * importing. Since the backward compatibility is lost on save, one can warn by retrieving this
-	 * value.
-	 */
-	public boolean isProcessConverted() {
+    /**
+     * This returns true if the process has been imported and ImportRules have been applied during
+     * importing. Since the backward compatibility is lost on save, one can warn by retrieving this
+     * value.
+     *
+     * @return the boolean
+     */
+    public boolean isProcessConverted() {
 		return isProcessConverted;
 	}
 
-	/**
-	 * This sets whether the process is converted.
-	 */
-	public void setProcessConverted(final boolean isProcessConverted) {
+    /**
+     * This sets whether the process is converted.
+     *
+     * @param isProcessConverted the is process converted
+     */
+    public void setProcessConverted(final boolean isProcessConverted) {
 		this.isProcessConverted = isProcessConverted;
 	}
 
-	/**
-	 * Returns some user readable messages generated during import by {@link XMLImporter}.
-	 */
-	public String getImportMessage() {
+    /**
+     * Returns some user readable messages generated during import by {@link XMLImporter}.
+     *
+     * @return the import message
+     */
+    public String getImportMessage() {
 		return importMessage;
 	}
 
 	// process location (file/repository)
 
-	/** Returns true iff either a file or a repository location is defined. */
-	public boolean hasSaveDestination() {
+    /**
+     * Returns true iff either a file or a repository location is defined.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean hasSaveDestination() {
 		return processLocation != null;
 	}
 
-	/**
-	 * Returns the current process file.
-	 *
-	 * @deprecated Use {@link #getProcessFile()} instead
-	 */
-	@Deprecated
+    /**
+     * Returns the current process file.
+     *
+     * @return the experiment file
+     * @deprecated Use {@link #getProcessFile()} instead
+     */
+    @Deprecated
 	public File getExperimentFile() {
 		return getProcessFile();
 	}
 
-	/**
-	 * Returns the current process file.
-	 *
-	 * @deprecated Use {@link #getProcessLocation()}
-	 */
-	@Deprecated
+    /**
+     * Returns the current process file.
+     *
+     * @return the process file
+     * @deprecated Use {@link #getProcessLocation()}
+     */
+    @Deprecated
 	public File getProcessFile() {
 		if (processLocation instanceof FileProcessLocation) {
 			return ((FileProcessLocation) processLocation).getFile();
@@ -1718,22 +2113,32 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/**
-	 * Sets the process file. This file might be used for resolving relative filenames.
-	 *
-	 * @deprecated Please use {@link #setProcessFile(File)} instead.
-	 */
-	@Deprecated
+    /**
+     * Sets the process file. This file might be used for resolving relative filenames.
+     *
+     * @param file the file
+     * @deprecated Please use {@link #setProcessFile(File)} instead.
+     */
+    @Deprecated
 	public void setExperimentFile(final File file) {
 		setProcessLocation(new FileProcessLocation(file));
 	}
 
-	/** Sets the process file. This file might be used for resolving relative filenames. */
-	public void setProcessFile(final File file) {
+    /**
+     * Sets the process file. This file might be used for resolving relative filenames.  @param file the file
+     *
+     * @param file the file
+     */
+    public void setProcessFile(final File file) {
 		setProcessLocation(new FileProcessLocation(file));
 	}
 
-	public void setProcessLocation(final ProcessLocation processLocation) {
+    /**
+     * Sets process location.
+     *
+     * @param processLocation the process location
+     */
+    public void setProcessLocation(final ProcessLocation processLocation) {
 		// keep process file version if same file, otherwise overwrite
 		if (this.processLocation != null && !this.processLocation.equals(processLocation)) {
 			this.isProcessConverted = false;
@@ -1744,11 +2149,21 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		fireUpdate();
 	}
 
-	public ProcessLocation getProcessLocation() {
+    /**
+     * Gets process location.
+     *
+     * @return the process location
+     */
+    public ProcessLocation getProcessLocation() {
 		return this.processLocation;
 	}
 
-	public RepositoryLocation getRepositoryLocation() {
+    /**
+     * Gets repository location.
+     *
+     * @return the repository location
+     */
+    public RepositoryLocation getRepositoryLocation() {
 		if (processLocation instanceof RepositoryProcessLocation) {
 			return ((RepositoryProcessLocation) processLocation).getRepositoryLocation();
 		} else {
@@ -1756,69 +2171,89 @@ public class Process extends AbstractObservable<Process> implements Cloneable {
 		}
 	}
 
-	/**
-	 * @return if <code>false</code> is returned, the {@link IOContainer} returned by {@link #run()}
-	 *         will contain <code>null</code> results instead of just omitting them.
-	 */
-	public boolean isOmittingNullResults() {
+    /**
+     * Is omitting null results boolean.
+     *
+     * @return if <code>false</code> is returned, the {@link IOContainer} returned by {@link #run()}         will contain <code>null</code> results instead of just omitting them.
+     */
+    public boolean isOmittingNullResults() {
 		return omitNullResults;
 	}
 
-	/**
-	 * If set to <code>false</code> the {@link IOContainer} returned by {@link #run()} will contain
-	 * <code>null</code> results instead of omitting them. By default this is <code>true</code>.
-	 */
-	public void setOmitNullResults(boolean omitNullResults) {
+    /**
+     * If set to <code>false</code> the {@link IOContainer} returned by {@link #run()} will contain
+     * <code>null</code> results instead of omitting them. By default this is <code>true</code>.
+     *
+     * @param omitNullResults the omit null results
+     */
+    public void setOmitNullResults(boolean omitNullResults) {
 		this.omitNullResults = omitNullResults;
 	}
 
-	/**
-	 * Can be called by GUI components if visual representation or any other state not known to the
-	 * process itself has changed.
-	 */
-	public void updateNotify() {
+    /**
+     * Can be called by GUI components if visual representation or any other state not known to the
+     * process itself has changed.
+     */
+    public void updateNotify() {
 		fireUpdate(this);
 	}
 
-	public RepositoryAccessor getRepositoryAccessor() {
+    /**
+     * Gets repository accessor.
+     *
+     * @return the repository accessor
+     */
+    public RepositoryAccessor getRepositoryAccessor() {
 		return repositoryAccessor;
 	}
 
-	public void setRepositoryAccessor(final RepositoryAccessor repositoryAccessor) {
+    /**
+     * Sets repository accessor.
+     *
+     * @param repositoryAccessor the repository accessor
+     */
+    public void setRepositoryAccessor(final RepositoryAccessor repositoryAccessor) {
 		this.repositoryAccessor = repositoryAccessor;
 	}
 
-	public Annotations getAnnotations() {
+    /**
+     * Gets annotations.
+     *
+     * @return the annotations
+     */
+    public Annotations getAnnotations() {
 		return annotations;
 	}
 
-	/**
-	 * Indicates how deeply nested the current process is. The original process itself has a depth
-	 * of {@code 0}. If that process spawns a new one via an Execute Process operator, the depth of
-	 * the new one will be {@code 1}. If the new process also contains an Execute Process operator,
-	 * the depth will be {@code 2} and so on.
-	 *
-	 * @return the nesting depth of the current process
-	 */
-	public int getDepth() {
+    /**
+     * Indicates how deeply nested the current process is. The original process itself has a depth
+     * of {@code 0}. If that process spawns a new one via an Execute Process operator, the depth of
+     * the new one will be {@code 1}. If the new process also contains an Execute Process operator,
+     * the depth will be {@code 2} and so on.
+     *
+     * @return the nesting depth of the current process
+     */
+    public int getDepth() {
 		return nestingDepth;
 	}
 
-	/**
-	 * Sets the nesting depth of this process. See {@link #getDepth()} for details.
-	 *
-	 * @param depth
-	 *            the new nesting depth
-	 */
-	public void setDepth(int depth) {
+    /**
+     * Sets the nesting depth of this process. See {@link #getDepth()} for details.
+     *
+     * @param depth the new nesting depth
+     */
+    public void setDepth(int depth) {
 		this.nestingDepth = depth;
 	}
 
-	/**
-	 * Checks weather the process can be saved as is. Throws an Exception if the Process should not
-	 * be saved.
-	 **/
-	public static void checkIfSavable(final Process process) throws Exception {
+    /**
+     * Checks weather the process can be saved as is. Throws an Exception if the Process should not
+     * be saved.
+     *
+     * @param process the process
+     * @throws Exception the exception
+     */
+    public static void checkIfSavable(final Process process) throws Exception {
 		for (Operator operator : process.getAllOperators()) {
 			if (operator instanceof DummyOperator) {
 				throw new Exception(

@@ -42,20 +42,30 @@ public class WeightedMultiClassPerformance extends MeasuredPerformance implement
 
 	private static final long serialVersionUID = 8734250559680229116L;
 
-	/** Indicates an undefined type (should not happen). */
-	public static final int UNDEFINED = -1;
+    /**
+     * Indicates an undefined type (should not happen).
+     */
+    public static final int UNDEFINED = -1;
 
-	/** Indicates accuracy. */
-	public static final int WEIGHTED_RECALL = 0;
+    /**
+     * Indicates accuracy.
+     */
+    public static final int WEIGHTED_RECALL = 0;
 
-	/** Indicates classification error. */
-	public static final int WEIGHTED_PRECISION = 1;
+    /**
+     * Indicates classification error.
+     */
+    public static final int WEIGHTED_PRECISION = 1;
 
-	/** The names of the criteria. */
-	public static final String[] NAMES = { "weighted_mean_recall", "weighted_mean_precision" };
+    /**
+     * The names of the criteria.
+     */
+    public static final String[] NAMES = { "weighted_mean_recall", "weighted_mean_precision" };
 
-	/** The descriptions of the criteria. */
-	public static final String[] DESCRIPTIONS = { "The weighted mean of all per class recall measurements.",
+    /**
+     * The descriptions of the criteria.
+     */
+    public static final String[] DESCRIPTIONS = { "The weighted mean of all per class recall measurements.",
 	"The weighted mean of all per class precision measurements." };
 
 	/**
@@ -87,17 +97,28 @@ public class WeightedMultiClassPerformance extends MeasuredPerformance implement
 	/** The weight attribute. Might be null. */
 	private Attribute weightAttribute;
 
-	/** Creates a WeightedMultiClassPerformance with undefined type. */
-	public WeightedMultiClassPerformance() {
+    /**
+     * Creates a WeightedMultiClassPerformance with undefined type.
+     */
+    public WeightedMultiClassPerformance() {
 		this(UNDEFINED);
 	}
 
-	/** Creates a WeightedMultiClassPerformance with the given type. */
-	public WeightedMultiClassPerformance(int type) {
+    /**
+     * Creates a WeightedMultiClassPerformance with the given type.  @param type the type
+     *
+     * @param type the type
+     */
+    public WeightedMultiClassPerformance(int type) {
 		this.type = type;
 	}
 
-	public WeightedMultiClassPerformance(WeightedMultiClassPerformance m) {
+    /**
+     * Instantiates a new Weighted multi class performance.
+     *
+     * @param m the m
+     */
+    public WeightedMultiClassPerformance(WeightedMultiClassPerformance m) {
 		super(m);
 		this.type = m.type;
 		this.classNames = new String[m.classNames.length];
@@ -118,8 +139,13 @@ public class WeightedMultiClassPerformance extends MeasuredPerformance implement
 		}
 	}
 
-	/** Creates a WeightedMultiClassPerformance with the given type. */
-	public static WeightedMultiClassPerformance newInstance(String name) {
+    /**
+     * Creates a WeightedMultiClassPerformance with the given type.  @param name the name
+     *
+     * @param name the name
+     * @return the weighted multi class performance
+     */
+    public static WeightedMultiClassPerformance newInstance(String name) {
 		for (int i = 0; i < NAMES.length; i++) {
 			if (NAMES[i].equals(name)) {
 				return new WeightedMultiClassPerformance(i);
@@ -273,7 +299,12 @@ public class WeightedMultiClassPerformance extends MeasuredPerformance implement
 		}
 	}
 
-	public String toWeightString() {
+    /**
+     * To weight string string.
+     *
+     * @return the string
+     */
+    public String toWeightString() {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(", weights: ");
 		boolean first = true;
@@ -306,11 +337,21 @@ public class WeightedMultiClassPerformance extends MeasuredPerformance implement
 		return result.toString();
 	}
 
-	public String[] getClassNames() {
+    /**
+     * Get class names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getClassNames() {
 		return classNames;
 	}
 
-	public double[][] getCounter() {
+    /**
+     * Get counter double [ ] [ ].
+     *
+     * @return the double [ ] [ ]
+     */
+    public double[][] getCounter() {
 		return counter;
 	}
 }

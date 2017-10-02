@@ -26,15 +26,20 @@ import java.io.OutputStream;
 
 
 /**
- * 
+ * The type Streamed example set body serializer.
+ *
  * @author Simon Fischer
- * 
  */
 public class StreamedExampleSetBodySerializer implements BodySerializer {
 
 	private int version;
 
-	protected StreamedExampleSetBodySerializer(int version) {
+    /**
+     * Instantiates a new Streamed example set body serializer.
+     *
+     * @param version the version
+     */
+    protected StreamedExampleSetBodySerializer(int version) {
 		this.version = version;
 	}
 
@@ -53,7 +58,12 @@ public class StreamedExampleSetBodySerializer implements BodySerializer {
 		}
 	}
 
-	public int getVersion() {
+    /**
+     * Gets version.
+     *
+     * @return the version
+     */
+    public int getVersion() {
 		return version;
 	}
 }

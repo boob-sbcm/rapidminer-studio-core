@@ -47,37 +47,83 @@ import com.rapidminer.tools.Tools;
  *
  * @author Ingo Mierswa, modified by Syed Atif Mehdi (01/09/2010)
  */
-
 public class AutoMLPImprovedNeuralNetModel extends PredictionModel {
 
 	private static final long serialVersionUID = -2206598483097451366L;
 
-	public static final ActivationFunction SIGMOID_FUNCTION = new SigmoidFunction();
+    /**
+     * The constant SIGMOID_FUNCTION.
+     */
+    public static final ActivationFunction SIGMOID_FUNCTION = new SigmoidFunction();
 
-	public static final ActivationFunction LINEAR_FUNCTION = new LinearFunction();
+    /**
+     * The constant LINEAR_FUNCTION.
+     */
+    public static final ActivationFunction LINEAR_FUNCTION = new LinearFunction();
 
 	private static final int OPERATOR_PROGRESS_STEPS = 100;
 
-	public String[] attributeNames;
+    /**
+     * The Attribute names.
+     */
+    public String[] attributeNames;
 
-	public InputNode[] inputNodes = new InputNode[0];
+    /**
+     * The Input nodes.
+     */
+    public InputNode[] inputNodes = new InputNode[0];
 
-	public InnerNode[] innerNodes = new InnerNode[0];
+    /**
+     * The Inner nodes.
+     */
+    public InnerNode[] innerNodes = new InnerNode[0];
 
-	public OutputNode[] outputNodes = new OutputNode[0];
-	double error;
+    /**
+     * The Output nodes.
+     */
+    public OutputNode[] outputNodes = new OutputNode[0];
+    /**
+     * The Error.
+     */
+    double error;
 
-	public double getError() {
+    /**
+     * Gets error.
+     *
+     * @return the error
+     */
+    public double getError() {
 		return error;
 	}
 
-	public AutoMLPImprovedNeuralNetModel(ExampleSet trainingExampleSet) {
+    /**
+     * Instantiates a new Auto mlp improved neural net model.
+     *
+     * @param trainingExampleSet the training example set
+     */
+    public AutoMLPImprovedNeuralNetModel(ExampleSet trainingExampleSet) {
 		super(trainingExampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.attributeNames = com.rapidminer.example.Tools.getRegularAttributeNames(trainingExampleSet);
 	}
 
-	public void train(ExampleSet exampleSet, List<String[]> hiddenLayers, int maxCycles, double maxError,
+    /**
+     * Train.
+     *
+     * @param exampleSet      the example set
+     * @param hiddenLayers    the hidden layers
+     * @param maxCycles       the max cycles
+     * @param maxError        the max error
+     * @param learningRate    the learning rate
+     * @param momentum        the momentum
+     * @param decay           the decay
+     * @param shuffle         the shuffle
+     * @param normalize       the normalize
+     * @param randomGenerator the random generator
+     * @param is_old_model    the is old model
+     * @param old_model       the old model
+     */
+    public void train(ExampleSet exampleSet, List<String[]> hiddenLayers, int maxCycles, double maxError,
 			double learningRate, double momentum, boolean decay, boolean shuffle, boolean normalize,
 			RandomGenerator randomGenerator, boolean is_old_model, AutoMLPImprovedNeuralNetModel old_model) {
 
@@ -219,23 +265,49 @@ public class AutoMLPImprovedNeuralNetModel extends PredictionModel {
 		return exampleSet;
 	}
 
-	public String[] getAttributeNames() {
+    /**
+     * Get attribute names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getAttributeNames() {
 		return this.attributeNames;
 	}
 
-	public InputNode[] getInputNodes() {
+    /**
+     * Get input nodes input node [ ].
+     *
+     * @return the input node [ ]
+     */
+    public InputNode[] getInputNodes() {
 		return this.inputNodes;
 	}
 
-	public OutputNode[] getOutputNodes() {
+    /**
+     * Get output nodes output node [ ].
+     *
+     * @return the output node [ ]
+     */
+    public OutputNode[] getOutputNodes() {
 		return this.outputNodes;
 	}
 
-	public InnerNode[] getInnerNodes() {
+    /**
+     * Get inner nodes inner node [ ].
+     *
+     * @return the inner node [ ]
+     */
+    public InnerNode[] getInnerNodes() {
 		return this.innerNodes;
 	}
 
-	public int getNumberOfClasses(Attribute label) {
+    /**
+     * Gets number of classes.
+     *
+     * @param label the label
+     * @return the number of classes
+     */
+    public int getNumberOfClasses(Attribute label) {
 		int numberOfClasses = 1;
 		if (label.isNominal()) {
 			numberOfClasses = label.getMapping().size();
@@ -243,32 +315,58 @@ public class AutoMLPImprovedNeuralNetModel extends PredictionModel {
 		return numberOfClasses;
 	}
 
-	public void addNode(InnerNode node) {
+    /**
+     * Add node.
+     *
+     * @param node the node
+     */
+    public void addNode(InnerNode node) {
 		InnerNode[] newInnerNodes = new InnerNode[innerNodes.length + 1];
 		System.arraycopy(innerNodes, 0, newInnerNodes, 0, innerNodes.length);
 		newInnerNodes[newInnerNodes.length - 1] = node;
 		innerNodes = newInnerNodes;
 	}
 
-	public void resetNetwork() {
+    /**
+     * Reset network.
+     */
+    public void resetNetwork() {
 		for (int i = 0; i < outputNodes.length; i++) {
 			outputNodes[i].reset();
 		}
 	}
 
-	public void update(Example example, double learningRate, double momentum) {
+    /**
+     * Update.
+     *
+     * @param example      the example
+     * @param learningRate the learning rate
+     * @param momentum     the momentum
+     */
+    public void update(Example example, double learningRate, double momentum) {
 		for (int i = 0; i < outputNodes.length; i++) {
 			outputNodes[i].update(example, learningRate, momentum);
 		}
 	}
 
-	public void calculateValue(Example example) {
+    /**
+     * Calculate value.
+     *
+     * @param example the example
+     */
+    public void calculateValue(Example example) {
 		for (int i = 0; i < outputNodes.length; i++) {
 			outputNodes[i].calculateValue(true, example);
 		}
 	}
 
-	public double calculateError(Example example) {
+    /**
+     * Calculate error double.
+     *
+     * @param example the example
+     * @return the double
+     */
+    public double calculateError(Example example) {
 		for (int i = 0; i < inputNodes.length; i++) {
 			inputNodes[i].calculateError(true, example);
 		}
@@ -280,11 +378,24 @@ public class AutoMLPImprovedNeuralNetModel extends PredictionModel {
 		return totalError;
 	}
 
-	public int getDefaultLayerSize(ExampleSet exampleSet, Attribute label) {
+    /**
+     * Gets default layer size.
+     *
+     * @param exampleSet the example set
+     * @param label      the label
+     * @return the default layer size
+     */
+    public int getDefaultLayerSize(ExampleSet exampleSet, Attribute label) {
 		return (int) Math.round((exampleSet.getAttributes().size() + getNumberOfClasses(label)) / 2.0d) + 1;
 	}
 
-	public void initInputLayer(ExampleSet exampleSet, boolean normalize) {
+    /**
+     * Init input layer.
+     *
+     * @param exampleSet the example set
+     * @param normalize  the normalize
+     */
+    public void initInputLayer(ExampleSet exampleSet, boolean normalize) {
 		inputNodes = new InputNode[exampleSet.getAttributes().size()];
 		int a = 0;
 		for (Attribute attribute : exampleSet.getAttributes()) {
@@ -302,7 +413,16 @@ public class AutoMLPImprovedNeuralNetModel extends PredictionModel {
 		}
 	}
 
-	public void initOutputLayer(Attribute label, int numberOfClasses, double min, double max,
+    /**
+     * Init output layer.
+     *
+     * @param label           the label
+     * @param numberOfClasses the number of classes
+     * @param min             the min
+     * @param max             the max
+     * @param randomGenerator the random generator
+     */
+    public void initOutputLayer(Attribute label, int numberOfClasses, double min, double max,
 			RandomGenerator randomGenerator) {
 		double range = (max - min) / 2;
 		double offset = (max + min) / 2;
@@ -327,7 +447,15 @@ public class AutoMLPImprovedNeuralNetModel extends PredictionModel {
 		}
 	}
 
-	public void initHiddenLayers(ExampleSet exampleSet, Attribute label, List<String[]> hiddenLayerList,
+    /**
+     * Init hidden layers.
+     *
+     * @param exampleSet      the example set
+     * @param label           the label
+     * @param hiddenLayerList the hidden layer list
+     * @param randomGenerator the random generator
+     */
+    public void initHiddenLayers(ExampleSet exampleSet, Attribute label, List<String[]> hiddenLayerList,
 			RandomGenerator randomGenerator) {
 		String[] layerNames = null;
 		int[] layerSizes = null;
@@ -397,7 +525,16 @@ public class AutoMLPImprovedNeuralNetModel extends PredictionModel {
 		}
 	}
 
-	public void initHiddenLayers(ExampleSet exampleSet, Attribute label, List<String[]> hiddenLayerList,
+    /**
+     * Init hidden layers.
+     *
+     * @param exampleSet      the example set
+     * @param label           the label
+     * @param hiddenLayerList the hidden layer list
+     * @param randomGenerator the random generator
+     * @param old_model       the old model
+     */
+    public void initHiddenLayers(ExampleSet exampleSet, Attribute label, List<String[]> hiddenLayerList,
 			RandomGenerator randomGenerator, AutoMLPImprovedNeuralNetModel old_model) {
 		// create the hidden layers as usual
 		initHiddenLayers(exampleSet, label, hiddenLayerList, randomGenerator);

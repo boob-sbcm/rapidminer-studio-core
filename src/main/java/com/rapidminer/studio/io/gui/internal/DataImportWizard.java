@@ -61,7 +61,6 @@ import com.rapidminer.tools.I18N;
  *
  * @author Nils Woehler
  * @since 7.0.0
- *
  */
 final class DataImportWizard extends ButtonDialog implements ImportWizard {
 
@@ -159,18 +158,14 @@ final class DataImportWizard extends ButtonDialog implements ImportWizard {
 	private String currentStepID;
 	private List<String> previousStepIDs;
 
-	/**
-	 * Constructs a new instance of the {@link DataImportWizard}.
-	 *
-	 * @param owner
-	 *            the dialog owner
-	 * @param modalityType
-	 *            the modality type
-	 * @param graphicsConfig
-	 *            the graphics config. Might be <code>null</code> if no special config should be
-	 *            used.
-	 */
-	DataImportWizard(Window owner, ModalityType modalityType, GraphicsConfiguration graphicsConfig) {
+    /**
+     * Constructs a new instance of the {@link DataImportWizard}.
+     *
+     * @param owner          the dialog owner
+     * @param modalityType   the modality type
+     * @param graphicsConfig the graphics config. Might be <code>null</code> if no special config should be            used.
+     */
+    DataImportWizard(Window owner, ModalityType modalityType, GraphicsConfiguration graphicsConfig) {
 		super(owner, "io.dataimport.import_wizard", modalityType, graphicsConfig);
 		this.cardLayout = new CardLayout();
 		this.cardPanel = new JPanel(cardLayout);
@@ -205,11 +200,14 @@ final class DataImportWizard extends ButtonDialog implements ImportWizard {
 		getRootPane().getActionMap().put("FINISH", finishAction);
 	}
 
-	/**
-	 * Updates the dialog button, title, header and shows the {@link ImportWizardStep} referenced by
-	 * the provided stepId.
-	 */
-	void showStep(final String stepId, WizardDirection direction) {
+    /**
+     * Updates the dialog button, title, header and shows the {@link ImportWizardStep} referenced by
+     * the provided stepId.
+     *
+     * @param stepId    the step id
+     * @param direction the direction
+     */
+    void showStep(final String stepId, WizardDirection direction) {
 
 		// log step change
 		switch (direction) {
@@ -363,14 +361,14 @@ final class DataImportWizard extends ButtonDialog implements ImportWizard {
 		return getStep(currentStepID);
 	}
 
-	/**
-	 * Layouts the dialog by adding the dialog main content and updating the current shown step.
-	 * Should only be called once after the dialog instance has been created.
-	 *
-	 * @param size
-	 *            the dialog size.
-	 */
-	void layoutDefault(int size, String startingStepId) {
+    /**
+     * Layouts the dialog by adding the dialog main content and updating the current shown step.
+     * Should only be called once after the dialog instance has been created.
+     *
+     * @param size           the dialog size.
+     * @param startingStepId the starting step id
+     */
+    void layoutDefault(int size, String startingStepId) {
 		super.layoutDefault(cardPanel, size, previousButton, nextButton, finishButton, cancelButton);
 
 		// fix button size such that it is not affected by icon change

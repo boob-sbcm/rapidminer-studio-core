@@ -34,10 +34,10 @@ public class HeaderRowNotFoundException extends DataSetException {
 
 	private static final String HEADER_ROW_NOT_FOUND = I18N.getGUILabel("import_wizard.header_row_not_found");
 
-	/**
-	 * Creates an exception indicating that the desired header row was not found in the data set.
-	 */
-	public HeaderRowNotFoundException() {
+    /**
+     * Creates an exception indicating that the desired header row was not found in the data set.
+     */
+    public HeaderRowNotFoundException() {
 		super(HEADER_ROW_NOT_FOUND);
 	}
 

@@ -24,18 +24,49 @@ import com.rapidminer.example.ExampleSet;
 
 /**
  * Calculates the benefit for the given example set.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public interface Criterion {
 
-	public double[] getBenefit(ExampleSet coveredSet, ExampleSet uncoveredSet, String labelName);
+    /**
+     * Get benefit double [ ].
+     *
+     * @param coveredSet   the covered set
+     * @param uncoveredSet the uncovered set
+     * @param labelName    the label name
+     * @return the double [ ]
+     */
+    public double[] getBenefit(ExampleSet coveredSet, ExampleSet uncoveredSet, String labelName);
 
-	public double[] getOnlineBenefit(Example example, int labelIndex);
+    /**
+     * Get online benefit double [ ].
+     *
+     * @param example    the example
+     * @param labelIndex the label index
+     * @return the double [ ]
+     */
+    public double[] getOnlineBenefit(Example example, int labelIndex);
 
-	public double[] getOnlineBenefit(Example example);
+    /**
+     * Get online benefit double [ ].
+     *
+     * @param example the example
+     * @return the double [ ]
+     */
+    public double[] getOnlineBenefit(Example example);
 
-	public void reinitOnlineCounting(ExampleSet exampleSet);
+    /**
+     * Reinit online counting.
+     *
+     * @param exampleSet the example set
+     */
+    public void reinitOnlineCounting(ExampleSet exampleSet);
 
-	public void update(Example example);
+    /**
+     * Update.
+     *
+     * @param example the example
+     */
+    public void update(Example example);
 }

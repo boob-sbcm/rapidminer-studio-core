@@ -56,7 +56,6 @@ import com.rapidminer.tools.XMLException;
  * current process.
  *
  * @author Venkatesh Umaashankar, Marco Boeck
- *
  */
 public class AutoSave {
 
@@ -74,11 +73,11 @@ public class AutoSave {
 	private boolean autoSaveEnabled;
 	private boolean isRecoveryProcessPresent;
 
-	/**
-	 * Initializes auto save functionality for current Studio session and also checks if an auto
-	 * save exists.
-	 */
-	public void init() {
+    /**
+     * Initializes auto save functionality for current Studio session and also checks if an auto
+     * save exists.
+     */
+    public void init() {
 		// already initialized
 		if (autoSaveEnabled) {
 			return;
@@ -164,32 +163,31 @@ public class AutoSave {
 
 	}
 
-	/**
-	 * Returns whether there is an autosaved process, which can be used for recovery. Should be
-	 * called after {@link #init()}.
-	 *
-	 * @return {@code true} if there is an autosaved process for recovery
-	 */
-	public boolean isRecoveryProcessPresent() {
+    /**
+     * Returns whether there is an autosaved process, which can be used for recovery. Should be
+     * called after {@link #init()}.
+     *
+     * @return {@code true} if there is an autosaved process for recovery
+     */
+    public boolean isRecoveryProcessPresent() {
 		return isRecoveryProcessPresent;
 	}
 
-	/**
-	 * Returns the path of the autosaved process if the process has a path. Should be called after
-	 * {@link #init()}.
-	 *
-	 * @return the path of the autosaved process or {@code null} if no path was associated to the
-	 *         process
-	 */
-	public String getAutosavedPath() {
+    /**
+     * Returns the path of the autosaved process if the process has a path. Should be called after
+     * {@link #init()}.
+     *
+     * @return the path of the autosaved process or {@code null} if no path was associated to the         process
+     */
+    public String getAutosavedPath() {
 		String processPath = autoSaveProperties.getProperty(PROPERTY_PROCESS_PATH);
 		return LOCATION_TYPE_NONE.equals(processPath) ? null : processPath;
 	}
 
-	/**
-	 * Recovers the autosaved process, if present.
-	 */
-	public void recoverAutosavedProcess() {
+    /**
+     * Recovers the autosaved process, if present.
+     */
+    public void recoverAutosavedProcess() {
 		if (!isRecoveryProcessPresent()) {
 			return;
 		}

@@ -33,7 +33,10 @@ public class SettingsAction extends ResourceAction {
 
 	private static final long serialVersionUID = 4675057674892640002L;
 
-	public SettingsAction() {
+    /**
+     * Instantiates a new Settings action.
+     */
+    public SettingsAction() {
 		super("preferences");
 	}
 

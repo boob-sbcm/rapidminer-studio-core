@@ -51,7 +51,7 @@ import java.util.List;
 /**
  * Evolutionary Strategy approach for SVM optimization. This class can be used for classification
  * problems.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ClassificationEvoOptimization extends ESOptimization implements EvoOptimization {
@@ -83,8 +83,28 @@ public class ClassificationEvoOptimization extends ESOptimization implements Evo
 	/** Final population size for plotting. */
 	private int populationSize = 10;
 
-	/** Creates a new evolutionary SVM optimization. */
-	@Deprecated
+    /**
+     * Creates a new evolutionary SVM optimization.  @param exampleSet the example set
+     *
+     * @param exampleSet                    the example set
+     * @param kernel                        the kernel
+     * @param c                             the c
+     * @param initType                      the init type
+     * @param maxIterations                 the max iterations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param popSize                       the pop size
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param crossoverProb                 the crossover prob
+     * @param showConvergencePlot           the show convergence plot
+     * @param showPopulationPlot            the show population plot
+     * @param holdOutSet                    the hold out set
+     * @param random                        the random
+     * @param logging                       the logging
+     */
+    @Deprecated
 	public ClassificationEvoOptimization(
 			ExampleSet exampleSet, // training data
 			Kernel kernel,
@@ -102,8 +122,29 @@ public class ClassificationEvoOptimization extends ESOptimization implements Evo
 				holdOutSet, random, logging, null);
 	}
 
-	/** Creates a new evolutionary SVM optimization. */
-	public ClassificationEvoOptimization(
+    /**
+     * Creates a new evolutionary SVM optimization.  @param exampleSet the example set
+     *
+     * @param exampleSet                    the example set
+     * @param kernel                        the kernel
+     * @param c                             the c
+     * @param initType                      the init type
+     * @param maxIterations                 the max iterations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param popSize                       the pop size
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param crossoverProb                 the crossover prob
+     * @param showConvergencePlot           the show convergence plot
+     * @param showPopulationPlot            the show population plot
+     * @param holdOutSet                    the hold out set
+     * @param random                        the random
+     * @param logging                       the logging
+     * @param executingOperator             the executing operator
+     */
+    public ClassificationEvoOptimization(
 			ExampleSet exampleSet, // training data
 			Kernel kernel,
 			double c, // SVM paras

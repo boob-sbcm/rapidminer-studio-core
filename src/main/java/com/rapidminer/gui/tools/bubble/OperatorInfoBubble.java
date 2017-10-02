@@ -65,20 +65,17 @@ import com.vlsolutions.swing.docking.RelativeDockablePosition;
  *
  * @author Marco Boeck
  * @since 6.5.0
- *
  */
-
 public class OperatorInfoBubble extends BubbleWindow {
 
-	/**
-	 * Builder for {@link OperatorInfoBubble}s. After calling all relevant setters, call
-	 * {@link #build()} to create the actual dialog instance.
-	 *
-	 * @author Marco Boeck
-	 * @since 6.5.0
-	 *
-	 */
-	public static class OperatorBubbleBuilder extends BubbleWindowBuilder<OperatorInfoBubble, OperatorBubbleBuilder> {
+    /**
+     * Builder for {@link OperatorInfoBubble}s. After calling all relevant setters, call
+     * {@link #build()} to create the actual dialog instance.
+     *
+     * @author Marco Boeck
+     * @since 6.5.0
+     */
+    public static class OperatorBubbleBuilder extends BubbleWindowBuilder<OperatorInfoBubble, OperatorBubbleBuilder> {
 
 		private Operator attachTo;
 		private boolean hideOnDisable;
@@ -86,64 +83,64 @@ public class OperatorInfoBubble extends BubbleWindow {
 		private boolean ensureVisible;
 		private boolean killOnPerspectiveChange;
 
-		public OperatorBubbleBuilder(final Window owner, final Operator attachTo, final String i18nKey,
+        /**
+         * Instantiates a new Operator bubble builder.
+         *
+         * @param owner     the owner
+         * @param attachTo  the attach to
+         * @param i18nKey   the 18 n key
+         * @param arguments the arguments
+         */
+        public OperatorBubbleBuilder(final Window owner, final Operator attachTo, final String i18nKey,
 				final Object... arguments) {
 			super(owner, i18nKey, arguments);
 			this.attachTo = attachTo;
 			this.killOnPerspectiveChange = true;
 		}
 
-		/**
-		 * Sets whether to hide the bubble when the operator is disabled. Defaults to {@code false}.
-		 *
-		 * @param hideOnDisable
-		 *            {@code true} if the bubble should be hidden upon disable; {@code false}
-		 *            otherwise
-		 * @return the builder instance
-		 */
-		public OperatorBubbleBuilder setHideOnDisable(final boolean hideOnDisable) {
+        /**
+         * Sets whether to hide the bubble when the operator is disabled. Defaults to {@code false}.
+         *
+         * @param hideOnDisable {@code true} if the bubble should be hidden upon disable; {@code false}            otherwise
+         * @return the builder instance
+         */
+        public OperatorBubbleBuilder setHideOnDisable(final boolean hideOnDisable) {
 			this.hideOnDisable = hideOnDisable;
 			return this;
 		}
 
-		/**
-		 * Sets whether to hide the bubble when the process is run. Defaults to {@code false}.
-		 *
-		 * @param hideOnRun
-		 *            {@code true} if the bubble should be hidden upon running a process;
-		 *            {@code false} otherwise
-		 * @return the builder instance
-		 */
-		public OperatorBubbleBuilder setHideOnProcessRun(final boolean hideOnRun) {
+        /**
+         * Sets whether to hide the bubble when the process is run. Defaults to {@code false}.
+         *
+         * @param hideOnRun {@code true} if the bubble should be hidden upon running a process;            {@code false} otherwise
+         * @return the builder instance
+         */
+        public OperatorBubbleBuilder setHideOnProcessRun(final boolean hideOnRun) {
 			this.hideOnRun = hideOnRun;
 			return this;
 		}
 
-		/**
-		 * Sets whether to make sure the bubble is visible by automatically switching perspective,
-		 * opening/showing the process dockable and changing the subprocess. Defaults to
-		 * {@code false}.
-		 *
-		 * @param ensureVisible
-		 *            {@code true} if the bubble should be hidden upon disable; {@code false}
-		 *            otherwise
-		 * @return the builder instance
-		 */
-		public OperatorBubbleBuilder setEnsureVisible(final boolean ensureVisible) {
+        /**
+         * Sets whether to make sure the bubble is visible by automatically switching perspective,
+         * opening/showing the process dockable and changing the subprocess. Defaults to
+         * {@code false}.
+         *
+         * @param ensureVisible {@code true} if the bubble should be hidden upon disable; {@code false}            otherwise
+         * @return the builder instance
+         */
+        public OperatorBubbleBuilder setEnsureVisible(final boolean ensureVisible) {
 			this.ensureVisible = ensureVisible;
 			return this;
 		}
 
-		/**
-		 * Sets whether the bubble should be automatically killed by switching perspective. Defaults
-		 * to {@code true}.
-		 *
-		 * @param killOnPerspectiveChange
-		 *            {@code true} if the bubble should be killed on perspective change;
-		 *            {@code false} otherwise
-		 * @return the builder instance
-		 */
-		public OperatorBubbleBuilder setKillOnPerspectiveChange(final boolean killOnPerspectiveChange) {
+        /**
+         * Sets whether the bubble should be automatically killed by switching perspective. Defaults
+         * to {@code true}.
+         *
+         * @param killOnPerspectiveChange {@code true} if the bubble should be killed on perspective change;            {@code false} otherwise
+         * @return the builder instance
+         */
+        public OperatorBubbleBuilder setKillOnPerspectiveChange(final boolean killOnPerspectiveChange) {
 			this.killOnPerspectiveChange = killOnPerspectiveChange;
 			return this;
 		}
@@ -176,40 +173,24 @@ public class OperatorInfoBubble extends BubbleWindow {
 	private ProcessStateListener processStateListener;
 	private ChangeListener viewPortListener;
 
-	/**
-	 * Creates a BubbleWindow which points to an {@link Operator}.
-	 *
-	 * @param owner
-	 *            the {@link Window} on which this {@link BubbleWindow} should be shown.
-	 * @param preferredAlignment
-	 *            offer for alignment but the Class will calculate by itself whether the position is
-	 *            usable.
-	 * @param i18nKey
-	 *            of the message which should be shown
-	 * @param toAttach
-	 *            the operator the bubble should be attached to
-	 * @param style
-	 *            the bubble style
-	 * @param componentsToAdd
-	 *            array of JComponents which will be added to the Bubble or {@code null}
-	 * @param hideOnDisable
-	 *            if {@code true}, the bubble will be removed once the operator becomes disabled
-	 * @param hideOnRun
-	 *            if {@code true}, the bubble will be removed once the process is executed
-	 * @param ensureVisible
-	 *            if {@code true}, will automatically make sure the bubble will be visible by
-	 *            manipulating the GUI
-	 * @param moveable
-	 *            if {@code true} the user can drag the bubble around on screen
-	 * @param showCloseButton
-	 *            if {@code true} the user can close the bubble via an "x" button in the top right
-	 *            corner
-	 * @param killOnPerspectiveChange
-	 *            if {@code true} the bubble will be automatically killed if the perspective changes
-	 * @param arguments
-	 *            arguments to pass thought to the I18N Object
-	 */
-	OperatorInfoBubble(Window owner, BubbleStyle style, AlignedSide preferredAlignment, String i18nKey, Operator toAttach,
+    /**
+     * Creates a BubbleWindow which points to an {@link Operator}.
+     *
+     * @param owner                   the {@link Window} on which this {@link BubbleWindow} should be shown.
+     * @param style                   the bubble style
+     * @param preferredAlignment      offer for alignment but the Class will calculate by itself whether the position is            usable.
+     * @param i18nKey                 of the message which should be shown
+     * @param toAttach                the operator the bubble should be attached to
+     * @param componentsToAdd         array of JComponents which will be added to the Bubble or {@code null}
+     * @param hideOnDisable           if {@code true}, the bubble will be removed once the operator becomes disabled
+     * @param hideOnRun               if {@code true}, the bubble will be removed once the process is executed
+     * @param ensureVisible           if {@code true}, will automatically make sure the bubble will be visible by            manipulating the GUI
+     * @param moveable                if {@code true} the user can drag the bubble around on screen
+     * @param showCloseButton         if {@code true} the user can close the bubble via an "x" button in the top right            corner
+     * @param killOnPerspectiveChange if {@code true} the bubble will be automatically killed if the perspective changes
+     * @param arguments               arguments to pass thought to the I18N Object
+     */
+    OperatorInfoBubble(Window owner, BubbleStyle style, AlignedSide preferredAlignment, String i18nKey, Operator toAttach,
 			JComponent[] componentsToAdd, boolean hideOnDisable, boolean hideOnRun, boolean ensureVisible, boolean moveable,
 			boolean showCloseButton, boolean killOnPerspectiveChange, Object... arguments) {
 		super(owner, style, preferredAlignment, i18nKey, ProcessPanel.PROCESS_PANEL_DOCK_KEY, null, null, moveable,
@@ -502,10 +483,12 @@ public class OperatorInfoBubble extends BubbleWindow {
 		return new Point(x, y);
 	}
 
-	/**
-	 * @return the {@link Operator} for this bubble
-	 */
-	final Operator getOperator() {
+    /**
+     * Gets operator.
+     *
+     * @return the {@link Operator} for this bubble
+     */
+    final Operator getOperator() {
 		return operator;
 	}
 

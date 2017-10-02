@@ -49,7 +49,12 @@ public class DBScan extends RMAbstractClusterer {
 
 	private static final String PARAMETER_MIN_POINTS = "min_points";
 
-	public DBScan(OperatorDescription description) {
+    /**
+     * Instantiates a new Db scan.
+     *
+     * @param description the description
+     */
+    public DBScan(OperatorDescription description) {
 		super(description);
 	}
 

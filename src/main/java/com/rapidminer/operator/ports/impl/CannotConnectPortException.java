@@ -48,31 +48,57 @@ import javax.swing.Timer;
 
 
 /**
- * 
+ * The type Cannot connect port exception.
+ *
  * @author Simon Fischer, Tobias Malbrecht, Nils Woehler
  */
 public class CannotConnectPortException extends PortException {
 
-	public static final int HIDE_DELAY = 2500;
+    /**
+     * The constant HIDE_DELAY.
+     */
+    public static final int HIDE_DELAY = 2500;
 
 	private static final long serialVersionUID = 5242982041478562116L;
 
 	private final OutputPort source;
 	private final InputPort dest;
 
-	public CannotConnectPortException(OutputPort source, InputPort dest, InputPort sourceDest, OutputPort destSource) {
+    /**
+     * Instantiates a new Cannot connect port exception.
+     *
+     * @param source     the source
+     * @param dest       the dest
+     * @param sourceDest the source dest
+     * @param destSource the dest source
+     */
+    public CannotConnectPortException(OutputPort source, InputPort dest, InputPort sourceDest, OutputPort destSource) {
 		super("Cannot connect " + source.getSpec() + " to " + dest.getSpec());
 		this.source = source;
 		this.dest = dest;
 	}
 
-	public CannotConnectPortException(OutputPort source, InputPort dest, InputPort sourceDest) {
+    /**
+     * Instantiates a new Cannot connect port exception.
+     *
+     * @param source     the source
+     * @param dest       the dest
+     * @param sourceDest the source dest
+     */
+    public CannotConnectPortException(OutputPort source, InputPort dest, InputPort sourceDest) {
 		super("Cannot connect " + source.getSpec() + " to " + dest.getSpec());
 		this.source = source;
 		this.dest = dest;
 	}
 
-	public CannotConnectPortException(OutputPort source, InputPort dest, OutputPort destSource) {
+    /**
+     * Instantiates a new Cannot connect port exception.
+     *
+     * @param source     the source
+     * @param dest       the dest
+     * @param destSource the dest source
+     */
+    public CannotConnectPortException(OutputPort source, InputPort dest, OutputPort destSource) {
 		super("Cannot connect " + source.getSpec() + " to " + dest.getSpec());
 		this.source = source;
 		this.dest = dest;

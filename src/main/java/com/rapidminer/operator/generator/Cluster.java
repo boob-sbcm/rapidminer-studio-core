@@ -23,27 +23,53 @@ import java.util.Random;
 
 /**
  * Helper class for clusters information.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Cluster {
 
-	double[] coordinates;
+    /**
+     * The Coordinates.
+     */
+    double[] coordinates;
 
-	double[] sigmas;
+    /**
+     * The Sigmas.
+     */
+    double[] sigmas;
 
-	double size;
+    /**
+     * The Size.
+     */
+    double size;
 
-	int label;
+    /**
+     * The Label.
+     */
+    int label;
 
-	public Cluster(double[] coordinates, double[] sigmas, double size, int label) {
+    /**
+     * Instantiates a new Cluster.
+     *
+     * @param coordinates the coordinates
+     * @param sigmas      the sigmas
+     * @param size        the size
+     * @param label       the label
+     */
+    public Cluster(double[] coordinates, double[] sigmas, double size, int label) {
 		this.coordinates = coordinates;
 		this.sigmas = sigmas;
 		this.size = size;
 		this.label = label;
 	}
 
-	public double[] createArguments(Random random) {
+    /**
+     * Create arguments double [ ].
+     *
+     * @param random the random
+     * @return the double [ ]
+     */
+    public double[] createArguments(Random random) {
 		double[] args = new double[coordinates.length];
 		for (int i = 0; i < args.length; i++) {
 			args[i] = coordinates[i] + random.nextGaussian() * sigmas[i];

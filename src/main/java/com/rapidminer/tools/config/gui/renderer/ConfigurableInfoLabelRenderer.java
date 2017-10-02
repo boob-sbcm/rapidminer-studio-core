@@ -39,12 +39,23 @@ import com.rapidminer.tools.config.Configurable;
  * {@link Configurable}'s {@link RemoteRepository} (LOADING, FAILED, NO CONNECTIONS)
  *
  * @author Sabrina Kirstein
- *
  */
 public class ConfigurableInfoLabelRenderer extends DefaultListCellRenderer {
 
-	public enum ConfigurableInfoLabelType {
-		LOADING, FAILED, NO_CONNECTIONS;
+    /**
+     * The enum Configurable info label type.
+     */
+    public enum ConfigurableInfoLabelType {
+        /**
+         * Loading configurable info label type.
+         */
+        LOADING, /**
+         * Failed configurable info label type.
+         */
+        FAILED, /**
+         * No connections configurable info label type.
+         */
+        NO_CONNECTIONS;
 	}
 
 	private static final long serialVersionUID = 1L;

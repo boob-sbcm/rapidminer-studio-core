@@ -53,8 +53,9 @@ import com.rapidminer.tools.I18N;
 
 
 /**
- * @author Nils Woehler
+ * The type Range axis config panel.
  *
+ * @author Nils Woehler
  */
 public class RangeAxisConfigPanel extends AbstractConfigurationPanel implements TreeSelectionListener {
 
@@ -77,7 +78,13 @@ public class RangeAxisConfigPanel extends AbstractConfigurationPanel implements 
 	private JCheckBox upperBoundCheckBox;
 	private JSpinner upperBoundSpinner;
 
-	public RangeAxisConfigPanel(JTree plotConfigTree, PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Range axis config panel.
+     *
+     * @param plotConfigTree the plot config tree
+     * @param plotInstance   the plot instance
+     */
+    public RangeAxisConfigPanel(JTree plotConfigTree, PlotInstance plotInstance) {
 		super(plotInstance);
 		createComponents();
 		registerAsPlotConfigurationListener();

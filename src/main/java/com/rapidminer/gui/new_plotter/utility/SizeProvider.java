@@ -19,24 +19,47 @@
 package com.rapidminer.gui.new_plotter.utility;
 
 /**
+ * The interface Size provider.
+ *
  * @author Marius Helf
- * 
  */
 public interface SizeProvider {
 
-	/**
-	 * @param value
-	 * @return
-	 */
-	public double getScalingFactorForValue(double value);
+    /**
+     * Gets scaling factor for value.
+     *
+     * @param value the value
+     * @return scaling factor for value
+     */
+    public double getScalingFactorForValue(double value);
 
-	public boolean supportsCategoricalValues();
+    /**
+     * Supports categorical values boolean.
+     *
+     * @return the boolean
+     */
+    public boolean supportsCategoricalValues();
 
-	public boolean supportsNumericalValues();
+    /**
+     * Supports numerical values boolean.
+     *
+     * @return the boolean
+     */
+    public boolean supportsNumericalValues();
 
 	public SizeProvider clone();
 
-	public double getMinScalingFactor();
+    /**
+     * Gets min scaling factor.
+     *
+     * @return the min scaling factor
+     */
+    public double getMinScalingFactor();
 
-	public double getMaxScalingFactor();
+    /**
+     * Gets max scaling factor.
+     *
+     * @return the max scaling factor
+     */
+    public double getMaxScalingFactor();
 }

@@ -49,7 +49,7 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * structural comparison. The attribute values of the equations in question are randomly sampled and
  * the equation results compared. If the difference is less than <i>epsilon</i> for <i>k</i> trials,
  * the equations are probably equivalent. At least they produce similar values. <br/>
- *
+ * <p>
  * The values of the attributes are sampled in the range of the minimum and maximum values of the
  * attribute. This ensures equivalency or at least very similar values for the definition range in
  * question. Therefore a {@link ExampleTable} is constructed and filled with random values. Then a
@@ -78,10 +78,16 @@ public class EquivalentAttributeRemoval extends ExampleSetBasedIndividualOperato
 	/** the operator which calls this class. **/
 	private Operator operator;
 
-	/**
-	 * Creates a new equivalent attribute removal population operator.
-	 */
-	public EquivalentAttributeRemoval(int numberOfSamples, double epsilon, boolean recalculateAttributeStatistics,
+    /**
+     * Creates a new equivalent attribute removal population operator.
+     *
+     * @param numberOfSamples                the number of samples
+     * @param epsilon                        the epsilon
+     * @param recalculateAttributeStatistics the recalculate attribute statistics
+     * @param random                         the random
+     * @param op                             the op
+     */
+    public EquivalentAttributeRemoval(int numberOfSamples, double epsilon, boolean recalculateAttributeStatistics,
 			RandomGenerator random, Operator op) {
 		this.numberOfSamples = numberOfSamples;
 		this.epsilon = epsilon;

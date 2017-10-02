@@ -68,7 +68,7 @@ import com.rapidminer.tools.usagestats.ActionStatisticsCollector;
  * another. As long as they all have the same ID and a dependency on said ID, they are executed in
  * the order they were queued via {@link #start()} or {@link #startAndWait()}.
  * </p>
- * 
+ *
  * @author Simon Fischer, Marco Boeck
  */
 public abstract class ProgressThread implements Runnable {
@@ -162,50 +162,39 @@ public abstract class ProgressThread implements Runnable {
 	 */
 	private boolean indeterminate = false;;
 
-	/**
-	 * Creates a new {@link ProgressThread} instance with the specified {@link I18N} key. Uses its
-	 * I18N key as an ID to allow other ProgressThreads to depend on it.
-	 * 
-	 * @param i18nKey
-	 *            used to retrieve the name of the progress thread from GUI properties file. The
-	 *            i18N key has to look like this: gui.progress.$i18nKey$.label. The i18N key is also
-	 *            used as progress thread ID.
-	 */
-	public ProgressThread(String i18nKey) {
+    /**
+     * Creates a new {@link ProgressThread} instance with the specified {@link I18N} key. Uses its
+     * I18N key as an ID to allow other ProgressThreads to depend on it.
+     *
+     * @param i18nKey used to retrieve the name of the progress thread from GUI properties file. The            i18N key has to look like this: gui.progress.$i18nKey$.label. The i18N key is also            used as progress thread ID.
+     */
+    public ProgressThread(String i18nKey) {
 		this(i18nKey, false);
 	}
 
-	/**
-	 * Creates a new {@link ProgressThread} instance with the specified {@link I18N} key. Also opens
-	 * the window showing currently active {@link ProgressThread}s once it is started. Uses its I18N
-	 * key as an ID to allow other ProgressThreads to depend on it.
-	 * 
-	 * @param i18nKey
-	 *            used to retrieve the name of the progress thread from GUI properties file. The
-	 *            i18N key has to look like this: gui.progress.$i18nKey$.label. The i18N key is also
-	 *            used as progress thread ID.
-	 * @param runInForeground
-	 *            if set to <code>true</code> the progress thread dialog will be shown when the
-	 *            progress thread is started
-	 */
-	public ProgressThread(String i18nKey, boolean runInForeground) {
+    /**
+     * Creates a new {@link ProgressThread} instance with the specified {@link I18N} key. Also opens
+     * the window showing currently active {@link ProgressThread}s once it is started. Uses its I18N
+     * key as an ID to allow other ProgressThreads to depend on it.
+     *
+     * @param i18nKey         used to retrieve the name of the progress thread from GUI properties file. The            i18N key has to look like this: gui.progress.$i18nKey$.label. The i18N key is also            used as progress thread ID.
+     * @param runInForeground if set to <code>true</code> the progress thread dialog will be shown when the            progress thread is started
+     */
+    public ProgressThread(String i18nKey, boolean runInForeground) {
 		this(i18nKey, runInForeground, new Object[] {});
 	}
 
-	/**
-	 * Creates a new {@link ProgressThread} instance with the specified {@link I18N} key and ID. The
-	 * ID can be used by other {@link ProgressThread}s as a dependency. Also opens the window
-	 * showing currently active {@link ProgressThread}s once it is started if runInForeground is set
-	 * to <code>true</code>.
-	 * 
-	 * @param i18nKey
-	 *            the key for I18N and ID used for dependency handling
-	 * @param runInForeground
-	 *            if <code>true</code>, the dialog will be shown in the foreground
-	 * @param arguments
-	 *            the I18N arguments for the I18N key
-	 */
-	public ProgressThread(String i18nKey, boolean runInForeground, Object... arguments) {
+    /**
+     * Creates a new {@link ProgressThread} instance with the specified {@link I18N} key and ID. The
+     * ID can be used by other {@link ProgressThread}s as a dependency. Also opens the window
+     * showing currently active {@link ProgressThread}s once it is started if runInForeground is set
+     * to <code>true</code>.
+     *
+     * @param i18nKey         the key for I18N and ID used for dependency handling
+     * @param runInForeground if <code>true</code>, the dialog will be shown in the foreground
+     * @param arguments       the I18N arguments for the I18N key
+     */
+    public ProgressThread(String i18nKey, boolean runInForeground, Object... arguments) {
 		if (i18nKey == null || "".equals(i18nKey.trim())) {
 			throw new IllegalArgumentException("i18nKey must not be null!");
 		}
@@ -216,12 +205,12 @@ public abstract class ProgressThread implements Runnable {
 		this.dependencies = new LinkedList<>();
 	}
 
-	/**
-	 * Returns the human readable name.
-	 * 
-	 * @return
-	 */
-	public String getName() {
+    /**
+     * Returns the human readable name.
+     *
+     * @return name name
+     */
+    public String getName() {
 		return name;
 	}
 
@@ -230,35 +219,35 @@ public abstract class ProgressThread implements Runnable {
 		return name + (cancelled ? " (cancelled)" : "");
 	}
 
-	/**
-	 * Returns the {@link ProgressListener} of the {@link ResultDisplay}.
-	 * 
-	 * @return
-	 */
-	public ProgressListener getProgressListener() {
+    /**
+     * Returns the {@link ProgressListener} of the {@link ResultDisplay}.
+     *
+     * @return progress listener
+     */
+    public ProgressListener getProgressListener() {
 		checkCancelled();
 		return display.getListener();
 	}
 
-	/**
-	 * Returns the ID of this task.
-	 */
-	public String getID() {
+    /**
+     * Returns the ID of this task.
+     *
+     * @return the id
+     */
+    public String getID() {
 		return key;
 	}
 
-	/**
-	 * This call adds the specified ID(s) as a dependency to this task. What this means is that as
-	 * long as there are other tasks running/in the queue which have an ID which matches one of the
-	 * dependencies, this task will not be executed. Only after all tasks which have been queued
-	 * before and have an ID matching one of the dependencies, this task will be executed. A task
-	 * can have as many dependencies as required.
-	 * 
-	 * @param dependencyIDs
-	 *            the ID(s) of another {@link ProgressThread} (see {@link #getID()} which must
-	 *            finish execution before this task can run
-	 */
-	public void addDependency(String... dependencyIDs) {
+    /**
+     * This call adds the specified ID(s) as a dependency to this task. What this means is that as
+     * long as there are other tasks running/in the queue which have an ID which matches one of the
+     * dependencies, this task will not be executed. Only after all tasks which have been queued
+     * before and have an ID matching one of the dependencies, this task will be executed. A task
+     * can have as many dependencies as required.
+     *
+     * @param dependencyIDs the ID(s) of another {@link ProgressThread} (see {@link #getID()} which must            finish execution before this task can run
+     */
+    public void addDependency(String... dependencyIDs) {
 		if (dependencyIDs == null) {
 			throw new IllegalArgumentException("dependencyIDs must not be null!");
 		}
@@ -270,38 +259,38 @@ public abstract class ProgressThread implements Runnable {
 		}
 	}
 
-	/**
-	 * Returns the dependencies of this task.
-	 * 
-	 * @return
-	 */
-	public List<String> getDependencies() {
+    /**
+     * Returns the dependencies of this task.
+     *
+     * @return dependencies dependencies
+     */
+    public List<String> getDependencies() {
 		return new LinkedList<>(dependencies);
 	}
 
-	/**
-	 * Returns the {@link ResultDisplay}.
-	 * 
-	 * @return
-	 */
-	public ProgressDisplay getDisplay() {
+    /**
+     * Returns the {@link ResultDisplay}.
+     *
+     * @return display display
+     */
+    public ProgressDisplay getDisplay() {
 		return display;
 	}
 
-	/**
-	 * Changes the human readable name for the progress display UI.
-	 * 
-	 * @param i18nKey
-	 */
-	public void setDisplayLabel(String i18nKey) {
+    /**
+     * Changes the human readable name for the progress display UI.
+     *
+     * @param i18nKey the 18 n key
+     */
+    public void setDisplayLabel(String i18nKey) {
 		name = I18N.getMessage(I18N.getGUIBundle(), "gui.progress." + i18nKey + ".label");
 	}
 
-	/**
-	 * Note that this method has nothing to do with Thread.strart. It merely enqueues this Runnable
-	 * in the Executor's queue.
-	 */
-	public void start() {
+    /**
+     * Note that this method has nothing to do with Thread.strart. It merely enqueues this Runnable
+     * in the Executor's queue.
+     */
+    public void start() {
 		// no dependency -> start immediately
 		if (dependencies.isEmpty()) {
 			EXECUTOR.execute(makeWrapper());
@@ -323,15 +312,15 @@ public abstract class ProgressThread implements Runnable {
 		}
 	}
 
-	/**
-	 * Enqueues this task and waits for its completion. If you call this method, you probably want
-	 * to set the runInForeground flag in the constructor to true.
-	 * <p>
-	 * Be careful when using this method for {@link ProgressThread}s with dependencies, this call
-	 * might block for a long time.
-	 * </p>
-	 */
-	public void startAndWait() {
+    /**
+     * Enqueues this task and waits for its completion. If you call this method, you probably want
+     * to set the runInForeground flag in the constructor to true.
+     * <p>
+     * Be careful when using this method for {@link ProgressThread}s with dependencies, this call
+     * might block for a long time.
+     * </p>
+     */
+    public void startAndWait() {
 		// set flag indicating we are a busy waiting task - these are not started automatically by
 		// #checkQueueForDependenciesAndExecuteUnblockedTasks()
 		isWaiting = true;
@@ -376,16 +365,20 @@ public abstract class ProgressThread implements Runnable {
 		}
 	}
 
-	/** Returns true if the thread was cancelled. */
-	public final boolean isCancelled() {
+    /**
+     * Returns true if the thread was cancelled.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public final boolean isCancelled() {
 		return cancelled;
 	}
 
-	/**
-	 * If the thread is currently active, calls {@link #executionCancelled()} to notify children. If
-	 * not active, removes the thread from the queue so it won't become active.
-	 */
-	public final void cancel() {
+    /**
+     * If the thread is currently active, calls {@link #executionCancelled()} to notify children. If
+     * not active, removes the thread from the queue so it won't become active.
+     */
+    public final void cancel() {
 		boolean dependentThreads = false;
 		synchronized (LOCK) {
 			dependentThreads = checkQueuedThreadDependOnCurrentThread();
@@ -462,25 +455,37 @@ public abstract class ProgressThread implements Runnable {
 		}
 	}
 
-	/** Adds a new ProgressThreadListener **/
-	public final void addProgressThreadListener(final ProgressThreadListener listener) {
+    /**
+     * Adds a new ProgressThreadListener  @param listener the listener
+     *
+     * @param listener the listener
+     */
+    public final void addProgressThreadListener(final ProgressThreadListener listener) {
 		listeners.add(listener);
 	}
 
-	/** Removes a ProgressThreadListener **/
-	public final void removeProgressThreadListener(final ProgressThreadListener listener) {
+    /**
+     * Removes a ProgressThreadListener  @param listener the listener
+     *
+     * @param listener the listener
+     */
+    public final void removeProgressThreadListener(final ProgressThreadListener listener) {
 		listeners.remove(listener);
 	}
 
-	/**
-	 * Subclasses can implemented this method if they want to be notified about cancellation of this
-	 * thread. In most cases, this is not necessary. Subclasses can ask {@link #isCancelled()}
-	 * whenever cancelling is possible, or, even easier, directly call {@link #checkCancelled()}.
-	 */
-	protected void executionCancelled() {}
+    /**
+     * Subclasses can implemented this method if they want to be notified about cancellation of this
+     * thread. In most cases, this is not necessary. Subclasses can ask {@link #isCancelled()}
+     * whenever cancelling is possible, or, even easier, directly call {@link #checkCancelled()}.
+     */
+    protected void executionCancelled() {}
 
-	/** If cancelled, throws a RuntimeException to stop the thread. */
-	protected void checkCancelled() throws ProgressThreadStoppedException {
+    /**
+     * If cancelled, throws a RuntimeException to stop the thread.  @throws ProgressThreadStoppedException the progress thread stopped exception
+     *
+     * @throws ProgressThreadStoppedException the progress thread stopped exception
+     */
+    protected void checkCancelled() throws ProgressThreadStoppedException {
 		if (cancelled) {
 			throw new ProgressThreadStoppedException();
 		}
@@ -638,60 +643,71 @@ public abstract class ProgressThread implements Runnable {
 		return false;
 	}
 
-	/**
-	 * @return the time that must have passed before the progress thread dialog is shown
-	 */
-	public long getShowDialogTimerDelay() {
+    /**
+     * Gets show dialog timer delay.
+     *
+     * @return the time that must have passed before the progress thread dialog is shown
+     */
+    public long getShowDialogTimerDelay() {
 		return showDialogTimerDelay;
 	}
 
-	/**
-	 * Allows to define the time in milliseconds after which the progress thread dialog should be
-	 * shown if the task has not finished yet by then. This will have effect only if
-	 * {@link #runInForeground} is set to <code>false</code> and {@link #startDialogShowTimer} is
-	 * set to <code>true</code>. The time is specified in milliseconds.<br/>
-	 * <b>Note:</b> Changing this value will take effect only before starting the progress thread.
-	 */
-	public void setShowDialogTimerDelay(long delay) {
+    /**
+     * Allows to define the time in milliseconds after which the progress thread dialog should be
+     * shown if the task has not finished yet by then. This will have effect only if
+     * {@link #runInForeground} is set to <code>false</code> and {@link #startDialogShowTimer} is
+     * set to <code>true</code>. The time is specified in milliseconds.<br/>
+     * <b>Note:</b> Changing this value will take effect only before starting the progress thread.
+     *
+     * @param delay the delay
+     */
+    public void setShowDialogTimerDelay(long delay) {
 		if (delay <= 0) {
 			throw new IllegalArgumentException("Only values above 0 are allowed.");
 		}
 		this.showDialogTimerDelay = delay;
 	}
 
-	/**
-	 * @return defines if the progress thread dialog should be shown if the progress thread has not
-	 *         yet finished after the time defined by {@link #showDialogTimerDelay}.
-	 */
-	public boolean isStartDialogShowTimer() {
+    /**
+     * Is start dialog show timer boolean.
+     *
+     * @return defines if the progress thread dialog should be shown if the progress thread has not         yet finished after the time defined by {@link #showDialogTimerDelay}.
+     */
+    public boolean isStartDialogShowTimer() {
 		return startDialogShowTimer;
 	}
 
-	/**
-	 * Allows to define whether the progress thread dialog should be shown if the progress thread
-	 * has not yet finished after the time specified by {@link #showDialogTimerDelay}. The default
-	 * value is set to 2 seconds and can be changed by calling
-	 * {@link #setShowDialogTimerDelay(long)}.<br/>
-	 * <b>Note:</b> Changing this value will take effect only before starting the progress thread.
-	 */
-	public void setStartDialogShowTimer(boolean startDialogShowTimer) {
+    /**
+     * Allows to define whether the progress thread dialog should be shown if the progress thread
+     * has not yet finished after the time specified by {@link #showDialogTimerDelay}. The default
+     * value is set to 2 seconds and can be changed by calling
+     * {@link #setShowDialogTimerDelay(long)}.<br/>
+     * <b>Note:</b> Changing this value will take effect only before starting the progress thread.
+     *
+     * @param startDialogShowTimer the start dialog show timer
+     */
+    public void setStartDialogShowTimer(boolean startDialogShowTimer) {
 		this.startDialogShowTimer = startDialogShowTimer;
 	}
 
-	/**
-	 * @return whether the progress bar for this progress thread should be in indeterminate mode
-	 */
-	public boolean isIndeterminate() {
+    /**
+     * Is indeterminate boolean.
+     *
+     * @return whether the progress bar for this progress thread should be in indeterminate mode
+     */
+    public boolean isIndeterminate() {
 		return indeterminate;
 	}
 
-	/**
-	 * To indicate that a task of unknown length is executing, you can put a progress bar into
-	 * indeterminate mode. While the bar is in indeterminate mode, it animates constantly to show
-	 * that work is occurring. </br><b>Note:</b> Changing this value will take effect only before
-	 * starting the progress thread.
-	 */
-	public void setIndeterminate(boolean indeterminate) {
+    /**
+     * To indicate that a task of unknown length is executing, you can put a progress bar into
+     * indeterminate mode. While the bar is in indeterminate mode, it animates constantly to show
+     * that work is occurring. </br><b>Note:</b> Changing this value will take effect only before
+     * starting the progress thread.
+     *
+     * @param indeterminate the indeterminate
+     */
+    public void setIndeterminate(boolean indeterminate) {
 		this.indeterminate = indeterminate;
 
 		// In case of indeterminate progress thread the message change to a hint that it actually is
@@ -701,48 +717,58 @@ public abstract class ProgressThread implements Runnable {
 		}
 	}
 
-	/**
-	 * Allows to define whether the user should be able to cancel the progress thread.
-	 * </br><b>Note:</b> Changing this will only have effect before starting the progress thread.
-	 */
-	public void setCancelable(boolean isCancelable) {
+    /**
+     * Allows to define whether the user should be able to cancel the progress thread.
+     * </br><b>Note:</b> Changing this will only have effect before starting the progress thread.
+     *
+     * @param isCancelable the is cancelable
+     */
+    public void setCancelable(boolean isCancelable) {
 		this.isCancelable = isCancelable;
 	}
 
-	/**
-	 * @return whether the progress thread should be cancelable or not
-	 */
-	public boolean isCancelable() {
+    /**
+     * Is cancelable boolean.
+     *
+     * @return whether the progress thread should be cancelable or not
+     */
+    public boolean isCancelable() {
 		return isCancelable;
 	}
 
-	/**
-	 * @return the currently executed tasks.
-	 */
-	public static Collection<ProgressThread> getCurrentThreads() {
+    /**
+     * Gets current threads.
+     *
+     * @return the currently executed tasks.
+     */
+    public static Collection<ProgressThread> getCurrentThreads() {
 		return new LinkedList<>(currentThreads);
 	}
 
-	/**
-	 * @return the currently queued tasks
-	 */
-	public static Collection<ProgressThread> getQueuedThreads() {
+    /**
+     * Gets queued threads.
+     *
+     * @return the currently queued tasks
+     */
+    public static Collection<ProgressThread> getQueuedThreads() {
 		return new LinkedList<>(queuedThreads);
 	}
 
-	/**
-	 * @return <code>true</code> if a {@link ProgressThread} is neither being executed nor queued;
-	 *         <code>false</code> otherwise.
-	 */
-	public static boolean isEmpty() {
+    /**
+     * Is empty boolean.
+     *
+     * @return <code>true</code> if a {@link ProgressThread} is neither being executed nor queued;         <code>false</code> otherwise.
+     */
+    public static boolean isEmpty() {
 		return getCurrentThreads().isEmpty() && getQueuedThreads().isEmpty();
 	}
 
-	/**
-	 * @return <code>true</code> if a {@link ProgressThread} is currently running which has the
-	 *         inForeground flag set; <code>false</code> otherwise.
-	 */
-	public static boolean isForegroundRunning() {
+    /**
+     * Is foreground running boolean.
+     *
+     * @return <code>true</code> if a {@link ProgressThread} is currently running which has the         inForeground flag set; <code>false</code> otherwise.
+     */
+    public static boolean isForegroundRunning() {
 		for (ProgressThread pg : getCurrentThreads()) {
 			if (pg.isRunInForegroundFlagSet()) {
 				return true;
@@ -752,21 +778,21 @@ public abstract class ProgressThread implements Runnable {
 		return false;
 	}
 
-	/**
-	 * Adds the specified {@link ProgressThreadStateListener} which will be informed of any changes.
-	 * 
-	 * @param l
-	 */
-	public static void addProgressThreadStateListener(ProgressThreadStateListener l) {
+    /**
+     * Adds the specified {@link ProgressThreadStateListener} which will be informed of any changes.
+     *
+     * @param l the l
+     */
+    public static void addProgressThreadStateListener(ProgressThreadStateListener l) {
 		listener.add(ProgressThreadStateListener.class, l);
 	}
 
-	/**
-	 * Removes the specified {@link ProgressThreadStateListener}.
-	 * 
-	 * @param l
-	 */
-	public static void removeProgressThreadStateListener(ProgressThreadStateListener l) {
+    /**
+     * Removes the specified {@link ProgressThreadStateListener}.
+     *
+     * @param l the l
+     */
+    public static void removeProgressThreadStateListener(ProgressThreadStateListener l) {
 		listener.remove(ProgressThreadStateListener.class, l);
 	}
 

@@ -45,7 +45,10 @@ abstract class AbstractMediumSparsityChunk implements Serializable {
 	private static final int MAX_SIZE = AutoColumnUtils.CHUNK_SIZE - 1;
 
 	private int[] indices = AutoColumnUtils.EMPTY_INTEGER_ARRAY;
-	protected int valueCount;
+    /**
+     * The Value count.
+     */
+    protected int valueCount;
 	private double defaultValue;
 	private int ensuredCount;
 	private byte[] bloomFilter = AutoColumnUtils.EMPTY_BYTE_ARRAY;
@@ -61,35 +64,37 @@ abstract class AbstractMediumSparsityChunk implements Serializable {
 
 	private int bloomMult = (int) Math.pow(2, bloomShift) + 1;
 
-	AbstractMediumSparsityChunk(double defaultValue) {
+    /**
+     * Instantiates a new Abstract medium sparsity chunk.
+     *
+     * @param defaultValue the default value
+     */
+    AbstractMediumSparsityChunk(double defaultValue) {
 		this.defaultValue = defaultValue;
 	}
 
-	/**
-	 * Returns the value stored for this row.
-	 *
-	 * @param row
-	 *            the row for which to obtain the stored value
-	 * @return the value stored for row
-	 */
-	public final double get(int row) {
+    /**
+     * Returns the value stored for this row.
+     *
+     * @param row the row for which to obtain the stored value
+     * @return the value stored for row
+     */
+    public final double get(int row) {
 		int index = getIndex(row, true);
 		return index < 0 ? defaultValue : getValue(index);
 	}
 
-	/**
-	 * Sets the value for the given row. Returns {@code true} if after this set the sparse chunk is
-	 * too full, i.e. its density is bigger than
-	 * {@link AutoColumnUtils#THRESHOLD_HIGH_SPARSITY_MAXIMAL_DENSITY}. Note that the density check only
-	 * works if the total size was {@link #ensure}d before.
-	 *
-	 * @param row
-	 *            the row for which to set the value
-	 * @param value
-	 *            the value to store
-	 * @return {@code true} if the maximal density is reached
-	 */
-	public final boolean set(int row, double value) {
+    /**
+     * Sets the value for the given row. Returns {@code true} if after this set the sparse chunk is
+     * too full, i.e. its density is bigger than
+     * {@link AutoColumnUtils#THRESHOLD_HIGH_SPARSITY_MAXIMAL_DENSITY}. Note that the density check only
+     * works if the total size was {@link #ensure}d before.
+     *
+     * @param row   the row for which to set the value
+     * @param value the value to store
+     * @return {@code true} if the maximal density is reached
+     */
+    public final boolean set(int row, double value) {
 		if (Tools.isDefault(defaultValue, value)) {
 			int index = getIndex(row, true);
 			// index not set, default value => do nothing
@@ -122,13 +127,14 @@ abstract class AbstractMediumSparsityChunk implements Serializable {
 		return tooFull;
 	}
 
-	/**
-	 * Returns the maximal density of this chunk depending on whether it stores integer or double
-	 * values.
-	 *
-	 * @return the maximal density for this chunk
-	 */
-	protected abstract double getMaximalDensity(int row);
+    /**
+     * Returns the maximal density of this chunk depending on whether it stores integer or double
+     * values.
+     *
+     * @param row the row
+     * @return the maximal density for this chunk
+     */
+    protected abstract double getMaximalDensity(int row);
 
 	/**
 	 * The index returned by binary search or -1 if lookup is {@code true} and mayContain returns
@@ -157,13 +163,12 @@ abstract class AbstractMediumSparsityChunk implements Serializable {
 		return Arrays.binarySearch(indices, 0, valueCount, row);
 	}
 
-	/**
-	 * Sets the total size.
-	 *
-	 * @param size
-	 *            the expected size
-	 */
-	public final void ensure(int size) {
+    /**
+     * Sets the total size.
+     *
+     * @param size the expected size
+     */
+    public final void ensure(int size) {
 		ensuredCount = size;
 	}
 
@@ -259,44 +264,37 @@ abstract class AbstractMediumSparsityChunk implements Serializable {
 		return indices;
 	}
 
-	/**
-	 * Removes the given index from the values array and sets its length.
-	 *
-	 * @param index
-	 *            the index to remove
-	 * @param length
-	 *            the desired array length
-	 */
-	abstract void removeValueIndex(int index, int length);
+    /**
+     * Removes the given index from the values array and sets its length.
+     *
+     * @param index  the index to remove
+     * @param length the desired array length
+     */
+    abstract void removeValueIndex(int index, int length);
 
-	/**
-	 * Inserts a new place in the values array at the given index and ensures that the array has the
-	 * given length.
-	 *
-	 * @param index
-	 *            the index to insert
-	 * @param length
-	 *            the desired array length
-	 */
-	abstract void insertValueIndex(int index, int length);
+    /**
+     * Inserts a new place in the values array at the given index and ensures that the array has the
+     * given length.
+     *
+     * @param index  the index to insert
+     * @param length the desired array length
+     */
+    abstract void insertValueIndex(int index, int length);
 
-	/**
-	 * Returns the value stored at the given index.
-	 *
-	 * @param index
-	 *            the index to look up
-	 * @return the value for the index
-	 */
-	abstract double getValue(int index);
+    /**
+     * Returns the value stored at the given index.
+     *
+     * @param index the index to look up
+     * @return the value for the index
+     */
+    abstract double getValue(int index);
 
-	/**
-	 * Sets the value at position index of the values array.
-	 *
-	 * @param index
-	 *            the index where to set the value
-	 * @param value
-	 *            the value to store
-	 */
-	abstract void setValue(int index, double value);
+    /**
+     * Sets the value at position index of the values array.
+     *
+     * @param index the index where to set the value
+     * @param value the value to store
+     */
+    abstract void setValue(int index, double value);
 
 }

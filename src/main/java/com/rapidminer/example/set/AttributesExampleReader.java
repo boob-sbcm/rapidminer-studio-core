@@ -26,7 +26,7 @@ import java.util.Iterator;
 
 /**
  * This reader simply uses all examples from the parent and all available attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributesExampleReader extends AbstractExampleReader {
@@ -37,8 +37,13 @@ public class AttributesExampleReader extends AbstractExampleReader {
 	/** The used attributes are described in this example set. */
 	private ExampleSet exampleSet;
 
-	/** Creates a simple example reader. */
-	public AttributesExampleReader(Iterator<Example> parent, ExampleSet exampleSet) {
+    /**
+     * Creates a simple example reader.  @param parent the parent
+     *
+     * @param parent     the parent
+     * @param exampleSet the example set
+     */
+    public AttributesExampleReader(Iterator<Example> parent, ExampleSet exampleSet) {
 		this.parent = parent;
 		this.exampleSet = exampleSet;
 	}

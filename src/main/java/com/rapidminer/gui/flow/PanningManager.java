@@ -54,7 +54,12 @@ public class PanningManager implements AWTEventListener {
 		}
 	});
 
-	public PanningManager(JComponent target) {
+    /**
+     * Instantiates a new Panning manager.
+     *
+     * @param target the target
+     */
+    public PanningManager(JComponent target) {
 		super();
 		this.target = target;
 		timer.setRepeats(true);
@@ -84,10 +89,10 @@ public class PanningManager implements AWTEventListener {
 		}
 	}
 
-	/**
-	 * Removes the panning support for the component this instance was created for.
-	 */
-	public void remove() {
+    /**
+     * Removes the panning support for the component this instance was created for.
+     */
+    public void remove() {
 		Toolkit.getDefaultToolkit().removeAWTEventListener(this);
 		timer.stop();
 		this.target = null;

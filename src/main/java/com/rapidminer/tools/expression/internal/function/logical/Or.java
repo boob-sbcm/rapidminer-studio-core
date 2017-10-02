@@ -25,14 +25,13 @@ import com.rapidminer.tools.expression.FunctionDescription;
  * Class for the OR function that has 2 logical (numerical, true or false) inputs
  *
  * @author Sabrina Kirstein
- *
  */
 public class Or extends AbstractLogicalFunctionWith2Inputs {
 
-	/**
-	 * Constructs a OR Function with 2 parameters with {@link FunctionDescription}
-	 */
-	public Or() {
+    /**
+     * Constructs a OR Function with 2 parameters with {@link FunctionDescription}
+     */
+    public Or() {
 		super("logical.or");
 	}
 

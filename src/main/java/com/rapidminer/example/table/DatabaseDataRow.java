@@ -49,11 +49,14 @@ public class DatabaseDataRow extends DataRow {
 	/** The last attribute for which a query should be / was performed. */
 	private Attribute lastAttribute = null;
 
-	/**
-	 * Creates a data row from the given result set. The current row of the result set if used as
-	 * data source.
-	 */
-	public DatabaseDataRow(ResultSet resultSet) throws SQLException {
+    /**
+     * Creates a data row from the given result set. The current row of the result set if used as
+     * data source.
+     *
+     * @param resultSet the result set
+     * @throws SQLException the sql exception
+     */
+    public DatabaseDataRow(ResultSet resultSet) throws SQLException {
 		this.resultSet = resultSet;
 		this.row = resultSet.getRow();
 	}
@@ -134,8 +137,15 @@ public class DatabaseDataRow extends DataRow {
 		return "Database Data Row";
 	}
 
-	/** Reads the data for the given attribute from the result set. */
-	public static double readColumn(ResultSet resultSet, Attribute attribute) throws SQLException {
+    /**
+     * Reads the data for the given attribute from the result set.  @param resultSet the result set
+     *
+     * @param resultSet the result set
+     * @param attribute the attribute
+     * @return the double
+     * @throws SQLException the sql exception
+     */
+    public static double readColumn(ResultSet resultSet, Attribute attribute) throws SQLException {
 		ResultSetMetaData metaData = resultSet.getMetaData();
 		String name = attribute.getName();
 		int valueType = attribute.getValueType();

@@ -36,7 +36,7 @@ import java.util.logging.Level;
  * number of counted examples. This is for example usefull in case of root_means_squared error. All
  * subclasses can be used for both regression and classification problems. In case of classification
  * the confidence value for the desired true label is used as prediction.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public abstract class SimpleCriterion extends MeasuredPerformance {
@@ -55,9 +55,17 @@ public abstract class SimpleCriterion extends MeasuredPerformance {
 
 	private Attribute weightAttribute;
 
-	public SimpleCriterion() {}
+    /**
+     * Instantiates a new Simple criterion.
+     */
+    public SimpleCriterion() {}
 
-	public SimpleCriterion(SimpleCriterion sc) {
+    /**
+     * Instantiates a new Simple criterion.
+     *
+     * @param sc the sc
+     */
+    public SimpleCriterion(SimpleCriterion sc) {
 		super(sc);
 		this.sum = sc.sum;
 		this.squaresSum = sc.squaresSum;
@@ -106,18 +114,33 @@ public abstract class SimpleCriterion extends MeasuredPerformance {
 		}
 	}
 
-	/** Subclasses must count the example and return the value to sum up. */
-	protected abstract double countExample(double label, double predictedLabel);
+    /**
+     * Subclasses must count the example and return the value to sum up.  @param label the label
+     *
+     * @param label          the label
+     * @param predictedLabel the predicted label
+     * @return the double
+     */
+    protected abstract double countExample(double label, double predictedLabel);
 
-	/**
-	 * Simply returns the given value. Subclasses might apply a transformation on the error sum
-	 * divided by the number of examples.
-	 */
-	protected double transform(double value) {
+    /**
+     * Simply returns the given value. Subclasses might apply a transformation on the error sum
+     * divided by the number of examples.
+     *
+     * @param value the value
+     * @return the double
+     */
+    protected double transform(double value) {
 		return value;
 	}
 
-	protected void countExampleWithWeight(double deviation, double weight) {
+    /**
+     * Count example with weight.
+     *
+     * @param deviation the deviation
+     * @param weight    the weight
+     */
+    protected void countExampleWithWeight(double deviation, double weight) {
 		if (!Double.isNaN(deviation)) {
 			sum += deviation * weight;
 			squaresSum += deviation * deviation * weight * weight;

@@ -44,11 +44,25 @@ public final class RemoveSelectedConnectionDecorator implements ProcessDrawDecor
 	private final ProcessRendererModel rendererModel;
 
 	private Shape shape = null;
-	boolean enableTrashSymbol = false;
-	boolean renderTrashSymbol = false;
-	OutputPort from = null;
+    /**
+     * The Enable trash symbol.
+     */
+    boolean enableTrashSymbol = false;
+    /**
+     * The Render trash symbol.
+     */
+    boolean renderTrashSymbol = false;
+    /**
+     * The From.
+     */
+    OutputPort from = null;
 
-	public RemoveSelectedConnectionDecorator(ProcessRendererModel rendererModel) {
+    /**
+     * Instantiates a new Remove selected connection decorator.
+     *
+     * @param rendererModel the renderer model
+     */
+    public RemoveSelectedConnectionDecorator(ProcessRendererModel rendererModel) {
 		this.rendererModel = rendererModel;
 	}
 

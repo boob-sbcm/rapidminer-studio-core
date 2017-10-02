@@ -54,7 +54,10 @@ public class BookmarkList extends JList<Bookmark> implements ListSelectionListen
 
 		private JLabel label = new JLabel();
 
-		public BookmarkCellRenderer() {
+        /**
+         * Instantiates a new Bookmark cell renderer.
+         */
+        public BookmarkCellRenderer() {
 			this.label.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 			this.label.setOpaque(true);
 			this.label.setIcon(SwingTools.createIcon("16/star.png"));
@@ -89,7 +92,13 @@ public class BookmarkList extends JList<Bookmark> implements ListSelectionListen
 
 	private FileList fileList;
 
-	public BookmarkList(BookmarkListModel model, FileList fileList) {
+    /**
+     * Instantiates a new Bookmark list.
+     *
+     * @param model    the model
+     * @param fileList the file list
+     */
+    public BookmarkList(BookmarkListModel model, FileList fileList) {
 		super(model);
 		this.fileList = fileList;
 		addListSelectionListener(this);

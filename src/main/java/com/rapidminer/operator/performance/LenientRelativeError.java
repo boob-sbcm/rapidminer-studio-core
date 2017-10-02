@@ -24,16 +24,24 @@ import com.rapidminer.tools.Tools;
 /**
  * The average relative error in a lenient way of calculation: <i>Sum(|label-predicted|/max(|label|,
  * |predicted|))/#examples</i>. The relative error of label 0 and prediction 0 is defined as 0.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class LenientRelativeError extends SimpleCriterion {
 
 	private static final long serialVersionUID = -6816726234908353254L;
 
-	public LenientRelativeError() {}
+    /**
+     * Instantiates a new Lenient relative error.
+     */
+    public LenientRelativeError() {}
 
-	public LenientRelativeError(LenientRelativeError sc) {
+    /**
+     * Instantiates a new Lenient relative error.
+     *
+     * @param sc the sc
+     */
+    public LenientRelativeError(LenientRelativeError sc) {
 		super(sc);
 	}
 

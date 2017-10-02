@@ -124,55 +124,51 @@ import com.rapidminer.tools.config.ParameterTypeConfigurable;
 
 
 /**
- * @author Simon Fischer
+ * The type Property panel.
  *
+ * @author Simon Fischer
  */
 public abstract class PropertyPanel extends JPanel {
 
-	/**
-	 * Can be used to decorate the parameter editor panels. See
-	 * {@link PropertyPanel#addPropertyEditorDecorator(PropertyEditorDecorator)}.
-	 *
-	 * @since 6.3.0
-	 */
-	public static interface PropertyEditorDecorator {
+    /**
+     * Can be used to decorate the parameter editor panels. See
+     * {@link PropertyPanel#addPropertyEditorDecorator(PropertyEditorDecorator)}.
+     *
+     * @since 6.3.0
+     */
+    public static interface PropertyEditorDecorator {
 
-		/**
-		 * Called once each time the operator property panel is created.
-		 *
-		 * @param parameterEditor
-		 *            the original parameter editor panel
-		 * @param type
-		 *            the parameter for which this editor panel is
-		 * @param typesOperator
-		 *            the operator for which this editor panel is
-		 * @return this panel will be used as the parameter editor panel
-		 */
-		public JPanel decorate(JPanel parameterEditor, ParameterType type, Operator typesOperator);
+        /**
+         * Called once each time the operator property panel is created.
+         *
+         * @param parameterEditor the original parameter editor panel
+         * @param type            the parameter for which this editor panel is
+         * @param typesOperator   the operator for which this editor panel is
+         * @return this panel will be used as the parameter editor panel
+         */
+        public JPanel decorate(JPanel parameterEditor, ParameterType type, Operator typesOperator);
 	}
 
 	private final List<PropertyEditorDecorator> editorDecorators = new ArrayList<>();
 
-	/**
-	 * Add the given decorator.
-	 *
-	 * @param d
-	 *            the decorator; must not be {@code null}
-	 */
-	public void addPropertyEditorDecorator(PropertyEditorDecorator d) {
+    /**
+     * Add the given decorator.
+     *
+     * @param d the decorator; must not be {@code null}
+     */
+    public void addPropertyEditorDecorator(PropertyEditorDecorator d) {
 		if (d == null) {
 			throw new IllegalArgumentException("d must not be null!");
 		}
 		editorDecorators.add(d);
 	}
 
-	/**
-	 * Remove the given decorator. If the decorator is already removed, does nothing.
-	 *
-	 * @param d
-	 *            the decorator; must not be {@code null}
-	 */
-	public void removePropertyEditorDecorator(PropertyEditorDecorator d) {
+    /**
+     * Remove the given decorator. If the decorator is already removed, does nothing.
+     *
+     * @param d the decorator; must not be {@code null}
+     */
+    public void removePropertyEditorDecorator(PropertyEditorDecorator d) {
 		if (d == null) {
 			throw new IllegalArgumentException("d must not be null!");
 		}
@@ -191,7 +187,10 @@ public abstract class PropertyPanel extends JPanel {
 
 	private boolean showHelpButtons = true;
 
-	public static final int VALUE_CELL_EDITOR_HEIGHT = 32;
+    /**
+     * The constant VALUE_CELL_EDITOR_HEIGHT.
+     */
+    public static final int VALUE_CELL_EDITOR_HEIGHT = 32;
 
 	/** Color for the lines separating the entries */
 	private static final Color SEPARATION_LINE_COLOR = Colors.PANEL_SEPARATOR;
@@ -245,18 +244,16 @@ public abstract class PropertyPanel extends JPanel {
 		registerPropertyValueCellEditor(ParameterTypeLinkButton.class, LinkButtonValueCellEditor.class);
 	}
 
-	/**
-	 * This method allows extensions to register own ParameterTypes and their editors. Please keep
-	 * in mind, that this method has to be called before any operator creation! That means, it has
-	 * to be performed during init of the extension. This method will register this value cell
-	 * editor as well in the PropertyTable.
-	 *
-	 * @param typeClass
-	 *            The class of the new ParameterType for which the editor should be used
-	 * @param editor
-	 *            The class of the PropertyValueCellEditor
-	 */
-	public static void registerPropertyValueCellEditor(Class<? extends ParameterType> typeClass,
+    /**
+     * This method allows extensions to register own ParameterTypes and their editors. Please keep
+     * in mind, that this method has to be called before any operator creation! That means, it has
+     * to be performed during init of the extension. This method will register this value cell
+     * editor as well in the PropertyTable.
+     *
+     * @param typeClass The class of the new ParameterType for which the editor should be used
+     * @param editor    The class of the PropertyValueCellEditor
+     */
+    public static void registerPropertyValueCellEditor(Class<? extends ParameterType> typeClass,
 			Class<? extends PropertyValueCellEditor> editor) {
 		knownValueEditors.put(typeClass, editor);
 		PropertyTable.registerPropertyValueCellEditor(typeClass, editor);
@@ -266,11 +263,17 @@ public abstract class PropertyPanel extends JPanel {
 		return instantiateValueCellEditor(type, getOperator());
 	}
 
-	public PropertyPanel() {
+    /**
+     * Instantiates a new Property panel.
+     */
+    public PropertyPanel() {
 		setLayout(layout);
 	}
 
-	public void setupComponents() {
+    /**
+     * Sets components.
+     */
+    public void setupComponents() {
 		if (SwingUtilities.isEventDispatchThread()) {
 			setupComponentsNow();
 		} else {
@@ -284,7 +287,10 @@ public abstract class PropertyPanel extends JPanel {
 		}
 	}
 
-	public void fireEditingStoppedEvent() {
+    /**
+     * Fire editing stopped event.
+     */
+    public void fireEditingStoppedEvent() {
 		Map<String, PropertyValueCellEditor> currentEditors = new LinkedHashMap<>();
 		currentEditors.putAll(this.currentEditors);
 		if (currentEditors.size() > 0) {
@@ -367,21 +373,15 @@ public abstract class PropertyPanel extends JPanel {
 		repaint();
 	}
 
-	/**
-	 * Creates a JPanel for a ParameterType.
-	 *
-	 * @param type
-	 *            The ParameterType, for which the panel is created
-	 * @param tooltipText
-	 *            The tool tip for the current ParameterType
-	 * @param editor
-	 *            Editor for the current ParameterType
-	 * @param editorComponent
-	 *            Editor component for the current ParameterType
-	 *
-	 * @return JPanel for the given ParameterType
-	 */
-	protected JPanel createParameterPanel(ParameterType type, PropertyValueCellEditor editor, Component editorComponent) {
+    /**
+     * Creates a JPanel for a ParameterType.
+     *
+     * @param type            The ParameterType, for which the panel is created
+     * @param editor          Editor for the current ParameterType
+     * @param editorComponent Editor component for the current ParameterType
+     * @return JPanel for the given ParameterType
+     */
+    protected JPanel createParameterPanel(ParameterType type, PropertyValueCellEditor editor, Component editorComponent) {
 
 		JPanel parameterPanel = null;
 		if (editor.rendersLabel()) {
@@ -435,26 +435,17 @@ public abstract class PropertyPanel extends JPanel {
 		return surroundingPanel;
 	}
 
-	/**
-	 * Adds a help icon to the provided JPanel which shows a tooltip when hovering over it.
-	 *
-	 * @param key
-	 *            the key of the parameter
-	 * @param title
-	 *            the tooltip title
-	 * @param description
-	 *            the tooltip description
-	 * @param range
-	 *            the parameter range. Can be <code>null</code> in case the parameter does not have
-	 *            a range
-	 * @param isOptional
-	 *            whether the parameter is optional
-	 * @param labelPanel
-	 *            the panel which will be used to add the label. The panel needs to have a
-	 *            {@link BorderLayout} as layout manager as the label will be added with the
-	 *            constraint {@link BorderLayout#EAST}.
-	 */
-	protected final void addHelpLabel(final String key, final String title, final String description, final String range,
+    /**
+     * Adds a help icon to the provided JPanel which shows a tooltip when hovering over it.
+     *
+     * @param key         the key of the parameter
+     * @param title       the tooltip title
+     * @param description the tooltip description
+     * @param range       the parameter range. Can be <code>null</code> in case the parameter does not have            a range
+     * @param isOptional  whether the parameter is optional
+     * @param labelPanel  the panel which will be used to add the label. The panel needs to have a            {@link BorderLayout} as layout manager as the label will be added with the            constraint {@link BorderLayout#EAST}.
+     */
+    protected final void addHelpLabel(final String key, final String title, final String description, final String range,
 			final boolean isOptional, JPanel labelPanel) {
 		// cannot just call {@link SwingTools#addTooltipHelpIconToLabel} since {@link
 		// #getToolTipText} must be called in the TipProvider because of the caching in {@link
@@ -491,42 +482,96 @@ public abstract class PropertyPanel extends JPanel {
 		});
 	}
 
-	protected boolean hasEditorFor(ParameterType type) {
+    /**
+     * Has editor for boolean.
+     *
+     * @param type the type
+     * @return the boolean
+     */
+    protected boolean hasEditorFor(ParameterType type) {
 		return currentEditors.containsKey(type.getKey());
 	}
 
-	protected int getNumberOfEditors() {
+    /**
+     * Gets number of editors.
+     *
+     * @return the number of editors
+     */
+    protected int getNumberOfEditors() {
 		return currentEditors.size();
 	}
 
-	protected PropertyValueCellEditor getEditorForKey(String key) {
+    /**
+     * Gets editor for key.
+     *
+     * @param key the key
+     * @return the editor for key
+     */
+    protected PropertyValueCellEditor getEditorForKey(String key) {
 		return currentEditors.get(key);
 	}
 
-	protected abstract String getValue(ParameterType type);
+    /**
+     * Gets value.
+     *
+     * @param type the type
+     * @return the value
+     */
+    protected abstract String getValue(ParameterType type);
 
-	protected abstract void setValue(Operator operator, ParameterType type, String value);
+    /**
+     * Sets value.
+     *
+     * @param operator the operator
+     * @param type     the type
+     * @param value    the value
+     */
+    protected abstract void setValue(Operator operator, ParameterType type, String value);
 
-	protected abstract Collection<ParameterType> getProperties();
+    /**
+     * Gets properties.
+     *
+     * @return the properties
+     */
+    protected abstract Collection<ParameterType> getProperties();
 
-	protected abstract Operator getOperator();
+    /**
+     * Gets operator.
+     *
+     * @return the operator
+     */
+    protected abstract Operator getOperator();
 
-	/**
-	 * @return the dialog owner (if the {@link PropertyPanel}) has one
-	 */
-	protected JDialog getDialogOwner() {
+    /**
+     * Gets dialog owner.
+     *
+     * @return the dialog owner (if the {@link PropertyPanel}) has one
+     */
+    protected JDialog getDialogOwner() {
 		return null;
 	}
 
-	/**
-	 * Subclasses of PropertyPanel (e.g. GenericParameterPanel) can overwrite this method in order
-	 * to specify if GUI elements should be updated after setting the Value.
-	 **/
-	protected void setValue(Operator operator, ParameterType type, String value, boolean updateComponents) {
+    /**
+     * Subclasses of PropertyPanel (e.g. GenericParameterPanel) can overwrite this method in order
+     * to specify if GUI elements should be updated after setting the Value.
+     *
+     * @param operator         the operator
+     * @param type             the type
+     * @param value            the value
+     * @param updateComponents the update components
+     */
+    protected void setValue(Operator operator, ParameterType type, String value, boolean updateComponents) {
 		setValue(operator, type, value);
 	}
 
-	public static PropertyValueCellEditor instantiateValueCellEditor(final ParameterType type, Operator operator) {
+    /**
+     * Instantiate value cell editor property value cell editor.
+     *
+     * @param type     the type
+     * @param operator the operator
+     * @return the property value cell editor
+     */
+    public static PropertyValueCellEditor instantiateValueCellEditor(final ParameterType type, Operator operator) {
 		PropertyValueCellEditor editor;
 		Class<?> typeClass = type.getClass();
 		do {
@@ -552,10 +597,17 @@ public abstract class PropertyPanel extends JPanel {
 		return editor;
 	}
 
-	/**
-	 * Creates a text for the {@link ToolTipWindow}.
-	 */
-	protected String getToolTipText(String key, String title, String description, String range, boolean isOptional) {
+    /**
+     * Creates a text for the {@link ToolTipWindow}.
+     *
+     * @param key         the key
+     * @param title       the title
+     * @param description the description
+     * @param range       the range
+     * @param isOptional  the is optional
+     * @return the tool tip text
+     */
+    protected String getToolTipText(String key, String title, String description, String range, boolean isOptional) {
 
 		// Title
 		StringBuilder sb = new StringBuilder(TOOLTIP_INITIAL_SIZE);
@@ -592,18 +644,21 @@ public abstract class PropertyPanel extends JPanel {
 
 	}
 
-	/**
-	 * @param showHelp
-	 *            defines whether the parameter help icon should be shown
-	 */
-	public void setShowParameterHelp(boolean showHelp) {
+    /**
+     * Sets show parameter help.
+     *
+     * @param showHelp defines whether the parameter help icon should be shown
+     */
+    public void setShowParameterHelp(boolean showHelp) {
 		this.showHelpButtons = showHelp;
 	}
 
-	/**
-	 * @return returns <code>true</code> in case the parameter help icon should be shown
-	 */
-	public boolean isShowParameterHelp() {
+    /**
+     * Is show parameter help boolean.
+     *
+     * @return returns <code>true</code> in case the parameter help icon should be shown
+     */
+    public boolean isShowParameterHelp() {
 		return showHelpButtons;
 	}
 }

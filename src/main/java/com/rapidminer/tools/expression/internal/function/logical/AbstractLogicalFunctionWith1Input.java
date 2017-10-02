@@ -33,22 +33,16 @@ import com.rapidminer.tools.expression.internal.SimpleExpressionEvaluator;
  * Abstract class for a function that has 1 logical (numerical, true or false) input
  *
  * @author Sabrina Kirstein
- *
  */
 public abstract class AbstractLogicalFunctionWith1Input extends AbstractLogicalFunction {
 
-	/**
-	 * Constructs a logical AbstractFunction with 1 parameter with {@link FunctionDescription}
-	 * generated from the arguments and the function name generated from the description.
-	 *
-	 * @param i18nKey
-	 *            the key for the {@link FunctionDescription}. The functionName is read from
-	 *            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName
-	 *            from ".group", the description from ".description" and the function with
-	 *            parameters from ".parameters". If ".parameters" is not present, the ".name" is
-	 *            taken for the function with parameters.
-	 */
-	public AbstractLogicalFunctionWith1Input(String i18nKey) {
+    /**
+     * Constructs a logical AbstractFunction with 1 parameter with {@link FunctionDescription}
+     * generated from the arguments and the function name generated from the description.
+     *
+     * @param i18nKey the key for the {@link FunctionDescription}. The functionName is read from            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName            from ".group", the description from ".description" and the function with            parameters from ".parameters". If ".parameters" is not present, the ".name" is            taken for the function with parameters.
+     */
+    public AbstractLogicalFunctionWith1Input(String i18nKey) {
 		super(i18nKey, 1);
 	}
 
@@ -65,14 +59,14 @@ public abstract class AbstractLogicalFunctionWith1Input extends AbstractLogicalF
 		return new SimpleExpressionEvaluator(makeBooleanCallable(evaluator), isResultConstant(inputEvaluators), type);
 	}
 
-	/**
-	 * Builds a boolean callable from evaluator using {@link #compute(double)} or
-	 * {@link #compute(boolean)}, where constant child results are evaluated.
-	 *
-	 * @param evaluator
-	 * @return the resulting boolean callable
-	 */
-	protected Callable<Boolean> makeBooleanCallable(ExpressionEvaluator evaluator) {
+    /**
+     * Builds a boolean callable from evaluator using {@link #compute(double)} or
+     * {@link #compute(boolean)}, where constant child results are evaluated.
+     *
+     * @param evaluator the evaluator
+     * @return the resulting boolean callable
+     */
+    protected Callable<Boolean> makeBooleanCallable(ExpressionEvaluator evaluator) {
 		ExpressionType inputType = evaluator.getType();
 
 		if (inputType.equals(ExpressionType.DOUBLE) || inputType.equals(ExpressionType.INTEGER)) {
@@ -136,19 +130,19 @@ public abstract class AbstractLogicalFunctionWith1Input extends AbstractLogicalF
 		}
 	}
 
-	/**
-	 * Computes the result for a double value.
-	 *
-	 * @param value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(double value);
+    /**
+     * Computes the result for a double value.
+     *
+     * @param value the value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(double value);
 
-	/**
-	 * Computes the result for a boolean value.
-	 *
-	 * @param value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(Boolean value);
+    /**
+     * Computes the result for a boolean value.
+     *
+     * @param value the value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(Boolean value);
 }

@@ -35,28 +35,55 @@ import java.util.List;
 
 
 /**
+ * The type Annotate operator.
+ *
  * @author Marius Helf
- * 
  */
 public class AnnotateOperator extends Operator {
 
 	private InputPort inputPort = getInputPorts().createPort("input", IOObject.class);
 	private OutputPort outputPort = getOutputPorts().createPort("output");
 
-	public static final String[] DUPLICATE_HANDLING_LIST = { "overwrite", "ignore", "error" };
-	public static final int OVERWRITE_DUPLICATES = 0;
-	public static final int IGNORE_DUPLICATES = 1;
-	public static final int ERROR_ON_DUPLICATES = 2;
+    /**
+     * The constant DUPLICATE_HANDLING_LIST.
+     */
+    public static final String[] DUPLICATE_HANDLING_LIST = { "overwrite", "ignore", "error" };
+    /**
+     * The constant OVERWRITE_DUPLICATES.
+     */
+    public static final int OVERWRITE_DUPLICATES = 0;
+    /**
+     * The constant IGNORE_DUPLICATES.
+     */
+    public static final int IGNORE_DUPLICATES = 1;
+    /**
+     * The constant ERROR_ON_DUPLICATES.
+     */
+    public static final int ERROR_ON_DUPLICATES = 2;
 
-	public static final String PARAMETER_DUPLICATE_HANDLING = "duplicate_annotations";
-	public static final String PARAMETER_ANNOTATIONS = "annotations";
-	public static final String PARAMETER_NAME = "annotation_name";
-	public static final String PARAMETER_VALUE = "annotation_value";
+    /**
+     * The constant PARAMETER_DUPLICATE_HANDLING.
+     */
+    public static final String PARAMETER_DUPLICATE_HANDLING = "duplicate_annotations";
+    /**
+     * The constant PARAMETER_ANNOTATIONS.
+     */
+    public static final String PARAMETER_ANNOTATIONS = "annotations";
+    /**
+     * The constant PARAMETER_NAME.
+     */
+    public static final String PARAMETER_NAME = "annotation_name";
+    /**
+     * The constant PARAMETER_VALUE.
+     */
+    public static final String PARAMETER_VALUE = "annotation_value";
 
-	/**
-	 * @param description
-	 */
-	public AnnotateOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Annotate operator.
+     *
+     * @param description the description
+     */
+    public AnnotateOperator(OperatorDescription description) {
 		super(description);
 		getTransformer().addPassThroughRule(inputPort, outputPort);
 	}

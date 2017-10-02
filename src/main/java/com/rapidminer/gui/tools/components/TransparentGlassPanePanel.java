@@ -34,31 +34,26 @@ import javax.swing.JPanel;
 /**
  * Transparent panel, which can be used as glass pane for a {@link JLayer}, i.e. to show a loading
  * panel.
- *
+ * <p>
  * The panel shows an icon, a text below and a transparent background.
  * {@link #paintComponents(Graphics)} is overwritten to make a glass pane transparent.
  *
  * @author Sabrina Kirstein
- *
  */
 public class TransparentGlassPanePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel label;
 
-	/**
-	 * Creates a transparent panel with a loading icon and a text.
-	 *
-	 * @param icon
-	 *            loading icon that is displayed
-	 * @param text
-	 *            which is shown below the icon
-	 * @param backgroundColor
-	 *            origin color of the background
-	 * @param transparency
-	 *            degree of transparency (0.0f = fully transparent, 1.0f = opaque)
-	 */
-	public TransparentGlassPanePanel(ImageIcon icon, String text, Color backgroundColor, float transparency) {
+    /**
+     * Creates a transparent panel with a loading icon and a text.
+     *
+     * @param icon            loading icon that is displayed
+     * @param text            which is shown below the icon
+     * @param backgroundColor origin color of the background
+     * @param transparency    degree of transparency (0.0f = fully transparent, 1.0f = opaque)
+     */
+    public TransparentGlassPanePanel(ImageIcon icon, String text, Color backgroundColor, float transparency) {
 
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -97,12 +92,12 @@ public class TransparentGlassPanePanel extends JPanel {
 		setOpaque(false);
 	}
 
-	/**
-	 * Sets the text of the transparent glass pane
-	 *
-	 * @param text
-	 */
-	public void setText(String text) {
+    /**
+     * Sets the text of the transparent glass pane
+     *
+     * @param text the text
+     */
+    public void setText(String text) {
 		label.setText(text);
 	}
 }

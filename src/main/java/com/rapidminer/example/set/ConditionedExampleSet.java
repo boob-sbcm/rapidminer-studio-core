@@ -44,21 +44,53 @@ public class ConditionedExampleSet extends AbstractExampleSet {
 
 	private static final long serialVersionUID = 877488093216198777L;
 
-	/** Array of short names for the known conditions. */
-	public static final String[] KNOWN_CONDITION_NAMES = { "all", "correct_predictions", "wrong_predictions",
+    /**
+     * Array of short names for the known conditions.
+     */
+    public static final String[] KNOWN_CONDITION_NAMES = { "all", "correct_predictions", "wrong_predictions",
 			"no_missing_attributes", "missing_attributes", "no_missing_labels", "missing_labels", "attribute_value_filter",
 			"expression", "custom_filters" };
 
-	public static final int CONDITION_ALL = 0;
-	public static final int CONDITION_CORRECT_PREDICTIONS = 1;
-	public static final int CONDITION_WRONG_PREDICTIONS = 2;
-	public static final int CONDITION_NO_MISSING_ATTRIBUTES = 3;
-	public static final int CONDITION_MISSING_ATTRIBUTES = 4;
-	public static final int CONDITION_NO_MISSING_LABELS = 5;
-	public static final int CONDITION_MISSING_LABELS = 6;
-	public static final int CONDITION_ATTRIBUTE_VALUE_FILTER = 7;
-	public static final int CONDITION_EXPRESSION = 8;
-	public static final int CONDITION_CUSTOM_FILTER = 9;
+    /**
+     * The constant CONDITION_ALL.
+     */
+    public static final int CONDITION_ALL = 0;
+    /**
+     * The constant CONDITION_CORRECT_PREDICTIONS.
+     */
+    public static final int CONDITION_CORRECT_PREDICTIONS = 1;
+    /**
+     * The constant CONDITION_WRONG_PREDICTIONS.
+     */
+    public static final int CONDITION_WRONG_PREDICTIONS = 2;
+    /**
+     * The constant CONDITION_NO_MISSING_ATTRIBUTES.
+     */
+    public static final int CONDITION_NO_MISSING_ATTRIBUTES = 3;
+    /**
+     * The constant CONDITION_MISSING_ATTRIBUTES.
+     */
+    public static final int CONDITION_MISSING_ATTRIBUTES = 4;
+    /**
+     * The constant CONDITION_NO_MISSING_LABELS.
+     */
+    public static final int CONDITION_NO_MISSING_LABELS = 5;
+    /**
+     * The constant CONDITION_MISSING_LABELS.
+     */
+    public static final int CONDITION_MISSING_LABELS = 6;
+    /**
+     * The constant CONDITION_ATTRIBUTE_VALUE_FILTER.
+     */
+    public static final int CONDITION_ATTRIBUTE_VALUE_FILTER = 7;
+    /**
+     * The constant CONDITION_EXPRESSION.
+     */
+    public static final int CONDITION_EXPRESSION = 8;
+    /**
+     * The constant CONDITION_CUSTOM_FILTER.
+     */
+    public static final int CONDITION_CUSTOM_FILTER = 9;
 
 	/**
 	 * Array of fully qualified classnames of implementations of {@link Condition} that are useful
@@ -75,21 +107,26 @@ public class ConditionedExampleSet extends AbstractExampleSet {
 
 	private int[] mapping;
 
-	/**
-	 * Creates a new example which used only examples fulfilling the given condition.
-	 *
-	 * @throws ExpressionEvaluationException
-	 */
-	public ConditionedExampleSet(ExampleSet parent, Condition condition) throws ExpressionEvaluationException {
+    /**
+     * Creates a new example which used only examples fulfilling the given condition.
+     *
+     * @param parent    the parent
+     * @param condition the condition
+     * @throws ExpressionEvaluationException the expression evaluation exception
+     */
+    public ConditionedExampleSet(ExampleSet parent, Condition condition) throws ExpressionEvaluationException {
 		this(parent, condition, false);
 	}
 
-	/**
-	 * Creates a new example which used only examples fulfilling the given condition.
-	 *
-	 * @throws ExpressionEvaluationException
-	 */
-	public ConditionedExampleSet(ExampleSet parent, Condition condition, boolean inverted)
+    /**
+     * Creates a new example which used only examples fulfilling the given condition.
+     *
+     * @param parent    the parent
+     * @param condition the condition
+     * @param inverted  the inverted
+     * @throws ExpressionEvaluationException the expression evaluation exception
+     */
+    public ConditionedExampleSet(ExampleSet parent, Condition condition, boolean inverted)
 			throws ExpressionEvaluationException {
 		this.parent = (ExampleSet) parent.clone();
 		try {
@@ -99,23 +136,28 @@ public class ConditionedExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	/**
-	 * Creates a new example which used only examples fulfilling the given condition.
-	 *
-	 * @param progress
-	 *            the {@link OperatorProgress} to report the progress to
-	 * @throws ExpressionEvaluationException
-	 * @throws ProcessStoppedException
-	 *             if the process was stopped, can only happen if progress not {@code null}
-	 */
-	public ConditionedExampleSet(ExampleSet parent, Condition condition, boolean inverted, OperatorProgress progress)
+    /**
+     * Creates a new example which used only examples fulfilling the given condition.
+     *
+     * @param parent    the parent
+     * @param condition the condition
+     * @param inverted  the inverted
+     * @param progress  the {@link OperatorProgress} to report the progress to
+     * @throws ExpressionEvaluationException the expression evaluation exception
+     * @throws ProcessStoppedException       if the process was stopped, can only happen if progress not {@code null}
+     */
+    public ConditionedExampleSet(ExampleSet parent, Condition condition, boolean inverted, OperatorProgress progress)
 			throws ExpressionEvaluationException, ProcessStoppedException {
 		this.parent = (ExampleSet) parent.clone();
 		this.mapping = calculateMapping(condition, inverted, progress);
 	}
 
-	/** Clone constructor. */
-	public ConditionedExampleSet(ConditionedExampleSet exampleSet) {
+    /**
+     * Clone constructor.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     */
+    public ConditionedExampleSet(ConditionedExampleSet exampleSet) {
 		this.parent = (ExampleSet) exampleSet.parent.clone();
 		this.mapping = new int[exampleSet.mapping.length];
 		System.arraycopy(exampleSet.mapping, 0, this.mapping, 0, exampleSet.mapping.length);
@@ -212,13 +254,19 @@ public class ConditionedExampleSet extends AbstractExampleSet {
 		return parent.getExampleTable();
 	}
 
-	/**
-	 * Checks if the given name is the short name of a known condition and creates it. If the name
-	 * is not known, this method creates a new instance of className which must be an implementation
-	 * of {@link Condition} by calling its two argument constructor passing it the example set and
-	 * the parameter string
-	 */
-	public static Condition createCondition(String name, ExampleSet exampleSet, String parameterString)
+    /**
+     * Checks if the given name is the short name of a known condition and creates it. If the name
+     * is not known, this method creates a new instance of className which must be an implementation
+     * of {@link Condition} by calling its two argument constructor passing it the example set and
+     * the parameter string
+     *
+     * @param name            the name
+     * @param exampleSet      the example set
+     * @param parameterString the parameter string
+     * @return the condition
+     * @throws ConditionCreationException the condition creation exception
+     */
+    public static Condition createCondition(String name, ExampleSet exampleSet, String parameterString)
 			throws ConditionCreationException {
 		String className = name;
 		for (int i = 0; i < KNOWN_CONDITION_NAMES.length; i++) {

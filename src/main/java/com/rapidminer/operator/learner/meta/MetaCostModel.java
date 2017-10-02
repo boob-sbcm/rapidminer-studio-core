@@ -53,23 +53,46 @@ public class MetaCostModel extends PredictionModel implements MetaModel {
 
 	private double[][] costMatrix;
 
-	public MetaCostModel(ExampleSet exampleSet, Model[] models, double[][] costMatrix) {
+    /**
+     * Instantiates a new Meta cost model.
+     *
+     * @param exampleSet the example set
+     * @param models     the models
+     * @param costMatrix the cost matrix
+     */
+    public MetaCostModel(ExampleSet exampleSet, Model[] models, double[][] costMatrix) {
 		super(exampleSet, null, null);
 		this.models = models;
 		this.costMatrix = costMatrix;
 	}
 
-	public int getNumberOfModels() {
+    /**
+     * Gets number of models.
+     *
+     * @return the number of models
+     */
+    public int getNumberOfModels() {
 		return models.length;
 	}
 
-	/** Returns a binary decision model for the given classification index. */
-	public Model getModel(int index) {
+    /**
+     * Returns a binary decision model for the given classification index.  @param index the index
+     *
+     * @param index the index
+     * @return the model
+     */
+    public Model getModel(int index) {
 		return models[index];
 	}
 
-	/** Returns a single value from the cost matrix. */
-	public double getCostValue(int i, int j) {
+    /**
+     * Returns a single value from the cost matrix.  @param i the
+     *
+     * @param i the
+     * @param j the j
+     * @return the cost value
+     */
+    public double getCostValue(int i, int j) {
 		return costMatrix[i][j];
 	}
 

@@ -27,7 +27,7 @@ import com.rapidminer.operator.performance.PerformanceVector;
  * Individuals contain all necessary informations about example sets for population based search
  * heuristics, including the performance. Each individiual can also handle a crowding distance for
  * multi-objecitve optimization approaches.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExampleSetBasedIndividual {
@@ -49,36 +49,75 @@ public class ExampleSetBasedIndividual {
 	 */
 	private AttributeWeights attributeWeights = null;
 
-	/** Creates a new individual. */
-	public ExampleSetBasedIndividual(AttributeWeightedExampleSet exampleSet) {
+    /**
+     * Creates a new individual.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     */
+    public ExampleSetBasedIndividual(AttributeWeightedExampleSet exampleSet) {
 		this.exampleSet = exampleSet;
 	}
 
-	public AttributeWeightedExampleSet getExampleSet() {
+    /**
+     * Gets example set.
+     *
+     * @return the example set
+     */
+    public AttributeWeightedExampleSet getExampleSet() {
 		return this.exampleSet;
 	}
 
-	public PerformanceVector getPerformance() {
+    /**
+     * Gets performance.
+     *
+     * @return the performance
+     */
+    public PerformanceVector getPerformance() {
 		return performanceVector;
 	}
 
-	public void setPerformance(PerformanceVector performanceVector) {
+    /**
+     * Sets performance.
+     *
+     * @param performanceVector the performance vector
+     */
+    public void setPerformance(PerformanceVector performanceVector) {
 		this.performanceVector = performanceVector;
 	}
 
-	public double getCrowdingDistance() {
+    /**
+     * Gets crowding distance.
+     *
+     * @return the crowding distance
+     */
+    public double getCrowdingDistance() {
 		return this.crowdingDistance;
 	}
 
-	public void setCrowdingDistance(double crowdingDistance) {
+    /**
+     * Sets crowding distance.
+     *
+     * @param crowdingDistance the crowding distance
+     */
+    public void setCrowdingDistance(double crowdingDistance) {
 		this.crowdingDistance = crowdingDistance;
 	}
 
-	public AttributeWeights getAttributeWeights() {
+    /**
+     * Gets attribute weights.
+     *
+     * @return the attribute weights
+     */
+    public AttributeWeights getAttributeWeights() {
 		return this.attributeWeights;
 	}
 
-	public void setAttributeWeights(AttributeWeights weights) {
+    /**
+     * Sets attribute weights.
+     *
+     * @param weights the weights
+     */
+    public void setAttributeWeights(AttributeWeights weights) {
 		this.attributeWeights = weights;
 	}
 

@@ -24,16 +24,21 @@ import com.rapidminer.tools.math.container.Range;
 /**
  * This condition filters out row, if their value of the specified dimension does not lie in given
  * value range.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class RangeFilterCondition implements DataTableFilterCondition {
 
 	private Range range;
 	private int dimensionIndex;
 
-	public RangeFilterCondition(Range range, int dimensionIndex) {
+    /**
+     * Instantiates a new Range filter condition.
+     *
+     * @param range          the range
+     * @param dimensionIndex the dimension index
+     */
+    public RangeFilterCondition(Range range, int dimensionIndex) {
 		this.range = range;
 		this.dimensionIndex = dimensionIndex;
 	}

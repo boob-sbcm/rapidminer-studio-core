@@ -31,7 +31,7 @@ import javax.swing.table.TableModel;
 
 /**
  * A renderer for the table view of frequent item sets.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class FrequentItemSetsTableRenderer extends AbstractTableModelTableRenderer {

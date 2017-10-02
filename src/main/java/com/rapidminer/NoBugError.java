@@ -21,21 +21,37 @@ package com.rapidminer;
 /**
  * All exceptions that are no bugs (but caused by an error of the user) should implement this
  * interface in order to indicate that this should <i>not</i> issue a bug report.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public interface NoBugError {
 
-	/** Returns a html message. */
-	public String getHTMLMessage();
+    /**
+     * Returns a html message.  @return the html message
+     *
+     * @return the html message
+     */
+    public String getHTMLMessage();
 
-	/** Returns the error details/description. */
-	public String getDetails();
+    /**
+     * Returns the error details/description.  @return the details
+     *
+     * @return the details
+     */
+    public String getDetails();
 
-	/** Returns the error name. */
-	public String getErrorName();
+    /**
+     * Returns the error name.  @return the error name
+     *
+     * @return the error name
+     */
+    public String getErrorName();
 
-	/** Returns the error code. */
-	public int getCode();
+    /**
+     * Returns the error code.  @return the code
+     *
+     * @return the code
+     */
+    public int getCode();
 
 }

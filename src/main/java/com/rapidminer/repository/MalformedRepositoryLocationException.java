@@ -24,19 +24,30 @@ import com.rapidminer.operator.UserError;
 
 
 /**
- * 
+ * The type Malformed repository location exception.
+ *
  * @author Simon Fischer
- * 
  */
 public class MalformedRepositoryLocationException extends OperatorException {
 
 	private static final long serialVersionUID = 1L;
 
-	public MalformedRepositoryLocationException(String message) {
+    /**
+     * Instantiates a new Malformed repository location exception.
+     *
+     * @param message the message
+     */
+    public MalformedRepositoryLocationException(String message) {
 		super(message);
 	}
 
-	public UserError makeUserError(Operator operator) {
+    /**
+     * Make user error user error.
+     *
+     * @param operator the operator
+     * @return the user error
+     */
+    public UserError makeUserError(Operator operator) {
 		return new UserError(operator, this, 319, this.getMessage());
 	}
 }

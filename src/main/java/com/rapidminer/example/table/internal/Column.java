@@ -28,55 +28,48 @@ import java.io.Serializable;
  * @author Jan Czogalla
  * @see ColumnarExampleTable
  * @since 7.3
- *
  */
 interface Column extends Serializable {
 
-	/**
-	 * Gets the value at the specified row.
-	 *
-	 * @param row
-	 *            the row that should be looked up
-	 * @return the value at the specified row
-	 */
-	double get(int row);
+    /**
+     * Gets the value at the specified row.
+     *
+     * @param row the row that should be looked up
+     * @return the value at the specified row
+     */
+    double get(int row);
 
-	/**
-	 * Sets the value at the specified row to the given value. It does the same as
-	 * {@link #set(int, double)} but with the additional information that the highest row that was
-	 * set before is smaller than row. This additional information is used for autodetection of
-	 * column densitiy. Note that this operation is unchecked, make sure to {@link #ensure(int)} a
-	 * sufficient size before.
-	 *
-	 * @param row
-	 *            the row that should be set
-	 * @param value
-	 *            the value that should be set at the row
-	 */
-	void setLast(int row, double value);
+    /**
+     * Sets the value at the specified row to the given value. It does the same as
+     * {@link #set(int, double)} but with the additional information that the highest row that was
+     * set before is smaller than row. This additional information is used for autodetection of
+     * column densitiy. Note that this operation is unchecked, make sure to {@link #ensure(int)} a
+     * sufficient size before.
+     *
+     * @param row   the row that should be set
+     * @param value the value that should be set at the row
+     */
+    void setLast(int row, double value);
 
-	/**
-	 * Sets the value at the specified row to the given value.
-	 *
-	 * @param row
-	 *            the row that should be set
-	 * @param value
-	 *            the value that should be set at the row
-	 */
-	void set(int row, double value);
+    /**
+     * Sets the value at the specified row to the given value.
+     *
+     * @param row   the row that should be set
+     * @param value the value that should be set at the row
+     */
+    void set(int row, double value);
 
-	/**
-	 * Ensures that the internal data structure can hold up to {@code size} values.
-	 *
-	 * @param size
-	 *            the size that should be ensured
-	 */
-	void ensure(int size);
+    /**
+     * Ensures that the internal data structure can hold up to {@code size} values.
+     *
+     * @param size the size that should be ensured
+     */
+    void ensure(int size);
 
-	/**
-	 * Completes the column (optional). Invoking this method signals that no further calls to
-	 * {@link #ensure(int)} and {@link #append(double)} will be made.
-	 */
-	default void complete() {};
+    /**
+     * Completes the column (optional). Invoking this method signals that no further calls to
+     * {@link #ensure(int)} and {@link #append(double)} will be made.
+     */
+    default void complete() {};
 
 }

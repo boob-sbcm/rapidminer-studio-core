@@ -47,7 +47,6 @@ import com.rapidminer.tools.PasswordInputCanceledException;
  * Dialog asking for username and passwords. Answers may be cached (if chosen by user).
  *
  * @author Simon Fischer
- *
  */
 public class PasswordDialog extends ButtonDialog {
 
@@ -65,20 +64,20 @@ public class PasswordDialog extends ButtonDialog {
 		return suppressionCount.get() > 0;
 	}
 
-	/**
-	 * Prevents the dialog from being shown to the user
-	 * <p>
-	 * Warning: You must remove the suppression from the PasswordDialog after you are done!
-	 * </p>
-	 */
-	public static void addSuppression() {
+    /**
+     * Prevents the dialog from being shown to the user
+     * <p>
+     * Warning: You must remove the suppression from the PasswordDialog after you are done!
+     * </p>
+     */
+    public static void addSuppression() {
 		suppressionCount.incrementAndGet();
 	}
 
-	/**
-	 * Removes the suppression from the PasswordDialog, must be called after addSuppression
-	 */
-	public static void removeSuppression() {
+    /**
+     * Removes the suppression from the PasswordDialog, must be called after addSuppression
+     */
+    public static void removeSuppression() {
 		suppressionCount.decrementAndGet();
 	}
 
@@ -126,26 +125,41 @@ public class PasswordDialog extends ButtonDialog {
 
 	}
 
-	public PasswordAuthentication makeAuthentication() {
+    /**
+     * Make authentication password authentication.
+     *
+     * @return the password authentication
+     */
+    public PasswordAuthentication makeAuthentication() {
 		return new PasswordAuthentication(usernameField.getText(), passwordField.getPassword());
 	}
 
-	public static PasswordAuthentication getPasswordAuthentication(String forUrl, boolean forceRefresh)
+    /**
+     * Gets password authentication.
+     *
+     * @param forUrl       the for url
+     * @param forceRefresh the force refresh
+     * @return the password authentication
+     * @throws PasswordInputCanceledException the password input canceled exception
+     */
+    public static PasswordAuthentication getPasswordAuthentication(String forUrl, boolean forceRefresh)
 			throws PasswordInputCanceledException {
 		return getPasswordAuthentication(forUrl, forceRefresh, false);
 	}
 
-	/**
-	 * @param id
-	 *            the ID to accompany the given url. Used to differentiate multiple entries for the
-	 *            same url.
-	 * @param i18nKey
-	 *            The i18nKey has to look like every dialog i18n: gui.dialog.KEY.title etc.
-	 * @param args
-	 *            Will be used when i18nKey is set. If i18nKey is <code>null</code> it will be not
-	 *            be used
-	 **/
-	@SuppressWarnings("deprecation")
+    /**
+     * Gets password authentication.
+     *
+     * @param id                        the ID to accompany the given url. Used to differentiate multiple entries for the            same url.
+     * @param forUrl                    the for url
+     * @param forceRefresh              the force refresh
+     * @param hideDialogIfPasswordKnown the hide dialog if password known
+     * @param i18nKey                   The i18nKey has to look like every dialog i18n: gui.dialog.KEY.title etc.
+     * @param args                      Will be used when i18nKey is set. If i18nKey is <code>null</code> it will be not            be used
+     * @return the password authentication
+     * @throws PasswordInputCanceledException the password input canceled exception
+     */
+    @SuppressWarnings("deprecation")
 	public static PasswordAuthentication getPasswordAuthentication(String id, String forUrl, boolean forceRefresh,
 			boolean hideDialogIfPasswordKnown, String i18nKey, Object... args) throws PasswordInputCanceledException {
 
@@ -244,22 +258,33 @@ public class PasswordDialog extends ButtonDialog {
 		}
 	}
 
-	public static PasswordAuthentication getPasswordAuthentication(String forUrl, boolean forceRefresh,
+    /**
+     * Gets password authentication.
+     *
+     * @param forUrl                    the for url
+     * @param forceRefresh              the force refresh
+     * @param hideDialogIfPasswordKnown the hide dialog if password known
+     * @return the password authentication
+     * @throws PasswordInputCanceledException the password input canceled exception
+     */
+    public static PasswordAuthentication getPasswordAuthentication(String forUrl, boolean forceRefresh,
 			boolean hideDialogIfPasswordKnown) throws PasswordInputCanceledException {
 		return getPasswordAuthentication(forUrl, forceRefresh, hideDialogIfPasswordKnown, null);
 	}
 
-	/**
-	 * @param i18nKey
-	 *            The i18nKey has to look like every dialog i18n: gui.dialog.KEY.title etc.
-	 * @param args
-	 *            Will be used when i18nKey is set. If i18nKey is <code>null</code> it will be not
-	 *            be used
-	 * @deprecated use
-	 *             {@link #getPasswordAuthentication(String, String, boolean, boolean, String, Object...)}
-	 *             instead.
-	 **/
-	@Deprecated
+    /**
+     * Gets password authentication.
+     *
+     * @param forUrl                    the for url
+     * @param forceRefresh              the force refresh
+     * @param hideDialogIfPasswordKnown the hide dialog if password known
+     * @param i18nKey                   The i18nKey has to look like every dialog i18n: gui.dialog.KEY.title etc.
+     * @param args                      Will be used when i18nKey is set. If i18nKey is <code>null</code> it will be not            be used
+     * @return the password authentication
+     * @throws PasswordInputCanceledException the password input canceled exception
+     * @deprecated use {@link #getPasswordAuthentication(String, String, boolean, boolean, String, Object...)}             instead.
+     */
+    @Deprecated
 	public static PasswordAuthentication getPasswordAuthentication(String forUrl, boolean forceRefresh,
 			boolean hideDialogIfPasswordKnown, String i18nKey, Object... args) throws PasswordInputCanceledException {
 		return getPasswordAuthentication(null, forUrl, forceRefresh, hideDialogIfPasswordKnown, null);

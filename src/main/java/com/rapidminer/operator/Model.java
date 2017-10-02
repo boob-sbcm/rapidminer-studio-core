@@ -30,42 +30,57 @@ import com.rapidminer.report.Readable;
  * by using a {@link GroupedModel}. Please note that all models will automatically wrapped into a
  * ContainerModel if they are not already part of it. All models can be applied with a ModelApplier
  * operator.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface Model extends ResultObject, Readable {
 
-	/**
-	 * This method has to return the HeaderExampleSet containing the signature of the example set
-	 * during training time containing all informations about attributes. This is important for
-	 * checking the compatibility of the examples on application time. Note that the AbstractModel
-	 * already implements all necessary functionality.
-	 */
-	public HeaderExampleSet getTrainingHeader();
-	
-	/**
-	 * Applies the model on the given {@link ExampleSet}. Please note that the delivered {@link ExampleSet} might
-	 * be the same as the input {@link ExampleSet}. This is, however, not always the case.
-	 */
-	public ExampleSet apply(ExampleSet testSet) throws OperatorException;
+    /**
+     * This method has to return the HeaderExampleSet containing the signature of the example set
+     * during training time containing all informations about attributes. This is important for
+     * checking the compatibility of the examples on application time. Note that the AbstractModel
+     * already implements all necessary functionality.
+     *
+     * @return the training header
+     */
+    public HeaderExampleSet getTrainingHeader();
 
-	/**
-	 * This method can be used to allow additional parameters. Most models do not support parameters
-	 * during application.
-	 */
-	public void setParameter(String key, Object value) throws OperatorException;
+    /**
+     * Applies the model on the given {@link ExampleSet}. Please note that the delivered {@link ExampleSet} might
+     * be the same as the input {@link ExampleSet}. This is, however, not always the case.
+     *
+     * @param testSet the test set
+     * @return the example set
+     * @throws OperatorException the operator exception
+     */
+    public ExampleSet apply(ExampleSet testSet) throws OperatorException;
 
-	/**
-	 * Returns true if this model is updatable. Please note that only models which return true here
-	 * must implement the method {@link #updateModel(ExampleSet)}.
-	 */
-	public boolean isUpdatable();
+    /**
+     * This method can be used to allow additional parameters. Most models do not support parameters
+     * during application.
+     *
+     * @param key   the key
+     * @param value the value
+     * @throws OperatorException the operator exception
+     */
+    public void setParameter(String key, Object value) throws OperatorException;
 
-	/**
-	 * Updates the model according to the given example set. This method might throw an
-	 * {@link UserError} if the model is not updatable. In that case the method
-	 * {@link #isUpdatable()} should deliver false.
-	 */
-	public void updateModel(ExampleSet updateExampleSet) throws OperatorException;
+    /**
+     * Returns true if this model is updatable. Please note that only models which return true here
+     * must implement the method {@link #updateModel(ExampleSet)}.
+     *
+     * @return the boolean
+     */
+    public boolean isUpdatable();
+
+    /**
+     * Updates the model according to the given example set. This method might throw an
+     * {@link UserError} if the model is not updatable. In that case the method
+     * {@link #isUpdatable()} should deliver false.
+     *
+     * @param updateExampleSet the update example set
+     * @throws OperatorException the operator exception
+     */
+    public void updateModel(ExampleSet updateExampleSet) throws OperatorException;
 
 }

@@ -32,7 +32,12 @@ import com.rapidminer.operator.ports.metadata.MetaData;
  */
 public abstract class AbstractExampleSource extends AbstractReader<ExampleSet> {
 
-	public AbstractExampleSource(final OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract example source.
+     *
+     * @param description the description
+     */
+    public AbstractExampleSource(final OperatorDescription description) {
 		super(description, ExampleSet.class);
 	}
 
@@ -41,8 +46,13 @@ public abstract class AbstractExampleSource extends AbstractReader<ExampleSet> {
 		return new ExampleSetMetaData();
 	}
 
-	/** Creates (or reads) the ExampleSet that will be returned by {@link #apply()}. */
-	public abstract ExampleSet createExampleSet() throws OperatorException;
+    /**
+     * Creates (or reads) the ExampleSet that will be returned by {@link #apply()}.  @return the example set
+     *
+     * @return the example set
+     * @throws OperatorException the operator exception
+     */
+    public abstract ExampleSet createExampleSet() throws OperatorException;
 
 	@Override
 	public ExampleSet read() throws OperatorException {

@@ -31,7 +31,7 @@ import java.util.LinkedList;
  * This subclass of {@link Condition} serves to excludes all examples containing missing values
  * within specified attributes from an example set. The parameters might be specified using a
  * regular expression as parameter string
- * 
+ *
  * @author Sebastian Land ingomierswa Exp $
  */
 public class NoMissingAttributeValueCondition implements Condition {
@@ -40,7 +40,13 @@ public class NoMissingAttributeValueCondition implements Condition {
 
 	private Collection<Attribute> checkedAttributes = new LinkedList<Attribute>();
 
-	public NoMissingAttributeValueCondition(ExampleSet exampleSet, String parameterString) {
+    /**
+     * Instantiates a new No missing attribute value condition.
+     *
+     * @param exampleSet      the example set
+     * @param parameterString the parameter string
+     */
+    public NoMissingAttributeValueCondition(ExampleSet exampleSet, String parameterString) {
 		Iterator<Attribute> iterator = exampleSet.getAttributes().allAttributes();
 		while (iterator.hasNext()) {
 			Attribute attribute = iterator.next();

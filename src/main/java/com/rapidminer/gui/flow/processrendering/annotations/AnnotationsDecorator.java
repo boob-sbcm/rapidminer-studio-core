@@ -97,7 +97,6 @@ import com.rapidminer.tools.LogService;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public final class AnnotationsDecorator {
 
@@ -352,17 +351,14 @@ public final class AnnotationsDecorator {
 
 	};
 
-	/**
-	 * Creates a new workflow annotation decorator
-	 *
-	 * @param view
-	 *            the process renderer instance
-	 * @param visualizer
-	 *            the annotation visualizer instance
-	 * @param model
-	 *            the model backing this instance
-	 */
-	public AnnotationsDecorator(final ProcessRendererView view, final AnnotationsVisualizer visualizer,
+    /**
+     * Creates a new workflow annotation decorator
+     *
+     * @param view       the process renderer instance
+     * @param visualizer the annotation visualizer instance
+     * @param model      the model backing this instance
+     */
+    public AnnotationsDecorator(final ProcessRendererView view, final AnnotationsVisualizer visualizer,
 			final AnnotationsModel model) {
 		this.view = view;
 		this.model = model;
@@ -372,10 +368,10 @@ public final class AnnotationsDecorator {
 		this.visualizer = visualizer;
 	}
 
-	/**
-	 * Start inline editing of the selected annotation. If no annotation is selected, does nothing.
-	 */
-	public void editSelected() {
+    /**
+     * Start inline editing of the selected annotation. If no annotation is selected, does nothing.
+     */
+    public void editSelected() {
 		if (model.getSelected() == null) {
 			return;
 		}
@@ -390,18 +386,18 @@ public final class AnnotationsDecorator {
 		view.repaint();
 	}
 
-	/**
-	 * Stop all editing and remove editors.
-	 */
-	public void reset() {
+    /**
+     * Stop all editing and remove editors.
+     */
+    public void reset() {
 		drawer.reset();
 		removeEditor();
 	}
 
-	/**
-	 * Registers the event hooks and draw decorators to the process renderer.
-	 */
-	void registerEventHooks() {
+    /**
+     * Registers the event hooks and draw decorators to the process renderer.
+     */
+    void registerEventHooks() {
 		view.addDrawDecorator(processAnnotationDrawer, RenderPhase.ANNOTATIONS);
 		view.addDrawDecorator(operatorAnnotationDrawer, RenderPhase.OPERATOR_ANNOTATIONS);
 		view.addDrawDecorator(workflowAnnotationDrawerHighlight, RenderPhase.OVERLAY);
@@ -417,10 +413,10 @@ public final class AnnotationsDecorator {
 		ApplicationFrame.getApplicationFrame().addComponentListener(colorPanelMover);
 	}
 
-	/**
-	 * Removes the event hooks and draw decorators from the process renderer.
-	 */
-	void unregisterDecorators() {
+    /**
+     * Removes the event hooks and draw decorators from the process renderer.
+     */
+    void unregisterDecorators() {
 		view.removeDrawDecorator(processAnnotationDrawer, RenderPhase.ANNOTATIONS);
 		view.removeDrawDecorator(operatorAnnotationDrawer, RenderPhase.OPERATOR_ANNOTATIONS);
 		view.removeDrawDecorator(workflowAnnotationDrawerHighlight, RenderPhase.OVERLAY);
@@ -892,12 +888,12 @@ public final class AnnotationsDecorator {
 		model.setAnnotationComment(selected, comment);
 	}
 
-	/**
-	 * Reloads the editor pane content to match editor and annotation styling. After this call, the
-	 * editor pane displays the annotation in the same way as it is displayed in the process
-	 * renderer.
-	 */
-	void updateEditorContent() {
+    /**
+     * Reloads the editor pane content to match editor and annotation styling. After this call, the
+     * editor pane displays the annotation in the same way as it is displayed in the process
+     * renderer.
+     */
+    void updateEditorContent() {
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override

@@ -38,7 +38,15 @@ final class DoubleIncompleteSparseChunk extends DoubleIncompleteAutoChunk {
 	private int maxSetRow;
 	private boolean testingDefaultValue;
 
-	DoubleIncompleteSparseChunk(int id, DoubleIncompleteAutoChunk[] chunks, double defaultValue, DataManagement management) {
+    /**
+     * Instantiates a new Double incomplete sparse chunk.
+     *
+     * @param id           the id
+     * @param chunks       the chunks
+     * @param defaultValue the default value
+     * @param management   the management
+     */
+    DoubleIncompleteSparseChunk(int id, DoubleIncompleteAutoChunk[] chunks, double defaultValue, DataManagement management) {
 		super(id, chunks, management);
 		if (management == DataManagement.AUTO) {
 			sparse = new DoubleHighSparsityChunk(defaultValue);
@@ -47,13 +55,13 @@ final class DoubleIncompleteSparseChunk extends DoubleIncompleteAutoChunk {
 		}
 	}
 
-	/**
-	 * When the default value was guessed instead of calculated from the first
-	 * {@link AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE} rows, call this to ensure that the guessed
-	 * value is the most common value wrt. the first
-	 * {@link AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE} rows.
-	 */
-	void hasGuessedDefault() {
+    /**
+     * When the default value was guessed instead of calculated from the first
+     * {@link AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE} rows, call this to ensure that the guessed
+     * value is the most common value wrt. the first
+     * {@link AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE} rows.
+     */
+    void hasGuessedDefault() {
 		testingDefaultValue = true;
 	}
 

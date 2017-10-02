@@ -35,14 +35,17 @@ import java.util.List;
 /**
  * This condition checks whether an attribute contains less than a specified fraction of missing
  * values. If the maximal fraction is exceeded, the attribute is removed.
- * 
+ * <p>
  * This condition needs a full data scan per attribute and hence might downspeed calculations.
- * 
+ *
  * @author Sebastian Land
  */
 public class MissingValuesAttributeFilter extends AbstractAttributeFilterCondition {
 
-	public static final String PARAMETER_MAX_FRACTION_MISSING = "max_fraction_of_missings";
+    /**
+     * The constant PARAMETER_MAX_FRACTION_MISSING.
+     */
+    public static final String PARAMETER_MAX_FRACTION_MISSING = "max_fraction_of_missings";
 
 	private double maxFraction;
 

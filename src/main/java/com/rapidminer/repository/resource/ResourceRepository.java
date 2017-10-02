@@ -43,7 +43,6 @@ import com.rapidminer.tools.LogService;
  * contents cannot be scanned.
  *
  * @author Simon Fischer
- *
  */
 public class ResourceRepository extends ResourceFolder implements Repository {
 
@@ -55,11 +54,25 @@ public class ResourceRepository extends ResourceFolder implements Repository {
 
 	private final boolean addTutorialFolder;
 
-	public ResourceRepository(String name, String resourcePrefix) {
+    /**
+     * Instantiates a new Resource repository.
+     *
+     * @param name           the name
+     * @param resourcePrefix the resource prefix
+     */
+    public ResourceRepository(String name, String resourcePrefix) {
 		this(name, resourcePrefix, true, true);
 	}
 
-	public ResourceRepository(String name, String resourcePrefix, boolean addTemplateFolder, boolean addTutorialFolder) {
+    /**
+     * Instantiates a new Resource repository.
+     *
+     * @param name              the name
+     * @param resourcePrefix    the resource prefix
+     * @param addTemplateFolder the add template folder
+     * @param addTutorialFolder the add tutorial folder
+     */
+    public ResourceRepository(String name, String resourcePrefix, boolean addTemplateFolder, boolean addTutorialFolder) {
 		super(null, name, "", null);
 		this.resourcePrefix = resourcePrefix;
 		this.addTemplateFolder = addTemplateFolder;
@@ -67,7 +80,12 @@ public class ResourceRepository extends ResourceFolder implements Repository {
 		setRepository(this);
 	}
 
-	protected String getResourceRoot() {
+    /**
+     * Gets resource root.
+     *
+     * @return the resource root
+     */
+    protected String getResourceRoot() {
 		return resourcePrefix;
 	}
 
@@ -108,7 +126,12 @@ public class ResourceRepository extends ResourceFolder implements Repository {
 		listeners.remove(RepositoryListener.class, l);
 	}
 
-	protected void fireRefreshed(final Folder folder) {
+    /**
+     * Fire refreshed.
+     *
+     * @param folder the folder
+     */
+    protected void fireRefreshed(final Folder folder) {
 		for (RepositoryListener l : listeners.getListeners(RepositoryListener.class)) {
 			l.folderRefreshed(folder);
 		}

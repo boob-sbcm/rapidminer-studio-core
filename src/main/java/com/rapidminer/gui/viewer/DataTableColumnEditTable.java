@@ -42,7 +42,7 @@ import org.jfree.ui.DateCellRenderer;
 /**
  * Can be used to display (parts of) a DataTable by means of a JTable while presenting additional
  * columns to enter arbitrary values.
- * 
+ *
  * @author Sebastian Land
  */
 public class DataTableColumnEditTable extends ExtendedJTable implements DataTableListener {
@@ -54,7 +54,17 @@ public class DataTableColumnEditTable extends ExtendedJTable implements DataTabl
 	private List<String> editableColumnNames;
 	private List<Pair<TableCellRenderer, TableCellEditor>> cellComponents;
 
-	public DataTableColumnEditTable(DataTable dataTable, List<String> editableColumnNames,
+    /**
+     * Instantiates a new Data table column edit table.
+     *
+     * @param dataTable           the data table
+     * @param editableColumnNames the editable column names
+     * @param cellComponents      the cell components
+     * @param sortable            the sortable
+     * @param columnMovable       the column movable
+     * @param autoResize          the auto resize
+     */
+    public DataTableColumnEditTable(DataTable dataTable, List<String> editableColumnNames,
 			List<Pair<TableCellRenderer, TableCellEditor>> cellComponents, boolean sortable, boolean columnMovable,
 			boolean autoResize) {
 		super(sortable, columnMovable, autoResize);
@@ -66,7 +76,12 @@ public class DataTableColumnEditTable extends ExtendedJTable implements DataTabl
 		}
 	}
 
-	public void setDataTable(DataTable dataTable) {
+    /**
+     * Sets data table.
+     *
+     * @param dataTable the data table
+     */
+    public void setDataTable(DataTable dataTable) {
 		// constructing model
 		model = new DataTableColumnEditTableModel(dataTable, editableColumnNames);
 		setModel(model);
@@ -102,10 +117,13 @@ public class DataTableColumnEditTable extends ExtendedJTable implements DataTabl
 		return super.getCellEditor(row, column);
 	}
 
-	/**
-	 * This method will return the values entered in the editable columns.
-	 */
-	public Object[] getEnteredValues(int column) {
+    /**
+     * This method will return the values entered in the editable columns.
+     *
+     * @param column the column
+     * @return the object [ ]
+     */
+    public Object[] getEnteredValues(int column) {
 		return model.getEnteredValues(column);
 	}
 

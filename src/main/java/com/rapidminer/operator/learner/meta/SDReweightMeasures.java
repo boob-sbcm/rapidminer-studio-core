@@ -29,7 +29,7 @@ import java.util.Iterator;
 
 /**
  * A set of weighted performance measures used for subgroup discovery.
- * 
+ *
  * @author Martin Scholz Exp $
  */
 public class SDReweightMeasures extends WeightedPerformanceMeasures {
@@ -38,15 +38,27 @@ public class SDReweightMeasures extends WeightedPerformanceMeasures {
 
 	private boolean additive = true;
 
-	public SDReweightMeasures(ExampleSet e) throws OperatorException {
+    /**
+     * Instantiates a new Sd reweight measures.
+     *
+     * @param e the e
+     * @throws OperatorException the operator exception
+     */
+    public SDReweightMeasures(ExampleSet e) throws OperatorException {
 		super(e);
 	}
 
-	/**
-	 * Overwrites method from super class. Examples are reweighted by the additive or multiplicative
-	 * heuristic. After reweighting the class priors are rescaled so that P(pos) = P(neg).
-	 */
-	public boolean reweightExamples(ExampleSet exampleSet, int posIndex, int coveredSubset) throws OperatorException {
+    /**
+     * Overwrites method from super class. Examples are reweighted by the additive or multiplicative
+     * heuristic. After reweighting the class priors are rescaled so that P(pos) = P(neg).
+     *
+     * @param exampleSet    the example set
+     * @param posIndex      the pos index
+     * @param coveredSubset the covered subset
+     * @return the boolean
+     * @throws OperatorException the operator exception
+     */
+    public boolean reweightExamples(ExampleSet exampleSet, int posIndex, int coveredSubset) throws OperatorException {
 		Iterator<Example> reader = exampleSet.iterator();
 		Attribute timesCoveredAttrib = null;
 		if (this.additive) {
@@ -101,11 +113,21 @@ public class SDReweightMeasures extends WeightedPerformanceMeasures {
 		return w * gamma;
 	}
 
-	public void setGamma(double gamma) {
+    /**
+     * Sets gamma.
+     *
+     * @param gamma the gamma
+     */
+    public void setGamma(double gamma) {
 		this.gamma = gamma;
 	}
 
-	public void setAdditive(boolean additive) {
+    /**
+     * Sets additive.
+     *
+     * @param additive the additive
+     */
+    public void setAdditive(boolean additive) {
 		this.additive = additive;
 	}
 

@@ -43,7 +43,7 @@ import javax.swing.text.BadLocationException;
 
 /**
  * This text field is connected to the file chooser and provides some automation mechanisms.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AutomaticTextField extends JTextField implements KeyListener, CaretListener, InputMethodListener {
@@ -62,7 +62,12 @@ public class AutomaticTextField extends JTextField implements KeyListener, Caret
 
 	private String mainText;
 
-	public AutomaticTextField(FileChooserUI fcui) {
+    /**
+     * Instantiates a new Automatic text field.
+     *
+     * @param fcui the fcui
+     */
+    public AutomaticTextField(FileChooserUI fcui) {
 		super();
 		this.fileChooserUI = fcui;
 		this.addCaretListener(this);
@@ -272,7 +277,12 @@ public class AutomaticTextField extends JTextField implements KeyListener, Caret
 		this.caretPosition = e.getDot();
 	}
 
-	public void propertyChange(PropertyChangeEvent evt) {}
+    /**
+     * Property change.
+     *
+     * @param evt the evt
+     */
+    public void propertyChange(PropertyChangeEvent evt) {}
 
 	@Override
 	public void caretPositionChanged(InputMethodEvent event) {}

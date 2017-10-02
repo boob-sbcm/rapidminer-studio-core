@@ -35,9 +35,7 @@ import com.rapidminer.gui.tools.SwingTools;
 /**
  * Represents a {@link LogEntry} for a {@link LogModel} which is created from a {@link LogRecord}.
  *
- *
  * @author Sabrina Kirstein, Marco Boeck
- *
  */
 public class LogRecordEntry implements LogEntry {
 
@@ -81,13 +79,13 @@ public class LogRecordEntry implements LogEntry {
 
 	};
 
-	/**
-	 * Creates a new {@link LogRecordEntry} which automatically formats the given {@link LogRecord}
-	 * with the RapidMiner Studio log styling and default logging format.
-	 *
-	 * @param logRecord
-	 */
-	public LogRecordEntry(LogRecord logRecord) {
+    /**
+     * Creates a new {@link LogRecordEntry} which automatically formats the given {@link LogRecord}
+     * with the RapidMiner Studio log styling and default logging format.
+     *
+     * @param logRecord the log record
+     */
+    public LogRecordEntry(LogRecord logRecord) {
 
 		logLevel = logRecord.getLevel();
 		initialString = logRecord.getMessage();

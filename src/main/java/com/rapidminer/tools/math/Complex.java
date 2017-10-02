@@ -20,35 +20,59 @@ package com.rapidminer.tools.math;
 
 /**
  * A class for complex numbers which consists of a real and an imaginary part.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Complex implements Comparable<Complex> {
 
 	private double real, imaginary;
 
-	public Complex(double real, double imaginary) {
+    /**
+     * Instantiates a new Complex.
+     *
+     * @param real      the real
+     * @param imaginary the imaginary
+     */
+    public Complex(double real, double imaginary) {
 		this.real = real;
 		this.imaginary = imaginary;
 	}
 
-	public double getReal() {
+    /**
+     * Gets real.
+     *
+     * @return the real
+     */
+    public double getReal() {
 		return real;
 	}
 
-	public double getImaginary() {
+    /**
+     * Gets imaginary.
+     *
+     * @return the imaginary
+     */
+    public double getImaginary() {
 		return imaginary;
 	}
 
-	public double getLength() {
+    /**
+     * Gets length.
+     *
+     * @return the length
+     */
+    public double getLength() {
 		return Math.sqrt(real * real + imaginary * imaginary);
 	}
 
-	/**
-	 * Normalizes the amplitude to the correct value. <code>n</code> must be the total used size,
-	 * i.e. <code>nyquist * 2</code>.
-	 */
-	public double getMagnitude(int n) {
+    /**
+     * Normalizes the amplitude to the correct value. <code>n</code> must be the total used size,
+     * i.e. <code>nyquist * 2</code>.
+     *
+     * @param n the n
+     * @return the magnitude
+     */
+    public double getMagnitude(int n) {
 		return 2.0d * Math.sqrt(real * real + imaginary * imaginary) / n;
 	}
 

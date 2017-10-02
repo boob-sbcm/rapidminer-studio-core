@@ -42,7 +42,14 @@ public class SaveIntermediateWeights implements PopulationOperator {
 
 	private String[] attributeNames;
 
-	public SaveIntermediateWeights(AbstractGeneticAlgorithm operator, int whichGeneration, String[] attributeNames) {
+    /**
+     * Instantiates a new Save intermediate weights.
+     *
+     * @param operator        the operator
+     * @param whichGeneration the which generation
+     * @param attributeNames  the attribute names
+     */
+    public SaveIntermediateWeights(AbstractGeneticAlgorithm operator, int whichGeneration, String[] attributeNames) {
 		this.operator = operator;
 		this.whichGeneration = whichGeneration;
 		this.attributeNames = attributeNames;

@@ -23,13 +23,18 @@ import com.rapidminer.operator.learner.igss.hypothesis.Hypothesis;
 
 /**
  * Abstract superclass for all instance-averaging functions.
- * 
+ *
  * @author Dirk Dach
  */
 public abstract class InstanceAveraging extends AbstractUtility {
 
-	/** Constructor */
-	public InstanceAveraging(double[] priors, int large) {
+    /**
+     * Constructor  @param priors the priors
+     *
+     * @param priors the priors
+     * @param large  the large
+     */
+    public InstanceAveraging(double[] priors, int large) {
 		super(priors, large);
 	}
 
@@ -62,8 +67,15 @@ public abstract class InstanceAveraging extends AbstractUtility {
 		return inverseNormal(1 - delta / 2) * variance(totalWeight, totalPositiveWeight, hypo);
 	}
 
-	/** Calculates the empirical variance. */
-	public abstract double variance(double totalWeight, double totalPositiveWeight, Hypothesis hypo);
+    /**
+     * Calculates the empirical variance.  @param totalWeight the total weight
+     *
+     * @param totalWeight         the total weight
+     * @param totalPositiveWeight the total positive weight
+     * @param hypo                the hypo
+     * @return the double
+     */
+    public abstract double variance(double totalWeight, double totalPositiveWeight, Hypothesis hypo);
 
 	/**
 	 * Calculate confidence intervall without a specific rule for instance averaging functions and

@@ -28,7 +28,7 @@ import java.util.List;
 
 /**
  * This container holds all ROC data points for a single ROC curve.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ROCData implements Iterable<ROCPoint>, Serializable {
@@ -43,23 +43,50 @@ public class ROCData implements Iterable<ROCPoint>, Serializable {
 
 	private double bestIsometricsTP;
 
-	public void addPoint(ROCPoint point) {
+    /**
+     * Add point.
+     *
+     * @param point the point
+     */
+    public void addPoint(ROCPoint point) {
 		points.add(point);
 	}
 
-	public void removePoint(ROCPoint point) {
+    /**
+     * Remove point.
+     *
+     * @param point the point
+     */
+    public void removePoint(ROCPoint point) {
 		points.remove(point);
 	}
 
-	public int getNumberOfPoints() {
+    /**
+     * Gets number of points.
+     *
+     * @return the number of points
+     */
+    public int getNumberOfPoints() {
 		return points.size();
 	}
 
-	public ROCPoint getPoint(int index) {
+    /**
+     * Gets point.
+     *
+     * @param index the index
+     * @return the point
+     */
+    public ROCPoint getPoint(int index) {
 		return points.get(index);
 	}
 
-	public double getInterpolatedTruePositives(double d) {
+    /**
+     * Gets interpolated true positives.
+     *
+     * @param d the d
+     * @return the interpolated true positives
+     */
+    public double getInterpolatedTruePositives(double d) {
 		if (Tools.isZero(d)) {
 			return 0.0d;
 		}
@@ -95,7 +122,13 @@ public class ROCData implements Iterable<ROCPoint>, Serializable {
 		return getTotalPositives();
 	}
 
-	public double getInterpolatedThreshold(double d) {
+    /**
+     * Gets interpolated threshold.
+     *
+     * @param d the d
+     * @return the interpolated threshold
+     */
+    public double getInterpolatedThreshold(double d) {
 		if (Tools.isZero(d)) {
 			return 1.0d;
 		}
@@ -136,27 +169,57 @@ public class ROCData implements Iterable<ROCPoint>, Serializable {
 		return points.iterator();
 	}
 
-	public void setTotalPositives(double sumPos) {
+    /**
+     * Sets total positives.
+     *
+     * @param sumPos the sum pos
+     */
+    public void setTotalPositives(double sumPos) {
 		this.sumPos = sumPos;
 	}
 
-	public double getTotalPositives() {
+    /**
+     * Gets total positives.
+     *
+     * @return the total positives
+     */
+    public double getTotalPositives() {
 		return this.sumPos;
 	}
 
-	public void setTotalNegatives(double sumNeg) {
+    /**
+     * Sets total negatives.
+     *
+     * @param sumNeg the sum neg
+     */
+    public void setTotalNegatives(double sumNeg) {
 		this.sumNeg = sumNeg;
 	}
 
-	public double getTotalNegatives() {
+    /**
+     * Gets total negatives.
+     *
+     * @return the total negatives
+     */
+    public double getTotalNegatives() {
 		return this.sumNeg;
 	}
 
-	public void setBestIsometricsTPValue(double value) {
+    /**
+     * Sets best isometrics tp value.
+     *
+     * @param value the value
+     */
+    public void setBestIsometricsTPValue(double value) {
 		this.bestIsometricsTP = value;
 	}
 
-	public double getBestIsometricsTPValue() {
+    /**
+     * Gets best isometrics tp value.
+     *
+     * @return the best isometrics tp value
+     */
+    public double getBestIsometricsTPValue() {
 		return this.bestIsometricsTP;
 	}
 

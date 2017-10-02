@@ -34,12 +34,11 @@ import java.util.List;
  * Defines a binning with a fixed number of equal width bins between a min and max value. Can be
  * either categorical or numerical. If the binning is categorical, each created ValueRange delivers
  * an integer idx as identifier, otherwise the mean value of upper and lower bound.
- * 
+ * <p>
  * If this binning is categorical, overflow and underflow bins are created for values which are
  * greater/lesser than minValue/maxValue.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class EquidistantFixedBinCountBinning extends AbstractValueGrouping {
 
@@ -53,20 +52,18 @@ public class EquidistantFixedBinCountBinning extends AbstractValueGrouping {
 
 	private final GroupingType type = GroupingType.EQUIDISTANT_FIXED_BIN_COUNT;
 
-	/**
-	 * @param binCount
-	 * @param minValue
-	 *            The left value of the left-most normal (non-overflow) bin. If NaN, the left-most
-	 *            point in the data is chosen. Infinity is not allowed.
-	 * @param maxValue
-	 *            The right value of the right-most normal (non-overflow) bin. If NaN, the
-	 *            right-most point in the data is chosen. Infinity is not allowed.
-	 * @param dataTableColumn
-	 * @param categorical
-	 * @throws ChartConfigurationException
-	 *             if dataTableColumn is nominal
-	 */
-	public EquidistantFixedBinCountBinning(int binCount, double minValue, double maxValue, DataTableColumn dataTableColumn,
+    /**
+     * Instantiates a new Equidistant fixed bin count binning.
+     *
+     * @param binCount        the bin count
+     * @param minValue        The left value of the left-most normal (non-overflow) bin. If NaN, the left-most            point in the data is chosen. Infinity is not allowed.
+     * @param maxValue        The right value of the right-most normal (non-overflow) bin. If NaN, the            right-most point in the data is chosen. Infinity is not allowed.
+     * @param dataTableColumn the data table column
+     * @param categorical     the categorical
+     * @param dateFormat      the date format
+     * @throws ChartConfigurationException if dataTableColumn is nominal
+     */
+    public EquidistantFixedBinCountBinning(int binCount, double minValue, double maxValue, DataTableColumn dataTableColumn,
 			boolean categorical, DateFormat dateFormat) throws ChartConfigurationException {
 		super(dataTableColumn, categorical, dateFormat);
 
@@ -81,10 +78,12 @@ public class EquidistantFixedBinCountBinning extends AbstractValueGrouping {
 
 	}
 
-	/**
-	 * Copy ctor.
-	 */
-	public EquidistantFixedBinCountBinning(EquidistantFixedBinCountBinning other) {
+    /**
+     * Copy ctor.
+     *
+     * @param other the other
+     */
+    public EquidistantFixedBinCountBinning(EquidistantFixedBinCountBinning other) {
 		super(other.getDataTableColumn(), other.isCategorical(), other.getDateFormat());
 		this.binCount = other.binCount;
 		this.userDefinedMinValue = other.userDefinedMinValue;
@@ -93,18 +92,21 @@ public class EquidistantFixedBinCountBinning extends AbstractValueGrouping {
 		this.forceDataTableColumn(other.getDataTableColumn());
 	}
 
-	/**
-	 * @return the binCount
-	 */
-	public int getBinCount() {
+    /**
+     * Gets bin count.
+     *
+     * @return the binCount
+     */
+    public int getBinCount() {
 		return binCount;
 	}
 
-	/**
-	 * @param binCount
-	 *            the binCount to set
-	 */
-	public void setBinCount(int binCount) {
+    /**
+     * Sets bin count.
+     *
+     * @param binCount the binCount to set
+     */
+    public void setBinCount(int binCount) {
 		if (binCount != this.binCount) {
 			this.binCount = binCount;
 			// invalidateCache();
@@ -112,36 +114,42 @@ public class EquidistantFixedBinCountBinning extends AbstractValueGrouping {
 		}
 	}
 
-	/**
-	 * @return the minValue
-	 */
-	public double getMinValue() {
+    /**
+     * Gets min value.
+     *
+     * @return the minValue
+     */
+    public double getMinValue() {
 		return userDefinedMinValue;
 	}
 
-	/**
-	 * @param minValue
-	 *            the minValue to set
-	 */
-	public void setMinValue(double minValue) {
+    /**
+     * Sets min value.
+     *
+     * @param minValue the minValue to set
+     */
+    public void setMinValue(double minValue) {
 		if (minValue != this.userDefinedMinValue) {
 			this.userDefinedMinValue = minValue;
 			fireGroupingChanged(new ValueGroupingChangeEvent(this));
 		}
 	}
 
-	/**
-	 * @return the maxValue
-	 */
-	public double getMaxValue() {
+    /**
+     * Gets max value.
+     *
+     * @return the maxValue
+     */
+    public double getMaxValue() {
 		return userDefinedMaxValue;
 	}
 
-	/**
-	 * @param maxValue
-	 *            the maxValue to set
-	 */
-	public void setMaxValue(double maxValue) {
+    /**
+     * Sets max value.
+     *
+     * @param maxValue the maxValue to set
+     */
+    public void setMaxValue(double maxValue) {
 		if (maxValue != this.userDefinedMaxValue) {
 			this.userDefinedMaxValue = maxValue;
 			fireGroupingChanged(new ValueGroupingChangeEvent(this));
@@ -251,18 +259,21 @@ public class EquidistantFixedBinCountBinning extends AbstractValueGrouping {
 		return Double.isNaN(userDefinedMinValue) || Double.isNaN(userDefinedMaxValue) || autoRange;
 	}
 
-	/**
-	 * @return the autoRange
-	 */
-	public boolean isAutoRanging() {
+    /**
+     * Is auto ranging boolean.
+     *
+     * @return the autoRange
+     */
+    public boolean isAutoRanging() {
 		return autoRange;
 	}
 
-	/**
-	 * @param autoRange
-	 *            the autoRange to set
-	 */
-	public void setAutoRange(boolean autoRange) {
+    /**
+     * Sets auto range.
+     *
+     * @param autoRange the autoRange to set
+     */
+    public void setAutoRange(boolean autoRange) {
 		if (autoRange != this.autoRange) {
 			this.autoRange = autoRange;
 			fireGroupingChanged(new ValueGroupingChangeEvent(this));

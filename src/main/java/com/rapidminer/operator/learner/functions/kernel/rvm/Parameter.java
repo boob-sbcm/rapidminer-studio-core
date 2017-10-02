@@ -20,9 +20,8 @@ package com.rapidminer.operator.learner.functions.kernel.rvm;
 
 /**
  * Holds the RVM parameters
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
- * 
  */
 public class Parameter {
 
@@ -31,7 +30,12 @@ public class Parameter {
 
 		private String rvmType = null;
 
-		RVMType(String rvmType) {
+        /**
+         * Instantiates a new Rvm type.
+         *
+         * @param rvmType the rvm type
+         */
+        RVMType(String rvmType) {
 			this.rvmType = rvmType;
 		}
 
@@ -42,19 +46,43 @@ public class Parameter {
 
 	}
 
-	public final RVMType TYPE_REGRESSION = new RVMType("Regression-RVM");
-	public final RVMType TYPE_CLASSIFICATION = new RVMType("Classifictaion-RVM");
+    /**
+     * The Type regression.
+     */
+    public final RVMType TYPE_REGRESSION = new RVMType("Regression-RVM");
+    /**
+     * The Type classification.
+     */
+    public final RVMType TYPE_CLASSIFICATION = new RVMType("Classifictaion-RVM");
 
 	// the parameters to be chosen
 
-	public RVMType type = TYPE_REGRESSION;
+    /**
+     * The Type.
+     */
+    public RVMType type = TYPE_REGRESSION;
 
-	public double min_delta_log_alpha = 1e-3;				// Abort iteration if largest log alpha change is
-												// smaller than this
+    /**
+     * The Min delta log alpha.
+     */
+    public double min_delta_log_alpha = 1e-3;				// Abort iteration if largest log alpha change is
+    /**
+     * The Alpha max.
+     */
+// smaller than this
 	public double alpha_max = 1e12;				// Prune basis function if its alpha is bigger than this
 
-	public int maxIterations = 10000;			// Maximum number of iterations
+    /**
+     * The Max iterations.
+     */
+    public int maxIterations = 10000;			// Maximum number of iterations
 
-	public double initAlpha = 1.0;				// Initial values for alpha_i hyperparameters
-	public double initSigma = 1.0;				// Initial values for sigma = sqrt(variance)
+    /**
+     * The Init alpha.
+     */
+    public double initAlpha = 1.0;				// Initial values for alpha_i hyperparameters
+    /**
+     * The Init sigma.
+     */
+    public double initSigma = 1.0;				// Initial values for sigma = sqrt(variance)
 }

@@ -30,72 +30,84 @@ import java.net.URL;
  * <p>
  * WARNING: This class is now deprecated. Please use the class {@link Process} instead!.
  * </p>
- * 
+ * <p>
  * <p>
  * This class was introduced to avoid confusing handling of operator maps and other stuff when a new
  * experiment is created. It is also necessary for file name resolving and breakpoint handling.
  * </p>
- * 
+ * <p>
  * <p>
  * If you want to use RapidMiner from your own application the best way is often to create an
  * experiment from the scratch (by adding the complete operator tree to the experiment root
  * operator) or from a file (for example created with the GUI beforehand) and start it by invoking
  * the {@link #run()} method.
  * </p>
- * 
- * @deprecated Please use the new class {@link Process} instead
+ *
  * @author Ingo Mierswa
+ * @deprecated Please use the new class {@link Process} instead
  */
 @Deprecated
 public class Experiment extends Process {
 
-	/**
-	 * Constructs an experiment consisting only of a SimpleOperatorChain.
-	 * 
-	 * @deprecated Please use class {@link Process} now
-	 */
-	@Deprecated
+    /**
+     * Constructs an experiment consisting only of a SimpleOperatorChain.
+     *
+     * @deprecated Please use class {@link Process} now
+     */
+    @Deprecated
 	public Experiment() {
 		super();
 	}
 
-	/**
-	 * Creates a new experiment from the given URL. #
-	 * 
-	 * @deprecated Please use class {@link Process} now
-	 */
-	@Deprecated
+    /**
+     * Creates a new experiment from the given URL. #
+     *
+     * @param url the url
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     * @deprecated Please use class {@link Process} now
+     */
+    @Deprecated
 	public Experiment(URL url) throws IOException, XMLException {
 		super(url);
 	}
 
-	/**
-	 * Creates a new experiment from the given experiment file. This might have been created with
-	 * the GUI beforehand.
-	 * 
-	 * @deprecated Please use class {@link Process} now
-	 */
-	@Deprecated
+    /**
+     * Creates a new experiment from the given experiment file. This might have been created with
+     * the GUI beforehand.
+     *
+     * @param file the file
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     * @deprecated Please use class {@link Process} now
+     */
+    @Deprecated
 	public Experiment(File file) throws IOException, XMLException {
 		super(file);
 	}
 
-	/**
-	 * Reads an experiment configuration from an XML String.
-	 * 
-	 * @deprecated Please use class {@link Process} now
-	 */
-	@Deprecated
+    /**
+     * Reads an experiment configuration from an XML String.
+     *
+     * @param xmlString the xml string
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     * @deprecated Please use class {@link Process} now
+     */
+    @Deprecated
 	public Experiment(String xmlString) throws IOException, XMLException {
 		super(xmlString);
 	}
 
-	/**
-	 * Reads an experiment configuration from the given file.
-	 * 
-	 * @deprecated Please use class {@link Process} now
-	 */
-	@Deprecated
+    /**
+     * Reads an experiment configuration from the given file.
+     *
+     * @param in the in
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     * @deprecated Please use class {@link Process} now
+     */
+    @Deprecated
 	public Experiment(InputStream in) throws IOException, XMLException {
 		super(in);
 	}

@@ -35,27 +35,40 @@ import com.vlsolutions.swing.docking.Dockable;
 
 
 /**
+ * The type Process log tab.
  *
  * @author Simon Fischer
- *
  */
 public class ProcessLogTab extends JPanel implements Dockable {
 
 	private static final long serialVersionUID = 1L;
 	private static Icon DATA_TABLE_ICON = SwingTools.createIcon("16/table.png");
-	public static final String DOCKKEY_PREFIX = "datatable_";
+    /**
+     * The constant DOCKKEY_PREFIX.
+     */
+    public static final String DOCKKEY_PREFIX = "datatable_";
 
 	private Component viewer;
 	private final DockKey dockKey;
 
-	public ProcessLogTab(String key) {
+    /**
+     * Instantiates a new Process log tab.
+     *
+     * @param key the key
+     */
+    public ProcessLogTab(String key) {
 		setLayout(new BorderLayout());
 		this.dockKey = new DockKey(key);
 		dockKey.setIcon(DATA_TABLE_ICON);
 		dockKey.setDockGroup(MainFrame.DOCK_GROUP_RESULTS);
 	}
 
-	public void setDataTableViewer(DataTableViewer viewer) {
+    /**
+     * Sets data table viewer.
+     *
+     * @param viewer the viewer
+     */
+    public void setDataTableViewer(DataTableViewer viewer) {
 		if (viewer == this.viewer) {
 			return;
 		}
@@ -78,7 +91,10 @@ public class ProcessLogTab extends JPanel implements Dockable {
 		return label;
 	}
 
-	public void freeResources() {
+    /**
+     * Free resources.
+     */
+    public void freeResources() {
 		if (viewer != null) {
 			remove(viewer);
 		}
@@ -95,7 +111,12 @@ public class ProcessLogTab extends JPanel implements Dockable {
 		return dockKey;
 	}
 
-	public DataTable getDataTable() {
+    /**
+     * Gets data table.
+     *
+     * @return the data table
+     */
+    public DataTable getDataTable() {
 		if (this.viewer != null && viewer instanceof DataTableViewer) {
 			return ((DataTableViewer) this.viewer).getDataTable();
 		} else {

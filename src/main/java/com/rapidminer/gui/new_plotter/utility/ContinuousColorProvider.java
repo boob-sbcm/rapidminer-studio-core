@@ -29,9 +29,8 @@ import java.awt.Color;
 
 /**
  * Maps real values to a color.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class ContinuousColorProvider implements ColorProvider {
 
@@ -40,13 +39,32 @@ public class ContinuousColorProvider implements ColorProvider {
 	private double originalMinValue;
 	private double originalMaxValue;
 
-	Color minColor;
-	Color maxColor;
-	int alpha;
+    /**
+     * The Min color.
+     */
+    Color minColor;
+    /**
+     * The Max color.
+     */
+    Color maxColor;
+    /**
+     * The Alpha.
+     */
+    int alpha;
 	private boolean logarithmic;
 	private boolean useGrayForOutliers;
 
-	public ContinuousColorProvider(double minValue, double maxValue, Color minColor, Color maxColor, int alpha,
+    /**
+     * Instantiates a new Continuous color provider.
+     *
+     * @param minValue    the min value
+     * @param maxValue    the max value
+     * @param minColor    the min color
+     * @param maxColor    the max color
+     * @param alpha       the alpha
+     * @param logarithmic the logarithmic
+     */
+    public ContinuousColorProvider(double minValue, double maxValue, Color minColor, Color maxColor, int alpha,
 			boolean logarithmic) {
 		this.minValue = minValue;
 		this.maxValue = maxValue;
@@ -59,11 +77,16 @@ public class ContinuousColorProvider implements ColorProvider {
 		this.useGrayForOutliers = false;
 	}
 
-	/**
-	 * Default constructor sets the minimum and maximum color to the specified in the preferences.
-	 * 
-	 */
-	public ContinuousColorProvider(PlotInstance plotInstance, double minValue, double maxValue, int alpha,
+    /**
+     * Default constructor sets the minimum and maximum color to the specified in the preferences.
+     *
+     * @param plotInstance the plot instance
+     * @param minValue     the min value
+     * @param maxValue     the max value
+     * @param alpha        the alpha
+     * @param logarithmic  the logarithmic
+     */
+    public ContinuousColorProvider(PlotInstance plotInstance, double minValue, double maxValue, int alpha,
 			boolean logarithmic) {
 		this.minValue = minValue;
 		this.maxValue = maxValue;
@@ -78,31 +101,73 @@ public class ContinuousColorProvider implements ColorProvider {
 		this.useGrayForOutliers = false;
 	}
 
-	public int getAlpha() {
+    /**
+     * Gets alpha.
+     *
+     * @return the alpha
+     */
+    public int getAlpha() {
 		return alpha;
 	}
 
-	public void setAlpha(int alpha) {
+    /**
+     * Sets alpha.
+     *
+     * @param alpha the alpha
+     */
+    public void setAlpha(int alpha) {
 		this.alpha = alpha;
 	}
 
-	public Color getMinColor() {
+    /**
+     * Gets min color.
+     *
+     * @return the min color
+     */
+    public Color getMinColor() {
 		return minColor;
 	}
 
-	public void setMinColor(Color minColor) {
+    /**
+     * Sets min color.
+     *
+     * @param minColor the min color
+     */
+    public void setMinColor(Color minColor) {
 		this.minColor = minColor;
 	}
 
-	public Color getMaxColor() {
+    /**
+     * Gets max color.
+     *
+     * @return the max color
+     */
+    public Color getMaxColor() {
 		return maxColor;
 	}
 
-	public void setMaxColor(Color maxColor) {
+    /**
+     * Sets max color.
+     *
+     * @param maxColor the max color
+     */
+    public void setMaxColor(Color maxColor) {
 		this.maxColor = maxColor;
 	}
 
-	public static Color getColorForValue(double value, int alpha, boolean logarithmic, double minValue, double maxValue,
+    /**
+     * Gets color for value.
+     *
+     * @param value       the value
+     * @param alpha       the alpha
+     * @param logarithmic the logarithmic
+     * @param minValue    the min value
+     * @param maxValue    the max value
+     * @param minColor    the min color
+     * @param maxColor    the max color
+     * @return the color for value
+     */
+    public static Color getColorForValue(double value, int alpha, boolean logarithmic, double minValue, double maxValue,
 			Color minColor, Color maxColor) {
 		if (Double.isNaN(value)) {
 			return Color.LIGHT_GRAY;
@@ -217,40 +282,85 @@ public class ContinuousColorProvider implements ColorProvider {
 		}
 	}
 
-	public void setLogarithmic(boolean logarithmic) {
+    /**
+     * Sets logarithmic.
+     *
+     * @param logarithmic the logarithmic
+     */
+    public void setLogarithmic(boolean logarithmic) {
 		this.logarithmic = logarithmic;
 	}
 
-	public double getMaxValue() {
+    /**
+     * Gets max value.
+     *
+     * @return the max value
+     */
+    public double getMaxValue() {
 		return maxValue;
 	}
 
-	public void setMaxValue(double maxValue) {
+    /**
+     * Sets max value.
+     *
+     * @param maxValue the max value
+     */
+    public void setMaxValue(double maxValue) {
 		this.maxValue = maxValue;
 	}
 
-	public double getMinValue() {
+    /**
+     * Gets min value.
+     *
+     * @return the min value
+     */
+    public double getMinValue() {
 		return minValue;
 	}
 
-	public void setMinValue(double minValue) {
+    /**
+     * Sets min value.
+     *
+     * @param minValue the min value
+     */
+    public void setMinValue(double minValue) {
 		this.minValue = minValue;
 	}
 
-	public void revertMinAndMaxValuesBackToOriginalValues() {
+    /**
+     * Revert min and max values back to original values.
+     */
+    public void revertMinAndMaxValuesBackToOriginalValues() {
 		this.minValue = originalMinValue;
 		this.maxValue = originalMaxValue;
 	}
 
-	public boolean isUseGrayForOutliers() {
+    /**
+     * Is use gray for outliers boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isUseGrayForOutliers() {
 		return useGrayForOutliers;
 	}
 
-	public void setUseGrayForOutliers(boolean useGrayForOutliers) {
+    /**
+     * Sets use gray for outliers.
+     *
+     * @param useGrayForOutliers the use gray for outliers
+     */
+    public void setUseGrayForOutliers(boolean useGrayForOutliers) {
 		this.useGrayForOutliers = useGrayForOutliers;
 	}
 
-	public boolean isColorMinMaxValueDifferentFromOriginal(double minValue, double maxValue) {
+    /**
+     * Is color min max value different from original boolean.
+     *
+     * @param minValue the min value
+     * @param maxValue the max value
+     * @return the boolean
+     */
+    public boolean isColorMinMaxValueDifferentFromOriginal(double minValue, double maxValue) {
 		return !(minValue == originalMinValue && maxValue == originalMaxValue);
 	}
 }

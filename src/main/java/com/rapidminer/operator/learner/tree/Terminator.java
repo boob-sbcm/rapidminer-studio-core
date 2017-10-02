@@ -24,11 +24,18 @@ import com.rapidminer.example.ExampleSet;
 /**
  * Implementations of this interface are used in order to determine if a splitting procedure should
  * be stopped.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public interface Terminator {
 
-	public boolean shouldStop(ExampleSet exampleSet, int depth);
+    /**
+     * Should stop boolean.
+     *
+     * @param exampleSet the example set
+     * @param depth      the depth
+     * @return the boolean
+     */
+    public boolean shouldStop(ExampleSet exampleSet, int depth);
 
 }

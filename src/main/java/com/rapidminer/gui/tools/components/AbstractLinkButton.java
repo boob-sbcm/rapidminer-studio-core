@@ -42,7 +42,6 @@ import com.rapidminer.tools.Tools;
  *
  * @author Nils Woehler
  * @since 7.0.0
- *
  */
 public class AbstractLinkButton extends ExtendedHTMLJEditorPane {
 
@@ -54,17 +53,23 @@ public class AbstractLinkButton extends ExtendedHTMLJEditorPane {
 
 	private final static String TEMPLATE_ICON_HTML = "<table cellpadding=\"1px\"><tr><td><img width=\"16\" height=\"16\" src=\"%s\"></td><td><a href=\"#\">%s</a></td></tr></table>";
 
-	/**
-	 * if the {@link Action} contains this property and it is set to {@code true}, the link will be
-	 * bold
-	 */
-	public static final String PROPERTY_BOLD = "isLinkBold";
+    /**
+     * if the {@link Action} contains this property and it is set to {@code true}, the link will be
+     * bold
+     */
+    public static final String PROPERTY_BOLD = "isLinkBold";
 
 	private Action action;
 
 	private HyperlinkListener actionLinkListener;
 
-	public AbstractLinkButton(final Action action, Color linkTextColor) {
+    /**
+     * Instantiates a new Abstract link button.
+     *
+     * @param action        the action
+     * @param linkTextColor the link text color
+     */
+    public AbstractLinkButton(final Action action, Color linkTextColor) {
 		super("text/html", makeHTML(action));
 		this.action = action;
 
@@ -80,15 +85,14 @@ public class AbstractLinkButton extends ExtendedHTMLJEditorPane {
 		makeHyperLinkListener(action);
 	}
 
-	/**
-	 * Replaces the current action of the link button by another action. The current
-	 * {@link HyperlinkListener} will be unregistered and a new one will be created. Furthermore the
-	 * button text will be exchanged.
-	 *
-	 * @param action
-	 *            the new action
-	 */
-	public void setAction(Action action) {
+    /**
+     * Replaces the current action of the link button by another action. The current
+     * {@link HyperlinkListener} will be unregistered and a new one will be created. Furthermore the
+     * button text will be exchanged.
+     *
+     * @param action the new action
+     */
+    public void setAction(Action action) {
 		if (action == null) {
 			throw new IllegalArgumentException("Action must not be null");
 		}
@@ -101,12 +105,12 @@ public class AbstractLinkButton extends ExtendedHTMLJEditorPane {
 		setToolTipText((String) action.getValue(Action.SHORT_DESCRIPTION));
 	}
 
-	/**
-	 * Returns the main action for this link button
-	 *
-	 * @return the main action for this link button
-	 */
-	public Action getAction() {
+    /**
+     * Returns the main action for this link button
+     *
+     * @return the main action for this link button
+     */
+    public Action getAction() {
 		return action;
 	}
 

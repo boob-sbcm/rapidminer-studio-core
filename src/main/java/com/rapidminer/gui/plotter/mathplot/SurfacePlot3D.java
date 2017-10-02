@@ -61,11 +61,22 @@ public class SurfacePlot3D extends JMathPlotter3D {
 	private boolean[] zAxis = null;
 	private boolean runningCalculation = false;
 
-	public SurfacePlot3D(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Surface plot 3 d.
+     *
+     * @param settings the settings
+     */
+    public SurfacePlot3D(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
-	public SurfacePlot3D(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Surface plot 3 d.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public SurfacePlot3D(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings, dataTable);
 	}
 

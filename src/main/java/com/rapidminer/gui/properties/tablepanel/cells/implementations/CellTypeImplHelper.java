@@ -52,22 +52,21 @@ import com.rapidminer.tools.I18N;
  * This class contains some helper methods for the cell type implementations.
  *
  * @author Marco Boeck
- *
  */
 public final class CellTypeImplHelper {
 
-	/**
-	 * Adds content assist to the given field. Does not validate the model, so make sure this call
-	 * works!
-	 *
-	 * @param model
-	 * @param rowIndex
-	 * @param columnIndex
-	 * @param field
-	 * @param button
-	 * @param cellClass
-	 */
-	static void addContentAssist(final TablePanelModel model, final int rowIndex, final int columnIndex,
+    /**
+     * Adds content assist to the given field. Does not validate the model, so make sure this call
+     * works!
+     *
+     * @param model       the model
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     * @param field       the field
+     * @param button      the button
+     * @param cellClass   the cell class
+     */
+    static void addContentAssist(final TablePanelModel model, final int rowIndex, final int columnIndex,
 			final JFormattedTextField field, final JButton button, final Class<? extends CellType> cellClass) {
 
 		List<String> valuesList = model.getPossibleValuesForCellOrNull(rowIndex, columnIndex);
@@ -249,16 +248,16 @@ public final class CellTypeImplHelper {
 		});
 	}
 
-	/**
-	 * Creates a {@link JFormattedTextField} for the specified cell. Does not validate the model, so
-	 * make sure this call works!
-	 *
-	 * @param model
-	 * @param rowIndex
-	 * @param columnIndex
-	 * @return
-	 */
-	public static JFormattedTextField createFormattedTextField(final TablePanelModel model, final int rowIndex,
+    /**
+     * Creates a {@link JFormattedTextField} for the specified cell. Does not validate the model, so
+     * make sure this call works!
+     *
+     * @param model       the model
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     * @return j formatted text field
+     */
+    public static JFormattedTextField createFormattedTextField(final TablePanelModel model, final int rowIndex,
 			final int columnIndex) {
 		final JFormattedTextField field = new JFormattedTextField();
 		field.setToolTipText(model.getHelptextAt(rowIndex, columnIndex));

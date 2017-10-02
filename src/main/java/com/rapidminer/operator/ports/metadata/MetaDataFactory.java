@@ -33,18 +33,22 @@ import java.util.logging.Level;
 
 /**
  * Factory class for creating {@link MetaData} objects for given {@link IOObject}s.
- * 
+ * <p>
  * See {@link #registerIOObjectMetaData(Class, Class)} and
  * {@link #createMetaDataforIOObject(IOObject, boolean)} for a description.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class MetaDataFactory {
 
 	private static final MetaDataFactory INSTANCE = new MetaDataFactory();
 
-	public static MetaDataFactory getInstance() {
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+    public static MetaDataFactory getInstance() {
 		return INSTANCE;
 	}
 
@@ -60,14 +64,17 @@ public class MetaDataFactory {
 		MetaDataFactory.registerIOObjectMetaData(Model.class, ModelMetaData.class);
 	}
 
-	/**
-	 * Register meta data classes that will be instantiated when meta data for IO Object should be
-	 * created. The meta data class must have an constructor with parameters the registered IO
-	 * Object as first parameter and as second a boolean 'shortened' which defines whether the meta
-	 * data should be complete or whether less relevant facts can be omitted (in order not to
-	 * clutter their visual representation).
-	 */
-	public static void registerIOObjectMetaData(Class<? extends IOObject> ioObjectClass,
+    /**
+     * Register meta data classes that will be instantiated when meta data for IO Object should be
+     * created. The meta data class must have an constructor with parameters the registered IO
+     * Object as first parameter and as second a boolean 'shortened' which defines whether the meta
+     * data should be complete or whether less relevant facts can be omitted (in order not to
+     * clutter their visual representation).
+     *
+     * @param ioObjectClass the io object class
+     * @param metaDataClass the meta data class
+     */
+    public static void registerIOObjectMetaData(Class<? extends IOObject> ioObjectClass,
 			Class<? extends MetaData> metaDataClass) {
 		try {
 			metaDataClass.getConstructor(ioObjectClass, boolean.class);
@@ -80,7 +87,14 @@ public class MetaDataFactory {
 		ioObjectToMetaDataClass.put(ioObjectClass, metaDataClass);
 	}
 
-	public MetaData createMetaDataforIOObject(IOObject ioo, boolean shortened) {
+    /**
+     * Create meta datafor io object meta data.
+     *
+     * @param ioo       the ioo
+     * @param shortened the shortened
+     * @return the meta data
+     */
+    public MetaData createMetaDataforIOObject(IOObject ioo, boolean shortened) {
 		MetaData result;
 
 		Class<? extends IOObject> ioObjectClass = ioo.getClass();

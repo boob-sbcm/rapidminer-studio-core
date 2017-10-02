@@ -31,7 +31,6 @@ import com.rapidminer.operator.Operator;
  *
  * @author Simon Fischer
  * @since 6.4.0
- *
  */
 public class ArrangeOperatorsAction extends ResourceAction {
 
@@ -40,7 +39,13 @@ public class ArrangeOperatorsAction extends ResourceAction {
 	private ProcessRendererView view;
 	private ProcessRendererController controller;
 
-	public ArrangeOperatorsAction(ProcessRendererView view, ProcessRendererController controller) {
+    /**
+     * Instantiates a new Arrange operators action.
+     *
+     * @param view       the view
+     * @param controller the controller
+     */
+    public ArrangeOperatorsAction(ProcessRendererView view, ProcessRendererController controller) {
 		super(true, "arrange_operators");
 
 		this.view = view;

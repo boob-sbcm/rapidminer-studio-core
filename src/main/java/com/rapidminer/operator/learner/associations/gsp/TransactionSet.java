@@ -21,7 +21,7 @@ package com.rapidminer.operator.learner.associations.gsp;
 /**
  * This class holds informations about the start and end time of a set of transactions. Please note,
  * that the set itself isn't saved, and isn't needed.
- * 
+ *
  * @author Sebastian Land
  */
 public class TransactionSet {
@@ -29,15 +29,30 @@ public class TransactionSet {
 	private double startTime = Double.POSITIVE_INFINITY;
 	private double endTime = Double.NEGATIVE_INFINITY;
 
-	public double getEndTime() {
+    /**
+     * Gets end time.
+     *
+     * @return the end time
+     */
+    public double getEndTime() {
 		return endTime;
 	}
 
-	public double getStartTime() {
+    /**
+     * Gets start time.
+     *
+     * @return the start time
+     */
+    public double getStartTime() {
 		return startTime;
 	}
 
-	public void addTimeOfTransaction(double time) {
+    /**
+     * Add time of transaction.
+     *
+     * @param time the time
+     */
+    public void addTimeOfTransaction(double time) {
 		if (time > this.endTime) {
 			this.endTime = time;
 		}
@@ -51,7 +66,10 @@ public class TransactionSet {
 		return startTime + " - " + endTime;
 	}
 
-	public void reset() {
+    /**
+     * Reset.
+     */
+    public void reset() {
 		startTime = Double.POSITIVE_INFINITY;
 		endTime = Double.NEGATIVE_INFINITY;
 	}

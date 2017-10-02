@@ -24,17 +24,21 @@ import com.rapidminer.operator.OperatorDescription;
 
 /**
  * Dummy operator doing nothing.
- * 
+ * <p>
  * TODO: Implement two quick fixes:- - Take old IOContainerReader, read, split, and replace by
  * several IOObjectReaders - Check whether corresponding IOContainerWriter was already imported and
  * executed once, so we have several generated files, and create one IOObjectReader for each
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class IOContainerReader extends Operator {
 
-	public IOContainerReader(OperatorDescription description) {
+    /**
+     * Instantiates a new Io container reader.
+     *
+     * @param description the description
+     */
+    public IOContainerReader(OperatorDescription description) {
 		super(description);
 	}
 

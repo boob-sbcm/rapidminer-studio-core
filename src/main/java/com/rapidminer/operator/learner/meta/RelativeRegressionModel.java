@@ -41,7 +41,14 @@ public class RelativeRegressionModel extends PredictionModel implements Delegati
 
 	private Model baseModel;
 
-	protected RelativeRegressionModel(ExampleSet trainingExampleSet, Model baseModel, String relativeAttributeName) {
+    /**
+     * Instantiates a new Relative regression model.
+     *
+     * @param trainingExampleSet    the training example set
+     * @param baseModel             the base model
+     * @param relativeAttributeName the relative attribute name
+     */
+    protected RelativeRegressionModel(ExampleSet trainingExampleSet, Model baseModel, String relativeAttributeName) {
 		super(trainingExampleSet, null, null);
 		this.baseModel = baseModel;
 		this.relativeAttributeName = relativeAttributeName;

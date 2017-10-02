@@ -34,14 +34,20 @@ import java.util.List;
 
 /**
  * A filter condition for subsets of attributes.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class SubsetAttributeFilter extends AbstractAttributeFilterCondition {
 
-	public static final String PARAMETER_ATTRIBUTES = "attributes";
+    /**
+     * The constant PARAMETER_ATTRIBUTES.
+     */
+    public static final String PARAMETER_ATTRIBUTES = "attributes";
 
-	public static final String PARAMETER_ATTRIBUTES_SEPERATOR = "\\|";
+    /**
+     * The constant PARAMETER_ATTRIBUTES_SEPERATOR.
+     */
+    public static final String PARAMETER_ATTRIBUTES_SEPERATOR = "\\|";
 
 	private String attributeNames;
 

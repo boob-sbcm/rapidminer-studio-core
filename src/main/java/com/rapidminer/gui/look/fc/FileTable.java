@@ -260,14 +260,27 @@ public class FileTable extends JTable implements MouseListener, MouseMotionListe
 
 	private boolean mouseDragging = false;
 
-	protected int[] columnsWidth;
+    /**
+     * The Columns width.
+     */
+    protected int[] columnsWidth;
 
-	public FileTable(FileList chooser) {
+    /**
+     * Instantiates a new File table.
+     *
+     * @param chooser the chooser
+     */
+    public FileTable(FileList chooser) {
 		this.fileList = chooser;
 		init();
 	}
 
-	public int getHeaderHeight() {
+    /**
+     * Gets header height.
+     *
+     * @return the header height
+     */
+    public int getHeaderHeight() {
 		return (int) this.tableHeader.getHeaderRect(0).getHeight();
 	}
 
@@ -586,7 +599,12 @@ public class FileTable extends JTable implements MouseListener, MouseMotionListe
 		}
 	}
 
-	public void updateData(Object[][] vals) {
+    /**
+     * Update data.
+     *
+     * @param vals the vals
+     */
+    public void updateData(Object[][] vals) {
 		Enumeration<TableColumn> en = this.getColumnModel().getColumns();
 
 		Vector<String> vec = new Vector<String>();
@@ -643,7 +661,12 @@ public class FileTable extends JTable implements MouseListener, MouseMotionListe
 		return false;
 	}
 
-	public int getInitialHeight() {
+    /**
+     * Gets initial height.
+     *
+     * @return the initial height
+     */
+    public int getInitialHeight() {
 		int height = 0;
 		int rowCount = this.getRowCount();
 		if (rowCount > 0 && this.getColumnCount() > 0) {
@@ -672,7 +695,13 @@ public class FileTable extends JTable implements MouseListener, MouseMotionListe
 		this.mainColumnIndex = this.getColumnModel().getColumnIndex(this.columnNames.elementAt(0));
 	}
 
-	protected void updateSelectionInterval(int row, boolean add) {
+    /**
+     * Update selection interval.
+     *
+     * @param row the row
+     * @param add the add
+     */
+    protected void updateSelectionInterval(int row, boolean add) {
 		if (add && this.fileList.fc.isMultiSelectionEnabled()) {
 			this.getSelectionModel().addSelectionInterval(row, row);
 		} else {

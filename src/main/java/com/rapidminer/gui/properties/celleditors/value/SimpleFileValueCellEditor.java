@@ -27,15 +27,20 @@ import java.awt.GridBagConstraints;
 /**
  * A simple file cell editor for generic files. These can be used for all parameter types which are
  * not special.
- * 
- * @see AttributeFileValueCellEditor
+ *
  * @author Ingo Mierswa, Simon Fischer
+ * @see AttributeFileValueCellEditor
  */
 public class SimpleFileValueCellEditor extends FileValueCellEditor {
 
 	private static final long serialVersionUID = 8800712397096177848L;
 
-	public SimpleFileValueCellEditor(ParameterTypeFile type) {
+    /**
+     * Instantiates a new Simple file value cell editor.
+     *
+     * @param type the type
+     */
+    public SimpleFileValueCellEditor(ParameterTypeFile type) {
 		super(type);
 		addButton(createFileChooserButton(), GridBagConstraints.REMAINDER);
 	}

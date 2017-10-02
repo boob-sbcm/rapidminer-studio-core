@@ -30,7 +30,7 @@ import java.util.Iterator;
 
 /**
  * Calculates the cross-entropy for the predictions of a classifier.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CrossEntropy extends MeasuredPerformance {
@@ -42,10 +42,17 @@ public class CrossEntropy extends MeasuredPerformance {
 
 	private double counter = 1.0d;
 
-	/** Clone constructor. */
-	public CrossEntropy() {}
+    /**
+     * Clone constructor.
+     */
+    public CrossEntropy() {}
 
-	public CrossEntropy(CrossEntropy c) {
+    /**
+     * Instantiates a new Cross entropy.
+     *
+     * @param c the c
+     */
+    public CrossEntropy(CrossEntropy c) {
 		super(c);
 		this.value = c.value;
 		this.counter = c.counter;

@@ -25,30 +25,43 @@ import java.io.Serializable;
  * This interface defines the methods of an distance measure class. All three methods should return
  * the same distance if equivalent inputs are given. The third method should regard the wrap around,
  * as if there were no bounds, instead point (0,0) should be neighbour of point (n,n)!
- * 
+ *
  * @author Sebastian Land
  */
 public interface DistanceFunction extends Serializable {
 
-	/**
-	 * This method returns the distance between point1 and point2. The dimenson of the points is
-	 * represented by the length of the arrays. This method should return the same value as the
-	 * method below, if points are equivalent!
-	 */
-	public double getDistance(double[] point1, double[] point2);
+    /**
+     * This method returns the distance between point1 and point2. The dimenson of the points is
+     * represented by the length of the arrays. This method should return the same value as the
+     * method below, if points are equivalent!
+     *
+     * @param point1 the point 1
+     * @param point2 the point 2
+     * @return the distance
+     */
+    public double getDistance(double[] point1, double[] point2);
 
-	/**
-	 * This method returns the distance between point1 and point2. The dimenson of the points is
-	 * represented by the length of the arrays. This method should return the same value as the
-	 * method above, if points are equivalent!
-	 */
-	public double getDistance(int[] point1, int[] point2);
+    /**
+     * This method returns the distance between point1 and point2. The dimenson of the points is
+     * represented by the length of the arrays. This method should return the same value as the
+     * method above, if points are equivalent!
+     *
+     * @param point1 the point 1
+     * @param point2 the point 2
+     * @return the distance
+     */
+    public double getDistance(int[] point1, int[] point2);
 
-	/**
-	 * This method returns the distance between point1 and point2. The dimsion of the points is
-	 * represented by the length of the arrays. This method has to be aware of the size of each
-	 * dimension! Points on the border are neighbours to the point at the opposite site! As example:
-	 * (0, x) is neighbour of (dimensions[0], x), too. Hence, the resulting distance is 1.
-	 */
-	public double getDistance(int[] point1, int[] point2, int[] dimensions);
+    /**
+     * This method returns the distance between point1 and point2. The dimsion of the points is
+     * represented by the length of the arrays. This method has to be aware of the size of each
+     * dimension! Points on the border are neighbours to the point at the opposite site! As example:
+     * (0, x) is neighbour of (dimensions[0], x), too. Hence, the resulting distance is 1.
+     *
+     * @param point1     the point 1
+     * @param point2     the point 2
+     * @param dimensions the dimensions
+     * @return the distance
+     */
+    public double getDistance(int[] point1, int[] point2, int[] dimensions);
 }

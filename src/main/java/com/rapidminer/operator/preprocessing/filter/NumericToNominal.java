@@ -42,30 +42,56 @@ import com.rapidminer.tools.Ontology;
  */
 public abstract class NumericToNominal extends AbstractFilteredDataProcessing {
 
-	public NumericToNominal(OperatorDescription description) {
+    /**
+     * Instantiates a new Numeric to nominal.
+     *
+     * @param description the description
+     */
+    public NumericToNominal(OperatorDescription description) {
 		super(description);
 	}
 
-	protected abstract void setValue(Example example, Attribute newAttribute, double value) throws OperatorException;
+    /**
+     * Sets value.
+     *
+     * @param example      the example
+     * @param newAttribute the new attribute
+     * @param value        the value
+     * @throws OperatorException the operator exception
+     */
+    protected abstract void setValue(Example example, Attribute newAttribute, double value) throws OperatorException;
 
-	/** Returns {@link Ontology#NOMINAL} or one of its subtypes. */
-	protected abstract int getGeneratedAttributevalueType();
+    /**
+     * Returns {@link Ontology#NOMINAL} or one of its subtypes.  @return the generated attributevalue type
+     *
+     * @return the generated attributevalue type
+     */
+    protected abstract int getGeneratedAttributevalueType();
 
-	protected Attribute makeAttribute() {
+    /**
+     * Make attribute attribute.
+     *
+     * @return the attribute
+     */
+    protected Attribute makeAttribute() {
 		return AttributeFactory.createAttribute(getGeneratedAttributevalueType());
 	}
 
-	/**
-	 * Will be invoked before the setValue method is invoked for each example. This default
-	 * implementation does nothing.
-	 */
-	public void init() throws OperatorException {}
+    /**
+     * Will be invoked before the setValue method is invoked for each example. This default
+     * implementation does nothing.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void init() throws OperatorException {}
 
-	/**
-	 * Will be invoked after the setValue method was invoked for each example. This default
-	 * implementation does nothing.
-	 */
-	public void cleanUp() throws OperatorException {}
+    /**
+     * Will be invoked after the setValue method was invoked for each example. This default
+     * implementation does nothing.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void cleanUp() throws OperatorException {}
 
 	@Override
 	public ExampleSetMetaData applyOnFilteredMetaData(ExampleSetMetaData emd) throws UndefinedParameterError {

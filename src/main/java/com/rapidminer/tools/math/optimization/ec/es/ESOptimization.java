@@ -51,82 +51,151 @@ import com.rapidminer.tools.math.optimization.Optimization;
  */
 public abstract class ESOptimization implements Optimization {
 
-	public static final String PARAMETER_MAX_GENERATIONS = "max_generations";
-	public static final String PARAMETER_USE_EARLY_STOPPING = "use_early_stopping";
-	public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
-	public static final String PARAMETER_POPULATION_SIZE = "population_size";
-	public static final String PARAMETER_TOURNAMENT_FRACTION = "tournament_fraction";
-	public static final String PARAMETER_KEEP_BEST = "keep_best";
-	public static final String PARAMETER_MUTATION_TYPE = "mutation_type";
-	public static final String PARAMETER_SELECTION_TYPE = "selection_type";
-	public static final String PARAMETER_CROSSOVER_PROB = "crossover_prob";
-	public static final String PARAMETER_SHOW_CONVERGENCE_PLOT = "show_convergence_plot";
-	public static final String PARAMETER_SPECIFIY_POPULATION_SIZE = "specify_population_size";
+    /**
+     * The constant PARAMETER_MAX_GENERATIONS.
+     */
+    public static final String PARAMETER_MAX_GENERATIONS = "max_generations";
+    /**
+     * The constant PARAMETER_USE_EARLY_STOPPING.
+     */
+    public static final String PARAMETER_USE_EARLY_STOPPING = "use_early_stopping";
+    /**
+     * The constant PARAMETER_GENERATIONS_WITHOUT_IMPROVAL.
+     */
+    public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
+    /**
+     * The constant PARAMETER_POPULATION_SIZE.
+     */
+    public static final String PARAMETER_POPULATION_SIZE = "population_size";
+    /**
+     * The constant PARAMETER_TOURNAMENT_FRACTION.
+     */
+    public static final String PARAMETER_TOURNAMENT_FRACTION = "tournament_fraction";
+    /**
+     * The constant PARAMETER_KEEP_BEST.
+     */
+    public static final String PARAMETER_KEEP_BEST = "keep_best";
+    /**
+     * The constant PARAMETER_MUTATION_TYPE.
+     */
+    public static final String PARAMETER_MUTATION_TYPE = "mutation_type";
+    /**
+     * The constant PARAMETER_SELECTION_TYPE.
+     */
+    public static final String PARAMETER_SELECTION_TYPE = "selection_type";
+    /**
+     * The constant PARAMETER_CROSSOVER_PROB.
+     */
+    public static final String PARAMETER_CROSSOVER_PROB = "crossover_prob";
+    /**
+     * The constant PARAMETER_SHOW_CONVERGENCE_PLOT.
+     */
+    public static final String PARAMETER_SHOW_CONVERGENCE_PLOT = "show_convergence_plot";
+    /**
+     * The constant PARAMETER_SPECIFIY_POPULATION_SIZE.
+     */
+    public static final String PARAMETER_SPECIFIY_POPULATION_SIZE = "specify_population_size";
 
-	/** The names of all available selection schemes. */
-	public static final String[] SELECTION_TYPES = { "uniform", "cut", "roulette wheel", "stochastic universal sampling",
+    /**
+     * The names of all available selection schemes.
+     */
+    public static final String[] SELECTION_TYPES = { "uniform", "cut", "roulette wheel", "stochastic universal sampling",
 			"Boltzmann", "rank", "tournament", "non dominated sorting" };
 
-	/** Indicates a uniform sampling selection scheme. */
-	public static final int UNIFORM_SELECTION = 0;
+    /**
+     * Indicates a uniform sampling selection scheme.
+     */
+    public static final int UNIFORM_SELECTION = 0;
 
-	/** Indicates a cut selection scheme. */
-	public static final int CUT_SELECTION = 1;
+    /**
+     * Indicates a cut selection scheme.
+     */
+    public static final int CUT_SELECTION = 1;
 
-	/** Indicates a roulette wheel selection scheme. */
-	public static final int ROULETTE_WHEEL = 2;
+    /**
+     * Indicates a roulette wheel selection scheme.
+     */
+    public static final int ROULETTE_WHEEL = 2;
 
-	/** Indicates a stochastic universal sampling selection scheme. */
-	public static final int STOCHASTIC_UNIVERSAL = 3;
+    /**
+     * Indicates a stochastic universal sampling selection scheme.
+     */
+    public static final int STOCHASTIC_UNIVERSAL = 3;
 
-	/** Indicates a Boltzmann selection scheme. */
-	public static final int BOLTZMANN_SELECTION = 4;
+    /**
+     * Indicates a Boltzmann selection scheme.
+     */
+    public static final int BOLTZMANN_SELECTION = 4;
 
-	/** Indicates a rank based selection scheme. */
-	public static final int RANK_SELECTION = 5;
+    /**
+     * Indicates a rank based selection scheme.
+     */
+    public static final int RANK_SELECTION = 5;
 
-	/** Indicates a tournament selection scheme. */
-	public static final int TOURNAMENT_SELECTION = 6;
+    /**
+     * Indicates a tournament selection scheme.
+     */
+    public static final int TOURNAMENT_SELECTION = 6;
 
-	/** Indicates a multi-objective selection scheme (NSGA II). */
-	public static final int NON_DOMINATED_SORTING_SELECTION = 7;
+    /**
+     * Indicates a multi-objective selection scheme (NSGA II).
+     */
+    public static final int NON_DOMINATED_SORTING_SELECTION = 7;
 
-	/** The names of the mutation types. */
-	public static final String[] MUTATION_TYPES = { "none", "gaussian_mutation", "switching_mutation", "sparsity_mutation" };
+    /**
+     * The names of the mutation types.
+     */
+    public static final String[] MUTATION_TYPES = { "none", "gaussian_mutation", "switching_mutation", "sparsity_mutation" };
 
-	/** Indicates no mutation. */
-	public static final int NO_MUTATION = 0;
+    /**
+     * Indicates no mutation.
+     */
+    public static final int NO_MUTATION = 0;
 
-	/** Indicates a gaussian mutation. */
-	public static final int GAUSSIAN_MUTATION = 1;
+    /**
+     * Indicates a gaussian mutation.
+     */
+    public static final int GAUSSIAN_MUTATION = 1;
 
-	/** Indicates a switching mutation. */
-	public static final int SWITCHING_MUTATION = 2;
+    /**
+     * Indicates a switching mutation.
+     */
+    public static final int SWITCHING_MUTATION = 2;
 
-	/** Indicates a hybrid between switching mutation and Gaussian mutation. */
-	public static final int SPARSITY_MUTATION = 3;
+    /**
+     * Indicates a hybrid between switching mutation and Gaussian mutation.
+     */
+    public static final int SPARSITY_MUTATION = 3;
 
-	/** The names of the initialization types. */
-	public static final String[] POPULATION_INIT_TYPES = { "random", "min", "max" };
+    /**
+     * The names of the initialization types.
+     */
+    public static final String[] POPULATION_INIT_TYPES = { "random", "min", "max" };
 
-	/** Indicates that the start population should be randomly initialized. */
-	public static final int INIT_TYPE_RANDOM = 0;
+    /**
+     * Indicates that the start population should be randomly initialized.
+     */
+    public static final int INIT_TYPE_RANDOM = 0;
 
-	/**
-	 * Indicates that the start population should be initialized with the minimum value.
-	 */
-	public static final int INIT_TYPE_MIN = 1;
+    /**
+     * Indicates that the start population should be initialized with the minimum value.
+     */
+    public static final int INIT_TYPE_MIN = 1;
 
-	/**
-	 * Indicates that the start population should be initialized with the maximum value.
-	 */
-	public static final int INIT_TYPE_MAX = 2;
+    /**
+     * Indicates that the start population should be initialized with the maximum value.
+     */
+    public static final int INIT_TYPE_MAX = 2;
 
-	/** Indicates that the start population should be initialized with one. */
-	public static final int INIT_TYPE_ONE = 3;
+    /**
+     * Indicates that the start population should be initialized with one.
+     */
+    public static final int INIT_TYPE_ONE = 3;
 
-	/** Indicates that the start population should be initialized with zero. */
-	public static final int INIT_TYPE_ZERO = 4;
+    /**
+     * Indicates that the start population should be initialized with zero.
+     */
+    public static final int INIT_TYPE_ZERO = 4;
 
 	/** This parameter indicates the minimum value for all genes. */
 	private double[] min;
@@ -188,11 +257,29 @@ public abstract class ESOptimization implements Optimization {
 	private Individual currentBest;
 	private Operator executingOperator = null;
 
-	/**
-	 * Creates a new evolutionary SVM optimization which also checks for Stop if the
-	 * executingOperator is set.
-	 */
-	@Deprecated
+    /**
+     * Creates a new evolutionary SVM optimization which also checks for Stop if the
+     * executingOperator is set.
+     *
+     * @param minValues                     the min values
+     * @param maxValues                     the max values
+     * @param populationSize                the population size
+     * @param individualSize                the individual size
+     * @param initType                      the init type
+     * @param maxGenerations                the max generations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param defaultSigma                  the default sigma
+     * @param crossoverProb                 the crossover prob
+     * @param showConvergencePlot           the show convergence plot
+     * @param showPopulationPlot            the show population plot
+     * @param random                        the random
+     * @param logging                       the logging
+     */
+    @Deprecated
 	public ESOptimization(double[] minValues, double[] maxValues, int populationSize, int individualSize, int initType,        // population
 			// paras
 			int maxGenerations, int generationsWithoutImprovement,        // GA paras
@@ -207,8 +294,27 @@ public abstract class ESOptimization implements Optimization {
 				showPopulationPlot, random, logging, null);
 	}
 
-	/** Creates a new evolutionary SVM optimization. */
-	@Deprecated
+    /**
+     * Creates a new evolutionary SVM optimization.  @param minValue the min value
+     *
+     * @param minValue                      the min value
+     * @param maxValue                      the max value
+     * @param populationSize                the population size
+     * @param individualSize                the individual size
+     * @param initType                      the init type
+     * @param maxGenerations                the max generations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param crossoverProb                 the crossover prob
+     * @param showConvergencePlot           the show convergence plot
+     * @param showPopulationPlot            the show population plot
+     * @param random                        the random
+     * @param logging                       the logging
+     */
+    @Deprecated
 	public ESOptimization(double minValue, double maxValue, int populationSize, int individualSize, int initType,        // population
 			// paras
 			int maxGenerations, int generationsWithoutImprovement,        // GA paras
@@ -223,14 +329,29 @@ public abstract class ESOptimization implements Optimization {
 				null);
 	}
 
-	/**
-	 * Creates a new evolutionary SVM optimization which also checks for Stop if the
-	 * executingOperator is set.
-	 *
-	 * @param executingOperator
-	 *            If this parameter is null, no exception will be thrown.
-	 */
-	public ESOptimization(double minValue, double maxValue, int populationSize, int individualSize, int initType,        // population
+    /**
+     * Creates a new evolutionary SVM optimization which also checks for Stop if the
+     * executingOperator is set.
+     *
+     * @param minValue                      the min value
+     * @param maxValue                      the max value
+     * @param populationSize                the population size
+     * @param individualSize                the individual size
+     * @param initType                      the init type
+     * @param maxGenerations                the max generations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param crossoverProb                 the crossover prob
+     * @param showConvergencePlot           the show convergence plot
+     * @param showPopulationPlot            the show population plot
+     * @param random                        the random
+     * @param logging                       the logging
+     * @param executingOperator             If this parameter is null, no exception will be thrown.
+     */
+    public ESOptimization(double minValue, double maxValue, int populationSize, int individualSize, int initType,        // population
 			// paras
 			int maxGenerations, int generationsWithoutImprovement,        // GA paras
 			int selectionType, double tournamentFraction, boolean keepBest,        // selection
@@ -244,14 +365,29 @@ public abstract class ESOptimization implements Optimization {
 				executingOperator);
 	}
 
-	/**
-	 * Creates a new evolutionary SVM optimization.
-	 *
-	 * @param executingOperator
-	 *            If this parameter is null, no exception will be thrown.
-	 *
-	 */
-	public ESOptimization(double[] minValues, double[] maxValues, int populationSize, int individualSize, int initType,        // population
+    /**
+     * Creates a new evolutionary SVM optimization.
+     *
+     * @param minValues                     the min values
+     * @param maxValues                     the max values
+     * @param populationSize                the population size
+     * @param individualSize                the individual size
+     * @param initType                      the init type
+     * @param maxGenerations                the max generations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param defaultSigma                  the default sigma
+     * @param crossoverProb                 the crossover prob
+     * @param showConvergencePlot           the show convergence plot
+     * @param showPopulationPlot            the show population plot
+     * @param random                        the random
+     * @param logging                       the logging
+     * @param executingOperator             If this parameter is null, no exception will be thrown.
+     */
+    public ESOptimization(double[] minValues, double[] maxValues, int populationSize, int individualSize, int initType,        // population
 			// paras
 			int maxGenerations, int generationsWithoutImprovement,        // GA paras
 			int selectionType, double tournamentFraction, boolean keepBest,        // selection
@@ -348,28 +484,52 @@ public abstract class ESOptimization implements Optimization {
 		return result;
 	}
 
-	/**
-	 * Subclasses must implement this method to calculate the fitness of the given individual.
-	 * Please note that null might be returned for non-valid individuals. The fitness will be
-	 * maximized.
-	 */
-	public abstract PerformanceVector evaluateIndividual(Individual individual) throws OperatorException;
+    /**
+     * Subclasses must implement this method to calculate the fitness of the given individual.
+     * Please note that null might be returned for non-valid individuals. The fitness will be
+     * maximized.
+     *
+     * @param individual the individual
+     * @return the performance vector
+     * @throws OperatorException the operator exception
+     */
+    public abstract PerformanceVector evaluateIndividual(Individual individual) throws OperatorException;
 
-	/**
-	 * This method is invoked after each evaluation. The default implementation does nothing but
-	 * subclasses might implement this method to support online plotting or logging.
-	 */
-	public void nextIteration() throws OperatorException {}
+    /**
+     * This method is invoked after each evaluation. The default implementation does nothing but
+     * subclasses might implement this method to support online plotting or logging.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void nextIteration() throws OperatorException {}
 
-	public double getMin(int index) {
+    /**
+     * Gets min.
+     *
+     * @param index the index
+     * @return the min
+     */
+    public double getMin(int index) {
 		return min[index];
 	}
 
-	public double getMax(int index) {
+    /**
+     * Gets max.
+     *
+     * @param index the index
+     * @return the max
+     */
+    public double getMax(int index) {
 		return max[index];
 	}
 
-	public void setMin(int index, double v) {
+    /**
+     * Sets min.
+     *
+     * @param index the index
+     * @param v     the v
+     */
+    public void setMin(int index, double v) {
 		this.min[index] = v;
 		/*
 		 * if (mutationType == GAUSSIAN_MUTATION) recalculateSigma((GaussianMutation)this.mutation,
@@ -377,7 +537,13 @@ public abstract class ESOptimization implements Optimization {
 		 */
 	}
 
-	public void setMax(int index, double v) {
+    /**
+     * Sets max.
+     *
+     * @param index the index
+     * @param v     the v
+     */
+    public void setMax(int index, double v) {
 		this.max[index] = v;
 		/*
 		 * if (mutationType == GAUSSIAN_MUTATION) recalculateSigma((GaussianMutation)this.mutation,
@@ -391,11 +557,23 @@ public abstract class ESOptimization implements Optimization {
 	 * Math.abs(this.max[s] - this.min[s]) / 100.0d; mutation.setSigma(sigma); }
 	 */
 
-	public OptimizationValueType getValueType(int index) {
+    /**
+     * Gets value type.
+     *
+     * @param index the index
+     * @return the value type
+     */
+    public OptimizationValueType getValueType(int index) {
 		return this.valueTypes[index];
 	}
 
-	public void setValueType(int index, OptimizationValueType type) {
+    /**
+     * Sets value type.
+     *
+     * @param index the index
+     * @param type  the type
+     */
+    public void setValueType(int index, OptimizationValueType type) {
 		this.valueTypes[index] = type;
 		mutation.setValueType(index, type);
 	}
@@ -496,8 +674,13 @@ public abstract class ESOptimization implements Optimization {
 		logging.log("ES Evaluations: " + currentEvalCounter + " / " + totalEvalCounter);
 	}
 
-	/** Evaluates the individuals of the given population. */
-	protected void evaluate(Population population) throws OperatorException {
+    /**
+     * Evaluates the individuals of the given population.  @param population the population
+     *
+     * @param population the population
+     * @throws OperatorException the operator exception
+     */
+    protected void evaluate(Population population) throws OperatorException {
 		currentBest = null;
 		evaluateAll(population);
 		if (currentBest != null) {
@@ -512,7 +695,13 @@ public abstract class ESOptimization implements Optimization {
 		}
 	}
 
-	protected void evaluateAll(Population population) throws OperatorException {
+    /**
+     * Evaluate all.
+     *
+     * @param population the population
+     * @throws OperatorException the operator exception
+     */
+    protected void evaluateAll(Population population) throws OperatorException {
 		for (int i = population.getNumberOfIndividuals() - 1; i >= 0; i--) {
 			Individual current = population.get(i);
 			if (current.getFitness() == null) {
@@ -522,7 +711,14 @@ public abstract class ESOptimization implements Optimization {
 		}
 	}
 
-	protected void evaluate(Individual current, Population population) throws OperatorException {
+    /**
+     * Evaluate.
+     *
+     * @param current    the current
+     * @param population the population
+     * @throws OperatorException the operator exception
+     */
+    protected void evaluate(Individual current, Population population) throws OperatorException {
 		PerformanceVector fitness = evaluateIndividual(current);
 		if (fitness != null) {
 			current.setFitness(fitness);
@@ -589,7 +785,12 @@ public abstract class ESOptimization implements Optimization {
 		}
 	}
 
-	public Population getPopulation() {
+    /**
+     * Gets population.
+     *
+     * @return the population
+     */
+    public Population getPopulation() {
 		return this.population;
 	}
 
@@ -674,19 +875,27 @@ public abstract class ESOptimization implements Optimization {
 		return population;
 	}
 
-	/**
-	 * Getter and setter for subclasses
-	 **/
-
-	public void increaseCurrentEvaluationCounter() {
+    /**
+     * Getter and setter for subclasses
+     */
+    public void increaseCurrentEvaluationCounter() {
 		this.currentEvalCounter.incrementAndGet();
 	}
 
-	public void increaseTotalEvaluationCounter() {
+    /**
+     * Increase total evaluation counter.
+     */
+    public void increaseTotalEvaluationCounter() {
 		this.totalEvalCounter.incrementAndGet();
 	}
 
-	public static final List<ParameterType> getParameterTypes(Operator parameterHandler) {
+    /**
+     * Gets parameter types.
+     *
+     * @param parameterHandler the parameter handler
+     * @return the parameter types
+     */
+    public static final List<ParameterType> getParameterTypes(Operator parameterHandler) {
 		LinkedList<ParameterType> types = new LinkedList<>();
 		ParameterType type;
 		types.add(new ParameterTypeInt(PARAMETER_MAX_GENERATIONS, "Stop after this many evaluations.", 1, Integer.MAX_VALUE,
@@ -731,20 +940,22 @@ public abstract class ESOptimization implements Optimization {
 		return types;
 	}
 
-	/**
-	 * The given Operator will be used to perform checkForStop-Operations. If you do not want this
-	 * class to perform these checks, set the executingOperator to null
-	 */
-	public void setExecutingOperator(Operator executingOperator) {
+    /**
+     * The given Operator will be used to perform checkForStop-Operations. If you do not want this
+     * class to perform these checks, set the executingOperator to null
+     *
+     * @param executingOperator the executing operator
+     */
+    public void setExecutingOperator(Operator executingOperator) {
 		this.executingOperator = executingOperator;
 	}
 
-	/**
-	 * this method delivers the Operator which is internally used to perform checkForStopOperations.
-	 *
-	 * @return executing Operator which checks for Stop
-	 */
-	public Operator getExecutingOperator() {
+    /**
+     * this method delivers the Operator which is internally used to perform checkForStopOperations.
+     *
+     * @return executing Operator which checks for Stop
+     */
+    public Operator getExecutingOperator() {
 		return executingOperator;
 	}
 }

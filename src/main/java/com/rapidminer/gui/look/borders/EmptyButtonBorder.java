@@ -31,7 +31,7 @@ import javax.swing.plaf.UIResource;
 
 /**
  * The UIResource for empty button borders.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class EmptyButtonBorder extends AbstractBorder implements UIResource {

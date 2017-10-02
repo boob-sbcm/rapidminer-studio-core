@@ -34,36 +34,62 @@ import java.util.logging.Level;
  * A resource bundle that maps operator names to {@link OperatorDocumentation} instances. Instances
  * of this class always return {@link OperatorDocumentation}s from their {@link #getObject(String)}
  * methods.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class OperatorDocBundle extends ResourceBundle {
 
-	public static final String GROUP_PREFIX = "group.";
+    /**
+     * The constant GROUP_PREFIX.
+     */
+    public static final String GROUP_PREFIX = "group.";
 
-	public static final String OPERATOR_PREFIX = "operator.";
+    /**
+     * The constant OPERATOR_PREFIX.
+     */
+    public static final String OPERATOR_PREFIX = "operator.";
 
 	private final Map<String, OperatorDocumentation> operatorKeyDescriptionMap;
 
 	private final Map<String, GroupDocumentation> groupMap;
 
-	public OperatorDocBundle() {
+    /**
+     * Instantiates a new Operator doc bundle.
+     */
+    public OperatorDocBundle() {
 		this.operatorKeyDescriptionMap = new HashMap<String, OperatorDocumentation>();
 		this.groupMap = new HashMap<String, GroupDocumentation>();
 	}
 
-	public OperatorDocBundle(Map<String, OperatorDocumentation> operatorKeyDescriptionMap,
+    /**
+     * Instantiates a new Operator doc bundle.
+     *
+     * @param operatorKeyDescriptionMap the operator key description map
+     * @param groupMap                  the group map
+     */
+    public OperatorDocBundle(Map<String, OperatorDocumentation> operatorKeyDescriptionMap,
 			Map<String, GroupDocumentation> groupMap) {
 		this.operatorKeyDescriptionMap = operatorKeyDescriptionMap;
 		this.groupMap = groupMap;
 	}
 
-	protected void addOperatorDoc(String key, OperatorDocumentation documentation) {
+    /**
+     * Add operator doc.
+     *
+     * @param key           the key
+     * @param documentation the documentation
+     */
+    protected void addOperatorDoc(String key, OperatorDocumentation documentation) {
 		this.operatorKeyDescriptionMap.put(key, documentation);
 	}
 
-	protected void addGroupDoc(String key, GroupDocumentation documentation) {
+    /**
+     * Add group doc.
+     *
+     * @param key           the key
+     * @param documentation the documentation
+     */
+    protected void addGroupDoc(String key, GroupDocumentation documentation) {
 		this.groupMap.put(key, documentation);
 	}
 
@@ -102,8 +128,10 @@ public class OperatorDocBundle extends ResourceBundle {
 		return null;
 	}
 
-	/** Checks for empty documentation and documentation that has no associated operator. */
-	public void check() {
+    /**
+     * Checks for empty documentation and documentation that has no associated operator.
+     */
+    public void check() {
 		// LogService.getRoot().info("Checking operator documentation");
 		LogService.getRoot().log(Level.INFO,
 				"com.rapidminer.tools.documentation.OperatorDocBundle.checking_operator_documentation");

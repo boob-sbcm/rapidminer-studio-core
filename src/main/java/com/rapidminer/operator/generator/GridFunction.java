@@ -26,7 +26,7 @@ import com.rapidminer.tools.RandomGenerator;
 
 /**
  * Generates a uniformly distributed grid in the given dimensions.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class GridFunction extends RegressionFunction {

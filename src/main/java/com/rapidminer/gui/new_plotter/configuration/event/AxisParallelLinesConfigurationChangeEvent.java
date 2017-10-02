@@ -24,40 +24,82 @@ import com.rapidminer.gui.new_plotter.event.AxisParallelLineConfigurationChangeE
 
 
 /**
+ * The type Axis parallel lines configuration change event.
+ *
  * @author Marius Helf
  */
 public class AxisParallelLinesConfigurationChangeEvent {
 
-	public enum AxisParallelLineConfigurationsChangeType {
-		LINE_ADDED, LINE_REMOVED, LINE_CHANGED,
+    /**
+     * The enum Axis parallel line configurations change type.
+     */
+    public enum AxisParallelLineConfigurationsChangeType {
+        /**
+         * Line added axis parallel line configurations change type.
+         */
+        LINE_ADDED, /**
+         * Line removed axis parallel line configurations change type.
+         */
+        LINE_REMOVED, /**
+         * Line changed axis parallel line configurations change type.
+         */
+        LINE_CHANGED,
 	}
 
 	private AxisParallelLineConfigurationsChangeType type;
 	private AxisParallelLinesConfiguration source;
 	private AxisParallelLineConfiguration lineConfiguration;
 
-	public AxisParallelLinesConfigurationChangeEvent(AxisParallelLinesConfiguration source,
+    /**
+     * Instantiates a new Axis parallel lines configuration change event.
+     *
+     * @param source the source
+     * @param type   the type
+     * @param line   the line
+     */
+    public AxisParallelLinesConfigurationChangeEvent(AxisParallelLinesConfiguration source,
 			AxisParallelLineConfigurationsChangeType type, AxisParallelLineConfiguration line) {
 		this.source = source;
 		this.type = type;
 		this.lineConfiguration = line;
 	}
 
-	public AxisParallelLinesConfigurationChangeEvent(AxisParallelLinesConfiguration source,
+    /**
+     * Instantiates a new Axis parallel lines configuration change event.
+     *
+     * @param source the source
+     * @param e      the e
+     */
+    public AxisParallelLinesConfigurationChangeEvent(AxisParallelLinesConfiguration source,
 			AxisParallelLineConfigurationChangeEvent e) {
 		this.type = AxisParallelLineConfigurationsChangeType.LINE_CHANGED;
 		this.source = source;
 	}
 
-	public AxisParallelLineConfigurationsChangeType getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public AxisParallelLineConfigurationsChangeType getType() {
 		return type;
 	}
 
-	public AxisParallelLinesConfiguration getSource() {
+    /**
+     * Gets source.
+     *
+     * @return the source
+     */
+    public AxisParallelLinesConfiguration getSource() {
 		return source;
 	}
 
-	public AxisParallelLineConfiguration getLineConfiguration() {
+    /**
+     * Gets line configuration.
+     *
+     * @return the line configuration
+     */
+    public AxisParallelLineConfiguration getLineConfiguration() {
 		return lineConfiguration;
 	}
 }

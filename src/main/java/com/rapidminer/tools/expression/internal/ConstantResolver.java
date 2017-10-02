@@ -40,7 +40,6 @@ import com.rapidminer.tools.expression.Resolver;
  * defined by "gui.dialog.function_input.key.constant_category".
  *
  * @author Gisa Schaefer
- *
  */
 public class ConstantResolver implements Resolver {
 
@@ -52,17 +51,15 @@ public class ConstantResolver implements Resolver {
 
 	private static final String GUI_KEY_PREFIX = "gui.dialog.function_input.";
 
-	/**
-	 * Creates a {@link Resolver} that knows the constants. The constants are used by the
-	 * {@link ExpressionParser} and shown in the {@link ExpressionPropertyDialog} under the category
-	 * defined by "gui.dialog.function_input.key.constant_category".
-	 *
-	 * @param key
-	 *            the key for the category name
-	 * @param constants
-	 *            the constants this resolver knows
-	 */
-	public ConstantResolver(String key, List<Constant> constants) {
+    /**
+     * Creates a {@link Resolver} that knows the constants. The constants are used by the
+     * {@link ExpressionParser} and shown in the {@link ExpressionPropertyDialog} under the category
+     * defined by "gui.dialog.function_input.key.constant_category".
+     *
+     * @param key       the key for the category name
+     * @param constants the constants this resolver knows
+     */
+    public ConstantResolver(String key, List<Constant> constants) {
 		constantMap = new LinkedHashMap<>();
 		for (Constant constant : constants) {
 			if (constant != null) {

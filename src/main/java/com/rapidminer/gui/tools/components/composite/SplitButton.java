@@ -64,15 +64,13 @@ public class SplitButton extends JPanel {
 	/** Remember the last time the popup was closed. */
 	private long lastPopupCloseTime = 0;
 
-	/**
-	 * Creates a new {@code SplitButton} with the given primary and secondary {@link Action}.
-	 *
-	 * @param primaryAction
-	 *            the primary action
-	 * @param secondaryActions
-	 *            one ore more secondary actions
-	 */
-	public SplitButton(Action primaryAction, Action... secondaryActions) {
+    /**
+     * Creates a new {@code SplitButton} with the given primary and secondary {@link Action}.
+     *
+     * @param primaryAction    the primary action
+     * @param secondaryActions one ore more secondary actions
+     */
+    public SplitButton(Action primaryAction, Action... secondaryActions) {
 		popupMenu = new JPopupMenu();
 		popupMenu.add(primaryAction);
 		for (Action action : secondaryActions) {
@@ -81,16 +79,14 @@ public class SplitButton extends JPanel {
 		initSplitButton(primaryAction);
 	}
 
-	/**
-	 * Creates a new {@link SplitButton} with the given primary {@link Action} and a custom
-	 * {@link JPopupMenu}.
-	 *
-	 * @param primaryAction
-	 *            the primary action
-	 * @param popupMenu
-	 *            the drop down menu
-	 */
-	public SplitButton(Action primaryAction, JPopupMenu popupMenu) {
+    /**
+     * Creates a new {@link SplitButton} with the given primary {@link Action} and a custom
+     * {@link JPopupMenu}.
+     *
+     * @param primaryAction the primary action
+     * @param popupMenu     the drop down menu
+     */
+    public SplitButton(Action primaryAction, JPopupMenu popupMenu) {
 		this.popupMenu = popupMenu;
 		initSplitButton(primaryAction);
 	}
@@ -102,14 +98,22 @@ public class SplitButton extends JPanel {
 		dropDownButton.setEnabled(enabled);
 	}
 
-	public JPopupMenu getPopupMenu() {
+    /**
+     * Gets popup menu.
+     *
+     * @return the popup menu
+     */
+    public JPopupMenu getPopupMenu() {
 		return popupMenu;
 	}
 
-	/**
-	 * @see AbstractButton#setHideActionText(boolean)
-	 */
-	public void SetHideActionText(boolean hideActionText) {
+    /**
+     * Set hide action text.
+     *
+     * @param hideActionText the hide action text
+     * @see AbstractButton#setHideActionText(boolean) AbstractButton#setHideActionText(boolean)AbstractButton#setHideActionText(boolean)
+     */
+    public void SetHideActionText(boolean hideActionText) {
 		primaryButton.setHideActionText(hideActionText);
 	}
 

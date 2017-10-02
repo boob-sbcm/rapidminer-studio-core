@@ -41,8 +41,16 @@ public class LinearRegression {
 
 	private static Logger logger = Logger.getLogger(Process.class.getName());
 
-	/** Performs a weighted linear ridge regression. */
-	public static double[] performRegression(Matrix x, Matrix y, double[] weights, double ridge) {
+    /**
+     * Performs a weighted linear ridge regression.  @param x the x
+     *
+     * @param x       the x
+     * @param y       the y
+     * @param weights the weights
+     * @param ridge   the ridge
+     * @return the double [ ]
+     */
+    public static double[] performRegression(Matrix x, Matrix y, double[] weights, double ridge) {
 		Matrix weightedIndependent = new Matrix(x.getRowDimension(), x.getColumnDimension());
 		Matrix weightedDependent = new Matrix(x.getRowDimension(), 1);
 		for (int i = 0; i < weights.length; i++) {
@@ -55,8 +63,15 @@ public class LinearRegression {
 		return performRegression(weightedIndependent, weightedDependent, ridge);
 	}
 
-	/** Calculates the coefficients of linear ridge regression. */
-	public static double[] performRegression(Matrix a, Matrix b, double ridge) {
+    /**
+     * Calculates the coefficients of linear ridge regression.  @param a the a
+     *
+     * @param a     the a
+     * @param b     the b
+     * @param ridge the ridge
+     * @return the double [ ]
+     */
+    public static double[] performRegression(Matrix a, Matrix b, double ridge) {
 		RealMatrix x = MatrixUtils.createRealMatrix(a.getArray());
 		RealMatrix y = MatrixUtils.createRealMatrix(b.getArray());
 		int numberOfColumns = x.getColumnDimension();

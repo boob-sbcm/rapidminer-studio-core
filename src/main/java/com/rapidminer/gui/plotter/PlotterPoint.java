@@ -23,7 +23,7 @@ import java.awt.Color;
 
 /**
  * Helper class for the plotter point positions and colors.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PlotterPoint {
@@ -33,26 +33,54 @@ public class PlotterPoint {
 	private double color;
 	private Color borderColor;
 
-	public PlotterPoint(double x, double y, double color, Color borderColor) {
+    /**
+     * Instantiates a new Plotter point.
+     *
+     * @param x           the x
+     * @param y           the y
+     * @param color       the color
+     * @param borderColor the border color
+     */
+    public PlotterPoint(double x, double y, double color, Color borderColor) {
 		this.x = x;
 		this.y = y;
 		this.color = color;
 		this.borderColor = borderColor;
 	}
 
-	public double getX() {
+    /**
+     * Gets x.
+     *
+     * @return the x
+     */
+    public double getX() {
 		return x;
 	}
 
-	public double getY() {
+    /**
+     * Gets y.
+     *
+     * @return the y
+     */
+    public double getY() {
 		return y;
 	}
 
-	public double getColor() {
+    /**
+     * Gets color.
+     *
+     * @return the color
+     */
+    public double getColor() {
 		return color;
 	}
 
-	public Color getBorderColor() {
+    /**
+     * Gets border color.
+     *
+     * @return the border color
+     */
+    public Color getBorderColor() {
 		return borderColor;
 	}
 }

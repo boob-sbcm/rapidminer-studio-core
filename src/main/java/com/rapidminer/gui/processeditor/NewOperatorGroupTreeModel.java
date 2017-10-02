@@ -101,7 +101,10 @@ public class NewOperatorGroupTreeModel implements TreeModel, OperatorServiceList
 	/** sorts by local usage count of operators */
 	private Comparator<OperatorDescription> usageComparator = new UsageStatsComparator();
 
-	public NewOperatorGroupTreeModel() {
+    /**
+     * Instantiates a new New operator group tree model.
+     */
+    public NewOperatorGroupTreeModel() {
 		this.completeTree = OperatorService.getGroups();
 		OperatorService.addOperatorServiceListener(this);
 
@@ -112,7 +115,12 @@ public class NewOperatorGroupTreeModel implements TreeModel, OperatorServiceList
 		updateTree();
 	}
 
-	public void setFilterDeprecated(boolean filterDeprecated) {
+    /**
+     * Sets filter deprecated.
+     *
+     * @param filterDeprecated the filter deprecated
+     */
+    public void setFilterDeprecated(boolean filterDeprecated) {
 		this.filterDeprecated = filterDeprecated;
 		updateTree();
 	}
@@ -122,7 +130,13 @@ public class NewOperatorGroupTreeModel implements TreeModel, OperatorServiceList
 		treeModelListeners.add(l);
 	}
 
-	public boolean contains(Object o) {
+    /**
+     * Contains boolean.
+     *
+     * @param o the o
+     * @return the boolean
+     */
+    public boolean contains(Object o) {
 		return contains(this.getRoot(), o);
 	}
 
@@ -210,12 +224,23 @@ public class NewOperatorGroupTreeModel implements TreeModel, OperatorServiceList
 		}
 	}
 
-	public List<TreePath> applyFilter(String filter) {
+    /**
+     * Apply filter list.
+     *
+     * @param filter the filter
+     * @return the list
+     */
+    public List<TreePath> applyFilter(String filter) {
 		this.filter = filter;
 		return updateTree();
 	}
 
-	public List<TreePath> updateTree() {
+    /**
+     * Update tree list.
+     *
+     * @return the list
+     */
+    public List<TreePath> updateTree() {
 		// int hits = Integer.MAX_VALUE;
 		GroupTree filteredTree = this.completeTree.clone();
 		if (!"true".equals(System.getProperty(RapidMiner.PROPERTY_DEVELOPER_MODE))) {
@@ -246,7 +271,13 @@ public class NewOperatorGroupTreeModel implements TreeModel, OperatorServiceList
 		return expandedPaths;
 	}
 
-	public GroupTree getNonDeprecatedGroupTree(GroupTree tree) {
+    /**
+     * Gets non deprecated group tree.
+     *
+     * @param tree the tree
+     * @return the non deprecated group tree
+     */
+    public GroupTree getNonDeprecatedGroupTree(GroupTree tree) {
 		GroupTree filteredTree = tree.clone();
 		removeDeprecated(filteredTree);
 		return filteredTree;
@@ -370,7 +401,12 @@ public class NewOperatorGroupTreeModel implements TreeModel, OperatorServiceList
 		return hits;
 	}
 
-	public void setSortByUsage(boolean sort) {
+    /**
+     * Sets sort by usage.
+     *
+     * @param sort the sort
+     */
+    public void setSortByUsage(boolean sort) {
 		if (sort != this.sortByUsage) {
 			this.sortByUsage = sort;
 			updateTree();

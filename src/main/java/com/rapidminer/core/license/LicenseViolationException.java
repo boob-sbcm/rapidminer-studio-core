@@ -42,39 +42,43 @@ public class LicenseViolationException extends OperatorException {
 
 	private final List<LicenseViolation> violations;
 
-	/**
-	 * @param op
-	 *            the causing operator
-	 * @param violation
-	 *            the corresponding {@link LicenseViolation}
-	 */
-	public LicenseViolationException(Operator op, LicenseViolation violation) {
+    /**
+     * Instantiates a new License violation exception.
+     *
+     * @param op        the causing operator
+     * @param violation the corresponding {@link LicenseViolation}
+     */
+    public LicenseViolationException(Operator op, LicenseViolation violation) {
 		this(op, Arrays.asList(violation));
 	}
 
-	/**
-	 * @param op
-	 *            the causing operator
-	 * @param cause
-	 *            Corresponding list of {@link LicenseViolation}s.
-	 */
-	public LicenseViolationException(Operator op, List<LicenseViolation> violations) {
+    /**
+     * Instantiates a new License violation exception.
+     *
+     * @param op         the causing operator
+     * @param violations the violations
+     */
+    public LicenseViolationException(Operator op, List<LicenseViolation> violations) {
 		super(null);
 		this.op = op;
 		this.violations = violations;
 	}
 
-	/**
-	 * @return the operator name or <code>null</code> if no operator was provided
-	 */
-	public String getOperatorName() {
+    /**
+     * Gets operator name.
+     *
+     * @return the operator name or <code>null</code> if no operator was provided
+     */
+    public String getOperatorName() {
 		return op == null ? null : op.getName();
 	}
 
-	/**
-	 * @return the list of {@link LicenseViolation}s.
-	 */
-	public List<LicenseViolation> getLicenseViolations() {
+    /**
+     * Gets license violations.
+     *
+     * @return the list of {@link LicenseViolation}s.
+     */
+    public List<LicenseViolation> getLicenseViolations() {
 		return new LinkedList<>(violations);
 	}
 

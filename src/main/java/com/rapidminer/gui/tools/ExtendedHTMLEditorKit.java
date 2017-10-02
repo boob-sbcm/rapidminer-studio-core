@@ -34,7 +34,7 @@ import javax.swing.text.html.StyleSheet;
 /**
  * This Kit provides the basic Java HTML render capabilities, but extends the Java kit such that
  * each Kit has its own StyleSheet.
- * 
+ *
  * @author Sebastian Land
  */
 public class ExtendedHTMLEditorKit extends HTMLEditorKit {
@@ -43,7 +43,10 @@ public class ExtendedHTMLEditorKit extends HTMLEditorKit {
 
 	private StyleSheet styleSheet;
 
-	public ExtendedHTMLEditorKit() {
+    /**
+     * Instantiates a new Extended html editor kit.
+     */
+    public ExtendedHTMLEditorKit() {
 		styleSheet = new StyleSheet();
 		try {
 			InputStream is = HTMLEditorKit.class.getResourceAsStream(DEFAULT_CSS);

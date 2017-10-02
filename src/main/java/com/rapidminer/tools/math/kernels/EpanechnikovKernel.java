@@ -23,7 +23,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Returns the value of the Epanechnikov kernel of both examples.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class EpanechnikovKernel extends Kernel {
@@ -41,19 +41,39 @@ public class EpanechnikovKernel extends Kernel {
 		return KERNEL_EPANECHNIKOV;
 	}
 
-	public void setSigma(double sigma) {
+    /**
+     * Sets sigma.
+     *
+     * @param sigma the sigma
+     */
+    public void setSigma(double sigma) {
 		this.sigma = sigma;
 	}
 
-	public double getSigma() {
+    /**
+     * Gets sigma.
+     *
+     * @return the sigma
+     */
+    public double getSigma() {
 		return sigma;
 	}
 
-	public double getDegree() {
+    /**
+     * Gets degree.
+     *
+     * @return the degree
+     */
+    public double getDegree() {
 		return degree;
 	}
 
-	public void setDegree(double degree) {
+    /**
+     * Sets degree.
+     *
+     * @param degree the degree
+     */
+    public void setDegree(double degree) {
 		this.degree = degree;
 	}
 

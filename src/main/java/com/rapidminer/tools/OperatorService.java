@@ -64,13 +64,13 @@ import com.rapidminer.tools.plugin.Plugin;
 /**
  * This class maintains all registered operators in the current context. There exists a listener
  * concept that will alert all listeners, if new operators are added or removed.
- *
+ * <p>
  * It provides convenience methods for creating new {@link Operator}s. See the description of the
  * {@link #createOperator(Class)} method. Please mind that {@link Operator}s that are built from an
  * {@link GenericOperatorFactory} cannot be constructed with this method. Please use
  * {@link #createOperator(String)} method instead, that can be passed the {@link Operator}'s key.
- *
- *
+ * <p>
+ * <p>
  * <p>
  * This class also reads the xml definitions of the RapidMiner Studio Core and Extension operators.
  * These descriptions are entries in a XML file like OperatorsCore.xml.
@@ -80,28 +80,39 @@ import com.rapidminer.tools.plugin.Plugin;
  */
 public class OperatorService {
 
-	/**
-	 * The interface for all Listener to the {@link OperatorService}.
-	 *
-	 * @author Sebastian Land
-	 */
-	public static interface OperatorServiceListener {
+    /**
+     * The interface for all Listener to the {@link OperatorService}.
+     *
+     * @author Sebastian Land
+     */
+    public static interface OperatorServiceListener {
 
-		/**
-		 * This will be called if an operator is registered.
-		 *
-		 * ATTENTION!!! You must ensure that bundle might be null!
-		 */
-		public void operatorRegistered(OperatorDescription description, OperatorDocBundle bundle);
+        /**
+         * This will be called if an operator is registered.
+         * <p>
+         * ATTENTION!!! You must ensure that bundle might be null!
+         *
+         * @param description the description
+         * @param bundle      the bundle
+         */
+        public void operatorRegistered(OperatorDescription description, OperatorDocBundle bundle);
 
-		/**
-		 * This method will be called if an operator is removed.
-		 */
-		public void operatorUnregistered(OperatorDescription description);
+        /**
+         * This method will be called if an operator is removed.
+         *
+         * @param description the description
+         */
+        public void operatorUnregistered(OperatorDescription description);
 	}
 
-	public static final String RAPID_MINER_CORE_PREFIX = "RapidMiner Studio Core";
-	public static final String RAPID_MINER_CORE_NAMESPACE = "core";
+    /**
+     * The constant RAPID_MINER_CORE_PREFIX.
+     */
+    public static final String RAPID_MINER_CORE_PREFIX = "RapidMiner Studio Core";
+    /**
+     * The constant RAPID_MINER_CORE_NAMESPACE.
+     */
+    public static final String RAPID_MINER_CORE_NAMESPACE = "core";
 
 	private static final String OPERATORS_XML = "OperatorsCore.xml";
 
@@ -123,7 +134,10 @@ public class OperatorService {
 
 	private static final GroupTreeRoot groupTreeRoot = new GroupTreeRoot();
 
-	public static void init() {
+    /**
+     * Init.
+     */
+    public static void init() {
 		URL mainOperators = getMainOperators();
 		if (mainOperators == null) {
 			LogService.getRoot().log(Level.SEVERE,
@@ -211,16 +225,23 @@ public class OperatorService {
 		}
 	}
 
-	/**
-	 * Refreshes all operator descriptions including the reloading of operator icons.
-	 */
-	public static void refreshOperatorDescriptions() {
+    /**
+     * Refreshes all operator descriptions including the reloading of operator icons.
+     */
+    public static void refreshOperatorDescriptions() {
 		for (OperatorDescription desc : KEYS_TO_DESCRIPTIONS.values()) {
 			desc.refresh();
 		}
 	}
 
-	public static void registerOperators(URL operatorsXML, ClassLoader classLoader, Plugin plugin) {
+    /**
+     * Register operators.
+     *
+     * @param operatorsXML the operators xml
+     * @param classLoader  the class loader
+     * @param plugin       the plugin
+     */
+    public static void registerOperators(URL operatorsXML, ClassLoader classLoader, Plugin plugin) {
 		InputStream inputStream = null;
 		try {
 			if (operatorsXML != null) {
@@ -239,14 +260,26 @@ public class OperatorService {
 		registerOperators(OPERATORS_XML, inputStream, null, plugin);
 	}
 
-	/**
-	 * Registers all operators from a given XML input stream. Closes the stream.
-	 */
-	public static void registerOperators(String name, InputStream operatorsXML, ClassLoader classLoader) {
+    /**
+     * Registers all operators from a given XML input stream. Closes the stream.
+     *
+     * @param name         the name
+     * @param operatorsXML the operators xml
+     * @param classLoader  the class loader
+     */
+    public static void registerOperators(String name, InputStream operatorsXML, ClassLoader classLoader) {
 		registerOperators(name, operatorsXML, classLoader, null);
 	}
 
-	public static void registerOperators(String name, InputStream operatorsXML, ClassLoader classLoader, Plugin provider) {
+    /**
+     * Register operators.
+     *
+     * @param name         the name
+     * @param operatorsXML the operators xml
+     * @param classLoader  the class loader
+     * @param provider     the provider
+     */
+    public static void registerOperators(String name, InputStream operatorsXML, ClassLoader classLoader, Plugin provider) {
 		// register operators
 		if (classLoader == null) {
 			classLoader = OperatorService.class.getClassLoader();
@@ -468,29 +501,32 @@ public class OperatorService {
 		}
 	}
 
-	/**
-	 * This method does the same as {@link #registerOperator(OperatorDescription,
-	 * OperatorDocBundle))}, but without an {@link OperatorDocBundle} groups will not have a name or
-	 * icon. This method remains for compatibility of older extensions.
-	 */
-	@Deprecated
+    /**
+     * This method does the same as {@link #registerOperator(OperatorDescription,
+     * OperatorDocBundle))}**, but without an {@link OperatorDocBundle} groups will not have a name or
+     * icon. This method remains for compatibility of older extensions.
+     *
+     * @param description the description
+     * @throws OperatorCreationException the operator creation exception
+     */
+    @Deprecated
 	public static void registerOperator(OperatorDescription description) throws OperatorCreationException {
 		registerOperator(description, null);
 	}
 
-	/**
-	 * Registers the given operator description. Please note that two different descriptions must
-	 * not have the same name. Otherwise the second description overwrite the first in the
-	 * description map.
-	 *
-	 * If there's no icon defined for the given {@link OperatorDescription}, the group icon will be
-	 * set here.
-	 *
-	 * @param bundle
-	 *            might be null. If existing will be used for GroupCreation / Icon settings
-	 * @throws OperatorCreationException
-	 */
-	public static void registerOperator(OperatorDescription description, OperatorDocBundle bundle)
+    /**
+     * Registers the given operator description. Please note that two different descriptions must
+     * not have the same name. Otherwise the second description overwrite the first in the
+     * description map.
+     * <p>
+     * If there's no icon defined for the given {@link OperatorDescription}, the group icon will be
+     * set here.
+     *
+     * @param description the description
+     * @param bundle      might be null. If existing will be used for GroupCreation / Icon settings
+     * @throws OperatorCreationException the operator creation exception
+     */
+    public static void registerOperator(OperatorDescription description, OperatorDocBundle bundle)
 			throws OperatorCreationException {
 		// check if this operator was not registered earlier
 		OperatorDescription oldDescription = KEYS_TO_DESCRIPTIONS.get(description.getKey());
@@ -524,10 +560,12 @@ public class OperatorService {
 		invokeOperatorRegisteredListener(description, bundle);
 	}
 
-	/**
-	 * This method can be used to dynamically remove Operators from the number of defined operators.
-	 */
-	public static void unregisterOperator(OperatorDescription description) {
+    /**
+     * This method can be used to dynamically remove Operators from the number of defined operators.
+     *
+     * @param description the description
+     */
+    public static void unregisterOperator(OperatorDescription description) {
 		KEYS_TO_DESCRIPTIONS.remove(description.getKey());
 		REGISTERED_OPERATOR_CLASSES.remove(description.getOperatorClass());
 
@@ -535,10 +573,12 @@ public class OperatorService {
 		invokeOperatorUnregisteredListener(description);
 	}
 
-	/**
-	 * <strong>Experimental method.</strong> Unregisters all operators for the given Plugin.
-	 */
-	public static void unregisterAll(Plugin plugin) {
+    /**
+     * <strong>Experimental method.</strong> Unregisters all operators for the given Plugin.
+     *
+     * @param plugin the plugin
+     */
+    public static void unregisterAll(Plugin plugin) {
 		for (String opKey : new HashSet<>(OperatorService.getOperatorKeys())) {
 			OperatorDescription desc = OperatorService.getOperatorDescription(opKey);
 			if (desc.getProvider() == plugin) {
@@ -565,23 +605,36 @@ public class OperatorService {
 		registerIOObjects(result);
 	}
 
-	/** Checks if the given classes are already registered and adds them if not. */
-	public static void registerIOObjects(Collection<Class<? extends IOObject>> objects) {
+    /**
+     * Checks if the given classes are already registered and adds them if not.  @param objects the objects
+     *
+     * @param objects the objects
+     */
+    public static void registerIOObjects(Collection<Class<? extends IOObject>> objects) {
 		for (Class<? extends IOObject> currentClass : objects) {
 			String current = currentClass.getName();
 			IO_OBJECT_NAME_MAP.put(current.substring(current.lastIndexOf(".") + 1), currentClass);
 		}
 	}
 
-	/** Returns a sorted set of all short IO object names. */
-	public static Set<String> getIOObjectsNames() {
+    /**
+     * Returns a sorted set of all short IO object names.  @return the io objects names
+     *
+     * @return the io objects names
+     */
+    public static Set<String> getIOObjectsNames() {
 		// TODO: Check if this can be replaced!
 		// return RendererService.getAllRenderableObjectNames();
 		return IO_OBJECT_NAME_MAP.keySet();
 	}
 
-	/** Returns the class for the short name of an IO object. */
-	public static Class<? extends IOObject> getIOObjectClass(String name) {
+    /**
+     * Returns the class for the short name of an IO object.  @param name the name
+     *
+     * @param name the name
+     * @return the io object class
+     */
+    public static Class<? extends IOObject> getIOObjectClass(String name) {
 		// TODO: CHECK
 		// assert (IO_OBJECT_NAME_MAP.get(name).equals(RendererService.getClass(name)));
 		//
@@ -589,27 +642,33 @@ public class OperatorService {
 		return IO_OBJECT_NAME_MAP.get(name);
 	}
 
-	/**
-	 * Returns a collection of all operator keys. Use {@link #getOperatorKeys()} instead.
-	 */
-	@Deprecated
+    /**
+     * Returns a collection of all operator keys. Use {@link #getOperatorKeys()} instead.
+     *
+     * @return the operator names
+     */
+    @Deprecated
 	public static Set<String> getOperatorNames() {
 		return KEYS_TO_DESCRIPTIONS.keySet();
 	}
 
-	/**
-	 * Returns a collection of all operator keys.
-	 */
-	public static Set<String> getOperatorKeys() {
+    /**
+     * Returns a collection of all operator keys.
+     *
+     * @return the operator keys
+     */
+    public static Set<String> getOperatorKeys() {
 		return KEYS_TO_DESCRIPTIONS.keySet();
 	}
 
-	/**
-	 * Returns the group hierarchy of all operators. This will automatically reflect changes on the
-	 * registered Operators. You might register as listener to {@link OperatorService} in order to
-	 * receive registration or unregistration eventsevents
-	 */
-	public static GroupTree getGroups() {
+    /**
+     * Returns the group hierarchy of all operators. This will automatically reflect changes on the
+     * registered Operators. You might register as listener to {@link OperatorService} in order to
+     * receive registration or unregistration eventsevents
+     *
+     * @return the groups
+     */
+    public static GroupTree getGroups() {
 		return groupTreeRoot;
 	}
 
@@ -617,11 +676,14 @@ public class OperatorService {
 	// Operator Factory Methods
 	// ================================================================================
 
-	/**
-	 * Returns the operator descriptions for the operators which uses the given class. Performs a
-	 * linear search through all operator descriptions.
-	 */
-	public static OperatorDescription[] getOperatorDescriptions(Class<?> clazz) {
+    /**
+     * Returns the operator descriptions for the operators which uses the given class. Performs a
+     * linear search through all operator descriptions.
+     *
+     * @param clazz the clazz
+     * @return the operator description [ ]
+     */
+    public static OperatorDescription[] getOperatorDescriptions(Class<?> clazz) {
 		if (clazz == null) {
 			return new OperatorDescription[0];
 		}
@@ -634,23 +696,30 @@ public class OperatorService {
 		return result.toArray(new OperatorDescription[result.size()]);
 	}
 
-	/**
-	 * Returns the operator description for a given key from the operators.xml file, e.g.
-	 * &quot;read_csv&quot; for the Read CSV operator.
-	 */
-	public static OperatorDescription getOperatorDescription(String key) {
+    /**
+     * Returns the operator description for a given key from the operators.xml file, e.g.
+     * &quot;read_csv&quot; for the Read CSV operator.
+     *
+     * @param key the key
+     * @return the operator description
+     */
+    public static OperatorDescription getOperatorDescription(String key) {
 		return KEYS_TO_DESCRIPTIONS.get(key);
 	}
 
-	/**
-	 * Use this method to create an operator from the given class name (from operator description
-	 * file operators.xml, not from the Java class name). For most operators, is is recommended to
-	 * use the method {@link #createOperator(Class)} which can be checked during compile time. This
-	 * is, however, not possible for some generic operators like the Weka operators. In that case,
-	 * you have to use this method with the argument from the operators.xml file, e.g.
-	 * <tt>createOperator(&quot;J48&quot;)</tt> for a J48 decision tree learner.
-	 */
-	public static Operator createOperator(String typeName) throws OperatorCreationException {
+    /**
+     * Use this method to create an operator from the given class name (from operator description
+     * file operators.xml, not from the Java class name). For most operators, is is recommended to
+     * use the method {@link #createOperator(Class)} which can be checked during compile time. This
+     * is, however, not possible for some generic operators like the Weka operators. In that case,
+     * you have to use this method with the argument from the operators.xml file, e.g.
+     * <tt>createOperator(&quot;J48&quot;)</tt> for a J48 decision tree learner.
+     *
+     * @param typeName the type name
+     * @return the operator
+     * @throws OperatorCreationException the operator creation exception
+     */
+    public static Operator createOperator(String typeName) throws OperatorCreationException {
 		OperatorDescription description = getOperatorDescription(typeName);
 		if (description == null) {
 			throw new OperatorCreationException(OperatorCreationException.NO_DESCRIPTION_ERROR, typeName, null);
@@ -658,34 +727,45 @@ public class OperatorService {
 		return createOperator(description);
 	}
 
-	/** Use this method to create an operator of a given description object. */
-	public static Operator createOperator(OperatorDescription description) throws OperatorCreationException {
+    /**
+     * Use this method to create an operator of a given description object.  @param description the description
+     *
+     * @param description the description
+     * @return the operator
+     * @throws OperatorCreationException the operator creation exception
+     */
+    public static Operator createOperator(OperatorDescription description) throws OperatorCreationException {
 		return description.createOperatorInstance();
 	}
 
-	/**
-	 * <p>
-	 * Use this method to create an operator from an operator class. This is the only method which
-	 * ensures operator existence checks during compile time (and not during runtime) and the usage
-	 * of this method is therefore the recommended way for operator creation.
-	 * </p>
-	 *
-	 * <p>
-	 * It is, however, not possible to create some generic operators with this method (this mainly
-	 * applies to the Weka operators). Please use the method {@link #createOperator(String)} for
-	 * those generic operators.
-	 * </p>
-	 *
-	 * <p>
-	 * If you try to create a generic operator with this method, the OperatorDescription will not be
-	 * unique for the given class and an OperatorCreationException is thrown.
-	 * </p>
-	 *
-	 * <p>
-	 * Please note that is is not necessary to cast the operator to the desired class.
-	 * </p>
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * <p>
+     * Use this method to create an operator from an operator class. This is the only method which
+     * ensures operator existence checks during compile time (and not during runtime) and the usage
+     * of this method is therefore the recommended way for operator creation.
+     * </p>
+     * <p>
+     * <p>
+     * It is, however, not possible to create some generic operators with this method (this mainly
+     * applies to the Weka operators). Please use the method {@link #createOperator(String)} for
+     * those generic operators.
+     * </p>
+     * <p>
+     * <p>
+     * If you try to create a generic operator with this method, the OperatorDescription will not be
+     * unique for the given class and an OperatorCreationException is thrown.
+     * </p>
+     * <p>
+     * <p>
+     * Please note that is is not necessary to cast the operator to the desired class.
+     * </p>
+     *
+     * @param <T>   the type parameter
+     * @param clazz the clazz
+     * @return the t
+     * @throws OperatorCreationException the operator creation exception
+     */
+    @SuppressWarnings("unchecked")
 	public static <T extends Operator> T createOperator(Class<T> clazz) throws OperatorCreationException {
 		OperatorDescription[] descriptions = getOperatorDescriptions(clazz);
 		if (descriptions.length == 0) {
@@ -707,16 +787,23 @@ public class OperatorService {
 		}
 	}
 
-	/**
-	 * Returns a replacement if the given operator class is deprecated, and null otherwise. The
-	 * deprecated Key is the key with that this operator was used in RapidMiner 4.x
-	 */
-	public static String getReplacementForDeprecatedClass(String deprecatedKey) {
+    /**
+     * Returns a replacement if the given operator class is deprecated, and null otherwise. The
+     * deprecated Key is the key with that this operator was used in RapidMiner 4.x
+     *
+     * @param deprecatedKey the deprecated key
+     * @return the replacement for deprecated class
+     */
+    public static String getReplacementForDeprecatedClass(String deprecatedKey) {
 		return DEPRECATION_MAP.get(deprecatedKey);
 	}
 
-	/** Specifies a list of files to be loaded as operator descriptors. */
-	public static void setAdditionalOperatorDescriptors(String... files) {
+    /**
+     * Specifies a list of files to be loaded as operator descriptors.  @param files the files
+     *
+     * @param files the files
+     */
+    public static void setAdditionalOperatorDescriptors(String... files) {
 		if (files == null || files.length == 0) {
 			System.clearProperty(RapidMiner.PROPERTY_RAPIDMINER_OPERATORS_ADDITIONAL);
 			return;
@@ -755,19 +842,23 @@ public class OperatorService {
 	 * OperatorCreationHooks
 	 */
 
-	/**
-	 * This method adds an {@link OperatorCreationHook} that will be informed whenever an
-	 * {@link Operator} instance is created.
-	 */
-	public static void addOperatorCreationHook(OperatorCreationHook operatorCreationHook) {
+    /**
+     * This method adds an {@link OperatorCreationHook} that will be informed whenever an
+     * {@link Operator} instance is created.
+     *
+     * @param operatorCreationHook the operator creation hook
+     */
+    public static void addOperatorCreationHook(OperatorCreationHook operatorCreationHook) {
 		operatorCreationHooks.add(operatorCreationHook);
 	}
 
-	/**
-	 * This method must be called by each {@link OperatorDescription#createOperatorInstance()} call.
-	 * It is used for example for statistics purpose.
-	 */
-	public static void invokeCreationHooks(Operator operator) {
+    /**
+     * This method must be called by each {@link OperatorDescription#createOperatorInstance()} call.
+     * It is used for example for statistics purpose.
+     *
+     * @param operator the operator
+     */
+    public static void invokeCreationHooks(Operator operator) {
 		for (OperatorCreationHook hook : operatorCreationHooks) {
 			try {
 				hook.operatorCreated(operator);
@@ -783,12 +874,15 @@ public class OperatorService {
 	/*
 	 * Listener to changes in available Operators
 	 */
-	/**
-	 * This method can be used to add an listener to the OperatorService that is informed whenever
-	 * the set of available operators changes. Internally WeakReferences are used so that there's no
-	 * need to deregister listeners.
-	 */
-	public static void addOperatorServiceListener(OperatorServiceListener listener) {
+
+    /**
+     * This method can be used to add an listener to the OperatorService that is informed whenever
+     * the set of available operators changes. Internally WeakReferences are used so that there's no
+     * need to deregister listeners.
+     *
+     * @param listener the listener
+     */
+    public static void addOperatorServiceListener(OperatorServiceListener listener) {
 		listeners.add(new WeakReference<>(listener));
 	}
 

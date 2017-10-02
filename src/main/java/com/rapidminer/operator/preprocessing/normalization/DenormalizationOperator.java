@@ -36,34 +36,61 @@ import java.util.Map;
 /**
  * This operator will transform a given Normalization Model into a model that will effectively
  * revert the normalization.
- * 
+ *
  * @author Sebastian Land
  */
 public class DenormalizationOperator extends Operator {
 
-	/**
-	 * This saves the coefficients of a linear transformation a*x + b of attributes.
-	 * 
-	 * @author Sebastian Land
-	 */
-	public static class LinearTransformation implements Serializable {
+    /**
+     * This saves the coefficients of a linear transformation a*x + b of attributes.
+     *
+     * @author Sebastian Land
+     */
+    public static class LinearTransformation implements Serializable {
 
 		private static final long serialVersionUID = 1L;
 
-		protected double a;
-		protected double b;
+        /**
+         * The A.
+         */
+        protected double a;
+        /**
+         * The B.
+         */
+        protected double b;
 
-		public LinearTransformation(double a, double b) {
+        /**
+         * Instantiates a new Linear transformation.
+         *
+         * @param a the a
+         * @param b the b
+         */
+        public LinearTransformation(double a, double b) {
 			this.a = a;
 			this.b = b;
 		}
 	}
 
-	public static final String PARAMETER_MISSING_ATTRIBUTES_KEY = "missing_attribute_handling";
-	public static final String PROCEED_ON_MISSING = "proceed on missing";
-	public static final String FAIL_ON_MISSING = "fail_on_missing";
-	public static final String[] PARAMETER_MISSING_ATTRIBUTES_OPTIONS = { PROCEED_ON_MISSING, FAIL_ON_MISSING };
-	public static final int PARAMETER_MISSING_ATTRIBUTE_DEFAULT = 0;
+    /**
+     * The constant PARAMETER_MISSING_ATTRIBUTES_KEY.
+     */
+    public static final String PARAMETER_MISSING_ATTRIBUTES_KEY = "missing_attribute_handling";
+    /**
+     * The constant PROCEED_ON_MISSING.
+     */
+    public static final String PROCEED_ON_MISSING = "proceed on missing";
+    /**
+     * The constant FAIL_ON_MISSING.
+     */
+    public static final String FAIL_ON_MISSING = "fail_on_missing";
+    /**
+     * The constant PARAMETER_MISSING_ATTRIBUTES_OPTIONS.
+     */
+    public static final String[] PARAMETER_MISSING_ATTRIBUTES_OPTIONS = { PROCEED_ON_MISSING, FAIL_ON_MISSING };
+    /**
+     * The constant PARAMETER_MISSING_ATTRIBUTE_DEFAULT.
+     */
+    public static final int PARAMETER_MISSING_ATTRIBUTE_DEFAULT = 0;
 
 	private boolean failOnMissingAttributes;
 
@@ -71,7 +98,12 @@ public class DenormalizationOperator extends Operator {
 	private OutputPort modelOutput = getOutputPorts().createPort("model output");
 	private OutputPort originalModelOutput = getOutputPorts().createPort("original model output");
 
-	public DenormalizationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Denormalization operator.
+     *
+     * @param description the description
+     */
+    public DenormalizationOperator(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addPassThroughRule(modelInput, originalModelOutput);

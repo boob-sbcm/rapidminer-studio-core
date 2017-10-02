@@ -39,7 +39,6 @@ import com.rapidminer.tools.expression.internal.function.Abstract2DoubleInputFun
  * A {@link Function} for addition.
  *
  * @author Gisa Schaefer
- *
  */
 public class Plus extends Abstract2DoubleInputFunction {
 
@@ -49,10 +48,10 @@ public class Plus extends Abstract2DoubleInputFunction {
 	private static final Set<ExpressionType> STRING_ALLOWED_SET = new HashSet<ExpressionType>(Arrays.asList(
 			ExpressionType.STRING, ExpressionType.DOUBLE, ExpressionType.INTEGER, ExpressionType.BOOLEAN));
 
-	/**
-	 * Constructs an addition function.
-	 */
-	public Plus() {
+    /**
+     * Constructs an addition function.
+     */
+    public Plus() {
 		super("basic.addition", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, Ontology.ATTRIBUTE_VALUE);
 	}
 

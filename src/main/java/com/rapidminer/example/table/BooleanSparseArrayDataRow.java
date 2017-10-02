@@ -23,7 +23,7 @@ package com.rapidminer.example.table;
  * 50% of the data is sparse. As fast (or even faster than map implementation) but needs
  * considerably less memory. This implementation uses boolean arrays instead of double arrays which
  * will reduce the used memory even more.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class BooleanSparseArrayDataRow extends AbstractSparseArrayDataRow {
@@ -33,13 +33,19 @@ public class BooleanSparseArrayDataRow extends AbstractSparseArrayDataRow {
 	/** Stores the used attribute values. */
 	private boolean[] values;
 
-	/** Creates an empty sparse array data row with size 0. */
-	public BooleanSparseArrayDataRow() {
+    /**
+     * Creates an empty sparse array data row with size 0.
+     */
+    public BooleanSparseArrayDataRow() {
 		this(0);
 	}
 
-	/** Creates a sparse array data row of the given size. */
-	public BooleanSparseArrayDataRow(int size) {
+    /**
+     * Creates a sparse array data row of the given size.  @param size the size
+     *
+     * @param size the size
+     */
+    public BooleanSparseArrayDataRow(int size) {
 		super(size);
 		values = new boolean[size];
 	}

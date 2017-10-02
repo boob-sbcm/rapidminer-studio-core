@@ -22,7 +22,7 @@ package com.rapidminer.example.table;
  * Implementation of DataRow that is backed up by a boolean array. Please note that for almost no
  * practical applications the usage of this data row type is recommended. It might however come
  * handy in case of association rule learning or after a discretization step.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class BooleanArrayDataRow extends DataRow {
@@ -32,8 +32,12 @@ public class BooleanArrayDataRow extends DataRow {
 	/** Holds the data for all attributes. */
 	private boolean[] data;
 
-	/** Creates a new data row backed by an primitive array. */
-	public BooleanArrayDataRow(boolean[] data) {
+    /**
+     * Creates a new data row backed by an primitive array.  @param data the data
+     *
+     * @param data the data
+     */
+    public BooleanArrayDataRow(boolean[] data) {
 		this.data = data;
 	}
 

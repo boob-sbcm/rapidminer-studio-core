@@ -22,7 +22,7 @@ package com.rapidminer.operator;
  * A SimpleResulObject is only a helper class for very simple results with only a name and
  * descriptive text. May be usefull for intermediate results which should only be displayed but
  * actually not used by other operators.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer Exp $
  */
 public class SimpleResultObject extends ResultObjectAdapter {
@@ -33,7 +33,13 @@ public class SimpleResultObject extends ResultObjectAdapter {
 
 	private String text;
 
-	public SimpleResultObject(String name, String text) {
+    /**
+     * Instantiates a new Simple result object.
+     *
+     * @param name the name
+     * @param text the text
+     */
+    public SimpleResultObject(String name, String text) {
 		this.name = name;
 		this.text = text;
 	}
@@ -48,11 +54,21 @@ public class SimpleResultObject extends ResultObjectAdapter {
 		return text;
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "srs";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "simple result";
 	}
 

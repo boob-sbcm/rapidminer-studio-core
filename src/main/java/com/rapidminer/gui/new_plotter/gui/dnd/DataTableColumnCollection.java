@@ -25,26 +25,37 @@ import java.util.List;
 
 
 /**
+ * The type Data table column collection.
+ *
  * @author Nils Woehler
- * 
  */
 public class DataTableColumnCollection {
 
 	private final static String MIME_TYPE = DataFlavor.javaJVMLocalObjectMimeType + ";class="
 			+ DataTableColumnCollection.class.getName();
-	public final static DataFlavor DATATABLE_COLUMN_COLLECTION_FLAVOR = new DataFlavor(MIME_TYPE,
+    /**
+     * The constant DATATABLE_COLUMN_COLLECTION_FLAVOR.
+     */
+    public final static DataFlavor DATATABLE_COLUMN_COLLECTION_FLAVOR = new DataFlavor(MIME_TYPE,
 			"DataTableColumnCollection");
 
 	private final List<DataTableColumn> collection;
 
-	/**
-	 * @return the collection
-	 */
-	public List<DataTableColumn> getDataTableColumns() {
+    /**
+     * Gets data table columns.
+     *
+     * @return the collection
+     */
+    public List<DataTableColumn> getDataTableColumns() {
 		return collection;
 	}
 
-	public DataTableColumnCollection(List<DataTableColumn> collection) {
+    /**
+     * Instantiates a new Data table column collection.
+     *
+     * @param collection the collection
+     */
+    public DataTableColumnCollection(List<DataTableColumn> collection) {
 		this.collection = collection;
 
 	}

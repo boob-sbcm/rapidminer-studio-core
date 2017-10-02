@@ -60,7 +60,7 @@ import com.rapidminer.tools.ParameterService;
 
 /**
  * The settings dialog for user settings.
- *
+ * <p>
  * <p>
  * Settings are stored in the file <i>rapidminer-studio-settings.cfg</i> in the user directory
  * <i>.RapidMiner</i> and can overwrite system wide settings. The settings are grouped in
@@ -68,7 +68,7 @@ import com.rapidminer.tools.ParameterService;
  * represented by a {@link SettingsItem}, which maintains the tab, grouping, key, i18n of its title
  * and description.
  * </p>
- *
+ * <p>
  * <p>
  * To add a new preference, you have to use the method {@link ParameterService#registerParameter()}.
  * Your new parameter can be added to the i18n by adding the related key and a value to the resource
@@ -120,22 +120,21 @@ public class SettingsDialog extends ButtonDialog {
 	private JLabel noMatchingSettingsLabel = new JLabel(I18N.getGUILabel("settings.no_matching_settings"),
 			SwingConstants.CENTER);
 
-	/**
-	 * Sets up the related {@link SettingsTabs} and buttons.
-	 */
-	public SettingsDialog() {
+    /**
+     * Sets up the related {@link SettingsTabs} and buttons.
+     */
+    public SettingsDialog() {
 		this(null);
 	}
 
-	/**
-	 * Sets up the related {@link SettingsTabs} and buttons.
-	 *
-	 * Selects the specified selected tab.
-	 *
-	 * @param initialSelectedTab
-	 *            A key of a preferences group to identify the initial selected tab.
-	 */
-	public SettingsDialog(String initialSelectedTab) {
+    /**
+     * Sets up the related {@link SettingsTabs} and buttons.
+     * <p>
+     * Selects the specified selected tab.
+     *
+     * @param initialSelectedTab A key of a preferences group to identify the initial selected tab.
+     */
+    public SettingsDialog(String initialSelectedTab) {
 		super(ApplicationFrame.getApplicationFrame(), "settings", ModalityType.APPLICATION_MODAL, new Object[] {});
 
 		// main component container

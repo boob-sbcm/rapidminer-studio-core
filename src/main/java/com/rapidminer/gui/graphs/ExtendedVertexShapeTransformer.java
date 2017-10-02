@@ -29,6 +29,7 @@ import org.apache.commons.collections15.Transformer;
 /**
  * The extended vertex shaper for the {@link GraphViewer}.
  *
+ * @param <V> the type parameter
  * @author Ingo Mierswa, Marco Boeck
  */
 public class ExtendedVertexShapeTransformer<V> implements Transformer<V, Shape> {
@@ -41,7 +42,12 @@ public class ExtendedVertexShapeTransformer<V> implements Transformer<V, Shape> 
 
 	private GraphCreator<V, ?> graphCreator;
 
-	public ExtendedVertexShapeTransformer(GraphCreator<V, ?> graphCreator) {
+    /**
+     * Instantiates a new Extended vertex shape transformer.
+     *
+     * @param graphCreator the graph creator
+     */
+    public ExtendedVertexShapeTransformer(GraphCreator<V, ?> graphCreator) {
 		this.graphCreator = graphCreator;
 	}
 

@@ -66,12 +66,12 @@ import com.rapidminer.tools.RandomGenerator;
  * has to be given as inner operator. In order to specify a subset of the example set in which the
  * missing values should be imputed (e.g. to limit the imputation to only numerical attributes) the
  * corresponding attributes might be chosen by the filter parameters.
- *
+ * <p>
  * Please be aware that depending on the ability of the inner operator to handle missing values this
  * operator might not be able to impute all missing values in some cases. This behavior leads to a
  * warning. It might hence be useful to combine this operator with a subsequent
  * MissingValueReplenishment.
- *
+ * <p>
  * ATTENTION: This operator is currently under development and does not properly work in all cases.
  * We do not recommend the usage of this operator in production systems.
  *
@@ -79,26 +79,28 @@ import com.rapidminer.tools.RandomGenerator;
  */
 public class MissingValueImputation extends OperatorChain {
 
-	/**
-	 * The parameter name for &quot;Order of attributes in which missing values are estimated.&quot;
-	 */
-	public static final String PARAMETER_ORDER = "order";
+    /**
+     * The parameter name for &quot;Order of attributes in which missing values are estimated.&quot;
+     */
+    public static final String PARAMETER_ORDER = "order";
 
-	/** The parameter name for &quot;Sort direction which is used in order strategy.&quot; */
-	public static final String PARAMETER_SORT = "sort";
+    /**
+     * The parameter name for &quot;Sort direction which is used in order strategy.&quot;
+     */
+    public static final String PARAMETER_SORT = "sort";
 
-	/**
-	 * The parameter name for &quot;Impute missing values immediately after having learned the
-	 * corresponding concept and iterate.&quot;
-	 */
-	public static final String PARAMETER_ITERATE = "iterate";
+    /**
+     * The parameter name for &quot;Impute missing values immediately after having learned the
+     * corresponding concept and iterate.&quot;
+     */
+    public static final String PARAMETER_ITERATE = "iterate";
 
-	/**
-	 * The parameter name for &quot;Learn concepts to impute missing values only on the basis of
-	 * complete cases (should be used in case learning approach can not handle missing
-	 * values).&quot;
-	 */
-	public static final String PARAMETER_LEARN_ON_COMPLETE_CASES = "learn_on_complete_cases";
+    /**
+     * The parameter name for &quot;Learn concepts to impute missing values only on the basis of
+     * complete cases (should be used in case learning approach can not handle missing
+     * values).&quot;
+     */
+    public static final String PARAMETER_LEARN_ON_COMPLETE_CASES = "learn_on_complete_cases";
 
 	/** Chronological imputation order. */
 	private static final int CHRONOLOGICAL = 0;
@@ -134,7 +136,12 @@ public class MissingValueImputation extends OperatorChain {
 
 	private final AttributeSubsetSelector attributeSelector = new AttributeSubsetSelector(this, exampleSetInput);
 
-	public MissingValueImputation(OperatorDescription description) {
+    /**
+     * Instantiates a new Missing value imputation.
+     *
+     * @param description the description
+     */
+    public MissingValueImputation(OperatorDescription description) {
 		super(description, "Replacement Learning");
 
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, innerExampleSetSource, SetRelation.SUBSET) {

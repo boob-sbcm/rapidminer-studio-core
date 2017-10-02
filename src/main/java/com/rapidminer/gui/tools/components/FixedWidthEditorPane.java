@@ -34,9 +34,7 @@ import com.rapidminer.tools.RMUrlHandler;
  * lines according to the width in pixel. In contrast to {@link FixedWidthLabel} a
  * {@link FixedWidthEditorPanel} can also handle hyperlinks.
  *
- *
  * @author Gisa Schaefer
- *
  */
 public class FixedWidthEditorPane extends ExtendedHTMLJEditorPane {
 
@@ -46,15 +44,13 @@ public class FixedWidthEditorPane extends ExtendedHTMLJEditorPane {
 
 	private String rootlessHTML;
 
-	/**
-	 * Creates a pane with the given rootlessHTML as text with the given width.
-	 *
-	 * @param width
-	 *            the desired width
-	 * @param rootlessHTML
-	 *            the text, can contain hyperlinks that will be clickable
-	 */
-	public FixedWidthEditorPane(int width, String rootlessHTML) {
+    /**
+     * Creates a pane with the given rootlessHTML as text with the given width.
+     *
+     * @param width        the desired width
+     * @param rootlessHTML the text, can contain hyperlinks that will be clickable
+     */
+    public FixedWidthEditorPane(int width, String rootlessHTML) {
 		super("text/html", "");
 		this.width = width;
 		this.rootlessHTML = rootlessHTML;
@@ -81,21 +77,20 @@ public class FixedWidthEditorPane extends ExtendedHTMLJEditorPane {
 		updateLabel();
 	}
 
-	/**
-	 * Sets the width of the text.
-	 *
-	 * @param width
-	 *            the width of the text
-	 */
-	public void setWidth(int width) {
+    /**
+     * Sets the width of the text.
+     *
+     * @param width the width of the text
+     */
+    public void setWidth(int width) {
 		this.width = width;
 		updateLabel();
 	}
 
-	/**
-	 * Updates the text with the given width.
-	 */
-	public void updateLabel() {
+    /**
+     * Updates the text with the given width.
+     */
+    public void updateLabel() {
 		try {
 			super.setText("<html><body><div style=\"width:" + width + "pt\">" + rootlessHTML + "</div></body></html>");
 		} catch (RuntimeException e) {

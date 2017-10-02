@@ -27,15 +27,19 @@ import com.rapidminer.operator.ports.Port;
  * Transforms the meta data by applying the meta data transformer of a subprocess. Remember to add
  * this rule at the correct place, i.e. after the rules that ensure that the inner sources receive
  * their meta data.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class SubprocessTransformRule implements MDTransformationRule {
 
 	private final ExecutionUnit subprocess;
 
-	public SubprocessTransformRule(ExecutionUnit subprocess) {
+    /**
+     * Instantiates a new Subprocess transform rule.
+     *
+     * @param subprocess the subprocess
+     */
+    public SubprocessTransformRule(ExecutionUnit subprocess) {
 		this.subprocess = subprocess;
 	}
 

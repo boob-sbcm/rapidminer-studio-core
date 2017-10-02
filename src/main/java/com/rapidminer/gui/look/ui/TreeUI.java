@@ -31,16 +31,25 @@ import javax.swing.tree.TreePath;
 
 /**
  * The UI for trees.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class TreeUI extends BasicTreeUI {
 
-	public static ComponentUI createUI(JComponent x) {
+    /**
+     * Create ui component ui.
+     *
+     * @param x the x
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent x) {
 		return new TreeUI();
 	}
 
-	public TreeUI() {
+    /**
+     * Instantiates a new Tree ui.
+     */
+    public TreeUI() {
 		setHashColor(Color.LIGHT_GRAY);
 	}
 
@@ -60,7 +69,16 @@ public class TreeUI extends BasicTreeUI {
 		super.uninstallUI(c);
 	}
 
-	protected boolean isLocationInExpandControl(int row, int rowLevel, int mouseX, int mouseY) {
+    /**
+     * Is location in expand control boolean.
+     *
+     * @param row      the row
+     * @param rowLevel the row level
+     * @param mouseX   the mouse x
+     * @param mouseY   the mouse y
+     * @return the boolean
+     */
+    protected boolean isLocationInExpandControl(int row, int rowLevel, int mouseX, int mouseY) {
 		if ((this.tree != null) && !isLeaf(row)) {
 			int boxWidth;
 
@@ -82,7 +100,13 @@ public class TreeUI extends BasicTreeUI {
 		return false;
 	}
 
-	protected void paintHorizontalSeparators(Graphics g, JComponent c) {
+    /**
+     * Paint horizontal separators.
+     *
+     * @param g the g
+     * @param c the c
+     */
+    protected void paintHorizontalSeparators(Graphics g, JComponent c) {
 		Rectangle clipBounds = g.getClipBounds();
 
 		int beginRow = getRowForPath(this.tree, getClosestPathForLocation(this.tree, 0, clipBounds.y));

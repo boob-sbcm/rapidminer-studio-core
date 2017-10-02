@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for setGlobalProperty complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="setGlobalProperty">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "setGlobalProperty", propOrder = {
@@ -50,16 +48,19 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SetGlobalProperty {
 
+    /**
+     * The Key.
+     */
     protected String key;
+    /**
+     * The Value.
+     */
     protected String value;
 
     /**
      * Gets the value of the key property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getKey() {
         return key;
@@ -67,11 +68,8 @@ public class SetGlobalProperty {
 
     /**
      * Sets the value of the key property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setKey(String value) {
         this.key = value;
@@ -79,11 +77,8 @@ public class SetGlobalProperty {
 
     /**
      * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getValue() {
         return value;
@@ -91,11 +86,8 @@ public class SetGlobalProperty {
 
     /**
      * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setValue(String value) {
         this.value = value;

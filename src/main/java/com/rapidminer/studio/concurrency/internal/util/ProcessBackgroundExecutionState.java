@@ -51,8 +51,26 @@ import com.rapidminer.tools.Tools;
  */
 public class ProcessBackgroundExecutionState extends SimpleObservable<ProcessBackgroundExecutionState.State> {
 
-	public enum State {
-		FAILED, CANCELED, PENDING, RUNNING, FINISHED;
+    /**
+     * The enum State.
+     */
+    public enum State {
+        /**
+         * Failed state.
+         */
+        FAILED, /**
+         * Canceled state.
+         */
+        CANCELED, /**
+         * Pending state.
+         */
+        PENDING, /**
+         * Running state.
+         */
+        RUNNING, /**
+         * Finished state.
+         */
+        FINISHED;
 	}
 
 	private LinkedList<ProcessExecutionStackEntry> operatorStack = new LinkedList<>();
@@ -67,7 +85,12 @@ public class ProcessBackgroundExecutionState extends SimpleObservable<ProcessBac
 	private Path logFilePath;
 	private Process process;
 
-	public ProcessBackgroundExecutionState(Process process) {
+    /**
+     * Instantiates a new Process background execution state.
+     *
+     * @param process the process
+     */
+    public ProcessBackgroundExecutionState(Process process) {
 		this.process = process;
 		// adding listeners
 
@@ -112,15 +135,30 @@ public class ProcessBackgroundExecutionState extends SimpleObservable<ProcessBac
 		this.process.addLoggingListener(loggingListener);
 	}
 
-	public boolean isStarted() {
+    /**
+     * Is started boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isStarted() {
 		return state != State.PENDING;
 	}
 
-	public boolean isRunning() {
+    /**
+     * Is running boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isRunning() {
 		return state == State.RUNNING;
 	}
 
-	public boolean isEnded() {
+    /**
+     * Is ended boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isEnded() {
 		// Hack to move to finish state, even if listener was not informed
 		if (operatorStack.isEmpty() && getResults() != null) {
 			this.setState(State.FINISHED);
@@ -128,27 +166,39 @@ public class ProcessBackgroundExecutionState extends SimpleObservable<ProcessBac
 		return state == State.FINISHED;
 	}
 
-	/**
-	 * This returns the reference on the current operator stack. Do not modify!
-	 */
-	public LinkedList<ProcessExecutionStackEntry> getStack() {
+    /**
+     * This returns the reference on the current operator stack. Do not modify!
+     *
+     * @return the stack
+     */
+    public LinkedList<ProcessExecutionStackEntry> getStack() {
 		return operatorStack;
 	}
 
-	public void setResults(Future<IOContainer> futureResults) {
+    /**
+     * Sets results.
+     *
+     * @param futureResults the future results
+     */
+    public void setResults(Future<IOContainer> futureResults) {
 		this.futureResults = futureResults;
 	}
 
-	public void setLogFilePath(Path logFile) {
+    /**
+     * Sets log file path.
+     *
+     * @param logFile the log file
+     */
+    public void setLogFilePath(Path logFile) {
 		this.logFilePath = logFile;
 	}
 
-	/**
-	 * Returns the process console log contents.
-	 *
-	 * @return the log as a string or {@code null} if the log cannot be read from its temp file.
-	 */
-	public String getLogContent() {
+    /**
+     * Returns the process console log contents.
+     *
+     * @return the log as a string or {@code null} if the log cannot be read from its temp file.
+     */
+    public String getLogContent() {
 		try (InputStream is = Files.newInputStream(logFilePath)) {
 			return Tools.readTextFile(is);
 		} catch (IOException e) {
@@ -157,13 +207,13 @@ public class ProcessBackgroundExecutionState extends SimpleObservable<ProcessBac
 		}
 	}
 
-	/**
-	 * This returns the results or null if they are still to be computed.
-	 *
-	 * @return
-	 * @throws OperatorException
-	 */
-	public List<IOObject> getResults() {
+    /**
+     * This returns the results or null if they are still to be computed.
+     *
+     * @return results results
+     * @throws OperatorException
+     */
+    public List<IOObject> getResults() {
 		if (futureResults != null && futureResults.isDone()) {
 			try {
 				if (results == null) {
@@ -177,13 +227,13 @@ public class ProcessBackgroundExecutionState extends SimpleObservable<ProcessBac
 		return null;
 	}
 
-	/**
-	 * This returns the exception that has been thrown during runtime or null if not present or
-	 * still executing.
-	 *
-	 * @return
-	 */
-	public Throwable getException() {
+    /**
+     * This returns the exception that has been thrown during runtime or null if not present or
+     * still executing.
+     *
+     * @return exception exception
+     */
+    public Throwable getException() {
 		try {
 			if (futureResults != null && futureResults.isDone()) {
 				futureResults.get();
@@ -195,7 +245,12 @@ public class ProcessBackgroundExecutionState extends SimpleObservable<ProcessBac
 		return null;
 	}
 
-	public boolean isFailed() {
+    /**
+     * Is failed boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isFailed() {
 		if (state != State.FAILED && state != State.CANCELED) {
 			if (getException() != null) {
 				this.setState(State.FAILED);
@@ -204,35 +259,56 @@ public class ProcessBackgroundExecutionState extends SimpleObservable<ProcessBac
 		return state == State.FAILED;
 	}
 
-	public void setFailed() {
+    /**
+     * Sets failed.
+     */
+    public void setFailed() {
 		this.setState(State.FAILED);
 	}
 
-	public boolean isStopped() {
+    /**
+     * Is stopped boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isStopped() {
 		return state == State.CANCELED;
 	}
 
-	public void setStopped() {
+    /**
+     * Sets stopped.
+     */
+    public void setStopped() {
 		this.setState(State.CANCELED);
 	}
 
-	public List<DataTable> getProcessLogs() {
+    /**
+     * Gets process logs.
+     *
+     * @return the process logs
+     */
+    public List<DataTable> getProcessLogs() {
 		return processLogs;
 	}
 
-	public State getState() {
+    /**
+     * Gets state.
+     *
+     * @return the state
+     */
+    public State getState() {
 		isFailed();
 		isEnded();
 		return state;
 	}
 
-	/**
-	 * Sets the current state
-	 *
-	 * @param newState
-	 * @return true if the state has changed
-	 */
-	public boolean setState(State newState) {
+    /**
+     * Sets the current state
+     *
+     * @param newState the new state
+     * @return true if the state has changed
+     */
+    public boolean setState(State newState) {
 		boolean changed = false;
 		if (state != newState) {
 			state = newState;

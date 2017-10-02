@@ -51,7 +51,12 @@ public class AssociationRuleTableViewer extends JPanel implements AssociationRul
 
 	private AssociationRuleTableModel model = null;
 
-	public AssociationRuleTableViewer(AssociationRules rules) {
+    /**
+     * Instantiates a new Association rule table viewer.
+     *
+     * @param rules the rules
+     */
+    public AssociationRuleTableViewer(AssociationRules rules) {
 		if (rules != null && rules.getNumberOfRules() > 0) {
 			this.model = new AssociationRuleTableModel(rules);
 			setLayout(new BorderLayout());

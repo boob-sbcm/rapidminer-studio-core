@@ -30,7 +30,7 @@ import javax.swing.border.Border;
 
 /**
  * A label for the file table.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class FileTableLabel extends JLabel {
@@ -43,22 +43,42 @@ public class FileTableLabel extends JLabel {
 
 	private static Border emptyBorder = BorderFactory.createEmptyBorder(0, 2, 0, 3);
 
-	public FileTableLabel() {
+    /**
+     * Instantiates a new File table label.
+     */
+    public FileTableLabel() {
 		super();
 		setOpaque(false);
 	}
 
-	public FileTableLabel(String s, ImageIcon i, int n) {
+    /**
+     * Instantiates a new File table label.
+     *
+     * @param s the s
+     * @param i the
+     * @param n the n
+     */
+    public FileTableLabel(String s, ImageIcon i, int n) {
 		super(s, i, n);
 		setBorder(emptyBorder);
 		setOpaque(false);
 	}
 
-	public void setSelected(boolean selected) {
+    /**
+     * Sets selected.
+     *
+     * @param selected the selected
+     */
+    public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
 
-	public boolean isSelected() {
+    /**
+     * Is selected boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSelected() {
 		return this.selected;
 	}
 

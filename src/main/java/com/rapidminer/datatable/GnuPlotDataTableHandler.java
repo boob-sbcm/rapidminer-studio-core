@@ -29,7 +29,7 @@ import java.util.TreeSet;
 
 /**
  * This class can be used to create GnuPlot files from data tables.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class GnuPlotDataTableHandler implements DataTableListener {
@@ -51,7 +51,12 @@ public class GnuPlotDataTableHandler implements DataTableListener {
 
 	private DataTable table;
 
-	public GnuPlotDataTableHandler(DataTable table) {
+    /**
+     * Instantiates a new Gnu plot data table handler.
+     *
+     * @param table the table
+     */
+    public GnuPlotDataTableHandler(DataTable table) {
 		this.table = table;
 		this.table.addDataTableListener(this);
 	}
@@ -61,7 +66,18 @@ public class GnuPlotDataTableHandler implements DataTableListener {
 		this.table = table;
 	}
 
-	public void writeGNUPlot(PrintStream out, int x, int y, int[] z, String linetype, String additionalCommands,
+    /**
+     * Write gnu plot.
+     *
+     * @param out                the out
+     * @param x                  the x
+     * @param y                  the y
+     * @param z                  the z
+     * @param linetype           the linetype
+     * @param additionalCommands the additional commands
+     * @param terminal           the terminal
+     */
+    public void writeGNUPlot(PrintStream out, int x, int y, int[] z, String linetype, String additionalCommands,
 			String terminal) {
 		writeGNUPlotHeader(out, table.getColumnName(x), (y != -1 ? table.getColumnName(y) : table.getColumnName(z[0])),
 				table.getColumnName(z[0]), additionalCommands, terminal);

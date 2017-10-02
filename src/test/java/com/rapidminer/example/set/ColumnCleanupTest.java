@@ -56,7 +56,10 @@ public class ColumnCleanupTest {
 
 	private final static int ROWS = 4;
 
-	@Test
+    /**
+     * Simple example set activated test.
+     */
+    @Test
 	public void simpleExampleSetActivatedTest() {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
 
@@ -73,7 +76,10 @@ public class ColumnCleanupTest {
 		testValues(simpleExampleSet);
 	}
 
-	@Test
+    /**
+     * Simple example set deactivated test.
+     */
+    @Test
 	public void simpleExampleSetDeactivatedTest() {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
 
@@ -90,7 +96,12 @@ public class ColumnCleanupTest {
 		testValues(simpleExampleSet);
 	}
 
-	@Test
+    /**
+     * Conditioned example set activated test.
+     *
+     * @throws ExpressionEvaluationException the expression evaluation exception
+     */
+    @Test
 	public void conditionedExampleSetActivatedTest() throws ExpressionEvaluationException {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
 
@@ -108,7 +119,12 @@ public class ColumnCleanupTest {
 		testValues(conditionedExampleSet);
 	}
 
-	@Test
+    /**
+     * Conditioned example set deactivated test.
+     *
+     * @throws ExpressionEvaluationException the expression evaluation exception
+     */
+    @Test
 	public void conditionedExampleSetDeactivatedTest() throws ExpressionEvaluationException {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
 
@@ -126,7 +142,12 @@ public class ColumnCleanupTest {
 		testValues(conditionedExampleSet);
 	}
 
-	@Test
+    /**
+     * Mapped example set activated test.
+     *
+     * @throws ExpressionEvaluationException the expression evaluation exception
+     */
+    @Test
 	public void mappedExampleSetActivatedTest() throws ExpressionEvaluationException {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
 
@@ -146,7 +167,12 @@ public class ColumnCleanupTest {
 		testValues(mappedExampleSet);
 	}
 
-	@Test
+    /**
+     * Mapped example set deactivated test.
+     *
+     * @throws ExpressionEvaluationException the expression evaluation exception
+     */
+    @Test
 	public void mappedExampleSetDeactivatedTest() throws ExpressionEvaluationException {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
 
@@ -166,7 +192,12 @@ public class ColumnCleanupTest {
 		testValues(mappedExampleSet);
 	}
 
-	@Test
+    /**
+     * Splitted example set activated test.
+     *
+     * @throws UserError the user error
+     */
+    @Test
 	public void splittedExampleSetActivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
 
@@ -185,7 +216,12 @@ public class ColumnCleanupTest {
 		testValues(splittedExampleSet);
 	}
 
-	@Test
+    /**
+     * Splitted example set deactivated test.
+     *
+     * @throws UserError the user error
+     */
+    @Test
 	public void splittedExampleSetDeactivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
 
@@ -204,7 +240,12 @@ public class ColumnCleanupTest {
 		testValues(splittedExampleSet);
 	}
 
-	@Test
+    /**
+     * Sorted example set activated test.
+     *
+     * @throws UserError the user error
+     */
+    @Test
 	public void sortedExampleSetActivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
 
@@ -222,7 +263,12 @@ public class ColumnCleanupTest {
 		testValues(sortedExampleSet);
 	}
 
-	@Test
+    /**
+     * Sorted example set deactivated test.
+     *
+     * @throws UserError the user error
+     */
+    @Test
 	public void sortedExampleSetDeactivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
 
@@ -240,7 +286,12 @@ public class ColumnCleanupTest {
 		testValues(sortedExampleSet);
 	}
 
-	@Test
+    /**
+     * Single example set activated test.
+     *
+     * @throws UserError the user error
+     */
+    @Test
 	public void singleExampleSetActivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
 
@@ -258,7 +309,12 @@ public class ColumnCleanupTest {
 		testValues(singleExampleSet);
 	}
 
-	@Test
+    /**
+     * Single example set deactivated test.
+     *
+     * @throws UserError the user error
+     */
+    @Test
 	public void singleExampleSetDeactivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
 
@@ -276,7 +332,12 @@ public class ColumnCleanupTest {
 		testValues(singleExampleSet);
 	}
 
-	@Test
+    /**
+     * Similarity example set activated test.
+     *
+     * @throws UserError the user error
+     */
+    @Test
 	public void similarityExampleSetActivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
 
@@ -296,7 +357,12 @@ public class ColumnCleanupTest {
 		testValues(simpleExampleSet);
 	}
 
-	@Test
+    /**
+     * Similarity example set deactivated test.
+     *
+     * @throws UserError the user error
+     */
+    @Test
 	public void similarityExampleSetDeactivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
 
@@ -316,7 +382,12 @@ public class ColumnCleanupTest {
 		testValues(simpleExampleSet);
 	}
 
-	@Test
+    /**
+     * Replace missing example set activated test.
+     *
+     * @throws UserError the user error
+     */
+    @Test
 	public void replaceMissingExampleSetActivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
 
@@ -334,7 +405,12 @@ public class ColumnCleanupTest {
 		testValues(replaceExampleSet);
 	}
 
-	@Test
+    /**
+     * Replace missing example set deactivated test.
+     *
+     * @throws UserError the user error
+     */
+    @Test
 	public void replaceMissingExampleSetDeactivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
 
@@ -352,7 +428,12 @@ public class ColumnCleanupTest {
 		testValues(replaceExampleSet);
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Remapped example set activated test.
+     *
+     * @throws UserError the user error
+     */
+    @SuppressWarnings("deprecation")
 	@Test
 	public void remappedExampleSetActivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
@@ -373,7 +454,12 @@ public class ColumnCleanupTest {
 		testValues(remappedExampleSet);
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Remapped example set deactivated test.
+     *
+     * @throws UserError the user error
+     */
+    @SuppressWarnings("deprecation")
 	@Test
 	public void remappedExampleSetDeactivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
@@ -394,7 +480,12 @@ public class ColumnCleanupTest {
 		testValues(remappedExampleSet);
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Non special example set activated test.
+     *
+     * @throws UserError the user error
+     */
+    @SuppressWarnings("deprecation")
 	@Test
 	public void nonSpecialExampleSetActivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
@@ -413,7 +504,12 @@ public class ColumnCleanupTest {
 		testValues(nonSpecialExampleSet);
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Non special example set deactivated test.
+     *
+     * @throws UserError the user error
+     */
+    @SuppressWarnings("deprecation")
 	@Test
 	public void nonSpecialExampleSetDeactivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
@@ -432,7 +528,12 @@ public class ColumnCleanupTest {
 		testValues(nonSpecialExampleSet);
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Model view example set activated test.
+     *
+     * @throws UserError the user error
+     */
+    @SuppressWarnings("deprecation")
 	@Test
 	public void modelViewExampleSetActivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
@@ -457,7 +558,12 @@ public class ColumnCleanupTest {
 
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Model view example set deactivated test.
+     *
+     * @throws UserError the user error
+     */
+    @SuppressWarnings("deprecation")
 	@Test
 	public void modelViewExampleSetDeactivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
@@ -479,7 +585,12 @@ public class ColumnCleanupTest {
 
 	}
 
-	@Test
+    /**
+     * Attribute weighted example set activated test.
+     *
+     * @throws UserError the user error
+     */
+    @Test
 	public void attributeWeightedExampleSetActivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
 
@@ -497,7 +608,12 @@ public class ColumnCleanupTest {
 		testValues(attributeWeightedExampleSet);
 	}
 
-	@Test
+    /**
+     * Attribute weighted example set deactivated test.
+     *
+     * @throws UserError the user error
+     */
+    @Test
 	public void attributeWeightedExampleSetDeactivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
 
@@ -515,7 +631,12 @@ public class ColumnCleanupTest {
 		testValues(attributeWeightedExampleSet);
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Attribute selection example set activated test.
+     *
+     * @throws UserError the user error
+     */
+    @SuppressWarnings("deprecation")
 	@Test
 	public void attributeSelectionExampleSetActivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
@@ -535,7 +656,12 @@ public class ColumnCleanupTest {
 		testValues(attributeSelectionExampleSet);
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Attribute selection example set deactivated test.
+     *
+     * @throws UserError the user error
+     */
+    @SuppressWarnings("deprecation")
 	@Test
 	public void attributeSelectionExampleSetDeactivatedTest() throws UserError {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(true));
@@ -555,7 +681,13 @@ public class ColumnCleanupTest {
 		testValues(attributeSelectionExampleSet);
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * More wrapped example sets test.
+     *
+     * @throws UserError                     the user error
+     * @throws ExpressionEvaluationException the expression evaluation exception
+     */
+    @SuppressWarnings("deprecation")
 	@Test
 	public void moreWrappedExampleSetsTest() throws UserError, ExpressionEvaluationException {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
@@ -633,7 +765,10 @@ public class ColumnCleanupTest {
 		}
 	}
 
-	@AfterClass
+    /**
+     * Sets down.
+     */
+    @AfterClass
 	public static void setDown() {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT, String.valueOf(false));
 	}

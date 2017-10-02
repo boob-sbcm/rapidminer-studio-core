@@ -28,7 +28,7 @@ import com.rapidminer.parameter.ParameterHandler;
 /**
  * This class implements a no missing value filter for attributes. Attributes are filtered and hence
  * be removed from exampleSet if there are missing values in one of the examples in this attribute.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class NoMissingValuesAttributeFilter extends AbstractAttributeFilterCondition {

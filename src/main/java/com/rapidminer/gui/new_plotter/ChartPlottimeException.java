@@ -21,25 +21,40 @@ package com.rapidminer.gui.new_plotter;
 /**
  * An exception which is thrown if an error occurs during plotting. Think of this as a
  * RuntimeException in the context of the plotter framework.
- * 
+ * <p>
  * For errors during chart configuration {@see ChartConfigurationException}.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class ChartPlottimeException extends ChartCreationException {
 
 	private static final long serialVersionUID = 1L;
 
-	public ChartPlottimeException(ConfigurationChangeResponse changeResponse) {
+    /**
+     * Instantiates a new Chart plottime exception.
+     *
+     * @param changeResponse the change response
+     */
+    public ChartPlottimeException(ConfigurationChangeResponse changeResponse) {
 		super(changeResponse);
 	}
 
-	public ChartPlottimeException(PlotConfigurationError error) {
+    /**
+     * Instantiates a new Chart plottime exception.
+     *
+     * @param error the error
+     */
+    public ChartPlottimeException(PlotConfigurationError error) {
 		super(error);
 	}
 
-	public ChartPlottimeException(String string, Object... params) {
+    /**
+     * Instantiates a new Chart plottime exception.
+     *
+     * @param string the string
+     * @param params the params
+     */
+    public ChartPlottimeException(String string, Object... params) {
 		super(string, params);
 	}
 }

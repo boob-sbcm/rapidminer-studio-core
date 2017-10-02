@@ -24,10 +24,16 @@ import com.rapidminer.operator.OperatorException;
 
 /**
  * Executes an {@link ExecutionUnit}.
- * 
+ *
  * @author Simon Fischer
- * */
+ */
 public interface UnitExecutor {
 
-	public void execute(ExecutionUnit unit) throws OperatorException;
+    /**
+     * Execute.
+     *
+     * @param unit the unit
+     * @throws OperatorException the operator exception
+     */
+    public void execute(ExecutionUnit unit) throws OperatorException;
 }

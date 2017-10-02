@@ -45,7 +45,10 @@ public class SimpleAttributes extends AbstractAttributes {
 	private transient Map<String, AttributeRole> nameToAttributeRoleMap = new HashMap<>();
 	private transient Map<String, AttributeRole> specialNameToAttributeRoleMap = new HashMap<>();
 
-	public SimpleAttributes() {
+    /**
+     * Instantiates a new Simple attributes.
+     */
+    public SimpleAttributes() {
 		this.attributes = Collections.synchronizedList(new ArrayList<AttributeRole>());
 	}
 
@@ -56,7 +59,12 @@ public class SimpleAttributes extends AbstractAttributes {
 		}
 	}
 
-	public Object readResolve() {
+    /**
+     * Read resolve object.
+     *
+     * @return the object
+     */
+    public Object readResolve() {
 		if (nameToAttributeRoleMap == null) {
 			// in earlier versions we didn't have this map, so set it up here. anyway, the maps are
 			// transient.

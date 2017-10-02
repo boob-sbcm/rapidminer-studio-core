@@ -34,32 +34,62 @@ import java.util.List;
 
 
 /**
+ * The type Abstract repository entry relocation operator.
+ *
  * @author Nils Woehler
- * 
  */
 public class AbstractRepositoryEntryRelocationOperator extends AbstractRepositoryManagerOperator {
 
-	public static final String SOURCE = "source entry";
-	public static final String DESTINATION = "destination";
-	public static final String OVERWRITE = "overwrite";
+    /**
+     * The constant SOURCE.
+     */
+    public static final String SOURCE = "source entry";
+    /**
+     * The constant DESTINATION.
+     */
+    public static final String DESTINATION = "destination";
+    /**
+     * The constant OVERWRITE.
+     */
+    public static final String OVERWRITE = "overwrite";
 	private Folder destinationFolder;
 	private String destinationName;
 	private boolean overwrite;
 	private RepositoryLocation sourceRepoLoc;
 
-	public AbstractRepositoryEntryRelocationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract repository entry relocation operator.
+     *
+     * @param description the description
+     */
+    public AbstractRepositoryEntryRelocationOperator(OperatorDescription description) {
 		super(description);
 	}
 
-	protected Folder getDestinationFolder() {
+    /**
+     * Gets destination folder.
+     *
+     * @return the destination folder
+     */
+    protected Folder getDestinationFolder() {
 		return destinationFolder;
 	}
 
-	protected String getDestinationName() {
+    /**
+     * Gets destination name.
+     *
+     * @return the destination name
+     */
+    protected String getDestinationName() {
 		return destinationName;
 	}
 
-	protected RepositoryLocation getFromRepositoryLocation() {
+    /**
+     * Gets from repository location.
+     *
+     * @return the from repository location
+     */
+    protected RepositoryLocation getFromRepositoryLocation() {
 		return sourceRepoLoc;
 	}
 

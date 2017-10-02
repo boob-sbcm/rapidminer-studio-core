@@ -25,7 +25,7 @@ import java.io.Serializable;
 
 /**
  * Objects of this class hold all information about a single ROC data point.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ROCPoint implements Serializable {
@@ -38,23 +38,43 @@ public class ROCPoint implements Serializable {
 
 	private final double confidence;
 
-	public ROCPoint(double falsePositives, double truePositives, double confidence) {
+    /**
+     * Instantiates a new Roc point.
+     *
+     * @param falsePositives the false positives
+     * @param truePositives  the true positives
+     * @param confidence     the confidence
+     */
+    public ROCPoint(double falsePositives, double truePositives, double confidence) {
 		this.falsePositives = falsePositives;
 		this.truePositives = truePositives;
 		this.confidence = confidence;
 	}
 
-	/** Returns the number of false positives, not the rate. */
-	public double getFalsePositives() {
+    /**
+     * Returns the number of false positives, not the rate.  @return the false positives
+     *
+     * @return the false positives
+     */
+    public double getFalsePositives() {
 		return falsePositives;
 	}
 
-	/** Returns the number of true positives, not the rate. */
-	public double getTruePositives() {
+    /**
+     * Returns the number of true positives, not the rate.  @return the true positives
+     *
+     * @return the true positives
+     */
+    public double getTruePositives() {
 		return truePositives;
 	}
 
-	public double getConfidence() {
+    /**
+     * Gets confidence.
+     *
+     * @return the confidence
+     */
+    public double getConfidence() {
 		return confidence;
 	}
 

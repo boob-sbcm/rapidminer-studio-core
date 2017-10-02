@@ -38,14 +38,22 @@ import com.rapidminer.gui.new_plotter.gui.treenodes.PlotConfigurationTreeNode;
 
 
 /**
- * @author Nils Woehler
+ * The type Plot configuration tree.
  *
+ * @author Nils Woehler
  */
 public class PlotConfigurationTree extends JTree {
 
 	private static final long serialVersionUID = 1L;
 
-	public PlotConfigurationTree(PlotConfiguration plotConfiguration, DataTable dataTable,
+    /**
+     * Instantiates a new Plot configuration tree.
+     *
+     * @param plotConfiguration the plot configuration
+     * @param dataTable         the data table
+     * @param aTH               the a th
+     */
+    public PlotConfigurationTree(PlotConfiguration plotConfiguration, DataTable dataTable,
 			DataTableColumnListTransferHandler aTH) {
 		super();
 		expandAll();
@@ -70,12 +78,12 @@ public class PlotConfigurationTree extends JTree {
 		createNewTreeModel(plotConfiguration);
 	}
 
-	/**
-	 * Expands all paths in the tree.
-	 *
-	 * @see JTree#expandPath(TreePath)
-	 */
-	public void expandAll() {
+    /**
+     * Expands all paths in the tree.
+     *
+     * @see JTree#expandPath(TreePath) JTree#expandPath(TreePath)JTree#expandPath(TreePath)
+     */
+    public void expandAll() {
 		cancelEditing();
 		final TreeModel tm = getModel();
 		final Object root = tm.getRoot();
@@ -86,28 +94,25 @@ public class PlotConfigurationTree extends JTree {
 		}
 	}
 
-	/**
-	 * Opens all paths in the given node and all nodes below that.
-	 *
-	 * @param path
-	 *            the tree path to the node to expand
-	 * @see JTree#expandPath(TreePath)
-	 */
-	public void expandAllPaths(TreePath path) {
+    /**
+     * Opens all paths in the given node and all nodes below that.
+     *
+     * @param path the tree path to the node to expand
+     * @see JTree#expandPath(TreePath) JTree#expandPath(TreePath)JTree#expandPath(TreePath)
+     */
+    public void expandAllPaths(TreePath path) {
 		cancelEditing();
 		expandAllPaths(path, getModel());
 	}
 
-	/**
-	 * Opens all paths in the given node and all nodes below that.
-	 *
-	 * @param path
-	 *            the tree path to the node to expand
-	 * @param treeModel
-	 *            the tree model
-	 * @see JTree#expandPath(TreePath)
-	 */
-	protected void expandAllPaths(TreePath path, TreeModel treeModel) {
+    /**
+     * Opens all paths in the given node and all nodes below that.
+     *
+     * @param path      the tree path to the node to expand
+     * @param treeModel the tree model
+     * @see JTree#expandPath(TreePath) JTree#expandPath(TreePath)JTree#expandPath(TreePath)
+     */
+    protected void expandAllPaths(TreePath path, TreeModel treeModel) {
 		expandPath(path);
 		final Object node = path.getLastPathComponent();
 		final int n = treeModel.getChildCount(node);
@@ -130,7 +135,12 @@ public class PlotConfigurationTree extends JTree {
 		super.setTransferHandler(newHandler);
 	}
 
-	public void createNewTreeModel(PlotConfiguration plotConfiguration) {
+    /**
+     * Create new tree model.
+     *
+     * @param plotConfiguration the plot configuration
+     */
+    public void createNewTreeModel(PlotConfiguration plotConfiguration) {
 
 		PlotConfigurationTreeNode rootNode = new PlotConfigurationTreeNode(plotConfiguration);
 		PlotConfigurationTreeModel treeModel = new PlotConfigurationTreeModel(rootNode, plotConfiguration, this);

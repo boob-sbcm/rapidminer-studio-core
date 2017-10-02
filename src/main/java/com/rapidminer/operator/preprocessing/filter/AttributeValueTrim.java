@@ -41,12 +41,17 @@ import java.util.TreeSet;
 /**
  * This operator creates new attributes from nominal attributes where the new attributes contain the
  * trimmed original values, i.e. leading and trailing spaces will be removed.
- * 
+ *
  * @author Ingo Mierswa, Helge Homburg, Tobias Malbrecht
  */
 public class AttributeValueTrim extends AbstractValueProcessing {
 
-	public AttributeValueTrim(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute value trim.
+     *
+     * @param description the description
+     */
+    public AttributeValueTrim(OperatorDescription description) {
 		super(description);
 	}
 

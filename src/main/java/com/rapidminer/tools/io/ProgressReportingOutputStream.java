@@ -27,9 +27,9 @@ import java.io.OutputStream;
 
 /**
  * Stream reporting the amount of written bytes to ProgressListener
- * 
+ *
  * @author Simon Fischer
- * */
+ */
 public class ProgressReportingOutputStream extends OutputStream {
 
 	private OutputStream parent;
@@ -42,7 +42,16 @@ public class ProgressReportingOutputStream extends OutputStream {
 	private int readBytes = 0;
 	private int lastReportedValue = Integer.MIN_VALUE;
 
-	public ProgressReportingOutputStream(OutputStream out, ProgressListener listener, int minProgress, int maxProgress,
+    /**
+     * Instantiates a new Progress reporting output stream.
+     *
+     * @param out          the out
+     * @param listener     the listener
+     * @param minProgress  the min progress
+     * @param maxProgress  the max progress
+     * @param streamLength the stream length
+     */
+    public ProgressReportingOutputStream(OutputStream out, ProgressListener listener, int minProgress, int maxProgress,
 			int streamLength) {
 		this.parent = out;
 		this.listener = listener;

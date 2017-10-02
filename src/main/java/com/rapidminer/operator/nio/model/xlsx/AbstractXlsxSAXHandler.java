@@ -35,43 +35,38 @@ import com.rapidminer.operator.UserError;
 /**
  * An abstract SAX parser that provides a method to return the typed parsing result.
  *
- * @param <T>
- *            The type of the parsed result.
- *
+ * @param <T> The type of the parsed result.
  * @author Nils Woehler
  * @since 6.3.0
  */
 public abstract class AbstractXlsxSAXHandler<T> extends DefaultHandler {
 
-	/**
-	 * Gets the result of the parsing process.
-	 *
-	 * @return An object which contains the result of the parsing process.
-	 */
-	protected abstract T getResult() throws UserError;
+    /**
+     * Gets the result of the parsing process.
+     *
+     * @return An object which contains the result of the parsing process.
+     * @throws UserError the user error
+     */
+    protected abstract T getResult() throws UserError;
 
-	/**
-	 * @return the path of the Zip entry the concrete implementation is made for
-	 */
-	protected abstract String getZipEntryPath();
+    /**
+     * Gets zip entry path.
+     *
+     * @return the path of the Zip entry the concrete implementation is made for
+     */
+    protected abstract String getZipEntryPath();
 
-	/**
-	 * Parses entry of zip file using the specified handler. Will NOT close the Zip file afterwards.
-	 *
-	 * @param zipFile
-	 *            The file containing the entry
-	 * @throws XlsxException
-	 *             If the zip entry could not be found.
-	 * @throws IOException
-	 *             On error accessing the zip data.
-	 * @throws ParserConfigurationException
-	 *             If a parser cannot be created which satisfies the used configuration.
-	 * @throws SAXException
-	 *             If any SAX errors occur during processing.
-	 * @throws UserError
-	 *             in case the XLSX file is malformed
-	 */
-	public T parseZipEntry(ZipFile zipFile) throws IOException, ParserConfigurationException, SAXException, UserError {
+    /**
+     * Parses entry of zip file using the specified handler. Will NOT close the Zip file afterwards.
+     *
+     * @param zipFile The file containing the entry
+     * @return the t
+     * @throws IOException                  On error accessing the zip data.
+     * @throws ParserConfigurationException If a parser cannot be created which satisfies the used configuration.
+     * @throws SAXException                 If any SAX errors occur during processing.
+     * @throws UserError                    in case the XLSX file is malformed
+     */
+    public T parseZipEntry(ZipFile zipFile) throws IOException, ParserConfigurationException, SAXException, UserError {
 
 		// Lookup zip entry
 		ZipEntry zipEntry = zipFile.getEntry(getZipEntryPath());

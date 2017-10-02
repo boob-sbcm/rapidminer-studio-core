@@ -28,7 +28,7 @@ import java.util.List;
 
 /**
  * Adds iteratively the next feature according to given attribute name array.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class IterativeFeatureAdding implements PopulationOperator {
@@ -37,7 +37,13 @@ public class IterativeFeatureAdding implements PopulationOperator {
 
 	private int counter;
 
-	public IterativeFeatureAdding(int[] attributeIndices, int counter) {
+    /**
+     * Instantiates a new Iterative feature adding.
+     *
+     * @param attributeIndices the attribute indices
+     * @param counter          the counter
+     */
+    public IterativeFeatureAdding(int[] attributeIndices, int counter) {
 		this.indices = attributeIndices;
 		this.counter = counter;
 	}

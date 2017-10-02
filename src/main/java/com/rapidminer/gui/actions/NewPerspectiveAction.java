@@ -29,6 +29,7 @@ import com.rapidminer.gui.tools.dialogs.InputDialog;
 
 
 /**
+ * The type New perspective action.
  *
  * @author Simon Fischer
  */
@@ -49,7 +50,12 @@ public class NewPerspectiveAction extends ResourceAction {
 			this.perspectiveController = perspectiveController;
 		}
 
-		public boolean isOk() {
+        /**
+         * Is ok boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isOk() {
 			return ok;
 		}
 
@@ -66,7 +72,12 @@ public class NewPerspectiveAction extends ResourceAction {
 
 	private final MainFrame mainFrame;
 
-	public NewPerspectiveAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new New perspective action.
+     *
+     * @param mainFrame the main frame
+     */
+    public NewPerspectiveAction(MainFrame mainFrame) {
 		super("new_perspective");
 		this.mainFrame = mainFrame;
 		setCondition(EDIT_IN_PROGRESS, DONT_CARE);

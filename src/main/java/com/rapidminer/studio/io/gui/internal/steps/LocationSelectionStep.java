@@ -42,11 +42,13 @@ import com.rapidminer.gui.tools.SwingTools;
  *
  * @author Nils Woehler
  * @since 7.0.0
- *
  */
 public final class LocationSelectionStep extends AbstractWizardStep {
 
-	public static final String LOCATION_SELECTION_STEP_ID = "location_selection";
+    /**
+     * The constant LOCATION_SELECTION_STEP_ID.
+     */
+    public static final String LOCATION_SELECTION_STEP_ID = "location_selection";
 
 	private JPanel viewWrapper = new JPanel(new BorderLayout());
 
@@ -62,7 +64,12 @@ public final class LocationSelectionStep extends AbstractWizardStep {
 
 	private final ImportWizard wizard;
 
-	public LocationSelectionStep(ImportWizard wizard) {
+    /**
+     * Instantiates a new Location selection step.
+     *
+     * @param wizard the wizard
+     */
+    public LocationSelectionStep(ImportWizard wizard) {
 		this.wizard = wizard;
 	}
 

@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for executeProcessWithOffset complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="executeProcessWithOffset">
  *   &lt;complexContent>
@@ -42,8 +42,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "executeProcessWithOffset", propOrder = {
@@ -54,18 +52,27 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ExecuteProcessWithOffset {
 
+    /**
+     * The Process location.
+     */
     protected String processLocation;
+    /**
+     * The Execution time.
+     */
     protected Long executionTime;
+    /**
+     * The Process context.
+     */
     protected ProcessContextWrapper processContext;
+    /**
+     * The Queue name.
+     */
     protected String queueName;
 
     /**
      * Gets the value of the processLocation property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getProcessLocation() {
         return processLocation;
@@ -73,11 +80,8 @@ public class ExecuteProcessWithOffset {
 
     /**
      * Sets the value of the processLocation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setProcessLocation(String value) {
         this.processLocation = value;
@@ -85,11 +89,8 @@ public class ExecuteProcessWithOffset {
 
     /**
      * Gets the value of the executionTime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
+     *
+     * @return possible object is     {@link Long }
      */
     public Long getExecutionTime() {
         return executionTime;
@@ -97,11 +98,8 @@ public class ExecuteProcessWithOffset {
 
     /**
      * Sets the value of the executionTime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
+     *
+     * @param value allowed object is     {@link Long }
      */
     public void setExecutionTime(Long value) {
         this.executionTime = value;
@@ -109,11 +107,8 @@ public class ExecuteProcessWithOffset {
 
     /**
      * Gets the value of the processContext property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ProcessContextWrapper }
-     *     
+     *
+     * @return possible object is     {@link ProcessContextWrapper }
      */
     public ProcessContextWrapper getProcessContext() {
         return processContext;
@@ -121,11 +116,8 @@ public class ExecuteProcessWithOffset {
 
     /**
      * Sets the value of the processContext property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProcessContextWrapper }
-     *     
+     *
+     * @param value allowed object is     {@link ProcessContextWrapper }
      */
     public void setProcessContext(ProcessContextWrapper value) {
         this.processContext = value;
@@ -133,11 +125,8 @@ public class ExecuteProcessWithOffset {
 
     /**
      * Gets the value of the queueName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getQueueName() {
         return queueName;
@@ -145,11 +134,8 @@ public class ExecuteProcessWithOffset {
 
     /**
      * Sets the value of the queueName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setQueueName(String value) {
         this.queueName = value;

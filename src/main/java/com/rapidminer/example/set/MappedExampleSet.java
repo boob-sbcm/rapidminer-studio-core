@@ -40,13 +40,13 @@ import java.util.Random;
  * with replacement. For performance reasons (iterations, database access...) the mapping will be
  * sorted during the construction of this example set (based on the parameter sort).
  * </p>
- * 
+ * <p>
  * <p>
  * Please note that the constructor takes a boolean flag indicating if the examples from the given
  * array are used or if the examples which are not part of this mapping should be used. This might
  * be useful in the context of bootstrapped validation for example.
  * </p>
- * 
+ *
  * @author Ingo Mierswa, Martin Scholz
  */
 public class MappedExampleSet extends AbstractExampleSet {
@@ -59,25 +59,39 @@ public class MappedExampleSet extends AbstractExampleSet {
 	/** The used mapping. */
 	private int[] mapping;
 
-	/** Constructs an example set based on the given mapping. */
-	public MappedExampleSet(ExampleSet parent, int[] mapping) {
+    /**
+     * Constructs an example set based on the given mapping.  @param parent the parent
+     *
+     * @param parent  the parent
+     * @param mapping the mapping
+     */
+    public MappedExampleSet(ExampleSet parent, int[] mapping) {
 		this(parent, mapping, true);
 	}
 
-	/**
-	 * Constructs an example set based on the given mapping. If the boolean flag useMappedExamples
-	 * is false only examples which are not part of the original mapping are used.
-	 */
-	public MappedExampleSet(ExampleSet parent, int[] mapping, boolean useMappedExamples) {
+    /**
+     * Constructs an example set based on the given mapping. If the boolean flag useMappedExamples
+     * is false only examples which are not part of the original mapping are used.
+     *
+     * @param parent            the parent
+     * @param mapping           the mapping
+     * @param useMappedExamples the use mapped examples
+     */
+    public MappedExampleSet(ExampleSet parent, int[] mapping, boolean useMappedExamples) {
 		this(parent, mapping, useMappedExamples, true);
 	}
 
-	/**
-	 * Constructs an example set based on the given mapping. If the boolean flag useMappedExamples
-	 * is false only examples which are not part of the original mapping are used. If the boolean
-	 * flag sort is false the mapping is used as is.
-	 */
-	public MappedExampleSet(ExampleSet parent, int[] mapping, boolean useMappedExamples, boolean sort) {
+    /**
+     * Constructs an example set based on the given mapping. If the boolean flag useMappedExamples
+     * is false only examples which are not part of the original mapping are used. If the boolean
+     * flag sort is false the mapping is used as is.
+     *
+     * @param parent            the parent
+     * @param mapping           the mapping
+     * @param useMappedExamples the use mapped examples
+     * @param sort              the sort
+     */
+    public MappedExampleSet(ExampleSet parent, int[] mapping, boolean useMappedExamples, boolean sort) {
 		this.parent = (ExampleSet) parent.clone();
 		this.mapping = mapping;
 		if (sort) {
@@ -104,8 +118,12 @@ public class MappedExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	/** Clone constructor. */
-	public MappedExampleSet(MappedExampleSet exampleSet) {
+    /**
+     * Clone constructor.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     */
+    public MappedExampleSet(MappedExampleSet exampleSet) {
 		this.parent = (ExampleSet) exampleSet.parent.clone();
 		this.mapping = exampleSet.mapping;
 	}
@@ -168,8 +186,15 @@ public class MappedExampleSet extends AbstractExampleSet {
 		return parent.getExampleTable();
 	}
 
-	/** Creates a new mapping for the given example set by sampling with replacement. */
-	public static int[] createBootstrappingMapping(ExampleSet exampleSet, int size, Random random) {
+    /**
+     * Creates a new mapping for the given example set by sampling with replacement.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     * @param size       the size
+     * @param random     the random
+     * @return the int [ ]
+     */
+    public static int[] createBootstrappingMapping(ExampleSet exampleSet, int size, Random random) {
 		int[] mapping = new int[size];
 		for (int i = 0; i < mapping.length; i++) {
 			mapping[i] = random.nextInt(exampleSet.size());
@@ -177,7 +202,15 @@ public class MappedExampleSet extends AbstractExampleSet {
 		return mapping;
 	}
 
-	public static int[] createWeightedBootstrappingMapping(ExampleSet exampleSet, int size, Random random) {
+    /**
+     * Create weighted bootstrapping mapping int [ ].
+     *
+     * @param exampleSet the example set
+     * @param size       the size
+     * @param random     the random
+     * @return the int [ ]
+     */
+    public static int[] createWeightedBootstrappingMapping(ExampleSet exampleSet, int size, Random random) {
 		Attribute weightAttribute = exampleSet.getAttributes().getSpecial(Attributes.WEIGHT_NAME);
 		exampleSet.recalculateAttributeStatistics(weightAttribute);
 		double maxWeight = exampleSet.getStatistics(weightAttribute, Statistics.MAXIMUM);

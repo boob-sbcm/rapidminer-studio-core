@@ -19,12 +19,20 @@
 package com.rapidminer.tools;
 
 /**
- * @see Observable
+ * The interface Observer.
+ *
+ * @param <A> the type parameter
  * @author Simon Fischer
- * 
+ * @see Observable
  */
 public interface Observer<A> {
 
-	public void update(Observable<A> observable, A arg);
+    /**
+     * Update.
+     *
+     * @param observable the observable
+     * @param arg        the arg
+     */
+    public void update(Observable<A> observable, A arg);
 
 }

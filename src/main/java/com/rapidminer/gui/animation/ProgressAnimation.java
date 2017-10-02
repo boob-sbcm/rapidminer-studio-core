@@ -85,7 +85,12 @@ public class ProgressAnimation implements Animation {
 
 	private int lastDrawnProgress = -1;
 
-	public ProgressAnimation(ProgressProvider progressProvider) {
+    /**
+     * Instantiates a new Progress animation.
+     *
+     * @param progressProvider the progress provider
+     */
+    public ProgressAnimation(ProgressProvider progressProvider) {
 		indeterminateAnimation = new IndeterminateAnimation();
 		this.progressProvider = progressProvider;
 	}

@@ -24,11 +24,16 @@ import com.rapidminer.tools.plugin.Plugin;
 
 
 /**
+ * The type String color map.
+ *
  * @author Tobias Malbrecht
  */
 public class StringColorMap extends ParentResolvingMap<String, Color> {
 
-	public static final Color DEFAULT_COLOR = Color.WHITE;
+    /**
+     * The constant DEFAULT_COLOR.
+     */
+    public static final Color DEFAULT_COLOR = Color.WHITE;
 
 	@Override
 	public String getParent(String child, Plugin provider) {

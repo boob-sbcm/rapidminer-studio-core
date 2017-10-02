@@ -26,14 +26,20 @@ import com.rapidminer.tools.LogService;
 /**
  * Creates the reciprocal value of all input attributes. If the generator is bounded, the values are
  * bounded by the biggest and smallest possible values.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa ingomierswa Exp $
  */
 public class ReciprocalValueGenerator extends SingularNumericalGenerator {
 
-	public static final String FUNCTION_NAMES[] = { "1/" };
+    /**
+     * The constant FUNCTION_NAMES.
+     */
+    public static final String FUNCTION_NAMES[] = { "1/" };
 
-	public ReciprocalValueGenerator() {}
+    /**
+     * Instantiates a new Reciprocal value generator.
+     */
+    public ReciprocalValueGenerator() {}
 
 	@Override
 	public FeatureGenerator newInstance() {

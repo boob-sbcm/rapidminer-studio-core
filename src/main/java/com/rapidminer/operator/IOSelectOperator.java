@@ -40,7 +40,7 @@ import com.rapidminer.tools.OperatorService;
  * the IOObject which was added at last gets the number one, the object added directly before get
  * number two and so on.
  * </p>
- *
+ * <p>
  * <p>
  * The user can specify with the parameter <code>delete_others</code> what will happen to the
  * non-selected input objects of the specified type: if this parameter is set to true, all other
@@ -52,15 +52,29 @@ import com.rapidminer.tools.OperatorService;
  */
 public class IOSelectOperator extends Operator {
 
-	public static final String PARAMETER_IO_OBJECT = "io_object";
+    /**
+     * The constant PARAMETER_IO_OBJECT.
+     */
+    public static final String PARAMETER_IO_OBJECT = "io_object";
 
-	public static final String PARAMETER_SELECT_WHICH = "select_which";
+    /**
+     * The constant PARAMETER_SELECT_WHICH.
+     */
+    public static final String PARAMETER_SELECT_WHICH = "select_which";
 
-	public static final String PARAMETER_DELETE_OTHERS = "delete_others";
+    /**
+     * The constant PARAMETER_DELETE_OTHERS.
+     */
+    public static final String PARAMETER_DELETE_OTHERS = "delete_others";
 
 	private String[] objectArray = null;
 
-	public IOSelectOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Io select operator.
+     *
+     * @param description the description
+     */
+    public IOSelectOperator(OperatorDescription description) {
 		super(description);
 	}
 

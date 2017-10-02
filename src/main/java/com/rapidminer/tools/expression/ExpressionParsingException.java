@@ -46,53 +46,50 @@ import com.rapidminer.tools.I18N;
  * evaluate a subexpression</li> </ul>
  *
  * @author Gisa Schaefer
- *
  */
 public class ExpressionParsingException extends RuntimeException {
 
 	private static final long serialVersionUID = 5039785364556274963L;
 	private transient ParserRuleContext ctx;
 
-	/**
-	 * Creates a parsing exception with message associated to the i18n and the arguments.
-	 *
-	 * @param i18n
-	 *            the i18n error key
-	 * @param arguments
-	 */
-	protected ExpressionParsingException(String i18n, Object... arguments) {
+    /**
+     * Creates a parsing exception with message associated to the i18n and the arguments.
+     *
+     * @param i18n      the i18n error key
+     * @param arguments the arguments
+     */
+    protected ExpressionParsingException(String i18n, Object... arguments) {
 		super(I18N.getErrorMessage(i18n, arguments));
 	}
 
-	/**
-	 * Wraps an exception into an {@link ExpressionParsingException} and takes its message.
-	 *
-	 * @param e
-	 *            the throwable that is the cause
-	 */
-	public ExpressionParsingException(Throwable e) {
+    /**
+     * Wraps an exception into an {@link ExpressionParsingException} and takes its message.
+     *
+     * @param e the throwable that is the cause
+     */
+    public ExpressionParsingException(Throwable e) {
 		super(e.getMessage(), e);
 	}
 
-	/**
-	 * Creates a parsing exception with message associated to the i18n and the arguments and stores
-	 * the error context ctx.
-	 *
-	 * @param ctx
-	 *            the error context
-	 * @param i18n
-	 *            the i18n error key
-	 * @param arguments
-	 */
-	protected ExpressionParsingException(ParserRuleContext ctx, String i18n, Object... arguments) {
+    /**
+     * Creates a parsing exception with message associated to the i18n and the arguments and stores
+     * the error context ctx.
+     *
+     * @param ctx       the error context
+     * @param i18n      the i18n error key
+     * @param arguments the arguments
+     */
+    protected ExpressionParsingException(ParserRuleContext ctx, String i18n, Object... arguments) {
 		super(I18N.getErrorMessage(i18n, arguments));
 		this.ctx = ctx;
 	}
 
-	/**
-	 * @return the error context, can be {@code null}
-	 */
-	public ParserRuleContext getErrorContext() {
+    /**
+     * Gets error context.
+     *
+     * @return the error context, can be {@code null}
+     */
+    public ParserRuleContext getErrorContext() {
 		return ctx;
 	}
 

@@ -63,7 +63,7 @@ import com.rapidminer.tools.math.container.Range;
  * parameters <code>replace_what</code> and <code>replace_by</code>. Multiple mappings can be
  * specified in the parameter list <code>value_mappings</code>.
  * </p>
- *
+ * <p>
  * <p>
  * Additionally, the operator allows to define (and consider) a default mapping. If
  * <code>add_default_mapping</code> is set to true and <code>default_value</code> is properly set,
@@ -71,14 +71,14 @@ import com.rapidminer.tools.math.container.Range;
  * replaced by the default value. This may be helpful in cases where only some values should be
  * mapped explicitly and many unimportant values should be mapped to a default value (e.g. "other").
  * </p>
- *
+ * <p>
  * <p>
  * If the parameter <code>consider_regular_expressions</code> is enabled, the values are replaced by
  * the new values if the original values match the given regular expressions. The value
  * corresponding to the first matching regular expression in the mappings list is taken as
  * replacement.
  * </p>
- *
+ * <p>
  * <p>
  * This operator supports regular expressions for the attribute names, i.e. the value mapping is
  * applied on all attributes for which the name fulfills the pattern defined by the name expression.
@@ -88,39 +88,55 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class AttributeValueMapper extends AbstractValueProcessing {
 
-	public static final String PARAMETER_NEW_VALUES = "new_value";
+    /**
+     * The constant PARAMETER_NEW_VALUES.
+     */
+    public static final String PARAMETER_NEW_VALUES = "new_value";
 
-	/** The parameter name for &quot;The first value which should be merged.&quot; */
-	public static final String PARAMETER_VALUE_MAPPINGS = "value_mappings";
+    /**
+     * The parameter name for &quot;The first value which should be merged.&quot;
+     */
+    public static final String PARAMETER_VALUE_MAPPINGS = "value_mappings";
 
-	/** The parameter name for &quot;The second value which should be merged.&quot; */
-	public static final String PARAMETER_OLD_VALUES = "old_values";
+    /**
+     * The parameter name for &quot;The second value which should be merged.&quot;
+     */
+    public static final String PARAMETER_OLD_VALUES = "old_values";
 
-	/** The parameter name for &quot;All occurrences of this value will be replaced.&quot; */
-	public static final String PARAMETER_REPLACE_WHAT = "replace_what";
+    /**
+     * The parameter name for &quot;All occurrences of this value will be replaced.&quot;
+     */
+    public static final String PARAMETER_REPLACE_WHAT = "replace_what";
 
-	/** The parameter name for &quot;The new attribute value to use.&quot; */
-	public static final String PARAMETER_REPLACE_BY = "replace_by";
+    /**
+     * The parameter name for &quot;The new attribute value to use.&quot;
+     */
+    public static final String PARAMETER_REPLACE_BY = "replace_by";
 
-	/**
-	 * The parameter name for &quot;Enables matching based on regular expressions; original values
-	 * may be specified as regular expressions.&quot
-	 */
-	public static final String PARAMETER_CONSIDER_REGULAR_EXPRESSIONS = "consider_regular_expressions";
+    /**
+     * The parameter name for &quot;Enables matching based on regular expressions; original values
+     * may be specified as regular expressions.&quot
+     */
+    public static final String PARAMETER_CONSIDER_REGULAR_EXPRESSIONS = "consider_regular_expressions";
 
-	/**
-	 * The parameter name for &quot;If set to true, all original values which are not listed in the
-	 * value mappings list are mapped to the default value.&quot;
-	 */
-	public static final String PARAMETER_ADD_DEFAULT_MAPPING = "add_default_mapping";
+    /**
+     * The parameter name for &quot;If set to true, all original values which are not listed in the
+     * value mappings list are mapped to the default value.&quot;
+     */
+    public static final String PARAMETER_ADD_DEFAULT_MAPPING = "add_default_mapping";
 
-	/**
-	 * The parameter name for &quot;The default value all original values are mapped to, if
-	 * add_default_mapping is set to true.&quot;
-	 */
-	public static final String PARAMETER_DEFAULT_VALUE = "default_value";
+    /**
+     * The parameter name for &quot;The default value all original values are mapped to, if
+     * add_default_mapping is set to true.&quot;
+     */
+    public static final String PARAMETER_DEFAULT_VALUE = "default_value";
 
-	public AttributeValueMapper(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute value mapper.
+     *
+     * @param description the description
+     */
+    public AttributeValueMapper(OperatorDescription description) {
 		super(description);
 	}
 

@@ -39,7 +39,6 @@ import com.rapidminer.tools.Tools;
  * labels and the coefficients.
  *
  * @author Sebastian Land
- *
  */
 public class SeeminglyUnrelatedRegressionModel extends PredictionModel {
 
@@ -51,7 +50,15 @@ public class SeeminglyUnrelatedRegressionModel extends PredictionModel {
 	private ArrayList<String> labelNames;
 	private double[] coefficients;
 
-	protected SeeminglyUnrelatedRegressionModel(ExampleSet trainingExampleSet, ArrayList<String[]> usedAttributeNames,
+    /**
+     * Instantiates a new Seemingly unrelated regression model.
+     *
+     * @param trainingExampleSet the training example set
+     * @param usedAttributeNames the used attribute names
+     * @param labelNames         the label names
+     * @param coefficients       the coefficients
+     */
+    protected SeeminglyUnrelatedRegressionModel(ExampleSet trainingExampleSet, ArrayList<String[]> usedAttributeNames,
 			ArrayList<String> labelNames, double[] coefficients) {
 		super(trainingExampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
@@ -126,7 +133,13 @@ public class SeeminglyUnrelatedRegressionModel extends PredictionModel {
 		return null;
 	}
 
-	public double[] getCoefficients(String labelName) {
+    /**
+     * Get coefficients double [ ].
+     *
+     * @param labelName the label name
+     * @return the double [ ]
+     */
+    public double[] getCoefficients(String labelName) {
 		int offset = 0;
 		int length = 0;
 		int i = 0;
@@ -150,7 +163,13 @@ public class SeeminglyUnrelatedRegressionModel extends PredictionModel {
 		return null;
 	}
 
-	public String[] getSelectedAttributeNames(String labelName) {
+    /**
+     * Get selected attribute names string [ ].
+     *
+     * @param labelName the label name
+     * @return the string [ ]
+     */
+    public String[] getSelectedAttributeNames(String labelName) {
 		int i = 0;
 		for (String label : labelNames) {
 			if (label.equals(labelName)) {
@@ -161,7 +180,12 @@ public class SeeminglyUnrelatedRegressionModel extends PredictionModel {
 		return null;
 	}
 
-	public List<String> getLabelNames() {
+    /**
+     * Gets label names.
+     *
+     * @return the label names
+     */
+    public List<String> getLabelNames() {
 		return labelNames;
 	}
 

@@ -26,12 +26,27 @@
  */
 package de.bwaldvogel.liblinear;
 
+/**
+ * The type Feature node.
+ */
 public class FeatureNode implements Feature {
 
-	public final int index;
-	public double value;
+    /**
+     * The Index.
+     */
+    public final int index;
+    /**
+     * The Value.
+     */
+    public double value;
 
-	public FeatureNode(final int index, final double value) {
+    /**
+     * Instantiates a new Feature node.
+     *
+     * @param index the index
+     * @param value the value
+     */
+    public FeatureNode(final int index, final double value) {
 		if (index < 0) {
 			throw new IllegalArgumentException("index must be >= 0");
 		}

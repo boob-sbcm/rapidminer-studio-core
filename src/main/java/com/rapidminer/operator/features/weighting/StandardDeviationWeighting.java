@@ -36,16 +36,16 @@ import com.rapidminer.parameter.ParameterTypeCategory;
  * Creates weights from the standard deviations of all attributes. The values can be normalized by
  * the average, the minimum, or the maximum of the attribute.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class StandardDeviationWeighting extends AbstractWeighting {
 
-	/**
-	 * The parameter name for &quot;Indicates if the standard deviation should be divided by the
-	 * minimum, maximum, or average of the attribute.&quot;
-	 */
-	public static final String PARAMETER_NORMALIZE = "normalize";
+    /**
+     * The parameter name for &quot;Indicates if the standard deviation should be divided by the
+     * minimum, maximum, or average of the attribute.&quot;
+     */
+    public static final String PARAMETER_NORMALIZE = "normalize";
 
 	private static final String[] NORMALIZATIONS = { "none", "average", "minimum", "maximum" };
 
@@ -57,7 +57,12 @@ public class StandardDeviationWeighting extends AbstractWeighting {
 
 	private static final int MAXIMUM = 3;
 
-	public StandardDeviationWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Standard deviation weighting.
+     *
+     * @param description the description
+     */
+    public StandardDeviationWeighting(OperatorDescription description) {
 		super(description, false);
 	}
 

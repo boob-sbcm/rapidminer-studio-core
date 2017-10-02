@@ -27,17 +27,22 @@ import java.util.Vector;
 /**
  * A view on a parent DataTable which maps values from the parent table to other values. Can e.g. be
  * used to change the mapping of nominal values.
- * 
+ *
  * @author Marius Helf
  */
 public class ValueMappingDataTableView extends AbstractDataTable implements DataTableListener {
 
-	public static interface MappedDataTableListener {
+    /**
+     * The interface Mapped data table listener.
+     */
+    public static interface MappedDataTableListener {
 
-		/**
-		 * This method is called by a datatable, if its content is changed.
-		 */
-		public void informDataTableChange(DataTable dataTable);
+        /**
+         * This method is called by a datatable, if its content is changed.
+         *
+         * @param dataTable the data table
+         */
+        public void informDataTableChange(DataTable dataTable);
 	}
 
 	private List<MappedDataTableListener> listeners = new LinkedList<MappedDataTableListener>();
@@ -45,7 +50,12 @@ public class ValueMappingDataTableView extends AbstractDataTable implements Data
 	private DataTable parentTable;
 	private Vector<DataTableMappingProvider> mappings;
 
-	public ValueMappingDataTableView(DataTable parentDataTable) {
+    /**
+     * Instantiates a new Value mapping data table view.
+     *
+     * @param parentDataTable the parent data table
+     */
+    public ValueMappingDataTableView(DataTable parentDataTable) {
 		super(parentDataTable.getName());
 		this.parentTable = parentDataTable;
 
@@ -59,7 +69,14 @@ public class ValueMappingDataTableView extends AbstractDataTable implements Data
 		parentTable.addDataTableListener(this);
 	}
 
-	double mapValue(double originalValue, int columnIdx) {
+    /**
+     * Map value double.
+     *
+     * @param originalValue the original value
+     * @param columnIdx     the column idx
+     * @return the double
+     */
+    double mapValue(double originalValue, int columnIdx) {
 		double mappedValue = originalValue;
 
 		if (mappings.elementAt(columnIdx) != null) {
@@ -104,7 +121,13 @@ public class ValueMappingDataTableView extends AbstractDataTable implements Data
 		return parentTable.getNumberOfRows();
 	}
 
-	public void setMappingProvider(int columnIdx, DataTableMappingProvider mapping) {
+    /**
+     * Sets mapping provider.
+     *
+     * @param columnIdx the column idx
+     * @param mapping   the mapping
+     */
+    public void setMappingProvider(int columnIdx, DataTableMappingProvider mapping) {
 		if (mapping != mappings.elementAt(columnIdx)) {
 			mappings.set(columnIdx, mapping);
 			informMappedDataTableListeners();
@@ -112,14 +135,24 @@ public class ValueMappingDataTableView extends AbstractDataTable implements Data
 		}
 	}
 
-	/*
-	 * Listener Methods
+    /**
+     * Add mapped data table listener.
+     *
+     * @param listener the listener
+     */
+/*
+     * Listener Methods
 	 */
 	public void addMappedDataTableListener(MappedDataTableListener listener) {
 		this.listeners.add(listener);
 	}
 
-	public void removeMappedDataTableListewner(MappedDataTableListener listener) {
+    /**
+     * Remove mapped data table listewner.
+     *
+     * @param listener the listener
+     */
+    public void removeMappedDataTableListewner(MappedDataTableListener listener) {
 		this.listeners.remove(listener);
 	}
 
@@ -236,7 +269,12 @@ public class ValueMappingDataTableView extends AbstractDataTable implements Data
 		fireEvent();
 	}
 
-	public DataTable getParent() {
+    /**
+     * Gets parent.
+     *
+     * @return the parent
+     */
+    public DataTable getParent() {
 		return parentTable;
 	}
 }

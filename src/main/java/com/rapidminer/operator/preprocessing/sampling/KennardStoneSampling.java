@@ -62,24 +62,40 @@ import java.util.TreeSet;
  * same result, due to the two starting points which are always the same. This implementation
  * reduces number of iterations by holding a list with candidates of the largest smallest distances.
  * The parameters controll the number of examples in the sample
- * 
+ *
  * @author Sebastian Land
  */
 public class KennardStoneSampling extends AbstractSamplingOperator {
 
-	public static final String PARAMETER_SAMPLE = "sample";
+    /**
+     * The constant PARAMETER_SAMPLE.
+     */
+    public static final String PARAMETER_SAMPLE = "sample";
 
-	public static final String[] SAMPLE_MODES = { "absolute", "relative" };
+    /**
+     * The constant SAMPLE_MODES.
+     */
+    public static final String[] SAMPLE_MODES = { "absolute", "relative" };
 
-	public static final int SAMPLE_ABSOLUTE = 0;
+    /**
+     * The constant SAMPLE_ABSOLUTE.
+     */
+    public static final int SAMPLE_ABSOLUTE = 0;
 
-	public static final int SAMPLE_RELATIVE = 1;
+    /**
+     * The constant SAMPLE_RELATIVE.
+     */
+    public static final int SAMPLE_RELATIVE = 1;
 
-	/** The parameter name for &quot;The fraction of examples which should be sampled&quot; */
-	public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
+    /**
+     * The parameter name for &quot;The fraction of examples which should be sampled&quot;
+     */
+    public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
 
-	/** The parameter name for &quot;This ratio determines the size of the new example set.&quot; */
-	public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
+    /**
+     * The parameter name for &quot;This ratio determines the size of the new example set.&quot;
+     */
+    public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
 
 	private static class Candidate implements Comparable<Candidate> {
 
@@ -87,21 +103,43 @@ public class KennardStoneSampling extends AbstractSamplingOperator {
 		private double distance;
 		private int exampleIndex;
 
-		public Candidate(double[] exampleValues, double distance, int exampleIndex) {
+        /**
+         * Instantiates a new Candidate.
+         *
+         * @param exampleValues the example values
+         * @param distance      the distance
+         * @param exampleIndex  the example index
+         */
+        public Candidate(double[] exampleValues, double distance, int exampleIndex) {
 			attributeValues = exampleValues;
 			this.distance = distance;
 			this.exampleIndex = exampleIndex;
 		}
 
-		public double getDistance() {
+        /**
+         * Gets distance.
+         *
+         * @return the distance
+         */
+        public double getDistance() {
 			return distance;
 		}
 
-		public double[] getValues() {
+        /**
+         * Get values double [ ].
+         *
+         * @return the double [ ]
+         */
+        public double[] getValues() {
 			return attributeValues;
 		}
 
-		public int getExampleIndex() {
+        /**
+         * Gets example index.
+         *
+         * @return the example index
+         */
+        public int getExampleIndex() {
 			return exampleIndex;
 		}
 
@@ -111,7 +149,12 @@ public class KennardStoneSampling extends AbstractSamplingOperator {
 		}
 	}
 
-	public KennardStoneSampling(OperatorDescription description) {
+    /**
+     * Instantiates a new Kennard stone sampling.
+     *
+     * @param description the description
+     */
+    public KennardStoneSampling(OperatorDescription description) {
 		super(description);
 	}
 

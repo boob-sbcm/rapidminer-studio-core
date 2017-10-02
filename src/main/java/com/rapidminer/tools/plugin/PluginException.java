@@ -19,15 +19,20 @@
 package com.rapidminer.tools.plugin;
 
 /**
- * 
+ * The type Plugin exception.
+ *
  * @author Simon Fischer
- * 
  */
 public class PluginException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	public PluginException(String msg) {
+    /**
+     * Instantiates a new Plugin exception.
+     *
+     * @param msg the msg
+     */
+    public PluginException(String msg) {
 		super(msg);
 	}
 }

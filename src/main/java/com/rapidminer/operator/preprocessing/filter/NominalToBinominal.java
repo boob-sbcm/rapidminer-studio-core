@@ -55,9 +55,15 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class NominalToBinominal extends PreprocessingOperator {
 
-	public static final String PARAMETER_USE_UNDERSCORE_IN_NAME = "use_underscore_in_name";
+    /**
+     * The constant PARAMETER_USE_UNDERSCORE_IN_NAME.
+     */
+    public static final String PARAMETER_USE_UNDERSCORE_IN_NAME = "use_underscore_in_name";
 
-	public static final String PARAMETER_TRANSFORM_BINOIMINAL = "transform_binominal";
+    /**
+     * The constant PARAMETER_TRANSFORM_BINOIMINAL.
+     */
+    public static final String PARAMETER_TRANSFORM_BINOIMINAL = "transform_binominal";
 
 	/**
 	 * Incompatible version, old version writes into the exampleset, if original output port is not
@@ -65,7 +71,12 @@ public class NominalToBinominal extends PreprocessingOperator {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public NominalToBinominal(OperatorDescription description) {
+    /**
+     * Instantiates a new Nominal to binominal.
+     *
+     * @param description the description
+     */
+    public NominalToBinominal(OperatorDescription description) {
 		super(description);
 	}
 

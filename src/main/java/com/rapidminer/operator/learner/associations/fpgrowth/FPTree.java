@@ -28,35 +28,41 @@ import java.util.Map;
 
 /**
  * This is the basic data structure for {@link FPGrowth}.
- * 
+ *
  * @author Sebastian Land
  */
 public class FPTree extends FPTreeNode {
 
 	private Map<Item, Header> headerTable;
 
-	public FPTree() {
+    /**
+     * Instantiates a new Fp tree.
+     */
+    public FPTree() {
 		super();
 		headerTable = new HashMap<Item, Header>();
 		children = new HashMap<Item, FPTreeNode>();
 	}
 
-	/**
-	 * This method adds a set of Items to the tree. This set of items has to be sorted after the
-	 * frequency of the contained items. This method should be used to add Items of a transaction or
-	 * a treepath to the tree. The frequency of the set is represented of weight, which should be 1
-	 * if items are gathered from transaction
-	 * 
-	 * @param itemSet
-	 *            the sorted set of items
-	 * @param weight
-	 *            the frequency of the set of items
-	 */
-	public void addItemSet(Collection<Item> itemSet, int weight) {
+    /**
+     * This method adds a set of Items to the tree. This set of items has to be sorted after the
+     * frequency of the contained items. This method should be used to add Items of a transaction or
+     * a treepath to the tree. The frequency of the set is represented of weight, which should be 1
+     * if items are gathered from transaction
+     *
+     * @param itemSet the sorted set of items
+     * @param weight  the frequency of the set of items
+     */
+    public void addItemSet(Collection<Item> itemSet, int weight) {
 		super.addItemSet(itemSet, headerTable, weight);
 	}
 
-	public Map<Item, Header> getHeaderTable() {
+    /**
+     * Gets header table.
+     *
+     * @return the header table
+     */
+    public Map<Item, Header> getHeaderTable() {
 		return headerTable;
 	}
 
@@ -72,7 +78,13 @@ public class FPTree extends FPTreeNode {
 		return buffer.toString();
 	}
 
-	public String printHeaderTable(int recursionDepth) {
+    /**
+     * Print header table string.
+     *
+     * @param recursionDepth the recursion depth
+     * @return the string
+     */
+    public String printHeaderTable(int recursionDepth) {
 		StringBuffer buffer = new StringBuffer();
 		for (Item item : headerTable.keySet()) {
 			buffer.append(item.toString());

@@ -27,12 +27,17 @@ import com.rapidminer.parameter.UndefinedParameterError;
 
 /**
  * Abstract superclass of all feature processing operators who remove features from the example set.
- * 
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractFeatureSelection extends AbstractFeatureProcessing {
 
-	public AbstractFeatureSelection(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract feature selection.
+     *
+     * @param description the description
+     */
+    public AbstractFeatureSelection(OperatorDescription description) {
 		super(description);
 	}
 

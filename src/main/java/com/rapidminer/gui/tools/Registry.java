@@ -24,48 +24,46 @@ import java.util.List;
 /**
  * General Registry to register custom objects and listener support to allow notification about
  * registering/unregistering events.
- * 
+ *
+ * @param <T> the type parameter
  * @author Sabrina Kirstein, Marco Boeck
- * 
  */
 public interface Registry<T> {
 
-	/**
-	 * Registers the object t and informs the listener that the object registered.
-	 * 
-	 * @param T
-	 *            object to register
-	 */
-	public void register(T t);
+    /**
+     * Registers the object t and informs the listener that the object registered.
+     *
+     * @param t the t
+     */
+    public void register(T t);
 
-	/**
-	 * Unregisters the object t and informs the listener that the object unregistered. If the object
-	 * was not registered in the first place, does nothing.
-	 * 
-	 * @param T
-	 *            object to unregister
-	 */
-	public void unregister(T t);
+    /**
+     * Unregisters the object t and informs the listener that the object unregistered. If the object
+     * was not registered in the first place, does nothing.
+     *
+     * @param t the t
+     */
+    public void unregister(T t);
 
-	/**
-	 * Registers a RegisterListener to inform listeners about new registered objects.
-	 * 
-	 * @param listener
-	 */
-	public void registerListener(RegistryListener<T> listener);
+    /**
+     * Registers a RegisterListener to inform listeners about new registered objects.
+     *
+     * @param listener the listener
+     */
+    public void registerListener(RegistryListener<T> listener);
 
-	/**
-	 * Unregisters a RegisterListener. If the listener was not registered in the first place, does
-	 * nothing.
-	 * 
-	 * @param listener
-	 */
-	public void unregisterListener(RegistryListener<T> listener);
+    /**
+     * Unregisters a RegisterListener. If the listener was not registered in the first place, does
+     * nothing.
+     *
+     * @param listener the listener
+     */
+    public void unregisterListener(RegistryListener<T> listener);
 
-	/**
-	 * Return a list of all registered objects.
-	 * 
-	 * @return
-	 */
-	public List<T> getRegisteredObjects();
+    /**
+     * Return a list of all registered objects.
+     *
+     * @return registered objects
+     */
+    public List<T> getRegisteredObjects();
 }

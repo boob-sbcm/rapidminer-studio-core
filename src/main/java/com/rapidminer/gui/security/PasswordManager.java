@@ -43,11 +43,13 @@ import com.rapidminer.tools.GlobalAuthenticator;
  * username and password is also included.
  *
  * @author Miguel Buescher
- *
  */
 public class PasswordManager extends ButtonDialog {
 
-	public static final Action OPEN_WINDOW = new ResourceAction("password_manager") {
+    /**
+     * The constant OPEN_WINDOW.
+     */
+    public static final Action OPEN_WINDOW = new ResourceAction("password_manager") {
 
 		{
 			setCondition(EDIT_IN_PROGRESS, DONT_CARE);
@@ -66,7 +68,10 @@ public class PasswordManager extends ButtonDialog {
 	private CredentialsTableModel credentialsModel;
 	private Wallet clone;
 
-	public PasswordManager() {
+    /**
+     * Instantiates a new Password manager.
+     */
+    public PasswordManager() {
 
 		super(ApplicationFrame.getApplicationFrame(), "password_manager", ModalityType.MODELESS, new Object[] {});
 		this.clone = Wallet.getInstance().clone();

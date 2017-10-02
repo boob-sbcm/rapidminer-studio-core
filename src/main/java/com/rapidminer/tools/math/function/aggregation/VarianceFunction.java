@@ -36,11 +36,19 @@ public class VarianceFunction extends AbstractAggregationFunction {
 
 	private double count;
 
-	public VarianceFunction() {
+    /**
+     * Instantiates a new Variance function.
+     */
+    public VarianceFunction() {
 		this(DEFAULT_IGNORE_MISSINGS);
 	}
 
-	public VarianceFunction(Boolean ignoreMissings) {
+    /**
+     * Instantiates a new Variance function.
+     *
+     * @param ignoreMissings the ignore missings
+     */
+    public VarianceFunction(Boolean ignoreMissings) {
 		super(ignoreMissings);
 	}
 

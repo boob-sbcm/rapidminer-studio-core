@@ -31,25 +31,32 @@ import com.rapidminer.gui.flow.processrendering.annotations.AnnotationDrawUtils;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public final class AnnotationResizeHelper {
 
-	/**
-	 * The direction in which a resize is happening for a process annotation.
-	 */
-	public static enum ResizeDirection {
-		/** started in top left corner */
-		TOP_LEFT,
+    /**
+     * The direction in which a resize is happening for a process annotation.
+     */
+    public static enum ResizeDirection {
+        /**
+         * started in top left corner
+         */
+        TOP_LEFT,
 
-		/** started in top right corner */
-		TOP_RIGHT,
+        /**
+         * started in top right corner
+         */
+        TOP_RIGHT,
 
-		/** started in bottom left corner */
-		BOTTOM_LEFT,
+        /**
+         * started in bottom left corner
+         */
+        BOTTOM_LEFT,
 
-		/** started in bottom right corner */
-		BOTTOM_RIGHT;
+        /**
+         * started in bottom right corner
+         */
+        BOTTOM_RIGHT;
 	}
 
 	/** the resized annotation */
@@ -64,17 +71,14 @@ public final class AnnotationResizeHelper {
 	/** indicates if actual resizing has taken place */
 	private boolean resizeStarted;
 
-	/**
-	 * Creates a new resize helper which keeps track of the resizing state.
-	 *
-	 * @param resized
-	 *            the annotation being resized
-	 * @param direction
-	 *            the resize direction
-	 * @param origin
-	 *            the location of the annotation before the resize
-	 */
-	public AnnotationResizeHelper(final WorkflowAnnotation resized, final ResizeDirection direction, final Point origin) {
+    /**
+     * Creates a new resize helper which keeps track of the resizing state.
+     *
+     * @param resized   the annotation being resized
+     * @param direction the resize direction
+     * @param origin    the location of the annotation before the resize
+     */
+    public AnnotationResizeHelper(final WorkflowAnnotation resized, final ResizeDirection direction, final Point origin) {
 		if (resized == null) {
 			throw new IllegalArgumentException("resized must not be null!");
 		}
@@ -87,60 +91,57 @@ public final class AnnotationResizeHelper {
 		this.origin = origin;
 	}
 
-	/**
-	 * Returns the origin point of the resize.
-	 *
-	 * @return the starting origin, never {@code null}
-	 */
-	public Point getOrigin() {
+    /**
+     * Returns the origin point of the resize.
+     *
+     * @return the starting origin, never {@code null}
+     */
+    public Point getOrigin() {
 		return origin;
 	}
 
-	/**
-	 * Updates the origin.
-	 *
-	 * @param origin
-	 *            the new origin
-	 */
-	public void setOrigin(final Point origin) {
+    /**
+     * Updates the origin.
+     *
+     * @param origin the new origin
+     */
+    public void setOrigin(final Point origin) {
 		this.origin = origin;
 	}
 
-	/**
-	 * Returns the resized annotation.
-	 *
-	 * @return the annotation, never {@code null}
-	 */
-	public WorkflowAnnotation getResized() {
+    /**
+     * Returns the resized annotation.
+     *
+     * @return the annotation, never {@code null}
+     */
+    public WorkflowAnnotation getResized() {
 		return resized;
 	}
 
-	/**
-	 * Returns the direction in which to resize.
-	 *
-	 * @return the direction, never {@code null}
-	 */
-	public ResizeDirection getDirection() {
+    /**
+     * Returns the direction in which to resize.
+     *
+     * @return the direction, never {@code null}
+     */
+    public ResizeDirection getDirection() {
 		return direction;
 	}
 
-	/**
-	 * Returns whether actual resizing has taken place.
-	 *
-	 * @return {@code true} if {@link #handleResizeEvent(Point)} has been called at least once;
-	 *         {@code false} otherwise
-	 */
-	public boolean isResizeInProgress() {
+    /**
+     * Returns whether actual resizing has taken place.
+     *
+     * @return {@code true} if {@link #handleResizeEvent(Point)} has been called at least once;         {@code false} otherwise
+     */
+    public boolean isResizeInProgress() {
 		return resizeStarted;
 	}
 
-	/**
-	 * Handles a resize event based on the given {@link Point}.
-	 *
-	 * @param point
-	 *            the new point
-	 */
-	public void handleResizeEvent(final Point point) {
+    /**
+     * Handles a resize event based on the given {@link Point}.
+     *
+     * @param point the new point
+     */
+    public void handleResizeEvent(final Point point) {
 		WorkflowAnnotation resizedAnno = getResized();
 		if (resizedAnno instanceof OperatorAnnotation) {
 			// should not happen
@@ -266,16 +267,14 @@ public final class AnnotationResizeHelper {
 		resizedAnno.setResized();
 	}
 
-	/**
-	 * Determines if the origin point is in one of resize starting areas, e.g. the corners.
-	 *
-	 * @param anno
-	 *            the annotation which should be checked
-	 * @param point
-	 *            the location of the mouse
-	 * @return the direction or {@code null} if the point was in none of the resize starting areas
-	 */
-	public static ResizeDirection getResizeDirectionOrNull(final WorkflowAnnotation anno, final Point point) {
+    /**
+     * Determines if the origin point is in one of resize starting areas, e.g. the corners.
+     *
+     * @param anno  the annotation which should be checked
+     * @param point the location of the mouse
+     * @return the direction or {@code null} if the point was in none of the resize starting areas
+     */
+    public static ResizeDirection getResizeDirectionOrNull(final WorkflowAnnotation anno, final Point point) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}

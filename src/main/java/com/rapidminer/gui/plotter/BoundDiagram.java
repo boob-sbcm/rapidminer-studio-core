@@ -39,7 +39,7 @@ import javax.swing.Icon;
 
 /**
  * A bound diagram used for displaying attribute weights.
- * 
+ *
  * @author Daniel Hakenjos, Ingo Mierswa
  */
 public class BoundDiagram extends PlotterAdapter implements MouseListener {
@@ -68,13 +68,24 @@ public class BoundDiagram extends PlotterAdapter implements MouseListener {
 
 	private boolean sorting = false;
 
-	public BoundDiagram(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Bound diagram.
+     *
+     * @param settings the settings
+     */
+    public BoundDiagram(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 		addMouseListener(this);
 	}
 
-	public BoundDiagram(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Bound diagram.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public BoundDiagram(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -86,8 +97,10 @@ public class BoundDiagram extends PlotterAdapter implements MouseListener {
 		repaint();
 	}
 
-	/** Calculates the angles. */
-	public void calculateAngles() {
+    /**
+     * Calculates the angles.
+     */
+    public void calculateAngles() {
 		float totalAngle = 360.0f;
 		float delta = totalAngle / values.size();
 
@@ -101,8 +114,10 @@ public class BoundDiagram extends PlotterAdapter implements MouseListener {
 		}
 	}
 
-	/** Calculate the attribute vectors. */
-	public void calculateAttributeVectors() {
+    /**
+     * Calculate the attribute vectors.
+     */
+    public void calculateAttributeVectors() {
 		attributeVectorX = new double[values.size()];
 		attributeVectorY = new double[values.size()];
 
@@ -363,9 +378,19 @@ public class BoundDiagram extends PlotterAdapter implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent arg0) {}
 
-	public void mouseDragged(MouseEvent arg0) {}
+    /**
+     * Mouse dragged.
+     *
+     * @param arg0 the arg 0
+     */
+    public void mouseDragged(MouseEvent arg0) {}
 
-	public void mouseMoved(MouseEvent event) {}
+    /**
+     * Mouse moved.
+     *
+     * @param event the event
+     */
+    public void mouseMoved(MouseEvent event) {}
 
 	@Override
 	public String getPlotterName() {

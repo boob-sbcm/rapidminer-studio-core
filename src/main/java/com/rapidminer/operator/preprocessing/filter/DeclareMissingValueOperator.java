@@ -64,19 +64,30 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  */
 public class DeclareMissingValueOperator extends AbstractExampleSetProcessing {
 
-	/** parameter to set the missing value for numeric type */
-	public static final String PARAMETER_MISSING_VALUE_NUMERIC = "numeric_value";
+    /**
+     * parameter to set the missing value for numeric type
+     */
+    public static final String PARAMETER_MISSING_VALUE_NUMERIC = "numeric_value";
 
-	/** parameter to set the missing value for nominal type */
-	public static final String PARAMETER_MISSING_VALUE_NOMINAL = "nominal_value";
+    /**
+     * parameter to set the missing value for nominal type
+     */
+    public static final String PARAMETER_MISSING_VALUE_NOMINAL = "nominal_value";
 
-	/** parameter to set the expression */
-	public static final String PARAMETER_MISSING_VALUE_EXPRESSION = "expression_value";
+    /**
+     * parameter to set the expression
+     */
+    public static final String PARAMETER_MISSING_VALUE_EXPRESSION = "expression_value";
 
-	/** parameter to set the missing value type (numeric or nominal) */
-	public static final String PARAMETER_MODE = "mode";
+    /**
+     * parameter to set the missing value type (numeric or nominal)
+     */
+    public static final String PARAMETER_MODE = "mode";
 
-	public static final OperatorVersion VERSION_IGNORE_ATTRIBUTES_OF_WRONG_TYPE = new OperatorVersion(5, 2, 8);
+    /**
+     * The constant VERSION_IGNORE_ATTRIBUTES_OF_WRONG_TYPE.
+     */
+    public static final OperatorVersion VERSION_IGNORE_ATTRIBUTES_OF_WRONG_TYPE = new OperatorVersion(5, 2, 8);
 
 	/** Subset Selector for parameter use */
 	private AttributeSubsetSelector subsetSelector = new AttributeSubsetSelector(this, getExampleSetInputPort());
@@ -99,7 +110,12 @@ public class DeclareMissingValueOperator extends AbstractExampleSetProcessing {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public DeclareMissingValueOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Declare missing value operator.
+     *
+     * @param description the description
+     */
+    public DeclareMissingValueOperator(OperatorDescription description) {
 		super(description);
 	}
 

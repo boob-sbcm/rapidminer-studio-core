@@ -75,29 +75,45 @@ import com.rapidminer.tools.parameter.internal.DataManagementParameterHelper;
  */
 public class ExampleSetGenerator extends AbstractExampleSource {
 
-	/** The parameter name for &quot;Specifies the target function of this example set&quot; */
-	public static final String PARAMETER_TARGET_FUNCTION = "target_function";
+    /**
+     * The parameter name for &quot;Specifies the target function of this example set&quot;
+     */
+    public static final String PARAMETER_TARGET_FUNCTION = "target_function";
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
 
-	/** The parameter name for &quot;The number of attributes.&quot; */
-	public static final String PARAMETER_NUMBER_OF_ATTRIBUTES = "number_of_attributes";
+    /**
+     * The parameter name for &quot;The number of attributes.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_ATTRIBUTES = "number_of_attributes";
 
-	/** The parameter name for &quot;The minimum value for the attributes.&quot; */
-	public static final String PARAMETER_ATTRIBUTES_LOWER_BOUND = "attributes_lower_bound";
+    /**
+     * The parameter name for &quot;The minimum value for the attributes.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTES_LOWER_BOUND = "attributes_lower_bound";
 
-	/** The parameter name for &quot;The maximum value for the attributes.&quot; */
-	public static final String PARAMETER_ATTRIBUTES_UPPER_BOUND = "attributes_upper_bound";
+    /**
+     * The parameter name for &quot;The maximum value for the attributes.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTES_UPPER_BOUND = "attributes_upper_bound";
 
-	/** The parameter name for &quot;Standard deviation of the Gaussian distribution used for generating attributes.&quot; */
-	public static final String PARAMETER_ATTRIBUTES_GAUSSIAN_STDDEV = "gaussian_standard_deviation";
+    /**
+     * The parameter name for &quot;Standard deviation of the Gaussian distribution used for generating attributes.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTES_GAUSSIAN_STDDEV = "gaussian_standard_deviation";
 
-	/** The parameter name for &quot;The radius of the outermost ring cluster.&quot; */
-	public static final String PARAMETER_ATTRIBUTES_LARGEST_RADIUS = "largest_radius";
+    /**
+     * The parameter name for &quot;The radius of the outermost ring cluster.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTES_LARGEST_RADIUS = "largest_radius";
 
-	/** The parameter name for &quot;Determines, how the data is represented internally.&quot; */
-	public static final String PARAMETER_DATAMANAGEMENT = "datamanagement";
+    /**
+     * The parameter name for &quot;Determines, how the data is represented internally.&quot;
+     */
+    public static final String PARAMETER_DATAMANAGEMENT = "datamanagement";
 
 	private static final String[] KNOWN_FUNCTION_NAMES = new String[] { "random", // regression
 			"sum", "polynomial", "non linear", "one variable non linear", "complicated function", "complicated function2",
@@ -140,11 +156,22 @@ public class ExampleSetGenerator extends AbstractExampleSource {
 	private static final String[] FUNCTIONS_USING_SINGLE_BOUND = (String[]) ArrayUtils.addAll(
 			FUNCTIONS_USING_GAUSSIAN_STDDEV, FUNCTIONS_USING_LARGEST_RADIUS);
 
-	protected static final double DEFAULT_SINGLE_BOUND = 10.0;
+    /**
+     * The constant DEFAULT_SINGLE_BOUND.
+     */
+    protected static final double DEFAULT_SINGLE_BOUND = 10.0;
 
-	public static final OperatorVersion VERSION_TARGET_PARAMETERS_CHANGED = new OperatorVersion(7, 1, 1);
+    /**
+     * The constant VERSION_TARGET_PARAMETERS_CHANGED.
+     */
+    public static final OperatorVersion VERSION_TARGET_PARAMETERS_CHANGED = new OperatorVersion(7, 1, 1);
 
-	public ExampleSetGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set generator.
+     *
+     * @param description the description
+     */
+    public ExampleSetGenerator(OperatorDescription description) {
 		super(description);
 	}
 
@@ -288,7 +315,16 @@ public class ExampleSetGenerator extends AbstractExampleSource {
 
 	// ================================================================================
 
-	@SuppressWarnings("unchecked")
+    /**
+     * Gets function for name.
+     *
+     * @param functionName the function name
+     * @return the function for name
+     * @throws IllegalAccessException the illegal access exception
+     * @throws InstantiationException the instantiation exception
+     * @throws ClassNotFoundException the class not found exception
+     */
+    @SuppressWarnings("unchecked")
 	public static TargetFunction getFunctionForName(String functionName)
 			throws IllegalAccessException, InstantiationException, ClassNotFoundException {
 		for (int i = 0; i < KNOWN_FUNCTION_NAMES.length; i++) {

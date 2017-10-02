@@ -28,18 +28,49 @@ import org.jfree.data.Range;
 
 
 /**
+ * The interface Link and brush plot.
+ *
  * @author Nils Woehler
- * 
  */
 public interface LinkAndBrushPlot {
 
-	public List<Pair<Integer, Range>> calculateDomainAxesZoom(double lowerPercent, double upperPercent, boolean zoomIn);
+    /**
+     * Calculate domain axes zoom list.
+     *
+     * @param lowerPercent the lower percent
+     * @param upperPercent the upper percent
+     * @param zoomIn       the zoom in
+     * @return the list
+     */
+    public List<Pair<Integer, Range>> calculateDomainAxesZoom(double lowerPercent, double upperPercent, boolean zoomIn);
 
-	public List<Pair<Integer, Range>> calculateRangeAxesZoom(double lowerPercent, double upperPercent,
+    /**
+     * Calculate range axes zoom list.
+     *
+     * @param lowerPercent the lower percent
+     * @param upperPercent the upper percent
+     * @param info         the info
+     * @param source       the source
+     * @param zoomIn       the zoom in
+     * @return the list
+     */
+    public List<Pair<Integer, Range>> calculateRangeAxesZoom(double lowerPercent, double upperPercent,
 			PlotRenderingInfo info, Point2D source, boolean zoomIn);
 
-	public List<Pair<Integer, Range>> restoreAutoDomainAxisBounds(boolean zoomOut);
+    /**
+     * Restore auto domain axis bounds list.
+     *
+     * @param zoomOut the zoom out
+     * @return the list
+     */
+    public List<Pair<Integer, Range>> restoreAutoDomainAxisBounds(boolean zoomOut);
 
-	public List<Pair<Integer, Range>> restoreAutoRangeAxisBounds(boolean zoomOut);
+    /**
+     * Restore auto range axis bounds list.
+     *
+     * @param zoomOut the zoom out
+     * @return the list
+     */
+    public List<Pair<Integer, Range>> restoreAutoRangeAxisBounds(boolean zoomOut);
 
 }

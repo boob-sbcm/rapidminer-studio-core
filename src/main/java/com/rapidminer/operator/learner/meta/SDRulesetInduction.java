@@ -65,38 +65,42 @@ public class SDRulesetInduction extends OperatorChain {
 	private InputPort modelInnerSink = getSubprocess(0).getInnerSinks().createPort("model", PredictionModel.class);
 	private OutputPort modelOutput = getOutputPorts().createPort("model");
 
-	/**
-	 * Name of the variable specifying the maximal number of iterations of the learner.
-	 */
-	public static final String PARAMETER_ITERATIONS = "iterations";
+    /**
+     * Name of the variable specifying the maximal number of iterations of the learner.
+     */
+    public static final String PARAMETER_ITERATIONS = "iterations";
 
-	/** Name of the flag indicating internal bootstrapping. */
-	public static final String PARAMETER_RATIO_INTERNAL_BOOTSTRAP = "ratio_internal_bootstrap";
+    /**
+     * Name of the flag indicating internal bootstrapping.
+     */
+    public static final String PARAMETER_RATIO_INTERNAL_BOOTSTRAP = "ratio_internal_bootstrap";
 
-	/**
-	 * A parameter whether to discard all rules not lying on the convex hull in ROC space.
-	 */
-	public static final String PARAMETER_ROC_CONVEX_HULL_FILTER = "ROC_convex_hull_filter";
+    /**
+     * A parameter whether to discard all rules not lying on the convex hull in ROC space.
+     */
+    public static final String PARAMETER_ROC_CONVEX_HULL_FILTER = "ROC_convex_hull_filter";
 
-	/**
-	 * Boolean parameter: true for additive reweighting, false for multiplicative.
-	 */
-	public static final String PARAMETER_ADDITIVE_REWEIGHT = "additive_reweight";
+    /**
+     * Boolean parameter: true for additive reweighting, false for multiplicative.
+     */
+    public static final String PARAMETER_ADDITIVE_REWEIGHT = "additive_reweight";
 
-	/**
-	 * Boolean parameter to specify whether the label priors should be equally likely after first
-	 * iteration.
-	 */
-	public static final String PARAMETER_GAMMA = "gamma";
+    /**
+     * Boolean parameter to specify whether the label priors should be equally likely after first
+     * iteration.
+     */
+    public static final String PARAMETER_GAMMA = "gamma";
 
-	/**
-	 * Name of special attribute counting the times an example has been covered by a rule. This
-	 * attribute is created for additive reweighting, only.
-	 */
-	public static final String TIMES_COVERED = "TIMES_COVERED_SPECIAL_ATTRIB";
+    /**
+     * Name of special attribute counting the times an example has been covered by a rule. This
+     * attribute is created for additive reweighting, only.
+     */
+    public static final String TIMES_COVERED = "TIMES_COVERED_SPECIAL_ATTRIB";
 
-	/** Discard models with an advantage of less than the specified value. */
-	public static final double MIN_ADVANTAGE = 0.001;
+    /**
+     * Discard models with an advantage of less than the specified value.
+     */
+    public static final double MIN_ADVANTAGE = 0.001;
 
 	// A performance measure to be visualized. Not yet implemented!
 	private double performance = 0;
@@ -104,8 +108,12 @@ public class SDRulesetInduction extends OperatorChain {
 	// field for visualizing performance
 	private int currentIteration;
 
-	/** Constructor. */
-	public SDRulesetInduction(OperatorDescription description) {
+    /**
+     * Constructor.  @param description the description
+     *
+     * @param description the description
+     */
+    public SDRulesetInduction(OperatorDescription description) {
 		super(description, "Training");
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, trainingInnerSource, SetRelation.EQUAL) {
 
@@ -141,7 +149,13 @@ public class SDRulesetInduction extends OperatorChain {
 		});
 	}
 
-	public static int getPosIndex(Attribute label) {
+    /**
+     * Gets pos index.
+     *
+     * @param label the label
+     * @return the pos index
+     */
+    public static int getPosIndex(Attribute label) {
 		return label.getMapping().getPositiveIndex();
 	}
 

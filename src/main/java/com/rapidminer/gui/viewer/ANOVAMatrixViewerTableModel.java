@@ -26,7 +26,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * The model for the {@link com.rapidminer.gui.viewer.ANOVAMatrixViewerTable}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ANOVAMatrixViewerTableModel extends AbstractTableModel {
@@ -35,7 +35,12 @@ public class ANOVAMatrixViewerTableModel extends AbstractTableModel {
 
 	private ANOVAMatrix matrix;
 
-	public ANOVAMatrixViewerTableModel(ANOVAMatrix matrix) {
+    /**
+     * Instantiates a new Anova matrix viewer table model.
+     *
+     * @param matrix the matrix
+     */
+    public ANOVAMatrixViewerTableModel(ANOVAMatrix matrix) {
 		this.matrix = matrix;
 	}
 

@@ -67,27 +67,66 @@ import com.rapidminer.tools.math.similarity.numerical.OverlapNumericalSimilarity
 /**
  * This is a convenient class for using the distanceMeasures. It offers methods for integrating the
  * measure classes into operators.
- * 
+ *
  * @author Sebastian Land
  */
 public class DistanceMeasures {
 
-	public static final String PARAMETER_MEASURE_TYPES = "measure_types";
-	public static final String PARAMETER_NUMERICAL_MEASURE_TYPES = "numerical_measure_types";
-	public static final String PARAMETER_NOMINAL_MEASURE = "nominal_measure";
-	public static final String PARAMETER_NUMERICAL_MEASURE = "numerical_measure";
-	public static final String PARAMETER_MIXED_MEASURE = "mixed_measure";
-	public static final String PARAMETER_DIVERGENCE = "divergence";
+    /**
+     * The constant PARAMETER_MEASURE_TYPES.
+     */
+    public static final String PARAMETER_MEASURE_TYPES = "measure_types";
+    /**
+     * The constant PARAMETER_NUMERICAL_MEASURE_TYPES.
+     */
+    public static final String PARAMETER_NUMERICAL_MEASURE_TYPES = "numerical_measure_types";
+    /**
+     * The constant PARAMETER_NOMINAL_MEASURE.
+     */
+    public static final String PARAMETER_NOMINAL_MEASURE = "nominal_measure";
+    /**
+     * The constant PARAMETER_NUMERICAL_MEASURE.
+     */
+    public static final String PARAMETER_NUMERICAL_MEASURE = "numerical_measure";
+    /**
+     * The constant PARAMETER_MIXED_MEASURE.
+     */
+    public static final String PARAMETER_MIXED_MEASURE = "mixed_measure";
+    /**
+     * The constant PARAMETER_DIVERGENCE.
+     */
+    public static final String PARAMETER_DIVERGENCE = "divergence";
 
-	public static final String[] MEASURE_TYPES = new String[] { "MixedMeasures", "NominalMeasures", "NumericalMeasures",
+    /**
+     * The constant MEASURE_TYPES.
+     */
+    public static final String[] MEASURE_TYPES = new String[] { "MixedMeasures", "NominalMeasures", "NumericalMeasures",
 			"BregmanDivergences" };
 
-	public static final int MIXED_MEASURES_TYPE = 0;
-	public static final int NOMINAL_MEASURES_TYPE = 1;
-	public static final int NUMERICAL_MEASURES_TYPE = 2;
-	public static final int DIVERGENCES_TYPE = 3;
-	public static final int KERNEL_IN_NUMERICAL = 9;
-	public static final String[] NUMERICAL_MEASURE_TYPES = Arrays.copyOfRange(MEASURE_TYPES, NUMERICAL_MEASURES_TYPE,
+    /**
+     * The constant MIXED_MEASURES_TYPE.
+     */
+    public static final int MIXED_MEASURES_TYPE = 0;
+    /**
+     * The constant NOMINAL_MEASURES_TYPE.
+     */
+    public static final int NOMINAL_MEASURES_TYPE = 1;
+    /**
+     * The constant NUMERICAL_MEASURES_TYPE.
+     */
+    public static final int NUMERICAL_MEASURES_TYPE = 2;
+    /**
+     * The constant DIVERGENCES_TYPE.
+     */
+    public static final int DIVERGENCES_TYPE = 3;
+    /**
+     * The constant KERNEL_IN_NUMERICAL.
+     */
+    public static final int KERNEL_IN_NUMERICAL = 9;
+    /**
+     * The constant NUMERICAL_MEASURE_TYPES.
+     */
+    public static final String[] NUMERICAL_MEASURE_TYPES = Arrays.copyOfRange(MEASURE_TYPES, NUMERICAL_MEASURES_TYPE,
 			DIVERGENCES_TYPE + 1);
 
 	private static String[] NOMINAL_MEASURES = new String[] { "NominalDistance", "DiceSimilarity", "JaccardSimilarity",
@@ -128,22 +167,19 @@ public class DistanceMeasures {
 	private static Class<? extends DistanceMeasure>[][] MEASURE_CLASS_ARRAYS = new Class[][] { MIXED_MEASURE_CLASSES,
 			NOMINAL_MEASURE_CLASSES, NUMERICAL_MEASURE_CLASSES, DIVERGENCE_CLASSES };
 
-	/**
-	 * This method allows registering distance or similarity measures defined in plugins. There are
-	 * four different types of measures: Mixed Measures coping with examples containing nominal and
-	 * numerical values. Numerical and Nominal Measures work only on their respective type of
-	 * attribute. Divergences are a less restricted mathematical concept than distances but might be
-	 * used for some algorithms not needing this restrictions. This type has to be specified using
-	 * the first parameter.
-	 * 
-	 * @param measureType
-	 *            The type is available as static property of class
-	 * @param measureName
-	 *            The name of the measure to register
-	 * @param measureClass
-	 *            The class of the measure, which needs to extend DistanceMeasure
-	 */
-	public static void registerMeasure(int measureType, String measureName, Class<? extends DistanceMeasure> measureClass) {
+    /**
+     * This method allows registering distance or similarity measures defined in plugins. There are
+     * four different types of measures: Mixed Measures coping with examples containing nominal and
+     * numerical values. Numerical and Nominal Measures work only on their respective type of
+     * attribute. Divergences are a less restricted mathematical concept than distances but might be
+     * used for some algorithms not needing this restrictions. This type has to be specified using
+     * the first parameter.
+     *
+     * @param measureType  The type is available as static property of class
+     * @param measureName  The name of the measure to register
+     * @param measureClass The class of the measure, which needs to extend DistanceMeasure
+     */
+    public static void registerMeasure(int measureType, String measureName, Class<? extends DistanceMeasure> measureClass) {
 		int length = MEASURE_ARRAYS[measureType].length;
 		MEASURE_ARRAYS[measureType] = Arrays.copyOf(MEASURE_ARRAYS[measureType], length + 1);
 		MEASURE_ARRAYS[measureType][length] = measureName;
@@ -152,11 +188,16 @@ public class DistanceMeasures {
 		MEASURE_CLASS_ARRAYS[measureType][length] = measureClass;
 	}
 
-	/**
-	 * Creates an uninitialized distance measure. Initialize the distance measure by calling
-	 * {@link DistanceMeasure#init(ExampleSet, ParameterHandler)}.
-	 */
-	public static DistanceMeasure createMeasure(ParameterHandler parameterHandler)
+    /**
+     * Creates an uninitialized distance measure. Initialize the distance measure by calling
+     * {@link DistanceMeasure#init(ExampleSet, ParameterHandler)}.
+     *
+     * @param parameterHandler the parameter handler
+     * @return the distance measure
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws OperatorException       the operator exception
+     */
+    public static DistanceMeasure createMeasure(ParameterHandler parameterHandler)
 			throws UndefinedParameterError, OperatorException {
 		int measureType;
 		if (parameterHandler.isParameterSet(PARAMETER_MEASURE_TYPES)) {
@@ -209,11 +250,18 @@ public class DistanceMeasures {
 		return null;
 	}
 
-	/**
-	 * @deprecated ioContainer is not used. Use a {@link DistanceMeasureHelper} to obtain distance
-	 *             measures.
-	 */
-	@Deprecated
+    /**
+     * Create measure distance measure.
+     *
+     * @param parameterHandler the parameter handler
+     * @param exampleSet       the example set
+     * @param ioContainer      the io container
+     * @return the distance measure
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws OperatorException       the operator exception
+     * @deprecated ioContainer is not used. Use a {@link DistanceMeasureHelper} to obtain distance             measures.
+     */
+    @Deprecated
 	public static DistanceMeasure createMeasure(ParameterHandler parameterHandler, ExampleSet exampleSet,
 			IOContainer ioContainer) throws UndefinedParameterError, OperatorException {
 		DistanceMeasure measure = createMeasure(parameterHandler);
@@ -226,22 +274,44 @@ public class DistanceMeasures {
 		return measure;
 	}
 
-	public static int getSelectedMeasureType(ParameterHandler parameterHandler) throws UndefinedParameterError {
+    /**
+     * Gets selected measure type.
+     *
+     * @param parameterHandler the parameter handler
+     * @return the selected measure type
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public static int getSelectedMeasureType(ParameterHandler parameterHandler) throws UndefinedParameterError {
 		return parameterHandler.getParameterAsInt(PARAMETER_MEASURE_TYPES);
 	}
 
-	public static boolean measureTypeSupportsNominalValues(int measureType) {
+    /**
+     * Measure type supports nominal values boolean.
+     *
+     * @param measureType the measure type
+     * @return the boolean
+     */
+    public static boolean measureTypeSupportsNominalValues(int measureType) {
 		return measureType == NOMINAL_MEASURES_TYPE || measureType == MIXED_MEASURES_TYPE;
 	}
 
-	public static boolean measureTypeSupportsNumericalValues(int measureType) {
+    /**
+     * Measure type supports numerical values boolean.
+     *
+     * @param measureType the measure type
+     * @return the boolean
+     */
+    public static boolean measureTypeSupportsNumericalValues(int measureType) {
 		return measureType != NOMINAL_MEASURES_TYPE;
 	}
 
-	/**
-	 * This method adds a parameter to chose a distance measure as parameter
-	 */
-	public static List<ParameterType> getParameterTypes(Operator parameterHandler) {
+    /**
+     * This method adds a parameter to chose a distance measure as parameter
+     *
+     * @param parameterHandler the parameter handler
+     * @return the parameter types
+     */
+    public static List<ParameterType> getParameterTypes(Operator parameterHandler) {
 		List<ParameterType> list = new LinkedList<ParameterType>();
 		list.add(new ParameterTypeCategory(PARAMETER_MEASURE_TYPES, "The measure type", MEASURE_TYPES, 0, false));
 		ParameterType type = new ParameterTypeCategory(PARAMETER_MIXED_MEASURE, "Select measure",
@@ -269,13 +339,15 @@ public class DistanceMeasures {
 		return list;
 	}
 
-	/**
-	 * This method provides the parameters to choose only from numerical and divergence distance
-	 * measures.
-	 *
-	 * @since 7.6
-	 */
-	public static List<ParameterType> getParameterTypesForNumAndDiv(Operator parameterHandler) {
+    /**
+     * This method provides the parameters to choose only from numerical and divergence distance
+     * measures.
+     *
+     * @param parameterHandler the parameter handler
+     * @return the parameter types for num and div
+     * @since 7.6
+     */
+    public static List<ParameterType> getParameterTypesForNumAndDiv(Operator parameterHandler) {
 		List<ParameterType> list = new LinkedList<ParameterType>();
 		list.add(new ParameterTypeCategory(PARAMETER_NUMERICAL_MEASURE_TYPES, "The measure type", NUMERICAL_MEASURE_TYPES, 0,
 				false));
@@ -301,10 +373,13 @@ public class DistanceMeasures {
 		return list;
 	}
 
-	/**
-	 * This method provides the parameters to choose only from numerical measures.
-	 */
-	public static List<ParameterType> getParameterTypesForNumericals(ParameterHandler handler) {
+    /**
+     * This method provides the parameters to choose only from numerical measures.
+     *
+     * @param handler the handler
+     * @return the parameter types for numericals
+     */
+    public static List<ParameterType> getParameterTypesForNumericals(ParameterHandler handler) {
 		List<ParameterType> list = new LinkedList<ParameterType>();
 		ParameterType type = new ParameterTypeCategory(PARAMETER_NUMERICAL_MEASURE, "Select measure",
 				MEASURE_ARRAYS[NUMERICAL_MEASURES_TYPE], 0);

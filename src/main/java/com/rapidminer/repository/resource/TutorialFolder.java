@@ -49,7 +49,14 @@ public class TutorialFolder extends ResourceFolder {
 	private final Lock readLock = lock.readLock();
 	private final Lock writeLock = lock.writeLock();
 
-	protected TutorialFolder(ResourceFolder parent, String parentPath, ResourceRepository repository) {
+    /**
+     * Instantiates a new Tutorial folder.
+     *
+     * @param parent     the parent
+     * @param parentPath the parent path
+     * @param repository the repository
+     */
+    protected TutorialFolder(ResourceFolder parent, String parentPath, ResourceRepository repository) {
 		super(parent, TUTORIAL_FOLDER_NAME, parentPath + "/" + TUTORIAL_FOLDER_NAME, repository);
 	}
 

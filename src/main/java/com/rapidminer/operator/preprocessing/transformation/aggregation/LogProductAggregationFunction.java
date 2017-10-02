@@ -27,21 +27,41 @@ import com.rapidminer.tools.Ontology;
  * This class implements the Log Product Aggregation function. This will calculate the logarithm of
  * a product of a source attribute for each group. This can help in situations, where the normal
  * product would exceed the numerical range and should be used as an intermediate result.
- * 
+ * <p>
  * This obviously only works on numbers being all greater 0.
- * 
+ *
  * @author Sebastian Land
  */
 public class LogProductAggregationFunction extends NumericalAggregationFunction {
 
-	public static final String FUNCTION_LOG_PRODUCT = "logProduct";
+    /**
+     * The constant FUNCTION_LOG_PRODUCT.
+     */
+    public static final String FUNCTION_LOG_PRODUCT = "logProduct";
 
-	public LogProductAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
+    /**
+     * Instantiates a new Log product aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     */
+    public LogProductAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, FUNCTION_LOG_PRODUCT, FUNCTION_SEPARATOR_OPEN,
 				FUNCTION_SEPARATOR_CLOSE);
 	}
 
-	public LogProductAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
+    /**
+     * Instantiates a new Log product aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public LogProductAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
 			String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, separatorOpen, separatorClose);
 	}

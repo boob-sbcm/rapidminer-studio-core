@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for executeProcessWithOffsetResponse complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="executeProcessWithOffsetResponse">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "executeProcessWithOffsetResponse", propOrder = {
@@ -49,16 +47,16 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ExecuteProcessWithOffsetResponse {
 
+    /**
+     * The Return.
+     */
     @XmlElement(name = "return")
     protected ExecutionResponse _return;
 
     /**
      * Gets the value of the return property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExecutionResponse }
-     *     
+     *
+     * @return possible object is     {@link ExecutionResponse }
      */
     public ExecutionResponse getReturn() {
         return _return;
@@ -66,11 +64,8 @@ public class ExecuteProcessWithOffsetResponse {
 
     /**
      * Sets the value of the return property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExecutionResponse }
-     *     
+     *
+     * @param value allowed object is     {@link ExecutionResponse }
      */
     public void setReturn(ExecutionResponse value) {
         this._return = value;

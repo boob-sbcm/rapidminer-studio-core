@@ -38,22 +38,31 @@ import java.util.List;
  * child operator on the first part and applies the second child on the second part and the result
  * of the first child. The total result is the result of the second operator.
  * </p>
- * 
+ * <p>
  * <p>
  * The input example set will be splitted based on a defined ratio between 0 and 1.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RatioSplitChain extends AbstractSplitChain {
 
-	/** The parameter name for &quot;Relative size of the training set.&quot; */
-	public static final String PARAMETER_SPLIT_RATIO = "split_ratio";
+    /**
+     * The parameter name for &quot;Relative size of the training set.&quot;
+     */
+    public static final String PARAMETER_SPLIT_RATIO = "split_ratio";
 
-	/** The parameter name for &quot;Defines the sampling type of this operator.&quot; */
-	public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
+    /**
+     * The parameter name for &quot;Defines the sampling type of this operator.&quot;
+     */
+    public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
 
-	public RatioSplitChain(OperatorDescription description) {
+    /**
+     * Instantiates a new Ratio split chain.
+     *
+     * @param description the description
+     */
+    public RatioSplitChain(OperatorDescription description) {
 		super(description);
 	}
 

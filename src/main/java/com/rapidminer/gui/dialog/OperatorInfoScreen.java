@@ -67,7 +67,12 @@ public class OperatorInfoScreen extends ButtonDialog {
 
 	private final transient Operator operator;
 
-	public OperatorInfoScreen(Operator operator) {
+    /**
+     * Instantiates a new Operator info screen.
+     *
+     * @param operator the operator
+     */
+    public OperatorInfoScreen(Operator operator) {
 		// TODO: externalize strings and icon names
 		super(ApplicationFrame.getApplicationFrame(), "operator_info", ModalityType.APPLICATION_MODAL, new Object[] {});
 		this.operator = operator;
@@ -217,7 +222,16 @@ public class OperatorInfoScreen extends ButtonDialog {
 		return super.getTitle();
 	}
 
-	public static JPanel createPortsDescriptionPanel(String inKey, String outKey, Ports<? extends Port> inputPorts,
+    /**
+     * Create ports description panel j panel.
+     *
+     * @param inKey       the in key
+     * @param outKey      the out key
+     * @param inputPorts  the input ports
+     * @param outputPorts the output ports
+     * @return the j panel
+     */
+    public static JPanel createPortsDescriptionPanel(String inKey, String outKey, Ports<? extends Port> inputPorts,
 			Ports<? extends Port> outputPorts) {
 		int numberOfInputPorts = inputPorts.getNumberOfPorts();
 		int numberOfOutputPorts = outputPorts.getNumberOfPorts();
@@ -295,7 +309,13 @@ public class OperatorInfoScreen extends ButtonDialog {
 		return panel;
 	}
 
-	public static JPanel createDeprecationInfoPanel(Operator operator) {
+    /**
+     * Create deprecation info panel j panel.
+     *
+     * @param operator the operator
+     * @return the j panel
+     */
+    public static JPanel createDeprecationInfoPanel(Operator operator) {
 		final JPanel panel = new JPanel(new BorderLayout());
 		final FixedWidthLabel info = new FixedWidthLabel(200, operator.getOperatorDescription().getDeprecationInfo());
 		panel.add(info, BorderLayout.CENTER);
@@ -318,7 +338,13 @@ public class OperatorInfoScreen extends ButtonDialog {
 		return panel;
 	}
 
-	public static JPanel createCapabilitiesPanel(Operator operator) {
+    /**
+     * Create capabilities panel j panel.
+     *
+     * @param operator the operator
+     * @return the j panel
+     */
+    public static JPanel createCapabilitiesPanel(Operator operator) {
 		CapabilityProvider capabilityProvider = (CapabilityProvider) operator;
 		int length = OperatorCapability.values().length;
 		GridLayout layout = new GridLayout(length / 2, 2);

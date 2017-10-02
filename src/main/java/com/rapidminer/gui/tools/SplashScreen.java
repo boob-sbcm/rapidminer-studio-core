@@ -82,7 +82,10 @@ public class SplashScreen extends JPanel implements ActionListener {
 	private static final Paint MAIN_PAINT = new Color(96, 96, 96);
 	private static final Paint WHITE_PAINT = Color.WHITE;
 
-	public static Image backgroundImage = null;
+    /**
+     * The constant backgroundImage.
+     */
+    public static Image backgroundImage = null;
 
 	private static final int MARGIN = 10;
 
@@ -120,15 +123,34 @@ public class SplashScreen extends JPanel implements ActionListener {
 	private String productEdition;
 	private String productName;
 
-	public SplashScreen(String productVersion, Image productLogo) {
+    /**
+     * Instantiates a new Splash screen.
+     *
+     * @param productVersion the product version
+     * @param productLogo    the product logo
+     */
+    public SplashScreen(String productVersion, Image productLogo) {
 		this(productLogo, createDefaultProperties(productVersion));
 	}
 
-	public SplashScreen(String productVersion, Image productLogo, URL propertyFile) {
+    /**
+     * Instantiates a new Splash screen.
+     *
+     * @param productVersion the product version
+     * @param productLogo    the product logo
+     * @param propertyFile   the property file
+     */
+    public SplashScreen(String productVersion, Image productLogo, URL propertyFile) {
 		this(productLogo, createProperties(productVersion, propertyFile));
 	}
 
-	public SplashScreen(Image productLogo, Properties properties) {
+    /**
+     * Instantiates a new Splash screen.
+     *
+     * @param productLogo the product logo
+     * @param properties  the properties
+     */
+    public SplashScreen(Image productLogo, Properties properties) {
 		this.properties = properties;
 		this.productLogo = productLogo;
 		this.productName = I18N.getGUIMessage("gui.splash.product_name");
@@ -170,15 +192,26 @@ public class SplashScreen extends JPanel implements ActionListener {
 		return properties;
 	}
 
-	public void showSplashScreen() {
+    /**
+     * Show splash screen.
+     */
+    public void showSplashScreen() {
 		splashScreenFrame.setVisible(true);
 	}
 
-	public JFrame getSplashScreenFrame() {
+    /**
+     * Gets splash screen frame.
+     *
+     * @return the splash screen frame
+     */
+    public JFrame getSplashScreenFrame() {
 		return splashScreenFrame;
 	}
 
-	public void dispose() {
+    /**
+     * Dispose.
+     */
+    public void dispose() {
 		splashScreenFrame.dispose();
 		splashScreenFrame = null;
 		animationTimer.stop();
@@ -236,7 +269,12 @@ public class SplashScreen extends JPanel implements ActionListener {
 		g2d.dispose();
 	}
 
-	public void drawMain(Graphics2D g) {
+    /**
+     * Draw main.
+     *
+     * @param g the g
+     */
+    public void drawMain(Graphics2D g) {
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		g.setPaint(MAIN_PAINT);
 		g.fillRect(0, 0, getWidth(), getHeight());
@@ -307,15 +345,31 @@ public class SplashScreen extends JPanel implements ActionListener {
 		g.drawString(text, xPos, yPos);
 	}
 
-	public void setMessage(String message) {
+    /**
+     * Sets message.
+     *
+     * @param message the message
+     */
+    public void setMessage(String message) {
 		this.message = message;
 	}
 
-	public void setProperty(String key, String value) {
+    /**
+     * Sets property.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public void setProperty(String key, String value) {
 		properties.setProperty(key, value);
 	}
 
-	public void addExtension(Plugin plugin) {
+    /**
+     * Add extension.
+     *
+     * @param plugin the plugin
+     */
+    public void addExtension(Plugin plugin) {
 		ImageIcon extensionIcon = plugin.getExtensionIcon();
 		if (extensionIcon != null) {
 			long currentTimeMillis = System.currentTimeMillis();
@@ -340,7 +394,12 @@ public class SplashScreen extends JPanel implements ActionListener {
 		}
 	}
 
-	public void addAnimationRenderer(Runnable runable) {
+    /**
+     * Add animation renderer.
+     *
+     * @param runable the runable
+     */
+    public void addAnimationRenderer(Runnable runable) {
 		this.animationRenderers.add(runable);
 	}
 
@@ -356,11 +415,12 @@ public class SplashScreen extends JPanel implements ActionListener {
 		repaint();
 	}
 
-	/**
-	 * @param license
-	 *            the currently active license
-	 */
-	public void setLicense(License license) {
+    /**
+     * Sets license.
+     *
+     * @param license the currently active license
+     */
+    public void setLicense(License license) {
 		this.license = license;
 		this.productEdition = I18N.getGUILabel("license_edition", LicenseTools.translateProductEdition(license));
 	}

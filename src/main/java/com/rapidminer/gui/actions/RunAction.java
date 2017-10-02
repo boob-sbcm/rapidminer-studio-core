@@ -44,7 +44,12 @@ public class RunAction extends ResourceAction {
 
 	private final MainFrame mainFrame;
 
-	public RunAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Run action.
+     *
+     * @param mainFrame the main frame
+     */
+    public RunAction(MainFrame mainFrame) {
 		super("run");
 		this.mainFrame = mainFrame;
 		setCondition(PROCESS_RUNNING, DISALLOWED);
@@ -60,7 +65,12 @@ public class RunAction extends ResourceAction {
 		mainFrame.runProcess();
 	}
 
-	public void setState(int processState) {
+    /**
+     * Sets state.
+     *
+     * @param processState the process state
+     */
+    public void setState(int processState) {
 		switch (processState) {
 			case Process.PROCESS_STATE_PAUSED:
 				putValue(LARGE_ICON_KEY, ICON_RESUME_LARGE);

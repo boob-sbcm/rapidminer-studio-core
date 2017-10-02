@@ -39,7 +39,7 @@ import org.jdesktop.swingx.prompt.PromptSupport.FocusBehavior;
 /**
  * A text field for JList, JTable, or JTree filters. Updates all registered {@link FilterListener}
  * objects each time a key is pressed.
- * 
+ *
  * @author Tobias Malbrecht, Nils Woehler
  */
 public class FilterTextField extends JTextField {
@@ -52,23 +52,49 @@ public class FilterTextField extends JTextField {
 
 	private final Collection<SelectionNavigationListener> selectionNavigationListeners;
 
-	public FilterTextField() {
+    /**
+     * Instantiates a new Filter text field.
+     */
+    public FilterTextField() {
 		this(null, null, 0);
 	}
 
-	public FilterTextField(int columns) {
+    /**
+     * Instantiates a new Filter text field.
+     *
+     * @param columns the columns
+     */
+    public FilterTextField(int columns) {
 		this(null, null, columns);
 	}
 
-	public FilterTextField(String text) {
+    /**
+     * Instantiates a new Filter text field.
+     *
+     * @param text the text
+     */
+    public FilterTextField(String text) {
 		this(null, text, 0);
 	}
 
-	public FilterTextField(String text, int columns) {
+    /**
+     * Instantiates a new Filter text field.
+     *
+     * @param text    the text
+     * @param columns the columns
+     */
+    public FilterTextField(String text, int columns) {
 		this(null, text, columns);
 	}
 
-	public FilterTextField(Document doc, String text, int columns) {
+    /**
+     * Instantiates a new Filter text field.
+     *
+     * @param doc     the doc
+     * @param text    the text
+     * @param columns the columns
+     */
+    public FilterTextField(Document doc, String text, int columns) {
 		super(doc, text, columns);
 		filterListeners = new LinkedList<>();
 		selectionNavigationListeners = new LinkedList<>();
@@ -137,23 +163,46 @@ public class FilterTextField extends JTextField {
 		});
 	}
 
-	public void addFilterListener(FilterListener l) {
+    /**
+     * Add filter listener.
+     *
+     * @param l the l
+     */
+    public void addFilterListener(FilterListener l) {
 		filterListeners.add(l);
 	}
 
-	public void removeFilterListener(FilterListener l) {
+    /**
+     * Remove filter listener.
+     *
+     * @param l the l
+     */
+    public void removeFilterListener(FilterListener l) {
 		filterListeners.remove(l);
 	}
 
-	public void addSelectionNavigationListener(SelectionNavigationListener l) {
+    /**
+     * Add selection navigation listener.
+     *
+     * @param l the l
+     */
+    public void addSelectionNavigationListener(SelectionNavigationListener l) {
 		selectionNavigationListeners.add(l);
 	}
 
-	public void removeSelectionNavigationListener(SelectionNavigationListener l) {
+    /**
+     * Remove selection navigation listener.
+     *
+     * @param l the l
+     */
+    public void removeSelectionNavigationListener(SelectionNavigationListener l) {
 		selectionNavigationListeners.remove(l);
 	}
 
-	public void clearFilter() {
+    /**
+     * Clear filter.
+     */
+    public void clearFilter() {
 		setText(null);
 		updateFilter(null);
 	}
@@ -174,12 +223,22 @@ public class FilterTextField extends JTextField {
 		}
 	}
 
-	public void setDefaultFilterText(String text) {
+    /**
+     * Sets default filter text.
+     *
+     * @param text the text
+     */
+    public void setDefaultFilterText(String text) {
 		this.defaultFilterText = text;
 		PromptSupport.setPrompt(text, this);
 	}
-	
-	public void setFilterText(String filterText) {
+
+    /**
+     * Sets filter text.
+     *
+     * @param filterText the filter text
+     */
+    public void setFilterText(String filterText) {
 		setText(filterText);
 		updateFilter(null);
 	}

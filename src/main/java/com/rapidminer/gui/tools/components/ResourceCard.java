@@ -26,13 +26,11 @@ import com.rapidminer.tools.I18N;
 
 
 /**
- *
  * Data container used in button bard card panels. The title, tooltip, and icon are loaded from the
  * GUI.properties. I18N keys should look like this: 'gui.cards.I18N_KEY.title',
  * 'gui.cards.I18N_KEY.tip', 'gui.cards.I18N_KEY.icon'
  *
  * @author Nils Woehler
- *
  */
 public class ResourceCard implements Card {
 
@@ -41,7 +39,13 @@ public class ResourceCard implements Card {
 	private String tip;
 	private ImageIcon icon;
 
-	public ResourceCard(String key, String i18nKey) {
+    /**
+     * Instantiates a new Resource card.
+     *
+     * @param key     the key
+     * @param i18nKey the 18 n key
+     */
+    public ResourceCard(String key, String i18nKey) {
 
 		this.key = key;
 		String titleName = I18N.getGUIMessageOrNull("gui.cards." + i18nKey + ".title");

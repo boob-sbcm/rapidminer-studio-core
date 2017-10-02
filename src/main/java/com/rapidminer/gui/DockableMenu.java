@@ -44,6 +44,7 @@ import com.vlsolutions.swing.docking.DummyDockable;
 
 
 /**
+ * The type Dockable menu.
  *
  * @author Simon Fischer
  */
@@ -53,14 +54,13 @@ public class DockableMenu extends ResourceMenu {
 
 	private static final List<String> HIDE_IN_DOCKABLE_MENU_PREFIX_REGISTRY = new LinkedList<>();
 
-	/**
-	 * Here you can register prefixes that will be used to test if a {@link DockableState} start
-	 * with the provided prefix and thus won't be shown in the created {@link DockableMenu}.
-	 *
-	 * @param prefix
-	 *            the prefix of {@link DockableState} {@link DockKey}s to hide
-	 */
-	public static void registerHideInDockableMenuPrefix(String prefix) {
+    /**
+     * Here you can register prefixes that will be used to test if a {@link DockableState} start
+     * with the provided prefix and thus won't be shown in the created {@link DockableMenu}.
+     *
+     * @param prefix the prefix of {@link DockableState} {@link DockKey}s to hide
+     */
+    public static void registerHideInDockableMenuPrefix(String prefix) {
 		HIDE_IN_DOCKABLE_MENU_PREFIX_REGISTRY.add(prefix);
 	}
 
@@ -72,7 +72,12 @@ public class DockableMenu extends ResourceMenu {
 	// private DockingDesktop dockingDesktop;
 	private final DockingContext dockingContext;
 
-	public DockableMenu(DockingContext dockingContext) {
+    /**
+     * Instantiates a new Dockable menu.
+     *
+     * @param dockingContext the docking context
+     */
+    public DockableMenu(DockingContext dockingContext) {
 		super("show_view");
 		this.dockingContext = dockingContext;
 		addMenuListener(new MenuListener() {
@@ -157,7 +162,12 @@ public class DockableMenu extends ResourceMenu {
 
 	}
 
-	public DockingContext getDockingContext() {
+    /**
+     * Gets docking context.
+     *
+     * @return the docking context
+     */
+    public DockingContext getDockingContext() {
 		return dockingContext;
 	}
 }

@@ -59,7 +59,6 @@ import com.rapidminer.tools.RMUrlHandler;
  * Dialog which uses an {@link OAuthMechanism} to authenticate RapidMiner via OAuth.
  *
  * @author Marcel Michel
- *
  */
 public class OAuthDialog extends ButtonDialog {
 
@@ -83,27 +82,25 @@ public class OAuthDialog extends ButtonDialog {
 
 	private JButton urlButton;
 
-	/**
-	 * Constructs the dialog and uses an {@link OAuthMechanism} for authentication
-	 *
-	 * @param oAuthMechanism
-	 * @deprecated use {@link #OAuthDialog(Window, OAuthMechanism)} instead
-	 */
-	@Deprecated
+    /**
+     * Constructs the dialog and uses an {@link OAuthMechanism} for authentication
+     *
+     * @param oAuthMechanism the o auth mechanism
+     * @deprecated use {@link #OAuthDialog(Window, OAuthMechanism)} instead
+     */
+    @Deprecated
 	public OAuthDialog(OAuthMechanism oAuthMechanism) {
 		this(ApplicationFrame.getApplicationFrame(), oAuthMechanism);
 	}
 
-	/**
-	 * Constructs the dialog and uses an {@link OAuthMechanism} for authentication
-	 *
-	 * @param owner
-	 *            the owner window in which this dialog should appear
-	 * @param oAuthMechanism
-	 *            the mechanism
-	 * @since 6.5.0
-	 */
-	public OAuthDialog(Window owner, OAuthMechanism oAuthMechanism) {
+    /**
+     * Constructs the dialog and uses an {@link OAuthMechanism} for authentication
+     *
+     * @param owner          the owner window in which this dialog should appear
+     * @param oAuthMechanism the mechanism
+     * @since 6.5.0
+     */
+    public OAuthDialog(Window owner, OAuthMechanism oAuthMechanism) {
 		super(owner, "oauth_dialog", ModalityType.MODELESS, new Object[] {});
 		this.oAuth = oAuthMechanism;
 		initGUI();

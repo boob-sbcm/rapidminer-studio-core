@@ -34,7 +34,7 @@ import com.rapidminer.tools.Observer;
  * To be notified when the selected model changes, add yourself as an {@link Observer} via
  * {@link #addObserver(Observer, boolean)}.
  * </p>
- * 
+ *
  * @author Sabrina Kirstein, Marco Boeck
  */
 public class LogSelectionModel extends AbstractObservable<LogModel> {
@@ -44,7 +44,10 @@ public class LogSelectionModel extends AbstractObservable<LogModel> {
 
 	private RegistryListener<LogModel> registerListener;
 
-	public LogSelectionModel() {
+    /**
+     * Instantiates a new Log selection model.
+     */
+    public LogSelectionModel() {
 		// listener to be notified when a log model is added/removed from the LogModelRegistry
 		registerListener = new RegistryListener<LogModel>() {
 
@@ -75,26 +78,24 @@ public class LogSelectionModel extends AbstractObservable<LogModel> {
 		}
 	}
 
-	/**
-	 * Returns the currently selected {@link LogModel}. If none has been set via
-	 * {@link #setSelectedLogModel(LogModel)}, returns the first. If no model is available, returns
-	 * <code>null</code>.
-	 * 
-	 * @return
-	 */
-	public LogModel getCurrentLogModel() {
+    /**
+     * Returns the currently selected {@link LogModel}. If none has been set via
+     * {@link #setSelectedLogModel(LogModel)}, returns the first. If no model is available, returns
+     * <code>null</code>.
+     *
+     * @return current log model
+     */
+    public LogModel getCurrentLogModel() {
 		return currentModel;
 	}
 
-	/**
-	 * Sets the currently selected {@link LogModel}.
-	 * 
-	 * @param model
-	 * @throws IllegalArgumentException
-	 *             if the given model is not contained in {@link #getLogModels()} or is
-	 *             <code>null</code>.
-	 */
-	public void setSelectedLogModel(LogModel model) throws IllegalArgumentException {
+    /**
+     * Sets the currently selected {@link LogModel}.
+     *
+     * @param model the model
+     * @throws IllegalArgumentException if the given model is not contained in {@link #getLogModels()} or is             <code>null</code>.
+     */
+    public void setSelectedLogModel(LogModel model) throws IllegalArgumentException {
 		if (model == null || !LogModelRegistry.INSTANCE.getRegisteredObjects().contains(model)) {
 			throw new IllegalArgumentException("model must not be null and must be contained in the available models!");
 		}

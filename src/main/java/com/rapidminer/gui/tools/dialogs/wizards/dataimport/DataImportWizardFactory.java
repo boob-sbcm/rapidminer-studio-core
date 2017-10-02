@@ -33,19 +33,18 @@ import com.rapidminer.core.io.data.source.DataSourceFactoryRegistry;
 @Deprecated
 public interface DataImportWizardFactory {
 
-	/**
-	 * Creates a new {@link DataImportWizard}.
-	 *
-	 * @return the new data import wizard
-	 * @throws WizardCreationException
-	 *             if the wizard could not be created
-	 */
-	DataImportWizard createWizard() throws WizardCreationException;
+    /**
+     * Creates a new {@link DataImportWizard}.
+     *
+     * @return the new data import wizard
+     * @throws WizardCreationException if the wizard could not be created
+     */
+    DataImportWizard createWizard() throws WizardCreationException;
 
-	/**
-	 * Creates a new {@link Action} that in return creates a new {@link DatabaseImportWizard}.
-	 *
-	 * @return the new action
-	 */
-	Action createAction();
+    /**
+     * Creates a new {@link Action} that in return creates a new {@link DatabaseImportWizard}.
+     *
+     * @return the new action
+     */
+    Action createAction();
 }

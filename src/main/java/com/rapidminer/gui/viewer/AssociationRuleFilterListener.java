@@ -20,17 +20,31 @@ package com.rapidminer.gui.viewer;
 
 /**
  * This listener can be used to be notified for association rule filtering changes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface AssociationRuleFilterListener {
 
-	public static final String[] CONJUNCTION_NAMES = new String[] { "all of these conclusions:", "any of these conclusions:" };
+    /**
+     * The constant CONJUNCTION_NAMES.
+     */
+    public static final String[] CONJUNCTION_NAMES = new String[] { "all of these conclusions:", "any of these conclusions:" };
 
-	public static final int CONJUNCTION_ALL = 0;
+    /**
+     * The constant CONJUNCTION_ALL.
+     */
+    public static final int CONJUNCTION_ALL = 0;
 
-	public static final int CONJUNCTION_ANY = 1;
+    /**
+     * The constant CONJUNCTION_ANY.
+     */
+    public static final int CONJUNCTION_ANY = 1;
 
-	public void setFilter(boolean[] filter);
+    /**
+     * Sets filter.
+     *
+     * @param filter the filter
+     */
+    public void setFilter(boolean[] filter);
 
 }

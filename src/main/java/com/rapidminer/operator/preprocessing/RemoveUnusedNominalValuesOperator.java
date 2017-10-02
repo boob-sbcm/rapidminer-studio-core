@@ -58,7 +58,12 @@ public class RemoveUnusedNominalValuesOperator extends PreprocessingOperator {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public RemoveUnusedNominalValuesOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Remove unused nominal values operator.
+     *
+     * @param description the description
+     */
+    public RemoveUnusedNominalValuesOperator(OperatorDescription description) {
 		super(description);
 	}
 

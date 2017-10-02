@@ -31,17 +31,29 @@ import java.util.List;
 
 /**
  * Groups values by predefined criteria, e.g. binning of a numerical value source.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public interface ValueGrouping {
 
-	public class ValueGroupingFactory {
+    /**
+     * The type Value grouping factory.
+     */
+    public class ValueGroupingFactory {
 
 		private final static int binCount = 5;
 
-		public static ValueGrouping getValueGrouping(GroupingType type, DataTableColumn dataTableColumn,
+        /**
+         * Gets value grouping.
+         *
+         * @param type            the type
+         * @param dataTableColumn the data table column
+         * @param categorical     the categorical
+         * @param dateFormat      the date format
+         * @return the value grouping
+         * @throws ChartConfigurationException the chart configuration exception
+         */
+        public static ValueGrouping getValueGrouping(GroupingType type, DataTableColumn dataTableColumn,
 				boolean categorical, DateFormat dateFormat) throws ChartConfigurationException {
 			switch (type) {
 				case DISTINCT_VALUES:
@@ -60,10 +72,25 @@ public interface ValueGrouping {
 		}
 	}
 
-	public enum GroupingType {
-		NONE(I18N.getGUILabel("plotter.grouping_type.NONE.label")), EQUIDISTANT_FIXED_BIN_COUNT(I18N
-				.getGUILabel("plotter.grouping_type.EQUIDISTANT_FIXED_BIN_COUNT.label")), DISTINCT_VALUES(I18N
-				.getGUILabel("plotter.grouping_type.DISTINCT_VALUES.label")), EQUAL_DATA_FRACTION(I18N
+    /**
+     * The enum Grouping type.
+     */
+    public enum GroupingType {
+        /**
+         * None grouping type.
+         */
+        NONE(I18N.getGUILabel("plotter.grouping_type.NONE.label")), /**
+         * Equidistant fixed bin count grouping type.
+         */
+        EQUIDISTANT_FIXED_BIN_COUNT(I18N
+				.getGUILabel("plotter.grouping_type.EQUIDISTANT_FIXED_BIN_COUNT.label")), /**
+         * Distinct values grouping type.
+         */
+        DISTINCT_VALUES(I18N
+				.getGUILabel("plotter.grouping_type.DISTINCT_VALUES.label")), /**
+         * Equal data fraction grouping type.
+         */
+        EQUAL_DATA_FRACTION(I18N
 				.getGUILabel("plotter.grouping_type.EQUAL_DATA_FRACTION.label"));
 
 		private final String name;
@@ -72,43 +99,84 @@ public interface ValueGrouping {
 			this.name = name;
 		}
 
-		/**
-		 * @return The display name of the enum value.
-		 */
-		public String getName() {
+        /**
+         * Gets name.
+         *
+         * @return The display name of the enum value.
+         */
+        public String getName() {
 			return name;
 		}
 	}
 
-	public List<ValueRange> getGroupingModel(DataTable data, double upperBoud, double lowerBound);
+    /**
+     * Gets grouping model.
+     *
+     * @param data       the data
+     * @param upperBoud  the upper boud
+     * @param lowerBound the lower bound
+     * @return the grouping model
+     */
+    public List<ValueRange> getGroupingModel(DataTable data, double upperBoud, double lowerBound);
 
-	public boolean isCategorical();
+    /**
+     * Is categorical boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isCategorical();
 
-	/**
-	 * Returns the type of the grouping, like Distinct values or Equal data fraction grouping.
-	 */
-	public GroupingType getGroupingType();
+    /**
+     * Returns the type of the grouping, like Distinct values or Equal data fraction grouping.
+     *
+     * @return the grouping type
+     */
+    public GroupingType getGroupingType();
 
-	public void addListener(ValueGroupingListener l);
+    /**
+     * Add listener.
+     *
+     * @param l the l
+     */
+    public void addListener(ValueGroupingListener l);
 
-	public void removeListener(ValueGroupingListener l);
+    /**
+     * Remove listener.
+     *
+     * @param l the l
+     */
+    public void removeListener(ValueGroupingListener l);
 
 	public ValueGrouping clone();
 
-	/**
-	 * The type of the groups created by this ValueGrouping.
-	 */
-	public ValueType getDomainType();
+    /**
+     * The type of the groups created by this ValueGrouping.
+     *
+     * @return the domain type
+     */
+    public ValueType getDomainType();
 
-	/**
-	 * Returns true iff this ValueGrouping guarantees that each ValueRange in each possible
-	 * resulting grouping model defines upper and lower bounds.
-	 */
-	public boolean definesUpperLowerBounds();
+    /**
+     * Returns true iff this ValueGrouping guarantees that each ValueRange in each possible
+     * resulting grouping model defines upper and lower bounds.
+     *
+     * @return the boolean
+     */
+    public boolean definesUpperLowerBounds();
 
-	public DateFormat getDateFormat();
+    /**
+     * Gets date format.
+     *
+     * @return the date format
+     */
+    public DateFormat getDateFormat();
 
-	public void setDateFormat(DateFormat dateFormat);
+    /**
+     * Sets date format.
+     *
+     * @param dateFormat the date format
+     */
+    public void setDateFormat(DateFormat dateFormat);
 
 	@Override
 	public boolean equals(Object obj);

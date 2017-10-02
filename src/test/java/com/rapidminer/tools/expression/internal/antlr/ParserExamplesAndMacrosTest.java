@@ -52,7 +52,6 @@ import com.rapidminer.tools.expression.MacroResolver;
  * Tests the results of {@link AntlrParser#parse(String)} for example values and macros.
  *
  * @author Gisa Schaefer
- *
  */
 public class ParserExamplesAndMacrosTest {
 
@@ -60,7 +59,10 @@ public class ParserExamplesAndMacrosTest {
 	private static ExampleResolver resolver;
 	private static ExpressionParser parser;
 
-	@BeforeClass
+    /**
+     * Sets up for all.
+     */
+    @BeforeClass
 	public static void setUpForAll() {
 		exampleSet = makeExampleSet();
 		resolver = new ExampleResolver(exampleSet);
@@ -106,7 +108,10 @@ public class ParserExamplesAndMacrosTest {
 		return parser.parse(expression);
 	}
 
-	@Test
+    /**
+     * Nominal attribute.
+     */
+    @Test
 	public void nominalAttribute() {
 
 		try {
@@ -125,7 +130,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * Numerical attribute.
+     */
+    @Test
 	public void numericalAttribute() {
 
 		try {
@@ -143,7 +151,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * Real attribute.
+     */
+    @Test
 	public void realAttribute() {
 
 		try {
@@ -162,7 +173,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * Integer attribute.
+     */
+    @Test
 	public void integerAttribute() {
 
 		try {
@@ -181,7 +195,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date time attribute.
+     */
+    @Test
 	public void dateTimeAttribute() {
 
 		try {
@@ -200,7 +217,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date attribute.
+     */
+    @Test
 	public void dateAttribute() {
 
 		try {
@@ -219,7 +239,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * Time attribute.
+     */
+    @Test
 	public void timeAttribute() {
 
 		try {
@@ -238,7 +261,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * My macro.
+     */
+    @Test
 	public void myMacro() {
 
 		try {
@@ -251,7 +277,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * My bracket macro.
+     */
+    @Test
 	public void myBracketMacro() {
 
 		try {
@@ -264,7 +293,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * Number macro.
+     */
+    @Test
 	public void numberMacro() {
 
 		try {
@@ -277,7 +309,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * Attribute macro.
+     */
+    @Test
 	public void attributeMacro() {
 
 		try {
@@ -295,7 +330,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * Unknown macro.
+     */
+    @Test
 	public void unknownMacro() {
 		try {
 			getExpressionWithExamplesAndMacros("%{unknown}");
@@ -305,7 +343,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * Unknown attribute.
+     */
+    @Test
 	public void unknownAttribute() {
 		try {
 			getExpressionWithExamplesAndMacros("[unknown]");
@@ -315,7 +356,10 @@ public class ParserExamplesAndMacrosTest {
 		}
 	}
 
-	@Test
+    /**
+     * Unknown variable.
+     */
+    @Test
 	public void unknownVariable() {
 		try {
 			getExpressionWithExamplesAndMacros("unknown");

@@ -51,60 +51,51 @@ public class MemoryExampleTable extends AbstractExampleTable implements GrowingE
 	/** Number of columns to add when new columns are allocated. */
 	private static final int INCREMENT = 10;
 
-	/**
-	 * Creates a new instance of MemoryExampleTable.
-	 *
-	 * @param attributes
-	 *            Array of {@link Attribute} containing the attributes of the columns. None of these
-	 *            must be null.
-	 * @deprecated since 7.3. Use methods provided by {@link ExampleSets}.
-	 */
-	@Deprecated
+    /**
+     * Creates a new instance of MemoryExampleTable.
+     *
+     * @param attributes Array of {@link Attribute} containing the attributes of the columns. None of these            must be null.
+     * @deprecated since 7.3. Use methods provided by {@link ExampleSets}.
+     */
+    @Deprecated
 	public MemoryExampleTable(Attribute... attributes) {
 		this(Arrays.asList(attributes));
 	}
 
-	/**
-	 * Creates a new instance of MemoryExampleTable.
-	 *
-	 * @param attributes
-	 *            List of {@link Attribute} containing the attributes of the columns. None of these
-	 *            must be null.
-	 * @deprecated since 7.3. Use methods provided by {@link ExampleSets}.
-	 */
-	@Deprecated
+    /**
+     * Creates a new instance of MemoryExampleTable.
+     *
+     * @param attributes List of {@link Attribute} containing the attributes of the columns. None of these            must be null.
+     * @deprecated since 7.3. Use methods provided by {@link ExampleSets}.
+     */
+    @Deprecated
 	public MemoryExampleTable(List<Attribute> attributes) {
 		super(attributes);
 		this.columns = attributes.size();
 	}
 
-	/**
-	 * Creates a new instance of MemoryExampleTable with a row container of the expectedSize.
-	 *
-	 * @param attributes
-	 *            List of {@link Attribute} containing the attributes of the columns. None of these
-	 *            must be null.
-	 * @param expectedSize
-	 *            the expectedSize of rows to be added
-	 * @deprecated since 7.3. Use methods provided by {@link ExampleSets}.
-	 */
-	@Deprecated
+    /**
+     * Creates a new instance of MemoryExampleTable with a row container of the expectedSize.
+     *
+     * @param attributes   List of {@link Attribute} containing the attributes of the columns. None of these            must be null.
+     * @param expectedSize the expectedSize of rows to be added
+     * @deprecated since 7.3. Use methods provided by {@link ExampleSets}.
+     */
+    @Deprecated
 	public MemoryExampleTable(List<Attribute> attributes, int expectedSize) {
 		this(attributes);
 		dataList = new ArrayList<DataRow>(expectedSize);
 	}
 
-	/**
-	 * Creates a new instance of MemoryExampleTable.
-	 *
-	 * @param attributes
-	 *            List of {@link Attribute} containing the attributes of the columns. None of these
-	 *            must be null.
-	 * @param size
-	 *            initial size of this example table. All values will be Double.NaN.
-	 * @deprecated since 7.3. Use methods provided by {@link ExampleSets}.
-	 */
-	@Deprecated
+    /**
+     * Creates a new instance of MemoryExampleTable.
+     *
+     * @param attributes List of {@link Attribute} containing the attributes of the columns. None of these            must be null.
+     * @param factory    the factory
+     * @param size       initial size of this example table. All values will be Double.NaN.
+     * @deprecated since 7.3. Use methods provided by {@link ExampleSets}.
+     */
+    @Deprecated
 	public MemoryExampleTable(List<Attribute> attributes, DataRowFactory factory, int size) {
 		this(attributes);
 		dataList = new ArrayList<DataRow>(size);
@@ -117,46 +108,60 @@ public class MemoryExampleTable extends AbstractExampleTable implements GrowingE
 		}
 	}
 
-	/**
-	 * Creates an empty memory example table and fills it with the data rows read from i.
-	 * 
-	 * @deprecated since 7.3. Use methods provided by {@link ExampleSets}.
-	 */
-	@Deprecated
+    /**
+     * Creates an empty memory example table and fills it with the data rows read from i.
+     *
+     * @param attributes the attributes
+     * @param i          the
+     * @deprecated since 7.3. Use methods provided by {@link ExampleSets}.
+     */
+    @Deprecated
 	public MemoryExampleTable(List<Attribute> attributes, DataRowReader i) {
 		this(attributes, i, false);
 	}
 
-	/**
-	 * Creates an empty memory example table and fills it with the data rows read from i.
-	 * 
-	 * @deprecated since 7.3. Use methods provided by {@link ExampleSets}.
-	 */
-	@Deprecated
+    /**
+     * Creates an empty memory example table and fills it with the data rows read from i.
+     *
+     * @param attributes the attributes
+     * @param i          the
+     * @param permute    the permute
+     * @deprecated since 7.3. Use methods provided by {@link ExampleSets}.
+     */
+    @Deprecated
 	public MemoryExampleTable(List<Attribute> attributes, DataRowReader i, boolean permute) {
 		this(attributes);
 		readExamples(i, permute);
 	}
 
-	/**
-	 * Reads the examples into memory in the order they are delivered by the given reader. Removes
-	 * all old data rows first.
-	 */
-	public void readExamples(DataRowReader i) {
+    /**
+     * Reads the examples into memory in the order they are delivered by the given reader. Removes
+     * all old data rows first.
+     *
+     * @param i the
+     */
+    public void readExamples(DataRowReader i) {
 		readExamples(i, false);
 	}
 
-	/**
-	 * Reads the examples into memory and permutes the order. Removes all old data rows first.
-	 */
-	public void readExamples(DataRowReader i, boolean permute) {
+    /**
+     * Reads the examples into memory and permutes the order. Removes all old data rows first.
+     *
+     * @param i       the
+     * @param permute the permute
+     */
+    public void readExamples(DataRowReader i, boolean permute) {
 		readExamples(i, permute, null);
 	}
 
-	/**
-	 * Reads the examples into memory and permutes the order. Removes all old data rows first.
-	 */
-	public void readExamples(DataRowReader i, boolean permute, Random random) {
+    /**
+     * Reads the examples into memory and permutes the order. Removes all old data rows first.
+     *
+     * @param i       the
+     * @param permute the permute
+     * @param random  the random
+     */
+    public void readExamples(DataRowReader i, boolean permute, Random random) {
 		dataList.clear();
 		while (i.hasNext()) {
 			if (permute) {
@@ -202,18 +207,30 @@ public class MemoryExampleTable extends AbstractExampleTable implements GrowingE
 		dataRow.ensureNumberOfColumns(columns);
 	}
 
-	/** Convenience method for removing data rows. */
-	public boolean removeDataRow(DataRow dataRow) {
+    /**
+     * Convenience method for removing data rows.  @param dataRow the data row
+     *
+     * @param dataRow the data row
+     * @return the boolean
+     */
+    public boolean removeDataRow(DataRow dataRow) {
 		return dataList.remove(dataRow);
 	}
 
-	/** Convenience method for removing data rows. */
-	public DataRow removeDataRow(int index) {
+    /**
+     * Convenience method for removing data rows.  @param index the index
+     *
+     * @param index the index
+     * @return the data row
+     */
+    public DataRow removeDataRow(int index) {
 		return dataList.remove(index);
 	}
 
-	/** Clears the table. */
-	public void clear() {
+    /**
+     * Clears the table.
+     */
+    public void clear() {
 		dataList.clear();
 	}
 
@@ -270,7 +287,13 @@ public class MemoryExampleTable extends AbstractExampleTable implements GrowingE
 		return index;
 	}
 
-	public static MemoryExampleTable createCompleteCopy(ExampleTable oldTable) {
+    /**
+     * Create complete copy memory example table.
+     *
+     * @param oldTable the old table
+     * @return the memory example table
+     */
+    public static MemoryExampleTable createCompleteCopy(ExampleTable oldTable) {
 		MemoryExampleTable table = new MemoryExampleTable(Arrays.asList(oldTable.getAttributes()));
 		DataRowReader reader = oldTable.getDataRowReader();
 		while (reader.hasNext()) {

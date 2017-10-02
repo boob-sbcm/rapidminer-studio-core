@@ -109,11 +109,26 @@ public final class NewOperatorDialog extends ButtonDialog {
 
 	private final UpdateQueue updateQueue = new UpdateQueue("operator-filter");
 
-	public NewOperatorDialog(Actions actions) {
+    /**
+     * Instantiates a new New operator dialog.
+     *
+     * @param actions the actions
+     */
+    public NewOperatorDialog(Actions actions) {
 		this(actions, null, null, null, null, false);
 	}
 
-	public NewOperatorDialog(Actions actions, final Class<? extends IOObject> inputClass,
+    /**
+     * Instantiates a new New operator dialog.
+     *
+     * @param actions          the actions
+     * @param inputClass       the input class
+     * @param outputClass      the output class
+     * @param firstCapability  the first capability
+     * @param secondCapability the second capability
+     * @param modal            the modal
+     */
+    public NewOperatorDialog(Actions actions, final Class<? extends IOObject> inputClass,
 			final Class<? extends IOObject> outputClass, final OperatorCapability firstCapability,
 			final OperatorCapability secondCapability, boolean modal) {
 		super(ApplicationFrame.getApplicationFrame(), "new_operator", modal ? ModalityType.APPLICATION_MODAL
@@ -502,13 +517,19 @@ public final class NewOperatorDialog extends ButtonDialog {
 		}
 	}
 
-	/**
-	 * This method opens a dialog for selecting one operator fulfilling the given conditions.
-	 * Conditions not needed must be null.
-	 *
-	 * @throws OperatorCreationException
-	 */
-	public static Operator selectMatchingOperator(Actions actions, Class<? extends IOObject> inputClass,
+    /**
+     * This method opens a dialog for selecting one operator fulfilling the given conditions.
+     * Conditions not needed must be null.
+     *
+     * @param actions          the actions
+     * @param inputClass       the input class
+     * @param outputClass      the output class
+     * @param firstCapability  the first capability
+     * @param secondCapability the second capability
+     * @return the operator
+     * @throws OperatorCreationException the operator creation exception
+     */
+    public static Operator selectMatchingOperator(Actions actions, Class<? extends IOObject> inputClass,
 			Class<? extends IOObject> outputClass, OperatorCapability firstCapability, OperatorCapability secondCapability)
 					throws OperatorCreationException {
 		NewOperatorDialog dialog = new NewOperatorDialog(actions, inputClass, outputClass, firstCapability,

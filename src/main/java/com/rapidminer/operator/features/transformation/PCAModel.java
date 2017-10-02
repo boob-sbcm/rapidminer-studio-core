@@ -82,7 +82,14 @@ public class PCAModel extends AbstractEigenvectorModel implements ComponentWeigh
 
 	private boolean keepAttributes = false;
 
-	public PCAModel(ExampleSet eSet, double[] eigenvalues, double[][] eigenvectors) {
+    /**
+     * Instantiates a new Pca model.
+     *
+     * @param eSet         the e set
+     * @param eigenvalues  the eigenvalues
+     * @param eigenvectors the eigenvectors
+     */
+    public PCAModel(ExampleSet eSet, double[] eigenvalues, double[][] eigenvectors) {
 		super(eSet);
 
 		this.keepAttributes = false;
@@ -110,53 +117,118 @@ public class PCAModel extends AbstractEigenvectorModel implements ComponentWeigh
 		calculateCumulativeVariance();
 	}
 
-	public String[] getAttributeNames() {
+    /**
+     * Get attribute names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getAttributeNames() {
 		return attributeNames;
 	}
 
-	public double[] getMeans() {
+    /**
+     * Get means double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getMeans() {
 		return means;
 	}
 
-	public double getMean(int index) {
+    /**
+     * Gets mean.
+     *
+     * @param index the index
+     * @return the mean
+     */
+    public double getMean(int index) {
 		return means[index];
 	}
 
-	public double getVariance(int index) {
+    /**
+     * Gets variance.
+     *
+     * @param index the index
+     * @return the variance
+     */
+    public double getVariance(int index) {
 		return this.variances[index];
 	}
 
-	public double getCumulativeVariance(int index) {
+    /**
+     * Gets cumulative variance.
+     *
+     * @param index the index
+     * @return the cumulative variance
+     */
+    public double getCumulativeVariance(int index) {
 		return this.cumulativeVariance[index];
 	}
 
-	public double getEigenvalue(int index) {
+    /**
+     * Gets eigenvalue.
+     *
+     * @param index the index
+     * @return the eigenvalue
+     */
+    public double getEigenvalue(int index) {
 		return this.eigenVectors.get(index).getEigenvalue();
 	}
 
-	public double[] getEigenvector(int index) {
+    /**
+     * Get eigenvector double [ ].
+     *
+     * @param index the index
+     * @return the double [ ]
+     */
+    public double[] getEigenvector(int index) {
 		return this.eigenVectors.get(index).getEigenvector();
 	}
 
-	public double getVarianceThreshold() {
+    /**
+     * Gets variance threshold.
+     *
+     * @return the variance threshold
+     */
+    public double getVarianceThreshold() {
 		return this.varianceThreshold;
 	}
 
-	public int getMaximumNumberOfComponents() {
+    /**
+     * Gets maximum number of components.
+     *
+     * @return the maximum number of components
+     */
+    public int getMaximumNumberOfComponents() {
 		return attributeNames.length;
 	}
 
-	public int getNumberOfComponents() {
+    /**
+     * Gets number of components.
+     *
+     * @return the number of components
+     */
+    public int getNumberOfComponents() {
 		return numberOfComponents;
 	}
 
-	public void setVarianceThreshold(double threshold) {
+    /**
+     * Sets variance threshold.
+     *
+     * @param threshold the threshold
+     */
+    public void setVarianceThreshold(double threshold) {
 		this.manualNumber = false;
 		this.varianceThreshold = threshold;
 		this.numberOfComponents = -1;
 	}
 
-	public void setNumberOfComponents(int numberOfComponents) {
+    /**
+     * Sets number of components.
+     *
+     * @param numberOfComponents the number of components
+     */
+    public void setNumberOfComponents(int numberOfComponents) {
 		this.varianceThreshold = 0.95;
 		this.manualNumber = true;
 		this.numberOfComponents = numberOfComponents;

@@ -34,7 +34,7 @@ import javax.swing.JProgressBar;
 
 /**
  * A panel for delayed calculations.
- * 
+ *
  * @author Sebastian Land
  */
 public class JDelayedCalculationPanel extends JPanel {
@@ -47,7 +47,10 @@ public class JDelayedCalculationPanel extends JPanel {
 	private JLabel calculationLabel = new JLabel("Calculation started...");
 	private Thread calculationThread = null;
 
-	public JDelayedCalculationPanel() {
+    /**
+     * Instantiates a new J delayed calculation panel.
+     */
+    public JDelayedCalculationPanel() {
 
 		constraints.fill = GridBagConstraints.BOTH;
 		constraints.insets = new Insets(4, 4, 4, 4);
@@ -98,7 +101,12 @@ public class JDelayedCalculationPanel extends JPanel {
 		});
 	}
 
-	public Thread getCalculationThread() {
+    /**
+     * Gets calculation thread.
+     *
+     * @return the calculation thread
+     */
+    public Thread getCalculationThread() {
 		return calculationThread;
 	}
 
@@ -110,7 +118,12 @@ public class JDelayedCalculationPanel extends JPanel {
 		return super.add(comp);
 	}
 
-	public void setDelayThread(Thread delayThread) {
+    /**
+     * Sets delay thread.
+     *
+     * @param delayThread the delay thread
+     */
+    public void setDelayThread(Thread delayThread) {
 		this.calculationThread = delayThread;
 	}
 }

@@ -25,18 +25,22 @@ import java.net.URISyntaxException;
 
 /**
  * A factory that knows how to create {@link UpdateManager} instances.
- *
+ * <p>
  * <p>
  * This is an internal interface and might be changed or removed without any further notice.
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public interface UpdateManagerFactory {
 
-	/**
-	 * @return a new {@link UpdateManager} instance
-	 */
-	UpdateManager create() throws MalformedURLException, URISyntaxException, IOException;
+    /**
+     * Create update manager.
+     *
+     * @return a new {@link UpdateManager} instance
+     * @throws MalformedURLException the malformed url exception
+     * @throws URISyntaxException    the uri syntax exception
+     * @throws IOException           the io exception
+     */
+    UpdateManager create() throws MalformedURLException, URISyntaxException, IOException;
 }

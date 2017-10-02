@@ -28,7 +28,6 @@ import javax.swing.table.AbstractTableModel;
  * credentials.
  *
  * @author Miguel Buescher
- *
  */
 public class CredentialsTableModel extends AbstractTableModel {
 
@@ -38,7 +37,12 @@ public class CredentialsTableModel extends AbstractTableModel {
 	private Wallet wallet;
 	private LinkedList<String> listOfWalletKeys = new LinkedList<String>();
 
-	public CredentialsTableModel(Wallet wallet) {
+    /**
+     * Instantiates a new Credentials table model.
+     *
+     * @param wallet the wallet
+     */
+    public CredentialsTableModel(Wallet wallet) {
 		this.wallet = wallet;
 	}
 
@@ -121,16 +125,31 @@ public class CredentialsTableModel extends AbstractTableModel {
 		}
 	}
 
-	public void setShowPasswords(boolean showPasswords) {
+    /**
+     * Sets show passwords.
+     *
+     * @param showPasswords the show passwords
+     */
+    public void setShowPasswords(boolean showPasswords) {
 		this.showPasswords = showPasswords;
 		fireTableStructureChanged();
 	}
 
-	public boolean isShowPasswords() {
+    /**
+     * Is show passwords boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isShowPasswords() {
 		return showPasswords;
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Remove row.
+     *
+     * @param index the index
+     */
+    @SuppressWarnings("deprecation")
 	public void removeRow(int index) {
 		// uses list of keys directly which may or may not contain ID attribute, therefore this call
 		// is correct

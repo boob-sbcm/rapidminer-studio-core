@@ -46,16 +46,24 @@ import com.rapidminer.tools.XMLException;
  * {@link #save()} the repository configuration.
  *
  * @author Marcel Michel
- *
  */
 public class FileRepositoryProvider implements RepositoryProvider {
 
 	private static final Logger LOGGER = LogService.getRoot();
 
-	public static final String TAG_LOCAL_REPOSITORY = "localRepository";
-	public static final String TAG_REPOSITORIES = "repositories";
+    /**
+     * The constant TAG_LOCAL_REPOSITORY.
+     */
+    public static final String TAG_LOCAL_REPOSITORY = "localRepository";
+    /**
+     * The constant TAG_REPOSITORIES.
+     */
+    public static final String TAG_REPOSITORIES = "repositories";
 
-	public static final String FILE_NAME = "repositories.xml";
+    /**
+     * The constant FILE_NAME.
+     */
+    public static final String FILE_NAME = "repositories.xml";
 
 	private final List<Element> failedToLoad = new LinkedList<>();
 

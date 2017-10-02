@@ -53,7 +53,14 @@ public class FastMarginModel extends PredictionModel {
 
 	private String[] attributeConstructions;
 
-	public FastMarginModel(ExampleSet headerSet, Model linearModel, boolean useBias) {
+    /**
+     * Instantiates a new Fast margin model.
+     *
+     * @param headerSet   the header set
+     * @param linearModel the linear model
+     * @param useBias     the use bias
+     */
+    public FastMarginModel(ExampleSet headerSet, Model linearModel, boolean useBias) {
 		super(headerSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.linearModel = linearModel;

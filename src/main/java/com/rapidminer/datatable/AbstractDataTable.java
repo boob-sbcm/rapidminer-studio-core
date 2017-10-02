@@ -40,7 +40,7 @@ import com.rapidminer.tools.container.Pair;
  * This abstract data table implementation provides some default implementations for data tables
  * like listener handling. The method {@link #fireEvent()} can be used to promote changes to all
  * listeners.
- *
+ * <p>
  * In addition, IO methods are also provided by this abstract implementation.
  *
  * @author Ingo Mierswa
@@ -58,14 +58,19 @@ public abstract class AbstractDataTable implements DataTable, Tableable {
 
 	private int deselectionCount;
 
-	/**
-	 * This is a constructor that will not set any name. It is used for serialization of subclasses.
-	 */
-	public AbstractDataTable() {
+    /**
+     * This is a constructor that will not set any name. It is used for serialization of subclasses.
+     */
+    public AbstractDataTable() {
 		this("");
 	}
 
-	public AbstractDataTable(String name) {
+    /**
+     * Instantiates a new Abstract data table.
+     *
+     * @param name the name
+     */
+    public AbstractDataTable(String name) {
 		this.name = name;
 	}
 
@@ -114,7 +119,10 @@ public abstract class AbstractDataTable implements DataTable, Tableable {
 		listeners.remove(dataTableListener);
 	}
 
-	protected void fireEvent() {
+    /**
+     * Fire event.
+     */
+    protected void fireEvent() {
 		// copy to avoid ConcurrentModification
 		List<WeakReference<DataTableListener>> clone = new LinkedList<>(weakReferencedListeners);
 		Iterator<WeakReference<DataTableListener>> i = clone.iterator();

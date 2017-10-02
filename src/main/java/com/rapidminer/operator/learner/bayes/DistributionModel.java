@@ -31,10 +31,10 @@ import com.rapidminer.tools.math.distribution.Distribution;
 /**
  * DistributionModel is a model for learners which estimate distributions of attribute values from
  * example sets like NaiveBayes.
- *
+ * <p>
  * Predictions are calculated as product of the conditional probabilities for all attributes times
  * the class probability.
- *
+ * <p>
  * The basic learning concept is to simply count occurances of classes and attribute values. This
  * means no propabilities are calculated during the learning step. This is only done before output.
  * Optionally, this calculation can apply a Laplace correction which means in particular that zero
@@ -46,28 +46,86 @@ public abstract class DistributionModel extends UpdateablePredictionModel {
 
 	private static final long serialVersionUID = -402827845291958569L;
 
-	public DistributionModel(ExampleSet exampleSet, ExampleSetUtilities.SetsCompareOption setsCompareOption,
+    /**
+     * Instantiates a new Distribution model.
+     *
+     * @param exampleSet         the example set
+     * @param setsCompareOption  the sets compare option
+     * @param typesCompareOption the types compare option
+     */
+    public DistributionModel(ExampleSet exampleSet, ExampleSetUtilities.SetsCompareOption setsCompareOption,
 			ExampleSetUtilities.TypesCompareOption typesCompareOption) {
 		super(exampleSet, setsCompareOption, typesCompareOption);
 	}
 
-	public abstract String[] getAttributeNames();
+    /**
+     * Get attribute names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public abstract String[] getAttributeNames();
 
-	public abstract int getNumberOfAttributes();
+    /**
+     * Gets number of attributes.
+     *
+     * @return the number of attributes
+     */
+    public abstract int getNumberOfAttributes();
 
-	public abstract double getLowerBound(int attributeIndex);
+    /**
+     * Gets lower bound.
+     *
+     * @param attributeIndex the attribute index
+     * @return the lower bound
+     */
+    public abstract double getLowerBound(int attributeIndex);
 
-	public abstract double getUpperBound(int attributeIndex);
+    /**
+     * Gets upper bound.
+     *
+     * @param attributeIndex the attribute index
+     * @return the upper bound
+     */
+    public abstract double getUpperBound(int attributeIndex);
 
-	public abstract boolean isDiscrete(int attributeIndex);
+    /**
+     * Is discrete boolean.
+     *
+     * @param attributeIndex the attribute index
+     * @return the boolean
+     */
+    public abstract boolean isDiscrete(int attributeIndex);
 
-	public abstract Collection<Integer> getClassIndices();
+    /**
+     * Gets class indices.
+     *
+     * @return the class indices
+     */
+    public abstract Collection<Integer> getClassIndices();
 
-	public abstract int getNumberOfClasses();
+    /**
+     * Gets number of classes.
+     *
+     * @return the number of classes
+     */
+    public abstract int getNumberOfClasses();
 
-	public abstract String getClassName(int index);
+    /**
+     * Gets class name.
+     *
+     * @param index the index
+     * @return the class name
+     */
+    public abstract String getClassName(int index);
 
-	public abstract Distribution getDistribution(int classIndex, int attributeIndex);
+    /**
+     * Gets distribution.
+     *
+     * @param classIndex     the class index
+     * @param attributeIndex the attribute index
+     * @return the distribution
+     */
+    public abstract Distribution getDistribution(int classIndex, int attributeIndex);
 
 	@Override
 	public abstract ExampleSet performPrediction(ExampleSet exampleSet, Attribute predictedLabel) throws ProcessStoppedException;

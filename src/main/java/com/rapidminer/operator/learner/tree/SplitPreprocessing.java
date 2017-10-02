@@ -23,12 +23,17 @@ import com.rapidminer.example.ExampleSet;
 
 /**
  * Will be used before each split.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface SplitPreprocessing {
 
-	/** Will be invoked before each new split. */
-	public ExampleSet preprocess(ExampleSet exampleSet);
+    /**
+     * Will be invoked before each new split.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     * @return the example set
+     */
+    public ExampleSet preprocess(ExampleSet exampleSet);
 
 }

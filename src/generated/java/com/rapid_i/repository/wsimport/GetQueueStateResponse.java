@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for getQueueStateResponse complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="getQueueStateResponse">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getQueueStateResponse", propOrder = {
@@ -49,16 +47,16 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetQueueStateResponse {
 
+    /**
+     * The Return.
+     */
     @XmlElement(name = "return")
     protected QueueState _return;
 
     /**
      * Gets the value of the return property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link QueueState }
-     *     
+     *
+     * @return possible object is     {@link QueueState }
      */
     public QueueState getReturn() {
         return _return;
@@ -66,11 +64,8 @@ public class GetQueueStateResponse {
 
     /**
      * Sets the value of the return property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link QueueState }
-     *     
+     *
+     * @param value allowed object is     {@link QueueState }
      */
     public void setReturn(QueueState value) {
         this._return = value;

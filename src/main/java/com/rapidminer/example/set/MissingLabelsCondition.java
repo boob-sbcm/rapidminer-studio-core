@@ -25,17 +25,20 @@ import com.rapidminer.example.ExampleSet;
 /**
  * This subclass of {@link Condition} serves to exclude examples with known labels from an example
  * set.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class MissingLabelsCondition implements Condition {
 
 	private static final long serialVersionUID = 6559275828082706521L;
 
-	/**
-	 * Throws an exception since a parameter string is not allowed for this condition.
-	 */
-	public MissingLabelsCondition(ExampleSet exampleSet, String parameterString) {}
+    /**
+     * Throws an exception since a parameter string is not allowed for this condition.
+     *
+     * @param exampleSet      the example set
+     * @param parameterString the parameter string
+     */
+    public MissingLabelsCondition(ExampleSet exampleSet, String parameterString) {}
 
 	/**
 	 * Since the condition cannot be altered after creation we can just return the condition object

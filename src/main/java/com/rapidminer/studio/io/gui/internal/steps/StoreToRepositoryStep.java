@@ -52,13 +52,17 @@ import com.rapidminer.studio.io.data.DataSetReader;
  *
  * @author Gisa Schaefer
  * @since 7.0.0
- *
  */
 public final class StoreToRepositoryStep extends AbstractToRepositoryStep<RepositoryLocationChooser> {
 
 	private boolean error;
 
-	public StoreToRepositoryStep(ImportWizard wizard) {
+    /**
+     * Instantiates a new Store to repository step.
+     *
+     * @param wizard the wizard
+     */
+    public StoreToRepositoryStep(ImportWizard wizard) {
 		super(wizard);
 	}
 

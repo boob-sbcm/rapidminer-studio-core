@@ -49,18 +49,29 @@ import com.rapidminer.tools.RandomGenerator;
  * return an attribute weights vector which is applied on the data. Then a new model is created
  * using the second inner operator and a performance is retrieved using the third inner operator.
  * This performance vector serves as a performance indicator for the actual algorithm.
- *
+ * <p>
  * This implementation is described for the {@link RandomSplitValidationChain}.
  *
  * @author Ingo Mierswa
  */
 public class RandomSplitWrapperValidationChain extends WrapperValidationChain {
 
-	public static final String PARAMETER_SPLIT_RATIO = "split_ratio";
+    /**
+     * The constant PARAMETER_SPLIT_RATIO.
+     */
+    public static final String PARAMETER_SPLIT_RATIO = "split_ratio";
 
-	public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
+    /**
+     * The constant PARAMETER_SAMPLING_TYPE.
+     */
+    public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
 
-	public RandomSplitWrapperValidationChain(OperatorDescription description) {
+    /**
+     * Instantiates a new Random split wrapper validation chain.
+     *
+     * @param description the description
+     */
+    public RandomSplitWrapperValidationChain(OperatorDescription description) {
 		super(description);
 	}
 

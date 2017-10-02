@@ -33,7 +33,7 @@ import com.rapidminer.operator.ports.OutputPorts;
  * An editor to editor {@link ProcessContext}s. This is used in the {@link RunRemoteDialog} and in
  * the {@link ProcessContextProcessEditor}.
  * </p>
- *
+ * <p>
  * <p>
  * The editor keeps a reference to the edited {@link Process} and a {@link ProcessContext}.
  * Typically, the context will be the one provided by the process itself. Passing null to one of the
@@ -43,7 +43,6 @@ import com.rapidminer.operator.ports.OutputPorts;
  * </p>
  *
  * @author Simon Fischer, Tobias Malbrecht
- *
  */
 public class ProcessContextEditor extends JPanel {
 
@@ -53,11 +52,14 @@ public class ProcessContextEditor extends JPanel {
 	private final RepositoryLocationsEditor<InputPorts> outputEditor;
 	private final MacroEditor macroEditor;
 
-	/**
-	 * Constructs an editor for the given process and edited context. See class comment to find out
-	 * why you can pass in a context here.
-	 */
-	public ProcessContextEditor(Process process, ProcessContext alternativeContext) {
+    /**
+     * Constructs an editor for the given process and edited context. See class comment to find out
+     * why you can pass in a context here.
+     *
+     * @param process            the process
+     * @param alternativeContext the alternative context
+     */
+    public ProcessContextEditor(Process process, ProcessContext alternativeContext) {
 		inputEditor = new RepositoryLocationsEditor<OutputPorts>(true, "context.input", "input");
 		outputEditor = new RepositoryLocationsEditor<InputPorts>(false, "context.output", "result");
 		macroEditor = new MacroEditor(true);
@@ -73,11 +75,14 @@ public class ProcessContextEditor extends JPanel {
 		setProcess(process, alternativeContext);
 	}
 
-	/**
-	 * Sets the process and edited context. See class comment to find out why you can pass in a
-	 * context here.
-	 */
-	public void setProcess(Process process, ProcessContext context) {
+    /**
+     * Sets the process and edited context. See class comment to find out why you can pass in a
+     * context here.
+     *
+     * @param process the process
+     * @param context the context
+     */
+    public void setProcess(Process process, ProcessContext context) {
 		if (context == null) {
 			context = process != null ? process.getContext() : null;
 		}

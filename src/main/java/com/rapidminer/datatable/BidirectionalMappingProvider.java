@@ -19,10 +19,17 @@
 package com.rapidminer.datatable;
 
 /**
+ * The interface Bidirectional mapping provider.
+ *
  * @author Marius Helf
- * 
  */
 public interface BidirectionalMappingProvider extends DataTableMappingProvider {
 
-	double mapToParentValue(double value);
+    /**
+     * Map to parent value double.
+     *
+     * @param value the value
+     * @return the double
+     */
+    double mapToParentValue(double value);
 }

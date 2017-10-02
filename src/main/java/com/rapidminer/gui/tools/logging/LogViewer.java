@@ -112,7 +112,10 @@ public class LogViewer extends JPanel implements Dockable {
 
 		private static final long serialVersionUID = 1L;
 
-		public LogLevelMenu() {
+        /**
+         * Instantiates a new Log level menu.
+         */
+        public LogLevelMenu() {
 			super("log_level");
 
 			for (final Level level : LogViewer.SELECTABLE_LEVELS) {
@@ -151,11 +154,15 @@ public class LogViewer extends JPanel implements Dockable {
 	private static final Level[] SELECTABLE_LEVELS = { Level.ALL, Level.FINEST, Level.FINER, Level.FINE, Level.CONFIG,
 			Level.INFO, Level.WARNING, Level.SEVERE, Level.OFF };
 
-	/** index of the default log level (INFO) */
-	public static final int DEFAULT_LEVEL_INDEX = 5;
+    /**
+     * index of the default log level (INFO)
+     */
+    public static final int DEFAULT_LEVEL_INDEX = 5;
 
-	/** human readable names of the available log levels */
-	public static final String[] SELECTABLE_LEVEL_NAMES = new String[SELECTABLE_LEVELS.length];
+    /**
+     * human readable names of the available log levels
+     */
+    public static final String[] SELECTABLE_LEVEL_NAMES = new String[SELECTABLE_LEVELS.length];
 
 	static {
 		for (int i = 0; i < SELECTABLE_LEVELS.length; i++) {
@@ -163,15 +170,20 @@ public class LogViewer extends JPanel implements Dockable {
 		}
 	}
 
-	/** default number of log view entries before old ones get discarded for new ones */
-	public static final int DEFAULT_LOG_ENTRY_NUMBER = 1000;
+    /**
+     * default number of log view entries before old ones get discarded for new ones
+     */
+    public static final int DEFAULT_LOG_ENTRY_NUMBER = 1000;
 
 	/** the initial delay of the batch append timer */
 	private static final int BATCH_APPEND_TIMER_DELAY = 500;
 	/** the interval in which the batch append timer triggers */
 	private static final int BATCH_APPEND_TIMER_INTERVAL = 500;
 
-	public static final String LOG_VIEWER_DOCK_KEY = "log_viewer";
+    /**
+     * The constant LOG_VIEWER_DOCK_KEY.
+     */
+    public static final String LOG_VIEWER_DOCK_KEY = "log_viewer";
 
 	private final DockKey DOCK_KEY = new ResourceDockKey(LOG_VIEWER_DOCK_KEY);
 
@@ -225,14 +237,12 @@ public class LogViewer extends JPanel implements Dockable {
 	/** indicates if currently a batch update is in progress */
 	private volatile boolean batchUpdateRunning;
 
-	/**
-	 *
-	 *
-	 * /** Creates the {@link LogViewer} instance for the {@link MainFrame}.
-	 *
-	 * @param mainFrame
-	 */
-	public LogViewer(MainFrame mainFrame) {
+    /**
+     * /** Creates the {@link LogViewer} instance for the {@link MainFrame}.
+     *
+     * @param mainFrame the main frame
+     */
+    public LogViewer(MainFrame mainFrame) {
 		super(new BorderLayout());
 
 		// set maximum number of rows to display in the log before oldest entries are discarded
@@ -454,19 +464,19 @@ public class LogViewer extends JPanel implements Dockable {
 		}, BATCH_APPEND_TIMER_DELAY, BATCH_APPEND_TIMER_INTERVAL);
 	}
 
-	/**
-	 * Returns the complete log which is currently displayed.
-	 *
-	 * @return
-	 */
-	public String getLogAsText() {
+    /**
+     * Returns the complete log which is currently displayed.
+     *
+     * @return log as text
+     */
+    public String getLogAsText() {
 		return textPane.getText();
 	}
 
-	/**
-	 * Clears the currently selected log model and thus the displayed log.
-	 */
-	public void clearLog() {
+    /**
+     * Clears the currently selected log model and thus the displayed log.
+     */
+    public void clearLog() {
 		if (getLogSelectionModel().getCurrentLogModel() == null) {
 			return;
 		}
@@ -479,10 +489,10 @@ public class LogViewer extends JPanel implements Dockable {
 		}
 	}
 
-	/**
-	 * Opens a save dialog to save the currently displayed log into a file.
-	 */
-	public void saveLog() {
+    /**
+     * Opens a save dialog to save the currently displayed log into a file.
+     */
+    public void saveLog() {
 		File file = new File("." + File.separator);
 		String logFile = null;
 		try {
@@ -504,18 +514,18 @@ public class LogViewer extends JPanel implements Dockable {
 		}
 	}
 
-	/**
-	 * Opens a search dialog for the currently displayed log.
-	 */
-	public void performSearch() {
+    /**
+     * Opens a search dialog for the currently displayed log.
+     */
+    public void performSearch() {
 		new SearchDialog(textPane, new SearchableJTextComponent(textPane)).setVisible(true);
 	}
 
-	/**
-	 * Requests a refresh from a {@link LogMode#PULL} model. Executed in a ProgressThread. Updates
-	 * the GUI automatically afterwards.
-	 */
-	public void performRefresh() {
+    /**
+     * Requests a refresh from a {@link LogMode#PULL} model. Executed in a ProgressThread. Updates
+     * the GUI automatically afterwards.
+     */
+    public void performRefresh() {
 		final LogModel currentModel = getLogSelectionModel().getCurrentLogModel();
 		if (currentModel == null) {
 			return;
@@ -585,13 +595,13 @@ public class LogViewer extends JPanel implements Dockable {
 		return DOCK_KEY;
 	}
 
-	/**
-	 * Returns the model which backs the available logs. Can be used to change the currently
-	 * selected log.
-	 *
-	 * @return
-	 */
-	public LogSelectionModel getLogSelectionModel() {
+    /**
+     * Returns the model which backs the available logs. Can be used to change the currently
+     * selected log.
+     *
+     * @return log selection model
+     */
+    public LogSelectionModel getLogSelectionModel() {
 		return selectionModel;
 	}
 

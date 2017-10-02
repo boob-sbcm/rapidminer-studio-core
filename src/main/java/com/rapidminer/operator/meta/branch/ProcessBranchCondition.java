@@ -24,20 +24,19 @@ import com.rapidminer.operator.OperatorException;
 /**
  * This is the interface for all ProcessBranchConditions. Classes of this type may be used for the
  * ProcessBranch operator to create an if then else statement.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public interface ProcessBranchCondition {
 
-	/**
-	 * This method checks if the actual condition is met for the given value .
-	 * 
-	 * @param operator
-	 *            the operator which checks this condition
-	 * @param value
-	 *            the value to check if meets condition
-	 * @return true if value meets condition, false otherwise
-	 */
-	public boolean check(ProcessBranch operator, String value) throws OperatorException;
+    /**
+     * This method checks if the actual condition is met for the given value .
+     *
+     * @param operator the operator which checks this condition
+     * @param value    the value to check if meets condition
+     * @return true if value meets condition, false otherwise
+     * @throws OperatorException the operator exception
+     */
+    public boolean check(ProcessBranch operator, String value) throws OperatorException;
 
 }

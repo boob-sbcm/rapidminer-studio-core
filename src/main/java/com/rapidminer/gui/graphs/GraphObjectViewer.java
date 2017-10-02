@@ -24,17 +24,24 @@ import javax.swing.JComponent;
 /**
  * This object viewer can be used by the {@link GraphViewer}. A new object will be shown after
  * clicking on a node.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface GraphObjectViewer {
 
-	/**
-	 * Returns the component which should be used for showing information about the currently
-	 * selected object.
-	 */
-	public JComponent getViewerComponent();
+    /**
+     * Returns the component which should be used for showing information about the currently
+     * selected object.
+     *
+     * @return the viewer component
+     */
+    public JComponent getViewerComponent();
 
-	public void showObject(Object object);
+    /**
+     * Show object.
+     *
+     * @param object the object
+     */
+    public void showObject(Object object);
 
 }

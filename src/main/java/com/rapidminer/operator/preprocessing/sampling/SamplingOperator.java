@@ -65,7 +65,7 @@ import com.rapidminer.tools.RandomGenerator;
  * This operator will sample the given example set without replacement. Three modes are available:
  * Absolute returning a determined number, relative returning a determined fraction of the input set
  * and probability, that will return each example with the same probability.
- *
+ * <p>
  * The operator offers the possibility to specify sampling parameter per class to re-balance the
  * data.
  *
@@ -73,33 +73,72 @@ import com.rapidminer.tools.RandomGenerator;
  */
 public class SamplingOperator extends AbstractSamplingOperator {
 
-	public static final String PARAMETER_SAMPLE = "sample";
+    /**
+     * The constant PARAMETER_SAMPLE.
+     */
+    public static final String PARAMETER_SAMPLE = "sample";
 
-	public static String[] SAMPLE_MODES = { "absolute", "relative", "probability" };
+    /**
+     * The Sample modes.
+     */
+    public static String[] SAMPLE_MODES = { "absolute", "relative", "probability" };
 
-	public static final int SAMPLE_ABSOLUTE = 0;
+    /**
+     * The constant SAMPLE_ABSOLUTE.
+     */
+    public static final int SAMPLE_ABSOLUTE = 0;
 
-	public static final int SAMPLE_RELATIVE = 1;
+    /**
+     * The constant SAMPLE_RELATIVE.
+     */
+    public static final int SAMPLE_RELATIVE = 1;
 
-	public static final int SAMPLE_PROBABILITY = 2;
+    /**
+     * The constant SAMPLE_PROBABILITY.
+     */
+    public static final int SAMPLE_PROBABILITY = 2;
 
-	/** The parameter name for &quot;The number of examples which should be sampled&quot; */
-	public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
+    /**
+     * The parameter name for &quot;The number of examples which should be sampled&quot;
+     */
+    public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
 
-	/** The parameter name for &quot;The fraction of examples which should be sampled&quot; */
-	public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
+    /**
+     * The parameter name for &quot;The fraction of examples which should be sampled&quot;
+     */
+    public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
 
-	public static final String PARAMETER_SAMPLE_PROBABILITY = "sample_probability";
+    /**
+     * The constant PARAMETER_SAMPLE_PROBABILITY.
+     */
+    public static final String PARAMETER_SAMPLE_PROBABILITY = "sample_probability";
 
-	public static final String PARAMETER_BALANCE_DATA = "balance_data";
+    /**
+     * The constant PARAMETER_BALANCE_DATA.
+     */
+    public static final String PARAMETER_BALANCE_DATA = "balance_data";
 
-	public static final String PARAMETER_SAMPLE_SIZE_LIST = "sample_size_per_class";
+    /**
+     * The constant PARAMETER_SAMPLE_SIZE_LIST.
+     */
+    public static final String PARAMETER_SAMPLE_SIZE_LIST = "sample_size_per_class";
 
-	public static final String PARAMETER_SAMPLE_RATIO_LIST = "sample_ratio_per_class";
+    /**
+     * The constant PARAMETER_SAMPLE_RATIO_LIST.
+     */
+    public static final String PARAMETER_SAMPLE_RATIO_LIST = "sample_ratio_per_class";
 
-	public static final String PARAMETER_SAMPLE_PROBABILITY_LIST = "sample_probability_per_class";
+    /**
+     * The constant PARAMETER_SAMPLE_PROBABILITY_LIST.
+     */
+    public static final String PARAMETER_SAMPLE_PROBABILITY_LIST = "sample_probability_per_class";
 
-	public SamplingOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Sampling operator.
+     *
+     * @param description the description
+     */
+    public SamplingOperator(OperatorDescription description) {
 		super(description);
 
 		ExampleSetPrecondition needNominalLabelCondition = new ExampleSetPrecondition(getExampleSetInputPort(),

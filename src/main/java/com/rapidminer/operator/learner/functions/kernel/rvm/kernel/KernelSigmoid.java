@@ -20,7 +20,7 @@ package com.rapidminer.operator.learner.functions.kernel.rvm.kernel;
 
 /**
  * Returns the value of the Sigmoid kernel of both examples.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KernelSigmoid extends Kernel {
@@ -33,14 +33,22 @@ public class KernelSigmoid extends Kernel {
 	/** The parameter b of the sigmoid kernel. */
 	private double b = 0.0d;
 
-	/** Constructor(s) */
-	public KernelSigmoid(double a, double b) {
+    /**
+     * Constructor(s)  @param a the a
+     *
+     * @param a the a
+     * @param b the b
+     */
+    public KernelSigmoid(double a, double b) {
 		super();
 		this.a = a;
 		this.b = b;
 	}
 
-	public KernelSigmoid() {
+    /**
+     * Instantiates a new Kernel sigmoid.
+     */
+    public KernelSigmoid() {
 		super();
 	}
 

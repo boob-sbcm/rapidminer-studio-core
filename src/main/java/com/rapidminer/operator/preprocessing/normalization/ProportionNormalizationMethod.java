@@ -51,7 +51,6 @@ import com.rapidminer.tools.math.container.Range;
  * A normalization method for bringing the sum of all attribute values to 1.
  *
  * @author Sebastian Land
- *
  */
 public class ProportionNormalizationMethod extends AbstractNormalizationMethod {
 

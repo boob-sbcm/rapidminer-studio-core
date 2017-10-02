@@ -45,13 +45,20 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  */
 public class RandomOptimizationChain extends SimpleOperatorChain {
 
-	/** The parameter name for &quot;The number of iterations to perform&quot; */
-	public static final String PARAMETER_ITERATIONS = "iterations";
+    /**
+     * The parameter name for &quot;The number of iterations to perform&quot;
+     */
+    public static final String PARAMETER_ITERATIONS = "iterations";
 
-	/** The parameter name for &quot;Timeout in minutes (-1 = no timeout)&quot; */
-	public static final String PARAMETER_TIMEOUT = "timeout";
+    /**
+     * The parameter name for &quot;Timeout in minutes (-1 = no timeout)&quot;
+     */
+    public static final String PARAMETER_TIMEOUT = "timeout";
 
-	public static final String PARAMETER_ENABLE_TIMEOUT = "enable_timeout";
+    /**
+     * The constant PARAMETER_ENABLE_TIMEOUT.
+     */
+    public static final String PARAMETER_ENABLE_TIMEOUT = "enable_timeout";
 
 	private int iterationValue;
 	private double bestPerformanceValue = 0.0;
@@ -61,7 +68,12 @@ public class RandomOptimizationChain extends SimpleOperatorChain {
 			PerformanceVector.class);
 	private final OutputPort performanceOutput = getOutputPorts().createPort("performance");
 
-	public RandomOptimizationChain(OperatorDescription description) {
+    /**
+     * Instantiates a new Random optimization chain.
+     *
+     * @param description the description
+     */
+    public RandomOptimizationChain(OperatorDescription description) {
 		super(description, "Optimizing");
 
 		getTransformer().addGenerationRule(performanceOutput, PerformanceVector.class);

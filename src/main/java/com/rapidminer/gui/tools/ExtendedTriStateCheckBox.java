@@ -38,7 +38,7 @@ import javax.swing.plaf.ActionMapUIResource;
 
 /**
  * This is the tri state check box.
- * 
+ *
  * @author Santhosh Kumar, Ingo Mierswa
  */
 public class ExtendedTriStateCheckBox extends JCheckBox {
@@ -47,7 +47,14 @@ public class ExtendedTriStateCheckBox extends JCheckBox {
 
 	private final TristateDecorator model;
 
-	public ExtendedTriStateCheckBox(String text, Icon icon, Boolean initial) {
+    /**
+     * Instantiates a new Extended tri state check box.
+     *
+     * @param text    the text
+     * @param icon    the icon
+     * @param initial the initial
+     */
+    public ExtendedTriStateCheckBox(String text, Icon icon, Boolean initial) {
 		super(text, icon);
 		// Add a listener for when the mouse is pressed
 		super.addMouseListener(new MouseAdapter() {
@@ -78,15 +85,29 @@ public class ExtendedTriStateCheckBox extends JCheckBox {
 		setState(initial);
 	}
 
-	public ExtendedTriStateCheckBox(String text, Boolean initial) {
+    /**
+     * Instantiates a new Extended tri state check box.
+     *
+     * @param text    the text
+     * @param initial the initial
+     */
+    public ExtendedTriStateCheckBox(String text, Boolean initial) {
 		this(text, null, initial);
 	}
 
-	public ExtendedTriStateCheckBox(String text) {
+    /**
+     * Instantiates a new Extended tri state check box.
+     *
+     * @param text the text
+     */
+    public ExtendedTriStateCheckBox(String text) {
 		this(text, null);
 	}
 
-	public ExtendedTriStateCheckBox() {
+    /**
+     * Instantiates a new Extended tri state check box.
+     */
+    public ExtendedTriStateCheckBox() {
 		this(null);
 	}
 
@@ -94,18 +115,22 @@ public class ExtendedTriStateCheckBox extends JCheckBox {
 	@Override
 	public void addMouseListener(MouseListener l) {}
 
-	/**
-	 * Set the new state to either SELECTED, NOT_SELECTED or DONT_CARE. If state == null, it is
-	 * treated as DONT_CARE.
-	 */
-	public void setState(Boolean state) {
+    /**
+     * Set the new state to either SELECTED, NOT_SELECTED or DONT_CARE. If state == null, it is
+     * treated as DONT_CARE.
+     *
+     * @param state the state
+     */
+    public void setState(Boolean state) {
 		model.setState(state);
 	}
 
-	/**
-	 * Return the current state, which is determined by the selection status of the model.
-	 */
-	public Boolean getState() {
+    /**
+     * Return the current state, which is determined by the selection status of the model.
+     *
+     * @return the state
+     */
+    public Boolean getState() {
 		return model.getState();
 	}
 

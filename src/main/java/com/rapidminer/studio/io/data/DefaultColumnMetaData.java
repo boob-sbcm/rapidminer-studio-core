@@ -34,30 +34,37 @@ public class DefaultColumnMetaData implements ColumnMetaData {
 	private String role;
 	private boolean isRemoved;
 
-	/**
-	 * Creates a {@link ColumnMetaData} instance with the given data.
-	 */
-	public DefaultColumnMetaData(String name, ColumnType type) {
+    /**
+     * Creates a {@link ColumnMetaData} instance with the given data.
+     *
+     * @param name the name
+     * @param type the type
+     */
+    public DefaultColumnMetaData(String name, ColumnType type) {
 		this(name, type, null, false);
 	}
 
-	/**
-	 * Creates a {@link ColumnMetaData} instance with the given data.
-	 */
-	public DefaultColumnMetaData(String name, ColumnType type, String role, boolean isRemoved) {
+    /**
+     * Creates a {@link ColumnMetaData} instance with the given data.
+     *
+     * @param name      the name
+     * @param type      the type
+     * @param role      the role
+     * @param isRemoved the is removed
+     */
+    public DefaultColumnMetaData(String name, ColumnType type, String role, boolean isRemoved) {
 		this.name = name;
 		this.type = type;
 		this.role = role;
 		this.isRemoved = isRemoved;
 	}
 
-	/**
-	 * Copy constructor.
-	 *
-	 * @param other
-	 *            the instance to copy.
-	 */
-	DefaultColumnMetaData(ColumnMetaData other) {
+    /**
+     * Copy constructor.
+     *
+     * @param other the instance to copy.
+     */
+    DefaultColumnMetaData(ColumnMetaData other) {
 		this.name = other.getName();
 		this.type = other.getType();
 		this.role = other.getRole();

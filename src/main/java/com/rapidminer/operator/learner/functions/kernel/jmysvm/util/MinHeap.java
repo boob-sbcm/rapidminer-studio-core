@@ -20,12 +20,17 @@ package com.rapidminer.operator.learner.functions.kernel.jmysvm.util;
 
 /**
  * Implements a MinHeap on n doubles and ints
- * 
+ *
  * @author Stefan Rueping
  */
 public class MinHeap extends Heap {
 
-	public MinHeap(int n) {
+    /**
+     * Instantiates a new Min heap.
+     *
+     * @param n the n
+     */
+    public MinHeap(int n) {
 		the_size = 0;
 		init(n);
 	};

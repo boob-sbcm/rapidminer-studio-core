@@ -32,6 +32,8 @@ import java.util.Map.Entry;
 
 
 /**
+ * The type Categorical color provider.
+ *
  * @author Marius Helf
  */
 public class CategoricalColorProvider implements ColorProvider {
@@ -39,13 +41,26 @@ public class CategoricalColorProvider implements ColorProvider {
 	private Map<Double, Color> colorMap;
 	private int alpha;
 
-	public CategoricalColorProvider(Map<Double, Color> colorMap, int alpha) {
+    /**
+     * Instantiates a new Categorical color provider.
+     *
+     * @param colorMap the color map
+     * @param alpha    the alpha
+     */
+    public CategoricalColorProvider(Map<Double, Color> colorMap, int alpha) {
 		this.colorMap = colorMap;
 		this.alpha = alpha;
 		updateColorMapAlpha();
 	}
 
-	public CategoricalColorProvider(PlotInstance plotInstance, List<Double> categoryList, int alpha) {
+    /**
+     * Instantiates a new Categorical color provider.
+     *
+     * @param plotInstance the plot instance
+     * @param categoryList the category list
+     * @param alpha        the alpha
+     */
+    public CategoricalColorProvider(PlotInstance plotInstance, List<Double> categoryList, int alpha) {
 		this.alpha = alpha;
 		this.colorMap = createColorMapping(plotInstance, categoryList, alpha);
 	}
@@ -65,7 +80,14 @@ public class CategoricalColorProvider implements ColorProvider {
 		return colorMapping;
 	}
 
-	static public Color getColorForCategoryIdx(int idx, ColorScheme colorScheme) {
+    /**
+     * Gets color for category idx.
+     *
+     * @param idx         the idx
+     * @param colorScheme the color scheme
+     * @return the color for category idx
+     */
+    static public Color getColorForCategoryIdx(int idx, ColorScheme colorScheme) {
 		List<ColorRGB> colors = colorScheme.getColors();
 		int colorListSize = colors.size();
 		int darken = idx / colorListSize;
@@ -77,7 +99,13 @@ public class CategoricalColorProvider implements ColorProvider {
 		return categoryColor;
 	}
 
-	public void setCategoryColor(double category, Color color) {
+    /**
+     * Sets category color.
+     *
+     * @param category the category
+     * @param color    the color
+     */
+    public void setCategoryColor(double category, Color color) {
 		colorMap.put(category, DataStructureUtils.setColorAlpha(color, alpha));
 	}
 
@@ -119,7 +147,12 @@ public class CategoricalColorProvider implements ColorProvider {
 		}
 	}
 
-	public Map<Double, Color> getColorMap() {
+    /**
+     * Gets color map.
+     *
+     * @return the color map
+     */
+    public Map<Double, Color> getColorMap() {
 		return colorMap;
 	}
 }

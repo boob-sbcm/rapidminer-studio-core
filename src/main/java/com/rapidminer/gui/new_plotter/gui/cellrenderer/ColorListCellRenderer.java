@@ -32,8 +32,9 @@ import javax.swing.ListCellRenderer;
 
 
 /**
- * @author Nils Woehler
+ * The type Color list cell renderer.
  *
+ * @author Nils Woehler
  */
 public class ColorListCellRenderer implements ListCellRenderer<Color> {
 
@@ -48,7 +49,10 @@ public class ColorListCellRenderer implements ListCellRenderer<Color> {
 
 	private DefaultListCellRenderer delegate = new DefaultListCellRenderer();
 
-	public ColorListCellRenderer() {
+    /**
+     * Instantiates a new Color list cell renderer.
+     */
+    public ColorListCellRenderer() {
 		container = new JPanel(new GridBagLayout());
 
 		GridBagConstraints itemConstraint = new GridBagConstraints();

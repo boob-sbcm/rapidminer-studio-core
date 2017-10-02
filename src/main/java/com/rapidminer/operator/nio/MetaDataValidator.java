@@ -35,23 +35,44 @@ import com.rapidminer.operator.nio.model.ParsingError;
 /**
  * Validates the MetaData set by the user in the MetaDataDeclarationWizardStep which is a part of
  * importing e.g. an Excel file.
- * 
+ *
  * @author Dominik Halfkann
  */
 public class MetaDataValidator extends Observable {
 
 	private List<ParsingError> errorList = new ArrayList<ParsingError>();
 
-	Map<ColumnMetaData, Integer> metaDataToColNumMap = new HashMap<ColumnMetaData, Integer>();
+    /**
+     * The Meta data to col num map.
+     */
+    Map<ColumnMetaData, Integer> metaDataToColNumMap = new HashMap<ColumnMetaData, Integer>();
 
-	Map<String, List<Integer>> columnRoles = new HashMap<String, List<Integer>>();
-	Map<String, List<Integer>> columnNames = new HashMap<String, List<Integer>>();
+    /**
+     * The Column roles.
+     */
+    Map<String, List<Integer>> columnRoles = new HashMap<String, List<Integer>>();
+    /**
+     * The Column names.
+     */
+    Map<String, List<Integer>> columnNames = new HashMap<String, List<Integer>>();
 
-	List<Integer> oldDuplicateNameColumn = new ArrayList<Integer>();
-	List<Integer> duplicateNameColumn = new ArrayList<Integer>();
+    /**
+     * The Old duplicate name column.
+     */
+    List<Integer> oldDuplicateNameColumn = new ArrayList<Integer>();
+    /**
+     * The Duplicate name column.
+     */
+    List<Integer> duplicateNameColumn = new ArrayList<Integer>();
 
-	List<Integer> oldDuplicateRoleColumn = new ArrayList<Integer>();
-	List<Integer> duplicateRoleColumn = new ArrayList<Integer>();
+    /**
+     * The Old duplicate role column.
+     */
+    List<Integer> oldDuplicateRoleColumn = new ArrayList<Integer>();
+    /**
+     * The Duplicate role column.
+     */
+    List<Integer> duplicateRoleColumn = new ArrayList<Integer>();
 
 	private void updateColumnMaps(ColumnMetaData cmd) {
 		int updatedColumnNum = metaDataToColNumMap.get(cmd);
@@ -89,7 +110,10 @@ public class MetaDataValidator extends Observable {
 		checkForDuplicates();
 	}
 
-	public void checkForDuplicates() {
+    /**
+     * Check for duplicates.
+     */
+    public void checkForDuplicates() {
 		oldDuplicateNameColumn.clear();
 		oldDuplicateNameColumn.addAll(duplicateNameColumn);
 		duplicateNameColumn.clear();
@@ -132,11 +156,22 @@ public class MetaDataValidator extends Observable {
 		}
 	}
 
-	public List<ParsingError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<ParsingError> getErrors() {
 		return errorList;
 	}
 
-	public void addColumnMetaData(ColumnMetaData cmd, int column) {
+    /**
+     * Add column meta data.
+     *
+     * @param cmd    the cmd
+     * @param column the column
+     */
+    public void addColumnMetaData(ColumnMetaData cmd, int column) {
 		metaDataToColNumMap.put(cmd, column);
 		cmd.addObserver(new Observer() {
 
@@ -165,11 +200,23 @@ public class MetaDataValidator extends Observable {
 		}
 	}
 
-	public boolean isDuplicateNameColumn(int column) {
+    /**
+     * Is duplicate name column boolean.
+     *
+     * @param column the column
+     * @return the boolean
+     */
+    public boolean isDuplicateNameColumn(int column) {
 		return duplicateNameColumn.contains(column);
 	}
 
-	public boolean isDuplicateRoleColumn(int column) {
+    /**
+     * Is duplicate role column boolean.
+     *
+     * @param column the column
+     * @return the boolean
+     */
+    public boolean isDuplicateRoleColumn(int column) {
 		return duplicateRoleColumn.contains(column);
 	}
 

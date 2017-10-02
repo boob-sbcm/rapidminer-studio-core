@@ -30,40 +30,72 @@ import java.util.Map.Entry;
 /**
  * Wrapper for a map of Dimension to ValueRange. Implements an equals() method which is based on
  * instance comparison of map entries instead of reference comparison.
- * 
+ * <p>
  * What is a group cell? The grouping of several dimension axes results a multi dimensional matrix,
  * where each matrix cell contains data. Each cell is identified by exactly one group of each
  * dimension. A group in turn is resembled by a ValueRange object. Thus a map from Dimension to
  * ValueRange resembles the key of this multi dimensional matrix.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class GroupCellKey implements Cloneable {
 
-	Map<PlotDimension, ValueRange> groupCell;
+    /**
+     * The Group cell.
+     */
+    Map<PlotDimension, ValueRange> groupCell;
 
-	public GroupCellKey() {
+    /**
+     * Instantiates a new Group cell key.
+     */
+    public GroupCellKey() {
 		groupCell = new HashMap<DimensionConfig.PlotDimension, ValueRange>();
 	}
 
-	public GroupCellKey(Map<PlotDimension, ValueRange> groupCell) {
+    /**
+     * Instantiates a new Group cell key.
+     *
+     * @param groupCell the group cell
+     */
+    public GroupCellKey(Map<PlotDimension, ValueRange> groupCell) {
 		this.groupCell = groupCell;
 	}
 
-	public ValueRange getRangeForDimension(PlotDimension d) {
+    /**
+     * Gets range for dimension.
+     *
+     * @param d the d
+     * @return the range for dimension
+     */
+    public ValueRange getRangeForDimension(PlotDimension d) {
 		return groupCell.get(d);
 	}
 
-	public void setRangeForDimension(PlotDimension d, ValueRange range) {
+    /**
+     * Sets range for dimension.
+     *
+     * @param d     the d
+     * @param range the range
+     */
+    public void setRangeForDimension(PlotDimension d, ValueRange range) {
 		groupCell.put(d, range);
 	}
 
-	public void removeRangeForDimension(PlotDimension d) {
+    /**
+     * Remove range for dimension.
+     *
+     * @param d the d
+     */
+    public void removeRangeForDimension(PlotDimension d) {
 		groupCell.remove(d);
 	}
 
-	public int size() {
+    /**
+     * Size int.
+     *
+     * @return the int
+     */
+    public int size() {
 		return groupCell.size();
 	}
 
@@ -104,7 +136,13 @@ public class GroupCellKey implements Cloneable {
 		return builder.toString();
 	}
 
-	public String getNiceString(PlotConfiguration plotConfiguration) {
+    /**
+     * Gets nice string.
+     *
+     * @param plotConfiguration the plot configuration
+     * @return the nice string
+     */
+    public String getNiceString(PlotConfiguration plotConfiguration) {
 		StringBuilder builder = new StringBuilder();
 		boolean firstEntry = true;
 		for (Entry<PlotDimension, ValueRange> entry : groupCell.entrySet()) {

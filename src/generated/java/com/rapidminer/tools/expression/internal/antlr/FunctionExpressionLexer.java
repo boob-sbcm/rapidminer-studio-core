@@ -31,6 +31,9 @@ import org.antlr.v4.runtime.atn.PredictionContextCache;
 import org.antlr.v4.runtime.dfa.DFA;
 
 
+/**
+ * The type Function expression lexer.
+ */
 @SuppressWarnings({ "all", "warnings", "unchecked", "unused", "cast" })
 public class FunctionExpressionLexer extends Lexer {
 
@@ -38,19 +41,139 @@ public class FunctionExpressionLexer extends Lexer {
 		RuntimeMetaData.checkVersion("4.5", RuntimeMetaData.VERSION);
 	}
 
-	protected static final DFA[] _decisionToDFA;
-	protected static final PredictionContextCache _sharedContextCache = new PredictionContextCache();
-	public static final int PLUS = 1, MINUS = 2, MULTIPLY = 3, DIVIDE = 4, MODULO = 5, POWER = 6, LESS = 7, LEQ = 8,
-			GREATER = 9, GEQ = 10, EQUALS = 11, NOT_EQUALS = 12, NOT = 13, OR = 14, AND = 15, LPARENTHESIS = 16,
-			RPARENTHESIS = 17, COMMA = 18, NAME = 19, INTEGER = 20, REAL = 21, ATTRIBUTE = 22, STRING = 23,
-			SCOPE_CONSTANT = 24, INDIRECT_SCOPE_CONSTANT = 25, LSQUARE_BRACKET = 26, OPENING_QOUTES = 27, SCOPE_OPEN = 28,
-			INDIRECT_SCOPE_OPEN = 29, WHITESPACES = 30, SCOPE_CLOSE = 31, RSQUARE_BRACKET = 32, CLOSING_QUOTES = 33;
-	public static final int INSIDE_SCOPE = 1;
-	public static final int INSIDE_ATTRIBUTE = 2;
-	public static final int INSIDE_STRING = 3;
-	public static String[] modeNames = { "DEFAULT_MODE", "INSIDE_SCOPE", "INSIDE_ATTRIBUTE", "INSIDE_STRING" };
+    /**
+     * The constant _decisionToDFA.
+     */
+    protected static final DFA[] _decisionToDFA;
+    /**
+     * The constant _sharedContextCache.
+     */
+    protected static final PredictionContextCache _sharedContextCache = new PredictionContextCache();
+    /**
+     * The constant PLUS.
+     */
+    public static final int PLUS = 1, /**
+     * The Minus.
+     */
+    MINUS = 2, /**
+     * The Multiply.
+     */
+    MULTIPLY = 3, /**
+     * The Divide.
+     */
+    DIVIDE = 4, /**
+     * The Modulo.
+     */
+    MODULO = 5, /**
+     * The Power.
+     */
+    POWER = 6, /**
+     * The Less.
+     */
+    LESS = 7, /**
+     * The Leq.
+     */
+    LEQ = 8,
+    /**
+     * The Greater.
+     */
+    GREATER = 9, /**
+     * The Geq.
+     */
+    GEQ = 10, /**
+     * The Equals.
+     */
+    EQUALS = 11, /**
+     * The Not equals.
+     */
+    NOT_EQUALS = 12, /**
+     * The Not.
+     */
+    NOT = 13, /**
+     * The Or.
+     */
+    OR = 14, /**
+     * The And.
+     */
+    AND = 15, /**
+     * The Lparenthesis.
+     */
+    LPARENTHESIS = 16,
+    /**
+     * The Rparenthesis.
+     */
+    RPARENTHESIS = 17, /**
+     * The Comma.
+     */
+    COMMA = 18, /**
+     * The Name.
+     */
+    NAME = 19, /**
+     * The Integer.
+     */
+    INTEGER = 20, /**
+     * The Real.
+     */
+    REAL = 21, /**
+     * The Attribute.
+     */
+    ATTRIBUTE = 22, /**
+     * The String.
+     */
+    STRING = 23,
+    /**
+     * The Scope constant.
+     */
+    SCOPE_CONSTANT = 24, /**
+     * The Indirect scope constant.
+     */
+    INDIRECT_SCOPE_CONSTANT = 25, /**
+     * The Lsquare bracket.
+     */
+    LSQUARE_BRACKET = 26, /**
+     * The Opening qoutes.
+     */
+    OPENING_QOUTES = 27, /**
+     * The Scope open.
+     */
+    SCOPE_OPEN = 28,
+    /**
+     * The Indirect scope open.
+     */
+    INDIRECT_SCOPE_OPEN = 29, /**
+     * The Whitespaces.
+     */
+    WHITESPACES = 30, /**
+     * The Scope close.
+     */
+    SCOPE_CLOSE = 31, /**
+     * The Rsquare bracket.
+     */
+    RSQUARE_BRACKET = 32, /**
+     * The Closing quotes.
+     */
+    CLOSING_QUOTES = 33;
+    /**
+     * The constant INSIDE_SCOPE.
+     */
+    public static final int INSIDE_SCOPE = 1;
+    /**
+     * The constant INSIDE_ATTRIBUTE.
+     */
+    public static final int INSIDE_ATTRIBUTE = 2;
+    /**
+     * The constant INSIDE_STRING.
+     */
+    public static final int INSIDE_STRING = 3;
+    /**
+     * The Mode names.
+     */
+    public static String[] modeNames = { "DEFAULT_MODE", "INSIDE_SCOPE", "INSIDE_ATTRIBUTE", "INSIDE_STRING" };
 
-	public static final String[] ruleNames = { "PLUS", "MINUS", "MULTIPLY", "DIVIDE", "MODULO", "POWER", "LESS", "LEQ",
+    /**
+     * The constant ruleNames.
+     */
+    public static final String[] ruleNames = { "PLUS", "MINUS", "MULTIPLY", "DIVIDE", "MODULO", "POWER", "LESS", "LEQ",
 			"GREATER", "GEQ", "EQUALS", "NOT_EQUALS", "NOT", "OR", "AND", "LPARENTHESIS", "RPARENTHESIS", "COMMA", "NAME",
 			"INTEGER", "REAL", "DIGITS", "EXPONENT", "ATTRIBUTE", "STRING", "SCOPE_CONSTANT", "INDIRECT_SCOPE_CONSTANT",
 			"INSIDE_ATTRIBUTE", "INSIDE_SCOPE", "INSIDE_STRING", "UNICODE", "UNICODE_CHAR", "LSQUARE_BRACKET",
@@ -65,12 +188,17 @@ public class FunctionExpressionLexer extends Lexer {
 			"COMMA", "NAME", "INTEGER", "REAL", "ATTRIBUTE", "STRING", "SCOPE_CONSTANT", "INDIRECT_SCOPE_CONSTANT",
 			"LSQUARE_BRACKET", "OPENING_QOUTES", "SCOPE_OPEN", "INDIRECT_SCOPE_OPEN", "WHITESPACES", "SCOPE_CLOSE",
 			"RSQUARE_BRACKET", "CLOSING_QUOTES" };
-	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
+    /**
+     * The constant VOCABULARY.
+     */
+    public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
-	/**
-	 * @deprecated Use {@link #VOCABULARY} instead.
-	 */
-	@Deprecated
+    /**
+     * The constant tokenNames.
+     *
+     * @deprecated Use {@link #VOCABULARY} instead.
+     */
+    @Deprecated
 	public static final String[] tokenNames;
 	static {
 		tokenNames = new String[_SYMBOLIC_NAMES.length];
@@ -86,48 +214,91 @@ public class FunctionExpressionLexer extends Lexer {
 		}
 	}
 
-	@Override
+    /**
+     * Get token names string [ ].
+     *
+     * @return the string [ ]
+     */
+    @Override
 	@Deprecated
 	public String[] getTokenNames() {
 		return tokenNames;
 	}
 
-	@Override
+    /**
+     * Gets vocabulary.
+     *
+     * @return the vocabulary
+     */
+    @Override
 	public Vocabulary getVocabulary() {
 		return VOCABULARY;
 	}
 
-	public FunctionExpressionLexer(CharStream input) {
+    /**
+     * Instantiates a new Function expression lexer.
+     *
+     * @param input the input
+     */
+    public FunctionExpressionLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this, _ATN, _decisionToDFA, _sharedContextCache);
 	}
 
-	@Override
+    /**
+     * Gets grammar file name.
+     *
+     * @return the grammar file name
+     */
+    @Override
 	public String getGrammarFileName() {
 		return "FunctionExpressionLexer.g4";
 	}
 
-	@Override
+    /**
+     * Get rule names string [ ].
+     *
+     * @return the string [ ]
+     */
+    @Override
 	public String[] getRuleNames() {
 		return ruleNames;
 	}
 
-	@Override
+    /**
+     * Gets serialized atn.
+     *
+     * @return the serialized atn
+     */
+    @Override
 	public String getSerializedATN() {
 		return _serializedATN;
 	}
 
-	@Override
+    /**
+     * Get mode names string [ ].
+     *
+     * @return the string [ ]
+     */
+    @Override
 	public String[] getModeNames() {
 		return modeNames;
 	}
 
-	@Override
+    /**
+     * Gets atn.
+     *
+     * @return the atn
+     */
+    @Override
 	public ATN getATN() {
 		return _ATN;
 	}
 
-	public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2#\u00fa\b\1\b\1\b"
+    /**
+     * The constant _serializedATN.
+     */
+    public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2#\u00fa\b\1\b\1\b"
 			+ "\1\b\1\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t"
 			+ "\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21"
 			+ "\t\21\4\22\t\22\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30"
@@ -208,7 +379,10 @@ public class FunctionExpressionLexer extends Lexer {
 			+ "\u00f7\7$\2\2\u00f7\u00f8\3\2\2\2\u00f8\u00f9\b)\6\2\u00f9U\3\2\2\2\24"
 			+ "\2\3\4\5\u0083\u0088\u0090\u0094\u0097\u009c\u00a0\u00b7\u00b9\u00be\u00c0"
 			+ "\u00c7\u00c9\u00ea\7\4\4\2\4\5\2\4\3\2\b\2\2\4\2\2";
-	public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
+    /**
+     * The constant _ATN.
+     */
+    public static final ATN _ATN = new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
 		_decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
 		for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {

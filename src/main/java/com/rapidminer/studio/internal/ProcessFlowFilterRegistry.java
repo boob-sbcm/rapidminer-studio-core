@@ -32,23 +32,23 @@ import com.rapidminer.security.PluginSandboxPolicy;
  */
 public enum ProcessFlowFilterRegistry {
 
-	INSTANCE;
+    /**
+     * Instance process flow filter registry.
+     */
+    INSTANCE;
 
 	private ProcessFlowFilter filter;
 
-	/**
-	 * Registers the filter.
-	 *
-	 * Note: Only one registration is allowed. All following request will result in an
-	 * {@link IllegalStateException}.
-	 *
-	 * @param filter
-	 *            the filter to register
-	 * @throws SecurityException
-	 *             if caller does not have {@link RuntimePermission} for
-	 *             {@code accessClassInPackage.rapidminer.internal}
-	 */
-	public void register(ProcessFlowFilter filter) {
+    /**
+     * Registers the filter.
+     * <p>
+     * Note: Only one registration is allowed. All following request will result in an
+     * {@link IllegalStateException}.
+     *
+     * @param filter the filter to register
+     * @throws SecurityException if caller does not have {@link RuntimePermission} for             {@code accessClassInPackage.rapidminer.internal}
+     */
+    public void register(ProcessFlowFilter filter) {
 		if (System.getSecurityManager() != null) {
 			AccessController.checkPermission(new RuntimePermission(PluginSandboxPolicy.RAPIDMINER_INTERNAL_PERMISSION));
 		}
@@ -61,12 +61,12 @@ public enum ProcessFlowFilterRegistry {
 		this.filter = filter;
 	}
 
-	/**
-	 * Getter for the registered {@link ProcessFlowFilter}.
-	 *
-	 * @return The the registered filter or {@code null}
-	 */
-	public ProcessFlowFilter getProcessFlowFilter() {
+    /**
+     * Getter for the registered {@link ProcessFlowFilter}.
+     *
+     * @return The the registered filter or {@code null}
+     */
+    public ProcessFlowFilter getProcessFlowFilter() {
 		return filter;
 	}
 }

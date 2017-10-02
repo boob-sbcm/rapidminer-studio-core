@@ -30,7 +30,7 @@ import java.util.LinkedHashMap;
 
 /**
  * A renderer for the plot view of attribute weights.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeWeightsPlotRenderer extends AbstractDataTablePlotterRenderer {

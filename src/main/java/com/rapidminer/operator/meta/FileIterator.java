@@ -43,13 +43,24 @@ import com.rapidminer.parameter.ParameterTypeDirectory;
 @Deprecated
 public class FileIterator extends AbstractFileIterator {
 
-	public static final String PARAMETER_DIRECTORY = "directory";
+    /**
+     * The constant PARAMETER_DIRECTORY.
+     */
+    public static final String PARAMETER_DIRECTORY = "directory";
 
 	private File directory;
 
-	public static final OperatorVersion CHANGE_6_4_0_ERROR_WHEN_DIRECTORY_NOT_EXISTS = new OperatorVersion(6, 4, 0);
+    /**
+     * The constant CHANGE_6_4_0_ERROR_WHEN_DIRECTORY_NOT_EXISTS.
+     */
+    public static final OperatorVersion CHANGE_6_4_0_ERROR_WHEN_DIRECTORY_NOT_EXISTS = new OperatorVersion(6, 4, 0);
 
-	public FileIterator(OperatorDescription description) {
+    /**
+     * Instantiates a new File iterator.
+     *
+     * @param description the description
+     */
+    public FileIterator(OperatorDescription description) {
 		super(description);
 	}
 

@@ -82,7 +82,13 @@ public class TextFieldUI extends BasicTextFieldUI {
 
 	private TextFieldFocusListener focusListener = new TextFieldFocusListener();
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new TextFieldUI();
 	}
 

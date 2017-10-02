@@ -31,9 +31,8 @@ import com.rapidminer.operator.ports.metadata.MetaData;
 
 /**
  * Subclasses of {@link MetaDataRendererFactory} can register themselves here.
- * 
+ *
  * @author Simon Fischer, Gabor Makrai
- * 
  */
 public class MetaDataRendererFactoryRegistry {
 
@@ -55,13 +54,21 @@ public class MetaDataRendererFactoryRegistry {
 		});
 	}
 
-	/** Gets the singleton instance. */
-	public static MetaDataRendererFactoryRegistry getInstance() {
+    /**
+     * Gets the singleton instance.  @return the instance
+     *
+     * @return the instance
+     */
+    public static MetaDataRendererFactoryRegistry getInstance() {
 		return INSTANCE;
 	}
 
-	/** Registers a new factory. */
-	public void register(MetaDataRendererFactory factory) {
+    /**
+     * Registers a new factory.  @param factory the factory
+     *
+     * @param factory the factory
+     */
+    public void register(MetaDataRendererFactory factory) {
 		factories.put(factory.getSupportedClass(), factory);
 	}
 
@@ -143,11 +150,14 @@ public class MetaDataRendererFactoryRegistry {
 		}
 	}
 
-	/**
-	 * Creates a renderer for this meta data object or null if there is no suitable renderer or if
-	 * the meta data is null.
-	 */
-	public Component createRenderer(MetaData metaData) {
+    /**
+     * Creates a renderer for this meta data object or null if there is no suitable renderer or if
+     * the meta data is null.
+     *
+     * @param metaData the meta data
+     * @return the component
+     */
+    public Component createRenderer(MetaData metaData) {
 
 		// handle the case when we get null metadata
 		if (metaData == null) {

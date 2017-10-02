@@ -26,9 +26,12 @@ package com.rapidminer.studio.internal;
  */
 public interface ParameterServiceProvider {
 
-	/**
-	 * @return The value of the given parameter or {@code null} if this parameter is unknown.
-	 */
-	public String getParameterValue(String key);
+    /**
+     * Gets parameter value.
+     *
+     * @param key the key
+     * @return The value of the given parameter or {@code null} if this parameter is unknown.
+     */
+    public String getParameterValue(String key);
 
 }

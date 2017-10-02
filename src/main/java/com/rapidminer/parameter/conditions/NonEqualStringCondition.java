@@ -26,18 +26,32 @@ import org.w3c.dom.Element;
 
 /**
  * This condition checks if a string parameter (also string category) has NOT a certain value.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class NonEqualStringCondition extends EqualStringCondition {
 
-	public NonEqualStringCondition(ParameterHandler handler, String conditionParameter, boolean becomeMandatory,
+    /**
+     * Instantiates a new Non equal string condition.
+     *
+     * @param handler            the handler
+     * @param conditionParameter the condition parameter
+     * @param becomeMandatory    the become mandatory
+     * @param types              the types
+     */
+    public NonEqualStringCondition(ParameterHandler handler, String conditionParameter, boolean becomeMandatory,
 			String... types) {
 		super(handler, conditionParameter, becomeMandatory, types);
 
 	}
 
-	public NonEqualStringCondition(Element element) throws XMLException {
+    /**
+     * Instantiates a new Non equal string condition.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public NonEqualStringCondition(Element element) throws XMLException {
 		super(element);
 	}
 

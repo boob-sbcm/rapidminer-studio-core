@@ -45,7 +45,7 @@ import com.rapidminer.tools.Ontology;
  * hierarchy is complete nonsense and will be dropped with one of the next versions. So if you
  * implement using this class, please implement this little code fragment below again or build a
  * more fitting class hierarchy.
- *
+ * <p>
  * The model for the generic dimensionality reducer.
  *
  * @author Ingo Mierswa
@@ -59,7 +59,14 @@ public class DimensionalityReducerModel extends AbstractModel {
 
 	private double[][] p;
 
-	protected DimensionalityReducerModel(ExampleSet exampleSet, double[][] p, int dimensions) {
+    /**
+     * Instantiates a new Dimensionality reducer model.
+     *
+     * @param exampleSet the example set
+     * @param p          the p
+     * @param dimensions the dimensions
+     */
+    protected DimensionalityReducerModel(ExampleSet exampleSet, double[][] p, int dimensions) {
 		super(exampleSet);
 		this.p = p;
 		this.dimensions = dimensions;

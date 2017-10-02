@@ -43,7 +43,10 @@ import com.rapidminer.operator.learner.PredictionModel;
  */
 public class HierarchicalMultiClassModel extends PredictionModel implements MetaModel {
 
-	public static class Node implements Serializable {
+    /**
+     * The type Node.
+     */
+    public static class Node implements Serializable {
 
 		private static final long serialVersionUID = 1L;
 
@@ -57,66 +60,123 @@ public class HierarchicalMultiClassModel extends PredictionModel implements Meta
 
 		private Model model = null;
 
-		public Node(String className) {
+        /**
+         * Instantiates a new Node.
+         *
+         * @param className the class name
+         */
+        public Node(String className) {
 			this.className = className;
 		}
 
-		/**
-		 * Returns the children in order of insertion
-		 */
-		public List<Node> getChildren() {
+        /**
+         * Returns the children in order of insertion
+         *
+         * @return the children
+         */
+        public List<Node> getChildren() {
 			return childrenList;
 		}
 
-		/**
-		 * Adds a child node.
-		 */
-		public void addChild(Node child) {
+        /**
+         * Adds a child node.
+         *
+         * @param child the child
+         */
+        public void addChild(Node child) {
 			childrenList.add(child);
 			children.put(child.getClassName(), child);
 			child.setParent(this);
 		}
 
-		/**
-		 * Sets the parent of this node. Only the root node may have a null parent.
-		 */
-		public void setParent(Node parent) {
+        /**
+         * Sets the parent of this node. Only the root node may have a null parent.
+         *
+         * @param parent the parent
+         */
+        public void setParent(Node parent) {
 			this.parent = parent;
 		}
 
-		public boolean isRoot() {
+        /**
+         * Is root boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isRoot() {
 			return parent == null;
 		}
 
-		public void setPartitionId(int partition) {
+        /**
+         * Sets partition id.
+         *
+         * @param partition the partition
+         */
+        public void setPartitionId(int partition) {
 			this.partitionId = partition;
 		}
 
-		public int getPartitionId() {
+        /**
+         * Gets partition id.
+         *
+         * @return the partition id
+         */
+        public int getPartitionId() {
 			return partitionId;
 		}
 
-		public Node getParent() {
+        /**
+         * Gets parent.
+         *
+         * @return the parent
+         */
+        public Node getParent() {
 			return this.parent;
 		}
 
-		public String getClassName() {
+        /**
+         * Gets class name.
+         *
+         * @return the class name
+         */
+        public String getClassName() {
 			return this.className;
 		}
 
-		public boolean isLeaf() {
+        /**
+         * Is leaf boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isLeaf() {
 			return children.isEmpty();
 		}
 
-		public void setModel(Model model) {
+        /**
+         * Sets model.
+         *
+         * @param model the model
+         */
+        public void setModel(Model model) {
 			this.model = model;
 		}
 
-		public Model getModel() {
+        /**
+         * Gets model.
+         *
+         * @return the model
+         */
+        public Model getModel() {
 			return this.model;
 		}
 
-		public Node getChild(String label) {
+        /**
+         * Gets child.
+         *
+         * @param label the label
+         * @return the child
+         */
+        public Node getChild(String label) {
 			return children.get(label);
 		}
 
@@ -126,7 +186,13 @@ public class HierarchicalMultiClassModel extends PredictionModel implements Meta
 
 	private final Node root;
 
-	public HierarchicalMultiClassModel(ExampleSet exampleSet, Node root) {
+    /**
+     * Instantiates a new Hierarchical multi class model.
+     *
+     * @param exampleSet the example set
+     * @param root       the root
+     */
+    public HierarchicalMultiClassModel(ExampleSet exampleSet, Node root) {
 		super(exampleSet, null, null);
 		this.root = root;
 	}

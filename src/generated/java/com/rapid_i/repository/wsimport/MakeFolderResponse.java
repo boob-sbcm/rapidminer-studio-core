@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for makeFolderResponse complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="makeFolderResponse">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "makeFolderResponse", propOrder = {
@@ -49,16 +47,16 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class MakeFolderResponse {
 
+    /**
+     * The Return.
+     */
     @XmlElement(name = "return")
     protected EntryResponse _return;
 
     /**
      * Gets the value of the return property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link EntryResponse }
-     *     
+     *
+     * @return possible object is     {@link EntryResponse }
      */
     public EntryResponse getReturn() {
         return _return;
@@ -66,11 +64,8 @@ public class MakeFolderResponse {
 
     /**
      * Sets the value of the return property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EntryResponse }
-     *     
+     *
+     * @param value allowed object is     {@link EntryResponse }
      */
     public void setReturn(EntryResponse value) {
         this._return = value;

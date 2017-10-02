@@ -38,11 +38,21 @@ public class AttributeTransformationRemapping implements AttributeTransformation
 
 	private NominalMapping overlayedMapping;
 
-	public AttributeTransformationRemapping(NominalMapping overlayedMapping) {
+    /**
+     * Instantiates a new Attribute transformation remapping.
+     *
+     * @param overlayedMapping the overlayed mapping
+     */
+    public AttributeTransformationRemapping(NominalMapping overlayedMapping) {
 		this.overlayedMapping = overlayedMapping;
 	}
 
-	public AttributeTransformationRemapping(AttributeTransformationRemapping other) {
+    /**
+     * Instantiates a new Attribute transformation remapping.
+     *
+     * @param other the other
+     */
+    public AttributeTransformationRemapping(AttributeTransformationRemapping other) {
 		this.overlayedMapping = (NominalMapping) other.overlayedMapping.clone();
 	}
 
@@ -51,7 +61,12 @@ public class AttributeTransformationRemapping implements AttributeTransformation
 		return new AttributeTransformationRemapping(this);
 	}
 
-	public void setNominalMapping(NominalMapping mapping) {
+    /**
+     * Sets nominal mapping.
+     *
+     * @param mapping the mapping
+     */
+    public void setNominalMapping(NominalMapping mapping) {
 		this.overlayedMapping = mapping;
 	}
 

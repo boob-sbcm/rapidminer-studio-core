@@ -20,7 +20,7 @@ package com.rapidminer.operator;
 
 /**
  * This is a helper class storing information about unknown parameters.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class UnknownParameterInformation implements Comparable<UnknownParameterInformation> {
@@ -33,26 +33,54 @@ public class UnknownParameterInformation implements Comparable<UnknownParameterI
 
 	private String parameterValue;
 
-	public UnknownParameterInformation(String operatorName, String operatorClass, String parameterName, String parameterValue) {
+    /**
+     * Instantiates a new Unknown parameter information.
+     *
+     * @param operatorName   the operator name
+     * @param operatorClass  the operator class
+     * @param parameterName  the parameter name
+     * @param parameterValue the parameter value
+     */
+    public UnknownParameterInformation(String operatorName, String operatorClass, String parameterName, String parameterValue) {
 		this.operatorName = operatorName;
 		this.operatorClass = operatorClass;
 		this.parameterName = parameterName;
 		this.parameterValue = parameterValue;
 	}
 
-	public String getOperatorName() {
+    /**
+     * Gets operator name.
+     *
+     * @return the operator name
+     */
+    public String getOperatorName() {
 		return operatorName;
 	}
 
-	public String getOperatorClass() {
+    /**
+     * Gets operator class.
+     *
+     * @return the operator class
+     */
+    public String getOperatorClass() {
 		return operatorClass;
 	}
 
-	public String getParameterName() {
+    /**
+     * Gets parameter name.
+     *
+     * @return the parameter name
+     */
+    public String getParameterName() {
 		return parameterName;
 	}
 
-	public String getParameterValue() {
+    /**
+     * Gets parameter value.
+     *
+     * @return the parameter value
+     */
+    public String getParameterValue() {
 		return parameterValue;
 	}
 

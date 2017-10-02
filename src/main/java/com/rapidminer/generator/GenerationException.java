@@ -23,18 +23,29 @@ import com.rapidminer.operator.OperatorException;
 
 /**
  * This exception will be thrown if an error occurs during the generation of new features.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer Exp $
  */
 public class GenerationException extends OperatorException {
 
 	private static final long serialVersionUID = -2760374156089530715L;
 
-	public GenerationException(String str) {
+    /**
+     * Instantiates a new Generation exception.
+     *
+     * @param str the str
+     */
+    public GenerationException(String str) {
 		super(str);
 	}
 
-	public GenerationException(String str, Exception e) {
+    /**
+     * Instantiates a new Generation exception.
+     *
+     * @param str the str
+     * @param e   the e
+     */
+    public GenerationException(String str, Exception e) {
 		super(str, e);
 	}
 

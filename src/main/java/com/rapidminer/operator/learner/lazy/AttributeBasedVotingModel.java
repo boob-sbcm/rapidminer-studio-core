@@ -46,7 +46,13 @@ public class AttributeBasedVotingModel extends PredictionModel {
 
 	private double majorityVote;
 
-	public AttributeBasedVotingModel(ExampleSet exampleSet, double majorityVote) {
+    /**
+     * Instantiates a new Attribute based voting model.
+     *
+     * @param exampleSet   the example set
+     * @param majorityVote the majority vote
+     */
+    public AttributeBasedVotingModel(ExampleSet exampleSet, double majorityVote) {
 		super(exampleSet, null, null);
 		this.majorityVote = majorityVote;
 	}

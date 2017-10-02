@@ -42,41 +42,62 @@ public class AssociationRules extends ResultObjectAdapter implements Iterable<As
 
 	private List<AssociationRule> associationRules = new ArrayList<AssociationRule>();
 
-	/**
-	 * Adds an AssociationRule
-	 * <p>
-	 * Call {@link sort()} after adding Rules for a sorted List
-	 * </p>
-	 *
-	 * @param rule
-	 */
-	public void addItemRule(AssociationRule rule) {
+    /**
+     * Adds an AssociationRule
+     * <p>
+     * Call {@link sort()} after adding Rules for a sorted List
+     * </p>
+     *
+     * @param rule the rule
+     */
+    public void addItemRule(AssociationRule rule) {
 		associationRules.add(rule);
 	}
 
-	/**
-	 * Sorts the associationRules into ascending order, according to the confidence.
-	 * <p>
-	 * Warning: Do not call while using {@link iterator()}
-	 * </p>
-	 */
-	public void sort() {
+    /**
+     * Sorts the associationRules into ascending order, according to the confidence.
+     * <p>
+     * Warning: Do not call while using {@link iterator()}
+     * </p>
+     */
+    public void sort() {
 		Collections.sort(associationRules);
 	}
 
-	public int getNumberOfRules() {
+    /**
+     * Gets number of rules.
+     *
+     * @return the number of rules
+     */
+    public int getNumberOfRules() {
 		return associationRules.size();
 	}
 
-	public AssociationRule getRule(int index) {
+    /**
+     * Gets rule.
+     *
+     * @param index the index
+     * @return the rule
+     */
+    public AssociationRule getRule(int index) {
 		return associationRules.get(index);
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "asr";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "Association Rules";
 	}
 
@@ -94,14 +115,13 @@ public class AssociationRules extends ResultObjectAdapter implements Iterable<As
 		return toString(MAXIMUM_NUMBER_OF_RULES_IN_OUTPUT);
 	}
 
-	/**
-	 * Returns a list of {@link maxNumber} Association Rules
-	 *
-	 * @param maxNumber
-	 *            maximum number of printed Association Rules
-	 * @return Multiline formatted list of Association Rules
-	 */
-	public String toString(int maxNumber) {
+    /**
+     * Returns a list of {@link maxNumber} Association Rules
+     *
+     * @param maxNumber maximum number of printed Association Rules
+     * @return Multiline formatted list of Association Rules
+     */
+    public String toString(int maxNumber) {
 		StringBuffer buffer = new StringBuffer("Association Rules" + Tools.getLineSeparator());
 		int counter = 0;
 		for (AssociationRule rule : associationRules) {
@@ -121,7 +141,12 @@ public class AssociationRules extends ResultObjectAdapter implements Iterable<As
 		return associationRules.iterator();
 	}
 
-	public Item[] getAllConclusionItems() {
+    /**
+     * Get all conclusion items item [ ].
+     *
+     * @return the item [ ]
+     */
+    public Item[] getAllConclusionItems() {
 		SortedSet<Item> conclusions = new TreeSet<Item>();
 		for (AssociationRule rule : this) {
 			Iterator<Item> i = rule.getConclusionItems();

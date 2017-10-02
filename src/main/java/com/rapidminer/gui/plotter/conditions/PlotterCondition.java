@@ -24,12 +24,24 @@ import com.rapidminer.datatable.DataTable;
 /**
  * This condition class can be used to indicate that a plotter is only available for certain types
  * of data tables, e.g. only for tables with a maximal number of columns.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface PlotterCondition {
 
-	public boolean acceptDataTable(DataTable dataTable);
+    /**
+     * Accept data table boolean.
+     *
+     * @param dataTable the data table
+     * @return the boolean
+     */
+    public boolean acceptDataTable(DataTable dataTable);
 
-	public String getRejectionReason(DataTable dataTable);
+    /**
+     * Gets rejection reason.
+     *
+     * @param dataTable the data table
+     * @return the rejection reason
+     */
+    public String getRejectionReason(DataTable dataTable);
 }

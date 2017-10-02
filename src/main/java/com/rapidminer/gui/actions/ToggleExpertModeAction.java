@@ -32,7 +32,10 @@ public class ToggleExpertModeAction extends ToggleAction {
 
 	private static final long serialVersionUID = 5545547954042596599L;
 
-	public ToggleExpertModeAction() {
+    /**
+     * Instantiates a new Toggle expert mode action.
+     */
+    public ToggleExpertModeAction() {
 		super(true, "expert");
 	}
 

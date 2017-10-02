@@ -23,11 +23,15 @@ import javax.mail.Session;
 
 /**
  * Creates mail sessions.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public interface MailSessionFactory {
 
-	public Session makeSession();
+    /**
+     * Make session session.
+     *
+     * @return the session
+     */
+    public Session makeSession();
 }

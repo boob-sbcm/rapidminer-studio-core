@@ -33,17 +33,28 @@ import java.util.List;
 /**
  * This operator allows to unset a previously defined macro. This might be needed for branch checks
  * with the if macro is defined condition
- * 
+ *
  * @author Sebastian Land
  */
 public class UnsetMacroOperator extends Operator {
 
-	public static final String PARAMETER_MACRO = "macro";
-	public static final String PARAMETER_MACRO_ENUM = "macros";
+    /**
+     * The constant PARAMETER_MACRO.
+     */
+    public static final String PARAMETER_MACRO = "macro";
+    /**
+     * The constant PARAMETER_MACRO_ENUM.
+     */
+    public static final String PARAMETER_MACRO_ENUM = "macros";
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public UnsetMacroOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Unset macro operator.
+     *
+     * @param description the description
+     */
+    public UnsetMacroOperator(OperatorDescription description) {
 		super(description);
 
 		dummyPorts.start();

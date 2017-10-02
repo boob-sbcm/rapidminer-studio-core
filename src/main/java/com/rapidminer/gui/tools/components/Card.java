@@ -24,36 +24,44 @@ import javax.swing.Icon;
 /**
  * Interface for container holding display information like title, tooltip and icon for cards shown
  * in a {@link ButtonBarCardPanel}s.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public interface Card {
 
-	public String getKey();
+    /**
+     * Gets key.
+     *
+     * @return the key
+     */
+    public String getKey();
 
-	/**
-	 * @return the title of a card. The title shouldn't be too long and must not be
-	 *         <code>null</code>. The title will be display below the card icon.
-	 */
-	public String getTitle();
+    /**
+     * Gets title.
+     *
+     * @return the title of a card. The title shouldn't be too long and must not be         <code>null</code>. The title will be display below the card icon.
+     */
+    public String getTitle();
 
-	/**
-	 * @return the tooltip that will be shown when hovering over the card.
-	 */
-	public String getTip();
+    /**
+     * Gets tip.
+     *
+     * @return the tooltip that will be shown when hovering over the card.
+     */
+    public String getTip();
 
-	/**
-	 * @return the icon that will be shown above the card title
-	 */
-	public Icon getIcon();
+    /**
+     * Gets icon.
+     *
+     * @return the icon that will be shown above the card title
+     */
+    public Icon getIcon();
 
-	/**
-	 * @return the footer of the card which can be <code>null</code> if the card does not have a
-	 *         footer. The footer will be display as small italic text below the title. Only the
-	 *         last {@link CardCellRenderer#MAX_CAPTION_LENGTH} characters of a footer will be
-	 *         shown.
-	 */
-	public String getFooter();
+    /**
+     * Gets footer.
+     *
+     * @return the footer of the card which can be <code>null</code> if the card does not have a         footer. The footer will be display as small italic text below the title. Only the         last {@link CardCellRenderer#MAX_CAPTION_LENGTH} characters of a footer will be         shown.
+     */
+    public String getFooter();
 
 }

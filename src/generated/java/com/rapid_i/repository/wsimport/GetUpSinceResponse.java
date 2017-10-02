@@ -28,9 +28,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for getUpSinceResponse complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="getUpSinceResponse">
  *   &lt;complexContent>
@@ -42,8 +42,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getUpSinceResponse", propOrder = {
@@ -51,17 +49,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class GetUpSinceResponse {
 
+    /**
+     * The Return.
+     */
     @XmlElement(name = "return")
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar _return;
 
     /**
      * Gets the value of the return property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is     {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getReturn() {
         return _return;
@@ -69,11 +67,8 @@ public class GetUpSinceResponse {
 
     /**
      * Sets the value of the return property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is     {@link XMLGregorianCalendar }
      */
     public void setReturn(XMLGregorianCalendar value) {
         this._return = value;

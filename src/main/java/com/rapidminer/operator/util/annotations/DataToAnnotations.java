@@ -40,29 +40,53 @@ import com.rapidminer.tools.Ontology;
 
 
 /**
- * @author Marius Helf
+ * The type Data to annotations.
  *
+ * @author Marius Helf
  */
 public class DataToAnnotations extends Operator {
 
-	public static final String[] DUPLICATE_HANDLING_LIST = { "overwrite", "ignore", "error" };
-	public static final int OVERWRITE_DUPLICATES = 0;
-	public static final int IGNORE_DUPLICATES = 1;
-	public static final int ERROR_ON_DUPLICATES = 2;
+    /**
+     * The constant DUPLICATE_HANDLING_LIST.
+     */
+    public static final String[] DUPLICATE_HANDLING_LIST = { "overwrite", "ignore", "error" };
+    /**
+     * The constant OVERWRITE_DUPLICATES.
+     */
+    public static final int OVERWRITE_DUPLICATES = 0;
+    /**
+     * The constant IGNORE_DUPLICATES.
+     */
+    public static final int IGNORE_DUPLICATES = 1;
+    /**
+     * The constant ERROR_ON_DUPLICATES.
+     */
+    public static final int ERROR_ON_DUPLICATES = 2;
 
-	public static final String PARAMETER_DUPLICATE_HANDLING = "duplicate_annotations";
-	public static final String PARAMETER_KEY_ATTRIBUTE = "key_attribute";
-	public static final String PARAMETER_VALUE_ATTRIBUTE = "value_attribute";
+    /**
+     * The constant PARAMETER_DUPLICATE_HANDLING.
+     */
+    public static final String PARAMETER_DUPLICATE_HANDLING = "duplicate_annotations";
+    /**
+     * The constant PARAMETER_KEY_ATTRIBUTE.
+     */
+    public static final String PARAMETER_KEY_ATTRIBUTE = "key_attribute";
+    /**
+     * The constant PARAMETER_VALUE_ATTRIBUTE.
+     */
+    public static final String PARAMETER_VALUE_ATTRIBUTE = "value_attribute";
 
 	private InputPort annotationsInputPort = getInputPorts().createPort("annotations", ExampleSet.class);
 	private InputPort objectInputPort = getInputPorts().createPort("object", IOObject.class);
 	private OutputPort objectOutputPort = getOutputPorts().createPort("object with annotations");
 	private OutputPort annotationsOutputPort = getOutputPorts().createPort("annotations");
 
-	/**
-	 * @param description
-	 */
-	public DataToAnnotations(OperatorDescription description) {
+    /**
+     * Instantiates a new Data to annotations.
+     *
+     * @param description the description
+     */
+    public DataToAnnotations(OperatorDescription description) {
 		super(description);
 		getTransformer().addPassThroughRule(annotationsInputPort, annotationsOutputPort);
 		getTransformer().addPassThroughRule(objectInputPort, objectOutputPort);

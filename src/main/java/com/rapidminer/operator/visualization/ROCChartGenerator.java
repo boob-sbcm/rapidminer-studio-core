@@ -55,24 +55,34 @@ import java.util.List;
  * should be used. If you are interested in the performance criterion Area-Under-Curve (AUC) the
  * usual {@link PerformanceEvaluator} can be used. This operator just presents a ROC plot for a
  * given model and data set.
- * 
+ * <p>
  * Please note that a predicted label of the given example set will be removed during the
  * application of this operator.
- * 
+ *
  * @author Ingo Mierswa
- * 
  */
 public class ROCChartGenerator extends Operator {
 
-	public static final String PARAMETER_USE_EXAMPLE_WEIGHTS = "use_example_weights";
-	public static final String PARAMETER_USE_MODEL = "use_model";
+    /**
+     * The constant PARAMETER_USE_EXAMPLE_WEIGHTS.
+     */
+    public static final String PARAMETER_USE_EXAMPLE_WEIGHTS = "use_example_weights";
+    /**
+     * The constant PARAMETER_USE_MODEL.
+     */
+    public static final String PARAMETER_USE_MODEL = "use_model";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set");
 	private InputPort modelInput = getInputPorts().createPort("model");
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort modelOutput = getOutputPorts().createPort("model");
 
-	public ROCChartGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Roc chart generator.
+     *
+     * @param description the description
+     */
+    public ROCChartGenerator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput

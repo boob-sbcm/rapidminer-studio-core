@@ -32,9 +32,8 @@ import java.awt.image.BufferedImage;
 
 /**
  * This action allows the user to copy the current chart to the system clipboard.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class CopyChartAction extends ResourceAction {
 
@@ -43,12 +42,12 @@ public class CopyChartAction extends ResourceAction {
 
 	private static final long serialVersionUID = 7788302558857099622L;
 
-	/**
-	 * Creates a new {@link CopyChartAction}.
-	 * 
-	 * @param engine
-	 */
-	public CopyChartAction(JFreeChartPlotEngine engine) {
+    /**
+     * Creates a new {@link CopyChartAction}.
+     *
+     * @param engine the engine
+     */
+    public CopyChartAction(JFreeChartPlotEngine engine) {
 		super(true, "plotter.popup_menu.copy");
 		this.engine = engine;
 	}
@@ -58,10 +57,12 @@ public class CopyChartAction extends ResourceAction {
 		copyChart(engine);
 	}
 
-	/**
-	 * Copies the current chart to the system clipboard.
-	 */
-	public static synchronized void copyChart(final JFreeChartPlotEngine engine) {
+    /**
+     * Copies the current chart to the system clipboard.
+     *
+     * @param engine the engine
+     */
+    public static synchronized void copyChart(final JFreeChartPlotEngine engine) {
 		Clipboard systemClipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		Insets insets = engine.getChartPanel().getInsets();
 		int w = engine.getChartPanel().getWidth() - insets.left - insets.right;

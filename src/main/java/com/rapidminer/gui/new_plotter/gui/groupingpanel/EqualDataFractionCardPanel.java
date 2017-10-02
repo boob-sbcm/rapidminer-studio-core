@@ -38,17 +38,25 @@ import javax.swing.event.ChangeListener;
 
 /**
  * A configuration Panel for {@link EqualDataFractionGrouping}s.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class EqualDataFractionCardPanel extends AbstractGroupingCardPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	protected JSpinner binCountSpinner;
+    /**
+     * The Bin count spinner.
+     */
+    protected JSpinner binCountSpinner;
 
-	public EqualDataFractionCardPanel(final PlotInstance plotInstance, final PlotDimension dimension) {
+    /**
+     * Instantiates a new Equal data fraction card panel.
+     *
+     * @param plotInstance the plot instance
+     * @param dimension    the dimension
+     */
+    public EqualDataFractionCardPanel(final PlotInstance plotInstance, final PlotDimension dimension) {
 		super(plotInstance, dimension);
 		adaptGUI();
 	}

@@ -21,11 +21,9 @@ package com.rapidminer.tools.container;
 /**
  * This class represents a multidimensional array whose dimensions have to be specified during
  * construction. The multidimensional array is modeled by an underlying single dimension array.
- * 
+ *
+ * @param <E> the class of the array elements
  * @author Tobias Malbrecht
- * 
- * @param <E>
- *            the class of the array elements
  */
 public class MultidimensionalArraySet<E> {
 
@@ -43,13 +41,12 @@ public class MultidimensionalArraySet<E> {
 	 */
 	private int[] combinations;
 
-	/**
-	 * The constructor.
-	 * 
-	 * @param dimensions
-	 *            int array which contains the size of each dimension
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * The constructor.
+     *
+     * @param dimensions int array which contains the size of each dimension
+     */
+    @SuppressWarnings("unchecked")
 	public MultidimensionalArraySet(int[] dimensions) {
 		// this.dimensions = dimensions;
 		int splits = dimensions.length;
@@ -65,49 +62,43 @@ public class MultidimensionalArraySet<E> {
 		array = (E[]) new Object[numberOfCombinations];
 	}
 
-	/**
-	 * Returns the array element at the specified single dimension array position.
-	 * 
-	 * @param index
-	 *            the index
-	 * @return an element
-	 */
-	public E get(int index) {
+    /**
+     * Returns the array element at the specified single dimension array position.
+     *
+     * @param index the index
+     * @return an element
+     */
+    public E get(int index) {
 		return array[index];
 	}
 
-	/**
-	 * Returns the array element at the position specified by the given indices.
-	 * 
-	 * @param indices
-	 *            the indices
-	 * @return an element
-	 */
-	public E get(int[] indices) {
+    /**
+     * Returns the array element at the position specified by the given indices.
+     *
+     * @param indices the indices
+     * @return an element
+     */
+    public E get(int[] indices) {
 		return array[getIndex(indices)];
 	}
 
-	/**
-	 * Sets the array element at the specified single dimension array position.
-	 * 
-	 * @param index
-	 *            the index
-	 * @param e
-	 *            an element
-	 */
-	public void set(int index, E e) {
+    /**
+     * Sets the array element at the specified single dimension array position.
+     *
+     * @param index the index
+     * @param e     an element
+     */
+    public void set(int index, E e) {
 		array[index] = e;
 	}
 
-	/**
-	 * Sets the array element at the position specified by the given indices
-	 * 
-	 * @param indices
-	 *            the indices
-	 * @param e
-	 *            an element
-	 */
-	public void set(int[] indices, E e) {
+    /**
+     * Sets the array element at the position specified by the given indices
+     *
+     * @param indices the indices
+     * @param e       an element
+     */
+    public void set(int[] indices, E e) {
 		array[getIndex(indices)] = e;
 	}
 
@@ -122,14 +113,13 @@ public class MultidimensionalArraySet<E> {
 		return sumProduct(indices, combinations);
 	}
 
-	/**
-	 * Computes the multidimensional indices corresponding to a single dimension array index.
-	 * 
-	 * @param index
-	 *            the index
-	 * @return the corresponding indices
-	 */
-	public int[] getIndices(int index) {
+    /**
+     * Computes the multidimensional indices corresponding to a single dimension array index.
+     *
+     * @param index the index
+     * @return the corresponding indices
+     */
+    public int[] getIndices(int index) {
 		int[] indices = new int[combinations.length];
 		int r = index;
 		for (int i = 0; i < indices.length; i++) {
@@ -139,12 +129,12 @@ public class MultidimensionalArraySet<E> {
 		return indices;
 	}
 
-	/**
-	 * Returns the number of elements this array can hold.
-	 * 
-	 * @return size
-	 */
-	public int size() {
+    /**
+     * Returns the number of elements this array can hold.
+     *
+     * @return size int
+     */
+    public int size() {
 		return array.length;
 	}
 

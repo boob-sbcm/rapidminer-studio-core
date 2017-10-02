@@ -37,7 +37,12 @@ public class CollectionTreeModel implements TreeModel {
 
 	private final CollectionTreeElement root;
 
-	public CollectionTreeModel(CollectionTreeElement root) {
+    /**
+     * Instantiates a new Collection tree model.
+     *
+     * @param root the root
+     */
+    public CollectionTreeModel(CollectionTreeElement root) {
 		this.root = root;
 	}
 

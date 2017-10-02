@@ -38,7 +38,12 @@ public class ANOVAMatrixViewerTable extends ExtendedJTable {
 
 	private ANOVAMatrix matrix;
 
-	public ANOVAMatrixViewerTable(ANOVAMatrix _matrix) {
+    /**
+     * Instantiates a new Anova matrix viewer table.
+     *
+     * @param _matrix the matrix
+     */
+    public ANOVAMatrixViewerTable(ANOVAMatrix _matrix) {
 		super(new ANOVAMatrixViewerTableModel(_matrix), true);
 		this.matrix = _matrix;
 

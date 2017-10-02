@@ -24,12 +24,18 @@ import org.w3c.dom.Element;
 
 
 /**
- * 
+ * The type Parameter unequals condition.
+ *
  * @author Sebastian Land
  */
 public class ParameterUnequalsCondition extends ParameterEqualsCondition {
 
-	public ParameterUnequalsCondition(Element element) {
+    /**
+     * Instantiates a new Parameter unequals condition.
+     *
+     * @param element the element
+     */
+    public ParameterUnequalsCondition(Element element) {
 		super(element);
 	}
 

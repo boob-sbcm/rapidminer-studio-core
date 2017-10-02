@@ -28,7 +28,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * This class represents an extensible resource bundle, where other resource bundles might be added.
  * These are searched if the key isn't contained in the previously added bundles.
- * 
+ *
  * @author Sebastian Land
  */
 public class ExtensibleResourceBundle extends ResourceBundle {
@@ -65,23 +65,32 @@ public class ExtensibleResourceBundle extends ResourceBundle {
 
 	private List<ResourceBundle> bundles = new CopyOnWriteArrayList<>();
 
-	public ExtensibleResourceBundle(ResourceBundle parent) {
+    /**
+     * Instantiates a new Extensible resource bundle.
+     *
+     * @param parent the parent
+     */
+    public ExtensibleResourceBundle(ResourceBundle parent) {
 		bundles.add(parent);
 	}
 
-	/**
-	 * This method extends this resource bundle with the properties set by the given bundle. If
-	 * those properties are already contained, they will be ignored.
-	 */
-	public void addResourceBundle(ResourceBundle bundle) {
+    /**
+     * This method extends this resource bundle with the properties set by the given bundle. If
+     * those properties are already contained, they will be ignored.
+     *
+     * @param bundle the bundle
+     */
+    public void addResourceBundle(ResourceBundle bundle) {
 		bundles.add(bundle);
 	}
 
-	/**
-	 * This method extends this resource bundle with the properties set by the given bundle. If
-	 * those properties were already contained, they are overwritten by the new bundle's settings.
-	 */
-	public void addResourceBundleAndOverwrite(ResourceBundle bundle) {
+    /**
+     * This method extends this resource bundle with the properties set by the given bundle. If
+     * those properties were already contained, they are overwritten by the new bundle's settings.
+     *
+     * @param bundle the bundle
+     */
+    public void addResourceBundleAndOverwrite(ResourceBundle bundle) {
 		bundles.add(0, bundle);
 	}
 

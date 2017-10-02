@@ -27,9 +27,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for executionResponse complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="executionResponse">
  *   &lt;complexContent>
@@ -42,8 +42,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "executionResponse", propOrder = {
@@ -54,17 +52,20 @@ public class ExecutionResponse
     extends Response
 {
 
+    /**
+     * The First execution.
+     */
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar firstExecution;
+    /**
+     * The Job id.
+     */
     protected int jobId;
 
     /**
      * Gets the value of the firstExecution property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is     {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getFirstExecution() {
         return firstExecution;
@@ -72,11 +73,8 @@ public class ExecutionResponse
 
     /**
      * Sets the value of the firstExecution property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is     {@link XMLGregorianCalendar }
      */
     public void setFirstExecution(XMLGregorianCalendar value) {
         this.firstExecution = value;
@@ -84,7 +82,8 @@ public class ExecutionResponse
 
     /**
      * Gets the value of the jobId property.
-     * 
+     *
+     * @return the job id
      */
     public int getJobId() {
         return jobId;
@@ -92,7 +91,8 @@ public class ExecutionResponse
 
     /**
      * Sets the value of the jobId property.
-     * 
+     *
+     * @param value the value
      */
     public void setJobId(int value) {
         this.jobId = value;

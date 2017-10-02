@@ -25,12 +25,15 @@ import com.rapidminer.parameter.ParameterType;
 
 /**
  * The creator for the parameter specification dialog.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class ConfigureParameterOptimizationDialogCreator extends AbstractConfigurationWizardCreator {
 
-	public static final long serialVersionUID = 32891471478295L;
+    /**
+     * The constant serialVersionUID.
+     */
+    public static final long serialVersionUID = 32891471478295L;
 
 	@Override
 	public String getI18NKey() {

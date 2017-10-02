@@ -26,9 +26,8 @@ import java.util.ListIterator;
 /**
  * Additionally to the Sequence methods, this one stores information for fast access on items within
  * time constraints.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class DataSequence extends Sequence {
 
@@ -36,12 +35,20 @@ public class DataSequence extends Sequence {
 
 	private double[][] times;
 
-	public DataSequence(int numberOfItems) {
+    /**
+     * Instantiates a new Data sequence.
+     *
+     * @param numberOfItems the number of items
+     */
+    public DataSequence(int numberOfItems) {
 		super();
 		times = new double[numberOfItems][];
 	}
 
-	public void buildAccessStructure() {
+    /**
+     * Build access structure.
+     */
+    public void buildAccessStructure() {
 		int itemCount[] = new int[times.length];
 		Iterator<Item> itemIterator = itemIterator();
 		while (itemIterator.hasNext()) {
@@ -104,7 +111,15 @@ public class DataSequence extends Sequence {
 		return Double.NaN;
 	}
 
-	public static boolean containsSequence(DataSequence data, Sequence candidate, CountingInformations countingInformations) {
+    /**
+     * Contains sequence boolean.
+     *
+     * @param data                 the data
+     * @param candidate            the candidate
+     * @param countingInformations the counting informations
+     * @return the boolean
+     */
+    public static boolean containsSequence(DataSequence data, Sequence candidate, CountingInformations countingInformations) {
 		ListIterator<Transaction> candidateIterator = candidate.listIterator();
 		LinkedList<TransactionSet> matches = new LinkedList<TransactionSet>();
 		ListIterator<TransactionSet> matchesIterator = matches.listIterator();

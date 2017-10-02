@@ -47,13 +47,25 @@ public class SinusFactory {
 	/** Indicates the min evidence factor. */
 	private static final double MIN_EVIDENCE = 0.2d;
 
-	public static final String[] ADAPTION_TYPES = { "uniformly", "uniformly_without_nu", "gaussian" };
+    /**
+     * The constant ADAPTION_TYPES.
+     */
+    public static final String[] ADAPTION_TYPES = { "uniformly", "uniformly_without_nu", "gaussian" };
 
-	public static final int UNIFORMLY = 0;
+    /**
+     * The constant UNIFORMLY.
+     */
+    public static final int UNIFORMLY = 0;
 
-	public static final int UNIFORMLY_WITHOUT_NU = 1;
+    /**
+     * The constant UNIFORMLY_WITHOUT_NU.
+     */
+    public static final int UNIFORMLY_WITHOUT_NU = 1;
 
-	public static final int GAUSSIAN = 2;
+    /**
+     * The constant GAUSSIAN.
+     */
+    public static final int GAUSSIAN = 2;
 
 	/**
 	 * Generates this number of peaks in a range of <code>epsilon * frequency</code>. Necessary
@@ -92,37 +104,59 @@ public class SinusFactory {
 	/** The algorithm to find the peaks in the frequency spectrum. */
 	private PeakFinder peakFinder = null;
 
-	/**
-	 * Creates a new sinus factory which creates <code>maxPeaks</code> new peaks. Uses
-	 * Blackman-Harris window function and no spectrum filter as default. The adaption type is
-	 * gaussian with an epsilon of 0.1. The factory produces three attributes for each highest peak
-	 * as default.
-	 */
-	public SinusFactory(int maxPeaks) {
+    /**
+     * Creates a new sinus factory which creates <code>maxPeaks</code> new peaks. Uses
+     * Blackman-Harris window function and no spectrum filter as default. The adaption type is
+     * gaussian with an epsilon of 0.1. The factory produces three attributes for each highest peak
+     * as default.
+     *
+     * @param maxPeaks the max peaks
+     */
+    public SinusFactory(int maxPeaks) {
 		this.maxPeaks = maxPeaks;
 		this.fft = new FastFourierTransform(WindowFunction.BLACKMAN_HARRIS);
 		this.filter = new SpectrumFilter(SpectrumFilter.NONE);
 		this.peakFinder = new BinaryPeakFinder();
 	}
 
-	public void setAdaptionType(int type) {
+    /**
+     * Sets adaption type.
+     *
+     * @param type the type
+     */
+    public void setAdaptionType(int type) {
 		this.adaptionType = type;
 	}
 
-	public void setEpsilon(double epsilon) {
+    /**
+     * Sets epsilon.
+     *
+     * @param epsilon the epsilon
+     */
+    public void setEpsilon(double epsilon) {
 		this.epsilon = epsilon;
 	}
 
-	/** Must be bigger than 2! */
-	public void setAttributePerPeak(int attributesPerPeak) {
+    /**
+     * Must be bigger than 2!  @param attributesPerPeak the attributes per peak
+     *
+     * @param attributesPerPeak the attributes per peak
+     */
+    public void setAttributePerPeak(int attributesPerPeak) {
 		this.attributesPerPeak = attributesPerPeak;
 	}
 
-	/**
-	 * Calculates the fourier transformation from the first attribute on the second and delivers the
-	 * <code>maxPeaks</code> highest peaks. Returns a list with the highest attribute peaks.
-	 */
-	public List<AttributePeak> getAttributePeaks(ExampleSet exampleSet, Attribute first, Attribute second)
+    /**
+     * Calculates the fourier transformation from the first attribute on the second and delivers the
+     * <code>maxPeaks</code> highest peaks. Returns a list with the highest attribute peaks.
+     *
+     * @param exampleSet the example set
+     * @param first      the first
+     * @param second     the second
+     * @return the attribute peaks
+     * @throws OperatorException the operator exception
+     */
+    public List<AttributePeak> getAttributePeaks(ExampleSet exampleSet, Attribute first, Attribute second)
 			throws OperatorException {
 		exampleSet.recalculateAllAttributeStatistics();
 		Complex[] result = fft.getFourierTransform(exampleSet, first, second);
@@ -156,13 +190,18 @@ public class SinusFactory {
 		return attributes;
 	}
 
-	/**
-	 * Generates a new sinus function attribute for all given attribute peaks. Since the frequency
-	 * cannot be calculated exactly (leakage, aliasing), several new attribute may be added for each
-	 * peak. These additional attributes are randomly chosen (uniformly in epsilon range, uniformly
-	 * without nu, gaussian with epsilon as standard deviation)
-	 */
-	public void generateSinusFunctions(ExampleSet exampleSet, List<AttributePeak> attributes, Random random)
+    /**
+     * Generates a new sinus function attribute for all given attribute peaks. Since the frequency
+     * cannot be calculated exactly (leakage, aliasing), several new attribute may be added for each
+     * peak. These additional attributes are randomly chosen (uniformly in epsilon range, uniformly
+     * without nu, gaussian with epsilon as standard deviation)
+     *
+     * @param exampleSet the example set
+     * @param attributes the attributes
+     * @param random     the random
+     * @throws GenerationException the generation exception
+     */
+    public void generateSinusFunctions(ExampleSet exampleSet, List<AttributePeak> attributes, Random random)
 			throws GenerationException {
 		if (attributes.isEmpty()) {
 			return;

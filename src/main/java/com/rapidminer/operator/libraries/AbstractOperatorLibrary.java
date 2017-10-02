@@ -46,12 +46,15 @@ import org.w3c.dom.Element;
 /**
  * This is an abstract superclass for all {@link OperatorLibrary}s. It provides common functionality
  * for handling version numbers, name, registering and deregistering Operators and so on.
- * 
+ *
  * @author Sebastian Land
  */
 public abstract class AbstractOperatorLibrary implements OperatorLibrary {
 
-	public static final String LIBRARY_MIME_TYPE = "application/vnd.rapidminer.operator-library";
+    /**
+     * The constant LIBRARY_MIME_TYPE.
+     */
+    public static final String LIBRARY_MIME_TYPE = "application/vnd.rapidminer.operator-library";
 
 	private static final String ELEMENT_LIBRARY = "OperatorLibrary";
 	private static final String ELEMENT_DOCUMENTATION = "Documentation";
@@ -84,12 +87,26 @@ public abstract class AbstractOperatorLibrary implements OperatorLibrary {
 
 	private OperatorLibraryDocBundle docBundle = new OperatorLibraryDocBundle(this);
 
-	public AbstractOperatorLibrary(String repositoryLocation, Element element) {
+    /**
+     * Instantiates a new Abstract operator library.
+     *
+     * @param repositoryLocation the repository location
+     * @param element            the element
+     */
+    public AbstractOperatorLibrary(String repositoryLocation, Element element) {
 		this.repositoryLocation = repositoryLocation;
 		readXML(element);
 	}
 
-	public AbstractOperatorLibrary(String repositoryLocation, String namespaceName, String description, VersionNumber version) {
+    /**
+     * Instantiates a new Abstract operator library.
+     *
+     * @param repositoryLocation the repository location
+     * @param namespaceName      the namespace name
+     * @param description        the description
+     * @param version            the version
+     */
+    public AbstractOperatorLibrary(String repositoryLocation, String namespaceName, String description, VersionNumber version) {
 		this.repositoryLocation = repositoryLocation;
 		this.namespaceName = namespaceName;
 		this.namespaceIdentifier = "rmol_" + namespaceName + "(" + RandomGenerator.getGlobalRandomGenerator().nextString(8)
@@ -219,12 +236,14 @@ public abstract class AbstractOperatorLibrary implements OperatorLibrary {
 		}
 	}
 
-	/**
-	 * This method must be implemented by subclasses in order to export their settings to the given
-	 * element. They must not use the tags as named by {@link #ELEMENT_SYNOPSIS} or
-	 * {@link #ELEMENT_DOCUMENTATION}.
-	 */
-	protected abstract void writeXML(Element element);
+    /**
+     * This method must be implemented by subclasses in order to export their settings to the given
+     * element. They must not use the tags as named by {@link #ELEMENT_SYNOPSIS} or
+     * {@link #ELEMENT_DOCUMENTATION}.
+     *
+     * @param element the element
+     */
+    protected abstract void writeXML(Element element);
 
 	/**
 	 * This will load all definitions from the given XML element as written by
@@ -240,11 +259,14 @@ public abstract class AbstractOperatorLibrary implements OperatorLibrary {
 		this.documentation = XMLTools.getTagContents(element, ELEMENT_DOCUMENTATION);
 	}
 
-	/**
-	 * This method will load a library that has been stored into the given entry.
-	 * 
-	 */
-	public static OperatorLibrary loadLibrary(BlobEntry entry) throws Exception {
+    /**
+     * This method will load a library that has been stored into the given entry.
+     *
+     * @param entry the entry
+     * @return the operator library
+     * @throws Exception the exception
+     */
+    public static OperatorLibrary loadLibrary(BlobEntry entry) throws Exception {
 		Document document = XMLTools.parse(entry.openInputStream());
 		String className = document.getDocumentElement().getAttribute(ATTRIBUTE_CLASS);
 

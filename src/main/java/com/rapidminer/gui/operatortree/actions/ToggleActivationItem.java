@@ -40,7 +40,7 @@ import javax.swing.JMenuItem;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa, Tobias Malbrecht
  */
 public class ToggleActivationItem extends ToggleAction {
@@ -54,7 +54,12 @@ public class ToggleActivationItem extends ToggleAction {
 		setCondition(OPERATOR_SELECTED, MANDATORY);
 	}
 
-	public ToggleActivationItem(final Actions actions) {
+    /**
+     * Instantiates a new Toggle activation item.
+     *
+     * @param actions the actions
+     */
+    public ToggleActivationItem(final Actions actions) {
 		super(true, "enable_operator");
 		this.actions = actions;
 	}
@@ -123,7 +128,12 @@ public class ToggleActivationItem extends ToggleAction {
 		}
 	}
 
-	public JMenuItem createMultipleActivationItem() {
+    /**
+     * Create multiple activation item j menu item.
+     *
+     * @return the j menu item
+     */
+    public JMenuItem createMultipleActivationItem() {
 		boolean targetState = getTargetState();
 		String actionKey = targetState ? "enable_operator_multiple" : "disable_operator_multiple";
 		return new JMenuItem(new ResourceAction(actionKey, actions.getSelectedOperators().size()) {

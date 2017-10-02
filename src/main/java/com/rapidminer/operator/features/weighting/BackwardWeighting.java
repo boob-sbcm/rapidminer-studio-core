@@ -32,7 +32,12 @@ import com.rapidminer.operator.features.PopulationOperator;
  */
 public class BackwardWeighting extends FeatureWeighting {
 
-	public BackwardWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Backward weighting.
+     *
+     * @param description the description
+     */
+    public BackwardWeighting(OperatorDescription description) {
 		super(description);
 	}
 

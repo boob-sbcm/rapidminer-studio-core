@@ -59,7 +59,6 @@ import com.rapidminer.tools.container.Pair;
  * The controller for the {@link ConfigurableDialog} view.
  *
  * @author Marco Boeck, Sabrina Kirstein
- *
  */
 public class ConfigurableController {
 
@@ -69,24 +68,25 @@ public class ConfigurableController {
 	/** the model behind the view */
 	private ConfigurableModel model;
 
-	/**
-	 * Creates a new {@link ConfigurableController} instance.
-	 *
-	 * @param view
-	 * @param model
-	 */
-	public ConfigurableController(ConfigurableDialog view, ConfigurableModel model) {
+    /**
+     * Creates a new {@link ConfigurableController} instance.
+     *
+     * @param view  the view
+     * @param model the model
+     */
+    public ConfigurableController(ConfigurableDialog view, ConfigurableModel model) {
 		this.view = view;
 		this.model = model;
 	}
 
-	/**
-	 * Checks if the given {@link Configurable} is in a valid state. If it is not, returns an error
-	 * {@link ActionResult}.
-	 *
-	 * @return
-	 */
-	protected ActionResult checkConfigurableValidState(Configurable configurable) {
+    /**
+     * Checks if the given {@link Configurable} is in a valid state. If it is not, returns an error
+     * {@link ActionResult}.
+     *
+     * @param configurable the configurable
+     * @return action result
+     */
+    protected ActionResult checkConfigurableValidState(Configurable configurable) {
 
 		// Get parameter types based on Configurator implementation
 		AbstractConfigurator<? extends Configurable> configurator = ConfigurationManager.getInstance()
@@ -108,23 +108,23 @@ public class ConfigurableController {
 		return new SimpleActionResult(null, Result.SUCCESS);
 	}
 
-	/**
-	 * Checks if the given name is unique for the specified type.
-	 *
-	 * @param typeId
-	 * @param name
-	 * @return <code>true</code> if the name is unique; <code>false</code> otherwise
-	 */
-	protected boolean isNameUniqueForType(String typeId, String name) {
+    /**
+     * Checks if the given name is unique for the specified type.
+     *
+     * @param typeId the type id
+     * @param name   the name
+     * @return <code>true</code> if the name is unique; <code>false</code> otherwise
+     */
+    protected boolean isNameUniqueForType(String typeId, String name) {
 		return !model.getListOfUniqueNamesForType(typeId).contains(name);
 	}
 
-	/**
-	 * Removes the specified {@link Configurable}.
-	 *
-	 * @param configurable
-	 */
-	protected void removeConfigurable(Configurable configurable) {
+    /**
+     * Removes the specified {@link Configurable}.
+     *
+     * @param configurable the configurable
+     */
+    protected void removeConfigurable(Configurable configurable) {
 		model.removeConfigurable(configurable);
 
 		// Update ParameterHandler
@@ -132,19 +132,15 @@ public class ConfigurableController {
 		        .removeCachedParameterHandler(configurable);
 	}
 
-	/**
-	 * Creates a {@link Configurable} of the specified type with the given name and the given remote
-	 * repository.
-	 *
-	 * @param typeId
-	 *            type of the configurable
-	 * @param name
-	 *            name of the configurable
-	 * @param source
-	 *            {@link RemoteRepository} (source) of the configurable, can be null in case of
-	 *            local connections
-	 */
-	protected void addConfigurable(String typeId, String name, RemoteRepository source) {
+    /**
+     * Creates a {@link Configurable} of the specified type with the given name and the given remote
+     * repository.
+     *
+     * @param typeId type of the configurable
+     * @param name   name of the configurable
+     * @param source {@link RemoteRepository} (source) of the configurable, can be null in case of            local connections
+     */
+    protected void addConfigurable(String typeId, String name, RemoteRepository source) {
 		try {
 
 			Configurable newConfigurable = ConfigurationManager.getInstance().createWithoutRegistering(typeId, name, source);
@@ -156,13 +152,13 @@ public class ConfigurableController {
 		}
 	}
 
-	/**
-	 * Renames the specified {@link Configurable} to the new name.
-	 *
-	 * @param configurable
-	 * @param newName
-	 */
-	protected void renameConfigurable(Configurable configurable, String newName) {
+    /**
+     * Renames the specified {@link Configurable} to the new name.
+     *
+     * @param configurable the configurable
+     * @param newName      the new name
+     */
+    protected void renameConfigurable(Configurable configurable, String newName) {
 		String oldConfigurableName = configurable.getName();
 		configurable.setName(newName);
 
@@ -171,13 +167,13 @@ public class ConfigurableController {
 		        .reregisterCachedParameterHandler(configurable, oldConfigurableName);
 	}
 
-	/**
-	 * Executes the specified {@link ConfigurableAction} in a separate {@link ProgressThread} and
-	 * displays the {@link ActionResult} in the view.
-	 *
-	 * @param action
-	 */
-	protected void executeConfigurableAction(final ConfigurableAction action) {
+    /**
+     * Executes the specified {@link ConfigurableAction} in a separate {@link ProgressThread} and
+     * displays the {@link ActionResult} in the view.
+     *
+     * @param action the action
+     */
+    protected void executeConfigurableAction(final ConfigurableAction action) {
 		if (action == null) {
 			throw new IllegalArgumentException("action must not be null!");
 		}
@@ -218,13 +214,13 @@ public class ConfigurableController {
 		actionThread.start();
 	}
 
-	/**
-	 * Saves the {@link Parameters} for the given {@link Configurable}.
-	 *
-	 * @param configurable
-	 * @param parameters
-	 */
-	protected void saveConfigurable(Configurable configurable, Parameters parameters) {
+    /**
+     * Saves the {@link Parameters} for the given {@link Configurable}.
+     *
+     * @param configurable the configurable
+     * @param parameters   the parameters
+     */
+    protected void saveConfigurable(Configurable configurable, Parameters parameters) {
 		for (String key : parameters.getKeys()) {
 			try {
 				String value = parameters.getParameter(key);
@@ -251,10 +247,10 @@ public class ConfigurableController {
 		}
 	}
 
-	/**
-	 * Save the changes the user made to the configurables.
-	 */
-	protected void save() {
+    /**
+     * Save the changes the user made to the configurables.
+     */
+    protected void save() {
 
 		RemoteRepository repository = model.getSource();
 
@@ -402,10 +398,10 @@ public class ConfigurableController {
 		}
 	}
 
-	/**
-	 * Reverts all parameter changes the user made to the {@link Configurable}s.
-	 */
-	protected void revertChanges() {
+    /**
+     * Reverts all parameter changes the user made to the {@link Configurable}s.
+     */
+    protected void revertChanges() {
 		// revert parameters
 		Map<Configurable, Map<String, String>> backupParameters = model.getBackupParameters();
 		for (Configurable configurable : backupParameters.keySet()) {
@@ -431,17 +427,21 @@ public class ConfigurableController {
 		}
 	}
 
-	/**
-	 * @return the model for the controller.
-	 */
-	protected ConfigurableModel getModel() {
+    /**
+     * Gets model.
+     *
+     * @return the model for the controller.
+     */
+    protected ConfigurableModel getModel() {
 		return model;
 	}
 
-	/**
-	 * @return the view for the controller
-	 */
-	protected ConfigurableDialog getView() {
+    /**
+     * Gets view.
+     *
+     * @return the view for the controller
+     */
+    protected ConfigurableDialog getView() {
 		return view;
 	}
 

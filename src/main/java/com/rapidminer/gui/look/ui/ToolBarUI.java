@@ -39,16 +39,24 @@ import javax.swing.plaf.basic.BasicToolBarUI;
 
 /**
  * The UI for tool bars.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ToolBarUI extends BasicToolBarUI {
 
-	protected class RapidLookDockingListener extends DockingListener {
+    /**
+     * The type Rapid look docking listener.
+     */
+    protected class RapidLookDockingListener extends DockingListener {
 
 		private boolean pressedToolbarHandler = false;
 
-		public RapidLookDockingListener(JToolBar t) {
+        /**
+         * Instantiates a new Rapid look docking listener.
+         *
+         * @param t the t
+         */
+        public RapidLookDockingListener(JToolBar t) {
 			super(t);
 		}
 
@@ -85,7 +93,13 @@ public class ToolBarUI extends BasicToolBarUI {
 		}
 	}
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new ToolBarUI();
 	}
 
@@ -104,7 +118,12 @@ public class ToolBarUI extends BasicToolBarUI {
 		return new EmptyBorder(3, 3, 3, 3);
 	}
 
-	public Border createNonRolloverToggleBorder() {
+    /**
+     * Create non rollover toggle border border.
+     *
+     * @return the border
+     */
+    public Border createNonRolloverToggleBorder() {
 		return new EmptyBorder(3, 3, 3, 3);
 	}
 
@@ -127,7 +146,12 @@ public class ToolBarUI extends BasicToolBarUI {
 		return new RapidLookDockingListener(this.toolBar);
 	}
 
-	protected void setDragOffset(Point p) {
+    /**
+     * Sets drag offset.
+     *
+     * @param p the p
+     */
+    protected void setDragOffset(Point p) {
 		if (!GraphicsEnvironment.isHeadless()) {
 			if (this.dragWindow == null) {
 				this.dragWindow = createDragWindow(this.toolBar);

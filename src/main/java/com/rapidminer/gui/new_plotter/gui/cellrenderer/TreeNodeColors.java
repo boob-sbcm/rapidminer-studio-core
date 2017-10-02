@@ -22,32 +22,63 @@ import java.awt.Color;
 
 
 /**
+ * The type Tree node colors.
+ *
  * @author Nils Woehler
- * 
  */
 public class TreeNodeColors {
 
-	public static Color getNominalColor() {
+    /**
+     * Gets nominal color.
+     *
+     * @return the nominal color
+     */
+    public static Color getNominalColor() {
 		return new Color(203, 0, 204);
 	}
 
-	public static Color getNumericalColor() {
+    /**
+     * Gets numerical color.
+     *
+     * @return the numerical color
+     */
+    public static Color getNumericalColor() {
 		return Color.blue;
 	}
 
-	public static Color getDateColor() {
+    /**
+     * Gets date color.
+     *
+     * @return the date color
+     */
+    public static Color getDateColor() {
 		return new Color(1, 102, 0);
 	}
 
-	public static Color getInvalidColor() {
+    /**
+     * Gets invalid color.
+     *
+     * @return the invalid color
+     */
+    public static Color getInvalidColor() {
 		return new Color(204, 0, 0);
 	}
 
-	public static Color getUnknownColor() {
+    /**
+     * Gets unknown color.
+     *
+     * @return the unknown color
+     */
+    public static Color getUnknownColor() {
 		return Color.gray.brighter();
 	}
 
-	public static Color getWarningColor() {
+    /**
+     * Gets warning color.
+     *
+     * @return the warning color
+     */
+    public static Color getWarningColor() {
 		return new Color(204, 102, 0);
 	}
 }

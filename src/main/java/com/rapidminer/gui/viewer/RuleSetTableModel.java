@@ -36,7 +36,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * The table model for the rule set visualization.
- * 
+ *
  * @author Ingo Mierswa, Tobias Malbrecht
  */
 public class RuleSetTableModel extends AbstractTableModel {
@@ -65,7 +65,12 @@ public class RuleSetTableModel extends AbstractTableModel {
 
 	private RuleSet rules;
 
-	public RuleSetTableModel(RuleSet rules) {
+    /**
+     * Instantiates a new Rule set table model.
+     *
+     * @param rules the rules
+     */
+    public RuleSetTableModel(RuleSet rules) {
 		this.rules = rules;
 	}
 

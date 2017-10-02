@@ -36,15 +36,20 @@ import java.util.List;
  * This neighborhood adds all points, which are inside the specified distance. If less than the
  * minimal number of neighbors are found, the neighborhood distance is increased until the minimal
  * number of neighbors are found.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class AtLeastNeighborhood implements Neighborhood {
 
 	private static final long serialVersionUID = -9140050953901279562L;
-	public static final String PARAMETER_AT_LEAST = "at_least";
-	public static final String PARAMETER_DISTANCE = "distance";
+    /**
+     * The constant PARAMETER_AT_LEAST.
+     */
+    public static final String PARAMETER_AT_LEAST = "at_least";
+    /**
+     * The constant PARAMETER_DISTANCE.
+     */
+    public static final String PARAMETER_DISTANCE = "distance";
 
 	private double distance;
 	private int minK;

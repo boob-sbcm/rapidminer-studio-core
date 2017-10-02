@@ -38,13 +38,18 @@ import java.util.List;
  * This is the Java implementation of <em>myKLR</em> by Stefan R&uuml;ping. myKLR is a tool for
  * large scale kernel logistic regression based on the algorithm of Keerthi/etal/2003 and the code
  * of mySVM.
- * 
- * @rapidminer.index KLR
+ *
  * @author Ingo Mierswa
+ * @rapidminer.index KLR
  */
 public class MyKLRLearner extends AbstractMySVMLearner {
 
-	public MyKLRLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new My klr learner.
+     *
+     * @param description the description
+     */
+    public MyKLRLearner(OperatorDescription description) {
 		super(description);
 	}
 

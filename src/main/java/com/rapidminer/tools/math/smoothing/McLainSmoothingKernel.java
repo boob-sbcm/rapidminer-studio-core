@@ -19,12 +19,10 @@
 package com.rapidminer.tools.math.smoothing;
 
 /**
- * 
  * This class implements a McLain smoothing kernel with fixed epsilon on 1 for normalization, so
  * that it returns a weight of 1 on distance 0.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class McLainSmoothingKernel extends SmoothingKernel {
 

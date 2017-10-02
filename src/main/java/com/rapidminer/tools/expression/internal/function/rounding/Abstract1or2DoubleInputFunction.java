@@ -30,28 +30,20 @@ import com.rapidminer.tools.expression.internal.function.Abstract2DoubleInputFun
 
 
 /**
- *
  * Abstract class for a {@link Function} that has either one or two double arguments.
  *
  * @author David Arnu
- *
  */
 public abstract class Abstract1or2DoubleInputFunction extends Abstract2DoubleInputFunction {
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 *
-	 * @param i18nKey
-	 *            the key for the {@link FunctionDescription}. The functionName is read from
-	 *            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName
-	 *            from ".group", the description from ".description" and the function with
-	 *            parameters from ".parameters". If ".parameters" is not present, the ".name" is
-	 *            taken for the function with parameters.
-	 * @param returnType
-	 *            the {@link Ontology#ATTRIBUTE_VALUE_TYPE}
-	 */
-	public Abstract1or2DoubleInputFunction(String i18n, int returnType) {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     *
+     * @param i18n       the 18 n
+     * @param returnType the {@link Ontology#ATTRIBUTE_VALUE_TYPE}
+     */
+    public Abstract1or2DoubleInputFunction(String i18n, int returnType) {
 		super(i18n, FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, returnType);
 	}
 
@@ -112,12 +104,12 @@ public abstract class Abstract1or2DoubleInputFunction extends Abstract2DoubleInp
 		}
 	}
 
-	/**
-	 * Computes the value a single input argument
-	 *
-	 * @param value
-	 * @return the result of the computation
-	 */
-	protected abstract double compute(double value);
+    /**
+     * Computes the value a single input argument
+     *
+     * @param value the value
+     * @return the result of the computation
+     */
+    protected abstract double compute(double value);
 
 }

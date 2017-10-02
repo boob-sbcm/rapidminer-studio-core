@@ -46,16 +46,15 @@ public class ScaledImageIcon extends ImageIcon {
 	private int height;
 	private int width;
 
-	/**
-	 * Creates a new scaled {@link ImageIcon} from the given URL with the given logical height and
-	 * width.
-	 *
-	 * @param url
-	 *            the image URL
-	 * @param scalingFactor
-	 *            the scaling factor
-	 */
-	public ScaledImageIcon(URL url, int heigth, int width) {
+    /**
+     * Creates a new scaled {@link ImageIcon} from the given URL with the given logical height and
+     * width.
+     *
+     * @param url    the image URL
+     * @param heigth the heigth
+     * @param width  the width
+     */
+    public ScaledImageIcon(URL url, int heigth, int width) {
 		super(url);
 		if (heigth < 1) {
 			throw new IllegalArgumentException("Heigth must be positive and non-zero!");
@@ -67,16 +66,15 @@ public class ScaledImageIcon extends ImageIcon {
 		this.width = width;
 	}
 
-	/**
-	 * Creates a new scaled {@link ImageIcon} based on the given Image with the given logical height
-	 * and width.
-	 *
-	 * @param image
-	 *            the base image
-	 * @param scalingFactor
-	 *            the scaling factor
-	 */
-	public ScaledImageIcon(Image image, int heigth, int width) {
+    /**
+     * Creates a new scaled {@link ImageIcon} based on the given Image with the given logical height
+     * and width.
+     *
+     * @param image  the base image
+     * @param heigth the heigth
+     * @param width  the width
+     */
+    public ScaledImageIcon(Image image, int heigth, int width) {
 		super(image);
 		if (heigth < 1) {
 			throw new IllegalArgumentException("Heigth must be positive and non-zero!");
@@ -123,12 +121,12 @@ public class ScaledImageIcon extends ImageIcon {
 		return super.getImage().getScaledInstance(getIconWidth(), getIconHeight(), Image.SCALE_SMOOTH);
 	}
 
-	/**
-	 * Creates a grayed out version of this icon.
-	 *
-	 * @return the disabled icon
-	 */
-	public ScaledImageIcon createDisabledIcon() {
+    /**
+     * Creates a grayed out version of this icon.
+     *
+     * @return the disabled icon
+     */
+    public ScaledImageIcon createDisabledIcon() {
 		Image grayImage = GrayFilter.createDisabledImage(super.getImage());
 		return new ScaledImageIcon(grayImage, height, width);
 	}

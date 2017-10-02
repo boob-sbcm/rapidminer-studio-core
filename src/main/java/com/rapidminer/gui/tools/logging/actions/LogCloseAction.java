@@ -28,7 +28,7 @@ import com.rapidminer.gui.tools.logging.LogViewer;
 
 /**
  * Closes the current {@link LogModel} in the {@link LogViewer} if it is closable.
- * 
+ *
  * @author Marco Boeck
  */
 public class LogCloseAction extends ResourceAction {
@@ -37,7 +37,12 @@ public class LogCloseAction extends ResourceAction {
 
 	private LogViewer logviewer;
 
-	public LogCloseAction(LogViewer logviewer) {
+    /**
+     * Instantiates a new Log close action.
+     *
+     * @param logviewer the logviewer
+     */
+    public LogCloseAction(LogViewer logviewer) {
 		super(true, "close_log");
 		this.logviewer = logviewer;
 	}

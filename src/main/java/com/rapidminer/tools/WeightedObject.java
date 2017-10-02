@@ -20,9 +20,9 @@ package com.rapidminer.tools;
 
 /**
  * Class used to represent an object together with a double weight.
- * 
+ *
+ * @param <E> the type parameter
  * @author Michael Wurst
- * 
  */
 public class WeightedObject<E> implements Comparable<WeightedObject<E>> {
 
@@ -32,7 +32,13 @@ public class WeightedObject<E> implements Comparable<WeightedObject<E>> {
 	/** The associated weight. */
 	private final double weight;
 
-	public WeightedObject(E object, double weight) {
+    /**
+     * Instantiates a new Weighted object.
+     *
+     * @param object the object
+     * @param weight the weight
+     */
+    public WeightedObject(E object, double weight) {
 		this.object = object;
 		this.weight = weight;
 	}
@@ -52,21 +58,21 @@ public class WeightedObject<E> implements Comparable<WeightedObject<E>> {
 		}
 	}
 
-	/**
-	 * Returns the object.
-	 * 
-	 * @return Object
-	 */
-	public E getObject() {
+    /**
+     * Returns the object.
+     *
+     * @return Object object
+     */
+    public E getObject() {
 		return object;
 	}
 
-	/**
-	 * Returns the weight.
-	 * 
-	 * @return double
-	 */
-	public double getWeight() {
+    /**
+     * Returns the weight.
+     *
+     * @return double weight
+     */
+    public double getWeight() {
 		return weight;
 	}
 

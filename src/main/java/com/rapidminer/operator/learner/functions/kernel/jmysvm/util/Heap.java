@@ -20,31 +20,61 @@ package com.rapidminer.operator.learner.functions.kernel.jmysvm.util;
 
 /**
  * Implements a Heap on n doubles and ints
- * 
+ *
  * @author Stefan Rueping
  */
 public abstract class Heap {
 
-	protected int the_size;
+    /**
+     * The The size.
+     */
+    protected int the_size;
 
-	protected int last;
+    /**
+     * The Last.
+     */
+    protected int last;
 
-	protected double[] heap;
+    /**
+     * The Heap.
+     */
+    protected double[] heap;
 
-	protected int[] indizes;
+    /**
+     * The Indizes.
+     */
+    protected int[] indizes;
 
-	public Heap() {};
+    /**
+     * Instantiates a new Heap.
+     */
+    public Heap() {};
 
-	public Heap(int n) {
+    /**
+     * Instantiates a new Heap.
+     *
+     * @param n the n
+     */
+    public Heap(int n) {
 		the_size = 0;
 		init(n);
 	};
 
-	public int size() {
+    /**
+     * Size int.
+     *
+     * @return the int
+     */
+    public int size() {
 		return last; // last = number of elements
 	};
 
-	public void init(int n) {
+    /**
+     * Init.
+     *
+     * @param n the n
+     */
+    public void init(int n) {
 		if (the_size != n) {
 			the_size = n;
 			heap = new double[n];
@@ -54,27 +84,57 @@ public abstract class Heap {
 		last = 0;
 	};
 
-	public void clear() {
+    /**
+     * Clear.
+     */
+    public void clear() {
 		the_size = 0;
 		last = 0;
 		heap = null;
 		indizes = null;
 	};
 
-	public int[] get_values() {
+    /**
+     * Get values int [ ].
+     *
+     * @return the int [ ]
+     */
+    public int[] get_values() {
 		return indizes;
 	};
 
-	public abstract void add(double value, int index);
+    /**
+     * Add.
+     *
+     * @param value the value
+     * @param index the index
+     */
+    public abstract void add(double value, int index);
 
-	public double top_value() {
+    /**
+     * Top value double.
+     *
+     * @return the double
+     */
+    public double top_value() {
 		return heap[0];
 	};
 
-	public boolean empty() {
+    /**
+     * Empty boolean.
+     *
+     * @return the boolean
+     */
+    public boolean empty() {
 		return (last == 0);
 	};
 
-	protected abstract void heapify(int start, int size);
+    /**
+     * Heapify.
+     *
+     * @param start the start
+     * @param size  the size
+     */
+    protected abstract void heapify(int start, int size);
 
 };

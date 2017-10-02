@@ -22,9 +22,8 @@ package com.rapidminer.operator.validation.clustering.exampledistribution;
  * Calculates an item distribution measure by summing up the squares of the fraction of items in
  * each cluster. The result is inverted, thus the higher the value, the better the items are
  * distributed.
- * 
+ *
  * @author Michael Wurst
- * 
  */
 public class SumOfSquares implements ExampleDistributionMeasure {
 

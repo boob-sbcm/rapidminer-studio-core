@@ -38,24 +38,21 @@ import javax.swing.text.Utilities;
 
 /**
  * Class with several utility functions used by jEdit's syntax colorizing subsystem.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class SyntaxUtilities {
 
-	/**
-	 * Checks if a subregion of a <code>Segment</code> is equal to a string.
-	 * 
-	 * @param ignoreCase
-	 *            True if case should be ignored, false otherwise
-	 * @param text
-	 *            The segment
-	 * @param offset
-	 *            The offset into the segment
-	 * @param match
-	 *            The string to match
-	 */
-	public static boolean regionMatches(boolean ignoreCase, Segment text, int offset, String match) {
+    /**
+     * Checks if a subregion of a <code>Segment</code> is equal to a string.
+     *
+     * @param ignoreCase True if case should be ignored, false otherwise
+     * @param text       The segment
+     * @param offset     The offset into the segment
+     * @param match      The string to match
+     * @return the boolean
+     */
+    public static boolean regionMatches(boolean ignoreCase, Segment text, int offset, String match) {
 		int length = offset + match.length();
 		char[] textArray = text.array;
 		if (length > text.offset + text.count) {
@@ -75,19 +72,16 @@ public class SyntaxUtilities {
 		return true;
 	}
 
-	/**
-	 * Checks if a subregion of a <code>Segment</code> is equal to a character array.
-	 * 
-	 * @param ignoreCase
-	 *            True if case should be ignored, false otherwise
-	 * @param text
-	 *            The segment
-	 * @param offset
-	 *            The offset into the segment
-	 * @param match
-	 *            The character array to match
-	 */
-	public static boolean regionMatches(boolean ignoreCase, Segment text, int offset, char[] match) {
+    /**
+     * Checks if a subregion of a <code>Segment</code> is equal to a character array.
+     *
+     * @param ignoreCase True if case should be ignored, false otherwise
+     * @param text       The segment
+     * @param offset     The offset into the segment
+     * @param match      The character array to match
+     * @return the boolean
+     */
+    public static boolean regionMatches(boolean ignoreCase, Segment text, int offset, char[] match) {
 		int length = offset + match.length;
 		char[] textArray = text.array;
 		if (length > text.offset + text.count) {
@@ -107,11 +101,13 @@ public class SyntaxUtilities {
 		return true;
 	}
 
-	/**
-	 * Returns the default style table. This can be passed to the <code>setStyles()</code> method of
-	 * <code>SyntaxDocument</code> to use the default syntax styles.
-	 */
-	public static SyntaxStyle[] getDefaultSyntaxStyles() {
+    /**
+     * Returns the default style table. This can be passed to the <code>setStyles()</code> method of
+     * <code>SyntaxDocument</code> to use the default syntax styles.
+     *
+     * @return the syntax style [ ]
+     */
+    public static SyntaxStyle[] getDefaultSyntaxStyles() {
 		SyntaxStyle[] styles = new SyntaxStyle[Token.ID_COUNT];
 
 		styles[Token.COMMENT1] = new SyntaxStyle(Color.black, true, false);
@@ -128,27 +124,20 @@ public class SyntaxUtilities {
 		return styles;
 	}
 
-	/**
-	 * Paints the specified line onto the graphics context. Note that this method munges the offset
-	 * and count values of the segment.
-	 * 
-	 * @param line
-	 *            The line segment
-	 * @param tokens
-	 *            The token list for the line
-	 * @param styles
-	 *            The syntax style list
-	 * @param expander
-	 *            The tab expander used to determine tab stops. May be null
-	 * @param gfx
-	 *            The graphics context
-	 * @param x
-	 *            The x co-ordinate
-	 * @param y
-	 *            The y co-ordinate
-	 * @return The x co-ordinate, plus the width of the painted string
-	 */
-	public static int paintSyntaxLine(Segment line, Token tokens, SyntaxStyle[] styles, TabExpander expander, Graphics gfx,
+    /**
+     * Paints the specified line onto the graphics context. Note that this method munges the offset
+     * and count values of the segment.
+     *
+     * @param line     The line segment
+     * @param tokens   The token list for the line
+     * @param styles   The syntax style list
+     * @param expander The tab expander used to determine tab stops. May be null
+     * @param gfx      The graphics context
+     * @param x        The x co-ordinate
+     * @param y        The y co-ordinate
+     * @return The x co-ordinate, plus the width of the painted string
+     */
+    public static int paintSyntaxLine(Segment line, Token tokens, SyntaxStyle[] styles, TabExpander expander, Graphics gfx,
 			int x, int y) {
 		Font defaultFont = gfx.getFont();
 		Color defaultColor = gfx.getColor();

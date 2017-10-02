@@ -76,7 +76,16 @@ public class SettingsPropertyPanel extends PropertyPanel {
 	/** Sub-group with the title of the tab should one be used one time */
 	private boolean subGroupTabNameUsed = false;
 
-	public SettingsPropertyPanel(String groupTitle, List<SettingsItem> itemSubGroups, List<SettingsItem> itemParameters,
+    /**
+     * Instantiates a new Settings property panel.
+     *
+     * @param groupTitle     the group title
+     * @param itemSubGroups  the item sub groups
+     * @param itemParameters the item parameters
+     * @param filter         the filter
+     * @param propertyCache  the property cache
+     */
+    public SettingsPropertyPanel(String groupTitle, List<SettingsItem> itemSubGroups, List<SettingsItem> itemParameters,
 			String filter, Properties propertyCache) {
 		this.groupTitle = groupTitle;
 
@@ -143,8 +152,10 @@ public class SettingsPropertyPanel extends PropertyPanel {
 		}
 	}
 
-	/** Applies the properties without saving them. */
-	public void applyProperties() {
+    /**
+     * Applies the properties without saving them.
+     */
+    public void applyProperties() {
 		for (ParameterType type : allParameterTypes) {
 			String value = allParameterValues.getProperty(type.getKey());
 			ParameterService.setParameterValue(type, value);

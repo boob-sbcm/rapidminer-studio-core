@@ -23,9 +23,8 @@ import com.rapidminer.gui.properties.tablepanel.TablePanel;
 
 /**
  * Indicates a formatted textfield cell which allows only integers for the {@link TablePanel}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface CellTypeTextFieldInteger extends CellTypeTextFieldNumerical {
 

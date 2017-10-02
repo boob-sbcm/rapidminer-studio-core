@@ -28,11 +28,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
  * A {@link Function} computing signum of a number. Returns +1, if the value is zero.
  *
  * @author Marcel Seifert
- *
  */
 public class Signum extends Abstract1DoubleInputFunction {
 
-	public Signum() {
+    /**
+     * Instantiates a new Signum.
+     */
+    public Signum() {
 		super("mathematical.sgn", Ontology.NUMERICAL);
 	}
 

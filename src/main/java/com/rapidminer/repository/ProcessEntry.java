@@ -19,19 +19,32 @@
 package com.rapidminer.repository;
 
 
-
 /**
  * An entry that can store processes.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public interface ProcessEntry extends DataEntry {
 
-	public static final String TYPE_NAME = "process";
+    /**
+     * The constant TYPE_NAME.
+     */
+    public static final String TYPE_NAME = "process";
 
-	public String retrieveXML() throws RepositoryException;
+    /**
+     * Retrieve xml string.
+     *
+     * @return the string
+     * @throws RepositoryException the repository exception
+     */
+    public String retrieveXML() throws RepositoryException;
 
-	public void storeXML(String xml) throws RepositoryException;
+    /**
+     * Store xml.
+     *
+     * @param xml the xml
+     * @throws RepositoryException the repository exception
+     */
+    public void storeXML(String xml) throws RepositoryException;
 
 }

@@ -73,15 +73,38 @@ public class IndividualSelector extends JDialog implements ListSelectionListener
 
 	private ExampleSet exampleSet = null;
 
-	public IndividualSelector(ExampleSet exampleSet, Population population) {
+    /**
+     * Instantiates a new Individual selector.
+     *
+     * @param exampleSet the example set
+     * @param population the population
+     */
+    public IndividualSelector(ExampleSet exampleSet, Population population) {
 		this(exampleSet, population, true);
 	}
 
-	public IndividualSelector(ExampleSet exampleSet, Population population, boolean modal) {
+    /**
+     * Instantiates a new Individual selector.
+     *
+     * @param exampleSet the example set
+     * @param population the population
+     * @param modal      the modal
+     */
+    public IndividualSelector(ExampleSet exampleSet, Population population, boolean modal) {
 		this(RapidMinerGUI.getMainFrame(), exampleSet, population, -1, -1, modal);
 	}
 
-	public IndividualSelector(Frame owner, ExampleSet exampleSet, Population population, int width, int height, boolean modal) {
+    /**
+     * Instantiates a new Individual selector.
+     *
+     * @param owner      the owner
+     * @param exampleSet the example set
+     * @param population the population
+     * @param width      the width
+     * @param height     the height
+     * @param modal      the modal
+     */
+    public IndividualSelector(Frame owner, ExampleSet exampleSet, Population population, int width, int height, boolean modal) {
 		super(owner, "Result Individual Selection", modal);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.population = population;
@@ -216,7 +239,12 @@ public class IndividualSelector extends JDialog implements ListSelectionListener
 		dispose();
 	}
 
-	public Individual getSelectedIndividual() {
+    /**
+     * Gets selected individual.
+     *
+     * @return the selected individual
+     */
+    public Individual getSelectedIndividual() {
 		if (!selected) {
 			return null;
 		} else {

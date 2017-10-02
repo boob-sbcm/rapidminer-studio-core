@@ -26,14 +26,11 @@ package com.rapidminer.example.table;
  */
 public interface GrowingExampleTable extends ExampleTable {
 
-	/**
-	 * Adds the given row at the end of the table
-	 *
-	 * @param row
-	 *            the row to be added
-	 * @throws RuntimeException
-	 *             May be thrown if the data row does not fit the attributes of the underlying
-	 *             table, depending on the data row implementation.
-	 */
-	void addDataRow(DataRow row);
+    /**
+     * Adds the given row at the end of the table
+     *
+     * @param row the row to be added
+     * @throws RuntimeException May be thrown if the data row does not fit the attributes of the underlying             table, depending on the data row implementation.
+     */
+    void addDataRow(DataRow row);
 }

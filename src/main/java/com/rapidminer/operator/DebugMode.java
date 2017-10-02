@@ -20,12 +20,17 @@ package com.rapidminer.operator;
 
 /**
  * Indicates whether we are collecting real meta data when executing the process.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public enum DebugMode {
 
-	DEBUG_OFF, COLLECT_METADATA_AFTER_EXECUTION
+    /**
+     * Debug off debug mode.
+     */
+    DEBUG_OFF, /**
+     * Collect metadata after execution debug mode.
+     */
+    COLLECT_METADATA_AFTER_EXECUTION
 
 }

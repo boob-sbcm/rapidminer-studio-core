@@ -22,15 +22,20 @@ import java.io.IOException;
 
 
 /**
- * 
+ * The type Csv parse exception.
+ *
  * @author Simon Fischer
- * 
  */
 public class CSVParseException extends IOException {
 
 	private static final long serialVersionUID = 1L;
 
-	public CSVParseException(String message) {
+    /**
+     * Instantiates a new Csv parse exception.
+     *
+     * @param message the message
+     */
+    public CSVParseException(String message) {
 		super(message);
 	}
 

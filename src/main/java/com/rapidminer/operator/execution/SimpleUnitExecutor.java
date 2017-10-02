@@ -38,7 +38,6 @@ import com.rapidminer.operator.ports.OutputPort;
  * Instances of this class can be shared.
  *
  * @author Simon Fischer, Marco Boeck
- *
  */
 public class SimpleUnitExecutor implements UnitExecutor {
 

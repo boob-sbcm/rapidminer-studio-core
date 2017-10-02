@@ -28,28 +28,48 @@ import java.util.logging.Level;
  * attributes and one output attribute. Depending on the mode specified in the constructor the
  * result will be the sum, difference, product or quotient. The four modes are numered from 0 to 3
  * int this order.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa 15:35:40 ingomierswa Exp $
  */
 public class BasicArithmeticOperationGenerator extends BinaryNumericalGenerator {
 
-	public static final int SUM = 0;
+    /**
+     * The constant SUM.
+     */
+    public static final int SUM = 0;
 
-	public static final int DIFFERENCE = 1;
+    /**
+     * The constant DIFFERENCE.
+     */
+    public static final int DIFFERENCE = 1;
 
-	public static final int PRODUCT = 2;
+    /**
+     * The constant PRODUCT.
+     */
+    public static final int PRODUCT = 2;
 
-	public static final int QUOTIENT = 3;
+    /**
+     * The constant QUOTIENT.
+     */
+    public static final int QUOTIENT = 3;
 
 	private static final String[] FUNCTION_NAMES = { "+", "-", "*", "/" };
 
 	private int mode;
 
-	public BasicArithmeticOperationGenerator(int mode) {
+    /**
+     * Instantiates a new Basic arithmetic operation generator.
+     *
+     * @param mode the mode
+     */
+    public BasicArithmeticOperationGenerator(int mode) {
 		this.mode = mode;
 	}
 
-	public BasicArithmeticOperationGenerator() {}
+    /**
+     * Instantiates a new Basic arithmetic operation generator.
+     */
+    public BasicArithmeticOperationGenerator() {}
 
 	@Override
 	public boolean isSelfApplicable() {

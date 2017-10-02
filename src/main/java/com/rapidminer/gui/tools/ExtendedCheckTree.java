@@ -27,7 +27,7 @@ import javax.swing.tree.TreePath;
 /**
  * The check tree, i.e. a JTree also displaying selection checkboxes with triple states and
  * automatic parent and child selections.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExtendedCheckTree extends JTree {
@@ -36,17 +36,33 @@ public class ExtendedCheckTree extends JTree {
 
 	private ExtendedCheckTreeMouseSelectionManager checkTreeManager;
 
-	public ExtendedCheckTree(TreeModel model, boolean selectAll) {
+    /**
+     * Instantiates a new Extended check tree.
+     *
+     * @param model     the model
+     * @param selectAll the select all
+     */
+    public ExtendedCheckTree(TreeModel model, boolean selectAll) {
 		super(model);
 		this.checkTreeManager = new ExtendedCheckTreeMouseSelectionManager(this, selectAll);
 		setToggleClickCount(-1);
 	}
 
-	public void addCheckTreeSelectionListener(TreeSelectionListener l) {
+    /**
+     * Add check tree selection listener.
+     *
+     * @param l the l
+     */
+    public void addCheckTreeSelectionListener(TreeSelectionListener l) {
 		this.checkTreeManager.getSelectionModel().addTreeSelectionListener(l);
 	}
 
-	public TreePath[] getCheckedPaths() {
+    /**
+     * Get checked paths tree path [ ].
+     *
+     * @return the tree path [ ]
+     */
+    public TreePath[] getCheckedPaths() {
 		return checkTreeManager.getSelectionModel().getSelectionPaths();
 	}
 }

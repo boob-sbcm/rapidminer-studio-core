@@ -23,13 +23,18 @@ import com.rapidminer.operator.learner.igss.hypothesis.Hypothesis;
 
 /**
  * The utility function Linear.
- * 
+ *
  * @author Dirk Dach
  */
 public class Linear extends AbstractUtility {
 
-	/** Constructs a new Linear with the given default probability. */
-	public Linear(double[] priors, int large) {
+    /**
+     * Constructs a new Linear with the given default probability.  @param priors the priors
+     *
+     * @param priors the priors
+     * @param large  the large
+     */
+    public Linear(double[] priors, int large) {
 		super(priors, large);
 	}
 

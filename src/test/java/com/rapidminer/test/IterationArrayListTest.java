@@ -28,12 +28,15 @@ import com.rapidminer.tools.IterationArrayList;
 
 /**
  * A test for the  {@link IterationArrayList}.
- * 
+ *
  * @author Michael Wurst
  */
 public class IterationArrayListTest {
 
-	@Test
+    /**
+     * Test access.
+     */
+    @Test
 	public void testAccess() {
 
 		ArrayList<String> l = new ArrayList<String>();

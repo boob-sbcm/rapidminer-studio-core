@@ -25,9 +25,8 @@ import com.rapidminer.operator.learner.functions.kernel.rvm.kernel.Kernel;
  * Holds the data defining the regression / classification problem to be learned. - All input
  * vectors are assumed to have the same dimension. - All target vectors are assumed to have the same
  * dimension
- * 
+ *
  * @author Piotr Kasprzak
- * 
  */
 public abstract class Problem {
 
@@ -35,35 +34,65 @@ public abstract class Problem {
 
 	private Kernel kernel;
 
-	/* The variance^2 of the gaussian noise */
+    /**
+     * The Sigma 0 2.
+     */
+/* The variance^2 of the gaussian noise */
 	public double sigma_0_2 = 0.09;
 
 	/** Problem types */
 
-	/** Constructor */
-
-	public Problem(double[][] x, Kernel kernel) {
+    /**
+     * Constructor  @param x the x
+     *
+     * @param x      the x
+     * @param kernel the kernel
+     */
+    public Problem(double[][] x, Kernel kernel) {
 		this.x = x;
 		this.kernel = kernel;
 	}
 
-	/** Getters */
-
-	public int getProblemSize() {
+    /**
+     * Getters  @return the problem size
+     *
+     * @return the problem size
+     */
+    public int getProblemSize() {
 		return x.length;
 	}
 
-	public int getInputDimension() {
+    /**
+     * Gets input dimension.
+     *
+     * @return the input dimension
+     */
+    public int getInputDimension() {
 		return x[0].length;
 	}
 
-	public double[][] getInputVectors() {
+    /**
+     * Get input vectors double [ ] [ ].
+     *
+     * @return the double [ ] [ ]
+     */
+    public double[][] getInputVectors() {
 		return x;
 	}
 
-	abstract public int getTargetDimension();
+    /**
+     * Gets target dimension.
+     *
+     * @return the target dimension
+     */
+    abstract public int getTargetDimension();
 
-	public Kernel getKernel() {
+    /**
+     * Gets kernel.
+     *
+     * @return the kernel
+     */
+    public Kernel getKernel() {
 		return kernel;
 	}
 }

@@ -30,22 +30,37 @@ import java.util.List;
 /**
  * This class provides functionality in order to create SmoothingKernels in operators in a parameter
  * depended way.
- * 
+ *
  * @author Sebastian Land
  */
 public class SmoothingKernels {
 
-	public static final String PARAMETER_SMOOTHING_KERNEL = "smoothing_kernel";
+    /**
+     * The constant PARAMETER_SMOOTHING_KERNEL.
+     */
+    public static final String PARAMETER_SMOOTHING_KERNEL = "smoothing_kernel";
 
-	public static final String[] KERNEL_NAMES = new String[] { "Rectangular", "Triangular", "Epanechnikov", "Bisquare",
+    /**
+     * The constant KERNEL_NAMES.
+     */
+    public static final String[] KERNEL_NAMES = new String[] { "Rectangular", "Triangular", "Epanechnikov", "Bisquare",
 			"Tricube", "Triweight", "Gaussian", "Exponential", "McLain" };
 
-	public static final Class<?>[] KERNEL_CLASSES = new Class[] { RectangularSmoothingKernel.class,
+    /**
+     * The constant KERNEL_CLASSES.
+     */
+    public static final Class<?>[] KERNEL_CLASSES = new Class[] { RectangularSmoothingKernel.class,
 			TriangularSmoothingKernel.class, EpanechnikovSmoothingKernel.class, BisquareSmoothingKernel.class,
 			TricubeSmoothingKernel.class, TriweightSmoothingKernel.class, GaussianSmoothingKernel.class,
 			ExponentialSmoothingKernel.class, McLainSmoothingKernel.class };
 
-	public static final List<ParameterType> getParameterTypes(ParameterHandler handler) {
+    /**
+     * Gets parameter types.
+     *
+     * @param handler the handler
+     * @return the parameter types
+     */
+    public static final List<ParameterType> getParameterTypes(ParameterHandler handler) {
 		List<ParameterType> types = new LinkedList<ParameterType>();
 		ParameterType type = new ParameterTypeCategory(PARAMETER_SMOOTHING_KERNEL,
 				"Determines which kernel type is used to calculate the weights of distant examples.", KERNEL_NAMES, 5);
@@ -54,7 +69,14 @@ public class SmoothingKernels {
 		return types;
 	}
 
-	public static final SmoothingKernel createKernel(ParameterHandler handler) throws OperatorException {
+    /**
+     * Create kernel smoothing kernel.
+     *
+     * @param handler the handler
+     * @return the smoothing kernel
+     * @throws OperatorException the operator exception
+     */
+    public static final SmoothingKernel createKernel(ParameterHandler handler) throws OperatorException {
 		int chosenKernel = handler.getParameterAsInt(PARAMETER_SMOOTHING_KERNEL);
 		try {
 			return (SmoothingKernel) KERNEL_CLASSES[chosenKernel].newInstance();

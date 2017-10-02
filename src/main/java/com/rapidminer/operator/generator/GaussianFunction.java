@@ -31,7 +31,7 @@ import com.rapidminer.tools.math.container.Range;
 
 /**
  * Generates a gaussian distribution for all attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class GaussianFunction extends RegressionFunction {

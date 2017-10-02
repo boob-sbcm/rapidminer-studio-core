@@ -52,19 +52,40 @@ import com.rapidminer.tools.Ontology;
  */
 public class SimpleUncertainPredictionsTransformation extends AbstractDataProcessing {
 
-	public static final String PARAMETER_CLASS_HANDLING = "class_handling";
+    /**
+     * The constant PARAMETER_CLASS_HANDLING.
+     */
+    public static final String PARAMETER_CLASS_HANDLING = "class_handling";
 
-	public static final String[] CLASS_HANDLING_MODES = { "balanced", "unbalanced" };
+    /**
+     * The constant CLASS_HANDLING_MODES.
+     */
+    public static final String[] CLASS_HANDLING_MODES = { "balanced", "unbalanced" };
 
-	public static final int CLASS_HANDLING_BALANCED = 0;
+    /**
+     * The constant CLASS_HANDLING_BALANCED.
+     */
+    public static final int CLASS_HANDLING_BALANCED = 0;
 
-	public static final int CLASS_HANDLING_UNBALANCED = 1;
+    /**
+     * The constant CLASS_HANDLING_UNBALANCED.
+     */
+    public static final int CLASS_HANDLING_UNBALANCED = 1;
 
-	public static final String PARAMETER_MIN_CONFIDENCE = "min_confidence";
+    /**
+     * The constant PARAMETER_MIN_CONFIDENCE.
+     */
+    public static final String PARAMETER_MIN_CONFIDENCE = "min_confidence";
 
-	public static final String PARAMETER_MIN_CONFIDENCES = "min_confidences";
+    /**
+     * The constant PARAMETER_MIN_CONFIDENCES.
+     */
+    public static final String PARAMETER_MIN_CONFIDENCES = "min_confidences";
 
-	public static final String PARAMETER_CLASS_VALUE = "class";
+    /**
+     * The constant PARAMETER_CLASS_VALUE.
+     */
+    public static final String PARAMETER_CLASS_VALUE = "class";
 
 	/**
 	 * Incompatible version, old version writes into the exampleset, if original output port is not
@@ -72,7 +93,12 @@ public class SimpleUncertainPredictionsTransformation extends AbstractDataProces
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public SimpleUncertainPredictionsTransformation(OperatorDescription description) {
+    /**
+     * Instantiates a new Simple uncertain predictions transformation.
+     *
+     * @param description the description
+     */
+    public SimpleUncertainPredictionsTransformation(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(new ExampleSetPrecondition(getExampleSetInputPort(), Ontology.VALUE_TYPE,

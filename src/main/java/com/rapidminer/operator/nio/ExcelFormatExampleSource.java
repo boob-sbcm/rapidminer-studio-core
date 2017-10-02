@@ -65,7 +65,6 @@ import jxl.read.biff.BiffException;
 
 
 /**
- *
  * <p>
  * This operator can be used to load data from Microsoft Excel spreadsheets. This operator is able
  * to reads data from Excel 95, 97, 2000, XP, and 2003. The user has to define which of the
@@ -73,7 +72,7 @@ import jxl.read.biff.BiffException;
  * each line is an example and each column represents an attribute. Please note that the first line
  * might be used for attribute names which can be indicated by a parameter.
  * </p>
- *
+ * <p>
  * <p>
  * The data table can be placed anywhere on the sheet and is allowed to contain arbitrary formatting
  * instructions, empty rows, and empty columns. Missing data values are indicated by empty cells or
@@ -84,19 +83,24 @@ import jxl.read.biff.BiffException;
  */
 public class ExcelFormatExampleSource extends AbstractExampleSource {
 
-	/**
-	 * The parameter name for &quot;The Excel spreadsheet file which should be loaded.&quot;
-	 */
-	public static final String PARAMETER_EXCEL_FILE = "excel_file";
+    /**
+     * The parameter name for &quot;The Excel spreadsheet file which should be loaded.&quot;
+     */
+    public static final String PARAMETER_EXCEL_FILE = "excel_file";
 
-	/**
-	 * The parameter name for &quot;The number of the sheet which should be imported.&quot;
-	 */
-	public static final String PARAMETER_SHEET_NUMBER = "sheet_number";
+    /**
+     * The parameter name for &quot;The number of the sheet which should be imported.&quot;
+     */
+    public static final String PARAMETER_SHEET_NUMBER = "sheet_number";
 
 	private final InputPort fileInputPort = getInputPorts().createPort("file");
 
-	public ExcelFormatExampleSource(final OperatorDescription description) {
+    /**
+     * Instantiates a new Excel format example source.
+     *
+     * @param description the description
+     */
+    public ExcelFormatExampleSource(final OperatorDescription description) {
 		super(description);
 
 		fileInputPort.addPrecondition(new SimplePrecondition(fileInputPort, new MetaData(FileObject.class)) {

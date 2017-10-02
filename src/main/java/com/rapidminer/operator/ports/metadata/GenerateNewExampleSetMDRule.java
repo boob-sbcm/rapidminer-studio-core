@@ -31,7 +31,12 @@ public class GenerateNewExampleSetMDRule implements MDTransformationRule {
 	private ExampleSetMetaData emd;
 	private OutputPort outputPort;
 
-	public GenerateNewExampleSetMDRule(OutputPort outPort) {
+    /**
+     * Instantiates a new Generate new example set md rule.
+     *
+     * @param outPort the out port
+     */
+    public GenerateNewExampleSetMDRule(OutputPort outPort) {
 		this.emd = new ExampleSetMetaData();
 		this.outputPort = outPort;
 	}
@@ -43,19 +48,24 @@ public class GenerateNewExampleSetMDRule implements MDTransformationRule {
 		outputPort.deliverMD(modifyMetaData(clone));
 	}
 
-	/**
-	 * Modifies the standard meta data before it is passed to the output. Can be used if the
-	 * transformation depends on parameters etc. The default implementation just returns the
-	 * original. Subclasses may safely modify the meta data, since a copy is used for this method.
-	 */
-	public MetaData modifyMetaData(ExampleSetMetaData unmodifiedMetaData) {
+    /**
+     * Modifies the standard meta data before it is passed to the output. Can be used if the
+     * transformation depends on parameters etc. The default implementation just returns the
+     * original. Subclasses may safely modify the meta data, since a copy is used for this method.
+     *
+     * @param unmodifiedMetaData the unmodified meta data
+     * @return the meta data
+     */
+    public MetaData modifyMetaData(ExampleSetMetaData unmodifiedMetaData) {
 		return unmodifiedMetaData;
 	}
 
-	/**
-	 * @return the {@link OutputPort} the MD rule is for
-	 */
-	public OutputPort getOutputPort() {
+    /**
+     * Gets output port.
+     *
+     * @return the {@link OutputPort} the MD rule is for
+     */
+    public OutputPort getOutputPort() {
 		return outputPort;
 	}
 

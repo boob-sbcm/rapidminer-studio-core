@@ -23,7 +23,7 @@ import java.io.Serializable;
 
 /**
  * A helper class containing all information about a bookmark.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Bookmark implements Serializable, Comparable<Bookmark> {
@@ -34,24 +34,50 @@ public class Bookmark implements Serializable, Comparable<Bookmark> {
 
 	private String path;
 
-	public Bookmark(String name, String path) {
+    /**
+     * Instantiates a new Bookmark.
+     *
+     * @param name the name
+     * @param path the path
+     */
+    public Bookmark(String name, String path) {
 		this.name = name;
 		this.path = path;
 	}
 
-	public void setName(String newName) {
+    /**
+     * Sets name.
+     *
+     * @param newName the new name
+     */
+    public void setName(String newName) {
 		this.name = newName;
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return this.name;
 	}
 
-	public String getPath() {
+    /**
+     * Gets path.
+     *
+     * @return the path
+     */
+    public String getPath() {
 		return this.path;
 	}
 
-	public void setPath(String path) {
+    /**
+     * Sets path.
+     *
+     * @param path the path
+     */
+    public void setPath(String path) {
 		this.path = path;
 	}
 

@@ -36,7 +36,7 @@ import org.w3c.dom.NodeList;
 /**
  * This rule adapts the old parameter settings of the plotter to the new one, if they are stored in
  * a list inside a parameter of a operator.
- * 
+ *
  * @author Sebastian Land
  */
 public class RenamePlotterParametersRule extends AbstractParseRule {
@@ -81,12 +81,14 @@ public class RenamePlotterParametersRule extends AbstractParseRule {
 
 	private String parameter;
 
-	/**
-	 * @param operatorTypeName
-	 * @param element
-	 * @throws XMLException
-	 */
-	public RenamePlotterParametersRule(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Rename plotter parameters rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public RenamePlotterParametersRule(String operatorTypeName, Element element) throws XMLException {
 		super(operatorTypeName, element);
 		assert (element.getTagName().equals("renamePlotterParameters"));
 		NodeList children = element.getChildNodes();

@@ -43,16 +43,27 @@ import java.util.List;
  * This operator creates a new attribute for the data set. The new attribute will have the specified
  * name and value type (e.g. nominal or real). Please note that all values are missing right after
  * creation and therefore operators like SetData must be used to change this.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeAdd extends AbstractDataProcessing {
 
-	public static final String PARAMETER_NAME = "name";
+    /**
+     * The constant PARAMETER_NAME.
+     */
+    public static final String PARAMETER_NAME = "name";
 
-	public static final String PARAMETER_VALUE_TYPE = "value_type";
+    /**
+     * The constant PARAMETER_VALUE_TYPE.
+     */
+    public static final String PARAMETER_VALUE_TYPE = "value_type";
 
-	public AttributeAdd(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute add.
+     *
+     * @param description the description
+     */
+    public AttributeAdd(OperatorDescription description) {
 		super(description);
 	}
 

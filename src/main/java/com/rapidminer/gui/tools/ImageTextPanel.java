@@ -26,14 +26,17 @@ import java.awt.Image;
 
 /**
  * This panel can be used to display an image and draw some text across it.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ImageTextPanel extends TextPanel {
 
 	private static final long serialVersionUID = -5728947680003081065L;
 
-	public static final int TEXT_START_Y = -1;
+    /**
+     * The constant TEXT_START_Y.
+     */
+    public static final int TEXT_START_Y = -1;
 
 	private transient Image image = null;
 
@@ -43,15 +46,46 @@ public class ImageTextPanel extends TextPanel {
 
 	private int imageY = TEXT_START_Y;
 
-	public ImageTextPanel(Image image, String title, String[] textLines, int xAlignment, int yAlignment) {
+    /**
+     * Instantiates a new Image text panel.
+     *
+     * @param image      the image
+     * @param title      the title
+     * @param textLines  the text lines
+     * @param xAlignment the x alignment
+     * @param yAlignment the y alignment
+     */
+    public ImageTextPanel(Image image, String title, String[] textLines, int xAlignment, int yAlignment) {
 		this(image, title, textLines, xAlignment, yAlignment, false);
 	}
 
-	public ImageTextPanel(Image image, String title, String[] textLines, int xAlignment, int yAlignment, boolean rescaleImage) {
+    /**
+     * Instantiates a new Image text panel.
+     *
+     * @param image        the image
+     * @param title        the title
+     * @param textLines    the text lines
+     * @param xAlignment   the x alignment
+     * @param yAlignment   the y alignment
+     * @param rescaleImage the rescale image
+     */
+    public ImageTextPanel(Image image, String title, String[] textLines, int xAlignment, int yAlignment, boolean rescaleImage) {
 		this(image, title, textLines, xAlignment, yAlignment, rescaleImage, 0, TEXT_START_Y);
 	}
 
-	public ImageTextPanel(Image image, String title, String[] textLines, int xAlignment, int yAlignment,
+    /**
+     * Instantiates a new Image text panel.
+     *
+     * @param image        the image
+     * @param title        the title
+     * @param textLines    the text lines
+     * @param xAlignment   the x alignment
+     * @param yAlignment   the y alignment
+     * @param rescaleImage the rescale image
+     * @param imageX       the image x
+     * @param imageY       the image y
+     */
+    public ImageTextPanel(Image image, String title, String[] textLines, int xAlignment, int yAlignment,
 			boolean rescaleImage, int imageX, int imageY) {
 		super(title, textLines, xAlignment, yAlignment);
 		this.image = image;

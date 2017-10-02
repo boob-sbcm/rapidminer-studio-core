@@ -26,14 +26,19 @@ import com.rapidminer.operator.OperatorDescription;
  * Abstract super class of the {@link AbstractExampleSetProcessing} hierarchy in the preprocessing
  * package. At this stage it is not yet clear which additional subclasses we should add and what the
  * differences are between this package and the features.* packages.
- * 
+ * <p>
  * TODO: Clarify relation to features.*
- * 
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractDataProcessing extends AbstractExampleSetProcessing {
 
-	public AbstractDataProcessing(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract data processing.
+     *
+     * @param description the description
+     */
+    public AbstractDataProcessing(OperatorDescription description) {
 		super(description);
 	}
 

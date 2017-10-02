@@ -24,13 +24,22 @@ import com.rapidminer.tools.Ontology;
 /**
  * This is an enumeration for possible unknown values. This is used to determine, of which type an
  * returned unknown actually is.
- * 
+ *
  * @author Sebastian Land
  */
 public enum UnknownValue {
-	UNKNOWN_NOMINAL(Ontology.NOMINAL),
-	// UNKNOWN_NUMERICAL(Ontology.NUMERICAL), Numerical Unknowns must be encoded by Double.NaN
-	UNKNOWN_BOOLEAN(Ontology.BINOMINAL), UNKNOWN_DATE(Ontology.DATE_TIME);
+    /**
+     * Unknown nominal unknown value.
+     */
+    UNKNOWN_NOMINAL(Ontology.NOMINAL),
+    /**
+     * The Unknown boolean.
+     */
+// UNKNOWN_NUMERICAL(Ontology.NUMERICAL), Numerical Unknowns must be encoded by Double.NaN
+	UNKNOWN_BOOLEAN(Ontology.BINOMINAL), /**
+     * Unknown date unknown value.
+     */
+    UNKNOWN_DATE(Ontology.DATE_TIME);
 
 	private int valueType;
 
@@ -38,7 +47,12 @@ public enum UnknownValue {
 		this.valueType = valueType;
 	}
 
-	public int getValueType() {
+    /**
+     * Gets value type.
+     *
+     * @return the value type
+     */
+    public int getValueType() {
 		return valueType;
 	}
 }

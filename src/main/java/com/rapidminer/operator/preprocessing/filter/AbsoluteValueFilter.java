@@ -46,7 +46,12 @@ public class AbsoluteValueFilter extends AbstractValueProcessing {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public AbsoluteValueFilter(OperatorDescription description) {
+    /**
+     * Instantiates a new Absolute value filter.
+     *
+     * @param description the description
+     */
+    public AbsoluteValueFilter(OperatorDescription description) {
 		super(description);
 	}
 

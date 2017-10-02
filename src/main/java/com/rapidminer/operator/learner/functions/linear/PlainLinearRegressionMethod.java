@@ -28,7 +28,7 @@ import java.util.List;
 
 /**
  * This method just does not perform any feature selection methods.
- * 
+ *
  * @author Sebastian Land
  */
 public class PlainLinearRegressionMethod implements LinearRegressionMethod {

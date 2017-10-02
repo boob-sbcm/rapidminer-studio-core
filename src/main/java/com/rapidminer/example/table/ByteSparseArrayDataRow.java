@@ -23,7 +23,7 @@ package com.rapidminer.example.table;
  * 50% of the data is sparse. As fast (or even faster than map implementation) but needs
  * considerably less memory. This implementation uses byte arrays instead of double arrays which
  * will reduce the used memory even more.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ByteSparseArrayDataRow extends AbstractSparseArrayDataRow {
@@ -33,13 +33,19 @@ public class ByteSparseArrayDataRow extends AbstractSparseArrayDataRow {
 	/** Stores the used attribute values. */
 	private byte[] values;
 
-	/** Creates an empty sparse array data row with size 0. */
-	public ByteSparseArrayDataRow() {
+    /**
+     * Creates an empty sparse array data row with size 0.
+     */
+    public ByteSparseArrayDataRow() {
 		this(0);
 	}
 
-	/** Creates a sparse array data row of the given size. */
-	public ByteSparseArrayDataRow(int size) {
+    /**
+     * Creates a sparse array data row of the given size.  @param size the size
+     *
+     * @param size the size
+     */
+    public ByteSparseArrayDataRow(int size) {
 		super(size);
 		values = new byte[size];
 	}

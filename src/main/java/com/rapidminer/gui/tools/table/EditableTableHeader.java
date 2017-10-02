@@ -38,23 +38,39 @@ import javax.swing.table.TableColumnModel;
 /**
  * This is an component of the {@link EditableHeaderJTable}. It was retrieved from
  * http://www.java2s.com/Code/Java/Swing-Components/EditableHeaderTableExample2.htm
- * 
- * 
+ *
  * @author Sebastian Land
  */
 public class EditableTableHeader extends JTableHeader implements CellEditorListener {
 
 	private static final long serialVersionUID = 1L;
 
-	public final int HEADER_ROW = -10;
+    /**
+     * The Header row.
+     */
+    public final int HEADER_ROW = -10;
 
-	transient protected int editingColumn;
+    /**
+     * The Editing column.
+     */
+    transient protected int editingColumn;
 
-	transient protected TableCellEditor cellEditor;
+    /**
+     * The Cell editor.
+     */
+    transient protected TableCellEditor cellEditor;
 
-	transient protected Component editorComp;
+    /**
+     * The Editor comp.
+     */
+    transient protected Component editorComp;
 
-	public EditableTableHeader(TableColumnModel columnModel) {
+    /**
+     * Instantiates a new Editable table header.
+     *
+     * @param columnModel the column model
+     */
+    public EditableTableHeader(TableColumnModel columnModel) {
 		super(columnModel);
 		setReorderingAllowed(false);
 		cellEditor = null;
@@ -95,7 +111,12 @@ public class EditableTableHeader extends JTableHeader implements CellEditorListe
 		invalidate();
 	}
 
-	protected void recreateTableColumn(TableColumnModel columnModel) {
+    /**
+     * Recreate table column.
+     *
+     * @param columnModel the column model
+     */
+    protected void recreateTableColumn(TableColumnModel columnModel) {
 		int n = columnModel.getColumnCount();
 		EditableTableHeaderColumn[] newCols = new EditableTableHeaderColumn[n];
 		TableColumn[] oldCols = new TableColumn[n];
@@ -112,7 +133,14 @@ public class EditableTableHeader extends JTableHeader implements CellEditorListe
 		}
 	}
 
-	public boolean editCellAt(int index, EventObject e) {
+    /**
+     * Edit cell at boolean.
+     *
+     * @param index the index
+     * @param e     the e
+     * @return the boolean
+     */
+    public boolean editCellAt(int index, EventObject e) {
 		if (cellEditor != null && !cellEditor.stopCellEditing()) {
 			return false;
 		}
@@ -135,7 +163,13 @@ public class EditableTableHeader extends JTableHeader implements CellEditorListe
 		return false;
 	}
 
-	public boolean isCellEditable(int index) {
+    /**
+     * Is cell editable boolean.
+     *
+     * @param index the index
+     * @return the boolean
+     */
+    public boolean isCellEditable(int index) {
 		if (getReorderingAllowed()) {
 			return false;
 		}
@@ -144,13 +178,24 @@ public class EditableTableHeader extends JTableHeader implements CellEditorListe
 		return col.isHeaderEditable();
 	}
 
-	public TableCellEditor getCellEditor(int index) {
+    /**
+     * Gets cell editor.
+     *
+     * @param index the index
+     * @return the cell editor
+     */
+    public TableCellEditor getCellEditor(int index) {
 		int columnIndex = columnModel.getColumn(index).getModelIndex();
 		EditableTableHeaderColumn col = (EditableTableHeaderColumn) columnModel.getColumn(columnIndex);
 		return col.getHeaderEditor();
 	}
 
-	public void setCellEditor(TableCellEditor newEditor) {
+    /**
+     * Sets cell editor.
+     *
+     * @param newEditor the new editor
+     */
+    public void setCellEditor(TableCellEditor newEditor) {
 		TableCellEditor oldEditor = cellEditor;
 		cellEditor = newEditor;
 
@@ -164,7 +209,14 @@ public class EditableTableHeader extends JTableHeader implements CellEditorListe
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Prepare editor component.
+     *
+     * @param editor the editor
+     * @param index  the index
+     * @return the component
+     */
+    @SuppressWarnings("deprecation")
 	public Component prepareEditor(TableCellEditor editor, int index) {
 		Object value = columnModel.getColumn(index).getHeaderValue();
 		boolean isSelected = true;
@@ -177,23 +229,46 @@ public class EditableTableHeader extends JTableHeader implements CellEditorListe
 		return comp;
 	}
 
-	public TableCellEditor getCellEditor() {
+    /**
+     * Gets cell editor.
+     *
+     * @return the cell editor
+     */
+    public TableCellEditor getCellEditor() {
 		return cellEditor;
 	}
 
-	public Component getEditorComponent() {
+    /**
+     * Gets editor component.
+     *
+     * @return the editor component
+     */
+    public Component getEditorComponent() {
 		return editorComp;
 	}
 
-	public void setEditingColumn(int aColumn) {
+    /**
+     * Sets editing column.
+     *
+     * @param aColumn the a column
+     */
+    public void setEditingColumn(int aColumn) {
 		editingColumn = aColumn;
 	}
 
-	public int getEditingColumn() {
+    /**
+     * Gets editing column.
+     *
+     * @return the editing column
+     */
+    public int getEditingColumn() {
 		return editingColumn;
 	}
 
-	public void removeEditor() {
+    /**
+     * Remove editor.
+     */
+    public void removeEditor() {
 		TableCellEditor editor = getCellEditor();
 		if (editor != null) {
 			editor.removeCellEditorListener(this);
@@ -212,7 +287,12 @@ public class EditableTableHeader extends JTableHeader implements CellEditorListe
 		}
 	}
 
-	public boolean isEditing() {
+    /**
+     * Is editing boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isEditing() {
 		return (cellEditor == null) ? false : true;
 	}
 

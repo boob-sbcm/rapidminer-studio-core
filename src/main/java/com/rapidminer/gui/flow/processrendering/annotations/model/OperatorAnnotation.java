@@ -35,54 +35,56 @@ import com.rapidminer.operator.OperatorChain;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public class OperatorAnnotation extends WorkflowAnnotation {
 
-	/** offset between bottom of operator and operator annotation */
-	public static final int Y_OFFSET = 7;
+    /**
+     * offset between bottom of operator and operator annotation
+     */
+    public static final int Y_OFFSET = 7;
 
-	/** the minimum height an annotation can have */
-	public static final int MIN_HEIGHT = 30;
+    /**
+     * the minimum height an annotation can have
+     */
+    public static final int MIN_HEIGHT = 30;
 
-	/** the default width for an annotation */
-	public static final int DEFAULT_WIDTH = (int) (ProcessDrawer.OPERATOR_WIDTH * 1.4f);
+    /**
+     * the default width for an annotation
+     */
+    public static final int DEFAULT_WIDTH = (int) (ProcessDrawer.OPERATOR_WIDTH * 1.4f);
 
-	/** the default height for an annotation */
-	public static final int DEFAULT_HEIGHT = 50;
+    /**
+     * the default height for an annotation
+     */
+    public static final int DEFAULT_HEIGHT = 50;
 
-	/** the maximum height for an annotation */
-	public static final int MAX_HEIGHT = 2000;
+    /**
+     * the maximum height for an annotation
+     */
+    public static final int MAX_HEIGHT = 2000;
 
-	/** the maximum number of characters which are allowed in an operator annotation */
-	public static final int MAX_CHARACTERS = 1500;
+    /**
+     * the maximum number of characters which are allowed in an operator annotation
+     */
+    public static final int MAX_CHARACTERS = 1500;
 
 	/** the operator this annotation is attached to */
 	private Operator attachedTo;
 
-	/**
-	 * Creates a new operator annotation which is attached to an operator.
-	 *
-	 * @param comment
-	 *            the actual annotation as HTML
-	 * @param style
-	 *            the style of the annotation
-	 * @param attachedTo
-	 *            the operator this annotation is attached to
-	 * @param wasResized
-	 *            if the user has ever resized the annotation
-	 * @param wasColored
-	 *            if the user ever manually colored the annotation
-	 * @param x
-	 *            the x coordinate of the annotation
-	 * @param y
-	 *            the y coordinate of the annotation
-	 * @param width
-	 *            the width of the annotation
-	 * @param height
-	 *            the height of the annotation
-	 */
-	public OperatorAnnotation(final String comment, final AnnotationStyle style, final Operator attachedTo,
+    /**
+     * Creates a new operator annotation which is attached to an operator.
+     *
+     * @param comment    the actual annotation as HTML
+     * @param style      the style of the annotation
+     * @param attachedTo the operator this annotation is attached to
+     * @param wasResized if the user has ever resized the annotation
+     * @param wasColored if the user ever manually colored the annotation
+     * @param x          the x coordinate of the annotation
+     * @param y          the y coordinate of the annotation
+     * @param width      the width of the annotation
+     * @param height     the height of the annotation
+     */
+    public OperatorAnnotation(final String comment, final AnnotationStyle style, final Operator attachedTo,
 			final boolean wasResized, final boolean wasColored, final double x, final double y, final double width,
 			final double height) {
 		super(comment, style, wasResized, wasColored, new Rectangle2D.Double(x, y, width, height));
@@ -93,23 +95,21 @@ public class OperatorAnnotation extends WorkflowAnnotation {
 		this.attachedTo = attachedTo;
 	}
 
-	/**
-	 * Returns the operator this annotation is attached to.
-	 *
-	 * @return the operator, never {@code null}
-	 */
-	public Operator getAttachedTo() {
+    /**
+     * Returns the operator this annotation is attached to.
+     *
+     * @return the operator, never {@code null}
+     */
+    public Operator getAttachedTo() {
 		return attachedTo;
 	}
 
-	/**
-	 * Sets the operator this annotation is attached to.
-	 *
-	 * @param attachedTo
-	 *            the operator the annotation will be attached to
-	 *
-	 */
-	public void setAttachedTo(Operator attachedTo) {
+    /**
+     * Sets the operator this annotation is attached to.
+     *
+     * @param attachedTo the operator the annotation will be attached to
+     */
+    public void setAttachedTo(Operator attachedTo) {
 		if (attachedTo == null) {
 			throw new IllegalArgumentException("attachedTo must not be null!");
 		}

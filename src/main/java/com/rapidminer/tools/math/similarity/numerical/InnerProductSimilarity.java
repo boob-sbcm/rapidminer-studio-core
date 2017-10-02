@@ -26,7 +26,7 @@ import com.rapidminer.tools.math.similarity.SimilarityMeasure;
 
 /**
  * Similarity based on the inner product.
- * 
+ *
  * @author Michael Wurst, Sebastian Land
  */
 public class InnerProductSimilarity extends SimilarityMeasure {

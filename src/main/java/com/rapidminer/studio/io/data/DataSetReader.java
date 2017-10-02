@@ -69,82 +69,62 @@ public class DataSetReader {
 	private final List<ColumnMetaData> metaData;
 	private final Operator operator;
 
-	/**
-	 * Creates a new reader.
-	 *
-	 * @param operator
-	 *            the operator that should be checked for stop, can be {@code null}
-	 * @param metaData
-	 *            the metaData to use for reading
-	 * @param isFaultTolerant
-	 *            {@code true} if the reader puts missing values on parsing errors, {@code false} if
-	 *            the reader throws an exception on parsing errors
-	 */
-	public DataSetReader(Operator operator, List<ColumnMetaData> metaData, boolean isFaultTolerant) {
+    /**
+     * Creates a new reader.
+     *
+     * @param operator        the operator that should be checked for stop, can be {@code null}
+     * @param metaData        the metaData to use for reading
+     * @param isFaultTolerant {@code true} if the reader puts missing values on parsing errors, {@code false} if            the reader throws an exception on parsing errors
+     */
+    public DataSetReader(Operator operator, List<ColumnMetaData> metaData, boolean isFaultTolerant) {
 		this.operator = operator;
 		this.isFaultTolerant = isFaultTolerant;
 		this.metaData = metaData;
 	}
 
-	/**
-	 * @return {@code true} if the reader puts missing values on parsing errors, {@code false} if
-	 *         the reader throws an exception on parsing errors
-	 */
-	public boolean isFaultTolerant() {
+    /**
+     * Is fault tolerant boolean.
+     *
+     * @return {@code true} if the reader puts missing values on parsing errors, {@code false} if         the reader throws an exception on parsing errors
+     */
+    public boolean isFaultTolerant() {
 		return isFaultTolerant;
 	}
 
-	/**
-	 * Set if the reader should throw an exception or put a missing value on parsing errors
-	 *
-	 * @param isFaultTolerant
-	 *            {@code true} if the reader puts missing values on parsing errors, {@code false} if
-	 *            the reader throws an exception on parsing errors
-	 */
-	public void setFaultTolerant(boolean isFaultTolerant) {
+    /**
+     * Set if the reader should throw an exception or put a missing value on parsing errors
+     *
+     * @param isFaultTolerant {@code true} if the reader puts missing values on parsing errors, {@code false} if            the reader throws an exception on parsing errors
+     */
+    public void setFaultTolerant(boolean isFaultTolerant) {
 		this.isFaultTolerant = isFaultTolerant;
 	}
 
-	/**
-	 * Sets the data management type to use for the data rows in the example set created by
-	 * {@link #read}. Default is {@link DataRowFactory.TYPE_DOUBLE_ARRAY}.
-	 *
-	 * @param dataManagmentType
-	 *            the dataManagmentType to use for creating the example set, must be one of the
-	 *            constants TYPE_DOUBLE_ARRAY, TYPE_FLOAT_ARRAY, TYPE_LONG_ARRAY, TYPE_INT_ARRAY,
-	 *            TYPE_SHORT_ARRAY, TYPE_BYTE_ARRAY, TYPE_BOOLEAN_ARRAY, TYPE_DOUBLE_SPARSE_ARRAY,
-	 *            TYPE_FLOAT_SPARSE_ARRAY, TYPE_LONG_SPARSE_ARRAY, TYPE_INT_SPARSE_ARRAY,
-	 *            TYPE_SHORT_SPARSE_ARRAY, TYPE_BYTE_SPARSE_ARRAY, TYPE_BOOLEAN_SPARSE_ARRAY, or
-	 *            TYPE_SPARSE_MAP of {@link DataRowFactory}.
-	 */
-	public void setDataManagmentType(int dataManagmentType) {
+    /**
+     * Sets the data management type to use for the data rows in the example set created by
+     * {@link #read}. Default is {@link DataRowFactory.TYPE_DOUBLE_ARRAY}.
+     *
+     * @param dataManagmentType the dataManagmentType to use for creating the example set, must be one of the            constants TYPE_DOUBLE_ARRAY, TYPE_FLOAT_ARRAY, TYPE_LONG_ARRAY, TYPE_INT_ARRAY,            TYPE_SHORT_ARRAY, TYPE_BYTE_ARRAY, TYPE_BOOLEAN_ARRAY, TYPE_DOUBLE_SPARSE_ARRAY,            TYPE_FLOAT_SPARSE_ARRAY, TYPE_LONG_SPARSE_ARRAY, TYPE_INT_SPARSE_ARRAY,            TYPE_SHORT_SPARSE_ARRAY, TYPE_BYTE_SPARSE_ARRAY, TYPE_BOOLEAN_SPARSE_ARRAY, or            TYPE_SPARSE_MAP of {@link DataRowFactory}.
+     */
+    public void setDataManagmentType(int dataManagmentType) {
 		this.dataManagementType = dataManagmentType;
 	}
 
-	/**
-	 * Transforms the {@link DataSet} dataSet to an {@link ExampleSet} with respect to the metaData.
-	 * Uses the metaData to create {@link Attribute}s and fill the data for them by going through
-	 * the rows of the {@link DataSet}. The reading process can be stop at each new row by the
-	 * operator this is associated to, by the listener, or by calling {@link #stop()}.
-	 *
-	 * @param dataSet
-	 *            the data set to transform, will not be closed in this method
-	 * @param listener
-	 *            the progress listener, can be {@code null}
-	 * @return the created example set
-	 * @throws UserError
-	 *             if a column specified in the metaData is not found or the column names are not
-	 *             unique
-	 * @throws DataSetException
-	 *             when reading the data set fails
-	 * @throws ProcessStoppedException
-	 *             if the associated process is stopped or the {@link #stop()} method is called
-	 * @throws ParseException
-	 *             if parsing failed and the reading is not done fault tolerant
-	 * @throws ProgressThreadStoppedException
-	 *             if the {@link ProgressThread} associated to the listener was stopped
-	 */
-	public ExampleSet read(DataSet dataSet, ProgressListener listener)
+    /**
+     * Transforms the {@link DataSet} dataSet to an {@link ExampleSet} with respect to the metaData.
+     * Uses the metaData to create {@link Attribute}s and fill the data for them by going through
+     * the rows of the {@link DataSet}. The reading process can be stop at each new row by the
+     * operator this is associated to, by the listener, or by calling {@link #stop()}.
+     *
+     * @param dataSet  the data set to transform, will not be closed in this method
+     * @param listener the progress listener, can be {@code null}
+     * @return the created example set
+     * @throws UserError               if a column specified in the metaData is not found or the column names are not             unique
+     * @throws DataSetException        when reading the data set fails
+     * @throws ProcessStoppedException if the associated process is stopped or the {@link #stop()} method is called
+     * @throws ParseException          if parsing failed and the reading is not done fault tolerant
+     */
+    public ExampleSet read(DataSet dataSet, ProgressListener listener)
 			throws UserError, DataSetException, ProcessStoppedException, ParseException {
 		isReading = true;
 
@@ -176,11 +156,11 @@ public class DataSetReader {
 		return exampleSet;
 	}
 
-	/**
-	 * Stops the reading process. If the reading process is in progress, sets a flag that will stop
-	 * the reading before the next row is read.
-	 */
-	public void stop() {
+    /**
+     * Stops the reading process. If the reading process is in progress, sets a flag that will stop
+     * the reading before the next row is read.
+     */
+    public void stop() {
 		if (isReading) {
 			shouldStop = true;
 		}

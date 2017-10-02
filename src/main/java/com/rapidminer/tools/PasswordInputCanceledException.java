@@ -23,17 +23,15 @@ package com.rapidminer.tools;
  * Thrown when the user canceled the login dialog for a remote repository.
  *
  * @author Nils Woehler
- *
  */
 public class PasswordInputCanceledException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Creates an exception stating that the authentication was canceled by the user.
-	 *
-	 */
-	public PasswordInputCanceledException() {
+    /**
+     * Creates an exception stating that the authentication was canceled by the user.
+     */
+    public PasswordInputCanceledException() {
 		super(I18N.getErrorMessage("repository.password_input_canceled"));
 	}
 

@@ -51,20 +51,17 @@ public final class LocalFileDataSourceFactory implements DataSourceFactory<Local
 		return new LocalFileDataSource();
 	}
 
-	/**
-	 * Creates a new instance of the {@link LocalFileDataSource} and sets the provided path as the
-	 * file location.
-	 *
-	 * @param wizard
-	 *            the import wizard
-	 * @param path
-	 *            the file location for the new {@link LocalFileDataSource} instance
-	 * @param factory
-	 *            the {@link FileDataSourceFactory} to read the file, or {@code null} if none has
-	 *            been chosen yet
-	 * @return the new {@link LocalFileDataSource} instance
-	 */
-	public <D extends FileDataSource> LocalFileDataSource createNew(ImportWizard wizard, Path path,
+    /**
+     * Creates a new instance of the {@link LocalFileDataSource} and sets the provided path as the
+     * file location.
+     *
+     * @param <D>     the type parameter
+     * @param wizard  the import wizard
+     * @param path    the file location for the new {@link LocalFileDataSource} instance
+     * @param factory the {@link FileDataSourceFactory} to read the file, or {@code null} if none has            been chosen yet
+     * @return the new {@link LocalFileDataSource} instance
+     */
+    public <D extends FileDataSource> LocalFileDataSource createNew(ImportWizard wizard, Path path,
 			FileDataSourceFactory<D> factory) {
 		LocalFileDataSource localFileDataSource = new LocalFileDataSource();
 		localFileDataSource.setLocation(path);
@@ -110,20 +107,19 @@ public final class LocalFileDataSourceFactory implements DataSourceFactory<Local
 		return new LocalFileLocationWizardStep(allFileEndings, wizard);
 	}
 
-	/**
-	 * As described in the {@link FileDataSourceFactory#getMimeTypes()} and
-	 * {@link FileDataSourceFactory#getFileExtensions()} methods this method looks up the
-	 * responsible {@link FileDataSourceFactory} for the provided file. It first uses {@link Tika}
-	 * to look-up the MIME type of the file and checks whether a {@link FileDataSource} for the
-	 * detected MIME type is available. If no {@link FileDataSource} for the selected MIME type is
-	 * registered it checks whether a {@link LocalFileDataSourceFactory} is responsible for the file
-	 * extension. If still no match could be found {@code null} is returned.
-	 *
-	 * @param filePath
-	 *            the path to the file which should be imported
-	 * @return the responsible {@link FileDataSourceFactory} or {@code null} if none could be found
-	 */
-	public static FileDataSourceFactory<?> lookupFactory(Path filePath) {
+    /**
+     * As described in the {@link FileDataSourceFactory#getMimeTypes()} and
+     * {@link FileDataSourceFactory#getFileExtensions()} methods this method looks up the
+     * responsible {@link FileDataSourceFactory} for the provided file. It first uses {@link Tika}
+     * to look-up the MIME type of the file and checks whether a {@link FileDataSource} for the
+     * detected MIME type is available. If no {@link FileDataSource} for the selected MIME type is
+     * registered it checks whether a {@link LocalFileDataSourceFactory} is responsible for the file
+     * extension. If still no match could be found {@code null} is returned.
+     *
+     * @param filePath the path to the file which should be imported
+     * @return the responsible {@link FileDataSourceFactory} or {@code null} if none could be found
+     */
+    public static FileDataSourceFactory<?> lookupFactory(Path filePath) {
 		List<FileDataSourceFactory<?>> fileDataSourceFactories = DataSourceFactoryRegistry.INSTANCE.getFileFactories();
 
 		try {

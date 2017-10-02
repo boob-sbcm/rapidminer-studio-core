@@ -30,18 +30,17 @@ import javax.swing.JComponent;
 
 /**
  * This action is only to be used by the {@link AttributePopupMenu}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class CopyNumMinimumValueAction extends ResourceAction {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Creates a new {@link CopyNumMinimumValueAction} instance.
-	 */
-	public CopyNumMinimumValueAction() {
+    /**
+     * Creates a new {@link CopyNumMinimumValueAction} instance.
+     */
+    public CopyNumMinimumValueAction() {
 		super(true, "meta_data_stats.copy_numeric_min");
 	}
 

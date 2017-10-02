@@ -20,18 +20,28 @@ package com.rapidminer.example.table;
 
 /**
  * Reads a sequence of DataRows, e.g. from memory, a file or a database.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa ingomierswa Exp $
  */
 public abstract class AbstractDataRowReader implements DataRowReader {
 
 	private DataRowFactory factory;
 
-	public AbstractDataRowReader(DataRowFactory factory) {
+    /**
+     * Instantiates a new Abstract data row reader.
+     *
+     * @param factory the factory
+     */
+    public AbstractDataRowReader(DataRowFactory factory) {
 		this.factory = factory;
 	}
 
-	public DataRowFactory getFactory() {
+    /**
+     * Gets factory.
+     *
+     * @return the factory
+     */
+    public DataRowFactory getFactory() {
 		return factory;
 	}
 

@@ -24,10 +24,9 @@ import java.text.NumberFormat;
 
 /**
  * Only highest order terms taken into account. Functions can be of the form
- * 
+ * <p>
  * c * log(n)^d1 * n^d2 * log(m)^*d3 * m^d4
- * 
- * 
+ *
  * @author Simon Fischer
  */
 public class PolynomialFunction {
@@ -38,11 +37,27 @@ public class PolynomialFunction {
 	private double logDegreeExamples;
 	private double logDegreeAttributes;
 
-	public PolynomialFunction(double coefficient, double degreeExamples, double degreeAttributes) {
+    /**
+     * Instantiates a new Polynomial function.
+     *
+     * @param coefficient      the coefficient
+     * @param degreeExamples   the degree examples
+     * @param degreeAttributes the degree attributes
+     */
+    public PolynomialFunction(double coefficient, double degreeExamples, double degreeAttributes) {
 		this(coefficient, degreeExamples, 0, degreeAttributes, 0);
 	}
 
-	public PolynomialFunction(double coefficient, double degreeExamples, double logDegreeExamples, double degreeAttributes,
+    /**
+     * Instantiates a new Polynomial function.
+     *
+     * @param coefficient         the coefficient
+     * @param degreeExamples      the degree examples
+     * @param logDegreeExamples   the log degree examples
+     * @param degreeAttributes    the degree attributes
+     * @param logDegreeAttributes the log degree attributes
+     */
+    public PolynomialFunction(double coefficient, double degreeExamples, double logDegreeExamples, double degreeAttributes,
 			double logDegreeAttributes) {
 		super();
 		this.coefficient = coefficient;
@@ -52,11 +67,24 @@ public class PolynomialFunction {
 		this.logDegreeExamples = logDegreeExamples;
 	}
 
-	public static PolynomialFunction makeLinearFunction(double coefficient) {
+    /**
+     * Make linear function polynomial function.
+     *
+     * @param coefficient the coefficient
+     * @return the polynomial function
+     */
+    public static PolynomialFunction makeLinearFunction(double coefficient) {
 		return new PolynomialFunction(coefficient, 1, 1);
 	}
 
-	public long evaluate(int numExamples, int numAttributes) {
+    /**
+     * Evaluate long.
+     *
+     * @param numExamples   the num examples
+     * @param numAttributes the num attributes
+     * @return the long
+     */
+    public long evaluate(int numExamples, int numAttributes) {
 		return (long) (coefficient * Math.pow(numExamples, degreeExamples)
 				* Math.pow(Math.log(numExamples), logDegreeExamples) * Math.pow(numAttributes, degreeAttributes) * Math.pow(
 				Math.log(numAttributes), logDegreeAttributes));

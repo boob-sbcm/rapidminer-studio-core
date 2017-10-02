@@ -30,7 +30,7 @@ import org.w3c.dom.Element;
 /**
  * This {@link ParameterCondition} implementation checks whether the currently selected
  * {@link OperatorVersion} is above a predefined one.
- * 
+ *
  * @author Nils Woehler
  */
 public class AboveOperatorVersionCondition extends ParameterCondition {
@@ -39,12 +39,24 @@ public class AboveOperatorVersionCondition extends ParameterCondition {
 	private VersionNumber aboveVersion;
 	private Operator operator;
 
-	public AboveOperatorVersionCondition(Element element) throws XMLException {
+    /**
+     * Instantiates a new Above operator version condition.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public AboveOperatorVersionCondition(Element element) throws XMLException {
 		super(element);
 		aboveVersion = new VersionNumber(XMLTools.getTagContents(element, ELEMENT_VERSION, true));
 	}
 
-	public AboveOperatorVersionCondition(Operator operator, VersionNumber aboveVersion) {
+    /**
+     * Instantiates a new Above operator version condition.
+     *
+     * @param operator     the operator
+     * @param aboveVersion the above version
+     */
+    public AboveOperatorVersionCondition(Operator operator, VersionNumber aboveVersion) {
 		super(operator, false);
 		this.operator = operator;
 		this.aboveVersion = aboveVersion;

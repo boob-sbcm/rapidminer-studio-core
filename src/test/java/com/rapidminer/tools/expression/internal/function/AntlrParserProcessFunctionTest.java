@@ -47,11 +47,13 @@ import com.rapidminer.tools.expression.internal.function.statistical.Random;
  * Tests the results of {@link AntlrParser#parse(String)} for functions that need a process.
  *
  * @author Gisa Schaefer
- *
  */
 public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 
-	protected static final Map<String, Function> FUNCTION_MAP;
+    /**
+     * The constant FUNCTION_MAP.
+     */
+    protected static final Map<String, Function> FUNCTION_MAP;
 	static {
 		FUNCTION_MAP = new HashMap<>();
 
@@ -62,11 +64,19 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		addFunction(new MacroValue(handler));
 	}
 
-	protected static void addFunction(Function function) {
+    /**
+     * Add function.
+     *
+     * @param function the function
+     */
+    protected static void addFunction(Function function) {
 		FUNCTION_MAP.put(function.getFunctionName(), function);
 	}
 
-	protected static final ExpressionContext FUNCTION_CONTEXT = new ExpressionContext() {
+    /**
+     * The constant FUNCTION_CONTEXT.
+     */
+    protected static final ExpressionContext FUNCTION_CONTEXT = new ExpressionContext() {
 
 		@Override
 		public Function getFunction(String functionName) {
@@ -115,7 +125,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		return parser.parse(expression);
 	}
 
-	@Test
+    /**
+     * Rand with argument.
+     */
+    @Test
 	public void randWithArgument() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rand(2015)");
@@ -126,7 +139,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rand with argument wrong type.
+     */
+    @Test
 	public void randWithArgumentWrongType() {
 		try {
 			getExpressionWithFunctionContext("rand(\"bla\")");
@@ -136,7 +152,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rand with wrong argument double.
+     */
+    @Test
 	public void randWithWrongArgumentDouble() {
 		try {
 			getExpressionWithFunctionContext("rand(0.234)");
@@ -146,7 +165,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rand with wrong number of arguments.
+     */
+    @Test
 	public void randWithWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext("rand(2,3)");
@@ -156,7 +178,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Param wit argument wrong type.
+     */
+    @Test
 	public void paramWitArgumentWrongType() {
 		try {
 			getExpressionWithFunctionContext("param(5,\"bla\")");
@@ -166,7 +191,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rand with no argument.
+     */
+    @Test
 	public void randWithNoArgument() {
 		try {
 			getExpressionWithFunctionContext("param()");
@@ -176,7 +204,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Param with wrong number of arguments.
+     */
+    @Test
 	public void paramWithWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext("param(\"operator\",\"parameter\",\"blup\")");
@@ -186,7 +217,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Macro with wrong number of arguments.
+     */
+    @Test
 	public void macroWithWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext("macro(\"operator\",\"parameter\",\"blup\")");
@@ -196,7 +230,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Macro with no argument.
+     */
+    @Test
 	public void macroWithNoArgument() {
 		try {
 			getExpressionWithFunctionContext("macro()");
@@ -206,7 +243,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Macro wit argument wrong type.
+     */
+    @Test
 	public void macroWitArgumentWrongType() {
 		try {
 			getExpressionWithFunctionContext("macro(\"my macro\",5)");
@@ -216,7 +256,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Macro existing.
+     */
+    @Test
 	public void macroExisting() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("macro(\"my macro\")");
@@ -227,7 +270,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Macro existing with default.
+     */
+    @Test
 	public void macroExistingWithDefault() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("macro(\"my macro\", \"default\")");
@@ -238,7 +284,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Macro not existing.
+     */
+    @Test
 	public void macroNotExisting() {
 		try {
 			getExpressionWithFunctionContext("macro(\"no macro\")");
@@ -248,7 +297,10 @@ public class AntlrParserProcessFunctionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Macro not existing with default.
+     */
+    @Test
 	public void macroNotExistingWithDefault() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("macro(\"no macro\", \"default\")");

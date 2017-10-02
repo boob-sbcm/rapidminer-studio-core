@@ -28,11 +28,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
  * A {@link Function} to calculate the ceil of a numerical value;
  *
  * @author Thilo Kamradt
- *
  */
 public class Ceil extends Abstract1DoubleInputFunction {
 
-	public Ceil() {
+    /**
+     * Instantiates a new Ceil.
+     */
+    public Ceil() {
 		super("rounding.ceil", Ontology.INTEGER);
 	}
 

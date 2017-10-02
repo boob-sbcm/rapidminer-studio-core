@@ -52,66 +52,104 @@ import com.rapidminer.parameter.conditions.EqualTypeCondition;
  */
 public class SVClustering extends RMAbstractClusterer {
 
-	public static final String MIN_PTS_NAME = "min_pts";
+    /**
+     * The constant MIN_PTS_NAME.
+     */
+    public static final String MIN_PTS_NAME = "min_pts";
 
-	/** The parameter name for &quot;The SVM kernel type&quot; */
-	public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
+    /**
+     * The parameter name for &quot;The SVM kernel type&quot;
+     */
+    public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
 
-	/** The parameter name for &quot;The SVM kernel parameter gamma (radial).&quot; */
-	public static final String PARAMETER_KERNEL_GAMMA = "kernel_gamma";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter gamma (radial).&quot;
+     */
+    public static final String PARAMETER_KERNEL_GAMMA = "kernel_gamma";
 
-	/** The parameter name for &quot;The SVM kernel parameter degree (polynomial).&quot; */
-	public static final String PARAMETER_KERNEL_DEGREE = "kernel_degree";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter degree (polynomial).&quot;
+     */
+    public static final String PARAMETER_KERNEL_DEGREE = "kernel_degree";
 
-	/** The parameter name for &quot;The SVM kernel parameter a (neural).&quot; */
-	public static final String PARAMETER_KERNEL_A = "kernel_a";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter a (neural).&quot;
+     */
+    public static final String PARAMETER_KERNEL_A = "kernel_a";
 
-	/** The parameter name for &quot;The SVM kernel parameter b (neural).&quot; */
-	public static final String PARAMETER_KERNEL_B = "kernel_b";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter b (neural).&quot;
+     */
+    public static final String PARAMETER_KERNEL_B = "kernel_b";
 
-	/** The parameter name for &quot;Size of the cache for kernel evaluations im MB &quot; */
-	public static final String PARAMETER_KERNEL_CACHE = "kernel_cache";
+    /**
+     * The parameter name for &quot;Size of the cache for kernel evaluations im MB &quot;
+     */
+    public static final String PARAMETER_KERNEL_CACHE = "kernel_cache";
 
-	/** The parameter name for &quot;Precision on the KKT conditions&quot; */
-	public static final String PARAMETER_CONVERGENCE_EPSILON = "convergence_epsilon";
+    /**
+     * The parameter name for &quot;Precision on the KKT conditions&quot;
+     */
+    public static final String PARAMETER_CONVERGENCE_EPSILON = "convergence_epsilon";
 
-	/** The parameter name for &quot;Stop after this many iterations&quot; */
-	public static final String PARAMETER_MAX_ITERATIONS = "max_iterations";
+    /**
+     * The parameter name for &quot;Stop after this many iterations&quot;
+     */
+    public static final String PARAMETER_MAX_ITERATIONS = "max_iterations";
 
-	/** The parameter name for &quot;The fraction of allowed outliers.&quot; */
-	public static final String PARAMETER_P = "p";
+    /**
+     * The parameter name for &quot;The fraction of allowed outliers.&quot;
+     */
+    public static final String PARAMETER_P = "p";
 
-	/**
-	 * The parameter name for &quot;Use this radius instead of the calculated one (-1 for calculated
-	 * radius).&quot;
-	 */
-	public static final String PARAMETER_R = "r";
+    /**
+     * The parameter name for &quot;Use this radius instead of the calculated one (-1 for calculated
+     * radius).&quot;
+     */
+    public static final String PARAMETER_R = "r";
 
-	/**
-	 * The parameter name for &quot;The number of virtual sample points to check for
-	 * neighborship.&quot;
-	 */
-	public static final String PARAMETER_NUMBER_SAMPLE_POINTS = "number_sample_points";
+    /**
+     * The parameter name for &quot;The number of virtual sample points to check for
+     * neighborship.&quot;
+     */
+    public static final String PARAMETER_NUMBER_SAMPLE_POINTS = "number_sample_points";
 	/** The kernels which can be used from RapidMiner for the mySVM / myKLR. */
 	private static final String[] KERNEL_TYPES = { "dot", "radial", "polynomial", "neural" };
 
-	/** Indicates a linear kernel. */
-	public static final int KERNEL_DOT = 0;
+    /**
+     * Indicates a linear kernel.
+     */
+    public static final int KERNEL_DOT = 0;
 
-	/** Indicates a rbf kernel. */
-	public static final int KERNEL_RADIAL = 1;
+    /**
+     * Indicates a rbf kernel.
+     */
+    public static final int KERNEL_RADIAL = 1;
 
-	/** Indicates a polynomial kernel. */
-	public static final int KERNEL_POLYNOMIAL = 2;
+    /**
+     * Indicates a polynomial kernel.
+     */
+    public static final int KERNEL_POLYNOMIAL = 2;
 
-	/** Indicates a neural net kernel. */
-	public static final int KERNEL_NEURAL = 3;
+    /**
+     * Indicates a neural net kernel.
+     */
+    public static final int KERNEL_NEURAL = 3;
 
-	protected static final int UNASSIGNED = -1;
+    /**
+     * The constant UNASSIGNED.
+     */
+    protected static final int UNASSIGNED = -1;
 
-	public static final int NOISE = 0;
+    /**
+     * The constant NOISE.
+     */
+    public static final int NOISE = 0;
 
-	public static final String NOISE_CLUSTER_DESCRIPTION = "Outliers";
+    /**
+     * The constant NOISE_CLUSTER_DESCRIPTION.
+     */
+    public static final String NOISE_CLUSTER_DESCRIPTION = "Outliers";
 
 	private static final int OPERATOR_PROGRESS_STEPS = 10;
 
@@ -121,7 +159,12 @@ public class SVClustering extends RMAbstractClusterer {
 
 	private int numSamplePoints;
 
-	public SVClustering(OperatorDescription description) {
+    /**
+     * Instantiates a new Sv clustering.
+     *
+     * @param description the description
+     */
+    public SVClustering(OperatorDescription description) {
 		super(description);
 	}
 
@@ -227,7 +270,17 @@ public class SVClustering extends RMAbstractClusterer {
 		return model;
 	}
 
-	protected LinkedList<Integer> getNeighbours(ExampleSet exampleSet, Example centroid, int centroidIndex,
+    /**
+     * Gets neighbours.
+     *
+     * @param exampleSet    the example set
+     * @param centroid      the centroid
+     * @param centroidIndex the centroid index
+     * @param assignments   the assignments
+     * @param clustering    the clustering
+     * @return the neighbours
+     */
+    protected LinkedList<Integer> getNeighbours(ExampleSet exampleSet, Example centroid, int centroidIndex,
 			final int[] assignments, SVClusteringAlgorithm clustering) {
 		LinkedList<Integer> neighbors = new LinkedList<Integer>();
 		double maxRadius = paramR < 0 ? clustering.getR() : paramR;
@@ -270,11 +323,14 @@ public class SVClustering extends RMAbstractClusterer {
 		return neighbors;
 	}
 
-	/**
-	 * Creates a new kernel of the given type. The kernel type has to be one out of KERNEL_DOT,
-	 * KERNEL_RADIAL, KERNEL_POLYNOMIAL, or KERNEL_NEURAL.
-	 */
-	public static Kernel createKernel(int kernelType) {
+    /**
+     * Creates a new kernel of the given type. The kernel type has to be one out of KERNEL_DOT,
+     * KERNEL_RADIAL, KERNEL_POLYNOMIAL, or KERNEL_NEURAL.
+     *
+     * @param kernelType the kernel type
+     * @return the kernel
+     */
+    public static Kernel createKernel(int kernelType) {
 		switch (kernelType) {
 			case KERNEL_RADIAL:
 				return new KernelRadial();

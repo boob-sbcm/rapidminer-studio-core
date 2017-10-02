@@ -28,7 +28,7 @@ import java.util.LinkedList;
  * Implements the 1/5-Rule for dynamic parameter adaption of the variance of a
  * {@link GaussianMutation}. The interval size should have the same size as the changable
  * components, i.e. the number of examples (alphas).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class VarianceAdaption implements PopulationOperator {
@@ -53,11 +53,15 @@ public class VarianceAdaption implements PopulationOperator {
 	/** The logging handler. */
 	private LoggingHandler logging;
 
-	/**
-	 * The interval size should be as big as the changeable components, i.e. the number of examples
-	 * (alphas).
-	 */
-	public VarianceAdaption(GaussianMutation mutation, int intervalSize, LoggingHandler logging) {
+    /**
+     * The interval size should be as big as the changeable components, i.e. the number of examples
+     * (alphas).
+     *
+     * @param mutation     the mutation
+     * @param intervalSize the interval size
+     * @param logging      the logging
+     */
+    public VarianceAdaption(GaussianMutation mutation, int intervalSize, LoggingHandler logging) {
 		this.mutation = mutation;
 		this.intervalSize = intervalSize;
 		this.logging = logging;

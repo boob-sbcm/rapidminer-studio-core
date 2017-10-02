@@ -33,7 +33,7 @@ import javax.swing.table.TableModel;
  * This table can be used to display a fixed column as the first column which will never be moved or
  * scrolled away. This can be nice if the first column contains names / ids for the rows which
  * should be displayed independently of the scrolling of the rest of the table.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExtendedFixedColumnJTable extends JScrollPane {
@@ -52,7 +52,13 @@ public class ExtendedFixedColumnJTable extends JScrollPane {
 		mainDataTable.setShowPopupMenu(false);
 	}
 
-	public static ExtendedFixedColumnJTable createFixedColumnTable(TableModel model) {
+    /**
+     * Create fixed column table extended fixed column j table.
+     *
+     * @param model the model
+     * @return the extended fixed column j table
+     */
+    public static ExtendedFixedColumnJTable createFixedColumnTable(TableModel model) {
 		// determine and set preferred size from data, use maximum size anyway
 		int max = 0;
 		for (int r = 0; r < model.getRowCount(); r++) {
@@ -127,7 +133,12 @@ public class ExtendedFixedColumnJTable extends JScrollPane {
 		return new ExtendedFixedColumnJTable(mainDataTable, viewport, headerColumn.getTableHeader());
 	}
 
-	public ExtendedJTable getMainDataTable() {
+    /**
+     * Gets main data table.
+     *
+     * @return the main data table
+     */
+    public ExtendedJTable getMainDataTable() {
 		return this.mainDataTable;
 	}
 }

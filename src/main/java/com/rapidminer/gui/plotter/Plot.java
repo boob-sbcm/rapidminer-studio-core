@@ -26,7 +26,7 @@ import java.util.LinkedList;
 
 /**
  * This collection consists of all {@link com.rapidminer.gui.plotter.ColorPlotterPoint}s for a plot.
- * 
+ *
  * @author Ingo Mierswa
  */
 class Plot extends LinkedList<ColorPlotterPoint> {
@@ -37,20 +37,41 @@ class Plot extends LinkedList<ColorPlotterPoint> {
 
 	private int styleIndex;
 
-	public Plot(String name, int styleIndex) {
+    /**
+     * Instantiates a new Plot.
+     *
+     * @param name       the name
+     * @param styleIndex the style index
+     */
+    public Plot(String name, int styleIndex) {
 		this.name = name;
 		this.styleIndex = styleIndex;
 	}
 
-	public LineStyle getLineStyle() {
+    /**
+     * Gets line style.
+     *
+     * @return the line style
+     */
+    public LineStyle getLineStyle() {
 		return PlotterAdapter.LINE_STYLES[styleIndex % PlotterAdapter.LINE_STYLES.length];
 	}
 
-	public PointStyle getPointStyle() {
+    /**
+     * Gets point style.
+     *
+     * @return the point style
+     */
+    public PointStyle getPointStyle() {
 		return PlotterAdapter.POINT_STYLES[styleIndex % PlotterAdapter.POINT_STYLES.length];
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return name;
 	}
 }

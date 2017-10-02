@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric arc cosine of an angle.
  *
  * @author Denis Schernov
- *
  */
 public class ArcCosine extends Abstract1DoubleInputFunction {
 
-	public ArcCosine() {
+    /**
+     * Instantiates a new Arc cosine.
+     */
+    public ArcCosine() {
 		super("trigonometrical.acos", Ontology.NUMERICAL);
 	}
 

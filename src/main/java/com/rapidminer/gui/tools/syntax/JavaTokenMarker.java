@@ -28,16 +28,24 @@ package com.rapidminer.gui.tools.syntax;
 
 /**
  * Java token marker.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class JavaTokenMarker extends CTokenMarker {
 
-	public JavaTokenMarker() {
+    /**
+     * Instantiates a new Java token marker.
+     */
+    public JavaTokenMarker() {
 		super(false, getKeywords());
 	}
 
-	public static KeywordMap getKeywords() {
+    /**
+     * Gets keywords.
+     *
+     * @return the keywords
+     */
+    public static KeywordMap getKeywords() {
 		if (javaKeywords == null) {
 			KeywordMap javaKeywords = new KeywordMap(false);
 			javaKeywords.add("package", Token.KEYWORD2);

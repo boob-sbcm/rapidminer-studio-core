@@ -32,8 +32,9 @@ import org.jfree.data.Range;
 
 
 /**
+ * The type Link and brush category plot.
+ *
  * @author Nils Woehler
- * 
  */
 public class LinkAndBrushCategoryPlot extends CategoryPlot implements LinkAndBrushPlot {
 

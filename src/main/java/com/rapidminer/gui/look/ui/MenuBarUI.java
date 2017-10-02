@@ -35,7 +35,13 @@ import com.rapidminer.gui.look.painters.CachedPainter;
  */
 public class MenuBarUI extends BasicMenuBarUI {
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new MenuBarUI();
 	}
 

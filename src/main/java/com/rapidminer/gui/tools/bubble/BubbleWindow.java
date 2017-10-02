@@ -97,68 +97,83 @@ import com.vlsolutions.swing.docking.event.DockingActionListener;
  */
 public abstract class BubbleWindow extends JDialog {
 
-	/**
-	 * Abstract builder for {@link BubbleWindow} implementations. After calling all relevant
-	 * setters, call {@link #build()} to create the actual bubble instance.
-	 *
-	 * @author Marco Boeck
-	 * @since 6.5.0
-	 *
-	 */
-	protected static abstract class BubbleWindowBuilder<T extends BubbleWindow, U extends BubbleWindowBuilder<T, U>> {
+    /**
+     * Abstract builder for {@link BubbleWindow} implementations. After calling all relevant
+     * setters, call {@link #build()} to create the actual bubble instance.
+     *
+     * @param <T> the type parameter
+     * @param <U> the type parameter
+     * @author Marco Boeck
+     * @since 6.5.0
+     */
+    protected static abstract class BubbleWindowBuilder<T extends BubbleWindow, U extends BubbleWindowBuilder<T, U>> {
 
-		/** the owner window of the bubble, used for z-ordering by Swing. Can be {@code null} */
-		protected Window owner;
+        /**
+         * the owner window of the bubble, used for z-ordering by Swing. Can be {@code null}
+         */
+        protected Window owner;
 
-		/**
-		 * tthe i18n key for the bubble. Format: {@code gui.bubble.[i18nkey].title} and
-		 * {@code gui.bubble.[i18nkey].body}
-		 */
-		protected String i18nKey;
+        /**
+         * tthe i18n key for the bubble. Format: {@code gui.bubble.[i18nkey].title} and
+         * {@code gui.bubble.[i18nkey].body}
+         */
+        protected String i18nKey;
 
-		/** optional i18n arguments */
-		protected Object[] arguments;
+        /**
+         * optional i18n arguments
+         */
+        protected Object[] arguments;
 
-		/** the dockable to target of the bubble resides in. Can be {@code null} */
-		protected String dockKey;
+        /**
+         * the dockable to target of the bubble resides in. Can be {@code null}
+         */
+        protected String dockKey;
 
-		/** the style of the bubble, never {@code null} */
-		protected BubbleStyle style;
+        /**
+         * the style of the bubble, never {@code null}
+         */
+        protected BubbleStyle style;
 
-		/** the preferred relative position next to the target, never {@code null} */
-		protected AlignedSide alignment;
+        /**
+         * the preferred relative position next to the target, never {@code null}
+         */
+        protected AlignedSide alignment;
 
-		/** the font for the title, can be {@code null} */
-		protected Font titleFont;
+        /**
+         * the font for the title, can be {@code null}
+         */
+        protected Font titleFont;
 
-		/** the font for the body and all additional components, can be {@code null} */
-		protected Font bodyFont;
+        /**
+         * the font for the body and all additional components, can be {@code null}
+         */
+        protected Font bodyFont;
 
-		/** whether the bubble window can be dragged around by the user */
-		protected boolean moveable;
+        /**
+         * whether the bubble window can be dragged around by the user
+         */
+        protected boolean moveable;
 
-		/** whether the bubble should have a close button in the top right corner */
-		protected boolean showCloseButton;
+        /**
+         * whether the bubble should have a close button in the top right corner
+         */
+        protected boolean showCloseButton;
 
-		/**
-		 * additional components which are added to the bottom of the bubble in a horizontal row.
-		 * Can be {@code null}
-		 */
-		protected JComponent[] componentsToAdd;
+        /**
+         * additional components which are added to the bottom of the bubble in a horizontal row.
+         * Can be {@code null}
+         */
+        protected JComponent[] componentsToAdd;
 
-		/**
-		 * Creates a new builder for {@link BubbleWindow} implementations. Extend and overwrite
-		 * {@link #build()} for specific implementations.
-		 *
-		 * @param owner
-		 *            the parent window for the bubble
-		 * @param i18nKey
-		 *            the i18n key for the bubble. Format: {@code gui.bubble.[i18nkey].title} and
-		 *            {@code gui.bubble.[i18nkey].body}.
-		 * @param arguments
-		 *            optional i18n arguments
-		 */
-		public BubbleWindowBuilder(final Window owner, final String i18nKey, final Object... arguments) {
+        /**
+         * Creates a new builder for {@link BubbleWindow} implementations. Extend and overwrite
+         * {@link #build()} for specific implementations.
+         *
+         * @param owner     the parent window for the bubble
+         * @param i18nKey   the i18n key for the bubble. Format: {@code gui.bubble.[i18nkey].title} and            {@code gui.bubble.[i18nkey].body}.
+         * @param arguments optional i18n arguments
+         */
+        public BubbleWindowBuilder(final Window owner, final String i18nKey, final Object... arguments) {
 			if (i18nKey == null) {
 				throw new IllegalArgumentException("i18nKey must not be null!");
 			}
@@ -174,15 +189,14 @@ public abstract class BubbleWindow extends JDialog {
 			this.showCloseButton = true;
 		}
 
-		/**
-		 * Set the style of the bubble. See {@link BubbleStyle} for more information. Default is
-		 * {@link BubbleStyle#COMIC}.
-		 *
-		 * @param style
-		 *            the style the bubble should have
-		 * @return the builder instance
-		 */
-		public U setStyle(final BubbleStyle style) {
+        /**
+         * Set the style of the bubble. See {@link BubbleStyle} for more information. Default is
+         * {@link BubbleStyle#COMIC}.
+         *
+         * @param style the style the bubble should have
+         * @return the builder instance
+         */
+        public U setStyle(final BubbleStyle style) {
 			if (style == null) {
 				throw new IllegalArgumentException("style must not be null!");
 			}
@@ -190,16 +204,15 @@ public abstract class BubbleWindow extends JDialog {
 			return getThis();
 		}
 
-		/**
-		 * Sets the preferred side where the bubble should be positioned relative to the target. If
-		 * the defined position is not possible, it will be changed automatically. Defaults to
-		 * {@link AlignedSide#BOTTOM}.
-		 *
-		 * @param alignment
-		 *            the side relative to the target where the bubble should appear
-		 * @return the builder instance
-		 */
-		public U setAlignment(final AlignedSide alignment) {
+        /**
+         * Sets the preferred side where the bubble should be positioned relative to the target. If
+         * the defined position is not possible, it will be changed automatically. Defaults to
+         * {@link AlignedSide#BOTTOM}.
+         *
+         * @param alignment the side relative to the target where the bubble should appear
+         * @return the builder instance
+         */
+        public U setAlignment(final AlignedSide alignment) {
 			if (alignment == null) {
 				throw new IllegalArgumentException("alignment must not be null!");
 			}
@@ -207,27 +220,25 @@ public abstract class BubbleWindow extends JDialog {
 			return getThis();
 		}
 
-		/**
-		 * Sets whether the bubble can be moved by dragging the title. Defaults to {@code true}.
-		 *
-		 * @param moveable
-		 *            if {@code true} the user can drag the bubble around via the title
-		 * @return the builder instance
-		 */
-		public U setMoveable(final boolean moveable) {
+        /**
+         * Sets whether the bubble can be moved by dragging the title. Defaults to {@code true}.
+         *
+         * @param moveable if {@code true} the user can drag the bubble around via the title
+         * @return the builder instance
+         */
+        public U setMoveable(final boolean moveable) {
 			this.moveable = moveable;
 			return getThis();
 		}
 
-		/**
-		 * Sets the key of the {@link Dockable} the target component is in. This is useful if the
-		 * dockable is moved/removed by the user so the bubble can react automatically.
-		 *
-		 * @param dockKey
-		 *            the key of the dockable
-		 * @return the builder instance
-		 */
-		public U setDockableOfTargetComponent(final String dockKey) {
+        /**
+         * Sets the key of the {@link Dockable} the target component is in. This is useful if the
+         * dockable is moved/removed by the user so the bubble can react automatically.
+         *
+         * @param dockKey the key of the dockable
+         * @return the builder instance
+         */
+        public U setDockableOfTargetComponent(final String dockKey) {
 			if (dockKey == null) {
 				throw new IllegalArgumentException("dockKey must not be null!");
 			}
@@ -235,15 +246,14 @@ public abstract class BubbleWindow extends JDialog {
 			return getThis();
 		}
 
-		/**
-		 * Sets the font for the title text of the bubble. If not set, defaults to a font matching
-		 * the specified {@link BubbleStyle}.
-		 *
-		 * @param font
-		 *            the font which should be used for the title
-		 * @return the builder instance
-		 */
-		public U setTitleFont(final Font font) {
+        /**
+         * Sets the font for the title text of the bubble. If not set, defaults to a font matching
+         * the specified {@link BubbleStyle}.
+         *
+         * @param font the font which should be used for the title
+         * @return the builder instance
+         */
+        public U setTitleFont(final Font font) {
 			if (font == null) {
 				throw new IllegalArgumentException("font must not be null!");
 			}
@@ -251,15 +261,14 @@ public abstract class BubbleWindow extends JDialog {
 			return getThis();
 		}
 
-		/**
-		 * Sets the font for the body text of the bubble. If not set, defaults to a font matching
-		 * the specified {@link BubbleStyle}.
-		 *
-		 * @param font
-		 *            the font which should be used for the body
-		 * @return the builder instance
-		 */
-		public U setBodyFont(final Font font) {
+        /**
+         * Sets the font for the body text of the bubble. If not set, defaults to a font matching
+         * the specified {@link BubbleStyle}.
+         *
+         * @param font the font which should be used for the body
+         * @return the builder instance
+         */
+        public U setBodyFont(final Font font) {
 			if (font == null) {
 				throw new IllegalArgumentException("font must not be null!");
 			}
@@ -267,16 +276,15 @@ public abstract class BubbleWindow extends JDialog {
 			return getThis();
 		}
 
-		/**
-		 * Sets additional components which are added to the bottom of the bubble in a horizontal
-		 * row. By default, nothing is visible below the body text and the bubble can only be closed
-		 * via the 'x' button in the top right corner.
-		 *
-		 * @param componentsToAdd
-		 *            the components to add. Usually {@link JButton}s or similar
-		 * @return the builder instance
-		 */
-		public U setAdditionalComponents(final JComponent[] componentsToAdd) {
+        /**
+         * Sets additional components which are added to the bottom of the bubble in a horizontal
+         * row. By default, nothing is visible below the body text and the bubble can only be closed
+         * via the 'x' button in the top right corner.
+         *
+         * @param componentsToAdd the components to add. Usually {@link JButton}s or similar
+         * @return the builder instance
+         */
+        public U setAdditionalComponents(final JComponent[] componentsToAdd) {
 			if (componentsToAdd == null) {
 				throw new IllegalArgumentException("componentsToAdd must not be null!");
 			}
@@ -284,55 +292,64 @@ public abstract class BubbleWindow extends JDialog {
 			return getThis();
 		}
 
-		/**
-		 * Hides the close button in the top right corner. Note that if it is hidden and no
-		 * additional components have been added, there is no way to close the bubble.
-		 *
-		 * @return the builder instance
-		 */
-		public U hideCloseButton() {
+        /**
+         * Hides the close button in the top right corner. Note that if it is hidden and no
+         * additional components have been added, there is no way to close the bubble.
+         *
+         * @return the builder instance
+         */
+        public U hideCloseButton() {
 			this.showCloseButton = false;
 			return getThis();
 		}
 
-		/**
-		 * Creates the {@link BubbleWindow} implementation instance according to the specified
-		 * settings.
-		 *
-		 * @return the bubble instance, never {@code null}
-		 */
-		public abstract T build();
+        /**
+         * Creates the {@link BubbleWindow} implementation instance according to the specified
+         * settings.
+         *
+         * @return the bubble instance, never {@code null}
+         */
+        public abstract T build();
 
-		/**
-		 * Returns the implementation instance of the builder. Needed for chaining of setters in
-		 * abstract class.
-		 *
-		 * @return the actual builder implementation, never {@code null}
-		 */
-		public abstract U getThis();
+        /**
+         * Returns the implementation instance of the builder. Needed for chaining of setters in
+         * abstract class.
+         *
+         * @return the actual builder implementation, never {@code null}
+         */
+        public abstract U getThis();
 	}
 
-	/**
-	 * The possible styles of a {@link BubbleWindow}.
-	 *
-	 * @since 6.5.0
-	 *
-	 */
-	public static enum BubbleStyle {
-		/** a bubble with a green style indicating everything is fine */
-		OK(FONT_TITLE, FONT_BODY, ICON_OK, new Color(173, 237, 200)),
+    /**
+     * The possible styles of a {@link BubbleWindow}.
+     *
+     * @since 6.5.0
+     */
+    public static enum BubbleStyle {
+        /**
+         * a bubble with a green style indicating everything is fine
+         */
+        OK(FONT_TITLE, FONT_BODY, ICON_OK, new Color(173, 237, 200)),
 
-		/** a bubble with a blue style indicating something if interest */
-		INFORMATION(FONT_TITLE, FONT_BODY, ICON_INFORMATION, new Color(177, 215, 241)),
+        /**
+         * a bubble with a blue style indicating something if interest
+         */
+        INFORMATION(FONT_TITLE, FONT_BODY, ICON_INFORMATION, new Color(177, 215, 241)),
 
-		/** a bubble with a yellow style indicating a warning */
-		WARNING(FONT_TITLE, FONT_BODY, ICON_WARNING, new Color(250, 217, 164)),
+        /**
+         * a bubble with a yellow style indicating a warning
+         */
+        WARNING(FONT_TITLE, FONT_BODY, ICON_WARNING, new Color(250, 217, 164)),
 
-		/** a bubble with a red style indicating a severe problem */
-		ERROR(FONT_TITLE, FONT_BODY, ICON_ERROR, new Color(245, 187, 181)),
+        /**
+         * a bubble with a red style indicating a severe problem
+         */
+        ERROR(FONT_TITLE, FONT_BODY, ICON_ERROR, new Color(245, 187, 181)),
 
-		/** a bubble with a comic style which is used by the comic tutorials */
-		COMIC(FONT_TITLE_COMIC, FONT_BODY_COMIC, null, COLOR_BACKGROUND_COMIC);
+        /**
+         * a bubble with a comic style which is used by the comic tutorials
+         */
+        COMIC(FONT_TITLE_COMIC, FONT_BODY_COMIC, null, COLOR_BACKGROUND_COMIC);
 
 		private final Font titleFont;
 		private final Font bodyFont;
@@ -346,155 +363,189 @@ public abstract class BubbleWindow extends JDialog {
 			this.color = color;
 		}
 
-		/**
-		 * @return the title font, never {@code null}
-		 */
-		public Font getTitleFont() {
+        /**
+         * Gets title font.
+         *
+         * @return the title font, never {@code null}
+         */
+        public Font getTitleFont() {
 			return titleFont;
 		}
 
-		/**
-		 * @return the title font, never {@code null}
-		 */
-		public Font getBodyFont() {
+        /**
+         * Gets body font.
+         *
+         * @return the title font, never {@code null}
+         */
+        public Font getBodyFont() {
 			return bodyFont;
 		}
 
-		/**
-		 * @return the icon for this style or {@code null} if it has none
-		 */
-		public ImageIcon getIcon() {
+        /**
+         * Gets icon.
+         *
+         * @return the icon for this style or {@code null} if it has none
+         */
+        public ImageIcon getIcon() {
 			return icon;
 		}
 
-		/**
-		 * @return the bubble color, never {@code null}
-		 */
-		public Color getColor() {
+        /**
+         * Gets color.
+         *
+         * @return the bubble color, never {@code null}
+         */
+        public Color getColor() {
 			return color;
 		}
 	}
 
-	/**
-	 * Indicates on which side of the target component the Bubble will be positioned.
-	 *
-	 */
-	public static enum AlignedSide {
-		/**
-		 * to the right of the component
-		 */
-		RIGHT,
+    /**
+     * Indicates on which side of the target component the Bubble will be positioned.
+     */
+    public static enum AlignedSide {
+        /**
+         * to the right of the component
+         */
+        RIGHT,
 
-		/**
-		 * to the left of the component
-		 */
-		LEFT,
+        /**
+         * to the left of the component
+         */
+        LEFT,
 
-		/**
-		 * above the component
-		 */
-		TOP,
+        /**
+         * above the component
+         */
+        TOP,
 
-		/**
-		 * below the component
-		 */
-		BOTTOM,
+        /**
+         * below the component
+         */
+        BOTTOM,
 
-		/**
-		 * in the middle of the component
-		 */
-		MIDDLE
+        /**
+         * in the middle of the component
+         */
+        MIDDLE
 	}
 
-	/**
-	 * The listener which can be registered to be notified of buble events. See
-	 * {@link BubbleWindow#addBubbleListener(BubbleListener)}.
-	 *
-	 */
-	public static interface BubbleListener {
+    /**
+     * The listener which can be registered to be notified of buble events. See
+     * {@link BubbleWindow#addBubbleListener(BubbleListener)}.
+     */
+    public static interface BubbleListener {
 
-		/**
-		 * Called when the bubble has been closed.
-		 *
-		 * @param bw
-		 *            the origin of the event
-		 */
-		public void bubbleClosed(BubbleWindow bw);
+        /**
+         * Called when the bubble has been closed.
+         *
+         * @param bw the origin of the event
+         */
+        public void bubbleClosed(BubbleWindow bw);
 
-		/**
-		 * Called when {@link BubbleWindow#triggerFire()} is called.
-		 *
-		 * @param bw
-		 *            the origin of the event
-		 */
-		public void actionPerformed(BubbleWindow bw);
+        /**
+         * Called when {@link BubbleWindow#triggerFire()} is called.
+         *
+         * @param bw the origin of the event
+         */
+        public void actionPerformed(BubbleWindow bw);
 	}
 
-	/**
-	 * Used to define the position of the pointer of the bubble, aka the corner which points to the
-	 * component.
-	 */
-	protected enum Alignment {
-		TOPLEFT,
+    /**
+     * Used to define the position of the pointer of the bubble, aka the corner which points to the
+     * component.
+     */
+    protected enum Alignment {
+        /**
+         * Topleft alignment.
+         */
+        TOPLEFT,
 
-		TOPRIGHT,
+        /**
+         * Topright alignment.
+         */
+        TOPRIGHT,
 
-		BOTTOMLEFT,
+        /**
+         * Bottomleft alignment.
+         */
+        BOTTOMLEFT,
 
-		BOTTOMRIGHT,
+        /**
+         * Bottomright alignment.
+         */
+        BOTTOMRIGHT,
 
-		LEFTTOP,
+        /**
+         * Lefttop alignment.
+         */
+        LEFTTOP,
 
-		LEFTBOTTOM,
+        /**
+         * Leftbottom alignment.
+         */
+        LEFTBOTTOM,
 
-		RIGHTTOP,
+        /**
+         * Righttop alignment.
+         */
+        RIGHTTOP,
 
-		RIGHTBOTTOM,
+        /**
+         * Rightbottom alignment.
+         */
+        RIGHTBOTTOM,
 
-		INNERRIGHT,
+        /**
+         * Innerright alignment.
+         */
+        INNERRIGHT,
 
-		INNERLEFT,
+        /**
+         * Innerleft alignment.
+         */
+        INNERLEFT,
 
-		/**
-		 * bubble is placed inside the component, no pointer.
-		 */
-		MIDDLE;
+        /**
+         * bubble is placed inside the component, no pointer.
+         */
+        MIDDLE;
 	}
 
-	/**
-	 * Used to determine the type of a possible assistant bubble.
-	 */
-	protected enum AssistantType {
-		/**
-		 * the dockable to which the bubble should be attached is not in the selected tab in a
-		 * multi-tab environment
-		 */
-		NOT_SHOWING,
+    /**
+     * Used to determine the type of a possible assistant bubble.
+     */
+    protected enum AssistantType {
+        /**
+         * the dockable to which the bubble should be attached is not in the selected tab in a
+         * multi-tab environment
+         */
+        NOT_SHOWING,
 
-		/**
-		 * the dockable to which the bubble should be attached is not on the screen
-		 */
-		NOT_ON_SCREEN,
+        /**
+         * the dockable to which the bubble should be attached is not on the screen
+         */
+        NOT_ON_SCREEN,
 
-		/**
-		 * user looks at wrong operator chain (subprocess)
-		 */
-		NOT_IN_CHAIN,
+        /**
+         * user looks at wrong operator chain (subprocess)
+         */
+        NOT_IN_CHAIN,
 
-		/**
-		 * no assistent currently active
-		 */
-		NO_ASSISTANT_ACTIVE,
+        /**
+         * no assistent currently active
+         */
+        NO_ASSISTANT_ACTIVE,
 
-		/**
-		 * when the dockable of the target becomes hidden
-		 */
-		HIDDEN,
+        /**
+         * when the dockable of the target becomes hidden
+         */
+        HIDDEN,
 
-		/**
-		 * when the user is in the wrong perspective
-		 */
-		WRONG_PERSPECTIVE,
+        /**
+         * when the user is in the wrong perspective
+         */
+        WRONG_PERSPECTIVE,
 	}
 
 	/**
@@ -586,17 +637,35 @@ public abstract class BubbleWindow extends JDialog {
 		HI_QUALITY_HINTS.put(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
 	}
 
-	protected static final int HIDDEN_WIDTH = 19;
-	protected static final int HIDDEN_HEIGHT = 200;
-	protected static final Point HIDDEN_POS = new Point(1, 24);
+    /**
+     * The constant HIDDEN_WIDTH.
+     */
+    protected static final int HIDDEN_WIDTH = 19;
+    /**
+     * The constant HIDDEN_HEIGHT.
+     */
+    protected static final int HIDDEN_HEIGHT = 200;
+    /**
+     * The constant HIDDEN_POS.
+     */
+    protected static final Point HIDDEN_POS = new Point(1, 24);
 
-	/*
-	 * constants to return from the static methods isDockableOnScreen(String) and
+    /**
+     * The constant OBJECT_SHOWING_ON_SCREEN.
+     */
+/*
+     * constants to return from the static methods isDockableOnScreen(String) and
 	 * isButtonOnSreen(String)
 	 */
 	public static final int OBJECT_SHOWING_ON_SCREEN = 0;
-	public static final int OBJECT_NOT_SHOWING = 1;
-	public static final int OBJECT_NOT_ON_SCREEN = -1;
+    /**
+     * The constant OBJECT_NOT_SHOWING.
+     */
+    public static final int OBJECT_NOT_SHOWING = 1;
+    /**
+     * The constant OBJECT_NOT_ON_SCREEN.
+     */
+    public static final int OBJECT_NOT_ON_SCREEN = -1;
 
 	private final String i18nKey;
 	private final Object[] arguments;
@@ -644,68 +713,46 @@ public abstract class BubbleWindow extends JDialog {
 	private volatile boolean killed = false;
 	private volatile int dockingCounter = 0;
 
-	/**
-	 * the origin perspective where this bubble lives. If initial construction takes place in a
-	 * different perspective than where the bubble should live, change this
-	 */
-	protected String myPerspective;
+    /**
+     * the origin perspective where this bubble lives. If initial construction takes place in a
+     * different perspective than where the bubble should live, change this
+     */
+    protected String myPerspective;
 
-	/**
-	 * creates a BubbleWindow-Object. To paint and repaint this BubbleWindow call paint(boolean
-	 * refreshListerns)
-	 *
-	 * @param owner
-	 *            the {@link Window} on which this {@link BubbleWindow} should be shown.
-	 * @param preferredAlignment
-	 *            offer for alignment but the Class will calculate by itself whether the position is
-	 *            usable.
-	 * @param i18nKey
-	 *            key of the message which should be shown.
-	 * @param docKey
-	 *            key of the Dockable the BubbleWindow will attach to.
-	 * @param componentsToAdd
-	 *            Array of {@link JComponent}s which will be added to the Bubble (null instead of
-	 *            the array won't throw an error).
-	 * @param arguments
-	 *            arguments to pass thought to the I18N Object
-	 */
-	public BubbleWindow(final Window owner, final AlignedSide preferredAlignment, final String i18nKey, final String docKey,
+    /**
+     * creates a BubbleWindow-Object. To paint and repaint this BubbleWindow call paint(boolean
+     * refreshListerns)
+     *
+     * @param owner              the {@link Window} on which this {@link BubbleWindow} should be shown.
+     * @param preferredAlignment offer for alignment but the Class will calculate by itself whether the position is            usable.
+     * @param i18nKey            key of the message which should be shown.
+     * @param docKey             key of the Dockable the BubbleWindow will attach to.
+     * @param componentsToAdd    Array of {@link JComponent}s which will be added to the Bubble (null instead of            the array won't throw an error).
+     * @param arguments          arguments to pass thought to the I18N Object
+     */
+    public BubbleWindow(final Window owner, final AlignedSide preferredAlignment, final String i18nKey, final String docKey,
 			final JComponent[] componentsToAdd, final Object... arguments) {
 		this(owner, BubbleStyle.COMIC, preferredAlignment, i18nKey, docKey, null, null, false, true, componentsToAdd,
 				arguments);
 	}
 
-	/**
-	 * Creates an instance with the given parameters. Should be called with the arguments gathered
-	 * from {@link BubbleWindowBuilder} implementations.
-	 *
-	 * @param owner
-	 *            the {@link Window} on which this {@link BubbleWindow} should be shown
-	 * @param style
-	 *            the style the bubble should have
-	 * @param preferredAlignment
-	 *            offer for alignment but the Class will calculate by itself whether the position is
-	 *            usable
-	 * @param i18nKey
-	 *            key of the message which should be shown
-	 * @param docKey
-	 *            key of the Dockable the BubbleWindow will attach to
-	 * @param moveable
-	 *            if {@code true} the user can drag the bubble around on screen
-	 * @param showCloseButton
-	 *            if {@code true} the user can close the bubble via an "x" button in the top right
-	 *            corner
-	 * @param titleFont
-	 *            the font for the title, can be {@code null}
-	 * @param bodyFont
-	 *            the font for the body, can be {@code null}
-	 * @param componentsToAdd
-	 *            Array of {@link JComponent}s which will be added to the Bubble (null instead of
-	 *            the array won't throw an error)
-	 * @param arguments
-	 *            arguments to pass thought to the I18N Object
-	 */
-	protected BubbleWindow(final Window owner, final BubbleStyle style, final AlignedSide preferredAlignment,
+    /**
+     * Creates an instance with the given parameters. Should be called with the arguments gathered
+     * from {@link BubbleWindowBuilder} implementations.
+     *
+     * @param owner              the {@link Window} on which this {@link BubbleWindow} should be shown
+     * @param style              the style the bubble should have
+     * @param preferredAlignment offer for alignment but the Class will calculate by itself whether the position is            usable
+     * @param i18nKey            key of the message which should be shown
+     * @param docKey             key of the Dockable the BubbleWindow will attach to
+     * @param titleFont          the font for the title, can be {@code null}
+     * @param bodyFont           the font for the body, can be {@code null}
+     * @param moveable           if {@code true} the user can drag the bubble around on screen
+     * @param showCloseButton    if {@code true} the user can close the bubble via an "x" button in the top right            corner
+     * @param componentsToAdd    Array of {@link JComponent}s which will be added to the Bubble (null instead of            the array won't throw an error)
+     * @param arguments          arguments to pass thought to the I18N Object
+     */
+    protected BubbleWindow(final Window owner, final BubbleStyle style, final AlignedSide preferredAlignment,
 			final String i18nKey, final String docKey, final Font titleFont, final Font bodyFont, final boolean moveable,
 			final boolean showCloseButton, final JComponent[] componentsToAdd, final Object... arguments) {
 		super(owner);
@@ -748,14 +795,13 @@ public abstract class BubbleWindow extends JDialog {
 		}
 	}
 
-	/**
-	 * should be used to update the Bubble. Call this instead of repaint and similar. Update the
-	 * Alignment, shape and location. Also this method builds the Bubble by the first call.
-	 *
-	 * @param reregisterListerns
-	 *            indicates whether the the Listeners will be refreshed too or not
-	 */
-	public void paint(final boolean refreshListerns) {
+    /**
+     * should be used to update the Bubble. Call this instead of repaint and similar. Update the
+     * Alignment, shape and location. Also this method builds the Bubble by the first call.
+     *
+     * @param refreshListerns the refresh listerns
+     */
+    public void paint(final boolean refreshListerns) {
 		if (!built) {
 			this.buildBubble();
 		}
@@ -1014,13 +1060,12 @@ public abstract class BubbleWindow extends JDialog {
 		bubble.repaint();
 	}
 
-	/**
-	 * updates the Alignment and Position and repaints the Bubble
-	 *
-	 * @param reregisterListeners
-	 *            if true the listeners will be removed and added again after the repaint
-	 */
-	protected void paintAgain(final boolean reregisterListeners) {
+    /**
+     * updates the Alignment and Position and repaints the Bubble
+     *
+     * @param reregisterListeners if true the listeners will be removed and added again after the repaint
+     */
+    protected void paintAgain(final boolean reregisterListeners) {
 		Alignment newAlignment = this.calculateAlignment(realAlignment);
 		if (realAlignment.equals(newAlignment)) {
 			this.pointAtComponent();
@@ -1043,36 +1088,32 @@ public abstract class BubbleWindow extends JDialog {
 		this.repaint();
 	}
 
-	/**
-	 *
-	 * Adds a {@link BubbleListener}.
-	 *
-	 * @param l
-	 *            The listener
-	 */
-	public void addBubbleListener(final BubbleListener l) {
+    /**
+     * Adds a {@link BubbleListener}.
+     *
+     * @param l The listener
+     */
+    public void addBubbleListener(final BubbleListener l) {
 		listeners.add(l);
 	}
 
-	/**
-	 * removes the given {@link BubbleListener}.
-	 *
-	 * @param l
-	 *            {@link BubbleListener} to remove.
-	 */
-	public void removeBubbleListener(final BubbleListener l) {
+    /**
+     * removes the given {@link BubbleListener}.
+     *
+     * @param l {@link BubbleListener} to remove.
+     */
+    public void removeBubbleListener(final BubbleListener l) {
 		listeners.remove(l);
 	}
 
-	/**
-	 * Creates a speech bubble-shaped Shape.
-	 *
-	 * @param alignment
-	 *            The alignment of the pointer.
-	 *
-	 * @return A speech-bubble <b>Shape</b>.
-	 */
-	public Shape createShape(final Alignment alignment, final float stroke) {
+    /**
+     * Creates a speech bubble-shaped Shape.
+     *
+     * @param alignment The alignment of the pointer.
+     * @param stroke    the stroke
+     * @return A speech-bubble <b>Shape</b>.
+     */
+    public Shape createShape(final Alignment alignment, final float stroke) {
 		float w = getSize().width - 2 * CORNER_RADIUS - stroke;
 		float h = getSize().height - 2 * CORNER_RADIUS - stroke;
 		float o = CORNER_RADIUS;
@@ -1195,10 +1236,10 @@ public abstract class BubbleWindow extends JDialog {
 		registerRegularListener();
 	}
 
-	/**
-	 * places the Bubble-speech so that it points to the Component
-	 */
-	protected void pointAtComponent() {
+    /**
+     * places the Bubble-speech so that it points to the Component
+     */
+    protected void pointAtComponent() {
 		double targetx = 0;
 		double targety = 0;
 		Point target = new Point(0, 0);
@@ -1281,15 +1322,13 @@ public abstract class BubbleWindow extends JDialog {
 		setLocation(target);
 	}
 
-	/**
-	 * method to get to know whether the dockable with the given key is on Screen
-	 *
-	 * @param dockableKey
-	 *            i18nKey of the wanted Dockable
-	 * @return returns 1 if the Dockable is on the Screen but not showing, -1 if the Dockable is not
-	 *         on the Screen and 0 if the Dockable is on Screen and showing.
-	 */
-	public static int isDockableOnScreen(final String dockableKey) {
+    /**
+     * method to get to know whether the dockable with the given key is on Screen
+     *
+     * @param dockableKey i18nKey of the wanted Dockable
+     * @return returns 1 if the Dockable is on the Screen but not showing, -1 if the Dockable is not         on the Screen and 0 if the Dockable is on Screen and showing.
+     */
+    public static int isDockableOnScreen(final String dockableKey) {
 		Dockable dock = RapidMinerGUI.getMainFrame().getDockingDesktop().getContext().getDockableByKey(dockableKey);
 		DockableState state = RapidMinerGUI.getMainFrame().getDockingDesktop().getDockableState(dock);
 		if (!state.isClosed()) {
@@ -1302,16 +1341,13 @@ public abstract class BubbleWindow extends JDialog {
 
 	}
 
-	/**
-	 * method to get to know whether the AbstractButton with the given key is on Screen
-	 *
-	 * @param dockableKey
-	 *            i18nKey of the wanted AbstractButton
-	 * @return returns 0 if the AbstractButton is on the Screen, 1 if the AbstractButton is on
-	 *         Screen but the user can not see it with the current settings of the perspective and
-	 *         -1 if the AbstractButton is not on the Screen.
-	 */
-	public static int isButtonOnScreen(final String buttonKey) {
+    /**
+     * method to get to know whether the AbstractButton with the given key is on Screen
+     *
+     * @param buttonKey the button key
+     * @return returns 0 if the AbstractButton is on the Screen, 1 if the AbstractButton is on         Screen but the user can not see it with the current settings of the perspective and         -1 if the AbstractButton is not on the Screen.
+     */
+    public static int isButtonOnScreen(final String buttonKey) {
 		// find the Button and return -1 if we can not find it
 		Component onScreen;
 		try {
@@ -1335,14 +1371,14 @@ public abstract class BubbleWindow extends JDialog {
 		}
 	}
 
-	/**
-	 * @param name
-	 *            i18nKey of the Button
-	 * @param searchRoot
-	 *            {@link Component} in which will be searched for the Button
-	 * @return returns the {@link AbstractButton} or null if the Button was not found.
-	 */
-	public static AbstractButton findButton(final String name, final Component searchRoot) {
+    /**
+     * Find button abstract button.
+     *
+     * @param name       i18nKey of the Button
+     * @param searchRoot {@link Component} in which will be searched for the Button
+     * @return returns the {@link AbstractButton} or null if the Button was not found.
+     */
+    public static AbstractButton findButton(final String name, final Component searchRoot) {
 		if (searchRoot instanceof AbstractButton) {
 
 			AbstractButton b = (AbstractButton) searchRoot;
@@ -1513,10 +1549,10 @@ public abstract class BubbleWindow extends JDialog {
 		};
 	}
 
-	/**
-	 * registers all possible Listeners(regular and the special Listeners of the subclasses)
-	 */
-	protected void registerRegularListener() {
+    /**
+     * registers all possible Listeners(regular and the special Listeners of the subclasses)
+     */
+    protected void registerRegularListener() {
 		if (!listenersAdded) {
 			listenersAdded = true;
 
@@ -1546,10 +1582,10 @@ public abstract class BubbleWindow extends JDialog {
 		}
 	}
 
-	/**
-	 * unregisters the regular Listeners and the special Listeners of the subclasses
-	 */
-	protected void unregisterRegularListener() {
+    /**
+     * unregisters the regular Listeners and the special Listeners of the subclasses
+     */
+    protected void unregisterRegularListener() {
 		if (listenersAdded) {
 			this.unregisterSpecificListeners();
 			RapidMinerGUI.getMainFrame().removeWindowStateListener(windowListener);
@@ -1586,17 +1622,17 @@ public abstract class BubbleWindow extends JDialog {
 		}
 	}
 
-	/**
-	 * notifies the {@link BubbleListener}s and disposes the Bubble-speech.
-	 */
-	public void triggerFire() {
+    /**
+     * notifies the {@link BubbleListener}s and disposes the Bubble-speech.
+     */
+    public void triggerFire() {
 		fireEventActionPerformed();
 	}
 
-	/**
-	 * closes the Bubble and calls bubbleClosed() of the {@link BubbleListener}
-	 */
-	protected void fireEventCloseClicked() {
+    /**
+     * closes the Bubble and calls bubbleClosed() of the {@link BubbleListener}
+     */
+    protected void fireEventCloseClicked() {
 		LinkedList<BubbleListener> listenerList = new LinkedList<>(listeners);
 		this.unregister();
 		for (BubbleListener l : listenerList) {
@@ -1607,13 +1643,12 @@ public abstract class BubbleWindow extends JDialog {
 		this.dispose();
 	}
 
-	/**
-	 * Kills the bubble in the EDT.
-	 *
-	 * @param notifyListeners
-	 *            if <code>false</code>, does <strong>not</strong> notify listeners about this
-	 */
-	public void killBubble(final boolean notifyListeners) {
+    /**
+     * Kills the bubble in the EDT.
+     *
+     * @param notifyListeners if <code>false</code>, does <strong>not</strong> notify listeners about this
+     */
+    public void killBubble(final boolean notifyListeners) {
 		if (SwingUtilities.isEventDispatchThread()) {
 			kill(notifyListeners);
 		} else {
@@ -1636,19 +1671,19 @@ public abstract class BubbleWindow extends JDialog {
 		super.setVisible(b);
 	}
 
-	/**
-	 * Returns <code>true</code> if the bubble has been killed via {@link #killBubble(boolean)}.
-	 *
-	 * @return
-	 */
-	public boolean isKilled() {
+    /**
+     * Returns <code>true</code> if the bubble has been killed via {@link #killBubble(boolean)}.
+     *
+     * @return boolean boolean
+     */
+    public boolean isKilled() {
 		return killed;
 	}
 
-	/**
-	 * closes the Bubble and calls actionPerformed() of the {@link BubbleListener}
-	 */
-	protected void fireEventActionPerformed() {
+    /**
+     * closes the Bubble and calls actionPerformed() of the {@link BubbleListener}
+     */
+    protected void fireEventActionPerformed() {
 		LinkedList<BubbleListener> listenerList = new LinkedList<>(listeners);
 		for (BubbleListener l : listenerList) {
 			l.actionPerformed(this);
@@ -1659,15 +1694,13 @@ public abstract class BubbleWindow extends JDialog {
 		this.dispose();
 	}
 
-	/**
-	 * calculates the Alignment in the way, that the Bubble do not leave the Window
-	 *
-	 * @param currentAlignment
-	 *            the current Alignment which will be tried to keep if the preferred Alignment is
-	 *            not possible
-	 * @return returns the calculated {@link Alignment}
-	 */
-	protected Alignment calculateAlignment(final Alignment currentAlignment) {
+    /**
+     * calculates the Alignment in the way, that the Bubble do not leave the Window
+     *
+     * @param currentAlignment the current Alignment which will be tried to keep if the preferred Alignment is            not possible
+     * @return returns the calculated {@link Alignment}
+     */
+    protected Alignment calculateAlignment(final Alignment currentAlignment) {
 		if (AlignedSide.MIDDLE == this.preferredAlignment) {
 			return Alignment.MIDDLE;
 		}
@@ -1904,13 +1937,12 @@ public abstract class BubbleWindow extends JDialog {
 
 	}
 
-	/**
-	 * indicates whether the Perspective Listener should be added or not
-	 *
-	 * @param addListener
-	 *            true if the PerspectiveListener should be added and false if not
-	 */
-	protected void setAddPerspectiveListener(final boolean addListener) {
+    /**
+     * indicates whether the Perspective Listener should be added or not
+     *
+     * @param addListener true if the PerspectiveListener should be added and false if not
+     */
+    protected void setAddPerspectiveListener(final boolean addListener) {
 		this.addPerspective = addListener;
 		if (perspectiveListener != null) {
 			RapidMinerGUI.getMainFrame().getPerspectiveController().getModel()
@@ -1918,44 +1950,44 @@ public abstract class BubbleWindow extends JDialog {
 		}
 	}
 
-	/**
-	 * returns the location of the Object the Bubble should attach to
-	 *
-	 * @return the Point that indicates the left upper corner of the Object the Bubble should point
-	 *         to
-	 */
-	protected abstract Point getObjectLocation();
+    /**
+     * returns the location of the Object the Bubble should attach to
+     *
+     * @return the Point that indicates the left upper corner of the Object the Bubble should point         to
+     */
+    protected abstract Point getObjectLocation();
 
-	/**
-	 * method to get the width of the Object the Bubble should attach to
-	 *
-	 * @return the width of the Object
-	 */
-	protected abstract int getObjectWidth();
+    /**
+     * method to get the width of the Object the Bubble should attach to
+     *
+     * @return the width of the Object
+     */
+    protected abstract int getObjectWidth();
 
-	/**
-	 * method to get the height of the Object the Bubble should attach to
-	 *
-	 * @return the height of the Object
-	 */
-	protected abstract int getObjectHeight();
+    /**
+     * method to get the height of the Object the Bubble should attach to
+     *
+     * @return the height of the Object
+     */
+    protected abstract int getObjectHeight();
 
-	/**
-	 * unregister the components specific listeners defined in the subclasses
-	 */
-	protected abstract void unregisterSpecificListeners();
+    /**
+     * unregister the components specific listeners defined in the subclasses
+     */
+    protected abstract void unregisterSpecificListeners();
 
-	/** register the components specific listeners defined in the subclasses */
-	protected abstract void registerSpecificListener();
+    /**
+     * register the components specific listeners defined in the subclasses
+     */
+    protected abstract void registerSpecificListener();
 
-	/**
-	 * creates an Assistant-Bubble which pauses the current Step-Bubble. Every Bubble can only have
-	 * one Assistant but an Assistant can have an Assistant too.
-	 *
-	 * @param type
-	 *            of the Assistant you want to create
-	 */
-	protected void changeToAssistant(final AssistantType type) {
+    /**
+     * creates an Assistant-Bubble which pauses the current Step-Bubble. Every Bubble can only have
+     * one Assistant but an Assistant can have an Assistant too.
+     *
+     * @param type of the Assistant you want to create
+     */
+    protected void changeToAssistant(final AssistantType type) {
 		if (assistantBubble == null && currentAssistant != AssistantType.NO_ASSISTANT_ACTIVE
 				|| assistantBubble != null && currentAssistant == AssistantType.NO_ASSISTANT_ACTIVE) {
 			currentAssistant = AssistantType.NO_ASSISTANT_ACTIVE;
@@ -2105,10 +2137,10 @@ public abstract class BubbleWindow extends JDialog {
 		assistantBubble.setVisible(true);
 	}
 
-	/**
-	 * closes the current Assistant and restarts the current Step
-	 */
-	protected void changeToMainBubble() {
+    /**
+     * closes the current Assistant and restarts the current Step
+     */
+    protected void changeToMainBubble() {
 		if (currentAssistant == AssistantType.NO_ASSISTANT_ACTIVE) {
 			return;
 		}
@@ -2185,69 +2217,116 @@ public abstract class BubbleWindow extends JDialog {
 		}
 	}
 
-	/**
-	 * closes every Assistant does not matter which is active
-	 */
-	protected void closeAssistants() {
+    /**
+     * closes every Assistant does not matter which is active
+     */
+    protected void closeAssistants() {
 		closeShowingAssistant();
 		closeNotOnScreenAssistant();
 		closeHiddenAssistant();
 		closePerspectiveAssistant();
 	}
 
-	protected BubbleWindow getAssistantBubble() {
+    /**
+     * Gets assistant bubble.
+     *
+     * @return the assistant bubble
+     */
+    protected BubbleWindow getAssistantBubble() {
 		return assistantBubble;
 	}
 
-	protected void setAssistantBubble(final DockableBubble newAssistant) {
+    /**
+     * Sets assistant bubble.
+     *
+     * @param newAssistant the new assistant
+     */
+    protected void setAssistantBubble(final DockableBubble newAssistant) {
 		assistantBubble = newAssistant;
 	}
 
-	/** returns which Assistant is currently active */
-	protected AssistantType getCurrentAssistantType() {
+    /**
+     * returns which Assistant is currently active  @return the current assistant type
+     *
+     * @return the current assistant type
+     */
+    protected AssistantType getCurrentAssistantType() {
 		return currentAssistant;
 	}
 
-	/** sets the currentAssistant to the given value */
-	protected void setCurrentAssistantType(final AssistantType newType) {
+    /**
+     * sets the currentAssistant to the given value  @param newType the new type
+     *
+     * @param newType the new type
+     */
+    protected void setCurrentAssistantType(final AssistantType newType) {
 		if (newType == null) {
 			throw new IllegalArgumentException("parameter can not be null, please choose NO_ASSISTANT instead");
 		}
 		currentAssistant = newType;
 	}
 
-	/**
-	 * The real alignment of the bubble, indicating where the pointer is, as opposed to the
-	 * positioning on within the window.
-	 */
-	protected Alignment getRealAlignment() {
+    /**
+     * The real alignment of the bubble, indicating where the pointer is, as opposed to the
+     * positioning on within the window.
+     *
+     * @return the real alignment
+     */
+    protected Alignment getRealAlignment() {
 		return realAlignment;
 	}
 
-	/** the direct or indirect Dockable which is attached by the Bubble */
-	protected Dockable getDockable() {
+    /**
+     * the direct or indirect Dockable which is attached by the Bubble  @return the dockable
+     *
+     * @return the dockable
+     */
+    protected Dockable getDockable() {
 		return dockable;
 	}
 
-	/** the key of the used Dockable for this Bubble */
-	protected String getDockableKey() {
+    /**
+     * the key of the used Dockable for this Bubble  @return the dockable key
+     *
+     * @return the dockable key
+     */
+    protected String getDockableKey() {
 		return docKey;
 	}
 
-	/** the DockingDesktop of the UI */
-	protected DockingDesktop getDockingDesktop() {
+    /**
+     * the DockingDesktop of the UI  @return the docking desktop
+     *
+     * @return the docking desktop
+     */
+    protected DockingDesktop getDockingDesktop() {
 		return desktop;
 	}
 
-	void addComponentListenerTo(JComponent comp) {
+    /**
+     * Add component listener to.
+     *
+     * @param comp the comp
+     */
+    void addComponentListenerTo(JComponent comp) {
 		comp.addComponentListener(compListener);
 	}
 
-	public void setHeadline(String headline) {
+    /**
+     * Sets headline.
+     *
+     * @param headline the headline
+     */
+    public void setHeadline(String headline) {
 		this.headline.setText(headline);
 	}
 
-	public void setMainText(String mainText) {
+    /**
+     * Sets main text.
+     *
+     * @param mainText the main text
+     */
+    public void setMainText(String mainText) {
 		int width = style != BubbleStyle.COMIC ? WINDOW_WIDTH : WINDOW_WIDTH_COMIC;
 		this.mainText.setText("<html><div style=\"line-height: 150%;width:" + width + "px \">" + mainText + "</div></html>");
 	}
@@ -2284,29 +2363,30 @@ public abstract class BubbleWindow extends JDialog {
 		}
 	}
 
-	/**
-	 * @return the current {@link BubbleStyle}
-	 */
-	final BubbleStyle getStyle() {
+    /**
+     * Gets style.
+     *
+     * @return the current {@link BubbleStyle}
+     */
+    final BubbleStyle getStyle() {
 		return style;
 	}
 
-	/**
-	 * Checks if the current perspective matches {@link #myPerspective}.
-	 *
-	 * @return {@code true} if {@link #myPerspective} is equal to
-	 *         {@link #getCurrentPerspectiveName()}, otherwise {@code false}
-	 */
-	protected boolean isRightPerspective() {
+    /**
+     * Checks if the current perspective matches {@link #myPerspective}.
+     *
+     * @return {@code true} if {@link #myPerspective} is equal to         {@link #getCurrentPerspectiveName()}, otherwise {@code false}
+     */
+    protected boolean isRightPerspective() {
 		return myPerspective.equals(getCurrentPerspectiveName());
 	}
 
-	/**
-	 * Getter for the current perspective name.
-	 *
-	 * @return The name of the current perspective.
-	 */
-	protected String getCurrentPerspectiveName() {
+    /**
+     * Getter for the current perspective name.
+     *
+     * @return The name of the current perspective.
+     */
+    protected String getCurrentPerspectiveName() {
 		return RapidMinerGUI.getMainFrame().getPerspectiveController().getModel().getSelectedPerspective().getName();
 	}
 

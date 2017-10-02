@@ -44,18 +44,16 @@ import com.rapidminer.gui.tools.dialogs.ButtonDialog.ButtonDialogBuilder.Default
  * Creates a simple BrowserUnavailable Dialog
  *
  * @author Jonas Wilms-Pfau
- *
  */
 public class BrowserUnavailableDialogFactory {
 
-	/**
-	 * Creates a new BrowserUnavailable ButtonDialog
-	 *
-	 * @param uri
-	 *            The URI to display
-	 * @return
-	 */
-	public static ButtonDialog createNewDialog(String uri) {
+    /**
+     * Creates a new BrowserUnavailable ButtonDialog
+     *
+     * @param uri The URI to display
+     * @return button dialog
+     */
+    public static ButtonDialog createNewDialog(String uri) {
 
 		ButtonDialogBuilder builder = new ButtonDialogBuilder("browser_unavailable");
 

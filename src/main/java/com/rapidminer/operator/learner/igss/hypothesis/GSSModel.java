@@ -33,7 +33,6 @@ import com.rapidminer.tools.Tools;
  * be small in order to keep many in main memory
  *
  * @author Dirk Dach
- *
  * @deprecated This model is not used anymore.
  */
 @Deprecated
@@ -41,20 +40,34 @@ public class GSSModel extends PredictionModel {
 
 	private static final long serialVersionUID = -9210831626413275099L;
 
-	/** The all hypothesis of the model. */
-	protected Hypothesis hypothesis;
+    /**
+     * The all hypothesis of the model.
+     */
+    protected Hypothesis hypothesis;
 
-	/** The confidence values for all predictions. */
-	protected double[] confidences;
+    /**
+     * The confidence values for all predictions.
+     */
+    protected double[] confidences;
 
-	/** The regular attributes used by all rules. */
-	protected static Attribute[] regularAttributes;
+    /**
+     * The regular attributes used by all rules.
+     */
+    protected static Attribute[] regularAttributes;
 
-	/** crisp only crisp ... */
-	protected boolean crisp = true;
+    /**
+     * crisp only crisp ...
+     */
+    protected boolean crisp = true;
 
-	/** Creates a new GSSModel. */
-	public GSSModel(ExampleSet exampleSet, Hypothesis hypothesis, double[] confidences) {
+    /**
+     * Creates a new GSSModel.  @param exampleSet the example set
+     *
+     * @param exampleSet  the example set
+     * @param hypothesis  the hypothesis
+     * @param confidences the confidences
+     */
+    public GSSModel(ExampleSet exampleSet, Hypothesis hypothesis, double[] confidences) {
 		super(exampleSet, null, null);
 		this.hypothesis = hypothesis.clone();
 		this.confidences = new double[2];
@@ -81,8 +94,12 @@ public class GSSModel extends PredictionModel {
 		return this.hypothesis.hashCode();
 	}
 
-	/** Returns the most probable label index for this model. */
-	public int getPredictionIndex() {
+    /**
+     * Returns the most probable label index for this model.  @return the prediction index
+     *
+     * @return the prediction index
+     */
+    public int getPredictionIndex() {
 
 		if (this.confidences[Hypothesis.POSITIVE_CLASS] >= this.confidences[Hypothesis.NEGATIVE_CLASS]) {
 			return Hypothesis.POSITIVE_CLASS;
@@ -122,8 +139,13 @@ public class GSSModel extends PredictionModel {
 		return exampleSet;
 	}
 
-	/** Returns true if the model is applicable to the current example. */
-	public boolean applicable(Example example) {
+    /**
+     * Returns true if the model is applicable to the current example.  @param example the example
+     *
+     * @param example the example
+     * @return the boolean
+     */
+    public boolean applicable(Example example) {
 
 		if (this.hypothesis.applicable(example)) {
 			return true;
@@ -141,8 +163,12 @@ public class GSSModel extends PredictionModel {
 		return result.toString();
 	}
 
-	/** Returns the hypothesis stored in this model. */
-	public Hypothesis getHypothesis() {
+    /**
+     * Returns the hypothesis stored in this model.  @return the hypothesis
+     *
+     * @return the hypothesis
+     */
+    public Hypothesis getHypothesis() {
 		return this.hypothesis;
 	}
 }

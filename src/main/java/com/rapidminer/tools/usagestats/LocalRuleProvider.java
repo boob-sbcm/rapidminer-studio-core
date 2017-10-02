@@ -35,7 +35,6 @@ import com.rapidminer.tools.LogService;
  *
  * @author Jonas Wilms-Pfau
  * @since 7.5
- *
  */
 class LocalRuleProvider implements RuleProvider {
 

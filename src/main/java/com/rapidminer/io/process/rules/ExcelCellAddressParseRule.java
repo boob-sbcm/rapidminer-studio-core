@@ -32,7 +32,7 @@ import org.w3c.dom.NodeList;
 /**
  * A simple parse rule that will transform two given parameters into one excel range stored into a
  * third operator.
- * 
+ *
  * @author Sebastian Land
  */
 public class ExcelCellAddressParseRule extends AbstractConditionedParseRule {
@@ -41,7 +41,14 @@ public class ExcelCellAddressParseRule extends AbstractConditionedParseRule {
 	private String parameterRow;
 	private String parameterAddress;
 
-	public ExcelCellAddressParseRule(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Excel cell address parse rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public ExcelCellAddressParseRule(String operatorTypeName, Element element) throws XMLException {
 		super(operatorTypeName, element);
 		assert (element.getTagName().equals("replaceByCellAddress"));
 		NodeList children = element.getChildNodes();

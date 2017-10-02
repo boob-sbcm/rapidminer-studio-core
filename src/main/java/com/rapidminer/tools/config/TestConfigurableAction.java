@@ -24,9 +24,8 @@ import com.rapidminer.tools.config.actions.ConfigurableAction;
 /**
  * An abstract class which already implements methods from {@link ConfigurableAction} which are not
  * needed for testing the configurable. Only {@link #doWork()} has to be implemented.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public abstract class TestConfigurableAction implements ConfigurableAction {
 

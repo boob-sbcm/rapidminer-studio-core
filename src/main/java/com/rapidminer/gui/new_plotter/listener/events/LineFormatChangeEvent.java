@@ -25,13 +25,26 @@ import java.awt.Color;
 
 
 /**
+ * The type Line format change event.
+ *
  * @author Marius Helf
- * 
  */
 public class LineFormatChangeEvent {
 
-	enum LineFormatChangeType {
-		WIDTH, STYLE, COLOR,
+    /**
+     * The enum Line format change type.
+     */
+    enum LineFormatChangeType {
+        /**
+         * Width line format change type.
+         */
+        WIDTH, /**
+         * Style line format change type.
+         */
+        STYLE, /**
+         * Color line format change type.
+         */
+        COLOR,
 	}
 
 	private LineFormatChangeType type;
@@ -39,34 +52,72 @@ public class LineFormatChangeEvent {
 	private LineStyle style = null;
 	private Color color = null;
 
-	public LineFormatChangeEvent(LineFormat lineFormat, Color color) {
+    /**
+     * Instantiates a new Line format change event.
+     *
+     * @param lineFormat the line format
+     * @param color      the color
+     */
+    public LineFormatChangeEvent(LineFormat lineFormat, Color color) {
 		this.type = LineFormatChangeType.COLOR;
 		this.color = color;
 	}
 
-	public LineFormatChangeEvent(LineFormat lineFormat, LineStyle style) {
+    /**
+     * Instantiates a new Line format change event.
+     *
+     * @param lineFormat the line format
+     * @param style      the style
+     */
+    public LineFormatChangeEvent(LineFormat lineFormat, LineStyle style) {
 		this.type = LineFormatChangeType.STYLE;
 		this.style = style;
 	}
 
-	public LineFormatChangeEvent(LineFormat lineFormat, float width) {
+    /**
+     * Instantiates a new Line format change event.
+     *
+     * @param lineFormat the line format
+     * @param width      the width
+     */
+    public LineFormatChangeEvent(LineFormat lineFormat, float width) {
 		this.type = LineFormatChangeType.WIDTH;
 		this.width = width;
 	}
 
-	public LineFormatChangeType getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public LineFormatChangeType getType() {
 		return type;
 	}
 
-	public float getWidth() {
+    /**
+     * Gets width.
+     *
+     * @return the width
+     */
+    public float getWidth() {
 		return width;
 	}
 
-	public LineStyle getStyle() {
+    /**
+     * Gets style.
+     *
+     * @return the style
+     */
+    public LineStyle getStyle() {
 		return style;
 	}
 
-	public Color getColor() {
+    /**
+     * Gets color.
+     *
+     * @return the color
+     */
+    public Color getColor() {
 		return color;
 	}
 }

@@ -25,27 +25,44 @@ import com.rapidminer.operator.Operator;
 /**
  * The method {@link #breakpointReached(Process, Operator, IOContainer, int)} is invoked every time
  * a breakpoint is reached during a process run.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public interface BreakpointListener {
 
-	/** Indicates a breakpoint before the operator. */
-	public static final int BREAKPOINT_BEFORE = 0;
+    /**
+     * Indicates a breakpoint before the operator.
+     */
+    public static final int BREAKPOINT_BEFORE = 0;
 
-	/** Indicates a breakpoint after the operator. */
-	public static final int BREAKPOINT_AFTER = 1;
+    /**
+     * Indicates a breakpoint after the operator.
+     */
+    public static final int BREAKPOINT_AFTER = 1;
 
-	public static final String[] BREAKPOINT_POS_NAME = { "before", "after" };
-	public static final String[] BREAKPOINT_POS_NAME_UPPERCASE = { "Before", "After" };
+    /**
+     * The constant BREAKPOINT_POS_NAME.
+     */
+    public static final String[] BREAKPOINT_POS_NAME = { "before", "after" };
+    /**
+     * The constant BREAKPOINT_POS_NAME_UPPERCASE.
+     */
+    public static final String[] BREAKPOINT_POS_NAME_UPPERCASE = { "Before", "After" };
 
-	/**
-	 * This method is invoked every time a breakpoint is reached during the process. The location is
-	 * one out of BREAKPOINT_BEFORE or BREAKPOINT_AFTER.
-	 */
-	public void breakpointReached(Process process, Operator op, IOContainer iocontainer, int location);
+    /**
+     * This method is invoked every time a breakpoint is reached during the process. The location is
+     * one out of BREAKPOINT_BEFORE or BREAKPOINT_AFTER.
+     *
+     * @param process     the process
+     * @param op          the op
+     * @param iocontainer the iocontainer
+     * @param location    the location
+     */
+    public void breakpointReached(Process process, Operator op, IOContainer iocontainer, int location);
 
-	/** This method is invoked after the process was resumed. */
-	public void resume();
+    /**
+     * This method is invoked after the process was resumed.
+     */
+    public void resume();
 
 }

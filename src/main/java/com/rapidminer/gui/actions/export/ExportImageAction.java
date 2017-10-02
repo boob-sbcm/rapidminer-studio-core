@@ -29,18 +29,19 @@ import java.awt.event.ActionEvent;
  * The action uses {@link ImageExporter} to export a {@link PrintableComponent} as an image.
  * Override {@link #exportFinished()}, {@link #exportAborted()} or {@link #exportFinished()} for
  * individual behaviors in case of finish, abort or failure.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public abstract class ExportImageAction extends ResourceAction {
 
 	private static final long serialVersionUID = 5803992520098627274L;
 
-	/**
-	 * @param smallIcon
-	 */
-	public ExportImageAction(boolean smallIcon) {
+    /**
+     * Instantiates a new Export image action.
+     *
+     * @param smallIcon the small icon
+     */
+    public ExportImageAction(boolean smallIcon) {
 		super(smallIcon, "export_image");
 	}
 
@@ -60,32 +61,33 @@ public abstract class ExportImageAction extends ResourceAction {
 		}
 	}
 
-	/**
-	 * @return the {@link PrintableComponent} that should be exported
-	 */
-	protected abstract PrintableComponent getPrintableComponent();
+    /**
+     * Gets printable component.
+     *
+     * @return the {@link PrintableComponent} that should be exported
+     */
+    protected abstract PrintableComponent getPrintableComponent();
 
-	/**
-	 * Will be called after the export has finished successfully. Default operation: Do nothing.
-	 */
-	protected void exportFinished() {
+    /**
+     * Will be called after the export has finished successfully. Default operation: Do nothing.
+     */
+    protected void exportFinished() {
 		// NOOP
 	}
 
-	/**
-	 * Will be called if the export has been aborted. Default operation: Do nothing.
-	 */
-	protected void exportAborted() {
+    /**
+     * Will be called if the export has been aborted. Default operation: Do nothing.
+     */
+    protected void exportAborted() {
 		// NOOP
 	}
 
-	/**
-	 * Will be called if the export has failed. Default operation: Show error dialog.
-	 * 
-	 * @param e
-	 *            the exception that indicates the error
-	 */
-	protected void exportFailed(ImageExportException e) {
+    /**
+     * Will be called if the export has failed. Default operation: Show error dialog.
+     *
+     * @param e the exception that indicates the error
+     */
+    protected void exportFailed(ImageExportException e) {
 		SwingTools.showSimpleErrorMessage("export_failed", e);
 	}
 

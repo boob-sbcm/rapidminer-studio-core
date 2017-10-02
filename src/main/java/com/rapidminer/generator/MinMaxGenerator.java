@@ -30,24 +30,38 @@ import java.util.logging.Level;
 /**
  * This class has two numerical input attributes and one output attribute. Depending on the mode
  * specified in the constructor the result will be the minimum or maximum of the input attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MinMaxGenerator extends BinaryNumericalGenerator {
 
-	public static final int MIN = 0;
+    /**
+     * The constant MIN.
+     */
+    public static final int MIN = 0;
 
-	public static final int MAX = 1;
+    /**
+     * The constant MAX.
+     */
+    public static final int MAX = 1;
 
 	private static final String[] FUNCTION_NAMES = { "min", "max" };
 
 	private int mode;
 
-	public MinMaxGenerator(int mode) {
+    /**
+     * Instantiates a new Min max generator.
+     *
+     * @param mode the mode
+     */
+    public MinMaxGenerator(int mode) {
 		this.mode = mode;
 	}
 
-	public MinMaxGenerator() {}
+    /**
+     * Instantiates a new Min max generator.
+     */
+    public MinMaxGenerator() {}
 
 	@Override
 	public Attribute[] getOutputAttributes(ExampleTable input) {

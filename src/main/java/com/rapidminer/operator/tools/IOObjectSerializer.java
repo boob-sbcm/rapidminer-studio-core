@@ -31,22 +31,36 @@ import java.util.Arrays;
 
 
 /**
- * 
+ * The type Io object serializer.
+ *
  * @author Simon Fischer
- * 
  */
 public class IOObjectSerializer {
 
-	public static final byte[] MAGIC_NUMBER = { (byte) 0x2A, (byte) 0x71, (byte) 0xD1 };
+    /**
+     * The constant MAGIC_NUMBER.
+     */
+    public static final byte[] MAGIC_NUMBER = { (byte) 0x2A, (byte) 0x71, (byte) 0xD1 };
 
 	private static final IOObjectSerializer INSTANCE = new IOObjectSerializer();
 
-	public static IOObjectSerializer getInstance() {
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+    public static IOObjectSerializer getInstance() {
 		return INSTANCE;
 	}
 
-	/** Serializes the object with a default type appropriate for the given object. */
-	public void serialize(OutputStream out, Object object) throws IOException {
+    /**
+     * Serializes the object with a default type appropriate for the given object.  @param out the out
+     *
+     * @param out    the out
+     * @param object the object
+     * @throws IOException the io exception
+     */
+    public void serialize(OutputStream out, Object object) throws IOException {
 		SerializationType type;
 		if (object instanceof ExampleSet) {
 			type = SerializationType.STREAMED_EXAMPLE_SET_DENSE_CURRENT_VERSION;
@@ -56,7 +70,14 @@ public class IOObjectSerializer {
 		serialize(out, object, type);
 	}
 
-	public void writeHeader(OutputStream out, SerializationType serializationType) throws IOException {
+    /**
+     * Write header.
+     *
+     * @param out               the out
+     * @param serializationType the serialization type
+     * @throws IOException the io exception
+     */
+    public void writeHeader(OutputStream out, SerializationType serializationType) throws IOException {
 		out.write(MAGIC_NUMBER);
 		out.flush();
 		DataOutputStream dout = new DataOutputStream(out);
@@ -64,14 +85,28 @@ public class IOObjectSerializer {
 		dout.flush();
 	}
 
-	/** Serializes the object to the stream, using the given serialization type. */
-	public void serialize(OutputStream out, Object object, SerializationType serializationType) throws IOException {
+    /**
+     * Serializes the object to the stream, using the given serialization type.  @param out the out
+     *
+     * @param out               the out
+     * @param object            the object
+     * @param serializationType the serialization type
+     * @throws IOException the io exception
+     */
+    public void serialize(OutputStream out, Object object, SerializationType serializationType) throws IOException {
 		writeHeader(out, serializationType);
 		serializationType.getBodySerializer().serialize(object, out);
 		out.flush();
 	}
 
-	public SerializationType deserializeHeader(InputStream in) throws IOException {
+    /**
+     * Deserialize header serialization type.
+     *
+     * @param in the in
+     * @return the serialization type
+     * @throws IOException the io exception
+     */
+    public SerializationType deserializeHeader(InputStream in) throws IOException {
 		byte[] magicRead = new byte[MAGIC_NUMBER.length];
 		int offset = 0;
 		int length;
@@ -93,17 +128,27 @@ public class IOObjectSerializer {
 		return SerializationType.values()[typeIndex];
 	}
 
-	/**
-	 * Deserializes an object serialized by
-	 * {@link #serialize(OutputStream, Object, SerializationType)}.
-	 */
-	public Object deserialize(InputStream in) throws IOException {
+    /**
+     * Deserializes an object serialized by
+     * {@link #serialize(OutputStream, Object, SerializationType)}.
+     *
+     * @param in the in
+     * @return the object
+     * @throws IOException the io exception
+     */
+    public Object deserialize(InputStream in) throws IOException {
 		SerializationType type = deserializeHeader(in);
 		return type.getBodySerializer().deserialize(in);
 	}
 
-	/** Serializes the object into a byte buffer. */
-	public byte[] serializeToBuffer(Object o) throws IOException {
+    /**
+     * Serializes the object into a byte buffer.  @param o the o
+     *
+     * @param o the o
+     * @return the byte [ ]
+     * @throws IOException the io exception
+     */
+    public byte[] serializeToBuffer(Object o) throws IOException {
 		ByteArrayOutputStream bufOut = new ByteArrayOutputStream();
 		try {
 			serialize(bufOut, o);
@@ -114,8 +159,15 @@ public class IOObjectSerializer {
 		}
 	}
 
-	/** Deserializes the object from a byte buffer created by {@link #serializeToBuffer(Object)}. */
-	public Object deserializeFromBuffer(byte[] buffer) throws IOException, ClassNotFoundException {
+    /**
+     * Deserializes the object from a byte buffer created by {@link #serializeToBuffer(Object)}.  @param buffer the buffer
+     *
+     * @param buffer the buffer
+     * @return the object
+     * @throws IOException            the io exception
+     * @throws ClassNotFoundException the class not found exception
+     */
+    public Object deserializeFromBuffer(byte[] buffer) throws IOException, ClassNotFoundException {
 		ByteArrayInputStream bufIn = new ByteArrayInputStream(buffer);
 		try {
 			return deserialize(bufIn);

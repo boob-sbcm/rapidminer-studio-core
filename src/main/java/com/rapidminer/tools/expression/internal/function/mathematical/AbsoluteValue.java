@@ -28,11 +28,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
  * A {@link Function} computing the absolute value of a number.
  *
  * @author Marcel Seifert
- *
  */
 public class AbsoluteValue extends Abstract1DoubleInputFunction {
 
-	public AbsoluteValue() {
+    /**
+     * Instantiates a new Absolute value.
+     */
+    public AbsoluteValue() {
 		super("mathematical.abs", Ontology.NUMERICAL);
 	}
 

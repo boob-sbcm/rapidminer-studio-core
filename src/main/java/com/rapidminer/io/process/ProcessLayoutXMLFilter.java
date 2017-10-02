@@ -44,8 +44,14 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 
 	private static final String KEY_OPERATOR_RECTANGLE = "com.rapidminer.io.process.operator_rectangle";
 	private static final String KEY_PORT_SPACING = "com.rapidminer.io.process.port_spacing";
-	public static final String KEY_OPERATOR_CHAIN_POSITION = "com.rapidminer.io.process.operator_chain_position";
-	public static final String KEY_OPERATOR_CHAIN_ZOOM = "com.rapidminer.io.process.operator_chain_zoom";
+    /**
+     * The constant KEY_OPERATOR_CHAIN_POSITION.
+     */
+    public static final String KEY_OPERATOR_CHAIN_POSITION = "com.rapidminer.io.process.operator_chain_position";
+    /**
+     * The constant KEY_OPERATOR_CHAIN_ZOOM.
+     */
+    public static final String KEY_OPERATOR_CHAIN_ZOOM = "com.rapidminer.io.process.operator_chain_zoom";
 	private static final String KEY_SCROLL_POSITION = "com.rapidminer.io.process.scroll_position";
 	private static final String KEY_SCROLL_INDEX = "com.rapidminer.io.process.scroll_index";
 	private static final String KEY_RESTORE = "com.rapidminer.io.process.restore";
@@ -70,11 +76,21 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 		/** Wrapped object. */
 		private final Rectangle2D rect;
 
-		public Rectangle2DWrapper(Rectangle2D rect) {
+        /**
+         * Instantiates a new Rectangle 2 d wrapper.
+         *
+         * @param rect the rect
+         */
+        public Rectangle2DWrapper(Rectangle2D rect) {
 			this.rect = rect;
 		}
 
-		public Rectangle2D get() {
+        /**
+         * Get rectangle 2 d.
+         *
+         * @return the rectangle 2 d
+         */
+        public Rectangle2D get() {
 			return this.rect;
 		}
 
@@ -98,11 +114,21 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 		/** Wrapped map. */
 		private final Map<Port, Integer> spaces;
 
-		public PortSpacingWrapper(Map<Port, Integer> spacings) {
+        /**
+         * Instantiates a new Port spacing wrapper.
+         *
+         * @param spacings the spacings
+         */
+        public PortSpacingWrapper(Map<Port, Integer> spacings) {
 			this.spaces = spacings;
 		}
 
-		public Map<Port, Integer> get() {
+        /**
+         * Get map.
+         *
+         * @return the map
+         */
+        public Map<Port, Integer> get() {
 			return this.spaces;
 		}
 
@@ -126,11 +152,21 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 		/** Wrapped object. */
 		private final Point point;
 
-		public PointWrapper(Point point) {
+        /**
+         * Instantiates a new Point wrapper.
+         *
+         * @param point the point
+         */
+        public PointWrapper(Point point) {
 			this.point = point;
 		}
 
-		public Point get() {
+        /**
+         * Get point.
+         *
+         * @return the point
+         */
+        public Point get() {
 			return this.point;
 		}
 
@@ -151,11 +187,21 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 
 		private final double value;
 
-		public DoubleWrapper(Double value) {
+        /**
+         * Instantiates a new Double wrapper.
+         *
+         * @param value the value
+         */
+        public DoubleWrapper(Double value) {
 			this.value = value;
 		}
 
-		public Double get() {
+        /**
+         * Get double.
+         *
+         * @return the double
+         */
+        public Double get() {
 			return this.value;
 		}
 
@@ -264,14 +310,13 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 		}
 	}
 
-	/**
-	 * Looks up the spacing of the specified {@link Port}.
-	 *
-	 * @param port
-	 *            The port.
-	 * @return Additional spacing.
-	 */
-	public static int lookupPortSpacing(Port port) {
+    /**
+     * Looks up the spacing of the specified {@link Port}.
+     *
+     * @param port The port.
+     * @return Additional spacing.
+     */
+    public static int lookupPortSpacing(Port port) {
 		Operator operator = port.getPorts().getOwner().getOperator();
 		PortSpacingWrapper wrapper = (PortSpacingWrapper) operator.getUserData(KEY_PORT_SPACING);
 		if (wrapper != null) {
@@ -288,15 +333,13 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 		}
 	}
 
-	/**
-	 * Sets the spacing of the specified {@link Port}.
-	 *
-	 * @param port
-	 *            The port.
-	 * @param spacing
-	 *            The additional spacing.
-	 */
-	public static void setPortSpacing(Port port, Integer spacing) {
+    /**
+     * Sets the spacing of the specified {@link Port}.
+     *
+     * @param port    The port.
+     * @param spacing The additional spacing.
+     */
+    public static void setPortSpacing(Port port, Integer spacing) {
 		Operator operator = port.getPorts().getOwner().getOperator();
 		PortSpacingWrapper wrapper = (PortSpacingWrapper) operator.getUserData(KEY_PORT_SPACING);
 		Map<Port, Integer> spacings;
@@ -309,13 +352,12 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 		spacings.put(port, spacing);
 	}
 
-	/**
-	 * Resets the spacing of the specified {@link Port}.
-	 *
-	 * @param port
-	 *            The port.
-	 */
-	public static void resetPortSpacing(Port port) {
+    /**
+     * Resets the spacing of the specified {@link Port}.
+     *
+     * @param port The port.
+     */
+    public static void resetPortSpacing(Port port) {
 		Operator operator = port.getPorts().getOwner().getOperator();
 		PortSpacingWrapper wrapper = (PortSpacingWrapper) operator.getUserData(KEY_PORT_SPACING);
 		if (wrapper != null) {
@@ -324,14 +366,13 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 		}
 	}
 
-	/**
-	 * Looks up the position rectangle of the specified {@link Operator}.
-	 *
-	 * @param operator
-	 *            The operator.
-	 * @return The rectangle or null.
-	 */
-	public static Rectangle2D lookupOperatorRectangle(Operator operator) {
+    /**
+     * Looks up the position rectangle of the specified {@link Operator}.
+     *
+     * @param operator The operator.
+     * @return The rectangle or null.
+     */
+    public static Rectangle2D lookupOperatorRectangle(Operator operator) {
 		Rectangle2DWrapper wrapper = (Rectangle2DWrapper) operator.getUserData(KEY_OPERATOR_RECTANGLE);
 		if (wrapper == null) {
 			return null;
@@ -340,37 +381,33 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 		}
 	}
 
-	/**
-	 * Sets the position rectangle of the specified {@link Operator}.
-	 *
-	 * @param operator
-	 *            The operator.
-	 * @param rect
-	 *            The rectangle.
-	 */
-	public static void setOperatorRectangle(Operator operator, Rectangle2D rect) {
+    /**
+     * Sets the position rectangle of the specified {@link Operator}.
+     *
+     * @param operator The operator.
+     * @param rect     The rectangle.
+     */
+    public static void setOperatorRectangle(Operator operator, Rectangle2D rect) {
 		operator.setUserData(KEY_OPERATOR_RECTANGLE, new Rectangle2DWrapper(rect));
 	}
 
-	/**
-	 * Resets the position rectangle of the specified {@link Operator}.
-	 *
-	 * @param operator
-	 *            The operator.
-	 */
-	public static void resetOperatorRectangle(Operator operator) {
+    /**
+     * Resets the position rectangle of the specified {@link Operator}.
+     *
+     * @param operator The operator.
+     */
+    public static void resetOperatorRectangle(Operator operator) {
 		operator.setUserData(KEY_OPERATOR_RECTANGLE, null);
 	}
 
-	/**
-	 * Looks up the view position of the specified {@link OperatorChain}.
-	 *
-	 * @param operatorChain
-	 *            The operator chain
-	 * @return The position or null
-	 * @since 7.5
-	 */
-	public static Point lookupOperatorChainPosition(OperatorChain operatorChain) {
+    /**
+     * Looks up the view position of the specified {@link OperatorChain}.
+     *
+     * @param operatorChain The operator chain
+     * @return The position or null
+     * @since 7.5
+     */
+    public static Point lookupOperatorChainPosition(OperatorChain operatorChain) {
 		PointWrapper wrapper = (PointWrapper) operatorChain.getUserData(KEY_OPERATOR_CHAIN_POSITION);
 		if (wrapper == null) {
 			return null;
@@ -379,39 +416,35 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 		}
 	}
 
-	/**
-	 * Sets the view position of the specified {@link OperatorChain}.
-	 *
-	 * @param operatorChain
-	 *            The operator chain
-	 * @param position
-	 *            The center position
-	 * @since 7.5
-	 */
-	public static void setOperatorChainPosition(OperatorChain operatorChain, Point position) {
+    /**
+     * Sets the view position of the specified {@link OperatorChain}.
+     *
+     * @param operatorChain The operator chain
+     * @param position      The center position
+     * @since 7.5
+     */
+    public static void setOperatorChainPosition(OperatorChain operatorChain, Point position) {
 		operatorChain.setUserData(KEY_OPERATOR_CHAIN_POSITION, position == null ? null : new PointWrapper(position));
 	}
 
-	/**
-	 * Resets the view position of the specified {@link OperatorChain}.
-	 *
-	 * @param operatorChain
-	 *            The operator chain
-	 * @since 7.5
-	 */
-	public static void resetOperatorChainPosition(OperatorChain operatorChain) {
+    /**
+     * Resets the view position of the specified {@link OperatorChain}.
+     *
+     * @param operatorChain The operator chain
+     * @since 7.5
+     */
+    public static void resetOperatorChainPosition(OperatorChain operatorChain) {
 		operatorChain.setUserData(KEY_OPERATOR_CHAIN_POSITION, null);
 	}
 
-	/**
-	 * Looks up the zoom of the specified {@link OperatorChain}.
-	 *
-	 * @param operatorChain
-	 *            The operator chain
-	 * @return The zoom or null
-	 * @since 7.5
-	 */
-	public static Double lookupOperatorChainZoom(OperatorChain operatorChain) {
+    /**
+     * Looks up the zoom of the specified {@link OperatorChain}.
+     *
+     * @param operatorChain The operator chain
+     * @return The zoom or null
+     * @since 7.5
+     */
+    public static Double lookupOperatorChainZoom(OperatorChain operatorChain) {
 		DoubleWrapper wrapper = (DoubleWrapper) operatorChain.getUserData(KEY_OPERATOR_CHAIN_ZOOM);
 		if (wrapper == null) {
 			return null;
@@ -420,39 +453,35 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 		}
 	}
 
-	/**
-	 * Sets the zoom of the specified {@link OperatorChain}.
-	 *
-	 * @param operatorChain
-	 *            The operator chain
-	 * @param zoom
-	 *            The zoom
-	 * @since 7.5
-	 */
-	public static void setOperatorChainZoom(OperatorChain operatorChain, Double zoom) {
+    /**
+     * Sets the zoom of the specified {@link OperatorChain}.
+     *
+     * @param operatorChain The operator chain
+     * @param zoom          The zoom
+     * @since 7.5
+     */
+    public static void setOperatorChainZoom(OperatorChain operatorChain, Double zoom) {
 		operatorChain.setUserData(KEY_OPERATOR_CHAIN_ZOOM, zoom == null ? null : new DoubleWrapper(zoom));
 	}
 
-	/**
-	 * Resets the zoom of the specified {@link OperatorChain}.
-	 *
-	 * @param operatorChain
-	 *            The operator chain
-	 * @since 7.5
-	 */
-	public static void resetOperatorChainZoom(OperatorChain operatorChain) {
+    /**
+     * Resets the zoom of the specified {@link OperatorChain}.
+     *
+     * @param operatorChain The operator chain
+     * @since 7.5
+     */
+    public static void resetOperatorChainZoom(OperatorChain operatorChain) {
 		operatorChain.setUserData(KEY_OPERATOR_CHAIN_ZOOM, null);
 	}
 
-	/**
-	 * Looks up the scroll position of the specified {@link OperatorChain}.
-	 *
-	 * @param operatorChain
-	 *            The operator chain
-	 * @return The scroll position or null
-	 * @since 7.5
-	 */
-	public static Point lookupScrollPosition(OperatorChain operatorChain) {
+    /**
+     * Looks up the scroll position of the specified {@link OperatorChain}.
+     *
+     * @param operatorChain The operator chain
+     * @return The scroll position or null
+     * @since 7.5
+     */
+    public static Point lookupScrollPosition(OperatorChain operatorChain) {
 		PointWrapper wrapper = (PointWrapper) operatorChain.getUserData(KEY_SCROLL_POSITION);
 		if (wrapper == null) {
 			return null;
@@ -461,39 +490,35 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 		}
 	}
 
-	/**
-	 * Sets the scroll position of the specified {@link OperatorChain}.
-	 *
-	 * @param operatorChain
-	 *            The operator chain
-	 * @param scrollPos
-	 *            The scroll position
-	 * @since 7.5
-	 */
-	public static void setScrollPosition(OperatorChain operatorChain, Point scrollPos) {
+    /**
+     * Sets the scroll position of the specified {@link OperatorChain}.
+     *
+     * @param operatorChain The operator chain
+     * @param scrollPos     The scroll position
+     * @since 7.5
+     */
+    public static void setScrollPosition(OperatorChain operatorChain, Point scrollPos) {
 		operatorChain.setUserData(KEY_SCROLL_POSITION, new PointWrapper(scrollPos));
 	}
 
-	/**
-	 * Resets the scroll position of the specified {@link OperatorChain}.
-	 *
-	 * @param operatorChain
-	 *            The operator chain
-	 * @since 7.5
-	 */
-	public static void resetScrollPosition(OperatorChain operatorChain) {
+    /**
+     * Resets the scroll position of the specified {@link OperatorChain}.
+     *
+     * @param operatorChain The operator chain
+     * @since 7.5
+     */
+    public static void resetScrollPosition(OperatorChain operatorChain) {
 		operatorChain.setUserData(KEY_SCROLL_POSITION, null);
 	}
 
-	/**
-	 * Looks up the scroll process index of the specified {@link OperatorChain}.
-	 *
-	 * @param operatorChain
-	 *            The operator chain
-	 * @return The index or null
-	 * @since 7.5
-	 */
-	public static Double lookupScrollIndex(OperatorChain operatorChain) {
+    /**
+     * Looks up the scroll process index of the specified {@link OperatorChain}.
+     *
+     * @param operatorChain The operator chain
+     * @return The index or null
+     * @since 7.5
+     */
+    public static Double lookupScrollIndex(OperatorChain operatorChain) {
 		DoubleWrapper wrapper = (DoubleWrapper) operatorChain.getUserData(KEY_SCROLL_INDEX);
 		if (wrapper == null) {
 			return null;
@@ -502,62 +527,56 @@ public class ProcessLayoutXMLFilter implements ProcessXMLFilter {
 		}
 	}
 
-	/**
-	 * Sets the scroll process index of the specified {@link OperatorChain}.
-	 *
-	 * @param operatorChain
-	 *            The operator chain
-	 * @param index
-	 *            The process index
-	 * @since 7.5
-	 */
-	public static void setScrollIndex(OperatorChain operatorChain, Double index) {
+    /**
+     * Sets the scroll process index of the specified {@link OperatorChain}.
+     *
+     * @param operatorChain The operator chain
+     * @param index         The process index
+     * @since 7.5
+     */
+    public static void setScrollIndex(OperatorChain operatorChain, Double index) {
 		operatorChain.setUserData(KEY_SCROLL_INDEX, new DoubleWrapper(index));
 	}
 
-	/**
-	 * Resets the scroll process index of the specified {@link OperatorChain}.
-	 *
-	 * @param operatorChain
-	 *            The operator chain.
-	 * @since 7.5
-	 */
-	public static void resetScrollIndex(OperatorChain operatorChain) {
+    /**
+     * Resets the scroll process index of the specified {@link OperatorChain}.
+     *
+     * @param operatorChain The operator chain.
+     * @since 7.5
+     */
+    public static void resetScrollIndex(OperatorChain operatorChain) {
 		operatorChain.setUserData(KEY_SCROLL_INDEX, null);
 	}
 
-	/**
-	 * Looks up the restore flag of the specified {@link Operator}.
-	 *
-	 * @param operator
-	 *            the operator
-	 * @return the flag or null
-	 * @since 7.5
-	 */
-	public static boolean lookupRestore(Operator operator) {
+    /**
+     * Looks up the restore flag of the specified {@link Operator}.
+     *
+     * @param operator the operator
+     * @return the flag or null
+     * @since 7.5
+     */
+    public static boolean lookupRestore(Operator operator) {
 		UserData<?> restore = operator.getUserData(KEY_RESTORE);
 		return restore != null;
 	}
 
-	/**
-	 * Sets the restore flag of the specified {@link Operator}.
-	 *
-	 * @param operator
-	 *            the operator
-	 * @since 7.5
-	 */
-	public static void setRestore(Operator operator) {
+    /**
+     * Sets the restore flag of the specified {@link Operator}.
+     *
+     * @param operator the operator
+     * @since 7.5
+     */
+    public static void setRestore(Operator operator) {
 		operator.setUserData(KEY_RESTORE, new FlagUserData());
 	}
 
-	/**
-	 * Resets the restore flag of the specified {@link OperatorChain}.
-	 *
-	 * @param operator
-	 *            The operator
-	 * @since 7.5
-	 */
-	public static void resetRestore(Operator operator) {
+    /**
+     * Resets the restore flag of the specified {@link OperatorChain}.
+     *
+     * @param operator The operator
+     * @since 7.5
+     */
+    public static void resetRestore(Operator operator) {
 		operator.setUserData(KEY_RESTORE, null);
 	}
 

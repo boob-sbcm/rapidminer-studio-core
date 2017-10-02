@@ -36,11 +36,22 @@ public class SticksPlot2D extends JMathPlotter2D {
 
 	private static final long serialVersionUID = -4351530035081388245L;
 
-	public SticksPlot2D(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Sticks plot 2 d.
+     *
+     * @param settings the settings
+     */
+    public SticksPlot2D(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
-	public SticksPlot2D(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Sticks plot 2 d.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public SticksPlot2D(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings, dataTable);
 	}
 

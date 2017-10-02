@@ -36,24 +36,39 @@ import java.util.List;
 
 
 /**
+ * The type Extract annotation.
+ *
  * @author Marius Helf
- * 
  */
 public class ExtractAnnotation extends Operator {
 
 	private InputPort inputPort = getInputPorts().createPort("object", IOObject.class);
 	private OutputPort outputPort = getOutputPorts().createPort("object");
 
-	public static final String PARAMETER_MACRO_NAME = "macro";
-	public static final String PARAMETER_ANNOTATION = "annotation";
-	public static final String PARAMETER_EXTRACT_ALL = "extract_all";
-	public static final String PARAMETER_NAME_PREFIX = "name_prefix";
+    /**
+     * The constant PARAMETER_MACRO_NAME.
+     */
+    public static final String PARAMETER_MACRO_NAME = "macro";
+    /**
+     * The constant PARAMETER_ANNOTATION.
+     */
+    public static final String PARAMETER_ANNOTATION = "annotation";
+    /**
+     * The constant PARAMETER_EXTRACT_ALL.
+     */
+    public static final String PARAMETER_EXTRACT_ALL = "extract_all";
+    /**
+     * The constant PARAMETER_NAME_PREFIX.
+     */
+    public static final String PARAMETER_NAME_PREFIX = "name_prefix";
 	private static final String PARAMETER_FAIL_ON_MISSING = "fail_on_missing";
 
-	/**
-	 * @param description
-	 */
-	public ExtractAnnotation(OperatorDescription description) {
+    /**
+     * Instantiates a new Extract annotation.
+     *
+     * @param description the description
+     */
+    public ExtractAnnotation(OperatorDescription description) {
 		super(description);
 		getTransformer().addPassThroughRule(inputPort, outputPort);
 	}

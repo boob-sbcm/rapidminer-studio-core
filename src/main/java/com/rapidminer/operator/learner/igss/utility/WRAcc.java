@@ -23,13 +23,18 @@ import com.rapidminer.operator.learner.igss.hypothesis.Hypothesis;
 
 /**
  * The instance-averaging utility function WRAcc.
- * 
+ *
  * @author Dirk Dach
  */
 public class WRAcc extends InstanceAveraging {
 
-	/** Constructs new WRAcc with the given default probability. */
-	public WRAcc(double[] priors, int large) {
+    /**
+     * Constructs new WRAcc with the given default probability.  @param priors the priors
+     *
+     * @param priors the priors
+     * @param large  the large
+     */
+    public WRAcc(double[] priors, int large) {
 		super(priors, large);
 	}
 

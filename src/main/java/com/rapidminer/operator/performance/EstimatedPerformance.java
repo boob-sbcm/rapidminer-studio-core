@@ -26,7 +26,7 @@ import com.rapidminer.tools.math.Averagable;
  * the performance test is actually done using a test set. Please note that this type of performance
  * cannot be used to calculate average values, i.e. it will lead to an error if an
  * EstimatedPerformance criterion is used in a validation operator.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class EstimatedPerformance extends PerformanceCriterion {
@@ -41,10 +41,17 @@ public class EstimatedPerformance extends PerformanceCriterion {
 
 	private boolean minimizeForFitness;
 
-	/** Clone constructor. */
-	public EstimatedPerformance() {}
+    /**
+     * Clone constructor.
+     */
+    public EstimatedPerformance() {}
 
-	public EstimatedPerformance(EstimatedPerformance ep) {
+    /**
+     * Instantiates a new Estimated performance.
+     *
+     * @param ep the ep
+     */
+    public EstimatedPerformance(EstimatedPerformance ep) {
 		super(ep);
 		this.name = ep.name;
 		this.minimizeForFitness = ep.minimizeForFitness;
@@ -52,19 +59,15 @@ public class EstimatedPerformance extends PerformanceCriterion {
 		this.value = ep.value;
 	}
 
-	/**
-	 * Constructs a new extimated performance criterion.
-	 * 
-	 * @param name
-	 *            Human readable name
-	 * @param value
-	 *            The Value of the performance criterion
-	 * @param numberOfExamples
-	 *            The number of examples used to estimate this value.
-	 * @param minimizeForFitness
-	 *            Indicates whether or not (-1) * value should be used as fitness value.
-	 */
-	public EstimatedPerformance(String name, double value, int numberOfExamples, boolean minimizeForFitness) {
+    /**
+     * Constructs a new extimated performance criterion.
+     *
+     * @param name               Human readable name
+     * @param value              The Value of the performance criterion
+     * @param numberOfExamples   The number of examples used to estimate this value.
+     * @param minimizeForFitness Indicates whether or not (-1) * value should be used as fitness value.
+     */
+    public EstimatedPerformance(String name, double value, int numberOfExamples, boolean minimizeForFitness) {
 		this.name = name;
 		setMikroAverage(value, numberOfExamples);
 		this.minimizeForFitness = minimizeForFitness;
@@ -80,16 +83,13 @@ public class EstimatedPerformance extends PerformanceCriterion {
 		return Double.NaN;
 	}
 
-	/**
-	 * Sets the value of this estimated performance criterion.
-	 * 
-	 * @param value
-	 *            The Value of the performance criterion
-	 * @param numberOfExamples
-	 *            The number of examples used to estimate this value. It is used for calculating the
-	 *            average.
-	 */
-	public void setMikroAverage(double value, double numberOfExamples) {
+    /**
+     * Sets the value of this estimated performance criterion.
+     *
+     * @param value            The Value of the performance criterion
+     * @param numberOfExamples The number of examples used to estimate this value. It is used for calculating the            average.
+     */
+    public void setMikroAverage(double value, double numberOfExamples) {
 		this.value = value * numberOfExamples;
 		this.exampleCount = numberOfExamples;
 	}

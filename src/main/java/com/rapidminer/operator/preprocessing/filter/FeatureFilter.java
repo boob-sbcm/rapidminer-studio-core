@@ -35,29 +35,35 @@ import java.util.List;
  * <code>ExampleSet</code> as input and switch off all features that fulfill a condition. Subclasses
  * must implement the condition in the method <code>switchOffFeature()</code>, which returns a
  * boolean.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class FeatureFilter extends AbstractFeatureSelection {
 
-	/** The parameter name for &quot;Filter also special attributes (label, id...)&quot; */
-	public static final String PARAMETER_FILTER_SPECIAL_FEATURES = "filter_special_features";
+    /**
+     * The parameter name for &quot;Filter also special attributes (label, id...)&quot;
+     */
+    public static final String PARAMETER_FILTER_SPECIAL_FEATURES = "filter_special_features";
 
-	public FeatureFilter(OperatorDescription description) {
+    /**
+     * Instantiates a new Feature filter.
+     *
+     * @param description the description
+     */
+    public FeatureFilter(OperatorDescription description) {
 		super(description);
 	}
 
-	/**
-	 * Must be implemented by subclasses. When operators extending this class are applied, they loop
-	 * through the set of features and switch off all features for which this method returns TRUE,
-	 * while keeping the status of the other features.
-	 * 
-	 * @param theFeature
-	 *            Feature to check.
-	 * @return TRUE if this feature should <b>not</b> be active in the output example set of this
-	 *         operator. FALSE otherwise.
-	 */
-	public abstract boolean switchOffFeature(AttributeRole theFeature) throws OperatorException;
+    /**
+     * Must be implemented by subclasses. When operators extending this class are applied, they loop
+     * through the set of features and switch off all features for which this method returns TRUE,
+     * while keeping the status of the other features.
+     *
+     * @param theFeature Feature to check.
+     * @return TRUE if this feature should <b>not</b> be active in the output example set of this         operator. FALSE otherwise.
+     * @throws OperatorException the operator exception
+     */
+    public abstract boolean switchOffFeature(AttributeRole theFeature) throws OperatorException;
 
 	/**
 	 * Applies filtering of features by looping through all features and checking

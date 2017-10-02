@@ -33,23 +33,23 @@ import static de.bwaldvogel.liblinear.Linear.swap;
 
 /**
  * A coordinate descent algorithm for multi-class support vector machines by Crammer and Singer
- *
+ * <p>
  * <pre>
  * min_{\alpha} 0.5 \sum_m ||w_m(\alpha)||^2 + \sum_i \sum_m e^m_i alpha^m_i
  * s.t. \alpha^m_i <= C^m_i \forall m,i , \sum_m \alpha^m_i=0 \forall i
- * 
+ *
  * where e^m_i = 0 if y_i = m,
  * e^m_i = 1 if y_i != m,
  * C^m_i = C if m = y_i,
  * C^m_i = 0 if m != y_i,
  * and w_m(\alpha) = \sum_i \alpha^m_i x_i
- * 
+ *
  * Given:
  * x, y, C
  * eps is the stopping tolerance
- * 
+ *
  * solution will be put in w
- * 
+ *
  * See Appendix of LIBLINEAR paper, Fan et al. (2008)
  * </pre>
  */
@@ -64,15 +64,39 @@ class SolverMCSVM_CS {
 	private final int nr_class;
 	private final Problem prob;
 
-	public SolverMCSVM_CS(Problem prob, int nr_class, double[] C) {
+    /**
+     * Instantiates a new Solver mcsvm cs.
+     *
+     * @param prob     the prob
+     * @param nr_class the nr class
+     * @param C        the c
+     */
+    public SolverMCSVM_CS(Problem prob, int nr_class, double[] C) {
 		this(prob, nr_class, C, 0.1);
 	}
 
-	public SolverMCSVM_CS(Problem prob, int nr_class, double[] C, double eps) {
+    /**
+     * Instantiates a new Solver mcsvm cs.
+     *
+     * @param prob     the prob
+     * @param nr_class the nr class
+     * @param C        the c
+     * @param eps      the eps
+     */
+    public SolverMCSVM_CS(Problem prob, int nr_class, double[] C, double eps) {
 		this(prob, nr_class, C, eps, 100000);
 	}
 
-	public SolverMCSVM_CS(Problem prob, int nr_class, double[] weighted_C, double eps, int max_iter) {
+    /**
+     * Instantiates a new Solver mcsvm cs.
+     *
+     * @param prob       the prob
+     * @param nr_class   the nr class
+     * @param weighted_C the weighted c
+     * @param eps        the eps
+     * @param max_iter   the max iter
+     */
+    public SolverMCSVM_CS(Problem prob, int nr_class, double[] weighted_C, double eps, int max_iter) {
 		this.w_size = prob.n;
 		this.l = prob.l;
 		this.nr_class = nr_class;
@@ -99,7 +123,12 @@ class SolverMCSVM_CS {
 		return false;
 	}
 
-	public void solve(double[] w) {
+    /**
+     * Solve.
+     *
+     * @param w the w
+     */
+    public void solve(double[] w) {
 		int i, m, s;
 		int iter = 0;
 		double[] alpha = new double[l * nr_class];

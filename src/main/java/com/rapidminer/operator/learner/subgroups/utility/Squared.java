@@ -24,7 +24,7 @@ import com.rapidminer.operator.learner.subgroups.hypothesis.Rule;
 
 /**
  * Calculates the squared error of a rule.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class Squared extends UtilityFunction {
@@ -34,7 +34,13 @@ public class Squared extends UtilityFunction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Squared(double totalWeight, double totalPredictionWeight) {
+    /**
+     * Instantiates a new Squared.
+     *
+     * @param totalWeight           the total weight
+     * @param totalPredictionWeight the total prediction weight
+     */
+    public Squared(double totalWeight, double totalPredictionWeight) {
 		super(totalWeight, totalPredictionWeight);
 	}
 

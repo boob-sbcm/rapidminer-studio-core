@@ -25,7 +25,7 @@ import com.rapidminer.example.Statistics;
 
 /**
  * This class can be used to transform an inner tree node into a leaf.
- * 
+ *
  * @author Ingo Mierswa, Christian Bockermann
  */
 public class DecisionTreeLeafCreator implements LeafCreator {

@@ -31,7 +31,10 @@ public class ListFrequencyStack implements FrequencyStack {
 
 	private List<Integer> list;
 
-	public ListFrequencyStack() {
+    /**
+     * Instantiates a new List frequency stack.
+     */
+    public ListFrequencyStack() {
 		list = new ArrayList<Integer>();
 	}
 

@@ -20,26 +20,35 @@ package com.rapidminer.operator;
 
 /**
  * This interface describes the (expected) input and (guaranteed) output classes of operators.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface IODescription {
 
-	/** Returns the classes that are expected as input. */
-	public abstract Class<?>[] getInputClasses();
+    /**
+     * Returns the classes that are expected as input.  @return the class [ ]
+     *
+     * @return the class [ ]
+     */
+    public abstract Class<?>[] getInputClasses();
 
-	/**
-	 * Returns the output classes dependent on the outputBehaviour
-	 * <ul>
-	 * <li><tt>PASS_UNUSED_INPUT_TO_OUTPUT:</tt>output classes are the classes used in the
-	 * constructor plus those classes in <tt>input[]</tt> that were not consumed. Classes are
-	 * supposed to be consumed by the operator if they find a matching class in the input classes
-	 * used in the constructor (which can be a superclass or interface)
-	 * <li><tt>DELETE_UNUSED_INPUT:</tt>output classes are exactly those classes used in the
-	 * constructor.
-	 * </ul>
-	 * In either case the output classes precede the unused input classes. Their order is conserved.
-	 */
-	public abstract Class<?>[] getOutputClasses(Class<?>[] input, Operator operator) throws IllegalInputException;
+    /**
+     * Returns the output classes dependent on the outputBehaviour
+     * <ul>
+     * <li><tt>PASS_UNUSED_INPUT_TO_OUTPUT:</tt>output classes are the classes used in the
+     * constructor plus those classes in <tt>input[]</tt> that were not consumed. Classes are
+     * supposed to be consumed by the operator if they find a matching class in the input classes
+     * used in the constructor (which can be a superclass or interface)
+     * <li><tt>DELETE_UNUSED_INPUT:</tt>output classes are exactly those classes used in the
+     * constructor.
+     * </ul>
+     * In either case the output classes precede the unused input classes. Their order is conserved.
+     *
+     * @param input    the input
+     * @param operator the operator
+     * @return the class [ ]
+     * @throws IllegalInputException the illegal input exception
+     */
+    public abstract Class<?>[] getOutputClasses(Class<?>[] input, Operator operator) throws IllegalInputException;
 
 }

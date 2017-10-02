@@ -46,10 +46,22 @@ import com.rapidminer.tools.Tools;
  */
 public class MacroHandler extends Observable {
 
-	public static final String PROCESS_NAME = "process_name";
-	public static final String PROCESS_FILE = "process_file";
-	public static final String PROCESS_PATH = "process_path";
-	public static final String PROCESS_START = "process_start";
+    /**
+     * The constant PROCESS_NAME.
+     */
+    public static final String PROCESS_NAME = "process_name";
+    /**
+     * The constant PROCESS_FILE.
+     */
+    public static final String PROCESS_FILE = "process_file";
+    /**
+     * The constant PROCESS_PATH.
+     */
+    public static final String PROCESS_PATH = "process_path";
+    /**
+     * The constant PROCESS_START.
+     */
+    public static final String PROCESS_START = "process_start";
 
 	/**
 	 * Remaining problem is that predefined macros that are overridden by custom macros are
@@ -97,10 +109,10 @@ public class MacroHandler extends Observable {
 
 	// ThreadLocal because DateFormat is NOT threadsafe and creating a new DateFormat is
 	// EXTREMELY expensive
-	/**
-	 * Used for formatting the %{process_start} and current time %{t} macro
-	 */
-	public static final ThreadLocal<DateFormat> DATE_FORMAT = new ThreadLocal<DateFormat>() {
+    /**
+     * Used for formatting the %{process_start} and current time %{t} macro
+     */
+    public static final ThreadLocal<DateFormat> DATE_FORMAT = new ThreadLocal<DateFormat>() {
 
 		@Override
 		protected DateFormat initialValue() {
@@ -127,11 +139,19 @@ public class MacroHandler extends Observable {
 
 	private final Object LOCK = new Object();
 
-	public MacroHandler(Process process) {
+    /**
+     * Instantiates a new Macro handler.
+     *
+     * @param process the process
+     */
+    public MacroHandler(Process process) {
 		this.process = process;
 	}
 
-	public void clear() {
+    /**
+     * Clear.
+     */
+    public void clear() {
 		setChanged();
 		synchronized (LOCK) {
 			macroMap.clear();
@@ -139,7 +159,12 @@ public class MacroHandler extends Observable {
 		notifyObservers(this);
 	}
 
-	public Iterator<String> getDefinedMacroNames() {
+    /**
+     * Gets defined macro names.
+     *
+     * @return the defined macro names
+     */
+    public Iterator<String> getDefinedMacroNames() {
 		Iterator<String> iterator = null;
 		synchronized (LOCK) {
 			iterator = new HashMap<>(macroMap).keySet().iterator();
@@ -147,31 +172,32 @@ public class MacroHandler extends Observable {
 		return iterator;
 	}
 
-	/**
-	 * @return an array with the names of all user-friendly predefined macros available in
-	 *         RapidMiner
-	 */
-	public String[] getAllGraphicallySupportedPredefinedMacros() {
+    /**
+     * Get all graphically supported predefined macros string [ ].
+     *
+     * @return an array with the names of all user-friendly predefined macros available in         RapidMiner
+     */
+    public String[] getAllGraphicallySupportedPredefinedMacros() {
 		return ALL_USER_FRIENDLY_PREDEFINED_MACROS;
 	}
 
-	/**
-	 * @return an array with the names of ALL predefined macros available in RapidMiner
-	 */
-	public String[] getAllPredefinedMacros() {
+    /**
+     * Get all predefined macros string [ ].
+     *
+     * @return an array with the names of ALL predefined macros available in RapidMiner
+     */
+    public String[] getAllPredefinedMacros() {
 		return ALL_PREDEFINED_MACROS;
 	}
 
-	/**
-	 * Adds a macro to this MacroHandler. If a macro with this name is already present, it will be
-	 * overwritten.
-	 *
-	 * @param macro
-	 *            The name of the macro.
-	 * @param value
-	 *            The new value of the macro.
-	 */
-	public void addMacro(String macro, String value) {
+    /**
+     * Adds a macro to this MacroHandler. If a macro with this name is already present, it will be
+     * overwritten.
+     *
+     * @param macro The name of the macro.
+     * @param value The new value of the macro.
+     */
+    public void addMacro(String macro, String value) {
 		if (macro != null && !macro.isEmpty()) {
 			setChanged();
 			synchronized (LOCK) {
@@ -181,7 +207,12 @@ public class MacroHandler extends Observable {
 		}
 	}
 
-	public void removeMacro(String macro) {
+    /**
+     * Remove macro.
+     *
+     * @param macro the macro
+     */
+    public void removeMacro(String macro) {
 		setChanged();
 		synchronized (LOCK) {
 			macroMap.remove(macro);
@@ -189,16 +220,14 @@ public class MacroHandler extends Observable {
 		notifyObservers(this);
 	}
 
-	/**
-	 * Checks whether a provided macro was set.
-	 *
-	 * @param macro
-	 *            the macro key
-	 * @param operator
-	 *            the operator that can be used to resolve the macro
-	 * @return <code>true</code> in case it was set, <code>false</code> otherwise
-	 */
-	public boolean isMacroSet(String macro, Operator operator) {
+    /**
+     * Checks whether a provided macro was set.
+     *
+     * @param macro    the macro key
+     * @param operator the operator that can be used to resolve the macro
+     * @return <code>true</code> in case it was set, <code>false</code> otherwise
+     */
+    public boolean isMacroSet(String macro, Operator operator) {
 		synchronized (LOCK) {
 			if (macroMap.containsKey(macro) || PREDEFINED_OPERATOR_INDEPENDENT_MACROS.contains(macro)) {
 				return true;
@@ -208,11 +237,14 @@ public class MacroHandler extends Observable {
 
 	}
 
-	/**
-	 * Resolves the macros "process_name", "process_file", "process_path", "t" and user defined
-	 * macros.
-	 */
-	public String getMacro(String macro) {
+    /**
+     * Resolves the macros "process_name", "process_file", "process_path", "t" and user defined
+     * macros.
+     *
+     * @param macro the macro
+     * @return the macro
+     */
+    public String getMacro(String macro) {
 		if (PREDEFINED_OPERATOR_INDEPENDENT_MACROS.contains(macro)) {
 			switch (macro) {
 				case PROCESS_NAME:
@@ -240,38 +272,36 @@ public class MacroHandler extends Observable {
 		return this.macroMap.get(macro);
 	}
 
-	/**
-	 * Resolves the macro.
-	 *
-	 * <p>
-	 * Resolves following predefined macros:
-	 * </p>
-	 * <ul>
-	 * <li><b>process_name</b> with the name of the process</li>
-	 * <li><b>process_file</b> with the file name of the process</li>
-	 * <li><b>process_path</b> with the path to the process</li>
-	 * <li><b>t</b> with the current system date and time</li>
-	 * </ul>
-	 * <p>
-	 * Resolves following predefined macros if operator is non-null:
-	 * </p>
-	 * <ul>
-	 * <li><b>n</b> or <b>operator_name</b> with the name of this operator</li>
-	 * <li><b>c</b> with the class of this operator</li>
-	 * <li><b>a</b> or <b>execution_count</b> with the number of times the operator was applied</li>
-	 * <li><b>b</b> with the number of times the operator was applied plus one</li>
-	 * </ul>
-	 * <p>
-	 * Resolves user defined macros.
-	 * </p>
-	 *
-	 * @param macro
-	 *            the macro to resolve
-	 * @param operator
-	 *            the operator to use for resolving, may be {@code null}
-	 * @return the macro value
-	 */
-	public String getMacro(String macro, Operator operator) {
+    /**
+     * Resolves the macro.
+     * <p>
+     * <p>
+     * Resolves following predefined macros:
+     * </p>
+     * <ul>
+     * <li><b>process_name</b> with the name of the process</li>
+     * <li><b>process_file</b> with the file name of the process</li>
+     * <li><b>process_path</b> with the path to the process</li>
+     * <li><b>t</b> with the current system date and time</li>
+     * </ul>
+     * <p>
+     * Resolves following predefined macros if operator is non-null:
+     * </p>
+     * <ul>
+     * <li><b>n</b> or <b>operator_name</b> with the name of this operator</li>
+     * <li><b>c</b> with the class of this operator</li>
+     * <li><b>a</b> or <b>execution_count</b> with the number of times the operator was applied</li>
+     * <li><b>b</b> with the number of times the operator was applied plus one</li>
+     * </ul>
+     * <p>
+     * Resolves user defined macros.
+     * </p>
+     *
+     * @param macro    the macro to resolve
+     * @param operator the operator to use for resolving, may be {@code null}
+     * @return the macro value
+     */
+    public String getMacro(String macro, Operator operator) {
 		if (operator != null) {
 			String value = resolveUnshiftedOperatorMacros(macro, operator);
 			if (value != null) {
@@ -286,19 +316,17 @@ public class MacroHandler extends Observable {
 		return this.macroMap.toString();
 	}
 
-	/**
-	 * This method replaces all Macros in a given String through their real values and returns a the
-	 * String with replaced Macros. If the CompabililtyLevel of the RootOperator is lower than
-	 * 6.0.3, undefined macros will be ignored.
-	 *
-	 * @param parameterValue
-	 *            the whole ParameterType value String
-	 * @return the complete parameter value with replaced Macros
-	 * @throws UndefinedParameterError
-	 *             this error will be thrown if the CompabilityLevel of the RootOperator is at least
-	 *             6.0.3 and a macro is undefined
-	 */
-	public String resolveMacros(String parameterKey, String parameterValue) throws UndefinedMacroError {
+    /**
+     * This method replaces all Macros in a given String through their real values and returns a the
+     * String with replaced Macros. If the CompabililtyLevel of the RootOperator is lower than
+     * 6.0.3, undefined macros will be ignored.
+     *
+     * @param parameterKey   the parameter key
+     * @param parameterValue the whole ParameterType value String
+     * @return the complete parameter value with replaced Macros
+     * @throws UndefinedMacroError the undefined macro error
+     */
+    public String resolveMacros(String parameterKey, String parameterValue) throws UndefinedMacroError {
 		int startIndex = parameterValue.indexOf(Operator.MACRO_STRING_START);
 		if (startIndex == -1) {
 			return parameterValue;
@@ -337,28 +365,30 @@ public class MacroHandler extends Observable {
 		return result.toString();
 	}
 
-	/**
-	 * <p>
-	 * Replaces following predefined macros:
-	 * </p>
-	 * <ul>
-	 * <li><b>%{n}</b> or <b>%{operator_name}</b> with the name of this operator</li>
-	 * <li><b>%{c}</b> with the class of this operator</li>
-	 * <li><b>%{t}</b> with the current system date and time
-	 * <li><b>%{a}</b> or <b>%{execution_count}</b> with the number of times the operator was
-	 * applied</li>
-	 * <li><b>%{b}</b> with the number of times the operator was applied plus one (a shortcut for
-	 * %{p[1]})</li>
-	 * <li><b>%{p[number]}</b> with the number of times the operator was applied plus number</li>
-	 * <li><b>%{v[OperatorName.ValueName]}</b> with the value &quot;ValueName&quot; of the operator
-	 * &quot;OperatorName&quot;</li>
-	 * <li><b>%{%}</b> with %</li>
-	 * </ul>
-	 *
-	 * @return The String with resolved predefined macros. Returns {@code null} in case provided
-	 *         parameter str is {@code null}.
-	 */
-	public String resolvePredefinedMacros(String str, Operator operator) throws UndefinedParameterError {
+    /**
+     * <p>
+     * Replaces following predefined macros:
+     * </p>
+     * <ul>
+     * <li><b>%{n}</b> or <b>%{operator_name}</b> with the name of this operator</li>
+     * <li><b>%{c}</b> with the class of this operator</li>
+     * <li><b>%{t}</b> with the current system date and time
+     * <li><b>%{a}</b> or <b>%{execution_count}</b> with the number of times the operator was
+     * applied</li>
+     * <li><b>%{b}</b> with the number of times the operator was applied plus one (a shortcut for
+     * %{p[1]})</li>
+     * <li><b>%{p[number]}</b> with the number of times the operator was applied plus number</li>
+     * <li><b>%{v[OperatorName.ValueName]}</b> with the value &quot;ValueName&quot; of the operator
+     * &quot;OperatorName&quot;</li>
+     * <li><b>%{%}</b> with %</li>
+     * </ul>
+     *
+     * @param str      the str
+     * @param operator the operator
+     * @return The String with resolved predefined macros. Returns {@code null} in case provided         parameter str is {@code null}.
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public String resolvePredefinedMacros(String str, Operator operator) throws UndefinedParameterError {
 		if (str == null) {
 			return null;
 		}

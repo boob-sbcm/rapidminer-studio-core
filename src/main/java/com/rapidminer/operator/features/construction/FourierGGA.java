@@ -38,7 +38,7 @@ import com.rapidminer.parameter.ParameterTypeString;
  * FourierGGA has all functions of YAGGA2. Additionally for each added attribute a fourier
  * transformation is performed and the sinus function corresponding to the highest peaks are
  * additionally added.
- * 
+ * <p>
  * YAGGA is an acronym for Yet Another Generating Genetic Algorithm. Its approach to generating new
  * attributes differs from the original one. The (generating) mutation can do one of the following
  * things with different probabilities:
@@ -52,47 +52,60 @@ import com.rapidminer.parameter.ParameterTypeString;
  * Thus it is guaranteed that the length of the feature vector can both grow and shrink. On average
  * it will keep its original length, unless longer or shorter individuals prove to have a better
  * fitness.
- * 
+ * <p>
  * Since this operator does not contain algorithms to extract features from value series, it is
  * restricted to example sets with only single attributes. For (automatic) feature extraction from
  * values series the value series plugin for RapidMiner written by Ingo Mierswa should be used. It
  * is available at <a href="http://rapidminer.com">http://rapidminer.com</a>.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class FourierGGA extends YAGGA2 {
 
-	/**
-	 * The parameter name for &quot;The maximum of original attributes added in each
-	 * generation.&quot;
-	 */
-	public static final String PARAMETER_NUMBER_ORIGINAL = "number_original";
+    /**
+     * The parameter name for &quot;The maximum of original attributes added in each
+     * generation.&quot;
+     */
+    public static final String PARAMETER_NUMBER_ORIGINAL = "number_original";
 
-	/**
-	 * The parameter name for &quot;The maximum number of attributes constructed in each
-	 * generation.&quot;
-	 */
-	public static final String PARAMETER_NUMBER_CONSTRUCTED = "number_constructed";
+    /**
+     * The parameter name for &quot;The maximum number of attributes constructed in each
+     * generation.&quot;
+     */
+    public static final String PARAMETER_NUMBER_CONSTRUCTED = "number_constructed";
 
-	/** The parameter name for &quot;Uses a fourier generation in this first generations&quot; */
-	public static final String PARAMETER_START_SINUS_BOOST = "start_sinus_boost";
+    /**
+     * The parameter name for &quot;Uses a fourier generation in this first generations&quot;
+     */
+    public static final String PARAMETER_START_SINUS_BOOST = "start_sinus_boost";
 
-	/**
-	 * The parameter name for &quot;Use this number of highest frequency peaks for sinus
-	 * generation.&quot;
-	 */
-	public static final String PARAMETER_SEARCH_FOURIER_PEAKS = "search_fourier_peaks";
+    /**
+     * The parameter name for &quot;Use this number of highest frequency peaks for sinus
+     * generation.&quot;
+     */
+    public static final String PARAMETER_SEARCH_FOURIER_PEAKS = "search_fourier_peaks";
 
-	/** The parameter name for &quot;Use this number of additional peaks for each found peak.&quot; */
-	public static final String PARAMETER_ATTRIBUTES_PER_PEAK = "attributes_per_peak";
+    /**
+     * The parameter name for &quot;Use this number of additional peaks for each found peak.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTES_PER_PEAK = "attributes_per_peak";
 
-	/** The parameter name for &quot;Use this range for additional peaks for each found peak.&quot; */
-	public static final String PARAMETER_EPSILON = "epsilon";
+    /**
+     * The parameter name for &quot;Use this range for additional peaks for each found peak.&quot;
+     */
+    public static final String PARAMETER_EPSILON = "epsilon";
 
-	/** The parameter name for &quot;Use this adaption type for additional peaks.&quot; */
-	public static final String PARAMETER_ADAPTION_TYPE = "adaption_type";
+    /**
+     * The parameter name for &quot;Use this adaption type for additional peaks.&quot;
+     */
+    public static final String PARAMETER_ADAPTION_TYPE = "adaption_type";
 
-	public FourierGGA(OperatorDescription description) {
+    /**
+     * Instantiates a new Fourier gga.
+     *
+     * @param description the description
+     */
+    public FourierGGA(OperatorDescription description) {
 		super(description);
 	}
 

@@ -34,11 +34,16 @@ import com.rapidminer.parameter.ParameterTypeAttribute;
 
 
 /**
+ * The type Single attribute filter.
+ *
  * @author Tobias Malbrecht
  */
 public class SingleAttributeFilter extends AbstractAttributeFilterCondition {
 
-	public static final String PARAMETER_ATTRIBUTE = "attribute";
+    /**
+     * The constant PARAMETER_ATTRIBUTE.
+     */
+    public static final String PARAMETER_ATTRIBUTE = "attribute";
 
 	private String attributeName;
 

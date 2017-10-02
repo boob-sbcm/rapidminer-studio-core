@@ -21,7 +21,7 @@ package com.rapidminer.tools.math;
 /**
  * Helper class containing all information about a group, i.e. the number of elements, the mean and
  * variance value.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class TestGroup {
@@ -32,21 +32,43 @@ public class TestGroup {
 
 	private double variance;
 
-	public TestGroup(double number, double mean, double variance) {
+    /**
+     * Instantiates a new Test group.
+     *
+     * @param number   the number
+     * @param mean     the mean
+     * @param variance the variance
+     */
+    public TestGroup(double number, double mean, double variance) {
 		this.number = number;
 		this.mean = mean;
 		this.variance = variance;
 	}
 
-	public double getNumber() {
+    /**
+     * Gets number.
+     *
+     * @return the number
+     */
+    public double getNumber() {
 		return this.number;
 	}
 
-	public double getMean() {
+    /**
+     * Gets mean.
+     *
+     * @return the mean
+     */
+    public double getMean() {
 		return this.mean;
 	}
 
-	public double getVariance() {
+    /**
+     * Gets variance.
+     *
+     * @return the variance
+     */
+    public double getVariance() {
 		return this.variance;
 	}
 }

@@ -31,7 +31,7 @@ import java.util.Iterator;
 /**
  * Normalized absolute error is the total absolute error normalized by the error simply predicting
  * the average of the actual values.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class NormalizedAbsoluteError extends MeasuredPerformance {
@@ -52,9 +52,17 @@ public class NormalizedAbsoluteError extends MeasuredPerformance {
 
 	private double exampleCounter = 0.0d;
 
-	public NormalizedAbsoluteError() {}
+    /**
+     * Instantiates a new Normalized absolute error.
+     */
+    public NormalizedAbsoluteError() {}
 
-	public NormalizedAbsoluteError(NormalizedAbsoluteError nae) {
+    /**
+     * Instantiates a new Normalized absolute error.
+     *
+     * @param nae the nae
+     */
+    public NormalizedAbsoluteError(NormalizedAbsoluteError nae) {
 		super(nae);
 		this.deviationSum = nae.deviationSum;
 		this.relativeSum = nae.relativeSum;

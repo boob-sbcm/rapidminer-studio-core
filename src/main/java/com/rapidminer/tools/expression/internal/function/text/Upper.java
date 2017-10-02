@@ -29,14 +29,13 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryString
  * A {@link Function} which transforms a nominal value to its upper case representation.
  *
  * @author Thilo Kamradt
- *
  */
 public class Upper extends AbstractArbitraryStringInputStringOutputFunction {
 
-	/**
-	 * Creates a function that transforms a nominal value to its upper case representation
-	 */
-	public Upper() {
+    /**
+     * Creates a function that transforms a nominal value to its upper case representation
+     */
+    public Upper() {
 		super("text_transformation.upper", 1);
 	}
 

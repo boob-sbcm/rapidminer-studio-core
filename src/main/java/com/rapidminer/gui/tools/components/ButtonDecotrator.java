@@ -25,14 +25,17 @@ import javax.swing.JButton;
 
 /**
  * Decorator methods to style buttons.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class ButtonDecotrator {
 
-	/** Removes background and border, changes cursor to hand. */
-	public static void decorateAsLinkButton(JButton button) {
+    /**
+     * Removes background and border, changes cursor to hand.  @param button the button
+     *
+     * @param button the button
+     */
+    public static void decorateAsLinkButton(JButton button) {
 		button.setBorderPainted(false);
 		button.setContentAreaFilled(false);
 		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

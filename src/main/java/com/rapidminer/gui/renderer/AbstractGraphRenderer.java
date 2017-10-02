@@ -42,34 +42,82 @@ import com.rapidminer.report.Reportable;
  */
 public abstract class AbstractGraphRenderer extends AbstractRenderer {
 
-	public static final String LAYOUT_BALLOON = "Balloon";
+    /**
+     * The constant LAYOUT_BALLOON.
+     */
+    public static final String LAYOUT_BALLOON = "Balloon";
 
-	public static final String LAYOUT_ISOM = "ISOM";
+    /**
+     * The constant LAYOUT_ISOM.
+     */
+    public static final String LAYOUT_ISOM = "ISOM";
 
-	public static final String LAYOUT_KK_LAYOUT = "KKLayout";
+    /**
+     * The constant LAYOUT_KK_LAYOUT.
+     */
+    public static final String LAYOUT_KK_LAYOUT = "KKLayout";
 
-	public static final String LAYOUT_FR_LAYOUT = "FRLayout";
+    /**
+     * The constant LAYOUT_FR_LAYOUT.
+     */
+    public static final String LAYOUT_FR_LAYOUT = "FRLayout";
 
-	public static final String LAYOUT_CIRCLE = "Circle";
+    /**
+     * The constant LAYOUT_CIRCLE.
+     */
+    public static final String LAYOUT_CIRCLE = "Circle";
 
-	public static final String LAYOUT_SPRING = "Spring";
+    /**
+     * The constant LAYOUT_SPRING.
+     */
+    public static final String LAYOUT_SPRING = "Spring";
 
-	public static final String LAYOUT_TREE = "Tree";
+    /**
+     * The constant LAYOUT_TREE.
+     */
+    public static final String LAYOUT_TREE = "Tree";
 
-	public static final String PARAMETER_LAYOUT = "layout";
+    /**
+     * The constant PARAMETER_LAYOUT.
+     */
+    public static final String PARAMETER_LAYOUT = "layout";
 
-	public static final String PARAMETER_SHOW_NODE_LABELS = "show_node_labels";
+    /**
+     * The constant PARAMETER_SHOW_NODE_LABELS.
+     */
+    public static final String PARAMETER_SHOW_NODE_LABELS = "show_node_labels";
 
-	public static final String PARAMETER_SHOW_EDGE_LABELS = "show_edge_labels";
+    /**
+     * The constant PARAMETER_SHOW_EDGE_LABELS.
+     */
+    public static final String PARAMETER_SHOW_EDGE_LABELS = "show_edge_labels";
 
-	public static final String RENDERER_NAME = "Graph View";
+    /**
+     * The constant RENDERER_NAME.
+     */
+    public static final String RENDERER_NAME = "Graph View";
 
-	public static final String[] LAYOUTS = { LAYOUT_ISOM, LAYOUT_KK_LAYOUT, LAYOUT_FR_LAYOUT, LAYOUT_CIRCLE, LAYOUT_SPRING,
+    /**
+     * The constant LAYOUTS.
+     */
+    public static final String[] LAYOUTS = { LAYOUT_ISOM, LAYOUT_KK_LAYOUT, LAYOUT_FR_LAYOUT, LAYOUT_CIRCLE, LAYOUT_SPRING,
 			LAYOUT_TREE, LAYOUT_BALLOON };
 
-	public abstract GraphCreator<String, String> getGraphCreator(Object renderable, IOContainer ioContainer);
+    /**
+     * Gets graph creator.
+     *
+     * @param renderable  the renderable
+     * @param ioContainer the io container
+     * @return the graph creator
+     */
+    public abstract GraphCreator<String, String> getGraphCreator(Object renderable, IOContainer ioContainer);
 
-	public String getDefaultLayout() {
+    /**
+     * Gets default layout.
+     *
+     * @return the default layout
+     */
+    public String getDefaultLayout() {
 		return LAYOUT_FR_LAYOUT;
 	}
 

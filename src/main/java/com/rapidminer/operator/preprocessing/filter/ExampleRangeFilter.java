@@ -41,20 +41,32 @@ import java.util.List;
 /**
  * This operator keeps only the examples of a given range (including the borders). The other
  * examples will be removed from the input example set.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExampleRangeFilter extends AbstractDataProcessing {
 
-	/** The parameter name for &quot;The first example of the resulting example set.&quot; */
-	public static final String PARAMETER_FIRST_EXAMPLE = "first_example";
+    /**
+     * The parameter name for &quot;The first example of the resulting example set.&quot;
+     */
+    public static final String PARAMETER_FIRST_EXAMPLE = "first_example";
 
-	/** The parameter name for &quot;The last example of the resulting example set.&quot; */
-	public static final String PARAMETER_LAST_EXAMPLE = "last_example";
+    /**
+     * The parameter name for &quot;The last example of the resulting example set.&quot;
+     */
+    public static final String PARAMETER_LAST_EXAMPLE = "last_example";
 
-	public static final String PARAMETER_INVERT_FILTER = "invert_filter";
+    /**
+     * The constant PARAMETER_INVERT_FILTER.
+     */
+    public static final String PARAMETER_INVERT_FILTER = "invert_filter";
 
-	public ExampleRangeFilter(OperatorDescription description) {
+    /**
+     * Instantiates a new Example range filter.
+     *
+     * @param description the description
+     */
+    public ExampleRangeFilter(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(

@@ -24,7 +24,7 @@ import java.util.Iterator;
 /**
  * Iterates over either only the regular attribute, only the special attributes, or over all all
  * attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeIterator implements Iterator<Attribute> {
@@ -39,7 +39,13 @@ public class AttributeIterator implements Iterator<Attribute> {
 
 	private AttributeRole currentRole = null;
 
-	public AttributeIterator(Iterator<AttributeRole> parent, int type) {
+    /**
+     * Instantiates a new Attribute iterator.
+     *
+     * @param parent the parent
+     * @param type   the type
+     */
+    public AttributeIterator(Iterator<AttributeRole> parent, int type) {
 		this.parent = parent;
 		this.type = type;
 	}

@@ -23,11 +23,19 @@ import com.rapidminer.gui.new_plotter.gui.AbstractConfigurationPanel.DatasetTran
 
 
 /**
+ * The interface Plot instance changed listener.
+ *
  * @author Nils Woehler
- * 
  */
 public interface PlotInstanceChangedListener {
 
-	public void plotInstanceChanged(PlotInstance oldPlotInstance, PlotInstance newPlotInstance,
+    /**
+     * Plot instance changed.
+     *
+     * @param oldPlotInstance the old plot instance
+     * @param newPlotInstance the new plot instance
+     * @param newType         the new type
+     */
+    public void plotInstanceChanged(PlotInstance oldPlotInstance, PlotInstance newPlotInstance,
 			DatasetTransformationType newType);
 }

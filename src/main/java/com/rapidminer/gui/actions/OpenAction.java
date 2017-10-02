@@ -51,7 +51,10 @@ public class OpenAction extends ResourceAction {
 
 	private static final long serialVersionUID = -323403851840397447L;
 
-	public OpenAction() {
+    /**
+     * Instantiates a new Open action.
+     */
+    public OpenAction() {
 		super("open");
 
 		setCondition(EDIT_IN_PROGRESS, DONT_CARE);
@@ -62,8 +65,12 @@ public class OpenAction extends ResourceAction {
 		open();
 	}
 
-	/** Loads the data held by the given entry (in the background) and opens it as a result. */
-	public static void showAsResult(final IOObjectEntry data) {
+    /**
+     * Loads the data held by the given entry (in the background) and opens it as a result.  @param data the data
+     *
+     * @param data the data
+     */
+    public static void showAsResult(final IOObjectEntry data) {
 		if (data == null) {
 			throw new IllegalArgumentException("data entry must not be null");
 		}
@@ -86,7 +93,10 @@ public class OpenAction extends ResourceAction {
 		downloadProgressThread.start();
 	}
 
-	public static void open() {
+    /**
+     * Open.
+     */
+    public static void open() {
 		if (RapidMinerGUI.getMainFrame().close()) {
 			String locationString = RepositoryLocationChooser.selectLocation(null, null, RapidMinerGUI.getMainFrame(), true,
 					false);
@@ -110,13 +120,16 @@ public class OpenAction extends ResourceAction {
 		}
 	}
 
-	/**
-	 * This method will open the process specified by the process location. If showInfo is true, the
-	 * description of the process will be shown depending on the fact if this feature is enabled or
-	 * disabled in the settings. So if you don't want to silently load a process, this should be
-	 * true.
-	 */
-	public static void open(final ProcessLocation processLocation, final boolean showInfo) {
+    /**
+     * This method will open the process specified by the process location. If showInfo is true, the
+     * description of the process will be shown depending on the fact if this feature is enabled or
+     * disabled in the settings. So if you don't want to silently load a process, this should be
+     * true.
+     *
+     * @param processLocation the process location
+     * @param showInfo        the show info
+     */
+    public static void open(final ProcessLocation processLocation, final boolean showInfo) {
 		// ask for confirmation before stopping the currently running process and opening another
 		// one!
 		if (RapidMinerGUI.getMainFrame().getProcessState() == Process.PROCESS_STATE_RUNNING
@@ -168,7 +181,13 @@ public class OpenAction extends ResourceAction {
 		openProgressThread.start();
 	}
 
-	public static void open(String openLocation, boolean showInfo) {
+    /**
+     * Open.
+     *
+     * @param openLocation the open location
+     * @param showInfo     the show info
+     */
+    public static void open(String openLocation, boolean showInfo) {
 		try {
 			final RepositoryLocation location = new RepositoryLocation(openLocation);
 			Entry entry = location.locateEntry();

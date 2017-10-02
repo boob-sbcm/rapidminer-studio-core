@@ -75,7 +75,10 @@ public class DataViewerTable extends ExtendedJTable {
 
 	private Map<Integer, String> toolTipMessagesMap = new HashMap<>();
 
-	public DataViewerTable() {
+    /**
+     * Instantiates a new Data viewer table.
+     */
+    public DataViewerTable() {
 		this.mappingAttributeNamesToColor = new HashMap<>();
 		setAutoResizeMode(AUTO_RESIZE_OFF);
 		setFixFirstColumnForRearranging(true);
@@ -86,7 +89,12 @@ public class DataViewerTable extends ExtendedJTable {
 		setRowHighlighting(true);
 	}
 
-	public void setExampleSet(ExampleSet exampleSet) {
+    /**
+     * Sets example set.
+     *
+     * @param exampleSet the example set
+     */
+    public void setExampleSet(ExampleSet exampleSet) {
 		this.dvTableModel = new DataViewerTableModel(exampleSet);
 		this.exampleSetReference = new WeakReference<>(exampleSet);
 		setModel(dvTableModel);

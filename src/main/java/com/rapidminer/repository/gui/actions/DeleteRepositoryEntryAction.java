@@ -41,11 +41,19 @@ public class DeleteRepositoryEntryAction extends AbstractRepositoryAction<Entry>
 
 	private static final long serialVersionUID = 1L;
 
-	public static final String I18N_KEY = "repository_delete_entry";
+    /**
+     * The constant I18N_KEY.
+     */
+    public static final String I18N_KEY = "repository_delete_entry";
 
 	private RepositoryTree tree;
 
-	public DeleteRepositoryEntryAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Delete repository entry action.
+     *
+     * @param tree the tree
+     */
+    public DeleteRepositoryEntryAction(RepositoryTree tree) {
 		super(tree, Entry.class, false, I18N_KEY);
 		this.tree = tree;
 	}

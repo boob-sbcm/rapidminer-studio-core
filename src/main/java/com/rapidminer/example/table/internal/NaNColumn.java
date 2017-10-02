@@ -27,7 +27,6 @@ package com.rapidminer.example.table.internal;
  * @see Column
  * @see ColumnarExampleTable
  * @since 7.3
- *
  */
 class NaNColumn implements Column {
 

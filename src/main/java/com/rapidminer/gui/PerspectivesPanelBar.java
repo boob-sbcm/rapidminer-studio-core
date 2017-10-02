@@ -38,9 +38,8 @@ import javax.swing.plaf.LayerUI;
 
 /**
  * The perspectives panel bar has a gray background and displays the perspectives as toggle buttons.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class PerspectivesPanelBar extends JPanel {
 
@@ -52,7 +51,12 @@ public class PerspectivesPanelBar extends JPanel {
 
 		private final JPanel contentPanel;
 
-		public PerspectivesLayerUI(JPanel contentPanel) {
+        /**
+         * Instantiates a new Perspectives layer ui.
+         *
+         * @param contentPanel the content panel
+         */
+        public PerspectivesLayerUI(JPanel contentPanel) {
 			this.contentPanel = contentPanel;
 		}
 
@@ -89,13 +93,13 @@ public class PerspectivesPanelBar extends JPanel {
 		return new Color(lightGray.getRed(), lightGray.getGreen(), lightGray.getBlue(), 50);
 	}
 
-	/**
-	 * Factory to create a perspectives panel bar which is covered by a JLayer.
-	 *
-	 * @param perspectives
-	 * @return
-	 */
-	@SuppressWarnings("deprecation")
+    /**
+     * Factory to create a perspectives panel bar which is covered by a JLayer.
+     *
+     * @param perspectives the perspectives
+     * @return perspecitves panel bar
+     */
+    @SuppressWarnings("deprecation")
 	public static final JLayer<JPanel> getPerspecitvesPanelBar(Perspectives perspectives) {
 		PerspectivesPanelBar view = new PerspectivesPanelBar(perspectives);
 		return new JLayer<>(view, new PerspectivesLayerUI(view));

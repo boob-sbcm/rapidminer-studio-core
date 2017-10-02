@@ -52,16 +52,27 @@ import com.rapidminer.tools.RandomGenerator;
  */
 public class NominalExampleSetGenerator extends AbstractExampleSource {
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
 
-	/** The parameter name for &quot;The number of attributes.&quot; */
-	public static final String PARAMETER_NUMBER_OF_ATTRIBUTES = "number_of_attributes";
+    /**
+     * The parameter name for &quot;The number of attributes.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_ATTRIBUTES = "number_of_attributes";
 
-	/** The parameter name for &quot;The number of nominal values for each attribute.&quot; */
-	public static final String PARAMETER_NUMBER_OF_VALUES = "number_of_values";
+    /**
+     * The parameter name for &quot;The number of nominal values for each attribute.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_VALUES = "number_of_values";
 
-	public NominalExampleSetGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Nominal example set generator.
+     *
+     * @param description the description
+     */
+    public NominalExampleSetGenerator(OperatorDescription description) {
 		super(description);
 	}
 

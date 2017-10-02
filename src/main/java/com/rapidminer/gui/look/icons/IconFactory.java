@@ -31,7 +31,10 @@ import javax.swing.Icon;
  */
 public class IconFactory {
 
-	public static final Dimension MENU_ICON_SIZE = new Dimension(10, 10);
+    /**
+     * The constant MENU_ICON_SIZE.
+     */
+    public static final Dimension MENU_ICON_SIZE = new Dimension(10, 10);
 
 	private final static Icon RADIO_BUTTON_ICON = new RadioButtonIcon();
 
@@ -41,19 +44,39 @@ public class IconFactory {
 
 	private final static Icon RADIO_BUTTON_MENU_ITEM_ICON = new RadioButtonMenuItemIcon();
 
-	public static Icon getRadioButtonIcon() {
+    /**
+     * Gets radio button icon.
+     *
+     * @return the radio button icon
+     */
+    public static Icon getRadioButtonIcon() {
 		return RADIO_BUTTON_ICON;
 	}
 
-	public static Icon getCheckBoxIcon() {
+    /**
+     * Gets check box icon.
+     *
+     * @return the check box icon
+     */
+    public static Icon getCheckBoxIcon() {
 		return CHECK_BOX_ICON;
 	}
 
-	public static Icon getCheckBoxMenuItemIcon() {
+    /**
+     * Gets check box menu item icon.
+     *
+     * @return the check box menu item icon
+     */
+    public static Icon getCheckBoxMenuItemIcon() {
 		return CHECK_BOX_MENU_ITEM_ICON;
 	}
 
-	public static Icon getRadioButtonMenuItemIcon() {
+    /**
+     * Gets radio button menu item icon.
+     *
+     * @return the radio button menu item icon
+     */
+    public static Icon getRadioButtonMenuItemIcon() {
 		return RADIO_BUTTON_MENU_ITEM_ICON;
 	}
 

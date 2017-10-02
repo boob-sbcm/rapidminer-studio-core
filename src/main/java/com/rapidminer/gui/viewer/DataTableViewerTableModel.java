@@ -28,7 +28,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * The model for the {@link com.rapidminer.gui.viewer.DataTableViewerTable}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DataTableViewerTableModel extends AbstractTableModel {
@@ -37,7 +37,12 @@ public class DataTableViewerTableModel extends AbstractTableModel {
 
 	private transient DataTable dataTable;
 
-	public DataTableViewerTableModel(DataTable dataTable) {
+    /**
+     * Instantiates a new Data table viewer table model.
+     *
+     * @param dataTable the data table
+     */
+    public DataTableViewerTableModel(DataTable dataTable) {
 		this.dataTable = dataTable;
 	}
 

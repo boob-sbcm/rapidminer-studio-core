@@ -29,6 +29,8 @@ import org.jfree.chart.renderer.xy.DeviationRenderer;
 
 
 /**
+ * The type Formatted deviation renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedDeviationRenderer extends DeviationRenderer implements FormattedRenderer {
@@ -37,9 +39,18 @@ public class FormattedDeviationRenderer extends DeviationRenderer implements For
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedDeviationRenderer() {}
+    /**
+     * Instantiates a new Formatted deviation renderer.
+     */
+    public FormattedDeviationRenderer() {}
 
-	public FormattedDeviationRenderer(boolean lines, boolean shapes) {
+    /**
+     * Instantiates a new Formatted deviation renderer.
+     *
+     * @param lines  the lines
+     * @param shapes the shapes
+     */
+    public FormattedDeviationRenderer(boolean lines, boolean shapes) {
 		super(lines, shapes);
 	}
 

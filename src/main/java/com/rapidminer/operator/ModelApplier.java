@@ -47,14 +47,20 @@ import com.rapidminer.parameter.ParameterTypeString;
  */
 public class ModelApplier extends Operator {
 
-	/** The parameter name for &quot;key&quot; */
-	public static final String PARAMETER_KEY = "key";
+    /**
+     * The parameter name for &quot;key&quot;
+     */
+    public static final String PARAMETER_KEY = "key";
 
-	/** The parameter name for &quot;value&quot; */
-	public static final String PARAMETER_VALUE = "value";
+    /**
+     * The parameter name for &quot;value&quot;
+     */
+    public static final String PARAMETER_VALUE = "value";
 
-	/** The possible parameters used by the model during application time. */
-	public static final String PARAMETER_APPLICATION_PARAMETERS = "application_parameters";
+    /**
+     * The possible parameters used by the model during application time.
+     */
+    public static final String PARAMETER_APPLICATION_PARAMETERS = "application_parameters";
 
 	/** Indicates if preprocessing models should create a view instead of changing the data. */
 	private static final String PARAMETER_CREATE_VIEW = "create_view";
@@ -75,7 +81,12 @@ public class ModelApplier extends Operator {
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("labelled data");
 	private final OutputPort modelOutput = getOutputPorts().createPort("model");
 
-	public ModelApplier(OperatorDescription description) {
+    /**
+     * Instantiates a new Model applier.
+     *
+     * @param description the description
+     */
+    public ModelApplier(OperatorDescription description) {
 		super(description);
 		modelInput.addPrecondition(
 				new SimplePrecondition(modelInput, new ModelMetaData(Model.class, new ExampleSetMetaData())));

@@ -28,6 +28,7 @@ import com.rapidminer.tools.LogService;
 
 
 /**
+ * The type Resource tabbed pane.
  *
  * @author Simon Fischer
  */
@@ -38,22 +39,47 @@ public class ResourceTabbedPane extends JTabbedPane {
 	private final String i18KeyPrefix;
 	private boolean largeIcons = false;
 
-	public ResourceTabbedPane(String i18KeyPrefix) {
+    /**
+     * Instantiates a new Resource tabbed pane.
+     *
+     * @param i18KeyPrefix the 18 key prefix
+     */
+    public ResourceTabbedPane(String i18KeyPrefix) {
 		super();
 		this.i18KeyPrefix = i18KeyPrefix;
 	}
 
-	public ResourceTabbedPane(String i18KeyPrefix, int tabPlacement, int tabLayoutPolicy) {
+    /**
+     * Instantiates a new Resource tabbed pane.
+     *
+     * @param i18KeyPrefix    the 18 key prefix
+     * @param tabPlacement    the tab placement
+     * @param tabLayoutPolicy the tab layout policy
+     */
+    public ResourceTabbedPane(String i18KeyPrefix, int tabPlacement, int tabLayoutPolicy) {
 		super(tabPlacement, tabLayoutPolicy);
 		this.i18KeyPrefix = i18KeyPrefix;
 	}
 
-	public ResourceTabbedPane(String i18KeyPrefix, int tabPlacement) {
+    /**
+     * Instantiates a new Resource tabbed pane.
+     *
+     * @param i18KeyPrefix the 18 key prefix
+     * @param tabPlacement the tab placement
+     */
+    public ResourceTabbedPane(String i18KeyPrefix, int tabPlacement) {
 		super(tabPlacement);
 		this.i18KeyPrefix = i18KeyPrefix;
 	}
 
-	public void addTabI18N(String key, Component component, String... i18nArgs) {
+    /**
+     * Add tab i 18 n.
+     *
+     * @param key       the key
+     * @param component the component
+     * @param i18nArgs  the 18 n args
+     */
+    public void addTabI18N(String key, Component component, String... i18nArgs) {
 		String name;
 		if (i18nArgs != null && i18nArgs.length > 0) {
 			name = formatMessage(key, "label", i18nArgs);
@@ -106,11 +132,21 @@ public class ResourceTabbedPane extends JTabbedPane {
 		return I18N.getMessageOrNull(I18N.getGUIBundle(), "gui.tabs." + this.i18KeyPrefix + "." + tabName + "." + key);
 	}
 
-	public void setLargeIcons(boolean largeIcons) {
+    /**
+     * Sets large icons.
+     *
+     * @param largeIcons the large icons
+     */
+    public void setLargeIcons(boolean largeIcons) {
 		this.largeIcons = largeIcons;
 	}
 
-	public boolean isLargeIcons() {
+    /**
+     * Is large icons boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLargeIcons() {
 		return largeIcons;
 	}
 

@@ -33,21 +33,32 @@ import javax.swing.JButton;
 
 
 /**
- * 
+ * The type Rapid docking toolbar.
+ *
  * @author Simon Fischer
  */
 public class RapidDockingToolbar extends VLToolBar {
 
 	private static final long serialVersionUID = 8849041223899314188L;
 
-	public RapidDockingToolbar(String i18nKey) {
+    /**
+     * Instantiates a new Rapid docking toolbar.
+     *
+     * @param i18nKey the 18 n key
+     */
+    public RapidDockingToolbar(String i18nKey) {
 		super();
 		setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		setDraggedBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.GRAY));
 		setToolTipText(I18N.getMessage(I18N.getGUIBundle(), "gui.toolbar." + i18nKey + ".tip"));
 	}
 
-	public void add(Action action) {
+    /**
+     * Add.
+     *
+     * @param action the action
+     */
+    public void add(Action action) {
 		JButton button = new JButton(action);
 		if (button.getIcon() != null) {
 			button.setText(null);

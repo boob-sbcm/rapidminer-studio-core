@@ -26,17 +26,36 @@ import java.text.DateFormat;
 
 
 /**
+ * The type Value grouping change event.
+ *
  * @author Nils Woehler
- * 
  */
 public class ValueGroupingChangeEvent implements ConfigurationChangeEvent {
 
-	public enum ValueGroupingChangeType {
-		CATEGORICAL,			// categorical has changed
-		DATA_TABLE_COLUMN,		// the data table column has been changed
-		BIN_COUNT,				// the group count has been changed
-		RESET,					// total reset or exchange of the grouping
-		DATE_FORMAT
+    /**
+     * The enum Value grouping change type.
+     */
+    public enum ValueGroupingChangeType {
+        /**
+         * Categorical value grouping change type.
+         */
+        CATEGORICAL,			// categorical has changed
+        /**
+         * Data table column value grouping change type.
+         */
+        DATA_TABLE_COLUMN,		// the data table column has been changed
+        /**
+         * Bin count value grouping change type.
+         */
+        BIN_COUNT,				// the group count has been changed
+        /**
+         * Reset value grouping change type.
+         */
+        RESET,					// total reset or exchange of the grouping
+        /**
+         * Date format value grouping change type.
+         */
+        DATE_FORMAT
 	}
 
 	private final ValueGrouping source;
@@ -47,64 +66,114 @@ public class ValueGroupingChangeEvent implements ConfigurationChangeEvent {
 	private AggregationWindowing groupingCumulation = null;
 	private Boolean categorical = null;
 
-	public ValueGroupingChangeEvent(ValueGrouping source) {
+    /**
+     * Instantiates a new Value grouping change event.
+     *
+     * @param source the source
+     */
+    public ValueGroupingChangeEvent(ValueGrouping source) {
 		this.source = source;
 		this.type = ValueGroupingChangeType.RESET;
 	}
 
-	public ValueGroupingChangeEvent(ValueGrouping source, Integer binCount) {
+    /**
+     * Instantiates a new Value grouping change event.
+     *
+     * @param source   the source
+     * @param binCount the bin count
+     */
+    public ValueGroupingChangeEvent(ValueGrouping source, Integer binCount) {
 		this.source = source;
 		this.type = ValueGroupingChangeType.BIN_COUNT;
 		this.binCount = binCount;
 	}
 
-	public ValueGroupingChangeEvent(ValueGrouping source, DataTableColumn dataTableColumn) {
+    /**
+     * Instantiates a new Value grouping change event.
+     *
+     * @param source          the source
+     * @param dataTableColumn the data table column
+     */
+    public ValueGroupingChangeEvent(ValueGrouping source, DataTableColumn dataTableColumn) {
 		this.source = source;
 		this.type = ValueGroupingChangeType.DATA_TABLE_COLUMN;
 		this.dataTableColumn = dataTableColumn;
 	}
 
-	public ValueGroupingChangeEvent(ValueGrouping source, Boolean categorical) {
+    /**
+     * Instantiates a new Value grouping change event.
+     *
+     * @param source      the source
+     * @param categorical the categorical
+     */
+    public ValueGroupingChangeEvent(ValueGrouping source, Boolean categorical) {
 		this.source = source;
 		this.type = ValueGroupingChangeType.CATEGORICAL;
 		this.categorical = categorical;
 	}
 
-	public ValueGroupingChangeEvent(ValueGrouping source, DateFormat dateFormat) {
+    /**
+     * Instantiates a new Value grouping change event.
+     *
+     * @param source     the source
+     * @param dateFormat the date format
+     */
+    public ValueGroupingChangeEvent(ValueGrouping source, DateFormat dateFormat) {
 		this.source = source;
 		this.type = ValueGroupingChangeType.DATE_FORMAT;
 	}
 
-	public AggregationWindowing getGroupingCumulation() {
+    /**
+     * Gets grouping cumulation.
+     *
+     * @return the grouping cumulation
+     */
+    public AggregationWindowing getGroupingCumulation() {
 		return groupingCumulation;
 	}
 
-	public DataTableColumn getDataTableColumn() {
+    /**
+     * Gets data table column.
+     *
+     * @return the data table column
+     */
+    public DataTableColumn getDataTableColumn() {
 		return dataTableColumn;
 	}
 
-	public Integer getBinCount() {
+    /**
+     * Gets bin count.
+     *
+     * @return the bin count
+     */
+    public Integer getBinCount() {
 		return binCount;
 	}
 
-	/**
-	 * @return the source
-	 */
-	public ValueGrouping getSource() {
+    /**
+     * Gets source.
+     *
+     * @return the source
+     */
+    public ValueGrouping getSource() {
 		return source;
 	}
 
-	/**
-	 * @return the type
-	 */
-	public ValueGroupingChangeType getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public ValueGroupingChangeType getType() {
 		return type;
 	}
 
-	/**
-	 * @return the categorical
-	 */
-	public Boolean getCategorical() {
+    /**
+     * Gets categorical.
+     *
+     * @return the categorical
+     */
+    public Boolean getCategorical() {
 		return categorical;
 	}
 

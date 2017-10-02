@@ -44,7 +44,13 @@ public class ButtonUI extends BasicButtonUI {
 
 	private final static ButtonUI BUTTON_UI = new ButtonUI();
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return BUTTON_UI;
 	}
 

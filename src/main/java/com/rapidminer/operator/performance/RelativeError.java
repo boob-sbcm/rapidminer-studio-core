@@ -25,16 +25,24 @@ import com.rapidminer.tools.Tools;
  * The average relative error: <i>Sum(|label-predicted|/label)/#examples</i>. The relative error of
  * label 0 and prediction 0 is defined as 0, the relative error of label 0 and prediction != 0 is
  * infinite.
- * 
+ *
  * @author Stefan Rueping, Ingo Mierswa
  */
 public class RelativeError extends SimpleCriterion {
 
 	private static final long serialVersionUID = 203943264201733699L;
 
-	public RelativeError() {}
+    /**
+     * Instantiates a new Relative error.
+     */
+    public RelativeError() {}
 
-	public RelativeError(RelativeError sc) {
+    /**
+     * Instantiates a new Relative error.
+     *
+     * @param sc the sc
+     */
+    public RelativeError(RelativeError sc) {
 		super(sc);
 	}
 

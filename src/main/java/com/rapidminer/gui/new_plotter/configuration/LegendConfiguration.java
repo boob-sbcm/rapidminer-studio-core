@@ -35,18 +35,36 @@ import com.rapidminer.tools.I18N;
 
 
 /**
+ * The type Legend configuration.
  *
  * @author Marius Helf, Nils Woehler
- *
  */
 public class LegendConfiguration implements Cloneable {
 
-	public enum LegendPosition {
-		TOP(I18N.getGUILabel("plotter.legendposition.TOP.label"), RectangleEdge.TOP), BOTTOM(
+    /**
+     * The enum Legend position.
+     */
+    public enum LegendPosition {
+        /**
+         * Top legend position.
+         */
+        TOP(I18N.getGUILabel("plotter.legendposition.TOP.label"), RectangleEdge.TOP), /**
+         * Bottom legend position.
+         */
+        BOTTOM(
 				I18N.getGUILabel("plotter.legendposition.BOTTOM.label"),
-				RectangleEdge.BOTTOM), LEFT(I18N.getGUILabel("plotter.legendposition.LEFT.label"),
-						RectangleEdge.LEFT), RIGHT(I18N.getGUILabel("plotter.legendposition.RIGHT.label"),
-								RectangleEdge.RIGHT), NONE(I18N.getGUILabel("plotter.legendposition.NONE.label"), null);
+				RectangleEdge.BOTTOM), /**
+         * Left legend position.
+         */
+        LEFT(I18N.getGUILabel("plotter.legendposition.LEFT.label"),
+						RectangleEdge.LEFT), /**
+         * Right legend position.
+         */
+        RIGHT(I18N.getGUILabel("plotter.legendposition.RIGHT.label"),
+								RectangleEdge.RIGHT), /**
+         * None legend position.
+         */
+        NONE(I18N.getGUILabel("plotter.legendposition.NONE.label"), null);
 
 		private String name;
 		private RectangleEdge position;
@@ -56,27 +74,44 @@ public class LegendConfiguration implements Cloneable {
 			this.position = position;
 		}
 
-		public String getName() {
+        /**
+         * Gets name.
+         *
+         * @return the name
+         */
+        public String getName() {
 			return name;
 		}
 
-		/**
-		 * Caution may be <code>null</code>!
-		 *
-		 * @return
-		 */
-		public RectangleEdge getPosition() {
+        /**
+         * Caution may be <code>null</code>!
+         *
+         * @return position position
+         */
+        public RectangleEdge getPosition() {
 			return position;
 		}
 	}
 
-	public static final Font DEFAULT_LEGEND_FONT = FontTools.getFont(Font.DIALOG, Font.PLAIN, 12);
+    /**
+     * The constant DEFAULT_LEGEND_FONT.
+     */
+    public static final Font DEFAULT_LEGEND_FONT = FontTools.getFont(Font.DIALOG, Font.PLAIN, 12);
 	private static final boolean DEFAULT_SHOW_DIMENSION_TYPE = true;
 	private static final LegendPosition DEFAULT_LEGEND_POSITION = LegendPosition.RIGHT;
-	public static final Color DEFAULT_LEGEND_BACKGROUND_COLOR = Color.white;
-	public static final Color DEFAULT_LEGEND_FRAME_COLOR = Color.black;
+    /**
+     * The constant DEFAULT_LEGEND_BACKGROUND_COLOR.
+     */
+    public static final Color DEFAULT_LEGEND_BACKGROUND_COLOR = Color.white;
+    /**
+     * The constant DEFAULT_LEGEND_FRAME_COLOR.
+     */
+    public static final Color DEFAULT_LEGEND_FRAME_COLOR = Color.black;
 	private static final boolean DEFAULT_SHOW_LEGEND_FRAME = true;
-	public static final Color DEFAULT_LEGEND_FONT_COLOR = Color.black;
+    /**
+     * The constant DEFAULT_LEGEND_FONT_COLOR.
+     */
+    public static final Color DEFAULT_LEGEND_FONT_COLOR = Color.black;
 
 	private transient List<WeakReference<LegendConfigurationListener>> listeners = new LinkedList<WeakReference<LegendConfigurationListener>>();
 	private Font legendFont = DEFAULT_LEGEND_FONT;
@@ -92,11 +127,21 @@ public class LegendConfiguration implements Cloneable {
 	private boolean showLegendFrame = DEFAULT_SHOW_LEGEND_FRAME;
 	private Color legendFontColor = DEFAULT_LEGEND_FONT_COLOR;
 
-	public boolean isShowDimensionType() {
+    /**
+     * Is show dimension type boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isShowDimensionType() {
 		return showDimensionType;
 	}
 
-	public void setShowDimensionType(boolean showDimensionType) {
+    /**
+     * Sets show dimension type.
+     *
+     * @param showDimensionType the show dimension type
+     */
+    public void setShowDimensionType(boolean showDimensionType) {
 		if (showDimensionType != this.showDimensionType) {
 			this.showDimensionType = showDimensionType;
 			fireShowDimensionTypeChanged();
@@ -108,60 +153,91 @@ public class LegendConfiguration implements Cloneable {
 				LegendConfigurationChangeType.SHOW_DIMENSION_TYPE));
 	}
 
-	public LegendConfigurationChangeEvent getCurrentEvent() {
+    /**
+     * Gets current event.
+     *
+     * @return the current event
+     */
+    public LegendConfigurationChangeEvent getCurrentEvent() {
 		return currentEvent;
 	}
 
-	public Font getLegendFont() {
+    /**
+     * Gets legend font.
+     *
+     * @return the legend font
+     */
+    public Font getLegendFont() {
 		return legendFont;
 	}
 
-	public void setLegendFont(Font legendFont) {
+    /**
+     * Sets legend font.
+     *
+     * @param legendFont the legend font
+     */
+    public void setLegendFont(Font legendFont) {
 		if (legendFont != this.legendFont) {
 			this.legendFont = legendFont;
 			fireLegendFontChanged();
 		}
 	}
 
-	/**
-	 * @return the legendBackgroundColor
-	 */
-	public Color getLegendBackgroundColor() {
+    /**
+     * Gets legend background color.
+     *
+     * @return the legendBackgroundColor
+     */
+    public Color getLegendBackgroundColor() {
 		return this.legendBackgroundColor;
 	}
 
-	/**
-	 * @return the legendFrameColor
-	 */
-	public Color getLegendFrameColor() {
+    /**
+     * Gets legend frame color.
+     *
+     * @return the legendFrameColor
+     */
+    public Color getLegendFrameColor() {
 		return this.legendFrameColor;
 	}
 
-	/**
-	 * @param legendBackgroundColor
-	 *            the legendBackgroundColor to set
-	 */
-	public void setLegendBackgroundColor(Color legendBackgroundColor) {
+    /**
+     * Sets legend background color.
+     *
+     * @param legendBackgroundColor the legendBackgroundColor to set
+     */
+    public void setLegendBackgroundColor(Color legendBackgroundColor) {
 		this.legendBackgroundColor = legendBackgroundColor;
 		fireLegendConfigurationChanged(new LegendConfigurationChangeEvent(this, legendBackgroundColor,
 				LegendConfigurationChangeType.BACKGROUND_COLOR));
 	}
 
-	/**
-	 * @param legendFrameColor
-	 *            the legendFrameColor to set
-	 */
-	public void setLegendFrameColor(Color legendFrameColor) {
+    /**
+     * Sets legend frame color.
+     *
+     * @param legendFrameColor the legendFrameColor to set
+     */
+    public void setLegendFrameColor(Color legendFrameColor) {
 		this.legendFrameColor = legendFrameColor;
 		fireLegendConfigurationChanged(
 				new LegendConfigurationChangeEvent(this, legendFrameColor, LegendConfigurationChangeType.FRAME_COLOR));
 	}
 
-	public LegendPosition getLegendPosition() {
+    /**
+     * Gets legend position.
+     *
+     * @return the legend position
+     */
+    public LegendPosition getLegendPosition() {
 		return legendPosition;
 	}
 
-	public void setLegendPosition(LegendPosition legendPosition) {
+    /**
+     * Sets legend position.
+     *
+     * @param legendPosition the legend position
+     */
+    public void setLegendPosition(LegendPosition legendPosition) {
 		if (legendPosition != this.legendPosition) {
 			this.legendPosition = legendPosition;
 			fireLegendPositionChanged();
@@ -203,11 +279,21 @@ public class LegendConfiguration implements Cloneable {
 		currentEvent = null;
 	}
 
-	public void addListener(LegendConfigurationListener l) {
+    /**
+     * Add listener.
+     *
+     * @param l the l
+     */
+    public void addListener(LegendConfigurationListener l) {
 		listeners.add(new WeakReference<LegendConfigurationListener>(l));
 	}
 
-	public void removeListener(LegendConfigurationListener l) {
+    /**
+     * Remove listener.
+     *
+     * @param l the l
+     */
+    public void removeListener(LegendConfigurationListener l) {
 		Iterator<WeakReference<LegendConfigurationListener>> it = listeners.iterator();
 		while (it.hasNext()) {
 			LegendConfigurationListener listener = it.next().get();
@@ -217,7 +303,10 @@ public class LegendConfiguration implements Cloneable {
 		}
 	}
 
-	public void resetToDefaults() {
+    /**
+     * Reset to defaults.
+     */
+    public void resetToDefaults() {
 		setLegendFont(DEFAULT_LEGEND_FONT);
 		setLegendPosition(DEFAULT_LEGEND_POSITION);
 		setShowDimensionType(DEFAULT_SHOW_DIMENSION_TYPE);
@@ -226,31 +315,41 @@ public class LegendConfiguration implements Cloneable {
 		setShowLegendFrame(DEFAULT_SHOW_LEGEND_FRAME);
 	}
 
-	/**
-	 * @return
-	 */
-	public boolean isShowLegendFrame() {
+    /**
+     * Is show legend frame boolean.
+     *
+     * @return boolean boolean
+     */
+    public boolean isShowLegendFrame() {
 		return showLegendFrame;
 	}
 
-	/**
-	 * @param showLegendFrame
-	 *            the showLegendFrame to set
-	 */
-	public void setShowLegendFrame(boolean showLegendFrame) {
+    /**
+     * Sets show legend frame.
+     *
+     * @param showLegendFrame the showLegendFrame to set
+     */
+    public void setShowLegendFrame(boolean showLegendFrame) {
 		this.showLegendFrame = showLegendFrame;
 		fireLegendConfigurationChanged(
 				new LegendConfigurationChangeEvent(this, showLegendFrame, LegendConfigurationChangeType.SHOW_LEGEND_FRAME));
 	}
 
-	public Color getLegendFontColor() {
+    /**
+     * Gets legend font color.
+     *
+     * @return the legend font color
+     */
+    public Color getLegendFontColor() {
 		return legendFontColor;
 	}
 
-	/**
-	 * @param newBackgroundColor
-	 */
-	public void setLegendFontColor(Color newLegendFontColor) {
+    /**
+     * Sets legend font color.
+     *
+     * @param newLegendFontColor the new legend font color
+     */
+    public void setLegendFontColor(Color newLegendFontColor) {
 		this.legendFontColor = newLegendFontColor;
 		fireLegendConfigurationChanged(new LegendConfigurationChangeEvent(this, legendFont));
 	}

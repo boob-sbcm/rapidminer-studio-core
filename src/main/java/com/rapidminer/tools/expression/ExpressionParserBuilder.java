@@ -41,11 +41,11 @@ import com.rapidminer.tools.expression.internal.function.statistical.Random;
  */
 public class ExpressionParserBuilder {
 
-	/**
-	 * The last version which contained the old expression parser with different functions and
-	 * different Macro handling.
-	 */
-	public static final OperatorVersion OLD_EXPRESSION_PARSER_FUNCTIONS = new OperatorVersion(6, 4, 0);
+    /**
+     * The last version which contained the old expression parser with different functions and
+     * different Macro handling.
+     */
+    public static final OperatorVersion OLD_EXPRESSION_PARSER_FUNCTIONS = new OperatorVersion(6, 4, 0);
 
 	private Process process;
 	private boolean compatibleWithOldParser;
@@ -56,12 +56,12 @@ public class ExpressionParserBuilder {
 	private List<Resolver> dynamicsResolvers = new LinkedList<>();
 	private List<Resolver> constantResolvers = new LinkedList<>();
 
-	/**
-	 * Builds an {@link ExpressionParser} with the given data.
-	 *
-	 * @return an expression parser
-	 */
-	public ExpressionParser build() {
+    /**
+     * Builds an {@link ExpressionParser} with the given data.
+     *
+     * @return an expression parser
+     */
+    public ExpressionParser build() {
 		// add functions with process information
 		if (process != null) {
 			functions.add(new Random(process));
@@ -94,51 +94,47 @@ public class ExpressionParserBuilder {
 		return parser;
 	}
 
-	/**
-	 * Adds the process which enables process dependent functions.
-	 *
-	 * @param process
-	 *            the process to add
-	 * @return the builder
-	 */
-	public ExpressionParserBuilder withProcess(Process process) {
+    /**
+     * Adds the process which enables process dependent functions.
+     *
+     * @param process the process to add
+     * @return the builder
+     */
+    public ExpressionParserBuilder withProcess(Process process) {
 		this.process = process;
 		return this;
 	}
 
-	/**
-	 * Adds the resolver as a resolver for scope constants (%{scope_constant} in the expression).
-	 *
-	 * @param resolver
-	 *            the resolver to add
-	 * @return the builder
-	 */
-	public ExpressionParserBuilder withScope(Resolver resolver) {
+    /**
+     * Adds the resolver as a resolver for scope constants (%{scope_constant} in the expression).
+     *
+     * @param resolver the resolver to add
+     * @return the builder
+     */
+    public ExpressionParserBuilder withScope(Resolver resolver) {
 		scopeResolvers.add(resolver);
 		return this;
 	}
 
-	/**
-	 * Adds the resolver as a resolver for dynamic variables ([variable_name] or variable_name in
-	 * the expression).
-	 *
-	 * @param resolver
-	 *            the resolver to add
-	 * @return the builder
-	 */
-	public ExpressionParserBuilder withDynamics(Resolver resolver) {
+    /**
+     * Adds the resolver as a resolver for dynamic variables ([variable_name] or variable_name in
+     * the expression).
+     *
+     * @param resolver the resolver to add
+     * @return the builder
+     */
+    public ExpressionParserBuilder withDynamics(Resolver resolver) {
 		dynamicsResolvers.add(resolver);
 		return this;
 	}
 
-	/**
-	 * Adds the given module that supplies functions and constant values.
-	 *
-	 * @param module
-	 *            the module to add
-	 * @return the builder
-	 */
-	public ExpressionParserBuilder withModule(ExpressionParserModule module) {
+    /**
+     * Adds the given module that supplies functions and constant values.
+     *
+     * @param module the module to add
+     * @return the builder
+     */
+    public ExpressionParserBuilder withModule(ExpressionParserModule module) {
 		addModule(module);
 		return this;
 	}
@@ -160,28 +156,26 @@ public class ExpressionParserBuilder {
 		}
 	}
 
-	/**
-	 * Adds the given modules that supplies functions and constant values.
-	 *
-	 * @param modules
-	 *            the modules to add
-	 * @return the builder
-	 */
-	public ExpressionParserBuilder withModules(List<ExpressionParserModule> modules) {
+    /**
+     * Adds the given modules that supplies functions and constant values.
+     *
+     * @param modules the modules to add
+     * @return the builder
+     */
+    public ExpressionParserBuilder withModules(List<ExpressionParserModule> modules) {
 		for (ExpressionParserModule module : modules) {
 			addModule(module);
 		}
 		return this;
 	}
 
-	/**
-	 * Adds the functions that are no longer used after version 6.4 if version is at most 6.4.
-	 *
-	 * @param version
-	 *            the version of the associated operator
-	 * @return the builder
-	 */
-	public ExpressionParserBuilder withCompatibility(OperatorVersion version) {
+    /**
+     * Adds the functions that are no longer used after version 6.4 if version is at most 6.4.
+     *
+     * @param version the version of the associated operator
+     * @return the builder
+     */
+    public ExpressionParserBuilder withCompatibility(OperatorVersion version) {
 		if (version.isAtMost(OLD_EXPRESSION_PARSER_FUNCTIONS)) {
 			compatibleWithOldParser = true;
 		}

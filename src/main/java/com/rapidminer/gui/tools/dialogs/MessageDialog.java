@@ -29,6 +29,7 @@ import com.rapidminer.tools.I18N;
 
 
 /**
+ * The type Message dialog.
  *
  * @author Tobias Malbrecht
  */
@@ -36,65 +37,53 @@ public class MessageDialog extends ButtonDialog {
 
 	private static final long serialVersionUID = -5825873580778775409L;
 
-	/**
-	 * Creates a dialog to display a message.
-	 *
-	 * @param i18nKey
-	 *            the i18n key
-	 * @param i18nArgs
-	 *            additional i18n arguments
-	 * @deprecated use {@link #MessageDialog(Window, String, Object...)} instead
-	 */
-	@Deprecated
+    /**
+     * Creates a dialog to display a message.
+     *
+     * @param i18nKey  the i18n key
+     * @param i18nArgs additional i18n arguments
+     * @deprecated use {@link #MessageDialog(Window, String, Object...)} instead
+     */
+    @Deprecated
 	public MessageDialog(String i18nKey, Object... i18nArgs) {
 		this(ApplicationFrame.getApplicationFrame(), i18nKey, null, i18nArgs);
 	}
 
-	/**
-	 * Creates a dialog to display a message.
-	 *
-	 * @param owner
-	 *            the owner window this dialog is displayed in
-	 * @param i18nKey
-	 *            the i18n key
-	 * @param i18nArgs
-	 *            additional i18n arguments
-	 * @since 6.5.0
-	 */
-	public MessageDialog(Window owner, String i18nKey, Object... i18nArgs) {
+    /**
+     * Creates a dialog to display a message.
+     *
+     * @param owner    the owner window this dialog is displayed in
+     * @param i18nKey  the i18n key
+     * @param i18nArgs additional i18n arguments
+     * @since 6.5.0
+     */
+    public MessageDialog(Window owner, String i18nKey, Object... i18nArgs) {
 		this(owner, i18nKey, null, i18nArgs);
 	}
 
-	/**
-	 * Creates a dialog to display a message.
-	 *
-	 * @param i18nKey
-	 *            the i18n key
-	 * @param c
-	 *            the component that contains the message
-	 * @param i18nArgs
-	 *            additional i18n arguments
-	 * @deprecated use {@link #MessageDialog(Window, String, JComponent, Object...)} instead
-	 */
-	@Deprecated
+    /**
+     * Creates a dialog to display a message.
+     *
+     * @param i18nKey  the i18n key
+     * @param c        the component that contains the message
+     * @param i18nArgs additional i18n arguments
+     * @deprecated use {@link #MessageDialog(Window, String, JComponent, Object...)} instead
+     */
+    @Deprecated
 	public MessageDialog(String i18nKey, JComponent c, Object... i18nArgs) {
 		this(ApplicationFrame.getApplicationFrame(), i18nKey, c, i18nArgs);
 	}
 
-	/**
-	 * Creates a dialog to display a message.
-	 *
-	 * @param owner
-	 *            the owner window this dialog is displayed in
-	 * @param i18nKey
-	 *            the i18n key
-	 * @param c
-	 *            the component that contains the message
-	 * @param i18nArgs
-	 *            additional i18n arguments
-	 * @since 6.5.0
-	 */
-	public MessageDialog(Window owner, String i18nKey, JComponent c, Object... i18nArgs) {
+    /**
+     * Creates a dialog to display a message.
+     *
+     * @param owner    the owner window this dialog is displayed in
+     * @param i18nKey  the i18n key
+     * @param c        the component that contains the message
+     * @param i18nArgs additional i18n arguments
+     * @since 6.5.0
+     */
+    public MessageDialog(Window owner, String i18nKey, JComponent c, Object... i18nArgs) {
 		super(owner, "message." + i18nKey, ModalityType.APPLICATION_MODAL, i18nArgs);
 		layoutDefault(c, makeOkButton());
 	}

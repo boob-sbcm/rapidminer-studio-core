@@ -64,48 +64,50 @@ import com.rapidminer.tools.math.som.RitterAdaptation;
  */
 public class SOMDimensionalityReduction extends Operator {
 
-	/**
-	 * The parameter name for &quot;Defines the number of dimensions, the data shall be
-	 * reduced.&quot;
-	 */
-	public static final String PARAMETER_NUMBER_OF_DIMENSIONS = "number_of_dimensions";
+    /**
+     * The parameter name for &quot;Defines the number of dimensions, the data shall be
+     * reduced.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_DIMENSIONS = "number_of_dimensions";
 
-	/**
-	 * The parameter name for &quot;Defines the size of the SOM net, by setting the length of every
-	 * edge of the net.&quot;
-	 */
-	public static final String PARAMETER_NET_SIZE = "net_size";
+    /**
+     * The parameter name for &quot;Defines the size of the SOM net, by setting the length of every
+     * edge of the net.&quot;
+     */
+    public static final String PARAMETER_NET_SIZE = "net_size";
 
-	/** The parameter name for &quot;Defines the number of training rounds&quot; */
-	public static final String PARAMETER_TRAINING_ROUNDS = "training_rounds";
+    /**
+     * The parameter name for &quot;Defines the number of training rounds&quot;
+     */
+    public static final String PARAMETER_TRAINING_ROUNDS = "training_rounds";
 
-	/**
-	 * The parameter name for &quot;Defines the strength of an adaption in the first round. The
-	 * strength will decrease every round until it reaches the learning_rate_end in the last
-	 * round.&quot;
-	 */
-	public static final String PARAMETER_LEARNING_RATE_START = "learning_rate_start";
+    /**
+     * The parameter name for &quot;Defines the strength of an adaption in the first round. The
+     * strength will decrease every round until it reaches the learning_rate_end in the last
+     * round.&quot;
+     */
+    public static final String PARAMETER_LEARNING_RATE_START = "learning_rate_start";
 
-	/**
-	 * The parameter name for &quot;Defines the strength of an adaption in the last round. The
-	 * strength will decrease to this value in last round, beginning with learning_rate_start in the
-	 * first round.&quot;
-	 */
-	public static final String PARAMETER_LEARNING_RATE_END = "learning_rate_end";
+    /**
+     * The parameter name for &quot;Defines the strength of an adaption in the last round. The
+     * strength will decrease to this value in last round, beginning with learning_rate_start in the
+     * first round.&quot;
+     */
+    public static final String PARAMETER_LEARNING_RATE_END = "learning_rate_end";
 
-	/**
-	 * The parameter name for &quot;Defines the radius of the sphere around an stimulus, within an
-	 * adaption occurs. This radius decreases every round, starting by adaption_radius_start in
-	 * first round, to adaption_radius_end in last round.&quot;
-	 */
-	public static final String PARAMETER_ADAPTION_RADIUS_START = "adaption_radius_start";
+    /**
+     * The parameter name for &quot;Defines the radius of the sphere around an stimulus, within an
+     * adaption occurs. This radius decreases every round, starting by adaption_radius_start in
+     * first round, to adaption_radius_end in last round.&quot;
+     */
+    public static final String PARAMETER_ADAPTION_RADIUS_START = "adaption_radius_start";
 
-	/**
-	 * The parameter name for &quot;Defines the radius of the sphere around an stimulus, within an
-	 * adaption occurs. This radius decreases every round, starting by adaption_radius_start in
-	 * first round, to adaption_radius_end in last round.&quot;
-	 */
-	public static final String PARAMETER_ADAPTION_RADIUS_END = "adaption_radius_end";
+    /**
+     * The parameter name for &quot;Defines the radius of the sphere around an stimulus, within an
+     * adaption occurs. This radius decreases every round, starting by adaption_radius_start in
+     * first round, to adaption_radius_end in last round.&quot;
+     */
+    public static final String PARAMETER_ADAPTION_RADIUS_END = "adaption_radius_end";
 
 	private static final String PROBLEM_MESSAGE_TOO_MUCH_RAM = "self_organizing_map.too_much_ram";
 
@@ -133,7 +135,12 @@ public class SOMDimensionalityReduction extends Operator {
 	private OutputPort originalOutput = getOutputPorts().createPort("original");
 	private OutputPort modelOutput = getOutputPorts().createPort("preprocessing model");
 
-	public SOMDimensionalityReduction(OperatorDescription description) {
+    /**
+     * Instantiates a new Som dimensionality reduction.
+     *
+     * @param description the description
+     */
+    public SOMDimensionalityReduction(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, Ontology.NUMERICAL));
@@ -232,7 +239,13 @@ public class SOMDimensionalityReduction extends Operator {
 		return net;
 	}
 
-	public static double[] getDoubleArrayFromExample(Example example) {
+    /**
+     * Get double array from example double [ ].
+     *
+     * @param example the example
+     * @return the double [ ]
+     */
+    public static double[] getDoubleArrayFromExample(Example example) {
 		double[] doubleRow = new double[example.getAttributes().size()];
 		int i = 0;
 		for (Attribute attribute : example.getAttributes()) {

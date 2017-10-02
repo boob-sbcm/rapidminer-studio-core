@@ -42,33 +42,62 @@ import java.util.Set;
  * (the n-th) object of a given type (indicated by delete_one), all input objects of a given type
  * (indicated by delete_all), all input objects but those of a given type (indicated by
  * delete_all_but), or all input objects of the given type except for the n-th object of the type.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class IOConsumeOperator extends Operator {
 
-	public static final String PARAMETER_IO_OBJECT = "io_object";
+    /**
+     * The constant PARAMETER_IO_OBJECT.
+     */
+    public static final String PARAMETER_IO_OBJECT = "io_object";
 
-	public static final String PARAMETER_DELETION_TYPE = "deletion_type";
+    /**
+     * The constant PARAMETER_DELETION_TYPE.
+     */
+    public static final String PARAMETER_DELETION_TYPE = "deletion_type";
 
-	public static final String PARAMETER_DELETE_WHICH = "delete_which";
+    /**
+     * The constant PARAMETER_DELETE_WHICH.
+     */
+    public static final String PARAMETER_DELETE_WHICH = "delete_which";
 
-	public static final String PARAMETER_EXCEPT = "except";
+    /**
+     * The constant PARAMETER_EXCEPT.
+     */
+    public static final String PARAMETER_EXCEPT = "except";
 
 	private static final String[] DELETION_TYPES = new String[] { "delete_one", "delete_all", "delete_all_but",
 			"delete_all_but_number" };
 
-	public static final int DELETE_ONE = 0;
+    /**
+     * The constant DELETE_ONE.
+     */
+    public static final int DELETE_ONE = 0;
 
-	public static final int DELETE_ALL = 1;
+    /**
+     * The constant DELETE_ALL.
+     */
+    public static final int DELETE_ALL = 1;
 
-	public static final int DELETE_ALL_BUT = 2;
+    /**
+     * The constant DELETE_ALL_BUT.
+     */
+    public static final int DELETE_ALL_BUT = 2;
 
-	public static final int DELETE_ALL_BUT_NUMBER = 3;
+    /**
+     * The constant DELETE_ALL_BUT_NUMBER.
+     */
+    public static final int DELETE_ALL_BUT_NUMBER = 3;
 
 	private String[] objectArray = null;
 
-	public IOConsumeOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Io consume operator.
+     *
+     * @param description the description
+     */
+    public IOConsumeOperator(OperatorDescription description) {
 		super(description);
 	}
 

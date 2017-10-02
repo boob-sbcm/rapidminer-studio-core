@@ -24,7 +24,6 @@ import org.w3c.dom.Element;
 
 
 /**
- *
  * A parameter type providing dynamic suggestions to the user via the provided
  * {@link SuggestionProvider}.
  *
@@ -37,23 +36,61 @@ public class ParameterTypeSuggestion extends ParameterTypeString {
 
 	private SuggestionProvider<?> provider;
 
-	public ParameterTypeSuggestion(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type suggestion.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeSuggestion(Element element) throws XMLException {
 		super(element);
 	}
 
-	public ParameterTypeSuggestion(String key, String description, SuggestionProvider<?> provider) {
+    /**
+     * Instantiates a new Parameter type suggestion.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param provider    the provider
+     */
+    public ParameterTypeSuggestion(String key, String description, SuggestionProvider<?> provider) {
 		this(key, description, provider, null, true);
 	}
 
-	public ParameterTypeSuggestion(String key, String description, SuggestionProvider<?> provider, boolean optional) {
+    /**
+     * Instantiates a new Parameter type suggestion.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param provider    the provider
+     * @param optional    the optional
+     */
+    public ParameterTypeSuggestion(String key, String description, SuggestionProvider<?> provider, boolean optional) {
 		this(key, description, provider, null, optional);
 	}
 
-	public ParameterTypeSuggestion(String key, String description, SuggestionProvider<?> provider, String defaultValue) {
+    /**
+     * Instantiates a new Parameter type suggestion.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param provider     the provider
+     * @param defaultValue the default value
+     */
+    public ParameterTypeSuggestion(String key, String description, SuggestionProvider<?> provider, String defaultValue) {
 		this(key, description, provider, defaultValue, true);
 	}
 
-	public ParameterTypeSuggestion(String key, String description, SuggestionProvider<?> provider, String defaultValue,
+    /**
+     * Instantiates a new Parameter type suggestion.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param provider     the provider
+     * @param defaultValue the default value
+     * @param optional     the optional
+     */
+    public ParameterTypeSuggestion(String key, String description, SuggestionProvider<?> provider, String defaultValue,
 			boolean optional) {
 		super(key, description, defaultValue);
 		this.provider = provider;
@@ -61,7 +98,12 @@ public class ParameterTypeSuggestion extends ParameterTypeString {
 		setExpert(false);
 	}
 
-	public SuggestionProvider<?> getSuggestionProvider() {
+    /**
+     * Gets suggestion provider.
+     *
+     * @return the suggestion provider
+     */
+    public SuggestionProvider<?> getSuggestionProvider() {
 		return provider;
 	}
 

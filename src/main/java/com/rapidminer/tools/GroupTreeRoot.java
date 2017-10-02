@@ -27,32 +27,34 @@ import com.rapidminer.tools.documentation.OperatorDocBundle;
 /**
  * A group tree manages operator descriptions in a tree like manner. This is useful to present the
  * operators in groups and subgroups and eases operator selection in the GUI.
- * 
+ * <p>
  * The group tree heavily depends on the associated OperatorService, since it reflects the
  * registered Operators of that Service. Each {@link OperatorService} can have multiple GroupTrees,
  * which register as listener to be able to update on new registration or unregistration events.
- * 
+ * <p>
  * The listening is done by the {@link GroupTreeRoot} class implementing the
  * {@link OperatorServiceListener} interface.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class GroupTreeRoot extends GroupTree implements OperatorServiceListener {
 
-	/**
-	 * PackagePrivate Constructor for the OperatorService.
-	 */
-	GroupTreeRoot() {
+    /**
+     * PackagePrivate Constructor for the OperatorService.
+     */
+    GroupTreeRoot() {
 		OperatorService.addOperatorServiceListener(this);
 	}
 
-	/**
-	 * Clone constructor. This will keep the link to the {@link OperatorService}. Whenever a new
-	 * Operator is added or removed, this will be reflected in the copy as well. For detecting such
-	 * events, please register on
-	 * {@link OperatorService#addOperatorServiceListener(OperatorServiceListener)}.
-	 * */
-	protected GroupTreeRoot(GroupTreeRoot other) {
+    /**
+     * Clone constructor. This will keep the link to the {@link OperatorService}. Whenever a new
+     * Operator is added or removed, this will be reflected in the copy as well. For detecting such
+     * events, please register on
+     * {@link OperatorService#addOperatorServiceListener(OperatorServiceListener)}.
+     *
+     * @param other the other
+     */
+    protected GroupTreeRoot(GroupTreeRoot other) {
 		super(other);
 		OperatorService.addOperatorServiceListener(this);
 	}
@@ -122,11 +124,14 @@ public class GroupTreeRoot extends GroupTree implements OperatorServiceListener 
 		}
 	}
 
-	/**
-	 * Finds the group for the given fully qualified name (dot separated) if existing, returning
-	 * null otherwise.
-	 */
-	public GroupTree findGroup(String fullyQualifiedGroupName) {
+    /**
+     * Finds the group for the given fully qualified name (dot separated) if existing, returning
+     * null otherwise.
+     *
+     * @param fullyQualifiedGroupName the fully qualified group name
+     * @return the group tree
+     */
+    public GroupTree findGroup(String fullyQualifiedGroupName) {
 		String[] groupKeys = fullyQualifiedGroupName.split("\\.");
 		GroupTree group = this;
 		for (int i = 0; i < groupKeys.length && group != null; i++) {
@@ -135,12 +140,14 @@ public class GroupTreeRoot extends GroupTree implements OperatorServiceListener 
 		return group;
 	}
 
-	/**
-	 * Finds or creates the group for the given fully qualified name (dot separated).
-	 * 
-	 * @param bundle
-	 */
-	public GroupTree findOrCreateGroup(String fullyQualifiedGroupName, OperatorDocBundle bundle) {
+    /**
+     * Finds or creates the group for the given fully qualified name (dot separated).
+     *
+     * @param fullyQualifiedGroupName the fully qualified group name
+     * @param bundle                  the bundle
+     * @return the group tree
+     */
+    public GroupTree findOrCreateGroup(String fullyQualifiedGroupName, OperatorDocBundle bundle) {
 		String[] groupKeys = fullyQualifiedGroupName.split("\\.");
 		GroupTree group = this;
 		for (int i = 0; i < groupKeys.length && group != null; i++) {

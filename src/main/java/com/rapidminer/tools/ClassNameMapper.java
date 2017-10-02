@@ -28,14 +28,22 @@ import java.util.Map;
 /**
  * Uses long class names and maps them to the final (short) part. These can be used for example for
  * GUI purposes.
- * 
+ *
  * @author Michael Wurst, Ingo Mierswa
  */
 public class ClassNameMapper {
 
-	Map<String, String> classMap = new LinkedHashMap<String, String>();
+    /**
+     * The Class map.
+     */
+    Map<String, String> classMap = new LinkedHashMap<String, String>();
 
-	public ClassNameMapper(String[] classNames) {
+    /**
+     * Instantiates a new Class name mapper.
+     *
+     * @param classNames the class names
+     */
+    public ClassNameMapper(String[] classNames) {
 		for (int i = 0; i < classNames.length; i++) {
 			String completeClassName = classNames[i];
 			String simpleClassName = completeClassName;
@@ -56,11 +64,24 @@ public class ClassNameMapper {
 		}
 	}
 
-	public String getCompleteClassName(String shortName) {
+    /**
+     * Gets complete class name.
+     *
+     * @param shortName the short name
+     * @return the complete class name
+     */
+    public String getCompleteClassName(String shortName) {
 		return classMap.get(shortName);
 	}
 
-	public Class<?> getClassByShortName(String shortName) throws UserError {
+    /**
+     * Gets class by short name.
+     *
+     * @param shortName the short name
+     * @return the class by short name
+     * @throws UserError the user error
+     */
+    public Class<?> getClassByShortName(String shortName) throws UserError {
 		String completeClassName = getCompleteClassName(shortName);
 
 		// if the name is not found in the map, try to use the one provided as parameter.
@@ -79,7 +100,12 @@ public class ClassNameMapper {
 		}
 	}
 
-	public String[] getShortClassNames() {
+    /**
+     * Get short class names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getShortClassNames() {
 		String[] result = new String[classMap.size()];
 		Iterator<String> it = classMap.keySet().iterator();
 
@@ -90,7 +116,14 @@ public class ClassNameMapper {
 		return result;
 	}
 
-	public Object getInstantiation(String shortName) throws UserError {
+    /**
+     * Gets instantiation.
+     *
+     * @param shortName the short name
+     * @return the instantiation
+     * @throws UserError the user error
+     */
+    public Object getInstantiation(String shortName) throws UserError {
 		Object result = null;
 		try {
 			result = getClassByShortName(shortName).newInstance();

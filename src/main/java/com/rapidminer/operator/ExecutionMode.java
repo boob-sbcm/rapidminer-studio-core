@@ -20,12 +20,17 @@ package com.rapidminer.operator;
 
 /**
  * Indicates whether it is allowed to skip operators that already have valid results.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public enum ExecutionMode {
 
-	ALWAYS, ONLY_DIRTY
+    /**
+     * Always execution mode.
+     */
+    ALWAYS, /**
+     * Only dirty execution mode.
+     */
+    ONLY_DIRTY
 
 }

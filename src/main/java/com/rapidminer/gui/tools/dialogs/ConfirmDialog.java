@@ -42,84 +42,99 @@ import com.rapidminer.tools.ParameterService;
 
 
 /**
+ * The type Confirm dialog.
+ *
  * @author Tobias Malbrecht, Adrian Wilke
  */
 public class ConfirmDialog extends ButtonDialog {
 
 	private static final long serialVersionUID = -5825873580778775409L;
 
-	public static final int OK_OPTION = JOptionPane.OK_OPTION;
+    /**
+     * The constant OK_OPTION.
+     */
+    public static final int OK_OPTION = JOptionPane.OK_OPTION;
 
-	public static final int YES_OPTION = JOptionPane.YES_OPTION;
+    /**
+     * The constant YES_OPTION.
+     */
+    public static final int YES_OPTION = JOptionPane.YES_OPTION;
 
-	public static final int NO_OPTION = JOptionPane.NO_OPTION;
+    /**
+     * The constant NO_OPTION.
+     */
+    public static final int NO_OPTION = JOptionPane.NO_OPTION;
 
-	public static final int CANCEL_OPTION = JOptionPane.CANCEL_OPTION;
+    /**
+     * The constant CANCEL_OPTION.
+     */
+    public static final int CANCEL_OPTION = JOptionPane.CANCEL_OPTION;
 
-	public static final int CLOSED_OPTION = JOptionPane.CLOSED_OPTION;
+    /**
+     * The constant CLOSED_OPTION.
+     */
+    public static final int CLOSED_OPTION = JOptionPane.CLOSED_OPTION;
 
-	public static final int OK_CANCEL_OPTION = JOptionPane.OK_CANCEL_OPTION;
+    /**
+     * The constant OK_CANCEL_OPTION.
+     */
+    public static final int OK_CANCEL_OPTION = JOptionPane.OK_CANCEL_OPTION;
 
-	public static final int YES_NO_OPTION = JOptionPane.YES_NO_OPTION;
+    /**
+     * The constant YES_NO_OPTION.
+     */
+    public static final int YES_NO_OPTION = JOptionPane.YES_NO_OPTION;
 
-	public static final int YES_NO_CANCEL_OPTION = JOptionPane.YES_NO_CANCEL_OPTION;
+    /**
+     * The constant YES_NO_CANCEL_OPTION.
+     */
+    public static final int YES_NO_CANCEL_OPTION = JOptionPane.YES_NO_CANCEL_OPTION;
 
-	protected int returnOption = CANCEL_OPTION;
+    /**
+     * The Return option.
+     */
+    protected int returnOption = CANCEL_OPTION;
 
 	private JCheckBox dontAskAgainCheckbox = null;
 
-	/**
-	 * Creates a confirm dialog where the user can chose his action.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param mode
-	 *            see the static constants of {@link ConfirmDialog}
-	 * @param showAskAgainCheckbox
-	 *            the user can chose to never be asked again
-	 * @param arguments
-	 *            additional i18n arguments
-	 * @deprecated use {@link #ConfirmDialog(Window, String, int, boolean, Object...)} instead
-	 */
-	@Deprecated
+    /**
+     * Creates a confirm dialog where the user can chose his action.
+     *
+     * @param key                  the i18n key
+     * @param mode                 see the static constants of {@link ConfirmDialog}
+     * @param showAskAgainCheckbox the user can chose to never be asked again
+     * @param arguments            additional i18n arguments
+     * @deprecated use {@link #ConfirmDialog(Window, String, int, boolean, Object...)} instead
+     */
+    @Deprecated
 	public ConfirmDialog(String key, int mode, boolean showAskAgainCheckbox, Object... arguments) {
 		this(ApplicationFrame.getApplicationFrame(), key, mode, showAskAgainCheckbox, arguments);
 	}
 
-	/**
-	 * Creates a confirm dialog where the user can chose his action.
-	 *
-	 * @param owner
-	 *            the owner of the dialog
-	 * @param key
-	 *            the i18n key
-	 * @param mode
-	 *            see the static constants of {@link ConfirmDialog}
-	 * @param showAskAgainCheckbox
-	 *            the user can chose to never be asked again
-	 * @param arguments
-	 *            additional i18n arguments
-	 */
-	public ConfirmDialog(Dialog owner, String key, int mode, boolean showAskAgainCheckbox, Object... arguments) {
+    /**
+     * Creates a confirm dialog where the user can chose his action.
+     *
+     * @param owner                the owner of the dialog
+     * @param key                  the i18n key
+     * @param mode                 see the static constants of {@link ConfirmDialog}
+     * @param showAskAgainCheckbox the user can chose to never be asked again
+     * @param arguments            additional i18n arguments
+     */
+    public ConfirmDialog(Dialog owner, String key, int mode, boolean showAskAgainCheckbox, Object... arguments) {
 		this((Window) owner, key, mode, showAskAgainCheckbox, arguments);
 	}
 
-	/**
-	 * Creates a confirm dialog where the user can chose his action.
-	 *
-	 * @param owner
-	 *            the owner of the dialog
-	 * @param key
-	 *            the i18n key
-	 * @param mode
-	 *            see the static constants of {@link ConfirmDialog}
-	 * @param showAskAgainCheckbox
-	 *            the user can chose to never be asked again
-	 * @param arguments
-	 *            additional i18n arguments
-	 * @since 6.5.0
-	 */
-	public ConfirmDialog(Window owner, String key, int mode, boolean showAskAgainCheckbox, Object... arguments) {
+    /**
+     * Creates a confirm dialog where the user can chose his action.
+     *
+     * @param owner                the owner of the dialog
+     * @param key                  the i18n key
+     * @param mode                 see the static constants of {@link ConfirmDialog}
+     * @param showAskAgainCheckbox the user can chose to never be asked again
+     * @param arguments            additional i18n arguments
+     * @since 6.5.0
+     */
+    public ConfirmDialog(Window owner, String key, int mode, boolean showAskAgainCheckbox, Object... arguments) {
 		super(owner, "confirm." + key, ModalityType.APPLICATION_MODAL, arguments);
 		constructConfirmDialog(mode, showAskAgainCheckbox);
 	}
@@ -196,7 +211,12 @@ public class ConfirmDialog extends ButtonDialog {
 		return cancelButton;
 	}
 
-	protected JButton makeYesButton() {
+    /**
+     * Make yes button j button.
+     *
+     * @return the j button
+     */
+    protected JButton makeYesButton() {
 		JButton yesButton = new JButton(new ResourceAction("confirm.yes") {
 
 			private static final long serialVersionUID = -8887199234055845095L;
@@ -211,7 +231,12 @@ public class ConfirmDialog extends ButtonDialog {
 		return yesButton;
 	}
 
-	protected JButton makeNoButton() {
+    /**
+     * Make no button j button.
+     *
+     * @return the j button
+     */
+    protected JButton makeNoButton() {
 		ResourceAction noAction = new ResourceAction("confirm.no") {
 
 			private static final long serialVersionUID = -8887199234055845095L;
@@ -238,19 +263,35 @@ public class ConfirmDialog extends ButtonDialog {
 		dispose();
 	}
 
-	protected void yes() {
+    /**
+     * Yes.
+     */
+    protected void yes() {
 		dispose();
 	}
 
-	protected void no() {
+    /**
+     * No.
+     */
+    protected void no() {
 		dispose();
 	}
 
-	public int getReturnOption() {
+    /**
+     * Gets return option.
+     *
+     * @return the return option
+     */
+    public int getReturnOption() {
 		return returnOption;
 	}
 
-	public boolean isDontAskAgainCheckboxSelected() {
+    /**
+     * Is dont ask again checkbox selected boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isDontAskAgainCheckboxSelected() {
 		if (dontAskAgainCheckbox == null) {
 			return false;
 		} else {
@@ -258,88 +299,85 @@ public class ConfirmDialog extends ButtonDialog {
 		}
 	}
 
-	protected void setReturnOption(int option) {
+    /**
+     * Sets return option.
+     *
+     * @param option the option
+     */
+    protected void setReturnOption(int option) {
 		this.returnOption = option;
 	}
 
-	/**
-	 * Shows a dialog and returns the return code of the dialog.
-	 *
-	 * @param key
-	 *            The i18n-key. Will be prepended with gui.dialog.confirm and prefixed with .title,
-	 *            .message and .icon .
-	 * @param mode
-	 *            One of {@link #OK_CANCEL_OPTION}, {@link #YES_NO_OPTION} and
-	 *            {@link #YES_NO_CANCEL_OPTION}
-	 * @param propertyConfirmExit
-	 *            If null, the dialog is shown in any case. If not null, the parameter specified
-	 *            will be from fetched from {@link ParameterService}. If it is "false", the dialog
-	 *            will not be shown.
-	 * @param defaultOption
-	 *            Will be returned if the dialog is not shown (see parameter propertyConfirmExit.
-	 * @param i18nArgs
-	 *            Arguments to the i18n string.
-	 * @return The return code of the dialog, one of the constants specified above.
-	 * @deprecated use {@link #showConfirmDialog(Dialog, String, int, String, int, Object...)}
-	 *             instead
-	 *
-	 */
-	@Deprecated
+    /**
+     * Shows a dialog and returns the return code of the dialog.
+     *
+     * @param key                 The i18n-key. Will be prepended with gui.dialog.confirm and prefixed with .title,            .message and .icon .
+     * @param mode                One of {@link #OK_CANCEL_OPTION}, {@link #YES_NO_OPTION} and            {@link #YES_NO_CANCEL_OPTION}
+     * @param propertyConfirmExit If null, the dialog is shown in any case. If not null, the parameter specified            will be from fetched from {@link ParameterService}. If it is "false", the dialog            will not be shown.
+     * @param defaultOption       Will be returned if the dialog is not shown (see parameter propertyConfirmExit.
+     * @param i18nArgs            Arguments to the i18n string.
+     * @return The return code of the dialog, one of the constants specified above.
+     * @deprecated use {@link #showConfirmDialog(Dialog, String, int, String, int, Object...)}             instead
+     */
+    @Deprecated
 	public static int showConfirmDialog(String key, int mode, String propertyConfirmExit, int defaultOption,
 			Object... i18nArgs) {
 		return showConfirmDialog(ApplicationFrame.getApplicationFrame(), key, mode, propertyConfirmExit, defaultOption,
 				true, i18nArgs);
 	}
 
-	/**
-	 * Shows a dialog and returns the return code of the dialog.
-	 *
-	 * @param owner
-	 *            the owner where the dialog will be shown in
-	 * @param key
-	 *            The i18n-key. Will be prepended with gui.dialog.confirm and prefixed with .title,
-	 *            .message and .icon .
-	 * @param mode
-	 *            One of {@link #OK_CANCEL_OPTION}, {@link #YES_NO_OPTION} and
-	 *            {@link #YES_NO_CANCEL_OPTION}
-	 * @param propertyConfirmExit
-	 *            If null, the dialog is shown in any case. If not null, the parameter specified
-	 *            will be from fetched from {@link ParameterService}. If it is "false", the dialog
-	 *            will not be shown.
-	 * @param defaultOption
-	 *            Will be returned if the dialog is not shown (see parameter propertyConfirmExit.
-	 * @param i18nArgs
-	 *            Arguments to the i18n string.
-	 * @return The return code of the dialog, one of the constants specified above.
-	 * @since 6.5.0
-	 */
-	public static int showConfirmDialog(Window owner, String key, int mode, String propertyConfirmExit, int defaultOption,
+    /**
+     * Shows a dialog and returns the return code of the dialog.
+     *
+     * @param owner               the owner where the dialog will be shown in
+     * @param key                 The i18n-key. Will be prepended with gui.dialog.confirm and prefixed with .title,            .message and .icon .
+     * @param mode                One of {@link #OK_CANCEL_OPTION}, {@link #YES_NO_OPTION} and            {@link #YES_NO_CANCEL_OPTION}
+     * @param propertyConfirmExit If null, the dialog is shown in any case. If not null, the parameter specified            will be from fetched from {@link ParameterService}. If it is "false", the dialog            will not be shown.
+     * @param defaultOption       Will be returned if the dialog is not shown (see parameter propertyConfirmExit.
+     * @param i18nArgs            Arguments to the i18n string.
+     * @return The return code of the dialog, one of the constants specified above.
+     * @since 6.5.0
+     */
+    public static int showConfirmDialog(Window owner, String key, int mode, String propertyConfirmExit, int defaultOption,
 			Object... i18nArgs) {
 		return showConfirmDialogWithOptionalCheckbox(owner, key, mode, propertyConfirmExit, defaultOption, true, i18nArgs);
 	}
 
-	/**
-	 * Same as {@link #showConfirmDialog(Window, String, int, String, int, Object...)} with the
-	 * additional option showAskAgainCheckbox.
-	 *
-	 * @deprecated use
-	 *             {@link #showConfirmDialogWithOptionalCheckbox(Window, String, int, String, int, boolean, Object...)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Same as {@link #showConfirmDialog(Window, String, int, String, int, Object...)} with the
+     * additional option showAskAgainCheckbox.
+     *
+     * @param key                  the key
+     * @param mode                 the mode
+     * @param propertyConfirmExit  the property confirm exit
+     * @param defaultOption        the default option
+     * @param showAskAgainCheckbox the show ask again checkbox
+     * @param i18nArgs             the 18 n args
+     * @return the int
+     * @deprecated use {@link #showConfirmDialogWithOptionalCheckbox(Window, String, int, String, int, boolean, Object...)}             instead
+     */
+    @Deprecated
 	public static int showConfirmDialogWithOptionalCheckbox(String key, int mode, String propertyConfirmExit,
 			int defaultOption, boolean showAskAgainCheckbox, Object... i18nArgs) {
 		return showConfirmDialogWithOptionalCheckbox(ApplicationFrame.getApplicationFrame(), key, mode, propertyConfirmExit,
 				defaultOption, showAskAgainCheckbox, i18nArgs);
 	}
 
-	/**
-	 * Same as {@link #showConfirmDialog(Window, String, int, String, int, Object...)} with the
-	 * additional option showAskAgainCheckbox.
-	 *
-	 * @since 6.5.0
-	 */
-	public static int showConfirmDialogWithOptionalCheckbox(Window owner, String key, int mode, String propertyConfirmExit,
+    /**
+     * Same as {@link #showConfirmDialog(Window, String, int, String, int, Object...)} with the
+     * additional option showAskAgainCheckbox.
+     *
+     * @param owner                the owner
+     * @param key                  the key
+     * @param mode                 the mode
+     * @param propertyConfirmExit  the property confirm exit
+     * @param defaultOption        the default option
+     * @param showAskAgainCheckbox the show ask again checkbox
+     * @param i18nArgs             the 18 n args
+     * @return the int
+     * @since 6.5.0
+     */
+    public static int showConfirmDialogWithOptionalCheckbox(Window owner, String key, int mode, String propertyConfirmExit,
 			int defaultOption, boolean showAskAgainCheckbox, Object... i18nArgs) {
 		if (propertyConfirmExit == null) {
 			ConfirmDialog dialog = new ConfirmDialog(owner, key, mode, showAskAgainCheckbox, i18nArgs);

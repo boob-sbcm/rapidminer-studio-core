@@ -28,23 +28,48 @@ import com.vlsolutions.swing.docking.Dockable;
 
 /**
  * Superclass of alternative result displays.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public interface ResultDisplay extends Dockable, ProcessEditor {
 
-	public static final String RESULT_DOCK_KEY = "result";
+    /**
+     * The constant RESULT_DOCK_KEY.
+     */
+    public static final String RESULT_DOCK_KEY = "result";
 
-	/** Initializer called after the main frame is set up. */
-	public void init(MainFrame mainFrame);
+    /**
+     * Initializer called after the main frame is set up.  @param mainFrame the main frame
+     *
+     * @param mainFrame the main frame
+     */
+    public void init(MainFrame mainFrame);
 
-	public void showResult(ResultObject result);
+    /**
+     * Show result.
+     *
+     * @param result the result
+     */
+    public void showResult(ResultObject result);
 
-	public void showData(final IOContainer resultContainer, final String message);
+    /**
+     * Show data.
+     *
+     * @param resultContainer the result container
+     * @param message         the message
+     */
+    public void showData(final IOContainer resultContainer, final String message);
 
-	public void addDataTable(DataTable dataTable);
+    /**
+     * Add data table.
+     *
+     * @param dataTable the data table
+     */
+    public void addDataTable(DataTable dataTable);
 
-	public void clearAll();
+    /**
+     * Clear all.
+     */
+    public void clearAll();
 
 }

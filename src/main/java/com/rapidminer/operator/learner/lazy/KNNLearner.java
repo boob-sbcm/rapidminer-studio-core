@@ -45,21 +45,29 @@ import java.util.List;
 
 /**
  * A k nearest neighbor implementation.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class KNNLearner extends AbstractLearner {
 
-	/** The parameter name for &quot;The used number of nearest neighbors.&quot; */
-	public static final String PARAMETER_K = "k";
+    /**
+     * The parameter name for &quot;The used number of nearest neighbors.&quot;
+     */
+    public static final String PARAMETER_K = "k";
 
-	/** The parameter name for &quot;Indicates if the votes should be weighted by similarity.&quot; */
-	public static final String PARAMETER_WEIGHTED_VOTE = "weighted_vote";
+    /**
+     * The parameter name for &quot;Indicates if the votes should be weighted by similarity.&quot;
+     */
+    public static final String PARAMETER_WEIGHTED_VOTE = "weighted_vote";
 
 	private DistanceMeasureHelper measureHelper = new DistanceMeasureHelper(this);
 
-	public KNNLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Knn learner.
+     *
+     * @param description the description
+     */
+    public KNNLearner(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(new DistanceMeasurePrecondition(getExampleSetInputPort(), this));

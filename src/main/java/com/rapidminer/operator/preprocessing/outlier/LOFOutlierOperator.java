@@ -48,7 +48,7 @@ import java.util.Set;
  * This operator performs a LOF outlier search. LOF outliers or outliers with a local outlier factor
  * per object are density based outliers according to Breuning, Kriegel, et al.
  * </p>
- * 
+ * <p>
  * <p>
  * The approach to find those outliers is based on measuring the density of objects and its relation
  * to each other (referred to as local reachability density). Based on the average ratio of the
@@ -57,7 +57,7 @@ import java.util.Set;
  * parameter MinPts (actually specifying the "k") and it uses the maximum LOFs for objects in a
  * MinPts range (lower bound and upper bound to MinPts).
  * </p>
- * 
+ * <p>
  * <p>
  * Currently, the operator supports cosine, sine or squared distances in addition to the usual
  * euclidian distance which can be specified by the corresponding parameter. In the first step, the
@@ -67,7 +67,7 @@ import java.util.Set;
  * has the distance information as well as the list of objects within that distance (usually only a
  * few) and the information, how many objects are in the container.
  * </p>
- * 
+ * <p>
  * <p>
  * In the second step, three things are done: (1) The containers for each object are counted in
  * acending order according to the cardinality of the object list within the container (= that
@@ -80,31 +80,40 @@ import java.util.Set;
  * between the MinPts-local reachability-density of all objects in the k-neighbourhood and the
  * object itself. The maximum LOF in the MinPts range is passed as final LOF to each object.
  * </p>
- * 
+ * <p>
  * <p>
  * Afterwards LOFs are added as values for a special real-valued outlier attribute in the example
  * set which the operator will return.
  * </p>
- * 
+ *
  * @author Stephan Deutsch, Ingo Mierswa
  */
 public class LOFOutlierOperator extends AbstractOutlierDetection {
 
-	/** The parameter name for &quot;The lower bound for MinPts for the Outlier test &quot; */
-	public static final String PARAMETER_MINIMAL_POINTS_LOWER_BOUND = "minimal_points_lower_bound";
+    /**
+     * The parameter name for &quot;The lower bound for MinPts for the Outlier test &quot;
+     */
+    public static final String PARAMETER_MINIMAL_POINTS_LOWER_BOUND = "minimal_points_lower_bound";
 
-	/** The parameter name for &quot;The upper bound for MinPts for the Outlier test &quot; */
-	public static final String PARAMETER_MINIMAL_POINTS_UPPER_BOUND = "minimal_points_upper_bound";
+    /**
+     * The parameter name for &quot;The upper bound for MinPts for the Outlier test &quot;
+     */
+    public static final String PARAMETER_MINIMAL_POINTS_UPPER_BOUND = "minimal_points_upper_bound";
 
-	/**
-	 * The parameter name for &quot;choose which distance function will be used for calculating
-	 * &quot;
-	 */
-	public static final String PARAMETER_DISTANCE_FUNCTION = "distance_function";
+    /**
+     * The parameter name for &quot;choose which distance function will be used for calculating
+     * &quot;
+     */
+    public static final String PARAMETER_DISTANCE_FUNCTION = "distance_function";
 	private static final String[] distanceFunctionList = { "euclidian distance", "squared distance", "cosine distance",
 			"inverted cosine distance", "angle" };
 
-	public LOFOutlierOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Lof outlier operator.
+     *
+     * @param description the description
+     */
+    public LOFOutlierOperator(OperatorDescription description) {
 		super(description);
 	}
 

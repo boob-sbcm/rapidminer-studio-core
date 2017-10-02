@@ -35,12 +35,12 @@ import javax.swing.Icon;
 
 /**
  * This plotter can be used to create quartile plots for several columns of the data table.
- * 
+ * <p>
  * The mean value of the data is shown as the black point, while the median (the lower median on a
  * pair number of examples) is shown as a horizontal line in the box. The vertical line crossing the
  * mean value's point is the standard deviation. The box marks the two center quartiles from 25% to
  * 75%. The whiskers show the 5% and 95% percentiles. Circles beyond the whiskers mark outliers.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class QuartilePlotter extends ColorQuartilePlotter {
@@ -49,13 +49,24 @@ public class QuartilePlotter extends ColorQuartilePlotter {
 
 	private boolean[] columns = null;
 
-	public QuartilePlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Quartile plotter.
+     *
+     * @param settings the settings
+     */
+    public QuartilePlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setDrawLegend(true);
 		// setPlotColumn(0, false);
 	}
 
-	public QuartilePlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Quartile plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public QuartilePlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings, dataTable);
 		setDrawLegend(true);
 		// setPlotColumn(0, false);

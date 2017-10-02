@@ -26,62 +26,77 @@ import com.rapidminer.tools.math.Averagable;
  * Each <tt>PerformanceCriterion</tt> contains a method to compute this criterion on a given set of
  * examples, each which has to have a real and a predicted label.
  * </p>
- * 
+ * <p>
  * <p>
  * PerformanceCriteria must implement the <tt>compareTo</tt> method in a way that allows
  * <tt>Collections</tt> to sort the criteria in ascending order and determine the best as the
  * maximum.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class PerformanceCriterion extends Averagable implements Comparable<PerformanceCriterion> {
 
 	private static final long serialVersionUID = -6805251141256540352L;
 
-	public PerformanceCriterion() {}
+    /**
+     * Instantiates a new Performance criterion.
+     */
+    public PerformanceCriterion() {}
 
-	/** Clone constructor. */
-	public PerformanceCriterion(PerformanceCriterion o) {
+    /**
+     * Clone constructor.  @param o the o
+     *
+     * @param o the o
+     */
+    public PerformanceCriterion(PerformanceCriterion o) {
 		super(o);
 	}
 
-	/**
-	 * Returns a description of the performance criterion. This description is used for GUI purposes
-	 * and automatic parameter type creation for the {@link PerformanceEvaluator} operator.
-	 */
-	public abstract String getDescription();
+    /**
+     * Returns a description of the performance criterion. This description is used for GUI purposes
+     * and automatic parameter type creation for the {@link PerformanceEvaluator} operator.
+     *
+     * @return the description
+     */
+    public abstract String getDescription();
 
-	/**
-	 * Returns the number of data points which was used to determine the criterion value. If the
-	 * criterion does not use example weights (or no weight was given) then the returned value will
-	 * be an integer. Otherwise, the returned value is the sum of all example weights.
-	 */
-	public abstract double getExampleCount();
+    /**
+     * Returns the number of data points which was used to determine the criterion value. If the
+     * criterion does not use example weights (or no weight was given) then the returned value will
+     * be an integer. Otherwise, the returned value is the sum of all example weights.
+     *
+     * @return the example count
+     */
+    public abstract double getExampleCount();
 
-	/**
-	 * <p>
-	 * Returns the fitness depending on the value. The fitness values will be used for all
-	 * optimization purposes (feature space transformations, parameter optimizations...) and must
-	 * always be maximized. Hence, if your criterion is better the smaller the value is you should
-	 * return something like (-1 * value) or (1 / value).
-	 * </p>
-	 * 
-	 * <p>
-	 * Subclasses should use {@link #getAverage()} instead of {@link #getMikroAverage()} in this
-	 * method since usually the makro average (if available) should be optmized instead of the mikro
-	 * average. The mikro average should only be used in the (rare) cases where no makro average is
-	 * available but this is automatically done returned by {@link #getAverage()} in these cases.
-	 * </p>
-	 */
-	public abstract double getFitness();
+    /**
+     * <p>
+     * Returns the fitness depending on the value. The fitness values will be used for all
+     * optimization purposes (feature space transformations, parameter optimizations...) and must
+     * always be maximized. Hence, if your criterion is better the smaller the value is you should
+     * return something like (-1 * value) or (1 / value).
+     * </p>
+     * <p>
+     * <p>
+     * Subclasses should use {@link #getAverage()} instead of {@link #getMikroAverage()} in this
+     * method since usually the makro average (if available) should be optmized instead of the mikro
+     * average. The mikro average should only be used in the (rare) cases where no makro average is
+     * available but this is automatically done returned by {@link #getAverage()} in these cases.
+     * </p>
+     *
+     * @return the fitness
+     */
+    public abstract double getFitness();
 
-	/**
-	 * Returns the maximum fitness. The default implementation resturns POSITIVE_INFINITY,
-	 * subclasses may override this to allow feature operators to end the optimization if the
-	 * maximum was reached.
-	 */
-	public double getMaxFitness() {
+    /**
+     * Returns the maximum fitness. The default implementation resturns POSITIVE_INFINITY,
+     * subclasses may override this to allow feature operators to end the optimization if the
+     * maximum was reached.
+     *
+     * @return the max fitness
+     */
+    public double getMaxFitness() {
 		return Double.POSITIVE_INFINITY;
 	}
 

@@ -47,10 +47,10 @@ public final class DataManagementParameterHelper {
 		// utility class constructor
 	}
 
-	/**
-	 * the options for {@link #PARAMETER_NEW_DATA_MANAGEMENT} coming from {@link DataManagment}
-	 */
-	public static final String[] NEW_DATA_MANAGMENT_OPTIONS = new String[] { "auto", "memory-optimized", "speed-optimized" };
+    /**
+     * the options for {@link #PARAMETER_NEW_DATA_MANAGEMENT} coming from {@link DataManagment}
+     */
+    public static final String[] NEW_DATA_MANAGMENT_OPTIONS = new String[] { "auto", "memory-optimized", "speed-optimized" };
 
 	/**
 	 * Mapping from displayed data management options to {@link DataManagement} options. Must always
@@ -64,22 +64,19 @@ public final class DataManagementParameterHelper {
 		DATA_MANAGEMENT_LOOKUP.put(NEW_DATA_MANAGMENT_OPTIONS[2], DataManagement.SPEED_OPTIMIZED);
 	}
 
-	/**
-	 * key for the new data management parameter
-	 */
-	public static final String PARAMETER_NEW_DATA_MANAGEMENT = "data_management";
+    /**
+     * key for the new data management parameter
+     */
+    public static final String PARAMETER_NEW_DATA_MANAGEMENT = "data_management";
 
-	/**
-	 * Adds the data management parameters for beta and standard mode to the given list of parameter
-	 * types.
-	 *
-	 * @param types
-	 *            the list of parameter types to which the data management parameters should be
-	 *            added
-	 * @param operator
-	 *            the operator for which the parameters are meant
-	 */
-	public static void addParameterTypes(List<ParameterType> types, Operator operator) {
+    /**
+     * Adds the data management parameters for beta and standard mode to the given list of parameter
+     * types.
+     *
+     * @param types    the list of parameter types to which the data management parameters should be            added
+     * @param operator the operator for which the parameters are meant
+     */
+    public static void addParameterTypes(List<ParameterType> types, Operator operator) {
 		ParameterType standard = new ParameterTypeCategory(ExampleSetGenerator.PARAMETER_DATAMANAGEMENT,
 				"Determines, how the data is represented internally.", DataRowFactory.TYPE_NAMES,
 				DataRowFactory.TYPE_DOUBLE_ARRAY, true);
@@ -106,17 +103,15 @@ public final class DataManagementParameterHelper {
 		types.add(beta);
 	}
 
-	/**
-	 * Retrieves the {@link DataManagement} associated to the selected option for the parameter
-	 * {@link #PARAMETER_NEW_DATA_MANAGEMENT} of the given operator.
-	 *
-	 * @param operator
-	 *            the operator to which the data management parameter belongs
-	 * @return the {@link DataManagement} associated to the selection
-	 * @throws UndefinedParameterError
-	 *             if the parameter could not be retrieved
-	 */
-	public static DataManagement getSelectedDataManagement(Operator operator) throws UndefinedParameterError {
+    /**
+     * Retrieves the {@link DataManagement} associated to the selected option for the parameter
+     * {@link #PARAMETER_NEW_DATA_MANAGEMENT} of the given operator.
+     *
+     * @param operator the operator to which the data management parameter belongs
+     * @return the {@link DataManagement} associated to the selection
+     * @throws UndefinedParameterError if the parameter could not be retrieved
+     */
+    public static DataManagement getSelectedDataManagement(Operator operator) throws UndefinedParameterError {
 		String selected = operator.getParameterAsString(PARAMETER_NEW_DATA_MANAGEMENT);
 		return DATA_MANAGEMENT_LOOKUP.get(selected);
 	}

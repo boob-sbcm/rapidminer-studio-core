@@ -33,48 +33,81 @@ import java.util.List;
 
 /**
  * This criterion calculates the area under the ROC curve.
- * 
+ *
  * @author Ingo Mierswa, Martin Scholz
  */
 public class AreaUnderCurve extends MeasuredPerformance {
 
 	private static final long serialVersionUID = 6877715214974493828L;
 
-	public static class Optimistic extends AreaUnderCurve {
+    /**
+     * The type Optimistic.
+     */
+    public static class Optimistic extends AreaUnderCurve {
 
 		private static final long serialVersionUID = 1L;
 
-		public Optimistic() {
+        /**
+         * Instantiates a new Optimistic.
+         */
+        public Optimistic() {
 			super(ROCBias.OPTIMISTIC);
 		}
 
-		public Optimistic(Optimistic optimistic) {
+        /**
+         * Instantiates a new Optimistic.
+         *
+         * @param optimistic the optimistic
+         */
+        public Optimistic(Optimistic optimistic) {
 			super(optimistic);
 		}
 	}
 
-	public static class Pessimistic extends AreaUnderCurve {
+    /**
+     * The type Pessimistic.
+     */
+    public static class Pessimistic extends AreaUnderCurve {
 
 		private static final long serialVersionUID = 1L;
 
-		public Pessimistic() {
+        /**
+         * Instantiates a new Pessimistic.
+         */
+        public Pessimistic() {
 			super(ROCBias.PESSIMISTIC);
 		}
 
-		public Pessimistic(Pessimistic pessimistic) {
+        /**
+         * Instantiates a new Pessimistic.
+         *
+         * @param pessimistic the pessimistic
+         */
+        public Pessimistic(Pessimistic pessimistic) {
 			super(pessimistic);
 		}
 	}
 
-	public static class Neutral extends AreaUnderCurve {
+    /**
+     * The type Neutral.
+     */
+    public static class Neutral extends AreaUnderCurve {
 
 		private static final long serialVersionUID = 1L;
 
-		public Neutral() {
+        /**
+         * Instantiates a new Neutral.
+         */
+        public Neutral() {
 			super(ROCBias.NEUTRAL);
 		}
 
-		public Neutral(Neutral neutral) {
+        /**
+         * Instantiates a new Neutral.
+         *
+         * @param neutral the neutral
+         */
+        public Neutral(Neutral neutral) {
 			super(neutral);
 		}
 	}
@@ -96,16 +129,28 @@ public class AreaUnderCurve extends MeasuredPerformance {
 
 	private ROCBias method;
 
-	/** Clone constructor. */
-	public AreaUnderCurve() {
+    /**
+     * Clone constructor.
+     */
+    public AreaUnderCurve() {
 		method = ROCBias.OPTIMISTIC;
 	}
 
-	public AreaUnderCurve(ROCBias method) {
+    /**
+     * Instantiates a new Area under curve.
+     *
+     * @param method the method
+     */
+    public AreaUnderCurve(ROCBias method) {
 		this.method = method;
 	}
 
-	public AreaUnderCurve(AreaUnderCurve aucObject) {
+    /**
+     * Instantiates a new Area under curve.
+     *
+     * @param aucObject the auc object
+     */
+    public AreaUnderCurve(AreaUnderCurve aucObject) {
 		super(aucObject);
 		this.auc = aucObject.auc;
 		this.counter = aucObject.counter;
@@ -175,15 +220,30 @@ public class AreaUnderCurve extends MeasuredPerformance {
 		return super.toString() + " (positive class: " + positiveClass + ")";
 	}
 
-	public List<ROCData> getRocData() {
+    /**
+     * Gets roc data.
+     *
+     * @return the roc data
+     */
+    public List<ROCData> getRocData() {
 		return rocData;
 	}
 
-	public ROCDataGenerator getRocDataGenerator() {
+    /**
+     * Gets roc data generator.
+     *
+     * @return the roc data generator
+     */
+    public ROCDataGenerator getRocDataGenerator() {
 		return rocDataGenerator;
 	}
 
-	public void readResolve() throws ObjectStreamException {
+    /**
+     * Read resolve.
+     *
+     * @throws ObjectStreamException the object stream exception
+     */
+    public void readResolve() throws ObjectStreamException {
 		rocDataGenerator = new ROCDataGenerator(1.0d, 1.0d);
 	}
 }

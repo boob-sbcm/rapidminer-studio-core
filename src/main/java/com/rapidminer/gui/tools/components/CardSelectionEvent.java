@@ -23,7 +23,7 @@ import java.util.EventObject;
 
 /**
  * An Event for the {@link ButtonBarCardPanel}, fires when a card is selected.
- * 
+ *
  * @author Dominik Halfkann
  */
 public class CardSelectionEvent extends EventObject {
@@ -32,12 +32,23 @@ public class CardSelectionEvent extends EventObject {
 
 	private String cardKey;
 
-	public CardSelectionEvent(Object source, String cardKey) {
+    /**
+     * Instantiates a new Card selection event.
+     *
+     * @param source  the source
+     * @param cardKey the card key
+     */
+    public CardSelectionEvent(Object source, String cardKey) {
 		super(source);
 		this.cardKey = cardKey;
 	}
 
-	public String getCardKey() {
+    /**
+     * Gets card key.
+     *
+     * @return the card key
+     */
+    public String getCardKey() {
 		return cardKey;
 	}
 }

@@ -27,9 +27,8 @@ import java.util.List;
 /**
  * Declares a condition for {@link AbstractRepositoryAction}. If the conditions are met, the action
  * is shown, otherwise it will not be shown.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class RepositoryActionConditionImplStandard implements RepositoryActionCondition {
 
@@ -39,18 +38,14 @@ public class RepositoryActionConditionImplStandard implements RepositoryActionCo
 	/** selection repository must be of one of the types listed here */
 	private final List<Class<?>> requiredSelectionRepositoryTypeList;
 
-	/**
-	 * Creates a new RepositoryActionCondition which can be used to check if the selected
-	 * {@link Entry}s meet the given conditions.
-	 * 
-	 * @param requiredSelectionTypeList
-	 *            a list with {@link Entry} types. Each selected {@link Entry} must be of one of the
-	 *            types on the list or the condition is not met.
-	 * @param requiredSelectionRepositoryTypeList
-	 *            a list with {@link Repository} types. Each selected {@link Entry} must be of the
-	 *            types on the list or the condition is not met.
-	 */
-	public RepositoryActionConditionImplStandard(List<Class<?>> requiredSelectionTypeList,
+    /**
+     * Creates a new RepositoryActionCondition which can be used to check if the selected
+     * {@link Entry}s meet the given conditions.
+     *
+     * @param requiredSelectionTypeList           a list with {@link Entry} types. Each selected {@link Entry} must be of one of the            types on the list or the condition is not met.
+     * @param requiredSelectionRepositoryTypeList a list with {@link Repository} types. Each selected {@link Entry} must be of the            types on the list or the condition is not met.
+     */
+    public RepositoryActionConditionImplStandard(List<Class<?>> requiredSelectionTypeList,
 			List<Class<?>> requiredSelectionRepositoryTypeList) {
 		if (requiredSelectionTypeList == null || requiredSelectionRepositoryTypeList == null) {
 			throw new IllegalArgumentException("lists must not be null!");
@@ -59,18 +54,14 @@ public class RepositoryActionConditionImplStandard implements RepositoryActionCo
 		this.requiredSelectionRepositoryTypeList = requiredSelectionRepositoryTypeList;
 	}
 
-	/**
-	 * Creates a new RepositoryActionCondition which can be used to check if the selected
-	 * {@link Entry}s meet the given conditions.
-	 * 
-	 * @param requiredSelectionTypeList
-	 *            a list with {@link Entry} types. Each selected {@link Entry} must be of one of the
-	 *            types on the list or the condition is not met.
-	 * @param requiredSelectionRepositoryTypeList
-	 *            a list with {@link Repository} types. Each selected {@link Entry} must be of the
-	 *            types on the list or the condition is not met.
-	 */
-	public RepositoryActionConditionImplStandard(Class<?>[] requiredSelectionTypes,
+    /**
+     * Creates a new RepositoryActionCondition which can be used to check if the selected
+     * {@link Entry}s meet the given conditions.
+     *
+     * @param requiredSelectionTypes           the required selection types
+     * @param requiredSelectionRepositoryTypes the required selection repository types
+     */
+    public RepositoryActionConditionImplStandard(Class<?>[] requiredSelectionTypes,
 			Class<?>[] requiredSelectionRepositoryTypes) {
 		if (requiredSelectionTypes == null || requiredSelectionRepositoryTypes == null) {
 			throw new IllegalArgumentException("arrays must not be null!");

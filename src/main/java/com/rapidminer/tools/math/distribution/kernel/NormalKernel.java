@@ -28,11 +28,19 @@ import com.rapidminer.tools.math.distribution.EmpiricalNormalDistribution;
  */
 public class NormalKernel extends EmpiricalNormalDistribution {
 
-	public static final long serialVersionUID = -320543538793918L;
+    /**
+     * The constant serialVersionUID.
+     */
+    public static final long serialVersionUID = -320543538793918L;
 
 	private double minimumBandwidth;
 
-	public NormalKernel(double minimumBandwidth) {
+    /**
+     * Instantiates a new Normal kernel.
+     *
+     * @param minimumBandwidth the minimum bandwidth
+     */
+    public NormalKernel(double minimumBandwidth) {
 		super();
 		this.minimumBandwidth = minimumBandwidth;
 		standardDeviation = minimumBandwidth;

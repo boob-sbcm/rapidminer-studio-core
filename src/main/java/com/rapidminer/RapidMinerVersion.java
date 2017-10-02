@@ -24,12 +24,15 @@ import com.rapidminer.tools.PlatformUtilities;
 /**
  * Retrieves the current version of RapidMiner by calling
  * {@link PlatformUtilities#getReleaseVersion()}.
- * 
+ *
  * @author Simon Fischer, Nils Woehler
  */
 public class RapidMinerVersion extends VersionNumber {
 
-	public RapidMinerVersion() {
+    /**
+     * Instantiates a new Rapid miner version.
+     */
+    public RapidMinerVersion() {
 		super(PlatformUtilities.getReleaseVersion());
 	}
 }

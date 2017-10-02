@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CloseAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class CloseAction extends ResourceAction {
 
 	private final AttributeEditorDialog attributeEditorDialog;
 
-	public CloseAction(AttributeEditorDialog attributeEditorDialog) {
+    /**
+     * Instantiates a new Close action.
+     *
+     * @param attributeEditorDialog the attribute editor dialog
+     */
+    public CloseAction(AttributeEditorDialog attributeEditorDialog) {
 		super("attribute_editor.close");
 		this.attributeEditorDialog = attributeEditorDialog;
 	}

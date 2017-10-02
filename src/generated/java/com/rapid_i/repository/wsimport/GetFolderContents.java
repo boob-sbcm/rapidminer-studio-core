@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for getFolderContents complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="getFolderContents">
  *   &lt;complexContent>
@@ -39,8 +39,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getFolderContents", propOrder = {
@@ -48,15 +46,15 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetFolderContents {
 
+    /**
+     * The Folder location.
+     */
     protected String folderLocation;
 
     /**
      * Gets the value of the folderLocation property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getFolderLocation() {
         return folderLocation;
@@ -64,11 +62,8 @@ public class GetFolderContents {
 
     /**
      * Sets the value of the folderLocation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setFolderLocation(String value) {
         this.folderLocation = value;

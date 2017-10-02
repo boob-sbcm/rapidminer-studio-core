@@ -24,12 +24,17 @@ import com.rapidminer.operator.OperatorDescription;
 
 /**
  * Super class of all operators requiring no input and creating a {@link Model}.
- * 
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractModelLoader extends AbstractReader<Model> {
 
-	public AbstractModelLoader(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract model loader.
+     *
+     * @param description the description
+     */
+    public AbstractModelLoader(OperatorDescription description) {
 		super(description, Model.class);
 	}
 }

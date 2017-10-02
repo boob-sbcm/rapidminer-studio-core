@@ -49,17 +49,19 @@ import com.rapidminer.tools.plugin.Plugin;
 
 /**
  * Keeps static references to registered repositories and provides helper methods.
- *
+ * <p>
  * Observers will be notified when repositories are added (with the repository passed as an argument
  * to the {@link Observer#update(com.rapidminer.tools.Observable, Object)} method and when they are
  * removed, in which case null is passed.
  *
  * @author Simon Fischer, Adrian Wilke
- *
  */
 public class RepositoryManager extends AbstractObservable<Repository> {
 
-	public static final String SAMPLE_REPOSITORY_NAME = "Samples";
+    /**
+     * The constant SAMPLE_REPOSITORY_NAME.
+     */
+    public static final String SAMPLE_REPOSITORY_NAME = "Samples";
 
 	private static final Logger LOGGER = LogService.getRoot();
 
@@ -96,28 +98,38 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		public void entryAdded(Entry newEntry, Folder parent) {}
 	};
 
-	/**
-	 * Ordered types of {@link Repository}s
-	 *
-	 * @author Sabrina Kirstein
-	 *
-	 */
-	public static enum RepositoryType {
+    /**
+     * Ordered types of {@link Repository}s
+     *
+     * @author Sabrina Kirstein
+     */
+    public static enum RepositoryType {
 
-		/**
-		 * The order of repository types is very important as it is used in the
-		 * {@link RepositoryManager#repositoryComparator}
-		 */
-		RESOURCES, DB, LOCAL, REMOTE, OTHER;
+        /**
+         * The order of repository types is very important as it is used in the
+         * {@link RepositoryManager#repositoryComparator}
+         */
+        RESOURCES, /**
+         * Db repository type.
+         */
+        DB, /**
+         * Local repository type.
+         */
+        LOCAL, /**
+         * Remote repository type.
+         */
+        REMOTE, /**
+         * Other repository type.
+         */
+        OTHER;
 
-		/**
-		 * Returns the RepositoryType for a given repository to enable the ordering of repositories
-		 *
-		 * @param repo
-		 *            given repository
-		 * @return the related {@link RepositoryType}
-		 */
-		public static RepositoryType getRepositoryType(Repository repo) {
+        /**
+         * Returns the RepositoryType for a given repository to enable the ordering of repositories
+         *
+         * @param repo given repository
+         * @return the related {@link RepositoryType}
+         */
+        public static RepositoryType getRepositoryType(Repository repo) {
 			if (repo instanceof ResourceRepository) {
 				return RESOURCES;
 			} else if (repo instanceof DBRepository) {
@@ -132,7 +144,13 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		}
 	};
 
-	public static RepositoryManager getInstance(RepositoryAccessor repositoryAccessor) {
+    /**
+     * Gets instance.
+     *
+     * @param repositoryAccessor the repository accessor
+     * @return the instance
+     */
+    public static RepositoryManager getInstance(RepositoryAccessor repositoryAccessor) {
 		synchronized (INSTANCE_LOCK) {
 			if (instance == null) {
 				init();
@@ -175,19 +193,22 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		load(LocalRepository.class);
 	}
 
-	public static void init() {
+    /**
+     * Init.
+     */
+    public static void init() {
 		synchronized (INSTANCE_LOCK) {
 			instance = new RepositoryManager();
 			instance.postInstall();
 		}
 	}
 
-	/**
-	 * Initializes custom repositories registered by extensions. Will be called by
-	 * {@link RapidMiner#init()} after {@link Plugin#initAll()} and {@link RepositoryManager#init()}
-	 * .
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * Initializes custom repositories registered by extensions. Will be called by
+     * {@link RapidMiner#init()} after {@link Plugin#initAll()} and {@link RepositoryManager#init()}
+     * .
+     */
+    @SuppressWarnings("unchecked")
 	public static void initCustomRepositories() {
 		Set<Class<? extends Repository>> customRepoClasses = CustomRepositoryRegistry.INSTANCE.getClasses();
 
@@ -198,14 +219,13 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		}
 	}
 
-	/**
-	 * Replaces the used {@link RepositoryProvider}. The {@link DefaultRepositoryProvider} will be
-	 * used as default.
-	 *
-	 * @param repositoryProvider
-	 *            the new {@link RepositoryProvider}
-	 */
-	public static void setProvider(RepositoryProvider repositoryProvider) {
+    /**
+     * Replaces the used {@link RepositoryProvider}. The {@link DefaultRepositoryProvider} will be
+     * used as default.
+     *
+     * @param repositoryProvider the new {@link RepositoryProvider}
+     */
+    public static void setProvider(RepositoryProvider repositoryProvider) {
 		provider = repositoryProvider;
 	}
 
@@ -215,18 +235,24 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		}
 	}
 
-	public static void registerFactory(RepositoryFactory factory) {
+    /**
+     * Register factory.
+     *
+     * @param factory the factory
+     */
+    public static void registerFactory(RepositoryFactory factory) {
 		synchronized (INSTANCE_LOCK) {
 			FACTORIES.add(factory);
 		}
 	}
 
-	/**
-	 * Registers a repository.
-	 *
-	 * @see #removeRepository(Repository)
-	 */
-	public void addRepository(Repository repository) {
+    /**
+     * Registers a repository.
+     *
+     * @param repository the repository
+     * @see #removeRepository(Repository) #removeRepository(Repository)#removeRepository(Repository)
+     */
+    public void addRepository(Repository repository) {
 		LOGGER.config("Adding repository " + repository.getName());
 		repositories.add(repository);
 		repository.addRepositoryListener(repositoryListener);
@@ -241,27 +267,37 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		fireUpdate(repository);
 	}
 
-	/**
-	 * Removes a registered repository.
-	 *
-	 * @see #addRepository(Repository)
-	 */
-	public void removeRepository(Repository repository) {
+    /**
+     * Removes a registered repository.
+     *
+     * @param repository the repository
+     * @see #addRepository(Repository) #addRepository(Repository)#addRepository(Repository)
+     */
+    public void removeRepository(Repository repository) {
 		repository.preRemove();
 		repository.removeRepositoryListener(repositoryListener);
 		repositories.remove(repository);
 		fireUpdate(null);
 	}
 
-	public List<Repository> getRepositories() {
+    /**
+     * Gets repositories.
+     *
+     * @return the repositories
+     */
+    public List<Repository> getRepositories() {
 		return Collections.unmodifiableList(repositories);
 	}
 
-	/**
-	 * Gets a registered ({@link #addRepository(Repository)} repository by
-	 * {@link Repository#getName()}
-	 */
-	public Repository getRepository(String name) throws RepositoryException {
+    /**
+     * Gets a registered ({@link #addRepository(Repository)} repository by
+     * {@link Repository#getName()}
+     *
+     * @param name the name
+     * @return the repository
+     * @throws RepositoryException the repository exception
+     */
+    public Repository getRepository(String name) throws RepositoryException {
 		for (Repository repos : repositories) {
 			if (repos.getName().equals(name)) {
 				return repos;
@@ -270,8 +306,12 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		throw new RepositoryException("Requested repository " + name + " does not exist.");
 	}
 
-	/** Gets a list of all registered repositories inheriting from {@link RemoteRepository}. */
-	public List<RemoteRepository> getRemoteRepositories() {
+    /**
+     * Gets a list of all registered repositories inheriting from {@link RemoteRepository}.  @return the remote repositories
+     *
+     * @return the remote repositories
+     */
+    public List<RemoteRepository> getRemoteRepositories() {
 		List<RemoteRepository> result = new LinkedList<>();
 		for (Repository repos : getRepositories()) {
 			if (repos instanceof RemoteRepository) {
@@ -281,18 +321,16 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		return result;
 	}
 
-	/**
-	 * Uses the specified {@link RepositoryProvider} to load the configuration. The default provider
-	 * will load the settings from a XML file. Use {@link #setProvider(RepositoryProvider)} to
-	 * replace this behavior.
-	 *
-	 * @param repoClasses
-	 *            the implementations of {@link Repository} that should be loaded. If none are
-	 *            provided all loaded classes are added.
-	 * @since 6.5.0
-	 * @see #save()
-	 */
-	@SafeVarargs
+    /**
+     * Uses the specified {@link RepositoryProvider} to load the configuration. The default provider
+     * will load the settings from a XML file. Use {@link #setProvider(RepositoryProvider)} to
+     * replace this behavior.
+     *
+     * @param repoClasses the implementations of {@link Repository} that should be loaded. If none are            provided all loaded classes are added.
+     * @see #save() #save()#save()
+     * @since 6.5.0
+     */
+    @SafeVarargs
 	public final void load(Class<? extends Repository>... repoClasses) {
 		for (Repository repository : provider.load()) {
 			// if no classes have been provided
@@ -312,7 +350,10 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		}
 	}
 
-	public void createRepositoryIfNoneIsDefined() {
+    /**
+     * Create repository if none is defined.
+     */
+    public void createRepositoryIfNoneIsDefined() {
 		boolean noLocalRepository = true;
 		// check if we have at least one repository that is not pre-defined
 		for (Repository repository : repositories) {
@@ -334,25 +375,42 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		}
 	}
 
-	/**
-	 * Uses the specified {@link RepositoryProvider} to save the configuration. The default provider
-	 * will stores the settings to a XML file. Use {@link #setProvider(RepositoryProvider)} to
-	 * replace this behavior.
-	 *
-	 * @see #load()
-	 */
-	public void save() {
+    /**
+     * Uses the specified {@link RepositoryProvider} to save the configuration. The default provider
+     * will stores the settings to a XML file. Use {@link #setProvider(RepositoryProvider)} to
+     * replace this behavior.
+     *
+     * @see #load() #load()#load()
+     */
+    public void save() {
 		provider.save(getRepositories());
 	}
 
-	/** Stores an IOObject at the given location. Creates entries if they don't exist. */
-	public IOObject store(IOObject ioobject, RepositoryLocation location, Operator callingOperator)
+    /**
+     * Stores an IOObject at the given location. Creates entries if they don't exist.  @param ioobject the ioobject
+     *
+     * @param ioobject        the ioobject
+     * @param location        the location
+     * @param callingOperator the calling operator
+     * @return the io object
+     * @throws RepositoryException the repository exception
+     */
+    public IOObject store(IOObject ioobject, RepositoryLocation location, Operator callingOperator)
 			throws RepositoryException {
 		return store(ioobject, location, callingOperator, null);
 	}
 
-	/** Stores an IOObject at the given location. Creates entries if they don't exist. */
-	public IOObject store(IOObject ioobject, RepositoryLocation location, Operator callingOperator,
+    /**
+     * Stores an IOObject at the given location. Creates entries if they don't exist.  @param ioobject the ioobject
+     *
+     * @param ioobject         the ioobject
+     * @param location         the location
+     * @param callingOperator  the calling operator
+     * @param progressListener the progress listener
+     * @return the io object
+     * @throws RepositoryException the repository exception
+     */
+    public IOObject store(IOObject ioobject, RepositoryLocation location, Operator callingOperator,
 			ProgressListener progressListener) throws RepositoryException {
 		Entry entry = location.locateEntry();
 		if (entry == null) {
@@ -385,8 +443,14 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		}
 	}
 
-	/** Gets the referenced blob entry. Creates a new one if it does not exist. */
-	public BlobEntry getOrCreateBlob(RepositoryLocation location) throws RepositoryException {
+    /**
+     * Gets the referenced blob entry. Creates a new one if it does not exist.  @param location the location
+     *
+     * @param location the location
+     * @return the or create blob
+     * @throws RepositoryException the repository exception
+     */
+    public BlobEntry getOrCreateBlob(RepositoryLocation location) throws RepositoryException {
 		Entry entry = location.locateEntry();
 		if (entry == null) {
 			RepositoryLocation parentLocation = location.parent();
@@ -415,33 +479,55 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		}
 	}
 
-	/** Saves the configuration file. */
-	public static void shutdown() {
+    /**
+     * Saves the configuration file.
+     */
+    public static void shutdown() {
 		if (instance != null) {
 			instance.save();
 		}
 	}
 
-	/** Copies an entry to a given destination folder. */
-	public void copy(RepositoryLocation source, Folder destination, ProgressListener listener) throws RepositoryException {
+    /**
+     * Copies an entry to a given destination folder.  @param source the source
+     *
+     * @param source      the source
+     * @param destination the destination
+     * @param listener    the listener
+     * @throws RepositoryException the repository exception
+     */
+    public void copy(RepositoryLocation source, Folder destination, ProgressListener listener) throws RepositoryException {
 		copy(source, destination, null, listener);
 	}
 
-	/**
-	 * Copies an entry to a given destination folder with the name newName. If newName is null the
-	 * old name will be kept. If an entry named newName exists, newName will be changed and not
-	 * overwritten.
-	 */
-	public void copy(RepositoryLocation source, Folder destination, String newName, ProgressListener listener)
+    /**
+     * Copies an entry to a given destination folder with the name newName. If newName is null the
+     * old name will be kept. If an entry named newName exists, newName will be changed and not
+     * overwritten.
+     *
+     * @param source      the source
+     * @param destination the destination
+     * @param newName     the new name
+     * @param listener    the listener
+     * @throws RepositoryException the repository exception
+     */
+    public void copy(RepositoryLocation source, Folder destination, String newName, ProgressListener listener)
 			throws RepositoryException {
 		copy(source, destination, newName, false, listener);
 	}
 
-	/**
-	 * Copies an entry to a given destination folder with the name newName. If newName is null the
-	 * old name will be kept.
-	 */
-	public void copy(RepositoryLocation source, Folder destination, String newName, boolean overwriteIfExists,
+    /**
+     * Copies an entry to a given destination folder with the name newName. If newName is null the
+     * old name will be kept.
+     *
+     * @param source            the source
+     * @param destination       the destination
+     * @param newName           the new name
+     * @param overwriteIfExists the overwrite if exists
+     * @param listener          the listener
+     * @throws RepositoryException the repository exception
+     */
+    public void copy(RepositoryLocation source, Folder destination, String newName, boolean overwriteIfExists,
 			ProgressListener listener) throws RepositoryException {
 		if (listener != null) {
 			listener.setTotal(DEFAULT_TOTAL_PROGRESS);
@@ -570,20 +656,44 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		}
 	}
 
-	/** Moves an entry to a given destination folder. */
-	public void move(RepositoryLocation source, Folder destination, ProgressListener listener) throws RepositoryException {
+    /**
+     * Moves an entry to a given destination folder.  @param source the source
+     *
+     * @param source      the source
+     * @param destination the destination
+     * @param listener    the listener
+     * @throws RepositoryException the repository exception
+     */
+    public void move(RepositoryLocation source, Folder destination, ProgressListener listener) throws RepositoryException {
 		move(source, destination, null, listener);
 	}
 
-	/** Moves an entry to a given destination folder with the name newName. */
-	public void move(RepositoryLocation source, Folder destination, String newName, ProgressListener listener)
+    /**
+     * Moves an entry to a given destination folder with the name newName.  @param source the source
+     *
+     * @param source      the source
+     * @param destination the destination
+     * @param newName     the new name
+     * @param listener    the listener
+     * @throws RepositoryException the repository exception
+     */
+    public void move(RepositoryLocation source, Folder destination, String newName, ProgressListener listener)
 			throws RepositoryException {
 		// Default: Overwrite existing entry
 		move(source, destination, newName, true, listener);
 	}
 
-	/** Moves an entry to a given destination folder with the name newName. */
-	public void move(RepositoryLocation source, Folder destination, String newName, boolean overwriteIfExists,
+    /**
+     * Moves an entry to a given destination folder with the name newName.  @param source the source
+     *
+     * @param source            the source
+     * @param destination       the destination
+     * @param newName           the new name
+     * @param overwriteIfExists the overwrite if exists
+     * @param listener          the listener
+     * @throws RepositoryException the repository exception
+     */
+    public void move(RepositoryLocation source, Folder destination, String newName, boolean overwriteIfExists,
 			ProgressListener listener) throws RepositoryException {
 		Entry entry = source.locateEntry();
 		if (entry == null) {
@@ -649,16 +759,21 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		}
 	}
 
-	/**
-	 * Looks up the entry with the given path in the given repository. This method will return null
-	 * when it finds a folder that blocks (has not yet loaded all its data) AND failIfBlocks is
-	 * true.
-	 *
-	 * This method can be used as a first approach to locate an entry and fall back to a more
-	 * expensive solution when this fails.
-	 *
-	 */
-	public Entry locate(Repository repository, String path, boolean failIfBlocks) throws RepositoryException {
+    /**
+     * Looks up the entry with the given path in the given repository. This method will return null
+     * when it finds a folder that blocks (has not yet loaded all its data) AND failIfBlocks is
+     * true.
+     * <p>
+     * This method can be used as a first approach to locate an entry and fall back to a more
+     * expensive solution when this fails.
+     *
+     * @param repository   the repository
+     * @param path         the path
+     * @param failIfBlocks the fail if blocks
+     * @return the entry
+     * @throws RepositoryException the repository exception
+     */
+    public Entry locate(Repository repository, String path, boolean failIfBlocks) throws RepositoryException {
 		if (path.startsWith("" + RepositoryLocation.SEPARATOR)) {
 			path = path.substring(1);
 		}
@@ -726,18 +841,26 @@ public class RepositoryManager extends AbstractObservable<Repository> {
 		}
 	}
 
-	/** Returns the repository containing the RapidMiner sample processes. */
-	public Repository getSampleRepository() {
+    /**
+     * Returns the repository containing the RapidMiner sample processes.  @return the sample repository
+     *
+     * @return the sample repository
+     */
+    public Repository getSampleRepository() {
 		return sampleRepository;
 	}
 
-	/**
-	 * Visitor pattern for repositories. Callbacks to the visitor will be made only for matching
-	 * types. (Recursion happens also if the type is not a Folder.
-	 *
-	 * @throws RepositoryException
-	 */
-	public <T extends Entry> void walk(Entry start, RepositoryVisitor<T> visitor, Class<T> visitedType)
+    /**
+     * Visitor pattern for repositories. Callbacks to the visitor will be made only for matching
+     * types. (Recursion happens also if the type is not a Folder.
+     *
+     * @param <T>         the type parameter
+     * @param start       the start
+     * @param visitor     the visitor
+     * @param visitedType the visited type
+     * @throws RepositoryException the repository exception
+     */
+    public <T extends Entry> void walk(Entry start, RepositoryVisitor<T> visitor, Class<T> visitedType)
 			throws RepositoryException {
 		boolean continueChildren = true;
 		if (visitedType.isInstance(start)) {

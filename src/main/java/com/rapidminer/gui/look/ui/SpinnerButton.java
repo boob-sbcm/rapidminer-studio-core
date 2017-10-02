@@ -42,7 +42,12 @@ public class SpinnerButton extends JButton {
 
 	private Dimension dimension;
 
-	public SpinnerButton(String type) {
+    /**
+     * Instantiates a new Spinner button.
+     *
+     * @param type the type
+     */
+    public SpinnerButton(String type) {
 		if (type.equals("up")) {
 			this.up = true;
 		}

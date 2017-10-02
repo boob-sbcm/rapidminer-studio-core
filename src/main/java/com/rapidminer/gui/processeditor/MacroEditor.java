@@ -44,6 +44,7 @@ import com.rapidminer.tools.container.Pair;
 
 
 /**
+ * The type Macro editor.
  *
  * @author Simon Fischer
  */
@@ -141,7 +142,12 @@ public class MacroEditor extends JPanel {
 		((DefaultRowSorter<?, ?>) macroTable.getRowSorter()).setMaxSortKeys(1);
 	}
 
-	public MacroEditor(boolean embedded) {
+    /**
+     * Instantiates a new Macro editor.
+     *
+     * @param embedded the embedded
+     */
+    public MacroEditor(boolean embedded) {
 		setLayout(new BorderLayout());
 		ADD_MACRO_ACTION = new ResourceAction(embedded, "macros.add_macro") {
 
@@ -192,12 +198,22 @@ public class MacroEditor extends JPanel {
 		}
 	}
 
-	public void setContext(ProcessContext context) {
+    /**
+     * Sets context.
+     *
+     * @param context the context
+     */
+    public void setContext(ProcessContext context) {
 		this.context = context;
 		macroModel.reset();
 	}
 
-	public static void showMacroEditorDialog(final ProcessContext context) {
+    /**
+     * Show macro editor dialog.
+     *
+     * @param context the context
+     */
+    public static void showMacroEditorDialog(final ProcessContext context) {
 		ButtonDialog dialog = new ButtonDialog(ApplicationFrame.getApplicationFrame(), "define_macros",
 				ModalityType.APPLICATION_MODAL, new Object[] {}) {
 

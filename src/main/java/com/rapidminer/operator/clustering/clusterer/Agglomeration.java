@@ -21,7 +21,7 @@ package com.rapidminer.operator.clustering.clusterer;
 /**
  * This is a simple data structure for returning an agglomeration of two clusters with a distance
  * within one method return.
- * 
+ *
  * @author Sebastian Land
  */
 public class Agglomeration {
@@ -30,21 +30,43 @@ public class Agglomeration {
 	private int clusterId2;
 	private double distance;
 
-	public Agglomeration(int clusterId1, int clusterId2, double distance) {
+    /**
+     * Instantiates a new Agglomeration.
+     *
+     * @param clusterId1 the cluster id 1
+     * @param clusterId2 the cluster id 2
+     * @param distance   the distance
+     */
+    public Agglomeration(int clusterId1, int clusterId2, double distance) {
 		this.clusterId1 = clusterId1;
 		this.clusterId2 = clusterId2;
 		this.distance = distance;
 	}
 
-	public int getClusterId1() {
+    /**
+     * Gets cluster id 1.
+     *
+     * @return the cluster id 1
+     */
+    public int getClusterId1() {
 		return clusterId1;
 	}
 
-	public int getClusterId2() {
+    /**
+     * Gets cluster id 2.
+     *
+     * @return the cluster id 2
+     */
+    public int getClusterId2() {
 		return clusterId2;
 	}
 
-	public double getDistance() {
+    /**
+     * Gets distance.
+     *
+     * @return the distance
+     */
+    public double getDistance() {
 		return distance;
 	}
 }

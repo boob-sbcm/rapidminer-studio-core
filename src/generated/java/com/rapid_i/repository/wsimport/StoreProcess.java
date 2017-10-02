@@ -27,9 +27,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for storeProcess complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="storeProcess">
  *   &lt;complexContent>
@@ -43,8 +43,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "storeProcess", propOrder = {
@@ -54,18 +52,24 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class StoreProcess {
 
+    /**
+     * The Entry location.
+     */
     protected String entryLocation;
+    /**
+     * The Process xml.
+     */
     protected String processXML;
+    /**
+     * The Last timestamp.
+     */
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar lastTimestamp;
 
     /**
      * Gets the value of the entryLocation property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getEntryLocation() {
         return entryLocation;
@@ -73,11 +77,8 @@ public class StoreProcess {
 
     /**
      * Sets the value of the entryLocation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setEntryLocation(String value) {
         this.entryLocation = value;
@@ -85,11 +86,8 @@ public class StoreProcess {
 
     /**
      * Gets the value of the processXML property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getProcessXML() {
         return processXML;
@@ -97,11 +95,8 @@ public class StoreProcess {
 
     /**
      * Sets the value of the processXML property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setProcessXML(String value) {
         this.processXML = value;
@@ -109,11 +104,8 @@ public class StoreProcess {
 
     /**
      * Gets the value of the lastTimestamp property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is     {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getLastTimestamp() {
         return lastTimestamp;
@@ -121,11 +113,8 @@ public class StoreProcess {
 
     /**
      * Sets the value of the lastTimestamp property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is     {@link XMLGregorianCalendar }
      */
     public void setLastTimestamp(XMLGregorianCalendar value) {
         this.lastTimestamp = value;

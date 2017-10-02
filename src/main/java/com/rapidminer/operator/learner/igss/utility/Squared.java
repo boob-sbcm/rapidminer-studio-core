@@ -23,13 +23,18 @@ import com.rapidminer.operator.learner.igss.hypothesis.Hypothesis;
 
 /**
  * The utility function Squared.
- * 
+ *
  * @author Dirk Dach
  */
 public class Squared extends AbstractUtility {
 
-	/** Constructs a new Squared with the given default probability. */
-	public Squared(double[] priors, int large) {
+    /**
+     * Constructs a new Squared with the given default probability.  @param priors the priors
+     *
+     * @param priors the priors
+     * @param large  the large
+     */
+    public Squared(double[] priors, int large) {
 		super(priors, large);
 	}
 

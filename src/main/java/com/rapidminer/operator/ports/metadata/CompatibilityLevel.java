@@ -20,16 +20,20 @@ package com.rapidminer.operator.ports.metadata;
 
 /**
  * Defines compatibility levels for auto wiring processes. Used in
- * {@link Precondition#isCompatible(MetaData,CompatibilityLevel)}
- * 
+ * {@link Precondition#isCompatible(MetaData, CompatibilityLevel)}
+ *
  * @author Simon Fischer
  */
 public enum CompatibilityLevel {
 
-	/** The old style way where I/O objects are identified based on class only. */
-	PRE_VERSION_5,
+    /**
+     * The old style way where I/O objects are identified based on class only.
+     */
+    PRE_VERSION_5,
 
-	/** The modern way which includes much more meta data. */
-	VERSION_5
+    /**
+     * The modern way which includes much more meta data.
+     */
+    VERSION_5
 
 }

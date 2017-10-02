@@ -31,7 +31,7 @@ import javax.swing.Icon;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SortByColumnAction extends AbstractAction {
@@ -57,7 +57,14 @@ public class SortByColumnAction extends AbstractAction {
 
 	private int direction;
 
-	public SortByColumnAction(ExtendedJTable table, int direction, IconSize size) {
+    /**
+     * Instantiates a new Sort by column action.
+     *
+     * @param table     the table
+     * @param direction the direction
+     * @param size      the size
+     */
+    public SortByColumnAction(ExtendedJTable table, int direction, IconSize size) {
 		super("Sort by Column (" + (direction == ExtendedJTableSorterModel.DESCENDING ? "Descending" : "Ascending") + ")",
 				direction == ExtendedJTableSorterModel.DESCENDING ? DESCENDING_ICONS[size.ordinal()] : ASCENDING_ICONS[size
 						.ordinal()]);

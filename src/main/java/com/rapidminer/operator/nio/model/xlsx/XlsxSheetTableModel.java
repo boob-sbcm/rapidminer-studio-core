@@ -57,16 +57,18 @@ public class XlsxSheetTableModel extends AbstractTableModel {
 	/** the number of sheet rows available in the XLSX result set */
 	private final int sheetRowCount;
 
-	/**
-	 * @param sheetIndex
-	 *            the selected sheet
-	 * @param readMode
-	 * @param absolutePath
-	 *            the absolute path of the Excel file
-	 * @param progressListener
-	 *            the listener to report the progress to
-	 */
-	public XlsxSheetTableModel(ExcelResultSetConfiguration configuration, int sheetIndex, XlsxReadMode readMode,
+    /**
+     * Instantiates a new Xlsx sheet table model.
+     *
+     * @param configuration    the configuration
+     * @param sheetIndex       the selected sheet
+     * @param readMode         the read mode
+     * @param absolutePath     the absolute path of the Excel file
+     * @param progressListener the listener to report the progress to
+     * @throws OperatorException the operator exception
+     * @throws ParseException    the parse exception
+     */
+    public XlsxSheetTableModel(ExcelResultSetConfiguration configuration, int sheetIndex, XlsxReadMode readMode,
 			String absolutePath, ProgressListener progressListener) throws OperatorException, ParseException {
 
 		isPreview = readMode == XlsxReadMode.WIZARD_PREVIEW;
@@ -195,18 +197,21 @@ public class XlsxSheetTableModel extends AbstractTableModel {
 		return false;
 	}
 
-	/**
-	 * @return {@code true} in case the model contains only a preview of the sheet data and not the
-	 *         whole content
-	 */
-	public boolean isPreview() {
+    /**
+     * Is preview boolean.
+     *
+     * @return {@code true} in case the model contains only a preview of the sheet data and not the         whole content
+     */
+    public boolean isPreview() {
 		return isPreview;
 	}
 
-	/**
-	 * @return the number of rows within the sheet
-	 */
-	public int getNumberOfRows() {
+    /**
+     * Gets number of rows.
+     *
+     * @return the number of rows within the sheet
+     */
+    public int getNumberOfRows() {
 		return sheetRowCount;
 	}
 

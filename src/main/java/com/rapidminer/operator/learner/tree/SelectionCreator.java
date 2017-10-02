@@ -41,24 +41,27 @@ import com.rapidminer.tools.Tools;
  * selections and updates them.
  *
  * @author Gisa Schaefer
- *
  */
 public class SelectionCreator {
 
 	private ColumnExampleTable columnTable;
 
-	public SelectionCreator(ColumnExampleTable columnTable) {
+    /**
+     * Instantiates a new Selection creator.
+     *
+     * @param columnTable the column table
+     */
+    public SelectionCreator(ColumnExampleTable columnTable) {
 		this.columnTable = columnTable;
 	}
 
-	/**
-	 * Creates an example index start selection for each numerical attribute, or if there is none,
-	 * only one.
-	 *
-	 * @return a map containing for each numerical attribute an example index array such that the
-	 *         associated attribute values are in ascending order.
-	 */
-	public Map<Integer, int[]> getStartSelection() {
+    /**
+     * Creates an example index start selection for each numerical attribute, or if there is none,
+     * only one.
+     *
+     * @return a map containing for each numerical attribute an example index array such that the         associated attribute values are in ascending order.
+     */
+    public Map<Integer, int[]> getStartSelection() {
 		Map<Integer, int[]> selection = new HashMap<>();
 		if (columnTable.getNumberOfRegularNumericalAttributes() == 0) {
 			selection.put(0, createFullArray(columnTable.getNumberOfExamples()));
@@ -81,17 +84,15 @@ public class SelectionCreator {
 		return selection;
 	}
 
-	/**
-	 * Creates in parallel an example index start selection for each numerical attribute, or if
-	 * there is none, only one.
-	 *
-	 * @param operator
-	 *            the operator for which the calculation is done
-	 * @return a map containing for each numerical attribute an example index array such that the
-	 *         associated attribute values are in ascending order.
-	 * @throws OperatorException
-	 */
-	public Map<Integer, int[]> getStartSelectionParallel(Operator operator) throws OperatorException {
+    /**
+     * Creates in parallel an example index start selection for each numerical attribute, or if
+     * there is none, only one.
+     *
+     * @param operator the operator for which the calculation is done
+     * @return a map containing for each numerical attribute an example index array such that the         associated attribute values are in ascending order.
+     * @throws OperatorException the operator exception
+     */
+    public Map<Integer, int[]> getStartSelectionParallel(Operator operator) throws OperatorException {
 		Map<Integer, int[]> selection = new HashMap<>();
 		if (columnTable.getNumberOfRegularNumericalAttributes() == 0) {
 			selection.put(0, createFullArray(columnTable.getNumberOfExamples()));
@@ -141,17 +142,16 @@ public class SelectionCreator {
 		return selection;
 	}
 
-	/**
-	 * Splits the selected examples according to the bestAttribute and, if the attribute is
-	 * numerical, the bestSplitValue.
-	 *
-	 * @param allSelectedExamples
-	 * @param bestAttribute
-	 * @param bestSplitValue
-	 * @return a collection of maps mapping the numerical attribute number to the sorted array
-	 *         containing the selected example numbers
-	 */
-	public Collection<Map<Integer, int[]>> getSplits(Map<Integer, int[]> allSelectedExamples, int bestAttribute,
+    /**
+     * Splits the selected examples according to the bestAttribute and, if the attribute is
+     * numerical, the bestSplitValue.
+     *
+     * @param allSelectedExamples the all selected examples
+     * @param bestAttribute       the best attribute
+     * @param bestSplitValue      the best split value
+     * @return a collection of maps mapping the numerical attribute number to the sorted array         containing the selected example numbers
+     */
+    public Collection<Map<Integer, int[]>> getSplits(Map<Integer, int[]> allSelectedExamples, int bestAttribute,
 			double bestSplitValue) {
 		Collection<Map<Integer, int[]>> splits;
 		if (columnTable.representsNominalAttribute(bestAttribute)) {
@@ -162,18 +162,17 @@ public class SelectionCreator {
 		return splits;
 	}
 
-	/**
-	 * Splits for every numerical attribute the sorted index array according to the bestSplitValue
-	 * at the bestAttribute. Groups by smaller or equal to bestSplitValue, greater than
-	 * bestSplitValue and value is NaN.
-	 *
-	 * @param allSelectedExamples
-	 * @param bestAttribute
-	 * @param bestSplitValue
-	 * @return a list containing first the example number where the value is smaller than
-	 *         bestSplitValue, then the ones greater, then the NaNs
-	 */
-	public Collection<Map<Integer, int[]>> calculateSplits(Map<Integer, int[]> allSelectedExamples, int bestAttribute,
+    /**
+     * Splits for every numerical attribute the sorted index array according to the bestSplitValue
+     * at the bestAttribute. Groups by smaller or equal to bestSplitValue, greater than
+     * bestSplitValue and value is NaN.
+     *
+     * @param allSelectedExamples the all selected examples
+     * @param bestAttribute       the best attribute
+     * @param bestSplitValue      the best split value
+     * @return a list containing first the example number where the value is smaller than         bestSplitValue, then the ones greater, then the NaNs
+     */
+    public Collection<Map<Integer, int[]>> calculateSplits(Map<Integer, int[]> allSelectedExamples, int bestAttribute,
 			double bestSplitValue) {
 		double[] attributeColumn = columnTable.getNumericalAttributeColumn(bestAttribute);
 		List<Map<Integer, int[]>> results = new ArrayList<>(3);
@@ -223,15 +222,15 @@ public class SelectionCreator {
 		return results;
 	}
 
-	/**
-	 * Splits for every numerical attribute the sorted index array according to the value at the
-	 * best attribute. Groups the splitted arrays by the value at the best attribute.
-	 *
-	 * @param allSelectedExamples
-	 * @param bestAttribute
-	 * @return
-	 */
-	public Collection<Map<Integer, int[]>> calculateSplits(Map<Integer, int[]> allSelectedExamples, int bestAttribute) {
+    /**
+     * Splits for every numerical attribute the sorted index array according to the value at the
+     * best attribute. Groups the splitted arrays by the value at the best attribute.
+     *
+     * @param allSelectedExamples the all selected examples
+     * @param bestAttribute       the best attribute
+     * @return collection collection
+     */
+    public Collection<Map<Integer, int[]>> calculateSplits(Map<Integer, int[]> allSelectedExamples, int bestAttribute) {
 		byte[] attributeColumn = columnTable.getNominalAttributeColumn(bestAttribute);
 		Map<Byte, Map<Integer, int[]>> results = new HashMap<>();
 		Map<Byte, List<Integer>> valueLists;
@@ -271,15 +270,15 @@ public class SelectionCreator {
 		return results.values();
 	}
 
-	/**
-	 * If the bestAttribute is nominal, its number is removed from the selectedAttributes, otherwise
-	 * it stays the same.
-	 *
-	 * @param selectedAttributes
-	 * @param bestAttribute
-	 * @return
-	 */
-	public int[] updateRemainingAttributes(int[] selectedAttributes, int bestAttribute) {
+    /**
+     * If the bestAttribute is nominal, its number is removed from the selectedAttributes, otherwise
+     * it stays the same.
+     *
+     * @param selectedAttributes the selected attributes
+     * @param bestAttribute      the best attribute
+     * @return int [ ]
+     */
+    public int[] updateRemainingAttributes(int[] selectedAttributes, int bestAttribute) {
 		int[] remainingAttributes;
 		if (columnTable.representsNominalAttribute(bestAttribute)) {
 			remainingAttributes = removeAttribute(bestAttribute, selectedAttributes);
@@ -289,15 +288,15 @@ public class SelectionCreator {
 		return remainingAttributes;
 	}
 
-	/**
-	 * Creates a new array containing all entries of selectedAttributes except for
-	 * attributeNumberToDelete.
-	 *
-	 * @param attributeNumberToDelete
-	 * @param selectedAttributes
-	 * @return
-	 */
-	public int[] removeAttribute(int attributeNumberToDelete, int[] selectedAttributes) {
+    /**
+     * Creates a new array containing all entries of selectedAttributes except for
+     * attributeNumberToDelete.
+     *
+     * @param attributeNumberToDelete the attribute number to delete
+     * @param selectedAttributes      the selected attributes
+     * @return int [ ]
+     */
+    public int[] removeAttribute(int attributeNumberToDelete, int[] selectedAttributes) {
 		int[] newSelection = new int[selectedAttributes.length - 1];
 		int j = 0;
 		for (int i : selectedAttributes) {
@@ -309,14 +308,14 @@ public class SelectionCreator {
 		return newSelection;
 	}
 
-	/**
-	 * Create a selection array containing all rows, i.e. containing all consecutive numbers
-	 * [0..length-1]
-	 *
-	 * @param length
-	 * @return
-	 */
-	public int[] createFullArray(int length) {
+    /**
+     * Create a selection array containing all rows, i.e. containing all consecutive numbers
+     * [0..length-1]
+     *
+     * @param length the length
+     * @return int [ ]
+     */
+    public int[] createFullArray(int length) {
 		int[] fullSelection = new int[length];
 		for (int i = 0; i < length; i++) {
 			fullSelection[i] = i;
@@ -324,13 +323,13 @@ public class SelectionCreator {
 		return fullSelection;
 	}
 
-	/**
-	 * Create an Integer array containing all consecutive numbers [0..length-1]
-	 *
-	 * @param length
-	 * @return
-	 */
-	public Integer[] createFullBigArray(int length) {
+    /**
+     * Create an Integer array containing all consecutive numbers [0..length-1]
+     *
+     * @param length the length
+     * @return integer [ ]
+     */
+    public Integer[] createFullBigArray(int length) {
 		Integer[] fullSelection = new Integer[length];
 		for (int i = 0; i < length; i++) {
 			fullSelection[i] = i;
@@ -338,14 +337,13 @@ public class SelectionCreator {
 		return fullSelection;
 	}
 
-	/**
-	 * Returns a value of the map.
-	 *
-	 * @param map
-	 *            a non-empty map
-	 * @return
-	 */
-	public static int[] getArbitraryValue(Map<Integer, int[]> map) {
+    /**
+     * Returns a value of the map.
+     *
+     * @param map a non-empty map
+     * @return int [ ]
+     */
+    public static int[] getArbitraryValue(Map<Integer, int[]> map) {
 		return map.values().iterator().next();
 	}
 

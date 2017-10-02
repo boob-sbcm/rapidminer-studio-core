@@ -35,14 +35,20 @@ import java.util.Set;
  * The label is the first class, if the sum of all arguments modulo 2 is 0, it is the second class
  * if the sum modulo 3 is 0 and the third class if the sum modulo 5 is 0. In all other cases the
  * label is the fourth class.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MultiClassificationFunction extends ClassificationFunction {
 
-	Attribute nominalLabel = AttributeFactory.createAttribute("label", Ontology.NOMINAL);
+    /**
+     * The Nominal label.
+     */
+    Attribute nominalLabel = AttributeFactory.createAttribute("label", Ontology.NOMINAL);
 
-	public MultiClassificationFunction() {
+    /**
+     * Instantiates a new Multi classification function.
+     */
+    public MultiClassificationFunction() {
 		getLabel().getMapping().mapString("one");
 		getLabel().getMapping().mapString("two");
 		getLabel().getMapping().mapString("three");

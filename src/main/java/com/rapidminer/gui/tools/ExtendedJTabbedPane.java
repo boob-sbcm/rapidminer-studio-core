@@ -25,14 +25,17 @@ import javax.swing.SwingConstants;
 /**
  * Creates a tabbed pane with tabs at top and which scroll the tabs instead of creating multiple
  * lines.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExtendedJTabbedPane extends JTabbedPane {
 
 	private static final long serialVersionUID = 8798498172271429876L;
 
-	public ExtendedJTabbedPane() {
+    /**
+     * Instantiates a new Extended j tabbed pane.
+     */
+    public ExtendedJTabbedPane() {
 		super(SwingConstants.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
 	}
 

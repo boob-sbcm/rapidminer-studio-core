@@ -89,7 +89,13 @@ public class MenuUI extends BasicMenuUI {
 
 	private MouseListener mouseRolloverListener;
 
-	public static ComponentUI createUI(JComponent x) {
+    /**
+     * Create ui component ui.
+     *
+     * @param x the x
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent x) {
 		return new MenuUI();
 	}
 

@@ -54,85 +54,130 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  */
 public class AGA extends GeneratingGeneticAlgorithm {
 
-	/** The parameter name for &quot;Generate square root values.&quot; */
-	public static final String PARAMETER_USE_SQUARE_ROOTS = "use_square_roots";
+    /**
+     * The parameter name for &quot;Generate square root values.&quot;
+     */
+    public static final String PARAMETER_USE_SQUARE_ROOTS = "use_square_roots";
 
-	/** The parameter name for &quot;Generate the power of one attribute and another.&quot; */
-	public static final String PARAMETER_USE_POWER_FUNCTIONS = "use_power_functions";
+    /**
+     * The parameter name for &quot;Generate the power of one attribute and another.&quot;
+     */
+    public static final String PARAMETER_USE_POWER_FUNCTIONS = "use_power_functions";
 
-	/** The parameter name for &quot;Generate sinus.&quot; */
-	public static final String PARAMETER_USE_SIN = "use_sin";
+    /**
+     * The parameter name for &quot;Generate sinus.&quot;
+     */
+    public static final String PARAMETER_USE_SIN = "use_sin";
 
-	/** The parameter name for &quot;Generate cosinus.&quot; */
-	public static final String PARAMETER_USE_COS = "use_cos";
+    /**
+     * The parameter name for &quot;Generate cosinus.&quot;
+     */
+    public static final String PARAMETER_USE_COS = "use_cos";
 
-	/** The parameter name for &quot;Generate tangens.&quot; */
-	public static final String PARAMETER_USE_TAN = "use_tan";
+    /**
+     * The parameter name for &quot;Generate tangens.&quot;
+     */
+    public static final String PARAMETER_USE_TAN = "use_tan";
 
-	/** The parameter name for &quot;Generate arc tangens.&quot; */
-	public static final String PARAMETER_USE_ATAN = "use_atan";
+    /**
+     * The parameter name for &quot;Generate arc tangens.&quot;
+     */
+    public static final String PARAMETER_USE_ATAN = "use_atan";
 
-	/** The parameter name for &quot;Generate exponential functions.&quot; */
-	public static final String PARAMETER_USE_EXP = "use_exp";
+    /**
+     * The parameter name for &quot;Generate exponential functions.&quot;
+     */
+    public static final String PARAMETER_USE_EXP = "use_exp";
 
-	/** The parameter name for &quot;Generate logarithmic functions.&quot; */
-	public static final String PARAMETER_USE_LOG = "use_log";
+    /**
+     * The parameter name for &quot;Generate logarithmic functions.&quot;
+     */
+    public static final String PARAMETER_USE_LOG = "use_log";
 
-	/** The parameter name for &quot;Generate absolute values.&quot; */
-	public static final String PARAMETER_USE_ABSOLUTE_VALUES = "use_absolute_values";
+    /**
+     * The parameter name for &quot;Generate absolute values.&quot;
+     */
+    public static final String PARAMETER_USE_ABSOLUTE_VALUES = "use_absolute_values";
 
-	/** The parameter name for &quot;Generate minimum values.&quot; */
-	public static final String PARAMETER_USE_MIN = "use_min";
+    /**
+     * The parameter name for &quot;Generate minimum values.&quot;
+     */
+    public static final String PARAMETER_USE_MIN = "use_min";
 
-	/** The parameter name for &quot;Generate maximum values.&quot; */
-	public static final String PARAMETER_USE_MAX = "use_max";
+    /**
+     * The parameter name for &quot;Generate maximum values.&quot;
+     */
+    public static final String PARAMETER_USE_MAX = "use_max";
 
-	/** The parameter name for &quot;Generate signum values.&quot; */
-	public static final String PARAMETER_USE_SGN = "use_sgn";
+    /**
+     * The parameter name for &quot;Generate signum values.&quot;
+     */
+    public static final String PARAMETER_USE_SGN = "use_sgn";
 
-	/** The parameter name for &quot;Generate floor, ceil, and rounded values.&quot; */
-	public static final String PARAMETER_USE_FLOOR_CEIL_FUNCTIONS = "use_floor_ceil_functions";
+    /**
+     * The parameter name for &quot;Generate floor, ceil, and rounded values.&quot;
+     */
+    public static final String PARAMETER_USE_FLOOR_CEIL_FUNCTIONS = "use_floor_ceil_functions";
 
-	/** The parameter name for &quot;Use restrictive generator selection (faster).&quot; */
-	public static final String PARAMETER_RESTRICTIVE_SELECTION = "restrictive_selection";
+    /**
+     * The parameter name for &quot;Use restrictive generator selection (faster).&quot;
+     */
+    public static final String PARAMETER_RESTRICTIVE_SELECTION = "restrictive_selection";
 
-	/** The parameter name for &quot;Remove useless attributes.&quot; */
-	public static final String PARAMETER_REMOVE_USELESS = "remove_useless";
+    /**
+     * The parameter name for &quot;Remove useless attributes.&quot;
+     */
+    public static final String PARAMETER_REMOVE_USELESS = "remove_useless";
 
-	/** The parameter name for &quot;Remove equivalent attributes.&quot; */
-	public static final String PARAMETER_REMOVE_EQUIVALENT = "remove_equivalent";
+    /**
+     * The parameter name for &quot;Remove equivalent attributes.&quot;
+     */
+    public static final String PARAMETER_REMOVE_EQUIVALENT = "remove_equivalent";
 
-	/** The parameter name for &quot;Check this number of samples to prove equivalency.&quot; */
-	public static final String PARAMETER_EQUIVALENCE_SAMPLES = "equivalence_samples";
+    /**
+     * The parameter name for &quot;Check this number of samples to prove equivalency.&quot;
+     */
+    public static final String PARAMETER_EQUIVALENCE_SAMPLES = "equivalence_samples";
 
-	/**
-	 * The parameter name for &quot;Consider two attributes equivalent if their difference is not
-	 * bigger than epsilon.&quot;
-	 */
-	public static final String PARAMETER_EQUIVALENCE_EPSILON = "equivalence_epsilon";
+    /**
+     * The parameter name for &quot;Consider two attributes equivalent if their difference is not
+     * bigger than epsilon.&quot;
+     */
+    public static final String PARAMETER_EQUIVALENCE_EPSILON = "equivalence_epsilon";
 
-	/**
-	 * The parameter name for &quot;Recalculates attribute statistics before equivalence
-	 * check.&quot;
-	 */
-	public static final String PARAMETER_EQUIVALENCE_USE_STATISTICS = "equivalence_use_statistics";
+    /**
+     * The parameter name for &quot;Recalculates attribute statistics before equivalence
+     * check.&quot;
+     */
+    public static final String PARAMETER_EQUIVALENCE_USE_STATISTICS = "equivalence_use_statistics";
 
-	/**
-	 * The parameter name for &quot;Use this number of highest frequency peaks for sinus
-	 * generation.&quot;
-	 */
-	public static final String PARAMETER_SEARCH_FOURIER_PEAKS = "search_fourier_peaks";
+    /**
+     * The parameter name for &quot;Use this number of highest frequency peaks for sinus
+     * generation.&quot;
+     */
+    public static final String PARAMETER_SEARCH_FOURIER_PEAKS = "search_fourier_peaks";
 
-	/** The parameter name for &quot;Use this number of additional peaks for each found peak.&quot; */
-	public static final String PARAMETER_ATTRIBUTES_PER_PEAK = "attributes_per_peak";
+    /**
+     * The parameter name for &quot;Use this number of additional peaks for each found peak.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTES_PER_PEAK = "attributes_per_peak";
 
-	/** The parameter name for &quot;Use this range for additional peaks for each found peak.&quot; */
-	public static final String PARAMETER_EPSILON = "epsilon";
+    /**
+     * The parameter name for &quot;Use this range for additional peaks for each found peak.&quot;
+     */
+    public static final String PARAMETER_EPSILON = "epsilon";
 
-	/** The parameter name for &quot;Use this adaption type for additional peaks.&quot; */
-	public static final String PARAMETER_ADAPTION_TYPE = "adaption_type";
+    /**
+     * The parameter name for &quot;Use this adaption type for additional peaks.&quot;
+     */
+    public static final String PARAMETER_ADAPTION_TYPE = "adaption_type";
 
-	public AGA(OperatorDescription description) {
+    /**
+     * Instantiates a new Aga.
+     *
+     * @param description the description
+     */
+    public AGA(OperatorDescription description) {
 		super(description);
 	}
 

@@ -34,12 +34,15 @@ import java.util.logging.Logger;
  * A writer that will export the defined parameters that are preStart Parameters to a config file in
  * the user directory that is used by the batch start script to set Environment Variables before
  * actual JVM starts.
- * 
+ *
  * @author Sebastian Land
  */
 public class WindowsBatParameterWriter implements ParameterWriter {
 
-	public static final String CONFIG_FILE_NAME = "config.win.bat";
+    /**
+     * The constant CONFIG_FILE_NAME.
+     */
+    public static final String CONFIG_FILE_NAME = "config.win.bat";
 
 	private static final Logger LOGGER = Logger.getLogger(WindowsBatParameterWriter.class.getSimpleName());
 

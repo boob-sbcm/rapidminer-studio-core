@@ -22,10 +22,17 @@ import com.rapidminer.gui.new_plotter.MasterOfDesaster;
 
 
 /**
+ * The interface Master of desaster listener.
+ *
  * @author Marius Helf
  */
 public interface MasterOfDesasterListener {
 
-	void masterOfDesasterChanged(MasterOfDesaster masterOfDesaster);
+    /**
+     * Master of desaster changed.
+     *
+     * @param masterOfDesaster the master of desaster
+     */
+    void masterOfDesasterChanged(MasterOfDesaster masterOfDesaster);
 
 }

@@ -42,17 +42,16 @@ import edu.uci.ics.jung.visualization.transform.shape.TransformingGraphics;
 /**
  * This renderer is used for rendering the labels of the tree model nodes.
  *
+ * @param <V> the type for vertices
+ * @param <E> the type for edges
  * @author Ingo Mierswa
- *
- * @param <V>
- *            the type for vertices
- * @param <E>
- *            the type for edges
  */
 public class TreeModelNodeLabelRenderer<V, E> implements Renderer.VertexLabel<V, E> {
 
-	/** Used for positioning the label inside of a node, */
-	public static class InsidePositioner implements Positioner {
+    /**
+     * Used for positioning the label inside of a node,
+     */
+    public static class InsidePositioner implements Positioner {
 
 		@Override
 		public Position getPosition(float x, float y, Dimension d) {
@@ -71,8 +70,10 @@ public class TreeModelNodeLabelRenderer<V, E> implements Renderer.VertexLabel<V,
 		}
 	}
 
-	/** Used for positioning the label outside of a node, */
-	public static class OutsidePositioner implements Positioner {
+    /**
+     * Used for positioning the label outside of a node,
+     */
+    public static class OutsidePositioner implements Positioner {
 
 		@Override
 		public Position getPosition(float x, float y, Dimension d) {
@@ -93,12 +94,20 @@ public class TreeModelNodeLabelRenderer<V, E> implements Renderer.VertexLabel<V,
 
 	private static final int LEAF_LABEL_OFFSET_Y = -15;
 
-	protected Position position = Position.CNTR;
+    /**
+     * The Position.
+     */
+    protected Position position = Position.CNTR;
 	private Positioner positioner = new OutsidePositioner();
 
 	private TreeModelGraphCreator graphCreator;
 
-	public TreeModelNodeLabelRenderer(TreeModelGraphCreator graphCreator) {
+    /**
+     * Instantiates a new Tree model node label renderer.
+     *
+     * @param graphCreator the graph creator
+     */
+    public TreeModelNodeLabelRenderer(TreeModelGraphCreator graphCreator) {
 		this.graphCreator = graphCreator;
 	}
 
@@ -119,7 +128,17 @@ public class TreeModelNodeLabelRenderer<V, E> implements Renderer.VertexLabel<V,
 		this.position = position;
 	}
 
-	public Component prepareRenderer(RenderContext<V, E> rc, VertexLabelRenderer graphLabelRenderer, Object value,
+    /**
+     * Prepare renderer component.
+     *
+     * @param rc                 the rc
+     * @param graphLabelRenderer the graph label renderer
+     * @param value              the value
+     * @param isSelected         the is selected
+     * @param vertex             the vertex
+     * @return the component
+     */
+    public Component prepareRenderer(RenderContext<V, E> rc, VertexLabelRenderer graphLabelRenderer, Object value,
 			boolean isSelected, V vertex) {
 		return rc.getVertexLabelRenderer().<V> getVertexLabelRendererComponent(rc.getScreenDevice(), value,
 				rc.getVertexFontTransformer().transform(vertex), isSelected, vertex);
@@ -177,7 +196,15 @@ public class TreeModelNodeLabelRenderer<V, E> implements Renderer.VertexLabel<V,
 		g.draw(component, rc.getRendererPane(), p.x, p.y, d.width, d.height, true);
 	}
 
-	protected Point getAnchorPoint(Rectangle2D vertexBounds, Dimension labelSize, Position position) {
+    /**
+     * Gets anchor point.
+     *
+     * @param vertexBounds the vertex bounds
+     * @param labelSize    the label size
+     * @param position     the position
+     * @return the anchor point
+     */
+    protected Point getAnchorPoint(Rectangle2D vertexBounds, Dimension labelSize, Position position) {
 		double x;
 		double y;
 		int offset = 5;

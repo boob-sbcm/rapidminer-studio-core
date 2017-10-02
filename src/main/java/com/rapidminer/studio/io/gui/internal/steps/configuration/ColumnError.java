@@ -35,40 +35,43 @@ final class ColumnError {
 	private final String problematicValue;
 	private final String message;
 
-	/**
-	 * Creates a {@link ColumnError} with the given data.
-	 *
-	 * @param affectedColumns
-	 *            a list of affected columns
-	 * @param problematicValue
-	 *            the problematic value
-	 * @param message
-	 *            the error message
-	 */
-	ColumnError(List<Integer> affectedColumns, String problematicValue, String message) {
+    /**
+     * Creates a {@link ColumnError} with the given data.
+     *
+     * @param affectedColumns  a list of affected columns
+     * @param problematicValue the problematic value
+     * @param message          the error message
+     */
+    ColumnError(List<Integer> affectedColumns, String problematicValue, String message) {
 		this.affectedColumns = affectedColumns;
 		this.problematicValue = problematicValue;
 		this.message = message;
 	}
 
-	/**
-	 * @return the list of affected columns
-	 */
-	List<Integer> getAffectedColumns() {
+    /**
+     * Gets affected columns.
+     *
+     * @return the list of affected columns
+     */
+    List<Integer> getAffectedColumns() {
 		return Collections.unmodifiableList(affectedColumns);
 	}
 
-	/**
-	 * @return the problematic value
-	 */
-	String getProblematicValue() {
+    /**
+     * Gets problematic value.
+     *
+     * @return the problematic value
+     */
+    String getProblematicValue() {
 		return problematicValue;
 	}
 
-	/**
-	 * @return the error message
-	 */
-	String getMessage() {
+    /**
+     * Gets message.
+     *
+     * @return the error message
+     */
+    String getMessage() {
 		return message;
 	}
 

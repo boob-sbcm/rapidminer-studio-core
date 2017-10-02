@@ -27,7 +27,7 @@ import com.rapidminer.tools.math.similarity.BregmanDivergence;
 
 /**
  * The &quot;Squared loss &quot;.
- * 
+ *
  * @author Regina Fritsch
  */
 public class SquaredLoss extends BregmanDivergence {

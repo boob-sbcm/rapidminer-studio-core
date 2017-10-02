@@ -37,7 +37,7 @@ import javax.swing.JTextField;
 /**
  * Renders the key in a {@link PropertyTable} either bold or plain depending on whether or not the
  * parameter is optional.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class DefaultPropertyKeyRenderer extends DefaultRMCellEditor implements PropertyKeyCellEditor {
@@ -46,7 +46,12 @@ public class DefaultPropertyKeyRenderer extends DefaultRMCellEditor implements P
 
 	private transient ParameterType type;
 
-	public DefaultPropertyKeyRenderer(ParameterType type) {
+    /**
+     * Instantiates a new Default property key renderer.
+     *
+     * @param type the type
+     */
+    public DefaultPropertyKeyRenderer(ParameterType type) {
 		super(new JTextField());
 		this.type = type;
 		((JTextField) editorComponent).setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 3));

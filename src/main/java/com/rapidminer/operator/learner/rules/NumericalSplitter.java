@@ -26,7 +26,7 @@ import com.rapidminer.example.set.SortedExampleSet;
 
 /**
  * Find the best split point for numerical attributes according to accuracy.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class NumericalSplitter {
@@ -35,15 +35,31 @@ public class NumericalSplitter {
 
 	private double minValue = 0.5d;
 
-	public NumericalSplitter() {
+    /**
+     * Instantiates a new Numerical splitter.
+     */
+    public NumericalSplitter() {
 		this.criterion = new AccuracyCriterion();
 	}
 
-	public NumericalSplitter(Criterion criterion) {
+    /**
+     * Instantiates a new Numerical splitter.
+     *
+     * @param criterion the criterion
+     */
+    public NumericalSplitter(Criterion criterion) {
 		this.criterion = criterion;
 	}
 
-	public Split getBestSplit(ExampleSet inputSet, Attribute attribute, String labelName) {
+    /**
+     * Gets best split.
+     *
+     * @param inputSet  the input set
+     * @param attribute the attribute
+     * @param labelName the label name
+     * @return the best split
+     */
+    public Split getBestSplit(ExampleSet inputSet, Attribute attribute, String labelName) {
 		SortedExampleSet exampleSet = new SortedExampleSet(inputSet, attribute, SortedExampleSet.INCREASING);
 
 		Attribute labelAttribute = exampleSet.getAttributes().getLabel();

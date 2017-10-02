@@ -26,7 +26,7 @@ import com.rapidminer.example.table.DataRowReader;
 
 /**
  * This reader simply uses all examples from an example table.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class SimpleExampleReader extends AbstractExampleReader {
@@ -37,8 +37,13 @@ public class SimpleExampleReader extends AbstractExampleReader {
 	/** The current example set. */
 	private ExampleSet exampleSet;
 
-	/** Creates a simple example reader. */
-	public SimpleExampleReader(DataRowReader drr, ExampleSet exampleSet) {
+    /**
+     * Creates a simple example reader.  @param drr the drr
+     *
+     * @param drr        the drr
+     * @param exampleSet the example set
+     */
+    public SimpleExampleReader(DataRowReader drr, ExampleSet exampleSet) {
 		this.dataRowReader = drr;
 		this.exampleSet = exampleSet;
 	}

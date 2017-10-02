@@ -32,6 +32,7 @@ import com.rapidminer.tools.I18N;
 
 
 /**
+ * The type Wizard step.
  *
  * @author Tobias Malbrecht
  */
@@ -41,7 +42,12 @@ public abstract class WizardStep {
 
 	private String i18nKey;
 
-	public WizardStep(String i18nKey) {
+    /**
+     * Instantiates a new Wizard step.
+     *
+     * @param i18nKey the 18 n key
+     */
+    public WizardStep(String i18nKey) {
 		this.i18nKey = i18nKey;
 	}
 
@@ -49,86 +55,122 @@ public abstract class WizardStep {
 		return "gui.dialog.step." + i18nKey;
 	}
 
-	protected String getTitle() {
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
+    protected String getTitle() {
 		return I18N.getMessage(I18N.getGUIBundle(), getKey() + ".title");
 	}
 
-	protected String getInfoText() {
+    /**
+     * Gets info text.
+     *
+     * @return the info text
+     */
+    protected String getInfoText() {
 		return I18N.getMessage(I18N.getGUIBundle(), getKey() + ".message");
 	}
 
-	protected abstract JComponent getComponent();
+    /**
+     * Gets component.
+     *
+     * @return the component
+     */
+    protected abstract JComponent getComponent();
 
-	protected Collection<AbstractButton> getButtons() {
+    /**
+     * Gets buttons.
+     *
+     * @return the buttons
+     */
+    protected Collection<AbstractButton> getButtons() {
 		return Collections.<AbstractButton> emptyList();
 	}
 
-	/**
-	 * should be called whenever a field was updated
-	 */
-	public void fireStateChanged() {
+    /**
+     * should be called whenever a field was updated
+     */
+    public void fireStateChanged() {
 		ChangeEvent e = new ChangeEvent(this);
 		for (ChangeListener listener : listeners) {
 			listener.stateChanged(e);
 		}
 	}
 
-	protected void addChangeListener(ChangeListener listener) {
+    /**
+     * Add change listener.
+     *
+     * @param listener the listener
+     */
+    protected void addChangeListener(ChangeListener listener) {
 		listeners.add(listener);
 	}
 
-	protected void removeChangeListener(ChangeListener listener) {
+    /**
+     * Remove change listener.
+     *
+     * @param listener the listener
+     */
+    protected void removeChangeListener(ChangeListener listener) {
 		listeners.remove(listener);
 	}
 
-	/**
-	 * is called whenever a field is updated
-	 * 
-	 * @return proceed possible (settings complete?)
-	 */
-	protected abstract boolean canProceed();
+    /**
+     * is called whenever a field is updated
+     *
+     * @return proceed possible (settings complete?)
+     */
+    protected abstract boolean canProceed();
 
-	/**
-	 * is called whenever a field is updated
-	 * 
-	 * @return can go back to previous view?
-	 */
-	protected abstract boolean canGoBack();
+    /**
+     * is called whenever a field is updated
+     *
+     * @return can go back to previous view?
+     */
+    protected abstract boolean canGoBack();
 
-	/**
-	 * This method is called when the step is entered.
-	 */
-	protected boolean performEnteringAction(WizardStepDirection direction) {
+    /**
+     * This method is called when the step is entered.
+     *
+     * @param direction the direction
+     * @return the boolean
+     */
+    protected boolean performEnteringAction(WizardStepDirection direction) {
 		return performEnteringAction();
 	}
 
-	/**
-	 * This method is called when the step is left.
-	 */
-	protected boolean performLeavingAction(WizardStepDirection direction) {
+    /**
+     * This method is called when the step is left.
+     *
+     * @param direction the direction
+     * @return the boolean
+     */
+    protected boolean performLeavingAction(WizardStepDirection direction) {
 		return performLeavingAction();
 	}
 
-	/**
-	 * This method is called when the step is entered. This method is deprecated since it does not
-	 * give information about the direction from where the step came.
-	 * 
-	 * @param direction
-	 *            TODO
-	 */
-	@Deprecated
+    /**
+     * This method is called when the step is entered. This method is deprecated since it does not
+     * give information about the direction from where the step came.
+     *
+     * @param direction TODO
+     * @return the boolean
+     */
+    @Deprecated
 	protected boolean performEnteringAction() {
 		return true;
 	}
 
-	/**
-	 * This method is called when the step is left. This method is deprecated since it does not give
-	 * information about the direction in which the step goes.
-	 * 
-	 * @param direction
-	 *            TODO
-	 */
-	@Deprecated
+    /**
+     * This method is called when the step is left. This method is deprecated since it does not give
+     * information about the direction in which the step goes.
+     *
+     * @param direction TODO
+     * @return the boolean
+     */
+    @Deprecated
 	protected boolean performLeavingAction() {
 		return true;
 	}

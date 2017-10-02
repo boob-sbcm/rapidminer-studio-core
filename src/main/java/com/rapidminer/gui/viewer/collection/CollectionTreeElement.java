@@ -29,19 +29,28 @@ import com.rapidminer.operator.IOObject;
  * Objects would cause errors.
  *
  * @author Marcel Seifert
- *
  */
 public class CollectionTreeElement {
 
 	private final UUID uniqueID = UUID.randomUUID();
 	private final IOObject ioobject;
 
-	public CollectionTreeElement(IOObject ioobject) {
+    /**
+     * Instantiates a new Collection tree element.
+     *
+     * @param ioobject the ioobject
+     */
+    public CollectionTreeElement(IOObject ioobject) {
 		this.ioobject = ioobject;
 
 	}
 
-	public IOObject getIOObject() {
+    /**
+     * Gets io object.
+     *
+     * @return the io object
+     */
+    public IOObject getIOObject() {
 		return ioobject;
 	}
 

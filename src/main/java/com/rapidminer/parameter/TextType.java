@@ -30,10 +30,34 @@ import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
  */
 public enum TextType implements Serializable {
 
-	PLAIN(SyntaxConstants.SYNTAX_STYLE_NONE, false, false), XML(SyntaxConstants.SYNTAX_STYLE_XML, true, false), HTML(
-			SyntaxConstants.SYNTAX_STYLE_HTML, true, false), SQL(SyntaxConstants.SYNTAX_STYLE_SQL, false, true), JAVA(
-					SyntaxConstants.SYNTAX_STYLE_JAVA, true, true), GROOVY(SyntaxConstants.SYNTAX_STYLE_GROOVY, true, true), PYTHON(
-			SyntaxConstants.SYNTAX_STYLE_PYTHON, true, true), R("text/r", true, true);
+    /**
+     * Plain text type.
+     */
+    PLAIN(SyntaxConstants.SYNTAX_STYLE_NONE, false, false), /**
+     * Xml text type.
+     */
+    XML(SyntaxConstants.SYNTAX_STYLE_XML, true, false), /**
+     * Html text type.
+     */
+    HTML(
+			SyntaxConstants.SYNTAX_STYLE_HTML, true, false), /**
+     * Sql text type.
+     */
+    SQL(SyntaxConstants.SYNTAX_STYLE_SQL, false, true), /**
+     * Java text type.
+     */
+    JAVA(
+					SyntaxConstants.SYNTAX_STYLE_JAVA, true, true), /**
+     * Groovy text type.
+     */
+    GROOVY(SyntaxConstants.SYNTAX_STYLE_GROOVY, true, true), /**
+     * Python text type.
+     */
+    PYTHON(
+			SyntaxConstants.SYNTAX_STYLE_PYTHON, true, true), /**
+     * R text type.
+     */
+    R("text/r", true, true);
 
 	private String syntaxIdentifier;
 	private boolean isAutoIntending;
@@ -45,15 +69,30 @@ public enum TextType implements Serializable {
 		this.isBracketMatching = isBracketMatching;
 	}
 
-	public String getSyntaxIdentifier() {
+    /**
+     * Gets syntax identifier.
+     *
+     * @return the syntax identifier
+     */
+    public String getSyntaxIdentifier() {
 		return syntaxIdentifier;
 	}
 
-	public boolean isAutoIntending() {
+    /**
+     * Is auto intending boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isAutoIntending() {
 		return isAutoIntending;
 	}
 
-	public boolean isBracketMatching() {
+    /**
+     * Is bracket matching boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isBracketMatching() {
 		return isBracketMatching;
 	}
 }

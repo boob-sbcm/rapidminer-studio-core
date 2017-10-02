@@ -23,15 +23,24 @@ import com.rapidminer.operator.learner.functions.kernel.rvm.kernel.KernelBasisFu
 
 /**
  * Models a Classification-Problem.
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
- * 
  */
 public class ClassificationProblem extends Problem {
 
-	int[] y;						// Classes
+    /**
+     * The Y.
+     */
+    int[] y;						// Classes
 
-	public ClassificationProblem(double[][] x, int[] y, KernelBasisFunction[] kernels) {
+    /**
+     * Instantiates a new Classification problem.
+     *
+     * @param x       the x
+     * @param y       the y
+     * @param kernels the kernels
+     */
+    public ClassificationProblem(double[][] x, int[] y, KernelBasisFunction[] kernels) {
 		super(x, kernels);
 		this.y = y;
 	}
@@ -41,7 +50,12 @@ public class ClassificationProblem extends Problem {
 		return 1;
 	}
 
-	public int[] getTargetVectors() {
+    /**
+     * Get target vectors int [ ].
+     *
+     * @return the int [ ]
+     */
+    public int[] getTargetVectors() {
 		return y;
 	}
 }

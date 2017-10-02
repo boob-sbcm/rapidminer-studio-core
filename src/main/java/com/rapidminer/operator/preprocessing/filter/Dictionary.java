@@ -59,7 +59,17 @@ public class Dictionary extends PreprocessingModel {
 
 	private boolean stopAfterFirstMatch = false;
 
-	public Dictionary(ExampleSet exampleSet, Set<Attribute> attributesAffected, List<String[]> replacements, boolean regexp,
+    /**
+     * Instantiates a new Dictionary.
+     *
+     * @param exampleSet         the example set
+     * @param attributesAffected the attributes affected
+     * @param replacements       the replacements
+     * @param regexp             the regexp
+     * @param toLowerCase        the to lower case
+     * @param stopAfterFistMatch the stop after fist match
+     */
+    public Dictionary(ExampleSet exampleSet, Set<Attribute> attributesAffected, List<String[]> replacements, boolean regexp,
 			boolean toLowerCase, boolean stopAfterFistMatch) {
 		super(exampleSet);
 		this.exampleSet = exampleSet;
@@ -276,27 +286,57 @@ public class Dictionary extends PreprocessingModel {
 		return b.toString();
 	}
 
-	public List<String[]> getReplacements() {
+    /**
+     * Gets replacements.
+     *
+     * @return the replacements
+     */
+    public List<String[]> getReplacements() {
 		return replacements;
 	}
 
-	public String[] getAffectedAttributeNames() {
+    /**
+     * Get affected attribute names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getAffectedAttributeNames() {
 		return affectedAttributeNames;
 	}
 
-	public boolean isRegexp() {
+    /**
+     * Is regexp boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isRegexp() {
 		return regexp;
 	}
 
-	public boolean isToLowerCase() {
+    /**
+     * Is to lower case boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isToLowerCase() {
 		return toLowerCase;
 	}
 
-	public boolean shouldStopAfterFirstMatch() {
+    /**
+     * Should stop after first match boolean.
+     *
+     * @return the boolean
+     */
+    public boolean shouldStopAfterFirstMatch() {
 		return stopAfterFirstMatch;
 	}
 
-	public ExampleSet getExampleSet() {
+    /**
+     * Gets example set.
+     *
+     * @return the example set
+     */
+    public ExampleSet getExampleSet() {
 		return exampleSet;
 	}
 

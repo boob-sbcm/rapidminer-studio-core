@@ -33,35 +33,33 @@ import com.rapidminer.repository.RepositoryException;
  */
 public interface ZipStreamResource {
 
-	/**
-	 * The title of the resource.
-	 *
-	 * @return a human readable title
-	 */
-	public String getTitle();
+    /**
+     * The title of the resource.
+     *
+     * @return a human readable title
+     */
+    public String getTitle();
 
-	/**
-	 * The description of the resource.
-	 *
-	 * @return a human readable description
-	 */
-	public String getDescription();
+    /**
+     * The description of the resource.
+     *
+     * @return a human readable description
+     */
+    public String getDescription();
 
-	/**
-	 * The root path inside the zip resource.
-	 *
-	 * @return a path as {@link String} (e.g. subfolder/) or {@code null}
-	 */
-	public String getStreamPath();
+    /**
+     * The root path inside the zip resource.
+     *
+     * @return a path as {@link String} (e.g. subfolder/) or {@code null}
+     */
+    public String getStreamPath();
 
-	/**
-	 * The input stream of the ZIP resource.
-	 *
-	 * @return the stream as {@link ZipInputStream}
-	 * @throws IOException
-	 *             if resource cannot loaded
-	 * @throws RepositoryException
-	 *             if resource cannot loaded
-	 */
-	public ZipInputStream getStream() throws IOException, RepositoryException;
+    /**
+     * The input stream of the ZIP resource.
+     *
+     * @return the stream as {@link ZipInputStream}
+     * @throws IOException         if resource cannot loaded
+     * @throws RepositoryException if resource cannot loaded
+     */
+    public ZipInputStream getStream() throws IOException, RepositoryException;
 }

@@ -44,21 +44,36 @@ import java.util.List;
 /**
  * This is the abstract renderer superclass for all renderers which should be a plotter based on a
  * given {@link DataTable}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class AbstractDataTablePlotterRenderer extends AbstractRenderer {
 
-	public static final String PARAMETER_PLOTTER = "plotter";
+    /**
+     * The constant PARAMETER_PLOTTER.
+     */
+    public static final String PARAMETER_PLOTTER = "plotter";
 
-	public abstract DataTable getDataTable(Object renderable, IOContainer ioContainer);
+    /**
+     * Gets data table.
+     *
+     * @param renderable  the renderable
+     * @param ioContainer the io container
+     * @return the data table
+     */
+    public abstract DataTable getDataTable(Object renderable, IOContainer ioContainer);
 
 	@Override
 	public String getName() {
 		return "Plot View";
 	}
 
-	public LinkedHashMap<String, Class<? extends Plotter>> getPlotterSelection() {
+    /**
+     * Gets plotter selection.
+     *
+     * @return the plotter selection
+     */
+    public LinkedHashMap<String, Class<? extends Plotter>> getPlotterSelection() {
 		return PlotterConfigurationModel.COMPLETE_PLOTTER_SELECTION;
 	}
 

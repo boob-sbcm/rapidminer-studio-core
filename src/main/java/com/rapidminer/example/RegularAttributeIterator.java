@@ -34,7 +34,12 @@ public class RegularAttributeIterator implements Iterator<Attribute> {
 
 	private Attribute current = null;
 
-	public RegularAttributeIterator(Iterator<AttributeRole> parent) {
+    /**
+     * Instantiates a new Regular attribute iterator.
+     *
+     * @param parent the parent
+     */
+    public RegularAttributeIterator(Iterator<AttributeRole> parent) {
 		this.parent = parent;
 	}
 

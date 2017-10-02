@@ -20,12 +20,17 @@ package com.rapidminer.operator.learner.functions.kernel.jmysvm.util;
 
 /**
  * Implements a MaxHeap on n doubles and ints
- * 
+ *
  * @author Stefan Rueping
  */
 public class MaxHeap extends Heap {
 
-	public MaxHeap(int n) {
+    /**
+     * Instantiates a new Max heap.
+     *
+     * @param n the n
+     */
+    public MaxHeap(int n) {
 		the_size = 0;
 		init(n);
 	};

@@ -60,7 +60,6 @@ import com.rapidminer.tools.plugin.Plugin;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public final class ProcessDrawUtils {
 
@@ -91,36 +90,28 @@ public final class ProcessDrawUtils {
 		throw new UnsupportedOperationException("Static utility class");
 	}
 
-	/**
-	 * This method adds the colors of the given property file to the global group colors.
-	 *
-	 * @param groupProperties
-	 *            the properties group name
-	 * @param pluginName
-	 *            the name of the plugin
-	 * @param classLoader
-	 *            the classloader responsible who registered the colors
-	 * @param provider
-	 *            the extension for the registered group color
-	 */
-	public static void registerAdditionalGroupColors(final String groupProperties, final String pluginName,
+    /**
+     * This method adds the colors of the given property file to the global group colors.
+     *
+     * @param groupProperties the properties group name
+     * @param pluginName      the name of the plugin
+     * @param classLoader     the classloader responsible who registered the colors
+     * @param provider        the extension for the registered group color
+     */
+    public static void registerAdditionalGroupColors(final String groupProperties, final String pluginName,
 			final ClassLoader classLoader, final Plugin provider) {
 		SwingTools.registerAdditionalGroupColors(groupProperties, pluginName, classLoader, provider);
 	}
 
-	/**
-	 * This method adds the colors of the given property file to the io object colors.
-	 *
-	 * @param groupProperties
-	 *            the properties group name
-	 * @param pluginName
-	 *            the name of the plugin
-	 * @param classLoader
-	 *            the classloader responsible who registered the colors
-	 * @param provider
-	 *            the extension to registered IOObjects for
-	 */
-	public static void registerAdditionalObjectColors(final String groupProperties, final String pluginName,
+    /**
+     * This method adds the colors of the given property file to the io object colors.
+     *
+     * @param groupProperties the properties group name
+     * @param pluginName      the name of the plugin
+     * @param classLoader     the classloader responsible who registered the colors
+     * @param provider        the extension to registered IOObjects for
+     */
+    public static void registerAdditionalObjectColors(final String groupProperties, final String pluginName,
 			final ClassLoader classLoader, final Plugin provider) {
 		try {
 			IO_CLASS_TO_COLOR_MAP.parseProperties(groupProperties, "io.", ".color", classLoader, provider);
@@ -130,14 +121,13 @@ public final class ProcessDrawUtils {
 		}
 	}
 
-	/**
-	 * Returns the color specified for the given type of metadata.
-	 *
-	 * @param md
-	 *            the metadata or {@code null}
-	 * @return a color, never {@code null}
-	 */
-	public static Color getColorFor(final MetaData md) {
+    /**
+     * Returns the color specified for the given type of metadata.
+     *
+     * @param md the metadata or {@code null}
+     * @return a color, never {@code null}
+     */
+    public static Color getColorFor(final MetaData md) {
 		if (md == null) {
 			return Color.WHITE;
 		}
@@ -153,18 +143,15 @@ public final class ProcessDrawUtils {
 		}
 	}
 
-	/**
-	 * Returns a color for the given {@link Port} depending on the metadata at the port.
-	 *
-	 * @param port
-	 *            the port for which a color should be retrieved
-	 * @param defaultColor
-	 *            the default color if the port has no data
-	 * @param enabled
-	 *            if the port is enabled
-	 * @return a color, never {@code null}
-	 */
-	public static Color getColorFor(final Port port, final Color defaultColor, final boolean enabled) {
+    /**
+     * Returns a color for the given {@link Port} depending on the metadata at the port.
+     *
+     * @param port         the port for which a color should be retrieved
+     * @param defaultColor the default color if the port has no data
+     * @param enabled      if the port is enabled
+     * @return a color, never {@code null}
+     */
+    public static Color getColorFor(final Port port, final Color defaultColor, final boolean enabled) {
 		if (port == null) {
 			throw new IllegalArgumentException("port must not be null!");
 		}
@@ -197,15 +184,14 @@ public final class ProcessDrawUtils {
 		}
 	}
 
-	/**
-	 * Snaps the given point to the nearest snapping point for the {@link ProcessRendererView}. Does
-	 * not check if snapping is enabled!
-	 *
-	 * @param point
-	 *            the point which should snap to the nearest possible grid position
-	 * @return the nearest position on the grid, never {@code null}
-	 */
-	public static Point snap(final Point2D point) {
+    /**
+     * Snaps the given point to the nearest snapping point for the {@link ProcessRendererView}. Does
+     * not check if snapping is enabled!
+     *
+     * @param point the point which should snap to the nearest possible grid position
+     * @return the nearest position on the grid, never {@code null}
+     */
+    public static Point snap(final Point2D point) {
 		if (point == null) {
 			throw new IllegalArgumentException("point must not be null!");
 		}
@@ -223,16 +209,14 @@ public final class ProcessDrawUtils {
 		return new Point(snappedX, snappedY);
 	}
 
-	/**
-	 * Calculates a {@link Rectangle2D} from the specified start and end point.
-	 *
-	 * @param start
-	 *            the starting point
-	 * @param end
-	 *            the end point
-	 * @return the rectangle or {@code null} if the start/end point was {@code null}
-	 */
-	public static Rectangle2D createRectangle(final Point start, final Point end) {
+    /**
+     * Calculates a {@link Rectangle2D} from the specified start and end point.
+     *
+     * @param start the starting point
+     * @param end   the end point
+     * @return the rectangle or {@code null} if the start/end point was {@code null}
+     */
+    public static Rectangle2D createRectangle(final Point start, final Point end) {
 		if (start == null || end == null) {
 			return null;
 		}
@@ -241,15 +225,13 @@ public final class ProcessDrawUtils {
 				Math.abs(start.getX() - end.getX()), Math.abs(start.getY() - end.getY()));
 	}
 
-	/**
-	 * Draws a shadow around the given rectangle.
-	 *
-	 * @param rect
-	 *            the rectangle which should get a shadow
-	 * @param g2
-	 *            the graphics context to draw the shadow on
-	 */
-	public static void drawShadow(final Rectangle2D rect, final Graphics2D g2) {
+    /**
+     * Draws a shadow around the given rectangle.
+     *
+     * @param rect the rectangle which should get a shadow
+     * @param g2   the graphics context to draw the shadow on
+     */
+    public static void drawShadow(final Rectangle2D rect, final Graphics2D g2) {
 		Graphics2D g2S = (Graphics2D) g2.create();
 
 		Rectangle2D shadow = new Rectangle2D.Double(rect.getX() + 5, rect.getY() + ProcessDrawer.HEADER_HEIGHT + 5,
@@ -277,19 +259,15 @@ public final class ProcessDrawUtils {
 		g2S.dispose();
 	}
 
-	/**
-	 * Creates a spline connector shape from one {@link Port} to another.
-	 *
-	 * @param fromPort
-	 *            the origin port
-	 * @param toPort
-	 *            the end port
-	 * @param model
-	 *            the model required to create port locations
-	 * @return the shape representing the connection or {@code null} if the ports have no location
-	 *         yet
-	 */
-	public static Shape createConnector(final OutputPort fromPort, final Port toPort, final ProcessRendererModel model) {
+    /**
+     * Creates a spline connector shape from one {@link Port} to another.
+     *
+     * @param fromPort the origin port
+     * @param toPort   the end port
+     * @param model    the model required to create port locations
+     * @return the shape representing the connection or {@code null} if the ports have no location         yet
+     */
+    public static Shape createConnector(final OutputPort fromPort, final Port toPort, final ProcessRendererModel model) {
 		Point2D from = ProcessDrawUtils.createPortLocation(fromPort, model);
 		Point2D to = ProcessDrawUtils.createPortLocation(toPort, model);
 		if (from == null || to == null) {
@@ -301,16 +279,14 @@ public final class ProcessDrawUtils {
 		return ProcessDrawUtils.createConnectionSpline(from, to);
 	}
 
-	/**
-	 * Creates a spline connector shape from one {@link Point2D} to another.
-	 *
-	 * @param from
-	 *            the starting point
-	 * @param to
-	 *            the end point
-	 * @return the shape representing the connection, never {@code null}
-	 */
-	public static Shape createConnectionSpline(final Point2D from, final Point2D to) {
+    /**
+     * Creates a spline connector shape from one {@link Point2D} to another.
+     *
+     * @param from the starting point
+     * @param to   the end point
+     * @return the shape representing the connection, never {@code null}
+     */
+    public static Shape createConnectionSpline(final Point2D from, final Point2D to) {
 		if (from == null || to == null) {
 			throw new IllegalArgumentException("from and to must not be null!");
 		}
@@ -330,16 +306,14 @@ public final class ProcessDrawUtils {
 		return connector;
 	}
 
-	/**
-	 * Returns the location of the given {@link Port}.
-	 *
-	 * @param port
-	 *            the location for this port will be returned
-	 * @param model
-	 *            the model required to create port locations
-	 * @return the point or {@code null} if the port has no location yet
-	 */
-	public static Point createPortLocation(final Port port, final ProcessRendererModel model) {
+    /**
+     * Returns the location of the given {@link Port}.
+     *
+     * @param port  the location for this port will be returned
+     * @param model the model required to create port locations
+     * @return the point or {@code null} if the port has no location yet
+     */
+    public static Point createPortLocation(final Port port, final ProcessRendererModel model) {
 		if (port.getPorts() == null) {
 			return new Point(0, 0);
 		}
@@ -385,19 +359,15 @@ public final class ProcessDrawUtils {
 		return point;
 	}
 
-	/**
-	 * Returns the absolute point for a given point in a process.
-	 *
-	 * @param p
-	 *            the relative point which is relative to the displayed process
-	 * @param processIndex
-	 *            the index of the process in question
-	 * @param model
-	 *            the model required to calculate the absolute location
-	 * @return the absolute point (relative to the process renderer view) or {@code null} if the
-	 *         process index is invalid
-	 */
-	public static Point convertToAbsoluteProcessPoint(final Point p, final int processIndex,
+    /**
+     * Returns the absolute point for a given point in a process.
+     *
+     * @param p            the relative point which is relative to the displayed process
+     * @param processIndex the index of the process in question
+     * @param model        the model required to calculate the absolute location
+     * @return the absolute point (relative to the process renderer view) or {@code null} if the         process index is invalid
+     */
+    public static Point convertToAbsoluteProcessPoint(final Point p, final int processIndex,
 			final ProcessRendererModel model) {
 		double xOffset = 0;
 		for (int i = 0; i < model.getProcesses().size(); i++) {
@@ -409,19 +379,15 @@ public final class ProcessDrawUtils {
 		return null;
 	}
 
-	/**
-	 * Returns the relative point for a given absolute point.
-	 *
-	 * @param p
-	 *            the relative point which is relative to the displayed process
-	 * @param processIndex
-	 *            the index of the process in question
-	 * @param model
-	 *            the model required to calculate the relative location
-	 * @return the relative point which is relative to the displayed process or {@code null} if the
-	 *         process index is invalid
-	 */
-	public static Point convertToRelativePoint(final Point p, final int processIndex, final ProcessRendererModel model) {
+    /**
+     * Returns the relative point for a given absolute point.
+     *
+     * @param p            the relative point which is relative to the displayed process
+     * @param processIndex the index of the process in question
+     * @param model        the model required to calculate the relative location
+     * @return the relative point which is relative to the displayed process or {@code null} if the         process index is invalid
+     */
+    public static Point convertToRelativePoint(final Point p, final int processIndex, final ProcessRendererModel model) {
 		double xOffset = 0;
 		for (int i = 0; i < model.getProcesses().size(); i++) {
 			if (i == processIndex) {
@@ -432,18 +398,15 @@ public final class ProcessDrawUtils {
 		return null;
 	}
 
-	/**
-	 * Abbreviates the string using {@code ...} if necessary.
-	 *
-	 * @param string
-	 *            the string to shorten
-	 * @param g2
-	 *            the graphics context
-	 * @param maxWidth
-	 *            the max width in px the string is allowed to use
-	 * @return the shorted string, never {@code null}
-	 */
-	public static String fitString(String string, final Graphics2D g2, final int maxWidth) {
+    /**
+     * Abbreviates the string using {@code ...} if necessary.
+     *
+     * @param string   the string to shorten
+     * @param g2       the graphics context
+     * @param maxWidth the max width in px the string is allowed to use
+     * @return the shorted string, never {@code null}
+     */
+    public static String fitString(String string, final Graphics2D g2, final int maxWidth) {
 		if (string == null) {
 			throw new IllegalArgumentException("string must not be null!");
 		}
@@ -464,15 +427,13 @@ public final class ProcessDrawUtils {
 		return string + "...";
 	}
 
-	/**
-	 * Returns whether the specified {@link Operator} has at least one free input and output port.
-	 *
-	 * @param operator
-	 *            the operator in question
-	 * @return {@code true} if the operator has one free input and output port ; {@code false}
-	 *         otherwise
-	 */
-	public static boolean hasOperatorFreePorts(final Operator operator) {
+    /**
+     * Returns whether the specified {@link Operator} has at least one free input and output port.
+     *
+     * @param operator the operator in question
+     * @return {@code true} if the operator has one free input and output port ; {@code false}         otherwise
+     */
+    public static boolean hasOperatorFreePorts(final Operator operator) {
 		if (operator == null) {
 			return false;
 		}
@@ -495,17 +456,16 @@ public final class ProcessDrawUtils {
 		return false;
 	}
 
-	/**
-	 * Returns whether the specified {@link Operator} can be inserted into the currently hovered
-	 * connection. If no connection is being hovered, only checks if the operator has at least one
-	 * free input and output port.
-	 *
-	 * @param operator
-	 *            the operator in question
-	 * @return {@code true} if the operator has one free input and output port ; {@code false}
-	 *         otherwise
-	 */
-	public static boolean canOperatorBeInsertedIntoConnection(final ProcessRendererModel model, final Operator operator) {
+    /**
+     * Returns whether the specified {@link Operator} can be inserted into the currently hovered
+     * connection. If no connection is being hovered, only checks if the operator has at least one
+     * free input and output port.
+     *
+     * @param model    the model
+     * @param operator the operator in question
+     * @return {@code true} if the operator has one free input and output port ; {@code false}         otherwise
+     */
+    public static boolean canOperatorBeInsertedIntoConnection(final ProcessRendererModel model, final Operator operator) {
 		if (operator == null) {
 			return false;
 		}
@@ -543,31 +503,27 @@ public final class ProcessDrawUtils {
 		return false;
 	}
 
-	/**
-	 * Returns the height for the specified {@link Operator}.
-	 *
-	 * @param operator
-	 *            the operator in question
-	 * @return
-	 */
-	public static double calcHeighForOperator(Operator operator) {
+    /**
+     * Returns the height for the specified {@link Operator}.
+     *
+     * @param operator the operator in question
+     * @return double double
+     */
+    public static double calcHeighForOperator(Operator operator) {
 		double calcHeight = 40 + ProcessRendererModel.PORT_SIZE * 3 / 2
 				* Math.max(operator.getInputPorts().getNumberOfPorts(), operator.getOutputPorts().getNumberOfPorts());
 		double height = Math.max(ProcessRendererModel.MIN_OPERATOR_HEIGHT, calcHeight);
 		return height;
 	}
 
-	/**
-	 * Returns the given icon in an appropriate enabled/disabled state.
-	 *
-	 * @param operator
-	 *            if the operator is enabled, returns the passed icon directly, otherwise it is
-	 *            displayed as disabled
-	 * @param icon
-	 *            the icon
-	 * @return the original icon (if the given operator is enabled) or the icon in a disabled state
-	 */
-	public static ImageIcon getIcon(final Operator operator, final ImageIcon icon) {
+    /**
+     * Returns the given icon in an appropriate enabled/disabled state.
+     *
+     * @param operator if the operator is enabled, returns the passed icon directly, otherwise it is            displayed as disabled
+     * @param icon     the icon
+     * @return the original icon (if the given operator is enabled) or the icon in a disabled state
+     */
+    public static ImageIcon getIcon(final Operator operator, final ImageIcon icon) {
 		if (operator.isEnabled()) {
 			return icon;
 		} else {
@@ -575,28 +531,24 @@ public final class ProcessDrawUtils {
 		}
 	}
 
-	/**
-	 * Calculates the preferred size for the given {@link ExecutionUnit} based on the total
-	 * available target renderer size.
-	 * <p>
-	 * Note that if the currently displayed chain (see
-	 * {@link ProcessRendererModel#getDisplayedChain()}) has more than one {@link ExecutionUnit},
-	 * the returned size will accommodate the simultaneous display of all execution units in the
-	 * given size.
-	 * </p>
-	 *
-	 * @param model
-	 *            the model required to calculate the size
-	 * @param unit
-	 *            the process for which the initial size should be created
-	 * @param width
-	 *            the total width which is available
-	 * @param height
-	 *            the total height which is available
-	 * @return the size, never {@code null}
-	 * @since 7.5
-	 */
-	public static Dimension calculatePreferredSize(final ProcessRendererModel model, final ExecutionUnit unit, int width,
+    /**
+     * Calculates the preferred size for the given {@link ExecutionUnit} based on the total
+     * available target renderer size.
+     * <p>
+     * Note that if the currently displayed chain (see
+     * {@link ProcessRendererModel#getDisplayedChain()}) has more than one {@link ExecutionUnit},
+     * the returned size will accommodate the simultaneous display of all execution units in the
+     * given size.
+     * </p>
+     *
+     * @param model  the model required to calculate the size
+     * @param unit   the process for which the initial size should be created
+     * @param width  the total width which is available
+     * @param height the total height which is available
+     * @return the size, never {@code null}
+     * @since 7.5
+     */
+    public static Dimension calculatePreferredSize(final ProcessRendererModel model, final ExecutionUnit unit, int width,
 			int height) {
 		int processes = model.getProcesses().size();
 		int wallSpace = (processes - 1) * 2 * ProcessDrawer.WALL_WIDTH;

@@ -65,17 +65,40 @@ public class DiscretizationModel extends PreprocessingModel {
 
 	private boolean removeUseless = true;
 
-	public static final String[] RANGE_NAME_TYPES = { "long", "short", "interval" };
+    /**
+     * The constant RANGE_NAME_TYPES.
+     */
+    public static final String[] RANGE_NAME_TYPES = { "long", "short", "interval" };
 
-	public static final int RANGE_NAME_LONG = 0;
-	public static final int RANGE_NAME_SHORT = 1;
-	public static final int RANGE_NAME_INTERVAL = 2;
+    /**
+     * The constant RANGE_NAME_LONG.
+     */
+    public static final int RANGE_NAME_LONG = 0;
+    /**
+     * The constant RANGE_NAME_SHORT.
+     */
+    public static final int RANGE_NAME_SHORT = 1;
+    /**
+     * The constant RANGE_NAME_INTERVAL.
+     */
+    public static final int RANGE_NAME_INTERVAL = 2;
 
-	public DiscretizationModel(ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Discretization model.
+     *
+     * @param exampleSet the example set
+     */
+    public DiscretizationModel(ExampleSet exampleSet) {
 		this(exampleSet, false);
 	}
 
-	public DiscretizationModel(ExampleSet exampleSet, boolean removeUseless) {
+    /**
+     * Instantiates a new Discretization model.
+     *
+     * @param exampleSet    the example set
+     * @param removeUseless the remove useless
+     */
+    public DiscretizationModel(ExampleSet exampleSet, boolean removeUseless) {
 		super(exampleSet);
 		attributeNames = new HashSet<String>();
 		for (Attribute attribute : exampleSet.getAttributes()) {
@@ -187,12 +210,18 @@ public class DiscretizationModel extends PreprocessingModel {
 		return exampleSet;
 	}
 
-	/**
-	 * Creates the ranges. If the range name type is 'Interval' and the number of digits is smaller
-	 * than 0, the number of digits is automatically determined in a way such that the range names
-	 * do actually differ but are rounded as far as possible.
-	 */
-	public void setRanges(Map<Attribute, double[]> rangesMap, String rangeName, int rangeNameType, int numberOfDigits)
+    /**
+     * Creates the ranges. If the range name type is 'Interval' and the number of digits is smaller
+     * than 0, the number of digits is automatically determined in a way such that the range names
+     * do actually differ but are rounded as far as possible.
+     *
+     * @param rangesMap      the ranges map
+     * @param rangeName      the range name
+     * @param rangeNameType  the range name type
+     * @param numberOfDigits the number of digits
+     * @throws UserError the user error
+     */
+    public void setRanges(Map<Attribute, double[]> rangesMap, String rangeName, int rangeNameType, int numberOfDigits)
 			throws UserError {
 		this.rangesMap = new HashMap<String, SortedSet<Tupel<Double, String>>>();
 		Iterator<Map.Entry<Attribute, double[]>> r = rangesMap.entrySet().iterator();
@@ -277,11 +306,21 @@ public class DiscretizationModel extends PreprocessingModel {
 		return ranges;
 	}
 
-	public void setRanges(Map<String, SortedSet<Tupel<Double, String>>> rangesMap) {
+    /**
+     * Sets ranges.
+     *
+     * @param rangesMap the ranges map
+     */
+    public void setRanges(Map<String, SortedSet<Tupel<Double, String>>> rangesMap) {
 		this.rangesMap = rangesMap;
 	}
 
-	public Map<String, SortedSet<Tupel<Double, String>>> getRanges() {
+    /**
+     * Gets ranges.
+     *
+     * @return the ranges
+     */
+    public Map<String, SortedSet<Tupel<Double, String>>> getRanges() {
 		return this.rangesMap;
 	}
 
@@ -349,11 +388,21 @@ public class DiscretizationModel extends PreprocessingModel {
 		}
 	}
 
-	public Set<String> getAttributeNames() {
+    /**
+     * Gets attribute names.
+     *
+     * @return the attribute names
+     */
+    public Set<String> getAttributeNames() {
 		return attributeNames;
 	}
 
-	public boolean shouldRemoveUseless() {
+    /**
+     * Should remove useless boolean.
+     *
+     * @return the boolean
+     */
+    public boolean shouldRemoveUseless() {
 		return removeUseless;
 	}
 

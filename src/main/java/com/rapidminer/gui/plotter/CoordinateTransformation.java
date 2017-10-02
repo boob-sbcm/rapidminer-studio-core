@@ -29,24 +29,44 @@ import javax.swing.JPopupMenu;
 /**
  * This interface provides methods for transforming coordinates of the components (user) space to
  * the screen position.
- * 
+ *
  * @author Sebastian Land
  */
 public interface CoordinateTransformation {
 
-	/**
-	 * This method transforms the given point of the components space to screen coordinates.
-	 * 
-	 * @param source
-	 *            TODO
-	 */
+    /**
+     * This method transforms the given point of the components space to screen coordinates.
+     *
+     * @param point  the point
+     * @param source TODO
+     * @param menu   the menu
+     */
+    public void showPopupMenu(Point point, JComponent source, JPopupMenu menu);
 
-	public void showPopupMenu(Point point, JComponent source, JPopupMenu menu);
+    /**
+     * Gets transformed graphics.
+     *
+     * @param source the source
+     * @return the transformed graphics
+     */
+    public Graphics2D getTransformedGraphics(JComponent source);
 
-	public Graphics2D getTransformedGraphics(JComponent source);
+    /**
+     * Transform coordinate point.
+     *
+     * @param point  the point
+     * @param source the source
+     * @return the point
+     */
+    public Point transformCoordinate(Point point, JComponent source);
 
-	public Point transformCoordinate(Point point, JComponent source);
-
-	public Rectangle2D transformRectangle(Rectangle2D zoomRectangle, JComponent source);
+    /**
+     * Transform rectangle rectangle 2 d.
+     *
+     * @param zoomRectangle the zoom rectangle
+     * @param source        the source
+     * @return the rectangle 2 d
+     */
+    public Rectangle2D transformRectangle(Rectangle2D zoomRectangle, JComponent source);
 
 }

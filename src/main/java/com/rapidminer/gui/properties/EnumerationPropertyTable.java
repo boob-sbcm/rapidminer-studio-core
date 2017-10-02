@@ -36,7 +36,7 @@ import javax.swing.table.DefaultTableModel;
  * For {@link com.rapidminer.parameter.ParameterTypeList} the parameter values are parameter lists
  * themselves. Hence, the key must be editable, too (not only the value). That is what this
  * implementation of PropertyTable is good for.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class EnumerationPropertyTable extends PropertyTable {
@@ -49,7 +49,14 @@ public class EnumerationPropertyTable extends PropertyTable {
 
 	private transient String keyToolTip;
 
-	public EnumerationPropertyTable(ParameterTypeEnumeration type, List<String> valueList, Operator operator) {
+    /**
+     * Instantiates a new Enumeration property table.
+     *
+     * @param type      the type
+     * @param valueList the value list
+     * @param operator  the operator
+     */
+    public EnumerationPropertyTable(ParameterTypeEnumeration type, List<String> valueList, Operator operator) {
 		super(new String[] { type.getValueType().getKey(), type.getValueType().getKey() });
 		this.type = type;
 		this.operator = operator;
@@ -75,7 +82,10 @@ public class EnumerationPropertyTable extends PropertyTable {
 		keyToolTip = SwingTools.transformToolTipText(toolTip.toString());
 	}
 
-	public void addRow() {
+    /**
+     * Add row.
+     */
+    public void addRow() {
 		if (type.getValueType().getDefaultValue() != null) {
 			getDefaultModel().addRow(new Object[] { type.getValueType().getDefaultValue() });
 		} else {
@@ -90,7 +100,10 @@ public class EnumerationPropertyTable extends PropertyTable {
 		getModel().setValueAt(value, lastIndex, 0);
 	}
 
-	public void removeSelected() {
+    /**
+     * Remove selected.
+     */
+    public void removeSelected() {
 		int[] selectedRow = getSelectedRows();
 		for (int i = selectedRow.length - 1; i >= 0; i--) {
 			getDefaultModel().removeRow(selectedRow[i]);
@@ -104,7 +117,12 @@ public class EnumerationPropertyTable extends PropertyTable {
 		setModel(model);
 	}
 
-	public void getParameterList(List<String[]> list) {
+    /**
+     * Gets parameter list.
+     *
+     * @param list the list
+     */
+    public void getParameterList(List<String[]> list) {
 		list.clear();
 		for (int i = 0; i < getModel().getRowCount(); i++) {
 			String firstString = null;
@@ -159,7 +177,12 @@ public class EnumerationPropertyTable extends PropertyTable {
 		return true;
 	}
 
-	public void getParameterEnumeration(List<String> list) {
+    /**
+     * Gets parameter enumeration.
+     *
+     * @param list the list
+     */
+    public void getParameterEnumeration(List<String> list) {
 		list.clear();
 		for (int i = 0; i < getModel().getRowCount(); i++) {
 			Object firstObject = getModel().getValueAt(i, 0);

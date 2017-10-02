@@ -78,7 +78,6 @@ import com.rapidminer.tools.Observer;
  *
  * @author Nils Woehler, Marcel Michel
  * @since 7.0.0
- *
  */
 final class ConfigureDataTableHeader extends JPanel implements TableCellRenderer {
 
@@ -238,7 +237,16 @@ final class ConfigureDataTableHeader extends JPanel implements TableCellRenderer
 	private final JLabel typeLabel;
 	private final ConfigureDataView configureDataView;
 
-	public ConfigureDataTableHeader(final JTable table, final int columnIndex, final DataSetMetaData metaData,
+    /**
+     * Instantiates a new Configure data table header.
+     *
+     * @param table             the table
+     * @param columnIndex       the column index
+     * @param metaData          the meta data
+     * @param validator         the validator
+     * @param configureDataView the configure data view
+     */
+    public ConfigureDataTableHeader(final JTable table, final int columnIndex, final DataSetMetaData metaData,
 			final ConfigureDataValidator validator, final ConfigureDataView configureDataView) {
 		this.table = table;
 		this.columnIndex = columnIndex;

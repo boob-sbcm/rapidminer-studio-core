@@ -35,28 +35,47 @@ import com.rapidminer.tools.ProgressListener;
  */
 public interface DataResultSetFactory extends AutoCloseable {
 
-	/** Creates a result set. Make sure to call {@link #close()} after using this method. */
-	public DataResultSet makeDataResultSet(Operator operator) throws OperatorException;
+    /**
+     * Creates a result set. Make sure to call {@link #close()} after using this method.  @param operator the operator
+     *
+     * @param operator the operator
+     * @return the data result set
+     * @throws OperatorException the operator exception
+     */
+    public DataResultSet makeDataResultSet(Operator operator) throws OperatorException;
 
-	/**
-	 * This method has to return a table model that can be used for showing a preview.
-	 */
-	public TableModel makePreviewTableModel(ProgressListener listener) throws OperatorException, ParseException;
+    /**
+     * This method has to return a table model that can be used for showing a preview.
+     *
+     * @param listener the listener
+     * @return the table model
+     * @throws OperatorException the operator exception
+     * @throws ParseException    the parse exception
+     */
+    public TableModel makePreviewTableModel(ProgressListener listener) throws OperatorException, ParseException;
 
-	/**
-	 * Returns the human readable name of the resource read (most often, this will be a file or
-	 * URL).
-	 */
-	public String getResourceName();
+    /**
+     * Returns the human readable name of the resource read (most often, this will be a file or
+     * URL).
+     *
+     * @return the resource name
+     */
+    public String getResourceName();
 
-	/**
-	 * Makes initial meta data. Only the number of rows should be filled in here. All other
-	 * information will later be added by {@link DataResultSetTranslationConfiguration}
-	 */
-	public ExampleSetMetaData makeMetaData();
+    /**
+     * Makes initial meta data. Only the number of rows should be filled in here. All other
+     * information will later be added by {@link DataResultSetTranslationConfiguration}
+     *
+     * @return the example set meta data
+     */
+    public ExampleSetMetaData makeMetaData();
 
-	/** Sets the configuration parameters in the given reader operator. */
-	public void setParameters(AbstractDataResultSetReader reader);
+    /**
+     * Sets the configuration parameters in the given reader operator.  @param reader the reader
+     *
+     * @param reader the reader
+     */
+    public void setParameters(AbstractDataResultSetReader reader);
 
 	/** Closes all resources associated with this factory without throwing an exception. */
 	@Override

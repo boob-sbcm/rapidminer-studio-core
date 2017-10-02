@@ -51,18 +51,28 @@ import Jama.Matrix;
  * = 0.
  * </p>
  *
+ * @author Sebastian Land, Jan Czogalla
  * @see LinearDiscriminantAnalysis
  * @see QuadraticDiscriminantAnalysis
- * @author Sebastian Land, Jan Czogalla
  */
 public class RegularizedDiscriminantAnalysis extends AbstractLearner {
 
-	public static final OperatorVersion PRE_FIXED_REGULARIZED_DA = new OperatorVersion(7, 4, 0);
+    /**
+     * The constant PRE_FIXED_REGULARIZED_DA.
+     */
+    public static final OperatorVersion PRE_FIXED_REGULARIZED_DA = new OperatorVersion(7, 4, 0);
 
-	/** The parameter name of the alpha parameter */
-	public static final String PARAMETER_ALPHA = "alpha";
+    /**
+     * The parameter name of the alpha parameter
+     */
+    public static final String PARAMETER_ALPHA = "alpha";
 
-	public RegularizedDiscriminantAnalysis(OperatorDescription description) {
+    /**
+     * Instantiates a new Regularized discriminant analysis.
+     *
+     * @param description the description
+     */
+    public RegularizedDiscriminantAnalysis(OperatorDescription description) {
 		super(description);
 	}
 
@@ -99,21 +109,17 @@ public class RegularizedDiscriminantAnalysis extends AbstractLearner {
 		return getModel(exampleSet, labelValues, meanVectors, inverseCovariance);
 	}
 
-	/**
-	 * Calculates the mean vectors for examples with the specified label strings, grouped by the
-	 * label strings.
-	 *
-	 * @param exampleSet
-	 *            the example set
-	 * @param numberOfAttributes
-	 *            the number of attributes
-	 * @param labels
-	 *            the relevant label strings
-	 * @return the matrices containing all mean vectors
-	 * @throws UserError
-	 *             if at least one of the label strings is not present in the example set
-	 */
-	protected Matrix[] getMeanVectors(ExampleSet exampleSet, int numberOfAttributes, String[] labels)
+    /**
+     * Calculates the mean vectors for examples with the specified label strings, grouped by the
+     * label strings.
+     *
+     * @param exampleSet         the example set
+     * @param numberOfAttributes the number of attributes
+     * @param labels             the relevant label strings
+     * @return the matrices containing all mean vectors
+     * @throws OperatorException the operator exception
+     */
+    protected Matrix[] getMeanVectors(ExampleSet exampleSet, int numberOfAttributes, String[] labels)
 			throws OperatorException {
 		Matrix[] classMeanVectors = new Matrix[labels.length];
 		Attribute labelAttribute = exampleSet.getAttributes().getLabel();
@@ -148,35 +154,34 @@ public class RegularizedDiscriminantAnalysis extends AbstractLearner {
 		return classMeanVectors;
 	}
 
-	/**
-	 * Returns the inverse covariance matrices for this XDA instance. Is a convenience method for
-	 * {@link #getRegularizedInverseCovarianceMatrices(ExampleSet, String[], RegularizedDiscriminantAnalysis)
-	 * getRegularizedInverseCovarianceMatrices}.
-	 *
-	 * @param exampleSet
-	 *            the example set
-	 * @param labels
-	 *            the relevant label strings
-	 * @return the inverse covariance matrices
-	 */
-	protected Matrix[] getInverseCovarianceMatrices(ExampleSet exampleSet, String[] labels)
+    /**
+     * Returns the inverse covariance matrices for this XDA instance. Is a convenience method for
+     * {@link #getRegularizedInverseCovarianceMatrices(ExampleSet, String[], RegularizedDiscriminantAnalysis)
+     * getRegularizedInverseCovarianceMatrices}**.
+     *
+     * @param exampleSet the example set
+     * @param labels     the relevant label strings
+     * @return the inverse covariance matrices
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws OperatorException       the operator exception
+     */
+    protected Matrix[] getInverseCovarianceMatrices(ExampleSet exampleSet, String[] labels)
 			throws UndefinedParameterError, OperatorException {
 		return getRegularizedInverseCovarianceMatrices(exampleSet, labels, this);
 	}
 
-	/**
-	 * Returns the regularized inverse covariance matrices for a given XDA instance. Uses that
-	 * instance to extract the alpha parameter.
-	 *
-	 * @param exampleSet
-	 *            the example set
-	 * @param labels
-	 *            the relevant label strings
-	 * @param xda
-	 *            the instance of an XDA operator
-	 * @return the inverse covariance matrices
-	 */
-	protected static Matrix[] getRegularizedInverseCovarianceMatrices(ExampleSet exampleSet, String[] labels,
+    /**
+     * Returns the regularized inverse covariance matrices for a given XDA instance. Uses that
+     * instance to extract the alpha parameter.
+     *
+     * @param exampleSet the example set
+     * @param labels     the relevant label strings
+     * @param xda        the instance of an XDA operator
+     * @return the inverse covariance matrices
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws OperatorException       the operator exception
+     */
+    protected static Matrix[] getRegularizedInverseCovarianceMatrices(ExampleSet exampleSet, String[] labels,
 			RegularizedDiscriminantAnalysis xda) throws UndefinedParameterError, OperatorException {
 		double alpha = xda.getAlpha();
 
@@ -208,19 +213,17 @@ public class RegularizedDiscriminantAnalysis extends AbstractLearner {
 		return regularizedMatrices;
 	}
 
-	/**
-	 * Returns the linear (global) inverse covariance matrices for a given XDA instance. Uses that
-	 * instance to extract the alpha parameter.
-	 *
-	 * @param exampleSet
-	 *            the example set
-	 * @param labels
-	 *            the relevant label strings
-	 * @param op
-	 *            the operator (if any) to check for process stop
-	 * @return the linear inverse covariance matrices
-	 */
-	protected static Matrix[] getLinearInverseCovarianceMatrices(ExampleSet exampleSet, String[] labels, Operator op)
+    /**
+     * Returns the linear (global) inverse covariance matrices for a given XDA instance. Uses that
+     * instance to extract the alpha parameter.
+     *
+     * @param exampleSet the example set
+     * @param labels     the relevant label strings
+     * @param op         the operator (if any) to check for process stop
+     * @return the linear inverse covariance matrices
+     * @throws OperatorException the operator exception
+     */
+    protected static Matrix[] getLinearInverseCovarianceMatrices(ExampleSet exampleSet, String[] labels, Operator op)
 			throws OperatorException {
 		boolean checkForStop = op != null;
 		Matrix[] classInverseCovariances = new Matrix[labels.length];
@@ -234,19 +237,17 @@ public class RegularizedDiscriminantAnalysis extends AbstractLearner {
 		return classInverseCovariances;
 	}
 
-	/**
-	 * Returns the quadratic (class) inverse covariance matrices for a given XDA instance. Uses that
-	 * instance to extract the alpha parameter.
-	 *
-	 * @param exampleSet
-	 *            the example set
-	 * @param labels
-	 *            the relevant label strings
-	 * @param op
-	 *            the operator (if any) to check for process stop
-	 * @return the quadratic inverse covariance matrices
-	 */
-	protected static Matrix[] getQuadraticInverseCovarianceMatrices(ExampleSet exampleSet, String[] labels, Operator op)
+    /**
+     * Returns the quadratic (class) inverse covariance matrices for a given XDA instance. Uses that
+     * instance to extract the alpha parameter.
+     *
+     * @param exampleSet the example set
+     * @param labels     the relevant label strings
+     * @param op         the operator (if any) to check for process stop
+     * @return the quadratic inverse covariance matrices
+     * @throws OperatorException the operator exception
+     */
+    protected static Matrix[] getQuadraticInverseCovarianceMatrices(ExampleSet exampleSet, String[] labels, Operator op)
 			throws OperatorException {
 		boolean checkForStop = op != null;
 		Matrix[] classInverseCovariances = new Matrix[labels.length];
@@ -272,32 +273,42 @@ public class RegularizedDiscriminantAnalysis extends AbstractLearner {
 		return classInverseCovariances;
 	}
 
-	/**
-	 * Convenience method for creating a {@link DiscriminantModel}. Uses
-	 * {@link #getAprioriProbabilities(ExampleSet, String[]) getAprioriProbabilities} and
-	 * {@link #getAlpha()}.
-	 */
-	protected DiscriminantModel getModel(ExampleSet exampleSet, String[] labels, Matrix[] meanVectors,
+    /**
+     * Convenience method for creating a {@link DiscriminantModel}. Uses
+     * {@link #getAprioriProbabilities(ExampleSet, String[]) getAprioriProbabilities} and
+     * {@link #getAlpha()}.
+     *
+     * @param exampleSet         the example set
+     * @param labels             the labels
+     * @param meanVectors        the mean vectors
+     * @param inverseCovariances the inverse covariances
+     * @return the model
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected DiscriminantModel getModel(ExampleSet exampleSet, String[] labels, Matrix[] meanVectors,
 			Matrix[] inverseCovariances) throws UndefinedParameterError {
 		return new DiscriminantModel(exampleSet, labels, meanVectors, inverseCovariances,
 				getAprioriProbabilities(exampleSet, labels), getAlpha());
 	}
 
-	/**
-	 * Indicates whether this operator should show the alpha parameter. Subclasses
-	 * {@link LinearDiscriminantAnalysis} and {@link QuadraticDiscriminantAnalysis} override this
-	 * method with false, since they have special alpha values.
-	 */
-	protected boolean useAlphaParameter() {
+    /**
+     * Indicates whether this operator should show the alpha parameter. Subclasses
+     * {@link LinearDiscriminantAnalysis} and {@link QuadraticDiscriminantAnalysis} override this
+     * method with false, since they have special alpha values.
+     *
+     * @return the boolean
+     */
+    protected boolean useAlphaParameter() {
 		return true;
 	}
 
-	/**
-	 * Returns the alpha parameter. Subclasses may return special values.
-	 *
-	 * @throws UndefinedParameterError
-	 */
-	protected double getAlpha() throws UndefinedParameterError {
+    /**
+     * Returns the alpha parameter. Subclasses may return special values.
+     *
+     * @return the alpha
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected double getAlpha() throws UndefinedParameterError {
 		return getCompatibilityLevel().isAbove(PRE_FIXED_REGULARIZED_DA) ? getParameterAsDouble(PARAMETER_ALPHA)
 				: QuadraticDiscriminantAnalysis.QDA_ALPHA;
 	}

@@ -23,7 +23,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Returns the value of a Polynomial kernel of both examples.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PolynomialKernel extends Kernel {
@@ -41,12 +41,22 @@ public class PolynomialKernel extends Kernel {
 		return KERNEL_POLYNOMIAL;
 	}
 
-	public double getDegree() {
+    /**
+     * Gets degree.
+     *
+     * @return the degree
+     */
+    public double getDegree() {
 		return degree;
 	}
 
-	/** Sets the used polynomial parameters. */
-	public void setPolynomialParameters(double degree, double shift) {
+    /**
+     * Sets the used polynomial parameters.  @param degree the degree
+     *
+     * @param degree the degree
+     * @param shift  the shift
+     */
+    public void setPolynomialParameters(double degree, double shift) {
 		this.degree = degree;
 		this.shift = shift;
 	}

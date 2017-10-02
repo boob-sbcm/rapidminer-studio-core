@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * This abstract class implements some methods which should be sufficient in almost all cases of the
  * RapidMiner GUI.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class DefaultPropertyTable extends PropertyTable {
@@ -38,7 +38,13 @@ public abstract class DefaultPropertyTable extends PropertyTable {
 		return (col == 1);
 	}
 
-	@SuppressWarnings("unchecked")
+    /**
+     * Sets value.
+     *
+     * @param row   the row
+     * @param value the value
+     */
+    @SuppressWarnings("unchecked")
 	public void setValue(int row, Object value) {
 		String parameterValue = null;
 		if (value instanceof List) {

@@ -78,12 +78,12 @@ public class MetaDataDeclarationEditor extends JPanel {
 	/** the preview table which contains a preview of the data */
 	private PreviewTable previewTable;
 
-	/**
-	 * Listener to recognize if a column margin of the
-	 * {@link MetaDataDeclarationEditor#metadataTable} changed. Not very nice to declare it globally
-	 * but doesn't work otherwise.
-	 */
-	TableColumnModelListener metadataColumnListener;
+    /**
+     * Listener to recognize if a column margin of the
+     * {@link MetaDataDeclarationEditor#metadataTable} changed. Not very nice to declare it globally
+     * but doesn't work otherwise.
+     */
+    TableColumnModelListener metadataColumnListener;
 
 	private AbstractDataReader reader = null;
 
@@ -112,10 +112,13 @@ public class MetaDataDeclarationEditor extends JPanel {
 
 	// private boolean lock = false;
 
-	/**
-	 *
-	 */
-	public MetaDataDeclarationEditor(AbstractDataReader reader, final boolean showMetaDataEditor) {
+    /**
+     * Instantiates a new Meta data declaration editor.
+     *
+     * @param reader             the reader
+     * @param showMetaDataEditor the show meta data editor
+     */
+    public MetaDataDeclarationEditor(AbstractDataReader reader, final boolean showMetaDataEditor) {
 		super(new BorderLayout());
 
 		backGroundGray = this.getBackground();
@@ -220,7 +223,12 @@ public class MetaDataDeclarationEditor extends JPanel {
 		updateQueue.start();
 	}
 
-	public void setData(List<Object[]> data) {
+    /**
+     * Sets data.
+     *
+     * @param data the data
+     */
+    public void setData(List<Object[]> data) {
 		previewTable.setData(data);
 		metadataTable.updateTableStructure();
 	}
@@ -330,7 +338,10 @@ public class MetaDataDeclarationEditor extends JPanel {
 			return fixedHeaderModel;
 		}
 
-		public void updateTableStructure() {
+        /**
+         * Update table structure.
+         */
+        public void updateTableStructure() {
 			this.getModel().fireTableStructureChanged();
 
 			this.packColumn();
@@ -546,7 +557,10 @@ public class MetaDataDeclarationEditor extends JPanel {
 
 		private static final long serialVersionUID = 7954919612214223430L;
 
-		// DropDown menus in the second row to select the value type
+        /**
+         * Instantiates a new Value type cell editor.
+         */
+// DropDown menus in the second row to select the value type
 		@SuppressWarnings("unchecked")
 		public ValueTypeCellEditor() {
 			super(new JComboBox<String>());
@@ -618,7 +632,10 @@ public class MetaDataDeclarationEditor extends JPanel {
 
 		private static final long serialVersionUID = 6077812831224991517L;
 
-		public RoleSelectionCellEditor() {
+        /**
+         * Instantiates a new Role selection cell editor.
+         */
+        public RoleSelectionCellEditor() {
 			super(new JComboBox<>(AbstractDataReader.ROLE_NAMES.toArray()));
 		}
 
@@ -711,7 +728,12 @@ public class MetaDataDeclarationEditor extends JPanel {
 			setCellSelectionEnabled(false);
 		}
 
-		public void setData(List<Object[]> data) {
+        /**
+         * Sets data.
+         *
+         * @param data the data
+         */
+        public void setData(List<Object[]> data) {
 			dataModel.setData(data);
 		}
 

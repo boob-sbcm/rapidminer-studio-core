@@ -31,12 +31,15 @@ import java.util.List;
 
 /**
  * This class encapsulates all information about quartiles.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Quartile {
 
-	public static final int QUARTILE_WIDTH = 20;
+    /**
+     * The constant QUARTILE_WIDTH.
+     */
+    public static final int QUARTILE_WIDTH = 20;
 
 	private double median;
 	private double mean;
@@ -49,7 +52,19 @@ public class Quartile {
 
 	private Color color = SwingTools.LIGHT_BLUE;
 
-	public Quartile(double median, double mean, double standardDeviation, double lowerQuartile, double upperQuartile,
+    /**
+     * Instantiates a new Quartile.
+     *
+     * @param median            the median
+     * @param mean              the mean
+     * @param standardDeviation the standard deviation
+     * @param lowerQuartile     the lower quartile
+     * @param upperQuartile     the upper quartile
+     * @param lowerWhisker      the lower whisker
+     * @param upperWhisker      the upper whisker
+     * @param outliers          the outliers
+     */
+    public Quartile(double median, double mean, double standardDeviation, double lowerQuartile, double upperQuartile,
 			double lowerWhisker, double upperWhisker, double[] outliers) {
 		this.median = median;
 		this.mean = mean;
@@ -61,16 +76,30 @@ public class Quartile {
 		this.outliers = outliers;
 	}
 
-	public void setColor(Color color) {
+    /**
+     * Sets color.
+     *
+     * @param color the color
+     */
+    public void setColor(Color color) {
 		this.color = color;
 	}
 
-	public Color getColor() {
+    /**
+     * Gets color.
+     *
+     * @return the color
+     */
+    public Color getColor() {
 		return this.color;
 	}
 
-	/** Returns the smallest value occupied by this quartile. */
-	public double getMin() {
+    /**
+     * Returns the smallest value occupied by this quartile.  @return the min
+     *
+     * @return the min
+     */
+    public double getMin() {
 		double min = Math.min(lowerWhisker, mean - standardDeviation);
 		for (int i = 0; i < outliers.length; i++) {
 			min = Math.min(min, outliers[i]);
@@ -78,8 +107,12 @@ public class Quartile {
 		return min;
 	}
 
-	/** Returns the biggest value occupied by this quartile. */
-	public double getMax() {
+    /**
+     * Returns the biggest value occupied by this quartile.  @return the max
+     *
+     * @return the max
+     */
+    public double getMax() {
 		double max = Math.max(upperWhisker, mean + standardDeviation);
 		for (int i = 0; i < outliers.length; i++) {
 			max = Math.max(max, outliers[i]);
@@ -87,39 +120,86 @@ public class Quartile {
 		return max;
 	}
 
-	public double getMedian() {
+    /**
+     * Gets median.
+     *
+     * @return the median
+     */
+    public double getMedian() {
 		return median;
 	}
 
-	public double getMean() {
+    /**
+     * Gets mean.
+     *
+     * @return the mean
+     */
+    public double getMean() {
 		return mean;
 	}
 
-	public double getStandardDeviation() {
+    /**
+     * Gets standard deviation.
+     *
+     * @return the standard deviation
+     */
+    public double getStandardDeviation() {
 		return standardDeviation;
 	}
 
-	public double getLowerQuartile() {
+    /**
+     * Gets lower quartile.
+     *
+     * @return the lower quartile
+     */
+    public double getLowerQuartile() {
 		return lowerQuartile;
 	}
 
-	public double getUpperQuartile() {
+    /**
+     * Gets upper quartile.
+     *
+     * @return the upper quartile
+     */
+    public double getUpperQuartile() {
 		return upperQuartile;
 	}
 
-	public double getLowerWhisker() {
+    /**
+     * Gets lower whisker.
+     *
+     * @return the lower whisker
+     */
+    public double getLowerWhisker() {
 		return lowerWhisker;
 	}
 
-	public double getUpperWhisker() {
+    /**
+     * Gets upper whisker.
+     *
+     * @return the upper whisker
+     */
+    public double getUpperWhisker() {
 		return upperWhisker;
 	}
 
-	public double[] getOutliers() {
+    /**
+     * Get outliers double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getOutliers() {
 		return outliers;
 	}
 
-	public static Quartile calculateQuartile(DataTable table, int column) {
+    /**
+     * Calculate quartile quartile.
+     *
+     * @param table  the table
+     * @param column the column
+     * @return the quartile
+     */
+    public static Quartile calculateQuartile(DataTable table, int column) {
 		double mean = 0.0d;
 		double squaredSum = 0.0d;
 		List<Double> values = new ArrayList<Double>();
@@ -138,7 +218,13 @@ public class Quartile {
 		return calculateQuartile(mean, standardDeviation, values);
 	}
 
-	public static Quartile calculateQuartile(List<Double> values) {
+    /**
+     * Calculate quartile quartile.
+     *
+     * @param values the values
+     * @return the quartile
+     */
+    public static Quartile calculateQuartile(List<Double> values) {
 		double mean = 0.0d;
 		double squaredSum = 0.0d;
 		Iterator<Double> i = values.iterator();

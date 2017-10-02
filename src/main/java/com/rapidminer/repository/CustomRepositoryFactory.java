@@ -26,7 +26,6 @@ import com.rapidminer.tools.XMLException;
 
 
 /**
- *
  * A factory that knows how to create instances of custom {@link Repository} implementations. The
  * user is able to create new repositories via the {@link RepositoryConfigurationPanel}. Once the
  * repository has been created its configuration is stored via XML. When starting RapidMiner the
@@ -35,52 +34,52 @@ import com.rapidminer.tools.XMLException;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public interface CustomRepositoryFactory {
 
-	/**
-	 * @return {@code true} if the radio button for this repository should be enabled when opening
-	 *         the {@link NewRepositoryDialog}, {@code false} otherwise
-	 */
-	boolean enableRepositoryConfiguration();
+    /**
+     * Enable repository configuration boolean.
+     *
+     * @return {@code true} if the radio button for this repository should be enabled when opening         the {@link NewRepositoryDialog}, {@code false} otherwise
+     */
+    boolean enableRepositoryConfiguration();
 
-	/**
-	 * @return the {@link RepositoryConfigurationPanel} for this factory. The method is called only
-	 *         once per opened {@link NewRepositoryDialog}.
-	 */
-	RepositoryConfigurationPanel getRepositoryConfigurationPanel();
+    /**
+     * Gets repository configuration panel.
+     *
+     * @return the {@link RepositoryConfigurationPanel} for this factory. The method is called only         once per opened {@link NewRepositoryDialog}.
+     */
+    RepositoryConfigurationPanel getRepositoryConfigurationPanel();
 
-	/**
-	 * Recreates a {@link Repository} instance from XML.
-	 *
-	 * @param element
-	 *            the XML element specified by {@link #getXMLTag()}
-	 * @return the recreated repository instance
-	 * @throws RepositoryException
-	 *             in case the repository creation failed
-	 * @throws XMLException
-	 *             in case of invalid XML
-	 */
-	Repository fromXML(Element element) throws RepositoryException, XMLException;
+    /**
+     * Recreates a {@link Repository} instance from XML.
+     *
+     * @param element the XML element specified by {@link #getXMLTag()}
+     * @return the recreated repository instance
+     * @throws RepositoryException in case the repository creation failed
+     * @throws XMLException        in case of invalid XML
+     */
+    Repository fromXML(Element element) throws RepositoryException, XMLException;
 
-	/**
-	 * @return the XML tag used to store repository instances.
-	 */
-	String getXMLTag();
+    /**
+     * Gets xml tag.
+     *
+     * @return the XML tag used to store repository instances.
+     */
+    String getXMLTag();
 
-	/**
-	 * @return the I18N base key. It is used in the {@link NewRepositoryDialog} to label the radio
-	 *         button for the repository (e.g. the key 'custom_repo' would need such a GUI
-	 *         properties entry:
-	 *         <p>
-	 *         gui.action.custom_repo.label=Custom repo)
-	 */
-	String getI18NKey();
+    /**
+     * Gets i 18 n key.
+     *
+     * @return the I18N base key. It is used in the {@link NewRepositoryDialog} to label the radio         button for the repository (e.g. the key 'custom_repo' would need such a GUI         properties entry:         <p>         gui.action.custom_repo.label=Custom repo)
+     */
+    String getI18NKey();
 
-	/**
-	 * @return the actual {@link Repository} implementation class
-	 */
-	Class<? extends Repository> getRepositoryClass();
+    /**
+     * Gets repository class.
+     *
+     * @return the actual {@link Repository} implementation class
+     */
+    Class<? extends Repository> getRepositoryClass();
 
 }

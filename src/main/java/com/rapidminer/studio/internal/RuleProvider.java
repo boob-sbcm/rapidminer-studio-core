@@ -23,10 +23,10 @@ import java.io.InputStream;
 
 /**
  * Provider for rule json
- *
+ * <p>
  * Used by the {@link com.rapidminer.tool.usagestats.CallToActionScheduler} as a source of
  * {@link com.rapidminer.tool.usagestats.Rule}s.
- *
+ * <p>
  * Must be registered with the {@link RuleProviderRegistry}.
  *
  * @author Jonas Wilms-Pfau
@@ -34,11 +34,11 @@ import java.io.InputStream;
  */
 public interface RuleProvider {
 
-	/**
-	 * Returns a JSON encoded array of {@link com.rapidminer.tool.usagestats.Rule} objects
-	 *
-	 * @return The {@code InputStream} or {@code null}
-	 */
-	public InputStream getRuleJson();
+    /**
+     * Returns a JSON encoded array of {@link com.rapidminer.tool.usagestats.Rule} objects
+     *
+     * @return The {@code InputStream} or {@code null}
+     */
+    public InputStream getRuleJson();
 
 }

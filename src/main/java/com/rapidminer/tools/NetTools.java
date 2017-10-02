@@ -33,16 +33,27 @@ import com.rapidminer.gui.tools.SwingTools;
  * {@link SwingTools#getIconPath(String)}.
  *
  * @author Sebastian Land
- *
  */
 public class NetTools {
 
-	protected static final String ICON_PROTOCOL = "icon";
-	protected static final String RESOURCE_PROTOCOL = "resource";
-	protected static final String DYNAMIC_ICON_PROTOCOL = "dynicon";
+    /**
+     * The constant ICON_PROTOCOL.
+     */
+    protected static final String ICON_PROTOCOL = "icon";
+    /**
+     * The constant RESOURCE_PROTOCOL.
+     */
+    protected static final String RESOURCE_PROTOCOL = "resource";
+    /**
+     * The constant DYNAMIC_ICON_PROTOCOL.
+     */
+    protected static final String DYNAMIC_ICON_PROTOCOL = "dynicon";
 	private static boolean initialized = false;
 
-	public static void init() {
+    /**
+     * Init.
+     */
+    public static void init() {
 		if (!initialized) {
 			URL.setURLStreamHandlerFactory(new URLStreamHandlerFactory() {
 

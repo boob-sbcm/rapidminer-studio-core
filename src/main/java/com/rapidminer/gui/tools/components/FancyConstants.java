@@ -23,20 +23,34 @@ import java.awt.Color;
 
 /**
  * Interface defining shares colors for all fancy looking components.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface FancyConstants {
 
-	public static final Color HOVERED_TEXTCOLOR = new Color(241, 96, 33);
+    /**
+     * The constant HOVERED_TEXTCOLOR.
+     */
+    public static final Color HOVERED_TEXTCOLOR = new Color(241, 96, 33);
 
-	public static final Color NORMAL_TEXTCOLOR = new Color(75, 75, 75);
+    /**
+     * The constant NORMAL_TEXTCOLOR.
+     */
+    public static final Color NORMAL_TEXTCOLOR = new Color(75, 75, 75);
 
-	public static final Color BORDER_LIGHTEST_GRAY = new Color(230, 230, 230);
+    /**
+     * The constant BORDER_LIGHTEST_GRAY.
+     */
+    public static final Color BORDER_LIGHTEST_GRAY = new Color(230, 230, 230);
 
-	public static final Color BACKGROUND_COLOR = new Color(255, 255, 255);
+    /**
+     * The constant BACKGROUND_COLOR.
+     */
+    public static final Color BACKGROUND_COLOR = new Color(255, 255, 255);
 
-	public static final Color SHADOW_COLOR = new Color(0, 0, 0);
+    /**
+     * The constant SHADOW_COLOR.
+     */
+    public static final Color SHADOW_COLOR = new Color(0, 0, 0);
 
 }

@@ -67,24 +67,21 @@ public abstract class AbstractExampleTable implements ExampleTable {
 	 */
 	private List<Integer> unusedColumnList = new LinkedList<>();
 
-	/**
-	 * Creates a new ExampleTable.
-	 *
-	 * @param attributes
-	 *            List of {@link Attribute}. The indices of the attibutes are set to values
-	 *            reflecting their position in the list.
-	 */
-	public AbstractExampleTable(List<Attribute> attributes) {
+    /**
+     * Creates a new ExampleTable.
+     *
+     * @param attributes List of {@link Attribute}. The indices of the attibutes are set to values            reflecting their position in the list.
+     */
+    public AbstractExampleTable(List<Attribute> attributes) {
 		addAttributes(attributes);
 	}
 
-	/**
-	 * Clone constructor.
-	 * 
-	 * @param other
-	 *            the table to clone
-	 */
-	protected AbstractExampleTable(AbstractExampleTable other) {
+    /**
+     * Clone constructor.
+     *
+     * @param other the table to clone
+     */
+    protected AbstractExampleTable(AbstractExampleTable other) {
 		this.attributes = new ArrayList<>(other.attributes);
 		this.unusedColumnList = new LinkedList<>(other.unusedColumnList);
 	}

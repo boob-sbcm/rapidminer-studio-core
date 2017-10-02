@@ -34,49 +34,112 @@ import com.rapidminer.tools.Tools;
  */
 public class DataRowFactory {
 
-	public static final String[] TYPE_NAMES = { "double_array", "float_array", "long_array", "int_array", "short_array",
+    /**
+     * The constant TYPE_NAMES.
+     */
+    public static final String[] TYPE_NAMES = { "double_array", "float_array", "long_array", "int_array", "short_array",
 			"byte_array", "boolean_array", "double_sparse_array", "float_sparse_array", "long_sparse_array",
 			"int_sparse_array", "short_sparse_array", "byte_sparse_array", "boolean_sparse_array", "sparse_map" };
 
-	public static final int FIRST_TYPE_INDEX = 0;
+    /**
+     * The constant FIRST_TYPE_INDEX.
+     */
+    public static final int FIRST_TYPE_INDEX = 0;
 
-	public static final int TYPE_DOUBLE_ARRAY = 0;
+    /**
+     * The constant TYPE_DOUBLE_ARRAY.
+     */
+    public static final int TYPE_DOUBLE_ARRAY = 0;
 
-	public static final int TYPE_FLOAT_ARRAY = 1;
+    /**
+     * The constant TYPE_FLOAT_ARRAY.
+     */
+    public static final int TYPE_FLOAT_ARRAY = 1;
 
-	public static final int TYPE_LONG_ARRAY = 2;
+    /**
+     * The constant TYPE_LONG_ARRAY.
+     */
+    public static final int TYPE_LONG_ARRAY = 2;
 
-	public static final int TYPE_INT_ARRAY = 3;
+    /**
+     * The constant TYPE_INT_ARRAY.
+     */
+    public static final int TYPE_INT_ARRAY = 3;
 
-	public static final int TYPE_SHORT_ARRAY = 4;
+    /**
+     * The constant TYPE_SHORT_ARRAY.
+     */
+    public static final int TYPE_SHORT_ARRAY = 4;
 
-	public static final int TYPE_BYTE_ARRAY = 5;
+    /**
+     * The constant TYPE_BYTE_ARRAY.
+     */
+    public static final int TYPE_BYTE_ARRAY = 5;
 
-	public static final int TYPE_BOOLEAN_ARRAY = 6;
+    /**
+     * The constant TYPE_BOOLEAN_ARRAY.
+     */
+    public static final int TYPE_BOOLEAN_ARRAY = 6;
 
-	public static final int TYPE_DOUBLE_SPARSE_ARRAY = 7;
+    /**
+     * The constant TYPE_DOUBLE_SPARSE_ARRAY.
+     */
+    public static final int TYPE_DOUBLE_SPARSE_ARRAY = 7;
 
-	public static final int TYPE_FLOAT_SPARSE_ARRAY = 8;
+    /**
+     * The constant TYPE_FLOAT_SPARSE_ARRAY.
+     */
+    public static final int TYPE_FLOAT_SPARSE_ARRAY = 8;
 
-	public static final int TYPE_LONG_SPARSE_ARRAY = 9;
+    /**
+     * The constant TYPE_LONG_SPARSE_ARRAY.
+     */
+    public static final int TYPE_LONG_SPARSE_ARRAY = 9;
 
-	public static final int TYPE_INT_SPARSE_ARRAY = 10;
+    /**
+     * The constant TYPE_INT_SPARSE_ARRAY.
+     */
+    public static final int TYPE_INT_SPARSE_ARRAY = 10;
 
-	public static final int TYPE_SHORT_SPARSE_ARRAY = 11;
+    /**
+     * The constant TYPE_SHORT_SPARSE_ARRAY.
+     */
+    public static final int TYPE_SHORT_SPARSE_ARRAY = 11;
 
-	public static final int TYPE_BYTE_SPARSE_ARRAY = 12;
+    /**
+     * The constant TYPE_BYTE_SPARSE_ARRAY.
+     */
+    public static final int TYPE_BYTE_SPARSE_ARRAY = 12;
 
-	public static final int TYPE_BOOLEAN_SPARSE_ARRAY = 13;
+    /**
+     * The constant TYPE_BOOLEAN_SPARSE_ARRAY.
+     */
+    public static final int TYPE_BOOLEAN_SPARSE_ARRAY = 13;
 
-	public static final int TYPE_SPARSE_MAP = 14;
+    /**
+     * The constant TYPE_SPARSE_MAP.
+     */
+    public static final int TYPE_SPARSE_MAP = 14;
 
-	public static final int TYPE_COLUMN_VIEW = 15;
+    /**
+     * The constant TYPE_COLUMN_VIEW.
+     */
+    public static final int TYPE_COLUMN_VIEW = 15;
 
-	public static final int LAST_TYPE_INDEX = 15;
+    /**
+     * The constant LAST_TYPE_INDEX.
+     */
+    public static final int LAST_TYPE_INDEX = 15;
 
-	public static final int TYPE_SPECIAL = -1;
+    /**
+     * The constant TYPE_SPECIAL.
+     */
+    public static final int TYPE_SPECIAL = -1;
 
-	public static final char POINT_AS_DECIMAL_CHARACTER = '.';
+    /**
+     * The constant POINT_AS_DECIMAL_CHARACTER.
+     */
+    public static final char POINT_AS_DECIMAL_CHARACTER = '.';
 
 	/**
 	 * The type can be one out of TYPE_DOUBLE_ARRAY, TYPE_FLOAT_ARRAY, TYPE_LONG_ARRAY,
@@ -90,32 +153,24 @@ public class DataRowFactory {
 	/** The decimal point character. */
 	private char decimalPointCharacter = POINT_AS_DECIMAL_CHARACTER;
 
-	/**
-	 * @param type
-	 *            must be one out of TYPE_DOUBLE_ARRAY, TYPE_FLOAT_ARRAY, TYPE_LONG_ARRAY,
-	 *            TYPE_INT_ARRAY, TYPE_SHORT_ARRAY, TYPE_BYTE_ARRAY, TYPE_BOOLEAN_ARRAY,
-	 *            TYPE_DOUBLE_SPARSE_ARRAY, TYPE_FLOAT_SPARSE_ARRAY, TYPE_SHORT_SPARSE_ARRAY,
-	 *            TYPE_BYTE_SPARSE_ARRAY, TYPE_BOOLEAN_SPARSE_ARRAY, TYPE_SPARSE_MAP or
-	 *            TYPE_COLUMN_VIEW.
-	 * @deprecated Please do not use this constructor any longer. Use the constructor
-	 *             {@link #DataRowFactory(int, char)} instead.
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Data row factory.
+     *
+     * @param type must be one out of TYPE_DOUBLE_ARRAY, TYPE_FLOAT_ARRAY, TYPE_LONG_ARRAY,            TYPE_INT_ARRAY, TYPE_SHORT_ARRAY, TYPE_BYTE_ARRAY, TYPE_BOOLEAN_ARRAY,            TYPE_DOUBLE_SPARSE_ARRAY, TYPE_FLOAT_SPARSE_ARRAY, TYPE_SHORT_SPARSE_ARRAY,            TYPE_BYTE_SPARSE_ARRAY, TYPE_BOOLEAN_SPARSE_ARRAY, TYPE_SPARSE_MAP or            TYPE_COLUMN_VIEW.
+     * @deprecated Please do not use this constructor any longer. Use the constructor             {@link #DataRowFactory(int, char)} instead.
+     */
+    @Deprecated
 	public DataRowFactory(int type) {
 		this(type, POINT_AS_DECIMAL_CHARACTER);
 	}
 
-	/**
-	 * @param type
-	 *            must be one out of TYPE_DOUBLE_ARRAY, TYPE_FLOAT_ARRAY, TYPE_LONG_ARRAY,
-	 *            TYPE_INT_ARRAY, TYPE_SHORT_ARRAY, TYPE_BYTE_ARRAY, TYPE_BOOLEAN_ARRAY,
-	 *            TYPE_DOUBLE_SPARSE_ARRAY, TYPE_FLOAT_SPARSE_ARRAY, TYPE_LONG_SPARSE_ARRAY,
-	 *            TYPE_INT_SPARSE_ARRAY, TYPE_SHORT_SPARSE_ARRAY, TYPE_BYTE_SPARSE_ARRAY,
-	 *            TYPE_BOOLEAN_SPARSE_ARRAY, TYPE_SPARSE_MAP or TYPE_COLUMN_VIEW.
-	 * @param decimalPointCharacter
-	 *            the letter for decimal points, usually '.'
-	 */
-	public DataRowFactory(int type, char decimalPointCharacter) {
+    /**
+     * Instantiates a new Data row factory.
+     *
+     * @param type                  must be one out of TYPE_DOUBLE_ARRAY, TYPE_FLOAT_ARRAY, TYPE_LONG_ARRAY,            TYPE_INT_ARRAY, TYPE_SHORT_ARRAY, TYPE_BYTE_ARRAY, TYPE_BOOLEAN_ARRAY,            TYPE_DOUBLE_SPARSE_ARRAY, TYPE_FLOAT_SPARSE_ARRAY, TYPE_LONG_SPARSE_ARRAY,            TYPE_INT_SPARSE_ARRAY, TYPE_SHORT_SPARSE_ARRAY, TYPE_BYTE_SPARSE_ARRAY,            TYPE_BOOLEAN_SPARSE_ARRAY, TYPE_SPARSE_MAP or TYPE_COLUMN_VIEW.
+     * @param decimalPointCharacter the letter for decimal points, usually '.'
+     */
+    public DataRowFactory(int type, char decimalPointCharacter) {
 		if (type < FIRST_TYPE_INDEX || type > LAST_TYPE_INDEX) {
 			throw new IllegalArgumentException("Illegal data row type: " + type);
 		}
@@ -123,8 +178,13 @@ public class DataRowFactory {
 		this.decimalPointCharacter = decimalPointCharacter;
 	}
 
-	/** Creates a new DataRow with the given initial capacity. */
-	public DataRow create(int size) {
+    /**
+     * Creates a new DataRow with the given initial capacity.  @param size the size
+     *
+     * @param size the size
+     * @return the data row
+     */
+    public DataRow create(int size) {
 		DataRow row = null;
 		switch (type) {
 			case TYPE_DOUBLE_ARRAY:
@@ -178,14 +238,17 @@ public class DataRowFactory {
 		return row;
 	}
 
-	/**
-	 * Creates a data row from an array of Strings. If the corresponding attribute is nominal, the
-	 * string is mapped to its index, otherwise it is parsed using
-	 * <code>Double.parseDouble(String)</code> .
-	 *
-	 * @see FileDataRowReader
-	 */
-	public DataRow create(String[] strings, Attribute[] attributes) {
+    /**
+     * Creates a data row from an array of Strings. If the corresponding attribute is nominal, the
+     * string is mapped to its index, otherwise it is parsed using
+     * <code>Double.parseDouble(String)</code> .
+     *
+     * @param strings    the strings
+     * @param attributes the attributes
+     * @return the data row
+     * @see FileDataRowReader
+     */
+    public DataRow create(String[] strings, Attribute[] attributes) {
 		DataRow dataRow = create(strings.length);
 		for (int i = 0; i < strings.length; i++) {
 			if (strings[i] != null) {
@@ -206,16 +269,18 @@ public class DataRowFactory {
 		return dataRow;
 	}
 
-	/**
-	 * Creates a data row from an Object array. The classes of the object must match the value type
-	 * of the corresponding {@link Attribute}. If the corresponding attribute is nominal,
-	 * <code>data[i]</code> will be cast to String. If it is numerical, it will be cast to Number.
-	 *
-	 * @throws ClassCastException
-	 *             if data class does not match attribute type
-	 * @see DatabaseDataRowReader
-	 */
-	public DataRow create(Object[] data, Attribute[] attributes) {
+    /**
+     * Creates a data row from an Object array. The classes of the object must match the value type
+     * of the corresponding {@link Attribute}. If the corresponding attribute is nominal,
+     * <code>data[i]</code> will be cast to String. If it is numerical, it will be cast to Number.
+     *
+     * @param data       the data
+     * @param attributes the attributes
+     * @return the data row
+     * @throws ClassCastException if data class does not match attribute type
+     * @see DatabaseDataRowReader
+     */
+    public DataRow create(Object[] data, Attribute[] attributes) {
 		DataRow dataRow = create(data.length);
 		for (int i = 0; i < data.length; i++) {
 			if (data[i] != null) {
@@ -232,16 +297,18 @@ public class DataRowFactory {
 		return dataRow;
 	}
 
-	/**
-	 * Creates a data row from an Object array. The classes of the object must match the value type
-	 * of the corresponding {@link Attribute}. If the corresponding attribute is nominal,
-	 * <code>data[i]</code> will be cast to String. If it is numerical, it will be cast to Number.
-	 *
-	 * @throws ClassCastException
-	 *             if data class does not match attribute type
-	 * @see DatabaseDataRowReader
-	 */
-	public DataRow create(Double[] data, Attribute[] attributes) {
+    /**
+     * Creates a data row from an Object array. The classes of the object must match the value type
+     * of the corresponding {@link Attribute}. If the corresponding attribute is nominal,
+     * <code>data[i]</code> will be cast to String. If it is numerical, it will be cast to Number.
+     *
+     * @param data       the data
+     * @param attributes the attributes
+     * @return the data row
+     * @throws ClassCastException if data class does not match attribute type
+     * @see DatabaseDataRowReader
+     */
+    public DataRow create(Double[] data, Attribute[] attributes) {
 		DataRow dataRow = create(data.length);
 		for (int i = 0; i < data.length; i++) {
 			if (data[i] != null) {
@@ -258,8 +325,12 @@ public class DataRowFactory {
 		return dataRow;
 	}
 
-	/** Returns the type of the created data rows. */
-	public int getType() {
+    /**
+     * Returns the type of the created data rows.  @return the type
+     *
+     * @return the type
+     */
+    public int getType() {
 		return type;
 	}
 

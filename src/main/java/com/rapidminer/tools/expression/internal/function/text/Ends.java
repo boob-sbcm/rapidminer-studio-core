@@ -22,14 +22,13 @@ package com.rapidminer.tools.expression.internal.function.text;
  * A {@link Function} to check whether a nominal value ends with a specific string.
  *
  * @author Thilo Kamradt
- *
  */
 public class Ends extends Abstract2StringInputBooleanOutputFunction {
 
-	/**
-	 * Creates a function to check whether a nominal value ends with a specific string.
-	 */
-	public Ends() {
+    /**
+     * Creates a function to check whether a nominal value ends with a specific string.
+     */
+    public Ends() {
 		super("text_information.ends");
 	}
 

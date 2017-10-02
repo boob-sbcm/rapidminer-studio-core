@@ -45,22 +45,21 @@ import com.rapidminer.tools.I18N;
  * GUI component for the {@link TablePanel} for {@link CellTypeRegex}.
  *
  * @author Marco Boeck
- *
  */
 public class CellTypeRegexImpl extends JPanel implements CellTypeRegex {
 
 	private static final long serialVersionUID = -2006834470031594342L;
 
-	/**
-	 * Creates a panel for regex cells. Adds a regex config dialog button next to the field. Does
-	 * not validate the model, so make sure this call works!
-	 *
-	 * @param model
-	 * @param rowIndex
-	 * @param columnIndex
-	 * @param cellClass
-	 */
-	public CellTypeRegexImpl(final TablePanelModel model, final int rowIndex, final int columnIndex,
+    /**
+     * Creates a panel for regex cells. Adds a regex config dialog button next to the field. Does
+     * not validate the model, so make sure this call works!
+     *
+     * @param model       the model
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     * @param cellClass   the cell class
+     */
+    public CellTypeRegexImpl(final TablePanelModel model, final int rowIndex, final int columnIndex,
 			final Class<? extends CellType> cellClass) {
 		super();
 

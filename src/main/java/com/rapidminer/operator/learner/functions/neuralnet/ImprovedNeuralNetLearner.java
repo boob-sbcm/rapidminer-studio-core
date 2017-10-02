@@ -47,14 +47,14 @@ import com.rapidminer.tools.RandomGenerator;
  * layer size should be calculated from the number of attributes of the input example set. In this
  * case, the layer size will be set to (number of attributes + number of classes) / 2 + 1.
  * </p>
- *
+ * <p>
  * <p>
  * If the user does not specify any hidden layers, a default hidden layer with sigmoid type and size
  * (number of attributes + number of classes) / 2 + 1 will be created and added to the net. If only
  * a single layer without nodes is specified, the input nodes are directly connected to the output
  * nodes and no hidden layer will be used.
  * </p>
- *
+ * <p>
  * <p>
  * The used activation function is the usual sigmoid function. Therefore, the values ranges of the
  * attributes should be scaled to -1 and +1. This is also done by this operator if not specified
@@ -62,52 +62,62 @@ import com.rapidminer.tools.RandomGenerator;
  * learning data describes a classification task and linear for numerical regression tasks.
  * </p>
  *
- * @rapidminer.index Neural Net
- *
  * @author Ingo Mierswa
+ * @rapidminer.index Neural Net
  */
 public class ImprovedNeuralNetLearner extends AbstractLearner {
 
-	/**
-	 * The parameter name for &quot;The number of hidden layers. Only used if no layers are defined
-	 * by the list hidden_layer_types.&quot;
-	 */
-	public static final String PARAMETER_HIDDEN_LAYERS = "hidden_layers";
+    /**
+     * The parameter name for &quot;The number of hidden layers. Only used if no layers are defined
+     * by the list hidden_layer_types.&quot;
+     */
+    public static final String PARAMETER_HIDDEN_LAYERS = "hidden_layers";
 
-	/**
-	 * The parameter name for &quot;The number of training cycles used for the neural network
-	 * training.&quot;
-	 */
-	public static final String PARAMETER_TRAINING_CYCLES = "training_cycles";
+    /**
+     * The parameter name for &quot;The number of training cycles used for the neural network
+     * training.&quot;
+     */
+    public static final String PARAMETER_TRAINING_CYCLES = "training_cycles";
 
-	/**
-	 * The parameter name for &quot;The optimization is stopped if the training error gets below
-	 * this epsilon value.&quot;
-	 */
-	public static final String PARAMETER_ERROR_EPSILON = "error_epsilon";
+    /**
+     * The parameter name for &quot;The optimization is stopped if the training error gets below
+     * this epsilon value.&quot;
+     */
+    public static final String PARAMETER_ERROR_EPSILON = "error_epsilon";
 
-	/**
-	 * The parameter name for &quot;The learning rate determines by how much we change the weights
-	 * at each step.&quot;
-	 */
-	public static final String PARAMETER_LEARNING_RATE = "learning_rate";
+    /**
+     * The parameter name for &quot;The learning rate determines by how much we change the weights
+     * at each step.&quot;
+     */
+    public static final String PARAMETER_LEARNING_RATE = "learning_rate";
 
-	/**
-	 * The parameter name for &quot;The momentum simply adds a fraction of the previous weight
-	 * update to the current one (prevent local maxima and smoothes optimization directions).&quot;
-	 */
-	public static final String PARAMETER_MOMENTUM = "momentum";
+    /**
+     * The parameter name for &quot;The momentum simply adds a fraction of the previous weight
+     * update to the current one (prevent local maxima and smoothes optimization directions).&quot;
+     */
+    public static final String PARAMETER_MOMENTUM = "momentum";
 
-	/** Indicates if the learning rate should be cooled down. */
-	public static final String PARAMETER_DECAY = "decay";
+    /**
+     * Indicates if the learning rate should be cooled down.
+     */
+    public static final String PARAMETER_DECAY = "decay";
 
-	/** Indicates if the input data should be shuffled before learning. */
-	public static final String PARAMETER_SHUFFLE = "shuffle";
+    /**
+     * Indicates if the input data should be shuffled before learning.
+     */
+    public static final String PARAMETER_SHUFFLE = "shuffle";
 
-	/** Indicates if the input data should be normalized between -1 and 1 before learning. */
-	public static final String PARAMETER_NORMALIZE = "normalize";
+    /**
+     * Indicates if the input data should be normalized between -1 and 1 before learning.
+     */
+    public static final String PARAMETER_NORMALIZE = "normalize";
 
-	public ImprovedNeuralNetLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Improved neural net learner.
+     *
+     * @param description the description
+     */
+    public ImprovedNeuralNetLearner(OperatorDescription description) {
 		super(description);
 	}
 

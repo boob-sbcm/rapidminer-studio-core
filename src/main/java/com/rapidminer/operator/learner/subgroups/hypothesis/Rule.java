@@ -29,41 +29,82 @@ import com.rapidminer.tools.Tools;
 
 /**
  * A rule for subgroup discovery.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class Rule implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	Hypothesis hypothesis;
+    /**
+     * The Hypothesis.
+     */
+    Hypothesis hypothesis;
 
-	Literal prediction;
+    /**
+     * The Prediction.
+     */
+    Literal prediction;
 
-	LinkedHashMap<UtilityFunction, Double> utilityMap = new LinkedHashMap<>();
+    /**
+     * The Utility map.
+     */
+    LinkedHashMap<UtilityFunction, Double> utilityMap = new LinkedHashMap<>();
 
-	public Rule(Hypothesis hypothesis, Literal prediction) {
+    /**
+     * Instantiates a new Rule.
+     *
+     * @param hypothesis the hypothesis
+     * @param prediction the prediction
+     */
+    public Rule(Hypothesis hypothesis, Literal prediction) {
 		this.hypothesis = hypothesis;
 		this.prediction = prediction;
 	}
 
-	public boolean applicable(Example example) {
+    /**
+     * Applicable boolean.
+     *
+     * @param example the example
+     * @return the boolean
+     */
+    public boolean applicable(Example example) {
 		return hypothesis.applicable(example);
 	}
 
-	public double getCoveredWeight() {
+    /**
+     * Gets covered weight.
+     *
+     * @return the covered weight
+     */
+    public double getCoveredWeight() {
 		return hypothesis.getCoveredWeight();
 	}
 
-	public double getPositiveWeight() {
+    /**
+     * Gets positive weight.
+     *
+     * @return the positive weight
+     */
+    public double getPositiveWeight() {
 		return hypothesis.getPositiveWeight();
 	}
 
-	public double getNegativeWeight() {
+    /**
+     * Gets negative weight.
+     *
+     * @return the negative weight
+     */
+    public double getNegativeWeight() {
 		return hypothesis.getCoveredWeight() - hypothesis.getPositiveWeight();
 	}
 
-	public double getPredictionWeight() {
+    /**
+     * Gets prediction weight.
+     *
+     * @return the prediction weight
+     */
+    public double getPredictionWeight() {
 		if (predictsPositive()) {
 			return getPositiveWeight();
 		} else {
@@ -71,23 +112,50 @@ public class Rule implements Serializable {
 		}
 	}
 
-	public boolean predictsPositive() {
+    /**
+     * Predicts positive boolean.
+     *
+     * @return the boolean
+     */
+    public boolean predictsPositive() {
 		return prediction.getValue() == prediction.getAttribute().getMapping().getPositiveIndex();
 	}
 
-	public double getPrediction() {
+    /**
+     * Gets prediction.
+     *
+     * @return the prediction
+     */
+    public double getPrediction() {
 		return prediction.getValue();
 	}
 
-	public Hypothesis getHypothesis() {
+    /**
+     * Gets hypothesis.
+     *
+     * @return the hypothesis
+     */
+    public Hypothesis getHypothesis() {
 		return hypothesis;
 	}
 
-	public void setUtility(UtilityFunction function, double utility) {
+    /**
+     * Sets utility.
+     *
+     * @param function the function
+     * @param utility  the utility
+     */
+    public void setUtility(UtilityFunction function, double utility) {
 		utilityMap.put(function, utility);
 	}
 
-	public double getUtility(Class<? extends UtilityFunction> functionClass) {
+    /**
+     * Gets utility.
+     *
+     * @param functionClass the function class
+     * @return the utility
+     */
+    public double getUtility(Class<? extends UtilityFunction> functionClass) {
 		for (UtilityFunction function : utilityMap.keySet()) {
 			if (function.getClass().equals(functionClass)) {
 				return utilityMap.get(function);
@@ -96,7 +164,13 @@ public class Rule implements Serializable {
 		return Double.NaN;
 	}
 
-	public UtilityFunction getUtilityFunction(Class<? extends UtilityFunction> functionClass) {
+    /**
+     * Gets utility function.
+     *
+     * @param functionClass the function class
+     * @return the utility function
+     */
+    public UtilityFunction getUtilityFunction(Class<? extends UtilityFunction> functionClass) {
 		for (UtilityFunction function : utilityMap.keySet()) {
 			if (function.getClass().equals(functionClass)) {
 				return function;
@@ -105,7 +179,12 @@ public class Rule implements Serializable {
 		return null;
 	}
 
-	public Collection<UtilityFunction> getUtilityFunctions() {
+    /**
+     * Gets utility functions.
+     *
+     * @return the utility functions
+     */
+    public Collection<UtilityFunction> getUtilityFunctions() {
 		return utilityMap.keySet();
 	}
 
@@ -135,7 +214,12 @@ public class Rule implements Serializable {
 		return stringBuffer.toString();
 	}
 
-	public String toStringScored() {
+    /**
+     * To string scored string.
+     *
+     * @return the string
+     */
+    public String toStringScored() {
 		return toString() + "  " + utilityString();
 	}
 
@@ -144,11 +228,21 @@ public class Rule implements Serializable {
 		return hypothesis + " --> " + prediction;
 	}
 
-	public Hypothesis getPremise() {
+    /**
+     * Gets premise.
+     *
+     * @return the premise
+     */
+    public Hypothesis getPremise() {
 		return hypothesis;
 	}
 
-	public Literal getConclusion() {
+    /**
+     * Gets conclusion.
+     *
+     * @return the conclusion
+     */
+    public Literal getConclusion() {
 		return prediction;
 	}
 }

@@ -25,7 +25,7 @@ import java.util.Arrays;
 
 /**
  * This is a quickfix for setting an alternative option in a category selection parameter
- * 
+ *
  * @author Sebastian Land
  */
 public class CategorySelectionQuickFix extends DictionaryQuickFix {
@@ -33,7 +33,16 @@ public class CategorySelectionQuickFix extends DictionaryQuickFix {
 	private ParameterHandler handler;
 	private String parameter;
 
-	public CategorySelectionQuickFix(ParameterHandler handler, String parameter, String[] alternativeValues,
+    /**
+     * Instantiates a new Category selection quick fix.
+     *
+     * @param handler           the handler
+     * @param parameter         the parameter
+     * @param alternativeValues the alternative values
+     * @param currentValue      the current value
+     * @param description       the description
+     */
+    public CategorySelectionQuickFix(ParameterHandler handler, String parameter, String[] alternativeValues,
 			String currentValue, String description) {
 		super(parameter, Arrays.asList(alternativeValues), currentValue, description);
 		this.handler = handler;

@@ -47,7 +47,7 @@ import java.util.List;
 
 /**
  * Defines dot and line format and other format properties for a data series.
- * 
+ *
  * @author Marius Helf, Nils Woehler
  */
 public class SeriesFormat implements Cloneable {
@@ -56,21 +56,36 @@ public class SeriesFormat implements Cloneable {
 
 		private static final float SHAPE_SIZE = 7.5f;
 
-		public static Shape createSquare() {
+        /**
+         * Create square shape.
+         *
+         * @return the shape
+         */
+        public static Shape createSquare() {
 			final float s = SHAPE_SIZE;
 			float s_d2 = Math.round(s / 2.0);
 			float s_dm2 = s_d2 * 2;
 			return new Rectangle2D.Float(-s_d2, -s_d2, s_dm2, s_dm2);
 		}
 
-		public static Shape createCircle() {
+        /**
+         * Create circle shape.
+         *
+         * @return the shape
+         */
+        public static Shape createCircle() {
 			final float s = SHAPE_SIZE;
 			float s_d2 = Math.round(s / 2.0);
 			float s_dm2 = s_d2 * 2;
 			return new Ellipse2D.Float(-s_d2, -s_d2, s_dm2, s_dm2);
 		}
 
-		public static Shape createDiamond() {
+        /**
+         * Create diamond shape.
+         *
+         * @return the shape
+         */
+        public static Shape createDiamond() {
 			final float s = SHAPE_SIZE;
 			double d = Math.round(Math.sqrt(2 * s * s) / 2.0);
 			final GeneralPath p = new GeneralPath();
@@ -103,7 +118,12 @@ public class SeriesFormat implements Cloneable {
 			// return p0;
 		}
 
-		public static Shape createTriangular() {
+        /**
+         * Create triangular shape.
+         *
+         * @return the shape
+         */
+        public static Shape createTriangular() {
 			double s = SHAPE_SIZE;
 			int s_2 = (int) Math.round(s / 2.0);
 			int[] xPoints = new int[] { -s_2, 0, s_2 };
@@ -111,7 +131,12 @@ public class SeriesFormat implements Cloneable {
 			return new Polygon(xPoints, yPoints, xPoints.length);
 		}
 
-		public static Shape createTurnedTriangular() {
+        /**
+         * Create turned triangular shape.
+         *
+         * @return the shape
+         */
+        public static Shape createTurnedTriangular() {
 			double s = SHAPE_SIZE;
 			int s_2 = (int) Math.round(s / 2.0);
 			int[] xPoints = new int[] { -s_2, 0, s_2 };
@@ -119,7 +144,12 @@ public class SeriesFormat implements Cloneable {
 			return new Polygon(xPoints, yPoints, xPoints.length);
 		}
 
-		public static Shape createCrosshairs() {
+        /**
+         * Create crosshairs shape.
+         *
+         * @return the shape
+         */
+        public static Shape createCrosshairs() {
 			double x = 0;
 			double y = 0;
 			double pointSize = SHAPE_SIZE - 1.0d;
@@ -138,14 +168,24 @@ public class SeriesFormat implements Cloneable {
 			return new Polygon(xPoints, yPoints, xPoints.length);
 		}
 
-		public static Shape createHourglass() {
+        /**
+         * Create hourglass shape.
+         *
+         * @return the shape
+         */
+        public static Shape createHourglass() {
 			Area area = new Area();
 			area.add(new Area(createTriangular()));
 			area.add(new Area(createTurnedTriangular()));
 			return area;
 		}
 
-		public static Shape createStar() {
+        /**
+         * Create star shape.
+         *
+         * @return the shape
+         */
+        public static Shape createStar() {
 			int s_2 = (int) Math.round(0.4 * SHAPE_SIZE);
 			AffineTransform t = new AffineTransform();
 			t.translate(0, s_2);
@@ -158,21 +198,47 @@ public class SeriesFormat implements Cloneable {
 
 	}
 
-	/**
-	 * Defines styles for dots in the plot.
-	 * 
-	 * @author Marius Helf, Nils Woehler
-	 * 
-	 */
-	public enum ItemShape {
-		NONE(null, I18N.getGUILabel("plotter.dotstyle.NONE.label")), CIRCLE(ItemShapeFactory.createCircle(), I18N
-				.getGUILabel("plotter.dotstyle.CIRCLE.label")), SQUARE(ItemShapeFactory.createSquare(), I18N
-				.getGUILabel("plotter.dotstyle.SQUARE.label")), DIAMOND(ItemShapeFactory.createDiamond(), I18N
-				.getGUILabel("plotter.dotstyle.DIAMOND.label")), TRIANGLE(ItemShapeFactory.createTriangular(), I18N
-				.getGUILabel("plotter.dotstyle.TRIANGLE.label")), TRIANGLE_UPSIDE_DOWN(ItemShapeFactory
-				.createTurnedTriangular(), I18N.getGUILabel("plotter.dotstyle.TRIANGLE_UPSIDE_DOWN.label")), STAR(
-				ItemShapeFactory.createStar(), I18N.getGUILabel("plotter.dotstyle.STAR.label")), HOURGLASS(ItemShapeFactory
-				.createHourglass(), I18N.getGUILabel("plotter.dotstyle.HOURGLASS.label")), CROSSHAIRS(ItemShapeFactory
+    /**
+     * Defines styles for dots in the plot.
+     *
+     * @author Marius Helf, Nils Woehler
+     */
+    public enum ItemShape {
+        /**
+         * None item shape.
+         */
+        NONE(null, I18N.getGUILabel("plotter.dotstyle.NONE.label")), /**
+         * Circle item shape.
+         */
+        CIRCLE(ItemShapeFactory.createCircle(), I18N
+				.getGUILabel("plotter.dotstyle.CIRCLE.label")), /**
+         * Square item shape.
+         */
+        SQUARE(ItemShapeFactory.createSquare(), I18N
+				.getGUILabel("plotter.dotstyle.SQUARE.label")), /**
+         * Diamond item shape.
+         */
+        DIAMOND(ItemShapeFactory.createDiamond(), I18N
+				.getGUILabel("plotter.dotstyle.DIAMOND.label")), /**
+         * Triangle item shape.
+         */
+        TRIANGLE(ItemShapeFactory.createTriangular(), I18N
+				.getGUILabel("plotter.dotstyle.TRIANGLE.label")), /**
+         * Triangle upside down item shape.
+         */
+        TRIANGLE_UPSIDE_DOWN(ItemShapeFactory
+				.createTurnedTriangular(), I18N.getGUILabel("plotter.dotstyle.TRIANGLE_UPSIDE_DOWN.label")), /**
+         * Star item shape.
+         */
+        STAR(
+				ItemShapeFactory.createStar(), I18N.getGUILabel("plotter.dotstyle.STAR.label")), /**
+         * Hourglass item shape.
+         */
+        HOURGLASS(ItemShapeFactory
+				.createHourglass(), I18N.getGUILabel("plotter.dotstyle.HOURGLASS.label")), /**
+         * Crosshairs item shape.
+         */
+        CROSSHAIRS(ItemShapeFactory
 				.createCrosshairs(), I18N.getGUILabel("plotter.dotstyle.CROSSHAIRS.label")), ;
 
 		private final Shape shape;
@@ -183,28 +249,46 @@ public class SeriesFormat implements Cloneable {
 			this.name = name;
 		}
 
-		public Shape getShape() {
+        /**
+         * Gets shape.
+         *
+         * @return the shape
+         */
+        public Shape getShape() {
 			return shape;
 		}
 
-		/**
-		 * @return The display name of the enum value.
-		 */
-		public String getName() {
+        /**
+         * Gets name.
+         *
+         * @return The display name of the enum value.
+         */
+        public String getName() {
 			return name;
 		}
 	}
 
-	/**
-	 * Defines indicator type of the plot.
-	 * 
-	 * @author Marius Helf
-	 * 
-	 */
-	public enum IndicatorType {
-		NONE(I18N.getGUILabel("plotter.error_indicator.NONE.label")), BARS(I18N
-				.getGUILabel("plotter.error_indicator.BARS.label")), BAND(I18N
-				.getGUILabel("plotter.error_indicator.BAND.label")), DIFFERENCE(I18N
+    /**
+     * Defines indicator type of the plot.
+     *
+     * @author Marius Helf
+     */
+    public enum IndicatorType {
+        /**
+         * None indicator type.
+         */
+        NONE(I18N.getGUILabel("plotter.error_indicator.NONE.label")), /**
+         * Bars indicator type.
+         */
+        BARS(I18N
+				.getGUILabel("plotter.error_indicator.BARS.label")), /**
+         * Band indicator type.
+         */
+        BAND(I18N
+				.getGUILabel("plotter.error_indicator.BAND.label")), /**
+         * Difference indicator type.
+         */
+        DIFFERENCE(I18N
 				.getGUILabel("plotter.error_indicator.DIFFERENCE.label")), ;
 
 		private final String name;
@@ -213,20 +297,46 @@ public class SeriesFormat implements Cloneable {
 			this.name = name;
 		}
 
-		/**
-		 * @return The display name of the enum value.
-		 */
-		public String getName() {
+        /**
+         * Gets name.
+         *
+         * @return The display name of the enum value.
+         */
+        public String getName() {
 			return name;
 		}
 	}
 
-	public enum FillStyle {
-		NONE(I18N.getGUILabel("plotter.fillstyle.NONE.label")), SOLID(I18N.getGUILabel("plotter.fillstyle.SOLID.label")), CROSS_HATCHED(
-				I18N.getGUILabel("plotter.fillstyle.CROSS_HATCHED.label")), RISING_HATCHED(I18N
-				.getGUILabel("plotter.fillstyle.RISING_HATCHED.label")), FALLING_HATCHED(I18N
-				.getGUILabel("plotter.fillstyle.FALLING_HATCHED.label")), VERTICALLY_HATCHED(I18N
-				.getGUILabel("plotter.fillstyle.VERTICALLY_HATCHED.label")), HORIZONTALLY_HATCHED(I18N
+    /**
+     * The enum Fill style.
+     */
+    public enum FillStyle {
+        /**
+         * None fill style.
+         */
+        NONE(I18N.getGUILabel("plotter.fillstyle.NONE.label")), /**
+         * Solid fill style.
+         */
+        SOLID(I18N.getGUILabel("plotter.fillstyle.SOLID.label")), /**
+         * Cross hatched fill style.
+         */
+        CROSS_HATCHED(
+				I18N.getGUILabel("plotter.fillstyle.CROSS_HATCHED.label")), /**
+         * Rising hatched fill style.
+         */
+        RISING_HATCHED(I18N
+				.getGUILabel("plotter.fillstyle.RISING_HATCHED.label")), /**
+         * Falling hatched fill style.
+         */
+        FALLING_HATCHED(I18N
+				.getGUILabel("plotter.fillstyle.FALLING_HATCHED.label")), /**
+         * Vertically hatched fill style.
+         */
+        VERTICALLY_HATCHED(I18N
+				.getGUILabel("plotter.fillstyle.VERTICALLY_HATCHED.label")), /**
+         * Horizontally hatched fill style.
+         */
+        HORIZONTALLY_HATCHED(I18N
 				.getGUILabel("plotter.fillstyle.HORIZONTALLY_HATCHED.label"));
 
 		private final String name;
@@ -235,14 +345,31 @@ public class SeriesFormat implements Cloneable {
 			this.name = name;
 		}
 
-		public String getName() {
+        /**
+         * Gets name.
+         *
+         * @return the name
+         */
+        public String getName() {
 			return name;
 		}
 	}
 
-	public enum VisualizationType {
-		LINES_AND_SHAPES(I18N.getGUILabel("plotter.series_type.lines_and_shapes")), BARS(I18N
-				.getGUILabel("plotter.series_type.bars")), AREA(I18N.getGUILabel("plotter.series_type.area"));
+    /**
+     * The enum Visualization type.
+     */
+    public enum VisualizationType {
+        /**
+         * Lines and shapes visualization type.
+         */
+        LINES_AND_SHAPES(I18N.getGUILabel("plotter.series_type.lines_and_shapes")), /**
+         * Bars visualization type.
+         */
+        BARS(I18N
+				.getGUILabel("plotter.series_type.bars")), /**
+         * Area visualization type.
+         */
+        AREA(I18N.getGUILabel("plotter.series_type.area"));
 
 		private final String name;
 
@@ -250,16 +377,30 @@ public class SeriesFormat implements Cloneable {
 			this.name = name;
 		}
 
-		/**
-		 * @return The display name of the enum value.
-		 */
-		public String getName() {
+        /**
+         * Gets name.
+         *
+         * @return The display name of the enum value.
+         */
+        public String getName() {
 			return name;
 		}
 	}
 
-	public enum StackingMode {
-		NONE(I18N.getGUILabel("plotter.stacking_mode.none")), ABSOLUTE(I18N.getGUILabel("plotter.stacking_mode.absolute")), RELATIVE(
+    /**
+     * The enum Stacking mode.
+     */
+    public enum StackingMode {
+        /**
+         * None stacking mode.
+         */
+        NONE(I18N.getGUILabel("plotter.stacking_mode.none")), /**
+         * Absolute stacking mode.
+         */
+        ABSOLUTE(I18N.getGUILabel("plotter.stacking_mode.absolute")), /**
+         * Relative stacking mode.
+         */
+        RELATIVE(
 				I18N.getGUILabel("plotter.stacking_mode.percentage"));
 
 		private final String name;
@@ -268,10 +409,12 @@ public class SeriesFormat implements Cloneable {
 			this.name = name;
 		}
 
-		/**
-		 * @return The display name of the enum value.
-		 */
-		public String getName() {
+        /**
+         * Gets name.
+         *
+         * @return The display name of the enum value.
+         */
+        public String getName() {
 			return name;
 		}
 	}
@@ -291,73 +434,131 @@ public class SeriesFormat implements Cloneable {
 	 */
 	private List<WeakReference<SeriesFormatListener>> changedListenerList = new LinkedList<WeakReference<SeriesFormatListener>>();
 
-	public SeriesFormat() {}
+    /**
+     * Instantiates a new Series format.
+     */
+    public SeriesFormat() {}
 
-	public Paint getAreaFillPaint() {
+    /**
+     * Gets area fill paint.
+     *
+     * @return the area fill paint
+     */
+    public Paint getAreaFillPaint() {
 		return getAreaFillPaint(getItemColor());
 	}
 
-	public Paint getAreaFillPaint(Color color) {
+    /**
+     * Gets area fill paint.
+     *
+     * @param color the color
+     * @return the area fill paint
+     */
+    public Paint getAreaFillPaint(Color color) {
 		// TODO caching
 		return areaFillPaintFactory(areaFillStyle, color);
 	}
 
-	public LineStyle getLineStyle() {
+    /**
+     * Gets line style.
+     *
+     * @return the line style
+     */
+    public LineStyle getLineStyle() {
 		return lineFormat.getStyle();
 	}
 
-	public void setLineStyle(LineStyle lineStyle) {
+    /**
+     * Sets line style.
+     *
+     * @param lineStyle the line style
+     */
+    public void setLineStyle(LineStyle lineStyle) {
 		if (lineStyle != getLineStyle()) {
 			lineFormat.setStyle(lineStyle);
 			fireChanged(new SeriesFormatChangeEvent(this, lineStyle));
 		}
 	}
 
-	public ItemShape getItemShape() {
+    /**
+     * Gets item shape.
+     *
+     * @return the item shape
+     */
+    public ItemShape getItemShape() {
 		return itemShape;
 	}
 
-	public void setItemShape(ItemShape itemShape) {
+    /**
+     * Sets item shape.
+     *
+     * @param itemShape the item shape
+     */
+    public void setItemShape(ItemShape itemShape) {
 		if (itemShape != this.itemShape) {
 			this.itemShape = itemShape;
 			fireChanged(new SeriesFormatChangeEvent(this, itemShape));
 		}
 	}
 
-	public double getItemSize() {
+    /**
+     * Gets item size.
+     *
+     * @return the item size
+     */
+    public double getItemSize() {
 		return itemSize;
 	}
 
-	public void setItemSize(double itemSize) {
+    /**
+     * Sets item size.
+     *
+     * @param itemSize the item size
+     */
+    public void setItemSize(double itemSize) {
 		if (itemSize != this.itemSize) {
 			this.itemSize = itemSize;
 			fireChanged(new SeriesFormatChangeEvent(this, itemSize));
 		}
 	}
 
-	public float getLineWidth() {
+    /**
+     * Gets line width.
+     *
+     * @return the line width
+     */
+    public float getLineWidth() {
 		return lineFormat.getWidth();
 	}
 
-	public void setLineWidth(float lineWidth) {
+    /**
+     * Sets line width.
+     *
+     * @param lineWidth the line width
+     */
+    public void setLineWidth(float lineWidth) {
 		if (lineWidth != lineFormat.getWidth()) {
 			lineFormat.setWidth(lineWidth);
 			fireChanged(new SeriesFormatChangeEvent(this, lineWidth));
 		}
 	}
 
-	/**
-	 * The ready to use item color (including correct opacity).
-	 */
-	public Color getItemColor() {
+    /**
+     * The ready to use item color (including correct opacity).
+     *
+     * @return the item color
+     */
+    public Color getItemColor() {
 		return itemColor;
 	}
 
-	/**
-	 * Sets the item color to itemColor. The alpha value of itemColor is ignored, instead the
-	 * opacity property of this SeriesFormat is applied.
-	 */
-	public void setItemColor(Color itemColor) {
+    /**
+     * Sets the item color to itemColor. The alpha value of itemColor is ignored, instead the
+     * opacity property of this SeriesFormat is applied.
+     *
+     * @param itemColor the item color
+     */
+    public void setItemColor(Color itemColor) {
 		if (itemColor != null
 				&& (this.itemColor == null || !itemColor.equals(new Color(this.itemColor.getRed(),
 						this.itemColor.getGreen(), this.itemColor.getBlue(), itemColor.getAlpha())))) {
@@ -367,11 +568,21 @@ public class SeriesFormat implements Cloneable {
 		}
 	}
 
-	public Color getLineColor() {
+    /**
+     * Gets line color.
+     *
+     * @return the line color
+     */
+    public Color getLineColor() {
 		return lineFormat.getColor();
 	}
 
-	public void setLineColor(Color lineColor) {
+    /**
+     * Sets line color.
+     *
+     * @param lineColor the line color
+     */
+    public void setLineColor(Color lineColor) {
 		Color currentColor = lineFormat.getColor();
 		if (lineColor != null
 				&& (currentColor == null || !lineColor.equals(new Color(currentColor.getRed(), currentColor.getGreen(),
@@ -382,18 +593,33 @@ public class SeriesFormat implements Cloneable {
 		}
 	}
 
-	public FillStyle getAreaFillStyle() {
+    /**
+     * Gets area fill style.
+     *
+     * @return the area fill style
+     */
+    public FillStyle getAreaFillStyle() {
 		return areaFillStyle;
 	}
 
-	public void setAreaFillStyle(FillStyle areaFillStyle) {
+    /**
+     * Sets area fill style.
+     *
+     * @param areaFillStyle the area fill style
+     */
+    public void setAreaFillStyle(FillStyle areaFillStyle) {
 		if (areaFillStyle != this.areaFillStyle) {
 			this.areaFillStyle = areaFillStyle;
 			fireChanged(new SeriesFormatChangeEvent(this, areaFillStyle));
 		}
 	}
 
-	public int getOpacity() {
+    /**
+     * Gets opacity.
+     *
+     * @return the opacity
+     */
+    public int getOpacity() {
 		return opacity;
 	}
 
@@ -446,7 +672,12 @@ public class SeriesFormat implements Cloneable {
 		}
 	}
 
-	public void setOpacity(int opacity) {
+    /**
+     * Sets opacity.
+     *
+     * @param opacity the opacity
+     */
+    public void setOpacity(int opacity) {
 		if (opacity != this.opacity) {
 			this.itemColor = DataStructureUtils.setColorAlpha(this.itemColor, opacity);
 			lineFormat.setColor(DataStructureUtils.setColorAlpha(lineFormat.getColor(), opacity));
@@ -455,11 +686,21 @@ public class SeriesFormat implements Cloneable {
 		}
 	}
 
-	public void addChangeListener(SeriesFormatListener listener) {
+    /**
+     * Add change listener.
+     *
+     * @param listener the listener
+     */
+    public void addChangeListener(SeriesFormatListener listener) {
 		changedListenerList.add(new WeakReference<SeriesFormatListener>(listener));
 	}
 
-	public void removeChangeListener(SeriesFormatListener listener) {
+    /**
+     * Remove change listener.
+     *
+     * @param listener the listener
+     */
+    public void removeChangeListener(SeriesFormatListener listener) {
 		Iterator<WeakReference<SeriesFormatListener>> it = changedListenerList.iterator();
 		while (it.hasNext()) {
 			SeriesFormatListener l = it.next().get();
@@ -481,7 +722,12 @@ public class SeriesFormat implements Cloneable {
 		}
 	}
 
-	public float getStrokeLength() {
+    /**
+     * Gets stroke length.
+     *
+     * @return the stroke length
+     */
+    public float getStrokeLength() {
 		float[] dashArray = lineFormat.getScaledDashArray();
 		if (dashArray != null) {
 			float sum = 0;
@@ -494,50 +740,89 @@ public class SeriesFormat implements Cloneable {
 		}
 	}
 
-	public BasicStroke getStroke() {
+    /**
+     * Gets stroke.
+     *
+     * @return the stroke
+     */
+    public BasicStroke getStroke() {
 		return lineFormat.getStroke();
 	}
 
-	public VisualizationType getSeriesType() {
+    /**
+     * Gets series type.
+     *
+     * @return the series type
+     */
+    public VisualizationType getSeriesType() {
 		return seriesType;
 	}
 
-	public void setSeriesType(VisualizationType seriesType) {
+    /**
+     * Sets series type.
+     *
+     * @param seriesType the series type
+     */
+    public void setSeriesType(VisualizationType seriesType) {
 		if (seriesType != this.seriesType) {
 			this.seriesType = seriesType;
 			fireChanged(new SeriesFormatChangeEvent(this, seriesType));
 		}
 	}
 
-	public StackingMode getStackingMode() {
+    /**
+     * Gets stacking mode.
+     *
+     * @return the stacking mode
+     */
+    public StackingMode getStackingMode() {
 		return stackingMode;
 	}
 
-	public void setStackingMode(StackingMode stackingMode) {
+    /**
+     * Sets stacking mode.
+     *
+     * @param stackingMode the stacking mode
+     */
+    public void setStackingMode(StackingMode stackingMode) {
 		if (stackingMode != this.stackingMode) {
 			this.stackingMode = stackingMode;
 			fireChanged(new SeriesFormatChangeEvent(this, stackingMode));
 		}
 	}
 
-	public IndicatorType getUtilityUsage() {
+    /**
+     * Gets utility usage.
+     *
+     * @return the utility usage
+     */
+    public IndicatorType getUtilityUsage() {
 		return utilityUsage;
 	}
 
-	public void setUtilityUsage(IndicatorType errorIndicator) {
+    /**
+     * Sets utility usage.
+     *
+     * @param errorIndicator the error indicator
+     */
+    public void setUtilityUsage(IndicatorType errorIndicator) {
 		if (errorIndicator != this.utilityUsage) {
 			this.utilityUsage = errorIndicator;
 			fireChanged(new SeriesFormatChangeEvent(this, errorIndicator));
 		}
 	}
 
-	/**
-	 * Returns true iff the attribute XYZ to which the dimension refers (e.g. color for Color
-	 * dimension, shape for Shape dimension) is to be calculated individually for each item using
-	 * the XYZProvider of dimensionConfig. If this function returns false, the respective attribute
-	 * is set globally for the whole series.
-	 */
-	public static boolean calculateIndividualFormatForEachItem(DimensionConfig domainConfig, DimensionConfig dimensionConfig) {
+    /**
+     * Returns true iff the attribute XYZ to which the dimension refers (e.g. color for Color
+     * dimension, shape for Shape dimension) is to be calculated individually for each item using
+     * the XYZProvider of dimensionConfig. If this function returns false, the respective attribute
+     * is set globally for the whole series.
+     *
+     * @param domainConfig    the domain config
+     * @param dimensionConfig the dimension config
+     * @return the boolean
+     */
+    public static boolean calculateIndividualFormatForEachItem(DimensionConfig domainConfig, DimensionConfig dimensionConfig) {
 		if (dimensionConfig == null) {
 			return false;
 		}
@@ -553,13 +838,17 @@ public class SeriesFormat implements Cloneable {
 		}
 	}
 
-	/**
-	 * Returns true iff the attribute XYZ to which the dimension refers (e.g. color for Color
-	 * dimension, shape for Shape dimension) is to be calculated individually for each series of a
-	 * value source using the XYZProvider of dimensionConfig. If this function returns false, the
-	 * respective attribute is set globally for the whole value source.
-	 */
-	public static boolean useSeriesFormatFromDimensionConfig(DimensionConfig domainConfig, DimensionConfig dimensionConfig) {
+    /**
+     * Returns true iff the attribute XYZ to which the dimension refers (e.g. color for Color
+     * dimension, shape for Shape dimension) is to be calculated individually for each series of a
+     * value source using the XYZProvider of dimensionConfig. If this function returns false, the
+     * respective attribute is set globally for the whole value source.
+     *
+     * @param domainConfig    the domain config
+     * @param dimensionConfig the dimension config
+     * @return the boolean
+     */
+    public static boolean useSeriesFormatFromDimensionConfig(DimensionConfig domainConfig, DimensionConfig dimensionConfig) {
 		if (calculateIndividualFormatForEachItem(domainConfig, dimensionConfig)) {
 			return false;
 		}

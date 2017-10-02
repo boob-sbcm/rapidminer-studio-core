@@ -38,95 +38,124 @@ import java.util.List;
 
 /**
  * This operator determines a logistic regression model.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KernelLogisticRegression extends AbstractKernelBasedLearner {
 
-	/** The parameter name for &quot;The SVM kernel type&quot; */
-	public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
+    /**
+     * The parameter name for &quot;The SVM kernel type&quot;
+     */
+    public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
 
-	/** The parameter name for &quot;The SVM kernel parameter gamma (RBF, anova).&quot; */
-	public static final String PARAMETER_KERNEL_GAMMA = "kernel_gamma";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter gamma (RBF, anova).&quot;
+     */
+    public static final String PARAMETER_KERNEL_GAMMA = "kernel_gamma";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter sigma1 (Epanechnikov, Gaussian
-	 * Combination, Multiquadric).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_SIGMA1 = "kernel_sigma1";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma1 (Epanechnikov, Gaussian
+     * Combination, Multiquadric).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA1 = "kernel_sigma1";
 
-	/** The parameter name for &quot;The SVM kernel parameter sigma2 (Gaussian Combination).&quot; */
-	public static final String PARAMETER_KERNEL_SIGMA2 = "kernel_sigma2";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma2 (Gaussian Combination).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA2 = "kernel_sigma2";
 
-	/** The parameter name for &quot;The SVM kernel parameter sigma3 (Gaussian Combination).&quot; */
-	public static final String PARAMETER_KERNEL_SIGMA3 = "kernel_sigma3";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma3 (Gaussian Combination).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA3 = "kernel_sigma3";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter degree (polynomial, anova,
-	 * Epanechnikov).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_DEGREE = "kernel_degree";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter degree (polynomial, anova,
+     * Epanechnikov).&quot;
+     */
+    public static final String PARAMETER_KERNEL_DEGREE = "kernel_degree";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter shift (polynomial, Multiquadric).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_SHIFT = "kernel_shift";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter shift (polynomial, Multiquadric).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SHIFT = "kernel_shift";
 
-	/** The parameter name for &quot;The SVM kernel parameter a (neural).&quot; */
-	public static final String PARAMETER_KERNEL_A = "kernel_a";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter a (neural).&quot;
+     */
+    public static final String PARAMETER_KERNEL_A = "kernel_a";
 
-	/** The parameter name for &quot;The SVM kernel parameter b (neural).&quot; */
-	public static final String PARAMETER_KERNEL_B = "kernel_b";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter b (neural).&quot;
+     */
+    public static final String PARAMETER_KERNEL_B = "kernel_b";
 
-	/**
-	 * The parameter name for &quot;The SVM complexity constant (0: calculates probably good
-	 * value).&quot;
-	 */
-	public static final String PARAMETER_C = "C";
+    /**
+     * The parameter name for &quot;The SVM complexity constant (0: calculates probably good
+     * value).&quot;
+     */
+    public static final String PARAMETER_C = "C";
 
-	/** The parameter name for &quot;The type of start population initialization.&quot; */
-	public static final String PARAMETER_START_POPULATION_TYPE = "start_population_type";
+    /**
+     * The parameter name for &quot;The type of start population initialization.&quot;
+     */
+    public static final String PARAMETER_START_POPULATION_TYPE = "start_population_type";
 
-	/** The parameter name for &quot;Stop after this many evaluations&quot; */
-	public static final String PARAMETER_MAX_GENERATIONS = "max_generations";
+    /**
+     * The parameter name for &quot;Stop after this many evaluations&quot;
+     */
+    public static final String PARAMETER_MAX_GENERATIONS = "max_generations";
 
-	/**
-	 * The parameter name for &quot;Stop after this number of generations without improvement (-1:
-	 * optimize until max_iterations).&quot;
-	 */
-	public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
+    /**
+     * The parameter name for &quot;Stop after this number of generations without improvement (-1:
+     * optimize until max_iterations).&quot;
+     */
+    public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
 
-	/** The parameter name for &quot;The population size (-1: number of examples)&quot; */
-	public static final String PARAMETER_POPULATION_SIZE = "population_size";
+    /**
+     * The parameter name for &quot;The population size (-1: number of examples)&quot;
+     */
+    public static final String PARAMETER_POPULATION_SIZE = "population_size";
 
-	/**
-	 * The parameter name for &quot;The fraction of the population used for tournament
-	 * selection.&quot;
-	 */
-	public static final String PARAMETER_TOURNAMENT_FRACTION = "tournament_fraction";
+    /**
+     * The parameter name for &quot;The fraction of the population used for tournament
+     * selection.&quot;
+     */
+    public static final String PARAMETER_TOURNAMENT_FRACTION = "tournament_fraction";
 
-	/**
-	 * The parameter name for &quot;Indicates if the best individual should survive (elititst
-	 * selection).&quot;
-	 */
-	public static final String PARAMETER_KEEP_BEST = "keep_best";
+    /**
+     * The parameter name for &quot;Indicates if the best individual should survive (elititst
+     * selection).&quot;
+     */
+    public static final String PARAMETER_KEEP_BEST = "keep_best";
 
-	/** The parameter name for &quot;The type of the mutation operator.&quot; */
-	public static final String PARAMETER_MUTATION_TYPE = "mutation_type";
+    /**
+     * The parameter name for &quot;The type of the mutation operator.&quot;
+     */
+    public static final String PARAMETER_MUTATION_TYPE = "mutation_type";
 
-	/** The parameter name for &quot;The type of the selection operator.&quot; */
-	public static final String PARAMETER_SELECTION_TYPE = "selection_type";
+    /**
+     * The parameter name for &quot;The type of the selection operator.&quot;
+     */
+    public static final String PARAMETER_SELECTION_TYPE = "selection_type";
 
-	/** The parameter name for &quot;The probability for crossovers.&quot; */
-	public static final String PARAMETER_CROSSOVER_PROB = "crossover_prob";
+    /**
+     * The parameter name for &quot;The probability for crossovers.&quot;
+     */
+    public static final String PARAMETER_CROSSOVER_PROB = "crossover_prob";
 
-	/**
-	 * The parameter name for &quot;Indicates if a dialog with a convergence plot should be
-	 * drawn.&quot;
-	 */
-	public static final String PARAMETER_SHOW_CONVERGENCE_PLOT = "show_convergence_plot";
+    /**
+     * The parameter name for &quot;Indicates if a dialog with a convergence plot should be
+     * drawn.&quot;
+     */
+    public static final String PARAMETER_SHOW_CONVERGENCE_PLOT = "show_convergence_plot";
 
-	public KernelLogisticRegression(OperatorDescription description) {
+    /**
+     * Instantiates a new Kernel logistic regression.
+     *
+     * @param description the description
+     */
+    public KernelLogisticRegression(OperatorDescription description) {
 		super(description);
 	}
 

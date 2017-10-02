@@ -29,7 +29,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class ToggleAllBreakpointsItem extends ToggleAction {
@@ -38,7 +38,12 @@ public class ToggleAllBreakpointsItem extends ToggleAction {
 
 	private final Actions actions;
 
-	public ToggleAllBreakpointsItem(final Actions actions) {
+    /**
+     * Instantiates a new Toggle all breakpoints item.
+     *
+     * @param actions the actions
+     */
+    public ToggleAllBreakpointsItem(final Actions actions) {
 		super(true, "toggle_all_breakpoints");
 		this.actions = actions;
 	}

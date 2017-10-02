@@ -82,15 +82,23 @@ import com.rapidminer.tools.math.function.aggregation.AverageFunction;
  * based on an additional group-by attribute.
  *
  * @author Ingo Mierswa
- *
  */
 public class BarChartPlotter extends LabelRotatingPlotterAdapter implements ChangeListener {
 
-	public static final String PARAMETER_ORIENTATION = "orientation";
+    /**
+     * The constant PARAMETER_ORIENTATION.
+     */
+    public static final String PARAMETER_ORIENTATION = "orientation";
 
-	public static final String PARAMETER_AGGREGATION = "aggregation";
+    /**
+     * The constant PARAMETER_AGGREGATION.
+     */
+    public static final String PARAMETER_AGGREGATION = "aggregation";
 
-	public static final String PARAMETER_USE_DISTINCT = "use_distinct";
+    /**
+     * The constant PARAMETER_USE_DISTINCT.
+     */
+    public static final String PARAMETER_USE_DISTINCT = "use_distinct";
 
 	private static final long serialVersionUID = 1208210421840512091L;
 
@@ -101,9 +109,15 @@ public class BarChartPlotter extends LabelRotatingPlotterAdapter implements Chan
 
 	private static final String[] ORIENTATION_TYPES = new String[] { "vertical", "horizontal" };
 
-	public static final int ORIENTATION_TYPE_VERTICAL = 0;
+    /**
+     * The constant ORIENTATION_TYPE_VERTICAL.
+     */
+    public static final int ORIENTATION_TYPE_VERTICAL = 0;
 
-	public static final int ORIENTATION_TYPE_HORIZONTAL = 1;
+    /**
+     * The constant ORIENTATION_TYPE_HORIZONTAL.
+     */
+    public static final int ORIENTATION_TYPE_HORIZONTAL = 1;
 
 	/** The currently used data table object. */
 	private DataTable dataTable;
@@ -148,7 +162,12 @@ public class BarChartPlotter extends LabelRotatingPlotterAdapter implements Chan
 
 	private boolean showScrollbar = true;
 
-	public BarChartPlotter(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Bar chart plotter.
+     *
+     * @param settings the settings
+     */
+    public BarChartPlotter(final PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 
@@ -193,7 +212,13 @@ public class BarChartPlotter extends LabelRotatingPlotterAdapter implements Chan
 		viewScrollBar.getModel().addChangeListener(this);
 	}
 
-	public BarChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Bar chart plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public BarChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}

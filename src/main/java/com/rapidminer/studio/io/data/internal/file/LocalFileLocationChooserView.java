@@ -64,7 +64,6 @@ import com.rapidminer.studio.io.gui.internal.DataWizardEventType;
  *
  * @author Nils Woehler
  * @since 7.0.0
- *
  */
 final class LocalFileLocationChooserView extends JPanel {
 
@@ -115,13 +114,12 @@ final class LocalFileLocationChooserView extends JPanel {
 
 	};
 
-	/**
-	 * The view constructor.
-	 *
-	 * @param fileFilters
-	 *            the file filters for this file chooser
-	 */
-	LocalFileLocationChooserView(List<FileFilter> fileFilters) {
+    /**
+     * The view constructor.
+     *
+     * @param fileFilters the file filters for this file chooser
+     */
+    LocalFileLocationChooserView(List<FileFilter> fileFilters) {
 		this.fileChooser = new ExtendedJFileChooser("", FileSystemView.getFileSystemView().getDefaultDirectory());
 		this.fileChooser.setControlButtonsAreShown(false);
 		this.fileChooser.setAcceptAllFileFilterUsed(true);
@@ -164,10 +162,10 @@ final class LocalFileLocationChooserView extends JPanel {
 		fileChangeListener.stateChanged(null);
 	}
 
-	/**
-	 * Applies the file type selection made by the user in the file type combobox.
-	 */
-	protected void chooseDataSourceFileTypeFromComboBox() {
+    /**
+     * Applies the file type selection made by the user in the file type combobox.
+     */
+    protected void chooseDataSourceFileTypeFromComboBox() {
 
 		// toggle marker variable
 		this.showFileDataSourceComboBox = false;
@@ -192,29 +190,31 @@ final class LocalFileLocationChooserView extends JPanel {
 		updateFileTypePanel();
 	}
 
-	/**
-	 * @return the selected file location. Might be {@code null} in case no file has been selected.
-	 */
-	Path getSelectedLocation() {
+    /**
+     * Gets selected location.
+     *
+     * @return the selected file location. Might be {@code null} in case no file has been selected.
+     */
+    Path getSelectedLocation() {
 		File selectedFile = fileChooser.getSelectedFile();
 		return selectedFile != null ? selectedFile.toPath() : null;
 	}
 
-	/**
-	 * @return the data source factory for the selected file. Might be {@code null} in case no file
-	 *         has been selected.
-	 */
-	FileDataSourceFactory<?> getFileDataSourceFactory() {
+    /**
+     * Gets file data source factory.
+     *
+     * @return the data source factory for the selected file. Might be {@code null} in case no file         has been selected.
+     */
+    FileDataSourceFactory<?> getFileDataSourceFactory() {
 		return fileDataSourceFactory;
 	}
 
-	/**
-	 * Registers a new {@link ChangeListener} for the file chooser.
-	 *
-	 * @param listener
-	 *            the {@link ChangeListener} to register
-	 */
-	void registerChangeListener(ChangeListener listener) {
+    /**
+     * Registers a new {@link ChangeListener} for the file chooser.
+     *
+     * @param listener the {@link ChangeListener} to register
+     */
+    void registerChangeListener(ChangeListener listener) {
 		this.fileChooser.addChangeListener(listener);
 		this.changeListeners.add(listener);
 	}
@@ -238,21 +238,21 @@ final class LocalFileLocationChooserView extends JPanel {
 		}
 	}
 
-	/**
-	 * Sets the selected file and updates the {@link JFileChooser} accordingly.
-	 *
-	 * @param selectedFile
-	 *            the selected file. Must not be <code>null</code>.
-	 */
-	void setSelectedFile(Path selectedFile) {
+    /**
+     * Sets the selected file and updates the {@link JFileChooser} accordingly.
+     *
+     * @param selectedFile the selected file. Must not be <code>null</code>.
+     */
+    void setSelectedFile(Path selectedFile) {
 		this.fileChooser.setSelectedFile(selectedFile.toFile());
 	}
 
-	/**
-	 * @param fileDataSource
-	 *            updates the file data source factory for this view
-	 */
-	public void setFileDataSourceFactory(FileDataSourceFactory<?> fileDataSourceFactory) {
+    /**
+     * Sets file data source factory.
+     *
+     * @param fileDataSourceFactory the file data source factory
+     */
+    public void setFileDataSourceFactory(FileDataSourceFactory<?> fileDataSourceFactory) {
 		this.fileDataSourceFactory = fileDataSourceFactory;
 	}
 

@@ -34,9 +34,8 @@ import javax.swing.TransferHandler;
 
 /**
  * {@link TransferHandler} for exporting {@link DataTableColumn}s from Lists.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class DataTableColumnListTransferHandler extends AbstractPatchedTransferHandler {
 

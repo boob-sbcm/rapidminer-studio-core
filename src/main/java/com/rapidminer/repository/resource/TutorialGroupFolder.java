@@ -49,7 +49,15 @@ public class TutorialGroupFolder extends ResourceFolder {
 	private final Lock readLock = lock.readLock();
 	private final Lock writeLock = lock.writeLock();
 
-	protected TutorialGroupFolder(ResourceFolder parent, TutorialGroup tutorialGroup, String parentPath,
+    /**
+     * Instantiates a new Tutorial group folder.
+     *
+     * @param parent        the parent
+     * @param tutorialGroup the tutorial group
+     * @param parentPath    the parent path
+     * @param repository    the repository
+     */
+    protected TutorialGroupFolder(ResourceFolder parent, TutorialGroup tutorialGroup, String parentPath,
 			ResourceRepository repository) {
 		super(parent, tutorialGroup.getName(), parentPath + "/" + tutorialGroup.getName(), repository);
 		this.tutorialGroup = tutorialGroup;

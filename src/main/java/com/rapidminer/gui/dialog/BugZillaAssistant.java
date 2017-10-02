@@ -94,7 +94,12 @@ public class BugZillaAssistant extends ButtonDialog {
 		private JTextArea propArea;
 		private JScrollPane scrollPanePropArea;
 
-		public BugReportViewerDialog(Window owner) {
+        /**
+         * Instantiates a new Bug report viewer dialog.
+         *
+         * @param owner the owner
+         */
+        public BugReportViewerDialog(Window owner) {
 			super(owner, "send_bugreport_info", ModalityType.APPLICATION_MODAL, new Object[] {});
 
 			final JPanel panel = new JPanel();
@@ -117,7 +122,12 @@ public class BugZillaAssistant extends ButtonDialog {
 			layoutDefault(panel, LARGE, buttons);
 		}
 
-		public void setInfoText(String text) {
+        /**
+         * Sets info text.
+         *
+         * @param text the text
+         */
+        public void setInfoText(String text) {
 			propArea.setText(text);
 			propArea.setSelectionStart(0);
 			propArea.setSelectionEnd(0);
@@ -140,7 +150,15 @@ public class BugZillaAssistant extends ButtonDialog {
 
 	private static final long serialVersionUID = 8379605320787188372L;
 
-	public BugZillaAssistant(ProgressThread thread, final Throwable exception, final XmlRpcClient client)
+    /**
+     * Instantiates a new Bug zilla assistant.
+     *
+     * @param thread    the thread
+     * @param exception the exception
+     * @param client    the client
+     * @throws XmlRpcException the xml rpc exception
+     */
+    public BugZillaAssistant(ProgressThread thread, final Throwable exception, final XmlRpcClient client)
 			throws XmlRpcException {
 		super(ApplicationFrame.getApplicationFrame(), "send_bugreport", ModalityType.APPLICATION_MODAL, new Object[] {});
 		rpcClient = client;

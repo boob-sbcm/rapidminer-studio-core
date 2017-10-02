@@ -20,22 +20,22 @@ package com.rapidminer;
 
 /**
  * Notified when process is stored or opened.
- * 
+ *
  * @author Philipp Kersting
  */
 public interface ProcessStorageListener {
 
-	/**
-	 * Called when a process is stored in the GUI.
-	 * 
-	 * @param process
-	 */
-	public void stored(Process process);
+    /**
+     * Called when a process is stored in the GUI.
+     *
+     * @param process the process
+     */
+    public void stored(Process process);
 
-	/**
-	 * Called when a process is opened in the GUI.
-	 * 
-	 * @param process
-	 */
-	public void opened(Process process);
+    /**
+     * Called when a process is opened in the GUI.
+     *
+     * @param process the process
+     */
+    public void opened(Process process);
 }

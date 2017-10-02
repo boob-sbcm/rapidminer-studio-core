@@ -30,19 +30,40 @@ import com.rapidminer.parameter.ParameterTypeInt;
  */
 public class ParameterValueGrid extends ParameterValues {
 
-	public static final int SCALE_LINEAR = 0;
+    /**
+     * The constant SCALE_LINEAR.
+     */
+    public static final int SCALE_LINEAR = 0;
 
-	public static final int SCALE_QUADRATIC = 1;
+    /**
+     * The constant SCALE_QUADRATIC.
+     */
+    public static final int SCALE_QUADRATIC = 1;
 
-	public static final int SCALE_LOGARITHMIC = 2;
+    /**
+     * The constant SCALE_LOGARITHMIC.
+     */
+    public static final int SCALE_LOGARITHMIC = 2;
 
-	public static final int SCALE_LOGARITHMIC_LEGACY = 3;
+    /**
+     * The constant SCALE_LOGARITHMIC_LEGACY.
+     */
+    public static final int SCALE_LOGARITHMIC_LEGACY = 3;
 
-	public static final String[] SCALES = { "linear", "quadratic", "logarithmic", "logarithmic (legacy)" };
+    /**
+     * The constant SCALES.
+     */
+    public static final String[] SCALES = { "linear", "quadratic", "logarithmic", "logarithmic (legacy)" };
 
-	public static final int DEFAULT_STEPS = 10;
+    /**
+     * The constant DEFAULT_STEPS.
+     */
+    public static final int DEFAULT_STEPS = 10;
 
-	public static final int DEFAULT_SCALE = SCALE_LINEAR;
+    /**
+     * The constant DEFAULT_SCALE.
+     */
+    public static final int DEFAULT_SCALE = SCALE_LINEAR;
 
 	private String min;
 
@@ -54,11 +75,28 @@ public class ParameterValueGrid extends ParameterValues {
 
 	private int scale;
 
-	public ParameterValueGrid(Operator operator, ParameterType type, String min, String max) {
+    /**
+     * Instantiates a new Parameter value grid.
+     *
+     * @param operator the operator
+     * @param type     the type
+     * @param min      the min
+     * @param max      the max
+     */
+    public ParameterValueGrid(Operator operator, ParameterType type, String min, String max) {
 		this(operator, type, min, max, Integer.toString(DEFAULT_STEPS), DEFAULT_SCALE);
 	}
 
-	public ParameterValueGrid(Operator operator, ParameterType type, String min, String max, String stepSize) {
+    /**
+     * Instantiates a new Parameter value grid.
+     *
+     * @param operator the operator
+     * @param type     the type
+     * @param min      the min
+     * @param max      the max
+     * @param stepSize the step size
+     */
+    public ParameterValueGrid(Operator operator, ParameterType type, String min, String max, String stepSize) {
 		super(operator, type);
 		this.min = min;
 		this.max = max;
@@ -67,7 +105,17 @@ public class ParameterValueGrid extends ParameterValues {
 		this.scale = SCALE_LINEAR;
 	}
 
-	public ParameterValueGrid(Operator operator, ParameterType type, String min, String max, String steps, int scale) {
+    /**
+     * Instantiates a new Parameter value grid.
+     *
+     * @param operator the operator
+     * @param type     the type
+     * @param min      the min
+     * @param max      the max
+     * @param steps    the steps
+     * @param scale    the scale
+     */
+    public ParameterValueGrid(Operator operator, ParameterType type, String min, String max, String steps, int scale) {
 		super(operator, type);
 		this.min = min;
 		this.max = max;
@@ -75,7 +123,17 @@ public class ParameterValueGrid extends ParameterValues {
 		this.scale = scale;
 	}
 
-	public ParameterValueGrid(Operator operator, ParameterType type, String min, String max, String steps, String scaleName) {
+    /**
+     * Instantiates a new Parameter value grid.
+     *
+     * @param operator  the operator
+     * @param type      the type
+     * @param min       the min
+     * @param max       the max
+     * @param steps     the steps
+     * @param scaleName the scale name
+     */
+    public ParameterValueGrid(Operator operator, ParameterType type, String min, String max, String steps, String scaleName) {
 		super(operator, type);
 		this.min = min;
 		this.max = max;
@@ -89,35 +147,75 @@ public class ParameterValueGrid extends ParameterValues {
 		}
 	}
 
-	public void setMin(String min) {
+    /**
+     * Sets min.
+     *
+     * @param min the min
+     */
+    public void setMin(String min) {
 		this.min = min;
 	}
 
-	public String getMin() {
+    /**
+     * Gets min.
+     *
+     * @return the min
+     */
+    public String getMin() {
 		return min;
 	}
 
-	public void setMax(String max) {
+    /**
+     * Sets max.
+     *
+     * @param max the max
+     */
+    public void setMax(String max) {
 		this.max = max;
 	}
 
-	public String getMax() {
+    /**
+     * Gets max.
+     *
+     * @return the max
+     */
+    public String getMax() {
 		return max;
 	}
 
-	public void setSteps(String steps) {
+    /**
+     * Sets steps.
+     *
+     * @param steps the steps
+     */
+    public void setSteps(String steps) {
 		this.steps = steps;
 	}
 
-	public String getSteps() {
+    /**
+     * Gets steps.
+     *
+     * @return the steps
+     */
+    public String getSteps() {
 		return steps;
 	}
 
-	public void setScale(int scale) {
+    /**
+     * Sets scale.
+     *
+     * @param scale the scale
+     */
+    public void setScale(int scale) {
 		this.scale = scale;
 	}
 
-	public int getScale() {
+    /**
+     * Gets scale.
+     *
+     * @return the scale
+     */
+    public int getScale() {
 		return scale;
 	}
 
@@ -140,7 +238,12 @@ public class ParameterValueGrid extends ParameterValues {
 		return valuesArray;
 	}
 
-	public double[] getValues() {
+    /**
+     * Get values double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getValues() {
 		double[] values = null;
 		if (stepSize != null && steps == null) {
 			steps = Integer.toString((int) (Double.valueOf(max) - Double.valueOf(min)) / Integer.parseInt(stepSize));

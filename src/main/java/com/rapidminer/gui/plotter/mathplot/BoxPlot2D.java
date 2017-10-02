@@ -36,11 +36,22 @@ public class BoxPlot2D extends JMathPlotter2D {
 
 	private static final long serialVersionUID = -3763239240861652777L;
 
-	public BoxPlot2D(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Box plot 2 d.
+     *
+     * @param settings the settings
+     */
+    public BoxPlot2D(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
-	public BoxPlot2D(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Box plot 2 d.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public BoxPlot2D(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings, dataTable);
 	}
 

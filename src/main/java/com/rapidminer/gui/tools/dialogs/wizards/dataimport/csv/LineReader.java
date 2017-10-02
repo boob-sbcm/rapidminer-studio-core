@@ -38,24 +38,49 @@ public class LineReader implements AutoCloseable {
 	private BufferedReader reader = null;
 	private FileInputStream fis = null;
 
-	public LineReader(File file) throws FileNotFoundException {
+    /**
+     * Instantiates a new Line reader.
+     *
+     * @param file the file
+     * @throws FileNotFoundException the file not found exception
+     */
+    public LineReader(File file) throws FileNotFoundException {
 		fis = new FileInputStream(file);
 		reader = new BufferedReader(new InputStreamReader(fis));
 	}
 
-	public LineReader(File file, Charset encoding) throws FileNotFoundException {
+    /**
+     * Instantiates a new Line reader.
+     *
+     * @param file     the file
+     * @param encoding the encoding
+     * @throws FileNotFoundException the file not found exception
+     */
+    public LineReader(File file, Charset encoding) throws FileNotFoundException {
 		fis = new FileInputStream(file);
 		reader = new BufferedReader(new InputStreamReader(fis, encoding));
 	}
 
-	public LineReader(InputStream stream, Charset encoding) {
+    /**
+     * Instantiates a new Line reader.
+     *
+     * @param stream   the stream
+     * @param encoding the encoding
+     */
+    public LineReader(InputStream stream, Charset encoding) {
 		if (stream instanceof FileInputStream) {
 			fis = (FileInputStream) stream;
 		}
 		reader = new BufferedReader(new InputStreamReader(stream, encoding));
 	}
 
-	public String readLine() throws IOException {
+    /**
+     * Read line string.
+     *
+     * @return the string
+     * @throws IOException the io exception
+     */
+    public String readLine() throws IOException {
 		return reader.readLine();
 	}
 
@@ -64,24 +89,26 @@ public class LineReader implements AutoCloseable {
 		reader.close();
 	}
 
-	/**
-	 * @return If the LineReader reads from a FileInputStream, the size of the FileChannel is
-	 *         returned. Returns -1 otherwise.
-	 *
-	 * @throws IOException
-	 */
-	public long getSize() throws IOException {
+    /**
+     * Gets size.
+     *
+     * @return If the LineReader reads from a FileInputStream, the size of the FileChannel is         returned. Returns -1 otherwise.
+     * @throws IOException the io exception
+     */
+    public long getSize() throws IOException {
 		if (fis != null) {
 			return fis.getChannel().size();
 		}
 		return -1L;
 	}
 
-	/**
-	 * @return If the LineReader reads from a FileInputStream, the position of the FileChannel is
-	 *         returned. Returns -1 otherwise.
-	 */
-	public long getPosition() throws IOException {
+    /**
+     * Gets position.
+     *
+     * @return If the LineReader reads from a FileInputStream, the position of the FileChannel is         returned. Returns -1 otherwise.
+     * @throws IOException the io exception
+     */
+    public long getPosition() throws IOException {
 		if (fis != null) {
 			return fis.getChannel().position();
 		}

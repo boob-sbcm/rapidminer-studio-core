@@ -85,9 +85,15 @@ public class AboutBox extends JDialog {
 	private static final String DEFAULT_VENDOR = "RapidMiner";
 	private static final String DEFAULT_VENDOR_OLD = "Rapid-I";
 
-	public static Image backgroundImage = null;
+    /**
+     * The constant backgroundImage.
+     */
+    public static Image backgroundImage = null;
 
-	public static Image backgroundImageWithoutLogo = null;
+    /**
+     * The constant backgroundImageWithoutLogo.
+     */
+    public static Image backgroundImageWithoutLogo = null;
 
 	static {
 		URL url = Tools.getResource("about_background.png");
@@ -144,7 +150,13 @@ public class AboutBox extends JDialog {
 
 		private transient Image productLogo;
 
-		public ContentPanel(Properties properties, Image productLogo) {
+        /**
+         * Instantiates a new Content panel.
+         *
+         * @param properties  the properties
+         * @param productLogo the product logo
+         */
+        public ContentPanel(Properties properties, Image productLogo) {
 			this.properties = properties;
 			this.productLogo = productLogo;
 			int width = 550;
@@ -178,7 +190,12 @@ public class AboutBox extends JDialog {
 			g2d.dispose();
 		}
 
-		public void drawMain(Graphics2D g) {
+        /**
+         * Draw main.
+         *
+         * @param g the g
+         */
+        public void drawMain(Graphics2D g) {
 			g.setPaint(Color.WHITE);
 			g.fillRect(0, 0, getWidth(), getHeight());
 
@@ -322,20 +339,54 @@ public class AboutBox extends JDialog {
 		}
 	}
 
-	public AboutBox(Frame owner, String productName, String productVersion, String licensor, String url, String text,
+    /**
+     * Instantiates a new About box.
+     *
+     * @param owner                the owner
+     * @param productName          the product name
+     * @param productVersion       the product version
+     * @param licensor             the licensor
+     * @param url                  the url
+     * @param text                 the text
+     * @param renderTextNextToLogo the render text next to logo
+     * @param productLogo          the product logo
+     */
+    public AboutBox(Frame owner, String productName, String productVersion, String licensor, String url, String text,
 			boolean renderTextNextToLogo, Image productLogo) {
 		this(owner, createProperties(productName, productVersion, licensor, url, text, renderTextNextToLogo), productLogo);
 	}
 
-	public AboutBox(Frame owner, String productVersion, License license, Image productLogo) {
+    /**
+     * Instantiates a new About box.
+     *
+     * @param owner          the owner
+     * @param productVersion the product version
+     * @param license        the license
+     * @param productLogo    the product logo
+     */
+    public AboutBox(Frame owner, String productVersion, License license, Image productLogo) {
 		this(owner, createProperties(productVersion, license), productLogo);
 	}
 
-	public AboutBox(Frame owner, String productVersion, License license) {
+    /**
+     * Instantiates a new About box.
+     *
+     * @param owner          the owner
+     * @param productVersion the product version
+     * @param license        the license
+     */
+    public AboutBox(Frame owner, String productVersion, License license) {
 		this(owner, createProperties(productVersion, license), null);
 	}
 
-	public AboutBox(Frame owner, Properties properties, Image productLogo) {
+    /**
+     * Instantiates a new About box.
+     *
+     * @param owner       the owner
+     * @param properties  the properties
+     * @param productLogo the product logo
+     */
+    public AboutBox(Frame owner, Properties properties, Image productLogo) {
 		super(owner, "About", true);
 		setResizable(false);
 
@@ -388,7 +439,14 @@ public class AboutBox extends JDialog {
 		}
 	}
 
-	public static Properties createProperties(InputStream inputStream, String productVersion) {
+    /**
+     * Create properties properties.
+     *
+     * @param inputStream    the input stream
+     * @param productVersion the product version
+     * @return the properties
+     */
+    public static Properties createProperties(InputStream inputStream, String productVersion) {
 		Properties properties = new Properties();
 		if (inputStream != null) {
 			try {

@@ -26,7 +26,7 @@ import java.util.logging.Level;
 /**
  * Attribute statistics object for (pseudo-)numerical attributes like real numerical attributes or
  * date attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MinMaxStatistics implements Statistics {
@@ -37,7 +37,10 @@ public class MinMaxStatistics implements Statistics {
 
 	private double maximum = Double.NEGATIVE_INFINITY;
 
-	public MinMaxStatistics() {}
+    /**
+     * Instantiates a new Min max statistics.
+     */
+    public MinMaxStatistics() {}
 
 	/** Clone constructor. */
 	private MinMaxStatistics(MinMaxStatistics other) {

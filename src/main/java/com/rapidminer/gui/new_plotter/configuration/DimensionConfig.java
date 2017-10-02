@@ -36,29 +36,64 @@ import java.util.Vector;
 /**
  * Defines where a dimension gets its values from. Could be: the values of an attribute, all
  * attributes, etc.
- * 
+ * <p>
  * Also defines the sort order and the value range.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public interface DimensionConfig extends Cloneable {
 
-	public static final String DEFAULT_DATE_FORMAT_STRING = "dd.MM.yyyy HH:mm";
-	public static final String DEFAULT_AXIS_LABEL = "";
-	public static boolean DEFAULT_USE_USER_DEFINED_DATE_FORMAT = false;
-	public static double DEFAULT_USER_DEFINED_LOWER_BOUND = 0;
-	public static double DEFAULT_USER_DEFINED_UPPER_BOUND = 1;
+    /**
+     * The constant DEFAULT_DATE_FORMAT_STRING.
+     */
+    public static final String DEFAULT_DATE_FORMAT_STRING = "dd.MM.yyyy HH:mm";
+    /**
+     * The constant DEFAULT_AXIS_LABEL.
+     */
+    public static final String DEFAULT_AXIS_LABEL = "";
+    /**
+     * The constant DEFAULT_USE_USER_DEFINED_DATE_FORMAT.
+     */
+    public static boolean DEFAULT_USE_USER_DEFINED_DATE_FORMAT = false;
+    /**
+     * The constant DEFAULT_USER_DEFINED_LOWER_BOUND.
+     */
+    public static double DEFAULT_USER_DEFINED_LOWER_BOUND = 0;
+    /**
+     * The constant DEFAULT_USER_DEFINED_UPPER_BOUND.
+     */
+    public static double DEFAULT_USER_DEFINED_UPPER_BOUND = 1;
 
-	public enum PlotDimension {
-		VALUE(null, null), DOMAIN(I18N.getGUILabel("plotter.configuration_dialog.plot_dimension.domain.label"), I18N
-				.getGUILabel("plotter.configuration_dialog.plot_dimension.domain.short_label")), COLOR(I18N
+    /**
+     * The enum Plot dimension.
+     */
+    public enum PlotDimension {
+        /**
+         * Value plot dimension.
+         */
+        VALUE(null, null), /**
+         * Domain plot dimension.
+         */
+        DOMAIN(I18N.getGUILabel("plotter.configuration_dialog.plot_dimension.domain.label"), I18N
+				.getGUILabel("plotter.configuration_dialog.plot_dimension.domain.short_label")), /**
+         * Color plot dimension.
+         */
+        COLOR(I18N
 				.getGUILabel("plotter.configuration_dialog.plot_dimension.color.label"), I18N
-				.getGUILabel("plotter.configuration_dialog.plot_dimension.color.short_label")), SHAPE(I18N
+				.getGUILabel("plotter.configuration_dialog.plot_dimension.color.short_label")), /**
+         * Shape plot dimension.
+         */
+        SHAPE(I18N
 				.getGUILabel("plotter.configuration_dialog.plot_dimension.shape.label"), I18N
-				.getGUILabel("plotter.configuration_dialog.plot_dimension.shape.short_label")), SIZE(I18N
+				.getGUILabel("plotter.configuration_dialog.plot_dimension.shape.short_label")), /**
+         * Size plot dimension.
+         */
+        SIZE(I18N
 				.getGUILabel("plotter.configuration_dialog.plot_dimension.size.label"), I18N
-				.getGUILabel("plotter.configuration_dialog.plot_dimension.size.short_label")), SELECTED(I18N
+				.getGUILabel("plotter.configuration_dialog.plot_dimension.size.short_label")), /**
+         * Selected plot dimension.
+         */
+        SELECTED(I18N
 				.getGUILabel("plotter.configuration_dialog.plot_dimension.selected.label"), I18N
 				.getGUILabel("plotter.configuration_dialog.plot_dimension.selected.short_label"));
 
@@ -72,121 +107,315 @@ public interface DimensionConfig extends Cloneable {
 			this.shortName = shortName;
 		}
 
-		/**
-		 * @return The display name of the enum value.
-		 */
-		public String getName() {
+        /**
+         * Gets name.
+         *
+         * @return The display name of the enum value.
+         */
+        public String getName() {
 			return name;
 		}
 
-		/**
-		 * @return A shorter display name of the enum value.
-		 */
-		public String getShortName() {
+        /**
+         * Gets short name.
+         *
+         * @return A shorter display name of the enum value.
+         */
+        public String getShortName() {
 			return shortName;
 		}
 	}
 
-	public Double getUserDefinedUpperBound();
+    /**
+     * Gets user defined upper bound.
+     *
+     * @return the user defined upper bound
+     */
+    public Double getUserDefinedUpperBound();
 
-	public Double getUserDefinedLowerBound();
+    /**
+     * Gets user defined lower bound.
+     *
+     * @return the user defined lower bound
+     */
+    public Double getUserDefinedLowerBound();
 
-	public PlotDimension getDimension();
+    /**
+     * Gets dimension.
+     *
+     * @return the dimension
+     */
+    public PlotDimension getDimension();
 
-	/**
-	 * Returns the {@link DataTableColumn} from which this DimensionConfig gets its raw values.
-	 */
-	public DataTableColumn getDataTableColumn();
+    /**
+     * Returns the {@link DataTableColumn} from which this DimensionConfig gets its raw values.
+     *
+     * @return the data table column
+     */
+    public DataTableColumn getDataTableColumn();
 
-	public ValueGrouping getGrouping();
+    /**
+     * Gets grouping.
+     *
+     * @return the grouping
+     */
+    public ValueGrouping getGrouping();
 
-	/**
-	 * Returns the range of data which is used to create the diagram. Note that this is not
-	 * necessarily the data the user sees, because he might apply further filtering by zooming.
-	 * 
-	 * Might return null, which indicates that all values should be used.
-	 * 
-	 * Returns a clone of the actual range, so changing the returned object does not actually change
-	 * the range of this {@link DimensionConfig}.
-	 */
-	public ValueRange getUserDefinedRangeClone(DataTable dataTable);
+    /**
+     * Returns the range of data which is used to create the diagram. Note that this is not
+     * necessarily the data the user sees, because he might apply further filtering by zooming.
+     * <p>
+     * Might return null, which indicates that all values should be used.
+     * <p>
+     * Returns a clone of the actual range, so changing the returned object does not actually change
+     * the range of this {@link DimensionConfig}.
+     *
+     * @param dataTable the data table
+     * @return the user defined range clone
+     */
+    public ValueRange getUserDefinedRangeClone(DataTable dataTable);
 
-	/**
-	 * Returns the label of the dimension config that will be shown in the GUI.
-	 */
-	public String getLabel();
+    /**
+     * Returns the label of the dimension config that will be shown in the GUI.
+     *
+     * @return the label
+     */
+    public String getLabel();
 
-	public List<PlotConfigurationError> getErrors();
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<PlotConfigurationError> getErrors();
 
-	public List<PlotConfigurationError> getWarnings();
+    /**
+     * Gets warnings.
+     *
+     * @return the warnings
+     */
+    public List<PlotConfigurationError> getWarnings();
 
-	public Vector<GroupingType> getValidGroupingTypes();
+    /**
+     * Gets valid grouping types.
+     *
+     * @return the valid grouping types
+     */
+    public Vector<GroupingType> getValidGroupingTypes();
 
-	public ValueType getValueType();
+    /**
+     * Gets value type.
+     *
+     * @return the value type
+     */
+    public ValueType getValueType();
 
-	public Set<DataTableColumn.ValueType> getSupportedValueTypes();
+    /**
+     * Gets supported value types.
+     *
+     * @return the supported value types
+     */
+    public Set<DataTableColumn.ValueType> getSupportedValueTypes();
 
-	public int getId();
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId();
 
-	public boolean isValid();
+    /**
+     * Is valid boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isValid();
 
-	public boolean isAutoRangeRequired();
+    /**
+     * Is auto range required boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isAutoRangeRequired();
 
-	public boolean isLogarithmic();
+    /**
+     * Is logarithmic boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLogarithmic();
 
-	public boolean isAutoNaming();
+    /**
+     * Is auto naming boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isAutoNaming();
 
-	public boolean isGrouping();
+    /**
+     * Is grouping boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isGrouping();
 
-	public boolean isNominal();
+    /**
+     * Is nominal boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isNominal();
 
-	public boolean isNumerical();
+    /**
+     * Is numerical boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isNumerical();
 
-	public boolean isDate();
+    /**
+     * Is date boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isDate();
 
-	public boolean isUsingUserDefinedLowerBound();
+    /**
+     * Is using user defined lower bound boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isUsingUserDefinedLowerBound();
 
-	public boolean isUsingUserDefinedUpperBound();
+    /**
+     * Is using user defined upper bound boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isUsingUserDefinedUpperBound();
 
-	public void setGrouping(ValueGrouping grouping);
+    /**
+     * Sets grouping.
+     *
+     * @param grouping the grouping
+     */
+    public void setGrouping(ValueGrouping grouping);
 
-	// public void setSortProvider(SortProvider sortProvider);
+    /**
+     * Sets data table column.
+     *
+     * @param column the column
+     */
+// public void setSortProvider(SortProvider sortProvider);
 	public void setDataTableColumn(DataTableColumn column);
 
-	public void setUserDefinedRange(NumericalValueRange range);
+    /**
+     * Sets user defined range.
+     *
+     * @param range the range
+     */
+    public void setUserDefinedRange(NumericalValueRange range);
 
-	public void setLogarithmic(boolean logarithmic);
+    /**
+     * Sets logarithmic.
+     *
+     * @param logarithmic the logarithmic
+     */
+    public void setLogarithmic(boolean logarithmic);
 
-	public void setAutoNaming(boolean autoNaming);
+    /**
+     * Sets auto naming.
+     *
+     * @param autoNaming the auto naming
+     */
+    public void setAutoNaming(boolean autoNaming);
 
-	public void setLabel(String label);
+    /**
+     * Sets label.
+     *
+     * @param label the label
+     */
+    public void setLabel(String label);
 
-	public void setUpperBound(Double upperBound);
+    /**
+     * Sets upper bound.
+     *
+     * @param upperBound the upper bound
+     */
+    public void setUpperBound(Double upperBound);
 
-	public void setLowerBound(Double lowerBound);
+    /**
+     * Sets lower bound.
+     *
+     * @param lowerBound the lower bound
+     */
+    public void setLowerBound(Double lowerBound);
 
-	public void setUseUserDefinedUpperBound(boolean useUpperBound);
+    /**
+     * Sets use user defined upper bound.
+     *
+     * @param useUpperBound the use upper bound
+     */
+    public void setUseUserDefinedUpperBound(boolean useUpperBound);
 
-	public void setUseUserDefinedLowerBound(boolean useLowerBound);
+    /**
+     * Sets use user defined lower bound.
+     *
+     * @param useLowerBound the use lower bound
+     */
+    public void setUseUserDefinedLowerBound(boolean useLowerBound);
 
-	public void removeDimensionConfigListener(DimensionConfigListener l);
+    /**
+     * Remove dimension config listener.
+     *
+     * @param l the l
+     */
+    public void removeDimensionConfigListener(DimensionConfigListener l);
 
-	public void addDimensionConfigListener(DimensionConfigListener l);
+    /**
+     * Add dimension config listener.
+     *
+     * @param l the l
+     */
+    public void addDimensionConfigListener(DimensionConfigListener l);
 
-	public void colorSchemeChanged();
+    /**
+     * Color scheme changed.
+     */
+    public void colorSchemeChanged();
 
-	/**
-	 * Returns a {@link DateFormat} to be used for formatting dates on this axis.
-	 * 
-	 * @return the date format used to format dates on this axis.
-	 */
-	public DateFormat getDateFormat();
+    /**
+     * Returns a {@link DateFormat} to be used for formatting dates on this axis.
+     *
+     * @return the date format used to format dates on this axis.
+     */
+    public DateFormat getDateFormat();
 
-	public void setUserDefinedDateFormatString(String formatString);
+    /**
+     * Sets user defined date format string.
+     *
+     * @param formatString the format string
+     */
+    public void setUserDefinedDateFormatString(String formatString);
 
-	public String getUserDefinedDateFormatString();
+    /**
+     * Gets user defined date format string.
+     *
+     * @return the user defined date format string
+     */
+    public String getUserDefinedDateFormatString();
 
-	public void setUseUserDefinedDateFormat(boolean yes);
+    /**
+     * Sets use user defined date format.
+     *
+     * @param yes the yes
+     */
+    public void setUseUserDefinedDateFormat(boolean yes);
 
-	boolean isUsingUserDefinedDateFormat();
+    /**
+     * Is using user defined date format boolean.
+     *
+     * @return the boolean
+     */
+    boolean isUsingUserDefinedDateFormat();
 }

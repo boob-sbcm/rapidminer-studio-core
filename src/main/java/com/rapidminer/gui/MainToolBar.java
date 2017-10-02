@@ -90,15 +90,14 @@ public class MainToolBar extends JPanel {
 	/** The cached name of the current perspective */
 	private String perspectiveName;
 
-	/**
-	 * Creates a new tool bar instance. The new instance only contains build-in actions and
-	 * perspectives. To display element registered by an extension, the {@link #update()} method
-	 * must be invoked (after the extension is fully initialized).
-	 *
-	 * @param mainframe
-	 *            the mainframe that uses this tool bar
-	 */
-	public MainToolBar(final MainFrame mainframe) {
+    /**
+     * Creates a new tool bar instance. The new instance only contains build-in actions and
+     * perspectives. To display element registered by an extension, the {@link #update()} method
+     * must be invoked (after the extension is fully initialized).
+     *
+     * @param mainframe the mainframe that uses this tool bar
+     */
+    public MainToolBar(final MainFrame mainframe) {
 		// use default look and feel background
 		setOpaque(true);
 		setBackground(Colors.WINDOW_BACKGROUND);
@@ -252,7 +251,10 @@ public class MainToolBar extends JPanel {
 		return builder.build();
 	}
 
-	public void update() {
+    /**
+     * Update.
+     */
+    public void update() {
 		List<MenuItemFactory> factories = RunActionRegistry.INSTANCE.getFacories();
 		for (int i = 0; i < factories.size(); i++) {
 			runActions.getPopupMenu().addSeparator();

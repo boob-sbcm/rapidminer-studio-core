@@ -31,17 +31,19 @@ import com.rapidminer.tools.usagestats.ActionStatisticsCollector.Key;
 
 /**
  * Aggregates UsageStats events for the cta system
- *
+ * <p>
  * The event counts are aggregated, to reduce the load on the database.
- *
+ * <p>
  * Every time {@link pullEvents()} is called, the aggregation starts again.
  *
  * @author Jonas Wilms-Pfau
  * @since 7.5.0
- *
  */
 enum CtaEventAggregator {
-	INSTANCE;
+    /**
+     * Instance cta event aggregator.
+     */
+    INSTANCE;
 
 	/** The current event map */
 	private volatile Map<Key, Long> eventMap = new ConcurrentHashMap<>();
@@ -51,25 +53,25 @@ enum CtaEventAggregator {
 	private WriteLock writeLock = lock.writeLock();
 	private static final boolean NOT_IN_UI_MODE = !RapidMiner.getExecutionMode().equals(ExecutionMode.UI);
 
-	/**
-	 * Log the event
-	 *
-	 * @param type
-	 * @param value
-	 * @param arg
-	 * @param count
-	 */
-	public void log(String type, String value, String arg, long count) {
+    /**
+     * Log the event
+     *
+     * @param type  the type
+     * @param value the value
+     * @param arg   the arg
+     * @param count the count
+     */
+    public void log(String type, String value, String arg, long count) {
 		log(new Key(type, value, arg), count);
 	}
 
-	/**
-	 * Log the event
-	 *
-	 * @param event
-	 * @param count
-	 */
-	public void log(Key event, long count) {
+    /**
+     * Log the event
+     *
+     * @param event the event
+     * @param count the count
+     */
+    public void log(Key event, long count) {
 		// Disable logging on server
 		if (NOT_IN_UI_MODE) {
 			return;
@@ -82,12 +84,12 @@ enum CtaEventAggregator {
 		}
 	}
 
-	/**
-	 * Remove and return all events
-	 *
-	 * @return
-	 */
-	public Map<Key, Long> pullEvents() {
+    /**
+     * Remove and return all events
+     *
+     * @return map map
+     */
+    public Map<Key, Long> pullEvents() {
 		Map<Key, Long> result = eventMap;
 		writeLock.lock();
 		try {

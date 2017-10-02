@@ -48,21 +48,27 @@ import com.rapidminer.operator.OperatorChain;
 
 /**
  * Displays the process definition as a JTree. No longer has editing capabilities.
- *
+ * <p>
  * Since version 5.0 this view was mainly replaced by the process flow view. See
  * {@link ProcessRendererView}.
  *
- * @see com.rapidminer.gui.operatortree.ProcessTreeModel
  * @author Ingo Mierswa
+ * @see com.rapidminer.gui.operatortree.ProcessTreeModel
  */
 public class OperatorTree extends JTree implements TreeSelectionListener, TreeExpansionListener, MouseListener,
 ProcessEditor {
 
 	private static final long serialVersionUID = 1L;
 
-	public transient final Action EXPAND_ALL_ACTION = new ExpandAllAction(this, IconSize.SMALL);
+    /**
+     * The Expand all action.
+     */
+    public transient final Action EXPAND_ALL_ACTION = new ExpandAllAction(this, IconSize.SMALL);
 
-	public transient final Action COLLAPSE_ALL_ACTION = new CollapseAllAction(this, IconSize.SMALL);
+    /**
+     * The Collapse all action.
+     */
+    public transient final Action COLLAPSE_ALL_ACTION = new CollapseAllAction(this, IconSize.SMALL);
 
 	/** The main frame. Used for conditional action updates and property table settings. */
 	private final MainFrame mainFrame;
@@ -72,8 +78,12 @@ ProcessEditor {
 
 	private volatile boolean preventEvent = false;
 
-	/** Creates a new operator tree. */
-	public OperatorTree(MainFrame mainFrame) {
+    /**
+     * Creates a new operator tree.  @param mainFrame the main frame
+     *
+     * @param mainFrame the main frame
+     */
+    public OperatorTree(MainFrame mainFrame) {
 		super();
 		this.mainFrame = mainFrame;
 
@@ -89,8 +99,12 @@ ProcessEditor {
 		getSelectionModel().setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
 	}
 
-	/** Returns the currently selected operator, i.e. the last node in the current selection path. */
-	public List<Operator> getSelectedOperators() {
+    /**
+     * Returns the currently selected operator, i.e. the last node in the current selection path.  @return the selected operators
+     *
+     * @return the selected operators
+     */
+    public List<Operator> getSelectedOperators() {
 		TreePath[] paths = getSelectionPaths();
 		if (paths == null) {
 			return null;
@@ -108,8 +122,10 @@ ProcessEditor {
 		}
 	}
 
-	/** Expands the complete tree. */
-	public void expandAll() {
+    /**
+     * Expands the complete tree.
+     */
+    public void expandAll() {
 		int row = 0;
 		while (row < getRowCount()) {
 			expandRow(row);
@@ -117,8 +133,10 @@ ProcessEditor {
 		}
 	}
 
-	/** Collapses the complete tree. */
-	public void collapseAll() {
+    /**
+     * Collapses the complete tree.
+     */
+    public void collapseAll() {
 		int row = getRowCount() - 1;
 		while (row >= 0) {
 			collapseRow(row);

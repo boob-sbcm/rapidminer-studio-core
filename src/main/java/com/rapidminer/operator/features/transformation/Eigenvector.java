@@ -23,7 +23,7 @@ import java.util.Arrays;
 
 /**
  * This class holds information about one eigenvector and eigenvalue.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Eigenvector implements ComponentVector {
@@ -33,12 +33,23 @@ public class Eigenvector implements ComponentVector {
 	private double eigenvalue;
 	private double[] eigenvector;
 
-	public Eigenvector(double[] eigenvector, double eigenvalue) {
+    /**
+     * Instantiates a new Eigenvector.
+     *
+     * @param eigenvector the eigenvector
+     * @param eigenvalue  the eigenvalue
+     */
+    public Eigenvector(double[] eigenvector, double eigenvalue) {
 		this.eigenvector = eigenvector;
 		this.eigenvalue = eigenvalue;
 	}
 
-	public double[] getEigenvector() {
+    /**
+     * Get eigenvector double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getEigenvector() {
 		return this.eigenvector;
 	}
 

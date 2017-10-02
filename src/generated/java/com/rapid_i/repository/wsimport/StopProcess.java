@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for stopProcess complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="stopProcess">
  *   &lt;complexContent>
@@ -39,8 +39,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "stopProcess", propOrder = {
@@ -48,11 +46,15 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class StopProcess {
 
+    /**
+     * The Scheduled process id.
+     */
     protected int scheduledProcessId;
 
     /**
      * Gets the value of the scheduledProcessId property.
-     * 
+     *
+     * @return the scheduled process id
      */
     public int getScheduledProcessId() {
         return scheduledProcessId;
@@ -60,7 +62,8 @@ public class StopProcess {
 
     /**
      * Sets the value of the scheduledProcessId property.
-     * 
+     *
+     * @param value the value
      */
     public void setScheduledProcessId(int value) {
         this.scheduledProcessId = value;

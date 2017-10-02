@@ -27,7 +27,7 @@ import javax.swing.filechooser.FileFilter;
 /**
  * A file filter for a given set of extensions. This filter matches all files which has one of the
  * given extensions.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class SimpleFileFilter extends FileFilter {
@@ -38,21 +38,35 @@ public class SimpleFileFilter extends FileFilter {
 
 	private int id;
 
-	public SimpleFileFilter(String description, String extension) {
+    /**
+     * Instantiates a new Simple file filter.
+     *
+     * @param description the description
+     * @param extension   the extension
+     */
+    public SimpleFileFilter(String description, String extension) {
 		this(description, extension == null ? null : new String[] { extension }, -1);
 	}
 
-	public SimpleFileFilter(String description, String extension, int id) {
+    /**
+     * Instantiates a new Simple file filter.
+     *
+     * @param description the description
+     * @param extension   the extension
+     * @param id          the id
+     */
+    public SimpleFileFilter(String description, String extension, int id) {
 		this(description, extension == null ? null : new String[] { extension }, id);
 	}
 
-	/**
-	 * Creates a FileFilter that filters based on a list of extensions.
-	 * 
-	 * @param id
-	 *            Can be used to identify the filter
-	 */
-	public SimpleFileFilter(String description, String[] extensions, int id) {
+    /**
+     * Creates a FileFilter that filters based on a list of extensions.
+     *
+     * @param description the description
+     * @param extensions  the extensions
+     * @param id          Can be used to identify the filter
+     */
+    public SimpleFileFilter(String description, String[] extensions, int id) {
 		this.description = description;
 		this.extensions = extensions;
 		this.id = id;
@@ -79,11 +93,21 @@ public class SimpleFileFilter extends FileFilter {
 		return false;
 	}
 
-	public int getId() {
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
 		return id;
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		if ((extensions != null) && (extensions.length == 1)) {
 			return extensions[0];
 		} else {

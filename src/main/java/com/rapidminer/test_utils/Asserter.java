@@ -19,12 +19,25 @@
 package com.rapidminer.test_utils;
 
 /**
+ * The interface Asserter.
+ *
  * @author Marius Helf
- * 
  */
 public interface Asserter {
 
-	public void assertEquals(String message, Object expected, Object actual);
+    /**
+     * Assert equals.
+     *
+     * @param message  the message
+     * @param expected the expected
+     * @param actual   the actual
+     */
+    public void assertEquals(String message, Object expected, Object actual);
 
-	public Class<?> getAssertable();
+    /**
+     * Gets assertable.
+     *
+     * @return the assertable
+     */
+    public Class<?> getAssertable();
 }

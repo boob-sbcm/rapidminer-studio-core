@@ -29,8 +29,10 @@ import java.text.DateFormat;
  */
 public interface DateFormatProvider {
 
-	/**
-	 * @return a {@link DateFormat}
-	 */
-	DateFormat geDateFormat();
+    /**
+     * Ge date format date format.
+     *
+     * @return a {@link DateFormat}
+     */
+    DateFormat geDateFormat();
 }

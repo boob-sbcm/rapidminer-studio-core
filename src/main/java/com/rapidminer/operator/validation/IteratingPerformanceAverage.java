@@ -44,9 +44,15 @@ import com.rapidminer.tools.math.AverageVector;
  */
 public class IteratingPerformanceAverage extends OperatorChain {
 
-	public static final String PARAMETER_ITERATIONS = "iterations";
+    /**
+     * The constant PARAMETER_ITERATIONS.
+     */
+    public static final String PARAMETER_ITERATIONS = "iterations";
 
-	public static final String PARAMETER_AVERAGE_PERFORMANCES_ONLY = "average_performances_only";
+    /**
+     * The constant PARAMETER_AVERAGE_PERFORMANCES_ONLY.
+     */
+    public static final String PARAMETER_AVERAGE_PERFORMANCES_ONLY = "average_performances_only";
 
 	private PerformanceCriterion lastPerformance;
 
@@ -54,7 +60,12 @@ public class IteratingPerformanceAverage extends OperatorChain {
 	private final PortPairExtender performancePortExtender = new PortPairExtender("averagable", getSubprocess(0)
 			.getInnerSinks(), getOutputPorts(), new MetaData(AverageVector.class));
 
-	public IteratingPerformanceAverage(OperatorDescription description) {
+    /**
+     * Instantiates a new Iterating performance average.
+     *
+     * @param description the description
+     */
+    public IteratingPerformanceAverage(OperatorDescription description) {
 		super(description, "Subprocess");
 
 		inExtender.start();

@@ -33,6 +33,7 @@ import com.rapidminer.gui.tools.ResourceAction;
 
 
 /**
+ * The type Multi page dialog.
  *
  * @author Tobias Malbrecht
  */
@@ -72,47 +73,111 @@ public abstract class MultiPageDialog extends ButtonDialog implements ChangeList
 		}
 	});
 
-	public MultiPageDialog(Dialog owner, String key, boolean modal, Object... arguments) {
+    /**
+     * Instantiates a new Multi page dialog.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param modal     the modal
+     * @param arguments the arguments
+     */
+    public MultiPageDialog(Dialog owner, String key, boolean modal, Object... arguments) {
 		super(owner, key, modal ? ModalityType.APPLICATION_MODAL : ModalityType.MODELESS, arguments);
 	}
 
-	public MultiPageDialog(Dialog owner, String key, Object... arguments) {
+    /**
+     * Instantiates a new Multi page dialog.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param arguments the arguments
+     */
+    public MultiPageDialog(Dialog owner, String key, Object... arguments) {
 		super(owner, key, ModalityType.MODELESS, arguments);
 	}
 
-	public MultiPageDialog(Frame owner, String key, boolean modal, Object... arguments) {
+    /**
+     * Instantiates a new Multi page dialog.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param modal     the modal
+     * @param arguments the arguments
+     */
+    public MultiPageDialog(Frame owner, String key, boolean modal, Object... arguments) {
 		super(owner, key, modal ? ModalityType.APPLICATION_MODAL : ModalityType.MODELESS, arguments);
 	}
 
-	public MultiPageDialog(Frame owner, String key, Object... arguments) {
+    /**
+     * Instantiates a new Multi page dialog.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param arguments the arguments
+     */
+    public MultiPageDialog(Frame owner, String key, Object... arguments) {
 		super(owner, key, ModalityType.MODELESS, arguments);
 	}
 
-	protected abstract boolean isComplete();
+    /**
+     * Is complete boolean.
+     *
+     * @return the boolean
+     */
+    protected abstract boolean isComplete();
 
-	protected abstract boolean isLastStep(int step);
+    /**
+     * Is last step boolean.
+     *
+     * @param step the step
+     * @return the boolean
+     */
+    protected abstract boolean isLastStep(int step);
 
-	protected abstract String getNameForStep(int step);
+    /**
+     * Gets name for step.
+     *
+     * @param step the step
+     * @return the name for step
+     */
+    protected abstract String getNameForStep(int step);
 
-	protected boolean canProceed(int step) {
+    /**
+     * Can proceed boolean.
+     *
+     * @param step the step
+     * @return the boolean
+     */
+    protected boolean canProceed(int step) {
 		return true;
 	}
 
-	protected boolean canGoBack(int step) {
+    /**
+     * Can go back boolean.
+     *
+     * @param step the step
+     * @return the boolean
+     */
+    protected boolean canGoBack(int step) {
 		return true;
 	}
 
-	protected void layoutDefault(Map<String, Component> cards) {
+    /**
+     * Layout default.
+     *
+     * @param cards the cards
+     */
+    protected void layoutDefault(Map<String, Component> cards) {
 		layoutDefault(cards, DEFAULT_SIZE);
 	}
 
-	/**
-	 * @param cards
-	 *            Maps arbitrary names to GUI cards. The name for the current component is looked up
-	 *            by using {@link #getNameForStep(int)} as a key into this map. This is useful, if
-	 *            we do not have a linear order of cards.
-	 */
-	protected void layoutDefault(Map<String, Component> cards, int size) {
+    /**
+     * Layout default.
+     *
+     * @param cards Maps arbitrary names to GUI cards. The name for the current component is looked up            by using {@link #getNameForStep(int)} as a key into this map. This is useful, if            we do not have a linear order of cards.
+     * @param size  the size
+     */
+    protected void layoutDefault(Map<String, Component> cards, int size) {
 		cardPanel = new JPanel(new CardLayout());
 		for (Map.Entry<String, Component> entry : cards.entrySet()) {
 			cardPanel.add(entry.getValue(), entry.getKey());
@@ -121,7 +186,12 @@ public abstract class MultiPageDialog extends ButtonDialog implements ChangeList
 		super.layoutDefault(cardPanel, size, previous, next, finish, makeCancelButton());
 	}
 
-	protected int getCurrentStep() {
+    /**
+     * Gets current step.
+     *
+     * @return the current step
+     */
+    protected int getCurrentStep() {
 		return currentStep;
 	}
 
@@ -139,17 +209,26 @@ public abstract class MultiPageDialog extends ButtonDialog implements ChangeList
 		cl.show(cardPanel, key);
 	}
 
-	protected void finish() {
+    /**
+     * Finish.
+     */
+    protected void finish() {
 		wasConfirmed = true;
 		dispose();
 	}
 
-	protected void previous() {
+    /**
+     * Previous.
+     */
+    protected void previous() {
 		currentStep--;
 		showCurrent();
 	}
 
-	protected void next() {
+    /**
+     * Next.
+     */
+    protected void next() {
 		currentStep++;
 		showCurrent();
 	}
@@ -165,7 +244,12 @@ public abstract class MultiPageDialog extends ButtonDialog implements ChangeList
 		updateButtons();
 	}
 
-	protected JButton getFinishButton() {
+    /**
+     * Gets finish button.
+     *
+     * @return the finish button
+     */
+    protected JButton getFinishButton() {
 		return finish;
 	}
 }

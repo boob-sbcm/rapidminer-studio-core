@@ -30,7 +30,8 @@ import com.rapidminer.gui.tools.ResourceAction;
 
 
 /**
- * 
+ * The type Cut copy paste delete action.
+ *
  * @author Simon Fischer, Marco Boeck
  */
 public class CutCopyPasteDeleteAction extends ResourceAction {
@@ -39,12 +40,27 @@ public class CutCopyPasteDeleteAction extends ResourceAction {
 
 	private JComponent focusOwner = null;
 
-	public static final String DELETE_ACTION_COMMAND_KEY = "delete";
+    /**
+     * The constant DELETE_ACTION_COMMAND_KEY.
+     */
+    public static final String DELETE_ACTION_COMMAND_KEY = "delete";
 
-	public static final Action CUT_ACTION = new CutCopyPasteDeleteAction("cut", "cut");
-	public static final Action COPY_ACTION = new CutCopyPasteDeleteAction("copy", "copy");
-	public static final Action PASTE_ACTION = new CutCopyPasteDeleteAction("paste", "paste");
-	public static final Action DELETE_ACTION = new CutCopyPasteDeleteAction("delete", DELETE_ACTION_COMMAND_KEY);
+    /**
+     * The constant CUT_ACTION.
+     */
+    public static final Action CUT_ACTION = new CutCopyPasteDeleteAction("cut", "cut");
+    /**
+     * The constant COPY_ACTION.
+     */
+    public static final Action COPY_ACTION = new CutCopyPasteDeleteAction("copy", "copy");
+    /**
+     * The constant PASTE_ACTION.
+     */
+    public static final Action PASTE_ACTION = new CutCopyPasteDeleteAction("paste", "paste");
+    /**
+     * The constant DELETE_ACTION.
+     */
+    public static final Action DELETE_ACTION = new CutCopyPasteDeleteAction("delete", DELETE_ACTION_COMMAND_KEY);
 
 	private CutCopyPasteDeleteAction(String i18nKey, String action) {
 		super(i18nKey);

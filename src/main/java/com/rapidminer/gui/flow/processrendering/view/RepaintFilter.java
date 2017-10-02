@@ -49,7 +49,12 @@ class RepaintFilter {
 	private long counter = 0;
 	private AtomicBoolean repaintRequested = new AtomicBoolean(false);
 
-	RepaintFilter(final ProcessRendererView view) {
+    /**
+     * Instantiates a new Repaint filter.
+     *
+     * @param view the view
+     */
+    RepaintFilter(final ProcessRendererView view) {
 		ActionListener repaintListener = new ActionListener() {
 
 			@Override
@@ -69,11 +74,11 @@ class RepaintFilter {
 		timer.start();
 	}
 
-	/**
-	 * Requests a repaint for the next possible slot. If there is already a repaint waiting, the
-	 * request is discarded.
-	 */
-	void requestRepaint() {
+    /**
+     * Requests a repaint for the next possible slot. If there is already a repaint waiting, the
+     * request is discarded.
+     */
+    void requestRepaint() {
 		repaintRequested.set(true);
 	}
 

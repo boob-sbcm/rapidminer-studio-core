@@ -35,48 +35,53 @@ import com.rapidminer.operator.Operator;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public class ProcessAnnotation extends WorkflowAnnotation {
 
-	/** the minimum width an annotation can have */
-	public static final int MIN_WIDTH = ProcessDrawer.OPERATOR_WIDTH;
+    /**
+     * the minimum width an annotation can have
+     */
+    public static final int MIN_WIDTH = ProcessDrawer.OPERATOR_WIDTH;
 
-	/** the minimum height an annotation can have */
-	public static final int MIN_HEIGHT = 50;
+    /**
+     * the minimum height an annotation can have
+     */
+    public static final int MIN_HEIGHT = 50;
 
-	/** the default width for an annotation */
-	public static final int DEFAULT_WIDTH = MIN_WIDTH * 2;
+    /**
+     * the default width for an annotation
+     */
+    public static final int DEFAULT_WIDTH = MIN_WIDTH * 2;
 
-	/** the default height for an annotation */
-	public static final int DEFAULT_HEIGHT = 105;
+    /**
+     * the default height for an annotation
+     */
+    public static final int DEFAULT_HEIGHT = 105;
 
-	/** the maximum width for an annotation */
-	public static final int MAX_WIDTH = 4000;
+    /**
+     * the maximum width for an annotation
+     */
+    public static final int MAX_WIDTH = 4000;
 
-	/** the maximum height for an annotation */
-	public static final int MAX_HEIGHT = 2000;
+    /**
+     * the maximum height for an annotation
+     */
+    public static final int MAX_HEIGHT = 2000;
 
 	/** the process this annotation is located in */
 	private ExecutionUnit process;
 
-	/**
-	 * Creates a new process annotation which can be freely positioned in the process.
-	 *
-	 * @param comment
-	 *            the actual annotation as HTML
-	 * @param style
-	 *            the style of the annotation
-	 * @param process
-	 *            the process this annotation is located in
-	 * @param wasResized
-	 *            if the user has ever resized the annotation
-	 * @param wasColored
-	 *            if the user ever manually colored the annotation
-	 * @param location
-	 *            the location of the comment
-	 */
-	public ProcessAnnotation(final String comment, final AnnotationStyle style, final ExecutionUnit process,
+    /**
+     * Creates a new process annotation which can be freely positioned in the process.
+     *
+     * @param comment    the actual annotation as HTML
+     * @param style      the style of the annotation
+     * @param process    the process this annotation is located in
+     * @param wasResized if the user has ever resized the annotation
+     * @param wasColored if the user ever manually colored the annotation
+     * @param location   the location of the comment
+     */
+    public ProcessAnnotation(final String comment, final AnnotationStyle style, final ExecutionUnit process,
 			final boolean wasResized, final boolean wasColored, final Rectangle2D location) {
 		super(comment, style, wasResized, wasColored, location);
 		if (process == null) {
@@ -99,14 +104,12 @@ public class ProcessAnnotation extends WorkflowAnnotation {
 		return process;
 	}
 
-	/**
-	 * Sets the {@link ExecutionUnit} this annotation is located in.
-	 *
-	 * @param process
-	 *            the process the annotation will be attached to
-	 *
-	 */
-	public void setProcess(ExecutionUnit process) {
+    /**
+     * Sets the {@link ExecutionUnit} this annotation is located in.
+     *
+     * @param process the process the annotation will be attached to
+     */
+    public void setProcess(ExecutionUnit process) {
 		if (process == null) {
 			throw new IllegalArgumentException("process must not be null!");
 		}

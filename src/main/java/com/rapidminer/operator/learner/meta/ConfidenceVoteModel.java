@@ -53,18 +53,15 @@ public class ConfidenceVoteModel extends SimplePredictionModel implements MetaMo
 	/** List of voting models. */
 	private List<? extends SimplePredictionModel> models;
 
-	/**
-	 * Creates a new {@link MetaModel} with confidence based voting for the given example set and
-	 * models.
-	 *
-	 * @param exampleSet
-	 *            the example set
-	 * @param models
-	 *            the voting models
-	 * @throws IllegalArgumentException
-	 *             if the given example set's label is not nominal
-	 */
-	public ConfidenceVoteModel(ExampleSet exampleSet, List<? extends SimplePredictionModel> models) {
+    /**
+     * Creates a new {@link MetaModel} with confidence based voting for the given example set and
+     * models.
+     *
+     * @param exampleSet the example set
+     * @param models     the voting models
+     * @throws IllegalArgumentException if the given example set's label is not nominal
+     */
+    public ConfidenceVoteModel(ExampleSet exampleSet, List<? extends SimplePredictionModel> models) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.EQUAL,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		if (!getLabel().isNominal()) {

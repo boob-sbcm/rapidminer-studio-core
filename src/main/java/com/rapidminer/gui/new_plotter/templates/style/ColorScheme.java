@@ -35,11 +35,13 @@ import com.rapidminer.tools.XMLException;
  * Contains a color scheme. May contain the same colors multiple times.
  *
  * @author Marco Boeck, Nils Woehler
- *
  */
 public class ColorScheme extends AbstractChangeAwareSaveable<ColorRGB> {
 
-	public static final String XML_TAG_NAME = "color-scheme";
+    /**
+     * The constant XML_TAG_NAME.
+     */
+    public static final String XML_TAG_NAME = "color-scheme";
 	private static final String GRADIENT_END_COLOR_XML_TAG = "gradient-end-color";
 	private static final String GRADIENT_START_COLOR_XML_TAG = "gradient-start-color";
 	private static final String COLORS_XML_TAG = "category-colors";
@@ -57,15 +59,13 @@ public class ColorScheme extends AbstractChangeAwareSaveable<ColorRGB> {
 	private transient String repositoryLocation;
 	private transient boolean initialized = false;
 
-	/**
-	 * Creates a new {@link ColorScheme}.
-	 *
-	 * @param name
-	 *            the name of the color scheme
-	 * @param listOfColors
-	 *            a list with the colors the scheme should contain
-	 */
-	public ColorScheme(String name, List<ColorRGB> listOfColors) {
+    /**
+     * Creates a new {@link ColorScheme}.
+     *
+     * @param name         the name of the color scheme
+     * @param listOfColors a list with the colors the scheme should contain
+     */
+    public ColorScheme(String name, List<ColorRGB> listOfColors) {
 
 		if (name == null) {
 			throw new IllegalArgumentException("name must not be null!");
@@ -84,14 +84,28 @@ public class ColorScheme extends AbstractChangeAwareSaveable<ColorRGB> {
 		this.initialized = true;
 	}
 
-	public ColorScheme(String name, List<ColorRGB> listOfColors, ColorRGB gradientStart, ColorRGB gradientEnd) {
+    /**
+     * Instantiates a new Color scheme.
+     *
+     * @param name          the name
+     * @param listOfColors  the list of colors
+     * @param gradientStart the gradient start
+     * @param gradientEnd   the gradient end
+     */
+    public ColorScheme(String name, List<ColorRGB> listOfColors, ColorRGB gradientStart, ColorRGB gradientEnd) {
 		this(name, listOfColors);
 		this.gradientStartColor = gradientStart;
 		this.gradientEndColor = gradientEnd;
 		this.initialized = true;
 	}
 
-	public ColorScheme(Element element) throws XMLException {
+    /**
+     * Instantiates a new Color scheme.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ColorScheme(Element element) throws XMLException {
 		if (!XML_TAG_NAME.equals(element.getTagName())) {
 			throw new XMLException("<" + XML_TAG_NAME + "> expected.");
 		}
@@ -113,63 +127,69 @@ public class ColorScheme extends AbstractChangeAwareSaveable<ColorRGB> {
 		this.initialized = true;
 	}
 
-	/**
-	 * Returns the name of this {@link ColorScheme}.
-	 *
-	 * @return
-	 */
-	public String getName() {
+    /**
+     * Returns the name of this {@link ColorScheme}.
+     *
+     * @return name name
+     */
+    public String getName() {
 		return toString();
 	}
 
-	/**
-	 * @return the gradientStartColor
-	 */
-	public ColorRGB getGradientStartColor() {
+    /**
+     * Gets gradient start color.
+     *
+     * @return the gradientStartColor
+     */
+    public ColorRGB getGradientStartColor() {
 		return gradientStartColor;
 	}
 
-	/**
-	 * @return the gradientEndColor
-	 */
-	public ColorRGB getGradientEndColor() {
+    /**
+     * Gets gradient end color.
+     *
+     * @return the gradientEndColor
+     */
+    public ColorRGB getGradientEndColor() {
 		return gradientEndColor;
 	}
 
-	/**
-	 * @param gradientStartColor
-	 *            the gradientStartColor to set
-	 */
-	public void setGradientStartColor(ColorRGB gradientStartColor) {
+    /**
+     * Sets gradient start color.
+     *
+     * @param gradientStartColor the gradientStartColor to set
+     */
+    public void setGradientStartColor(ColorRGB gradientStartColor) {
 		this.gradientStartColor = gradientStartColor;
 		fireUpdate(this);
 	}
 
-	/**
-	 * @param gradientEndColor
-	 *            the gradientEndColor to set
-	 */
-	public void setGradientEndColor(ColorRGB gradientEndColor) {
+    /**
+     * Sets gradient end color.
+     *
+     * @param gradientEndColor the gradientEndColor to set
+     */
+    public void setGradientEndColor(ColorRGB gradientEndColor) {
 		this.gradientEndColor = gradientEndColor;
 		fireUpdate(this);
 	}
 
-	/**
-	 * Sets the name of this {@link ColorScheme}.
-	 *
-	 * @param name
-	 */
-	public void setName(String name) {
+    /**
+     * Sets the name of this {@link ColorScheme}.
+     *
+     * @param name the name
+     */
+    public void setName(String name) {
 		this.name = name;
 		fireUpdate(this);
 	}
 
-	/**
-	 * Sets the list of {@link ColorRGB} for this {@link ColorScheme}.
-	 *
-	 * @param listOfColors
-	 */
-	public void setColors(List<ColorRGB> listOfColors) {
+    /**
+     * Sets the list of {@link ColorRGB} for this {@link ColorScheme}.
+     *
+     * @param listOfColors the list of colors
+     */
+    public void setColors(List<ColorRGB> listOfColors) {
 		if (listOfColors == null) {
 			throw new IllegalArgumentException("listOfColors must not be null!");
 		}
@@ -177,22 +197,27 @@ public class ColorScheme extends AbstractChangeAwareSaveable<ColorRGB> {
 		fireUpdate(this);
 	}
 
-	/**
-	 * Adds a color to the color scheme.
-	 */
-	public void addColor(ColorRGB color) {
+    /**
+     * Adds a color to the color scheme.
+     *
+     * @param color the color
+     */
+    public void addColor(ColorRGB color) {
 		this.listOfColors.add(color);
 		observeForChanges(color);
 		fireUpdate(this);
 	}
 
-	/**
-	 * Adds a color to the color scheme at specified index. Shifts the element currently at that
-	 * position (if any) and any subsequent elements to the right (adds one to their indices). If
-	 * the color is already present in current color scheme it will be removed from its old position
-	 * and add to the new index.
-	 */
-	public void addColor(int index, ColorRGB color) {
+    /**
+     * Adds a color to the color scheme at specified index. Shifts the element currently at that
+     * position (if any) and any subsequent elements to the right (adds one to their indices). If
+     * the color is already present in current color scheme it will be removed from its old position
+     * and add to the new index.
+     *
+     * @param index the index
+     * @param color the color
+     */
+    public void addColor(int index, ColorRGB color) {
 		int oldIdx = listOfColors.indexOf(color);
 		if (oldIdx != -1) {
 			ListUtility.changeIndex(listOfColors, color, index);
@@ -203,30 +228,37 @@ public class ColorScheme extends AbstractChangeAwareSaveable<ColorRGB> {
 		fireUpdate(this);
 	}
 
-	/**
-	 * Removes the specified color from the {@link ColorScheme}. Will first be checked by class
-	 * reference. If reference cannot be found (should not happen), the color is removed via
-	 * {@link List#remove(Object)}.
-	 */
-	public void removeColor(ColorRGB color) {
+    /**
+     * Removes the specified color from the {@link ColorScheme}. Will first be checked by class
+     * reference. If reference cannot be found (should not happen), the color is removed via
+     * {@link List#remove(Object)}.
+     *
+     * @param color the color
+     */
+    public void removeColor(ColorRGB color) {
 		this.listOfColors.remove(color);
 		stopObservingForChanges(color);
 		fireUpdate(this);
 	}
 
-	/**
-	 * Removes the color at the provided index.
-	 */
-	public void removeColor(int index) {
+    /**
+     * Removes the color at the provided index.
+     *
+     * @param index the index
+     */
+    public void removeColor(int index) {
 		ColorRGB color = this.listOfColors.remove(index);
 		stopObservingForChanges(color);
 		fireUpdate(this);
 	}
 
-	/**
-	 * Replaces old color with new color if old color is already in color scheme.
-	 */
-	public void setColor(ColorRGB oldColor, ColorRGB newColor) {
+    /**
+     * Replaces old color with new color if old color is already in color scheme.
+     *
+     * @param oldColor the old color
+     * @param newColor the new color
+     */
+    public void setColor(ColorRGB oldColor, ColorRGB newColor) {
 		int index = listOfColors.indexOf(oldColor);
 		if (index != -1) {
 			this.listOfColors.set(index, newColor);
@@ -234,18 +266,21 @@ public class ColorScheme extends AbstractChangeAwareSaveable<ColorRGB> {
 		fireUpdate(this);
 	}
 
-	/**
-	 * Returns a list with all {@link ColorRGB} objects this {@link ColorScheme} consists of.
-	 */
-	public List<ColorRGB> getColors() {
+    /**
+     * Returns a list with all {@link ColorRGB} objects this {@link ColorScheme} consists of.
+     *
+     * @return the colors
+     */
+    public List<ColorRGB> getColors() {
 		return new LinkedList<ColorRGB>(listOfColors);
 	}
 
-	/**
-	 * @return the category colors as an array of colors in hex presentation without a preceding
-	 *         '#'.
-	 */
-	public String[] getColorsAsHexArray() {
+    /**
+     * Get colors as hex array string [ ].
+     *
+     * @return the category colors as an array of colors in hex presentation without a preceding         '#'.
+     */
+    public String[] getColorsAsHexArray() {
 		List<ColorRGB> colors = getColors();
 		String[] hexColors = new String[colors.size()];
 		int index = 0;
@@ -256,11 +291,21 @@ public class ColorScheme extends AbstractChangeAwareSaveable<ColorRGB> {
 		return hexColors;
 	}
 
-	public String getGradientStartColorAsHex() {
+    /**
+     * Gets gradient start color as hex.
+     *
+     * @return the gradient start color as hex
+     */
+    public String getGradientStartColorAsHex() {
 		return ColorRGB.convertColorRGBToHex(getGradientStartColor());
 	}
 
-	public String getGradientEndColorAsHex() {
+    /**
+     * Gets gradient end color as hex.
+     *
+     * @return the gradient end color as hex
+     */
+    public String getGradientEndColorAsHex() {
 		return ColorRGB.convertColorRGBToHex(getGradientEndColor());
 	}
 
@@ -312,13 +357,24 @@ public class ColorScheme extends AbstractChangeAwareSaveable<ColorRGB> {
 		return true;
 	}
 
-	public Document toXML() {
+    /**
+     * To xml document.
+     *
+     * @return the document
+     */
+    public Document toXML() {
 		Document doc = XMLTools.createDocument();
 		doc.appendChild(toXML(doc));
 		return doc;
 	}
 
-	public Element toXML(Document doc) {
+    /**
+     * To xml element.
+     *
+     * @param doc the doc
+     * @return the element
+     */
+    public Element toXML(Document doc) {
 		Element root = doc.createElement(XML_TAG_NAME);
 		XMLTools.setTagContents(root, NAME_XML_TAG, getName());
 
@@ -336,29 +392,42 @@ public class ColorScheme extends AbstractChangeAwareSaveable<ColorRGB> {
 		return root;
 	}
 
-	/**
-	 * Parses the output generated by {@link #toXML(Document)}.
-	 **/
-	public static ColorScheme fromXML(Document doc) throws XMLException {
+    /**
+     * Parses the output generated by {@link #toXML(Document)}.
+     *
+     * @param doc the doc
+     * @return the color scheme
+     * @throws XMLException the xml exception
+     */
+    public static ColorScheme fromXML(Document doc) throws XMLException {
 		return new ColorScheme(doc.getDocumentElement());
 	}
 
-	/**
-	 * @return the repositoryLocation
-	 */
-	public String getRepositoryLocation() {
+    /**
+     * Gets repository location.
+     *
+     * @return the repositoryLocation
+     */
+    public String getRepositoryLocation() {
 		return this.repositoryLocation;
 	}
 
-	/**
-	 * @param repositoryLocation
-	 *            the repositoryLocation to set
-	 */
-	public void setRepositoryLocation(String repositoryLocation) {
+    /**
+     * Sets repository location.
+     *
+     * @param repositoryLocation the repositoryLocation to set
+     */
+    public void setRepositoryLocation(String repositoryLocation) {
 		this.repositoryLocation = repositoryLocation;
 	}
 
-	public void exchange(ColorRGB c1, ColorRGB c2) {
+    /**
+     * Exchange.
+     *
+     * @param c1 the c 1
+     * @param c2 the c 2
+     */
+    public void exchange(ColorRGB c1, ColorRGB c2) {
 		if (c1 == c2) {
 			return;
 		}
@@ -371,15 +440,13 @@ public class ColorScheme extends AbstractChangeAwareSaveable<ColorRGB> {
 		fireUpdate(this);
 	}
 
-	/**
-	 * Exchanges two colors by index
-	 * 
-	 * @param i1
-	 *            Index of the first color
-	 * @param i2
-	 *            Index of the second color
-	 */
-	public void exchange(int i1, int i2) {
+    /**
+     * Exchanges two colors by index
+     *
+     * @param i1 Index of the first color
+     * @param i2 Index of the second color
+     */
+    public void exchange(int i1, int i2) {
 		if (i1 == i2) {
 			return;
 		}

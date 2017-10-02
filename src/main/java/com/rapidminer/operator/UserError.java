@@ -68,42 +68,62 @@ public class UserError extends OperatorException implements NoBugError {
 
 	private final Object[] arguments;
 
-	/**
-	 * Creates a new UserError.
-	 *
-	 * @param operator
-	 *            The {@link Operator} in which the exception occured.
-	 * @param cause
-	 *            The exception that caused the user error. May be null. Using this makes debugging
-	 *            a lot easier.
-	 * @param code
-	 *            The error code referring to a message in the file
-	 *            <code>UserErrorMessages.properties</code>
-	 * @param arguments
-	 *            Arguments for the short or long message.
-	 */
-	public UserError(Operator operator, Throwable cause, int code, Object... arguments) {
+    /**
+     * Creates a new UserError.
+     *
+     * @param operator  The {@link Operator} in which the exception occured.
+     * @param cause     The exception that caused the user error. May be null. Using this makes debugging            a lot easier.
+     * @param code      The error code referring to a message in the file            <code>UserErrorMessages.properties</code>
+     * @param arguments Arguments for the short or long message.
+     */
+    public UserError(Operator operator, Throwable cause, int code, Object... arguments) {
 		super(getErrorMessage(code, arguments), cause);
 		this.code = code;
 		this.operator = operator;
 		this.arguments = arguments;
 	}
 
-	/** Convenience constructor for messages with no arguments and cause. */
-	public UserError(Operator operator, Throwable cause, int code) {
+    /**
+     * Convenience constructor for messages with no arguments and cause.  @param operator the operator
+     *
+     * @param operator the operator
+     * @param cause    the cause
+     * @param code     the code
+     */
+    public UserError(Operator operator, Throwable cause, int code) {
 		this(operator, code, new Object[0], cause);
 	}
 
-	public UserError(Operator operator, int code, Object... arguments) {
+    /**
+     * Instantiates a new User error.
+     *
+     * @param operator  the operator
+     * @param code      the code
+     * @param arguments the arguments
+     */
+    public UserError(Operator operator, int code, Object... arguments) {
 		this(operator, null, code, arguments);
 	}
 
-	/** Convenience constructor for messages with no arguments. */
-	public UserError(Operator operator, int code) {
+    /**
+     * Convenience constructor for messages with no arguments.  @param operator the operator
+     *
+     * @param operator the operator
+     * @param code     the code
+     */
+    public UserError(Operator operator, int code) {
 		this(operator, null, code, new Object[0]);
 	}
 
-	public UserError(Operator operator, Throwable cause, String errorId, Object... arguments) {
+    /**
+     * Instantiates a new User error.
+     *
+     * @param operator  the operator
+     * @param cause     the cause
+     * @param errorId   the error id
+     * @param arguments the arguments
+     */
+    public UserError(Operator operator, Throwable cause, String errorId, Object... arguments) {
 		super(getErrorMessage(errorId, arguments), cause);
 		this.code = -1;
 		this.errorIdentifier = errorId;
@@ -111,21 +131,37 @@ public class UserError extends OperatorException implements NoBugError {
 		this.arguments = arguments;
 	}
 
-	/**
-	 * Convenience constructor for messages with no arguments and cause. This constructor is in fact
-	 * equivalent to the call of the above constructor but must kept for compatibility issues for
-	 * existing compiled extensions.
-	 */
-	public UserError(Operator operator, Throwable cause, String errorId) {
+    /**
+     * Convenience constructor for messages with no arguments and cause. This constructor is in fact
+     * equivalent to the call of the above constructor but must kept for compatibility issues for
+     * existing compiled extensions.
+     *
+     * @param operator the operator
+     * @param cause    the cause
+     * @param errorId  the error id
+     */
+    public UserError(Operator operator, Throwable cause, String errorId) {
 		this(operator, cause, errorId, new Object[0]);
 	}
 
-	public UserError(Operator operator, String errorId, Object... arguments) {
+    /**
+     * Instantiates a new User error.
+     *
+     * @param operator  the operator
+     * @param errorId   the error id
+     * @param arguments the arguments
+     */
+    public UserError(Operator operator, String errorId, Object... arguments) {
 		this(operator, null, errorId, arguments);
 	}
 
-	/** Convenience constructor for messages with no arguments. */
-	public UserError(Operator operator, String errorId) {
+    /**
+     * Convenience constructor for messages with no arguments.  @param operator the operator
+     *
+     * @param operator the operator
+     * @param errorId  the error id
+     */
+    public UserError(Operator operator, String errorId) {
 		this(operator, null, errorId, new Object[0]);
 	}
 
@@ -155,30 +191,56 @@ public class UserError extends OperatorException implements NoBugError {
 		return code;
 	}
 
-	/**
-	 * Returns the ErrorIdentifier if the UserError was created with a constructor that specifies
-	 * an error ID. Returns null if the UserError was created with a constructor that specifies an
-	 * error code.
-	 */
-	public String getErrorIdentifier() {
+    /**
+     * Returns the ErrorIdentifier if the UserError was created with a constructor that specifies
+     * an error ID. Returns null if the UserError was created with a constructor that specifies an
+     * error code.
+     *
+     * @return the error identifier
+     */
+    public String getErrorIdentifier() {
 		return errorIdentifier;
 	}
 
-	public Operator getOperator() {
+    /**
+     * Gets operator.
+     *
+     * @return the operator
+     */
+    public Operator getOperator() {
 		return operator;
 	}
 
-	public void setOperator(Operator operator) {
+    /**
+     * Sets operator.
+     *
+     * @param operator the operator
+     */
+    public void setOperator(Operator operator) {
 		this.operator = operator;
 	}
 
-	public static String getErrorMessage(int code, Object[] arguments) {
+    /**
+     * Gets error message.
+     *
+     * @param code      the code
+     * @param arguments the arguments
+     * @return the error message
+     */
+    public static String getErrorMessage(int code, Object[] arguments) {
 		String message = getResourceString(code, "short", "No message.");
 		return addArguments(arguments, message);
 
 	}
 
-	public static String getErrorMessage(String identifier, Object[] arguments) {
+    /**
+     * Gets error message.
+     *
+     * @param identifier the identifier
+     * @param arguments  the arguments
+     * @return the error message
+     */
+    public static String getErrorMessage(String identifier, Object[] arguments) {
 		String message = getResourceString(identifier, "short", "No message.");
 		return addArguments(arguments, message);
 	}
@@ -200,32 +262,32 @@ public class UserError extends OperatorException implements NoBugError {
 		}
 	}
 
-	/**
-	 * Returns a resource message for the given error code.
-	 *
-	 * @param key
-	 *            one out of &quot;name&quot;, &quot;short&quot;, &quot;long&quot;
-	 */
-	public static String getResourceString(int code, String key, String deflt) {
+    /**
+     * Returns a resource message for the given error code.
+     *
+     * @param code  the code
+     * @param key   one out of &quot;name&quot;, &quot;short&quot;, &quot;long&quot;
+     * @param deflt the deflt
+     * @return the resource string
+     */
+    public static String getResourceString(int code, String key, String deflt) {
 		return getResourceString(code + "", key, deflt);
 	}
 
-	/**
-	 * This returns a resource message of the internationalized error messages identified by an id.
-	 * Compared to the legacy method {@link #getResourceString(int, String, String)} this supports a
-	 * more detailed identifier. This makes it easier to ensure extensions don't reuse already
-	 * defined core errors. It is common sense to add the extensions namespace identifier as second
-	 * part of the key, just after error. For example: error.rmx_web.operator.unusable = This
-	 * operator {0} is unusable.
-	 *
-	 * @param id
-	 *            The identifier of the error. "error." will be automatically prepended-
-	 * @param key
-	 *            The part of the error description that should be shown.
-	 * @param deflt
-	 *            The default if no resource bundle is available.
-	 */
-	public static String getResourceString(String id, String key, String deflt) {
+    /**
+     * This returns a resource message of the internationalized error messages identified by an id.
+     * Compared to the legacy method {@link #getResourceString(int, String, String)} this supports a
+     * more detailed identifier. This makes it easier to ensure extensions don't reuse already
+     * defined core errors. It is common sense to add the extensions namespace identifier as second
+     * part of the key, just after error. For example: error.rmx_web.operator.unusable = This
+     * operator {0} is unusable.
+     *
+     * @param id    The identifier of the error. "error." will be automatically prepended-
+     * @param key   The part of the error description that should be shown.
+     * @param deflt The default if no resource bundle is available.
+     * @return the resource string
+     */
+    public static String getResourceString(String id, String key, String deflt) {
 		if (messages == null) {
 			return deflt;
 		}

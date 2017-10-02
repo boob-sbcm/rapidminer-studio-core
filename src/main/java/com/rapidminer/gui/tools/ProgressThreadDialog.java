@@ -261,12 +261,12 @@ public class ProgressThreadDialog extends ButtonDialog {
 		}
 	}
 
-	/**
-	 * Updates the progress of the specified ProgressThread.
-	 *
-	 * @param pg
-	 */
-	public void updateProgress(final ProgressThread pg) {
+    /**
+     * Updates the progress of the specified ProgressThread.
+     *
+     * @param pg the pg
+     */
+    public void updateProgress(final ProgressThread pg) {
 		final ProgressThreadDisplay ui = MAPPING_PG_TO_UI.get(pg);
 
 		if (ui != null) {
@@ -285,12 +285,12 @@ public class ProgressThreadDialog extends ButtonDialog {
 		updateUI();
 	}
 
-	/**
-	 * Updates the progress message of the specified ProgressThread.
-	 *
-	 * @param pg
-	 */
-	public void updateProgressMessage(final ProgressThread pg) {
+    /**
+     * Updates the progress message of the specified ProgressThread.
+     *
+     * @param pg the pg
+     */
+    public void updateProgressMessage(final ProgressThread pg) {
 		final ProgressThreadDisplay ui = MAPPING_PG_TO_UI.get(pg);
 
 		if (ui != null) {
@@ -309,15 +309,15 @@ public class ProgressThreadDialog extends ButtonDialog {
 		updateUI();
 	}
 
-	/**
-	 * Sets the dialog to visible. If this was invoked by a user action, set openedByUser to
-	 * <code>true</code>; <code>false</code> otherwise. This needed so that the dialog will not
-	 * close itself if opened by the user.
-	 *
-	 * @param openedByUser
-	 * @param visible
-	 */
-	public void setVisible(boolean openedByUser, boolean visible) {
+    /**
+     * Sets the dialog to visible. If this was invoked by a user action, set openedByUser to
+     * <code>true</code>; <code>false</code> otherwise. This needed so that the dialog will not
+     * close itself if opened by the user.
+     *
+     * @param openedByUser the opened by user
+     * @param visible      the visible
+     */
+    public void setVisible(boolean openedByUser, boolean visible) {
 		this.openedByUser = openedByUser;
 		if (visible) {
 			updateThreadPanel(true);
@@ -336,10 +336,12 @@ public class ProgressThreadDialog extends ButtonDialog {
 		super.setVisible(b);
 	}
 
-	/**
-	 * Singleton access to the {@link ProgressThreadDialog}.
-	 */
-	public static ProgressThreadDialog getInstance() {
+    /**
+     * Singleton access to the {@link ProgressThreadDialog}.
+     *
+     * @return the instance
+     */
+    public static ProgressThreadDialog getInstance() {
 		return INSTANCE;
 	}
 }

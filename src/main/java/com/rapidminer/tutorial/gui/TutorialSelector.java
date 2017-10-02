@@ -47,24 +47,27 @@ import com.vlsolutions.swing.docking.event.DockableStateWillChangeListener;
 /**
  * Model which holds a {@link Tutorial} and notifies {@link Observer}s.
  *
- * @since 7.0.0
  * @author Marcel Michel
+ * @since 7.0.0
  */
 public class TutorialSelector extends AbstractObservable<Tutorial> {
 
-	/**
-	 * Dialog to confirm the closing of the tutorial browser. The dialog displays three options: (1)
-	 * Leave tutorial and start from scratch, (2) Leave tutorial and continue with current process,
-	 * and (3) cancel and continue with the tutorial.
-	 *
-	 * @author Michael Knopf
-	 * @since 7.0.0
-	 */
-	static class LeaveTutorialDialog extends ConfirmDialog {
+    /**
+     * Dialog to confirm the closing of the tutorial browser. The dialog displays three options: (1)
+     * Leave tutorial and start from scratch, (2) Leave tutorial and continue with current process,
+     * and (3) cancel and continue with the tutorial.
+     *
+     * @author Michael Knopf
+     * @since 7.0.0
+     */
+    static class LeaveTutorialDialog extends ConfirmDialog {
 
 		private static final long serialVersionUID = 1L;
 
-		public LeaveTutorialDialog() {
+        /**
+         * Instantiates a new Leave tutorial dialog.
+         */
+        public LeaveTutorialDialog() {
 			super(RapidMinerGUI.getMainFrame(), "close_tutorial_browser", ConfirmDialog.YES_NO_CANCEL_OPTION, false);
 		}
 
@@ -115,7 +118,13 @@ public class TutorialSelector extends AbstractObservable<Tutorial> {
 	/** listener for perspective change events of the {@link #perspectiveModel} */
 	private PerspectiveChangeListener perspectiveListener;
 
-	public TutorialSelector(MainFrame mainFrame, PerspectiveModel perspectveModel) {
+    /**
+     * Instantiates a new Tutorial selector.
+     *
+     * @param mainFrame       the main frame
+     * @param perspectveModel the perspectve model
+     */
+    public TutorialSelector(MainFrame mainFrame, PerspectiveModel perspectveModel) {
 		this.mainFrame = mainFrame;
 		this.perspectiveModel = perspectveModel;
 		registerListeners();
@@ -230,17 +239,21 @@ public class TutorialSelector extends AbstractObservable<Tutorial> {
 		mainFrame.getDockingDesktop().addDockableStateWillChangeListener(listener);
 	}
 
-	/**
-	 * @return the selected tutorial
-	 */
-	public Tutorial getSelectedTutorial() {
+    /**
+     * Gets selected tutorial.
+     *
+     * @return the selected tutorial
+     */
+    public Tutorial getSelectedTutorial() {
 		return selectedTutorial;
 	}
 
-	/**
-	 * Updates the selected tutorial and notifies the registered observers.
-	 */
-	public void setSelectedTutorial(Tutorial selectedTutorial) {
+    /**
+     * Updates the selected tutorial and notifies the registered observers.
+     *
+     * @param selectedTutorial the selected tutorial
+     */
+    public void setSelectedTutorial(Tutorial selectedTutorial) {
 		this.selectedTutorial = selectedTutorial;
 		fireUpdate(selectedTutorial);
 	}

@@ -23,7 +23,10 @@ import java.io.Serializable;
 
 /**
  * A basic container class for 3 objects.
- * 
+ *
+ * @param <T> the type parameter
+ * @param <K> the type parameter
+ * @param <U> the type parameter
  * @author Marco Boeck
  */
 public class Triple<T, K, U> implements Serializable {
@@ -36,33 +39,70 @@ public class Triple<T, K, U> implements Serializable {
 
 	private U third;
 
-	public Triple(T t, K k, U u) {
+    /**
+     * Instantiates a new Triple.
+     *
+     * @param t the t
+     * @param k the k
+     * @param u the u
+     */
+    public Triple(T t, K k, U u) {
 		this.setFirst(t);
 		this.setSecond(k);
 		this.setThird(u);
 	}
 
-	public T getFirst() {
+    /**
+     * Gets first.
+     *
+     * @return the first
+     */
+    public T getFirst() {
 		return first;
 	}
 
-	public void setFirst(T first) {
+    /**
+     * Sets first.
+     *
+     * @param first the first
+     */
+    public void setFirst(T first) {
 		this.first = first;
 	}
 
-	public K getSecond() {
+    /**
+     * Gets second.
+     *
+     * @return the second
+     */
+    public K getSecond() {
 		return second;
 	}
 
-	public void setSecond(K second) {
+    /**
+     * Sets second.
+     *
+     * @param second the second
+     */
+    public void setSecond(K second) {
 		this.second = second;
 	}
 
-	public U getThird() {
+    /**
+     * Gets third.
+     *
+     * @return the third
+     */
+    public U getThird() {
 		return third;
 	}
 
-	public void setThird(U third) {
+    /**
+     * Sets third.
+     *
+     * @param third the third
+     */
+    public void setThird(U third) {
 		this.third = third;
 	}
 

@@ -50,19 +50,33 @@ import com.rapidminer.tools.container.Pair;
 /**
  * Plotter extending this adapter must be able to set their ranges during plotting if the dimensions
  * name is registered here.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public abstract class RangeablePlotterAdapter extends LabelRotatingPlotterAdapter implements AxisNameResolver {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final String PARAMETER_PREFIX_RANGE_LIST = "range_list";
-	public static final String PARAMETER_PREFIX_RANGE = "range_";
-	public static final String PARAMETER_DIMENSION_NAME = "dimension";
-	public static final String PARAMETER_PREFIX_RANGE_MIN = "range_min";
-	public static final String PARAMETER_PREFIX_RANGE_MAX = "range_max";
+    /**
+     * The constant PARAMETER_PREFIX_RANGE_LIST.
+     */
+    public static final String PARAMETER_PREFIX_RANGE_LIST = "range_list";
+    /**
+     * The constant PARAMETER_PREFIX_RANGE.
+     */
+    public static final String PARAMETER_PREFIX_RANGE = "range_";
+    /**
+     * The constant PARAMETER_DIMENSION_NAME.
+     */
+    public static final String PARAMETER_DIMENSION_NAME = "dimension";
+    /**
+     * The constant PARAMETER_PREFIX_RANGE_MIN.
+     */
+    public static final String PARAMETER_PREFIX_RANGE_MIN = "range_min";
+    /**
+     * The constant PARAMETER_PREFIX_RANGE_MAX.
+     */
+    public static final String PARAMETER_PREFIX_RANGE_MAX = "range_max";
 
 	private Map<String, Range> nameRangeMap = new HashMap<>();
 
@@ -74,7 +88,12 @@ public abstract class RangeablePlotterAdapter extends LabelRotatingPlotterAdapte
 
 	private List<SelectionListener> plotterSelectionListener = new LinkedList<>();
 
-	public RangeablePlotterAdapter(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Rangeable plotter adapter.
+     *
+     * @param settings the settings
+     */
+    public RangeablePlotterAdapter(final PlotterConfigurationModel settings) {
 		super(settings);
 
 		// adding default zoom listener
@@ -124,18 +143,27 @@ public abstract class RangeablePlotterAdapter extends LabelRotatingPlotterAdapte
 		return types;
 	}
 
-	/**
-	 * This method returns the range for the axis if was defined by parameters or null if automatic
-	 * ranging should be used.
-	 */
-	public Range getRangeForDimension(int dimension) {
+    /**
+     * This method returns the range for the axis if was defined by parameters or null if automatic
+     * ranging should be used.
+     *
+     * @param dimension the dimension
+     * @return the range for dimension
+     */
+    public Range getRangeForDimension(int dimension) {
 		if (dimension >= 0 && dimension < dataTable.getNumberOfColumns()) {
 			return nameRangeMap.get(PlotterAdapter.transformParameterName(dataTable.getColumnName(dimension)));
 		}
 		return null;
 	}
 
-	public Range getRangeForName(String columnName) {
+    /**
+     * Gets range for name.
+     *
+     * @param columnName the column name
+     * @return the range for name
+     */
+    public Range getRangeForName(String columnName) {
 		return nameRangeMap.get(PlotterAdapter.transformParameterName(columnName));
 	}
 
@@ -145,20 +173,37 @@ public abstract class RangeablePlotterAdapter extends LabelRotatingPlotterAdapte
 		dataTableSet();
 	}
 
-	public abstract void dataTableSet();
+    /**
+     * Data table set.
+     */
+    public abstract void dataTableSet();
 
-	protected DataTable getDataTable() {
+    /**
+     * Gets data table.
+     *
+     * @return the data table
+     */
+    protected DataTable getDataTable() {
 		return dataTable;
 	}
 
-	/**
-	 * This is a convenience method for setting the correct range parameter
-	 */
-	public void setRange(int dimension, Range range) {
+    /**
+     * This is a convenience method for setting the correct range parameter
+     *
+     * @param dimension the dimension
+     * @param range     the range
+     */
+    public void setRange(int dimension, Range range) {
 		setRange(dataTable.getColumnName(dimension), range);
 	}
 
-	public void setRange(String columnName, Range range) {
+    /**
+     * Sets range.
+     *
+     * @param columnName the column name
+     * @param range      the range
+     */
+    public void setRange(String columnName, Range range) {
 		// inserting in map
 		nameRangeMap.put(PlotterAdapter.transformParameterName(columnName), range);
 
@@ -197,7 +242,13 @@ public abstract class RangeablePlotterAdapter extends LabelRotatingPlotterAdapte
 		}
 	}
 
-	protected AbstractChartPanel createPanel(JFreeChart chart) {
+    /**
+     * Create panel abstract chart panel.
+     *
+     * @param chart the chart
+     * @return the abstract chart panel
+     */
+    protected AbstractChartPanel createPanel(JFreeChart chart) {
 		panel = new AbstractChartPanel(chart, getWidth(), getHeight() - MARGIN);
 
 		panel.registerAxisNameResolver(this);
@@ -229,14 +280,22 @@ public abstract class RangeablePlotterAdapter extends LabelRotatingPlotterAdapte
 		return panel;
 	}
 
-	public void registerPlotterSelectionListener(SelectionListener listener) {
+    /**
+     * Register plotter selection listener.
+     *
+     * @param listener the listener
+     */
+    public void registerPlotterSelectionListener(SelectionListener listener) {
 		this.plotterSelectionListener.add(listener);
 		if (panel != null) {
 			panel.registerSelectionListener(listener);
 		}
 	}
 
-	public void clearPlotterSelectionListener() {
+    /**
+     * Clear plotter selection listener.
+     */
+    public void clearPlotterSelectionListener() {
 		this.plotterSelectionListener.clear();
 		if (panel != null) {
 			panel.clearSelectionListener();
@@ -259,7 +318,12 @@ public abstract class RangeablePlotterAdapter extends LabelRotatingPlotterAdapte
 		return panel;
 	}
 
-	public AbstractChartPanel getPlotterPanel() {
+    /**
+     * Gets plotter panel.
+     *
+     * @return the plotter panel
+     */
+    public AbstractChartPanel getPlotterPanel() {
 		return panel;
 	}
 }

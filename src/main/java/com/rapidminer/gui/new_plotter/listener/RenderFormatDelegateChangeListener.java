@@ -22,11 +22,16 @@ import com.rapidminer.gui.new_plotter.engine.jfreechart.RenderFormatDelegate;
 
 
 /**
- * 
+ * The interface Render format delegate change listener.
+ *
  * @author Marius Helf
- * 
  */
 public interface RenderFormatDelegateChangeListener {
 
-	public void renderFormatDelegateChanged(RenderFormatDelegate source);
+    /**
+     * Render format delegate changed.
+     *
+     * @param source the source
+     */
+    public void renderFormatDelegateChanged(RenderFormatDelegate source);
 }

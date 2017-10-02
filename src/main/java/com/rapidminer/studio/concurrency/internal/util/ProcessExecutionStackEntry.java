@@ -37,21 +37,41 @@ public class ProcessExecutionStackEntry {
 	private int operatorApplyCount;
 	private long startTime;
 
-	public ProcessExecutionStackEntry(Operator operator) {
+    /**
+     * Instantiates a new Process execution stack entry.
+     *
+     * @param operator the operator
+     */
+    public ProcessExecutionStackEntry(Operator operator) {
 		this.operatorName = operator.getName();
 		this.operatorApplyCount = operator.getApplyCount();
 		this.startTime = System.currentTimeMillis();
 	}
 
-	public String getOperatorName() {
+    /**
+     * Gets operator name.
+     *
+     * @return the operator name
+     */
+    public String getOperatorName() {
 		return operatorName;
 	}
 
-	public int getOperatorApplyCount() {
+    /**
+     * Gets operator apply count.
+     *
+     * @return the operator apply count
+     */
+    public int getOperatorApplyCount() {
 		return operatorApplyCount;
 	}
 
-	public String getRuntimeAsString() {
+    /**
+     * Gets runtime as string.
+     *
+     * @return the runtime as string
+     */
+    public String getRuntimeAsString() {
 		return Tools.formatDuration(System.currentTimeMillis() - startTime);
 	}
 }

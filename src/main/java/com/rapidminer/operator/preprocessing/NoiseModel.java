@@ -42,6 +42,8 @@ import java.util.Set;
 
 
 /**
+ * The type Noise model.
+ *
  * @author Sebastian Land
  */
 public class NoiseModel extends PreprocessingModel {
@@ -65,7 +67,19 @@ public class NoiseModel extends PreprocessingModel {
 	private Map<String, Double> noiseMap;
 	private double labelRange;
 
-	public NoiseModel(ExampleSet exampleSet, RandomGenerator localRandom, List<String[]> noises, double attributeNoise,
+    /**
+     * Instantiates a new Noise model.
+     *
+     * @param exampleSet     the example set
+     * @param localRandom    the local random
+     * @param noises         the noises
+     * @param attributeNoise the attribute noise
+     * @param labelNoise     the label noise
+     * @param noiseOffsett   the noise offsett
+     * @param noiseFactor    the noise factor
+     * @param attributeNames the attribute names
+     */
+    public NoiseModel(ExampleSet exampleSet, RandomGenerator localRandom, List<String[]> noises, double attributeNoise,
 			double labelNoise, double noiseOffsett, double noiseFactor, String[] attributeNames) {
 		super(exampleSet);
 		this.attributeNoise = attributeNoise;
@@ -243,31 +257,66 @@ public class NoiseModel extends PreprocessingModel {
 		return true;
 	}
 
-	public double getAttributeNoise() {
+    /**
+     * Gets attribute noise.
+     *
+     * @return the attribute noise
+     */
+    public double getAttributeNoise() {
 		return attributeNoise;
 	}
 
-	public double getLabelNoise() {
+    /**
+     * Gets label noise.
+     *
+     * @return the label noise
+     */
+    public double getLabelNoise() {
 		return labelNoise;
 	}
 
-	public double getNoiseOffset() {
+    /**
+     * Gets noise offset.
+     *
+     * @return the noise offset
+     */
+    public double getNoiseOffset() {
 		return noiseOffset;
 	}
 
-	public double getNoiseFactor() {
+    /**
+     * Gets noise factor.
+     *
+     * @return the noise factor
+     */
+    public double getNoiseFactor() {
 		return noiseFactor;
 	}
 
-	public double getLabelRange() {
+    /**
+     * Gets label range.
+     *
+     * @return the label range
+     */
+    public double getLabelRange() {
 		return labelRange;
 	}
 
-	public String[] getNoiseAttributeNames() {
+    /**
+     * Get noise attribute names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getNoiseAttributeNames() {
 		return noiseAttributeNames;
 	}
 
-	public Map<String, Double> getNoiseMap() {
+    /**
+     * Gets noise map.
+     *
+     * @return the noise map
+     */
+    public Map<String, Double> getNoiseMap() {
 		return noiseMap;
 	}
 

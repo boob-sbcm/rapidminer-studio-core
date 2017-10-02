@@ -21,42 +21,37 @@ package com.rapidminer;
 /**
  * This listener can be used to register for process state changes like start/pause/stop initiated
  * by user.
- * 
+ *
  * @author Christian Pels, Nils Woehler
- * 
  */
 public interface ProcessStateListener {
 
-	/**
-	 * Fired if a process is started.
-	 * 
-	 * @param process
-	 *            the process that has been started
-	 */
-	public void started(Process process);
+    /**
+     * Fired if a process is started.
+     *
+     * @param process the process that has been started
+     */
+    public void started(Process process);
 
-	/**
-	 * Fired if a process was paused.
-	 * 
-	 * @param process
-	 *            the process that was paused
-	 */
-	public void paused(Process process);
+    /**
+     * Fired if a process was paused.
+     *
+     * @param process the process that was paused
+     */
+    public void paused(Process process);
 
-	/**
-	 * Fired if a process was resumed.
-	 * 
-	 * @param process
-	 *            the process that was resumed
-	 */
-	public void resumed(Process process);
+    /**
+     * Fired if a process was resumed.
+     *
+     * @param process the process that was resumed
+     */
+    public void resumed(Process process);
 
-	/**
-	 * Fired if a process was stopped.
-	 * 
-	 * @param process
-	 *            the process that was stopped
-	 */
-	public void stopped(Process process);
+    /**
+     * Fired if a process was stopped.
+     *
+     * @param process the process that was stopped
+     */
+    public void stopped(Process process);
 
 }

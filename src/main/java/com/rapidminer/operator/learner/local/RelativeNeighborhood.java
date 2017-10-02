@@ -35,15 +35,17 @@ import java.util.List;
 /**
  * This neighborhood includes a fraction of the complete training data set. So the number of nearest
  * neighbors depends on the size of the training set but at least 1.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class RelativeNeighborhood implements Neighborhood {
 
 	private static final long serialVersionUID = -3244742069757655400L;
 
-	public static final String PARAMETER_RELATIVE_SIZE = "relative_size";
+    /**
+     * The constant PARAMETER_RELATIVE_SIZE.
+     */
+    public static final String PARAMETER_RELATIVE_SIZE = "relative_size";
 
 	private double relativeSize;
 

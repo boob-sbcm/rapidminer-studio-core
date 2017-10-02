@@ -23,12 +23,16 @@ import java.util.EventListener;
 
 /**
  * Listens to the selection of repository entry in a {@link RepositoryTree}.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public interface RepositorySelectionListener extends EventListener {
 
-	public void repositoryLocationSelected(RepositorySelectionEvent e);
+    /**
+     * Repository location selected.
+     *
+     * @param e the e
+     */
+    public void repositoryLocationSelected(RepositorySelectionEvent e);
 
 }

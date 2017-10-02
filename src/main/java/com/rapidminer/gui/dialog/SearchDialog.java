@@ -88,11 +88,24 @@ public class SearchDialog extends ButtonDialog {
 
 	private transient final SearchableTextComponent textComponent;
 
-	public SearchDialog(Component owner, SearchableTextComponent textComponent) {
+    /**
+     * Instantiates a new Search dialog.
+     *
+     * @param owner         the owner
+     * @param textComponent the text component
+     */
+    public SearchDialog(Component owner, SearchableTextComponent textComponent) {
 		this(owner, textComponent, false);
 	}
 
-	public SearchDialog(Component owner, SearchableTextComponent textComponent, boolean allowReplace) {
+    /**
+     * Instantiates a new Search dialog.
+     *
+     * @param owner         the owner
+     * @param textComponent the text component
+     * @param allowReplace  the allow replace
+     */
+    public SearchDialog(Component owner, SearchableTextComponent textComponent, boolean allowReplace) {
 		super(owner != null ? SwingUtilities.getWindowAncestor(owner) : null, allowReplace ? "search_replace" : "search",
 				ModalityType.MODELESS, new Object[] {});
 

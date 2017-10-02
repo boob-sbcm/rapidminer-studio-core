@@ -35,18 +35,41 @@ import com.rapidminer.parameter.ParameterType;
  */
 public class ParameterValueList extends ParameterValues implements Iterable<String> {
 
-	List<String> values;
+    /**
+     * The Values.
+     */
+    List<String> values;
 
-	public ParameterValueList(Operator operator, ParameterType type) {
+    /**
+     * Instantiates a new Parameter value list.
+     *
+     * @param operator the operator
+     * @param type     the type
+     */
+    public ParameterValueList(Operator operator, ParameterType type) {
 		this(operator, type, new LinkedList<String>());
 	}
 
-	public ParameterValueList(Operator operator, ParameterType type, String[] valuesArray) {
+    /**
+     * Instantiates a new Parameter value list.
+     *
+     * @param operator    the operator
+     * @param type        the type
+     * @param valuesArray the values array
+     */
+    public ParameterValueList(Operator operator, ParameterType type, String[] valuesArray) {
 		super(operator, type);
 		this.values = new ArrayList<>(Arrays.asList(valuesArray));
 	}
 
-	public ParameterValueList(Operator operator, ParameterType type, List<String> values) {
+    /**
+     * Instantiates a new Parameter value list.
+     *
+     * @param operator the operator
+     * @param type     the type
+     * @param values   the values
+     */
+    public ParameterValueList(Operator operator, ParameterType type, List<String> values) {
 		super(operator, type);
 		this.values = values;
 	}
@@ -60,7 +83,12 @@ public class ParameterValueList extends ParameterValues implements Iterable<Stri
 		}
 	}
 
-	public List<String> getValues() {
+    /**
+     * Gets values.
+     *
+     * @return the values
+     */
+    public List<String> getValues() {
 		return values;
 	}
 
@@ -71,15 +99,31 @@ public class ParameterValueList extends ParameterValues implements Iterable<Stri
 		return valuesArray;
 	}
 
-	public void add(String value) {
+    /**
+     * Add.
+     *
+     * @param value the value
+     */
+    public void add(String value) {
 		values.add(value);
 	}
 
-	public boolean contains(String value) {
+    /**
+     * Contains boolean.
+     *
+     * @param value the value
+     * @return the boolean
+     */
+    public boolean contains(String value) {
 		return values.contains(value);
 	}
 
-	public void remove(String value) {
+    /**
+     * Remove.
+     *
+     * @param value the value
+     */
+    public void remove(String value) {
 		values.remove(value);
 	}
 

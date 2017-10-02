@@ -42,7 +42,7 @@ import java.util.zip.GZIPInputStream;
  * methods of the IOObject interface. In addition, it also provides static methods which can be used
  * for reading IOObjects from XML strings and input streams / files containing the XML
  * serialization.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class AbstractIOObject implements IOObject {
@@ -127,17 +127,17 @@ public abstract class AbstractIOObject implements IOObject {
 		return this;
 	}
 
-	/**
-	 * Initializes the writing of this object. This method is invoked before the actual writing is
-	 * performed. The default implementation does nothing.
-	 * 
-	 * This method should also be used for clean up processes which should be performed before the
-	 * actual writing is done. For example, models might decide to keep the example set information
-	 * directly after learning (e.g. for visualization reasons) but not to write them down. Please
-	 * note that all fields will be written into files unless they are set to null in this method or
-	 * they are marked as transient.
-	 */
-	protected void initWriting() {}
+    /**
+     * Initializes the writing of this object. This method is invoked before the actual writing is
+     * performed. The default implementation does nothing.
+     * <p>
+     * This method should also be used for clean up processes which should be performed before the
+     * actual writing is done. For example, models might decide to keep the example set information
+     * directly after learning (e.g. for visualization reasons) but not to write them down. Please
+     * note that all fields will be written into files unless they are set to null in this method or
+     * they are marked as transient.
+     */
+    protected void initWriting() {}
 
 	/**
 	 * Just serializes this object with help of a {@link XMLSerialization}. Initializes
@@ -162,18 +162,16 @@ public abstract class AbstractIOObject implements IOObject {
 		return userData.put(key, value);
 	}
 
-	/**
-	 * Deserializes an IOObect from the given XML stream. TODO: Make private and remove deprecated
-	 * annotation
-	 * 
-	 * @throws IOException
-	 *             if any IO error occurs.
-	 * @throws IllegalStateException
-	 *             if {@link XMLSerialization#init(ClassLoader)} has never been called.
-	 * @deprecated Use {@link #read(InputStreamProvider, String)} to be able to read all formats
-	 *             (xml zipped/not zipped and binary)
-	 */
-	@Deprecated
+    /**
+     * Deserializes an IOObect from the given XML stream. TODO: Make private and remove deprecated
+     * annotation
+     *
+     * @param in the in
+     * @return the io object
+     * @throws IOException if any IO error occurs.
+     * @deprecated Use {@link #read(InputStreamProvider, String)} to be able to read all formats             (xml zipped/not zipped and binary)
+     */
+    @Deprecated
 	public static IOObject read(InputStream in) throws IOException {
 		final XMLSerialization serializer = XMLSerialization.getXMLSerialization();
 		if (serializer == null) {
@@ -183,13 +181,28 @@ public abstract class AbstractIOObject implements IOObject {
 		return (IOObject) serializer.fromXML(in);
 	}
 
-	/** This interface is needed since we must reset the stream in case of an exception. */
-	public static interface InputStreamProvider {
+    /**
+     * This interface is needed since we must reset the stream in case of an exception.
+     */
+    public static interface InputStreamProvider {
 
-		public InputStream getInputStream() throws IOException;
+        /**
+         * Gets input stream.
+         *
+         * @return the input stream
+         * @throws IOException the io exception
+         */
+        public InputStream getInputStream() throws IOException;
 	}
 
-	public static IOObject read(final File file) throws IOException {
+    /**
+     * Read io object.
+     *
+     * @param file the file
+     * @return the io object
+     * @throws IOException the io exception
+     */
+    public static IOObject read(final File file) throws IOException {
 		return read(new InputStreamProvider() {
 
 			@Override
@@ -199,7 +212,14 @@ public abstract class AbstractIOObject implements IOObject {
 		});
 	}
 
-	public static IOObject read(final byte[] buf) throws IOException {
+    /**
+     * Read io object.
+     *
+     * @param buf the buf
+     * @return the io object
+     * @throws IOException the io exception
+     */
+    public static IOObject read(final byte[] buf) throws IOException {
 		return read(new InputStreamProvider() {
 
 			@Override
@@ -209,7 +229,14 @@ public abstract class AbstractIOObject implements IOObject {
 		});
 	}
 
-	public static IOObject read(InputStreamProvider inProvider) throws IOException {
+    /**
+     * Read io object.
+     *
+     * @param inProvider the in provider
+     * @return the io object
+     * @throws IOException the io exception
+     */
+    public static IOObject read(InputStreamProvider inProvider) throws IOException {
 		ObjectInputStream objectIn = null;
 		try {
 			// try if the object was written as a serializable object

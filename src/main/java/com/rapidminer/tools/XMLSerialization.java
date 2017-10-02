@@ -52,7 +52,7 @@ import java.util.logging.Level;
  * This class handles all kinds in- and output write processes for all kinds of objects into and
  * from XML. This class must use object streams since memory consumption is too big otherwise.
  * Hence, string based methods are no longer supported.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class XMLSerialization {
@@ -102,11 +102,22 @@ public class XMLSerialization {
 		}
 	}
 
-	public static void init(ClassLoader classLoader) {
+    /**
+     * Init.
+     *
+     * @param classLoader the class loader
+     */
+    public static void init(ClassLoader classLoader) {
 		XMLSerialization.classLoader = classLoader;
 	}
 
-	public void addAlias(String name, Class<?> clazz) {
+    /**
+     * Add alias.
+     *
+     * @param name  the name
+     * @param clazz the clazz
+     */
+    public void addAlias(String name, Class<?> clazz) {
 		if (xStream != null) {
 			String alias = name.replaceAll("[^a-zA-Z_0-9-]", "_").replaceAll("_+", "-");
 			if (alias.endsWith("-")) {
@@ -116,7 +127,14 @@ public class XMLSerialization {
 		}
 	}
 
-	public void writeXML(Object object, OutputStream out) throws IOException {
+    /**
+     * Write xml.
+     *
+     * @param object the object
+     * @param out    the out
+     * @throws IOException the io exception
+     */
+    public void writeXML(Object object, OutputStream out) throws IOException {
 		if (xStream != null) {
 			ObjectOutputStream xOut = xStream.createObjectOutputStream(new OutputStreamWriter(out));
 			xOut.writeObject(object);
@@ -129,7 +147,14 @@ public class XMLSerialization {
 		}
 	}
 
-	public Object fromXML(InputStream in) throws IOException {
+    /**
+     * From xml object.
+     *
+     * @param in the in
+     * @return the object
+     * @throws IOException the io exception
+     */
+    public Object fromXML(InputStream in) throws IOException {
 		if (xStream != null) {
 			try {
 				ObjectInputStream xIn = xStream.createObjectInputStream(new InputStreamReader(in));
@@ -151,11 +176,13 @@ public class XMLSerialization {
 		}
 	}
 
-	/**
-	 * Returns the singleton instance. We have to return a new instance, since the xStream will
-	 * remember several mappings and causing a huge memory leak.
-	 **/
-	public static XMLSerialization getXMLSerialization() {
+    /**
+     * Returns the singleton instance. We have to return a new instance, since the xStream will
+     * remember several mappings and causing a huge memory leak.
+     *
+     * @return the xml serialization
+     */
+    public static XMLSerialization getXMLSerialization() {
 		return new XMLSerialization(classLoader);
 	}
 

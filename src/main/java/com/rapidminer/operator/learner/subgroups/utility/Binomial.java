@@ -24,7 +24,7 @@ import com.rapidminer.operator.learner.subgroups.hypothesis.Rule;
 
 /**
  * Calculates the binomial.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class Binomial extends UtilityFunction {
@@ -34,7 +34,13 @@ public class Binomial extends UtilityFunction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Binomial(double totalWeight, double totalPredictionWeight) {
+    /**
+     * Instantiates a new Binomial.
+     *
+     * @param totalWeight           the total weight
+     * @param totalPredictionWeight the total prediction weight
+     */
+    public Binomial(double totalWeight, double totalPredictionWeight) {
 		super(totalWeight, totalPredictionWeight);
 	}
 

@@ -43,9 +43,9 @@ import com.rapidminer.report.Tableable;
 
 
 /**
+ * The type Annotations renderer.
  *
  * @author Simon Fischer
- *
  */
 public class AnnotationsRenderer extends AbstractRenderer {
 
@@ -122,7 +122,12 @@ public class AnnotationsRenderer extends AbstractRenderer {
 			fireTableRowsInserted(newSize, newSize);
 		}
 
-		public void deleteRow(int row) {
+        /**
+         * Delete row.
+         *
+         * @param row the row
+         */
+        public void deleteRow(int row) {
 			if (row >= 0) {
 				ioobject.getAnnotations().removeAnnotation(ioobject.getAnnotations().getKeys().get(row));
 				fireTableRowsDeleted(row, row);

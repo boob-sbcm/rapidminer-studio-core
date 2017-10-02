@@ -68,11 +68,21 @@ public class ClusterModelGraphCreator extends GraphCreatorAdaptor {
 
 	private ClusterModelObjectViewer objectViewer;
 
-	public ClusterModelGraphCreator(ClusterModel clusterModel) {
+    /**
+     * Instantiates a new Cluster model graph creator.
+     *
+     * @param clusterModel the cluster model
+     */
+    public ClusterModelGraphCreator(ClusterModel clusterModel) {
 		this(new HierarchicalClusterModel(clusterModel));
 	}
 
-	public ClusterModelGraphCreator(HierarchicalClusterModel clusterModel) {
+    /**
+     * Instantiates a new Cluster model graph creator.
+     *
+     * @param clusterModel the cluster model
+     */
+    public ClusterModelGraphCreator(HierarchicalClusterModel clusterModel) {
 		this.clusterModel = clusterModel;
 		this.objectViewer = new ClusterModelObjectViewer(clusterModel);
 	}

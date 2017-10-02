@@ -66,7 +66,7 @@ import com.rapidminer.tools.Ontology;
  * such a pattern, if there are some parts of his sequence including the pattern. The above pattern
  * would be supported by a customer with this transactions: <s, g> then <a, s, c> then <b> then <f,
  * h>.
- *
+ * <p>
  * The parameters min_gap, max_gap and window_size determine how transaction are handled. For
  * example, if the above customer forgot to by c, and had to return 5 minutes later to buy c, then
  * his transactions would look like that: <s, g> then <a, s> then <c> then <b> then <f, h> This
@@ -74,7 +74,7 @@ import com.rapidminer.tools.Ontology;
  * how long a subsequent transaction is treated as the same transaction. If the window size is
  * larger than 5 minutes, the <c> would be treated as being part of the second transaction and hence
  * this customer would support the above pattern.
- *
+ * <p>
  * The max_gap parameter causes a customers sequence not to support a pattern, if the transactions
  * containing this pattern are to widely separated in time. The min_gap parameter does the same if
  * they are to near.
@@ -83,16 +83,43 @@ import com.rapidminer.tools.Ontology;
  */
 public class GSPOperator extends Operator {
 
-	public static final String TIME_ROLE = "time";
-	public static final String CUSTOMER_ROLE = "customer";
+    /**
+     * The constant TIME_ROLE.
+     */
+    public static final String TIME_ROLE = "time";
+    /**
+     * The constant CUSTOMER_ROLE.
+     */
+    public static final String CUSTOMER_ROLE = "customer";
 
-	public static final String PARAMETER_CUSTOMER_ATTRIBUTE = "customer_id";
-	public static final String PARAMETER_TIME_ATTRIBUTE = "time_attribute";
-	public static final String PARAMETER_WINDOW_SIZE = "window_size";
-	public static final String PARAMETER_MAX_GAP = "max_gap";
-	public static final String PARAMETER_MIN_GAP = "min_gap";
-	public static final String PARAMETER_POSITIVE_VALUE = "positive_value";
-	public static final String PARAMETER_MIN_SUPPORT = "min_support";
+    /**
+     * The constant PARAMETER_CUSTOMER_ATTRIBUTE.
+     */
+    public static final String PARAMETER_CUSTOMER_ATTRIBUTE = "customer_id";
+    /**
+     * The constant PARAMETER_TIME_ATTRIBUTE.
+     */
+    public static final String PARAMETER_TIME_ATTRIBUTE = "time_attribute";
+    /**
+     * The constant PARAMETER_WINDOW_SIZE.
+     */
+    public static final String PARAMETER_WINDOW_SIZE = "window_size";
+    /**
+     * The constant PARAMETER_MAX_GAP.
+     */
+    public static final String PARAMETER_MAX_GAP = "max_gap";
+    /**
+     * The constant PARAMETER_MIN_GAP.
+     */
+    public static final String PARAMETER_MIN_GAP = "min_gap";
+    /**
+     * The constant PARAMETER_POSITIVE_VALUE.
+     */
+    public static final String PARAMETER_POSITIVE_VALUE = "positive_value";
+    /**
+     * The constant PARAMETER_MIN_SUPPORT.
+     */
+    public static final String PARAMETER_MIN_SUPPORT = "min_support";
 
 	private static final OperatorVersion VERSION_MADE_POSITIVE_CLASS_MANDATORY = new OperatorVersion(5, 2, 0);
 
@@ -100,7 +127,12 @@ public class GSPOperator extends Operator {
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort patternOutput = getOutputPorts().createPort("patterns");
 
-	public GSPOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Gsp operator.
+     *
+     * @param description the description
+     */
+    public GSPOperator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new SimplePrecondition(exampleSetInput, new ExampleSetMetaData(), true) {

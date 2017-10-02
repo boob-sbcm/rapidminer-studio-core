@@ -32,15 +32,19 @@ import java.awt.event.ActionEvent;
 
 /**
  * Connects a port to a user selected repository location via the {@link ProcessContext}
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class ConnectPortToRepositoryAction extends ResourceAction {
 
 	private Port port;
 
-	public ConnectPortToRepositoryAction(Port port) {
+    /**
+     * Instantiates a new Connect port to repository action.
+     *
+     * @param port the port
+     */
+    public ConnectPortToRepositoryAction(Port port) {
 		super("connect_port_to_repository_location", port.getName());
 		this.port = port;
 	}

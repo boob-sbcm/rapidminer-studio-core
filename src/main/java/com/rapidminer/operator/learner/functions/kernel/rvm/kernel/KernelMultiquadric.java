@@ -20,7 +20,7 @@ package com.rapidminer.operator.learner.functions.kernel.rvm.kernel;
 
 /**
  * Returns the value of the Multiquadric kernel of both examples.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KernelMultiquadric extends Kernel {
@@ -33,14 +33,22 @@ public class KernelMultiquadric extends Kernel {
 	/** The parameter shift of the multiquadric kernel. */
 	private double shift = 1.0d;
 
-	/** Constructor(s) */
-	public KernelMultiquadric(double sigma, double shift) {
+    /**
+     * Constructor(s)  @param sigma the sigma
+     *
+     * @param sigma the sigma
+     * @param shift the shift
+     */
+    public KernelMultiquadric(double sigma, double shift) {
 		super();
 		this.sigma = sigma;
 		this.shift = shift;
 	}
 
-	public KernelMultiquadric() {
+    /**
+     * Instantiates a new Kernel multiquadric.
+     */
+    public KernelMultiquadric() {
 		super();
 	}
 

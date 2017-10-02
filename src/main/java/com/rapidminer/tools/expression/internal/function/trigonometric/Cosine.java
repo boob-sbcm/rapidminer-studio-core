@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric cosine of an angle.
  *
  * @author Denis Schernov
- *
  */
 public class Cosine extends Abstract1DoubleInputFunction {
 
-	public Cosine() {
+    /**
+     * Instantiates a new Cosine.
+     */
+    public Cosine() {
 		super("trigonometrical.cos", Ontology.NUMERICAL);
 	}
 

@@ -39,12 +39,11 @@ import com.rapidminer.tools.LogService;
 /**
  * A model view of a process that displays processes as individual nodes. Rewrite of the original
  * OperatorTreeModel.
- *
+ * <p>
  * Nodes of this model can be {@link Operator}s and {@link ExecutionUnit}s. The latter are hidden
  * from the model if an {@link OperatorChain} contains only one {@link ExecutionUnit}.
  *
  * @author Simon Fischer
- *
  */
 public class ProcessTreeModel implements TreeModel {
 
@@ -81,7 +80,12 @@ public class ProcessTreeModel implements TreeModel {
 		}
 	};
 
-	public ProcessTreeModel(Operator root) {
+    /**
+     * Instantiates a new Process tree model.
+     *
+     * @param root the root
+     */
+    public ProcessTreeModel(Operator root) {
 		this.root = root;
 		root.getProcess().addProcessSetupListener(delegatingListener);
 	}
@@ -202,13 +206,23 @@ public class ProcessTreeModel implements TreeModel {
 		}
 	}
 
-	/** Creates TreePath leading to the specified ExecutionUnit. */
-	TreePath getPathTo(ExecutionUnit process) {
+    /**
+     * Creates TreePath leading to the specified ExecutionUnit.  @param process the process
+     *
+     * @param process the process
+     * @return the path to
+     */
+    TreePath getPathTo(ExecutionUnit process) {
 		return getPathTo(process.getEnclosingOperator()).pathByAddingChild(process);
 	}
 
-	/** Creates TreePath leading to the specified operator. */
-	public TreePath getPathTo(Operator operator) {
+    /**
+     * Creates TreePath leading to the specified operator.  @param operator the operator
+     *
+     * @param operator the operator
+     * @return the path to
+     */
+    public TreePath getPathTo(Operator operator) {
 		if (operator.getParent() == null) {
 			return new TreePath(operator);
 		} else {

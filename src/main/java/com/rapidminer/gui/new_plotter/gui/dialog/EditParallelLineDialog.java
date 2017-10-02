@@ -54,9 +54,8 @@ import com.rapidminer.tools.I18N;
 /**
  * This dialog allows the user to edit a {@link AxisParallelLineConfiguration} line (crosshair
  * line).
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class EditParallelLineDialog extends JDialog {
 
@@ -86,10 +85,10 @@ public class EditParallelLineDialog extends JDialog {
 
 	private static final long serialVersionUID = 1932257219370926682L;
 
-	/**
-	 * Creates a new {@link EditParallelLineDialog}.
-	 */
-	public EditParallelLineDialog() {
+    /**
+     * Creates a new {@link EditParallelLineDialog}.
+     */
+    public EditParallelLineDialog() {
 		super(ApplicationFrame.getApplicationFrame());
 		setupGUI();
 	}
@@ -269,14 +268,13 @@ public class EditParallelLineDialog extends JDialog {
 		});
 	}
 
-	/**
-	 * Sets the {@link AxisParallelLineConfiguration} to edit.
-	 * 
-	 * @param line
-	 * @param allowValueEdit
-	 *            if set to false, the value field will not be enabled
-	 */
-	public void setLine(AxisParallelLineConfiguration line, boolean allowValueEdit) {
+    /**
+     * Sets the {@link AxisParallelLineConfiguration} to edit.
+     *
+     * @param line           the line
+     * @param allowValueEdit if set to false, the value field will not be enabled
+     */
+    public void setLine(AxisParallelLineConfiguration line, boolean allowValueEdit) {
 		if (line == null) {
 			throw new IllegalArgumentException("line must not be null!");
 		}
@@ -291,10 +289,10 @@ public class EditParallelLineDialog extends JDialog {
 		this.lineStyleCombobox.setSelectedItem(line.getFormat().getStyle());
 	}
 
-	/**
-	 * Shows the dialog.
-	 */
-	public void showDialog() {
+    /**
+     * Shows the dialog.
+     */
+    public void showDialog() {
 		setVisible(true);
 	}
 

@@ -28,7 +28,7 @@ import javax.swing.table.TableModel;
 
 /**
  * Renderer for the linear regression model.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class LinearRegressionModelTableRenderer extends AbstractTableModelTableRenderer {
@@ -39,7 +39,12 @@ public class LinearRegressionModelTableRenderer extends AbstractTableModelTableR
 
 		private final LinearRegressionModel model;
 
-		public LinearRegressionModelTableModel(LinearRegressionModel model) {
+        /**
+         * Instantiates a new Linear regression model table model.
+         *
+         * @param model the model
+         */
+        public LinearRegressionModelTableModel(LinearRegressionModel model) {
 			this.model = model;
 		}
 

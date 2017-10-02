@@ -20,14 +20,19 @@ package com.rapidminer.tools.cipher;
 
 /**
  * This exception will be thrown if a problem during key generation occurs.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KeyGenerationException extends Exception {
 
 	private static final long serialVersionUID = -251163459747969941L;
 
-	public KeyGenerationException(String message) {
+    /**
+     * Instantiates a new Key generation exception.
+     *
+     * @param message the message
+     */
+    public KeyGenerationException(String message) {
 		super(message);
 	}
 }

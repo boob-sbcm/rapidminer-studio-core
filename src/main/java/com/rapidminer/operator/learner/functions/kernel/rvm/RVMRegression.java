@@ -28,16 +28,19 @@ import java.util.LinkedList;
 
 
 /**
- * 
  * The standard (slow, non scaling) regression RVM (see bla).
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
- * 
  */
 public class RVMRegression extends RVMBase {
 
-	/** Constructor */
-	public RVMRegression(RegressionProblem problem, Parameter parameter) {
+    /**
+     * Constructor  @param problem the problem
+     *
+     * @param problem   the problem
+     * @param parameter the parameter
+     */
+    public RVMRegression(RegressionProblem problem, Parameter parameter) {
 		super(problem, parameter);
 	}
 

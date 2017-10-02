@@ -32,7 +32,7 @@ import java.util.Set;
 /**
  * This class provides a pruner based on some heuristic statistics. It cuts the tree to reduce
  * overfitting.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class PessimisticPruner implements Pruner {
@@ -43,7 +43,13 @@ public class PessimisticPruner implements Pruner {
 
 	private LeafCreator leafCreator;
 
-	public PessimisticPruner(double confidenceLevel, LeafCreator leafCreator) {
+    /**
+     * Instantiates a new Pessimistic pruner.
+     *
+     * @param confidenceLevel the confidence level
+     * @param leafCreator     the leaf creator
+     */
+    public PessimisticPruner(double confidenceLevel, LeafCreator leafCreator) {
 		this.confidenceLevel = confidenceLevel;
 		this.leafCreator = leafCreator;
 	}
@@ -124,14 +130,28 @@ public class PessimisticPruner implements Pruner {
 		return errors;
 	}
 
-	public double prunedLabel(ExampleSet exampleSet) {
+    /**
+     * Pruned label double.
+     *
+     * @param exampleSet the example set
+     * @return the double
+     */
+    public double prunedLabel(ExampleSet exampleSet) {
 		Attribute labelAttribute = exampleSet.getAttributes().getLabel();
 		exampleSet.recalculateAttributeStatistics(labelAttribute);
 		double test = exampleSet.getStatistics(labelAttribute, Statistics.MODE);
 		return test;
 	}
 
-	// calculates the pessimistic number of errors, using some confidence level.
+    /**
+     * Pessimistic errors double.
+     *
+     * @param numberOfExamples the number of examples
+     * @param errorRate        the error rate
+     * @param confidenceLevel  the confidence level
+     * @return the double
+     */
+// calculates the pessimistic number of errors, using some confidence level.
 	public double pessimisticErrors(double numberOfExamples, double errorRate, double confidenceLevel) {
 		if (errorRate < 1E-6) {
 			return errorRate + numberOfExamples * (1.0 - Math.exp(Math.log(confidenceLevel) / numberOfExamples));

@@ -25,24 +25,43 @@ import java.util.List;
 
 
 /**
+ * The type Plot configuration quick fix.
+ *
  * @author Marius Helf
- * 
  */
 public class PlotConfigurationQuickFix {
 
 	private List<ConfigurationChangeEvent> changeList = new LinkedList<ConfigurationChangeEvent>();
 
-	public PlotConfigurationQuickFix() {}
+    /**
+     * Instantiates a new Plot configuration quick fix.
+     */
+    public PlotConfigurationQuickFix() {}
 
-	public PlotConfigurationQuickFix(ConfigurationChangeEvent change) {
+    /**
+     * Instantiates a new Plot configuration quick fix.
+     *
+     * @param change the change
+     */
+    public PlotConfigurationQuickFix(ConfigurationChangeEvent change) {
 		addChange(change);
 	}
 
-	public List<ConfigurationChangeEvent> getChanges() {
+    /**
+     * Gets changes.
+     *
+     * @return the changes
+     */
+    public List<ConfigurationChangeEvent> getChanges() {
 		return changeList;
 	}
 
-	public void addChange(ConfigurationChangeEvent change) {
+    /**
+     * Add change.
+     *
+     * @param change the change
+     */
+    public void addChange(ConfigurationChangeEvent change) {
 		changeList.add(change);
 	}
 }

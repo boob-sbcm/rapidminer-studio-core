@@ -23,14 +23,19 @@ import com.rapidminer.tools.math.kernels.Kernel;
 
 /**
  * This function must be maximized for the search for an optimal hyperplane for regression.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class RegressionOptimizationFunction implements OptimizationFunction {
 
 	private double epsilon;
 
-	public RegressionOptimizationFunction(double epsilon) {
+    /**
+     * Instantiates a new Regression optimization function.
+     *
+     * @param epsilon the epsilon
+     */
+    public RegressionOptimizationFunction(double epsilon) {
 		this.epsilon = epsilon;
 	}
 

@@ -51,22 +51,22 @@ import java.util.List;
  * A metaclassifier for handling multi-class datasets with 2-class classifiers. This class supports
  * several strategies for multiclass classification including procedures which are capable of using
  * error-correcting output codes for increased accuracy.
- * 
+ *
  * @author Helge Homburg
  */
 public class Binary2MultiClassLearner extends AbstractMetaLearner {
 
-	/**
-	 * The parameter name for &quot;What strategy should be used for multi class
-	 * classifications?&quot;
-	 */
-	public static final String PARAMETER_CLASSIFICATION_STRATEGIES = "classification_strategies";
+    /**
+     * The parameter name for &quot;What strategy should be used for multi class
+     * classifications?&quot;
+     */
+    public static final String PARAMETER_CLASSIFICATION_STRATEGIES = "classification_strategies";
 
-	/**
-	 * The parameter name for &quot;A multiplier regulating the codeword length in random code
-	 * modus.&quot;
-	 */
-	public static final String PARAMETER_RANDOM_CODE_MULTIPLICATOR = "random_code_multiplicator";
+    /**
+     * The parameter name for &quot;A multiplier regulating the codeword length in random code
+     * modus.&quot;
+     */
+    public static final String PARAMETER_RANDOM_CODE_MULTIPLICATOR = "random_code_multiplicator";
 
 	private static final String[] STRATEGIES = { "1 against all", "1 against 1", "exhaustive code (ECOC)",
 			"random code (ECOC)" };
@@ -88,10 +88,22 @@ public class Binary2MultiClassLearner extends AbstractMetaLearner {
 	 */
 	private static class CodePattern {
 
-		String[][] data;
-		boolean[][] partitionEnabled;
+        /**
+         * The Data.
+         */
+        String[][] data;
+        /**
+         * The Partition enabled.
+         */
+        boolean[][] partitionEnabled;
 
-		public CodePattern(int numberOfClasses, int numberOfFunctions) {
+        /**
+         * Instantiates a new Code pattern.
+         *
+         * @param numberOfClasses   the number of classes
+         * @param numberOfFunctions the number of functions
+         */
+        public CodePattern(int numberOfClasses, int numberOfFunctions) {
 			data = new String[numberOfClasses][numberOfFunctions];
 			partitionEnabled = new boolean[numberOfClasses][numberOfFunctions];
 			for (int i = 0; i < numberOfClasses; i++) {
@@ -102,7 +114,12 @@ public class Binary2MultiClassLearner extends AbstractMetaLearner {
 		}
 	}
 
-	public Binary2MultiClassLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Binary 2 multi class learner.
+     *
+     * @param description the description
+     */
+    public Binary2MultiClassLearner(OperatorDescription description) {
 		super(description);
 	}
 

@@ -31,9 +31,8 @@ import java.util.Locale;
 
 /**
  * Value range that contains only one single value.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class SingleValueValueRange extends AbstractValueRange {
 
@@ -41,49 +40,39 @@ public class SingleValueValueRange extends AbstractValueRange {
 	private String valueString;
 	private int columnIdx;
 
-	/**
-	 * Instantiates a new {@link SingleValueValueRange}.
-	 * 
-	 * @param value
-	 *            the value of the value range.
-	 */
-	public SingleValueValueRange(double value) {
+    /**
+     * Instantiates a new {@link SingleValueValueRange}.
+     *
+     * @param value the value of the value range.
+     */
+    public SingleValueValueRange(double value) {
 		this(value, (String) null, -1);
 	}
 
-	/**
-	 * Instantiates a new {@link SingleValueValueRange}.
-	 * 
-	 * @param value
-	 *            the value of the value range
-	 * @param valueString
-	 *            a string representation of the value, which will be used in the
-	 *            {@link #toString()} method. If null, a value string is created based on the
-	 * @param columnIdx
-	 *            the column idx which is used in the {@link #keepRow(DataTableRow)} method.
-	 */
-	public SingleValueValueRange(double value, String valueString, int columnIdx) {
+    /**
+     * Instantiates a new {@link SingleValueValueRange}.
+     *
+     * @param value       the value of the value range
+     * @param valueString a string representation of the value, which will be used in the            {@link #toString()} method. If null, a value string is created based on the
+     * @param columnIdx   the column idx which is used in the {@link #keepRow(DataTableRow)} method.
+     */
+    public SingleValueValueRange(double value, String valueString, int columnIdx) {
 		this.value = value;
 		this.valueString = valueString;
 		this.columnIdx = columnIdx;
 	}
 
-	/**
-	 * Instantiates a new {@link SingleValueValueRange}.
-	 * 
-	 * The string representation is created based on the data type of a column in a data table.
-	 * 
-	 * @param value
-	 *            the value of the value range
-	 * @param dataTable
-	 *            a data table, from which the data type of the value is extracted
-	 * @param columnIdx
-	 *            the column index in data table which is used to extract the data type of the value
-	 * @throws IllegalArgumentException
-	 *             if the specified column has an unknown data type (i.e. neither numerical, nominal
-	 *             nor date).
-	 */
-	public SingleValueValueRange(double value, DataTable dataTable, int columnIdx) {
+    /**
+     * Instantiates a new {@link SingleValueValueRange}.
+     * <p>
+     * The string representation is created based on the data type of a column in a data table.
+     *
+     * @param value     the value of the value range
+     * @param dataTable a data table, from which the data type of the value is extracted
+     * @param columnIdx the column index in data table which is used to extract the data type of the value
+     * @throws IllegalArgumentException if the specified column has an unknown data type (i.e. neither numerical, nominal             nor date).
+     */
+    public SingleValueValueRange(double value, DataTable dataTable, int columnIdx) {
 		this.value = value;
 		this.columnIdx = columnIdx;
 		if (columnIdx >= 0) {
@@ -101,18 +90,15 @@ public class SingleValueValueRange extends AbstractValueRange {
 		}
 	}
 
-	/**
-	 * Instantiates a new {@link SingleValueValueRange}. Value is considered to represent a date and
-	 * is formatted with the provided {@link DateFormat} .
-	 * 
-	 * @param value
-	 *            the value of the value range
-	 * @param dateFormat
-	 *            the format which is used to create a string representation of <i>value</i>.
-	 * @throws NullPointerException
-	 *             iff dateFormat is null.
-	 */
-	public SingleValueValueRange(double value, DateFormat dateFormat) {
+    /**
+     * Instantiates a new {@link SingleValueValueRange}. Value is considered to represent a date and
+     * is formatted with the provided {@link DateFormat} .
+     *
+     * @param value      the value of the value range
+     * @param dateFormat the format which is used to create a string representation of <i>value</i>.
+     * @throws NullPointerException iff dateFormat is null.
+     */
+    public SingleValueValueRange(double value, DateFormat dateFormat) {
 		if (dateFormat == null) {
 			throw new NullPointerException("null format not allowed");
 		}
@@ -188,7 +174,12 @@ public class SingleValueValueRange extends AbstractValueRange {
 		return Double.NaN;
 	}
 
-	public void setVisualPrecision(int precision) {
+    /**
+     * Sets visual precision.
+     *
+     * @param precision the precision
+     */
+    public void setVisualPrecision(int precision) {
 		StringBuilder builder = new StringBuilder();
 		double roundedValue = DataStructureUtils.roundToPowerOf10(getValue(), precision);
 		Formatter formatter = new Formatter(builder, Locale.getDefault());
@@ -204,7 +195,12 @@ public class SingleValueValueRange extends AbstractValueRange {
 		valueString = builder.toString();
 	}
 
-	public void setDateFormat(DateFormat dateFormat) {
+    /**
+     * Sets date format.
+     *
+     * @param dateFormat the date format
+     */
+    public void setDateFormat(DateFormat dateFormat) {
 		valueString = dateFormat.format(new Date((long) value));
 	}
 }

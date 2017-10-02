@@ -26,9 +26,8 @@ import java.util.TreeMap;
 
 /**
  * Calculates the (weighted) median of some values.
- * 
+ *
  * @author Tobias Malbrecht
- * 
  */
 public class MedianFunction extends AbstractAggregationFunction {
 
@@ -36,11 +35,19 @@ public class MedianFunction extends AbstractAggregationFunction {
 
 	private double totalWeight;
 
-	public MedianFunction() {
+    /**
+     * Instantiates a new Median function.
+     */
+    public MedianFunction() {
 		this(DEFAULT_IGNORE_MISSINGS);
 	}
 
-	public MedianFunction(Boolean ignoreMissings) {
+    /**
+     * Instantiates a new Median function.
+     *
+     * @param ignoreMissings the ignore missings
+     */
+    public MedianFunction(Boolean ignoreMissings) {
 		super(ignoreMissings);
 	}
 

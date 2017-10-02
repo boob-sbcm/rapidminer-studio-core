@@ -26,14 +26,28 @@ import com.rapidminer.parameter.ParameterType;
 import com.rapidminer.parameter.ParameterTypeCategory;
 
 
+/**
+ * The type Clustering algorithms.
+ */
 public class ClusteringAlgorithms {
 
-	public static final String PARAMETER_CLUSTERING_ALGORITHM = "clustering_algorithm";
+    /**
+     * The constant PARAMETER_CLUSTERING_ALGORITHM.
+     */
+    public static final String PARAMETER_CLUSTERING_ALGORITHM = "clustering_algorithm";
 
-	/** Clustering Algorithms to use */
-	public static final String[] CLUST_ALG = new String[] { "KMeans", "FastKMeans" };
+    /**
+     * Clustering Algorithms to use
+     */
+    public static final String[] CLUST_ALG = new String[] { "KMeans", "FastKMeans" };
 
-	public static List<ParameterType> getParameterTypes(Operator parameterHandler) {
+    /**
+     * Gets parameter types.
+     *
+     * @param parameterHandler the parameter handler
+     * @return the parameter types
+     */
+    public static List<ParameterType> getParameterTypes(Operator parameterHandler) {
 		List<ParameterType> list = new LinkedList<ParameterType>();
 		list.add(new ParameterTypeCategory(PARAMETER_CLUSTERING_ALGORITHM, "Clustering Algorithm", CLUST_ALG, 0, false));
 		return list;

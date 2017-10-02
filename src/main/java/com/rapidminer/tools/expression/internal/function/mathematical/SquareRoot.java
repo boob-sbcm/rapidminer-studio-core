@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the square root of a number.
  *
  * @author David Arnu
- *
  */
 public class SquareRoot extends Abstract1DoubleInputFunction {
 
-	public SquareRoot() {
+    /**
+     * Instantiates a new Square root.
+     */
+    public SquareRoot() {
 		super("mathematical.sqrt", Ontology.NUMERICAL);
 	}
 

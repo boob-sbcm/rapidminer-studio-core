@@ -69,14 +69,24 @@ public class MeasuredCriterionTest extends AbstractCriterionTestCase {
 		return exampleSet;
 	}
 
-	@Before
+    /**
+     * Sets up.
+     *
+     * @throws Exception the exception
+     */
+    @Before
 	public void setUp() throws Exception {
 		exampleSet1 = createExampleSet(new double[][] { { 5.0 }, { 3.0 }, { -1.0 }, { -4.0 }, { 0.0 }, { 2.0 } },
 				new double[] { 6.0, 1.0, 0.0, -1.0, 3.0, -2.0 });
 		exampleSet2 = createExampleSet(new double[][] { { 3.0 }, { 6.0 }, { -1.0 } }, new double[] { 1.0, 8.0, -4.0 });
 	}
 
-	@After
+    /**
+     * Tear down.
+     *
+     * @throws Exception the exception
+     */
+    @After
 	public void tearDown() throws Exception {
 		exampleSet1 = exampleSet2 = null;
 	}
@@ -100,12 +110,22 @@ public class MeasuredCriterionTest extends AbstractCriterionTestCase {
 		assertEquals(c1.getName() + " makro average", (expected1 + expected2) / 2.0, c1.getMakroAverage(), 0.00000001);
 	}
 
-	@Test
+    /**
+     * Test absolute error.
+     *
+     * @throws Exception the exception
+     */
+    @Test
 	public void testAbsoluteError() throws Exception {
 		criterionTest(new AbsoluteError(), new AbsoluteError(), 14.0 / 6.0, 7.0 / 3.0, 21.0 / 9.0);
 	}
 
-	@Test
+    /**
+     * Test squared error.
+     *
+     * @throws Exception the exception
+     */
+    @Test
 	public void testSquaredError() throws Exception {
 		criterionTest(new SquaredError(), new SquaredError(), 40.0 / 6.0, 17.0 / 3.0, 57.0 / 9.0);
 	}

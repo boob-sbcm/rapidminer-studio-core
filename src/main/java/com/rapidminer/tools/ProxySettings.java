@@ -34,7 +34,6 @@ import com.rapidminer.tools.SystemInfoUtilities.OperatingSystem;
  *
  * @author Jonas Wilms-Pfau
  * @since 7.3.0
- *
  */
 public class ProxySettings {
 
@@ -53,8 +52,14 @@ public class ProxySettings {
 	/** Default value for Linux and Windows */
 	private static final String DEFAULT = "";
 
-	public static final String PROXY_PREFIX = "rapidminer.proxy.";
-	public static final String SYSTEM_PREFIX = "";
+    /**
+     * The constant PROXY_PREFIX.
+     */
+    public static final String PROXY_PREFIX = "rapidminer.proxy.";
+    /**
+     * The constant SYSTEM_PREFIX.
+     */
+    public static final String SYSTEM_PREFIX = "";
 
 	private static final String HTTP_NON_PROXY_RULE = "http.nonProxyHosts";
 	private static final String FTP_NON_PROXY_RULE = "ftp.nonProxyHosts";
@@ -70,10 +75,10 @@ public class ProxySettings {
 	/* Real system settings */
 	private final static String PROXY_RULES[] = { HTTP_NON_PROXY_RULE, FTP_NON_PROXY_RULE, SOCKS_NON_PROXY_RULE };
 
-	/**
-	 * To support OSX we have to store the System settings before the RapidMiner cfg file is loaded
-	 */
-	public static void storeSystemSettings() {
+    /**
+     * To support OSX we have to store the System settings before the RapidMiner cfg file is loaded
+     */
+    public static void storeSystemSettings() {
 		if (SystemInfoUtilities.getOperatingSystem() == OperatingSystem.OSX) {
 			Arrays.asList(toNative(PROXY_HOSTS)).stream().forEach(SystemSettings::store);
 			Arrays.asList(toNative(PROXY_PORTS)).stream().forEach(SystemSettings::store);
@@ -86,25 +91,24 @@ public class ProxySettings {
 
 	}
 
-	/**
-	 * This Method
-	 * <ul>
-	 * <li>Migrates the old proxy settings if needed</li>
-	 * <li>Applies the current proxy Settings</li>
-	 * <li>Registers a ChangeListener to change the proxy settings on save</li>
-	 * </ul>
-	 *
-	 */
-	public static void init() {
+    /**
+     * This Method
+     * <ul>
+     * <li>Migrates the old proxy settings if needed</li>
+     * <li>Applies the current proxy Settings</li>
+     * <li>Registers a ChangeListener to change the proxy settings on save</li>
+     * </ul>
+     */
+    public static void init() {
 		ProxySettings.storeSystemSettings();
 		ProxyIntegrator.updateOldInstallation();
 		ParameterService.registerParameterChangeListener(new ProxyParameterSaver());
 	}
 
-	/**
-	 * Applies the RapidMiner proxy settings on the corresponding JVM System properties
-	 */
-	public static void apply() {
+    /**
+     * Applies the RapidMiner proxy settings on the corresponding JVM System properties
+     */
+    public static void apply() {
 
 		switch (ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_PROXY_MODE)) {
 			case RapidMiner.RAPIDMINER_PROXY_MODE_SYSTEM:

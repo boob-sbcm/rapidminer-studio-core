@@ -33,24 +33,27 @@ public class ColumnNumericalSplitter {
 	private ColumnCriterion criterion;
 	private ColumnExampleTable columnTable;
 
-	public ColumnNumericalSplitter(ColumnExampleTable columnTable, ColumnCriterion criterion) {
+    /**
+     * Instantiates a new Column numerical splitter.
+     *
+     * @param columnTable the column table
+     * @param criterion   the criterion
+     */
+    public ColumnNumericalSplitter(ColumnExampleTable columnTable, ColumnCriterion criterion) {
 		this.criterion = criterion;
 		this.columnTable = columnTable;
 	}
 
-	/**
-	 * Calculates where to best split a numerical attribute by considering all possibilities and the
-	 * associated benefits according to the given criterion. If there are missing values, they are
-	 * considered as extra class.
-	 *
-	 * @param selectedExamples
-	 *            which of the starting examples are considered sorted such the associated attribute
-	 *            values are in ascending order
-	 * @param attributeNumber
-	 *            indicates which attribute is considered
-	 * @return the benefit of the best split
-	 */
-	public ParallelBenefit getBestSplitBenefit(int[] selectedExamples, int attributeNumber) {
+    /**
+     * Calculates where to best split a numerical attribute by considering all possibilities and the
+     * associated benefits according to the given criterion. If there are missing values, they are
+     * considered as extra class.
+     *
+     * @param selectedExamples which of the starting examples are considered sorted such the associated attribute            values are in ascending order
+     * @param attributeNumber  indicates which attribute is considered
+     * @return the benefit of the best split
+     */
+    public ParallelBenefit getBestSplitBenefit(int[] selectedExamples, int attributeNumber) {
 		final double[] attributeColumn = columnTable.getNumericalAttributeColumn(attributeNumber);
 
 		double bestSplit = Double.NaN;

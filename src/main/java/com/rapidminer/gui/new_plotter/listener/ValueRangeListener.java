@@ -22,11 +22,17 @@ import com.rapidminer.gui.new_plotter.listener.events.ValueRangeChangeEvent;
 
 
 /**
+ * The interface Value range listener.
+ *
  * @author Nils Woehler
- * 
  */
 public interface ValueRangeListener {
 
-	public void valueRangeChanged(ValueRangeChangeEvent e);
+    /**
+     * Value range changed.
+     *
+     * @param e the e
+     */
+    public void valueRangeChanged(ValueRangeChangeEvent e);
 
 }

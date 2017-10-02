@@ -42,11 +42,18 @@ import java.util.Set;
 
 
 /**
+ * The type Abstract discretization operator.
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractDiscretizationOperator extends PreprocessingOperator {
 
-	public AbstractDiscretizationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract discretization operator.
+     *
+     * @param description the description
+     */
+    public AbstractDiscretizationOperator(OperatorDescription description) {
 		super(description);
 	}
 
@@ -59,11 +66,23 @@ public abstract class AbstractDiscretizationOperator extends PreprocessingOperat
 
 	private static Set<Class<? extends AbstractDiscretizationOperator>> ALL_DISCRETIZATION_OPERATORS = new HashSet<Class<? extends AbstractDiscretizationOperator>>();
 
-	protected static void registerDiscretizationOperator(Class<? extends AbstractDiscretizationOperator> clazz) {
+    /**
+     * Register discretization operator.
+     *
+     * @param clazz the clazz
+     */
+    protected static void registerDiscretizationOperator(Class<? extends AbstractDiscretizationOperator> clazz) {
 		ALL_DISCRETIZATION_OPERATORS.add(clazz);
 	}
 
-	public static List<QuickFix> createDiscretizationFixes(final InputPort inputPort, final String labelName) {
+    /**
+     * Create discretization fixes list.
+     *
+     * @param inputPort the input port
+     * @param labelName the label name
+     * @return the list
+     */
+    public static List<QuickFix> createDiscretizationFixes(final InputPort inputPort, final String labelName) {
 		List<QuickFix> fixes = new LinkedList<QuickFix>();
 		for (final Class<? extends AbstractDiscretizationOperator> dclass : ALL_DISCRETIZATION_OPERATORS) {
 			String name = dclass.getName();

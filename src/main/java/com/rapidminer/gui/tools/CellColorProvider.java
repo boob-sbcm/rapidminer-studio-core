@@ -23,12 +23,18 @@ import java.awt.Color;
 
 /**
  * Implementing classes might deliver an appropriate cell color.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface CellColorProvider {
 
-	/** Deliver the color for the specified cell. */
-	public Color getCellColor(int row, int column);
+    /**
+     * Deliver the color for the specified cell.  @param row the row
+     *
+     * @param row    the row
+     * @param column the column
+     * @return the cell color
+     */
+    public Color getCellColor(int row, int column);
 
 }

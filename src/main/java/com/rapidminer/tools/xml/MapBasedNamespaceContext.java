@@ -31,7 +31,7 @@ import javax.xml.namespace.NamespaceContext;
 /**
  * This is a {@link NamespaceContext} to use with the Java XML API that is based upon a map. That
  * means, that each uri can only have one prefix. It is able to define a default namespace.
- * 
+ *
  * @author Sebastian Land
  */
 public final class MapBasedNamespaceContext implements NamespaceContext {
@@ -40,18 +40,23 @@ public final class MapBasedNamespaceContext implements NamespaceContext {
 	private final Map<String, String> namespaceIdsMap;
 	private String defaultNamespaceURI = null;
 
-	public MapBasedNamespaceContext(Map<String, String> idNamespacesMap) {
+    /**
+     * Instantiates a new Map based namespace context.
+     *
+     * @param idNamespacesMap the id namespaces map
+     */
+    public MapBasedNamespaceContext(Map<String, String> idNamespacesMap) {
 		this(idNamespacesMap, null);
 	}
 
-	/**
-	 * This creates a {@link NamespaceContext} with the given map. The map maps from ids to the
-	 * namespaces' URIs. A default namespace can be used.
-	 * 
-	 * @param idNamespaceURIsMap
-	 * @param defaultNamespaceURI
-	 */
-	public MapBasedNamespaceContext(Map<String, String> idNamespaceURIsMap, String defaultNamespaceURI) {
+    /**
+     * This creates a {@link NamespaceContext} with the given map. The map maps from ids to the
+     * namespaces' URIs. A default namespace can be used.
+     *
+     * @param idNamespaceURIsMap  the id namespace ur is map
+     * @param defaultNamespaceURI the default namespace uri
+     */
+    public MapBasedNamespaceContext(Map<String, String> idNamespaceURIsMap, String defaultNamespaceURI) {
 		this.defaultNamespaceURI = defaultNamespaceURI;
 		this.idNamespacesMap = idNamespaceURIsMap;
 		namespaceIdsMap = new HashMap<String, String>();

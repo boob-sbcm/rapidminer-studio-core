@@ -32,23 +32,23 @@ import com.rapidminer.tools.ParameterService;
  */
 public enum ParameterServiceRegistry {
 
-	INSTANCE;
+    /**
+     * Instance parameter service registry.
+     */
+    INSTANCE;
 
 	private ParameterServiceProvider provider;
 
-	/**
-	 * Registers the provider.
-	 *
-	 * Note: Only one registration is allowed. All following request will result in an
-	 * {@link IllegalStateException}.
-	 *
-	 * @param provider
-	 *            the provider to register
-	 * @throws SecurityException
-	 *             if caller does not have {@link RuntimePermission} for
-	 *             {@code accessClassInPackage.rapidminer.internal}
-	 */
-	public void register(ParameterServiceProvider provider) {
+    /**
+     * Registers the provider.
+     * <p>
+     * Note: Only one registration is allowed. All following request will result in an
+     * {@link IllegalStateException}.
+     *
+     * @param provider the provider to register
+     * @throws SecurityException if caller does not have {@link RuntimePermission} for             {@code accessClassInPackage.rapidminer.internal}
+     */
+    public void register(ParameterServiceProvider provider) {
 		if (System.getSecurityManager() != null) {
 			AccessController.checkPermission(new RuntimePermission(PluginSandboxPolicy.RAPIDMINER_INTERNAL_PERMISSION));
 		}
@@ -61,13 +61,14 @@ public enum ParameterServiceRegistry {
 		this.provider = provider;
 	}
 
-	/**
-	 * If a {@link #provider} is defined it will query the registered provider. Otherwise the
-	 * {@link ParameterService} will be used.
-	 *
-	 * @return The value of the given parameter or {@code null} if this parameter is unknown.
-	 */
-	public String getParameterValue(String key) {
+    /**
+     * If a {@link #provider} is defined it will query the registered provider. Otherwise the
+     * {@link ParameterService} will be used.
+     *
+     * @param key the key
+     * @return The value of the given parameter or {@code null} if this parameter is unknown.
+     */
+    public String getParameterValue(String key) {
 		if (provider == null) {
 			return ParameterService.getParameterValue(key);
 		} else {

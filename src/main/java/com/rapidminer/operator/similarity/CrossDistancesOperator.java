@@ -59,7 +59,7 @@ import com.rapidminer.tools.math.similarity.DistanceMeasures;
 /**
  * This operator creates an exampleSet containing the distances between each example of the request
  * exampleSet and the k nearest of the reference exampleSet.
- *
+ * <p>
  * This operator needs ID attributes in both example sets in order to work. If not present, new ones
  * are created.
  *
@@ -67,10 +67,22 @@ import com.rapidminer.tools.math.similarity.DistanceMeasures;
  */
 public class CrossDistancesOperator extends Operator {
 
-	public static final String PARAMETER_K = "k";
-	public static final String PARAMETER_USE_K = "only_top_k";
-	public static final String PARAMETER_SEARCH_MODE = "search_for";
-	public static final String PARAMETER_COMPUTE_SIMILARITIES = "compute_similarities";
+    /**
+     * The constant PARAMETER_K.
+     */
+    public static final String PARAMETER_K = "k";
+    /**
+     * The constant PARAMETER_USE_K.
+     */
+    public static final String PARAMETER_USE_K = "only_top_k";
+    /**
+     * The constant PARAMETER_SEARCH_MODE.
+     */
+    public static final String PARAMETER_SEARCH_MODE = "search_for";
+    /**
+     * The constant PARAMETER_COMPUTE_SIMILARITIES.
+     */
+    public static final String PARAMETER_COMPUTE_SIMILARITIES = "compute_similarities";
 
 	private static final String[] SEARCH_MODE = new String[] { "nearest", "farthest" };
 	private static final int MODE_NEAREST = 0;
@@ -82,7 +94,12 @@ public class CrossDistancesOperator extends Operator {
 	private OutputPort requestSetOutput = getOutputPorts().createPort("request set");
 	private OutputPort referenceSetOutput = getOutputPorts().createPort("reference set");
 
-	public CrossDistancesOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Cross distances operator.
+     *
+     * @param description the description
+     */
+    public CrossDistancesOperator(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addPassThroughRule(referenceSetInput, referenceSetOutput);

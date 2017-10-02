@@ -39,7 +39,10 @@ public class NominalStatistics implements Statistics {
 
 	private long[] scores;
 
-	public NominalStatistics() {}
+    /**
+     * Instantiates a new Nominal statistics.
+     */
+    public NominalStatistics() {}
 
 	/** Clone constructor. */
 	private NominalStatistics(NominalStatistics other) {

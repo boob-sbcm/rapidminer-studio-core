@@ -20,9 +20,8 @@ package com.rapidminer.operator.learner.functions.kernel.gaussianprocess;
 
 /**
  * Holds the GP parameters
- * 
+ *
  * @author Piotr Kasprzak
- * 
  */
 public class Parameter {
 
@@ -32,7 +31,12 @@ public class Parameter {
 
 		private String gpType = null;
 
-		GPType(String gpType) {
+        /**
+         * Instantiates a new Gp type.
+         *
+         * @param gpType the gp type
+         */
+        GPType(String gpType) {
 			this.gpType = gpType;
 		}
 
@@ -43,21 +47,34 @@ public class Parameter {
 
 	}
 
-	public static final GPType TYPE_GAUSS_REGRESSION = new GPType("Regression");
+    /**
+     * The constant TYPE_GAUSS_REGRESSION.
+     */
+    public static final GPType TYPE_GAUSS_REGRESSION = new GPType("Regression");
 
-	/** The parameters to be chosen */
-
-	/* Type of the GP Learner */
+    /**
+     * The parameters to be chosen
+     */
+/* Type of the GP Learner */
 	public GPType type = TYPE_GAUSS_REGRESSION;
 
-	/* Maximum number of basis vectors to use */
+    /**
+     * The Max basis vectors.
+     */
+/* Maximum number of basis vectors to use */
 	public int maxBasisVectors = 100;
 
-	/*
-	 * Tolerance value: we project the current basis vector if it has a orthogonal distance to the
+    /**
+     * The Epsilon tol.
+     */
+/*
+     * Tolerance value: we project the current basis vector if it has a orthogonal distance to the
 	 * linear span of the other basis vectors smaller than epsilon_tol
 	 */
 	public double epsilon_tol = 1e-7;
 
-	public double geometrical_tol = 1e-7;
+    /**
+     * The Geometrical tol.
+     */
+    public double geometrical_tol = 1e-7;
 }

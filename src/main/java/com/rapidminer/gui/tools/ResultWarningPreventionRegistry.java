@@ -38,7 +38,6 @@ import com.rapidminer.operator.nio.file.WriteFileOperator;
  *
  * @author David Arnu
  * @since 6.5.0
- *
  */
 public final class ResultWarningPreventionRegistry {
 
@@ -67,27 +66,26 @@ public final class ResultWarningPreventionRegistry {
 		throw new UnsupportedOperationException("Static registry");
 	}
 
-	/**
-	 * Checks if the provided operator suppresses the "no result connected" warning error bubble
-	 *
-	 * @param operator
-	 *            the operator in question
-	 * @return {@code false} if the operator does not suppress the warning, {@code true} otherwise
-	 */
-	public static boolean isResultWarningSuppressed(Operator operator) {
+    /**
+     * Checks if the provided operator suppresses the "no result connected" warning error bubble
+     *
+     * @param operator the operator in question
+     * @return {@code false} if the operator does not suppress the warning, {@code true} otherwise
+     */
+    public static boolean isResultWarningSuppressed(Operator operator) {
 		if (operator == null) {
 			throw new IllegalArgumentException("operator must not be null!");
 		}
 		return REGISTERED_OPERATORS.contains(operator.getClass());
 	}
 
-	/**
-	 * Adds an additional Operator class to the list of Operator classes which don't provoke a
-	 * warning bubble as the last executed child operator of {@link ProcessRootOperator}.
-	 *
-	 * @param opClass
-	 */
-	public static void addOperatorClass(Class<? extends Operator> opClass) {
+    /**
+     * Adds an additional Operator class to the list of Operator classes which don't provoke a
+     * warning bubble as the last executed child operator of {@link ProcessRootOperator}.
+     *
+     * @param opClass the op class
+     */
+    public static void addOperatorClass(Class<? extends Operator> opClass) {
 		if (opClass == null) {
 			throw new IllegalArgumentException("opClass must not be null!");
 		}

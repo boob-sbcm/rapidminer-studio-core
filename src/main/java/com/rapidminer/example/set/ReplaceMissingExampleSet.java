@@ -49,19 +49,24 @@ public class ReplaceMissingExampleSet extends AbstractExampleSet {
 	/** The parent example set. */
 	private ExampleSet parent;
 
-	/**
-	 * It is recommended to use {@link #create(ExampleSet, Map)} instead if no later access to the
-	 * replacementMap is needed.
-	 */
-	public ReplaceMissingExampleSet(ExampleSet exampleSet) {
+    /**
+     * It is recommended to use {@link #create(ExampleSet, Map)} instead if no later access to the
+     * replacementMap is needed.
+     *
+     * @param exampleSet the example set
+     */
+    public ReplaceMissingExampleSet(ExampleSet exampleSet) {
 		this(exampleSet, null);
 	}
 
-	/**
-	 * It is recommended to use {@link #create(ExampleSet, Map)} instead if no later access to the
-	 * replacementMap is needed.
-	 */
-	public ReplaceMissingExampleSet(ExampleSet exampleSet, Map<String, Double> replacementMap) {
+    /**
+     * It is recommended to use {@link #create(ExampleSet, Map)} instead if no later access to the
+     * replacementMap is needed.
+     *
+     * @param exampleSet     the example set
+     * @param replacementMap the replacement map
+     */
+    public ReplaceMissingExampleSet(ExampleSet exampleSet, Map<String, Double> replacementMap) {
 		this.parent = (ExampleSet) exampleSet.clone();
 		if (replacementMap == null) {
 			this.replacementMap = new HashMap<String, Double>();
@@ -75,19 +80,17 @@ public class ReplaceMissingExampleSet extends AbstractExampleSet {
 		addReplacmentTransformations(this.parent, this.replacementMap);
 	}
 
-	/**
-	 * Creates a new example set based on exampleSet where missing values are replaced as specified
-	 * by replacementMap. If replacementMap is {@code null} then the mode (for nominal attributes)
-	 * or the average (for numerical attributes) is taken as replacement.
-	 *
-	 * @param exampleSet
-	 *            the exampleSet for which missing values should be replaced
-	 * @param replacementMap
-	 *            the map specifying the replacement
-	 * @return an example set without missing values
-	 * @since 7.5.1
-	 */
-	public static ExampleSet create(ExampleSet exampleSet, Map<String, Double> replacementMap) {
+    /**
+     * Creates a new example set based on exampleSet where missing values are replaced as specified
+     * by replacementMap. If replacementMap is {@code null} then the mode (for nominal attributes)
+     * or the average (for numerical attributes) is taken as replacement.
+     *
+     * @param exampleSet     the exampleSet for which missing values should be replaced
+     * @param replacementMap the map specifying the replacement
+     * @return an example set without missing values
+     * @since 7.5.1
+     */
+    public static ExampleSet create(ExampleSet exampleSet, Map<String, Double> replacementMap) {
 		ExampleSet newSet = (ExampleSet) exampleSet.clone();
 		if (replacementMap == null) {
 			replacementMap = new HashMap<String, Double>();
@@ -112,8 +115,12 @@ public class ReplaceMissingExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	/** Clone constructor. */
-	public ReplaceMissingExampleSet(ReplaceMissingExampleSet exampleSet) {
+    /**
+     * Clone constructor.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     */
+    public ReplaceMissingExampleSet(ReplaceMissingExampleSet exampleSet) {
 		this.parent = (ExampleSet) exampleSet.parent.clone();
 		this.replacementMap = new HashMap<String, Double>();
 		for (String name : exampleSet.replacementMap.keySet()) {
@@ -133,11 +140,21 @@ public class ReplaceMissingExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	public Map<String, Double> getReplacementMap() {
+    /**
+     * Gets replacement map.
+     *
+     * @return the replacement map
+     */
+    public Map<String, Double> getReplacementMap() {
 		return this.replacementMap;
 	}
 
-	public void addReplacement(Attribute attribute) {
+    /**
+     * Add replacement.
+     *
+     * @param attribute the attribute
+     */
+    public void addReplacement(Attribute attribute) {
 		addReplacement(this, attribute, replacementMap);
 	}
 

@@ -27,7 +27,7 @@ import java.util.Map;
 
 /**
  * This class represents a stadard implementation of a flat, fuzzy clustering.
- * 
+ *
  * @author Regina Fritsch
  */
 public class FlatFuzzyClusterModel extends ClusterModel {
@@ -40,15 +40,35 @@ public class FlatFuzzyClusterModel extends ClusterModel {
 	private final Map<Integer, double[][]> clusterCovarianceMatrix = new HashMap<Integer, double[][]>();
 	private double[][] exampleInClusterProbability;
 
-	public FlatFuzzyClusterModel(ExampleSet exampleSet, int k, boolean addClusterAsLabel, boolean removeUnknown) {
+    /**
+     * Instantiates a new Flat fuzzy cluster model.
+     *
+     * @param exampleSet        the example set
+     * @param k                 the k
+     * @param addClusterAsLabel the add cluster as label
+     * @param removeUnknown     the remove unknown
+     */
+    public FlatFuzzyClusterModel(ExampleSet exampleSet, int k, boolean addClusterAsLabel, boolean removeUnknown) {
 		super(exampleSet, k, addClusterAsLabel, removeUnknown);
 	}
 
-	public double getExampleInClusterProbability(int example, int cluster) {
+    /**
+     * Gets example in cluster probability.
+     *
+     * @param example the example
+     * @param cluster the cluster
+     * @return the example in cluster probability
+     */
+    public double getExampleInClusterProbability(int example, int cluster) {
 		return exampleInClusterProbability[example][cluster];
 	}
 
-	public void setExampleInClusterProbability(double[][] exampleInClusterProbability) {
+    /**
+     * Sets example in cluster probability.
+     *
+     * @param exampleInClusterProbability the example in cluster probability
+     */
+    public void setExampleInClusterProbability(double[][] exampleInClusterProbability) {
 		this.exampleInClusterProbability = new double[exampleInClusterProbability.length][exampleInClusterProbability[0].length];
 		for (int i = 0; i < exampleInClusterProbability.length; i++) {
 			for (int j = 0; j < exampleInClusterProbability[i].length; j++) {
@@ -57,39 +77,90 @@ public class FlatFuzzyClusterModel extends ClusterModel {
 		}
 	}
 
-	public double[] getClusterMean(int cluster) {
+    /**
+     * Get cluster mean double [ ].
+     *
+     * @param cluster the cluster
+     * @return the double [ ]
+     */
+    public double[] getClusterMean(int cluster) {
 		return clusterMeans.get(cluster);
 	}
 
-	public void setClusterMean(int cluster, double[] value) {
+    /**
+     * Sets cluster mean.
+     *
+     * @param cluster the cluster
+     * @param value   the value
+     */
+    public void setClusterMean(int cluster, double[] value) {
 		clusterMeans.put(cluster, value);
 	}
 
-	public double getClusterProbability(int cluster) {
+    /**
+     * Gets cluster probability.
+     *
+     * @param cluster the cluster
+     * @return the cluster probability
+     */
+    public double getClusterProbability(int cluster) {
 		return clusterProbabilities.get(cluster);
 	}
 
-	public void setClusterProbability(int cluster, double value) {
+    /**
+     * Sets cluster probability.
+     *
+     * @param cluster the cluster
+     * @param value   the value
+     */
+    public void setClusterProbability(int cluster, double value) {
 		clusterProbabilities.put(cluster, value);
 	}
 
-	public double getClusterStandardDeviation(int cluster) {
+    /**
+     * Gets cluster standard deviation.
+     *
+     * @param cluster the cluster
+     * @return the cluster standard deviation
+     */
+    public double getClusterStandardDeviation(int cluster) {
 		return clusterStandardDeviations.get(cluster);
 	}
 
-	public void setClusterStandardDeviation(int cluster, double value) {
+    /**
+     * Sets cluster standard deviation.
+     *
+     * @param cluster the cluster
+     * @param value   the value
+     */
+    public void setClusterStandardDeviation(int cluster, double value) {
 		clusterStandardDeviations.put(cluster, value);
 	}
 
-	public void clearClusterStandardDeviations() {
+    /**
+     * Clear cluster standard deviations.
+     */
+    public void clearClusterStandardDeviations() {
 		clusterStandardDeviations.clear();
 	}
 
-	public double[][] getClusterCovarianceMatrix(int cluster) {
+    /**
+     * Get cluster covariance matrix double [ ] [ ].
+     *
+     * @param cluster the cluster
+     * @return the double [ ] [ ]
+     */
+    public double[][] getClusterCovarianceMatrix(int cluster) {
 		return clusterCovarianceMatrix.get(cluster);
 	}
 
-	public void setClusterCovarianceMatrix(int cluster, double[][] matrix) {
+    /**
+     * Sets cluster covariance matrix.
+     *
+     * @param cluster the cluster
+     * @param matrix  the matrix
+     */
+    public void setClusterCovarianceMatrix(int cluster, double[][] matrix) {
 		clusterCovarianceMatrix.put(cluster, matrix);
 	}
 

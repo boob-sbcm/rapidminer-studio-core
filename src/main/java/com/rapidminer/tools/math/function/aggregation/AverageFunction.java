@@ -23,9 +23,8 @@ import com.rapidminer.example.Attribute;
 
 /**
  * Calculates the average.
- * 
+ *
  * @author Tobias Malbrecht, Ingo Mierswa
- * 
  */
 public class AverageFunction extends AbstractAggregationFunction {
 
@@ -33,11 +32,19 @@ public class AverageFunction extends AbstractAggregationFunction {
 
 	private double totalWeightSum;
 
-	public AverageFunction() {
+    /**
+     * Instantiates a new Average function.
+     */
+    public AverageFunction() {
 		this(DEFAULT_IGNORE_MISSINGS);
 	}
 
-	public AverageFunction(Boolean ignoreMissings) {
+    /**
+     * Instantiates a new Average function.
+     *
+     * @param ignoreMissings the ignore missings
+     */
+    public AverageFunction(Boolean ignoreMissings) {
 		super(ignoreMissings);
 	}
 

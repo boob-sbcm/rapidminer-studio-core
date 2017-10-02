@@ -20,7 +20,7 @@ package com.rapidminer.gui.plotter;
 
 /**
  * A helper class for keeping values and names together sortable.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class NameValue implements Comparable<NameValue> {
@@ -29,7 +29,13 @@ public class NameValue implements Comparable<NameValue> {
 
 	private double value;
 
-	public NameValue(String name, double value) {
+    /**
+     * Instantiates a new Name value.
+     *
+     * @param name  the name
+     * @param value the value
+     */
+    public NameValue(String name, double value) {
 		this.name = name;
 		this.value = value;
 	}
@@ -40,11 +46,21 @@ public class NameValue implements Comparable<NameValue> {
 		return Double.compare(o.value, this.value);
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return name;
 	}
 
-	public double getValue() {
+    /**
+     * Gets value.
+     *
+     * @return the value
+     */
+    public double getValue() {
 		return value;
 	}
 

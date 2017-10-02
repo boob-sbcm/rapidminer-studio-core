@@ -43,22 +43,33 @@ import com.rapidminer.tools.RandomGenerator;
  */
 public class Bagging extends AbstractMetaLearner {
 
-	/**
-	 * Name of the variable specifying the maximal number of iterations of the learner.
-	 */
-	public static final String PARAMETER_ITERATIONS = "iterations";
+    /**
+     * Name of the variable specifying the maximal number of iterations of the learner.
+     */
+    public static final String PARAMETER_ITERATIONS = "iterations";
 
-	/** Name of the flag indicating internal bootstrapping. */
-	public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
+    /**
+     * Name of the flag indicating internal bootstrapping.
+     */
+    public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
 
-	/** Name of the flag indicating internal bootstrapping. */
-	public static final String PARAMETER_AVERAGE_CONFIDENCES = "average_confidences";
+    /**
+     * Name of the flag indicating internal bootstrapping.
+     */
+    public static final String PARAMETER_AVERAGE_CONFIDENCES = "average_confidences";
 
-	// field for visualizing performance
+    /**
+     * The Current iteration.
+     */
+// field for visualizing performance
 	protected int currentIteration;
 
-	/** Constructor. */
-	public Bagging(OperatorDescription description) {
+    /**
+     * Constructor.  @param description the description
+     *
+     * @param description the description
+     */
+    public Bagging(OperatorDescription description) {
 		super(description);
 		addValue(new ValueDouble("iteration", "The current iteration.") {
 

@@ -58,13 +58,28 @@ public class FeatureSubsetIteration extends OperatorChain {
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private final OutputPort exampleSetInnerSource = getSubprocess(0).getInnerSources().createPort("example set");
 
-	public static final String PARAMETER_LIMIT_MAX = "limit_max_number";
-	public static final String PARAMETER_MAX_NUMBER_OF_ATTRIBUTES = "max_number_of_attributes";
+    /**
+     * The constant PARAMETER_LIMIT_MAX.
+     */
+    public static final String PARAMETER_LIMIT_MAX = "limit_max_number";
+    /**
+     * The constant PARAMETER_MAX_NUMBER_OF_ATTRIBUTES.
+     */
+    public static final String PARAMETER_MAX_NUMBER_OF_ATTRIBUTES = "max_number_of_attributes";
 
-	public static final String PARAMETER_MIN_NUMBER_OF_ATTRIBUTES = "min_number_of_attributes";
+    /**
+     * The constant PARAMETER_MIN_NUMBER_OF_ATTRIBUTES.
+     */
+    public static final String PARAMETER_MIN_NUMBER_OF_ATTRIBUTES = "min_number_of_attributes";
 
-	public static final String PARAMETER_USE_EXACT_NUMBER = "use_exact_number";
-	public static final String PARAMETER_EXACT_NUMBER_OF_ATTRIBUTES = "exact_number_of_attributes";
+    /**
+     * The constant PARAMETER_USE_EXACT_NUMBER.
+     */
+    public static final String PARAMETER_USE_EXACT_NUMBER = "use_exact_number";
+    /**
+     * The constant PARAMETER_EXACT_NUMBER_OF_ATTRIBUTES.
+     */
+    public static final String PARAMETER_EXACT_NUMBER_OF_ATTRIBUTES = "exact_number_of_attributes";
 
 	private int iteration = -1;
 
@@ -72,7 +87,12 @@ public class FeatureSubsetIteration extends OperatorChain {
 
 	private String featureNames = null;
 
-	public FeatureSubsetIteration(OperatorDescription description) {
+    /**
+     * Instantiates a new Feature subset iteration.
+     *
+     * @param description the description
+     */
+    public FeatureSubsetIteration(OperatorDescription description) {
 		super(description, "Subprocess");
 
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, exampleSetInnerSource, SetRelation.SUBSET));

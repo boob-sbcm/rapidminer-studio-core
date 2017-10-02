@@ -99,21 +99,33 @@ public class DataResultSetTranslator {
 
 	private final Map<Pair<Integer, Integer>, ParsingError> errors = new HashMap<>();
 
-	/**
-	 * From this version, the binominal data type never will be chosen, because it fails too often.
-	 */
-	public static final OperatorVersion VERSION_6_0_3 = new OperatorVersion(6, 0, 3);
+    /**
+     * From this version, the binominal data type never will be chosen, because it fails too often.
+     */
+    public static final OperatorVersion VERSION_6_0_3 = new OperatorVersion(6, 0, 3);
 
 	private Operator operator;
 
-	public DataResultSetTranslator(Operator operator) {
+    /**
+     * Instantiates a new Data result set translator.
+     *
+     * @param operator the operator
+     */
+    public DataResultSetTranslator(Operator operator) {
 		this.operator = operator;
 	}
 
-	/**
-	 * This method will start the translation of the actual ResultDataSet to an ExampleSet.
-	 */
-	public ExampleSet read(DataResultSet dataResultSet, DataResultSetTranslationConfiguration configuration,
+    /**
+     * This method will start the translation of the actual ResultDataSet to an ExampleSet.
+     *
+     * @param dataResultSet the data result set
+     * @param configuration the configuration
+     * @param previewOnly   the preview only
+     * @param listener      the listener
+     * @return the example set
+     * @throws OperatorException the operator exception
+     */
+    public ExampleSet read(DataResultSet dataResultSet, DataResultSetTranslationConfiguration configuration,
 			boolean previewOnly, ProgressListener listener) throws OperatorException {
 		int maxRows = previewOnly ? ImportWizardUtils.getPreviewLength() : -1;
 
@@ -444,7 +456,15 @@ public class DataResultSetTranslator {
 		}
 	}
 
-	public void guessValueTypes(DataResultSetTranslationConfiguration configuration, DataResultSet dataResultSet,
+    /**
+     * Guess value types.
+     *
+     * @param configuration the configuration
+     * @param dataResultSet the data result set
+     * @param listener      the listener
+     * @throws OperatorException the operator exception
+     */
+    public void guessValueTypes(DataResultSetTranslationConfiguration configuration, DataResultSet dataResultSet,
 			ProgressListener listener) throws OperatorException {
 		int maxProbeRows;
 		try {
@@ -456,7 +476,16 @@ public class DataResultSetTranslator {
 		guessValueTypes(configuration, dataResultSet, maxProbeRows, listener);
 	}
 
-	public void guessValueTypes(DataResultSetTranslationConfiguration configuration, DataResultSet dataResultSet,
+    /**
+     * Guess value types.
+     *
+     * @param configuration   the configuration
+     * @param dataResultSet   the data result set
+     * @param maxNumberOfRows the max number of rows
+     * @param listener        the listener
+     * @throws OperatorException the operator exception
+     */
+    public void guessValueTypes(DataResultSetTranslationConfiguration configuration, DataResultSet dataResultSet,
 			int maxNumberOfRows, ProgressListener listener) throws OperatorException {
 		int[] originalValueTypes = new int[configuration.getNumerOfColumns()];
 		for (int i = 0; i < originalValueTypes.length; i++) {
@@ -660,19 +689,22 @@ public class DataResultSetTranslator {
 		}
 	}
 
-	/**
-	 * This method will stop any ongoing read action and close the underlying DataResultSet. It will
-	 * wait until this has been successfully performed.
-	 *
-	 * @throws OperatorException
-	 */
-	public void close() throws OperatorException {
+    /**
+     * This method will stop any ongoing read action and close the underlying DataResultSet. It will
+     * wait until this has been successfully performed.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void close() throws OperatorException {
 		if (isReading) {
 			shouldStop = true;
 		}
 	}
 
-	public void clearErrors() {
+    /**
+     * Clear errors.
+     */
+    public void clearErrors() {
 		errors.clear();
 	}
 
@@ -689,36 +721,53 @@ public class DataResultSetTranslator {
 		errors.put(new Pair<>(error.getExampleIndex(), error.getColumn()), error);
 	}
 
-	public Collection<ParsingError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public Collection<ParsingError> getErrors() {
 		return errors.values();
 	}
 
-	public ParsingError getErrorByExampleIndexAndColumn(int row, int column) {
+    /**
+     * Gets error by example index and column.
+     *
+     * @param row    the row
+     * @param column the column
+     * @return the error by example index and column
+     */
+    public ParsingError getErrorByExampleIndexAndColumn(int row, int column) {
 		if (errors == null) {
 			return null;
 		}
 		return errors.get(new Pair<>(row, column));
 	}
 
-	/**
-	 * Cancels
-	 * {@link #guessValueTypes(int[], DataResultSetTranslationConfiguration, DataResultSet, int, ProgressListener)}
-	 * after the next row.
-	 */
-	public void cancelGuessing() {
+    /**
+     * Cancels
+     * {@link #guessValueTypes(int[], DataResultSetTranslationConfiguration, DataResultSet, int, ProgressListener)}
+     * after the next row.
+     */
+    public void cancelGuessing() {
 		cancelGuessingRequested = true;
 	}
 
-	/**
-	 * Cancels
-	 * {@link #read(DataResultSet, DataResultSetTranslationConfiguration, int, ProgressListener)}
-	 * after the next row.
-	 */
-	public void cancelLoading() {
+    /**
+     * Cancels
+     * {@link #read(DataResultSet, DataResultSetTranslationConfiguration, int, ProgressListener)}
+     * after the next row.
+     */
+    public void cancelLoading() {
 		cancelLoadingRequested = true;
 	}
 
-	public boolean isGuessingCancelled() {
+    /**
+     * Is guessing cancelled boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isGuessingCancelled() {
 		return cancelGuessingRequested;
 	}
 }

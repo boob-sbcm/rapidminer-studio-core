@@ -22,18 +22,32 @@ package com.rapidminer.parameter;
  * A parameter type for parameters which stands for attribute description files (RapidMiner XML
  * descriptions). Operators ask for the selected file with
  * {@link com.rapidminer.operator.Operator#getParameterAsFile(String)}.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class ParameterTypeAttributeFile extends ParameterTypeFile {
 
 	private static final long serialVersionUID = 4929969388911989038L;
 
-	public ParameterTypeAttributeFile(String key, String description, boolean optional) {
+    /**
+     * Instantiates a new Parameter type attribute file.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     */
+    public ParameterTypeAttributeFile(String key, String description, boolean optional) {
 		super(key, description, "aml", optional);
 	}
 
-	public ParameterTypeAttributeFile(String key, String description, String defaultFileName) {
+    /**
+     * Instantiates a new Parameter type attribute file.
+     *
+     * @param key             the key
+     * @param description     the description
+     * @param defaultFileName the default file name
+     */
+    public ParameterTypeAttributeFile(String key, String description, String defaultFileName) {
 		super(key, description, "aml", defaultFileName);
 	}
 

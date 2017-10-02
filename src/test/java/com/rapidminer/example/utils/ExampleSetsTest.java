@@ -51,22 +51,34 @@ import com.rapidminer.tools.ParameterService;
  * Tests the {@link ExampleSet} creation with the builders from {@link ExampleSets}.
  *
  * @author Gisa Schaefer
- *
  */
 @RunWith(value = Parameterized.class)
 public class ExampleSetsTest {
 
-	public ExampleSetsTest(boolean legacyMode) {
+    /**
+     * Instantiates a new Example sets test.
+     *
+     * @param legacyMode the legacy mode
+     */
+    public ExampleSetsTest(boolean legacyMode) {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT,
 				String.valueOf(legacyMode));
 	}
 
-	@Parameters(name = "legacyMode={0}")
+    /**
+     * Params collection.
+     *
+     * @return the collection
+     */
+    @Parameters(name = "legacyMode={0}")
 	public static Collection<Object> params() {
 		return Arrays.asList(true, false);
 	}
 
-	@Test
+    /**
+     * Create no rows test.
+     */
+    @Test
 	public void createNoRowsTest() {
 		ExampleSet testSet = ExampleSets.from(ExampleTestTools.attributeInt()).build();
 
@@ -74,7 +86,10 @@ public class ExampleSetsTest {
 		assertEquals(0, testSet.size());
 	}
 
-	@Test
+    /**
+     * Create no rows two attributes test.
+     */
+    @Test
 	public void createNoRowsTwoAttributesTest() {
 		ExampleSet testSet = ExampleSets.from(ExampleTestTools.attributeInt(), ExampleTestTools.attributeReal()).build();
 
@@ -82,7 +97,10 @@ public class ExampleSetsTest {
 		assertEquals(0, testSet.size());
 	}
 
-	@Test
+    /**
+     * Create special attributes test.
+     */
+    @Test
 	public void createSpecialAttributesTest() {
 		Attribute weight = ExampleTestTools.attributeReal();
 		Attribute label = ExampleTestTools.attributeYesNo();
@@ -99,7 +117,10 @@ public class ExampleSetsTest {
 		assertEquals(0, testSet.size());
 	}
 
-	@Test
+    /**
+     * Create special attributes map test.
+     */
+    @Test
 	public void createSpecialAttributesMapTest() {
 		List<Attribute> attributes = Arrays.asList(ExampleTestTools.createFourAttributes());
 		Map<Attribute, String> specialAttributes = new LinkedHashMap<>();
@@ -116,7 +137,10 @@ public class ExampleSetsTest {
 		assertEquals(0, testSet.size());
 	}
 
-	@Test
+    /**
+     * Create two rows test.
+     */
+    @Test
 	public void createTwoRowsTest() {
 		Attribute attribute = ExampleTestTools.attributeInt();
 
@@ -130,7 +154,10 @@ public class ExampleSetsTest {
 		assertEquals(0, testSet.getExample(1).getValue(attribute), 0);
 	}
 
-	@Test
+    /**
+     * Create speed optimization hint test.
+     */
+    @Test
 	public void createSpeedOptimizationHintTest() {
 		Attribute attribute = ExampleTestTools.attributeInt();
 
@@ -145,7 +172,10 @@ public class ExampleSetsTest {
 		assertEquals(0, testSet.getExample(1).getValue(attribute), 0);
 	}
 
-	@Test
+    /**
+     * Creatememory optimization hint test.
+     */
+    @Test
 	public void creatememoryOptimizationHintTest() {
 		Attribute attribute = ExampleTestTools.attributeInt();
 
@@ -160,7 +190,10 @@ public class ExampleSetsTest {
 		assertEquals(0, testSet.getExample(1).getValue(attribute), 0);
 	}
 
-	@Test
+    /**
+     * Create speed optimization hint and rows test.
+     */
+    @Test
 	public void createSpeedOptimizationHintAndRowsTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -179,7 +212,10 @@ public class ExampleSetsTest {
 		assertEquals(11.5, testSet.getExample(1).getValue(attribute2), 1.0e-12);
 	}
 
-	@Test
+    /**
+     * Create memory optimization hint and rows test.
+     */
+    @Test
 	public void createMemoryOptimizationHintAndRowsTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -198,7 +234,10 @@ public class ExampleSetsTest {
 		assertEquals(11.5, testSet.getExample(1).getValue(attribute2), 1.0e-12);
 	}
 
-	@Test
+    /**
+     * Expected size test test.
+     */
+    @Test
 	public void expectedSizeTestTest() {
 		Attribute attribute = ExampleTestTools.attributeInt();
 
@@ -209,7 +248,10 @@ public class ExampleSetsTest {
 		assertEquals(0, testSet.size());
 	}
 
-	@Test
+    /**
+     * Create filled rows test.
+     */
+    @Test
 	public void createFilledRowsTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -227,7 +269,10 @@ public class ExampleSetsTest {
 		assertEquals(11.5, testSet.getExample(1).getValue(attribute2), 1.0e-12);
 	}
 
-	@Test
+    /**
+     * Create filled data rows test.
+     */
+    @Test
 	public void createFilledDataRowsTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeDogCatMouse();
@@ -247,7 +292,10 @@ public class ExampleSetsTest {
 		assertEquals("dog", testSet.getExample(1).getNominalValue(attribute2));
 	}
 
-	@Test
+    /**
+     * Create data rows from attributes test.
+     */
+    @Test
 	public void createDataRowsFromAttributesTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -275,7 +323,10 @@ public class ExampleSetsTest {
 		assertEquals(2, testSet.getExample(2).getValue(attribute2), 0);
 	}
 
-	@Test
+    /**
+     * Create data row reader test.
+     */
+    @Test
 	public void createDataRowReaderTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -293,7 +344,10 @@ public class ExampleSetsTest {
 		assertEquals(11.5, testSet.getExample(1).getValue(attribute2), 1.0e-12);
 	}
 
-	@Test
+    /**
+     * Createfill columns test.
+     */
+    @Test
 	public void createfillColumnsTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -312,7 +366,10 @@ public class ExampleSetsTest {
 		assertEquals(2 * 9, testSet.getExample(9).getValue(attribute2), 0);
 	}
 
-	@Test
+    /**
+     * Createfill columns and optimization test.
+     */
+    @Test
 	public void createfillColumnsAndOptimizationTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -332,7 +389,10 @@ public class ExampleSetsTest {
 		assertEquals(2 * 9, testSet.getExample(9).getValue(attribute2), 0);
 	}
 
-	@Test
+    /**
+     * Createfill column test.
+     */
+    @Test
 	public void createfillColumnTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -350,7 +410,10 @@ public class ExampleSetsTest {
 		assertEquals(0, testSet.getExample(9).getValue(attribute2), 0);
 	}
 
-	@Test
+    /**
+     * Create with everything order check.
+     */
+    @Test
 	public void createWithEverythingOrderCheck() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -381,7 +444,10 @@ public class ExampleSetsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Growing table test row set column row.
+     */
+    @Test
 	public void growingTableTestRowSetColumnRow() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		GrowingExampleTable table = ExampleSets.createTableFrom(Collections.emptyList());
@@ -394,7 +460,10 @@ public class ExampleSetsTest {
 		assertEquals(1, table.getDataRow(1).get(attribute1), 0);
 	}
 
-	@Test
+    /**
+     * Growing table test row column row.
+     */
+    @Test
 	public void growingTableTestRowColumnRow() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		GrowingExampleTable table = ExampleSets.createTableFrom(Collections.emptyList());
@@ -406,7 +475,10 @@ public class ExampleSetsTest {
 		assertEquals(1, table.getDataRow(1).get(attribute1), 0);
 	}
 
-	@Test
+    /**
+     * Growing table test column row row column.
+     */
+    @Test
 	public void growingTableTestColumnRowRowColumn() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -426,7 +498,10 @@ public class ExampleSetsTest {
 		assertEquals(0, table.getDataRow(1).get(attribute2), 0);
 	}
 
-	@Test
+    /**
+     * Growing table test column row column row.
+     */
+    @Test
 	public void growingTableTestColumnRowColumnRow() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -441,7 +516,10 @@ public class ExampleSetsTest {
 		assertEquals(6, table.getDataRow(1).get(attribute1), 0);
 	}
 
-	@Test
+    /**
+     * Casting test one attribute and blank size.
+     */
+    @Test
 	public void castingTestOneAttributeAndBlankSize() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 
@@ -457,7 +535,10 @@ public class ExampleSetsTest {
 		assertEquals(7, set.getExample(3).getValue(attribute1), 0);
 	}
 
-	@Test
+    /**
+     * Casting test one attribute and add second.
+     */
+    @Test
 	public void castingTestOneAttributeAndAddSecond() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();

@@ -28,14 +28,19 @@ import com.rapidminer.operator.preprocessing.MaterializeDataInMemory;
  * {@link MaterializeDataInMemory} operator after large preprocessing trees using lot of views or
  * data copies. Internally, this operator simply invokes a garbage collection from the underlying
  * Java programming language.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MemoryCleanUp extends Operator {
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public MemoryCleanUp(OperatorDescription description) {
+    /**
+     * Instantiates a new Memory clean up.
+     *
+     * @param description the description
+     */
+    public MemoryCleanUp(OperatorDescription description) {
 		super(description);
 
 		dummyPorts.start();

@@ -47,9 +47,8 @@ import com.rapidminer.tools.I18N;
 /**
  * This class represents a range axis of a plot. It contains a list of {@link ValueSource}s that are
  * displayed on the same range axis.
- * 
+ *
  * @author Nils Woehler, Marius Helf
- * 
  */
 public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener, Cloneable,
 		AxisParallelLinesConfigurationListener {
@@ -66,18 +65,27 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 
 	private AxisParallelLinesConfiguration crosshairLines = new AxisParallelLinesConfiguration();
 
-	public static final double padFactor = 0.05;
-	public static final double logPadFactor = 0.15;
+    /**
+     * The constant padFactor.
+     */
+    public static final double padFactor = 0.05;
+    /**
+     * The constant logPadFactor.
+     */
+    public static final double logPadFactor = 0.15;
 
 	private transient List<WeakReference<RangeAxisConfigListener>> listeners = new LinkedList<WeakReference<RangeAxisConfigListener>>();
 	private final int Id;
 
-	/**
-	 * Constructor that sets the name of the range axis. If name is <code>null</code> auto naming
-	 * will be enabled. If {@link SeriesFormat} is <code>null</code> the value sources default
-	 * series format will be used.
-	 */
-	public RangeAxisConfig(String name, PlotConfiguration plotConfig) {
+    /**
+     * Constructor that sets the name of the range axis. If name is <code>null</code> auto naming
+     * will be enabled. If {@link SeriesFormat} is <code>null</code> the value sources default
+     * series format will be used.
+     *
+     * @param name       the name
+     * @param plotConfig the plot config
+     */
+    public RangeAxisConfig(String name, PlotConfiguration plotConfig) {
 		this(name, plotConfig.getNextId());
 	}
 
@@ -98,32 +106,35 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		crosshairLines.addAxisParallelLinesConfigurationListener(this);
 	}
 
-	/**
-	 * Returns the name of the {@link RangeAxisConfig}. Maybe <code>null</code>.
-	 */
-	public String getLabel() {
+    /**
+     * Returns the name of the {@link RangeAxisConfig}. Maybe <code>null</code>.
+     *
+     * @return the label
+     */
+    public String getLabel() {
 		return name;
 	}
 
-	/**
-	 * Sets the name of the plot range axis
-	 */
-	public void setLabel(String name) {
+    /**
+     * Sets the name of the plot range axis
+     *
+     * @param name the name
+     */
+    public void setLabel(String name) {
 		if (name == null ? name != this.name : !name.equals(this.name)) {
 			this.name = name;
 			fireLabelChanged();
 		}
 	}
 
-	/**
-	 * Adds a {@link PlotValueConfig} to the list of {@link ValueSource}s on this axis.
-	 * 
-	 * @param seriesFormat
-	 *            if this is <code>null</code> the value sources default series format is used.
-	 *            Otherwise this series format will be set for the new value source.
-	 * 
-	 */
-	public void addValueSource(int index, ValueSource valueSource, SeriesFormat seriesFormat) {
+    /**
+     * Adds a {@link PlotValueConfig} to the list of {@link ValueSource}s on this axis.
+     *
+     * @param index        the index
+     * @param valueSource  the value source
+     * @param seriesFormat if this is <code>null</code> the value sources default series format is used.            Otherwise this series format will be set for the new value source.
+     */
+    public void addValueSource(int index, ValueSource valueSource, SeriesFormat seriesFormat) {
 
 		if (seriesFormat != null) {
 			valueSource.setSeriesFormat(seriesFormat);
@@ -138,36 +149,40 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		}
 	}
 
-	/**
-	 * Adds a {@link PlotValueConfig} to the list of {@link ValueSource}s on this axis.
-	 * 
-	 * It is mandatory that all {@link ValueSource}s have the same {@link ValueType}. Because of
-	 * this a {@link ChartConfigurationException} is thrown if the {@link ValueType} of the
-	 * {@link ValueSource} differs from other existing {@link ValueSource}'s {@link ValueType}s.
-	 * 
-	 * To check if adding a value source is possible call isAddingValueTypePossible(ValueType type).
-	 * 
-	 * @param adaptSeriesFormat
-	 *            if this is <code>true</code> a new automatic created series format will be set for
-	 *            the new value source
-	 */
-	public void addValueSource(ValueSource valueSource, SeriesFormat seriesFormat) { // throws
+    /**
+     * Adds a {@link PlotValueConfig} to the list of {@link ValueSource}s on this axis.
+     * <p>
+     * It is mandatory that all {@link ValueSource}s have the same {@link ValueType}. Because of
+     * this a {@link ChartConfigurationException} is thrown if the {@link ValueType} of the
+     * {@link ValueSource} differs from other existing {@link ValueSource}'s {@link ValueType}s.
+     * <p>
+     * To check if adding a value source is possible call isAddingValueTypePossible(ValueType type).
+     *
+     * @param valueSource  the value source
+     * @param seriesFormat the series format
+     */
+    public void addValueSource(ValueSource valueSource, SeriesFormat seriesFormat) { // throws
 																						// ChartConfigurationException
 																						// {
 		addValueSource(valueSourceList.size(), valueSource, seriesFormat);
 	}
 
-	/**
-	 * Removes a {@link ValueSource} from the list of plot value configs on this axis.
-	 * 
-	 * @param valueSource
-	 */
-	public void removeValueSource(ValueSource valueSource) {
+    /**
+     * Removes a {@link ValueSource} from the list of plot value configs on this axis.
+     *
+     * @param valueSource the value source
+     */
+    public void removeValueSource(ValueSource valueSource) {
 		int idx = valueSourceList.indexOf(valueSource);
 		removeValueSource(idx);
 	}
 
-	public void removeValueSource(int index) {
+    /**
+     * Remove value source.
+     *
+     * @param index the index
+     */
+    public void removeValueSource(int index) {
 		ValueSource cachedValueSource = valueSourceList.get(index);
 		cachedValueSource.removeValueSourceListener(this);
 		valueSourceList.remove(index);
@@ -179,25 +194,43 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		}
 	}
 
-	public void changeIndex(int index, ValueSource source) {
+    /**
+     * Change index.
+     *
+     * @param index  the index
+     * @param source the source
+     */
+    public void changeIndex(int index, ValueSource source) {
 		if (ListUtility.changeIndex(valueSourceList, source, index)) {
 			setAutoLabelIfEnabled();
 			fireMoved(index, source);
 		}
 	}
 
-	/**
-	 * Returns all plot value configs on this range axis.
-	 */
-	public List<ValueSource> getValueSources() {
+    /**
+     * Returns all plot value configs on this range axis.
+     *
+     * @return the value sources
+     */
+    public List<ValueSource> getValueSources() {
 		return valueSourceList;
 	}
 
-	public void addRangeAxisConfigListener(RangeAxisConfigListener l) {
+    /**
+     * Add range axis config listener.
+     *
+     * @param l the l
+     */
+    public void addRangeAxisConfigListener(RangeAxisConfigListener l) {
 		listeners.add(new WeakReference<RangeAxisConfigListener>(l));
 	}
 
-	public void removeRangeAxisConfigListener(RangeAxisConfigListener l) {
+    /**
+     * Remove range axis config listener.
+     *
+     * @param l the l
+     */
+    public void removeRangeAxisConfigListener(RangeAxisConfigListener l) {
 		Iterator<WeakReference<RangeAxisConfigListener>> it = listeners.iterator();
 		while (it.hasNext()) {
 			RangeAxisConfigListener listener = it.next().get();
@@ -207,10 +240,10 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		}
 	}
 
-	/**
-	 * Unsubscripes all listeners from value sources and clears value source list afterwards.
-	 */
-	public void clearValueSources() {
+    /**
+     * Unsubscripes all listeners from value sources and clears value source list afterwards.
+     */
+    public void clearValueSources() {
 		for (ValueSource valueSource : valueSourceList) {
 			valueSource.removeAllListeners();
 		}
@@ -219,16 +252,17 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		fireCleared();
 	}
 
-	/**
-	 * Returns the {@link ValueType} of this {@link RangeAxisConfig}.
-	 * 
-	 * All {@link ValueSource}s mandatory have to be of the same {@link ValueType}. If that is not
-	 * true, INVALID is returned.
-	 * 
-	 * If there are no {@link ValueSource}s UNKNOWN is returned.
-	 * 
-	 */
-	public ValueType getValueType() {
+    /**
+     * Returns the {@link ValueType} of this {@link RangeAxisConfig}.
+     * <p>
+     * All {@link ValueSource}s mandatory have to be of the same {@link ValueType}. If that is not
+     * true, INVALID is returned.
+     * <p>
+     * If there are no {@link ValueSource}s UNKNOWN is returned.
+     *
+     * @return the value type
+     */
+    public ValueType getValueType() {
 		ValueType valueType = ValueType.UNKNOWN;
 
 		for (ValueSource valueSource : getValueSources()) {
@@ -261,7 +295,12 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		}
 	}
 
-	public boolean hasAbsolutStackedPlot() {
+    /**
+     * Has absolut stacked plot boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasAbsolutStackedPlot() {
 		for (ValueSource valueSource : valueSourceList) {
 			VisualizationType seriesType = valueSource.getSeriesFormat().getSeriesType();
 			if (seriesType == VisualizationType.BARS || seriesType == VisualizationType.AREA) {
@@ -273,7 +312,13 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		return false;
 	}
 
-	public ValueSource getValueSourceById(int id) {
+    /**
+     * Gets value source by id.
+     *
+     * @param id the id
+     * @return the value source by id
+     */
+    public ValueSource getValueSourceById(int id) {
 		for (ValueSource valueSource : getValueSources()) {
 			if (valueSource.getId() == id) {
 				return valueSource;
@@ -283,18 +328,21 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		return null;
 	}
 
-	/**
-	 * @return the autoName
-	 */
-	public boolean isAutoNaming() {
+    /**
+     * Is auto naming boolean.
+     *
+     * @return the autoName
+     */
+    public boolean isAutoNaming() {
 		return autoNaming;
 	}
 
-	/**
-	 * @param autoName
-	 *            the autoName to set
-	 */
-	public void setAutoNaming(boolean autoName) {
+    /**
+     * Sets auto naming.
+     *
+     * @param autoName the autoName to set
+     */
+    public void setAutoNaming(boolean autoName) {
 		if (autoName != this.autoNaming) {
 			this.autoNaming = autoName;
 			setAutoLabelIfEnabled();
@@ -302,7 +350,12 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		}
 	}
 
-	public void setUseUserDefinedUpperViewBound(boolean useUpperBound) {
+    /**
+     * Sets use user defined upper view bound.
+     *
+     * @param useUpperBound the use upper bound
+     */
+    public void setUseUserDefinedUpperViewBound(boolean useUpperBound) {
 		if (this.useUserDefinedUpperBound != useUpperBound) {
 			this.useUserDefinedUpperBound = useUpperBound;
 			fireValueRangeChanged(new ValueRangeChangeEvent(userDefinedRange, ValueRangeChangeType.USE_UPPER_BOUND,
@@ -310,11 +363,21 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		}
 	}
 
-	public boolean isUsingUserDefinedUpperViewBound() {
+    /**
+     * Is using user defined upper view bound boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isUsingUserDefinedUpperViewBound() {
 		return useUserDefinedUpperBound;
 	}
 
-	public void setUseUserDefinedLowerViewBound(boolean useLowerBound) {
+    /**
+     * Sets use user defined lower view bound.
+     *
+     * @param useLowerBound the use lower bound
+     */
+    public void setUseUserDefinedLowerViewBound(boolean useLowerBound) {
 		if (this.useUserDefinedLowerBound != useLowerBound) {
 			this.useUserDefinedLowerBound = useLowerBound;
 			fireValueRangeChanged(new ValueRangeChangeEvent(userDefinedRange, ValueRangeChangeType.USE_LOWER_BOUND,
@@ -322,15 +385,30 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		}
 	}
 
-	public boolean isUsingUserDefinedLowerViewBound() {
+    /**
+     * Is using user defined lower view bound boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isUsingUserDefinedLowerViewBound() {
 		return useUserDefinedLowerBound;
 	}
 
-	public int getSize() {
+    /**
+     * Gets size.
+     *
+     * @return the size
+     */
+    public int getSize() {
 		return valueSourceList.size();
 	}
 
-	public NumericalValueRange getUserDefinedRange() {
+    /**
+     * Gets user defined range.
+     *
+     * @return the user defined range
+     */
+    public NumericalValueRange getUserDefinedRange() {
 		return userDefinedRange;
 	}
 
@@ -378,11 +456,21 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		}
 	}
 
-	public boolean isLogarithmicAxis() {
+    /**
+     * Is logarithmic axis boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLogarithmicAxis() {
 		return logarithmicAxis;
 	}
 
-	public void setLogarithmicAxis(boolean logarithmicAxis) {
+    /**
+     * Sets logarithmic axis.
+     *
+     * @param logarithmicAxis the logarithmic axis
+     */
+    public void setLogarithmicAxis(boolean logarithmicAxis) {
 		if (logarithmicAxis != this.logarithmicAxis) {
 			this.logarithmicAxis = logarithmicAxis;
 			fireAxisScalingChanged();
@@ -393,7 +481,12 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		setAutoLabelIfEnabled();
 	}
 
-	public void domainDimensionConfigChanged(DimensionConfigChangeEvent e) {
+    /**
+     * Domain dimension config changed.
+     *
+     * @param e the e
+     */
+    public void domainDimensionConfigChanged(DimensionConfigChangeEvent e) {
 		setAutoLabelIfEnabled();
 	}
 
@@ -448,7 +541,13 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		fireValueRangeChanged(e);
 	}
 
-	public boolean mustHaveUpperBoundOne(double initialUpperBound) {
+    /**
+     * Must have upper bound one boolean.
+     *
+     * @param initialUpperBound the initial upper bound
+     * @return the boolean
+     */
+    public boolean mustHaveUpperBoundOne(double initialUpperBound) {
 		int relativePlots = 0;
 		for (ValueSource valueSource : valueSourceList) {
 
@@ -484,15 +583,30 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		return clone;
 	}
 
-	public void setLowerViewBound(double lowerBound) {
+    /**
+     * Sets lower view bound.
+     *
+     * @param lowerBound the lower bound
+     */
+    public void setLowerViewBound(double lowerBound) {
 		userDefinedRange.setLowerBound(lowerBound);
 	}
 
-	public void setUpperViewBound(double upperBound) {
+    /**
+     * Sets upper view bound.
+     *
+     * @param upperBound the upper bound
+     */
+    public void setUpperViewBound(double upperBound) {
 		userDefinedRange.setUpperBound(upperBound);
 	}
 
-	public List<PlotConfigurationError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<PlotConfigurationError> getErrors() {
 		List<PlotConfigurationError> errors = new LinkedList<PlotConfigurationError>();
 
 		String label = getLabel();
@@ -557,7 +671,12 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		return errors;
 	}
 
-	public List<PlotConfigurationError> getWarnings() {
+    /**
+     * Gets warnings.
+     *
+     * @return the warnings
+     */
+    public List<PlotConfigurationError> getWarnings() {
 		List<PlotConfigurationError> warnings = new LinkedList<PlotConfigurationError>();
 
 		for (ValueSource valueSource : valueSourceList) {
@@ -576,14 +695,21 @@ public class RangeAxisConfig implements ValueSourceListener, ValueRangeListener,
 		fireRangeAxisChanged(new RangeAxisConfigChangeEvent(this, e));
 	}
 
-	public AxisParallelLinesConfiguration getCrossHairLines() {
+    /**
+     * Gets cross hair lines.
+     *
+     * @return the cross hair lines
+     */
+    public AxisParallelLinesConfiguration getCrossHairLines() {
 		return crosshairLines;
 	}
 
-	/**
-	 * @return the id
-	 */
-	public int getId() {
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
 		return Id;
 	}
 

@@ -76,14 +76,13 @@ public class PerspectiveMenu extends ResourceMenu {
 		}
 	};
 
-	/**
-	 * Creates a new {@link PerspectiveMenu} and uses the {@link PerspectiveController} to get the
-	 * registrered {@link Perspective}s.
-	 *
-	 * @param perspectiveController
-	 *            the controller which should be used the fetch the perspectives
-	 */
-	public PerspectiveMenu(PerspectiveController perspectiveController) {
+    /**
+     * Creates a new {@link PerspectiveMenu} and uses the {@link PerspectiveController} to get the
+     * registrered {@link Perspective}s.
+     *
+     * @param perspectiveController the controller which should be used the fetch the perspectives
+     */
+    public PerspectiveMenu(PerspectiveController perspectiveController) {
 		super("perspectives");
 		this.perspectiveController = perspectiveController;
 		this.perspectiveController.getModel().addObserver(perspectiveObserver, true);

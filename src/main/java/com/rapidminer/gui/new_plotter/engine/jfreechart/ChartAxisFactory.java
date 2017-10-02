@@ -68,9 +68,8 @@ import org.jfree.data.Range;
 /**
  * A class which creates a JFreeChart range axis for a given {@link RangeAxisConfig} or a domain
  * axis for a {@link DimensionConfig}.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class ChartAxisFactory {
 
@@ -79,7 +78,15 @@ public class ChartAxisFactory {
 	 */
 	private ChartAxisFactory() {}
 
-	public static ValueAxis createRangeAxis(RangeAxisConfig rangeAxisConfig, PlotInstance plotInstance)
+    /**
+     * Create range axis value axis.
+     *
+     * @param rangeAxisConfig the range axis config
+     * @param plotInstance    the plot instance
+     * @return the value axis
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static ValueAxis createRangeAxis(RangeAxisConfig rangeAxisConfig, PlotInstance plotInstance)
 			throws ChartPlottimeException {
 		if (rangeAxisConfig.getValueType() == ValueType.UNKNOWN || rangeAxisConfig.getValueType() == ValueType.INVALID) {
 			return null;
@@ -323,7 +330,13 @@ public class ChartAxisFactory {
 		return minMax;
 	}
 
-	public static CategoryAxis createCategoryDomainAxis(PlotConfiguration plotConfiguration) {
+    /**
+     * Create category domain axis category axis.
+     *
+     * @param plotConfiguration the plot configuration
+     * @return the category axis
+     */
+    public static CategoryAxis createCategoryDomainAxis(PlotConfiguration plotConfiguration) {
 		CategoryAxis domainAxis = new CategoryAxis(null);
 		String label = plotConfiguration.getDomainConfigManager().getLabel();
 		if (label == null) {
@@ -500,7 +513,13 @@ public class ChartAxisFactory {
 		return domainAxis;
 	}
 
-	public static void formatAxis(PlotConfiguration plotConfiguration, Axis axis) {
+    /**
+     * Format axis.
+     *
+     * @param plotConfiguration the plot configuration
+     * @param axis              the axis
+     */
+    public static void formatAxis(PlotConfiguration plotConfiguration, Axis axis) {
 		Color axisColor = plotConfiguration.getAxisLineColor();
 		if (axis != null) {
 			axis.setAxisLinePaint(axisColor);
@@ -510,11 +529,25 @@ public class ChartAxisFactory {
 		}
 	}
 
-	public static ValueAxis createNumericalDomainAxis(PlotInstance plotInstance) throws ChartPlottimeException {
+    /**
+     * Create numerical domain axis value axis.
+     *
+     * @param plotInstance the plot instance
+     * @return the value axis
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static ValueAxis createNumericalDomainAxis(PlotInstance plotInstance) throws ChartPlottimeException {
 		return createNumberOrDateDomainAxis(plotInstance, false);
 	}
 
-	public static ValueAxis createDateDomainAxis(PlotInstance plotInstance) throws ChartPlottimeException {
+    /**
+     * Create date domain axis value axis.
+     *
+     * @param plotInstance the plot instance
+     * @return the value axis
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static ValueAxis createDateDomainAxis(PlotInstance plotInstance) throws ChartPlottimeException {
 		return createNumberOrDateDomainAxis(plotInstance, true);
 	}
 }

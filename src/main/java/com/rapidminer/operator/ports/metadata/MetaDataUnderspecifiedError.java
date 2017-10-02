@@ -22,11 +22,18 @@ import com.rapidminer.operator.ports.InputPort;
 
 
 /**
+ * The type Meta data underspecified error.
+ *
  * @author Simon Fischer
  */
 public class MetaDataUnderspecifiedError extends SimpleMetaDataError {
 
-	public MetaDataUnderspecifiedError(InputPort inputPort) {
+    /**
+     * Instantiates a new Meta data underspecified error.
+     *
+     * @param inputPort the input port
+     */
+    public MetaDataUnderspecifiedError(InputPort inputPort) {
 		super(Severity.WARNING, inputPort, "metadata_underspecified");
 	}
 }

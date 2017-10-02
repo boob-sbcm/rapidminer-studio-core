@@ -29,10 +29,10 @@ import com.rapidminer.parameter.UndefinedParameterError;
  */
 public class MacroDefinedCondition implements ProcessBranchCondition {
 
-	/**
-	 * Constructor used by reflection.
-	 */
-	public MacroDefinedCondition() {}
+    /**
+     * Constructor used by reflection.
+     */
+    public MacroDefinedCondition() {}
 
 	@Override
 	public boolean check(ProcessBranch operator, String value) throws OperatorException {

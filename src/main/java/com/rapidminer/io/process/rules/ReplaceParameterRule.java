@@ -32,16 +32,22 @@ import org.w3c.dom.NodeList;
 
 /**
  * Rule to rename parameters.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class ReplaceParameterRule extends AbstractConditionedParseRule {
 
 	private String oldAttributeName;
 	private String newAttributeName;
 
-	public ReplaceParameterRule(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Replace parameter rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public ReplaceParameterRule(String operatorTypeName, Element element) throws XMLException {
 		super(operatorTypeName, element);
 		NodeList children = element.getChildNodes();
 		for (int i = 0; i < children.getLength(); i++) {

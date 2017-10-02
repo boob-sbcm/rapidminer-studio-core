@@ -29,11 +29,11 @@ import java.util.logging.Level;
 /**
  * Unlike a {@link FileDataRowReader} that reads examples from a file, objects of this class read
  * examples from a {@link ResultSet}, a data structure that is returned from a database query.
- * 
+ *
+ * @author Simon Fischer, Ingo Mierswa ingomierswa Exp $
  * @see com.rapidminer.tools.jdbc.DatabaseHandler
  * @see com.rapidminer.operator.io.DatabaseDataReader
  * @see com.rapidminer.operator.io.KDBExampleSource
- * @author Simon Fischer, Ingo Mierswa ingomierswa Exp $
  */
 public class DatabaseDataRowReader implements DataRowReader {
 
@@ -47,11 +47,14 @@ public class DatabaseDataRowReader implements DataRowReader {
 
 	private int hasNext = DONT_KNOW_YET;
 
-	/**
-	 * Creates a datarow reader from a ResultSet. The column meta data must be tranformed to an
-	 * {@link Attribute} array.
-	 */
-	public DatabaseDataRowReader(ResultSet resultSet) throws SQLException {
+    /**
+     * Creates a datarow reader from a ResultSet. The column meta data must be tranformed to an
+     * {@link Attribute} array.
+     *
+     * @param resultSet the result set
+     * @throws SQLException the sql exception
+     */
+    public DatabaseDataRowReader(ResultSet resultSet) throws SQLException {
 		this.resultSet = resultSet;
 		this.resultSet.beforeFirst();
 	}

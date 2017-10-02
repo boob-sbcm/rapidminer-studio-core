@@ -36,9 +36,8 @@ import javax.swing.JTable;
 /**
  * The {@link CellEditor} for the {@link ParameterTypeFilter}. Does nothing except providing a
  * button to open the Filter configuration dialog.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class FilterValueCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {
 
@@ -50,10 +49,12 @@ public class FilterValueCellEditor extends AbstractCellEditor implements Propert
 
 	private FilterPropertyDialog dialog;
 
-	/**
-	 * Creates a new {@link FilterValueCellEditor} instance.
-	 */
-	public FilterValueCellEditor(final ParameterTypeFilter type) {
+    /**
+     * Creates a new {@link FilterValueCellEditor} instance.
+     *
+     * @param type the type
+     */
+    public FilterValueCellEditor(final ParameterTypeFilter type) {
 		button = new JButton(new ResourceAction(true, "set_filters") {
 
 			private static final long serialVersionUID = 8274776396885048377L;

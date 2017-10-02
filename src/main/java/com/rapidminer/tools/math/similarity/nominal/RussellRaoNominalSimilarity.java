@@ -20,7 +20,7 @@ package com.rapidminer.tools.math.similarity.nominal;
 
 /**
  * Implements the Russell-Rao similarity for nominal attributes.
- * 
+ *
  * @author Michael Wurst, Sebastian Land
  */
 public class RussellRaoNominalSimilarity extends AbstractNominalSimilarity {

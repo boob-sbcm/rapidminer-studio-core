@@ -65,35 +65,67 @@ import com.rapidminer.tools.math.SignificanceTestResult;
  * <li><b>without significant increase</b> stops as soon as the increase isn't significant to the
  * specified level.</li>
  * </ul>
- *
+ * <p>
  * The parameter speculative_rounds defines how many rounds will be performed in a row, after a
  * first time the stopping criterion was fulfilled. If the performance increases again during the
  * speculative rounds, the selection will be continued. Otherwise all additionally selected
  * attributes will be removed, as if no speculative rounds would have been executed. This might help
  * to avoid getting stuck in local optima. A following backward elimination operator might remove
  * unneeded attributes again.
- *
+ * <p>
  * The operator provides a value for logging the performance in each round using a ProcessLog.
  *
  * @author Sebastian Land
- *
  */
 public class ForwardAttributeSelectionOperator extends OperatorChain {
 
-	public static final String PARAMETER_STOPPING_BEHAVIOR = "stopping_behavior";
-	public static final String PARAMETER_MAX_ATTRIBUTES = "maximal_number_of_attributes";
-	public static final String PARAMETER_MIN_RELATIVE_INCREASE = "minimal_relative_increase";
-	public static final String PARAMETER_MIN_ABSOLUT_INCREASE = "minimal_absolute_increase";
-	public static final String PARAMETER_USE_RELATIVE_INCREASE = "use_relative_increase";
-	public static final String PARAMETER_ALPHA = "alpha";
-	public static final String PARAMETER_ALLOWED_CONSECUTIVE_FAILS = "speculative_rounds";
+    /**
+     * The constant PARAMETER_STOPPING_BEHAVIOR.
+     */
+    public static final String PARAMETER_STOPPING_BEHAVIOR = "stopping_behavior";
+    /**
+     * The constant PARAMETER_MAX_ATTRIBUTES.
+     */
+    public static final String PARAMETER_MAX_ATTRIBUTES = "maximal_number_of_attributes";
+    /**
+     * The constant PARAMETER_MIN_RELATIVE_INCREASE.
+     */
+    public static final String PARAMETER_MIN_RELATIVE_INCREASE = "minimal_relative_increase";
+    /**
+     * The constant PARAMETER_MIN_ABSOLUT_INCREASE.
+     */
+    public static final String PARAMETER_MIN_ABSOLUT_INCREASE = "minimal_absolute_increase";
+    /**
+     * The constant PARAMETER_USE_RELATIVE_INCREASE.
+     */
+    public static final String PARAMETER_USE_RELATIVE_INCREASE = "use_relative_increase";
+    /**
+     * The constant PARAMETER_ALPHA.
+     */
+    public static final String PARAMETER_ALPHA = "alpha";
+    /**
+     * The constant PARAMETER_ALLOWED_CONSECUTIVE_FAILS.
+     */
+    public static final String PARAMETER_ALLOWED_CONSECUTIVE_FAILS = "speculative_rounds";
 
-	public static final String[] STOPPING_BEHAVIORS = new String[] { "without increase", "without increase of at least",
+    /**
+     * The constant STOPPING_BEHAVIORS.
+     */
+    public static final String[] STOPPING_BEHAVIORS = new String[] { "without increase", "without increase of at least",
 			"without significant increase" };
 
-	public static final int WITHOUT_INCREASE = 0;
-	public static final int WITHOUT_INCREASE_OF_AT_LEAST = 1;
-	public static final int WITHOUT_INCREASE_SIGNIFICANT = 2;
+    /**
+     * The constant WITHOUT_INCREASE.
+     */
+    public static final int WITHOUT_INCREASE = 0;
+    /**
+     * The constant WITHOUT_INCREASE_OF_AT_LEAST.
+     */
+    public static final int WITHOUT_INCREASE_OF_AT_LEAST = 1;
+    /**
+     * The constant WITHOUT_INCREASE_SIGNIFICANT.
+     */
+    public static final int WITHOUT_INCREASE_SIGNIFICANT = 2;
 
 	private double currentNumberOfFeatures = 0;
 	private Attributes currentAttributes;
@@ -108,7 +140,12 @@ public class ForwardAttributeSelectionOperator extends OperatorChain {
 	private OutputPort weightsOutput = getOutputPorts().createPort("attribute weights");
 	private OutputPort performanceOutput = getOutputPorts().createPort("performance");
 
-	public ForwardAttributeSelectionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Forward attribute selection operator.
+     *
+     * @param description the description
+     */
+    public ForwardAttributeSelectionOperator(OperatorDescription description) {
 		super(description, "Learning Process");
 
 		getTransformer().addPassThroughRule(exampleSetInput, innerExampleSetSource);

@@ -41,12 +41,24 @@ public class BelowOrEqualOperatorVersionCondition extends ParameterCondition {
 	private VersionNumber isAtMost;
 	private Operator operator;
 
-	public BelowOrEqualOperatorVersionCondition(Element element) throws XMLException {
+    /**
+     * Instantiates a new Below or equal operator version condition.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public BelowOrEqualOperatorVersionCondition(Element element) throws XMLException {
 		super(element);
 		isAtMost = new VersionNumber(XMLTools.getTagContents(element, ELEMENT_VERSION, true));
 	}
 
-	public BelowOrEqualOperatorVersionCondition(Operator operator, VersionNumber isAtMost) {
+    /**
+     * Instantiates a new Below or equal operator version condition.
+     *
+     * @param operator the operator
+     * @param isAtMost the is at most
+     */
+    public BelowOrEqualOperatorVersionCondition(Operator operator, VersionNumber isAtMost) {
 		super(operator, false);
 		this.operator = operator;
 		this.isAtMost = isAtMost;

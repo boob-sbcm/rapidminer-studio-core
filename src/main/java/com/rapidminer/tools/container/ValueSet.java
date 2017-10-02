@@ -27,19 +27,27 @@ import java.util.Map.Entry;
  * This class represents a set of (weighted) double values. Might be e.g. used to obtain all
  * distinct values or to efficiently store a large number of values out of a relatively small
  * domain.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class ValueSet implements Iterable<Double> {
 
 	private HashMap<Double, Double> valueMap;
 
-	public ValueSet() {
+    /**
+     * Instantiates a new Value set.
+     */
+    public ValueSet() {
 		valueMap = new HashMap<Double, Double>();
 	}
 
-	/** Add a value with a weight to the set. */
-	public void add(double value, double weight) {
+    /**
+     * Add a value with a weight to the set.  @param value the value
+     *
+     * @param value  the value
+     * @param weight the weight
+     */
+    public void add(double value, double weight) {
 		if (valueMap.containsKey(value)) {
 			valueMap.put(value, valueMap.get(value) + weight);
 		} else {
@@ -47,13 +55,22 @@ public class ValueSet implements Iterable<Double> {
 		}
 	}
 
-	/** Add a value to the set. */
-	public void add(double value) {
+    /**
+     * Add a value to the set.  @param value the value
+     *
+     * @param value the value
+     */
+    public void add(double value) {
 		add(value, 1.0d);
 	}
 
-	/** Returns whether the set contains the given value. */
-	public boolean contains(double value) {
+    /**
+     * Returns whether the set contains the given value.  @param value the value
+     *
+     * @param value the value
+     * @return the boolean
+     */
+    public boolean contains(double value) {
 		return valueMap.containsKey(value);
 	}
 
@@ -63,20 +80,30 @@ public class ValueSet implements Iterable<Double> {
 		return valueMap.keySet().iterator();
 	}
 
-	/**
-	 * Returns an iterator over entries each consisting of a value and its weight.
-	 */
-	public Iterator<Entry<Double, Double>> weightedValuesIterator() {
+    /**
+     * Returns an iterator over entries each consisting of a value and its weight.
+     *
+     * @return the iterator
+     */
+    public Iterator<Entry<Double, Double>> weightedValuesIterator() {
 		return valueMap.entrySet().iterator();
 	}
 
-	/** Returns the number of values in the set. */
-	public int size() {
+    /**
+     * Returns the number of values in the set.  @return the int
+     *
+     * @return the int
+     */
+    public int size() {
 		return valueMap.size();
 	}
 
-	/** Returns the most common of the values in the set. */
-	public double getMode() {
+    /**
+     * Returns the most common of the values in the set.  @return the mode
+     *
+     * @return the mode
+     */
+    public double getMode() {
 		double mode = Double.NaN;
 		double maxWeight = Double.NEGATIVE_INFINITY;
 		for (Entry<Double, Double> entry : valueMap.entrySet()) {

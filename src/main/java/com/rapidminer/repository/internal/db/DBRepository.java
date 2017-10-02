@@ -23,7 +23,6 @@ package com.rapidminer.repository.internal.db;
  *
  * @author Nils Woehler
  * @since 6.5
- *
  */
 public interface DBRepository {
 

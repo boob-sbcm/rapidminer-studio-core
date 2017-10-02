@@ -36,7 +36,6 @@ import com.rapidminer.repository.internal.remote.RemoteRepository;
  * Dialog to configure an existing repository.
  *
  * @author Simon Fischer
- *
  */
 public class RepositoryConfigurationDialog extends ButtonDialog {
 
@@ -45,7 +44,12 @@ public class RepositoryConfigurationDialog extends ButtonDialog {
 	private RepositoryConfigurationPanel configurationPanel;
 	private Repository repository;
 
-	public RepositoryConfigurationDialog(Repository repository) {
+    /**
+     * Instantiates a new Repository configuration dialog.
+     *
+     * @param repository the repository
+     */
+    public RepositoryConfigurationDialog(Repository repository) {
 		super(ApplicationFrame.getApplicationFrame(), RemoteRepository.class.isAssignableFrom(repository.getClass())
 		        ? "remoterepositoryconfigdialog" : "repositoryconfigdialog", ModalityType.APPLICATION_MODAL,
 		        new Object[] {});

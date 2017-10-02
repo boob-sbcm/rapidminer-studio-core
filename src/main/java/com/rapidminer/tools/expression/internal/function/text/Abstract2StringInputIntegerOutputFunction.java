@@ -32,29 +32,21 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
 
 
 /**
- *
  * Abstract class for a {@link Function} that has two string arguments and returns an integer
  * argument.
  *
  * @author David Arnu
- *
  */
 public abstract class Abstract2StringInputIntegerOutputFunction extends AbstractFunction {
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 *
-	 * @param i18nKey
-	 *            the key for the {@link FunctionDescription}. The functionName is read from
-	 *            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName
-	 *            from ".group", the description from ".description" and the function with
-	 *            parameters from ".parameters". If ".parameters" is not present, the ".name" is
-	 *            taken for the function with parameters.
-	 * @param numberOfArgumentsToCheck
-	 *            the fixed number of parameters this functions expects or -1
-	 */
-	public Abstract2StringInputIntegerOutputFunction(String i18n, int numberOfArgumentsToCheck) {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     *
+     * @param i18n                     the 18 n
+     * @param numberOfArgumentsToCheck the fixed number of parameters this functions expects or -1
+     */
+    public Abstract2StringInputIntegerOutputFunction(String i18n, int numberOfArgumentsToCheck) {
 		super(i18n, numberOfArgumentsToCheck, Ontology.INTEGER);
 	}
 
@@ -72,17 +64,15 @@ public abstract class Abstract2StringInputIntegerOutputFunction extends Abstract
 		return new SimpleExpressionEvaluator(makeStringCallable(left, right), type, isResultConstant(inputEvaluators));
 	}
 
-	/**
-	 * Builds a DoubleCallable from left and right using {@link #compute(String, String)}, where
-	 * constant child results are evaluated.
-	 *
-	 * @param left
-	 *            the left input
-	 * @param right
-	 *            the right input
-	 * @return the resulting DoubleCallable
-	 */
-	protected DoubleCallable makeStringCallable(ExpressionEvaluator left, ExpressionEvaluator right) {
+    /**
+     * Builds a DoubleCallable from left and right using {@link #compute(String, String)}, where
+     * constant child results are evaluated.
+     *
+     * @param left  the left input
+     * @param right the right input
+     * @return the resulting DoubleCallable
+     */
+    protected DoubleCallable makeStringCallable(ExpressionEvaluator left, ExpressionEvaluator right) {
 		final Callable<String> funcLeft = left.getStringFunction();
 		final Callable<String> funcRight = right.getStringFunction();
 		try {
@@ -136,14 +126,14 @@ public abstract class Abstract2StringInputIntegerOutputFunction extends Abstract
 		}
 	}
 
-	/**
-	 * Computes the result for two input String values.
-	 *
-	 * @param value1
-	 * @param value2
-	 * @return the result of the computation.
-	 */
-	protected abstract double compute(String value1, String value2);
+    /**
+     * Computes the result for two input String values.
+     *
+     * @param value1 the value 1
+     * @param value2 the value 2
+     * @return the result of the computation.
+     */
+    protected abstract double compute(String value1, String value2);
 
 	@Override
 	protected ExpressionType computeType(ExpressionType... inputTypes) {

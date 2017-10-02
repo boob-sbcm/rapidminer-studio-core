@@ -33,13 +33,17 @@ import com.rapidminer.repository.RepositoryManager;
  * If it references a location which does not exist, say, "/root/folder/leaf", but the parent exists
  * (in this case "/root/folder"), a new entry named by the last path component (in this case "leaf")
  * is created.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class RepositoryEntryMoveOperator extends AbstractRepositoryEntryRelocationOperator {
 
-	public RepositoryEntryMoveOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Repository entry move operator.
+     *
+     * @param description the description
+     */
+    public RepositoryEntryMoveOperator(OperatorDescription description) {
 		super(description);
 	}
 

@@ -28,7 +28,6 @@ import com.rapidminer.tools.expression.ExpressionType;
  * A {@link Constant} that supplies constructors for all admissible combinations of its fields.
  *
  * @author Gisa Schaefer
- *
  */
 public class SimpleConstant implements Constant {
 
@@ -41,15 +40,13 @@ public class SimpleConstant implements Constant {
 	private String annotation;
 	private boolean invisible = false;
 
-	/**
-	 * Creates a Constant with the given characteristics.
-	 *
-	 * @param name
-	 *            the name of the constant, cannot be {@code null}
-	 * @param stringValue
-	 *            the string value
-	 */
-	public SimpleConstant(String name, String stringValue) {
+    /**
+     * Creates a Constant with the given characteristics.
+     *
+     * @param name        the name of the constant, cannot be {@code null}
+     * @param stringValue the string value
+     */
+    public SimpleConstant(String name, String stringValue) {
 		if (name == null) {
 			throw new IllegalArgumentException("name must not be null");
 		}
@@ -61,47 +58,38 @@ public class SimpleConstant implements Constant {
 		this.dateValue = null;
 	}
 
-	/**
-	 * Creates a Constant with the given characteristics.
-	 *
-	 * @param name
-	 *            the name of the constant, cannot be {@code null}
-	 * @param stringValue
-	 *            the string value
-	 * @param annotation
-	 *            an optional annotation
-	 */
-	public SimpleConstant(String name, String stringValue, String annotation) {
+    /**
+     * Creates a Constant with the given characteristics.
+     *
+     * @param name        the name of the constant, cannot be {@code null}
+     * @param stringValue the string value
+     * @param annotation  an optional annotation
+     */
+    public SimpleConstant(String name, String stringValue, String annotation) {
 		this(name, stringValue);
 		this.annotation = annotation;
 	}
 
-	/**
-	 * Creates a Constant with the given characteristics.
-	 *
-	 * @param name
-	 *            the name of the constant, cannot be {@code null}
-	 * @param stringValue
-	 *            the string value
-	 * @param annotation
-	 *            an optional annotation
-	 * @param invisible
-	 *            option to hide a constant in the UI but recognize it in the parser
-	 */
-	public SimpleConstant(String name, String stringValue, String annotation, boolean invisible) {
+    /**
+     * Creates a Constant with the given characteristics.
+     *
+     * @param name        the name of the constant, cannot be {@code null}
+     * @param stringValue the string value
+     * @param annotation  an optional annotation
+     * @param invisible   option to hide a constant in the UI but recognize it in the parser
+     */
+    public SimpleConstant(String name, String stringValue, String annotation, boolean invisible) {
 		this(name, stringValue, annotation);
 		this.invisible = invisible;
 	}
 
-	/**
-	 * Creates a Constant with the given characteristics.
-	 *
-	 * @param name
-	 *            the name of the constant, cannot be {@code null}
-	 * @param doubleValue
-	 *            the double value
-	 */
-	public SimpleConstant(String name, double doubleValue) {
+    /**
+     * Creates a Constant with the given characteristics.
+     *
+     * @param name        the name of the constant, cannot be {@code null}
+     * @param doubleValue the double value
+     */
+    public SimpleConstant(String name, double doubleValue) {
 		if (name == null) {
 			throw new IllegalArgumentException("name must not be null");
 		}
@@ -113,47 +101,38 @@ public class SimpleConstant implements Constant {
 		this.dateValue = null;
 	}
 
-	/**
-	 * Creates a Constant with the given characteristics.
-	 *
-	 * @param name
-	 *            the name of the constant, cannot be {@code null}
-	 * @param doubleValue
-	 *            the double value
-	 * @param annotation
-	 *            an optional annotation
-	 */
-	public SimpleConstant(String name, double doubleValue, String annotation) {
+    /**
+     * Creates a Constant with the given characteristics.
+     *
+     * @param name        the name of the constant, cannot be {@code null}
+     * @param doubleValue the double value
+     * @param annotation  an optional annotation
+     */
+    public SimpleConstant(String name, double doubleValue, String annotation) {
 		this(name, doubleValue);
 		this.annotation = annotation;
 	}
 
-	/**
-	 * Creates a Constant with the given characteristics.
-	 *
-	 * @param name
-	 *            the name of the constant, cannot be {@code null}
-	 * @param doubleValue
-	 *            the double value
-	 * @param annotation
-	 *            an optional annotation
-	 * @param invisible
-	 *            option to hide a constant in the UI but recognize it in the parser
-	 */
-	public SimpleConstant(String name, double doubleValue, String annotation, boolean invisible) {
+    /**
+     * Creates a Constant with the given characteristics.
+     *
+     * @param name        the name of the constant, cannot be {@code null}
+     * @param doubleValue the double value
+     * @param annotation  an optional annotation
+     * @param invisible   option to hide a constant in the UI but recognize it in the parser
+     */
+    public SimpleConstant(String name, double doubleValue, String annotation, boolean invisible) {
 		this(name, doubleValue, annotation);
 		this.invisible = invisible;
 	}
 
-	/**
-	 * Creates a Constant with the given characteristics.
-	 *
-	 * @param name
-	 *            the name of the constant, cannot be {@code null}
-	 * @param booleanValue
-	 *            the boolean value
-	 */
-	public SimpleConstant(String name, boolean booleanValue) {
+    /**
+     * Creates a Constant with the given characteristics.
+     *
+     * @param name         the name of the constant, cannot be {@code null}
+     * @param booleanValue the boolean value
+     */
+    public SimpleConstant(String name, boolean booleanValue) {
 		if (name == null) {
 			throw new IllegalArgumentException("name must not be null");
 		}
@@ -165,47 +144,38 @@ public class SimpleConstant implements Constant {
 		this.dateValue = null;
 	}
 
-	/**
-	 * Creates a Constant with the given characteristics.
-	 *
-	 * @param name
-	 *            the name of the constant, cannot be {@code null}
-	 * @param booleanValue
-	 *            the boolean value
-	 * @param annotation
-	 *            an optional annotation
-	 */
-	public SimpleConstant(String name, boolean booleanValue, String annotation) {
+    /**
+     * Creates a Constant with the given characteristics.
+     *
+     * @param name         the name of the constant, cannot be {@code null}
+     * @param booleanValue the boolean value
+     * @param annotation   an optional annotation
+     */
+    public SimpleConstant(String name, boolean booleanValue, String annotation) {
 		this(name, booleanValue);
 		this.annotation = annotation;
 	}
 
-	/**
-	 * Creates a Constant with the given characteristics.
-	 *
-	 * @param name
-	 *            the name of the constant, cannot be {@code null}
-	 * @param booleanValue
-	 *            the boolean value
-	 * @param annotation
-	 *            an optional annotation
-	 * @param invisible
-	 *            option to hide a constant in the UI but recognize it in the parser
-	 */
-	public SimpleConstant(String name, boolean booleanValue, String annotation, boolean invisible) {
+    /**
+     * Creates a Constant with the given characteristics.
+     *
+     * @param name         the name of the constant, cannot be {@code null}
+     * @param booleanValue the boolean value
+     * @param annotation   an optional annotation
+     * @param invisible    option to hide a constant in the UI but recognize it in the parser
+     */
+    public SimpleConstant(String name, boolean booleanValue, String annotation, boolean invisible) {
 		this(name, booleanValue, annotation);
 		this.invisible = invisible;
 	}
 
-	/**
-	 * Creates a Constant with the given characteristics.
-	 *
-	 * @param name
-	 *            the name of the constant, cannot be {@code null}
-	 * @param dateValue
-	 *            the date value
-	 */
-	public SimpleConstant(String name, Date dateValue) {
+    /**
+     * Creates a Constant with the given characteristics.
+     *
+     * @param name      the name of the constant, cannot be {@code null}
+     * @param dateValue the date value
+     */
+    public SimpleConstant(String name, Date dateValue) {
 		if (name == null) {
 			throw new IllegalArgumentException("name must not be null");
 		}
@@ -217,34 +187,27 @@ public class SimpleConstant implements Constant {
 		this.dateValue = dateValue;
 	}
 
-	/**
-	 * Creates a Constant with the given characteristics.
-	 *
-	 * @param name
-	 *            the name of the constant, cannot be {@code null}
-	 * @param dateValue
-	 *            the date value
-	 * @param annotation
-	 *            an optional annotation
-	 */
-	public SimpleConstant(String name, Date dateValue, String annotation) {
+    /**
+     * Creates a Constant with the given characteristics.
+     *
+     * @param name       the name of the constant, cannot be {@code null}
+     * @param dateValue  the date value
+     * @param annotation an optional annotation
+     */
+    public SimpleConstant(String name, Date dateValue, String annotation) {
 		this(name, dateValue);
 		this.annotation = annotation;
 	}
 
-	/**
-	 * Creates a Constant with the given characteristics.
-	 *
-	 * @param name
-	 *            the name of the constant, cannot be {@code null}
-	 * @param dateValue
-	 *            the date value
-	 * @param annotation
-	 *            an optional annotation
-	 * @param invisible
-	 *            option to hide a constant in the UI but recognize it in the parser
-	 */
-	public SimpleConstant(String name, Date dateValue, String annotation, boolean invisible) {
+    /**
+     * Creates a Constant with the given characteristics.
+     *
+     * @param name       the name of the constant, cannot be {@code null}
+     * @param dateValue  the date value
+     * @param annotation an optional annotation
+     * @param invisible  option to hide a constant in the UI but recognize it in the parser
+     */
+    public SimpleConstant(String name, Date dateValue, String annotation, boolean invisible) {
 		this(name, dateValue, annotation);
 		this.invisible = invisible;
 	}
@@ -300,13 +263,12 @@ public class SimpleConstant implements Constant {
 		return annotation;
 	}
 
-	/**
-	 * Sets the annotation of this constant.
-	 *
-	 * @param annotation
-	 *            the annotation to set
-	 */
-	public void setAnnotation(String annotation) {
+    /**
+     * Sets the annotation of this constant.
+     *
+     * @param annotation the annotation to set
+     */
+    public void setAnnotation(String annotation) {
 		this.annotation = annotation;
 	}
 

@@ -49,7 +49,7 @@ import java.util.Set;
 /**
  * Generates a new attribute and sets the attribute's values according to the fulfilling of the
  * specified conditions. Sets the attribute value the first value, which condition is matched.
- * 
+ * <p>
  * <p>
  * The parameter string must have the form <code>attribute op value</code>, where attribute is a
  * name of an attribute, value is a value the attribute can take and op is one of the binary logical
@@ -58,22 +58,42 @@ import java.util.Set;
  * ampersand. Please note also that for nominal attributes you can define a regular expression for
  * value of the possible equal and not equal checks.
  * </p>
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class ConditionedFeatureGeneration extends AbstractFeatureConstruction {
 
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	public static final String PARAMETER_VALUE_TYPE = "value_type";
+    /**
+     * The constant PARAMETER_VALUE_TYPE.
+     */
+    public static final String PARAMETER_VALUE_TYPE = "value_type";
 
-	public static final String PARAMETER_VALUES = "values";
+    /**
+     * The constant PARAMETER_VALUES.
+     */
+    public static final String PARAMETER_VALUES = "values";
 
-	public static final String PARAMETER_CONDITIONS = "conditions";
+    /**
+     * The constant PARAMETER_CONDITIONS.
+     */
+    public static final String PARAMETER_CONDITIONS = "conditions";
 
-	public static final String PARAMETER_DEFAULT_VALUE = "default_value";
+    /**
+     * The constant PARAMETER_DEFAULT_VALUE.
+     */
+    public static final String PARAMETER_DEFAULT_VALUE = "default_value";
 
-	public ConditionedFeatureGeneration(OperatorDescription description) {
+    /**
+     * Instantiates a new Conditioned feature generation.
+     *
+     * @param description the description
+     */
+    public ConditionedFeatureGeneration(OperatorDescription description) {
 		super(description);
 	}
 

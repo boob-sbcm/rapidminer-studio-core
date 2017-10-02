@@ -32,23 +32,29 @@ import javax.swing.event.ChangeListener;
 
 
 /**
+ * The type Local normalization plotter adapter.
+ *
  * @author Sebastian Land
- * 
  */
 public abstract class LocalNormalizationPlotterAdapter extends LabelRotatingPlotterAdapter {
 
 	private static final long serialVersionUID = -232182954939212825L;
 
-	public static final String PARAMETER_LOCAL_NORMALIZATION = "local_normalization";
+    /**
+     * The constant PARAMETER_LOCAL_NORMALIZATION.
+     */
+    public static final String PARAMETER_LOCAL_NORMALIZATION = "local_normalization";
 
 	private final ListeningJCheckBox localNormalizationBox;
 
 	private boolean isLocalNormalized;
 
-	/**
-	 * @param settings
-	 */
-	public LocalNormalizationPlotterAdapter(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Local normalization plotter adapter.
+     *
+     * @param settings the settings
+     */
+    public LocalNormalizationPlotterAdapter(final PlotterConfigurationModel settings) {
 		super(settings);
 
 		localNormalizationBox = new ListeningJCheckBox("_" + PARAMETER_LOCAL_NORMALIZATION, "Local Normalization", false);
@@ -88,11 +94,21 @@ public abstract class LocalNormalizationPlotterAdapter extends LabelRotatingPlot
 		return list;
 	}
 
-	public boolean isLocalNormalized() {
+    /**
+     * Is local normalized boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLocalNormalized() {
 		return isLocalNormalized;
 	}
 
-	protected JComponent getLocalNormalizationComponent() {
+    /**
+     * Gets local normalization component.
+     *
+     * @return the local normalization component
+     */
+    protected JComponent getLocalNormalizationComponent() {
 		return localNormalizationBox;
 	}
 }

@@ -44,7 +44,7 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  * or renamed) of both feature sets. In case of removing double attribute the attribute values must
  * be the same for the examples of both example set, otherwise an exception will be thrown.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that this check for double attributes will only be applied for regular attributes.
  * Special attributes of the second input example set which do not exist in the first example set
@@ -55,7 +55,12 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class ExampleSetCartesian extends AbstractExampleSetJoin {
 
-	public ExampleSetCartesian(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set cartesian.
+     *
+     * @param description the description
+     */
+    public ExampleSetCartesian(OperatorDescription description) {
 		super(description);
 		getLeftInput().addPrecondition(new ExampleSetPrecondition(getLeftInput()));
 		getRightInput().addPrecondition(new ExampleSetPrecondition(getRightInput()));

@@ -35,7 +35,7 @@ import java.util.Map;
 
 /**
  * This model performs a z-Transformation on the given example set.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class ZTransformationModel extends AbstractNormalizationModel {
@@ -44,7 +44,13 @@ public class ZTransformationModel extends AbstractNormalizationModel {
 
 	private HashMap<String, Tupel<Double, Double>> attributeMeanVarianceMap;
 
-	public ZTransformationModel(ExampleSet exampleSet, HashMap<String, Tupel<Double, Double>> attributeMeanVarianceMap) {
+    /**
+     * Instantiates a new Z transformation model.
+     *
+     * @param exampleSet               the example set
+     * @param attributeMeanVarianceMap the attribute mean variance map
+     */
+    public ZTransformationModel(ExampleSet exampleSet, HashMap<String, Tupel<Double, Double>> attributeMeanVarianceMap) {
 		super(exampleSet);
 		this.attributeMeanVarianceMap = attributeMeanVarianceMap;
 	}
@@ -111,8 +117,13 @@ public class ZTransformationModel extends AbstractNormalizationModel {
 		}
 		return result.toString();
 	}
-	
-	public Map<String, Tupel<Double, Double>> getAttributeMeanVarianceMap() {
+
+    /**
+     * Gets attribute mean variance map.
+     *
+     * @return the attribute mean variance map
+     */
+    public Map<String, Tupel<Double, Double>> getAttributeMeanVarianceMap() {
 		return attributeMeanVarianceMap;
 	}
 }

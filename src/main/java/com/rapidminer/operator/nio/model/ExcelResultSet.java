@@ -50,7 +50,6 @@ import jxl.read.biff.BiffException;
  * A DataResultSet for an Excel File.
  *
  * @author Sebastian Land, Marco Boeck
- *
  */
 public class ExcelResultSet implements DataResultSet {
 
@@ -78,11 +77,16 @@ public class ExcelResultSet implements DataResultSet {
 
 	private Operator operator = null;
 
-	/**
-	 * The constructor to build an ExcelResultSet from the given configuration. The calling operator
-	 * might be null. It is only needed for error handling.
-	 */
-	public ExcelResultSet(Operator callingOperator, final ExcelResultSetConfiguration configuration,
+    /**
+     * The constructor to build an ExcelResultSet from the given configuration. The calling operator
+     * might be null. It is only needed for error handling.
+     *
+     * @param callingOperator    the calling operator
+     * @param configuration      the configuration
+     * @param dateFormatProvider the date format provider
+     * @throws OperatorException the operator exception
+     */
+    public ExcelResultSet(Operator callingOperator, final ExcelResultSetConfiguration configuration,
 			final DateFormatProvider dateFormatProvider) throws OperatorException {
 		// reading configuration
 		columnOffset = configuration.getColumnOffset();

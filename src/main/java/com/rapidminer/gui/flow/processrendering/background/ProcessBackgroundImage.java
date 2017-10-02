@@ -51,7 +51,6 @@ import com.rapidminer.tools.LogService;
  *
  * @author Marco Boeck
  * @since 7.0.0
- *
  */
 public class ProcessBackgroundImage implements UserData<Object> {
 
@@ -84,27 +83,17 @@ public class ProcessBackgroundImage implements UserData<Object> {
 	/** whether loading of the image is in progress */
 	private AtomicBoolean loaded = new AtomicBoolean(false);
 
-	/**
-	 * Creates a process background image at the given location.
-	 *
-	 * @param x
-	 *            upper left x coordinate of the image. If set to {@code -1}, the image will be
-	 *            centered horizontally
-	 * @param y
-	 *            upper left y coordinate of the image. If set to {@code -1}, the image will be
-	 *            centered vertically
-	 * @param w
-	 *            width of the image. If set to {@code -1}, the width will be determined by the
-	 *            image
-	 * @param h
-	 *            height of the image. If set to {@code -1}, the height will be determined by the
-	 *            image
-	 * @param location
-	 *            repository location of the image
-	 * @param process
-	 *            the process for which the image is
-	 */
-	public ProcessBackgroundImage(int x, int y, int w, int h, String location, ExecutionUnit process) {
+    /**
+     * Creates a process background image at the given location.
+     *
+     * @param x        upper left x coordinate of the image. If set to {@code -1}, the image will be            centered horizontally
+     * @param y        upper left y coordinate of the image. If set to {@code -1}, the image will be            centered vertically
+     * @param w        width of the image. If set to {@code -1}, the width will be determined by the            image
+     * @param h        height of the image. If set to {@code -1}, the height will be determined by the            image
+     * @param location repository location of the image
+     * @param process  the process for which the image is
+     */
+    public ProcessBackgroundImage(int x, int y, int w, int h, String location, ExecutionUnit process) {
 		this.x = x;
 		this.y = y;
 		this.w = w;
@@ -115,27 +104,30 @@ public class ProcessBackgroundImage implements UserData<Object> {
 		this.loadingImg = createImageFromString(I18N.getGUILabel("process_background.loading.label"));
 	}
 
-	/**
-	 *
-	 * @return x-coordinate of the background image. If {@code -1}, the image is centered
-	 */
-	public int getX() {
+    /**
+     * Gets x.
+     *
+     * @return x -coordinate of the background image. If {@code -1}, the image is centered
+     */
+    public int getX() {
 		return x;
 	}
 
-	/**
-	 *
-	 * @return y-coordinate of the background image. If {@code -1}, the image is centered
-	 */
-	public int getY() {
+    /**
+     * Gets y.
+     *
+     * @return y -coordinate of the background image. If {@code -1}, the image is centered
+     */
+    public int getY() {
 		return y;
 	}
 
-	/**
-	 *
-	 * @return width of the background image
-	 */
-	public int getWidth() {
+    /**
+     * Gets width.
+     *
+     * @return width of the background image
+     */
+    public int getWidth() {
 		if (finishedImageLoading) {
 			return w;
 		}
@@ -146,11 +138,12 @@ public class ProcessBackgroundImage implements UserData<Object> {
 		return loadingW;
 	}
 
-	/**
-	 *
-	 * @return height of the background/loading/error image
-	 */
-	public int getHeight() {
+    /**
+     * Gets height.
+     *
+     * @return height of the background/loading/error image
+     */
+    public int getHeight() {
 		if (finishedImageLoading) {
 			return h;
 		}
@@ -161,41 +154,42 @@ public class ProcessBackgroundImage implements UserData<Object> {
 		return loadingH;
 	}
 
-	/**
-	 *
-	 * @return original width of the background image
-	 */
-	public int getOriginalWidth() {
+    /**
+     * Gets original width.
+     *
+     * @return original width of the background image
+     */
+    public int getOriginalWidth() {
 		return w;
 	}
 
-	/**
-	 *
-	 * @return original height of the background image
-	 */
-	public int getOriginalHeight() {
+    /**
+     * Gets original height.
+     *
+     * @return original height of the background image
+     */
+    public int getOriginalHeight() {
 		return h;
 	}
 
-	/**
-	 *
-	 * @return the repository location of the background image
-	 */
-	public String getLocation() {
+    /**
+     * Gets location.
+     *
+     * @return the repository location of the background image
+     */
+    public String getLocation() {
 		return location;
 	}
 
-	/**
-	 * Returns the background image. If it has not yet been loaded, will start asynchronous loading
-	 * of it and return a placeholder image until loading is complete. In case an error occurs
-	 * during loading, it will return an error image.
-	 *
-	 * @param listener
-	 *            the listener for the {@link ProgressThread} loading the image. If no image needs
-	 *            to be loaded, does nothing with it. Can be {@code null}
-	 * @return an image, never {@code null}
-	 */
-	public Image getImage(ProgressThreadListener listener) {
+    /**
+     * Returns the background image. If it has not yet been loaded, will start asynchronous loading
+     * of it and return a placeholder image until loading is complete. In case an error occurs
+     * during loading, it will return an error image.
+     *
+     * @param listener the listener for the {@link ProgressThread} loading the image. If no image needs            to be loaded, does nothing with it. Can be {@code null}
+     * @return an image, never {@code null}
+     */
+    public Image getImage(ProgressThreadListener listener) {
 		if (finishedImageLoading) {
 			return img;
 		}
@@ -268,12 +262,12 @@ public class ProcessBackgroundImage implements UserData<Object> {
 		return loadingImg;
 	}
 
-	/**
-	 * Returns the process this background image is in.
-	 *
-	 * @return the process
-	 */
-	public ExecutionUnit getProcess() {
+    /**
+     * Returns the process this background image is in.
+     *
+     * @return the process
+     */
+    public ExecutionUnit getProcess() {
 		return process;
 	}
 

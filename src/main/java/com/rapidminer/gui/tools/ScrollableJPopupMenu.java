@@ -44,7 +44,6 @@ import com.rapidminer.gui.look.Colors;
  * for any {@link Component} added to this popupmenu, not only for {@link JMenuItem}s.
  *
  * @author Marco Boeck
- *
  */
 public class ScrollableJPopupMenu extends JPopupMenu {
 
@@ -52,11 +51,26 @@ public class ScrollableJPopupMenu extends JPopupMenu {
 
 	private static final int INSETS = 5;
 
-	public static final int SIZE_TINY = 100;
-	public static final int SIZE_SMALL = 200;
-	public static final int SIZE_NORMAL = 400;
-	public static final int SIZE_LARGE = 600;
-	public static final int SIZE_HUGE = 800;
+    /**
+     * The constant SIZE_TINY.
+     */
+    public static final int SIZE_TINY = 100;
+    /**
+     * The constant SIZE_SMALL.
+     */
+    public static final int SIZE_SMALL = 200;
+    /**
+     * The constant SIZE_NORMAL.
+     */
+    public static final int SIZE_NORMAL = 400;
+    /**
+     * The constant SIZE_LARGE.
+     */
+    public static final int SIZE_LARGE = 600;
+    /**
+     * The constant SIZE_HUGE.
+     */
+    public static final int SIZE_HUGE = 800;
 
 	/** the scrollpane which allows scrolling */
 	private JScrollPane scrollPane;
@@ -76,39 +90,38 @@ public class ScrollableJPopupMenu extends JPopupMenu {
 	/** if not null, will be used to determine the width of the scrollpane */
 	private Integer customWidth;
 
-	/**
-	 * Creates a new {@link ScrollJPopupMenu} instance with the default max height.
-	 *
-	 */
-	public ScrollableJPopupMenu() {
+    /**
+     * Creates a new {@link ScrollJPopupMenu} instance with the default max height.
+     */
+    public ScrollableJPopupMenu() {
 		this(null, SIZE_NORMAL);
 	}
 
-	/**
-	 * Creates a new {@link ScrollJPopupMenu} instance with the specified max height.
-	 *
-	 * @param maxHeight
-	 */
-	public ScrollableJPopupMenu(int maxHeight) {
+    /**
+     * Creates a new {@link ScrollJPopupMenu} instance with the specified max height.
+     *
+     * @param maxHeight the max height
+     */
+    public ScrollableJPopupMenu(int maxHeight) {
 		this(null, maxHeight);
 	}
 
-	/**
-	 * Creates a new {@link ScrollJPopupMenu} instance with the specified title.
-	 *
-	 * @param title
-	 */
-	public ScrollableJPopupMenu(String title) {
+    /**
+     * Creates a new {@link ScrollJPopupMenu} instance with the specified title.
+     *
+     * @param title the title
+     */
+    public ScrollableJPopupMenu(String title) {
 		this(title, SIZE_NORMAL);
 	}
 
-	/**
-	 * Creates a new {@link ScrollJPopupMenu} instance with the specified max height and title.
-	 *
-	 * @param title
-	 * @param maxHeight
-	 */
-	public ScrollableJPopupMenu(String title, int maxHeight) {
+    /**
+     * Creates a new {@link ScrollJPopupMenu} instance with the specified max height and title.
+     *
+     * @param title     the title
+     * @param maxHeight the max height
+     */
+    public ScrollableJPopupMenu(String title, int maxHeight) {
 		super();
 		if (maxHeight < SIZE_TINY) {
 			throw new IllegalArgumentException("size must not be smaller than " + SIZE_TINY);
@@ -247,22 +260,22 @@ public class ScrollableJPopupMenu extends JPopupMenu {
 		.setPreferredSize(new Dimension(width, Math.min(maxHeight, innerPanel.getPreferredSize().height + INSETS)));
 	}
 
-	/**
-	 * Sets the fixed custom width. If set to <code>null</code>, will not use a fixed width.
-	 *
-	 * @param customWidth
-	 */
-	public void setCustomWidth(Integer customWidth) {
+    /**
+     * Sets the fixed custom width. If set to <code>null</code>, will not use a fixed width.
+     *
+     * @param customWidth the custom width
+     */
+    public void setCustomWidth(Integer customWidth) {
 		this.customWidth = customWidth;
 		resizeScrollPane();
 	}
 
-	/**
-	 * Returns all {@link Component}s inside the scrollpane.
-	 *
-	 * @return
-	 */
-	public Component[] getComponentsInsideScrollpane() {
+    /**
+     * Returns all {@link Component}s inside the scrollpane.
+     *
+     * @return component [ ]
+     */
+    public Component[] getComponentsInsideScrollpane() {
 		return innerPanel.getComponents();
 	}
 

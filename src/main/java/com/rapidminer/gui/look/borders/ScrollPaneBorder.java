@@ -29,7 +29,7 @@ import javax.swing.plaf.UIResource;
 
 /**
  * The UIResource for scroll pane borders.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ScrollPaneBorder extends AbstractBorder implements UIResource {

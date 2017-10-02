@@ -28,7 +28,7 @@ import com.rapidminer.tools.Ontology;
 /**
  * This class offers an implementation of {@link AggregationFunctionMetaDataProvider} interface and
  * can be parameterized to work for several {@link AggregationFunction}s on instanciation.
- * 
+ *
  * @author Sebastian Land
  */
 public class DefaultAggregationFunctionMetaDataProvider implements AggregationFunctionMetaDataProvider {
@@ -41,13 +41,32 @@ public class DefaultAggregationFunctionMetaDataProvider implements AggregationFu
 	private String separatorOpen;
 	private String separatorClose;
 
-	public DefaultAggregationFunctionMetaDataProvider(String aggregationFunctionName, String functionName,
+    /**
+     * Instantiates a new Default aggregation function meta data provider.
+     *
+     * @param aggregationFunctionName the aggregation function name
+     * @param functionName            the function name
+     * @param separatorOpen           the separator open
+     * @param separatorClose          the separator close
+     * @param matchingValueTypes      the matching value types
+     */
+    public DefaultAggregationFunctionMetaDataProvider(String aggregationFunctionName, String functionName,
 			String separatorOpen, String separatorClose, int matchingValueTypes[]) {
 		this(aggregationFunctionName, functionName, separatorOpen, separatorClose, matchingValueTypes, 0);
 		this.copyValueType = true;
 	}
 
-	public DefaultAggregationFunctionMetaDataProvider(String aggregationFunctionName, String functionName,
+    /**
+     * Instantiates a new Default aggregation function meta data provider.
+     *
+     * @param aggregationFunctionName the aggregation function name
+     * @param functionName            the function name
+     * @param separatorOpen           the separator open
+     * @param separatorClose          the separator close
+     * @param matchingValueTypes      the matching value types
+     * @param resultValueType         the result value type
+     */
+    public DefaultAggregationFunctionMetaDataProvider(String aggregationFunctionName, String functionName,
 			String separatorOpen, String separatorClose, int matchingValueTypes[], int resultValueType) {
 		this.aggregationFunctionName = aggregationFunctionName;
 		this.functionName = functionName;

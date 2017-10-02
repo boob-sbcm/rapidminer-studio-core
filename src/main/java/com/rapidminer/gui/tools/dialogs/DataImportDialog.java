@@ -22,14 +22,22 @@ import java.awt.Dialog;
 
 
 /**
- * 
+ * The type Data import dialog.
+ *
  * @author Tobias Malbrecht
  */
 public abstract class DataImportDialog extends MultiPageDialog {
 
 	private static final long serialVersionUID = 3814978543408069394L;
 
-	public DataImportDialog(Dialog owner, String key, Object[] arguments) {
+    /**
+     * Instantiates a new Data import dialog.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param arguments the arguments
+     */
+    public DataImportDialog(Dialog owner, String key, Object[] arguments) {
 		super(owner, key, arguments);
 	}
 }

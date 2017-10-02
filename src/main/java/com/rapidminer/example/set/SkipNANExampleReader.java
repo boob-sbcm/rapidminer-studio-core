@@ -26,7 +26,7 @@ import java.util.Iterator;
 
 /**
  * This ExampleReader skips all examples containing attribute values that are not a number.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer Exp $
  */
 public class SkipNANExampleReader extends AbstractExampleReader {
@@ -35,7 +35,12 @@ public class SkipNANExampleReader extends AbstractExampleReader {
 
 	private Example currentExample;
 
-	public SkipNANExampleReader(Iterator<Example> reader) {
+    /**
+     * Instantiates a new Skip nan example reader.
+     *
+     * @param reader the reader
+     */
+    public SkipNANExampleReader(Iterator<Example> reader) {
 		this.reader = reader;
 		this.currentExample = null;
 	}

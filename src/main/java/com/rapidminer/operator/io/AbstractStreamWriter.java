@@ -43,14 +43,27 @@ import com.rapidminer.parameter.PortProvider;
  */
 public abstract class AbstractStreamWriter extends AbstractWriter<ExampleSet> {
 
-	protected OutputPort fileOutputPort = getOutputPorts().createPort("file");
+    /**
+     * The File output port.
+     */
+    protected OutputPort fileOutputPort = getOutputPorts().createPort("file");
 	private FileOutputPortHandler filePortHandler = new FileOutputPortHandler(this, fileOutputPort, getFileParameterName());
 
-	protected boolean shouldAppend() {
+    /**
+     * Should append boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean shouldAppend() {
 		return false;
 	}
 
-	public AbstractStreamWriter(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract stream writer.
+     *
+     * @param description the description
+     */
+    public AbstractStreamWriter(OperatorDescription description) {
 		super(description, ExampleSet.class);
 		getTransformer().addGenerationRule(fileOutputPort, FileObject.class);
 	}
@@ -95,11 +108,13 @@ public abstract class AbstractStreamWriter extends AbstractWriter<ExampleSet> {
 		return exampleSet;
 	}
 
-	/**
-	 * Creates (but does not add) the file parameter named by {@link #getFileParameterName()} that
-	 * depends on whether or not {@link #fileOutputPort} is connected.
-	 */
-	protected ParameterType makeFileParameterType() {
+    /**
+     * Creates (but does not add) the file parameter named by {@link #getFileParameterName()} that
+     * depends on whether or not {@link #fileOutputPort} is connected.
+     *
+     * @return the parameter type
+     */
+    protected ParameterType makeFileParameterType() {
 		return FileOutputPortHandler.makeFileParameterType(this, getFileParameterName(), new PortProvider() {
 
 			@Override
@@ -109,18 +124,28 @@ public abstract class AbstractStreamWriter extends AbstractWriter<ExampleSet> {
 		}, getFileExtensions());
 	}
 
-	/**
-	 * Writes data to an OutputStream in a format which is defined in the subclass.
-	 */
-	protected abstract void writeStream(ExampleSet exampleSet, OutputStream outputStream) throws OperatorException;
+    /**
+     * Writes data to an OutputStream in a format which is defined in the subclass.
+     *
+     * @param exampleSet   the example set
+     * @param outputStream the output stream
+     * @throws OperatorException the operator exception
+     */
+    protected abstract void writeStream(ExampleSet exampleSet, OutputStream outputStream) throws OperatorException;
 
-	/**
-	 * Returns the name of the {@link ParameterTypeFile} to be added through which the user can
-	 * specify the file name.
-	 */
-	protected abstract String getFileParameterName();
+    /**
+     * Returns the name of the {@link ParameterTypeFile} to be added through which the user can
+     * specify the file name.
+     *
+     * @return the file parameter name
+     */
+    protected abstract String getFileParameterName();
 
-	/** Returns the allowed file extension. */
-	protected abstract String[] getFileExtensions();
+    /**
+     * Returns the allowed file extension.  @return the string [ ]
+     *
+     * @return the string [ ]
+     */
+    protected abstract String[] getFileExtensions();
 
 }

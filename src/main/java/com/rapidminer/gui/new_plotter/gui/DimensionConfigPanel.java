@@ -64,8 +64,9 @@ import javax.swing.event.PopupMenuListener;
 
 
 /**
- * @author Nils Woehler
+ * The type Dimension config panel.
  *
+ * @author Nils Woehler
  */
 public class DimensionConfigPanel extends AbstractConfigurationPanel {
 
@@ -100,7 +101,14 @@ public class DimensionConfigPanel extends AbstractConfigurationPanel {
 
 	// private JLabel automateLabel;
 
-	public DimensionConfigPanel(PlotDimension dimension, JTree plotConfigurationTree, PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Dimension config panel.
+     *
+     * @param dimension             the dimension
+     * @param plotConfigurationTree the plot configuration tree
+     * @param plotInstance          the plot instance
+     */
+    public DimensionConfigPanel(PlotDimension dimension, JTree plotConfigurationTree, PlotInstance plotInstance) {
 		super(plotInstance);
 
 		this.dimension = dimension;

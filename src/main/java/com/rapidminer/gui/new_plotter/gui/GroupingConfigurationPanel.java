@@ -42,8 +42,9 @@ import javax.swing.tree.TreePath;
 
 
 /**
+ * The type Grouping configuration panel.
+ *
  * @author Nils Woehler, Marius Helf
- * 
  */
 public class GroupingConfigurationPanel extends AbstractConfigurationPanel implements TreeSelectionListener {
 
@@ -53,7 +54,14 @@ public class GroupingConfigurationPanel extends AbstractConfigurationPanel imple
 
 	private final PlotDimension dimension;
 
-	public GroupingConfigurationPanel(JTree plotConfigurationTree, PlotInstance plotIntance, PlotDimension dimension) {
+    /**
+     * Instantiates a new Grouping configuration panel.
+     *
+     * @param plotConfigurationTree the plot configuration tree
+     * @param plotIntance           the plot intance
+     * @param dimension             the dimension
+     */
+    public GroupingConfigurationPanel(JTree plotConfigurationTree, PlotInstance plotIntance, PlotDimension dimension) {
 		super(plotIntance);
 		this.setLayout(new CardLayout());
 

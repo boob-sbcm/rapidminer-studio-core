@@ -30,7 +30,7 @@ import java.util.Random;
 /**
  * Selects a given fixed number of individuals by subdividing a roulette wheel in sections of size
  * proportional to the individuals' fitness values. Optionally keep the best individual.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class RouletteWheel implements PopulationOperator {
@@ -41,7 +41,14 @@ public class RouletteWheel implements PopulationOperator {
 
 	private Random random;
 
-	public RouletteWheel(int popSize, boolean keepBest, Random random) {
+    /**
+     * Instantiates a new Roulette wheel.
+     *
+     * @param popSize  the pop size
+     * @param keepBest the keep best
+     * @param random   the random
+     */
+    public RouletteWheel(int popSize, boolean keepBest, Random random) {
 		this.popSize = popSize;
 		this.keepBest = keepBest;
 		this.random = random;
@@ -53,12 +60,15 @@ public class RouletteWheel implements PopulationOperator {
 		return true;
 	}
 
-	/**
-	 * Subclasses may override this method and recalculate the fitness based on the given one, e.g.
-	 * Boltzmann selection or scaled selection. The default implementation simply returns the given
-	 * fitness.
-	 */
-	public double filterFitness(double fitness) {
+    /**
+     * Subclasses may override this method and recalculate the fitness based on the given one, e.g.
+     * Boltzmann selection or scaled selection. The default implementation simply returns the given
+     * fitness.
+     *
+     * @param fitness the fitness
+     * @return the double
+     */
+    public double filterFitness(double fitness) {
 		return fitness;
 	}
 

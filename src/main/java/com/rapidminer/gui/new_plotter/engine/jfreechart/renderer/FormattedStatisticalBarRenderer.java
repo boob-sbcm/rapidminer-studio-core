@@ -29,6 +29,8 @@ import org.jfree.chart.renderer.category.StatisticalBarRenderer;
 
 
 /**
+ * The type Formatted statistical bar renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedStatisticalBarRenderer extends StatisticalBarRenderer implements FormattedRenderer {
@@ -37,7 +39,10 @@ public class FormattedStatisticalBarRenderer extends StatisticalBarRenderer impl
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedStatisticalBarRenderer() {
+    /**
+     * Instantiates a new Formatted statistical bar renderer.
+     */
+    public FormattedStatisticalBarRenderer() {
 		super();
 	}
 

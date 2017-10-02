@@ -27,7 +27,7 @@ import com.rapidminer.tools.math.similarity.SimilarityMeasure;
 
 /**
  * Similarity based on the correlation coefficient.
- * 
+ *
  * @author Sebastian Land, Michael Wurst
  */
 public class CorrelationSimilarity extends SimilarityMeasure {

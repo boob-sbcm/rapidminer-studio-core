@@ -27,14 +27,25 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Calculates frequencies and weights.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class FrequencyCalculator {
 
-	public FrequencyCalculator() {}
+    /**
+     * Instantiates a new Frequency calculator.
+     */
+    public FrequencyCalculator() {}
 
-	public double[][] getNumericalWeightCounts(ExampleSet exampleSet, Attribute attribute, double splitValue) {
+    /**
+     * Get numerical weight counts double [ ] [ ].
+     *
+     * @param exampleSet the example set
+     * @param attribute  the attribute
+     * @param splitValue the split value
+     * @return the double [ ] [ ]
+     */
+    public double[][] getNumericalWeightCounts(ExampleSet exampleSet, Attribute attribute, double splitValue) {
 		Attribute label = exampleSet.getAttributes().getLabel();
 		int numberOfLabels = label.getMapping().size();
 
@@ -61,7 +72,14 @@ public class FrequencyCalculator {
 		return weightCounts;
 	}
 
-	public double[][] getNominalWeightCounts(ExampleSet exampleSet, Attribute attribute) {
+    /**
+     * Get nominal weight counts double [ ] [ ].
+     *
+     * @param exampleSet the example set
+     * @param attribute  the attribute
+     * @return the double [ ] [ ]
+     */
+    public double[][] getNominalWeightCounts(ExampleSet exampleSet, Attribute attribute) {
 		Attribute label = exampleSet.getAttributes().getLabel();
 		int numberOfLabels = label.getMapping().size();
 		int numberOfValues = attribute.getMapping().size();
@@ -86,11 +104,14 @@ public class FrequencyCalculator {
 		return weightCounts;
 	}
 
-	/**
-	 * Returns an array of the size of the partitions. Each entry contains the sum of all weights of
-	 * the corresponding partition.
-	 */
-	public double[] getPartitionWeights(SplittedExampleSet splitted) {
+    /**
+     * Returns an array of the size of the partitions. Each entry contains the sum of all weights of
+     * the corresponding partition.
+     *
+     * @param splitted the splitted
+     * @return the double [ ]
+     */
+    public double[] getPartitionWeights(SplittedExampleSet splitted) {
 		Attribute weightAttribute = splitted.getAttributes().getWeight();
 		double[] weights = new double[splitted.getNumberOfSubsets()];
 		for (int i = 0; i < splitted.getNumberOfSubsets(); i++) {
@@ -106,11 +127,14 @@ public class FrequencyCalculator {
 		return weights;
 	}
 
-	/**
-	 * Returns an array of size of the number of different label values. Each entry corresponds to
-	 * the weight sum of all examples with the current label.
-	 */
-	public double[] getLabelWeights(ExampleSet exampleSet) {
+    /**
+     * Returns an array of size of the number of different label values. Each entry corresponds to
+     * the weight sum of all examples with the current label.
+     *
+     * @param exampleSet the example set
+     * @return the double [ ]
+     */
+    public double[] getLabelWeights(ExampleSet exampleSet) {
 		Attribute label = exampleSet.getAttributes().getLabel();
 		Attribute weightAttribute = exampleSet.getAttributes().getWeight();
 		double[] weights = new double[label.getMapping().size()];
@@ -125,8 +149,13 @@ public class FrequencyCalculator {
 		return weights;
 	}
 
-	/** Returns the sum of the given weights. */
-	public double getTotalWeight(double[] weights) {
+    /**
+     * Returns the sum of the given weights.  @param weights the weights
+     *
+     * @param weights the weights
+     * @return the total weight
+     */
+    public double getTotalWeight(double[] weights) {
 		double sum = 0.0d;
 		for (double w : weights) {
 			sum += w;

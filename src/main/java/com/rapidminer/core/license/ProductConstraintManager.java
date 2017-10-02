@@ -59,11 +59,13 @@ import com.rapidminer.tools.LogService;
  * methods to check RapidMiner constraints.
  *
  * @author Nils Woehler
- *
  */
 public enum ProductConstraintManager {
 
-	INSTANCE;
+    /**
+     * Instance product constraint manager.
+     */
+    INSTANCE;
 
 	/**
 	 * folder name for licenses
@@ -93,13 +95,19 @@ public enum ProductConstraintManager {
 
 	private AtomicBoolean initialized = new AtomicBoolean(false);
 
-	/**
-	 *
-	 * Initialized the {@link LicenseManager} with the provided {@link LicenseLocation}. Furthermore
-	 * the provided product is registered. The provided product must contain all constraints defined
-	 * in {@link RMConstraints}.
-	 */
-	public synchronized void initialize(LicenseLocation licenseLocation, Product product)
+    /**
+     * Initialized the {@link LicenseManager} with the provided {@link LicenseLocation}. Furthermore
+     * the provided product is registered. The provided product must contain all constraints defined
+     * in {@link RMConstraints}.
+     *
+     * @param licenseLocation the license location
+     * @param product         the product
+     * @throws IllegalAccessException     the illegal access exception
+     * @throws AlreadyRegisteredException the already registered exception
+     * @throws LicenseLoadingException    the license loading exception
+     * @throws InvalidProductException    the invalid product exception
+     */
+    public synchronized void initialize(LicenseLocation licenseLocation, Product product)
 			throws IllegalAccessException, AlreadyRegisteredException, LicenseLoadingException, InvalidProductException {
 		if (initialized.get()) {
 			throw new UnsupportedOperationException("Cannot initialize the ProductConstraintManager twice");
@@ -198,25 +206,30 @@ public enum ProductConstraintManager {
 		initialized.set(true);
 	}
 
-	/**
-	 * @return <code>true</code> if the {@link ProductConstraintManager} has been initialized
-	 */
-	public boolean isInitialized() {
+    /**
+     * Is initialized boolean.
+     *
+     * @return <code>true</code> if the {@link ProductConstraintManager} has been initialized
+     */
+    public boolean isInitialized() {
 		return initialized.get();
 	}
 
-	/**
-	 * @return the currently registered {@link Product}
-	 */
-	public Product getProduct() {
+    /**
+     * Gets product.
+     *
+     * @return the currently registered {@link Product}
+     */
+    public Product getProduct() {
 		return registeredProduct;
 	}
 
-	/**
-	 * @return if a trial license is contained in the list of licenses <code>true</code> is
-	 *         returned.
-	 */
-	public boolean wasTrialActivated() {
+    /**
+     * Was trial activated boolean.
+     *
+     * @return if a trial license is contained in the list of licenses <code>true</code> is         returned.
+     */
+    public boolean wasTrialActivated() {
 		List<License> licenses = LicenseManagerRegistry.INSTANCE.get().getLicenses(getProduct());
 		for (License lic : licenses) {
 			if (lic.getProductEdition().equals(StudioLicenseConstants.TRIAL_EDITION)) {
@@ -226,14 +239,13 @@ public enum ProductConstraintManager {
 		return false;
 	}
 
-	/**
-	 * Checks if there ever was a license activated which is better than a Free edition. Examples
-	 * are either a trial edition or any other paid edition.
-	 *
-	 * @return <code>true</code> if at least one trial or any other editions except basic was
-	 *         activated; <code>false</code> otherwise
-	 */
-	public boolean wasHigherThanFreeActivated() {
+    /**
+     * Checks if there ever was a license activated which is better than a Free edition. Examples
+     * are either a trial edition or any other paid edition.
+     *
+     * @return <code>true</code> if at least one trial or any other editions except basic was         activated; <code>false</code> otherwise
+     */
+    public boolean wasHigherThanFreeActivated() {
 		List<License> licenses = LicenseManagerRegistry.INSTANCE.get().getLicenses(getProduct());
 		for (License lic : licenses) {
 			if (!lic.getProductEdition().equals(LicenseConstants.STARTER_EDITION)) {
@@ -243,49 +255,50 @@ public enum ProductConstraintManager {
 		return false;
 	}
 
-	/**
-	 * Checks if there ever was any license activated.
-	 *
-	 * @return <code>true</code> if at least one license was activated; <code>false</code> otherwise
-	 */
-	public boolean wasAnyLicenseActivated() {
+    /**
+     * Checks if there ever was any license activated.
+     *
+     * @return <code>true</code> if at least one license was activated; <code>false</code> otherwise
+     */
+    public boolean wasAnyLicenseActivated() {
 		return LicenseManagerRegistry.INSTANCE.get().getLicenses(getProduct()).size() > 0;
 	}
 
-	/**
-	 * @return returns <code>true</code> if it reasonable to offer trial to the user, based on
-	 *         locally available information. This method does not ask the server whether trial is
-	 *         still available. It checks if a trial license was installed and if trial is better
-	 *         than the currently active license.
-	 */
-	public boolean shouldTrialBeOffered() {
+    /**
+     * Should trial be offered boolean.
+     *
+     * @return returns <code>true</code> if it reasonable to offer trial to the user, based on         locally available information. This method does not ask the server whether trial is         still available. It checks if a trial license was installed and if trial is better         than the currently active license.
+     */
+    public boolean shouldTrialBeOffered() {
 		return !wasTrialActivated() && getActiveLicense().getPrecedence() < StudioLicenseConstants.TRIAL_LICENSE_PRECEDENCE;
 	}
 
-	/**
-	 * @return returns <code>true</code> if the current active license is a trial license
-	 */
-	public boolean isTrialLicense() {
+    /**
+     * Is trial license boolean.
+     *
+     * @return returns <code>true</code> if the current active license is a trial license
+     */
+    public boolean isTrialLicense() {
 		return StudioLicenseConstants.TRIAL_EDITION
 				.equals(LicenseManagerRegistry.INSTANCE.get().getActiveLicense(getProduct()).getProductEdition());
 	}
 
-	/**
-	 * @return the current active license for the {@link Product} installed to the
-	 *         {@link ProductConstraintManager}.
-	 */
-	public License getActiveLicense() {
+    /**
+     * Gets active license.
+     *
+     * @return the current active license for the {@link Product} installed to the         {@link ProductConstraintManager}.
+     */
+    public License getActiveLicense() {
 		return LicenseManagerRegistry.INSTANCE.get().getActiveLicense(getProduct());
 	}
 
-	/**
-	 * Checks whether the provided license text is valid for the {@link Product} installed.
-	 *
-	 * @param licenseText
-	 *            the text of the license which should be validated
-	 * @return <code>true</code> in case the license text is valid, <code>false</code> otherwise
-	 */
-	public boolean isLicenseValid(String licenseText) {
+    /**
+     * Checks whether the provided license text is valid for the {@link Product} installed.
+     *
+     * @param licenseText the text of the license which should be validated
+     * @return <code>true</code> in case the license text is valid, <code>false</code> otherwise
+     */
+    public boolean isLicenseValid(String licenseText) {
 		Pair<Product, License> validateLicense = null;
 		try {
 			validateLicense = validateLicense(licenseText);
@@ -296,110 +309,126 @@ public enum ProductConstraintManager {
 		return status == LicenseStatus.VALID || status == LicenseStatus.STARTS_IN_FUTURE;
 	}
 
-	/**
-	 * Install a new license to the {@link LicenseManager}. Should only be called if
-	 * {@link #isLicenseValid(String)} returns <code>true</code>.
-	 *
-	 * @param licenseText
-	 *            the text if the license that should be installed
-	 *
-	 * @return the freshly installed license.
-	 */
-	public License installNewLicense(String licenseText)
+    /**
+     * Install a new license to the {@link LicenseManager}. Should only be called if
+     * {@link #isLicenseValid(String)} returns <code>true</code>.
+     *
+     * @param licenseText the text if the license that should be installed
+     * @return the freshly installed license.
+     * @throws LicenseStoringException    the license storing exception
+     * @throws UnknownProductException    the unknown product exception
+     * @throws LicenseValidationException the license validation exception
+     */
+    public License installNewLicense(String licenseText)
 			throws LicenseStoringException, UnknownProductException, LicenseValidationException {
 		return LicenseManagerRegistry.INSTANCE.get().storeNewLicense(licenseText);
 	}
 
-	/**
-	 * @param l
-	 *            the license manager listener
-	 */
-	public void registerLicenseManagerListener(LicenseManagerListener l) {
+    /**
+     * Register license manager listener.
+     *
+     * @param l the license manager listener
+     */
+    public void registerLicenseManagerListener(LicenseManagerListener l) {
 		LicenseManagerRegistry.INSTANCE.get().registerLicenseManagerListener(l);
 	}
 
-	/**
-	 * @param l
-	 *            removes the provided license manager listener from the license manager
-	 */
-	public void removeLicenseManagerListener(LicenseManagerListener l) {
+    /**
+     * Remove license manager listener.
+     *
+     * @param l removes the provided license manager listener from the license manager
+     */
+    public void removeLicenseManagerListener(LicenseManagerListener l) {
 		LicenseManagerRegistry.INSTANCE.get().removeLicenseManagerListener(l);
 	}
 
-	/**
-	 * @return the upcoming license for the product installed to the
-	 *         {@link ProductConstraintManager}
-	 */
-	public License getUpcomingLicense() {
+    /**
+     * Gets upcoming license.
+     *
+     * @return the upcoming license for the product installed to the         {@link ProductConstraintManager}
+     */
+    public License getUpcomingLicense() {
 		return LicenseManagerRegistry.INSTANCE.get().getUpcomingLicense(getProduct());
 	}
 
-	/**
-	 * @param enteredLicenseKey
-	 *            the key that was entered and should be validated
-	 * @return
-	 * @throws UnknownProductException
-	 *             if the licenses belongs to an unknown product
-	 * @throws LicenseValidationException
-	 *             if something goes wrong during validation this exception is thrown. <br/>
-	 *             CAUTION: the returned license can still have an invalid license status even
-	 *             though no exception was thrown.
-	 */
-	public Pair<Product, License> validateLicense(String enteredLicenseKey)
+    /**
+     * Validate license pair.
+     *
+     * @param enteredLicenseKey the key that was entered and should be validated
+     * @return pair pair
+     * @throws LicenseValidationException if something goes wrong during validation this exception is thrown. <br/>             CAUTION: the returned license can still have an invalid license status even             though no exception was thrown.
+     * @throws UnknownProductException    if the licenses belongs to an unknown product
+     */
+    public Pair<Product, License> validateLicense(String enteredLicenseKey)
 			throws LicenseValidationException, UnknownProductException {
 		// LicenseManager accepts unknown(null) products
 		return LicenseManagerRegistry.INSTANCE.get().validateLicense(null, enteredLicenseKey);
 	}
 
-	/**
-	 * See {@link LicenseManager#checkAnnotationViolations(Object, boolean)} for more details.
-	 */
-	public List<LicenseViolation> checkAnnotationViolations(Operator op, boolean informListeners) {
+    /**
+     * See {@link LicenseManager#checkAnnotationViolations(Object, boolean)} for more details.
+     *
+     * @param op              the op
+     * @param informListeners the inform listeners
+     * @return the list
+     */
+    public List<LicenseViolation> checkAnnotationViolations(Operator op, boolean informListeners) {
 		return LicenseManagerRegistry.INSTANCE.get().checkAnnotationViolations(op, informListeners);
 	}
 
-	/**
-	 * See {@link LicenseManager#isAllowedByAnnotations(Object)} for more details.
-	 */
-	public boolean isAllowedByAnnotations(Operator op) {
+    /**
+     * See {@link LicenseManager#isAllowedByAnnotations(Object)} for more details.
+     *
+     * @param op the op
+     * @return the boolean
+     */
+    public boolean isAllowedByAnnotations(Operator op) {
 		return LicenseManagerRegistry.INSTANCE.get().isAllowedByAnnotations(op);
 	}
 
-	/**
-	 * Checks if free license or a higher license is installed.
-	 *
-	 * @return {@code true} if at least a free license is installed
-	 */
-	public boolean isFreeFeatureAllowed() {
+    /**
+     * Checks if free license or a higher license is installed.
+     *
+     * @return {@code true} if at least a free license is installed
+     */
+    public boolean isFreeFeatureAllowed() {
 		return !LicenseManagerRegistry.INSTANCE.get().getActiveLicense(ProductConstraintManager.INSTANCE.getProduct())
 				.isStarterLicense();
 	}
 
-	/**
-	 * @return the data row constraint object
-	 */
-	public NumericalConstraint getDataRowConstraint() {
+    /**
+     * Gets data row constraint.
+     *
+     * @return the data row constraint object
+     */
+    public NumericalConstraint getDataRowConstraint() {
 		return dataRowConstraint;
 	}
 
-	/**
-	 * @return the logical processor constraint object
-	 */
-	public NumericalConstraint getLogicalProcessorConstraint() {
+    /**
+     * Gets logical processor constraint.
+     *
+     * @return the logical processor constraint object
+     */
+    public NumericalConstraint getLogicalProcessorConstraint() {
 		return logicalProcessorConstraint;
 	}
 
-	/**
-	 * @return the memory limit constraint object
-	 */
-	public NumericalConstraint getMemoryLimitConstraint() {
+    /**
+     * Gets memory limit constraint.
+     *
+     * @return the memory limit constraint object
+     */
+    public NumericalConstraint getMemoryLimitConstraint() {
 		return memoryLimitConstraint;
 	}
 
-	/**
-	 * @return the web service limit constraint object
-	 */
-	public NumericalConstraint getWebServiceLimitConstraint() {
+    /**
+     * Gets web service limit constraint.
+     *
+     * @return the web service limit constraint object
+     */
+    public NumericalConstraint getWebServiceLimitConstraint() {
 		return webServiceLimitConstraint;
 	}
 

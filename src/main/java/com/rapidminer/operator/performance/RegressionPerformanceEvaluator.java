@@ -41,7 +41,7 @@ import com.rapidminer.tools.Ontology;
  * performance values according to a list of performance criteria that it calculates. If an input
  * performance vector was already given, this is used for keeping the performance values.
  * </p>
- *
+ * <p>
  * <p>
  * All of the performance criteria can be switched on using boolean parameters. Their values can be
  * queried by a ProcessLogOperator using the same names. The main criterion is used for comparisons
@@ -49,7 +49,7 @@ import com.rapidminer.tools.Ontology;
  * selection or other meta optimization process setups. If no other main criterion was selected, the
  * first criterion in the resulting performance vector will be assumed to be the main criterion.
  * </p>
- *
+ * <p>
  * <p>
  * The resulting performance vectors are usually compared with a standard performance comparator
  * which only compares the fitness values of the main criterion. Other implementations than this
@@ -78,7 +78,12 @@ public class RegressionPerformanceEvaluator extends AbstractPerformanceEvaluator
 		com.rapidminer.operator.performance.SquaredCorrelationCriterion.class,
 		com.rapidminer.operator.performance.PredictionAverage.class };
 
-	public RegressionPerformanceEvaluator(OperatorDescription description) {
+    /**
+     * Instantiates a new Regression performance evaluator.
+     *
+     * @param description the description
+     */
+    public RegressionPerformanceEvaluator(OperatorDescription description) {
 		super(description);
 	}
 

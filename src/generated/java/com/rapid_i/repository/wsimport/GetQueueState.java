@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for getQueueState complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="getQueueState">
  *   &lt;complexContent>
@@ -39,8 +39,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getQueueState", propOrder = {
@@ -48,15 +46,15 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetQueueState {
 
+    /**
+     * The Queue name.
+     */
     protected String queueName;
 
     /**
      * Gets the value of the queueName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getQueueName() {
         return queueName;
@@ -64,11 +62,8 @@ public class GetQueueState {
 
     /**
      * Sets the value of the queueName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setQueueName(String value) {
         this.queueName = value;

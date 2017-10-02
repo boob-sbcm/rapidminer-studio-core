@@ -26,11 +26,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
  * A {@link Function} computing the common logarithm (base 10) of a number.
  *
  * @author Marcel Seifert
- *
  */
 public class CommonLogarithm extends Abstract1DoubleInputFunction {
 
-	public CommonLogarithm() {
+    /**
+     * Instantiates a new Common logarithm.
+     */
+    public CommonLogarithm() {
 		super("mathematical.log", Ontology.NUMERICAL);
 	}
 

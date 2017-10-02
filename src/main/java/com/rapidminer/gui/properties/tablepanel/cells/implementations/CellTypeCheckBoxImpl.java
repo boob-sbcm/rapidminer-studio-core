@@ -30,23 +30,22 @@ import javax.swing.JCheckBox;
 
 /**
  * GUI component for the {@link TablePanel} for {@link CellTypeCheckBox}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class CellTypeCheckBoxImpl extends JCheckBox implements CellTypeCheckBox {
 
 	private static final long serialVersionUID = -2006834470031594342L;
 
-	/**
-	 * Creates a {@link CellTypeCheckBoxImpl} for the specified cell. Does not validate the model,
-	 * so make sure this call works!
-	 * 
-	 * @param model
-	 * @param rowIndex
-	 * @param columnIndex
-	 */
-	public CellTypeCheckBoxImpl(final TablePanelModel model, final int rowIndex, final int columnIndex) {
+    /**
+     * Creates a {@link CellTypeCheckBoxImpl} for the specified cell. Does not validate the model,
+     * so make sure this call works!
+     *
+     * @param model       the model
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     */
+    public CellTypeCheckBoxImpl(final TablePanelModel model, final int rowIndex, final int columnIndex) {
 		super();
 
 		// misc settings

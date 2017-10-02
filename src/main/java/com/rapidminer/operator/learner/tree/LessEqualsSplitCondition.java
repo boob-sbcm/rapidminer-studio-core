@@ -36,7 +36,13 @@ public class LessEqualsSplitCondition extends AbstractSplitCondition {
 	private final double value;
 	private final int attValueType;
 
-	public LessEqualsSplitCondition(Attribute attribute, double value) {
+    /**
+     * Instantiates a new Less equals split condition.
+     *
+     * @param attribute the attribute
+     * @param value     the value
+     */
+    public LessEqualsSplitCondition(Attribute attribute, double value) {
 		super(attribute.getName());
 		this.value = value;
 		this.attValueType = attribute.getValueType();
@@ -52,7 +58,12 @@ public class LessEqualsSplitCondition extends AbstractSplitCondition {
 		return "\u2264";
 	}
 
-	public double getValue() {
+    /**
+     * Gets value.
+     *
+     * @return the value
+     */
+    public double getValue() {
 		return value;
 	}
 

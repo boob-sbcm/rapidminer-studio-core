@@ -39,14 +39,17 @@ import java.util.List;
  * This idea of coding and representing multivariate data by curves was suggested by Andrews (1972).
  * Each multivariate observation X_i = (X_i1, .. ,X_ip) is transformed into a curve of fourier
  * coefficients.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AndrewsCurves extends PlotterAdapter {
 
 	private static final long serialVersionUID = -471636460650394557L;
 
-	static final int MAX_NUMBER_OF_COLUMNS = 1000;
+    /**
+     * The Max number of columns.
+     */
+    static final int MAX_NUMBER_OF_COLUMNS = 1000;
 
 	private static final int NUMBER_OF_SUPPORT_POINTS = 100;
 
@@ -76,18 +79,23 @@ public class AndrewsCurves extends PlotterAdapter {
 
 	private double maxColor = 1.0d;
 
-	/**
-	 * Init the AndrewsCurvesPlot.
-	 */
-	public AndrewsCurves(PlotterConfigurationModel settings) {
+    /**
+     * Init the AndrewsCurvesPlot.
+     *
+     * @param settings the settings
+     */
+    public AndrewsCurves(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 	}
 
-	/**
-	 * Init the AndrewsCurvesPlot.
-	 */
-	public AndrewsCurves(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Init the AndrewsCurvesPlot.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public AndrewsCurves(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -216,7 +224,12 @@ public class AndrewsCurves extends PlotterAdapter {
 		paintAndrewsPlot(g);
 	}
 
-	public void paintAndrewsPlot(Graphics g) {
+    /**
+     * Paint andrews plot.
+     *
+     * @param g the g
+     */
+    public void paintAndrewsPlot(Graphics g) {
 		int pixWidth = getWidth() - 2 * MARGIN;
 		int pixHeight = getHeight() - 2 * MARGIN;
 

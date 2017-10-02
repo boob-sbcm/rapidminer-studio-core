@@ -17,46 +17,91 @@ import com.sun.tools.doclets.Taglet;
  * A taglet with name &quot;@rapidminer.xmlinput&quot; can be used in the Javadoc comments of an operator to include an XML
  * file into the documentation. Example: &quot;@rapidminer.xmlinput filename|label|caption&quot;. This may be useful to
  * provide the XML code for an operator's usage.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class XMLExampleTaglet implements TexTaglet {
 
 	private static final String NAME = "rapidminer.xmlinput";
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return NAME;
 	}
 
-	public boolean inField() {
+    /**
+     * In field boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inField() {
 		return true;
 	}
 
-	public boolean inConstructor() {
+    /**
+     * In constructor boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inConstructor() {
 		return true;
 	}
 
-	public boolean inMethod() {
+    /**
+     * In method boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inMethod() {
 		return true;
 	}
 
-	public boolean inOverview() {
+    /**
+     * In overview boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inOverview() {
 		return true;
 	}
 
-	public boolean inPackage() {
+    /**
+     * In package boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inPackage() {
 		return true;
 	}
 
-	public boolean inType() {
+    /**
+     * In type boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inType() {
 		return true;
 	}
 
-	public boolean isInlineTag() {
+    /**
+     * Is inline tag boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isInlineTag() {
 		return true;
 	}
 
-	public static void register(Map<String, Taglet> tagletMap) {
+    /**
+     * Register.
+     *
+     * @param tagletMap the taglet map
+     */
+    public static void register(Map<String, Taglet> tagletMap) {
 		XMLExampleTaglet tag = new XMLExampleTaglet();
 		Taglet t = tagletMap.get(tag.getName());
 		if (t != null) {
@@ -78,7 +123,13 @@ public class XMLExampleTaglet implements TexTaglet {
 		return new File(source.file().getParentFile(), file);
 	}
 
-	public String toString(Tag tag) {
+    /**
+     * To string string.
+     *
+     * @param tag the tag
+     * @return the string
+     */
+    public String toString(Tag tag) {
 		String[] splitted = split(tag);
 		if (splitted == null)
 			return "";
@@ -100,11 +151,23 @@ public class XMLExampleTaglet implements TexTaglet {
 		return "<pre>" + contents + "</pre><br><center><i>Figure:</i> " + splitted[2] + "</center>";
 	}
 
-	public String toString(Tag[] tags) {
+    /**
+     * To string string.
+     *
+     * @param tags the tags
+     * @return the string
+     */
+    public String toString(Tag[] tags) {
 		return null;
 	}
 
-	public String toTex(Tag tag) {
+    /**
+     * To tex string.
+     *
+     * @param tag the tag
+     * @return the string
+     */
+    public String toTex(Tag tag) {
 		String[] splitted = split(tag);
 		if (splitted == null)
 			return "";
@@ -117,7 +180,13 @@ public class XMLExampleTaglet implements TexTaglet {
 		}
 	}
 
-	public String toTex(Tag[] tag) {
+    /**
+     * To tex string.
+     *
+     * @param tag the tag
+     * @return the string
+     */
+    public String toTex(Tag[] tag) {
 		return null;
 	}
 }

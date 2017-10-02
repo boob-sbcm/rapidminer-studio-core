@@ -36,6 +36,7 @@ import com.rapidminer.tools.I18N;
  * The I18N key conventions can be found in the {@link Configurable} interface.
  * </p>
  *
+ * @param <T> the type parameter
  * @author Simon Fischer, Dominik Halfkann, Marco Boeck, Adrian Wilke, Nils Woehler
  * @since 6.2.0
  */
@@ -44,34 +45,47 @@ public abstract class AbstractConfigurator<T extends Configurable> {
 	/** Maps names of {@link Configurable}s to ParameterHandlers */
 	private final Map<String, ParameterHandler> parameterHandlers = new HashMap<>();
 
-	/** Returns the {@link Configurable} implementation that this configurator can configure. */
-	public abstract Class<T> getConfigurableClass();
+    /**
+     * Returns the {@link Configurable} implementation that this configurator can configure.  @return the configurable class
+     *
+     * @return the configurable class
+     */
+    public abstract Class<T> getConfigurableClass();
 
-	/**
-	 * The ID used for identifying this Configurator. Must be a valid XML tag identifier and file
-	 * name. Should include the plugin namespace. Example: "olap_connection".
-	 */
-	public abstract String getTypeId();
+    /**
+     * The ID used for identifying this Configurator. Must be a valid XML tag identifier and file
+     * name. Should include the plugin namespace. Example: "olap_connection".
+     *
+     * @return the type id
+     */
+    public abstract String getTypeId();
 
-	/** The base key used in I18N property files. */
-	public abstract String getI18NBaseKey();
+    /**
+     * The base key used in I18N property files.  @return the i 18 n base key
+     *
+     * @return the i 18 n base key
+     */
+    public abstract String getI18NBaseKey();
 
-	/**
-	 * @return the parameter types used to configure {@link Configurable}s.
-	 * @param parameterHandler
-	 *            the {@link ParameterHandler} which should be used to register
-	 *            {@link ParameterCondition}s.
-	 */
-	public abstract List<ParameterType> getParameterTypes(ParameterHandler parameterHandler);
+    /**
+     * Gets parameter types.
+     *
+     * @param parameterHandler the {@link ParameterHandler} which should be used to register            {@link ParameterCondition}s.
+     * @return the parameter types used to configure {@link Configurable}s.
+     */
+    public abstract List<ParameterType> getParameterTypes(ParameterHandler parameterHandler);
 
-	/**
-	 * Creates a new {@link Configurable} based on parameters. The parameters passed to this method
-	 * match the ones specified by {@link #getParameterTypes()}.
-	 *
-	 * @throws ConfigurationException
-	 * @name a unique (user defined) name identifying this {@link Configurable}.
-	 */
-	public final T create(String name, Map<String, String> parameters) throws ConfigurationException {
+    /**
+     * Creates a new {@link Configurable} based on parameters. The parameters passed to this method
+     * match the ones specified by {@link #getParameterTypes()}.
+     *
+     * @param name       the name
+     * @param parameters the parameters
+     * @return the t
+     * @throws ConfigurationException the configuration exception
+     * @name a unique (user defined) name identifying this {@link Configurable}.
+     */
+    public final T create(String name, Map<String, String> parameters) throws ConfigurationException {
 		T instance;
 		try {
 			instance = getConfigurableClass().newInstance();
@@ -87,30 +101,41 @@ public abstract class AbstractConfigurator<T extends Configurable> {
 		return instance;
 	}
 
-	/** The display name used in UI components. Based on {@link #getI18NBaseKey()}. */
-	public final String getName() {
+    /**
+     * The display name used in UI components. Based on {@link #getI18NBaseKey()}.  @return the name
+     *
+     * @return the name
+     */
+    public final String getName() {
 		return I18N.getMessage(I18N.getGUIBundle(), "gui.configurable." + getI18NBaseKey() + ".name");
 	}
 
-	/** A short help text to be used in dialogs. Based on {@link #getI18NBaseKey()}. */
-	public final String getDescription() {
+    /**
+     * A short help text to be used in dialogs. Based on {@link #getI18NBaseKey()}.  @return the description
+     *
+     * @return the description
+     */
+    public final String getDescription() {
 		return I18N.getMessage(I18N.getGUIBundle(), "gui.configurable." + getI18NBaseKey() + ".description");
 	}
 
-	/** A short help text to be used in dialogs. Based on {@link #getI18NBaseKey()}. */
-	public final String getIconName() {
+    /**
+     * A short help text to be used in dialogs. Based on {@link #getI18NBaseKey()}.  @return the icon name
+     *
+     * @return the icon name
+     */
+    public final String getIconName() {
 		return I18N.getMessage(I18N.getGUIBundle(), "gui.configurable." + getI18NBaseKey() + ".icon");
 	}
 
-	/**
-	 * Gets the {@link ParameterHandler} for the specified {@link Configurable}. If no related
-	 * ParameterHandler exists, it is created.
-	 *
-	 * @param configurableName
-	 *            The name of the configurable which is related to the requested ParameterHandler.
-	 * @return The ParameterHandler related to the specified Configurable.
-	 */
-	public final ParameterHandler getParameterHandler(Configurable configurable) {
+    /**
+     * Gets the {@link ParameterHandler} for the specified {@link Configurable}. If no related
+     * ParameterHandler exists, it is created.
+     *
+     * @param configurable the configurable
+     * @return The ParameterHandler related to the specified Configurable.
+     */
+    public final ParameterHandler getParameterHandler(Configurable configurable) {
 		if (configurable == null) {
 			throw new IllegalArgumentException("No configurable specified.");
 		}
@@ -129,28 +154,25 @@ public abstract class AbstractConfigurator<T extends Configurable> {
 		return parameterHandlers.get(configurableName);
 	}
 
-	/**
-	 * Removes {@link ParameterHandler} for specified Configurable.
-	 *
-	 * @param configurable
-	 *            The configurable related to the ParameterHandler to remove.
-	 */
-	public final void removeCachedParameterHandler(Configurable configurable) {
+    /**
+     * Removes {@link ParameterHandler} for specified Configurable.
+     *
+     * @param configurable The configurable related to the ParameterHandler to remove.
+     */
+    public final void removeCachedParameterHandler(Configurable configurable) {
 		if (configurable == null) {
 			throw new IllegalArgumentException("No configurable specified.");
 		}
 		parameterHandlers.remove(configurable.getName());
 	}
 
-	/**
-	 * Updates the {@link Configurable} key for the related {@link ParameterHandler}.
-	 *
-	 * @param configurable
-	 *            A configurable, whose name has changed.
-	 * @param oldConfigurableName
-	 *            The old name of the configurable.
-	 */
-	public final void reregisterCachedParameterHandler(Configurable configurable, String oldConfigurableName) {
+    /**
+     * Updates the {@link Configurable} key for the related {@link ParameterHandler}.
+     *
+     * @param configurable        A configurable, whose name has changed.
+     * @param oldConfigurableName The old name of the configurable.
+     */
+    public final void reregisterCachedParameterHandler(Configurable configurable, String oldConfigurableName) {
 		if (configurable == null) {
 			throw new IllegalArgumentException("No configurable specified.");
 		} else if (oldConfigurableName == null) {

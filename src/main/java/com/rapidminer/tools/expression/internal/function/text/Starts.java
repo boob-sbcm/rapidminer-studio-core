@@ -22,14 +22,13 @@ package com.rapidminer.tools.expression.internal.function.text;
  * A {@link Function} to check whether a nominal value starts with a specific string.
  *
  * @author Thilo Kamradt
- *
  */
 public class Starts extends Abstract2StringInputBooleanOutputFunction {
 
-	/**
-	 * Creates a function to check whether a nominal value starts with a specific string
-	 */
-	public Starts() {
+    /**
+     * Creates a function to check whether a nominal value starts with a specific string
+     */
+    public Starts() {
 		super("text_information.starts");
 	}
 

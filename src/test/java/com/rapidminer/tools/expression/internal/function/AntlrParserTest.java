@@ -39,7 +39,7 @@ import com.rapidminer.tools.expression.internal.antlr.AntlrParser;
 
 /**
  * Tests the results of {@link AntlrParser#parse(String)}.
- *
+ * <p>
  * The tests for each function should include at least:
  * <ul>
  * <li>a single correct value</li>
@@ -49,60 +49,80 @@ import com.rapidminer.tools.expression.internal.antlr.AntlrParser;
  * <li>other special cases unique to the function or group of function</li>
  * </ul>
  *
- *
  * @author Gisa Schaefer
- *
  */
 public class AntlrParserTest {
 
-	/**
-	 * Parses string expressions into {@link Expression}s if those expressions don't use any
-	 * functions, macros, attributes or other variables.
-	 */
-	protected Expression getExpressionWithoutContext(String expression) throws ExpressionException {
+    /**
+     * Parses string expressions into {@link Expression}s if those expressions don't use any
+     * functions, macros, attributes or other variables.
+     *
+     * @param expression the expression
+     * @return the expression without context
+     * @throws ExpressionException the expression exception
+     */
+    protected Expression getExpressionWithoutContext(String expression) throws ExpressionException {
 		AntlrParser parser = new AntlrParser(null);
 		return parser.parse(expression);
 	}
 
-	/**
-	 * Parses string expressions into {@link Expression}s if those expressions use known functions
-	 * and no macros, attributes or other variables.
-	 */
-	protected Expression getExpressionWithFunctionContext(String expression) throws ExpressionException {
+    /**
+     * Parses string expressions into {@link Expression}s if those expressions use known functions
+     * and no macros, attributes or other variables.
+     *
+     * @param expression the expression
+     * @return the expression with function context
+     * @throws ExpressionException the expression exception
+     */
+    protected Expression getExpressionWithFunctionContext(String expression) throws ExpressionException {
 		ExpressionParserBuilder builder = new ExpressionParserBuilder();
 		ExpressionParser parser = builder.withModules(ExpressionRegistry.INSTANCE.getAll()).build();
 		return parser.parse(expression);
 	}
 
-	/**
-	 * Parses string expressions into {@link Expression}s if those expressions use known functions
-	 * and macros but no attributes or other variables.
-	 */
-	protected Expression getExpressionWithFunctionsAndMacros(String expression, MacroResolver resolver)
+    /**
+     * Parses string expressions into {@link Expression}s if those expressions use known functions
+     * and macros but no attributes or other variables.
+     *
+     * @param expression the expression
+     * @param resolver   the resolver
+     * @return the expression with functions and macros
+     * @throws ExpressionException the expression exception
+     */
+    protected Expression getExpressionWithFunctionsAndMacros(String expression, MacroResolver resolver)
 			throws ExpressionException {
 		ExpressionParserBuilder builder = new ExpressionParserBuilder();
 		ExpressionParser parser = builder.withModules(ExpressionRegistry.INSTANCE.getAll()).withScope(resolver).build();
 		return parser.parse(expression);
 	}
 
-	/**
-	 * Parses the string expression into a {@link Expression} using the given
-	 * {@link ExampleResolver}.
-	 */
-	protected Expression getExpressionWithFunctionsAndExamples(String expression, ExampleResolver resolver)
+    /**
+     * Parses the string expression into a {@link Expression} using the given
+     * {@link ExampleResolver}.
+     *
+     * @param expression the expression
+     * @param resolver   the resolver
+     * @return the expression with functions and examples
+     * @throws ExpressionException the expression exception
+     */
+    protected Expression getExpressionWithFunctionsAndExamples(String expression, ExampleResolver resolver)
 			throws ExpressionException {
 		ExpressionParserBuilder builder = new ExpressionParserBuilder();
 		ExpressionParser parser = builder.withModules(ExpressionRegistry.INSTANCE.getAll()).withDynamics(resolver).build();
 		return parser.parse(expression);
 	}
 
-	/**
-	 * Parses the string expression into a {@link Expression} using the given
-	 * {@link ExampleResolver} and the given {@link MacroResolver}.
-	 *
-	 * @throws ExpressionException
-	 */
-	protected Expression getExpressionWithFunctionsAndExamplesAndMacros(String expression, ExampleResolver resolver,
+    /**
+     * Parses the string expression into a {@link Expression} using the given
+     * {@link ExampleResolver} and the given {@link MacroResolver}.
+     *
+     * @param expression    the expression
+     * @param resolver      the resolver
+     * @param macroResolver the macro resolver
+     * @return the expression with functions and examples and macros
+     * @throws ExpressionException the expression exception
+     */
+    protected Expression getExpressionWithFunctionsAndExamplesAndMacros(String expression, ExampleResolver resolver,
 			MacroResolver macroResolver) throws ExpressionException {
 		ExpressionParserBuilder builder = new ExpressionParserBuilder();
 		ExpressionParser parser = builder.withModules(ExpressionRegistry.INSTANCE.getAll()).withDynamics(resolver)
@@ -110,11 +130,12 @@ public class AntlrParserTest {
 		return parser.parse(expression);
 	}
 
-	/**
-	 * @return a exampleSet containing a single example with a single integer attribute called
-	 *         "integer" with value NaN.
-	 */
-	protected ExampleSet makeMissingIntegerExampleSet() {
+    /**
+     * Make missing integer example set example set.
+     *
+     * @return a exampleSet containing a single example with a single integer attribute called         "integer" with value NaN.
+     */
+    protected ExampleSet makeMissingIntegerExampleSet() {
 		List<Attribute> attributes = new LinkedList<>();
 		attributes.add(AttributeFactory.createAttribute("integer", Ontology.INTEGER));
 

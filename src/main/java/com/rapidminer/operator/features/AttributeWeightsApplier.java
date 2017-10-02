@@ -36,14 +36,14 @@ import com.rapidminer.operator.ports.metadata.SetRelation;
  * attributes will be recalculated based on the weights delivered as {@link AttributeWeights} object
  * in the input.
  * </p>
- * 
+ * <p>
  * <p>
  * This operator can hardly be used to select a subset of features according to weights determined
  * by a former weighting scheme. For this purpose the operator
  * {@link com.rapidminer.operator.features.selection.AttributeWeightSelection} should be used which
  * will select only those attribute fulfilling a specified weight relation.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeWeightsApplier extends Operator {
@@ -53,7 +53,12 @@ public class AttributeWeightsApplier extends Operator {
 
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	public AttributeWeightsApplier(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute weights applier.
+     *
+     * @param description the description
+     */
+    public AttributeWeightsApplier(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, exampleSetOutput, SetRelation.SUBSET));
 	}

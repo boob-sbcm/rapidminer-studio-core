@@ -34,36 +34,73 @@ import java.util.List;
 
 /**
  * An operator which creates an archive file, like e.g. a zip file.
- * 
+ * <p>
  * Currently only zip files are supported, but the operator could be extended to support also other
  * types of archives like rar, tar, ...
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class CreateArchiveFileOperator extends Operator {
 
-	public static final String[] BUFFER_TYPES = { "memory", "file" };
-	public static final int BUFFER_TYPE_MEMORY = 0;
-	public static final int BUFFER_TYPE_FILE = 1;
+    /**
+     * The constant BUFFER_TYPES.
+     */
+    public static final String[] BUFFER_TYPES = { "memory", "file" };
+    /**
+     * The constant BUFFER_TYPE_MEMORY.
+     */
+    public static final int BUFFER_TYPE_MEMORY = 0;
+    /**
+     * The constant BUFFER_TYPE_FILE.
+     */
+    public static final int BUFFER_TYPE_FILE = 1;
 
-	public static final String PARAMETER_BUFFER_TYPE = "buffer_type";
-	public static final String PARAMETER_USE_DEFAULT_COMPRESSION_LEVEL = "use_default_compression_level";
-	public static final String PARAMETER_COMPRESSION_LEVEL = "compression_level";
+    /**
+     * The constant PARAMETER_BUFFER_TYPE.
+     */
+    public static final String PARAMETER_BUFFER_TYPE = "buffer_type";
+    /**
+     * The constant PARAMETER_USE_DEFAULT_COMPRESSION_LEVEL.
+     */
+    public static final String PARAMETER_USE_DEFAULT_COMPRESSION_LEVEL = "use_default_compression_level";
+    /**
+     * The constant PARAMETER_COMPRESSION_LEVEL.
+     */
+    public static final String PARAMETER_COMPRESSION_LEVEL = "compression_level";
 
-	public static final String[] COMPRESSION_LEVELS = { "best compression", "fastest compression", "no compression",
+    /**
+     * The constant COMPRESSION_LEVELS.
+     */
+    public static final String[] COMPRESSION_LEVELS = { "best compression", "fastest compression", "no compression",
 			"default compression" };
-	public static final int COMPRESSION_LEVEL_BEST = 0;
-	public static final int COMPRESSION_LEVEL_FASTEST = 1;
-	public static final int COMPRESSION_LEVEL_NONE = 2;
-	public static final int COMPRESSION_LEVEL_DEFAULT = 3;
+    /**
+     * The constant COMPRESSION_LEVEL_BEST.
+     */
+    public static final int COMPRESSION_LEVEL_BEST = 0;
+    /**
+     * The constant COMPRESSION_LEVEL_FASTEST.
+     */
+    public static final int COMPRESSION_LEVEL_FASTEST = 1;
+    /**
+     * The constant COMPRESSION_LEVEL_NONE.
+     */
+    public static final int COMPRESSION_LEVEL_NONE = 2;
+    /**
+     * The constant COMPRESSION_LEVEL_DEFAULT.
+     */
+    public static final int COMPRESSION_LEVEL_DEFAULT = 3;
 
-	OutputPort archiveFileOuputPort = getOutputPorts().createPort("archive file");
+    /**
+     * The Archive file ouput port.
+     */
+    OutputPort archiveFileOuputPort = getOutputPorts().createPort("archive file");
 
-	/**
-	 * @param description
-	 */
-	public CreateArchiveFileOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Create archive file operator.
+     *
+     * @param description the description
+     */
+    public CreateArchiveFileOperator(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new GenerateNewMDRule(archiveFileOuputPort, ZipFileObject.class));
 	}

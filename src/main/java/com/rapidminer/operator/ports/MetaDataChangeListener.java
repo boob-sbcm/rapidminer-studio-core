@@ -24,15 +24,16 @@ import com.rapidminer.operator.ports.metadata.MetaData;
 /**
  * Classes implementing this interface can be added to inputports as listener. These input ports
  * then inform the classes about a change in the meta data.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public interface MetaDataChangeListener {
 
-	/**
-	 * This method is called if the meta data is newly assigned. The given MetaData might be null,
-	 * if the ports have been cleared.
-	 */
-	public void informMetaDataChanged(MetaData newMetadata);
+    /**
+     * This method is called if the meta data is newly assigned. The given MetaData might be null,
+     * if the ports have been cleared.
+     *
+     * @param newMetadata the new metadata
+     */
+    public void informMetaDataChanged(MetaData newMetadata);
 }

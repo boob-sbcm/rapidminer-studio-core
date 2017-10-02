@@ -65,7 +65,7 @@ import com.rapidminer.tools.OperatorService;
  * This operator creates a Lift chart based on a Pareto plot for the discretized confidence values
  * for the given example set and model. The model will be applied on the example set and a lift
  * chart will be produced afterwards.
- *
+ * <p>
  * Please note that a predicted label of the given example set will be removed during the
  * application of this operator.
  *
@@ -73,29 +73,68 @@ import com.rapidminer.tools.OperatorService;
  */
 public class LiftParetoChartGenerator extends Operator {
 
-	public static final String PARAMETER_TARGET_CLASS = "target_class";
+    /**
+     * The constant PARAMETER_TARGET_CLASS.
+     */
+    public static final String PARAMETER_TARGET_CLASS = "target_class";
 
-	public static final String PARAMETER_BINNING_TYPE = "binning_type";
+    /**
+     * The constant PARAMETER_BINNING_TYPE.
+     */
+    public static final String PARAMETER_BINNING_TYPE = "binning_type";
 
-	public static final String PARAMETER_NUMBER_OF_BINS = "number_of_bins";
+    /**
+     * The constant PARAMETER_NUMBER_OF_BINS.
+     */
+    public static final String PARAMETER_NUMBER_OF_BINS = "number_of_bins";
 
-	public static final String PARAMETER_SIZE_OF_BINS = "size_of_bins";
+    /**
+     * The constant PARAMETER_SIZE_OF_BINS.
+     */
+    public static final String PARAMETER_SIZE_OF_BINS = "size_of_bins";
 
-	public static final String PARAMETER_AUTOMATIC_NUMBER_OF_DIGITS = "automatic_number_of_digits";
+    /**
+     * The constant PARAMETER_AUTOMATIC_NUMBER_OF_DIGITS.
+     */
+    public static final String PARAMETER_AUTOMATIC_NUMBER_OF_DIGITS = "automatic_number_of_digits";
 
-	public static final String PARAMETER_NUMBER_OF_DIGITS = "number_of_digits";
+    /**
+     * The constant PARAMETER_NUMBER_OF_DIGITS.
+     */
+    public static final String PARAMETER_NUMBER_OF_DIGITS = "number_of_digits";
 
-	public static final String PARAMETER_SHOW_BAR_LABELS = "show_bar_labels";
+    /**
+     * The constant PARAMETER_SHOW_BAR_LABELS.
+     */
+    public static final String PARAMETER_SHOW_BAR_LABELS = "show_bar_labels";
 
-	public static final String PARAMETER_SHOW_CUMULATIVE_LABELS = "show_cumulative_labels";
+    /**
+     * The constant PARAMETER_SHOW_CUMULATIVE_LABELS.
+     */
+    public static final String PARAMETER_SHOW_CUMULATIVE_LABELS = "show_cumulative_labels";
 
-	public static final String PARAMETER_ROTATE_LABELS = "rotate_labels";
+    /**
+     * The constant PARAMETER_ROTATE_LABELS.
+     */
+    public static final String PARAMETER_ROTATE_LABELS = "rotate_labels";
 
-	public static final String[] BINNING_TYPES = { "simple", "absolute", "frequency" };
+    /**
+     * The constant BINNING_TYPES.
+     */
+    public static final String[] BINNING_TYPES = { "simple", "absolute", "frequency" };
 
-	public static final int BINNING_SIMPLE = 0;
-	public static final int BINNING_ABSOLUTE = 1;
-	public static final int BINNING_FREQUENCY = 2;
+    /**
+     * The constant BINNING_SIMPLE.
+     */
+    public static final int BINNING_SIMPLE = 0;
+    /**
+     * The constant BINNING_ABSOLUTE.
+     */
+    public static final int BINNING_ABSOLUTE = 1;
+    /**
+     * The constant BINNING_FREQUENCY.
+     */
+    public static final int BINNING_FREQUENCY = 2;
 
 	private final InputPort exampleSetInput = getInputPorts().createPort("example set");
 	private final InputPort modelInput = getInputPorts().createPort("model");
@@ -104,7 +143,12 @@ public class LiftParetoChartGenerator extends Operator {
 	private final OutputPort modelOutput = getOutputPorts().createPort("model");
 	private final OutputPort chartOutput = getOutputPorts().createPort("lift pareto chart");
 
-	public LiftParetoChartGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Lift pareto chart generator.
+     *
+     * @param description the description
+     */
+    public LiftParetoChartGenerator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput

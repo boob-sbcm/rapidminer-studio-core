@@ -26,7 +26,7 @@ import com.rapidminer.tools.math.similarity.DistanceMeasure;
 
 /**
  * The Camberra distance measure.
- * 
+ *
  * @author Sebastian Land, Michael Wurst
  */
 public class CamberraNumericalDistance extends DistanceMeasure {

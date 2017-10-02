@@ -54,7 +54,12 @@ import com.rapidminer.tools.parameter.internal.DataManagementParameterHelper;
  */
 public class MaterializeDataInMemory extends AbstractDataProcessing {
 
-	public MaterializeDataInMemory(OperatorDescription description) {
+    /**
+     * Instantiates a new Materialize data in memory.
+     *
+     * @param description the description
+     */
+    public MaterializeDataInMemory(OperatorDescription description) {
 		super(description);
 	}
 
@@ -85,33 +90,30 @@ public class MaterializeDataInMemory extends AbstractDataProcessing {
 				MaterializeDataInMemory.class, null);
 	}
 
-	/**
-	 * Creates a materialized copy of the given example set, i.e., a hard copy with all unnecessary
-	 * abstraction layers being removed. The data management strategy will be the same as in the
-	 * current example set. If you want to use a different strategy call
-	 * {@link #materializeExampleSet(ExampleSet, int)} instead.
-	 *
-	 * @param exampleSet
-	 *            the example set to materialize
-	 * @return the materialized example set
-	 * @throws UndefinedParameterError
-	 */
-	public static ExampleSet materializeExampleSet(ExampleSet exampleSet) {
+    /**
+     * Creates a materialized copy of the given example set, i.e., a hard copy with all unnecessary
+     * abstraction layers being removed. The data management strategy will be the same as in the
+     * current example set. If you want to use a different strategy call
+     * {@link #materializeExampleSet(ExampleSet, int)} instead.
+     *
+     * @param exampleSet the example set to materialize
+     * @return the materialized example set
+     * @throws UndefinedParameterError
+     */
+    public static ExampleSet materializeExampleSet(ExampleSet exampleSet) {
 		return materialize(exampleSet, findDataRowType(exampleSet));
 	}
 
-	/**
-	 * Creates a materialized copy of the given example set, i.e., a hard copy with all unnecessary
-	 * abstraction layers being removed.
-	 *
-	 * @param exampleSet
-	 *            the example set to materialize
-	 * @param dataManagement
-	 *            the data management strategy (see {@link DataRowFactory} for available types)
-	 * @return the materialized example set
-	 * @throws UndefinedParameterError
-	 */
-	public static ExampleSet materializeExampleSet(ExampleSet exampleSet, int dataManagement)
+    /**
+     * Creates a materialized copy of the given example set, i.e., a hard copy with all unnecessary
+     * abstraction layers being removed.
+     *
+     * @param exampleSet     the example set to materialize
+     * @param dataManagement the data management strategy (see {@link DataRowFactory} for available types)
+     * @return the materialized example set
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public static ExampleSet materializeExampleSet(ExampleSet exampleSet, int dataManagement)
 			throws UndefinedParameterError {
 		return materialize(exampleSet, dataManagement);
 	}

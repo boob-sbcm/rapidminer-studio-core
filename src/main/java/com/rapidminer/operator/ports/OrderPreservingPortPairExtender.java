@@ -33,25 +33,44 @@ import com.rapidminer.operator.ports.metadata.MetaData;
  *
  * @author Marco Boeck
  * @since 7.4
- *
  */
 public class OrderPreservingPortPairExtender extends PortPairExtender {
 
-	public OrderPreservingPortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts) {
+    /**
+     * Instantiates a new Order preserving port pair extender.
+     *
+     * @param name     the name
+     * @param inPorts  the in ports
+     * @param outPorts the out ports
+     */
+    public OrderPreservingPortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts) {
 		super(name, inPorts, outPorts);
 	}
 
-	public OrderPreservingPortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts,
+    /**
+     * Instantiates a new Order preserving port pair extender.
+     *
+     * @param name                 the name
+     * @param inPorts              the in ports
+     * @param outPorts             the out ports
+     * @param preconditionMetaData the precondition meta data
+     */
+    public OrderPreservingPortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts,
 			MetaData preconditionMetaData) {
 		super(name, inPorts, outPorts, preconditionMetaData);
 	}
 
-	/**
-	 * Returns the data that has been forwarded to the input ports as ordered list. If a port did
-	 * not receive any data, the list will contain null unlike the {@link #getData(Class)} method of
-	 * the original PortPairExtender.
-	 */
-	public <T extends IOObject> List<T> getDataOrNull(Class<T> desiredClass) throws UserError {
+    /**
+     * Returns the data that has been forwarded to the input ports as ordered list. If a port did
+     * not receive any data, the list will contain null unlike the {@link #getData(Class)} method of
+     * the original PortPairExtender.
+     *
+     * @param <T>          the type parameter
+     * @param desiredClass the desired class
+     * @return the data or null
+     * @throws UserError the user error
+     */
+    public <T extends IOObject> List<T> getDataOrNull(Class<T> desiredClass) throws UserError {
 		List<T> results = new LinkedList<T>();
 		for (PortPair pair : getManagedPairs()) {
 			T data = pair.getInputPort().<T> getDataOrNull(desiredClass);

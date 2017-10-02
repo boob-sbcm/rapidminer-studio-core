@@ -37,21 +37,20 @@ import com.rapidminer.gui.tools.autocomplete.AutoCompleteComboBoxAddition;
  * GUI component for the {@link TablePanel} for {@link CellTypeComboBox}.
  *
  * @author Marco Boeck
- *
  */
 public class CellTypeComboBoxImpl extends JComboBox<String> implements CellTypeComboBox {
 
 	private static final long serialVersionUID = 5923158263372081013L;
 
-	/**
-	 * Creates a {@link CellTypeComboBoxImpl} for the specified cell. Does not validate the model,
-	 * so make sure this call works!
-	 *
-	 * @param model
-	 * @param rowIndex
-	 * @param columnIndex
-	 */
-	public CellTypeComboBoxImpl(final TablePanelModel model, final int rowIndex, final int columnIndex) {
+    /**
+     * Creates a {@link CellTypeComboBoxImpl} for the specified cell. Does not validate the model,
+     * so make sure this call works!
+     *
+     * @param model       the model
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     */
+    public CellTypeComboBoxImpl(final TablePanelModel model, final int rowIndex, final int columnIndex) {
 		super(new Vector<String>(model.getPossibleValuesForCellOrNull(rowIndex, columnIndex) != null
 				? model.getPossibleValuesForCellOrNull(rowIndex, columnIndex) : Collections.<String>emptyList()));
 

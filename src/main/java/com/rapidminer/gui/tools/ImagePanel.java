@@ -29,37 +29,46 @@ import javax.swing.JPanel;
 
 /**
  * This panel can be used to display an image in the background.
- * 
+ *
  * @author Ingo Mierswa, Marco Boeck
  */
 public class ImagePanel extends JPanel {
 
 	private static final long serialVersionUID = 3903395116300542548L;
 
-	/**
-	 * Determines how the panel should calculate its preferred size.
-	 */
-	public enum ResizeHandling {
-		/** uses preferred size determined by its children, i.e. like any other {@link JPanel} */
-		CHILDRENS_PREFERRED_SIZE,
+    /**
+     * Determines how the panel should calculate its preferred size.
+     */
+    public enum ResizeHandling {
+        /**
+         * uses preferred size determined by its children, i.e. like any other {@link JPanel}
+         */
+        CHILDRENS_PREFERRED_SIZE,
 
-		/** sets the preferred size to the image dimension */
-		IMAGE_PREFERRED_SIZE,
+        /**
+         * sets the preferred size to the image dimension
+         */
+        IMAGE_PREFERRED_SIZE,
 
-		/** uses the width determined by its children, but the height of the image */
-		IMAGE_PREFERRED_HEIGHT
+        /**
+         * uses the width determined by its children, but the height of the image
+         */
+        IMAGE_PREFERRED_HEIGHT
 	}
 
-	/**
-	 * Determines where the background image is anchored vertically when it is not stretched.
-	 * 
-	 */
-	public enum VerticalAnchor {
-		/** image anchored at the top-left corner */
-		TOP,
+    /**
+     * Determines where the background image is anchored vertically when it is not stretched.
+     */
+    public enum VerticalAnchor {
+        /**
+         * image anchored at the top-left corner
+         */
+        TOP,
 
-		/** image anchored at the bottom-left corner */
-		BOTTOM;
+        /**
+         * image anchored at the bottom-left corner
+         */
+        BOTTOM;
 	}
 
 	/** the background image to display */
@@ -79,45 +88,40 @@ public class ImagePanel extends JPanel {
 
 	private VerticalAnchor anchor = VerticalAnchor.TOP;
 
-	/**
-	 * Creates a panel displaying the given {@link Image} in the background. If preferredSizeType is
-	 * set to {@link #CHILDRENS_PREFERRED_SIZE}, stretches the image to match the dimensions of the
-	 * panel.
-	 * 
-	 * @param image
-	 * @param preferredSizeType
-	 */
-	public ImagePanel(Image image, ResizeHandling preferredSizeType) {
+    /**
+     * Creates a panel displaying the given {@link Image} in the background. If preferredSizeType is
+     * set to {@link #CHILDRENS_PREFERRED_SIZE}, stretches the image to match the dimensions of the
+     * panel.
+     *
+     * @param image             the image
+     * @param preferredSizeType the preferred size type
+     */
+    public ImagePanel(Image image, ResizeHandling preferredSizeType) {
 		this(image, preferredSizeType, true);
 	}
 
-	/**
-	 * Creates a panel displaying the given {@link Image} in the background.
-	 * 
-	 * @param image
-	 * @param preferredSizeType
-	 * @param stretchImage
-	 *            if the preferredSizeType is set to {@link #CHILDRENS_PREFERRED_SIZE}, this
-	 *            parameter defines if the image is stretched to match the dimensions of the panel
-	 *            or not
-	 */
-	public ImagePanel(Image image, ResizeHandling preferredSizeType, boolean stretchImage) {
+    /**
+     * Creates a panel displaying the given {@link Image} in the background.
+     *
+     * @param image             the image
+     * @param preferredSizeType the preferred size type
+     * @param stretchImage      if the preferredSizeType is set to {@link #CHILDRENS_PREFERRED_SIZE}, this            parameter defines if the image is stretched to match the dimensions of the panel            or not
+     */
+    public ImagePanel(Image image, ResizeHandling preferredSizeType, boolean stretchImage) {
 		this.image = image;
 		this.preferredSizeType = preferredSizeType;
 		this.strechImage = stretchImage;
 		setOpaque(true);
 	}
 
-	/**
-	 * Creates a panel displaying the given {@link Image} in the background.
-	 * 
-	 * @param image
-	 * @param preferredSizeType
-	 * @param anchor
-	 *            if the preferredSizeType is set to {@link #CHILDRENS_PREFERRED_SIZE}, this
-	 *            parameter defines if the image is anchored at the top or at the bottom.
-	 */
-	public ImagePanel(Image image, ResizeHandling preferredSizeType, VerticalAnchor anchor) {
+    /**
+     * Creates a panel displaying the given {@link Image} in the background.
+     *
+     * @param image             the image
+     * @param preferredSizeType the preferred size type
+     * @param anchor            if the preferredSizeType is set to {@link #CHILDRENS_PREFERRED_SIZE}, this            parameter defines if the image is anchored at the top or at the bottom.
+     */
+    public ImagePanel(Image image, ResizeHandling preferredSizeType, VerticalAnchor anchor) {
 		this.image = image;
 		this.preferredSizeType = preferredSizeType;
 		this.anchor = anchor;
@@ -125,16 +129,16 @@ public class ImagePanel extends JPanel {
 		setOpaque(true);
 	}
 
-	/**
-	 * Sets the image which is used for low resolutions as the background and the minimum dimension
-	 * (width and height) which are the threshold for using the lowres image. If the width or the
-	 * height of the panel is less than specified here, the lowres image is used as a background.
-	 * This changes on the fly, e.g. when the user changes his resolution or resizes the panel
-	 * 
-	 * @param image
-	 * @param minDimension
-	 */
-	public void setLowResolutionImage(Image image, Dimension minDimension) {
+    /**
+     * Sets the image which is used for low resolutions as the background and the minimum dimension
+     * (width and height) which are the threshold for using the lowres image. If the width or the
+     * height of the panel is less than specified here, the lowres image is used as a background.
+     * This changes on the fly, e.g. when the user changes his resolution or resizes the panel
+     *
+     * @param image        the image
+     * @param minDimension the min dimension
+     */
+    public void setLowResolutionImage(Image image, Dimension minDimension) {
 		this.imageLowResolution = image;
 		this.minDimension = minDimension;
 	}

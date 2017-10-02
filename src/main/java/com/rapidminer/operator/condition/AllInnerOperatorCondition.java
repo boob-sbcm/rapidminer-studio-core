@@ -28,7 +28,7 @@ import com.rapidminer.operator.WrongNumberOfInnerOperatorsException;
 /**
  * Checks if all inner operators are able to handle the given input and will deliver the desired
  * output.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 @SuppressWarnings("deprecation")
@@ -46,7 +46,13 @@ public class AllInnerOperatorCondition implements InnerOperatorCondition {
 	 */
 	private final Class<?>[] mustDeliver;
 
-	public AllInnerOperatorCondition(Class<?>[] willGet, Class<?>[] mustDeliver) {
+    /**
+     * Instantiates a new All inner operator condition.
+     *
+     * @param willGet     the will get
+     * @param mustDeliver the must deliver
+     */
+    public AllInnerOperatorCondition(Class<?>[] willGet, Class<?>[] mustDeliver) {
 		this.willGet = willGet;
 		this.mustDeliver = mustDeliver;
 	}

@@ -36,7 +36,7 @@ import com.rapidminer.tools.math.container.Range;
 
 /**
  * Generates two Gaussian clusters.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class TwoGaussiansClassificationFunction extends ClusterFunction {
@@ -44,8 +44,10 @@ public class TwoGaussiansClassificationFunction extends ClusterFunction {
 	/** The list of clusters. */
 	private List<Cluster> clusters = new LinkedList<Cluster>();
 
-	/** The label attribute. */
-	Attribute label = AttributeFactory.createAttribute("label", Ontology.NOMINAL);
+    /**
+     * The label attribute.
+     */
+    Attribute label = AttributeFactory.createAttribute("label", Ontology.NOMINAL);
 
 	/** The label for the last generated point. */
 	private double currentLabel;

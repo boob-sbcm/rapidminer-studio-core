@@ -22,15 +22,22 @@ package com.rapidminer.tools.math.function.aggregation;
  * Calculates the standard deviation.
  *
  * @author Tobias Malbrecht
- *
  */
 public class StandardDeviationFunction extends VarianceFunction {
 
-	public StandardDeviationFunction() {
+    /**
+     * Instantiates a new Standard deviation function.
+     */
+    public StandardDeviationFunction() {
 		this(DEFAULT_IGNORE_MISSINGS);
 	}
 
-	public StandardDeviationFunction(Boolean ignoreMissings) {
+    /**
+     * Instantiates a new Standard deviation function.
+     *
+     * @param ignoreMissings the ignore missings
+     */
+    public StandardDeviationFunction(Boolean ignoreMissings) {
 		super(ignoreMissings);
 	}
 

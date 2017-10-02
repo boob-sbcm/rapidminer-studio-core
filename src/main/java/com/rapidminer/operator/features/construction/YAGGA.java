@@ -48,28 +48,41 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  * Thus it is guaranteed that the length of the feature vector can both grow and shrink. On average
  * it will keep its original length, unless longer or shorter individuals prove to have a better
  * fitness.
- * 
+ * <p>
  * Since this operator does not contain algorithms to extract features from value series, it is
  * restricted to example sets with only single attributes. For (automatic) feature extraction from
  * values series the value series plugin for RapidMiner written by Ingo Mierswa should be used. It
  * is available at <a href="http://rapidminer.com">http://rapidminer.com</a>.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class YAGGA extends AbstractGeneratingGeneticAlgorithm {
 
-	/** The parameter name for &quot;Probability for mutation (-1: 1/n).&quot; */
-	public static final String PARAMETER_P_MUTATION = "p_mutation";
-	public static final String PARAMETER_USE_HEURISTIC_MUTATION_PROBABILITY = "use_heuristic_mutation_probability";
+    /**
+     * The parameter name for &quot;Probability for mutation (-1: 1/n).&quot;
+     */
+    public static final String PARAMETER_P_MUTATION = "p_mutation";
+    /**
+     * The constant PARAMETER_USE_HEURISTIC_MUTATION_PROBABILITY.
+     */
+    public static final String PARAMETER_USE_HEURISTIC_MUTATION_PROBABILITY = "use_heuristic_mutation_probability";
 
-	/**
-	 * The parameter name for &quot;Max total number of attributes in all generations (-1: no
-	 * maximum).&quot;
-	 */
-	public static final String PARAMETER_MAX_TOTAL_NUMBER_OF_ATTRIBUTES = "max_total_number_of_attributes";
-	public static final String PARAMETER_LIMIT_MAX_TOTAL_NUMBER_OF_ATTRIBUTES = "limit_max_total_number_of_attributes";
+    /**
+     * The parameter name for &quot;Max total number of attributes in all generations (-1: no
+     * maximum).&quot;
+     */
+    public static final String PARAMETER_MAX_TOTAL_NUMBER_OF_ATTRIBUTES = "max_total_number_of_attributes";
+    /**
+     * The constant PARAMETER_LIMIT_MAX_TOTAL_NUMBER_OF_ATTRIBUTES.
+     */
+    public static final String PARAMETER_LIMIT_MAX_TOTAL_NUMBER_OF_ATTRIBUTES = "limit_max_total_number_of_attributes";
 
-	public YAGGA(OperatorDescription description) {
+    /**
+     * Instantiates a new Yagga.
+     *
+     * @param description the description
+     */
+    public YAGGA(OperatorDescription description) {
 		super(description);
 	}
 

@@ -53,17 +53,35 @@ import com.rapidminer.report.Tableable;
  */
 public abstract class AbstractDataTableTableRenderer extends NonGraphicalRenderer {
 
-	public static final String RENDERER_NAME = "Table View";
+    /**
+     * The constant RENDERER_NAME.
+     */
+    public static final String RENDERER_NAME = "Table View";
 
-	public static final String PARAMETER_MIN_ROW = "min_row";
+    /**
+     * The constant PARAMETER_MIN_ROW.
+     */
+    public static final String PARAMETER_MIN_ROW = "min_row";
 
-	public static final String PARAMETER_MAX_ROW = "max_row";
+    /**
+     * The constant PARAMETER_MAX_ROW.
+     */
+    public static final String PARAMETER_MAX_ROW = "max_row";
 
-	public static final String PARAMETER_MIN_COLUMN = "min_column";
+    /**
+     * The constant PARAMETER_MIN_COLUMN.
+     */
+    public static final String PARAMETER_MIN_COLUMN = "min_column";
 
-	public static final String PARAMETER_MAX_COLUMN = "max_column";
+    /**
+     * The constant PARAMETER_MAX_COLUMN.
+     */
+    public static final String PARAMETER_MAX_COLUMN = "max_column";
 
-	public static class DefaultTableable implements Tableable {
+    /**
+     * The type Default tableable.
+     */
+    public static class DefaultTableable implements Tableable {
 
 		private DataTable dataTable;
 
@@ -75,7 +93,13 @@ public abstract class AbstractDataTableTableRenderer extends NonGraphicalRendere
 
 		private int maxColumn = Integer.MAX_VALUE;
 
-		public DefaultTableable(DataTable dataTable, Renderer renderer) {
+        /**
+         * Instantiates a new Default tableable.
+         *
+         * @param dataTable the data table
+         * @param renderer  the renderer
+         */
+        public DefaultTableable(DataTable dataTable, Renderer renderer) {
 			this.dataTable = dataTable;
 
 			try {
@@ -174,17 +198,40 @@ public abstract class AbstractDataTableTableRenderer extends NonGraphicalRendere
 		return RENDERER_NAME;
 	}
 
-	public abstract DataTable getDataTable(Object renderable, IOContainer ioContainer, boolean isRendering);
+    /**
+     * Gets data table.
+     *
+     * @param renderable  the renderable
+     * @param ioContainer the io container
+     * @param isRendering the is rendering
+     * @return the data table
+     */
+    public abstract DataTable getDataTable(Object renderable, IOContainer ioContainer, boolean isRendering);
 
-	public boolean isSortable() {
+    /**
+     * Is sortable boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSortable() {
 		return true;
 	}
 
-	public boolean isColumnMovable() {
+    /**
+     * Is column movable boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isColumnMovable() {
 		return true;
 	}
 
-	public boolean isAutoresize() {
+    /**
+     * Is autoresize boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isAutoresize() {
 		return true;
 	}
 
@@ -211,13 +258,15 @@ public abstract class AbstractDataTableTableRenderer extends NonGraphicalRendere
 		}
 	}
 
-	/**
-	 * Subclasses might override this method in order to change the color provider like for
-	 * correlation matrices.
-	 *
-	 * @param renderable
-	 */
-	protected CellColorProvider getCellColorProvider(ExtendedJTable table, Object renderable) {
+    /**
+     * Subclasses might override this method in order to change the color provider like for
+     * correlation matrices.
+     *
+     * @param table      the table
+     * @param renderable the renderable
+     * @return the cell color provider
+     */
+    protected CellColorProvider getCellColorProvider(ExtendedJTable table, Object renderable) {
 		return new CellColorProviderAlternating();
 	}
 

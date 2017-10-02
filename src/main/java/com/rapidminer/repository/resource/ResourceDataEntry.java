@@ -22,13 +22,21 @@ import com.rapidminer.repository.DataEntry;
 
 
 /**
- * 
+ * The type Resource data entry.
+ *
  * @author Simon Fischer
- * 
  */
 public abstract class ResourceDataEntry extends ResourceEntry implements DataEntry {
 
-	protected ResourceDataEntry(ResourceFolder parent, String name, String resource, ResourceRepository repository) {
+    /**
+     * Instantiates a new Resource data entry.
+     *
+     * @param parent     the parent
+     * @param name       the name
+     * @param resource   the resource
+     * @param repository the repository
+     */
+    protected ResourceDataEntry(ResourceFolder parent, String name, String resource, ResourceRepository repository) {
 		super(parent, name, resource, repository);
 	}
 

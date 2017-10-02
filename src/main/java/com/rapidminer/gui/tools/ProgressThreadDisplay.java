@@ -38,7 +38,6 @@ import com.rapidminer.tools.I18N;
  * UI component which displays the name, dependencies, progress and a cancel button.
  *
  * @author Marco Boeck
- *
  */
 class ProgressThreadDisplay extends JPanel {
 
@@ -55,12 +54,13 @@ class ProgressThreadDisplay extends JPanel {
 
 	private boolean isQueued;
 
-	/**
-	 * Creates a new {@link ProgressThreadDisplay} instance for the {@link ProgressThread} .
-	 *
-	 * @param pg
-	 */
-	public ProgressThreadDisplay(ProgressThread pg, boolean isQueued) {
+    /**
+     * Creates a new {@link ProgressThreadDisplay} instance for the {@link ProgressThread} .
+     *
+     * @param pg       the pg
+     * @param isQueued the is queued
+     */
+    public ProgressThreadDisplay(ProgressThread pg, boolean isQueued) {
 		this.pg = pg;
 		this.isQueued = isQueued;
 
@@ -162,22 +162,24 @@ class ProgressThreadDisplay extends JPanel {
 		return sb.toString();
 	}
 
-	/**
-	 * Sets the progress of the progess bar.
-	 */
-	public void setProgress(int progress) {
+    /**
+     * Sets the progress of the progess bar.
+     *
+     * @param progress the progress
+     */
+    public void setProgress(int progress) {
 		// discard updates which would indicate backwards progress
 		if (progress > progressBar.getValue()) {
 			progressBar.setValue(progress);
 		}
 	}
 
-	/**
-	 * Sets the progress message.
-	 *
-	 * @param message
-	 */
-	public void setMessage(String message) {
+    /**
+     * Sets the progress message.
+     *
+     * @param message the message
+     */
+    public void setMessage(String message) {
 		if (!progressBar.isStringPainted()) {
 			progressBar.setStringPainted(true);
 		}

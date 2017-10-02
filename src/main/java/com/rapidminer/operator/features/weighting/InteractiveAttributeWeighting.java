@@ -34,7 +34,7 @@ import com.rapidminer.operator.ports.metadata.SimplePrecondition;
 /**
  * This operator shows a window with the currently used attribute weights and allows users to change
  * the weight interactively.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class InteractiveAttributeWeighting extends Operator {
@@ -45,7 +45,12 @@ public class InteractiveAttributeWeighting extends Operator {
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort weightOutput = getOutputPorts().createPort("weight");
 
-	public InteractiveAttributeWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Interactive attribute weighting.
+     *
+     * @param description the description
+     */
+    public InteractiveAttributeWeighting(OperatorDescription description) {
 		super(description);
 
 		weightInput.addPrecondition(new SimplePrecondition(weightInput, new MetaData(AttributeWeights.class), false));

@@ -42,7 +42,7 @@ import java.util.HashMap;
 
 /**
  * This is the normalization method for interquartile range.
- * 
+ *
  * @author Brendon Bolin, Sebastian Land
  */
 public class IQRNormalizationMethod extends AbstractNormalizationMethod {

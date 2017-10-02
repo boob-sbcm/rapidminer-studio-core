@@ -51,7 +51,7 @@ import javax.swing.event.ChangeListener;
 /**
  * This plotter plots the data in parallel coordinates. One of the attributes can be selected to
  * define the color of the lines.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ParallelPlotter extends PlotterAdapter implements MouseListener {
@@ -102,7 +102,12 @@ public class ParallelPlotter extends PlotterAdapter implements MouseListener {
 	/** The random number generator for random seeds. */
 	private Random randomSeedRandom = new Random();
 
-	public ParallelPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Parallel plotter.
+     *
+     * @param settings the settings
+     */
+    public ParallelPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 		addMouseListener(this);
@@ -127,7 +132,13 @@ public class ParallelPlotter extends PlotterAdapter implements MouseListener {
 		});
 	}
 
-	public ParallelPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Parallel plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public ParallelPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -162,7 +173,12 @@ public class ParallelPlotter extends PlotterAdapter implements MouseListener {
 		repaint();
 	}
 
-	public void setLocalNormalization(boolean localNormalization) {
+    /**
+     * Sets local normalization.
+     *
+     * @param localNormalization the local normalization
+     */
+    public void setLocalNormalization(boolean localNormalization) {
 		this.localNormalization = localNormalization;
 		repaint();
 	}
@@ -187,7 +203,12 @@ public class ParallelPlotter extends PlotterAdapter implements MouseListener {
 		return "Color";
 	}
 
-	public void setToolTip(ToolTip toolTip) {
+    /**
+     * Sets tool tip.
+     *
+     * @param toolTip the tool tip
+     */
+    public void setToolTip(ToolTip toolTip) {
 		this.toolTip = toolTip;
 		repaint();
 	}
@@ -288,7 +309,12 @@ public class ParallelPlotter extends PlotterAdapter implements MouseListener {
 		paintParallelPlot(g);
 	}
 
-	public void paintParallelPlot(Graphics g) {
+    /**
+     * Paint parallel plot.
+     *
+     * @param g the g
+     */
+    public void paintParallelPlot(Graphics g) {
 		int pixWidth = getWidth() - 2 * MARGIN;
 		int pixHeight = getHeight() - 2 * MARGIN;
 

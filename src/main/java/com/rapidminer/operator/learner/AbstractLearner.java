@@ -44,7 +44,7 @@ import com.rapidminer.tools.Tools;
  * A <tt>Learner</tt> is an operator that encapsulates the learning step of a machine learning
  * method. New learning schemes should extend this class to support the same parameters as other
  * RapidMiner learners. The main purpose of this class is to perform some compatibility checks.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class AbstractLearner extends Operator implements Learner {
@@ -56,8 +56,12 @@ public abstract class AbstractLearner extends Operator implements Learner {
 	private final OutputPort weightsOutput = getOutputPorts().createPort("weights", canCalculateWeights());
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("exampleSet");
 
-	/** Creates a new abstract */
-	public AbstractLearner(OperatorDescription description) {
+    /**
+     * Creates a new abstract  @param description the description
+     *
+     * @param description the description
+     */
+    public AbstractLearner(OperatorDescription description) {
 		super(description);
 		exampleSetInput.addPrecondition(new LearnerPrecondition(this, exampleSetInput));
 		getTransformer().addRule(
@@ -102,31 +106,38 @@ public abstract class AbstractLearner extends Operator implements Learner {
 		}
 	}
 
-	/**
-	 * Helper method in case this operator is constructed anonymously. Assigns the example set to
-	 * the input port and returns the model.
-	 */
-	public Model doWork(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Helper method in case this operator is constructed anonymously. Assigns the example set to
+     * the input port and returns the model.
+     *
+     * @param exampleSet the example set
+     * @return the model
+     * @throws OperatorException the operator exception
+     */
+    public Model doWork(ExampleSet exampleSet) throws OperatorException {
 		exampleSetInput.receive(exampleSet);
 		doWork();
 		return modelOutput.getData(Model.class);
 	}
 
-	/**
-	 * Returns the weights (if computed, after one of the doWork()} methods has been called.
-	 * 
-	 * @throws OperatorException
-	 */
-	public AttributeWeights getWeights() throws OperatorException {
+    /**
+     * Returns the weights (if computed, after one of the doWork()} methods has been called.
+     *
+     * @return the weights
+     * @throws OperatorException the operator exception
+     */
+    public AttributeWeights getWeights() throws OperatorException {
 		return weightsOutput.getData(AttributeWeights.class);
 	}
 
-	/**
-	 * This method might be overridden from subclasses in order to specify exactly which model class
-	 * they use. This is to ensure the proper postprocessing of some models like KernelModels
-	 * (SupportVectorCounter) or TreeModels (Rule generation)
-	 */
-	public Class<? extends PredictionModel> getModelClass() {
+    /**
+     * This method might be overridden from subclasses in order to specify exactly which model class
+     * they use. This is to ensure the proper postprocessing of some models like KernelModels
+     * (SupportVectorCounter) or TreeModels (Rule generation)
+     *
+     * @return the model class
+     */
+    public Class<? extends PredictionModel> getModelClass() {
 		return PredictionModel.class;
 	}
 
@@ -193,12 +204,14 @@ public abstract class AbstractLearner extends Operator implements Learner {
 		return false;
 	}
 
-	/**
-	 * Returns true if this learner is capable of estimating its performance. If this returns true,
-	 * a port will be created and {@link #getEstimatedPerformance()} will be called if this port is
-	 * connected.
-	 */
-	public boolean canEstimatePerformance() {
+    /**
+     * Returns true if this learner is capable of estimating its performance. If this returns true,
+     * a port will be created and {@link #getEstimatedPerformance()} will be called if this port is
+     * connected.
+     *
+     * @return the boolean
+     */
+    public boolean canEstimatePerformance() {
 		return false;
 	}
 
@@ -217,25 +230,35 @@ public abstract class AbstractLearner extends Operator implements Learner {
 		return false;
 	}
 
-	/**
-	 * Returns true if this learner is capable of computing attribute weights. If this method
-	 * returns true, also override {@link #getWeights(ExampleSet)}
-	 */
-	public boolean canCalculateWeights() {
+    /**
+     * Returns true if this learner is capable of computing attribute weights. If this method
+     * returns true, also override {@link #getWeights(ExampleSet)}
+     *
+     * @return the boolean
+     */
+    public boolean canCalculateWeights() {
 		return false;
 	}
 
-	public MetaDataError getWeightCalculationError(OutputPort weightPort) {
+    /**
+     * Gets weight calculation error.
+     *
+     * @param weightPort the weight port
+     * @return the weight calculation error
+     */
+    public MetaDataError getWeightCalculationError(OutputPort weightPort) {
 		return new SimpleMetaDataError(Severity.ERROR, weightPort, "parameters.incompatible_for_delivering",
 				"AttributeWeights");
 	}
 
-	/**
-	 * Returns true if the user wants to deliver the performance of the original optimization
-	 * problem. Since many learners are basically optimization procedures for a certain type of
-	 * objective function the result of this procedure might also be of interest in some cases.
-	 */
-	public boolean shouldDeliverOptimizationPerformance() {
+    /**
+     * Returns true if the user wants to deliver the performance of the original optimization
+     * problem. Since many learners are basically optimization procedures for a certain type of
+     * objective function the result of this procedure might also be of interest in some cases.
+     *
+     * @return the boolean
+     */
+    public boolean shouldDeliverOptimizationPerformance() {
 		return false;
 	}
 
@@ -249,12 +272,15 @@ public abstract class AbstractLearner extends Operator implements Learner {
 		throw new UserError(this, 912, getName(), "estimation of performance not supported.");
 	}
 
-	/**
-	 * Returns the resulting performance of the original optimization problem. Subclasses which
-	 * supports the capability to deliver this performance must override this method. The default
-	 * implementation throws an exception.
-	 */
-	public PerformanceVector getOptimizationPerformance() throws OperatorException {
+    /**
+     * Returns the resulting performance of the original optimization problem. Subclasses which
+     * supports the capability to deliver this performance must override this method. The default
+     * implementation throws an exception.
+     *
+     * @return the optimization performance
+     * @throws OperatorException the operator exception
+     */
+    public PerformanceVector getOptimizationPerformance() throws OperatorException {
 		throw new UserError(this, 912, getName(), "delivering the original optimization performance is not supported.");
 	}
 
@@ -267,11 +293,21 @@ public abstract class AbstractLearner extends Operator implements Learner {
 		throw new UserError(this, 916, getName(), "calculation of weights not supported.");
 	}
 
-	public boolean onlyWarnForNonSufficientCapabilities() {
+    /**
+     * Only warn for non sufficient capabilities boolean.
+     *
+     * @return the boolean
+     */
+    public boolean onlyWarnForNonSufficientCapabilities() {
 		return false;
 	}
 
-	public InputPort getExampleSetInputPort() {
+    /**
+     * Gets example set input port.
+     *
+     * @return the example set input port
+     */
+    public InputPort getExampleSetInputPort() {
 		return this.exampleSetInput;
 	}
 

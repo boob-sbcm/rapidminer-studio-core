@@ -33,28 +33,51 @@ import com.rapidminer.tools.ParameterService;
  * Control class used to handle the logic behind preselecting plotter axes.
  *
  * @author David Arnu, Nils Woehler
- *
  */
 public class HeuristicPlotterConfigurator {
 
-	public static final int DEFAULT_SELECTION_NUMBER = 3;
+    /**
+     * The constant DEFAULT_SELECTION_NUMBER.
+     */
+    public static final int DEFAULT_SELECTION_NUMBER = 3;
 
-	public static final int MAX_NOMINAL_VALUES = 200;
+    /**
+     * The constant MAX_NOMINAL_VALUES.
+     */
+    public static final int MAX_NOMINAL_VALUES = 200;
 
 	private static final String AGGREGATIOTN_DEFAULT_FUNCTION = "count";
 	private static final String SUM = "sum";
 
-	public static final String NUMERICAL = "Numerical";
-	public static final String NOMINAL = "Nominal";
-	public static final String DATE = "Date";
+    /**
+     * The constant NUMERICAL.
+     */
+    public static final String NUMERICAL = "Numerical";
+    /**
+     * The constant NOMINAL.
+     */
+    public static final String NOMINAL = "Nominal";
+    /**
+     * The constant DATE.
+     */
+    public static final String DATE = "Date";
 
-	public static final String LABEL = "Label";
+    /**
+     * The constant LABEL.
+     */
+    public static final String LABEL = "Label";
 
 	private Map<String, List<String>> categoryToColumnListMap;
 	private final String[] columnNames;
 	private final PlotterConfigurationModel settings;
 
-	public HeuristicPlotterConfigurator(PlotterConfigurationModel plotterSettings, DataTable dataTable) {
+    /**
+     * Instantiates a new Heuristic plotter configurator.
+     *
+     * @param plotterSettings the plotter settings
+     * @param dataTable       the data table
+     */
+    public HeuristicPlotterConfigurator(PlotterConfigurationModel plotterSettings, DataTable dataTable) {
 
 		List<String> columnNamesNotTooBig = new ArrayList<>();
 		// only take nominal columns with not to many values
@@ -150,7 +173,13 @@ public class HeuristicPlotterConfigurator {
 		return selection;
 	}
 
-	public HashMap<String, String> getDefaultSelection(HashMap<String, String> settings) {
+    /**
+     * Gets default selection.
+     *
+     * @param settings the settings
+     * @return the default selection
+     */
+    public HashMap<String, String> getDefaultSelection(HashMap<String, String> settings) {
 		int maxDataPoints = Integer.parseInt(ParameterService
 				.getParameterValue(MainFrame.PROPERTY_RAPIDMINER_GUI_PLOTTER_DEFAULT_MAXIMUM));
 		if (this.settings.getDataTable().getNumberOfRows() > maxDataPoints && maxDataPoints != -1) {
@@ -194,7 +223,12 @@ public class HeuristicPlotterConfigurator {
 		return settings;
 	}
 
-	public String getDefaultPlotter() {
+    /**
+     * Gets default plotter.
+     *
+     * @return the default plotter
+     */
+    public String getDefaultPlotter() {
 
 		if (categoryToColumnListMap.get(DATE).size() != 0
 				&& this.settings.getAvailablePlotters().containsKey(PlotterConfigurationModel.SERIES_PLOT)) {

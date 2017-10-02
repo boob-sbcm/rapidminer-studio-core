@@ -31,52 +31,98 @@ import java.util.List;
 
 /**
  * Constructive RVM for regression problems (see bla).
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
- * 
  */
 public class ConstructiveRegression extends RVMBase {
 
-	/** Data shared across various methods */
+    /**
+     * Data shared across various methods
+     */
+    protected double[][] x;					// Input vectors
+    /**
+     * The T.
+     */
+    protected double[][] t;					// Target vectors
+    /**
+     * The T vector.
+     */
+    protected double[] tVector;				// (One dimensional) target vector
 
-	protected double[][] x;					// Input vectors
-	protected double[][] t;					// Target vectors
-	protected double[] tVector;				// (One dimensional) target vector
+    /**
+     * The Phi.
+     */
+    protected double[][] phi;				// Basis functions evaluated on all input vectors
 
-	protected double[][] phi;				// Basis functions evaluated on all input vectors
+    /**
+     * The Phi t.
+     */
+    protected Matrix PHI_t;					// (Pruned) transposed design matrix PHI^t
+    /**
+     * The Alpha.
+     */
+    protected double[] alpha;				// Vector of inverse variances for the weights
+    /**
+     * The Beta.
+     */
+    protected double beta;					// beta = sigma^{-2} = inverse noise variance
+    /**
+     * The A.
+     */
+    protected Matrix A;						// Diagonal Matrix consisting of alphas
 
-	protected Matrix PHI_t;					// (Pruned) transposed design matrix PHI^t
-	protected double[] alpha;				// Vector of inverse variances for the weights
-	protected double beta;					// beta = sigma^{-2} = inverse noise variance
-	protected Matrix A;						// Diagonal Matrix consisting of alphas
+    /**
+     * The Sigma.
+     */
+    protected Matrix SIGMA;					// Covariance matrix of weight posterior distribution
+    /**
+     * The Sigma chol.
+     */
+    protected Matrix SIGMA_chol;			// Cholesky factor of the above
 
-	protected Matrix SIGMA;					// Covariance matrix of weight posterior distribution
-	protected Matrix SIGMA_chol;			// Cholesky factor of the above
+    /**
+     * The Mu.
+     */
+    protected Matrix mu;					// Mean of the weight posterior distribution
 
-	protected Matrix mu;					// Mean of the weight posterior distribution
+    /**
+     * The S.
+     */
+    protected double s, /**
+     * The Q.
+     */
+    q;					// Used in the criterium for inclusion / deletion of basis vectors
 
-	protected double s, q;					// Used in the criterium for inclusion / deletion of basis vectors
-
-	protected LinkedList<Integer> basisSet = new LinkedList<Integer>();
+    /**
+     * The Basis set.
+     */
+    protected LinkedList<Integer> basisSet = new LinkedList<Integer>();
 
 	private boolean useLocalRandomSeed;
 	private int localRandomSeed;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param localRandomSeed
-	 * @param useLocalRandomSeed
-	 */
-	public ConstructiveRegression(RegressionProblem problem, Parameter parameter, boolean useLocalRandomSeed,
+    /**
+     * Constructor
+     *
+     * @param problem            the problem
+     * @param parameter          the parameter
+     * @param useLocalRandomSeed the use local random seed
+     * @param localRandomSeed    the local random seed
+     */
+    public ConstructiveRegression(RegressionProblem problem, Parameter parameter, boolean useLocalRandomSeed,
 			int localRandomSeed) {
 		super(problem, parameter);
 		this.useLocalRandomSeed = useLocalRandomSeed;
 		this.localRandomSeed = localRandomSeed;
 	}
 
-	/** Take a list holding "Double"-objects and return an "double[]" */
-	protected double[] convertListToDoubleArray(List<Double> list) {
+    /**
+     * Take a list holding "Double"-objects and return an "double[]"  @param list the list
+     *
+     * @param list the list
+     * @return the double [ ]
+     */
+    protected double[] convertListToDoubleArray(List<Double> list) {
 
 		double[] array = new double[list.size()];
 		for (int i = 0; i < array.length; i++) {
@@ -86,8 +132,14 @@ public class ConstructiveRegression extends RVMBase {
 		return array;
 	}
 
-	/** Return the inner product of x and y (x.length == y.length assumed) */
-	protected double innerProduct(double[] x, double[] y) {
+    /**
+     * Return the inner product of x and y (x.length == y.length assumed)  @param x the x
+     *
+     * @param x the x
+     * @param y the y
+     * @return the double
+     */
+    protected double innerProduct(double[] x, double[] y) {
 		double sum = 0;
 		for (int i = 0; i < x.length; i++) {
 			sum += x[i] * y[i];
@@ -95,11 +147,13 @@ public class ConstructiveRegression extends RVMBase {
 		return sum;
 	}
 
-	/**
-	 * Create pruned versions of all important matrices / vectors so that only rows / columns
-	 * matching the indices in basisSet are kept.
-	 */
-	protected void prune(LinkedList<Integer> basisSet) {
+    /**
+     * Create pruned versions of all important matrices / vectors so that only rows / columns
+     * matching the indices in basisSet are kept.
+     *
+     * @param basisSet the basis set
+     */
+    protected void prune(LinkedList<Integer> basisSet) {
 
 		/** Create PHIt */
 
@@ -118,15 +172,15 @@ public class ConstructiveRegression extends RVMBase {
 		}
 	}
 
-	/**
-	 * Update the covariance Matrix of the weight posterior distribution (SIGMA) along with its
-	 * cholesky factor:
-	 * 
-	 * SIGMA = (A + beta * PHI^t * PHI)^{-1}
-	 * 
-	 * SIGMA_chol with SIGMA_chol * SIGMA_chol^t = SIGMA
-	 */
-	protected void updateSIGMA() {
+    /**
+     * Update the covariance Matrix of the weight posterior distribution (SIGMA) along with its
+     * cholesky factor:
+     * <p>
+     * SIGMA = (A + beta * PHI^t * PHI)^{-1}
+     * <p>
+     * SIGMA_chol with SIGMA_chol * SIGMA_chol^t = SIGMA
+     */
+    protected void updateSIGMA() {
 
 		Matrix SIGMA_inv = PHI_t.times(PHI_t.transpose());
 		SIGMA_inv.timesEquals(beta);
@@ -143,26 +197,28 @@ public class ConstructiveRegression extends RVMBase {
 		SIGMA = (SIGMA_chol.transpose()).times(SIGMA_chol);
 	}
 
-	/**
-	 * Update the mean of the weight posterior distribution (mu):
-	 * 
-	 * mu = beta * SIGMA * PHI^t * t
-	 */
-	protected void updateMu() {
+    /**
+     * Update the mean of the weight posterior distribution (mu):
+     * <p>
+     * mu = beta * SIGMA * PHI^t * t
+     */
+    protected void updateMu() {
 		mu = SIGMA.times(PHI_t.times(new Matrix(t)));
 		mu.timesEquals(beta);
 	}
 
-	/**
-	 * Compute the scalars s_m, q_m which are part of the criterium for inclusion / deletion of the
-	 * given basis m:
-	 * 
-	 * S_m = beta * phi^t_m * phi_m - beta^2 * phi^t_m * PHI * SIGMA * PHI^t * phi_m Q_m = beta *
-	 * phi^t_m * t - beta^2 * phi^t_m * PHI * SIGMA * PHI^t * t
-	 * 
-	 * s_m = alpha_m * S_m / (alpha_m - S_m) q_m = alpha_m * Q_m / (alpha_m - S_m)
-	 */
-	protected void updateCriteriumScalars(int selectedBasis) {
+    /**
+     * Compute the scalars s_m, q_m which are part of the criterium for inclusion / deletion of the
+     * given basis m:
+     * <p>
+     * S_m = beta * phi^t_m * phi_m - beta^2 * phi^t_m * PHI * SIGMA * PHI^t * phi_m Q_m = beta *
+     * phi^t_m * t - beta^2 * phi^t_m * PHI * SIGMA * PHI^t * t
+     * <p>
+     * s_m = alpha_m * S_m / (alpha_m - S_m) q_m = alpha_m * Q_m / (alpha_m - S_m)
+     *
+     * @param selectedBasis the selected basis
+     */
+    protected void updateCriteriumScalars(int selectedBasis) {
 
 		Matrix SigmaStuff = (PHI_t.transpose()).times(SIGMA.times(PHI_t));
 
@@ -180,35 +236,41 @@ public class ConstructiveRegression extends RVMBase {
 		q = alpha[selectedBasis] * Q / (alpha[selectedBasis] - S);
 	}
 
-	/**
-	 * Reestimate alpha by setting it to the value which maximizes the marginal likelihood:
-	 * 
-	 * alpha_i = s^2_i / (q^2_i - s_i)
-	 */
-	protected void reestimateAlpha(int selectedBasis) {
+    /**
+     * Reestimate alpha by setting it to the value which maximizes the marginal likelihood:
+     * <p>
+     * alpha_i = s^2_i / (q^2_i - s_i)
+     *
+     * @param selectedBasis the selected basis
+     */
+    protected void reestimateAlpha(int selectedBasis) {
 		alpha[selectedBasis] = s * s / (q * q - s);
 	}
 
-	/**
-	 * Include a basis function into the model.
-	 */
-	protected void includeBasis(int selectedBasis) {
+    /**
+     * Include a basis function into the model.
+     *
+     * @param selectedBasis the selected basis
+     */
+    protected void includeBasis(int selectedBasis) {
 		basisSet.add(Integer.valueOf(selectedBasis));
 		reestimateAlpha(selectedBasis);
 	}
 
-	/**
-	 * Delete a basis function from the model.
-	 */
-	protected void deleteBasis(int selectedBasis) {
+    /**
+     * Delete a basis function from the model.
+     *
+     * @param selectedBasis the selected basis
+     */
+    protected void deleteBasis(int selectedBasis) {
 		basisSet.remove(Integer.valueOf(selectedBasis));
 		alpha[selectedBasis] = -1.0d;
 	}
 
-	/**
-	 * Update beta (same as for the "normal" regression rvm)
-	 */
-	protected void updateBeta() {
+    /**
+     * Update beta (same as for the "normal" regression rvm)
+     */
+    protected void updateBeta() {
 
 		/** Calculate gammas && their sum: gamma_i = 1 - alpha_i * SIGMA_ii */
 

@@ -20,31 +20,64 @@ package com.rapidminer.report;
 
 /**
  * This interface provides methods for exporting tables.
- * 
+ *
  * @author Sebastian Land
  */
 public interface Tableable extends Reportable {
 
-	public boolean isFirstLineHeader();
+    /**
+     * Is first line header boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isFirstLineHeader();
 
-	public boolean isFirstColumnHeader();
+    /**
+     * Is first column header boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isFirstColumnHeader();
 
-	public void prepareReporting();
+    /**
+     * Prepare reporting.
+     */
+    public void prepareReporting();
 
-	public void finishReporting();
+    /**
+     * Finish reporting.
+     */
+    public void finishReporting();
 
-	public String getColumnName(int index);
+    /**
+     * Gets column name.
+     *
+     * @param index the index
+     * @return the column name
+     */
+    public String getColumnName(int index);
 
-	/**
-	 * @return The number of rows in this {@link Tableable}
-	 */
-	public int getRowNumber();
+    /**
+     * Gets row number.
+     *
+     * @return The number of rows in this {@link Tableable}
+     */
+    public int getRowNumber();
 
-	/**
-	 * @return The number of columns in this {@link Tableable}
-	 */
-	public int getColumnNumber();
+    /**
+     * Gets column number.
+     *
+     * @return The number of columns in this {@link Tableable}
+     */
+    public int getColumnNumber();
 
-	public String getCell(int row, int column);
+    /**
+     * Gets cell.
+     *
+     * @param row    the row
+     * @param column the column
+     * @return the cell
+     */
+    public String getCell(int row, int column);
 
 }

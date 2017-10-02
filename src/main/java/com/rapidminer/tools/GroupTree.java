@@ -40,14 +40,14 @@ import javax.swing.ImageIcon;
 /**
  * A group tree manages operator descriptions in a tree like manner. This is useful to present the
  * operators in groups and subgroups and eases operator selection in the GUI.
- * 
+ * <p>
  * The group tree heavily depends on the associated OperatorService, since it reflects the
  * registered Operators of that Service. Each {@link OperatorService} can have multiple GroupTrees,
  * which register as listener to be able to update on new registration or unregistration events.
- * 
+ * <p>
  * The listening is done by the {@link GroupTreeRoot} class implementing the
  * {@link OperatorServiceListener} interface.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public abstract class GroupTree implements Comparable<GroupTree> {
@@ -64,17 +64,22 @@ public abstract class GroupTree implements Comparable<GroupTree> {
 
 	private ImageIcon[] icons;
 
-	protected GroupTree() {
+    /**
+     * Instantiates a new Group tree.
+     */
+    protected GroupTree() {
 
 	}
 
-	/**
-	 * Clone constructor. This will keep the link to the {@link OperatorService}. Whenever a new
-	 * Operator is added or removed, this will be reflected in the copy as well. For detecting such
-	 * events, please register on
-	 * {@link OperatorService#addOperatorServiceListener(OperatorServiceListener)}.
-	 * */
-	protected GroupTree(GroupTree other) {
+    /**
+     * Clone constructor. This will keep the link to the {@link OperatorService}. Whenever a new
+     * Operator is added or removed, this will be reflected in the copy as well. For detecting such
+     * events, please register on
+     * {@link OperatorService#addOperatorServiceListener(OperatorServiceListener)}.
+     *
+     * @param other the other
+     */
+    protected GroupTree(GroupTree other) {
 		this.operators.addAll(other.operators);
 		Iterator<? extends GroupTree> g = other.getSubGroups().iterator();
 		while (g.hasNext()) {
@@ -83,16 +88,31 @@ public abstract class GroupTree implements Comparable<GroupTree> {
 		}
 	}
 
-	/** Returns the parent of this group. Returns null if no parent does exist. */
-	public abstract GroupTree getParent();
+    /**
+     * Returns the parent of this group. Returns null if no parent does exist.  @return the parent
+     *
+     * @return the parent
+     */
+    public abstract GroupTree getParent();
 
-	/** Returns or creates the subgroup with the given key. This is not the fully qualified key! */
-	public GroupTree getSubGroup(String key) {
+    /**
+     * Returns or creates the subgroup with the given key. This is not the fully qualified key!  @param key the key
+     *
+     * @param key the key
+     * @return the sub group
+     */
+    public GroupTree getSubGroup(String key) {
 		return children.get(key);
 	}
 
-	/** Returns or creates the subgroup with the given name, creating it if not present. */
-	public GroupTree getOrCreateSubGroup(String key, OperatorDocBundle bundle) {
+    /**
+     * Returns or creates the subgroup with the given name, creating it if not present.  @param key the key
+     *
+     * @param key    the key
+     * @param bundle the bundle
+     * @return the or create sub group
+     */
+    public GroupTree getOrCreateSubGroup(String key, OperatorDocBundle bundle) {
 		GroupTreeNode child = children.get(key);
 		if (child == null) {
 			child = new GroupTreeNode(this, key, bundle);
@@ -101,13 +121,22 @@ public abstract class GroupTree implements Comparable<GroupTree> {
 		return child;
 	}
 
-	/** Returns a set of all children group trees. */
-	public Collection<? extends GroupTree> getSubGroups() {
+    /**
+     * Returns a set of all children group trees.  @return the sub groups
+     *
+     * @return the sub groups
+     */
+    public Collection<? extends GroupTree> getSubGroups() {
 		return children.values();
 	}
 
-	/** Returns the index of the given subgroup or -1 if the sub group is not a child of this node. */
-	public int getIndexOfSubGroup(GroupTree child) {
+    /**
+     * Returns the index of the given subgroup or -1 if the sub group is not a child of this node.  @param child the child
+     *
+     * @param child the child
+     * @return the index of sub group
+     */
+    public int getIndexOfSubGroup(GroupTree child) {
 		Iterator<? extends GroupTree> i = getSubGroups().iterator();
 		int index = 0;
 		while (i.hasNext()) {
@@ -120,8 +149,13 @@ public abstract class GroupTree implements Comparable<GroupTree> {
 		return -1;
 	}
 
-	/** Returns the i-th sub group. */
-	public GroupTree getSubGroup(int index) {
+    /**
+     * Returns the i-th sub group.  @param index the index
+     *
+     * @param index the index
+     * @return the sub group
+     */
+    public GroupTree getSubGroup(int index) {
 		Collection<? extends GroupTree> allChildren = getSubGroups();
 		if (index >= allChildren.size()) {
 			return null;
@@ -139,30 +173,40 @@ public abstract class GroupTree implements Comparable<GroupTree> {
 		}
 	}
 
-	/** Adds an operator to this group. */
-	protected void addOperatorDescription(OperatorDescription description) {
+    /**
+     * Adds an operator to this group.  @param description the description
+     *
+     * @param description the description
+     */
+    protected void addOperatorDescription(OperatorDescription description) {
 		operators.add(description);
 	}
 
-	/**
-	 * This removes the given {@link OperatorDescription} from this GroupTree
-	 */
-	protected void removeOperatorDescription(OperatorDescription description) {
+    /**
+     * This removes the given {@link OperatorDescription} from this GroupTree
+     *
+     * @param description the description
+     */
+    protected void removeOperatorDescription(OperatorDescription description) {
 		operators.remove(description);
 	}
 
-	/**
-	 * Returns all operator descriptions in this group or an empty list if this group does not
-	 * contain any operators.
-	 */
-	public List<OperatorDescription> getOperatorDescriptions() {
+    /**
+     * Returns all operator descriptions in this group or an empty list if this group does not
+     * contain any operators.
+     *
+     * @return the operator descriptions
+     */
+    public List<OperatorDescription> getOperatorDescriptions() {
 		return operators;
 	}
 
-	/**
-	 * Returns all operator in this group and recursively the operators of all children.
-	 */
-	public Set<OperatorDescription> getAllOperatorDescriptions() {
+    /**
+     * Returns all operator in this group and recursively the operators of all children.
+     *
+     * @return the all operator descriptions
+     */
+    public Set<OperatorDescription> getAllOperatorDescriptions() {
 		Set<OperatorDescription> result = new TreeSet<OperatorDescription>();
 		addAllOperatorDescriptions(result);
 		return result;
@@ -183,41 +227,63 @@ public abstract class GroupTree implements Comparable<GroupTree> {
 	@Override
 	public abstract GroupTree clone();
 
-	/**
-	 * This returns a group description depending on internationalization
-	 */
-	public abstract String getDescription();
+    /**
+     * This returns a group description depending on internationalization
+     *
+     * @return the description
+     */
+    public abstract String getDescription();
 
-	/**
-	 * Gets the key of this group. This is used for internationalization and does not contain the
-	 * parent groups. See {@link #getFullyQualifiedKey()} for this one.
-	 */
-	public abstract String getKey();
+    /**
+     * Gets the key of this group. This is used for internationalization and does not contain the
+     * parent groups. See {@link #getFullyQualifiedKey()} for this one.
+     *
+     * @return the key
+     */
+    public abstract String getKey();
 
-	/**
-	 * Returns the fully qualified key where each group key is separated by dot. The qualified key
-	 * starts with the highest parent group.
-	 */
-	public abstract String getFullyQualifiedKey();
+    /**
+     * Returns the fully qualified key where each group key is separated by dot. The qualified key
+     * starts with the highest parent group.
+     *
+     * @return the fully qualified key
+     */
+    public abstract String getFullyQualifiedKey();
 
-	/**
-	 * Deprecated method that returns the fully qualified key. See {@link #getFullyQualifiedKey()}
-	 * for Details.
-	 */
-	@Deprecated
+    /**
+     * Deprecated method that returns the fully qualified key. See {@link #getFullyQualifiedKey()}
+     * for Details.
+     *
+     * @return the q name
+     */
+    @Deprecated
 	public String getQName() {
 		return getFullyQualifiedKey();
 	}
 
-	/** Returns the name of this group. This name depends on internationalization! */
-	public abstract String getName();
+    /**
+     * Returns the name of this group. This name depends on internationalization!  @return the name
+     *
+     * @return the name
+     */
+    public abstract String getName();
 
-	public void setIconName(String icon) {
+    /**
+     * Sets icon name.
+     *
+     * @param icon the icon
+     */
+    public void setIconName(String icon) {
 		this.iconName = icon;
 		loadIcons();
 	}
 
-	public String getIconName() {
+    /**
+     * Gets icon name.
+     *
+     * @return the icon name
+     */
+    public String getIconName() {
 		if (this.iconName != null) {
 			return this.iconName;
 		} else {
@@ -225,7 +291,12 @@ public abstract class GroupTree implements Comparable<GroupTree> {
 		}
 	}
 
-	public ImageIcon[] getIcons() {
+    /**
+     * Get icons image icon [ ].
+     *
+     * @return the image icon [ ]
+     */
+    public ImageIcon[] getIcons() {
 		if (icons != null) {
 			return icons;
 		} else {
@@ -233,7 +304,12 @@ public abstract class GroupTree implements Comparable<GroupTree> {
 		}
 	}
 
-	protected final int countOperators() {
+    /**
+     * Count operators int.
+     *
+     * @return the int
+     */
+    protected final int countOperators() {
 		int count = operators.size();
 		for (GroupTree tree : children.values()) {
 			count += tree.countOperators();
@@ -242,10 +318,12 @@ public abstract class GroupTree implements Comparable<GroupTree> {
 
 	}
 
-	/**
-	 * This method will sort this GroupTree according to the given comparator.
-	 */
-	public void sort(Comparator<OperatorDescription> comparator) {
+    /**
+     * This method will sort this GroupTree according to the given comparator.
+     *
+     * @param comparator the comparator
+     */
+    public void sort(Comparator<OperatorDescription> comparator) {
 		Collections.sort(operators, comparator);
 		for (GroupTree child : children.values()) {
 			child.sort(comparator);
@@ -300,13 +378,17 @@ public abstract class GroupTree implements Comparable<GroupTree> {
 		return this.getKey().hashCode();
 	}
 
-	/**
-	 * This method remains only for compatibility. If existing the group will be returned. Please
-	 * notice, that it is not advised to interact with the GroupTree manually. Please use the
-	 * {@link OperatorService#registerOperator(OperatorDescription)} method to add operators and
-	 * modify the GroupTree accordingly.
-	 */
-	@Deprecated
+    /**
+     * This method remains only for compatibility. If existing the group will be returned. Please
+     * notice, that it is not advised to interact with the GroupTree manually. Please use the
+     * {@link OperatorService#registerOperator(OperatorDescription)} method to add operators and
+     * modify the GroupTree accordingly.
+     *
+     * @param fullyQualifiedGroupName the fully qualified group name
+     * @param object                  the object
+     * @return the group tree
+     */
+    @Deprecated
 	public static GroupTree findGroup(String fullyQualifiedGroupName, OperatorDocBundle object) {
 		GroupTreeRoot root = (GroupTreeRoot) OperatorService.getGroups();
 		return root.findGroup(fullyQualifiedGroupName);

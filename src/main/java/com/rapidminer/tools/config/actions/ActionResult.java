@@ -21,44 +21,48 @@ package com.rapidminer.tools.config.actions;
 /**
  * Interface for the result of an action. This indicates if the result of the action as well as a
  * message for the user.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface ActionResult {
 
-	/**
-	 * Outcome possiblities of an action. If the action has no clear success/failure state, use
-	 * {@link Result#NONE}.
-	 * 
-	 */
-	public enum Result {
-		/** indicates that the action was successful */
-		SUCCESS,
+    /**
+     * Outcome possiblities of an action. If the action has no clear success/failure state, use
+     * {@link Result#NONE}.
+     */
+    public enum Result {
+        /**
+         * indicates that the action was successful
+         */
+        SUCCESS,
 
-		/** indicates that the action has failed */
-		FAILURE,
+        /**
+         * indicates that the action has failed
+         */
+        FAILURE,
 
-		/** indicates the action had no clear success/failure state */
-		NONE
+        /**
+         * indicates the action had no clear success/failure state
+         */
+        NONE
 	}
 
-	/**
-	 * Returns the {@link Result} of the action.
-	 * 
-	 * @return
-	 */
-	public Result getResult();
+    /**
+     * Returns the {@link Result} of the action.
+     *
+     * @return result result
+     */
+    public Result getResult();
 
-	/**
-	 * Returns a human readable message for the user which can be displayed once an action is
-	 * complete.
-	 * <p>
-	 * The message should be <strong>short</strong> and precise, otherwise it might not fit in the
-	 * UI.
-	 * </p>
-	 * 
-	 * @return
-	 */
-	public String getMessage();
+    /**
+     * Returns a human readable message for the user which can be displayed once an action is
+     * complete.
+     * <p>
+     * The message should be <strong>short</strong> and precise, otherwise it might not fit in the
+     * UI.
+     * </p>
+     *
+     * @return message message
+     */
+    public String getMessage();
 }

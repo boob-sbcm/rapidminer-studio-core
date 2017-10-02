@@ -29,7 +29,7 @@ import java.util.Random;
  * size k represents the selection pressure. For small sizes (like 2) relatively bad individuals
  * have a good chance to survive. If k reaches the population size, only the best individual will
  * survive.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class ExampleSetBasedTournamentSelection implements ExampleSetBasedPopulationOperator {
@@ -44,7 +44,17 @@ public class ExampleSetBasedTournamentSelection implements ExampleSetBasedPopula
 
 	private Random random;
 
-	public ExampleSetBasedTournamentSelection(int popSize, double tournamentFraction, int maxGenerations, boolean dynamic,
+    /**
+     * Instantiates a new Example set based tournament selection.
+     *
+     * @param popSize            the pop size
+     * @param tournamentFraction the tournament fraction
+     * @param maxGenerations     the max generations
+     * @param dynamic            the dynamic
+     * @param keepBest           the keep best
+     * @param random             the random
+     */
+    public ExampleSetBasedTournamentSelection(int popSize, double tournamentFraction, int maxGenerations, boolean dynamic,
 			boolean keepBest, Random random) {
 		this.popSize = popSize;
 		this.keepBest = keepBest;

@@ -35,7 +35,7 @@ import java.util.List;
 
 /**
  * This is the renderer for the performance vector table (confusion matrix etc.)
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PerformanceVectorRenderer extends AbstractRenderer {

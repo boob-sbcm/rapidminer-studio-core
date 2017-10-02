@@ -57,19 +57,35 @@ public class MinMaxBinDiscretization extends AbstractDiscretizationOperator {
 		registerDiscretizationOperator(MinMaxBinDiscretization.class);
 	}
 
-	/** Indicates the number of used bins. */
-	public static final String PARAMETER_NUMBER_OF_BINS = "number_of_bins";
+    /**
+     * Indicates the number of used bins.
+     */
+    public static final String PARAMETER_NUMBER_OF_BINS = "number_of_bins";
 
-	public static final String PARAMETER_MIN_VALUE = "min_value";
+    /**
+     * The constant PARAMETER_MIN_VALUE.
+     */
+    public static final String PARAMETER_MIN_VALUE = "min_value";
 
-	public static final String PARAMETER_MAX_VALUE = "max_value";
+    /**
+     * The constant PARAMETER_MAX_VALUE.
+     */
+    public static final String PARAMETER_MAX_VALUE = "max_value";
 
-	/** Indicates if long range names should be used. */
-	public static final String PARAMETER_RANGE_NAME_TYPE = "range_name_type";
+    /**
+     * Indicates if long range names should be used.
+     */
+    public static final String PARAMETER_RANGE_NAME_TYPE = "range_name_type";
 
-	public static final String PARAMETER_AUTOMATIC_NUMBER_OF_DIGITS = "automatic_number_of_digits";
+    /**
+     * The constant PARAMETER_AUTOMATIC_NUMBER_OF_DIGITS.
+     */
+    public static final String PARAMETER_AUTOMATIC_NUMBER_OF_DIGITS = "automatic_number_of_digits";
 
-	public static final String PARAMETER_NUMBER_OF_DIGITS = "number_of_digits";
+    /**
+     * The constant PARAMETER_NUMBER_OF_DIGITS.
+     */
+    public static final String PARAMETER_NUMBER_OF_DIGITS = "number_of_digits";
 
 	/**
 	 * Incompatible version, old version writes into the exampleset, if original output port is not
@@ -77,7 +93,12 @@ public class MinMaxBinDiscretization extends AbstractDiscretizationOperator {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public MinMaxBinDiscretization(OperatorDescription description) {
+    /**
+     * Instantiates a new Min max bin discretization.
+     *
+     * @param description the description
+     */
+    public MinMaxBinDiscretization(OperatorDescription description) {
 		super(description);
 	}
 

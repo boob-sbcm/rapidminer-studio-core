@@ -31,15 +31,17 @@ import java.io.IOException;
 
 /**
  * Action to export a process to a file.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class ExportProcessAction extends ResourceAction {
 
 	private static final long serialVersionUID = 1L;
 
-	public ExportProcessAction() {
+    /**
+     * Instantiates a new Export process action.
+     */
+    public ExportProcessAction() {
 		super("export_process");
 	}
 

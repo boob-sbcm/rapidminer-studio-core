@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for getProcessContents complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="getProcessContents">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getProcessContents", propOrder = {
@@ -50,16 +48,19 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetProcessContents {
 
+    /**
+     * The Entry location.
+     */
     protected String entryLocation;
+    /**
+     * The Revision number.
+     */
     protected int revisionNumber;
 
     /**
      * Gets the value of the entryLocation property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getEntryLocation() {
         return entryLocation;
@@ -67,11 +68,8 @@ public class GetProcessContents {
 
     /**
      * Sets the value of the entryLocation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setEntryLocation(String value) {
         this.entryLocation = value;
@@ -79,7 +77,8 @@ public class GetProcessContents {
 
     /**
      * Gets the value of the revisionNumber property.
-     * 
+     *
+     * @return the revision number
      */
     public int getRevisionNumber() {
         return revisionNumber;
@@ -87,7 +86,8 @@ public class GetProcessContents {
 
     /**
      * Sets the value of the revisionNumber property.
-     * 
+     *
+     * @param value the value
      */
     public void setRevisionNumber(int value) {
         this.revisionNumber = value;

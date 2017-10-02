@@ -48,7 +48,13 @@ public class SetParameterDialog extends ButtonDialog {
 
 	private boolean canceled = false;
 
-	public SetParameterDialog(final Operator operator, final ParameterType type) {
+    /**
+     * Instantiates a new Set parameter dialog.
+     *
+     * @param operator the operator
+     * @param type     the type
+     */
+    public SetParameterDialog(final Operator operator, final ParameterType type) {
 		super(ApplicationFrame.getApplicationFrame(), "set_parameter", ModalityType.MODELESS, new Object[] { type.getKey()
 			.replace('_', ' ') });
 		this.operator = operator;

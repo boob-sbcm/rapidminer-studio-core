@@ -20,16 +20,27 @@ package com.rapidminer.tools.math.function.window;
 
 /**
  * A rectangular window function. Results in an equal weighting of data points.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class RectangularWindowFunction extends WindowFunction {
 
-	public RectangularWindowFunction(Integer width) {
+    /**
+     * Instantiates a new Rectangular window function.
+     *
+     * @param width the width
+     */
+    public RectangularWindowFunction(Integer width) {
 		super(width);
 	}
 
-	public RectangularWindowFunction(Integer width, Integer justification) {
+    /**
+     * Instantiates a new Rectangular window function.
+     *
+     * @param width         the width
+     * @param justification the justification
+     */
+    public RectangularWindowFunction(Integer width, Integer justification) {
 		super(width, justification);
 	}
 

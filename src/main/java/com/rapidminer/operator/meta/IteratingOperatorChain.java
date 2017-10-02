@@ -42,12 +42,19 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
 @Deprecated
 public class IteratingOperatorChain extends AbstractIteratingOperatorChain {
 
-	/** The parameter name for &quot;Number of iterations&quot; */
-	public static final String PARAMETER_ITERATIONS = "iterations";
+    /**
+     * The parameter name for &quot;Number of iterations&quot;
+     */
+    public static final String PARAMETER_ITERATIONS = "iterations";
 
-	public static final String PARAMETER_LIMIT_TIME = "limit_time";
-	/** The parameter name for &quot;Timeout in minutes (-1: no timeout)&quot; */
-	public static final String PARAMETER_TIMEOUT = "timeout";
+    /**
+     * The constant PARAMETER_LIMIT_TIME.
+     */
+    public static final String PARAMETER_LIMIT_TIME = "limit_time";
+    /**
+     * The parameter name for &quot;Timeout in minutes (-1: no timeout)&quot;
+     */
+    public static final String PARAMETER_TIMEOUT = "timeout";
 
 	private long stoptime;
 
@@ -55,7 +62,12 @@ public class IteratingOperatorChain extends AbstractIteratingOperatorChain {
 
 	private int iterations;
 
-	public IteratingOperatorChain(OperatorDescription description) {
+    /**
+     * Instantiates a new Iterating operator chain.
+     *
+     * @param description the description
+     */
+    public IteratingOperatorChain(OperatorDescription description) {
 		super(description);
 	}
 

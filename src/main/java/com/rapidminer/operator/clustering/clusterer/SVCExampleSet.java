@@ -27,7 +27,7 @@ import java.util.Map;
 
 /**
  * Example set that supports SVClustering.
- * 
+ *
  * @author Stefan Rueping, Ingo Mierswa
  */
 public class SVCExampleSet extends SVMExamples {
@@ -36,27 +36,61 @@ public class SVCExampleSet extends SVMExamples {
 
 	private double r;
 
-	public SVCExampleSet(int size, double b) {
+    /**
+     * Instantiates a new Svc example set.
+     *
+     * @param size the size
+     * @param b    the b
+     */
+    public SVCExampleSet(int size, double b) {
 		super(size, b);
 	}
 
-	public SVCExampleSet(com.rapidminer.example.ExampleSet exampleSet, boolean scale) {
+    /**
+     * Instantiates a new Svc example set.
+     *
+     * @param exampleSet the example set
+     * @param scale      the scale
+     */
+    public SVCExampleSet(com.rapidminer.example.ExampleSet exampleSet, boolean scale) {
 		super(exampleSet, null, scale);
 	}
 
-	public SVCExampleSet(com.rapidminer.example.ExampleSet exampleSet, Map<Integer, SVMExamples.MeanVariance> meanVariances) {
+    /**
+     * Instantiates a new Svc example set.
+     *
+     * @param exampleSet    the example set
+     * @param meanVariances the mean variances
+     */
+    public SVCExampleSet(com.rapidminer.example.ExampleSet exampleSet, Map<Integer, SVMExamples.MeanVariance> meanVariances) {
 		super(exampleSet, null, meanVariances);
 	}
 
-	public SVCExampleSet(ObjectInputStream in) throws IOException {
+    /**
+     * Instantiates a new Svc example set.
+     *
+     * @param in the in
+     * @throws IOException the io exception
+     */
+    public SVCExampleSet(ObjectInputStream in) throws IOException {
 		super(in);
 	}
 
-	public double get_R() {
+    /**
+     * Gets r.
+     *
+     * @return the r
+     */
+    public double get_R() {
 		return r;
 	}
 
-	public void set_R(double r) {
+    /**
+     * Sets r.
+     *
+     * @param r the r
+     */
+    public void set_R(double r) {
 		this.r = r;
 	}
 }

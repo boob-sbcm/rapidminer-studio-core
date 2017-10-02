@@ -42,39 +42,39 @@ public class RepositoryEntryInputDialog extends ButtonDialog implements Observer
 
 	private final RepositoryEntryTextField textField = new RepositoryEntryTextField();
 
-	/**
-	 * @deprecated use {@link #RepositoryEntryInputDialog(Window, String, String, Object...)}
-	 *             instead
-	 * @param key
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Repository entry input dialog.
+     *
+     * @param key the key
+     * @deprecated use {@link #RepositoryEntryInputDialog(Window, String, String, Object...)}             instead
+     */
+    @Deprecated
 	public RepositoryEntryInputDialog(String key) {
 		this(ApplicationFrame.getApplicationFrame(), key, null);
 	}
 
-	/**
-	 * @deprecated use {@link #RepositoryEntryInputDialog(Window, String, String, Object...)}
-	 *             instead
-	 * @param key
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Repository entry input dialog.
+     *
+     * @param key       the key
+     * @param text      the text
+     * @param arguments the arguments
+     * @deprecated use {@link #RepositoryEntryInputDialog(Window, String, String, Object...)}             instead
+     */
+    @Deprecated
 	public RepositoryEntryInputDialog(String key, String text, Object... arguments) {
 		this(ApplicationFrame.getApplicationFrame(), key, text, arguments);
 	}
 
-	/**
-	 * Display an input dialog for a repository entry.
-	 *
-	 * @param owner
-	 *            the owner of the input dialog
-	 * @param key
-	 *            the i18n key
-	 * @param text
-	 *            the text to display
-	 * @param arguments
-	 *            optional i18n arguments
-	 */
-	public RepositoryEntryInputDialog(Window owner, String key, String text, Object... arguments) {
+    /**
+     * Display an input dialog for a repository entry.
+     *
+     * @param owner     the owner of the input dialog
+     * @param key       the i18n key
+     * @param text      the text to display
+     * @param arguments optional i18n arguments
+     */
+    public RepositoryEntryInputDialog(Window owner, String key, String text, Object... arguments) {
 		super(owner, "input." + key, ModalityType.APPLICATION_MODAL, arguments);
 		this.okButton = makeOkButton();
 		this.cancelButton = makeCancelButton();
@@ -87,7 +87,12 @@ public class RepositoryEntryInputDialog extends ButtonDialog implements Observer
 		textField.triggerCheck();
 	}
 
-	public String getInputText() {
+    /**
+     * Gets input text.
+     *
+     * @return the input text
+     */
+    public String getInputText() {
 		return textField.getText();
 	}
 

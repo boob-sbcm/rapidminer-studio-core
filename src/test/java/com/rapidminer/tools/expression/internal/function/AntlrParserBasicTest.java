@@ -36,11 +36,13 @@ import com.rapidminer.tools.expression.internal.antlr.AntlrParser;
  * Tests the results of {@link AntlrParser#parse(String)} from the basic functions block.
  *
  * @author Gisa Schaefer
- *
  */
 public class AntlrParserBasicTest extends AntlrParserTest {
 
-	@Test
+    /**
+     * Integer input.
+     */
+    @Test
 	public void integerInput() {
 		try {
 			Expression expression = getExpressionWithoutContext("23643");
@@ -51,7 +53,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Double input.
+     */
+    @Test
 	public void doubleInput() {
 		try {
 			Expression expression = getExpressionWithoutContext("236.43");
@@ -62,7 +67,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Double scientific.
+     */
+    @Test
 	public void doubleScientific() {
 		try {
 			Expression expression = getExpressionWithoutContext("2378423e-10");
@@ -73,7 +81,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Double scientific positive.
+     */
+    @Test
 	public void doubleScientificPositive() {
 		try {
 			Expression expression = getExpressionWithoutContext(".141529e12");
@@ -84,7 +95,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Double scientific plus.
+     */
+    @Test
 	public void doubleScientificPlus() {
 		try {
 			Expression expression = getExpressionWithoutContext("3.141529E+12");
@@ -95,7 +109,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * String input.
+     */
+    @Test
 	public void stringInput() {
 		try {
 			Expression expression = getExpressionWithoutContext("\"bla blup\"");
@@ -106,7 +123,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * String with escaped.
+     */
+    @Test
 	public void stringWithEscaped() {
 		try {
 			Expression expression = getExpressionWithoutContext("\"bla\\\"\\\\3\\\" blup\"");
@@ -117,7 +137,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * String with unicode.
+     */
+    @Test
 	public void stringWithUnicode() {
 		try {
 			Expression expression = getExpressionWithoutContext("\"\\u5f3e bla\\u234f blup\\u3333\"");
@@ -128,7 +151,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * String with tabs and newlines.
+     */
+    @Test
 	public void stringWithTabsAndNewlines() {
 		try {
 			Expression expression = getExpressionWithoutContext("\"\\u5f3e bla\nhello\tworld\r\nblup!\"");
@@ -139,7 +165,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Multiply ints.
+     */
+    @Test
 	public void multiplyInts() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("3*5");
@@ -150,7 +179,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Multiply doubles.
+     */
+    @Test
 	public void multiplyDoubles() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("3.0*5");
@@ -161,7 +193,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Divide ints.
+     */
+    @Test
 	public void divideInts() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("4 /2");
@@ -172,7 +207,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Divide doubles.
+     */
+    @Test
 	public void divideDoubles() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("5.0 /2");
@@ -183,7 +221,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Divide by zero.
+     */
+    @Test
 	public void divideByZero() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("5.0 /0");
@@ -194,7 +235,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Modulo ints.
+     */
+    @Test
 	public void moduloInts() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("5 %2");
@@ -205,7 +249,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Modulo double.
+     */
+    @Test
 	public void moduloDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("4.7 %1.5");
@@ -216,7 +263,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Different point operations.
+     */
+    @Test
 	public void differentPointOperations() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("4%3 *5/2");
@@ -227,7 +277,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Power ints.
+     */
+    @Test
 	public void powerInts() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("2^3^2");
@@ -238,7 +291,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Power doubles.
+     */
+    @Test
 	public void powerDoubles() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("2^3.0^2");
@@ -249,7 +305,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * String multiplication.
+     */
+    @Test
 	public void stringMultiplication() {
 		try {
 			getExpressionWithFunctionContext("3* \"blup\"");
@@ -259,7 +318,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * String division.
+     */
+    @Test
 	public void stringDivision() {
 		try {
 			getExpressionWithFunctionContext("\"blup\" /4");
@@ -269,7 +331,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Unknown function.
+     */
+    @Test
 	public void unknownFunction() {
 		try {
 			getExpressionWithFunctionContext("unknown(3)");
@@ -279,7 +344,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Power as function doubles.
+     */
+    @Test
 	public void powerAsFunctionDoubles() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("pow(2,0.5)");
@@ -290,7 +358,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Power as function ints.
+     */
+    @Test
 	public void powerAsFunctionInts() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("pow (2,3)");
@@ -301,7 +372,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Power as function wrong number of arguments.
+     */
+    @Test
 	public void powerAsFunctionWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext("pow(2)");
@@ -311,7 +385,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Modulo as function doubles.
+     */
+    @Test
 	public void moduloAsFunctionDoubles() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("mod(2 ,1.5 )");
@@ -322,7 +399,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Minus one double.
+     */
+    @Test
 	public void minusOneDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("- 1.5");
@@ -333,7 +413,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Minus doubles.
+     */
+    @Test
 	public void minusDoubles() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("2- 1.5");
@@ -344,7 +427,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Minus one int.
+     */
+    @Test
 	public void minusOneInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("- -11");
@@ -355,7 +441,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Minus ints.
+     */
+    @Test
 	public void minusInts() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("-3-12 -11");
@@ -366,7 +455,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Minus wrong.
+     */
+    @Test
 	public void minusWrong() {
 		try {
 			getExpressionWithFunctionContext("-3-\"blup\"");
@@ -376,7 +468,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Minus wrong left.
+     */
+    @Test
 	public void minusWrongLeft() {
 		try {
 			getExpressionWithFunctionContext("\"blup\"-5.678");
@@ -386,7 +481,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Minus wrong one.
+     */
+    @Test
 	public void minusWrongOne() {
 		try {
 			getExpressionWithFunctionContext("-\"blup\"");
@@ -396,7 +494,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Plus one int.
+     */
+    @Test
 	public void plusOneInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("++11");
@@ -407,7 +508,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Plus one double.
+     */
+    @Test
 	public void plusOneDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("+11.06476");
@@ -418,7 +522,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Plus one string.
+     */
+    @Test
 	public void plusOneString() {
 		try {
 			getExpressionWithFunctionContext("+\"blup\"");
@@ -428,7 +535,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Plus ints.
+     */
+    @Test
 	public void plusInts() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("+12+11");
@@ -439,7 +549,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Plus doubles.
+     */
+    @Test
 	public void plusDoubles() {
 		try {
 			Expression expression = getExpressionWithFunctionContext(".123123+11.06476");
@@ -450,7 +563,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Plus strings.
+     */
+    @Test
 	public void plusStrings() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"hello \"+\"world\"");
@@ -461,7 +577,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Plus string and double.
+     */
+    @Test
 	public void plusStringAndDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"hello \"+3.5");
@@ -472,7 +591,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Plus string and missing double.
+     */
+    @Test
 	public void plusStringAndMissingDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"hello \"+0/0");
@@ -483,7 +605,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Plus string and int.
+     */
+    @Test
 	public void plusStringAndInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"hello \"+3");
@@ -494,7 +619,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Plus int and string.
+     */
+    @Test
 	public void plusIntAndString() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("3+\"hello \"");
@@ -505,7 +633,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Plus double and string.
+     */
+    @Test
 	public void plusDoubleAndString() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("3.1415+\"hello \"");
@@ -516,7 +647,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Plus missing double and string.
+     */
+    @Test
 	public void plusMissingDoubleAndString() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("0/0+\"hello \"");
@@ -527,7 +661,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * More plus double and string.
+     */
+    @Test
 	public void morePlusDoubleAndString() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("3.1+3+\"hello \"");
@@ -538,7 +675,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * More plus string and int.
+     */
+    @Test
 	public void morePlusStringAndInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"hello \"+3+4");
@@ -549,7 +689,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Empty string and int.
+     */
+    @Test
 	public void emptyStringAndInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"\"+3");
@@ -560,7 +703,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * String and infinity.
+     */
+    @Test
 	public void stringAndInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"\"+INFINITY");
@@ -571,7 +717,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * String and minus infinity.
+     */
+    @Test
 	public void stringAndMinusInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"\"+ -INFINITY");
@@ -582,7 +731,10 @@ public class AntlrParserBasicTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval attribute with second not constant 2.
+     */
+    @Test
 	public void evalAttributeWithSecondNotConstant2() {
 		try {
 			ExampleSet exampleSet = makeMissingIntegerExampleSet();

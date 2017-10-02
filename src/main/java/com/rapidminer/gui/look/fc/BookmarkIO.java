@@ -34,14 +34,20 @@ import javax.swing.filechooser.FileSystemView;
 
 /**
  * A IO helper class for the bookmarks.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class BookmarkIO {
 
-	public static final String PROPERTY_BOOKMARKS_DIR = "bookmarks.dir";
+    /**
+     * The constant PROPERTY_BOOKMARKS_DIR.
+     */
+    public static final String PROPERTY_BOOKMARKS_DIR = "bookmarks.dir";
 
-	public static final String PROPERTY_BOOKMARKS_FILE = ".bookmarks";
+    /**
+     * The constant PROPERTY_BOOKMARKS_FILE.
+     */
+    public static final String PROPERTY_BOOKMARKS_FILE = ".bookmarks";
 
 	private FileSystemView fileSystemView = FileSystemView.getFileSystemView();
 
@@ -49,7 +55,10 @@ public class BookmarkIO {
 
 	private List<Bookmark> bookmarks = new LinkedList<Bookmark>();
 
-	public BookmarkIO() {
+    /**
+     * Instantiates a new Bookmark io.
+     */
+    public BookmarkIO() {
 		File tempFile = this.fileSystemView.getHomeDirectory();
 		tempFile = tempFile.getAbsoluteFile();
 		File parentTempFile = tempFile.getParentFile();
@@ -95,32 +104,60 @@ public class BookmarkIO {
 		}
 	}
 
-	public Collection<Bookmark> getBookmarks() {
+    /**
+     * Gets bookmarks.
+     *
+     * @return the bookmarks
+     */
+    public Collection<Bookmark> getBookmarks() {
 		return this.bookmarks;
 	}
 
-	public void addToList(String name, String path) {
+    /**
+     * Add to list.
+     *
+     * @param name the name
+     * @param path the path
+     */
+    public void addToList(String name, String path) {
 		Bookmark bookmark = new Bookmark(name, path);
 		this.bookmarks.add(bookmark);
 		Collections.sort(this.bookmarks);
 		writeBookmarks(this.bookmarks, this.bookmarkFile);
 	}
 
-	public void deleteBookmark(Bookmark bookmark) {
+    /**
+     * Delete bookmark.
+     *
+     * @param bookmark the bookmark
+     */
+    public void deleteBookmark(Bookmark bookmark) {
 		this.bookmarks.remove(bookmark);
 		if (bookmark != null) {
 			writeBookmarks(this.bookmarks, this.bookmarkFile);
 		}
 	}
 
-	public void renameBookmark(Bookmark bookmark, String name) {
+    /**
+     * Rename bookmark.
+     *
+     * @param bookmark the bookmark
+     * @param name     the name
+     */
+    public void renameBookmark(Bookmark bookmark, String name) {
 		if (bookmark != null) {
 			bookmark.setName(name);
 			writeBookmarks(this.bookmarks, this.bookmarkFile);
 		}
 	}
 
-	public static List<Bookmark> readBookmarks(File bookmarkFile) {
+    /**
+     * Read bookmarks list.
+     *
+     * @param bookmarkFile the bookmark file
+     * @return the list
+     */
+    public static List<Bookmark> readBookmarks(File bookmarkFile) {
 		List<Bookmark> bookmarks = new LinkedList<Bookmark>();
 		try (FileReader fr = new FileReader(bookmarkFile); BufferedReader in = new BufferedReader(fr)) {
 			String line = in.readLine();
@@ -142,7 +179,13 @@ public class BookmarkIO {
 		return bookmarks;
 	}
 
-	public static void writeBookmarks(Collection<Bookmark> bookmarks, File bookmarkFile) {
+    /**
+     * Write bookmarks.
+     *
+     * @param bookmarks    the bookmarks
+     * @param bookmarkFile the bookmark file
+     */
+    public static void writeBookmarks(Collection<Bookmark> bookmarks, File bookmarkFile) {
 		try (FileWriter fw = new FileWriter(bookmarkFile); PrintWriter out = new PrintWriter(fw)) {
 			out.println(bookmarks.size());
 			for (Bookmark bookmark : bookmarks) {

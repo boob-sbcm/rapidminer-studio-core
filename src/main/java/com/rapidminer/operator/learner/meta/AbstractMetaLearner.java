@@ -47,18 +47,29 @@ import com.rapidminer.tools.Tools;
  * A <tt>MetaLearner</tt> is an operator that encapsulates one or more learning steps to build its
  * model. New meta learning schemes should extend this class to support the same parameters as other
  * learners. The main purpose of this class is to perform some compatibility checks.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class AbstractMetaLearner extends OperatorChain implements Learner {
 
-	protected final InputPort exampleSetInput = getInputPorts().createPort("training set");
+    /**
+     * The Example set input.
+     */
+    protected final InputPort exampleSetInput = getInputPorts().createPort("training set");
 	private final OutputPort modelOutput = getOutputPorts().createPort("model");
 	private final OutputPort innerExampleSource = getSubprocess(0).getInnerSources().createPort("training set");
-	protected final InputPort innerModelSink = getSubprocess(0).getInnerSinks().createPort("model");
+    /**
+     * The Inner model sink.
+     */
+    protected final InputPort innerModelSink = getSubprocess(0).getInnerSinks().createPort("model");
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	public AbstractMetaLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract meta learner.
+     *
+     * @param description the description
+     */
+    public AbstractMetaLearner(OperatorDescription description) {
 		super(description, "Learning Process");
 		exampleSetInput.addPrecondition(new LearnerPrecondition(this, exampleSetInput));
 		innerModelSink.addPrecondition(new SimplePrecondition(innerModelSink, new PredictionModelMetaData(
@@ -89,28 +100,51 @@ public abstract class AbstractMetaLearner extends OperatorChain implements Learn
 		getTransformer().addPassThroughRule(exampleSetInput, exampleSetOutput);
 	}
 
-	/** Modifies the meta data of the generated model. */
-	protected MetaData modifyGeneratedModelMetaData(PredictionModelMetaData unmodifiedMetaData) {
+    /**
+     * Modifies the meta data of the generated model.  @param unmodifiedMetaData the unmodified meta data
+     *
+     * @param unmodifiedMetaData the unmodified meta data
+     * @return the meta data
+     */
+    protected MetaData modifyGeneratedModelMetaData(PredictionModelMetaData unmodifiedMetaData) {
 		return unmodifiedMetaData;
 	}
 
-	/**
-	 * This method can be used by subclasses to additionally change the example set meta data
-	 * delivered to the inner learner
-	 */
-	protected MetaData modifyExampleSetMetaData(ExampleSetMetaData unmodifiedMetaData) {
+    /**
+     * This method can be used by subclasses to additionally change the example set meta data
+     * delivered to the inner learner
+     *
+     * @param unmodifiedMetaData the unmodified meta data
+     * @return the meta data
+     */
+    protected MetaData modifyExampleSetMetaData(ExampleSetMetaData unmodifiedMetaData) {
 		return unmodifiedMetaData;
 	}
 
-	public InputPort getTrainingSetInputPort() {
+    /**
+     * Gets training set input port.
+     *
+     * @return the training set input port
+     */
+    public InputPort getTrainingSetInputPort() {
 		return exampleSetInput;
 	}
 
-	public OutputPort getModelOutputPort() {
+    /**
+     * Gets model output port.
+     *
+     * @return the model output port
+     */
+    public OutputPort getModelOutputPort() {
 		return modelOutput;
 	}
 
-	public InputPort getInnerModelSink() {
+    /**
+     * Gets inner model sink.
+     *
+     * @return the inner model sink
+     */
+    public InputPort getInnerModelSink() {
 		return innerModelSink;
 	}
 
@@ -140,17 +174,26 @@ public abstract class AbstractMetaLearner extends OperatorChain implements Learn
 		exampleSetOutput.deliver(exampleSet);
 	}
 
-	/**
-	 * This is a convenience method to apply the inner operators and return the model which must be
-	 * output of the last operator.
-	 */
-	protected Model applyInnerLearner(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * This is a convenience method to apply the inner operators and return the model which must be
+     * output of the last operator.
+     *
+     * @param exampleSet the example set
+     * @return the model
+     * @throws OperatorException the operator exception
+     */
+    protected Model applyInnerLearner(ExampleSet exampleSet) throws OperatorException {
 		innerExampleSource.deliver(exampleSet);
 		executeInnerLearner();
 		return innerModelSink.getData(Model.class);
 	}
 
-	protected void executeInnerLearner() throws OperatorException {
+    /**
+     * Execute inner learner.
+     *
+     * @throws OperatorException the operator exception
+     */
+    protected void executeInnerLearner() throws OperatorException {
 		getSubprocess(0).execute();
 	}
 

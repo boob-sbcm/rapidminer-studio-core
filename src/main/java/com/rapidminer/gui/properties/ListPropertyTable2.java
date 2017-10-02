@@ -40,14 +40,13 @@ import com.rapidminer.parameter.ParameterTypeStringCategory;
 
 /**
  * Parameter table for list and enumeration types (GUI class).
- *
+ * <p>
  * Note: This class uses a dedicated renderer/editor for each row. Actually, this is unnecessary.
  * The only reason is that if we re-use the editors/renderers, one has to click into the cell once
  * for starting editing and then again for opening a combo box, e.g. This may be related to
  * editingStopped-events which are fired by the cells that loose focus.
  *
  * @author Simon Fischer, Marius Helf
- *
  */
 public class ListPropertyTable2 extends JTable {
 
@@ -57,11 +56,25 @@ public class ListPropertyTable2 extends JTable {
 	private ParameterType[] types;
 	private Operator operator;
 
-	public ListPropertyTable2(ParameterTypeList type, List<String[]> parameterList, Operator operator) {
+    /**
+     * Instantiates a new List property table 2.
+     *
+     * @param type          the type
+     * @param parameterList the parameter list
+     * @param operator      the operator
+     */
+    public ListPropertyTable2(ParameterTypeList type, List<String[]> parameterList, Operator operator) {
 		this(new ParameterType[] { type.getKeyType(), type.getValueType() }, parameterList, operator);
 	}
 
-	public ListPropertyTable2(ParameterTypeEnumeration type, List<String> parameterList, Operator operator) {
+    /**
+     * Instantiates a new List property table 2.
+     *
+     * @param type          the type
+     * @param parameterList the parameter list
+     * @param operator      the operator
+     */
+    public ListPropertyTable2(ParameterTypeEnumeration type, List<String> parameterList, Operator operator) {
 		this(new ParameterType[] { type.getValueType() }, to2DimList(parameterList), operator);
 	}
 
@@ -104,7 +117,10 @@ public class ListPropertyTable2 extends JTable {
 		return result;
 	}
 
-	public void addRow() {
+    /**
+     * Add row.
+     */
+    public void addRow() {
 		((ListTableModel) getModel()).addRow();
 		fillEditors();
 
@@ -112,11 +128,19 @@ public class ListPropertyTable2 extends JTable {
 		requestFocusForLastEditableCell();
 	}
 
-	public boolean isEmpty() {
+    /**
+     * Is empty boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isEmpty() {
 		return renderers.isEmpty();
 	}
 
-	protected void fillEditors() {
+    /**
+     * Fill editors.
+     */
+    protected void fillEditors() {
 		while (editors.size() < getModel().getRowCount()) {
 			TableCellRenderer rowRenderers[] = new TableCellRenderer[types.length];
 			TableCellEditor rowEditors[] = new TableCellEditor[types.length];
@@ -135,7 +159,12 @@ public class ListPropertyTable2 extends JTable {
 		return super.prepareEditor(editor, row, column);
 	}
 
-	public boolean requestFocusForLastEditableCell() {
+    /**
+     * Request focus for last editable cell boolean.
+     *
+     * @return the boolean
+     */
+    public boolean requestFocusForLastEditableCell() {
 		boolean foundCell = false;
 		for (int row = getRowCount() - 1; row >= 0; --row) {
 			for (int column = 0; column < getColumnCount(); ++column) {
@@ -171,7 +200,10 @@ public class ListPropertyTable2 extends JTable {
 		return false;
 	}
 
-	public void removeSelected() {
+    /**
+     * Remove selected.
+     */
+    public void removeSelected() {
 		if (getSelectedRow() != -1) {
 			stopEditing();
 			((ListTableModel) getModel()).removeRow(getSelectedRow());
@@ -179,19 +211,32 @@ public class ListPropertyTable2 extends JTable {
 		}
 	}
 
-	public void storeParameterList(List<String[]> parameterList2) {
+    /**
+     * Store parameter list.
+     *
+     * @param parameterList2 the parameter list 2
+     */
+    public void storeParameterList(List<String[]> parameterList2) {
 		parameterList2.clear();
 		parameterList2.addAll(((ListTableModel) getModel()).getParameterList());
 	}
 
-	public void stopEditing() {
+    /**
+     * Stop editing.
+     */
+    public void stopEditing() {
 		TableCellEditor editor = getCellEditor();
 		if (editor != null) {
 			editor.stopCellEditing();
 		}
 	}
 
-	public void storeParameterEnumeration(List<String> parameterList2) {
+    /**
+     * Store parameter enumeration.
+     *
+     * @param parameterList2 the parameter list 2
+     */
+    public void storeParameterEnumeration(List<String> parameterList2) {
 
 		parameterList2.clear();
 		for (String[] values : ((ListTableModel) getModel()).getParameterList()) {

@@ -34,12 +34,17 @@ import java.util.Random;
  * example set containing all examples which are not part of the bootstrapped example set. This
  * inverse example set might be used for a bootstrapped validation (together with an
  * {@link IteratingPerformanceAverage} operator.
- * 
+ *
  * @author Ingo Mierswa, Martin Scholz
  */
 public class Bootstrapping extends AbstractBootstrapping {
 
-	public Bootstrapping(OperatorDescription description) {
+    /**
+     * Instantiates a new Bootstrapping.
+     *
+     * @param description the description
+     */
+    public Bootstrapping(OperatorDescription description) {
 		super(description);
 	}
 

@@ -36,14 +36,23 @@ import com.rapidminer.operator.ports.OutputPort;
  */
 public class SOMModelVisualization extends Operator {
 
-	public static class SOMModelVisualizationResult extends ResultObjectAdapter {
+    /**
+     * The type Som model visualization result.
+     */
+    public static class SOMModelVisualizationResult extends ResultObjectAdapter {
 
 		private static final long serialVersionUID = -6250201023324000922L;
 
 		private ExampleSet exampleSet;
 		private Model model;
 
-		public SOMModelVisualizationResult(ExampleSet exampleSet, Model model) {
+        /**
+         * Instantiates a new Som model visualization result.
+         *
+         * @param exampleSet the example set
+         * @param model      the model
+         */
+        public SOMModelVisualizationResult(ExampleSet exampleSet, Model model) {
 			this.exampleSet = exampleSet;
 			this.model = model;
 		}
@@ -58,11 +67,21 @@ public class SOMModelVisualization extends Operator {
 			return "The model visualized via a SOM plot.";
 		}
 
-		public ExampleSet getExampleSet() {
+        /**
+         * Gets example set.
+         *
+         * @return the example set
+         */
+        public ExampleSet getExampleSet() {
 			return exampleSet;
 		}
 
-		public Model getModel() {
+        /**
+         * Gets model.
+         *
+         * @return the model
+         */
+        public Model getModel() {
 			return model;
 		}
 	}
@@ -73,7 +92,12 @@ public class SOMModelVisualization extends Operator {
 	private OutputPort modelOutput = getOutputPorts().createPort("model");
 	private OutputPort visualizationOutput = getOutputPorts().createPort("visualization");
 
-	public SOMModelVisualization(OperatorDescription description) {
+    /**
+     * Instantiates a new Som model visualization.
+     *
+     * @param description the description
+     */
+    public SOMModelVisualization(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addPassThroughRule(exampleSetInput, exampleSetOutput);

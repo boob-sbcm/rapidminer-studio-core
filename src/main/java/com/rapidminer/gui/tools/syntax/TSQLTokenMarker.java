@@ -28,17 +28,25 @@ package com.rapidminer.gui.tools.syntax;
 
 /**
  * Transact-SQL token marker.
- * 
+ *
  * @author Mike Dillon, Ingo Mierswa
  */
 public class TSQLTokenMarker extends SQLTokenMarker {
 
-	// public members
+    /**
+     * Instantiates a new Tsql token marker.
+     */
+// public members
 	public TSQLTokenMarker() {
 		super(getKeywordMap(), true);
 	}
 
-	public static KeywordMap getKeywordMap() {
+    /**
+     * Gets keyword map.
+     *
+     * @return the keyword map
+     */
+    public static KeywordMap getKeywordMap() {
 		if (tsqlKeywords == null) {
 			tsqlKeywords = new KeywordMap(true);
 			addKeywords();

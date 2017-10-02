@@ -43,21 +43,35 @@ import java.util.List;
 
 /**
  * This operator finds the lowest threshold which reaches a given recall.
- * 
+ *
  * @author Marius Helf
  */
 public class RecallChooser extends Operator {
 
-	// The parameters of this operator:
+    /**
+     * The constant PARAMETER_USE_EXAMPLE_WEIGHTS.
+     */
+// The parameters of this operator:
 	public static final String PARAMETER_USE_EXAMPLE_WEIGHTS = "use_example_weights";
-	public static final String PARAMETER_RECALL = "min_recall";
-	public static final String PARAMETER_POSITIVE_LABEL = "positive_label";
+    /**
+     * The constant PARAMETER_RECALL.
+     */
+    public static final String PARAMETER_RECALL = "min_recall";
+    /**
+     * The constant PARAMETER_POSITIVE_LABEL.
+     */
+    public static final String PARAMETER_POSITIVE_LABEL = "positive_label";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort thresholdOutput = getOutputPorts().createPort("threshold");
 
-	public RecallChooser(OperatorDescription description) {
+    /**
+     * Instantiates a new Recall chooser.
+     *
+     * @param description the description
+     */
+    public RecallChooser(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, Ontology.VALUE_TYPE,

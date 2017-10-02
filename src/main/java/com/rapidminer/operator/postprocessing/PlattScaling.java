@@ -39,15 +39,15 @@ import java.util.logging.Level;
 /**
  * A scaling operator, applying the original algorithm by Platt (1999) to turn confidence scores of
  * boolean classifiers into probability estimates.
- * 
+ * <p>
  * Unlike the original version this operator assumes that the confidence scores are already in the
  * interval of [0,1], as e.g. given for the RapidMiner boosting operators. The crude estimates are
  * then transformed into log odds, and scaled by the original transformation of Platt.
- * 
+ * <p>
  * The operator assumes a model and an example set for scaling. It outputs a PlattScalingModel, that
  * contains both, the supplied model and the scaling step. If the example set contains a weight
  * attribute, then this operator is able to fit a model to the weighted examples.
- * 
+ *
  * @author Martin Scholz
  */
 public class PlattScaling extends Operator {
@@ -58,7 +58,12 @@ public class PlattScaling extends Operator {
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort modelOutput = getOutputPorts().createPort("model");
 
-	public PlattScaling(OperatorDescription description) {
+    /**
+     * Instantiates a new Platt scaling.
+     *
+     * @param description the description
+     */
+    public PlattScaling(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new ModelApplicationRule(exampleSetInput, exampleSetOutput, modelInput, false));
 		getTransformer().addGenerationRule(modelOutput, PlattScalingModel.class);
@@ -101,16 +106,14 @@ public class PlattScaling extends Operator {
 		return exampleSet.getAttributes().getLabel();
 	}
 
-	/**
-	 * Implementation of Platt' scaling algorithm as found in [Platt, 1999].
-	 * 
-	 * @param exampleSet
-	 *            the example set for finding the model parameters. It needs to contain a predicted
-	 *            label and confidence scores. Please note, that the confidence values are expected
-	 *            to range from 0 to 1, e.g. already take the form of coarse probability estimates.
-	 * @return an object containing the parameters A and B of Platt's scaling
-	 */
-	public static PlattParameters computeParameters(ExampleSet exampleSet, Attribute label) {
+    /**
+     * Implementation of Platt' scaling algorithm as found in [Platt, 1999].
+     *
+     * @param exampleSet the example set for finding the model parameters. It needs to contain a predicted            label and confidence scores. Please note, that the confidence values are expected            to range from 0 to 1, e.g. already take the form of coarse probability estimates.
+     * @param label      the label
+     * @return an object containing the parameters A and B of Platt's scaling
+     */
+    public static PlattParameters computeParameters(ExampleSet exampleSet, Attribute label) {
 		// The current label indices may be different from the expected ones
 		// (label stored in model).
 		// The current ones are used when accessing the true label,
@@ -253,12 +256,15 @@ public class PlattScaling extends Operator {
 		return new PlattParameters(A, B);
 	}
 
-	/**
-	 * Translates confidence scores in [0, 1] to those originally expected by Platt's scaling, where
-	 * positive values result in positive predictions, and where the absolute value indicates the
-	 * confidence in the prediction.
-	 */
-	public static double getLogOddsPosConfidence(double originalConfidence) {
+    /**
+     * Translates confidence scores in [0, 1] to those originally expected by Platt's scaling, where
+     * positive values result in positive predictions, and where the absolute value indicates the
+     * confidence in the prediction.
+     *
+     * @param originalConfidence the original confidence
+     * @return the log odds pos confidence
+     */
+    public static double getLogOddsPosConfidence(double originalConfidence) {
 		// avoid infinite or meaningless results by not allowing arbitrarily
 		// small or large values:
 		double epsilon = 1E-30;

@@ -23,7 +23,7 @@ import com.rapidminer.tools.RandomGenerator;
 
 /**
  * The label is randomly generated.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RandomFunction extends RegressionFunction {

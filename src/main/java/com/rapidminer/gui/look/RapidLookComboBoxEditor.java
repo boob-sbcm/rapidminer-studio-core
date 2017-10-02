@@ -41,14 +41,28 @@ public class RapidLookComboBoxEditor extends BasicComboBoxEditor {
 
 	private JTextField textField;
 
-	public static class UIResource extends RapidLookComboBoxEditor implements javax.swing.plaf.UIResource {
+    /**
+     * The type Ui resource.
+     */
+    public static class UIResource extends RapidLookComboBoxEditor implements javax.swing.plaf.UIResource {
 	}
 
-	public void putClientProperty(Object key, Object val) {
+    /**
+     * Put client property.
+     *
+     * @param key the key
+     * @param val the val
+     */
+    public void putClientProperty(Object key, Object val) {
 		this.textField.putClientProperty(key, val);
 	}
 
-	public void setEnable(boolean val) {
+    /**
+     * Sets enable.
+     *
+     * @param val the val
+     */
+    public void setEnable(boolean val) {
 		this.editor.setEnabled(val);
 		if (val) {
 			PromptSupport.setForeground(Color.LIGHT_GRAY, textField);
@@ -60,7 +74,10 @@ public class RapidLookComboBoxEditor extends BasicComboBoxEditor {
 		}
 	}
 
-	public RapidLookComboBoxEditor() {
+    /**
+     * Instantiates a new Rapid look combo box editor.
+     */
+    public RapidLookComboBoxEditor() {
 		this.editor.removeFocusListener(this);
 		this.textField = new JTextField("", 9) {
 

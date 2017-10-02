@@ -70,7 +70,10 @@ public class IOObjectCacheViewer extends JPanel implements Dockable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final String IOOBJECT_CACHE_VIEWER_DOCK_KEY = "ioobject_cache_viewer";
+    /**
+     * The constant IOOBJECT_CACHE_VIEWER_DOCK_KEY.
+     */
+    public static final String IOOBJECT_CACHE_VIEWER_DOCK_KEY = "ioobject_cache_viewer";
 
 	private final DockKey dockKey = new ResourceDockKey(IOOBJECT_CACHE_VIEWER_DOCK_KEY);
 	{
@@ -238,16 +241,13 @@ public class IOObjectCacheViewer extends JPanel implements Dockable {
 		return entriesPanel;
 	}
 
-	/**
-	 * Creates a new viewer for the specified {@link IOObjectMap}.
-	 *
-	 * @param map
-	 *            The corresponding {@link IOObjectMap};
-	 *
-	 * @throws NPE
-	 *             If the provided map is <code>null</code>.
-	 */
-	public IOObjectCacheViewer(IOObjectMap map) {
+    /**
+     * Creates a new viewer for the specified {@link IOObjectMap}.
+     *
+     * @param map The corresponding {@link IOObjectMap};
+     * @throws NPE If the provided map is <code>null</code>.
+     */
+    public IOObjectCacheViewer(IOObjectMap map) {
 		super(new BorderLayout());
 		Objects.requireNonNull(map);
 		this.map = map;

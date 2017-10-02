@@ -51,34 +51,69 @@ public class SortedExampleSet extends AbstractExampleSet {
 
 	private static final long serialVersionUID = 3937175786207007275L;
 
-	public static final String[] SORTING_DIRECTIONS = { "increasing", "decreasing" };
+    /**
+     * The constant SORTING_DIRECTIONS.
+     */
+    public static final String[] SORTING_DIRECTIONS = { "increasing", "decreasing" };
 
-	public static final int INCREASING = 0;
-	public static final int DECREASING = 1;
+    /**
+     * The constant INCREASING.
+     */
+    public static final int INCREASING = 0;
+    /**
+     * The constant DECREASING.
+     */
+    public static final int DECREASING = 1;
 
 	private static class SortingIndex {
 
 		final private Object key;
 		final private int index;
 
-		public SortingIndex(Object key, int index) {
+        /**
+         * Instantiates a new Sorting index.
+         *
+         * @param key   the key
+         * @param index the index
+         */
+        public SortingIndex(Object key, int index) {
 			this.key = key;
 			this.index = index;
 		}
 
-		public int getIndex() {
+        /**
+         * Gets index.
+         *
+         * @return the index
+         */
+        public int getIndex() {
 			return index;
 		}
 
-		public Date getKeyAsDate() {
+        /**
+         * Gets key as date.
+         *
+         * @return the key as date
+         */
+        public Date getKeyAsDate() {
 			return (Date) key;
 		}
 
-		public String getKeyAsString() {
+        /**
+         * Gets key as string.
+         *
+         * @return the key as string
+         */
+        public String getKeyAsString() {
 			return (String) key;
 		}
 
-		public Double getKeyAsDouble() {
+        /**
+         * Gets key as double.
+         *
+         * @return the key as double
+         */
+        public Double getKeyAsDouble() {
 			return (Double) key;
 		}
 
@@ -95,7 +130,14 @@ public class SortedExampleSet extends AbstractExampleSet {
 	/** The used mapping. */
 	private int[] mapping;
 
-	public SortedExampleSet(ExampleSet parent, Attribute sortingAttribute, int sortingDirection) {
+    /**
+     * Instantiates a new Sorted example set.
+     *
+     * @param parent           the parent
+     * @param sortingAttribute the sorting attribute
+     * @param sortingDirection the sorting direction
+     */
+    public SortedExampleSet(ExampleSet parent, Attribute sortingAttribute, int sortingDirection) {
 		try {
 			createSortedExampleSet(parent, sortingAttribute, sortingDirection, null);
 		} catch (ProcessStoppedException e) {
@@ -103,7 +145,16 @@ public class SortedExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	public SortedExampleSet(ExampleSet parent, final Attribute sortingAttribute, int sortingDirection,
+    /**
+     * Instantiates a new Sorted example set.
+     *
+     * @param parent           the parent
+     * @param sortingAttribute the sorting attribute
+     * @param sortingDirection the sorting direction
+     * @param progress         the progress
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public SortedExampleSet(ExampleSet parent, final Attribute sortingAttribute, int sortingDirection,
 			OperatorProgress progress) throws ProcessStoppedException {
 		createSortedExampleSet(parent, sortingAttribute, sortingDirection, progress);
 	}
@@ -207,14 +258,23 @@ public class SortedExampleSet extends AbstractExampleSet {
 		this.mapping = mapping;
 	}
 
-	/** Constructs an example set based on the given sort mapping. */
-	public SortedExampleSet(ExampleSet parent, int[] mapping) {
+    /**
+     * Constructs an example set based on the given sort mapping.  @param parent the parent
+     *
+     * @param parent  the parent
+     * @param mapping the mapping
+     */
+    public SortedExampleSet(ExampleSet parent, int[] mapping) {
 		this.parent = (ExampleSet) parent.clone();
 		this.mapping = mapping;
 	}
 
-	/** Clone constructor. */
-	public SortedExampleSet(SortedExampleSet exampleSet) {
+    /**
+     * Clone constructor.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     */
+    public SortedExampleSet(SortedExampleSet exampleSet) {
 		this.parent = (ExampleSet) exampleSet.parent.clone();
 		this.mapping = new int[exampleSet.mapping.length];
 		System.arraycopy(exampleSet.mapping, 0, this.mapping, 0, exampleSet.mapping.length);

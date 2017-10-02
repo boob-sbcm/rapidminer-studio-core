@@ -26,7 +26,7 @@ import com.rapidminer.tools.math.similarity.SimilarityMeasure;
 
 /**
  * A variant of simple matching for numerical attributes.
- * 
+ *
  * @author Michael Wurst
  */
 public class OverlapNumericalSimilarity extends SimilarityMeasure {

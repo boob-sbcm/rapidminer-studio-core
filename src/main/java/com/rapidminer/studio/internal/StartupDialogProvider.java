@@ -26,21 +26,31 @@ package com.rapidminer.studio.internal;
  */
 public interface StartupDialogProvider {
 
-	/**
-	 * The buttons for the startup dialog.
-	 *
-	 * @author Gisa Schaefer
-	 *
-	 */
-	public enum ToolbarButton {
-		GETTING_STARTED, TUTORIAL, NEW_PROCESS, OPEN_PROCESS;
+    /**
+     * The buttons for the startup dialog.
+     *
+     * @author Gisa Schaefer
+     */
+    public enum ToolbarButton {
+        /**
+         * Getting started toolbar button.
+         */
+        GETTING_STARTED, /**
+         * Tutorial toolbar button.
+         */
+        TUTORIAL, /**
+         * New process toolbar button.
+         */
+        NEW_PROCESS, /**
+         * Open process toolbar button.
+         */
+        OPEN_PROCESS;
 	}
 
-	/**
-	 * Shows the startup dialog with the button preselected.
-	 *
-	 * @param button
-	 *            the button to preselect
-	 */
-	void show(ToolbarButton button);
+    /**
+     * Shows the startup dialog with the button preselected.
+     *
+     * @param button the button to preselect
+     */
+    void show(ToolbarButton button);
 }

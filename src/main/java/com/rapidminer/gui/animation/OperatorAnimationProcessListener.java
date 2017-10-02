@@ -39,11 +39,21 @@ public class OperatorAnimationProcessListener extends GeneralProcessListener {
 
 	private AnimationTimerProcessListener timerListener;
 
-	public OperatorAnimationProcessListener(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Operator animation process listener.
+     *
+     * @param mainFrame the main frame
+     */
+    public OperatorAnimationProcessListener(MainFrame mainFrame) {
 		super(mainFrame);
 	}
 
-	public OperatorAnimationProcessListener(ProcessRendererModel processModel) {
+    /**
+     * Instantiates a new Operator animation process listener.
+     *
+     * @param processModel the process model
+     */
+    public OperatorAnimationProcessListener(ProcessRendererModel processModel) {
 		super(processModel);
 	}
 

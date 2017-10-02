@@ -44,7 +44,6 @@ import com.rapidminer.tools.Ontology;
  * Tests for the {@link ExampleSetAppender}.
  *
  * @author Marco Boeck
- *
  */
 public class ExampleSetAppenderTest {
 
@@ -69,7 +68,10 @@ public class ExampleSetAppenderTest {
 	private ExampleSet twoAttSet, numericalWrongAttNameSet, numericalLabelSet, binominalSet2, binominalSet3, mappingSet1,
 			mappingSet2;
 
-	@Before
+    /**
+     * Sets before each test.
+     */
+    @Before
 	public void setupBeforeEachTest() {
 		DataRowFactory rowFactory = new DataRowFactory(DataRowFactory.TYPE_DOUBLE_ARRAY, '.');
 
@@ -174,7 +176,10 @@ public class ExampleSetAppenderTest {
 				.build();
 	}
 
-	@Test
+    /**
+     * Test invalid arguments.
+     */
+    @Test
 	public void testInvalidArguments() {
 		try {
 			ExampleSetAppender.merge(null, (ExampleSet[]) null);
@@ -198,7 +203,10 @@ public class ExampleSetAppenderTest {
 		}
 	}
 
-	@Test
+    /**
+     * Test incompatible types nominal.
+     */
+    @Test
 	public void testIncompatibleTypesNominal() {
 		// nominal -> incompatible
 		try {
@@ -373,7 +381,10 @@ public class ExampleSetAppenderTest {
 		}
 	}
 
-	@Test
+    /**
+     * Test incompatible types numerical.
+     */
+    @Test
 	public void testIncompatibleTypesNumerical() {
 		// numerical -> incompatible
 		try {
@@ -526,7 +537,10 @@ public class ExampleSetAppenderTest {
 		}
 	}
 
-	@Test
+    /**
+     * Test incompatible types dates.
+     */
+    @Test
 	public void testIncompatibleTypesDates() {
 		// date -> incompatible
 		try {
@@ -679,7 +693,10 @@ public class ExampleSetAppenderTest {
 		}
 	}
 
-	@Test
+    /**
+     * Test incompatible attributes.
+     */
+    @Test
 	public void testIncompatibleAttributes() {
 		try {
 			ExampleSetAppender.merge(null, realSet, twoAttSet);
@@ -696,7 +713,12 @@ public class ExampleSetAppenderTest {
 		}
 	}
 
-	@Test
+    /**
+     * Test single merge.
+     *
+     * @throws OperatorException the operator exception
+     */
+    @Test
 	public void testSingleMerge() throws OperatorException {
 		ExampleSet result = ExampleSetAppender.merge(null, polynominalSet);
 		assertEquals(1, result.size());
@@ -705,7 +727,12 @@ public class ExampleSetAppenderTest {
 				getAttribute(result, ATT_NAME_1).getValueType());
 	}
 
-	@Test
+    /**
+     * Test nominal mapping merge.
+     *
+     * @throws OperatorException the operator exception
+     */
+    @Test
 	public void testNominalMappingMerge() throws OperatorException {
 		ExampleSet result = ExampleSetAppender.merge(null, mappingSet1, mappingSet2);
 		assertEquals(2, result.size());
@@ -728,7 +755,12 @@ public class ExampleSetAppenderTest {
 		assertEquals(MAPPING_VALUE_1, result.getExample(2).getNominalValue(getAttribute(result, ATT_NAME_2)));
 	}
 
-	@Test
+    /**
+     * Test nominal type removal.
+     *
+     * @throws OperatorException the operator exception
+     */
+    @Test
 	public void testNominalTypeRemoval() throws OperatorException {
 		ExampleSet result = ExampleSetAppender.merge(null, nominalSet, nominalSet);
 		assertEquals(2, result.size());
@@ -737,14 +769,24 @@ public class ExampleSetAppenderTest {
 				getAttribute(result, ATT_NAME_1).getValueType());
 	}
 
-	@Test
+    /**
+     * Test numerical type removal.
+     *
+     * @throws OperatorException the operator exception
+     */
+    @Test
 	public void testNumericalTypeRemoval() throws OperatorException {
 		ExampleSet result = ExampleSetAppender.merge(null, numericalSet, numericalSet);
 		assertEquals(2, result.size());
 		assertEquals("Attribute value type unexpected!", Ontology.REAL, getAttribute(result, ATT_NAME_1).getValueType());
 	}
 
-	@Test
+    /**
+     * Test append identical types.
+     *
+     * @throws OperatorException the operator exception
+     */
+    @Test
 	public void testAppendIdenticalTypes() throws OperatorException {
 		ExampleSet result = ExampleSetAppender.merge(null, nominalSet, nominalSet);
 		assertEquals(2, result.size());
@@ -801,7 +843,12 @@ public class ExampleSetAppenderTest {
 				getAttribute(result, ATT_NAME_1).getValueType());
 	}
 
-	@Test
+    /**
+     * Test append narrower types.
+     *
+     * @throws OperatorException the operator exception
+     */
+    @Test
 	public void testAppendNarrowerTypes() throws OperatorException {
 		ExampleSet result = ExampleSetAppender.merge(null, nominalSet, polynominalSet);
 		assertEquals(2, result.size());
@@ -856,7 +903,12 @@ public class ExampleSetAppenderTest {
 				getAttribute(result, ATT_NAME_1).getValueType());
 	}
 
-	@Test
+    /**
+     * Test append broader types.
+     *
+     * @throws OperatorException the operator exception
+     */
+    @Test
 	public void testAppendBroaderTypes() throws OperatorException {
 		ExampleSet result = ExampleSetAppender.merge(null, polynominalSet, nominalSet);
 		assertEquals(2, result.size());
@@ -901,7 +953,12 @@ public class ExampleSetAppenderTest {
 				getAttribute(result, ATT_NAME_1).getValueType());
 	}
 
-	@Test
+    /**
+     * Test append other types.
+     *
+     * @throws OperatorException the operator exception
+     */
+    @Test
 	public void testAppendOtherTypes() throws OperatorException {
 		ExampleSet result = ExampleSetAppender.merge(null, binominalSet, filepathSet);
 		assertEquals(2, result.size());
@@ -937,7 +994,12 @@ public class ExampleSetAppenderTest {
 				getAttribute(result, ATT_NAME_1).getValueType());
 	}
 
-	@Test
+    /**
+     * Test binominal conversion.
+     *
+     * @throws OperatorException the operator exception
+     */
+    @Test
 	public void testBinominalConversion() throws OperatorException {
 		ExampleSet result = ExampleSetAppender.merge(null, binominalSet, filepathSet, textSet);
 		assertEquals(3, result.size());
@@ -958,7 +1020,12 @@ public class ExampleSetAppenderTest {
 				getAttribute(result, ATT_NAME_1).getValueType());
 	}
 
-	@Test
+    /**
+     * Test special roles.
+     *
+     * @throws OperatorException the operator exception
+     */
+    @Test
 	public void testSpecialRoles() throws OperatorException {
 		ExampleSet result = ExampleSetAppender.merge(null, numericalLabelSet, realSet);
 		assertEquals(2, result.size());
@@ -971,7 +1038,12 @@ public class ExampleSetAppenderTest {
 				result.getAttributes().getRole(getAttribute(result, ATT_NAME_1)).getSpecialName());
 	}
 
-	@Test
+    /**
+     * Test annotations.
+     *
+     * @throws OperatorException the operator exception
+     */
+    @Test
 	public void testAnnotations() throws OperatorException {
 		ExampleSet annotatedSet = numericalSet;
 		annotatedSet.getAnnotations().setAnnotation(ANNOTATION_KEY, ANNOTATION_VALUE);

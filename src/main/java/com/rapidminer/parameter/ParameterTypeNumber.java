@@ -32,11 +32,23 @@ public abstract class ParameterTypeNumber extends ParameterTypeSingle {
 
 	private static final long serialVersionUID = 1733078666760192282L;
 
-	public ParameterTypeNumber(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type number.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeNumber(Element element) throws XMLException {
 		super(element);
 	}
 
-	public ParameterTypeNumber(String key, String description) {
+    /**
+     * Instantiates a new Parameter type number.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ParameterTypeNumber(String key, String description) {
 		super(key, description);
 	}
 
@@ -50,8 +62,18 @@ public abstract class ParameterTypeNumber extends ParameterTypeSingle {
 		return false;
 	}
 
-	public abstract double getMinValue();
+    /**
+     * Gets min value.
+     *
+     * @return the min value
+     */
+    public abstract double getMinValue();
 
-	public abstract double getMaxValue();
+    /**
+     * Gets max value.
+     *
+     * @return the max value
+     */
+    public abstract double getMaxValue();
 
 }

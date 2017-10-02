@@ -28,9 +28,8 @@ import com.rapidminer.operator.ports.OutputPort;
 
 /**
  * Quick fix that inserts a operator into an existing connection.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public abstract class OperatorInsertionQuickFix extends AbstractQuickFix {
 
@@ -38,11 +37,29 @@ public abstract class OperatorInsertionQuickFix extends AbstractQuickFix {
 	private final int connectToPort;
 	private final int connectFromPort;
 
-	public OperatorInsertionQuickFix(String key, Object[] args, int rating, InputPort inputPort) {
+    /**
+     * Instantiates a new Operator insertion quick fix.
+     *
+     * @param key       the key
+     * @param args      the args
+     * @param rating    the rating
+     * @param inputPort the input port
+     */
+    public OperatorInsertionQuickFix(String key, Object[] args, int rating, InputPort inputPort) {
 		this(key, args, rating, inputPort, 0, 0);
 	}
 
-	public OperatorInsertionQuickFix(String key, Object[] args, int rating, InputPort inputPort, int connectToPort,
+    /**
+     * Instantiates a new Operator insertion quick fix.
+     *
+     * @param key             the key
+     * @param args            the args
+     * @param rating          the rating
+     * @param inputPort       the input port
+     * @param connectToPort   the connect to port
+     * @param connectFromPort the connect from port
+     */
+    public OperatorInsertionQuickFix(String key, Object[] args, int rating, InputPort inputPort, int connectToPort,
 			int connectFromPort) {
 		super(rating, false, key, args);
 		this.inputPort = inputPort;
@@ -68,6 +85,12 @@ public abstract class OperatorInsertionQuickFix extends AbstractQuickFix {
 		}
 	}
 
-	public abstract Operator createOperator() throws OperatorCreationException;
+    /**
+     * Create operator operator.
+     *
+     * @return the operator
+     * @throws OperatorCreationException the operator creation exception
+     */
+    public abstract Operator createOperator() throws OperatorCreationException;
 
 }

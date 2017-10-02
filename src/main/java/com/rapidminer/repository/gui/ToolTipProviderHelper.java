@@ -33,13 +33,19 @@ import java.util.logging.Level;
 
 
 /**
- * 
+ * The type Tool tip provider helper.
+ *
  * @author Simon Fischer
- * 
  */
 public class ToolTipProviderHelper {
 
-	public static String getTip(Entry o) {
+    /**
+     * Gets tip.
+     *
+     * @param o the o
+     * @return the tip
+     */
+    public static String getTip(Entry o) {
 		if (o instanceof IOObjectEntry) {
 			IOObjectEntry e = (IOObjectEntry) o;
 			StringBuilder tip = new StringBuilder();
@@ -83,7 +89,13 @@ public class ToolTipProviderHelper {
 		}
 	}
 
-	public static Component getCustomComponent(Entry o) {
+    /**
+     * Gets custom component.
+     *
+     * @param o the o
+     * @return the custom component
+     */
+    public static Component getCustomComponent(Entry o) {
 		if (o instanceof IOObjectEntry) {
 			IOObjectEntry e = (IOObjectEntry) o;
 			if (!e.willBlock()) {

@@ -23,7 +23,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Returns the value of a Sigmoid kernel of both examples.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SigmoidKernel extends Kernel {
@@ -41,8 +41,13 @@ public class SigmoidKernel extends Kernel {
 		return KERNEL_SIGMOID;
 	}
 
-	/** Sets the parameters of this Sigmoid kernel to the given values a and b. */
-	public void setSigmoidParameters(double a, double b) {
+    /**
+     * Sets the parameters of this Sigmoid kernel to the given values a and b.  @param a the a
+     *
+     * @param a the a
+     * @param b the b
+     */
+    public void setSigmoidParameters(double a, double b) {
 		this.a = a;
 		this.b = b;
 	}

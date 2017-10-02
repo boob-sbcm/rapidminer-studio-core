@@ -99,21 +99,27 @@ import com.vlsolutions.swing.docking.RelativeDockablePosition;
 /**
  * A browser for the {@link Tutorial} steps file, see {@link Tutorial#getSteps()} .
  *
- * @since 7.0.0
  * @author Marcel Michel
+ * @since 7.0.0
  */
 public class TutorialBrowser extends JPanel implements Dockable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final String TUTORIAL_BROWSER_DOCK_KEY = "tutorial_browser";
+    /**
+     * The constant TUTORIAL_BROWSER_DOCK_KEY.
+     */
+    public static final String TUTORIAL_BROWSER_DOCK_KEY = "tutorial_browser";
 	private static final DockKey DOCK_KEY = new ResourceDockKey(TUTORIAL_BROWSER_DOCK_KEY);
 
 	{
 		DOCK_KEY.setDockGroup(MainFrame.DOCK_GROUP_ROOT);
 	}
 
-	public static final RelativeDockablePosition POSITION = new RelativeDockablePosition(0, 1, 0.15, 1);
+    /**
+     * The constant POSITION.
+     */
+    public static final RelativeDockablePosition POSITION = new RelativeDockablePosition(0, 1, 0.15, 1);
 
 	private static final String EXPLANATION_BACKGROUND_NAME = "tutorial/explanation_background.png";
 	private static final String EXPLANATION_HEADER_NAME = "tutorial/explanation_header.png";
@@ -174,13 +180,12 @@ public class TutorialBrowser extends JPanel implements Dockable {
 	private TutorialSelector tutorialSelector;
 	private Observer<Tutorial> tutorialObserver;
 
-	/**
-	 * Creates a new browser which is linked to the given {@link TutorialSelector}.
-	 *
-	 * @param tutorialSelector
-	 *            the selector which should be observed
-	 */
-	public TutorialBrowser(TutorialSelector tutorialSelector) {
+    /**
+     * Creates a new browser which is linked to the given {@link TutorialSelector}.
+     *
+     * @param tutorialSelector the selector which should be observed
+     */
+    public TutorialBrowser(TutorialSelector tutorialSelector) {
 		this.tutorialSelector = tutorialSelector;
 		initGUI();
 		tutorialObserver = new Observer<Tutorial>() {

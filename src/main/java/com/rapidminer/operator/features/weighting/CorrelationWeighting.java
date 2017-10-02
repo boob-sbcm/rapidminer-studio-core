@@ -33,26 +33,30 @@ import com.rapidminer.tools.math.MathFunctions;
 
 
 /**
- * 
  * This class provides a weighting scheme based upon correlation. It calculates the correlation of
  * each attribute with the label attribute and returns the absolute or squared value as its weight.
- * 
+ * <p>
  * Please keep in mind, that polynomial classes provide no information about their ordering, so that
  * the weights are more or less random, because depending on the internal numerical representation
  * of the classes. Binominal labels work because of the 0-1 coding, as do numerical.
- * 
+ *
  * @author Sebastian Land
  */
 public class CorrelationWeighting extends AbstractWeighting {
 
 	private static final int PROGRESS_UPDATE_STEPS = 200_000;
-	
-	public static final String PARAMETER_SQUARED_CORRELATION = "squared_correlation";
 
-	/**
-	 * @param description
-	 */
-	public CorrelationWeighting(OperatorDescription description) {
+    /**
+     * The constant PARAMETER_SQUARED_CORRELATION.
+     */
+    public static final String PARAMETER_SQUARED_CORRELATION = "squared_correlation";
+
+    /**
+     * Instantiates a new Correlation weighting.
+     *
+     * @param description the description
+     */
+    public CorrelationWeighting(OperatorDescription description) {
 		super(description, true);
 
 	}

@@ -22,14 +22,16 @@ import java.util.Map;
 
 
 /**
- * 
+ * The interface Parameter writer.
+ *
  * @author Sebastian Land
- * 
  */
 public interface ParameterWriter {
 
-	/**
-	 * This method will be called whenever the parameters will be saved.
-	 */
-	public void writeParameters(Map<String, Parameter> parameters);
+    /**
+     * This method will be called whenever the parameters will be saved.
+     *
+     * @param parameters the parameters
+     */
+    public void writeParameters(Map<String, Parameter> parameters);
 }

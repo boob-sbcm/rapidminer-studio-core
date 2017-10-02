@@ -39,18 +39,27 @@ import com.rapidminer.studio.io.data.internal.file.excel.ExcelDataSource;
  * {@link ExcelDataSource#getConfiguration()} and the configure method.
  *
  * @author Nils Woehler
- *
  */
 public class ExcelDataSourceConfigurationTest {
 
-	@Test
+    /**
+     * Test different configuration instances.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void testDifferentConfigurationInstances() throws DataSetException {
 		try (ExcelDataSource ds = new ExcelDataSource()) {
 			assertTrue(ds.getConfiguration() != ds.getConfiguration());
 		}
 	}
 
-	@Test
+    /**
+     * Test equal configuration parameters.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void testEqualConfigurationParameters() throws DataSetException {
 		try (ExcelDataSource ds = new ExcelDataSource()) {
 			assertEquals(ds.getConfiguration().getParameters(), ds.getConfiguration().getParameters());
@@ -58,7 +67,12 @@ public class ExcelDataSourceConfigurationTest {
 		}
 	}
 
-	@Test
+    /**
+     * Test differnt configuration parameters on change.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void testDifferntConfigurationParametersOnChange() throws DataSetException {
 		try (ExcelDataSource ds = new ExcelDataSource()) {
 			DataSourceConfiguration storedConfiguration = ds.getConfiguration();

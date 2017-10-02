@@ -29,7 +29,7 @@ import java.util.Map;
  * This class can be used to use a symmetrical matrix as data table. The data is directly read from
  * the symmetrical matrix (e.g. a correlation matrix) instead of building a copy. Please note that
  * the method for adding new rows is not supported by this type of data tables.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DataTableSymmetricalMatrixAdapter extends AbstractDataTable {
@@ -40,7 +40,14 @@ public class DataTableSymmetricalMatrixAdapter extends AbstractDataTable {
 
 	private Map<String, Integer> name2IndexMap = new HashMap<String, Integer>();
 
-	public DataTableSymmetricalMatrixAdapter(NumericalMatrix matrix, String name, String[] columnNames) {
+    /**
+     * Instantiates a new Data table symmetrical matrix adapter.
+     *
+     * @param matrix      the matrix
+     * @param name        the name
+     * @param columnNames the column names
+     */
+    public DataTableSymmetricalMatrixAdapter(NumericalMatrix matrix, String name, String[] columnNames) {
 		super(name);
 		this.matrix = matrix;
 		this.index2NameMap = columnNames;

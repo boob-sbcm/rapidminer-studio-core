@@ -42,54 +42,62 @@ import com.rapidminer.tools.FontTools;
  */
 public class SyntaxStyle {
 
-	/**
-	 * Creates a new SyntaxStyle.
-	 *
-	 * @param color
-	 *            The text color
-	 * @param italic
-	 *            True if the text should be italics
-	 * @param bold
-	 *            True if the text should be bold
-	 */
-	public SyntaxStyle(Color color, boolean italic, boolean bold) {
+    /**
+     * Creates a new SyntaxStyle.
+     *
+     * @param color  The text color
+     * @param italic True if the text should be italics
+     * @param bold   True if the text should be bold
+     */
+    public SyntaxStyle(Color color, boolean italic, boolean bold) {
 		this.color = color;
 		this.italic = italic;
 		this.bold = bold;
 	}
 
-	/**
-	 * Returns the color specified in this style.
-	 */
-	public Color getColor() {
+    /**
+     * Returns the color specified in this style.
+     *
+     * @return the color
+     */
+    public Color getColor() {
 		return color;
 	}
 
-	/**
-	 * Returns true if no font styles are enabled.
-	 */
-	public boolean isPlain() {
+    /**
+     * Returns true if no font styles are enabled.
+     *
+     * @return the boolean
+     */
+    public boolean isPlain() {
 		return !(bold || italic);
 	}
 
-	/**
-	 * Returns true if italics is enabled for this style.
-	 */
-	public boolean isItalic() {
+    /**
+     * Returns true if italics is enabled for this style.
+     *
+     * @return the boolean
+     */
+    public boolean isItalic() {
 		return italic;
 	}
 
-	/**
-	 * Returns true if boldface is enabled for this style.
-	 */
-	public boolean isBold() {
+    /**
+     * Returns true if boldface is enabled for this style.
+     *
+     * @return the boolean
+     */
+    public boolean isBold() {
 		return bold;
 	}
 
-	/**
-	 * Returns the specified font, but with the style's bold and italic flags applied.
-	 */
-	public Font getStyledFont(Font font) {
+    /**
+     * Returns the specified font, but with the style's bold and italic flags applied.
+     *
+     * @param font the font
+     * @return the styled font
+     */
+    public Font getStyledFont(Font font) {
 		if (font == null) {
 			throw new NullPointerException("font param must not" + " be null");
 		}
@@ -102,10 +110,13 @@ public class SyntaxStyle {
 		return lastStyledFont;
 	}
 
-	/**
-	 * Returns the font metrics for the styled font.
-	 */
-	@SuppressWarnings("deprecation")
+    /**
+     * Returns the font metrics for the styled font.
+     *
+     * @param font the font
+     * @return the font metrics
+     */
+    @SuppressWarnings("deprecation")
 	public FontMetrics getFontMetrics(Font font) {
 		if (font == null) {
 			throw new NullPointerException("font param must not" + " be null");
@@ -120,16 +131,14 @@ public class SyntaxStyle {
 		return fontMetrics;
 	}
 
-	/**
-	 * Sets the foreground color and font of the specified graphics context to that specified in
-	 * this style.
-	 *
-	 * @param gfx
-	 *            The graphics context
-	 * @param font
-	 *            The font to add the styles to
-	 */
-	public void setGraphicsFlags(Graphics gfx, Font font) {
+    /**
+     * Sets the foreground color and font of the specified graphics context to that specified in
+     * this style.
+     *
+     * @param gfx  The graphics context
+     * @param font The font to add the styles to
+     */
+    public void setGraphicsFlags(Graphics gfx, Font font) {
 		Font _font = getStyledFont(font);
 		gfx.setFont(_font);
 		gfx.setColor(color);

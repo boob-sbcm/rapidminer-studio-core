@@ -24,7 +24,8 @@ import java.util.Iterator;
 
 /**
  * This class is an adapter to obtain an ArrayList given an Iterator.
- * 
+ *
+ * @param <E> the type parameter
  * @author Michael Wurst, Ingo Mierswa
  */
 public class IterationArrayList<E> extends ArrayList<E> {
@@ -33,7 +34,12 @@ public class IterationArrayList<E> extends ArrayList<E> {
 
 	private static final int MAX_ENTRIES = 10;
 
-	public IterationArrayList(Iterator<E> it) {
+    /**
+     * Instantiates a new Iteration array list.
+     *
+     * @param it the it
+     */
+    public IterationArrayList(Iterator<E> it) {
 		while (it.hasNext()) {
 			add(it.next());
 		}

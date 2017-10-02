@@ -40,11 +40,19 @@ import java.util.List;
 
 
 /**
+ * The type Learner precondition.
+ *
  * @author Simon Fischer
  */
 public class LearnerPrecondition extends CapabilityPrecondition {
 
-	public LearnerPrecondition(CapabilityProvider capabilityProvider, InputPort inputPort) {
+    /**
+     * Instantiates a new Learner precondition.
+     *
+     * @param capabilityProvider the capability provider
+     * @param inputPort          the input port
+     */
+    public LearnerPrecondition(CapabilityProvider capabilityProvider, InputPort inputPort) {
 		super(capabilityProvider, inputPort);
 	}
 

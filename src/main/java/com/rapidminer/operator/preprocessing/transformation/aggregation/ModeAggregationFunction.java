@@ -26,20 +26,40 @@ import com.rapidminer.example.table.NominalMapping;
 /**
  * This class implements the Mode Aggregation function. This will calculate the mode value of the
  * attribute of the examples within a group.
- * 
+ *
  * @author Sebastian Land
  */
 public class ModeAggregationFunction extends AggregationFunction {
 
-	public static final String FUNCTION_MODE = "mode";
+    /**
+     * The constant FUNCTION_MODE.
+     */
+    public static final String FUNCTION_MODE = "mode";
 	private Attribute targetAttribute;
 
-	public ModeAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
+    /**
+     * Instantiates a new Mode aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     */
+    public ModeAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
 		this(sourceAttribute, ignoreMissings, countOnlyDisctinct, FUNCTION_MODE, FUNCTION_SEPARATOR_OPEN,
 				FUNCTION_SEPARATOR_CLOSE);
 	}
 
-	public ModeAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
+    /**
+     * Instantiates a new Mode aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public ModeAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
 			String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct);
 		this.targetAttribute = AttributeFactory.createAttribute(FUNCTION_MODE + FUNCTION_SEPARATOR_OPEN

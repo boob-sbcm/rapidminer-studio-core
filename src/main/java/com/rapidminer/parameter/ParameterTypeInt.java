@@ -27,7 +27,7 @@ import org.w3c.dom.Element;
  * A parameter type for integer values. Operators ask for the integer value with
  * {@link com.rapidminer.operator.Operator#getParameterAsInt(String)}. For infinite ranges
  * Integer.MIN_VALUE and Integer.MAX_VALUE should be used.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class ParameterTypeInt extends ParameterTypeNumber {
@@ -48,7 +48,13 @@ public class ParameterTypeInt extends ParameterTypeNumber {
 
 	private boolean noDefault = true;
 
-	public ParameterTypeInt(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type int.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeInt(Element element) throws XMLException {
 		super(element);
 
 		noDefault = element.hasAttribute(ATTRIBUTE_DEFAULT);
@@ -59,19 +65,45 @@ public class ParameterTypeInt extends ParameterTypeNumber {
 		min = Integer.parseInt(element.getAttribute(ATTRIBUTE_MIN));
 	}
 
-	public ParameterTypeInt(String key, String description, int min, int max) {
+    /**
+     * Instantiates a new Parameter type int.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param min         the min
+     * @param max         the max
+     */
+    public ParameterTypeInt(String key, String description, int min, int max) {
 		this(key, description, min, max, -1);
 		this.noDefault = true;
 		setOptional(false);
 	}
 
-	public ParameterTypeInt(String key, String description, int min, int max, boolean optional) {
+    /**
+     * Instantiates a new Parameter type int.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param min         the min
+     * @param max         the max
+     * @param optional    the optional
+     */
+    public ParameterTypeInt(String key, String description, int min, int max, boolean optional) {
 		this(key, description, min, max, -1);
 		this.noDefault = true;
 		setOptional(optional);
 	}
 
-	public ParameterTypeInt(String key, String description, int min, int max, int defaultValue) {
+    /**
+     * Instantiates a new Parameter type int.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param min          the min
+     * @param max          the max
+     * @param defaultValue the default value
+     */
+    public ParameterTypeInt(String key, String description, int min, int max, int defaultValue) {
 		super(key, description);
 		this.defaultValue = defaultValue;
 		this.min = min;
@@ -79,16 +111,36 @@ public class ParameterTypeInt extends ParameterTypeNumber {
 		this.noDefault = false;
 	}
 
-	public ParameterTypeInt(String key, String description, int min, int max, int defaultValue, boolean expert) {
+    /**
+     * Instantiates a new Parameter type int.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param min          the min
+     * @param max          the max
+     * @param defaultValue the default value
+     * @param expert       the expert
+     */
+    public ParameterTypeInt(String key, String description, int min, int max, int defaultValue, boolean expert) {
 		this(key, description, min, max, defaultValue);
 		setExpert(expert);
 	}
 
-	public void setMinValue(int min) {
+    /**
+     * Sets min value.
+     *
+     * @param min the min
+     */
+    public void setMinValue(int min) {
 		this.min = min;
 	}
 
-	public void getMaxValue(int max) {
+    /**
+     * Gets max value.
+     *
+     * @param max the max
+     */
+    public void getMaxValue(int max) {
 		this.max = max;
 	}
 
@@ -102,15 +154,30 @@ public class ParameterTypeInt extends ParameterTypeNumber {
 		return max;
 	}
 
-	public int getMinValueInt() {
+    /**
+     * Gets min value int.
+     *
+     * @return the min value int
+     */
+    public int getMinValueInt() {
 		return min;
 	}
 
-	public int getMaxValueInt() {
+    /**
+     * Gets max value int.
+     *
+     * @return the max value int
+     */
+    public int getMaxValueInt() {
 		return max;
 	}
 
-	public int getDefaultInt() {
+    /**
+     * Gets default int.
+     *
+     * @return the default int
+     */
+    public int getDefaultInt() {
 		return defaultValue;
 	}
 
@@ -155,7 +222,13 @@ public class ParameterTypeInt extends ParameterTypeNumber {
 		return range;
 	}
 
-	public String getStringRepresentation(int value) {
+    /**
+     * Gets string representation.
+     *
+     * @param value the value
+     * @return the string representation
+     */
+    public String getStringRepresentation(int value) {
 		String valueString = value + "";
 		if (value == Integer.MAX_VALUE) {
 			valueString = "+\u221E";

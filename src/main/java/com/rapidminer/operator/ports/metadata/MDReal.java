@@ -19,21 +19,36 @@
 package com.rapidminer.operator.ports.metadata;
 
 /**
+ * The type Md real.
+ *
  * @author Simon Fischer
  */
 public class MDReal extends MDNumber<Double> {
 
 	private static final long serialVersionUID = 1L;
 
-	public MDReal() {
+    /**
+     * Instantiates a new Md real.
+     */
+    public MDReal() {
 		super();
 	}
 
-	public MDReal(Double number) {
+    /**
+     * Instantiates a new Md real.
+     *
+     * @param number the number
+     */
+    public MDReal(Double number) {
 		super(number);
 	}
 
-	public MDReal(MDReal real) {
+    /**
+     * Instantiates a new Md real.
+     *
+     * @param real the real
+     */
+    public MDReal(MDReal real) {
 		super(real);
 	}
 

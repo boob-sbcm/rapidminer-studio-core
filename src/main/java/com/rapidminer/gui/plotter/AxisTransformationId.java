@@ -23,7 +23,7 @@ import java.text.DecimalFormat;
 
 /**
  * Transforms the given value by just returning it.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AxisTransformationId implements AxisTransformation {

@@ -38,13 +38,20 @@ import com.rapidminer.tools.Ontology;
 
 /**
  * Provides factory methods for text fixtures.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class ExampleTestTools {
 
-	/** Returns a DataRowReader returning the given values. */
-	public static DataRowReader createDataRowReader(DataRowFactory factory, Attribute[] attributes, String[][] values) {
+    /**
+     * Returns a DataRowReader returning the given values.  @param factory the factory
+     *
+     * @param factory    the factory
+     * @param attributes the attributes
+     * @param values     the values
+     * @return the data row reader
+     */
+    public static DataRowReader createDataRowReader(DataRowFactory factory, Attribute[] attributes, String[][] values) {
 		List<DataRow> dataRows = new LinkedList<DataRow>();
 		for (int i = 0; i < values.length; i++) {
 			dataRows.add(factory.create(values[i], attributes));
@@ -52,8 +59,13 @@ public class ExampleTestTools {
 		return new ListDataRowReader(dataRows.iterator());
 	}
 
-	/** Returns a DataRowReader returning the given values. */
-	public static DataRowReader createDataRowReader(double[][] values) {
+    /**
+     * Returns a DataRowReader returning the given values.  @param values the values
+     *
+     * @param values the values
+     * @return the data row reader
+     */
+    public static DataRowReader createDataRowReader(double[][] values) {
 		List<DataRow> dataRows = new LinkedList<DataRow>();
 		for (int i = 0; i < values.length; i++) {
 			dataRows.add(new DoubleArrayDataRow(values[i]));
@@ -61,11 +73,15 @@ public class ExampleTestTools {
 		return new ListDataRowReader(dataRows.iterator());
 	}
 
-	/**
-	 * Returns a DataRowReader returning random values (generated with fixed
-	 * random seed).
-	 */
-	public static DataRowReader createDataRowReader(int size, Attribute[] attributes) {
+    /**
+     * Returns a DataRowReader returning random values (generated with fixed
+     * random seed).
+     *
+     * @param size       the size
+     * @param attributes the attributes
+     * @return the data row reader
+     */
+    public static DataRowReader createDataRowReader(int size, Attribute[] attributes) {
 		Random random = new Random(0);
 		List<DataRow> dataRows = new LinkedList<DataRow>();
 		for (int i = 0; i < size; i++) {
@@ -85,12 +101,23 @@ public class ExampleTestTools {
 		return new ListDataRowReader(dataRows.iterator());
 	}
 
-	public static MemoryExampleTable createMemoryExampleTable(int size) {
+    /**
+     * Create memory example table memory example table.
+     *
+     * @param size the size
+     * @return the memory example table
+     */
+    public static MemoryExampleTable createMemoryExampleTable(int size) {
 		Attribute[] attributes = createFourAttributes();
 		return new MemoryExampleTable(Arrays.asList(attributes), createDataRowReader(size, attributes));
 	}
 
-	public static Attribute attributeDogCatMouse() {
+    /**
+     * Attribute dog cat mouse attribute.
+     *
+     * @return the attribute
+     */
+    public static Attribute attributeDogCatMouse() {
 		Attribute a = AttributeFactory.createAttribute("animal", Ontology.NOMINAL);
 		a.getMapping().mapString("dog");
 		a.getMapping().mapString("cat");
@@ -98,33 +125,56 @@ public class ExampleTestTools {
 		return a;
 	}
 
-	public static Attribute attributeYesNo() {
+    /**
+     * Attribute yes no attribute.
+     *
+     * @return the attribute
+     */
+    public static Attribute attributeYesNo() {
 		Attribute a = AttributeFactory.createAttribute("decision", Ontology.NOMINAL);
 		a.getMapping().mapString("no");
 		a.getMapping().mapString("yes");
 		return a;
 	}
 
-	public static Attribute attributeInt() {
+    /**
+     * Attribute int attribute.
+     *
+     * @return the attribute
+     */
+    public static Attribute attributeInt() {
 		Attribute a = AttributeFactory.createAttribute("integer", Ontology.INTEGER);
 		return a;
 	}
 
-	public static Attribute attributeReal() {
+    /**
+     * Attribute real attribute.
+     *
+     * @return the attribute
+     */
+    public static Attribute attributeReal() {
 		Attribute a = AttributeFactory.createAttribute("real", Ontology.REAL);
 		return a;
 	}
 
-	public static Attribute attributeReal(int index) {
+    /**
+     * Attribute real attribute.
+     *
+     * @param index the index
+     * @return the attribute
+     */
+    public static Attribute attributeReal(int index) {
 		Attribute a = AttributeFactory.createAttribute("real" + index, Ontology.REAL);
 		return a;
 	}
 
-	/**
-	 * Creates four attributes: "animal" (dog/cat/mouse), "decision" (yes/no),
-	 * "int", and "real".
-	 */
-	public static Attribute[] createFourAttributes() {
+    /**
+     * Creates four attributes: "animal" (dog/cat/mouse), "decision" (yes/no),
+     * "int", and "real".
+     *
+     * @return the attribute [ ]
+     */
+    public static Attribute[] createFourAttributes() {
 		Attribute[] attributes = new Attribute[4];
 		attributes[0] = ExampleTestTools.attributeDogCatMouse();
 		attributes[1] = ExampleTestTools.attributeYesNo();
@@ -135,7 +185,13 @@ public class ExampleTestTools {
 		return attributes;
 	}
 
-	public static Attribute createPredictedLabel(ExampleSet exampleSet) {
+    /**
+     * Create predicted label attribute.
+     *
+     * @param exampleSet the example set
+     * @return the attribute
+     */
+    public static Attribute createPredictedLabel(ExampleSet exampleSet) {
 		Attribute predictedLabel = AttributeFactory.createAttribute(exampleSet.getAttributes().getLabel(), Attributes.PREDICTION_NAME);
 		exampleSet.getExampleTable().addAttribute(predictedLabel);
 		exampleSet.getAttributes().setPredictedLabel(predictedLabel);

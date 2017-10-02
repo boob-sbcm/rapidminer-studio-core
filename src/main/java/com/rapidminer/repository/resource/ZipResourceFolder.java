@@ -52,7 +52,16 @@ public class ZipResourceFolder extends ResourceFolder {
 
 	private final ZipStreamResource zipStream;
 
-	protected ZipResourceFolder(ResourceFolder parent, String name, ZipStreamResource zipStream, String parentPath,
+    /**
+     * Instantiates a new Zip resource folder.
+     *
+     * @param parent     the parent
+     * @param name       the name
+     * @param zipStream  the zip stream
+     * @param parentPath the parent path
+     * @param repository the repository
+     */
+    protected ZipResourceFolder(ResourceFolder parent, String name, ZipStreamResource zipStream, String parentPath,
 			ResourceRepository repository) {
 		super(parent, name, parentPath + "/" + name, repository);
 		this.zipStream = zipStream;

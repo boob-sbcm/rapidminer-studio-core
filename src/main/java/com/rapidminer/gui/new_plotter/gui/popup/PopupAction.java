@@ -52,21 +52,36 @@ import javax.swing.SwingUtilities;
  * <li>gui.action.-key-.mne = Which will give you access to the mnemonics key. Please make it the
  * same case as in the label</li>
  * </ul>
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class PopupAction extends ResourceAction implements PopupComponentListener, ComponentListener {
 
-	public enum PopupPosition {
-		HORIZONTAL, VERTICAL
+    /**
+     * The enum Popup position.
+     */
+    public enum PopupPosition {
+        /**
+         * Horizontal popup position.
+         */
+        HORIZONTAL, /**
+         * Vertical popup position.
+         */
+        VERTICAL
 	}
 
 	private class ContainerPopupDialog extends JDialog {
 
 		private static final long serialVersionUID = 1L;
 
-		public ContainerPopupDialog(Window owner, Component comp, Point point) {
+        /**
+         * Instantiates a new Container popup dialog.
+         *
+         * @param owner the owner
+         * @param comp  the comp
+         * @param point the point
+         */
+        public ContainerPopupDialog(Window owner, Component comp, Point point) {
 			super(owner != null ? owner : RapidMinerGUI.getMainFrame());
 			this.add(comp);
 			this.setLocation(point);
@@ -91,14 +106,31 @@ public class PopupAction extends ResourceAction implements PopupComponentListene
 
 	private long hideTime = 0;
 
-	public PopupAction(boolean smallIcon, String i18nKey, Component component, Object... i18nArgs) {
+    /**
+     * Instantiates a new Popup action.
+     *
+     * @param smallIcon the small icon
+     * @param i18nKey   the 18 n key
+     * @param component the component
+     * @param i18nArgs  the 18 n args
+     */
+    public PopupAction(boolean smallIcon, String i18nKey, Component component, Object... i18nArgs) {
 		super(smallIcon, i18nKey, i18nArgs);
 
 		this.popupComponent = new PopupPanel(component);
 		popupComponent.addListener(this);
 	}
 
-	public PopupAction(boolean smallIcon, String i18nKey, Component component, PopupPosition position, Object... i18nArgs) {
+    /**
+     * Instantiates a new Popup action.
+     *
+     * @param smallIcon the small icon
+     * @param i18nKey   the 18 n key
+     * @param component the component
+     * @param position  the position
+     * @param i18nArgs  the 18 n args
+     */
+    public PopupAction(boolean smallIcon, String i18nKey, Component component, PopupPosition position, Object... i18nArgs) {
 		super(smallIcon, i18nKey, i18nArgs);
 
 		this.position = position;
@@ -106,13 +138,28 @@ public class PopupAction extends ResourceAction implements PopupComponentListene
 		popupComponent.addListener(this);
 	}
 
-	public PopupAction(String i18nKey, Component component, Object... i18nArgs) {
+    /**
+     * Instantiates a new Popup action.
+     *
+     * @param i18nKey   the 18 n key
+     * @param component the component
+     * @param i18nArgs  the 18 n args
+     */
+    public PopupAction(String i18nKey, Component component, Object... i18nArgs) {
 		super(i18nKey, i18nArgs);
 		this.popupComponent = new PopupPanel(component);
 		popupComponent.addListener(this);
 	}
 
-	public PopupAction(String i18nKey, Component component, PopupPosition position, Object... i18nArgs) {
+    /**
+     * Instantiates a new Popup action.
+     *
+     * @param i18nKey   the 18 n key
+     * @param component the component
+     * @param position  the position
+     * @param i18nArgs  the 18 n args
+     */
+    public PopupAction(String i18nKey, Component component, PopupPosition position, Object... i18nArgs) {
 		super(i18nKey, i18nArgs);
 		this.position = position;
 		this.popupComponent = new PopupPanel(component);

@@ -54,27 +54,37 @@ import org.xml.sax.SAXException;
  * AttributeWeights holds the information about the weights of attributes of an example set. It is
  * delivered by several feature weighting algorithms or learning schemes. The use of a linked hash
  * map ensures that the added features are stored in the same sequence they were added.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeWeights extends AverageVector {
 
 	private static final long serialVersionUID = 7000978931118131854L;
 
-	/** Indicates that the weights should not be sorted at all. */
-	public static final int NO_SORTING = 0;
+    /**
+     * Indicates that the weights should not be sorted at all.
+     */
+    public static final int NO_SORTING = 0;
 
-	/** Indicates that the weights should be sorted in descending order. */
-	public static final int DECREASING = -1;
+    /**
+     * Indicates that the weights should be sorted in descending order.
+     */
+    public static final int DECREASING = -1;
 
-	/** Indicates that the weights should be sorted in ascending order. */
-	public static final int INCREASING = 1;
+    /**
+     * Indicates that the weights should be sorted in ascending order.
+     */
+    public static final int INCREASING = 1;
 
-	/** Indicates that the the actual weights should be used for sorting. */
-	public static final int ORIGINAL_WEIGHTS = 0;
+    /**
+     * Indicates that the the actual weights should be used for sorting.
+     */
+    public static final int ORIGINAL_WEIGHTS = 0;
 
-	/** Indicates that the the absolute weights should be used for sorting. */
-	public static final int ABSOLUTE_WEIGHTS = 1;
+    /**
+     * Indicates that the the absolute weights should be used for sorting.
+     */
+    public static final int ABSOLUTE_WEIGHTS = 1;
 
 	/** This comparator sorts the names of attributes according to their weights. */
 	private class WeightComparator implements Comparator<String> {
@@ -85,8 +95,13 @@ public class AttributeWeights extends AverageVector {
 		/** Indicates the sorting direction. */
 		private final int direction;
 
-		/** Creates a new weight comparator. */
-		public WeightComparator(int direction, int comparatorWeightType) {
+        /**
+         * Creates a new weight comparator.  @param direction the direction
+         *
+         * @param direction            the direction
+         * @param comparatorWeightType the comparator weight type
+         */
+        public WeightComparator(int direction, int comparatorWeightType) {
 			this.comparatorWeightType = comparatorWeightType;
 			this.direction = direction;
 		}
@@ -117,14 +132,18 @@ public class AttributeWeights extends AverageVector {
 	/** Maps the name of an attribute to the corresponding attribute weight. */
 	private Map<String, AttributeWeight> weightMap = new LinkedHashMap<>();
 
-	/** Creates a new empty attribute weights object. */
-	public AttributeWeights() {}
+    /**
+     * Creates a new empty attribute weights object.
+     */
+    public AttributeWeights() {}
 
-	/**
-	 * Creates a new attribute weights object containing a weight of 1 for each of the given input
-	 * attributes.
-	 */
-	public AttributeWeights(ExampleSet exampleSet) {
+    /**
+     * Creates a new attribute weights object containing a weight of 1 for each of the given input
+     * attributes.
+     *
+     * @param exampleSet the example set
+     */
+    public AttributeWeights(ExampleSet exampleSet) {
 		for (Attribute attribute : exampleSet.getAttributes()) {
 			setWeight(attribute.getName(), 1.0d);
 		}
@@ -145,8 +164,13 @@ public class AttributeWeights extends AverageVector {
 		return "AttributeWeights";
 	}
 
-	/** Sets the weight for the attribute with the given name. */
-	public void setWeight(String name, double weight) {
+    /**
+     * Sets the weight for the attribute with the given name.  @param name the name
+     *
+     * @param name   the name
+     * @param weight the weight
+     */
+    public void setWeight(String name, double weight) {
 		AttributeWeight oldWeight = weightMap.get(name);
 		if (Double.isNaN(weight)) {
 			weightMap.remove(name);
@@ -160,11 +184,14 @@ public class AttributeWeights extends AverageVector {
 		}
 	}
 
-	/**
-	 * Returns the weight for the attribute with the given name. Returns Double.NaN if the weight
-	 * for the queried attribute is not known.
-	 */
-	public double getWeight(String name) {
+    /**
+     * Returns the weight for the attribute with the given name. Returns Double.NaN if the weight
+     * for the queried attribute is not known.
+     *
+     * @param name the name
+     * @return the weight
+     */
+    public double getWeight(String name) {
 		AttributeWeight weight = weightMap.get(name);
 		if (weight == null) {
 			return Double.NaN;
@@ -173,23 +200,39 @@ public class AttributeWeights extends AverageVector {
 		}
 	}
 
-	/** Returns the currently used weight type. */
-	public int getWeightType() {
+    /**
+     * Returns the currently used weight type.  @return the weight type
+     *
+     * @return the weight type
+     */
+    public int getWeightType() {
 		return weightType;
 	}
 
-	/** Returns the currently used weight type. */
-	public void setWeightType(int weightType) {
+    /**
+     * Returns the currently used weight type.  @param weightType the weight type
+     *
+     * @param weightType the weight type
+     */
+    public void setWeightType(int weightType) {
 		this.weightType = weightType;
 	}
 
-	/** Returns the currently used sorting type. */
-	public int getSortingType() {
+    /**
+     * Returns the currently used sorting type.  @return the sorting type
+     *
+     * @return the sorting type
+     */
+    public int getSortingType() {
 		return sortType;
 	}
 
-	/** Sets the currently used sorting type. */
-	public void setSortingType(int sortingType) {
+    /**
+     * Sets the currently used sorting type.  @param sortingType the sorting type
+     *
+     * @param sortingType the sorting type
+     */
+    public void setSortingType(int sortingType) {
 		this.sortType = sortingType;
 	}
 
@@ -199,17 +242,21 @@ public class AttributeWeights extends AverageVector {
 		return weightMap.size();
 	}
 
-	/**
-	 * This method removes the given attribute weight from this object.
-	 */
-	public void removeAttributeWeight(String attributeName) {
+    /**
+     * This method removes the given attribute weight from this object.
+     *
+     * @param attributeName the attribute name
+     */
+    public void removeAttributeWeight(String attributeName) {
 		this.weightMap.remove(attributeName);
 	}
 
-	/**
-	 * Returns an set of attribute names in this map ordered by their insertion time.
-	 */
-	public Set<String> getAttributeNames() {
+    /**
+     * Returns an set of attribute names in this map ordered by their insertion time.
+     *
+     * @return the attribute names
+     */
+    public Set<String> getAttributeNames() {
 		return weightMap.keySet();
 	}
 
@@ -238,28 +285,27 @@ public class AttributeWeights extends AverageVector {
 		return this.weightMap.hashCode();
 	}
 
-	/**
-	 * Sorts the given array of attribute names according to their weight, the sorting direction
-	 * (ascending or descending), and with respect to the fact if original or absolute weights
-	 * should be used. Ascending means that the attributes with the smallest weights come first.
-	 * 
-	 * @param direction
-	 *            <code>INCREASING</code> or <code>DECREASING</code>
-	 * @param comparatorType
-	 *            <code>WEIGHT</code> or <code>WEIGHT_ABSOLUTE</code>.
-	 */
-	public void sortByWeight(String[] attributeNames, int direction, int comparatorType) {
+    /**
+     * Sorts the given array of attribute names according to their weight, the sorting direction
+     * (ascending or descending), and with respect to the fact if original or absolute weights
+     * should be used. Ascending means that the attributes with the smallest weights come first.
+     *
+     * @param attributeNames the attribute names
+     * @param direction      <code>INCREASING</code> or <code>DECREASING</code>
+     * @param comparatorType <code>WEIGHT</code> or <code>WEIGHT_ABSOLUTE</code>.
+     */
+    public void sortByWeight(String[] attributeNames, int direction, int comparatorType) {
 		Arrays.sort(attributeNames, new WeightComparator(direction, comparatorType));
 	}
 
-	/**
-	 * This will sort the weights either ascending if the boolean flag is true or descending. * @param
-	 * direction <code>ASCENDING</code> or <code>DESCENDING</code>
-	 * 
-	 * @param comparatorType
-	 *            <code>WEIGHT</code> or <code>WEIGHT_ABSOLUTE</code>.
-	 */
-	public void sort(int direction, int comparatorType) {
+    /**
+     * This will sort the weights either ascending if the boolean flag is true or descending. * @param
+     * direction <code>ASCENDING</code> or <code>DESCENDING</code>
+     *
+     * @param direction      the direction
+     * @param comparatorType <code>WEIGHT</code> or <code>WEIGHT_ABSOLUTE</code>.
+     */
+    public void sort(int direction, int comparatorType) {
 		Map<String, AttributeWeight> newWeightMap = new LinkedHashMap<>();
 		ArrayList<String> attributes = new ArrayList<>(weightMap.keySet());
 		Collections.sort(attributes, new WeightComparator(direction, comparatorType));
@@ -269,12 +315,24 @@ public class AttributeWeights extends AverageVector {
 		weightMap = newWeightMap;
 	}
 
-	/** Saves the attribute weights into an XML file. */
-	public void save(File file) throws IOException {
+    /**
+     * Saves the attribute weights into an XML file.  @param file the file
+     *
+     * @param file the file
+     * @throws IOException the io exception
+     */
+    public void save(File file) throws IOException {
 		writeAttributeWeights(file, Tools.getDefaultEncoding());
 	}
 
-	public void writeAttributeWeights(File file, Charset encoding) throws IOException {
+    /**
+     * Write attribute weights.
+     *
+     * @param file     the file
+     * @param encoding the encoding
+     * @throws IOException the io exception
+     */
+    public void writeAttributeWeights(File file, Charset encoding) throws IOException {
 		try (FileWriter fw = new FileWriter(file); PrintWriter out = new PrintWriter(fw)) {
 			out.println("<?xml version=\"1.0\" encoding=\"" + encoding + "\"?>");
 			out.println("<attributeweights version=\"" + RapidMiner.getShortVersion() + "\">");
@@ -285,8 +343,14 @@ public class AttributeWeights extends AverageVector {
 		}
 	}
 
-	/** Loads a new AttributeWeights object from the given XML file. */
-	public static AttributeWeights load(File file) throws IOException {
+    /**
+     * Loads a new AttributeWeights object from the given XML file.  @param file the file
+     *
+     * @param file the file
+     * @return the attribute weights
+     * @throws IOException the io exception
+     */
+    public static AttributeWeights load(File file) throws IOException {
 		AttributeWeights result = new AttributeWeights();
 		Document document = null;
 		try {
@@ -325,11 +389,21 @@ public class AttributeWeights extends AverageVector {
 		return result;
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "wgt";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "attribute weights file";
 	}
 
@@ -348,8 +422,10 @@ public class AttributeWeights extends AverageVector {
 		return new AttributeWeights(this);
 	}
 
-	/** This method normalizes all weights to the range 0 to 1. */
-	public void normalize() {
+    /**
+     * This method normalizes all weights to the range 0 to 1.
+     */
+    public void normalize() {
 		double weightMin = Double.POSITIVE_INFINITY;
 		double weightMax = Double.NEGATIVE_INFINITY;
 		for (String name : getAttributeNames()) {
@@ -369,7 +445,12 @@ public class AttributeWeights extends AverageVector {
 		}
 	}
 
-	public DataTable createDataTable() {
+    /**
+     * Create data table data table.
+     *
+     * @return the data table
+     */
+    public DataTable createDataTable() {
 		DataTable dataTable = new SimpleDataTable("Attribute Weights", new String[] { "attribute", "weight" });
 		for (Map.Entry<String, AttributeWeight> entry : weightMap.entrySet()) {
 			String attName = entry.getKey();

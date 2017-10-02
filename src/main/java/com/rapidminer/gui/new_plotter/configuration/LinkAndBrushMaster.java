@@ -39,8 +39,9 @@ import org.jfree.data.Range;
 
 
 /**
+ * The type Link and brush master.
+ *
  * @author Nils Woehler
- * 
  */
 public class LinkAndBrushMaster implements LinkAndBrushSelectionListener {
 
@@ -55,17 +56,32 @@ public class LinkAndBrushMaster implements LinkAndBrushSelectionListener {
 	/** the list of {@link LinkAndBrushListener}s */
 	private transient List<WeakReference<LinkAndBrushListener>> listeners = new LinkedList<WeakReference<LinkAndBrushListener>>();
 
-	public LinkAndBrushMaster(PlotConfiguration plotConfig) {
+    /**
+     * Instantiates a new Link and brush master.
+     *
+     * @param plotConfig the plot config
+     */
+    public LinkAndBrushMaster(PlotConfiguration plotConfig) {
 		this.plotConfig = plotConfig;
 	}
 
-	public List<PlotConfigurationError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<PlotConfigurationError> getErrors() {
 		List<PlotConfigurationError> errors = new LinkedList<PlotConfigurationError>();
 
 		return errors;
 	}
 
-	public List<PlotConfigurationError> getWarnings() {
+    /**
+     * Gets warnings.
+     *
+     * @return the warnings
+     */
+    public List<PlotConfigurationError> getWarnings() {
 		List<PlotConfigurationError> warnings = new LinkedList<PlotConfigurationError>();
 
 		if (zoomedIn) {
@@ -75,11 +91,21 @@ public class LinkAndBrushMaster implements LinkAndBrushSelectionListener {
 		return warnings;
 	}
 
-	public boolean isZoomedIn() {
+    /**
+     * Is zoomed in boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isZoomedIn() {
 		return zoomedIn;
 	}
 
-	public void clearZooming(boolean fireEvent) {
+    /**
+     * Clear zooming.
+     *
+     * @param fireEvent the fire event
+     */
+    public void clearZooming(boolean fireEvent) {
 		zoomedIn = false;
 		domainAxisZoom = null;
 		rangeAxisIndexToZoomMap.clear();
@@ -89,7 +115,12 @@ public class LinkAndBrushMaster implements LinkAndBrushSelectionListener {
 		}
 	}
 
-	public void clearRangeAxisZooming(boolean fireEvent) {
+    /**
+     * Clear range axis zooming.
+     *
+     * @param fireEvent the fire event
+     */
+    public void clearRangeAxisZooming(boolean fireEvent) {
 		rangeAxisIndexToZoomMap.clear();
 		zoomedIn = (domainAxisZoom != null);
 		if (fireEvent) {
@@ -98,7 +129,12 @@ public class LinkAndBrushMaster implements LinkAndBrushSelectionListener {
 		}
 	}
 
-	public void clearDomainAxisZooming(boolean fireEvent) {
+    /**
+     * Clear domain axis zooming.
+     *
+     * @param fireEvent the fire event
+     */
+    public void clearDomainAxisZooming(boolean fireEvent) {
 		domainAxisZoom = null;
 		zoomedIn = (rangeAxisIndexToZoomMap.keySet().size() > 0);
 		if (fireEvent) {
@@ -107,18 +143,24 @@ public class LinkAndBrushMaster implements LinkAndBrushSelectionListener {
 		}
 	}
 
-	/**
-	 * Returns <code>null</code> if isZoomedIn() returns <code>false</code>.
-	 */
-	public Range getDomainZoom() {
+    /**
+     * Returns <code>null</code> if isZoomedIn() returns <code>false</code>.
+     *
+     * @return the domain zoom
+     */
+    public Range getDomainZoom() {
 		return domainAxisZoom;
 	}
 
-	/**
-	 * Returns <code>null</code> if isZommedIn() returns <code>false</code> or if checking for a at
-	 * zoom time unknown {@link RangeAxisConfig}.
-	 */
-	public Range getRangeAxisZoom(RangeAxisConfig rangeAxisConfig, PlotConfiguration plotConfig) {
+    /**
+     * Returns <code>null</code> if isZommedIn() returns <code>false</code> or if checking for a at
+     * zoom time unknown {@link RangeAxisConfig}.
+     *
+     * @param rangeAxisConfig the range axis config
+     * @param plotConfig      the plot config
+     * @return the range axis zoom
+     */
+    public Range getRangeAxisZoom(RangeAxisConfig rangeAxisConfig, PlotConfiguration plotConfig) {
 		int indexOf = plotConfig.getIndexOfRangeAxisConfigById(rangeAxisConfig.getId());
 		return rangeAxisIndexToZoomMap.get(indexOf);
 	}
@@ -209,14 +251,13 @@ public class LinkAndBrushMaster implements LinkAndBrushSelectionListener {
 		informLinkAndBrushListeners(e);
 	}
 
-	/**
-	 * Sets the domain axis zoom.
-	 * 
-	 * @param domainAxisRange
-	 * @param e
-	 *            if {@code null}, will not inform listeners
-	 */
-	public void setDomainAxisZoom(Range domainAxisZoom, LinkAndBrushSelection e) {
+    /**
+     * Sets the domain axis zoom.
+     *
+     * @param domainAxisZoom the domain axis zoom
+     * @param e              if {@code null}, will not inform listeners
+     */
+    public void setDomainAxisZoom(Range domainAxisZoom, LinkAndBrushSelection e) {
 		if (domainAxisZoom == null) {
 			throw new IllegalArgumentException("domainAxisRange must not be null!");
 		}
@@ -227,15 +268,14 @@ public class LinkAndBrushMaster implements LinkAndBrushSelectionListener {
 		}
 	}
 
-	/**
-	 * Sets the range axis zoom of the range axis specified by the given index.
-	 * 
-	 * @param indexOfRangeAxis
-	 * @param rangeAxisZoom
-	 * @param e
-	 *            if {@code null}, will not inform listeners
-	 */
-	public void setRangeAxisZoom(int indexOfRangeAxis, Range rangeAxisZoom, LinkAndBrushSelection e) {
+    /**
+     * Sets the range axis zoom of the range axis specified by the given index.
+     *
+     * @param indexOfRangeAxis the index of range axis
+     * @param rangeAxisZoom    the range axis zoom
+     * @param e                if {@code null}, will not inform listeners
+     */
+    public void setRangeAxisZoom(int indexOfRangeAxis, Range rangeAxisZoom, LinkAndBrushSelection e) {
 		if (indexOfRangeAxis < 0) {
 			throw new IllegalArgumentException("indexOfRangeAxis must not be < 0");
 		}
@@ -246,7 +286,13 @@ public class LinkAndBrushMaster implements LinkAndBrushSelectionListener {
 		}
 	}
 
-	protected LinkAndBrushMaster clone(PlotConfiguration plotConfig) {
+    /**
+     * Clone link and brush master.
+     *
+     * @param plotConfig the plot config
+     * @return the link and brush master
+     */
+    protected LinkAndBrushMaster clone(PlotConfiguration plotConfig) {
 		LinkAndBrushMaster clone = new LinkAndBrushMaster(plotConfig);
 
 		clone.domainAxisZoom = this.domainAxisZoom;
@@ -264,21 +310,21 @@ public class LinkAndBrushMaster implements LinkAndBrushSelectionListener {
 		return clone;
 	}
 
-	/**
-	 * Adds the given {@link LinkAndBrushListener} to this {@link LinkAndBrushMaster}.
-	 * 
-	 * @param l
-	 */
-	public void addLinkAndBrushListener(LinkAndBrushListener l) {
+    /**
+     * Adds the given {@link LinkAndBrushListener} to this {@link LinkAndBrushMaster}.
+     *
+     * @param l the l
+     */
+    public void addLinkAndBrushListener(LinkAndBrushListener l) {
 		listeners.add(new WeakReference<LinkAndBrushListener>(l));
 	}
 
-	/**
-	 * Removes the given {@link LinkAndBrushListener} from this {@link LinkAndBrushMaster}.
-	 * 
-	 * @param l
-	 */
-	public void removeLinkAndBrushListener(LinkAndBrushListener l) {
+    /**
+     * Removes the given {@link LinkAndBrushListener} from this {@link LinkAndBrushMaster}.
+     *
+     * @param l the l
+     */
+    public void removeLinkAndBrushListener(LinkAndBrushListener l) {
 		Iterator<WeakReference<LinkAndBrushListener>> it = listeners.iterator();
 		while (it.hasNext()) {
 			LinkAndBrushListener listener = it.next().get();
@@ -310,11 +356,21 @@ public class LinkAndBrushMaster implements LinkAndBrushSelectionListener {
 		}
 	}
 
-	public boolean isUseGrayForOutliers() {
+    /**
+     * Is use gray for outliers boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isUseGrayForOutliers() {
 		return useGrayForOutliers;
 	}
 
-	public void setUseGrayForOutliers(boolean useGrayForOutliers) {
+    /**
+     * Sets use gray for outliers.
+     *
+     * @param useGrayForOutliers the use gray for outliers
+     */
+    public void setUseGrayForOutliers(boolean useGrayForOutliers) {
 		this.useGrayForOutliers = useGrayForOutliers;
 	}
 }

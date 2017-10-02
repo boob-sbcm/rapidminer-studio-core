@@ -21,9 +21,8 @@ package com.rapidminer.tools.config.actions;
 /**
  * Simple implementation of the {@link ActionResult} interface which can be used to describe the
  * outcome of an action.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class SimpleActionResult implements ActionResult {
 
@@ -33,13 +32,13 @@ public class SimpleActionResult implements ActionResult {
 	/** the message to describe the result */
 	private String message;
 
-	/**
-	 * Creates a new {@link SimpleActionResult} instance.
-	 * 
-	 * @param message
-	 * @param result
-	 */
-	public SimpleActionResult(String message, Result result) {
+    /**
+     * Creates a new {@link SimpleActionResult} instance.
+     *
+     * @param message the message
+     * @param result  the result
+     */
+    public SimpleActionResult(String message, Result result) {
 		this.message = message;
 		this.result = result;
 	}

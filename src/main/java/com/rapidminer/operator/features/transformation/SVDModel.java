@@ -78,7 +78,14 @@ public class SVDModel extends AbstractModel implements ComponentWeightsCreatable
 
 	private boolean keepAttributes = false;
 
-	public SVDModel(ExampleSet exampleSet, double[] singularValues, Matrix vMatrix) {
+    /**
+     * Instantiates a new Svd model.
+     *
+     * @param exampleSet     the example set
+     * @param singularValues the singular values
+     * @param vMatrix        the v matrix
+     */
+    public SVDModel(ExampleSet exampleSet, double[] singularValues, Matrix vMatrix) {
 		super(exampleSet);
 
 		this.vMatrix = vMatrix;
@@ -108,52 +115,110 @@ public class SVDModel extends AbstractModel implements ComponentWeightsCreatable
 
 	}
 
-	public String[] getAttributeNames() {
+    /**
+     * Get attribute names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getAttributeNames() {
 		return attributeNames;
 	}
 
-	public double getSingularValue(int index) {
+    /**
+     * Gets singular value.
+     *
+     * @param index the index
+     * @return the singular value
+     */
+    public double getSingularValue(int index) {
 		return this.singularValues[index];
 	}
 
-	public double getSingularValueProportion(int index) {
+    /**
+     * Gets singular value proportion.
+     *
+     * @param index the index
+     * @return the singular value proportion
+     */
+    public double getSingularValueProportion(int index) {
 		return this.singularValues[index] / singularValuesSum;
 	}
 
-	public double getCumulativeSingularValue(int index) {
+    /**
+     * Gets cumulative singular value.
+     *
+     * @param index the index
+     * @return the cumulative singular value
+     */
+    public double getCumulativeSingularValue(int index) {
 		return this.cumulativeSingularValueProportion[index] * singularValuesSum;
 	}
 
-	public double getCumulativeSingularValueProportion(int index) {
+    /**
+     * Gets cumulative singular value proportion.
+     *
+     * @param index the index
+     * @return the cumulative singular value proportion
+     */
+    public double getCumulativeSingularValueProportion(int index) {
 		return this.cumulativeSingularValueProportion[index];
 	}
 
-	public double getSingularVectorValue(int vectorIndex, int component) {
+    /**
+     * Gets singular vector value.
+     *
+     * @param vectorIndex the vector index
+     * @param component   the component
+     * @return the singular vector value
+     */
+    public double getSingularVectorValue(int vectorIndex, int component) {
 		return this.vMatrix.get(component, vectorIndex);
 	}
 
-	public double getProportionThreshold() {
+    /**
+     * Gets proportion threshold.
+     *
+     * @return the proportion threshold
+     */
+    public double getProportionThreshold() {
 		return this.proportionThreshold;
 	}
 
-	public int getMaximumNumberOfComponents() {
+    /**
+     * Gets maximum number of components.
+     *
+     * @return the maximum number of components
+     */
+    public int getMaximumNumberOfComponents() {
 		return attributeNames.length;
 	}
 
-	/**
-	 * This returns the total number of possible components.
-	 */
-	public int getNumberOfComponents() {
+    /**
+     * This returns the total number of possible components.
+     *
+     * @return the number of components
+     */
+    public int getNumberOfComponents() {
 		return singularValues.length;
 	}
 
-	public void setVarianceThreshold(double threshold) {
+    /**
+     * Sets variance threshold.
+     *
+     * @param threshold the threshold
+     */
+    public void setVarianceThreshold(double threshold) {
 		this.manualNumber = false;
 		this.proportionThreshold = threshold;
 		this.numberOfComponents = -1;
 	}
 
-	public void setNumberOfComponents(int numberOfComponents) {
+    /**
+     * Sets number of components.
+     *
+     * @param numberOfComponents the number of components
+     */
+    public void setNumberOfComponents(int numberOfComponents) {
 		this.proportionThreshold = 0.95;
 		this.manualNumber = true;
 		this.numberOfComponents = numberOfComponents;
@@ -263,7 +328,10 @@ public class SVDModel extends AbstractModel implements ComponentWeightsCreatable
 		return exampleSet;
 	}
 
-	public void enableLegacyMode() {
+    /**
+     * Enable legacy mode.
+     */
+    public void enableLegacyMode() {
 		this.useLegacyNames = true;
 	}
 

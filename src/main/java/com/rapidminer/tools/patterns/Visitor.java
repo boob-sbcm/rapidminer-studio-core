@@ -20,11 +20,17 @@ package com.rapidminer.tools.patterns;
 
 /**
  * Interface for the visitor pattern.
- * 
+ *
+ * @param <T> the type parameter
  * @author Simon Fischer
  */
 public interface Visitor<T> {
 
-	public void visit(T element);
+    /**
+     * Visit.
+     *
+     * @param element the element
+     */
+    public void visit(T element);
 
 }

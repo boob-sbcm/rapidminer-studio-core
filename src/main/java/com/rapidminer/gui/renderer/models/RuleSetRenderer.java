@@ -27,7 +27,8 @@ import javax.swing.table.TableModel;
 
 
 /**
- * 
+ * The type Rule set renderer.
+ *
  * @author Sebastian Land
  */
 public class RuleSetRenderer extends AbstractTableModelTableRenderer {

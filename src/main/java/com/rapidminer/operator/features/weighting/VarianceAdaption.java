@@ -28,7 +28,7 @@ import java.util.LinkedList;
 /**
  * Implements the 1/5-Rule for dynamic parameter adaption of the variance of a
  * {@link WeightingMutation}.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class VarianceAdaption implements PopulationOperator {
@@ -42,11 +42,14 @@ public class VarianceAdaption implements PopulationOperator {
 	/** Remember for all positions if an improval was found. */
 	private LinkedList<Boolean> successList = new LinkedList<Boolean>();
 
-	/**
-	 * The interval size should be as big as the changeable components, i.e. the number of
-	 * attributes.
-	 */
-	public VarianceAdaption(WeightingMutation weightingMutation, int intervalSize) {
+    /**
+     * The interval size should be as big as the changeable components, i.e. the number of
+     * attributes.
+     *
+     * @param weightingMutation the weighting mutation
+     * @param intervalSize      the interval size
+     */
+    public VarianceAdaption(WeightingMutation weightingMutation, int intervalSize) {
 		this.weightingMutation = weightingMutation;
 		this.intervalSize = intervalSize;
 	}

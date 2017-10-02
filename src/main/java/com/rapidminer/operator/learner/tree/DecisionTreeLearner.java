@@ -37,36 +37,51 @@ import com.rapidminer.parameter.ParameterTypeInt;
  * powerful classification methods which often can also easily be understood. This decision tree
  * learner works similar to Quinlan's C4.5 or CART.
  * </p>
- *
+ * <p>
  * <p>
  * The actual type of the tree is determined by the criterion, e.g. using gain_ratio or Gini for
  * CART / C4.5.
  * </p>
  *
+ * @author Sebastian Land, Ingo Mierswa
  * @rapidminer.index C4.5
  * @rapidminer.index CART
- *
  * @deprecated Use {@link ParallelDecisionTreeLearner} instead
- *
- * @author Sebastian Land, Ingo Mierswa
  */
 @Deprecated
 public class DecisionTreeLearner extends AbstractTreeLearner {
 
-	/** The parameter name for the maximum tree depth. */
-	public static final String PARAMETER_MAXIMAL_DEPTH = "maximal_depth";
+    /**
+     * The parameter name for the maximum tree depth.
+     */
+    public static final String PARAMETER_MAXIMAL_DEPTH = "maximal_depth";
 
-	/** The parameter name for &quot;The confidence level used for pruning.&quot; */
-	public static final String PARAMETER_CONFIDENCE = "confidence";
+    /**
+     * The parameter name for &quot;The confidence level used for pruning.&quot;
+     */
+    public static final String PARAMETER_CONFIDENCE = "confidence";
 
-	/** The parameter name for &quot;Disables the pruning and delivers an unpruned tree.&quot; */
-	public static final String PARAMETER_NO_PRUNING = "no_pruning";
+    /**
+     * The parameter name for &quot;Disables the pruning and delivers an unpruned tree.&quot;
+     */
+    public static final String PARAMETER_NO_PRUNING = "no_pruning";
 
-	public static final String PARAMETER_NO_PRE_PRUNING = "no_pre_pruning";
+    /**
+     * The constant PARAMETER_NO_PRE_PRUNING.
+     */
+    public static final String PARAMETER_NO_PRE_PRUNING = "no_pre_pruning";
 
-	public static final String PARAMETER_NUMBER_OF_PREPRUNING_ALTERNATIVES = "number_of_prepruning_alternatives";
+    /**
+     * The constant PARAMETER_NUMBER_OF_PREPRUNING_ALTERNATIVES.
+     */
+    public static final String PARAMETER_NUMBER_OF_PREPRUNING_ALTERNATIVES = "number_of_prepruning_alternatives";
 
-	public DecisionTreeLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Decision tree learner.
+     *
+     * @param description the description
+     */
+    public DecisionTreeLearner(OperatorDescription description) {
 		super(description);
 	}
 

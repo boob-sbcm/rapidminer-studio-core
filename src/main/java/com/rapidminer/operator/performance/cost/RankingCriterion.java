@@ -46,7 +46,14 @@ public class RankingCriterion extends MeasuredPerformance {
 	private double[] rankIntervallCost;
 	private HashMap<String, Integer> confidenceAttributesMap = new HashMap<String, Integer>();
 
-	public RankingCriterion(int[] rankIntervallStarts, double[] rankIntervallCost, ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Ranking criterion.
+     *
+     * @param rankIntervallStarts the rank intervall starts
+     * @param rankIntervallCost   the rank intervall cost
+     * @param exampleSet          the example set
+     */
+    public RankingCriterion(int[] rankIntervallStarts, double[] rankIntervallCost, ExampleSet exampleSet) {
 		label = exampleSet.getAttributes().getLabel();
 		this.rankIntervallStarts = rankIntervallStarts;
 		this.rankIntervallCost = rankIntervallCost;

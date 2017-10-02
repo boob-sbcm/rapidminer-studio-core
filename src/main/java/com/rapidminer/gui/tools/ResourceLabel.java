@@ -27,25 +27,29 @@ import javax.swing.JLabel;
 
 
 /**
- * 
+ * The type Resource label.
+ *
  * @author Simon Fischer
  */
 public class ResourceLabel extends JLabel {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * This will construct a JLabel with the label, tooltip, icon and mnemonic set by a resource
-	 * identifier. The following properties from the gui resource bundles are used:
-	 * <ul>
-	 * <li>gui.label.-key-.label as label</li>
-	 * <li>gui.label.-key-.tip as tooltip</li>
-	 * <li>gui.label.-key-.mne as mnemonic</li>
-	 * <li>gui.label.-key-.icon as icon. Here the size must be assigned by leeding 24/ or something
-	 * like this</li>
-	 * </ul>
-	 */
-	public ResourceLabel(String i18nKey, Object... i18nArgs) {
+    /**
+     * This will construct a JLabel with the label, tooltip, icon and mnemonic set by a resource
+     * identifier. The following properties from the gui resource bundles are used:
+     * <ul>
+     * <li>gui.label.-key-.label as label</li>
+     * <li>gui.label.-key-.tip as tooltip</li>
+     * <li>gui.label.-key-.mne as mnemonic</li>
+     * <li>gui.label.-key-.icon as icon. Here the size must be assigned by leeding 24/ or something
+     * like this</li>
+     * </ul>
+     *
+     * @param i18nKey  the 18 n key
+     * @param i18nArgs the 18 n args
+     */
+    public ResourceLabel(String i18nKey, Object... i18nArgs) {
 		super((i18nArgs == null) || (i18nArgs.length == 0) ? getMessage(i18nKey + ".label") : MessageFormat.format(
 				getMessage(i18nKey + ".label"), i18nArgs));
 		setToolTipText(getMessageOrNull(i18nKey + ".tip"));

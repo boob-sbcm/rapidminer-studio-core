@@ -36,12 +36,15 @@ import com.rapidminer.repository.gui.RepositoryLocationChooser;
  */
 public class RepositoryGuiTools {
 
-	/**
-	 * This method will return an {@link Entry} if the given location is a valid repository
-	 * location. If the entry already exists, the user will be asked if it can be overwritten. Null
-	 * is returned if the user denies to overwrite the existing file.
-	 */
-	public static BlobEntry createBlobEntry(String loc) {
+    /**
+     * This method will return an {@link Entry} if the given location is a valid repository
+     * location. If the entry already exists, the user will be asked if it can be overwritten. Null
+     * is returned if the user denies to overwrite the existing file.
+     *
+     * @param loc the loc
+     * @return the blob entry
+     */
+    public static BlobEntry createBlobEntry(String loc) {
 		try {
 			RepositoryLocation location = new RepositoryLocation(loc);
 			Entry entry = location.locateEntry();
@@ -70,24 +73,29 @@ public class RepositoryGuiTools {
 		return null;
 	}
 
-	/**
-	 * This method will show an Repository Entry chooser and returns the entry if the user has
-	 * chosen an unused entry or confirmed to overwrite the existing. Otherwise null is returned.
-	 */
-	public static BlobEntry selectBlobEntryForStoring() {
+    /**
+     * This method will show an Repository Entry chooser and returns the entry if the user has
+     * chosen an unused entry or confirmed to overwrite the existing. Otherwise null is returned.
+     *
+     * @return the blob entry
+     */
+    public static BlobEntry selectBlobEntryForStoring() {
 		String selectEntry = RepositoryLocationChooser.selectEntry(null, null, true);
 		return createBlobEntry(selectEntry);
 	}
 
-	/**
-	 * This method will show an Repository Entry chooser and lets the user choose an entry. This
-	 * entry must be of the type {@link BlobEntry}, otherwise an error message is shown. If the user
-	 * aborts the selection, null is returned.
-	 *
-	 * TODO: Needs to add filter mechanism to {@link RepositoryLocationChooser} to restrict shown
-	 * types to {@link BlobEntry}s.
-	 */
-	public static BlobEntry selectBlobEntryForLoading(String mimeType) {
+    /**
+     * This method will show an Repository Entry chooser and lets the user choose an entry. This
+     * entry must be of the type {@link BlobEntry}, otherwise an error message is shown. If the user
+     * aborts the selection, null is returned.
+     * <p>
+     * TODO: Needs to add filter mechanism to {@link RepositoryLocationChooser} to restrict shown
+     * types to {@link BlobEntry}s.
+     *
+     * @param mimeType the mime type
+     * @return the blob entry
+     */
+    public static BlobEntry selectBlobEntryForLoading(String mimeType) {
 		String locationString = RepositoryLocationChooser.selectEntry(null, null);
 		if (locationString != null) {
 			RepositoryLocation location;
@@ -115,12 +123,16 @@ public class RepositoryGuiTools {
 		return null;
 	}
 
-	/**
-	 * This method will check if the given location is either empty or is an BlobEntry of the given
-	 * mimeType. If neither is the case, null will be returned. Otherwise the BlobEntry denoting
-	 * this location will be returned.
-	 */
-	public static BlobEntry isBlobEntryForStoring(String repositoryLocation, String mimeType) {
+    /**
+     * This method will check if the given location is either empty or is an BlobEntry of the given
+     * mimeType. If neither is the case, null will be returned. Otherwise the BlobEntry denoting
+     * this location will be returned.
+     *
+     * @param repositoryLocation the repository location
+     * @param mimeType           the mime type
+     * @return the blob entry
+     */
+    public static BlobEntry isBlobEntryForStoring(String repositoryLocation, String mimeType) {
 		RepositoryLocation location;
 		try {
 			location = new RepositoryLocation(repositoryLocation);
@@ -146,18 +158,16 @@ public class RepositoryGuiTools {
 		return null;
 	}
 
-	/**
-	 * This method determinate if the given pChild is a successor of pParent. It compares the paths
-	 * of botch by splitting them at every {@link RepositoryLocation.SEPARATOR} into chunks and
-	 * match these against each other.
-	 *
-	 * @param pParent
-	 *            The absolute path {@link RepositoryLocation} of the parent as {@link String}
-	 * @param pChild
-	 *            The absolute path {@link RepositoryLocation} of the child as {@link String}
-	 * @return {@code true} iff pChild is a successor of pParent
-	 **/
-	public static boolean isSuccessor(String pParent, String pChild) {
+    /**
+     * This method determinate if the given pChild is a successor of pParent. It compares the paths
+     * of botch by splitting them at every {@link RepositoryLocation.SEPARATOR} into chunks and
+     * match these against each other.
+     *
+     * @param pParent The absolute path {@link RepositoryLocation} of the parent as {@link String}
+     * @param pChild  The absolute path {@link RepositoryLocation} of the child as {@link String}
+     * @return {@code true} iff pChild is a successor of pParent
+     */
+    public static boolean isSuccessor(String pParent, String pChild) {
 		// Remove the prefix of the repository to avoid unnecessary chunks and then split the path
 		// by the separator
 		String[] parentStringChunks = pParent.replaceAll(String.valueOf(RepositoryLocation.REPOSITORY_PREFIX), "")

@@ -50,16 +50,20 @@ import com.rapidminer.parameter.UndefinedParameterError;
  * with an AttributeSubsetPreprocessing operator. Subclasses must overwrite the methods
  * {@link #applyOnFiltered(ExampleSet)} and {@link #applyOnFilteredMetaData(ExampleSetMetaData)} in
  * order to provide their functionality and the correct meta data handling.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public abstract class AbstractFilteredDataProcessing extends AbstractDataProcessing {
 
 	private final AttributeSubsetSelector attributeSelector = new AttributeSubsetSelector(this, getExampleSetInputPort(),
 			getFilterValueTypes());;
 
-	public AbstractFilteredDataProcessing(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract filtered data processing.
+     *
+     * @param description the description
+     */
+    public AbstractFilteredDataProcessing(OperatorDescription description) {
 		super(description);
 	}
 
@@ -203,26 +207,34 @@ public abstract class AbstractFilteredDataProcessing extends AbstractDataProcess
 		return resultSet;
 	}
 
-	/**
-	 * Subclasses have to implement this method in order to operate only on the selected attributes.
-	 * The results are merged back into the original example set.
-	 */
-	public abstract ExampleSet applyOnFiltered(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Subclasses have to implement this method in order to operate only on the selected attributes.
+     * The results are merged back into the original example set.
+     *
+     * @param exampleSet the example set
+     * @return the example set
+     * @throws OperatorException the operator exception
+     */
+    public abstract ExampleSet applyOnFiltered(ExampleSet exampleSet) throws OperatorException;
 
-	/**
-	 * This method has to be implemented in order to specify the changes of the meta data caused by
-	 * the application of this operator.
-	 */
-	public abstract ExampleSetMetaData applyOnFilteredMetaData(ExampleSetMetaData emd) throws UndefinedParameterError;
+    /**
+     * This method has to be implemented in order to specify the changes of the meta data caused by
+     * the application of this operator.
+     *
+     * @param emd the emd
+     * @return the example set meta data
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public abstract ExampleSetMetaData applyOnFilteredMetaData(ExampleSetMetaData emd) throws UndefinedParameterError;
 
-	/**
-	 * Defines the value types of the attributes which are processed or affected by this operator.
-	 * Has to be overridden to restrict the attributes which can be chosen by an
-	 * {@link AttributeSubsetSelector}.
-	 * 
-	 * @return array of value types
-	 */
-	protected abstract int[] getFilterValueTypes();
+    /**
+     * Defines the value types of the attributes which are processed or affected by this operator.
+     * Has to be overridden to restrict the attributes which can be chosen by an
+     * {@link AttributeSubsetSelector}.
+     *
+     * @return array of value types
+     */
+    protected abstract int[] getFilterValueTypes();
 
 	@Override
 	public List<ParameterType> getParameterTypes() {

@@ -32,21 +32,26 @@ import java.util.List;
 /**
  * Returns a performance vector just counting the number of attributes currently used for the given
  * example set.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeCounter extends AbstractExampleSetEvaluator {
 
 	private InputPort performanceInput = getInputPorts().createPort("performance", PerformanceVector.class);
 
-	/**
-	 * The parameter name for &quot;Indicates if the fitness should for maximal or minimal number of
-	 * features.&quot;
-	 */
-	public static final String PARAMETER_OPTIMIZATION_DIRECTION = "optimization_direction";
+    /**
+     * The parameter name for &quot;Indicates if the fitness should for maximal or minimal number of
+     * features.&quot;
+     */
+    public static final String PARAMETER_OPTIMIZATION_DIRECTION = "optimization_direction";
 	private double lastCount = Double.NaN;
 
-	public AttributeCounter(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute counter.
+     *
+     * @param description the description
+     */
+    public AttributeCounter(OperatorDescription description) {
 		super(description);
 		addValue(new ValueDouble("attributes", "The currently selected number of attributes.") {
 

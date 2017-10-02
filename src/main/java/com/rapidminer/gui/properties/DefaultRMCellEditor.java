@@ -30,23 +30,37 @@ import javax.swing.JTextField;
 
 /**
  * This cell editor adds a nice looking border to table cell editor components if they are selected.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class DefaultRMCellEditor extends DefaultCellEditor {
 
 	private static final long serialVersionUID = 1L;
 
-	public DefaultRMCellEditor(JCheckBox checkBox) {
+    /**
+     * Instantiates a new Default rm cell editor.
+     *
+     * @param checkBox the check box
+     */
+    public DefaultRMCellEditor(JCheckBox checkBox) {
 		super(checkBox);
 	}
 
-	public DefaultRMCellEditor(JComboBox<?> jComboBox) {
+    /**
+     * Instantiates a new Default rm cell editor.
+     *
+     * @param jComboBox the j combo box
+     */
+    public DefaultRMCellEditor(JComboBox<?> jComboBox) {
 		super(jComboBox);
 	}
 
-	public DefaultRMCellEditor(JTextField textfield) {
+    /**
+     * Instantiates a new Default rm cell editor.
+     *
+     * @param textfield the textfield
+     */
+    public DefaultRMCellEditor(JTextField textfield) {
 		super(textfield);
 	}
 

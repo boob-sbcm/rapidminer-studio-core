@@ -47,43 +47,55 @@ import junit.framework.AssertionFailedError;
  * Extension for JUnit's Assert for testing RapidMiner objects.
  *
  * @author Simon Fischer, Marcin Skirzynski, Marius Helf
- *
  */
 public class RapidAssert extends Assert {
 
-	public static final double DELTA = 0.000000001;
-	public static final double MAX_RELATIVE_ERROR = 0.000000001;
+    /**
+     * The constant DELTA.
+     */
+    public static final double DELTA = 0.000000001;
+    /**
+     * The constant MAX_RELATIVE_ERROR.
+     */
+    public static final double MAX_RELATIVE_ERROR = 0.000000001;
 
-	public static final AsserterRegistry ASSERTER_REGISTRY = new AsserterRegistry();
+    /**
+     * The constant ASSERTER_REGISTRY.
+     */
+    public static final AsserterRegistry ASSERTER_REGISTRY = new AsserterRegistry();
 	private static boolean ignoreRepositoryNameForSourceAnnotation = true;
 
-	/**
-	 * Returns <code>true</code> if the ioobjects class is supported for comparison in the test
-	 * extension and <code>false</code> otherwise.
-	 */
-	public static boolean comparable(IOObject ioobject) {
+    /**
+     * Returns <code>true</code> if the ioobjects class is supported for comparison in the test
+     * extension and <code>false</code> otherwise.
+     *
+     * @param ioobject the ioobject
+     * @return the boolean
+     */
+    public static boolean comparable(IOObject ioobject) {
 		return ASSERTER_REGISTRY.getAsserterForObject(ioobject) != null;
 	}
 
-	/**
-	 * Returns <code>true</code> if both ioobject classes are comparable to each other and
-	 * <code>false</code> otherwise.
-	 */
-	public static boolean comparable(IOObject ioobject1, IOObject ioobject2) {
+    /**
+     * Returns <code>true</code> if both ioobject classes are comparable to each other and
+     * <code>false</code> otherwise.
+     *
+     * @param ioobject1 the ioobject 1
+     * @param ioobject2 the ioobject 2
+     * @return the boolean
+     */
+    public static boolean comparable(IOObject ioobject1, IOObject ioobject2) {
 		return ASSERTER_REGISTRY.getAsserterForObjects(ioobject1, ioobject2) != null;
 	}
 
-	/**
-	 * Extends the Junit assertEquals method by additionally checking the doubles for NaN.
-	 *
-	 * @param message
-	 *            message to display if an error occurs
-	 * @param expected
-	 *            expected value
-	 * @param actual
-	 *            actual value
-	 */
-	public static void assertEqualsNaN(String message, double expected, double actual) {
+    /**
+     * Extends the Junit assertEquals method by additionally checking the doubles for NaN.
+     *
+     * @param message  message to display if an error occurs
+     * @param expected expected value
+     * @param actual   actual value
+     */
+    public static void assertEqualsNaN(String message, double expected, double actual) {
 		if (Double.isNaN(expected)) {
 			if (!Double.isNaN(actual)) {
 				throw new AssertionFailedError(message + " expected: <" + expected + "> but was: <" + actual + ">");
@@ -93,10 +105,14 @@ public class RapidAssert extends Assert {
 		}
 	}
 
-	/**
-	 * Attention: Does not work with values near 0!!
-	 */
-	public static void assertEqualsWithRelativeErrorOrBothNaN(String message, double expected, double actual) {
+    /**
+     * Attention: Does not work with values near 0!!
+     *
+     * @param message  the message
+     * @param expected the expected
+     * @param actual   the actual
+     */
+    public static void assertEqualsWithRelativeErrorOrBothNaN(String message, double expected, double actual) {
 		if (expected == actual) {
 			return;
 		}
@@ -120,19 +136,16 @@ public class RapidAssert extends Assert {
 		}
 	}
 
-	/**
-	 * Tests if the special names of the attribute roles are equal and the associated attributes
-	 * themselves.
-	 *
-	 * @param message
-	 *            message to display if an error occurs
-	 * @param expected
-	 *            expected value
-	 * @param actual
-	 *            actual value
-	 * @param compareDefaultValues
-	 */
-	public static void assertEquals(String message, AttributeRole expected, AttributeRole actual,
+    /**
+     * Tests if the special names of the attribute roles are equal and the associated attributes
+     * themselves.
+     *
+     * @param message              message to display if an error occurs
+     * @param expected             expected value
+     * @param actual               actual value
+     * @param compareDefaultValues the compare default values
+     */
+    public static void assertEquals(String message, AttributeRole expected, AttributeRole actual,
 			boolean compareDefaultValues) {
 		Assert.assertEquals(message + " (attribute role)", expected.getSpecialName(), actual.getSpecialName());
 		Attribute expectedAttribute = expected.getAttribute();
@@ -140,18 +153,16 @@ public class RapidAssert extends Assert {
 		assertEquals(message, expectedAttribute, actualAttribute, compareDefaultValues);
 	}
 
-	/**
-	 * Tests two attributes by using the name, type, block, type, default value and the nominal
-	 * mapping
-	 *
-	 * @param message
-	 *            message to display if an error occurs
-	 * @param expected
-	 *            expected value
-	 * @param actual
-	 *            actual value
-	 */
-	public static void assertEquals(String message, Attribute expected, Attribute actual, boolean compareDefaultValues) {
+    /**
+     * Tests two attributes by using the name, type, block, type, default value and the nominal
+     * mapping
+     *
+     * @param message              message to display if an error occurs
+     * @param expected             expected value
+     * @param actual               actual value
+     * @param compareDefaultValues the compare default values
+     */
+    public static void assertEquals(String message, Attribute expected, Attribute actual, boolean compareDefaultValues) {
 		Assert.assertEquals(message + " (attribute name)", expected.getName(), actual.getName());
 		Assert.assertEquals(message + " (attribute type of attribute '" + expected.getName() + "': expected '"
 				+ Ontology.ATTRIBUTE_VALUE_TYPE.mapIndex(expected.getValueType()) + "' but was '"
@@ -172,21 +183,15 @@ public class RapidAssert extends Assert {
 		}
 	}
 
-	/**
-	 * Tests two nominal mappings for its size and values.
-	 *
-	 * @param message
-	 *            message to display if an error occurs
-	 * @param expected
-	 *            expected value
-	 * @param actual
-	 *            actual value
-	 * @param ignoreOrder
-	 *            if <code>true</code> the order of the mappings is not checked, but only the size
-	 *            of the mapping and that all values of <code>expected</code> are present in
-	 *            <code>actual</code>.
-	 */
-	public static void assertEquals(String message, NominalMapping expected, NominalMapping actual, boolean ignoreOrder) {
+    /**
+     * Tests two nominal mappings for its size and values.
+     *
+     * @param message     message to display if an error occurs
+     * @param expected    expected value
+     * @param actual      actual value
+     * @param ignoreOrder if <code>true</code> the order of the mappings is not checked, but only the size            of the mapping and that all values of <code>expected</code> are present in            <code>actual</code>.
+     */
+    public static void assertEquals(String message, NominalMapping expected, NominalMapping actual, boolean ignoreOrder) {
 		if (expected == actual) {
 			return;
 		}
@@ -217,29 +222,25 @@ public class RapidAssert extends Assert {
 		}
 	}
 
-	/**
-	 * Tests two nominal mappings for its size and values.
-	 *
-	 * @param message
-	 *            message to display if an error occurs
-	 * @param expected
-	 *            expected value
-	 * @param actual
-	 *            actual value
-	 */
-	public static void assertEqualsIgnoreOrder(String message, NominalMapping expected, NominalMapping actual) {
+    /**
+     * Tests two nominal mappings for its size and values.
+     *
+     * @param message  message to display if an error occurs
+     * @param expected expected value
+     * @param actual   actual value
+     */
+    public static void assertEqualsIgnoreOrder(String message, NominalMapping expected, NominalMapping actual) {
 		assertEquals(message, expected, actual, true);
 	}
 
-	/**
-	 * Tests all objects in the array.
-	 *
-	 * @param expected
-	 *            array with expected objects
-	 * @param actual
-	 *            array with actual objects
-	 */
-	public static void assertArrayEquals(String message, Object[] expected, Object[] actual) {
+    /**
+     * Tests all objects in the array.
+     *
+     * @param message  the message
+     * @param expected array with expected objects
+     * @param actual   array with actual objects
+     */
+    public static void assertArrayEquals(String message, Object[] expected, Object[] actual) {
 		if (expected == null) {
 			assertEquals((Object) null, actual);
 			return;
@@ -253,7 +254,14 @@ public class RapidAssert extends Assert {
 		}
 	}
 
-	public static void assertArrayEquals(String message, byte[] expected, byte[] actual) {
+    /**
+     * Assert array equals.
+     *
+     * @param message  the message
+     * @param expected the expected
+     * @param actual   the actual
+     */
+    public static void assertArrayEquals(String message, byte[] expected, byte[] actual) {
 		if (expected == null) {
 			assertEquals((Object) null, actual);
 			return;
@@ -267,16 +275,16 @@ public class RapidAssert extends Assert {
 		}
 	}
 
-	/**
-	 * Compares a string linewise, i.e. ignores different linebreak characters.
-	 *
-	 * Does this by incrementally reading all expected an actual lines and comparing them linewise.
-	 *
-	 * @param message
-	 * @param expected
-	 * @param actual
-	 */
-	public static void assertLinewiseEquals(String message, String expected, String actual) {
+    /**
+     * Compares a string linewise, i.e. ignores different linebreak characters.
+     * <p>
+     * Does this by incrementally reading all expected an actual lines and comparing them linewise.
+     *
+     * @param message  the message
+     * @param expected the expected
+     * @param actual   the actual
+     */
+    public static void assertLinewiseEquals(String message, String expected, String actual) {
 		try (Scanner expectedScanner = new Scanner(expected); Scanner actualScanner = new Scanner(actual);) {
 
 			String expectedLine = null;
@@ -297,29 +305,24 @@ public class RapidAssert extends Assert {
 		}
 	}
 
-	/**
-	 * Tests all objects in the array.
-	 *
-	 * @param message
-	 *            message to display if an error occurs
-	 * @param expected
-	 *            array with expected objects
-	 * @param actual
-	 *            array with actual objects
-	 */
-	public static void assertArrayEquals(Object[] expected, Object[] actual) {
+    /**
+     * Tests all objects in the array.
+     *
+     * @param expected array with expected objects
+     * @param actual   array with actual objects
+     */
+    public static void assertArrayEquals(Object[] expected, Object[] actual) {
 		assertArrayEquals("", expected, actual);
 	}
 
-	/**
-	 * Tests if both list of ioobjects are equal.
-	 *
-	 * @param expected
-	 *            expected value
-	 * @param actual
-	 *            actual value
-	 */
-	public static void assertEquals(String message, List<IOObject> expected, List<IOObject> actual) {
+    /**
+     * Tests if both list of ioobjects are equal.
+     *
+     * @param message  the message
+     * @param expected expected value
+     * @param actual   actual value
+     */
+    public static void assertEquals(String message, List<IOObject> expected, List<IOObject> actual) {
 		assertSize(expected, actual);
 
 		Iterator<IOObject> expectedIter = expected.iterator();
@@ -337,59 +340,58 @@ public class RapidAssert extends Assert {
 
 	}
 
-	/**
-	 * Tests if both list of ioobjects are equal.
-	 *
-	 * @param expected
-	 *            expected value
-	 * @param actual
-	 *            actual value
-	 */
-	public static void assertEquals(List<IOObject> expected, List<IOObject> actual) {
+    /**
+     * Tests if both list of ioobjects are equal.
+     *
+     * @param expected expected value
+     * @param actual   actual value
+     */
+    public static void assertEquals(List<IOObject> expected, List<IOObject> actual) {
 		RapidAssert.assertEquals("", expected, actual);
 	}
 
-	/**
-	 * Tests if both lists of IOObjects have the same size.
-	 *
-	 * @param expected
-	 * @param actual
-	 */
-	public static void assertSize(List<IOObject> expected, List<IOObject> actual) {
+    /**
+     * Tests if both lists of IOObjects have the same size.
+     *
+     * @param expected the expected
+     * @param actual   the actual
+     */
+    public static void assertSize(List<IOObject> expected, List<IOObject> actual) {
 		assertEquals(
 				"Number of connected output ports in the process is not equal with the number of ioobjects contained in the same folder with the format 'processname-expected-port-1', 'processname-expected-port-2', ...",
 				expected.size(), actual.size());
 	}
 
-	/**
-	 * Tests if the two IOObjects are equal.
-	 *
-	 * @param expectedIOO
-	 * @param actualIOO
-	 */
-	public static void assertEquals(IOObject expectedIOO, IOObject actualIOO) {
+    /**
+     * Tests if the two IOObjects are equal.
+     *
+     * @param expectedIOO the expected ioo
+     * @param actualIOO   the actual ioo
+     */
+    public static void assertEquals(IOObject expectedIOO, IOObject actualIOO) {
 		RapidAssert.assertEquals("", expectedIOO, actualIOO);
 	}
 
-	/**
-	 * Tests if the two IOObjects are equal and appends the given message.
-	 *
-	 * @param expectedIOO
-	 * @param actualIOO
-	 */
-	public static void assertEquals(String message, IOObject expectedIOO, IOObject actualIOO) {
+    /**
+     * Tests if the two IOObjects are equal and appends the given message.
+     *
+     * @param message     the message
+     * @param expectedIOO the expected ioo
+     * @param actualIOO   the actual ioo
+     */
+    public static void assertEquals(String message, IOObject expectedIOO, IOObject actualIOO) {
 		assertEquals(message, expectedIOO, actualIOO, false);
 	}
 
-	/**
-	 * Tests if the two IOObjects are equal and appends the given message.
-	 *
-	 * @param assertEqualAnnotations
-	 *            if true, annotations will be compared. If false, they will be ignored.
-	 * @param expectedIOO
-	 * @param actualIOO
-	 */
-	public static void assertEquals(String message, IOObject expectedIOO, IOObject actualIOO, boolean assertEqualAnnotations) {
+    /**
+     * Tests if the two IOObjects are equal and appends the given message.
+     *
+     * @param message                the message
+     * @param expectedIOO            the expected ioo
+     * @param actualIOO              the actual ioo
+     * @param assertEqualAnnotations if true, annotations will be compared. If false, they will be ignored.
+     */
+    public static void assertEquals(String message, IOObject expectedIOO, IOObject actualIOO, boolean assertEqualAnnotations) {
 
 		/*
 		 * Do not forget to add a newly supported class to the ASSERTER_REGISTRY!!!
@@ -440,19 +442,15 @@ public class RapidAssert extends Assert {
 		}
 	}
 
-	/**
-	 * Tests the two examples by testing the value of the examples for every given attribute. This
-	 * method is sensitive to the regular attribute ordering.
-	 *
-	 * @param message
-	 *            message to display if an error occurs. If it contains "{0}" and "{1}", it will be
-	 *            replaced with the attribute name and attribute type, if an inequality occurs.
-	 * @param expected
-	 *            expected value
-	 * @param actual
-	 *            actual value
-	 */
-	public static void assertEquals(String message, Example expected, Example actual) {
+    /**
+     * Tests the two examples by testing the value of the examples for every given attribute. This
+     * method is sensitive to the regular attribute ordering.
+     *
+     * @param message  message to display if an error occurs. If it contains "{0}" and "{1}", it will be            replaced with the attribute name and attribute type, if an inequality occurs.
+     * @param expected expected value
+     * @param actual   actual value
+     */
+    public static void assertEquals(String message, Example expected, Example actual) {
 		Assert.assertEquals(message + " (number of attributes)", expected.getAttributes().allSize(), actual.getAttributes()
 				.allSize());
 
@@ -532,23 +530,19 @@ public class RapidAssert extends Assert {
 
 	}
 
-	/**
-	 * Tests if all attributes are equal. This method is sensitive to the regular attribute
-	 * ordering.
-	 *
-	 * Optionally compares the default values of the attributes. The default value is only relevant
-	 * for sparse data rows, so it should not be compared for non-sparse data.
-	 *
-	 * @param message
-	 *            message to display if an error occurs
-	 * @param expected
-	 *            expected value
-	 * @param actual
-	 *            actual value
-	 * @param compareDefaultValues
-	 *            specifies if the attributes default values should be compared.
-	 */
-	public static void assertEquals(String message, Attributes expected, Attributes actual, boolean compareDefaultValues) {
+    /**
+     * Tests if all attributes are equal. This method is sensitive to the regular attribute
+     * ordering.
+     * <p>
+     * Optionally compares the default values of the attributes. The default value is only relevant
+     * for sparse data rows, so it should not be compared for non-sparse data.
+     *
+     * @param message              message to display if an error occurs
+     * @param expected             expected value
+     * @param actual               actual value
+     * @param compareDefaultValues specifies if the attributes default values should be compared.
+     */
+    public static void assertEquals(String message, Attributes expected, Attributes actual, boolean compareDefaultValues) {
 		Assert.assertEquals(message + " (number of attributes)", expected.allSize(), actual.allSize());
 		Assert.assertEquals(message + " (number of special attributes)", expected.specialSize(), actual.specialSize());
 
@@ -568,7 +562,14 @@ public class RapidAssert extends Assert {
 		}
 	}
 
-	public static void assertEquals(String message, ParameterValue expected, ParameterValue actual) {
+    /**
+     * Assert equals.
+     *
+     * @param message  the message
+     * @param expected the expected
+     * @param actual   the actual
+     */
+    public static void assertEquals(String message, ParameterValue expected, ParameterValue actual) {
 		Assert.assertEquals(message + " - operator", expected.getOperator(), actual.getOperator());
 		Assert.assertEquals(message + " - parameterKey", expected.getParameterKey(), actual.getParameterKey());
 		Assert.assertEquals(message + " - parameterValue", expected.getParameterValue(), actual.getParameterValue());

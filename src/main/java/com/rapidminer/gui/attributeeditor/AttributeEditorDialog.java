@@ -49,8 +49,8 @@ import com.rapidminer.tools.Tools;
  * The dialog for the attribute editor. This dialog is used to display the data, load data, and
  * create attribute description files. Some actions are provided for these purposes.
  *
- * @see com.rapidminer.gui.attributeeditor.AttributeEditor
  * @author Ingo Mierswa, Simon Fischer
+ * @see com.rapidminer.gui.attributeeditor.AttributeEditor
  */
 public class AttributeEditorDialog extends ButtonDialog implements WindowListener {
 
@@ -58,28 +58,60 @@ public class AttributeEditorDialog extends ButtonDialog implements WindowListene
 
 	private final AttributeEditor attributeEditor;
 
-	public transient Action OPEN_ATTRIBUTE_FILE_ACTION;
+    /**
+     * The Open attribute file action.
+     */
+    public transient Action OPEN_ATTRIBUTE_FILE_ACTION;
 
-	public transient Action SAVE_ATTRIBUTE_FILE_ACTION;
+    /**
+     * The Save attribute file action.
+     */
+    public transient Action SAVE_ATTRIBUTE_FILE_ACTION;
 
-	public transient Action LOAD_DATA_ACTION;
+    /**
+     * The Load data action.
+     */
+    public transient Action LOAD_DATA_ACTION;
 
-	public transient Action LOAD_SERIES_DATA_ACTION;
+    /**
+     * The Load series data action.
+     */
+    public transient Action LOAD_SERIES_DATA_ACTION;
 
-	public transient Action SAVE_DATA_ACTION;
+    /**
+     * The Save data action.
+     */
+    public transient Action SAVE_DATA_ACTION;
 
-	public transient Action CLEAR_ACTION;
+    /**
+     * The Clear action.
+     */
+    public transient Action CLEAR_ACTION;
 
-	public transient Action CLOSE_ACTION;
+    /**
+     * The Close action.
+     */
+    public transient Action CLOSE_ACTION;
 
-	public AttributeEditorDialog(Operator exampleSource, File file) {
+    /**
+     * Instantiates a new Attribute editor dialog.
+     *
+     * @param exampleSource the example source
+     * @param file          the file
+     */
+    public AttributeEditorDialog(Operator exampleSource, File file) {
 		this(exampleSource);
 		if (file != null) {
 			attributeEditor.openAttributeFile(file);
 		}
 	}
 
-	public AttributeEditorDialog(Operator exampleSource) {
+    /**
+     * Instantiates a new Attribute editor dialog.
+     *
+     * @param exampleSource the example source
+     */
+    public AttributeEditorDialog(Operator exampleSource) {
 		super(ApplicationFrame.getApplicationFrame(), "attribute_editor", ModalityType.APPLICATION_MODAL, new Object[] {});
 
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -134,7 +166,10 @@ public class AttributeEditorDialog extends ButtonDialog implements WindowListene
 		setLocationRelativeTo(super.getOwner());
 	}
 
-	public void initActions() {
+    /**
+     * Init actions.
+     */
+    public void initActions() {
 		this.OPEN_ATTRIBUTE_FILE_ACTION = new OpenAttributeFileAction(attributeEditor);
 		this.SAVE_ATTRIBUTE_FILE_ACTION = new SaveAttributeFileAction(attributeEditor);
 		this.LOAD_DATA_ACTION = new LoadDataAction(attributeEditor);
@@ -144,7 +179,12 @@ public class AttributeEditorDialog extends ButtonDialog implements WindowListene
 		this.CLOSE_ACTION = new CloseAction(this);
 	}
 
-	public File getFile() {
+    /**
+     * Gets file.
+     *
+     * @return the file
+     */
+    public File getFile() {
 		return attributeEditor.getFile();
 	}
 

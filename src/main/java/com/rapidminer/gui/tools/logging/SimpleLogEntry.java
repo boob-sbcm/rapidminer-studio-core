@@ -36,22 +36,22 @@ public class SimpleLogEntry implements LogEntry {
 	private String simpleString;
 	private Level level;
 
-	/**
-	 * Creates a log entry with {@link Level#INFO}.
-	 *
-	 * @param logEntry
-	 */
-	public SimpleLogEntry(String logEntry) {
+    /**
+     * Creates a log entry with {@link Level#INFO}.
+     *
+     * @param logEntry the log entry
+     */
+    public SimpleLogEntry(String logEntry) {
 		this(logEntry, Level.INFO);
 	}
 
-	/**
-	 * Creates a log entry with the specified {@link Level}.
-	 *
-	 * @param logEntry
-	 * @param level
-	 */
-	public SimpleLogEntry(String logEntry, Level level) {
+    /**
+     * Creates a log entry with the specified {@link Level}.
+     *
+     * @param logEntry the log entry
+     * @param level    the level
+     */
+    public SimpleLogEntry(String logEntry, Level level) {
 		if (logEntry == null || "".equals(logEntry.trim())) {
 			throw new IllegalArgumentException("logEntry must not be null or empty!");
 		}

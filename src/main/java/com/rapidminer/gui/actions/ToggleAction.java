@@ -40,9 +40,17 @@ public abstract class ToggleAction extends ResourceAction {
 
 	private static final long serialVersionUID = -4465114837957358373L;
 
-	public interface ToggleActionListener {
+    /**
+     * The interface Toggle action listener.
+     */
+    public interface ToggleActionListener {
 
-		public void setSelected(boolean selected);
+        /**
+         * Sets selected.
+         *
+         * @param selected the selected
+         */
+        public void setSelected(boolean selected);
 	}
 
 	private class ToggleJCheckBoxMenuItem extends JCheckBoxMenuItem implements ToggleActionListener {
@@ -79,11 +87,26 @@ public abstract class ToggleAction extends ResourceAction {
 
 	private Collection<ToggleActionListener> listeners = new LinkedList<ToggleActionListener>();
 
-	public ToggleAction(boolean smallIcon, String key, Object... args) {
+    /**
+     * Instantiates a new Toggle action.
+     *
+     * @param smallIcon the small icon
+     * @param key       the key
+     * @param args      the args
+     */
+    public ToggleAction(boolean smallIcon, String key, Object... args) {
 		this(smallIcon, key, IconType.NORMAL, args);
 	}
 
-	public ToggleAction(boolean smallIcon, String key, IconType iconType, Object... args) {
+    /**
+     * Instantiates a new Toggle action.
+     *
+     * @param smallIcon the small icon
+     * @param key       the key
+     * @param iconType  the icon type
+     * @param args      the args
+     */
+    public ToggleAction(boolean smallIcon, String key, IconType iconType, Object... args) {
 		super(smallIcon, key, iconType, args);
 	}
 
@@ -93,39 +116,75 @@ public abstract class ToggleAction extends ResourceAction {
 		actionToggled(null);
 	}
 
-	public abstract void actionToggled(ActionEvent e);
+    /**
+     * Action toggled.
+     *
+     * @param e the e
+     */
+    public abstract void actionToggled(ActionEvent e);
 
-	public void resetAction(boolean selected) {
+    /**
+     * Reset action.
+     *
+     * @param selected the selected
+     */
+    public void resetAction(boolean selected) {
 		if (selected != isSelected()) {
 			setSelected(!isSelected());
 			actionToggled(null);
 		}
 	}
 
-	public boolean isSelected() {
+    /**
+     * Is selected boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSelected() {
 		return selected;
 	}
 
-	public void setSelected(boolean selected) {
+    /**
+     * Sets selected.
+     *
+     * @param selected the selected
+     */
+    public void setSelected(boolean selected) {
 		this.selected = selected;
 		for (ToggleActionListener l : listeners) {
 			l.setSelected(selected);
 		}
 	}
 
-	public JCheckBoxMenuItem createMenuItem() {
+    /**
+     * Create menu item j check box menu item.
+     *
+     * @return the j check box menu item
+     */
+    public JCheckBoxMenuItem createMenuItem() {
 		ToggleJCheckBoxMenuItem item = new ToggleJCheckBoxMenuItem(this);
 		listeners.add(item);
 		return item;
 	}
 
-	public JToggleButton createToggleButton() {
+    /**
+     * Create toggle button j toggle button.
+     *
+     * @return the j toggle button
+     */
+    public JToggleButton createToggleButton() {
 		ToggleJToggleButton button = new ToggleJToggleButton(this);
 		listeners.add(button);
 		return button;
 	}
 
-	public ToggleDropDownButton createDropDownToggleButton(final JPopupMenu popupMenu) {
+    /**
+     * Create drop down toggle button toggle drop down button.
+     *
+     * @param popupMenu the popup menu
+     * @return the toggle drop down button
+     */
+    public ToggleDropDownButton createDropDownToggleButton(final JPopupMenu popupMenu) {
 		ToggleJToggleDropDownButton button = new ToggleJToggleDropDownButton(this) {
 
 			private static final long serialVersionUID = 619422148555974973L;
@@ -139,11 +198,21 @@ public abstract class ToggleAction extends ResourceAction {
 		return button;
 	}
 
-	public void addToggleActionListener(ToggleActionListener l) {
+    /**
+     * Add toggle action listener.
+     *
+     * @param l the l
+     */
+    public void addToggleActionListener(ToggleActionListener l) {
 		listeners.add(l);
 	}
 
-	public void removeToggleActionListener(ToggleActionListener l) {
+    /**
+     * Remove toggle action listener.
+     *
+     * @param l the l
+     */
+    public void removeToggleActionListener(ToggleActionListener l) {
 		listeners.remove(l);
 	}
 }

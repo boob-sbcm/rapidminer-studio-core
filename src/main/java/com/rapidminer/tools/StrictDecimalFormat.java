@@ -34,34 +34,62 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
 
 
 /**
+ * The type Strict decimal format.
+ *
  * @author Tobias Malbrecht
  */
 public class StrictDecimalFormat extends DecimalFormat {
 
 	private static final long serialVersionUID = -1597219600920760784L;
 
-	public static final String PARAMETER_PARSE_NUMBERS = "parse_numbers";
+    /**
+     * The constant PARAMETER_PARSE_NUMBERS.
+     */
+    public static final String PARAMETER_PARSE_NUMBERS = "parse_numbers";
 
-	public static final String PARAMETER_DECIMAL_CHARACTER = "decimal_character";
+    /**
+     * The constant PARAMETER_DECIMAL_CHARACTER.
+     */
+    public static final String PARAMETER_DECIMAL_CHARACTER = "decimal_character";
 
-	public static final String PARAMETER_GROUPED_DIGITS = "grouped_digits";
+    /**
+     * The constant PARAMETER_GROUPED_DIGITS.
+     */
+    public static final String PARAMETER_GROUPED_DIGITS = "grouped_digits";
 
-	public static final String PARAMETER_GROUPING_CHARACTER = "grouping_character";
+    /**
+     * The constant PARAMETER_GROUPING_CHARACTER.
+     */
+    public static final String PARAMETER_GROUPING_CHARACTER = "grouping_character";
 
 	{
 		setParseIntegerOnly(false);
 		setGroupingSize(3);
 	}
 
-	public static final char DEFAULT_DECIMAL_CHARACTER = '.';
+    /**
+     * The constant DEFAULT_DECIMAL_CHARACTER.
+     */
+    public static final char DEFAULT_DECIMAL_CHARACTER = '.';
 
-	public static final char DEFAULT_GROUPING_CHARACTER = ',';
+    /**
+     * The constant DEFAULT_GROUPING_CHARACTER.
+     */
+    public static final char DEFAULT_GROUPING_CHARACTER = ',';
 
-	public StrictDecimalFormat() {
+    /**
+     * Instantiates a new Strict decimal format.
+     */
+    public StrictDecimalFormat() {
 		super();
 	}
 
-	public StrictDecimalFormat(char decimalSeparator) {
+    /**
+     * Instantiates a new Strict decimal format.
+     *
+     * @param decimalSeparator the decimal separator
+     */
+    public StrictDecimalFormat(char decimalSeparator) {
 		this();
 		DecimalFormatSymbols symbols = getDecimalFormatSymbols();
 		symbols.setDecimalSeparator(decimalSeparator);
@@ -69,7 +97,13 @@ public class StrictDecimalFormat extends DecimalFormat {
 		setGroupingUsed(false);
 	}
 
-	public StrictDecimalFormat(char decimalSeparator, char groupingSeparator) {
+    /**
+     * Instantiates a new Strict decimal format.
+     *
+     * @param decimalSeparator  the decimal separator
+     * @param groupingSeparator the grouping separator
+     */
+    public StrictDecimalFormat(char decimalSeparator, char groupingSeparator) {
 		this();
 		DecimalFormatSymbols symbols = getDecimalFormatSymbols();
 		symbols.setDecimalSeparator(decimalSeparator);
@@ -104,23 +138,48 @@ public class StrictDecimalFormat extends DecimalFormat {
 		return result;
 	}
 
-	public void setDecimalSeparator(char decimalSeparator) {
+    /**
+     * Sets decimal separator.
+     *
+     * @param decimalSeparator the decimal separator
+     */
+    public void setDecimalSeparator(char decimalSeparator) {
 		DecimalFormatSymbols symbols = getDecimalFormatSymbols();
 		symbols.setDecimalSeparator(decimalSeparator);
 		setDecimalFormatSymbols(symbols);
 	}
 
-	public void setGroupingSeparator(char groupingSeparator) {
+    /**
+     * Sets grouping separator.
+     *
+     * @param groupingSeparator the grouping separator
+     */
+    public void setGroupingSeparator(char groupingSeparator) {
 		DecimalFormatSymbols symbols = getDecimalFormatSymbols();
 		symbols.setGroupingSeparator(groupingSeparator);
 		setDecimalFormatSymbols(symbols);
 	}
 
-	public static StrictDecimalFormat getInstance(ParameterHandler handler) throws UndefinedParameterError {
+    /**
+     * Gets instance.
+     *
+     * @param handler the handler
+     * @return the instance
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public static StrictDecimalFormat getInstance(ParameterHandler handler) throws UndefinedParameterError {
 		return getInstance(handler, false);
 	}
 
-	public static StrictDecimalFormat getInstance(ParameterHandler handler, boolean optional) throws UndefinedParameterError {
+    /**
+     * Gets instance.
+     *
+     * @param handler  the handler
+     * @param optional the optional
+     * @return the instance
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public static StrictDecimalFormat getInstance(ParameterHandler handler, boolean optional) throws UndefinedParameterError {
 		if (optional) {
 			if (!handler.getParameterAsBoolean(PARAMETER_PARSE_NUMBERS)) {
 				return null;
@@ -135,11 +194,24 @@ public class StrictDecimalFormat extends DecimalFormat {
 		}
 	}
 
-	public static List<ParameterType> getParameterTypes(ParameterHandler handler) {
+    /**
+     * Gets parameter types.
+     *
+     * @param handler the handler
+     * @return the parameter types
+     */
+    public static List<ParameterType> getParameterTypes(ParameterHandler handler) {
 		return getParameterTypes(handler, false);
 	}
 
-	public static List<ParameterType> getParameterTypes(ParameterHandler handler, boolean optional) {
+    /**
+     * Gets parameter types.
+     *
+     * @param handler  the handler
+     * @param optional the optional
+     * @return the parameter types
+     */
+    public static List<ParameterType> getParameterTypes(ParameterHandler handler, boolean optional) {
 		List<ParameterType> types = new LinkedList<>();
 		ParameterType type;
 		if (optional) {

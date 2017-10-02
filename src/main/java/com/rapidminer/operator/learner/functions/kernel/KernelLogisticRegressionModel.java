@@ -50,8 +50,15 @@ public class KernelLogisticRegressionModel extends KernelModel {
 	/** The bias. */
 	private double bias;
 
-	/** Creates a classification model. */
-	public KernelLogisticRegressionModel(ExampleSet exampleSet, List<SupportVector> supportVectors, Kernel kernel,
+    /**
+     * Creates a classification model.  @param exampleSet the example set
+     *
+     * @param exampleSet     the example set
+     * @param supportVectors the support vectors
+     * @param kernel         the kernel
+     * @param bias           the bias
+     */
+    public KernelLogisticRegressionModel(ExampleSet exampleSet, List<SupportVector> supportVectors, Kernel kernel,
 			double bias) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);

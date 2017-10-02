@@ -137,9 +137,15 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 
 	private ItemMouseMotionAdapter motionListener = new ItemMouseMotionAdapter();
 
-	protected MultipleLinesLabel nameLabel = new MultipleLinesLabel("");
+    /**
+     * The Name label.
+     */
+    protected MultipleLinesLabel nameLabel = new MultipleLinesLabel("");
 
-	protected JLabel imageLabel = new JLabel("");
+    /**
+     * The Image label.
+     */
+    protected JLabel imageLabel = new JLabel("");
 
 	private ItemPanel parentPane;
 
@@ -159,11 +165,20 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 
 	private static Border selectedThumbBorder;
 
-	public static Border grayImageBorder = BorderFactory.createLineBorder(Color.lightGray);
+    /**
+     * The constant grayImageBorder.
+     */
+    public static Border grayImageBorder = BorderFactory.createLineBorder(Color.lightGray);
 
-	public static Border emptyImageBorder = BorderFactory.createEmptyBorder(1, 1, 1, 1);
+    /**
+     * The constant emptyImageBorder.
+     */
+    public static Border emptyImageBorder = BorderFactory.createEmptyBorder(1, 1, 1, 1);
 
-	public static Border defaultThumbBorder = BorderFactory.createEmptyBorder(2, 2, 2, 2);
+    /**
+     * The constant defaultThumbBorder.
+     */
+    public static Border defaultThumbBorder = BorderFactory.createEmptyBorder(2, 2, 2, 2);
 
 	private JPopupMenu popup;
 
@@ -185,9 +200,17 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 
 	private Dimension bestSize = new Dimension(10, 10);
 
-	public static Font menuFont = FontTools.getFont(Font.SANS_SERIF, Font.PLAIN, 12);
+    /**
+     * The constant menuFont.
+     */
+    public static Font menuFont = FontTools.getFont(Font.SANS_SERIF, Font.PLAIN, 12);
 
-	public static void updateVirtualItemForTheme(Colors currentTheme) {
+    /**
+     * Update virtual item for theme.
+     *
+     * @param currentTheme the current theme
+     */
+    public static void updateVirtualItemForTheme(Colors currentTheme) {
 		if (currentTheme == null) {
 			selectedThumbBorder = BorderFactory.createLineBorder(new ColorUIResource(122, 170, 233), 2);
 		} else {
@@ -195,31 +218,67 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		}
 	}
 
-	public void setBestSize(int w, int h) {
+    /**
+     * Sets best size.
+     *
+     * @param w the w
+     * @param h the h
+     */
+    public void setBestSize(int w, int h) {
 		this.bestSize = new Dimension(w, h);
 	}
 
-	public boolean isDirectory() {
+    /**
+     * Is directory boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isDirectory() {
 		return this.isDirectory;
 	}
 
-	public Dimension getBestSize() {
+    /**
+     * Gets best size.
+     *
+     * @return the best size
+     */
+    public Dimension getBestSize() {
 		return this.bestSize;
 	}
 
-	public void setCompare_type(String compare_type) {
+    /**
+     * Sets compare type.
+     *
+     * @param compare_type the compare type
+     */
+    public void setCompare_type(String compare_type) {
 		this.compareType = compare_type;
 	}
 
-	public ItemPanel getParentPane() {
+    /**
+     * Gets parent pane.
+     *
+     * @return the parent pane
+     */
+    public ItemPanel getParentPane() {
 		return this.parentPane;
 	}
 
-	public File getFile() {
+    /**
+     * Gets file.
+     *
+     * @return the file
+     */
+    public File getFile() {
 		return this.file;
 	}
 
-	public long getLastModificationTime() {
+    /**
+     * Gets last modification time.
+     *
+     * @return the last modification time
+     */
+    public long getLastModificationTime() {
 		if (this.fileSystemView.isFloppyDrive(this.file)) {
 			return 0;
 		}
@@ -230,11 +289,21 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		return this.lastModification;
 	}
 
-	public String getFileName() {
+    /**
+     * Gets file name.
+     *
+     * @return the file name
+     */
+    public String getFileName() {
 		return this.fileName;
 	}
 
-	public long getFileSize() {
+    /**
+     * Gets file size.
+     *
+     * @return the file size
+     */
+    public long getFileSize() {
 		if (this.fileSystemView.isFloppyDrive(this.file) || this.file.isDirectory()) {
 			return 0;
 		}
@@ -245,11 +314,22 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		return this.fileSize;
 	}
 
-	public String getCompareType() {
+    /**
+     * Gets compare type.
+     *
+     * @return the compare type
+     */
+    public String getCompareType() {
 		return this.compareType;
 	}
 
-	public Item(ItemPanel parent, File f) {
+    /**
+     * Instantiates a new Item.
+     *
+     * @param parent the parent
+     * @param f      the f
+     */
+    public Item(ItemPanel parent, File f) {
 		if (selectedThumbBorder == null) {
 			updateVirtualItemForTheme(null);
 		}
@@ -307,7 +387,10 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		}
 	}
 
-	public void finalizeAll() {
+    /**
+     * Finalize all.
+     */
+    public void finalizeAll() {
 		try {
 			this.smallSystemIcon = null;
 			this.bigSystemIcon = null;
@@ -322,17 +405,30 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		}
 	}
 
-	public void setImageIcon(ImageIcon pic) {
+    /**
+     * Sets image icon.
+     *
+     * @param pic the pic
+     */
+    public void setImageIcon(ImageIcon pic) {
 		this.thumbIcon = pic;
 		this.imageLabel.setIcon(this.thumbIcon);
 	}
 
-	void addListeners() {
+    /**
+     * Add listeners.
+     */
+    void addListeners() {
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this.motionListener);
 	}
 
-	public void componentMouseDragged(Point point) {
+    /**
+     * Component mouse dragged.
+     *
+     * @param point the point
+     */
+    public void componentMouseDragged(Point point) {
 		this.setLocation((int) (this.getX() + point.getX() - this.tx), (int) (this.getY() + point.getY() - this.ty));
 
 		if (this.getX() > this.getParentPane().getWidth()) {
@@ -345,13 +441,23 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		}
 	}
 
-	public void componentMousePressed(MouseEvent e) {
+    /**
+     * Component mouse pressed.
+     *
+     * @param e the e
+     */
+    public void componentMousePressed(MouseEvent e) {
 		this.tx = e.getX();
 		this.ty = e.getY();
 		this.initPosition = this.getLocation();
 	}
 
-	public void componentMouseReleased(MouseEvent e) {
+    /**
+     * Component mouse released.
+     *
+     * @param e the e
+     */
+    public void componentMouseReleased(MouseEvent e) {
 		if (this.parentPane.getFilePane().isAutoArrange()) {
 			this.setLocation(this.initPosition);
 		} else {
@@ -359,19 +465,39 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		}
 	}
 
-	public String getItemName() {
+    /**
+     * Gets item name.
+     *
+     * @return the item name
+     */
+    public String getItemName() {
 		return this.fileName;
 	}
 
-	public long getItemFileSize() {
+    /**
+     * Gets item file size.
+     *
+     * @return the item file size
+     */
+    public long getItemFileSize() {
 		return this.fileSize;
 	}
 
-	public long getItemFileLastModified() {
+    /**
+     * Gets item file last modified.
+     *
+     * @return the item file last modified
+     */
+    public long getItemFileLastModified() {
 		return this.lastModification;
 	}
 
-	public void updateSelectionMode(boolean isSelected) {
+    /**
+     * Update selection mode.
+     *
+     * @param isSelected the is selected
+     */
+    public void updateSelectionMode(boolean isSelected) {
 		if (isSelected == this.selectionStatus) {
 			return;
 		}
@@ -404,19 +530,32 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		repaint();
 	}
 
-	public JPopupMenu getPopupMenu() {
+    /**
+     * Gets popup menu.
+     *
+     * @return the popup menu
+     */
+    public JPopupMenu getPopupMenu() {
 		getAdditionalFileData();
 		createPopupMenu();
 		return this.popup;
 	}
 
-	public void setAddToBookmarksMenuItemStatus(boolean val) {
+    /**
+     * Sets add to bookmarks menu item status.
+     *
+     * @param val the val
+     */
+    public void setAddToBookmarksMenuItemStatus(boolean val) {
 		if (this.addToBookmarksMenuItem != null) {
 			this.addToBookmarksMenuItem.setVisible(val);
 		}
 	}
 
-	public void createPopupMenu() {
+    /**
+     * Create popup menu.
+     */
+    public void createPopupMenu() {
 		if (this.popup != null) {
 			return;
 		}
@@ -513,13 +652,24 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		}
 	}
 
-	public void setPasteMenuItemStatus(boolean state) {
+    /**
+     * Sets paste menu item status.
+     *
+     * @param state the state
+     */
+    public void setPasteMenuItemStatus(boolean state) {
 		if (this.isDirectory && this.pasteMenuItem != null) {
 			this.pasteMenuItem.setEnabled(state);
 		}
 	}
 
-	public String convertToCorrectFormat(long f) {
+    /**
+     * Convert to correct format string.
+     *
+     * @param f the f
+     * @return the string
+     */
+    public String convertToCorrectFormat(long f) {
 		if (this.isDirectory) {
 			return "";
 		}
@@ -584,13 +734,19 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		}
 	}
 
-	public void updateThumbnail() {
+    /**
+     * Update thumbnail.
+     */
+    public void updateThumbnail() {
 		if (isImage()) {
 			this.imageLabel.setIcon(getThumbnailIcon());
 		}
 	}
 
-	public void updateItemIcon() {
+    /**
+     * Update item icon.
+     */
+    public void updateItemIcon() {
 		if (this.parentPane.filePane.filechooserUI.getView().equals(FileChooserUI.FILECHOOSER_VIEW_THUMBNAIL)
 				|| this.parentPane.filePane.filechooserUI.getView().equals(FileChooserUI.FILECHOOSER_VIEW_ICON)) {
 			this.imageLabel.setIcon(getBigSystemIcon());
@@ -618,7 +774,12 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		return this.thumbIcon;
 	}
 
-	public ImageIcon getSmallSystemIcon() {
+    /**
+     * Gets small system icon.
+     *
+     * @return the small system icon
+     */
+    public ImageIcon getSmallSystemIcon() {
 		if (this.smallSystemIcon == null) {
 			try {
 				this.smallSystemIcon = this.parentPane.getFilePane().getSystemIcon(this.file, this.fileName,
@@ -641,7 +802,12 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		return this.bigSystemIcon;
 	}
 
-	public String getFileType() {
+    /**
+     * Gets file type.
+     *
+     * @return the file type
+     */
+    public String getFileType() {
 		return this.fileType;
 	}
 
@@ -669,7 +835,10 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		}
 	}
 
-	protected void updateChooserPath() {
+    /**
+     * Update chooser path.
+     */
+    protected void updateChooserPath() {
 		this.parentPane.filePane.filechooserUI.setCurrentDirectoryOfFileChooser(this.file);
 	}
 
@@ -687,7 +856,10 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 				+ "File Description : " + this.fileType + "</body></html>");
 	}
 
-	protected void getAdditionalFileData() {
+    /**
+     * Gets additional file data.
+     */
+    protected void getAdditionalFileData() {
 		if (this.getToolTipText().equals("")) {
 			if (this.isFloppyDrive) {
 				this.fileSize = 0;
@@ -736,11 +908,21 @@ public class Item extends JComponent implements Comparable<Item>, MouseListener 
 		}
 	}
 
-	public void setSelectionMode(boolean b) {
+    /**
+     * Sets selection mode.
+     *
+     * @param b the b
+     */
+    public void setSelectionMode(boolean b) {
 		this.selectionStatus = b;
 	}
 
-	public boolean getSelectionMode() {
+    /**
+     * Gets selection mode.
+     *
+     * @return the selection mode
+     */
+    public boolean getSelectionMode() {
 		return this.selectionStatus;
 	}
 

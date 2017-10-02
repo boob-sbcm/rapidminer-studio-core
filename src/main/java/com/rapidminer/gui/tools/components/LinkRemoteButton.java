@@ -37,13 +37,17 @@ import com.rapidminer.gui.look.Colors;
  *
  * @author Marco Boeck
  * @since 7.0.0
- *
  */
 public class LinkRemoteButton extends AbstractLinkButton {
 
 	private static final long serialVersionUID = 1L;
 
-	public LinkRemoteButton(final Action action) {
+    /**
+     * Instantiates a new Link remote button.
+     *
+     * @param action the action
+     */
+    public LinkRemoteButton(final Action action) {
 		super(action, Colors.LINKBUTTON_REMOTE);
 	}
 

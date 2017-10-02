@@ -44,27 +44,38 @@ import com.rapidminer.tools.RandomGenerator;
  */
 public class MetaCost extends AbstractMetaLearner {
 
-	/** The parameter name for &quot;The cost matrix in Matlab single line format&quot; */
-	public static final String PARAMETER_COST_MATRIX = "cost_matrix";
+    /**
+     * The parameter name for &quot;The cost matrix in Matlab single line format&quot;
+     */
+    public static final String PARAMETER_COST_MATRIX = "cost_matrix";
 
-	/** The parameter name for &quot;File&quot; */
-	public static final String PARAMETER_COST_MATRIX_FILE_LOCATION = "cost_matrix_file_location";
+    /**
+     * The parameter name for &quot;File&quot;
+     */
+    public static final String PARAMETER_COST_MATRIX_FILE_LOCATION = "cost_matrix_file_location";
 
-	/**
-	 * The parameter name for &quot;Fraction of examples used for training. Must be greater than 0
-	 * and should be lower than 1.&quot;
-	 */
-	public static final String PARAMETER_USE_SUBSET_FOR_TRAINING = "use_subset_for_training";
+    /**
+     * The parameter name for &quot;Fraction of examples used for training. Must be greater than 0
+     * and should be lower than 1.&quot;
+     */
+    public static final String PARAMETER_USE_SUBSET_FOR_TRAINING = "use_subset_for_training";
 
-	/** The parameter name for &quot;The number of iterations (base models).&quot; */
-	public static final String PARAMETER_ITERATIONS = "iterations";
+    /**
+     * The parameter name for &quot;The number of iterations (base models).&quot;
+     */
+    public static final String PARAMETER_ITERATIONS = "iterations";
 
-	/**
-	 * The parameter name for &quot;Use sampling with replacement (true) or without (false)&quot;
-	 */
-	public static final String PARAMETER_SAMPLING_WITH_REPLACEMENT = "sampling_with_replacement";
+    /**
+     * The parameter name for &quot;Use sampling with replacement (true) or without (false)&quot;
+     */
+    public static final String PARAMETER_SAMPLING_WITH_REPLACEMENT = "sampling_with_replacement";
 
-	public MetaCost(OperatorDescription description) {
+    /**
+     * Instantiates a new Meta cost.
+     *
+     * @param description the description
+     */
+    public MetaCost(OperatorDescription description) {
 		super(description);
 	}
 

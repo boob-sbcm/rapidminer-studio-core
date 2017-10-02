@@ -25,19 +25,38 @@ import com.rapidminer.example.Attribute;
  * This function first behaves like {@link CountAggregationFunction}, but it delivers percentages of
  * the total count instead of absolute values. E.g. {@link SumAggregationFunction} delivers [2, 5,
  * 3] this function would deliver [20, 50, 30]
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class CountPercentageAggregationFunction extends AbstractCountRatioAggregationFunction {
 
-	public static final String FUNCTION_COUNT_PERCENTAGE = "percentage_count";
+    /**
+     * The constant FUNCTION_COUNT_PERCENTAGE.
+     */
+    public static final String FUNCTION_COUNT_PERCENTAGE = "percentage_count";
 
-	public CountPercentageAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
+    /**
+     * Instantiates a new Count percentage aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     */
+    public CountPercentageAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, FUNCTION_COUNT_PERCENTAGE);
 	}
 
-	public CountPercentageAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
+    /**
+     * Instantiates a new Count percentage aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public CountPercentageAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
 			String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, separatorOpen, separatorClose);
 	}

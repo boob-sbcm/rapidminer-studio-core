@@ -29,7 +29,7 @@ import com.rapidminer.tools.math.similarity.DistanceMeasure;
  * Euclidean distance for numerical and nominal values. For nomimal values, a distance of one is
  * accounted if both values are not the same. Note: In most cases, you must normalize the numerical
  * values, to obtain sound results.
- * 
+ *
  * @author Sebastian Land, Michael Wurst
  */
 public class MixedEuclideanDistance extends DistanceMeasure {

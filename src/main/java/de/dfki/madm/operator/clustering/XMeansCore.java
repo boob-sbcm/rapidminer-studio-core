@@ -45,6 +45,9 @@ import com.rapidminer.tools.math.similarity.DistanceMeasure;
 import de.dfki.madm.operator.KMeanspp;
 
 
+/**
+ * The type X means core.
+ */
 public class XMeansCore extends RMAbstractClusterer {
 
 	private static final int INTERMEDIATE_PROGRESS = 20;
@@ -64,29 +67,20 @@ public class XMeansCore extends RMAbstractClusterer {
 	private String ClusteringAlgorithm = "";
 	private Operator executingOperator = null;
 
-	/**
-	 * Initialization of X-Mean
-	 *
-	 * @param eSet
-	 *            ExamleSet to cluster
-	 * @param k_min
-	 *            minimal number of cluster
-	 * @param k_max
-	 *            maximal number of cluster
-	 * @param kpp
-	 *            using K++-Algorithem to determin the first centroids
-	 * @param maxOptimizationSteps
-	 *            maximal optimationsteps of k-Means
-	 * @param maxRuns
-	 *            The maximal number of runs of k-Means with random initialization that are
-	 *            performed.
-	 * @param description
-	 * @param measure
-	 *            MeasureType to use
-	 * @param cluster_alg
-	 *            Clustering Algorithm to use
-	 */
-	public XMeansCore(ExampleSet eSet, int k_min, int k_max, boolean kpp, int maxOptimizationSteps, int maxRuns,
+    /**
+     * Initialization of X-Mean
+     *
+     * @param eSet                 ExamleSet to cluster
+     * @param k_min                minimal number of cluster
+     * @param k_max                maximal number of cluster
+     * @param kpp                  using K++-Algorithem to determin the first centroids
+     * @param maxOptimizationSteps maximal optimationsteps of k-Means
+     * @param maxRuns              The maximal number of runs of k-Means with random initialization that are            performed.
+     * @param description          the description
+     * @param measure              MeasureType to use
+     * @param cluster_alg          Clustering Algorithm to use
+     */
+    public XMeansCore(ExampleSet eSet, int k_min, int k_max, boolean kpp, int maxOptimizationSteps, int maxRuns,
 			OperatorDescription description, DistanceMeasure measure, String cluster_alg) {
 		super(description);
 
@@ -102,13 +96,13 @@ public class XMeansCore extends RMAbstractClusterer {
 		this.ClusteringAlgorithm = cluster_alg;
 	}
 
-	/**
-	 * Running X-Means Algorithm
-	 *
-	 * @return Clustered Model
-	 * @throws OperatorException
-	 */
-	public ClusterModel doXMean() throws OperatorException {
+    /**
+     * Running X-Means Algorithm
+     *
+     * @return Clustered Model
+     * @throws OperatorException the operator exception
+     */
+    public ClusterModel doXMean() throws OperatorException {
 
 		examplesize = exampleSet.size();
 
@@ -426,13 +420,12 @@ public class XMeansCore extends RMAbstractClusterer {
 		return null;
 	}
 
-	/**
-	 * The operator in which XMeans is done. Used to display the progress.
-	 *
-	 * @param executingOperator
-	 *            The executing XMeans operator
-	 */
-	public void setExecutingOperator(Operator executingOperator) {
+    /**
+     * The operator in which XMeans is done. Used to display the progress.
+     *
+     * @param executingOperator The executing XMeans operator
+     */
+    public void setExecutingOperator(Operator executingOperator) {
 		this.executingOperator = executingOperator;
 	}
 

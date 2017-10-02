@@ -92,12 +92,12 @@ class ConfigureDataValidator extends AbstractObservable<Set<Integer>> {
 	/** the meta data for the columns */
 	private List<ColumnMetaData> columnMetaData;
 
-	/**
-	 * Initializes the validator with the given columnMetaData.
-	 *
-	 * @param columnMetaData
-	 */
-	void init(List<ColumnMetaData> columnMetaData) {
+    /**
+     * Initializes the validator with the given columnMetaData.
+     *
+     * @param columnMetaData the column meta data
+     */
+    void init(List<ColumnMetaData> columnMetaData) {
 		this.columnMetaData = columnMetaData;
 		columnRoles.clear();
 		columnNames.clear();
@@ -146,13 +146,12 @@ class ConfigureDataValidator extends AbstractObservable<Set<Integer>> {
 		}
 	}
 
-	/**
-	 * Sets the parsing errors.
-	 *
-	 * @param parsingErrors
-	 *            the parsing errors to set
-	 */
-	void setParsingErrors(List<ParsingError> parsingErrors) {
+    /**
+     * Sets the parsing errors.
+     *
+     * @param parsingErrors the parsing errors to set
+     */
+    void setParsingErrors(List<ParsingError> parsingErrors) {
 		this.parsingErrorList = parsingErrors;
 		for (ParsingError error : parsingErrors) {
 			parsingErrorAffectedColumns.add(error.getColumn());
@@ -160,10 +159,12 @@ class ConfigureDataValidator extends AbstractObservable<Set<Integer>> {
 		fireUpdate();
 	}
 
-	/**
-	 * @return the {@link ParsingError}s of columns that are not removed
-	 */
-	List<ParsingError> getParsingErrors() {
+    /**
+     * Gets parsing errors.
+     *
+     * @return the {@link ParsingError}s of columns that are not removed
+     */
+    List<ParsingError> getParsingErrors() {
 		List<ParsingError> errorList = new LinkedList<>();
 		for (ParsingError error : parsingErrorList) {
 			if (!columnMetaData.get(error.getColumn()).isRemoved()) {
@@ -173,10 +174,12 @@ class ConfigureDataValidator extends AbstractObservable<Set<Integer>> {
 		return errorList;
 	}
 
-	/**
-	 * @return the list of {@link ColumnError}s
-	 */
-	List<ColumnError> getColumnErrors() {
+    /**
+     * Gets column errors.
+     *
+     * @return the list of {@link ColumnError}s
+     */
+    List<ColumnError> getColumnErrors() {
 		return columnErrorList;
 	}
 
@@ -192,13 +195,12 @@ class ConfigureDataValidator extends AbstractObservable<Set<Integer>> {
 		addColumnToColumnsMaps(columnIndex, columnMetaData.get(columnIndex));
 	}
 
-	/**
-	 * Validates the settings for the column with the given columnIndex.
-	 *
-	 * @param columnIndex
-	 *            the index of the column to check
-	 */
-	void validate(int columnIndex) {
+    /**
+     * Validates the settings for the column with the given columnIndex.
+     *
+     * @param columnIndex the index of the column to check
+     */
+    void validate(int columnIndex) {
 		updateColumnMaps(columnIndex);
 		checkForDuplicates();
 		checkEmptySelection(columnIndex);
@@ -333,48 +335,44 @@ class ConfigureDataValidator extends AbstractObservable<Set<Integer>> {
 		}
 	}
 
-	/**
-	 * Whether the column has a name that is also used in another column.
-	 *
-	 * @param column
-	 *            the index of the column to check
-	 * @return {@code true} if the name of this column is also used in another column
-	 */
-	boolean isDuplicateNameColumn(int column) {
+    /**
+     * Whether the column has a name that is also used in another column.
+     *
+     * @param column the index of the column to check
+     * @return {@code true} if the name of this column is also used in another column
+     */
+    boolean isDuplicateNameColumn(int column) {
 		return duplicateNameColumn.contains(column);
 	}
 
-	/**
-	 * Whether the column has a role that is also used in another column.
-	 *
-	 * @param column
-	 *            the index of the column to check
-	 * @return {@code true} if the role of this column is also used in another column
-	 */
-	boolean isDuplicateRoleColumn(int column) {
+    /**
+     * Whether the column has a role that is also used in another column.
+     *
+     * @param column the index of the column to check
+     * @return {@code true} if the role of this column is also used in another column
+     */
+    boolean isDuplicateRoleColumn(int column) {
 		return duplicateRoleColumn.contains(column);
 	}
 
-	/**
-	 * Checks if the given column name is already in use.
-	 *
-	 * @param name
-	 *            the column name which should be checked
-	 * @return {@code true} if a duplicate entry exists, otherwise {@code false}
-	 */
-	boolean isNameUsed(String name) {
+    /**
+     * Checks if the given column name is already in use.
+     *
+     * @param name the column name which should be checked
+     * @return {@code true} if a duplicate entry exists, otherwise {@code false}
+     */
+    boolean isNameUsed(String name) {
 		List<Integer> columnsWithName = columnNames.get(name);
 		return columnsWithName != null && !columnsWithName.isEmpty();
 	}
 
-	/**
-	 * Checks if the given role is already in use.
-	 *
-	 * @param role
-	 *            the role which should be checked
-	 * @return {@code true} if a duplicate entry exists, otherwise {@code false}
-	 */
-	public boolean isRoleUsed(String role) {
+    /**
+     * Checks if the given role is already in use.
+     *
+     * @param role the role which should be checked
+     * @return {@code true} if a duplicate entry exists, otherwise {@code false}
+     */
+    public boolean isRoleUsed(String role) {
 		List<Integer> columnsWithRole = columnRoles.get(role);
 		return columnsWithRole != null && !columnsWithRole.isEmpty();
 	}

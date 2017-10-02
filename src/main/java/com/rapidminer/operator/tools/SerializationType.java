@@ -30,9 +30,9 @@ import java.util.zip.GZIPOutputStream;
 
 
 /**
- * 
+ * The type Java binary body serializer.
+ *
  * @author Simon Fischer
- * 
  */
 class JavaBinaryBodySerializer implements BodySerializer {
 
@@ -55,6 +55,9 @@ class JavaBinaryBodySerializer implements BodySerializer {
 }
 
 
+/**
+ * The type Xml body serializer.
+ */
 class XMLBodySerializer implements BodySerializer {
 
 	@Override
@@ -77,6 +80,9 @@ class XMLBodySerializer implements BodySerializer {
 }
 
 
+/**
+ * The type G zipped xml body serializer.
+ */
 class GZippedXMLBodySerializer extends XMLBodySerializer {
 
 	@Override
@@ -93,31 +99,48 @@ class GZippedXMLBodySerializer extends XMLBodySerializer {
 
 /**
  * Encapsulates some standard ways to serialize and deserialize objects from streams.
- * 
+ * <p>
  * NOTE: When adding new enum constants, don't change the ordering of the old, since the ordinal
  * value will be used to identify the serialization type.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public enum SerializationType {
 
-	/** Plain binary java serialization using Object{In/Out}putStream. */
-	JAVA_BINARY(new JavaBinaryBodySerializer()),
+    /**
+     * Plain binary java serialization using Object{In/Out}putStream.
+     */
+    JAVA_BINARY(new JavaBinaryBodySerializer()),
 
-	/** Uses xstream XML serialization. */
-	XML(new XMLBodySerializer()),
+    /**
+     * Uses xstream XML serialization.
+     */
+    XML(new XMLBodySerializer()),
 
-	/** Uses xstream XML serialization wrapped in a GZip stream. */
-	XML_ZIPPED(new GZippedXMLBodySerializer()),
+    /**
+     * Uses xstream XML serialization wrapped in a GZip stream.
+     */
+    XML_ZIPPED(new GZippedXMLBodySerializer()),
 
-	STREAMED_EXAMPLE_SET_DENSE(new StreamedExampleSetBodySerializer(ExampleSetToStream.VERSION_1)),
+    /**
+     * The Streamed example set dense.
+     */
+    STREAMED_EXAMPLE_SET_DENSE(new StreamedExampleSetBodySerializer(ExampleSetToStream.VERSION_1)),
 
-	STREAMED_EXAMPLE_SET_DENSE_2(new StreamedExampleSetBodySerializer(ExampleSetToStream.VERSION_2)),
+    /**
+     * The Streamed example set dense 2.
+     */
+    STREAMED_EXAMPLE_SET_DENSE_2(new StreamedExampleSetBodySerializer(ExampleSetToStream.VERSION_2)),
 
-	STREAMED_EXAMPLE_SET_DENSE_3(new StreamedExampleSetBodySerializer(ExampleSetToStream.VERSION_3));
+    /**
+     * The Streamed example set dense 3.
+     */
+    STREAMED_EXAMPLE_SET_DENSE_3(new StreamedExampleSetBodySerializer(ExampleSetToStream.VERSION_3));
 
-	public static SerializationType STREAMED_EXAMPLE_SET_DENSE_CURRENT_VERSION = STREAMED_EXAMPLE_SET_DENSE_3;
+    /**
+     * The constant STREAMED_EXAMPLE_SET_DENSE_CURRENT_VERSION.
+     */
+    public static SerializationType STREAMED_EXAMPLE_SET_DENSE_CURRENT_VERSION = STREAMED_EXAMPLE_SET_DENSE_3;
 
 	private BodySerializer bodySerializer;
 
@@ -125,7 +148,12 @@ public enum SerializationType {
 		this.bodySerializer = bodySerializer;
 	}
 
-	public BodySerializer getBodySerializer() {
+    /**
+     * Gets body serializer.
+     *
+     * @return the body serializer
+     */
+    public BodySerializer getBodySerializer() {
 		return bodySerializer;
 	}
 }

@@ -21,14 +21,19 @@ package com.rapidminer.tools.math;
 /**
  * This exception is thrown during the calculation of significance values like paired t-tests or
  * ANOVA.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SignificanceCalculationException extends Exception {
 
 	private static final long serialVersionUID = -4870335385956962965L;
 
-	public SignificanceCalculationException(String message) {
+    /**
+     * Instantiates a new Significance calculation exception.
+     *
+     * @param message the message
+     */
+    public SignificanceCalculationException(String message) {
 		super(message);
 	}
 }

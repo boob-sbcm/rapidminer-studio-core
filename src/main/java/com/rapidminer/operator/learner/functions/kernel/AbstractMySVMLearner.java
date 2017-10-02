@@ -60,99 +60,143 @@ import com.rapidminer.parameter.conditions.EqualTypeCondition;
 /**
  * This is the abstract superclass for the support vector machine / KLR implementations of Stefan
  * R&uuml;ping.
- * 
- * @rapidminer.reference Rueping/2000a
- * @rapidminer.reference Vapnik/98a
- * @rapidminer.index SVM
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
+ * @rapidminer.reference Rueping /2000a
+ * @rapidminer.reference Vapnik /98a
+ * @rapidminer.index SVM
  */
 public abstract class AbstractMySVMLearner extends AbstractKernelBasedLearner {
 
-	/** The parameter name for &quot;The SVM kernel parameter gamma (radial, anova).&quot; */
-	public static final String PARAMETER_KERNEL_GAMMA = "kernel_gamma";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter gamma (radial, anova).&quot;
+     */
+    public static final String PARAMETER_KERNEL_GAMMA = "kernel_gamma";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter sigma1 (epanechnikov, gaussian
-	 * combination, multiquadric).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_SIGMA1 = "kernel_sigma1";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma1 (epanechnikov, gaussian
+     * combination, multiquadric).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA1 = "kernel_sigma1";
 
-	/** The parameter name for &quot;The SVM kernel parameter sigma2 (gaussian combination).&quot; */
-	public static final String PARAMETER_KERNEL_SIGMA2 = "kernel_sigma2";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma2 (gaussian combination).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA2 = "kernel_sigma2";
 
-	/** The parameter name for &quot;The SVM kernel parameter sigma3 (gaussian combination).&quot; */
-	public static final String PARAMETER_KERNEL_SIGMA3 = "kernel_sigma3";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma3 (gaussian combination).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA3 = "kernel_sigma3";
 
-	/** The parameter name for &quot;The SVM kernel parameter shift (multiquadric).&quot; */
-	public static final String PARAMETER_KERNEL_SHIFT = "kernel_shift";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter shift (multiquadric).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SHIFT = "kernel_shift";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter degree (polynomial, anova,
-	 * epanechnikov).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_DEGREE = "kernel_degree";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter degree (polynomial, anova,
+     * epanechnikov).&quot;
+     */
+    public static final String PARAMETER_KERNEL_DEGREE = "kernel_degree";
 
-	/** The parameter name for &quot;The SVM kernel parameter a (neural).&quot; */
-	public static final String PARAMETER_KERNEL_A = "kernel_a";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter a (neural).&quot;
+     */
+    public static final String PARAMETER_KERNEL_A = "kernel_a";
 
-	/** The parameter name for &quot;The SVM kernel parameter b (neural).&quot; */
-	public static final String PARAMETER_KERNEL_B = "kernel_b";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter b (neural).&quot;
+     */
+    public static final String PARAMETER_KERNEL_B = "kernel_b";
 
-	/** The parameter name for &quot;Size of the cache for kernel evaluations im MB &quot; */
-	public static final String PARAMETER_KERNEL_CACHE = "kernel_cache";
+    /**
+     * The parameter name for &quot;Size of the cache for kernel evaluations im MB &quot;
+     */
+    public static final String PARAMETER_KERNEL_CACHE = "kernel_cache";
 
-	/** The parameter name for &quot;Precision on the KKT conditions&quot; */
-	public static final String PARAMETER_CONVERGENCE_EPSILON = "convergence_epsilon";
+    /**
+     * The parameter name for &quot;Precision on the KKT conditions&quot;
+     */
+    public static final String PARAMETER_CONVERGENCE_EPSILON = "convergence_epsilon";
 
-	/** The parameter name for &quot;Stop after this many iterations&quot; */
-	public static final String PARAMETER_MAX_ITERATIONS = "max_iterations";
+    /**
+     * The parameter name for &quot;Stop after this many iterations&quot;
+     */
+    public static final String PARAMETER_MAX_ITERATIONS = "max_iterations";
 
-	/**
-	 * The parameter name for &quot;Scale the example values and store the scaling parameters for
-	 * test set.&quot;
-	 */
-	public static final String PARAMETER_SCALE = "scale";
+    /**
+     * The parameter name for &quot;Scale the example values and store the scaling parameters for
+     * test set.&quot;
+     */
+    public static final String PARAMETER_SCALE = "scale";
 
-	/**
-	 * The parameter name for &quot;Indicates if final optimization fitness should be returned as
-	 * performance.&quot;
-	 */
-	public static final String PARAMETER_RETURN_OPTIMIZATION_PERFORMANCE = "return_optimization_performance";
+    /**
+     * The parameter name for &quot;Indicates if final optimization fitness should be returned as
+     * performance.&quot;
+     */
+    public static final String PARAMETER_RETURN_OPTIMIZATION_PERFORMANCE = "return_optimization_performance";
 
-	public static final String PARAMETER_C = "C";
+    /**
+     * The constant PARAMETER_C.
+     */
+    public static final String PARAMETER_C = "C";
 
-	public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
+    /**
+     * The constant PARAMETER_KERNEL_TYPE.
+     */
+    public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
 
-	public static final String PARAMETER_CALCULATE_WEIGHTS = "calculate_weights";
+    /**
+     * The constant PARAMETER_CALCULATE_WEIGHTS.
+     */
+    public static final String PARAMETER_CALCULATE_WEIGHTS = "calculate_weights";
 
-	/** The kernels which can be used from RapidMiner for the mySVM / myKLR. */
-	public static final String[] KERNEL_TYPES = { "dot", "radial", "polynomial", "neural", "anova", "epachnenikov",
+    /**
+     * The kernels which can be used from RapidMiner for the mySVM / myKLR.
+     */
+    public static final String[] KERNEL_TYPES = { "dot", "radial", "polynomial", "neural", "anova", "epachnenikov",
 			"gaussian_combination", "multiquadric" };
 
-	/** Indicates a linear kernel. */
-	public static final int KERNEL_DOT = 0;
+    /**
+     * Indicates a linear kernel.
+     */
+    public static final int KERNEL_DOT = 0;
 
-	/** Indicates a rbf kernel. */
-	public static final int KERNEL_RADIAL = 1;
+    /**
+     * Indicates a rbf kernel.
+     */
+    public static final int KERNEL_RADIAL = 1;
 
-	/** Indicates a polynomial kernel. */
-	public static final int KERNEL_POLYNOMIAL = 2;
+    /**
+     * Indicates a polynomial kernel.
+     */
+    public static final int KERNEL_POLYNOMIAL = 2;
 
-	/** Indicates a neural net kernel. */
-	public static final int KERNEL_NEURAL = 3;
+    /**
+     * Indicates a neural net kernel.
+     */
+    public static final int KERNEL_NEURAL = 3;
 
-	/** Indicates an anova kernel. */
-	public static final int KERNEL_ANOVA = 4;
+    /**
+     * Indicates an anova kernel.
+     */
+    public static final int KERNEL_ANOVA = 4;
 
-	/** Indicates a epanechnikov kernel. */
-	public static final int KERNEL_EPANECHNIKOV = 5;
+    /**
+     * Indicates a epanechnikov kernel.
+     */
+    public static final int KERNEL_EPANECHNIKOV = 5;
 
-	/** Indicates a gaussian combination kernel. */
-	public static final int KERNEL_GAUSSIAN_COMBINATION = 6;
+    /**
+     * Indicates a gaussian combination kernel.
+     */
+    public static final int KERNEL_GAUSSIAN_COMBINATION = 6;
 
-	/** Indicates a multiquadric kernel. */
-	public static final int KERNEL_MULTIQUADRIC = 7;
+    /**
+     * Indicates a multiquadric kernel.
+     */
+    public static final int KERNEL_MULTIQUADRIC = 7;
 
 	/** The SVM which is used for learning. */
 	private SVMInterface svm = null;
@@ -163,7 +207,12 @@ public abstract class AbstractMySVMLearner extends AbstractKernelBasedLearner {
 	/** The SVM example set. */
 	private com.rapidminer.operator.learner.functions.kernel.jmysvm.examples.SVMExamples svmExamples;
 
-	public AbstractMySVMLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract my svm learner.
+     *
+     * @param description the description
+     */
+    public AbstractMySVMLearner(OperatorDescription description) {
 		super(description);
 	}
 
@@ -180,23 +229,48 @@ public abstract class AbstractMySVMLearner extends AbstractKernelBasedLearner {
 		}
 	}
 
-	/** Creates a new SVM according to the given label. */
-	public abstract SVMInterface createSVM(Attribute label, Kernel kernel,
+    /**
+     * Creates a new SVM according to the given label.  @param label the label
+     *
+     * @param label              the label
+     * @param kernel             the kernel
+     * @param svmExamples        the svm examples
+     * @param rapidMinerExamples the rapid miner examples
+     * @return the svm interface
+     * @throws OperatorException the operator exception
+     */
+    public abstract SVMInterface createSVM(Attribute label, Kernel kernel,
 			com.rapidminer.operator.learner.functions.kernel.jmysvm.examples.SVMExamples svmExamples,
 			ExampleSet rapidMinerExamples) throws OperatorException;
 
-	/** Creates a new SVM model from the given data. */
-	public abstract AbstractMySVMModel createSVMModel(ExampleSet exampleSet,
+    /**
+     * Creates a new SVM model from the given data.  @param exampleSet the example set
+     *
+     * @param exampleSet  the example set
+     * @param svmExamples the svm examples
+     * @param kernel      the kernel
+     * @param kernelType  the kernel type
+     * @return the abstract my svm model
+     */
+    public abstract AbstractMySVMModel createSVMModel(ExampleSet exampleSet,
 			com.rapidminer.operator.learner.functions.kernel.jmysvm.examples.SVMExamples svmExamples, Kernel kernel,
 			int kernelType);
 
-	/** Returns the kernel of this SVM. */
-	protected Kernel getKernel() {
+    /**
+     * Returns the kernel of this SVM.  @return the kernel
+     *
+     * @return the kernel
+     */
+    protected Kernel getKernel() {
 		return kernel;
 	}
 
-	/** Returns the used SVM. */
-	protected SVMInterface getSVM() {
+    /**
+     * Returns the used SVM.  @return the svm
+     *
+     * @return the svm
+     */
+    protected SVMInterface getSVM() {
 		return svm;
 	}
 
@@ -322,12 +396,15 @@ public abstract class AbstractMySVMLearner extends AbstractKernelBasedLearner {
 		return sum - 0.5d * matrixSum;
 	}
 
-	/**
-	 * Creates a new kernel of the given type. The kernel type has to be one out of KERNEL_DOT,
-	 * KERNEL_RADIAL, KERNEL_POLYNOMIAL, KERNEL_NEURAL, KERNEL_EPANECHNIKOV,
-	 * KERNEL_GAUSSIAN_COMBINATION, or KERNEL_MULTIQUADRIC.
-	 */
-	public static Kernel createKernel(int kernelType) {
+    /**
+     * Creates a new kernel of the given type. The kernel type has to be one out of KERNEL_DOT,
+     * KERNEL_RADIAL, KERNEL_POLYNOMIAL, KERNEL_NEURAL, KERNEL_EPANECHNIKOV,
+     * KERNEL_GAUSSIAN_COMBINATION, or KERNEL_MULTIQUADRIC.
+     *
+     * @param kernelType the kernel type
+     * @return the kernel
+     */
+    public static Kernel createKernel(int kernelType) {
 		switch (kernelType) {
 			case KERNEL_DOT:
 				return new KernelDot();

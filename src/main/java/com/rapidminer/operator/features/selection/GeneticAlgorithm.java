@@ -49,7 +49,7 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  * crossover=interchange used features). Selection is done by roulette wheel. Genetic algorithms are
  * general purpose optimization / search algorithms that are suitable in case of no or little
  * problem knowledge. <br/>
- *
+ * <p>
  * A genetic algorithm works as follows
  * <ol>
  * <li>Generate an initial population consisting of <code>population_size</code> individuals. Each
@@ -67,7 +67,7 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  * random according to their probability.</li>
  * <li>As long as the fitness improves, go to 2</li>
  * </ol>
- *
+ * <p>
  * If the example set contains value series attributes with blocknumbers, the whole block will be
  * switched on and off.
  *
@@ -75,38 +75,65 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  */
 public class GeneticAlgorithm extends AbstractGeneticAlgorithm {
 
-	/** The parameter name for &quot;Initial probability for an attribute to be switched on.&quot; */
-	public static final String PARAMETER_P_INITIALIZE = "p_initialize";
+    /**
+     * The parameter name for &quot;Initial probability for an attribute to be switched on.&quot;
+     */
+    public static final String PARAMETER_P_INITIALIZE = "p_initialize";
 
-	/**
-	 * The parameter name for &quot;Probability for an attribute to be changed (-1: 1 /
-	 * numberOfAtt).&quot;
-	 */
-	public static final String PARAMETER_P_MUTATION = "p_mutation";
+    /**
+     * The parameter name for &quot;Probability for an attribute to be changed (-1: 1 /
+     * numberOfAtt).&quot;
+     */
+    public static final String PARAMETER_P_MUTATION = "p_mutation";
 
-	/**
-	 * The parameter name for &quot;Probability for an individual to be selected for
-	 * crossover.&quot;
-	 */
-	public static final String PARAMETER_P_CROSSOVER = "p_crossover";
+    /**
+     * The parameter name for &quot;Probability for an individual to be selected for
+     * crossover.&quot;
+     */
+    public static final String PARAMETER_P_CROSSOVER = "p_crossover";
 
-	/** The parameter name for &quot;Type of the crossover.&quot; */
-	public static final String PARAMETER_CROSSOVER_TYPE = "crossover_type";
+    /**
+     * The parameter name for &quot;Type of the crossover.&quot;
+     */
+    public static final String PARAMETER_CROSSOVER_TYPE = "crossover_type";
 
-	public static final String PARAMETER_MAX_NUMBER_OF_ATTRIBUTES = "max_number_of_attributes";
+    /**
+     * The constant PARAMETER_MAX_NUMBER_OF_ATTRIBUTES.
+     */
+    public static final String PARAMETER_MAX_NUMBER_OF_ATTRIBUTES = "max_number_of_attributes";
 
-	public static final String PARAMETER_MIN_NUMBER_OF_ATTRIBUTES = "min_number_of_attributes";
+    /**
+     * The constant PARAMETER_MIN_NUMBER_OF_ATTRIBUTES.
+     */
+    public static final String PARAMETER_MIN_NUMBER_OF_ATTRIBUTES = "min_number_of_attributes";
 
-	public static final String PARAMETER_EXACT_NUMBER_OF_ATTRIBUTES = "exact_number_of_attributes";
+    /**
+     * The constant PARAMETER_EXACT_NUMBER_OF_ATTRIBUTES.
+     */
+    public static final String PARAMETER_EXACT_NUMBER_OF_ATTRIBUTES = "exact_number_of_attributes";
 
-	public static final String PARAMETER_INITIALIZE_WITH_INPUT_WEIGHTS = "initialize_with_input_weights";
+    /**
+     * The constant PARAMETER_INITIALIZE_WITH_INPUT_WEIGHTS.
+     */
+    public static final String PARAMETER_INITIALIZE_WITH_INPUT_WEIGHTS = "initialize_with_input_weights";
 
-	public static final String PARAMETER_USE_EXACT_NUMBER = "use_exact_number_of_attributes";
-	public static final String PARAMETER_RESTRICT_NUMBER = "restrict_maximum";
+    /**
+     * The constant PARAMETER_USE_EXACT_NUMBER.
+     */
+    public static final String PARAMETER_USE_EXACT_NUMBER = "use_exact_number_of_attributes";
+    /**
+     * The constant PARAMETER_RESTRICT_NUMBER.
+     */
+    public static final String PARAMETER_RESTRICT_NUMBER = "restrict_maximum";
 
 	private InputPort attributeWeightsInput = getInputPorts().createPort("attribute weights in");
 
-	public GeneticAlgorithm(OperatorDescription description) {
+    /**
+     * Instantiates a new Genetic algorithm.
+     *
+     * @param description the description
+     */
+    public GeneticAlgorithm(OperatorDescription description) {
 		super(description);
 
 		attributeWeightsInput.addPrecondition(new SimplePrecondition(attributeWeightsInput, new MetaData(

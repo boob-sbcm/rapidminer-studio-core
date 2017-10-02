@@ -31,7 +31,7 @@ import javax.swing.Icon;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ZoomOutAction extends AbstractAction {
@@ -51,7 +51,13 @@ public class ZoomOutAction extends AbstractAction {
 
 	private GraphViewer<?, ?> graphViewer;
 
-	public ZoomOutAction(GraphViewer<?, ?> graphViewer, IconSize size) {
+    /**
+     * Instantiates a new Zoom out action.
+     *
+     * @param graphViewer the graph viewer
+     * @param size        the size
+     */
+    public ZoomOutAction(GraphViewer<?, ?> graphViewer, IconSize size) {
 		super("Zoom Out", ICONS[size.ordinal()]);
 		putValue(SHORT_DESCRIPTION, "Zooms out the graph view.");
 		putValue(MNEMONIC_KEY, Integer.valueOf(KeyEvent.VK_O));

@@ -28,7 +28,8 @@ import java.awt.Component;
 
 
 /**
- * 
+ * The type Area under curve renderer.
+ *
  * @author Sebastian Land
  */
 public class AreaUnderCurveRenderer extends AbstractRenderer {

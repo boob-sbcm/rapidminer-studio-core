@@ -21,7 +21,7 @@ package com.rapidminer.tools.math.smoothing;
 /**
  * This class implements a rectangular kernel. If distance is less than 1, it returns full weight of
  * 1 otherwise 0.
- * 
+ *
  * @author Sebastian Land
  */
 public class RectangularSmoothingKernel extends SmoothingKernel {

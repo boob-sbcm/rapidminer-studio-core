@@ -31,23 +31,41 @@ public class ProcessStoppedException extends OperatorException {
 	private transient final Operator op;
 	private String opName;
 
-	public ProcessStoppedException(Operator o) {
+    /**
+     * Instantiates a new Process stopped exception.
+     *
+     * @param o the o
+     */
+    public ProcessStoppedException(Operator o) {
 		super("Process stopped in " + o.getName());
 		this.op = o;
 		this.opName = op.getName();
 	}
 
-	public ProcessStoppedException() {
+    /**
+     * Instantiates a new Process stopped exception.
+     */
+    public ProcessStoppedException() {
 		super("Process stopped");
 		this.op = null;
 		this.opName = "";
 	}
 
-	public Operator getOperator() {
+    /**
+     * Gets operator.
+     *
+     * @return the operator
+     */
+    public Operator getOperator() {
 		return op;
 	}
 
-	public String getOperatorName() {
+    /**
+     * Gets operator name.
+     *
+     * @return the operator name
+     */
+    public String getOperatorName() {
 		return opName;
 	}
 

@@ -36,8 +36,9 @@ import com.rapidminer.tools.I18N;
 
 
 /**
- * @author Nils Woehler
+ * The type Chart title configuration container.
  *
+ * @author Nils Woehler
  */
 public class ChartTitleConfigurationContainer extends AbstractConfigurationPanel {
 
@@ -46,7 +47,12 @@ public class ChartTitleConfigurationContainer extends AbstractConfigurationPanel
 	private JButton titleFontChooserButton;
 	private JButton titleColorChooserButton;
 
-	public ChartTitleConfigurationContainer(PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Chart title configuration container.
+     *
+     * @param plotInstance the plot instance
+     */
+    public ChartTitleConfigurationContainer(PlotInstance plotInstance) {
 		super(plotInstance);
 		createComponents();
 		adaptGUI();

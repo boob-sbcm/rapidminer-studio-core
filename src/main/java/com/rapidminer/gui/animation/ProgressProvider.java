@@ -26,10 +26,10 @@ package com.rapidminer.gui.animation;
  */
 public interface ProgressProvider {
 
-	/**
-	 * Returns the current progress or 0 if the progress is indeterminate.
-	 *
-	 * @return the current progress (between 0 and 100)
-	 */
-	int getProgress();
+    /**
+     * Returns the current progress or 0 if the progress is indeterminate.
+     *
+     * @return the current progress (between 0 and 100)
+     */
+    int getProgress();
 }

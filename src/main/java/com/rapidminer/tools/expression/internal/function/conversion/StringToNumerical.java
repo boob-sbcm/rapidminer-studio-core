@@ -33,11 +33,9 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
 
 
 /**
- *
  * A {@link Function} parsing a string to a number.
  *
  * @author Marcel Seifert
- *
  */
 public class StringToNumerical extends AbstractFunction {
 
@@ -50,11 +48,11 @@ public class StringToNumerical extends AbstractFunction {
 	private static final String NEGATIVE_INFINITY_STRING = Tools.FORMAT_SYMBOLS.getMinusSign()
 			+ Tools.FORMAT_SYMBOLS.getInfinity();
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 */
-	public StringToNumerical() {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     */
+    public StringToNumerical() {
 		super("conversion.parse", 1, Ontology.NUMERICAL);
 	}
 
@@ -71,14 +69,13 @@ public class StringToNumerical extends AbstractFunction {
 		return new SimpleExpressionEvaluator(makeDoubleCallable(input), type, isResultConstant(inputEvaluators));
 	}
 
-	/**
-	 * Builds a DoubleCallable from one String input argument
-	 *
-	 * @param inputEvaluator
-	 *            the input
-	 * @return the resulting callable<String>
-	 */
-	protected DoubleCallable makeDoubleCallable(final ExpressionEvaluator inputEvaluator) {
+    /**
+     * Builds a DoubleCallable from one String input argument
+     *
+     * @param inputEvaluator the input
+     * @return the resulting callable<String>
+     */
+    protected DoubleCallable makeDoubleCallable(final ExpressionEvaluator inputEvaluator) {
 		final Callable<String> func = inputEvaluator.getStringFunction();
 
 		try {
@@ -107,15 +104,13 @@ public class StringToNumerical extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result for one input String value.
-	 *
-	 * @param value
-	 *            the string to parse
-	 *
-	 * @return the result of the computation.
-	 */
-	protected double compute(String value) {
+    /**
+     * Computes the result for one input String value.
+     *
+     * @param value the string to parse
+     * @return the result of the computation.
+     */
+    protected double compute(String value) {
 		if (value != null) {
 			try {
 				return Double.parseDouble(value);

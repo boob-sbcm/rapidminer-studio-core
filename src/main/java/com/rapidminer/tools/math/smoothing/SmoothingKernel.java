@@ -25,16 +25,29 @@ import java.io.Serializable;
  * This class provides the functionality of a smoothing kernel, which returns weights depended on a
  * norm distance. Additionally, this class provides a convenient method for normalizing the
  * distances to 1.
- * 
+ *
  * @author Sebastian Land
  */
 public abstract class SmoothingKernel implements Serializable {
 
 	private static final long serialVersionUID = 6368830159821896801L;
 
-	public double getWeight(double distance, double normalizationConstant) {
+    /**
+     * Gets weight.
+     *
+     * @param distance              the distance
+     * @param normalizationConstant the normalization constant
+     * @return the weight
+     */
+    public double getWeight(double distance, double normalizationConstant) {
 		return getWeight(distance / normalizationConstant);
 	}
 
-	public abstract double getWeight(double distance);
+    /**
+     * Gets weight.
+     *
+     * @param distance the distance
+     * @return the weight
+     */
+    public abstract double getWeight(double distance);
 }

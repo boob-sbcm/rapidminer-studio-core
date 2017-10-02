@@ -31,10 +31,10 @@ import com.rapidminer.parameter.UndefinedParameterError;
  */
 public class MinPerformanceValueCondition implements ProcessBranchCondition {
 
-	/**
-	 * Constructor used by reflection.
-	 */
-	public MinPerformanceValueCondition() {}
+    /**
+     * Constructor used by reflection.
+     */
+    public MinPerformanceValueCondition() {}
 
 	/**
 	 * This method checks if the file with pathname value exists.

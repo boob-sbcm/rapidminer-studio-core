@@ -48,19 +48,27 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  * both original feature sets. The values of the new features are set to missing. This operator only
  * works on the regular attributes and will not change, add, or otherwise modify the existing
  * special attributes.
- * 
+ *
  * @author Ingo Mierswa, Marius Helf
  */
 public class ExampleSetSuperset extends Operator {
 
-	public static final String PARAMETER_INCLUDE_SPECIAL_ATTRIBUTES = "include_special_attributes";
+    /**
+     * The constant PARAMETER_INCLUDE_SPECIAL_ATTRIBUTES.
+     */
+    public static final String PARAMETER_INCLUDE_SPECIAL_ATTRIBUTES = "include_special_attributes";
 
 	private InputPort exampleSet1Input = getInputPorts().createPort("example set 1", ExampleSet.class);
 	private InputPort exampleSet2Input = getInputPorts().createPort("example set 2", ExampleSet.class);
 	private OutputPort supersetOutput1 = getOutputPorts().createPort("superset 1");
 	private OutputPort supersetOutput2 = getOutputPorts().createPort("superset 2");
 
-	public ExampleSetSuperset(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set superset.
+     *
+     * @param description the description
+     */
+    public ExampleSetSuperset(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new ExampleSetUnionRule(exampleSet1Input, exampleSet2Input, supersetOutput1, null) {
 
@@ -80,7 +88,14 @@ public class ExampleSetSuperset extends Operator {
 		});
 	}
 
-	public void superset(ExampleSet exampleSet1, ExampleSet exampleSet2) throws OperatorException {
+    /**
+     * Superset.
+     *
+     * @param exampleSet1 the example set 1
+     * @param exampleSet2 the example set 2
+     * @throws OperatorException the operator exception
+     */
+    public void superset(ExampleSet exampleSet1, ExampleSet exampleSet2) throws OperatorException {
 		boolean includeSpecials = getParameterAsBoolean(PARAMETER_INCLUDE_SPECIAL_ATTRIBUTES);
 
 		// determine attributes missing in ES 1

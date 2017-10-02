@@ -48,20 +48,38 @@ import java.util.List;
  * This class uses n+1 inner learners and generates n different models by using the last n learners.
  * The predictions of these n models are taken to create n new features for the example set, which
  * is finally used to serve as an input of the first inner learner.
- * 
+ *
  * @author Ingo Mierswa, Helge Homburg
  */
 public abstract class AbstractStacking extends OperatorChain implements Learner {
 
-	protected InputPort exampleSetInput = getInputPorts().createPort("training set", ExampleSet.class);
-	protected OutputPortExtender baseInputExtender = new OutputPortExtender("training set", getBaseModelLearnerProcess()
+    /**
+     * The Example set input.
+     */
+    protected InputPort exampleSetInput = getInputPorts().createPort("training set", ExampleSet.class);
+    /**
+     * The Base input extender.
+     */
+    protected OutputPortExtender baseInputExtender = new OutputPortExtender("training set", getBaseModelLearnerProcess()
 			.getInnerSources());
-	protected InputPortExtender baseModelExtender = new InputPortExtender("base model", getBaseModelLearnerProcess()
+    /**
+     * The Base model extender.
+     */
+    protected InputPortExtender baseModelExtender = new InputPortExtender("base model", getBaseModelLearnerProcess()
 			.getInnerSinks(), new PredictionModelMetaData(PredictionModel.class, new ExampleSetMetaData()), 2);
 
-	protected OutputPort modelOutput = getOutputPorts().createPort("model");
+    /**
+     * The Model output.
+     */
+    protected OutputPort modelOutput = getOutputPorts().createPort("model");
 
-	public AbstractStacking(OperatorDescription description, String... subprocessNames) {
+    /**
+     * Instantiates a new Abstract stacking.
+     *
+     * @param description     the description
+     * @param subprocessNames the subprocess names
+     */
+    public AbstractStacking(OperatorDescription description, String... subprocessNames) {
 		super(description, subprocessNames);
 		baseInputExtender.start();
 		baseModelExtender.start();
@@ -71,16 +89,35 @@ public abstract class AbstractStacking extends OperatorChain implements Learner 
 				new GeneratePredictionModelTransformationRule(exampleSetInput, modelOutput, PredictionModel.class));
 	}
 
-	/** Returns the model name. */
-	protected abstract String getModelName();
+    /**
+     * Returns the model name.  @return the model name
+     *
+     * @return the model name
+     */
+    protected abstract String getModelName();
 
-	protected abstract ExecutionUnit getBaseModelLearnerProcess();
+    /**
+     * Gets base model learner process.
+     *
+     * @return the base model learner process
+     */
+    protected abstract ExecutionUnit getBaseModelLearnerProcess();
 
-	/** Returns the learner which should be used for stacking. */
-	protected abstract Model getStackingModel(ExampleSet stackingLearningSet) throws OperatorException;
+    /**
+     * Returns the learner which should be used for stacking.  @param stackingLearningSet the stacking learning set
+     *
+     * @param stackingLearningSet the stacking learning set
+     * @return the stacking model
+     * @throws OperatorException the operator exception
+     */
+    protected abstract Model getStackingModel(ExampleSet stackingLearningSet) throws OperatorException;
 
-	/** Indicates if the old attributes should be kept for learning the stacking model. */
-	public abstract boolean keepOldAttributes();
+    /**
+     * Indicates if the old attributes should be kept for learning the stacking model.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public abstract boolean keepOldAttributes();
 
 	@Override
 	public void doWork() throws OperatorException {

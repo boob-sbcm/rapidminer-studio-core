@@ -37,7 +37,7 @@ import java.util.logging.SimpleFormatter;
  * <li>logfile (filename or "stdout" or "stderr")</li>
  * <li>logverbosity (possible values are in {@link LogService#LOG_VERBOSITY_NAMES}</li>
  * </ul>
- * 
+ * <p>
  * <p>
  * Beside the <b>local</b> log service associated with a concrete process and which will be
  * automatically initialized during the setup phase, one <b>global</b> log service exist which is
@@ -49,7 +49,7 @@ import java.util.logging.SimpleFormatter;
  * {@link #initGlobalLogging(OutputStream, int)}. Alternatively, one could also define an
  * environment variable named {@link RapidMiner#PROPERTY_RAPIDMINER_GLOBAL_LOG_FILE}.
  * </p>
- * 
+ * <p>
  * <p>
  * Usually, operators should only use the log verbosities MINIMUM for messages with a low priority
  * and STATUS for normal information messages. In rare cases, the verbosity level NOTE could be used
@@ -59,14 +59,14 @@ import java.util.logging.SimpleFormatter;
  * verbosity levels should only be used by internal RapidMiner classes and not by user written
  * operators.
  * </p>
- * 
+ * <p>
  * <p>
  * We recommend to set the parameter for the log verbosity level to INIT for the process design
  * phase (eventually STATUS for debugging) and to the log verbosity level WARNING in the production
  * phase. This way it is ensured that not too many logging messages are produced in the production
  * phase.
  * </p>
- * 
+ * <p>
  * <p>
  * Log messages can be formatted by using the following macros:
  * </p>
@@ -78,69 +78,84 @@ import java.util.logging.SimpleFormatter;
  * <li>&quot;$w&quot; and &quot;^w&quot; start and end warning color mode respectively</li>
  * <li>&quot;$e&quot; and &quot;^e&quot; start and end error color mode respectively</li>
  * </ul>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class LogService extends WrapperLoggingHandler {
 
 	// -------------------- Verbosity Level --------------------
 
-	/** Indicates an unknown verbosity level. */
-	public static final int UNKNOWN_LEVEL = -1;
+    /**
+     * Indicates an unknown verbosity level.
+     */
+    public static final int UNKNOWN_LEVEL = -1;
 
-	/**
-	 * Indicates the lowest log verbosity. Should only be used for very detailed but not necessary
-	 * logging.
-	 */
-	public static final int MINIMUM = 0;
+    /**
+     * Indicates the lowest log verbosity. Should only be used for very detailed but not necessary
+     * logging.
+     */
+    public static final int MINIMUM = 0;
 
-	/**
-	 * Indicates log messages concerning in- and output. Should only be used by the class Operator
-	 * itself and not by its subclasses.
-	 */
-	public static final int IO = 1;
+    /**
+     * Indicates log messages concerning in- and output. Should only be used by the class Operator
+     * itself and not by its subclasses.
+     */
+    public static final int IO = 1;
 
-	/** The default log verbosity for all logging purposes of operators. */
-	public static final int STATUS = 2;
+    /**
+     * The default log verbosity for all logging purposes of operators.
+     */
+    public static final int STATUS = 2;
 
-	/**
-	 * Only the most important logging messaged should use this log verbosity. Currently used only
-	 * by the LogService itself.
-	 */
-	public static final int INIT = 3;
+    /**
+     * Only the most important logging messaged should use this log verbosity. Currently used only
+     * by the LogService itself.
+     */
+    public static final int INIT = 3;
 
-	/**
-	 * Use this log verbosity for logging of important notes, i.e. things less important than
-	 * warnings but important enough to see for all not interested in the detailed status messages.
-	 */
-	public static final int NOTE = 4;
+    /**
+     * Use this log verbosity for logging of important notes, i.e. things less important than
+     * warnings but important enough to see for all not interested in the detailed status messages.
+     */
+    public static final int NOTE = 4;
 
-	/** Use this log verbosity for logging of warnings. */
-	public static final int WARNING = 5;
+    /**
+     * Use this log verbosity for logging of warnings.
+     */
+    public static final int WARNING = 5;
 
-	/** Use this log verbosity for logging of errors. */
-	public static final int ERROR = 6;
+    /**
+     * Use this log verbosity for logging of errors.
+     */
+    public static final int ERROR = 6;
 
-	/**
-	 * Use this log verbosity for logging of fatal errors which will stop process running somewhere
-	 * in the future.
-	 */
-	public static final int FATAL = 7;
+    /**
+     * Use this log verbosity for logging of fatal errors which will stop process running somewhere
+     * in the future.
+     */
+    public static final int FATAL = 7;
 
-	/**
-	 * Normally this log verbosity should not be used by operators. Messages with this verbosity
-	 * will always be displayed.
-	 */
-	public static final int MAXIMUM = 8;
+    /**
+     * Normally this log verbosity should not be used by operators. Messages with this verbosity
+     * will always be displayed.
+     */
+    public static final int MAXIMUM = 8;
 
-	/** For switching off logging during testing. */
-	public static final int OFF = 9;
+    /**
+     * For switching off logging during testing.
+     */
+    public static final int OFF = 9;
 
-	public static final String LOG_VERBOSITY_NAMES[] = { "all", "io", "status", "init", "notes", "warning", "error",
+    /**
+     * The constant LOG_VERBOSITY_NAMES.
+     */
+    public static final String LOG_VERBOSITY_NAMES[] = { "all", "io", "status", "init", "notes", "warning", "error",
 			"fatal", "almost_none", "off" };
 
-	/** The prefix used to indicate the global logger. */
-	public static final String GLOBAL_PREFIX = "$gG^g";
+    /**
+     * The prefix used to indicate the global logger.
+     */
+    public static final String GLOBAL_PREFIX = "$gG^g";
 
 	private static final Logger GLOBAL_LOGGER = Logger.getLogger("com.rapidminer",
 			"com.rapidminer.resources.i18n.LogMessages");
@@ -166,20 +181,26 @@ public class LogService extends WrapperLoggingHandler {
 		}
 	}
 
-	/**
-	 * Returns the global logging. If no logging was otherwise create, this method creates the
-	 * default standard out log service if no log file was defined in the property
-	 * {@link RapidMiner#PROPERTY_RAPIDMINER_GLOBAL_LOG_FILE}. Alternatively, developers can invoke
-	 * the method {@link #initGlobalLogging(OutputStream, int)}.
-	 * 
-	 * @deprecated use {@link #getRoot()} instead
-	 */
-	@Deprecated
+    /**
+     * Returns the global logging. If no logging was otherwise create, this method creates the
+     * default standard out log service if no log file was defined in the property
+     * {@link RapidMiner#PROPERTY_RAPIDMINER_GLOBAL_LOG_FILE}. Alternatively, developers can invoke
+     * the method {@link #initGlobalLogging(OutputStream, int)}.
+     *
+     * @return the global
+     * @deprecated use {@link #getRoot()} instead
+     */
+    @Deprecated
 	public static LogService getGlobal() {
 		return GLOBAL_LOGGING;
 	}
 
-	public static Logger getRoot() {
+    /**
+     * Gets root.
+     *
+     * @return the root
+     */
+    public static Logger getRoot() {
 		return GLOBAL_LOGGER;
 	}
 
@@ -190,35 +211,51 @@ public class LogService extends WrapperLoggingHandler {
 	// getRoot().addHandler(handler);
 	// }
 
-	public void setVerbosityLevel(int level) {
+    /**
+     * Sets verbosity level.
+     *
+     * @param level the level
+     */
+    public void setVerbosityLevel(int level) {
 		getRoot().setLevel(LEVELS[level]);
 	}
 
-	/**
-	 * The methods in {@link Logger} do not provide a means to pass an exception AND I18N arguments,
-	 * so this method provides a shortcut for this.
-	 */
-	public static void log(Logger logger, Level level, Throwable exception, String i18NKey, Object... arguments) {
+    /**
+     * The methods in {@link Logger} do not provide a means to pass an exception AND I18N arguments,
+     * so this method provides a shortcut for this.
+     *
+     * @param logger    the logger
+     * @param level     the level
+     * @param exception the exception
+     * @param i18NKey   the 18 n key
+     * @param arguments the arguments
+     */
+    public static void log(Logger logger, Level level, Throwable exception, String i18NKey, Object... arguments) {
 		logger.log(level, I18N.getMessage(logger.getResourceBundle(), i18NKey, arguments), exception);
 	}
 
-	/**
-	 * @deprecated Use {@link Logger#isLoggable(Level)}
-	 */
-	@Deprecated
+    /**
+     * Is sufficient log verbosity boolean.
+     *
+     * @param level the level
+     * @return the boolean
+     * @deprecated Use {@link Logger#isLoggable(Level)}
+     */
+    @Deprecated
 	public boolean isSufficientLogVerbosity(int level) {
 		return GLOBAL_LOGGER.isLoggable(LEVELS[level]);
 	}
 
 	// -------------------- Methoden zum Protokollieren --------------------
 
-	/**
-	 * Writes the message to the output stream if the verbosity level is high enough.
-	 * 
-	 * @deprecated please do not use this log method any longer, use the method
-	 *             {@link #log(String, int)} instead
-	 */
-	@Deprecated
+    /**
+     * Writes the message to the output stream if the verbosity level is high enough.
+     *
+     * @param message        the message
+     * @param verbosityLevel the verbosity level
+     * @deprecated please do not use this log method any longer, use the method             {@link #log(String, int)} instead
+     */
+    @Deprecated
 	public static void logMessage(String message, int verbosityLevel) {
 		getGlobal().log(message, verbosityLevel);
 	}

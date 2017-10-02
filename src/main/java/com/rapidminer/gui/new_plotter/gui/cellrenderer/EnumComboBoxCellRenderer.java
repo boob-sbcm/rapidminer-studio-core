@@ -47,8 +47,8 @@ import javax.swing.ListCellRenderer;
  * <li>gui.label.-key-.ENUM_VALUE.icon as icon</li>
  * </ul>
  *
+ * @param <E> the type parameter
  * @author Nils Woehler
- *
  */
 public class EnumComboBoxCellRenderer<E> implements ListCellRenderer<E> {
 
@@ -57,14 +57,12 @@ public class EnumComboBoxCellRenderer<E> implements ListCellRenderer<E> {
 	private final Map<Object, ImageIcon> iconCache = new HashMap<Object, ImageIcon>();
 	private final DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
 
-	/**
-	 * Creates a Enumeration ComboBox cell renderer.
-	 * 
-	 * @param key
-	 *            the gui resource key. Example: gui.label.foo_plotter.series_type.LINES.label with
-	 *            key 'foo_plotter.series_type'
-	 */
-	public EnumComboBoxCellRenderer(String key) {
+    /**
+     * Creates a Enumeration ComboBox cell renderer.
+     *
+     * @param key the gui resource key. Example: gui.label.foo_plotter.series_type.LINES.label with            key 'foo_plotter.series_type'
+     */
+    public EnumComboBoxCellRenderer(String key) {
 		this.i18nKeyPrefix = key;
 	}
 

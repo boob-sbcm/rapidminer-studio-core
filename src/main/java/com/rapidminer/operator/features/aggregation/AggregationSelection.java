@@ -23,11 +23,16 @@ import java.util.List;
 
 /**
  * Should perform a selection on the given population list.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public interface AggregationSelection {
 
-	public void performSelection(List<AggregationIndividual> population);
+    /**
+     * Perform selection.
+     *
+     * @param population the population
+     */
+    public void performSelection(List<AggregationIndividual> population);
 
 }

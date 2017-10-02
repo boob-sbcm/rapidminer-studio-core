@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * This iterator iterates over all examples of an example set and creates
  * {@link com.rapidminer.datatable.Example2DataTableRowWrapper} objects.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Example2DataTableRowIterator implements Iterator<DataTableRow> {
@@ -39,11 +39,15 @@ public class Example2DataTableRowIterator implements Iterator<DataTableRow> {
 
 	private Attribute idAttribute;
 
-	/**
-	 * Creates a new DataTable iterator backed up by examples. If the idAttribute is null the
-	 * DataTableRows will not be able to deliver an Id.
-	 */
-	public Example2DataTableRowIterator(Iterator<Example> reader, List<Attribute> allAttributes, Attribute idAttribute) {
+    /**
+     * Creates a new DataTable iterator backed up by examples. If the idAttribute is null the
+     * DataTableRows will not be able to deliver an Id.
+     *
+     * @param reader        the reader
+     * @param allAttributes the all attributes
+     * @param idAttribute   the id attribute
+     */
+    public Example2DataTableRowIterator(Iterator<Example> reader, List<Attribute> allAttributes, Attribute idAttribute) {
 		this.reader = reader;
 		this.allAttributes = allAttributes;
 		this.idAttribute = idAttribute;

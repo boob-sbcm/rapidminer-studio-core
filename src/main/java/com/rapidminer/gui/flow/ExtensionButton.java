@@ -44,7 +44,15 @@ public class ExtensionButton extends JButton {
 	private final int subprocessIndex;
 	private final boolean add;
 
-	public ExtensionButton(final ProcessRendererModel model, final OperatorChain chain, final int subprocessIndex,
+    /**
+     * Instantiates a new Extension button.
+     *
+     * @param model           the model
+     * @param chain           the chain
+     * @param subprocessIndex the subprocess index
+     * @param add             the add
+     */
+    public ExtensionButton(final ProcessRendererModel model, final OperatorChain chain, final int subprocessIndex,
 			final boolean add) {
 		super(new ResourceAction(true, add ? "add_subprocess" : "delete_subprocess") {
 
@@ -83,11 +91,21 @@ public class ExtensionButton extends JButton {
 		setContentAreaFilled(false);
 	}
 
-	public int getSubprocessIndex() {
+    /**
+     * Gets subprocess index.
+     *
+     * @return the subprocess index
+     */
+    public int getSubprocessIndex() {
 		return subprocessIndex;
 	}
 
-	public boolean isAdd() {
+    /**
+     * Is add boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isAdd() {
 		return add;
 	}
 

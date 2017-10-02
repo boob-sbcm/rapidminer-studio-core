@@ -45,18 +45,29 @@ import Jama.Matrix;
  * This operator performs a vector linear regression. It regresses all regular attributes upon a
  * vector of labels. The attributes forming the vector have to be marked as special, the special
  * role names of all label attributes have to start with <code>label</code>.
- *
+ * <p>
  * TODO: Adapt meta data of model, but needs change of complete construction...
  *
  * @author Tobias Malbrecht
  */
 public class VectorLinearRegression extends AbstractLearner {
 
-	public static final String PARAMETER_USE_BIAS = "use_bias";
+    /**
+     * The constant PARAMETER_USE_BIAS.
+     */
+    public static final String PARAMETER_USE_BIAS = "use_bias";
 
-	public static final String PARAMETER_RIDGE = "ridge";
+    /**
+     * The constant PARAMETER_RIDGE.
+     */
+    public static final String PARAMETER_RIDGE = "ridge";
 
-	public VectorLinearRegression(OperatorDescription description) {
+    /**
+     * Instantiates a new Vector linear regression.
+     *
+     * @param description the description
+     */
+    public VectorLinearRegression(OperatorDescription description) {
 		super(description);
 	}
 

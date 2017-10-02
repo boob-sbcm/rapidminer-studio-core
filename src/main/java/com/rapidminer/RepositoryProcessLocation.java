@@ -38,19 +38,30 @@ import com.rapidminer.tools.XMLException;
 
 
 /**
+ * The type Repository process location.
+ *
  * @author Simon Fischer
  */
 public class RepositoryProcessLocation implements ProcessLocation {
 
-	/** key for custom user property */
-	public static final String UPDATE_REVISION_ON_SAVE_KEY = "update_revision_on_save";
+    /**
+     * key for custom user property
+     */
+    public static final String UPDATE_REVISION_ON_SAVE_KEY = "update_revision_on_save";
 
-	/** A simple {@link UserData} object to pass {@link Boolean} values */
-	public static class SimpleBooleanUserData implements UserData<Object> {
+    /**
+     * A simple {@link UserData} object to pass {@link Boolean} values
+     */
+    public static class SimpleBooleanUserData implements UserData<Object> {
 
 		private boolean value;
 
-		public SimpleBooleanUserData(boolean value) {
+        /**
+         * Instantiates a new Simple boolean user data.
+         *
+         * @param value the value
+         */
+        public SimpleBooleanUserData(boolean value) {
 			this.value = value;
 		}
 
@@ -59,7 +70,12 @@ public class RepositoryProcessLocation implements ProcessLocation {
 			return this;
 		}
 
-		public boolean isSet() {
+        /**
+         * Is set boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isSet() {
 			return value;
 		}
 
@@ -67,7 +83,12 @@ public class RepositoryProcessLocation implements ProcessLocation {
 
 	private final RepositoryLocation repositoryLocation;
 
-	public RepositoryProcessLocation(RepositoryLocation location) {
+    /**
+     * Instantiates a new Repository process location.
+     *
+     * @param location the location
+     */
+    public RepositoryProcessLocation(RepositoryLocation location) {
 		super();
 		this.repositoryLocation = location;
 	}
@@ -162,7 +183,12 @@ public class RepositoryProcessLocation implements ProcessLocation {
 		}
 	}
 
-	public RepositoryLocation getRepositoryLocation() {
+    /**
+     * Gets repository location.
+     *
+     * @return the repository location
+     */
+    public RepositoryLocation getRepositoryLocation() {
 		return repositoryLocation;
 	}
 

@@ -20,34 +20,56 @@ package com.rapidminer.gui.plotter;
 
 /**
  * Transforms the given value, e.g. by just returning it (id) or applying a log function.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface AxisTransformation {
 
-	/**
-	 * Transforms the given value, e.g. by just returning it (id) or applying a log function. Please
-	 * note that this method might throw an IllegalArgumentException if the number is not supported.
-	 */
-	public double transform(double value);
+    /**
+     * Transforms the given value, e.g. by just returning it (id) or applying a log function. Please
+     * note that this method might throw an IllegalArgumentException if the number is not supported.
+     *
+     * @param value the value
+     * @return the double
+     */
+    public double transform(double value);
 
-	/**
-	 * Returns the inverse transformation of the given value, e.g. just returning it (id) or
-	 * applying a exponential function (for log transformation). Please note that this method might
-	 * throw an IllegalArgumentException if the number is not supported.
-	 */
-	public double inverseTransform(double value);
+    /**
+     * Returns the inverse transformation of the given value, e.g. just returning it (id) or
+     * applying a exponential function (for log transformation). Please note that this method might
+     * throw an IllegalArgumentException if the number is not supported.
+     *
+     * @param value the value
+     * @return the double
+     */
+    public double inverseTransform(double value);
 
-	/**
-	 * Returns the formatted value. Might return null. The format number indicates the number of
-	 * format calls done before.
-	 */
-	public String format(double value, int formatNumber);
+    /**
+     * Returns the formatted value. Might return null. The format number indicates the number of
+     * format calls done before.
+     *
+     * @param value        the value
+     * @param formatNumber the format number
+     * @return the string
+     */
+    public String format(double value, int formatNumber);
 
-	/** Adapts the minimum corresponding to the given tic size. */
-	public double adaptTicsMin(double min, double ticSize);
+    /**
+     * Adapts the minimum corresponding to the given tic size.  @param min the min
+     *
+     * @param min     the min
+     * @param ticSize the tic size
+     * @return the double
+     */
+    public double adaptTicsMin(double min, double ticSize);
 
-	/** Adapts the maximum corresponding to the given tic size. */
-	public double adaptTicsMax(double max, double ticSize);
+    /**
+     * Adapts the maximum corresponding to the given tic size.  @param max the max
+     *
+     * @param max     the max
+     * @param ticSize the tic size
+     * @return the double
+     */
+    public double adaptTicsMax(double max, double ticSize);
 
 }

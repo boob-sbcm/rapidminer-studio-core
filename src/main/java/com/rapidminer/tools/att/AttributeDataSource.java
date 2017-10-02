@@ -52,7 +52,7 @@ import com.rapidminer.tools.XMLException;
 /**
  * Reference to source of an attribute, i.e. file, column number (token number). Statics methods of
  * this class can be used to parse an attribute description file.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class AttributeDataSource {
@@ -65,43 +65,95 @@ public class AttributeDataSource {
 
 	private String attributeType;
 
-	public AttributeDataSource(Attribute attribute, File file, int column, String attributeType) {
+    /**
+     * Instantiates a new Attribute data source.
+     *
+     * @param attribute     the attribute
+     * @param file          the file
+     * @param column        the column
+     * @param attributeType the attribute type
+     */
+    public AttributeDataSource(Attribute attribute, File file, int column, String attributeType) {
 		this.attribute = attribute;
 		this.file = file;
 		this.column = column;
 		this.attributeType = attributeType;
 	}
 
-	public void setAttribute(Attribute attribute) {
+    /**
+     * Sets attribute.
+     *
+     * @param attribute the attribute
+     */
+    public void setAttribute(Attribute attribute) {
 		this.attribute = attribute;
 	}
 
-	public Attribute getAttribute() {
+    /**
+     * Gets attribute.
+     *
+     * @return the attribute
+     */
+    public Attribute getAttribute() {
 		return attribute;
 	}
 
-	public int getColumn() {
+    /**
+     * Gets column.
+     *
+     * @return the column
+     */
+    public int getColumn() {
 		return column;
 	}
 
-	public File getFile() {
+    /**
+     * Gets file.
+     *
+     * @return the file
+     */
+    public File getFile() {
 		return file;
 	}
 
-	public void setType(String type) {
+    /**
+     * Sets type.
+     *
+     * @param type the type
+     */
+    public void setType(String type) {
 		this.attributeType = type;
 	}
 
-	public String getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public String getType() {
 		return attributeType;
 	}
 
-	public void setSource(File file, int column) {
+    /**
+     * Sets source.
+     *
+     * @param file   the file
+     * @param column the column
+     */
+    public void setSource(File file, int column) {
 		this.file = file;
 		this.column = column;
 	}
 
-	public Element writeXML(Document document, File defaultSource) throws IOException {
+    /**
+     * Write xml element.
+     *
+     * @param document      the document
+     * @param defaultSource the default source
+     * @return the element
+     * @throws IOException the io exception
+     */
+    public Element writeXML(Document document, File defaultSource) throws IOException {
 		Element attributeElement = document.createElement(attributeType);
 		attributeElement.setAttribute("name", attribute.getName());
 		if (!getFile().equals(defaultSource)) {
@@ -126,8 +178,19 @@ public class AttributeDataSource {
 		return attributeElement;
 	}
 
-	/** Returns a list of {@link AttributeDataSource}s read from the file. */
-	public static AttributeDataSources createAttributeDataSources(File attributeDescriptionFile, boolean sourceColRequired,
+    /**
+     * Returns a list of {@link AttributeDataSource}s read from the file.  @param attributeDescriptionFile the attribute description file
+     *
+     * @param attributeDescriptionFile the attribute description file
+     * @param sourceColRequired        the source col required
+     * @param logging                  the logging
+     * @return the attribute data sources
+     * @throws XMLException                 the xml exception
+     * @throws ParserConfigurationException the parser configuration exception
+     * @throws SAXException                 the sax exception
+     * @throws IOException                  the io exception
+     */
+    public static AttributeDataSources createAttributeDataSources(File attributeDescriptionFile, boolean sourceColRequired,
 			LoggingHandler logging) throws XMLException, ParserConfigurationException, SAXException, IOException {
 		Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(attributeDescriptionFile);
 

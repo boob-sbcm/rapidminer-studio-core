@@ -42,7 +42,13 @@ public class SimilarityTable extends JPanel implements Tableable {
 
 	private ExtendedJTable similarityTable;
 
-	public SimilarityTable(DistanceMeasure measure, ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Similarity table.
+     *
+     * @param measure    the measure
+     * @param exampleSet the example set
+     */
+    public SimilarityTable(DistanceMeasure measure, ExampleSet exampleSet) {
 		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);
 		GridBagConstraints c = new GridBagConstraints();

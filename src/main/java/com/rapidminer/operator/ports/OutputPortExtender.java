@@ -32,20 +32,36 @@ import com.rapidminer.operator.ports.metadata.OneToManyPassThroughRule;
  * rule that copies from an input to all generated output ports.
  *
  * @author Simon Fischer
- *
  */
 public class OutputPortExtender extends SinglePortExtender<OutputPort> {
 
-	public OutputPortExtender(String name, Ports<OutputPort> ports) {
+    /**
+     * Instantiates a new Output port extender.
+     *
+     * @param name  the name
+     * @param ports the ports
+     */
+    public OutputPortExtender(String name, Ports<OutputPort> ports) {
 		super(name, ports);
 	}
 
-	/** The generated rule copies all meta data from the input port to all generated output ports. */
-	public MDTransformationRule makePassThroughRule(InputPort inputPort) {
+    /**
+     * The generated rule copies all meta data from the input port to all generated output ports.  @param inputPort the input port
+     *
+     * @param inputPort the input port
+     * @return the md transformation rule
+     */
+    public MDTransformationRule makePassThroughRule(InputPort inputPort) {
 		return new OneToManyPassThroughRule(inputPort, getManagedPorts());
 	}
 
-	public void deliverToAll(IOObject data, boolean clone) {
+    /**
+     * Deliver to all.
+     *
+     * @param data  the data
+     * @param clone the clone
+     */
+    public void deliverToAll(IOObject data, boolean clone) {
 		for (OutputPort port : getManagedPorts()) {
 			if (clone) {
 				port.deliver(data.copy());
@@ -55,7 +71,12 @@ public class OutputPortExtender extends SinglePortExtender<OutputPort> {
 		}
 	}
 
-	public void deliver(List<? extends IOObject> inputs) {
+    /**
+     * Deliver.
+     *
+     * @param inputs the inputs
+     */
+    public void deliver(List<? extends IOObject> inputs) {
 		int i = 0;
 		for (OutputPort port : getManagedPorts()) {
 			if (port.isConnected()) {
@@ -82,7 +103,12 @@ public class OutputPortExtender extends SinglePortExtender<OutputPort> {
 		}
 	}
 
-	public void deliverMetaData(List<MetaData> inputMD) {
+    /**
+     * Deliver meta data.
+     *
+     * @param inputMD the input md
+     */
+    public void deliverMetaData(List<MetaData> inputMD) {
 		int i = 0;
 		for (OutputPort port : getManagedPorts()) {
 			if (port.isConnected()) {

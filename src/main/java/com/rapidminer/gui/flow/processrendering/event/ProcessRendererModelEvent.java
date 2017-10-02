@@ -26,53 +26,62 @@ import com.rapidminer.gui.flow.processrendering.model.ProcessRendererModel;
  *
  * @author Marco Boeck, Jan Czogalla
  * @since 6.4.0
- *
  */
 public final class ProcessRendererModelEvent {
 
-	/**
-	 * Defines different kind of {@link ProcessRendererModelEvent}s.
-	 *
-	 */
-	public static enum ModelEvent {
-		/** fired when the displayed processes have changed */
-		DISPLAYED_PROCESSES_CHANGED,
+    /**
+     * Defines different kind of {@link ProcessRendererModelEvent}s.
+     */
+    public static enum ModelEvent {
+        /**
+         * fired when the displayed processes have changed
+         */
+        DISPLAYED_PROCESSES_CHANGED,
 
-		/** fired when the displayed operator chain has changed */
-		DISPLAYED_CHAIN_CHANGED,
+        /**
+         * fired when the displayed operator chain has changed
+         */
+        DISPLAYED_CHAIN_CHANGED,
 
-		/** fired when a process size has changed */
-		PROCESS_SIZE_CHANGED,
+        /**
+         * fired when a process size has changed
+         */
+        PROCESS_SIZE_CHANGED,
 
-		/** fired when the process zoom level has changed */
-		PROCESS_ZOOM_CHANGED,
+        /**
+         * fired when the process zoom level has changed
+         */
+        PROCESS_ZOOM_CHANGED,
 
-		/** fired when something minor changes which only requires a repaint */
-		MISC_CHANGED,
+        /**
+         * fired when something minor changes which only requires a repaint
+         */
+        MISC_CHANGED,
 
-		/** fired before the displayed operator chain will change */
-		DISPLAYED_CHAIN_WILL_CHANGE;
+        /**
+         * fired before the displayed operator chain will change
+         */
+        DISPLAYED_CHAIN_WILL_CHANGE;
 	}
 
 	private final ModelEvent type;
 
-	/**
-	 * Creates a new {@link ProcessRendererModelEvent} instance for the specified {@link ModelEvent}
-	 * .
-	 *
-	 * @param type
-	 *            the event type
-	 */
-	public ProcessRendererModelEvent(final ModelEvent type) {
+    /**
+     * Creates a new {@link ProcessRendererModelEvent} instance for the specified {@link ModelEvent}
+     * .
+     *
+     * @param type the event type
+     */
+    public ProcessRendererModelEvent(final ModelEvent type) {
 		this.type = type;
 	}
 
-	/**
-	 * Returns the {@link ModelEvent}.
-	 *
-	 * @return the type of the event
-	 */
-	public ModelEvent getEventType() {
+    /**
+     * Returns the {@link ModelEvent}.
+     *
+     * @return the type of the event
+     */
+    public ModelEvent getEventType() {
 		return type;
 	}
 }

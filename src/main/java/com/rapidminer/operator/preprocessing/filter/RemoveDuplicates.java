@@ -48,7 +48,7 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
 /**
  * This operator removed duplicate examples from an example set by comparing all examples with each
  * other on basis of the specified attributes.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land, Zoltan Prekopcsak
  */
 public class RemoveDuplicates extends AbstractDataProcessing {
@@ -67,7 +67,12 @@ public class RemoveDuplicates extends AbstractDataProcessing {
 
 	private AttributeSubsetSelector subsetSelector = new AttributeSubsetSelector(this, getExampleSetInputPort());
 
-	public RemoveDuplicates(OperatorDescription description) {
+    /**
+     * Instantiates a new Remove duplicates.
+     *
+     * @param description the description
+     */
+    public RemoveDuplicates(OperatorDescription description) {
 		super(description);
 		// add metadata to the duplicate output
 		getTransformer().addRule(new PassThroughRule(getExampleSetInputPort(), duplicateSetOutput, false) {

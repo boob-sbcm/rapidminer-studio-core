@@ -20,7 +20,7 @@ package com.rapidminer.report;
 
 /**
  * Indicates a reportable object which is readable, i.e. which delivers a string representation.
- * 
+ *
  * @author Sebastian Land
  */
 public interface Readable extends Reportable {
@@ -28,6 +28,11 @@ public interface Readable extends Reportable {
 	@Override
 	public String toString();
 
-	public boolean isInTargetEncoding();
+    /**
+     * Is in target encoding boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isInTargetEncoding();
 
 }

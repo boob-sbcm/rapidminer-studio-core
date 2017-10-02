@@ -76,14 +76,27 @@ public class TopDownClustering extends OperatorChain {
 	private OutputPort exampleSetInnerSource = getSubprocess(0).getInnerSources().createPort("example set");
 	private InputPort modelInnerSink = getSubprocess(0).getInnerSinks().createPort("cluster model");
 
-	/** The parameter name for &quot;the maximal number of items in a cluster leaf&quot; */
-	public static final String PARAMETER_MAX_LEAF_SIZE = "max_leaf_size";
+    /**
+     * The parameter name for &quot;the maximal number of items in a cluster leaf&quot;
+     */
+    public static final String PARAMETER_MAX_LEAF_SIZE = "max_leaf_size";
 
-	public static final String PARAMETER_MAX_DEPTH = "max_depth";
+    /**
+     * The constant PARAMETER_MAX_DEPTH.
+     */
+    public static final String PARAMETER_MAX_DEPTH = "max_depth";
 
-	public static final String PARAMETER_CREATE_CLUSTER_LABEL = "create_cluster_label";
+    /**
+     * The constant PARAMETER_CREATE_CLUSTER_LABEL.
+     */
+    public static final String PARAMETER_CREATE_CLUSTER_LABEL = "create_cluster_label";
 
-	public TopDownClustering(OperatorDescription description) {
+    /**
+     * Instantiates a new Top down clustering.
+     *
+     * @param description the description
+     */
+    public TopDownClustering(OperatorDescription description) {
 		super(description, "Clustering Process");
 
 		exampleSetInput.addPrecondition(new SimplePrecondition(exampleSetInput, new ExampleSetMetaData()));

@@ -46,7 +46,12 @@ public abstract class AbstractExampleSetProcessing extends Operator {
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("example set output");
 	private final OutputPort originalOutput = getOutputPorts().createPort("original");
 
-	public AbstractExampleSetProcessing(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract example set processing.
+     *
+     * @param description the description
+     */
+    public AbstractExampleSetProcessing(OperatorDescription description) {
 		super(description);
 		exampleSetInput.addPrecondition(new SimplePrecondition(exampleSetInput, getRequiredMetaData()));
 		getTransformer().addRule(new PassThroughRule(exampleSetInput, exampleSetOutput, false) {
@@ -67,26 +72,34 @@ public abstract class AbstractExampleSetProcessing extends Operator {
 		getTransformer().addPassThroughRule(exampleSetInput, originalOutput);
 	}
 
-	/** Returns the example set input port, e.g. for adding errors. */
-	protected final InputPort getInputPort() {
+    /**
+     * Returns the example set input port, e.g. for adding errors.  @return the input port
+     *
+     * @return the input port
+     */
+    protected final InputPort getInputPort() {
 		return exampleSetInput;
 	}
 
-	/**
-	 * Subclasses might override this method to define the meta data transformation performed by
-	 * this operator.
-	 *
-	 * @throws UndefinedParameterError
-	 */
-	protected MetaData modifyMetaData(ExampleSetMetaData metaData) throws UndefinedParameterError {
+    /**
+     * Subclasses might override this method to define the meta data transformation performed by
+     * this operator.
+     *
+     * @param metaData the meta data
+     * @return the meta data
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected MetaData modifyMetaData(ExampleSetMetaData metaData) throws UndefinedParameterError {
 		return metaData;
 	}
 
-	/**
-	 * Subclasses my override this method to define more precisely the meta data expected by this
-	 * operator.
-	 */
-	protected ExampleSetMetaData getRequiredMetaData() {
+    /**
+     * Subclasses my override this method to define more precisely the meta data expected by this
+     * operator.
+     *
+     * @return the required meta data
+     */
+    protected ExampleSetMetaData getRequiredMetaData() {
 		return new ExampleSetMetaData();
 	}
 
@@ -119,23 +132,29 @@ public abstract class AbstractExampleSetProcessing extends Operator {
 		exampleSetOutput.deliver(result);
 	}
 
-	/**
-	 * Delegate for the apply method. The given ExampleSet is already a clone of the input example
-	 * set so that changing this examples set does not affect the original one. Subclasses should
-	 * avoid cloning again unnecessarily.
-	 */
-	public abstract ExampleSet apply(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Delegate for the apply method. The given ExampleSet is already a clone of the input example
+     * set so that changing this examples set does not affect the original one. Subclasses should
+     * avoid cloning again unnecessarily.
+     *
+     * @param exampleSet the example set
+     * @return the example set
+     * @throws OperatorException the operator exception
+     */
+    public abstract ExampleSet apply(ExampleSet exampleSet) throws OperatorException;
 
-	/**
-	 * This method indicates whether the operator will perform a write operation on a cell in an
-	 * existing column of the example set's {@link ExampleTable}. If yes, the original example will
-	 * be completely copied in memory if the original port is used.
-	 *
-	 * <strong>Note: </strong> Subclasses must implement this method. The safe implementation would
-	 * be to return true, however, for backwards compatibility, the default implementation returns
-	 * false.
-	 */
-	public boolean writesIntoExistingData() {
+    /**
+     * This method indicates whether the operator will perform a write operation on a cell in an
+     * existing column of the example set's {@link ExampleTable}. If yes, the original example will
+     * be completely copied in memory if the original port is used.
+     * <p>
+     * <strong>Note: </strong> Subclasses must implement this method. The safe implementation would
+     * be to return true, however, for backwards compatibility, the default implementation returns
+     * false.
+     *
+     * @return the boolean
+     */
+    public boolean writesIntoExistingData() {
 		return false;
 	}
 
@@ -148,21 +167,31 @@ public abstract class AbstractExampleSetProcessing extends Operator {
 		}
 	}
 
-	public InputPort getExampleSetInputPort() {
+    /**
+     * Gets example set input port.
+     *
+     * @return the example set input port
+     */
+    public InputPort getExampleSetInputPort() {
 		return exampleSetInput;
 	}
 
-	public OutputPort getExampleSetOutputPort() {
+    /**
+     * Gets example set output port.
+     *
+     * @return the example set output port
+     */
+    public OutputPort getExampleSetOutputPort() {
 		return exampleSetOutput;
 	}
 
-	/**
-	 * Used for backward compatibility only.
-	 *
-	 * @since 7.2.0
-	 * @return
-	 */
-	public boolean isOriginalOutputConnected() {
+    /**
+     * Used for backward compatibility only.
+     *
+     * @return boolean boolean
+     * @since 7.2.0
+     */
+    public boolean isOriginalOutputConnected() {
 		return originalOutput.isConnected();
 	}
 }

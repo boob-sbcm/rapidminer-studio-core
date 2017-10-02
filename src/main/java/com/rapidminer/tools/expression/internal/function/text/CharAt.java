@@ -25,14 +25,13 @@ import com.rapidminer.tools.expression.Function;
  * A {@link Function} which delivers the character at a specific position of a nominal value.
  *
  * @author Thilo Kamradt
- *
  */
 public class CharAt extends AbstractStringIntegerInputStringOutputFunction {
 
-	/**
-	 * Creates a function which delivers the character at a specific position of a nominal value
-	 */
-	public CharAt() {
+    /**
+     * Creates a function which delivers the character at a specific position of a nominal value
+     */
+    public CharAt() {
 		super("text_transformation.char", 2);
 	}
 

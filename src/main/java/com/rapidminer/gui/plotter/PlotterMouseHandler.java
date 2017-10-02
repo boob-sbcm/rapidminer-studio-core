@@ -33,7 +33,7 @@ import java.text.DecimalFormat;
 /**
  * The mouse handler for plotters. This might be useful in cases where mouse handling is necessary
  * without a plotter panel.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PlotterMouseHandler implements MouseListener, MouseMotionListener {
@@ -45,7 +45,14 @@ public class PlotterMouseHandler implements MouseListener, MouseMotionListener {
 	/** The point at which a mouse pressing started. */
 	private Point pressStart = null;
 
-	public PlotterMouseHandler(Plotter plotter, DataTable dataTable, CoordinatesHandler coordinatesHandler) {
+    /**
+     * Instantiates a new Plotter mouse handler.
+     *
+     * @param plotter            the plotter
+     * @param dataTable          the data table
+     * @param coordinatesHandler the coordinates handler
+     */
+    public PlotterMouseHandler(Plotter plotter, DataTable dataTable, CoordinatesHandler coordinatesHandler) {
 		this.plotter = plotter;
 		this.dataTable = dataTable;
 		this.coordinatesHandler = coordinatesHandler;

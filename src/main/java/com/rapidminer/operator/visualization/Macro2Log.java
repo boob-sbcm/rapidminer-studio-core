@@ -37,23 +37,31 @@ import java.util.List;
  * logged. But in all other cases where the operator does not provide a loggable value for the
  * defined macro, this operator may be used to define such a value from the macro.
  * </p>
- * 
+ * <p>
  * <p>
  * Please note that the value will be logged as nominal value even if it is actually numerical. This
  * can be later be changed by transforming the logged statistics into a data set.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Macro2Log extends Operator {
 
-	public static final String PARAMETER_MACRO_NAME = "macro_name";
+    /**
+     * The constant PARAMETER_MACRO_NAME.
+     */
+    public static final String PARAMETER_MACRO_NAME = "macro_name";
 
 	private String currentValue = null;
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public Macro2Log(OperatorDescription description) {
+    /**
+     * Instantiates a new Macro 2 log.
+     *
+     * @param description the description
+     */
+    public Macro2Log(OperatorDescription description) {
 		super(description);
 
 		dummyPorts.start();

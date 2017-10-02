@@ -53,8 +53,9 @@ import com.rapidminer.tools.I18N;
 
 
 /**
- * @author Nils Woehler
+ * The type Area and bar chart configuration panel.
  *
+ * @author Nils Woehler
  */
 public class AreaAndBarChartConfigurationPanel extends AbstractTreeSelectionDependentPanel {
 
@@ -68,7 +69,14 @@ public class AreaAndBarChartConfigurationPanel extends AbstractTreeSelectionDepe
 	private JLabel opacityLabel;
 	private JSlider opacitySlider;
 
-	public AreaAndBarChartConfigurationPanel(boolean smallIcons, JTree plotConfigurationTree, PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Area and bar chart configuration panel.
+     *
+     * @param smallIcons            the small icons
+     * @param plotConfigurationTree the plot configuration tree
+     * @param plotInstance          the plot instance
+     */
+    public AreaAndBarChartConfigurationPanel(boolean smallIcons, JTree plotConfigurationTree, PlotInstance plotInstance) {
 		super(plotConfigurationTree, plotInstance);
 		createComponents(smallIcons);
 		registerAsPlotConfigurationListener();

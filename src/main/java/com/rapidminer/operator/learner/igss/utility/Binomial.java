@@ -23,13 +23,18 @@ import com.rapidminer.operator.learner.igss.hypothesis.Hypothesis;
 
 /**
  * The utility function Binomial.
- * 
+ *
  * @author Dirk Dach
  */
 public class Binomial extends AbstractUtility {
 
-	/** Constructs a new Binomial with the given default probability. */
-	public Binomial(double[] priors, int large) {
+    /**
+     * Constructs a new Binomial with the given default probability.  @param priors the priors
+     *
+     * @param priors the priors
+     * @param large  the large
+     */
+    public Binomial(double[] priors, int large) {
 		super(priors, large);
 	}
 

@@ -52,11 +52,24 @@ public class RoundTitledBorder implements Border {
 	private Paint paint;
 	private boolean drawRoundFrame;
 
-	public RoundTitledBorder(int number, String key) {
+    /**
+     * Instantiates a new Round titled border.
+     *
+     * @param number the number
+     * @param key    the key
+     */
+    public RoundTitledBorder(int number, String key) {
 		this(number, key, SwingTools.RAPIDMINER_ORANGE, true);
 	}
 
-	public RoundTitledBorder(int number, String key, boolean drawRoundFrame) {
+    /**
+     * Instantiates a new Round titled border.
+     *
+     * @param number         the number
+     * @param key            the key
+     * @param drawRoundFrame the draw round frame
+     */
+    public RoundTitledBorder(int number, String key, boolean drawRoundFrame) {
 		this(number, key, SwingTools.RAPIDMINER_ORANGE, drawRoundFrame);
 	}
 
@@ -114,7 +127,12 @@ public class RoundTitledBorder implements Border {
 		return false;
 	}
 
-	public void setTitle(String key) {
+    /**
+     * Sets title.
+     *
+     * @param key the key
+     */
+    public void setTitle(String key) {
 		this.key = key;
 	}
 }

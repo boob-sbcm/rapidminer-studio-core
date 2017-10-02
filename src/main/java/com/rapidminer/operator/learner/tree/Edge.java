@@ -23,7 +23,7 @@ import java.io.Serializable;
 
 /**
  * The class edge holds the information about a split condition to a tree (child).
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class Edge implements Serializable, Comparable<Edge> {
@@ -34,16 +34,32 @@ public class Edge implements Serializable, Comparable<Edge> {
 
 	private Tree child;
 
-	public Edge(Tree child, SplitCondition condition) {
+    /**
+     * Instantiates a new Edge.
+     *
+     * @param child     the child
+     * @param condition the condition
+     */
+    public Edge(Tree child, SplitCondition condition) {
 		this.condition = condition;
 		this.child = child;
 	}
 
-	public SplitCondition getCondition() {
+    /**
+     * Gets condition.
+     *
+     * @return the condition
+     */
+    public SplitCondition getCondition() {
 		return this.condition;
 	}
 
-	public Tree getChild() {
+    /**
+     * Gets child.
+     *
+     * @return the child
+     */
+    public Tree getChild() {
 		return this.child;
 	}
 

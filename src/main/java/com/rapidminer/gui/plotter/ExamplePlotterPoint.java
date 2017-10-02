@@ -21,7 +21,7 @@ package com.rapidminer.gui.plotter;
 /**
  * Helper class for the plotter point positions and colors. The positions are defined in plotter
  * space.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class ExamplePlotterPoint {
@@ -32,41 +32,90 @@ public class ExamplePlotterPoint {
 	private int currentPertubatedX;
 	private int currentPertubatedY;
 
-	public ExamplePlotterPoint(int dataTableIndex, int x, int y) {
+    /**
+     * Instantiates a new Example plotter point.
+     *
+     * @param dataTableIndex the data table index
+     * @param x              the x
+     * @param y              the y
+     */
+    public ExamplePlotterPoint(int dataTableIndex, int x, int y) {
 		this.x = x;
 		this.y = y;
 		this.dataTableIndex = dataTableIndex;
 	}
 
-	public int getX() {
+    /**
+     * Gets x.
+     *
+     * @return the x
+     */
+    public int getX() {
 		return x;
 	}
 
-	public int getDataTableIndex() {
+    /**
+     * Gets data table index.
+     *
+     * @return the data table index
+     */
+    public int getDataTableIndex() {
 		return dataTableIndex;
 	}
 
-	public int getY() {
+    /**
+     * Gets y.
+     *
+     * @return the y
+     */
+    public int getY() {
 		return y;
 	}
 
-	public int getCurrentPertubatedX() {
+    /**
+     * Gets current pertubated x.
+     *
+     * @return the current pertubated x
+     */
+    public int getCurrentPertubatedX() {
 		return currentPertubatedX;
 	}
 
-	public void setCurrentPertubatedX(int currentPertubatedX) {
+    /**
+     * Sets current pertubated x.
+     *
+     * @param currentPertubatedX the current pertubated x
+     */
+    public void setCurrentPertubatedX(int currentPertubatedX) {
 		this.currentPertubatedX = currentPertubatedX;
 	}
 
-	public int getCurrentPertubatedY() {
+    /**
+     * Gets current pertubated y.
+     *
+     * @return the current pertubated y
+     */
+    public int getCurrentPertubatedY() {
 		return currentPertubatedY;
 	}
 
-	public void setCurrentPertubatedY(int currentPertubatedY) {
+    /**
+     * Sets current pertubated y.
+     *
+     * @param currentPertubatedY the current pertubated y
+     */
+    public void setCurrentPertubatedY(int currentPertubatedY) {
 		this.currentPertubatedY = currentPertubatedY;
 	}
 
-	public boolean contains(int x, int y) {
+    /**
+     * Contains boolean.
+     *
+     * @param x the x
+     * @param y the y
+     * @return the boolean
+     */
+    public boolean contains(int x, int y) {
 		if ((Math.abs(this.getCurrentPertubatedX() - x) < 3) && (Math.abs(this.getCurrentPertubatedY() - y) < 3)) {
 			return true;
 		}

@@ -57,23 +57,32 @@ import com.rapidminer.tools.math.kernels.Kernel;
  */
 public class KernelKMeans extends RMAbstractClusterer {
 
-	/** The parameter name for &quot;the maximal number of clusters&quot; */
-	public static final String PARAMETER_K = "k";
+    /**
+     * The parameter name for &quot;the maximal number of clusters&quot;
+     */
+    public static final String PARAMETER_K = "k";
 
-	/** The parameter name for &quot;the decision if exampleweights should be used &quot; */
-	public static final String PARAMETER_USE_WEIGHTS = "use_weights";
+    /**
+     * The parameter name for &quot;the decision if exampleweights should be used &quot;
+     */
+    public static final String PARAMETER_USE_WEIGHTS = "use_weights";
 
-	/**
-	 * The parameter name for &quot;the maximal number of iterations performed for one run of the k
-	 * method&quot;
-	 */
-	public static final String PARAMETER_MAX_OPTIMIZATION_STEPS = "max_optimization_steps";
+    /**
+     * The parameter name for &quot;the maximal number of iterations performed for one run of the k
+     * method&quot;
+     */
+    public static final String PARAMETER_MAX_OPTIMIZATION_STEPS = "max_optimization_steps";
 
 	private static final int OPERATOR_PROGRESS_STEPS = 200;
 	private List<? extends QuickFix> algoWeightQuickFix = Collections
 			.singletonList(new ParameterSettingQuickFix(this, PARAMETER_USE_WEIGHTS, Boolean.toString(true)));
 
-	public KernelKMeans(OperatorDescription description) {
+    /**
+     * Instantiates a new Kernel k means.
+     *
+     * @param description the description
+     */
+    public KernelKMeans(OperatorDescription description) {
 		super(description);
 		getExampleSetInputPort()
 				.addPrecondition(new SimplePrecondition(getExampleSetInputPort(), new ExampleSetMetaData(), false) {

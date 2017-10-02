@@ -57,8 +57,15 @@ public class EvoSVMModel extends KernelModel implements FormulaProvider {
 
 	private double[] weights = null;
 
-	/** Creates a classification model. */
-	public EvoSVMModel(ExampleSet exampleSet, List<SupportVector> supportVectors, Kernel kernel, double bias) {
+    /**
+     * Creates a classification model.  @param exampleSet the example set
+     *
+     * @param exampleSet     the example set
+     * @param supportVectors the support vectors
+     * @param kernel         the kernel
+     * @param bias           the bias
+     */
+    public EvoSVMModel(ExampleSet exampleSet, List<SupportVector> supportVectors, Kernel kernel, double bias) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.supportVectors = supportVectors;

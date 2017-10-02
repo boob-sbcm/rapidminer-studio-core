@@ -28,9 +28,9 @@ import java.util.List;
 
 
 /**
- * 
+ * The type Auto wire thread.
+ *
  * @author Simon Fischer
- * 
  */
 public class AutoWireThread extends EditBlockingProgressThread {
 
@@ -54,7 +54,13 @@ public class AutoWireThread extends EditBlockingProgressThread {
 		getProgressListener().complete();
 	}
 
-	public static void autoWireInBackground(List<Operator> newOperators, boolean firstMustBeWired) {
+    /**
+     * Auto wire in background.
+     *
+     * @param newOperators     the new operators
+     * @param firstMustBeWired the first must be wired
+     */
+    public static void autoWireInBackground(List<Operator> newOperators, boolean firstMustBeWired) {
 		if (!firstMustBeWired) {
 			newOperators = new LinkedList<Operator>(newOperators);
 			newOperators.remove(0);

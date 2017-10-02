@@ -23,7 +23,7 @@ import java.awt.Color;
 
 /**
  * This provider always delivers white.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CellColorProviderWhite implements CellColorProvider {

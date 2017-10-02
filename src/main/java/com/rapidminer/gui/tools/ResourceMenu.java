@@ -26,19 +26,24 @@ import javax.swing.JMenu;
 /**
  * This will create a menu, whose settings are take from a .properties file being part of the GUI
  * Resource bundles of RapidMiner. These might be accessed using the I18N class.
- * 
+ * <p>
  * A resource menu needs a key specifier, which will be used to build the complete keys of the form:
  * gui.action.menu.<specifier>.label = Which will be the caption gui.action.menu.<specifier>.tip =
  * Which will be the tool tip gui.action.menu.<specifier>.mne = Which will give you access to the
  * accelerator key. Please make it the same case as in the label
- * 
+ *
  * @author Simon Fischer, Sebastian Land
  */
 public class ResourceMenu extends JMenu {
 
 	private static final long serialVersionUID = -7711922457461154801L;
 
-	public ResourceMenu(String i18Key) {
+    /**
+     * Instantiates a new Resource menu.
+     *
+     * @param i18Key the 18 key
+     */
+    public ResourceMenu(String i18Key) {
 		super(new ResourceActionAdapter("menu." + i18Key) {
 
 			private static final long serialVersionUID = 1L;
@@ -48,13 +53,12 @@ public class ResourceMenu extends JMenu {
 		});
 	}
 
-	/**
-	 * Enables or Disables the menu, if an edit is in progress. Default is <code>true</code>.
-	 * 
-	 * @param enable
-	 *            <code>true</code> if the menu should be enabled and false otherwise
-	 */
-	public void enableOnEditInProgress(boolean enable) {
+    /**
+     * Enables or Disables the menu, if an edit is in progress. Default is <code>true</code>.
+     *
+     * @param enable <code>true</code> if the menu should be enabled and false otherwise
+     */
+    public void enableOnEditInProgress(boolean enable) {
 		ResourceActionAdapter action = (ResourceActionAdapter) getAction();
 		if (enable) {
 			action.setCondition(ConditionalAction.EDIT_IN_PROGRESS, ConditionalAction.DONT_CARE);

@@ -39,13 +39,24 @@ public class TreeModel extends SimplePredictionModel {
 
 	private Tree root;
 
-	public TreeModel(ExampleSet exampleSet, Tree root) {
+    /**
+     * Instantiates a new Tree model.
+     *
+     * @param exampleSet the example set
+     * @param root       the root
+     */
+    public TreeModel(ExampleSet exampleSet, Tree root) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.root = root;
 	}
 
-	public Tree getRoot() {
+    /**
+     * Gets root.
+     *
+     * @return the root
+     */
+    public Tree getRoot() {
 		return this.root;
 	}
 

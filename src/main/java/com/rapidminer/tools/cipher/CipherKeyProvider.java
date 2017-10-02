@@ -29,40 +29,33 @@ import javax.crypto.SecretKey;
  *
  * @author Nils Woehler
  * @since 6.2.0
- *
  */
 public interface CipherKeyProvider {
 
-	/**
-	 * Generates a new random {@link Key} for the specified key length and algorithm.
-	 *
-	 * @param keyLength
-	 *            the length of the new generated key
-	 * @param algorithm
-	 *            the algorithm that should be used to generate the key
-	 * @return The new random key.
-	 * @throws KeyGenerationException
-	 *             in case the key generation fails
-	 */
-	SecretKey createKey(int keyLength, String algorithm) throws KeyGenerationException;
+    /**
+     * Generates a new random {@link Key} for the specified key length and algorithm.
+     *
+     * @param keyLength the length of the new generated key
+     * @param algorithm the algorithm that should be used to generate the key
+     * @return The new random key.
+     * @throws KeyGenerationException in case the key generation fails
+     */
+    SecretKey createKey(int keyLength, String algorithm) throws KeyGenerationException;
 
-	/**
-	 * Stores a key to the {@link CipherKeyProvider}s storage location
-	 *
-	 * @param key
-	 *            The key to store to the {@link CipherKeyProvider}s storage location
-	 * @throws KeyStoringException
-	 *             in case the storing does not work
-	 */
-	void storeKey(Key key) throws KeyStoringException;
+    /**
+     * Stores a key to the {@link CipherKeyProvider}s storage location
+     *
+     * @param key The key to store to the {@link CipherKeyProvider}s storage location
+     * @throws KeyStoringException in case the storing does not work
+     */
+    void storeKey(Key key) throws KeyStoringException;
 
-	/**
-	 * Loads the cipher key from the {@link CipherKeyProvider}s storage location.
-	 *
-	 * @return the loaded cipher key
-	 * @throws KeyLoadingException
-	 *             in case an error occurs when loading the cipher key
-	 */
-	Key loadKey() throws KeyLoadingException;
+    /**
+     * Loads the cipher key from the {@link CipherKeyProvider}s storage location.
+     *
+     * @return the loaded cipher key
+     * @throws KeyLoadingException in case an error occurs when loading the cipher key
+     */
+    Key loadKey() throws KeyLoadingException;
 
 }

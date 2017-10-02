@@ -31,19 +31,36 @@ import javax.swing.filechooser.FileFilter;
 
 
 /**
- * 
+ * The type File selection wizard step.
+ *
  * @author Tobias Malbrecht
  */
 public class FileSelectionWizardStep extends WizardStep {
 
-	protected final JFileChooser fileChooser;
+    /**
+     * The File chooser.
+     */
+    protected final JFileChooser fileChooser;
 
-	public FileSelectionWizardStep(AbstractWizard parent, FileFilter... fileFilters) {
+    /**
+     * Instantiates a new File selection wizard step.
+     *
+     * @param parent      the parent
+     * @param fileFilters the file filters
+     */
+    public FileSelectionWizardStep(AbstractWizard parent, FileFilter... fileFilters) {
 		this(parent, (File) null, fileFilters);
 		setDefaultFileFilter(fileChooser, fileFilters);
 	}
 
-	public FileSelectionWizardStep(AbstractWizard parent, File preselected, FileFilter... fileFilters) {
+    /**
+     * Instantiates a new File selection wizard step.
+     *
+     * @param parent      the parent
+     * @param preselected the preselected
+     * @param fileFilters the file filters
+     */
+    public FileSelectionWizardStep(AbstractWizard parent, File preselected, FileFilter... fileFilters) {
 		super("select_file");
 		this.fileChooser = SwingTools.createFileChooser("", null, false, fileFilters);
 		if (preselected != null) {
@@ -83,7 +100,12 @@ public class FileSelectionWizardStep extends WizardStep {
 		return fileChooser;
 	}
 
-	public File getSelectedFile() {
+    /**
+     * Gets selected file.
+     *
+     * @return the selected file
+     */
+    public File getSelectedFile() {
 		return fileChooser.getSelectedFile();
 	}
 }

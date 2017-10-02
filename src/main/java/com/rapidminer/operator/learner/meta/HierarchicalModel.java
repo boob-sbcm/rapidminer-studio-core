@@ -35,12 +35,17 @@ import com.rapidminer.operator.learner.PredictionModel;
 
 
 /**
+ * The type Hierarchical model.
+ *
  * @author Tobias Malbrecht, Sebastian Land
  */
 @Deprecated
 public class HierarchicalModel extends PredictionModel implements MetaModel {
 
-	public static class Node implements Serializable {
+    /**
+     * The type Node.
+     */
+    public static class Node implements Serializable {
 
 		private static final long serialVersionUID = 1L;
 
@@ -52,32 +57,67 @@ public class HierarchicalModel extends PredictionModel implements MetaModel {
 
 		private Model model = null;
 
-		public Node(String className) {
+        /**
+         * Instantiates a new Node.
+         *
+         * @param className the class name
+         */
+        public Node(String className) {
 			this.className = className;
 		}
 
-		public List<Node> getChildren() {
+        /**
+         * Gets children.
+         *
+         * @return the children
+         */
+        public List<Node> getChildren() {
 			return children;
 		}
 
-		public void addChild(Node child) {
+        /**
+         * Add child.
+         *
+         * @param child the child
+         */
+        public void addChild(Node child) {
 			children.add(child);
 			child.setParent(this);
 		}
 
-		public void setParent(Node parent) {
+        /**
+         * Sets parent.
+         *
+         * @param parent the parent
+         */
+        public void setParent(Node parent) {
 			this.parent = parent;
 		}
 
-		public Node getParent() {
+        /**
+         * Gets parent.
+         *
+         * @return the parent
+         */
+        public Node getParent() {
 			return this.parent;
 		}
 
-		public String getClassName() {
+        /**
+         * Gets class name.
+         *
+         * @return the class name
+         */
+        public String getClassName() {
 			return this.className;
 		}
 
-		public List<String> getChildrenClasses() {
+        /**
+         * Gets children classes.
+         *
+         * @return the children classes
+         */
+        public List<String> getChildrenClasses() {
 			List<String> childrenClasses = new ArrayList<String>();
 			for (Node child : children) {
 				childrenClasses.add(child.getClassName());
@@ -86,7 +126,12 @@ public class HierarchicalModel extends PredictionModel implements MetaModel {
 			return childrenClasses;
 		}
 
-		public List<String> getLeaveClasses() {
+        /**
+         * Gets leave classes.
+         *
+         * @return the leave classes
+         */
+        public List<String> getLeaveClasses() {
 			List<String> leaveClasses = new ArrayList<String>();
 			for (Node child : children) {
 				leaveClasses.addAll(child.getLeaveClasses());
@@ -97,11 +142,21 @@ public class HierarchicalModel extends PredictionModel implements MetaModel {
 			return leaveClasses;
 		}
 
-		public void setModel(Model model) {
+        /**
+         * Sets model.
+         *
+         * @param model the model
+         */
+        public void setModel(Model model) {
 			this.model = model;
 		}
 
-		public Model getModel() {
+        /**
+         * Gets model.
+         *
+         * @return the model
+         */
+        public Model getModel() {
 			return this.model;
 		}
 
@@ -111,7 +166,13 @@ public class HierarchicalModel extends PredictionModel implements MetaModel {
 
 	private final Node root;
 
-	public HierarchicalModel(ExampleSet exampleSet, Node root) {
+    /**
+     * Instantiates a new Hierarchical model.
+     *
+     * @param exampleSet the example set
+     * @param root       the root
+     */
+    public HierarchicalModel(ExampleSet exampleSet, Node root) {
 		super(exampleSet, null, null);
 		this.root = root;
 	}
@@ -159,7 +220,17 @@ public class HierarchicalModel extends PredictionModel implements MetaModel {
 		return exampleSet;
 	}
 
-	public void performPrediction(ExampleSet eSet, Attribute predictedLabel, Node node, double[][] confidenceMatrix,
+    /**
+     * Perform prediction.
+     *
+     * @param eSet             the e set
+     * @param predictedLabel   the predicted label
+     * @param node             the node
+     * @param confidenceMatrix the confidence matrix
+     * @param classIndexMap    the class index map
+     * @throws OperatorException the operator exception
+     */
+    public void performPrediction(ExampleSet eSet, Attribute predictedLabel, Node node, double[][] confidenceMatrix,
 			HashMap<String, Integer> classIndexMap) throws OperatorException {
 		if (node.getModel() != null && node.getChildren().size() > 0) {
 			System.err.println("Predicting " + node.getClassName());

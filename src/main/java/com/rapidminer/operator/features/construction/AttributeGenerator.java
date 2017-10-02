@@ -33,11 +33,11 @@ import java.util.List;
  * This PopulationOperator generates new attributes in an individual's example table. Given a
  * generation probability
  * <tt>pGenerate</p> and the maximal number of new attributes it generates on average
- *  <tt>pGenerate</tt> * <tt>numberOfNewAttributes</tt> new attributes using generators from the
+ * <tt>pGenerate</tt> * <tt>numberOfNewAttributes</tt> new attributes using generators from the
  * list <tt>generatorList</tt> <br/>
- * 
+ * <p>
  * This operator can never handle value series but only single attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeGenerator extends ExampleSetBasedIndividualOperator {
@@ -64,10 +64,16 @@ public class AttributeGenerator extends ExampleSetBasedIndividualOperator {
 
 	private RandomGenerator random;
 
-	/**
-	 * Creates a new <tt>AttributeGenerator</tt> with given parameters.
-	 */
-	public AttributeGenerator(double pGenerate, int numberOfNewAttributes, int totalMaxNumberOfAttributes,
+    /**
+     * Creates a new <tt>AttributeGenerator</tt> with given parameters.
+     *
+     * @param pGenerate                  the p generate
+     * @param numberOfNewAttributes      the number of new attributes
+     * @param totalMaxNumberOfAttributes the total max number of attributes
+     * @param generatorList              the generator list
+     * @param random                     the random
+     */
+    public AttributeGenerator(double pGenerate, int numberOfNewAttributes, int totalMaxNumberOfAttributes,
 			List<FeatureGenerator> generatorList, RandomGenerator random) {
 		this.pGenerate = pGenerate;
 		this.numberOfNewAttributes = numberOfNewAttributes;

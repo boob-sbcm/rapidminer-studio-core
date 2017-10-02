@@ -29,7 +29,6 @@ import org.antlr.v4.runtime.Token;
  * Listener for errors in the expression parser. Stores the error line and its message.
  *
  * @author Gisa Schaefer
- *
  */
 class ExpressionErrorListener extends BaseErrorListener {
 
@@ -90,24 +89,30 @@ class ExpressionErrorListener extends BaseErrorListener {
 		}
 	}
 
-	/**
-	 * @return the message describing the syntax error
-	 */
-	String getErrorMessage() {
+    /**
+     * Gets error message.
+     *
+     * @return the message describing the syntax error
+     */
+    String getErrorMessage() {
 		return errorMessage;
 	}
 
-	/**
-	 * @return the line containing the error, starting with 1
-	 */
-	int getErrorLine() {
+    /**
+     * Gets error line.
+     *
+     * @return the line containing the error, starting with 1
+     */
+    int getErrorLine() {
 		return line;
 	}
 
-	/**
-	 * @return {@code true} if a syntax error occurred
-	 */
-	boolean containsError() {
+    /**
+     * Contains error boolean.
+     *
+     * @return {@code true} if a syntax error occurred
+     */
+    boolean containsError() {
 		return errorMessage != null;
 	}
 

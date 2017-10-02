@@ -23,18 +23,17 @@ import com.rapidminer.gui.new_plotter.listener.events.PlotConfigurationChangeEve
 
 
 /**
- * 
+ * The interface Plot configuration listener.
+ *
  * @author Nils Woehler
- * 
  */
 public interface PlotConfigurationListener {
 
-	/**
-	 * 
-	 * @param change
-	 * @return whether the event has been processed and should be deleted at once. If
-	 *         <code>false</code> is returned the listener has to notify the
-	 *         {@link PlotConfiguration} when the event has been processed.
-	 */
-	public boolean plotConfigurationChanged(PlotConfigurationChangeEvent change);
+    /**
+     * Plot configuration changed boolean.
+     *
+     * @param change the change
+     * @return whether the event has been processed and should be deleted at once. If         <code>false</code> is returned the listener has to notify the         {@link PlotConfiguration} when the event has been processed.
+     */
+    public boolean plotConfigurationChanged(PlotConfigurationChangeEvent change);
 }

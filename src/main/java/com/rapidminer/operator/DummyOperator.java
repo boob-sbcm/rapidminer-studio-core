@@ -46,11 +46,13 @@ import com.rapidminer.tools.update.internal.UpdateManagerRegistry;
  * operator that acts as a placeholder for an operator contained in a plugin that is not installed.
  *
  * @author Simon Fischer
- *
  */
 public class DummyOperator extends Operator {
 
-	public static final String PARAMETER_INSTALL_EXTENSION = "install_extension";
+    /**
+     * The constant PARAMETER_INSTALL_EXTENSION.
+     */
+    public static final String PARAMETER_INSTALL_EXTENSION = "install_extension";
 
 	private InputPortExtender inExtender = new InputPortExtender("in", getInputPorts());
 	private OutputPortExtender outExtender = new OutputPortExtender("out", getOutputPorts());
@@ -59,7 +61,12 @@ public class DummyOperator extends Operator {
 
 	private QuickFix installFix = null;
 
-	public DummyOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Dummy operator.
+     *
+     * @param description the description
+     */
+    public DummyOperator(OperatorDescription description) {
 		super(description);
 		inExtender.start();
 		outExtender.start();
@@ -117,7 +124,12 @@ public class DummyOperator extends Operator {
 		return types;
 	}
 
-	public void setReplaces(String replaces) {
+    /**
+     * Sets replaces.
+     *
+     * @param replaces the replaces
+     */
+    public void setReplaces(String replaces) {
 		this.replaces = replaces;
 		if (replaces != null) {
 			installFix = new AbstractQuickFix(10, true, "install_extension", getExtensionName()) {
@@ -136,7 +148,12 @@ public class DummyOperator extends Operator {
 		}
 	}
 
-	public String getReplaces() {
+    /**
+     * Gets replaces.
+     *
+     * @return the replaces
+     */
+    public String getReplaces() {
 		return replaces;
 	}
 

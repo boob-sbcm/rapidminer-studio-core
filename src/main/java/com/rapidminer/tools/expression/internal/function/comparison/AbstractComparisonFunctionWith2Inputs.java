@@ -36,22 +36,16 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * same type
  *
  * @author Sabrina Kirstein
- *
  */
 public abstract class AbstractComparisonFunctionWith2Inputs extends AbstractFunction {
 
-	/**
-	 * Constructs a comparison AbstractFunction with {@link FunctionDescription} generated from the
-	 * arguments and the function name generated from the description.
-	 *
-	 * @param i18nKey
-	 *            the key for the {@link FunctionDescription}. The functionName is read from
-	 *            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName
-	 *            from ".group", the description from ".description" and the function with
-	 *            parameters from ".parameters". If ".parameters" is not present, the ".name" is
-	 *            taken for the function with parameters.
-	 */
-	public AbstractComparisonFunctionWith2Inputs(String i18nKey) {
+    /**
+     * Constructs a comparison AbstractFunction with {@link FunctionDescription} generated from the
+     * arguments and the function name generated from the description.
+     *
+     * @param i18nKey the key for the {@link FunctionDescription}. The functionName is read from            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName            from ".group", the description from ".description" and the function with            parameters from ".parameters". If ".parameters" is not present, the ".name" is            taken for the function with parameters.
+     */
+    public AbstractComparisonFunctionWith2Inputs(String i18nKey) {
 		super(i18nKey, 2, Ontology.BINOMINAL);
 	}
 
@@ -70,17 +64,15 @@ public abstract class AbstractComparisonFunctionWith2Inputs extends AbstractFunc
 		return new SimpleExpressionEvaluator(makeBooleanCallable(left, right), isResultConstant(inputEvaluators), type);
 	}
 
-	/**
-	 * Builds a boolean callable from evaluator using {@link #compute(double, double)} or
-	 * {@link #compute(String, String)}, where constant child results are evaluated.
-	 *
-	 * @param left
-	 *            evaluator
-	 * @param right
-	 *            evaluator
-	 * @return the resulting boolean callable
-	 */
-	protected Callable<Boolean> makeBooleanCallable(ExpressionEvaluator left, ExpressionEvaluator right) {
+    /**
+     * Builds a boolean callable from evaluator using {@link #compute(double, double)} or
+     * {@link #compute(String, String)}, where constant child results are evaluated.
+     *
+     * @param left  evaluator
+     * @param right evaluator
+     * @return the resulting boolean callable
+     */
+    protected Callable<Boolean> makeBooleanCallable(ExpressionEvaluator left, ExpressionEvaluator right) {
 		ExpressionType leftType = left.getType();
 		ExpressionType rightType = right.getType();
 
@@ -182,27 +174,23 @@ public abstract class AbstractComparisonFunctionWith2Inputs extends AbstractFunc
 		}
 	}
 
-	/**
-	 * Computes the result for two double values.
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(double left, double right);
+    /**
+     * Computes the result for two double values.
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(double left, double right);
 
-	/**
-	 * Computes the result for two String values.
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(String left, String right);
+    /**
+     * Computes the result for two String values.
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(String left, String right);
 
 	@Override
 	protected ExpressionType computeType(ExpressionType... inputTypes) {

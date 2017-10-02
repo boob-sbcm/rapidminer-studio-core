@@ -28,7 +28,7 @@ import javax.swing.Icon;
 /**
  * This is an icon, that shows just a single color. This can be used for demonstrating selected
  * colors.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class ColorIcon implements Icon {
@@ -39,29 +39,61 @@ public class ColorIcon implements Icon {
 	private int width = 20;
 	private int height = 8;
 
-	public ColorIcon(Color color) {
+    /**
+     * Instantiates a new Color icon.
+     *
+     * @param color the color
+     */
+    public ColorIcon(Color color) {
 		this.color = color;
 	}
 
-	public ColorIcon(Color color, int width, int height) {
+    /**
+     * Instantiates a new Color icon.
+     *
+     * @param color  the color
+     * @param width  the width
+     * @param height the height
+     */
+    public ColorIcon(Color color, int width, int height) {
 		this.color = color;
 		this.width = width;
 		this.height = height;
 	}
 
-	public Color getColor() {
+    /**
+     * Gets color.
+     *
+     * @return the color
+     */
+    public Color getColor() {
 		return this.color;
 	}
 
-	public void setColor(Color color) {
+    /**
+     * Sets color.
+     *
+     * @param color the color
+     */
+    public void setColor(Color color) {
 		this.color = color;
 	}
 
-	public Color getBorderColor() {
+    /**
+     * Gets border color.
+     *
+     * @return the border color
+     */
+    public Color getBorderColor() {
 		return this.borderColor;
 	}
 
-	public void setBorderColor(Color borderColor) {
+    /**
+     * Sets border color.
+     *
+     * @param borderColor the border color
+     */
+    public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
 	}
 

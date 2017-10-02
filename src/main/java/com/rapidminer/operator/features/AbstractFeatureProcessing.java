@@ -25,12 +25,17 @@ import com.rapidminer.operator.OperatorDescription;
 
 /**
  * Superclass of all operators changing the features (attributes) of an {@link ExampleSet}.
- * 
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractFeatureProcessing extends AbstractExampleSetProcessing {
 
-	public AbstractFeatureProcessing(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract feature processing.
+     *
+     * @param description the description
+     */
+    public AbstractFeatureProcessing(OperatorDescription description) {
 		super(description);
 	}
 

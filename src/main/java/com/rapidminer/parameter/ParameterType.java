@@ -51,13 +51,16 @@ import com.rapidminer.tools.XMLException;
  * </p>
  *
  * @author Ingo Mierswa, Simon Fischer
- * @see com.rapidminer.operator.Operator#getParameterTypes()
+ * @see com.rapidminer.operator.Operator#getParameterTypes() com.rapidminer.operator.Operator#getParameterTypes()com.rapidminer.operator.Operator#getParameterTypes()
  */
 public abstract class ParameterType implements Comparable<ParameterType>, Serializable {
 
 	private static final long serialVersionUID = 5296461242851710130L;
 
-	public static final String ELEMENT_PARAMETER_TYPE = "ParameterType";
+    /**
+     * The constant ELEMENT_PARAMETER_TYPE.
+     */
+    public static final String ELEMENT_PARAMETER_TYPE = "ParameterType";
 
 	private static final String ELEMENT_DESCRIPTION = "Description";
 
@@ -116,101 +119,154 @@ public abstract class ParameterType implements Comparable<ParameterType>, Serial
 	 */
 	private final Collection<ParameterCondition> conditions = new LinkedList<>();
 
-	/**
-	 * This is the inversed constructor to {@link #getDefinitionAsXML(Document)}. It will reload all
-	 * settings of this {@link ParameterType} from the given XML Element. Subclasses MUST implement
-	 * this constructor, since it is called by reflection.
-	 *
-	 * @throws XMLException
-	 */
-	public ParameterType(Element element) throws XMLException {
+    /**
+     * This is the inversed constructor to {@link #getDefinitionAsXML(Document)}. It will reload all
+     * settings of this {@link ParameterType} from the given XML Element. Subclasses MUST implement
+     * this constructor, since it is called by reflection.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterType(Element element) throws XMLException {
 		loadDefinitionFromXML(element);
 	}
 
-	/** Creates a new ParameterType. */
-	public ParameterType(String key, String description) {
+    /**
+     * Creates a new ParameterType.  @param key the key
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ParameterType(String key, String description) {
 		this.key = key;
 		this.description = description;
 	}
 
-	public abstract Element getXML(String key, String value, boolean hideDefault, Document doc);
+    /**
+     * Gets xml.
+     *
+     * @param key         the key
+     * @param value       the value
+     * @param hideDefault the hide default
+     * @param doc         the doc
+     * @return the xml
+     */
+    public abstract Element getXML(String key, String value, boolean hideDefault, Document doc);
 
-	/** Returns a human readable description of the range. */
-	public abstract String getRange();
+    /**
+     * Returns a human readable description of the range.  @return the range
+     *
+     * @return the range
+     */
+    public abstract String getRange();
 
-	/** Returns a value that can be used if the parameter is not set. */
-	public abstract Object getDefaultValue();
+    /**
+     * Returns a value that can be used if the parameter is not set.  @return the default value
+     *
+     * @return the default value
+     */
+    public abstract Object getDefaultValue();
 
-	/**
-	 * Returns the correct string representation of the default value. If the default is undefined,
-	 * it returns null.
-	 */
-	public String getDefaultValueAsString() {
+    /**
+     * Returns the correct string representation of the default value. If the default is undefined,
+     * it returns null.
+     *
+     * @return the default value as string
+     */
+    public String getDefaultValueAsString() {
 		return toString(getDefaultValue());
 	}
 
-	/** Sets the default value. */
-	public abstract void setDefaultValue(Object defaultValue);
+    /**
+     * Sets the default value.  @param defaultValue the default value
+     *
+     * @param defaultValue the default value
+     */
+    public abstract void setDefaultValue(Object defaultValue);
 
-	/**
-	 * Returns true if the values of this parameter type are numerical, i.e. might be parsed by
-	 * {@link Double#parseDouble(String)}. Otherwise false should be returned. This method might be
-	 * used by parameter logging operators.
-	 */
-	public abstract boolean isNumerical();
+    /**
+     * Returns true if the values of this parameter type are numerical, i.e. might be parsed by
+     * {@link Double#parseDouble(String)}. Otherwise false should be returned. This method might be
+     * used by parameter logging operators.
+     *
+     * @return the boolean
+     */
+    public abstract boolean isNumerical();
 
-	/**
-	 * Writes an xml representation of the given key-value pair.
-	 *
-	 * @deprecated Use the DOM version of this method. At the moment, we cannot delete it, because
-	 *             {@link Parameters#equals(Object)} and {@link Parameters#hashCode()} rely on it.
-	 */
-	@Deprecated
+    /**
+     * Writes an xml representation of the given key-value pair.
+     *
+     * @param indent      the indent
+     * @param key         the key
+     * @param value       the value
+     * @param hideDefault the hide default
+     * @return the xml
+     * @deprecated Use the DOM version of this method. At the moment, we cannot delete it, because             {@link Parameters#equals(Object)} and {@link Parameters#hashCode()} rely on it.
+     */
+    @Deprecated
 	public abstract String getXML(String indent, String key, String value, boolean hideDefault);
 
-	public boolean showRange() {
+    /**
+     * Show range boolean.
+     *
+     * @return the boolean
+     */
+    public boolean showRange() {
 		return showRange;
 	}
 
-	public void setShowRange(boolean showRange) {
+    /**
+     * Sets show range.
+     *
+     * @param showRange the show range
+     */
+    public void setShowRange(boolean showRange) {
 		this.showRange = showRange;
 	}
 
-	/**
-	 * This method will be invoked by the Parameters after a parameter was set. The default
-	 * implementation is empty but subclasses might override this method, e.g. for a decryption of
-	 * passwords.
-	 */
-	public String transformNewValue(String value) {
+    /**
+     * This method will be invoked by the Parameters after a parameter was set. The default
+     * implementation is empty but subclasses might override this method, e.g. for a decryption of
+     * passwords.
+     *
+     * @param value the value
+     * @return the string
+     */
+    public String transformNewValue(String value) {
 		return value;
 	}
 
-	/**
-	 * Returns true if this parameter can only be seen in expert mode. The default implementation
-	 * returns true if the parameter is optional. It is ensured that an non-optional parameter is
-	 * never expert!
-	 */
-	public boolean isExpert() {
+    /**
+     * Returns true if this parameter can only be seen in expert mode. The default implementation
+     * returns true if the parameter is optional. It is ensured that an non-optional parameter is
+     * never expert!
+     *
+     * @return the boolean
+     */
+    public boolean isExpert() {
 		return expert && isOptional;
 	}
 
-	/**
-	 * Sets if this parameter can be seen in expert mode (true) or beginner mode (false).
-	 *
-	 */
-	public void setExpert(boolean expert) {
+    /**
+     * Sets if this parameter can be seen in expert mode (true) or beginner mode (false).
+     *
+     * @param expert the expert
+     */
+    public void setExpert(boolean expert) {
 		this.expert = expert;
 	}
 
-	/**
-	 * Returns true if this parameter is hidden or not all dependency conditions are fulfilled. Then
-	 * the parameter will not be shown in the GUI. The default implementation returns true which
-	 * should be the normal case.
-	 *
-	 * Please note that this method cannot be accessed during getParameterTypes() method
-	 * invocations, because it relies on getting the Parameters object, which is then not created.
-	 */
-	public boolean isHidden() {
+    /**
+     * Returns true if this parameter is hidden or not all dependency conditions are fulfilled. Then
+     * the parameter will not be shown in the GUI. The default implementation returns true which
+     * should be the normal case.
+     * <p>
+     * Please note that this method cannot be accessed during getParameterTypes() method
+     * invocations, because it relies on getting the Parameters object, which is then not created.
+     *
+     * @return the hidden
+     */
+    public boolean isHidden() {
 		boolean conditionsMet = true;
 		for (ParameterCondition condition : conditions) {
 			conditionsMet &= condition.dependencyMet();
@@ -218,56 +274,77 @@ public abstract class ParameterType implements Comparable<ParameterType>, Serial
 		return isDeprecated || isHidden || !conditionsMet;
 	}
 
-	public Collection<ParameterCondition> getConditions() {
+    /**
+     * Gets conditions.
+     *
+     * @return the conditions
+     */
+    public Collection<ParameterCondition> getConditions() {
 		return Collections.unmodifiableCollection(conditions);
 	}
 
-	/**
-	 * Sets if this parameter is hidden (value true) and will not be shown in the GUI.
-	 */
-	public void setHidden(boolean hidden) {
+    /**
+     * Sets if this parameter is hidden (value true) and will not be shown in the GUI.
+     *
+     * @param hidden the hidden
+     */
+    public void setHidden(boolean hidden) {
 		this.isHidden = hidden;
 	}
 
-	/**
-	 * This returns whether this parameter is deprecated.
-	 */
-	public boolean isDeprecated() {
+    /**
+     * This returns whether this parameter is deprecated.
+     *
+     * @return the boolean
+     */
+    public boolean isDeprecated() {
 		return this.isDeprecated;
 	}
 
-	/**
-	 * This method indicates that this parameter is deprecated and isn't used anymore beside from
-	 * loading old process files.
-	 */
-	public void setDeprecated() {
+    /**
+     * This method indicates that this parameter is deprecated and isn't used anymore beside from
+     * loading old process files.
+     */
+    public void setDeprecated() {
 		this.isDeprecated = true;
 	}
 
-	/**
-	 * This sets if the parameter is optional or must be entered. If it is not optional, it may not
-	 * be an expert parameter and the expert status will be ignored!
-	 */
-	public final void setOptional(boolean isOptional) {
+    /**
+     * This sets if the parameter is optional or must be entered. If it is not optional, it may not
+     * be an expert parameter and the expert status will be ignored!
+     *
+     * @param isOptional the is optional
+     */
+    public final void setOptional(boolean isOptional) {
 		this.isOptional = isOptional;
 	}
 
-	/** Registers the given dependency condition. */
-	public void registerDependencyCondition(ParameterCondition condition) {
+    /**
+     * Registers the given dependency condition.  @param condition the condition
+     *
+     * @param condition the condition
+     */
+    public void registerDependencyCondition(ParameterCondition condition) {
 		this.conditions.add(condition);
 	}
 
-	public Collection<ParameterCondition> getDependencyConditions() {
+    /**
+     * Gets dependency conditions.
+     *
+     * @return the dependency conditions
+     */
+    public Collection<ParameterCondition> getDependencyConditions() {
 		return this.conditions;
 	}
 
-	/**
-	 * Returns true if this parameter is optional. The default implementation returns true. Please
-	 * note that this method cannot be accessed during {@link Operator#getParameterTypes()} method
-	 * invocations, because it relies on getting the Parameters object, which is then not created.
-	 *
-	 */
-	public final boolean isOptional() {
+    /**
+     * Returns true if this parameter is optional. The default implementation returns true. Please
+     * note that this method cannot be accessed during {@link Operator#getParameterTypes()} method
+     * invocations, because it relies on getting the Parameters object, which is then not created.
+     *
+     * @return the boolean
+     */
+    public final boolean isOptional() {
 		if (isOptional) {
 			// if parameter is optional per default: check conditions
 			boolean becomeMandatory = false;
@@ -284,60 +361,86 @@ public abstract class ParameterType implements Comparable<ParameterType>, Serial
 		return false;
 	}
 
-	/**
-	 * Checks whether the parameter is configured to be optional without looking at the parameter
-	 * conditions. This method can be invoked during {@link Operator#getParameterTypes()} method
-	 * invocations as it does not check parameter conditions. It does not reflect the actual state
-	 * though as parameter conditions might change an optional parameter to become mandatory.
-	 *
-	 * @return whether the parameter is optional without checking the parameter conditions
-	 */
-	public final boolean isOptionalWithoutConditions() {
+    /**
+     * Checks whether the parameter is configured to be optional without looking at the parameter
+     * conditions. This method can be invoked during {@link Operator#getParameterTypes()} method
+     * invocations as it does not check parameter conditions. It does not reflect the actual state
+     * though as parameter conditions might change an optional parameter to become mandatory.
+     *
+     * @return whether the parameter is optional without checking the parameter conditions
+     */
+    public final boolean isOptionalWithoutConditions() {
 		return isOptional;
 	}
 
-	/** Sets the key. */
-	public void setKey(String key) {
+    /**
+     * Sets the key.  @param key the key
+     *
+     * @param key the key
+     */
+    public void setKey(String key) {
 		this.key = key;
 	}
 
-	/** Returns the key. */
-	public String getKey() {
+    /**
+     * Returns the key.  @return the key
+     *
+     * @return the key
+     */
+    public String getKey() {
 		return key;
 	}
 
-	/** Returns a short description. */
-	public String getDescription() {
+    /**
+     * Returns a short description.  @return the description
+     *
+     * @return the description
+     */
+    public String getDescription() {
 		return description;
 	}
 
-	/** Sets the short description. */
-	public void setDescription(String description) {
+    /**
+     * Sets the short description.  @param description the description
+     *
+     * @param description the description
+     */
+    public void setDescription(String description) {
 		this.description = description;
 	}
 
-	/**
-	 * States whether a given parameter type implementation may contain sensitive information or
-	 * not. Sensitive information are obvious things like passwords, files, OAuth tokens, or
-	 * database connections. However less obvious things like SQL queries can also contain sensitive
-	 * information.
-	 *
-	 * @return always {@code true}
-	 */
-	public boolean isSensitive() {
+    /**
+     * States whether a given parameter type implementation may contain sensitive information or
+     * not. Sensitive information are obvious things like passwords, files, OAuth tokens, or
+     * database connections. However less obvious things like SQL queries can also contain sensitive
+     * information.
+     *
+     * @return always {@code true}
+     */
+    public boolean isSensitive() {
 		return true;
 	}
 
-	/**
-	 * This method gives a hook for the parameter type to react on a renaming of an operator. It
-	 * must return the correctly modified String value. The default implementation does nothing.
-	 */
-	public String notifyOperatorRenaming(String oldOperatorName, String newOperatorName, String parameterValue) {
+    /**
+     * This method gives a hook for the parameter type to react on a renaming of an operator. It
+     * must return the correctly modified String value. The default implementation does nothing.
+     *
+     * @param oldOperatorName the old operator name
+     * @param newOperatorName the new operator name
+     * @param parameterValue  the parameter value
+     * @return the string
+     */
+    public String notifyOperatorRenaming(String oldOperatorName, String newOperatorName, String parameterValue) {
 		return parameterValue;
 	}
 
-	/** Returns a string representation of this value. */
-	public String toString(Object value) {
+    /**
+     * Returns a string representation of this value.  @param value the value
+     *
+     * @param value the value
+     * @return the string
+     */
+    public String toString(Object value) {
 		if (value == null) {
 			return "";
 		} else {
@@ -345,7 +448,13 @@ public abstract class ParameterType implements Comparable<ParameterType>, Serial
 		}
 	}
 
-	public String toXMLString(Object value) {
+    /**
+     * To xml string string.
+     *
+     * @param value the value
+     * @return the string
+     */
+    public String toXMLString(Object value) {
 		return Tools.escapeXML(toString(value));
 	}
 
@@ -354,11 +463,14 @@ public abstract class ParameterType implements Comparable<ParameterType>, Serial
 		return key + " (" + description + ")";
 	}
 
-	/**
-	 * Can be called in order to report an illegal parameter value which is encountered during
-	 * <tt>checkValue()</tt>.
-	 */
-	public void illegalValue(Object illegal, Object corrected) {
+    /**
+     * Can be called in order to report an illegal parameter value which is encountered during
+     * <tt>checkValue()</tt>.
+     *
+     * @param illegal   the illegal
+     * @param corrected the corrected
+     */
+    public void illegalValue(Object illegal, Object corrected) {
 		LogService.getRoot().log(Level.WARNING, "com.rapidminer.parameter.ParameterType.illegal_value_for_parameter",
 				new Object[] { illegal, key, corrected.toString() });
 	}
@@ -369,38 +481,42 @@ public abstract class ParameterType implements Comparable<ParameterType>, Serial
 			return this.key.compareTo(o.key);
 		}
 
-	/**
-	 * This method operates on the internal string representation of parameter values and replaces
-	 * macro expressions of the form %{macroName}.
-	 */
-	public abstract String substituteMacros(String parameterValue, MacroHandler mh) throws UndefinedParameterError;
+    /**
+     * This method operates on the internal string representation of parameter values and replaces
+     * macro expressions of the form %{macroName}.
+     *
+     * @param parameterValue the parameter value
+     * @param mh             the mh
+     * @return the string
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public abstract String substituteMacros(String parameterValue, MacroHandler mh) throws UndefinedParameterError;
 
-	/**
-	 * This method replaces predefined macro values. It is called right after
-	 * {@link #substituteMacros(String, MacroHandler)}.
-	 * <p>
-	 * Override this method in case a custom parameter type should not replace predefined macros on
-	 * parameter value fetching.
-	 *
-	 * @param parameterValue
-	 *            the parameter value which is the result of
-	 *            {@link #substituteMacros(String, MacroHandler)}
-	 * @param operator
-	 *            the calling operator. Must not be <code>null</code>.
-	 * @return the parameter string with replaced predefined macros
-	 * @throws UndefinedParameterError
-	 *             in case a predefined macro is malformed
-	 */
-	public String substitutePredefinedMacros(String parameterValue, Operator operator) throws UndefinedParameterError {
+    /**
+     * This method replaces predefined macro values. It is called right after
+     * {@link #substituteMacros(String, MacroHandler)}.
+     * <p>
+     * Override this method in case a custom parameter type should not replace predefined macros on
+     * parameter value fetching.
+     *
+     * @param parameterValue the parameter value which is the result of            {@link #substituteMacros(String, MacroHandler)}
+     * @param operator       the calling operator. Must not be <code>null</code>.
+     * @return the parameter string with replaced predefined macros
+     * @throws UndefinedParameterError in case a predefined macro is malformed
+     */
+    public String substitutePredefinedMacros(String parameterValue, Operator operator) throws UndefinedParameterError {
 		return operator.getProcess().getMacroHandler().resolvePredefinedMacros(parameterValue, operator);
 	}
 
-	/**
-	 * This method will write the definition of this {@link ParameterType} into the {@link Element}
-	 * that is returned. This XML representation can be used to load the {@link ParameterType} later
-	 * on again using the static {@link #createType(Element)} method.
-	 */
-	public final Element getDefinitionAsXML(Document document) {
+    /**
+     * This method will write the definition of this {@link ParameterType} into the {@link Element}
+     * that is returned. This XML representation can be used to load the {@link ParameterType} later
+     * on again using the static {@link #createType(Element)} method.
+     *
+     * @param document the document
+     * @return the definition as xml
+     */
+    public final Element getDefinitionAsXML(Document document) {
 		Element typeElement = document.createElement(ELEMENT_PARAMETER_TYPE);
 		// class name for reconstruction
 		typeElement.setAttribute(ATTRIBUTE_CLASS, this.getClass().getCanonicalName());
@@ -431,13 +547,15 @@ public abstract class ParameterType implements Comparable<ParameterType>, Serial
 		return typeElement;
 	}
 
-	/**
-	 * Subclasses must store all their properties inside the typeElement and must be able to reload
-	 * it from their using the constructor (Operator operator, Element element). This constructor is
-	 * called via reflection. This method should be abstract, but in order to keep the class
-	 * compatible with existing extensions, this only throws an unsupported exception.
-	 */
-	protected void writeDefinitionToXML(Element typeElement) {
+    /**
+     * Subclasses must store all their properties inside the typeElement and must be able to reload
+     * it from their using the constructor (Operator operator, Element element). This constructor is
+     * called via reflection. This method should be abstract, but in order to keep the class
+     * compatible with existing extensions, this only throws an unsupported exception.
+     *
+     * @param typeElement the type element
+     */
+    protected void writeDefinitionToXML(Element typeElement) {
 		throw new UnsupportedOperationException("The Subclass " + this.getClass().getCanonicalName()
 				+ " must override the method getDefinitionAsXML(Element) of the super type "
 				+ ParameterType.class.getCanonicalName());
@@ -482,12 +600,14 @@ public abstract class ParameterType implements Comparable<ParameterType>, Serial
 		}
 	}
 
-	/**
-	 * This creates the ParameterType defined by the given element for the given operator.
-	 *
-	 * @throws XMLException
-	 */
-	public static ParameterType createType(Element element) throws XMLException {
+    /**
+     * This creates the ParameterType defined by the given element for the given operator.
+     *
+     * @param element the element
+     * @return the parameter type
+     * @throws XMLException the xml exception
+     */
+    public static ParameterType createType(Element element) throws XMLException {
 		String className = element.getAttribute(ATTRIBUTE_CLASS);
 		try {
 			Class<?> typeClass = Class.forName(className);

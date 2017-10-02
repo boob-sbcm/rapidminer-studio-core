@@ -44,24 +44,33 @@ public class BaggingModel extends PredictionModel implements MetaModel {
 	/** Holds the models. */
 	private List<Model> models;
 
-	public BaggingModel(ExampleSet exampleSet, List<Model> models) {
+    /**
+     * Instantiates a new Bagging model.
+     *
+     * @param exampleSet the example set
+     * @param models     the models
+     */
+    public BaggingModel(ExampleSet exampleSet, List<Model> models) {
 		super(exampleSet, null, null);
 		this.models = models;
 	}
 
-	/** @return the number of embedded models */
-	public int getNumberOfModels() {
+    /**
+     * Gets number of models.
+     *
+     * @return the number of embedded models
+     */
+    public int getNumberOfModels() {
 		return this.models.size();
 	}
 
-	/**
-	 * Getter method for embedded models
-	 *
-	 * @param index
-	 *            the number of a model part of this boost model
-	 * @return binary or nominal decision model
-	 */
-	public Model getModel(int index) {
+    /**
+     * Getter method for embedded models
+     *
+     * @param index the number of a model part of this boost model
+     * @return binary or nominal decision model
+     */
+    public Model getModel(int index) {
 		return this.models.get(index);
 	}
 

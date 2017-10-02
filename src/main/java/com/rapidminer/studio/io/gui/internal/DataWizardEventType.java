@@ -22,37 +22,65 @@ package com.rapidminer.studio.io.gui.internal;
  * Event types that can be logged via
  * {@link DataImportWizardUtils#logStats(DataWizardEventType, String)}
  *
- * @since 7.0.0
  * @author Nils Woehler, Marcel Michel
+ * @since 7.0.0
  */
 public enum DataWizardEventType {
 
-	/** main data source selected */
-	DATASOURCE_SELECTED,
-	/** new local file data source selected */
-	FILE_DATASOURCE_SELECTED,
-	/** when changing the file type in the file location step */
-	FILE_TYPE_CHANGED,
-	/** entering first step */
-	STARTING,
-	/** switching to next step */
-	NEXT_STEP,
-	/** switching to previous step */
-	PREVIOUS_STEP,
-	/** closing the wizard */
-	CLOSED,
-	/** searching for data sources in the overview step */
-	SEARCH_TYPE,
-	/** when clicking on the handle errors as missing values check box */
-	ERROR_HANDLING_CHANGED,
-	/** when changing the date format */
-	DATE_FORMAT_CHANGED,
-	/** when changing a column type */
-	COLUMN_TYPE_CHANGED,
-	/** when changing the header row state in the excel sheet selection view */
-	EXCEL_HEADER_ROW_STATE,
-	/** when changing the header row state in the CSV sheet selection view */
-	CSV_HEADER_ROW_STATE,
-	/** when changing the column separator */
-	CSV_SEPARATOR_CHANGED,
+    /**
+     * main data source selected
+     */
+    DATASOURCE_SELECTED,
+    /**
+     * new local file data source selected
+     */
+    FILE_DATASOURCE_SELECTED,
+    /**
+     * when changing the file type in the file location step
+     */
+    FILE_TYPE_CHANGED,
+    /**
+     * entering first step
+     */
+    STARTING,
+    /**
+     * switching to next step
+     */
+    NEXT_STEP,
+    /**
+     * switching to previous step
+     */
+    PREVIOUS_STEP,
+    /**
+     * closing the wizard
+     */
+    CLOSED,
+    /**
+     * searching for data sources in the overview step
+     */
+    SEARCH_TYPE,
+    /**
+     * when clicking on the handle errors as missing values check box
+     */
+    ERROR_HANDLING_CHANGED,
+    /**
+     * when changing the date format
+     */
+    DATE_FORMAT_CHANGED,
+    /**
+     * when changing a column type
+     */
+    COLUMN_TYPE_CHANGED,
+    /**
+     * when changing the header row state in the excel sheet selection view
+     */
+    EXCEL_HEADER_ROW_STATE,
+    /**
+     * when changing the header row state in the CSV sheet selection view
+     */
+    CSV_HEADER_ROW_STATE,
+    /**
+     * when changing the column separator
+     */
+    CSV_SEPARATOR_CHANGED,
 }

@@ -19,12 +19,21 @@
 package com.rapidminer.repository;
 
 /**
- * 
+ * The enum Access flag.
+ *
  * @author Simon Fischer
- * 
  */
 public enum AccessFlag {
-	IGNORE('%', "shape_circle.png"), GRANT('+', "ok.png"), REJECT('-', "sign_forbidden.png");
+    /**
+     * Ignore access flag.
+     */
+    IGNORE('%', "shape_circle.png"), /**
+     * Grant access flag.
+     */
+    GRANT('+', "ok.png"), /**
+     * Reject access flag.
+     */
+    REJECT('-', "sign_forbidden.png");
 
 	private AccessFlag(char symbol, String icon) {
 		this.symbol = symbol;
@@ -34,15 +43,30 @@ public enum AccessFlag {
 	private char symbol;
 	private String icon;
 
-	public char getSymbol() {
+    /**
+     * Gets symbol.
+     *
+     * @return the symbol
+     */
+    public char getSymbol() {
 		return symbol;
 	}
 
-	public String getIcon() {
+    /**
+     * Gets icon.
+     *
+     * @return the icon
+     */
+    public String getIcon() {
 		return icon;
 	}
 
-	public AccessFlag rotate() {
+    /**
+     * Rotate access flag.
+     *
+     * @return the access flag
+     */
+    public AccessFlag rotate() {
 		return AccessFlag.values()[(this.ordinal() + 1) % AccessFlag.values().length];
 	}
 }

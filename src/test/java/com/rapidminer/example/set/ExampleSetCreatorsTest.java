@@ -51,7 +51,10 @@ public class ExampleSetCreatorsTest {
 	private final static Attribute attribute3 = ExampleTestTools.attributeYesNo();
 	private final static Attribute attribute4 = ExampleTestTools.attributeReal();
 
-	@Test
+    /**
+     * Attribute selection example set.
+     */
+    @Test
 	public void attributeSelectionExampleSet() {
 		ExampleSet simpleExampleSet = ExampleSets.from(attribute1, attribute2, attribute3, attribute4)
 				.addRow(new double[] { 2, 5, 1, 5.6 }).build();
@@ -67,7 +70,10 @@ public class ExampleSetCreatorsTest {
 
 	}
 
-	@Test
+    /**
+     * Model view example set.
+     */
+    @Test
 	public void modelViewExampleSet() {
 		ExampleSet simpleExampleSet = ExampleSets.from(attribute1, attribute2, attribute3, attribute4)
 				.addRow(new double[] { 2, 5, 1, 5.6 }).build();
@@ -84,7 +90,10 @@ public class ExampleSetCreatorsTest {
 
 	}
 
-	@Test
+    /**
+     * Non special attributes example set.
+     */
+    @Test
 	public void nonSpecialAttributesExampleSet() {
 		ExampleSet simpleExampleSet = ExampleSets.from(attribute1, attribute2, attribute3, attribute4)
 				.addRow(new double[] { 2, 5, 1, 5.6 }).withRole(attribute1, Attributes.LABEL_NAME)
@@ -101,7 +110,10 @@ public class ExampleSetCreatorsTest {
 
 	}
 
-	@Test
+    /**
+     * Remapped example set.
+     */
+    @Test
 	public void RemappedExampleSet() {
 		ExampleSet mappingExampleSet = ExampleSets.from(attribute1, attribute2, attribute3, attribute4)
 				.addRow(new double[] { 2, 5, 1, 5.6 }).build();
@@ -127,7 +139,10 @@ public class ExampleSetCreatorsTest {
 
 	}
 
-	@Test
+    /**
+     * Replace missing example set.
+     */
+    @Test
 	public void replaceMissingExampleSet() {
 		ExampleSet simpleExampleSet = ExampleSets.from(attribute1, attribute2, attribute3, attribute4)
 				.addRow(new double[] { 2, Double.NaN, Double.NaN, 5.6 }).addRow(new double[] { 2, 5, 1, Double.NaN })

@@ -28,15 +28,19 @@ import java.awt.event.ActionEvent;
 
 /**
  * An action to close all currently open results.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class CloseAllResultsAction extends ResourceAction {
 
 	private final MainFrame mainframe;
 
-	public CloseAllResultsAction(MainFrame mainframe) {
+    /**
+     * Instantiates a new Close all results action.
+     *
+     * @param mainframe the mainframe
+     */
+    public CloseAllResultsAction(MainFrame mainframe) {
 		super(true, "close_all_results");
 		this.mainframe = mainframe;
 	}

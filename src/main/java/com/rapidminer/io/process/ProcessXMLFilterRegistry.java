@@ -30,7 +30,7 @@ import com.rapidminer.operator.Operator;
 /**
  * Manages a list of {@link ProcessXMLFilter}s that is applied when parsing or writing process XML
  * data.
- * 
+ *
  * @author Simon Fischer, Michael Knopf
  */
 public class ProcessXMLFilterRegistry {
@@ -41,37 +41,60 @@ public class ProcessXMLFilterRegistry {
 	/** List of filters to be applied. */
 	private static final List<ProcessXMLFilter> FILTERS = new LinkedList<>();
 
-	/**
-	 * Register a new {@link ProcessXMLFilter}.
-	 * 
-	 * @param filter
-	 *            The filter to be registered.
-	 */
-	public static void registerFilter(ProcessXMLFilter filter) {
+    /**
+     * Register a new {@link ProcessXMLFilter}.
+     *
+     * @param filter The filter to be registered.
+     */
+    public static void registerFilter(ProcessXMLFilter filter) {
 		synchronized (FILTER_LOCK) {
 			FILTERS.add(filter);
 		}
 	}
 
-	protected static void fireOperatorExported(Operator operator, Element element) {
+    /**
+     * Fire operator exported.
+     *
+     * @param operator the operator
+     * @param element  the element
+     */
+    protected static void fireOperatorExported(Operator operator, Element element) {
 		for (ProcessXMLFilter filter : FILTERS) {
 			filter.operatorExported(operator, element);
 		}
 	}
 
-	protected static void fireOperatorImported(Operator operator, Element element) {
+    /**
+     * Fire operator imported.
+     *
+     * @param operator the operator
+     * @param element  the element
+     */
+    protected static void fireOperatorImported(Operator operator, Element element) {
 		for (ProcessXMLFilter filter : FILTERS) {
 			filter.operatorImported(operator, element);
 		}
 	}
 
-	protected static void fireExecutionUnitExported(ExecutionUnit unit, Element element) {
+    /**
+     * Fire execution unit exported.
+     *
+     * @param unit    the unit
+     * @param element the element
+     */
+    protected static void fireExecutionUnitExported(ExecutionUnit unit, Element element) {
 		for (ProcessXMLFilter filter : FILTERS) {
 			filter.executionUnitExported(unit, element);
 		}
 	}
 
-	protected static void fireExecutionUnitImported(ExecutionUnit unit, Element element) {
+    /**
+     * Fire execution unit imported.
+     *
+     * @param unit    the unit
+     * @param element the element
+     */
+    protected static void fireExecutionUnitImported(ExecutionUnit unit, Element element) {
 		for (ProcessXMLFilter filter : FILTERS) {
 			filter.executionUnitImported(unit, element);
 		}

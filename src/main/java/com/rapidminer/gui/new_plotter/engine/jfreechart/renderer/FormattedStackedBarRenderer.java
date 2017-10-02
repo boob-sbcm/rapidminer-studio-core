@@ -29,6 +29,8 @@ import org.jfree.chart.renderer.category.StackedBarRenderer;
 
 
 /**
+ * The type Formatted stacked bar renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedStackedBarRenderer extends StackedBarRenderer implements FormattedRenderer {
@@ -37,11 +39,19 @@ public class FormattedStackedBarRenderer extends StackedBarRenderer implements F
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedStackedBarRenderer() {
+    /**
+     * Instantiates a new Formatted stacked bar renderer.
+     */
+    public FormattedStackedBarRenderer() {
 		super();
 	}
 
-	public FormattedStackedBarRenderer(boolean renderAsPercentages) {
+    /**
+     * Instantiates a new Formatted stacked bar renderer.
+     *
+     * @param renderAsPercentages the render as percentages
+     */
+    public FormattedStackedBarRenderer(boolean renderAsPercentages) {
 		super(renderAsPercentages);
 	}
 

@@ -24,11 +24,14 @@ package com.rapidminer.repository;
  *
  * @author Marcel Seifert
  * @since 7.4
- *
  */
 public interface DateEntry extends Entry {
 
-	/** Returns the last modification date of this entry. */
-	public long getDate();
+    /**
+     * Returns the last modification date of this entry.  @return the date
+     *
+     * @return the date
+     */
+    public long getDate();
 
 }

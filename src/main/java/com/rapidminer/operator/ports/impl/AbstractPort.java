@@ -42,12 +42,11 @@ import com.rapidminer.tools.ReferenceCache;
 /**
  * Implemented by keeping a weak reference to the data that can be cleared at any time by the
  * garbage collector.
- *
+ * <p>
  * In addition to the week reference, this class also keeps a hard reference to the data, freeing it
  * when calling {@link #freeMemory()}.
  *
  * @author Simon Fischer
- *
  */
 public abstract class AbstractPort extends AbstractObservable<Port> implements Port {
 
@@ -64,13 +63,25 @@ public abstract class AbstractPort extends AbstractObservable<Port> implements P
 	private final boolean simulatesStack;
 	private boolean locked = false;
 
-	protected AbstractPort(Ports<? extends Port> owner, String name, boolean simulatesStack) {
+    /**
+     * Instantiates a new Abstract port.
+     *
+     * @param owner          the owner
+     * @param name           the name
+     * @param simulatesStack the simulates stack
+     */
+    protected AbstractPort(Ports<? extends Port> owner, String name, boolean simulatesStack) {
 		this.name = name;
 		this.ports = owner;
 		this.simulatesStack = simulatesStack;
 	}
 
-	protected final void setData(IOObject object) {
+    /**
+     * Sets data.
+     *
+     * @param object the object
+     */
+    protected final void setData(IOObject object) {
 		// if there is a (G)UI and it is not in background => cache
 		if (!RapidMiner.getExecutionMode().isHeadless() && ports.getOwner() != null && ports.getOwner().getOperator() != null
 				&& ports.getOwner().getOperator().getProcess() != null && ports.getOwner().getOperator().getProcess()
@@ -166,8 +177,12 @@ public abstract class AbstractPort extends AbstractObservable<Port> implements P
 		}
 	}
 
-	/** Don't use this method. Use {@link Ports#renamePort(Port,String)}. */
-	protected void setName(String newName) {
+    /**
+     * Don't use this method. Use {@link Ports#renamePort(Port, String)}.  @param newName the new name
+     *
+     * @param newName the new name
+     */
+    protected void setName(String newName) {
 		this.name = newName;
 	}
 
@@ -192,10 +207,14 @@ public abstract class AbstractPort extends AbstractObservable<Port> implements P
 		}
 	}
 
-	/**
-	 * Checks whether the desired class is assignable from provided meta data object class.
-	 */
-	protected void checkDesiredClass(MetaData obj, Class<? extends MetaData> desiredClass)
+    /**
+     * Checks whether the desired class is assignable from provided meta data object class.
+     *
+     * @param obj          the obj
+     * @param desiredClass the desired class
+     * @throws IncompatibleMDClassException the incompatible md class exception
+     */
+    protected void checkDesiredClass(MetaData obj, Class<? extends MetaData> desiredClass)
 			throws IncompatibleMDClassException {
 		if (!desiredClass.isAssignableFrom(obj.getClass())) {
 			throw new IncompatibleMDClassException(getPorts().getOwner(), this);

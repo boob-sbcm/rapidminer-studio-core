@@ -43,16 +43,27 @@ import java.util.List;
 /**
  * Creates a gaussian function based on a given attribute and a specified mean and standard
  * deviation sigma.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class GaussFeatureConstructionOperator extends AbstractFeatureConstruction {
 
-	public static final String PARAMETER_MEAN = "mean";
+    /**
+     * The constant PARAMETER_MEAN.
+     */
+    public static final String PARAMETER_MEAN = "mean";
 
-	public static final String PARAMETER_SIGMA = "sigma";
+    /**
+     * The constant PARAMETER_SIGMA.
+     */
+    public static final String PARAMETER_SIGMA = "sigma";
 
-	public GaussFeatureConstructionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Gauss feature construction operator.
+     *
+     * @param description the description
+     */
+    public GaussFeatureConstructionOperator(OperatorDescription description) {
 		super(description);
 	}
 

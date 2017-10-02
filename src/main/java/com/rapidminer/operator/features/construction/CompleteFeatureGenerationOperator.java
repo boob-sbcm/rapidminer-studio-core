@@ -52,76 +52,119 @@ import com.rapidminer.tools.math.MathFunctions;
  * functions include +, -, *, /, norm, sin, cos, tan, atan, exp, log, min, max, floor, ceil, round,
  * sqrt, abs, and pow. Features with two arguments will be applied on all pairs. Non commutative
  * functions will also be applied on all permutations.
- * 
- * @see com.rapidminer.generator.FeatureGenerator
+ *
  * @author Ingo Mierswa
+ * @see com.rapidminer.generator.FeatureGenerator
  */
 public class CompleteFeatureGenerationOperator extends AbstractFeatureConstruction {
 
-	/**
-	 * The parameter name for &quot;If set to true, all the original attributes are kept, otherwise
-	 * they are removed from the example set.&quot;
-	 */
-	public static final String PARAMETER_KEEP_ALL = "keep_all";
+    /**
+     * The parameter name for &quot;If set to true, all the original attributes are kept, otherwise
+     * they are removed from the example set.&quot;
+     */
+    public static final String PARAMETER_KEEP_ALL = "keep_all";
 
-	/** The parameter name for &quot;Generate sums.&quot; */
-	public static final String PARAMETER_USE_PLUS = "use_plus";
+    /**
+     * The parameter name for &quot;Generate sums.&quot;
+     */
+    public static final String PARAMETER_USE_PLUS = "use_plus";
 
-	/** The parameter name for &quot;Generate differences.&quot; */
-	public static final String PARAMETER_USE_DIFF = "use_diff";
+    /**
+     * The parameter name for &quot;Generate differences.&quot;
+     */
+    public static final String PARAMETER_USE_DIFF = "use_diff";
 
-	/** The parameter name for &quot;Generate products.&quot; */
-	public static final String PARAMETER_USE_MULT = "use_mult";
+    /**
+     * The parameter name for &quot;Generate products.&quot;
+     */
+    public static final String PARAMETER_USE_MULT = "use_mult";
 
-	/** The parameter name for &quot;Generate quotients.&quot; */
-	public static final String PARAMETER_USE_DIV = "use_div";
+    /**
+     * The parameter name for &quot;Generate quotients.&quot;
+     */
+    public static final String PARAMETER_USE_DIV = "use_div";
 
-	/** The parameter name for &quot;Generate reciprocal values.&quot; */
-	public static final String PARAMETER_USE_RECIPROCALS = "use_reciprocals";
+    /**
+     * The parameter name for &quot;Generate reciprocal values.&quot;
+     */
+    public static final String PARAMETER_USE_RECIPROCALS = "use_reciprocals";
 
-	/** The parameter name for &quot;Generate square root values.&quot; */
-	public static final String PARAMETER_USE_SQUARE_ROOTS = "use_square_roots";
+    /**
+     * The parameter name for &quot;Generate square root values.&quot;
+     */
+    public static final String PARAMETER_USE_SQUARE_ROOTS = "use_square_roots";
 
-	/** The parameter name for &quot;Generate the power of one attribute and another.&quot; */
-	public static final String PARAMETER_USE_POWER_FUNCTIONS = "use_power_functions";
+    /**
+     * The parameter name for &quot;Generate the power of one attribute and another.&quot;
+     */
+    public static final String PARAMETER_USE_POWER_FUNCTIONS = "use_power_functions";
 
-	/** The parameter name for &quot;Generate sinus.&quot; */
-	public static final String PARAMETER_USE_SIN = "use_sin";
+    /**
+     * The parameter name for &quot;Generate sinus.&quot;
+     */
+    public static final String PARAMETER_USE_SIN = "use_sin";
 
-	/** The parameter name for &quot;Generate cosinus.&quot; */
-	public static final String PARAMETER_USE_COS = "use_cos";
+    /**
+     * The parameter name for &quot;Generate cosinus.&quot;
+     */
+    public static final String PARAMETER_USE_COS = "use_cos";
 
-	/** The parameter name for &quot;Generate tangens.&quot; */
-	public static final String PARAMETER_USE_TAN = "use_tan";
+    /**
+     * The parameter name for &quot;Generate tangens.&quot;
+     */
+    public static final String PARAMETER_USE_TAN = "use_tan";
 
-	/** The parameter name for &quot;Generate arc tangens.&quot; */
-	public static final String PARAMETER_USE_ATAN = "use_atan";
+    /**
+     * The parameter name for &quot;Generate arc tangens.&quot;
+     */
+    public static final String PARAMETER_USE_ATAN = "use_atan";
 
-	/** The parameter name for &quot;Generate exponential functions.&quot; */
-	public static final String PARAMETER_USE_EXP = "use_exp";
+    /**
+     * The parameter name for &quot;Generate exponential functions.&quot;
+     */
+    public static final String PARAMETER_USE_EXP = "use_exp";
 
-	/** The parameter name for &quot;Generate logarithmic functions.&quot; */
-	public static final String PARAMETER_USE_LOG = "use_log";
+    /**
+     * The parameter name for &quot;Generate logarithmic functions.&quot;
+     */
+    public static final String PARAMETER_USE_LOG = "use_log";
 
-	/** The parameter name for &quot;Generate absolute values.&quot; */
-	public static final String PARAMETER_USE_ABSOLUTE_VALUES = "use_absolute_values";
+    /**
+     * The parameter name for &quot;Generate absolute values.&quot;
+     */
+    public static final String PARAMETER_USE_ABSOLUTE_VALUES = "use_absolute_values";
 
-	/** The parameter name for &quot;Generate minimum values.&quot; */
-	public static final String PARAMETER_USE_MIN = "use_min";
+    /**
+     * The parameter name for &quot;Generate minimum values.&quot;
+     */
+    public static final String PARAMETER_USE_MIN = "use_min";
 
-	/** The parameter name for &quot;Generate maximum values.&quot; */
-	public static final String PARAMETER_USE_MAX = "use_max";
+    /**
+     * The parameter name for &quot;Generate maximum values.&quot;
+     */
+    public static final String PARAMETER_USE_MAX = "use_max";
 
-	/** The parameter name for &quot;Generate ceil values.&quot; */
-	public static final String PARAMETER_USE_CEIL = "use_ceil";
+    /**
+     * The parameter name for &quot;Generate ceil values.&quot;
+     */
+    public static final String PARAMETER_USE_CEIL = "use_ceil";
 
-	/** The parameter name for &quot;Generate floor values.&quot; */
-	public static final String PARAMETER_USE_FLOOR = "use_floor";
+    /**
+     * The parameter name for &quot;Generate floor values.&quot;
+     */
+    public static final String PARAMETER_USE_FLOOR = "use_floor";
 
-	/** The parameter name for &quot;Generate rounded values.&quot; */
-	public static final String PARAMETER_USE_ROUNDED = "use_rounded";
+    /**
+     * The parameter name for &quot;Generate rounded values.&quot;
+     */
+    public static final String PARAMETER_USE_ROUNDED = "use_rounded";
 
-	public CompleteFeatureGenerationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Complete feature generation operator.
+     *
+     * @param description the description
+     */
+    public CompleteFeatureGenerationOperator(OperatorDescription description) {
 		super(description);
 	}
 

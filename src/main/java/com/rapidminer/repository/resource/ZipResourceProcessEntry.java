@@ -36,7 +36,16 @@ public class ZipResourceProcessEntry extends ResourceProcessEntry {
 
 	private final ZipStreamResource zipStream;
 
-	protected ZipResourceProcessEntry(ResourceFolder parent, String name, String resource, ResourceRepository repository,
+    /**
+     * Instantiates a new Zip resource process entry.
+     *
+     * @param parent     the parent
+     * @param name       the name
+     * @param resource   the resource
+     * @param repository the repository
+     * @param zipStream  the zip stream
+     */
+    protected ZipResourceProcessEntry(ResourceFolder parent, String name, String resource, ResourceRepository repository,
 			ZipStreamResource zipStream) {
 		super(parent, name, resource, repository);
 		this.zipStream = zipStream;

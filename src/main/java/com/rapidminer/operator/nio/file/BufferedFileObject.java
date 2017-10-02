@@ -31,7 +31,6 @@ import com.rapidminer.operator.OperatorException;
  * Simple implementation of a {@link FileObject} backed by a {@link Buffer}.
  *
  * @author Nils Woehler
- *
  */
 public class BufferedFileObject extends FileObject {
 
@@ -40,7 +39,12 @@ public class BufferedFileObject extends FileObject {
 	private byte[] buffer;
 	private transient File file = null;
 
-	public BufferedFileObject(byte[] buffer) {
+    /**
+     * Instantiates a new Buffered file object.
+     *
+     * @param buffer the buffer
+     */
+    public BufferedFileObject(byte[] buffer) {
 		this.buffer = buffer;
 	}
 

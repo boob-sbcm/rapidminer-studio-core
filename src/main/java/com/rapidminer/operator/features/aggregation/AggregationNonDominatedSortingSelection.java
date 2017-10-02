@@ -30,7 +30,7 @@ import java.util.List;
 
 /**
  * Performs the non-dominated sorting selection from NSGA-II.
- * 
+ *
  * @author Ingo Mierswa 07:47:16 ingomierswa Exp $
  */
 public class AggregationNonDominatedSortingSelection implements AggregationSelection {
@@ -44,7 +44,12 @@ public class AggregationNonDominatedSortingSelection implements AggregationSelec
 
 		private int m;
 
-		public CriteriaComparator(int m) {
+        /**
+         * Instantiates a new Criteria comparator.
+         *
+         * @param m the m
+         */
+        public CriteriaComparator(int m) {
 			this.m = m;
 		}
 
@@ -72,8 +77,12 @@ public class AggregationNonDominatedSortingSelection implements AggregationSelec
 	/** The desired population size. */
 	private int popSize;
 
-	/** Creates a new NSGA-II selection. */
-	public AggregationNonDominatedSortingSelection(int popSize) {
+    /**
+     * Creates a new NSGA-II selection.  @param popSize the pop size
+     *
+     * @param popSize the pop size
+     */
+    public AggregationNonDominatedSortingSelection(int popSize) {
 		this.popSize = popSize;
 	}
 
@@ -163,11 +172,15 @@ public class AggregationNonDominatedSortingSelection implements AggregationSelec
 		return rank;
 	}
 
-	/**
-	 * Returns true if the second performance vector is better in all fitness criteria than the
-	 * first one (remember: the criteria should be maximized).
-	 */
-	public static boolean isDominated(AggregationIndividual i1, AggregationIndividual i2) {
+    /**
+     * Returns true if the second performance vector is better in all fitness criteria than the
+     * first one (remember: the criteria should be maximized).
+     *
+     * @param i1 the 1
+     * @param i2 the 2
+     * @return the boolean
+     */
+    public static boolean isDominated(AggregationIndividual i1, AggregationIndividual i2) {
 		PerformanceVector pv1 = i1.getPerformance();
 		PerformanceVector pv2 = i2.getPerformance();
 		double[][] performances = new double[pv1.getSize()][2];

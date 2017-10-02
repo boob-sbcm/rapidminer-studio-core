@@ -31,9 +31,8 @@ import java.util.List;
 /**
  * This action allows the user to remove all parallel lines (horizontal/vertical) from the current
  * chart.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class ClearParallelLinesAction extends ResourceAction {
 
@@ -42,12 +41,12 @@ public class ClearParallelLinesAction extends ResourceAction {
 
 	private static final long serialVersionUID = 7788302558857099622L;
 
-	/**
-	 * Creates a new {@link ClearParallelLinesAction}.
-	 * 
-	 * @param engine
-	 */
-	public ClearParallelLinesAction(JFreeChartPlotEngine engine) {
+    /**
+     * Creates a new {@link ClearParallelLinesAction}.
+     *
+     * @param engine the engine
+     */
+    public ClearParallelLinesAction(JFreeChartPlotEngine engine) {
 		super(true, "plotter.popup_menu.clear_parallel_lines");
 		this.engine = engine;
 	}
@@ -57,10 +56,12 @@ public class ClearParallelLinesAction extends ResourceAction {
 		clearParallelLines(engine);
 	}
 
-	/**
-	 * Removes all parallel lines from the current chart.
-	 */
-	public static synchronized void clearParallelLines(final JFreeChartPlotEngine engine) {
+    /**
+     * Removes all parallel lines from the current chart.
+     *
+     * @param engine the engine
+     */
+    public static synchronized void clearParallelLines(final JFreeChartPlotEngine engine) {
 		// remove lines from domain
 		List<AxisParallelLineConfiguration> domainLines = engine.getPlotInstance().getMasterPlotConfiguration()
 				.getDomainConfigManager().getCrosshairLines().getLines();

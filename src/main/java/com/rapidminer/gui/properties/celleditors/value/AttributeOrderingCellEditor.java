@@ -46,7 +46,10 @@ public class AttributeOrderingCellEditor extends AbstractCellEditor implements P
 
 	private static final long serialVersionUID = -2387465714767785072L;
 
-	public static final char SEPARATION_CHAR = '|';
+    /**
+     * The constant SEPARATION_CHAR.
+     */
+    public static final char SEPARATION_CHAR = '|';
 
 	private String attributeListString = "";
 
@@ -54,7 +57,12 @@ public class AttributeOrderingCellEditor extends AbstractCellEditor implements P
 
 	private Operator operator;
 
-	public AttributeOrderingCellEditor(final ParameterTypeAttributeOrderingRules type) {
+    /**
+     * Instantiates a new Attribute ordering cell editor.
+     *
+     * @param type the type
+     */
+    public AttributeOrderingCellEditor(final ParameterTypeAttributeOrderingRules type) {
 		this.button = new JButton(new ResourceAction(true, "attribute_ordering") {
 
 			private static final long serialVersionUID = -4890375754223285831L;

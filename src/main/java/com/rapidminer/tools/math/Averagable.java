@@ -29,7 +29,7 @@ import com.rapidminer.tools.Tools;
 /**
  * Superclass for all objects which can be averaged. Averagable objects can be stored in a average
  * vector.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class Averagable extends ResultObjectAdapter implements Cloneable, Readable {
@@ -45,13 +45,21 @@ public abstract class Averagable extends ResultObjectAdapter implements Cloneabl
 	/** Counts the number of times, build average was executed. */
 	private int averageCount;
 
-	public Averagable() {
+    /**
+     * Instantiates a new Averagable.
+     */
+    public Averagable() {
 		this.meanSum = Double.NaN;
 		this.meanSquaredSum = Double.NaN;
 		this.averageCount = 0;
 	}
 
-	public Averagable(Averagable o) {
+    /**
+     * Instantiates a new Averagable.
+     *
+     * @param o the o
+     */
+    public Averagable(Averagable o) {
 		this.meanSum = o.meanSum;
 		this.meanSquaredSum = o.meanSquaredSum;
 		this.averageCount = o.averageCount;
@@ -65,55 +73,64 @@ public abstract class Averagable extends ResultObjectAdapter implements Cloneabl
 	@Override
 	public abstract String getName();
 
-	/**
-	 * Returns the (current) value of the averagable (the average itself). If the method
-	 * {@link #buildSingleAverage(Averagable)} was used, this method must return the micro average
-	 * from both (or more) criteria. This is usually achieved by correctly implementing
-	 * {@link #buildSingleAverage(Averagable)}.
-	 */
-	public abstract double getMikroAverage();
+    /**
+     * Returns the (current) value of the averagable (the average itself). If the method
+     * {@link #buildSingleAverage(Averagable)} was used, this method must return the micro average
+     * from both (or more) criteria. This is usually achieved by correctly implementing
+     * {@link #buildSingleAverage(Averagable)}.
+     *
+     * @return the mikro average
+     */
+    public abstract double getMikroAverage();
 
-	/**
-	 * Returns the variance of the averagable. The returned value must not be negative. If the
-	 * averagable does not define a variance this method should return Double.NaN.
-	 */
-	public abstract double getMikroVariance();
+    /**
+     * Returns the variance of the averagable. The returned value must not be negative. If the
+     * averagable does not define a variance this method should return Double.NaN.
+     *
+     * @return the mikro variance
+     */
+    public abstract double getMikroVariance();
 
-	/**
-	 * Must be implemented by subclasses such that it copies all values of <code>other</code> to
-	 * <code>this</code>. When this method is called, it is guaranteed, that <code>other</code> is a
-	 * subclass of the class of the object it is called on.
-	 * 
-	 * @deprecated Please use copy constructors instead
-	 */
-	@Deprecated
+    /**
+     * Must be implemented by subclasses such that it copies all values of <code>other</code> to
+     * <code>this</code>. When this method is called, it is guaranteed, that <code>other</code> is a
+     * subclass of the class of the object it is called on.
+     *
+     * @param other the other
+     * @deprecated Please use copy constructors instead
+     */
+    @Deprecated
 	protected final void cloneAveragable(Averagable other) {}
 
-	/**
-	 * This method should build the average of this and another averagable of the same type. The
-	 * next invocation of {@link #getMikroAverage()} should return the average of this and the given
-	 * averagable. Hence, this method is used to build the actual micro average value of two
-	 * criteria. Please refer to {@link com.rapidminer.operator.performance.SimpleCriterion} for a
-	 * simple implementation example.
-	 */
-	protected abstract void buildSingleAverage(Averagable averagable);
+    /**
+     * This method should build the average of this and another averagable of the same type. The
+     * next invocation of {@link #getMikroAverage()} should return the average of this and the given
+     * averagable. Hence, this method is used to build the actual micro average value of two
+     * criteria. Please refer to {@link com.rapidminer.operator.performance.SimpleCriterion} for a
+     * simple implementation example.
+     *
+     * @param averagable the averagable
+     */
+    protected abstract void buildSingleAverage(Averagable averagable);
 
 	// ================================================================================
 
-	/**
-	 * This method builds the makro average of two averagables of the same type. First this method
-	 * checks if the classes of <code>this</code> and <code>performance</code> are the same and if
-	 * the {@link #getName()} methods return the same String. Otherwise a RuntimeException is
-	 * thrown. <br>
-	 * The value of <code>averagable.</code>{@link #getMikroAverage()} is added to {@link #meanSum},
-	 * its square is added to {@link #meanSquaredSum} and {@link #averageCount} is increased by one.
-	 * These values are used in the {@link #getMakroAverage()} and {@link #getMakroVariance()}
-	 * methods. <br>
-	 * Subclasses should implement the method buildSingleAverage() to build the mikro (weighted)
-	 * average of <code>this</code> averagable and the given <code>averagable</code>. They must be
-	 * weighted by the number of examples used for calculating the averagables.
-	 */
-	public final void buildAverage(Averagable averagable) {
+    /**
+     * This method builds the makro average of two averagables of the same type. First this method
+     * checks if the classes of <code>this</code> and <code>performance</code> are the same and if
+     * the {@link #getName()} methods return the same String. Otherwise a RuntimeException is
+     * thrown. <br>
+     * The value of <code>averagable.</code>{@link #getMikroAverage()} is added to {@link #meanSum},
+     * its square is added to {@link #meanSquaredSum} and {@link #averageCount} is increased by one.
+     * These values are used in the {@link #getMakroAverage()} and {@link #getMakroVariance()}
+     * methods. <br>
+     * Subclasses should implement the method buildSingleAverage() to build the mikro (weighted)
+     * average of <code>this</code> averagable and the given <code>averagable</code>. They must be
+     * weighted by the number of examples used for calculating the averagables.
+     *
+     * @param averagable the averagable
+     */
+    public final void buildAverage(Averagable averagable) {
 		if (!averagable.getClass().equals(this.getClass())) {
 			throw new RuntimeException("Cannot build average of different averagable types (" + this.getClass().getName()
 					+ "/" + averagable.getClass().getName() + ").");
@@ -137,13 +154,15 @@ public abstract class Averagable extends ResultObjectAdapter implements Cloneabl
 		buildSingleAverage(averagable);
 	}
 
-	/**
-	 * This method returns the makro average if it was defined and the mikro average (the current
-	 * value) otherwise. This method should be used instead of {@link #getMikroAverage()} for
-	 * optimization purposes, i.e. by methods like <code>getFitness()</code> of performance
-	 * criteria.
-	 */
-	public final double getAverage() {
+    /**
+     * This method returns the makro average if it was defined and the mikro average (the current
+     * value) otherwise. This method should be used instead of {@link #getMikroAverage()} for
+     * optimization purposes, i.e. by methods like <code>getFitness()</code> of performance
+     * criteria.
+     *
+     * @return the average
+     */
+    public final double getAverage() {
 		double average = Double.NaN;
 		if (averageCount > 0) {
 			average = getMakroAverage();
@@ -154,10 +173,12 @@ public abstract class Averagable extends ResultObjectAdapter implements Cloneabl
 		return average;
 	}
 
-	/**
-	 * This method returns the makro variance if it was defined and the mikro variance otherwise.
-	 */
-	public final double getVariance() {
+    /**
+     * This method returns the makro variance if it was defined and the mikro variance otherwise.
+     *
+     * @return the variance
+     */
+    public final double getVariance() {
 		double variance = Double.NaN;
 		if (averageCount > 0) {
 			variance = getMakroVariance();
@@ -168,11 +189,13 @@ public abstract class Averagable extends ResultObjectAdapter implements Cloneabl
 		return variance;
 	}
 
-	/**
-	 * This method returns the makro standard deviation if it was defined and the mikro standard
-	 * deviation otherwise.
-	 */
-	public final double getStandardDeviation() {
+    /**
+     * This method returns the makro standard deviation if it was defined and the mikro standard
+     * deviation otherwise.
+     *
+     * @return the standard deviation
+     */
+    public final double getStandardDeviation() {
 		double sd = Double.NaN;
 		if (averageCount > 0) {
 			sd = getMakroStandardDeviation();
@@ -183,8 +206,12 @@ public abstract class Averagable extends ResultObjectAdapter implements Cloneabl
 		return sd;
 	}
 
-	/** Returns the standard deviation of the performance criterion. */
-	public final double getMikroStandardDeviation() {
+    /**
+     * Returns the standard deviation of the performance criterion.  @return the mikro standard deviation
+     *
+     * @return the mikro standard deviation
+     */
+    public final double getMikroStandardDeviation() {
 		double variance = getMikroVariance();
 		if (Double.isNaN(variance)) {
 			return Double.NaN;
@@ -195,19 +222,23 @@ public abstract class Averagable extends ResultObjectAdapter implements Cloneabl
 		}
 	}
 
-	/**
-	 * Returns the average value of all performance criteria average by using the
-	 * {@link #buildAverage(Averagable)} method.
-	 */
-	public final double getMakroAverage() {
+    /**
+     * Returns the average value of all performance criteria average by using the
+     * {@link #buildAverage(Averagable)} method.
+     *
+     * @return the makro average
+     */
+    public final double getMakroAverage() {
 		return meanSum / averageCount;
 	}
 
-	/**
-	 * Returns the variance of all performance criteria average by using the
-	 * {@link #buildAverage(Averagable)} method.
-	 */
-	public final double getMakroVariance() {
+    /**
+     * Returns the variance of all performance criteria average by using the
+     * {@link #buildAverage(Averagable)} method.
+     *
+     * @return the makro variance
+     */
+    public final double getMakroVariance() {
 		double mean = getMakroAverage();
 		double result = meanSquaredSum / averageCount - mean * mean;
 		if (Double.isNaN(result)) {
@@ -219,16 +250,22 @@ public abstract class Averagable extends ResultObjectAdapter implements Cloneabl
 		}
 	}
 
-	/**
-	 * Returns the standard deviation of all performance criteria average by using the
-	 * {@link #buildAverage(Averagable)} method.
-	 */
-	public final double getMakroStandardDeviation() {
+    /**
+     * Returns the standard deviation of all performance criteria average by using the
+     * {@link #buildAverage(Averagable)} method.
+     *
+     * @return the makro standard deviation
+     */
+    public final double getMakroStandardDeviation() {
 		return Math.sqrt(getMakroVariance());
 	}
 
-	/** Returns the number of averagables used to create this averagable. */
-	public int getAverageCount() {
+    /**
+     * Returns the number of averagables used to create this averagable.  @return the average count
+     *
+     * @return the average count
+     */
+    public int getAverageCount() {
 		return this.averageCount;
 	}
 
@@ -247,11 +284,13 @@ public abstract class Averagable extends ResultObjectAdapter implements Cloneabl
 
 	// ================================================================================
 
-	/**
-	 * Indicates wether or not percentage format should be used in the {@link #toString} method. The
-	 * default implementation returns false.
-	 */
-	public boolean formatPercent() {
+    /**
+     * Indicates wether or not percentage format should be used in the {@link #toString} method. The
+     * default implementation returns false.
+     *
+     * @return the boolean
+     */
+    public boolean formatPercent() {
 		return false;
 	}
 
@@ -277,11 +316,21 @@ public abstract class Averagable extends ResultObjectAdapter implements Cloneabl
 		}
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "avg";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "averagable";
 	}
 
@@ -323,7 +372,12 @@ public abstract class Averagable extends ResultObjectAdapter implements Cloneabl
 		return false;
 	}
 
-	public void setAverageCount(int averageCount) {
+    /**
+     * Sets average count.
+     *
+     * @param averageCount the average count
+     */
+    public void setAverageCount(int averageCount) {
 		this.averageCount = averageCount;
 	}
 }

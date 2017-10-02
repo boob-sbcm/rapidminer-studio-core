@@ -48,12 +48,15 @@ import com.rapidminer.tools.Tools;
  */
 public class CustomFilter implements Condition {
 
-	/**
-	 * Enum for custom filters.
-	 */
-	public static enum CustomFilters {
+    /**
+     * Enum for custom filters.
+     */
+    public static enum CustomFilters {
 
-		EQUALS_NUMERICAL("gui.comparator.numerical.equals", "eq", Ontology.NUMERICAL) {
+        /**
+         * The Equals numerical.
+         */
+        EQUALS_NUMERICAL("gui.comparator.numerical.equals", "eq", Ontology.NUMERICAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -74,7 +77,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		NOT_EQUALS_NUMERICAL("gui.comparator.numerical.not_equals", "ne", Ontology.NUMERICAL) {
+        /**
+         * The Not equals numerical.
+         */
+        NOT_EQUALS_NUMERICAL("gui.comparator.numerical.not_equals", "ne", Ontology.NUMERICAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -95,7 +101,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		LESS("gui.comparator.numerical.less", "lt", Ontology.NUMERICAL) {
+        /**
+         * The Less.
+         */
+        LESS("gui.comparator.numerical.less", "lt", Ontology.NUMERICAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -112,7 +121,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		LESS_EQUALS("gui.comparator.numerical.less_equals", "le", Ontology.NUMERICAL) {
+        /**
+         * The Less equals.
+         */
+        LESS_EQUALS("gui.comparator.numerical.less_equals", "le", Ontology.NUMERICAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -129,7 +141,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		GREATER_EQUALS("gui.comparator.numerical.greater_equals", "ge", Ontology.NUMERICAL) {
+        /**
+         * The Greater equals.
+         */
+        GREATER_EQUALS("gui.comparator.numerical.greater_equals", "ge", Ontology.NUMERICAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -146,7 +161,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		GREATER("gui.comparator.numerical.greater", "gt", Ontology.NUMERICAL) {
+        /**
+         * The Greater.
+         */
+        GREATER("gui.comparator.numerical.greater", "gt", Ontology.NUMERICAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -164,7 +182,10 @@ public class CustomFilter implements Condition {
 			}
 		},
 
-		EQUALS_NOMINAL("gui.comparator.nominal.equals", "equals", Ontology.NOMINAL) {
+        /**
+         * The Equals nominal.
+         */
+        EQUALS_NOMINAL("gui.comparator.nominal.equals", "equals", Ontology.NOMINAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -181,7 +202,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		NOT_EQUALS_NOMINAL("gui.comparator.nominal.not_equals", "does_not_equal", Ontology.NOMINAL) {
+        /**
+         * The Not equals nominal.
+         */
+        NOT_EQUALS_NOMINAL("gui.comparator.nominal.not_equals", "does_not_equal", Ontology.NOMINAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -198,7 +222,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		IS_IN_NOMINAL("gui.comparator.nominal.is_in", "is_in", Ontology.NOMINAL) {
+        /**
+         * The Is in nominal.
+         */
+        IS_IN_NOMINAL("gui.comparator.nominal.is_in", "is_in", Ontology.NOMINAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -221,7 +248,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		IS_NOT_IN_NOMINAL("gui.comparator.nominal.is_not_in", "is_not_in", Ontology.NOMINAL) {
+        /**
+         * The Is not in nominal.
+         */
+        IS_NOT_IN_NOMINAL("gui.comparator.nominal.is_not_in", "is_not_in", Ontology.NOMINAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -244,7 +274,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		CONTAINS("gui.comparator.nominal.contains", "contains", Ontology.NOMINAL) {
+        /**
+         * The Contains.
+         */
+        CONTAINS("gui.comparator.nominal.contains", "contains", Ontology.NOMINAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -261,7 +294,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		NOT_CONTAINS("gui.comparator.nominal.not_contains", "does_not_contain", Ontology.NOMINAL) {
+        /**
+         * The Not contains.
+         */
+        NOT_CONTAINS("gui.comparator.nominal.not_contains", "does_not_contain", Ontology.NOMINAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -278,7 +314,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		STARTS_WITH("gui.comparator.nominal.starts_with", "starts_with", Ontology.NOMINAL) {
+        /**
+         * The Starts with.
+         */
+        STARTS_WITH("gui.comparator.nominal.starts_with", "starts_with", Ontology.NOMINAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -295,7 +334,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		ENDS_WITH("gui.comparator.nominal.ends_with", "ends_with", Ontology.NOMINAL) {
+        /**
+         * The Ends with.
+         */
+        ENDS_WITH("gui.comparator.nominal.ends_with", "ends_with", Ontology.NOMINAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -312,7 +354,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		REGEX("gui.comparator.nominal.regex", "matches", Ontology.NOMINAL) {
+        /**
+         * The Regex.
+         */
+        REGEX("gui.comparator.nominal.regex", "matches", Ontology.NOMINAL) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -329,7 +374,10 @@ public class CustomFilter implements Condition {
 				return false;
 			}
 		},
-		MISSING("gui.comparator.special.is_missing", "is_missing", -1) {
+        /**
+         * The Missing.
+         */
+        MISSING("gui.comparator.special.is_missing", "is_missing", -1) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -346,7 +394,10 @@ public class CustomFilter implements Condition {
 				return Double.isNaN(input);
 			}
 		},
-		NOT_MISSING("gui.comparator.special.is_not_missing", "is_not_missing", -1) {
+        /**
+         * The Not missing.
+         */
+        NOT_MISSING("gui.comparator.special.is_not_missing", "is_not_missing", -1) {
 
 			@Override
 			public boolean isNumericalConditionFulfilled(final double input, final double filter) {
@@ -364,26 +415,40 @@ public class CustomFilter implements Condition {
 			}
 		};
 
-		/** the symbol to seperate strings for IS_IN and IS_NOT_IN input */
-		public static final char SEPERATOR_CHAR = ';';
+        /**
+         * the symbol to seperate strings for IS_IN and IS_NOT_IN input
+         */
+        public static final char SEPERATOR_CHAR = ';';
 
-		/** the symbol to escape seperator symbols in IS_IN and IS_NOT_IN input */
-		public static final char ESCAPE_CHAR = '\\';
+        /**
+         * the symbol to escape seperator symbols in IS_IN and IS_NOT_IN input
+         */
+        public static final char ESCAPE_CHAR = '\\';
 
-		/** the format string for date_time */
-		public static final String DATE_TIME_FORMAT_STRING = "MM/dd/yyyy h:mm:ss a";
+        /**
+         * the format string for date_time
+         */
+        public static final String DATE_TIME_FORMAT_STRING = "MM/dd/yyyy h:mm:ss a";
 
-		/** the old (bugged) format string for date_time */
-		public static final String DATE_TIME_FORMAT_STRING_OLD = "MM/dd/yy h:mm:ss a";
+        /**
+         * the old (bugged) format string for date_time
+         */
+        public static final String DATE_TIME_FORMAT_STRING_OLD = "MM/dd/yy h:mm:ss a";
 
-		/** the format string for date */
-		public static final String DATE_FORMAT_STRING = "MM/dd/yyyy";
+        /**
+         * the format string for date
+         */
+        public static final String DATE_FORMAT_STRING = "MM/dd/yyyy";
 
-		/** the old (bugged) format string for date */
-		public static final String DATE_FORMAT_STRING_OLD = "MM/dd/yy";
+        /**
+         * the old (bugged) format string for date
+         */
+        public static final String DATE_FORMAT_STRING_OLD = "MM/dd/yy";
 
-		/** the format string for time */
-		public static final String TIME_FORMAT_STRING = "h:mm:ss a";
+        /**
+         * the format string for time
+         */
+        public static final String TIME_FORMAT_STRING = "h:mm:ss a";
 
 		// ThreadLocal because DateFormat is NOT threadsafe and creating a new DateFormat is
 		// EXTREMELY expensive
@@ -465,40 +530,40 @@ public class CustomFilter implements Condition {
 			this.valueType = valueType;
 		}
 
-		/**
-		 * Returns the {@link String} label for this comparator.
-		 *
-		 * @return
-		 */
-		public String getLabel() {
+        /**
+         * Returns the {@link String} label for this comparator.
+         *
+         * @return label label
+         */
+        public String getLabel() {
 			return label;
 		}
 
-		/**
-		 * Returns the {@link String} representation for this comparator.
-		 *
-		 * @return
-		 */
-		public String getSymbol() {
+        /**
+         * Returns the {@link String} representation for this comparator.
+         *
+         * @return symbol symbol
+         */
+        public String getSymbol() {
 			return symbol;
 		}
 
-		/**
-		 * Returns the helptext for this comparator.
-		 *
-		 * @return
-		 */
-		public String getHelptext() {
+        /**
+         * Returns the helptext for this comparator.
+         *
+         * @return helptext helptext
+         */
+        public String getHelptext() {
 			return helptext;
 		}
 
-		/**
-		 * Returns <code>true</code> if this filter is applicable for numerical values;
-		 * <code>false</code> otherwise.
-		 *
-		 * @return
-		 */
-		public boolean isNumericalFilter() {
+        /**
+         * Returns <code>true</code> if this filter is applicable for numerical values;
+         * <code>false</code> otherwise.
+         *
+         * @return boolean boolean
+         */
+        public boolean isNumericalFilter() {
 			if (isSpecialFilter()) {
 				return false;
 			}
@@ -508,13 +573,13 @@ public class CustomFilter implements Condition {
 			return false;
 		}
 
-		/**
-		 * Returns <code>true</code> if this filter is applicable for nominal values;
-		 * <code>false</code> otherwise.
-		 *
-		 * @return
-		 */
-		public boolean isNominalFilter() {
+        /**
+         * Returns <code>true</code> if this filter is applicable for nominal values;
+         * <code>false</code> otherwise.
+         *
+         * @return boolean boolean
+         */
+        public boolean isNominalFilter() {
 			if (isSpecialFilter()) {
 				return false;
 			}
@@ -524,59 +589,59 @@ public class CustomFilter implements Condition {
 			return false;
 		}
 
-		/**
-		 * Returns <code>true</code> if this filter is a special filter (e.g. missing value filter);
-		 * <code>false</code> otherwise. <br/>
-		 * These filters are applicable for all attribute types.
-		 *
-		 * @return
-		 */
-		public boolean isSpecialFilter() {
+        /**
+         * Returns <code>true</code> if this filter is a special filter (e.g. missing value filter);
+         * <code>false</code> otherwise. <br/>
+         * These filters are applicable for all attribute types.
+         *
+         * @return boolean boolean
+         */
+        public boolean isSpecialFilter() {
 			if (valueType == -1) {
 				return true;
 			}
 			return false;
 		}
 
-		/**
-		 * Returns <code>true</code> if the numerical condition for this filter is fulfilled for the
-		 * given value. Returns always <code>false</code> if the condition is for nominal values
-		 * only.
-		 *
-		 * @param input
-		 * @param filterValue
-		 * @return
-		 */
-		public abstract boolean isNumericalConditionFulfilled(double input, double filterValue);
+        /**
+         * Returns <code>true</code> if the numerical condition for this filter is fulfilled for the
+         * given value. Returns always <code>false</code> if the condition is for nominal values
+         * only.
+         *
+         * @param input       the input
+         * @param filterValue the filter value
+         * @return boolean boolean
+         */
+        public abstract boolean isNumericalConditionFulfilled(double input, double filterValue);
 
-		/**
-		 * Returns <code>true</code> if the nominal condition for this filter is fulfilled for the
-		 * given value. Returns always <code>false</code> if the condition is for numerical values
-		 * only.
-		 *
-		 * @param input
-		 * @param filterValue
-		 * @return
-		 */
-		public abstract boolean isNominalConditionFulfilled(String input, String filterValue);
+        /**
+         * Returns <code>true</code> if the nominal condition for this filter is fulfilled for the
+         * given value. Returns always <code>false</code> if the condition is for numerical values
+         * only.
+         *
+         * @param input       the input
+         * @param filterValue the filter value
+         * @return boolean boolean
+         */
+        public abstract boolean isNominalConditionFulfilled(String input, String filterValue);
 
-		/**
-		 * Returns <code>true</code> if the special condition for this filter is fulfilled for the
-		 * given value.
-		 *
-		 * @param input
-		 * @return
-		 */
-		public abstract boolean isSpecialConditionFulfilled(double input);
+        /**
+         * Returns <code>true</code> if the special condition for this filter is fulfilled for the
+         * given value.
+         *
+         * @param input the input
+         * @return boolean boolean
+         */
+        public abstract boolean isSpecialConditionFulfilled(double input);
 
-		/**
-		 * Returns the {@link CustomFilters} matching the given label {@link String}. If none can be
-		 * found, returns <code>null</code>.
-		 *
-		 * @param label
-		 * @return
-		 */
-		public static CustomFilters getByLabel(final String label) {
+        /**
+         * Returns the {@link CustomFilters} matching the given label {@link String}. If none can be
+         * found, returns <code>null</code>.
+         *
+         * @param label the label
+         * @return by label
+         */
+        public static CustomFilters getByLabel(final String label) {
 			for (CustomFilters filter : values()) {
 				if (filter.getLabel().equals(label)) {
 					return filter;
@@ -585,14 +650,14 @@ public class CustomFilter implements Condition {
 			return null;
 		}
 
-		/**
-		 * Returns the {@link CustomFilters} matching the given symbol {@link String}. If none can
-		 * be found, returns <code>null</code>.
-		 *
-		 * @param symbol
-		 * @return
-		 */
-		public static CustomFilters getBySymbol(final String symbol) {
+        /**
+         * Returns the {@link CustomFilters} matching the given symbol {@link String}. If none can
+         * be found, returns <code>null</code>.
+         *
+         * @param symbol the symbol
+         * @return by symbol
+         */
+        public static CustomFilters getBySymbol(final String symbol) {
 			for (CustomFilters filter : values()) {
 				if (filter.getSymbol().equals(symbol)) {
 					return filter;
@@ -601,14 +666,14 @@ public class CustomFilter implements Condition {
 			return null;
 		}
 
-		/**
-		 * Returns a list of {@link CustomFilters}s for the given {@link ValueType}. Returns an
-		 * empty list if no filter was found.
-		 *
-		 * @param valueType
-		 * @return
-		 */
-		public static List<CustomFilters> getFiltersForValueType(final int valueType) {
+        /**
+         * Returns a list of {@link CustomFilters}s for the given {@link ValueType}. Returns an
+         * empty list if no filter was found.
+         *
+         * @param valueType the value type
+         * @return filters for value type
+         */
+        public static List<CustomFilters> getFiltersForValueType(final int valueType) {
 			List<CustomFilters> list = new LinkedList<>();
 			for (CustomFilters filter : values()) {
 				if (Ontology.ATTRIBUTE_VALUE_TYPE.isA(valueType, Ontology.NOMINAL)) {
@@ -637,18 +702,18 @@ public class CustomFilter implements Condition {
 			return list;
 		}
 
-		/**
-		 * Returns a {@link Date} parsed via the date {@link String} or <code>null</code> if the
-		 * given string could not be parsed. Uses {@link Locale#ENGLISH}.
-		 * <p>
-		 * Not static because {@link DateFormat} is NOT threadsafe.
-		 * </p>
-		 *
-		 * @see #FORMAT_DATE_TIME
-		 * @param dateTimeString
-		 * @return
-		 */
-		public Date parseDateTime(final String dateTimeString) {
+        /**
+         * Returns a {@link Date} parsed via the date {@link String} or <code>null</code> if the
+         * given string could not be parsed. Uses {@link Locale#ENGLISH}.
+         * <p>
+         * Not static because {@link DateFormat} is NOT threadsafe.
+         * </p>
+         *
+         * @param dateTimeString the date time string
+         * @return date date
+         * @see #FORMAT_DATE_TIME #FORMAT_DATE_TIME#FORMAT_DATE_TIME
+         */
+        public Date parseDateTime(final String dateTimeString) {
 			try {
 				return FORMAT_DATE_TIME.get().parse(dateTimeString);
 			} catch (ParseException e) {
@@ -670,18 +735,18 @@ public class CustomFilter implements Condition {
 			}
 		}
 
-		/**
-		 * Returns a {@link Date} parsed via the date {@link String} or <code>null</code> if the
-		 * given string could not be parsed. Uses {@link Locale#ENGLISH}.
-		 * <p>
-		 * Not static because {@link DateFormat} is NOT threadsafe.
-		 * </p>
-		 *
-		 * @see #FORMAT_DATE
-		 * @param dateString
-		 * @return
-		 */
-		public Date parseDate(final String dateString) {
+        /**
+         * Returns a {@link Date} parsed via the date {@link String} or <code>null</code> if the
+         * given string could not be parsed. Uses {@link Locale#ENGLISH}.
+         * <p>
+         * Not static because {@link DateFormat} is NOT threadsafe.
+         * </p>
+         *
+         * @param dateString the date string
+         * @return date date
+         * @see #FORMAT_DATE #FORMAT_DATE#FORMAT_DATE
+         */
+        public Date parseDate(final String dateString) {
 			try {
 				return FORMAT_DATE.get().parse(dateString);
 			} catch (ParseException e) {
@@ -703,18 +768,18 @@ public class CustomFilter implements Condition {
 			}
 		}
 
-		/**
-		 * Returns a {@link Date} parsed via the date {@link String} or <code>null</code> if the
-		 * given string could not be parsed. Uses {@link Locale#ENGLISH}.
-		 * <p>
-		 * Not static because {@link DateFormat} is NOT threadsafe.
-		 * </p>
-		 *
-		 * @see #FORMAT_TIME
-		 * @param timeString
-		 * @return
-		 */
-		public Date parseTime(final String timeString) {
+        /**
+         * Returns a {@link Date} parsed via the date {@link String} or <code>null</code> if the
+         * given string could not be parsed. Uses {@link Locale#ENGLISH}.
+         * <p>
+         * Not static because {@link DateFormat} is NOT threadsafe.
+         * </p>
+         *
+         * @param timeString the time string
+         * @return date date
+         * @see #FORMAT_TIME #FORMAT_TIME#FORMAT_TIME
+         */
+        public Date parseTime(final String timeString) {
 			try {
 				return FORMAT_TIME.get().parse(timeString);
 			} catch (ParseException e) {
@@ -722,64 +787,64 @@ public class CustomFilter implements Condition {
 			}
 		}
 
-		/**
-		 * Returns a {@link String} formatted from the {@link Date}. Uses {@link Locale#ENGLISH}.
-		 * <p>
-		 * Not static because {@link DateFormat} is NOT threadsafe.
-		 * </p>
-		 *
-		 * @see #FORMAT_TIME
-		 * @param dateTime
-		 * @return
-		 */
-		public String formatDateTime(final Date dateTime) {
+        /**
+         * Returns a {@link String} formatted from the {@link Date}. Uses {@link Locale#ENGLISH}.
+         * <p>
+         * Not static because {@link DateFormat} is NOT threadsafe.
+         * </p>
+         *
+         * @param dateTime the date time
+         * @return string string
+         * @see #FORMAT_TIME #FORMAT_TIME#FORMAT_TIME
+         */
+        public String formatDateTime(final Date dateTime) {
 			if (dateTime == null) {
 				throw new IllegalArgumentException("dateTime must not be null!");
 			}
 			return FORMAT_DATE_TIME.get().format(dateTime);
 		}
 
-		/**
-		 * Old format for date_time.
-		 *
-		 * @param dateTime
-		 * @return
-		 */
-		public String formatDateTimeOld(final Date dateTime) {
+        /**
+         * Old format for date_time.
+         *
+         * @param dateTime the date time
+         * @return string string
+         */
+        public String formatDateTimeOld(final Date dateTime) {
 			if (dateTime == null) {
 				throw new IllegalArgumentException("dateTime must not be null!");
 			}
 			return FORMAT_DATE_TIME_OLD.get().format(dateTime);
 		}
 
-		/**
-		 * Returns a {@link String} formatted from the {@link Date}. Uses {@link Locale#ENGLISH}.
-		 * <p>
-		 * Not static because {@link DateFormat} is NOT threadsafe.
-		 * </p>
-		 *
-		 * @see #FORMAT_TIME
-		 * @param date
-		 * @return
-		 */
-		public String formatDate(final Date date) {
+        /**
+         * Returns a {@link String} formatted from the {@link Date}. Uses {@link Locale#ENGLISH}.
+         * <p>
+         * Not static because {@link DateFormat} is NOT threadsafe.
+         * </p>
+         *
+         * @param date the date
+         * @return string string
+         * @see #FORMAT_TIME #FORMAT_TIME#FORMAT_TIME
+         */
+        public String formatDate(final Date date) {
 			if (date == null) {
 				throw new IllegalArgumentException("date must not be null!");
 			}
 			return FORMAT_DATE.get().format(date);
 		}
 
-		/**
-		 * Returns a {@link String} formatted from the {@link Date}. Uses {@link Locale#ENGLISH}.
-		 * <p>
-		 * Not static because {@link DateFormat} is NOT threadsafe.
-		 * </p>
-		 *
-		 * @see #FORMAT_TIME
-		 * @param time
-		 * @return
-		 */
-		public String formatTime(final Date time) {
+        /**
+         * Returns a {@link String} formatted from the {@link Date}. Uses {@link Locale#ENGLISH}.
+         * <p>
+         * Not static because {@link DateFormat} is NOT threadsafe.
+         * </p>
+         *
+         * @param time the time
+         * @return string string
+         * @see #FORMAT_TIME #FORMAT_TIME#FORMAT_TIME
+         */
+        public String formatTime(final Date time) {
 			if (time == null) {
 				throw new IllegalArgumentException("time must not be null!");
 			}
@@ -814,23 +879,17 @@ public class CustomFilter implements Condition {
 
 	private boolean fulfillAllConditions;
 
-	/**
-	 * Creates a new {@link CustomFilter} instance with the {@link CustomFilters} encoded in the
-	 * {@link List} of {@link String} arrays. The {@link Boolean} parameter defines if either all
-	 * conditions must be fulfilled or only one of them.
-	 *
-	 * @param exampleSet
-	 * @param conditions
-	 * @param fulfillAllConditions
-	 * @param macroHandler
-	 *            the macro handler which will be used to resolve macros for the filter value, can
-	 *            be <code>null</code>
-	 * @param version
-	 *            can be used to force old behaviour. If not needed and current implementation is
-	 *            desired, can be set to <code>null</code>
-	 *
-	 */
-	public CustomFilter(final ExampleSet exampleSet, final List<String[]> conditions, final boolean fulfillAllConditions,
+    /**
+     * Creates a new {@link CustomFilter} instance with the {@link CustomFilters} encoded in the
+     * {@link List} of {@link String} arrays. The {@link Boolean} parameter defines if either all
+     * conditions must be fulfilled or only one of them.
+     *
+     * @param exampleSet           the example set
+     * @param conditions           the conditions
+     * @param fulfillAllConditions the fulfill all conditions
+     * @param macroHandler         the macro handler which will be used to resolve macros for the filter value, can            be <code>null</code>
+     */
+    public CustomFilter(final ExampleSet exampleSet, final List<String[]> conditions, final boolean fulfillAllConditions,
 			final MacroHandler macroHandler) {
 		if (conditions == null) {
 			throw new IllegalArgumentException("typeList must not be null!");
@@ -916,16 +975,17 @@ public class CustomFilter implements Condition {
 		this.fulfillAllConditions = fulfillAllConditions;
 	}
 
-	/**
-	 * The sole purpose of this constructor is to provide a constructor that matches the expected
-	 * signature for the {@link ConditionedExampleSet} reflection invocation. However, this class
-	 * cannot be instantiated by an ExampleSet and a String, so we <b>always</b> throw an
-	 * {@link IllegalArgumentException} to signal this filter cannot be instantiated that way.
-	 *
-	 * @throws IllegalArgumentException
-	 *             <b>ALWAYS THROWN!</b>
-	 */
-	@Deprecated
+    /**
+     * The sole purpose of this constructor is to provide a constructor that matches the expected
+     * signature for the {@link ConditionedExampleSet} reflection invocation. However, this class
+     * cannot be instantiated by an ExampleSet and a String, so we <b>always</b> throw an
+     * {@link IllegalArgumentException} to signal this filter cannot be instantiated that way.
+     *
+     * @param exampleSet      the example set
+     * @param parameterString the parameter string
+     * @throws IllegalArgumentException <b>ALWAYS THROWN!</b>
+     */
+    @Deprecated
 	public CustomFilter(final ExampleSet exampleSet, final String parameterString) throws IllegalArgumentException {
 		throw new IllegalArgumentException("This condition cannot be instantiated this way!");
 	}

@@ -30,42 +30,37 @@ import java.net.URISyntaxException;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public enum UpdateManagerRegistry {
 
-	/**
-	 * The registry instance.
-	 */
-	INSTANCE;
+    /**
+     * The registry instance.
+     */
+    INSTANCE;
 
 	private UpdateManagerFactory factory = null;
 
-	/**
-	 * Creates a new {@link UpdateManager} via the registered {@link UpdateManagerFactory} and
-	 * returns the new instance.
-	 *
-	 * @return the {@link UpdateManager}
-	 * @throws URISyntaxException
-	 *             in case the UpdateManager URI has a syntax error
-	 * @throws IOException
-	 *             in case the update manager cannot communicate with the server
-	 */
-
-	public synchronized UpdateManager get() throws URISyntaxException, IOException {
+    /**
+     * Creates a new {@link UpdateManager} via the registered {@link UpdateManagerFactory} and
+     * returns the new instance.
+     *
+     * @return the {@link UpdateManager}
+     * @throws URISyntaxException in case the UpdateManager URI has a syntax error
+     * @throws IOException        in case the update manager cannot communicate with the server
+     */
+    public synchronized UpdateManager get() throws URISyntaxException, IOException {
 		if (factory == null) {
 			throw new IllegalStateException("No UpdateManagerFactory registered.");
 		}
 		return factory.create();
 	}
 
-	/**
-	 * Registers a new {@link UpdateManagerFactory} instance and replaces the old one.
-	 *
-	 * @param factory
-	 *            the new instance
-	 */
-	synchronized void register(UpdateManagerFactory factory) {
+    /**
+     * Registers a new {@link UpdateManagerFactory} instance and replaces the old one.
+     *
+     * @param factory the new instance
+     */
+    synchronized void register(UpdateManagerFactory factory) {
 		if (this.factory != null) {
 			throw new IllegalStateException("Registering a factory is allowed only once.");
 		}

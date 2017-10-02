@@ -30,14 +30,19 @@ import java.awt.datatransfer.Transferable;
 
 /**
  * This action copies from the selected location.
- * 
+ *
  * @author Simon Fischer
  */
 public class CopyLocationAction extends AbstractRepositoryAction<Entry> {
 
 	private static final long serialVersionUID = 1L;
 
-	public CopyLocationAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Copy location action.
+     *
+     * @param tree the tree
+     */
+    public CopyLocationAction(RepositoryTree tree) {
 		super(tree, Entry.class, false, "repository_copy_location");
 	}
 

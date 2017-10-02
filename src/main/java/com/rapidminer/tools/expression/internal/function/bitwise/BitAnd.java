@@ -28,11 +28,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract2DoubleInputFun
  * A {@link Function} to calculate the 'and' value of the bit representation of two integers.
  *
  * @author Thilo Kamradt
- *
  */
 public class BitAnd extends Abstract2DoubleInputFunction {
 
-	public BitAnd() {
+    /**
+     * Instantiates a new Bit and.
+     */
+    public BitAnd() {
 		super("bitwise.bit_and", 2, Ontology.INTEGER);
 	}
 

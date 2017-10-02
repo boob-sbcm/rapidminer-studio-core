@@ -24,14 +24,20 @@ import com.rapidminer.operator.learner.subgroups.hypothesis.Rule;
 
 /**
  * Calculates accuracy.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class Accuracy extends UtilityFunction {
 
 	private static final long serialVersionUID = 1L;
 
-	public Accuracy(double totalWeight, double totalPositiveWeight) {
+    /**
+     * Instantiates a new Accuracy.
+     *
+     * @param totalWeight         the total weight
+     * @param totalPositiveWeight the total positive weight
+     */
+    public Accuracy(double totalWeight, double totalPositiveWeight) {
 		super(totalWeight, totalPositiveWeight);
 	}
 

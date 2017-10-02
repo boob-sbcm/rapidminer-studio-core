@@ -38,7 +38,12 @@ public class ClusterModelCentroidTableRenderer extends AbstractTableModelTableRe
 		private static final long serialVersionUID = 2196512073454635516L;
 		private CentroidClusterModel model;
 
-		public CentroidTableModel(CentroidClusterModel model) {
+        /**
+         * Instantiates a new Centroid table model.
+         *
+         * @param model the model
+         */
+        public CentroidTableModel(CentroidClusterModel model) {
 			this.model = model;
 		}
 

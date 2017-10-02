@@ -28,9 +28,8 @@ import com.rapidminer.operator.ports.quickfix.QuickFix;
 /**
  * Is thrown if {@link Port#getMetaData(Class)} is called and the available meta data is not
  * compatible with the provided desired class.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class IncompatibleMDClassException extends Exception implements MetaDataError {
 
@@ -38,7 +37,13 @@ public class IncompatibleMDClassException extends Exception implements MetaDataE
 	private final PortOwner owner;
 	private final Port port;
 
-	public IncompatibleMDClassException(PortOwner owner, Port port) {
+    /**
+     * Instantiates a new Incompatible md class exception.
+     *
+     * @param owner the owner
+     * @param port  the port
+     */
+    public IncompatibleMDClassException(PortOwner owner, Port port) {
 		this.owner = owner;
 		this.port = port;
 	}

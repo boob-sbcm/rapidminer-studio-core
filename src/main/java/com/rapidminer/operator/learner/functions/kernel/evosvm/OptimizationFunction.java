@@ -24,10 +24,18 @@ import com.rapidminer.tools.math.kernels.Kernel;
 /**
  * Subclasses might implement the optimization function in different ways, e.g. for classification
  * or regression. The delivered values must be maximized.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public interface OptimizationFunction {
 
-	public double[] getFitness(double[] alphas, double[] ys, Kernel kernel);
+    /**
+     * Get fitness double [ ].
+     *
+     * @param alphas the alphas
+     * @param ys     the ys
+     * @param kernel the kernel
+     * @return the double [ ]
+     */
+    public double[] getFitness(double[] alphas, double[] ys, Kernel kernel);
 }

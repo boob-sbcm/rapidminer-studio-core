@@ -59,21 +59,36 @@ public class PlotterPanel extends JPanel implements PrintableComponent {
 
 	private static final long serialVersionUID = -8724351470349745191L;
 
-	public static final int DEFAULT_MAX_NUMBER_OF_DATA_POINTS = 5000;
+    /**
+     * The constant DEFAULT_MAX_NUMBER_OF_DATA_POINTS.
+     */
+    public static final int DEFAULT_MAX_NUMBER_OF_DATA_POINTS = 5000;
 
 	static {
 		BarRenderer.setDefaultBarPainter(new RapidBarPainter());
 		XYBarRenderer.setDefaultBarPainter(new RapidXYBarPainter());
 	}
 
-	/** The line style rendered for the legend (or key). */
-	public static class LineStyleCellRenderer<E> extends JLabel implements ListCellRenderer<E> {
+    /**
+     * The line style rendered for the legend (or key).  @param <E>  the type parameter
+     *
+     * @param <E> the type parameter
+     */
+    public static class LineStyleCellRenderer<E> extends JLabel implements ListCellRenderer<E> {
 
 		private static final long serialVersionUID = -7039142638209143602L;
 
-		Plotter plotter;
+        /**
+         * The Plotter.
+         */
+        Plotter plotter;
 
-		public LineStyleCellRenderer(Plotter plotter) {
+        /**
+         * Instantiates a new Line style cell renderer.
+         *
+         * @param plotter the plotter
+         */
+        public LineStyleCellRenderer(Plotter plotter) {
 			this.plotter = plotter;
 		}
 
@@ -110,26 +125,42 @@ public class PlotterPanel extends JPanel implements PrintableComponent {
 
 	private String exampleSetSource = null;
 
-	/**
-	 * Creates a new plotter panel based on the given {@link DataTable} object.
-	 */
-	public PlotterPanel(DataTable dataTable) {
+    /**
+     * Creates a new plotter panel based on the given {@link DataTable} object.
+     *
+     * @param dataTable the data table
+     */
+    public PlotterPanel(DataTable dataTable) {
 		this(dataTable, PlotterConfigurationModel.DATA_SET_PLOTTER_SELECTION);
 	}
 
-	/**
-	 * Creates a new plotter panel based on the given {@link DataTable} object.
-	 */
-	public PlotterPanel(DataTable dataTable, LinkedHashMap<String, Class<? extends Plotter>> availablePlotters) {
+    /**
+     * Creates a new plotter panel based on the given {@link DataTable} object.
+     *
+     * @param dataTable         the data table
+     * @param availablePlotters the available plotters
+     */
+    public PlotterPanel(DataTable dataTable, LinkedHashMap<String, Class<? extends Plotter>> availablePlotters) {
 		this(new PlotterConfigurationModel(availablePlotters, dataTable));
 	}
 
-	public PlotterPanel(final PlotterConfigurationModel settings, String exampleSetSource) {
+    /**
+     * Instantiates a new Plotter panel.
+     *
+     * @param settings         the settings
+     * @param exampleSetSource the example set source
+     */
+    public PlotterPanel(final PlotterConfigurationModel settings, String exampleSetSource) {
 		this(settings);
 		this.exampleSetSource = exampleSetSource;
 	}
 
-	public PlotterPanel(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Plotter panel.
+     *
+     * @param settings the settings
+     */
+    public PlotterPanel(final PlotterConfigurationModel settings) {
 		super(new BorderLayout());
 		this.controlPanel = new PlotterControlPanel(settings);
 		this.controlPanel.setBorder(BorderFactory.createMatteBorder(10, 8, 5, 10, Colors.WHITE));
@@ -197,19 +228,21 @@ public class PlotterPanel extends JPanel implements PrintableComponent {
 		}
 	}
 
-	/**
-	 * This method returns the plotter settings, controlling which plotter is displayed and how.
-	 */
-	public PlotterConfigurationModel getPlotterSettings() {
+    /**
+     * This method returns the plotter settings, controlling which plotter is displayed and how.
+     *
+     * @return the plotter settings
+     */
+    public PlotterConfigurationModel getPlotterSettings() {
 		return settings;
 	}
 
-	/**
-	 * Returns the plotter component.
-	 *
-	 * @return
-	 */
-	public Component getPlotterComponent() {
+    /**
+     * Returns the plotter component.
+     *
+     * @return plotter component
+     */
+    public Component getPlotterComponent() {
 		return oldPlotterComponent;
 	}
 

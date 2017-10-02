@@ -24,9 +24,9 @@ import java.util.Comparator;
 
 /**
  * This comparator reverses the sort direction for a given comparator.
- * 
+ *
+ * @param <E> the type parameter
  * @author Sebastian Land
- * @param <E>
  */
 public class ReverseComparableComparator<E> implements Comparator<E>, Serializable {
 

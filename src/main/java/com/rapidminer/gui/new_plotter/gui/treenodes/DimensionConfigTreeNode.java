@@ -25,23 +25,32 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 
 /**
+ * The type Dimension config tree node.
+ *
  * @author Nils Woehler
- * 
  */
 public class DimensionConfigTreeNode extends DefaultMutableTreeNode {
 
 	private static final long serialVersionUID = 1L;
 	private final PlotDimension dimension;
 
-	public DimensionConfigTreeNode(PlotDimension dimension, Object userObject) {
+    /**
+     * Instantiates a new Dimension config tree node.
+     *
+     * @param dimension  the dimension
+     * @param userObject the user object
+     */
+    public DimensionConfigTreeNode(PlotDimension dimension, Object userObject) {
 		super(userObject, false);
 		this.dimension = dimension;
 	}
 
-	/**
-	 * @return the dimension
-	 */
-	public PlotDimension getDimension() {
+    /**
+     * Gets dimension.
+     *
+     * @return the dimension
+     */
+    public PlotDimension getDimension() {
 		return dimension;
 	}
 

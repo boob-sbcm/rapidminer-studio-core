@@ -25,14 +25,19 @@ import java.util.List;
 /**
  * This simple implementation returns a peak if the specified number of neighbors is smaller than
  * the current value.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimplePeakFinder implements PeakFinder {
 
 	private int numberOfNeighbours = 5;
 
-	public SimplePeakFinder(int neighbours) {
+    /**
+     * Instantiates a new Simple peak finder.
+     *
+     * @param neighbours the neighbours
+     */
+    public SimplePeakFinder(int neighbours) {
 		this.numberOfNeighbours = neighbours;
 	}
 

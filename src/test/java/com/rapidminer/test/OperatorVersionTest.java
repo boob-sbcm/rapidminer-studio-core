@@ -25,13 +25,16 @@ import org.junit.Test;
 import com.rapidminer.operator.OperatorVersion;
 
 /**
- * 
- * @author Simon Fischer
+ * The type Operator version test.
  *
+ * @author Simon Fischer
  */
 public class OperatorVersionTest {
 
-	@Test
+    /**
+     * Test parse.
+     */
+    @Test
 	public void testParse() {
 		OperatorVersion reference = new OperatorVersion(5,1,2);
 		assertEquals(reference, new OperatorVersion("5.1.2"));		
@@ -43,24 +46,33 @@ public class OperatorVersionTest {
 //		OperatorVersion reference = new OperatorVersion("5.1.2");
 //		assertEquals(reference, new OperatorVersion("5.1.2beta"));		
 //	}
-	
-	@Test
+
+    /**
+     * Test zero.
+     */
+    @Test
 	public void testZero() {
 		OperatorVersion reference = new OperatorVersion("5.1.2");
 		assertEquals(reference, new OperatorVersion("5.1.002"));
 		assertEquals(reference, new OperatorVersion("5.01.2"));
 		assertEquals(reference, new OperatorVersion("05.1.2"));
 	}
-	
-	@Test
+
+    /**
+     * Test compare 1.
+     */
+    @Test
 	public void testCompare1() {
 		OperatorVersion reference = new OperatorVersion("5.1.2");
 		assertTrue(reference.compareTo(new OperatorVersion("5.1.0")) > 0);
 		assertTrue(reference.compareTo(new OperatorVersion("5.0.3")) > 0);
 		assertTrue(reference.compareTo(new OperatorVersion("4.9.0")) > 0);
 	}
-	
-	@Test
+
+    /**
+     * Test compare 2.
+     */
+    @Test
 	public void testCompare2() {
 		OperatorVersion reference = new OperatorVersion("5.1.2");
 		assertTrue(reference.compareTo(new OperatorVersion("5.1.2")) == 0);
@@ -68,16 +80,22 @@ public class OperatorVersionTest {
 		assertTrue(reference.compareTo(new OperatorVersion("5.2.2")) < 0);
 		assertTrue(reference.compareTo(new OperatorVersion("6.0.0")) < 0);
 	}
-	
-	@Test
+
+    /**
+     * Test comparator 1.
+     */
+    @Test
 	public void testComparator1() {
 		OperatorVersion reference = new OperatorVersion("5.1.2");
 		assertTrue(reference.compareTo(new OperatorVersion("5.1.0")) > 0);
 		assertTrue(reference.compareTo(new OperatorVersion("5.0.3")) > 0);
 		assertTrue(reference.compareTo(new OperatorVersion("4.9.0")) > 0);
 	}
-	
-	@Test
+
+    /**
+     * Test comparator 2.
+     */
+    @Test
 	public void testComparator2() {
 		OperatorVersion reference = new OperatorVersion("5.1.2");
 		assertTrue(reference.compareTo(new OperatorVersion("5.1.2")) == 0);

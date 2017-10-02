@@ -37,13 +37,26 @@ import com.rapidminer.tools.Ontology;
  * {@link MetaDataStatisticsViewer} to color the {@link Attributes#KNOWN_ATTRIBUTE_TYPES}.
  *
  * @author Marco Boeck, Marcel Michel
- *
  */
 public class AttributeGuiTools {
 
-	/** The intensity of the color depends on the purpose */
-	public enum ColorScope {
-		BORDER, CONTENT, BACKGROUND, HOVER;
+    /**
+     * The intensity of the color depends on the purpose
+     */
+    public enum ColorScope {
+        /**
+         * Border color scope.
+         */
+        BORDER, /**
+         * Content color scope.
+         */
+        CONTENT, /**
+         * Background color scope.
+         */
+        BACKGROUND, /**
+         * Hover color scope.
+         */
+        HOVER;
 	}
 
 	/** contains a mapping between each existing value type and a symbol for it */
@@ -55,11 +68,11 @@ public class AttributeGuiTools {
 	/** mapping between value types and a color */
 	private static final Map<Integer, Color> mapOfValueTypeColors = new HashMap<>();
 
-	/**
-	 * can be used to access the default special attribute role color from
-	 * {@link #getColorForAttributeRole(String)}
-	 */
-	public static final String GENERIC_SPECIAL_ATTRIBUTE_NAME = "special";
+    /**
+     * can be used to access the default special attribute role color from
+     * {@link #getColorForAttributeRole(String)}
+     */
+    public static final String GENERIC_SPECIAL_ATTRIBUTE_NAME = "special";
 
 	static {
 		// fill mapping between value types and icons
@@ -102,15 +115,15 @@ public class AttributeGuiTools {
 		mapOfValueTypeColors.put(Ontology.DATE_TIME, new Color(127, 201, 127));
 	}
 
-	/**
-	 * Returns the {@link ImageIcon} used to represent the given
-	 * {@link Ontology#ATTRIBUTE_VALUE_TYPE}.
-	 *
-	 * @param valueType
-	 * @param smallIcon
-	 * @return
-	 */
-	public static ImageIcon getIconForValueType(int valueType, boolean smallIcon) {
+    /**
+     * Returns the {@link ImageIcon} used to represent the given
+     * {@link Ontology#ATTRIBUTE_VALUE_TYPE}.
+     *
+     * @param valueType the value type
+     * @param smallIcon the small icon
+     * @return icon for value type
+     */
+    public static ImageIcon getIconForValueType(int valueType, boolean smallIcon) {
 		String iconName = mapOfValueTypeIcons.get(valueType);
 		while (iconName == null) {
 			valueType = Ontology.ATTRIBUTE_VALUE_TYPE.getParent(valueType);
@@ -127,28 +140,28 @@ public class AttributeGuiTools {
 		return icon;
 	}
 
-	/**
-	 * Returns the color for the specified special attribute name {@link String}. See
-	 * {@link Attributes#KNOWN_ATTRIBUTE_TYPES}. If the name is unknown, returns the default color
-	 * for special attribute roles.
-	 *
-	 * @param attributeRoleLabel
-	 * @return
-	 */
-	public static Color getColorForAttributeRole(String attributeRoleLabel) {
+    /**
+     * Returns the color for the specified special attribute name {@link String}. See
+     * {@link Attributes#KNOWN_ATTRIBUTE_TYPES}. If the name is unknown, returns the default color
+     * for special attribute roles.
+     *
+     * @param attributeRoleLabel the attribute role label
+     * @return color for attribute role
+     */
+    public static Color getColorForAttributeRole(String attributeRoleLabel) {
 		return getColorForAttributeRole(attributeRoleLabel, null);
 	}
 
-	/**
-	 * Returns the color for the specified special attribute name {@link String}. See
-	 * {@link Attributes#KNOWN_ATTRIBUTE_TYPES}. If the name is unknown, returns the default color
-	 * for special attribute roles.
-	 *
-	 * @param attributeRoleLabel
-	 * @param intensity
-	 * @return
-	 */
-	public static Color getColorForAttributeRole(String attributeRoleLabel, ColorScope scope) {
+    /**
+     * Returns the color for the specified special attribute name {@link String}. See
+     * {@link Attributes#KNOWN_ATTRIBUTE_TYPES}. If the name is unknown, returns the default color
+     * for special attribute roles.
+     *
+     * @param attributeRoleLabel the attribute role label
+     * @param scope              the scope
+     * @return color for attribute role
+     */
+    public static Color getColorForAttributeRole(String attributeRoleLabel, ColorScope scope) {
 		Color color = transformColor(mapAttributeRoleNamesToColors.get(attributeRoleLabel), scope);
 		if (color == null) {
 			color = transformColor(mapAttributeRoleNamesToColors.get(GENERIC_SPECIAL_ATTRIBUTE_NAME), scope);
@@ -192,13 +205,13 @@ public class AttributeGuiTools {
 		return Color.getHSBColor(hsb[0], Math.min(sFactor * hsb[1], 1f), vFactor * hsb[2]);
 	}
 
-	/**
-	 * Returns the {@link Color} used to represent the given {@link Ontology#ATTRIBUTE_VALUE_TYPE}.
-	 *
-	 * @param valueType
-	 * @return
-	 */
-	public static Color getColorForValueType(int valueType) {
+    /**
+     * Returns the {@link Color} used to represent the given {@link Ontology#ATTRIBUTE_VALUE_TYPE}.
+     *
+     * @param valueType the value type
+     * @return color for value type
+     */
+    public static Color getColorForValueType(int valueType) {
 		Color color = mapOfValueTypeColors.get(valueType);
 		while (color == null) {
 			valueType = Ontology.ATTRIBUTE_VALUE_TYPE.getParent(valueType);

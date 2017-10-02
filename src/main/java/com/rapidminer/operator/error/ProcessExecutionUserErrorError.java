@@ -29,7 +29,6 @@ import com.rapidminer.operator.UserError;
  *
  * @author Marco Boeck
  * @since 6.5.0
- *
  */
 public class ProcessExecutionUserErrorError extends UserError {
 
@@ -38,27 +37,25 @@ public class ProcessExecutionUserErrorError extends UserError {
 	/** the user error from the created process */
 	private UserError cause;
 
-	/**
-	 * Throw if the parameter of an operator specifies an attribute which cannot be found in the
-	 * input data.
-	 *
-	 * @param operator
-	 *            the operator which created the process
-	 * @param cause
-	 *            the user error which occurred inside the process
-	 */
-	public ProcessExecutionUserErrorError(Operator operator, UserError cause) {
+    /**
+     * Throw if the parameter of an operator specifies an attribute which cannot be found in the
+     * input data.
+     *
+     * @param operator the operator which created the process
+     * @param cause    the user error which occurred inside the process
+     */
+    public ProcessExecutionUserErrorError(Operator operator, UserError cause) {
 		super(operator, 971, cause.getOperator() != null ? cause.getOperator().getName() : "unknown", operator.getName(),
 				cause.getMessage());
 		this.cause = cause;
 	}
 
-	/**
-	 * Returns the cause for this exception.
-	 *
-	 * @return the causing {@link UserError}; can be {@code null}
-	 */
-	public UserError getUserError() {
+    /**
+     * Returns the cause for this exception.
+     *
+     * @return the causing {@link UserError}; can be {@code null}
+     */
+    public UserError getUserError() {
 		return cause;
 	}
 }

@@ -53,58 +53,62 @@ import com.rapidminer.tools.io.Encoding;
  */
 public class CSVExampleSetWriter extends AbstractStreamWriter {
 
-	/** The parameter name for &quot;The CSV file which should be written.&quot; */
-	public static final String PARAMETER_CSV_FILE = "csv_file";
+    /**
+     * The parameter name for &quot;The CSV file which should be written.&quot;
+     */
+    public static final String PARAMETER_CSV_FILE = "csv_file";
 
-	/** The parameter name for the column separator parameter. */
-	public static final String PARAMETER_COLUMN_SEPARATOR = "column_separator";
+    /**
+     * The parameter name for the column separator parameter.
+     */
+    public static final String PARAMETER_COLUMN_SEPARATOR = "column_separator";
 
-	/** Indicates if the attribute names should be written as first row. */
-	public static final String PARAMETER_WRITE_ATTRIBUTE_NAMES = "write_attribute_names";
+    /**
+     * Indicates if the attribute names should be written as first row.
+     */
+    public static final String PARAMETER_WRITE_ATTRIBUTE_NAMES = "write_attribute_names";
 
-	/**
-	 * Indicates if nominal values should be quoted with double quotes. Quotes inside of nominal
-	 * values will be escaped by a backslash.
-	 */
-	public static final String PARAMETER_QUOTE_NOMINAL_VALUES = "quote_nominal_values";
+    /**
+     * Indicates if nominal values should be quoted with double quotes. Quotes inside of nominal
+     * values will be escaped by a backslash.
+     */
+    public static final String PARAMETER_QUOTE_NOMINAL_VALUES = "quote_nominal_values";
 
-	public static final String PARAMETER_APPEND_FILE = "append_to_file";
+    /**
+     * The constant PARAMETER_APPEND_FILE.
+     */
+    public static final String PARAMETER_APPEND_FILE = "append_to_file";
 
-	/**
-	 * Indicates if date attributes are written as a formated string or as milliseconds past since
-	 * January 1, 1970, 00:00:00 GMT
-	 */
-	// TODO introduce parameter which allows to determine the written format see
+    /**
+     * Indicates if date attributes are written as a formated string or as milliseconds past since
+     * January 1, 1970, 00:00:00 GMT
+     */
+// TODO introduce parameter which allows to determine the written format see
 	// Nominal2Date operator
 	public static final String PARAMETER_FORMAT_DATE = "format_date_attributes";
 
-	public CSVExampleSetWriter(OperatorDescription description) {
+    /**
+     * Instantiates a new Csv example set writer.
+     *
+     * @param description the description
+     */
+    public CSVExampleSetWriter(OperatorDescription description) {
 		super(description);
 	}
 
-	/**
-	 * Writes the exampleSet with the {@link PrintWriter} out, using colSeparator as column
-	 * separator.
-	 *
-	 * @param exampleSet
-	 *            the example set to write
-	 * @param out
-	 *            the {@link PrintWriter}
-	 * @param colSeparator
-	 *            the column separator
-	 * @param quoteNomValues
-	 *            if {@code true} nominal values are quoted
-	 * @param writeAttribNames
-	 *            if {@code true} the attribute names are written into the first row
-	 * @param formatDate
-	 *            if {@code true} dates are formatted to "M/d/yy h:mm a", otherwise milliseconds
-	 *            since the epoch are used
-	 *
-	 * @deprecated please use
-	 *             {@link CSVExampleSetWriter#writeCSV(ExampleSet, PrintWriter, String, boolean, boolean, boolean, OperatorProgress)}
-	 *             instead to support operator progress.
-	 */
-	@Deprecated
+    /**
+     * Writes the exampleSet with the {@link PrintWriter} out, using colSeparator as column
+     * separator.
+     *
+     * @param exampleSet       the example set to write
+     * @param out              the {@link PrintWriter}
+     * @param colSeparator     the column separator
+     * @param quoteNomValues   if {@code true} nominal values are quoted
+     * @param writeAttribNames if {@code true} the attribute names are written into the first row
+     * @param formatDate       if {@code true} dates are formatted to "M/d/yy h:mm a", otherwise milliseconds            since the epoch are used
+     * @deprecated please use             {@link CSVExampleSetWriter#writeCSV(ExampleSet, PrintWriter, String, boolean, boolean, boolean, OperatorProgress)}             instead to support operator progress.
+     */
+    @Deprecated
 	public static void writeCSV(ExampleSet exampleSet, PrintWriter out, String colSeparator, boolean quoteNomValues,
 			boolean writeAttribNames, boolean formatDate) {
 		try {
@@ -114,60 +118,38 @@ public class CSVExampleSetWriter extends AbstractStreamWriter {
 		}
 	}
 
-	/**
-	 * Writes the exampleSet with the {@link PrintWriter} out, using colSeparator as column
-	 * separator.
-	 *
-	 * @param exampleSet
-	 *            the example set to write
-	 * @param out
-	 *            the {@link PrintWriter}
-	 * @param colSeparator
-	 *            the column separator
-	 * @param quoteNomValues
-	 *            if {@code true} nominal values are quoted
-	 * @param writeAttribNames
-	 *            if {@code true} the attribute names are written into the first row
-	 * @param formatDate
-	 *            if {@code true} dates are formatted to "M/d/yy h:mm a", otherwise milliseconds
-	 *            since the epoch are used
-	 * @param opProg
-	 *            the {@link OperatorProgress} is used to provide a more detailed progress. Within
-	 *            this method the progress will be increased by number of examples times the number
-	 *            of attributes. If you do not want the operator progress, just provide <code> null
-	 *            <code>.
-	 */
-	public static void writeCSV(ExampleSet exampleSet, PrintWriter out, String colSeparator, boolean quoteNomValues,
+    /**
+     * Writes the exampleSet with the {@link PrintWriter} out, using colSeparator as column
+     * separator.
+     *
+     * @param exampleSet       the example set to write
+     * @param out              the {@link PrintWriter}
+     * @param colSeparator     the column separator
+     * @param quoteNomValues   if {@code true} nominal values are quoted
+     * @param writeAttribNames if {@code true} the attribute names are written into the first row
+     * @param formatDate       if {@code true} dates are formatted to "M/d/yy h:mm a", otherwise milliseconds            since the epoch are used
+     * @param operatorProgress the operator progress
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public static void writeCSV(ExampleSet exampleSet, PrintWriter out, String colSeparator, boolean quoteNomValues,
 			boolean writeAttribNames, boolean formatDate, OperatorProgress operatorProgress) throws ProcessStoppedException {
 		writeCSV(exampleSet, out, colSeparator, quoteNomValues, writeAttribNames, formatDate, null, operatorProgress);
 	}
 
-	/**
-	 * Writes the exampleSet with the {@link PrintWriter} out, using colSeparator as column
-	 * separator and infinitySybol to denote infinite values.
-	 *
-	 * @param exampleSet
-	 *            the example set to write
-	 * @param out
-	 *            the {@link PrintWriter}
-	 * @param colSeparator
-	 *            the column separator
-	 * @param quoteNomValues
-	 *            if {@code true} nominal values are quoted
-	 * @param writeAttribNames
-	 *            if {@code true} the attribute names are written into the first row
-	 * @param formatDate
-	 *            if {@code true} dates are formatted to "M/d/yy h:mm a", otherwise milliseconds
-	 *            since the epoch are used
-	 * @param infinitySymbol
-	 *            the symbol to use for infinite values; if {@code null} the default symbol
-	 *            "Infinity" is used
-	 *
-	 * @deprecated please use
-	 *             {@link CSVExampleSetWriter#writeCSV(ExampleSet, PrintWriter, String, boolean, boolean, boolean, String, OperatorProgress)}
-	 *             to support operator progress.
-	 */
-	@Deprecated
+    /**
+     * Writes the exampleSet with the {@link PrintWriter} out, using colSeparator as column
+     * separator and infinitySybol to denote infinite values.
+     *
+     * @param exampleSet       the example set to write
+     * @param out              the {@link PrintWriter}
+     * @param colSeparator     the column separator
+     * @param quoteNomValues   if {@code true} nominal values are quoted
+     * @param writeAttribNames if {@code true} the attribute names are written into the first row
+     * @param formatDate       if {@code true} dates are formatted to "M/d/yy h:mm a", otherwise milliseconds            since the epoch are used
+     * @param infinitySymbol   the symbol to use for infinite values; if {@code null} the default symbol            "Infinity" is used
+     * @deprecated please use             {@link CSVExampleSetWriter#writeCSV(ExampleSet, PrintWriter, String, boolean, boolean, boolean, String, OperatorProgress)}             to support operator progress.
+     */
+    @Deprecated
 	public static void writeCSV(ExampleSet exampleSet, PrintWriter out, String colSeparator, boolean quoteNomValues,
 			boolean writeAttribNames, boolean formatDate, String infinitySymbol) {
 		try {
@@ -177,33 +159,21 @@ public class CSVExampleSetWriter extends AbstractStreamWriter {
 		}
 	}
 
-	/**
-	 * Writes the exampleSet with the {@link PrintWriter} out, using colSeparator as column
-	 * separator and infinitySybol to denote infinite values.
-	 *
-	 * @param exampleSet
-	 *            the example set to write
-	 * @param out
-	 *            the {@link PrintWriter}
-	 * @param colSeparator
-	 *            the column separator
-	 * @param quoteNomValues
-	 *            if {@code true} nominal values are quoted
-	 * @param writeAttribNames
-	 *            if {@code true} the attribute names are written into the first row
-	 * @param formatDate
-	 *            if {@code true} dates are formatted to "M/d/yy h:mm a", otherwise milliseconds
-	 *            since the epoch are used
-	 * @param infinitySymbol
-	 *            the symbol to use for infinite values; if {@code null} the default symbol
-	 *            "Infinity" is used
-	 * @param opProg
-	 *            the {@link OperatorProgress} is used to provide a more detailed progress. Within
-	 *            this method the progress will be increased by number of examples times the number
-	 *            of attributes. If you do not want the operator progress, just provide <code> null
-	 *            <code>.
-	 */
-	public static void writeCSV(ExampleSet exampleSet, PrintWriter out, String colSeparator, boolean quoteNomValues,
+    /**
+     * Writes the exampleSet with the {@link PrintWriter} out, using colSeparator as column
+     * separator and infinitySybol to denote infinite values.
+     *
+     * @param exampleSet       the example set to write
+     * @param out              the {@link PrintWriter}
+     * @param colSeparator     the column separator
+     * @param quoteNomValues   if {@code true} nominal values are quoted
+     * @param writeAttribNames if {@code true} the attribute names are written into the first row
+     * @param formatDate       if {@code true} dates are formatted to "M/d/yy h:mm a", otherwise milliseconds            since the epoch are used
+     * @param infinitySymbol   the symbol to use for infinite values; if {@code null} the default symbol            "Infinity" is used
+     * @param opProg           the {@link OperatorProgress} is used to provide a more detailed progress. Within            this method the progress will be increased by number of examples times the number            of attributes. If you do not want the operator progress, just provide <code> null            <code>.
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public static void writeCSV(ExampleSet exampleSet, PrintWriter out, String colSeparator, boolean quoteNomValues,
 			boolean writeAttribNames, boolean formatDate, String infinitySymbol, OperatorProgress opProg)
 			throws ProcessStoppedException {
 		String negativeInfinitySymbol = null;

@@ -29,7 +29,22 @@ import com.rapidminer.tools.Ontology;
  * @since 6.5.0
  */
 public enum ExpressionType {
-	STRING(Ontology.NOMINAL), DOUBLE(Ontology.REAL), INTEGER(Ontology.INTEGER), BOOLEAN(Ontology.BINOMINAL), DATE(
+    /**
+     * String expression type.
+     */
+    STRING(Ontology.NOMINAL), /**
+     * Double expression type.
+     */
+    DOUBLE(Ontology.REAL), /**
+     * Integer expression type.
+     */
+    INTEGER(Ontology.INTEGER), /**
+     * Boolean expression type.
+     */
+    BOOLEAN(Ontology.BINOMINAL), /**
+     * Date expression type.
+     */
+    DATE(
 			Ontology.DATE_TIME);	// TEXT(Ontology.STRING);
 
 	private int attributeType;
@@ -38,21 +53,22 @@ public enum ExpressionType {
 		this.attributeType = attributeType;
 	}
 
-	/**
-	 * @return the associated {@link Ontology#ATTRIBUTE_VALUE_TYPE}
-	 */
-	public int getAttributeType() {
+    /**
+     * Gets attribute type.
+     *
+     * @return the associated {@link Ontology#ATTRIBUTE_VALUE_TYPE}
+     */
+    public int getAttributeType() {
 		return attributeType;
 	}
 
-	/**
-	 * Returns the {@link ExpressionType} associated to the attributeType.
-	 *
-	 * @param attributeType
-	 *            the {@link Ontology#ATTRIBUTE_VALUE_TYPE}
-	 * @return the expression type associated to the attributeType
-	 */
-	public static ExpressionType getExpressionType(int attributeType) {
+    /**
+     * Returns the {@link ExpressionType} associated to the attributeType.
+     *
+     * @param attributeType the {@link Ontology#ATTRIBUTE_VALUE_TYPE}
+     * @return the expression type associated to the attributeType
+     */
+    public static ExpressionType getExpressionType(int attributeType) {
 		switch (attributeType) {
 			case Ontology.DATE:
 			case Ontology.DATE_TIME:

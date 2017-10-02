@@ -74,17 +74,25 @@ public class SettingsTabs extends ExtendedJTabbedPane {
 	/** The containing dialog */
 	private final SettingsDialog settingsDialog;
 
-	/** Color matching the icons */
-	public static final Color COLOR_SUBGROUP = new Color(32, 100, 148);
+    /**
+     * Color matching the icons
+     */
+    public static final Color COLOR_SUBGROUP = new Color(32, 100, 148);
 
-	/** Color matching the tabs border */
-	public static final Color COLOR_GROUP_DESCRIPTION_BORDER = new Color(220, 220, 224);
+    /**
+     * Color matching the tabs border
+     */
+    public static final Color COLOR_GROUP_DESCRIPTION_BORDER = new Color(220, 220, 224);
 
-	/** Color for the backgournd of the tab description */
-	public static final Color COLOR_GROUP_DESCRIPTION_BACKGROUND = new Color(230, 230, 234);
+    /**
+     * Color for the backgournd of the tab description
+     */
+    public static final Color COLOR_GROUP_DESCRIPTION_BACKGROUND = new Color(230, 230, 234);
 
-	/** Color of the group/tab descriptions */
-	public static final Color COLOR_GROUP_DESCRIPTION = SwingTools.RAPIDMINER_GRAY;
+    /**
+     * Color of the group/tab descriptions
+     */
+    public static final Color COLOR_GROUP_DESCRIPTION = SwingTools.RAPIDMINER_GRAY;
 
 	/** Compares titles of SettingItem objects */
 	private static final Comparator<SettingsItem> SETTINGS_ITEM_COMPARATOR = new Comparator<SettingsItem>() {
@@ -103,27 +111,23 @@ public class SettingsTabs extends ExtendedJTabbedPane {
 		}
 	};
 
-	/**
-	 * Creates necessary {@link SettingsItem}s and related tabs for the settings.
-	 *
-	 * @param settingsDialog
-	 *            The containing dialog. Is used to create {@link ToolTipWindow}s for tabs.
-	 */
-	public SettingsTabs(SettingsDialog settingsDialog) {
+    /**
+     * Creates necessary {@link SettingsItem}s and related tabs for the settings.
+     *
+     * @param settingsDialog The containing dialog. Is used to create {@link ToolTipWindow}s for tabs.
+     */
+    public SettingsTabs(SettingsDialog settingsDialog) {
 		this(settingsDialog, null, null);
 	}
 
-	/**
-	 * Creates necessary {@link SettingsItem}s and related tabs for the settings.
-	 *
-	 * @param settingsDialog
-	 *            The containing dialog. Is used to create {@link ToolTipWindow}s for tabs.
-	 * @param filter
-	 *            Used to filter the setting parameters
-	 * @param cache
-	 *            which should be used to retrieve the values
-	 */
-	public SettingsTabs(SettingsDialog settingsDialog, String filter, Properties propertyCache) {
+    /**
+     * Creates necessary {@link SettingsItem}s and related tabs for the settings.
+     *
+     * @param settingsDialog The containing dialog. Is used to create {@link ToolTipWindow}s for tabs.
+     * @param filter         Used to filter the setting parameters
+     * @param propertyCache  the property cache
+     */
+    public SettingsTabs(SettingsDialog settingsDialog, String filter, Properties propertyCache) {
 		this.settingsDialog = settingsDialog;
 
 		setTabPlacement(JTabbedPane.LEFT);
@@ -195,13 +199,12 @@ public class SettingsTabs extends ExtendedJTabbedPane {
 		}
 	}
 
-	/**
-	 * Selects the tab, which is related to the specified groupKey.
-	 *
-	 * @param groupKey
-	 *            A key of a preferences group.
-	 */
-	public void selectTab(String groupKey) {
+    /**
+     * Selects the tab, which is related to the specified groupKey.
+     *
+     * @param groupKey A key of a preferences group.
+     */
+    public void selectTab(String groupKey) {
 		if (groupKeysToTabIndexMap.containsKey(groupKey)) {
 			setSelectedIndex(groupKeysToTabIndexMap.get(groupKey));
 		}
@@ -288,24 +291,32 @@ public class SettingsTabs extends ExtendedJTabbedPane {
 		groupKeysToTabIndexMap.put(groupKey, getTabCount() - 1);
 	}
 
-	public void applyProperties() {
+    /**
+     * Apply properties.
+     */
+    public void applyProperties() {
 		for (SettingsPropertyPanel panel : parameterPanels) {
 			panel.applyProperties();
 		}
 	}
 
-	/**
-	 * This method will save the parameters defined in this tab
-	 */
-	public void save() throws IOException {
+    /**
+     * This method will save the parameters defined in this tab
+     *
+     * @throws IOException the io exception
+     */
+    public void save() throws IOException {
 		applyProperties();
 		ParameterService.saveParameters();
 	}
 
-	/**
-	 * Adds a tool tip description for a component
-	 */
-	public static void addToolTipDescription(JComponent component, String description) {
+    /**
+     * Adds a tool tip description for a component
+     *
+     * @param component   the component
+     * @param description the description
+     */
+    public static void addToolTipDescription(JComponent component, String description) {
 		SettingsTabs.tooltipDescriptions.put(component, description);
 	}
 }

@@ -37,28 +37,55 @@ import java.util.List;
 
 /**
  * Delays the process execution (in non-parallel processing).
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class DelayOperator extends Operator {
 
-	public static class DelayProvider {
+    /**
+     * The type Delay provider.
+     */
+    public static class DelayProvider {
 
-		public static final String PARAMETER_DELAY = "delay";
+        /**
+         * The constant PARAMETER_DELAY.
+         */
+        public static final String PARAMETER_DELAY = "delay";
 
-		public static final String[] DELAY_MODES = { "none", "fixed", "random" };
+        /**
+         * The constant DELAY_MODES.
+         */
+        public static final String[] DELAY_MODES = { "none", "fixed", "random" };
 
-		public static final int DELAY_NONE = 0;
+        /**
+         * The constant DELAY_NONE.
+         */
+        public static final int DELAY_NONE = 0;
 
-		public static final int DELAY_FIXED = 1;
+        /**
+         * The constant DELAY_FIXED.
+         */
+        public static final int DELAY_FIXED = 1;
 
-		public static final int DELAY_RANDOM = 2;
+        /**
+         * The constant DELAY_RANDOM.
+         */
+        public static final int DELAY_RANDOM = 2;
 
-		public static final String PARAMETER_DELAY_AMOUNT = "delay_amount";
+        /**
+         * The constant PARAMETER_DELAY_AMOUNT.
+         */
+        public static final String PARAMETER_DELAY_AMOUNT = "delay_amount";
 
-		public static final String PARAMETER_DELAY_MIN_AMOUNT = "min_delay_amount";
+        /**
+         * The constant PARAMETER_DELAY_MIN_AMOUNT.
+         */
+        public static final String PARAMETER_DELAY_MIN_AMOUNT = "min_delay_amount";
 
-		public static final String PARAMETER_DELAY_MAX_AMOUNT = "max_delay_amount";
+        /**
+         * The constant PARAMETER_DELAY_MAX_AMOUNT.
+         */
+        public static final String PARAMETER_DELAY_MAX_AMOUNT = "max_delay_amount";
 
 		private int minAmount = 0;
 
@@ -84,7 +111,10 @@ public class DelayOperator extends Operator {
 			}
 		}
 
-		public void delay() {
+        /**
+         * Delay.
+         */
+        public void delay() {
 			try {
 				if (minAmount == maxAmount) {
 					Thread.sleep(maxAmount);
@@ -95,14 +125,27 @@ public class DelayOperator extends Operator {
 			}
 		}
 
-		public static DelayProvider createDelayProvider(ParameterHandler handler) throws UndefinedParameterError {
+        /**
+         * Create delay provider delay provider.
+         *
+         * @param handler the handler
+         * @return the delay provider
+         * @throws UndefinedParameterError the undefined parameter error
+         */
+        public static DelayProvider createDelayProvider(ParameterHandler handler) throws UndefinedParameterError {
 			return new DelayProvider(handler.getParameterAsInt(PARAMETER_DELAY),
 					handler.getParameterAsInt(PARAMETER_DELAY_AMOUNT),
 					handler.getParameterAsInt(PARAMETER_DELAY_MIN_AMOUNT),
 					handler.getParameterAsInt(PARAMETER_DELAY_MAX_AMOUNT));
 		}
 
-		public static List<ParameterType> getParameterTypes(ParameterHandler handler) {
+        /**
+         * Gets parameter types.
+         *
+         * @param handler the handler
+         * @return the parameter types
+         */
+        public static List<ParameterType> getParameterTypes(ParameterHandler handler) {
 			List<ParameterType> types = new LinkedList<ParameterType>();
 			types.add(new ParameterTypeCategory(PARAMETER_DELAY,
 					"Specifies whether execution should not be delayed, delayed by a fixed or random amount of time.",
@@ -127,7 +170,12 @@ public class DelayOperator extends Operator {
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public DelayOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Delay operator.
+     *
+     * @param description the description
+     */
+    public DelayOperator(OperatorDescription description) {
 		super(description);
 		dummyPorts.start();
 		getTransformer().addRule(dummyPorts.makePassThroughRule());

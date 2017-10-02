@@ -45,7 +45,17 @@ public class CentroidClusterModel extends ClusterModel {
 	private ArrayList<Centroid> centroids;
 	private DistanceMeasure distanceMeasure;
 
-	public CentroidClusterModel(ExampleSet exampleSet, int k, Collection<String> dimensionNames,
+    /**
+     * Instantiates a new Centroid cluster model.
+     *
+     * @param exampleSet        the example set
+     * @param k                 the k
+     * @param dimensionNames    the dimension names
+     * @param distanceMeasure   the distance measure
+     * @param addClusterAsLabel the add cluster as label
+     * @param removeUnknown     the remove unknown
+     */
+    public CentroidClusterModel(ExampleSet exampleSet, int k, Collection<String> dimensionNames,
 			DistanceMeasure distanceMeasure, boolean addClusterAsLabel, boolean removeUnknown) {
 		super(exampleSet, k, addClusterAsLabel, removeUnknown);
 		this.distanceMeasure = distanceMeasure;
@@ -56,7 +66,16 @@ public class CentroidClusterModel extends ClusterModel {
 		}
 	}
 
-	public CentroidClusterModel(ExampleSet exampleSet, int k, Attributes attributes, boolean addClusterAsLabel,
+    /**
+     * Instantiates a new Centroid cluster model.
+     *
+     * @param exampleSet        the example set
+     * @param k                 the k
+     * @param attributes        the attributes
+     * @param addClusterAsLabel the add cluster as label
+     * @param removeUnknown     the remove unknown
+     */
+    public CentroidClusterModel(ExampleSet exampleSet, int k, Attributes attributes, boolean addClusterAsLabel,
 			boolean removeUnknown) {
 		super(exampleSet, k, addClusterAsLabel, removeUnknown);
 		List<String> dimensionNames = new LinkedList<String>();
@@ -111,34 +130,61 @@ public class CentroidClusterModel extends ClusterModel {
 
 	}
 
-	public String[] getAttributeNames() {
+    /**
+     * Get attribute names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getAttributeNames() {
 		return dimensionNames.toArray(new String[dimensionNames.size()]);
 	}
 
-	/**
-	 * Returns the List of all defined centroids.
-	 */
-	public List<Centroid> getCentroids() {
+    /**
+     * Returns the List of all defined centroids.
+     *
+     * @return the centroids
+     */
+    public List<Centroid> getCentroids() {
 		return centroids;
 	}
 
-	public double[] getCentroidCoordinates(int i) {
+    /**
+     * Get centroid coordinates double [ ].
+     *
+     * @param i the
+     * @return the double [ ]
+     */
+    public double[] getCentroidCoordinates(int i) {
 		return centroids.get(i).getCentroid();
 	}
 
-	public Centroid getCentroid(int i) {
+    /**
+     * Gets centroid.
+     *
+     * @param i the
+     * @return the centroid
+     */
+    public Centroid getCentroid(int i) {
 		return centroids.get(i);
 	}
 
-	/**
-	 * This method assigns the given doubleArray to the cluster with the given index. Centroids are
-	 * calculated over all assigned arrays.
-	 */
-	public void assignExample(int clusterIndex, double[] example) {
+    /**
+     * This method assigns the given doubleArray to the cluster with the given index. Centroids are
+     * calculated over all assigned arrays.
+     *
+     * @param clusterIndex the cluster index
+     * @param example      the example
+     */
+    public void assignExample(int clusterIndex, double[] example) {
 		centroids.get(clusterIndex).assignExample(example);
 	}
 
-	public boolean finishAssign() {
+    /**
+     * Finish assign boolean.
+     *
+     * @return the boolean
+     */
+    public boolean finishAssign() {
 		boolean stable = true;
 		for (Centroid centroid : centroids) {
 			stable &= centroid.finishAssign();
@@ -146,7 +192,12 @@ public class CentroidClusterModel extends ClusterModel {
 		return stable;
 	}
 
-	public DistanceMeasure getDistanceMeasure() {
+    /**
+     * Gets distance measure.
+     *
+     * @return the distance measure
+     */
+    public DistanceMeasure getDistanceMeasure() {
 		return distanceMeasure;
 	}
 

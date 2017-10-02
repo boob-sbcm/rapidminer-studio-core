@@ -33,11 +33,12 @@ import java.util.List;
  * several {@link Ports} collections. This behaviour is needed, e.g., for the ProcessBranch
  * operator. Here, we have an arbitrary number of input ports each of which is linked to two
  * subprocesses ("if" and "else").
- * 
+ *
+ * @param <S> the type parameter
+ * @param <M> the type parameter
+ * @author Simon Fischer TODO: Unchecked?
  * @see SinglePortExtender
  * @see PortPairExtender
- * 
- * @author Simon Fischer TODO: Unchecked?
  */
 @SuppressWarnings("unchecked")
 public class MultiPortPairExtender<S extends Port, M extends Port> implements PortExtender {
@@ -61,17 +62,37 @@ public class MultiPortPairExtender<S extends Port, M extends Port> implements Po
 		}
 	};
 
-	protected class MultiPortPair {
+    /**
+     * The type Multi port pair.
+     */
+    protected class MultiPortPair {
 
-		protected S singlePort;
-		protected ArrayList<M> multiPorts;
+        /**
+         * The Single port.
+         */
+        protected S singlePort;
+        /**
+         * The Multi ports.
+         */
+        protected ArrayList<M> multiPorts;
 
-		public MultiPortPair(S singlePort, ArrayList<M> multiPorts) {
+        /**
+         * Instantiates a new Multi port pair.
+         *
+         * @param singlePort the single port
+         * @param multiPorts the multi ports
+         */
+        public MultiPortPair(S singlePort, ArrayList<M> multiPorts) {
 			this.singlePort = singlePort;
 			this.multiPorts = multiPorts;
 		}
 
-		public boolean isDisconnected() {
+        /**
+         * Is disconnected boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isDisconnected() {
 			if (singlePort.isConnected() || singlePort.isLocked()) {
 				return false;
 			}
@@ -84,7 +105,14 @@ public class MultiPortPairExtender<S extends Port, M extends Port> implements Po
 		}
 	}
 
-	public MultiPortPairExtender(String name, Ports<S> singlePorts, Ports<M>[] multiPortsList) {
+    /**
+     * Instantiates a new Multi port pair extender.
+     *
+     * @param name           the name
+     * @param singlePorts    the single ports
+     * @param multiPortsList the multi ports list
+     */
+    public MultiPortPairExtender(String name, Ports<S> singlePorts, Ports<M>[] multiPortsList) {
 		this.name = name;
 		this.singlePorts = singlePorts;
 		this.multiPortsList = new ArrayList<Ports<M>>(Arrays.asList(multiPortsList));
@@ -94,7 +122,13 @@ public class MultiPortPairExtender<S extends Port, M extends Port> implements Po
 		}
 	}
 
-	public void addMultiPorts(Ports<M> multiPorts, int index) {
+    /**
+     * Add multi ports.
+     *
+     * @param multiPorts the multi ports
+     * @param index      the index
+     */
+    public void addMultiPorts(Ports<M> multiPorts, int index) {
 		multiPortsList.add(index, multiPorts);
 		int id = 1;
 		for (MultiPortPair pair : managedPairs) {
@@ -105,7 +139,12 @@ public class MultiPortPairExtender<S extends Port, M extends Port> implements Po
 		updatePorts();
 	}
 
-	public void removeMultiPorts(int index) {
+    /**
+     * Remove multi ports.
+     *
+     * @param index the index
+     */
+    public void removeMultiPorts(int index) {
 		Ports<M> oldPorts = multiPortsList.remove(index);
 		oldPorts.removeObserver(observer);
 		for (MultiPortPair pair : managedPairs) {
@@ -156,8 +195,10 @@ public class MultiPortPairExtender<S extends Port, M extends Port> implements Po
 		}
 	}
 
-	/** Creates an initial port and starts to listen. */
-	public void start() {
+    /**
+     * Creates an initial port and starts to listen.
+     */
+    public void start() {
 		managedPairs.add(createPort());
 		fixNames();
 		singlePorts.addObserver(observer, false);
@@ -209,7 +250,12 @@ public class MultiPortPairExtender<S extends Port, M extends Port> implements Po
 		}
 	}
 
-	protected List<MultiPortPair> getManagedPairs() {
+    /**
+     * Gets managed pairs.
+     *
+     * @return the managed pairs
+     */
+    protected List<MultiPortPair> getManagedPairs() {
 		return managedPairs;
 	}
 

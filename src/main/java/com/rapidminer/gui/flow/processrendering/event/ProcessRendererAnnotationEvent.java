@@ -28,44 +28,47 @@ import com.rapidminer.gui.flow.processrendering.model.ProcessRendererModel;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public final class ProcessRendererAnnotationEvent {
 
-	/**
-	 * Defines different kind of {@link ProcessRendererAnnotationEvent}s.
-	 *
-	 */
-	public static enum AnnotationEvent {
-		/** fired when the annotation selection has changed */
-		SELECTED_ANNOTATION_CHANGED,
+    /**
+     * Defines different kind of {@link ProcessRendererAnnotationEvent}s.
+     */
+    public static enum AnnotationEvent {
+        /**
+         * fired when the annotation selection has changed
+         */
+        SELECTED_ANNOTATION_CHANGED,
 
-		/** fired when annotations changed their position */
-		ANNOTATIONS_MOVED,
+        /**
+         * fired when annotations changed their position
+         */
+        ANNOTATIONS_MOVED,
 
-		/** fired when something minor changes which only requires a repaint */
-		MISC_CHANGED;
+        /**
+         * fired when something minor changes which only requires a repaint
+         */
+        MISC_CHANGED;
 	}
 
 	private final AnnotationEvent type;
 
-	/**
-	 * Creates a new {@link ProcessRendererAnnotationEvent} instance for the specified
-	 * {@link AnnotationEvent}.
-	 *
-	 * @param type
-	 *            the event type
-	 */
-	public ProcessRendererAnnotationEvent(final AnnotationEvent type) {
+    /**
+     * Creates a new {@link ProcessRendererAnnotationEvent} instance for the specified
+     * {@link AnnotationEvent}.
+     *
+     * @param type the event type
+     */
+    public ProcessRendererAnnotationEvent(final AnnotationEvent type) {
 		this.type = type;
 	}
 
-	/**
-	 * Returns the {@link AnnotationEvent}.
-	 *
-	 * @return the type of the event
-	 */
-	public AnnotationEvent getEventType() {
+    /**
+     * Returns the {@link AnnotationEvent}.
+     *
+     * @return the type of the event
+     */
+    public AnnotationEvent getEventType() {
 		return type;
 	}
 }

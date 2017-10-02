@@ -61,9 +61,8 @@ import com.rapidminer.tools.I18N;
 
 /**
  * This dialog allows the user to manage existing crosshair lines in an advanced chart.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class ManageParallelLinesDialog extends JDialog {
 
@@ -114,10 +113,10 @@ public class ManageParallelLinesDialog extends JDialog {
 
 	private static final long serialVersionUID = 1932257219370926682L;
 
-	/**
-	 * Creates a new {@link ManageParallelLinesDialog}.
-	 */
-	public ManageParallelLinesDialog() {
+    /**
+     * Creates a new {@link ManageParallelLinesDialog}.
+     */
+    public ManageParallelLinesDialog() {
 		super(ApplicationFrame.getApplicationFrame());
 		setupGUI();
 	}
@@ -358,12 +357,12 @@ public class ManageParallelLinesDialog extends JDialog {
 		});
 	}
 
-	/**
-	 * Sets the current {@link JFreeChartPlotEngine} for this dialog.
-	 * 
-	 * @param engine
-	 */
-	public void setChartEngine(JFreeChartPlotEngine engine) {
+    /**
+     * Sets the current {@link JFreeChartPlotEngine} for this dialog.
+     *
+     * @param engine the engine
+     */
+    public void setChartEngine(JFreeChartPlotEngine engine) {
 		if (engine == null) {
 			throw new IllegalArgumentException("engine must not be null!");
 		}
@@ -372,10 +371,10 @@ public class ManageParallelLinesDialog extends JDialog {
 		setPlotConfiguration(engine.getPlotInstance().getMasterPlotConfiguration());
 	}
 
-	/**
-	 * Shows the dialog.
-	 */
-	public void showDialog() {
+    /**
+     * Shows the dialog.
+     */
+    public void showDialog() {
 		updateLineList();
 		setVisible(true);
 	}

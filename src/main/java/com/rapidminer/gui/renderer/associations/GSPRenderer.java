@@ -34,18 +34,18 @@ import com.rapidminer.operator.learner.associations.gsp.Sequence;
  */
 public class GSPRenderer extends AbstractTableModelTableRenderer {
 
-	/**
-	 * Position of the support column
-	 */
-	public static final int SUPPORT_COLUMN = 0;
-	/**
-	 * Position of the Transactions column
-	 */
-	public static final int TRANSACTIONS_COLUMN = 1;
-	/**
-	 * Position of the items column
-	 */
-	public static final int ITEMS_COLUMN = 2;
+    /**
+     * Position of the support column
+     */
+    public static final int SUPPORT_COLUMN = 0;
+    /**
+     * Position of the Transactions column
+     */
+    public static final int TRANSACTIONS_COLUMN = 1;
+    /**
+     * Position of the items column
+     */
+    public static final int ITEMS_COLUMN = 2;
 	/**
 	 * The offset caused by the SUPPORT, TRANSACTIONS, and ITEMS fields
 	 */

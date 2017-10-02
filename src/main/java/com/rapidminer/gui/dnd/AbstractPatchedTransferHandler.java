@@ -63,9 +63,8 @@ import javax.swing.TransferHandler;
  * TransferHandler and allows to set DnD Icons by overwriting the original
  * {@link SwingDragGestureRecognizer} and {@link DragHandler}. Furthermore it informs all
  * {@link DragListener}s when starting a Drag Action.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public abstract class AbstractPatchedTransferHandler extends TransferHandler implements Serializable {
 
@@ -78,11 +77,22 @@ public abstract class AbstractPatchedTransferHandler extends TransferHandler imp
 
 		private static final long serialVersionUID = 1L;
 
-		SwingDragGestureRecognizer() {
+        /**
+         * Instantiates a new Swing drag gesture recognizer.
+         */
+        SwingDragGestureRecognizer() {
 			super(DragSource.getDefaultDragSource(), null, NONE, null);
 		}
 
-		void gestured(JComponent c, MouseEvent e, int srcActions, int action) {
+        /**
+         * Gestured.
+         *
+         * @param c          the c
+         * @param e          the e
+         * @param srcActions the src actions
+         * @param action     the action
+         */
+        void gestured(JComponent c, MouseEvent e, int srcActions, int action) {
 			setComponent(c);
 			setSourceActions(srcActions);
 			appendEvent(e);
@@ -105,11 +115,18 @@ public abstract class AbstractPatchedTransferHandler extends TransferHandler imp
 
 	}
 
-	/**
-	 * Dirty hack to get the drop target listener defined in {@link TransferHandler} by method
-	 * invokation.
-	 */
-	public static DropTargetListener getDropTargetListener() throws NoSuchMethodException, SecurityException,
+    /**
+     * Dirty hack to get the drop target listener defined in {@link TransferHandler} by method
+     * invokation.
+     *
+     * @return the drop target listener
+     * @throws NoSuchMethodException     the no such method exception
+     * @throws SecurityException         the security exception
+     * @throws IllegalAccessException    the illegal access exception
+     * @throws IllegalArgumentException  the illegal argument exception
+     * @throws InvocationTargetException the invocation target exception
+     */
+    public static DropTargetListener getDropTargetListener() throws NoSuchMethodException, SecurityException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		Method m;
 		m = TransferHandler.class.getDeclaredMethod("getDropTargetListener");
@@ -213,7 +230,10 @@ public abstract class AbstractPatchedTransferHandler extends TransferHandler imp
 		public void dropActionChanged(DragSourceDragEvent dsde) {}
 	}
 
-	protected class hidePopupAction implements ActionListener {
+    /**
+     * The type Hide popup action.
+     */
+    protected class hidePopupAction implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -221,7 +241,10 @@ public abstract class AbstractPatchedTransferHandler extends TransferHandler imp
 		}
 	}
 
-	protected class showPopupAction implements ActionListener {
+    /**
+     * The type Show popup action.
+     */
+    protected class showPopupAction implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -237,7 +260,10 @@ public abstract class AbstractPatchedTransferHandler extends TransferHandler imp
 	private Timer hideTimer, showTimer;
 	private String reason;
 
-	public AbstractPatchedTransferHandler() {
+    /**
+     * Instantiates a new Abstract patched transfer handler.
+     */
+    public AbstractPatchedTransferHandler() {
 		hideTimer = new Timer(HIDE_DELAY, new hidePopupAction());
 		hideTimer.setRepeats(false);
 		showTimer = new Timer(SHOW_DELAY, new showPopupAction());
@@ -363,7 +389,13 @@ public abstract class AbstractPatchedTransferHandler extends TransferHandler imp
 		}
 	}
 
-	protected void updateDropDeniedTooltip(JComponent comp, String deniedReason) {
+    /**
+     * Update drop denied tooltip.
+     *
+     * @param comp         the comp
+     * @param deniedReason the denied reason
+     */
+    protected void updateDropDeniedTooltip(JComponent comp, String deniedReason) {
 
 		// if there is a tooltip to show
 		if (deniedReason != null) {
@@ -415,11 +447,21 @@ public abstract class AbstractPatchedTransferHandler extends TransferHandler imp
 		}
 	}
 
-	public void addDragListener(DragListener l) {
+    /**
+     * Add drag listener.
+     *
+     * @param l the l
+     */
+    public void addDragListener(DragListener l) {
 		listeners.add(l);
 	}
 
-	public void removeDragListener(DragListener l) {
+    /**
+     * Remove drag listener.
+     *
+     * @param l the l
+     */
+    public void removeDragListener(DragListener l) {
 		listeners.remove(l);
 	}
 }

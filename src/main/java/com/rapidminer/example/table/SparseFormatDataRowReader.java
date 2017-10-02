@@ -37,28 +37,40 @@ import java.util.StringTokenizer;
  * case, indices are assigned to the attributes. If an {@link AbstractExampleTable} is generated
  * using instances of this class, the constructor of {@link AbstractExampleTable} will reassign
  * these indexes.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class SparseFormatDataRowReader extends AbstractDataRowReader {
 
-	/** Names of the formats. */
-	public static final String[] FORMAT_NAMES = { "xy", "yx", "prefix", "separate_file", "no_label" };
+    /**
+     * Names of the formats.
+     */
+    public static final String[] FORMAT_NAMES = { "xy", "yx", "prefix", "separate_file", "no_label" };
 
-	/** Label succeeds attributes. */
-	public static final int FORMAT_XY = 0;
+    /**
+     * Label succeeds attributes.
+     */
+    public static final int FORMAT_XY = 0;
 
-	/** Label preceeds attributes. */
-	public static final int FORMAT_YX = 1;
+    /**
+     * Label preceeds attributes.
+     */
+    public static final int FORMAT_YX = 1;
 
-	/** Label has a prefix specified in the prefix map. */
-	public static final int FORMAT_PREFIX = 2;
+    /**
+     * Label has a prefix specified in the prefix map.
+     */
+    public static final int FORMAT_PREFIX = 2;
 
-	/** Label is in separate file. */
-	public static final int FORMAT_SEPARATE_FILE = 3;
+    /**
+     * Label is in separate file.
+     */
+    public static final int FORMAT_SEPARATE_FILE = 3;
 
-	/** Label is missing. */
-	public static final int FORMAT_NO_LABEL = 4;
+    /**
+     * Label is missing.
+     */
+    public static final int FORMAT_NO_LABEL = 4;
 
 	/** Reader for the labels. */
 	private BufferedReader inAttributes, inLabels;
@@ -98,34 +110,21 @@ public class SparseFormatDataRowReader extends AbstractDataRowReader {
 
 	private char quoteChar;
 
-	/**
-	 * Creates a new data row reader for sparse format. The attributes indices must not be set. If
-	 * they are, they are reassigned new values when this constructor is called!
-	 * 
-	 * @param factory
-	 *            Factory used to create {@link DataRow} instances.
-	 * @param format
-	 *            One Out of FORMAT_XY, FORMAT_YX, FORMAT_PREFIX, and FORMAT_SEPARATE_FILE.
-	 * @param prefixMap
-	 *            Maps prefixes to special attribute names (e.g. &quot;l&quot; to
-	 *            &quot;label&quot;).
-	 * @param attributeSet
-	 *            Set of regular and special attributes.
-	 * @param attributeReader
-	 *            Reader for the data
-	 * @param labelReader
-	 *            Reader for the labels. Only necessary if format is FORMAT_SEPARATE_FILE.
-	 * @param sampleSize
-	 *            sample size, may be -1 for no limit.
-	 * 
-	 * @param useQuotesForNominalValues
-	 *            Determines whether nominal values are surrounded by quotes or not. If
-	 *            <code>useQuotesForNominalValues == true</code> the first and last character of the
-	 *            nominal values are ignored.
-	 * @param quoteChar
-	 *            The char that is used to surround nominal values.
-	 */
-	public SparseFormatDataRowReader(DataRowFactory factory, int format, Map<String, String> prefixMap,
+    /**
+     * Creates a new data row reader for sparse format. The attributes indices must not be set. If
+     * they are, they are reassigned new values when this constructor is called!
+     *
+     * @param factory                   Factory used to create {@link DataRow} instances.
+     * @param format                    One Out of FORMAT_XY, FORMAT_YX, FORMAT_PREFIX, and FORMAT_SEPARATE_FILE.
+     * @param prefixMap                 Maps prefixes to special attribute names (e.g. &quot;l&quot; to            &quot;label&quot;).
+     * @param attributeSet              Set of regular and special attributes.
+     * @param attributeReader           Reader for the data
+     * @param labelReader               Reader for the labels. Only necessary if format is FORMAT_SEPARATE_FILE.
+     * @param sampleSize                sample size, may be -1 for no limit.
+     * @param useQuotesForNominalValues Determines whether nominal values are surrounded by quotes or not. If            <code>useQuotesForNominalValues == true</code> the first and last character of the            nominal values are ignored.
+     * @param quoteChar                 The char that is used to surround nominal values.
+     */
+    public SparseFormatDataRowReader(DataRowFactory factory, int format, Map<String, String> prefixMap,
 			AttributeSet attributeSet, Reader attributeReader, Reader labelReader, int sampleSize,
 			boolean useQuotesForNominalValues, char quoteChar) {
 		super(factory);

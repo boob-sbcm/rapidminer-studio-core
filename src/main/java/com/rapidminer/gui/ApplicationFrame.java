@@ -38,7 +38,12 @@ public abstract class ApplicationFrame extends JFrame {
 	// of the frame.
 	private final StatusBar statusBar = new StatusBar();
 
-	public ApplicationFrame(String title) {
+    /**
+     * Instantiates a new Application frame.
+     *
+     * @param title the title
+     */
+    public ApplicationFrame(String title) {
 		super(title);
 		if (applicationFrame != null) {
 			throw new RuntimeException("Can only have one application frame.");
@@ -46,16 +51,21 @@ public abstract class ApplicationFrame extends JFrame {
 		applicationFrame = this;
 	}
 
-	/**
-	 * Returns the status bar of the application.
-	 *
-	 * @return status bar
-	 */
-	public StatusBar getStatusBar() {
+    /**
+     * Returns the status bar of the application.
+     *
+     * @return status bar
+     */
+    public StatusBar getStatusBar() {
 		return statusBar;
 	}
 
-	public static ApplicationFrame getApplicationFrame() {
+    /**
+     * Gets application frame.
+     *
+     * @return the application frame
+     */
+    public static ApplicationFrame getApplicationFrame() {
 		return applicationFrame;
 	}
 }

@@ -27,16 +27,23 @@ import com.rapidminer.parameter.PortProvider;
 /**
  * This condition checks whether a {@link InputPort} of a {@link Operator} is connected or not. The
  * condition is fulfilled if the {@link InputPort} is NOT connected.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class PortConnectedCondition extends ParameterCondition {
 
 	private final PortProvider portProvider;
 	private final boolean connected;
 
-	public PortConnectedCondition(ParameterHandler handler, PortProvider portProvider, boolean becomeMandatory,
+    /**
+     * Instantiates a new Port connected condition.
+     *
+     * @param handler         the handler
+     * @param portProvider    the port provider
+     * @param becomeMandatory the become mandatory
+     * @param connected       the connected
+     */
+    public PortConnectedCondition(ParameterHandler handler, PortProvider portProvider, boolean becomeMandatory,
 			boolean connected) {
 		super(handler, becomeMandatory);
 		this.portProvider = portProvider;

@@ -77,7 +77,6 @@ import com.rapidminer.tools.ParameterService;
  * dialog and returns the location selected by the user.
  *
  * @author Simon Fischer, Tobias Malbrecht
- *
  */
 public class RepositoryLocationChooser extends JPanel implements Observer<Boolean> {
 
@@ -85,7 +84,10 @@ public class RepositoryLocationChooser extends JPanel implements Observer<Boolea
 
 	private final RepositoryTree tree;
 
-	JLabel locationLabel;
+    /**
+     * The Location label.
+     */
+    JLabel locationLabel;
 	private final JTextField locationField = new JTextField(30);
 	private final RepositoryEntryTextField locationFieldRepositoryEntry = new RepositoryEntryTextField();
 	private JLabel selectionErrorTextLabel;
@@ -122,7 +124,17 @@ public class RepositoryLocationChooser extends JPanel implements Observer<Boolea
 		private final JButton okButton;
 		private final JButton cancelButton;
 
-		public RepositoryLocationChooserDialog(Window owner, RepositoryLocation resolveRelativeTo, String initialValue,
+        /**
+         * Instantiates a new Repository location chooser dialog.
+         *
+         * @param owner                     the owner
+         * @param resolveRelativeTo         the resolve relative to
+         * @param initialValue              the initial value
+         * @param allowEntries              the allow entries
+         * @param allowFolders              the allow folders
+         * @param onlyWriteableRepositories the only writeable repositories
+         */
+        public RepositoryLocationChooserDialog(Window owner, RepositoryLocation resolveRelativeTo, String initialValue,
 				final boolean allowEntries, final boolean allowFolders, final boolean onlyWriteableRepositories) {
 			super(owner, "repository_chooser", ModalityType.APPLICATION_MODAL, new Object[] {});
 			okButton = makeOkButton();
@@ -163,28 +175,77 @@ public class RepositoryLocationChooser extends JPanel implements Observer<Boolea
 		}
 	}
 
-	public RepositoryLocationChooser(Dialog owner, RepositoryLocation resolveRelativeTo, String initialValue) {
+    /**
+     * Instantiates a new Repository location chooser.
+     *
+     * @param owner             the owner
+     * @param resolveRelativeTo the resolve relative to
+     * @param initialValue      the initial value
+     */
+    public RepositoryLocationChooser(Dialog owner, RepositoryLocation resolveRelativeTo, String initialValue) {
 		this(owner, resolveRelativeTo, initialValue, true, false);
 	}
 
-	public RepositoryLocationChooser(Dialog owner, RepositoryLocation resolveRelativeTo, String initialValue,
+    /**
+     * Instantiates a new Repository location chooser.
+     *
+     * @param owner             the owner
+     * @param resolveRelativeTo the resolve relative to
+     * @param initialValue      the initial value
+     * @param allowEntries      the allow entries
+     * @param allowFolders      the allow folders
+     */
+    public RepositoryLocationChooser(Dialog owner, RepositoryLocation resolveRelativeTo, String initialValue,
 			final boolean allowEntries, final boolean allowFolders) {
 		this(owner, resolveRelativeTo, initialValue, allowEntries, allowFolders, false);
 	}
 
-	public RepositoryLocationChooser(Dialog owner, RepositoryLocation resolveRelativeTo, String initialValue,
+    /**
+     * Instantiates a new Repository location chooser.
+     *
+     * @param owner                           the owner
+     * @param resolveRelativeTo               the resolve relative to
+     * @param initialValue                    the initial value
+     * @param allowEntries                    the allow entries
+     * @param allowFolders                    the allow folders
+     * @param enforceValidRepositoryEntryName the enforce valid repository entry name
+     */
+    public RepositoryLocationChooser(Dialog owner, RepositoryLocation resolveRelativeTo, String initialValue,
 			boolean allowEntries, boolean allowFolders, boolean enforceValidRepositoryEntryName) {
 		this(owner, resolveRelativeTo, initialValue, allowEntries, allowFolders, enforceValidRepositoryEntryName, false);
 	}
 
-	public RepositoryLocationChooser(Dialog owner, RepositoryLocation resolveRelativeTo, String initialValue,
+    /**
+     * Instantiates a new Repository location chooser.
+     *
+     * @param owner                           the owner
+     * @param resolveRelativeTo               the resolve relative to
+     * @param initialValue                    the initial value
+     * @param allowEntries                    the allow entries
+     * @param allowFolders                    the allow folders
+     * @param enforceValidRepositoryEntryName the enforce valid repository entry name
+     * @param onlyWriteableRepositories       the only writeable repositories
+     */
+    public RepositoryLocationChooser(Dialog owner, RepositoryLocation resolveRelativeTo, String initialValue,
 			final boolean allowEntries, final boolean allowFolders, boolean enforceValidRepositoryEntryName,
 			final boolean onlyWriteableRepositories) {
 		this(owner, resolveRelativeTo, initialValue, allowEntries, allowFolders, enforceValidRepositoryEntryName,
 				onlyWriteableRepositories, null);
 	}
 
-	public RepositoryLocationChooser(Dialog owner, RepositoryLocation resolveRelativeTo, String initialValue,
+    /**
+     * Instantiates a new Repository location chooser.
+     *
+     * @param owner                           the owner
+     * @param resolveRelativeTo               the resolve relative to
+     * @param initialValue                    the initial value
+     * @param allowEntries                    the allow entries
+     * @param allowFolders                    the allow folders
+     * @param enforceValidRepositoryEntryName the enforce valid repository entry name
+     * @param onlyWriteableRepositories       the only writeable repositories
+     * @param backgroundColor                 the background color
+     */
+    public RepositoryLocationChooser(Dialog owner, RepositoryLocation resolveRelativeTo, String initialValue,
 			final boolean allowEntries, final boolean allowFolders, boolean enforceValidRepositoryEntryName,
 			final boolean onlyWriteableRepositories, Color backgroundColor) {
 		if (initialValue != null) {
@@ -344,20 +405,25 @@ public class RepositoryLocationChooser extends JPanel implements Observer<Boolea
 		}
 	}
 
-	/**
-	 * Sets the name of the repository entry for the file chooser.
-	 *
-	 * @param name
-	 *            the new name of the repository entry
-	 */
-	public void setRepositoryEntryName(final String name) {
+    /**
+     * Sets the name of the repository entry for the file chooser.
+     *
+     * @param name the new name of the repository entry
+     */
+    public void setRepositoryEntryName(final String name) {
 		locationFieldRepositoryEntry.setText(name);
 		locationField.setText(name);
 		updateSelection();
 		updateResult();
 	}
 
-	public String getRepositoryLocation() throws MalformedRepositoryLocationException {
+    /**
+     * Gets repository location.
+     *
+     * @return the repository location
+     * @throws MalformedRepositoryLocationException the malformed repository location exception
+     */
+    public String getRepositoryLocation() throws MalformedRepositoryLocationException {
 		if (tree.getSelectionPath() != null) {
 			Entry selectedEntry = (Entry) tree.getSelectionPath().getLastPathComponent();
 			RepositoryLocation selectedLocation = selectedEntry.getLocation();
@@ -382,7 +448,12 @@ public class RepositoryLocationChooser extends JPanel implements Observer<Boolea
 		}
 	}
 
-	public boolean isEntryValid() {
+    /**
+     * Is entry valid boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isEntryValid() {
 		if (!enforceValidRepositoryEntryName) {
 			return hasSelection();
 		} else {
@@ -390,13 +461,22 @@ public class RepositoryLocationChooser extends JPanel implements Observer<Boolea
 		}
 	}
 
-	/** Same as {@link #hasSelection(boolean)} with parameter false. */
-	public boolean hasSelection() {
+    /**
+     * Same as {@link #hasSelection(boolean)} with parameter false.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean hasSelection() {
 		return hasSelection(false);
 	}
 
-	/** Returns true if the user entered a valid, non-empty repository location. */
-	public boolean hasSelection(boolean allowFolders) {
+    /**
+     * Returns true if the user entered a valid, non-empty repository location.  @param allowFolders the allow folders
+     *
+     * @param allowFolders the allow folders
+     * @return the boolean
+     */
+    public boolean hasSelection(boolean allowFolders) {
 		if (!allowFolders
 				&& (enforceValidRepositoryEntryName && locationFieldRepositoryEntry.getText().isEmpty()
 						|| !enforceValidRepositoryEntryName && locationField.getText().isEmpty()
@@ -420,11 +500,21 @@ public class RepositoryLocationChooser extends JPanel implements Observer<Boolea
 		}
 	}
 
-	public boolean resolveRelative() {
+    /**
+     * Resolve relative boolean.
+     *
+     * @return the boolean
+     */
+    public boolean resolveRelative() {
 		return resolveBox.isSelected();
 	}
 
-	public void setResolveRelative(boolean resolveRelative) {
+    /**
+     * Sets resolve relative.
+     *
+     * @param resolveRelative the resolve relative
+     */
+    public void setResolveRelative(boolean resolveRelative) {
 		if (resolveBox != null) {
 			if (!resolveRelative && resolveBox.isSelected()) {
 				resolveBox.doClick();
@@ -434,62 +524,138 @@ public class RepositoryLocationChooser extends JPanel implements Observer<Boolea
 		}
 	}
 
-	public void addChangeListener(ChangeListener l) {
+    /**
+     * Add change listener.
+     *
+     * @param l the l
+     */
+    public void addChangeListener(ChangeListener l) {
 		listeners.add(l);
 	}
 
-	public void removeChangeListener(ChangeListener l) {
+    /**
+     * Remove change listener.
+     *
+     * @param l the l
+     */
+    public void removeChangeListener(ChangeListener l) {
 		listeners.remove(l);
 	}
 
-	/**
-	 * This will open a window to select a repository entry that is an entry or returns null if the
-	 * user aborts the operation. Enforces a valid repository entry name.
-	 */
-	public static String selectEntry(RepositoryLocation resolveRelativeTo, Component c,
+    /**
+     * This will open a window to select a repository entry that is an entry or returns null if the
+     * user aborts the operation. Enforces a valid repository entry name.
+     *
+     * @param resolveRelativeTo               the resolve relative to
+     * @param c                               the c
+     * @param enforceValidRepositoryEntryName the enforce valid repository entry name
+     * @return the string
+     */
+    public static String selectEntry(RepositoryLocation resolveRelativeTo, Component c,
 			boolean enforceValidRepositoryEntryName) {
 		return selectLocation(resolveRelativeTo, null, c, true, false, false, enforceValidRepositoryEntryName);
 	}
 
-	/**
-	 * This will open a window to select a repository entry that is an entry or returns null if the
-	 * user aborts the operation.
-	 */
-	public static String selectEntry(RepositoryLocation resolveRelativeTo, Component c) {
+    /**
+     * This will open a window to select a repository entry that is an entry or returns null if the
+     * user aborts the operation.
+     *
+     * @param resolveRelativeTo the resolve relative to
+     * @param c                 the c
+     * @return the string
+     */
+    public static String selectEntry(RepositoryLocation resolveRelativeTo, Component c) {
 		return selectLocation(resolveRelativeTo, null, c, true, false, false, true);
 	}
 
-	/**
-	 * This will open a window to select a repository entry that is a folder or null if the user
-	 * chooses to abort.
-	 */
-	public static String selectFolder(RepositoryLocation resolveRelativeTo, Component c) {
+    /**
+     * This will open a window to select a repository entry that is a folder or null if the user
+     * chooses to abort.
+     *
+     * @param resolveRelativeTo the resolve relative to
+     * @param c                 the c
+     * @return the string
+     */
+    public static String selectFolder(RepositoryLocation resolveRelativeTo, Component c) {
 		return selectLocation(resolveRelativeTo, null, c, false, true);
 	}
 
-	public static String selectLocation(RepositoryLocation resolveRelativeTo, Component c) {
+    /**
+     * Select location string.
+     *
+     * @param resolveRelativeTo the resolve relative to
+     * @param c                 the c
+     * @return the string
+     */
+    public static String selectLocation(RepositoryLocation resolveRelativeTo, Component c) {
 		return selectLocation(resolveRelativeTo, null, c, true, true);
 	}
 
-	public static String selectLocation(RepositoryLocation resolveRelativeTo, String initialValue, Component c,
+    /**
+     * Select location string.
+     *
+     * @param resolveRelativeTo the resolve relative to
+     * @param initialValue      the initial value
+     * @param c                 the c
+     * @param selectEntries     the select entries
+     * @param selectFolder      the select folder
+     * @return the string
+     */
+    public static String selectLocation(RepositoryLocation resolveRelativeTo, String initialValue, Component c,
 			final boolean selectEntries, final boolean selectFolder) {
 		return selectLocation(resolveRelativeTo, initialValue, c, selectEntries, selectFolder, false);
 	}
 
-	public static String selectLocation(RepositoryLocation resolveRelativeTo, String initialValue, Component c,
+    /**
+     * Select location string.
+     *
+     * @param resolveRelativeTo           the resolve relative to
+     * @param initialValue                the initial value
+     * @param c                           the c
+     * @param selectEntries               the select entries
+     * @param selectFolder                the select folder
+     * @param forceDisableRelativeResolve the force disable relative resolve
+     * @return the string
+     */
+    public static String selectLocation(RepositoryLocation resolveRelativeTo, String initialValue, Component c,
 			final boolean selectEntries, final boolean selectFolder, final boolean forceDisableRelativeResolve) {
 		return selectLocation(resolveRelativeTo, initialValue, c, selectEntries, selectFolder, forceDisableRelativeResolve,
 				false);
 	}
 
-	public static String selectLocation(RepositoryLocation resolveRelativeTo, String initialValue, Component c,
+    /**
+     * Select location string.
+     *
+     * @param resolveRelativeTo               the resolve relative to
+     * @param initialValue                    the initial value
+     * @param c                               the c
+     * @param selectEntries                   the select entries
+     * @param selectFolder                    the select folder
+     * @param forceDisableRelativeResolve     the force disable relative resolve
+     * @param enforceValidRepositoryEntryName the enforce valid repository entry name
+     * @return the string
+     */
+    public static String selectLocation(RepositoryLocation resolveRelativeTo, String initialValue, Component c,
 			final boolean selectEntries, final boolean selectFolder, final boolean forceDisableRelativeResolve,
 			final boolean enforceValidRepositoryEntryName) {
 		return selectLocation(resolveRelativeTo, initialValue, c, selectEntries, selectFolder, forceDisableRelativeResolve,
 				enforceValidRepositoryEntryName, false);
 	}
 
-	public static String selectLocation(RepositoryLocation resolveRelativeTo, String initialValue, Component c,
+    /**
+     * Select location string.
+     *
+     * @param resolveRelativeTo               the resolve relative to
+     * @param initialValue                    the initial value
+     * @param c                               the c
+     * @param selectEntries                   the select entries
+     * @param selectFolder                    the select folder
+     * @param forceDisableRelativeResolve     the force disable relative resolve
+     * @param enforceValidRepositoryEntryName the enforce valid repository entry name
+     * @param onlyWriteableRepositories       the only writeable repositories
+     * @return the string
+     */
+    public static String selectLocation(RepositoryLocation resolveRelativeTo, String initialValue, Component c,
 			final boolean selectEntries, final boolean selectFolder, final boolean forceDisableRelativeResolve,
 			final boolean enforceValidRepositoryEntryName, final boolean onlyWriteableRepositories) {
 		final RepositoryLocationChooserDialog dialog = new RepositoryLocationChooserDialog(
@@ -578,11 +744,21 @@ public class RepositoryLocationChooser extends JPanel implements Observer<Boolea
 		}
 	}
 
-	public boolean isEnforceValidRepositoryEntryName() {
+    /**
+     * Is enforce valid repository entry name boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isEnforceValidRepositoryEntryName() {
 		return enforceValidRepositoryEntryName;
 	}
 
-	public void setEnforceValidRepositoryEntryName(final boolean enforceValidRepositoryEntryName) {
+    /**
+     * Sets enforce valid repository entry name.
+     *
+     * @param enforceValidRepositoryEntryName the enforce valid repository entry name
+     */
+    public void setEnforceValidRepositoryEntryName(final boolean enforceValidRepositoryEntryName) {
 		if (SwingUtilities.isEventDispatchThread()) {
 			this.enforceValidRepositoryEntryName = enforceValidRepositoryEntryName;
 			this.locationLabel.setVisible(!enforceValidRepositoryEntryName);

@@ -48,29 +48,27 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * slower than the examples above.
  *
  * @author Gisa Schaefer
- *
  */
 public class Evaluation extends AbstractFunction {
 
 	private AntlrParser parser;
 
-	/**
-	 * Creates a evaluation {@link Function}. Before this functions
-	 * {@link #compute(ExpressionEvaluator...)} method can be called, a parser needs to be set via
-	 * {@link #setParser(AntlrParser)}.
-	 */
-	public Evaluation() {
+    /**
+     * Creates a evaluation {@link Function}. Before this functions
+     * {@link #compute(ExpressionEvaluator...)} method can be called, a parser needs to be set via
+     * {@link #setParser(AntlrParser)}.
+     */
+    public Evaluation() {
 		super("process.eval", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, Ontology.ATTRIBUTE_VALUE);
 	}
 
-	/**
-	 * Sets the parser that this evaluation function should use. This must always be done before
-	 * using {@link #compute(ExpressionEvaluator...)}.
-	 *
-	 * @param parser
-	 *            the parser to use
-	 */
-	public void setParser(AntlrParser parser) {
+    /**
+     * Sets the parser that this evaluation function should use. This must always be done before
+     * using {@link #compute(ExpressionEvaluator...)}.
+     *
+     * @param parser the parser to use
+     */
+    public void setParser(AntlrParser parser) {
 		this.parser = parser;
 	}
 

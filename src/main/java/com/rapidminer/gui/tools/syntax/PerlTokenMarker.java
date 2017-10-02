@@ -31,23 +31,40 @@ import javax.swing.text.Segment;
 
 /**
  * Perl token marker.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class PerlTokenMarker extends TokenMarker {
 
-	// public members
+    /**
+     * The constant S_ONE.
+     */
+// public members
 	public static final byte S_ONE = Token.INTERNAL_FIRST;
 
-	public static final byte S_TWO = (byte) (Token.INTERNAL_FIRST + 1);
+    /**
+     * The constant S_TWO.
+     */
+    public static final byte S_TWO = (byte) (Token.INTERNAL_FIRST + 1);
 
-	public static final byte S_END = (byte) (Token.INTERNAL_FIRST + 2);
+    /**
+     * The constant S_END.
+     */
+    public static final byte S_END = (byte) (Token.INTERNAL_FIRST + 2);
 
-	public PerlTokenMarker() {
+    /**
+     * Instantiates a new Perl token marker.
+     */
+    public PerlTokenMarker() {
 		this(getKeywords());
 	}
 
-	public PerlTokenMarker(KeywordMap keywords) {
+    /**
+     * Instantiates a new Perl token marker.
+     *
+     * @param keywords the keywords
+     */
+    public PerlTokenMarker(KeywordMap keywords) {
 		this.keywords = keywords;
 	}
 

@@ -27,12 +27,17 @@ import com.rapidminer.operator.learner.tree.criterions.GainRatioCriterion;
  * This operator calculates the relevance of a feature by computing the information gain ratio for
  * the class distribution (if exampleSet would have been splitted according to each of the given
  * features).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class InfoGainRatioWeighting extends AbstractEntropyWeighting {
 
-	public InfoGainRatioWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Info gain ratio weighting.
+     *
+     * @param description the description
+     */
+    public InfoGainRatioWeighting(OperatorDescription description) {
 		super(description);
 	}
 

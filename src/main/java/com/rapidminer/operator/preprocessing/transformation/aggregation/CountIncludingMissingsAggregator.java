@@ -29,7 +29,7 @@ import java.util.HashSet;
  * This is an {@link Aggregator} for the {@link CountIncludingMissingsAggregationFunction} It counts
  * all examples, if not ignoreMissing is true. Anyway, if only distinct values are counted, Missings
  * are ignored.
- * 
+ *
  * @author Sebastian Land
  */
 public class CountIncludingMissingsAggregator implements Aggregator {
@@ -41,7 +41,12 @@ public class CountIncludingMissingsAggregator implements Aggregator {
 	private boolean isCountingOnlyDistinct = false;
 	private HashSet<Double> valuesOccured = null;
 
-	public CountIncludingMissingsAggregator(AggregationFunction function) {
+    /**
+     * Instantiates a new Count including missings aggregator.
+     *
+     * @param function the function
+     */
+    public CountIncludingMissingsAggregator(AggregationFunction function) {
 		this.sourceAttribute = function.getSourceAttribute();
 		ignoreMissings = function.isIgnoringMissings();
 		this.isCountingOnlyDistinct = function.isCountingOnlyDistinct();
@@ -84,11 +89,21 @@ public class CountIncludingMissingsAggregator implements Aggregator {
 		row.set(attribute, count);
 	}
 
-	public double getCount() {
+    /**
+     * Gets count.
+     *
+     * @return the count
+     */
+    public double getCount() {
 		return count;
 	}
 
-	public void setCount(double count) {
+    /**
+     * Sets count.
+     *
+     * @param count the count
+     */
+    public void setCount(double count) {
 		this.count = count;
 	}
 }

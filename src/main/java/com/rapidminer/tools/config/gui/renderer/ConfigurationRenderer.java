@@ -35,7 +35,6 @@ import com.rapidminer.tools.config.AbstractConfigurator;
  * The renderer for the {@link JList} displaying {@link AbstractConfigurator}s.
  *
  * @author Marcel Michel
- *
  */
 public class ConfigurationRenderer extends DefaultListCellRenderer {
 
@@ -58,14 +57,14 @@ public class ConfigurationRenderer extends DefaultListCellRenderer {
 		return label;
 	}
 
-	/**
-	 * Returns the (cached) {@link Icon} for the given {@link Configurator} type. If no icon was
-	 * defined, returns <code>null</code>.
-	 *
-	 * @param configurator
-	 * @return
-	 */
-	public static Icon getIconForType(AbstractConfigurator<?> configurator) {
+    /**
+     * Returns the (cached) {@link Icon} for the given {@link Configurator} type. If no icon was
+     * defined, returns <code>null</code>.
+     *
+     * @param configurator the configurator
+     * @return icon for type
+     */
+    public static Icon getIconForType(AbstractConfigurator<?> configurator) {
 		if (configurator == null) {
 			return null;
 		}

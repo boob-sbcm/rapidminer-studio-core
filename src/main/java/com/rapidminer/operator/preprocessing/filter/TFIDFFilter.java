@@ -52,11 +52,11 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class TFIDFFilter extends AbstractDataProcessing {
 
-	/**
-	 * The parameter name for &quot;Indicates if term frequency values should be generated (must be
-	 * done if input data is given as simple occurence counts).&quot;
-	 */
-	public static final String PARAMETER_CALCULATE_TERM_FREQUENCIES = "calculate_term_frequencies";
+    /**
+     * The parameter name for &quot;Indicates if term frequency values should be generated (must be
+     * done if input data is given as simple occurence counts).&quot;
+     */
+    public static final String PARAMETER_CALCULATE_TERM_FREQUENCIES = "calculate_term_frequencies";
 
 	/**
 	 * Incompatible version, old version writes into the exampleset, if original output port is not
@@ -64,7 +64,12 @@ public class TFIDFFilter extends AbstractDataProcessing {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public TFIDFFilter(OperatorDescription description) {
+    /**
+     * Instantiates a new Tfidf filter.
+     *
+     * @param description the description
+     */
+    public TFIDFFilter(OperatorDescription description) {
 		super(description);
 	}
 

@@ -47,27 +47,44 @@ import java.util.List;
 /**
  * An evaluator for centroid based clustering methods. The average within cluster distance is
  * calculated by averaging the distance between the centroid and all examples of a cluster.
- * 
+ *
  * @author Sebastian Land, Michael Wurst, Ingo Mierswa
- * 
  */
 public class CentroidBasedEvaluator extends Operator {
 
-	public static final String PARAMETER_MAIN_CRITERION = "main_criterion";
+    /**
+     * The constant PARAMETER_MAIN_CRITERION.
+     */
+    public static final String PARAMETER_MAIN_CRITERION = "main_criterion";
 
-	public static final String PARAMETER_MAIN_CRITERION_ONLY = "main_criterion_only";
+    /**
+     * The constant PARAMETER_MAIN_CRITERION_ONLY.
+     */
+    public static final String PARAMETER_MAIN_CRITERION_ONLY = "main_criterion_only";
 
-	public static final String PARAMETER_NORMALIZE = "normalize";
+    /**
+     * The constant PARAMETER_NORMALIZE.
+     */
+    public static final String PARAMETER_NORMALIZE = "normalize";
 
-	public static final String PARAMETER_MAXIMIZE = "maximize";
+    /**
+     * The constant PARAMETER_MAXIMIZE.
+     */
+    public static final String PARAMETER_MAXIMIZE = "maximize";
 
 	private double avgWithinClusterDistance;
 
 	private double daviesBouldin;
 
-	public static final String[] CRITERIA_LIST = { "Avg. within centroid distance", "Davies Bouldin" };
+    /**
+     * The constant CRITERIA_LIST.
+     */
+    public static final String[] CRITERIA_LIST = { "Avg. within centroid distance", "Davies Bouldin" };
 
-	public static final String[] CRITERIA_LIST_SHORT = { "avg_within_distance", "DaviesBouldin" };
+    /**
+     * The constant CRITERIA_LIST_SHORT.
+     */
+    public static final String[] CRITERIA_LIST_SHORT = { "avg_within_distance", "DaviesBouldin" };
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private InputPort clusterModelInput = getInputPorts().createPort("cluster model", CentroidClusterModel.class);
@@ -76,10 +93,12 @@ public class CentroidBasedEvaluator extends Operator {
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort clusterModelOutput = getOutputPorts().createPort("cluster model");
 
-	/**
-	 * Constructor for ClusterDensityEvaluator.
-	 */
-	public CentroidBasedEvaluator(OperatorDescription description) {
+    /**
+     * Constructor for ClusterDensityEvaluator.
+     *
+     * @param description the description
+     */
+    public CentroidBasedEvaluator(OperatorDescription description) {
 		super(description);
 		performanceInput.addPrecondition(new SimplePrecondition(performanceInput, new MetaData(PerformanceVector.class),
 				false));

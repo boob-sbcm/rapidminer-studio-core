@@ -20,11 +20,16 @@ package com.rapidminer.operator;
 
 /**
  * These listeners will be notified after a new operator was added to a chain.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface AddListener {
 
-	public void operatorAdded(Operator newChild);
+    /**
+     * Operator added.
+     *
+     * @param newChild the new child
+     */
+    public void operatorAdded(Operator newChild);
 
 }

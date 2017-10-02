@@ -30,7 +30,6 @@ import com.rapidminer.operator.UserError;
  *
  * @author Marco Boeck
  * @since 6.5.0
- *
  */
 public class ProcessExecutionOperatorExceptionError extends UserError {
 
@@ -39,41 +38,36 @@ public class ProcessExecutionOperatorExceptionError extends UserError {
 	/** the operator exception from the created process */
 	private OperatorException cause;
 
-	/**
-	 * Throw if the parameter of an operator specifies an attribute which cannot be found in the
-	 * input data.
-	 *
-	 * @param operator
-	 *            the operator which created the process
-	 * @param cause
-	 *            the user error which occurred inside the process
-	 */
-	public ProcessExecutionOperatorExceptionError(Operator operator, UserError cause) {
+    /**
+     * Throw if the parameter of an operator specifies an attribute which cannot be found in the
+     * input data.
+     *
+     * @param operator the operator which created the process
+     * @param cause    the user error which occurred inside the process
+     */
+    public ProcessExecutionOperatorExceptionError(Operator operator, UserError cause) {
 		super(operator, 972, operator.getName(), cause.getMessage());
 		this.cause = cause;
 	}
 
-	/**
-	 * Throw if the parameter of an operator specifies an attribute which cannot be found in the
-	 * input data.
-	 *
-	 * @param operator
-	 *            the operator which created the process
-	 * @param cause
-	 *            the operator exception which occurred inside the process
-	 */
-	public ProcessExecutionOperatorExceptionError(Operator operator, OperatorException cause) {
+    /**
+     * Throw if the parameter of an operator specifies an attribute which cannot be found in the
+     * input data.
+     *
+     * @param operator the operator which created the process
+     * @param cause    the operator exception which occurred inside the process
+     */
+    public ProcessExecutionOperatorExceptionError(Operator operator, OperatorException cause) {
 		super(operator, 971, "unknown", operator.getName(), cause.getMessage());
 		this.cause = cause;
 	}
 
-	/**
-	 * Returns the cause for this exception.
-	 *
-	 * @return the cause, usually a {@link UserError} but can also be an {@link OperatorException}
-	 *         or even {@code null}
-	 */
-	public OperatorException getOperatorException() {
+    /**
+     * Returns the cause for this exception.
+     *
+     * @return the cause, usually a {@link UserError} but can also be an {@link OperatorException}         or even {@code null}
+     */
+    public OperatorException getOperatorException() {
 		return cause;
 	}
 }

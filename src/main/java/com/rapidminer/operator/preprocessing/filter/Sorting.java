@@ -46,16 +46,23 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class Sorting extends AbstractDataProcessing {
 
-	/**
-	 * The parameter name for &quot;Indicates the attribute which should be used for determining the
-	 * sorting.&quot;
-	 */
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The parameter name for &quot;Indicates the attribute which should be used for determining the
+     * sorting.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	/** The parameter name for &quot;Indicates the direction of the sorting.&quot; */
-	public static final String PARAMETER_SORTING_DIRECTION = "sorting_direction";
+    /**
+     * The parameter name for &quot;Indicates the direction of the sorting.&quot;
+     */
+    public static final String PARAMETER_SORTING_DIRECTION = "sorting_direction";
 
-	public Sorting(OperatorDescription description) {
+    /**
+     * Instantiates a new Sorting.
+     *
+     * @param description the description
+     */
+    public Sorting(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(new AttributeSetPrecondition(getExampleSetInputPort(),

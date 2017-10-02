@@ -20,23 +20,32 @@ package com.rapidminer.operator.learner.functions.kernel.rvm.kernel;
 
 /**
  * Radial basis function (rbf) kernel: K(x, y) = exp(-lengthScale^{-2} * ||x - y||^2)
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
  */
 public class KernelRadial extends Kernel {
 
 	private static final long serialVersionUID = 2728320273018583212L;
 
-	/** LengthScale parameter */
-	protected double lengthScale = 0;
+    /**
+     * LengthScale parameter
+     */
+    protected double lengthScale = 0;
 
-	/** Constructor(s) */
-	public KernelRadial(double lengthScale) {
+    /**
+     * Constructor(s)  @param lengthScale the length scale
+     *
+     * @param lengthScale the length scale
+     */
+    public KernelRadial(double lengthScale) {
 		super();
 		this.lengthScale = lengthScale;
 	}
 
-	public KernelRadial() {
+    /**
+     * Instantiates a new Kernel radial.
+     */
+    public KernelRadial() {
 		super();
 	}
 

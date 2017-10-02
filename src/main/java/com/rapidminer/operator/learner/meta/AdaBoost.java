@@ -45,20 +45,25 @@ import java.util.Vector;
 /**
  * This AdaBoost implementation can be used with all learners available in RapidMiner, not only the
  * ones which originally are part of the Weka package.
- * 
+ *
  * @author Martin Scholz
  */
 public class AdaBoost extends AbstractMetaLearner {
 
-	/**
-	 * Name of the variable specifying the maximal number of iterations of the learner.
-	 */
-	public static final String PARAMETER_ITERATIONS = "iterations";
+    /**
+     * Name of the variable specifying the maximal number of iterations of the learner.
+     */
+    public static final String PARAMETER_ITERATIONS = "iterations";
 
-	/** Discard models with an advantage of less than the specified value. */
-	public static final double MIN_ADVANTAGE = 0.001;
+    /**
+     * Discard models with an advantage of less than the specified value.
+     */
+    public static final double MIN_ADVANTAGE = 0.001;
 
-	// field for visualizing performance
+    /**
+     * The Current iteration.
+     */
+// field for visualizing performance
 	protected int currentIteration;
 
 	// The total weight as a performance measure to be visualized.
@@ -68,8 +73,12 @@ public class AdaBoost extends AbstractMetaLearner {
 	// after learning.
 	private double[] oldWeights;
 
-	/** Constructor. */
-	public AdaBoost(OperatorDescription description) {
+    /**
+     * Constructor.  @param description the description
+     *
+     * @param description the description
+     */
+    public AdaBoost(OperatorDescription description) {
 		super(description);
 		addValue(new ValueDouble("performance", "The performance.") {
 
@@ -142,15 +151,14 @@ public class AdaBoost extends AbstractMetaLearner {
 		return model;
 	}
 
-	/**
-	 * Creates a weight attribute if not yet done. It either backs up the old weights for restoring
-	 * them later, or it fills the newly created attribute with the initial value of 1.
-	 * 
-	 * @param exampleSet
-	 *            the example set to be prepared
-	 * @return the total weight
-	 */
-	protected double prepareWeights(ExampleSet exampleSet) {
+    /**
+     * Creates a weight attribute if not yet done. It either backs up the old weights for restoring
+     * them later, or it fills the newly created attribute with the initial value of 1.
+     *
+     * @param exampleSet the example set to be prepared
+     * @return the total weight
+     */
+    protected double prepareWeights(ExampleSet exampleSet) {
 		Attribute weightAttr = exampleSet.getAttributes().getWeight();
 		double totalWeight = 0;
 		if (weightAttr == null) {

@@ -18,12 +18,12 @@
 */
 package com.rapidminer.repository.internal.remote;
 
-import java.util.List;
-
 import com.rapid_i.repository.wsimport.AccessRights;
 import com.rapidminer.repository.Entry;
 import com.rapidminer.repository.RepositoryException;
 import com.rapidminer.tools.PasswordInputCanceledException;
+
+import java.util.List;
 
 
 /**
@@ -32,39 +32,39 @@ import com.rapidminer.tools.PasswordInputCanceledException;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public interface RemoteEntry extends Entry {
 
-	/**
-	 * @return the {@link RemoteRepository} the {@link RemoteEntry} is part of
-	 */
-	RemoteRepository getRepository();
+    /**
+     * Gets repository.
+     *
+     * @return the {@link RemoteRepository} the {@link RemoteEntry} is part of
+     */
+    RemoteRepository getRepository();
 
-	/**
-	 * @return an unmodifiable list of {@link AccessRights}
-	 * @throws RepositoryException
-	 *             in case fetching of {@link AccessRights} fails
-	 * @throws PasswordInputCanceledException
-	 *             in case the user cancels the password dialog
-	 */
-	List<AccessRights> getAccessRights() throws RepositoryException, PasswordInputCanceledException;
+    /**
+     * Gets access rights.
+     *
+     * @return an unmodifiable list of {@link AccessRights}
+     * @throws RepositoryException            in case fetching of {@link AccessRights} fails
+     * @throws PasswordInputCanceledException in case the user cancels the password dialog
+     */
+    List<AccessRights> getAccessRights() throws RepositoryException, PasswordInputCanceledException;
 
-	/**
-	 * Updates the access rights for this entry.
-	 *
-	 * @param accessRights
-	 *            the new {@link AccessRights}
-	 * @throws RepositoryException
-	 *             in case updating fails (e.g. no permission, server offline, etc.)
-	 * @throws PasswordInputCanceledException
-	 *             in case the user cancels the password dialog
-	 */
-	void setAccessRights(List<AccessRights> accessRights) throws RepositoryException, PasswordInputCanceledException;
+    /**
+     * Updates the access rights for this entry.
+     *
+     * @param accessRights the new {@link AccessRights}
+     * @throws RepositoryException            in case updating fails (e.g. no permission, server offline, etc.)
+     * @throws PasswordInputCanceledException in case the user cancels the password dialog
+     */
+    void setAccessRights(List<AccessRights> accessRights) throws RepositoryException, PasswordInputCanceledException;
 
-	/**
-	 * @return the entries location as {@link String} within the {@link RemoteRepository}.
-	 */
-	String getPath();
+    /**
+     * Gets path.
+     *
+     * @return the entries location as {@link String} within the {@link RemoteRepository}.
+     */
+    String getPath();
 
 }

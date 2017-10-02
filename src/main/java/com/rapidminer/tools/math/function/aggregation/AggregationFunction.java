@@ -25,65 +25,92 @@ import com.rapidminer.tools.Ontology;
 
 /**
  * An aggregation function which calculates the value for a given value array.
- * 
+ *
  * @author Tobias Malbrecht, Ingo Mierswa
- * 
  */
 public interface AggregationFunction {
 
-	/**
-	 * Returns the name of the aggregation function.
-	 */
-	public String getName();
+    /**
+     * Returns the name of the aggregation function.
+     *
+     * @return the name
+     */
+    public String getName();
 
-	/**
-	 * Consider a new value and a corresponding weight by updating counters.
-	 */
-	public void update(double value, double weight);
+    /**
+     * Consider a new value and a corresponding weight by updating counters.
+     *
+     * @param value  the value
+     * @param weight the weight
+     */
+    public void update(double value, double weight);
 
-	/**
-	 * Consider a new value by updating counters.
-	 */
-	public void update(double value);
+    /**
+     * Consider a new value by updating counters.
+     *
+     * @param value the value
+     */
+    public void update(double value);
 
-	/**
-	 * Returns the function value.
-	 */
-	public double getValue();
+    /**
+     * Returns the function value.
+     *
+     * @return the value
+     */
+    public double getValue();
 
-	/**
-	 * Calculate function value for given values.
-	 * 
-	 * ATTENTION: counters might be reset and hence value history might be lost!
-	 */
-	public double calculate(double[] values);
+    /**
+     * Calculate function value for given values.
+     * <p>
+     * ATTENTION: counters might be reset and hence value history might be lost!
+     *
+     * @param values the values
+     * @return the double
+     */
+    public double calculate(double[] values);
 
-	/**
-	 * Calculate function value for given values and weights.
-	 * 
-	 * ATTENTION: counters might be reset and hence value history might be lost!
-	 */
-	public double calculate(double[] values, double[] weights);
+    /**
+     * Calculate function value for given values and weights.
+     * <p>
+     * ATTENTION: counters might be reset and hence value history might be lost!
+     *
+     * @param values  the values
+     * @param weights the weights
+     * @return the double
+     */
+    public double calculate(double[] values, double[] weights);
 
-	/**
-	 * Returns whether this function supports the given attribute.
-	 */
-	public boolean supportsAttribute(Attribute attribute);
+    /**
+     * Returns whether this function supports the given attribute.
+     *
+     * @param attribute the attribute
+     * @return the boolean
+     */
+    public boolean supportsAttribute(Attribute attribute);
 
-	/**
-	 * Returns whether this function supports the given attribute tested on the meta data.
-	 */
-	public boolean supportsAttribute(AttributeMetaData amd);
+    /**
+     * Returns whether this function supports the given attribute tested on the meta data.
+     *
+     * @param amd the amd
+     * @return the boolean
+     */
+    public boolean supportsAttribute(AttributeMetaData amd);
 
-	/**
-	 * Returns whether this function supports attributes of the given type, where valueType is one
-	 * of the static value types defined in {@link Ontology}.
-	 */
-	public boolean supportsValueType(int valueType);
+    /**
+     * Returns whether this function supports attributes of the given type, where valueType is one
+     * of the static value types defined in {@link Ontology}.
+     *
+     * @param valueType the value type
+     * @return the boolean
+     */
+    public boolean supportsValueType(int valueType);
 
-	/**
-	 * Returns the result type of this {@link AggregationFunction} when applied on data of type
-	 * inputType as one of the static value types defined in {@link Ontology}.
-	 */
-	public int getValueTypeOfResult(int inputType);
+    /**
+     * Returns the result type of this {@link AggregationFunction} when applied on data of type
+     * inputType as one of the static value types defined in {@link Ontology}.
+     *
+     * @param inputType the input type
+     * @return the value type of result
+     */
+    public int getValueTypeOfResult(int inputType);
 }

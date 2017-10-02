@@ -25,7 +25,7 @@ import com.rapidminer.operator.visualization.dependencies.NumericalMatrix;
  * This class allows to use the entries of a
  * {@link com.rapidminer.operator.visualization.dependencies.NumericalMatrix} as basis for
  * {@link com.rapidminer.datatable.DataTableRow}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PairwiseMatrix2DataTableRowWrapper implements DataTableRow {
@@ -36,8 +36,14 @@ public class PairwiseMatrix2DataTableRowWrapper implements DataTableRow {
 
 	private int secondIndex;
 
-	/** Creates a new wrapper. */
-	public PairwiseMatrix2DataTableRowWrapper(NumericalMatrix matrix, int firstIndex, int secondIndex) {
+    /**
+     * Creates a new wrapper.  @param matrix the matrix
+     *
+     * @param matrix      the matrix
+     * @param firstIndex  the first index
+     * @param secondIndex the second index
+     */
+    public PairwiseMatrix2DataTableRowWrapper(NumericalMatrix matrix, int firstIndex, int secondIndex) {
 		this.matrix = matrix;
 		this.firstIndex = firstIndex;
 		this.secondIndex = secondIndex;

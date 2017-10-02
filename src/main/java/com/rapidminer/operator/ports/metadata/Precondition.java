@@ -25,35 +25,46 @@ import com.rapidminer.operator.ports.InputPort;
  * A simple precondition of an {@link InputPort}. In an early design phase, preconditions used to be
  * special {@link MDTransformationRule}s rules, but having them separately attached to the input
  * ports has advantages for GUI design and auto-wiring processes.
- * 
+ *
  * @author Simon Fischer
- * */
+ */
 public interface Precondition {
 
-	/**
-	 * Checks whether the precondition is satisfied, registering a {@link MetaDataError} with the
-	 * input port if not.
-	 * 
-	 * @param metaData
-	 *            the delivered meta data. Note that this may differ from the meta data currently
-	 *            assigned to the input port for which this Precondition was created, e.g. for a
-	 *            ClooectionPrecondition.
-	 * */
-	public void check(MetaData metaData);
+    /**
+     * Checks whether the precondition is satisfied, registering a {@link MetaDataError} with the
+     * input port if not.
+     *
+     * @param metaData the delivered meta data. Note that this may differ from the meta data currently            assigned to the input port for which this Precondition was created, e.g. for a            ClooectionPrecondition.
+     */
+    public void check(MetaData metaData);
 
-	/** Returns a human readable description. */
-	public String getDescription();
+    /**
+     * Returns a human readable description.  @return the description
+     *
+     * @return the description
+     */
+    public String getDescription();
 
-	/** Returns true if the given object is compatible with this precondition. */
-	public boolean isCompatible(MetaData input, CompatibilityLevel level);
+    /**
+     * Returns true if the given object is compatible with this precondition.  @param input the input
+     *
+     * @param input the input
+     * @param level the level
+     * @return the boolean
+     */
+    public boolean isCompatible(MetaData input, CompatibilityLevel level);
 
-	/**
-	 * Assume that the precondition is satisfied, i.e., artificially generate compatible meta data
-	 * at the input port. This method is used to check what output would be generated if the input
-	 * was correctly delivered.
-	 */
-	public void assumeSatisfied();
+    /**
+     * Assume that the precondition is satisfied, i.e., artificially generate compatible meta data
+     * at the input port. This method is used to check what output would be generated if the input
+     * was correctly delivered.
+     */
+    public void assumeSatisfied();
 
-	/** Returns the meta data required by this precondition. */
-	public MetaData getExpectedMetaData();
+    /**
+     * Returns the meta data required by this precondition.  @return the expected meta data
+     *
+     * @return the expected meta data
+     */
+    public MetaData getExpectedMetaData();
 }

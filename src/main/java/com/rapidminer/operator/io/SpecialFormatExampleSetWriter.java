@@ -50,7 +50,7 @@ import java.util.zip.GZIPOutputStream;
 
 /**
  * Writes an example set to a file using a special, user defined format.
- * 
+ * <p>
  * Using the parameter 'special_format', the user can specify the exact format. The $ sign has a
  * special meaning and introduces a command (the following character) Additional arguments to this
  * command may be supplied enclosing it in square brackets.
@@ -92,41 +92,57 @@ import java.util.zip.GZIPOutputStream;
  * <dd>The ']' character</dd>
  * </dl>
  * Make sure the format string ends with $n if you want examples to be separated by newlines!
- * 
+ * <p>
  * Up to Version 5.0, the functionality of this operator was covered by the regular
  * {@link ExampleSetWriter}.
- * 
+ *
  * @author Simon Fischer
  */
 public class SpecialFormatExampleSetWriter extends AppendingExampleSetWriter {
 
-	public static final String PARAMETER_ADD_NEW_LINE = "add_line_separator";
+    /**
+     * The constant PARAMETER_ADD_NEW_LINE.
+     */
+    public static final String PARAMETER_ADD_NEW_LINE = "add_line_separator";
 
-	/** The parameter name for &quot;Format string to use for output.&quot; */
-	public static final String PARAMETER_SPECIAL_FORMAT = "special_format";
+    /**
+     * The parameter name for &quot;Format string to use for output.&quot;
+     */
+    public static final String PARAMETER_SPECIAL_FORMAT = "special_format";
 
-	/** The parameter name for &quot;File to save the example set to.&quot; */
-	public static final String PARAMETER_EXAMPLE_SET_FILE = "example_set_file";
+    /**
+     * The parameter name for &quot;File to save the example set to.&quot;
+     */
+    public static final String PARAMETER_EXAMPLE_SET_FILE = "example_set_file";
 
-	/**
-	 * The parameter name for &quot;The number of fraction digits in the output file (-1: all
-	 * possible digits).&quot;
-	 */
-	public static final String PARAMETER_FRACTION_DIGITS = "fraction_digits";
+    /**
+     * The parameter name for &quot;The number of fraction digits in the output file (-1: all
+     * possible digits).&quot;
+     */
+    public static final String PARAMETER_FRACTION_DIGITS = "fraction_digits";
 
-	/**
-	 * Indicates if nominal values should be quoted with double quotes. Quotes inside of nominal
-	 * values will be escaped by a backslash.
-	 */
-	public static final String PARAMETER_QUOTE_NOMINAL_VALUES = "quote_nominal_values";
+    /**
+     * Indicates if nominal values should be quoted with double quotes. Quotes inside of nominal
+     * values will be escaped by a backslash.
+     */
+    public static final String PARAMETER_QUOTE_NOMINAL_VALUES = "quote_nominal_values";
 
-	/** The parameter name for &quot;Indicates if the data file content should be zipped.&quot; */
-	public static final String PARAMETER_ZIPPED = "zipped";
+    /**
+     * The parameter name for &quot;Indicates if the data file content should be zipped.&quot;
+     */
+    public static final String PARAMETER_ZIPPED = "zipped";
 
-	/** The parameter name for &quot;Indicates if an existing table should be overwritten.&quot; */
-	public static final String PARAMETER_OVERWRITE_MODE = "overwrite_mode";
+    /**
+     * The parameter name for &quot;Indicates if an existing table should be overwritten.&quot;
+     */
+    public static final String PARAMETER_OVERWRITE_MODE = "overwrite_mode";
 
-	public SpecialFormatExampleSetWriter(OperatorDescription description) {
+    /**
+     * Instantiates a new Special format example set writer.
+     *
+     * @param description the description
+     */
+    public SpecialFormatExampleSetWriter(OperatorDescription description) {
 		super(description);
 	}
 

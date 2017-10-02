@@ -28,6 +28,7 @@ import com.rapidminer.gui.tools.dialogs.AboutBox;
 
 
 /**
+ * The type About action.
  *
  * @author Simon Fischer
  */
@@ -36,7 +37,12 @@ public class AboutAction extends ResourceAction {
 	private static final long serialVersionUID = 1L;
 	private MainFrame mainFrame;
 
-	public AboutAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new About action.
+     *
+     * @param mainFrame the main frame
+     */
+    public AboutAction(MainFrame mainFrame) {
 		super("about");
 		this.mainFrame = mainFrame;
 		setCondition(EDIT_IN_PROGRESS, DONT_CARE);

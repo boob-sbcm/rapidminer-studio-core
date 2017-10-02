@@ -48,7 +48,7 @@ import com.rapidminer.parameter.ParameterTypeString;
  * features of the input data is. Inner operators can access the current feature name by a macro,
  * whose name can be specified via the parameter <code>iteration_macro</code>.
  * </p>
- *
+ * <p>
  * <p>
  * The user can specify with a parameter if this loop should iterate over all features or only over
  * features with a specific value type, i.e. only over numerical or over nominal features. A regular
@@ -57,10 +57,8 @@ import com.rapidminer.parameter.ParameterTypeString;
  * </p>
  *
  * @author Ingo Mierswa, Tobias Malbrecht
- *
  * @deprecated since 7.4 replaced by the LoopAttributesOperator in the Concurrency extension
  */
-
 @Deprecated
 public class FeatureIterator extends OperatorChain {
 
@@ -69,9 +67,15 @@ public class FeatureIterator extends OperatorChain {
 	private final OutputPort exampleSetInnerSource = getSubprocess(0).getInnerSources().createPort("example set");
 	private final InputPort exampleSetInnerSink = getSubprocess(0).getInnerSinks().createPort("example set");
 
-	public static final String PARAMETER_ITERATION_MACRO = "iteration_macro";
+    /**
+     * The constant PARAMETER_ITERATION_MACRO.
+     */
+    public static final String PARAMETER_ITERATION_MACRO = "iteration_macro";
 
-	public static final String DEFAULT_ITERATION_MACRO_NAME = "loop_attribute";
+    /**
+     * The constant DEFAULT_ITERATION_MACRO_NAME.
+     */
+    public static final String DEFAULT_ITERATION_MACRO_NAME = "loop_attribute";
 
 	private int iteration;
 
@@ -81,7 +85,12 @@ public class FeatureIterator extends OperatorChain {
 
 	private final CollectingPortPairExtender innerSinkExtender;
 
-	public FeatureIterator(OperatorDescription description) {
+    /**
+     * Instantiates a new Feature iterator.
+     *
+     * @param description the description
+     */
+    public FeatureIterator(OperatorDescription description) {
 		super(description, "Subprocess");
 
 		exampleSetInnerSink.addPrecondition(new SimplePrecondition(exampleSetInnerSink, new ExampleSetMetaData(), false));

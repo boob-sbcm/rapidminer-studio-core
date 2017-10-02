@@ -55,6 +55,7 @@ import com.rapidminer.tools.Observer;
 /**
  * This provides a panel for entering a repository location.
  *
+ * @param <T> the type parameter
  * @author Simon Fischer
  */
 class RepositoryLocationsEditor<T extends Ports<?>> extends JPanel {
@@ -117,7 +118,12 @@ class RepositoryLocationsEditor<T extends Ports<?>> extends JPanel {
 
 		private final boolean input;
 
-		public boolean isInput() {
+        /**
+         * Is input boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isInput() {
 			return input;
 		}
 
@@ -221,7 +227,12 @@ class RepositoryLocationsEditor<T extends Ports<?>> extends JPanel {
 			}
 		}
 
-		public void remove(int rowIndex) {
+        /**
+         * Remove.
+         *
+         * @param rowIndex the row index
+         */
+        public void remove(int rowIndex) {
 			if (input) {
 				context.removeInputLocation(rowIndex);
 			} else {
@@ -230,11 +241,19 @@ class RepositoryLocationsEditor<T extends Ports<?>> extends JPanel {
 			fireTableRowsDeleted(rowIndex, rowIndex);
 		}
 
-		public void add() {
+        /**
+         * Add.
+         */
+        public void add() {
 			add("");
 		}
 
-		public void add(String location) {
+        /**
+         * Add.
+         *
+         * @param location the location
+         */
+        public void add(String location) {
 			if (input) {
 				context.addInputLocation(location);
 			} else {
@@ -243,7 +262,12 @@ class RepositoryLocationsEditor<T extends Ports<?>> extends JPanel {
 			fireTableRowsInserted(getLocations().size() - 1, getLocations().size() - 1);
 		}
 
-		public void setContext(ProcessContext context2) {
+        /**
+         * Sets context.
+         *
+         * @param context2 the context 2
+         */
+        public void setContext(ProcessContext context2) {
 			if (this.context != null) {
 				this.context.removeObserver(contextObserver);
 			}
@@ -275,7 +299,14 @@ class RepositoryLocationsEditor<T extends Ports<?>> extends JPanel {
 
 	private com.rapidminer.Process process;
 
-	RepositoryLocationsEditor(boolean input, String i18nKey, String prefix) {
+    /**
+     * Instantiates a new Repository locations editor.
+     *
+     * @param input   the input
+     * @param i18nKey the 18 n key
+     * @param prefix  the prefix
+     */
+    RepositoryLocationsEditor(boolean input, String i18nKey, String prefix) {
 		this.prefix = prefix;
 		this.model = new RepositoryLocationTableModel(input);
 		this.table = new RepositoryLocationTable(model);
@@ -327,7 +358,14 @@ class RepositoryLocationsEditor<T extends Ports<?>> extends JPanel {
 		return editor;
 	}
 
-	void setData(ProcessContext context, Process process, T ports) {
+    /**
+     * Sets data.
+     *
+     * @param context the context
+     * @param process the process
+     * @param ports   the ports
+     */
+    void setData(ProcessContext context, Process process, T ports) {
 		this.process = process;
 		if (this.ports != null) {
 			this.ports.removeObserver(portObserver);

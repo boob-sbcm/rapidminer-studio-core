@@ -42,15 +42,15 @@ public class BinominalMapping implements NominalMapping {
 	/** The index of the second value. */
 	private static final int SECOND_VALUE_INDEX = 1;
 
-	/**
-	 * Nominal index of the value that will be treated as the "positive" value of this attribute.
-	 */
-	public static final int POSITIVE_INDEX = SECOND_VALUE_INDEX;
+    /**
+     * Nominal index of the value that will be treated as the "positive" value of this attribute.
+     */
+    public static final int POSITIVE_INDEX = SECOND_VALUE_INDEX;
 
-	/**
-	 * Nominal index of the value that will be treated as the "negative" value of this attribute.
-	 */
-	public static final int NEGATIVE_INDEX = FIRST_VALUE_INDEX;
+    /**
+     * Nominal index of the value that will be treated as the "negative" value of this attribute.
+     */
+    public static final int NEGATIVE_INDEX = FIRST_VALUE_INDEX;
 
 	/** The first nominal value. */
 	private String firstValue = null;
@@ -58,7 +58,10 @@ public class BinominalMapping implements NominalMapping {
 	/** The second nominal value. */
 	private String secondValue = null;
 
-	public BinominalMapping() {}
+    /**
+     * Instantiates a new Binominal mapping.
+     */
+    public BinominalMapping() {}
 
 	/** Clone constructor. */
 	private BinominalMapping(BinominalMapping mapping) {
@@ -66,8 +69,12 @@ public class BinominalMapping implements NominalMapping {
 		this.secondValue = mapping.secondValue;
 	}
 
-	/** Clone constructor. */
-	/* pp */ BinominalMapping(NominalMapping mapping) {
+    /**
+     * Clone constructor.  @param mapping the mapping
+     *
+     * @param mapping the mapping
+     */
+/* pp */ BinominalMapping(NominalMapping mapping) {
 		if (mapping.size() > 0) {
 			firstValue = mapping.mapIndex(0);
 		}

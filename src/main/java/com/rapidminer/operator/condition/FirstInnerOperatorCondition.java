@@ -40,23 +40,28 @@ public class FirstInnerOperatorCondition implements InnerOperatorCondition {
 
 	private boolean allowEmptyChains = false;
 
-	/**
-	 * Creates an inner operator condition. The first operator in the chain gets the input of the
-	 * operator chain and additionally the given classes <code>willGet</code>. Each operator must be
-	 * able to handle the output of the predecessor. The last operator must provide all classes in
-	 * the given <code>mustDeliver</code> class array. Empty chains are not allowed.
-	 */
-	public FirstInnerOperatorCondition(Class<?>[] willGet) {
+    /**
+     * Creates an inner operator condition. The first operator in the chain gets the input of the
+     * operator chain and additionally the given classes <code>willGet</code>. Each operator must be
+     * able to handle the output of the predecessor. The last operator must provide all classes in
+     * the given <code>mustDeliver</code> class array. Empty chains are not allowed.
+     *
+     * @param willGet the will get
+     */
+    public FirstInnerOperatorCondition(Class<?>[] willGet) {
 		this(willGet, false);
 	}
 
-	/**
-	 * Creates an inner operator condition. The first operator in the chain gets the input of the
-	 * operator chain and additionally the given classes <code>willGet</code>. Each operator must be
-	 * able to handle the output of the predecessor. The last operator must provide all classes in
-	 * the given <code>mustDeliver</code> class array.
-	 */
-	public FirstInnerOperatorCondition(Class<?>[] willGet, boolean allowEmptyChains) {
+    /**
+     * Creates an inner operator condition. The first operator in the chain gets the input of the
+     * operator chain and additionally the given classes <code>willGet</code>. Each operator must be
+     * able to handle the output of the predecessor. The last operator must provide all classes in
+     * the given <code>mustDeliver</code> class array.
+     *
+     * @param willGet          the will get
+     * @param allowEmptyChains the allow empty chains
+     */
+    public FirstInnerOperatorCondition(Class<?>[] willGet, boolean allowEmptyChains) {
 		this.willGet = willGet;
 		this.allowEmptyChains = allowEmptyChains;
 	}

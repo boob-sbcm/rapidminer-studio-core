@@ -28,7 +28,8 @@ import java.awt.Component;
 
 
 /**
- * 
+ * The type Binary classification performance renderer.
+ *
  * @author Sebastian Land
  */
 public class BinaryClassificationPerformanceRenderer extends AbstractRenderer {

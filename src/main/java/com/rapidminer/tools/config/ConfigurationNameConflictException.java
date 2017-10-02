@@ -22,17 +22,27 @@ package com.rapidminer.tools.config;
  * Exception type for name conflict errors occurring while dealing with {@link Configurable}s.
  *
  * @author Sabrina Kirstein
- *
  */
 public class ConfigurationNameConflictException extends ConfigurationException {
 
 	private static final long serialVersionUID = 1L;
 
-	public ConfigurationNameConflictException(String message) {
+    /**
+     * Instantiates a new Configuration name conflict exception.
+     *
+     * @param message the message
+     */
+    public ConfigurationNameConflictException(String message) {
 		super(message);
 	}
 
-	public ConfigurationNameConflictException(String message, Throwable cause) {
+    /**
+     * Instantiates a new Configuration name conflict exception.
+     *
+     * @param message the message
+     * @param cause   the cause
+     */
+    public ConfigurationNameConflictException(String message, Throwable cause) {
 		super(message, cause);
 	}
 

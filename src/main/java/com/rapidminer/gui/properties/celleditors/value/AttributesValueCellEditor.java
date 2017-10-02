@@ -51,7 +51,12 @@ public class AttributesValueCellEditor extends AbstractCellEditor implements Pro
 
 	private Operator operator;
 
-	public AttributesValueCellEditor(final ParameterTypeAttributes type) {
+    /**
+     * Instantiates a new Attributes value cell editor.
+     *
+     * @param type the type
+     */
+    public AttributesValueCellEditor(final ParameterTypeAttributes type) {
 		this.button = new JButton(new ResourceAction(true, "attributes") {
 
 			private static final long serialVersionUID = -4890375754223285831L;

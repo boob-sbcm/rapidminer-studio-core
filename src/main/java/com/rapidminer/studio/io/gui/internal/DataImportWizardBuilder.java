@@ -47,14 +47,13 @@ public final class DataImportWizardBuilder {
 	private String startingStepID;
 	private Path filePath;
 
-	/**
-	 * Builds and layouts the configured {@link ImportWizard} dialog.
-	 *
-	 * @param owner
-	 *            the dialog owner
-	 * @return the new {@link ImportWizard} instance
-	 */
-	public ImportWizard build(Window owner) {
+    /**
+     * Builds and layouts the configured {@link ImportWizard} dialog.
+     *
+     * @param owner the dialog owner
+     * @return the new {@link ImportWizard} instance
+     */
+    public ImportWizard build(Window owner) {
 		DataImportWizard wizard = new DataImportWizard(owner, ModalityType.DOCUMENT_MODAL, null);
 
 		// add common steps
@@ -97,15 +96,14 @@ public final class DataImportWizardBuilder {
 		wizard.setDataSource(dataSource == null ? factory.createNew() : dataSource, factory);
 	}
 
-	/**
-	 * Configures the {@link DataImportWizard} to load data from the provided file. This way the
-	 * data source type is skipped.
-	 *
-	 * @param filePath
-	 *            the path to the local file
-	 * @return the builder
-	 */
-	public DataImportWizardBuilder forFile(Path filePath) {
+    /**
+     * Configures the {@link DataImportWizard} to load data from the provided file. This way the
+     * data source type is skipped.
+     *
+     * @param filePath the path to the local file
+     * @return the builder
+     */
+    public DataImportWizardBuilder forFile(Path filePath) {
 		this.filePath = filePath;
 		this.localFileDataSourceFactory = new LocalFileDataSourceFactory();
 		this.fileDataSourceFactory = LocalFileDataSourceFactory.lookupFactory(filePath);

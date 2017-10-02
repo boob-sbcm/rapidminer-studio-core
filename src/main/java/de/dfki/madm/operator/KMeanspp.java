@@ -34,15 +34,18 @@ import com.rapidminer.tools.math.similarity.DistanceMeasure;
  * Careful Seeding" by David Arther and Sergei Vassilvitskii
  *
  * @author Patrick Kalka
- *
  */
 public class KMeanspp extends RMAbstractClusterer {
 
-	/** Short description for GUI */
-	public static final String SHORT_DESCRIPTION = "Determine the first k centroids using the K-Means++ heuristic described in \"k-means++: The Advantages of Careful Seeding\" by David Arthur and Sergei Vassilvitskii 2007";
+    /**
+     * Short description for GUI
+     */
+    public static final String SHORT_DESCRIPTION = "Determine the first k centroids using the K-Means++ heuristic described in \"k-means++: The Advantages of Careful Seeding\" by David Arthur and Sergei Vassilvitskii 2007";
 
-	/** Label for button */
-	public static final String PARAMETER_USE_KPP = "determine_good_start_values";
+    /**
+     * Label for button
+     */
+    public static final String PARAMETER_USE_KPP = "determine_good_start_values";
 
 	/** ExampleSet to work on */
 	private ExampleSet exampleSet = null;
@@ -54,19 +57,17 @@ public class KMeanspp extends RMAbstractClusterer {
 	private int examplesize = -1;
 	private int minK = 0;
 
-	/**
-	 * Initialization of K-Means++
-	 *
-	 * @param description
-	 * @param anz
-	 *            initial Cluster count
-	 * @param es
-	 *            ExampleSet to work on
-	 * @param measure
-	 *            DistanceMeasure to use
-	 * @throws OperatorException
-	 */
-	public KMeanspp(OperatorDescription description, int anz, ExampleSet es, DistanceMeasure measure,
+    /**
+     * Initialization of K-Means++
+     *
+     * @param description the description
+     * @param anz         initial Cluster count
+     * @param es          ExampleSet to work on
+     * @param measure     DistanceMeasure to use
+     * @param generator   the generator
+     * @throws OperatorException the operator exception
+     */
+    public KMeanspp(OperatorDescription description, int anz, ExampleSet es, DistanceMeasure measure,
 			RandomGenerator generator) throws OperatorException {
 		super(description);
 
@@ -77,13 +78,13 @@ public class KMeanspp extends RMAbstractClusterer {
 		this.generator = generator;
 	}
 
-	/**
-	 * start the algorithm
-	 *
-	 * @return array with Ids of the centroids
-	 * @throws ProcessStoppedException
-	 */
-	public int[] getStart() throws ProcessStoppedException {
+    /**
+     * start the algorithm
+     *
+     * @return array with Ids of the centroids
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public int[] getStart() throws ProcessStoppedException {
 		int[] ret = new int[minK];
 		int i = 0;
 		int anz = 0;

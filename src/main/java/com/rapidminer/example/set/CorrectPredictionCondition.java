@@ -24,20 +24,25 @@ import com.rapidminer.example.ExampleSet;
 
 /**
  * This subclass of {@link Condition} serves to accept all examples which are correctly predicted.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class CorrectPredictionCondition implements Condition {
 
 	private static final long serialVersionUID = -2971139314612252926L;
 
-	/** Creates a new condition. */
-	public CorrectPredictionCondition() {}
+    /**
+     * Creates a new condition.
+     */
+    public CorrectPredictionCondition() {}
 
-	/**
-	 * Throws an exception since this condition does not support parameter string.
-	 */
-	public CorrectPredictionCondition(ExampleSet exampleSet, String parameterString) {
+    /**
+     * Throws an exception since this condition does not support parameter string.
+     *
+     * @param exampleSet      the example set
+     * @param parameterString the parameter string
+     */
+    public CorrectPredictionCondition(ExampleSet exampleSet, String parameterString) {
 		if (exampleSet.getAttributes().getLabel() == null) {
 			throw new IllegalArgumentException("CorrectPredictionCondition needs an example set with label attribute!");
 		}

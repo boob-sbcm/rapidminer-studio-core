@@ -20,14 +20,19 @@ package com.rapidminer.operator.preprocessing.transformation.aggregation;
 
 /**
  * This is an {@link Aggregator} for the {@link SumAggregationFunction}
- * 
+ *
  * @author Sebastian Land
  */
 public class SumAggregator extends NumericalAggregator {
 
 	private double sum = 0;
 
-	public SumAggregator(SumAggregationFunction function) {
+    /**
+     * Instantiates a new Sum aggregator.
+     *
+     * @param function the function
+     */
+    public SumAggregator(SumAggregationFunction function) {
 		super(function);
 	}
 

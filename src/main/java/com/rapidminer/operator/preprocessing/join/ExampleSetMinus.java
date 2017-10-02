@@ -54,7 +54,12 @@ public class ExampleSetMinus extends AbstractDataProcessing {
 
 	private InputPort subtrahendInput = getInputPorts().createPort("subtrahend");
 
-	public ExampleSetMinus(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set minus.
+     *
+     * @param description the description
+     */
+    public ExampleSetMinus(OperatorDescription description) {
 		super(description);
 		subtrahendInput.addPrecondition(new ExampleSetPrecondition(subtrahendInput, Ontology.ATTRIBUTE_VALUE,
 				Attributes.ID_NAME));

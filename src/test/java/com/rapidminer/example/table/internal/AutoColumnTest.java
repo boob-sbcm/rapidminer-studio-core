@@ -34,7 +34,10 @@ import com.rapidminer.example.utils.ExampleSetBuilder.DataManagement;
  */
 public class AutoColumnTest {
 
-	@Test
+    /**
+     * Double auto column stay dense.
+     */
+    @Test
 	public void doubleAutoColumnStayDense() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 500;
 		Column column = new DoubleAutoColumn(size - 400, DataManagement.AUTO);
@@ -49,7 +52,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double auto column two dense chunks.
+     */
+    @Test
 	public void doubleAutoColumnTwoDenseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + 1;
 		Column column = new DoubleAutoColumn(size, DataManagement.AUTO);
@@ -60,13 +66,19 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double auto column ensure.
+     */
+    @Test
 	public void doubleAutoColumnEnsure() {
 		Column column = new DoubleAutoColumn(1, DataManagement.AUTO);
 		column.ensure(AutoColumnUtils.CHUNK_SIZE * 2 + 1);
 	}
 
-	@Test
+    /**
+     * Double auto column two sparse chunks.
+     */
+    @Test
 	public void doubleAutoColumnTwoSparseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		DoubleAutoColumn column = new DoubleAutoColumn(size, DataManagement.AUTO);
@@ -77,7 +89,10 @@ public class AutoColumnTest {
 		assertEquals(0.123, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double auto column sparse.
+     */
+    @Test
 	public void doubleAutoColumnSparse() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new DoubleAutoColumn(size, DataManagement.AUTO);
@@ -92,7 +107,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double auto column sparse 2 nd write.
+     */
+    @Test
 	public void doubleAutoColumnSparse2ndWrite() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new DoubleAutoColumn(size, DataManagement.AUTO);
@@ -121,7 +139,10 @@ public class AutoColumnTest {
 		}
 	}
 
-	@Test
+    /**
+     * Double auto column sparse and back.
+     */
+    @Test
 	public void doubleAutoColumnSparseAndBack() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_HIGH_SPARSITY_DENSITY)) + 1;
@@ -137,7 +158,10 @@ public class AutoColumnTest {
 		assertEquals(max - 1, column.get(max - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double auto column sparse and back ensure.
+     */
+    @Test
 	public void doubleAutoColumnSparseAndBackEnsure() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_HIGH_SPARSITY_DENSITY)) + 1;
@@ -158,7 +182,10 @@ public class AutoColumnTest {
 		assertEquals(max + 10 - 1, column.get(max + 10 - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double memory column stay dense.
+     */
+    @Test
 	public void doubleMemoryColumnStayDense() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 500;
 		Column column = new DoubleAutoColumn(size - 400, DataManagement.MEMORY_OPTIMIZED);
@@ -173,7 +200,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double memory column two dense chunks.
+     */
+    @Test
 	public void doubleMemoryColumnTwoDenseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + 1;
 		Column column = new DoubleAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -184,7 +214,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double memory column two sparse chunks.
+     */
+    @Test
 	public void doubleMemoryColumnTwoSparseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		DoubleAutoColumn column = new DoubleAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -195,7 +228,10 @@ public class AutoColumnTest {
 		assertEquals(0.123, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double memory column sparse.
+     */
+    @Test
 	public void doubleMemoryColumnSparse() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new DoubleAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -213,7 +249,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double memory column sparse 2 nd write.
+     */
+    @Test
 	public void doubleMemoryColumnSparse2ndWrite() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new DoubleAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -245,7 +284,10 @@ public class AutoColumnTest {
 		}
 	}
 
-	@Test
+    /**
+     * Double memory column sparse and back.
+     */
+    @Test
 	public void doubleMemoryColumnSparseAndBack() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_DOUBLE_MEDIUM_SPARSITY_DENSITY)) + 1;
@@ -265,7 +307,10 @@ public class AutoColumnTest {
 		assertEquals(max - 1, column.get(max - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double memory column sparse and back ensure.
+     */
+    @Test
 	public void doubleMemoryColumnSparseAndBackEnsure() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_DOUBLE_MEDIUM_SPARSITY_DENSITY)) + 1;
@@ -287,7 +332,10 @@ public class AutoColumnTest {
 		assertEquals(max + 10 - 1, column.get(max + 10 - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double incomplete memory column sparse 2 nd write.
+     */
+    @Test
 	public void doubleIncompleteMemoryColumnSparse2ndWrite() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new DoubleIncompleteAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -319,7 +367,10 @@ public class AutoColumnTest {
 		}
 	}
 
-	@Test
+    /**
+     * Double incomplete memory column sparse and back.
+     */
+    @Test
 	public void doubleIncompleteMemoryColumnSparseAndBack() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_DOUBLE_MEDIUM_SPARSITY_DENSITY)) + 1;
@@ -339,7 +390,10 @@ public class AutoColumnTest {
 		assertEquals(max - 1, column.get(max - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double incomplete memory column sparse and back ensure.
+     */
+    @Test
 	public void doubleIncompleteMemoryColumnSparseAndBackEnsure() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_DOUBLE_MEDIUM_SPARSITY_DENSITY)) + 1;
@@ -361,7 +415,10 @@ public class AutoColumnTest {
 		assertEquals(max + 10 - 1, column.get(max + 10 - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double incomplete memory column stay dense.
+     */
+    @Test
 	public void doubleIncompleteMemoryColumnStayDense() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 500;
 		Column column = new DoubleIncompleteAutoColumn(size - 400, DataManagement.MEMORY_OPTIMIZED);
@@ -376,7 +433,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double incomplete memory column two dense chunks.
+     */
+    @Test
 	public void doubleIncompleteMemoryColumnTwoDenseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + 1;
 		Column column = new DoubleIncompleteAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -387,7 +447,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double incomplete memory column two sparse chunks.
+     */
+    @Test
 	public void doubleIncompleteMemoryColumnTwoSparseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new DoubleIncompleteAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -398,7 +461,10 @@ public class AutoColumnTest {
 		assertEquals(0.123, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double incomplete memory column sparse.
+     */
+    @Test
 	public void doubleIncompleteMemoryColumnSparse() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new DoubleIncompleteAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -416,7 +482,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double incomplete column sparse 2 nd write.
+     */
+    @Test
 	public void doubleIncompleteColumnSparse2ndWrite() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new DoubleIncompleteAutoColumn(size, DataManagement.AUTO);
@@ -445,7 +514,10 @@ public class AutoColumnTest {
 		}
 	}
 
-	@Test
+    /**
+     * Double incomplete auto column sparse and back.
+     */
+    @Test
 	public void doubleIncompleteAutoColumnSparseAndBack() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_HIGH_SPARSITY_DENSITY)) + 1;
@@ -465,7 +537,10 @@ public class AutoColumnTest {
 		assertEquals(max - 1, column.get(max - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double incomplete auto column sparse and back ensure.
+     */
+    @Test
 	public void doubleIncompleteAutoColumnSparseAndBackEnsure() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_HIGH_SPARSITY_DENSITY)) + 1;
@@ -486,7 +561,10 @@ public class AutoColumnTest {
 		assertEquals(max + 10 - 1, column.get(max + 10 - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double incomplete auto column stay dense.
+     */
+    @Test
 	public void doubleIncompleteAutoColumnStayDense() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 500;
 		Column column = new DoubleIncompleteAutoColumn(size - 400, DataManagement.AUTO);
@@ -501,7 +579,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double incomplete auto column two dense chunks.
+     */
+    @Test
 	public void doubleIncompleteAutoColumnTwoDenseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + 1;
 		Column column = new DoubleIncompleteAutoColumn(size, DataManagement.AUTO);
@@ -512,13 +593,19 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double incomplete auto column ensure.
+     */
+    @Test
 	public void doubleIncompleteAutoColumnEnsure() {
 		Column column = new DoubleIncompleteAutoColumn(1, DataManagement.AUTO);
 		column.ensure(AutoColumnUtils.CHUNK_SIZE * 2 + 1);
 	}
 
-	@Test
+    /**
+     * Double incomplete auto column two sparse chunks.
+     */
+    @Test
 	public void doubleIncompleteAutoColumnTwoSparseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new DoubleIncompleteAutoColumn(size, DataManagement.AUTO);
@@ -529,7 +616,10 @@ public class AutoColumnTest {
 		assertEquals(0.123, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Double incomplete auto column sparse.
+     */
+    @Test
 	public void doubleIncompleteAutoColumnSparse() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new DoubleIncompleteAutoColumn(size, DataManagement.AUTO);
@@ -544,7 +634,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete memory column stay dense.
+     */
+    @Test
 	public void integerIncompleteMemoryColumnStayDense() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 500;
 		Column column = new IntegerIncompleteAutoColumn(size - 400, DataManagement.MEMORY_OPTIMIZED);
@@ -559,7 +652,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete memory column two dense chunks.
+     */
+    @Test
 	public void integerIncompleteMemoryColumnTwoDenseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + 1;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -570,7 +666,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete memory column two sparse chunks.
+     */
+    @Test
 	public void integerIncompleteMemoryColumnTwoSparseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -581,7 +680,10 @@ public class AutoColumnTest {
 		assertEquals(2, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete memory column sparse.
+     */
+    @Test
 	public void integerIncompleteMemoryColumnSparse() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -596,7 +698,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete memory column sparse 2 nd write.
+     */
+    @Test
 	public void integerIncompleteMemoryColumnSparse2ndWrite() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -625,7 +730,10 @@ public class AutoColumnTest {
 		}
 	}
 
-	@Test
+    /**
+     * Integer incomplete memory column sparse and back.
+     */
+    @Test
 	public void integerIncompleteMemoryColumnSparseAndBack() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_INTEGER_MEDIUM_SPARSITY_DENSITY)) + 1;
@@ -645,7 +753,10 @@ public class AutoColumnTest {
 		assertEquals(max - 1, column.get(max - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete memory column sparse and back ensure.
+     */
+    @Test
 	public void integerIncompleteMemoryColumnSparseAndBackEnsure() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_INTEGER_MEDIUM_SPARSITY_DENSITY)) + 1;
@@ -666,7 +777,10 @@ public class AutoColumnTest {
 		assertEquals(max + 10 - 1, column.get(max + 10 - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete auto column stay dense.
+     */
+    @Test
 	public void integerIncompleteAutoColumnStayDense() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 500;
 		Column column = new IntegerIncompleteAutoColumn(size - 400, DataManagement.AUTO);
@@ -681,7 +795,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete auto column two dense chunks.
+     */
+    @Test
 	public void integerIncompleteAutoColumnTwoDenseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + 1;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.AUTO);
@@ -692,13 +809,19 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete auto column ensure.
+     */
+    @Test
 	public void integerIncompleteAutoColumnEnsure() {
 		Column column = new IntegerIncompleteAutoColumn(1, DataManagement.AUTO);
 		column.ensure(AutoColumnUtils.CHUNK_SIZE * 2 + 1);
 	}
 
-	@Test
+    /**
+     * Integer incomplete auto column two sparse chunks.
+     */
+    @Test
 	public void integerIncompleteAutoColumnTwoSparseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.AUTO);
@@ -709,7 +832,10 @@ public class AutoColumnTest {
 		assertEquals(2, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete auto column sparse.
+     */
+    @Test
 	public void integerIncompleteAutoColumnSparse() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.AUTO);
@@ -724,7 +850,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete auto column sparse 2 nd write.
+     */
+    @Test
 	public void integerIncompleteAutoColumnSparse2ndWrite() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.AUTO);
@@ -753,7 +882,10 @@ public class AutoColumnTest {
 		}
 	}
 
-	@Test
+    /**
+     * Integer incomplete auto column sparse and back.
+     */
+    @Test
 	public void integerIncompleteAutoColumnSparseAndBack() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_HIGH_SPARSITY_DENSITY)) + 1;
@@ -773,7 +905,10 @@ public class AutoColumnTest {
 		assertEquals(max - 1, column.get(max - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete auto column sparse and back ensure.
+     */
+    @Test
 	public void integerIncompleteAutoColumnSparseAndBackEnsure() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_HIGH_SPARSITY_DENSITY)) + 1;
@@ -794,7 +929,10 @@ public class AutoColumnTest {
 		assertEquals(max + 10 - 1, column.get(max + 10 - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer auto column stay dense.
+     */
+    @Test
 	public void integerAutoColumnStayDense() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 500;
 		Column column = new IntegerAutoColumn(size - 400, DataManagement.AUTO);
@@ -809,7 +947,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer auto column two dense chunks.
+     */
+    @Test
 	public void integerAutoColumnTwoDenseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + 1;
 		Column column = new IntegerAutoColumn(size, DataManagement.AUTO);
@@ -820,13 +961,19 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer auto column ensure.
+     */
+    @Test
 	public void integerAutoColumnEnsure() {
 		Column column = new IntegerAutoColumn(1, DataManagement.AUTO);
 		column.ensure(AutoColumnUtils.CHUNK_SIZE * 2 + 1);
 	}
 
-	@Test
+    /**
+     * Integer auto column two sparse chunks.
+     */
+    @Test
 	public void integerAutoColumnTwoSparseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerAutoColumn(size, DataManagement.AUTO);
@@ -837,7 +984,10 @@ public class AutoColumnTest {
 		assertEquals(2, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer auto column sparse.
+     */
+    @Test
 	public void integerAutoColumnSparse() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new IntegerAutoColumn(size, DataManagement.AUTO);
@@ -852,7 +1002,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer auto column sparse 2 nd write.
+     */
+    @Test
 	public void integerAutoColumnSparse2ndWrite() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new IntegerAutoColumn(size, DataManagement.AUTO);
@@ -881,7 +1034,10 @@ public class AutoColumnTest {
 		}
 	}
 
-	@Test
+    /**
+     * Integer auto column sparse and back.
+     */
+    @Test
 	public void integerAutoColumnSparseAndBack() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_HIGH_SPARSITY_DENSITY)) + 1;
@@ -901,7 +1057,10 @@ public class AutoColumnTest {
 		assertEquals(max - 1, column.get(max - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer auto column sparse and back ensure.
+     */
+    @Test
 	public void integerAutoColumnSparseAndBackEnsure() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_HIGH_SPARSITY_DENSITY)) + 1;
@@ -922,7 +1081,10 @@ public class AutoColumnTest {
 		assertEquals(max + 10 - 1, column.get(max + 10 - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer auto column sparse na n.
+     */
+    @Test
 	public void integerAutoColumnSparseNaN() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerAutoColumn(size, DataManagement.AUTO);
@@ -935,7 +1097,10 @@ public class AutoColumnTest {
 		assertEquals(Double.NaN, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer auto column sparse na n default.
+     */
+    @Test
 	public void integerAutoColumnSparseNaNDefault() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerAutoColumn(size, DataManagement.AUTO);
@@ -948,7 +1113,10 @@ public class AutoColumnTest {
 		assertEquals(2, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer auto column dense na n.
+     */
+    @Test
 	public void integerAutoColumnDenseNaN() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerAutoColumn(size, DataManagement.AUTO);
@@ -961,7 +1129,10 @@ public class AutoColumnTest {
 		assertEquals(Double.NaN, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer memory column stay dense.
+     */
+    @Test
 	public void integerMemoryColumnStayDense() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 500;
 		Column column = new IntegerAutoColumn(size - 400, DataManagement.MEMORY_OPTIMIZED);
@@ -976,7 +1147,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer memory column two dense chunks.
+     */
+    @Test
 	public void integerMemoryColumnTwoDenseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + 1;
 		Column column = new IntegerAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -987,7 +1161,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer memory column two sparse chunks.
+     */
+    @Test
 	public void integerMemoryColumnTwoSparseChunks() {
 		int size = AutoColumnUtils.CHUNK_SIZE + AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -998,7 +1175,10 @@ public class AutoColumnTest {
 		assertEquals(2, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer memory column sparse.
+     */
+    @Test
 	public void integerMemoryColumnSparse() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new IntegerAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -1013,7 +1193,10 @@ public class AutoColumnTest {
 		assertEquals(size - 1, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer memory column sparse 2 nd write.
+     */
+    @Test
 	public void integerMemoryColumnSparse2ndWrite() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 200;
 		Column column = new IntegerAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -1042,7 +1225,10 @@ public class AutoColumnTest {
 		}
 	}
 
-	@Test
+    /**
+     * Integer memory column sparse and back.
+     */
+    @Test
 	public void integerMemoryColumnSparseAndBack() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_INTEGER_MEDIUM_SPARSITY_DENSITY)) + 1;
@@ -1062,7 +1248,10 @@ public class AutoColumnTest {
 		assertEquals(max - 1, column.get(max - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer memory column sparse and back ensure.
+     */
+    @Test
 	public void integerMemoryColumnSparseAndBackEnsure() {
 		int change = (int) (AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE
 				* (1 - AutoColumnUtils.THRESHOLD_INTEGER_MEDIUM_SPARSITY_DENSITY)) + 1;
@@ -1083,7 +1272,10 @@ public class AutoColumnTest {
 		assertEquals(max + 10 - 1, column.get(max + 10 - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer memory column sparse na n.
+     */
+    @Test
 	public void integerMemoryColumnSparseNaN() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -1096,7 +1288,10 @@ public class AutoColumnTest {
 		assertEquals(Double.NaN, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer memory column sparse na n default.
+     */
+    @Test
 	public void integerMemoryColumnSparseNaNDefault() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -1109,7 +1304,10 @@ public class AutoColumnTest {
 		assertEquals(2, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer memory column dense na n.
+     */
+    @Test
 	public void integerMemoryColumnDenseNaN() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -1122,7 +1320,10 @@ public class AutoColumnTest {
 		assertEquals(Double.NaN, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete auto column sparse na n.
+     */
+    @Test
 	public void integerIncompleteAutoColumnSparseNaN() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.AUTO);
@@ -1135,7 +1336,10 @@ public class AutoColumnTest {
 		assertEquals(Double.NaN, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete auto column sparse na n default.
+     */
+    @Test
 	public void integerIncompleteAutoColumnSparseNaNDefault() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.AUTO);
@@ -1148,7 +1352,10 @@ public class AutoColumnTest {
 		assertEquals(2, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete auto column dense na n.
+     */
+    @Test
 	public void integerIncompleteAutoColumnDenseNaN() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.AUTO);
@@ -1161,7 +1368,10 @@ public class AutoColumnTest {
 		assertEquals(Double.NaN, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete memory column sparse na n.
+     */
+    @Test
 	public void integerIncompleteMemoryColumnSparseNaN() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -1174,7 +1384,10 @@ public class AutoColumnTest {
 		assertEquals(Double.NaN, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete memory column sparse na n default.
+     */
+    @Test
 	public void integerIncompleteMemoryColumnSparseNaNDefault() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);
@@ -1187,7 +1400,10 @@ public class AutoColumnTest {
 		assertEquals(2, column.get(size - 1), 0);
 	}
 
-	@Test
+    /**
+     * Integer incomplete memory column dense na n.
+     */
+    @Test
 	public void integerIncompleteMemoryColumnDenseNaN() {
 		int size = AutoColumnUtils.THRESHOLD_CHECK_FOR_SPARSE + 1;
 		Column column = new IntegerIncompleteAutoColumn(size, DataManagement.MEMORY_OPTIMIZED);

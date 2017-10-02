@@ -32,7 +32,6 @@ import com.rapidminer.tools.ProgressListener;
  * Suggests names from {@link com.rapidminer.Process#getIOObjectCache()}.
  *
  * @author Simon Fischer
- *
  */
 public class IOObjectCacheSuggestionProvider implements SuggestionProvider<String> {
 

@@ -26,7 +26,7 @@ import com.rapidminer.tools.RandomGenerator;
  * This class is used to represent a hidden node in the neural net. The base difference to the input
  * and output nodes is that the inner nodes performs the weight handling while the input nodes only
  * use the input values and the output nodes simply produce the output value(s).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class InnerNode extends Node {
@@ -45,7 +45,15 @@ public class InnerNode extends Node {
 	/** The activation function for this hidden node. */
 	private ActivationFunction function;
 
-	public InnerNode(String nodeName, int layerIndex, RandomGenerator randomGenerator, ActivationFunction function) {
+    /**
+     * Instantiates a new Inner node.
+     *
+     * @param nodeName        the node name
+     * @param layerIndex      the layer index
+     * @param randomGenerator the random generator
+     * @param function        the function
+     */
+    public InnerNode(String nodeName, int layerIndex, RandomGenerator randomGenerator, ActivationFunction function) {
 		super(nodeName, layerIndex, HIDDEN);
 		this.randomGenerator = randomGenerator;
 		this.function = function;
@@ -53,11 +61,21 @@ public class InnerNode extends Node {
 		weightChanges = new double[] { 0 };
 	}
 
-	public void setActivationFunction(ActivationFunction function) {
+    /**
+     * Sets activation function.
+     *
+     * @param function the function
+     */
+    public void setActivationFunction(ActivationFunction function) {
 		this.function = function;
 	}
 
-	public ActivationFunction getActivationFunction() {
+    /**
+     * Gets activation function.
+     *
+     * @return the activation function
+     */
+    public ActivationFunction getActivationFunction() {
 		return function;
 	}
 
@@ -82,19 +100,39 @@ public class InnerNode extends Node {
 		return weights[n + 1];
 	}
 
-	public double[] getWeights() {
+    /**
+     * Get weights double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getWeights() {
 		return weights;
 	}
 
-	public void setWeights(double[] weights) {
+    /**
+     * Sets weights.
+     *
+     * @param weights the weights
+     */
+    public void setWeights(double[] weights) {
 		this.weights = weights;
 	}
 
-	public double[] getWeightChanges() {
+    /**
+     * Get weight changes double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getWeightChanges() {
 		return weightChanges;
 	}
 
-	public void setWeightChanges(double[] weightChanges) {
+    /**
+     * Sets weight changes.
+     *
+     * @param weightChanges the weight changes
+     */
+    public void setWeightChanges(double[] weightChanges) {
 		this.weightChanges = weightChanges;
 	}
 

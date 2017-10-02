@@ -23,7 +23,6 @@ import com.rapidminer.tools.I18N;
 
 
 /**
- *
  * Exception that is thrown when a given start row in a data set cannot be found.
  *
  * @author Gisa Schaefer
@@ -35,10 +34,10 @@ public class StartRowNotFoundException extends DataSetException {
 
 	private static final String HEADER_ROW_NOT_FOUND = I18N.getGUILabel("import_wizard.start_row_not_found");
 
-	/**
-	 * Creates an exception indicating that the desired start row was not found in the data set.
-	 */
-	public StartRowNotFoundException() {
+    /**
+     * Creates an exception indicating that the desired start row was not found in the data set.
+     */
+    public StartRowNotFoundException() {
 		super(HEADER_ROW_NOT_FOUND);
 	}
 

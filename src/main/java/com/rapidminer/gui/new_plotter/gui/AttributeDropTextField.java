@@ -36,8 +36,9 @@ import com.rapidminer.gui.new_plotter.gui.dnd.DataTableColumnListTransferHandler
 
 
 /**
- * @author Nils Woehler
+ * The type Attribute drop text field.
  *
+ * @author Nils Woehler
  */
 public class AttributeDropTextField extends JTextField implements DragListener {
 
@@ -46,7 +47,14 @@ public class AttributeDropTextField extends JTextField implements DragListener {
 	private Border ongoingDropBorder;
 	private Border dropEndedBorder;
 
-	public AttributeDropTextField(JTree plotConfigurationTree, DataTableColumnListTransferHandler th, SeriesUsageType type) {
+    /**
+     * Instantiates a new Attribute drop text field.
+     *
+     * @param plotConfigurationTree the plot configuration tree
+     * @param th                    the th
+     * @param type                  the type
+     */
+    public AttributeDropTextField(JTree plotConfigurationTree, DataTableColumnListTransferHandler th, SeriesUsageType type) {
 		th.addDragListener(this);
 
 		this.setFocusable(false);

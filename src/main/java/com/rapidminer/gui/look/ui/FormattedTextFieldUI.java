@@ -82,7 +82,13 @@ public class FormattedTextFieldUI extends BasicFormattedTextFieldUI {
 
 	private FormattedTextFieldFocusListener focusListener = new FormattedTextFieldFocusListener();
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new FormattedTextFieldUI();
 	}
 

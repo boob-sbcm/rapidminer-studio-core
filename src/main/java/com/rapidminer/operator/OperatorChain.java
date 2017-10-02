@@ -43,10 +43,10 @@ import com.rapidminer.tools.patterns.Visitor;
 /**
  * An OperatorChain is an Operator that contains children which are again Operators and which it can
  * execute once ore several times during its own execution.<br/>
- *
+ * <p>
  * As of RapidMiner 5.0, an OperatorChain does not directly contain nested Operators, but rather
  * nested {@link ExecutionUnit}s which in turn contain operators.
- *
+ * <p>
  * Please refer to the RapidMiner tutorial for a description how to implement your own operator
  * chain.
  *
@@ -58,17 +58,24 @@ public abstract class OperatorChain extends Operator {
 
 	private final Observer<ExecutionUnit> delegatingObserver = new DelegatingObserver<ExecutionUnit, Operator>(this, this);
 
-	/**
-	 * Creates an empty operator chain.
-	 *
-	 * @deprecated Use OpertorChain(OperatorDescription, String...) to assign names to subprocesses.
-	 */
-	@Deprecated
+    /**
+     * Creates an empty operator chain.
+     *
+     * @param description the description
+     * @deprecated Use OpertorChain(OperatorDescription, String...) to assign names to subprocesses.
+     */
+    @Deprecated
 	public OperatorChain(OperatorDescription description) {
 		this(description, new String[0]);
 	}
 
-	public OperatorChain(OperatorDescription description, String... subprocessNames) {
+    /**
+     * Instantiates a new Operator chain.
+     *
+     * @param description     the description
+     * @param subprocessNames the subprocess names
+     */
+    public OperatorChain(OperatorDescription description, String... subprocessNames) {
 		super(description);
 		subprocesses = new ExecutionUnit[subprocessNames.length];
 		for (int i = 0; i < subprocesses.length; i++) {
@@ -78,15 +85,23 @@ public abstract class OperatorChain extends Operator {
 		}
 	}
 
-	/**
-	 * Indicates whether or not the GUI may offer an option to dynamically add to the number of
-	 * subprocesses. The default implementation returns false.
-	 */
-	public boolean areSubprocessesExtendable() {
+    /**
+     * Indicates whether or not the GUI may offer an option to dynamically add to the number of
+     * subprocesses. The default implementation returns false.
+     *
+     * @return the boolean
+     */
+    public boolean areSubprocessesExtendable() {
 		return false;
 	}
 
-	public ExecutionUnit removeSubprocess(int index) {
+    /**
+     * Remove subprocess execution unit.
+     *
+     * @param index the index
+     * @return the execution unit
+     */
+    public ExecutionUnit removeSubprocess(int index) {
 		ExecutionUnit deleted = subprocesses[index];
 		ExecutionUnit[] copy = subprocesses;
 		subprocesses = new ExecutionUnit[copy.length - 1];
@@ -101,8 +116,13 @@ public abstract class OperatorChain extends Operator {
 		return deleted;
 	}
 
-	/** Creates a subprocess by making a callback to {@link createSubprocess(int)}. */
-	public ExecutionUnit addSubprocess(int index) {
+    /**
+     * Creates a subprocess by making a callback to {@link createSubprocess(int)}.  @param index the index
+     *
+     * @param index the index
+     * @return the execution unit
+     */
+    public ExecutionUnit addSubprocess(int index) {
 		ExecutionUnit[] copy = subprocesses;
 		subprocesses = new ExecutionUnit[copy.length + 1];
 		int j = 0;
@@ -118,64 +138,72 @@ public abstract class OperatorChain extends Operator {
 		return subprocesses[index];
 	}
 
-	protected ExecutionUnit createSubprocess(int index) {
+    /**
+     * Create subprocess execution unit.
+     *
+     * @param index the index
+     * @return the execution unit
+     */
+    protected ExecutionUnit createSubprocess(int index) {
 		return new ExecutionUnit(this, "Subprocess");
 	}
 
-	/**
-	 * This method returns an arbitrary implementation of {@link InputPorts} for inner sink port
-	 * initialization. Useful for adding an arbitrary implementation (e.g. changing port creation &
-	 * (dis)connection behavior, optionally by customized {@link InputPort} instances) by overriding
-	 * this method.
-	 * 
-	 * @param portOwner
-	 *            The owner of the ports.
-	 * @return The {@link InputPorts} instance, never {@code null}.
-	 * @since 7.3.0
-	 */
-	protected InputPorts createInnerSinks(PortOwner portOwner) {
+    /**
+     * This method returns an arbitrary implementation of {@link InputPorts} for inner sink port
+     * initialization. Useful for adding an arbitrary implementation (e.g. changing port creation &
+     * (dis)connection behavior, optionally by customized {@link InputPort} instances) by overriding
+     * this method.
+     *
+     * @param portOwner The owner of the ports.
+     * @return The {@link InputPorts} instance, never {@code null}.
+     * @since 7.3.0
+     */
+    protected InputPorts createInnerSinks(PortOwner portOwner) {
 		return new InputPortsImpl(portOwner);
 	}
 
-	/**
-	 * This method returns an arbitrary implementation of {@link OutputPorts} for inner source port
-	 * initialization. Useful for adding an arbitrary implementation (e.g. changing port creation &
-	 * (dis)connection behavior, optionally by customized {@link OutputPort} instances) by
-	 * overriding this method.
-	 * 
-	 * @param portOwner
-	 *            The owner of the ports.
-	 * @return The {@link OutputPorts} instance, never {@code null}.
-	 * @since 7.3.0
-	 */
-	protected OutputPorts createInnerSources(PortOwner portOwner) {
+    /**
+     * This method returns an arbitrary implementation of {@link OutputPorts} for inner source port
+     * initialization. Useful for adding an arbitrary implementation (e.g. changing port creation &
+     * (dis)connection behavior, optionally by customized {@link OutputPort} instances) by
+     * overriding this method.
+     *
+     * @param portOwner The owner of the ports.
+     * @return The {@link OutputPorts} instance, never {@code null}.
+     * @since 7.3.0
+     */
+    protected OutputPorts createInnerSources(PortOwner portOwner) {
 		return new OutputPortsImpl(portOwner);
 	}
 
-	/**
-	 * Returns the maximum number of inner operators.
-	 *
-	 * @deprecated Use subprocesses instead.
-	 */
-	@Deprecated
+    /**
+     * Returns the maximum number of inner operators.
+     *
+     * @return the max number of inner operators
+     * @deprecated Use subprocesses instead.
+     */
+    @Deprecated
 	public int getMaxNumberOfInnerOperators() {
 		return 0;
 	}
 
-	/**
-	 * Returns the minimum number of inner operators. * @deprecated Use subprocesses instead.
-	 */
-	@Deprecated
+    /**
+     * Returns the minimum number of inner operators. * @deprecated Use subprocesses instead.
+     *
+     * @return the min number of inner operators
+     */
+    @Deprecated
 	public int getMinNumberOfInnerOperators() {
 		return 0;
 	}
 
-	/**
-	 * Must return a condition of the IO behaviour of all desired inner operators.
-	 *
-	 * @deprecated specify input and output ports instead.
-	 */
-	@Deprecated
+    /**
+     * Must return a condition of the IO behaviour of all desired inner operators.
+     *
+     * @return the inner operator condition
+     * @deprecated specify input and output ports instead.
+     */
+    @Deprecated
 	public com.rapidminer.operator.condition.InnerOperatorCondition getInnerOperatorCondition() {
 		return null;
 	}
@@ -218,28 +246,37 @@ public abstract class OperatorChain extends Operator {
 		return input;
 	}
 
-	/**
-	 * Indicates if inner output should be delivered by this operator chain. Default is false.
-	 * Operators which want to change this default behaviour should override this method and should
-	 * return true. In this case the method checkIO would not longer return the result of
-	 * {@link #getDeliveredOutputClasses()} but of {@link #getAllOutputClasses(Class[])}.
-	 *
-	 * @deprecated As of 5.0, this method is no longer necessary.
-	 */
-	@Deprecated
+    /**
+     * Indicates if inner output should be delivered by this operator chain. Default is false.
+     * Operators which want to change this default behaviour should override this method and should
+     * return true. In this case the method checkIO would not longer return the result of
+     * {@link #getDeliveredOutputClasses()} but of {@link #getAllOutputClasses(Class[])}.
+     *
+     * @return the boolean
+     * @deprecated As of 5.0, this method is no longer necessary.
+     */
+    @Deprecated
 	protected boolean shouldReturnInnerOutput() {
 		return false;
 	}
 
-	protected boolean shouldAddNonConsumedInput() {
+    /**
+     * Should add non consumed input boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean shouldAddNonConsumedInput() {
 		return !shouldReturnInnerOutput();
 	}
 
-	/**
-	 * Adds a new inner operator at the last position. The returned index is the position of the
-	 * added operator with respect to all operators (including the disabled operators).
-	 */
-	@Deprecated
+    /**
+     * Adds a new inner operator at the last position. The returned index is the position of the
+     * added operator with respect to all operators (including the disabled operators).
+     *
+     * @param o the o
+     * @return the int
+     */
+    @Deprecated
 	public final int addOperator(Operator o) {
 		for (ExecutionUnit process : subprocesses) {
 			if (process.getNumberOfOperators() == 0) {
@@ -253,11 +290,15 @@ public abstract class OperatorChain extends Operator {
 				"addOperator() is no longer supported. Failed to guess which subprocess was intended. Try getSubprocess(int).addOperator()");
 	}
 
-	/**
-	 * Adds the given operator at the given position. Please note that all operators (including the
-	 * disabled operators) are used for position calculations.
-	 */
-	public final int addOperator(Operator operator, int index) {
+    /**
+     * Adds the given operator at the given position. Please note that all operators (including the
+     * disabled operators) are used for position calculations.
+     *
+     * @param operator the operator
+     * @param index    the index
+     * @return the int
+     */
+    public final int addOperator(Operator operator, int index) {
 		if (index < subprocesses.length) {
 			subprocesses[index].addOperator(operator);
 			getLogger().warning(
@@ -295,31 +336,46 @@ public abstract class OperatorChain extends Operator {
 		}
 	}
 
-	/**
-	 * Removes the given operator from this operator chain. Do not use this method to actually
-	 * remove an operator from an operator chain. Use operator.remove() instead. This method will be
-	 * invoked by the remove() method (which also performs some other actions).
-	 */
-	@Deprecated
+    /**
+     * Removes the given operator from this operator chain. Do not use this method to actually
+     * remove an operator from an operator chain. Use operator.remove() instead. This method will be
+     * invoked by the remove() method (which also performs some other actions).
+     *
+     * @param operator the operator
+     */
+    @Deprecated
 	protected final void removeOperator(Operator operator) {
 		throw new UnsupportedOperationException("removeOperator is deprecated. Use getSubprocess(int).removeOperator()");
 	}
 
-	/** Returns the i-th inner operator. */
-	@Deprecated
+    /**
+     * Returns the i-th inner operator.  @param i the
+     *
+     * @param i the
+     * @return the operator
+     */
+    @Deprecated
 	public Operator getOperator(int i) {
 		throw new UnsupportedOperationException("getOperator(int) is deprecated. Try getSubprocess(int).");
 	}
 
-	/** Returns an iterator over all Operators. */
-	@Deprecated
+    /**
+     * Returns an iterator over all Operators.  @return the operators
+     *
+     * @return the operators
+     */
+    @Deprecated
 	public Iterator<Operator> getOperators() {
 		throw new UnsupportedOperationException(
 				"OperatorChain.getNumberOfOperators() is deprecated. Try getSubprocesses(int).getOperators()");
 	}
 
-	/** Returns all operators contained in the subprocesses of this chain (non-recursive). */
-	public List<Operator> getImmediateChildren() {
+    /**
+     * Returns all operators contained in the subprocesses of this chain (non-recursive).  @return the immediate children
+     *
+     * @return the immediate children
+     */
+    public List<Operator> getImmediateChildren() {
 		List<Operator> children = new LinkedList<Operator>();
 		for (ExecutionUnit executionUnit : subprocesses) {
 			children.addAll(executionUnit.getOperators());
@@ -327,8 +383,12 @@ public abstract class OperatorChain extends Operator {
 		return children;
 	}
 
-	/** Returns recursively all child operators independently if they are activated or not. */
-	public List<Operator> getAllInnerOperators() {
+    /**
+     * Returns recursively all child operators independently if they are activated or not.  @return the all inner operators
+     *
+     * @return the all inner operators
+     */
+    public List<Operator> getAllInnerOperators() {
 		List<Operator> children = new LinkedList<Operator>();
 		for (ExecutionUnit executionUnit : subprocesses) {
 			children.addAll(executionUnit.getAllInnerOperators());
@@ -336,49 +396,63 @@ public abstract class OperatorChain extends Operator {
 		return children;
 	}
 
-	public List<Operator> getAllInnerOperatorsAndMe() {
+    /**
+     * Gets all inner operators and me.
+     *
+     * @return the all inner operators and me
+     */
+    public List<Operator> getAllInnerOperatorsAndMe() {
 		List<Operator> children = getAllInnerOperators();
 		children.add(this);
 		return children;
 	}
 
-	/**
-	 * As a workaround, returns the number of subprocesses.
-	 *
-	 * @deprecated as of RM replaced by subprocesses.
-	 */
-	@Deprecated
+    /**
+     * As a workaround, returns the number of subprocesses.
+     *
+     * @return the number of operators
+     * @deprecated as of RM replaced by subprocesses.
+     */
+    @Deprecated
 	public int getNumberOfOperators() {
 		return subprocesses.length;
 	}
 
-	/**
-	 * Returns the number of all inner operators (including the disabled operators). Mainly used for
-	 * GUI purposes. Operators should use {@link #getNumberOfOperators()}.
-	 *
-	 * @deprecated Try getSubprocess(int).getNumberOfOperators()
-	 */
-	@Deprecated
+    /**
+     * Returns the number of all inner operators (including the disabled operators). Mainly used for
+     * GUI purposes. Operators should use {@link #getNumberOfOperators()}.
+     *
+     * @return the number of all operators
+     * @deprecated Try getSubprocess(int).getNumberOfOperators()
+     */
+    @Deprecated
 	public int getNumberOfAllOperators() {
 		return subprocesses.length;
 	}
 
-	/**
-	 * Returns the i-th operator. In contrast to the method {@link #getOperator(int i)} this method
-	 * also uses disabled operators. Mainly used for GUI purposes. Other operators should use the
-	 * method {@link #getOperator(int i)} which only delivers enabled inner operators.
-	 */
-	@Deprecated
+    /**
+     * Returns the i-th operator. In contrast to the method {@link #getOperator(int i)} this method
+     * also uses disabled operators. Mainly used for GUI purposes. Other operators should use the
+     * method {@link #getOperator(int i)} which only delivers enabled inner operators.
+     *
+     * @param i the
+     * @return the operator from all
+     */
+    @Deprecated
 	public Operator getOperatorFromAll(int i) {
 		throw new UnsupportedOperationException(
 				"OperatorChain.getOperatorFromAll(int) is deprecated. Try getSubprocess(int).getOperators()");
 	}
 
-	/**
-	 * Returns the index of the given operator in the list of children. If useDisabled is true,
-	 * disabled operators are also used for index calculations.
-	 */
-	@Deprecated
+    /**
+     * Returns the index of the given operator in the list of children. If useDisabled is true,
+     * disabled operators are also used for index calculations.
+     *
+     * @param operator    the operator
+     * @param useDisabled the use disabled
+     * @return the index of operator
+     */
+    @Deprecated
 	public int getIndexOfOperator(Operator operator, boolean useDisabled) {
 		throw new UnsupportedOperationException(
 				"OperatorChain.getOperatorFromAll(int) is deprecated. Try getSubprocess(int).getOperators()");
@@ -413,10 +487,10 @@ public abstract class OperatorChain extends Operator {
 
 	// -------------------- implemented abstract methods
 
-	/**
-	 * Clears all sinks of all inner processes
-	 */
-	protected void clearAllInnerSinks() {
+    /**
+     * Clears all sinks of all inner processes
+     */
+    protected void clearAllInnerSinks() {
 		for (ExecutionUnit subprocess : subprocesses) {
 			subprocess.getInnerSinks().clear(Port.CLEAR_DATA);
 		}
@@ -488,13 +562,14 @@ public abstract class OperatorChain extends Operator {
 		return deprecationCount;
 	}
 
-	/**
-	 * Checks if the number of inner operators lies between MinInnerOps and MaxInnerOps. Performs
-	 * the check for all operator chains which are children of this operator chain.
-	 *
-	 * @deprecated As of RM, this is implicit in the subprocesses.
-	 */
-	@Deprecated
+    /**
+     * Checks if the number of inner operators lies between MinInnerOps and MaxInnerOps. Performs
+     * the check for all operator chains which are children of this operator chain.
+     *
+     * @return the int
+     * @deprecated As of RM, this is implicit in the subprocesses.
+     */
+    @Deprecated
 	public int checkNumberOfInnerOperators() {
 		return 0;
 	}
@@ -528,16 +603,31 @@ public abstract class OperatorChain extends Operator {
 		return treeList;
 	}
 
-	public ExecutionUnit getSubprocess(int index) {
+    /**
+     * Gets subprocess.
+     *
+     * @param index the index
+     * @return the subprocess
+     */
+    public ExecutionUnit getSubprocess(int index) {
 		return subprocesses[index];
 	}
 
-	public int getNumberOfSubprocesses() {
+    /**
+     * Gets number of subprocesses.
+     *
+     * @return the number of subprocesses
+     */
+    public int getNumberOfSubprocesses() {
 		return subprocesses.length;
 	}
 
-	/** Returns an immutable view of all subprocesses */
-	public List<ExecutionUnit> getSubprocesses() {
+    /**
+     * Returns an immutable view of all subprocesses  @return the subprocesses
+     *
+     * @return the subprocesses
+     */
+    public List<ExecutionUnit> getSubprocesses() {
 		return Arrays.asList(subprocesses);
 	}
 

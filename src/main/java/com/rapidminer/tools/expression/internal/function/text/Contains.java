@@ -22,14 +22,13 @@ package com.rapidminer.tools.expression.internal.function.text;
  * A {@link Function} for checking if one String contains the other.
  *
  * @author David Arnu
- *
  */
 public class Contains extends Abstract2StringInputBooleanOutputFunction {
 
-	/**
-	 * Creates a function for checking if one String contains the other
-	 */
-	public Contains() {
+    /**
+     * Creates a function for checking if one String contains the other
+     */
+    public Contains() {
 		super("text_information.contains");
 
 	}

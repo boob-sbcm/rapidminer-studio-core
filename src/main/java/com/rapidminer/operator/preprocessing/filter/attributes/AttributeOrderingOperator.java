@@ -58,67 +58,153 @@ import com.rapidminer.tools.Tools;
  * by user specified ordering roles.
  *
  * @author Nils Woehler
- *
  */
 public class AttributeOrderingOperator extends AbstractFeatureSelection {
 
 	private abstract class FilterConditon {
 
-		public abstract boolean match(String rule, String value);
+        /**
+         * Match boolean.
+         *
+         * @param rule  the rule
+         * @param value the value
+         * @return the boolean
+         */
+        public abstract boolean match(String rule, String value);
 	}
 
 	private static final String REFERENCE_DATA_PORT_NAME = "reference_data";
 
-	// --------------------- Order method ---------------------------------
+    /**
+     * The constant PARAMETER_ORDER_MODE.
+     */
+// --------------------- Order method ---------------------------------
 	public static final String PARAMETER_ORDER_MODE = "sort_mode";
 
-	public static final String USER_SPECIFIED_RULES_MODE = "user specified";
-	public static final String ALPHABETICALLY_MODE = "alphabetically";
-	public static final String REFERENCE_DATA = "reference data";
+    /**
+     * The constant USER_SPECIFIED_RULES_MODE.
+     */
+    public static final String USER_SPECIFIED_RULES_MODE = "user specified";
+    /**
+     * The constant ALPHABETICALLY_MODE.
+     */
+    public static final String ALPHABETICALLY_MODE = "alphabetically";
+    /**
+     * The constant REFERENCE_DATA.
+     */
+    public static final String REFERENCE_DATA = "reference data";
 
-	public static final String[] SORT_MODES = new String[] { USER_SPECIFIED_RULES_MODE, ALPHABETICALLY_MODE,
+    /**
+     * The constant SORT_MODES.
+     */
+    public static final String[] SORT_MODES = new String[] { USER_SPECIFIED_RULES_MODE, ALPHABETICALLY_MODE,
 			REFERENCE_DATA };
-	public static final int USER_SPECIFIED_RULES_MODE_INDEX = 0;
-	public static final int ALPHABETICALLY_MODE_INDEX = 1;
-	public static final int REFERENCE_DATA_INDEX = 2;
+    /**
+     * The constant USER_SPECIFIED_RULES_MODE_INDEX.
+     */
+    public static final int USER_SPECIFIED_RULES_MODE_INDEX = 0;
+    /**
+     * The constant ALPHABETICALLY_MODE_INDEX.
+     */
+    public static final int ALPHABETICALLY_MODE_INDEX = 1;
+    /**
+     * The constant REFERENCE_DATA_INDEX.
+     */
+    public static final int REFERENCE_DATA_INDEX = 2;
 
-	// --------------------- Sort direction -------------------------------
+    /**
+     * The constant PARAMETER_SORT_DIRECTION.
+     */
+// --------------------- Sort direction -------------------------------
 	public static final String PARAMETER_SORT_DIRECTION = "sort_direction";
 
-	public static final String DIRECTION_ASCENDING = "ascending";
-	public static final String DIRECTION_DESCENDING = "descending";
-	public static final String DIRECTION_NONE = "none";
+    /**
+     * The constant DIRECTION_ASCENDING.
+     */
+    public static final String DIRECTION_ASCENDING = "ascending";
+    /**
+     * The constant DIRECTION_DESCENDING.
+     */
+    public static final String DIRECTION_DESCENDING = "descending";
+    /**
+     * The constant DIRECTION_NONE.
+     */
+    public static final String DIRECTION_NONE = "none";
 
-	public static final String[] SORT_DIRECTIONS = new String[] { DIRECTION_ASCENDING, DIRECTION_DESCENDING,
+    /**
+     * The constant SORT_DIRECTIONS.
+     */
+    public static final String[] SORT_DIRECTIONS = new String[] { DIRECTION_ASCENDING, DIRECTION_DESCENDING,
 			DIRECTION_NONE };
-	public static final int DIRECTION_ASCENDING_INDEX = 0;
-	public static final int DIRECTION_DESCENDING_INDEX = 1;
-	public static final int DIRECTION_NONE_INDEX = 2;
+    /**
+     * The constant DIRECTION_ASCENDING_INDEX.
+     */
+    public static final int DIRECTION_ASCENDING_INDEX = 0;
+    /**
+     * The constant DIRECTION_DESCENDING_INDEX.
+     */
+    public static final int DIRECTION_DESCENDING_INDEX = 1;
+    /**
+     * The constant DIRECTION_NONE_INDEX.
+     */
+    public static final int DIRECTION_NONE_INDEX = 2;
 
 	// --------------------- Others ---------------------------------------
 
-	public static final String PARAMETER_ORDER_RULES = "attribute_ordering";
-	public static final String PARAMETER_USE_REGEXP = "use_regular_expressions";
+    /**
+     * The constant PARAMETER_ORDER_RULES.
+     */
+    public static final String PARAMETER_ORDER_RULES = "attribute_ordering";
+    /**
+     * The constant PARAMETER_USE_REGEXP.
+     */
+    public static final String PARAMETER_USE_REGEXP = "use_regular_expressions";
 
-	public static final String PARAMETER_HANDLE_UNMATCHED_ATTRIBUTES = "handle_unmatched";
+    /**
+     * The constant PARAMETER_HANDLE_UNMATCHED_ATTRIBUTES.
+     */
+    public static final String PARAMETER_HANDLE_UNMATCHED_ATTRIBUTES = "handle_unmatched";
 
-	public static final String REMOVE_UNMATCHED_MODE = "remove";
-	public static final String PREPEND_UNMATCHED_MODE = "prepend";
-	public static final String APPEND_UNMATCHED_MODE = "append";
+    /**
+     * The constant REMOVE_UNMATCHED_MODE.
+     */
+    public static final String REMOVE_UNMATCHED_MODE = "remove";
+    /**
+     * The constant PREPEND_UNMATCHED_MODE.
+     */
+    public static final String PREPEND_UNMATCHED_MODE = "prepend";
+    /**
+     * The constant APPEND_UNMATCHED_MODE.
+     */
+    public static final String APPEND_UNMATCHED_MODE = "append";
 
-	public static final String[] HANDLE_UNMATCHED_MODES = { REMOVE_UNMATCHED_MODE, PREPEND_UNMATCHED_MODE,
+    /**
+     * The constant HANDLE_UNMATCHED_MODES.
+     */
+    public static final String[] HANDLE_UNMATCHED_MODES = { REMOVE_UNMATCHED_MODE, PREPEND_UNMATCHED_MODE,
 			APPEND_UNMATCHED_MODE };
 
-	public static final int REMOVE_UNMATCHED_MODE_INDEX = 0;
-	public static final int PREPEND_UNMATCHED_MODE_INDEX = 1;
-	public static final int APPEND_UNMATCHED_MODE_INDEX = 2;
+    /**
+     * The constant REMOVE_UNMATCHED_MODE_INDEX.
+     */
+    public static final int REMOVE_UNMATCHED_MODE_INDEX = 0;
+    /**
+     * The constant PREPEND_UNMATCHED_MODE_INDEX.
+     */
+    public static final int PREPEND_UNMATCHED_MODE_INDEX = 1;
+    /**
+     * The constant APPEND_UNMATCHED_MODE_INDEX.
+     */
+    public static final int APPEND_UNMATCHED_MODE_INDEX = 2;
 
 	private final InputPort referenceDataPort = getInputPorts().createPort(REFERENCE_DATA_PORT_NAME);
 
-	/**
-	 * @param description
-	 */
-	public AttributeOrderingOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute ordering operator.
+     *
+     * @param description the description
+     */
+    public AttributeOrderingOperator(OperatorDescription description) {
 		super(description);
 
 		referenceDataPort.addPrecondition(new SimplePrecondition(referenceDataPort, new MetaData(ExampleSet.class), false));

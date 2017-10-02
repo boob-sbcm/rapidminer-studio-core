@@ -30,22 +30,38 @@ import java.util.List;
 
 /**
  * This class supports convenient methods for parameter depended creation of neighborhoods.
- * 
+ *
  * @author Sebastian Land
  */
 public class Neighborhoods {
 
-	public static final String PARAMETER_NEIGHBORHOOD_TYPE = "neighborhood_type";
+    /**
+     * The constant PARAMETER_NEIGHBORHOOD_TYPE.
+     */
+    public static final String PARAMETER_NEIGHBORHOOD_TYPE = "neighborhood_type";
 
-	public static final String[] NEIGHBORHOOD_NAMES = new String[] { "Fixed Number", "Fixed Distance", "Relative Number",
+    /**
+     * The constant NEIGHBORHOOD_NAMES.
+     */
+    public static final String[] NEIGHBORHOOD_NAMES = new String[] { "Fixed Number", "Fixed Distance", "Relative Number",
 			"Distance but at least" };
 
-	@SuppressWarnings("unchecked")
+    /**
+     * The constant NEIGHBORHOOD_CLASSES.
+     */
+    @SuppressWarnings("unchecked")
 	public static final Class<? extends Neighborhood>[] NEIGHBORHOOD_CLASSES = new Class[] {
 			NearestNeighborNeighborhood.class, DistanceNeighborhood.class, RelativeNeighborhood.class,
 			AtLeastNeighborhood.class };
 
-	public static final Neighborhood createNeighborhood(ParameterHandler handler) throws OperatorException {
+    /**
+     * Create neighborhood neighborhood.
+     *
+     * @param handler the handler
+     * @return the neighborhood
+     * @throws OperatorException the operator exception
+     */
+    public static final Neighborhood createNeighborhood(ParameterHandler handler) throws OperatorException {
 		int chosenNeighborhood = handler.getParameterAsInt(PARAMETER_NEIGHBORHOOD_TYPE);
 		try {
 			Neighborhood hood = NEIGHBORHOOD_CLASSES[chosenNeighborhood].newInstance();
@@ -58,7 +74,13 @@ public class Neighborhoods {
 		}
 	}
 
-	public static final List<ParameterType> getParameterTypes(ParameterHandler handler) {
+    /**
+     * Gets parameter types.
+     *
+     * @param handler the handler
+     * @return the parameter types
+     */
+    public static final List<ParameterType> getParameterTypes(ParameterHandler handler) {
 		List<ParameterType> types = new LinkedList<ParameterType>();
 
 		ParameterType type = new ParameterTypeCategory(PARAMETER_NEIGHBORHOOD_TYPE,

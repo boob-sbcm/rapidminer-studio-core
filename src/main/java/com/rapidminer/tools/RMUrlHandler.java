@@ -48,12 +48,17 @@ import com.rapidminer.operator.OperatorCreationException;
  * register themselves by invoking {@link RMUrlHandler#register(String, Action)}.
  *
  * @author Simon Fischer
- *
  */
 public class RMUrlHandler {
 
-	public static final String URL_PREFIX = "rm://";
-	public static final String PREFERENCES_URL = URL_PREFIX + "preferences";
+    /**
+     * The constant URL_PREFIX.
+     */
+    public static final String URL_PREFIX = "rm://";
+    /**
+     * The constant PREFERENCES_URL.
+     */
+    public static final String PREFERENCES_URL = URL_PREFIX + "preferences";
 
 	private static final Map<String, Action> ACTION_MAP = new HashMap<>();
 
@@ -63,11 +68,13 @@ public class RMUrlHandler {
 		register("preferences", new SettingsAction());
 	}
 
-	/**
-	 *
-	 * @return true iff we understand the url.
-	 */
-	public static boolean handleUrl(String url) {
+    /**
+     * Handle url boolean.
+     *
+     * @param url the url
+     * @return true iff we understand the url.
+     */
+    public static boolean handleUrl(String url) {
 		if (url.startsWith(URL_PREFIX)) {
 			String suffix = url.substring(URL_PREFIX.length());
 			if (suffix.startsWith("opdoc/")) {
@@ -104,18 +111,26 @@ public class RMUrlHandler {
 		}
 	}
 
-	public static void register(String name, Action action) {
+    /**
+     * Register.
+     *
+     * @param name   the name
+     * @param action the action
+     */
+    public static void register(String name, Action action) {
 		ACTION_MAP.put(name, action);
 	}
 
-	/**
-	 * On systems where Desktop.getDesktop().browse() does not work for http://, creates an HTML
-	 * page which redirects to the given URI and calls Desktop.browse() with this file through the
-	 * file:// url which seems to work better, at least for KDE.
-	 *
-	 * @deprecated Replaced by {@link #openInBrowser(URI)}
-	 */
-	@Deprecated
+    /**
+     * On systems where Desktop.getDesktop().browse() does not work for http://, creates an HTML
+     * page which redirects to the given URI and calls Desktop.browse() with this file through the
+     * file:// url which seems to work better, at least for KDE.
+     *
+     * @param uri the uri
+     * @throws IOException the io exception
+     * @deprecated Replaced by {@link #openInBrowser(URI)}
+     */
+    @Deprecated
 	public static void browse(URI uri) throws IOException {
 		if (Desktop.isDesktopSupported()) {
 			try {
@@ -142,15 +157,15 @@ public class RMUrlHandler {
 
 	}
 
-	/**
-	 * Tries to open an URL in the system browser
-	 * <p>
-	 * Fallback: Shows the URL in a dialog
-	 * </p>
-	 *
-	 * @param uri
-	 */
-	public static void openInBrowser(URL url) {
+    /**
+     * Tries to open an URL in the system browser
+     * <p>
+     * Fallback: Shows the URL in a dialog
+     * </p>
+     *
+     * @param url the url
+     */
+    public static void openInBrowser(URL url) {
 		try {
 			URI uri = url.toURI();
 			openInBrowser(uri);
@@ -159,15 +174,15 @@ public class RMUrlHandler {
 		}
 	}
 
-	/**
-	 * Tries to open an URI String in the system browser
-	 * <p>
-	 * Fallback: Shows the URI String in a dialog
-	 * </p>
-	 *
-	 * @param uri
-	 */
-	public static void openInBrowser(String uriString) {
+    /**
+     * Tries to open an URI String in the system browser
+     * <p>
+     * Fallback: Shows the URI String in a dialog
+     * </p>
+     *
+     * @param uriString the uri string
+     */
+    public static void openInBrowser(String uriString) {
 		try {
 			URI uri = new URI(uriString);
 			openInBrowser(uri);
@@ -176,13 +191,15 @@ public class RMUrlHandler {
 		}
 	}
 
-	/**
-	 * Tries to open an URI in the system browser
-	 * <p>
-	 * Fallback: Shows the URI String in a dialog
-	 * </p>
-	 */
-	public static void openInBrowser(URI uri) {
+    /**
+     * Tries to open an URI in the system browser
+     * <p>
+     * Fallback: Shows the URI String in a dialog
+     * </p>
+     *
+     * @param uri the uri
+     */
+    public static void openInBrowser(URI uri) {
 		if (Desktop.isDesktopSupported()) {
 			try {
 				Desktop.getDesktop().browse(uri);

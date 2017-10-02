@@ -23,13 +23,18 @@ import com.rapidminer.operator.learner.igss.hypothesis.Hypothesis;
 
 /**
  * The instance-averaging utility function Coverage.
- * 
+ *
  * @author Dirk Dach
  */
 public class Coverage extends InstanceAveraging {
 
-	/** Constructs a new Coverage with the given default probability. */
-	public Coverage(double[] priors, int large) {
+    /**
+     * Constructs a new Coverage with the given default probability.  @param priors the priors
+     *
+     * @param priors the priors
+     * @param large  the large
+     */
+    public Coverage(double[] priors, int large) {
 		super(priors, large);
 	}
 

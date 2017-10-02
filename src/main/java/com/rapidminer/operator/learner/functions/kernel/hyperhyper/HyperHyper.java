@@ -45,7 +45,12 @@ import com.rapidminer.tools.RandomGenerator;
  */
 public class HyperHyper extends AbstractLearner {
 
-	public HyperHyper(OperatorDescription description) {
+    /**
+     * Instantiates a new Hyper hyper.
+     *
+     * @param description the description
+     */
+    public HyperHyper(OperatorDescription description) {
 		super(description);
 	}
 

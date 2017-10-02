@@ -30,32 +30,30 @@ import com.rapidminer.gui.RapidMinerGUI;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public interface GUIStartupListener {
 
-	/**
-	 * Will be called right before the Splash screen is shown.
-	 */
-	void splashWillBeShown();
+    /**
+     * Will be called right before the Splash screen is shown.
+     */
+    void splashWillBeShown();
 
-	/**
-	 * Will be called after the {@link MainFrame} has been initialized and after all plugin GUIs
-	 * have been initialized but before the {@link MainFrame} is shown.
-	 *
-	 * @param mainFrame
-	 *            the {@link MainFrame}
-	 */
-	void mainFrameInitialized(MainFrame mainFrame);
+    /**
+     * Will be called after the {@link MainFrame} has been initialized and after all plugin GUIs
+     * have been initialized but before the {@link MainFrame} is shown.
+     *
+     * @param mainFrame the {@link MainFrame}
+     */
+    void mainFrameInitialized(MainFrame mainFrame);
 
-	/**
-	 * Will be called right after the Splash screen was hidden.
-	 */
-	void splashWasHidden();
+    /**
+     * Will be called right after the Splash screen was hidden.
+     */
+    void splashWasHidden();
 
-	/**
-	 * Will be called at the end of the GUI startup.
-	 */
-	void startupCompleted();
+    /**
+     * Will be called at the end of the GUI startup.
+     */
+    void startupCompleted();
 
 }

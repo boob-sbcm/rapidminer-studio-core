@@ -42,9 +42,18 @@ import com.rapidminer.parameter.UndefinedParameterError;
  */
 public class IterativeTTestLinearRegressionMethod extends TTestLinearRegressionMethod {
 
-	public static final String PARAMETER_MAX_ITERATIONS = "max_iterations";
-	public static final String PARAMETER_FORWARD_SELECTION_THRESHOLD = "forward_alpha";
-	public static final String PARAMETER_BACKWARD_SELECTION_THRESHOLD = "backward_alpha";
+    /**
+     * The constant PARAMETER_MAX_ITERATIONS.
+     */
+    public static final String PARAMETER_MAX_ITERATIONS = "max_iterations";
+    /**
+     * The constant PARAMETER_FORWARD_SELECTION_THRESHOLD.
+     */
+    public static final String PARAMETER_FORWARD_SELECTION_THRESHOLD = "forward_alpha";
+    /**
+     * The constant PARAMETER_BACKWARD_SELECTION_THRESHOLD.
+     */
+    public static final String PARAMETER_BACKWARD_SELECTION_THRESHOLD = "backward_alpha";
 
 	@Override
 	public LinearRegressionResult applyMethod(LinearRegression regression, boolean useBias, double ridge,

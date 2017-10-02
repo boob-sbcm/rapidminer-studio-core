@@ -31,10 +31,10 @@ import com.rapidminer.parameter.UndefinedParameterError;
  */
 public class MaxNumberOfAttributesCondition implements ProcessBranchCondition {
 
-	/**
-	 * Constructor used by reflection.
-	 */
-	public MaxNumberOfAttributesCondition() {}
+    /**
+     * Constructor used by reflection.
+     */
+    public MaxNumberOfAttributesCondition() {}
 
 	@Override
 	public boolean check(ProcessBranch operator, String value) throws OperatorException {

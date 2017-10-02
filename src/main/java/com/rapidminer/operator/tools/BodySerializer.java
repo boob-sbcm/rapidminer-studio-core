@@ -25,12 +25,26 @@ import java.io.OutputStream;
 
 /**
  * De/serializes the body of a stream, i.e. the part without the header (MAGIC_NUMBER plus type id).
- * 
+ *
  * @author Simon Fischer
- * */
+ */
 public interface BodySerializer {
 
-	public Object deserialize(InputStream in) throws IOException;
+    /**
+     * Deserialize object.
+     *
+     * @param in the in
+     * @return the object
+     * @throws IOException the io exception
+     */
+    public Object deserialize(InputStream in) throws IOException;
 
-	public void serialize(Object object, OutputStream out) throws IOException;
+    /**
+     * Serialize.
+     *
+     * @param object the object
+     * @param out    the out
+     * @throws IOException the io exception
+     */
+    public void serialize(Object object, OutputStream out) throws IOException;
 }

@@ -72,11 +72,13 @@ public abstract class JMathPlotter extends PlotterAdapter {
 	/** The used axes columns. */
 	private int[] axis = new int[] { -1, -1 };
 
-	/**
-	 * Creates a new JMathPlotter. If the method {@link #hasRapidMinerValueLegend()} returns true,
-	 * the usual RapidMiner color legend will be used ( {@link PlotterLegend}).
-	 */
-	public JMathPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Creates a new JMathPlotter. If the method {@link #hasRapidMinerValueLegend()} returns true,
+     * the usual RapidMiner color legend will be used ( {@link PlotterLegend}).
+     *
+     * @param settings the settings
+     */
+    public JMathPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		this.axis = new int[getNumberOfAxes()];
 		for (int i = 0; i < this.axis.length; i++) {
@@ -84,8 +86,13 @@ public abstract class JMathPlotter extends PlotterAdapter {
 		}
 	}
 
-	/** Creates the new plotter and sets the data table. */
-	public JMathPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Creates the new plotter and sets the data table.  @param settings the settings
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public JMathPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -126,38 +133,80 @@ public abstract class JMathPlotter extends PlotterAdapter {
 		return this;
 	}
 
-	/** Must be implemented by subclasses in order to support 2D or 3D plots. */
-	protected abstract PlotPanel createPlotPanel();
+    /**
+     * Must be implemented by subclasses in order to support 2D or 3D plots.  @return the plot panel
+     *
+     * @return the plot panel
+     */
+    protected abstract PlotPanel createPlotPanel();
 
-	protected abstract void update();
+    /**
+     * Update.
+     */
+    protected abstract void update();
 
-	protected abstract int getNumberOfOptionIcons();
+    /**
+     * Gets number of option icons.
+     *
+     * @return the number of option icons
+     */
+    protected abstract int getNumberOfOptionIcons();
 
 	// =============================
 	// helper method for subclasses
 	// =============================
 
-	protected PlotterLegend getLegendComponent() {
+    /**
+     * Gets legend component.
+     *
+     * @return the legend component
+     */
+    protected PlotterLegend getLegendComponent() {
 		return this.legend;
 	}
 
-	protected boolean hasLegend() {
+    /**
+     * Has legend boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean hasLegend() {
 		return true;
 	}
 
-	protected boolean hasRapidMinerValueLegend() {
+    /**
+     * Has rapid miner value legend boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean hasRapidMinerValueLegend() {
 		return false;
 	}
 
-	protected DataTable getDataTable() {
+    /**
+     * Gets data table.
+     *
+     * @return the data table
+     */
+    protected DataTable getDataTable() {
 		return this.dataTable;
 	}
 
-	protected int countColumns() {
+    /**
+     * Count columns int.
+     *
+     * @return the int
+     */
+    protected int countColumns() {
 		return this.columns.length;
 	}
 
-	protected PlotPanel getPlotPanel() {
+    /**
+     * Gets plot panel.
+     *
+     * @return the plot panel
+     */
+    protected PlotPanel getPlotPanel() {
 		if (this.plotpanel == null) {
 			getPlotter();
 		}

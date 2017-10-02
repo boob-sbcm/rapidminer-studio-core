@@ -27,7 +27,7 @@ import java.util.Collection;
 /**
  * Delivers meta data received in the first input that is not null to the output port. TODO: Make
  * intersection of meta data. This is all we can guarantee.
- * 
+ *
  * @author Simon Fischer
  */
 public class ManyToOnePassThroughRule implements MDTransformationRule {
@@ -35,7 +35,13 @@ public class ManyToOnePassThroughRule implements MDTransformationRule {
 	private OutputPort outputPort;
 	private Collection<InputPort> inputPorts;
 
-	public ManyToOnePassThroughRule(Collection<InputPort> inputPorts, OutputPort outputPort) {
+    /**
+     * Instantiates a new Many to one pass through rule.
+     *
+     * @param inputPorts the input ports
+     * @param outputPort the output port
+     */
+    public ManyToOnePassThroughRule(Collection<InputPort> inputPorts, OutputPort outputPort) {
 		this.inputPorts = inputPorts;
 		this.outputPort = outputPort;
 	}
@@ -54,12 +60,15 @@ public class ManyToOnePassThroughRule implements MDTransformationRule {
 		outputPort.deliverMD(null);
 	}
 
-	/**
-	 * Modifies the standard meta data before it is passed to the output. Can be used if the
-	 * transformation depends on parameters etc. The default implementation just returns the
-	 * original. Subclasses may safely modify the meta data, since a copy is used for this method.
-	 */
-	public MetaData modifyMetaData(MetaData unmodifiedMetaData) {
+    /**
+     * Modifies the standard meta data before it is passed to the output. Can be used if the
+     * transformation depends on parameters etc. The default implementation just returns the
+     * original. Subclasses may safely modify the meta data, since a copy is used for this method.
+     *
+     * @param unmodifiedMetaData the unmodified meta data
+     * @return the meta data
+     */
+    public MetaData modifyMetaData(MetaData unmodifiedMetaData) {
 		return unmodifiedMetaData;
 	}
 }

@@ -34,7 +34,7 @@ import com.rapidminer.operator.nio.model.ExcelResultSetConfiguration;
 
 /**
  * This step allows to select a sheet of an excel workbook to import it.
- *
+ * <p>
  * It handles the handshake with the generic following {@link AnnotationDeclarationWizardStep}.
  *
  * @author Sebastian Land
@@ -46,7 +46,12 @@ class ExcelSheetSelectionWizardStep extends WizardStep {
 
 	private final JLabel errorLabel = new JLabel("");
 
-	public ExcelSheetSelectionWizardStep(ExcelResultSetConfiguration configuration) {
+    /**
+     * Instantiates a new Excel sheet selection wizard step.
+     *
+     * @param configuration the configuration
+     */
+    public ExcelSheetSelectionWizardStep(ExcelResultSetConfiguration configuration) {
 		super("importwizard.excel_data_selection");
 
 		this.configuration = configuration;

@@ -44,12 +44,11 @@ import com.rapidminer.tools.XMLException;
  * The Wallet stores user credentials (username and passwords). It is used by the
  * {@link GlobalAuthenticator} and can be edited with the {@link PasswordManager}.
  * {@link UserCredential}s are stored per {@link URL}.
- *
+ * <p>
  * Note: Though this class has a {@link #getInstance()} method, it is not a pure singleton. In fact,
  * the {@link PasswordManager} sets a new instance via {@link #setInstance(Wallet)} after editing.
  *
  * @author Miguel Buescher, Marco Boeck
- *
  */
 @SuppressWarnings("deprecation")
 public class Wallet {
@@ -58,7 +57,10 @@ public class Wallet {
 	private HashMap<String, UserCredential> wallet = new HashMap<String, UserCredential>();
 
 	private static final String ID_PREFIX_URL_SEPERATOR = "___";
-	public static final String ID_MARKETPLACE = "Marketplace";
+    /**
+     * The constant ID_MARKETPLACE.
+     */
+    public static final String ID_MARKETPLACE = "Marketplace";
 
 	private static Wallet instance = new Wallet();
 
@@ -66,23 +68,28 @@ public class Wallet {
 		instance.readCache();
 	}
 
-	/**
-	 * Singleton access.
-	 *
-	 * @return
-	 */
-	public static Wallet getInstance() {
+    /**
+     * Singleton access.
+     *
+     * @return instance instance
+     */
+    public static Wallet getInstance() {
 		return instance;
 	}
 
-	public static void setInstance(Wallet wallet) {
+    /**
+     * Sets instance.
+     *
+     * @param wallet the wallet
+     */
+    public static void setInstance(Wallet wallet) {
 		instance = wallet;
 	}
 
-	/**
-	 * Reads the wallet from the secrets.xml file in the user's home directory.
-	 */
-	public void readCache() {
+    /**
+     * Reads the wallet from the secrets.xml file in the user's home directory.
+     */
+    public void readCache() {
 		final File userConfigFile = FileSystemService.getUserConfigFile(CACHE_FILE_NAME);
 		if (!userConfigFile.exists()) {
 			return;
@@ -102,13 +109,12 @@ public class Wallet {
 		readCache(doc);
 	}
 
-	/**
-	 * Reads the wallet from a {@link Document} object.
-	 *
-	 * @param doc
-	 *            the document which contains the secrets
-	 */
-	public void readCache(Document doc) {
+    /**
+     * Reads the wallet from a {@link Document} object.
+     *
+     * @param doc the document which contains the secrets
+     */
+    public void readCache(Document doc) {
 		NodeList secretElems = doc.getDocumentElement().getElementsByTagName("secret");
 		UserCredential usercredential;
 		for (int i = 0; i < secretElems.getLength(); i++) {
@@ -137,27 +143,26 @@ public class Wallet {
 		}
 	}
 
-	/**
-	 * Adds the given credentials.
-	 *
-	 * @deprecated use {@link #registerCredentials(String, UserCredential)} instead.
-	 * @param authentication
-	 */
-	@Deprecated
+    /**
+     * Adds the given credentials.
+     *
+     * @param authentication the authentication
+     * @deprecated use {@link #registerCredentials(String, UserCredential)} instead.
+     */
+    @Deprecated
 	public void registerCredentials(UserCredential authentication) {
 		wallet.put(authentication.getURL(), authentication);
 	}
 
-	/**
-	 * Adds the given credentials with the given ID. ID is necessary because there may be more
-	 * credentials than one for the same URL.
-	 *
-	 * @param id
-	 * @param authentication
-	 * @throws IllegalArgumentException
-	 *             if the key is <code>null</code>
-	 */
-	public void registerCredentials(String id, UserCredential authentication) throws IllegalArgumentException {
+    /**
+     * Adds the given credentials with the given ID. ID is necessary because there may be more
+     * credentials than one for the same URL.
+     *
+     * @param id             the id
+     * @param authentication the authentication
+     * @throws IllegalArgumentException if the key is <code>null</code>
+     */
+    public void registerCredentials(String id, UserCredential authentication) throws IllegalArgumentException {
 		if (id == null) {
 			throw new IllegalArgumentException("id must not be null!");
 		}
@@ -170,12 +175,12 @@ public class Wallet {
 		}
 	}
 
-	/**
-	 * Returns the number of entries in the {@link Wallet}.
-	 *
-	 * @return
-	 */
-	public int size() {
+    /**
+     * Returns the number of entries in the {@link Wallet}.
+     *
+     * @return int int
+     */
+    public int size() {
 		return wallet.size();
 	}
 
@@ -200,12 +205,12 @@ public class Wallet {
 		return clone;
 	}
 
-	/**
-	 * Returns a {@link List} of {@link String} keys in this {@link Wallet}.
-	 *
-	 * @return
-	 */
-	public LinkedList<String> getKeys() {
+    /**
+     * Returns a {@link List} of {@link String} keys in this {@link Wallet}.
+     *
+     * @return keys keys
+     */
+    public LinkedList<String> getKeys() {
 		Iterator<String> it = wallet.keySet().iterator();
 		LinkedList<String> keyset = new LinkedList<String>();
 		while (it.hasNext()) {
@@ -214,29 +219,29 @@ public class Wallet {
 		return keyset;
 	}
 
-	/**
-	 * Returns the {@link UserCredential} for the given url {@link String} or <code>null</code> if
-	 * there is no key matching this url.
-	 *
-	 * @deprecated use {@link #getEntry(String, String)} instead.
-	 * @param url
-	 * @return
-	 */
-	@Deprecated
+    /**
+     * Returns the {@link UserCredential} for the given url {@link String} or <code>null</code> if
+     * there is no key matching this url.
+     *
+     * @param url the url
+     * @return entry entry
+     * @deprecated use {@link #getEntry(String, String)} instead.
+     */
+    @Deprecated
 	public UserCredential getEntry(String url) {
 		return wallet.get(url);
 	}
 
-	/**
-	 * Returns the {@link UserCredential} for the given id and url {@link String}s. If there is no
-	 * key matching the given id and url tries to return the {@link UserCredential} for the given
-	 * url (fallback for old entries). If both fail, returns <code>null</code>.
-	 *
-	 * @param id
-	 * @param url
-	 * @return
-	 */
-	public UserCredential getEntry(String id, String url) {
+    /**
+     * Returns the {@link UserCredential} for the given id and url {@link String}s. If there is no
+     * key matching the given id and url tries to return the {@link UserCredential} for the given
+     * url (fallback for old entries). If both fail, returns <code>null</code>.
+     *
+     * @param id  the id
+     * @param url the url
+     * @return entry entry
+     */
+    public UserCredential getEntry(String id, String url) {
 		UserCredential credentials = wallet.get(buildKey(id, url));
 		if (credentials == null) {
 			// fallback for old entries which can supply a null key
@@ -246,33 +251,33 @@ public class Wallet {
 		return credentials;
 	}
 
-	/**
-	 * Removes the {@link UserCredential} for the given url {@link String}.
-	 *
-	 * @deprecated use {@link #removeEntry(String, String)} instead.
-	 * @param url
-	 */
-	@Deprecated
+    /**
+     * Removes the {@link UserCredential} for the given url {@link String}.
+     *
+     * @param url the url
+     * @deprecated use {@link #removeEntry(String, String)} instead.
+     */
+    @Deprecated
 	public void removeEntry(String url) {
 		wallet.remove(url);
 	}
 
-	/**
-	 * Removes the {@link UserCredential} for the given id and url {@link String}s.
-	 *
-	 * @param id
-	 * @param url
-	 */
-	public void removeEntry(String id, String url) {
+    /**
+     * Removes the {@link UserCredential} for the given id and url {@link String}s.
+     *
+     * @param id  the id
+     * @param url the url
+     */
+    public void removeEntry(String id, String url) {
 		wallet.remove(buildKey(id, url));
 	}
 
-	/**
-	 * Creates a XML representation of the wallet.
-	 *
-	 * @return The XML document.
-	 */
-	public Document getWalletAsXML() {
+    /**
+     * Creates a XML representation of the wallet.
+     *
+     * @return The XML document.
+     */
+    public Document getWalletAsXML() {
 		Document doc = XMLTools.createDocument();
 		Element root = doc.createElement(CACHE_FILE_NAME);
 		doc.appendChild(root);
@@ -295,10 +300,10 @@ public class Wallet {
 		return doc;
 	}
 
-	/**
-	 * Saves the wallet to the secrets.xml file in the users home directory.
-	 */
-	public void saveCache() {
+    /**
+     * Saves the wallet to the secrets.xml file in the users home directory.
+     */
+    public void saveCache() {
 		LogService.getRoot().log(Level.CONFIG, "com.rapidminer.gui.security.Wallet.saving_secrets_file");
 		Document doc = getWalletAsXML();
 		File file = FileSystemService.getUserConfigFile(CACHE_FILE_NAME);
@@ -324,13 +329,13 @@ public class Wallet {
 		return id + ID_PREFIX_URL_SEPERATOR + url;
 	}
 
-	/**
-	 * Returns the id {@link String} contained in the key or <code>null</code> if there is no id.
-	 *
-	 * @param key
-	 * @return
-	 */
-	public String extractIdFromKey(String key) {
+    /**
+     * Returns the id {@link String} contained in the key or <code>null</code> if there is no id.
+     *
+     * @param key the key
+     * @return string string
+     */
+    public String extractIdFromKey(String key) {
 		String[] urlAndMaybeID = key.split(ID_PREFIX_URL_SEPERATOR);
 		if (urlAndMaybeID.length == 2) {
 			return urlAndMaybeID[0];

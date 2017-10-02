@@ -71,9 +71,8 @@ import com.rapidminer.tools.container.Pair;
 
 /**
  * This dialog allows the user to manually zoom in/do a selection on the chart.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class ManageZoomDialog extends JDialog {
 
@@ -139,10 +138,10 @@ public class ManageZoomDialog extends JDialog {
 
 	private static final long serialVersionUID = 1932257219370926682L;
 
-	/**
-	 * Creates a new {@link AddParallelLineDialog}.
-	 */
-	public ManageZoomDialog() {
+    /**
+     * Creates a new {@link AddParallelLineDialog}.
+     */
+    public ManageZoomDialog() {
 		super(ApplicationFrame.getApplicationFrame());
 		domainRangeLowerBound = 0.0;
 		domainRangeUpperBound = 0.0;
@@ -517,12 +516,12 @@ public class ManageZoomDialog extends JDialog {
 		});
 	}
 
-	/**
-	 * Sets the current {@link JFreeChartPlotEngine} for this dialog.
-	 * 
-	 * @param engine
-	 */
-	public void setChartEngine(JFreeChartPlotEngine engine) {
+    /**
+     * Sets the current {@link JFreeChartPlotEngine} for this dialog.
+     *
+     * @param engine the engine
+     */
+    public void setChartEngine(JFreeChartPlotEngine engine) {
 		if (engine == null) {
 			throw new IllegalArgumentException("engine must not be null!");
 		}
@@ -598,10 +597,10 @@ public class ManageZoomDialog extends JDialog {
 		updateColorValues();
 	}
 
-	/**
-	 * Shows the dialog.
-	 */
-	public void showDialog() {
+    /**
+     * Shows the dialog.
+     */
+    public void showDialog() {
 		setVisible(true);
 	}
 

@@ -77,8 +77,9 @@ import org.jfree.chart.LegendItemCollection;
 
 
 /**
+ * The type Plot instance legend creator.
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class PlotInstanceLegendCreator {
 
@@ -98,7 +99,13 @@ public class PlotInstanceLegendCreator {
 	private static final double MIN_LEGEND_ITEM_SCALING_FACTOR = 0.2;
 	private static final double MAX_LEGEND_ITEM_SCALING_FACTOR = 1.5;
 
-	public LegendItemCollection getLegendItems(PlotInstance plotInstance) {
+    /**
+     * Gets legend items.
+     *
+     * @param plotInstance the plot instance
+     * @return the legend items
+     */
+    public LegendItemCollection getLegendItems(PlotInstance plotInstance) {
 		PlotConfiguration plotConfiguration = plotInstance.getCurrentPlotConfigurationClone();
 		LegendItemCollection legendItemCollection = new LegendItemCollection();
 
@@ -769,7 +776,14 @@ public class PlotInstanceLegendCreator {
 		return new TexturePaint(bufferedImage, rect);
 	}
 
-	public static Shape shapeFromSvgRelativeBezierPath(String pathString, float scalingFactor) {
+    /**
+     * Shape from svg relative bezier path shape.
+     *
+     * @param pathString    the path string
+     * @param scalingFactor the scaling factor
+     * @return the shape
+     */
+    public static Shape shapeFromSvgRelativeBezierPath(String pathString, float scalingFactor) {
 		String[] points = pathString.split(" ");
 		float x1, y1, x2, y2, cx1, cy1, cx2, cy2;
 		x2 = y2 = 0;

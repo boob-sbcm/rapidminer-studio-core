@@ -23,35 +23,65 @@ import java.util.Collection;
 
 /**
  * A parameter type for regular expressions.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class ParameterTypeRegexp extends ParameterTypeString {
 
 	private static final long serialVersionUID = -4177652183651031337L;
 
-	public ParameterTypeRegexp(final String key, String description) {
+    /**
+     * Instantiates a new Parameter type regexp.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ParameterTypeRegexp(final String key, String description) {
 		this(key, description, true);
 	}
 
-	public ParameterTypeRegexp(final String key, String description, boolean optional) {
+    /**
+     * Instantiates a new Parameter type regexp.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     */
+    public ParameterTypeRegexp(final String key, String description, boolean optional) {
 		super(key, description, optional);
 	}
 
-	/**
-	 * This constructer additionally specifies if this parameter type is expert. Please note that
-	 * expert parameters are always optional!
-	 */
-	public ParameterTypeRegexp(final String key, String description, boolean optional, boolean expert) {
+    /**
+     * This constructer additionally specifies if this parameter type is expert. Please note that
+     * expert parameters are always optional!
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     * @param expert      the expert
+     */
+    public ParameterTypeRegexp(final String key, String description, boolean optional, boolean expert) {
 		super(key, description, optional || expert);
 		setExpert(expert);
 	}
 
-	public ParameterTypeRegexp(final String key, String description, String defaultValue) {
+    /**
+     * Instantiates a new Parameter type regexp.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultValue the default value
+     */
+    public ParameterTypeRegexp(final String key, String description, String defaultValue) {
 		super(key, description, defaultValue);
 	}
 
-	public Collection<String> getPreviewList() {
+    /**
+     * Gets preview list.
+     *
+     * @return the preview list
+     */
+    public Collection<String> getPreviewList() {
 		return null;
 	}
 

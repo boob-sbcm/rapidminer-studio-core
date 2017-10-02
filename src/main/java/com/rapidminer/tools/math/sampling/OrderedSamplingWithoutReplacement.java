@@ -24,10 +24,10 @@ import com.rapidminer.tools.RandomGenerator;
 /**
  * Implements iterative, linear sampling without replacement. The size of the population and the
  * size or fraction of the sample have to be given as parameters.
- * 
+ * <p>
  * The algorithm is based upon A.F. Bissell (1986): Ordered Random Selection Without Replacement.
  * In: Applied Statistics, 35 (1), pp. 73-75.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class OrderedSamplingWithoutReplacement {
@@ -59,17 +59,14 @@ public class OrderedSamplingWithoutReplacement {
 	 */
 	private double randomValue;
 
-	/**
-	 * Constructor for an absolute number of elements.
-	 * 
-	 * @param randomGenerator
-	 *            A RandomGenerator.
-	 * @param populationSize
-	 *            The size of the population.
-	 * @param sampleSize
-	 *            The size of the sample.
-	 */
-	public OrderedSamplingWithoutReplacement(RandomGenerator randomGenerator, int populationSize, int sampleSize) {
+    /**
+     * Constructor for an absolute number of elements.
+     *
+     * @param randomGenerator A RandomGenerator.
+     * @param populationSize  The size of the population.
+     * @param sampleSize      The size of the sample.
+     */
+    public OrderedSamplingWithoutReplacement(RandomGenerator randomGenerator, int populationSize, int sampleSize) {
 		this.randomGenerator = randomGenerator;
 		this.populationCounter = populationSize;
 		this.notRequiredElementsCounter = populationSize - sampleSize;
@@ -77,21 +74,26 @@ public class OrderedSamplingWithoutReplacement {
 		this.randomValue = 1 - randomGenerator.nextDouble();
 	}
 
-	/**
-	 * Constructor for a relative fraction of elements.
-	 * 
-	 * @param randomGenerator
-	 *            A RandomGenerator.
-	 * @param populationSize
-	 *            The size of the sample relative to the population size.
-	 * @param sampleRatio
-	 *            The ratio of the sample.
-	 */
-	public OrderedSamplingWithoutReplacement(RandomGenerator randomGenerator, int populationSize, double sampleRatio) {
+    /**
+     * Constructor for a relative fraction of elements.
+     *
+     * @param randomGenerator A RandomGenerator.
+     * @param populationSize  The size of the sample relative to the population size.
+     * @param sampleRatio     The ratio of the sample.
+     */
+    public OrderedSamplingWithoutReplacement(RandomGenerator randomGenerator, int populationSize, double sampleRatio) {
 		this(randomGenerator, populationSize, (int) Math.round(populationSize * sampleRatio));
 	}
 
-	public static int[] getSampledIndices(RandomGenerator randomGenerator, int populationSize, int sampleSize) {
+    /**
+     * Get sampled indices int [ ].
+     *
+     * @param randomGenerator the random generator
+     * @param populationSize  the population size
+     * @param sampleSize      the sample size
+     * @return the int [ ]
+     */
+    public static int[] getSampledIndices(RandomGenerator randomGenerator, int populationSize, int sampleSize) {
 		OrderedSamplingWithoutReplacement sampling = new OrderedSamplingWithoutReplacement(randomGenerator, populationSize,
 				sampleSize);
 		int[] result = new int[sampleSize];
@@ -104,12 +106,12 @@ public class OrderedSamplingWithoutReplacement {
 		return result;
 	}
 
-	/**
-	 * Include element in the sample.
-	 * 
-	 * @return flag whether to include an element in the sample
-	 */
-	public boolean acceptElement() {
+    /**
+     * Include element in the sample.
+     *
+     * @return flag whether to include an element in the sample
+     */
+    public boolean acceptElement() {
 		probability *= ((double) notRequiredElementsCounter) / ((double) populationCounter);
 		if (probability > randomValue) {
 			populationCounter--;

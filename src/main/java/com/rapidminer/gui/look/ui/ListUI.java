@@ -31,12 +31,18 @@ import javax.swing.plaf.basic.BasicListUI;
 
 /**
  * The UI used for lists.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ListUI extends BasicListUI {
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new ListUI();
 	}
 

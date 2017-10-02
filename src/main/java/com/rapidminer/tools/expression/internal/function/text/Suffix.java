@@ -25,14 +25,13 @@ import com.rapidminer.tools.expression.Function;
  * A {@link Function} which computes the suffix of the given length from a nominal value.
  *
  * @author Thilo Kamradt
- *
  */
 public class Suffix extends AbstractStringIntegerInputStringOutputFunction {
 
-	/**
-	 * Creates a function which computes the suffix of a given length from a nominal value
-	 */
-	public Suffix() {
+    /**
+     * Creates a function which computes the suffix of a given length from a nominal value
+     */
+    public Suffix() {
 		super("text_transformation.suffix", 2);
 	}
 

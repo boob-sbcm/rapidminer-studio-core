@@ -20,12 +20,19 @@ package com.rapidminer.operator;
 
 /**
  * General purpose interface to convert objects to IOObjects.
- * 
+ *
+ * @param <T> the type parameter
  * @author Simon Fischer
- * 
  */
 public interface IOObjectConverter<T> {
 
-	public IOObject convert(T object) throws OperatorException;
+    /**
+     * Convert io object.
+     *
+     * @param object the object
+     * @return the io object
+     * @throws OperatorException the operator exception
+     */
+    public IOObject convert(T object) throws OperatorException;
 
 }

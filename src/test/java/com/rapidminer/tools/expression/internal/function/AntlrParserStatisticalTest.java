@@ -36,11 +36,13 @@ import com.rapidminer.tools.expression.internal.antlr.AntlrParser;
  * Tests the results of {@link AntlrParser#parse(String)} from the statistical function block.
  *
  * @author David Arnu
- *
  */
 public class AntlrParserStatisticalTest extends AntlrParserTest {
 
-	// average
+    /**
+     * Average all equal.
+     */
+// average
 	@Test
 	public void averageAllEqual() {
 		try {
@@ -52,7 +54,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Average single.
+     */
+    @Test
 	public void averageSingle() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("avg(2)");
@@ -63,7 +68,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Average int.
+     */
+    @Test
 	public void averageInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("avg(1,2,3,4,5)");
@@ -74,7 +82,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Average double.
+     */
+    @Test
 	public void averageDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("avg(1.5, 2.5, 2.5, 2.5)");
@@ -85,7 +96,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Average all wrong type.
+     */
+    @Test
 	public void averageAllWrongType() {
 		try {
 			getExpressionWithFunctionContext("avg(\"aa\", \"bb\")");
@@ -95,7 +109,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Average mixed wrong type.
+     */
+    @Test
 	public void averageMixedWrongType() {
 		try {
 			getExpressionWithFunctionContext("avg(\"aa\", 1)");
@@ -105,7 +122,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Average infinite value.
+     */
+    @Test
 	public void averageInfiniteValue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("avg(1, 1/0)");
@@ -116,7 +136,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Average na value.
+     */
+    @Test
 	public void averageNAValue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("avg(1, 0/0)");
@@ -127,7 +150,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Average empty.
+     */
+    @Test
 	public void averageEmpty() {
 		try {
 			getExpressionWithFunctionContext("avg()");
@@ -137,7 +163,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	// minimum
+    /**
+     * Min single integer.
+     */
+// minimum
 	@Test
 	public void minSingleInteger() {
 		try {
@@ -149,7 +178,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Min two integer.
+     */
+    @Test
 	public void minTwoInteger() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("min(1,2)");
@@ -160,7 +192,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Min two double.
+     */
+    @Test
 	public void minTwoDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("min(2.5,1.5)");
@@ -171,7 +206,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Min two mixed.
+     */
+    @Test
 	public void minTwoMixed() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("min(2,1.5)");
@@ -182,7 +220,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Min na.
+     */
+    @Test
 	public void minNA() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("min(2,0/0)");
@@ -193,7 +234,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Min mixed wrong type.
+     */
+    @Test
 	public void minMixedWrongType() {
 		try {
 			getExpressionWithFunctionContext("min(\"aa\", 1)");
@@ -203,7 +247,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Min wrong type.
+     */
+    @Test
 	public void minWrongType() {
 		try {
 			getExpressionWithFunctionContext("min(\"aa\")");
@@ -213,7 +260,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Min all wrong type.
+     */
+    @Test
 	public void minAllWrongType() {
 		try {
 			getExpressionWithFunctionContext("min(\"aa\", \"bb\", \"cc\")");
@@ -223,7 +273,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Min infinity.
+     */
+    @Test
 	public void minInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("min(1.5, 2.5, 3.5, 4.5, 5.5, 1/0)");
@@ -234,7 +287,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Min neg infinity.
+     */
+    @Test
 	public void minNegInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("min(1.5, 2.5, 3.5, 4.5, 5.5, -1/0)");
@@ -245,7 +301,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	// maximum
+    /**
+     * Max single integer.
+     */
+// maximum
 	@Test
 	public void maxSingleInteger() {
 		try {
@@ -257,7 +316,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Max two integer.
+     */
+    @Test
 	public void maxTwoInteger() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("max(1,2)");
@@ -268,7 +330,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Max two double.
+     */
+    @Test
 	public void maxTwoDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("max(2.5,1.5)");
@@ -279,7 +344,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Max two mixed.
+     */
+    @Test
 	public void maxTwoMixed() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("max(2,1.5)");
@@ -290,7 +358,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Max na.
+     */
+    @Test
 	public void maxNA() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("max(2,0/0)");
@@ -301,7 +372,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Max infinity.
+     */
+    @Test
 	public void maxInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("max(1.5, 2.5, 3.5, 4.5, 5.5, 1/0)");
@@ -312,7 +386,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Max neg infinity.
+     */
+    @Test
 	public void maxNegInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("max(1.5, 2.5, 3.5, 4.5, 5.5, -1/0)");
@@ -323,7 +400,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Max mixed wrong type.
+     */
+    @Test
 	public void maxMixedWrongType() {
 		try {
 			getExpressionWithFunctionContext("max(\"aa\", 1)");
@@ -333,7 +413,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Max wrong type.
+     */
+    @Test
 	public void maxWrongType() {
 		try {
 			getExpressionWithFunctionContext("max(\"aa\")");
@@ -343,7 +426,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Max all wrong type.
+     */
+    @Test
 	public void maxAllWrongType() {
 		try {
 			getExpressionWithFunctionContext("max(\"aa\", \"bb\", \"cc\")");
@@ -353,7 +439,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	// binominal
+    /**
+     * Binom simple n smaller.
+     */
+// binominal
 	@Test
 	public void binomSimpleNSmaller() {
 		try {
@@ -365,7 +454,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Binom simple k smaller.
+     */
+    @Test
 	public void binomSimpleKSmaller() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("binom(5,2)");
@@ -376,7 +468,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Binom all wrong type.
+     */
+    @Test
 	public void binomAllWrongType() {
 		try {
 			getExpressionWithFunctionContext("binom(\"aa\", \"bb\")");
@@ -386,7 +481,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Binom first wrong type.
+     */
+    @Test
 	public void binomFirstWrongType() {
 		try {
 			getExpressionWithFunctionContext("binom(1.5, 1)");
@@ -396,7 +494,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Binom second wrong type.
+     */
+    @Test
 	public void binomSecondWrongType() {
 		try {
 			getExpressionWithFunctionContext("binom(10, 1.5)");
@@ -406,7 +507,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Binom empty.
+     */
+    @Test
 	public void binomEmpty() {
 		try {
 			getExpressionWithFunctionContext("binom()");
@@ -416,7 +520,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Binom large numbers.
+     */
+    @Test
 	public void binomLargeNumbers() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("binom(20000,4)");
@@ -427,7 +534,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Binom na first.
+     */
+    @Test
 	public void binomNAFirst() {
 		try {
 			ExampleSet exampleSet = makeMissingIntegerExampleSet();
@@ -441,7 +551,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Binom na second.
+     */
+    @Test
 	public void binomNASecond() {
 		try {
 			ExampleSet exampleSet = makeMissingIntegerExampleSet();
@@ -455,7 +568,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	// sum
+    /**
+     * Sum single integer.
+     */
+// sum
 	@Test
 	public void sumSingleInteger() {
 		try {
@@ -467,7 +583,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sum two integer.
+     */
+    @Test
 	public void sumTwoInteger() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sum(1,2)");
@@ -478,7 +597,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sum two double.
+     */
+    @Test
 	public void sumTwoDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sum(2.5,1.5)");
@@ -489,7 +611,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sum na.
+     */
+    @Test
 	public void sumNA() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sum(2,0/0)");
@@ -500,7 +625,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sum two mixed.
+     */
+    @Test
 	public void sumTwoMixed() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sum(2,1.5)");
@@ -511,7 +639,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sum mixed wrong type.
+     */
+    @Test
 	public void sumMixedWrongType() {
 		try {
 			getExpressionWithFunctionContext("sum(\"aa\", 1)");
@@ -521,7 +652,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sum wrong type.
+     */
+    @Test
 	public void sumWrongType() {
 		try {
 			getExpressionWithFunctionContext("sum(\"aa\")");
@@ -531,7 +665,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sum all wrong type.
+     */
+    @Test
 	public void sumAllWrongType() {
 		try {
 			getExpressionWithFunctionContext("sum(\"aa\", \"bb\", \"cc\")");
@@ -541,7 +678,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sum infinity.
+     */
+    @Test
 	public void sumInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sum(1.5, 2.5, 3.5, 4.5, 5.5, 1/0)");
@@ -552,7 +692,10 @@ public class AntlrParserStatisticalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Sum neg infinity.
+     */
+    @Test
 	public void sumNegInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("sum(1.5, 2.5, 3.5, 4.5, 5.5, -1/0)");

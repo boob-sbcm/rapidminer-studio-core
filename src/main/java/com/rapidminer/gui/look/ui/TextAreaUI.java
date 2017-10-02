@@ -63,7 +63,13 @@ public class TextAreaUI extends BasicTextAreaUI {
 
 	private TextAreaPopupListener tfp = new TextAreaPopupListener();
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new TextAreaUI();
 	}
 

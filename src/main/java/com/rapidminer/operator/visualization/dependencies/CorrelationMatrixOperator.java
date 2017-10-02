@@ -43,7 +43,7 @@ import com.rapidminer.tools.math.MathFunctions;
  * weights should be created, this operator produces simply a correlation matrix which up to now
  * cannot be used by other operators but can be displayed to the user in the result tab.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that this simple implementation performs a data scan for each attribute combination
  * and might therefore take some time for non-memory example tables.
@@ -53,18 +53,32 @@ import com.rapidminer.tools.math.MathFunctions;
  */
 public class CorrelationMatrixOperator extends Operator {
 
-	public static final String PARAMETER_CREATE_WEIGHTS = "create_weights";
+    /**
+     * The constant PARAMETER_CREATE_WEIGHTS.
+     */
+    public static final String PARAMETER_CREATE_WEIGHTS = "create_weights";
 
-	public static final String PARAMETER_NORMALIZE_WEIGHTS = "normalize_weights";
+    /**
+     * The constant PARAMETER_NORMALIZE_WEIGHTS.
+     */
+    public static final String PARAMETER_NORMALIZE_WEIGHTS = "normalize_weights";
 
-	public static final String PARAMETER_SQUARED_CORRELATION = "squared_correlation";
+    /**
+     * The constant PARAMETER_SQUARED_CORRELATION.
+     */
+    public static final String PARAMETER_SQUARED_CORRELATION = "squared_correlation";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort matrixOutput = getOutputPorts().createPort("matrix");
 	private OutputPort weightsOutput = getOutputPorts().createPort("weights");
 
-	public CorrelationMatrixOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Correlation matrix operator.
+     *
+     * @param description the description
+     */
+    public CorrelationMatrixOperator(OperatorDescription description) {
 		super(description);
 		getTransformer().addPassThroughRule(exampleSetInput, exampleSetOutput);
 		getTransformer().addRule(new GenerateNewMDRule(matrixOutput, NumericalMatrix.class));

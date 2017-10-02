@@ -27,7 +27,7 @@ import java.util.Iterator;
 
 /**
  * Selects a random subset.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RandomSubsetPreprocessing implements SplitPreprocessing {
@@ -37,7 +37,14 @@ public class RandomSubsetPreprocessing implements SplitPreprocessing {
 	private double subsetRatio = 0.2;
 	private boolean useHeuristicRation;
 
-	public RandomSubsetPreprocessing(boolean useHeuristicRation, double subsetRatio, RandomGenerator random) {
+    /**
+     * Instantiates a new Random subset preprocessing.
+     *
+     * @param useHeuristicRation the use heuristic ration
+     * @param subsetRatio        the subset ratio
+     * @param random             the random
+     */
+    public RandomSubsetPreprocessing(boolean useHeuristicRation, double subsetRatio, RandomGenerator random) {
 		this.subsetRatio = subsetRatio;
 		this.random = random;
 		this.useHeuristicRation = useHeuristicRation;

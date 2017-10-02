@@ -31,7 +31,6 @@ import com.rapidminer.operator.Operator;
  *
  * @author Simon Fischer
  * @since 6.4.0
- *
  */
 public class RenameAction extends ResourceAction {
 
@@ -40,7 +39,13 @@ public class RenameAction extends ResourceAction {
 	private ProcessRendererView view;
 	private ProcessRendererController controller;
 
-	public RenameAction(ProcessRendererView view, ProcessRendererController controller) {
+    /**
+     * Instantiates a new Rename action.
+     *
+     * @param view       the view
+     * @param controller the controller
+     */
+    public RenameAction(ProcessRendererView view, ProcessRendererController controller) {
 		super("rename_in_processrenderer");
 
 		this.view = view;

@@ -114,8 +114,9 @@ import com.rapidminer.tools.I18N;
 
 
 /**
- * @author Nils Woehler
+ * The type Chart configuration panel.
  *
+ * @author Nils Woehler
  */
 public class ChartConfigurationPanel extends AbstractConfigurationPanel
 		implements MasterOfDesasterListener, DragListener, PlotConfigurationProcessingListener, PrintableComponent {
@@ -214,13 +215,29 @@ public class ChartConfigurationPanel extends AbstractConfigurationPanel
 
 	private String exampleSetSource = null;
 
-	public ChartConfigurationPanel(boolean smallIcons, PlotInstance plotInstance, DataTable dataTable,
+    /**
+     * Instantiates a new Chart configuration panel.
+     *
+     * @param smallIcons          the small icons
+     * @param plotInstance        the plot instance
+     * @param dataTable           the data table
+     * @param dePivotedPlotConfig the de pivoted plot config
+     * @param exampleSetSource    the example set source
+     */
+    public ChartConfigurationPanel(boolean smallIcons, PlotInstance plotInstance, DataTable dataTable,
 			PlotConfiguration dePivotedPlotConfig, String exampleSetSource) {
 		this(smallIcons, plotInstance, dataTable, dePivotedPlotConfig);
 		this.exampleSetSource = exampleSetSource;
 	}
 
-	public ChartConfigurationPanel(boolean smallIcons, PlotInstance plotInstance, DataTable dataTable) {
+    /**
+     * Instantiates a new Chart configuration panel.
+     *
+     * @param smallIcons   the small icons
+     * @param plotInstance the plot instance
+     * @param dataTable    the data table
+     */
+    public ChartConfigurationPanel(boolean smallIcons, PlotInstance plotInstance, DataTable dataTable) {
 		super(plotInstance);
 
 		this.smallIcons = smallIcons;
@@ -250,7 +267,15 @@ public class ChartConfigurationPanel extends AbstractConfigurationPanel
 		plotEngine.endInitializing();
 	}
 
-	public ChartConfigurationPanel(boolean smallIcons, PlotInstance plotInstance, DataTable dataTable,
+    /**
+     * Instantiates a new Chart configuration panel.
+     *
+     * @param smallIcons          the small icons
+     * @param plotInstance        the plot instance
+     * @param dataTable           the data table
+     * @param dePivotedPlotConfig the de pivoted plot config
+     */
+    public ChartConfigurationPanel(boolean smallIcons, PlotInstance plotInstance, DataTable dataTable,
 			PlotConfiguration dePivotedPlotConfig) {
 		this(smallIcons, plotInstance, dataTable);
 		this.dePivotedPlotConfig = dePivotedPlotConfig;
@@ -1338,7 +1363,12 @@ public class ChartConfigurationPanel extends AbstractConfigurationPanel
 		plotEngine.setPlotInstance(newPlotInstance);
 	}
 
-	public JFreeChartPlotEngine getPlotEngine() {
+    /**
+     * Gets plot engine.
+     *
+     * @return the plot engine
+     */
+    public JFreeChartPlotEngine getPlotEngine() {
 		return plotEngine;
 	}
 

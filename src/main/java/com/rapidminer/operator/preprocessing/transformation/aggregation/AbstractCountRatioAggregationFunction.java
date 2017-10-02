@@ -28,26 +28,51 @@ import java.util.List;
  * This function first behaves like {@link CountAggregationFunction}, but it delivers percentages of
  * the total count instead of absolute values. E.g. {@link SumAggregationFunction} delivers [2, 5,
  * 3] this function would deliver [20, 50, 30]
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public abstract class AbstractCountRatioAggregationFunction extends CountAggregationFunction {
 
-	public static final String FUNCTION_COUNT_PERCENTAGE = "percentage_count";
+    /**
+     * The constant FUNCTION_COUNT_PERCENTAGE.
+     */
+    public static final String FUNCTION_COUNT_PERCENTAGE = "percentage_count";
 
-	public AbstractCountRatioAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings,
+    /**
+     * Instantiates a new Abstract count ratio aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     */
+    public AbstractCountRatioAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings,
 			boolean countOnlyDisctinct, String functionName) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, FUNCTION_SEPARATOR_OPEN,
 				FUNCTION_SEPARATOR_CLOSE);
 	}
 
-	public AbstractCountRatioAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings,
+    /**
+     * Instantiates a new Abstract count ratio aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public AbstractCountRatioAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings,
 			boolean countOnlyDisctinct, String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, separatorOpen, separatorClose);
 	}
 
-	public abstract double getRatioFactor();
+    /**
+     * Gets ratio factor.
+     *
+     * @return the ratio factor
+     */
+    public abstract double getRatioFactor();
 
 	@Override
 	public Aggregator createAggregator() {

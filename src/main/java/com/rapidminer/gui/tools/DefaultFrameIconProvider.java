@@ -33,14 +33,19 @@ import javax.imageio.ImageIO;
 
 /**
  * The default frame icon provider.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DefaultFrameIconProvider implements FrameIconProvider {
 
 	private final String frameIconBaseName;
 
-	public DefaultFrameIconProvider(String frameIconBaseName) {
+    /**
+     * Instantiates a new Default frame icon provider.
+     *
+     * @param frameIconBaseName the frame icon base name
+     */
+    public DefaultFrameIconProvider(String frameIconBaseName) {
 		this.frameIconBaseName = frameIconBaseName;
 	}
 

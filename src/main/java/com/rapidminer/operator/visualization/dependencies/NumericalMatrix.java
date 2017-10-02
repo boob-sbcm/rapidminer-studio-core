@@ -33,7 +33,7 @@ import java.text.NumberFormat;
 /**
  * A simple (symmetrical) matrix which can be used for correlation or covariance matrices. A special
  * constructor for the attributes of an example set is provided.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class NumericalMatrix extends ResultObjectAdapter {
@@ -58,11 +58,26 @@ public class NumericalMatrix extends ResultObjectAdapter {
 
 	private String secondAttributeName = "Second Attribute";
 
-	public NumericalMatrix(String name, String[] columnNames, boolean symmetrical) {
+    /**
+     * Instantiates a new Numerical matrix.
+     *
+     * @param name        the name
+     * @param columnNames the column names
+     * @param symmetrical the symmetrical
+     */
+    public NumericalMatrix(String name, String[] columnNames, boolean symmetrical) {
 		this(name, columnNames, new Matrix(columnNames.length, columnNames.length), symmetrical);
 	}
 
-	public NumericalMatrix(String name, String[] columnNames, Matrix matrix, boolean symmetrical) {
+    /**
+     * Instantiates a new Numerical matrix.
+     *
+     * @param name        the name
+     * @param columnNames the column names
+     * @param matrix      the matrix
+     * @param symmetrical the symmetrical
+     */
+    public NumericalMatrix(String name, String[] columnNames, Matrix matrix, boolean symmetrical) {
 		this.name = name;
 		formatter = NumberFormat.getInstance();
 		formatter.setMaximumFractionDigits(3);
@@ -73,7 +88,15 @@ public class NumericalMatrix extends ResultObjectAdapter {
 		this.symmetrical = symmetrical;
 	}
 
-	public NumericalMatrix(String name, String[] rowNames, String[] columnNames, Matrix matrix) {
+    /**
+     * Instantiates a new Numerical matrix.
+     *
+     * @param name        the name
+     * @param rowNames    the row names
+     * @param columnNames the column names
+     * @param matrix      the matrix
+     */
+    public NumericalMatrix(String name, String[] rowNames, String[] columnNames, Matrix matrix) {
 		this.name = name;
 		formatter = NumberFormat.getInstance();
 		formatter.setMaximumFractionDigits(3);
@@ -84,23 +107,52 @@ public class NumericalMatrix extends ResultObjectAdapter {
 		this.symmetrical = false;
 	}
 
-	public NumericalMatrix(String name, ExampleSet exampleSet, boolean symmetrical) {
+    /**
+     * Instantiates a new Numerical matrix.
+     *
+     * @param name        the name
+     * @param exampleSet  the example set
+     * @param symmetrical the symmetrical
+     */
+    public NumericalMatrix(String name, ExampleSet exampleSet, boolean symmetrical) {
 		this(name, getColumnNames(exampleSet), symmetrical);
 	}
 
-	public void setFirstAttributeName(String firstAttributeName) {
+    /**
+     * Sets first attribute name.
+     *
+     * @param firstAttributeName the first attribute name
+     */
+    public void setFirstAttributeName(String firstAttributeName) {
 		this.firstAttributeName = firstAttributeName;
 	}
 
-	public void setSecondAttributeName(String secondAttributeName) {
+    /**
+     * Sets second attribute name.
+     *
+     * @param secondAttributeName the second attribute name
+     */
+    public void setSecondAttributeName(String secondAttributeName) {
 		this.secondAttributeName = secondAttributeName;
 	}
 
-	public String getColumnName(int index) {
+    /**
+     * Gets column name.
+     *
+     * @param index the index
+     * @return the column name
+     */
+    public String getColumnName(int index) {
 		return this.columnNames[index];
 	}
 
-	public String getRowName(int index) {
+    /**
+     * Gets row name.
+     *
+     * @param index the index
+     * @return the row name
+     */
+    public String getRowName(int index) {
 		return this.rowNames[index];
 	}
 
@@ -113,26 +165,55 @@ public class NumericalMatrix extends ResultObjectAdapter {
 		return attributeNames;
 	}
 
-	public void setValue(int i, int j, double value) {
+    /**
+     * Sets value.
+     *
+     * @param i     the
+     * @param j     the j
+     * @param value the value
+     */
+    public void setValue(int i, int j, double value) {
 		this.matrix.set(i, j, value);
 		if (symmetrical) {
 			this.matrix.set(j, i, value);
 		}
 	}
 
-	public double getValue(int i, int j) {
+    /**
+     * Gets value.
+     *
+     * @param i the
+     * @param j the j
+     * @return the value
+     */
+    public double getValue(int i, int j) {
 		return matrix.get(i, j);
 	}
 
-	public boolean isSymmetrical() {
+    /**
+     * Is symmetrical boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSymmetrical() {
 		return this.symmetrical;
 	}
 
-	public int getNumberOfColumns() {
+    /**
+     * Gets number of columns.
+     *
+     * @return the number of columns
+     */
+    public int getNumberOfColumns() {
 		return this.columnNames.length;
 	}
 
-	public int getNumberOfRows() {
+    /**
+     * Gets number of rows.
+     *
+     * @return the number of rows
+     */
+    public int getNumberOfRows() {
 		return this.rowNames.length;
 	}
 
@@ -141,33 +222,53 @@ public class NumericalMatrix extends ResultObjectAdapter {
 		return name + " Matrix";
 	}
 
-	public DataTable createMatrixDataTable() {
+    /**
+     * Create matrix data table data table.
+     *
+     * @return the data table
+     */
+    public DataTable createMatrixDataTable() {
 		return new DataTableSymmetricalMatrixAdapter(this, this.name, this.columnNames);
 	}
 
-	/**
-	 * This creates a pairwise data table where each combination is only included once. So only one
-	 * triangle is returned of the matrix. This is only a good idea if the matrix is symetrically
-	 */
-	public DataTable createPairwiseDataTable() {
+    /**
+     * This creates a pairwise data table where each combination is only included once. So only one
+     * triangle is returned of the matrix. This is only a good idea if the matrix is symetrically
+     *
+     * @return the data table
+     */
+    public DataTable createPairwiseDataTable() {
 		return new DataTablePairwiseMatrixExtractionAdapter(this, this.rowNames, this.columnNames, new String[] {
 				firstAttributeName, secondAttributeName, name });
 	}
 
-	/**
-	 * This creates a pairwise data table. If isSymetrical is true, only the pairs of one triangle
-	 * of the matrix are returned.
-	 */
-	public DataTable createPairwiseDataTable(boolean showSymetrical) {
+    /**
+     * This creates a pairwise data table. If isSymetrical is true, only the pairs of one triangle
+     * of the matrix are returned.
+     *
+     * @param showSymetrical the show symetrical
+     * @return the data table
+     */
+    public DataTable createPairwiseDataTable(boolean showSymetrical) {
 		return new DataTablePairwiseMatrixExtractionAdapter(this, this.rowNames, this.columnNames, new String[] {
 				firstAttributeName, secondAttributeName, name }, showSymetrical);
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "mat";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return name.toLowerCase() + " matrix";
 	}
 

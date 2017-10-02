@@ -34,9 +34,9 @@ import java.io.IOException;
  * <p>
  * Describes the problem
  * </p>
- *
+ * <p>
  * For example, if we have the following training data:
- * 
+ * <p>
  * <pre>
  *  LABEL       ATTR1   ATTR2   ATTR3   ATTR4   ATTR5
  *  -----       -----   -----   -----   -----   -----
@@ -45,14 +45,14 @@ import java.io.IOException;
  *  1           0.4     0       0       0       0
  *  2           0       0.1     0       1.4     0.5
  *  3          -0.1    -0.2     0.1     1.1     0.1
- * 
+ *
  *  and bias = 1, then the components of problem are:
- * 
+ *
  *  l = 5
  *  n = 6
- * 
+ *
  *  y -&gt; 1 2 1 2 3
- * 
+ *
  *  x -&gt; [ ] -&gt; (2,0.1) (3,0.2) (6,1) (-1,?)
  *       [ ] -&gt; (2,0.1) (3,0.3) (4,-1.2) (6,1) (-1,?)
  *       [ ] -&gt; (1,0.4) (6,1) (-1,?)
@@ -62,28 +62,42 @@ import java.io.IOException;
  */
 public class Problem {
 
-	/** the number of training data */
-	public int l;
+    /**
+     * the number of training data
+     */
+    public int l;
 
-	/** the number of features (including the bias feature if bias &gt;= 0) */
-	public int n;
+    /**
+     * the number of features (including the bias feature if bias &gt;= 0)
+     */
+    public int n;
 
-	/** an array containing the target values */
-	public double[] y;
+    /**
+     * an array containing the target values
+     */
+    public double[] y;
 
-	/** array of sparse feature nodes */
-	public Feature[][] x;
+    /**
+     * array of sparse feature nodes
+     */
+    public Feature[][] x;
 
-	/**
-	 * If bias &gt;= 0, we assume that one additional feature is added to the end of each data
-	 * instance
-	 */
-	public double bias;
+    /**
+     * If bias &gt;= 0, we assume that one additional feature is added to the end of each data
+     * instance
+     */
+    public double bias;
 
-	/**
-	 * see {@link Train#readProblem(File, double)}
-	 */
-	public static Problem readFromFile(File file, double bias) throws IOException, InvalidInputDataException {
+    /**
+     * see {@link Train#readProblem(File, double)}
+     *
+     * @param file the file
+     * @param bias the bias
+     * @return the problem
+     * @throws IOException               the io exception
+     * @throws InvalidInputDataException the invalid input data exception
+     */
+    public static Problem readFromFile(File file, double bias) throws IOException, InvalidInputDataException {
 		return Train.readProblem(file, bias);
 	}
 }

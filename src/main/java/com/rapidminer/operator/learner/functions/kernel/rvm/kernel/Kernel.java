@@ -24,9 +24,8 @@ import java.io.Serializable;
 /**
  * Abstract base class for all RVM / GP kernels. Please note that all kernel functions must have a
  * zero argument constructor.
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
- * 
  */
 public abstract class Kernel implements Serializable {
 
@@ -35,14 +34,28 @@ public abstract class Kernel implements Serializable {
 	 */
 	private static final long serialVersionUID = -8434771989480100605L;
 
-	/** Constructor(s) */
-	public Kernel() {}
+    /**
+     * Constructor(s)
+     */
+    public Kernel() {}
 
-	/** Evaluate kernel */
-	public abstract double eval(double[] x, double[] y);
+    /**
+     * Evaluate kernel  @param x the x
+     *
+     * @param x the x
+     * @param y the y
+     * @return the double
+     */
+    public abstract double eval(double[] x, double[] y);
 
-	/** Calculates l2-norm(x, y)^2 = ||x - y||^2 */
-	public double norm2(double[] x, double[] y) {
+    /**
+     * Calculates l2-norm(x, y)^2 = ||x - y||^2  @param x the x
+     *
+     * @param x the x
+     * @param y the y
+     * @return the double
+     */
+    public double norm2(double[] x, double[] y) {
 		double result = 0, diff;
 		for (int i = 0; i < x.length; i++) {
 			diff = x[i] - y[i];

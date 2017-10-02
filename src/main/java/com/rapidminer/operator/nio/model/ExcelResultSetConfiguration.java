@@ -81,12 +81,13 @@ public class ExcelResultSetConfiguration implements DataResultSetFactory {
 	private String timezone;
 	private String datePattern;
 
-	/**
-	 * This constructor must read in all settings from the parameters of the given operator.
-	 *
-	 * @throws OperatorException
-	 */
-	public ExcelResultSetConfiguration(ExcelExampleSource excelExampleSource) throws OperatorException {
+    /**
+     * This constructor must read in all settings from the parameters of the given operator.
+     *
+     * @param excelExampleSource the excel example source
+     * @throws OperatorException the operator exception
+     */
+    public ExcelResultSetConfiguration(ExcelExampleSource excelExampleSource) throws OperatorException {
 		if (excelExampleSource.isParameterSet(ExcelExampleSource.PARAMETER_IMPORTED_CELL_RANGE)) {
 			parseExcelRange(excelExampleSource.getParameterAsString(ExcelExampleSource.PARAMETER_IMPORTED_CELL_RANGE));
 		}
@@ -126,49 +127,53 @@ public class ExcelResultSetConfiguration implements DataResultSetFactory {
 				.isAtMost(ExcelExampleSource.CHANGE_5_0_11_NAME_SCHEMA);
 	}
 
-	/**
-	 * This will create a completely empty result set configuration
-	 */
-	public ExcelResultSetConfiguration() {}
+    /**
+     * This will create a completely empty result set configuration
+     */
+    public ExcelResultSetConfiguration() {}
 
-	/**
-	 * @return the 0-based row offset
-	 */
-	public int getRowOffset() {
+    /**
+     * Gets row offset.
+     *
+     * @return the 0-based row offset
+     */
+    public int getRowOffset() {
 		return rowOffset;
 	}
 
-	/**
-	 * @return the 0-based column offset
-	 */
-	public int getColumnOffset() {
+    /**
+     * Gets column offset.
+     *
+     * @return the 0-based column offset
+     */
+    public int getColumnOffset() {
 		return columnOffset;
 	}
 
-	/**
-	 * Returns if there is an active workbook.
-	 */
-	public boolean hasWorkbook() {
+    /**
+     * Returns if there is an active workbook.
+     *
+     * @return the boolean
+     */
+    public boolean hasWorkbook() {
 		return workbookJXL != null;
 	}
 
-	/**
-	 * Creates an excel table model (either {@link ExcelSheetTableModel} or
-	 * {@link Excel2007SheetTableModel}, depending on file).
-	 *
-	 * @param sheetIndex
-	 *            the index of the sheet (0-based)
-	 * @param readMode
-	 *            the read mode for {@link XlsxSheetTableModel} creation. It defines whether only a
-	 *            preview or the whole sheet content will be loaded
-	 * @param progressListener
-	 *            the progress listener to report progress to
-	 * @return
-	 * @throws BiffException
-	 * @throws IOException
-	 * @throws InvalidFormatException
-	 */
-	public AbstractTableModel createExcelTableModel(int sheetIndex, XlsxReadMode readMode, ProgressListener progressListener)
+    /**
+     * Creates an excel table model (either {@link ExcelSheetTableModel} or
+     * {@link Excel2007SheetTableModel}, depending on file).
+     *
+     * @param sheetIndex       the index of the sheet (0-based)
+     * @param readMode         the read mode for {@link XlsxSheetTableModel} creation. It defines whether only a            preview or the whole sheet content will be loaded
+     * @param progressListener the progress listener to report progress to
+     * @return abstract table model
+     * @throws BiffException          the biff exception
+     * @throws IOException            the io exception
+     * @throws InvalidFormatException the invalid format exception
+     * @throws OperatorException      the operator exception
+     * @throws ParseException         the parse exception
+     */
+    public AbstractTableModel createExcelTableModel(int sheetIndex, XlsxReadMode readMode, ProgressListener progressListener)
 			throws BiffException, IOException, InvalidFormatException, OperatorException, ParseException {
 		if (getFile().getAbsolutePath().endsWith(XLSX_FILE_ENDING)) {
 			// excel 2007 file
@@ -183,15 +188,16 @@ public class ExcelResultSetConfiguration implements DataResultSetFactory {
 		}
 	}
 
-	/**
-	 * Returns the number of sheets in the excel file
-	 *
-	 * @return
-	 * @throws IOException
-	 * @throws BiffException
-	 * @throws InvalidFormatException
-	 */
-	public int getNumberOfSheets() throws BiffException, IOException, InvalidFormatException, UserError {
+    /**
+     * Returns the number of sheets in the excel file
+     *
+     * @return number of sheets
+     * @throws BiffException          the biff exception
+     * @throws IOException            the io exception
+     * @throws InvalidFormatException the invalid format exception
+     * @throws UserError              the user error
+     */
+    public int getNumberOfSheets() throws BiffException, IOException, InvalidFormatException, UserError {
 		if (getFile().getAbsolutePath().endsWith(XLSX_FILE_ENDING)) {
 			// excel 2007 file
 			try (ZipFile zipFile = new ZipFile(getFile().getAbsolutePath())) {
@@ -219,15 +225,16 @@ public class ExcelResultSetConfiguration implements DataResultSetFactory {
 		return new XlsxWorkbookParser().parseZipEntry(zipFile);
 	}
 
-	/**
-	 * Returns the names of all sheets in the excel file
-	 *
-	 * @return
-	 * @throws IOException
-	 * @throws BiffException
-	 * @throws InvalidFormatException
-	 */
-	public String[] getSheetNames() throws BiffException, IOException, InvalidFormatException, UserError {
+    /**
+     * Returns the names of all sheets in the excel file
+     *
+     * @return string [ ]
+     * @throws BiffException          the biff exception
+     * @throws IOException            the io exception
+     * @throws InvalidFormatException the invalid format exception
+     * @throws UserError              the user error
+     */
+    public String[] getSheetNames() throws BiffException, IOException, InvalidFormatException, UserError {
 		if (getFile().getAbsolutePath().endsWith(XLSX_FILE_ENDING)) {
 			// excel 2007 file
 			try (ZipFile zipFile = new ZipFile(getFile().getAbsolutePath())) {
@@ -253,35 +260,40 @@ public class ExcelResultSetConfiguration implements DataResultSetFactory {
 		}
 	}
 
-	/**
-	 * Returns the encoding for this configuration.
-	 *
-	 * @return
-	 */
-	public Charset getEncoding() {
+    /**
+     * Returns the encoding for this configuration.
+     *
+     * @return encoding encoding
+     */
+    public Charset getEncoding() {
 		return this.encoding;
 	}
 
-	/**
-	 * @param encoding
-	 *            the new encoding
-	 */
-	public void setEncoding(Charset encoding) {
+    /**
+     * Sets encoding.
+     *
+     * @param encoding the new encoding
+     */
+    public void setEncoding(Charset encoding) {
 		this.encoding = encoding;
 	}
 
-	/**
-	 * This returns the file of the referenced excel file
-	 */
-	public File getFile() {
+    /**
+     * This returns the file of the referenced excel file
+     *
+     * @return the file
+     */
+    public File getFile() {
 		return workbookFile;
 	}
 
-	/**
-	 * This will set the workbook file. It will assure that an existing preopened workbook will be
-	 * closed if files differ.
-	 */
-	public void setWorkbookFile(File selectedFile) {
+    /**
+     * This will set the workbook file. It will assure that an existing preopened workbook will be
+     * closed if files differ.
+     *
+     * @param selectedFile the selected file
+     */
+    public void setWorkbookFile(File selectedFile) {
 		if (selectedFile.equals(this.workbookFile)) {
 			return;
 		}
@@ -297,43 +309,75 @@ public class ExcelResultSetConfiguration implements DataResultSetFactory {
 		sheet = 0;
 	}
 
-	/**
-	 * @return the index of the last row to import. The index is 0 based. In case it is
-	 *         {@link Integer#MAX_VALUE} all rows with content should be imported.
-	 */
-	public int getRowLast() {
+    /**
+     * Gets row last.
+     *
+     * @return the index of the last row to import. The index is 0 based. In case it is         {@link Integer#MAX_VALUE} all rows with content should be imported.
+     */
+    public int getRowLast() {
 		return rowLast;
 	}
 
-	public void setRowLast(int rowLast) {
+    /**
+     * Sets row last.
+     *
+     * @param rowLast the row last
+     */
+    public void setRowLast(int rowLast) {
 		this.rowLast = rowLast;
 	}
 
-	/**
-	 * @return the index of the last column to import. The index is 0 based. In case it is
-	 *         {@link Integer#MAX_VALUE} all columns with content should be imported.
-	 */
-	public int getColumnLast() {
+    /**
+     * Gets column last.
+     *
+     * @return the index of the last column to import. The index is 0 based. In case it is         {@link Integer#MAX_VALUE} all columns with content should be imported.
+     */
+    public int getColumnLast() {
 		return columnLast;
 	}
 
-	public void setColumnLast(int columnLast) {
+    /**
+     * Sets column last.
+     *
+     * @param columnLast the column last
+     */
+    public void setColumnLast(int columnLast) {
 		this.columnLast = columnLast;
 	}
 
-	public int getSheet() {
+    /**
+     * Gets sheet.
+     *
+     * @return the sheet
+     */
+    public int getSheet() {
 		return sheet;
 	}
 
-	public void setSheet(int sheet) {
+    /**
+     * Sets sheet.
+     *
+     * @param sheet the sheet
+     */
+    public void setSheet(int sheet) {
 		this.sheet = sheet;
 	}
 
-	public void setRowOffset(int rowOffset) {
+    /**
+     * Sets row offset.
+     *
+     * @param rowOffset the row offset
+     */
+    public void setRowOffset(int rowOffset) {
 		this.rowOffset = rowOffset;
 	}
 
-	public void setColumnOffset(int columnOffset) {
+    /**
+     * Sets column offset.
+     *
+     * @param columnOffset the column offset
+     */
+    public void setColumnOffset(int columnOffset) {
 		this.columnOffset = columnOffset;
 	}
 
@@ -342,23 +386,17 @@ public class ExcelResultSetConfiguration implements DataResultSetFactory {
 		return makeDataResultSet(operator, XlsxReadMode.OPERATOR);
 	}
 
-	/**
-	 * Creates a {@link DataResultSet} based on the current configuration and the provided
-	 * {@link XlsxReadMode}.
-	 *
-	 * @param operator
-	 *            the operator to create the {@link DataResultSet} for. Might be {@code null} in
-	 *            case no operator is available
-	 * @param readMode
-	 *            the read mode
-	 * @param provider
-	 *            a {@link DateFormatProvider}, can be {@code null} in which case the date format is
-	 *            fixed by the current value of {@link configuration#getDatePattern()}
-	 * @return the created {@link DataResultSet}
-	 * @throws OperatorException
-	 *             in case the creation fails because of an invalid configuration
-	 */
-	public DataResultSet makeDataResultSet(Operator operator, XlsxReadMode readMode, DateFormatProvider provider)
+    /**
+     * Creates a {@link DataResultSet} based on the current configuration and the provided
+     * {@link XlsxReadMode}.
+     *
+     * @param operator the operator to create the {@link DataResultSet} for. Might be {@code null} in            case no operator is available
+     * @param readMode the read mode
+     * @param provider a {@link DateFormatProvider}, can be {@code null} in which case the date format is            fixed by the current value of {@link configuration#getDatePattern()}
+     * @return the created {@link DataResultSet}
+     * @throws OperatorException in case the creation fails because of an invalid configuration
+     */
+    public DataResultSet makeDataResultSet(Operator operator, XlsxReadMode readMode, DateFormatProvider provider)
 			throws OperatorException {
 		File file = getFile();
 		if (file == null) {
@@ -385,20 +423,16 @@ public class ExcelResultSetConfiguration implements DataResultSetFactory {
 		return resultSet;
 	}
 
-	/**
-	 * Creates a {@link DataResultSet} based on the current configuration and the provided
-	 * {@link XlsxReadMode}.
-	 *
-	 * @param operator
-	 *            the operator to create the {@link DataResultSet} for. Might be {@code null} in
-	 *            case no operator is available
-	 * @param readMode
-	 *            the read mode
-	 * @return the created {@link DataResultSet}
-	 * @throws OperatorException
-	 *             in case the creation fails because of an invalid configuration
-	 */
-	public DataResultSet makeDataResultSet(Operator operator, XlsxReadMode readMode) throws OperatorException {
+    /**
+     * Creates a {@link DataResultSet} based on the current configuration and the provided
+     * {@link XlsxReadMode}.
+     *
+     * @param operator the operator to create the {@link DataResultSet} for. Might be {@code null} in            case no operator is available
+     * @param readMode the read mode
+     * @return the created {@link DataResultSet}
+     * @throws OperatorException in case the creation fails because of an invalid configuration
+     */
+    public DataResultSet makeDataResultSet(Operator operator, XlsxReadMode readMode) throws OperatorException {
 		return makeDataResultSet(operator, readMode, null);
 	}
 
@@ -454,7 +488,10 @@ public class ExcelResultSetConfiguration implements DataResultSetFactory {
 		}
 	}
 
-	public void closeWorkbook() {
+    /**
+     * Close workbook.
+     */
+    public void closeWorkbook() {
 		if (workbookJXL != null) {
 			workbookJXL.close();
 			workbookJXL = null;
@@ -475,7 +512,13 @@ public class ExcelResultSetConfiguration implements DataResultSetFactory {
 		source.setParameter(ExcelExampleSource.PARAMETER_EXCEL_FILE, workbookFile.getAbsolutePath());
 	}
 
-	public void parseExcelRange(String range) throws OperatorException {
+    /**
+     * Parse excel range.
+     *
+     * @param range the range
+     * @throws OperatorException the operator exception
+     */
+    public void parseExcelRange(String range) throws OperatorException {
 		String[] split = range.split(":", 2);
 		try {
 			int[] topLeft = parseExcelCell(split[0]);
@@ -533,10 +576,12 @@ public class ExcelResultSetConfiguration implements DataResultSetFactory {
 		return result;
 	}
 
-	/**
-	 * This returns whether the old naming style should be kept from prior to 5.1.000 versions.
-	 */
-	public boolean isEmulatingOldNames() {
+    /**
+     * This returns whether the old naming style should be kept from prior to 5.1.000 versions.
+     *
+     * @return the boolean
+     */
+    public boolean isEmulatingOldNames() {
 		return isEmulatingOldNames;
 	}
 
@@ -562,44 +607,49 @@ public class ExcelResultSetConfiguration implements DataResultSetFactory {
 		workbookJXL = Workbook.getWorkbook(file, workbookSettings);
 	}
 
-	/**
-	 * @return the timezone
-	 */
-	public String getTimezone() {
+    /**
+     * Gets timezone.
+     *
+     * @return the timezone
+     */
+    public String getTimezone() {
 		return this.timezone;
 	}
 
-	/**
-	 * @return the datePattern
-	 */
-	public String getDatePattern() {
+    /**
+     * Gets date pattern.
+     *
+     * @return the datePattern
+     */
+    public String getDatePattern() {
 		return this.datePattern;
 	}
 
-	/**
-	 * @param timezone
-	 *            the timezone to set
-	 */
-	public void setTimezone(String timezone) {
+    /**
+     * Sets timezone.
+     *
+     * @param timezone the timezone to set
+     */
+    public void setTimezone(String timezone) {
 		this.timezone = timezone;
 	}
 
-	/**
-	 * @param datePattern
-	 *            the datePattern to set
-	 */
-	public void setDatePattern(String datePattern) {
+    /**
+     * Sets date pattern.
+     *
+     * @param datePattern the datePattern to set
+     */
+    public void setDatePattern(String datePattern) {
 		this.datePattern = datePattern;
 	}
 
-	/**
-	 * Write the parameters of the {@link ExcelResultSetConfiguration} into a map. Each parameter
-	 * value is written as a string value.
-	 *
-	 * @param parameters
-	 *            the map to store the parameter to
-	 */
-	public void storeConfiguration(Map<String, String> parameters) {
+    /**
+     * Write the parameters of the {@link ExcelResultSetConfiguration} into a map. Each parameter
+     * value is written as a string value.
+     *
+     * @param parameters the map to store the parameter to
+     */
+    public void storeConfiguration(Map<String, String> parameters) {
 		File file = getFile();
 		parameters.put("excel.fileLocation", file != null ? file.toString() : "");
 		parameters.put("excel.sheet", String.valueOf(getSheet()));

@@ -29,16 +29,20 @@ package com.rapidminer.studio.concurrency.internal.util;
  */
 public interface BackgroundExecutionServiceListener {
 
-	/**
-	 * This Method is being called every time a ProcessBackgroundExecution is removed. The
-	 * respective ProcessBackgroundExecution is returned.
-	 */
-	public void processRemoved(BackgroundExecution execution);
+    /**
+     * This Method is being called every time a ProcessBackgroundExecution is removed. The
+     * respective ProcessBackgroundExecution is returned.
+     *
+     * @param execution the execution
+     */
+    public void processRemoved(BackgroundExecution execution);
 
-	/**
-	 * This Method is being called every time a ProcessBackgroundExecution is added. The respective
-	 * ProcessBackgroundExecution is returned.
-	 */
-	public void processAdded(BackgroundExecution execution);
+    /**
+     * This Method is being called every time a ProcessBackgroundExecution is added. The respective
+     * ProcessBackgroundExecution is returned.
+     *
+     * @param execution the execution
+     */
+    public void processAdded(BackgroundExecution execution);
 
 }

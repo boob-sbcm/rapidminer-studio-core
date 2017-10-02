@@ -44,33 +44,58 @@ import java.util.List;
 
 /**
  * Stratified sampling.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land, Tobias Malbrecht
  */
 public class StratifiedSamplingOperator extends AbstractSamplingOperator {
 
-	public static final String PARAMETER_SAMPLE = "sample";
+    /**
+     * The constant PARAMETER_SAMPLE.
+     */
+    public static final String PARAMETER_SAMPLE = "sample";
 
-	public static final String[] SAMPLE_MODES = { "absolute", "relative" };
+    /**
+     * The constant SAMPLE_MODES.
+     */
+    public static final String[] SAMPLE_MODES = { "absolute", "relative" };
 
-	public static final int SAMPLE_ABSOLUTE = 0;
+    /**
+     * The constant SAMPLE_ABSOLUTE.
+     */
+    public static final int SAMPLE_ABSOLUTE = 0;
 
-	public static final int SAMPLE_RELATIVE = 1;
+    /**
+     * The constant SAMPLE_RELATIVE.
+     */
+    public static final int SAMPLE_RELATIVE = 1;
 
-	/** The parameter name for &quot;The fraction of examples which should be sampled&quot; */
-	public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
+    /**
+     * The parameter name for &quot;The fraction of examples which should be sampled&quot;
+     */
+    public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
 
-	/** The parameter name for &quot;The fraction of examples which should be sampled&quot; */
-	public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
+    /**
+     * The parameter name for &quot;The fraction of examples which should be sampled&quot;
+     */
+    public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
 
-	public StratifiedSamplingOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Stratified sampling operator.
+     *
+     * @param description the description
+     */
+    public StratifiedSamplingOperator(OperatorDescription description) {
 		super(description);
 	}
 
-	/**
-	 * This method should return the ratio used for stratifiedSampling
-	 */
-	public double getRatio(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * This method should return the ratio used for stratifiedSampling
+     *
+     * @param exampleSet the example set
+     * @return the ratio
+     * @throws OperatorException the operator exception
+     */
+    public double getRatio(ExampleSet exampleSet) throws OperatorException {
 		switch (getParameterAsInt(PARAMETER_SAMPLE)) {
 			case SAMPLE_ABSOLUTE:
 				double targetSize = getParameterAsInt(PARAMETER_SAMPLE_SIZE);

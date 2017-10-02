@@ -26,6 +26,9 @@
  */
 package de.bwaldvogel.liblinear;
 
+/**
+ * The type L 2 r lr function.
+ */
 class L2R_LrFunction implements Function {
 
 	private final double[] C;
@@ -33,7 +36,13 @@ class L2R_LrFunction implements Function {
 	private final double[] D;
 	private final Problem prob;
 
-	public L2R_LrFunction(Problem prob, double[] C) {
+    /**
+     * Instantiates a new L 2 r lr function.
+     *
+     * @param prob the prob
+     * @param C    the c
+     */
+    public L2R_LrFunction(Problem prob, double[] C) {
 		int l = prob.l;
 
 		this.prob = prob;

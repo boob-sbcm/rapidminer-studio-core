@@ -49,8 +49,9 @@ import com.rapidminer.tools.I18N;
 
 
 /**
- * @author Nils Woehler
+ * The type Line chart configuration panel.
  *
+ * @author Nils Woehler
  */
 public class LineChartConfigurationPanel extends AbstractTreeSelectionDependentPanel {
 
@@ -80,7 +81,14 @@ public class LineChartConfigurationPanel extends AbstractTreeSelectionDependentP
 	private JLabel itemSizeLabel;
 	private JSpinner itemSizeSpinner;
 
-	public LineChartConfigurationPanel(boolean smallIcons, JTree plotConfigurationTree, PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Line chart configuration panel.
+     *
+     * @param smallIcons            the small icons
+     * @param plotConfigurationTree the plot configuration tree
+     * @param plotInstance          the plot instance
+     */
+    public LineChartConfigurationPanel(boolean smallIcons, JTree plotConfigurationTree, PlotInstance plotInstance) {
 		super(plotConfigurationTree, plotInstance);
 
 		createComponents(smallIcons);

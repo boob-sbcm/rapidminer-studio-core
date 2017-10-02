@@ -47,11 +47,13 @@ import com.rapidminer.tools.expression.internal.function.logical.If;
  * JUnit test for the {@link If}, Function of the antlr ExpressionParser
  *
  * @author Sabrina Kirstein
- *
  */
 public class AnltrParserIfTest extends AntlrParserTest {
 
-	// long value for some date entry
+    /**
+     * The constant sometime.
+     */
+// long value for some date entry
 	static long sometime = 1436792411000l;
 
 	private static ExampleSet makeTestExampleSet() {
@@ -67,7 +69,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		return builder.build();
 	}
 
-	@Test
+    /**
+     * If constant condition boolean true.
+     */
+    @Test
 	public void ifConstantConditionBooleanTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(TRUE,TRUE,FALSE)");
@@ -78,7 +83,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition boolean false.
+     */
+    @Test
 	public void ifConstantConditionBooleanFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(FALSE,TRUE,FALSE)");
@@ -89,7 +97,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition numeric true.
+     */
+    @Test
 	public void ifConstantConditionNumericTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(1,TRUE,FALSE)");
@@ -100,7 +111,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition numeric false.
+     */
+    @Test
 	public void ifConstantConditionNumericFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(0,TRUE,FALSE)");
@@ -111,7 +125,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition nominal.
+     */
+    @Test
 	public void ifConstantConditionNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(\"test\",TRUE,FALSE)");
@@ -123,7 +140,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition date.
+     */
+    @Test
 	public void ifConstantConditionDate() {
 		try {
 			ExampleSet exampleSet = makeTestExampleSet();
@@ -139,7 +159,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition boolean missing.
+     */
+    @Test
 	public void ifConstantConditionBooleanMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(contains(MISSING_NOMINAL,\"test\"),TRUE,FALSE)");
@@ -150,7 +173,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition numeric missing.
+     */
+    @Test
 	public void ifConstantConditionNumericMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(MISSING_NUMERIC,TRUE,FALSE)");
@@ -161,7 +187,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition true if block boolean.
+     */
+    @Test
 	public void ifConstantConditionTrueIfBlockBoolean() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(TRUE,FALSE,4)");
@@ -172,7 +201,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition true if block boolean missing.
+     */
+    @Test
 	public void ifConstantConditionTrueIfBlockBooleanMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(TRUE,contains(MISSING_NOMINAL,\"test\"),4)");
@@ -183,7 +215,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition true if block integer.
+     */
+    @Test
 	public void ifConstantConditionTrueIfBlockInteger() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(TRUE,4,FALSE)");
@@ -194,7 +229,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition true if block double.
+     */
+    @Test
 	public void ifConstantConditionTrueIfBlockDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(3==3,4.5,FALSE)");
@@ -205,7 +243,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition true if block double missing.
+     */
+    @Test
 	public void ifConstantConditionTrueIfBlockDoubleMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(3==3,MISSING_NUMERIC,FALSE)");
@@ -216,7 +257,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition true if block date.
+     */
+    @Test
 	public void ifConstantConditionTrueIfBlockDate() {
 		try {
 			ExampleSet exampleSet = makeTestExampleSet();
@@ -231,7 +275,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition true if block date missing.
+     */
+    @Test
 	public void ifConstantConditionTrueIfBlockDateMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(TRUE,MISSING_DATE,FALSE)");
@@ -242,7 +289,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition true if block nominal.
+     */
+    @Test
 	public void ifConstantConditionTrueIfBlockNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(3==3,\"test\",FALSE)");
@@ -253,7 +303,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition true if block nominal missing.
+     */
+    @Test
 	public void ifConstantConditionTrueIfBlockNominalMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(3==3,MISSING_NOMINAL,FALSE)");
@@ -264,7 +317,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition false else block boolean.
+     */
+    @Test
 	public void ifConstantConditionFalseElseBlockBoolean() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(FALSE,4,TRUE)");
@@ -275,7 +331,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition false else block boolean missing.
+     */
+    @Test
 	public void ifConstantConditionFalseElseBlockBooleanMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(FALSE,4,contains(MISSING_NOMINAL,\"test\"))");
@@ -286,7 +345,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition false else block integer.
+     */
+    @Test
 	public void ifConstantConditionFalseElseBlockInteger() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(FALSE,TRUE,4)");
@@ -297,7 +359,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition false else block double.
+     */
+    @Test
 	public void ifConstantConditionFalseElseBlockDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(3!=3,FALSE,4.5)");
@@ -308,7 +373,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition false else block double missing.
+     */
+    @Test
 	public void ifConstantConditionFalseElseBlockDoubleMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(3!=3,FALSE,MISSING_NUMERIC)");
@@ -319,7 +387,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition false else block date.
+     */
+    @Test
 	public void ifConstantConditionFalseElseBlockDate() {
 		try {
 			ExampleSet exampleSet = makeTestExampleSet();
@@ -334,7 +405,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition false else block date missing.
+     */
+    @Test
 	public void ifConstantConditionFalseElseBlockDateMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(FALSE,TRUE,MISSING_DATE)");
@@ -345,7 +419,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition false else block nominal.
+     */
+    @Test
 	public void ifConstantConditionFalseElseBlockNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(3!=3,FALSE,\"test\")");
@@ -356,7 +433,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If constant condition false else block nominal missing.
+     */
+    @Test
 	public void ifConstantConditionFalseElseBlockNominalMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("if(3!=3,FALSE,MISSING_NOMINAL)");
@@ -369,7 +449,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 
 	// check return type calculation for dynamic condition
 
-	@Test
+    /**
+     * If dynamic condition if block equal type else block.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockEqualTypeElseBlock() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -384,7 +467,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block int else block double.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockIntElseBlockDouble() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -399,7 +485,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block boolean else block boolean.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockBooleanElseBlockBoolean() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -414,7 +503,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block boolean else block string.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockBooleanElseBlockString() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -429,7 +521,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block boolean else block integer.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockBooleanElseBlockInteger() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -444,7 +539,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block boolean else block double.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockBooleanElseBlockDouble() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -459,7 +557,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block boolean else block double infinity.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockBooleanElseBlockDoubleInfinity() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -474,7 +575,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block boolean else block double minus infinity.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockBooleanElseBlockDoubleMinusInfinity() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -489,7 +593,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block boolean else block date.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockBooleanElseBlockDate() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -505,7 +612,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block string else block boolean.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockStringElseBlockBoolean() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -520,7 +630,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block string else block missing boolean.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockStringElseBlockMissingBoolean() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -536,7 +649,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block string else block missing date.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockStringElseBlockMissingDate() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -551,7 +667,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block string else block missing numeric.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockStringElseBlockMissingNumeric() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -566,7 +685,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block string else block missing nominal.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockStringElseBlockMissingNominal() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -581,7 +703,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block missing boolean else block string.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockMissingBooleanElseBlockString() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -597,7 +722,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block missing date else block string.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockMissingDateElseBlockString() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -612,7 +740,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block missing numeric else block string.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockMissingNumericElseBlockString() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();
@@ -627,7 +758,10 @@ public class AnltrParserIfTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * If dynamic condition if block missing nominal else block string.
+     */
+    @Test
 	public void ifDynamicConditionIfBlockMissingNominalElseBlockString() {
 		try {
 			ExampleSet testSet = makeTestExampleSet();

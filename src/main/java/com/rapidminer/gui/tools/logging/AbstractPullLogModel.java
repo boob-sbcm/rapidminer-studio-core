@@ -25,45 +25,31 @@ import javax.swing.Icon;
  * This is the abstract model of a {@link LogMode#PULL} log in the {@link LogViewer}.
  *
  * @author Marco Boeck
- *
  */
 public abstract class AbstractPullLogModel extends AbstractLogModel {
 
-	/**
-	 * Creates a new log model with max {@value AbstractLogModel#DEFAULT_MAX_LOG_ENTRIES} log
-	 * entries. If the size is exceeded old entries will be overwritten.
-	 *
-	 * @param modelIcon
-	 *            can be <code>null</code>. If not <code>null</code>, must be 16x16 pixel
-	 * @param modelName
-	 *            cannot be <code>null</code> or empty. Must not exceed
-	 *            {@link LogModel#MAX_NAME_LENGTH} characters
-	 * @param logMode
-	 *            see {@link LogMode#PULL} and {@link LogMode#PUSH}
-	 * @param isClosable
-	 *            if <code>true</code>, the user can close the log via a button in the GUI
-	 */
-	public AbstractPullLogModel(Icon modelIcon, String modelName, boolean isClosable) {
+    /**
+     * Creates a new log model with max {@value AbstractLogModel#DEFAULT_MAX_LOG_ENTRIES} log
+     * entries. If the size is exceeded old entries will be overwritten.
+     *
+     * @param modelIcon  can be <code>null</code>. If not <code>null</code>, must be 16x16 pixel
+     * @param modelName  cannot be <code>null</code> or empty. Must not exceed            {@link LogModel#MAX_NAME_LENGTH} characters
+     * @param isClosable if <code>true</code>, the user can close the log via a button in the GUI
+     */
+    public AbstractPullLogModel(Icon modelIcon, String modelName, boolean isClosable) {
 		super(modelIcon, modelName, LogMode.PULL, isClosable);
 	}
 
-	/**
-	 * Creates a new log model with the defined size of log entries. If the size is exceeded old
-	 * entries will be overwritten.
-	 *
-	 * @param modelIcon
-	 *            can be <code>null</code>. If not <code>null</code>, must be 16x16 pixel
-	 * @param modelName
-	 *            cannot be <code>null</code> or empty. Must not exceed
-	 *            {@link LogModel#MAX_NAME_LENGTH} characters
-	 * @param logMode
-	 *            see {@link LogMode#PULL} and {@link LogMode#PUSH}
-	 * @param isClosable
-	 *            if <code>true</code>, the user can close the log via a button in the GUI
-	 * @param maxLogEntries
-	 *            the maximum size of log entries
-	 */
-	public AbstractPullLogModel(Icon modelIcon, String modelName, boolean isClosable, int maxLogEntries) {
+    /**
+     * Creates a new log model with the defined size of log entries. If the size is exceeded old
+     * entries will be overwritten.
+     *
+     * @param modelIcon     can be <code>null</code>. If not <code>null</code>, must be 16x16 pixel
+     * @param modelName     cannot be <code>null</code> or empty. Must not exceed            {@link LogModel#MAX_NAME_LENGTH} characters
+     * @param isClosable    if <code>true</code>, the user can close the log via a button in the GUI
+     * @param maxLogEntries the maximum size of log entries
+     */
+    public AbstractPullLogModel(Icon modelIcon, String modelName, boolean isClosable, int maxLogEntries) {
 		super(modelIcon, modelName, LogMode.PULL, isClosable, maxLogEntries);
 	}
 

@@ -57,7 +57,15 @@ public class LibSVMModel extends KernelModel implements FormulaProvider {
 
 	private boolean confidenceForMultiClass = true;
 
-	public LibSVMModel(ExampleSet exampleSet, svm_model model, int numberOfAttributes, boolean confidenceForMultiClass) {
+    /**
+     * Instantiates a new Lib svm model.
+     *
+     * @param exampleSet              the example set
+     * @param model                   the model
+     * @param numberOfAttributes      the number of attributes
+     * @param confidenceForMultiClass the confidence for multi class
+     */
+    public LibSVMModel(ExampleSet exampleSet, svm_model model, int numberOfAttributes, boolean confidenceForMultiClass) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.model = model;

@@ -30,14 +30,17 @@ import java.util.Collections;
 /**
  * An operator menu which can be used to add a new operator to the currently selected operator. This
  * operator menu is available in the context menu of an operator in tree view.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer, Tobias Malbrecht
  */
 public class NewOperatorMenu extends OperatorMenu {
 
 	private static final long serialVersionUID = 7654028997343227244L;
 
-	protected NewOperatorMenu() {
+    /**
+     * Instantiates a new New operator menu.
+     */
+    protected NewOperatorMenu() {
 		super("new_operator", false);
 	}
 

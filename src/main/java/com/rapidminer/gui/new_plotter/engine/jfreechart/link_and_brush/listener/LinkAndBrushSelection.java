@@ -27,13 +27,41 @@ import org.jfree.data.Range;
 
 
 /**
+ * The type Link and brush selection.
+ *
  * @author Nils Woehler
- * 
  */
 public class LinkAndBrushSelection {
 
-	public enum SelectionType {
-		ZOOM_IN, ZOOM_OUT, RESTORE_AUTO_BOUNDS, SELECTION, RESTORE_SELECTION, COLOR_ZOOM, COLOR_SELECTION, RESTORE_COLOR
+    /**
+     * The enum Selection type.
+     */
+    public enum SelectionType {
+        /**
+         * Zoom in selection type.
+         */
+        ZOOM_IN, /**
+         * Zoom out selection type.
+         */
+        ZOOM_OUT, /**
+         * Restore auto bounds selection type.
+         */
+        RESTORE_AUTO_BOUNDS, /**
+         * Selection selection type.
+         */
+        SELECTION, /**
+         * Restore selection selection type.
+         */
+        RESTORE_SELECTION, /**
+         * Color zoom selection type.
+         */
+        COLOR_ZOOM, /**
+         * Color selection selection type.
+         */
+        COLOR_SELECTION, /**
+         * Restore color selection type.
+         */
+        RESTORE_COLOR
 	}
 
 	private final List<Pair<Integer, Range>> domainAxisRanges;
@@ -43,34 +71,29 @@ public class LinkAndBrushSelection {
 	private Double maxColorValue;
 	private PlotInstance plotInstance;
 
-	/**
-	 * 
-	 * @param type
-	 *            the zooming type
-	 * @param domainAxisRanges
-	 *            a list of pairs with indices for domain axis and their zoomed ranges
-	 * @param rangeAxisRanges
-	 *            a list of pairs with indices for range axis and their zoomed ranges
-	 */
-	public LinkAndBrushSelection(SelectionType type, List<Pair<Integer, Range>> domainAxisRanges,
+    /**
+     * Instantiates a new Link and brush selection.
+     *
+     * @param type             the zooming type
+     * @param domainAxisRanges a list of pairs with indices for domain axis and their zoomed ranges
+     * @param rangeAxisRanges  a list of pairs with indices for range axis and their zoomed ranges
+     */
+    public LinkAndBrushSelection(SelectionType type, List<Pair<Integer, Range>> domainAxisRanges,
 			List<Pair<Integer, Range>> rangeAxisRanges) {
 		this(type, domainAxisRanges, rangeAxisRanges, null, null, null);
 	}
 
-	/**
-	 * 
-	 * @param type
-	 *            the zooming type
-	 * @param domainAxisRanges
-	 *            a list of pairs with indices for domain axis and their zoomed ranges
-	 * @param rangeAxisRanges
-	 *            a list of pairs with indices for range axis and their zoomed ranges
-	 * @param minColorValue
-	 *            the min color value
-	 * @param maxColorValue
-	 *            the max color value
-	 */
-	public LinkAndBrushSelection(SelectionType type, List<Pair<Integer, Range>> domainAxisRanges,
+    /**
+     * Instantiates a new Link and brush selection.
+     *
+     * @param type             the zooming type
+     * @param domainAxisRanges a list of pairs with indices for domain axis and their zoomed ranges
+     * @param rangeAxisRanges  a list of pairs with indices for range axis and their zoomed ranges
+     * @param minColorValue    the min color value
+     * @param maxColorValue    the max color value
+     * @param plotInstance     the plot instance
+     */
+    public LinkAndBrushSelection(SelectionType type, List<Pair<Integer, Range>> domainAxisRanges,
 			List<Pair<Integer, Range>> rangeAxisRanges, Double minColorValue, Double maxColorValue, PlotInstance plotInstance) {
 		if (domainAxisRanges == null || rangeAxisRanges == null) {
 			throw new IllegalArgumentException("Null range axes are not allowed!");
@@ -83,56 +106,78 @@ public class LinkAndBrushSelection {
 		this.plotInstance = plotInstance;
 	}
 
-	/**
-	 * @return the domainRanges
-	 */
-	public List<Pair<Integer, Range>> getDomainAxisRanges() {
+    /**
+     * Gets domain axis ranges.
+     *
+     * @return the domainRanges
+     */
+    public List<Pair<Integer, Range>> getDomainAxisRanges() {
 		return domainAxisRanges;
 	}
 
-	/**
-	 * @return the first new domain axis range. <code>null</code> if list is empty
-	 */
-	public Pair<Integer, Range> getDomainAxisRange() {
+    /**
+     * Gets domain axis range.
+     *
+     * @return the first new domain axis range. <code>null</code> if list is empty
+     */
+    public Pair<Integer, Range> getDomainAxisRange() {
 		if (domainAxisRanges.size() > 0) {
 			return domainAxisRanges.get(0);
 		}
 		return null;
 	}
 
-	/**
-	 * @return the type
-	 */
-	public SelectionType getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public SelectionType getType() {
 		return type;
 	}
 
-	/**
-	 * @return the valueRanges
-	 */
-	public List<Pair<Integer, Range>> getValueAxisRanges() {
+    /**
+     * Gets value axis ranges.
+     *
+     * @return the valueRanges
+     */
+    public List<Pair<Integer, Range>> getValueAxisRanges() {
 		return valueAxisRanges;
 	}
 
-	/**
-	 * @return the min color value
-	 */
-	public Double getMinColorValue() {
+    /**
+     * Gets min color value.
+     *
+     * @return the min color value
+     */
+    public Double getMinColorValue() {
 		return minColorValue;
 	}
 
-	/**
-	 * @return the max color value
-	 */
-	public Double getMaxColorValue() {
+    /**
+     * Gets max color value.
+     *
+     * @return the max color value
+     */
+    public Double getMaxColorValue() {
 		return maxColorValue;
 	}
 
-	public PlotInstance getPlotInstance() {
+    /**
+     * Gets plot instance.
+     *
+     * @return the plot instance
+     */
+    public PlotInstance getPlotInstance() {
 		return plotInstance;
 	}
 
-	public void setPlotInstance(PlotInstance plotInstance) {
+    /**
+     * Sets plot instance.
+     *
+     * @param plotInstance the plot instance
+     */
+    public void setPlotInstance(PlotInstance plotInstance) {
 		this.plotInstance = plotInstance;
 	}
 

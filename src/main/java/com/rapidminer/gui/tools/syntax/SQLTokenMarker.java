@@ -31,19 +31,30 @@ import javax.swing.text.Segment;
 
 /**
  * SQL token marker.
- * 
+ *
  * @author Mike Dillon, Ingo Mierswa
  */
 public class SQLTokenMarker extends TokenMarker {
 
 	private int offset, lastOffset, lastKeyword, lengthT;
 
-	// public members
+    /**
+     * Instantiates a new Sql token marker.
+     *
+     * @param k the k
+     */
+// public members
 	public SQLTokenMarker(KeywordMap k) {
 		this(k, false);
 	}
 
-	public SQLTokenMarker(KeywordMap k, boolean tsql) {
+    /**
+     * Instantiates a new Sql token marker.
+     *
+     * @param k    the k
+     * @param tsql the tsql
+     */
+    public SQLTokenMarker(KeywordMap k, boolean tsql) {
 		keywords = k;
 		isTSQL = tsql;
 	}
@@ -183,7 +194,10 @@ public class SQLTokenMarker extends TokenMarker {
 		return token;
 	}
 
-	// protected members
+    /**
+     * The Is tsql.
+     */
+// protected members
 	protected boolean isTSQL = false;
 
 	// private members

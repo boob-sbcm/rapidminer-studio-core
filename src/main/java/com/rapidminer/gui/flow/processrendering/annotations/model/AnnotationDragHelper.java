@@ -31,7 +31,6 @@ import com.rapidminer.operator.Operator;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public final class AnnotationDragHelper {
 
@@ -59,17 +58,14 @@ public final class AnnotationDragHelper {
 	/** indicates if an operator annotation was "unsnapped" from its operator */
 	private boolean unsnapped;
 
-	/**
-	 * Creates a new drag helper which keeps track of the drag state.
-	 *
-	 * @param dragged
-	 *            the annotation being dragged
-	 * @param origin
-	 *            the location of the annotation before the drag
-	 * @param model
-	 *            the process renderer model instance
-	 */
-	public AnnotationDragHelper(final WorkflowAnnotation dragged, final Point origin, final ProcessRendererModel model) {
+    /**
+     * Creates a new drag helper which keeps track of the drag state.
+     *
+     * @param dragged the annotation being dragged
+     * @param origin  the location of the annotation before the drag
+     * @param model   the process renderer model instance
+     */
+    public AnnotationDragHelper(final WorkflowAnnotation dragged, final Point origin, final ProcessRendererModel model) {
 		if (dragged == null) {
 			throw new IllegalArgumentException("dragged must not be null!");
 		}
@@ -88,78 +84,75 @@ public final class AnnotationDragHelper {
 		this.unsnapped = dragged instanceof ProcessAnnotation;
 	}
 
-	/**
-	 * Returns the last intermediate point of the drag.
-	 *
-	 * @return the last intermediate point, never {@code null}
-	 */
-	public Point getOrigin() {
+    /**
+     * Returns the last intermediate point of the drag.
+     *
+     * @return the last intermediate point, never {@code null}
+     */
+    public Point getOrigin() {
 		return origin;
 	}
 
-	/**
-	 * Returns the absolute starting point of the drag.
-	 *
-	 * @return the starting point, never {@code null}
-	 */
-	public Point getStartingPoint() {
+    /**
+     * Returns the absolute starting point of the drag.
+     *
+     * @return the starting point, never {@code null}
+     */
+    public Point getStartingPoint() {
 		return startingPoint;
 	}
 
-	/**
-	 * Returns the operator the mouse is currently over while dragging.
-	 *
-	 * @return the operator or {@code null}
-	 */
-	public Operator getHoveredOperator() {
+    /**
+     * Returns the operator the mouse is currently over while dragging.
+     *
+     * @return the operator or {@code null}
+     */
+    public Operator getHoveredOperator() {
 		return hoveredOperator;
 	}
 
-	/**
-	 * Updates the origin.
-	 *
-	 * @param origin
-	 *            the new origin
-	 */
-	public void setOrigin(final Point origin) {
+    /**
+     * Updates the origin.
+     *
+     * @param origin the new origin
+     */
+    public void setOrigin(final Point origin) {
 		this.origin = origin;
 	}
 
-	/**
-	 * Returns the dragged annotation.
-	 *
-	 * @return the annotation, never {@code null}
-	 */
-	public WorkflowAnnotation getDraggedAnnotation() {
+    /**
+     * Returns the dragged annotation.
+     *
+     * @return the annotation, never {@code null}
+     */
+    public WorkflowAnnotation getDraggedAnnotation() {
 		return dragged;
 	}
 
-	/**
-	 * Returns whether actual dragging has taken place.
-	 *
-	 * @return {@code true} if {@link #handleDragEvent(Point)} has been called at least once;
-	 *         {@code false} otherwise
-	 */
-	public boolean isDragInProgress() {
+    /**
+     * Returns whether actual dragging has taken place.
+     *
+     * @return {@code true} if {@link #handleDragEvent(Point)} has been called at least once;         {@code false} otherwise
+     */
+    public boolean isDragInProgress() {
 		return dragStarted;
 	}
 
-	/**
-	 * Returns whether an operator annotation was unsnapped from its operator.
-	 *
-	 * @return {@code true} if it was; {@code false} otherwise
-	 */
-	public boolean isUnsnapped() {
+    /**
+     * Returns whether an operator annotation was unsnapped from its operator.
+     *
+     * @return {@code true} if it was; {@code false} otherwise
+     */
+    public boolean isUnsnapped() {
 		return unsnapped;
 	}
 
-	/**
-	 * Handles a drag event based on the given {@link Point}.
-	 *
-	 * @param point
-	 *            the new point
-	 */
-	public void handleDragEvent(final Point point) {
+    /**
+     * Handles a drag event based on the given {@link Point}.
+     *
+     * @param point the new point
+     */
+    public void handleDragEvent(final Point point) {
 		WorkflowAnnotation draggedAnno = getDraggedAnnotation();
 		double xOffset = point.getX() - getOrigin().getX();
 		double yOffset = point.getY() - getOrigin().getY();

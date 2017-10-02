@@ -26,7 +26,6 @@ import com.rapidminer.operator.Operator;
  * The exception that is thrown in case the database license constraint is violated.
  *
  * @author Nils Woehler
- *
  */
 public class DatabaseConstraintViolationException extends LicenseViolationException {
 
@@ -34,22 +33,25 @@ public class DatabaseConstraintViolationException extends LicenseViolationExcept
 
 	private final String databaseURL;
 
-	/**
-	 * @param op
-	 *            the operator which causes the constraint violation exception
-	 * @param violation
-	 *            the database constraint violation
-	 */
-	public DatabaseConstraintViolationException(Operator op, String databaseURL,
+    /**
+     * Instantiates a new Database constraint violation exception.
+     *
+     * @param op          the operator which causes the constraint violation exception
+     * @param databaseURL the database url
+     * @param violation   the database constraint violation
+     */
+    public DatabaseConstraintViolationException(Operator op, String databaseURL,
 												@SuppressWarnings("rawtypes") LicenseConstraintViolation violation) {
 		super(op, violation);
 		this.databaseURL = databaseURL;
 	}
 
-	/**
-	 * @return the database URL
-	 */
-	public String getDatabaseURL() {
+    /**
+     * Gets database url.
+     *
+     * @return the database URL
+     */
+    public String getDatabaseURL() {
 		return databaseURL;
 	}
 

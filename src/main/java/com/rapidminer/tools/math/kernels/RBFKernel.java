@@ -23,7 +23,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Returns the value of the RBF kernel of both examples.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RBFKernel extends Kernel {
@@ -38,11 +38,21 @@ public class RBFKernel extends Kernel {
 		return KERNEL_RADIAL;
 	}
 
-	public void setGamma(double gamma) {
+    /**
+     * Sets gamma.
+     *
+     * @param gamma the gamma
+     */
+    public void setGamma(double gamma) {
 		this.gamma = -gamma;
 	}
 
-	public double getGamma() {
+    /**
+     * Gets gamma.
+     *
+     * @return the gamma
+     */
+    public double getGamma() {
 		return -gamma;
 	}
 

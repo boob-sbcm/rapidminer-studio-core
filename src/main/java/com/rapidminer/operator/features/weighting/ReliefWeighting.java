@@ -53,11 +53,15 @@ import com.rapidminer.tools.Tools;
  */
 public class ReliefWeighting extends AbstractWeighting {
 
-	/** The parameter name for &quot;Number of nearest neigbors for relevance calculation.&quot; */
-	public static final String PARAMETER_NUMBER_OF_NEIGHBORS = "number_of_neighbors";
+    /**
+     * The parameter name for &quot;Number of nearest neigbors for relevance calculation.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_NEIGHBORS = "number_of_neighbors";
 
-	/** The parameter name for &quot;Number of examples used for determining the weights.&quot; */
-	public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
+    /**
+     * The parameter name for &quot;Number of examples used for determining the weights.&quot;
+     */
+    public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
 
 	/** Helper class holding the index of an example and the distance to current example. */
 	private static class IndexDistance implements Comparable<IndexDistance> {
@@ -65,12 +69,23 @@ public class ReliefWeighting extends AbstractWeighting {
 		private final int exampleIndex;
 		private final double distance;
 
-		public IndexDistance(int index, double distance) {
+        /**
+         * Instantiates a new Index distance.
+         *
+         * @param index    the index
+         * @param distance the distance
+         */
+        public IndexDistance(int index, double distance) {
 			this.exampleIndex = index;
 			this.distance = distance;
 		}
 
-		public int getIndex() {
+        /**
+         * Gets index.
+         *
+         * @return the index
+         */
+        public int getIndex() {
 			return exampleIndex;
 		}
 
@@ -109,7 +124,12 @@ public class ReliefWeighting extends AbstractWeighting {
 
 	private static final int PROGRESS_UPDATE_STEPS = 1_000;
 
-	public ReliefWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Relief weighting.
+     *
+     * @param description the description
+     */
+    public ReliefWeighting(OperatorDescription description) {
 		super(description, true);
 	}
 

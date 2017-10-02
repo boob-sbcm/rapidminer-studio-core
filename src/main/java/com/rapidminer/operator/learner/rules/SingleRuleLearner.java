@@ -48,7 +48,12 @@ public class SingleRuleLearner extends AbstractLearner {
 
 	private NumericalSplitter splitter = new NumericalSplitter();
 
-	public SingleRuleLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Single rule learner.
+     *
+     * @param description the description
+     */
+    public SingleRuleLearner(OperatorDescription description) {
 		super(description);
 	}
 

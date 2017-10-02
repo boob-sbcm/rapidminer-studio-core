@@ -49,7 +49,6 @@ import com.rapidminer.parameter.ParameterTypeRemoteFile;
  *
  * @author Gisa Schaefer
  * @since 6.1.0
- *
  */
 public class RemoteFileValueCellEditor extends DefaultRMCellEditor implements PropertyValueCellEditor {
 
@@ -57,7 +56,12 @@ public class RemoteFileValueCellEditor extends DefaultRMCellEditor implements Pr
 
 	private JPanel container;
 
-	public RemoteFileValueCellEditor(final ParameterTypeRemoteFile type) {
+    /**
+     * Instantiates a new Remote file value cell editor.
+     *
+     * @param type the type
+     */
+    public RemoteFileValueCellEditor(final ParameterTypeRemoteFile type) {
 		super(new JTextField());
 		this.container = new JPanel(new GridBagLayout());
 		this.container.setToolTipText(type.getDescription());

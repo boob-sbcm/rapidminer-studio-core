@@ -20,7 +20,7 @@ package com.rapidminer.operator.preprocessing.transformation.aggregation;
 
 /**
  * This is an {@link Aggregator} for the {@link MeanAggregationFunction}
- * 
+ *
  * @author Sebastian Land
  */
 public class MeanAggregator extends NumericalAggregator {
@@ -28,7 +28,12 @@ public class MeanAggregator extends NumericalAggregator {
 	private double sum = 0;
 	private double totalWeight = 0;
 
-	public MeanAggregator(AggregationFunction function) {
+    /**
+     * Instantiates a new Mean aggregator.
+     *
+     * @param function the function
+     */
+    public MeanAggregator(AggregationFunction function) {
 		super(function);
 	}
 

@@ -26,14 +26,20 @@ import java.util.List;
 /**
  * This class is a description of the (expected) input and (guaranteed) output classes of operators.
  * It provides easy default implementations. <br>
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class DefaultIODescription implements IODescription {
 
-	public static final int PASS_UNUSED_INPUT_TO_OUTPUT = 1;
+    /**
+     * The constant PASS_UNUSED_INPUT_TO_OUTPUT.
+     */
+    public static final int PASS_UNUSED_INPUT_TO_OUTPUT = 1;
 
-	public static final int DELETE_UNUSED_INPUT = 2;
+    /**
+     * The constant DELETE_UNUSED_INPUT.
+     */
+    public static final int DELETE_UNUSED_INPUT = 2;
 
 	// must be ? since it is not allowed to create generic arrays with a specific type
 	private Class<?>[] inputClasses;
@@ -42,13 +48,17 @@ public class DefaultIODescription implements IODescription {
 
 	private int outputBehaviour;
 
-	/**
-	 * Constructs a new IODescription where all input and output classes are expected exactly once.
-	 * Output is the minimum set of output classes, the real output classes are determined by the
-	 * outputBehaviour. Both <tt>input</tt> and <tt>output</tt> may be null and may contain a class
-	 * more than once.
-	 */
-	public DefaultIODescription(Class<?>[] input, Class<?>[] output, int outputBehaviour) {
+    /**
+     * Constructs a new IODescription where all input and output classes are expected exactly once.
+     * Output is the minimum set of output classes, the real output classes are determined by the
+     * outputBehaviour. Both <tt>input</tt> and <tt>output</tt> may be null and may contain a class
+     * more than once.
+     *
+     * @param input           the input
+     * @param output          the output
+     * @param outputBehaviour the output behaviour
+     */
+    public DefaultIODescription(Class<?>[] input, Class<?>[] output, int outputBehaviour) {
 		this.inputClasses = input;
 		this.outputClasses = output;
 		if (inputClasses == null) {
@@ -60,8 +70,13 @@ public class DefaultIODescription implements IODescription {
 		this.outputBehaviour = outputBehaviour;
 	}
 
-	/** Assumes PASS_UNUSED_INPUT_TO_OUTPUT. */
-	public DefaultIODescription(Class<?>[] input, Class<?>[] output) {
+    /**
+     * Assumes PASS_UNUSED_INPUT_TO_OUTPUT.  @param input the input
+     *
+     * @param input  the input
+     * @param output the output
+     */
+    public DefaultIODescription(Class<?>[] input, Class<?>[] output) {
 		this(input, output, PASS_UNUSED_INPUT_TO_OUTPUT);
 	}
 
@@ -117,8 +132,14 @@ public class DefaultIODescription implements IODescription {
 		return null;
 	}
 
-	/** Returns true if oc contains a class which is a superclass of c. */
-	public static boolean containsClass(Class<?> c, Class<?>[] oc) {
+    /**
+     * Returns true if oc contains a class which is a superclass of c.  @param c the c
+     *
+     * @param c  the c
+     * @param oc the oc
+     * @return the boolean
+     */
+    public static boolean containsClass(Class<?> c, Class<?>[] oc) {
 		for (int i = 0; i < oc.length; i++) {
 			if (c.isAssignableFrom(oc[i])) {
 				return true;

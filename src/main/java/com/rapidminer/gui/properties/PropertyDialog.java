@@ -25,6 +25,8 @@ import com.rapidminer.tools.I18N;
 
 
 /**
+ * The type Property dialog.
+ *
  * @author Simon Fischer, Tobias Malbrecht
  */
 public class PropertyDialog extends ButtonDialog {
@@ -33,12 +35,23 @@ public class PropertyDialog extends ButtonDialog {
 
 	private final ParameterType type;
 
-	public PropertyDialog(final ParameterType type, String key) {
+    /**
+     * Instantiates a new Property dialog.
+     *
+     * @param type the type
+     * @param key  the key
+     */
+    public PropertyDialog(final ParameterType type, String key) {
 		super(ApplicationFrame.getApplicationFrame(), "parameter." + key, ModalityType.APPLICATION_MODAL, new Object[] {});
 		this.type = type;
 	}
 
-	protected ParameterType getParameterType() {
+    /**
+     * Gets parameter type.
+     *
+     * @return the parameter type
+     */
+    protected ParameterType getParameterType() {
 		return this.type;
 	}
 
@@ -53,7 +66,12 @@ public class PropertyDialog extends ButtonDialog {
 		return super.getDialogTitle() + ": " + type.getKey().replace("_", " ");
 	}
 
-	public boolean isOk() {
+    /**
+     * Is ok boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isOk() {
 		return wasConfirmed();
 	}
 }

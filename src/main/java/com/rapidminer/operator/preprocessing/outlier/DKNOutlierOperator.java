@@ -46,7 +46,7 @@ import java.util.Set;
  * similar to the DB(p,D)-Outlier Search from Knorr and Ng. But it utilizes a distance search
  * through the k-th nearest neighbourhood, so it implements some sort of locality as well.
  * </p>
- * 
+ * <p>
  * <p>
  * The method states, that those objects with the largest distance to their k-th nearest neighbours
  * are likely to be outliers respective to the data set, because it can be assumed, that those
@@ -55,36 +55,43 @@ import java.util.Set;
  * nearest neighbours, the user can specify a number of n objects to be the top-n outliers in the
  * data set.
  * </p>
- * 
+ * <p>
  * <p>
  * The operator supports cosine, sine or squared distances in addition to the euclidian distance
  * which can be specified by a distance parameter. The Operator takes an example set and passes it
  * on with an boolean top-n D^k outlier status in a new boolean-valued special outlier attribute
  * indicating true (outlier) and false (no outlier).
  * </p>
- * 
+ *
  * @author Stephan Deutsch, Ingo Mierswa
  */
 public class DKNOutlierOperator extends AbstractOutlierDetection {
 
-	/**
-	 * The parameter name for &quot;Specifies the k value for the k-th nearest neighbours to be the
-	 * analyzed.&quot;
-	 */
-	public static final String PARAMETER_NUMBER_OF_NEIGHBORS = "number_of_neighbors";
+    /**
+     * The parameter name for &quot;Specifies the k value for the k-th nearest neighbours to be the
+     * analyzed.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_NEIGHBORS = "number_of_neighbors";
 
-	/** The parameter name for &quot;The number of top-n Outliers to be looked for.&quot; */
-	public static final String PARAMETER_NUMBER_OF_OUTLIERS = "number_of_outliers";
+    /**
+     * The parameter name for &quot;The number of top-n Outliers to be looked for.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_OUTLIERS = "number_of_outliers";
 
-	/**
-	 * The parameter name for &quot;choose which distance function will be used for calculating
-	 * &quot;
-	 */
-	public static final String PARAMETER_DISTANCE_FUNCTION = "distance_function";
+    /**
+     * The parameter name for &quot;choose which distance function will be used for calculating
+     * &quot;
+     */
+    public static final String PARAMETER_DISTANCE_FUNCTION = "distance_function";
 	private static final String[] distanceFunctionList = { "euclidian distance", "squared distance", "cosine distance",
 			"inverted cosine distance", "angle" };
 
-	public DKNOutlierOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Dkn outlier operator.
+     *
+     * @param description the description
+     */
+    public DKNOutlierOperator(OperatorDescription description) {
 		super(description);
 	}
 

@@ -54,14 +54,22 @@ import java.util.List;
  * value types and nominal value mappings, one could use the operator {@link GuessValueTypes} after
  * this operator.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class UseRowAsAttributeNames extends AbstractDataProcessing {
 
-	public static final String PARAMETER_ROW_NUMBER = "row_number";
+    /**
+     * The constant PARAMETER_ROW_NUMBER.
+     */
+    public static final String PARAMETER_ROW_NUMBER = "row_number";
 
-	public UseRowAsAttributeNames(OperatorDescription description) {
+    /**
+     * Instantiates a new Use row as attribute names.
+     *
+     * @param description the description
+     */
+    public UseRowAsAttributeNames(OperatorDescription description) {
 		super(description);
 	}
 

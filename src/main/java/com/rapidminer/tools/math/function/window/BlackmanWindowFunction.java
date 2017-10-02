@@ -20,16 +20,27 @@ package com.rapidminer.tools.math.function.window;
 
 /**
  * A Blackman window function.
- * 
+ *
  * @author Tobias Malbrecht, Ingo Mierswa
  */
 public class BlackmanWindowFunction extends WindowFunction {
 
-	public BlackmanWindowFunction(Integer width) {
+    /**
+     * Instantiates a new Blackman window function.
+     *
+     * @param width the width
+     */
+    public BlackmanWindowFunction(Integer width) {
 		super(width);
 	}
 
-	public BlackmanWindowFunction(Integer width, Integer justification) {
+    /**
+     * Instantiates a new Blackman window function.
+     *
+     * @param width         the width
+     * @param justification the justification
+     */
+    public BlackmanWindowFunction(Integer width, Integer justification) {
 		super(width, justification);
 	}
 

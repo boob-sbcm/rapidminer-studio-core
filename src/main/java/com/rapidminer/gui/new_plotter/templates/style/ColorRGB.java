@@ -32,13 +32,15 @@ import org.w3c.dom.Node;
 
 /**
  * Describes a color in RGB scheme and contains an alpha value for the color.
- * 
+ *
  * @author Marco Boeck, Nils Woehler
- * 
  */
 public class ColorRGB extends AbstractObservable<ColorRGB> {
 
-	public static final String XML_TAG_NAME = "color";
+    /**
+     * The constant XML_TAG_NAME.
+     */
+    public static final String XML_TAG_NAME = "color";
 	private static final String R_XML_TAG = "red";
 	private static final String G_XML_TAG = "green";
 	private static final String B_XML_TAG = "blue";
@@ -58,27 +60,27 @@ public class ColorRGB extends AbstractObservable<ColorRGB> {
 
 	private UUID id = UUID.randomUUID();
 
-	/**
-	 * Creates a new {@link ColorRGB} object with the specified r g b components and an alpha value
-	 * of 255.
-	 * 
-	 * @param r
-	 * @param g
-	 * @param b
-	 */
-	public ColorRGB(int r, int g, int b) {
+    /**
+     * Creates a new {@link ColorRGB} object with the specified r g b components and an alpha value
+     * of 255.
+     *
+     * @param r the r
+     * @param g the g
+     * @param b the b
+     */
+    public ColorRGB(int r, int g, int b) {
 		this(r, g, b, 255);
 	}
 
-	/**
-	 * Creates a new {@link ColorRGB} object with the specified r g b and alpha components.
-	 * 
-	 * @param r
-	 * @param g
-	 * @param b
-	 * @param alpha
-	 */
-	public ColorRGB(int r, int g, int b, int alpha) {
+    /**
+     * Creates a new {@link ColorRGB} object with the specified r g b and alpha components.
+     *
+     * @param r     the r
+     * @param g     the g
+     * @param b     the b
+     * @param alpha the alpha
+     */
+    public ColorRGB(int r, int g, int b, int alpha) {
 		// check for illegal values
 		if (r > 255 || r < 0) {
 			throw new IllegalArgumentException("r must be between 0 and 255, but was '" + r + "'!");
@@ -99,10 +101,13 @@ public class ColorRGB extends AbstractObservable<ColorRGB> {
 		this.alpha = alpha;
 	}
 
-	/**
-	 * @param childElement
-	 */
-	public ColorRGB(Element element) throws XMLException {
+    /**
+     * Instantiates a new Color rgb.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ColorRGB(Element element) throws XMLException {
 		if (!XML_TAG_NAME.equals(element.getTagName())) {
 			throw new XMLException("<" + XML_TAG_NAME + "> expected.");
 		}
@@ -112,54 +117,57 @@ public class ColorRGB extends AbstractObservable<ColorRGB> {
 		this.alpha = XMLTools.getTagContentsAsInt(element, ALPHA_XML_TAG);
 	}
 
-	/**
-	 * Returns the R component of this color.
-	 * 
-	 * @return
-	 */
-	public int getR() {
+    /**
+     * Returns the R component of this color.
+     *
+     * @return r r
+     */
+    public int getR() {
 		return r;
 	}
 
-	/**
-	 * Returns the G component of this color.
-	 * 
-	 * @return
-	 */
-	public int getG() {
+    /**
+     * Returns the G component of this color.
+     *
+     * @return g g
+     */
+    public int getG() {
 		return g;
 	}
 
-	/**
-	 * Returns the B component of this color.
-	 * 
-	 * @return
-	 */
-	public int getB() {
+    /**
+     * Returns the B component of this color.
+     *
+     * @return b b
+     */
+    public int getB() {
 		return b;
 	}
 
-	/**
-	 * Returns the Alpha component of this color.
-	 * 
-	 * @return
-	 */
-	public int getAlpha() {
+    /**
+     * Returns the Alpha component of this color.
+     *
+     * @return alpha alpha
+     */
+    public int getAlpha() {
 		return alpha;
 	}
 
-	/**
-	 * @return the color as hex value with preceding '#'.
-	 */
-	public String getHexValue() {
+    /**
+     * Gets hex value.
+     *
+     * @return the color as hex value with preceding '#'.
+     */
+    public String getHexValue() {
 		return "#" + ColorRGB.convertColorRGBToHex(this);
 	}
 
-	/**
-	 * @param hexValue
-	 *            the new color as hex value with preceding '#'.
-	 */
-	public void setHexValue(String hexValue) {
+    /**
+     * Sets hex value.
+     *
+     * @param hexValue the new color as hex value with preceding '#'.
+     */
+    public void setHexValue(String hexValue) {
 		ColorRGB convertHexToColorRGB = ColorRGB.convertHexToColorRGB(hexValue.substring(1));
 		this.r = convertHexToColorRGB.getR();
 		this.g = convertHexToColorRGB.getG();
@@ -214,43 +222,43 @@ public class ColorRGB extends AbstractObservable<ColorRGB> {
 		return true;
 	}
 
-	/**
-	 * Converts a {@link ColorRGB} input to a {@link Color} object.
-	 * 
-	 * @param colorRGB
-	 * @return
-	 */
-	public static Color convertToColor(ColorRGB colorRGB) {
+    /**
+     * Converts a {@link ColorRGB} input to a {@link Color} object.
+     *
+     * @param colorRGB the color rgb
+     * @return color color
+     */
+    public static Color convertToColor(ColorRGB colorRGB) {
 		return new Color(colorRGB.getR(), colorRGB.getG(), colorRGB.getB());
 	}
 
-	/**
-	 * Converts a {@link ColorRGB} input to a {@link Color} object including the alpha value.
-	 * 
-	 * @param colorRGB
-	 * @return
-	 */
-	public static Color convertToColorWithAlpha(ColorRGB colorRGB) {
+    /**
+     * Converts a {@link ColorRGB} input to a {@link Color} object including the alpha value.
+     *
+     * @param colorRGB the color rgb
+     * @return color color
+     */
+    public static Color convertToColorWithAlpha(ColorRGB colorRGB) {
 		return new Color(colorRGB.getR(), colorRGB.getG(), colorRGB.getB(), colorRGB.getAlpha());
 	}
 
-	/**
-	 * Converts a {@link Color} input to a {@link ColorRGB} object.
-	 * 
-	 * @param colorRGB
-	 * @return
-	 */
-	public static ColorRGB convertColorToColorRGB(Color color) {
+    /**
+     * Converts a {@link Color} input to a {@link ColorRGB} object.
+     *
+     * @param color the color
+     * @return color rgb
+     */
+    public static ColorRGB convertColorToColorRGB(Color color) {
 		return new ColorRGB(color.getRed(), color.getGreen(), color.getBlue());
 	}
 
-	/**
-	 * Converts a {@link Color} input to a {@link ColorRGB} object including the alpha value.
-	 * 
-	 * @param colorRGB
-	 * @return
-	 */
-	public static ColorRGB convertColorWithAlphaToColorRGB(Color color) {
+    /**
+     * Converts a {@link Color} input to a {@link ColorRGB} object including the alpha value.
+     *
+     * @param color the color
+     * @return color rgb
+     */
+    public static ColorRGB convertColorWithAlphaToColorRGB(Color color) {
 		return new ColorRGB(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
 	}
 
@@ -259,29 +267,33 @@ public class ColorRGB extends AbstractObservable<ColorRGB> {
 		return new ColorRGB(r, g, b, alpha);
 	}
 
-	/**
-	 * @param color
-	 *            the color that should be converted to a hex string representation
-	 * @return the color as a hex string without the preceding '#'
-	 */
-	public static String convertColorRGBToHex(ColorRGB color) {
+    /**
+     * Convert color rgb to hex string.
+     *
+     * @param color the color that should be converted to a hex string representation
+     * @return the color as a hex string without the preceding '#'
+     */
+    public static String convertColorRGBToHex(ColorRGB color) {
 		return String.format("%02x%02x%02x", color.getR(), color.getG(), color.getB());
 	}
 
-	/**
-	 * @param hexString
-	 *            a color represented as a hex string without a preceding '#'.
-	 * @return the {@link ColorRGB} object
-	 */
-	public static ColorRGB convertHexToColorRGB(String hexString) {
+    /**
+     * Convert hex to color rgb color rgb.
+     *
+     * @param hexString a color represented as a hex string without a preceding '#'.
+     * @return the {@link ColorRGB} object
+     */
+    public static ColorRGB convertHexToColorRGB(String hexString) {
 		return ColorRGB.convertColorToColorRGB(Color.decode("#" + hexString));
 	}
 
-	/**
-	 * @param doc
-	 * @return
-	 */
-	public Node toXML(Document doc) {
+    /**
+     * To xml node.
+     *
+     * @param doc the doc
+     * @return node node
+     */
+    public Node toXML(Document doc) {
 		Element root = doc.createElement(XML_TAG_NAME);
 		XMLTools.setTagContents(root, R_XML_TAG, String.valueOf(getR()));
 		XMLTools.setTagContents(root, G_XML_TAG, String.valueOf(getG()));

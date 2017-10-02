@@ -29,32 +29,57 @@ import javax.swing.SwingConstants;
 
 
 /**
- * 
+ * The type Arrow button.
+ *
  * @author Simon Fischer
  */
 public class ArrowButton extends JButton {
 
 	private static final long serialVersionUID = -355433594066885069L;
 
-	protected int direction = SwingConstants.EAST;
+    /**
+     * The Direction.
+     */
+    protected int direction = SwingConstants.EAST;
 
-	public ArrowButton(int direction) {
+    /**
+     * Instantiates a new Arrow button.
+     *
+     * @param direction the direction
+     */
+    public ArrowButton(int direction) {
 		super();
 		setText(" ");
 		this.direction = direction;
 	}
 
-	public ArrowButton(Action a) {
+    /**
+     * Instantiates a new Arrow button.
+     *
+     * @param a the a
+     */
+    public ArrowButton(Action a) {
 		this(a, SwingConstants.EAST);
 	}
 
-	public ArrowButton(Action a, int direction) {
+    /**
+     * Instantiates a new Arrow button.
+     *
+     * @param a         the a
+     * @param direction the direction
+     */
+    public ArrowButton(Action a, int direction) {
 		super(a);
 		setText(" ");
 		this.direction = direction;
 	}
 
-	public void setDirection(int dir) {
+    /**
+     * Sets direction.
+     *
+     * @param dir the dir
+     */
+    public void setDirection(int dir) {
 		this.direction = dir;
 		repaint();
 	}

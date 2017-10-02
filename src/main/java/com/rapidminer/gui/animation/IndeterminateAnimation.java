@@ -38,14 +38,18 @@ public class IndeterminateAnimation implements Animation {
 	/** the number by which to divide MS_PER_TURN with result NUMBER_OF_CIRCLES */
 	private static final int DIVISOR = 125;
 
-	/** the radius of the small circles */
-	static final int RADIUS_SMALL_CIRCLES = 9;
+    /**
+     * the radius of the small circles
+     */
+    static final int RADIUS_SMALL_CIRCLES = 9;
 
 	/** the radius of the circle on which the small circles lie */
 	private static final int RADIUS_FROM_ORIGIN = 15;
 
-	/** the radius of the circle containing the whole animation */
-	static final int OUTER_RADIUS = RADIUS_FROM_ORIGIN + RADIUS_SMALL_CIRCLES;
+    /**
+     * the radius of the circle containing the whole animation
+     */
+    static final int OUTER_RADIUS = RADIUS_FROM_ORIGIN + RADIUS_SMALL_CIRCLES;
 
 	/** the number of circles in the animation */
 	private static final int NUMBER_OF_CIRCLES = 12;
@@ -53,14 +57,19 @@ public class IndeterminateAnimation implements Animation {
 	/** the bounds of the animation */
 	private static final Rectangle BOUNDS = new Rectangle(-OUTER_RADIUS, -OUTER_RADIUS, 2 * OUTER_RADIUS, 2 * OUTER_RADIUS);
 
-	/** the different shades of colors for the small circles */
-	static final Color[] SPINNER_COLORS = { new Color(52, 73, 94), new Color(52, 73, 94, 210), new Color(52, 73, 94, 170),
+    /**
+     * the different shades of colors for the small circles
+     */
+    static final Color[] SPINNER_COLORS = { new Color(52, 73, 94), new Color(52, 73, 94, 210), new Color(52, 73, 94, 170),
 			new Color(52, 73, 94, 130), new Color(52, 73, 94, 90), new Color(52, 73, 94, 50), new Color(52, 73, 94, 10) };
 
 	/** the start time of the animation */
 	private final long start;
 
-	public IndeterminateAnimation() {
+    /**
+     * Instantiates a new Indeterminate animation.
+     */
+    public IndeterminateAnimation() {
 		start = System.currentTimeMillis();
 	}
 

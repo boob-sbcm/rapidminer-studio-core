@@ -28,13 +28,21 @@ import java.io.InputStreamReader;
 
 
 /**
- * 
+ * The type Resource process entry.
+ *
  * @author Simon Fischer
- * 
  */
 public class ResourceProcessEntry extends ResourceDataEntry implements ProcessEntry {
 
-	protected ResourceProcessEntry(ResourceFolder parent, String name, String resource, ResourceRepository repository) {
+    /**
+     * Instantiates a new Resource process entry.
+     *
+     * @param parent     the parent
+     * @param name       the name
+     * @param resource   the resource
+     * @param repository the repository
+     */
+    protected ResourceProcessEntry(ResourceFolder parent, String name, String resource, ResourceRepository repository) {
 		super(parent, name, resource, repository);
 	}
 

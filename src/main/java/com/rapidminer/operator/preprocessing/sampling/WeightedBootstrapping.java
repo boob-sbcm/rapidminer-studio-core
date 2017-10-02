@@ -32,12 +32,17 @@ import java.util.Random;
  * This operator constructs a bootstrapped sample from the given example set which must provide a
  * weight attribute. If no weight attribute was provided this operator will stop the process with an
  * error message. See the operator {@link Bootstrapping} for more information.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class WeightedBootstrapping extends AbstractBootstrapping {
 
-	public WeightedBootstrapping(OperatorDescription description) {
+    /**
+     * Instantiates a new Weighted bootstrapping.
+     *
+     * @param description the description
+     */
+    public WeightedBootstrapping(OperatorDescription description) {
 		super(description);
 	}
 

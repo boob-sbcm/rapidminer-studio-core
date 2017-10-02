@@ -76,29 +76,31 @@ public final class PlatformUtilities {
 
 	private static final Logger LOGGER = Logger.getLogger(PlatformUtilities.class.getSimpleName());
 
-	/** The name of the property indicating the home directory of RapidMiner. */
-	public static final String PROPERTY_RAPIDMINER_HOME = "rapidminer.home";
+    /**
+     * The name of the property indicating the home directory of RapidMiner.
+     */
+    public static final String PROPERTY_RAPIDMINER_HOME = "rapidminer.home";
 
-	/**
-	 * All available release platforms.
-	 */
-	public enum Platform {
-		/**
-		 * Platform independent release
-		 */
-		ANY,
-		/**
-		 * Windows 32-bit
-		 */
-		WIN32,
-		/**
-		 * Windows 64-bit
-		 */
-		WIN64,
-		/**
-		 * Apple OS X
-		 */
-		OSX
+    /**
+     * All available release platforms.
+     */
+    public enum Platform {
+        /**
+         * Platform independent release
+         */
+        ANY,
+        /**
+         * Windows 32-bit
+         */
+        WIN32,
+        /**
+         * Windows 64-bit
+         */
+        WIN64,
+        /**
+         * Apple OS X
+         */
+        OSX
 	}
 
 	/**
@@ -127,10 +129,10 @@ public final class PlatformUtilities {
 		throw new AssertionError();
 	}
 
-	/**
-	 * Initializes the PlatformUtilities caches
-	 */
-	public static synchronized void initialize() {
+    /**
+     * Initializes the PlatformUtilities caches
+     */
+    public static synchronized void initialize() {
 		if (!isInitialized) {
 			// silently ensure that the RapidMiner Home system property is set
 			ensureRapidMinerHomeSet(Level.OFF);
@@ -141,11 +143,12 @@ public final class PlatformUtilities {
 		}
 	}
 
-	/**
-	 * @return the platform the RapidMiner Studio release was built for. Will return
-	 *         <code>null</code> in case platform was not defined.
-	 */
-	public static synchronized Platform getReleasePlatform() {
+    /**
+     * Gets release platform.
+     *
+     * @return the platform the RapidMiner Studio release was built for. Will return         <code>null</code> in case platform was not defined.
+     */
+    public static synchronized Platform getReleasePlatform() {
 		if (!isInitialized) {
 			initialize();
 		}
@@ -165,10 +168,12 @@ public final class PlatformUtilities {
 		}
 	}
 
-	/**
-	 * @return the current version of the platform release as {@link String}.
-	 */
-	public static synchronized String getReleaseVersion() {
+    /**
+     * Gets release version.
+     *
+     * @return the current version of the platform release as {@link String}.
+     */
+    public static synchronized String getReleaseVersion() {
 		if (!isInitialized) {
 			initialize();
 		}
@@ -191,10 +196,12 @@ public final class PlatformUtilities {
 		}
 	}
 
-	/**
-	 * @return the current version of the platform release as {@link String}.
-	 */
-	public static synchronized String getReleaseRevision() {
+    /**
+     * Gets release revision.
+     *
+     * @return the current version of the platform release as {@link String}.
+     */
+    public static synchronized String getReleaseRevision() {
 		if (!isInitialized) {
 			initialize();
 		}
@@ -213,10 +220,12 @@ public final class PlatformUtilities {
 		}
 	}
 
-	/**
-	 * @return the system property 'rapidminer.home'.
-	 */
-	public static synchronized String getRapidMinerHome() {
+    /**
+     * Gets rapid miner home.
+     *
+     * @return the system property 'rapidminer.home'.
+     */
+    public static synchronized String getRapidMinerHome() {
 		return System.getProperty(PROPERTY_RAPIDMINER_HOME);
 	}
 
@@ -263,22 +272,21 @@ public final class PlatformUtilities {
 		}
 	}
 
-	/**
-	 * Ensures that the environment variable 'rapidminer.home' is set by calling
-	 * {@link #ensureRapidMinerHomeSet(Level)} with {@link Level#INFO}.
-	 */
-	public static void ensureRapidMinerHomeSet() {
+    /**
+     * Ensures that the environment variable 'rapidminer.home' is set by calling
+     * {@link #ensureRapidMinerHomeSet(Level)} with {@link Level#INFO}.
+     */
+    public static void ensureRapidMinerHomeSet() {
 		ensureRapidMinerHomeSet(Level.INFO);
 	}
 
-	/**
-	 * Ensures that the environment variable 'rapidminer.home' is set by searching for RapidMiner
-	 * Jars in classpath and build dir.
-	 *
-	 * @param logLevel
-	 *            the {@link Level} to log method informations
-	 */
-	public static synchronized void ensureRapidMinerHomeSet(final Level logLevel) {
+    /**
+     * Ensures that the environment variable 'rapidminer.home' is set by searching for RapidMiner
+     * Jars in classpath and build dir.
+     *
+     * @param logLevel the {@link Level} to log method informations
+     */
+    public static synchronized void ensureRapidMinerHomeSet(final Level logLevel) {
 		LOGGER.setLevel(logLevel);
 		if (getRapidMinerHome() == null) {
 			logInfo("Property " + PROPERTY_RAPIDMINER_HOME + " is not set. Guessing.");

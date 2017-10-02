@@ -56,24 +56,47 @@ public class ColorQuartilePlotter extends PlotterAdapter {
 
 	private int colorIndex = -1;
 
-	protected transient DataTable dataTable;
+    /**
+     * The Data table.
+     */
+    protected transient DataTable dataTable;
 
-	protected List<Quartile> allQuartiles = new LinkedList<Quartile>();
+    /**
+     * The All quartiles.
+     */
+    protected List<Quartile> allQuartiles = new LinkedList<Quartile>();
 
 	private boolean drawLegend = true;
 
 	private String key = null;
 
-	protected double globalMin = Double.NaN;
+    /**
+     * The Global min.
+     */
+    protected double globalMin = Double.NaN;
 
-	protected double globalMax = Double.NaN;
+    /**
+     * The Global max.
+     */
+    protected double globalMax = Double.NaN;
 
-	public ColorQuartilePlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Color quartile plotter.
+     *
+     * @param settings the settings
+     */
+    public ColorQuartilePlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 	}
 
-	public ColorQuartilePlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Color quartile plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public ColorQuartilePlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -128,7 +151,12 @@ public class ColorQuartilePlotter extends PlotterAdapter {
 		return index == colorIndex;
 	}
 
-	public void setDrawLegend(boolean drawLegend) {
+    /**
+     * Sets draw legend.
+     *
+     * @param drawLegend the draw legend
+     */
+    public void setDrawLegend(boolean drawLegend) {
 		this.drawLegend = drawLegend;
 	}
 
@@ -137,7 +165,10 @@ public class ColorQuartilePlotter extends PlotterAdapter {
 		this.key = key;
 	}
 
-	protected void prepareData() {
+    /**
+     * Prepare data.
+     */
+    protected void prepareData() {
 		allQuartiles.clear();
 		this.globalMin = Double.POSITIVE_INFINITY;
 		this.globalMax = Double.NEGATIVE_INFINITY;
@@ -224,7 +255,14 @@ public class ColorQuartilePlotter extends PlotterAdapter {
 		translated.dispose();
 	}
 
-	public void paintQuartiles(Graphics2D g, int pixWidth, int pixHeight) {
+    /**
+     * Paint quartiles.
+     *
+     * @param g         the g
+     * @param pixWidth  the pix width
+     * @param pixHeight the pix height
+     */
+    public void paintQuartiles(Graphics2D g, int pixWidth, int pixHeight) {
 			prepareData();
 
 		if (allQuartiles.size() == 0) {

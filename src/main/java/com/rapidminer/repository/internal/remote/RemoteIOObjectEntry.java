@@ -27,7 +27,6 @@ import com.rapidminer.repository.IOObjectEntry;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public interface RemoteIOObjectEntry extends IOObjectEntry, RemoteDataEntry {
 

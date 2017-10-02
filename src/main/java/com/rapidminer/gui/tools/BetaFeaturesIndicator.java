@@ -98,10 +98,10 @@ class BetaFeaturesIndicator {
 
 	};
 
-	/**
-	 * Creates a indicator for activation of beta features.
-	 */
-	BetaFeaturesIndicator() {
+    /**
+     * Creates a indicator for activation of beta features.
+     */
+    BetaFeaturesIndicator() {
 		separator = new JSeparator(JSeparator.VERTICAL);
 		modeLabel = new ResourceLabel("setting.activated_beta_features");
 		modeLabel.setFont(modeLabel.getFont().deriveFont(Font.BOLD));
@@ -124,17 +124,21 @@ class BetaFeaturesIndicator {
 		}
 	}
 
-	/**
-	 * @return a beta mode label that is only visible when beta features are activated
-	 */
-	JLabel getModeLabel() {
+    /**
+     * Gets mode label.
+     *
+     * @return a beta mode label that is only visible when beta features are activated
+     */
+    JLabel getModeLabel() {
 		return modeLabel;
 	}
 
-	/**
-	 * @return a separator that is only visible when beta features are activated
-	 */
-	JSeparator getModeSeparator() {
+    /**
+     * Gets mode separator.
+     *
+     * @return a separator that is only visible when beta features are activated
+     */
+    JSeparator getModeSeparator() {
 		return separator;
 	}
 

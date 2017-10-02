@@ -65,7 +65,7 @@ import com.vlsolutions.swing.docking.event.DockableStateChangeListener;
  * arg can be "execute", "stop", or "fail". Note that type, value, and arg will be used as grouping
  * attributes for aggregated counts. Therefore, arg cannot be too detailed, e.g. error messages
  * "File not found: /path/to/file".
- *
+ * <p>
  * Records can be logged using {@link #log(String, String, String)} which will add 1 to the counter.
  * Perspective switches use a timer and can call {@link #log(String, String, String, long)} to use
  * other increments than 1.
@@ -74,41 +74,106 @@ import com.vlsolutions.swing.docking.event.DockableStateChangeListener;
  */
 public enum ActionStatisticsCollector {
 
-	INSTANCE;
+    /**
+     * Instance action statistics collector.
+     */
+    INSTANCE;
 
-	public static final String TYPE_CONSTANT = "rapidminer";
+    /**
+     * The constant TYPE_CONSTANT.
+     */
+    public static final String TYPE_CONSTANT = "rapidminer";
 	private static final String TYPE_DOCKABLE = "dockable";
 	private static final String TYPE_ACTION = "action";
-	public static final String TYPE_OPERATOR = "operator";
-	public static final String TYPE_PERSPECTIVE = "perspective";
-	public static final String TYPE_ERROR = "error";
-	public static final String TYPE_IMPORT = "import";
-	public static final String TYPE_DIALOG = "dialog";
-	public static final String TYPE_CONSTRAINT = "constraint";
-	public static final String TYPE_LICENSE_LEVEL = "license-level";
-	public static final String TYPE_PROGRESS_THREAD = "progress-thread";
-	public static final String TYPE_TEMPLATE = "template";
-	public static final String TYPE_RENDERER = "renderer";
-	public static final String TYPE_CHART = "chart";
+    /**
+     * The constant TYPE_OPERATOR.
+     */
+    public static final String TYPE_OPERATOR = "operator";
+    /**
+     * The constant TYPE_PERSPECTIVE.
+     */
+    public static final String TYPE_PERSPECTIVE = "perspective";
+    /**
+     * The constant TYPE_ERROR.
+     */
+    public static final String TYPE_ERROR = "error";
+    /**
+     * The constant TYPE_IMPORT.
+     */
+    public static final String TYPE_IMPORT = "import";
+    /**
+     * The constant TYPE_DIALOG.
+     */
+    public static final String TYPE_DIALOG = "dialog";
+    /**
+     * The constant TYPE_CONSTRAINT.
+     */
+    public static final String TYPE_CONSTRAINT = "constraint";
+    /**
+     * The constant TYPE_LICENSE_LEVEL.
+     */
+    public static final String TYPE_LICENSE_LEVEL = "license-level";
+    /**
+     * The constant TYPE_PROGRESS_THREAD.
+     */
+    public static final String TYPE_PROGRESS_THREAD = "progress-thread";
+    /**
+     * The constant TYPE_TEMPLATE.
+     */
+    public static final String TYPE_TEMPLATE = "template";
+    /**
+     * The constant TYPE_RENDERER.
+     */
+    public static final String TYPE_RENDERER = "renderer";
+    /**
+     * The constant TYPE_CHART.
+     */
+    public static final String TYPE_CHART = "chart";
 
-	/** new data access dialog (since 7.0.0) */
-	public static final String TYPE_NEW_IMPORT = "new_import";
+    /**
+     * new data access dialog (since 7.0.0)
+     */
+    public static final String TYPE_NEW_IMPORT = "new_import";
 
-	/** start-up dialog (since 7.0.0) */
-	public static final String TYPE_GETTING_STARTED = "getting_started";
+    /**
+     * start-up dialog (since 7.0.0)
+     */
+    public static final String TYPE_GETTING_STARTED = "getting_started";
 
-	/** operator search field (since 7.1.1) */
-	public static final String TYPE_OPERATOR_SEARCH = "operator_search";
+    /**
+     * operator search field (since 7.1.1)
+     */
+    public static final String TYPE_OPERATOR_SEARCH = "operator_search";
 
-	/** onboarding dialog (since 7.1.1) */
-	public static final String TYPE_ONBOARDING = "onboarding";
+    /**
+     * onboarding dialog (since 7.1.1)
+     */
+    public static final String TYPE_ONBOARDING = "onboarding";
 
-	public static final String OPERATOR_EVENT_EXECUTION = "EXECUTE";
-	public static final String OPERATOR_EVENT_STOPPED = "STOPPED";
-	public static final String OPERATOR_EVENT_FAILURE = "FAILURE";
-	public static final String OPERATOR_EVENT_USER_ERROR = "USER_ERROR";
-	public static final String OPERATOR_EVENT_OPERATOR_EXCEPTION = "OPERATOR_EXCEPTION";
-	public static final String OPERATOR_EVENT_RUNTIME_EXCEPTION = "RUNTIME_EXCEPTION";
+    /**
+     * The constant OPERATOR_EVENT_EXECUTION.
+     */
+    public static final String OPERATOR_EVENT_EXECUTION = "EXECUTE";
+    /**
+     * The constant OPERATOR_EVENT_STOPPED.
+     */
+    public static final String OPERATOR_EVENT_STOPPED = "STOPPED";
+    /**
+     * The constant OPERATOR_EVENT_FAILURE.
+     */
+    public static final String OPERATOR_EVENT_FAILURE = "FAILURE";
+    /**
+     * The constant OPERATOR_EVENT_USER_ERROR.
+     */
+    public static final String OPERATOR_EVENT_USER_ERROR = "USER_ERROR";
+    /**
+     * The constant OPERATOR_EVENT_OPERATOR_EXCEPTION.
+     */
+    public static final String OPERATOR_EVENT_OPERATOR_EXCEPTION = "OPERATOR_EXCEPTION";
+    /**
+     * The constant OPERATOR_EVENT_RUNTIME_EXCEPTION.
+     */
+    public static final String OPERATOR_EVENT_RUNTIME_EXCEPTION = "RUNTIME_EXCEPTION";
 
 	/** runtime of an operator (since 7.1.1) */
 	private static final String OPERATOR_RUNTIME = "RUNTIME";
@@ -127,51 +192,140 @@ public enum ActionStatisticsCollector {
 	private static final String VOLUME_COLUMNS = "COLUMNS";
 	private static final String VOLUME_ROWS = "ROWS";
 
-	/** row limit check (since 7.2) */
-	public static final String TYPE_ROW_LIMIT = "row-limit";
-	public static final String VALUE_ROW_LIMIT_EXCEEDED = "exceeded";
-	public static final String ARG_ROW_LIMIT_CHECK = "check";
-	public static final String ARG_ROW_LIMIT_DOWNSAMPLED = "downsampled";
-	public static final String ARG_ROW_LIMIT_ABORTED = "aborted";
-	public static final String VALUE_ROW_LIMIT_UPGRADE_FIX = "upgrade_fix";
-	public static final String VALUE_ROW_LIMIT_UPGRADE_NOT_ENOUGH = "upgrade_not_enough";
-	public static final String VALUE_ROW_LIMIT_UPGRADE_SELECTED = "upgrade_selected";
-	public static final String ARG_ROW_LIMIT_NO_UPGRADE = "no_upgrade";
+    /**
+     * row limit check (since 7.2)
+     */
+    public static final String TYPE_ROW_LIMIT = "row-limit";
+    /**
+     * The constant VALUE_ROW_LIMIT_EXCEEDED.
+     */
+    public static final String VALUE_ROW_LIMIT_EXCEEDED = "exceeded";
+    /**
+     * The constant ARG_ROW_LIMIT_CHECK.
+     */
+    public static final String ARG_ROW_LIMIT_CHECK = "check";
+    /**
+     * The constant ARG_ROW_LIMIT_DOWNSAMPLED.
+     */
+    public static final String ARG_ROW_LIMIT_DOWNSAMPLED = "downsampled";
+    /**
+     * The constant ARG_ROW_LIMIT_ABORTED.
+     */
+    public static final String ARG_ROW_LIMIT_ABORTED = "aborted";
+    /**
+     * The constant VALUE_ROW_LIMIT_UPGRADE_FIX.
+     */
+    public static final String VALUE_ROW_LIMIT_UPGRADE_FIX = "upgrade_fix";
+    /**
+     * The constant VALUE_ROW_LIMIT_UPGRADE_NOT_ENOUGH.
+     */
+    public static final String VALUE_ROW_LIMIT_UPGRADE_NOT_ENOUGH = "upgrade_not_enough";
+    /**
+     * The constant VALUE_ROW_LIMIT_UPGRADE_SELECTED.
+     */
+    public static final String VALUE_ROW_LIMIT_UPGRADE_SELECTED = "upgrade_selected";
+    /**
+     * The constant ARG_ROW_LIMIT_NO_UPGRADE.
+     */
+    public static final String ARG_ROW_LIMIT_NO_UPGRADE = "no_upgrade";
 
-	/** commercial and educational sign up (since 7.3) */
-	public static final String TYPE_SIGN_UP = "sign_up";
-	public static final String VALUE_ACCOUNT_TYPE = "account_type";
-	public static final String ARG_COMMERCIAL = "commercial";
-	public static final String ARG_EDUCATIONAL = "educational";
-	public static final String VALUE_ACCOUNT_CREATION = "account_creation";
-	public static final String ARG_ACCOUNT_CREATION_ABORTED = "aborted";
-	public static final String ARG_ACCOUNT_CREATION_SUCCESS = "success";
-	public static final String ARG_ACCOUNT_ALREADY_EXISTS = "already_exists";
-	public static final String ARG_COMMUNICATION_ERROR = "communication_error";
-	public static final String VALUE_EMAIL_VERIFICATION = "email_verification";
-	public static final String ARG_EMAIL_VERIFICATION_SUCCESS = "success";
-	public static final String ARG_EMAIL_VERIFICATION_PENDING = "pending";
+    /**
+     * commercial and educational sign up (since 7.3)
+     */
+    public static final String TYPE_SIGN_UP = "sign_up";
+    /**
+     * The constant VALUE_ACCOUNT_TYPE.
+     */
+    public static final String VALUE_ACCOUNT_TYPE = "account_type";
+    /**
+     * The constant ARG_COMMERCIAL.
+     */
+    public static final String ARG_COMMERCIAL = "commercial";
+    /**
+     * The constant ARG_EDUCATIONAL.
+     */
+    public static final String ARG_EDUCATIONAL = "educational";
+    /**
+     * The constant VALUE_ACCOUNT_CREATION.
+     */
+    public static final String VALUE_ACCOUNT_CREATION = "account_creation";
+    /**
+     * The constant ARG_ACCOUNT_CREATION_ABORTED.
+     */
+    public static final String ARG_ACCOUNT_CREATION_ABORTED = "aborted";
+    /**
+     * The constant ARG_ACCOUNT_CREATION_SUCCESS.
+     */
+    public static final String ARG_ACCOUNT_CREATION_SUCCESS = "success";
+    /**
+     * The constant ARG_ACCOUNT_ALREADY_EXISTS.
+     */
+    public static final String ARG_ACCOUNT_ALREADY_EXISTS = "already_exists";
+    /**
+     * The constant ARG_COMMUNICATION_ERROR.
+     */
+    public static final String ARG_COMMUNICATION_ERROR = "communication_error";
+    /**
+     * The constant VALUE_EMAIL_VERIFICATION.
+     */
+    public static final String VALUE_EMAIL_VERIFICATION = "email_verification";
+    /**
+     * The constant ARG_EMAIL_VERIFICATION_SUCCESS.
+     */
+    public static final String ARG_EMAIL_VERIFICATION_SUCCESS = "success";
+    /**
+     * The constant ARG_EMAIL_VERIFICATION_PENDING.
+     */
+    public static final String ARG_EMAIL_VERIFICATION_PENDING = "pending";
 
-	/** row limit check additions (since 7.3) */
-	public static final String VALUE_ROW_LIMIT_DIALOG = "dialog";
+    /**
+     * row limit check additions (since 7.3)
+     */
+    public static final String VALUE_ROW_LIMIT_DIALOG = "dialog";
 
-	/** beta features (since 7.3) */
-	public static final String TYPE_BETA_FEATURES = "beta-features";
-	public static final String VALUE_BETA_FEATURES_ACTIVATION = "activated";
+    /**
+     * beta features (since 7.3)
+     */
+    public static final String TYPE_BETA_FEATURES = "beta-features";
+    /**
+     * The constant VALUE_BETA_FEATURES_ACTIVATION.
+     */
+    public static final String VALUE_BETA_FEATURES_ACTIVATION = "activated";
 
-	/** marketplace search (since 7.3) */
-	public static final String TYPE_MARKETPLACE = "marketplace";
-	public static final String VALUE_OPERATOR_SEARCH = "operator_search";
-	public static final String VALUE_SEARCH = "search";
-	public static final String VALUE_EXTENSION_INSTALLATION = "extension_installation";
+    /**
+     * marketplace search (since 7.3)
+     */
+    public static final String TYPE_MARKETPLACE = "marketplace";
+    /**
+     * The constant VALUE_OPERATOR_SEARCH.
+     */
+    public static final String VALUE_OPERATOR_SEARCH = "operator_search";
+    /**
+     * The constant VALUE_SEARCH.
+     */
+    public static final String VALUE_SEARCH = "search";
+    /**
+     * The constant VALUE_EXTENSION_INSTALLATION.
+     */
+    public static final String VALUE_EXTENSION_INSTALLATION = "extension_installation";
 
-	/** extension initialization (since 7.3) */
-	public static final String VALUE_EXTENSION_INITIALIZATION = "extension_initialization";
+    /**
+     * extension initialization (since 7.3)
+     */
+    public static final String VALUE_EXTENSION_INITIALIZATION = "extension_initialization";
 
-	/** type cta (since 7.5) */
-	public static final String TYPE_CTA = "cta";
-	public static final String VALUE_CTA_FAILURE = "failure";
-	public static final String VALUE_RULE_TRIGGERED = "cta_triggered";
+    /**
+     * type cta (since 7.5)
+     */
+    public static final String TYPE_CTA = "cta";
+    /**
+     * The constant VALUE_CTA_FAILURE.
+     */
+    public static final String VALUE_CTA_FAILURE = "failure";
+    /**
+     * The constant VALUE_RULE_TRIGGERED.
+     */
+    public static final String VALUE_RULE_TRIGGERED = "cta_triggered";
 
 	/**
 	 * added to a key arg to indicated that this stores the maximum amount of all the amounts stored
@@ -194,30 +348,58 @@ public enum ActionStatisticsCollector {
 	/** conversion constant for bytes to megabytes */
 	private static final int BYTE_TO_MB = 1024 * 1024;
 
-	public static final String XML_TAG = "action-statistics";
+    /**
+     * The constant XML_TAG.
+     */
+    public static final String XML_TAG = "action-statistics";
 
-	public static final class Key {
+    /**
+     * The type Key.
+     */
+    public static final class Key {
 
 		private String type;
 		private String value;
 		private String arg;
 
-		public Key(String type, String value, String arg) {
+        /**
+         * Instantiates a new Key.
+         *
+         * @param type  the type
+         * @param value the value
+         * @param arg   the arg
+         */
+        public Key(String type, String value, String arg) {
 			super();
 			this.type = type;
 			this.value = value;
 			this.arg = arg;
 		}
 
-		public String getType() {
+        /**
+         * Gets type.
+         *
+         * @return the type
+         */
+        public String getType() {
 			return type;
 		}
 
-		public String getValue() {
+        /**
+         * Gets value.
+         *
+         * @return the value
+         */
+        public String getValue() {
 			return value;
 		}
 
-		public String getArg() {
+        /**
+         * Gets arg.
+         *
+         * @return the arg
+         */
+        public String getArg() {
 			return arg;
 		}
 
@@ -327,11 +509,19 @@ public enum ActionStatisticsCollector {
 	/** flag whether the rowLimit was already exceeded during this session */
 	private boolean rowLimitExceeded;
 
-	public static ActionStatisticsCollector getInstance() {
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+    public static ActionStatisticsCollector getInstance() {
 		return INSTANCE;
 	}
 
-	protected void start() {
+    /**
+     * Start.
+     */
+    protected void start() {
 		if (RapidMiner.getExecutionMode().isHeadless()) {
 			return;
 		}
@@ -390,14 +580,13 @@ public enum ActionStatisticsCollector {
 		}
 	}
 
-	/**
-	 * Logs the operator execution event and adds the {@link ProcessListener} logging the operator
-	 * volumes.
-	 *
-	 * @param process
-	 *            the started process
-	 */
-	public void logExecution(Process process) {
+    /**
+     * Logs the operator execution event and adds the {@link ProcessListener} logging the operator
+     * volumes.
+     *
+     * @param process the started process
+     */
+    public void logExecution(Process process) {
 		if (process == null) {
 			return;
 		}
@@ -409,14 +598,13 @@ public enum ActionStatisticsCollector {
 		}
 	}
 
-	/**
-	 * Logs the execution time for all operators in the process and removes the
-	 * {@link ProcessListener} logging the operator volumes.
-	 *
-	 * @param process
-	 *            the finished process
-	 */
-	public void logExecutionFinished(Process process) {
+    /**
+     * Logs the execution time for all operators in the process and removes the
+     * {@link ProcessListener} logging the operator volumes.
+     *
+     * @param process the finished process
+     */
+    public void logExecutionFinished(Process process) {
 		if (process == null) {
 			return;
 		}
@@ -433,10 +621,10 @@ public enum ActionStatisticsCollector {
 		}
 	}
 
-	/**
-	 * Logs that the user exceeded the row limit and schedules a transmission soon.
-	 */
-	public void logRowLimitExceeded() {
+    /**
+     * Logs that the user exceeded the row limit and schedules a transmission soon.
+     */
+    public void logRowLimitExceeded() {
 		log(ActionStatisticsCollector.TYPE_ROW_LIMIT, ActionStatisticsCollector.VALUE_ROW_LIMIT_EXCEEDED,
 				ActionStatisticsCollector.ARG_ROW_LIMIT_CHECK);
 		if (!rowLimitExceeded) {
@@ -445,7 +633,13 @@ public enum ActionStatisticsCollector {
 		}
 	}
 
-	public void logCtaRuleTriggered(String ruleID, String result) {
+    /**
+     * Log cta rule triggered.
+     *
+     * @param ruleID the rule id
+     * @param result the result
+     */
+    public void logCtaRuleTriggered(String ruleID, String result) {
 		log(ActionStatisticsCollector.VALUE_RULE_TRIGGERED, ruleID, result);
 		UsageStatistics.getInstance().scheduleTransmissionSoon();
 	}
@@ -484,14 +678,27 @@ public enum ActionStatisticsCollector {
 		logVolume(TYPE_OUTPUT_VOLUME, operator, port, rows, columns);
 	}
 
-	public void log(Operator op, String event) {
+    /**
+     * Log.
+     *
+     * @param op    the op
+     * @param event the event
+     */
+    public void log(Operator op, String event) {
 		if (op == null) {
 			return;
 		}
 		log(TYPE_OPERATOR, op.getOperatorDescription().getKey(), event);
 	}
 
-	public void log(String type, String value, String arg) {
+    /**
+     * Log.
+     *
+     * @param type  the type
+     * @param value the value
+     * @param arg   the arg
+     */
+    public void log(String type, String value, String arg) {
 		log(type, value, arg, 1);
 	}
 
@@ -582,18 +789,38 @@ public enum ActionStatisticsCollector {
 
 	private Map<Key, Long> runningTimers = new HashMap<>();
 
-	public void startTimer(String type, String value, String arg) {
+    /**
+     * Start timer.
+     *
+     * @param type  the type
+     * @param value the value
+     * @param arg   the arg
+     */
+    public void startTimer(String type, String value, String arg) {
 		runningTimers.put(new Key(type, value, arg), System.currentTimeMillis());
 	}
 
-	public void stopTimer(String type, String value, String arg) {
+    /**
+     * Stop timer.
+     *
+     * @param type  the type
+     * @param value the value
+     * @param arg   the arg
+     */
+    public void stopTimer(String type, String value, String arg) {
 		Long startTime = runningTimers.remove(new Key(type, value, arg));
 		if (startTime != null) {
 			log(type, value, arg, System.currentTimeMillis() - startTime);
 		}
 	}
 
-	protected Element getXML(Document doc) {
+    /**
+     * Gets xml.
+     *
+     * @param doc the doc
+     * @return the xml
+     */
+    protected Element getXML(Document doc) {
 		synchronized (counts) {
 			Element root = doc.createElement(XML_TAG);
 			doc.getDocumentElement().appendChild(root);
@@ -615,7 +842,13 @@ public enum ActionStatisticsCollector {
 		}
 	}
 
-	protected void load(Element element) throws XMLException {
+    /**
+     * Load.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    protected void load(Element element) throws XMLException {
 		synchronized (counts) {
 			counts.clear();
 			NodeList actionElements = element.getElementsByTagName(TYPE_ACTION);
@@ -628,18 +861,33 @@ public enum ActionStatisticsCollector {
 		}
 	}
 
-	public void clear() {
+    /**
+     * Clear.
+     */
+    public void clear() {
 		synchronized (counts) {
 			counts.clear();
 		}
 	}
 
-	/** Returns a copy of the current stats. */
-	public Map<Key, Long> getCounts() {
+    /**
+     * Returns a copy of the current stats.  @return the counts
+     *
+     * @return the counts
+     */
+    public Map<Key, Long> getCounts() {
 		return new HashMap<>(counts);
 	}
 
-	public long getCount(String type, String value, String arg) {
+    /**
+     * Gets count.
+     *
+     * @param type  the type
+     * @param value the value
+     * @param arg   the arg
+     * @return the count
+     */
+    public long getCount(String type, String value, String arg) {
 		Long count = counts.get(new Key(type, value, arg));
 		return count != null ? count : 0;
 	}

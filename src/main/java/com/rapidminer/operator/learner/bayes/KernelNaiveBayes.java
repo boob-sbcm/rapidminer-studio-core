@@ -38,41 +38,88 @@ import java.util.List;
 
 /**
  * Kernel Naive Bayes learner.
- * 
+ *
  * @author Tobias Malbrecht
- * @version $Id: KernelNaiveBayes.java,v 1.1.2.1 2009-04-08 14:40:21 tobiasmalbrecht Exp $
+ * @version $Id : KernelNaiveBayes.java,v 1.1.2.1 2009-04-08 14:40:21 tobiasmalbrecht Exp $
  */
 public class KernelNaiveBayes extends AbstractLearner {
 
-	public static final String PARAMETER_LAPLACE_CORRECTION = "laplace_correction";
+    /**
+     * The constant PARAMETER_LAPLACE_CORRECTION.
+     */
+    public static final String PARAMETER_LAPLACE_CORRECTION = "laplace_correction";
 
-	public static final String PARAMETER_ESTIMATION_MODE = "estimation_mode";
+    /**
+     * The constant PARAMETER_ESTIMATION_MODE.
+     */
+    public static final String PARAMETER_ESTIMATION_MODE = "estimation_mode";
 
-	public static final String[] ESTIMATION_MODES = { "full", "greedy" };
+    /**
+     * The constant ESTIMATION_MODES.
+     */
+    public static final String[] ESTIMATION_MODES = { "full", "greedy" };
 
-	public static final int ESTIMATION_MODE_FULL = 0;
+    /**
+     * The constant ESTIMATION_MODE_FULL.
+     */
+    public static final int ESTIMATION_MODE_FULL = 0;
 
-	public static final int ESTIMATION_MODE_GREEDY = 1;
+    /**
+     * The constant ESTIMATION_MODE_GREEDY.
+     */
+    public static final int ESTIMATION_MODE_GREEDY = 1;
 
-	public static final String PARAMETER_BANDWIDTH_SELECTION = "bandwidth_selection";
+    /**
+     * The constant PARAMETER_BANDWIDTH_SELECTION.
+     */
+    public static final String PARAMETER_BANDWIDTH_SELECTION = "bandwidth_selection";
 
-	public static final String[] BANDWIDTH_SELECTION_MODES = { "heuristic", "fix" };
+    /**
+     * The constant BANDWIDTH_SELECTION_MODES.
+     */
+    public static final String[] BANDWIDTH_SELECTION_MODES = { "heuristic", "fix" };
 
-	public static final int BANDWIDTH_SELECTION_MODE_HEURISTIC = 0;
+    /**
+     * The constant BANDWIDTH_SELECTION_MODE_HEURISTIC.
+     */
+    public static final int BANDWIDTH_SELECTION_MODE_HEURISTIC = 0;
 
-	public static final int BANDWIDTH_SELECTION_MODE_FIX = 1;
+    /**
+     * The constant BANDWIDTH_SELECTION_MODE_FIX.
+     */
+    public static final int BANDWIDTH_SELECTION_MODE_FIX = 1;
 
-	public static final String PARAMETER_BANDWIDTH = "bandwidth";
+    /**
+     * The constant PARAMETER_BANDWIDTH.
+     */
+    public static final String PARAMETER_BANDWIDTH = "bandwidth";
 
-	public static final String PARAMETER_MINIMUM_BANDWIDTH = "minimum_bandwidth";
+    /**
+     * The constant PARAMETER_MINIMUM_BANDWIDTH.
+     */
+    public static final String PARAMETER_MINIMUM_BANDWIDTH = "minimum_bandwidth";
 
-	public static final String PARAMETER_NUMBER_OF_KERNELS = "number_of_kernels";
+    /**
+     * The constant PARAMETER_NUMBER_OF_KERNELS.
+     */
+    public static final String PARAMETER_NUMBER_OF_KERNELS = "number_of_kernels";
 
-	public static final String PARAMETER_USE_APPLICATION_GRID = "use_application_grid";
+    /**
+     * The constant PARAMETER_USE_APPLICATION_GRID.
+     */
+    public static final String PARAMETER_USE_APPLICATION_GRID = "use_application_grid";
 
-	public static final String PARAMETER_APPLICATION_GRID_SIZE = "application_grid_size";
+    /**
+     * The constant PARAMETER_APPLICATION_GRID_SIZE.
+     */
+    public static final String PARAMETER_APPLICATION_GRID_SIZE = "application_grid_size";
 
-	public KernelNaiveBayes(OperatorDescription description) {
+    /**
+     * Instantiates a new Kernel naive bayes.
+     *
+     * @param description the description
+     */
+    public KernelNaiveBayes(OperatorDescription description) {
 		super(description);
 	}
 

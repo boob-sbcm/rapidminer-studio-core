@@ -29,9 +29,8 @@ import javax.swing.table.TableModel;
 /**
  * Wraps around another table model and adds another column at position 0 for editing annotations.
  * The table should use an {@link AnnotationCellEditor} as an editor in column 0.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class AnnotationTableModel extends AbstractTableModel {
 
@@ -40,7 +39,13 @@ public class AnnotationTableModel extends AbstractTableModel {
 	private TableModel wrappedModel;
 	private Map<Integer, String> annotationsMap;
 
-	public AnnotationTableModel(TableModel wrappedModel, Map<Integer, String> annotationsMap) {
+    /**
+     * Instantiates a new Annotation table model.
+     *
+     * @param wrappedModel   the wrapped model
+     * @param annotationsMap the annotations map
+     */
+    public AnnotationTableModel(TableModel wrappedModel, Map<Integer, String> annotationsMap) {
 		this.annotationsMap = annotationsMap;
 		this.wrappedModel = wrappedModel;
 		wrappedModel.addTableModelListener(new TableModelListener() {

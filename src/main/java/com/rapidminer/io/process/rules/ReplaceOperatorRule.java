@@ -46,7 +46,14 @@ public class ReplaceOperatorRule extends AbstractConditionedParseRule {
 	private String replacementName;
 	private final List<ParseRule> parseRules = new LinkedList<ParseRule>();
 
-	public ReplaceOperatorRule(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Replace operator rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public ReplaceOperatorRule(String operatorTypeName, Element element) throws XMLException {
 		super(operatorTypeName, element);
 		assert element.getTagName().equals("replaceOperator");
 		NodeList children = element.getChildNodes();

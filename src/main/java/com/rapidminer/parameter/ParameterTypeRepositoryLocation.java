@@ -20,7 +20,7 @@ package com.rapidminer.parameter;
 
 /**
  * A parameter type for specifying a repository location.
- * 
+ *
  * @author Simon Fischer, Sebastian Land
  */
 public class ParameterTypeRepositoryLocation extends ParameterTypeString {
@@ -30,35 +30,65 @@ public class ParameterTypeRepositoryLocation extends ParameterTypeString {
 	private boolean allowFolders, allowEntries, allowAbsoluteEntries, enforceValidRepositoryEntryName,
 			onlyWriteableLocations;
 
-	/**
-	 * Creates a new parameter type for files with the given extension. If the extension is null no
-	 * file filters will be used.
-	 */
-	public ParameterTypeRepositoryLocation(String key, String description, boolean optional) {
+    /**
+     * Creates a new parameter type for files with the given extension. If the extension is null no
+     * file filters will be used.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     */
+    public ParameterTypeRepositoryLocation(String key, String description, boolean optional) {
 		this(key, description, true, false, optional);
 	}
 
-	/**
-	 * Creates a new parameter type for files with the given extension. If the extension is null no
-	 * file filters will be used.
-	 */
-	public ParameterTypeRepositoryLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
+    /**
+     * Creates a new parameter type for files with the given extension. If the extension is null no
+     * file filters will be used.
+     *
+     * @param key              the key
+     * @param description      the description
+     * @param allowEntries     the allow entries
+     * @param allowDirectories the allow directories
+     * @param optional         the optional
+     */
+    public ParameterTypeRepositoryLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
 			boolean optional) {
 		this(key, description, allowEntries, allowDirectories, false, optional, false, false);
 	}
 
-	public ParameterTypeRepositoryLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
+    /**
+     * Instantiates a new Parameter type repository location.
+     *
+     * @param key                             the key
+     * @param description                     the description
+     * @param allowEntries                    the allow entries
+     * @param allowDirectories                the allow directories
+     * @param allowAbsoluteEntries            the allow absolute entries
+     * @param optional                        the optional
+     * @param enforceValidRepositoryEntryName the enforce valid repository entry name
+     */
+    public ParameterTypeRepositoryLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
 			boolean allowAbsoluteEntries, boolean optional, boolean enforceValidRepositoryEntryName) {
 		this(key, description, allowEntries, allowDirectories, allowAbsoluteEntries, optional,
 				enforceValidRepositoryEntryName, false);
 	}
 
-	/**
-	 * Creates a new parameter type for files with the given extension. If the extension is null no
-	 * file filters will be used. If {@link #enforceValidRepositoryEntryName} is set to
-	 * <code>true</code>, will enforce valid repository entry names.
-	 **/
-	public ParameterTypeRepositoryLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
+    /**
+     * Creates a new parameter type for files with the given extension. If the extension is null no
+     * file filters will be used. If {@link #enforceValidRepositoryEntryName} is set to
+     * <code>true</code>, will enforce valid repository entry names.
+     *
+     * @param key                             the key
+     * @param description                     the description
+     * @param allowEntries                    the allow entries
+     * @param allowDirectories                the allow directories
+     * @param allowAbsoluteEntries            the allow absolute entries
+     * @param optional                        the optional
+     * @param enforceValidRepositoryEntryName the enforce valid repository entry name
+     * @param onlyWriteableLocations          the only writeable locations
+     */
+    public ParameterTypeRepositoryLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
 			boolean allowAbsoluteEntries, boolean optional, boolean enforceValidRepositoryEntryName,
 			boolean onlyWriteableLocations) {
 		super(key, description, null);
@@ -71,52 +101,109 @@ public class ParameterTypeRepositoryLocation extends ParameterTypeString {
 		setOnlyWriteableLocations(onlyWriteableLocations);
 	}
 
-	/**
-	 * Creates a new parameter type for files with the given extension. If the extension is null no
-	 * file filters will be used.
-	 */
-	public ParameterTypeRepositoryLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
+    /**
+     * Creates a new parameter type for files with the given extension. If the extension is null no
+     * file filters will be used.
+     *
+     * @param key                  the key
+     * @param description          the description
+     * @param allowEntries         the allow entries
+     * @param allowDirectories     the allow directories
+     * @param allowAbsoluteEntries the allow absolute entries
+     * @param optional             the optional
+     */
+    public ParameterTypeRepositoryLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
 			boolean allowAbsoluteEntries, boolean optional) {
 		this(key, description, allowEntries, allowDirectories, allowAbsoluteEntries, optional, false, false);
 	}
 
-	public boolean isOnlyWriteableLocations() {
+    /**
+     * Is only writeable locations boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isOnlyWriteableLocations() {
 		return onlyWriteableLocations;
 	}
 
-	public void setOnlyWriteableLocations(boolean onlyWriteableLocations) {
+    /**
+     * Sets only writeable locations.
+     *
+     * @param onlyWriteableLocations the only writeable locations
+     */
+    public void setOnlyWriteableLocations(boolean onlyWriteableLocations) {
 		this.onlyWriteableLocations = onlyWriteableLocations;
 	}
 
-	public boolean isAllowFolders() {
+    /**
+     * Is allow folders boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isAllowFolders() {
 		return allowFolders;
 	}
 
-	public void setAllowFolders(boolean allowFolders) {
+    /**
+     * Sets allow folders.
+     *
+     * @param allowFolders the allow folders
+     */
+    public void setAllowFolders(boolean allowFolders) {
 		this.allowFolders = allowFolders;
 	}
 
-	public boolean isAllowEntries() {
+    /**
+     * Is allow entries boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isAllowEntries() {
 		return allowEntries;
 	}
 
-	public void setAllowEntries(boolean allowEntries) {
+    /**
+     * Sets allow entries.
+     *
+     * @param allowEntries the allow entries
+     */
+    public void setAllowEntries(boolean allowEntries) {
 		this.allowEntries = allowEntries;
 	}
 
-	public void setAllowAbsoluteEntries(boolean allowAbsoluteEntries) {
+    /**
+     * Sets allow absolute entries.
+     *
+     * @param allowAbsoluteEntries the allow absolute entries
+     */
+    public void setAllowAbsoluteEntries(boolean allowAbsoluteEntries) {
 		this.allowAbsoluteEntries = allowAbsoluteEntries;
 	}
 
-	public boolean isAllowAbsoluteEntries() {
+    /**
+     * Is allow absolute entries boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isAllowAbsoluteEntries() {
 		return this.allowAbsoluteEntries;
 	}
 
-	public boolean isEnforceValidRepositoryEntryName() {
+    /**
+     * Is enforce valid repository entry name boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isEnforceValidRepositoryEntryName() {
 		return enforceValidRepositoryEntryName;
 	}
 
-	public void setEnforceValidRepositoryEntryName(boolean enforceValidRepositoryEntryName) {
+    /**
+     * Sets enforce valid repository entry name.
+     *
+     * @param enforceValidRepositoryEntryName the enforce valid repository entry name
+     */
+    public void setEnforceValidRepositoryEntryName(boolean enforceValidRepositoryEntryName) {
 		this.enforceValidRepositoryEntryName = enforceValidRepositoryEntryName;
 	}
 }

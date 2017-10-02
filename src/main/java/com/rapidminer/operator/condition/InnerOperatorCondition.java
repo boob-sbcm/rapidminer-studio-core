@@ -26,20 +26,30 @@ import com.rapidminer.operator.WrongNumberOfInnerOperatorsException;
 /**
  * InnerOperatorConditions can be used to define conditions on the in- and output behaviour of the
  * inner operators of an operator chain.
- * 
+ *
  * @author Ingo Mierswa
  * @deprecated As of RM 5.0, inner operator conditions are implicit
  */
 @Deprecated
 public interface InnerOperatorCondition {
 
-	/**
-	 * Checks if the condition is fulfilled in the given operator chain. Throws an exception if it
-	 * is not fullfilled.
-	 */
-	public Class<?>[] checkIO(OperatorChain chain, Class<?>[] input)
+    /**
+     * Checks if the condition is fulfilled in the given operator chain. Throws an exception if it
+     * is not fullfilled.
+     *
+     * @param chain the chain
+     * @param input the input
+     * @return the class [ ]
+     * @throws IllegalInputException                the illegal input exception
+     * @throws WrongNumberOfInnerOperatorsException the wrong number of inner operators exception
+     */
+    public Class<?>[] checkIO(OperatorChain chain, Class<?>[] input)
 			throws IllegalInputException, WrongNumberOfInnerOperatorsException;
 
-	/** Returns a HTML string representation of this condition. */
-	public String toHTML();
+    /**
+     * Returns a HTML string representation of this condition.  @return the string
+     *
+     * @return the string
+     */
+    public String toHTML();
 }

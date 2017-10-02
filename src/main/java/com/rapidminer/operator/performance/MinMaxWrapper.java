@@ -39,16 +39,21 @@ import com.rapidminer.parameter.ParameterTypeDouble;
  */
 public class MinMaxWrapper extends Operator {
 
-	/**
-	 * The parameter name for &quot;Defines the weight for the minimum fitness agains the average
-	 * fitness&quot;
-	 */
-	public static final String PARAMETER_MINIMUM_WEIGHT = "minimum_weight";
+    /**
+     * The parameter name for &quot;Defines the weight for the minimum fitness agains the average
+     * fitness&quot;
+     */
+    public static final String PARAMETER_MINIMUM_WEIGHT = "minimum_weight";
 
 	private InputPort performanceInput = getInputPorts().createPort("performance vector", PerformanceVector.class);
 	private OutputPort performanceOutput = getOutputPorts().createPort("performance vector");
 
-	public MinMaxWrapper(OperatorDescription description) {
+    /**
+     * Instantiates a new Min max wrapper.
+     *
+     * @param description the description
+     */
+    public MinMaxWrapper(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addPassThroughRule(performanceInput, performanceOutput);

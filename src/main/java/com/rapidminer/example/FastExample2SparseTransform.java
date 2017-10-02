@@ -33,7 +33,7 @@ import java.util.Arrays;
  * {@link #getNonDefaultAttributeValues(Example)}. Please note that this filter should be
  * reinstatiated for new example sets. Furthermore, a gain in performance is only achieved for
  * examples with underlying {@link SparseDataRow}s.
- * 
+ *
  * @author Julien Nioche, Ingo Mierswa ingomierswa Exp $
  */
 public class FastExample2SparseTransform {
@@ -57,16 +57,17 @@ public class FastExample2SparseTransform {
 	 */
 	private int[] allIndices;
 
-	/**
-	 * Returns for a table giving the equivalence between the positions of the Attributes in the
-	 * ExampleTable and the number of the regular Attributes in the ExampleSet. A value of -1
-	 * indicates that the Attribute is not regular or has been deleted (is null). This is used in
-	 * order to optimize the access to sparse DataRows (e.g. SVM implementations or for Weka), which
-	 * is important when the number of Attributes is large.
-	 * 
-	 * @throws UserError
-	 */
-	public FastExample2SparseTransform(ExampleSet es) throws UserError {
+    /**
+     * Returns for a table giving the equivalence between the positions of the Attributes in the
+     * ExampleTable and the number of the regular Attributes in the ExampleSet. A value of -1
+     * indicates that the Attribute is not regular or has been deleted (is null). This is used in
+     * order to optimize the access to sparse DataRows (e.g. SVM implementations or for Weka), which
+     * is important when the number of Attributes is large.
+     *
+     * @param es the es
+     * @throws UserError the user error
+     */
+    public FastExample2SparseTransform(ExampleSet es) throws UserError {
 		// init
 		this.mapping = new int[es.getExampleTable().getNumberOfAttributes()];
 		for (int i = 0; i < mapping.length; i++) {
@@ -98,12 +99,15 @@ public class FastExample2SparseTransform {
 		}
 	}
 
-	/**
-	 * Returns a list with the indices of the regular Attributes with non-default values. This can
-	 * be used for a faster construction of sparse dataset representations when the number of
-	 * Attributes is large. The positions of attributes are sorted by ascending number.
-	 */
-	public int[] getNonDefaultAttributeIndices(Example example) {
+    /**
+     * Returns a list with the indices of the regular Attributes with non-default values. This can
+     * be used for a faster construction of sparse dataset representations when the number of
+     * Attributes is large. The positions of attributes are sorted by ascending number.
+     *
+     * @param example the example
+     * @return the int [ ]
+     */
+    public int[] getNonDefaultAttributeIndices(Example example) {
 		int numberNonDefaultAttributes = 0;
 		DataRow data = example.getDataRow();
 		if (data instanceof SparseDataRow) {
@@ -143,21 +147,28 @@ public class FastExample2SparseTransform {
 		}
 	}
 
-	/**
-	 * Returns an array of non-default values of the given example. These are only the values of
-	 * regular attributes. Simply invokes {@link #getNonDefaultAttributeValues(Example, int[])} with
-	 * the array of non-default indices for the given example.
-	 */
-	public double[] getNonDefaultAttributeValues(Example example) {
+    /**
+     * Returns an array of non-default values of the given example. These are only the values of
+     * regular attributes. Simply invokes {@link #getNonDefaultAttributeValues(Example, int[])} with
+     * the array of non-default indices for the given example.
+     *
+     * @param example the example
+     * @return the double [ ]
+     */
+    public double[] getNonDefaultAttributeValues(Example example) {
 		return getNonDefaultAttributeValues(example, getNonDefaultAttributeIndices(example));
 	}
 
-	/**
-	 * Returns an array of non-default values of the given example. These are only the values of
-	 * regular attributes. The size of the returned array is the same as the size of the given
-	 * indices array.
-	 */
-	public double[] getNonDefaultAttributeValues(Example example, int[] nonDefaultIndices) {
+    /**
+     * Returns an array of non-default values of the given example. These are only the values of
+     * regular attributes. The size of the returned array is the same as the size of the given
+     * indices array.
+     *
+     * @param example           the example
+     * @param nonDefaultIndices the non default indices
+     * @return the double [ ]
+     */
+    public double[] getNonDefaultAttributeValues(Example example, int[] nonDefaultIndices) {
 		double[] result = new double[nonDefaultIndices.length];
 		for (int i = 0; i < result.length; i++) {
 			result[i] = example.getValue(this.attributes[nonDefaultIndices[i]]);

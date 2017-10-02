@@ -27,9 +27,8 @@ import java.util.logging.LogRecord;
 
 /**
  * A simple log formatter for dates. It outputs the format "yyyy-MM-dd HH:mm:ss"
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class LeanFormatter extends Formatter {
 

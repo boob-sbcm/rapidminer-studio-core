@@ -25,33 +25,29 @@ import com.rapidminer.operator.Operator;
  * This Exception will be thrown if an Macro was not defined.
  *
  * @author Thilo Kamradt
- *
  */
 public class UndefinedMacroError extends UndefinedParameterError {
 
 	private static final long serialVersionUID = 1547250316954515775L;
 
-	/**
-	 * The default constructor for missing macro errors with error code 227.
-	 *
-	 * @param macroKey
-	 *            the key of the missing macro
-	 */
-	public UndefinedMacroError(String parameterKey, String macroKey) {
+    /**
+     * The default constructor for missing macro errors with error code 227.
+     *
+     * @param parameterKey the parameter key
+     * @param macroKey     the key of the missing macro
+     */
+    public UndefinedMacroError(String parameterKey, String macroKey) {
 		super(null, 227, parameterKey, macroKey);
 	}
 
-	/**
-	 *
-	 *
-	 * @param operator
-	 *            the executing Operator which performs the action or null
-	 * @param code
-	 *            errorID of the UserErrorMessage which should be shown
-	 * @param additionalText
-	 *            text to paste in the UserErrorMessage
-	 */
-	public UndefinedMacroError(Operator operator, String key, String additionalText) {
+    /**
+     * Instantiates a new Undefined macro error.
+     *
+     * @param operator       the executing Operator which performs the action or null
+     * @param key            the key
+     * @param additionalText text to paste in the UserErrorMessage
+     */
+    public UndefinedMacroError(Operator operator, String key, String additionalText) {
 		super(operator, key, additionalText);
 	}
 

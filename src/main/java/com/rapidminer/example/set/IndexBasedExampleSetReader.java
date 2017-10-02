@@ -24,7 +24,7 @@ import com.rapidminer.example.ExampleSet;
 
 /**
  * Returns only a subset of an example set specified by an instance of {@link Partition}.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa ingomierswa Exp $
  */
 public class IndexBasedExampleSetReader extends AbstractExampleReader {
@@ -39,7 +39,12 @@ public class IndexBasedExampleSetReader extends AbstractExampleReader {
 
 	private int size;
 
-	public IndexBasedExampleSetReader(ExampleSet parent) {
+    /**
+     * Instantiates a new Index based example set reader.
+     *
+     * @param parent the parent
+     */
+    public IndexBasedExampleSetReader(ExampleSet parent) {
 		this.parent = parent;
 		this.size = parent.size();
 		current = -1;

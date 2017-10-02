@@ -40,7 +40,7 @@ import java.util.Arrays;
  * <p>
  * Model stores the model obtained from the training procedure
  * </p>
- *
+ * <p>
  * <p>
  * use {@link Linear#loadModel(File)} and {@link Linear#saveModel(File, Model)} to load/save it
  * </p>
@@ -49,71 +49,101 @@ public final class Model implements Serializable {
 
 	private static final long serialVersionUID = -6456047576741854834L;
 
-	double bias;
+    /**
+     * The Bias.
+     */
+    double bias;
 
-	/** label of each class */
-	public int[] label;
+    /**
+     * label of each class
+     */
+    public int[] label;
 
-	public int nr_class;
+    /**
+     * The Nr class.
+     */
+    public int nr_class;
 
-	int nr_feature;
+    /**
+     * The Nr feature.
+     */
+    int nr_feature;
 
-	SolverType solverType;
+    /**
+     * The Solver type.
+     */
+    SolverType solverType;
 
-	/** feature weight array */
-	public double[] w;
+    /**
+     * feature weight array
+     */
+    public double[] w;
 
-	/**
-	 * @return number of classes
-	 */
-	public int getNrClass() {
+    /**
+     * Gets nr class.
+     *
+     * @return number of classes
+     */
+    public int getNrClass() {
 		return nr_class;
 	}
 
-	/**
-	 * @return number of features
-	 */
-	public int getNrFeature() {
+    /**
+     * Gets nr feature.
+     *
+     * @return number of features
+     */
+    public int getNrFeature() {
 		return nr_feature;
 	}
 
-	public int[] getLabels() {
+    /**
+     * Get labels int [ ].
+     *
+     * @return the int [ ]
+     */
+    public int[] getLabels() {
 		return copyOf(label, nr_class);
 	}
 
-	/**
-	 * The nr_feature*nr_class array w gives feature weights. We use one against the rest for
-	 * multi-class classification, so each feature index corresponds to nr_class weight values.
-	 * Weights are organized in the following way
-	 *
-	 * <pre>
-	 * +------------------+------------------+------------+
-	 * | nr_class weights | nr_class weights |  ...
-	 * | for 1st feature  | for 2nd feature  |
-	 * +------------------+------------------+------------+
-	 * </pre>
-	 *
-	 * If bias &gt;= 0, x becomes [x; bias]. The number of features is increased by one, so w is a
-	 * (nr_feature+1)*nr_class array. The value of bias is stored in the variable bias.
-	 *
-	 * @see #getBias()
-	 * @return a <b>copy of</b> the feature weight array as described
-	 */
-	public double[] getFeatureWeights() {
+    /**
+     * The nr_feature*nr_class array w gives feature weights. We use one against the rest for
+     * multi-class classification, so each feature index corresponds to nr_class weight values.
+     * Weights are organized in the following way
+     * <p>
+     * <pre>
+     * +------------------+------------------+------------+
+     * | nr_class weights | nr_class weights |  ...
+     * | for 1st feature  | for 2nd feature  |
+     * +------------------+------------------+------------+
+     * </pre>
+     * <p>
+     * If bias &gt;= 0, x becomes [x; bias]. The number of features is increased by one, so w is a
+     * (nr_feature+1)*nr_class array. The value of bias is stored in the variable bias.
+     *
+     * @return a <b>copy of</b> the feature weight array as described
+     * @see #getBias() #getBias()#getBias()
+     */
+    public double[] getFeatureWeights() {
 		return Linear.copyOf(w, w.length);
 	}
 
-	/**
-	 * @return true for logistic regression solvers
-	 */
-	public boolean isProbabilityModel() {
+    /**
+     * Is probability model boolean.
+     *
+     * @return true for logistic regression solvers
+     */
+    public boolean isProbabilityModel() {
 		return solverType.isLogisticRegressionSolver();
 	}
 
-	/**
-	 * @see #getFeatureWeights()
-	 */
-	public double getBias() {
+    /**
+     * Gets bias.
+     *
+     * @return the bias
+     * @see #getFeatureWeights() #getFeatureWeights()#getFeatureWeights()
+     */
+    public double getBias() {
 		return bias;
 	}
 
@@ -179,13 +209,16 @@ public final class Model implements Serializable {
 		return true;
 	}
 
-	/**
-	 * don't use {@link Arrays#equals(double[], double[])} here, cause 0.0 and -0.0 should be
-	 * handled the same
-	 *
-	 * @see Linear#saveModel(java.io.Writer, Model)
-	 */
-	protected static boolean equals(double[] a, double[] a2) {
+    /**
+     * don't use {@link Arrays#equals(double[], double[])} here, cause 0.0 and -0.0 should be
+     * handled the same
+     *
+     * @param a  the a
+     * @param a2 the a 2
+     * @return the boolean
+     * @see Linear#saveModel(java.io.Writer, Model) Linear#saveModel(java.io.Writer, Model)Linear#saveModel(java.io.Writer, Model)
+     */
+    protected static boolean equals(double[] a, double[] a2) {
 		if (a == a2) {
 			return true;
 		}
@@ -207,31 +240,45 @@ public final class Model implements Serializable {
 		return true;
 	}
 
-	/**
-	 * see {@link Linear#saveModel(java.io.File, Model)}
-	 */
-	public void save(File file) throws IOException {
+    /**
+     * see {@link Linear#saveModel(java.io.File, Model)}
+     *
+     * @param file the file
+     * @throws IOException the io exception
+     */
+    public void save(File file) throws IOException {
 		Linear.saveModel(file, this);
 	}
 
-	/**
-	 * see {@link Linear#saveModel(Writer, Model)}
-	 */
-	public void save(Writer writer) throws IOException {
+    /**
+     * see {@link Linear#saveModel(Writer, Model)}
+     *
+     * @param writer the writer
+     * @throws IOException the io exception
+     */
+    public void save(Writer writer) throws IOException {
 		Linear.saveModel(writer, this);
 	}
 
-	/**
-	 * see {@link Linear#loadModel(File)}
-	 */
-	public static Model load(File file) throws IOException {
+    /**
+     * see {@link Linear#loadModel(File)}
+     *
+     * @param file the file
+     * @return the model
+     * @throws IOException the io exception
+     */
+    public static Model load(File file) throws IOException {
 		return Linear.loadModel(file);
 	}
 
-	/**
-	 * see {@link Linear#loadModel(Reader)}
-	 */
-	public static Model load(Reader inputReader) throws IOException {
+    /**
+     * see {@link Linear#loadModel(Reader)}
+     *
+     * @param inputReader the input reader
+     * @return the model
+     * @throws IOException the io exception
+     */
+    public static Model load(Reader inputReader) throws IOException {
 		return Linear.loadModel(inputReader);
 	}
 }

@@ -26,7 +26,7 @@ import java.util.Vector;
 /**
  * A view on a parent DataTable which maps the row indices such that the view is sorted. The sort
  * order is defined by a DataTableSortProvider.
- * 
+ *
  * @author Marius Helf, Nils Woehler
  */
 public class SortedDataTableView extends AbstractDataTable implements DataTableListener {
@@ -35,7 +35,13 @@ public class SortedDataTableView extends AbstractDataTable implements DataTableL
 	private DataTableSortProvider sortProvider;
 	private int[] indexMappingCache = null;
 
-	public SortedDataTableView(DataTable parentDataTable, DataTableSortProvider sortProvider) {
+    /**
+     * Instantiates a new Sorted data table view.
+     *
+     * @param parentDataTable the parent data table
+     * @param sortProvider    the sort provider
+     */
+    public SortedDataTableView(DataTable parentDataTable, DataTableSortProvider sortProvider) {
 		super(parentDataTable.getName());
 		this.parentTable = parentDataTable;
 		this.sortProvider = sortProvider;
@@ -87,14 +93,21 @@ public class SortedDataTableView extends AbstractDataTable implements DataTableL
 		}
 	}
 
-	public DataTableSortProvider getSortProvider() {
+    /**
+     * Gets sort provider.
+     *
+     * @return the sort provider
+     */
+    public DataTableSortProvider getSortProvider() {
 		return sortProvider;
 	}
 
-	/**
-	 * Sets the new sort provider, invalidates cache and informs all listeners.
-	 */
-	public void setSortProvider(DataTableSortProvider sortProvider) {
+    /**
+     * Sets the new sort provider, invalidates cache and informs all listeners.
+     *
+     * @param sortProvider the sort provider
+     */
+    public void setSortProvider(DataTableSortProvider sortProvider) {
 		if (this.sortProvider != sortProvider) {
 			invalidateIndexMapping();
 			this.sortProvider = sortProvider;

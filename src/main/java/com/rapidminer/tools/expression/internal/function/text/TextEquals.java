@@ -22,14 +22,13 @@ package com.rapidminer.tools.expression.internal.function.text;
  * A {@link Function} to check whether two nominal values are equal.
  *
  * @author Thilo Kamradt
- *
  */
 public class TextEquals extends Abstract2StringInputBooleanOutputFunction {
 
-	/**
-	 * Creates a function to check whether two nominal values are equal.
-	 */
-	public TextEquals() {
+    /**
+     * Creates a function to check whether two nominal values are equal.
+     */
+    public TextEquals() {
 		super("text_information.equals");
 	}
 

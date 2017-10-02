@@ -23,18 +23,29 @@ import com.rapidminer.operator.OperatorException;
 
 /**
  * This exception indicates an error during the evaluation of expressions.
- * 
+ *
  * @author Marco Boeck
  */
 public class ExpressionEvaluationException extends OperatorException {
 
 	private static final long serialVersionUID = 2654691902442722376L;
 
-	public ExpressionEvaluationException(String str) {
+    /**
+     * Instantiates a new Expression evaluation exception.
+     *
+     * @param str the str
+     */
+    public ExpressionEvaluationException(String str) {
 		super(str);
 	}
 
-	public ExpressionEvaluationException(String str, Exception e) {
+    /**
+     * Instantiates a new Expression evaluation exception.
+     *
+     * @param str the str
+     * @param e   the e
+     */
+    public ExpressionEvaluationException(String str, Exception e) {
 		super(str, e);
 	}
 

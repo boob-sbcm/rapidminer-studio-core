@@ -28,7 +28,8 @@ import java.awt.Component;
 
 
 /**
- * 
+ * The type Anova calculator viewer renderer.
+ *
  * @author Sebastian Land
  */
 public class AnovaCalculatorViewerRenderer extends AbstractRenderer {

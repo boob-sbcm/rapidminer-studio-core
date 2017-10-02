@@ -44,7 +44,7 @@ import com.rapidminer.tools.Tools;
  * in number of attributes. In order to get more stable results, the original, random, and reverse
  * order of attributes is available.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that this operator might fail in some cases when the attributes should be filtered
  * out, e.g. it might not be able to remove for example all negative correlated features. The reason
@@ -54,7 +54,7 @@ import com.rapidminer.tools.Tools;
  * a1, a2, and a3 that it might be that a2 was already ruled out by the negative correlation with a1
  * and is now not able to rule out a3 any longer.
  * </p>
- *
+ * <p>
  * <p>
  * The used correlation function is the Pearson correlation.
  * </p>
@@ -63,30 +63,33 @@ import com.rapidminer.tools.Tools;
  */
 public class RemoveCorrelatedFeatures extends AbstractFeatureSelection {
 
-	/**
-	 * The parameter name for &quot;Use this correlation for the filter relation.&quot;
-	 */
-	public static final String PARAMETER_CORRELATION = "correlation";
+    /**
+     * The parameter name for &quot;Use this correlation for the filter relation.&quot;
+     */
+    public static final String PARAMETER_CORRELATION = "correlation";
 
-	/**
-	 * The parameter name for &quot;Removes one of two features if their correlation fulfill this
-	 * relation.&quot;
-	 */
-	public static final String PARAMETER_FILTER_RELATION = "filter_relation";
+    /**
+     * The parameter name for &quot;Removes one of two features if their correlation fulfill this
+     * relation.&quot;
+     */
+    public static final String PARAMETER_FILTER_RELATION = "filter_relation";
 
-	/**
-	 * The parameter name for &quot;The algorithm takes this attribute order to calculate
-	 * correlation and filter.&quot;
-	 */
-	public static final String PARAMETER_ATTRIBUTE_ORDER = "attribute_order";
+    /**
+     * The parameter name for &quot;The algorithm takes this attribute order to calculate
+     * correlation and filter.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTE_ORDER = "attribute_order";
 
-	/**
-	 * The parameter name for &quot;Indicates if the absolute value of the correlations should be
-	 * used for comparison.&quot;
-	 */
-	public static final String PARAMETER_USE_ABSOLUTE_CORRELATION = "use_absolute_correlation";
+    /**
+     * The parameter name for &quot;Indicates if the absolute value of the correlations should be
+     * used for comparison.&quot;
+     */
+    public static final String PARAMETER_USE_ABSOLUTE_CORRELATION = "use_absolute_correlation";
 
-	public static final OperatorVersion VERSION_DETERMINISTIC_RANDOM_NUMBERS = new OperatorVersion(5, 2, 1);
+    /**
+     * The constant VERSION_DETERMINISTIC_RANDOM_NUMBERS.
+     */
+    public static final OperatorVersion VERSION_DETERMINISTIC_RANDOM_NUMBERS = new OperatorVersion(5, 2, 1);
 
 	private static final String[] ORDER = new String[] { "original", "random", "reverse" };
 
@@ -112,7 +115,12 @@ public class RemoveCorrelatedFeatures extends AbstractFeatureSelection {
 	/** The number of removed features (for logging as value, see constructor.) */
 	private int removedFeatures = 0;
 
-	public RemoveCorrelatedFeatures(OperatorDescription description) {
+    /**
+     * Instantiates a new Remove correlated features.
+     *
+     * @param description the description
+     */
+    public RemoveCorrelatedFeatures(OperatorDescription description) {
 		super(description);
 
 		addValue(new ValueDouble("features_removed", "Number of removed features") {

@@ -32,126 +32,141 @@ import com.rapidminer.tools.PasswordInputCanceledException;
 
 
 /**
- *
  * The {@link RemoteScheduler} allows to schedule Process executions on RapidMiner Server.
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public interface RemoteScheduler {
 
-	/**
-	 * Schedules a process to be executed as soon as possible. Works with all process service
-	 * versions.
-	 *
-	 * @throws RepositoryException
-	 *             on fail
-	 * @throws PasswordInputCanceledException
-	 *             if the user canceled the login dialog
-	 */
-	ExecutionResponse executeProcessSimple(String executeProcess, XMLGregorianCalendar xmlGregorianCalendar,
+    /**
+     * Schedules a process to be executed as soon as possible. Works with all process service
+     * versions.
+     *
+     * @param executeProcess        the execute process
+     * @param xmlGregorianCalendar  the xml gregorian calendar
+     * @param processContextWrapper the process context wrapper
+     * @return the execution response
+     * @throws RepositoryException            on fail
+     * @throws PasswordInputCanceledException if the user canceled the login dialog
+     */
+    ExecutionResponse executeProcessSimple(String executeProcess, XMLGregorianCalendar xmlGregorianCalendar,
 			ProcessContextWrapper processContextWrapper) throws RepositoryException, PasswordInputCanceledException;
 
-	/**
-	 * Schedules a process to be executed as soon as possible. If Process Service version is not at
-	 * least 1.3 queueName will not be considered.
-	 *
-	 * @throws RepositoryException
-	 *             on fail
-	 * @throws PasswordInputCanceledException
-	 *             if the user canceled the login dialog
-	 */
-	ExecutionResponse executeProcessSimple(String path, XMLGregorianCalendar xmlGregorianCalendar,
+    /**
+     * Schedules a process to be executed as soon as possible. If Process Service version is not at
+     * least 1.3 queueName will not be considered.
+     *
+     * @param path                  the path
+     * @param xmlGregorianCalendar  the xml gregorian calendar
+     * @param processContextWrapper the process context wrapper
+     * @param queueName             the queue name
+     * @return the execution response
+     * @throws RepositoryException            on fail
+     * @throws PasswordInputCanceledException if the user canceled the login dialog
+     */
+    ExecutionResponse executeProcessSimple(String path, XMLGregorianCalendar xmlGregorianCalendar,
 			ProcessContextWrapper processContextWrapper, String queueName) throws RepositoryException,
 			PasswordInputCanceledException;
 
-	/**
-	 * Executes a process with an provided offset.
-	 *
-	 * @return <code>null</code> if function is not supported.
-	 * @throws RepositoryException
-	 *             on fail
-	 * @throws PasswordInputCanceledException
-	 *             if the user canceled the login dialog
-	 */
-	ExecutionResponse executeProcessWithOffset(String path, Long offset, ProcessContextWrapper processContextWrapper,
+    /**
+     * Executes a process with an provided offset.
+     *
+     * @param path                  the path
+     * @param offset                the offset
+     * @param processContextWrapper the process context wrapper
+     * @param queueName             the queue name
+     * @return <code>null</code> if function is not supported.
+     * @throws RepositoryException            on fail
+     * @throws PasswordInputCanceledException if the user canceled the login dialog
+     */
+    ExecutionResponse executeProcessWithOffset(String path, Long offset, ProcessContextWrapper processContextWrapper,
 			String queueName) throws RepositoryException, PasswordInputCanceledException;
 
-	/**
-	 * Executes a process with an provided offset. Works with all process service versions.
-	 *
-	 * @throws RepositoryException
-	 *             on fail
-	 * @throws PasswordInputCanceledException
-	 *             if the user canceled the login dialog
-	 */
-	ExecutionResponse executeProcessCron(final String processName, final String cronExpression,
+    /**
+     * Executes a process with an provided offset. Works with all process service versions.
+     *
+     * @param processName    the process name
+     * @param cronExpression the cron expression
+     * @param start          the start
+     * @param end            the end
+     * @param context        the context
+     * @return the execution response
+     * @throws RepositoryException            on fail
+     * @throws PasswordInputCanceledException if the user canceled the login dialog
+     */
+    ExecutionResponse executeProcessCron(final String processName, final String cronExpression,
 			final XMLGregorianCalendar start, final XMLGregorianCalendar end, final ProcessContextWrapper context)
 			throws RepositoryException, PasswordInputCanceledException;
 
-	/**
-	 * If Process Service version is not at least 1.3 queueName will not be considered.
-	 *
-	 * @throws RepositoryException
-	 *             on fail
-	 * @throws PasswordInputCanceledException
-	 *             if the user canceled the login dialog
-	 */
-	ExecutionResponse executeProcessCron(String path, String cronExpression, XMLGregorianCalendar start,
+    /**
+     * If Process Service version is not at least 1.3 queueName will not be considered.
+     *
+     * @param path                  the path
+     * @param cronExpression        the cron expression
+     * @param start                 the start
+     * @param end                   the end
+     * @param processContextWrapper the process context wrapper
+     * @param queueName             the queue name
+     * @return the execution response
+     * @throws RepositoryException            on fail
+     * @throws PasswordInputCanceledException if the user canceled the login dialog
+     */
+    ExecutionResponse executeProcessCron(String path, String cronExpression, XMLGregorianCalendar start,
 			XMLGregorianCalendar end, ProcessContextWrapper processContextWrapper, String queueName)
 					throws RepositoryException, PasswordInputCanceledException;
 
-	Response stopProcess(int id) throws RepositoryException, PasswordInputCanceledException;
+    /**
+     * Stop process response.
+     *
+     * @param id the id
+     * @return the response
+     * @throws RepositoryException            the repository exception
+     * @throws PasswordInputCanceledException the password input canceled exception
+     */
+    Response stopProcess(int id) throws RepositoryException, PasswordInputCanceledException;
 
-	/**
-	 * Note: This method returns info about the job associated with the given id of a
-	 * {@link ScheduledProcess}, not of the {@link ProcessExecutionParameters} object returned from
-	 * {@link ProcessService_1_3#executeProcessSimple(String, Date)} when submitting the job.
-	 *
-	 * @throws RepositoryException
-	 *             on fail
-	 * @throws PasswordInputCanceledException
-	 *             if the user canceled the login dialog
-	 */
-	ProcessResponse getRunningProcessesInfo(int processId) throws RepositoryException, PasswordInputCanceledException;
+    /**
+     * Note: This method returns info about the job associated with the given id of a
+     * {@link ScheduledProcess}, not of the {@link ProcessExecutionParameters} object returned from
+     * {@link ProcessService_1_3#executeProcessSimple(String, Date)} when submitting the job.
+     *
+     * @param processId the process id
+     * @return the running processes info
+     * @throws RepositoryException            on fail
+     * @throws PasswordInputCanceledException if the user canceled the login dialog
+     */
+    ProcessResponse getRunningProcessesInfo(int processId) throws RepositoryException, PasswordInputCanceledException;
 
-	/**
-	 * Retrieve the IDs of running processes since a specified date.
-	 *
-	 * @param since
-	 *            the date used to lookup running processes
-	 * @return a collection of process IDs that are running since the specified date
-	 * @throws RepositoryException
-	 *             on fail
-	 * @throws PasswordInputCanceledException
-	 *             if the user canceled the login dialog
-	 */
-	Collection<Integer> getRunningProcesses(XMLGregorianCalendar since) throws RepositoryException,
+    /**
+     * Retrieve the IDs of running processes since a specified date.
+     *
+     * @param since the date used to lookup running processes
+     * @return a collection of process IDs that are running since the specified date
+     * @throws RepositoryException            on fail
+     * @throws PasswordInputCanceledException if the user canceled the login dialog
+     */
+    Collection<Integer> getRunningProcesses(XMLGregorianCalendar since) throws RepositoryException,
 	PasswordInputCanceledException;
 
-	/**
-	 * Queries the server for process IDs for the specified job ID.
-	 *
-	 * @param jobId
-	 *            the job ID which should be used to lookup process IDs
-	 * @return a list of process IDs for the specified job ID
-	 * @throws RepositoryException
-	 *             on fail
-	 * @throws PasswordInputCanceledException
-	 *             if the user canceled the login dialog
-	 */
-	List<Integer> getProcessIdsForJobId(int jobId) throws RepositoryException, PasswordInputCanceledException;
+    /**
+     * Queries the server for process IDs for the specified job ID.
+     *
+     * @param jobId the job ID which should be used to lookup process IDs
+     * @return a list of process IDs for the specified job ID
+     * @throws RepositoryException            on fail
+     * @throws PasswordInputCanceledException if the user canceled the login dialog
+     */
+    List<Integer> getProcessIdsForJobId(int jobId) throws RepositoryException, PasswordInputCanceledException;
 
-	/**
-	 * Returns a list of available execution queue names. If the process service version is prior to
-	 * version 1.3, <code>null</code> will be returned.
-	 *
-	 * @throws RepositoryException
-	 *             on fail
-	 * @throws PasswordInputCanceledException
-	 *             if the user canceled the login dialog
-	 */
-	List<String> getQueueNames() throws RepositoryException, PasswordInputCanceledException;
+    /**
+     * Returns a list of available execution queue names. If the process service version is prior to
+     * version 1.3, <code>null</code> will be returned.
+     *
+     * @return the queue names
+     * @throws RepositoryException            on fail
+     * @throws PasswordInputCanceledException if the user canceled the login dialog
+     */
+    List<String> getQueueNames() throws RepositoryException, PasswordInputCanceledException;
 
 }

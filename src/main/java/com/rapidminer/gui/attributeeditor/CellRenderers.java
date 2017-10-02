@@ -27,38 +27,62 @@ import javax.swing.table.TableCellRenderer;
 /**
  * A generic collection class for cell renderers. This class manages a vector containing the cell
  * renderers for each row, i.e. a vector of a vector of cell renderers.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CellRenderers {
 
 	private List<List<TableCellRenderer>> cellRenderers;
 
-	/** Creates a new cell renderer collection. */
-	public CellRenderers(int size) {
+    /**
+     * Creates a new cell renderer collection.  @param size the size
+     *
+     * @param size the size
+     */
+    public CellRenderers(int size) {
 		cellRenderers = new ArrayList<List<TableCellRenderer>>(size);
 		for (int i = 0; i < size; i++) {
 			cellRenderers.add(new ArrayList<TableCellRenderer>());
 		}
 	}
 
-	/** Adds a new cell renderer in the given row. */
-	public void add(int row, TableCellRenderer renderer) {
+    /**
+     * Adds a new cell renderer in the given row.  @param row the row
+     *
+     * @param row      the row
+     * @param renderer the renderer
+     */
+    public void add(int row, TableCellRenderer renderer) {
 		cellRenderers.get(row).add(renderer);
 	}
 
-	/** Returns the cell renderer in the given row and column. */
-	public TableCellRenderer get(int row, int column) {
+    /**
+     * Returns the cell renderer in the given row and column.  @param row the row
+     *
+     * @param row    the row
+     * @param column the column
+     * @return the table cell renderer
+     */
+    public TableCellRenderer get(int row, int column) {
 		return cellRenderers.get(row).get(column);
 	}
 
-	/** Returns the number of rows. */
-	public int getSize() {
+    /**
+     * Returns the number of rows.  @return the size
+     *
+     * @return the size
+     */
+    public int getSize() {
 		return cellRenderers.size();
 	}
 
-	/** Returns the size of the i-th row. */
-	public int getSize(int i) {
+    /**
+     * Returns the size of the i-th row.  @param i the
+     *
+     * @param i the
+     * @return the size
+     */
+    public int getSize(int i) {
 		return cellRenderers.get(i).size();
 	}
 }

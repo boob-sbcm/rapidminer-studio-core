@@ -44,10 +44,17 @@ public class ComponentPrinter implements Printable, Pageable {
 
 	private PageFormat pageFormat = PrintingTools.getPrinterJob().defaultPage();
 
-	public static final Font TITLE_FONT = FontTools.getFont("LucidaSans", Font.PLAIN, 9);
+    /**
+     * The constant TITLE_FONT.
+     */
+    public static final Font TITLE_FONT = FontTools.getFont("LucidaSans", Font.PLAIN, 9);
 
-	/** The given components that should be printed. */
-	public ComponentPrinter(PrintableComponent... components) {
+    /**
+     * The given components that should be printed.  @param components the components
+     *
+     * @param components the components
+     */
+    public ComponentPrinter(PrintableComponent... components) {
 		this.components = components;
 	}
 
@@ -57,20 +64,18 @@ public class ComponentPrinter implements Printable, Pageable {
 				pageFormat.getImageableHeight(), pageIndex);
 	}
 
-	/**
-	 *
-	 * @param g
-	 *            the graphics object
-	 * @param pageFormat
-	 *            the page format
-	 * @param width
-	 *            the downscaled width
-	 * @param height
-	 *            the downscaled height
-	 * @param pageIndex
-	 *            the page index that should be printed
-	 */
-	public int print(Graphics g, double x, double y, double width, double height, int pageIndex) {
+    /**
+     * Print int.
+     *
+     * @param g         the graphics object
+     * @param x         the x
+     * @param y         the y
+     * @param width     the downscaled width
+     * @param height    the downscaled height
+     * @param pageIndex the page index that should be printed
+     * @return the int
+     */
+    public int print(Graphics g, double x, double y, double width, double height, int pageIndex) {
 		if (pageIndex >= components.length) {
 			return NO_SUCH_PAGE;
 		}
@@ -114,10 +119,13 @@ public class ComponentPrinter implements Printable, Pageable {
 		return this;
 	}
 
-	/**
-	 * @return the {@link PrintableComponent} for the specified index
-	 */
-	public PrintableComponent getPrintableComponent(int index) {
+    /**
+     * Gets printable component.
+     *
+     * @param index the index
+     * @return the {@link PrintableComponent} for the specified index
+     */
+    public PrintableComponent getPrintableComponent(int index) {
 		return components[index];
 	}
 

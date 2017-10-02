@@ -36,7 +36,7 @@ import com.rapidminer.operator.ports.OutputPort;
  * This functionality is performed by a class of its own (rather than another method in Operator) to
  * keep Operator lean and since it is assumed that most meta data transformations can be handled by
  * a small set of standard rules.
- *
+ * <p>
  * The general rule is that methods of this package should not throw exceptions but rather register
  * possible errors with the ports if preconditions are not satisfied etc.
  *
@@ -47,12 +47,19 @@ public class MDTransformer {
 	private final LinkedList<MDTransformationRule> transformationRules = new LinkedList<MDTransformationRule>();
 	private final Operator operator;
 
-	public MDTransformer(Operator op) {
+    /**
+     * Instantiates a new Md transformer.
+     *
+     * @param op the op
+     */
+    public MDTransformer(Operator op) {
 		this.operator = op;
 	}
 
-	/** Executes all rules added by {@link #addRule}. */
-	public void transformMetaData() {
+    /**
+     * Executes all rules added by {@link #addRule}.
+     */
+    public void transformMetaData() {
 		for (MDTransformationRule rule : transformationRules) {
 			try {
 				rule.transformMD();
@@ -64,32 +71,57 @@ public class MDTransformer {
 		}
 	}
 
-	public void addRule(MDTransformationRule rule) {
+    /**
+     * Add rule.
+     *
+     * @param rule the rule
+     */
+    public void addRule(MDTransformationRule rule) {
 		transformationRules.add(rule);
 	}
 
-	/** Convenience method to generate a {@link PassThroughRule}. */
-	public void addPassThroughRule(InputPort input, OutputPort output) {
+    /**
+     * Convenience method to generate a {@link PassThroughRule}.  @param input the input
+     *
+     * @param input  the input
+     * @param output the output
+     */
+    public void addPassThroughRule(InputPort input, OutputPort output) {
 		addRule(new PassThroughRule(input, output, false));
 	}
 
-	/** Convenience method to generate a {@link GenerateNewMDRule}. */
-	public void addGenerationRule(OutputPort output, Class<? extends IOObject> clazz) {
+    /**
+     * Convenience method to generate a {@link GenerateNewMDRule}.  @param output the output
+     *
+     * @param output the output
+     * @param clazz  the clazz
+     */
+    public void addGenerationRule(OutputPort output, Class<? extends IOObject> clazz) {
 		addRule(new GenerateNewMDRule(output, clazz));
 	}
 
-	public void clearRules() {
+    /**
+     * Clear rules.
+     */
+    public void clearRules() {
 		transformationRules.clear();
 	}
 
-	public void addRuleAtBeginning(MDTransformationRule mdTransformationRule) {
+    /**
+     * Add rule at beginning.
+     *
+     * @param mdTransformationRule the md transformation rule
+     */
+    public void addRuleAtBeginning(MDTransformationRule mdTransformationRule) {
 		transformationRules.addFirst(mdTransformationRule);
 	}
 
-	/**
-	 * @return an unmodifiable list of MDTransformationRules
-	 */
-	public final List<MDTransformationRule> getRules() {
+    /**
+     * Gets rules.
+     *
+     * @return an unmodifiable list of MDTransformationRules
+     */
+    public final List<MDTransformationRule> getRules() {
 		return Collections.unmodifiableList(transformationRules);
 	}
 

@@ -63,7 +63,10 @@ public class NumericValueAttributeFilter extends AbstractAttributeFilterConditio
 	private static final String CONDITION_OPERATOR_GREATER = ">";
 	private static final String CONDITION_OPERATOR_EQUAL = "=";
 
-	public static String PARAMETER_NUMERIC_CONDITION = "numeric_condition";
+    /**
+     * The constant PARAMETER_NUMERIC_CONDITION.
+     */
+    public static String PARAMETER_NUMERIC_CONDITION = "numeric_condition";
 
 	private static final String[] CONDITION_OPERATORS = { CONDITION_OPERATOR_NOT_EQUAL, CONDITION_OPERATOR_NOT_EQUAL_2,
 			CONDITION_OPERATOR_LESS_OR_EQUAL, CONDITION_OPERATOR_LESS, CONDITION_OPERATOR_GREATER_OR_EQUAL,
@@ -83,7 +86,13 @@ public class NumericValueAttributeFilter extends AbstractAttributeFilterConditio
 
 		private double value;
 
-		public Condition(String condition, String value) {
+        /**
+         * Instantiates a new Condition.
+         *
+         * @param condition the condition
+         * @param value     the value
+         */
+        public Condition(String condition, String value) {
 			this.value = Double.parseDouble(value);
 			if (condition.equals(CONDITION_OPERATOR_NOT_EQUAL) || condition.equals(CONDITION_OPERATOR_NOT_EQUAL_2)) {
 				this.condition = 1;
@@ -100,7 +109,13 @@ public class NumericValueAttributeFilter extends AbstractAttributeFilterConditio
 			}
 		}
 
-		public boolean check(double value) {
+        /**
+         * Check boolean.
+         *
+         * @param value the value
+         * @return the boolean
+         */
+        public boolean check(double value) {
 			if (Double.isNaN(value)) {
 				return true;
 			}

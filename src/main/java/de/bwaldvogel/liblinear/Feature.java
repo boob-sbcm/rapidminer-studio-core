@@ -27,13 +27,30 @@
 package de.bwaldvogel.liblinear;
 
 /**
+ * The interface Feature.
+ *
  * @since 1.9
  */
 public interface Feature {
 
-	int getIndex();
+    /**
+     * Gets index.
+     *
+     * @return the index
+     */
+    int getIndex();
 
-	double getValue();
+    /**
+     * Gets value.
+     *
+     * @return the value
+     */
+    double getValue();
 
-	void setValue(double value);
+    /**
+     * Sets value.
+     *
+     * @param value the value
+     */
+    void setValue(double value);
 }

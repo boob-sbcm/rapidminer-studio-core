@@ -55,7 +55,10 @@ import com.rapidminer.tools.Tools;
  */
 public abstract class ExampleSetBasedFeatureOperator extends OperatorChain {
 
-	public static final String PARAMETER_MAXIMAL_FITNESS = "maximal_fitness";
+    /**
+     * The constant PARAMETER_MAXIMAL_FITNESS.
+     */
+    public static final String PARAMETER_MAXIMAL_FITNESS = "maximal_fitness";
 
 	private ExampleSetBasedPopulation population;
 
@@ -80,7 +83,12 @@ public abstract class ExampleSetBasedFeatureOperator extends OperatorChain {
 	private final OutputPort attributeWeightsOutput = getOutputPorts().createPort("attribute weights out");
 	private final OutputPort performanceOutput = getOutputPorts().createPort("performance out");
 
-	public ExampleSetBasedFeatureOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set based feature operator.
+     *
+     * @param description the description
+     */
+    public ExampleSetBasedFeatureOperator(OperatorDescription description) {
 		super(description, "Evaluation Process");
 
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, innerExampleSetSource, SetRelation.SUBSET));
@@ -167,40 +175,66 @@ public abstract class ExampleSetBasedFeatureOperator extends OperatorChain {
 		});
 	}
 
-	/**
-	 * Create an initial population. The example set will be cloned before the method is invoked.
-	 * This method is invoked after the pre- and post-evaluation population operators were
-	 * collected.
-	 */
-	public abstract ExampleSetBasedPopulation createInitialPopulation(ExampleSet es) throws OperatorException;
+    /**
+     * Create an initial population. The example set will be cloned before the method is invoked.
+     * This method is invoked after the pre- and post-evaluation population operators were
+     * collected.
+     *
+     * @param es the es
+     * @return the example set based population
+     * @throws OperatorException the operator exception
+     */
+    public abstract ExampleSetBasedPopulation createInitialPopulation(ExampleSet es) throws OperatorException;
 
-	/**
-	 * Must return a list of <tt>PopulationOperator</tt>s. All operators are applied to the
-	 * population in their order within the list before the population is evaluated. Since this
-	 * method is invoked only once the list cannot by dynamically changed during runtime.
-	 */
-	public abstract List<ExampleSetBasedPopulationOperator> getPreEvaluationPopulationOperators(ExampleSet input)
+    /**
+     * Must return a list of <tt>PopulationOperator</tt>s. All operators are applied to the
+     * population in their order within the list before the population is evaluated. Since this
+     * method is invoked only once the list cannot by dynamically changed during runtime.
+     *
+     * @param input the input
+     * @return the pre evaluation population operators
+     * @throws OperatorException the operator exception
+     */
+    public abstract List<ExampleSetBasedPopulationOperator> getPreEvaluationPopulationOperators(ExampleSet input)
 			throws OperatorException;
 
-	/**
-	 * Must return a list of <tt>PopulationOperator</tt>s. All operators are applied to the
-	 * population in their order within the list after the population is evaluated. Since this
-	 * method is invoked only once the list cannot by dynamically changed during runtime.
-	 */
-	public abstract List<ExampleSetBasedPopulationOperator> getPostEvaluationPopulationOperators(ExampleSet input)
+    /**
+     * Must return a list of <tt>PopulationOperator</tt>s. All operators are applied to the
+     * population in their order within the list after the population is evaluated. Since this
+     * method is invoked only once the list cannot by dynamically changed during runtime.
+     *
+     * @param input the input
+     * @return the post evaluation population operators
+     * @throws OperatorException the operator exception
+     */
+    public abstract List<ExampleSetBasedPopulationOperator> getPostEvaluationPopulationOperators(ExampleSet input)
 			throws OperatorException;
 
-	/**
-	 * Has to return true if the main loop can be stopped because a solution is considered to be
-	 * good enough according to some criterion.
-	 */
-	public abstract boolean solutionGoodEnough(ExampleSetBasedPopulation pop) throws OperatorException;
+    /**
+     * Has to return true if the main loop can be stopped because a solution is considered to be
+     * good enough according to some criterion.
+     *
+     * @param pop the pop
+     * @return the boolean
+     * @throws OperatorException the operator exception
+     */
+    public abstract boolean solutionGoodEnough(ExampleSetBasedPopulation pop) throws OperatorException;
 
-	protected RandomGenerator getRandom() {
+    /**
+     * Gets random.
+     *
+     * @return the random
+     */
+    protected RandomGenerator getRandom() {
 		return random;
 	}
 
-	protected ExampleSetBasedPopulation getPopulation() {
+    /**
+     * Gets population.
+     *
+     * @return the population
+     */
+    protected ExampleSetBasedPopulation getPopulation() {
 		return population;
 	}
 
@@ -293,8 +327,14 @@ public abstract class ExampleSetBasedFeatureOperator extends OperatorChain {
 		performanceOutput.deliver(bestEver.getPerformance());
 	}
 
-	/** Applies all PopulationOperators in opList to the population. */
-	void applyOpList(List<ExampleSetBasedPopulationOperator> opList, ExampleSetBasedPopulation population)
+    /**
+     * Applies all PopulationOperators in opList to the population.  @param opList the op list
+     *
+     * @param opList     the op list
+     * @param population the population
+     * @throws OperatorException the operator exception
+     */
+    void applyOpList(List<ExampleSetBasedPopulationOperator> opList, ExampleSetBasedPopulation population)
 			throws OperatorException {
 		Iterator<ExampleSetBasedPopulationOperator> i = opList.listIterator();
 		while (i.hasNext()) {
@@ -315,20 +355,27 @@ public abstract class ExampleSetBasedFeatureOperator extends OperatorChain {
 		}
 	}
 
-	/**
-	 * Evaluates all individuals in the population by applying the inner operators.
-	 */
-	protected void evaluate(ExampleSetBasedPopulation population) throws OperatorException {
+    /**
+     * Evaluates all individuals in the population by applying the inner operators.
+     *
+     * @param population the population
+     * @throws OperatorException the operator exception
+     */
+    protected void evaluate(ExampleSetBasedPopulation population) throws OperatorException {
 		for (int i = 0; i < population.getNumberOfIndividuals(); i++) {
 			evaluate(population.get(i));
 		}
 	}
 
-	/**
-	 * Evaluates the given individual. The performance is set as user data of the individual and
-	 * also returned by this method.
-	 */
-	protected PerformanceVector evaluate(ExampleSetBasedIndividual individual) throws OperatorException {
+    /**
+     * Evaluates the given individual. The performance is set as user data of the individual and
+     * also returned by this method.
+     *
+     * @param individual the individual
+     * @return the performance vector
+     * @throws OperatorException the operator exception
+     */
+    protected PerformanceVector evaluate(ExampleSetBasedIndividual individual) throws OperatorException {
 		totalEvaluations++;
 		if (individual.getPerformance() != null) {
 			return individual.getPerformance();
@@ -365,19 +412,23 @@ public abstract class ExampleSetBasedFeatureOperator extends OperatorChain {
 		}
 	}
 
-	/**
-	 * Sets if the operator should check if the maximum was reached for the main criterion.
-	 * Subclasses may want to set this to false, e.g. for multiobjective optimization.
-	 */
-	protected void setCheckForMaximum(boolean checkForMaximalFitness) {
+    /**
+     * Sets if the operator should check if the maximum was reached for the main criterion.
+     * Subclasses may want to set this to false, e.g. for multiobjective optimization.
+     *
+     * @param checkForMaximalFitness the check for maximal fitness
+     */
+    protected void setCheckForMaximum(boolean checkForMaximalFitness) {
 		this.checkForMaximalFitness = checkForMaximalFitness;
 	}
 
-	/**
-	 * Returns if the operator should check if the maximum was reached for the main criterion.
-	 * Subclasses may want to set this to false, e.g. for multiobjective optimization.
-	 */
-	protected boolean getCheckForMaximum() {
+    /**
+     * Returns if the operator should check if the maximum was reached for the main criterion.
+     * Subclasses may want to set this to false, e.g. for multiobjective optimization.
+     *
+     * @return the check for maximum
+     */
+    protected boolean getCheckForMaximum() {
 		return this.checkForMaximalFitness;
 	}
 
@@ -393,25 +444,25 @@ public abstract class ExampleSetBasedFeatureOperator extends OperatorChain {
 		return types;
 	}
 
-	/**
-	 * This method should call {@link #inApplyLoop()} and perform operations which should be done
-	 * after each iteration of the inner Process.
-	 *
-	 * @throws ProcessStoppedException
-	 */
-	protected void applyLoopOperations() throws ProcessStoppedException {
+    /**
+     * This method should call {@link #inApplyLoop()} and perform operations which should be done
+     * after each iteration of the inner Process.
+     *
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    protected void applyLoopOperations() throws ProcessStoppedException {
 		inApplyLoop();
 	}
 
-	/**
-	 * This method returns the number of the maximum generations. This is used to determine the
-	 * total progress of the operators progress bar. The default value -1 leads to an alternating
-	 * progress bar. This should be overwritten by a subclass, if the number of max generations can
-	 * be determined.
-	 *
-	 * @return Number of maximum generations or -1 (if the max generations cannot be determined)
-	 */
-	protected int getMaxGenerations() {
+    /**
+     * This method returns the number of the maximum generations. This is used to determine the
+     * total progress of the operators progress bar. The default value -1 leads to an alternating
+     * progress bar. This should be overwritten by a subclass, if the number of max generations can
+     * be determined.
+     *
+     * @return Number of maximum generations or -1 (if the max generations cannot be determined)
+     */
+    protected int getMaxGenerations() {
 		return -1;
 	}
 }

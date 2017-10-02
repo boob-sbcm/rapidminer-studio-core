@@ -28,7 +28,6 @@ import com.rapidminer.operator.ports.metadata.AttributeMetaData;
  * Calculates the mode of some values.
  *
  * @author Tobias Malbrecht
- *
  */
 public class ModeFunction extends AbstractAggregationFunction {
 
@@ -38,11 +37,19 @@ public class ModeFunction extends AbstractAggregationFunction {
 
 	private double valueMaximumWeight;
 
-	public ModeFunction() {
+    /**
+     * Instantiates a new Mode function.
+     */
+    public ModeFunction() {
 		this(DEFAULT_IGNORE_MISSINGS);
 	}
 
-	public ModeFunction(Boolean ignoreMissings) {
+    /**
+     * Instantiates a new Mode function.
+     *
+     * @param ignoreMissings the ignore missings
+     */
+    public ModeFunction(Boolean ignoreMissings) {
 		super(ignoreMissings);
 		valueWeightMap = new HashMap<Double, Double>();
 		maximumValueWeight = Double.NEGATIVE_INFINITY;

@@ -136,18 +136,26 @@ public class SwingTools {
 	 */
 	private static class ResultContainer<T> {
 
-		public T value;
+        /**
+         * The Value.
+         */
+        public T value;
 	}
 
-	/**
-	 * A simple interface which has a run method that returns a result.
-	 *
-	 * @since 6.5.0
-	 *
-	 */
-	public static interface ResultRunnable<T> {
+    /**
+     * A simple interface which has a run method that returns a result.
+     *
+     * @param <T> the type parameter
+     * @since 6.5.0
+     */
+    public static interface ResultRunnable<T> {
 
-		T run();
+        /**
+         * Run t.
+         *
+         * @return the t
+         */
+        T run();
 	}
 
 	/** whether we are on a Mac or not */
@@ -156,107 +164,155 @@ public class SwingTools {
 	/** Defines the maximal length of characters in a line of the tool tip text. */
 	private static final int TOOL_TIP_LINE_LENGTH = 100;
 
-	/** Defines the extra height for each row in a table. */
-	public static final int TABLE_ROW_EXTRA_HEIGHT = 4;
+    /**
+     * Defines the extra height for each row in a table.
+     */
+    public static final int TABLE_ROW_EXTRA_HEIGHT = 4;
 
-	/**
-	 * Defines the extra height for rows in a table with components. If an {@link ExtendedJTable} is
-	 * used, this amount can be added additionally to the amount of {@link #TABLE_ROW_EXTRA_HEIGHT}
-	 * which is already added in the constructor.
-	 */
-	public static final int TABLE_WITH_COMPONENTS_ROW_EXTRA_HEIGHT = 10;
+    /**
+     * Defines the extra height for rows in a table with components. If an {@link ExtendedJTable} is
+     * used, this amount can be added additionally to the amount of {@link #TABLE_ROW_EXTRA_HEIGHT}
+     * which is already added in the constructor.
+     */
+    public static final int TABLE_WITH_COMPONENTS_ROW_EXTRA_HEIGHT = 10;
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color DARKEST_YELLOW = new Color(250, 219, 172);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color DARKEST_YELLOW = new Color(250, 219, 172);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color DARK_YELLOW = new Color(250, 226, 190);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color DARK_YELLOW = new Color(250, 226, 190);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color LIGHT_YELLOW = new Color(250, 233, 207);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color LIGHT_YELLOW = new Color(250, 233, 207);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color LIGHTEST_YELLOW = new Color(250, 240, 225);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color LIGHTEST_YELLOW = new Color(250, 240, 225);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color TRANSPARENT_YELLOW = new Color(255, 245, 230, 190);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color TRANSPARENT_YELLOW = new Color(255, 245, 230, 190);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color VERY_DARK_BLUE = new Color(172, 172, 212);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color VERY_DARK_BLUE = new Color(172, 172, 212);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color DARK_GREEN = new Color(0, 130, 50);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color DARK_GREEN = new Color(0, 130, 50);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color DARKEST_BLUE = new Color(182, 202, 242);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color DARKEST_BLUE = new Color(182, 202, 242);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color DARK_BLUE = new Color(199, 213, 242);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color DARK_BLUE = new Color(199, 213, 242);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color LIGHT_BLUE = new Color(216, 224, 242);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color LIGHT_BLUE = new Color(216, 224, 242);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color LIGHTEST_BLUE = new Color(233, 236, 242);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color LIGHTEST_BLUE = new Color(233, 236, 242);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color FAINT_YELLOW = new Color(250, 240, 225, 150);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color FAINT_YELLOW = new Color(250, 240, 225, 150);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color FAINTER_YELLOW = new Color(255, 245, 230, 50);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color FAINTER_YELLOW = new Color(255, 245, 230, 50);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color FAINT_BLUE = new Color(225, 230, 235, 150);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color FAINT_BLUE = new Color(225, 230, 235, 150);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color FAINTER_BLUE = new Color(230, 235, 240, 50);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color FAINTER_BLUE = new Color(230, 235, 240, 50);
 
-	/**
-	 * The RapidMiner orange color.
-	 *
-	 * @deprecated since RapidMiner 6.0, replaced by RAPIDMINER_ORANGE
-	 */
-	@Deprecated
+    /**
+     * The RapidMiner orange color.
+     *
+     * @deprecated since RapidMiner 6.0, replaced by RAPIDMINER_ORANGE
+     */
+    @Deprecated
 	public static final Color RAPID_I_ORANGE = new Color(242, 146, 0);
 
-	/**
-	 * The RapidMiner brown color.
-	 *
-	 * @deprecated since RapidMiner 6.0, replaced by RAPIDMINER_GRAY
-	 */
-	@Deprecated
+    /**
+     * The RapidMiner brown color.
+     *
+     * @deprecated since RapidMiner 6.0, replaced by RAPIDMINER_GRAY
+     */
+    @Deprecated
 	public static final Color RAPID_I_BROWN = new Color(97, 66, 11);
 
-	/**
-	 * The RapidMiner beige color.
-	 *
-	 * @deprecated since RapidMiner 6.0, replaced by RAPIDMINER_LIGHT_GRAY
-	 */
-	@Deprecated
+    /**
+     * The RapidMiner beige color.
+     *
+     * @deprecated since RapidMiner 6.0, replaced by RAPIDMINER_LIGHT_GRAY
+     */
+    @Deprecated
 	public static final Color RAPID_I_BEIGE = new Color(202, 188, 165);
-	/** The RapidMiner Orange. */
-	public static final Color RAPIDMINER_ORANGE = new Color(241, 96, 34);
+    /**
+     * The RapidMiner Orange.
+     */
+    public static final Color RAPIDMINER_ORANGE = new Color(241, 96, 34);
 
-	/** The RapidMiner Light Orange. */
-	public static final Color RAPIDMINER_LIGHT_ORANGE = new Color(235, 122, 3);
+    /**
+     * The RapidMiner Light Orange.
+     */
+    public static final Color RAPIDMINER_LIGHT_ORANGE = new Color(235, 122, 3);
 
-	/** The RapidMiner Yellow. */
-	public static final Color RAPIDMINER_YELLOW = new Color(244, 232, 11);
+    /**
+     * The RapidMiner Yellow.
+     */
+    public static final Color RAPIDMINER_YELLOW = new Color(244, 232, 11);
 
-	/** The RapidMiner Orange. */
-	public static final Color RAPIDMINER_GRAY = new Color(50, 53, 62);
+    /**
+     * The RapidMiner Orange.
+     */
+    public static final Color RAPIDMINER_GRAY = new Color(50, 53, 62);
 
-	/** The RapidMiner Light Orange. */
-	public static final Color RAPIDMINER_LIGHT_GRAY = new Color(121, 124, 130);
+    /**
+     * The RapidMiner Light Orange.
+     */
+    public static final Color RAPIDMINER_LIGHT_GRAY = new Color(121, 124, 130);
 
-	/** Some color constants for Java Look and Feel. */
-	public static final Color LIGHTEST_RED = new Color(250, 210, 210);
+    /**
+     * Some color constants for Java Look and Feel.
+     */
+    public static final Color LIGHTEST_RED = new Color(250, 210, 210);
 
-	/** A brown font color. */
-	public static final Color BROWN_FONT_COLOR = new Color(63, 53, 24);
+    /**
+     * A brown font color.
+     */
+    public static final Color BROWN_FONT_COLOR = new Color(63, 53, 24);
 
-	/** A brown font color. */
-	public static final Color LIGHT_BROWN_FONT_COLOR = new Color(113, 103, 74);
+    /**
+     * A brown font color.
+     */
+    public static final Color LIGHT_BROWN_FONT_COLOR = new Color(113, 103, 74);
 
 	/** This set stores all lookup paths for icons */
 	private static Set<String> iconPaths = new LinkedHashSet<>(Collections.singleton("icons/"));
@@ -273,8 +329,10 @@ public class SwingTools {
 	/** step width used when cropping a string */
 	private static final int RESIZE_STEP_WIDTH = 3;
 
-	/** separator used between two parts of a cropped string */
-	public static final String SEPARATOR = "[...]";
+    /**
+     * separator used between two parts of a cropped string
+     */
+    public static final String SEPARATOR = "[...]";
 
 	/** delay before showing the tool tip for help icons */
 	private static final int TOOL_TIP_DELAY = 80;
@@ -303,7 +361,13 @@ public class SwingTools {
 	private static final String RETINA_ICON_PREFIX = "/@2x";
 
 	private static enum Scaling {
-		DEFAULT, RETINA
+        /**
+         * Default scaling.
+         */
+        DEFAULT, /**
+         * Retina scaling.
+         */
+        RETINA
 	}
 
 	private static Scaling scaling = Scaling.DEFAULT;
@@ -325,12 +389,22 @@ public class SwingTools {
 		}
 	}
 
-	public static void setFrameIconProvider(final FrameIconProvider _frameIconProvider) {
+    /**
+     * Sets frame icon provider.
+     *
+     * @param _frameIconProvider the frame icon provider
+     */
+    public static void setFrameIconProvider(final FrameIconProvider _frameIconProvider) {
 		frameIconProvider = _frameIconProvider;
 		reloadFrameIcons();
 	}
 
-	public static void setupFrameIcons(final String frameIconBaseName) {
+    /**
+     * Sets frame icons.
+     *
+     * @param frameIconBaseName the frame icon base name
+     */
+    public static void setupFrameIcons(final String frameIconBaseName) {
 		setFrameIconProvider(new DefaultFrameIconProvider(frameIconBaseName));
 		reloadFrameIcons();
 	}
@@ -375,15 +449,21 @@ public class SwingTools {
 		return false;
 	}
 
-	/**
-	 * Returns the list of all available program icon sizes.
-	 */
-	public static List<Image> getFrameIconList() {
+    /**
+     * Returns the list of all available program icon sizes.
+     *
+     * @return the frame icon list
+     */
+    public static List<Image> getFrameIconList() {
 		return allFrameIcons;
 	}
 
-	/** Returns the list of all possible frame icons. */
-	public static void setFrameIcon(final JFrame frame) {
+    /**
+     * Returns the list of all possible frame icons.  @param frame the frame
+     *
+     * @param frame the frame
+     */
+    public static void setFrameIcon(final JFrame frame) {
 		Method iconImageMethod = null;
 		try {
 			iconImageMethod = frame.getClass().getMethod("setIconImages", new Class[] { List.class });
@@ -407,8 +487,12 @@ public class SwingTools {
 		}
 	}
 
-	/** Returns the list of all possible frame icons. */
-	public static void setDialogIcon(final JDialog dialog) {
+    /**
+     * Returns the list of all possible frame icons.  @param dialog the dialog
+     *
+     * @param dialog the dialog
+     */
+    public static void setDialogIcon(final JDialog dialog) {
 		Method iconImageMethod = null;
 		try {
 			iconImageMethod = dialog.getClass().getMethod("setIconImages", new Class[] { List.class });
@@ -425,19 +509,37 @@ public class SwingTools {
 		}
 	}
 
-	/** Creates a red gradient paint. */
-	public static GradientPaint makeRedPaint(final double width, final double height) {
+    /**
+     * Creates a red gradient paint.  @param width the width
+     *
+     * @param width  the width
+     * @param height the height
+     * @return the gradient paint
+     */
+    public static GradientPaint makeRedPaint(final double width, final double height) {
 		return new GradientPaint(0f, 0f, new Color(200, 50, 50), (float) width / 2, (float) height / 2,
 				new Color(255, 100, 100), true);
 	}
 
-	/** Creates a blue gradient paint. */
-	public static GradientPaint makeBluePaint(final double width, final double height) {
+    /**
+     * Creates a blue gradient paint.  @param width the width
+     *
+     * @param width  the width
+     * @param height the height
+     * @return the gradient paint
+     */
+    public static GradientPaint makeBluePaint(final double width, final double height) {
 		return new GradientPaint(0f, 0f, LIGHT_BLUE, (float) width / 2, (float) height / 2, LIGHTEST_BLUE, true);
 	}
 
-	/** Creates a yellow gradient paint. */
-	public static GradientPaint makeYellowPaint(final double width, final double height) {
+    /**
+     * Creates a yellow gradient paint.  @param width the width
+     *
+     * @param width  the width
+     * @param height the height
+     * @return the gradient paint
+     */
+    public static GradientPaint makeYellowPaint(final double width, final double height) {
 		return new GradientPaint(0f, 0f, LIGHT_YELLOW, (float) width / 2, (float) height / 2, LIGHTEST_YELLOW, true);
 	}
 
@@ -447,34 +549,34 @@ public class SwingTools {
 
 	private static final String BRACKETS = " [...] ";
 
-	/**
-	 * Tries to load the icon for the given resource. Returns {@code null} (and writes a warning) if
-	 * the resource file cannot be loaded. This method automatically adds all icon paths specified
-	 * since startup time. The default /icons is always searched. Additional paths might be
-	 * specified by {@link SwingTools#addIconStoragePath(String)}.
-	 *
-	 * The given names must contain '/' instead of backslashes!
-	 */
-	public static ImageIcon createIcon(final String iconName) {
+    /**
+     * Tries to load the icon for the given resource. Returns {@code null} (and writes a warning) if
+     * the resource file cannot be loaded. This method automatically adds all icon paths specified
+     * since startup time. The default /icons is always searched. Additional paths might be
+     * specified by {@link SwingTools#addIconStoragePath(String)}.
+     * <p>
+     * The given names must contain '/' instead of backslashes!
+     *
+     * @param iconName the icon name
+     * @return the image icon
+     */
+    public static ImageIcon createIcon(final String iconName) {
 		return createIcon(iconName, false);
 	}
 
-	/**
-	 * Tries to load the icon for the given resource. Returns {@code null} (and writes a warning) if
-	 * the resource file cannot be loaded. This method automatically adds all icon paths specified
-	 * since startup time. The default /icons is always searched. Additional paths might be
-	 * specified by {@link SwingTools#addIconStoragePath(String)}.
-	 *
-	 * The given names must contain '/' instead of backslashes!
-	 *
-	 * @param iconName
-	 *            the name of the icon including the size path component
-	 * @param preferMonochrome
-	 *            if {@code true} will chose a monochrome version over a colored version if it
-	 *            exists (looking in the {@code [size]/mono} folder). Will fall back to colored if
-	 *            no monochrome version exists.
-	 */
-	public static ImageIcon createIcon(final String iconName, final boolean preferMonochrome) {
+    /**
+     * Tries to load the icon for the given resource. Returns {@code null} (and writes a warning) if
+     * the resource file cannot be loaded. This method automatically adds all icon paths specified
+     * since startup time. The default /icons is always searched. Additional paths might be
+     * specified by {@link SwingTools#addIconStoragePath(String)}.
+     * <p>
+     * The given names must contain '/' instead of backslashes!
+     *
+     * @param iconName         the name of the icon including the size path component
+     * @param preferMonochrome if {@code true} will chose a monochrome version over a colored version if it            exists (looking in the {@code [size]/mono} folder). Will fall back to colored if            no monochrome version exists.
+     * @return the image icon
+     */
+    public static ImageIcon createIcon(final String iconName, final boolean preferMonochrome) {
 		ImageIcon icon = null;
 		for (String path : iconPaths) {
 			if (preferMonochrome) {
@@ -497,13 +599,13 @@ public class SwingTools {
 		return icon;
 	}
 
-	/**
-	 * This method returns the path of the icon given.
-	 *
-	 * @param iconName
-	 * @return
-	 */
-	public static String getIconPath(final String iconName) {
+    /**
+     * This method returns the path of the icon given.
+     *
+     * @param iconName the icon name
+     * @return icon path
+     */
+    public static String getIconPath(final String iconName) {
 		for (String path : iconPaths) {
 			ImageIcon icon = createImage(path + iconName);
 			if (icon != null) {
@@ -516,11 +618,13 @@ public class SwingTools {
 		return UNKNOWN_ICON_URL.toString();
 	}
 
-	/**
-	 * This method adds a path to the set of paths which are searched for icons if the
-	 * {@link SwingTools#createIcon(String)} is called.
-	 */
-	public static void addIconStoragePath(String path) {
+    /**
+     * This method adds a path to the set of paths which are searched for icons if the
+     * {@link SwingTools#createIcon(String)} is called.
+     *
+     * @param path the path
+     */
+    public static void addIconStoragePath(String path) {
 		if (path.startsWith("/")) {
 			path = path.substring(1);
 		}
@@ -530,11 +634,14 @@ public class SwingTools {
 		iconPaths.add(path);
 	}
 
-	/**
-	 * Tries to load the image for the given resource. Returns {@code null} (and writes a warning)
-	 * if the resource file cannot be loaded.
-	 */
-	public static ImageIcon createImage(final String imageName) {
+    /**
+     * Tries to load the image for the given resource. Returns {@code null} (and writes a warning)
+     * if the resource file cannot be loaded.
+     *
+     * @param imageName the image name
+     * @return the image icon
+     */
+    public static ImageIcon createImage(final String imageName) {
 		return createImage(imageName, true);
 	}
 
@@ -634,66 +741,82 @@ public class SwingTools {
 
 	}
 
-	/**
-	 * This method transforms the given tool tip text into HTML. Lines are splitted at linebreaks
-	 * and additional line breaks are added after ca. {@link #TOOL_TIP_LINE_LENGTH} characters.
-	 */
-	public static String transformToolTipText(final String description) {
+    /**
+     * This method transforms the given tool tip text into HTML. Lines are splitted at linebreaks
+     * and additional line breaks are added after ca. {@link #TOOL_TIP_LINE_LENGTH} characters.
+     *
+     * @param description the description
+     * @return the string
+     */
+    public static String transformToolTipText(final String description) {
 		return transformToolTipText(description, true, TOOL_TIP_LINE_LENGTH);
 	}
 
-	/**
-	 * This method transforms the given tool tip text into HTML. Lines are splitted at linebreaks
-	 * and additional line breaks are added after ca. {@link #TOOL_TIP_LINE_LENGTH} characters.
-	 *
-	 * @param escapeSlashes
-	 *            Inidicates if forward slashes ("/") are escaped by the html code "&#47;"
-	 */
-	public static String transformToolTipText(final String description, final boolean escapeSlashes) {
+    /**
+     * This method transforms the given tool tip text into HTML. Lines are splitted at linebreaks
+     * and additional line breaks are added after ca. {@link #TOOL_TIP_LINE_LENGTH} characters.
+     *
+     * @param description   the description
+     * @param escapeSlashes Inidicates if forward slashes ("/") are escaped by the html code "&#47;"
+     * @return the string
+     */
+    public static String transformToolTipText(final String description, final boolean escapeSlashes) {
 		return transformToolTipText(description, true, TOOL_TIP_LINE_LENGTH, escapeSlashes);
 	}
 
-	/**
-	 * This method transforms the given tool tip text into HTML. Lines are splitted at linebreaks
-	 * and additional line breaks are added after ca. {@link #TOOL_TIP_LINE_LENGTH} characters.
-	 *
-	 * @param escapeSlashes
-	 *            Inidicates if forward slashes ("/") are escaped by the html code "&#47;"
-	 * @param escapeHTML
-	 *            Indicates if previously added html tags are escaped
-	 */
-	public static String transformToolTipText(final String description, final boolean escapeSlashes,
+    /**
+     * This method transforms the given tool tip text into HTML. Lines are splitted at linebreaks
+     * and additional line breaks are added after ca. {@link #TOOL_TIP_LINE_LENGTH} characters.
+     *
+     * @param description   the description
+     * @param escapeSlashes Inidicates if forward slashes ("/") are escaped by the html code "&#47;"
+     * @param escapeHTML    Indicates if previously added html tags are escaped
+     * @return the string
+     */
+    public static String transformToolTipText(final String description, final boolean escapeSlashes,
 			final boolean escapeHTML) {
 		return transformToolTipText(description, true, TOOL_TIP_LINE_LENGTH, escapeSlashes, escapeHTML);
 	}
 
-	public static String transformToolTipText(final String description, final boolean addHTMLTags, final int lineLength) {
+    /**
+     * Transform tool tip text string.
+     *
+     * @param description the description
+     * @param addHTMLTags the add html tags
+     * @param lineLength  the line length
+     * @return the string
+     */
+    public static String transformToolTipText(final String description, final boolean addHTMLTags, final int lineLength) {
 		return transformToolTipText(description, addHTMLTags, lineLength, false);
 	}
 
-	/**
-	 * This method transforms the given tool tip text into HTML. Lines are splitted at linebreaks
-	 * and additional line breaks are added after ca. lineLength characters.
-	 *
-	 * @param escapeSlashes
-	 *            Inidicates if forward slashes ("/") are escaped by the html code "&#47;"
-	 */
-	public static String transformToolTipText(final String description, final boolean addHTMLTags, final int lineLength,
+    /**
+     * This method transforms the given tool tip text into HTML. Lines are splitted at linebreaks
+     * and additional line breaks are added after ca. lineLength characters.
+     *
+     * @param description   the description
+     * @param addHTMLTags   the add html tags
+     * @param lineLength    the line length
+     * @param escapeSlashes Inidicates if forward slashes ("/") are escaped by the html code "&#47;"
+     * @return the string
+     */
+    public static String transformToolTipText(final String description, final boolean addHTMLTags, final int lineLength,
 			final boolean escapeSlashes) {
 		return transformToolTipText(description, addHTMLTags, lineLength, escapeSlashes, true);
 	}
 
-	/**
-	 * This method transforms the given tool tip text into HTML. Lines are splitted at linebreaks
-	 * and additional line breaks are added after ca. lineLength characters.
-	 *
-	 * @param escapeSlashes
-	 *            Inidicates if forward slashes ("/") are escaped by the html code "&#47;"
-	 * @param escapeHTML
-	 *            Indicates if previously added html tags are escaped TODO: Use
-	 *            <div style="width:XXXpx">
-	 */
-	public static String transformToolTipText(final String description, final boolean addHTMLTags, final int lineLength,
+    /**
+     * This method transforms the given tool tip text into HTML. Lines are splitted at linebreaks
+     * and additional line breaks are added after ca. lineLength characters.
+     *
+     * @param description   the description
+     * @param addHTMLTags   the add html tags
+     * @param lineLength    the line length
+     * @param escapeSlashes Inidicates if forward slashes ("/") are escaped by the html code "&#47;"
+     * @param escapeHTML    Indicates if previously added html tags are escaped TODO: Use            <div style="width:XXXpx">
+     * @return the string
+     */
+    public static String transformToolTipText(final String description, final boolean addHTMLTags, final int lineLength,
 			final boolean escapeSlashes, final boolean escapeHTML) {
 		String completeText = description.trim();
 		if (escapeHTML) {
@@ -737,8 +860,13 @@ public class SwingTools {
 		return result.toString();
 	}
 
-	/** Adds line breaks after {@link #TOOL_TIP_LINE_LENGTH} letters. */
-	public static String addLinebreaks(String message) {
+    /**
+     * Adds line breaks after {@link #TOOL_TIP_LINE_LENGTH} letters.  @param message the message
+     *
+     * @param message the message
+     * @return the string
+     */
+    public static String addLinebreaks(String message) {
 		if (message == null) {
 			return null;
 		}
@@ -772,21 +900,29 @@ public class SwingTools {
 		return result.toString();
 	}
 
-	/**
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.results.-key-.icon
-	 */
-	public static void showResultsDialog(final String i18nKey, final JComponent results, final Object... i18nArgs) {
+    /**
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.results.-key-.icon
+     *
+     * @param i18nKey  the 18 n key
+     * @param results  the results
+     * @param i18nArgs the 18 n args
+     */
+    public static void showResultsDialog(final String i18nKey, final JComponent results, final Object... i18nArgs) {
 		showResultsDialog(ApplicationFrame.getApplicationFrame(), i18nKey, results, i18nArgs);
 	}
 
-	/**
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.results.-key-.icon
-	 *
-	 * @since 7.5.0
-	 */
-	public static void showResultsDialog(final Window owner, final String i18nKey, final JComponent results,
+    /**
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.results.-key-.icon
+     *
+     * @param owner    the owner
+     * @param i18nKey  the 18 n key
+     * @param results  the results
+     * @param i18nArgs the 18 n args
+     * @since 7.5.0
+     */
+    public static void showResultsDialog(final Window owner, final String i18nKey, final JComponent results,
 			final Object... i18nArgs) {
 		invokeLater(new Runnable() {
 
@@ -799,39 +935,53 @@ public class SwingTools {
 
 	}
 
-	/**
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.message.-key-.icon
-	 */
-	public static void showMessageDialog(final String key, final Object... keyArguments) {
+    /**
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.message.-key-.icon
+     *
+     * @param key          the key
+     * @param keyArguments the key arguments
+     */
+    public static void showMessageDialog(final String key, final Object... keyArguments) {
 		showMessageDialog(key, null, keyArguments);
 	}
 
-	/**
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.message.-key-.icon
-	 *
-	 * @since 7.5.0
-	 */
-	public static void showMessageDialog(final Window owner, final String key, final Object... keyArguments) {
+    /**
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.message.-key-.icon
+     *
+     * @param owner        the owner
+     * @param key          the key
+     * @param keyArguments the key arguments
+     * @since 7.5.0
+     */
+    public static void showMessageDialog(final Window owner, final String key, final Object... keyArguments) {
 		showMessageDialog(owner, key, null, keyArguments);
 	}
 
-	/**
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.message.-key-.icon
-	 */
-	public static void showMessageDialog(final String key, final JComponent component, final Object... keyArguments) {
+    /**
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.message.-key-.icon
+     *
+     * @param key          the key
+     * @param component    the component
+     * @param keyArguments the key arguments
+     */
+    public static void showMessageDialog(final String key, final JComponent component, final Object... keyArguments) {
 		showMessageDialog(ApplicationFrame.getApplicationFrame(), key, component, keyArguments);
 	}
 
-	/**
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.message.-key-.icon
-	 *
-	 * @since 7.5.0
-	 */
-	public static void showMessageDialog(final Window owner, final String key, final JComponent component,
+    /**
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.message.-key-.icon
+     *
+     * @param owner        the owner
+     * @param key          the key
+     * @param component    the component
+     * @param keyArguments the key arguments
+     * @since 7.5.0
+     */
+    public static void showMessageDialog(final Window owner, final String key, final JComponent component,
 			final Object... keyArguments) {
 		invokeLater(new Runnable() {
 
@@ -843,25 +993,35 @@ public class SwingTools {
 		});
 	}
 
-	/**
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.confirm.-key-.icon
-	 *
-	 * See {@link ConfirmDialog} for details on the mode options.
-	 */
-	public static int showConfirmDialog(final String key, final int mode, final Object... keyArguments) {
+    /**
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.confirm.-key-.icon
+     * <p>
+     * See {@link ConfirmDialog} for details on the mode options.
+     *
+     * @param key          the key
+     * @param mode         the mode
+     * @param keyArguments the key arguments
+     * @return the int
+     */
+    public static int showConfirmDialog(final String key, final int mode, final Object... keyArguments) {
 		return showConfirmDialog(ApplicationFrame.getApplicationFrame(), key, mode, keyArguments);
 	}
 
-	/**
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.confirm.-key-.icon
-	 *
-	 * See {@link ConfirmDialog} for details on the mode options.
-	 *
-	 * @since 7.5.0
-	 */
-	public static int showConfirmDialog(final Window owner, final String key, final int mode, final Object... keyArguments) {
+    /**
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.confirm.-key-.icon
+     * <p>
+     * See {@link ConfirmDialog} for details on the mode options.
+     *
+     * @param owner        the owner
+     * @param key          the key
+     * @param mode         the mode
+     * @param keyArguments the key arguments
+     * @return the int
+     * @since 7.5.0
+     */
+    public static int showConfirmDialog(final Window owner, final String key, final int mode, final Object... keyArguments) {
 		return invokeAndWaitWithResult(new ResultRunnable<Integer>() {
 
 			@Override
@@ -873,38 +1033,54 @@ public class SwingTools {
 		});
 	}
 
-	/**
-	 * This method will present a dialog to enter a text. This text will be returned if the user
-	 * confirmed the edit. Otherwise {@code null} is returned. The key will be used for the
-	 * properties gui.dialog.input.-key-.title, gui.dialog.input.-key-.message and
-	 * gui.dialog.input.-key-.icon
-	 */
-	public static String showInputDialog(final String key, final String text, final Object... keyArguments) {
+    /**
+     * This method will present a dialog to enter a text. This text will be returned if the user
+     * confirmed the edit. Otherwise {@code null} is returned. The key will be used for the
+     * properties gui.dialog.input.-key-.title, gui.dialog.input.-key-.message and
+     * gui.dialog.input.-key-.icon
+     *
+     * @param key          the key
+     * @param text         the text
+     * @param keyArguments the key arguments
+     * @return the string
+     */
+    public static String showInputDialog(final String key, final String text, final Object... keyArguments) {
 		return showInputDialog(ApplicationFrame.getApplicationFrame(), key, text, keyArguments);
 	}
 
-	/**
-	 * This method will present a dialog to enter a text. This text will be returned if the user
-	 * confirmed the edit. Otherwise {@code null} is returned. The key will be used for the
-	 * properties gui.dialog.input.-key-.title, gui.dialog.input.-key-.message and
-	 * gui.dialog.input.-key-.icon
-	 *
-	 * @since 7.5.0
-	 */
-	public static String showInputDialog(final Window owner, final String key, final String text,
+    /**
+     * This method will present a dialog to enter a text. This text will be returned if the user
+     * confirmed the edit. Otherwise {@code null} is returned. The key will be used for the
+     * properties gui.dialog.input.-key-.title, gui.dialog.input.-key-.message and
+     * gui.dialog.input.-key-.icon
+     *
+     * @param owner        the owner
+     * @param key          the key
+     * @param text         the text
+     * @param keyArguments the key arguments
+     * @return the string
+     * @since 7.5.0
+     */
+    public static String showInputDialog(final Window owner, final String key, final String text,
 			final Object... keyArguments) {
 		return showInputDialog(owner, key, text, null, keyArguments);
 	}
 
-	/**
-	 * This method will present a dialog to enter a text. This text will be returned if the user
-	 * confirmed the edit and the validator does not report an error. Otherwise {@code null} is
-	 * returned. The key will be used for the properties gui.dialog.input.-key-.title,
-	 * gui.dialog.input.-key-.message and gui.dialog.input.-key-.icon
-	 *
-	 * @since 7.0.0
-	 */
-	public static String showInputDialog(final Window owner, final String key, final String text,
+    /**
+     * This method will present a dialog to enter a text. This text will be returned if the user
+     * confirmed the edit and the validator does not report an error. Otherwise {@code null} is
+     * returned. The key will be used for the properties gui.dialog.input.-key-.title,
+     * gui.dialog.input.-key-.message and gui.dialog.input.-key-.icon
+     *
+     * @param owner          the owner
+     * @param key            the key
+     * @param text           the text
+     * @param inputValidator the input validator
+     * @param keyArguments   the key arguments
+     * @return the string
+     * @since 7.0.0
+     */
+    public static String showInputDialog(final Window owner, final String key, final String text,
 			final InputValidator<String> inputValidator, final Object... keyArguments) {
 		return invokeAndWaitWithResult(new ResultRunnable<String>() {
 
@@ -921,25 +1097,35 @@ public class SwingTools {
 		});
 	}
 
-	/**
-	 * This method will present a repository entry dialog to enter a text. This text will be
-	 * returned if the user confirmed the edit. Otherwise {@code null} is returned. Prevents invalid
-	 * repository names. The key will be used for the properties gui.dialog.input.-key-.title,
-	 * gui.dialog.input.-key-.message and gui.dialog.input.-key-.icon
-	 */
-	public static String showRepositoryEntryInputDialog(final String key, final String text, final Object... keyArguments) {
+    /**
+     * This method will present a repository entry dialog to enter a text. This text will be
+     * returned if the user confirmed the edit. Otherwise {@code null} is returned. Prevents invalid
+     * repository names. The key will be used for the properties gui.dialog.input.-key-.title,
+     * gui.dialog.input.-key-.message and gui.dialog.input.-key-.icon
+     *
+     * @param key          the key
+     * @param text         the text
+     * @param keyArguments the key arguments
+     * @return the string
+     */
+    public static String showRepositoryEntryInputDialog(final String key, final String text, final Object... keyArguments) {
 		return showRepositoryEntryInputDialog(ApplicationFrame.getApplicationFrame(), key, text, keyArguments);
 	}
 
-	/**
-	 * This method will present a repository entry dialog to enter a text. This text will be
-	 * returned if the user confirmed the edit. Otherwise {@code null} is returned. Prevents invalid
-	 * repository names. The key will be used for the properties gui.dialog.input.-key-.title,
-	 * gui.dialog.input.-key-.message and gui.dialog.input.-key-.icon
-	 *
-	 * @since 7.5.0
-	 */
-	public static String showRepositoryEntryInputDialog(final Window owner, final String key, final String text,
+    /**
+     * This method will present a repository entry dialog to enter a text. This text will be
+     * returned if the user confirmed the edit. Otherwise {@code null} is returned. Prevents invalid
+     * repository names. The key will be used for the properties gui.dialog.input.-key-.title,
+     * gui.dialog.input.-key-.message and gui.dialog.input.-key-.icon
+     *
+     * @param owner        the owner
+     * @param key          the key
+     * @param text         the text
+     * @param keyArguments the key arguments
+     * @return the string
+     * @since 7.5.0
+     */
+    public static String showRepositoryEntryInputDialog(final Window owner, final String key, final String text,
 			final Object... keyArguments) {
 		return invokeAndWaitWithResult(new ResultRunnable<String>() {
 
@@ -956,67 +1142,106 @@ public class SwingTools {
 		});
 	}
 
-	/**
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.input.-key-.icon
-	 */
-	public static <T> T showInputDialog(final String key, final T[] selectionValues, final T initialSelectionValue,
+    /**
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.input.-key-.icon
+     *
+     * @param <T>                   the type parameter
+     * @param key                   the key
+     * @param selectionValues       the selection values
+     * @param initialSelectionValue the initial selection value
+     * @param keyArguments          the key arguments
+     * @return the t
+     */
+    public static <T> T showInputDialog(final String key, final T[] selectionValues, final T initialSelectionValue,
 			final Object... keyArguments) {
 		return showInputDialog(ApplicationFrame.getApplicationFrame(), key, selectionValues, initialSelectionValue,
 				keyArguments);
 	}
 
-	/**
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.input.-key-.icon
-	 *
-	 * @since 7.5.0
-	 */
-	public static <T> T showInputDialog(final Window owner, final String key, final T[] selectionValues,
+    /**
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.input.-key-.icon
+     *
+     * @param <T>                   the type parameter
+     * @param owner                 the owner
+     * @param key                   the key
+     * @param selectionValues       the selection values
+     * @param initialSelectionValue the initial selection value
+     * @param keyArguments          the key arguments
+     * @return the t
+     * @since 7.5.0
+     */
+    public static <T> T showInputDialog(final Window owner, final String key, final T[] selectionValues,
 			final T initialSelectionValue, final Object... keyArguments) {
 		return showInputDialog(owner, key, false, Arrays.asList(selectionValues), initialSelectionValue, null, keyArguments);
 	}
 
-	/**
-	 * This will open a simple input dialog, where a comboBox presents the given values. The
-	 * Combobox might be editable depending on parameter setting.
-	 *
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.input.-key-.icon
-	 */
-	public static <T> T showInputDialog(final String key, final boolean editable, final T[] selectionValues,
+    /**
+     * This will open a simple input dialog, where a comboBox presents the given values. The
+     * Combobox might be editable depending on parameter setting.
+     * <p>
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.input.-key-.icon
+     *
+     * @param <T>                   the type parameter
+     * @param key                   the key
+     * @param editable              the editable
+     * @param selectionValues       the selection values
+     * @param initialSelectionValue the initial selection value
+     * @param keyArguments          the key arguments
+     * @return the t
+     */
+    public static <T> T showInputDialog(final String key, final boolean editable, final T[] selectionValues,
 			final T initialSelectionValue, final Object... keyArguments) {
 		return showInputDialog(ApplicationFrame.getApplicationFrame(), key, editable, selectionValues, initialSelectionValue,
 				null, keyArguments);
 	}
 
-	/**
-	 * This will open a simple input dialog, where a comboBox presents the given values. The
-	 * Combobox might be editable depending on parameter setting.
-	 *
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.input.-key-.icon
-	 *
-	 * @since 7.5.0
-	 */
-	public static <T> T showInputDialog(final Window owner, final String key, final boolean editable,
+    /**
+     * This will open a simple input dialog, where a comboBox presents the given values. The
+     * Combobox might be editable depending on parameter setting.
+     * <p>
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.input.-key-.icon
+     *
+     * @param <T>                   the type parameter
+     * @param owner                 the owner
+     * @param key                   the key
+     * @param editable              the editable
+     * @param selectionValues       the selection values
+     * @param initialSelectionValue the initial selection value
+     * @param keyArguments          the key arguments
+     * @return the t
+     * @since 7.5.0
+     */
+    public static <T> T showInputDialog(final Window owner, final String key, final boolean editable,
 			final T[] selectionValues, final T initialSelectionValue, final Object... keyArguments) {
 		return showInputDialog(owner, key, editable, Arrays.asList(selectionValues), initialSelectionValue, null,
 				keyArguments);
 	}
 
-	/**
-	 * This will open a simple input dialog, where a comboBox presents the given values. The
-	 * Combobox might be editable depending on parameter setting. The selection will be returned if
-	 * the user confirmed the dialog and the validator does not report an error. Otherwise
-	 * {@code null} is returned.
-	 *
-	 * The key will be used for the properties gui.dialog.-key-.title and
-	 * gui.dialog.input.-key-.icon
-	 *
-	 * @since 7.0.0
-	 */
-	public static <T> T showInputDialog(final Window owner, final String key, final boolean editable,
+    /**
+     * This will open a simple input dialog, where a comboBox presents the given values. The
+     * Combobox might be editable depending on parameter setting. The selection will be returned if
+     * the user confirmed the dialog and the validator does not report an error. Otherwise
+     * {@code null} is returned.
+     * <p>
+     * The key will be used for the properties gui.dialog.-key-.title and
+     * gui.dialog.input.-key-.icon
+     *
+     * @param <T>                   the type parameter
+     * @param owner                 the owner
+     * @param key                   the key
+     * @param editable              the editable
+     * @param selectionValues       the selection values
+     * @param initialSelectionValue the initial selection value
+     * @param inputValidator        the input validator
+     * @param keyArguments          the key arguments
+     * @return the t
+     * @since 7.0.0
+     */
+    public static <T> T showInputDialog(final Window owner, final String key, final boolean editable,
 			final Collection<T> selectionValues, final T initialSelectionValue, final InputValidator<T> inputValidator,
 			final Object... keyArguments) {
 		return invokeAndWaitWithResult(new ResultRunnable<T>() {
@@ -1035,32 +1260,25 @@ public class SwingTools {
 		});
 	}
 
-	/**
-	 * Shows a very simple error message without any Java exception hints.
-	 *
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 */
-	public static void showVerySimpleErrorMessage(final String key, final Object... arguments) {
+    /**
+     * Shows a very simple error message without any Java exception hints.
+     *
+     * @param key       the I18n-key which will be used to display the internationalized message
+     * @param arguments additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     */
+    public static void showVerySimpleErrorMessage(final String key, final Object... arguments) {
 		showVerySimpleErrorMessage(ApplicationFrame.getApplicationFrame(), key, arguments);
 	}
 
-	/**
-	 * Shows a very simple error message without any Java exception hints.
-	 *
-	 * @param owner
-	 *            the owner of the opened dialog
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 * @since 7.5.0
-	 */
-	public static void showVerySimpleErrorMessage(final Window owner, final String key, final Object... arguments) {
+    /**
+     * Shows a very simple error message without any Java exception hints.
+     *
+     * @param owner     the owner of the opened dialog
+     * @param key       the I18n-key which will be used to display the internationalized message
+     * @param arguments additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     * @since 7.5.0
+     */
+    public static void showVerySimpleErrorMessage(final Window owner, final String key, final Object... arguments) {
 		invokeLater(new Runnable() {
 
 			@Override
@@ -1073,14 +1291,25 @@ public class SwingTools {
 		});
 	}
 
-	public static void showVerySimpleErrorMessageAndWait(final String key, final Object... arguments) {
+    /**
+     * Show very simple error message and wait.
+     *
+     * @param key       the key
+     * @param arguments the arguments
+     */
+    public static void showVerySimpleErrorMessageAndWait(final String key, final Object... arguments) {
 		showVerySimpleErrorMessageAndWait(ApplicationFrame.getApplicationFrame(), key, arguments);
 	}
 
-	/**
-	 * @since 7.5.0
-	 */
-	public static void showVerySimpleErrorMessageAndWait(final Window owner, final String key, final Object... arguments) {
+    /**
+     * Show very simple error message and wait.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param arguments the arguments
+     * @since 7.5.0
+     */
+    public static void showVerySimpleErrorMessageAndWait(final Window owner, final String key, final Object... arguments) {
 		invokeAndWait(new Runnable() {
 
 			@Override
@@ -1092,85 +1321,63 @@ public class SwingTools {
 		});
 	}
 
-	/**
-	 * This is the normal method which could be used by GUI classes for errors caused by some
-	 * exception (e.g. IO issues). Of course these error message methods should never be invoked by
-	 * operators or similar.
-	 *
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param e
-	 *            the exception associated to this message
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 */
-	public static void showSimpleErrorMessage(final String key, final Throwable e, final Object... arguments) {
+    /**
+     * This is the normal method which could be used by GUI classes for errors caused by some
+     * exception (e.g. IO issues). Of course these error message methods should never be invoked by
+     * operators or similar.
+     *
+     * @param key       the I18n-key which will be used to display the internationalized message
+     * @param e         the exception associated to this message
+     * @param arguments additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     */
+    public static void showSimpleErrorMessage(final String key, final Throwable e, final Object... arguments) {
 		showSimpleErrorMessage(key, e, true, arguments);
 	}
 
-	/**
-	 * This is the normal method which could be used by GUI classes for errors caused by some
-	 * exception (e.g. IO issues). Of course these error message methods should never be invoked by
-	 * operators or similar.
-	 *
-	 * @param owner
-	 *            the owner of the opened dialog
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param e
-	 *            the exception associated to this message
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 * @since 7.5.0
-	 */
-	public static void showSimpleErrorMessage(final Window owner, final String key, final Throwable e,
+    /**
+     * This is the normal method which could be used by GUI classes for errors caused by some
+     * exception (e.g. IO issues). Of course these error message methods should never be invoked by
+     * operators or similar.
+     *
+     * @param owner     the owner of the opened dialog
+     * @param key       the I18n-key which will be used to display the internationalized message
+     * @param e         the exception associated to this message
+     * @param arguments additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     * @since 7.5.0
+     */
+    public static void showSimpleErrorMessage(final Window owner, final String key, final Throwable e,
 			final Object... arguments) {
 		showSimpleErrorMessage(owner, key, e, true, arguments);
 	}
 
-	/**
-	 * This is the normal method which could be used by GUI classes for errors caused by some
-	 * exception (e.g. IO issues). Of course these error message methods should never be invoked by
-	 * operators or similar.
-	 *
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param e
-	 *            the exception associated to this message
-	 * @param displayExceptionMessage
-	 *            indicates if the exception message will be displayed in the dialog or just in the
-	 *            detailed panel
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 */
-	public static void showSimpleErrorMessage(final String key, final Throwable e, final boolean displayExceptionMessage,
+    /**
+     * This is the normal method which could be used by GUI classes for errors caused by some
+     * exception (e.g. IO issues). Of course these error message methods should never be invoked by
+     * operators or similar.
+     *
+     * @param key                     the I18n-key which will be used to display the internationalized message
+     * @param e                       the exception associated to this message
+     * @param displayExceptionMessage indicates if the exception message will be displayed in the dialog or just in the            detailed panel
+     * @param arguments               additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     */
+    public static void showSimpleErrorMessage(final String key, final Throwable e, final boolean displayExceptionMessage,
 			final Object... arguments) {
 		showSimpleErrorMessage(ApplicationFrame.getApplicationFrame(), key, e, displayExceptionMessage, arguments);
 	}
 
-	/**
-	 * This is the normal method which could be used by GUI classes for errors caused by some
-	 * exception (e.g. IO issues). Of course these error message methods should never be invoked by
-	 * operators or similar.
-	 *
-	 * @param owner
-	 *            the owner of the opened dialog
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param e
-	 *            the exception associated to this message
-	 * @param displayExceptionMessage
-	 *            indicates if the exception message will be displayed in the dialog or just in the
-	 *            detailed panel
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 * @since 7.5.0
-	 */
-	public static void showSimpleErrorMessage(final Window owner, final String key, final Throwable e,
+    /**
+     * This is the normal method which could be used by GUI classes for errors caused by some
+     * exception (e.g. IO issues). Of course these error message methods should never be invoked by
+     * operators or similar.
+     *
+     * @param owner                   the owner of the opened dialog
+     * @param key                     the I18n-key which will be used to display the internationalized message
+     * @param e                       the exception associated to this message
+     * @param displayExceptionMessage indicates if the exception message will be displayed in the dialog or just in the            detailed panel
+     * @param arguments               additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     * @since 7.5.0
+     */
+    public static void showSimpleErrorMessage(final Window owner, final String key, final Throwable e,
 			final boolean displayExceptionMessage, final Object... arguments) {
 		ActionStatisticsCollector.getInstance().log(ActionStatisticsCollector.TYPE_ERROR, key,
 				e != null ? e.getClass().getName() : null);
@@ -1189,47 +1396,32 @@ public class SwingTools {
 		});
 	}
 
-	/**
-	 * This is the normal method which could be used by GUI classes for errors caused by some
-	 * exception (e.g. IO issues). Of course these error message methods should never be invoked by
-	 * operators or similar. The key is constructed as gui.dialog.error.-key- and uses .title and
-	 * .icon properties
-	 *
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param errorMessage
-	 *            the error message associated to this message
-	 * @param displayExceptionMessage
-	 *            indicates if the exception message will be displayed in the dialog or just in the
-	 *            detailed panel
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 */
-	public static void showSimpleErrorMessage(final String key, final String errorMessage, final Object... arguments) {
+    /**
+     * This is the normal method which could be used by GUI classes for errors caused by some
+     * exception (e.g. IO issues). Of course these error message methods should never be invoked by
+     * operators or similar. The key is constructed as gui.dialog.error.-key- and uses .title and
+     * .icon properties
+     *
+     * @param key          the I18n-key which will be used to display the internationalized message
+     * @param errorMessage the error message associated to this message
+     * @param arguments    additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     */
+    public static void showSimpleErrorMessage(final String key, final String errorMessage, final Object... arguments) {
 		showSimpleErrorMessage(ApplicationFrame.getApplicationFrame(), key, errorMessage, arguments);
 	}
 
-	/**
-	 * This is the normal method which could be used by GUI classes for errors caused by some
-	 * exception (e.g. IO issues). Of course these error message methods should never be invoked by
-	 * operators or similar. The key is constructed as gui.dialog.error.-key- and uses .title and
-	 * .icon properties
-	 *
-	 * @param owner
-	 *            the owner of the opened dialog
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param errorMessage
-	 *            the error message associated to this message
-	 * @param displayExceptionMessage
-	 *            indicates if the exception message will be displayed in the dialog or just in the
-	 *            detailed panel
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 */
-	public static void showSimpleErrorMessage(final Window owner, final String key, final String errorMessage,
+    /**
+     * This is the normal method which could be used by GUI classes for errors caused by some
+     * exception (e.g. IO issues). Of course these error message methods should never be invoked by
+     * operators or similar. The key is constructed as gui.dialog.error.-key- and uses .title and
+     * .icon properties
+     *
+     * @param owner        the owner of the opened dialog
+     * @param key          the I18n-key which will be used to display the internationalized message
+     * @param errorMessage the error message associated to this message
+     * @param arguments    additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     */
+    public static void showSimpleErrorMessage(final Window owner, final String key, final String errorMessage,
 			final Object... arguments) {
 		invokeLater(new Runnable() {
 
@@ -1246,45 +1438,32 @@ public class SwingTools {
 		}
 	}
 
-	/**
-	 * Shows the final error message dialog. This dialog also allows to send a bug report if the
-	 * error was not (definitely) a user error.
-	 *
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param e
-	 *            the exception associated to this message
-	 * @param displayExceptionMessage
-	 *            indicates if the exception message will be displayed in the dialog or just in the
-	 *            detailed panel
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 */
-	public static void showFinalErrorMessage(final String key, final Throwable e, final boolean displayExceptionMessage,
+    /**
+     * Shows the final error message dialog. This dialog also allows to send a bug report if the
+     * error was not (definitely) a user error.
+     *
+     * @param key                     the I18n-key which will be used to display the internationalized message
+     * @param e                       the exception associated to this message
+     * @param displayExceptionMessage indicates if the exception message will be displayed in the dialog or just in the            detailed panel
+     * @param objects                 the objects
+     */
+    public static void showFinalErrorMessage(final String key, final Throwable e, final boolean displayExceptionMessage,
 			final Object... objects) {
 		showFinalErrorMessage(ApplicationFrame.getApplicationFrame(), key, e, displayExceptionMessage, objects);
 	}
 
-	/**
-	 * Shows the final error message dialog. This dialog also allows to send a bug report if the
-	 * error was not (definitely) a user error.
-	 *
-	 * @param owner
-	 *            the owner of the opened dialog
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param e
-	 *            the exception associated to this message
-	 * @param displayExceptionMessage
-	 *            indicates if the exception message will be displayed in the dialog or just in the
-	 *            detailed panel
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 * @since 7.5.0
-	 */
-	public static void showFinalErrorMessage(final Window owner, final String key, final Throwable e,
+    /**
+     * Shows the final error message dialog. This dialog also allows to send a bug report if the
+     * error was not (definitely) a user error.
+     *
+     * @param owner                   the owner of the opened dialog
+     * @param key                     the I18n-key which will be used to display the internationalized message
+     * @param e                       the exception associated to this message
+     * @param displayExceptionMessage indicates if the exception message will be displayed in the dialog or just in the            detailed panel
+     * @param objects                 the objects
+     * @since 7.5.0
+     */
+    public static void showFinalErrorMessage(final Window owner, final String key, final Throwable e,
 			final boolean displayExceptionMessage, final Object... objects) {
 		// if debug modus is enabled, print throwable into logger
 		if (ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_GENERAL_DEBUGMODE).equals("true")) {
@@ -1300,87 +1479,171 @@ public class SwingTools {
 		});
 	}
 
-	/**
-	 * Shows the final error message dialog. This dialog also allows to send a bug report if the
-	 * error was not (definitely) a user error.
-	 *
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param e
-	 *            the exception associated to this message
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 */
-	public static void showFinalErrorMessage(final String key, final Throwable e, final Object... objects) {
+    /**
+     * Shows the final error message dialog. This dialog also allows to send a bug report if the
+     * error was not (definitely) a user error.
+     *
+     * @param key     the I18n-key which will be used to display the internationalized message
+     * @param e       the exception associated to this message
+     * @param objects the objects
+     */
+    public static void showFinalErrorMessage(final String key, final Throwable e, final Object... objects) {
 		showFinalErrorMessage(key, e, false, objects);
 	}
 
-	/**
-	 * Opens a file chooser with a reasonable start directory. If the extension is null, no file
-	 * filters will be used.
-	 */
-	public static File chooseFile(final Component parent, final File file, final boolean open, final String extension,
+    /**
+     * Opens a file chooser with a reasonable start directory. If the extension is null, no file
+     * filters will be used.
+     *
+     * @param parent               the parent
+     * @param file                 the file
+     * @param open                 the open
+     * @param extension            the extension
+     * @param extensionDescription the extension description
+     * @return the file
+     */
+    public static File chooseFile(final Component parent, final File file, final boolean open, final String extension,
 			final String extensionDescription) {
 		return chooseFile(parent, null, file, open, extension, extensionDescription);
 	}
 
-	public static File chooseFile(final Component parent, final String i18nKey, final File file, final boolean open,
+    /**
+     * Choose file file.
+     *
+     * @param parent               the parent
+     * @param i18nKey              the 18 n key
+     * @param file                 the file
+     * @param open                 the open
+     * @param extension            the extension
+     * @param extensionDescription the extension description
+     * @return the file
+     */
+    public static File chooseFile(final Component parent, final String i18nKey, final File file, final boolean open,
 			final String extension, final String extensionDescription) {
 		return chooseFile(parent, i18nKey, file, open, false, extension, extensionDescription);
 	}
 
-	/**
-	 * Opens a file chooser with a reasonable start directory. If the extension is null, no file
-	 * filters will be used. This method allows choosing directories.
-	 */
-	public static File chooseFile(final Component parent, final File file, final boolean open, final boolean onlyDirs,
+    /**
+     * Opens a file chooser with a reasonable start directory. If the extension is null, no file
+     * filters will be used. This method allows choosing directories.
+     *
+     * @param parent               the parent
+     * @param file                 the file
+     * @param open                 the open
+     * @param onlyDirs             the only dirs
+     * @param extension            the extension
+     * @param extensionDescription the extension description
+     * @return the file
+     */
+    public static File chooseFile(final Component parent, final File file, final boolean open, final boolean onlyDirs,
 			final String extension, final String extensionDescription) {
 		return chooseFile(parent, null, file, open, onlyDirs, extension, extensionDescription);
 	}
 
-	public static File chooseFile(final Component parent, final String i18nKey, final File file, final boolean open,
+    /**
+     * Choose file file.
+     *
+     * @param parent               the parent
+     * @param i18nKey              the 18 n key
+     * @param file                 the file
+     * @param open                 the open
+     * @param onlyDirs             the only dirs
+     * @param extension            the extension
+     * @param extensionDescription the extension description
+     * @return the file
+     */
+    public static File chooseFile(final Component parent, final String i18nKey, final File file, final boolean open,
 			final boolean onlyDirs, final String extension, final String extensionDescription) {
 		return chooseFile(parent, i18nKey, file, open, onlyDirs, extension == null ? null : new String[] { extension },
 				extensionDescription == null ? null : new String[] { extensionDescription });
 	}
 
-	public static File chooseFile(final Component parent, final String i18nKey, final File file, final boolean open,
+    /**
+     * Choose file file.
+     *
+     * @param parent               the parent
+     * @param i18nKey              the 18 n key
+     * @param file                 the file
+     * @param open                 the open
+     * @param onlyDirs             the only dirs
+     * @param extension            the extension
+     * @param extensionDescription the extension description
+     * @param acceptAllFiles       the accept all files
+     * @return the file
+     */
+    public static File chooseFile(final Component parent, final String i18nKey, final File file, final boolean open,
 			final boolean onlyDirs, final String extension, final String extensionDescription,
 			final boolean acceptAllFiles) {
 		return chooseFile(parent, i18nKey, file, open, onlyDirs, extension == null ? null : new String[] { extension },
 				extensionDescription == null ? null : new String[] { extensionDescription }, acceptAllFiles);
 	}
 
-	/** Returns the user selected file. */
-	public static File chooseFile(final Component parent, final File file, final boolean open, final boolean onlyDirs,
+    /**
+     * Returns the user selected file.  @param parent the parent
+     *
+     * @param parent                the parent
+     * @param file                  the file
+     * @param open                  the open
+     * @param onlyDirs              the only dirs
+     * @param extensions            the extensions
+     * @param extensionDescriptions the extension descriptions
+     * @return the file
+     */
+    public static File chooseFile(final Component parent, final File file, final boolean open, final boolean onlyDirs,
 			final String[] extensions, final String[] extensionDescriptions) {
 		return chooseFile(parent, null, file, open, onlyDirs, extensions, extensionDescriptions);
 	}
 
-	/**
-	 * @param addDefaultAllFileExtensionFilter
-	 *            if set to <code>true</code> and more than one file extension is provided a new
-	 *            filter that contains all file extension will be added as default filter. This
-	 *            makes sense for file reading operations that can read files with different file
-	 *            extensions. For file writing operations it is however not recommended as the new
-	 *            file filter will not add the correct file ending when entering the path of a file
-	 *            that does not exist.
-	 * @return the user selected file.
-	 */
-	public static File chooseFile(final Component parent, final File file, final boolean open, final boolean onlyDirs,
+    /**
+     * Choose file file.
+     *
+     * @param parent                           the parent
+     * @param file                             the file
+     * @param open                             the open
+     * @param onlyDirs                         the only dirs
+     * @param extensions                       the extensions
+     * @param extensionDescriptions            the extension descriptions
+     * @param addDefaultAllFileExtensionFilter if set to <code>true</code> and more than one file extension is provided a new            filter that contains all file extension will be added as default filter. This            makes sense for file reading operations that can read files with different file            extensions. For file writing operations it is however not recommended as the new            file filter will not add the correct file ending when entering the path of a file            that does not exist.
+     * @return the user selected file.
+     */
+    public static File chooseFile(final Component parent, final File file, final boolean open, final boolean onlyDirs,
 			final String[] extensions, final String[] extensionDescriptions,
 			final boolean addDefaultAllFileExtensionFilter) {
 		return chooseFile(parent, null, file, open, onlyDirs, addDefaultAllFileExtensionFilter, extensions,
 				extensionDescriptions);
 	}
 
-	public static File chooseFile(final Component parent, final String i18nKey, final File file, final boolean open,
+    /**
+     * Choose file file.
+     *
+     * @param parent                the parent
+     * @param i18nKey               the 18 n key
+     * @param file                  the file
+     * @param open                  the open
+     * @param onlyDirs              the only dirs
+     * @param extensions            the extensions
+     * @param extensionDescriptions the extension descriptions
+     * @return the file
+     */
+    public static File chooseFile(final Component parent, final String i18nKey, final File file, final boolean open,
 			final boolean onlyDirs, final String[] extensions, final String[] extensionDescriptions) {
 		return chooseFile(parent, i18nKey, file, open, onlyDirs, false, extensions, extensionDescriptions);
 	}
 
-	public static File chooseFile(final Component parent, final String i18nKey, final File file, final boolean open,
+    /**
+     * Choose file file.
+     *
+     * @param parent                           the parent
+     * @param i18nKey                          the 18 n key
+     * @param file                             the file
+     * @param open                             the open
+     * @param onlyDirs                         the only dirs
+     * @param addDefaultAllFileExtensionFilter the add default all file extension filter
+     * @param extensions                       the extensions
+     * @param extensionDescriptions            the extension descriptions
+     * @return the file
+     */
+    public static File chooseFile(final Component parent, final String i18nKey, final File file, final boolean open,
 			final boolean onlyDirs, boolean addDefaultAllFileExtensionFilter, final String[] extensions,
 			final String[] extensionDescriptions) {
 		List<FileFilter> fileFilters = new LinkedList<>();
@@ -1419,7 +1682,20 @@ public class SwingTools {
 		return builder.toString();
 	}
 
-	public static File chooseFile(final Component parent, final String i18nKey, final File file, final boolean open,
+    /**
+     * Choose file file.
+     *
+     * @param parent                the parent
+     * @param i18nKey               the 18 n key
+     * @param file                  the file
+     * @param open                  the open
+     * @param onlyDirs              the only dirs
+     * @param extensions            the extensions
+     * @param extensionDescriptions the extension descriptions
+     * @param acceptAllFiles        the accept all files
+     * @return the file
+     */
+    public static File chooseFile(final Component parent, final String i18nKey, final File file, final boolean open,
 			final boolean onlyDirs, final String[] extensions, final String[] extensionDescriptions,
 			final boolean acceptAllFiles) {
 		FileFilter[] filters = null;
@@ -1479,14 +1755,13 @@ public class SwingTools {
 		}
 	}
 
-	/**
-	 * Stores the directory of the selectedFile under the bookmark "--- Last Directory"
-	 *
-	 * @param selectedFile
-	 *            the file defining the last selected directory
-	 * @since 7.0
-	 */
-	public static void storeLastDirectory(Path selectedFile) {
+    /**
+     * Stores the directory of the selectedFile under the bookmark "--- Last Directory"
+     *
+     * @param selectedFile the file defining the last selected directory
+     * @since 7.0
+     */
+    public static void storeLastDirectory(Path selectedFile) {
 		if (selectedFile != null) {
 			Path parentFile = selectedFile.getParent();
 			if (parentFile != null) {
@@ -1508,27 +1783,26 @@ public class SwingTools {
 		}
 	}
 
-	/**
-	 * Creates file chooser with a reasonable start directory. You may use the following code
-	 * snippet in order to retrieve the file:
-	 *
-	 * <pre>
-	 * 	if (fileChooser.showOpenDialog(parent) == JFileChooser.APPROVE_OPTION)
-	 * 	    File selectedFile = fileChooser.getSelectedFile();
-	 * </pre>
-	 *
-	 * Usually, the method {@link #chooseFile(Component, File, boolean, boolean, FileFilter[])} or
-	 * one of the convenience wrapper methods can be used to do this. This method is only useful if
-	 * one is interested, e.g., in the selected file filter.
-	 *
-	 * @param file
-	 *            The initially selected value of the file chooser dialog
-	 * @param onlyDirs
-	 *            Only allow directories to be selected
-	 * @param fileFilters
-	 *            List of FileFilters to use
-	 */
-	public static JFileChooser createFileChooser(final String i18nKey, final File file, final boolean onlyDirs,
+    /**
+     * Creates file chooser with a reasonable start directory. You may use the following code
+     * snippet in order to retrieve the file:
+     * <p>
+     * <pre>
+     * 	if (fileChooser.showOpenDialog(parent) == JFileChooser.APPROVE_OPTION)
+     * 	    File selectedFile = fileChooser.getSelectedFile();
+     * </pre>
+     * <p>
+     * Usually, the method {@link #chooseFile(Component, File, boolean, boolean, FileFilter[])} or
+     * one of the convenience wrapper methods can be used to do this. This method is only useful if
+     * one is interested, e.g., in the selected file filter.
+     *
+     * @param i18nKey     the 18 n key
+     * @param file        The initially selected value of the file chooser dialog
+     * @param onlyDirs    Only allow directories to be selected
+     * @param fileFilters List of FileFilters to use
+     * @return the j file chooser
+     */
+    public static JFileChooser createFileChooser(final String i18nKey, final File file, final boolean onlyDirs,
 			final FileFilter[] fileFilters) {
 		File directory = null;
 
@@ -1563,11 +1837,15 @@ public class SwingTools {
 		return fileChooser;
 	}
 
-	/**
-	 * Creates a panel with title and text. The panel has a border layout and the text is placed
-	 * into the NORTH section.
-	 */
-	public static JPanel createTextPanel(final String title, final String text) {
+    /**
+     * Creates a panel with title and text. The panel has a border layout and the text is placed
+     * into the NORTH section.
+     *
+     * @param title the title
+     * @param text  the text
+     * @return the j panel
+     */
+    public static JPanel createTextPanel(final String title, final String text) {
 		JPanel panel = new JPanel(new java.awt.BorderLayout());
 		JLabel label = new JLabel("<html><h3>" + title + "</h3>" + (text != null ? "<p>" + text + "</p>" : "") + "</html>");
 		label.setBorder(BorderFactory.createEmptyBorder(11, 11, 11, 11));
@@ -1593,21 +1871,19 @@ public class SwingTools {
 	// return result;
 	// }
 
-	/**
-	 * Returns enlarged string, with a suffix and a prefix of blanks to reach the given minimal text
-	 * length
-	 *
-	 * Example:
-	 *
-	 * enlargeString("1234", 8) -> " 1234 "
-	 *
-	 *
-	 * @param string
-	 *            The string to enlarge
-	 * @param minimalTextLength
-	 *            Minimal length of the text
-	 */
-	public static String enlargeString(String string, int minimalTextLength) {
+    /**
+     * Returns enlarged string, with a suffix and a prefix of blanks to reach the given minimal text
+     * length
+     * <p>
+     * Example:
+     * <p>
+     * enlargeString("1234", 8) -> " 1234 "
+     *
+     * @param string            The string to enlarge
+     * @param minimalTextLength Minimal length of the text
+     * @return the string
+     */
+    public static String enlargeString(String string, int minimalTextLength) {
 		if (string == null || string.isEmpty()) {
 			throw new IllegalArgumentException("No string given");
 		}
@@ -1626,15 +1902,17 @@ public class SwingTools {
 		return spaces + string + spaces;
 	}
 
-	/**
-	 * Replaces the RapidMiner specific tag elements by normal HTML tags. The given text is also
-	 * embedded in an HTML and body tag with an appropriated style sheet definition.
-	 *
-	 * Currently, the only replaced tag is &lt;icon&gt;NAME&lt;/icon&gt; which will be replaced by
-	 * &lt;img src="path/to/NAME"/&gt;.
-	 *
-	 */
-	public static String text2DisplayHtml(final String text) {
+    /**
+     * Replaces the RapidMiner specific tag elements by normal HTML tags. The given text is also
+     * embedded in an HTML and body tag with an appropriated style sheet definition.
+     * <p>
+     * Currently, the only replaced tag is &lt;icon&gt;NAME&lt;/icon&gt; which will be replaced by
+     * &lt;img src="path/to/NAME"/&gt;.
+     *
+     * @param text the text
+     * @return the string
+     */
+    public static String text2DisplayHtml(final String text) {
 		String result = "<html><head><style type=text/css>body { font-family:sans-serif; font-size:12pt; }</style></head><body>"
 				+ text + "</body></html>";
 		result = text2SimpleHtml(result);
@@ -1708,36 +1986,50 @@ public class SwingTools {
 		return result.toString();
 	}
 
-	/**
-	 * Returns a color equivalent to the value of <code>value</code>. The value has to be normalized
-	 * between 0 and 1.
-	 */
-	public static Color getPointColor(final double value) {
+    /**
+     * Returns a color equivalent to the value of <code>value</code>. The value has to be normalized
+     * between 0 and 1.
+     *
+     * @param value the value
+     * @return the point color
+     */
+    public static Color getPointColor(final double value) {
 		return new Color(Color.HSBtoRGB((float) (0.68 * (1.0d - value)), 1.0f, 1.0f)); // all
 		// colors
 	}
 
-	/**
-	 * Returns a color equivalent to the value of <code>value</code>. The value will be normalized
-	 * between 0 and 1 using the parameters max and min. Which are the minimum and maximum of the
-	 * complete dataset.
-	 */
-	public static Color getPointColor(double value, final double max, final double min) {
+    /**
+     * Returns a color equivalent to the value of <code>value</code>. The value will be normalized
+     * between 0 and 1 using the parameters max and min. Which are the minimum and maximum of the
+     * complete dataset.
+     *
+     * @param value the value
+     * @param max   the max
+     * @param min   the min
+     * @return the point color
+     */
+    public static Color getPointColor(double value, final double max, final double min) {
 		value = (value - min) / (max - min);
 		return getPointColor(value);
 	}
 
-	/** Returns JEditTextArea defaults with adapted syntax color styles. */
-	public static TextAreaDefaults getTextAreaDefaults() {
+    /**
+     * Returns JEditTextArea defaults with adapted syntax color styles.  @return the text area defaults
+     *
+     * @return the text area defaults
+     */
+    public static TextAreaDefaults getTextAreaDefaults() {
 		TextAreaDefaults defaults = TextAreaDefaults.getDefaults();
 		defaults.styles = getSyntaxStyles();
 		return defaults;
 	}
 
-	/**
-	 * Returns adapted syntax color and font styles matching RapidMiner colors.
-	 */
-	public static SyntaxStyle[] getSyntaxStyles() {
+    /**
+     * Returns adapted syntax color and font styles matching RapidMiner colors.
+     *
+     * @return the syntax style [ ]
+     */
+    public static SyntaxStyle[] getSyntaxStyles() {
 		SyntaxStyle[] styles = SyntaxUtilities.getDefaultSyntaxStyles();
 		styles[Token.COMMENT1] = new SyntaxStyle(new Color(0x990033), true, false);
 		styles[Token.COMMENT2] = new SyntaxStyle(Color.black, true, false);
@@ -1752,7 +2044,13 @@ public class SwingTools {
 		return styles;
 	}
 
-	public static String toHTMLString(final Ports<? extends Port> ports) {
+    /**
+     * To html string string.
+     *
+     * @param ports the ports
+     * @return the string
+     */
+    public static String toHTMLString(final Ports<? extends Port> ports) {
 		StringBuilder b = new StringBuilder();
 		boolean first = true;
 		for (Port port : ports.getAllPorts()) {
@@ -1771,14 +2069,25 @@ public class SwingTools {
 		return b.toString();
 	}
 
-	public static void showLongMessage(final String i18nKey, final String message) {
+    /**
+     * Show long message.
+     *
+     * @param i18nKey the 18 n key
+     * @param message the message
+     */
+    public static void showLongMessage(final String i18nKey, final String message) {
 		showLongMessage(ApplicationFrame.getApplicationFrame(), i18nKey, message);
 	}
 
-	/**
-	 * @since 7.5.0
-	 */
-	public static void showLongMessage(final Window owner, final String i18nKey, final String message) {
+    /**
+     * Show long message.
+     *
+     * @param owner   the owner
+     * @param i18nKey the 18 n key
+     * @param message the message
+     * @since 7.5.0
+     */
+    public static void showLongMessage(final Window owner, final String i18nKey, final String message) {
 		invokeLater(new Runnable() {
 
 			@Override
@@ -1790,7 +2099,13 @@ public class SwingTools {
 
 	}
 
-	public static void setEnabledRecursive(final Component c, final boolean enabled) {
+    /**
+     * Sets enabled recursive.
+     *
+     * @param c       the c
+     * @param enabled the enabled
+     */
+    public static void setEnabledRecursive(final Component c, final boolean enabled) {
 		c.setEnabled(enabled);
 		if (c instanceof Container) {
 			for (Component child : ((Container) c).getComponents()) {
@@ -1799,7 +2114,13 @@ public class SwingTools {
 		}
 	}
 
-	public static void setOpaqueRecursive(final Component c, final boolean enabled) {
+    /**
+     * Sets opaque recursive.
+     *
+     * @param c       the c
+     * @param enabled the enabled
+     */
+    public static void setOpaqueRecursive(final Component c, final boolean enabled) {
 		if (c instanceof JComponent) {
 			((JComponent) c).setOpaque(enabled);
 		}
@@ -1810,7 +2131,12 @@ public class SwingTools {
 		}
 	}
 
-	public static void setProcessEditorsEnabled(final boolean enabled) {
+    /**
+     * Sets process editors enabled.
+     *
+     * @param enabled the enabled
+     */
+    public static void setProcessEditorsEnabled(final boolean enabled) {
 		MainFrame mainFrame = RapidMinerGUI.getMainFrame();
 		setEnabledRecursive(mainFrame.getProcessPanel().getComponent(), enabled);
 		setEnabledRecursive(mainFrame.getPropertyPanel().getComponent(), enabled);
@@ -1821,7 +2147,13 @@ public class SwingTools {
 		mainFrame.getActions().enableActions();
 	}
 
-	public static Color getOperatorColor(final Operator operator) {
+    /**
+     * Gets operator color.
+     *
+     * @param operator the operator
+     * @return the operator color
+     */
+    public static Color getOperatorColor(final Operator operator) {
 		OperatorDescription operatorDescription = operator.getOperatorDescription();
 		String groupKey = operatorDescription.getGroup();
 
@@ -1847,14 +2179,25 @@ public class SwingTools {
 		return GROUP_TO_COLOR_MAP.get(groupKey, operatorDescription.getProvider());
 	}
 
-	public static Color getOperatorColor(final String operatorGroup) {
+    /**
+     * Gets operator color.
+     *
+     * @param operatorGroup the operator group
+     * @return the operator color
+     */
+    public static Color getOperatorColor(final String operatorGroup) {
 		return GROUP_TO_COLOR_MAP.get(operatorGroup);
 	}
 
-	/**
-	 * This method adds the colors of the given property file to the global group colors
-	 */
-	public static void registerAdditionalGroupColors(final String groupProperties, final String pluginName,
+    /**
+     * This method adds the colors of the given property file to the global group colors
+     *
+     * @param groupProperties the group properties
+     * @param pluginName      the plugin name
+     * @param classLoader     the class loader
+     * @param provider        the provider
+     */
+    public static void registerAdditionalGroupColors(final String groupProperties, final String pluginName,
 			final ClassLoader classLoader, Plugin provider) {
 		try {
 			GROUP_TO_COLOR_MAP.parseProperties(groupProperties, "group.", ".color", classLoader, provider);
@@ -1863,17 +2206,17 @@ public class SwingTools {
 		}
 	}
 
-	/**
-	 * Returns <code>true</code> if the given {@link MouseEvent} only exited to child components of
-	 * the specified parent {@link Component}; <code>false</code> otherwise. This fixes the problem
-	 * that Swing triggers MouseExited events when moving the mouse for example over a button inside
-	 * the panel on which the mouse listener is.
-	 *
-	 * @param parent
-	 * @param e
-	 * @return
-	 */
-	public static boolean isMouseEventExitedToChildComponents(final Component parent, final MouseEvent e) {
+    /**
+     * Returns <code>true</code> if the given {@link MouseEvent} only exited to child components of
+     * the specified parent {@link Component}; <code>false</code> otherwise. This fixes the problem
+     * that Swing triggers MouseExited events when moving the mouse for example over a button inside
+     * the panel on which the mouse listener is.
+     *
+     * @param parent the parent
+     * @param e      the e
+     * @return boolean boolean
+     */
+    public static boolean isMouseEventExitedToChildComponents(final Component parent, final MouseEvent e) {
 		if (parent == null) {
 			throw new IllegalArgumentException("parent must not be null!");
 		}
@@ -1881,14 +2224,14 @@ public class SwingTools {
 		return SwingUtilities.getDeepestComponentAt(parent, e.getX(), e.getY()) != null;
 	}
 
-	/**
-	 * Darkens the given {@link Color} by the specified factor.
-	 *
-	 * @param color
-	 * @param factor
-	 * @return
-	 */
-	public static Color darkenColor(final Color color, final float factor) {
+    /**
+     * Darkens the given {@link Color} by the specified factor.
+     *
+     * @param color  the color
+     * @param factor the factor
+     * @return color color
+     */
+    public static Color darkenColor(final Color color, final float factor) {
 		// convert to H(ue) S(aturation) B(rightness), which is designed for
 		// this kind of operation
 		float hsb[] = Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);
@@ -1896,17 +2239,15 @@ public class SwingTools {
 		return Color.getHSBColor(hsb[0], hsb[1], factor * hsb[2]);
 	}
 
-	/**
-	 * Changes the saturation of the given {@link Color} by multiplying the saturation with the
-	 * specified factor.
-	 *
-	 * @param color
-	 *            the color to change
-	 * @param factor
-	 *            the factor to multiply the current saturation with
-	 * @return color with changed saturation
-	 */
-	public static Color saturateColor(final Color color, final float factor) {
+    /**
+     * Changes the saturation of the given {@link Color} by multiplying the saturation with the
+     * specified factor.
+     *
+     * @param color  the color to change
+     * @param factor the factor to multiply the current saturation with
+     * @return color with changed saturation
+     */
+    public static Color saturateColor(final Color color, final float factor) {
 		// convert to H(ue) S(aturation) B(rightness), which is designed for
 		// this kind of operation
 		float hsb[] = Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);
@@ -1914,13 +2255,13 @@ public class SwingTools {
 		return Color.getHSBColor(hsb[0], factor * hsb[1], hsb[2]);
 	}
 
-	/**
-	 * Makes the given {@link Color} a bit brighter, though not as much as {@link Color#brighter()}.
-	 *
-	 * @param color
-	 * @return
-	 */
-	public static Color brightenColor(final Color color) {
+    /**
+     * Makes the given {@link Color} a bit brighter, though not as much as {@link Color#brighter()}.
+     *
+     * @param color the color
+     * @return color color
+     */
+    public static Color brightenColor(final Color color) {
 		// convert to H(ue) S(aturation) B(rightness), which is designed for
 		// this kind of operation
 		float hsb[] = Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);
@@ -1928,38 +2269,37 @@ public class SwingTools {
 		return Color.getHSBColor(hsb[0], hsb[1], 0.5f * (1f + hsb[2]));
 	}
 
-	/**
-	 * Darkens the given {@link Color} a bit, though not as much as {@link Color#darker()}.
-	 *
-	 * @param color
-	 * @return
-	 */
-	public static Color darkenColor(final Color color) {
+    /**
+     * Darkens the given {@link Color} a bit, though not as much as {@link Color#darker()}.
+     *
+     * @param color the color
+     * @return color color
+     */
+    public static Color darkenColor(final Color color) {
 		return darkenColor(color, 0.9f);
 	}
 
-	/**
-	 * Returns the hex value of this color to use in html with starting #
-	 *
-	 * @param color
-	 *            the color that should be converted to a hex string representation
-	 * @return the hex value of this color to use in html
-	 * @since 7.0
-	 */
-	public static String getColorHexValue(Color color) {
+    /**
+     * Returns the hex value of this color to use in html with starting #
+     *
+     * @param color the color that should be converted to a hex string representation
+     * @return the hex value of this color to use in html
+     * @since 7.0
+     */
+    public static String getColorHexValue(Color color) {
 		return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
 	}
 
-	/**
-	 * Paints the given overlay icon over the base icon. This can be used for example to cross out
-	 * icons. Provided the overlay icon has a transparent background, the base icon will still be
-	 * visible.
-	 *
-	 * @param baseIcon
-	 * @param overlayIcon
-	 * @return
-	 */
-	public static ImageIcon createOverlayIcon(final ImageIcon baseIcon, final ImageIcon overlayIcon) {
+    /**
+     * Paints the given overlay icon over the base icon. This can be used for example to cross out
+     * icons. Provided the overlay icon has a transparent background, the base icon will still be
+     * visible.
+     *
+     * @param baseIcon    the base icon
+     * @param overlayIcon the overlay icon
+     * @return image icon
+     */
+    public static ImageIcon createOverlayIcon(final ImageIcon baseIcon, final ImageIcon overlayIcon) {
 		if (baseIcon == null) {
 			throw new IllegalArgumentException("baseIcon must not be null!");
 		}
@@ -1980,22 +2320,17 @@ public class SwingTools {
 		return new ImageIcon(bufferedImg);
 	}
 
-	/**
-	 * Creates an icon of the specified size and the given shape and colors.
-	 *
-	 * @param color
-	 *            the color which is used to fill the shape
-	 * @param borderColor
-	 *            the color for the shape border
-	 * @param width
-	 *            the width of the icon
-	 * @param height
-	 *            the height of the icon
-	 * @param shape
-	 *            the shape of the icon
-	 * @return the icon, never {@code null}
-	 */
-	public static ImageIcon createIconFromColor(final Color color, final Color borderColor, final int width,
+    /**
+     * Creates an icon of the specified size and the given shape and colors.
+     *
+     * @param color       the color which is used to fill the shape
+     * @param borderColor the color for the shape border
+     * @param width       the width of the icon
+     * @param height      the height of the icon
+     * @param shape       the shape of the icon
+     * @return the icon, never {@code null}
+     */
+    public static ImageIcon createIconFromColor(final Color color, final Color borderColor, final int width,
 			final int height, final Shape shape) {
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = img.createGraphics();
@@ -2011,16 +2346,15 @@ public class SwingTools {
 		return new ImageIcon(img);
 	}
 
-	/**
-	 * If the input name exceeds the maximum length, it is shortened by cutting the input into two
-	 * shortened parts and adding [...] in between.
-	 *
-	 * @param maxLength
-	 *            the maximum allowed input length
-	 * @return the provided input if it does not exceed the maximum input length, otherwise the
-	 *         shortened input is returned.
-	 */
-	public static String getShortenedDisplayName(String input, int maxLength) {
+    /**
+     * If the input name exceeds the maximum length, it is shortened by cutting the input into two
+     * shortened parts and adding [...] in between.
+     *
+     * @param input     the input
+     * @param maxLength the maximum allowed input length
+     * @return the provided input if it does not exceed the maximum input length, otherwise the         shortened input is returned.
+     */
+    public static String getShortenedDisplayName(String input, int maxLength) {
 		if (input.length() > maxLength + BRACKETS.length()) {
 			StringBuilder builder = new StringBuilder();
 			builder.append(input.substring(0, maxLength / 2));
@@ -2031,14 +2365,13 @@ public class SwingTools {
 		return input;
 	}
 
-	/**
-	 * Converts {@link KeyStroke} to a human-readable string.
-	 *
-	 * @param keyStroke
-	 *            the keystroke
-	 * @return a human-readable string like 'Ctrl+E'
-	 */
-	public static String formatKeyStroke(KeyStroke keyStroke) {
+    /**
+     * Converts {@link KeyStroke} to a human-readable string.
+     *
+     * @param keyStroke the keystroke
+     * @return a human-readable string like 'Ctrl+E'
+     */
+    public static String formatKeyStroke(KeyStroke keyStroke) {
 		StringBuilder builder = new StringBuilder();
 		String modifierString = KeyEvent.getKeyModifiersText(keyStroke.getModifiers());
 		String keyString = KeyEvent.getKeyText(keyStroke.getKeyCode());
@@ -2053,20 +2386,17 @@ public class SwingTools {
 		return builder.toString();
 	}
 
-	/**
-	 * Gets stripped text for a JComponent object
-	 *
-	 * @since 6.4.0
-	 * @param jComponent
-	 *            The component object used for the calculation of the width
-	 * @param text
-	 *            The text to show
-	 * @param maxWidth
-	 *            Maximum width of component
-	 * @param suffixLength
-	 *            Minimum length of the suffix after the separator
-	 */
-	public static String getStrippedJComponentText(JComponent jComponent, String text, int maxWidth, int suffixLength) {
+    /**
+     * Gets stripped text for a JComponent object
+     *
+     * @param jComponent   The component object used for the calculation of the width
+     * @param text         The text to show
+     * @param maxWidth     Maximum width of component
+     * @param suffixLength Minimum length of the suffix after the separator
+     * @return the stripped j component text
+     * @since 6.4.0
+     */
+    public static String getStrippedJComponentText(JComponent jComponent, String text, int maxWidth, int suffixLength) {
 
 		if (jComponent == null || text == null || text.isEmpty()) {
 			return "";
@@ -2087,31 +2417,28 @@ public class SwingTools {
 		return text;
 	}
 
-	/**
-	 * Gets precalculated width of string used in jComponent with the default font.
-	 *
-	 * @since 6.4.0
-	 * @param jComponent
-	 *            The component, whose font is used
-	 * @param string
-	 *            The string, whose width is calculated
-	 */
-	public static int getStringWidth(JComponent jComponent, String string) {
+    /**
+     * Gets precalculated width of string used in jComponent with the default font.
+     *
+     * @param jComponent The component, whose font is used
+     * @param string     The string, whose width is calculated
+     * @return the string width
+     * @since 6.4.0
+     */
+    public static int getStringWidth(JComponent jComponent, String string) {
 		return getStringWidth(jComponent, string, jComponent.getFont());
 	}
 
-	/**
-	 * Gets precalculated width of string used in jComponent.
-	 *
-	 * @since 6.4.0
-	 * @param jComponent
-	 *            The component, whose font is used
-	 * @param string
-	 *            The string, whose width is calculated
-	 * @param font
-	 *            The font of the string
-	 */
-	public static int getStringWidth(JComponent jComponent, String string, Font font) {
+    /**
+     * Gets precalculated width of string used in jComponent.
+     *
+     * @param jComponent The component, whose font is used
+     * @param string     The string, whose width is calculated
+     * @param font       The font of the string
+     * @return the string width
+     * @since 6.4.0
+     */
+    public static int getStringWidth(JComponent jComponent, String string, Font font) {
 		if (jComponent == null) {
 			return 0;
 		}
@@ -2122,24 +2449,22 @@ public class SwingTools {
 		return jComponent.getFontMetrics(font).stringWidth(string);
 	}
 
-	/**
-	 * Returns stripped string, if input string is too long.
-	 *
-	 * Examples:
-	 *
-	 * stripString("1234", 2, 2) -> 1234
-	 *
-	 * stripString("1234", 2, 1) -> 12[...]4
-	 *
-	 * @since 6.4.0
-	 * @param string
-	 *            The string to split
-	 * @param beginLength
-	 *            Minimum length of prefix
-	 * @param endLength
-	 *            Minimum length of suffix
-	 */
-	public static String stripString(String string, int beginLength, int endLength) {
+    /**
+     * Returns stripped string, if input string is too long.
+     * <p>
+     * Examples:
+     * <p>
+     * stripString("1234", 2, 2) -> 1234
+     * <p>
+     * stripString("1234", 2, 1) -> 12[...]4
+     *
+     * @param string      The string to split
+     * @param beginLength Minimum length of prefix
+     * @param endLength   Minimum length of suffix
+     * @return the string
+     * @since 6.4.0
+     */
+    public static String stripString(String string, int beginLength, int endLength) {
 		if (string == null || string.isEmpty()) {
 			return "";
 		}
@@ -2157,16 +2482,14 @@ public class SwingTools {
 		}
 	}
 
-	/**
-	 * Returns whether or not the control modifier is down during the event. This takes the OS into
-	 * account, so on Mac it will check if the meta modifier is down during the event.
-	 *
-	 * @param e
-	 *            the event
-	 * @return {@code true} if the control modifier is down on Windows/Linux or the meta modifier is
-	 *         down on Mac; {@code false} otherwise
-	 */
-	public static boolean isControlOrMetaDown(KeyEvent e) {
+    /**
+     * Returns whether or not the control modifier is down during the event. This takes the OS into
+     * account, so on Mac it will check if the meta modifier is down during the event.
+     *
+     * @param e the event
+     * @return {@code true} if the control modifier is down on Windows/Linux or the meta modifier is         down on Mac; {@code false} otherwise
+     */
+    public static boolean isControlOrMetaDown(KeyEvent e) {
 		if (!IS_MAC) {
 			return e.isControlDown();
 		} else {
@@ -2174,16 +2497,14 @@ public class SwingTools {
 		}
 	}
 
-	/**
-	 * Returns whether or not the control modifier is down during the event. This takes the OS into
-	 * account, so on Mac it will check if the meta modifier is down during the event.
-	 *
-	 * @param e
-	 *            the event
-	 * @return {@code true} if the control modifier is down on Windows/Linux or the meta modifier is
-	 *         down on Mac; {@code false} otherwise
-	 */
-	public static boolean isControlOrMetaDown(MouseEvent e) {
+    /**
+     * Returns whether or not the control modifier is down during the event. This takes the OS into
+     * account, so on Mac it will check if the meta modifier is down during the event.
+     *
+     * @param e the event
+     * @return {@code true} if the control modifier is down on Windows/Linux or the meta modifier is         down on Mac; {@code false} otherwise
+     */
+    public static boolean isControlOrMetaDown(MouseEvent e) {
 		if (!IS_MAC) {
 			return e.isControlDown();
 		} else {
@@ -2191,15 +2512,14 @@ public class SwingTools {
 		}
 	}
 
-	/**
-	 * Invokes a runnable on the EDT and waits until the execution has finished. If this method is
-	 * called in the EDT the runnable is executed directly. Otherwise
-	 * {@link SwingUtilities#invokeAndWait(Runnable)} is used to execute the runnable.
-	 *
-	 * @param runnable
-	 *            the {@link Runnable} to execute
-	 */
-	public static void invokeAndWait(final Runnable runnable) {
+    /**
+     * Invokes a runnable on the EDT and waits until the execution has finished. If this method is
+     * called in the EDT the runnable is executed directly. Otherwise
+     * {@link SwingUtilities#invokeAndWait(Runnable)} is used to execute the runnable.
+     *
+     * @param runnable the {@link Runnable} to execute
+     */
+    public static void invokeAndWait(final Runnable runnable) {
 		if (SwingUtilities.isEventDispatchThread()) {
 			runnable.run();
 		} else {
@@ -2211,17 +2531,17 @@ public class SwingTools {
 		}
 	}
 
-	/**
-	 * Invokes a runnable on the EDT and waits until the execution has finished. If this method is
-	 * called in the EDT the runnable is executed directly. Otherwise
-	 * {@link SwingUtilities#invokeAndWait(Runnable)} is used to execute the runnable.
-	 *
-	 * @param resultRunnable
-	 *            the {@link ResultRunnable} to execute
-	 * @return the value returned by {@link ResultRunnable}
-	 * @since 6.5.0
-	 */
-	public static <T> T invokeAndWaitWithResult(final ResultRunnable<T> resultRunnable) {
+    /**
+     * Invokes a runnable on the EDT and waits until the execution has finished. If this method is
+     * called in the EDT the runnable is executed directly. Otherwise
+     * {@link SwingUtilities#invokeAndWait(Runnable)} is used to execute the runnable.
+     *
+     * @param <T>            the type parameter
+     * @param resultRunnable the {@link ResultRunnable} to execute
+     * @return the value returned by {@link ResultRunnable}
+     * @since 6.5.0
+     */
+    public static <T> T invokeAndWaitWithResult(final ResultRunnable<T> resultRunnable) {
 		final ResultContainer<T> resultContainer = new ResultContainer<>();
 		if (SwingUtilities.isEventDispatchThread()) {
 			resultContainer.value = resultRunnable.run();
@@ -2241,15 +2561,14 @@ public class SwingTools {
 		return resultContainer.value;
 	}
 
-	/**
-	 * Invokes a runnable on the EDT via {@link SwingUtilities#invokeLater(Runnable)} or directly if
-	 * this method is called from within the EDT.
-	 *
-	 * @param runnable
-	 *            the {@link Runnable} to execute
-	 * @since 6.5.0
-	 */
-	public static void invokeLater(final Runnable runnable) {
+    /**
+     * Invokes a runnable on the EDT via {@link SwingUtilities#invokeLater(Runnable)} or directly if
+     * this method is called from within the EDT.
+     *
+     * @param runnable the {@link Runnable} to execute
+     * @since 6.5.0
+     */
+    public static void invokeLater(final Runnable runnable) {
 		if (SwingUtilities.isEventDispatchThread()) {
 			runnable.run();
 		} else {
@@ -2257,20 +2576,15 @@ public class SwingTools {
 		}
 	}
 
-	/**
-	 * Adds a help icon to the provided JPanel which shows a tooltip when hovering over it.
-	 *
-	 * @param tooltipContent
-	 *            the content of the tooltip
-	 * @param labelPanel
-	 *            the panel which will be used to add the label. The panel needs to have a
-	 *            {@link BorderLayout} as layout manager as the label will be added with the
-	 *            constraint {@link BorderLayout#EAST}.
-	 * @param owner
-	 *            the dialog owner of the labelPanel
-	 * @since 7.0.0
-	 */
-	public static void addTooltipHelpIconToLabel(final String tooltipContent, JPanel labelPanel, final JDialog owner) {
+    /**
+     * Adds a help icon to the provided JPanel which shows a tooltip when hovering over it.
+     *
+     * @param tooltipContent the content of the tooltip
+     * @param labelPanel     the panel which will be used to add the label. The panel needs to have a            {@link BorderLayout} as layout manager as the label will be added with the            constraint {@link BorderLayout#EAST}.
+     * @param owner          the dialog owner of the labelPanel
+     * @since 7.0.0
+     */
+    public static void addTooltipHelpIconToLabel(final String tooltipContent, JPanel labelPanel, final JDialog owner) {
 		final JLabel helpLabel = initializeHelpLabel(labelPanel);
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -2304,34 +2618,28 @@ public class SwingTools {
 		});
 	}
 
-	/**
-	 * Adds a tooltip associated with the tipProvider to the helpLabel.
-	 *
-	 * @param tipProvider
-	 *            provides the tooltip.
-	 * @param owner
-	 *            the owner of the dialog of which contains the helpLabel
-	 * @param helpLabel
-	 *            the label for which to display the tooltip
-	 * @since 7.0.0
-	 */
-	public static void setupTooltip(TipProvider tipProvider, final JDialog owner, final JLabel helpLabel) {
+    /**
+     * Adds a tooltip associated with the tipProvider to the helpLabel.
+     *
+     * @param tipProvider provides the tooltip.
+     * @param owner       the owner of the dialog of which contains the helpLabel
+     * @param helpLabel   the label for which to display the tooltip
+     * @since 7.0.0
+     */
+    public static void setupTooltip(TipProvider tipProvider, final JDialog owner, final JLabel helpLabel) {
 		ToolTipWindow toolTipWindow = new ToolTipWindow(owner, tipProvider, helpLabel, TooltipLocation.BELOW);
 		toolTipWindow.setOnlyWhenFocussed(false);
 		toolTipWindow.setToolTipDelay(TOOL_TIP_DELAY);
 	}
 
-	/**
-	 * Creates a helpLabel and adds it to the labelPanel. The helpLabel shows a help icon.
-	 *
-	 * @param labelPanel
-	 *            the panel which will be used to add the label. The panel needs to have a
-	 *            {@link BorderLayout} as layout manager as the label will be added with the
-	 *            constraint {@link BorderLayout#EAST}.
-	 * @return the helpLabel for further use
-	 * @since 7.0.0
-	 */
-	public static JLabel initializeHelpLabel(JPanel labelPanel) {
+    /**
+     * Creates a helpLabel and adds it to the labelPanel. The helpLabel shows a help icon.
+     *
+     * @param labelPanel the panel which will be used to add the label. The panel needs to have a            {@link BorderLayout} as layout manager as the label will be added with the            constraint {@link BorderLayout#EAST}.
+     * @return the helpLabel for further use
+     * @since 7.0.0
+     */
+    public static JLabel initializeHelpLabel(JPanel labelPanel) {
 		JPanel helpPanel = new JPanel();
 		helpPanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -2356,30 +2664,27 @@ public class SwingTools {
 		return helpLabel;
 	}
 
-	/**
-	 * Attempts to disable the default clear type rendering on Windows such that rendering hints can
-	 * be used. Has no effect on operating systems other than Microsoft Windows. Might fail
-	 * silently.
-	 *
-	 * @param component
-	 *            the component for which to disable clear type in order to use rendering hints
-	 */
-	public static void disableClearType(JComponent component) {
+    /**
+     * Attempts to disable the default clear type rendering on Windows such that rendering hints can
+     * be used. Has no effect on operating systems other than Microsoft Windows. Might fail
+     * silently.
+     *
+     * @param component the component for which to disable clear type in order to use rendering hints
+     */
+    public static void disableClearType(JComponent component) {
 		if (SystemInfoUtilities.getOperatingSystem() == OperatingSystem.WINDOWS && AA_TEXT_PROPERTY != null) {
 			component.putClientProperty(AA_TEXT_PROPERTY, null);
 		}
 	}
 
-	/**
-	 * Creates a panel which is shown and fades slowly away.
-	 *
-	 * @param iconKey
-	 *            the I18N-string for the icon on the panel
-	 * @param messageKey
-	 *            the I18N-string for the message on the panel
-	 * @return a panel with specified icon and message
-	 */
-	public static JPanel createNotificationPanel(String iconKey, String messageKey) {
+    /**
+     * Creates a panel which is shown and fades slowly away.
+     *
+     * @param iconKey    the I18N-string for the icon on the panel
+     * @param messageKey the I18N-string for the message on the panel
+     * @return a panel with specified icon and message
+     */
+    public static JPanel createNotificationPanel(String iconKey, String messageKey) {
 		JPanel notificationPanel = new JPanel() {
 
 			private static final long serialVersionUID = 1L;

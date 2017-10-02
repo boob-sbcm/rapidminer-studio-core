@@ -45,16 +45,27 @@ import java.util.List;
  * biological analogies, the single layer perceptron is simply a linear classifier which is
  * efficiently trained by a simple update rule: for all wrongly classified data points, the weight
  * vector is either increased or decreased by the corresponding example values.
- * 
+ *
  * @author Sebastian Land
  */
 public class Perceptron extends AbstractLearner {
 
-	public static final String PARAMETER_ROUNDS = "rounds";
+    /**
+     * The constant PARAMETER_ROUNDS.
+     */
+    public static final String PARAMETER_ROUNDS = "rounds";
 
-	public static final String PARAMETER_LEARNING_RATE = "learning_rate";
+    /**
+     * The constant PARAMETER_LEARNING_RATE.
+     */
+    public static final String PARAMETER_LEARNING_RATE = "learning_rate";
 
-	public Perceptron(OperatorDescription description) {
+    /**
+     * Instantiates a new Perceptron.
+     *
+     * @param description the description
+     */
+    public Perceptron(OperatorDescription description) {
 		super(description);
 	}
 
@@ -93,11 +104,25 @@ public class Perceptron extends AbstractLearner {
 		return model;
 	}
 
-	protected Kernel getKernel() throws UndefinedParameterError {
+    /**
+     * Gets kernel.
+     *
+     * @return the kernel
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected Kernel getKernel() throws UndefinedParameterError {
 		return new DotKernel();
 	}
 
-	public double getLearnRate(int time, int maxtime, double initLearnRate) {
+    /**
+     * Gets learn rate.
+     *
+     * @param time          the time
+     * @param maxtime       the maxtime
+     * @param initLearnRate the init learn rate
+     * @return the learn rate
+     */
+    public double getLearnRate(int time, int maxtime, double initLearnRate) {
 		return initLearnRate * Math.pow(((initLearnRate * 0.1d) / initLearnRate), (((double) time) / ((double) maxtime)));
 	}
 

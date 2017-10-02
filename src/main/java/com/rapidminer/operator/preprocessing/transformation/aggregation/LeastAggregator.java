@@ -26,7 +26,7 @@ import com.rapidminer.example.table.DataRow;
 /**
  * This is an {@link Aggregator} for the {@link LeastAggregationFunction}. If the least value is not
  * unique, the first value from the nominal mapping will be used.
- * 
+ *
  * @author Sebastian Land
  */
 public class LeastAggregator implements Aggregator {
@@ -34,7 +34,12 @@ public class LeastAggregator implements Aggregator {
 	private Attribute sourceAttribute;
 	private double[] frequencies;
 
-	public LeastAggregator(AggregationFunction function) {
+    /**
+     * Instantiates a new Least aggregator.
+     *
+     * @param function the function
+     */
+    public LeastAggregator(AggregationFunction function) {
 		this.sourceAttribute = function.getSourceAttribute();
 		frequencies = new double[sourceAttribute.getMapping().size()];
 	}

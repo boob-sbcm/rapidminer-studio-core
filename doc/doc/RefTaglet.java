@@ -12,46 +12,91 @@ import com.sun.tools.doclets.Taglet;
  * A taglet with name &quot;@rapidminer.ref&quot; can be used in the Javadoc comments of an operator to produce textual
  * references. Example: &quot;@rapidminer.ref figure1|A figure for this&quot;. This will include a LaTeX reference to your
  * documentation.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class RefTaglet implements TexTaglet {
 
 	private static final String NAME = "rapidminer.ref";
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return NAME;
 	}
 
-	public boolean inField() {
+    /**
+     * In field boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inField() {
 		return true;
 	}
 
-	public boolean inConstructor() {
+    /**
+     * In constructor boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inConstructor() {
 		return true;
 	}
 
-	public boolean inMethod() {
+    /**
+     * In method boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inMethod() {
 		return true;
 	}
 
-	public boolean inOverview() {
+    /**
+     * In overview boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inOverview() {
 		return true;
 	}
 
-	public boolean inPackage() {
+    /**
+     * In package boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inPackage() {
 		return true;
 	}
 
-	public boolean inType() {
+    /**
+     * In type boolean.
+     *
+     * @return the boolean
+     */
+    public boolean inType() {
 		return true;
 	}
 
-	public boolean isInlineTag() {
+    /**
+     * Is inline tag boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isInlineTag() {
 		return true;
 	}
 
-	public static void register(Map<String, Taglet> tagletMap) {
+    /**
+     * Register.
+     *
+     * @param tagletMap the taglet map
+     */
+    public static void register(Map<String, Taglet> tagletMap) {
 		RefTaglet tag = new RefTaglet();
 		Taglet t = tagletMap.get(tag.getName());
 		if (t != null) {
@@ -70,19 +115,43 @@ public class RefTaglet implements TexTaglet {
 		}
 	}
 
-	public String toString(Tag tag) {
+    /**
+     * To string string.
+     *
+     * @param tag the tag
+     * @return the string
+     */
+    public String toString(Tag tag) {
 		return split(tag)[1];
 	}
 
-	public String toString(Tag[] tags) {
+    /**
+     * To string string.
+     *
+     * @param tags the tags
+     * @return the string
+     */
+    public String toString(Tag[] tags) {
 		return null;
 	}
 
-	public String toTex(Tag tag) {
+    /**
+     * To tex string.
+     *
+     * @param tag the tag
+     * @return the string
+     */
+    public String toTex(Tag tag) {
 		return "\\ref{" + split(tag)[0] + "}";
 	}
 
-	public String toTex(Tag[] tag) {
+    /**
+     * To tex string.
+     *
+     * @param tag the tag
+     * @return the string
+     */
+    public String toTex(Tag[] tag) {
 		return null;
 	}
 }

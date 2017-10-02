@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class UseRowAsNamesAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class UseRowAsNamesAction extends ResourceAction {
 
 	private final AttributeEditor attributeEditor;
 
-	public UseRowAsNamesAction(AttributeEditor attributeEditor) {
+    /**
+     * Instantiates a new Use row as names action.
+     *
+     * @param attributeEditor the attribute editor
+     */
+    public UseRowAsNamesAction(AttributeEditor attributeEditor) {
 		super("attribute_editor.use_row_as_names");
 		this.attributeEditor = attributeEditor;
 	}

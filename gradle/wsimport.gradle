@@ -7,6 +7,12 @@ dependencies {
 	jaxws 'com.sun.xml.ws:jaxws-tools:2.2.8'
 }
 
+/**
+ *  The type Generate from wsdl.
+ */
+/**
+ *  The type Generate from wsdl.
+ */
 class GenerateFromWSDL extends DefaultTask {
 
 	def authFile = project.file('wsimportAuth')

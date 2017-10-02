@@ -21,20 +21,18 @@ package com.rapidminer.gui.tools.dialogs;
 /**
  * Simple validation interface for generic input.
  *
- * @param <T>
- *            the type of the input
+ * @param <T> the type of the input
  * @author Marcel Michel
  * @since 7.0.0
  */
 public interface InputValidator<T> {
 
-	/**
-	 * Validates the given input string.
-	 *
-	 * @param input
-	 *            the input which should be validated
-	 * @return An human readable error message if the input is not valid, otherwise {@code null}
-	 */
-	public String validateInput(T input);
+    /**
+     * Validates the given input string.
+     *
+     * @param input the input which should be validated
+     * @return An human readable error message if the input is not valid, otherwise {@code null}
+     */
+    public String validateInput(T input);
 
 }

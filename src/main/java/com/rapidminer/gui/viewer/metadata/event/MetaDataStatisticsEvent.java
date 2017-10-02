@@ -23,37 +23,47 @@ import com.rapidminer.gui.viewer.metadata.model.MetaDataStatisticsModel;
 
 /**
  * An event for the {@link MetaDataStatisticsModel}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class MetaDataStatisticsEvent {
 
-	/**
-	 * Defines different kind of {@link MetaDataStatisticsEvent}s.
-	 * 
-	 */
-	public static enum EventType {
-		ORDER_CHANGED, FILTER_CHANGED, PAGINATION_CHANGED, INIT_DONE;
+    /**
+     * Defines different kind of {@link MetaDataStatisticsEvent}s.
+     */
+    public static enum EventType {
+        /**
+         * Order changed event type.
+         */
+        ORDER_CHANGED, /**
+         * Filter changed event type.
+         */
+        FILTER_CHANGED, /**
+         * Pagination changed event type.
+         */
+        PAGINATION_CHANGED, /**
+         * Init done event type.
+         */
+        INIT_DONE;
 	}
 
 	private EventType type;
 
-	/**
-	 * Creates a new {@link MetaDataStatisticsEvent} instance for the specified {@link EventType}.
-	 * 
-	 * @param type
-	 */
-	public MetaDataStatisticsEvent(EventType type) {
+    /**
+     * Creates a new {@link MetaDataStatisticsEvent} instance for the specified {@link EventType}.
+     *
+     * @param type the type
+     */
+    public MetaDataStatisticsEvent(EventType type) {
 		this.type = type;
 	}
 
-	/**
-	 * Returns the {@link EventType}.
-	 * 
-	 * @return
-	 */
-	public EventType getEventType() {
+    /**
+     * Returns the {@link EventType}.
+     *
+     * @return event type
+     */
+    public EventType getEventType() {
 		return type;
 	}
 }

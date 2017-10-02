@@ -24,14 +24,20 @@ import com.rapidminer.tools.RandomGenerator;
 /**
  * This class provides a sampling sequence, where each element will have the given probability to be
  * part of the sample.
- * 
+ *
  * @author Sebastian Land
  */
 public class ProbabilitySamplingSequenceGenerator extends SamplingSequenceGenerator {
 
 	private double fraction;
 
-	public ProbabilitySamplingSequenceGenerator(double fraction, RandomGenerator random) {
+    /**
+     * Instantiates a new Probability sampling sequence generator.
+     *
+     * @param fraction the fraction
+     * @param random   the random
+     */
+    public ProbabilitySamplingSequenceGenerator(double fraction, RandomGenerator random) {
 		super(random);
 		this.fraction = fraction;
 	}

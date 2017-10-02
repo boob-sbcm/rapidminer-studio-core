@@ -33,18 +33,27 @@ import java.util.List;
  * This operator switches off all features whose block type matches the one given in the parameter
  * <code>skip_features_of_type</code>. This can be useful e.g. for preprocessing operators that can
  * handle only series attributes.
- * 
+ *
  * @author Buelent Moeller, Ingo Mierswa ingomierswa Exp $
  */
 public class FeatureBlockTypeFilter extends FeatureFilter {
 
-	/** The parameter name for &quot;All features of this type will be deselected off.&quot; */
-	public static final String PARAMETER_SKIP_FEATURES_OF_TYPE = "skip_features_of_type";
+    /**
+     * The parameter name for &quot;All features of this type will be deselected off.&quot;
+     */
+    public static final String PARAMETER_SKIP_FEATURES_OF_TYPE = "skip_features_of_type";
 
-	/** The parameter name for &quot;All features of this type will not be deselected.&quot; */
-	public static final String PARAMETER_EXCEPT_FEATURES_OF_TYPE = "except_features_of_type";
+    /**
+     * The parameter name for &quot;All features of this type will not be deselected.&quot;
+     */
+    public static final String PARAMETER_EXCEPT_FEATURES_OF_TYPE = "except_features_of_type";
 
-	public FeatureBlockTypeFilter(OperatorDescription description) {
+    /**
+     * Instantiates a new Feature block type filter.
+     *
+     * @param description the description
+     */
+    public FeatureBlockTypeFilter(OperatorDescription description) {
 		super(description);
 	}
 

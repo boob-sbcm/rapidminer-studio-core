@@ -34,7 +34,7 @@ import com.rapidminer.tools.math.container.Range;
 
 /**
  * Generates a data set for two attributes. The data build three rings which are around each other.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RingClusteringFunction extends ClusterFunction {
@@ -45,7 +45,10 @@ public class RingClusteringFunction extends ClusterFunction {
 
 	private RandomGenerator random;
 
-	public RingClusteringFunction() {
+    /**
+     * Instantiates a new Ring clustering function.
+     */
+    public RingClusteringFunction() {
 		label.getMapping().mapString("core");
 		label.getMapping().mapString("first_ring");
 		label.getMapping().mapString("second_ring");

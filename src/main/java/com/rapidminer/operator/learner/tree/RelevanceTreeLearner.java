@@ -58,17 +58,25 @@ import java.util.List;
  * Learns a pruned decision tree based on arbitrary feature relevance measurements defined by an
  * inner operator (use for example {@link InfoGainRatioWeighting} for C4.5 and
  * {@link ChiSquaredWeighting} for CHAID. Works only for nominal attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RelevanceTreeLearner extends OperatorChain implements Learner {
 
-	protected final InputPort exampleSetInput = getInputPorts().createPort("training set");
+    /**
+     * The Example set input.
+     */
+    protected final InputPort exampleSetInput = getInputPorts().createPort("training set");
 	private final OutputPort innerExampleSource = getSubprocess(0).getInnerSources().createPort("training set");
 	private final InputPort weightsInnerSink = getSubprocess(0).getInnerSinks().createPort("weights");
 	private final OutputPort modelOutput = getOutputPorts().createPort("model");
 
-	public RelevanceTreeLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Relevance tree learner.
+     *
+     * @param description the description
+     */
+    public RelevanceTreeLearner(OperatorDescription description) {
 		super(description, "Weighting");
 		exampleSetInput.addPrecondition(new LearnerPrecondition(this, exampleSetInput));
 		getTransformer().addRule(new PassThroughRule(exampleSetInput, innerExampleSource, true));
@@ -126,16 +134,35 @@ public class RelevanceTreeLearner extends OperatorChain implements Learner {
 		return new TreeModel(exampleSet, root);
 	}
 
-	protected void applyInnerLearner(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Apply inner learner.
+     *
+     * @param exampleSet the example set
+     * @throws OperatorException the operator exception
+     */
+    protected void applyInnerLearner(ExampleSet exampleSet) throws OperatorException {
 		innerExampleSource.deliver(exampleSet);
 		executeInnerLearner();
 	}
 
-	protected void executeInnerLearner() throws OperatorException {
+    /**
+     * Execute inner learner.
+     *
+     * @throws OperatorException the operator exception
+     */
+    protected void executeInnerLearner() throws OperatorException {
 		getSubprocess(0).execute();
 	}
 
-	protected Benefit calculateBenefit(ExampleSet exampleSet, Attribute attribute) throws OperatorException {
+    /**
+     * Calculate benefit benefit.
+     *
+     * @param exampleSet the example set
+     * @param attribute  the attribute
+     * @return the benefit
+     * @throws OperatorException the operator exception
+     */
+    protected Benefit calculateBenefit(ExampleSet exampleSet, Attribute attribute) throws OperatorException {
 		ExampleSet trainingSet = (ExampleSet) exampleSet.clone();
 		double weight = Double.NaN;
 		if (weightsInnerSink.isConnected()) {
@@ -153,7 +180,13 @@ public class RelevanceTreeLearner extends OperatorChain implements Learner {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Gets pruner.
+     *
+     * @return the pruner
+     * @throws OperatorException the operator exception
+     */
+    @SuppressWarnings("deprecation")
 	public Pruner getPruner() throws OperatorException {
 		if (!getParameterAsBoolean(DecisionTreeLearner.PARAMETER_NO_PRUNING)) {
 			return new PessimisticPruner(getParameterAsDouble(DecisionTreeLearner.PARAMETER_CONFIDENCE),
@@ -163,7 +196,14 @@ public class RelevanceTreeLearner extends OperatorChain implements Learner {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+    /**
+     * Gets termination criteria.
+     *
+     * @param exampleSet the example set
+     * @return the termination criteria
+     * @throws OperatorException the operator exception
+     */
+    @SuppressWarnings("deprecation")
 	public List<Terminator> getTerminationCriteria(ExampleSet exampleSet) throws OperatorException {
 		List<Terminator> result = new LinkedList<Terminator>();
 		result.add(new SingleLabelTermination());

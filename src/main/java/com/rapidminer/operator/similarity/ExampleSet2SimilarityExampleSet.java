@@ -46,7 +46,7 @@ import java.util.List;
 /**
  * This operator creates a new data set from the given one based on the specified similarity. The
  * created data set is merely a view so that no memory problems should occur.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class ExampleSet2SimilarityExampleSet extends Operator {
@@ -56,7 +56,12 @@ public class ExampleSet2SimilarityExampleSet extends Operator {
 
 	private DistanceMeasureHelper measureHelper = new DistanceMeasureHelper(this);
 
-	public ExampleSet2SimilarityExampleSet(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set 2 similarity example set.
+     *
+     * @param description the description
+     */
+    public ExampleSet2SimilarityExampleSet(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new DistanceMeasurePrecondition(exampleSetInput, this));

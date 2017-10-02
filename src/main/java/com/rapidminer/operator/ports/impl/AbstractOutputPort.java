@@ -32,7 +32,6 @@ import com.rapidminer.operator.ports.metadata.MetaData;
  * {@link #deliver(com.rapidminer.operator.IOObject)} method is missing.
  *
  * @author Nils Woehler
- *
  */
 public abstract class AbstractOutputPort extends AbstractPort implements OutputPort {
 
@@ -42,7 +41,14 @@ public abstract class AbstractOutputPort extends AbstractPort implements OutputP
 
 	private MetaData realMetaData;
 
-	protected AbstractOutputPort(Ports<? extends Port> owner, String name, boolean simulatesStack) {
+    /**
+     * Instantiates a new Abstract output port.
+     *
+     * @param owner          the owner
+     * @param name           the name
+     * @param simulatesStack the simulates stack
+     */
+    protected AbstractOutputPort(Ports<? extends Port> owner, String name, boolean simulatesStack) {
 		super(owner, name, simulatesStack);
 	}
 
@@ -108,7 +114,12 @@ public abstract class AbstractOutputPort extends AbstractPort implements OutputP
 		}
 	}
 
-	protected void assertConnected() throws PortException {
+    /**
+     * Assert connected.
+     *
+     * @throws PortException the port exception
+     */
+    protected void assertConnected() throws PortException {
 		if (this.connectedTo == null) {
 			throw new PortException(this, "Not connected.");
 		}
@@ -158,18 +169,21 @@ public abstract class AbstractOutputPort extends AbstractPort implements OutputP
 		fireUpdate(this);
 	}
 
-	/**
-	 * @return the realMetaData
-	 */
-	protected MetaData getRealMetaData() {
+    /**
+     * Gets real meta data.
+     *
+     * @return the realMetaData
+     */
+    protected MetaData getRealMetaData() {
 		return this.realMetaData;
 	}
 
-	/**
-	 * @param realMetaData
-	 *            the realMetaData to set
-	 */
-	protected void setRealMetaData(MetaData realMetaData) {
+    /**
+     * Sets real meta data.
+     *
+     * @param realMetaData the realMetaData to set
+     */
+    protected void setRealMetaData(MetaData realMetaData) {
 		this.realMetaData = realMetaData;
 	}
 

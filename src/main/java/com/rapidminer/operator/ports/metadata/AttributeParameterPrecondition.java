@@ -32,9 +32,8 @@ import com.rapidminer.tools.Ontology;
  * properties of the attribute might be given: Name, Type and Role. Type and Role are optional. The
  * attribute name is not given explicitly, instead a parameter name of an operator is given, from
  * which the attribute name is retrieved during runtime.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class AttributeParameterPrecondition extends AbstractPrecondition {
 
@@ -43,21 +42,39 @@ public class AttributeParameterPrecondition extends AbstractPrecondition {
 	private final int attributeType;
 	private final String attributeRole;
 
-	/**
-	 * This precondition will only check the name. No Role and type checks will be performed.
-	 */
-	public AttributeParameterPrecondition(InputPort inport, Operator operator, String parameterName) {
+    /**
+     * This precondition will only check the name. No Role and type checks will be performed.
+     *
+     * @param inport        the inport
+     * @param operator      the operator
+     * @param parameterName the parameter name
+     */
+    public AttributeParameterPrecondition(InputPort inport, Operator operator, String parameterName) {
 		this(inport, operator, parameterName, null, Ontology.VALUE_TYPE);
 	}
 
-	/**
-	 * This precondition will not perform any role check.
-	 */
-	public AttributeParameterPrecondition(InputPort inport, Operator operator, String parameterName, int attributeType) {
+    /**
+     * This precondition will not perform any role check.
+     *
+     * @param inport        the inport
+     * @param operator      the operator
+     * @param parameterName the parameter name
+     * @param attributeType the attribute type
+     */
+    public AttributeParameterPrecondition(InputPort inport, Operator operator, String parameterName, int attributeType) {
 		this(inport, operator, parameterName, null, attributeType);
 	}
 
-	public AttributeParameterPrecondition(InputPort inport, Operator operator, String parameterName, String attributeRole,
+    /**
+     * Instantiates a new Attribute parameter precondition.
+     *
+     * @param inport        the inport
+     * @param operator      the operator
+     * @param parameterName the parameter name
+     * @param attributeRole the attribute role
+     * @param attributeType the attribute type
+     */
+    public AttributeParameterPrecondition(InputPort inport, Operator operator, String parameterName, String attributeRole,
 			int attributeType) {
 		super(inport);
 		this.operator = operator;
@@ -99,11 +116,13 @@ public class AttributeParameterPrecondition extends AbstractPrecondition {
 		}
 	}
 
-	/**
-	 * This method returns the name of the attribute that must be contained in the meta data. It
-	 * might return null, if no check should be performed.
-	 */
-	protected String getName() {
+    /**
+     * This method returns the name of the attribute that must be contained in the meta data. It
+     * might return null, if no check should be performed.
+     *
+     * @return the name
+     */
+    protected String getName() {
 		try {
 			return operator.getParameterAsString(parameterName);
 		} catch (UndefinedParameterError e) {
@@ -116,13 +135,23 @@ public class AttributeParameterPrecondition extends AbstractPrecondition {
 		getInputPort().receiveMD(new ExampleSetMetaData());
 	}
 
-	/** Can be implemented by subclasses in order to specify quickfixes. */
-	public QuickFix getQuickFix(ExampleSetMetaData emd) throws UndefinedParameterError {
+    /**
+     * Can be implemented by subclasses in order to specify quickfixes.  @param emd the emd
+     *
+     * @param emd the emd
+     * @return the quick fix
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public QuickFix getQuickFix(ExampleSetMetaData emd) throws UndefinedParameterError {
 		return null;
 	}
 
-	/** Can be implemented by subclasses. */
-	public void makeAdditionalChecks(ExampleSetMetaData emd) {}
+    /**
+     * Can be implemented by subclasses.  @param emd the emd
+     *
+     * @param emd the emd
+     */
+    public void makeAdditionalChecks(ExampleSetMetaData emd) {}
 
 	@Override
 	public String getDescription() {

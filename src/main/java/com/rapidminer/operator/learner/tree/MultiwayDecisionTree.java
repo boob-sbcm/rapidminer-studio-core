@@ -71,10 +71,12 @@ public class MultiwayDecisionTree extends AbstractMetaLearner {
 
 	private static final OperatorVersion VERSION_NOT_DISCRETIZING = new OperatorVersion(7, 3, 0);
 
-	/**
-	 * @param description
-	 */
-	public MultiwayDecisionTree(OperatorDescription description) {
+    /**
+     * Instantiates a new Multiway decision tree.
+     *
+     * @param description the description
+     */
+    public MultiwayDecisionTree(OperatorDescription description) {
 		super(description);
 
 	}

@@ -54,7 +54,6 @@ import com.rapidminer.tools.I18N;
  * GUI component for the {@link TablePanel} for {@link CellTypeDate} and {@link CellTypeDateTime}.
  *
  * @author Marco Boeck
- *
  */
 public class CellTypeDateImpl extends JPanel implements CellTypeDate, CellTypeDateTime {
 
@@ -98,16 +97,16 @@ public class CellTypeDateImpl extends JPanel implements CellTypeDate, CellTypeDa
 		}
 	};
 
-	/**
-	 * Creates a panel for date/date_time cells. Adds a date picker next to the field. Does not
-	 * validate the model, so make sure this call works!
-	 *
-	 * @param model
-	 * @param rowIndex
-	 * @param columnIndex
-	 * @param cellClass
-	 */
-	public CellTypeDateImpl(final TablePanelModel model, final int rowIndex, final int columnIndex,
+    /**
+     * Creates a panel for date/date_time cells. Adds a date picker next to the field. Does not
+     * validate the model, so make sure this call works!
+     *
+     * @param model       the model
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     * @param cellClass   the cell class
+     */
+    public CellTypeDateImpl(final TablePanelModel model, final int rowIndex, final int columnIndex,
 			final Class<? extends CellType> cellClass) {
 		super();
 

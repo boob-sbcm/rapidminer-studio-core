@@ -30,7 +30,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  *
  * @author Jonas Wilms-Pfau
  * @since 7.5.0
- *
  */
 @JsonPropertyOrder({ "id", "queries", "message", "interval" })
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -48,47 +47,82 @@ class Rule {
 	@JsonProperty("interval")
 	private Integer interval;
 
-	@JsonProperty("id")
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    @JsonProperty("id")
 	public String getId() {
 		return id;
 	}
 
-	@JsonProperty("id")
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    @JsonProperty("id")
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	@JsonProperty("queries")
+    /**
+     * Gets queries.
+     *
+     * @return the queries
+     */
+    @JsonProperty("queries")
 	public List<String> getQueries() {
 		return queries;
 	}
 
-	@JsonProperty("queries")
+    /**
+     * Sets queries.
+     *
+     * @param queries the queries
+     */
+    @JsonProperty("queries")
 	public void setQueries(List<String> queries) {
 		this.queries = queries;
 	}
 
-	@JsonProperty("message")
+    /**
+     * Gets message.
+     *
+     * @return the message
+     */
+    @JsonProperty("message")
 	public String getMessage() {
 		return message;
 	}
 
-	@JsonProperty("message")
+    /**
+     * Sets message.
+     *
+     * @param message the message
+     */
+    @JsonProperty("message")
 	public void setMessage(String message) {
 		this.message = message;
 	}
 
-	/**
-	 * The verification interval in seconds
-	 *
-	 * @return
-	 */
-	@JsonProperty("interval")
+    /**
+     * The verification interval in seconds
+     *
+     * @return interval interval
+     */
+    @JsonProperty("interval")
 	public Integer getInterval() {
 		return interval;
 	}
 
-	@JsonProperty("interval")
+    /**
+     * Sets interval.
+     *
+     * @param interval the interval
+     */
+    @JsonProperty("interval")
 	public void setInterval(Integer interval) {
 		this.interval = interval;
 	}

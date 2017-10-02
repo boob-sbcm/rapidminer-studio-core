@@ -22,16 +22,24 @@ package com.rapidminer.operator.performance;
  * The absolute error: <i>Sum(|label-predicted|)/#examples</i>. Mean absolue error is the average of
  * the difference between predicted and actual value in all test cases; it is the average prediction
  * error.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AbsoluteError extends SimpleCriterion {
 
 	private static final long serialVersionUID = 1113614384637128963L;
 
-	public AbsoluteError() {}
+    /**
+     * Instantiates a new Absolute error.
+     */
+    public AbsoluteError() {}
 
-	public AbsoluteError(AbsoluteError ae) {
+    /**
+     * Instantiates a new Absolute error.
+     *
+     * @param ae the ae
+     */
+    public AbsoluteError(AbsoluteError ae) {
 		super(ae);
 	}
 

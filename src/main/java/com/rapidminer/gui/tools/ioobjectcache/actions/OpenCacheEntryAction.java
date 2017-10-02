@@ -43,17 +43,14 @@ public class OpenCacheEntryAction extends ResourceAction {
 	private final IOObjectMap map;
 	private final String key;
 
-	/**
-	 * Creates a new {@link OpenCacheEntryAction} for the specified {@link IOObjectMap} and key.
-	 *
-	 * @param map
-	 *            The corresponding {@link IOObjectMap};
-	 * @param key
-	 *            The key of the {@link IOObject} to be displayed.
-	 * @throws NullPointerException
-	 *             If one of the parameters is <code>null</code>.
-	 */
-	public OpenCacheEntryAction(IOObjectMap map, String key) {
+    /**
+     * Creates a new {@link OpenCacheEntryAction} for the specified {@link IOObjectMap} and key.
+     *
+     * @param map The corresponding {@link IOObjectMap};
+     * @param key The key of the {@link IOObject} to be displayed.
+     * @throws NullPointerException If one of the parameters is <code>null</code>.
+     */
+    public OpenCacheEntryAction(IOObjectMap map, String key) {
 		super(true, "ioobject_viewer.open", key);
 		Objects.requireNonNull(map);
 		Objects.requireNonNull(key);

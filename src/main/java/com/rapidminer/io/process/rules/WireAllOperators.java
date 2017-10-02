@@ -31,15 +31,21 @@ import org.w3c.dom.Element;
 
 /**
  * Wires all immediate children of an operator chain.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class WireAllOperators extends AbstractParseRule {
 
 	private final int subprocess;
 
-	public WireAllOperators(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Instantiates a new Wire all operators.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @throws XMLException the xml exception
+     */
+    public WireAllOperators(String operatorTypeName, Element element) throws XMLException {
 		super(operatorTypeName, element);
 		subprocess = Integer.parseInt(XMLTools.getTagContents(element, "subprocess"));
 	}

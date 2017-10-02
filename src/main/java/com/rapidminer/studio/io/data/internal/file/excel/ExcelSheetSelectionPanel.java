@@ -575,7 +575,12 @@ final class ExcelSheetSelectionPanel extends JPanel {
 
 	private List<ChangeListener> changeListeners = new LinkedList<>();
 
-	public ExcelSheetSelectionPanel(ExcelDataSource dataSource) {
+    /**
+     * Instantiates a new Excel sheet selection panel.
+     *
+     * @param dataSource the data source
+     */
+    public ExcelSheetSelectionPanel(ExcelDataSource dataSource) {
 		this.sheetSelectionModel = new ExcelSheetSelectionPanelModel(dataSource, sheetSelectionModelListener);
 
 		setLayout(new BorderLayout());
@@ -820,27 +825,22 @@ final class ExcelSheetSelectionPanel extends JPanel {
 		return Integer.parseInt(headerRowSpinner.getValue().toString()) - 1;
 	}
 
-	/**
-	 *
-	 * Configures the UI according to the configuration of the provided {@link ExcelDataSource}.
-	 *
-	 * @param excelDataSource
-	 *            the {@link ExcelDataSource} that should be used to configure the UI
-	 */
-	void configureSheetSelectionModel(final ExcelDataSource excelDataSource) {
+    /**
+     * Configures the UI according to the configuration of the provided {@link ExcelDataSource}.
+     *
+     * @param excelDataSource the {@link ExcelDataSource} that should be used to configure the UI
+     */
+    void configureSheetSelectionModel(final ExcelDataSource excelDataSource) {
 		updateModel(excelDataSource.getResultSetConfiguration().getSheet(), excelDataSource.getHeaderRowIndex(),
 				new CellRangeSelection(excelDataSource.getResultSetConfiguration()));
 	}
 
-	/**
-	 * Kills the current error bubble.
-	 *
-	 * @param owner
-	 *            the owner of the error, if the actual bubble owner is different this method won't
-	 *            do anything. If the given owner is {@code null} the bubble will be forcefully
-	 *            killed without respect to any owner.
-	 */
-	void killCurrentBubbleWindow(JComponent owner) {
+    /**
+     * Kills the current error bubble.
+     *
+     * @param owner the owner of the error, if the actual bubble owner is different this method won't            do anything. If the given owner is {@code null} the bubble will be forcefully            killed without respect to any owner.
+     */
+    void killCurrentBubbleWindow(JComponent owner) {
 		if (currentBubbleWindow != null && (owner == null || owner == bubbleOwner)) {
 			currentBubbleWindow.killBubble(true);
 			currentBubbleWindow = null;
@@ -880,19 +880,21 @@ final class ExcelSheetSelectionPanel extends JPanel {
 		currentBubbleWindow = errorWindow;
 	};
 
-	/**
-	 * Shows a "header row behind start row"-bubble
-	 */
-	void notifyHeaderRowBehindStartRow() throws InvalidConfigurationException {
+    /**
+     * Shows a "header row behind start row"-bubble
+     *
+     * @throws InvalidConfigurationException the invalid configuration exception
+     */
+    void notifyHeaderRowBehindStartRow() throws InvalidConfigurationException {
 		createBubbleWindow(headerRowSpinner, BubbleStyle.ERROR,
 				"io.dataimport.step.csv.format_specification.invalid_header_row", getHeaderRowIndex() + 1,
 				getSelection().getRowIndexStart() + 1);
 	}
 
-	/**
-	 * Shows a "header row not found"-bubble
-	 */
-	void notifyHeaderRowNotFound() {
+    /**
+     * Shows a "header row not found"-bubble
+     */
+    void notifyHeaderRowNotFound() {
 		createBubbleWindow(headerRowSpinner, BubbleStyle.ERROR,
 				"io.dataimport.step.csv.format_specification.header_row_not_found");
 	}
@@ -964,12 +966,13 @@ final class ExcelSheetSelectionPanel extends JPanel {
 		sheetSelectionModel.updateModel(sheetIndex, headerRowIndex, selection);
 	}
 
-	/**
-	 * @return the user selection of the range to be imported.
-	 * @throws InvalidConfigurationException
-	 *             in case the current selection is invalid
-	 */
-	CellRangeSelection getSelection() throws InvalidConfigurationException {
+    /**
+     * Gets selection.
+     *
+     * @return the user selection of the range to be imported.
+     * @throws InvalidConfigurationException in case the current selection is invalid
+     */
+    CellRangeSelection getSelection() throws InvalidConfigurationException {
 		CellRangeSelection selection = sheetSelectionModel.getCellRangeSelection();
 		if (selection == null) {
 			throw new InvalidConfigurationException();
@@ -977,60 +980,64 @@ final class ExcelSheetSelectionPanel extends JPanel {
 		return selection;
 	}
 
-	/**
-	 * @return whether the current selected sheet is empty
-	 */
-	boolean isSheetEmpty() {
+    /**
+     * Is sheet empty boolean.
+     *
+     * @return whether the current selected sheet is empty
+     */
+    boolean isSheetEmpty() {
 		return contentTable.getModel().getColumnCount() <= 0;
 	}
 
-	/**
-	 * @return whether the current selection is empty
-	 */
-	boolean isSelectionEmpty() {
+    /**
+     * Is selection empty boolean.
+     *
+     * @return whether the current selection is empty
+     */
+    boolean isSelectionEmpty() {
 		return cellRangeTextField.getText().trim().isEmpty();
 	}
 
-	/**
-	 * @return wether the UI of the sheet selection panel is currently updated
-	 */
-	boolean isUpdatingUI() {
+    /**
+     * Is updating ui boolean.
+     *
+     * @return wether the UI of the sheet selection panel is currently updated
+     */
+    boolean isUpdatingUI() {
 		return updatingUI;
 	}
 
-	/**
-	 * Returns the index of the header row
-	 *
-	 * @return the index of the header row or {@link ResultSetAdapter#NO_HEADER_ROW} in case the
-	 *         user unchecks the {@link #hasHeaderRowCheckBox}.
-	 */
-	int getHeaderRowIndex() {
+    /**
+     * Returns the index of the header row
+     *
+     * @return the index of the header row or {@link ResultSetAdapter#NO_HEADER_ROW} in case the         user unchecks the {@link #hasHeaderRowCheckBox}.
+     */
+    int getHeaderRowIndex() {
 		return sheetSelectionModel.getHeaderRowIndex();
 	}
 
-	/**
-	 * Returns the selected sheet index
-	 *
-	 * @return the index of the selected sheet
-	 */
-	public int getSheetIndex() {
+    /**
+     * Returns the selected sheet index
+     *
+     * @return the index of the selected sheet
+     */
+    public int getSheetIndex() {
 		return sheetSelectionModel.getSheetIndex();
 	}
 
-	/**
-	 * Clears the model cache.
-	 */
-	void clearCache() {
+    /**
+     * Clears the model cache.
+     */
+    void clearCache() {
 		sheetSelectionModel.clearTableModelCache();
 	}
 
-	/**
-	 * Registers a new change listener.
-	 *
-	 * @param changeListener
-	 *            the listener to register
-	 */
-	void addChangeListener(ChangeListener changeListener) {
+    /**
+     * Registers a new change listener.
+     *
+     * @param changeListener the listener to register
+     */
+    void addChangeListener(ChangeListener changeListener) {
 		this.changeListeners.add(changeListener);
 	}
 

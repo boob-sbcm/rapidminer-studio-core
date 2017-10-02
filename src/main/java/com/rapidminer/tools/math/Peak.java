@@ -20,7 +20,7 @@ package com.rapidminer.tools.math;
 
 /**
  * A peak with a index and a value. The compare method returns 1 for the peak with higher value.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Peak implements Comparable<Peak> {
@@ -29,16 +29,32 @@ public class Peak implements Comparable<Peak> {
 
 	private double magnitude;
 
-	public Peak(double index, double magnitude) {
+    /**
+     * Instantiates a new Peak.
+     *
+     * @param index     the index
+     * @param magnitude the magnitude
+     */
+    public Peak(double index, double magnitude) {
 		this.index = index;
 		this.magnitude = magnitude;
 	}
 
-	public double getIndex() {
+    /**
+     * Gets index.
+     *
+     * @return the index
+     */
+    public double getIndex() {
 		return index;
 	}
 
-	public double getMagnitude() {
+    /**
+     * Gets magnitude.
+     *
+     * @return the magnitude
+     */
+    public double getMagnitude() {
 		return magnitude;
 	}
 

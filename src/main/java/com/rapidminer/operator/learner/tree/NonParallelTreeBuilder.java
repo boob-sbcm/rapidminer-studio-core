@@ -35,11 +35,21 @@ import com.rapidminer.operator.learner.tree.criterions.ColumnCriterion;
  */
 public class NonParallelTreeBuilder extends AbstractParallelTreeBuilder {
 
-	/**
-	 * Pipes the arguments to the super constructor and sets an additional parameter forbidding
-	 * parallel table creation.
-	 */
-	public NonParallelTreeBuilder(Operator operator, ColumnCriterion criterion, List<ColumnTerminator> terminationCriteria,
+    /**
+     * Pipes the arguments to the super constructor and sets an additional parameter forbidding
+     * parallel table creation.
+     *
+     * @param operator                       the operator
+     * @param criterion                      the criterion
+     * @param terminationCriteria            the termination criteria
+     * @param pruner                         the pruner
+     * @param preprocessing                  the preprocessing
+     * @param prePruning                     the pre pruning
+     * @param numberOfPrepruningAlternatives the number of prepruning alternatives
+     * @param minSizeForSplit                the min size for split
+     * @param minLeafSize                    the min leaf size
+     */
+    public NonParallelTreeBuilder(Operator operator, ColumnCriterion criterion, List<ColumnTerminator> terminationCriteria,
 			Pruner pruner, AttributePreprocessing preprocessing, boolean prePruning, int numberOfPrepruningAlternatives,
 			int minSizeForSplit, int minLeafSize) {
 		super(operator, criterion, terminationCriteria, pruner, preprocessing, prePruning, numberOfPrepruningAlternatives,

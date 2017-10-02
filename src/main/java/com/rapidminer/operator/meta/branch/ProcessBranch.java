@@ -63,7 +63,7 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * second one is processed if it is false (if-then-else). The second chain may be omitted (if-then).
  * In this case, this operator has only one inner operator.
  * </p>
- *
+ * <p>
  * <p>
  * If the condition &quot;attribute_value_filter&quot; is used, the same attribute value conditions
  * already known from the {@link ExampleFilter} operator can be used. In addition to the known
@@ -83,29 +83,56 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  */
 public class ProcessBranch extends OperatorChain {
 
-	public static final String PARAMETER_CONDITION_TYPE = "condition_type";
+    /**
+     * The constant PARAMETER_CONDITION_TYPE.
+     */
+    public static final String PARAMETER_CONDITION_TYPE = "condition_type";
 
-	public static final String PARAMETER_CONDITION_VALUE = "condition_value";
+    /**
+     * The constant PARAMETER_CONDITION_VALUE.
+     */
+    public static final String PARAMETER_CONDITION_VALUE = "condition_value";
 
-	public static final String PARAMETER_EXPRESSION_VALUE = "expression";
+    /**
+     * The constant PARAMETER_EXPRESSION_VALUE.
+     */
+    public static final String PARAMETER_EXPRESSION_VALUE = "expression";
 
-	public static final String PARAMETER_RETURN_INNER_OUTPUT = "return_inner_output";
+    /**
+     * The constant PARAMETER_RETURN_INNER_OUTPUT.
+     */
+    public static final String PARAMETER_RETURN_INNER_OUTPUT = "return_inner_output";
 
-	public static final String PARAMETER_IO_OBJECT = "io_object";
+    /**
+     * The constant PARAMETER_IO_OBJECT.
+     */
+    public static final String PARAMETER_IO_OBJECT = "io_object";
 
-	public static final String CONDITION_EXPRESSION = "expression";
+    /**
+     * The constant CONDITION_EXPRESSION.
+     */
+    public static final String CONDITION_EXPRESSION = "expression";
 
-	// CHECK INDEX OF INPUT_EXISTS BELOW
+    /**
+     * The constant CONDITION_NAMES.
+     */
+// CHECK INDEX OF INPUT_EXISTS BELOW
 	public static final String[] CONDITION_NAMES = { "attribute_value_filter", "attribute_available", "min_examples",
 			"max_examples", "min_attributes", "max_attributes", "min_fitness", "max_fitness", "min_performance_value",
 			"max_performance_value", "file_exists", "input_exists",   // <== THIS NEEDS TO BE THE
 			// 11'th ENTRY IN THE LIST!!!
 			"macro_defined", CONDITION_EXPRESSION };
 
-	// ONLY TRUE IF INPUT EXISTS IS 11'th ENTRY ABOVE
+    /**
+     * The constant CONDITION_INPUT_EXISTS.
+     */
+// ONLY TRUE IF INPUT EXISTS IS 11'th ENTRY ABOVE
 	public static final String CONDITION_INPUT_EXISTS = CONDITION_NAMES[11];
 
-	public static final Class<?>[] CONDITION_CLASSES = { DataValueCondition.class, AttributeAvailableCondition.class,
+    /**
+     * The constant CONDITION_CLASSES.
+     */
+    public static final Class<?>[] CONDITION_CLASSES = { DataValueCondition.class, AttributeAvailableCondition.class,
 			MinNumberOfExamplesCondition.class, MaxNumberOfExamplesCondition.class, MinNumberOfAttributesCondition.class,
 			MaxNumberOfAttributesCondition.class, MinFitnessCondition.class, MaxFitnessCondition.class,
 			MinPerformanceValueCondition.class, MaxPerformanceValueCondition.class, FileExistsCondition.class,
@@ -121,7 +148,12 @@ public class ProcessBranch extends OperatorChain {
 	private final MultiInputPortPairExtender outputExtender = new MultiInputPortPairExtender("input", getOutputPorts(),
 			new InputPorts[] { getSubprocess(0).getInnerSinks(), getSubprocess(1).getInnerSinks() });
 
-	public ProcessBranch(OperatorDescription description) {
+    /**
+     * Instantiates a new Process branch.
+     *
+     * @param description the description
+     */
+    public ProcessBranch(OperatorDescription description) {
 		super(description, "Then", "Else");
 		inputExtender.start();
 		getTransformer().addPassThroughRule(conditionInput, conditionInnerSourceThen);
@@ -211,15 +243,37 @@ public class ProcessBranch extends OperatorChain {
 		return getParameterAsBoolean(PARAMETER_RETURN_INNER_OUTPUT);
 	}
 
-	public <T extends IOObject> T getConditionInput(Class<T> cls) throws UserError {
+    /**
+     * Gets condition input.
+     *
+     * @param <T> the type parameter
+     * @param cls the cls
+     * @return the condition input
+     * @throws UserError the user error
+     */
+    public <T extends IOObject> T getConditionInput(Class<T> cls) throws UserError {
 		return conditionInput.<T> getData(cls);
 	}
 
-	public <T extends IOObject> T getConditionInputOrNull(Class<T> cls) throws UserError {
+    /**
+     * Gets condition input or null.
+     *
+     * @param <T> the type parameter
+     * @param cls the cls
+     * @return the condition input or null
+     * @throws UserError the user error
+     */
+    public <T extends IOObject> T getConditionInputOrNull(Class<T> cls) throws UserError {
 		return conditionInput.<T> getDataOrNull(cls);
 	}
 
-	public Class<? extends IOObject> getSelectedClass() throws UndefinedParameterError {
+    /**
+     * Gets selected class.
+     *
+     * @return the selected class
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public Class<? extends IOObject> getSelectedClass() throws UndefinedParameterError {
 		int ioType = getParameterAsInt(PARAMETER_IO_OBJECT);
 		if (objectArray == null) {
 			return null;

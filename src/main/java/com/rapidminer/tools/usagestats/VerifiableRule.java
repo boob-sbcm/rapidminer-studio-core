@@ -33,7 +33,6 @@ import com.rapidminer.tools.LogService;
  *
  * @author Jonas Wilms-Pfau, Marco Boeck
  * @since 7.5.0
- *
  */
 class VerifiableRule {
 
@@ -52,23 +51,22 @@ class VerifiableRule {
 	/** the rule parsed from JSON */
 	private final Rule rule;
 
-	/**
-	 * Creates a verifiable rule based on the given {@link Rule}.
-	 *
-	 * @param rule
-	 */
-	VerifiableRule(Rule rule) {
+    /**
+     * Creates a verifiable rule based on the given {@link Rule}.
+     *
+     * @param rule the rule
+     */
+    VerifiableRule(Rule rule) {
 		this.rule = rule;
 	}
 
-	/**
-	 * Check if the rule should be verified, if yes execute the queries against the CTA Database, if
-	 * they are all fulfilled display the message
-	 *
-	 * @return {@code true} if the rule is not running/displaying and all rule queries return true;
-	 *         {@code false} otherwise
-	 */
-	public boolean isRuleFulfilled() {
+    /**
+     * Check if the rule should be verified, if yes execute the queries against the CTA Database, if
+     * they are all fulfilled display the message
+     *
+     * @return {@code true} if the rule is not running/displaying and all rule queries return true;         {@code false} otherwise
+     */
+    public boolean isRuleFulfilled() {
 		// Check if the rule should be executed
 		if (isDisplaying.get() == false && isRunning.get() == false
 				&& System.currentTimeMillis() >= lastRun + rule.getInterval() * SECOND_TO_MILLISECOND) {
@@ -91,29 +89,31 @@ class VerifiableRule {
 		return false;
 	}
 
-	/**
-	 * Returns the {@link Rule} for this rule.
-	 *
-	 * @return the rule, never {@code null}
-	 */
-	public Rule getRule() {
+    /**
+     * Returns the {@link Rule} for this rule.
+     *
+     * @return the rule, never {@code null}
+     */
+    public Rule getRule() {
 		return rule;
 	}
 
-	/**
-	 * Set the flag that this rule is displaying. Rules which are displaying cannot return
-	 * {@code true} for {@link #isRuleFulfilled()}.
-	 */
-	public void setDisplaying(boolean displaying) {
+    /**
+     * Set the flag that this rule is displaying. Rules which are displaying cannot return
+     * {@code true} for {@link #isRuleFulfilled()}.
+     *
+     * @param displaying the displaying
+     */
+    public void setDisplaying(boolean displaying) {
 		isDisplaying.set(displaying);
 	}
 
-	/**
-	 * Returns whether this rule is currently displaying its CTA.
-	 *
-	 * @return {@code true} if the rule is currently displaying; {@code false} otherwise
-	 */
-	public boolean isDisplaying() {
+    /**
+     * Returns whether this rule is currently displaying its CTA.
+     *
+     * @return {@code true} if the rule is currently displaying; {@code false} otherwise
+     */
+    public boolean isDisplaying() {
 		return isDisplaying.get();
 	}
 

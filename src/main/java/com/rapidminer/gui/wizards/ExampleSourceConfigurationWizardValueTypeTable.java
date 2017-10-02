@@ -46,7 +46,7 @@ import javax.swing.table.TableColumnModel;
 
 /**
  * This table shows only the attribute names and the attribute value types.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExampleSourceConfigurationWizardValueTypeTable extends ExtendedJTable {
@@ -59,11 +59,26 @@ public class ExampleSourceConfigurationWizardValueTypeTable extends ExtendedJTab
 
 		private List<AttributeDataSource> sources;
 
-		public ExampleSourceConfigurationWizardValueTypeTableModel(List<AttributeDataSource> sources) {
+        /**
+         * Instantiates a new Example source configuration wizard value type table model.
+         *
+         * @param sources the sources
+         */
+        public ExampleSourceConfigurationWizardValueTypeTableModel(List<AttributeDataSource> sources) {
 			this.sources = sources;
 		}
 
-		public void guessValueTypes(File originalDataFile, String commentString, String columnSeparators,
+        /**
+         * Guess value types.
+         *
+         * @param originalDataFile      the original data file
+         * @param commentString         the comment string
+         * @param columnSeparators      the column separators
+         * @param decimalPointCharacter the decimal point character
+         * @param useQuotes             the use quotes
+         * @param firstLineAsNames      the first line as names
+         */
+        public void guessValueTypes(File originalDataFile, String commentString, String columnSeparators,
 				char decimalPointCharacter, boolean useQuotes, boolean firstLineAsNames) {
 			Pattern separatorPattern = Pattern.compile(columnSeparators);
 			BufferedReader in = null;
@@ -195,7 +210,12 @@ public class ExampleSourceConfigurationWizardValueTypeTable extends ExtendedJTab
 
 	private ExampleSourceConfigurationWizardValueTypeTableModel model;
 
-	public ExampleSourceConfigurationWizardValueTypeTable(List<AttributeDataSource> sources) {
+    /**
+     * Instantiates a new Example source configuration wizard value type table.
+     *
+     * @param sources the sources
+     */
+    public ExampleSourceConfigurationWizardValueTypeTable(List<AttributeDataSource> sources) {
 		super(false);
 		setAutoResizeMode(AUTO_RESIZE_OFF);
 		this.model = new ExampleSourceConfigurationWizardValueTypeTableModel(sources);
@@ -203,13 +223,26 @@ public class ExampleSourceConfigurationWizardValueTypeTable extends ExtendedJTab
 		update();
 	}
 
-	public void guessValueTypes(File data, String commentString, String columnSeparators, char decimalPointCharacter,
+    /**
+     * Guess value types.
+     *
+     * @param data                  the data
+     * @param commentString         the comment string
+     * @param columnSeparators      the column separators
+     * @param decimalPointCharacter the decimal point character
+     * @param useQuotes             the use quotes
+     * @param firstLineAsNames      the first line as names
+     */
+    public void guessValueTypes(File data, String commentString, String columnSeparators, char decimalPointCharacter,
 			boolean useQuotes, boolean firstLineAsNames) {
 		this.model
 				.guessValueTypes(data, commentString, columnSeparators, decimalPointCharacter, useQuotes, firstLineAsNames);
 	}
 
-	public void update() {
+    /**
+     * Update.
+     */
+    public void update() {
 		((AbstractTableModel) getModel()).fireTableStructureChanged();
 		TableColumnModel columnModel = getColumnModel();
 		for (int i = 0; i < columnModel.getColumnCount(); i++) {

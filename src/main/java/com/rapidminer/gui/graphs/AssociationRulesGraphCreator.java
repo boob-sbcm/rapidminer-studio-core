@@ -77,7 +77,12 @@ public class AssociationRulesGraphCreator extends GraphCreatorAdaptor implements
 
 	private GraphViewer<String, String> viewer;
 
-	public AssociationRulesGraphCreator(AssociationRules rules) {
+    /**
+     * Instantiates a new Association rules graph creator.
+     *
+     * @param rules the rules
+     */
+    public AssociationRulesGraphCreator(AssociationRules rules) {
 		this.rules = rules;
 		this.filter = new AssociationRuleFilter(rules);
 		this.filter.setBorder(BorderFactory.createTitledBorder("Filter"));

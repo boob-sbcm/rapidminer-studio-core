@@ -25,45 +25,102 @@ import com.rapidminer.parameter.ParameterTypeTupel;
 
 /**
  * Allows the specification of parameter values as a basis of e.g. optimization.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public abstract class ParameterValues {
 
-	protected transient Operator operator;
+    /**
+     * The Operator.
+     */
+    protected transient Operator operator;
 
-	protected transient ParameterType type;
+    /**
+     * The Type.
+     */
+    protected transient ParameterType type;
 
-	protected String key;
+    /**
+     * The Key.
+     */
+    protected String key;
 
-	public ParameterValues(Operator operator, ParameterType type) {
+    /**
+     * Instantiates a new Parameter values.
+     *
+     * @param operator the operator
+     * @param type     the type
+     */
+    public ParameterValues(Operator operator, ParameterType type) {
 		this.operator = operator;
 		this.type = type;
 	}
 
-	public Operator getOperator() {
+    /**
+     * Gets operator.
+     *
+     * @return the operator
+     */
+    public Operator getOperator() {
 		return operator;
 	}
 
-	public ParameterType getParameterType() {
+    /**
+     * Gets parameter type.
+     *
+     * @return the parameter type
+     */
+    public ParameterType getParameterType() {
 		return type;
 	}
 
-	public String getKey() {
+    /**
+     * Gets key.
+     *
+     * @return the key
+     */
+    public String getKey() {
 		return ParameterTypeTupel.transformTupel2String(operator.getName(), type.getKey());
 	}
 
-	public abstract int getNumberOfValues();
+    /**
+     * Gets number of values.
+     *
+     * @return the number of values
+     */
+    public abstract int getNumberOfValues();
 
-	public abstract String getValuesString();
+    /**
+     * Gets values string.
+     *
+     * @return the values string
+     */
+    public abstract String getValuesString();
 
-	public abstract void move(int index, int direction);
+    /**
+     * Move.
+     *
+     * @param index     the index
+     * @param direction the direction
+     */
+    public abstract void move(int index, int direction);
 
-	public String[] getValuesArray() {
+    /**
+     * Get values array string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getValuesArray() {
 		return null;
 	}
 
-	public static boolean isValidNumericalParameter(String value) {
+    /**
+     * Is valid numerical parameter boolean.
+     *
+     * @param value the value
+     * @return the boolean
+     */
+    public static boolean isValidNumericalParameter(String value) {
 		if (value.startsWith("%{") && value.endsWith("}")) {
 			return true;
 		}

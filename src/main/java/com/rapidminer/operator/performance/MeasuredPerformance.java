@@ -29,7 +29,7 @@ import com.rapidminer.tools.math.Averagable;
  * Superclass for performance citeria that are actually measured (not estimated). These criteria can
  * be calculated by the operator {@link PerformanceEvaluator}.
  * </p>
- * 
+ * <p>
  * <p>
  * Beside the methods from {@link Averagable} and {@link PerformanceCriterion} this class must
  * implement some additonal methods. Please note that the actual measurement could be done in either
@@ -42,7 +42,7 @@ import com.rapidminer.tools.math.Averagable;
  * is preferred since this would allow the easy integration of this criterion for incremental
  * scenarios (although this is currently not supported).
  * </p>
- * 
+ * <p>
  * <p>
  * IMPORTANT: Please note that your criterion need a public constructor without arguments in order
  * to create this object via reflection. It is also possible to have a one-argument string
@@ -55,21 +55,21 @@ import com.rapidminer.tools.math.Averagable;
  * current instance to n. Don't forget to invoke the super constructor first in your clone
  * constructor.
  * </p>
- * 
+ * <p>
  * <p>
  * The method {@link #getMikroAverage()} should return the value computed in startCounting or the
  * current value calculated by countExample or Double.NaN if the value was not yet known, or was not
  * well defined). If you can calculate a value for micro variance you should return this value in
  * {@link #getMikroVariance()}. If this is not possible simply return Double.NaN.
  * </p>
- * 
+ * <p>
  * <p>
  * The method {@link #getExampleCount()} returns the number of observations used to calculate the
  * measure. This value is usually used for building micro averages (in the method
  * {@link #buildSingleAverage(Averagable)} and might be important for calculating significance
  * tests.
  * </p>
- * 
+ * <p>
  * <p>
  * If your measure is averageable, you use {@link #buildSingleAverage(Averagable)} to fold another
  * copy of your measure into the current copy. Suppose you were implementing sample mean. The
@@ -77,7 +77,7 @@ import com.rapidminer.tools.math.Averagable;
  * another instance with mean nu and sample count n, you would update the current instance to mean
  * (m*mu+n*nu)/(m+n) and count m+n. This is actually the computation of the micro average.
  * <p>
- * 
+ * <p>
  * <p>
  * In some cases the criterion is better if the value returned by {@link #getAverage()} is smaller.
  * In order to support optimizations, the method {@link #getFitness()} should return the result of
@@ -86,7 +86,7 @@ import com.rapidminer.tools.math.Averagable;
  * values are better. If smaller values are better, the method should return something like -1 *
  * {@link #getAverage()}.
  * </p>
- * 
+ * <p>
  * <p>
  * The methods {@link #getName()} and {@link #getDescription()} are user by the user interface.
  * Please note that the name should only contain lowercase letters and underscore (RapidMiner
@@ -94,7 +94,7 @@ import com.rapidminer.tools.math.Averagable;
  * {@link #getVisualizationComponent(com.rapidminer.operator.IOContainer)} in order to provide a
  * nice visualization for the performance criterion but you usually don't have to.
  * </p>
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public abstract class MeasuredPerformance extends PerformanceCriterion {
@@ -104,27 +104,47 @@ public abstract class MeasuredPerformance extends PerformanceCriterion {
 	 */
 	private static final long serialVersionUID = 4465054472762456363L;
 
-	public MeasuredPerformance() {}
+    /**
+     * Instantiates a new Measured performance.
+     */
+    public MeasuredPerformance() {}
 
-	public MeasuredPerformance(MeasuredPerformance o) {
+    /**
+     * Instantiates a new Measured performance.
+     *
+     * @param o the o
+     */
+    public MeasuredPerformance(MeasuredPerformance o) {
 		super(o);
 	}
 
-	/** Counts a single example, e.g. by summing up errors. */
-	public abstract void countExample(Example example);
+    /**
+     * Counts a single example, e.g. by summing up errors.  @param example the example
+     *
+     * @param example the example
+     */
+    public abstract void countExample(Example example);
 
-	/**
-	 * Initialized the criterion. The default implementation invokes the initialization method with
-	 * useExampleWeights set to true.
-	 * 
-	 * @deprecated Please use the other start counting method directly
-	 */
-	@Deprecated
+    /**
+     * Initialized the criterion. The default implementation invokes the initialization method with
+     * useExampleWeights set to true.
+     *
+     * @param set the set
+     * @throws OperatorException the operator exception
+     * @deprecated Please use the other start counting method directly
+     */
+    @Deprecated
 	public final void startCounting(ExampleSet set) throws OperatorException {
 		startCounting(set, true);
 	}
 
-	/** Initializes the criterion. The default implementation does nothing. */
-	public void startCounting(ExampleSet set, boolean useExampleWeights) throws OperatorException {}
+    /**
+     * Initializes the criterion. The default implementation does nothing.  @param set the set
+     *
+     * @param set               the set
+     * @param useExampleWeights the use example weights
+     * @throws OperatorException the operator exception
+     */
+    public void startCounting(ExampleSet set, boolean useExampleWeights) throws OperatorException {}
 
 }

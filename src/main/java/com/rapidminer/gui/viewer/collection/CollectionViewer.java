@@ -67,15 +67,33 @@ public class CollectionViewer extends JPanel implements PrintableComponentContai
 
 	private final IOObject collection;
 
-	public CollectionViewer(final GroupedModel model, final IOContainer container) {
+    /**
+     * Instantiates a new Collection viewer.
+     *
+     * @param model     the model
+     * @param container the container
+     */
+    public CollectionViewer(final GroupedModel model, final IOContainer container) {
 		this((IOObject) model, container);
 	}
 
-	public CollectionViewer(final MetaModel model, final IOContainer container) {
+    /**
+     * Instantiates a new Collection viewer.
+     *
+     * @param model     the model
+     * @param container the container
+     */
+    public CollectionViewer(final MetaModel model, final IOContainer container) {
 		this((IOObject) model, container);
 	}
 
-	public CollectionViewer(IOObjectCollection<IOObject> collection, final IOContainer container) {
+    /**
+     * Instantiates a new Collection viewer.
+     *
+     * @param collection the collection
+     * @param container  the container
+     */
+    public CollectionViewer(IOObjectCollection<IOObject> collection, final IOContainer container) {
 		this((IOObject) collection, container);
 	}
 
@@ -208,10 +226,12 @@ public class CollectionViewer extends JPanel implements PrintableComponentContai
 		}
 	}
 
-	/**
-	 * @return the Component which displays the actual result
-	 */
-	public Component getResultViewComponent() {
+    /**
+     * Gets result view component.
+     *
+     * @return the Component which displays the actual result
+     */
+    public Component getResultViewComponent() {
 		return current;
 	}
 

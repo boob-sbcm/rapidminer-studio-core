@@ -32,17 +32,29 @@ import java.util.Map;
  * An abstract class for creating wizards. This is a Dialog presenting multiple pages each one
  * denoting a step in the wizard. The {@link WizardStep} objects are informed about leaving or
  * entering actions, as well as asked for allowance to proceed.
- * 
+ *
  * @author Tobias Malbrecht, Sebastian Land
  */
 public class AbstractWizard extends MultiPageDialog {
 
-	/**
-	 * This enumeration is used to indicated the single steps in or from which direction the are
-	 * left or entered. This is useful for cleaning up resources blocked by these steps as files.
-	 */
-	public static enum WizardStepDirection {
-		BEGINNING, FORWARD, BACKWARD, FINISH
+    /**
+     * This enumeration is used to indicated the single steps in or from which direction the are
+     * left or entered. This is useful for cleaning up resources blocked by these steps as files.
+     */
+    public static enum WizardStepDirection {
+        /**
+         * Beginning wizard step direction.
+         */
+        BEGINNING, /**
+         * Forward wizard step direction.
+         */
+        FORWARD, /**
+         * Backward wizard step direction.
+         */
+        BACKWARD, /**
+         * Finish wizard step direction.
+         */
+        FINISH
 	}
 
 	private static final long serialVersionUID = 7091671433172940496L;
@@ -53,23 +65,58 @@ public class AbstractWizard extends MultiPageDialog {
 
 	private boolean showStepInfo = true;
 
-	public AbstractWizard(Dialog owner, String key, Object... arguments) {
+    /**
+     * Instantiates a new Abstract wizard.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param arguments the arguments
+     */
+    public AbstractWizard(Dialog owner, String key, Object... arguments) {
 		super(owner, key, false, arguments);
 	}
 
-	public AbstractWizard(Frame owner, String key, Object... arguments) {
+    /**
+     * Instantiates a new Abstract wizard.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param arguments the arguments
+     */
+    public AbstractWizard(Frame owner, String key, Object... arguments) {
 		super(owner, key, false, arguments);
 	}
 
-	public AbstractWizard(Dialog owner, String key, boolean modal, Object... arguments) {
+    /**
+     * Instantiates a new Abstract wizard.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param modal     the modal
+     * @param arguments the arguments
+     */
+    public AbstractWizard(Dialog owner, String key, boolean modal, Object... arguments) {
 		super(owner, key, modal, arguments);
 	}
 
-	public AbstractWizard(Frame owner, String key, boolean modal, Object... arguments) {
+    /**
+     * Instantiates a new Abstract wizard.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param modal     the modal
+     * @param arguments the arguments
+     */
+    public AbstractWizard(Frame owner, String key, boolean modal, Object... arguments) {
 		super(owner, key, modal, arguments);
 	}
 
-	protected void layoutDefault(int size) {
+    /**
+     * Layout default.
+     *
+     * @param size the size
+     */
+    protected void layoutDefault(int size) {
 		Map<String, Component> cards = new LinkedHashMap<String, Component>();
 		for (WizardStep wizardStep : wizardSteps) {
 			cards.put(wizardStep.getTitle(), wizardStep.getComponent());
@@ -79,11 +126,19 @@ public class AbstractWizard extends MultiPageDialog {
 		updateInfoHeader();
 	}
 
-	protected void layoutDefault() {
+    /**
+     * Layout default.
+     */
+    protected void layoutDefault() {
 		layoutDefault(NORMAL);
 	}
 
-	protected void addStep(WizardStep wizardStep) {
+    /**
+     * Add step.
+     *
+     * @param wizardStep the wizard step
+     */
+    protected void addStep(WizardStep wizardStep) {
 		wizardStep.addChangeListener(this);
 		wizardSteps.add(wizardStep);
 	}
@@ -148,13 +203,19 @@ public class AbstractWizard extends MultiPageDialog {
 		return wizardSteps.get(getCurrentStep());
 	}
 
-	protected void updateTitle() {
+    /**
+     * Update title.
+     */
+    protected void updateTitle() {
 		if (showStepNumbersInTitle) {
 			setTitle(getDialogTitle() + " - Step " + (getCurrentStep() + 1 + " of " + wizardSteps.size()));
 		}
 	}
 
-	protected void updateInfoHeader() {
+    /**
+     * Update info header.
+     */
+    protected void updateInfoHeader() {
 		if (showStepInfo) {
 			infoTextLabel.setText(getInfoText() + "<br/><b>Step " + (getCurrentStep() + 1) + ":</b> "
 					+ wizardSteps.get(getCurrentStep()).getInfoText());

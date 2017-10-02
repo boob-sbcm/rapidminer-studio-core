@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  * Displays the result of an ANOVA matrix calculation.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ANOVAMatrix extends ResultObjectAdapter {
@@ -40,7 +40,15 @@ public class ANOVAMatrix extends ResultObjectAdapter {
 
 	private double significanceLevel;
 
-	public ANOVAMatrix(double[][] probabilities, List<String> anovaAttributeNames, List<String> groupNames,
+    /**
+     * Instantiates a new Anova matrix.
+     *
+     * @param probabilities       the probabilities
+     * @param anovaAttributeNames the anova attribute names
+     * @param groupNames          the group names
+     * @param significanceLevel   the significance level
+     */
+    public ANOVAMatrix(double[][] probabilities, List<String> anovaAttributeNames, List<String> groupNames,
 			double significanceLevel) {
 		this.probabilities = probabilities;
 		this.anovaAttributeNames = anovaAttributeNames;
@@ -48,19 +56,39 @@ public class ANOVAMatrix extends ResultObjectAdapter {
 		this.significanceLevel = significanceLevel;
 	}
 
-	public double[][] getProbabilities() {
+    /**
+     * Get probabilities double [ ] [ ].
+     *
+     * @return the double [ ] [ ]
+     */
+    public double[][] getProbabilities() {
 		return probabilities;
 	}
 
-	public List<String> getAnovaAttributeNames() {
+    /**
+     * Gets anova attribute names.
+     *
+     * @return the anova attribute names
+     */
+    public List<String> getAnovaAttributeNames() {
 		return anovaAttributeNames;
 	}
 
-	public List<String> getGroupingAttributeNames() {
+    /**
+     * Gets grouping attribute names.
+     *
+     * @return the grouping attribute names
+     */
+    public List<String> getGroupingAttributeNames() {
 		return groupNames;
 	}
 
-	public double getSignificanceLevel() {
+    /**
+     * Gets significance level.
+     *
+     * @return the significance level
+     */
+    public double getSignificanceLevel() {
 		return significanceLevel;
 	}
 
@@ -77,11 +105,21 @@ public class ANOVAMatrix extends ResultObjectAdapter {
 				+ "between groups defined by other (nominal) attributes.";
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "ano";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "anova matrix";
 	}
 }

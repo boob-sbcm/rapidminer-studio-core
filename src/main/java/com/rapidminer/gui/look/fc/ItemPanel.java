@@ -40,7 +40,7 @@ import javax.swing.SwingConstants;
 
 /**
  * A panel containing all items (files etc.)
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ItemPanel extends JPanel implements MouseListener, MouseMotionListener {
@@ -57,7 +57,10 @@ public class ItemPanel extends JPanel implements MouseListener, MouseMotionListe
 
 	private Rectangle selectionRect;
 
-	protected FileList filePane;
+    /**
+     * The File pane.
+     */
+    protected FileList filePane;
 
 	private boolean pointChanged = false;
 
@@ -71,7 +74,12 @@ public class ItemPanel extends JPanel implements MouseListener, MouseMotionListe
 
 	private int maxWidth;
 
-	public ItemPanel(FileList parent) {
+    /**
+     * Instantiates a new Item panel.
+     *
+     * @param parent the parent
+     */
+    public ItemPanel(FileList parent) {
 		this.addMouseMotionListener(this);
 		this.addMouseListener(this);
 		this.addKeyListener(this.keylistener);
@@ -85,7 +93,12 @@ public class ItemPanel extends JPanel implements MouseListener, MouseMotionListe
 		this.selectingThread = new DragSelectionThread(this, this.filePane);
 	}
 
-	public FileList getFilePane() {
+    /**
+     * Gets file pane.
+     *
+     * @return the file pane
+     */
+    public FileList getFilePane() {
 		return this.filePane;
 	}
 
@@ -195,10 +208,14 @@ public class ItemPanel extends JPanel implements MouseListener, MouseMotionListe
 		repaint();
 	}
 
-	/**
-	 * @deprecated Since 7.4; did nothing
-	 */
-	@Deprecated
+    /**
+     * Move selected items.
+     *
+     * @param difX the dif x
+     * @param difY the dif y
+     * @deprecated Since 7.4; did nothing
+     */
+    @Deprecated
 	public void moveSelectedItems(int difX, int difY) {}
 
 	@Override
@@ -214,31 +231,54 @@ public class ItemPanel extends JPanel implements MouseListener, MouseMotionListe
 	@Override
 	public void mouseMoved(MouseEvent e) {}
 
-	public void selectedComponentMousePressed(MouseEvent e) {
+    /**
+     * Selected component mouse pressed.
+     *
+     * @param e the e
+     */
+    public void selectedComponentMousePressed(MouseEvent e) {
 		for (Item tempItem : filePane.selectedFilesVector) {
 			tempItem.componentMousePressed(e);
 		}
 	}
 
-	public void selectedComponentMouseReleased(MouseEvent e) {
+    /**
+     * Selected component mouse released.
+     *
+     * @param e the e
+     */
+    public void selectedComponentMouseReleased(MouseEvent e) {
 		for (Item tempItem : filePane.selectedFilesVector) {
 			tempItem.componentMouseReleased(e);
 		}
 		this.determinePreferredSize();
 	}
 
-	public void selectedComponentMouseDragged(Point point) {
+    /**
+     * Selected component mouse dragged.
+     *
+     * @param point the point
+     */
+    public void selectedComponentMouseDragged(Point point) {
 		for (Item tempItem : filePane.selectedFilesVector) {
 			tempItem.componentMouseDragged(point);
 		}
 		this.scrollRectToVisible(this.filePane.lastSelected.getBounds());
 	}
 
-	protected void arrangeTheFiles() {
+    /**
+     * Arrange the files.
+     */
+    protected void arrangeTheFiles() {
 		arrangeTheFiles((int) ((JComponent) this.getParent().getParent().getParent()).getSize().getWidth());
 	}
 
-	protected void arrangeTheFiles(int w) {
+    /**
+     * Arrange the files.
+     *
+     * @param w the w
+     */
+    protected void arrangeTheFiles(int w) {
 		int counter = 0, r, c;
 
 		if (this.filePane.filechooserUI.viewType.equals(FileChooserUI.FILECHOOSER_VIEW_THUMBNAIL)) {
@@ -284,7 +324,12 @@ public class ItemPanel extends JPanel implements MouseListener, MouseMotionListe
 		repaint();
 	}
 
-	public void findBestConfig(Item thumb) {
+    /**
+     * Find best config.
+     *
+     * @param thumb the thumb
+     */
+    public void findBestConfig(Item thumb) {
 		int r = 0, c = 0;
 		int counter = this.filePane.visibleItemsList.size() - 1;
 
@@ -310,7 +355,10 @@ public class ItemPanel extends JPanel implements MouseListener, MouseMotionListe
 		}
 	}
 
-	public void updateForViewAndArrange() {
+    /**
+     * Update for view and arrange.
+     */
+    public void updateForViewAndArrange() {
 		if (this.filePane.filechooserUI.getView().equals(FileChooserUI.FILECHOOSER_VIEW_THUMBNAIL)) {
 			for (Item item : filePane.visibleItemsList) {
 				updateForThumbnailView(item);
@@ -343,7 +391,12 @@ public class ItemPanel extends JPanel implements MouseListener, MouseMotionListe
 		arrangeTheFiles();
 	}
 
-	public void updateForListView(Item tc) {
+    /**
+     * Update for list view.
+     *
+     * @param tc the tc
+     */
+    public void updateForListView(Item tc) {
 		tc.nameLabel.setMultiLine(false);
 
 		tc.setBestSize(tc.nameLabel.getPreferredLineWidth() + 25, 18);
@@ -424,11 +477,20 @@ public class ItemPanel extends JPanel implements MouseListener, MouseMotionListe
 		tc.updateItemIcon();
 	}
 
-	public void updateViewType() {
+    /**
+     * Update view type.
+     */
+    public void updateViewType() {
 		updateForViewAndArrange();
 	}
 
-	public void useKeyMoves(String str, boolean isCtrl) {
+    /**
+     * Use key moves.
+     *
+     * @param str    the str
+     * @param isCtrl the is ctrl
+     */
+    public void useKeyMoves(String str, boolean isCtrl) {
 		if (this.filePane.lastSelected == null || this.filePane.visibleItemsList.size() == 0) {
 			return;
 		}
@@ -572,15 +634,30 @@ public class ItemPanel extends JPanel implements MouseListener, MouseMotionListe
 		}
 	}
 
-	public String getCurrentView() {
+    /**
+     * Gets current view.
+     *
+     * @return the current view
+     */
+    public String getCurrentView() {
 		return this.filePane.filechooserUI.viewType;
 	}
 
-	public Vector<Item> getItemsList() {
+    /**
+     * Gets items list.
+     *
+     * @return the items list
+     */
+    public Vector<Item> getItemsList() {
 		return this.filePane.visibleItemsList;
 	}
 
-	public void forwardToNearestFor(String pre) {
+    /**
+     * Forward to nearest for.
+     *
+     * @param pre the pre
+     */
+    public void forwardToNearestFor(String pre) {
 		int index = this.filePane.visibleItemsList.indexOf(this.filePane.lastSelected) + 1;
 		for (int i = 0; i < this.filePane.visibleItemsList.size(); i++) {
 			if (index == this.filePane.visibleItemsList.size()) {

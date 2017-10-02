@@ -27,41 +27,76 @@ import javax.swing.table.TableColumn;
 /**
  * This is an component of the {@link EditableHeaderJTable}. It was retrieved from
  * http://www.java2s.com/Code/Java/Swing-Components/EditableHeaderTableExample2.htm
- * 
- * 
+ *
  * @author Sebastian Land
  */
 public class EditableTableHeaderColumn extends TableColumn {
 
 	private static final long serialVersionUID = 1L;
 
-	protected TableCellEditor headerEditor;
+    /**
+     * The Header editor.
+     */
+    protected TableCellEditor headerEditor;
 
-	protected boolean isHeaderEditable;
+    /**
+     * The Is header editable.
+     */
+    protected boolean isHeaderEditable;
 
-	public EditableTableHeaderColumn(int column) {
+    /**
+     * Instantiates a new Editable table header column.
+     *
+     * @param column the column
+     */
+    public EditableTableHeaderColumn(int column) {
 		super(column);
 		setHeaderEditor(createDefaultHeaderEditor());
 		isHeaderEditable = true;
 	}
 
-	public void setHeaderEditor(TableCellEditor headerEditor) {
+    /**
+     * Sets header editor.
+     *
+     * @param headerEditor the header editor
+     */
+    public void setHeaderEditor(TableCellEditor headerEditor) {
 		this.headerEditor = headerEditor;
 	}
 
-	public TableCellEditor getHeaderEditor() {
+    /**
+     * Gets header editor.
+     *
+     * @return the header editor
+     */
+    public TableCellEditor getHeaderEditor() {
 		return headerEditor;
 	}
 
-	public void setHeaderEditable(boolean isEditable) {
+    /**
+     * Sets header editable.
+     *
+     * @param isEditable the is editable
+     */
+    public void setHeaderEditable(boolean isEditable) {
 		isHeaderEditable = isEditable;
 	}
 
-	public boolean isHeaderEditable() {
+    /**
+     * Is header editable boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isHeaderEditable() {
 		return isHeaderEditable;
 	}
 
-	public void copyValues(TableColumn base) {
+    /**
+     * Copy values.
+     *
+     * @param base the base
+     */
+    public void copyValues(TableColumn base) {
 		modelIndex = base.getModelIndex();
 		identifier = base.getIdentifier();
 		width = base.getWidth();
@@ -75,7 +110,12 @@ public class EditableTableHeaderColumn extends TableColumn {
 		isResizable = base.getResizable();
 	}
 
-	protected TableCellEditor createDefaultHeaderEditor() {
+    /**
+     * Create default header editor table cell editor.
+     *
+     * @return the table cell editor
+     */
+    protected TableCellEditor createDefaultHeaderEditor() {
 		return new DefaultCellEditor(new JTextField());
 	}
 

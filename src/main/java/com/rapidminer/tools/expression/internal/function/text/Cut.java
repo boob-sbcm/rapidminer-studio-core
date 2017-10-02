@@ -35,14 +35,13 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * A {@link Function} to cut a nominal value.
  *
  * @author Thilo Kamradt
- *
  */
 public class Cut extends AbstractFunction {
 
-	/**
-	 * Creates a function to cut a nominal value.
-	 */
-	public Cut() {
+    /**
+     * Creates a function to cut a nominal value.
+     */
+    public Cut() {
 		super("text_transformation.cut", 3, Ontology.NOMINAL);
 	}
 
@@ -62,17 +61,16 @@ public class Cut extends AbstractFunction {
 				isResultConstant(inputEvaluators));
 	}
 
-	/**
-	 * Builds a DoubleCallable from left and right using {@link #compute(String, String)}, where
-	 * constant child results are evaluated.
-	 *
-	 * @param left
-	 *            the left input
-	 * @param right
-	 *            the right input
-	 * @return the resulting DoubleCallable
-	 */
-	protected Callable<String> makeStringCallable(ExpressionEvaluator text, ExpressionEvaluator startIndex,
+    /**
+     * Builds a DoubleCallable from left and right using {@link #compute(String, String)}, where
+     * constant child results are evaluated.
+     *
+     * @param text       the text
+     * @param startIndex the start index
+     * @param length     the length
+     * @return the resulting DoubleCallable
+     */
+    protected Callable<String> makeStringCallable(ExpressionEvaluator text, ExpressionEvaluator startIndex,
 			ExpressionEvaluator length) {
 
 		final Callable<String> funcText = text.getStringFunction();
@@ -169,15 +167,15 @@ public class Cut extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result.
-	 *
-	 * @param text
-	 * @param index
-	 * @param length
-	 * @return the result of the computation.
-	 */
-	protected String compute(String text, double index, double length) {
+    /**
+     * Computes the result.
+     *
+     * @param text   the text
+     * @param index  the index
+     * @param length the length
+     * @return the result of the computation.
+     */
+    protected String compute(String text, double index, double length) {
 		if (Double.isNaN(index)) {
 			// this must be changed for compatibility with the old parser
 			index = 0;

@@ -29,6 +29,8 @@ import org.jfree.chart.renderer.xy.ClusteredXYBarRenderer;
 
 
 /**
+ * The type Formatted clustered xy bar renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedClusteredXYBarRenderer extends ClusteredXYBarRenderer implements FormattedRenderer {
@@ -37,11 +39,20 @@ public class FormattedClusteredXYBarRenderer extends ClusteredXYBarRenderer impl
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedClusteredXYBarRenderer() {
+    /**
+     * Instantiates a new Formatted clustered xy bar renderer.
+     */
+    public FormattedClusteredXYBarRenderer() {
 		super();
 	}
 
-	public FormattedClusteredXYBarRenderer(double margin, boolean centerBarAtStartValue) {
+    /**
+     * Instantiates a new Formatted clustered xy bar renderer.
+     *
+     * @param margin                the margin
+     * @param centerBarAtStartValue the center bar at start value
+     */
+    public FormattedClusteredXYBarRenderer(double margin, boolean centerBarAtStartValue) {
 		super(margin, centerBarAtStartValue);
 	}
 

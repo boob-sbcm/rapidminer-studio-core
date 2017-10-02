@@ -47,7 +47,12 @@ public class ViewAttribute extends AbstractAttribute {
 
 	private Attribute parent;
 
-	protected ViewAttribute(ViewAttribute other) {
+    /**
+     * Instantiates a new View attribute.
+     *
+     * @param other the other
+     */
+    protected ViewAttribute(ViewAttribute other) {
 		super(other);
 		if (other.mapping != null) {
 			this.mapping = (NominalMapping) other.mapping.clone();
@@ -60,7 +65,16 @@ public class ViewAttribute extends AbstractAttribute {
 		}
 	}
 
-	public ViewAttribute(ViewModel model, Attribute parent, String name, int valueType, NominalMapping mapping) {
+    /**
+     * Instantiates a new View attribute.
+     *
+     * @param model     the model
+     * @param parent    the parent
+     * @param name      the name
+     * @param valueType the value type
+     * @param mapping   the mapping
+     */
+    public ViewAttribute(ViewModel model, Attribute parent, String name, int valueType, NominalMapping mapping) {
 		super(name, valueType);
 		this.model = model;
 		this.mapping = mapping;

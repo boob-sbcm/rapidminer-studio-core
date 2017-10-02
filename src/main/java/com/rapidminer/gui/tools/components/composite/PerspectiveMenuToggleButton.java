@@ -46,7 +46,7 @@ import com.rapidminer.tools.I18N;
 
 /**
  * A {@link CompositeMenuToggleButton} that can be used to manage {@link Perspective}s
- *
+ * <p>
  * Whether the {@code CompositeButton} is the left-most, a center, or the right-most element of the
  * composition can be specified in the constructors via the Swing constants
  * {@link SwingConstants#LEFT}, {@link SwingConstants#CENTER}, and {@link SwingConstants#RIGHT}
@@ -67,19 +67,15 @@ class PerspectiveMenuToggleButton extends CompositeMenuToggleButton {
 
 	private final PerspectiveController applicationPerspectiveController;
 
-	/**
-	 * Creates a new {@code PerspectiveMenuToggleButton} with the given {@link Action} to be used at
-	 * the given position.
-	 *
-	 * @param perspectiveController
-	 *            the active perspective controller
-	 * @param position
-	 *            the position in the composite element ({@link SwingConstants#LEFT},
-	 *            {@link SwingConstants#CENTER}, or {@link SwingConstants#RIGHT})
-	 * @param actions
-	 *            the menu actions
-	 */
-	public PerspectiveMenuToggleButton(PerspectiveController perspectiveController, int position, Action... actions) {
+    /**
+     * Creates a new {@code PerspectiveMenuToggleButton} with the given {@link Action} to be used at
+     * the given position.
+     *
+     * @param perspectiveController the active perspective controller
+     * @param position              the position in the composite element ({@link SwingConstants#LEFT},            {@link SwingConstants#CENTER}, or {@link SwingConstants#RIGHT})
+     * @param actions               the menu actions
+     */
+    public PerspectiveMenuToggleButton(PerspectiveController perspectiveController, int position, Action... actions) {
 		super(position, actions);
 		this.applicationPerspectiveController = perspectiveController;
 		this.setToolTipText(I18N.getGUIMessage("gui.split_button.drop_down.tip"));

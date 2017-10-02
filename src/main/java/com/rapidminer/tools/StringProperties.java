@@ -27,9 +27,8 @@ import java.util.Map.Entry;
 
 /**
  * This class represents properties accessed by a String value.
- * 
+ *
  * @author Michael Wurst, Ingo Mierswa
- * 
  */
 public class StringProperties implements Serializable {
 
@@ -37,25 +36,50 @@ public class StringProperties implements Serializable {
 
 	private final Map<Object, Object> properties;
 
-	public StringProperties() {
+    /**
+     * Instantiates a new String properties.
+     */
+    public StringProperties() {
 		super();
 		properties = new HashMap<Object, Object>();
 	}
 
-	public StringProperties(StringProperties props) {
+    /**
+     * Instantiates a new String properties.
+     *
+     * @param props the props
+     */
+    public StringProperties(StringProperties props) {
 		this();
 		this.properties.putAll(props.properties);
 	}
 
-	public void set(String key, Object val) {
+    /**
+     * Set.
+     *
+     * @param key the key
+     * @param val the val
+     */
+    public void set(String key, Object val) {
 		properties.put(key, val);
 	}
 
-	public Object get(String key) {
+    /**
+     * Get object.
+     *
+     * @param key the key
+     * @return the object
+     */
+    public Object get(String key) {
 		return properties.get(key);
 	}
 
-	public Iterator<Object> getKeys() {
+    /**
+     * Gets keys.
+     *
+     * @return the keys
+     */
+    public Iterator<Object> getKeys() {
 		return properties.keySet().iterator();
 	}
 

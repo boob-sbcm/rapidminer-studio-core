@@ -46,17 +46,14 @@ public class ProcessBackgroundExecution implements BackgroundExecution {
 	private ProcessBackgroundExecutionState state;
 	private long scheduledTime;
 
-	/**
-	 * Creates a new ProcessBackgroundExcecution object
-	 *
-	 * @param originalProcess
-	 *            The original process
-	 * @param executedProcess
-	 *            The executed process
-	 * @param processState
-	 *            The current state of the executed process
-	 */
-	public ProcessBackgroundExecution(Process originalProcess, Process executedProcess,
+    /**
+     * Creates a new ProcessBackgroundExcecution object
+     *
+     * @param originalProcess The original process
+     * @param executedProcess The executed process
+     * @param processState    The current state of the executed process
+     */
+    public ProcessBackgroundExecution(Process originalProcess, Process executedProcess,
 			ProcessBackgroundExecutionState processState) {
 		this.originalProcess = originalProcess;
 		this.executedProcess = executedProcess;
@@ -64,48 +61,63 @@ public class ProcessBackgroundExecution implements BackgroundExecution {
 		this.scheduledTime = System.currentTimeMillis();
 	}
 
-	public RepositoryLocation getLocation() {
+    /**
+     * Gets location.
+     *
+     * @return the location
+     */
+    public RepositoryLocation getLocation() {
 		return originalProcess.getRepositoryLocation();
 	}
 
-	public long getScheduledTime() {
+    /**
+     * Gets scheduled time.
+     *
+     * @return the scheduled time
+     */
+    public long getScheduledTime() {
 		return scheduledTime;
 	}
 
-	public ProcessBackgroundExecutionState getBackgroundExecutionState() {
+    /**
+     * Gets background execution state.
+     *
+     * @return the background execution state
+     */
+    public ProcessBackgroundExecutionState getBackgroundExecutionState() {
 		return state;
 	}
 
-	/**
-	 * Returns the executed Process
-	 *
-	 * <p>
-	 * Warning: This Process might not be equal to the original Process, use
-	 * {@code getOriginalProcess()} or {@code getProcessWithoutLocation()} to display the Process to
-	 * the user.
-	 * </p>
-	 *
-	 * @return
-	 */
-	public Process getProcess() {
+    /**
+     * Returns the executed Process
+     * <p>
+     * <p>
+     * Warning: This Process might not be equal to the original Process, use
+     * {@code getOriginalProcess()} or {@code getProcessWithoutLocation()} to display the Process to
+     * the user.
+     * </p>
+     *
+     * @return process process
+     */
+    public Process getProcess() {
 		return executedProcess;
 	}
 
-	/**
-	 * Returns the original process
-	 *
-	 * @return
-	 */
-	public Process getOriginalProcess() {
+    /**
+     * Returns the original process
+     *
+     * @return original process
+     */
+    public Process getOriginalProcess() {
 		return originalProcess;
 	}
 
-	/**
-	 * Returns the process as a "New Process"
-	 *
-	 * @return
-	 */
-	public Process getProcessWithoutLocation() {
+    /**
+     * Returns the process as a "New Process"
+     *
+     * @return process without location
+     */
+    public Process getProcessWithoutLocation() {
 		try {
 			return new Process(originalProcess.getRootOperator().getXML(false));
 		} catch (IOException | XMLException e) {

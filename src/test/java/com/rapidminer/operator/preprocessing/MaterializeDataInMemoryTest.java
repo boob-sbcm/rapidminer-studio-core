@@ -51,27 +51,40 @@ import com.rapidminer.tools.ParameterService;
 @RunWith(value = Parameterized.class)
 public class MaterializeDataInMemoryTest {
 
-	public MaterializeDataInMemoryTest(boolean legacyMode) {
+    /**
+     * Instantiates a new Materialize data in memory test.
+     *
+     * @param legacyMode the legacy mode
+     */
+    public MaterializeDataInMemoryTest(boolean legacyMode) {
 		ParameterService.setParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT,
 				String.valueOf(legacyMode));
 	}
 
-	@Parameters(name = "legacyMode={0}")
+    /**
+     * Params collection.
+     *
+     * @return the collection
+     */
+    @Parameters(name = "legacyMode={0}")
 	public static Collection<Object> params() {
 		return Arrays.asList(true, false);
 	}
 
-	@Before
+    /**
+     * Sets .
+     */
+    @Before
 	public void setup() {
 		RapidMiner.initAsserters();
 	}
 
-	/**
-	 * Creates random example sets and materializes them using the
-	 * {@link MaterializeDataInMemory#materializeExampleSet(ExampleSet)} method. The test will
-	 * compare the data management types and the actual table values of the source and result sets.
-	 */
-	@Test
+    /**
+     * Creates random example sets and materializes them using the
+     * {@link MaterializeDataInMemory#materializeExampleSet(ExampleSet)} method. The test will
+     * compare the data management types and the actual table values of the source and result sets.
+     */
+    @Test
 	public void dataMangementTest() {
 		for (int i = DataRowFactory.FIRST_TYPE_INDEX; i <= DataRowFactory.LAST_TYPE_INDEX; i++) {
 			ExampleSet sourceSet = createMemoryExampleTable(100, i).createExampleSet();

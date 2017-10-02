@@ -46,7 +46,12 @@ public class ClipboardActionsPopup extends JPopupMenu {
 	// private JMenuItem clearMenuItem;
 	private JMenuItem selectAllMenuItem;
 
-	public ClipboardActionsPopup(JTextComponent parent) {
+    /**
+     * Instantiates a new Clipboard actions popup.
+     *
+     * @param parent the parent
+     */
+    public ClipboardActionsPopup(JTextComponent parent) {
 		this.parent = parent;
 
 		this.cutMenuItem = new JMenuItem(new ResourceActionTransmitter("editor.cut",
@@ -75,7 +80,13 @@ public class ClipboardActionsPopup extends JPopupMenu {
 		// this.getPreferredSize().getHeight()));
 	}
 
-	protected final JTextComponent getTextComponent(Component c) {
+    /**
+     * Gets text component.
+     *
+     * @param c the c
+     * @return the text component
+     */
+    protected final JTextComponent getTextComponent(Component c) {
 		if (c != null) {
 			if (c instanceof JTextComponent) {
 				return (JTextComponent) c;

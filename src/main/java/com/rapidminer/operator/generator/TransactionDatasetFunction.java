@@ -29,7 +29,7 @@ import com.rapidminer.tools.math.container.Range;
 
 /**
  * Generates an Association function transaction dataset. The first four attributes are correlated.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class TransactionDatasetFunction implements TargetFunction {

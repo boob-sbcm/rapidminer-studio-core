@@ -53,40 +53,67 @@ import com.rapidminer.parameter.conditions.EqualTypeCondition;
  * value. This learner can be used to compare the results of &quot;real&quot; learning schemes with
  * guessing.
  *
- * @see com.rapidminer.operator.learner.lazy.DefaultModel
  * @author Stefan Rueping, Ingo Mierswa
+ * @see com.rapidminer.operator.learner.lazy.DefaultModel
  */
 public class DefaultLearner extends AbstractLearner {
 
-	/** The parameter name for &quot;The method to compute the default.&quot; */
-	public static final String PARAMETER_METHOD = "method";
+    /**
+     * The parameter name for &quot;The method to compute the default.&quot;
+     */
+    public static final String PARAMETER_METHOD = "method";
 
-	/** The parameter name for &quot;Value returned when method = constant.&quot; */
-	public static final String PARAMETER_CONSTANT = "constant";
+    /**
+     * The parameter name for &quot;Value returned when method = constant.&quot;
+     */
+    public static final String PARAMETER_CONSTANT = "constant";
 
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
 	private static final String[] METHODS = { "median", "average", "mode", "constant", "attribute" };
 
-	public static final int MEDIAN = 0;
+    /**
+     * The constant MEDIAN.
+     */
+    public static final int MEDIAN = 0;
 
-	public static final int AVERAGE = 1;
+    /**
+     * The constant AVERAGE.
+     */
+    public static final int AVERAGE = 1;
 
-	public static final int MODE = 2;
+    /**
+     * The constant MODE.
+     */
+    public static final int MODE = 2;
 
-	public static final int CONSTANT = 3;
+    /**
+     * The constant CONSTANT.
+     */
+    public static final int CONSTANT = 3;
 
-	public static final int ATTRIBUTE = 4;
+    /**
+     * The constant ATTRIBUTE.
+     */
+    public static final int ATTRIBUTE = 4;
 
-	/**
-	 * After this version the methods average and median will stop to switch silently to mode with a
-	 * nominal label and throw a UserError instead. And it will stop to switch silently from method
-	 * mode to average with a not-nominal label. When method attribute is selected, only a attribute
-	 * of the same type of the label can be selected.
-	 */
-	public static final OperatorVersion VERSION_6_4_0_USER_ERROR = new OperatorVersion(6, 4, 0);
+    /**
+     * After this version the methods average and median will stop to switch silently to mode with a
+     * nominal label and throw a UserError instead. And it will stop to switch silently from method
+     * mode to average with a not-nominal label. When method attribute is selected, only a attribute
+     * of the same type of the label can be selected.
+     */
+    public static final OperatorVersion VERSION_6_4_0_USER_ERROR = new OperatorVersion(6, 4, 0);
 
-	public DefaultLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Default learner.
+     *
+     * @param description the description
+     */
+    public DefaultLearner(OperatorDescription description) {
 		super(description);
 
 		InputPort exampleIn = getExampleSetInputPort();

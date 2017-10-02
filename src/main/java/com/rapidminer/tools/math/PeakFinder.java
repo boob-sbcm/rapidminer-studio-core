@@ -23,12 +23,17 @@ import java.util.List;
 
 /**
  * PeakFinder are objects which searches peaks in a given series of values.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface PeakFinder {
 
-	/** Returns the "actual" peaks from the given peak series (spectrum). */
-	public List<Peak> getPeaks(Peak[] series);
+    /**
+     * Returns the "actual" peaks from the given peak series (spectrum).  @param series the series
+     *
+     * @param series the series
+     * @return the peaks
+     */
+    public List<Peak> getPeaks(Peak[] series);
 
 }

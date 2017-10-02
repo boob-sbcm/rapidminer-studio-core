@@ -27,7 +27,6 @@ import com.rapidminer.repository.BlobEntry;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public interface RemoteBlobEntry extends BlobEntry, RemoteDataEntry {
 

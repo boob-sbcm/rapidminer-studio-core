@@ -25,18 +25,22 @@ import java.util.List;
 /**
  * A <tt>PopulationOperator</tt> that modifies a population by modifying all individuals
  * independently. The modifications can be made each per attribute block or for single attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class ExampleSetBasedIndividualOperator implements ExampleSetBasedPopulationOperator {
 
-	/**
-	 * Subclasses must implement this method providing a list of new individuals.
-	 * <tt>individual</tt> will be removed from the population so it might be useful to return a
-	 * list of size 1 containing only the modified <tt>individual</tt>. If the original individual
-	 * should also be part of the new population it must also be added to the result list.
-	 */
-	public abstract List<ExampleSetBasedIndividual> operate(ExampleSetBasedIndividual individual) throws Exception;
+    /**
+     * Subclasses must implement this method providing a list of new individuals.
+     * <tt>individual</tt> will be removed from the population so it might be useful to return a
+     * list of size 1 containing only the modified <tt>individual</tt>. If the original individual
+     * should also be part of the new population it must also be added to the result list.
+     *
+     * @param individual the individual
+     * @return the list
+     * @throws Exception the exception
+     */
+    public abstract List<ExampleSetBasedIndividual> operate(ExampleSetBasedIndividual individual) throws Exception;
 
 	/**
 	 * Operates on all individuals, removes the original individuals and adds the new ones.

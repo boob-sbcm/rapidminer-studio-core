@@ -31,69 +31,73 @@ import com.rapidminer.operator.learner.tree.ColumnExampleTable;
  */
 public interface ColumnCriterion {
 
-	/**
-	 * Calculates the benefit for splitting the current selection of the columnTable at the nominal
-	 * attribute represented by the attributeNumber
-	 *
-	 * @param columnTable
-	 * @param selection
-	 * @param attributeNumber
-	 * @return
-	 */
-	public double getNominalBenefit(ColumnExampleTable columnTable, int[] selection, int attributeNumber);
+    /**
+     * Calculates the benefit for splitting the current selection of the columnTable at the nominal
+     * attribute represented by the attributeNumber
+     *
+     * @param columnTable     the column table
+     * @param selection       the selection
+     * @param attributeNumber the attribute number
+     * @return nominal benefit
+     */
+    public double getNominalBenefit(ColumnExampleTable columnTable, int[] selection, int attributeNumber);
 
-	/**
-	 * Calculates the benefit for splitting the current selection of the columnTable at the split
-	 * value of the numerical attribute represented by the attributeNumber
-	 *
-	 * @param columnTable
-	 * @param selection
-	 * @param attributeNumber
-	 * @param splitValue
-	 * @return
-	 */
-	public double getNumericalBenefit(ColumnExampleTable columnTable, int[] selection, int attributeNumber, double splitValue);
+    /**
+     * Calculates the benefit for splitting the current selection of the columnTable at the split
+     * value of the numerical attribute represented by the attributeNumber
+     *
+     * @param columnTable     the column table
+     * @param selection       the selection
+     * @param attributeNumber the attribute number
+     * @param splitValue      the split value
+     * @return numerical benefit
+     */
+    public double getNumericalBenefit(ColumnExampleTable columnTable, int[] selection, int attributeNumber, double splitValue);
 
-	/**
-	 * @return <code>true</code> if the benefit can be calculated out of a
-	 *         {@link WeightDistribution}.
-	 */
-	public boolean supportsIncrementalCalculation();
+    /**
+     * Supports incremental calculation boolean.
+     *
+     * @return <code>true</code> if the benefit can be calculated out of a         {@link WeightDistribution}.
+     */
+    public boolean supportsIncrementalCalculation();
 
-	/**
-	 * Calculates the {@link WeightDistribution} for at the beginning of the incrental calculation.
-	 *
-	 * @param columnTable
-	 * @param selection
-	 * @param attributeNumber
-	 * @return
-	 */
-	public WeightDistribution startIncrementalCalculation(ColumnExampleTable columnTable, int[] selection,
+    /**
+     * Calculates the {@link WeightDistribution} for at the beginning of the incrental calculation.
+     *
+     * @param columnTable     the column table
+     * @param selection       the selection
+     * @param attributeNumber the attribute number
+     * @return weight distribution
+     */
+    public WeightDistribution startIncrementalCalculation(ColumnExampleTable columnTable, int[] selection,
 			int attributeNumber);
 
-	/**
-	 * Updates the weight distribution when going to the next example.
-	 *
-	 * @param columnTable
-	 * @param row
-	 * @param distribution
-	 */
-	public void updateWeightDistribution(ColumnExampleTable columnTable, int row, WeightDistribution distribution);
+    /**
+     * Updates the weight distribution when going to the next example.
+     *
+     * @param columnTable  the column table
+     * @param row          the row
+     * @param distribution the distribution
+     */
+    public void updateWeightDistribution(ColumnExampleTable columnTable, int row, WeightDistribution distribution);
 
-	/**
-	 * Calculates the benefit out of the distribution.
-	 *
-	 * @param distribution
-	 * @return
-	 */
-	public double getIncrementalBenefit(WeightDistribution distribution);
+    /**
+     * Calculates the benefit out of the distribution.
+     *
+     * @param distribution the distribution
+     * @return incremental benefit
+     */
+    public double getIncrementalBenefit(WeightDistribution distribution);
 
-	/**
-	 * This method will return the calculated benefit if the weights would have distributed over the
-	 * labels as given. The first index specifies the split fraction, the second index the label.
-	 * For splits on nominal attributes, the number of split sides is determined by the number of
-	 * possible values. For splits on numerical attributes, there are 2 split sides if there are no
-	 * missing values, 3 otherwise.
-	 */
-	public double getBenefit(double[][] weightCounts);
+    /**
+     * This method will return the calculated benefit if the weights would have distributed over the
+     * labels as given. The first index specifies the split fraction, the second index the label.
+     * For splits on nominal attributes, the number of split sides is determined by the number of
+     * possible values. For splits on numerical attributes, there are 2 split sides if there are no
+     * missing values, 3 otherwise.
+     *
+     * @param weightCounts the weight counts
+     * @return the benefit
+     */
+    public double getBenefit(double[][] weightCounts);
 }

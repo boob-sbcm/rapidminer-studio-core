@@ -46,7 +46,12 @@ public class AttributeValueCellEditor extends DefaultRMCellEditor implements Pro
 
 	private static final long serialVersionUID = -1889899793777695100L;
 
-	@SuppressWarnings("unchecked")
+    /**
+     * Instantiates a new Attribute value cell editor.
+     *
+     * @param type the type
+     */
+    @SuppressWarnings("unchecked")
 	public AttributeValueCellEditor(ParameterTypeAttribute type) {
 		super(new AttributeComboBox(type));
 		// this is the AttributeComboBox from above

@@ -45,7 +45,7 @@ import java.util.List;
  * This operator provides the ability to evaluate classification costs. Therefore a cost matrix
  * might be specified, denoting the costs for every possible classification outcome: predicted label
  * x real label. Costs will be minimized during optimization.
- * 
+ *
  * @author Sebastian Land
  */
 public class RankingEvaluator extends Operator {
@@ -61,7 +61,12 @@ public class RankingEvaluator extends Operator {
 
 	private PerformanceVector performance = null;
 
-	public RankingEvaluator(OperatorDescription description) {
+    /**
+     * Instantiates a new Ranking evaluator.
+     *
+     * @param description the description
+     */
+    public RankingEvaluator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, Ontology.ATTRIBUTE_VALUE,

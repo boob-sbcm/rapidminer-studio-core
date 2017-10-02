@@ -38,14 +38,20 @@ import com.rapidminer.tools.math.similarity.DistanceMeasures;
 /**
  * This precondition must be added to the exampleset input port, if a distance measure might be
  * chosen by the user. It will check if the example set contains only compatible values.
- * 
+ *
  * @author Sebastian Land
  */
 public class DistanceMeasurePrecondition extends AbstractPrecondition {
 
 	private ParameterHandler parameterHandler;
 
-	public DistanceMeasurePrecondition(InputPort inputPort, ParameterHandler handler) {
+    /**
+     * Instantiates a new Distance measure precondition.
+     *
+     * @param inputPort the input port
+     * @param handler   the handler
+     */
+    public DistanceMeasurePrecondition(InputPort inputPort, ParameterHandler handler) {
 		super(inputPort);
 		this.parameterHandler = handler;
 	}

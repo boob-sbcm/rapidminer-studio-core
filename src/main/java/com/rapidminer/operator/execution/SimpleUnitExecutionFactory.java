@@ -25,7 +25,6 @@ import com.rapidminer.operator.ExecutionUnit;
  * Returns a shared instance of a {@link SimpleUnitExecutor}.
  *
  * @author Simon Fischer
- *
  */
 public class SimpleUnitExecutionFactory extends UnitExecutionFactory {
 

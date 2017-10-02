@@ -40,24 +40,27 @@ import com.rapidminer.tools.expression.internal.antlr.FunctionExpressionParser.V
  * every node of the {@link ParseTree}.
  *
  * @author Gisa Schaefer
- *
  */
 class EvaluatorCreationVisitor extends FunctionExpressionParserBaseVisitor<ExpressionEvaluator> {
 
 	private final ExpressionContext lookUp;
 
-	/**
-	 * Creates a Visitor that recursively builds an {@link ExpressionEvaluator}.
-	 *
-	 * @param lookUp
-	 *            the {@link ExpressionContext} for looking up functions, variables and scope
-	 *            constants
-	 */
-	EvaluatorCreationVisitor(ExpressionContext lookUp) {
+    /**
+     * Creates a Visitor that recursively builds an {@link ExpressionEvaluator}.
+     *
+     * @param lookUp the {@link ExpressionContext} for looking up functions, variables and scope            constants
+     */
+    EvaluatorCreationVisitor(ExpressionContext lookUp) {
 		this.lookUp = lookUp;
 	}
 
-	@Override
+    /**
+     * Visit operation exp expression evaluator.
+     *
+     * @param ctx the ctx
+     * @return the expression evaluator
+     */
+    @Override
 	public ExpressionEvaluator visitOperationExp(OperationExpContext ctx) {
 		if (ctx.op == null) {
 			return visit(ctx.atomExp());
@@ -87,12 +90,24 @@ class EvaluatorCreationVisitor extends FunctionExpressionParserBaseVisitor<Expre
 		}
 	}
 
-	@Override
+    /**
+     * Visit lower exp expression evaluator.
+     *
+     * @param ctx the ctx
+     * @return the expression evaluator
+     */
+    @Override
 	public ExpressionEvaluator visitLowerExp(LowerExpContext ctx) {
 		return visit(ctx.operationExp());
 	}
 
-	@Override
+    /**
+     * Visit function expression evaluator.
+     *
+     * @param ctx the ctx
+     * @return the expression evaluator
+     */
+    @Override
 	public ExpressionEvaluator visitFunction(FunctionContext ctx) {
 
 		int numberOfInner = ctx.operationExp().size();
@@ -110,7 +125,13 @@ class EvaluatorCreationVisitor extends FunctionExpressionParserBaseVisitor<Expre
 		return function.compute(innerEvaluators);
 	}
 
-	@Override
+    /**
+     * Visit attribute expression evaluator.
+     *
+     * @param ctx the ctx
+     * @return the expression evaluator
+     */
+    @Override
 	public ExpressionEvaluator visitAttribute(AttributeContext ctx) {
 		String attributeName = getAttributeName(ctx.getText());
 		ExpressionEvaluator attributeEvaluator = lookUp.getDynamicVariable(attributeName);
@@ -132,7 +153,13 @@ class EvaluatorCreationVisitor extends FunctionExpressionParserBaseVisitor<Expre
 		return attributeName.replace("\\[", "[").replace("\\]", "]").replace("\\\\", "\\");
 	}
 
-	@Override
+    /**
+     * Visit variable expression evaluator.
+     *
+     * @param ctx the ctx
+     * @return the expression evaluator
+     */
+    @Override
 	public ExpressionEvaluator visitVariable(VariableContext ctx) {
 		String name = ctx.getText();
 		ExpressionEvaluator variableEvaluator = lookUp.getVariable(name);
@@ -142,7 +169,13 @@ class EvaluatorCreationVisitor extends FunctionExpressionParserBaseVisitor<Expre
 		return variableEvaluator;
 	}
 
-	@Override
+    /**
+     * Visit scope constant expression evaluator.
+     *
+     * @param ctx the ctx
+     * @return the expression evaluator
+     */
+    @Override
 	public ExpressionEvaluator visitScopeConstant(ScopeConstantContext ctx) {
 		String scopeConstantName = getScopeConstantName(ctx.getText());
 		ExpressionEvaluator scopeConstantEvaluator = lookUp.getScopeConstant(scopeConstantName);
@@ -165,7 +198,13 @@ class EvaluatorCreationVisitor extends FunctionExpressionParserBaseVisitor<Expre
 		return scopeName.replace("\\{", "{").replace("\\}", "}").replace("\\\\", "\\");
 	}
 
-	@Override
+    /**
+     * Visit indirect scope constant expression evaluator.
+     *
+     * @param ctx the ctx
+     * @return the expression evaluator
+     */
+    @Override
 	public ExpressionEvaluator visitIndirectScopeConstant(IndirectScopeConstantContext ctx) {
 		String scopeConstantName = getScopeConstantName(ctx.getText());
 		String attributeName = lookUp.getScopeString(scopeConstantName);
@@ -180,7 +219,13 @@ class EvaluatorCreationVisitor extends FunctionExpressionParserBaseVisitor<Expre
 		return attributeEvaluator;
 	}
 
-	@Override
+    /**
+     * Visit string expression evaluator.
+     *
+     * @param ctx the ctx
+     * @return the expression evaluator
+     */
+    @Override
 	public ExpressionEvaluator visitString(StringContext ctx) {
 		String stringValue = getStringValue(ctx.getText());
 		return new SimpleExpressionEvaluator(stringValue, ExpressionType.STRING);
@@ -210,14 +255,26 @@ class EvaluatorCreationVisitor extends FunctionExpressionParserBaseVisitor<Expre
 		return text;
 	}
 
-	@Override
+    /**
+     * Visit real expression evaluator.
+     *
+     * @param ctx the ctx
+     * @return the expression evaluator
+     */
+    @Override
 	public ExpressionEvaluator visitReal(RealContext ctx) {
 		double doubleValue = Double.parseDouble(ctx.getText());
 		return new SimpleExpressionEvaluator(doubleValue, ExpressionType.DOUBLE);
 
 	}
 
-	@Override
+    /**
+     * Visit integer expression evaluator.
+     *
+     * @param ctx the ctx
+     * @return the expression evaluator
+     */
+    @Override
 	public ExpressionEvaluator visitInteger(IntegerContext ctx) {
 		double doubleValue = Double.parseDouble(ctx.getText());
 		return new SimpleExpressionEvaluator(doubleValue, ExpressionType.INTEGER);

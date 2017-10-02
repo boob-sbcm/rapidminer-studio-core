@@ -20,30 +20,29 @@ package com.rapidminer.gui.tools.logging;
 
 /**
  * Thrown by {@link LogModel}s when the update call fails.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class LogUpdateException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructs a new {@link LogUpdateException} with the given error message.
-	 * 
-	 * @param message
-	 */
-	public LogUpdateException(String message) {
+    /**
+     * Constructs a new {@link LogUpdateException} with the given error message.
+     *
+     * @param message the message
+     */
+    public LogUpdateException(String message) {
 		super(message);
 	}
 
-	/**
-	 * Constructs a new {@link LogUpdateException} with the given error message and cause.
-	 * 
-	 * @param message
-	 * @param cause
-	 */
-	public LogUpdateException(String message, Throwable cause) {
+    /**
+     * Constructs a new {@link LogUpdateException} with the given error message and cause.
+     *
+     * @param message the message
+     * @param cause   the cause
+     */
+    public LogUpdateException(String message, Throwable cause) {
 		super(message, cause);
 	}
 }

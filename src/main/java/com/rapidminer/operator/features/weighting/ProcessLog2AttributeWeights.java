@@ -52,37 +52,69 @@ import java.util.concurrent.atomic.AtomicInteger;
  * operator will then calculate attribute weights from such a statistics table by checking how often
  * each attribute was selected and use the relative frequencies as attribute weights.
  * </p>
- * 
+ * <p>
  * <p>
  * If the performance is also logged with the ProcessLog operator, these values can also be used to
  * calculate the relative frequencies. In this case, the sorting type can be set to only use the top
  * k or the bottom k attribute sets for frequency calculation according to the specified performance
  * column.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ProcessLog2AttributeWeights extends Operator {
 
-	public static final String PARAMETER_LOG_NAME = "log_name";
+    /**
+     * The constant PARAMETER_LOG_NAME.
+     */
+    public static final String PARAMETER_LOG_NAME = "log_name";
 
-	public static final String PARAMETER_ATTRIBUTE_NAMES_COLUMN = "attribute_names_column";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAMES_COLUMN.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAMES_COLUMN = "attribute_names_column";
 
-	public static final String PARAMETER_SORTING_TYPE = "sorting_type";
+    /**
+     * The constant PARAMETER_SORTING_TYPE.
+     */
+    public static final String PARAMETER_SORTING_TYPE = "sorting_type";
 
-	public static final String PARAMETER_SORTING_DIMENSION = "sorting_dimension";
+    /**
+     * The constant PARAMETER_SORTING_DIMENSION.
+     */
+    public static final String PARAMETER_SORTING_DIMENSION = "sorting_dimension";
 
-	public static final String PARAMETER_SORTING_K = "sorting_k";
+    /**
+     * The constant PARAMETER_SORTING_K.
+     */
+    public static final String PARAMETER_SORTING_K = "sorting_k";
 
-	public static final String[] SORTING_TYPES = { "none", "top-k", "bottom-k" };
+    /**
+     * The constant SORTING_TYPES.
+     */
+    public static final String[] SORTING_TYPES = { "none", "top-k", "bottom-k" };
 
-	public static final int SORTING_TYPE_NONE = 0;
-	public static final int SORTING_TYPE_TOP_K = 1;
-	public static final int SORTING_TYPE_BOTTOM_K = 2;
+    /**
+     * The constant SORTING_TYPE_NONE.
+     */
+    public static final int SORTING_TYPE_NONE = 0;
+    /**
+     * The constant SORTING_TYPE_TOP_K.
+     */
+    public static final int SORTING_TYPE_TOP_K = 1;
+    /**
+     * The constant SORTING_TYPE_BOTTOM_K.
+     */
+    public static final int SORTING_TYPE_BOTTOM_K = 2;
 
 	private OutputPort weightsOutput = getOutputPorts().createPort("weights");
 
-	public ProcessLog2AttributeWeights(OperatorDescription description) {
+    /**
+     * Instantiates a new Process log 2 attribute weights.
+     *
+     * @param description the description
+     */
+    public ProcessLog2AttributeWeights(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new GenerateNewMDRule(weightsOutput, new MetaData(AttributeWeights.class)));
 	}

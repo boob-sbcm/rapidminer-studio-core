@@ -54,23 +54,33 @@ import com.rapidminer.tools.math.similarity.DistanceMeasures;
  * other than the Weka clusterers should extends this class rather than AbstractClusterer directly.
  *
  * @author Simon Fischer
- *
  */
 public abstract class RMAbstractClusterer extends AbstractClusterer implements CapabilityProvider {
 
-	/**
-	 * The parameter name for &quot;Indicates if a cluster id is generated as new special
-	 * attribute.&quot;
-	 */
-	public static final String PARAMETER_ADD_CLUSTER_ATTRIBUTE = "add_cluster_attribute";
-	public static final String PARAMETER_REMOVE_UNLABELED = "remove_unlabeled";
-	public static final String PARAMETER_ADD_AS_LABEL = "add_as_label";
+    /**
+     * The parameter name for &quot;Indicates if a cluster id is generated as new special
+     * attribute.&quot;
+     */
+    public static final String PARAMETER_ADD_CLUSTER_ATTRIBUTE = "add_cluster_attribute";
+    /**
+     * The constant PARAMETER_REMOVE_UNLABELED.
+     */
+    public static final String PARAMETER_REMOVE_UNLABELED = "remove_unlabeled";
+    /**
+     * The constant PARAMETER_ADD_AS_LABEL.
+     */
+    public static final String PARAMETER_ADD_AS_LABEL = "add_as_label";
 
 	private DistanceMeasureHelper measureHelper = null;
 	private DistanceMeasure presetMeasure = null;
 	private static final OperatorVersion BEFORE_LABEL_CLUSTER_FIX = BEFORE_EMPTY_CHECKS;
 
-	public RMAbstractClusterer(OperatorDescription description) {
+    /**
+     * Instantiates a new Rm abstract clusterer.
+     *
+     * @param description the description
+     */
+    public RMAbstractClusterer(OperatorDescription description) {
 		super(description);
 		InputPort exampleInput = getExampleSetInputPort();
 		if (usesDistanceMeasures()) {
@@ -96,14 +106,16 @@ public abstract class RMAbstractClusterer extends AbstractClusterer implements C
 		checkNoNfiniteValues(exampleSet);
 	}
 
-	/**
-	 * Checks the given {@link ExampleSet} for non-finite values and adds a
-	 * {@link ProcessSetupError} to this operator if infinite values are detected. Will throw a
-	 * {@link UserError} if this clusterer can not handle infinite values
-	 *
-	 * @since 7.6
-	 */
-	protected void checkNoNfiniteValues(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Checks the given {@link ExampleSet} for non-finite values and adds a
+     * {@link ProcessSetupError} to this operator if infinite values are detected. Will throw a
+     * {@link UserError} if this clusterer can not handle infinite values
+     *
+     * @param exampleSet the example set
+     * @throws OperatorException the operator exception
+     * @since 7.6
+     */
+    protected void checkNoNfiniteValues(ExampleSet exampleSet) throws OperatorException {
 		try {
 			Tools.onlyFiniteValues(exampleSet, this.getOperatorClassName(), this, new String[0]);
 		} catch (UserError ue) {
@@ -118,28 +130,27 @@ public abstract class RMAbstractClusterer extends AbstractClusterer implements C
 		}
 	}
 
-	/**
-	 * Indicates whether this clusterer can handle infinite values, meaning if there is no exception
-	 * thrown during processing.
-	 *
-	 * @since 7.6
-	 */
-	protected boolean handlesInfiniteValues() {
+    /**
+     * Indicates whether this clusterer can handle infinite values, meaning if there is no exception
+     * thrown during processing.
+     *
+     * @return the boolean
+     * @since 7.6
+     */
+    protected boolean handlesInfiniteValues() {
 		return true;
 	}
 
-	/**
-	 * Creates and adds the cluster attribute to the given example set and sets the cluster for each
-	 * example.
-	 *
-	 * @param exampleSet
-	 *            the example set
-	 * @param assignments
-	 *            the cluster assignments by example ID
-	 * @see #addClusterAttribute(ExampleSet)
-	 * @since 7.6
-	 */
-	protected void addClusterAssignments(ExampleSet exampleSet, int[] assignments) {
+    /**
+     * Creates and adds the cluster attribute to the given example set and sets the cluster for each
+     * example.
+     *
+     * @param exampleSet  the example set
+     * @param assignments the cluster assignments by example ID
+     * @see #addClusterAttribute(ExampleSet) #addClusterAttribute(ExampleSet)#addClusterAttribute(ExampleSet)
+     * @since 7.6
+     */
+    protected void addClusterAssignments(ExampleSet exampleSet, int[] assignments) {
 		Attribute targetAttribute = addClusterAttribute(exampleSet);
 		int i = 0;
 		for (Example example : exampleSet) {
@@ -147,12 +158,14 @@ public abstract class RMAbstractClusterer extends AbstractClusterer implements C
 		}
 	}
 
-	/**
-	 * Adds a cluster or label attribute to the given example set and returns this attribute.
-	 *
-	 * @since 7.6
-	 */
-	protected Attribute addClusterAttribute(ExampleSet exampleSet) {
+    /**
+     * Adds a cluster or label attribute to the given example set and returns this attribute.
+     *
+     * @param exampleSet the example set
+     * @return the attribute
+     * @since 7.6
+     */
+    protected Attribute addClusterAttribute(ExampleSet exampleSet) {
 		boolean asLabel = addsLabelAttribute() && operatorCanAddLabel();
 		Attribute targetAttribute = AttributeFactory
 				.createAttribute(asLabel ? Attributes.LABEL_NAME : Attributes.CLUSTER_NAME, Ontology.NOMINAL);
@@ -165,13 +178,14 @@ public abstract class RMAbstractClusterer extends AbstractClusterer implements C
 		return targetAttribute;
 	}
 
-	/**
-	 * Indicates whether the operator's compatibility level fixes a previous bug where the behavior
-	 * of the operator differs from that of the created model.
-	 *
-	 * @since 7.6
-	 */
-	protected boolean operatorCanAddLabel() {
+    /**
+     * Indicates whether the operator's compatibility level fixes a previous bug where the behavior
+     * of the operator differs from that of the created model.
+     *
+     * @return the boolean
+     * @since 7.6
+     */
+    protected boolean operatorCanAddLabel() {
 		return !affectedByLabelFix() || getCompatibilityLevel().isAbove(BEFORE_LABEL_CLUSTER_FIX);
 	}
 
@@ -180,41 +194,41 @@ public abstract class RMAbstractClusterer extends AbstractClusterer implements C
 		return true;
 	}
 
-	/**
-	 * Indicates whether the cluster algorithm uses a {@link DistanceMeasure} for computation.
-	 * Defaults to {@code false}. Subclasses should override this method if they depend on measures.
-	 *
-	 * @since 7.6
-	 */
-	protected boolean usesDistanceMeasures() {
+    /**
+     * Indicates whether the cluster algorithm uses a {@link DistanceMeasure} for computation.
+     * Defaults to {@code false}. Subclasses should override this method if they depend on measures.
+     *
+     * @return the boolean
+     * @since 7.6
+     */
+    protected boolean usesDistanceMeasures() {
 		return false;
 	}
 
-	/**
-	 * Indicates whether the cluster algorithm can be provided with a preset
-	 * {@link DistanceMeasure}. Defaults to {@code false}. Subclasses should override this method if
-	 * they intend to allow external provision of measures.
-	 *
-	 * @since 7.6
-	 */
-	protected boolean usesPresetMeasure() {
+    /**
+     * Indicates whether the cluster algorithm can be provided with a preset
+     * {@link DistanceMeasure}. Defaults to {@code false}. Subclasses should override this method if
+     * they intend to allow external provision of measures.
+     *
+     * @return the boolean
+     * @since 7.6
+     */
+    protected boolean usesPresetMeasure() {
 		return false;
 	}
 
-	/**
-	 * Returns an initialized measure if the cluster algorithm is {@link DistanceMeasure} based
-	 * otherwise returns {@code null}. If a preset measure is set (and allowed), this preset measure
-	 * will be initialized and returned. Subclasses should override {@link #usesDistanceMeasures()}
-	 * and/or {@link #usesPresetMeasure()} to change behavior.
-	 *
-	 * @param exampleSet
-	 *            the example set to initialize the measure with
-	 * @return an initialized measure or {@code null}
-	 * @throws OperatorException
-	 *             if the initialization of a measure fails
-	 * @since 7.6
-	 */
-	protected DistanceMeasure getInitializedMeasure(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Returns an initialized measure if the cluster algorithm is {@link DistanceMeasure} based
+     * otherwise returns {@code null}. If a preset measure is set (and allowed), this preset measure
+     * will be initialized and returned. Subclasses should override {@link #usesDistanceMeasures()}
+     * and/or {@link #usesPresetMeasure()} to change behavior.
+     *
+     * @param exampleSet the example set to initialize the measure with
+     * @return an initialized measure or {@code null}
+     * @throws OperatorException if the initialization of a measure fails
+     * @since 7.6
+     */
+    protected DistanceMeasure getInitializedMeasure(ExampleSet exampleSet) throws OperatorException {
 		if (!usesDistanceMeasures()) {
 			// not initialized if operator does not use distance measures
 			return null;
@@ -226,17 +240,16 @@ public abstract class RMAbstractClusterer extends AbstractClusterer implements C
 		return measureHelper.getInitializedMeasure(exampleSet);
 	}
 
-	/**
-	 * Sets the preset measure to the specified {@link DistanceMeasure} if the cluster algorithm
-	 * allows it, otherwise does nothing. Subclasses should override {@link #usesPresetMeasure()} if
-	 * they want to allow preset measures and also may consider making the
-	 * {@link #setPresetMeasure(DistanceMeasure)} method public.
-	 *
-	 * @param measure
-	 *            the measure to be used as the preset
-	 * @since 7.6
-	 */
-	protected void setPresetMeasure(DistanceMeasure measure) {
+    /**
+     * Sets the preset measure to the specified {@link DistanceMeasure} if the cluster algorithm
+     * allows it, otherwise does nothing. Subclasses should override {@link #usesPresetMeasure()} if
+     * they want to allow preset measures and also may consider making the
+     * {@link #setPresetMeasure(DistanceMeasure)} method public.
+     *
+     * @param measure the measure to be used as the preset
+     * @since 7.6
+     */
+    protected void setPresetMeasure(DistanceMeasure measure) {
 		if (!usesPresetMeasure()) {
 			return;
 		}
@@ -273,28 +286,30 @@ public abstract class RMAbstractClusterer extends AbstractClusterer implements C
 		}
 	}
 
-	/**
-	 * Indicates whether the cluster algorithm supports nominal values in general. Defaults to
-	 * {@link #usesDistanceMeasures()} and does not depend on the currently selected measure.
-	 * Subclasses should override this method if they want to change the capabilities for nominal
-	 * values.
-	 *
-	 * @see #supportsCapability(OperatorCapability)
-	 * @since 7.6
-	 */
-	protected boolean supportsNominalValues() {
+    /**
+     * Indicates whether the cluster algorithm supports nominal values in general. Defaults to
+     * {@link #usesDistanceMeasures()} and does not depend on the currently selected measure.
+     * Subclasses should override this method if they want to change the capabilities for nominal
+     * values.
+     *
+     * @return the boolean
+     * @see #supportsCapability(OperatorCapability) #supportsCapability(OperatorCapability)#supportsCapability(OperatorCapability)
+     * @since 7.6
+     */
+    protected boolean supportsNominalValues() {
 		return usesDistanceMeasures();
 	}
 
-	/**
-	 * Indicates whether the cluster algorithm supports numerical values in general. Defaults to
-	 * {@code true}. Subclasses should override this method if they want to change the capabilities
-	 * for numerical values.
-	 *
-	 * @see #supportsCapability(OperatorCapability)
-	 * @since 7.6
-	 */
-	protected boolean supportsNumericalValues() {
+    /**
+     * Indicates whether the cluster algorithm supports numerical values in general. Defaults to
+     * {@code true}. Subclasses should override this method if they want to change the capabilities
+     * for numerical values.
+     *
+     * @return the boolean
+     * @see #supportsCapability(OperatorCapability) #supportsCapability(OperatorCapability)#supportsCapability(OperatorCapability)
+     * @since 7.6
+     */
+    protected boolean supportsNumericalValues() {
 		return true;
 	}
 
@@ -320,16 +335,17 @@ public abstract class RMAbstractClusterer extends AbstractClusterer implements C
 		return types;
 	}
 
-	/**
-	 * Returns the list of parameter types related to {@link DistanceMeasure}. If there are defaults
-	 * defined in {@link #getMeasureParametersDefaults()}, these defaults will be applied.
-	 * Subclasses should at some point add these parameters in their respective
-	 * {@link #getParameterTypes()} method.
-	 *
-	 * @since 7.6
-	 * @see DistanceMeasures#getParameterTypes(Operator)
-	 */
-	protected List<ParameterType> getMeasureParameterTypes() {
+    /**
+     * Returns the list of parameter types related to {@link DistanceMeasure}. If there are defaults
+     * defined in {@link #getMeasureParametersDefaults()}, these defaults will be applied.
+     * Subclasses should at some point add these parameters in their respective
+     * {@link #getParameterTypes()} method.
+     *
+     * @return the measure parameter types
+     * @see DistanceMeasures#getParameterTypes(Operator) DistanceMeasures#getParameterTypes(Operator)DistanceMeasures#getParameterTypes(Operator)
+     * @since 7.6
+     */
+    protected List<ParameterType> getMeasureParameterTypes() {
 		List<ParameterType> types = DistanceMeasures.getParameterTypes(this);
 		Map<String, Object> defaults = getMeasureParametersDefaults();
 		if (defaults != null) {
@@ -343,24 +359,26 @@ public abstract class RMAbstractClusterer extends AbstractClusterer implements C
 		return types;
 	}
 
-	/**
-	 * Returns a map of parameter keys to default values if this clusterer prefers a specific
-	 * {@link DistanceMeasure} type and instance. Subclasses should override this method to provide
-	 * their own defaults if necessary.
-	 *
-	 * @since 7.6
-	 */
-	protected Map<String, Object> getMeasureParametersDefaults() {
+    /**
+     * Returns a map of parameter keys to default values if this clusterer prefers a specific
+     * {@link DistanceMeasure} type and instance. Subclasses should override this method to provide
+     * their own defaults if necessary.
+     *
+     * @return the measure parameters defaults
+     * @since 7.6
+     */
+    protected Map<String, Object> getMeasureParametersDefaults() {
 		return null;
 	}
 
-	/**
-	 * Indicates whether the implementation was affected by the label fix connected to
-	 * {@link #BEFORE_LABEL_CLUSTER_FIX}.
-	 *
-	 * @since 7.6
-	 */
-	protected boolean affectedByLabelFix() {
+    /**
+     * Indicates whether the implementation was affected by the label fix connected to
+     * {@link #BEFORE_LABEL_CLUSTER_FIX}.
+     *
+     * @return the boolean
+     * @since 7.6
+     */
+    protected boolean affectedByLabelFix() {
 		return true;
 	}
 

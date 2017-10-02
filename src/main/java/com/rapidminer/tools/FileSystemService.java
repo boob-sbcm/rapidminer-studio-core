@@ -41,35 +41,60 @@ public class FileSystemService {
 	/** folder which can be used to share data between extensions */
 	private static final String RAPIDMINER_SHARED_DATA = "shared data";
 
-	/** folder which can be used to load additional building blocks */
-	public static final String RAPIDMINER_BUILDINGBLOCKS = "buildingblocks";
+    /**
+     * folder which can be used to load additional building blocks
+     */
+    public static final String RAPIDMINER_BUILDINGBLOCKS = "buildingblocks";
 
-	public static final String RAPIDMINER_USER_FOLDER = ".RapidMiner";
+    /**
+     * The constant RAPIDMINER_USER_FOLDER.
+     */
+    public static final String RAPIDMINER_USER_FOLDER = ".RapidMiner";
 
-	/** Returns the main user configuration file. */
-	public static File getMainUserConfigFile() {
+    /**
+     * Returns the main user configuration file.  @return the main user config file
+     *
+     * @return the main user config file
+     */
+    public static File getMainUserConfigFile() {
 		return FileSystemService.getUserConfigFile(RAPIDMINER_CONFIG_FILE_NAME);
 	}
 
-	/** Returns the memory configuration file containing the max memory. */
-	public static File getMemoryConfigFile() {
+    /**
+     * Returns the memory configuration file containing the max memory.  @return the memory config file
+     *
+     * @return the memory config file
+     */
+    public static File getMemoryConfigFile() {
 		return new File(getUserRapidMinerDir(), "memory");
 	}
 
-	/** Returns the RapidMiner log file. */
-	public static File getLogFile() {
+    /**
+     * Returns the RapidMiner log file.  @return the log file
+     *
+     * @return the log file
+     */
+    public static File getLogFile() {
 		return new File(getUserRapidMinerDir(), "rapidminer-studio.log");
 	}
 
-	/**
-	 * Returns the configuration file in the user dir {@link #RAPIDMINER_USER_FOLDER}.
-	 */
-	public static File getUserConfigFile(String name) {
+    /**
+     * Returns the configuration file in the user dir {@link #RAPIDMINER_USER_FOLDER}.
+     *
+     * @param name the name
+     * @return the user config file
+     */
+    public static File getUserConfigFile(String name) {
 		String configName = name;
 		return new File(getUserRapidMinerDir(), configName);
 	}
 
-	public static File getUserRapidMinerDir() {
+    /**
+     * Gets user rapid miner dir.
+     *
+     * @return the user rapid miner dir
+     */
+    public static File getUserRapidMinerDir() {
 		File homeDir = new File(System.getProperty("user.home"));
 		File userHomeDir = new File(homeDir, RAPIDMINER_USER_FOLDER);
 		File extensionsWorkspaceRootFolder = new File(userHomeDir, RAPIDMINER_EXTENSIONS_FOLDER);
@@ -125,15 +150,14 @@ public class FileSystemService {
 		return userHomeDir;
 	}
 
-	/**
-	 * Returns the folder for which an extension has read/write/delete permissions. The folder is
-	 * located in the {@link #getUserRapidMinerDir()} folder.
-	 *
-	 * @param extensionId
-	 *            the key of the extension, e.g. {@code rmx_myextension}
-	 * @return a file with the working directory for the given extension id, never {@code null}
-	 */
-	public static File getPluginRapidMinerDir(String extensionId) {
+    /**
+     * Returns the folder for which an extension has read/write/delete permissions. The folder is
+     * located in the {@link #getUserRapidMinerDir()} folder.
+     *
+     * @param extensionId the key of the extension, e.g. {@code rmx_myextension}
+     * @return a file with the working directory for the given extension id, never {@code null}
+     */
+    public static File getPluginRapidMinerDir(String extensionId) {
 		File userHomeDir = getUserRapidMinerDir();
 		File extensionFolder = new File(userHomeDir, "extensions/workspace/" + extensionId);
 		if (!extensionFolder.exists()) {
@@ -143,7 +167,13 @@ public class FileSystemService {
 		return extensionFolder;
 	}
 
-	public static File getRapidMinerHome() throws IOException {
+    /**
+     * Gets rapid miner home.
+     *
+     * @return the rapid miner home
+     * @throws IOException the io exception
+     */
+    public static File getRapidMinerHome() throws IOException {
 		String property = System.getProperty(PlatformUtilities.PROPERTY_RAPIDMINER_HOME);
 		if (property == null) {
 			throw new IOException("Property " + PlatformUtilities.PROPERTY_RAPIDMINER_HOME + " is not set");
@@ -153,12 +183,24 @@ public class FileSystemService {
 		return new File(property);
 	}
 
-	public static File getLibraryFile(String name) throws IOException {
+    /**
+     * Gets library file.
+     *
+     * @param name the name
+     * @return the library file
+     * @throws IOException the io exception
+     */
+    public static File getLibraryFile(String name) throws IOException {
 		File home = getRapidMinerHome();
 		return new File(home, "lib" + File.separator + name);
 	}
 
-	public static File getSourceRoot() {
+    /**
+     * Gets source root.
+     *
+     * @return the source root
+     */
+    public static File getSourceRoot() {
 		String srcName = System.getProperty(PROPERTY_RAPIDMINER_SRC_ROOT);
 		if (srcName == null) {
 			LogService.getRoot().log(Level.WARNING, "com.rapidminer.tools.FileSystemService.property_not_set",
@@ -169,7 +211,13 @@ public class FileSystemService {
 		}
 	}
 
-	public static File getSourceFile(String name) {
+    /**
+     * Gets source file.
+     *
+     * @param name the name
+     * @return the source file
+     */
+    public static File getSourceFile(String name) {
 		File root = getSourceRoot();
 		if (root == null) {
 			return null;
@@ -178,7 +226,13 @@ public class FileSystemService {
 		}
 	}
 
-	public static File getSourceResourceFile(String name) {
+    /**
+     * Gets source resource file.
+     *
+     * @param name the name
+     * @return the source resource file
+     */
+    public static File getSourceResourceFile(String name) {
 		File root = getSourceRoot();
 		if (root == null) {
 			return null;

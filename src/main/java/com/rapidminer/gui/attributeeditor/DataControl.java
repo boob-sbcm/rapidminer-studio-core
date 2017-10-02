@@ -97,13 +97,28 @@ public class DataControl extends JPanel {
 	/** The data view change listeners. */
 	private List<DataControlListener> listeners = new LinkedList<DataControlListener>();
 
-	/** Creates a new data control object including the fraction digits field. */
-	public DataControl(int _maxRows, int _maxColumns, String _rowName, String _columnName) {
+    /**
+     * Creates a new data control object including the fraction digits field.  @param _maxRows the max rows
+     *
+     * @param _maxRows    the max rows
+     * @param _maxColumns the max columns
+     * @param _rowName    the row name
+     * @param _columnName the column name
+     */
+    public DataControl(int _maxRows, int _maxColumns, String _rowName, String _columnName) {
 		this(_maxRows, _maxColumns, _rowName, _columnName, true);
 	}
 
-	/** Creates a new data control object. */
-	public DataControl(int _maxRows, int _maxColumns, String _rowName, String _columnName, final boolean fractionD) {
+    /**
+     * Creates a new data control object.  @param _maxRows the max rows
+     *
+     * @param _maxRows    the max rows
+     * @param _maxColumns the max columns
+     * @param _rowName    the row name
+     * @param _columnName the column name
+     * @param fractionD   the fraction d
+     */
+    public DataControl(int _maxRows, int _maxColumns, String _rowName, String _columnName, final boolean fractionD) {
 		this.maxRows = _maxRows;
 		this.maxColumns = _maxColumns;
 		this.rowName = _rowName;
@@ -302,56 +317,106 @@ public class DataControl extends JPanel {
 		add(fillLabel);
 	}
 
-	public void setFirstRow(int i) {
+    /**
+     * Sets first row.
+     *
+     * @param i the
+     */
+    public void setFirstRow(int i) {
 		firstRow = i;
 		fromRowField.setText(firstRow + "");
 	}
 
-	public void setLastRow(int i) {
+    /**
+     * Sets last row.
+     *
+     * @param i the
+     */
+    public void setLastRow(int i) {
 		lastRow = i;
 		toRowField.setText(lastRow + "");
 	}
 
-	public void setFirstColumn(int i) {
+    /**
+     * Sets first column.
+     *
+     * @param i the
+     */
+    public void setFirstColumn(int i) {
 		firstColumn = i;
 		fromColumnField.setText(firstColumn + "");
 	}
 
-	public void setLastColumn(int i) {
+    /**
+     * Sets last column.
+     *
+     * @param i the
+     */
+    public void setLastColumn(int i) {
 		lastColumn = i;
 		toColumnField.setText(lastColumn + "");
 	}
 
-	public int getMaxRows() {
+    /**
+     * Gets max rows.
+     *
+     * @return the max rows
+     */
+    public int getMaxRows() {
 		return maxRows;
 	}
 
-	public int getMaxColumns() {
+    /**
+     * Gets max columns.
+     *
+     * @return the max columns
+     */
+    public int getMaxColumns() {
 		return maxColumns;
 	}
 
-	public void setMaxRows(int maxRows) {
+    /**
+     * Sets max rows.
+     *
+     * @param maxRows the max rows
+     */
+    public void setMaxRows(int maxRows) {
 		this.maxRows = maxRows;
 		rowCounter.setText("Number of " + rowName + "s: " + maxRows);
 	}
 
-	public void setMaxColumns(int maxColumns) {
+    /**
+     * Sets max columns.
+     *
+     * @param maxColumns the max columns
+     */
+    public void setMaxColumns(int maxColumns) {
 		this.maxColumns = maxColumns;
 		columnCounter.setText("Number of " + columnName + "s: " + maxColumns);
 	}
 
-	public void addViewChangeListener(DataControlListener listener) {
+    /**
+     * Add view change listener.
+     *
+     * @param listener the listener
+     */
+    public void addViewChangeListener(DataControlListener listener) {
 		listeners.add(listener);
 	}
 
-	public void removeViewChangeListener(DataControlListener listener) {
+    /**
+     * Remove view change listener.
+     *
+     * @param listener the listener
+     */
+    public void removeViewChangeListener(DataControlListener listener) {
 		listeners.remove(listener);
 	}
 
-	/**
-	 * Performs a last range check for changes due to setting the maximum via a method call.
-	 */
-	public void update() {
+    /**
+     * Performs a last range check for changes due to setting the maximum via a method call.
+     */
+    public void update() {
 		if (firstRow > maxRows) {
 			firstRow = maxRows;
 			fromRowField.setText(firstRow + "");

@@ -31,6 +31,8 @@ import org.jfree.chart.urls.XYURLGenerator;
 
 
 /**
+ * The type Formatted xy area renderer 2.
+ *
  * @author Marius Helf
  */
 public class FormattedXYAreaRenderer2 extends XYAreaRenderer2 implements FormattedRenderer {
@@ -39,11 +41,20 @@ public class FormattedXYAreaRenderer2 extends XYAreaRenderer2 implements Formatt
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedXYAreaRenderer2() {
+    /**
+     * Instantiates a new Formatted xy area renderer 2.
+     */
+    public FormattedXYAreaRenderer2() {
 		super();
 	}
 
-	public FormattedXYAreaRenderer2(XYToolTipGenerator labelGenerator, XYURLGenerator urlGenerator) {
+    /**
+     * Instantiates a new Formatted xy area renderer 2.
+     *
+     * @param labelGenerator the label generator
+     * @param urlGenerator   the url generator
+     */
+    public FormattedXYAreaRenderer2(XYToolTipGenerator labelGenerator, XYURLGenerator urlGenerator) {
 		super(labelGenerator, urlGenerator);
 	}
 

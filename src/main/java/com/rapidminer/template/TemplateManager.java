@@ -37,11 +37,13 @@ import com.rapidminer.tools.io.GlobFilenameFilter;
  * Singleton entry point for registering and retrieving {@link Template}s.
  *
  * @author Simon Fischer, Gisa Schaefer
- *
  */
 public enum TemplateManager {
 
-	INSTANCE;
+    /**
+     * Instance template manager.
+     */
+    INSTANCE;
 
 	/** the folder inside .RapidMiner containing the templates */
 	private static final String FOLDER_TEMPLATES = "templates";
@@ -78,27 +80,27 @@ public enum TemplateManager {
 		}
 	}
 
-	/**
-	 * Registers a template that should be loaded from the resources at
-	 * template/[templateName].template. Extensions can add templates to the new process tab of the
-	 * startup dialog via this method within the {@code initGui(MainFrame)} method. </br>
-	 * </br>
-	 * Given a file called {@code marketing.template} is present at
-	 * {@code src/main/resources/com.rapidminer.resources.template/} the following snippet will
-	 * register the template:
-	 *
-	 * <pre>
-	 * {@code public static void initGui(MainFrame mainframe) {
-	 * 	TemplateManager.INSTANCE.registerTemplate("marketing");
-	 * }
-	 * </pre>
-	 *
-	 * @see Template Description of the .template file contents
-	 *
-	 * @param templateName
-	 *            the unique name of the template
-	 */
-	public void registerTemplate(String templateName) {
+    /**
+     * Registers a template that should be loaded from the resources at
+     * template/[templateName].template. Extensions can add templates to the new process tab of the
+     * startup dialog via this method within the {@code initGui(MainFrame)} method. </br>
+     * </br>
+     * Given a file called {@code marketing.template} is present at
+     * {@code src/main/resources/com.rapidminer.resources.template/} the following snippet will
+     * register the template:
+     * <p>
+     * <pre>
+     * {@code public static void initGui(MainFrame mainframe) {
+     * 	TemplateManager.INSTANCE.registerTemplate("marketing");
+     * }
+     * </pre>
+     *
+     * @param templateName the unique name of the template*
+     * @param templateName the template name
+     * @param templateName the template name
+     * @see Template Description of the .template file contents*
+     */
+    public void registerTemplate(String templateName) {
 		if (templatesByName.containsKey(templateName)) {
 			LogService.getRoot().log(Level.INFO,
 					"Template with name '" + templateName + "' was already registerd. Skipping registration.");
@@ -115,10 +117,12 @@ public enum TemplateManager {
 		templatesByName.put(template.getName(), template);
 	}
 
-	/**
-	 * @return all registered {@link Template}s
-	 */
-	public List<Template> getAllTemplates() {
+    /**
+     * Gets all templates.
+     *
+     * @return all registered {@link Template}s
+     */
+    public List<Template> getAllTemplates() {
 		return new ArrayList<>(templatesByName.values());
 	}
 

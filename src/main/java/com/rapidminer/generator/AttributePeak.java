@@ -23,7 +23,7 @@ import com.rapidminer.example.Attribute;
 
 /**
  * Helper class for attributes, their frequencies, and their evidences.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributePeak implements Comparable<AttributePeak> {
@@ -34,21 +34,43 @@ public class AttributePeak implements Comparable<AttributePeak> {
 
 	private double evidence;
 
-	public AttributePeak(Attribute attribute, double frequency, double evidence) {
+    /**
+     * Instantiates a new Attribute peak.
+     *
+     * @param attribute the attribute
+     * @param frequency the frequency
+     * @param evidence  the evidence
+     */
+    public AttributePeak(Attribute attribute, double frequency, double evidence) {
 		this.attribute = attribute;
 		this.frequency = frequency;
 		this.evidence = evidence;
 	}
 
-	public Attribute getAttribute() {
+    /**
+     * Gets attribute.
+     *
+     * @return the attribute
+     */
+    public Attribute getAttribute() {
 		return attribute;
 	}
 
-	public double getFrequency() {
+    /**
+     * Gets frequency.
+     *
+     * @return the frequency
+     */
+    public double getFrequency() {
 		return frequency;
 	}
 
-	public double getEvidence() {
+    /**
+     * Gets evidence.
+     *
+     * @return the evidence
+     */
+    public double getEvidence() {
 		return evidence;
 	}
 

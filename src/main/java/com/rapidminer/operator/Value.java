@@ -21,7 +21,7 @@ package com.rapidminer.operator;
 /**
  * A value contains a key and a description. The current value can be asked by the process log
  * operator.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public abstract class Value implements ValueInterface {
@@ -35,16 +35,25 @@ public abstract class Value implements ValueInterface {
 	/** Indicates if this value should be documented. */
 	private boolean documented = true;
 
-	/**
-	 * Creates a new Value object with the given key as name and the given description. This value
-	 * will be documented.
-	 */
-	public Value(String key, String description) {
+    /**
+     * Creates a new Value object with the given key as name and the given description. This value
+     * will be documented.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public Value(String key, String description) {
 		this(key, description, true);
 	}
 
-	/** Creates a new Value object. */
-	public Value(String key, String description, boolean documented) {
+    /**
+     * Creates a new Value object.  @param key the key
+     *
+     * @param key         the key
+     * @param description the description
+     * @param documented  the documented
+     */
+    public Value(String key, String description, boolean documented) {
 		this.key = key;
 		this.description = description;
 		this.documented = documented;

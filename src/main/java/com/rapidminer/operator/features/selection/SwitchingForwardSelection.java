@@ -31,7 +31,7 @@ import java.util.List;
  * selection this one actually selects attributes instead of completely adding them. Although this
  * might use more memory for simple selection tasks this might be necessary in case of
  * FeatureOperators which generate new attributes.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class SwitchingForwardSelection extends IndividualOperator {

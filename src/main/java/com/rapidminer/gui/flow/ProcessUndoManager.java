@@ -30,47 +30,47 @@ import java.util.LinkedList;
 /**
  * Handles the undo system for the current {@link MainFrame} {@link Process}. Operations are
  * <i>not</i> synchronized.
- * 
+ *
  * @author Marco Boeck
- * @deprecated since 7.5
- * @see com.rapidminer.gui.flow.processrendering.model.ProcessRendererModel ProcessRendererModel
+ * @see com.rapidminer.gui.flow.processrendering.model.ProcessRendererModelProcessRendererModel
  * @see NewProcessUndoManager
+ * @deprecated since 7.5
  */
 @Deprecated
 public class ProcessUndoManager {
 
 	private final LinkedList<Triple<String, OperatorChain, Operator>> undoList;
 
-	/**
-	 * Standard constructor.
-	 */
-	public ProcessUndoManager() {
+    /**
+     * Standard constructor.
+     */
+    public ProcessUndoManager() {
 		undoList = new LinkedList<Triple<String, OperatorChain, Operator>>();
 	}
 
-	/**
-	 * Resets the undo list and discards all stored entries.
-	 */
-	public void reset() {
+    /**
+     * Resets the undo list and discards all stored entries.
+     */
+    public void reset() {
 		undoList.clear();
 	}
 
-	/**
-	 * Gets the number of undos currently stored.
-	 * 
-	 * @return
-	 */
-	public int getNumberOfUndos() {
+    /**
+     * Gets the number of undos currently stored.
+     *
+     * @return number of undos
+     */
+    public int getNumberOfUndos() {
 		return undoList.size();
 	}
 
-	/**
-	 * Gets the undo step with the given index or <code>null</code>.
-	 * 
-	 * @param index
-	 * @return
-	 */
-	public String getXml(int index) {
+    /**
+     * Gets the undo step with the given index or <code>null</code>.
+     *
+     * @param index the index
+     * @return xml xml
+     */
+    public String getXml(int index) {
 		try {
 			return undoList.get(index).getFirst();
 		} catch (IndexOutOfBoundsException e) {
@@ -78,15 +78,15 @@ public class ProcessUndoManager {
 		}
 	}
 
-	/**
-	 * Gets the {@link OperatorChain} associated with the undo step with the given index or
-	 * <code>null</code>. If the index is >= {@link #getNumberOfUndos()}, will return the last item.
-	 * If the index is < 0, will return the first item.
-	 * 
-	 * @param index
-	 * @return
-	 */
-	public OperatorChain getOperatorChain(int index) {
+    /**
+     * Gets the {@link OperatorChain} associated with the undo step with the given index or
+     * <code>null</code>. If the index is >= {@link #getNumberOfUndos()}, will return the last item.
+     * If the index is < 0, will return the first item.
+     *
+     * @param index the index
+     * @return operator chain
+     */
+    public OperatorChain getOperatorChain(int index) {
 		if (index >= getNumberOfUndos()) {
 			index = getNumberOfUndos() - 1;
 		}
@@ -100,15 +100,15 @@ public class ProcessUndoManager {
 		}
 	}
 
-	/**
-	 * Gets the selected {@link Operator} associated with the undo step with the given index or
-	 * <code>null</code>. If the index is >= {@link #getNumberOfUndos()}, will return the last item.
-	 * If the index is < 0, will return the first item.
-	 * 
-	 * @param index
-	 * @return
-	 */
-	public Operator getSelectedOperator(int index) {
+    /**
+     * Gets the selected {@link Operator} associated with the undo step with the given index or
+     * <code>null</code>. If the index is >= {@link #getNumberOfUndos()}, will return the last item.
+     * If the index is < 0, will return the first item.
+     *
+     * @param index the index
+     * @return selected operator
+     */
+    public Operator getSelectedOperator(int index) {
 		if (index >= getNumberOfUndos()) {
 			index = getNumberOfUndos() - 1;
 		}
@@ -122,32 +122,32 @@ public class ProcessUndoManager {
 		}
 	}
 
-	/**
-	 * Removes the last undo step. If there is none, does nothing.
-	 */
-	public void removeLast() {
+    /**
+     * Removes the last undo step. If there is none, does nothing.
+     */
+    public void removeLast() {
 		if (undoList.size() > 0) {
 			undoList.removeLast();
 		}
 	}
 
-	/**
-	 * Removes the first undo step. If there is none, does nothing.
-	 */
-	public void removeFirst() {
+    /**
+     * Removes the first undo step. If there is none, does nothing.
+     */
+    public void removeFirst() {
 		if (undoList.size() > 0) {
 			undoList.removeFirst();
 		}
 	}
 
-	/**
-	 * Adds an undo step.
-	 * 
-	 * @param processXml
-	 * @param currentlyShownOperatorChain
-	 * @param selectedOperator
-	 */
-	public void add(String processXml, OperatorChain currentlyShownOperatorChain, Operator selectedOperator) {
+    /**
+     * Adds an undo step.
+     *
+     * @param processXml                  the process xml
+     * @param currentlyShownOperatorChain the currently shown operator chain
+     * @param selectedOperator            the selected operator
+     */
+    public void add(String processXml, OperatorChain currentlyShownOperatorChain, Operator selectedOperator) {
 		if (processXml == null) {
 			throw new IllegalArgumentException("processXml must not be null!");
 		}

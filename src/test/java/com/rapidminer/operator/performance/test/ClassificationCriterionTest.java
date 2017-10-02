@@ -48,7 +48,12 @@ import com.rapidminer.operator.performance.PerformanceVector;
  */
 public class ClassificationCriterionTest extends AbstractCriterionTestCase {
 
-	@Test
+    /**
+     * Test classification error.
+     *
+     * @throws Exception the exception
+     */
+    @Test
 	public void testClassificationError() throws Exception {
 		Attribute label = ExampleTestTools.attributeYesNo();
 		label.setTableIndex(0);
@@ -115,7 +120,10 @@ public class ClassificationCriterionTest extends AbstractCriterionTestCase {
 		assertEquals("false_neg", 3, pv.getCriterion(BinaryClassificationPerformance.NAMES[BinaryClassificationPerformance.FALSE_NEGATIVE]).getAverage(), 0.00000001);
 	}
 
-	@Test
+    /**
+     * Test ucc clone.
+     */
+    @Test
 	public void testUCCClone() {
 		double counter[][] = { { 3, 5 }, { 4, 6 } };
 		cloneTest("", new BinaryClassificationPerformance(BinaryClassificationPerformance.TRUE_POSITIVE, counter));
@@ -125,7 +133,10 @@ public class ClassificationCriterionTest extends AbstractCriterionTestCase {
 
 	}
 
-	@Test
+    /**
+     * Test ucc average.
+     */
+    @Test
 	public void testUCCAverage() {
 		double counter1[][] = { { 3, 5 }, { 4, 6 } };
 		double counter2[][] = { { 5, 8 }, { 2, 9 } };

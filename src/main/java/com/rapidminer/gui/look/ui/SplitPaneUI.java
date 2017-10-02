@@ -26,16 +26,25 @@ import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 /**
  * The UI for split panes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SplitPaneUI extends BasicSplitPaneUI {
 
-	public SplitPaneUI() {
+    /**
+     * Instantiates a new Split pane ui.
+     */
+    public SplitPaneUI() {
 		super();
 	}
 
-	public static ComponentUI createUI(JComponent x) {
+    /**
+     * Create ui component ui.
+     *
+     * @param x the x
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent x) {
 		return new SplitPaneUI();
 	}
 

@@ -114,7 +114,7 @@ import com.rapidminer.tools.patterns.Visitor;
  * superclass which must be extended by all RapidMiner operators. Please refer to the RapidMiner
  * tutorial for a detailed description how to implement your operator.
  * </p>
- *
+ * <p>
  * <p>
  * As default, operators consume their input by using it. This is often a useful behavior especially
  * in complex processes. For example, a learning operator consumes an example set to produce a model
@@ -127,7 +127,7 @@ import com.rapidminer.tools.patterns.Visitor;
  * also have to declare it in {@link #getOutputClasses()}. All input objects which are not used by
  * your operator will be automatically passed to the next operators.
  * </p>
- *
+ * <p>
  * <p>
  * In some cases it would be useful if the user can define if the input object should be consumed or
  * not. For example, a validation chain like cross validation should estimate the performance but
@@ -141,80 +141,82 @@ import com.rapidminer.tools.patterns.Visitor;
  * for further explanations.
  * </p>
  *
- * @see com.rapidminer.operator.OperatorChain
- *
  * @author Ralf Klinkenberg, Ingo Mierswa, Simon Fischer, Marius Helf
+ * @see com.rapidminer.operator.OperatorChain
  */
 public abstract class Operator extends AbstractObservable<Operator>
 		implements ConfigurationListener, PreviewListener, LoggingHandler, ParameterHandler, ResourceConsumer {
 
 	private static final boolean CPU_TIME_SUPPORTED = ManagementFactory.getThreadMXBean().isThreadCpuTimeSupported();
 
-	public static final OperatorVersion[] EMPTY_OPERATOR_VERSIONS_ARRAY = new OperatorVersion[0];
+    /**
+     * The constant EMPTY_OPERATOR_VERSIONS_ARRAY.
+     */
+    public static final OperatorVersion[] EMPTY_OPERATOR_VERSIONS_ARRAY = new OperatorVersion[0];
 
 	private static final OperatorVersion THROW_ERROR_ON_UNDEFINED_MACRO = new OperatorVersion(6, 0, 3);
 
-	/**
-	 * indicates the start of a macro
-	 */
-	public static final String MACRO_STRING_START = "%{";
-	/**
-	 * indicates the end of a macro
-	 */
-	public static final String MACRO_STRING_END = "}";
-	/**
-	 * indicates the the start of a string expansion parameter
-	 */
-	public static final String STRING_EXPANSION_MACRO_PARAMETER_START = "[";
-	/**
-	 * indicates the the end of a string expansion parameter
-	 */
-	public static final String STRING_EXPANSION_MACRO_PARAMETER_END = "]";
-	/**
-	 * string expansion key which will be replaced with the current system date and time
-	 */
-	public static final String STRING_EXPANSION_MACRO_TIME = "t";
-	/**
-	 * string expansion key which will be replaced with the specified value of the operator with the
-	 * specified name.
-	 */
-	public static final String STRING_EXPANSION_MACRO_OPERATORVALUE = "v";
-	/**
-	 * string expansion key which will be replaced with the name of the operator.
-	 */
-	public static final String STRING_EXPANSION_MACRO_OPERATORNAME = "n";
-	/**
-	 * string expansion key which will be replaced with the name of the operator.
-	 */
-	public static final String STRING_EXPANSION_MACRO_OPERATORNAME_USER_FRIENDLY = "operator_name";
-	/**
-	 * string expansion key which will be replaced with the class of the operator.
-	 */
-	public static final String STRING_EXPANSION_MACRO_OPERATORCLASS = "c";
-	/**
-	 * string expansion key which will be replaced with the number of times the operator was
-	 * applied.
-	 */
-	public static final String STRING_EXPANSION_MACRO_NUMBER_APPLIED_TIMES = "a";
-	/**
-	 * string expansion key which will be replaced with the number of times the operator was
-	 * applied.
-	 */
-	public static final String STRING_EXPANSION_MACRO_NUMBER_APPLIED_TIMES_USER_FRIENDLY = "execution_count";
-	/**
-	 * string expansion key which will be replaced with the number of times the operator was applied
-	 * plus one (a shortcut for %{p[1]}).
-	 */
-	public static final String STRING_EXPANSION_MACRO_NUMBER_APPLIED_TIMES_PLUS_ONE = "b";
-	/**
-	 * string expansion key which will be replaced with the number of times the operator was applied
-	 * plus the specified number.
-	 */
-	public static final String STRING_EXPANSION_MACRO_NUMBER_APPLIED_TIMES_SHIFTED = "p";
-	/**
-	 * string expansion key which will be replaced with %.
-	 */
-	public static final String STRING_EXPANSION_MACRO_PERCENT_SIGN = "%";
+    /**
+     * indicates the start of a macro
+     */
+    public static final String MACRO_STRING_START = "%{";
+    /**
+     * indicates the end of a macro
+     */
+    public static final String MACRO_STRING_END = "}";
+    /**
+     * indicates the the start of a string expansion parameter
+     */
+    public static final String STRING_EXPANSION_MACRO_PARAMETER_START = "[";
+    /**
+     * indicates the the end of a string expansion parameter
+     */
+    public static final String STRING_EXPANSION_MACRO_PARAMETER_END = "]";
+    /**
+     * string expansion key which will be replaced with the current system date and time
+     */
+    public static final String STRING_EXPANSION_MACRO_TIME = "t";
+    /**
+     * string expansion key which will be replaced with the specified value of the operator with the
+     * specified name.
+     */
+    public static final String STRING_EXPANSION_MACRO_OPERATORVALUE = "v";
+    /**
+     * string expansion key which will be replaced with the name of the operator.
+     */
+    public static final String STRING_EXPANSION_MACRO_OPERATORNAME = "n";
+    /**
+     * string expansion key which will be replaced with the name of the operator.
+     */
+    public static final String STRING_EXPANSION_MACRO_OPERATORNAME_USER_FRIENDLY = "operator_name";
+    /**
+     * string expansion key which will be replaced with the class of the operator.
+     */
+    public static final String STRING_EXPANSION_MACRO_OPERATORCLASS = "c";
+    /**
+     * string expansion key which will be replaced with the number of times the operator was
+     * applied.
+     */
+    public static final String STRING_EXPANSION_MACRO_NUMBER_APPLIED_TIMES = "a";
+    /**
+     * string expansion key which will be replaced with the number of times the operator was
+     * applied.
+     */
+    public static final String STRING_EXPANSION_MACRO_NUMBER_APPLIED_TIMES_USER_FRIENDLY = "execution_count";
+    /**
+     * string expansion key which will be replaced with the number of times the operator was applied
+     * plus one (a shortcut for %{p[1]}).
+     */
+    public static final String STRING_EXPANSION_MACRO_NUMBER_APPLIED_TIMES_PLUS_ONE = "b";
+    /**
+     * string expansion key which will be replaced with the number of times the operator was applied
+     * plus the specified number.
+     */
+    public static final String STRING_EXPANSION_MACRO_NUMBER_APPLIED_TIMES_SHIFTED = "p";
+    /**
+     * string expansion key which will be replaced with %.
+     */
+    public static final String STRING_EXPANSION_MACRO_PERCENT_SIGN = "%";
 
 	/** Indicates if before / within / after this operator a breakpoint is set. */
 	private boolean breakPoint[] = new boolean[BreakpointListener.BREAKPOINT_POS_NAME.length];
@@ -305,18 +307,20 @@ public abstract class Operator extends AbstractObservable<Operator>
 
 	// -------------------- INITIALISATION --------------------
 
-	/**
-	 * <p>
-	 * Creates an unnamed operator. Subclasses must pass the given description object to this
-	 * super-constructor (i.e. invoking super(OperatorDescription)). They might also add additional
-	 * values for process logging.
-	 * </p>
-	 * <p>
-	 * NOTE: the preferred way for operator creation is using one of the factory methods of
-	 * {@link com.rapidminer.tools.OperatorService}.
-	 * </p>
-	 */
-	public Operator(OperatorDescription description) {
+    /**
+     * <p>
+     * Creates an unnamed operator. Subclasses must pass the given description object to this
+     * super-constructor (i.e. invoking super(OperatorDescription)). They might also add additional
+     * values for process logging.
+     * </p>
+     * <p>
+     * NOTE: the preferred way for operator creation is using one of the factory methods of
+     * {@link com.rapidminer.tools.OperatorService}.
+     * </p>
+     *
+     * @param description the description
+     */
+    public Operator(OperatorDescription description) {
 		this.operatorDescription = description;
 		this.parameters = null;
 		this.name = operatorDescription.getOperatorDocumentation().getShortName();
@@ -371,37 +375,46 @@ public abstract class Operator extends AbstractObservable<Operator>
 		});
 	}
 
-	/**
-	 * Observes the given {@link Observable} and sets this operators dirty flag to true upon any
-	 * update.
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * Observes the given {@link Observable} and sets this operators dirty flag to true upon any
+     * update.
+     *
+     * @param observable the observable
+     */
+    @SuppressWarnings("unchecked")
 	protected void makeDirtyOnUpdate(Observable<? extends Object> observable) {
 		observable.addObserver(dirtyObserver, false);
 	}
 
-	/** Returns the operator description of this operator. */
-	public final OperatorDescription getOperatorDescription() {
+    /**
+     * Returns the operator description of this operator.  @return the operator description
+     *
+     * @return the operator description
+     */
+    public final OperatorDescription getOperatorDescription() {
 		return operatorDescription;
 	}
 
-	/**
-	 * Returns the &quot;class name&quot; of this operator from the operator description of the
-	 * operator. This is the name which is defined in the operator.xml file.
-	 */
-	public final String getOperatorClassName() {
+    /**
+     * Returns the &quot;class name&quot; of this operator from the operator description of the
+     * operator. This is the name which is defined in the operator.xml file.
+     *
+     * @return the operator class name
+     */
+    public final String getOperatorClassName() {
 		return operatorDescription.getName();
 	}
 
-	/**
-	 * Returns the experiment (process) of this operator by asking the parent operator. If the
-	 * operator itself and all of its parents are not part of an process, this method will return
-	 * null. Please note that some operators (e.g. ProcessLog) must be part of an process in order
-	 * to work properly.
-	 *
-	 * @deprecated Please use {@link #getProcess()} instead
-	 */
-	@Deprecated
+    /**
+     * Returns the experiment (process) of this operator by asking the parent operator. If the
+     * operator itself and all of its parents are not part of an process, this method will return
+     * null. Please note that some operators (e.g. ProcessLog) must be part of an process in order
+     * to work properly.
+     *
+     * @return the experiment
+     * @deprecated Please use {@link #getProcess()} instead
+     */
+    @Deprecated
 	public Process getExperiment() {
 		return getProcess();
 	}
@@ -421,15 +434,22 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * Returns the logging of the process if this operator is part of an process and the global
-	 * logging service otherwise.
-	 */
-	public LoggingHandler getLog() {
+    /**
+     * Returns the logging of the process if this operator is part of an process and the global
+     * logging service otherwise.
+     *
+     * @return the log
+     */
+    public LoggingHandler getLog() {
 		return logService;
 	}
 
-	public Logger getLogger() {
+    /**
+     * Gets logger.
+     *
+     * @return the logger
+     */
+    public Logger getLogger() {
 		if (getProcess() == null) {
 			return logger;
 		} else {
@@ -464,8 +484,12 @@ public abstract class Operator extends AbstractObservable<Operator>
 
 	// --------------------------------------------------------------------------------
 
-	/** Returns the name of the operator. */
-	public final String getName() {
+    /**
+     * Returns the name of the operator.  @return the name
+     *
+     * @return the name
+     */
+    public final String getName() {
 		return this.name;
 	}
 
@@ -478,13 +502,16 @@ public abstract class Operator extends AbstractObservable<Operator>
 		this.name = newName;
 	}
 
-	/**
-	 * This method unregisters the old name if this operator is already part of a {@link Process}.
-	 * Afterwards, the new name is set and registered in the process. Please note that the name
-	 * might be changed during registering in order to ensure that each operator name is unique in
-	 * its process. The new name will be returned.
-	 */
-	public final String rename(String newName) {
+    /**
+     * This method unregisters the old name if this operator is already part of a {@link Process}.
+     * Afterwards, the new name is set and registered in the process. Please note that the name
+     * might be changed during registering in order to ensure that each operator name is unique in
+     * its process. The new name will be returned.
+     *
+     * @param newName the new name
+     * @return the string
+     */
+    public final String rename(String newName) {
 		Process process = getProcess();
 		if (process != null) {
 			process.unregisterName(this.name);
@@ -498,27 +525,25 @@ public abstract class Operator extends AbstractObservable<Operator>
 		return this.name;
 	}
 
-	/**
-	 * Sets the user specified comment for this operator.
-	 *
-	 * @deprecated use
-	 *             {@link com.rapidminer.io.process.GUIProcessXMLFilter#addOperatorAnnotation(Operator, com.rapidminer.gui.flow.processrendering.annotations.WorkflowAnnotation)}
-	 *             instead! Calling this method will do nothing anymore.
-	 */
-	@Deprecated
+    /**
+     * Sets the user specified comment for this operator.
+     *
+     * @param description the description
+     * @deprecated use {@link com.rapidminer.io.process.GUIProcessXMLFilter#addOperatorAnnotation(Operator, com.rapidminer.gui.flow.processrendering.annotations.WorkflowAnnotation)}             instead! Calling this method will do nothing anymore.
+     */
+    @Deprecated
 	public void setUserDescription(String description) {
 		getLogger().log(Level.WARNING,
 				"Setting comments directly on operators has been deprecated. See JavaDoc for details.");
 	}
 
-	/**
-	 * Looks up {@link UserData} entries. Returns null if key is unknown.
-	 *
-	 * @param The
-	 *            key of the user data.
-	 * @return The user data.
-	 */
-	public UserData<Object> getUserData(String key) {
+    /**
+     * Looks up {@link UserData} entries. Returns null if key is unknown.
+     *
+     * @param key the key
+     * @return The user data.
+     */
+    public UserData<Object> getUserData(String key) {
 		synchronized (this.userDataLock) {
 			if (this.userData == null) {
 				return null;
@@ -528,15 +553,13 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * Stores arbitrary {@link UserData}.
-	 *
-	 * @param key
-	 *            The key to used to identify the data.
-	 * @param data
-	 *            The user data.
-	 */
-	public void setUserData(String key, UserData<Object> data) {
+    /**
+     * Stores arbitrary {@link UserData}.
+     *
+     * @param key  The key to used to identify the data.
+     * @param data The user data.
+     */
+    public void setUserData(String key, UserData<Object> data) {
 		synchronized (this.userDataLock) {
 			if (this.userData == null) {
 				this.userData = new TreeMap<>();
@@ -545,34 +568,39 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * The user specified comment for this operator.
-	 *
-	 * @deprecated use
-	 *             {@link com.rapidminer.io.processGUIProcessXMLFilter#lookupOperatorAnnotations(Operator)}
-	 *             instead! This method will always return {@code null}.
-	 */
-	@Deprecated
+    /**
+     * The user specified comment for this operator.
+     *
+     * @return the user description
+     * @deprecated use {@link com.rapidminer.io.processGUIProcessXMLFilter#lookupOperatorAnnotations(Operator)}             instead! This method will always return {@code null}.
+     */
+    @Deprecated
 	public String getUserDescription() {
 		getLogger().log(Level.WARNING,
 				"Getting comments directly from operators has been deprecated. See JavaDoc for details.");
 		return null;
 	}
 
-	/**
-	 * Returns null if this operator is not deprecated. This implementation returns the return value
-	 * of OperatorDescription.getDeprecationInfo() which is usually null. If a non-null value is
-	 * returned this should describe a a workaround for a user. In this case the workaround is
-	 * displayed during the validation of the process.
-	 *
-	 * @deprecated Use getOperatorDescription().getDeprecationInfo()
-	 */
-	@Deprecated
+    /**
+     * Returns null if this operator is not deprecated. This implementation returns the return value
+     * of OperatorDescription.getDeprecationInfo() which is usually null. If a non-null value is
+     * returned this should describe a a workaround for a user. In this case the workaround is
+     * displayed during the validation of the process.
+     *
+     * @return the deprecation info
+     * @deprecated Use getOperatorDescription().getDeprecationInfo()
+     */
+    @Deprecated
 	public final String getDeprecationInfo() {
 		return this.operatorDescription.getDeprecationInfo();
 	}
 
-	public void removeAndKeepConnections(List<Operator> keepConnectionsTo) {
+    /**
+     * Remove and keep connections.
+     *
+     * @param keepConnectionsTo the keep connections to
+     */
+    public void removeAndKeepConnections(List<Operator> keepConnectionsTo) {
 
 		getInputPorts().disconnectAllBut(keepConnectionsTo);
 		getOutputPorts().disconnectAllBut(keepConnectionsTo);
@@ -586,87 +614,117 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/** Removes this operator from its parent. */
-	public void remove() {
+    /**
+     * Removes this operator from its parent.
+     */
+    public void remove() {
 		removeAndKeepConnections(null);
 	}
 
-	/**
-	 * This methods was used in older RapidMiner version for registering the operator in the process
-	 * and to ensure that all operator names are unique. This is now automatically done during
-	 * operator adding and therefore this method is now deprecated.
-	 *
-	 * @deprecated No longer necessary since the registering / unregistering will be performed
-	 *             during operator adding
-	 */
-	@Deprecated
+    /**
+     * This methods was used in older RapidMiner version for registering the operator in the process
+     * and to ensure that all operator names are unique. This is now automatically done during
+     * operator adding and therefore this method is now deprecated.
+     *
+     * @param process the process
+     * @param name    the name
+     * @deprecated No longer necessary since the registering / unregistering will be performed             during operator adding
+     */
+    @Deprecated
 	public void register(Process process, String name) {}
 
-	/**
-	 * Registers this operator in the given process. Please note that this might change the name of
-	 * the operator.
-	 */
-	protected void registerOperator(Process process) {
+    /**
+     * Registers this operator in the given process. Please note that this might change the name of
+     * the operator.
+     *
+     * @param process the process
+     */
+    protected void registerOperator(Process process) {
 		if (process != null) {
 			setName(process.registerName(getName(), this));
 		}
 	}
 
-	/** Deletes this operator removing it from the name map of the process. */
-	protected void unregisterOperator(Process process) {
+    /**
+     * Deletes this operator removing it from the name map of the process.  @param process the process
+     *
+     * @param process the process
+     */
+    protected void unregisterOperator(Process process) {
 		process.unregisterName(name);
 	}
 
-	/** Sets the activation mode. Inactive operators do not perform their action. */
-	public void setEnabled(boolean enabled) {
+    /**
+     * Sets the activation mode. Inactive operators do not perform their action.  @param enabled the enabled
+     *
+     * @param enabled the enabled
+     */
+    public void setEnabled(boolean enabled) {
 		if (this.enabled != enabled) {
 			this.enabled = enabled;
 			fireUpdate(this);
 		}
 	}
 
-	/** Sets the expansion mode which indicates if this operator is drawn expanded or not. */
-	public void setExpanded(boolean expanded) {
+    /**
+     * Sets the expansion mode which indicates if this operator is drawn expanded or not.  @param expanded the expanded
+     *
+     * @param expanded the expanded
+     */
+    public void setExpanded(boolean expanded) {
 		this.expanded = expanded;
 	}
 
-	/** Returns true if this operator should be painted expanded. */
-	public boolean isExpanded() {
+    /**
+     * Returns true if this operator should be painted expanded.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean isExpanded() {
 		return expanded;
 	}
 
-	/**
-	 * Returns true if this operator is enabled. No longer takes parent enabled status into account.
-	 */
-	public boolean isEnabled() {
+    /**
+     * Returns true if this operator is enabled. No longer takes parent enabled status into account.
+     *
+     * @return the boolean
+     */
+    public boolean isEnabled() {
 		return enabled;
 	}
 
-	/**
-	 * This method must return true if the operator performs parallel execution of child operators
-	 * and false otherwise.
-	 */
-	public boolean isParallel() {
+    /**
+     * This method must return true if the operator performs parallel execution of child operators
+     * and false otherwise.
+     *
+     * @return the boolean
+     */
+    public boolean isParallel() {
 		return false;
 	}
 
-	/** Returns the number of times this operator was already applied. */
-	public int getApplyCount() {
+    /**
+     * Returns the number of times this operator was already applied.  @return the apply count
+     *
+     * @return the apply count
+     */
+    public int getApplyCount() {
 		return applyCountAtLastExecution;
 	}
 
 	// --------------------------------------------------------------------------------
 
-	/**
-	 * Performs a deep clone on the most parts of this operator. The breakpointThread is empty (as
-	 * it is in initialization). The parent will be clone in the method of OperatorChain overwriting
-	 * this one. The in- and output containers are only cloned by reference copying. Use this method
-	 * only if you are sure what you are doing.
-	 *
-	 * @param name
-	 *            This parameter is not longer used.
-	 */
-	public Operator cloneOperator(String name, boolean forParallelExecution) {
+    /**
+     * Performs a deep clone on the most parts of this operator. The breakpointThread is empty (as
+     * it is in initialization). The parent will be clone in the method of OperatorChain overwriting
+     * this one. The in- and output containers are only cloned by reference copying. Use this method
+     * only if you are sure what you are doing.
+     *
+     * @param name                 This parameter is not longer used.
+     * @param forParallelExecution the for parallel execution
+     * @return the operator
+     */
+    public Operator cloneOperator(String name, boolean forParallelExecution) {
 		Operator clone = null;
 		try {
 			clone = operatorDescription.createOperatorInstance();
@@ -708,69 +766,77 @@ public abstract class Operator extends AbstractObservable<Operator>
 
 	// --------------------- Apply ---------------------
 
-	/**
-	 * Implement this method in subclasses.
-	 *
-	 * @deprecated use doWork()
-	 */
-	@Deprecated
+    /**
+     * Implement this method in subclasses.
+     *
+     * @return the io object [ ]
+     * @throws OperatorException the operator exception
+     * @deprecated use doWork()
+     */
+    @Deprecated
 	public IOObject[] apply() throws OperatorException {
 		throw new UnsupportedOperationException("apply() is deprecated. Implement doWork().");
 	}
 
-	/**
-	 * Performs the actual work of the operator and must be implemented by subclasses. Replaces the
-	 * old method <code>apply()</code>.
-	 */
-	public void doWork() throws OperatorException {}
+    /**
+     * Performs the actual work of the operator and must be implemented by subclasses. Replaces the
+     * old method <code>apply()</code>.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void doWork() throws OperatorException {}
 
 	// -------------------- Nesting --------------------
 
-	/**
-	 * Returns the classes that are needed as input. May be null or an empty (no desired input). As
-	 * default, all delivered input objects are consumed and must be also delivered as output in
-	 * both {@link #getOutputClasses()} and {@link #apply()} if this is necessary. This default
-	 * behavior can be changed by overriding {@link #getInputDescription(Class)}. Subclasses which
-	 * implement this method should not make use of parameters since this method is invoked by
-	 * getParameterTypes(). Therefore, parameters are not fully available at this point of time and
-	 * this might lead to exceptions. Please use InputDescriptions instead.
-	 *
-	 * @deprecated create input ports instead
-	 */
-	@Deprecated
+    /**
+     * Returns the classes that are needed as input. May be null or an empty (no desired input). As
+     * default, all delivered input objects are consumed and must be also delivered as output in
+     * both {@link #getOutputClasses()} and {@link #apply()} if this is necessary. This default
+     * behavior can be changed by overriding {@link #getInputDescription(Class)}. Subclasses which
+     * implement this method should not make use of parameters since this method is invoked by
+     * getParameterTypes(). Therefore, parameters are not fully available at this point of time and
+     * this might lead to exceptions. Please use InputDescriptions instead.
+     *
+     * @return the class [ ]
+     * @deprecated create input ports instead
+     */
+    @Deprecated
 	public Class<?>[] getInputClasses() {
 		return new Class[0];
 	}
 
-	/**
-	 * <p>
-	 * Returns the classes that are guaranteed to be returned by <tt>apply()</tt> as additional
-	 * output. Please note that input objects which should not be consumed must also be defined by
-	 * this method (e.g. an example set which is changed but not consumed in the case of a
-	 * preprocessing operator must be defined in both, the methods {@link #getInputClasses()} and
-	 * {@link #getOutputClasses()}). The default behavior for input consumation is defined by
-	 * {@link #getInputDescription(Class)} and can be changed by overwriting this method. Objects
-	 * which are not consumed (defined by changing the implementation in
-	 * {@link #getInputDescription(Class)}) must not be defined as additional output in this method.
-	 * </p>
-	 *
-	 * <p>
-	 * May deliver null or an empy array (no additional output is produced or guaranteed). Must
-	 * return the class array of delivered output objects otherwise.
-	 * </p>
-	 *
-	 * @deprecated create output ports
-	 */
-	@Deprecated
+    /**
+     * <p>
+     * Returns the classes that are guaranteed to be returned by <tt>apply()</tt> as additional
+     * output. Please note that input objects which should not be consumed must also be defined by
+     * this method (e.g. an example set which is changed but not consumed in the case of a
+     * preprocessing operator must be defined in both, the methods {@link #getInputClasses()} and
+     * {@link #getOutputClasses()}). The default behavior for input consumation is defined by
+     * {@link #getInputDescription(Class)} and can be changed by overwriting this method. Objects
+     * which are not consumed (defined by changing the implementation in
+     * {@link #getInputDescription(Class)}) must not be defined as additional output in this method.
+     * </p>
+     * <p>
+     * <p>
+     * May deliver null or an empy array (no additional output is produced or guaranteed). Must
+     * return the class array of delivered output objects otherwise.
+     * </p>
+     *
+     * @return the class [ ]
+     * @deprecated create output ports
+     */
+    @Deprecated
 	public Class<?>[] getOutputClasses() {
 		return new Class[0];
 	}
 
-	/**
-	 * Returns the classes that are needed as input. Returns the result of
-	 * {@link #getInputClasses()}.
-	 */
-	protected final Class<?>[] getDesiredInputClasses() {
+    /**
+     * Returns the classes that are needed as input. Returns the result of
+     * {@link #getInputClasses()}.
+     *
+     * @return the class [ ]
+     */
+    protected final Class<?>[] getDesiredInputClasses() {
 		Class<?>[] inputClasses = getInputClasses();
 		if (inputClasses == null) {
 			return new Class[0];
@@ -779,11 +845,13 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * Returns the classes that are guaranteed to be returned by <tt>apply()</tt>. These are all
-	 * input classes which are not consumed and all guaranteed additional output classes.
-	 */
-	protected final Class<?>[] getDeliveredOutputClasses() {
+    /**
+     * Returns the classes that are guaranteed to be returned by <tt>apply()</tt>. These are all
+     * input classes which are not consumed and all guaranteed additional output classes.
+     *
+     * @return the class [ ]
+     */
+    protected final Class<?>[] getDeliveredOutputClasses() {
 		List<Class<?>> result = new LinkedList<>();
 		Class<?>[] inputClasses = getDesiredInputClasses();
 		for (Class<?> inputClasse : inputClasses) {
@@ -804,37 +872,44 @@ public abstract class Operator extends AbstractObservable<Operator>
 		return resultArray;
 	}
 
-	/**
-	 * The default implementation returns an input description that consumes the input IOObject
-	 * without a user parameter. Subclasses may override this method to allow other input handling
-	 * behaviors.
-	 *
-	 * @deprecated
-	 */
-	@Deprecated
+    /**
+     * The default implementation returns an input description that consumes the input IOObject
+     * without a user parameter. Subclasses may override this method to allow other input handling
+     * behaviors.
+     *
+     * @param inputClass the input class
+     * @return the input description
+     * @deprecated
+     */
+    @Deprecated
 	protected InputDescription getInputDescription(Class<?> inputClass) {
 		return new InputDescription(inputClass);
 	}
 
-	/**
-	 * If you find the <tt>getInputClasses()</tt> and <tt>getOuputClasses()</tt> methods for some
-	 * reason not useful, you may override this method. Otherwise it returns a default IODescription
-	 * containing the classes returned by the first.
-	 *
-	 * @deprecated As of version 5.0, this method is no longer necessary.
-	 */
-	@Deprecated
+    /**
+     * If you find the <tt>getInputClasses()</tt> and <tt>getOuputClasses()</tt> methods for some
+     * reason not useful, you may override this method. Otherwise it returns a default IODescription
+     * containing the classes returned by the first.
+     *
+     * @return the io description
+     * @deprecated As of version 5.0, this method is no longer necessary.
+     */
+    @Deprecated
 	protected IODescription getIODescription() {
 		return new DefaultIODescription(getDesiredInputClasses(), getDeliveredOutputClasses());
 	}
 
-	/**
-	 * Subclasses will throw an exception if something isn't ok. Returns the output that this
-	 * operator returns when provided with the given input.
-	 *
-	 * @deprecated As of version 5.0, this method is no longer necessary.
-	 */
-	@Deprecated
+    /**
+     * Subclasses will throw an exception if something isn't ok. Returns the output that this
+     * operator returns when provided with the given input.
+     *
+     * @param input the input
+     * @return the class [ ]
+     * @throws IllegalInputException                the illegal input exception
+     * @throws WrongNumberOfInnerOperatorsException the wrong number of inner operators exception
+     * @deprecated As of version 5.0, this method is no longer necessary.
+     */
+    @Deprecated
 	public Class<?>[] checkIO(Class<?>[] input) throws IllegalInputException, WrongNumberOfInnerOperatorsException {
 		if (isEnabled()) {
 			return getIODescription().getOutputClasses(input, this);
@@ -843,18 +918,20 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * This method is invoked during the validation checks. It is invoked as a last check. The
-	 * default implementation does nothing. Subclasses might want to override this method to perform
-	 * some specialized checks, e.g. if an inner operator is of a specific class.
-	 */
-	protected void performAdditionalChecks() {}
+    /**
+     * This method is invoked during the validation checks. It is invoked as a last check. The
+     * default implementation does nothing. Subclasses might want to override this method to perform
+     * some specialized checks, e.g. if an inner operator is of a specific class.
+     */
+    protected void performAdditionalChecks() {}
 
-	/**
-	 * Will count an error if a non optional property has no default value and is not defined by
-	 * user. Returns the total number of errors.
-	 */
-	public int checkProperties() {
+    /**
+     * Will count an error if a non optional property has no default value and is not defined by
+     * user. Returns the total number of errors.
+     *
+     * @return the int
+     */
+    public int checkProperties() {
 		int errorCount = 0;
 		if (isEnabled()) {
 			Iterator<ParameterType> i = getParameters().getParameterTypes().iterator();
@@ -912,12 +989,14 @@ public abstract class Operator extends AbstractObservable<Operator>
 		return errorCount;
 	}
 
-	/**
-	 * Will count the number of deprecated operators, i.e. the operators which
-	 * {@link #getDeprecationInfo()} method does not return null. Returns the total number of
-	 * deprecations.
-	 */
-	public int checkDeprecations() {
+    /**
+     * Will count the number of deprecated operators, i.e. the operators which
+     * {@link #getDeprecationInfo()} method does not return null. Returns the total number of
+     * deprecations.
+     *
+     * @return the int
+     */
+    public int checkDeprecations() {
 		String deprecationString = getOperatorDescription().getDeprecationInfo();
 		int deprecationCount = 0;
 		if (deprecationString != null) {
@@ -928,18 +1007,25 @@ public abstract class Operator extends AbstractObservable<Operator>
 		return deprecationCount;
 	}
 
-	/**
-	 * @deprecated use {@link #execute()}
-	 */
-	@Deprecated
+    /**
+     * Apply io container.
+     *
+     * @param input the input
+     * @return the io container
+     * @throws OperatorException the operator exception
+     * @deprecated use {@link #execute()}
+     */
+    @Deprecated
 	public final IOContainer apply(IOContainer input) throws OperatorException {
 		throw new UnsupportedOperationException("apply(IOContainer) is deprecated. Use execute()!");
 	}
 
-	/**
-	 * Applies the operator. Don't override this method, but {@link #doWork()}
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * Applies the operator. Don't override this method, but {@link #doWork()}
+     *
+     * @throws OperatorException the operator exception
+     */
+    @SuppressWarnings("unchecked")
 	public final void execute() throws OperatorException {
 		Process process = getProcess();
 		if (process == null) {
@@ -1068,12 +1154,14 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * This method should be called within long running loops of an operator to check if the user
-	 * has canceled the execution in the mean while. This then will throw a
-	 * {@link ProcessStoppedException} to cancel the execution.
-	 */
-	public final void checkForStop() throws ProcessStoppedException {
+    /**
+     * This method should be called within long running loops of an operator to check if the user
+     * has canceled the execution in the mean while. This then will throw a
+     * {@link ProcessStoppedException} to cancel the execution.
+     *
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public final void checkForStop() throws ProcessStoppedException {
 		if (getParent() != null) {
 			checkForStop(getParent().getProcess());
 		} else {
@@ -1096,15 +1184,17 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * This method will cause the execution of this operator to stop at the next call of
-	 * checkForStop() in the executing thread. When this will be depends on the operator. Some
-	 * operations like huge matrix inversions cannot be aborted prematurely at all. A
-	 * ProcessStoppedException will be thrown in case of stopping, so prepare to catch it when
-	 * executing the operator. Please keep in mind, that this method will have an effect only if the
-	 * operator is executed without a process context directly from the API.
-	 */
-	public final void shouldStopStandaloneExecution() throws ProcessStoppedException {
+    /**
+     * This method will cause the execution of this operator to stop at the next call of
+     * checkForStop() in the executing thread. When this will be depends on the operator. Some
+     * operations like huge matrix inversions cannot be aborted prematurely at all. A
+     * ProcessStoppedException will be thrown in case of stopping, so prepare to catch it when
+     * executing the operator. Please keep in mind, that this method will have an effect only if the
+     * operator is executed without a process context directly from the API.
+     *
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public final void shouldStopStandaloneExecution() throws ProcessStoppedException {
 		if (getProcess() == null) {
 			this.shouldStopStandaloneExecution = true;
 		}
@@ -1115,13 +1205,13 @@ public abstract class Operator extends AbstractObservable<Operator>
 		throw new ProcessStoppedException(this);
 	}
 
-	/**
-	 * This method should only be called by the command line breakpoint listener to resume the
-	 * process after a breakpoint.
-	 *
-	 * @deprecated Use {@link Process#resume()}
-	 */
-	@Deprecated
+    /**
+     * This method should only be called by the command line breakpoint listener to resume the
+     * process after a breakpoint.
+     *
+     * @deprecated Use {@link Process#resume()}
+     */
+    @Deprecated
 	public final void resume() {
 		getProcess().resume();
 	}
@@ -1135,38 +1225,48 @@ public abstract class Operator extends AbstractObservable<Operator>
 		process.pause(this, container, breakpointType);
 	}
 
-	/**
-	 * Indicates how additional output should be added to the IOContainer. Usually the additional
-	 * output should be preprended to the input container but some operators, especially operator
-	 * chains might override this method in order add only the additional output instead of the
-	 * complete IOContainer. This prevents doubling the IOObjects e.g. for SimpleOperatorChains. The
-	 * default implementation returns false.
-	 *
-	 * @deprecated
-	 */
-	@Deprecated
+    /**
+     * Indicates how additional output should be added to the IOContainer. Usually the additional
+     * output should be preprended to the input container but some operators, especially operator
+     * chains might override this method in order add only the additional output instead of the
+     * complete IOContainer. This prevents doubling the IOObjects e.g. for SimpleOperatorChains. The
+     * default implementation returns false.
+     *
+     * @return the add only additional output
+     * @deprecated
+     */
+    @Deprecated
 	public boolean getAddOnlyAdditionalOutput() {
 		return false;
 	}
 
-	/**
-	 * Returns an IOObject of class cls. The object is removed from the input IOContainer if the
-	 * input description defines this behavior (default).
-	 *
-	 * @deprecated Use input ports
-	 */
-	@Deprecated
+    /**
+     * Returns an IOObject of class cls. The object is removed from the input IOContainer if the
+     * input description defines this behavior (default).
+     *
+     * @param <T> the type parameter
+     * @param cls the cls
+     * @return the input
+     * @throws MissingIOObjectException the missing io object exception
+     * @deprecated Use input ports
+     */
+    @Deprecated
 	protected <T extends IOObject> T getInput(Class<T> cls) throws MissingIOObjectException {
 		return getInput(cls, 0);
 	}
 
-	/**
-	 * Returns the nr-th IOObject of class cls. The object is removed from the input IOContainer if
-	 * the input description defines this behavior (default).
-	 *
-	 * @deprecated use the input ports directly
-	 */
-	@Deprecated
+    /**
+     * Returns the nr-th IOObject of class cls. The object is removed from the input IOContainer if
+     * the input description defines this behavior (default).
+     *
+     * @param <T> the type parameter
+     * @param cls the cls
+     * @param nr  the nr
+     * @return the input
+     * @throws MissingIOObjectException the missing io object exception
+     * @deprecated use the input ports directly
+     */
+    @Deprecated
 	@SuppressWarnings("unchecked")
 	protected <T extends IOObject> T getInput(Class<T> cls, int nr) throws MissingIOObjectException {
 		int successCount = 0;
@@ -1182,13 +1282,15 @@ public abstract class Operator extends AbstractObservable<Operator>
 		throw new MissingIOObjectException(cls);
 	}
 
-	/**
-	 * Returns true if this operator has an input object of the desired class. The object will not
-	 * be removed by using this method.
-	 *
-	 * @deprecated use the input ports directly
-	 */
-	@Deprecated
+    /**
+     * Returns true if this operator has an input object of the desired class. The object will not
+     * be removed by using this method.
+     *
+     * @param cls the cls
+     * @return the boolean
+     * @deprecated use the input ports directly
+     */
+    @Deprecated
 	protected boolean hasInput(Class<? extends IOObject> cls) {
 		try {
 			getInput(cls);
@@ -1198,90 +1300,115 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * Returns the complete input. Operators should usually not directly use this method but should
-	 * use {@link #getInput(Class)}. However, some operator chains must handle their inner input and
-	 * have to use the IOContainer directly.
-	 *
-	 * @deprecated Use {@link #getInputPorts()}
-	 */
-	@Deprecated
+    /**
+     * Returns the complete input. Operators should usually not directly use this method but should
+     * use {@link #getInput(Class)}. However, some operator chains must handle their inner input and
+     * have to use the IOContainer directly.
+     *
+     * @return the input
+     * @deprecated Use {@link #getInputPorts()}
+     */
+    @Deprecated
 	protected final IOContainer getInput() {
 		throw new UnsupportedOperationException("getInput() is deprecated. Use the input ports.");
 	}
 
-	/**
-	 * ATTENTION: Use this method only if you are ABSOLUTELY sure what you are doing! This method
-	 * might be useful for some meta optimization operators but wrong usage can cause serious
-	 * errors.
-	 *
-	 * @deprecated use the ports
-	 */
-	@Deprecated
+    /**
+     * ATTENTION: Use this method only if you are ABSOLUTELY sure what you are doing! This method
+     * might be useful for some meta optimization operators but wrong usage can cause serious
+     * errors.
+     *
+     * @param input the input
+     * @deprecated use the ports
+     */
+    @Deprecated
 	protected void setInput(IOContainer input) {
 		throw new UnsupportedOperationException("setInput() is deprecated. Use the input ports.");
 	}
 
-	/** Called when the process starts. Resets all counters. */
-	public void processStarts() throws OperatorException {
+    /**
+     * Called when the process starts. Resets all counters.  @throws OperatorException the operator exception
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void processStarts() throws OperatorException {
 		applyCount.set(0);
 		applyCountAtLastExecution = 0;
 	}
 
-	/**
-	 * Called at the end of the process. The default implementation does nothing.
-	 */
-	public void processFinished() throws OperatorException {}
+    /**
+     * Called at the end of the process. The default implementation does nothing.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void processFinished() throws OperatorException {}
 
-	/**
-	 * Sets or clears a breakpoint at the given position.
-	 *
-	 * @param position
-	 *            One out of BREAKPOINT_BEFORE and BREAKPOINT_AFTER
-	 */
-	public void setBreakpoint(int position, boolean on) {
+    /**
+     * Sets or clears a breakpoint at the given position.
+     *
+     * @param position One out of BREAKPOINT_BEFORE and BREAKPOINT_AFTER
+     * @param on       the on
+     */
+    public void setBreakpoint(int position, boolean on) {
 		breakPoint[position] = on;
 		fireUpdate(this);
 	}
 
-	/**
-	 * Returns true iff this operator has a breakpoint at any possible position.
-	 */
-	public boolean hasBreakpoint() {
+    /**
+     * Returns true iff this operator has a breakpoint at any possible position.
+     *
+     * @return the boolean
+     */
+    public boolean hasBreakpoint() {
 		return hasBreakpoint(BreakpointListener.BREAKPOINT_BEFORE) || hasBreakpoint(BreakpointListener.BREAKPOINT_AFTER);
 	}
 
-	/**
-	 * Returns true iff a breakpoint is set at the given position
-	 *
-	 * @param position
-	 *            One out of BREAKPOINT_BEFORE and BREAKPOINT_AFTER
-	 */
-	public boolean hasBreakpoint(int position) {
+    /**
+     * Returns true iff a breakpoint is set at the given position
+     *
+     * @param position One out of BREAKPOINT_BEFORE and BREAKPOINT_AFTER
+     * @return the boolean
+     */
+    public boolean hasBreakpoint(int position) {
 		return breakPoint[position];
 	}
 
-	/**
-	 * Should be called if this operator performs a loop (for the loop time resetting used for Value
-	 * creation used by DataTables). This method also invokes {@link #checkForStop()}.
-	 */
-	public void inApplyLoop() throws ProcessStoppedException {
+    /**
+     * Should be called if this operator performs a loop (for the loop time resetting used for Value
+     * creation used by DataTables). This method also invokes {@link #checkForStop()}.
+     *
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public void inApplyLoop() throws ProcessStoppedException {
 		loopStartTime = System.currentTimeMillis();
 		checkForStop();
 	}
 
-	/** Adds an implementation of Value. */
-	public void addValue(Value value) {
+    /**
+     * Adds an implementation of Value.  @param value the value
+     *
+     * @param value the value
+     */
+    public void addValue(Value value) {
 		valueMap.put(value.getKey(), value);
 	}
 
-	/** Returns the value of the Value with the given key. */
-	public final Value getValue(String key) {
+    /**
+     * Returns the value of the Value with the given key.  @param key the key
+     *
+     * @param key the key
+     * @return the value
+     */
+    public final Value getValue(String key) {
 		return valueMap.get(key);
 	}
 
-	/** Returns all Values sorted by key. */
-	public Collection<Value> getValues() {
+    /**
+     * Returns all Values sorted by key.  @return the values
+     *
+     * @return the values
+     */
+    public Collection<Value> getValues() {
 		return valueMap.values();
 	}
 
@@ -1336,7 +1463,14 @@ public abstract class Operator extends AbstractObservable<Operator>
 		getParameters().setParameter(key, ParameterTypeList.transformList2String(list));
 	}
 
-	public void setPairParameter(String key, String firstValue, String secondValue) {
+    /**
+     * Sets pair parameter.
+     *
+     * @param key         the key
+     * @param firstValue  the first value
+     * @param secondValue the second value
+     */
+    public void setPairParameter(String key, String firstValue, String secondValue) {
 		getParameters().setParameter(key, ParameterTypeTupel.transformTupel2String(firstValue, secondValue));
 	}
 
@@ -1580,11 +1714,15 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * This method returns the parameter identified by key as a RepositoryLocation. For this the
-	 * string is resolved against this operators process location in the Repository.
-	 */
-	public RepositoryLocation getParameterAsRepositoryLocation(String key) throws UserError {
+    /**
+     * This method returns the parameter identified by key as a RepositoryLocation. For this the
+     * string is resolved against this operators process location in the Repository.
+     *
+     * @param key the key
+     * @return the parameter as repository location
+     * @throws UserError the user error
+     */
+    public RepositoryLocation getParameterAsRepositoryLocation(String key) throws UserError {
 		String loc = getParameter(key);
 		return RepositoryLocation.getRepositoryLocation(loc, this);
 	}
@@ -1667,11 +1805,14 @@ public abstract class Operator extends AbstractObservable<Operator>
 		return types;
 	}
 
-	/**
-	 * Returns the parameter type with the given name. Will return null if this operator does not
-	 * have a parameter with the given name.
-	 */
-	public ParameterType getParameterType(String name) {
+    /**
+     * Returns the parameter type with the given name. Will return null if this operator does not
+     * have a parameter with the given name.
+     *
+     * @param name the name
+     * @return the parameter type
+     */
+    public ParameterType getParameterType(String name) {
 		Iterator<ParameterType> i = getParameters().getParameterTypes().iterator();
 		while (i.hasNext()) {
 			ParameterType current = i.next();
@@ -1682,20 +1823,28 @@ public abstract class Operator extends AbstractObservable<Operator>
 		return null;
 	}
 
-	/**
-	 * Writes the XML representation of this operator.
-	 *
-	 * @deprecated indent is not considered any more. Use {@link #writeXML(Writer, boolean)}
-	 */
-	@Deprecated
+    /**
+     * Writes the XML representation of this operator.
+     *
+     * @param out         the out
+     * @param indent      the indent
+     * @param hideDefault the hide default
+     * @throws IOException the io exception
+     * @deprecated indent is not considered any more. Use {@link #writeXML(Writer, boolean)}
+     */
+    @Deprecated
 	public void writeXML(Writer out, String indent, boolean hideDefault) throws IOException {
 		writeXML(out, hideDefault);
 	}
 
-	/**
-	 * This will report this operator with all its parameter settings to the given writer as XML.
-	 */
-	public void writeXML(Writer out, boolean hideDefault) throws IOException {
+    /**
+     * This will report this operator with all its parameter settings to the given writer as XML.
+     *
+     * @param out         the out
+     * @param hideDefault the hide default
+     * @throws IOException the io exception
+     */
+    public void writeXML(Writer out, boolean hideDefault) throws IOException {
 		try {
 			XMLTools.stream(new XMLExporter().exportProcess(this, hideDefault), new StreamResult(out),
 					XMLImporter.PROCESS_FILE_CHARSET);
@@ -1704,35 +1853,47 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * This returns this operator with all its parameter settings as a {@link Document}
-	 */
-	public Document getDOMRepresentation() throws IOException {
+    /**
+     * This returns this operator with all its parameter settings as a {@link Document}
+     *
+     * @return the dom representation
+     * @throws IOException the io exception
+     */
+    public Document getDOMRepresentation() throws IOException {
 		return new XMLExporter().exportProcess(this, false);
 	}
 
-	/**
-	 * @deprecated indent is not used any more. Use {@link #getXML(boolean)}.
-	 */
-	@Deprecated
+    /**
+     * Gets xml.
+     *
+     * @param indent      the indent
+     * @param hideDefault the hide default
+     * @return the xml
+     * @deprecated indent is not used any more. Use {@link #getXML(boolean)}.
+     */
+    @Deprecated
 	public String getXML(String indent, boolean hideDefault) {
 		return getXML(hideDefault);
 	}
 
-	/** Same as getXML(hideDefault, false). */
-	public String getXML(boolean hideDefault) {
+    /**
+     * Same as getXML(hideDefault, false).  @param hideDefault the hide default
+     *
+     * @param hideDefault the hide default
+     * @return the xml
+     */
+    public String getXML(boolean hideDefault) {
 		return getXML(hideDefault, false);
 	}
 
-	/**
-	 * Returns the XML representation of this operator.
-	 *
-	 * @param hideDefault
-	 *            if true, default parameters will be ignored when creating the xml representation
-	 * @param onlyCoreElements
-	 *            if true, GUI and other additional information will be ignored.
-	 */
-	public String getXML(boolean hideDefault, boolean onlyCoreElements) {
+    /**
+     * Returns the XML representation of this operator.
+     *
+     * @param hideDefault      if true, default parameters will be ignored when creating the xml representation
+     * @param onlyCoreElements if true, GUI and other additional information will be ignored.
+     * @return the xml
+     */
+    public String getXML(boolean hideDefault, boolean onlyCoreElements) {
 		try {
 			return XMLTools.toString(new XMLExporter(onlyCoreElements).exportProcess(this, hideDefault));
 		} catch (Exception e) {
@@ -1742,40 +1903,64 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	public static Operator createFromXML(Element element, Process targetProcess,
+    /**
+     * Create from xml operator.
+     *
+     * @param element                     the element
+     * @param targetProcess               the target process
+     * @param unknownParameterInformation the unknown parameter information
+     * @return the operator
+     * @throws XMLException the xml exception
+     */
+    public static Operator createFromXML(Element element, Process targetProcess,
 			List<UnknownParameterInformation> unknownParameterInformation) throws XMLException {
 		return createFromXML(element, targetProcess, unknownParameterInformation, null);
 	}
 
-	/**
-	 * This will create an operator by interpreting the given XML element as being generated from
-	 * the current RapidMiner version. No Import Rules will be applied to adapt it to version
-	 * changes.
-	 */
-	public static Operator createFromXML(Element element, Process process,
+    /**
+     * This will create an operator by interpreting the given XML element as being generated from
+     * the current RapidMiner version. No Import Rules will be applied to adapt it to version
+     * changes.
+     *
+     * @param element                     the element
+     * @param process                     the process
+     * @param unknownParameterInformation the unknown parameter information
+     * @param l                           the l
+     * @return the operator
+     * @throws XMLException the xml exception
+     */
+    public static Operator createFromXML(Element element, Process process,
 			List<UnknownParameterInformation> unknownParameterInformation, ProgressListener l) throws XMLException {
 		XMLImporter importer = new XMLImporter(l);
 		return importer.parseOperator(element, XMLImporter.CURRENT_VERSION, process, unknownParameterInformation);
 	}
 
-	/**
-	 * This will create an operator from a XML element describing this operator. The given version
-	 * will be passed to the XMLImporter to enable the handling of this element as if it would have
-	 * been created from this version. See {@link XMLImporter#VERSION_RM_5} for details.
-	 */
-	public static Operator createFromXML(Element element, Process process,
+    /**
+     * This will create an operator from a XML element describing this operator. The given version
+     * will be passed to the XMLImporter to enable the handling of this element as if it would have
+     * been created from this version. See {@link XMLImporter#VERSION_RM_5} for details.
+     *
+     * @param element                     the element
+     * @param process                     the process
+     * @param unknownParameterInformation the unknown parameter information
+     * @param progressListener            the progress listener
+     * @param originatingVersion          the originating version
+     * @return the operator
+     * @throws XMLException the xml exception
+     */
+    public static Operator createFromXML(Element element, Process process,
 			List<UnknownParameterInformation> unknownParameterInformation, ProgressListener progressListener,
 			VersionNumber originatingVersion) throws XMLException {
 		XMLImporter importer = new XMLImporter(progressListener);
 		return importer.parseOperator(element, originatingVersion, process, unknownParameterInformation);
 	}
 
-	/**
-	 * Clears the list of errors.
-	 *
-	 * @see #addError(String)
-	 */
-	public void clearErrorList() {
+    /**
+     * Clears the list of errors.
+     *
+     * @see #addError(String) #addError(String)#addError(String)
+     */
+    public void clearErrorList() {
 		clear(Port.CLEAR_META_DATA_ERRORS);
 	}
 
@@ -1788,11 +1973,11 @@ public abstract class Operator extends AbstractObservable<Operator>
 		performAdditionalChecks();
 	}
 
-	/**
-	 * Clears all errors, checks the operator and its children and propagates meta data, propgatates
-	 * dirtyness and sorts execution order.
-	 */
-	public void checkAll() {
+    /**
+     * Clears all errors, checks the operator and its children and propagates meta data, propgatates
+     * dirtyness and sorts execution order.
+     */
+    public void checkAll() {
 		getRoot().clear(Port.CLEAR_METADATA | Port.CLEAR_ALL_ERRORS);
 		if (isEnabled()) {
 			checkOperator();
@@ -1802,8 +1987,10 @@ public abstract class Operator extends AbstractObservable<Operator>
 		updateExecutionOrder();
 	}
 
-	/** As check all, but does not check the meta data for performance reasons. */
-	public void checkAllExcludingMetaData() {
+    /**
+     * As check all, but does not check the meta data for performance reasons.
+     */
+    public void checkAllExcludingMetaData() {
 		getRoot().clear(Port.CLEAR_METADATA | Port.CLEAR_SIMPLE_ERRORS);
 		if (isEnabled()) {
 			checkOperator();
@@ -1812,18 +1999,27 @@ public abstract class Operator extends AbstractObservable<Operator>
 		updateExecutionOrder();
 	}
 
-	public void updateExecutionOrder() {}
+    /**
+     * Update execution order.
+     */
+    public void updateExecutionOrder() {}
 
-	public void addError(ProcessSetupError error) {
+    /**
+     * Add error.
+     *
+     * @param error the error
+     */
+    public void addError(ProcessSetupError error) {
 		errorList.add(error);
 	}
 
-	/**
-	 * Adds an error message.
-	 *
-	 * @deprecated Use {@link #addError(ProcessSetupError)}
-	 */
-	@Deprecated
+    /**
+     * Adds an error message.
+     *
+     * @param message the message
+     * @deprecated Use {@link #addError(ProcessSetupError)}
+     */
+    @Deprecated
 	public void addError(final String message) {
 		errorList.add(new ProcessSetupError() {
 
@@ -1849,12 +2045,13 @@ public abstract class Operator extends AbstractObservable<Operator>
 		});
 	}
 
-	/**
-	 * Adds a warning message to the error list.
-	 *
-	 * @deprecated Use {@link #addError(ProcessSetupError)} *
-	 */
-	@Deprecated
+    /**
+     * Adds a warning message to the error list.
+     *
+     * @param message the message
+     * @deprecated Use {@link #addError(ProcessSetupError)}
+     */
+    @Deprecated
 	public void addWarning(final String message) {
 		errorList.add(new ProcessSetupError() {
 
@@ -1880,18 +2077,24 @@ public abstract class Operator extends AbstractObservable<Operator>
 		});
 	}
 
-	/**
-	 * Returns a List of Strings containing error messages.
-	 *
-	 * @see #addError(String)
-	 */
-	public List<ProcessSetupError> getErrorList() {
+    /**
+     * Returns a List of Strings containing error messages.
+     *
+     * @return the error list
+     * @see #addError(String) #addError(String)#addError(String)
+     */
+    public List<ProcessSetupError> getErrorList() {
 		List<ProcessSetupError> errors = new LinkedList<>();
 		collectErrors(errors);
 		return errors;
 	}
 
-	protected void collectErrors(List<ProcessSetupError> errors) {
+    /**
+     * Collect errors.
+     *
+     * @param errors the errors
+     */
+    protected void collectErrors(List<ProcessSetupError> errors) {
 		errors.addAll(errorList);
 		for (Port port : getInputPorts().getAllPorts()) {
 			Collection<MetaDataError> portErrors = port.getErrors();
@@ -1913,8 +2116,12 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/** Returns the system time when the operator was started. */
-	public long getStartTime() {
+    /**
+     * Returns the system time when the operator was started.  @return the start time
+     *
+     * @return the start time
+     */
+    public long getStartTime() {
 		return startTime;
 	}
 
@@ -1930,55 +2137,97 @@ public abstract class Operator extends AbstractObservable<Operator>
 		return (breakPoint[0] || breakPoint[1] ? "* " : "") + name + " (" + type + ")";
 	}
 
-	/**
-	 * Returns this operator's name and class.
-	 *
-	 * @deprecated Use {@link #createProcessTree(int)} instead
-	 */
-	@Deprecated
+    /**
+     * Returns this operator's name and class.
+     *
+     * @param indent the indent
+     * @return the string
+     * @deprecated Use {@link #createProcessTree(int)} instead
+     */
+    @Deprecated
 	public String createExperimentTree(int indent) {
 		return createProcessTree(indent);
 	}
 
-	/** Returns this operator's name and class. */
-	public String createProcessTree(int indent) {
+    /**
+     * Returns this operator's name and class.  @param indent the indent
+     *
+     * @param indent the indent
+     * @return the string
+     */
+    public String createProcessTree(int indent) {
 		return createProcessTree(indent, "", "", null, null);
 	}
 
-	/**
-	 * Returns this operator's name and class.
-	 *
-	 * @deprecated Use {@link #createMarkedProcessTree(int,String,Operator)} instead
-	 */
-	@Deprecated
+    /**
+     * Returns this operator's name and class.
+     *
+     * @param indent       the indent
+     * @param mark         the mark
+     * @param markOperator the mark operator
+     * @return the string
+     * @deprecated Use {@link #createMarkedProcessTree(int, String, Operator)} instead
+     */
+    @Deprecated
 	public String createMarkedExperimentTree(int indent, String mark, Operator markOperator) {
 		return createMarkedProcessTree(indent, mark, markOperator);
 	}
 
-	/** Returns this operator's name and class. */
-	public String createMarkedProcessTree(int indent, String mark, Operator markOperator) {
+    /**
+     * Returns this operator's name and class.  @param indent the indent
+     *
+     * @param indent       the indent
+     * @param mark         the mark
+     * @param markOperator the mark operator
+     * @return the string
+     */
+    public String createMarkedProcessTree(int indent, String mark, Operator markOperator) {
 		return createProcessTree(indent, "", "", markOperator, mark);
 	}
 
-	/**
-	 * Returns this operator's name and class.
-	 *
-	 * @deprecated Use {@link #createProcessTree(int,String,String,Operator,String)} instead
-	 */
-	@Deprecated
+    /**
+     * Returns this operator's name and class.
+     *
+     * @param indent       the indent
+     * @param selfPrefix   the self prefix
+     * @param childPrefix  the child prefix
+     * @param markOperator the mark operator
+     * @param mark         the mark
+     * @return the string
+     * @deprecated Use {@link #createProcessTree(int, String, String, Operator, String)} instead
+     */
+    @Deprecated
 	protected String createExperimentTree(int indent, String selfPrefix, String childPrefix, Operator markOperator,
 			String mark) {
 		return createProcessTree(indent, selfPrefix, childPrefix, markOperator, mark);
 	}
 
-	/** Returns this operator's name and class. */
-	protected String createProcessTree(int indent, String selfPrefix, String childPrefix, Operator markOperator,
+    /**
+     * Returns this operator's name and class.  @param indent the indent
+     *
+     * @param indent       the indent
+     * @param selfPrefix   the self prefix
+     * @param childPrefix  the child prefix
+     * @param markOperator the mark operator
+     * @param mark         the mark
+     * @return the string
+     */
+    protected String createProcessTree(int indent, String selfPrefix, String childPrefix, Operator markOperator,
 			String mark) {
 		return createProcessTreeEntry(indent, selfPrefix, childPrefix, markOperator, mark);
 	}
 
-	/** Returns this operator's name and class in a list. */
-	protected List<String> createProcessTreeList(int indent, String selfPrefix, String childPrefix, Operator markOperator,
+    /**
+     * Returns this operator's name and class in a list.  @param indent the indent
+     *
+     * @param indent       the indent
+     * @param selfPrefix   the self prefix
+     * @param childPrefix  the child prefix
+     * @param markOperator the mark operator
+     * @param mark         the mark
+     * @return the list
+     */
+    protected List<String> createProcessTreeList(int indent, String selfPrefix, String childPrefix, Operator markOperator,
 			String mark) {
 		List<String> processTreeList = new LinkedList<>();
 		processTreeList.add(createProcessTreeEntry(indent, selfPrefix, childPrefix, markOperator, mark));
@@ -1996,16 +2245,16 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * Returns the encoding if defined by the root operator if this operator is part of a process or
-	 * the standard encoding defined via the system property. If both is not possible or if the
-	 * defined encoding name is 'SYSTEM', the default encoding of the underlying operating system is
-	 * returned.
-	 *
-	 * @deprecated This method is rubbish. Use the {@link Encoding} to add a custom encoding
-	 *             parameter to this operator.
-	 */
-	@Deprecated
+    /**
+     * Returns the encoding if defined by the root operator if this operator is part of a process or
+     * the standard encoding defined via the system property. If both is not possible or if the
+     * defined encoding name is 'SYSTEM', the default encoding of the underlying operating system is
+     * returned.
+     *
+     * @return the encoding
+     * @deprecated This method is rubbish. Use the {@link Encoding} to add a custom encoding             parameter to this operator.
+     */
+    @Deprecated
 	public final Charset getEncoding() {
 		Process process = getProcess();
 		if (process != null) {
@@ -2025,7 +2274,12 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	public boolean isDebugMode() {
+    /**
+     * Is debug mode boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isDebugMode() {
 		String debugProperty = ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_GENERAL_DEBUGMODE);
 		return Tools.booleanValue(debugProperty, false);
 	}
@@ -2070,10 +2324,12 @@ public abstract class Operator extends AbstractObservable<Operator>
 	};
 	private ExecutionUnit enclosingExecutionUnit;
 
-	/**
-	 * Returns the operator containing the enclosing process or null if this is the root operator.
-	 */
-	public final OperatorChain getParent() {
+    /**
+     * Returns the operator containing the enclosing process or null if this is the root operator.
+     *
+     * @return the parent
+     */
+    public final OperatorChain getParent() {
 		if (enclosingExecutionUnit != null) {
 			return enclosingExecutionUnit.getEnclosingOperator();
 		} else {
@@ -2081,80 +2337,97 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * This method returns the {@link InputPorts} object that gives access to all defined
-	 * {@link InputPort}s of this operator. This object can be used to create a new
-	 * {@link InputPort} for an operator using one of the {@link InputPorts#createPort(String)}
-	 * methods.
-	 */
-	public final InputPorts getInputPorts() {
+    /**
+     * This method returns the {@link InputPorts} object that gives access to all defined
+     * {@link InputPort}s of this operator. This object can be used to create a new
+     * {@link InputPort} for an operator using one of the {@link InputPorts#createPort(String)}
+     * methods.
+     *
+     * @return the input ports
+     */
+    public final InputPorts getInputPorts() {
 		return inputPorts;
 	}
 
-	/**
-	 * This method returns the {@link OutputPorts} object that gives access to all defined
-	 * {@link OutputPort}s of this operator. This object can be used to create a new
-	 * {@link OutputPort} for an operator using one of the {@link OutputPorts#createPort(String)}
-	 * methods.
-	 */
-	public final OutputPorts getOutputPorts() {
+    /**
+     * This method returns the {@link OutputPorts} object that gives access to all defined
+     * {@link OutputPort}s of this operator. This object can be used to create a new
+     * {@link OutputPort} for an operator using one of the {@link OutputPorts#createPort(String)}
+     * methods.
+     *
+     * @return the output ports
+     */
+    public final OutputPorts getOutputPorts() {
 		return outputPorts;
 	}
 
-	/**
-	 * This method returns an {@link InputPorts} object for port initialization. Useful for adding
-	 * an arbitrary implementation (e.g. changing port creation & (dis)connection behavior,
-	 * optionally by customized {@link InputPort} instances) by overriding this method.
-	 *
-	 * @param portOwner
-	 *            The owner of the ports.
-	 * @return The {@link InputPorts} instance, never {@code null}.
-	 * @since 7.3.0
-	 */
-	protected InputPorts createInputPorts(PortOwner portOwner) {
+    /**
+     * This method returns an {@link InputPorts} object for port initialization. Useful for adding
+     * an arbitrary implementation (e.g. changing port creation & (dis)connection behavior,
+     * optionally by customized {@link InputPort} instances) by overriding this method.
+     *
+     * @param portOwner The owner of the ports.
+     * @return The {@link InputPorts} instance, never {@code null}.
+     * @since 7.3.0
+     */
+    protected InputPorts createInputPorts(PortOwner portOwner) {
 		return new InputPortsImpl(portOwner);
 	}
 
-	/**
-	 * This method returns an {@link OutputPorts} object for port initialization. Useful for adding
-	 * an arbitrary implementation (e.g. changing port creation & (dis)connection behavior,
-	 * optionally by customized {@link OutputPort} instances) by overriding this method.
-	 *
-	 * @param portOwner
-	 *            The owner of the ports.
-	 * @return The {@link OutputPorts} instance, never {@code null}.
-	 * @since 7.3.0
-	 */
-	protected OutputPorts createOutputPorts(PortOwner portOwner) {
+    /**
+     * This method returns an {@link OutputPorts} object for port initialization. Useful for adding
+     * an arbitrary implementation (e.g. changing port creation & (dis)connection behavior,
+     * optionally by customized {@link OutputPort} instances) by overriding this method.
+     *
+     * @param portOwner The owner of the ports.
+     * @return The {@link OutputPorts} instance, never {@code null}.
+     * @since 7.3.0
+     */
+    protected OutputPorts createOutputPorts(PortOwner portOwner) {
 		return new OutputPortsImpl(portOwner);
 	}
 
-	/**
-	 * This method returns the {@link MDTransformer} object of this operator. This object will
-	 * process all meta data of all ports of this operator according to the rules registered to it.
-	 * This method can be used to get the transformer and register new Rules for
-	 * MetaDataTransformation for the ports using the
-	 * {@link MDTransformer#addRule(com.rapidminer.operator.ports.metadata.MDTransformationRule)}
-	 * method or one of it's more specialized sisters.
-	 */
-	public final MDTransformer getTransformer() {
+    /**
+     * This method returns the {@link MDTransformer} object of this operator. This object will
+     * process all meta data of all ports of this operator according to the rules registered to it.
+     * This method can be used to get the transformer and register new Rules for
+     * MetaDataTransformation for the ports using the
+     * {@link MDTransformer#addRule(com.rapidminer.operator.ports.metadata.MDTransformationRule)}
+     * method or one of it's more specialized sisters.
+     *
+     * @return the transformer
+     */
+    public final MDTransformer getTransformer() {
 		return transformer;
 	}
 
-	/** Returns the ExecutionUnit that contains this operator. */
-	public final ExecutionUnit getExecutionUnit() {
+    /**
+     * Returns the ExecutionUnit that contains this operator.  @return the execution unit
+     *
+     * @return the execution unit
+     */
+    public final ExecutionUnit getExecutionUnit() {
 		return enclosingExecutionUnit;
 	}
 
-	final protected void setEnclosingProcess(ExecutionUnit parent) {
+    /**
+     * Sets enclosing process.
+     *
+     * @param parent the parent
+     */
+    final protected void setEnclosingProcess(ExecutionUnit parent) {
 		if (parent != null && this.enclosingExecutionUnit != null) {
 			throw new IllegalStateException("Parent already set.");
 		}
 		this.enclosingExecutionUnit = parent;
 	}
 
-	/** Clears output and input ports. */
-	public void clear(int clearFlags) {
+    /**
+     * Clears output and input ports.  @param clearFlags the clear flags
+     *
+     * @param clearFlags the clear flags
+     */
+    public void clear(int clearFlags) {
 		if ((clearFlags & Port.CLEAR_SIMPLE_ERRORS) > 0) {
 			errorList.clear();
 		}
@@ -2162,11 +2435,11 @@ public abstract class Operator extends AbstractObservable<Operator>
 		getOutputPorts().clear(clearFlags);
 	}
 
-	/**
-	 * Assumes that all preconditions are satisfied. This method is useful to query an operator for
-	 * its output, given that it was wired correctly.
-	 */
-	public void assumePreconditionsSatisfied() {
+    /**
+     * Assumes that all preconditions are satisfied. This method is useful to query an operator for
+     * its output, given that it was wired correctly.
+     */
+    public void assumePreconditionsSatisfied() {
 		for (InputPort inputPort : getInputPorts().getAllPorts()) {
 			for (Precondition precondition : inputPort.getAllPreconditions()) {
 				precondition.assumeSatisfied();
@@ -2174,11 +2447,11 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * This method will disconnect all ports from as well the input ports as well as the
-	 * outputports.
-	 */
-	public void disconnectPorts() {
+    /**
+     * This method will disconnect all ports from as well the input ports as well as the
+     * outputports.
+     */
+    public void disconnectPorts() {
 		for (OutputPort port : getOutputPorts().getAllPorts()) {
 			if (port.isConnected()) {
 				port.disconnect();
@@ -2191,11 +2464,11 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * If this method is called for perform the meta data transformation on this operator. It needs
-	 * the meta data on the input Ports to be already calculated.
-	 */
-	public void transformMetaData() {
+    /**
+     * If this method is called for perform the meta data transformation on this operator. It needs
+     * the meta data on the input Ports to be already calculated.
+     */
+    public void transformMetaData() {
 		clear(Port.CLEAR_META_DATA_ERRORS);
 		if (!isEnabled()) {
 			return;
@@ -2204,30 +2477,39 @@ public abstract class Operator extends AbstractObservable<Operator>
 		getTransformer().transformMetaData();
 	}
 
-	/**
-	 * By default, all ports will be auto-connected by
-	 * {@link ExecutionUnit#autoWire(CompatibilityLevel, boolean, boolean)}. Optional outputs were
-	 * handled up to version 4.4 by parameters. From 5.0 on, optional outputs are computed iff the
-	 * corresponding port is connected. For backward compatibility, operators can check if we should
-	 * auto-connect a port by overriding this method (e.g. by checking a deprecated parameter).
-	 * TODO: Remove in later versions
-	 */
-	public boolean shouldAutoConnect(OutputPort outputPort) {
+    /**
+     * By default, all ports will be auto-connected by
+     * {@link ExecutionUnit#autoWire(CompatibilityLevel, boolean, boolean)}. Optional outputs were
+     * handled up to version 4.4 by parameters. From 5.0 on, optional outputs are computed iff the
+     * corresponding port is connected. For backward compatibility, operators can check if we should
+     * auto-connect a port by overriding this method (e.g. by checking a deprecated parameter).
+     * TODO: Remove in later versions
+     *
+     * @param outputPort the output port
+     * @return the boolean
+     */
+    public boolean shouldAutoConnect(OutputPort outputPort) {
 		return true;
 	}
 
-	/**
-	 * @see #shouldAutoConnect(OutputPort)
-	 */
-	public boolean shouldAutoConnect(InputPort inputPort) {
+    /**
+     * Should auto connect boolean.
+     *
+     * @param inputPort the input port
+     * @return the boolean
+     * @see #shouldAutoConnect(OutputPort) #shouldAutoConnect(OutputPort)#shouldAutoConnect(OutputPort)
+     */
+    public boolean shouldAutoConnect(InputPort inputPort) {
 		return true;
 	}
 
-	/**
-	 * Returns the first ancestor that does not have a parent. Note that this is not necessarily a
-	 * ProcessRootOperator!
-	 */
-	public Operator getRoot() {
+    /**
+     * Returns the first ancestor that does not have a parent. Note that this is not necessarily a
+     * ProcessRootOperator!
+     *
+     * @return the root
+     */
+    public Operator getRoot() {
 		if (getParent() == null) {
 			return this;
 		} else {
@@ -2235,13 +2517,16 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * This method is called when the operator with "oldName" is renamed to "newName". It provides a
-	 * hook, when this operator's parameter are depending on operator names. The
-	 * {@link ParameterTypeInnerOperator} is an example for such an dependency. This way it is
-	 * possible to change the parameter's according to the renaming.
-	 */
-	public void notifyRenaming(String oldName, String newName) {
+    /**
+     * This method is called when the operator with "oldName" is renamed to "newName". It provides a
+     * hook, when this operator's parameter are depending on operator names. The
+     * {@link ParameterTypeInnerOperator} is an example for such an dependency. This way it is
+     * possible to change the parameter's according to the renaming.
+     *
+     * @param oldName the old name
+     * @param newName the new name
+     */
+    public void notifyRenaming(String oldName, String newName) {
 		getParameters().notifyRenaming(oldName, newName);
 	}
 
@@ -2253,10 +2538,10 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * This method will flag this operator's results as dirty. Currently unused feature.
-	 */
-	public void makeDirty() {
+    /**
+     * This method will flag this operator's results as dirty. Currently unused feature.
+     */
+    public void makeDirty() {
 		if (!dirty) {
 			this.dirty = true;
 			if (getProcess().getDebugMode() == DebugMode.COLLECT_METADATA_AFTER_EXECUTION) {
@@ -2267,7 +2552,10 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	protected void propagateDirtyness() {
+    /**
+     * Propagate dirtyness.
+     */
+    protected void propagateDirtyness() {
 		if (isDirty() && !dirtynessWasPropagated) {
 			dirtynessWasPropagated = true;
 			for (OutputPort port : getOutputPorts().getAllPorts()) {
@@ -2285,19 +2573,23 @@ public abstract class Operator extends AbstractObservable<Operator>
 		fireUpdate();
 	}
 
-	/**
-	 * Returns whether the results on the output ports of this operator are dirty. This is the case
-	 * when the results depend on old parameter settings or old data from an input port, whose
-	 * connected output port is flaged as dirty.
-	 */
-	public boolean isDirty() {
+    /**
+     * Returns whether the results on the output ports of this operator are dirty. This is the case
+     * when the results depend on old parameter settings or old data from an input port, whose
+     * connected output port is flaged as dirty.
+     *
+     * @return the boolean
+     */
+    public boolean isDirty() {
 		return dirty;
 	}
 
-	/**
-	 * This returns the number of breakpoints: 0, 1 or 2.
-	 */
-	public int getNumberOfBreakpoints() {
+    /**
+     * This returns the number of breakpoints: 0, 1 or 2.
+     *
+     * @return the number of breakpoints
+     */
+    public int getNumberOfBreakpoints() {
 		int num = 0;
 		for (boolean bp : breakPoint) {
 			if (bp) {
@@ -2307,11 +2599,14 @@ public abstract class Operator extends AbstractObservable<Operator>
 		return num;
 	}
 
-	/**
-	 * Returns true if this operator contains at least one {@link InputPort} which accepts an input
-	 * of the given class (loose checking).
-	 */
-	public boolean acceptsInput(Class<? extends IOObject> inputClass) {
+    /**
+     * Returns true if this operator contains at least one {@link InputPort} which accepts an input
+     * of the given class (loose checking).
+     *
+     * @param inputClass the input class
+     * @return the boolean
+     */
+    public boolean acceptsInput(Class<? extends IOObject> inputClass) {
 		MetaData metaData = new MetaData(inputClass);
 		for (InputPort inPort : getInputPorts().getAllPorts()) {
 			if (inPort.isInputCompatible(metaData, CompatibilityLevel.PRE_VERSION_5)) {
@@ -2321,11 +2616,14 @@ public abstract class Operator extends AbstractObservable<Operator>
 		return false;
 	}
 
-	/**
-	 * Returns true if this operator contains at least one {@link OutputPort} provided that its
-	 * input ports are satisfied.
-	 */
-	@SuppressWarnings("deprecation")
+    /**
+     * Returns true if this operator contains at least one {@link OutputPort} provided that its
+     * input ports are satisfied.
+     *
+     * @param outputClass the output class
+     * @return the boolean
+     */
+    @SuppressWarnings("deprecation")
 	public boolean producesOutput(Class<? extends IOObject> outputClass) {
 		assumePreconditionsSatisfied();
 		transformMetaData();
@@ -2337,38 +2635,47 @@ public abstract class Operator extends AbstractObservable<Operator>
 		return false;
 	}
 
-	/**
-	 * This returns the {@link PortOwner} of this operator. See {@link PortOwner} for more details.
-	 */
-	public PortOwner getPortOwner() {
+    /**
+     * This returns the {@link PortOwner} of this operator. See {@link PortOwner} for more details.
+     *
+     * @return the port owner
+     */
+    public PortOwner getPortOwner() {
 		return portOwner;
 	}
 
-	/**
-	 * This method is called before auto-wiring an operator. Operators can reorder outputs in order
-	 * to influence how subsequent operators are wired. This is only necessary for legacy operators
-	 * like IOConsumer or IOSelector. Don't override this method for new operators.
-	 */
-	protected LinkedList<OutputPort> preAutoWire(LinkedList<OutputPort> readyOutputs) throws OperatorException {
+    /**
+     * This method is called before auto-wiring an operator. Operators can reorder outputs in order
+     * to influence how subsequent operators are wired. This is only necessary for legacy operators
+     * like IOConsumer or IOSelector. Don't override this method for new operators.
+     *
+     * @param readyOutputs the ready outputs
+     * @return the linked list
+     * @throws OperatorException the operator exception
+     */
+    protected LinkedList<OutputPort> preAutoWire(LinkedList<OutputPort> readyOutputs) throws OperatorException {
 		return readyOutputs;
 	}
 
-	/**
-	 * Releases of any resources held by this operator due since its execution. In particular,
-	 * removes all hard references to IOObjects stored at the ports.
-	 */
-	public void freeMemory() {
+    /**
+     * Releases of any resources held by this operator due since its execution. In particular,
+     * removes all hard references to IOObjects stored at the ports.
+     */
+    public void freeMemory() {
 		getInputPorts().freeMemory();
 		getOutputPorts().freeMemory();
 	}
 
-	/**
-	 * Looks up an operator with the given name in the containing process.
-	 *
-	 * TODO: This method is slow since it scans operators several times. Simply looking at the
-	 * {@link Process#operatorNameMap} does not work for parallel execution, however.
-	 */
-	protected Operator lookupOperator(String operatorName) {
+    /**
+     * Looks up an operator with the given name in the containing process.
+     * <p>
+     * TODO: This method is slow since it scans operators several times. Simply looking at the
+     * {@link Process#operatorNameMap} does not work for parallel execution, however.
+     *
+     * @param operatorName the operator name
+     * @return the operator
+     */
+    protected Operator lookupOperator(String operatorName) {
 		if (getName().equals(operatorName)) {
 			return this;
 		}
@@ -2390,62 +2697,74 @@ public abstract class Operator extends AbstractObservable<Operator>
 		}
 	}
 
-	/**
-	 * The {@link OperatorProgress} should be initialized when starting the operator execution by
-	 * setting the total amount of progress (which is {@link OperatorProgress#NO_PROGRESS} by
-	 * default) by calling {@link OperatorProgress#setTotal(int)}. Afterwards the progress can be
-	 * reported by calling {@link OperatorProgress#setCompleted(int)}. The progress will be reset
-	 * before the operator is being executed.
-	 *
-	 * @return the {@link OperatorProgress} to report progress during operator execution.
-	 * @since 7.0.0
-	 */
-	public final OperatorProgress getProgress() {
+    /**
+     * The {@link OperatorProgress} should be initialized when starting the operator execution by
+     * setting the total amount of progress (which is {@link OperatorProgress#NO_PROGRESS} by
+     * default) by calling {@link OperatorProgress#setTotal(int)}. Afterwards the progress can be
+     * reported by calling {@link OperatorProgress#setCompleted(int)}. The progress will be reset
+     * before the operator is being executed.
+     *
+     * @return the {@link OperatorProgress} to report progress during operator execution.
+     * @since 7.0.0
+     */
+    public final OperatorProgress getProgress() {
 		return operatorProgress;
 	}
 
-	/**
-	 * Returns if this operators {@link #execute()} method is currently executed.
-	 */
-	public boolean isRunning() {
+    /**
+     * Returns if this operators {@link #execute()} method is currently executed.
+     *
+     * @return the boolean
+     */
+    public boolean isRunning() {
 		return isRunning;
 	}
 
-	/**
-	 * Returns if this operator should currently show progress animation. This method can be
-	 * overridden to provide unique animation display criteria. By default it checks if the operator
-	 * is running. Please note that
-	 * {@link com.rapidminer.gui.animation.OperatorAnimationProcessListener#processFinishedOperator}
-	 * also depends on this method.
-	 */
-	public boolean isAnimating() {
+    /**
+     * Returns if this operator should currently show progress animation. This method can be
+     * overridden to provide unique animation display criteria. By default it checks if the operator
+     * is running. Please note that
+     * {@link com.rapidminer.gui.animation.OperatorAnimationProcessListener#processFinishedOperator}
+     * also depends on this method.
+     *
+     * @return the boolean
+     */
+    public boolean isAnimating() {
 		return isRunning();
 	}
 
-	/**
-	 * @see OperatorVersion
-	 */
-	public void setCompatibilityLevel(OperatorVersion compatibilityLevel) {
+    /**
+     * Sets compatibility level.
+     *
+     * @param compatibilityLevel the compatibility level
+     * @see OperatorVersion
+     */
+    public void setCompatibilityLevel(OperatorVersion compatibilityLevel) {
 		this.compatibilityLevel = compatibilityLevel;
 		fireUpdate();
 	}
 
-	/**
-	 * @see OperatorVersion
-	 */
-	public OperatorVersion getCompatibilityLevel() {
+    /**
+     * Gets compatibility level.
+     *
+     * @return the compatibility level
+     * @see OperatorVersion
+     */
+    public OperatorVersion getCompatibilityLevel() {
 		if (compatibilityLevel == null) {
 			compatibilityLevel = OperatorVersion.getLatestVersion(this.getOperatorDescription());
 		}
 		return compatibilityLevel;
 	}
 
-	/**
-	 * Returns the versions of an operator <strong>after which its behavior incompatibly
-	 * changed</strong> in random order. Only the versions after which the new behavior was
-	 * introduced are returned. See comment of {@link OperatorVersion} for details.
-	 */
-	public OperatorVersion[] getIncompatibleVersionChanges() {
+    /**
+     * Returns the versions of an operator <strong>after which its behavior incompatibly
+     * changed</strong> in random order. Only the versions after which the new behavior was
+     * introduced are returned. See comment of {@link OperatorVersion} for details.
+     *
+     * @return the operator version [ ]
+     */
+    public OperatorVersion[] getIncompatibleVersionChanges() {
 		return EMPTY_OPERATOR_VERSIONS_ARRAY;
 	}
 
@@ -2460,8 +2779,12 @@ public abstract class Operator extends AbstractObservable<Operator>
 		return null;
 	}
 
-	/** Visitor pattern visiting all operators in subprocesses and the operator itself. */
-	public void walk(Visitor<Operator> visitor) {
+    /**
+     * Visitor pattern visiting all operators in subprocesses and the operator itself.  @param visitor the visitor
+     *
+     * @param visitor the visitor
+     */
+    public void walk(Visitor<Operator> visitor) {
 		visitor.visit(this);
 	}
 

@@ -39,15 +39,35 @@ public class ExcelImportWizard extends AbstractDataImportWizard {
 
 	private static final long serialVersionUID = 1L;
 
-	public ExcelImportWizard() throws OperatorException {
+    /**
+     * Instantiates a new Excel import wizard.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public ExcelImportWizard() throws OperatorException {
 		this(null, null, null);
 	}
 
-	public ExcelImportWizard(File file, RepositoryLocation preselectedLocation) throws OperatorException {
+    /**
+     * Instantiates a new Excel import wizard.
+     *
+     * @param file                the file
+     * @param preselectedLocation the preselected location
+     * @throws OperatorException the operator exception
+     */
+    public ExcelImportWizard(File file, RepositoryLocation preselectedLocation) throws OperatorException {
 		this(file, preselectedLocation, true);
 	}
 
-	public ExcelImportWizard(File file, RepositoryLocation preselectedLocation, boolean addStoreStep)
+    /**
+     * Instantiates a new Excel import wizard.
+     *
+     * @param file                the file
+     * @param preselectedLocation the preselected location
+     * @param addStoreStep        the add store step
+     * @throws OperatorException the operator exception
+     */
+    public ExcelImportWizard(File file, RepositoryLocation preselectedLocation, boolean addStoreStep)
 			throws OperatorException {
 		super(null, preselectedLocation, "data_import_wizard");
 
@@ -63,7 +83,15 @@ public class ExcelImportWizard extends AbstractDataImportWizard {
 		layoutDefault(HUGE);
 	}
 
-	public ExcelImportWizard(final ExcelExampleSource source, final ConfigurationListener listener,
+    /**
+     * Instantiates a new Excel import wizard.
+     *
+     * @param source              the source
+     * @param listener            the listener
+     * @param preselectedLocation the preselected location
+     * @throws OperatorException the operator exception
+     */
+    public ExcelImportWizard(final ExcelExampleSource source, final ConfigurationListener listener,
 			final RepositoryLocation preselectedLocation) throws OperatorException {
 		super(source, preselectedLocation, "data_import_wizard");
 

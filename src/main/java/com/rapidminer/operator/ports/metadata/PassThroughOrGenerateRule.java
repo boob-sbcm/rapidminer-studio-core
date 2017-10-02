@@ -28,9 +28,8 @@ import java.util.LinkedList;
 /**
  * Passes meta data from an input port to an output port or generates a new one if the input meta
  * data is null.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class PassThroughOrGenerateRule implements MDTransformationRule {
 
@@ -40,7 +39,14 @@ public class PassThroughOrGenerateRule implements MDTransformationRule {
 	private Collection<PassThroughOrGenerateRuleCondition> passThroughConditions = new LinkedList<PassThroughOrGenerateRuleCondition>();
 	private Collection<PassThroughOrGenerateRuleCondition> generateConditions = new LinkedList<PassThroughOrGenerateRuleCondition>();
 
-	public PassThroughOrGenerateRule(InputPort inputPort, OutputPort outputPort, MetaData generatedMetaData) {
+    /**
+     * Instantiates a new Pass through or generate rule.
+     *
+     * @param inputPort         the input port
+     * @param outputPort        the output port
+     * @param generatedMetaData the generated meta data
+     */
+    public PassThroughOrGenerateRule(InputPort inputPort, OutputPort outputPort, MetaData generatedMetaData) {
 		this.inputPort = inputPort;
 		this.outputPort = outputPort;
 		this.generatedMetaData = generatedMetaData;
@@ -74,39 +80,45 @@ public class PassThroughOrGenerateRule implements MDTransformationRule {
 		}
 	}
 
-	/**
-	 * Can be overridden to make additional transformations to the generated meta data.
-	 */
-	public MetaData transformGenerated(MetaData md) {
+    /**
+     * Can be overridden to make additional transformations to the generated meta data.
+     *
+     * @param md the md
+     * @return the meta data
+     */
+    public MetaData transformGenerated(MetaData md) {
 		md.addToHistory(outputPort);
 		return md;
 	}
 
-	/**
-	 * Can be overridden to make additional transformations to the meta data passed through from the
-	 * input port.
-	 */
-	public MetaData transformPassedThrough(MetaData md) {
+    /**
+     * Can be overridden to make additional transformations to the meta data passed through from the
+     * input port.
+     *
+     * @param md the md
+     * @return the meta data
+     */
+    public MetaData transformPassedThrough(MetaData md) {
 		md.addToHistory(outputPort);
 		return md;
 	}
 
-	/**
-	 * this method allows to add additional conditions for passing through
-	 * 
-	 * @param condition
-	 */
-	public void addPassThroughCondition(PassThroughOrGenerateRuleCondition condition) {
+    /**
+     * this method allows to add additional conditions for passing through
+     *
+     * @param condition the condition
+     */
+    public void addPassThroughCondition(PassThroughOrGenerateRuleCondition condition) {
 
 		passThroughConditions.add(condition);
 	}
 
-	/**
-	 * This allows to add additional conditions for generation
-	 * 
-	 * @param condition
-	 */
-	public void addGenerateCondition(PassThroughOrGenerateRuleCondition condition) {
+    /**
+     * This allows to add additional conditions for generation
+     *
+     * @param condition the condition
+     */
+    public void addGenerateCondition(PassThroughOrGenerateRuleCondition condition) {
 		generateConditions.add(condition);
 	}
 }

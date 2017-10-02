@@ -39,9 +39,17 @@ public class InfoGainCriterion extends AbstractCriterion implements MinimalGainH
 
 	private double minimalGain = 0.1;
 
-	public InfoGainCriterion() {}
+    /**
+     * Instantiates a new Info gain criterion.
+     */
+    public InfoGainCriterion() {}
 
-	public InfoGainCriterion(double minimalGain) {
+    /**
+     * Instantiates a new Info gain criterion.
+     *
+     * @param minimalGain the minimal gain
+     */
+    public InfoGainCriterion(double minimalGain) {
 		this.minimalGain = minimalGain;
 	}
 
@@ -123,7 +131,14 @@ public class InfoGainCriterion extends AbstractCriterion implements MinimalGainH
 		return informationGain;
 	}
 
-	protected double getEntropy(double[] labelWeights, double totalWeight) {
+    /**
+     * Gets entropy.
+     *
+     * @param labelWeights the label weights
+     * @param totalWeight  the total weight
+     * @return the entropy
+     */
+    protected double getEntropy(double[] labelWeights, double totalWeight) {
 		double entropy = 0;
 		for (int i = 0; i < labelWeights.length; i++) {
 			if (labelWeights[i] > 0) {

@@ -26,7 +26,7 @@ import com.rapidminer.example.ExampleSet;
  * This example reader is based on the given mapping and skips all examples which are not part of
  * the mapping. This implementation is quite inefficient on databases and other non-memory example
  * tables and should therefore only be used for small data sets.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class SortedExampleReader extends AbstractExampleReader {
@@ -43,8 +43,12 @@ public class SortedExampleReader extends AbstractExampleReader {
 	/** The example that will be returned by the next invocation of next(). */
 	private Example currentExample = null;
 
-	/** Constructs a new mapped example reader. */
-	public SortedExampleReader(ExampleSet parent) {
+    /**
+     * Constructs a new mapped example reader.  @param parent the parent
+     *
+     * @param parent the parent
+     */
+    public SortedExampleReader(ExampleSet parent) {
 		this.parent = parent;
 		this.currentIndex = -1;
 	}

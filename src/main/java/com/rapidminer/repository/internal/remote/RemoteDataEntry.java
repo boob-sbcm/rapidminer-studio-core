@@ -27,7 +27,6 @@ import com.rapidminer.repository.DataEntry;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public interface RemoteDataEntry extends DataEntry, RemoteEntry {
 

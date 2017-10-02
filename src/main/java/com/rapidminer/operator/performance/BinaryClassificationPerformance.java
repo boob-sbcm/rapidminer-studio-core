@@ -41,45 +41,96 @@ public class BinaryClassificationPerformance extends MeasuredPerformance {
 
 	private static final long serialVersionUID = 7475134460409215015L;
 
-	public static final int PRECISION = 0;
+    /**
+     * The constant PRECISION.
+     */
+    public static final int PRECISION = 0;
 
-	public static final int RECALL = 1;
+    /**
+     * The constant RECALL.
+     */
+    public static final int RECALL = 1;
 
-	public static final int LIFT = 2;
+    /**
+     * The constant LIFT.
+     */
+    public static final int LIFT = 2;
 
-	public static final int FALLOUT = 3;
+    /**
+     * The constant FALLOUT.
+     */
+    public static final int FALLOUT = 3;
 
-	public static final int F_MEASURE = 4;
+    /**
+     * The constant F_MEASURE.
+     */
+    public static final int F_MEASURE = 4;
 
-	public static final int FALSE_POSITIVE = 5;
+    /**
+     * The constant FALSE_POSITIVE.
+     */
+    public static final int FALSE_POSITIVE = 5;
 
-	public static final int FALSE_NEGATIVE = 6;
+    /**
+     * The constant FALSE_NEGATIVE.
+     */
+    public static final int FALSE_NEGATIVE = 6;
 
-	public static final int TRUE_POSITIVE = 7;
+    /**
+     * The constant TRUE_POSITIVE.
+     */
+    public static final int TRUE_POSITIVE = 7;
 
-	public static final int TRUE_NEGATIVE = 8;
+    /**
+     * The constant TRUE_NEGATIVE.
+     */
+    public static final int TRUE_NEGATIVE = 8;
 
-	public static final int SENSITIVITY = 9;
+    /**
+     * The constant SENSITIVITY.
+     */
+    public static final int SENSITIVITY = 9;
 
-	public static final int SPECIFICITY = 10;
+    /**
+     * The constant SPECIFICITY.
+     */
+    public static final int SPECIFICITY = 10;
 
-	public static final int YOUDEN = 11;
+    /**
+     * The constant YOUDEN.
+     */
+    public static final int YOUDEN = 11;
 
-	public static final int POSITIVE_PREDICTIVE_VALUE = 12;
+    /**
+     * The constant POSITIVE_PREDICTIVE_VALUE.
+     */
+    public static final int POSITIVE_PREDICTIVE_VALUE = 12;
 
-	public static final int NEGATIVE_PREDICTIVE_VALUE = 13;
+    /**
+     * The constant NEGATIVE_PREDICTIVE_VALUE.
+     */
+    public static final int NEGATIVE_PREDICTIVE_VALUE = 13;
 
-	public static final int PSEP = 14;
+    /**
+     * The constant PSEP.
+     */
+    public static final int PSEP = 14;
 
 	private static final int N = 0;
 
 	private static final int P = 1;
 
-	public static final String[] NAMES = { "precision", "recall", "lift", "fallout", "f_measure", "false_positive",
+    /**
+     * The constant NAMES.
+     */
+    public static final String[] NAMES = { "precision", "recall", "lift", "fallout", "f_measure", "false_positive",
 			"false_negative", "true_positive", "true_negative", "sensitivity", "specificity", "youden",
 			"positive_predictive_value", "negative_predictive_value", "psep" };
 
-	public static final String[] DESCRIPTIONS = {
+    /**
+     * The constant DESCRIPTIONS.
+     */
+    public static final String[] DESCRIPTIONS = {
 			"Relative number of correctly as positive classified examples among all examples classified as positive",
 			"Relative number of correctly as positive classified examples among all positive examples",
 			"The lift of the positive class",
@@ -116,11 +167,19 @@ public class BinaryClassificationPerformance extends MeasuredPerformance {
 	/** The weight attribute. Might be null. */
 	private Attribute weightAttribute;
 
-	public BinaryClassificationPerformance() {
+    /**
+     * Instantiates a new Binary classification performance.
+     */
+    public BinaryClassificationPerformance() {
 		type = -1;
 	}
 
-	public BinaryClassificationPerformance(BinaryClassificationPerformance o) {
+    /**
+     * Instantiates a new Binary classification performance.
+     *
+     * @param o the o
+     */
+    public BinaryClassificationPerformance(BinaryClassificationPerformance o) {
 		super(o);
 		this.type = o.type;
 		this.counter = new double[2][2];
@@ -141,12 +200,22 @@ public class BinaryClassificationPerformance extends MeasuredPerformance {
 		this.negativeClassName = o.negativeClassName;
 	}
 
-	public BinaryClassificationPerformance(int type) {
+    /**
+     * Instantiates a new Binary classification performance.
+     *
+     * @param type the type
+     */
+    public BinaryClassificationPerformance(int type) {
 		this.type = type;
 	}
 
-	/** For test cases only. */
-	public BinaryClassificationPerformance(int type, double[][] counter) {
+    /**
+     * For test cases only.  @param type the type
+     *
+     * @param type    the type
+     * @param counter the counter
+     */
+    public BinaryClassificationPerformance(int type, double[][] counter) {
 		this.type = type;
 		this.counter[N][N] = counter[N][N];
 		this.counter[N][P] = counter[N][P];
@@ -154,7 +223,13 @@ public class BinaryClassificationPerformance extends MeasuredPerformance {
 		this.counter[P][P] = counter[P][P];
 	}
 
-	public static BinaryClassificationPerformance newInstance(String name) {
+    /**
+     * New instance binary classification performance.
+     *
+     * @param name the name
+     * @return the binary classification performance
+     */
+    public static BinaryClassificationPerformance newInstance(String name) {
 		for (int i = 0; i < NAMES.length; i++) {
 			if (NAMES[i].equals(name)) {
 				return new BinaryClassificationPerformance(i);
@@ -417,19 +492,39 @@ public class BinaryClassificationPerformance extends MeasuredPerformance {
 		return result.toString();
 	}
 
-	public double[][] getCounter() {
+    /**
+     * Get counter double [ ] [ ].
+     *
+     * @return the double [ ] [ ]
+     */
+    public double[][] getCounter() {
 		return counter;
 	}
 
-	public String getNegativeClassName() {
+    /**
+     * Gets negative class name.
+     *
+     * @return the negative class name
+     */
+    public String getNegativeClassName() {
 		return negativeClassName;
 	}
 
-	public String getPositiveClassName() {
+    /**
+     * Gets positive class name.
+     *
+     * @return the positive class name
+     */
+    public String getPositiveClassName() {
 		return positiveClassName;
 	}
 
-	public String getTitle() {
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
+    public String getTitle() {
 		return super.toString() + " (positive class: " + getPositiveClassName() + ")";
 	}
 }

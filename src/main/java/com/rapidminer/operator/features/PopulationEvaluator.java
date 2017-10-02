@@ -23,18 +23,17 @@ import com.rapidminer.operator.OperatorException;
 
 /**
  * This evaluator is used by the feature selection / generation / weighting operators.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public interface PopulationEvaluator {
 
-	/**
-	 * This method evaluates the individuals of a population and assigns them their performance
-	 * vectors
-	 * 
-	 * @param population
-	 *            the population to evaluate
-	 * @throws OperatorException
-	 */
-	public void evaluate(Population population) throws OperatorException;
+    /**
+     * This method evaluates the individuals of a population and assigns them their performance
+     * vectors
+     *
+     * @param population the population to evaluate
+     * @throws OperatorException the operator exception
+     */
+    public void evaluate(Population population) throws OperatorException;
 }

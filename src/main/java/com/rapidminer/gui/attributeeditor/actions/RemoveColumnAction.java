@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RemoveColumnAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class RemoveColumnAction extends ResourceAction {
 
 	private final AttributeEditor attributeEditor;
 
-	public RemoveColumnAction(AttributeEditor attributeEditor) {
+    /**
+     * Instantiates a new Remove column action.
+     *
+     * @param attributeEditor the attribute editor
+     */
+    public RemoveColumnAction(AttributeEditor attributeEditor) {
 		super("attribute_editor.remove_column");
 		this.attributeEditor = attributeEditor;
 	}

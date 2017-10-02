@@ -24,7 +24,7 @@ import com.rapidminer.operator.learner.subgroups.hypothesis.Rule;
 
 /**
  * Calculates the precision of a rule.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class Precision extends UtilityFunction {
@@ -34,7 +34,13 @@ public class Precision extends UtilityFunction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Precision(double totalWeight, double totalPositiveWeight) {
+    /**
+     * Instantiates a new Precision.
+     *
+     * @param totalWeight         the total weight
+     * @param totalPositiveWeight the total positive weight
+     */
+    public Precision(double totalWeight, double totalPositiveWeight) {
 		super(totalWeight, totalPositiveWeight);
 	}
 

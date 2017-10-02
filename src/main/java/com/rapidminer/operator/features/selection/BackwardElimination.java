@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * This PopulationOperator realizes backward elimination, i.e. creates a list of clones of each
  * individual and switches of one attribute in each of the clones.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa Exp $
  */
 public class BackwardElimination extends IndividualOperator {

@@ -37,10 +37,13 @@ import com.rapidminer.tools.plugin.PluginClassLoader;
  */
 public class InternalPluginClassLoader extends PluginClassLoader {
 
-	/**
-	 * @see PluginClassLoader#PluginClassLoader(URL[])
-	 */
-	public InternalPluginClassLoader(URL[] urls) {
+    /**
+     * Instantiates a new Internal plugin class loader.
+     *
+     * @param urls the urls
+     * @see PluginClassLoader#PluginClassLoader(URL[]) PluginClassLoader#PluginClassLoader(URL[])PluginClassLoader#PluginClassLoader(URL[])
+     */
+    public InternalPluginClassLoader(URL[] urls) {
 		super(urls);
 	}
 }

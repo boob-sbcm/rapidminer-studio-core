@@ -25,7 +25,7 @@ import java.awt.geom.Point2D;
 /**
  * A color plotter point which can be used to identify a point in a two-dimensional space with an id
  * and a specific color.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ColorPlotterPoint {
@@ -42,7 +42,17 @@ public class ColorPlotterPoint {
 
 	private Color borderColor;
 
-	public ColorPlotterPoint(ScatterPlotter plotter, String id, double x, double y, double color, Color borderColor) {
+    /**
+     * Instantiates a new Color plotter point.
+     *
+     * @param plotter     the plotter
+     * @param id          the id
+     * @param x           the x
+     * @param y           the y
+     * @param color       the color
+     * @param borderColor the border color
+     */
+    public ColorPlotterPoint(ScatterPlotter plotter, String id, double x, double y, double color, Color borderColor) {
 		this.plotter = plotter;
 		this.id = id;
 		this.x = x;
@@ -51,35 +61,77 @@ public class ColorPlotterPoint {
 		this.borderColor = borderColor;
 	}
 
-	public String getId() {
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public String getId() {
 		return id;
 	}
 
-	public double getX() {
+    /**
+     * Gets x.
+     *
+     * @return the x
+     */
+    public double getX() {
 		return x;
 	}
 
-	public void setX(double x) {
+    /**
+     * Sets x.
+     *
+     * @param x the x
+     */
+    public void setX(double x) {
 		this.x = x;
 	}
 
-	public void setY(double y) {
+    /**
+     * Sets y.
+     *
+     * @param y the y
+     */
+    public void setY(double y) {
 		this.y = y;
 	}
 
-	public double getY() {
+    /**
+     * Gets y.
+     *
+     * @return the y
+     */
+    public double getY() {
 		return y;
 	}
 
-	public double getColor() {
+    /**
+     * Gets color.
+     *
+     * @return the color
+     */
+    public double getColor() {
 		return color;
 	}
 
-	public Color getBorderColor() {
+    /**
+     * Gets border color.
+     *
+     * @return the border color
+     */
+    public Color getBorderColor() {
 		return borderColor;
 	}
 
-	public boolean contains(int x, int y) {
+    /**
+     * Contains boolean.
+     *
+     * @param x the x
+     * @param y the y
+     * @return the boolean
+     */
+    public boolean contains(int x, int y) {
 		Point2D point = this.plotter.transform.transform(new Point2D.Double(this.plotter.xTransformation.transform(this.x),
 				this.plotter.yTransformation.transform(this.y)), null);
 		if ((Math.abs(point.getX() - x) < 2) && (Math.abs(point.getY() - y) < 2)) {
@@ -89,7 +141,16 @@ public class ColorPlotterPoint {
 		}
 	}
 
-	public boolean isIn(double minX, double maxX, double minY, double maxY) {
+    /**
+     * Is in boolean.
+     *
+     * @param minX the min x
+     * @param maxX the max x
+     * @param minY the min y
+     * @param maxY the max y
+     * @return the boolean
+     */
+    public boolean isIn(double minX, double maxX, double minY, double maxY) {
 		return (x >= minX) && (x <= maxX) && (y >= minY) && (y <= maxY);
 	}
 }

@@ -29,14 +29,20 @@ import com.rapidminer.repository.RepositoryLocation;
  * process.
  *
  * @author Simon Fischer
- *
  */
 public class RelativizeRepositoryLocationQuickfix extends AbstractQuickFix {
 
 	private String key;
 	private Operator operator;
 
-	public RelativizeRepositoryLocationQuickfix(Operator operator, String key, String value) {
+    /**
+     * Instantiates a new Relativize repository location quickfix.
+     *
+     * @param operator the operator
+     * @param key      the key
+     * @param value    the value
+     */
+    public RelativizeRepositoryLocationQuickfix(Operator operator, String key, String value) {
 		super(10, false, "relativize_repository_location", key, value);
 		this.key = key;
 		this.operator = operator;

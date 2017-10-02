@@ -35,12 +35,18 @@ import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  * The UI for toolbar buttons.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ToolbarButtonUI extends BasicButtonUI {
 
-	protected static boolean isToolbarButton(JComponent c) {
+    /**
+     * Is toolbar button boolean.
+     *
+     * @param c the c
+     * @return the boolean
+     */
+    protected static boolean isToolbarButton(JComponent c) {
 		return RapidLookTools.isToolbarButton(c);
 	}
 
@@ -69,7 +75,12 @@ public class ToolbarButtonUI extends BasicButtonUI {
 		super.paint(g, c);
 	}
 
-	public boolean isOpaque() {
+    /**
+     * Is opaque boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isOpaque() {
 		return false;
 	}
 

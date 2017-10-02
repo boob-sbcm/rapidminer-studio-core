@@ -26,12 +26,16 @@ import java.util.EventListener;
 /**
  * An object listening for {@link MetaDataStatisticsEvent}s on the {@link MetaDataStatisticsModel}
  * must implement this interface and register itself as a listener to the model.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface MetaDataStatisticsEventListener extends EventListener {
 
-	public void modelChanged(MetaDataStatisticsEvent e);
+    /**
+     * Model changed.
+     *
+     * @param e the e
+     */
+    public void modelChanged(MetaDataStatisticsEvent e);
 
 }

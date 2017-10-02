@@ -37,6 +37,7 @@ import com.rapidminer.tools.math.ROCData;
 
 
 /**
+ * The type Roc comparison renderer.
  *
  * @author Sebastian Land
  */

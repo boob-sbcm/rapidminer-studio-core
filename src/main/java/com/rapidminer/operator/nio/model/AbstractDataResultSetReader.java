@@ -68,42 +68,82 @@ import com.rapidminer.tools.parameter.internal.DataManagementParameterHelper;
  */
 public abstract class AbstractDataResultSetReader extends AbstractExampleSource {
 
-	/** Pseudo-annotation to be used for attribute names. */
-	public static final String ANNOTATION_NAME = "Name";
+    /**
+     * Pseudo-annotation to be used for attribute names.
+     */
+    public static final String ANNOTATION_NAME = "Name";
 
-	/**
-	 * This parameter holds the hole information about the attribute columns. I.e. which attributes
-	 * are defined, the names, what value type they have, whether the att. is selected,
-	 */
-	public static final String PARAMETER_META_DATA = "data_set_meta_data_information";
+    /**
+     * This parameter holds the hole information about the attribute columns. I.e. which attributes
+     * are defined, the names, what value type they have, whether the att. is selected,
+     */
+    public static final String PARAMETER_META_DATA = "data_set_meta_data_information";
 
-	/**
-	 * Parameters being part of the list for PARAMETER_META_DATA
-	 */
-	public static final String PARAMETER_COLUMN_INDEX = "column_index";
-	public static final String PARAMETER_COLUMN_META_DATA = "attribute_meta_data_information";
-	public static final String PARAMETER_COLUMN_NAME = "attribute name";
-	public static final String PARAMETER_COLUMN_SELECTED = "column_selected";
-	public static final String PARAMETER_COLUMN_VALUE_TYPE = "attribute_value_type";
-	public static final String PARAMETER_COLUMN_ROLE = "attribute_role";
+    /**
+     * Parameters being part of the list for PARAMETER_META_DATA
+     */
+    public static final String PARAMETER_COLUMN_INDEX = "column_index";
+    /**
+     * The constant PARAMETER_COLUMN_META_DATA.
+     */
+    public static final String PARAMETER_COLUMN_META_DATA = "attribute_meta_data_information";
+    /**
+     * The constant PARAMETER_COLUMN_NAME.
+     */
+    public static final String PARAMETER_COLUMN_NAME = "attribute name";
+    /**
+     * The constant PARAMETER_COLUMN_SELECTED.
+     */
+    public static final String PARAMETER_COLUMN_SELECTED = "column_selected";
+    /**
+     * The constant PARAMETER_COLUMN_VALUE_TYPE.
+     */
+    public static final String PARAMETER_COLUMN_VALUE_TYPE = "attribute_value_type";
+    /**
+     * The constant PARAMETER_COLUMN_ROLE.
+     */
+    public static final String PARAMETER_COLUMN_ROLE = "attribute_role";
 
-	public static final String PARAMETER_DATE_FORMAT = "date_format";
-	public static final String PARAMETER_TIME_ZONE = "time_zone";
-	public static final String PARAMETER_LOCALE = "locale";
+    /**
+     * The constant PARAMETER_DATE_FORMAT.
+     */
+    public static final String PARAMETER_DATE_FORMAT = "date_format";
+    /**
+     * The constant PARAMETER_TIME_ZONE.
+     */
+    public static final String PARAMETER_TIME_ZONE = "time_zone";
+    /**
+     * The constant PARAMETER_LOCALE.
+     */
+    public static final String PARAMETER_LOCALE = "locale";
 
-	/**
-	 * The parameter name for &quot;Determines, how the data is represented internally.&quot;
-	 */
-	public static final String PARAMETER_DATAMANAGEMENT = "datamanagement";
-	public static final String PARAMETER_FIRST_ROW_AS_NAMES = "first_row_as_names";
-	public static final String PARAMETER_ANNOTATIONS = "annotations";
+    /**
+     * The parameter name for &quot;Determines, how the data is represented internally.&quot;
+     */
+    public static final String PARAMETER_DATAMANAGEMENT = "datamanagement";
+    /**
+     * The constant PARAMETER_FIRST_ROW_AS_NAMES.
+     */
+    public static final String PARAMETER_FIRST_ROW_AS_NAMES = "first_row_as_names";
+    /**
+     * The constant PARAMETER_ANNOTATIONS.
+     */
+    public static final String PARAMETER_ANNOTATIONS = "annotations";
 
-	public static final String PARAMETER_ERROR_TOLERANT = "read_not_matching_values_as_missings";
+    /**
+     * The constant PARAMETER_ERROR_TOLERANT.
+     */
+    public static final String PARAMETER_ERROR_TOLERANT = "read_not_matching_values_as_missings";
 
 	private InputPort fileInputPort = getInputPorts().createPort("file");
 	private FileInputPortHandler filePortHandler = new FileInputPortHandler(this, fileInputPort, this.getFileParameterName());
 
-	public AbstractDataResultSetReader(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract data result set reader.
+     *
+     * @param description the description
+     */
+    public AbstractDataResultSetReader(OperatorDescription description) {
 		super(description);
 		fileInputPort.addPrecondition(new SimplePrecondition(fileInputPort, new MetaData(FileObject.class)) {
 
@@ -114,7 +154,12 @@ public abstract class AbstractDataResultSetReader extends AbstractExampleSource 
 		});
 	}
 
-	public InputPort getFileInputPort() {
+    /**
+     * Gets file input port.
+     *
+     * @return the file input port
+     */
+    public InputPort getFileInputPort() {
 		return fileInputPort;
 	}
 
@@ -138,17 +183,14 @@ public abstract class AbstractDataResultSetReader extends AbstractExampleSource 
 		return exampleSet;
 	}
 
-	/**
-	 *
-	 * Transforms the provided {@link DataResultSet} into an example set.
-	 *
-	 * @param dataResultSet
-	 *            the data result set to transform into an example set
-	 * @return the generated example set
-	 * @throws OperatorException
-	 *             in case something goes wrong
-	 */
-	protected ExampleSet transformDataResultSet(DataResultSet dataResultSet) throws OperatorException {
+    /**
+     * Transforms the provided {@link DataResultSet} into an example set.
+     *
+     * @param dataResultSet the data result set to transform into an example set
+     * @return the generated example set
+     * @throws OperatorException in case something goes wrong
+     */
+    protected ExampleSet transformDataResultSet(DataResultSet dataResultSet) throws OperatorException {
 
 		// loading configuration
 		DataResultSetTranslationConfiguration configuration = new DataResultSetTranslationConfiguration(this);
@@ -180,67 +222,96 @@ public abstract class AbstractDataResultSetReader extends AbstractExampleSource 
 		}
 	}
 
-	/**
-	 * Must be implemented by subclasses to return the DataResultSet.
-	 */
-	protected abstract DataResultSetFactory getDataResultSetFactory() throws OperatorException;
+    /**
+     * Must be implemented by subclasses to return the DataResultSet.
+     *
+     * @return the data result set factory
+     * @throws OperatorException the operator exception
+     */
+    protected abstract DataResultSetFactory getDataResultSetFactory() throws OperatorException;
 
-	/**
-	 * Returns the configured number format or null if a default number format should be used.
-	 */
-	protected abstract NumberFormat getNumberFormat() throws OperatorException;
+    /**
+     * Returns the configured number format or null if a default number format should be used.
+     *
+     * @return the number format
+     * @throws OperatorException the operator exception
+     */
+    protected abstract NumberFormat getNumberFormat() throws OperatorException;
 
-	/**
-	 * This method might be overwritten by subclasses to avoid that the first row might be
-	 * misinterpreted as attribute names.
-	 */
-	protected boolean isSupportingFirstRowAsNames() {
+    /**
+     * This method might be overwritten by subclasses to avoid that the first row might be
+     * misinterpreted as attribute names.
+     *
+     * @return the boolean
+     */
+    protected boolean isSupportingFirstRowAsNames() {
 		return true;
 	}
 
-	/**
-	 * Returns either the selected file referenced by the value of the parameter with the name
-	 * {@link #getFileParameterName()} or the file delivered at {@link #fileInputPort}. Which of
-	 * these options is chosen is determined by the parameter {@link #PARAMETER_DESTINATION_TYPE}.
-	 * */
-	public File getSelectedFile() throws OperatorException {
+    /**
+     * Returns either the selected file referenced by the value of the parameter with the name
+     * {@link #getFileParameterName()} or the file delivered at {@link #fileInputPort}. Which of
+     * these options is chosen is determined by the parameter {@link #PARAMETER_DESTINATION_TYPE}.
+     *
+     * @return the selected file
+     * @throws OperatorException the operator exception
+     */
+    public File getSelectedFile() throws OperatorException {
 		return filePortHandler.getSelectedFile();
 	}
 
-	/**
-	 * Same as {@link #getSelectedFile()}, but opens the stream.
-	 * */
-	public InputStream openSelectedFile() throws OperatorException, IOException {
+    /**
+     * Same as {@link #getSelectedFile()}, but opens the stream.
+     *
+     * @return the input stream
+     * @throws OperatorException the operator exception
+     * @throws IOException       the io exception
+     */
+    public InputStream openSelectedFile() throws OperatorException, IOException {
 		return filePortHandler.openSelectedFile();
 	}
 
-	/**
-	 * Same as {@link #getSelectedFile()}, but returns true if file is specified (in the respective
-	 * way).
-	 * */
-	public boolean isFileSpecified() {
+    /**
+     * Same as {@link #getSelectedFile()}, but returns true if file is specified (in the respective
+     * way).
+     *
+     * @return the boolean
+     */
+    public boolean isFileSpecified() {
 		return filePortHandler.isFileSpecified();
 	}
 
-	/**
-	 * Returns the name of the {@link ParameterTypeFile} to be added through which the user can
-	 * specify the file name.
-	 */
-	protected abstract String getFileParameterName();
+    /**
+     * Returns the name of the {@link ParameterTypeFile} to be added through which the user can
+     * specify the file name.
+     *
+     * @return the file parameter name
+     */
+    protected abstract String getFileParameterName();
 
-	/** Returns the allowed file extension. */
-	protected abstract String getFileExtension();
+    /**
+     * Returns the allowed file extension.  @return the file extension
+     *
+     * @return the file extension
+     */
+    protected abstract String getFileExtension();
 
-	/** Returns the allowed file extensions. */
-	protected String[] getFileExtensions() {
+    /**
+     * Returns the allowed file extensions.  @return the string [ ]
+     *
+     * @return the string [ ]
+     */
+    protected String[] getFileExtensions() {
 		return new String[] { getFileExtension() };
 	}
 
-	/**
-	 * Creates (but does not add) the file parameter named by {@link #getFileParameterName()} that
-	 * depends on whether or not {@link #fileInputPort} is connected.
-	 */
-	protected ParameterType makeFileParameterType() {
+    /**
+     * Creates (but does not add) the file parameter named by {@link #getFileParameterName()} that
+     * depends on whether or not {@link #fileInputPort} is connected.
+     *
+     * @return the parameter type
+     */
+    protected ParameterType makeFileParameterType() {
 		return FileInputPortHandler.makeFileParameterType(this, getFileParameterName(),
 				"Name of the file to read the data from.", new PortProvider() {
 

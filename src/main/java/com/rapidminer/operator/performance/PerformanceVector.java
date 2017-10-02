@@ -31,25 +31,31 @@ import java.util.logging.Level;
 /**
  * Handles several performance criteria. It is possible to obtain more than one criterion and
  * therefore they are added to a criteria list.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer Exp $
  */
 public class PerformanceVector extends AverageVector {
 
 	private static final long serialVersionUID = 3123587140049371098L;
 
-	public static final String MAIN_CRITERION_FIRST = "first";
+    /**
+     * The constant MAIN_CRITERION_FIRST.
+     */
+    public static final String MAIN_CRITERION_FIRST = "first";
 
-	/**
-	 * The default performance comparator compares the main criterion of two performance vectors. In
-	 * case that the minimum description length (mdl) criterion is also calculated and have a weight
-	 * &gt; 0 the weighted sums of the main and the mdl criterion are compared.
-	 */
-	public static class DefaultComparator implements PerformanceComparator {
+    /**
+     * The default performance comparator compares the main criterion of two performance vectors. In
+     * case that the minimum description length (mdl) criterion is also calculated and have a weight
+     * &gt; 0 the weighted sums of the main and the mdl criterion are compared.
+     */
+    public static class DefaultComparator implements PerformanceComparator {
 
 		private static final long serialVersionUID = 8632060851821885142L;
 
-		public DefaultComparator() {}
+        /**
+         * Instantiates a new Default comparator.
+         */
+        public DefaultComparator() {}
 
 		@Override
 		public int compare(PerformanceVector av1, PerformanceVector av2) {
@@ -69,11 +75,21 @@ public class PerformanceVector extends AverageVector {
 	/** Name of the main criterion. */
 	private String mainCriterion = null;
 
-	public void setComparator(PerformanceComparator comparator) {
+    /**
+     * Sets comparator.
+     *
+     * @param comparator the comparator
+     */
+    public void setComparator(PerformanceComparator comparator) {
 		this.comparator = comparator;
 	}
 
-	public void addCriterion(PerformanceCriterion crit) {
+    /**
+     * Add criterion.
+     *
+     * @param crit the crit
+     */
+    public void addCriterion(PerformanceCriterion crit) {
 		PerformanceCriterion pc = getCriterion(crit.getName());
 		if (pc != null) {
 			removeAveragable(pc);
@@ -89,15 +105,32 @@ public class PerformanceVector extends AverageVector {
 		addAveragable(crit);
 	}
 
-	public PerformanceCriterion getCriterion(int index) {
+    /**
+     * Gets criterion.
+     *
+     * @param index the index
+     * @return the criterion
+     */
+    public PerformanceCriterion getCriterion(int index) {
 		return (PerformanceCriterion) getAveragable(index);
 	}
 
-	public PerformanceCriterion getCriterion(String name) {
+    /**
+     * Gets criterion.
+     *
+     * @param name the name
+     * @return the criterion
+     */
+    public PerformanceCriterion getCriterion(String name) {
 		return (PerformanceCriterion) getAveragable(name);
 	}
 
-	public String[] getCriteriaNames() {
+    /**
+     * Get criteria names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getCriteriaNames() {
 		String[] criteriaNames = new String[getSize()];
 		for (int i = 0; i < criteriaNames.length; i++) {
 			criteriaNames[i] = getCriterion(i).getName();
@@ -105,10 +138,12 @@ public class PerformanceVector extends AverageVector {
 		return criteriaNames;
 	}
 
-	/**
-	 * Sets the name of the main average (must be added by {@link #addAveragable(Averagable)})
-	 */
-	public void setMainCriterionName(String mcName) {
+    /**
+     * Sets the name of the main average (must be added by {@link #addAveragable(Averagable)})
+     *
+     * @param mcName the mc name
+     */
+    public void setMainCriterionName(String mcName) {
 		if ((!mcName.equals(MAIN_CRITERION_FIRST)) && (getAveragable(mcName) == null)) {
 			// LogService.getGlobal().log("Main criterion not found: '" + mcName + "'.",
 			// LogService.ERROR);
@@ -118,11 +153,13 @@ public class PerformanceVector extends AverageVector {
 		this.mainCriterion = mcName;
 	}
 
-	/**
-	 * Returns the main {@link PerformanceCriterion}. If the main criterion is not specified by
-	 * {@link #setMainCriterionName(String)}, the first criterion is returned.
-	 */
-	public PerformanceCriterion getMainCriterion() {
+    /**
+     * Returns the main {@link PerformanceCriterion}. If the main criterion is not specified by
+     * {@link #setMainCriterionName(String)}, the first criterion is returned.
+     *
+     * @return the main criterion
+     */
+    public PerformanceCriterion getMainCriterion() {
 		if (mainCriterion == null) {
 			return (PerformanceCriterion) getAveragable(0);
 		} else {
@@ -174,11 +211,21 @@ public class PerformanceVector extends AverageVector {
 		return result.toString();
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "per";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "performance vector file";
 	}
 

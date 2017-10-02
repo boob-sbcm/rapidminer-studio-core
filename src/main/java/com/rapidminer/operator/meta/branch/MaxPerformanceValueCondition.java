@@ -32,10 +32,10 @@ import com.rapidminer.parameter.UndefinedParameterError;
  */
 public class MaxPerformanceValueCondition implements ProcessBranchCondition {
 
-	/**
-	 * Constructor used by reflection.
-	 */
-	public MaxPerformanceValueCondition() {}
+    /**
+     * Constructor used by reflection.
+     */
+    public MaxPerformanceValueCondition() {}
 
 	/**
 	 * This method checks if the file with pathname value exists.

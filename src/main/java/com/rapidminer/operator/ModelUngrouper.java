@@ -31,13 +31,13 @@ import com.rapidminer.operator.ports.metadata.ModelMetaData;
  * This operator ungroups a previously grouped model ({@link ModelGrouper}) and delivers the grouped
  * input models.
  * </p>
- * 
+ * <p>
  * <p>
  * This operator replaces the automatic model grouping known from previous versions of RapidMiner.
  * The explicit usage of this ungrouping operator gives the user more control about the ungrouping
  * procedure. Single models can be grouped with the {@link ModelGrouper} operator.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ModelUngrouper extends Operator {
@@ -45,7 +45,12 @@ public class ModelUngrouper extends Operator {
 	private InputPort groupedModelInput = getInputPorts().createPort("grouped model", GroupedModel.class);
 	private OutputPort modelOutput = getOutputPorts().createPort("models");
 
-	public ModelUngrouper(OperatorDescription description) {
+    /**
+     * Instantiates a new Model ungrouper.
+     *
+     * @param description the description
+     */
+    public ModelUngrouper(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(
 				new GenerateNewMDRule(modelOutput, new CollectionMetaData(new ModelMetaData(Model.class,

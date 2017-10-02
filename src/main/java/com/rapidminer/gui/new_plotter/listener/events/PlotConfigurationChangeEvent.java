@@ -38,31 +38,93 @@ import org.jfree.chart.plot.PlotOrientation;
  * A {@link PlotConfigurationChangeEvent} represents a change of the {@link PlotConfiguration}.
  * Every {@link PlotConfigurationChangeEvent} has a cloned source of its starting
  * {@link PlotConfiguration}.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class PlotConfigurationChangeEvent implements ConfigurationChangeEvent {
 
-	public enum PlotConfigurationChangeType {
-		RANGE_AXIS_CONFIG_ADDED, // a range axis config was added
-		RANGE_AXIS_CONFIG_REMOVED, // a range axis config was removed
-		RANGE_AXIS_CONFIG_MOVED, // a range axis config was moved to another
-									// index
+    /**
+     * The enum Plot configuration change type.
+     */
+    public enum PlotConfigurationChangeType {
+        /**
+         * Range axis config added plot configuration change type.
+         */
+        RANGE_AXIS_CONFIG_ADDED, // a range axis config was added
+        /**
+         * Range axis config removed plot configuration change type.
+         */
+        RANGE_AXIS_CONFIG_REMOVED, // a range axis config was removed
+        /**
+         * Range axis config moved plot configuration change type.
+         */
+        RANGE_AXIS_CONFIG_MOVED, // a range axis config was moved to another
+        /**
+         * Dimension config added plot configuration change type.
+         */
+// index
 		DIMENSION_CONFIG_ADDED, // a dimension config was added
-		DIMENSION_CONFIG_REMOVED, // a dimension config was removed
-		CHART_TITLE, // the chart title has changed
-		AXES_FONT, // the axes font has changed
-		FRAME_BACKGROUND_COLOR, // the chart background has changed
-		PLOT_BACKGROUND_COLOR, // the plot background has changed
-		PLOT_ORIENTATION, // the domain axis orientation has changed
-		DATA_TABLE_EXCHANGED, // the data table has been exchanged
+        /**
+         * Dimension config removed plot configuration change type.
+         */
+        DIMENSION_CONFIG_REMOVED, // a dimension config was removed
+        /**
+         * Chart title plot configuration change type.
+         */
+        CHART_TITLE, // the chart title has changed
+        /**
+         * Axes font plot configuration change type.
+         */
+        AXES_FONT, // the axes font has changed
+        /**
+         * Frame background color plot configuration change type.
+         */
+        FRAME_BACKGROUND_COLOR, // the chart background has changed
+        /**
+         * Plot background color plot configuration change type.
+         */
+        PLOT_BACKGROUND_COLOR, // the plot background has changed
+        /**
+         * Plot orientation plot configuration change type.
+         */
+        PLOT_ORIENTATION, // the domain axis orientation has changed
+        /**
+         * Data table exchanged plot configuration change type.
+         */
+        DATA_TABLE_EXCHANGED, // the data table has been exchanged
 
-		// Refer to other events
+        /**
+         * The Range axis config changed.
+         */
+// Refer to other events
 		RANGE_AXIS_CONFIG_CHANGED, // a range axis configuration has changed
-		DIMENSION_CONFIG_CHANGED, // the configuration for a dimension has been changed or exchanged
-		AXIS_LINE_COLOR, AXIS_LINE_WIDTH, COLOR_SCHEME, LINK_AND_BRUSH_SELECTION, LEGEND_CHANGED, META_CHANGE,  // this
-																												// means
+        /**
+         * Dimension config changed plot configuration change type.
+         */
+        DIMENSION_CONFIG_CHANGED, // the configuration for a dimension has been changed or exchanged
+        /**
+         * Axis line color plot configuration change type.
+         */
+        AXIS_LINE_COLOR, /**
+         * Axis line width plot configuration change type.
+         */
+        AXIS_LINE_WIDTH, /**
+         * Color scheme plot configuration change type.
+         */
+        COLOR_SCHEME, /**
+         * Link and brush selection plot configuration change type.
+         */
+        LINK_AND_BRUSH_SELECTION, /**
+         * Legend changed plot configuration change type.
+         */
+        LEGEND_CHANGED, /**
+         * Meta change plot configuration change type.
+         */
+        META_CHANGE,  // this
+        /**
+         * The Trigger replot.
+         */
+// means
 																												// the
 																												// a
 																												// list
@@ -109,15 +171,25 @@ public class PlotConfigurationChangeEvent implements ConfigurationChangeEvent {
 	private LinkAndBrushSelection linkAndBrushSelection = null;
 	private LegendConfigurationChangeEvent legendConfigurationChangeEvent = null;
 
-	public DataTable getDataTable() {
+    /**
+     * Gets data table.
+     *
+     * @return the data table
+     */
+    public DataTable getDataTable() {
 		return dataTable;
 	}
 
-	/**
-	 * Allowed {@link PlotConfigurationChangeType}s are RANGE_AXIS_CONFIG_ADDED,
-	 * RANGE_AXIS_CONFIG_REMOVED and RANGE_AXIS_CONFIG_MOVED
-	 */
-	public PlotConfigurationChangeEvent(PlotConfiguration source, PlotConfigurationChangeType type,
+    /**
+     * Allowed {@link PlotConfigurationChangeType}s are RANGE_AXIS_CONFIG_ADDED,
+     * RANGE_AXIS_CONFIG_REMOVED and RANGE_AXIS_CONFIG_MOVED
+     *
+     * @param source    the source
+     * @param type      the type
+     * @param rangeAxis the range axis
+     * @param index     the index
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration source, PlotConfigurationChangeType type,
 			RangeAxisConfig rangeAxis, Integer index) {
 		setSource(source);
 		if ((type != PlotConfigurationChangeType.RANGE_AXIS_CONFIG_ADDED)
@@ -130,15 +202,25 @@ public class PlotConfigurationChangeEvent implements ConfigurationChangeEvent {
 		this.index = index;
 	}
 
-	public PlotConfigurationChangeEvent(PlotConfiguration source) {
+    /**
+     * Instantiates a new Plot configuration change event.
+     *
+     * @param source the source
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration source) {
 		setSource(source);
 		this.type = PlotConfigurationChangeType.TRIGGER_REPLOT;
 	}
 
-	/**
-	 * Allowed {@link PlotConfigurationChangeType}s are DIMENSION_CONFIG_ADDED or DIMENSION_REMOVED
-	 */
-	public PlotConfigurationChangeEvent(PlotConfiguration source, PlotConfigurationChangeType type, PlotDimension dimension,
+    /**
+     * Allowed {@link PlotConfigurationChangeType}s are DIMENSION_CONFIG_ADDED or DIMENSION_REMOVED
+     *
+     * @param source          the source
+     * @param type            the type
+     * @param dimension       the dimension
+     * @param dimensionConfig the dimension config
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration source, PlotConfigurationChangeType type, PlotDimension dimension,
 			DimensionConfig dimensionConfig) {
 		if ((type != PlotConfigurationChangeType.DIMENSION_CONFIG_ADDED)
 				&& (type != PlotConfigurationChangeType.DIMENSION_CONFIG_REMOVED)) {
@@ -151,29 +233,51 @@ public class PlotConfigurationChangeEvent implements ConfigurationChangeEvent {
 		this.dimensionConfig = dimensionConfig;
 	}
 
-	public PlotConfigurationChangeEvent(PlotConfiguration source, String chartTitle) {
+    /**
+     * Instantiates a new Plot configuration change event.
+     *
+     * @param source     the source
+     * @param chartTitle the chart title
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration source, String chartTitle) {
 		setSource(source);
 		this.type = PlotConfigurationChangeType.CHART_TITLE;
 		this.chartTitle = chartTitle;
 	}
 
-	public PlotConfigurationChangeEvent(PlotConfiguration source, List<PlotConfigurationChangeEvent> plotConfigChangeEvents) {
+    /**
+     * Instantiates a new Plot configuration change event.
+     *
+     * @param source                 the source
+     * @param plotConfigChangeEvents the plot config change events
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration source, List<PlotConfigurationChangeEvent> plotConfigChangeEvents) {
 		setSource(source);
 		this.type = PlotConfigurationChangeType.META_CHANGE;
 		this.plotConfigChangeEvents.addAll(plotConfigChangeEvents);
 	}
 
-	public PlotConfigurationChangeEvent(PlotConfiguration source, Font axesFont) {
+    /**
+     * Instantiates a new Plot configuration change event.
+     *
+     * @param source   the source
+     * @param axesFont the axes font
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration source, Font axesFont) {
 		setSource(source);
 		this.type = PlotConfigurationChangeType.AXES_FONT;
 		this.axesFont = axesFont;
 	}
 
-	/**
-	 * Allowed {@link PlotConfigurationChangeType}s are FRAME_BACKGROUND_COLOR or
-	 * PLOT_BACKGROUND_COLOR or AXIS_LINE_COLOR
-	 */
-	public PlotConfigurationChangeEvent(PlotConfiguration source, PlotConfigurationChangeType type, Color color) {
+    /**
+     * Allowed {@link PlotConfigurationChangeType}s are FRAME_BACKGROUND_COLOR or
+     * PLOT_BACKGROUND_COLOR or AXIS_LINE_COLOR
+     *
+     * @param source the source
+     * @param type   the type
+     * @param color  the color
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration source, PlotConfigurationChangeType type, Color color) {
 		setSource(source);
 		this.type = type;
 		if ((type != PlotConfigurationChangeType.FRAME_BACKGROUND_COLOR)
@@ -193,83 +297,127 @@ public class PlotConfigurationChangeEvent implements ConfigurationChangeEvent {
 		}
 	}
 
-	public PlotConfigurationChangeEvent(PlotConfiguration source, DimensionConfigChangeEvent dimensionChange) {
+    /**
+     * Instantiates a new Plot configuration change event.
+     *
+     * @param source          the source
+     * @param dimensionChange the dimension change
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration source, DimensionConfigChangeEvent dimensionChange) {
 		setSource(source);
 		this.type = PlotConfigurationChangeType.DIMENSION_CONFIG_CHANGED;
 		this.dimensionChange = dimensionChange;
 	}
 
-	public PlotConfigurationChangeEvent(PlotConfiguration source, LinkAndBrushSelection selection) {
+    /**
+     * Instantiates a new Plot configuration change event.
+     *
+     * @param source    the source
+     * @param selection the selection
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration source, LinkAndBrushSelection selection) {
 		setSource(source);
 		this.type = PlotConfigurationChangeType.LINK_AND_BRUSH_SELECTION;
 		this.linkAndBrushSelection = selection;
 	}
 
-	public PlotConfigurationChangeEvent(PlotConfiguration source, RangeAxisConfigChangeEvent rangeAxisChange) {
+    /**
+     * Instantiates a new Plot configuration change event.
+     *
+     * @param source          the source
+     * @param rangeAxisChange the range axis change
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration source, RangeAxisConfigChangeEvent rangeAxisChange) {
 		setSource(source);
 		this.type = PlotConfigurationChangeType.RANGE_AXIS_CONFIG_CHANGED;
 		this.rangeAxisConfigChange = rangeAxisChange;
 	}
 
-	/**
-	 * @param plotConfiguration
-	 * @param orientation
-	 */
-	public PlotConfigurationChangeEvent(PlotConfiguration plotConfiguration, PlotOrientation orientation) {
+    /**
+     * Instantiates a new Plot configuration change event.
+     *
+     * @param plotConfiguration the plot configuration
+     * @param orientation       the orientation
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration plotConfiguration, PlotOrientation orientation) {
 		setSource(plotConfiguration);
 		this.type = PlotConfigurationChangeType.PLOT_ORIENTATION;
 		this.orientation = orientation;
 	}
 
-	/**
-	 * @param plotConfiguration
-	 * @param domainAxisLineWidth
-	 */
-	public PlotConfigurationChangeEvent(PlotConfiguration plotConfiguration, float domainAxisLineWidth) {
+    /**
+     * Instantiates a new Plot configuration change event.
+     *
+     * @param plotConfiguration   the plot configuration
+     * @param domainAxisLineWidth the domain axis line width
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration plotConfiguration, float domainAxisLineWidth) {
 		setSource(plotConfiguration);
 		this.type = PlotConfigurationChangeType.AXIS_LINE_WIDTH;
 		this.domainAxisLineWidth = domainAxisLineWidth;
 	}
 
-	/**
-	 * @param plotConfiguration
-	 * @param colorScheme
-	 */
-	public PlotConfigurationChangeEvent(PlotConfiguration plotConfiguration, ColorScheme colorScheme) {
+    /**
+     * Instantiates a new Plot configuration change event.
+     *
+     * @param plotConfiguration the plot configuration
+     * @param colorScheme       the color scheme
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration plotConfiguration, ColorScheme colorScheme) {
 		setSource(plotConfiguration);
 		this.type = PlotConfigurationChangeType.COLOR_SCHEME;
 		this.colorScheme = colorScheme;
 	}
 
-	public PlotConfigurationChangeEvent(PlotConfiguration plotConfiguration, DataTable dataTable) {
+    /**
+     * Instantiates a new Plot configuration change event.
+     *
+     * @param plotConfiguration the plot configuration
+     * @param dataTable         the data table
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration plotConfiguration, DataTable dataTable) {
 		setSource(plotConfiguration);
 		this.type = PlotConfigurationChangeType.DATA_TABLE_EXCHANGED;
 		this.dataTable = dataTable;
 	}
 
-	public PlotConfigurationChangeEvent(PlotConfiguration plotConfiguration, LegendConfigurationChangeEvent change) {
+    /**
+     * Instantiates a new Plot configuration change event.
+     *
+     * @param plotConfiguration the plot configuration
+     * @param change            the change
+     */
+    public PlotConfigurationChangeEvent(PlotConfiguration plotConfiguration, LegendConfigurationChangeEvent change) {
 		setSource(plotConfiguration);
 		this.type = PlotConfigurationChangeType.LEGEND_CHANGED;
 		this.legendConfigurationChangeEvent = change;
 	}
 
-	/**
-	 * @param plotConfiguration
-	 */
-	public void setSource(PlotConfiguration plotConfiguration) {
+    /**
+     * Sets source.
+     *
+     * @param plotConfiguration the plot configuration
+     */
+    public void setSource(PlotConfiguration plotConfiguration) {
 		this.source = plotConfiguration;
 	}
 
-	public DimensionConfigChangeEvent getDimensionChange() {
+    /**
+     * Gets dimension change.
+     *
+     * @return the dimension change
+     */
+    public DimensionConfigChangeEvent getDimensionChange() {
 		return dimensionChange;
 	}
 
-	/**
-	 * This function can only be called if type of change event is META_CHANGE
-	 * 
-	 * @param changeEvent
-	 */
-	public void addPlotConfigChangeEvent(PlotConfiguration newSource, PlotConfigurationChangeEvent changeEvent) {
+    /**
+     * This function can only be called if type of change event is META_CHANGE
+     *
+     * @param newSource   the new source
+     * @param changeEvent the change event
+     */
+    public void addPlotConfigChangeEvent(PlotConfiguration newSource, PlotConfigurationChangeEvent changeEvent) {
 		if (type != PlotConfigurationChangeType.META_CHANGE) {
 			throw new IllegalArgumentException("Wrong type. Only META_CHANGE is allowed!");
 		}
@@ -277,113 +425,147 @@ public class PlotConfigurationChangeEvent implements ConfigurationChangeEvent {
 		plotConfigChangeEvents.add(changeEvent);
 	}
 
-	/**
-	 * @return the list of plot configuration events, if this event is a META_CHANGE. The returned
-	 *         list must NOT be changed!
-	 */
-	public List<PlotConfigurationChangeEvent> getPlotConfigChangeEvents() {
+    /**
+     * Gets plot config change events.
+     *
+     * @return the list of plot configuration events, if this event is a META_CHANGE. The returned         list must NOT be changed!
+     */
+    public List<PlotConfigurationChangeEvent> getPlotConfigChangeEvents() {
 		return plotConfigChangeEvents;
 	}
 
-	public PlotConfigurationChangeType getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public PlotConfigurationChangeType getType() {
 		return type;
 	}
 
-	/**
-	 * @return the rangeAxis
-	 */
-	public RangeAxisConfig getRangeAxisConfig() {
+    /**
+     * Gets range axis config.
+     *
+     * @return the rangeAxis
+     */
+    public RangeAxisConfig getRangeAxisConfig() {
 		return rangeAxisConfig;
 	}
 
-	/**
-	 * @return the index
-	 */
-	public Integer getIndex() {
+    /**
+     * Gets index.
+     *
+     * @return the index
+     */
+    public Integer getIndex() {
 		return index;
 	}
 
-	/**
-	 * @return the colorScheme
-	 */
-	public ColorScheme getColorScheme() {
+    /**
+     * Gets color scheme.
+     *
+     * @return the colorScheme
+     */
+    public ColorScheme getColorScheme() {
 		return colorScheme;
 	}
 
-	/**
-	 * @return the linkAndBrushSelection
-	 */
-	public LinkAndBrushSelection getLinkAndBrushSelection() {
+    /**
+     * Gets link and brush selection.
+     *
+     * @return the linkAndBrushSelection
+     */
+    public LinkAndBrushSelection getLinkAndBrushSelection() {
 		return linkAndBrushSelection;
 	}
 
-	/**
-	 * @return the dimension
-	 */
-	public PlotDimension getDimension() {
+    /**
+     * Gets dimension.
+     *
+     * @return the dimension
+     */
+    public PlotDimension getDimension() {
 		return dimension;
 	}
 
-	/**
-	 * @return the dimensionConfig
-	 */
-	public DimensionConfig getDimensionConfig() {
+    /**
+     * Gets dimension config.
+     *
+     * @return the dimensionConfig
+     */
+    public DimensionConfig getDimensionConfig() {
 		return dimensionConfig;
 	}
 
-	/**
-	 * @return the domainAxisLineColor
-	 */
-	public Color getDomainAxisLineColor() {
+    /**
+     * Gets domain axis line color.
+     *
+     * @return the domainAxisLineColor
+     */
+    public Color getDomainAxisLineColor() {
 		return axisLineColor;
 	}
 
-	/**
-	 * @return the domainAxisLineWidth
-	 */
-	public float getDomainAxisLineWidth() {
+    /**
+     * Gets domain axis line width.
+     *
+     * @return the domainAxisLineWidth
+     */
+    public float getDomainAxisLineWidth() {
 		return domainAxisLineWidth;
 	}
 
-	/**
-	 * @return the rangeAxisChange
-	 */
-	public RangeAxisConfigChangeEvent getRangeAxisConfigChange() {
+    /**
+     * Gets range axis config change.
+     *
+     * @return the rangeAxisChange
+     */
+    public RangeAxisConfigChangeEvent getRangeAxisConfigChange() {
 		return rangeAxisConfigChange;
 	}
 
-	/**
-	 * @return the source
-	 */
-	public PlotConfiguration getSource() {
+    /**
+     * Gets source.
+     *
+     * @return the source
+     */
+    public PlotConfiguration getSource() {
 		return source;
 	}
 
-	/**
-	 * @return the chartTitle
-	 */
-	public String getChartTitle() {
+    /**
+     * Gets chart title.
+     *
+     * @return the chartTitle
+     */
+    public String getChartTitle() {
 		return chartTitle;
 	}
 
-	/**
-	 * @return the axesFont
-	 */
-	public Font getAxesFont() {
+    /**
+     * Gets axes font.
+     *
+     * @return the axesFont
+     */
+    public Font getAxesFont() {
 		return axesFont;
 	}
 
-	/**
-	 * @return the plotBackgroundColor
-	 */
-	public Color getPlotBackgroundColor() {
+    /**
+     * Gets plot background color.
+     *
+     * @return the plotBackgroundColor
+     */
+    public Color getPlotBackgroundColor() {
 		return plotBackgroundColor;
 	}
 
-	/**
-	 * @return the chartBackgroundColor
-	 */
-	public Color getFrameBackgroundColor() {
+    /**
+     * Gets frame background color.
+     *
+     * @return the chartBackgroundColor
+     */
+    public Color getFrameBackgroundColor() {
 		return frameBackgroundColor;
 	}
 
@@ -392,10 +574,12 @@ public class PlotConfigurationChangeEvent implements ConfigurationChangeEvent {
 		return ConfigurationChangeType.PLOT_CONFIGURATION_CHANGE;
 	}
 
-	/**
-	 * @return the orientation
-	 */
-	public PlotOrientation getOrientation() {
+    /**
+     * Gets orientation.
+     *
+     * @return the orientation
+     */
+    public PlotOrientation getOrientation() {
 		return orientation;
 	}
 
@@ -404,7 +588,12 @@ public class PlotConfigurationChangeEvent implements ConfigurationChangeEvent {
 		return getType().toString();
 	}
 
-	public LegendConfigurationChangeEvent getLegendConfigurationChangeEvent() {
+    /**
+     * Gets legend configuration change event.
+     *
+     * @return the legend configuration change event
+     */
+    public LegendConfigurationChangeEvent getLegendConfigurationChangeEvent() {
 		return legendConfigurationChangeEvent;
 	}
 

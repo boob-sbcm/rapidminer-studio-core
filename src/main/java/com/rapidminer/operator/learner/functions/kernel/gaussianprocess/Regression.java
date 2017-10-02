@@ -28,30 +28,42 @@ import Jama.Matrix;
 
 /**
  * Gaussian Process Regression.
- *
+ * <p>
  * REFERENCES:
- *
+ * <p>
  * Lehel Csato. Gaussian Processes --- Iterative Sparse Approximations. PhD thesis, Aston
  * University, Birmingham, UK, March 2002.
- *
+ * <p>
  * TODO: - own Matrix implementation with SE-cholesky-decomposition and the ability to constrain
  * matrix operation on sub matrices - CompositeKernel implementation for kernels based on finite
  * basis functions
  *
  * @author Piotr Kasprzak
- *
  */
 public class Regression extends GPBase {
 
-	/** Used to hold a score value with an associated index */
+    /**
+     * Used to hold a score value with an associated index
+     */
+    protected static class Score implements Comparable<Score> {
 
-	protected static class Score implements Comparable<Score> {
+        /**
+         * The Score.
+         */
+        double score;
 
-		double score;
+        /**
+         * The Index.
+         */
+        int index;
 
-		int index;
-
-		Score(double score, int index) {
+        /**
+         * Instantiates a new Score.
+         *
+         * @param score the score
+         * @param index the index
+         */
+        Score(double score, int index) {
 			this.score = score;
 			this.index = index;
 		}
@@ -84,18 +96,33 @@ public class Regression extends GPBase {
 			return Double.valueOf(score).hashCode();
 		}
 
-		public double getScore() {
+        /**
+         * Gets score.
+         *
+         * @return the score
+         */
+        public double getScore() {
 			return score;
 		}
 
-		public int getIndex() {
+        /**
+         * Gets index.
+         *
+         * @return the index
+         */
+        public int getIndex() {
 			return index;
 		}
 	}
 
-	/** Constructor */
-
-	public Regression(RegressionProblem problem, Parameter parameter, Operator operator) {
+    /**
+     * Constructor  @param problem the problem
+     *
+     * @param problem   the problem
+     * @param parameter the parameter
+     * @param operator  the operator
+     */
+    public Regression(RegressionProblem problem, Parameter parameter, Operator operator) {
 		super(problem, parameter, operator);
 	}
 

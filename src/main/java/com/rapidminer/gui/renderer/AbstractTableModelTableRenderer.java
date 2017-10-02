@@ -57,24 +57,45 @@ import com.rapidminer.tools.Tools;
  */
 public abstract class AbstractTableModelTableRenderer extends NonGraphicalRenderer {
 
-	public static final String RENDERER_NAME = "Table View";
+    /**
+     * The constant RENDERER_NAME.
+     */
+    public static final String RENDERER_NAME = "Table View";
 
-	public static final String PARAMETER_MIN_ROW = "min_row";
+    /**
+     * The constant PARAMETER_MIN_ROW.
+     */
+    public static final String PARAMETER_MIN_ROW = "min_row";
 
-	public static final String PARAMETER_MAX_ROW = "max_row";
+    /**
+     * The constant PARAMETER_MAX_ROW.
+     */
+    public static final String PARAMETER_MAX_ROW = "max_row";
 
-	public static final String PARAMETER_MIN_COLUMN = "min_column";
+    /**
+     * The constant PARAMETER_MIN_COLUMN.
+     */
+    public static final String PARAMETER_MIN_COLUMN = "min_column";
 
-	public static final String PARAMETER_MAX_COLUMN = "max_column";
+    /**
+     * The constant PARAMETER_MAX_COLUMN.
+     */
+    public static final String PARAMETER_MAX_COLUMN = "max_column";
 
-	public static final String PARAMETER_SORT_COLUMN = "sort_column";
-	public static final String PARAMETER_SORT_DECREASING = "sort_decreasing";
+    /**
+     * The constant PARAMETER_SORT_COLUMN.
+     */
+    public static final String PARAMETER_SORT_COLUMN = "sort_column";
+    /**
+     * The constant PARAMETER_SORT_DECREASING.
+     */
+    public static final String PARAMETER_SORT_DECREASING = "sort_decreasing";
 
-	/**
-	 * This is the default base class for all renderers having already a TableModel. This class is
-	 * used to be wrapped around them in order to have a unified interface for reporting.
-	 */
-	public static class DefaultTableable implements Tableable {
+    /**
+     * This is the default base class for all renderers having already a TableModel. This class is
+     * used to be wrapped around them in order to have a unified interface for reporting.
+     */
+    public static class DefaultTableable implements Tableable {
 
 		private TableModel model;
 
@@ -92,7 +113,13 @@ public abstract class AbstractTableModelTableRenderer extends NonGraphicalRender
 
 		private Integer[] sortIndices = null;
 
-		public DefaultTableable(final TableModel model, Renderer renderer) {
+        /**
+         * Instantiates a new Default tableable.
+         *
+         * @param model    the model
+         * @param renderer the renderer
+         */
+        public DefaultTableable(final TableModel model, Renderer renderer) {
 			this.model = model;
 
 			try {
@@ -248,17 +275,40 @@ public abstract class AbstractTableModelTableRenderer extends NonGraphicalRender
 		return RENDERER_NAME;
 	}
 
-	public abstract TableModel getTableModel(Object renderable, IOContainer ioContainer, boolean isReporting);
+    /**
+     * Gets table model.
+     *
+     * @param renderable  the renderable
+     * @param ioContainer the io container
+     * @param isReporting the is reporting
+     * @return the table model
+     */
+    public abstract TableModel getTableModel(Object renderable, IOContainer ioContainer, boolean isReporting);
 
-	public boolean isSortable() {
+    /**
+     * Is sortable boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSortable() {
 		return true;
 	}
 
-	public boolean isColumnMovable() {
+    /**
+     * Is column movable boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isColumnMovable() {
 		return true;
 	}
 
-	public boolean isAutoresize() {
+    /**
+     * Is autoresize boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isAutoresize() {
 		return true;
 	}
 

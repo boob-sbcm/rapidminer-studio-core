@@ -24,15 +24,15 @@ import com.rapidminer.operator.OperatorException;
 
 /**
  * This condition tests if an IOObject exists.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class InputExistsCondition implements ProcessBranchCondition {
 
-	/**
-	 * Constructor used by reflection.
-	 */
-	public InputExistsCondition() {}
+    /**
+     * Constructor used by reflection.
+     */
+    public InputExistsCondition() {}
 
 	/**
 	 * This method checks if the file with pathname value exists.

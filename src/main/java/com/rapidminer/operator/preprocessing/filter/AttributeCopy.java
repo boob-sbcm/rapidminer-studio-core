@@ -47,19 +47,24 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class AttributeCopy extends AbstractDataProcessing {
 
-	/**
-	 * The parameter name for &quot;The name of the nominal attribute to which values should be
-	 * added.&quot;
-	 */
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The parameter name for &quot;The name of the nominal attribute to which values should be
+     * added.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	/**
-	 * The parameter name for &quot;The name of the new (copied) attribute. If this parameter is
-	 * missing, simply the same name with an appended number is used.&quot;
-	 */
-	public static final String PARAMETER_NEW_NAME = "new_name";
+    /**
+     * The parameter name for &quot;The name of the new (copied) attribute. If this parameter is
+     * missing, simply the same name with an appended number is used.&quot;
+     */
+    public static final String PARAMETER_NEW_NAME = "new_name";
 
-	public AttributeCopy(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute copy.
+     *
+     * @param description the description
+     */
+    public AttributeCopy(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(

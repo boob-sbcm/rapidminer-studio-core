@@ -36,7 +36,10 @@ import com.rapidminer.tools.Tools;
  */
 public class AnovaCalculator {
 
-	public static class AnovaSignificanceTestResult extends SignificanceTestResult {
+    /**
+     * The type Anova significance test result.
+     */
+    public static class AnovaSignificanceTestResult extends SignificanceTestResult {
 
 		private static final long serialVersionUID = 9007616378489018565L;
 
@@ -58,7 +61,16 @@ public class AnovaCalculator {
 
 		private double prob = 0.0d;
 
-		public AnovaSignificanceTestResult(double sumSquaresBetween, double sumSquaresResiduals, int df1, int df2,
+        /**
+         * Instantiates a new Anova significance test result.
+         *
+         * @param sumSquaresBetween   the sum squares between
+         * @param sumSquaresResiduals the sum squares residuals
+         * @param df1                 the df 1
+         * @param df2                 the df 2
+         * @param alpha               the alpha
+         */
+        public AnovaSignificanceTestResult(double sumSquaresBetween, double sumSquaresResiduals, int df1, int df2,
 				double alpha) {
 			this.sumSquaresBetween = sumSquaresBetween;
 			this.sumSquaresResiduals = sumSquaresResiduals;
@@ -88,35 +100,75 @@ public class AnovaCalculator {
 			return prob;
 		}
 
-		public double getSumSquaresBetween() {
+        /**
+         * Gets sum squares between.
+         *
+         * @return the sum squares between
+         */
+        public double getSumSquaresBetween() {
 			return this.sumSquaresBetween;
 		}
 
-		public double getSumSquaresResiduals() {
+        /**
+         * Gets sum squares residuals.
+         *
+         * @return the sum squares residuals
+         */
+        public double getSumSquaresResiduals() {
 			return this.sumSquaresResiduals;
 		}
 
-		public double getMeanSquaresBetween() {
+        /**
+         * Gets mean squares between.
+         *
+         * @return the mean squares between
+         */
+        public double getMeanSquaresBetween() {
 			return this.meanSquaresBetween;
 		}
 
-		public double getMeanSquaresResiduals() {
+        /**
+         * Gets mean squares residuals.
+         *
+         * @return the mean squares residuals
+         */
+        public double getMeanSquaresResiduals() {
 			return this.meanSquaresResiduals;
 		}
 
-		public int getDf1() {
+        /**
+         * Gets df 1.
+         *
+         * @return the df 1
+         */
+        public int getDf1() {
 			return this.df1;
 		}
 
-		public int getDf2() {
+        /**
+         * Gets df 2.
+         *
+         * @return the df 2
+         */
+        public int getDf2() {
 			return this.df2;
 		}
 
-		public double getAlpha() {
+        /**
+         * Gets alpha.
+         *
+         * @return the alpha
+         */
+        public double getAlpha() {
 			return this.alpha;
 		}
 
-		public double getFValue() {
+        /**
+         * Gets f value.
+         *
+         * @return the f value
+         */
+        public double getFValue() {
 			return this.fValue;
 		}
 	}
@@ -125,23 +177,49 @@ public class AnovaCalculator {
 
 	private List<TestGroup> groups = new LinkedList<TestGroup>();
 
-	public void setAlpha(double alpha) {
+    /**
+     * Sets alpha.
+     *
+     * @param alpha the alpha
+     */
+    public void setAlpha(double alpha) {
 		this.alpha = alpha;
 	}
 
-	public void addGroup(TestGroup group) {
+    /**
+     * Add group.
+     *
+     * @param group the group
+     */
+    public void addGroup(TestGroup group) {
 		groups.add(group);
 	}
 
-	public void addGroup(double numberOfValues, double mean, double variance) {
+    /**
+     * Add group.
+     *
+     * @param numberOfValues the number of values
+     * @param mean           the mean
+     * @param variance       the variance
+     */
+    public void addGroup(double numberOfValues, double mean, double variance) {
 		addGroup(new TestGroup(numberOfValues, mean, variance));
 	}
 
-	public void clearGroups() {
+    /**
+     * Clear groups.
+     */
+    public void clearGroups() {
 		groups.clear();
 	}
 
-	public SignificanceTestResult performSignificanceTest() throws SignificanceCalculationException {
+    /**
+     * Perform significance test significance test result.
+     *
+     * @return the significance test result
+     * @throws SignificanceCalculationException the significance calculation exception
+     */
+    public SignificanceTestResult performSignificanceTest() throws SignificanceCalculationException {
 		if (groups.size() < 2) {
 			throw new SignificanceCalculationException("Not enough groups added (current number of groups: " + groups.size()
 					+ ", must be at least 2");

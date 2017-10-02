@@ -20,7 +20,7 @@ package com.rapidminer.tools.math.som;
 
 /**
  * This class provides a distance measure, equivalent to the euclidian distance measure.
- * 
+ *
  * @author Sebastian Land
  */
 public class EuclideanDistance implements DistanceFunction {

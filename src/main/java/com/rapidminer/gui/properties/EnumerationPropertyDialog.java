@@ -34,8 +34,8 @@ import com.rapidminer.parameter.ParameterTypeEnumeration;
  * A Dialog displaying an {@link EnumerationPropertyTable}. This can be used to add new values to
  * the parameter enumeration or change current values. Removal of values is also supported.
  *
- * @see com.rapidminer.gui.properties.EnumerationPropertyTable
  * @author Ingo Mierswa, Simon Fischer, Tobias Malbrecht
+ * @see com.rapidminer.gui.properties.EnumerationPropertyTable
  */
 public class EnumerationPropertyDialog extends PropertyDialog {
 
@@ -48,7 +48,14 @@ public class EnumerationPropertyDialog extends PropertyDialog {
 
 	private final List<String> parameterList;
 
-	public EnumerationPropertyDialog(final ParameterTypeEnumeration type, List<String> parameterList, Operator operator) {
+    /**
+     * Instantiates a new Enumeration property dialog.
+     *
+     * @param type          the type
+     * @param parameterList the parameter list
+     * @param operator      the operator
+     */
+    public EnumerationPropertyDialog(final ParameterTypeEnumeration type, List<String> parameterList, Operator operator) {
 		super(type, "list");
 		this.parameterList = parameterList;
 		enumerationPropertyTable = new ListPropertyTable2(type, parameterList, operator);

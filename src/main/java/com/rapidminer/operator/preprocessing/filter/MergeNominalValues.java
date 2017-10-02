@@ -53,19 +53,28 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class MergeNominalValues extends AbstractDataProcessing {
 
-	/**
-	 * The parameter name for &quot;The name of the nominal attribute which values should be
-	 * merged.&quot;
-	 */
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The parameter name for &quot;The name of the nominal attribute which values should be
+     * merged.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	/** The parameter name for &quot;The first value which should be merged.&quot; */
-	public static final String PARAMETER_FIRST_VALUE = "first_value";
+    /**
+     * The parameter name for &quot;The first value which should be merged.&quot;
+     */
+    public static final String PARAMETER_FIRST_VALUE = "first_value";
 
-	/** The parameter name for &quot;The second value which should be merged.&quot; */
-	public static final String PARAMETER_SECOND_VALUE = "second_value";
+    /**
+     * The parameter name for &quot;The second value which should be merged.&quot;
+     */
+    public static final String PARAMETER_SECOND_VALUE = "second_value";
 
-	public MergeNominalValues(OperatorDescription description) {
+    /**
+     * Instantiates a new Merge nominal values.
+     *
+     * @param description the description
+     */
+    public MergeNominalValues(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(

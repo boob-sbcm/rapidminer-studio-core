@@ -22,7 +22,6 @@ import com.rapidminer.operator.nio.model.ExcelResultSetConfiguration;
 
 
 /**
- *
  * Simple POJO class to store the sheet and cell selection within the
  * {@link ExcelSheetSelectionPanel}.
  *
@@ -36,56 +35,108 @@ class CellRangeSelection {
 	private int columnIndexEnd;
 	private int rowIndexEnd;
 
-	CellRangeSelection(ExcelResultSetConfiguration config) {
+    /**
+     * Instantiates a new Cell range selection.
+     *
+     * @param config the config
+     */
+    CellRangeSelection(ExcelResultSetConfiguration config) {
 		this(config.getColumnOffset(), config.getRowOffset(), config.getColumnLast(), config.getRowLast());
 	}
 
-	CellRangeSelection(int columnIndexStart, int rowIndexStart, int columnIndexEnd, int rowIndexEnd) {
+    /**
+     * Instantiates a new Cell range selection.
+     *
+     * @param columnIndexStart the column index start
+     * @param rowIndexStart    the row index start
+     * @param columnIndexEnd   the column index end
+     * @param rowIndexEnd      the row index end
+     */
+    CellRangeSelection(int columnIndexStart, int rowIndexStart, int columnIndexEnd, int rowIndexEnd) {
 		this.columnIndexStart = columnIndexStart;
 		this.rowIndexStart = rowIndexStart;
 		this.columnIndexEnd = columnIndexEnd;
 		this.rowIndexEnd = rowIndexEnd;
 	}
 
-	/**
-	 * Copy constructor.
-	 *
-	 * @param other
-	 *            the other instance to copy
-	 */
-	CellRangeSelection(CellRangeSelection other) {
+    /**
+     * Copy constructor.
+     *
+     * @param other the other instance to copy
+     */
+    CellRangeSelection(CellRangeSelection other) {
 		this(other.columnIndexStart, other.rowIndexStart, other.columnIndexEnd, other.rowIndexEnd);
 	}
 
-	public int getColumnIndexEnd() {
+    /**
+     * Gets column index end.
+     *
+     * @return the column index end
+     */
+    public int getColumnIndexEnd() {
 		return columnIndexEnd;
 	}
 
-	public int getColumnIndexStart() {
+    /**
+     * Gets column index start.
+     *
+     * @return the column index start
+     */
+    public int getColumnIndexStart() {
 		return columnIndexStart;
 	}
 
-	public int getRowIndexEnd() {
+    /**
+     * Gets row index end.
+     *
+     * @return the row index end
+     */
+    public int getRowIndexEnd() {
 		return rowIndexEnd;
 	}
 
-	public int getRowIndexStart() {
+    /**
+     * Gets row index start.
+     *
+     * @return the row index start
+     */
+    public int getRowIndexStart() {
 		return rowIndexStart;
 	}
 
-	public void setColumnIndexStart(int columnIndexStart) {
+    /**
+     * Sets column index start.
+     *
+     * @param columnIndexStart the column index start
+     */
+    public void setColumnIndexStart(int columnIndexStart) {
 		this.columnIndexStart = columnIndexStart;
 	}
 
-	public void setRowIndexStart(int rowIndexStart) {
+    /**
+     * Sets row index start.
+     *
+     * @param rowIndexStart the row index start
+     */
+    public void setRowIndexStart(int rowIndexStart) {
 		this.rowIndexStart = rowIndexStart;
 	}
 
-	public void setColumnIndexEnd(int columnIndexEnd) {
+    /**
+     * Sets column index end.
+     *
+     * @param columnIndexEnd the column index end
+     */
+    public void setColumnIndexEnd(int columnIndexEnd) {
 		this.columnIndexEnd = columnIndexEnd;
 	}
 
-	public void setRowIndexEnd(int rowIndexEnd) {
+    /**
+     * Sets row index end.
+     *
+     * @param rowIndexEnd the row index end
+     */
+    public void setRowIndexEnd(int rowIndexEnd) {
 		this.rowIndexEnd = rowIndexEnd;
 	}
 

@@ -52,48 +52,89 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  */
 public abstract class AbstractParallelTreeLearner extends AbstractLearner {
 
-	/**
-	 * The parameter name for &quot;Specifies the used criterion for selecting attributes and
-	 * numerical splits.&quot;
-	 */
-	public static final String PARAMETER_CRITERION = "criterion";
+    /**
+     * The parameter name for &quot;Specifies the used criterion for selecting attributes and
+     * numerical splits.&quot;
+     */
+    public static final String PARAMETER_CRITERION = "criterion";
 
-	/** The parameter name for &quot;The minimal size of all leaves.&quot; */
-	public static final String PARAMETER_MINIMAL_SIZE_FOR_SPLIT = "minimal_size_for_split";
+    /**
+     * The parameter name for &quot;The minimal size of all leaves.&quot;
+     */
+    public static final String PARAMETER_MINIMAL_SIZE_FOR_SPLIT = "minimal_size_for_split";
 
-	/** The parameter name for &quot;The minimal size of all leaves.&quot; */
-	public static final String PARAMETER_MINIMAL_LEAF_SIZE = "minimal_leaf_size";
+    /**
+     * The parameter name for &quot;The minimal size of all leaves.&quot;
+     */
+    public static final String PARAMETER_MINIMAL_LEAF_SIZE = "minimal_leaf_size";
 
-	/** The parameter name for the minimal gain. */
-	public static final String PARAMETER_MINIMAL_GAIN = "minimal_gain";
+    /**
+     * The parameter name for the minimal gain.
+     */
+    public static final String PARAMETER_MINIMAL_GAIN = "minimal_gain";
 
-	/** The parameter name for the maximum tree depth. */
-	public static final String PARAMETER_MAXIMAL_DEPTH = "maximal_depth";
+    /**
+     * The parameter name for the maximum tree depth.
+     */
+    public static final String PARAMETER_MAXIMAL_DEPTH = "maximal_depth";
 
-	/** The parameter name for &quot;The confidence level used for pruning.&quot; */
-	public static final String PARAMETER_CONFIDENCE = "confidence";
+    /**
+     * The parameter name for &quot;The confidence level used for pruning.&quot;
+     */
+    public static final String PARAMETER_CONFIDENCE = "confidence";
 
-	/** The parameter name for &quot;Enables the pruning and delivers a pruned tree.&quot; */
-	public static final String PARAMETER_PRUNING = "apply_pruning";
+    /**
+     * The parameter name for &quot;Enables the pruning and delivers a pruned tree.&quot;
+     */
+    public static final String PARAMETER_PRUNING = "apply_pruning";
 
-	public static final String PARAMETER_PRE_PRUNING = "apply_prepruning";
+    /**
+     * The constant PARAMETER_PRE_PRUNING.
+     */
+    public static final String PARAMETER_PRE_PRUNING = "apply_prepruning";
 
-	public static final String PARAMETER_NUMBER_OF_PREPRUNING_ALTERNATIVES = "number_of_prepruning_alternatives";
+    /**
+     * The constant PARAMETER_NUMBER_OF_PREPRUNING_ALTERNATIVES.
+     */
+    public static final String PARAMETER_NUMBER_OF_PREPRUNING_ALTERNATIVES = "number_of_prepruning_alternatives";
 
-	public static final String[] CRITERIA_NAMES = { "gain_ratio", "information_gain", "gini_index", "accuracy" };
+    /**
+     * The constant CRITERIA_NAMES.
+     */
+    public static final String[] CRITERIA_NAMES = { "gain_ratio", "information_gain", "gini_index", "accuracy" };
 
-	public static final Class<?>[] CRITERIA_CLASSES = { GainRatioColumnCriterion.class, InfoGainColumnCriterion.class,
+    /**
+     * The constant CRITERIA_CLASSES.
+     */
+    public static final Class<?>[] CRITERIA_CLASSES = { GainRatioColumnCriterion.class, InfoGainColumnCriterion.class,
 			GiniIndexColumnCriterion.class, AccuracyColumnCriterion.class };
 
-	public static final int CRITERION_GAIN_RATIO = 0;
+    /**
+     * The constant CRITERION_GAIN_RATIO.
+     */
+    public static final int CRITERION_GAIN_RATIO = 0;
 
-	public static final int CRITERION_INFO_GAIN = 1;
+    /**
+     * The constant CRITERION_INFO_GAIN.
+     */
+    public static final int CRITERION_INFO_GAIN = 1;
 
-	public static final int CRITERION_GINI_INDEX = 2;
+    /**
+     * The constant CRITERION_GINI_INDEX.
+     */
+    public static final int CRITERION_GINI_INDEX = 2;
 
-	public static final int CRITERION_ACCURACY = 3;
+    /**
+     * The constant CRITERION_ACCURACY.
+     */
+    public static final int CRITERION_ACCURACY = 3;
 
-	public AbstractParallelTreeLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract parallel tree learner.
+     *
+     * @param description the description
+     */
+    public AbstractParallelTreeLearner(OperatorDescription description) {
 		super(description);
 	}
 
@@ -102,28 +143,35 @@ public abstract class AbstractParallelTreeLearner extends AbstractLearner {
 		return TreeModel.class;
 	}
 
-	/** Returns all termination criteria. */
-	public abstract List<ColumnTerminator> getTerminationCriteria(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Returns all termination criteria.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     * @return the termination criteria
+     * @throws OperatorException the operator exception
+     */
+    public abstract List<ColumnTerminator> getTerminationCriteria(ExampleSet exampleSet) throws OperatorException;
 
-	/**
-	 * Returns the pruner for this tree learner. If this method returns null, pruning will be
-	 * disabled.
-	 */
-	public abstract Pruner getPruner() throws OperatorException;
+    /**
+     * Returns the pruner for this tree learner. If this method returns null, pruning will be
+     * disabled.
+     *
+     * @return the pruner
+     * @throws OperatorException the operator exception
+     */
+    public abstract Pruner getPruner() throws OperatorException;
 
-	/**
-	 * The split preprocessing is applied before each new split. If this method returns
-	 * <code>null</code> as in the default implementation the preprocessing step is skipped.
-	 * Subclasses might want to override this in order to perform some data preprocessing like
-	 * random subset selections. The default implementation of this method always returns
-	 * <code>null</code> independent of the seed.
-	 *
-	 * @param seed
-	 *            the seed for the {@link RandomGenerator} used for random subset selection. Not
-	 *            used in the default implementation.
-	 * @return
-	 */
-	public AttributePreprocessing getSplitPreprocessing(int seed) {
+    /**
+     * The split preprocessing is applied before each new split. If this method returns
+     * <code>null</code> as in the default implementation the preprocessing step is skipped.
+     * Subclasses might want to override this in order to perform some data preprocessing like
+     * random subset selections. The default implementation of this method always returns
+     * <code>null</code> independent of the seed.
+     *
+     * @param seed the seed for the {@link RandomGenerator} used for random subset selection. Not            used in the default implementation.
+     * @return split preprocessing
+     */
+    public AttributePreprocessing getSplitPreprocessing(int seed) {
 		return null;
 	}
 
@@ -147,9 +195,22 @@ public abstract class AbstractParallelTreeLearner extends AbstractLearner {
 		return new TreeModel(exampleSet, root);
 	}
 
-	protected abstract AbstractParallelTreeBuilder getTreeBuilder(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Gets tree builder.
+     *
+     * @param exampleSet the example set
+     * @return the tree builder
+     * @throws OperatorException the operator exception
+     */
+    protected abstract AbstractParallelTreeBuilder getTreeBuilder(ExampleSet exampleSet) throws OperatorException;
 
-	protected ColumnCriterion createCriterion() throws OperatorException {
+    /**
+     * Create criterion column criterion.
+     *
+     * @return the column criterion
+     * @throws OperatorException the operator exception
+     */
+    protected ColumnCriterion createCriterion() throws OperatorException {
 		if (getParameterAsBoolean(PARAMETER_PRE_PRUNING)) {
 			return AbstractColumnCriterion.createColumnCriterion(this, getParameterAsDouble(PARAMETER_MINIMAL_GAIN));
 		} else {

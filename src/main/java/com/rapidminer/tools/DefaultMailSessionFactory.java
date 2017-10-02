@@ -35,7 +35,6 @@ import com.rapidminer.tools.cipher.CipherTools;
  * Makes a session based on RapidMiner properties.
  *
  * @author Simon Fischer, Jonas Wilms-Pfau
- *
  */
 public class DefaultMailSessionFactory implements MailSessionFactory {
 

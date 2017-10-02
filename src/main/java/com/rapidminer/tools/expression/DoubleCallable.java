@@ -26,12 +26,11 @@ package com.rapidminer.tools.expression;
  */
 public interface DoubleCallable {
 
-	/**
-	 * Computes a result, or throws an exception if unable to do so.
-	 *
-	 * @return computed result
-	 * @throws Exception
-	 *             if unable to compute a result
-	 */
-	public double call() throws Exception;
+    /**
+     * Computes a result, or throws an exception if unable to do so.
+     *
+     * @return computed result
+     * @throws Exception if unable to compute a result
+     */
+    public double call() throws Exception;
 }

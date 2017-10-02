@@ -28,11 +28,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract2DoubleInputFun
  * A {@link Function} to compute the bitwise or of two integers
  *
  * @author David Arnu
- *
  */
 public class BitOr extends Abstract2DoubleInputFunction {
 
-	public BitOr() {
+    /**
+     * Instantiates a new Bit or.
+     */
+    public BitOr() {
 		super("bitwise.bit_or", 2, Ontology.INTEGER);
 	}
 

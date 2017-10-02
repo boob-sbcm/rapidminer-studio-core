@@ -48,11 +48,15 @@ import com.rapidminer.tools.I18N;
  */
 public class SelectionDialog extends ButtonDialog {
 
-	/** Dialog mode: Shows only OK button. */
-	public static final int OK_OPTION = JOptionPane.OK_OPTION;
+    /**
+     * Dialog mode: Shows only OK button.
+     */
+    public static final int OK_OPTION = JOptionPane.OK_OPTION;
 
-	/** Dialog mode: Shows OK and Cancel button. */
-	public static final int OK_CANCEL_OPTION = JOptionPane.OK_CANCEL_OPTION;
+    /**
+     * Dialog mode: Shows OK and Cancel button.
+     */
+    public static final int OK_CANCEL_OPTION = JOptionPane.OK_CANCEL_OPTION;
 
 	/** Return value from class method if CANCEL is chosen. */
 	private static final int CANCEL_OPTION = JOptionPane.CANCEL_OPTION;
@@ -74,102 +78,94 @@ public class SelectionDialog extends ButtonDialog {
 	private JPanel selectionPanel = new JPanel();
 	private JPanel checkboxPanel = new JPanel();
 
-	/**
-	 * Constructs new dialog. Only sets object variables.
-	 *
-	 * @param key
-	 *            The key used for i18n
-	 * @param mode
-	 *            Defines available buttons
-	 * @param arguments
-	 *            The arguments used for i18n
-	 */
-	public SelectionDialog(String key, int mode, Object[] arguments) {
+    /**
+     * Constructs new dialog. Only sets object variables.
+     *
+     * @param key       The key used for i18n
+     * @param mode      Defines available buttons
+     * @param arguments The arguments used for i18n
+     */
+    public SelectionDialog(String key, int mode, Object[] arguments) {
 		super(ApplicationFrame.getApplicationFrame(), I18N_PREFIX_SELECTION + key, ModalityType.APPLICATION_MODAL, arguments);
 		this.mode = mode;
 	}
 
-	/**
-	 * Constructs new dialog. Only sets object variables.
-	 *
-	 * @param key
-	 *            The key used for i18n
-	 * @param mode
-	 *            Defines available buttons
-	 * @param arguments
-	 *            The arguments used for i18n
-	 * @param optionsToSelect
-	 *            A list of i18n keys to display as radio buttons
-	 * @param optionsToCheck
-	 *            A list of i18n keys to display as check boxes
-	 */
-	public SelectionDialog(String key, int mode, Object[] arguments, List<String> optionsToSelect,
+    /**
+     * Constructs new dialog. Only sets object variables.
+     *
+     * @param key             The key used for i18n
+     * @param mode            Defines available buttons
+     * @param arguments       The arguments used for i18n
+     * @param optionsToSelect A list of i18n keys to display as radio buttons
+     * @param optionsToCheck  A list of i18n keys to display as check boxes
+     */
+    public SelectionDialog(String key, int mode, Object[] arguments, List<String> optionsToSelect,
 			List<String> optionsToCheck) {
 		this(key, mode, arguments);
 		this.optionsToSelect = optionsToSelect;
 		this.optionsToCheck = optionsToCheck;
 	}
 
-	/**
-	 * Constructs new dialog. Only sets object variables.
-	 *
-	 * @param owner
-	 *            {@code Dialog} from which the dialog is displayed or {@code null} if this dialog
-	 *            has no owner
-	 * @param key
-	 *            The key used for i18n
-	 * @param mode
-	 *            Defines available buttons
-	 * @param arguments
-	 *            The arguments used for i18n
-	 */
-	public SelectionDialog(Dialog owner, String key, int mode, Object[] arguments) {
+    /**
+     * Constructs new dialog. Only sets object variables.
+     *
+     * @param owner     {@code Dialog} from which the dialog is displayed or {@code null} if this dialog            has no owner
+     * @param key       The key used for i18n
+     * @param mode      Defines available buttons
+     * @param arguments The arguments used for i18n
+     */
+    public SelectionDialog(Dialog owner, String key, int mode, Object[] arguments) {
 		super(owner, I18N_PREFIX_SELECTION + key, ModalityType.APPLICATION_MODAL, arguments);
 		this.mode = mode;
 	}
 
-	/**
-	 * Constructs new dialog. Only sets object variables.
-	 *
-	 * @param owner
-	 *            {@code Dialog} from which the dialog is displayed or {@code null} if this dialog
-	 *            has no owner
-	 * @param key
-	 *            The key used for i18n
-	 * @param mode
-	 *            Defines available buttons
-	 * @param arguments
-	 *            The arguments used for i18n
-	 * @param optionsToSelect
-	 *            A list of i18n keys to display as radio buttons
-	 * @param optionsToCheck
-	 *            A list of i18n keys to display as check boxes
-	 */
-	public SelectionDialog(Dialog owner, String key, int mode, Object[] arguments, List<String> optionsToSelect,
+    /**
+     * Constructs new dialog. Only sets object variables.
+     *
+     * @param owner           {@code Dialog} from which the dialog is displayed or {@code null} if this dialog            has no owner
+     * @param key             The key used for i18n
+     * @param mode            Defines available buttons
+     * @param arguments       The arguments used for i18n
+     * @param optionsToSelect A list of i18n keys to display as radio buttons
+     * @param optionsToCheck  A list of i18n keys to display as check boxes
+     */
+    public SelectionDialog(Dialog owner, String key, int mode, Object[] arguments, List<String> optionsToSelect,
 			List<String> optionsToCheck) {
 		this(owner, key, mode, arguments);
 		this.optionsToSelect = optionsToSelect;
 		this.optionsToCheck = optionsToCheck;
 	}
 
-	/** Adds an option to select. */
-	public void addOptionToSelect(String option) {
+    /**
+     * Adds an option to select.  @param option the option
+     *
+     * @param option the option
+     */
+    public void addOptionToSelect(String option) {
 		if (optionsToSelect == null) {
 			optionsToSelect = new LinkedList<>();
 		}
 		optionsToSelect.add(option);
 	}
 
-	/** Adds an option to check. */
-	public void addOptionToCheck(String option) {
+    /**
+     * Adds an option to check.  @param option the option
+     *
+     * @param option the option
+     */
+    public void addOptionToCheck(String option) {
 		if (optionsToCheck == null) {
 			optionsToCheck = new LinkedList<>();
 		}
 		optionsToCheck.add(option);
 	}
 
-	/** Constructs the JComponent and shows the dialog. */
-	public SelectionDialog showDialog() {
+    /**
+     * Constructs the JComponent and shows the dialog.  @return the selection dialog
+     *
+     * @return the selection dialog
+     */
+    public SelectionDialog showDialog() {
 
 		Collection<AbstractButton> buttons = new LinkedList<>();
 		switch (mode) {
@@ -241,12 +237,12 @@ public class SelectionDialog extends ButtonDialog {
 		return leftMarginPanel;
 	}
 
-	/**
-	 * Gets code of the pressed button.
-	 *
-	 * @return Option code of pressed button
-	 */
-	public int getResult() {
+    /**
+     * Gets code of the pressed button.
+     *
+     * @return Option code of pressed button
+     */
+    public int getResult() {
 		if (wasConfirmed()) {
 			return OK_OPTION;
 		} else {
@@ -254,14 +250,13 @@ public class SelectionDialog extends ButtonDialog {
 		}
 	}
 
-	/**
-	 * Checks, if the specified radio button is selected.
-	 *
-	 * @param index
-	 *            Index of the radio button to examine
-	 * @return true, if the radio button is selected
-	 */
-	public boolean isOptionSelected(int index) {
+    /**
+     * Checks, if the specified radio button is selected.
+     *
+     * @param index Index of the radio button to examine
+     * @return true, if the radio button is selected
+     */
+    public boolean isOptionSelected(int index) {
 		if (index >= selectionPanel.getComponents().length) {
 			return false;
 		}
@@ -273,15 +268,14 @@ public class SelectionDialog extends ButtonDialog {
 		}
 	}
 
-	/**
-	 * Checks, if the specified radio button containing the i18n String of the given key is
-	 * selected.
-	 *
-	 * @param key
-	 *            i18n key
-	 * @return true, if a matching radio button is selected
-	 */
-	public boolean isOptionSelected(String key) {
+    /**
+     * Checks, if the specified radio button containing the i18n String of the given key is
+     * selected.
+     *
+     * @param key i18n key
+     * @return true, if a matching radio button is selected
+     */
+    public boolean isOptionSelected(String key) {
 		for (int i = 0; i < selectionPanel.getComponents().length; i++) {
 			JRadioButton radioButton = (JRadioButton) selectionPanel.getComponent(i);
 			if (radioButton.getText().equals(getI18n(key))) {
@@ -295,14 +289,13 @@ public class SelectionDialog extends ButtonDialog {
 		return false;
 	}
 
-	/**
-	 * Checks, if the specified check box is selected.
-	 *
-	 * @param index
-	 *            Index of the check box to examine
-	 * @return true, if the check box is selected
-	 */
-	public boolean isOptionChecked(int index) {
+    /**
+     * Checks, if the specified check box is selected.
+     *
+     * @param index Index of the check box to examine
+     * @return true, if the check box is selected
+     */
+    public boolean isOptionChecked(int index) {
 		if (index >= checkboxPanel.getComponents().length) {
 			return false;
 		}
@@ -314,14 +307,13 @@ public class SelectionDialog extends ButtonDialog {
 		}
 	}
 
-	/**
-	 * Checks, if the specified check box containing the i18n String of the given key is selected.
-	 *
-	 * @param key
-	 *            i18n key
-	 * @return true, if a matching check box is selected
-	 */
-	public boolean isOptionChecked(String key) {
+    /**
+     * Checks, if the specified check box containing the i18n String of the given key is selected.
+     *
+     * @param key i18n key
+     * @return true, if a matching check box is selected
+     */
+    public boolean isOptionChecked(String key) {
 		for (int i = 0; i < checkboxPanel.getComponents().length; i++) {
 			JCheckBox checkbox = (JCheckBox) checkboxPanel.getComponent(i);
 			if (checkbox.getText().equals(getI18n(key))) {

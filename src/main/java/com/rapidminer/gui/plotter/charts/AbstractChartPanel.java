@@ -96,43 +96,66 @@ import com.rapidminer.tools.container.Pair;
 
 /**
  * A Swing GUI component for displaying a {@link JFreeChart} object.
- * <P>
+ * <p>
  * The panel registers with the chart to receive notification of changes to any component of the
  * chart. The chart is redrawn automatically whenever this notification is received.
- * 
+ * <p>
  * This version of the ChartPanel provides the possibility to register a JXLayer, which is then
  * asked to resolve coordinates for every direct on screen painting.
- * 
+ *
  * @author Sebastian Land
  */
 public class AbstractChartPanel extends ChartPanel implements PrintableComponent {
 
-	public static class Selection {
+    /**
+     * The type Selection.
+     */
+    public static class Selection {
 
 		private Collection<Pair<String, Range>> selectedRegion;
 
-		public Selection() {
+        /**
+         * Instantiates a new Selection.
+         */
+        public Selection() {
 			this.selectedRegion = new LinkedList<>();
 		}
 
-		public void addDelimiter(String dimensionName, Range range) {
+        /**
+         * Add delimiter.
+         *
+         * @param dimensionName the dimension name
+         * @param range         the range
+         */
+        public void addDelimiter(String dimensionName, Range range) {
 			selectedRegion.add(new Pair<>(dimensionName, range));
 		}
 
-		public Collection<Pair<String, Range>> getDelimiters() {
+        /**
+         * Gets delimiters.
+         *
+         * @return the delimiters
+         */
+        public Collection<Pair<String, Range>> getDelimiters() {
 			return selectedRegion;
 		}
 	}
 
-	public static interface SelectionListener {
+    /**
+     * The interface Selection listener.
+     */
+    public static interface SelectionListener {
 
-		/**
-		 * This method is invoked on all listeners as a selection is made. If the selection was made
-		 * by a mouse interaction like drawing a selection rectangle, the selectionEvent will be the
-		 * causing mouse event. Otherwise it is null for example if the selection is performed by
-		 * gui actions.
-		 */
-		public void selected(Selection selection, MouseEvent selectionEvent);
+        /**
+         * This method is invoked on all listeners as a selection is made. If the selection was made
+         * by a mouse interaction like drawing a selection rectangle, the selectionEvent will be the
+         * causing mouse event. Otherwise it is null for example if the selection is performed by
+         * gui actions.
+         *
+         * @param selection      the selection
+         * @param selectionEvent the selection event
+         */
+        public void selected(Selection selection, MouseEvent selectionEvent);
 	}
 
 	/** For serialization. */
@@ -338,8 +361,10 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 	 */
 	private transient Paint selectionFillPaint;
 
-	/** The resourceBundle for the localization. */
-	protected static ResourceBundle localizationResources = ResourceBundleWrapper
+    /**
+     * The resourceBundle for the localization.
+     */
+    protected static ResourceBundle localizationResources = ResourceBundleWrapper
 			.getBundle("org.jfree.chart.LocalizationBundle");
 
 	/**
@@ -369,13 +394,12 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 	 */
 	private Collection<SelectionListener> selectionListeners = new LinkedList<>();
 
-	/**
-	 * Constructs a panel that displays the specified chart.
-	 * 
-	 * @param chart
-	 *            the chart.
-	 */
-	public AbstractChartPanel(JFreeChart chart) {
+    /**
+     * Constructs a panel that displays the specified chart.
+     *
+     * @param chart the chart.
+     */
+    public AbstractChartPanel(JFreeChart chart) {
 
 		this(chart, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_MINIMUM_DRAW_WIDTH, DEFAULT_MINIMUM_DRAW_HEIGHT,
 				DEFAULT_MAXIMUM_DRAW_WIDTH, DEFAULT_MAXIMUM_DRAW_HEIGHT, DEFAULT_BUFFER_USED, true, // properties
@@ -387,22 +411,19 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 
 	}
 
-	/**
-	 * Constructs a panel containing a chart. The <code>useBuffer</code> flag controls whether or
-	 * not an offscreen <code>BufferedImage</code> is maintained for the chart. If the buffer is
-	 * used, more memory is consumed, but panel repaints will be a lot quicker in cases where the
-	 * chart itself hasn't changed (for example, when another frame is moved to reveal the panel).
-	 * WARNING: If you set the <code>useBuffer</code> flag to false, note that the mouse zooming
-	 * rectangle will (in that case) be drawn using XOR, and there is a SEVERE performance problem
-	 * with that on JRE6 on Windows.
-	 * 
-	 * @param chart
-	 *            the chart.
-	 * @param useBuffer
-	 *            a flag controlling whether or not an off-screen buffer is used (read the warning
-	 *            above before setting this to <code>false</code>).
-	 */
-	public AbstractChartPanel(JFreeChart chart, boolean useBuffer) {
+    /**
+     * Constructs a panel containing a chart. The <code>useBuffer</code> flag controls whether or
+     * not an offscreen <code>BufferedImage</code> is maintained for the chart. If the buffer is
+     * used, more memory is consumed, but panel repaints will be a lot quicker in cases where the
+     * chart itself hasn't changed (for example, when another frame is moved to reveal the panel).
+     * WARNING: If you set the <code>useBuffer</code> flag to false, note that the mouse zooming
+     * rectangle will (in that case) be drawn using XOR, and there is a SEVERE performance problem
+     * with that on JRE6 on Windows.
+     *
+     * @param chart     the chart.
+     * @param useBuffer a flag controlling whether or not an off-screen buffer is used (read the warning            above before setting this to <code>false</code>).
+     */
+    public AbstractChartPanel(JFreeChart chart, boolean useBuffer) {
 
 		this(chart, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_MINIMUM_DRAW_WIDTH, DEFAULT_MINIMUM_DRAW_HEIGHT,
 				DEFAULT_MAXIMUM_DRAW_WIDTH, DEFAULT_MAXIMUM_DRAW_HEIGHT, useBuffer, true, // properties
@@ -414,30 +435,28 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 
 	}
 
-	public AbstractChartPanel(JFreeChart chart, int width, int height) {
+    /**
+     * Instantiates a new Abstract chart panel.
+     *
+     * @param chart  the chart
+     * @param width  the width
+     * @param height the height
+     */
+    public AbstractChartPanel(JFreeChart chart, int width, int height) {
 		this(chart, width, height, 100, 100, Integer.MAX_VALUE, Integer.MAX_VALUE, false, false, false, false, true, true);
 	}
 
-	/**
-	 * Constructs a JFreeChart panel.
-	 * 
-	 * @param chart
-	 *            the chart.
-	 * @param properties
-	 *            a flag indicating whether or not the chart property editor should be available via
-	 *            the popup menu.
-	 * @param save
-	 *            a flag indicating whether or not save options should be available via the popup
-	 *            menu.
-	 * @param print
-	 *            a flag indicating whether or not the print option should be available via the
-	 *            popup menu.
-	 * @param zoom
-	 *            a flag indicating whether or not zoom options should be added to the popup menu.
-	 * @param tooltips
-	 *            a flag indicating whether or not tooltips should be enabled for the chart.
-	 */
-	public AbstractChartPanel(JFreeChart chart, boolean properties, boolean save, boolean print, boolean zoom,
+    /**
+     * Constructs a JFreeChart panel.
+     *
+     * @param chart      the chart.
+     * @param properties a flag indicating whether or not the chart property editor should be available via            the popup menu.
+     * @param save       a flag indicating whether or not save options should be available via the popup            menu.
+     * @param print      a flag indicating whether or not the print option should be available via the            popup menu.
+     * @param zoom       a flag indicating whether or not zoom options should be added to the popup menu.
+     * @param tooltips   a flag indicating whether or not tooltips should be enabled for the chart.
+     */
+    public AbstractChartPanel(JFreeChart chart, boolean properties, boolean save, boolean print, boolean zoom,
 			boolean tooltips) {
 
 		this(chart, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_MINIMUM_DRAW_WIDTH, DEFAULT_MINIMUM_DRAW_HEIGHT,
@@ -446,41 +465,24 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 
 	}
 
-	/**
-	 * Constructs a JFreeChart panel.
-	 * 
-	 * @param chart
-	 *            the chart.
-	 * @param width
-	 *            the preferred width of the panel.
-	 * @param height
-	 *            the preferred height of the panel.
-	 * @param minimumDrawWidth
-	 *            the minimum drawing width.
-	 * @param minimumDrawHeight
-	 *            the minimum drawing height.
-	 * @param maximumDrawWidth
-	 *            the maximum drawing width.
-	 * @param maximumDrawHeight
-	 *            the maximum drawing height.
-	 * @param useBuffer
-	 *            a flag that indicates whether to use the off-screen buffer to improve performance
-	 *            (at the expense of memory).
-	 * @param properties
-	 *            a flag indicating whether or not the chart property editor should be available via
-	 *            the popup menu.
-	 * @param save
-	 *            a flag indicating whether or not save options should be available via the popup
-	 *            menu.
-	 * @param print
-	 *            a flag indicating whether or not the print option should be available via the
-	 *            popup menu.
-	 * @param zoom
-	 *            a flag indicating whether or not zoom options should be added to the popup menu.
-	 * @param tooltips
-	 *            a flag indicating whether or not tooltips should be enabled for the chart.
-	 */
-	public AbstractChartPanel(JFreeChart chart, int width, int height, int minimumDrawWidth, int minimumDrawHeight,
+    /**
+     * Constructs a JFreeChart panel.
+     *
+     * @param chart             the chart.
+     * @param width             the preferred width of the panel.
+     * @param height            the preferred height of the panel.
+     * @param minimumDrawWidth  the minimum drawing width.
+     * @param minimumDrawHeight the minimum drawing height.
+     * @param maximumDrawWidth  the maximum drawing width.
+     * @param maximumDrawHeight the maximum drawing height.
+     * @param useBuffer         a flag that indicates whether to use the off-screen buffer to improve performance            (at the expense of memory).
+     * @param properties        a flag indicating whether or not the chart property editor should be available via            the popup menu.
+     * @param save              a flag indicating whether or not save options should be available via the popup            menu.
+     * @param print             a flag indicating whether or not the print option should be available via the            popup menu.
+     * @param zoom              a flag indicating whether or not zoom options should be added to the popup menu.
+     * @param tooltips          a flag indicating whether or not tooltips should be enabled for the chart.
+     */
+    public AbstractChartPanel(JFreeChart chart, int width, int height, int minimumDrawWidth, int minimumDrawHeight,
 			int maximumDrawWidth, int maximumDrawHeight, boolean useBuffer, boolean properties, boolean save, boolean print,
 			boolean zoom, boolean tooltips) {
 
@@ -488,46 +490,26 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 				properties, true, save, print, zoom, tooltips);
 	}
 
-	/**
-	 * Constructs a JFreeChart panel.
-	 * 
-	 * @param chart
-	 *            the chart.
-	 * @param width
-	 *            the preferred width of the panel.
-	 * @param height
-	 *            the preferred height of the panel.
-	 * @param minimumDrawWidth
-	 *            the minimum drawing width.
-	 * @param minimumDrawHeight
-	 *            the minimum drawing height.
-	 * @param maximumDrawWidth
-	 *            the maximum drawing width.
-	 * @param maximumDrawHeight
-	 *            the maximum drawing height.
-	 * @param useBuffer
-	 *            a flag that indicates whether to use the off-screen buffer to improve performance
-	 *            (at the expense of memory).
-	 * @param properties
-	 *            a flag indicating whether or not the chart property editor should be available via
-	 *            the popup menu.
-	 * @param copy
-	 *            a flag indicating whether or not a copy option should be available via the popup
-	 *            menu.
-	 * @param save
-	 *            a flag indicating whether or not save options should be available via the popup
-	 *            menu.
-	 * @param print
-	 *            a flag indicating whether or not the print option should be available via the
-	 *            popup menu.
-	 * @param zoom
-	 *            a flag indicating whether or not zoom options should be added to the popup menu.
-	 * @param tooltips
-	 *            a flag indicating whether or not tooltips should be enabled for the chart.
-	 * 
-	 * @since 1.0.13
-	 */
-	public AbstractChartPanel(JFreeChart chart, int width, int height, int minimumDrawWidth, int minimumDrawHeight,
+    /**
+     * Constructs a JFreeChart panel.
+     *
+     * @param chart             the chart.
+     * @param width             the preferred width of the panel.
+     * @param height            the preferred height of the panel.
+     * @param minimumDrawWidth  the minimum drawing width.
+     * @param minimumDrawHeight the minimum drawing height.
+     * @param maximumDrawWidth  the maximum drawing width.
+     * @param maximumDrawHeight the maximum drawing height.
+     * @param useBuffer         a flag that indicates whether to use the off-screen buffer to improve performance            (at the expense of memory).
+     * @param properties        a flag indicating whether or not the chart property editor should be available via            the popup menu.
+     * @param copy              a flag indicating whether or not a copy option should be available via the popup            menu.
+     * @param save              a flag indicating whether or not save options should be available via the popup            menu.
+     * @param print             a flag indicating whether or not the print option should be available via the            popup menu.
+     * @param zoom              a flag indicating whether or not zoom options should be added to the popup menu.
+     * @param tooltips          a flag indicating whether or not tooltips should be enabled for the chart.
+     * @since 1.0.13
+     */
+    public AbstractChartPanel(JFreeChart chart, int width, int height, int minimumDrawWidth, int minimumDrawHeight,
 			int maximumDrawWidth, int maximumDrawHeight, boolean useBuffer, boolean properties, boolean copy, boolean save,
 			boolean print, boolean zoom, boolean tooltips) {
 		super(chart, width, height, minimumDrawWidth, minimumDrawHeight, maximumDrawWidth, maximumDrawHeight, false,
@@ -2050,16 +2032,14 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 
 	}
 
-	/**
-	 * Zooms in on an anchor point (specified in screen coordinate space).
-	 * 
-	 * @param x
-	 *            the x value (in screen coordinates).
-	 * @param y
-	 *            the y value (in screen coordinates).
-	 */
-
-	public void shrinkSelectionOnCenter(double x, double y, MouseEvent selectionEvent) {
+    /**
+     * Zooms in on an anchor point (specified in screen coordinate space).
+     *
+     * @param x              the x value (in screen coordinates).
+     * @param y              the y value (in screen coordinates).
+     * @param selectionEvent the selection event
+     */
+    public void shrinkSelectionOnCenter(double x, double y, MouseEvent selectionEvent) {
 		Plot plot = this.chart.getPlot();
 		if (plot == null) {
 			return;
@@ -2074,16 +2054,14 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 		plot.setNotify(savedNotify);
 	}
 
-	/**
-	 * Zooms out on an anchor point (specified in screen coordinate space).
-	 * 
-	 * @param x
-	 *            the x value (in screen coordinates).
-	 * @param y
-	 *            the y value (in screen coordinates).
-	 */
-
-	public void enlargeSelectionOnCenter(double x, double y, MouseEvent selectionEvent) {
+    /**
+     * Zooms out on an anchor point (specified in screen coordinate space).
+     *
+     * @param x              the x value (in screen coordinates).
+     * @param y              the y value (in screen coordinates).
+     * @param selectionEvent the selection event
+     */
+    public void enlargeSelectionOnCenter(double x, double y, MouseEvent selectionEvent) {
 		Plot plot = this.chart.getPlot();
 		if (plot == null) {
 			return;
@@ -2098,17 +2076,15 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 		plot.setNotify(savedNotify);
 	}
 
-	/**
-	 * Decreases the length of the domain axis, centered about the given coordinate on the screen.
-	 * The length of the domain axis is reduced by the value of {@link #getZoomInFactor()}.
-	 * 
-	 * @param x
-	 *            the x coordinate (in screen coordinates).
-	 * @param y
-	 *            the y-coordinate (in screen coordinates).
-	 */
-
-	public void shrinkSelectionOnDomain(double x, double y, MouseEvent selectionEvent) {
+    /**
+     * Decreases the length of the domain axis, centered about the given coordinate on the screen.
+     * The length of the domain axis is reduced by the value of {@link #getZoomInFactor()}.
+     *
+     * @param x              the x coordinate (in screen coordinates).
+     * @param y              the y-coordinate (in screen coordinates).
+     * @param selectionEvent the selection event
+     */
+    public void shrinkSelectionOnDomain(double x, double y, MouseEvent selectionEvent) {
 		Plot p = this.chart.getPlot();
 		if (p instanceof XYPlot) {
 			XYPlot plot = (XYPlot) p;
@@ -2122,17 +2098,15 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 		}
 	}
 
-	/**
-	 * Increases the length of the domain axis, centered about the given coordinate on the screen.
-	 * The length of the domain axis is increased by the value of {@link #getZoomOutFactor()}.
-	 * 
-	 * @param x
-	 *            the x coordinate (in screen coordinates).
-	 * @param y
-	 *            the y-coordinate (in screen coordinates).
-	 */
-
-	public void enlargeSelectionOnDomain(double x, double y, MouseEvent selectionEvent) {
+    /**
+     * Increases the length of the domain axis, centered about the given coordinate on the screen.
+     * The length of the domain axis is increased by the value of {@link #getZoomOutFactor()}.
+     *
+     * @param x              the x coordinate (in screen coordinates).
+     * @param y              the y-coordinate (in screen coordinates).
+     * @param selectionEvent the selection event
+     */
+    public void enlargeSelectionOnDomain(double x, double y, MouseEvent selectionEvent) {
 		Plot p = this.chart.getPlot();
 		if (p instanceof XYPlot) {
 			XYPlot plot = (XYPlot) p;
@@ -2164,17 +2138,15 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 		}
 	}
 
-	/**
-	 * Decreases the length of the range axis, centered about the given coordinate on the screen.
-	 * The length of the range axis is reduced by the value of {@link #getZoomInFactor()}.
-	 * 
-	 * @param x
-	 *            the x-coordinate (in screen coordinates).
-	 * @param y
-	 *            the y coordinate (in screen coordinates).
-	 */
-
-	public void shrinkSelectionOnRange(double x, double y, MouseEvent selectionEvent) {
+    /**
+     * Decreases the length of the range axis, centered about the given coordinate on the screen.
+     * The length of the range axis is reduced by the value of {@link #getZoomInFactor()}.
+     *
+     * @param x              the x-coordinate (in screen coordinates).
+     * @param y              the y coordinate (in screen coordinates).
+     * @param selectionEvent the selection event
+     */
+    public void shrinkSelectionOnRange(double x, double y, MouseEvent selectionEvent) {
 		Plot p = this.chart.getPlot();
 		if (p instanceof XYPlot) {
 			XYPlot plot = (XYPlot) p;
@@ -2188,17 +2160,15 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 		}
 	}
 
-	/**
-	 * Increases the length the range axis, centered about the given coordinate on the screen. The
-	 * length of the range axis is increased by the value of {@link #getZoomOutFactor()}.
-	 * 
-	 * @param x
-	 *            the x coordinate (in screen coordinates).
-	 * @param y
-	 *            the y-coordinate (in screen coordinates).
-	 */
-
-	public void enlargeSelectionOnRange(double x, double y, MouseEvent selectionEvent) {
+    /**
+     * Increases the length the range axis, centered about the given coordinate on the screen. The
+     * length of the range axis is increased by the value of {@link #getZoomOutFactor()}.
+     *
+     * @param x              the x coordinate (in screen coordinates).
+     * @param y              the y-coordinate (in screen coordinates).
+     * @param selectionEvent the selection event
+     */
+    public void enlargeSelectionOnRange(double x, double y, MouseEvent selectionEvent) {
 		Plot p = this.chart.getPlot();
 		if (p instanceof XYPlot) {
 			XYPlot plot = (XYPlot) p;
@@ -2230,7 +2200,13 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 		}
 	}
 
-	public void selectRectangle(Rectangle2D selection, MouseEvent selectionEvent) {
+    /**
+     * Select rectangle.
+     *
+     * @param selection      the selection
+     * @param selectionEvent the selection event
+     */
+    public void selectRectangle(Rectangle2D selection, MouseEvent selectionEvent) {
 		Rectangle2D scaledDataArea = getScreenDataArea((int) selection.getCenterX(), (int) selection.getCenterY());
 		if (selection.getHeight() > 0 && selection.getWidth() > 0) {
 
@@ -2298,11 +2274,10 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 		plot.setNotify(savedNotify);
 	}
 
-	/**
-	 * Restores the auto-range calculation on the domain axis.
-	 */
-
-	public void selectCompleteDomainBounds() {
+    /**
+     * Restores the auto-range calculation on the domain axis.
+     */
+    public void selectCompleteDomainBounds() {
 		Plot plot = this.chart.getPlot();
 		if (plot instanceof Zoomable) {
 			Zoomable z = (Zoomable) plot;
@@ -2331,11 +2306,10 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 		}
 	}
 
-	/**
-	 * Restores the auto-range calculation on the range axis.
-	 */
-
-	public void selectCompleteRangeBounds() {
+    /**
+     * Restores the auto-range calculation on the range axis.
+     */
+    public void selectCompleteRangeBounds() {
 		Plot plot = this.chart.getPlot();
 		if (plot instanceof Zoomable) {
 			Zoomable z = (Zoomable) plot;
@@ -2831,30 +2805,39 @@ public class AbstractChartPanel extends ChartPanel implements PrintableComponent
 		coordinateTransformation.showPopupMenu(new Point(x, y), this, popup);
 	}
 
-	/**
-	 * This method sets the coordinate transformation for this component.
-	 */
-	public void setCoordinateTransformation(CoordinateTransformation transformation) {
+    /**
+     * This method sets the coordinate transformation for this component.
+     *
+     * @param transformation the transformation
+     */
+    public void setCoordinateTransformation(CoordinateTransformation transformation) {
 		this.coordinateTransformation = transformation;
 	}
 
-	/**
-	 * This method will add the given selection listener to the list of objects which will be
-	 * notified as soon as a selection is made.
-	 */
-	public void registerSelectionListener(SelectionListener listener) {
+    /**
+     * This method will add the given selection listener to the list of objects which will be
+     * notified as soon as a selection is made.
+     *
+     * @param listener the listener
+     */
+    public void registerSelectionListener(SelectionListener listener) {
 		this.selectionListeners.add(listener);
 	}
 
-	/**
-	 * This one clears the complete list of registered selection listeners. This might be useful if
-	 * a default listener should be replaced.
-	 */
-	public void clearSelectionListener() {
+    /**
+     * This one clears the complete list of registered selection listeners. This might be useful if
+     * a default listener should be replaced.
+     */
+    public void clearSelectionListener() {
 		this.selectionListeners.clear();
 	}
 
-	public void registerAxisNameResolver(AxisNameResolver axisNameResolver) {
+    /**
+     * Register axis name resolver.
+     *
+     * @param axisNameResolver the axis name resolver
+     */
+    public void registerAxisNameResolver(AxisNameResolver axisNameResolver) {
 		this.axisNameResolver = axisNameResolver;
 	}
 

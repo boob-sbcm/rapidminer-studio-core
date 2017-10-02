@@ -29,27 +29,51 @@ import java.util.Map;
 
 
 /**
+ * The type Shape provider.
+ *
  * @author Marius Helf
  */
 public class ShapeProvider {
 
 	private Map<Double, Shape> shapeMap;
 
-	public ShapeProvider(Map<Double, Shape> shapeMap) {
+    /**
+     * Instantiates a new Shape provider.
+     *
+     * @param shapeMap the shape map
+     */
+    public ShapeProvider(Map<Double, Shape> shapeMap) {
 		super();
 		this.shapeMap = shapeMap;
 	}
 
-	public ShapeProvider(List<Double> categoryList) {
+    /**
+     * Instantiates a new Shape provider.
+     *
+     * @param categoryList the category list
+     */
+    public ShapeProvider(List<Double> categoryList) {
 		super();
 		this.shapeMap = createShapeMapping(categoryList);
 	}
 
-	public Shape getShapeForCategory(double category) {
+    /**
+     * Gets shape for category.
+     *
+     * @param category the category
+     * @return the shape for category
+     */
+    public Shape getShapeForCategory(double category) {
 		return shapeMap.get(category);
 	}
 
-	public static Map<Double, Shape> createShapeMapping(List<Double> categoryList) {
+    /**
+     * Create shape mapping map.
+     *
+     * @param categoryList the category list
+     * @return the map
+     */
+    public static Map<Double, Shape> createShapeMapping(List<Double> categoryList) {
 		List<ItemShape> itemShapeValues = Arrays.asList(SeriesFormat.ItemShape.values());
 		Map<Double, Shape> shapeMapping = new HashMap<Double, Shape>();
 		int idx = 1;
@@ -65,7 +89,13 @@ public class ShapeProvider {
 		return shapeMapping;
 	}
 
-	public void setShapeForCategory(double category, Shape shape) {
+    /**
+     * Sets shape for category.
+     *
+     * @param category the category
+     * @param shape    the shape
+     */
+    public void setShapeForCategory(double category, Shape shape) {
 		if (shape == null) {
 			shapeMap.remove(category);
 		} else {
@@ -73,11 +103,21 @@ public class ShapeProvider {
 		}
 	}
 
-	public int maxCategoryCount() {
+    /**
+     * Max category count int.
+     *
+     * @return the int
+     */
+    public int maxCategoryCount() {
 		return SeriesFormat.ItemShape.values().length - 1;
 	}
 
-	public boolean supportsNumericalValues() {
+    /**
+     * Supports numerical values boolean.
+     *
+     * @return the boolean
+     */
+    public boolean supportsNumericalValues() {
 		return false;
 	}
 }

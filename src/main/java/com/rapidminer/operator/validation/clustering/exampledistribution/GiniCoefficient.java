@@ -20,9 +20,8 @@ package com.rapidminer.operator.validation.clustering.exampledistribution;
 
 /**
  * Normalized Gini Coefficient.
- * 
+ *
  * @author Michael Wurst
- * 
  */
 public class GiniCoefficient implements ExampleDistributionMeasure {
 

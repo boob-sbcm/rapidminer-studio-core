@@ -24,12 +24,16 @@ import com.rapidminer.operator.ports.Port;
 
 /**
  * An error that belongs to a port.
- * 
+ *
  * @author Simon Fischer
  */
 public interface MetaDataError extends ProcessSetupError {
 
-	/** Returns the port where the error occurred. */
-	public Port getPort();
+    /**
+     * Returns the port where the error occurred.  @return the port
+     *
+     * @return the port
+     */
+    public Port getPort();
 
 }

@@ -42,22 +42,37 @@ import javax.swing.JMenuItem;
  * This is the abstract superclass for all menu containing operators. An operator menu can be used
  * for selecting new operators (see {@link NewOperatorMenu}) or replacing operators (see
  * {@link ReplaceOperatorMenu}).
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public abstract class OperatorMenu extends ResourceMenu implements OperatorServiceListener {
 
 	private static final long serialVersionUID = 2685621612717488446L;
 
-	public static final OperatorMenu NEW_OPERATOR_MENU = new NewOperatorMenu();
+    /**
+     * The constant NEW_OPERATOR_MENU.
+     */
+    public static final OperatorMenu NEW_OPERATOR_MENU = new NewOperatorMenu();
 
-	public static final OperatorMenu REPLACE_OPERATOR_MENU = new ReplaceOperatorMenu(false);
+    /**
+     * The constant REPLACE_OPERATOR_MENU.
+     */
+    public static final OperatorMenu REPLACE_OPERATOR_MENU = new ReplaceOperatorMenu(false);
 
-	public static final OperatorMenu REPLACE_OPERATORCHAIN_MENU = new ReplaceOperatorMenu(true);
+    /**
+     * The constant REPLACE_OPERATORCHAIN_MENU.
+     */
+    public static final OperatorMenu REPLACE_OPERATORCHAIN_MENU = new ReplaceOperatorMenu(true);
 
 	private boolean onlySubprocesses;
 
-	protected OperatorMenu(String key, boolean onlySubprocesses) {
+    /**
+     * Instantiates a new Operator menu.
+     *
+     * @param key              the key
+     * @param onlySubprocesses the only subprocesses
+     */
+    protected OperatorMenu(String key, boolean onlySubprocesses) {
 		super(key);
 		this.onlySubprocesses = onlySubprocesses;
 
@@ -66,7 +81,14 @@ public abstract class OperatorMenu extends ResourceMenu implements OperatorServi
 		OperatorService.addOperatorServiceListener(this);
 	}
 
-	public void addMenu(GroupTree group, JMenu menu, boolean onlyChains) {
+    /**
+     * Add menu.
+     *
+     * @param group      the group
+     * @param menu       the menu
+     * @param onlyChains the only chains
+     */
+    public void addMenu(GroupTree group, JMenu menu, boolean onlyChains) {
 		Iterator<? extends GroupTree> gi = group.getSubGroups().iterator();
 		while (gi.hasNext()) {
 			GroupTree subGroup = gi.next();
@@ -119,7 +141,12 @@ public abstract class OperatorMenu extends ResourceMenu implements OperatorServi
 		}
 	}
 
-	public abstract void performAction(OperatorDescription description);
+    /**
+     * Perform action.
+     *
+     * @param description the description
+     */
+    public abstract void performAction(OperatorDescription description);
 
 	@Override
 	public void operatorRegistered(OperatorDescription description, OperatorDocBundle bundle) {

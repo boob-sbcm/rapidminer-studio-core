@@ -29,7 +29,7 @@ import java.util.Iterator;
 
 /**
  * The margin of a classifier, defined as the minimal confidence for the correct label.
- * 
+ *
  * @author Martin Scholz, Ingo Mierswa
  */
 public class Margin extends MeasuredPerformance {
@@ -41,10 +41,17 @@ public class Margin extends MeasuredPerformance {
 
 	private double counter = 1.0d;
 
-	/** Clone constructor. */
-	public Margin() {}
+    /**
+     * Clone constructor.
+     */
+    public Margin() {}
 
-	public Margin(Margin m) {
+    /**
+     * Instantiates a new Margin.
+     *
+     * @param m the m
+     */
+    public Margin(Margin m) {
 		super(m);
 		this.margin = m.margin;
 		this.counter = m.counter;

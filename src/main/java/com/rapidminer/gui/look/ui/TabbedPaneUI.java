@@ -115,7 +115,13 @@ public class TabbedPaneUI extends BasicTabbedPaneUI {
 
 	private int rolloveredTabIndex = -1;
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new TabbedPaneUI();
 	}
 
@@ -798,7 +804,12 @@ public class TabbedPaneUI extends BasicTabbedPaneUI {
 		return 0;
 	}
 
-	protected void updateMouseOver(Point p) {
+    /**
+     * Update mouse over.
+     *
+     * @param p the p
+     */
+    protected void updateMouseOver(Point p) {
 		int roi = tabForCoordinate(this.tabPane, (int) p.getX(), (int) p.getY());
 		if (this.rolloveredTabIndex != roi) {
 			this.rolloveredTabIndex = roi;

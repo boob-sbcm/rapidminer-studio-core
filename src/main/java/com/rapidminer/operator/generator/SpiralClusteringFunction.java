@@ -30,7 +30,7 @@ import com.rapidminer.tools.RandomGenerator;
 /**
  * Generates a data set for two attributes. The data build two spiral functions around the origin up
  * to a maximal radius.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SpiralClusteringFunction extends ClusterFunction {
@@ -65,10 +65,15 @@ public class SpiralClusteringFunction extends ClusterFunction {
 	/** The currently used label. */
 	private double currentLabel;
 
-	/** The label attribute. */
-	Attribute label = AttributeFactory.createAttribute("label", Ontology.NOMINAL);
+    /**
+     * The label attribute.
+     */
+    Attribute label = AttributeFactory.createAttribute("label", Ontology.NOMINAL);
 
-	public SpiralClusteringFunction() {
+    /**
+     * Instantiates a new Spiral clustering function.
+     */
+    public SpiralClusteringFunction() {
 		label.getMapping().mapString("spiral1");
 		label.getMapping().mapString("spiral2");
 	}

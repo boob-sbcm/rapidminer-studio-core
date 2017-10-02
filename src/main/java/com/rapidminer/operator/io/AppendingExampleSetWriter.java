@@ -31,28 +31,57 @@ import java.util.List;
 
 /**
  * Provides functionality to determine whether files should be overwritten or appended to.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public abstract class AppendingExampleSetWriter extends AbstractExampleSetWriter {
 
-	/** The parameter name for &quot;Indicates if an existing table should be overwritten.&quot; */
-	public static final String PARAMETER_OVERWRITE_MODE = "overwrite_mode";
+    /**
+     * The parameter name for &quot;Indicates if an existing table should be overwritten.&quot;
+     */
+    public static final String PARAMETER_OVERWRITE_MODE = "overwrite_mode";
 
-	public static final String[] OVERWRITE_MODES = new String[] { "none", "overwrite first, append then", "overwrite",
+    /**
+     * The constant OVERWRITE_MODES.
+     */
+    public static final String[] OVERWRITE_MODES = new String[] { "none", "overwrite first, append then", "overwrite",
 			"append" };
 
-	public static final int OVERWRITE_MODE_NONE = 0;
-	public static final int OVERWRITE_MODE_OVERWRITE_FIRST = 1;
-	public static final int OVERWRITE_MODE_OVERWRITE = 2;
-	public static final int OVERWRITE_MODE_APPEND = 3;
+    /**
+     * The constant OVERWRITE_MODE_NONE.
+     */
+    public static final int OVERWRITE_MODE_NONE = 0;
+    /**
+     * The constant OVERWRITE_MODE_OVERWRITE_FIRST.
+     */
+    public static final int OVERWRITE_MODE_OVERWRITE_FIRST = 1;
+    /**
+     * The constant OVERWRITE_MODE_OVERWRITE.
+     */
+    public static final int OVERWRITE_MODE_OVERWRITE = 2;
+    /**
+     * The constant OVERWRITE_MODE_APPEND.
+     */
+    public static final int OVERWRITE_MODE_APPEND = 3;
 
-	public AppendingExampleSetWriter(OperatorDescription description) {
+    /**
+     * Instantiates a new Appending example set writer.
+     *
+     * @param description the description
+     */
+    public AppendingExampleSetWriter(OperatorDescription description) {
 		super(description);
 	}
 
-	protected boolean shouldAppend(File dataFile) throws UndefinedParameterError, UserError {
+    /**
+     * Should append boolean.
+     *
+     * @param dataFile the data file
+     * @return the boolean
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws UserError               the user error
+     */
+    protected boolean shouldAppend(File dataFile) throws UndefinedParameterError, UserError {
 		int overwriteMode = getParameterAsInt(PARAMETER_OVERWRITE_MODE);
 		boolean append = false;
 		switch (overwriteMode) {

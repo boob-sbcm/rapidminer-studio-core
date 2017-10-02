@@ -30,43 +30,58 @@ import javax.swing.event.DocumentListener;
 /**
  * This extends the usual text field with a model, that will reflect the changes to the content of
  * the text field and offers a listener concept to be informed of the changes.
- * 
+ *
  * @author Sebastian Land
  */
 public class ExtendedJTextField extends JTextField {
 
 	private static final long serialVersionUID = -3490766980163546570L;
 
-	public static interface TextChangeListener {
+    /**
+     * The interface Text change listener.
+     */
+    public static interface TextChangeListener {
 
-		/**
-		 * This method will be called, whenever the content of the textfield changes, no matter if
-		 * the changed happened by user input or programmatically.
-		 */
-		public void informTextChanged(String newValue);
+        /**
+         * This method will be called, whenever the content of the textfield changes, no matter if
+         * the changed happened by user input or programmatically.
+         *
+         * @param newValue the new value
+         */
+        public void informTextChanged(String newValue);
 	}
 
-	/**
-	 * This is the model of an {@link ExtendedJTextField}. It offers to set and get the value and
-	 * has a listener concept to be informed of changes to the text content.
-	 * 
-	 * @author Sebastian Land
-	 */
-	public static class ExtendedJTextFieldModel {
+    /**
+     * This is the model of an {@link ExtendedJTextField}. It offers to set and get the value and
+     * has a listener concept to be informed of changes to the text content.
+     *
+     * @author Sebastian Land
+     */
+    public static class ExtendedJTextFieldModel {
 
 		private String value;
 		private List<TextChangeListener> listeners = new LinkedList<ExtendedJTextField.TextChangeListener>();
 
-		public ExtendedJTextFieldModel() {}
+        /**
+         * Instantiates a new Extended j text field model.
+         */
+        public ExtendedJTextFieldModel() {}
 
-		public ExtendedJTextFieldModel(String value) {
+        /**
+         * Instantiates a new Extended j text field model.
+         *
+         * @param value the value
+         */
+        public ExtendedJTextFieldModel(String value) {
 			this.value = value;
 		}
 
-		/**
-		 * This method must be called, when the model is added to the {@link ExtendedJTextField}.
-		 */
-		/* pp */void registerOnComponent(final ExtendedJTextField component) {
+        /**
+         * This method must be called, when the model is added to the {@link ExtendedJTextField}.
+         *
+         * @param component the component
+         */
+/* pp */void registerOnComponent(final ExtendedJTextField component) {
 			component.setText(value);
 			// use a document listener instead of a KeyListener to react also on
 			// programmatical changes
@@ -99,18 +114,22 @@ public class ExtendedJTextField extends JTextField {
 			});
 		}
 
-		/**
-		 * This sets the value of the text field.
-		 */
-		public void setValue(String newValue) {
+        /**
+         * This sets the value of the text field.
+         *
+         * @param newValue the new value
+         */
+        public void setValue(String newValue) {
 			this.value = newValue;
 			informListenersOfChange();
 		}
 
-		/**
-		 * This method returns the current text stored in the component of this model.
-		 */
-		public String getValue() {
+        /**
+         * This method returns the current text stored in the component of this model.
+         *
+         * @return the value
+         */
+        public String getValue() {
 			return this.value;
 		}
 
@@ -121,43 +140,70 @@ public class ExtendedJTextField extends JTextField {
 			}
 		}
 
-		public void addTextChangeListener(TextChangeListener listener) {
+        /**
+         * Add text change listener.
+         *
+         * @param listener the listener
+         */
+        public void addTextChangeListener(TextChangeListener listener) {
 			listeners.add(listener);
 		}
 
-		public void removeTextChangeListener(TextChangeListener listener) {
+        /**
+         * Remove text change listener.
+         *
+         * @param listener the listener
+         */
+        public void removeTextChangeListener(TextChangeListener listener) {
 			listeners.remove(listener);
 		}
 	}
 
 	private ExtendedJTextFieldModel model;
 
-	public ExtendedJTextField() {
+    /**
+     * Instantiates a new Extended j text field.
+     */
+    public ExtendedJTextField() {
 		this("");
 	}
 
-	public ExtendedJTextField(String value) {
+    /**
+     * Instantiates a new Extended j text field.
+     *
+     * @param value the value
+     */
+    public ExtendedJTextField(String value) {
 		this.model = new ExtendedJTextFieldModel(value);
 		model.registerOnComponent(this);
 	}
 
-	public ExtendedJTextField(ExtendedJTextFieldModel model) {
+    /**
+     * Instantiates a new Extended j text field.
+     *
+     * @param model the model
+     */
+    public ExtendedJTextField(ExtendedJTextFieldModel model) {
 		this.model = model;
 		model.registerOnComponent(this);
 	}
 
-	/**
-	 * Use this method to set a new model to this component.
-	 */
-	public void setModel(ExtendedJTextFieldModel model) {
+    /**
+     * Use this method to set a new model to this component.
+     *
+     * @param model the model
+     */
+    public void setModel(ExtendedJTextFieldModel model) {
 		this.model = model;
 		model.registerOnComponent(this);
 	}
 
-	/**
-	 * This method returns the model of this component.
-	 */
-	public ExtendedJTextFieldModel getModel() {
+    /**
+     * This method returns the model of this component.
+     *
+     * @return the model
+     */
+    public ExtendedJTextFieldModel getModel() {
 		return this.model;
 	}
 }

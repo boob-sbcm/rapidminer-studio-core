@@ -50,22 +50,30 @@ public abstract class PreprocessingOperator extends AbstractDataProcessing {
 
 	private final OutputPort modelOutput = getOutputPorts().createPort("preprocessing model");
 
-	protected final AttributeSubsetSelector attributeSelector = new AttributeSubsetSelector(this, getExampleSetInputPort(),
+    /**
+     * The Attribute selector.
+     */
+    protected final AttributeSubsetSelector attributeSelector = new AttributeSubsetSelector(this, getExampleSetInputPort(),
 			getFilterValueTypes());
 
-	/**
-	 * The parameter name for &quot;Indicates if the preprocessing model should also be
-	 * returned&quot;
-	 */
-	public static final String PARAMETER_RETURN_PREPROCESSING_MODEL = "return_preprocessing_model";
+    /**
+     * The parameter name for &quot;Indicates if the preprocessing model should also be
+     * returned&quot;
+     */
+    public static final String PARAMETER_RETURN_PREPROCESSING_MODEL = "return_preprocessing_model";
 
-	/**
-	 * Indicates if this operator should create a view (new example set on the view stack) instead
-	 * of directly changing the data.
-	 */
-	public static final String PARAMETER_CREATE_VIEW = "create_view";
+    /**
+     * Indicates if this operator should create a view (new example set on the view stack) instead
+     * of directly changing the data.
+     */
+    public static final String PARAMETER_CREATE_VIEW = "create_view";
 
-	public PreprocessingOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Preprocessing operator.
+     *
+     * @param description the description
+     */
+    public PreprocessingOperator(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(
 				new GenerateModelTransformationRule(getExampleSetInputPort(), modelOutput, getPreprocessingModelClass()));
@@ -101,28 +109,46 @@ public abstract class PreprocessingOperator extends AbstractDataProcessing {
 		return exampleSetMetaData;
 	}
 
-	/** Can be overridden to check the selected attributes for compatibility. */
-	protected void checkSelectedSubsetMetaData(ExampleSetMetaData subsetMetaData) {}
+    /**
+     * Can be overridden to check the selected attributes for compatibility.  @param subsetMetaData the subset meta data
+     *
+     * @param subsetMetaData the subset meta data
+     */
+    protected void checkSelectedSubsetMetaData(ExampleSetMetaData subsetMetaData) {}
 
-	/**
-	 * If this preprocessing operator generates new attributes, the corresponding meta data should
-	 * be returned by this method. The attribute will be replaced by the collection. If this
-	 * operator modifies a single one, amd itself should be modified as a side effect and null
-	 * should be returned. Note: If an empty collection is returned, amd will be removed, but no new
-	 * attribute will be added.
-	 **/
-	protected abstract Collection<AttributeMetaData> modifyAttributeMetaData(ExampleSetMetaData emd, AttributeMetaData amd)
+    /**
+     * If this preprocessing operator generates new attributes, the corresponding meta data should
+     * be returned by this method. The attribute will be replaced by the collection. If this
+     * operator modifies a single one, amd itself should be modified as a side effect and null
+     * should be returned. Note: If an empty collection is returned, amd will be removed, but no new
+     * attribute will be added.
+     *
+     * @param emd the emd
+     * @param amd the amd
+     * @return the collection
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected abstract Collection<AttributeMetaData> modifyAttributeMetaData(ExampleSetMetaData emd, AttributeMetaData amd)
 			throws UndefinedParameterError;
 
-	public abstract PreprocessingModel createPreprocessingModel(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Create preprocessing model preprocessing model.
+     *
+     * @param exampleSet the example set
+     * @return the preprocessing model
+     * @throws OperatorException the operator exception
+     */
+    public abstract PreprocessingModel createPreprocessingModel(ExampleSet exampleSet) throws OperatorException;
 
-	/**
-	 * This method allows subclasses to easily get a collection of the affected attributes.
-	 *
-	 * @throws UndefinedParameterError
-	 * @throws UserError
-	 */
-	protected final ExampleSet getSelectedAttributes(ExampleSet exampleSet) throws UndefinedParameterError, UserError {
+    /**
+     * This method allows subclasses to easily get a collection of the affected attributes.
+     *
+     * @param exampleSet the example set
+     * @return the selected attributes
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws UserError               the user error
+     */
+    protected final ExampleSet getSelectedAttributes(ExampleSet exampleSet) throws UndefinedParameterError, UserError {
 		return attributeSelector.getSubset(exampleSet, isSupportingAttributeRoles());
 	}
 
@@ -145,11 +171,17 @@ public abstract class PreprocessingOperator extends AbstractDataProcessing {
 		return exampleSet;
 	}
 
-	/**
-	 * Helper wrapper for {@link #exampleSetInput that can be called by other operators to apply
-	 * this operator when it is created anonymously.
-	 */
-	public ExampleSet doWork(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Helper wrapper for {@link #exampleSetInput that can be called by other operators to apply
+     * this operator when it is created anonymously.*
+     *
+     * @param exampleSet the example set
+     * @param exampleSet the example set
+     * @return the example set
+     * @throws OperatorException the operator exception*
+     * @throws OperatorException the operator exception
+     */
+    public ExampleSet doWork(ExampleSet exampleSet) throws OperatorException {
 		ExampleSet workingSet = isSupportingAttributeRoles() ? getSelectedAttributes(exampleSet)
 				: NonSpecialAttributesExampleSet.create(getSelectedAttributes(exampleSet));
 
@@ -159,7 +191,14 @@ public abstract class PreprocessingOperator extends AbstractDataProcessing {
 		return model.apply(exampleSet);
 	}
 
-	public Pair<ExampleSet, Model> doWorkModel(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Do work model pair.
+     *
+     * @param exampleSet the example set
+     * @return the pair
+     * @throws OperatorException the operator exception
+     */
+    public Pair<ExampleSet, Model> doWorkModel(ExampleSet exampleSet) throws OperatorException {
 		exampleSet = apply(exampleSet);
 		Model model = modelOutput.getData(Model.class);
 		return new Pair<>(exampleSet, model);
@@ -186,16 +225,21 @@ public abstract class PreprocessingOperator extends AbstractDataProcessing {
 		}
 	}
 
-	/**
-	 * Defines the value types of the attributes which are processed or affected by this operator.
-	 * Has to be overridden to restrict the attributes which can be chosen by an
-	 * {@link AttributeSubsetSelector}.
-	 *
-	 * @return array of value types
-	 */
-	protected abstract int[] getFilterValueTypes();
+    /**
+     * Defines the value types of the attributes which are processed or affected by this operator.
+     * Has to be overridden to restrict the attributes which can be chosen by an
+     * {@link AttributeSubsetSelector}.
+     *
+     * @return array of value types
+     */
+    protected abstract int[] getFilterValueTypes();
 
-	public abstract Class<? extends PreprocessingModel> getPreprocessingModelClass();
+    /**
+     * Gets preprocessing model class.
+     *
+     * @return the preprocessing model class
+     */
+    public abstract Class<? extends PreprocessingModel> getPreprocessingModelClass();
 
 	@Override
 	public List<ParameterType> getParameterTypes() {
@@ -214,24 +258,31 @@ public abstract class PreprocessingOperator extends AbstractDataProcessing {
 		return types;
 	}
 
-	/**
-	 * Subclasses which need to have the attribute roles must return true. Otherwise all selected
-	 * attributes are converted into regular and afterwards given their old roles.
-	 */
-	public boolean isSupportingAttributeRoles() {
+    /**
+     * Subclasses which need to have the attribute roles must return true. Otherwise all selected
+     * attributes are converted into regular and afterwards given their old roles.
+     *
+     * @return the boolean
+     */
+    public boolean isSupportingAttributeRoles() {
 		return false;
 	}
 
-	/**
-	 * Subclasses might overwrite this in order to hide the create_view parameter
-	 *
-	 * @return
-	 */
-	public boolean isSupportingView() {
+    /**
+     * Subclasses might overwrite this in order to hide the create_view parameter
+     *
+     * @return boolean boolean
+     */
+    public boolean isSupportingView() {
 		return true;
 	}
 
-	public OutputPort getPreprocessingModelOutputPort() {
+    /**
+     * Gets preprocessing model output port.
+     *
+     * @return the preprocessing model output port
+     */
+    public OutputPort getPreprocessingModelOutputPort() {
 		return modelOutput;
 	}
 }

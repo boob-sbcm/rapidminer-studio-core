@@ -32,9 +32,8 @@ import com.rapidminer.operator.OperatorVersion;
 /**
  * Displays the {@link OperatorVersion}s as returned by
  * {@link Operator#getIncompatibleVersionChanges()}. and {@link Operator#getCompatibilityLevel()} .
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class CompatibilityLevelSpinnerModel extends AbstractSpinnerModel {
 
@@ -46,7 +45,12 @@ public class CompatibilityLevelSpinnerModel extends AbstractSpinnerModel {
 	private Operator operator;
 	private List<OperatorVersion> versions = new LinkedList<>();
 
-	protected void setOperator(Operator operator) {
+    /**
+     * Sets operator.
+     *
+     * @param operator the operator
+     */
+    protected void setOperator(Operator operator) {
 		this.operator = operator;
 		this.versions = new LinkedList<>(Arrays.asList(operator.getIncompatibleVersionChanges()));
 		OperatorVersion latest = OperatorVersion.getLatestVersion(operator.getOperatorDescription());

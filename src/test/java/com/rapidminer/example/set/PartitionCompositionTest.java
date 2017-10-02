@@ -30,7 +30,10 @@ import org.junit.Test;
  */
 public class PartitionCompositionTest {
 
-	@Test
+    /**
+     * Composition test 1 partion selected.
+     */
+    @Test
 	public void compositionTest1PartionSelected() {
 		Partition outer = new Partition(new int[] { 1, 0, 0, 2, 0, 2 }, 3);
 		outer.clearSelection();
@@ -51,7 +54,10 @@ public class PartitionCompositionTest {
 		assertEquals(2, composition.getSelectionSize());
 	}
 
-	@Test
+    /**
+     * Composition test 2 partitions selected.
+     */
+    @Test
 	public void compositionTest2PartitionsSelected() {
 		Partition outer = new Partition(new int[] { 1, 0, 0, 2, 0, 2 }, 3);
 		outer.clearSelection();
@@ -73,7 +79,10 @@ public class PartitionCompositionTest {
 		assertEquals(2, composition.getSelectionSize());
 	}
 
-	@Test
+    /**
+     * Composition test size not matching.
+     */
+    @Test
 	public void compositionTestSizeNotMatching() {
 		Partition outer = new Partition(new int[] { 1, 0, 0, 2, 0, 2 }, 3);
 		Partition inner = new Partition(new int[] { 1, 0, 1 }, 2);

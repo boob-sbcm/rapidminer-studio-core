@@ -24,14 +24,19 @@ import java.io.OutputStream;
 
 /**
  * A stream that writes all that is written to it to a set of other output streams.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer ingomierswa Exp $
  */
 public class OutputStreamMultiplier extends OutputStream {
 
 	private OutputStream[] streams;
 
-	public OutputStreamMultiplier(OutputStream[] streams) {
+    /**
+     * Instantiates a new Output stream multiplier.
+     *
+     * @param streams the streams
+     */
+    public OutputStreamMultiplier(OutputStream[] streams) {
 		this.streams = streams;
 	}
 

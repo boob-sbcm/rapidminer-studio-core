@@ -37,7 +37,6 @@ import com.rapidminer.operator.ExecutionUnit;
  *
  * @author Marco Boeck
  * @since 7.0.0
- *
  */
 public final class ProcessBackgroundImageDecorator {
 
@@ -103,13 +102,12 @@ public final class ProcessBackgroundImageDecorator {
 		}
 	};
 
-	/**
-	 * Creates a new process background image decorator
-	 *
-	 * @param view
-	 *            the process renderer instance
-	 */
-	public ProcessBackgroundImageDecorator(final ProcessRendererView view) {
+    /**
+     * Creates a new process background image decorator
+     *
+     * @param view the process renderer instance
+     */
+    public ProcessBackgroundImageDecorator(final ProcessRendererView view) {
 		this.view = view;
 		this.loadListener = new ProgressThreadListener() {
 
@@ -121,17 +119,17 @@ public final class ProcessBackgroundImageDecorator {
 		};
 	}
 
-	/**
-	 * Registers the event hooks and draw decorators to the process renderer.
-	 */
-	void registerDecorators() {
+    /**
+     * Registers the event hooks and draw decorators to the process renderer.
+     */
+    void registerDecorators() {
 		view.addDrawDecorator(processBackgroundImageDrawer, RenderPhase.BACKGROUND);
 	}
 
-	/**
-	 * Removes the event hooks and draw decorators from the process renderer.
-	 */
-	void unregisterDecorators() {
+    /**
+     * Removes the event hooks and draw decorators from the process renderer.
+     */
+    void unregisterDecorators() {
 		view.removeDrawDecorator(processBackgroundImageDrawer, RenderPhase.BACKGROUND);
 	}
 

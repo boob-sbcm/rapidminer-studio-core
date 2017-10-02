@@ -57,7 +57,6 @@ import com.rapidminer.operator.Operator;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public final class AnnotationDrawer {
 
@@ -87,15 +86,13 @@ public final class AnnotationDrawer {
 	 */
 	private final Map<UUID, Integer> cachedID;
 
-	/**
-	 * Creates a new drawer for the specified model and decorator.
-	 *
-	 * @param model
-	 *            the model containing all relevant drawing data
-	 * @param rendererModel
-	 *            the process renderer model
-	 */
-	public AnnotationDrawer(final AnnotationsModel model, final ProcessRendererModel rendererModel) {
+    /**
+     * Creates a new drawer for the specified model and decorator.
+     *
+     * @param model         the model containing all relevant drawing data
+     * @param rendererModel the process renderer model
+     */
+    public AnnotationDrawer(final AnnotationsModel model, final ProcessRendererModel rendererModel) {
 		this.model = model;
 		this.rendererModel = rendererModel;
 
@@ -107,17 +104,14 @@ public final class AnnotationDrawer {
 		pane.setOpaque(false);
 	}
 
-	/**
-	 * Draws the given annotation.
-	 *
-	 * @param anno
-	 *            the annotation to draw
-	 * @param g2
-	 *            the graphics context to draw upon
-	 * @param printing
-	 *            if {@code true} we are printing instead of drawing to the screen
-	 */
-	public void drawAnnotation(final WorkflowAnnotation anno, final Graphics2D g2, final boolean printing) {
+    /**
+     * Draws the given annotation.
+     *
+     * @param anno     the annotation to draw
+     * @param g2       the graphics context to draw upon
+     * @param printing if {@code true} we are printing instead of drawing to the screen
+     */
+    public void drawAnnotation(final WorkflowAnnotation anno, final Graphics2D g2, final boolean printing) {
 		// do basic interpolation when zooming or on high dpi screens
 		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
@@ -213,10 +207,10 @@ public final class AnnotationDrawer {
 		}
 	}
 
-	/**
-	 * Resets the drawer and its caches.
-	 */
-	public void reset() {
+    /**
+     * Resets the drawer and its caches.
+     */
+    public void reset() {
 		displayCache.clear();
 		cachedID.clear();
 	}
@@ -559,15 +553,14 @@ public final class AnnotationDrawer {
 		return result;
 	}
 
-	/**
-	 * Checks whether some process interaction (hovering over operators/ports/dragging/connecting
-	 * ports) is going on.
-	 *
-	 * @param rendererModel
-	 *            the process renderer model instance
-	 * @return {@code true} if some process interaction is happening; {@code false} otherwise
-	 */
-	public static boolean isProcessInteractionHappening(final ProcessRendererModel rendererModel) {
+    /**
+     * Checks whether some process interaction (hovering over operators/ports/dragging/connecting
+     * ports) is going on.
+     *
+     * @param rendererModel the process renderer model instance
+     * @return {@code true} if some process interaction is happening; {@code false} otherwise
+     */
+    public static boolean isProcessInteractionHappening(final ProcessRendererModel rendererModel) {
 		if (rendererModel == null) {
 			throw new IllegalArgumentException("rendererModel must not be null!");
 		}

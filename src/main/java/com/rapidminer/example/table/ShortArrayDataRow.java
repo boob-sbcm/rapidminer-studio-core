@@ -22,7 +22,7 @@ package com.rapidminer.example.table;
  * Implementation of DataRow that is backed by a short array. Please note that using this data row
  * is quite efficient but only non-floating numbers between -32,768 to 32,767 or the same number of
  * nominal values for each column.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ShortArrayDataRow extends DataRow {
@@ -32,8 +32,12 @@ public class ShortArrayDataRow extends DataRow {
 	/** Holds the data for all attributes. */
 	private short[] data;
 
-	/** Creates a new data row backed by an primitive array. */
-	public ShortArrayDataRow(short[] data) {
+    /**
+     * Creates a new data row backed by an primitive array.  @param data the data
+     *
+     * @param data the data
+     */
+    public ShortArrayDataRow(short[] data) {
 		this.data = data;
 	}
 

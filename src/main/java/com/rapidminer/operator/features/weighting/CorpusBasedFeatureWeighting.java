@@ -52,7 +52,12 @@ public class CorpusBasedFeatureWeighting extends AbstractWeighting {
 	 */
 	private static final String PARAMETER_CLASS_TO_CHARACTERIZE = "class_to_characterize";
 
-	public CorpusBasedFeatureWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Corpus based feature weighting.
+     *
+     * @param description the description
+     */
+    public CorpusBasedFeatureWeighting(OperatorDescription description) {
 		super(description, true);
 		// TODO: Add Dictionary Quickfix for parameter.
 	}

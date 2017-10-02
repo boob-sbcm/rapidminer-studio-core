@@ -52,7 +52,12 @@ public class OAuthValueCellEditor extends DefaultRMCellEditor implements Propert
 
 	private JPanel container;
 
-	public OAuthValueCellEditor(final ParameterTypeOAuth type) {
+    /**
+     * Instantiates a new O auth value cell editor.
+     *
+     * @param type the type
+     */
+    public OAuthValueCellEditor(final ParameterTypeOAuth type) {
 		super(new JPasswordField());
 		this.container = new JPanel(new GridBagLayout());
 		this.container.setToolTipText(type.getDescription());

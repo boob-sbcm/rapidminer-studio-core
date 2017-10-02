@@ -24,7 +24,7 @@ import java.util.Iterator;
 /**
  * Reads a sequence of {@link DataRow}s, e.g. from memory, a file or a database. Please note that
  * implementing classes do not have to support the remove operation!
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public interface DataRowReader extends Iterator<DataRow> {

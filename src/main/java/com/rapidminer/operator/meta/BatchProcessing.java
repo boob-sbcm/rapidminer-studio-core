@@ -51,13 +51,21 @@ import com.rapidminer.parameter.UndefinedParameterError;
  */
 public class BatchProcessing extends OperatorChain {
 
-	public static final String PARAMETER_BATCH_SIZE = "batch_size";
+    /**
+     * The constant PARAMETER_BATCH_SIZE.
+     */
+    public static final String PARAMETER_BATCH_SIZE = "batch_size";
 
 	private final InputPort exampleSetInput = getInputPorts().createPort("example set", new ExampleSetMetaData());
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private final OutputPort exampleSetInnerSource = getSubprocess(0).getInnerSources().createPort("exampleSet");
 
-	public BatchProcessing(OperatorDescription description) {
+    /**
+     * Instantiates a new Batch processing.
+     *
+     * @param description the description
+     */
+    public BatchProcessing(OperatorDescription description) {
 		super(description, "Batch Process");
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, exampleSetInnerSource, SetRelation.EQUAL) {
 

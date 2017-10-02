@@ -27,7 +27,7 @@ import java.util.Random;
  * Crossover operator for the values of an evolution strategies optimization. An individual is
  * selected with a given fixed propability and a mating partner is determined randomly. This class
  * only impplements uniform crossover.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Crossover implements PopulationOperator {
@@ -36,12 +36,24 @@ public class Crossover implements PopulationOperator {
 
 	private Random random;
 
-	public Crossover(double prob, Random random) {
+    /**
+     * Instantiates a new Crossover.
+     *
+     * @param prob   the prob
+     * @param random the random
+     */
+    public Crossover(double prob, Random random) {
 		this.prob = prob;
 		this.random = random;
 	}
 
-	public void crossover(Individual i1, Individual i2) {
+    /**
+     * Crossover.
+     *
+     * @param i1 the 1
+     * @param i2 the 2
+     */
+    public void crossover(Individual i1, Individual i2) {
 		double[] values1 = i1.getValues();
 		double[] values2 = i2.getValues();
 		boolean[] swap = new boolean[values1.length];

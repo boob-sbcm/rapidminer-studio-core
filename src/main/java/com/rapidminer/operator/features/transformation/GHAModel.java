@@ -77,7 +77,15 @@ public class GHAModel extends AbstractEigenvectorModel implements ComponentWeigh
 
 	private boolean keepAttributes = false;
 
-	public GHAModel(ExampleSet eSet, double[] eigenvalues, double[][] weights, double[] mean) {
+    /**
+     * Instantiates a new Gha model.
+     *
+     * @param eSet        the e set
+     * @param eigenvalues the eigenvalues
+     * @param weights     the weights
+     * @param mean        the mean
+     */
+    public GHAModel(ExampleSet eSet, double[] eigenvalues, double[][] weights, double[] mean) {
 		super(eSet);
 		keepAttributes = false;
 		numberOfAttributes = weights[0].length;
@@ -102,19 +110,41 @@ public class GHAModel extends AbstractEigenvectorModel implements ComponentWeigh
 		Collections.sort(this.weightVectors);
 	}
 
-	public double[] getMean() {
+    /**
+     * Get mean double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getMean() {
 		return means;
 	}
 
-	public double[] getWeights(int index) {
+    /**
+     * Get weights double [ ].
+     *
+     * @param index the index
+     * @return the double [ ]
+     */
+    public double[] getWeights(int index) {
 		return this.weightVectors.get(index).getWeights();
 	}
 
-	public double getEigenvalue(int index) {
+    /**
+     * Gets eigenvalue.
+     *
+     * @param index the index
+     * @return the eigenvalue
+     */
+    public double getEigenvalue(int index) {
 		return this.weightVectors.get(index).getEigenvalue();
 	}
 
-	public double getNumberOfComponents() {
+    /**
+     * Gets number of components.
+     *
+     * @return the number of components
+     */
+    public double getNumberOfComponents() {
 		return numberOfComponents;
 	}
 

@@ -20,11 +20,20 @@ package com.rapidminer.tools.math.optimization.ec.es;
 
 /**
  * Evolutionary Strategy approach for all real-valued optimization tasks.
- * 
+ *
  * @author Ingo Mierswa
  */
 public enum OptimizationValueType {
 
-	VALUE_TYPE_DOUBLE, VALUE_TYPE_INT, VALUE_TYPE_BOUNDS
+    /**
+     * Value type double optimization value type.
+     */
+    VALUE_TYPE_DOUBLE, /**
+     * Value type int optimization value type.
+     */
+    VALUE_TYPE_INT, /**
+     * Value type bounds optimization value type.
+     */
+    VALUE_TYPE_BOUNDS
 
 }

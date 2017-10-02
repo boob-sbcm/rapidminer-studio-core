@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is the sum of the arguments.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SumFunction extends RegressionFunction {

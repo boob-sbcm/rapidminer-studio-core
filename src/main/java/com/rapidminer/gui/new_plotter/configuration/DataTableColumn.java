@@ -25,16 +25,39 @@ import com.rapidminer.tools.Ontology;
 /**
  * This class describes a column of a {@link DataTable} characterized by a name, a column index and
  * a {@link ValueType}.
- * 
+ *
  * @author Nils Woehler, Marius Helf
- * 
  */
 public class DataTableColumn implements Cloneable {
 
-	public enum ValueType {
-		INVALID, UNKNOWN, NOMINAL, NUMERICAL, DATE_TIME;
+    /**
+     * The enum Value type.
+     */
+    public enum ValueType {
+        /**
+         * Invalid value type.
+         */
+        INVALID, /**
+         * Unknown value type.
+         */
+        UNKNOWN, /**
+         * Nominal value type.
+         */
+        NOMINAL, /**
+         * Numerical value type.
+         */
+        NUMERICAL, /**
+         * Date time value type.
+         */
+        DATE_TIME;
 
-		public static int convertToRapidMinerOntology(ValueType valueType) {
+        /**
+         * Convert to rapid miner ontology int.
+         *
+         * @param valueType the value type
+         * @return the int
+         */
+        public static int convertToRapidMinerOntology(ValueType valueType) {
 			switch (valueType) {
 				case DATE_TIME:
 					return Ontology.DATE_TIME;
@@ -49,7 +72,13 @@ public class DataTableColumn implements Cloneable {
 			}
 		}
 
-		public static ValueType convertFromRapidMinerOntology(int rmValueType) {
+        /**
+         * Convert from rapid miner ontology value type.
+         *
+         * @param rmValueType the rm value type
+         * @return the value type
+         */
+        public static ValueType convertFromRapidMinerOntology(int rmValueType) {
 			if (Ontology.ATTRIBUTE_VALUE_TYPE.isA(rmValueType, Ontology.NUMERICAL)) {
 				return NUMERICAL;
 			} else if (Ontology.ATTRIBUTE_VALUE_TYPE.isA(rmValueType, Ontology.NOMINAL)) {
@@ -65,19 +94,26 @@ public class DataTableColumn implements Cloneable {
 	private final String columnName;
 	private final ValueType valueType;
 
-	public DataTableColumn(String name, ValueType valueType) {
+    /**
+     * Instantiates a new Data table column.
+     *
+     * @param name      the name
+     * @param valueType the value type
+     */
+    public DataTableColumn(String name, ValueType valueType) {
 		super();
 		this.columnName = name;
 		this.valueType = valueType;
 	}
 
-	/**
-	 * @brief Creates a new {@link DataTableColumn}.
-	 * 
-	 *        name and value type are automatically initialized from the specified column in
-	 *        dataTable. The DataTableColumn does not keep a reference to dataTable.
-	 */
-	public DataTableColumn(DataTable dataTable, int columnIdx) {
+    /**
+     * Instantiates a new Data table column.
+     *
+     * @param dataTable the data table
+     * @param columnIdx the column idx
+     * @brief Creates a new {@link DataTableColumn}.        name and value type are automatically initialized from the specified column in        dataTable. The DataTableColumn does not keep a reference to dataTable.
+     */
+    public DataTableColumn(DataTable dataTable, int columnIdx) {
 		if (columnIdx >= 0 && columnIdx < dataTable.getColumnNumber()) {
 			this.columnName = dataTable.getColumnName(columnIdx);
 			if (dataTable.isDateTime(columnIdx)) {
@@ -95,38 +131,57 @@ public class DataTableColumn implements Cloneable {
 		}
 	}
 
-	/**
-	 * @return the {@link ValueType}
-	 */
-	public ValueType getValueType() {
+    /**
+     * Gets value type.
+     *
+     * @return the {@link ValueType}
+     */
+    public ValueType getValueType() {
 		return valueType;
 	}
 
-	public boolean isNominal() {
+    /**
+     * Is nominal boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isNominal() {
 		if (valueType == ValueType.NOMINAL) {
 			return true;
 		}
 		return false;
 	}
 
-	public boolean isNumerical() {
+    /**
+     * Is numerical boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isNumerical() {
 		if (valueType == ValueType.NUMERICAL) {
 			return true;
 		}
 		return false;
 	}
 
-	public boolean isDate() {
+    /**
+     * Is date boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isDate() {
 		if (valueType == ValueType.DATE_TIME) {
 			return true;
 		}
 		return false;
 	}
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return columnName;
 	}
 
@@ -163,13 +218,18 @@ public class DataTableColumn implements Cloneable {
 		return new DataTableColumn(getName(), getValueType());
 	}
 
-	/**
-	 * Finds the column index for the column named columnName in dataTable, checks if that column in
-	 * the data table is compatible with to settings valueType, and updates this.columnIdx.
-	 * 
-	 * If the column does not exist or is not compatible, the columnIdx is set to -1.
-	 */
-	public static int getColumnIndex(DataTable dataTable, String columnName, ValueType valueType) {
+    /**
+     * Finds the column index for the column named columnName in dataTable, checks if that column in
+     * the data table is compatible with to settings valueType, and updates this.columnIdx.
+     * <p>
+     * If the column does not exist or is not compatible, the columnIdx is set to -1.
+     *
+     * @param dataTable  the data table
+     * @param columnName the column name
+     * @param valueType  the value type
+     * @return the column index
+     */
+    public static int getColumnIndex(DataTable dataTable, String columnName, ValueType valueType) {
 		int columnIdx = dataTable.getColumnIndex(columnName);
 		if (columnIdx >= 0) {
 			// check value type
@@ -198,19 +258,29 @@ public class DataTableColumn implements Cloneable {
 		return columnIdx;
 	}
 
-	public boolean isValidForDataTable(DataTable dataTable) {
+    /**
+     * Is valid for data table boolean.
+     *
+     * @param dataTable the data table
+     * @return the boolean
+     */
+    public boolean isValidForDataTable(DataTable dataTable) {
 		int columnIdx = getColumnIndex(dataTable, columnName, valueType);
 		return columnIdx >= 0 && valueType != ValueType.INVALID && columnName != null;
 	}
 
-	/**
-	 * Finds the column index for the column named like dataTableColumn.getName in dataTable, checks
-	 * if that column in the data table is compatible with to settings of dataTableColumn (value
-	 * type etc.), and updates this.columnIdx.
-	 * 
-	 * If the column does not exist or is not compatible, the columnIdx is set to -1.
-	 */
-	public static int getColumnIndex(DataTable dataTable, DataTableColumn dataTableColumn) {
+    /**
+     * Finds the column index for the column named like dataTableColumn.getName in dataTable, checks
+     * if that column in the data table is compatible with to settings of dataTableColumn (value
+     * type etc.), and updates this.columnIdx.
+     * <p>
+     * If the column does not exist or is not compatible, the columnIdx is set to -1.
+     *
+     * @param dataTable       the data table
+     * @param dataTableColumn the data table column
+     * @return the column index
+     */
+    public static int getColumnIndex(DataTable dataTable, DataTableColumn dataTableColumn) {
 		return getColumnIndex(dataTable, dataTableColumn.getName(), dataTableColumn.getValueType());
 	}
 }

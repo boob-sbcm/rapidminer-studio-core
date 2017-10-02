@@ -33,18 +33,27 @@ import java.util.List;
  * This operator switches off all features whose value type matches the one given in the parameter
  * <code>skip_features_of_type</code>. This can be useful e.g. for learning schemes that can handle
  * only nominal attributes.
- * 
+ *
  * @author Buelent Moeller, Ingo Mierswa
  */
 public class FeatureValueTypeFilter extends FeatureFilter {
 
-	/** The parameter name for &quot;All features of this type will be deselected.&quot; */
-	public static final String PARAMETER_SKIP_FEATURES_OF_TYPE = "skip_features_of_type";
+    /**
+     * The parameter name for &quot;All features of this type will be deselected.&quot;
+     */
+    public static final String PARAMETER_SKIP_FEATURES_OF_TYPE = "skip_features_of_type";
 
-	/** The parameter name for &quot;All features of this type will not be deselected.&quot; */
-	public static final String PARAMETER_EXCEPT_FEATURES_OF_TYPE = "except_features_of_type";
+    /**
+     * The parameter name for &quot;All features of this type will not be deselected.&quot;
+     */
+    public static final String PARAMETER_EXCEPT_FEATURES_OF_TYPE = "except_features_of_type";
 
-	public FeatureValueTypeFilter(OperatorDescription description) {
+    /**
+     * Instantiates a new Feature value type filter.
+     *
+     * @param description the description
+     */
+    public FeatureValueTypeFilter(OperatorDescription description) {
 		super(description);
 	}
 

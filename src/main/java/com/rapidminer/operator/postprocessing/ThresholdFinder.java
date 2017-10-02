@@ -50,24 +50,50 @@ import com.rapidminer.tools.math.ROCDataGenerator;
  */
 public class ThresholdFinder extends Operator {
 
-	public static final String PARAMETER_DEFINE_LABELS = "define_labels";
+    /**
+     * The constant PARAMETER_DEFINE_LABELS.
+     */
+    public static final String PARAMETER_DEFINE_LABELS = "define_labels";
 
-	public static final String PARAMETER_FIRST_LABEL = "first_label";
-	public static final String PARAMETER_SECOND_LABEL = "second_label";
+    /**
+     * The constant PARAMETER_FIRST_LABEL.
+     */
+    public static final String PARAMETER_FIRST_LABEL = "first_label";
+    /**
+     * The constant PARAMETER_SECOND_LABEL.
+     */
+    public static final String PARAMETER_SECOND_LABEL = "second_label";
 
-	public static final String PARAMETER_MISCLASSIFICATION_COSTS_FIRST = "misclassification_costs_first";
+    /**
+     * The constant PARAMETER_MISCLASSIFICATION_COSTS_FIRST.
+     */
+    public static final String PARAMETER_MISCLASSIFICATION_COSTS_FIRST = "misclassification_costs_first";
 
-	public static final String PARAMETER_MISCLASSIFICATION_COSTS_SECOND = "misclassification_costs_second";
+    /**
+     * The constant PARAMETER_MISCLASSIFICATION_COSTS_SECOND.
+     */
+    public static final String PARAMETER_MISCLASSIFICATION_COSTS_SECOND = "misclassification_costs_second";
 
-	public static final String PARAMETER_SHOW_ROC_PLOT = "show_roc_plot";
+    /**
+     * The constant PARAMETER_SHOW_ROC_PLOT.
+     */
+    public static final String PARAMETER_SHOW_ROC_PLOT = "show_roc_plot";
 
-	public static final String PARAMETER_USE_EXAMPLE_WEIGHTS = "use_example_weights";
+    /**
+     * The constant PARAMETER_USE_EXAMPLE_WEIGHTS.
+     */
+    public static final String PARAMETER_USE_EXAMPLE_WEIGHTS = "use_example_weights";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort thresholdOutput = getOutputPorts().createPort("threshold");
 
-	public ThresholdFinder(OperatorDescription description) {
+    /**
+     * Instantiates a new Threshold finder.
+     *
+     * @param description the description
+     */
+    public ThresholdFinder(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, Ontology.VALUE_TYPE,

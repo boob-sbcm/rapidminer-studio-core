@@ -26,12 +26,18 @@ import java.util.Map;
 /**
  * This class gives the distance update function for the SingleLinkClustering of the agglomerative
  * clustering.
- * 
+ *
  * @author Sebastian Land
  */
 public class SingleLinkageMethod extends AbstractLinkageMethod {
 
-	public SingleLinkageMethod(DistanceMatrix matrix, int[] clusterIds) {
+    /**
+     * Instantiates a new Single linkage method.
+     *
+     * @param matrix     the matrix
+     * @param clusterIds the cluster ids
+     */
+    public SingleLinkageMethod(DistanceMatrix matrix, int[] clusterIds) {
 		super(matrix, clusterIds);
 	}
 

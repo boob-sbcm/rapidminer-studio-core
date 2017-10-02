@@ -39,14 +39,14 @@ import com.rapidminer.tools.ParameterService;
  * A dialog that asks the user a question which can be answered with yes or no and remembers its
  * decision. The user can decide whether or not their answer is remembered. If it is remembered, the
  * dialog will not be displayed the next time.
- *
+ * <p>
  * To use this class, define "gui.dialog.KEY.title" and "gui.dialog.KEY.message" in the GUI
  * properties file. Also, register a property using
  * {@link RapidMiner#registerRapidMinerProperty(com.rapidminer.parameter.ParameterType)} with a
  * {@link ParameterTypeCategory} where the categories are {@link #PROPERTY_VALUES} (yes, no, ask).
  * Preferrably, the default value should be {@link #ASK}. Pass the i18n key and the key of this
  * property to {@link #confirmAction(String, String)}.
- *
+ * <p>
  * The behaviour of this dialog depends on the current value of the property.
  * <ul>
  * <li>If its value is either "true" or "false", nothing will happen and the method will simply
@@ -57,12 +57,11 @@ import com.rapidminer.tools.ParameterService;
  * private property file. Hence, the next call to {@link #confirmAction(String, String)} will return
  * without showing a dialog.</li>
  * </ul>
- *
+ * <p>
  * In order to make the dialog shown again, the user must set the value back to "ask" in the
  * {@link SettingsDialog}.
  *
  * @author Simon Fischer, Marco Boeck
- *
  */
 public class DecisionRememberingConfirmDialog extends ButtonDialog {
 
@@ -70,11 +69,15 @@ public class DecisionRememberingConfirmDialog extends ButtonDialog {
 	 * The type of the dialog.
 	 */
 	private enum DialogType {
-		/** yes/no option */
-		CONFIRM,
+        /**
+         * yes/no option
+         */
+        CONFIRM,
 
-		/** only OK option, just for user information */
-		ACKNOWLEDGE;
+        /**
+         * only OK option, just for user information
+         */
+        ACKNOWLEDGE;
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -85,14 +88,35 @@ public class DecisionRememberingConfirmDialog extends ButtonDialog {
 	private static final String VALUE_SHOW = "show";
 	private static final String VALUE_HIDE = "hide";
 
-	public static final String[] PROPERTY_VALUES = { VALUE_TRUE, VALUE_FALSE, VALUE_ASK };
-	public static final String[] PROPERTY_VALUES_ACK = { VALUE_SHOW, VALUE_HIDE };
+    /**
+     * The constant PROPERTY_VALUES.
+     */
+    public static final String[] PROPERTY_VALUES = { VALUE_TRUE, VALUE_FALSE, VALUE_ASK };
+    /**
+     * The constant PROPERTY_VALUES_ACK.
+     */
+    public static final String[] PROPERTY_VALUES_ACK = { VALUE_SHOW, VALUE_HIDE };
 
-	public static final int TRUE = 0;
-	public static final int FALSE = 1;
-	public static final int ASK = 2;
-	public static final int SHOW = 0;
-	public static final int HIDE = 1;
+    /**
+     * The constant TRUE.
+     */
+    public static final int TRUE = 0;
+    /**
+     * The constant FALSE.
+     */
+    public static final int FALSE = 1;
+    /**
+     * The constant ASK.
+     */
+    public static final int ASK = 2;
+    /**
+     * The constant SHOW.
+     */
+    public static final int SHOW = 0;
+    /**
+     * The constant HIDE.
+     */
+    public static final int HIDE = 1;
 
 	private JCheckBox dontAskAgainBox;
 	private DialogType type;
@@ -179,34 +203,30 @@ public class DecisionRememberingConfirmDialog extends ButtonDialog {
 		}
 	}
 
-	/**
-	 * Shows a dialog which can be confirmed or not via yes/no buttons. If the user selects the
-	 * "don't ask me again" checkbox, the user choice is remembered and applied automatically in the
-	 * future.
-	 *
-	 * @param i18nKey
-	 * @param propertyKey
-	 *            the key which is used to remember the user choice
-	 * @return <code>true</code> if the dialog was confirmed; <code>false</code> otherwise
-	 */
-	public static boolean confirmAction(String i18nKey, String propertyKey) {
+    /**
+     * Shows a dialog which can be confirmed or not via yes/no buttons. If the user selects the
+     * "don't ask me again" checkbox, the user choice is remembered and applied automatically in the
+     * future.
+     *
+     * @param i18nKey     the 18 n key
+     * @param propertyKey the key which is used to remember the user choice
+     * @return <code>true</code> if the dialog was confirmed; <code>false</code> otherwise
+     */
+    public static boolean confirmAction(String i18nKey, String propertyKey) {
 		return confirmAction(i18nKey, propertyKey, new Object[0]);
 	}
 
-	/**
-	 * Shows a dialog which can be confirmed or not via yes/no buttons. If the user selects the
-	 * "don't ask me again" checkbox, the user choice is remembered and applied automatically in the
-	 * future.
-	 *
-	 * @param i18nKey
-	 *            i18n key
-	 * @param propertyKey
-	 *            the key which is used to remember the user choice
-	 * @param arguments
-	 *            optional i18n arguments
-	 * @return <code>true</code> if the dialog was confirmed; <code>false</code> otherwise
-	 */
-	public static boolean confirmAction(String i18nKey, String propertyKey, Object... arguments) {
+    /**
+     * Shows a dialog which can be confirmed or not via yes/no buttons. If the user selects the
+     * "don't ask me again" checkbox, the user choice is remembered and applied automatically in the
+     * future.
+     *
+     * @param i18nKey     i18n key
+     * @param propertyKey the key which is used to remember the user choice
+     * @param arguments   optional i18n arguments
+     * @return <code>true</code> if the dialog was confirmed; <code>false</code> otherwise
+     */
+    public static boolean confirmAction(String i18nKey, String propertyKey, Object... arguments) {
 		String propValue = ParameterService.getParameterValue(propertyKey);
 		if (propValue != null) {
 			if (propValue.equals(VALUE_TRUE)) {
@@ -221,18 +241,15 @@ public class DecisionRememberingConfirmDialog extends ButtonDialog {
 		return d.confirmed;
 	}
 
-	/**
-	 * Shows a dialog which can only be acknowledged via OK button. If the user selects the
-	 * "don't tell me again" checkbox, this dialog will no longer be shown.
-	 *
-	 * @param i18nKey
-	 *            i18n key
-	 * @param propertyKey
-	 *            the key which is used to remember the user choice
-	 * @param arguments
-	 *            optional i18n arguments
-	 */
-	public static void acknowledgeAction(String i18nKey, String propertyKey, Object... arguments) {
+    /**
+     * Shows a dialog which can only be acknowledged via OK button. If the user selects the
+     * "don't tell me again" checkbox, this dialog will no longer be shown.
+     *
+     * @param i18nKey     i18n key
+     * @param propertyKey the key which is used to remember the user choice
+     * @param arguments   optional i18n arguments
+     */
+    public static void acknowledgeAction(String i18nKey, String propertyKey, Object... arguments) {
 		String propValue = ParameterService.getParameterValue(propertyKey);
 		if (VALUE_HIDE.equals(propValue)) {
 			return;

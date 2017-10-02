@@ -36,7 +36,7 @@ import java.util.Map;
 
 /**
  * Returns a performance vector containing the weighted fitness value of the input criteria.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class WeightedPerformanceCreator extends Operator {
@@ -44,19 +44,24 @@ public class WeightedPerformanceCreator extends Operator {
 	private InputPort performanceInput = getInputPorts().createPort("performance");
 	private OutputPort performanceOutput = getOutputPorts().createPort("performance");
 
-	/**
-	 * The parameter name for &quot;The default weight for all criteria not specified in the list
-	 * 'criteria_weights'.&quot;
-	 */
-	public static final String PARAMETER_DEFAULT_WEIGHT = "default_weight";
+    /**
+     * The parameter name for &quot;The default weight for all criteria not specified in the list
+     * 'criteria_weights'.&quot;
+     */
+    public static final String PARAMETER_DEFAULT_WEIGHT = "default_weight";
 
-	/**
-	 * The parameter name for &quot;The weights for several performance criteria. Criteria weights
-	 * not defined in this list are set to 'default_weight'.&quot;
-	 */
-	public static final String PARAMETER_CRITERIA_WEIGHTS = "criteria_weights";
+    /**
+     * The parameter name for &quot;The weights for several performance criteria. Criteria weights
+     * not defined in this list are set to 'default_weight'.&quot;
+     */
+    public static final String PARAMETER_CRITERIA_WEIGHTS = "criteria_weights";
 
-	public WeightedPerformanceCreator(OperatorDescription description) {
+    /**
+     * Instantiates a new Weighted performance creator.
+     *
+     * @param description the description
+     */
+    public WeightedPerformanceCreator(OperatorDescription description) {
 		super(description);
 		getTransformer().addPassThroughRule(performanceInput, performanceOutput);
 	}

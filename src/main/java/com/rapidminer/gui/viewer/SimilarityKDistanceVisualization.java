@@ -54,7 +54,7 @@ import com.rapidminer.tools.math.similarity.DistanceMeasure;
 
 /**
  * A k-distance visualization for similarities.
- *
+ * <p>
  * WARNING: Although extending PlotterAdapter, this is no real plotter! It does not support
  * PlotterSettings or anything else needed for a "real" plotter.
  *
@@ -86,7 +86,13 @@ public class SimilarityKDistanceVisualization extends PlotterAdapter implements 
 
 	private int k = DEFAULT_K_NUMBER;
 
-	public SimilarityKDistanceVisualization(DistanceMeasure measure, ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Similarity k distance visualization.
+     *
+     * @param measure    the measure
+     * @param exampleSet the example set
+     */
+    public SimilarityKDistanceVisualization(DistanceMeasure measure, ExampleSet exampleSet) {
 		super(null);
 		this.measure = measure;
 		this.exampleSet = exampleSet;
@@ -128,13 +134,20 @@ public class SimilarityKDistanceVisualization extends PlotterAdapter implements 
 
 	}
 
-	/** Indicates how many bins should be used for the distribution plot. */
-	public void setK(int k) {
+    /**
+     * Indicates how many bins should be used for the distribution plot.  @param k the k
+     *
+     * @param k the k
+     */
+    public void setK(int k) {
 		this.k = k;
 		repaint();
 	}
 
-	protected void prepareData() {
+    /**
+     * Prepare data.
+     */
+    protected void prepareData() {
 		this.minX = Double.POSITIVE_INFINITY;
 		this.maxX = Double.NEGATIVE_INFINITY;
 		this.minY = Double.POSITIVE_INFINITY;
@@ -177,7 +190,16 @@ public class SimilarityKDistanceVisualization extends PlotterAdapter implements 
 		maxY = Math.ceil(maxY / yTicSize) * yTicSize;
 	}
 
-	protected void drawPoints(Graphics2D g, double dx, double dy, double sx, double sy) {
+    /**
+     * Draw points.
+     *
+     * @param g  the g
+     * @param dx the dx
+     * @param dy the dy
+     * @param sx the sx
+     * @param sy the sy
+     */
+    protected void drawPoints(Graphics2D g, double dx, double dy, double sx, double sy) {
 		if (this.kDistanceValues != null && this.kDistanceValues.size() <= 2) {
 			// LogService.getGlobal().log("KDistanceVisualization: No values in value map",
 			// LogService.WARNING);
@@ -254,7 +276,14 @@ public class SimilarityKDistanceVisualization extends PlotterAdapter implements 
 
 	}
 
-	public void paintGraph(Graphics graphics, int pixWidth, int pixHeight) {
+    /**
+     * Paint graph.
+     *
+     * @param graphics  the graphics
+     * @param pixWidth  the pix width
+     * @param pixHeight the pix height
+     */
+    public void paintGraph(Graphics graphics, int pixWidth, int pixHeight) {
 		Graphics2D g = (Graphics2D) graphics;
 		Graphics2D scaled = (Graphics2D) g.create();
 

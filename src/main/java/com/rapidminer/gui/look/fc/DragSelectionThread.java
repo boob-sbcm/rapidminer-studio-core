@@ -34,11 +34,22 @@ public class DragSelectionThread implements Runnable {
 
 	private int callCounts = 0;
 
-	public DragSelectionThread(ItemPanel p, FileList fileList) {
+    /**
+     * Instantiates a new Drag selection thread.
+     *
+     * @param p        the p
+     * @param fileList the file list
+     */
+    public DragSelectionThread(ItemPanel p, FileList fileList) {
 		this.fileList = fileList;
 	}
 
-	public void startThread(Rectangle r) {
+    /**
+     * Start thread.
+     *
+     * @param r the r
+     */
+    public void startThread(Rectangle r) {
 		this.callCounts++;
 		this.rect = r;
 		run();

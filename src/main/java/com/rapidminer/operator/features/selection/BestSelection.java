@@ -25,7 +25,7 @@ import com.rapidminer.operator.features.PopulationOperator;
 
 /**
  * Selects the best individual and build a new population.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class BestSelection implements PopulationOperator {

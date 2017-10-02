@@ -28,7 +28,7 @@ import com.rapidminer.tools.Tools;
  * attribute fields this class keeps information about the nominal values and the value to index
  * mappings. If one of the methods designed for numerical attributes was invoked a RuntimeException
  * will be thrown.
- *
+ * <p>
  * It will be guaranteed that all values are mapped to indices without any missing values. This
  * could, however, be changed in future versions thus operators should not rely on this fact.
  *
@@ -38,13 +38,24 @@ public abstract class NominalAttribute extends AbstractAttribute {
 
 	private static final long serialVersionUID = -3830980883541763869L;
 
-	protected NominalAttribute(String name, int valueType) {
+    /**
+     * Instantiates a new Nominal attribute.
+     *
+     * @param name      the name
+     * @param valueType the value type
+     */
+    protected NominalAttribute(String name, int valueType) {
 		super(name, valueType);
 		registerStatistics(new NominalStatistics());
 		registerStatistics(new UnknownStatistics());
 	}
 
-	protected NominalAttribute(NominalAttribute other) {
+    /**
+     * Instantiates a new Nominal attribute.
+     *
+     * @param other the other
+     */
+    protected NominalAttribute(NominalAttribute other) {
 		super(other);
 	}
 

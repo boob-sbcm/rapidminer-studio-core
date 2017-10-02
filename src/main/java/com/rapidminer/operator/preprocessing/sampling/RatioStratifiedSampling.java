@@ -37,16 +37,23 @@ import java.util.List;
  * sets with nominal label attributes, i.e. the class distributions remains (almost) the same after
  * sampling. Hence, this operator cannot be applied on data sets without a label or with a numerical
  * label. In these cases a simple sampling without stratification is performed.
- * 
+ *
  * @author Ingo Mierswa
  */
 @SuppressWarnings("deprecation")
 public class RatioStratifiedSampling extends AbstractStratifiedSampling {
 
-	/** The parameter name for &quot;The fraction of examples which should be sampled&quot; */
-	public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
+    /**
+     * The parameter name for &quot;The fraction of examples which should be sampled&quot;
+     */
+    public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
 
-	public RatioStratifiedSampling(OperatorDescription description) {
+    /**
+     * Instantiates a new Ratio stratified sampling.
+     *
+     * @param description the description
+     */
+    public RatioStratifiedSampling(OperatorDescription description) {
 		super(description);
 	}
 

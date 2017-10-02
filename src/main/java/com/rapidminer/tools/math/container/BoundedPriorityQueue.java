@@ -28,10 +28,9 @@ import java.util.PriorityQueue;
  * The greatest value is then removed. The iterator does not iterate in any particular order. This
  * queue will implement a reverse order in compare with the java PriorityQueue, so peek and poll
  * will retrieve the greatest elements
- * 
+ *
+ * @param <E> the type parameter
  * @author Sebastian Land
- * 
- * @param <E>
  */
 public class BoundedPriorityQueue<E> extends PriorityQueue<E> {
 
@@ -40,13 +39,24 @@ public class BoundedPriorityQueue<E> extends PriorityQueue<E> {
 	private final int bound;
 	private final Comparator<E> comparator;
 
-	public BoundedPriorityQueue(int bound) {
+    /**
+     * Instantiates a new Bounded priority queue.
+     *
+     * @param bound the bound
+     */
+    public BoundedPriorityQueue(int bound) {
 		super(bound, new ReverseComparableComparator<E>());
 		this.comparator = new ReverseComparableComparator<E>();
 		this.bound = bound;
 	}
 
-	public BoundedPriorityQueue(int bound, Comparator<? super E> comp) {
+    /**
+     * Instantiates a new Bounded priority queue.
+     *
+     * @param bound the bound
+     * @param comp  the comp
+     */
+    public BoundedPriorityQueue(int bound, Comparator<? super E> comp) {
 		super(bound, new ReverseComparator<E>(comp));
 		this.bound = bound;
 		this.comparator = new ReverseComparator<E>(comp);
@@ -73,7 +83,12 @@ public class BoundedPriorityQueue<E> extends PriorityQueue<E> {
 		return offer(e);
 	}
 
-	public boolean isFilled() {
+    /**
+     * Is filled boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isFilled() {
 		return (size() == bound);
 	}
 }

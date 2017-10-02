@@ -23,12 +23,15 @@ import com.rapidminer.example.ExampleSet;
 
 /**
  * Terminates if the example set does not have any regular attributes.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class NoAttributeLeftTermination implements Terminator {
 
-	public NoAttributeLeftTermination() {}
+    /**
+     * Instantiates a new No attribute left termination.
+     */
+    public NoAttributeLeftTermination() {}
 
 	@Override
 	public boolean shouldStop(ExampleSet exampleSet, int depth) {

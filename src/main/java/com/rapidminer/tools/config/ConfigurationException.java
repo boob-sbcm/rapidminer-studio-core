@@ -20,19 +20,29 @@ package com.rapidminer.tools.config;
 
 /**
  * Exception type for all errors occurring while dealing with {@link Configurable}s.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class ConfigurationException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	public ConfigurationException(String message) {
+    /**
+     * Instantiates a new Configuration exception.
+     *
+     * @param message the message
+     */
+    public ConfigurationException(String message) {
 		super(message);
 	}
 
-	public ConfigurationException(String message, Throwable cause) {
+    /**
+     * Instantiates a new Configuration exception.
+     *
+     * @param message the message
+     * @param cause   the cause
+     */
+    public ConfigurationException(String message, Throwable cause) {
 		super(message, cause);
 	}
 

@@ -28,9 +28,8 @@ import javax.swing.table.TableModel;
 
 /**
  * Removes rows from a table model.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class RowFilteringTableModel extends AbstractTableModel {
 
@@ -41,7 +40,14 @@ public class RowFilteringTableModel extends AbstractTableModel {
 
 	private int[] rowMap;
 
-	public RowFilteringTableModel(TableModel wrappedModel, int[] rowMap, boolean enabled) {
+    /**
+     * Instantiates a new Row filtering table model.
+     *
+     * @param wrappedModel the wrapped model
+     * @param rowMap       the row map
+     * @param enabled      the enabled
+     */
+    public RowFilteringTableModel(TableModel wrappedModel, int[] rowMap, boolean enabled) {
 		this.rowMap = rowMap;
 		this.wrappedModel = wrappedModel;
 		this.enabled = enabled;
@@ -57,8 +63,13 @@ public class RowFilteringTableModel extends AbstractTableModel {
 		});
 	}
 
-	/** Translates the row index in this table to the row index in the wrapped model. */
-	protected int translateRow(int row) {
+    /**
+     * Translates the row index in this table to the row index in the wrapped model.  @param row the row
+     *
+     * @param row the row
+     * @return the int
+     */
+    protected int translateRow(int row) {
 		if (enabled) {
 			return rowMap[row];
 		} else {
@@ -66,8 +77,13 @@ public class RowFilteringTableModel extends AbstractTableModel {
 		}
 	}
 
-	/** Translates the row index in the wrapped model to the row index in this model. */
-	protected int inverseTranslateRow(int row) {
+    /**
+     * Translates the row index in the wrapped model to the row index in this model.  @param row the row
+     *
+     * @param row the row
+     * @return the int
+     */
+    protected int inverseTranslateRow(int row) {
 		if (enabled) {
 			return Arrays.binarySearch(rowMap, row);
 		} else {
@@ -104,14 +120,25 @@ public class RowFilteringTableModel extends AbstractTableModel {
 		return wrappedModel.getColumnClass(columnIndex);
 	}
 
-	public void setWrappedModel(TableModel wm, int[] rowMap) {
+    /**
+     * Sets wrapped model.
+     *
+     * @param wm     the wm
+     * @param rowMap the row map
+     */
+    public void setWrappedModel(TableModel wm, int[] rowMap) {
 		int oldSize = getRowCount();
 		this.wrappedModel = wm;
 		this.rowMap = rowMap;
 		fireChange(oldSize);
 	}
 
-	public void setFilterEnabled(boolean enabled) {
+    /**
+     * Sets filter enabled.
+     *
+     * @param enabled the enabled
+     */
+    public void setFilterEnabled(boolean enabled) {
 		int oldSize = getRowCount();
 		this.enabled = enabled;
 		fireChange(oldSize);

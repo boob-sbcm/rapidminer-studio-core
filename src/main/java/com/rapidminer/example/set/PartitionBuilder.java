@@ -23,14 +23,18 @@ package com.rapidminer.example.set;
  * partition or apply stratification. The delivered partitions consist of an array of integer values
  * with the same length as the given size. For each element the integer defines the number of the
  * partition for this element. Numbering starts with 0.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface PartitionBuilder {
 
-	/**
-	 * Creates a partition from the given ratios. Size is the number of elements, i.e. the number of
-	 * examples.
-	 */
-	public int[] createPartition(double[] ratio, int size);
+    /**
+     * Creates a partition from the given ratios. Size is the number of elements, i.e. the number of
+     * examples.
+     *
+     * @param ratio the ratio
+     * @param size  the size
+     * @return the int [ ]
+     */
+    public int[] createPartition(double[] ratio, int size);
 }

@@ -32,9 +32,17 @@ public class GiniIndexColumnCriterion extends AbstractColumnCriterion implements
 	private FrequencyCalculator frequencyCalculator = new FrequencyCalculator();
 	private double minimalGain = 0.1;
 
-	public GiniIndexColumnCriterion() {}
+    /**
+     * Instantiates a new Gini index column criterion.
+     */
+    public GiniIndexColumnCriterion() {}
 
-	public GiniIndexColumnCriterion(double minimalGain) {
+    /**
+     * Instantiates a new Gini index column criterion.
+     *
+     * @param minimalGain the minimal gain
+     */
+    public GiniIndexColumnCriterion(double minimalGain) {
 		this.minimalGain = minimalGain;
 	}
 

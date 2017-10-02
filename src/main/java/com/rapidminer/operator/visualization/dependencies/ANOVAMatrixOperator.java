@@ -62,7 +62,12 @@ public class ANOVAMatrixOperator extends Operator {
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort anovaOutput = getOutputPorts().createPort("anova");
 
-	public ANOVAMatrixOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Anova matrix operator.
+     *
+     * @param description the description
+     */
+    public ANOVAMatrixOperator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput) {

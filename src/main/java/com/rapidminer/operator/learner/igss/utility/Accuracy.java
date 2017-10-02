@@ -23,13 +23,18 @@ import com.rapidminer.operator.learner.igss.hypothesis.Hypothesis;
 
 /**
  * The instance-averaging utility function Accuracy.
- * 
+ *
  * @author Dirk Dach
  */
 public class Accuracy extends InstanceAveraging {
 
-	/** Constructs a new Accuracy with the given default probability. */
-	public Accuracy(double[] priors, int large) {
+    /**
+     * Constructs a new Accuracy with the given default probability.  @param priors the priors
+     *
+     * @param priors the priors
+     * @param large  the large
+     */
+    public Accuracy(double[] priors, int large) {
 		super(priors, large);
 	}
 

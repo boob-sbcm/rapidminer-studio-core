@@ -47,7 +47,6 @@ import org.jdesktop.swingx.border.DropShadowBorder;
  * hovering over the button it is highlighted (floating above the background).
  *
  * @author Marco Boeck
- *
  */
 public class FancyButton extends JButton implements FancyConstants {
 
@@ -103,42 +102,38 @@ public class FancyButton extends JButton implements FancyConstants {
 		}
 	};
 
-	/**
-	 * Creates a button with no set text or icon.
-	 */
-	public FancyButton() {
+    /**
+     * Creates a button with no set text or icon.
+     */
+    public FancyButton() {
 		this(null, null);
 	}
 
-	/**
-	 * Creates a button with an icon.
-	 *
-	 * @param icon
-	 *            the Icon image to display on the button
-	 */
-	public FancyButton(Icon icon) {
+    /**
+     * Creates a button with an icon.
+     *
+     * @param icon the Icon image to display on the button
+     */
+    public FancyButton(Icon icon) {
 		this(null, icon);
 	}
 
-	/**
-	 * Creates a button with text.
-	 *
-	 * @param text
-	 *            the text of the button
-	 */
-	public FancyButton(String text) {
+    /**
+     * Creates a button with text.
+     *
+     * @param text the text of the button
+     */
+    public FancyButton(String text) {
 		this(text, null);
 	}
 
-	/**
-	 * Creates a button with initial text and an icon.
-	 *
-	 * @param text
-	 *            the text of the button
-	 * @param icon
-	 *            the Icon image to display on the button
-	 */
-	public FancyButton(String text, Icon icon) {
+    /**
+     * Creates a button with initial text and an icon.
+     *
+     * @param text the text of the button
+     * @param icon the Icon image to display on the button
+     */
+    public FancyButton(String text, Icon icon) {
 		super(text, icon);
 
 		// setup fancy button things
@@ -158,53 +153,51 @@ public class FancyButton extends JButton implements FancyConstants {
 		drawArrow = true;
 	}
 
-	/**
-	 * Creates a button where properties are taken from the <code>Action</code> supplied.
-	 *
-	 * @param a
-	 *            the <code>Action</code> used to specify the new button
-	 *
-	 */
-	public FancyButton(Action a) {
+    /**
+     * Creates a button where properties are taken from the <code>Action</code> supplied.
+     *
+     * @param a the <code>Action</code> used to specify the new button
+     */
+    public FancyButton(Action a) {
 		this();
 		super.setAction(a);
 	}
 
-	/**
-	 * If set to <code>true</code>, the trailing arrow will not be drawn.
-	 *
-	 * @param flag
-	 */
-	public void setDrawArrow(boolean flag) {
+    /**
+     * If set to <code>true</code>, the trailing arrow will not be drawn.
+     *
+     * @param flag the flag
+     */
+    public void setDrawArrow(boolean flag) {
 		drawArrow = flag;
 	}
 
-	/**
-	 * Sets the text color when the {@link FancyButton} is not hovered over.
-	 *
-	 * @param textColor
-	 */
-	public void setTextColor(Color textColor) {
+    /**
+     * Sets the text color when the {@link FancyButton} is not hovered over.
+     *
+     * @param textColor the text color
+     */
+    public void setTextColor(Color textColor) {
 		this.normalTextColor = textColor;
 		setForeground(textColor);
 	}
 
-	/**
-	 * Sets the text color when the {@link FancyButton} is hovered over.
-	 *
-	 * @param textColor
-	 */
-	public void setHoveredTextColor(Color textColor) {
+    /**
+     * Sets the text color when the {@link FancyButton} is hovered over.
+     *
+     * @param textColor the text color
+     */
+    public void setHoveredTextColor(Color textColor) {
 		this.hoveredTextColor = textColor;
 	}
 
-	/**
-	 * Sets how much the height of the button should be enhanced. Default is
-	 * {@link FancyButton#HEIGHT_EXTENSION}
-	 *
-	 * @param heightExtension
-	 */
-	public void setButtonHeightEnhancement(int heightExtension) {
+    /**
+     * Sets how much the height of the button should be enhanced. Default is
+     * {@link FancyButton#HEIGHT_EXTENSION}
+     *
+     * @param heightExtension the height extension
+     */
+    public void setButtonHeightEnhancement(int heightExtension) {
 		this.preferredHeightExtension = heightExtension;
 	}
 
@@ -221,11 +214,21 @@ public class FancyButton extends JButton implements FancyConstants {
 		return false;
 	}
 
-	public void setBackgroundColor(Color backgroundColor) {
+    /**
+     * Sets background color.
+     *
+     * @param backgroundColor the background color
+     */
+    public void setBackgroundColor(Color backgroundColor) {
 		customBackgroundColor = backgroundColor;
 	};
 
-	public void setBorderColor(Color borderColor) {
+    /**
+     * Sets border color.
+     *
+     * @param borderColor the border color
+     */
+    public void setBorderColor(Color borderColor) {
 		customBorderColor = borderColor;
 	}
 

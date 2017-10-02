@@ -33,13 +33,17 @@ import com.rapidminer.operator.OperatorException;
  * This decision tree learner works similar to Quinlan's ID3.
  *
  * @author Ingo Mierswa
- *
  * @deprecated This learner is not used anymore.
  */
 @Deprecated
 public class ID3NumericalLearner extends AbstractTreeLearner {
 
-	public ID3NumericalLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Id 3 numerical learner.
+     *
+     * @param description the description
+     */
+    public ID3NumericalLearner(OperatorDescription description) {
 		super(description);
 	}
 

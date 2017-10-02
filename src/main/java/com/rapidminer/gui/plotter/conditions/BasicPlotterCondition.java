@@ -23,7 +23,7 @@ import com.rapidminer.datatable.DataTable;
 
 /**
  * This plotter condition accepts all data tables.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class BasicPlotterCondition implements PlotterCondition {

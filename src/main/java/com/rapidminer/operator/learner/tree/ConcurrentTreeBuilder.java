@@ -44,11 +44,21 @@ public class ConcurrentTreeBuilder extends AbstractParallelTreeBuilder {
 
 	private static final int MINIMAL_EXAMPLES_FOR_SORTING_PARALLEL = 10000;
 
-	/**
-	 * Pipes the arguments to the super constructor and sets an additional parameter allowing
-	 * parallel table creation.
-	 */
-	public ConcurrentTreeBuilder(Operator operator, ColumnCriterion criterion, List<ColumnTerminator> terminationCriteria,
+    /**
+     * Pipes the arguments to the super constructor and sets an additional parameter allowing
+     * parallel table creation.
+     *
+     * @param operator                       the operator
+     * @param criterion                      the criterion
+     * @param terminationCriteria            the termination criteria
+     * @param pruner                         the pruner
+     * @param preprocessing                  the preprocessing
+     * @param noPrePruning                   the no pre pruning
+     * @param numberOfPrepruningAlternatives the number of prepruning alternatives
+     * @param minSizeForSplit                the min size for split
+     * @param minLeafSize                    the min leaf size
+     */
+    public ConcurrentTreeBuilder(Operator operator, ColumnCriterion criterion, List<ColumnTerminator> terminationCriteria,
 			Pruner pruner, AttributePreprocessing preprocessing, boolean noPrePruning, int numberOfPrepruningAlternatives,
 			int minSizeForSplit, int minLeafSize) {
 		super(operator, criterion, terminationCriteria, pruner, preprocessing, noPrePruning, numberOfPrepruningAlternatives,
@@ -125,13 +135,13 @@ public class ConcurrentTreeBuilder extends AbstractParallelTreeBuilder {
 
 	}
 
-	/**
-	 * Decides whether the node is to small to do the splitting attribute parallel.
-	 *
-	 * @param nodeData
-	 * @return
-	 */
-	boolean nodeIsTooSmall(NodeData nodeData) {
+    /**
+     * Decides whether the node is to small to do the splitting attribute parallel.
+     *
+     * @param nodeData the node data
+     * @return boolean boolean
+     */
+    boolean nodeIsTooSmall(NodeData nodeData) {
 		return nodeData.getSelectedAttributes().length < 2
 				|| SelectionCreator.getArbitraryValue(nodeData.getAllSelectedExamples()).length < MINIMAL_EXAMPLES_FOR_GROWING_PARALLEL;
 	}

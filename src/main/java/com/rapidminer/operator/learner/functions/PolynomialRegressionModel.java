@@ -44,7 +44,15 @@ public class PolynomialRegressionModel extends SimplePredictionModel {
 
 	private double offset;
 
-	public PolynomialRegressionModel(ExampleSet exampleSet, double[][] coefficients, double[][] degrees, double offset) {
+    /**
+     * Instantiates a new Polynomial regression model.
+     *
+     * @param exampleSet   the example set
+     * @param coefficients the coefficients
+     * @param degrees      the degrees
+     * @param offset       the offset
+     */
+    public PolynomialRegressionModel(ExampleSet exampleSet, double[][] coefficients, double[][] degrees, double offset) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.EQUAL,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.attributeConstructions = com.rapidminer.example.Tools.getRegularAttributeConstructions(exampleSet);
@@ -58,10 +66,16 @@ public class PolynomialRegressionModel extends SimplePredictionModel {
 		return calculatePrediction(example, coefficients, degrees, offset);
 	}
 
-	/**
-	 * Calculates the prediction using the values of the example at its regular attributes.
-	 */
-	public static double calculatePrediction(Example example, double[][] coefficients, double[][] degrees, double offset) {
+    /**
+     * Calculates the prediction using the values of the example at its regular attributes.
+     *
+     * @param example      the example
+     * @param coefficients the coefficients
+     * @param degrees      the degrees
+     * @param offset       the offset
+     * @return the double
+     */
+    public static double calculatePrediction(Example example, double[][] coefficients, double[][] degrees, double offset) {
 		double prediction = 0;
 		int index = 0;
 		for (Attribute attribute : example.getAttributes()) {
@@ -75,10 +89,17 @@ public class PolynomialRegressionModel extends SimplePredictionModel {
 		return prediction;
 	}
 
-	/**
-	 * Calculates the prediction using the values of the example for the given attributes.
-	 */
-	public static double calculatePrediction(Example example, Attribute[] attributes, double[][] coefficients,
+    /**
+     * Calculates the prediction using the values of the example for the given attributes.
+     *
+     * @param example      the example
+     * @param attributes   the attributes
+     * @param coefficients the coefficients
+     * @param degrees      the degrees
+     * @param offset       the offset
+     * @return the double
+     */
+    public static double calculatePrediction(Example example, Attribute[] attributes, double[][] coefficients,
 			double[][] degrees, double offset) {
 		double prediction = 0;
 		int index = 0;

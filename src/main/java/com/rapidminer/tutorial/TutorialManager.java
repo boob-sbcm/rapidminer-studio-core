@@ -37,10 +37,10 @@ import com.rapidminer.tools.LogService;
  */
 public enum TutorialManager {
 
-	/**
-	 * The {@link TutorialManager} instance
-	 */
-	INSTANCE;
+    /**
+     * The {@link TutorialManager} instance
+     */
+    INSTANCE;
 
 	private static final String PROPERTIES_TUTORIALS = "tutorials.properties";
 
@@ -50,30 +50,35 @@ public enum TutorialManager {
 		loadProperties();
 	}
 
-	/**
-	 * Puts a property to the tutorial property file.
-	 */
-	public void putProperty(String key, String value) {
+    /**
+     * Puts a property to the tutorial property file.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public void putProperty(String key, String value) {
 		properties.put(key, value);
 		saveProperties();
 	}
 
-	/**
-	 * @return the value of the property key, may return <code>null</code>
-	 */
-	public String getProperty(String key) {
+    /**
+     * Gets property.
+     *
+     * @param key the key
+     * @return the value of the property key, may return <code>null</code>
+     */
+    public String getProperty(String key) {
 		Object result = properties.get(key);
 		return result != null ? String.valueOf(result) : null;
 	}
 
-	/**
-	 * Checks if the tutorial with the given identifier has been completed.
-	 *
-	 * @param tutorialIdentifier
-	 *            the identification of the tutorial
-	 * @return {@code true} if the tutorial has been completed otherwise {@code false}
-	 */
-	public boolean hasCompletedTutorial(String tutorialIdentifier) {
+    /**
+     * Checks if the tutorial with the given identifier has been completed.
+     *
+     * @param tutorialIdentifier the identification of the tutorial
+     * @return {@code true} if the tutorial has been completed otherwise {@code false}
+     */
+    public boolean hasCompletedTutorial(String tutorialIdentifier) {
 		if (tutorialIdentifier == null) {
 			throw new IllegalArgumentException("tutorialIdentifier must not be null!");
 		}
@@ -85,13 +90,12 @@ public enum TutorialManager {
 		}
 	}
 
-	/**
-	 * Sets the the tutorial with the given identifier to completed.
-	 *
-	 * @param tutorialIdentifier
-	 *            the identification of the tutorial
-	 */
-	public void completedTutorial(String tutorialIdentifier) {
+    /**
+     * Sets the the tutorial with the given identifier to completed.
+     *
+     * @param tutorialIdentifier the identification of the tutorial
+     */
+    public void completedTutorial(String tutorialIdentifier) {
 		if (tutorialIdentifier == null) {
 			throw new IllegalArgumentException("tutorialIdentifier must not be null!");
 		}

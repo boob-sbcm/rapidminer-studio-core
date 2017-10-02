@@ -37,8 +37,9 @@ import javax.swing.event.ChangeListener;
 
 
 /**
+ * The type Windowing configuration container.
+ *
  * @author Nils Woehler
- * 
  */
 public class WindowingConfigurationContainer extends AbstractTreeSelectionDependentPanel {
 
@@ -53,7 +54,13 @@ public class WindowingConfigurationContainer extends AbstractTreeSelectionDepend
 	private JLabel includeIncompleteGroupsLabel;
 	private JCheckBox includeIncompleteGroupsCheckBox;
 
-	public WindowingConfigurationContainer(JTree plotConfigurationTree, PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Windowing configuration container.
+     *
+     * @param plotConfigurationTree the plot configuration tree
+     * @param plotInstance          the plot instance
+     */
+    public WindowingConfigurationContainer(JTree plotConfigurationTree, PlotInstance plotInstance) {
 		super(plotConfigurationTree, plotInstance);
 		createComponents();
 		registerAsPlotConfigurationListener();

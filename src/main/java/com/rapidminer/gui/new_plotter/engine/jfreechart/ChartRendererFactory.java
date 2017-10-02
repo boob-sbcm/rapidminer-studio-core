@@ -69,9 +69,8 @@ import org.jfree.data.xy.XYDataset;
 
 /**
  * Helper class for created JFreeChart renderers for a given ValueSource.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class ChartRendererFactory {
 
@@ -159,7 +158,14 @@ public class ChartRendererFactory {
 		formatDelegate.setConfiguration(valueSourceData, plotInstance);
 	}
 
-	public static XYItemRenderer[] createXYDifferenceRenderers(ValueSource valueSource, PlotInstance plotInstance) {
+    /**
+     * Create xy difference renderers xy item renderer [ ].
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the xy item renderer [ ]
+     */
+    public static XYItemRenderer[] createXYDifferenceRenderers(ValueSource valueSource, PlotInstance plotInstance) {
 		ValueSourceData valueSourceData = plotInstance.getPlotData().getValueSourceData(valueSource);
 		FormattedXYDifferenceRenderer[] renderers = new FormattedXYDifferenceRenderer[valueSourceData.getSeriesCount()];
 		for (int seriesIdx = 0; seriesIdx < valueSourceData.getSeriesCount(); ++seriesIdx) {
@@ -213,7 +219,15 @@ public class ChartRendererFactory {
 		}
 	}
 
-	public static XYItemRenderer createXYErrorRenderer(ValueSource valueSource, PlotInstance plotInstance, XYDataset dataset) {
+    /**
+     * Create xy error renderer xy item renderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @param dataset      the dataset
+     * @return the xy item renderer
+     */
+    public static XYItemRenderer createXYErrorRenderer(ValueSource valueSource, PlotInstance plotInstance, XYDataset dataset) {
 		FormattedXYErrorRenderer renderer = new FormattedXYErrorRenderer();
 		configureXYLineAndShapeRenderer(renderer, valueSource, plotInstance);
 		initFormatDelegate(valueSource, renderer, plotInstance);
@@ -222,7 +236,14 @@ public class ChartRendererFactory {
 		return renderer;
 	}
 
-	public static XYItemRenderer createDeviationRenderer(ValueSource valueSource, PlotInstance plotInstance) {
+    /**
+     * Create deviation renderer xy item renderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the xy item renderer
+     */
+    public static XYItemRenderer createDeviationRenderer(ValueSource valueSource, PlotInstance plotInstance) {
 		FormattedDeviationRenderer renderer = new FormattedDeviationRenderer();
 		configureXYLineAndShapeRenderer(renderer, valueSource, plotInstance);
 		renderer.setAlpha(0.5f * valueSource.getSeriesFormat().getOpacity() / 255f);
@@ -230,7 +251,14 @@ public class ChartRendererFactory {
 		return renderer;
 	}
 
-	public static XYItemRenderer createClusteredXYBarRenderer(ValueSource valueSource, PlotInstance plotInstance) {
+    /**
+     * Create clustered xy bar renderer xy item renderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the xy item renderer
+     */
+    public static XYItemRenderer createClusteredXYBarRenderer(ValueSource valueSource, PlotInstance plotInstance) {
 		FormattedClusteredXYBarRenderer renderer = new FormattedClusteredXYBarRenderer(DEFAULT_PERCENTUAL_XY_BAR_GAP, false);
 		configureXYBarRenderer(renderer, valueSource, plotInstance);
 		initFormatDelegate(valueSource, renderer, plotInstance);
@@ -269,7 +297,15 @@ public class ChartRendererFactory {
 		renderer.setDrawBarOutline(true);
 	}
 
-	public static XYItemRenderer createStackedXYBarRenderer(ValueSource valueSource, PlotInstance plotInstance,
+    /**
+     * Create stacked xy bar renderer xy item renderer.
+     *
+     * @param valueSource   the value source
+     * @param plotInstance  the plot instance
+     * @param asPercentages the as percentages
+     * @return the xy item renderer
+     */
+    public static XYItemRenderer createStackedXYBarRenderer(ValueSource valueSource, PlotInstance plotInstance,
 			boolean asPercentages) {
 		FormattedStackedXYBarRenderer renderer = new FormattedStackedXYBarRenderer(0.1);
 		renderer.setRenderAsPercentages(asPercentages);
@@ -278,7 +314,14 @@ public class ChartRendererFactory {
 		return renderer;
 	}
 
-	public static XYItemRenderer createXYAreaRenderer2(ValueSource valueSource, PlotInstance plotInstance) {
+    /**
+     * Create xy area renderer 2 xy item renderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the xy item renderer
+     */
+    public static XYItemRenderer createXYAreaRenderer2(ValueSource valueSource, PlotInstance plotInstance) {
 		FormattedXYAreaRenderer2 renderer = new FormattedXYAreaRenderer2();
 		ValueSourceData valueSourceData = plotInstance.getPlotData().getValueSourceData(valueSource);
 
@@ -299,7 +342,15 @@ public class ChartRendererFactory {
 		renderer.setOutline(false);
 	}
 
-	public static XYItemRenderer createStackedXYAreaRenderer2(ValueSource valueSource, PlotInstance plotInstance, boolean b) {
+    /**
+     * Create stacked xy area renderer 2 xy item renderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @param b            the b
+     * @return the xy item renderer
+     */
+    public static XYItemRenderer createStackedXYAreaRenderer2(ValueSource valueSource, PlotInstance plotInstance, boolean b) {
 		FormattedStackedXYAreaRenderer2 renderer = new FormattedStackedXYAreaRenderer2();
 
 		ValueSourceData valueSourceData = plotInstance.getPlotData().getValueSourceData(valueSource);
@@ -308,14 +359,28 @@ public class ChartRendererFactory {
 		return renderer;
 	}
 
-	public static XYItemRenderer createXYLineAndShapeRenderer(ValueSource valueSource, PlotInstance plotInstance) {
+    /**
+     * Create xy line and shape renderer xy item renderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the xy item renderer
+     */
+    public static XYItemRenderer createXYLineAndShapeRenderer(ValueSource valueSource, PlotInstance plotInstance) {
 		FormattedXYLineAndShapeRenderer renderer = new FormattedXYLineAndShapeRenderer();
 		configureXYLineAndShapeRenderer(renderer, valueSource, plotInstance);
 		initFormatDelegate(valueSource, renderer, plotInstance);
 		return renderer;
 	}
 
-	public static FormattedStatisticalLineAndShapeRenderer createStatisticalLineAndShapeRenderer(ValueSource valueSource,
+    /**
+     * Create statistical line and shape renderer formatted statistical line and shape renderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the formatted statistical line and shape renderer
+     */
+    public static FormattedStatisticalLineAndShapeRenderer createStatisticalLineAndShapeRenderer(ValueSource valueSource,
 			PlotInstance plotInstance) {
 		FormattedStatisticalLineAndShapeRenderer renderer = new FormattedStatisticalLineAndShapeRenderer();
 
@@ -324,7 +389,14 @@ public class ChartRendererFactory {
 		return renderer;
 	}
 
-	public static FormattedLineAndShapeRenderer createLineAndShapeRenderer(ValueSource valueSource, PlotInstance plotInstance) {
+    /**
+     * Create line and shape renderer formatted line and shape renderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the formatted line and shape renderer
+     */
+    public static FormattedLineAndShapeRenderer createLineAndShapeRenderer(ValueSource valueSource, PlotInstance plotInstance) {
 		FormattedLineAndShapeRenderer renderer = new FormattedLineAndShapeRenderer();
 
 		renderer.setDefaultEntityRadius(4);
@@ -417,7 +489,14 @@ public class ChartRendererFactory {
 		}
 	}
 
-	public static FormattedStatisticalBarRenderer createStatisticalBarRenderer(ValueSource valueSource,
+    /**
+     * Create statistical bar renderer formatted statistical bar renderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the formatted statistical bar renderer
+     */
+    public static FormattedStatisticalBarRenderer createStatisticalBarRenderer(ValueSource valueSource,
 			PlotInstance plotInstance) {
 		FormattedStatisticalBarRenderer renderer = new FormattedStatisticalBarRenderer();
 		configureBarRenderer(renderer, valueSource, plotInstance);
@@ -452,14 +531,29 @@ public class ChartRendererFactory {
 		renderer.setDrawBarOutline(true);
 	}
 
-	public static FormattedBarRenderer createBarRenderer(ValueSource valueSource, PlotInstance plotInstance) {
+    /**
+     * Create bar renderer formatted bar renderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the formatted bar renderer
+     */
+    public static FormattedBarRenderer createBarRenderer(ValueSource valueSource, PlotInstance plotInstance) {
 		FormattedBarRenderer renderer = new FormattedBarRenderer();
 		configureBarRenderer(renderer, valueSource, plotInstance);
 		initFormatDelegate(valueSource, renderer, plotInstance);
 		return renderer;
 	}
 
-	public static FormattedStackedBarRenderer createStackedBarRenderer(ValueSource valueSource, PlotInstance plotInstance,
+    /**
+     * Create stacked bar renderer formatted stacked bar renderer.
+     *
+     * @param valueSource   the value source
+     * @param plotInstance  the plot instance
+     * @param asPercentages the as percentages
+     * @return the formatted stacked bar renderer
+     */
+    public static FormattedStackedBarRenderer createStackedBarRenderer(ValueSource valueSource, PlotInstance plotInstance,
 			boolean asPercentages) {
 		FormattedStackedBarRenderer renderer = new FormattedStackedBarRenderer();
 		configureBarRenderer(renderer, valueSource, plotInstance);
@@ -468,7 +562,14 @@ public class ChartRendererFactory {
 		return renderer;
 	}
 
-	public static FormattedAreaRenderer createAreaRenderer(ValueSource valueSource, PlotInstance plotInstance) {
+    /**
+     * Create area renderer formatted area renderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the formatted area renderer
+     */
+    public static FormattedAreaRenderer createAreaRenderer(ValueSource valueSource, PlotInstance plotInstance) {
 		FormattedAreaRenderer renderer = new FormattedAreaRenderer();
 		configureAreaRenderer(renderer, valueSource, plotInstance);
 		initFormatDelegate(valueSource, renderer, plotInstance);
@@ -487,7 +588,15 @@ public class ChartRendererFactory {
 		}
 	}
 
-	public static FormattedStackedAreaRenderer createStackedAreaRenderer(ValueSource valueSource, PlotInstance plotInstance,
+    /**
+     * Create stacked area renderer formatted stacked area renderer.
+     *
+     * @param valueSource   the value source
+     * @param plotInstance  the plot instance
+     * @param asPercentages the as percentages
+     * @return the formatted stacked area renderer
+     */
+    public static FormattedStackedAreaRenderer createStackedAreaRenderer(ValueSource valueSource, PlotInstance plotInstance,
 			boolean asPercentages) {
 		FormattedStackedAreaRenderer renderer = new FormattedStackedAreaRenderer();
 		renderer.setRenderAsPercentages(asPercentages);
@@ -496,7 +605,15 @@ public class ChartRendererFactory {
 		return renderer;
 	}
 
-	public static FormattedScatterRenderer createScatterRenderer(ValueSource valueSource, PlotInstance plotInstance)
+    /**
+     * Create scatter renderer formatted scatter renderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the formatted scatter renderer
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static FormattedScatterRenderer createScatterRenderer(ValueSource valueSource, PlotInstance plotInstance)
 			throws ChartPlottimeException {
 		FormattedScatterRenderer renderer = new FormattedScatterRenderer();
 		configureScatterRenderer(renderer, valueSource, plotInstance);

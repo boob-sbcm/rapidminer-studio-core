@@ -25,31 +25,44 @@ import org.junit.Test;
 import com.rapidminer.operator.annotation.PolynomialFunction;
 
 /**
- * @author Simon Fischer
+ * The type Polynomial function test.
  *
+ * @author Simon Fischer
  */
 public class PolynomialFunctionTest {
 
-	@Test
+    /**
+     * Test linear function.
+     */
+    @Test
 	public void testLinearFunction() {
 		PolynomialFunction f = PolynomialFunction.makeLinearFunction(2);
 		assertEquals(70, f.evaluate(5, 7));
 	}
-	
-	@Test
+
+    /**
+     * Test polynomial function.
+     */
+    @Test
 	public void testPolynomialFunction() {
 		PolynomialFunction f = new PolynomialFunction(10, 2, 3);
 		assertEquals(85750, f.evaluate(5, 7));
 	}
 
-	@Test
+    /**
+     * Test poly plus log function.
+     */
+    @Test
 	public void testPolyPlusLogFunction() {
 		PolynomialFunction f = new PolynomialFunction(10, 2, 1, 3, 1);
 		// 10 * 5^2*ln(5) * 7^3*ln(7) * 10
 		assertEquals((long)268553.69946285250055529643, f.evaluate(5, 7));
 	}
 
-	@Test
+    /**
+     * Test to string for invalid value.
+     */
+    @Test
 	public void testToStringForInvalidValue() {
 		PolynomialFunction f = PolynomialFunction.makeLinearFunction(-0.0d);
 		assertEquals("n/a", f.toString());

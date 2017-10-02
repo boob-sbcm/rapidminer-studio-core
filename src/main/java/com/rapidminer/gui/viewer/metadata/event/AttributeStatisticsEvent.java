@@ -23,37 +23,47 @@ import com.rapidminer.gui.viewer.metadata.model.AbstractAttributeStatisticsModel
 
 /**
  * An event for the {@link AbstractAttributeStatisticsModel}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class AttributeStatisticsEvent {
 
-	/**
-	 * Defines different kind of {@link AttributeStatisticsEvent}s.
-	 * 
-	 */
-	public static enum EventType {
-		ALTERNATING_CHANGED, ENLARGED_CHANGED, SHOW_CONSTRUCTION_CHANGED, STATISTICS_CHANGED;
+    /**
+     * Defines different kind of {@link AttributeStatisticsEvent}s.
+     */
+    public static enum EventType {
+        /**
+         * Alternating changed event type.
+         */
+        ALTERNATING_CHANGED, /**
+         * Enlarged changed event type.
+         */
+        ENLARGED_CHANGED, /**
+         * Show construction changed event type.
+         */
+        SHOW_CONSTRUCTION_CHANGED, /**
+         * Statistics changed event type.
+         */
+        STATISTICS_CHANGED;
 	}
 
 	private EventType type;
 
-	/**
-	 * Creates a new {@link AttributeStatisticsEvent} instance for the specified {@link EventType}.
-	 * 
-	 * @param type
-	 */
-	public AttributeStatisticsEvent(EventType type) {
+    /**
+     * Creates a new {@link AttributeStatisticsEvent} instance for the specified {@link EventType}.
+     *
+     * @param type the type
+     */
+    public AttributeStatisticsEvent(EventType type) {
 		this.type = type;
 	}
 
-	/**
-	 * Returns the {@link EventType}.
-	 * 
-	 * @return
-	 */
-	public EventType getEventType() {
+    /**
+     * Returns the {@link EventType}.
+     *
+     * @return event type
+     */
+    public EventType getEventType() {
 		return type;
 	}
 }

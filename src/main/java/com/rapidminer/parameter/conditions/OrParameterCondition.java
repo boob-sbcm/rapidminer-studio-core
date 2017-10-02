@@ -25,23 +25,47 @@ import com.rapidminer.tools.XMLException;
 
 
 /**
+ * The type Or parameter condition.
  *
  * @author Sebastian Land
- *
  */
 public class OrParameterCondition extends AbstractLogicalCondition {
 
-	public static final String ELEMENT_CONDITIONS = "SubConditions";
+    /**
+     * The constant ELEMENT_CONDITIONS.
+     */
+    public static final String ELEMENT_CONDITIONS = "SubConditions";
 
-	public OrParameterCondition(Element element) throws XMLException {
+    /**
+     * Instantiates a new Or parameter condition.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public OrParameterCondition(Element element) throws XMLException {
 		super(element);
 	}
 
-	public OrParameterCondition(ParameterHandler parameterHandler, boolean becomeMandatory, ParameterCondition... conditions) {
+    /**
+     * Instantiates a new Or parameter condition.
+     *
+     * @param parameterHandler the parameter handler
+     * @param becomeMandatory  the become mandatory
+     * @param conditions       the conditions
+     */
+    public OrParameterCondition(ParameterHandler parameterHandler, boolean becomeMandatory, ParameterCondition... conditions) {
 		super(parameterHandler, becomeMandatory, conditions);
 	}
 
-	public OrParameterCondition(ParameterHandler parameterHandler, String conditionParameter, boolean becomeMandatory,
+    /**
+     * Instantiates a new Or parameter condition.
+     *
+     * @param parameterHandler   the parameter handler
+     * @param conditionParameter the condition parameter
+     * @param becomeMandatory    the become mandatory
+     * @param conditions         the conditions
+     */
+    public OrParameterCondition(ParameterHandler parameterHandler, String conditionParameter, boolean becomeMandatory,
 			ParameterCondition... conditions) {
 		super(parameterHandler, conditionParameter, becomeMandatory, conditions);
 	}

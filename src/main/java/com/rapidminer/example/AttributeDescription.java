@@ -53,7 +53,17 @@ public class AttributeDescription implements Serializable, Cloneable {
 	/** Index of this attribute in its ExampleTable. */
 	private int index = Attribute.UNDEFINED_ATTRIBUTE_INDEX;
 
-	public AttributeDescription(Attribute attribute, String name, int valueType, int blockType, double defaultValue,
+    /**
+     * Instantiates a new Attribute description.
+     *
+     * @param attribute    the attribute
+     * @param name         the name
+     * @param valueType    the value type
+     * @param blockType    the block type
+     * @param defaultValue the default value
+     * @param tableIndex   the table index
+     */
+    public AttributeDescription(Attribute attribute, String name, int valueType, int blockType, double defaultValue,
 			int tableIndex) {
 		this.name = name;
 		this.valueType = valueType;
@@ -76,39 +86,84 @@ public class AttributeDescription implements Serializable, Cloneable {
 		return new AttributeDescription(this);
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return this.name;
 	}
 
-	public void setName(String newName) {
+    /**
+     * Sets name.
+     *
+     * @param newName the new name
+     */
+    public void setName(String newName) {
 		this.name = newName;
 	}
 
-	public int getValueType() {
+    /**
+     * Gets value type.
+     *
+     * @return the value type
+     */
+    public int getValueType() {
 		return this.valueType;
 	}
 
-	public int getBlockType() {
+    /**
+     * Gets block type.
+     *
+     * @return the block type
+     */
+    public int getBlockType() {
 		return this.blockType;
 	}
 
-	public void setBlockType(int b) {
+    /**
+     * Sets block type.
+     *
+     * @param b the b
+     */
+    public void setBlockType(int b) {
 		this.blockType = b;
 	}
 
-	public double getDefault() {
+    /**
+     * Gets default.
+     *
+     * @return the default
+     */
+    public double getDefault() {
 		return this.defaultValue;
 	}
 
-	public void setDefault(double defaultValue) {
+    /**
+     * Sets default.
+     *
+     * @param defaultValue the default value
+     */
+    public void setDefault(double defaultValue) {
 		this.defaultValue = defaultValue;
 	}
 
-	public int getTableIndex() {
+    /**
+     * Gets table index.
+     *
+     * @return the table index
+     */
+    public int getTableIndex() {
 		return this.index;
 	}
 
-	public void setTableIndex(int i) {
+    /**
+     * Sets table index.
+     *
+     * @param i the
+     */
+    public void setTableIndex(int i) {
 		this.index = i;
 	}
 

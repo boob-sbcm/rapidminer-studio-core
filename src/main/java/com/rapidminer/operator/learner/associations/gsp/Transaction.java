@@ -23,8 +23,9 @@ import java.util.Collections;
 
 
 /**
+ * The type Transaction.
+ *
  * @author Sebastian Land
- * 
  */
 public class Transaction extends ArrayList<Item> {
 
@@ -32,7 +33,13 @@ public class Transaction extends ArrayList<Item> {
 
 	private double time;
 
-	public Transaction(double time, Item... items) {
+    /**
+     * Instantiates a new Transaction.
+     *
+     * @param time  the time
+     * @param items the items
+     */
+    public Transaction(double time, Item... items) {
 		this.time = time;
 		for (Item item : items) {
 			super.add(item);
@@ -40,15 +47,30 @@ public class Transaction extends ArrayList<Item> {
 		Collections.sort(this);
 	}
 
-	public Transaction(Transaction transaction) {
+    /**
+     * Instantiates a new Transaction.
+     *
+     * @param transaction the transaction
+     */
+    public Transaction(Transaction transaction) {
 		this.addAll(transaction);
 	}
 
-	public Item getLastItem() {
+    /**
+     * Gets last item.
+     *
+     * @return the last item
+     */
+    public Item getLastItem() {
 		return get(size() - 1);
 	}
 
-	public double getTime() {
+    /**
+     * Gets time.
+     *
+     * @return the time
+     */
+    public double getTime() {
 		return time;
 	}
 

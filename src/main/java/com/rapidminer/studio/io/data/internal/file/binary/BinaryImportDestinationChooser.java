@@ -44,16 +44,14 @@ class BinaryImportDestinationChooser extends RepositoryLocationChooser {
 
 	private JTextArea mediaType;
 
-	/**
-	 * Creates a new {@link RepositoryLocationChooser} that allows to specify a media or MIME type
-	 * for the given data source.
-	 *
-	 * @param source
-	 *            the data source
-	 * @param initialDestination
-	 *            the initial location (optional)
-	 */
-	public BinaryImportDestinationChooser(BinaryDataSource source, String initialDestination) {
+    /**
+     * Creates a new {@link RepositoryLocationChooser} that allows to specify a media or MIME type
+     * for the given data source.
+     *
+     * @param source             the data source
+     * @param initialDestination the initial location (optional)
+     */
+    public BinaryImportDestinationChooser(BinaryDataSource source, String initialDestination) {
 		super(null, null, initialDestination, true, false, true, true, Colors.WHITE);
 
 		// Use generic mime type as default and try to guess more specific.
@@ -79,7 +77,12 @@ class BinaryImportDestinationChooser extends RepositoryLocationChooser {
 		add(mediaType, c);
 	}
 
-	public String getMediaType() {
+    /**
+     * Gets media type.
+     *
+     * @return the media type
+     */
+    public String getMediaType() {
 		return mediaType.getText().trim();
 	}
 

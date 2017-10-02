@@ -60,30 +60,34 @@ public class ImprovedNeuralNetModel extends PredictionModel {
 
 	private OutputNode[] outputNodes = new OutputNode[0];
 
-	protected ImprovedNeuralNetModel(ExampleSet trainingExampleSet) {
+    /**
+     * Instantiates a new Improved neural net model.
+     *
+     * @param trainingExampleSet the training example set
+     */
+    protected ImprovedNeuralNetModel(ExampleSet trainingExampleSet) {
 		super(trainingExampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.attributeNames = com.rapidminer.example.Tools.getRegularAttributeNames(trainingExampleSet);
 	}
 
-	/**
-	 * Trains the model.
-	 *
-	 * @param exampleSet
-	 * @param hiddenLayers
-	 * @param maxCycles
-	 * @param maxError
-	 * @param learningRate
-	 * @param momentum
-	 * @param decay
-	 * @param shuffle
-	 * @param normalize
-	 * @param randomGenerator
-	 * @param operator
-	 *            can be <code>null</code>, used to checkForStop
-	 * @throws OperatorException
-	 */
-	public void train(ExampleSet exampleSet, List<String[]> hiddenLayers, int maxCycles, double maxError,
+    /**
+     * Trains the model.
+     *
+     * @param exampleSet      the example set
+     * @param hiddenLayers    the hidden layers
+     * @param maxCycles       the max cycles
+     * @param maxError        the max error
+     * @param learningRate    the learning rate
+     * @param momentum        the momentum
+     * @param decay           the decay
+     * @param shuffle         the shuffle
+     * @param normalize       the normalize
+     * @param randomGenerator the random generator
+     * @param operator        can be <code>null</code>, used to checkForStop
+     * @throws OperatorException the operator exception
+     */
+    public void train(ExampleSet exampleSet, List<String[]> hiddenLayers, int maxCycles, double maxError,
 			double learningRate, double momentum, boolean decay, boolean shuffle, boolean normalize,
 			RandomGenerator randomGenerator, Operator operator) throws OperatorException {
 		Attribute label = exampleSet.getAttributes().getLabel();
@@ -235,19 +239,39 @@ public class ImprovedNeuralNetModel extends PredictionModel {
 		return exampleSet;
 	}
 
-	public String[] getAttributeNames() {
+    /**
+     * Get attribute names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getAttributeNames() {
 		return this.attributeNames;
 	}
 
-	public InputNode[] getInputNodes() {
+    /**
+     * Get input nodes input node [ ].
+     *
+     * @return the input node [ ]
+     */
+    public InputNode[] getInputNodes() {
 		return this.inputNodes;
 	}
 
-	public OutputNode[] getOutputNodes() {
+    /**
+     * Get output nodes output node [ ].
+     *
+     * @return the output node [ ]
+     */
+    public OutputNode[] getOutputNodes() {
 		return this.outputNodes;
 	}
 
-	public InnerNode[] getInnerNodes() {
+    /**
+     * Get inner nodes inner node [ ].
+     *
+     * @return the inner node [ ]
+     */
+    public InnerNode[] getInnerNodes() {
 		return this.innerNodes;
 	}
 

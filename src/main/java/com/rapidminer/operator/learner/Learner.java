@@ -31,45 +31,64 @@ import com.rapidminer.operator.performance.PerformanceVector;
  * that case, they additionally return a
  * {@link com.rapidminer.operator.performance.PerformanceVector}. Furthermore some learner can
  * calculate weights of the used attributes which can also be delivered.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface Learner extends CapabilityProvider {
 
-	/**
-	 * Trains a model. This method should be called by apply() and is implemented by subclasses.
-	 */
-	public Model learn(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Trains a model. This method should be called by apply() and is implemented by subclasses.
+     *
+     * @param exampleSet the example set
+     * @return the model
+     * @throws OperatorException the operator exception
+     */
+    public Model learn(ExampleSet exampleSet) throws OperatorException;
 
-	/** Returns the name of the learner. */
-	public String getName();
+    /**
+     * Returns the name of the learner.  @return the name
+     *
+     * @return the name
+     */
+    public String getName();
 
-	/**
-	 * Most learners will return false since they are not able to estimate the learning performance.
-	 * However, if a learning scheme is able to calculate the performance (e.g. Xi-Alpha estimation
-	 * of a SVM) it should return true.
-	 */
-	public boolean shouldEstimatePerformance();
+    /**
+     * Most learners will return false since they are not able to estimate the learning performance.
+     * However, if a learning scheme is able to calculate the performance (e.g. Xi-Alpha estimation
+     * of a SVM) it should return true.
+     *
+     * @return the boolean
+     */
+    public boolean shouldEstimatePerformance();
 
-	/**
-	 * Most learners should throw an exception if they are not able to estimate the learning
-	 * performance. However, if a learning scheme is able to calculate the performance (e.g.
-	 * Xi-Alpha estimation of a SVM) it should return a performance vector containing the estimated
-	 * performance.
-	 */
-	public PerformanceVector getEstimatedPerformance() throws OperatorException;
+    /**
+     * Most learners should throw an exception if they are not able to estimate the learning
+     * performance. However, if a learning scheme is able to calculate the performance (e.g.
+     * Xi-Alpha estimation of a SVM) it should return a performance vector containing the estimated
+     * performance.
+     *
+     * @return the estimated performance
+     * @throws OperatorException the operator exception
+     */
+    public PerformanceVector getEstimatedPerformance() throws OperatorException;
 
-	/**
-	 * Most learners will return false since they are not able to calculate attribute weights.
-	 * However, if a learning scheme is able to calculate weights (e.g. the normal vector of a SVM)
-	 * it should return true.
-	 */
-	public boolean shouldCalculateWeights();
+    /**
+     * Most learners will return false since they are not able to calculate attribute weights.
+     * However, if a learning scheme is able to calculate weights (e.g. the normal vector of a SVM)
+     * it should return true.
+     *
+     * @return the boolean
+     */
+    public boolean shouldCalculateWeights();
 
-	/**
-	 * Most learners should throw an exception if they are not able to calculate attribute weights.
-	 * However, if a learning scheme is able to calculate weights (e.g. the normal vector of a SVM)
-	 * it should return an AttributeWeights object.
-	 */
-	public AttributeWeights getWeights(ExampleSet eSet) throws OperatorException;
+    /**
+     * Most learners should throw an exception if they are not able to calculate attribute weights.
+     * However, if a learning scheme is able to calculate weights (e.g. the normal vector of a SVM)
+     * it should return an AttributeWeights object.
+     *
+     * @param eSet the e set
+     * @return the weights
+     * @throws OperatorException the operator exception
+     */
+    public AttributeWeights getWeights(ExampleSet eSet) throws OperatorException;
 }

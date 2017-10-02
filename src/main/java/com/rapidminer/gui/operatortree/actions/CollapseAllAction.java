@@ -31,7 +31,7 @@ import javax.swing.Icon;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CollapseAllAction extends AbstractAction {
@@ -51,7 +51,13 @@ public class CollapseAllAction extends AbstractAction {
 
 	private OperatorTree operatorTree;
 
-	public CollapseAllAction(OperatorTree operatorTree, IconSize size) {
+    /**
+     * Instantiates a new Collapse all action.
+     *
+     * @param operatorTree the operator tree
+     * @param size         the size
+     */
+    public CollapseAllAction(OperatorTree operatorTree, IconSize size) {
 		super("Collapse Tree", ICONS[size.ordinal()]);
 		putValue(SHORT_DESCRIPTION, "Collapses the complete operator tree");
 		putValue(MNEMONIC_KEY, Integer.valueOf(KeyEvent.VK_L));

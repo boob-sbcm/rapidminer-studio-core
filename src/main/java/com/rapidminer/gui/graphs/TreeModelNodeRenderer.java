@@ -50,10 +50,9 @@ import edu.uci.ics.jung.visualization.transform.shape.GraphicsDecorator;
 /**
  * This class is used for rendering the nodes of a tree model.
  *
+ * @param <V> the type parameter
+ * @param <E> the type parameter
  * @author Ingo Mierswa
- *
- * @param <V>
- * @param <E>
  */
 public class TreeModelNodeRenderer<V, E> implements Renderer.Vertex<V, E> {
 
@@ -64,7 +63,13 @@ public class TreeModelNodeRenderer<V, E> implements Renderer.Vertex<V, E> {
 	private TreeModelGraphCreator graphCreator;
 	private TreeModel model;
 
-	public TreeModelNodeRenderer(TreeModelGraphCreator graphCreator, int maxLeafSize) {
+    /**
+     * Instantiates a new Tree model node renderer.
+     *
+     * @param graphCreator the graph creator
+     * @param maxLeafSize  the max leaf size
+     */
+    public TreeModelNodeRenderer(TreeModelGraphCreator graphCreator, int maxLeafSize) {
 		this.graphCreator = graphCreator;
 		this.model = graphCreator.getModel();
 	}
@@ -77,10 +82,14 @@ public class TreeModelNodeRenderer<V, E> implements Renderer.Vertex<V, E> {
 		}
 	}
 
-	/**
-	 * Paint <code>v</code>'s icon on <code>g</code> at <code>(x,y)</code>.
-	 */
-	protected void paintIconForVertex(RenderContext<V, E> rc, V v, Layout<V, E> layout) {
+    /**
+     * Paint <code>v</code>'s icon on <code>g</code> at <code>(x,y)</code>.
+     *
+     * @param rc     the rc
+     * @param v      the v
+     * @param layout the layout
+     */
+    protected void paintIconForVertex(RenderContext<V, E> rc, V v, Layout<V, E> layout) {
 		GraphicsDecorator g = rc.getGraphicsContext();
 		boolean vertexHit = true;
 		// get the shape to be rendered
@@ -115,7 +124,14 @@ public class TreeModelNodeRenderer<V, E> implements Renderer.Vertex<V, E> {
 		}
 	}
 
-	protected boolean vertexHit(RenderContext<V, E> rc, Shape s) {
+    /**
+     * Vertex hit boolean.
+     *
+     * @param rc the rc
+     * @param s  the s
+     * @return the boolean
+     */
+    protected boolean vertexHit(RenderContext<V, E> rc, Shape s) {
 		JComponent vv = rc.getScreenDevice();
 		Rectangle deviceRectangle = null;
 		if (vv != null) {
@@ -133,7 +149,14 @@ public class TreeModelNodeRenderer<V, E> implements Renderer.Vertex<V, E> {
 		}
 	}
 
-	protected void paintShapeForVertex(RenderContext<V, E> rc, V v, Shape shape) {
+    /**
+     * Paint shape for vertex.
+     *
+     * @param rc    the rc
+     * @param v     the v
+     * @param shape the shape
+     */
+    protected void paintShapeForVertex(RenderContext<V, E> rc, V v, Shape shape) {
 		GraphicsDecorator g = rc.getGraphicsContext();
 		Paint oldPaint = g.getPaint();
 		Paint fillPaint = rc.getVertexFillPaintTransformer().transform(v);

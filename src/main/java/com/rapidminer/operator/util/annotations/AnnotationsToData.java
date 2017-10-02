@@ -38,8 +38,9 @@ import com.rapidminer.tools.Ontology;
 
 
 /**
- * @author Marius Helf
+ * The type Annotations to data.
  *
+ * @author Marius Helf
  */
 public class AnnotationsToData extends Operator {
 
@@ -50,10 +51,12 @@ public class AnnotationsToData extends Operator {
 	private OutputPort annotationsOutputPort = getOutputPorts().createPort("annotations");
 	private OutputPort outputPort = getOutputPorts().createPort("object through");
 
-	/**
-	 * @param description
-	 */
-	public AnnotationsToData(OperatorDescription description) {
+    /**
+     * Instantiates a new Annotations to data.
+     *
+     * @param description the description
+     */
+    public AnnotationsToData(OperatorDescription description) {
 		super(description);
 		getTransformer().addPassThroughRule(inputPort, outputPort);
 		getTransformer().addRule(new MDTransformationRule() {

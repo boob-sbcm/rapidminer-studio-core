@@ -43,7 +43,6 @@ import com.rapidminer.tools.io.Encoding;
 
 
 /**
- *
  * <p>
  * This operator can be used to load data from Microsoft Excel spreadsheets. This operator is able
  * to reads data from Excel 95, 97, 2000, XP, and 2003. The user has to define which of the
@@ -51,7 +50,7 @@ import com.rapidminer.tools.io.Encoding;
  * each line is an example and each column represents an attribute. Please note that the first line
  * might be used for attribute names which can be indicated by a parameter.
  * </p>
- *
+ * <p>
  * <p>
  * The data table can be placed anywhere on the sheet and is allowed to contain arbitrary formatting
  * instructions, empty rows, and empty columns. Missing data values are indicated by empty cells or
@@ -64,39 +63,56 @@ public class ExcelExampleSource extends AbstractDataResultSetReader {
 
 	private static final String XLSX = "xlsx";
 	private static final String XLS = "xls";
-	public static final OperatorVersion CHANGE_5_0_4 = new OperatorVersion(5, 0, 4);
-	public static final OperatorVersion CHANGE_5_0_11_NAME_SCHEMA = new OperatorVersion(5, 0, 11);
+    /**
+     * The constant CHANGE_5_0_4.
+     */
+    public static final OperatorVersion CHANGE_5_0_4 = new OperatorVersion(5, 0, 4);
+    /**
+     * The constant CHANGE_5_0_11_NAME_SCHEMA.
+     */
+    public static final OperatorVersion CHANGE_5_0_11_NAME_SCHEMA = new OperatorVersion(5, 0, 11);
 
-	/** Last version that used the old POI XLSX import */
-	public static final OperatorVersion CHANGE_6_2_0_OLD_XLSX_IMPORT = new OperatorVersion(6, 2, 0);
+    /**
+     * Last version that used the old POI XLSX import
+     */
+    public static final OperatorVersion CHANGE_6_2_0_OLD_XLSX_IMPORT = new OperatorVersion(6, 2, 0);
 
-	/**
-	 * The parameter name for &quot;The Excel spreadsheet file which should be loaded.&quot;
-	 */
-	public static final String PARAMETER_EXCEL_FILE = "excel_file";
+    /**
+     * The parameter name for &quot;The Excel spreadsheet file which should be loaded.&quot;
+     */
+    public static final String PARAMETER_EXCEL_FILE = "excel_file";
 
-	/**
-	 * The parameter name for &quot;The number of the sheet which should be imported.&quot;
-	 */
-	public static final String PARAMETER_SHEET_NUMBER = "sheet_number";
+    /**
+     * The parameter name for &quot;The number of the sheet which should be imported.&quot;
+     */
+    public static final String PARAMETER_SHEET_NUMBER = "sheet_number";
 
-	/**
-	 * The parameter name for &quot;Indicates which column should be used for the label attribute
-	 * (0: no label)&quot;
-	 */
-	public static final String PARAMETER_LABEL_COLUMN = "label_column";
+    /**
+     * The parameter name for &quot;Indicates which column should be used for the label attribute
+     * (0: no label)&quot;
+     */
+    public static final String PARAMETER_LABEL_COLUMN = "label_column";
 
-	/**
-	 * The parameter name for &quot;Indicates which column should be used for the Id attribute (0:
-	 * no id)&quot;
-	 */
-	public static final String PARAMETER_ID_COLUMN = "id_column";
+    /**
+     * The parameter name for &quot;Indicates which column should be used for the Id attribute (0:
+     * no id)&quot;
+     */
+    public static final String PARAMETER_ID_COLUMN = "id_column";
 
-	public static final String PARAMETER_CREATE_LABEL = "create_label";
+    /**
+     * The constant PARAMETER_CREATE_LABEL.
+     */
+    public static final String PARAMETER_CREATE_LABEL = "create_label";
 
-	public static final String PARAMETER_CREATE_ID = "create_id";
+    /**
+     * The constant PARAMETER_CREATE_ID.
+     */
+    public static final String PARAMETER_CREATE_ID = "create_id";
 
-	public static final String PARAMETER_IMPORTED_CELL_RANGE = "imported_cell_range";
+    /**
+     * The constant PARAMETER_IMPORTED_CELL_RANGE.
+     */
+    public static final String PARAMETER_IMPORTED_CELL_RANGE = "imported_cell_range";
 
 	static {
 		AbstractReader.registerReaderDescription(new ReaderDescription(XLS, ExcelExampleSource.class, PARAMETER_EXCEL_FILE));
@@ -104,7 +120,12 @@ public class ExcelExampleSource extends AbstractDataResultSetReader {
 				.registerReaderDescription(new ReaderDescription(XLSX, ExcelExampleSource.class, PARAMETER_EXCEL_FILE));
 	}
 
-	public ExcelExampleSource(final OperatorDescription description) {
+    /**
+     * Instantiates a new Excel example source.
+     *
+     * @param description the description
+     */
+    public ExcelExampleSource(final OperatorDescription description) {
 		super(description);
 	}
 

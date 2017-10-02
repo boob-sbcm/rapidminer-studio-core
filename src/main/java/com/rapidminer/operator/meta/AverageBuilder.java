@@ -35,16 +35,24 @@ import java.util.List;
 /**
  * Collects all average vectors (e.g. PerformanceVectors) from the input and averages them if they
  * are of the same type.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AverageBuilder extends Operator {
 
-	InputPortExtender inExtender = new InputPortExtender("averagable", getInputPorts(), new MetaData(AverageVector.class), 2);
+    /**
+     * The In extender.
+     */
+    InputPortExtender inExtender = new InputPortExtender("averagable", getInputPorts(), new MetaData(AverageVector.class), 2);
 
 	private final OutputPort runOutput = getOutputPorts().createPort("average");
 
-	public AverageBuilder(OperatorDescription description) {
+    /**
+     * Instantiates a new Average builder.
+     *
+     * @param description the description
+     */
+    public AverageBuilder(OperatorDescription description) {
 		super(description);
 		inExtender.start();
 		getTransformer().addRule(inExtender.makeFlatteningPassThroughRule(runOutput));

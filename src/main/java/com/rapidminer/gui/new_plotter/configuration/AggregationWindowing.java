@@ -28,19 +28,17 @@ import java.util.List;
 
 /**
  * This class can be used to create cumulative plots.
- * 
+ * <p>
  * Used as a parameter to the grouping creation functions it tells the ValueGrouping to include
  * values from a certain amount of groups from the left or from the right in a group. To include all
  * values left of the current group in the current group, set grabLeft to -1. grabLeft works
  * analogously.
- * 
+ * <p>
  * If there are less than grabLeft groups on the left of the current group, all left groups are
  * taken.
- * 
+ *
  * @author Marius Helf
- * 
  */
-
 public class AggregationWindowing implements Cloneable {
 
 	private int grabLeft = 0;
@@ -48,61 +46,94 @@ public class AggregationWindowing implements Cloneable {
 	private boolean includeIncompleteGroups = true;
 	private List<AggregationWindowingListener> listeners = new LinkedList<AggregationWindowingListener>();
 
-	public AggregationWindowing(int grabLeft, int grabRight, boolean includeIncompleteGroups) {
+    /**
+     * Instantiates a new Aggregation windowing.
+     *
+     * @param grabLeft                the grab left
+     * @param grabRight               the grab right
+     * @param includeIncompleteGroups the include incomplete groups
+     */
+    public AggregationWindowing(int grabLeft, int grabRight, boolean includeIncompleteGroups) {
 		super();
 		this.grabLeft = grabLeft;
 		this.grabRight = grabRight;
 		this.includeIncompleteGroups = includeIncompleteGroups;
 	}
 
-	public int getGrabLeft() {
+    /**
+     * Gets grab left.
+     *
+     * @return the grab left
+     */
+    public int getGrabLeft() {
 		return grabLeft;
 	}
 
-	public void setGrabLeft(int grabLeft) {
+    /**
+     * Sets grab left.
+     *
+     * @param grabLeft the grab left
+     */
+    public void setGrabLeft(int grabLeft) {
 		if (grabLeft != this.grabLeft) {
 			this.grabLeft = grabLeft;
 			fireAggregationWindowingChanged();
 		}
 	}
 
-	public int getGrabRight() {
+    /**
+     * Gets grab right.
+     *
+     * @return the grab right
+     */
+    public int getGrabRight() {
 		return grabRight;
 	}
 
-	public void setGrabRight(int grabRight) {
+    /**
+     * Sets grab right.
+     *
+     * @param grabRight the grab right
+     */
+    public void setGrabRight(int grabRight) {
 		if (grabRight != this.grabRight) {
 			this.grabRight = grabRight;
 			fireAggregationWindowingChanged();
 		}
 	}
 
-	/**
-	 * @return the includeIncompleteGroups
-	 */
-	public boolean isIncludingIncompleteGroups() {
+    /**
+     * Is including incomplete groups boolean.
+     *
+     * @return the includeIncompleteGroups
+     */
+    public boolean isIncludingIncompleteGroups() {
 		return includeIncompleteGroups;
 	}
 
-	/**
-	 * @param includeIncompleteGroups
-	 *            the includeIncompleteGroups to set
-	 */
-	public void setIncludeIncompleteGroups(boolean includeIncompleteGroups) {
+    /**
+     * Sets include incomplete groups.
+     *
+     * @param includeIncompleteGroups the includeIncompleteGroups to set
+     */
+    public void setIncludeIncompleteGroups(boolean includeIncompleteGroups) {
 		if (includeIncompleteGroups != this.includeIncompleteGroups) {
 			this.includeIncompleteGroups = includeIncompleteGroups;
 			fireAggregationWindowingChanged();
 		}
 	}
 
-	/**
-	 * Creates a new grouping model (i.e. a list of {@link ValueRange}s) with this aggregation
-	 * windowing applied. Does not change the input grouping.
-	 * 
-	 * When includeIncompleteGroups is false, the resulting list will contain null values for the
-	 * the incomplete groups.
-	 */
-	public List<ValueRange> applyOnGrouping(List<ValueRange> grouping) {
+    /**
+     * Creates a new grouping model (i.e. a list of {@link ValueRange}s) with this aggregation
+     * windowing applied. Does not change the input grouping.
+     * <p>
+     * When includeIncompleteGroups is false, the resulting list will contain null values for the
+     * the incomplete groups.
+     *
+     * @param grouping the grouping
+     * @return the list
+     */
+    public List<ValueRange> applyOnGrouping(List<ValueRange> grouping) {
 		if (grabLeft == 0 && grabRight == 0) {
 			return grouping;
 		}
@@ -180,11 +211,21 @@ public class AggregationWindowing implements Cloneable {
 		return aggregatedRange;
 	}
 
-	public void addAggregationWindowingListener(AggregationWindowingListener l) {
+    /**
+     * Add aggregation windowing listener.
+     *
+     * @param l the l
+     */
+    public void addAggregationWindowingListener(AggregationWindowingListener l) {
 		listeners.add(l);
 	}
 
-	public void removeAggregationWindowingListener(AggregationWindowingListener l) {
+    /**
+     * Remove aggregation windowing listener.
+     *
+     * @param l the l
+     */
+    public void removeAggregationWindowingListener(AggregationWindowingListener l) {
 		listeners.remove(l);
 	}
 

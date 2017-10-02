@@ -38,10 +38,12 @@ public class RingChartPlotter extends AbstractPieChartPlotter {
 
 	private static final long serialVersionUID = 4950755498257276805L;
 
-	/**
-	 * @param settings
-	 */
-	public RingChartPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Ring chart plotter.
+     *
+     * @param settings the settings
+     */
+    public RingChartPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 
 	}

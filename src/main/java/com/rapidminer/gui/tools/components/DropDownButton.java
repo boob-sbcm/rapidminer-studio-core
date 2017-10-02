@@ -51,6 +51,7 @@ import com.vlsolutions.swing.toolbars.VLToolBar;
 
 
 /**
+ * The type Drop down button.
  *
  * @author Tobias Malbrecht
  * @deprecated use {@link DropDownPopupButton} instead
@@ -119,11 +120,17 @@ public abstract class DropDownButton extends JButton {
 		}
 	}
 
-	protected JButton mainButton = this;
+    /**
+     * The Main button.
+     */
+    protected JButton mainButton = this;
 
 	private boolean rightAlign = false;
 
-	@Deprecated
+    /**
+     * The type Drop down arrow button.
+     */
+    @Deprecated
 	public static class DropDownArrowButton extends ArrowButton {
 
 		private static final long serialVersionUID = -398619111521186260L;
@@ -132,7 +139,12 @@ public abstract class DropDownButton extends JButton {
 
 		private DropDownButton attachedButton;
 
-		public DropDownArrowButton(DropDownButton attachedButton) {
+        /**
+         * Instantiates a new Drop down arrow button.
+         *
+         * @param attachedButton the attached button
+         */
+        public DropDownArrowButton(DropDownButton attachedButton) {
 			super(SwingConstants.SOUTH);
 			this.attachedButton = attachedButton;
 		}
@@ -157,24 +169,23 @@ public abstract class DropDownButton extends JButton {
 			((Graphics2D) g).fill(arrow);
 		}
 
-		/**
-		 *
-		 * This method gets the factor for enlargement or reduction of the arrow, if it should be
-		 * displayed in a non-standard size.
-		 *
-		 */
-		public float getSizeFactor() {
+        /**
+         * This method gets the factor for enlargement or reduction of the arrow, if it should be
+         * displayed in a non-standard size.
+         *
+         * @return the size factor
+         */
+        public float getSizeFactor() {
 			return sizeFactor;
 		}
 
-		/**
-		 *
-		 * This method determines the factor for enlargement or reduction of the arrow, if it should
-		 * be displayed in a non-standard size. Standard is a width of 4 px and a height of 8 px.
-		 *
-		 * @param sizeFactor
-		 */
-		public void setSizeFactor(float sizeFactor) {
+        /**
+         * This method determines the factor for enlargement or reduction of the arrow, if it should
+         * be displayed in a non-standard size. Standard is a width of 4 px and a height of 8 px.
+         *
+         * @param sizeFactor the size factor
+         */
+        public void setSizeFactor(float sizeFactor) {
 			this.sizeFactor = sizeFactor;
 		}
 
@@ -206,11 +217,24 @@ public abstract class DropDownButton extends JButton {
 		}
 	}
 
-	protected final DropDownArrowButton arrowButton = new DropDownArrowButton(this);
+    /**
+     * The Arrow button.
+     */
+    protected final DropDownArrowButton arrowButton = new DropDownArrowButton(this);
 
-	protected boolean popupVisible = false;
+    /**
+     * The Popup visible.
+     */
+    protected boolean popupVisible = false;
 
-	public DropDownButton(Action mainAction, Action arrowAction, boolean showButton) {
+    /**
+     * Instantiates a new Drop down button.
+     *
+     * @param mainAction  the main action
+     * @param arrowAction the arrow action
+     * @param showButton  the show button
+     */
+    public DropDownButton(Action mainAction, Action arrowAction, boolean showButton) {
 		super(mainAction != null ? mainAction : arrowAction);	// if main action is null, use
 		// dropdown action for it as well so
 		// user is not confused
@@ -236,85 +260,178 @@ public abstract class DropDownButton extends JButton {
 		});
 	}
 
-	public DropDownButton(Action action, boolean showText) {
+    /**
+     * Instantiates a new Drop down button.
+     *
+     * @param action   the action
+     * @param showText the show text
+     */
+    public DropDownButton(Action action, boolean showText) {
 		this(action, null, showText);
 	}
 
-	/**
-	 * Shows no text on buttons.
-	 */
-	public DropDownButton(Action action) {
+    /**
+     * Shows no text on buttons.
+     *
+     * @param action the action
+     */
+    public DropDownButton(Action action) {
 		this(action, false);
 	}
 
-	public void addArrowButtonMouseListener(MouseListener l) {
+    /**
+     * Add arrow button mouse listener.
+     *
+     * @param l the l
+     */
+    public void addArrowButtonMouseListener(MouseListener l) {
 		arrowButton.addMouseListener(l);
 	}
 
-	public void removeArrowButtonMouseListener(MouseListener l) {
+    /**
+     * Remove arrow button mouse listener.
+     *
+     * @param l the l
+     */
+    public void removeArrowButtonMouseListener(MouseListener l) {
 		arrowButton.removeMouseListener(l);
 	}
 
-	protected abstract JPopupMenu getPopupMenu();
+    /**
+     * Gets popup menu.
+     *
+     * @return the popup menu
+     */
+    protected abstract JPopupMenu getPopupMenu();
 
-	public void add(Action action) {
+    /**
+     * Add.
+     *
+     * @param action the action
+     */
+    public void add(Action action) {
 		getPopupMenu().add(action);
 	}
 
-	public void add(JMenuItem item) {
+    /**
+     * Add.
+     *
+     * @param item the item
+     */
+    public void add(JMenuItem item) {
 		getPopupMenu().add(item);
 	}
 
-	public JButton addToToolBar(JToolBar toolbar) {
+    /**
+     * Add to tool bar j button.
+     *
+     * @param toolbar the toolbar
+     * @return the j button
+     */
+    public JButton addToToolBar(JToolBar toolbar) {
 		toolbar.add(mainButton);
 		toolbar.add(arrowButton);
 		return mainButton;
 	}
 
-	public JButton addToToolBar(JToolBar toolbar, Object mainButtonConstraints, Object arrowButtonConstraints) {
+    /**
+     * Add to tool bar j button.
+     *
+     * @param toolbar                the toolbar
+     * @param mainButtonConstraints  the main button constraints
+     * @param arrowButtonConstraints the arrow button constraints
+     * @return the j button
+     */
+    public JButton addToToolBar(JToolBar toolbar, Object mainButtonConstraints, Object arrowButtonConstraints) {
 		toolbar.add(mainButton, mainButtonConstraints);
 		toolbar.add(arrowButton, arrowButtonConstraints);
 		return mainButton;
 	}
 
-	public JButton addToToolbar(JPanel toolbar, Object mainButtonConstraints, Object arrowButtonConstraints) {
+    /**
+     * Add to toolbar j button.
+     *
+     * @param toolbar                the toolbar
+     * @param mainButtonConstraints  the main button constraints
+     * @param arrowButtonConstraints the arrow button constraints
+     * @return the j button
+     */
+    public JButton addToToolbar(JPanel toolbar, Object mainButtonConstraints, Object arrowButtonConstraints) {
 		toolbar.add(mainButton, mainButtonConstraints);
 		toolbar.add(arrowButton, arrowButtonConstraints);
 		return mainButton;
 	}
 
-	public JButton addToToolBar(VLToolBar toolbar) {
+    /**
+     * Add to tool bar j button.
+     *
+     * @param toolbar the toolbar
+     * @return the j button
+     */
+    public JButton addToToolBar(VLToolBar toolbar) {
 		toolbar.add(mainButton);
 		toolbar.add(arrowButton);
 		return mainButton;
 	}
 
-	public JButton addToToolBar(ViewToolBar toolbar, int alignment) {
+    /**
+     * Add to tool bar j button.
+     *
+     * @param toolbar   the toolbar
+     * @param alignment the alignment
+     * @return the j button
+     */
+    public JButton addToToolBar(ViewToolBar toolbar, int alignment) {
 		toolbar.add(mainButton, alignment);
 		toolbar.add(arrowButton, alignment);
 		return mainButton;
 	}
 
-	public JButton addToToolbar(JToolBar toolbar, Object mainButtonConstraints, Object arrowButtonConstraints) {
+    /**
+     * Add to toolbar j button.
+     *
+     * @param toolbar                the toolbar
+     * @param mainButtonConstraints  the main button constraints
+     * @param arrowButtonConstraints the arrow button constraints
+     * @return the j button
+     */
+    public JButton addToToolbar(JToolBar toolbar, Object mainButtonConstraints, Object arrowButtonConstraints) {
 		toolbar.add(mainButton, mainButtonConstraints);
 		toolbar.add(arrowButton, arrowButtonConstraints);
 		return mainButton;
 
 	}
 
-	public JButton addToFlowLayoutPanel(JPanel panel) {
+    /**
+     * Add to flow layout panel j button.
+     *
+     * @param panel the panel
+     * @return the j button
+     */
+    public JButton addToFlowLayoutPanel(JPanel panel) {
 		panel.add(mainButton);
 		panel.add(arrowButton);
 		return mainButton;
 	}
 
-	public JButton addArrowToFlowLayoutPanel(JPanel panel) {
+    /**
+     * Add arrow to flow layout panel j button.
+     *
+     * @param panel the panel
+     * @return the j button
+     */
+    public JButton addArrowToFlowLayoutPanel(JPanel panel) {
 		panel.add(mainButton);
 		panel.add(arrowButton);
 		return mainButton;
 	}
 
-	public JPanel getArrowButtonBorderPanel() {
+    /**
+     * Gets arrow button border panel.
+     *
+     * @return the arrow button border panel
+     */
+    public JPanel getArrowButtonBorderPanel() {
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints(0, 0, GridBagConstraints.RELATIVE, 1, 1.0, 1.0,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0);
@@ -330,12 +447,27 @@ public abstract class DropDownButton extends JButton {
 		return panel;
 	}
 
-	// factory methods
+    /**
+     * Make drop down button drop down button.
+     *
+     * @param mainAction the main action
+     * @param actions    the actions
+     * @return the drop down button
+     */
+// factory methods
 	public static DropDownButton makeDropDownButton(Action mainAction, Action... actions) {
 		return makeDropDownButton(mainAction, false, actions);
 	}
 
-	public static DropDownButton makeDropDownButton(Action mainAction, boolean showButton, Action... actions) {
+    /**
+     * Make drop down button drop down button.
+     *
+     * @param mainAction the main action
+     * @param showButton the show button
+     * @param actions    the actions
+     * @return the drop down button
+     */
+    public static DropDownButton makeDropDownButton(Action mainAction, boolean showButton, Action... actions) {
 		final JPopupMenu menu = new JPopupMenu();
 		for (Action action : actions) {
 			menu.add(action);
@@ -351,31 +483,57 @@ public abstract class DropDownButton extends JButton {
 		};
 	}
 
-	public boolean isArrowButtonVisible() {
+    /**
+     * Is arrow button visible boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isArrowButtonVisible() {
 		return arrowButton.isVisible();
 	}
 
-	public void setArrowSizeFactor(float factor) {
+    /**
+     * Sets arrow size factor.
+     *
+     * @param factor the factor
+     */
+    public void setArrowSizeFactor(float factor) {
 		arrowButton.setSizeFactor(factor);
 	}
 
-	/**
-	 * After this is called, ckicks on the main button act like clicking on the arrow button. <br/>
-	 * This is useful if the main action is only used to set icon/tooltip, but not a real action.
-	 */
-	public void setUsePopupActionOnMainButton() {
+    /**
+     * After this is called, ckicks on the main button act like clicking on the arrow button. <br/>
+     * This is useful if the main action is only used to set icon/tooltip, but not a real action.
+     */
+    public void setUsePopupActionOnMainButton() {
 		mainButton.addActionListener(new DefaultArrowAction());
 	}
 
-	public float getArrowSizeFactor() {
+    /**
+     * Gets arrow size factor.
+     *
+     * @return the arrow size factor
+     */
+    public float getArrowSizeFactor() {
 		return arrowButton.getSizeFactor();
 	}
 
-	public boolean isPopupMenuVisible() {
+    /**
+     * Is popup menu visible boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isPopupMenuVisible() {
 		return popupVisible;
 	}
 
-	public static DropDownButton makeDropDownButton(Action action) {
+    /**
+     * Make drop down button drop down button.
+     *
+     * @param action the action
+     * @return the drop down button
+     */
+    public static DropDownButton makeDropDownButton(Action action) {
 		final JPopupMenu menu = new JPopupMenu();
 		return new DropDownButton(action) {
 
@@ -396,11 +554,21 @@ public abstract class DropDownButton extends JButton {
 		}
 	}
 
-	public boolean isRightAlign() {
+    /**
+     * Is right align boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isRightAlign() {
 		return rightAlign;
 	}
 
-	public void setRightAlign(boolean rightAlign) {
+    /**
+     * Sets right align.
+     *
+     * @param rightAlign the right align
+     */
+    public void setRightAlign(boolean rightAlign) {
 		this.rightAlign = rightAlign;
 	}
 

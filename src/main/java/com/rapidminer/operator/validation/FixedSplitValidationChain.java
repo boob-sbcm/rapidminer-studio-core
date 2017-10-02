@@ -48,20 +48,20 @@ import java.util.List;
  * shuffled, the specified amounts of data are used as training and test set. The sum of both must
  * be smaller than the input example set size.
  * </p>
- * 
+ * <p>
  * <p>
  * At least either the training set size must be specified (rest is used for testing) or the test
  * set size must be specified (rest is used for training). If both are specified, the rest is not
  * used at all.
  * </p>
- * 
+ * <p>
  * <p>
  * The first inner operator must accept an {@link com.rapidminer.example.ExampleSet} while the
  * second must accept an {@link com.rapidminer.example.ExampleSet} and the output of the first
  * (which in most cases is a {@link com.rapidminer.operator.Model}) and must produce a
  * {@link com.rapidminer.operator.performance.PerformanceVector}.
  * </p>
- * 
+ * <p>
  * <p>
  * This validation operator provides several values which can be logged by means of a
  * {@link ProcessLogOperator}. All performance estimation operators of RapidMiner provide access to
@@ -77,18 +77,32 @@ import java.util.List;
  * <li>for the main criterion, also the variance and the standard deviation can be accessed where
  * applicable.</li>
  * </ul>
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class FixedSplitValidationChain extends ValidationChain {
 
-	public static final String PARAMETER_TRAINING_SET_SIZE = "training_set_size";
+    /**
+     * The constant PARAMETER_TRAINING_SET_SIZE.
+     */
+    public static final String PARAMETER_TRAINING_SET_SIZE = "training_set_size";
 
-	public static final String PARAMETER_TEST_SET_SIZE = "test_set_size";
+    /**
+     * The constant PARAMETER_TEST_SET_SIZE.
+     */
+    public static final String PARAMETER_TEST_SET_SIZE = "test_set_size";
 
-	public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
+    /**
+     * The constant PARAMETER_SAMPLING_TYPE.
+     */
+    public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
 
-	public FixedSplitValidationChain(OperatorDescription description) {
+    /**
+     * Instantiates a new Fixed split validation chain.
+     *
+     * @param description the description
+     */
+    public FixedSplitValidationChain(OperatorDescription description) {
 		super(description);
 	}
 

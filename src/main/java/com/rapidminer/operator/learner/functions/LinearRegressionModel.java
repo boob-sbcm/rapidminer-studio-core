@@ -64,7 +64,22 @@ public class LinearRegressionModel extends PredictionModel {
 
 	private String secondClassName = null;
 
-	public LinearRegressionModel(ExampleSet exampleSet, boolean[] selectedAttributes, double[] coefficients,
+    /**
+     * Instantiates a new Linear regression model.
+     *
+     * @param exampleSet               the example set
+     * @param selectedAttributes       the selected attributes
+     * @param coefficients             the coefficients
+     * @param standardErrors           the standard errors
+     * @param standardizedCoefficients the standardized coefficients
+     * @param tolerances               the tolerances
+     * @param tStatistics              the t statistics
+     * @param pValues                  the p values
+     * @param useIntercept             the use intercept
+     * @param firstClassName           the first class name
+     * @param secondClassName          the second class name
+     */
+    public LinearRegressionModel(ExampleSet exampleSet, boolean[] selectedAttributes, double[] coefficients,
 			double[] standardErrors, double[] standardizedCoefficients, double[] tolerances, double[] tStatistics,
 			double[] pValues, boolean useIntercept, String firstClassName, String secondClassName) {
 		super(exampleSet, null, null);
@@ -179,18 +194,22 @@ public class LinearRegressionModel extends PredictionModel {
 		}
 	}
 
-	/**
-	 * returns an array containing all names of all attributes used for training
-	 */
-	public String[] getAttributeNames() {
+    /**
+     * returns an array containing all names of all attributes used for training
+     *
+     * @return the string [ ]
+     */
+    public String[] getAttributeNames() {
 		return attributeNames;
 	}
 
-	/**
-	 * returns an array containing only the names of those attributes that have been selected to be
-	 * included into the model
-	 */
-	public String[] getSelectedAttributeNames() {
+    /**
+     * returns an array containing only the names of those attributes that have been selected to be
+     * included into the model
+     *
+     * @return the string [ ]
+     */
+    public String[] getSelectedAttributeNames() {
 		String[] attributeNames = new String[useIntercept ? coefficients.length - 1 : coefficients.length];
 		int index = 0;
 		for (int i = 0; i < selectedAttributes.length; i++) {
@@ -202,48 +221,95 @@ public class LinearRegressionModel extends PredictionModel {
 		return attributeNames;
 	}
 
-	public boolean[] getSelectedAttributes() {
+    /**
+     * Get selected attributes boolean [ ].
+     *
+     * @return the boolean [ ]
+     */
+    public boolean[] getSelectedAttributes() {
 		return selectedAttributes;
 	}
 
-	public String getFirstLabel() {
+    /**
+     * Gets first label.
+     *
+     * @return the first label
+     */
+    public String getFirstLabel() {
 		return firstClassName;
 	}
 
-	public String getSecondLabel() {
+    /**
+     * Gets second label.
+     *
+     * @return the second label
+     */
+    public String getSecondLabel() {
 		return secondClassName;
 	}
 
-	public boolean usesIntercept() {
+    /**
+     * Uses intercept boolean.
+     *
+     * @return the boolean
+     */
+    public boolean usesIntercept() {
 		return useIntercept;
 	}
 
-	/**
-	 * This method will return all used coefficients. So the array will be smaller than the array of
-	 * used attribute names! The ordering is the same but will only contain used attributes with the
-	 * bias appended.
-	 */
-	public double[] getCoefficients() {
+    /**
+     * This method will return all used coefficients. So the array will be smaller than the array of
+     * used attribute names! The ordering is the same but will only contain used attributes with the
+     * bias appended.
+     *
+     * @return the double [ ]
+     */
+    public double[] getCoefficients() {
 		return coefficients;
 	}
 
-	public double[] getStandardizedCoefficients() {
+    /**
+     * Get standardized coefficients double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getStandardizedCoefficients() {
 		return standardizedCoefficients;
 	}
 
-	public double[] getTolerances() {
+    /**
+     * Get tolerances double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getTolerances() {
 		return tolerances;
 	}
 
-	public double[] getStandardErrors() {
+    /**
+     * Get standard errors double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getStandardErrors() {
 		return standardErrors;
 	}
 
-	public double[] getTStats() {
+    /**
+     * Get t stats double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getTStats() {
 		return tStatistics;
 	}
 
-	public double[] getProbabilities() {
+    /**
+     * Get probabilities double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getProbabilities() {
 		return pValues;
 	}
 

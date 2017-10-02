@@ -44,7 +44,6 @@ import com.rapidminer.repository.gui.RepositoryLocationChooser;
  * Cell editor that allows to select a repository entry by pressing a button.
  *
  * @author Simon Fischer
- *
  */
 public class RepositoryLocationValueCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {
 
@@ -56,7 +55,12 @@ public class RepositoryLocationValueCellEditor extends AbstractCellEditor implem
 
 	private Operator operator;
 
-	public RepositoryLocationValueCellEditor(final ParameterTypeRepositoryLocation type) {
+    /**
+     * Instantiates a new Repository location value cell editor.
+     *
+     * @param type the type
+     */
+    public RepositoryLocationValueCellEditor(final ParameterTypeRepositoryLocation type) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		panel.setLayout(gridBagLayout);
 		panel.setToolTipText(type.getDescription());
@@ -200,24 +204,30 @@ public class RepositoryLocationValueCellEditor extends AbstractCellEditor implem
 		this.operator = operator;
 	}
 
-	/**
-	 * @return the panel storing the cell editor text field and button
-	 */
-	protected JPanel getPanel() {
+    /**
+     * Gets panel.
+     *
+     * @return the panel storing the cell editor text field and button
+     */
+    protected JPanel getPanel() {
 		return panel;
 	}
 
-	/**
-	 * @return the text field storing the process location
-	 */
-	protected JTextField getTextField() {
+    /**
+     * Gets text field.
+     *
+     * @return the text field storing the process location
+     */
+    protected JTextField getTextField() {
 		return textField;
 	}
 
-	/**
-	 * @return the operator for this renderer
-	 */
-	protected Operator getOperator() {
+    /**
+     * Gets operator.
+     *
+     * @return the operator for this renderer
+     */
+    protected Operator getOperator() {
 		return operator;
 	}
 }

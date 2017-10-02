@@ -24,7 +24,7 @@ import com.rapidminer.parameter.ParameterType;
 
 /**
  * Represents a range of numerical parameter values.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class ParameterValueRange extends ParameterValues {
@@ -33,25 +33,53 @@ public class ParameterValueRange extends ParameterValues {
 
 	private String max;
 
-	public ParameterValueRange(Operator operator, ParameterType type, String min, String max) {
+    /**
+     * Instantiates a new Parameter value range.
+     *
+     * @param operator the operator
+     * @param type     the type
+     * @param min      the min
+     * @param max      the max
+     */
+    public ParameterValueRange(Operator operator, ParameterType type, String min, String max) {
 		super(operator, type);
 		this.min = min;
 		this.max = max;
 	}
 
-	public void setMin(String min) {
+    /**
+     * Sets min.
+     *
+     * @param min the min
+     */
+    public void setMin(String min) {
 		this.min = min;
 	}
 
-	public String getMin() {
+    /**
+     * Gets min.
+     *
+     * @return the min
+     */
+    public String getMin() {
 		return min;
 	}
 
-	public void setMax(String max) {
+    /**
+     * Sets max.
+     *
+     * @param max the max
+     */
+    public void setMax(String max) {
 		this.max = max;
 	}
 
-	public String getMax() {
+    /**
+     * Gets max.
+     *
+     * @return the max
+     */
+    public String getMax() {
 		return max;
 	}
 

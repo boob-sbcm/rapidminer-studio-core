@@ -70,16 +70,15 @@ public class StudioConcurrencyContext implements ConcurrencyContext {
 	/** The corresponding process. */
 	private final Process process;
 
-	/**
-	 * Creates a new {@link ConcurrencyContext} for the given {@link Process}.
-	 * <p>
-	 * The context assumes that only operators that belong to the corresponding process submit tasks
-	 * to this context.
-	 *
-	 * @param process
-	 *            the corresponding process
-	 */
-	public StudioConcurrencyContext(Process process) {
+    /**
+     * Creates a new {@link ConcurrencyContext} for the given {@link Process}.
+     * <p>
+     * The context assumes that only operators that belong to the corresponding process submit tasks
+     * to this context.
+     *
+     * @param process the corresponding process
+     */
+    public StudioConcurrencyContext(Process process) {
 		if (process == null) {
 			throw new IllegalArgumentException("process must not be null");
 		}

@@ -23,14 +23,19 @@ import com.rapidminer.gui.tools.syntax.JEditTextArea;
 
 /**
  * This class wraps a JEditTextArea for searching purposes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SearchableJEditTextArea implements SearchableTextComponent {
 
 	private JEditTextArea component;
 
-	public SearchableJEditTextArea(JEditTextArea component) {
+    /**
+     * Instantiates a new Searchable j edit text area.
+     *
+     * @param component the component
+     */
+    public SearchableJEditTextArea(JEditTextArea component) {
 		this.component = component;
 	}
 

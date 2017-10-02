@@ -59,41 +59,41 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  * parts according to a split criterion (regular expression). This operator provides two different
  * modes, depending on the setting of the parameter &quot;splitting_mode&quot;.
  * </p>
- *
+ * <p>
  * <h3>Ordered Splits</h3>
  * <p>
  * In the first split mode, called ordered_split, the resulting attributes get the name of the
  * original attribute together with a number indicating the order. For example, if the original data
  * contained the values<br/>
  * <br/>
- *
+ * <p>
  * attribute-name <br/>
  * -------------- <br/>
  * value1 <br/>
  * value2, value3 <br/>
  * value3 <br/>
  * <br/>
- *
+ * <p>
  * and should be divided by the separating commas, the resulting attributes would be
  * attribute-name1, attribute-name2, attribute-name3 with the tuples (value1, ?, ?), (value2,
  * value3, ?), and (value3, ?, ?), respectively. This mode is useful if the original values
  * indicated some order like, for example, a preference.
  * </p>
- *
+ * <p>
  * <h3>Unordered Splits</h3>
  * <p>
  * In the second split mode, called unordered_split, the resulting attributes get the name of the
  * original attribute together with the value for each of the occurring values. For example, if the
  * original data contained the values<br/>
  * <br/>
- *
+ * <p>
  * attribute-name <br/>
  * -------------- <br/>
  * value1 <br/>
  * value2, value3 <br/>
  * value3 <br/>
  * <br/>
- *
+ * <p>
  * and again should be divided by the separating commas, the resulting attributes would be
  * attribute-name-value1, attribute-name-value2, and attribute-name-value3 with the tuples (true,
  * false, false), (false, true, true), and (false, false, true), respectively. This mode is useful
@@ -105,15 +105,30 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class AttributeValueSplit extends AbstractDataProcessing {
 
-	public static final String PARAMETER_SPLIT_PATTERN = "split_pattern";
+    /**
+     * The constant PARAMETER_SPLIT_PATTERN.
+     */
+    public static final String PARAMETER_SPLIT_PATTERN = "split_pattern";
 
-	public static final String PARAMETER_SPLIT_MODE = "split_mode";
+    /**
+     * The constant PARAMETER_SPLIT_MODE.
+     */
+    public static final String PARAMETER_SPLIT_MODE = "split_mode";
 
-	public final static String[] SPLIT_MODES = new String[] { "ordered_split", "unordered_split" };
+    /**
+     * The constant SPLIT_MODES.
+     */
+    public final static String[] SPLIT_MODES = new String[] { "ordered_split", "unordered_split" };
 
-	public final static int SPLIT_MODE_ORDERED = 0;
+    /**
+     * The constant SPLIT_MODE_ORDERED.
+     */
+    public final static int SPLIT_MODE_ORDERED = 0;
 
-	public final static int SPLIT_MODE_UNORDERED = 1;
+    /**
+     * The constant SPLIT_MODE_UNORDERED.
+     */
+    public final static int SPLIT_MODE_UNORDERED = 1;
 
 	/** last version where selected but missing attributes were silently ignored */
 	private static final OperatorVersion OPERATOR_VERSION_6_0_3 = new OperatorVersion(6, 0, 3);
@@ -121,7 +136,12 @@ public class AttributeValueSplit extends AbstractDataProcessing {
 	private AttributeSubsetSelector attributeSubsetSelector = new AttributeSubsetSelector(this, getExampleSetInputPort(),
 			Ontology.NOMINAL);
 
-	public AttributeValueSplit(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute value split.
+     *
+     * @param description the description
+     */
+    public AttributeValueSplit(OperatorDescription description) {
 		super(description);
 
 	}

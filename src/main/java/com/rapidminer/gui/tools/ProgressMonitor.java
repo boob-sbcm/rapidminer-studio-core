@@ -26,7 +26,7 @@ import javax.swing.event.ChangeListener;
 
 /**
  * This is the basic class for progress monitoring.
- * 
+ *
  * @author Santhosh Kumar, Ingo Mierswa
  */
 public class ProgressMonitor {
@@ -40,22 +40,45 @@ public class ProgressMonitor {
 	private Vector<ChangeListener> listeners = new Vector<ChangeListener>();
 	private ChangeEvent changeEvent = new ChangeEvent(this);
 
-	public ProgressMonitor(int total, boolean indeterminate, int waitingTime) {
+    /**
+     * Instantiates a new Progress monitor.
+     *
+     * @param total         the total
+     * @param indeterminate the indeterminate
+     * @param waitingTime   the waiting time
+     */
+    public ProgressMonitor(int total, boolean indeterminate, int waitingTime) {
 		this.total = total;
 		this.indeterminate = indeterminate;
 		this.waitingTime = waitingTime;
 	}
 
-	public ProgressMonitor(int total, boolean indeterminate) {
+    /**
+     * Instantiates a new Progress monitor.
+     *
+     * @param total         the total
+     * @param indeterminate the indeterminate
+     */
+    public ProgressMonitor(int total, boolean indeterminate) {
 		this.total = total;
 		this.indeterminate = indeterminate;
 	}
 
-	public int getTotal() {
+    /**
+     * Gets total.
+     *
+     * @return the total
+     */
+    public int getTotal() {
 		return total;
 	}
 
-	public void start(String status) {
+    /**
+     * Start.
+     *
+     * @param status the status
+     */
+    public void start(String status) {
 		if (current != -1) {
 			throw new IllegalStateException("not started yet");
 		}
@@ -64,23 +87,49 @@ public class ProgressMonitor {
 		fireChangeEvent();
 	}
 
-	public int getWaitingTime() {
+    /**
+     * Gets waiting time.
+     *
+     * @return the waiting time
+     */
+    public int getWaitingTime() {
 		return waitingTime;
 	}
 
-	public int getCurrent() {
+    /**
+     * Gets current.
+     *
+     * @return the current
+     */
+    public int getCurrent() {
 		return current;
 	}
 
-	public String getStatus() {
+    /**
+     * Gets status.
+     *
+     * @return the status
+     */
+    public String getStatus() {
 		return status;
 	}
 
-	public boolean isIndeterminate() {
+    /**
+     * Is indeterminate boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isIndeterminate() {
 		return indeterminate;
 	}
 
-	public void setCurrent(String status, int current) {
+    /**
+     * Sets current.
+     *
+     * @param status  the status
+     * @param current the current
+     */
+    public void setCurrent(String status, int current) {
 		if (current == -1) {
 			throw new IllegalStateException("not started yet");
 		}
@@ -91,11 +140,21 @@ public class ProgressMonitor {
 		fireChangeEvent();
 	}
 
-	public synchronized void addChangeListener(ChangeListener listener) {
+    /**
+     * Add change listener.
+     *
+     * @param listener the listener
+     */
+    public synchronized void addChangeListener(ChangeListener listener) {
 		listeners.add(listener);
 	}
 
-	public synchronized void removeChangeListener(ChangeListener listener) {
+    /**
+     * Remove change listener.
+     *
+     * @param listener the listener
+     */
+    public synchronized void removeChangeListener(ChangeListener listener) {
 		listeners.remove(listener);
 	}
 

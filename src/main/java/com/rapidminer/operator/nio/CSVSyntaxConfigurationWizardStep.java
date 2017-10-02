@@ -61,9 +61,9 @@ import com.rapidminer.tools.io.Encoding;
 
 
 /**
+ * The type Csv syntax configuration wizard step.
  *
  * @author Sebastian Loh, Simon Fischer
- *
  */
 public class CSVSyntaxConfigurationWizardStep extends WizardStep {
 
@@ -105,7 +105,13 @@ public class CSVSyntaxConfigurationWizardStep extends WizardStep {
 	private ErrorTableModel errorTableModel = new ErrorTableModel();
 	private JTable errorTable = new JTable(errorTableModel);
 
-	public CSVSyntaxConfigurationWizardStep(CSVImportWizard csvImportWizard, CSVResultSetConfiguration csvConfiguration) {
+    /**
+     * Instantiates a new Csv syntax configuration wizard step.
+     *
+     * @param csvImportWizard  the csv import wizard
+     * @param csvConfiguration the csv configuration
+     */
+    public CSVSyntaxConfigurationWizardStep(CSVImportWizard csvImportWizard, CSVResultSetConfiguration csvConfiguration) {
 		super("specify_csv_parsing_options");
 		this.configuration = csvConfiguration;
 

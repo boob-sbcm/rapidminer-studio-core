@@ -42,7 +42,7 @@ import com.rapidminer.tools.RandomGenerator;
  * not sampled, build a test set on which the model is evaluated. This process is repeated for the
  * specified number of iterations after which the average performance is calculated.
  * </p>
- *
+ * <p>
  * <p>
  * The basic setup is the same as for the usual cross validation operator. The first inner operator
  * must provide a model and the second a performance vector. Please note that this operator does not
@@ -53,17 +53,31 @@ import com.rapidminer.tools.RandomGenerator;
  */
 public abstract class AbstractBootstrappingValidation extends ValidationChain {
 
-	public static final String PARAMETER_NUMBER_OF_VALIDATIONS = "number_of_validations";
+    /**
+     * The constant PARAMETER_NUMBER_OF_VALIDATIONS.
+     */
+    public static final String PARAMETER_NUMBER_OF_VALIDATIONS = "number_of_validations";
 
-	public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
+    /**
+     * The constant PARAMETER_SAMPLE_RATIO.
+     */
+    public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
 
-	public static final String PARAMETER_AVERAGE_PERFORMANCES_ONLY = "average_performances_only";
+    /**
+     * The constant PARAMETER_AVERAGE_PERFORMANCES_ONLY.
+     */
+    public static final String PARAMETER_AVERAGE_PERFORMANCES_ONLY = "average_performances_only";
 
 	private int number;
 
 	private int iteration;
 
-	public AbstractBootstrappingValidation(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract bootstrapping validation.
+     *
+     * @param description the description
+     */
+    public AbstractBootstrappingValidation(OperatorDescription description) {
 		super(description);
 		addValue(new ValueDouble("iteration", "The number of the current iteration.") {
 
@@ -74,7 +88,16 @@ public abstract class AbstractBootstrappingValidation extends ValidationChain {
 		});
 	}
 
-	protected abstract int[] createMapping(ExampleSet exampleSet, int size, Random random) throws OperatorException;
+    /**
+     * Create mapping int [ ].
+     *
+     * @param exampleSet the example set
+     * @param size       the size
+     * @param random     the random
+     * @return the int [ ]
+     * @throws OperatorException the operator exception
+     */
+    protected abstract int[] createMapping(ExampleSet exampleSet, int size, Random random) throws OperatorException;
 
 	@Override
 	public void estimatePerformance(ExampleSet inputSet) throws OperatorException {

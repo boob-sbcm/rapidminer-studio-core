@@ -44,25 +44,25 @@ import java.util.logging.Level;
  * data reader for many file formats (including csv) and is used by the ExampleSource operator and
  * the attribute editor.
  * </p>
- * 
+ * <p>
  * <p>
  * This class supports the reading of data from multiple source files. Each attribute (including
  * special attributes like labels, weights, ...) might be read from another file. Please note that
  * only the minimum number of lines of all files will be read, i.e. if one of the data source files
  * has less lines than the others, only this number of data rows will be read.
  * </p>
- * 
+ * <p>
  * <p>
  * The split points can be defined with regular expressions (please refer to the Java API). Quoting
  * is possible but not suggested since the runtime is higher. The user should ensure that the split
  * characters are not included in the data columns. Please refer to {@link RapidMinerLineReader} for
  * further information.
  * </p>
- * 
+ * <p>
  * <p>
  * Unknown attribute values can be marked with empty strings or &quot;?&quot;.
  * </p>
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class FileDataRowReader extends AbstractDataRowReader {
@@ -118,30 +118,25 @@ public class FileDataRowReader extends AbstractDataRowReader {
 	 */
 	private int[][] dataSourceIndex;
 
-	/**
-	 * Constructs a new FileDataRowReader.
-	 * 
-	 * @param factory
-	 *            Factory used to create data rows.
-	 * @param attributeDataSources
-	 *            List of {@link AttributeDataSource}s.
-	 * @param sampleRatio
-	 *            the ratio of examples which will be read. Only used if sampleSize is -1.
-	 * @param sampleSize
-	 *            Limit sample to the first sampleSize lines read from files. -1 for no limit, then
-	 *            the sampleRatio will be used.
-	 * @param separatorsRegExpr
-	 *            a regular expression describing the separator characters for the columns of each
-	 *            line
-	 * @param commentChars
-	 *            defines which characters are used to comment the rest of a line
-	 * @param useQuotes
-	 *            indicates if quotes should be used and parsed. Slows down reading and should be
-	 *            avoided if possible
-	 * @param random
-	 *            the random generator used for sampling
-	 */
-	public FileDataRowReader(DataRowFactory factory, List<AttributeDataSource> attributeDataSources, double sampleRatio,
+    /**
+     * Constructs a new FileDataRowReader.
+     *
+     * @param factory              Factory used to create data rows.
+     * @param attributeDataSources List of {@link AttributeDataSource}s.
+     * @param sampleRatio          the ratio of examples which will be read. Only used if sampleSize is -1.
+     * @param sampleSize           Limit sample to the first sampleSize lines read from files. -1 for no limit, then            the sampleRatio will be used.
+     * @param separatorsRegExpr    a regular expression describing the separator characters for the columns of each            line
+     * @param commentChars         defines which characters are used to comment the rest of a line
+     * @param useQuotes            indicates if quotes should be used and parsed. Slows down reading and should be            avoided if possible
+     * @param quoteChar            the quote char
+     * @param escapeChar           the escape char
+     * @param trimLines            the trim lines
+     * @param skipErrorLines       the skip error lines
+     * @param encoding             the encoding
+     * @param random               the random generator used for sampling
+     * @throws IOException the io exception
+     */
+    public FileDataRowReader(DataRowFactory factory, List<AttributeDataSource> attributeDataSources, double sampleRatio,
 			int sampleSize, String separatorsRegExpr, char[] commentChars, boolean useQuotes, char quoteChar,
 			char escapeChar, boolean trimLines, boolean skipErrorLines, Charset encoding, RandomGenerator random)
 			throws IOException {
@@ -199,8 +194,10 @@ public class FileDataRowReader extends AbstractDataRowReader {
 		}
 	}
 
-	/** Skips the next line, if present. */
-	public void skipLine() {
+    /**
+     * Skips the next line, if present.
+     */
+    public void skipLine() {
 		try {
 			readLine();
 		} catch (Exception e) {

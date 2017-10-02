@@ -41,13 +41,15 @@ import com.rapidminer.gui.tools.ListHoverHelper;
  * A cell renderer for lists containing {@link Card}s.
  *
  * @author Nils Woehler
- *
  */
 public class CardCellRenderer extends DefaultListCellRenderer {
 
 	private static final long serialVersionUID = 1L;
 
-	protected static final int MAX_CAPTION_LENGTH = 13;
+    /**
+     * The constant MAX_CAPTION_LENGTH.
+     */
+    protected static final int MAX_CAPTION_LENGTH = 13;
 
 	private boolean selected = false;
 
@@ -88,10 +90,10 @@ public class CardCellRenderer extends DefaultListCellRenderer {
 		}
 	}
 
-	/**
-	 * Creates a {@link CardCellRenderer} that is used by lists containing {@link Card}s.
-	 */
-	public CardCellRenderer() {
+    /**
+     * Creates a {@link CardCellRenderer} that is used by lists containing {@link Card}s.
+     */
+    public CardCellRenderer() {
 		setVerticalTextPosition(SwingConstants.BOTTOM);
 		setHorizontalTextPosition(SwingConstants.CENTER);
 		setHorizontalAlignment(CENTER);

@@ -47,6 +47,8 @@ import edu.uci.ics.jung.graph.Graph;
 /**
  * The layout selection for the {@link GraphViewer}.
  *
+ * @param <V> the type parameter
+ * @param <E> the type parameter
  * @author Ingo Mierswa
  */
 public class LayoutSelection<V, E> extends JComboBox<String> {
@@ -64,7 +66,13 @@ public class LayoutSelection<V, E> extends JComboBox<String> {
 
 	private Layout<V, E> layout;
 
-	public LayoutSelection(GraphViewer<V, E> graphViewer, Graph<V, E> graph) {
+    /**
+     * Instantiates a new Layout selection.
+     *
+     * @param graphViewer the graph viewer
+     * @param graph       the graph
+     */
+    public LayoutSelection(GraphViewer<V, E> graphViewer, Graph<V, E> graph) {
 		super();
 		this.graphViewer = graphViewer;
 		this.graph = graph;
@@ -93,7 +101,12 @@ public class LayoutSelection<V, E> extends JComboBox<String> {
 		addActionListener(this);
 	}
 
-	public Layout<V, E> getSelectedLayout() {
+    /**
+     * Gets selected layout.
+     *
+     * @return the selected layout
+     */
+    public Layout<V, E> getSelectedLayout() {
 		return this.layout;
 	}
 
@@ -102,15 +115,28 @@ public class LayoutSelection<V, E> extends JComboBox<String> {
 		setLayout();
 	}
 
-	public void setAnimate(boolean animate) {
+    /**
+     * Sets animate.
+     *
+     * @param animate the animate
+     */
+    public void setAnimate(boolean animate) {
 		this.animate = animate;
 	}
 
-	public boolean getAnimate() {
+    /**
+     * Gets animate.
+     *
+     * @return the animate
+     */
+    public boolean getAnimate() {
 		return this.animate;
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+    /**
+     * Sets layout.
+     */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
 	public void setLayout() {
 		String layoutName = (String) getSelectedItem();
 		Class<? extends Layout> layoutClass = null;

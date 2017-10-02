@@ -96,15 +96,21 @@ public class EULADialog extends ButtonDialog implements AdjustmentListener, Chan
 
 		private static final long serialVersionUID = 1L;
 
-		public static final int YES_OPTION = JOptionPane.YES_OPTION;
-		public static final int NO_OPTION = JOptionPane.NO_OPTION;
+        /**
+         * The constant YES_OPTION.
+         */
+        public static final int YES_OPTION = JOptionPane.YES_OPTION;
+        /**
+         * The constant NO_OPTION.
+         */
+        public static final int NO_OPTION = JOptionPane.NO_OPTION;
 
 		private int returnCode = NO_OPTION;
 
-		/**
-		 * Constructor.
-		 */
-		public ConfirmDialog() {
+        /**
+         * Constructor.
+         */
+        public ConfirmDialog() {
 			super(EULADialog.this, I18N.getMessage(I18N.getGUIBundle(), "gui.dialog.eula.title"), true);
 
 			// setup info panel (using the same layout as the ButtonDialog class)
@@ -156,19 +162,21 @@ public class EULADialog extends ButtonDialog implements AdjustmentListener, Chan
 			this.setLocationRelativeTo(EULADialog.this);
 		}
 
-		/**
-		 * Returns the user selection.
-		 */
-		public int getReturnOption() {
+        /**
+         * Returns the user selection.
+         *
+         * @return the return option
+         */
+        public int getReturnOption() {
 			return this.returnCode;
 		}
 
 	}
 
-	/**
-	 * Constructor.
-	 */
-	public EULADialog() {
+    /**
+     * Constructor.
+     */
+    public EULADialog() {
 		super(null, "eula", ModalityType.TOOLKIT_MODAL, new Object[] { LicenseTools
 				.translateProductName(ProductConstraintManager.INSTANCE.getActiveLicense()) });
 
@@ -323,13 +331,13 @@ public class EULADialog extends ButtonDialog implements AdjustmentListener, Chan
 		}
 	}
 
-	/**
-	 * Looks up the users' decision to accept/decline the current EULA in the "eula.properties"
-	 * file.
-	 *
-	 * @return True if the EULA was accepted, false otherwise.
-	 */
-	public static boolean getEULAAccepted() {
+    /**
+     * Looks up the users' decision to accept/decline the current EULA in the "eula.properties"
+     * file.
+     *
+     * @return True if the EULA was accepted, false otherwise.
+     */
+    public static boolean getEULAAccepted() {
 
 		File eulaPropertiesFile = FileSystemService.getUserConfigFile("eula.properties");
 		Properties eulaProperties = new Properties();
@@ -350,13 +358,12 @@ public class EULADialog extends ButtonDialog implements AdjustmentListener, Chan
 		}
 	}
 
-	/**
-	 * Stores the users' decision to accept/decline the current EULA in the "eula.properties" file.
-	 *
-	 * @param accepted
-	 *            Indicates whether the user accepted the EULA.
-	 */
-	public static void setEULAAccepted(boolean accepted) {
+    /**
+     * Stores the users' decision to accept/decline the current EULA in the "eula.properties" file.
+     *
+     * @param accepted Indicates whether the user accepted the EULA.
+     */
+    public static void setEULAAccepted(boolean accepted) {
 		File eulaPropertiesFile = FileSystemService.getUserConfigFile("eula.properties");
 		Properties eulaProperties = new Properties();
 

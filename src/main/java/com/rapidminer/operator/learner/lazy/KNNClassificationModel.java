@@ -39,7 +39,6 @@ import com.rapidminer.tools.math.container.GeometricDataCollection;
  * An implementation of a knn model.
  *
  * @author Sebastian Land
- *
  */
 public class KNNClassificationModel extends UpdateablePredictionModel {
 
@@ -57,7 +56,15 @@ public class KNNClassificationModel extends UpdateablePredictionModel {
 
 	private boolean weightByDistance;
 
-	public KNNClassificationModel(ExampleSet trainingSet, GeometricDataCollection<Integer> samples, int k,
+    /**
+     * Instantiates a new Knn classification model.
+     *
+     * @param trainingSet      the training set
+     * @param samples          the samples
+     * @param k                the k
+     * @param weightByDistance the weight by distance
+     */
+    public KNNClassificationModel(ExampleSet trainingSet, GeometricDataCollection<Integer> samples, int k,
 			boolean weightByDistance) {
 		super(trainingSet, SetsCompareOption.ALLOW_SUPERSET, ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.k = k;

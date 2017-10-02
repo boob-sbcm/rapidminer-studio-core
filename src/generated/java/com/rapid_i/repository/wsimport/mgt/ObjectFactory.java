@@ -25,18 +25,17 @@ import javax.xml.namespace.QName;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the com.rapid_i.repository.wsimport.mgt package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the com.rapid_i.repository.wsimport.mgt package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -52,14 +51,14 @@ public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.rapid_i.repository.wsimport.mgt
-     * 
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link CheckSetupResponse }
-     * 
+     *
+     * @return the check setup response
      */
     public CheckSetupResponse createCheckSetupResponse() {
         return new CheckSetupResponse();
@@ -67,7 +66,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetGlobalPropertyResponse }
-     * 
+     *
+     * @return the get global property response
      */
     public GetGlobalPropertyResponse createGetGlobalPropertyResponse() {
         return new GetGlobalPropertyResponse();
@@ -75,7 +75,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateDBConnectionResponse }
-     * 
+     *
+     * @return the create db connection response
      */
     public CreateDBConnectionResponse createCreateDBConnectionResponse() {
         return new CreateDBConnectionResponse();
@@ -83,7 +84,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetGlobalProperty }
-     * 
+     *
+     * @return the get global property
      */
     public GetGlobalProperty createGetGlobalProperty() {
         return new GetGlobalProperty();
@@ -91,7 +93,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateDBConnection }
-     * 
+     *
+     * @return the create db connection
      */
     public CreateDBConnection createCreateDBConnection() {
         return new CreateDBConnection();
@@ -99,7 +102,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CheckSetup }
-     * 
+     *
+     * @return the check setup
      */
     public CheckSetup createCheckSetup() {
         return new CheckSetup();
@@ -107,7 +111,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SetGlobalPropertyResponse }
-     * 
+     *
+     * @return the set global property response
      */
     public SetGlobalPropertyResponse createSetGlobalPropertyResponse() {
         return new SetGlobalPropertyResponse();
@@ -115,7 +120,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SetGlobalProperty }
-     * 
+     *
+     * @return the set global property
      */
     public SetGlobalProperty createSetGlobalProperty() {
         return new SetGlobalProperty();
@@ -123,7 +129,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Response }
-     * 
+     *
+     * @return the response
      */
     public Response createResponse() {
         return new Response();
@@ -131,7 +138,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CheckSetupResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "checkSetupResponse")
     public JAXBElement<CheckSetupResponse> createCheckSetupResponse(CheckSetupResponse value) {
@@ -140,7 +149,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetGlobalPropertyResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "getGlobalPropertyResponse")
     public JAXBElement<GetGlobalPropertyResponse> createGetGlobalPropertyResponse(GetGlobalPropertyResponse value) {
@@ -149,7 +160,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateDBConnectionResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "createDBConnectionResponse")
     public JAXBElement<CreateDBConnectionResponse> createCreateDBConnectionResponse(CreateDBConnectionResponse value) {
@@ -158,7 +171,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetGlobalProperty }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "getGlobalProperty")
     public JAXBElement<GetGlobalProperty> createGetGlobalProperty(GetGlobalProperty value) {
@@ -167,7 +182,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CheckSetup }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "checkSetup")
     public JAXBElement<CheckSetup> createCheckSetup(CheckSetup value) {
@@ -176,7 +193,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateDBConnection }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "createDBConnection")
     public JAXBElement<CreateDBConnection> createCreateDBConnection(CreateDBConnection value) {
@@ -185,7 +204,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SetGlobalPropertyResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "setGlobalPropertyResponse")
     public JAXBElement<SetGlobalPropertyResponse> createSetGlobalPropertyResponse(SetGlobalPropertyResponse value) {
@@ -194,7 +215,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SetGlobalProperty }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "setGlobalProperty")
     public JAXBElement<SetGlobalProperty> createSetGlobalProperty(SetGlobalProperty value) {

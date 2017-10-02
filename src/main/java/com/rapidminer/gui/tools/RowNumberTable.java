@@ -43,7 +43,7 @@ import com.rapidminer.gui.look.Colors;
  * it as a view port header for a {@link JScrollPane}. </br>
  * </br>
  * Example:
- *
+ * <p>
  * <pre>
  * JTable contentTable = new JTable();
  * JScrollPane scrollPane = new JScrollPane(contentTable);
@@ -52,7 +52,6 @@ import com.rapidminer.gui.look.Colors;
  *
  * @author Nils Woehler
  * @since 7.0.0
- *
  */
 public class RowNumberTable extends JTable {
 
@@ -64,7 +63,10 @@ public class RowNumberTable extends JTable {
 
 		private final Font derivedFont = RowNumberRenderer.this.getFont().deriveFont(Font.BOLD);
 
-		public RowNumberRenderer() {
+        /**
+         * Instantiates a new Row number renderer.
+         */
+        public RowNumberRenderer() {
 			setHorizontalAlignment(JLabel.CENTER);
 		}
 
@@ -104,13 +106,12 @@ public class RowNumberTable extends JTable {
 	private final JTable contentTable;
 	private int preferredWidth;
 
-	/**
-	 * Constructor to create a new {@link RowNumberTable} instance.
-	 *
-	 * @param contentTable
-	 *            the table the {@link RowNumberTable} should be created for
-	 */
-	public RowNumberTable(final JTable contentTable) {
+    /**
+     * Constructor to create a new {@link RowNumberTable} instance.
+     *
+     * @param contentTable the table the {@link RowNumberTable} should be created for
+     */
+    public RowNumberTable(final JTable contentTable) {
 		this.contentTable = contentTable;
 		contentTable.addPropertyChangeListener(listener);
 
@@ -153,10 +154,12 @@ public class RowNumberTable extends JTable {
 		}
 	}
 
-	/**
-	 * @return the preferred width for the row column which is calculated based on the row count
-	 */
-	public int getPreferredWidth() {
+    /**
+     * Gets preferred width.
+     *
+     * @return the preferred width for the row column which is calculated based on the row count
+     */
+    public int getPreferredWidth() {
 		return preferredWidth;
 	}
 

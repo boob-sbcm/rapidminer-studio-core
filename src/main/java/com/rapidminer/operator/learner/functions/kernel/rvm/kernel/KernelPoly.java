@@ -20,24 +20,36 @@ package com.rapidminer.operator.learner.functions.kernel.rvm.kernel;
 
 /**
  * Laplace kernel: K(x, y) = (lengthScale^{-2} * (x * y) + bias)^order
- * 
+ *
  * @author Piotr Kasprzak
  */
 public class KernelPoly extends KernelRadial {
 
 	private static final long serialVersionUID = -118526840262643388L;
 
-	/** Polynomial order */
-	protected double degree = 2;
+    /**
+     * Polynomial order
+     */
+    protected double degree = 2;
 
-	/** Bias */
-	protected double bias = 0;
+    /**
+     * Bias
+     */
+    protected double bias = 0;
 
-	/** Constructor(s) */
+    /**
+     * Constructor(s)
+     */
+    public KernelPoly() {}
 
-	public KernelPoly() {}
-
-	public KernelPoly(double lengthScale, double bias, double degree) {
+    /**
+     * Instantiates a new Kernel poly.
+     *
+     * @param lengthScale the length scale
+     * @param bias        the bias
+     * @param degree      the degree
+     */
+    public KernelPoly(double lengthScale, double bias, double degree) {
 		super(lengthScale);
 		this.bias = bias;
 		this.degree = degree;

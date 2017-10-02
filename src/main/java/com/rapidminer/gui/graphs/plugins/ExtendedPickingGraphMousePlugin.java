@@ -17,16 +17,23 @@ import edu.uci.ics.jung.visualization.picking.PickedState;
  * Does the same as {@link PickingGraphMousePlugin}, but also offers a toggle to disable rectangle
  * selection of nodes.
  *
+ * @param <V> the type parameter
+ * @param <E> the type parameter
  * @author Marco Boeck
  * @since 7.5.0
- *
  */
 public class ExtendedPickingGraphMousePlugin<V, E> extends PickingGraphMousePlugin<V, E>
 		implements MouseListener, MouseMotionListener {
 
-	protected boolean rectangleSelectionEnabled;
+    /**
+     * The Rectangle selection enabled.
+     */
+    protected boolean rectangleSelectionEnabled;
 
-	public ExtendedPickingGraphMousePlugin() {
+    /**
+     * Instantiates a new Extended picking graph mouse plugin.
+     */
+    public ExtendedPickingGraphMousePlugin() {
 		super(InputEvent.BUTTON1_MASK, InputEvent.BUTTON1_MASK | InputEvent.CTRL_MASK);
 	}
 
@@ -71,18 +78,21 @@ public class ExtendedPickingGraphMousePlugin<V, E> extends PickingGraphMousePlug
 		}
 	}
 
-	/**
-	 * @return Returns whether selecting nodes via selection rectangle is enabled.
-	 */
-	public boolean isRectangleSelectionEnabled() {
+    /**
+     * Is rectangle selection enabled boolean.
+     *
+     * @return Returns whether selecting nodes via selection rectangle is enabled.
+     */
+    public boolean isRectangleSelectionEnabled() {
 		return rectangleSelectionEnabled;
 	}
 
-	/**
-	 * @param rectangleSelectionEnabled
-	 *            Set whether selecting nodes via selection rectangle is enabled.
-	 */
-	public void setRectangleSelectionEnabled(boolean rectangleSelectionEnabled) {
+    /**
+     * Sets rectangle selection enabled.
+     *
+     * @param rectangleSelectionEnabled Set whether selecting nodes via selection rectangle is enabled.
+     */
+    public void setRectangleSelectionEnabled(boolean rectangleSelectionEnabled) {
 		this.rectangleSelectionEnabled = rectangleSelectionEnabled;
 	}
 

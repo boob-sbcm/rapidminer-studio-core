@@ -33,12 +33,17 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
 /**
  * Converts all string attributes to nominal attributes. Each string value is simply used as nominal
  * value of the new attribute. If the value is missing, the new value will be missing.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class String2Nominal extends AbstractFilteredDataProcessing {
 
-	public String2Nominal(OperatorDescription description) {
+    /**
+     * Instantiates a new String 2 nominal.
+     *
+     * @param description the description
+     */
+    public String2Nominal(OperatorDescription description) {
 		super(description);
 	}
 

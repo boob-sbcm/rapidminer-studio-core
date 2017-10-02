@@ -19,19 +19,43 @@
 package com.rapidminer.tools;
 
 /**
+ * The interface Change aware saveable.
+ *
  * @author Nils Woehler
- * 
  */
 public interface ChangeAwareSaveable {
 
-	public void saved();
+    /**
+     * Saved.
+     */
+    public void saved();
 
-	public boolean isModified();
+    /**
+     * Is modified boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isModified();
 
-	public boolean isInitialized();
+    /**
+     * Is initialized boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isInitialized();
 
-	public String getPath();
+    /**
+     * Gets path.
+     *
+     * @return the path
+     */
+    public String getPath();
 
-	public boolean isAlreadyStored();
+    /**
+     * Is already stored boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isAlreadyStored();
 
 }

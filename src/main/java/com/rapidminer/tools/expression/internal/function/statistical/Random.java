@@ -35,19 +35,18 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * A {@link Function} that delivers random numbers.
  *
  * @author Gisa Schaefer
- *
  */
 public class Random extends AbstractFunction {
 
 	private final Process process;
 
-	/**
-	 * Creates a function that delivers random numbers using the random generator associated to the
-	 * process.
-	 *
-	 * @param process
-	 */
-	public Random(Process process) {
+    /**
+     * Creates a function that delivers random numbers using the random generator associated to the
+     * process.
+     *
+     * @param process the process
+     */
+    public Random(Process process) {
 		super("statistical.rand", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, Ontology.REAL);
 		this.process = process;
 	}

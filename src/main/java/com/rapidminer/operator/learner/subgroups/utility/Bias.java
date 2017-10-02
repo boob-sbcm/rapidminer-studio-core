@@ -24,14 +24,20 @@ import com.rapidminer.operator.learner.subgroups.hypothesis.Rule;
 
 /**
  * Calculates the bias.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class Bias extends UtilityFunction {
 
 	private static final long serialVersionUID = 1L;
 
-	public Bias(double totalWeight, double totalPositiveWeight) {
+    /**
+     * Instantiates a new Bias.
+     *
+     * @param totalWeight         the total weight
+     * @param totalPositiveWeight the total positive weight
+     */
+    public Bias(double totalWeight, double totalPositiveWeight) {
 		super(totalWeight, totalPositiveWeight);
 	}
 

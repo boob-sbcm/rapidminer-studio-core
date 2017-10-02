@@ -25,12 +25,18 @@ import java.util.Map;
 
 /**
  * This class provides the complete linkage method for the AgglomerativeClustering.
- * 
+ *
  * @author Sebastian Land
  */
 public class CompleteLinkageMethod extends AbstractLinkageMethod {
 
-	public CompleteLinkageMethod(DistanceMatrix matrix, int[] clusterIds) {
+    /**
+     * Instantiates a new Complete linkage method.
+     *
+     * @param matrix     the matrix
+     * @param clusterIds the cluster ids
+     */
+    public CompleteLinkageMethod(DistanceMatrix matrix, int[] clusterIds) {
 		super(matrix, clusterIds);
 	}
 

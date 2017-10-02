@@ -20,14 +20,20 @@ package com.rapidminer.operator.learner.rules;
 
 /**
  * Contains all information about a numerical split point.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Split {
 
-	public static final int LESS_SPLIT = 0;
+    /**
+     * The constant LESS_SPLIT.
+     */
+    public static final int LESS_SPLIT = 0;
 
-	public static final int GREATER_SPLIT = 1;
+    /**
+     * The constant GREATER_SPLIT.
+     */
+    public static final int GREATER_SPLIT = 1;
 
 	private double splitPoint;
 
@@ -35,21 +41,43 @@ public class Split {
 
 	private int splitType;
 
-	public Split(double splitPoint, double[] benefit, int splitType) {
+    /**
+     * Instantiates a new Split.
+     *
+     * @param splitPoint the split point
+     * @param benefit    the benefit
+     * @param splitType  the split type
+     */
+    public Split(double splitPoint, double[] benefit, int splitType) {
 		this.splitPoint = splitPoint;
 		this.benefit = benefit;
 		this.splitType = splitType;
 	}
 
-	public double getSplitPoint() {
+    /**
+     * Gets split point.
+     *
+     * @return the split point
+     */
+    public double getSplitPoint() {
 		return this.splitPoint;
 	}
 
-	public double[] getBenefit() {
+    /**
+     * Get benefit double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getBenefit() {
 		return this.benefit;
 	}
 
-	public int getSplitType() {
+    /**
+     * Gets split type.
+     *
+     * @return the split type
+     */
+    public int getSplitType() {
 		return splitType;
 	}
 }

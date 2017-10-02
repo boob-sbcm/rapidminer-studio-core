@@ -26,12 +26,15 @@ import java.util.logging.Level;
 /**
  * This class has one numerical input attribute and one output attribute. Calculates the value of
  * the square root of the input attribute.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class SquareRootGenerator extends SingularNumericalGenerator {
 
-	public SquareRootGenerator() {}
+    /**
+     * Instantiates a new Square root generator.
+     */
+    public SquareRootGenerator() {}
 
 	@Override
 	public FeatureGenerator newInstance() {

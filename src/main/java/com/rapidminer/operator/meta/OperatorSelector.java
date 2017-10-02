@@ -45,18 +45,23 @@ import com.rapidminer.parameter.ParameterTypeInt;
  */
 public class OperatorSelector extends OperatorChain {
 
-	/**
-	 * The parameter name for &quot;Indicates if the operator which inner operator should be
-	 * used&quot;.
-	 */
-	public static final String PARAMETER_SELECT_WHICH = "select_which";
+    /**
+     * The parameter name for &quot;Indicates if the operator which inner operator should be
+     * used&quot;.
+     */
+    public static final String PARAMETER_SELECT_WHICH = "select_which";
 
 	private final MultiOutputPortPairExtender inputExtender = new MultiOutputPortPairExtender("input", getInputPorts(),
 			new OutputPorts[] { getSubprocess(0).getInnerSources(), getSubprocess(1).getInnerSources() });
 	private final MultiInputPortPairExtender outputExtender = new MultiInputPortPairExtender("output", getOutputPorts(),
 			new InputPorts[] { getSubprocess(0).getInnerSinks(), getSubprocess(1).getInnerSinks() });
 
-	public OperatorSelector(OperatorDescription description) {
+    /**
+     * Instantiates a new Operator selector.
+     *
+     * @param description the description
+     */
+    public OperatorSelector(OperatorDescription description) {
 		super(description, "Selection 1", "Selection 2");
 		inputExtender.start();
 		outputExtender.start();

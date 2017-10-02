@@ -43,21 +43,17 @@ import com.rapidminer.operator.tools.ExpressionEvaluationException;
  */
 public class RankStatistics {
 
-	/**
-	 * Calculates the Spearman rank correlation between two attributes.
-	 *
-	 * @param eSet
-	 *            the example set
-	 * @param a
-	 *            the first attribute to correlate
-	 * @param b
-	 *            the second attribute to correlate
-	 * @param f
-	 *            a fuzz factor (allowance for imprecision) when ranking
-	 * @return the rank correlation
-	 * @throws OperatorException
-	 */
-	public static double rho(ExampleSet eSet, Attribute a, Attribute b, double f) throws OperatorException {
+    /**
+     * Calculates the Spearman rank correlation between two attributes.
+     *
+     * @param eSet the example set
+     * @param a    the first attribute to correlate
+     * @param b    the second attribute to correlate
+     * @param f    a fuzz factor (allowance for imprecision) when ranking
+     * @return the rank correlation
+     * @throws OperatorException the operator exception
+     */
+    public static double rho(ExampleSet eSet, Attribute a, Attribute b, double f) throws OperatorException {
 		// create a new example set containing just attributes a and b
 		ExampleSet e = extract(eSet, a, b);
 		double[] ranka = rank(e, a, null, f);
@@ -82,43 +78,38 @@ public class RankStatistics {
 		}
 	}
 
-	/**
-	 * Calculates the Spearman rank correlation between two attributes.
-	 *
-	 * @param eSet
-	 *            the example set
-	 * @param a
-	 *            the first attribute to correlate
-	 * @param b
-	 *            the second attribute to correlate
-	 * @return the rank correlation
-	 * @throws OperatorException
-	 */
-	public static double rho(ExampleSet eSet, Attribute a, Attribute b) throws OperatorException {
+    /**
+     * Calculates the Spearman rank correlation between two attributes.
+     *
+     * @param eSet the example set
+     * @param a    the first attribute to correlate
+     * @param b    the second attribute to correlate
+     * @return the rank correlation
+     * @throws OperatorException the operator exception
+     */
+    public static double rho(ExampleSet eSet, Attribute a, Attribute b) throws OperatorException {
 		return rho(eSet, a, b, 0.0);
 	}
 
-	/**
-	 * Calculates ranks for an attribute.
-	 *
-	 * Ranks are returned as double precision values, with 1 as the rank of the smallest value.
-	 * Values within +/- fuzz of each other may be considered tied. Tied values receive identical
-	 * ranks. Missing values receive rank NaN.
-	 *
-	 * Note that application of the "fuzz" factor is dependent on the order of the observations in
-	 * the example set. For instance, if the first three values encountered are x, x+fuzz and
-	 * x+2*fuzz, the first two will be considered tied but the third will not, since x+2*fuzz is not
-	 * within +/- fuzz of x.
-	 *
-	 * @param eSet
-	 *            the example set
-	 * @param att
-	 *            the attribute to rank
-	 * @param fuzz
-	 *            values within +/- fuzz may be considered tied
-	 * @return a double precision array of ranks
-	 */
-	public static double[] rank(ExampleSet eSet, Attribute att, Attribute mappingAtt, double fuzz) {
+    /**
+     * Calculates ranks for an attribute.
+     * <p>
+     * Ranks are returned as double precision values, with 1 as the rank of the smallest value.
+     * Values within +/- fuzz of each other may be considered tied. Tied values receive identical
+     * ranks. Missing values receive rank NaN.
+     * <p>
+     * Note that application of the "fuzz" factor is dependent on the order of the observations in
+     * the example set. For instance, if the first three values encountered are x, x+fuzz and
+     * x+2*fuzz, the first two will be considered tied but the third will not, since x+2*fuzz is not
+     * within +/- fuzz of x.
+     *
+     * @param eSet       the example set
+     * @param att        the attribute to rank
+     * @param mappingAtt the mapping att
+     * @param fuzz       values within +/- fuzz may be considered tied
+     * @return a double precision array of ranks
+     */
+    public static double[] rank(ExampleSet eSet, Attribute att, Attribute mappingAtt, double fuzz) {
 		TreeMap<Double, ArrayList<Integer>> map;
 		if (fuzz == 0.0) {
 			map = new TreeMap<Double, ArrayList<Integer>>();
@@ -163,32 +154,37 @@ public class RankStatistics {
 		return rank;
 	}
 
-	/**
-	 * Calculates ranks for an attribute.
-	 *
-	 * Ranks are returned as double precision values, with 1 as the rank of the smallest value. Tied
-	 * values receive identical ranks. Missing values receive rank NaN.
-	 *
-	 * @param eSet
-	 *            the example set
-	 * @param att
-	 *            the attribute to rank
-	 * @param mappingAtt
-	 *            the attribute which might be used for remapping the values
-	 * @return a double precision array of ranks
-	 */
-	public static double[] rank(ExampleSet eSet, Attribute att, Attribute mappingAtt) {
+    /**
+     * Calculates ranks for an attribute.
+     * <p>
+     * Ranks are returned as double precision values, with 1 as the rank of the smallest value. Tied
+     * values receive identical ranks. Missing values receive rank NaN.
+     *
+     * @param eSet       the example set
+     * @param att        the attribute to rank
+     * @param mappingAtt the attribute which might be used for remapping the values
+     * @return a double precision array of ranks
+     */
+    public static double[] rank(ExampleSet eSet, Attribute att, Attribute mappingAtt) {
 		return rank(eSet, att, mappingAtt, 0.0);
 	}
 
-	/* Comparator for doubles using fuzz factor. */
+    /**
+     * The type Fuzzy comp.
+     */
+/* Comparator for doubles using fuzz factor. */
 	static class FuzzyComp implements Comparator<Double>, Serializable {
 
 		private static final long serialVersionUID = -7752907616633799595L;
 
 		private double fuzz; // comparison fuzz factor
 
-		/* Constructor */
+        /**
+         * Instantiates a new Fuzzy comp.
+         *
+         * @param f the f
+         */
+/* Constructor */
 		FuzzyComp(double f) {
 			fuzz = Math.abs(f);
 		}
@@ -225,20 +221,17 @@ public class RankStatistics {
 		}
 	}
 
-	/**
-	 * Computes Kendall's tau-b rank correlation statistic, ignoring examples containing missing
-	 * values.
-	 *
-	 * @param eSet
-	 *            the example set
-	 * @param a
-	 *            the first attribute to correlate
-	 * @param b
-	 *            the second attribute to correlate
-	 * @return Kendall's tau-b rank correlation
-	 * @throws OperatorException
-	 */
-	public static double tau_b(ExampleSet eSet, Attribute a, Attribute b) throws OperatorException {
+    /**
+     * Computes Kendall's tau-b rank correlation statistic, ignoring examples containing missing
+     * values.
+     *
+     * @param eSet the example set
+     * @param a    the first attribute to correlate
+     * @param b    the second attribute to correlate
+     * @return Kendall 's tau-b rank correlation
+     * @throws OperatorException the operator exception
+     */
+    public static double tau_b(ExampleSet eSet, Attribute a, Attribute b) throws OperatorException {
 		ExampleSet e = extract(eSet, a, b); // reduced example set
 		long c = 0; // concordant pairs
 		long d = 0; // discordant pairs
@@ -296,22 +289,18 @@ public class RankStatistics {
 		}
 	}
 
-	/**
-	 * Computes Kendall's tau-b rank correlation statistic, ignoring examples containing missing
-	 * values, with approximate comparisons.
-	 *
-	 * @param eSet
-	 *            the example set
-	 * @param a
-	 *            the first attribute to correlate
-	 * @param b
-	 *            the second attribute to correlate
-	 * @param fuzz
-	 *            values within +/- fuzz may be considered tied
-	 * @return Kendall's tau-b rank correlation
-	 * @throws OperatorException
-	 */
-	public static double tau_b(ExampleSet eSet, Attribute a, Attribute b, double fuzz) throws OperatorException {
+    /**
+     * Computes Kendall's tau-b rank correlation statistic, ignoring examples containing missing
+     * values, with approximate comparisons.
+     *
+     * @param eSet the example set
+     * @param a    the first attribute to correlate
+     * @param b    the second attribute to correlate
+     * @param fuzz values within +/- fuzz may be considered tied
+     * @return Kendall 's tau-b rank correlation
+     * @throws OperatorException the operator exception
+     */
+    public static double tau_b(ExampleSet eSet, Attribute a, Attribute b, double fuzz) throws OperatorException {
 		ExampleSet e = extract(eSet, a, b); // reduced example set
 		FuzzyComp fc = new FuzzyComp(fuzz);
 		int c = 0; // concordant pairs

@@ -41,15 +41,22 @@ import java.util.Random;
  * example set containing all examples which are not part of the bootstrapped example set. This
  * inverse example set might be used for a bootstrapped validation (together with an
  * {@link IteratingPerformanceAverage} operator.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class AbstractBootstrapping extends AbstractSamplingOperator {
 
-	/** The parameter name for &quot;This ratio determines the size of the new example set.&quot; */
-	public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
+    /**
+     * The parameter name for &quot;This ratio determines the size of the new example set.&quot;
+     */
+    public static final String PARAMETER_SAMPLE_RATIO = "sample_ratio";
 
-	public AbstractBootstrapping(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract bootstrapping.
+     *
+     * @param description the description
+     */
+    public AbstractBootstrapping(OperatorDescription description) {
 		super(description);
 	}
 
@@ -61,7 +68,16 @@ public abstract class AbstractBootstrapping extends AbstractSamplingOperator {
 		return new MDInteger();
 	}
 
-	public abstract int[] createMapping(ExampleSet exampleSet, int size, Random random) throws OperatorException;
+    /**
+     * Create mapping int [ ].
+     *
+     * @param exampleSet the example set
+     * @param size       the size
+     * @param random     the random
+     * @return the int [ ]
+     * @throws OperatorException the operator exception
+     */
+    public abstract int[] createMapping(ExampleSet exampleSet, int size, Random random) throws OperatorException;
 
 	@Override
 	public ExampleSet apply(ExampleSet exampleSet) throws OperatorException {

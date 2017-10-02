@@ -48,11 +48,22 @@ public class VectorRegressionModel extends PredictionModel {
 
 	private String[] attributeNames;
 
-	Matrix coefficients;
+    /**
+     * The Coefficients.
+     */
+    Matrix coefficients;
 
 	private boolean useIntercept = true;
 
-	public VectorRegressionModel(ExampleSet exampleSet, String[] labelNames, Matrix coefficients, boolean useIntercept) {
+    /**
+     * Instantiates a new Vector regression model.
+     *
+     * @param exampleSet   the example set
+     * @param labelNames   the label names
+     * @param coefficients the coefficients
+     * @param useIntercept the use intercept
+     */
+    public VectorRegressionModel(ExampleSet exampleSet, String[] labelNames, Matrix coefficients, boolean useIntercept) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		this.labelNames = labelNames;
@@ -114,15 +125,31 @@ public class VectorRegressionModel extends PredictionModel {
 		return exampleSet;
 	}
 
-	public String[] getLabelNames() {
+    /**
+     * Get label names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getLabelNames() {
 		return labelNames;
 	}
 
-	public String[] getAttributeNames() {
+    /**
+     * Get attribute names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getAttributeNames() {
 		return attributeNames;
 	}
 
-	public double[] getCoefficients(String labelName) {
+    /**
+     * Get coefficients double [ ].
+     *
+     * @param labelName the label name
+     * @return the double [ ]
+     */
+    public double[] getCoefficients(String labelName) {
 		double[] coefficients = new double[this.coefficients.getRowDimension()];
 		int i = 0;
 		for (String label : labelNames) {

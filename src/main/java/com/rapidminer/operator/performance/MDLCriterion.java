@@ -27,25 +27,27 @@ import com.rapidminer.tools.math.Averagable;
 
 /**
  * Measures the length of an example set (i.e. the number of attributes).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MDLCriterion extends MeasuredPerformance {
 
 	private static final long serialVersionUID = -5023462349084083154L;
 
-	/** The possible optimization directions. */
-	public static final String[] DIRECTIONS = { "minimization", "maximization" };
+    /**
+     * The possible optimization directions.
+     */
+    public static final String[] DIRECTIONS = { "minimization", "maximization" };
 
-	/**
-	 * Indicates that the fitness should be higher for smaller numbers of features.
-	 */
-	public static final int MINIMIZATION = 0;
+    /**
+     * Indicates that the fitness should be higher for smaller numbers of features.
+     */
+    public static final int MINIMIZATION = 0;
 
-	/**
-	 * Indicates that the fitness should be higher for larger numbers of features.
-	 */
-	public static final int MAXIMIZATION = 1;
+    /**
+     * Indicates that the fitness should be higher for larger numbers of features.
+     */
+    public static final int MAXIMIZATION = 1;
 
 	/** The length of this example set. */
 	private int length;
@@ -58,14 +60,27 @@ public class MDLCriterion extends MeasuredPerformance {
 	 */
 	private int direction = MINIMIZATION;
 
-	public MDLCriterion() {}
+    /**
+     * Instantiates a new Mdl criterion.
+     */
+    public MDLCriterion() {}
 
-	public MDLCriterion(int direction) {
+    /**
+     * Instantiates a new Mdl criterion.
+     *
+     * @param direction the direction
+     */
+    public MDLCriterion(int direction) {
 		this();
 		this.direction = direction;
 	}
 
-	public MDLCriterion(MDLCriterion mdl) {
+    /**
+     * Instantiates a new Mdl criterion.
+     *
+     * @param mdl the mdl
+     */
+    public MDLCriterion(MDLCriterion mdl) {
 		super(mdl);
 		this.length = mdl.length;
 		this.counter = mdl.counter;

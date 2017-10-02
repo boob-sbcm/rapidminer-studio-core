@@ -46,7 +46,7 @@ import com.rapidminer.tools.XMLException;
 
 /**
  * Templates for new processes. The template must be a .zip file renamed to .template containing
- *
+ * <p>
  * <ul>
  * <li>an {@code icon.png} of size 64x64</li>
  * <li>a {@code template.properties} file</li>
@@ -67,7 +67,6 @@ import com.rapidminer.tools.XMLException;
  * the files from the .Rapidminer folder are loaded automatically.
  *
  * @author Simon Fischer, Gisa Schaefer
- *
  */
 public class Template implements ZipStreamResource {
 
@@ -80,8 +79,10 @@ public class Template implements ZipStreamResource {
 	private static final String NO_DESCRIPTION = I18N.getGUILabel("template.no_description");
 	private static final String NO_TITLE = I18N.getGUILabel("template.no_title");
 
-	/** special template which is not loaded from a resource but simply creates a new, empty process */
-	public static final Template BLANK_PROCESS_TEMPLATE = new Template() {
+    /**
+     * special template which is not loaded from a resource but simply creates a new, empty process
+     */
+    public static final Template BLANK_PROCESS_TEMPLATE = new Template() {
 
 		@Override
 		public Process makeProcess() throws IOException, XMLException, MalformedRepositoryLocationException {
@@ -111,13 +112,27 @@ public class Template implements ZipStreamResource {
 		this.path = null;
 	}
 
-	Template(String name) throws IOException, RepositoryException {
+    /**
+     * Instantiates a new Template.
+     *
+     * @param name the name
+     * @throws IOException         the io exception
+     * @throws RepositoryException the repository exception
+     */
+    Template(String name) throws IOException, RepositoryException {
 		this.name = name;
 		this.path = null;
 		load();
 	}
 
-	Template(Path path) throws IOException, RepositoryException {
+    /**
+     * Instantiates a new Template.
+     *
+     * @param path the path
+     * @throws IOException         the io exception
+     * @throws RepositoryException the repository exception
+     */
+    Template(Path path) throws IOException, RepositoryException {
 		this.name = path.getFileName().toString().replaceAll("\\.template", "");
 		this.path = path;
 		load();
@@ -146,43 +161,53 @@ public class Template implements ZipStreamResource {
 		return null;
 	}
 
-	/**
-	 * @return the name of the template which is also the name of the zip file
-	 */
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name of the template which is also the name of the zip file
+     */
+    public String getName() {
 		return name;
 	}
 
-	/**
-	 * @return a new process that contains the template process
-	 * @throws XMLException
-	 * @throws IOException
-	 * @throws MalformedRepositoryLocationException
-	 */
-	public Process makeProcess() throws IOException, XMLException, MalformedRepositoryLocationException {
+    /**
+     * Make process process.
+     *
+     * @return a new process that contains the template process
+     * @throws IOException                          the io exception
+     * @throws XMLException                         the xml exception
+     * @throws MalformedRepositoryLocationException the malformed repository location exception
+     */
+    public Process makeProcess() throws IOException, XMLException, MalformedRepositoryLocationException {
 		String processLocation = TEMPLATES_PATH + title + "/" + processName;
 		RepositoryProcessLocation repoLocation = new RepositoryProcessLocation(new RepositoryLocation(processLocation));
 		return new Process(repoLocation.getRawXML());
 	}
 
-	/**
-	 * @return the name of the process behind this template
-	 */
-	public String getProcessName() {
+    /**
+     * Gets process name.
+     *
+     * @return the name of the process behind this template
+     */
+    public String getProcessName() {
 		return processName;
 	}
 
-	/**
-	 * @return the icon to display
-	 */
-	public Icon getIcon() {
+    /**
+     * Gets icon.
+     *
+     * @return the icon to display
+     */
+    public Icon getIcon() {
 		return icon;
 	}
 
-	/**
-	 * @return the list of demo data names
-	 */
-	public List<String> getDemoData() {
+    /**
+     * Gets demo data.
+     *
+     * @return the list of demo data names
+     */
+    public List<String> getDemoData() {
 		return demoData;
 	}
 

@@ -25,7 +25,8 @@ import com.rapidminer.operator.learner.functions.kernel.hyperhyper.HyperModel;
 
 
 /**
- * 
+ * The type Hyper model weights renderer.
+ *
  * @author Sebastian Land
  */
 public class HyperModelWeightsRenderer extends AbstractDataTableTableRenderer {

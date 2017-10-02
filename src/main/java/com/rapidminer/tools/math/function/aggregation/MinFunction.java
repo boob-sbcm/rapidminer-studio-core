@@ -27,17 +27,24 @@ import com.rapidminer.tools.Ontology;
  * Calculates the minimum.
  *
  * @author Tobias Malbrecht, Ingo Mierswa
- *
  */
 public class MinFunction extends AbstractAggregationFunction {
 
 	private double minValue;
 
-	public MinFunction() {
+    /**
+     * Instantiates a new Min function.
+     */
+    public MinFunction() {
 		this(DEFAULT_IGNORE_MISSINGS);
 	}
 
-	public MinFunction(Boolean ignoreMissings) {
+    /**
+     * Instantiates a new Min function.
+     *
+     * @param ignoreMissings the ignore missings
+     */
+    public MinFunction(Boolean ignoreMissings) {
 		super(ignoreMissings);
 	}
 

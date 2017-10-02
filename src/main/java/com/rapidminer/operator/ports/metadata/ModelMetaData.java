@@ -28,10 +28,10 @@ import com.rapidminer.operator.ports.InputPort;
  * application during meta data transformation. This super class remembers the meta data of the
  * trainings set and already checks compatibility of the application meta data with the trainings
  * meta data. This is done in an equal way to the PredictionModel.
- * 
+ * <p>
  * TODO: This model needs to become abstract in order to force all operators to implement a proper
  * and problem specific ModelMetaData object.
- * 
+ *
  * @author Simon Fischer, Sebastian Land
  */
 public class ModelMetaData extends MetaData {
@@ -40,19 +40,38 @@ public class ModelMetaData extends MetaData {
 
 	private ExampleSetMetaData trainingSetMetaData;
 
-	/** Clone constructor */
-	protected ModelMetaData() {}
+    /**
+     * Clone constructor
+     */
+    protected ModelMetaData() {}
 
-	public ModelMetaData(ExampleSetMetaData trainingSetMetaData) {
+    /**
+     * Instantiates a new Model meta data.
+     *
+     * @param trainingSetMetaData the training set meta data
+     */
+    public ModelMetaData(ExampleSetMetaData trainingSetMetaData) {
 		this(Model.class, trainingSetMetaData);
 	}
 
-	public ModelMetaData(Class<? extends Model> mclass, ExampleSetMetaData trainingSetMetaData) {
+    /**
+     * Instantiates a new Model meta data.
+     *
+     * @param mclass              the mclass
+     * @param trainingSetMetaData the training set meta data
+     */
+    public ModelMetaData(Class<? extends Model> mclass, ExampleSetMetaData trainingSetMetaData) {
 		super(mclass);
 		this.trainingSetMetaData = trainingSetMetaData;
 	}
 
-	public ModelMetaData(Model model, boolean shortened) {
+    /**
+     * Instantiates a new Model meta data.
+     *
+     * @param model     the model
+     * @param shortened the shortened
+     */
+    public ModelMetaData(Model model, boolean shortened) {
 		super(model.getClass());
 		this.trainingSetMetaData = (ExampleSetMetaData) MetaData.forIOObject(model.getTrainingHeader(), shortened);
 	}
@@ -62,11 +81,15 @@ public class ModelMetaData extends MetaData {
 		return super.getDescription();
 	}
 
-	/**
-	 * This method simulates the application of a model. First the compatibility of the model with
-	 * the current example set is checked and then the effects are applied.
-	 */
-	public final ExampleSetMetaData apply(ExampleSetMetaData emd, InputPort inputPort) {
+    /**
+     * This method simulates the application of a model. First the compatibility of the model with
+     * the current example set is checked and then the effects are applied.
+     *
+     * @param emd       the emd
+     * @param inputPort the input port
+     * @return the example set meta data
+     */
+    public final ExampleSetMetaData apply(ExampleSetMetaData emd, InputPort inputPort) {
 		checkCompatibility(emd, inputPort);
 		return applyEffects(emd, inputPort);
 	}
@@ -75,11 +98,15 @@ public class ModelMetaData extends MetaData {
 
 	}
 
-	/**
-	 * This method must be implemented by subclasses in order to apply any changes on the meta data,
-	 * that would occur on application of the real model. TODO: This method should be abstract.
-	 */
-	protected ExampleSetMetaData applyEffects(ExampleSetMetaData emd, InputPort inputPort) {
+    /**
+     * This method must be implemented by subclasses in order to apply any changes on the meta data,
+     * that would occur on application of the real model. TODO: This method should be abstract.
+     *
+     * @param emd       the emd
+     * @param inputPort the input port
+     * @return the example set meta data
+     */
+    protected ExampleSetMetaData applyEffects(ExampleSetMetaData emd, InputPort inputPort) {
 		return emd;
 	}
 
@@ -92,7 +119,12 @@ public class ModelMetaData extends MetaData {
 		return md;
 	}
 
-	public ExampleSetMetaData getTrainingSetMetaData() {
+    /**
+     * Gets training set meta data.
+     *
+     * @return the training set meta data
+     */
+    public ExampleSetMetaData getTrainingSetMetaData() {
 		return trainingSetMetaData;
 	}
 

@@ -38,16 +38,24 @@ public class Dependency {
 	/** The version of the desired plugin. */
 	private String version;
 
-	/** Create a new plugin dependency. */
-	public Dependency(String name, String version) {
+    /**
+     * Create a new plugin dependency.  @param name the name
+     *
+     * @param name    the name
+     * @param version the version
+     */
+    public Dependency(String name, String version) {
 		this.extensionId = name;
 		this.version = version;
 	}
 
-	/**
-	 * Returns true if the set contains a extension with the desired name and version.
-	 */
-	public boolean isFulfilled(Collection<Plugin> plugins) {
+    /**
+     * Returns true if the set contains a extension with the desired name and version.
+     *
+     * @param plugins the plugins
+     * @return the boolean
+     */
+    public boolean isFulfilled(Collection<Plugin> plugins) {
 		Iterator<Plugin> i = plugins.iterator();
 		while (i.hasNext()) {
 			Plugin plugin = i.next();
@@ -59,11 +67,21 @@ public class Dependency {
 		return false;
 	}
 
-	public String getPluginExtensionId() {
+    /**
+     * Gets plugin extension id.
+     *
+     * @return the plugin extension id
+     */
+    public String getPluginExtensionId() {
 		return extensionId;
 	}
 
-	public String getPluginVersion() {
+    /**
+     * Gets plugin version.
+     *
+     * @return the plugin version
+     */
+    public String getPluginVersion() {
 		return version;
 	}
 
@@ -72,7 +90,13 @@ public class Dependency {
 		return extensionId + " (" + version + ")";
 	}
 
-	public static List<Dependency> parse(String dependencyString) {
+    /**
+     * Parse list.
+     *
+     * @param dependencyString the dependency string
+     * @return the list
+     */
+    public static List<Dependency> parse(String dependencyString) {
 		if (dependencyString == null || dependencyString.isEmpty()) {
 			return Collections.emptyList();
 		}

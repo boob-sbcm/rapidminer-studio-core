@@ -31,18 +31,20 @@ import javax.swing.filechooser.FileFilter;
 /**
  * This step allows to select an file. With this file the {@link ExcelResultSetConfiguration} will
  * be created.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class ExcelFileSelectionWizardStep extends FileSelectionWizardStep {
 
 	private ExcelResultSetConfiguration configuration;
 
-	/**
-	 * There must be a configuration given, but might be empty.
-	 */
-	public ExcelFileSelectionWizardStep(AbstractWizard parent, ExcelResultSetConfiguration configuration) {
+    /**
+     * There must be a configuration given, but might be empty.
+     *
+     * @param parent        the parent
+     * @param configuration the configuration
+     */
+    public ExcelFileSelectionWizardStep(AbstractWizard parent, ExcelResultSetConfiguration configuration) {
 		super(parent, new FileFilter() {
 
 			@Override

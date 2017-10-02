@@ -34,14 +34,14 @@ import java.util.List;
  * (Re-)Define macros for the current process. Macros will be replaced in the value strings of
  * parameters by the macro values defined in the parameter list of this operator.
  * </p>
- * 
+ * <p>
  * <p>
  * In the parameter list of this operator, you have to define the macro name (without the enclosing
  * brackets) and the macro value. The defined macro can then be used in all succeeding operators as
  * parameter value for string type parameters. A macro must then be enclosed by
  * &quot;MACRO_START&quot; and &quot;MACRO_END&quot;.
  * </p>
- * 
+ * <p>
  * <p>
  * There are several predefined macros:
  * </p>
@@ -53,7 +53,7 @@ import java.util.List;
  * <li>MACRO_STARTprocess_pathMACRO_END: will be replaced by the complete absolute path of the
  * process file</li>
  * </ul>
- * 
+ * <p>
  * <p>
  * In addition to those the user might define arbitrary other macros which will be replaced by
  * arbitrary string during the process run. Please note also that several other short macros exist,
@@ -61,19 +61,28 @@ import java.util.List;
  * to the section about macros in the RapidMiner tutorial. Please note also that other operators
  * like the {@link FeatureIterator} also add specific macros.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
-
 public class MacroDefinitionOperator extends Operator {
 
-	/** The parameter name for &quot;The values of the user defined macros.&quot; */
-	public static final String PARAMETER_VALUES = "values";
-	public static final String PARAMETER_MACROS = "macros";
+    /**
+     * The parameter name for &quot;The values of the user defined macros.&quot;
+     */
+    public static final String PARAMETER_VALUES = "values";
+    /**
+     * The constant PARAMETER_MACROS.
+     */
+    public static final String PARAMETER_MACROS = "macros";
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public MacroDefinitionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Macro definition operator.
+     *
+     * @param description the description
+     */
+    public MacroDefinitionOperator(OperatorDescription description) {
 		super(description);
 
 		dummyPorts.start();

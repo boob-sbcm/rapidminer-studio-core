@@ -25,11 +25,13 @@ import java.util.Date;
  * A {@link Function} for comparing two dates.
  *
  * @author David Arnu
- *
  */
 public class DateAfter extends Abstract2DateInputBooleanOutput {
 
-	public DateAfter() {
+    /**
+     * Instantiates a new Date after.
+     */
+    public DateAfter() {
 		super("date.date_after");
 	}
 

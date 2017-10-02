@@ -45,21 +45,24 @@ import com.rapidminer.operator.ProcessRootOperator;
  * Transfer handler that supports dragging operators and workflow annotations.
  *
  * @author Simon Fischer, Marco Boeck
- *
  */
 public abstract class OperatorTransferHandler extends AbstractPatchedTransferHandler {
 
 	private static final long serialVersionUID = 1L;
 
-	/** Returns a list of operators selected for dragging out of this component. */
-	protected abstract List<Operator> getDraggedOperators();
+    /**
+     * Returns a list of operators selected for dragging out of this component.  @return the dragged operators
+     *
+     * @return the dragged operators
+     */
+    protected abstract List<Operator> getDraggedOperators();
 
-	/**
-	 * Returns the copied/cut workflow annotation.
-	 *
-	 * @return the annotation or {@code null}
-	 */
-	protected WorkflowAnnotation getDraggedAnnotation() {
+    /**
+     * Returns the copied/cut workflow annotation.
+     *
+     * @return the annotation or {@code null}
+     */
+    protected WorkflowAnnotation getDraggedAnnotation() {
 		return null;
 	}
 
@@ -148,11 +151,22 @@ public abstract class OperatorTransferHandler extends AbstractPatchedTransferHan
 		super.exportDone(source, data, action);
 	}
 
-	public static void installMenuItems(JPopupMenu editmenu) {
+    /**
+     * Install menu items.
+     *
+     * @param editmenu the editmenu
+     */
+    public static void installMenuItems(JPopupMenu editmenu) {
 		installMenuItems(editmenu, false);
 	}
 
-	public static void installMenuItems(JPopupMenu editmenu, boolean enableCutCopy) {
+    /**
+     * Install menu items.
+     *
+     * @param editmenu      the editmenu
+     * @param enableCutCopy the enable cut copy
+     */
+    public static void installMenuItems(JPopupMenu editmenu, boolean enableCutCopy) {
 		if (enableCutCopy) {
 			editmenu.add(CutCopyPasteDeleteAction.CUT_ACTION);
 			editmenu.add(CutCopyPasteDeleteAction.COPY_ACTION);
@@ -166,14 +180,24 @@ public abstract class OperatorTransferHandler extends AbstractPatchedTransferHan
 		}
 	}
 
-	public static void installMenuItems(JMenu editmenu) {
+    /**
+     * Install menu items.
+     *
+     * @param editmenu the editmenu
+     */
+    public static void installMenuItems(JMenu editmenu) {
 		editmenu.add(CutCopyPasteDeleteAction.CUT_ACTION);
 		editmenu.add(CutCopyPasteDeleteAction.COPY_ACTION);
 		editmenu.add(CutCopyPasteDeleteAction.PASTE_ACTION);
 		editmenu.add(CutCopyPasteDeleteAction.DELETE_ACTION);
 	}
 
-	public static void addToActionMap(JComponent component) {
+    /**
+     * Add to action map.
+     *
+     * @param component the component
+     */
+    public static void addToActionMap(JComponent component) {
 		ActionMap actionMap = component.getActionMap();
 		actionMap.put(TransferHandler.getCutAction().getValue(Action.NAME), TransferHandler.getCutAction());
 		actionMap.put(TransferHandler.getCopyAction().getValue(Action.NAME), TransferHandler.getCopyAction());

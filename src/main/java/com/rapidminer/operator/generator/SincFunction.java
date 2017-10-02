@@ -20,14 +20,20 @@ package com.rapidminer.operator.generator;
 
 /**
  * The sinc function on R^n for n >= 1
- * 
+ * <p>
  * The Label is f(x) = sin(x) / ||x||, if ||x|| != 0, and 0 else.
- * 
+ *
  * @author Piotr Kasprzak
  */
 public class SincFunction extends RegressionFunction {
 
-	/* L2 norm on R^n */
+    /**
+     * Norm l 2 double.
+     *
+     * @param vector the vector
+     * @return the double
+     */
+/* L2 norm on R^n */
 	public double norm_l2(double[] vector) {
 		double result = 0;
 		for (int i = 0; i < vector.length; i++) {

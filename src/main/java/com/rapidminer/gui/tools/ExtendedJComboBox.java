@@ -37,6 +37,7 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
  * A combo box which can use a predefined preferred size. Can also show the full value as tool tip
  * in cases where the strings were too short.
  *
+ * @param <E> the type parameter
  * @author Ingo Mierswa
  */
 public class ExtendedJComboBox<E> extends JComboBox<E> {
@@ -101,33 +102,72 @@ public class ExtendedJComboBox<E> extends JComboBox<E> {
 
 	private boolean wide = true;
 
-	public ExtendedJComboBox(E[] values) {
+    /**
+     * Instantiates a new Extended j combo box.
+     *
+     * @param values the values
+     */
+    public ExtendedJComboBox(E[] values) {
 		this(-1, -1, true, values);
 	}
 
-	public ExtendedJComboBox() {
+    /**
+     * Instantiates a new Extended j combo box.
+     */
+    public ExtendedJComboBox() {
 		this(-1, -1);
 	}
 
-	public ExtendedJComboBox(int preferredWidth) {
+    /**
+     * Instantiates a new Extended j combo box.
+     *
+     * @param preferredWidth the preferred width
+     */
+    public ExtendedJComboBox(int preferredWidth) {
 		this(preferredWidth, -1);
 	}
 
-	public ExtendedJComboBox(int preferredWidth, int minimumWidth) {
+    /**
+     * Instantiates a new Extended j combo box.
+     *
+     * @param preferredWidth the preferred width
+     * @param minimumWidth   the minimum width
+     */
+    public ExtendedJComboBox(int preferredWidth, int minimumWidth) {
 		this(preferredWidth, minimumWidth, true);
 	}
 
-	// parameter cannot be null, must be array; there is no type checking on empty array
+    /**
+     * Instantiates a new Extended j combo box.
+     *
+     * @param preferredWidth the preferred width
+     * @param minimumWidth   the minimum width
+     * @param wide           the wide
+     */
+// parameter cannot be null, must be array; there is no type checking on empty array
 	@SuppressWarnings("unchecked")
 	public ExtendedJComboBox(int preferredWidth, int minimumWidth, boolean wide) {
 		this(preferredWidth, minimumWidth, wide, (E[]) new Object[0]);
 	}
 
-	public ExtendedJComboBox(ComboBoxModel<E> model) {
+    /**
+     * Instantiates a new Extended j combo box.
+     *
+     * @param model the model
+     */
+    public ExtendedJComboBox(ComboBoxModel<E> model) {
 		this(-1, -1, true, model);
 	}
 
-	public ExtendedJComboBox(int preferredWidth, int minimumWidth, boolean wide, ComboBoxModel<E> model) {
+    /**
+     * Instantiates a new Extended j combo box.
+     *
+     * @param preferredWidth the preferred width
+     * @param minimumWidth   the minimum width
+     * @param wide           the wide
+     * @param model          the model
+     */
+    public ExtendedJComboBox(int preferredWidth, int minimumWidth, boolean wide, ComboBoxModel<E> model) {
 		super(model);
 		this.preferredWidth = preferredWidth;
 		this.minimumWidth = minimumWidth;
@@ -136,7 +176,15 @@ public class ExtendedJComboBox<E> extends JComboBox<E> {
 		addScrollToTopListener();
 	}
 
-	// ExtendedComboBoxRenderer cannot be typed because of super class
+    /**
+     * Instantiates a new Extended j combo box.
+     *
+     * @param preferredWidth the preferred width
+     * @param minimumWidth   the minimum width
+     * @param wide           the wide
+     * @param values         the values
+     */
+// ExtendedComboBoxRenderer cannot be typed because of super class
 	@SuppressWarnings("unchecked")
 	public ExtendedJComboBox(int preferredWidth, int minimumWidth, boolean wide, E[] values) {
 		super(values);
@@ -148,7 +196,12 @@ public class ExtendedJComboBox<E> extends JComboBox<E> {
 		setRenderer(new ExtendedComboBoxRenderer());
 	}
 
-	public void setPreferredWidth(int preferredWidth) {
+    /**
+     * Sets preferred width.
+     *
+     * @param preferredWidth the preferred width
+     */
+    public void setPreferredWidth(int preferredWidth) {
 		this.preferredWidth = preferredWidth;
 	}
 
@@ -166,23 +219,40 @@ public class ExtendedJComboBox<E> extends JComboBox<E> {
 		}
 	}
 
-	public boolean isScrollingToTopOnChange() {
+    /**
+     * Is scrolling to top on change boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isScrollingToTopOnChange() {
 		return isScrollingToTopOnChange;
 	}
 
-	/**
-	 * If the scrolling is enabled, the scroll bar of the combo box pop up list will be scrolled to
-	 * top when the model's data changed.
-	 */
-	public void enableScrollingToTopOnChange(boolean enable) {
+    /**
+     * If the scrolling is enabled, the scroll bar of the combo box pop up list will be scrolled to
+     * top when the model's data changed.
+     *
+     * @param enable the enable
+     */
+    public void enableScrollingToTopOnChange(boolean enable) {
 		isScrollingToTopOnChange = enable;
 	}
 
-	public boolean isWide() {
+    /**
+     * Is wide boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isWide() {
 		return wide;
 	}
 
-	public void setWide(boolean wide) {
+    /**
+     * Sets wide.
+     *
+     * @param wide the wide
+     */
+    public void setWide(boolean wide) {
 		this.wide = wide;
 	}
 

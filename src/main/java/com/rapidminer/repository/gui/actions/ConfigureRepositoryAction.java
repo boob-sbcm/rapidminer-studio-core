@@ -27,13 +27,17 @@ import com.rapidminer.repository.gui.RepositoryTree;
  * This action configures the selected repository.
  *
  * @author Simon Fischer
- *
  */
 public class ConfigureRepositoryAction extends AbstractRepositoryAction<Repository> {
 
 	private static final long serialVersionUID = 1L;
 
-	public ConfigureRepositoryAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Configure repository action.
+     *
+     * @param tree the tree
+     */
+    public ConfigureRepositoryAction(RepositoryTree tree) {
 		super(tree, Repository.class, false, "configure_repository");
 	}
 

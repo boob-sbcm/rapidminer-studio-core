@@ -36,7 +36,7 @@ import com.rapidminer.parameter.ParameterTypeInt;
 /**
  * For models creating components like <code>PCA</code>, <code>GHA</code> and <code>FastICA</code>
  * you can create the <code>AttributeWeights</code> from a component.
- * 
+ *
  * @author Daniel Hakenjos, Ingo Mierswa
  */
 public class ComponentWeights extends AbstractWeighting {
@@ -44,18 +44,30 @@ public class ComponentWeights extends AbstractWeighting {
 	private InputPort modelInput = getInputPorts().createPort("model", Model.class);
 	private OutputPort modelOutput = getOutputPorts().createPort("model");
 
-	/** The parameter name for &quot;Create the weights of this component.&quot; */
-	public static final String PARAMETER_COMPONENT_NUMBER = "component_number";
+    /**
+     * The parameter name for &quot;Create the weights of this component.&quot;
+     */
+    public static final String PARAMETER_COMPONENT_NUMBER = "component_number";
 
-	public ComponentWeights(OperatorDescription description) {
+    /**
+     * Instantiates a new Component weights.
+     *
+     * @param description the description
+     */
+    public ComponentWeights(OperatorDescription description) {
 		super(description, false);
 		getTransformer().addPassThroughRule(modelInput, modelOutput);
 	}
 
-	/**
-	 * Helper method for anonymous instantiations of this class.
-	 */
-	public AttributeWeights doWork(Model model, ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Helper method for anonymous instantiations of this class.
+     *
+     * @param model      the model
+     * @param exampleSet the example set
+     * @return the attribute weights
+     * @throws OperatorException the operator exception
+     */
+    public AttributeWeights doWork(Model model, ExampleSet exampleSet) throws OperatorException {
 		modelInput.receive(model);
 		getExampleSetInputPort().receive(exampleSet);
 		doWork();

@@ -27,13 +27,23 @@ import java.awt.Component;
 /**
  * Provides a custom renderer added by the {@link ToolTipProviderHelper} for subclasses of
  * {@link MetaData}.
- * 
+ *
  * @author Simon Fischer, Gabor Makrai
- * 
  */
 public interface MetaDataRendererFactory {
 
-	public Class<? extends MetaData> getSupportedClass();
+    /**
+     * Gets supported class.
+     *
+     * @return the supported class
+     */
+    public Class<? extends MetaData> getSupportedClass();
 
-	public Component createRenderer(MetaData metaData);
+    /**
+     * Create renderer component.
+     *
+     * @param metaData the meta data
+     * @return the component
+     */
+    public Component createRenderer(MetaData metaData);
 }

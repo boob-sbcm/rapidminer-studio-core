@@ -56,7 +56,6 @@ import com.rapidminer.tools.I18N;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public final class AnnotationsVisualizer {
 
@@ -103,15 +102,13 @@ public final class AnnotationsVisualizer {
 		}
 	};
 
-	/**
-	 * Creates the visualizer for {@link WorkflowAnnotation}s.
-	 *
-	 * @param view
-	 *            the proces renderer instance
-	 * @param flowVisualizer
-	 *            the flow visualizer instance
-	 */
-	public AnnotationsVisualizer(final ProcessRendererView view, final FlowVisualizer flowVisualizer) {
+    /**
+     * Creates the visualizer for {@link WorkflowAnnotation}s.
+     *
+     * @param view           the proces renderer instance
+     * @param flowVisualizer the flow visualizer instance
+     */
+    public AnnotationsVisualizer(final ProcessRendererView view, final FlowVisualizer flowVisualizer) {
 		this.view = view;
 		this.model = new AnnotationsModel(view.getModel());
 		this.decorator = new AnnotationsDecorator(view, this, model);
@@ -124,31 +121,30 @@ public final class AnnotationsVisualizer {
 		toggleAnnotations.actionPerformed(new ActionEvent(view, 0, ""));
 	}
 
-	/**
-	 * Returns the workflow annotation backing model.
-	 *
-	 * @return the model instance, never {@code null}
-	 */
-	public AnnotationsModel getModel() {
+    /**
+     * Returns the workflow annotation backing model.
+     *
+     * @return the model instance, never {@code null}
+     */
+    public AnnotationsModel getModel() {
 		return model;
 	}
 
-	/**
-	 * Whether the annotations are active, i.e. are displayed and can be edited.
-	 *
-	 * @return {@code true} if they are active; {@code false} otherwise
-	 */
-	public boolean isActive() {
+    /**
+     * Whether the annotations are active, i.e. are displayed and can be edited.
+     *
+     * @return {@code true} if they are active; {@code false} otherwise
+     */
+    public boolean isActive() {
 		return active && !flowVisualizer.isActive();
 	}
 
-	/**
-	 * Sets whether the annotations are active or not.
-	 *
-	 * @param active
-	 *            {@code true} if they are active; {@code false} otherwise
-	 */
-	public void setActive(final boolean active) {
+    /**
+     * Sets whether the annotations are active or not.
+     *
+     * @param active {@code true} if they are active; {@code false} otherwise
+     */
+    public void setActive(final boolean active) {
 		if (this.active != active) {
 			this.active = active;
 			if (!active) {
@@ -159,46 +155,43 @@ public final class AnnotationsVisualizer {
 		}
 	}
 
-	/**
-	 * Deletes the selected {@link WorkflowAnnotation}. Has no effect if no annotation has been
-	 * selected.
-	 *
-	 */
-	public void deleteSelected() {
+    /**
+     * Deletes the selected {@link WorkflowAnnotation}. Has no effect if no annotation has been
+     * selected.
+     */
+    public void deleteSelected() {
 		if (model.getSelected() != null) {
 			model.deleteAnnotation(model.getSelected());
 		}
 	}
 
-	/**
-	 * Returns the toggle action for workflow annotations.
-	 *
-	 * @return the action, never {@code null}
-	 */
-	public ToggleAction getToggleAnnotationsAction() {
+    /**
+     * Returns the toggle action for workflow annotations.
+     *
+     * @return the action, never {@code null}
+     */
+    public ToggleAction getToggleAnnotationsAction() {
 		return toggleAnnotations;
 	}
 
-	/**
-	 * Returns the action to edit the currently selected workflow annotation.
-	 *
-	 * @return the action, never {@code null}
-	 */
-	public ResourceAction getEditAnnotationAction() {
+    /**
+     * Returns the action to edit the currently selected workflow annotation.
+     *
+     * @return the action, never {@code null}
+     */
+    public ResourceAction getEditAnnotationAction() {
 		return editAnnotation;
 	}
 
-	/**
-	 * Creates an action which can be used to add a new {@link OperatorAnnotation} (if an operator
-	 * is selected which does not yet have one) or a {@link ProcessAnnotation} at the top left
-	 * corner.
-	 *
-	 * @param process
-	 *            the process for which to create the annotation. Can be {@code null} for first
-	 *            process at action event time
-	 * @return the action, never {@code null}
-	 */
-	public ResourceAction makeAddAnnotationAction(final ExecutionUnit process) {
+    /**
+     * Creates an action which can be used to add a new {@link OperatorAnnotation} (if an operator
+     * is selected which does not yet have one) or a {@link ProcessAnnotation} at the top left
+     * corner.
+     *
+     * @param process the process for which to create the annotation. Can be {@code null} for first            process at action event time
+     * @return the action, never {@code null}
+     */
+    public ResourceAction makeAddAnnotationAction(final ExecutionUnit process) {
 		ResourceAction addProcessAnnotation = new ResourceAction(true, "workflow.annotation.add") {
 
 			private static final long serialVersionUID = 1L;
@@ -255,18 +248,15 @@ public final class AnnotationsVisualizer {
 		return addProcessAnnotation;
 	}
 
-	/**
-	 * Creates an action which can be used to add a new {@link ProcessAnnotation} at the given
-	 * point.
-	 *
-	 * @param process
-	 *            the process for which to create the annotation. Can be {@code null} for first
-	 *            process at action event time
-	 * @param origin
-	 *            the x/y coordinates of the annotation. Can be {@code null} for default location
-	 * @return the action, never {@code null}
-	 */
-	public ResourceAction makeAddProcessAnnotationAction(final ExecutionUnit process, final Point origin) {
+    /**
+     * Creates an action which can be used to add a new {@link ProcessAnnotation} at the given
+     * point.
+     *
+     * @param process the process for which to create the annotation. Can be {@code null} for first            process at action event time
+     * @param origin  the x/y coordinates of the annotation. Can be {@code null} for default location
+     * @return the action, never {@code null}
+     */
+    public ResourceAction makeAddProcessAnnotationAction(final ExecutionUnit process, final Point origin) {
 		ResourceAction addProcessAnnotation = new ResourceAction(true, "workflow.annotation.add") {
 
 			private static final long serialVersionUID = 1L;
@@ -297,15 +287,14 @@ public final class AnnotationsVisualizer {
 		return addProcessAnnotation;
 	}
 
-	/**
-	 * Creates an action which can be used to add a new {@link OperatorAnnotation} to the hovered
-	 * operator.
-	 *
-	 * @param operator
-	 *            the operator for which to create the annotation
-	 * @return the action, never {@code null}
-	 */
-	public ResourceAction makeAddOperatorAnnotationAction(final Operator operator) {
+    /**
+     * Creates an action which can be used to add a new {@link OperatorAnnotation} to the hovered
+     * operator.
+     *
+     * @param operator the operator for which to create the annotation
+     * @return the action, never {@code null}
+     */
+    public ResourceAction makeAddOperatorAnnotationAction(final Operator operator) {
 		if (operator == null) {
 			throw new IllegalArgumentException("operator must not be null!");
 		}
@@ -336,15 +325,14 @@ public final class AnnotationsVisualizer {
 		return addOperatorAnnotation;
 	}
 
-	/**
-	 * Creates an action which can be used to detach an existing {@link OperatorAnnotation} from the
-	 * hovered operator.
-	 *
-	 * @param operator
-	 *            the operator for which to detach the annotation
-	 * @return the action, never {@code null}
-	 */
-	public ResourceAction makeDetachOperatorAnnotationAction(final Operator operator) {
+    /**
+     * Creates an action which can be used to detach an existing {@link OperatorAnnotation} from the
+     * hovered operator.
+     *
+     * @param operator the operator for which to detach the annotation
+     * @return the action, never {@code null}
+     */
+    public ResourceAction makeDetachOperatorAnnotationAction(final Operator operator) {
 		if (operator == null) {
 			throw new IllegalArgumentException("operator must not be null!");
 		}
@@ -373,14 +361,13 @@ public final class AnnotationsVisualizer {
 		return detachOperatorAnnotation;
 	}
 
-	/**
-	 * Creates an action which can be used to add bring an annotation to the front.
-	 *
-	 * @param anno
-	 *            the annotation which should be brought to the front
-	 * @return the action, never {@code null}
-	 */
-	public ResourceAction makeToFrontAction(final WorkflowAnnotation anno) {
+    /**
+     * Creates an action which can be used to add bring an annotation to the front.
+     *
+     * @param anno the annotation which should be brought to the front
+     * @return the action, never {@code null}
+     */
+    public ResourceAction makeToFrontAction(final WorkflowAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -398,14 +385,13 @@ public final class AnnotationsVisualizer {
 		return toFrontAnnotation;
 	}
 
-	/**
-	 * Creates an action which can be used to add send an annotation one layer forward.
-	 *
-	 * @param anno
-	 *            the annotation which should be sent one layer forward
-	 * @return the action, never {@code null}
-	 */
-	public ResourceAction makeSendForwardAction(final WorkflowAnnotation anno) {
+    /**
+     * Creates an action which can be used to add send an annotation one layer forward.
+     *
+     * @param anno the annotation which should be sent one layer forward
+     * @return the action, never {@code null}
+     */
+    public ResourceAction makeSendForwardAction(final WorkflowAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -423,14 +409,13 @@ public final class AnnotationsVisualizer {
 		return sendForwardAnnotation;
 	}
 
-	/**
-	 * Creates an action which can be used to add send an annotation to the back.
-	 *
-	 * @param anno
-	 *            the annotation which should be sent to the back
-	 * @return the action, never {@code null}
-	 */
-	public ResourceAction makeToBackAction(final WorkflowAnnotation anno) {
+    /**
+     * Creates an action which can be used to add send an annotation to the back.
+     *
+     * @param anno the annotation which should be sent to the back
+     * @return the action, never {@code null}
+     */
+    public ResourceAction makeToBackAction(final WorkflowAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -448,14 +433,13 @@ public final class AnnotationsVisualizer {
 		return toBackAnnotation;
 	}
 
-	/**
-	 * Creates an action which can be used to add send an annotation one layer back.
-	 *
-	 * @param anno
-	 *            the annotation which should be sent one layer back
-	 * @return the action, never {@code null}
-	 */
-	public ResourceAction makeSendBackAction(final WorkflowAnnotation anno) {
+    /**
+     * Creates an action which can be used to add send an annotation one layer back.
+     *
+     * @param anno the annotation which should be sent one layer back
+     * @return the action, never {@code null}
+     */
+    public ResourceAction makeSendBackAction(final WorkflowAnnotation anno) {
 		if (anno == null) {
 			throw new IllegalArgumentException("anno must not be null!");
 		}
@@ -473,14 +457,13 @@ public final class AnnotationsVisualizer {
 		return sendBackAnnotation;
 	}
 
-	/**
-	 * Creates and displays the annotation popup menu if applicable.
-	 *
-	 * @param e
-	 *            the mouse event
-	 * @return {@code true} if the context menu was shown; {@code false} otherwise
-	 */
-	public boolean showPopupMenu(final MouseEvent e) {
+    /**
+     * Creates and displays the annotation popup menu if applicable.
+     *
+     * @param e the mouse event
+     * @return {@code true} if the context menu was shown; {@code false} otherwise
+     */
+    public boolean showPopupMenu(final MouseEvent e) {
 		if (e == null) {
 			throw new IllegalArgumentException("e must not be null!");
 		}

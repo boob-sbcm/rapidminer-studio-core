@@ -39,7 +39,7 @@ import javax.swing.Icon;
 
 /**
  * Presents values by boxes more filled the higher the values are.
- * 
+ *
  * @author Daniel Hakenjos, Ingo Mierswa
  */
 public class HintonDiagram extends PlotterAdapter implements MouseListener {
@@ -66,13 +66,24 @@ public class HintonDiagram extends PlotterAdapter implements MouseListener {
 
 	private boolean sorting = false;
 
-	public HintonDiagram(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Hinton diagram.
+     *
+     * @param settings the settings
+     */
+    public HintonDiagram(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 		addMouseListener(this);
 	}
 
-	public HintonDiagram(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Hinton diagram.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public HintonDiagram(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -301,9 +312,19 @@ public class HintonDiagram extends PlotterAdapter implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent arg0) {}
 
-	public void mouseDragged(MouseEvent arg0) {}
+    /**
+     * Mouse dragged.
+     *
+     * @param arg0 the arg 0
+     */
+    public void mouseDragged(MouseEvent arg0) {}
 
-	public void mouseMoved(MouseEvent event) {}
+    /**
+     * Mouse moved.
+     *
+     * @param event the event
+     */
+    public void mouseMoved(MouseEvent event) {}
 
 	@Override
 	public String getPlotterName() {

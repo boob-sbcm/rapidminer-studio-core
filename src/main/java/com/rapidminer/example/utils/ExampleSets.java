@@ -62,15 +62,14 @@ public final class ExampleSets {
 
 	private ExampleSets() {}
 
-	/**
-	 * Creates a builder for an {@link ExampleSet} starting from the given attributes. If the given
-	 * attributes are {@code null}, the example will have no attributes.
-	 *
-	 * @param attributes
-	 *            the attributes for the new {@link ExampleSet}, can be {@code null}
-	 * @return the {@link ExampleSetBuilder} to build the example set
-	 */
-	public static ExampleSetBuilder from(List<Attribute> attributes) {
+    /**
+     * Creates a builder for an {@link ExampleSet} starting from the given attributes. If the given
+     * attributes are {@code null}, the example will have no attributes.
+     *
+     * @param attributes the attributes for the new {@link ExampleSet}, can be {@code null}
+     * @return the {@link ExampleSetBuilder} to build the example set
+     */
+    public static ExampleSetBuilder from(List<Attribute> attributes) {
 		if (Boolean.valueOf(ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT))) {
 			return new MemoryExampleSetBuilder(attributes);
 		} else {
@@ -78,14 +77,13 @@ public final class ExampleSets {
 		}
 	}
 
-	/**
-	 * Creates a builder for an {@link ExampleSet} starting from the given attributes.
-	 *
-	 * @param attributes
-	 *            the attributes for the new {@link ExampleSet}
-	 * @return the {@link ExampleSetBuilder} to build the example set
-	 */
-	public static ExampleSetBuilder from(Attribute... attributes) {
+    /**
+     * Creates a builder for an {@link ExampleSet} starting from the given attributes.
+     *
+     * @param attributes the attributes for the new {@link ExampleSet}
+     * @return the {@link ExampleSetBuilder} to build the example set
+     */
+    public static ExampleSetBuilder from(Attribute... attributes) {
 		if (Boolean.valueOf(ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT))) {
 			return new MemoryExampleSetBuilder(attributes);
 		} else {
@@ -93,15 +91,14 @@ public final class ExampleSets {
 		}
 	}
 
-	/**
-	 * Creates an {@link ExampleTable} to which rows can be added. Only use this if it is not
-	 * possible to use an {@link ExampleSetBuilder}.
-	 *
-	 * @param attributes
-	 *            the attributes for the new {@link ExampleTable}
-	 * @return a table that can grow
-	 */
-	@SuppressWarnings("deprecation")
+    /**
+     * Creates an {@link ExampleTable} to which rows can be added. Only use this if it is not
+     * possible to use an {@link ExampleSetBuilder}.
+     *
+     * @param attributes the attributes for the new {@link ExampleTable}
+     * @return a table that can grow
+     */
+    @SuppressWarnings("deprecation")
 	public static GrowingExampleTable createTableFrom(List<Attribute> attributes) {
 		if (Boolean.valueOf(ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT))) {
 			return new MemoryExampleTable(attributes);
@@ -110,17 +107,15 @@ public final class ExampleSets {
 		}
 	}
 
-	/**
-	 * Creates an {@link ExampleTable} to which rows can be added. Only use this if it is not
-	 * possible to use an {@link ExampleSetBuilder}.
-	 *
-	 * @param attributes
-	 *            the attributes for the new {@link ExampleTable}
-	 * @param management
-	 *            the {@link DataManagement} to use for the table if supported
-	 * @return a table that can grow
-	 */
-	@SuppressWarnings("deprecation")
+    /**
+     * Creates an {@link ExampleTable} to which rows can be added. Only use this if it is not
+     * possible to use an {@link ExampleSetBuilder}.
+     *
+     * @param attributes the attributes for the new {@link ExampleTable}
+     * @param management the {@link DataManagement} to use for the table if supported
+     * @return a table that can grow
+     */
+    @SuppressWarnings("deprecation")
 	public static GrowingExampleTable createTableFrom(List<Attribute> attributes, DataManagement management) {
 		if (Boolean.valueOf(ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_SYSTEM_LEGACY_DATA_MGMT))) {
 			return new MemoryExampleTable(attributes);
@@ -128,16 +123,16 @@ public final class ExampleSets {
 			return new ColumnarExampleTable(attributes, management, false);
 		}
 	}
-	
-	/**
-	 * Creates a copy of the input that guarantees thread-safety for read access and attribute set manipulations.
-	 * If the input already provides these guarantees, a shallow copy is return, otherwise a deep copy is created.
-	 * 
-	 * @param set the input example set
-	 * @return the thread safe copy of the given set
-	 * @throws IllegalArgumentException if the input example set is {@code null}
-	 */
-	public static ExampleSet createThreadSafeCopy(ExampleSet set) {
+
+    /**
+     * Creates a copy of the input that guarantees thread-safety for read access and attribute set manipulations.
+     * If the input already provides these guarantees, a shallow copy is return, otherwise a deep copy is created.
+     *
+     * @param set the input example set
+     * @return the thread safe copy of the given set
+     * @throws IllegalArgumentException if the input example set is {@code null}
+     */
+    public static ExampleSet createThreadSafeCopy(ExampleSet set) {
 		if (set == null) {
 			throw new IllegalArgumentException("Example set must not be null");
 		}

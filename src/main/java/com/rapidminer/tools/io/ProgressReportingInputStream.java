@@ -27,9 +27,9 @@ import java.io.InputStream;
 
 /**
  * Stream reporting the amount of read bytes to ProgressListener
- * 
+ *
  * @author Simon Fischer
- * */
+ */
 public class ProgressReportingInputStream extends InputStream {
 
 	private InputStream parent;
@@ -42,18 +42,32 @@ public class ProgressReportingInputStream extends InputStream {
 	private long readBytes = 0;
 	private int lastReportedValue = Integer.MIN_VALUE;
 
-	/**
-	 * @deprecated Use
-	 *             {@link #ProgressReportingInputStream(InputStream, ProgressListener, int, int, long)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Progress reporting input stream.
+     *
+     * @param in           the in
+     * @param listener     the listener
+     * @param minProgress  the min progress
+     * @param maxProgress  the max progress
+     * @param streamLength the stream length
+     * @deprecated Use {@link #ProgressReportingInputStream(InputStream, ProgressListener, int, int, long)}             instead
+     */
+    @Deprecated
 	public ProgressReportingInputStream(InputStream in, ProgressListener listener, int minProgress, int maxProgress,
 			int streamLength) {
 		this(in, listener, minProgress, maxProgress, (long) streamLength);
 	}
 
-	public ProgressReportingInputStream(InputStream in, ProgressListener listener, int minProgress, int maxProgress,
+    /**
+     * Instantiates a new Progress reporting input stream.
+     *
+     * @param in           the in
+     * @param listener     the listener
+     * @param minProgress  the min progress
+     * @param maxProgress  the max progress
+     * @param streamLength the stream length
+     */
+    public ProgressReportingInputStream(InputStream in, ProgressListener listener, int minProgress, int maxProgress,
 			long streamLength) {
 		this.parent = in;
 		this.listener = listener;

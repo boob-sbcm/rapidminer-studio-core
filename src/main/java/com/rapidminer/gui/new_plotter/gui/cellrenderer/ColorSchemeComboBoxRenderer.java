@@ -39,8 +39,9 @@ import com.rapidminer.gui.new_plotter.templates.style.ColorScheme;
 
 
 /**
- * @author Nils Woehler
+ * The type Color scheme combo box renderer.
  *
+ * @author Nils Woehler
  */
 public class ColorSchemeComboBoxRenderer extends ComboSeparatorsRenderer<Object> {
 
@@ -51,7 +52,10 @@ public class ColorSchemeComboBoxRenderer extends ComboSeparatorsRenderer<Object>
 	private JPanel colorSchemeComponent;
 	private JPanel colorPanel;
 
-	public ColorSchemeComboBoxRenderer() {
+    /**
+     * Instantiates a new Color scheme combo box renderer.
+     */
+    public ColorSchemeComboBoxRenderer() {
 		super(new DefaultListCellRenderer());
 
 		colorSchemeComponent = new JPanel(new GridBagLayout());

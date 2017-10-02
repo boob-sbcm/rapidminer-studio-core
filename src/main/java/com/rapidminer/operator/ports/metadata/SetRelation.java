@@ -21,11 +21,23 @@ package com.rapidminer.operator.ports.metadata;
 /**
  * Can be used to indicate whether we know the attribute set exactly, or only know that it is a
  * subset/superset of a given set.
- * 
+ *
  * @author Simon Fischer
- * */
+ */
 public enum SetRelation {
-	UNKNOWN("unknown"), SUPERSET("\u2287"), SUBSET("\u2286"), EQUAL("=");
+    /**
+     * Unknown set relation.
+     */
+    UNKNOWN("unknown"), /**
+     * Superset set relation.
+     */
+    SUPERSET("\u2287"), /**
+     * Subset set relation.
+     */
+    SUBSET("\u2286"), /**
+     * Equal set relation.
+     */
+    EQUAL("=");
 
 	private String description;
 
@@ -33,7 +45,13 @@ public enum SetRelation {
 		this.description = description;
 	}
 
-	public SetRelation merge(SetRelation relation) {
+    /**
+     * Merge set relation.
+     *
+     * @param relation the relation
+     * @return the set relation
+     */
+    public SetRelation merge(SetRelation relation) {
 		switch (relation) {
 			case EQUAL:
 				return this;

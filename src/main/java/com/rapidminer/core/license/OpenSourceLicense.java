@@ -37,7 +37,6 @@ import com.rapidminer.license.StudioLicenseConstants;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public class OpenSourceLicense implements License {
 

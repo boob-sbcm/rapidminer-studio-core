@@ -43,7 +43,7 @@ import javax.swing.WindowConstants;
 /**
  * Plots all individuals in performance space, i.e. the dimensions of the plot (color for the third
  * dimension) corresponds to performance criteria.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PopulationPlotter implements PopulationOperator, ObjectVisualizer {
@@ -68,15 +68,24 @@ public class PopulationPlotter implements PopulationOperator, ObjectVisualizer {
 
 	private ExampleSet exampleSet;
 
-	/** Creates plotter panel which is repainted every generation. */
-	public PopulationPlotter(ExampleSet exampleSet) {
+    /**
+     * Creates plotter panel which is repainted every generation.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     */
+    public PopulationPlotter(ExampleSet exampleSet) {
 		this(exampleSet, 1, false, true);
 	}
 
-	/**
-	 * Creates plotter panel which is repainted each plotGenerations generations.
-	 */
-	public PopulationPlotter(ExampleSet exampleSet, int plotGenerations, boolean setDrawRange, boolean drawDominated) {
+    /**
+     * Creates plotter panel which is repainted each plotGenerations generations.
+     *
+     * @param exampleSet      the example set
+     * @param plotGenerations the plot generations
+     * @param setDrawRange    the set draw range
+     * @param drawDominated   the draw dominated
+     */
+    public PopulationPlotter(ExampleSet exampleSet, int plotGenerations, boolean setDrawRange, boolean drawDominated) {
 		this.exampleSet = exampleSet;
 		this.plotGenerations = plotGenerations;
 		this.setDrawRange = setDrawRange;
@@ -134,13 +143,28 @@ public class PopulationPlotter implements PopulationOperator, ObjectVisualizer {
 		plotter.setKey("Generation " + pop.getGeneration());
 	}
 
-	public static SimpleDataTable createDataTable(Population pop) {
+    /**
+     * Create data table simple data table.
+     *
+     * @param pop the pop
+     * @return the simple data table
+     */
+    public static SimpleDataTable createDataTable(Population pop) {
 		PerformanceVector prototype = pop.get(0).getPerformance();
 		SimpleDataTable dataTable = new SimpleDataTable("Population", prototype.getCriteriaNames());
 		return dataTable;
 	}
 
-	public static int fillDataTable(SimpleDataTable dataTable, Map<String, double[]> lastPopulation, Population pop,
+    /**
+     * Fill data table int.
+     *
+     * @param dataTable      the data table
+     * @param lastPopulation the last population
+     * @param pop            the pop
+     * @param drawDominated  the draw dominated
+     * @return the int
+     */
+    public static int fillDataTable(SimpleDataTable dataTable, Map<String, double[]> lastPopulation, Population pop,
 			boolean drawDominated) {
 		lastPopulation.clear();
 		dataTable.clear();

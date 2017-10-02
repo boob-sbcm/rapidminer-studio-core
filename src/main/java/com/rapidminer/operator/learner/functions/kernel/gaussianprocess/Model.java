@@ -26,9 +26,8 @@ import java.io.Serializable;
 
 /**
  * The learned model.
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
- * 
  */
 public class Model implements Serializable {
 
@@ -69,9 +68,18 @@ public class Model implements Serializable {
 
 	private int inputDim; // Dimension of the input vectors
 
-	/** Constructors */
-
-	public Model(Kernel kernel, double[][] basisVectors, Matrix alpha, Matrix C, Matrix Q, int d, boolean regression) {
+    /**
+     * Constructors  @param kernel the kernel
+     *
+     * @param kernel       the kernel
+     * @param basisVectors the basis vectors
+     * @param alpha        the alpha
+     * @param C            the c
+     * @param Q            the q
+     * @param d            the d
+     * @param regression   the regression
+     */
+    public Model(Kernel kernel, double[][] basisVectors, Matrix alpha, Matrix C, Matrix Q, int d, boolean regression) {
 
 		this.kernel = kernel;
 		this.basisVectors = basisVectors;
@@ -93,19 +101,42 @@ public class Model implements Serializable {
 		// C_times_k = new Matrix(d, 1);
 	}
 
-	public int getNumberOfBasisVectors() {
+    /**
+     * Gets number of basis vectors.
+     *
+     * @return the number of basis vectors
+     */
+    public int getNumberOfBasisVectors() {
 		return basisVectors.length;
 	}
 
-	public int getInputDim() {
+    /**
+     * Gets input dim.
+     *
+     * @return the input dim
+     */
+    public int getInputDim() {
 		return inputDim;
 	}
 
-	public double[] getBasisVector(int i) {
+    /**
+     * Get basis vector double [ ].
+     *
+     * @param i the
+     * @return the double [ ]
+     */
+    public double[] getBasisVector(int i) {
 		return this.basisVectors[i];
 	}
 
-	public double getBasisVectorValue(int i, int j) {
+    /**
+     * Gets basis vector value.
+     *
+     * @param i the
+     * @param j the j
+     * @return the basis vector value
+     */
+    public double getBasisVectorValue(int i, int j) {
 		return this.basisVectors[i][j];
 	}
 
@@ -128,14 +159,16 @@ public class Model implements Serializable {
 		return result;
 	}
 
-	/**
-	 * Apply the model to a (new) input vector x_t+1 in order to get a prediction, which - as a
-	 * GP-marignal at x_t+1 - is a one-dimensional gaussian distribution with mean m and covariance
-	 * sigma^2 (2.22, the parameterisation lemma). Returns only the function value, the mapping to a
-	 * classification must be done by the invoking method.
-	 */
-
-	public double applyToVector(double[] x_new) {
+    /**
+     * Apply the model to a (new) input vector x_t+1 in order to get a prediction, which - as a
+     * GP-marignal at x_t+1 - is a one-dimensional gaussian distribution with mean m and covariance
+     * sigma^2 (2.22, the parameterisation lemma). Returns only the function value, the mapping to a
+     * classification must be done by the invoking method.
+     *
+     * @param x_new the x new
+     * @return the double
+     */
+    public double applyToVector(double[] x_new) {
 
 		double m = 0; // The mean of the marginalisation, we want to compute
 		// IM: Warning: the following variable was never used !!!
@@ -191,10 +224,14 @@ public class Model implements Serializable {
 		return prediction;
 	}
 
-	/**
-	 * Apply the model to all input vectors
-	 */
-	public double[] apply(double[][] inputVectors) throws Exception {
+    /**
+     * Apply the model to all input vectors
+     *
+     * @param inputVectors the input vectors
+     * @return the double [ ]
+     * @throws Exception the exception
+     */
+    public double[] apply(double[][] inputVectors) throws Exception {
 		double[] prediction = new double[inputVectors.length];
 		for (int i = 0; i < inputVectors.length; i++) {
 			prediction[i] = applyToVector(inputVectors[i]);

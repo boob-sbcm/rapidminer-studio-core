@@ -69,20 +69,31 @@ public class DataRowConcurrencyTest {
 
 	private ExecutorService executorService;
 
-	@Before
+    /**
+     * Sets .
+     */
+    @Before
 	public void setup() {
 		RapidMiner.initAsserters();
 		startSignal = new CountDownLatch(1);
 		executorService = Executors.newFixedThreadPool(THREAD_COUNT);
 	}
 
-	@After
+    /**
+     * Tear down.
+     *
+     * @throws InterruptedException the interrupted exception
+     */
+    @After
 	public void tearDown() throws InterruptedException {
 		executorService.shutdown();
 		executorService.awaitTermination(5, TimeUnit.SECONDS);
 	}
 
-	@Test
+    /**
+     * Concurrent write value test.
+     */
+    @Test
 	public void concurrentWriteValueTest() {
 		int count = LOOP_COUNT;
 		while (count > 0) {
@@ -116,7 +127,10 @@ public class DataRowConcurrencyTest {
 		}
 	}
 
-	@Test
+    /**
+     * Concurrent add attribute test.
+     */
+    @Test
 	public void concurrentAddAttributeTest() {
 		int count = LOOP_COUNT;
 		while (count > 0) {

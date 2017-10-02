@@ -26,13 +26,15 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
  * A {@link Function} computing the binary logarithm (base 2) of a number.
  *
  * @author Marcel Seifert
- *
  */
 public class BinaryLogarithm extends Abstract1DoubleInputFunction {
 
 	private static final double LOG2 = Math.log(2);
 
-	public BinaryLogarithm() {
+    /**
+     * Instantiates a new Binary logarithm.
+     */
+    public BinaryLogarithm() {
 		super("mathematical.ld", Ontology.NUMERICAL);
 	}
 

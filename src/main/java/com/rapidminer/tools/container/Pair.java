@@ -23,7 +23,9 @@ import java.io.Serializable;
 
 /**
  * A basic container class for a pair of objects.
- * 
+ *
+ * @param <T> the type parameter
+ * @param <K> the type parameter
  * @author Sebastian Land
  */
 public class Pair<T, K> implements Serializable {
@@ -34,24 +36,50 @@ public class Pair<T, K> implements Serializable {
 
 	private K second;
 
-	public Pair(T t, K k) {
+    /**
+     * Instantiates a new Pair.
+     *
+     * @param t the t
+     * @param k the k
+     */
+    public Pair(T t, K k) {
 		this.setFirst(t);
 		this.setSecond(k);
 	}
 
-	public T getFirst() {
+    /**
+     * Gets first.
+     *
+     * @return the first
+     */
+    public T getFirst() {
 		return first;
 	}
 
-	public void setFirst(T first) {
+    /**
+     * Sets first.
+     *
+     * @param first the first
+     */
+    public void setFirst(T first) {
 		this.first = first;
 	}
 
-	public K getSecond() {
+    /**
+     * Gets second.
+     *
+     * @return the second
+     */
+    public K getSecond() {
 		return second;
 	}
 
-	public void setSecond(K second) {
+    /**
+     * Sets second.
+     *
+     * @param second the second
+     */
+    public void setSecond(K second) {
 		this.second = second;
 	}
 

@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * This is the abstract superclass of all {@link PerformanceCriterion}s that are controlled by
  * parameters. This is needed to break the infinite loop during construction time of an operator.
- * 
+ *
  * @author Sebastian Land
  */
 public abstract class ParameterizedMeasuredPerformanceCriterion extends MeasuredPerformance {
@@ -37,30 +37,47 @@ public abstract class ParameterizedMeasuredPerformanceCriterion extends Measured
 
 	private ParameterHandler handler;
 
-	public ParameterizedMeasuredPerformanceCriterion(ParameterHandler handler) {
+    /**
+     * Instantiates a new Parameterized measured performance criterion.
+     *
+     * @param handler the handler
+     */
+    public ParameterizedMeasuredPerformanceCriterion(ParameterHandler handler) {
 		this.handler = handler;
 	}
 
-	public ParameterizedMeasuredPerformanceCriterion(ParameterizedMeasuredPerformanceCriterion criterion) {
+    /**
+     * Instantiates a new Parameterized measured performance criterion.
+     *
+     * @param criterion the criterion
+     */
+    public ParameterizedMeasuredPerformanceCriterion(ParameterizedMeasuredPerformanceCriterion criterion) {
 		super(criterion);
 		this.handler = criterion.handler;
 	}
 
-	/**
-	 * This method returns the {@link ParameterHandler} that returns the values for the defined
-	 * {@link ParameterType}s.
-	 */
-	protected ParameterHandler getParameterHandler() {
+    /**
+     * This method returns the {@link ParameterHandler} that returns the values for the defined
+     * {@link ParameterType}s.
+     *
+     * @return the parameter handler
+     */
+    protected ParameterHandler getParameterHandler() {
 		return handler;
 	}
 
-	/**
-	 * This method returns all parameters of this performance criterion.
-	 */
-	public abstract List<ParameterType> getParameterTypes();
+    /**
+     * This method returns all parameters of this performance criterion.
+     *
+     * @return the parameter types
+     */
+    public abstract List<ParameterType> getParameterTypes();
 
-	/**
-	 * This method has to return whether this criterion can handle the given capability.
-	 */
-	public abstract boolean supportsCapability(OperatorCapability capability);
+    /**
+     * This method has to return whether this criterion can handle the given capability.
+     *
+     * @param capability the capability
+     * @return the boolean
+     */
+    public abstract boolean supportsCapability(OperatorCapability capability);
 }

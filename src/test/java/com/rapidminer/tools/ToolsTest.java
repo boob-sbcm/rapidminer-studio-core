@@ -27,11 +27,13 @@ import org.junit.Test;
  * Tests for methods of the {@link Tools} class.
  *
  * @author Marco Boeck
- *
  */
 public class ToolsTest {
 
-	@Test
+    /**
+     * Format integer if possible no args.
+     */
+    @Test
 	public void formatIntegerIfPossibleNoArgs() {
 		// default fraction digits are 3
 
@@ -55,7 +57,10 @@ public class ToolsTest {
 		assertEquals("4.375", formatted);
 	}
 
-	@Test
+    /**
+     * Format integer if possible all args.
+     */
+    @Test
 	public void formatIntegerIfPossibleAllArgs() {
 		int fractionDigits = 5;
 		double valueToFormat = 0.001;

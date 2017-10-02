@@ -43,11 +43,10 @@ import org.jfree.util.ShapeUtilities;
  * This renderer less flat than most other {@link FormattedRenderer}s, since by default the
  * ScatterRenderer draws all items in a category with the same shape and color. This renderer
  * overwrites the drawItem().
- * 
+ * <p>
  * Needs a {@link ValueSourceToMultiValueCategoryDatasetAdapter} as dataset.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class FormattedScatterRenderer extends ScatterRenderer implements FormattedRenderer {
 
@@ -55,7 +54,10 @@ public class FormattedScatterRenderer extends ScatterRenderer implements Formatt
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedScatterRenderer() {
+    /**
+     * Instantiates a new Formatted scatter renderer.
+     */
+    public FormattedScatterRenderer() {
 		super();
 	}
 

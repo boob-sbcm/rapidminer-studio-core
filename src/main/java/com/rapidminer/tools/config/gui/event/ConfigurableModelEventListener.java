@@ -26,12 +26,16 @@ import java.util.EventListener;
 /**
  * An object listening for {@link ConfigurableEvent}s on the {@link ConfigurableModel} must
  * implement this interface and register itself as a listener to the model.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface ConfigurableModelEventListener extends EventListener {
 
-	public void modelChanged(ConfigurableEvent e);
+    /**
+     * Model changed.
+     *
+     * @param e the e
+     */
+    public void modelChanged(ConfigurableEvent e);
 
 }

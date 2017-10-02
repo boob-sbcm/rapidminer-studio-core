@@ -75,7 +75,6 @@ import com.rapidminer.tools.math.function.aggregation.AbstractAggregationFunctio
  * {@link RangeAxisConfig}s.
  *
  * @author Nils Woehler
- *
  */
 public class PlotConfigurationTreeTransferHandler extends AbstractPatchedTransferHandler {
 
@@ -98,7 +97,12 @@ public class PlotConfigurationTreeTransferHandler extends AbstractPatchedTransfe
 
 	private final JTree parent;
 
-	public PlotConfigurationTreeTransferHandler(JTree parent) {
+    /**
+     * Instantiates a new Plot configuration tree transfer handler.
+     *
+     * @param parent the parent
+     */
+    public PlotConfigurationTreeTransferHandler(JTree parent) {
 		this.parent = parent;
 	}
 
@@ -209,7 +213,13 @@ public class PlotConfigurationTreeTransferHandler extends AbstractPatchedTransfe
 
 	}
 
-	public boolean doesSupportFlavor(TransferSupport support) {
+    /**
+     * Does support flavor boolean.
+     *
+     * @param support the support
+     * @return the boolean
+     */
+    public boolean doesSupportFlavor(TransferSupport support) {
 
 		// check if transferable is DataTableColumn, ValueSourceTreeNode or
 		// RangeAxisConfigTreeNode
@@ -257,11 +267,17 @@ public class PlotConfigurationTreeTransferHandler extends AbstractPatchedTransfe
 		}
 	}
 
-	/**
-	 * Returns <code>null</code> if drop is not possible. Returns string that describes action that
-	 * would happen on drop otherwise.
-	 */
-	public String isDropOnTreeComponentPossible(Component container, TreeNode treeNode, Transferable transferable,
+    /**
+     * Returns <code>null</code> if drop is not possible. Returns string that describes action that
+     * would happen on drop otherwise.
+     *
+     * @param container    the container
+     * @param treeNode     the tree node
+     * @param transferable the transferable
+     * @param childIndex   the child index
+     * @return the string
+     */
+    public String isDropOnTreeComponentPossible(Component container, TreeNode treeNode, Transferable transferable,
 			int childIndex) {
 		try {
 			if (transferable.isDataFlavorSupported(ValueSourceTreeNode.VALUE_SOURCE_FLAVOR)) {

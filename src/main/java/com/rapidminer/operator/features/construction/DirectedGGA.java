@@ -34,7 +34,7 @@ import com.rapidminer.parameter.ParameterTypeString;
  * DirectedGGA is an acronym for a Generating Genetic Algorithm which uses probability directed
  * search heuristics to select attributes for generation or removing. Its approach to generating new
  * attributes differs from the original one and is the same as the one of {@link YAGGA}. <br/>
- *
+ * <p>
  * The (generating) mutation can do one of the following things with different probabilities:
  * <ul>
  * <li>Probability {@rapidminer.math p/4}: Add a newly generated attribute to the feature vector
@@ -47,13 +47,13 @@ import com.rapidminer.parameter.ParameterTypeString;
  * Thus it is guaranteed that the length of the feature vector can both grow and shrink. On average
  * it will keep its original length, unless longer or shorter individuals prove to have a better
  * fitness.<br/>
- *
+ * <p>
  * In addition to these mutation heuristics probablilities based on the weights of the attributes
  * are calculated. It is more likely for attributes with a great weight to be selected for
  * generating new attributes. On the other hand the probability for removing an attribute from the
  * example set will decrease for attributes with great weights. This decreases the amount of needed
  * generations drastically. <br/>
- *
+ * <p>
  * Another enhancement in comparison to the original GGA is the addition of several generators like
  * the ones for trigonometric or exponential functions. In this way a sinple linear working learning
  * scheme which can deliver weights can be used as inner operator. If this learner can also estimate
@@ -62,12 +62,12 @@ import com.rapidminer.parameter.ParameterTypeString;
  * {@link com.rapidminer.operator.learner.functions.kernel.JMySVMLearner} which delivers the
  * xi-alpha performance estimation at least for classification tasks. <br/>
  * .
- *
+ * <p>
  * Summarized the advantages of this feature construction algorithm are smaller runtimes and smaller
  * attribute sets as result. These attribute sets increase performance and can be used to explain
  * the models of more complex learning schemes like SVMs. The additional generators allow the
  * construction of features which are not possible by the known kernel functions. <br/>
- *
+ * <p>
  * Since this operator does not contain algorithms to extract features from value series, it is
  * restricted to example sets with only single attributes. For (automatic) feature extraction from
  * values series the value series plugin for RapidMiner written by Ingo Mierswa should be used. It
@@ -77,18 +77,23 @@ import com.rapidminer.parameter.ParameterTypeString;
  */
 public class DirectedGGA extends YAGGA2 {
 
-	/**
-	 * The parameter name for &quot;The maximum number of generated attributes per generation.&quot;
-	 */
-	public static final String PARAMETER_MAX_GENERATED = "max_generated";
+    /**
+     * The parameter name for &quot;The maximum number of generated attributes per generation.&quot;
+     */
+    public static final String PARAMETER_MAX_GENERATED = "max_generated";
 
-	/**
-	 * The parameter name for &quot;The maximum number of original attributes added per
-	 * generation.&quot;
-	 */
-	public static final String PARAMETER_MAX_ORIGINAL = "max_original";
+    /**
+     * The parameter name for &quot;The maximum number of original attributes added per
+     * generation.&quot;
+     */
+    public static final String PARAMETER_MAX_ORIGINAL = "max_original";
 
-	public DirectedGGA(OperatorDescription description) {
+    /**
+     * Instantiates a new Directed gga.
+     *
+     * @param description the description
+     */
+    public DirectedGGA(OperatorDescription description) {
 		super(description);
 	}
 

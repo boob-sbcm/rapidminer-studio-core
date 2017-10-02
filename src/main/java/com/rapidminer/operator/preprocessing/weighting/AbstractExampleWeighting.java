@@ -31,13 +31,17 @@ import com.rapidminer.tools.math.container.Range;
 
 /**
  * Abstract superclass of operators adding a weight attribute.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public abstract class AbstractExampleWeighting extends AbstractDataProcessing {
 
-	public AbstractExampleWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract example weighting.
+     *
+     * @param description the description
+     */
+    public AbstractExampleWeighting(OperatorDescription description) {
 		super(description);
 	}
 
@@ -50,11 +54,21 @@ public abstract class AbstractExampleWeighting extends AbstractDataProcessing {
 		return metaData;
 	}
 
-	protected Range getWeightAttributeRange() {
+    /**
+     * Gets weight attribute range.
+     *
+     * @return the weight attribute range
+     */
+    protected Range getWeightAttributeRange() {
 		return new Range(Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
 	}
 
-	protected SetRelation getWeightAttributeValueRelation() {
+    /**
+     * Gets weight attribute value relation.
+     *
+     * @return the weight attribute value relation
+     */
+    protected SetRelation getWeightAttributeValueRelation() {
 		return SetRelation.UNKNOWN;
 	}
 

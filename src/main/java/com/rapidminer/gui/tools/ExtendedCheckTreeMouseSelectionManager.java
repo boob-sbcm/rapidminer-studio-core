@@ -31,7 +31,7 @@ import javax.swing.tree.TreePath;
 
 /**
  * This is a mouse listener for check trees in order to update the selection events.
- * 
+ *
  * @author Santhosh Kumar, Ingo Mierswa
  */
 public class ExtendedCheckTreeMouseSelectionManager extends MouseAdapter implements TreeSelectionListener {
@@ -40,9 +40,18 @@ public class ExtendedCheckTreeMouseSelectionManager extends MouseAdapter impleme
 
 	private JTree tree = new JTree();
 
-	int hotspot = new JCheckBox().getPreferredSize().width;
+    /**
+     * The Hotspot.
+     */
+    int hotspot = new JCheckBox().getPreferredSize().width;
 
-	public ExtendedCheckTreeMouseSelectionManager(JTree tree, boolean selectAll) {
+    /**
+     * Instantiates a new Extended check tree mouse selection manager.
+     *
+     * @param tree      the tree
+     * @param selectAll the select all
+     */
+    public ExtendedCheckTreeMouseSelectionManager(JTree tree, boolean selectAll) {
 		this.tree = tree;
 		selectionModel = new ExtendedCheckTreeSelectionModel(tree.getModel());
 
@@ -80,7 +89,12 @@ public class ExtendedCheckTreeMouseSelectionManager extends MouseAdapter impleme
 		}
 	}
 
-	public ExtendedCheckTreeSelectionModel getSelectionModel() {
+    /**
+     * Gets selection model.
+     *
+     * @return the selection model
+     */
+    public ExtendedCheckTreeSelectionModel getSelectionModel() {
 		return selectionModel;
 	}
 

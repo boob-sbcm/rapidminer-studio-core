@@ -26,7 +26,7 @@ import com.sun.javadoc.RootDoc;
  * {@link LatexOperatorDocGenerator} is used. If no arguments are given to the main method, the LaTeX documentation of
  * the RapidMiner core is generated. If arguments are specified other documentation may be also generated, e.g. for plugin
  * operators.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class DocumentationGenerator {
@@ -35,7 +35,12 @@ public class DocumentationGenerator {
 
 	private static RootDoc rootDoc = null;
 
-	public DocumentationGenerator(OperatorDocGenerator generator) {
+    /**
+     * Instantiates a new Documentation generator.
+     *
+     * @param generator the generator
+     */
+    public DocumentationGenerator(OperatorDocGenerator generator) {
 		this.generator = generator;
 	}
 
@@ -57,17 +62,34 @@ public class DocumentationGenerator {
 			LogService.getGlobal().log("RootDoc not set!", LogService.ERROR);
 	}
 
-	public static boolean start(RootDoc rootDoc) {
+    /**
+     * Start boolean.
+     *
+     * @param rootDoc the root doc
+     * @return the boolean
+     */
+    public static boolean start(RootDoc rootDoc) {
 		LogService.getGlobal().log("RootDoc generated!", LogService.STATUS);
 		DocumentationGenerator.rootDoc = rootDoc;
 		return true;
 	}
 
-	public void generateAll(PrintWriter out) {
+    /**
+     * Generate all.
+     *
+     * @param out the out
+     */
+    public void generateAll(PrintWriter out) {
 		generateAll(out, false);
 	}
 
-	public void generateAll(PrintWriter out, boolean generateSubgroups) {
+    /**
+     * Generate all.
+     *
+     * @param out               the out
+     * @param generateSubgroups the generate subgroups
+     */
+    public void generateAll(PrintWriter out, boolean generateSubgroups) {
 		GroupTree root = OperatorService.getGroups();
 		if (root.getOperatorDescriptions().size() > 0) {
 			// print main operators
@@ -87,7 +109,14 @@ public class DocumentationGenerator {
 		out.flush();
 	}
 
-	public void generateGroup(PrintWriter out, GroupTree group, boolean generateSubgroups) {
+    /**
+     * Generate group.
+     *
+     * @param out               the out
+     * @param group             the group
+     * @param generateSubgroups the generate subgroups
+     */
+    public void generateGroup(PrintWriter out, GroupTree group, boolean generateSubgroups) {
 		generator.beginGroup(group.getName(), out);
 		if (generateSubgroups) {
 			generateOperators(out, group.getOperatorDescriptions());
@@ -103,7 +132,13 @@ public class DocumentationGenerator {
 		generator.endGroup(group.getName(), out);
 	}
 
-	public void generateOperators(PrintWriter out, Collection<OperatorDescription> operators) {
+    /**
+     * Generate operators.
+     *
+     * @param out       the out
+     * @param operators the operators
+     */
+    public void generateOperators(PrintWriter out, Collection<OperatorDescription> operators) {
 		Iterator<OperatorDescription> ops = operators.iterator();
 		while (ops.hasNext()) {
 			OperatorDescription description = ops.next();
@@ -119,12 +154,15 @@ public class DocumentationGenerator {
 		out.println();
 	}
 
-	/**
-	 * If no arguments are given, the LaTeX documentation of the RapidMiner core is generated. Otherwise this documentation
-	 * generator can be used to generated the documentation of arbitrary RapidMiner operators, e.g. for plugins. In this case
-	 * the arguments are: <br/> &lt;operators.xml&gt; &lt;sourcedir&gt; &lt;packages&gt; &lt;with_subgroups&gt;
-	 */
-	public static void main(String[] argv) throws IOException {
+    /**
+     * If no arguments are given, the LaTeX documentation of the RapidMiner core is generated. Otherwise this documentation
+     * generator can be used to generated the documentation of arbitrary RapidMiner operators, e.g. for plugins. In this case
+     * the arguments are: <br/> &lt;operators.xml&gt; &lt;sourcedir&gt; &lt;packages&gt; &lt;with_subgroups&gt;
+     *
+     * @param argv the input arguments
+     * @throws IOException the io exception
+     */
+    public static void main(String[] argv) throws IOException {
 		if (argv.length == 1) {
 			OperatorDocGenerator opDocGen = null;
 			if (argv[0].equals("LATEX"))

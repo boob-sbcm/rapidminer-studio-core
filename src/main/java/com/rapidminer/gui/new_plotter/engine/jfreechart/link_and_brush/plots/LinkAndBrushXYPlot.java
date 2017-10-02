@@ -32,8 +32,9 @@ import org.jfree.data.Range;
 
 
 /**
+ * The type Link and brush xy plot.
+ *
  * @author Nils Woehler
- * 
  */
 public class LinkAndBrushXYPlot extends XYPlot implements LinkAndBrushPlot {
 

@@ -24,15 +24,23 @@ import com.rapidminer.gui.tools.ExtendedJComboBox;
 
 
 /**
- * @author Sebastian Land
+ * The type Listening j combo box.
  *
+ * @param <E> the type parameter
+ * @author Sebastian Land
  */
 public class ListeningJComboBox<E> extends ExtendedJComboBox<E> implements PlotterSettingsChangedListener {
 
 	private static final long serialVersionUID = 4070917820637717260L;
 	private String generalKey;
 
-	public ListeningJComboBox(String generalKey, int preferedWidth) {
+    /**
+     * Instantiates a new Listening j combo box.
+     *
+     * @param generalKey    the general key
+     * @param preferedWidth the prefered width
+     */
+    public ListeningJComboBox(String generalKey, int preferedWidth) {
 		super(preferedWidth);
 		if (generalKey.startsWith("_")) {
 			this.generalKey = generalKey;
@@ -41,13 +49,14 @@ public class ListeningJComboBox<E> extends ExtendedJComboBox<E> implements Plott
 		}
 	}
 
-	/**
-	 * @param settings
-	 * @param parametersAggregation
-	 * @param i
-	 * @param allFunctions
-	 */
-	public ListeningJComboBox(PlotterConfigurationModel settings, String generalKey, E[] values) {
+    /**
+     * Instantiates a new Listening j combo box.
+     *
+     * @param settings   the settings
+     * @param generalKey the general key
+     * @param values     the values
+     */
+    public ListeningJComboBox(PlotterConfigurationModel settings, String generalKey, E[] values) {
 		super(values);
 		if (generalKey.startsWith("_")) {
 			this.generalKey = generalKey;
@@ -56,8 +65,15 @@ public class ListeningJComboBox<E> extends ExtendedJComboBox<E> implements Plott
 		}
 	}
 
-	/*
-	 * This constructor is here for compatibility reasons (e.g. SOM extension). It is used by all
+    /**
+     * Instantiates a new Listening j combo box.
+     *
+     * @param settings   the settings
+     * @param generalKey the general key
+     * @param values     the values
+     */
+/*
+     * This constructor is here for compatibility reasons (e.g. SOM extension). It is used by all
 	 * instances at this moment, because all the combo boxes use strings.
 	 */
 	@SuppressWarnings("unchecked")

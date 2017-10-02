@@ -29,7 +29,7 @@ import java.util.Map.Entry;
 /**
  * This is an {@link Aggregator} for the {@link ModeAggregationFunction}. If the mode is not unique,
  * the first value from the nominal mapping will be used.
- * 
+ *
  * @author Sebastian Land
  */
 public class ModeAggregator implements Aggregator {
@@ -38,7 +38,12 @@ public class ModeAggregator implements Aggregator {
 	private double[] frequencies;
 	private HashMap<Double, Double> frequenciesMap;
 
-	public ModeAggregator(AggregationFunction function) {
+    /**
+     * Instantiates a new Mode aggregator.
+     *
+     * @param function the function
+     */
+    public ModeAggregator(AggregationFunction function) {
 		this.sourceAttribute = function.getSourceAttribute();
 		if (sourceAttribute.isNominal()) {
 			frequencies = new double[sourceAttribute.getMapping().size()];

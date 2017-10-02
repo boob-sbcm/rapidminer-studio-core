@@ -38,23 +38,50 @@ public class TextPanel extends JPanel {
 
 	private static final long serialVersionUID = -5728947680003081065L;
 
-	public static final int ALIGNMENT_LEFT = 0;
+    /**
+     * The constant ALIGNMENT_LEFT.
+     */
+    public static final int ALIGNMENT_LEFT = 0;
 
-	public static final int ALIGNMENT_RIGHT = 1;
+    /**
+     * The constant ALIGNMENT_RIGHT.
+     */
+    public static final int ALIGNMENT_RIGHT = 1;
 
-	public static final int ALIGNMENT_TOP = 0;
+    /**
+     * The constant ALIGNMENT_TOP.
+     */
+    public static final int ALIGNMENT_TOP = 0;
 
-	public static final int ALIGNMENT_BOTTOM = 1;
+    /**
+     * The constant ALIGNMENT_BOTTOM.
+     */
+    public static final int ALIGNMENT_BOTTOM = 1;
 
-	protected static final Font TITLE_FONT = FontTools.getFont(Font.SANS_SERIF, java.awt.Font.BOLD, 12);
+    /**
+     * The constant TITLE_FONT.
+     */
+    protected static final Font TITLE_FONT = FontTools.getFont(Font.SANS_SERIF, java.awt.Font.BOLD, 12);
 
-	protected static final Font TEXT_FONT = FontTools.getFont(Font.SANS_SERIF, java.awt.Font.PLAIN, 11);
+    /**
+     * The constant TEXT_FONT.
+     */
+    protected static final Font TEXT_FONT = FontTools.getFont(Font.SANS_SERIF, java.awt.Font.PLAIN, 11);
 
-	protected static final int LINE_HEIGHT = 16;
+    /**
+     * The constant LINE_HEIGHT.
+     */
+    protected static final int LINE_HEIGHT = 16;
 
-	protected static final int MARGIN = 24;
+    /**
+     * The constant MARGIN.
+     */
+    protected static final int MARGIN = 24;
 
-	protected static final int TITLE_MARGIN = 5;
+    /**
+     * The constant TITLE_MARGIN.
+     */
+    protected static final int TITLE_MARGIN = 5;
 
 	private String title;
 
@@ -70,7 +97,15 @@ public class TextPanel extends JPanel {
 
 	private boolean resized = false;
 
-	public TextPanel(String title, String[] textLines, int xAlignment, int yAlignment) {
+    /**
+     * Instantiates a new Text panel.
+     *
+     * @param title      the title
+     * @param textLines  the text lines
+     * @param xAlignment the x alignment
+     * @param yAlignment the y alignment
+     */
+    public TextPanel(String title, String[] textLines, int xAlignment, int yAlignment) {
 		this.title = title;
 		this.xAlignment = xAlignment;
 		this.yAlignment = yAlignment;
@@ -78,7 +113,12 @@ public class TextPanel extends JPanel {
 		setOpaque(false);
 	}
 
-	public void setText(String[] textLines) {
+    /**
+     * Sets text.
+     *
+     * @param textLines the text lines
+     */
+    public void setText(String[] textLines) {
 		this.textLines = textLines;
 		this.height = LINE_HEIGHT + TITLE_MARGIN + textLines.length * LINE_HEIGHT + MARGIN;
 		resized = false;
@@ -137,7 +177,12 @@ public class TextPanel extends JPanel {
 		}
 	}
 
-	protected int getTextStartY() {
+    /**
+     * Gets text start y.
+     *
+     * @return the text start y
+     */
+    protected int getTextStartY() {
 		int yPos = MARGIN;
 		switch (yAlignment) {
 			case ALIGNMENT_TOP:

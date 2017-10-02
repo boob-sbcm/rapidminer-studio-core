@@ -61,7 +61,7 @@ import java.util.List;
  * must be ensured. This is guaranteed by the fact that this class only contains {@link List}s of
  * strings or {@link Pair}s of strings, where {@link Pair} is serializable.
  * </p>
- * 
+ *
  * @author Simon Fischer
  */
 public class ProcessContext extends AbstractObservable<ProcessContext> implements Serializable {
@@ -76,13 +76,26 @@ public class ProcessContext extends AbstractObservable<ProcessContext> implement
 
 	private List<Pair<OperatorLibrary, String>> libraryLocations = new LinkedList<>();
 
-	public ProcessContext() {}
+    /**
+     * Instantiates a new Process context.
+     */
+    public ProcessContext() {}
 
-	public List<String> getInputRepositoryLocations() {
+    /**
+     * Gets input repository locations.
+     *
+     * @return the input repository locations
+     */
+    public List<String> getInputRepositoryLocations() {
 		return Collections.unmodifiableList(inputRepositoryLocations);
 	}
 
-	public void setInputRepositoryLocations(List<String> inputRepositoryLocations) {
+    /**
+     * Sets input repository locations.
+     *
+     * @param inputRepositoryLocations the input repository locations
+     */
+    public void setInputRepositoryLocations(List<String> inputRepositoryLocations) {
 		if (inputRepositoryLocations.contains(null)) {
 			throw new NullPointerException("Null elements not allowed");
 		}
@@ -90,11 +103,21 @@ public class ProcessContext extends AbstractObservable<ProcessContext> implement
 		fireUpdate(this);
 	}
 
-	public List<String> getOutputRepositoryLocations() {
+    /**
+     * Gets output repository locations.
+     *
+     * @return the output repository locations
+     */
+    public List<String> getOutputRepositoryLocations() {
 		return Collections.unmodifiableList(outputRepositoryLocations);
 	}
 
-	public void setOutputRepositoryLocations(List<String> outputRepositoryLocations) {
+    /**
+     * Sets output repository locations.
+     *
+     * @param outputRepositoryLocations the output repository locations
+     */
+    public void setOutputRepositoryLocations(List<String> outputRepositoryLocations) {
 		if (outputRepositoryLocations.contains(null)) {
 			throw new NullPointerException("Null elements not allowed");
 		}
@@ -102,20 +125,23 @@ public class ProcessContext extends AbstractObservable<ProcessContext> implement
 		fireUpdate(this);
 	}
 
-	public List<Pair<String, String>> getMacros() {
+    /**
+     * Gets macros.
+     *
+     * @return the macros
+     */
+    public List<Pair<String, String>> getMacros() {
 		return macros;
 	}
 
-	/**
-	 * Updates the given macro with the given value. Fires an update after applying the changes.
-	 * 
-	 * @param macroIndex
-	 *            index of the macro in the {@link #getMacros()} list
-	 * @param pairIndex
-	 *            0 for first value; 1 for second value
-	 * @param newValue
-	 */
-	public void updateMacroValue(int macroIndex, int pairIndex, String newValue) {
+    /**
+     * Updates the given macro with the given value. Fires an update after applying the changes.
+     *
+     * @param macroIndex index of the macro in the {@link #getMacros()} list
+     * @param pairIndex  0 for first value; 1 for second value
+     * @param newValue   the new value
+     */
+    public void updateMacroValue(int macroIndex, int pairIndex, String newValue) {
 		switch (pairIndex) {
 			case 0:
 				getMacros().get(macroIndex).setFirst(newValue);
@@ -130,8 +156,12 @@ public class ProcessContext extends AbstractObservable<ProcessContext> implement
 		}
 	}
 
-	/** Adds a macro to the list or sets an existing one. */
-	public void addMacro(Pair<String, String> macro) {
+    /**
+     * Adds a macro to the list or sets an existing one.  @param macro the macro
+     *
+     * @param macro the macro
+     */
+    public void addMacro(Pair<String, String> macro) {
 		for (Pair<String, String> existingMacro : this.macros) {
 			if (existingMacro.getFirst().equals(macro.getFirst())) {
 				// overwrite existing
@@ -143,18 +173,33 @@ public class ProcessContext extends AbstractObservable<ProcessContext> implement
 		fireUpdate(this);
 	}
 
-	/** Removes a macro from the list */
-	public void removeMacro(int index) {
+    /**
+     * Removes a macro from the list  @param index the index
+     *
+     * @param index the index
+     */
+    public void removeMacro(int index) {
 		this.macros.remove(index);
 		fireUpdate(this);
 	}
 
-	public void setMacros(List<Pair<String, String>> macros) {
+    /**
+     * Sets macros.
+     *
+     * @param macros the macros
+     */
+    public void setMacros(List<Pair<String, String>> macros) {
 		this.macros = macros;
 		fireUpdate(this);
 	}
 
-	public void setOutputRepositoryLocation(int index, String location) {
+    /**
+     * Sets output repository location.
+     *
+     * @param index    the index
+     * @param location the location
+     */
+    public void setOutputRepositoryLocation(int index, String location) {
 		if (location == null) {
 			throw new NullPointerException("Null location not allowed");
 		}
@@ -165,7 +210,13 @@ public class ProcessContext extends AbstractObservable<ProcessContext> implement
 		fireUpdate();
 	}
 
-	public void setInputRepositoryLocation(int index, String location) {
+    /**
+     * Sets input repository location.
+     *
+     * @param index    the index
+     * @param location the location
+     */
+    public void setInputRepositoryLocation(int index, String location) {
 		if (location == null) {
 			throw new NullPointerException("Null location not allowed");
 		}
@@ -176,33 +227,55 @@ public class ProcessContext extends AbstractObservable<ProcessContext> implement
 		fireUpdate();
 	}
 
-	public void removeOutputLocation(int rowIndex) {
+    /**
+     * Remove output location.
+     *
+     * @param rowIndex the row index
+     */
+    public void removeOutputLocation(int rowIndex) {
 		outputRepositoryLocations.remove(rowIndex);
 	}
 
-	public void removeInputLocation(int rowIndex) {
+    /**
+     * Remove input location.
+     *
+     * @param rowIndex the row index
+     */
+    public void removeInputLocation(int rowIndex) {
 		inputRepositoryLocations.remove(rowIndex);
 	}
 
-	public void addOutputLocation(String location) {
+    /**
+     * Add output location.
+     *
+     * @param location the location
+     */
+    public void addOutputLocation(String location) {
 		if (location == null) {
 			throw new NullPointerException("Location must not be null");
 		}
 		outputRepositoryLocations.add(location);
 	}
 
-	public void addInputLocation(String location) {
+    /**
+     * Add input location.
+     *
+     * @param location the location
+     */
+    public void addInputLocation(String location) {
 		if (location == null) {
 			throw new NullPointerException("Location must not be null");
 		}
 		inputRepositoryLocations.add(location);
 	}
 
-	/**
-	 * Merges the current context with the given one. Macros will be simply added, input and output
-	 * locations override their respective counterparts if not null. This modifies this instance.
-	 */
-	public void superimpose(ProcessContext other) {
+    /**
+     * Merges the current context with the given one. Macros will be simply added, input and output
+     * locations override their respective counterparts if not null. This modifies this instance.
+     *
+     * @param other the other
+     */
+    public void superimpose(ProcessContext other) {
 		if (other == null) {
 			return;
 		}
@@ -234,14 +307,22 @@ public class ProcessContext extends AbstractObservable<ProcessContext> implement
 		return b.toString();
 	}
 
-	/**
-	 * This returns all loaded OperatorLibries that should be used within this process.
-	 */
-	public List<OperatorLibrary> getOperatorLibraries() {
+    /**
+     * This returns all loaded OperatorLibries that should be used within this process.
+     *
+     * @return the operator libraries
+     */
+    public List<OperatorLibrary> getOperatorLibraries() {
 		return Collections.emptyList();
 	}
 
-	public void addOperatorLibrary(OperatorLibrary library, String location) {
+    /**
+     * Add operator library.
+     *
+     * @param library  the library
+     * @param location the location
+     */
+    public void addOperatorLibrary(OperatorLibrary library, String location) {
 		libraryLocations.add(new Pair<>(library, location));
 		try {
 			library.registerOperators();

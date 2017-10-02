@@ -60,7 +60,7 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * This operator takes an {@link ExampleSet} as input and returns a new {@link ExampleSet} including
  * only the {@link Example}s that fulfill a condition.
  * </p>
- *
+ * <p>
  * <p>
  * By specifying an implementation of {@link com.rapidminer.example.set.Condition} and a parameter
  * string, arbitrary filters can be applied. Users can implement their own conditions by writing a
@@ -69,7 +69,7 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * <code>parameter_string</code>. Instead of using one of the predefined conditions users can define
  * their own implementation with the fully qualified class name.
  * </p>
- *
+ * <p>
  * <p>
  * For &quot;attribute_value_condition&quot; the parameter string must have the form
  * <code>attribute op value</code>, where attribute is a name of an attribute, value is a value the
@@ -79,7 +79,7 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  * ExampleFilter operators in a row. Please note also that for nominal attributes you can define a
  * regular expression for value of the possible equal and not equal checks.
  * </p>
- *
+ * <p>
  * <p>
  * For &quot;unknown_attributes&quot; the parameter string must be empty. This filter removes all
  * examples containing attributes that have missing or illegal values. For &quot;unknown_label&quot;
@@ -91,48 +91,67 @@ import com.rapidminer.tools.expression.internal.ExpressionParserUtils;
  */
 public class ExampleFilter extends AbstractDataProcessing {
 
-	/** The parameter name for &quot;Implementation of the condition.&quot; */
-	public static final String PARAMETER_CONDITION_CLASS = "condition_class";
+    /**
+     * The parameter name for &quot;Implementation of the condition.&quot;
+     */
+    public static final String PARAMETER_CONDITION_CLASS = "condition_class";
 
-	/**
-	 * The parameter name for &quot;Parameter string for the condition, e.g. 'attribute=value' for
-	 * the AttributeValueFilter.&quot;
-	 */
-	public static final String PARAMETER_PARAMETER_STRING = "parameter_string";
+    /**
+     * The parameter name for &quot;Parameter string for the condition, e.g. 'attribute=value' for
+     * the AttributeValueFilter.&quot;
+     */
+    public static final String PARAMETER_PARAMETER_STRING = "parameter_string";
 
-	/**
-	 * The parameter name for &quotParameter string for the expression, e.g. 'attribute1 ==
-	 * attribute2'.&quot;
-	 */
-	public static final String PARAMETER_PARAMETER_EXPRESSION = "parameter_expression";
+    /**
+     * The parameter name for &quotParameter string for the expression, e.g. 'attribute1 ==
+     * attribute2'.&quot;
+     */
+    public static final String PARAMETER_PARAMETER_EXPRESSION = "parameter_expression";
 
-	/** The parameter name for &quot;Defines the list of filters to apply.&quot; */
-	public static final String PARAMETER_FILTER = "filters";
+    /**
+     * The parameter name for &quot;Defines the list of filters to apply.&quot;
+     */
+    public static final String PARAMETER_FILTER = "filters";
 
-	/**
-	 * The parameter name for &quot;Indicates if only examples should be accepted which would
-	 * normally filtered.&quot;
-	 */
-	public static final String PARAMETER_INVERT_FILTER = "invert_filter";
+    /**
+     * The parameter name for &quot;Indicates if only examples should be accepted which would
+     * normally filtered.&quot;
+     */
+    public static final String PARAMETER_INVERT_FILTER = "invert_filter";
 
-	/** The hidden parameter for &quot;The list of filters.&quot; */
-	public static final String PARAMETER_FILTERS_LIST = "filters_list";
+    /**
+     * The hidden parameter for &quot;The list of filters.&quot;
+     */
+    public static final String PARAMETER_FILTERS_LIST = "filters_list";
 
-	/** The key parameter for the hidden {@value #PARAMETER_FILTERS_LIST} parameter */
-	public static final String PARAMETER_FILTERS_ENTRY_KEY = "filters_entry_key";
+    /**
+     * The key parameter for the hidden {@value #PARAMETER_FILTERS_LIST} parameter
+     */
+    public static final String PARAMETER_FILTERS_ENTRY_KEY = "filters_entry_key";
 
-	/** The key parameter for the hidden {@value #PARAMETER_FILTERS_LIST} parameter */
-	public static final String PARAMETER_FILTERS_ENTRY_VALUE = "filters_entry_value";
+    /**
+     * The key parameter for the hidden {@value #PARAMETER_FILTERS_LIST} parameter
+     */
+    public static final String PARAMETER_FILTERS_ENTRY_VALUE = "filters_entry_value";
 
-	/** The hidden parameter for &quot;Logic operator for filters.&quot; */
-	public static final String PARAMETER_FILTERS_LOGIC_AND = "filters_logic_and";
+    /**
+     * The hidden parameter for &quot;Logic operator for filters.&quot;
+     */
+    public static final String PARAMETER_FILTERS_LOGIC_AND = "filters_logic_and";
 
-	/** The hidden parameter for &quot;Check meta data for comparators.&quot; */
-	public static final String PARAMETER_FILTERS_CHECK_METADATA = "filters_check_metadata";
+    /**
+     * The hidden parameter for &quot;Check meta data for comparators.&quot;
+     */
+    public static final String PARAMETER_FILTERS_CHECK_METADATA = "filters_check_metadata";
 
 	private final OutputPort unmatchedOutput = getOutputPorts().createPort("unmatched example set");
 
-	public ExampleFilter(final OperatorDescription description) {
+    /**
+     * Instantiates a new Example filter.
+     *
+     * @param description the description
+     */
+    public ExampleFilter(final OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new PassThroughRule(getInputPort(), unmatchedOutput, false) {
 

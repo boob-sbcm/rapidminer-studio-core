@@ -35,14 +35,13 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * A {@link Function} to check whether the numerical argument is finite or not.
  *
  * @author Thilo Kamradt
- *
  */
 public class Finite extends AbstractFunction {
 
-	/**
-	 * Constructs the isFinite() function with {@link FunctionDescription}.
-	 */
-	public Finite() {
+    /**
+     * Constructs the isFinite() function with {@link FunctionDescription}.
+     */
+    public Finite() {
 		super("comparison.finite", 1, Ontology.BINOMINAL);
 	}
 
@@ -96,14 +95,13 @@ public class Finite extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Checks whether the parameter is finite or not.
-	 *
-	 * @param value
-	 *            the variable to check
-	 * @return false if value is infinite else true.
-	 */
-	protected Boolean compute(double value) {
+    /**
+     * Checks whether the parameter is finite or not.
+     *
+     * @param value the variable to check
+     * @return false if value is infinite else true.
+     */
+    protected Boolean compute(double value) {
 		if (Double.isNaN(value)) {
 			return null;
 		}

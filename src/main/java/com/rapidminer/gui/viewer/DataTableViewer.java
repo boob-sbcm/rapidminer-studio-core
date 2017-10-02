@@ -56,11 +56,20 @@ public class DataTableViewer extends JPanel implements Tableable, DataTableListe
 
 	private static final long serialVersionUID = 6878549119308753961L;
 
-	public static final String TABLE_MODE = "TABLE";
+    /**
+     * The constant TABLE_MODE.
+     */
+    public static final String TABLE_MODE = "TABLE";
 
-	public static final String PLOT_MODE = "PLOT";
+    /**
+     * The constant PLOT_MODE.
+     */
+    public static final String PLOT_MODE = "PLOT";
 
-	public static final String ADVANCED_MODE = "ADVANCED";
+    /**
+     * The constant ADVANCED_MODE.
+     */
+    public static final String ADVANCED_MODE = "ADVANCED";
 
 	private JLabel generalInfo = new JLabel();
 
@@ -74,23 +83,56 @@ public class DataTableViewer extends JPanel implements Tableable, DataTableListe
 
 	private PlotterConfigurationModel plotterSettings;
 
-	public DataTableViewer(DataTable dataTable) {
+    /**
+     * Instantiates a new Data table viewer.
+     *
+     * @param dataTable the data table
+     */
+    public DataTableViewer(DataTable dataTable) {
 		this(dataTable, PlotterConfigurationModel.DATA_SET_PLOTTER_SELECTION, true, TABLE_MODE, false);
 	}
 
-	public DataTableViewer(DataTable dataTable, boolean showPlotter) {
+    /**
+     * Instantiates a new Data table viewer.
+     *
+     * @param dataTable   the data table
+     * @param showPlotter the show plotter
+     */
+    public DataTableViewer(DataTable dataTable, boolean showPlotter) {
 		this(dataTable, PlotterConfigurationModel.DATA_SET_PLOTTER_SELECTION, showPlotter, TABLE_MODE, false);
 	}
 
-	public DataTableViewer(DataTable dataTable, boolean showPlotter, String startMode) {
+    /**
+     * Instantiates a new Data table viewer.
+     *
+     * @param dataTable   the data table
+     * @param showPlotter the show plotter
+     * @param startMode   the start mode
+     */
+    public DataTableViewer(DataTable dataTable, boolean showPlotter, String startMode) {
 		this(dataTable, PlotterConfigurationModel.DATA_SET_PLOTTER_SELECTION, showPlotter, startMode, false);
 	}
 
-	public DataTableViewer(DataTable dataTable, LinkedHashMap<String, Class<? extends Plotter>> availablePlotters) {
+    /**
+     * Instantiates a new Data table viewer.
+     *
+     * @param dataTable         the data table
+     * @param availablePlotters the available plotters
+     */
+    public DataTableViewer(DataTable dataTable, LinkedHashMap<String, Class<? extends Plotter>> availablePlotters) {
 		this(dataTable, availablePlotters, true, TABLE_MODE, false);
 	}
 
-	public DataTableViewer(DataTable dataTable, LinkedHashMap<String, Class<? extends Plotter>> availablePlotters,
+    /**
+     * Instantiates a new Data table viewer.
+     *
+     * @param dataTable         the data table
+     * @param availablePlotters the available plotters
+     * @param showPlotter       the show plotter
+     * @param tableMode         the table mode
+     * @param autoResize        the auto resize
+     */
+    public DataTableViewer(DataTable dataTable, LinkedHashMap<String, Class<? extends Plotter>> availablePlotters,
 			boolean showPlotter, String tableMode, boolean autoResize) {
 		super(new BorderLayout());
 
@@ -148,19 +190,39 @@ public class DataTableViewer extends JPanel implements Tableable, DataTableListe
 		setDataTable(dataTable);
 	}
 
-	public DataTable getDataTable() {
+    /**
+     * Gets data table.
+     *
+     * @return the data table
+     */
+    public DataTable getDataTable() {
 		return plotterSettings.getDataTable();
 	}
 
-	public PlotterPanel getPlotterPanel() {
+    /**
+     * Gets plotter panel.
+     *
+     * @return the plotter panel
+     */
+    public PlotterPanel getPlotterPanel() {
 		return plotterPanel;
 	}
 
-	public DataTableViewerTable getTable() {
+    /**
+     * Gets table.
+     *
+     * @return the table
+     */
+    public DataTableViewerTable getTable() {
 		return dataTableViewerTable;
 	}
 
-	public void setDataTable(DataTable dataTable) {
+    /**
+     * Sets data table.
+     *
+     * @param dataTable the data table
+     */
+    public void setDataTable(DataTable dataTable) {
 		dataTableViewerTable.setDataTable(dataTable);
 		if (plotterSettings != null) {
 			plotterSettings.setDataTable(dataTable);

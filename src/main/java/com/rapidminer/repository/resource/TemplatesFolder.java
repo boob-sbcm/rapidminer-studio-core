@@ -48,7 +48,14 @@ public class TemplatesFolder extends ResourceFolder {
 	private final Lock readLock = lock.readLock();
 	private final Lock writeLock = lock.writeLock();
 
-	protected TemplatesFolder(ResourceFolder parent, String parentPath, ResourceRepository repository) {
+    /**
+     * Instantiates a new Templates folder.
+     *
+     * @param parent     the parent
+     * @param parentPath the parent path
+     * @param repository the repository
+     */
+    protected TemplatesFolder(ResourceFolder parent, String parentPath, ResourceRepository repository) {
 		super(parent, TEMPLATES_FOLDER_NAME, parentPath + "/" + TEMPLATES_FOLDER_NAME, repository);
 	}
 

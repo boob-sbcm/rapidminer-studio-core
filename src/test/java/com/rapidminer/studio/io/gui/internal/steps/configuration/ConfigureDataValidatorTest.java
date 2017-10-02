@@ -48,7 +48,6 @@ import com.rapidminer.tools.Observer;
  * Tests the {@link ConfigureDataValidator}.
  *
  * @author Gisa Schaefer
- *
  */
 public class ConfigureDataValidatorTest {
 
@@ -56,7 +55,10 @@ public class ConfigureDataValidatorTest {
 	private static ConfigureDataValidator validator;
 	private static List<ParsingError> parsingErrors;
 
-	@BeforeClass
+    /**
+     * Sets up for all.
+     */
+    @BeforeClass
 	public static void setUpForAll() {
 		parsingErrors = new ArrayList<>(4);
 		parsingErrors.add(new ParsingError(0, 2, "xXX0", ""));
@@ -65,7 +67,10 @@ public class ConfigureDataValidatorTest {
 		parsingErrors.add(new ParsingError(3, 0, "xXX3", ""));
 	}
 
-	@Before
+    /**
+     * Sets up.
+     */
+    @Before
 	public void setUp() {
 		columnMetaData = new ArrayList<ColumnMetaData>(
 				Arrays.asList(new ColumnMetaData[] { new DefaultColumnMetaData("att1", ColumnType.REAL),
@@ -76,7 +81,12 @@ public class ConfigureDataValidatorTest {
 		validator.init(columnMetaData);
 	}
 
-	@Test
+    /**
+     * No errors.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void noErrors() throws DataSetException {
 		assertTrue(validator.getParsingErrors().isEmpty());
 		assertTrue(validator.getColumnErrors().isEmpty());
@@ -86,13 +96,19 @@ public class ConfigureDataValidatorTest {
 		}
 	}
 
-	@Test
+    /**
+     * All parsing errors.
+     */
+    @Test
 	public void allParsingErrors() {
 		validator.setParsingErrors(parsingErrors);
 		assertEquals(4, validator.getParsingErrors().size());
 	}
 
-	@Test
+    /**
+     * Parsing errors column removed.
+     */
+    @Test
 	public void parsingErrorsColumnRemoved() {
 		validator.setParsingErrors(parsingErrors);
 		columnMetaData.get(1).setRemoved(true);
@@ -102,7 +118,10 @@ public class ConfigureDataValidatorTest {
 		}
 	}
 
-	@Test
+    /**
+     * Column errors same name.
+     */
+    @Test
 	public void columnErrorsSameName() {
 		columnMetaData.get(1).setName("att1");
 		final AtomicBoolean wasCalled = new AtomicBoolean();
@@ -130,7 +149,10 @@ public class ConfigureDataValidatorTest {
 		assertTrue(wasCalled.get());
 	}
 
-	@Test
+    /**
+     * Not same name anymore update.
+     */
+    @Test
 	public void notSameNameAnymoreUpdate() {
 		columnMetaData.get(1).setName("att1");
 		validator.validate(1);
@@ -150,7 +172,10 @@ public class ConfigureDataValidatorTest {
 		assertTrue(wasCalled.get());
 	}
 
-	@Test
+    /**
+     * Column errors same name removed.
+     */
+    @Test
 	public void columnErrorsSameNameRemoved() {
 		columnMetaData.get(1).setName("att1");
 		columnMetaData.get(1).setRemoved(true);
@@ -162,7 +187,10 @@ public class ConfigureDataValidatorTest {
 		assertTrue(validator.getColumnErrors().isEmpty());
 	}
 
-	@Test
+    /**
+     * Column errors same role.
+     */
+    @Test
 	public void columnErrorsSameRole() {
 		columnMetaData.get(0).setRole("label");
 		columnMetaData.get(1).setRole("label");
@@ -192,7 +220,10 @@ public class ConfigureDataValidatorTest {
 		assertTrue(wasCalled.get());
 	}
 
-	@Test
+    /**
+     * Column errors same role removed.
+     */
+    @Test
 	public void columnErrorsSameRoleRemoved() {
 		columnMetaData.get(0).setRole("label");
 		validator.validate(0);
@@ -206,7 +237,10 @@ public class ConfigureDataValidatorTest {
 		assertTrue(validator.getColumnErrors().isEmpty());
 	}
 
-	@Test
+    /**
+     * Not same role anymore update.
+     */
+    @Test
 	public void notSameRoleAnymoreUpdate() {
 		columnMetaData.get(0).setRole("label");
 		columnMetaData.get(1).setRole("label");
@@ -228,7 +262,10 @@ public class ConfigureDataValidatorTest {
 		assertTrue(wasCalled.get());
 	}
 
-	@Test
+    /**
+     * No updated indices for parsing errors.
+     */
+    @Test
 	public void noUpdatedIndicesForParsingErrors() {
 		final AtomicBoolean wasCalled = new AtomicBoolean();
 		Observer<Set<Integer>> observer = new Observer<Set<Integer>>() {
@@ -244,7 +281,10 @@ public class ConfigureDataValidatorTest {
 		assertTrue(wasCalled.get());
 	}
 
-	@Test
+    /**
+     * No update for not duplicated name change.
+     */
+    @Test
 	public void noUpdateForNotDuplicatedNameChange() {
 		final AtomicBoolean wasCalled = new AtomicBoolean();
 		Observer<Set<Integer>> observer = new Observer<Set<Integer>>() {
@@ -260,7 +300,10 @@ public class ConfigureDataValidatorTest {
 		assertFalse(wasCalled.get());
 	}
 
-	@Test
+    /**
+     * Updated indices for duplicated name change.
+     */
+    @Test
 	public void updatedIndicesForDuplicatedNameChange() {
 		final AtomicBoolean wasCalled = new AtomicBoolean();
 		final Set<Integer> expected = new HashSet<>();
@@ -280,7 +323,10 @@ public class ConfigureDataValidatorTest {
 		assertTrue(wasCalled.get());
 	}
 
-	@Test
+    /**
+     * Change between different duplicates no update indices.
+     */
+    @Test
 	public void changeBetweenDifferentDuplicatesNoUpdateIndices() {
 		final AtomicBoolean wasCalled = new AtomicBoolean();
 		columnMetaData.get(1).setName("att1");
@@ -302,7 +348,10 @@ public class ConfigureDataValidatorTest {
 		assertTrue(wasCalled.get());
 	}
 
-	@Test
+    /**
+     * Change between different duplicates no update indices 2.
+     */
+    @Test
 	public void changeBetweenDifferentDuplicatesNoUpdateIndices2() {
 		final AtomicBoolean wasCalled = new AtomicBoolean();
 		columnMetaData.get(1).setName("att1");
@@ -324,7 +373,10 @@ public class ConfigureDataValidatorTest {
 		assertTrue(wasCalled.get());
 	}
 
-	@Test
+    /**
+     * Duplicates no change.
+     */
+    @Test
 	public void duplicatesNoChange() {
 		final AtomicBoolean wasCalled = new AtomicBoolean();
 		columnMetaData.get(1).setName("att1");
@@ -344,7 +396,10 @@ public class ConfigureDataValidatorTest {
 		assertFalse(wasCalled.get());
 	}
 
-	@Test
+    /**
+     * Parsing error affected column changed.
+     */
+    @Test
 	public void parsingErrorAffectedColumnChanged() {
 		validator.setParsingErrors(parsingErrors);
 		final AtomicBoolean wasCalled = new AtomicBoolean();

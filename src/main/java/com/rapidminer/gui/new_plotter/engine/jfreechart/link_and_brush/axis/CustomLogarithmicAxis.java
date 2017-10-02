@@ -24,15 +24,19 @@ import org.jfree.data.Range;
 
 /**
  * Wrapper class for {@link LogarithmicAxis} that overrides the resizing behaviour.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class CustomLogarithmicAxis extends LogarithmicAxis implements LinkAndBrushAxis {
 
 	private static final long serialVersionUID = 1L;
 
-	public CustomLogarithmicAxis(String label) {
+    /**
+     * Instantiates a new Custom logarithmic axis.
+     *
+     * @param label the label
+     */
+    public CustomLogarithmicAxis(String label) {
 		super(label);
 	}
 

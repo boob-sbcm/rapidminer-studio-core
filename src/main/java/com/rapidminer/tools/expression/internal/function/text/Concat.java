@@ -26,14 +26,13 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryString
  * A {@link Function} for concatenating Strings.
  *
  * @author David Arnu
- *
  */
 public class Concat extends AbstractArbitraryStringInputStringOutputFunction {
 
-	/**
-	 * Creates a function for concatenating Strings.
-	 */
-	public Concat() {
+    /**
+     * Creates a function for concatenating Strings.
+     */
+    public Concat() {
 		super("text_transformation.concat", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS);
 	}
 

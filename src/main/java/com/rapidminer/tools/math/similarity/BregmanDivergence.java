@@ -24,14 +24,21 @@ import com.rapidminer.example.Example;
 
 /**
  * Abstract class that represents a bregman divergence.
- * 
+ *
  * @author Regina Fritsch
  */
 public abstract class BregmanDivergence extends DistanceMeasure {
 
 	private static final long serialVersionUID = 5886004923294334118L;
 
-	public double[] vectorSubtraction(Example x, double[] y) {
+    /**
+     * Vector subtraction double [ ].
+     *
+     * @param x the x
+     * @param y the y
+     * @return the double [ ]
+     */
+    public double[] vectorSubtraction(Example x, double[] y) {
 		if (x.getAttributes().size() != y.length) {
 			throw new RuntimeException("Cannot substract vectors: incompatible numbers of attributes ("
 					+ x.getAttributes().size() + " != " + y.length + ")!");
@@ -45,7 +52,14 @@ public abstract class BregmanDivergence extends DistanceMeasure {
 		return result;
 	}
 
-	public double logXToBaseY(double number, double base) {
+    /**
+     * Log x to base y double.
+     *
+     * @param number the number
+     * @param base   the base
+     * @return the double
+     */
+    public double logXToBaseY(double number, double base) {
 		return Math.log(number) / Math.log(base);
 	}
 

@@ -31,7 +31,7 @@ import javax.swing.table.TableModel;
 
 /**
  * This is a renderer for showing a table of the Singular Value Vectors.
- * 
+ *
  * @author Sebastian Land
  */
 public class SVDModelVectorRenderer extends AbstractTableModelTableRenderer {
@@ -51,7 +51,12 @@ public class SVDModelVectorRenderer extends AbstractTableModelTableRenderer {
 
 		private int numberOfComponents;
 
-		public SVDVectorTableModel(SVDModel model) {
+        /**
+         * Instantiates a new Svd vector table model.
+         *
+         * @param model the model
+         */
+        public SVDVectorTableModel(SVDModel model) {
 			Attributes attributes = model.getTrainingHeader().getAttributes();
 			attributeNames = new String[attributes.size()];
 			int i = 0;

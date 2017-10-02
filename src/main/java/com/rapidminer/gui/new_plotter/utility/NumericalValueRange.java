@@ -33,9 +33,8 @@ import java.text.DateFormat;
  * A numerical range. By default the lower bound is included (">=" comparison),
  * the upper bound is not included in the range ("<" comparison).
  * This behavior can be changed by the properties includeLowerBound and includeUpperBound.
- * 
- * @author Marius Helf, Nils Woehler
  *
+ * @author Marius Helf, Nils Woehler
  */
 public class NumericalValueRange extends AbstractValueRange {
 
@@ -52,16 +51,30 @@ public class NumericalValueRange extends AbstractValueRange {
 	private int lowerPrecision = upperPrecision;
 	private DateFormat dateFormat;
 
-	public NumericalValueRange(double lowerBound, double upperBound, int columnIdx) {
+    /**
+     * Instantiates a new Numerical value range.
+     *
+     * @param lowerBound the lower bound
+     * @param upperBound the upper bound
+     * @param columnIdx  the column idx
+     */
+    public NumericalValueRange(double lowerBound, double upperBound, int columnIdx) {
 		this(lowerBound, upperBound, columnIdx, true, false);
 	}
 
-	/**
-	 * Creates a new {@link NumericalValueRange}.
-	 * 
-	 * If isDate, the {@link #toString()} method converts the lower and upper bound to dates.
-	 */
-	public NumericalValueRange(double lowerBound, double upperBound, int columnIdx, DateFormat dateFormat,
+    /**
+     * Creates a new {@link NumericalValueRange}.
+     * <p>
+     * If isDate, the {@link #toString()} method converts the lower and upper bound to dates.
+     *
+     * @param lowerBound        the lower bound
+     * @param upperBound        the upper bound
+     * @param columnIdx         the column idx
+     * @param dateFormat        the date format
+     * @param includeLowerBound the include lower bound
+     * @param includeUpperBound the include upper bound
+     */
+    public NumericalValueRange(double lowerBound, double upperBound, int columnIdx, DateFormat dateFormat,
 			boolean includeLowerBound, boolean includeUpperBound) {
 		this.lowerBound = lowerBound;
 		this.upperBound = upperBound;
@@ -71,7 +84,16 @@ public class NumericalValueRange extends AbstractValueRange {
 		this.dateFormat = dateFormat;
 	}
 
-	public NumericalValueRange(double lowerBound, double upperBound, int columnIdx, boolean includeLowerBound,
+    /**
+     * Instantiates a new Numerical value range.
+     *
+     * @param lowerBound        the lower bound
+     * @param upperBound        the upper bound
+     * @param columnIdx         the column idx
+     * @param includeLowerBound the include lower bound
+     * @param includeUpperBound the include upper bound
+     */
+    public NumericalValueRange(double lowerBound, double upperBound, int columnIdx, boolean includeLowerBound,
 			boolean includeUpperBound) {
 		this(lowerBound, upperBound, columnIdx, null, includeLowerBound, includeUpperBound);
 	}
@@ -81,7 +103,12 @@ public class NumericalValueRange extends AbstractValueRange {
 		return lowerBound;
 	}
 
-	public void setLowerBound(double lowerBound) {
+    /**
+     * Sets lower bound.
+     *
+     * @param lowerBound the lower bound
+     */
+    public void setLowerBound(double lowerBound) {
 		if (lowerBound != this.lowerBound) {
 			this.lowerBound = lowerBound;
 			fireValueRangeChanged(new ValueRangeChangeEvent(this, ValueRangeChangeType.LOWER_BOUND, lowerBound));
@@ -93,26 +120,51 @@ public class NumericalValueRange extends AbstractValueRange {
 		return upperBound;
 	}
 
-	public void setUpperBound(double upperBound) {
+    /**
+     * Sets upper bound.
+     *
+     * @param upperBound the upper bound
+     */
+    public void setUpperBound(double upperBound) {
 		if (upperBound != this.upperBound) {
 			this.upperBound = upperBound;
 			fireValueRangeChanged(new ValueRangeChangeEvent(this, ValueRangeChangeType.UPPER_BOUND, upperBound));
 		}
 	}
 
-	public boolean includesLowerBound() {
+    /**
+     * Includes lower bound boolean.
+     *
+     * @return the boolean
+     */
+    public boolean includesLowerBound() {
 		return includeLowerBound;
 	}
 
-	public boolean includesUpperBound() {
+    /**
+     * Includes upper bound boolean.
+     *
+     * @return the boolean
+     */
+    public boolean includesUpperBound() {
 		return includeUpperBound;
 	}
 
-	public int getColumnIdx() {
+    /**
+     * Gets column idx.
+     *
+     * @return the column idx
+     */
+    public int getColumnIdx() {
 		return columnIdx;
 	}
 
-	public void setColumnIdx(int index) {
+    /**
+     * Sets column idx.
+     *
+     * @param index the index
+     */
+    public void setColumnIdx(int index) {
 		if (index != columnIdx) {
 			this.columnIdx = index;
 			fireValueRangeChanged(new ValueRangeChangeEvent(this, ValueRangeChangeType.RESET));
@@ -230,7 +282,13 @@ public class NumericalValueRange extends AbstractValueRange {
 		return (getUpperBound() + getLowerBound()) / 2.0;
 	}
 
-	public void setVisualPrecision(int lowerPrecision, int upperPrecision) {
+    /**
+     * Sets visual precision.
+     *
+     * @param lowerPrecision the lower precision
+     * @param upperPrecision the upper precision
+     */
+    public void setVisualPrecision(int lowerPrecision, int upperPrecision) {
 		this.lowerPrecision = lowerPrecision;
 		this.upperPrecision = upperPrecision;
 	}
@@ -246,31 +304,66 @@ public class NumericalValueRange extends AbstractValueRange {
 		return true;
 	}
 
-	public int getVisualUpperPrecision() {
+    /**
+     * Gets visual upper precision.
+     *
+     * @return the visual upper precision
+     */
+    public int getVisualUpperPrecision() {
 		return upperPrecision;
 	}
 
-	public int getVisualLowerPrecision() {
+    /**
+     * Gets visual lower precision.
+     *
+     * @return the visual lower precision
+     */
+    public int getVisualLowerPrecision() {
 		return lowerPrecision;
 	}
 
-	public void setVisualUpperPrecision(int upperPrecision) {
+    /**
+     * Sets visual upper precision.
+     *
+     * @param upperPrecision the upper precision
+     */
+    public void setVisualUpperPrecision(int upperPrecision) {
 		this.upperPrecision = upperPrecision;
 	}
 
-	public void setVisualLowerPrecision(int lowerPrecision) {
+    /**
+     * Sets visual lower precision.
+     *
+     * @param lowerPrecision the lower precision
+     */
+    public void setVisualLowerPrecision(int lowerPrecision) {
 		this.lowerPrecision = lowerPrecision;
 	}
 
-	public boolean isDate() {
+    /**
+     * Is date boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isDate() {
 		return dateFormat != null;
 	}
 
-	public DateFormat getDateFormat() {
+    /**
+     * Gets date format.
+     *
+     * @return the date format
+     */
+    public DateFormat getDateFormat() {
 		return this.dateFormat;
 	}
 
-	public void setDateFormat(DateFormat dateFormat) {
+    /**
+     * Sets date format.
+     *
+     * @param dateFormat the date format
+     */
+    public void setDateFormat(DateFormat dateFormat) {
 		this.dateFormat = dateFormat;
 	}
 

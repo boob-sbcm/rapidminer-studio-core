@@ -50,18 +50,18 @@ import java.util.Locale;
  * locale will be used. In case of pattern the locale is ignored and the specified pattern is used
  * instead.
  * </p>
- * 
+ * <p>
  * <p>
  * Please note that this operator only works on numerical attributes and the result will be in any
  * case a nominal attribute no matter if the resulting format would again be a parsable number.
  * </p>
- * 
+ * <p>
  * <p>
  * In case of the pattern format type, a pattern parameter is used to define the format. If two
  * different formats for positive and negative numbers should be used, those formats can be defined
  * by a separating ';'. The pattern must have the following structure: <br />
  * <br />
- * 
+ * <p>
  * pattern := subpattern{;subpattern} <br />
  * subpattern := {prefix}integer{.fraction}{suffix} <br />
  * prefix := any character combination including white space <br />
@@ -69,11 +69,11 @@ import java.util.Locale;
  * integer := '#'* '0'* '0' <br />
  * fraction := '0'* '#'* <br />
  * </p>
- * 
+ * <p>
  * <p>
  * The following placeholders can be used within the pattern parameter: <br />
  * <br />
- * 
+ * <p>
  * 0 &nbsp;&nbsp;a digit <br />
  * # &nbsp;&nbsp;a digit, zero shows as absent <br />
  * . &nbsp;&nbsp;placeholder for decimal separator <br />
@@ -84,32 +84,71 @@ import java.util.Locale;
  * X &nbsp;&nbsp;any other characters can be used in the prefix or suffix <br />
  * ' &nbsp;&nbsp;used to quote special characters in a prefix or suffix. <br />
  * </p>
- * 
+ *
  * @author Mierswa
  */
 public class NumericToFormattedNominal extends NumericToNominal {
 
-	public static final String PARAMETER_FORMAT_TYPE = "format_type";
+    /**
+     * The constant PARAMETER_FORMAT_TYPE.
+     */
+    public static final String PARAMETER_FORMAT_TYPE = "format_type";
 
-	public static final String PARAMETER_PATTERN = "pattern";
+    /**
+     * The constant PARAMETER_PATTERN.
+     */
+    public static final String PARAMETER_PATTERN = "pattern";
 
-	public static final String PARAMETER_LOCALE = "locale";
+    /**
+     * The constant PARAMETER_LOCALE.
+     */
+    public static final String PARAMETER_LOCALE = "locale";
 
-	public static final String PARAMETER_USE_GROUPING = "use_grouping";
+    /**
+     * The constant PARAMETER_USE_GROUPING.
+     */
+    public static final String PARAMETER_USE_GROUPING = "use_grouping";
 
-	public static final String[] FORMAT_TYPES = new String[] { "number", "integer", "currency", "percent", "pattern" };
+    /**
+     * The constant FORMAT_TYPES.
+     */
+    public static final String[] FORMAT_TYPES = new String[] { "number", "integer", "currency", "percent", "pattern" };
 
-	public static final int FORMAT_TYPE_NUMBER = 0;
-	public static final int FORMAT_TYPE_INTEGER = 1;
-	public static final int FORMAT_TYPE_CURRENCY = 2;
-	public static final int FORMAT_TYPE_PERCENT = 3;
-	public static final int FORMAT_TYPE_PATTERN = 4;
+    /**
+     * The constant FORMAT_TYPE_NUMBER.
+     */
+    public static final int FORMAT_TYPE_NUMBER = 0;
+    /**
+     * The constant FORMAT_TYPE_INTEGER.
+     */
+    public static final int FORMAT_TYPE_INTEGER = 1;
+    /**
+     * The constant FORMAT_TYPE_CURRENCY.
+     */
+    public static final int FORMAT_TYPE_CURRENCY = 2;
+    /**
+     * The constant FORMAT_TYPE_PERCENT.
+     */
+    public static final int FORMAT_TYPE_PERCENT = 3;
+    /**
+     * The constant FORMAT_TYPE_PATTERN.
+     */
+    public static final int FORMAT_TYPE_PATTERN = 4;
 
-	public static List<Locale> availableLocales = new ArrayList<Locale>();
+    /**
+     * The constant availableLocales.
+     */
+    public static List<Locale> availableLocales = new ArrayList<Locale>();
 
-	public static String[] availableLocaleNames;
+    /**
+     * The Available locale names.
+     */
+    public static String[] availableLocaleNames;
 
-	public static int defaultLocale;
+    /**
+     * The constant defaultLocale.
+     */
+    public static int defaultLocale;
 
 	static {
 		Locale[] availableLocaleArray = Locale.getAvailableLocales();
@@ -142,7 +181,12 @@ public class NumericToFormattedNominal extends NumericToNominal {
 
 	private NumberFormat numberFormat;
 
-	public NumericToFormattedNominal(OperatorDescription description) {
+    /**
+     * Instantiates a new Numeric to formatted nominal.
+     *
+     * @param description the description
+     */
+    public NumericToFormattedNominal(OperatorDescription description) {
 		super(description);
 	}
 

@@ -49,14 +49,23 @@ import com.rapidminer.tools.RandomGenerator;
 @Deprecated
 public abstract class AbstractStratifiedSampling extends AbstractSamplingOperator {
 
-	public AbstractStratifiedSampling(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract stratified sampling.
+     *
+     * @param description the description
+     */
+    public AbstractStratifiedSampling(OperatorDescription description) {
 		super(description);
 	}
 
-	/**
-	 * This method should return the ratio used for stratifiedSampling
-	 */
-	public abstract double getRatio(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * This method should return the ratio used for stratifiedSampling
+     *
+     * @param exampleSet the example set
+     * @return the ratio
+     * @throws OperatorException the operator exception
+     */
+    public abstract double getRatio(ExampleSet exampleSet) throws OperatorException;
 
 	@Override
 	public ExampleSet apply(ExampleSet exampleSet) throws OperatorException {

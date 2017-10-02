@@ -73,21 +73,45 @@ import com.rapidminer.tools.Tools;
  */
 public abstract class FeatureOperator extends OperatorChain {
 
-	public static final String PARAMETER_NORMALIZE_WEIGHTS = "normalize_weights";
+    /**
+     * The constant PARAMETER_NORMALIZE_WEIGHTS.
+     */
+    public static final String PARAMETER_NORMALIZE_WEIGHTS = "normalize_weights";
 
-	public static final String PARAMETER_USER_RESULT_INDIVIDUAL_SELECTION = "user_result_individual_selection";
+    /**
+     * The constant PARAMETER_USER_RESULT_INDIVIDUAL_SELECTION.
+     */
+    public static final String PARAMETER_USER_RESULT_INDIVIDUAL_SELECTION = "user_result_individual_selection";
 
-	public static final String PARAMETER_SHOW_POPULATION_PLOTTER = "show_population_plotter";
+    /**
+     * The constant PARAMETER_SHOW_POPULATION_PLOTTER.
+     */
+    public static final String PARAMETER_SHOW_POPULATION_PLOTTER = "show_population_plotter";
 
-	public static final String PARAMETER_PLOT_GENERATIONS = "plot_generations";
+    /**
+     * The constant PARAMETER_PLOT_GENERATIONS.
+     */
+    public static final String PARAMETER_PLOT_GENERATIONS = "plot_generations";
 
-	public static final String PARAMETER_CONSTRAINT_DRAW_RANGE = "constraint_draw_range";
+    /**
+     * The constant PARAMETER_CONSTRAINT_DRAW_RANGE.
+     */
+    public static final String PARAMETER_CONSTRAINT_DRAW_RANGE = "constraint_draw_range";
 
-	public static final String PARAMETER_DRAW_DOMINATED_POINTS = "draw_dominated_points";
+    /**
+     * The constant PARAMETER_DRAW_DOMINATED_POINTS.
+     */
+    public static final String PARAMETER_DRAW_DOMINATED_POINTS = "draw_dominated_points";
 
-	public static final String PARAMETER_POPULATION_CRITERIA_DATA_FILE = "population_criteria_data_file";
+    /**
+     * The constant PARAMETER_POPULATION_CRITERIA_DATA_FILE.
+     */
+    public static final String PARAMETER_POPULATION_CRITERIA_DATA_FILE = "population_criteria_data_file";
 
-	public static final String PARAMETER_MAXIMAL_FITNESS = "maximal_fitness";
+    /**
+     * The constant PARAMETER_MAXIMAL_FITNESS.
+     */
+    public static final String PARAMETER_MAXIMAL_FITNESS = "maximal_fitness";
 
 	private final InputPort exampleSetInput = getInputPorts().createPort("example set in");
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("example set out");
@@ -111,7 +135,12 @@ public abstract class FeatureOperator extends OperatorChain {
 
 	private RandomGenerator random;
 
-	public FeatureOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Feature operator.
+     *
+     * @param description the description
+     */
+    public FeatureOperator(OperatorDescription description) {
 		super(description, "Evaluation Process");
 
 		throughExtender.start();
@@ -238,52 +267,84 @@ public abstract class FeatureOperator extends OperatorChain {
 		});
 	}
 
-	/**
-	 * Subclasses might override this method in order to change the meta data delivered to the inner
-	 * operators.
-	 */
-	protected ExampleSetMetaData modifyInnerOutputExampleSet(ExampleSetMetaData metaData) {
+    /**
+     * Subclasses might override this method in order to change the meta data delivered to the inner
+     * operators.
+     *
+     * @param metaData the meta data
+     * @return the example set meta data
+     */
+    protected ExampleSetMetaData modifyInnerOutputExampleSet(ExampleSetMetaData metaData) {
 		return metaData;
 	}
 
-	/**
-	 * Subclasses might override this method in order to change the final outputed meta data
-	 */
-	protected ExampleSetMetaData modifyOutputExampleSet(ExampleSetMetaData metaData) {
+    /**
+     * Subclasses might override this method in order to change the final outputed meta data
+     *
+     * @param metaData the meta data
+     * @return the example set meta data
+     */
+    protected ExampleSetMetaData modifyOutputExampleSet(ExampleSetMetaData metaData) {
 		return metaData;
 	}
 
-	/**
-	 * Create an initial population. The example set will be cloned before the method is invoked.
-	 * This method is invoked after the pre- and postevaluation population operators were collected.
-	 */
-	public abstract Population createInitialPopulation(ExampleSet es) throws OperatorException;
+    /**
+     * Create an initial population. The example set will be cloned before the method is invoked.
+     * This method is invoked after the pre- and postevaluation population operators were collected.
+     *
+     * @param es the es
+     * @return the population
+     * @throws OperatorException the operator exception
+     */
+    public abstract Population createInitialPopulation(ExampleSet es) throws OperatorException;
 
-	/**
-	 * Must return a list of <tt>PopulationOperator</tt>s. All operators are applied to the
-	 * population in their order within the list before the population is evaluated. Since this
-	 * methode is invoked only once the list cannot by dynamically changed during runtime.
-	 */
-	public abstract List<PopulationOperator> getPreEvaluationPopulationOperators(ExampleSet input) throws OperatorException;
+    /**
+     * Must return a list of <tt>PopulationOperator</tt>s. All operators are applied to the
+     * population in their order within the list before the population is evaluated. Since this
+     * methode is invoked only once the list cannot by dynamically changed during runtime.
+     *
+     * @param input the input
+     * @return the pre evaluation population operators
+     * @throws OperatorException the operator exception
+     */
+    public abstract List<PopulationOperator> getPreEvaluationPopulationOperators(ExampleSet input) throws OperatorException;
 
-	/**
-	 * Must return a list of <tt>PopulationOperator</tt>s. All operators are applied to the
-	 * population in their order within the list after the population is evaluated. Since this
-	 * methode is invoked only once the list cannot by dynamically changed during runtime.
-	 */
-	public abstract List<PopulationOperator> getPostEvaluationPopulationOperators(ExampleSet input) throws OperatorException;
+    /**
+     * Must return a list of <tt>PopulationOperator</tt>s. All operators are applied to the
+     * population in their order within the list after the population is evaluated. Since this
+     * methode is invoked only once the list cannot by dynamically changed during runtime.
+     *
+     * @param input the input
+     * @return the post evaluation population operators
+     * @throws OperatorException the operator exception
+     */
+    public abstract List<PopulationOperator> getPostEvaluationPopulationOperators(ExampleSet input) throws OperatorException;
 
-	/**
-	 * Has to return true if the main loop can be stopped because a solution is considered to be
-	 * good enough according to some criterion.
-	 */
-	public abstract boolean solutionGoodEnough(Population pop) throws OperatorException;
+    /**
+     * Has to return true if the main loop can be stopped because a solution is considered to be
+     * good enough according to some criterion.
+     *
+     * @param pop the pop
+     * @return the boolean
+     * @throws OperatorException the operator exception
+     */
+    public abstract boolean solutionGoodEnough(Population pop) throws OperatorException;
 
-	protected RandomGenerator getRandom() {
+    /**
+     * Gets random.
+     *
+     * @return the random
+     */
+    protected RandomGenerator getRandom() {
 		return random;
 	}
 
-	protected Population getPopulation() {
+    /**
+     * Gets population.
+     *
+     * @return the population
+     */
+    protected Population getPopulation() {
 		return population;
 	}
 
@@ -430,7 +491,14 @@ public abstract class FeatureOperator extends OperatorChain {
 		this.exampleSet = null;
 	}
 
-	public static ExampleSet createCleanClone(ExampleSet exampleSet, double[] weights) {
+    /**
+     * Create clean clone example set.
+     *
+     * @param exampleSet the example set
+     * @param weights    the weights
+     * @return the example set
+     */
+    public static ExampleSet createCleanClone(ExampleSet exampleSet, double[] weights) {
 		AttributeWeightedExampleSet clone = new AttributeWeightedExampleSet(exampleSet, null);
 		int a = 0;
 		for (Attribute attribute : clone.getAttributes()) {
@@ -439,8 +507,14 @@ public abstract class FeatureOperator extends OperatorChain {
 		return clone.createCleanClone();
 	}
 
-	/** Applies all PopulationOperators in opList to the population. */
-	void applyOpList(List<PopulationOperator> opList, Population population) throws OperatorException {
+    /**
+     * Applies all PopulationOperators in opList to the population.  @param opList the op list
+     *
+     * @param opList     the op list
+     * @param population the population
+     * @throws OperatorException the operator exception
+     */
+    void applyOpList(List<PopulationOperator> opList, Population population) throws OperatorException {
 		Iterator<PopulationOperator> i = opList.listIterator();
 		while (i.hasNext()) {
 			PopulationOperator op = i.next();
@@ -466,15 +540,14 @@ public abstract class FeatureOperator extends OperatorChain {
 		populationEvaluator.evaluate(population);
 	}
 
-	/**
-	 * This method gives access to the subprocess for evaluating an example set
-	 *
-	 * @param exampleSet
-	 *            a weighted exampleSet
-	 * @return
-	 * @throws OperatorException
-	 */
-	public final PerformanceVector executeEvaluationProcess(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * This method gives access to the subprocess for evaluating an example set
+     *
+     * @param exampleSet a weighted exampleSet
+     * @return performance vector
+     * @throws OperatorException the operator exception
+     */
+    public final PerformanceVector executeEvaluationProcess(ExampleSet exampleSet) throws OperatorException {
 		subprocessExampleOutput.deliver(exampleSet);
 		throughExtender.passDataThrough();
 
@@ -483,7 +556,12 @@ public abstract class FeatureOperator extends OperatorChain {
 		return subprocessPerformanceInput.getData(PerformanceVector.class);
 	}
 
-	protected void runEvaluationProcess() throws OperatorException {
+    /**
+     * Run evaluation process.
+     *
+     * @throws OperatorException the operator exception
+     */
+    protected void runEvaluationProcess() throws OperatorException {
 		getSubprocess(0).execute();
 	}
 
@@ -507,23 +585,32 @@ public abstract class FeatureOperator extends OperatorChain {
 		}
 	}
 
-	/**
-	 * Sets if the operator should check if the maximum was reached for the main criterion.
-	 * Subclasses may want to set this to false, e.g. for multiobjective optimization.
-	 */
-	protected void setCheckForMaximum(boolean checkForMaximalFitness) {
+    /**
+     * Sets if the operator should check if the maximum was reached for the main criterion.
+     * Subclasses may want to set this to false, e.g. for multiobjective optimization.
+     *
+     * @param checkForMaximalFitness the check for maximal fitness
+     */
+    protected void setCheckForMaximum(boolean checkForMaximalFitness) {
 		this.checkForMaximalFitness = checkForMaximalFitness;
 	}
 
-	/**
-	 * Returns if the operator should check if the maximum was reached for the main criterion.
-	 * Subclasses may want to set this to false, e.g. for multiobjective optimization.
-	 */
-	protected boolean getCheckForMaximum() {
+    /**
+     * Returns if the operator should check if the maximum was reached for the main criterion.
+     * Subclasses may want to set this to false, e.g. for multiobjective optimization.
+     *
+     * @return the check for maximum
+     */
+    protected boolean getCheckForMaximum() {
 		return this.checkForMaximalFitness;
 	}
 
-	public InputPort getExampleSetInput() {
+    /**
+     * Gets example set input.
+     *
+     * @return the example set input
+     */
+    public InputPort getExampleSetInput() {
 		return exampleSetInput;
 	}
 
@@ -566,17 +653,25 @@ public abstract class FeatureOperator extends OperatorChain {
 		return types;
 	}
 
-	protected PopulationEvaluator getPopulationEvaluator(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Gets population evaluator.
+     *
+     * @param exampleSet the example set
+     * @return the population evaluator
+     * @throws OperatorException the operator exception
+     */
+    protected PopulationEvaluator getPopulationEvaluator(ExampleSet exampleSet) throws OperatorException {
 		return new SimplePopulationEvaluator(this, exampleSet);
 	}
 
-	/**
-	 * Returns the maximum number of generations which can be used as the total operator progress.
-	 * Returns -1, if the operator is not able to determine a total operator progress.
-	 *
-	 * @throws UndefinedParameterError
-	 */
-	protected int getMaximumGenerations() throws UndefinedParameterError {
+    /**
+     * Returns the maximum number of generations which can be used as the total operator progress.
+     * Returns -1, if the operator is not able to determine a total operator progress.
+     *
+     * @return the maximum generations
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected int getMaximumGenerations() throws UndefinedParameterError {
 		return -1;
 	}
 }

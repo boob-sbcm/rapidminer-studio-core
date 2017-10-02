@@ -28,7 +28,7 @@ import java.util.LinkedList;
 /**
  * Objects of this class represent a conjunctive rule. All abstract methods of the superclass
  * Hypothesis are implemented.
- * 
+ *
  * @author Dirk Dach
  */
 public class Rule extends Hypothesis {
@@ -44,8 +44,15 @@ public class Rule extends Hypothesis {
 	/** The index of the label class this rule predicts aka Y+ or Y-. */
 	private int prediction;
 
-	/** Creates a new rule,initializes the regularAttributes and the literals attribute. */
-	public Rule(Attribute[] regularAttributes, Attribute label, boolean rejectionSampling, boolean createAll) {
+    /**
+     * Creates a new rule,initializes the regularAttributes and the literals attribute.  @param regularAttributes the regular attributes
+     *
+     * @param regularAttributes the regular attributes
+     * @param label             the label
+     * @param rejectionSampling the rejection sampling
+     * @param createAll         the create all
+     */
+    public Rule(Attribute[] regularAttributes, Attribute label, boolean rejectionSampling, boolean createAll) {
 		super(regularAttributes, label, rejectionSampling, createAll);
 		allLiterals = new Literal[regularAttributes.length][];
 		for (int attributeIndex = 0; attributeIndex < regularAttributes.length; attributeIndex++) {
@@ -66,16 +73,26 @@ public class Rule extends Hypothesis {
 		return clone;
 	}
 
-	/** Construct a new rule with one literal. */
-	public Rule(Literal literal, int prediction) {
+    /**
+     * Construct a new rule with one literal.  @param literal the literal
+     *
+     * @param literal    the literal
+     * @param prediction the prediction
+     */
+    public Rule(Literal literal, int prediction) {
 		super();
 		this.literals = new Literal[1];
 		this.literals[0] = literal;
 		this.prediction = prediction;
 	}
 
-	/** Construct a new rule with the given literals. */
-	public Rule(Literal[] literals, int prediction) {
+    /**
+     * Construct a new rule with the given literals.  @param literals the literals
+     *
+     * @param literals   the literals
+     * @param prediction the prediction
+     */
+    public Rule(Literal[] literals, int prediction) {
 		super();
 		this.literals = new Literal[literals.length];
 		for (int i = 0; i < literals.length; i++) {
@@ -242,8 +259,12 @@ public class Rule extends Hypothesis {
 		return result.toString();
 	}
 
-	/** Returns the literals in the premise of this rule. */
-	public Literal[] getLiterals() {
+    /**
+     * Returns the literals in the premise of this rule.  @return the literal [ ]
+     *
+     * @return the literal [ ]
+     */
+    public Literal[] getLiterals() {
 		return literals;
 	}
 }

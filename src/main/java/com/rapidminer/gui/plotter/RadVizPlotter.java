@@ -61,7 +61,7 @@ import javax.swing.event.ListSelectionListener;
  * is a unit vector point it lies exaclty at the fixed point on the edge of the circle, where the
  * spring for that dimension is fixed. Many points can map to the same position. This mapping
  * represents a non-linear transformation of the data that preserves certain symmetries.
- * 
+ *
  * @author Daniel Hakenjos, Ingo Mierswa
  */
 public class RadVizPlotter extends PlotterAdapter {
@@ -85,26 +85,41 @@ public class RadVizPlotter extends PlotterAdapter {
 	/** Indicates a ordered column mapping. */
 	private static final int RANDOM = 2;
 
-	/** The list of all plotter points. */
-	protected List<PlotterPoint> plotterPoints = new LinkedList<PlotterPoint>();
+    /**
+     * The list of all plotter points.
+     */
+    protected List<PlotterPoint> plotterPoints = new LinkedList<PlotterPoint>();
 
-	/** The currently used data table. */
-	protected transient DataTable dataTable;
+    /**
+     * The currently used data table.
+     */
+    protected transient DataTable dataTable;
 
-	/** Maps the axes to the data table columns. */
-	protected int[] columnMapping;
+    /**
+     * Maps the axes to the data table columns.
+     */
+    protected int[] columnMapping;
 
-	/** The maximum column weight (if weights are available in data table). */
-	protected double maxWeight = Double.NaN;
+    /**
+     * The maximum column weight (if weights are available in data table).
+     */
+    protected double maxWeight = Double.NaN;
 
-	/** The vector directions of the axes of the rad viz. */
-	protected double[] anchorVectorX, anchorVectorY;
+    /**
+     * The vector directions of the axes of the rad viz.
+     */
+    protected double[] anchorVectorX, /**
+     * The Anchor vector y.
+     */
+    anchorVectorY;
 
 	/** The angles between the axes. */
 	private double[] angles;
 
-	/** The column which should be used to colorize the data points. */
-	protected int colorColumn = -1;
+    /**
+     * The column which should be used to colorize the data points.
+     */
+    protected int colorColumn = -1;
 
 	/** The minimum value of the color column. */
 	private double minColor;
@@ -115,14 +130,18 @@ public class RadVizPlotter extends PlotterAdapter {
 	/** Selection of column mapping. */
 	private JComboBox<String> columnMappingSelection;
 
-	/** The list of columns which should not be used as dimension anchors. */
-	protected JList<String> ignoreList;
+    /**
+     * The list of columns which should not be used as dimension anchors.
+     */
+    protected JList<String> ignoreList;
 
 	/** The currently selected type of column mapping. Default is ORDERED. */
 	private int columnMappingType = ORDERED;
 
-	/** The scaling factor for point plotting, usually 1. */
-	protected double scale = 1;
+    /**
+     * The scaling factor for point plotting, usually 1.
+     */
+    protected double scale = 1;
 
 	/** Currently used random seed for random ordering. */
 	private long orderRandomSeed = 2001;
@@ -130,8 +149,12 @@ public class RadVizPlotter extends PlotterAdapter {
 	/** The random number generator for random seeds. */
 	private Random randomSeedRandom = new Random();
 
-	/** Creates a new RadViz plotter. */
-	public RadVizPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Creates a new RadViz plotter.  @param settings the settings
+     *
+     * @param settings the settings
+     */
+    public RadVizPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 		this.columnMappingSelection = new JComboBox<>(COLUMN_MAPPING_TYPES);
@@ -155,8 +178,13 @@ public class RadVizPlotter extends PlotterAdapter {
 		});
 	}
 
-	/** Creates a new RadViz plotter from the given data table. */
-	public RadVizPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Creates a new RadViz plotter from the given data table.  @param settings the settings
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public RadVizPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -260,11 +288,23 @@ public class RadVizPlotter extends PlotterAdapter {
 		repaint();
 	}
 
-	protected boolean shouldIgnoreColumn(int column) {
+    /**
+     * Should ignore column boolean.
+     *
+     * @param column the column
+     * @return the boolean
+     */
+    protected boolean shouldIgnoreColumn(int column) {
 		return shouldIgnoreColumn(this.dataTable.getColumnName(this.columnMapping[column]));
 	}
 
-	protected boolean shouldIgnoreColumn(String column) {
+    /**
+     * Should ignore column boolean.
+     *
+     * @param column the column
+     * @return the boolean
+     */
+    protected boolean shouldIgnoreColumn(String column) {
 		for (Object ignored : ignoreList.getSelectedValuesList()) {
 			if (ignored.equals(column)) {
 				return true;
@@ -331,10 +371,10 @@ public class RadVizPlotter extends PlotterAdapter {
 		}
 	}
 
-	/**
-	 * Calculates the sample points in the RadViz.
-	 */
-	protected void calculateSamplePoints() {
+    /**
+     * Calculates the sample points in the RadViz.
+     */
+    protected void calculateSamplePoints() {
 		plotterPoints.clear();
 
 		// color min and max
@@ -392,11 +432,10 @@ public class RadVizPlotter extends PlotterAdapter {
 		}
 	}
 
-	/**
-	 * Calculate the attribute vectors.
-	 * 
-	 */
-	protected void calculateAttributeVectors() {
+    /**
+     * Calculate the attribute vectors.
+     */
+    protected void calculateAttributeVectors() {
 		anchorVectorX = new double[this.dataTable.getNumberOfColumns()];
 		anchorVectorY = new double[this.dataTable.getNumberOfColumns()];
 
@@ -464,7 +503,12 @@ public class RadVizPlotter extends PlotterAdapter {
 		paintPlotter(g);
 	}
 
-	protected void paintPlotter(Graphics graphics) {
+    /**
+     * Paint plotter.
+     *
+     * @param graphics the graphics
+     */
+    protected void paintPlotter(Graphics graphics) {
 		Graphics2D g = (Graphics2D) graphics.create();
 		calculateAngles();
 		calculateAttributeVectors();
@@ -537,10 +581,17 @@ public class RadVizPlotter extends PlotterAdapter {
 		}
 	}
 
-	/**
-	 * Draw a data point.
-	 */
-	protected void drawPoint(Graphics2D g, PlotterPoint point, ColorProvider colorProvider, int midX, int midY, double radius) {
+    /**
+     * Draw a data point.
+     *
+     * @param g             the g
+     * @param point         the point
+     * @param colorProvider the color provider
+     * @param midX          the mid x
+     * @param midY          the mid y
+     * @param radius        the radius
+     */
+    protected void drawPoint(Graphics2D g, PlotterPoint point, ColorProvider colorProvider, int midX, int midY, double radius) {
 		int x = midX;
 		int y = midY;
 

@@ -52,10 +52,8 @@ import com.rapidminer.tools.Tools;
  * A DataResultSet for an Excel 2007 File.
  *
  * @author Marco Boeck
- *
- * @deprecated Was replaced by {@link XlsxResultSet}.
  * @since 6.3.0
- *
+ * @deprecated Was replaced by {@link XlsxResultSet}.
  */
 @Deprecated
 public class Excel2007ResultSet implements DataResultSet {
@@ -82,11 +80,15 @@ public class Excel2007ResultSet implements DataResultSet {
 	private String timeZone;
 	private String dateFormat;
 
-	/**
-	 * The constructor to build an ExcelResultSet from the given configuration. The calling operator
-	 * might be null. It is only needed for error handling.
-	 */
-	public Excel2007ResultSet(Operator callingOperator, ExcelResultSetConfiguration configuration) throws OperatorException {
+    /**
+     * The constructor to build an ExcelResultSet from the given configuration. The calling operator
+     * might be null. It is only needed for error handling.
+     *
+     * @param callingOperator the calling operator
+     * @param configuration   the configuration
+     * @throws OperatorException the operator exception
+     */
+    public Excel2007ResultSet(Operator callingOperator, ExcelResultSetConfiguration configuration) throws OperatorException {
 		// reading configuration
 		columnOffset = configuration.getColumnOffset();
 		rowOffset = configuration.getRowOffset();

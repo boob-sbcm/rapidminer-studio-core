@@ -26,12 +26,15 @@ import java.util.logging.Level;
 /**
  * This class has one numerical input attribute and one output attribute. Calculates the absolute
  * value of the input attribute.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class AbsoluteValueGenerator extends SingularNumericalGenerator {
 
-	public AbsoluteValueGenerator() {}
+    /**
+     * Instantiates a new Absolute value generator.
+     */
+    public AbsoluteValueGenerator() {}
 
 	@Override
 	public FeatureGenerator newInstance() {

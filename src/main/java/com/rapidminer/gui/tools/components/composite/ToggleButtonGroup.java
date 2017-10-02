@@ -45,7 +45,10 @@ public class ToggleButtonGroup extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	// pseudo tab behavior for buttons
+    /**
+     * The Button chooser.
+     */
+// pseudo tab behavior for buttons
 	protected final ActionListener buttonChooser = new ActionListener() {
 
 		@Override
@@ -72,34 +75,37 @@ public class ToggleButtonGroup extends JPanel {
 		}
 	};
 
-	/** Array of primary buttons. */
-	protected CompositeToggleButton[] primaryButtons;
+    /**
+     * Array of primary buttons.
+     */
+    protected CompositeToggleButton[] primaryButtons;
 
-	/** Button which shows the secondary actions, if available */
-	protected CompositeMenuToggleButton secondaryButton;
+    /**
+     * Button which shows the secondary actions, if available
+     */
+    protected CompositeMenuToggleButton secondaryButton;
 
-	/** The preferred size of the nested {@link CompositeToggleButton}s. */
-	protected Dimension preferredSize;
+    /**
+     * The preferred size of the nested {@link CompositeToggleButton}s.
+     */
+    protected Dimension preferredSize;
 
-	/**
-	 * Creates a new button group from the given Actions (requires at least two actions).
-	 *
-	 * @param actions
-	 *            the action
-	 */
-	public ToggleButtonGroup(Action... actions) {
+    /**
+     * Creates a new button group from the given Actions (requires at least two actions).
+     *
+     * @param actions the action
+     */
+    public ToggleButtonGroup(Action... actions) {
 		this(null, actions);
 	}
 
-	/**
-	 * Creates a new button group from the given Actions (requires at least two actions).
-	 *
-	 * @param preferredSize
-	 *            the preferredSize of the nested {@link CompositeToggleButton}s or {@code null}
-	 * @param actions
-	 *            the action
-	 */
-	public ToggleButtonGroup(Dimension preferredSize, Action... actions) {
+    /**
+     * Creates a new button group from the given Actions (requires at least two actions).
+     *
+     * @param preferredSize the preferredSize of the nested {@link CompositeToggleButton}s or {@code null}
+     * @param actions       the action
+     */
+    public ToggleButtonGroup(Dimension preferredSize, Action... actions) {
 		if (actions.length < 2) {
 			throw new IllegalArgumentException("At least two primary actions must be specified.");
 		}
@@ -139,13 +145,12 @@ public class ToggleButtonGroup extends JPanel {
 		}
 	}
 
-	/**
-	 * Displays the given actions with a {@link CompositeMenuToggleButton}.
-	 *
-	 * @param actions
-	 *            the secondary actions
-	 */
-	public void addSeconderyActions(Action... actions) {
+    /**
+     * Displays the given actions with a {@link CompositeMenuToggleButton}.
+     *
+     * @param actions the secondary actions
+     */
+    public void addSeconderyActions(Action... actions) {
 		if (secondaryButton == null) {
 			secondaryButton = createCompositeMenuToggleButton(actions);
 			secondaryButton.addItemListener(new ItemListener() {
@@ -188,25 +193,23 @@ public class ToggleButtonGroup extends JPanel {
 		}
 	}
 
-	/**
-	 * Creates a {@link CompositeMenuToggleButton} with the given actions and the position
-	 * {@link SwingConstants#RIGHT}.
-	 *
-	 * @param actions
-	 *            the actions which should be included
-	 * @return the created button
-	 */
-	protected CompositeMenuToggleButton createCompositeMenuToggleButton(Action... actions) {
+    /**
+     * Creates a {@link CompositeMenuToggleButton} with the given actions and the position
+     * {@link SwingConstants#RIGHT}.
+     *
+     * @param actions the actions which should be included
+     * @return the created button
+     */
+    protected CompositeMenuToggleButton createCompositeMenuToggleButton(Action... actions) {
 		return new CompositeMenuToggleButton(SwingConstants.RIGHT, actions);
 	}
 
-	/**
-	 * Selects the corresponding UI element.
-	 *
-	 * @param action
-	 *            the action which should be selected
-	 */
-	public void setSelected(Action action) {
+    /**
+     * Selects the corresponding UI element.
+     *
+     * @param action the action which should be selected
+     */
+    public void setSelected(Action action) {
 		for (CompositeToggleButton primaryButton : primaryButtons) {
 			if (action == primaryButton.getAction()) {
 				primaryButton.setSelected(true);

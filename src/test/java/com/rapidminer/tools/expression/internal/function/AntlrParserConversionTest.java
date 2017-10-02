@@ -38,14 +38,13 @@ import com.rapidminer.tools.expression.internal.antlr.AntlrParser;
  * Tests the results of {@link AntlrParser#parse(String)} for conversion functions.
  *
  * @author Marcel Seifert
- *
  */
 public class AntlrParserConversionTest extends AntlrParserTest {
 
-	/**
-	 * String to Numerical tests
-	 */
-	@Test
+    /**
+     * String to Numerical tests
+     */
+    @Test
 	public void parse() {
 		try {
 			Locale locale = new Locale(String.valueOf("de"));
@@ -61,7 +60,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Parse empty or invalid.
+     */
+    @Test
 	public void parseEmptyOrInvalid() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("parse(\"\")");
@@ -72,7 +74,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Parse no arg.
+     */
+    @Test
 	public void parseNoArg() {
 		try {
 			getExpressionWithFunctionContext("parse()");
@@ -82,7 +87,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Parse wrong type.
+     */
+    @Test
 	public void parseWrongType() {
 		try {
 			getExpressionWithFunctionContext("parse(777)");
@@ -92,7 +100,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Parse more args.
+     */
+    @Test
 	public void parseMoreArgs() {
 		try {
 			getExpressionWithFunctionContext("parse(\"4711\", \"333\")");
@@ -102,7 +113,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Parse missing.
+     */
+    @Test
 	public void parseMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("parse(MISSING_NOMINAL)");
@@ -113,7 +127,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Parse missing date.
+     */
+    @Test
 	public void parseMissingDate() {
 		try {
 			getExpressionWithFunctionContext("parse(MISSING_DATE)");
@@ -123,11 +140,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	/**
-	 * Numerical to String tests
-	 */
-
-	@Test
+    /**
+     * Numerical to String tests
+     */
+    @Test
 	public void strInt() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("str(4711)");
@@ -138,7 +154,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Str double.
+     */
+    @Test
 	public void strDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("str(4711.7)");
@@ -149,7 +168,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Str infinity.
+     */
+    @Test
 	public void strInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("str(INFINITY)");
@@ -160,7 +182,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Str infinity parse.
+     */
+    @Test
 	public void strInfinityParse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("parse(str(INFINITY))");
@@ -171,7 +196,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Str minus infinity.
+     */
+    @Test
 	public void strMinusInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("str(-INFINITY)");
@@ -182,7 +210,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Str minus infinity parse.
+     */
+    @Test
 	public void strMinusInfinityParse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("parse(str(-INFINITY))");
@@ -193,7 +224,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Str wrong type.
+     */
+    @Test
 	public void strWrongType() {
 		try {
 			getExpressionWithFunctionContext("str(\"abc\")");
@@ -203,7 +237,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Str no arg.
+     */
+    @Test
 	public void strNoArg() {
 		try {
 			getExpressionWithFunctionContext("str()");
@@ -213,7 +250,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Str more args.
+     */
+    @Test
 	public void strMoreArgs() {
 		try {
 			getExpressionWithFunctionContext("str(1, 2)");
@@ -223,7 +263,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Str missing.
+     */
+    @Test
 	public void strMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("str(MISSING_NUMERIC)");
@@ -234,7 +277,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Str missing date.
+     */
+    @Test
 	public void strMissingDate() {
 		try {
 			getExpressionWithFunctionContext("str(MISSING_DATE)");
@@ -244,11 +290,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	/**
-	 * DateParse tests
-	 */
-
-	@Test
+    /**
+     * DateParse tests
+     */
+    @Test
 	public void dateParse() {
 		try {
 			Date date = new Date(4156111665112L);
@@ -263,7 +308,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse nominal.
+     */
+    @Test
 	public void dateParseNominal() {
 		try {
 			Date date = new Date(707781600000L);
@@ -278,7 +326,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse invalid.
+     */
+    @Test
 	public void dateParseInvalid() {
 		try {
 			getExpressionWithFunctionContext("date_parse(\"4156111665112\")");
@@ -288,7 +339,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse no arg.
+     */
+    @Test
 	public void dateParseNoArg() {
 		try {
 			getExpressionWithFunctionContext("date_parse()");
@@ -298,7 +352,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse more args.
+     */
+    @Test
 	public void dateParseMoreArgs() {
 		try {
 			getExpressionWithFunctionContext("date_parse(4156111665112, 123456789123)");
@@ -308,7 +365,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse missing numeric.
+     */
+    @Test
 	public void dateParseMissingNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse(MISSING_NUMERIC)");
@@ -319,7 +379,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse missing nominal.
+     */
+    @Test
 	public void dateParseMissingNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse(MISSING_NOMINAL)");
@@ -330,7 +393,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse missing date.
+     */
+    @Test
 	public void dateParseMissingDate() {
 		try {
 			getExpressionWithFunctionContext("date_parse(MISSING_DATE)");
@@ -340,10 +406,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	/**
-	 * DateParseWithLocale tests
-	 */
-	@Test
+    /**
+     * DateParseWithLocale tests
+     */
+    @Test
 	public void dateParseLoc() {
 		try {
 			Locale locale = new Locale("en");
@@ -359,7 +425,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse loc nominal.
+     */
+    @Test
 	public void dateParseLocNominal() {
 		try {
 			Locale locale = new Locale("en");
@@ -375,7 +444,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse loc invalid.
+     */
+    @Test
 	public void dateParseLocInvalid() {
 		try {
 			getExpressionWithFunctionContext("date_parse_loc(\"4156111665112\", \"en\")");
@@ -385,7 +457,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse loc wrong type.
+     */
+    @Test
 	public void dateParseLocWrongType() {
 		try {
 			getExpressionWithFunctionContext("date_parse_loc(\"4156111665112\", 777)");
@@ -395,7 +470,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse loc no arg.
+     */
+    @Test
 	public void dateParseLocNoArg() {
 		try {
 			getExpressionWithFunctionContext("date_parse_loc()");
@@ -405,7 +483,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse loc more args.
+     */
+    @Test
 	public void dateParseLocMoreArgs() {
 		try {
 			getExpressionWithFunctionContext("date_parse_loc(4156111665112, \"en\", 777)");
@@ -415,7 +496,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse loc less args.
+     */
+    @Test
 	public void dateParseLocLessArgs() {
 		try {
 			getExpressionWithFunctionContext("date_parse_loc(4156111665112)");
@@ -425,7 +509,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse loc missing numeric date.
+     */
+    @Test
 	public void dateParseLocMissingNumericDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse_loc(MISSING_NUMERIC, \"en\")");
@@ -436,7 +523,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse loc missing nominal date.
+     */
+    @Test
 	public void dateParseLocMissingNominalDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse_loc(MISSING_NOMINAL, \"en\")");
@@ -447,7 +537,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse loc missing date date.
+     */
+    @Test
 	public void dateParseLocMissingDateDate() {
 		try {
 			getExpressionWithFunctionContext("date_parse_loc(MISSING_DATE, \"en\")");
@@ -457,7 +550,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse loc numeric date missing nominal locale.
+     */
+    @Test
 	public void dateParseLocNumericDateMissingNominalLocale() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse_loc(4156111665112, MISSING_NOMINAL)");
@@ -469,7 +565,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse loc nominal date missing nominal locale.
+     */
+    @Test
 	public void dateParseLocNominalDateMissingNominalLocale() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse_loc(\"6/6/92\", MISSING_NOMINAL)");
@@ -480,7 +579,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse loc missing date locale.
+     */
+    @Test
 	public void dateParseLocMissingDateLocale() {
 		try {
 			getExpressionWithFunctionContext("date_parse_loc(4156111665112, MISSING_DATE)");
@@ -490,11 +592,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	/**
-	 * DateParseCustom tests
-	 */
-
-	@Test
+    /**
+     * DateParseCustom tests
+     */
+    @Test
 	public void dateParseCustom() {
 		try {
 			Locale locale = new Locale(String.valueOf("en"));
@@ -508,7 +609,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom two args.
+     */
+    @Test
 	public void dateParseCustomTwoArgs() {
 		try {
 			Locale locale = Locale.getDefault();
@@ -522,7 +626,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom invalid.
+     */
+    @Test
 	public void dateParseCustomInvalid() {
 		try {
 			getExpressionWithFunctionContext("date_parse_custom(1378072800000, \"MMMM d, yyyy\", \"en\")");
@@ -532,7 +639,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom wrong type 1.
+     */
+    @Test
 	public void dateParseCustomWrongType1() {
 		try {
 			getExpressionWithFunctionContext("date_parse_custom(123456789, \"MMMM d, yyyy\", \"en\")");
@@ -542,7 +652,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom wrong type 2.
+     */
+    @Test
 	public void dateParseCustomWrongType2() {
 		try {
 			getExpressionWithFunctionContext("date_parse_custom(\"September 2, 2013\", 1256, \"en\")");
@@ -552,7 +665,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom wrong type 3.
+     */
+    @Test
 	public void dateParseCustomWrongType3() {
 		try {
 			getExpressionWithFunctionContext("date_parse_custom(\"September 2, 2013\", \"MMMM d, yyyy\", 777)");
@@ -562,7 +678,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom no arg.
+     */
+    @Test
 	public void dateParseCustomNoArg() {
 		try {
 			getExpressionWithFunctionContext("date_parse_custom()");
@@ -572,7 +691,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom more args.
+     */
+    @Test
 	public void dateParseCustomMoreArgs() {
 		try {
 			getExpressionWithFunctionContext("date_parse_custom(\"September 2, 2013\", \"MMMM d, yyyy\", \"en\", 123)");
@@ -582,7 +704,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom less args.
+     */
+    @Test
 	public void dateParseCustomLessArgs() {
 		try {
 			getExpressionWithFunctionContext("date_parse_custom(\"September 2, 2013\")");
@@ -592,7 +717,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom missing nominal date.
+     */
+    @Test
 	public void dateParseCustomMissingNominalDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse_custom(MISSING_NOMINAL, \"MMMM d, yyyy\", \"en\")");
@@ -603,7 +731,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom missing numeric date.
+     */
+    @Test
 	public void dateParseCustomMissingNumericDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse_custom(MISSING_NUMERIC, \"MMMM d, yyyy\", \"en\")");
@@ -614,7 +745,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom missing date date.
+     */
+    @Test
 	public void dateParseCustomMissingDateDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse_custom(MISSING_DATE, \"MMMM d, yyyy\", \"en\")");
@@ -625,7 +759,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom missing nominal format.
+     */
+    @Test
 	public void dateParseCustomMissingNominalFormat() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse_custom(\"September 2, 2013\", MISSING_NOMINAL, \"en\")");
@@ -636,7 +773,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom missing numeric format.
+     */
+    @Test
 	public void dateParseCustomMissingNumericFormat() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse_custom(\"September 2, 2013\", MISSING_NUMERIC, \"en\")");
@@ -647,7 +787,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom missing nominal locale.
+     */
+    @Test
 	public void dateParseCustomMissingNominalLocale() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse_custom(\"September 2, 2013\", \"MMMM d, yyyy\", MISSING_NOMINAL)");
@@ -658,7 +801,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date parse custom missing numeric locale.
+     */
+    @Test
 	public void dateParseCustomMissingNumericLocale() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_parse_custom(\"September 2, 2013\", \"MMMM d, yyyy\", MISSING_NUMERIC)");
@@ -669,11 +815,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	/**
-	 * DateString tests
-	 */
-
-	@Test
+    /**
+     * DateString tests
+     */
+    @Test
 	public void dateString() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str(date_parse(123456789), DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME)");
@@ -684,7 +829,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string invalid 1.
+     */
+    @Test
 	public void dateStringInvalid1() {
 		try {
 			Expression exp = getExpressionWithFunctionContext("date_str(date_parse(123456789), \"456\", DATE_SHOW_DATE_AND_TIME)");
@@ -695,7 +843,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string invalid 2.
+     */
+    @Test
 	public void dateStringInvalid2() {
 		try {
 			Expression exp = getExpressionWithFunctionContext("date_str(date_parse(123456789), DATE_MEDIUM, \"789\")");
@@ -706,7 +857,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string wrong type 1.
+     */
+    @Test
 	public void dateStringWrongType1() {
 		try {
 			getExpressionWithFunctionContext("date_str(date_parse(123456789), 777, DATE_SHOW_DATE_AND_TIME)");
@@ -716,7 +870,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string wrong type 2.
+     */
+    @Test
 	public void dateStringWrongType2() {
 		try {
 			getExpressionWithFunctionContext("date_str(date_parse(123456789), DATE_MEDIUM, 777)");
@@ -726,7 +883,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string no arg.
+     */
+    @Test
 	public void dateStringNoArg() {
 		try {
 			getExpressionWithFunctionContext("date_str()");
@@ -736,7 +896,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string more args.
+     */
+    @Test
 	public void dateStringMoreArgs() {
 		try {
 			getExpressionWithFunctionContext("date_str(date_parse(123456789), DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME, 777)");
@@ -746,7 +909,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string less args.
+     */
+    @Test
 	public void dateStringLessArgs() {
 		try {
 			getExpressionWithFunctionContext("date_str(date_parse(123456789), DATE_MEDIUM)");
@@ -756,7 +922,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string missing date date.
+     */
+    @Test
 	public void dateStringMissingDateDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str(MISSING_DATE, DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME)");
@@ -767,7 +936,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string missing nominal date.
+     */
+    @Test
 	public void dateStringMissingNominalDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str(MISSING_NOMINAL, DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME)");
@@ -778,7 +950,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string missing nominal date size.
+     */
+    @Test
 	public void dateStringMissingNominalDateSize() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str(date_parse(123456789), MISSING_NOMINAL, DATE_SHOW_DATE_AND_TIME)");
@@ -789,7 +964,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string missing numeric date size.
+     */
+    @Test
 	public void dateStringMissingNumericDateSize() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str(date_parse(123456789), MISSING_NUMERIC, DATE_SHOW_DATE_AND_TIME)");
@@ -800,7 +978,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string missing nominal date format.
+     */
+    @Test
 	public void dateStringMissingNominalDateFormat() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str(date_parse(123456789), DATE_MEDIUM, MISSING_NOMINAL)");
@@ -811,7 +992,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string missing numeric date format.
+     */
+    @Test
 	public void dateStringMissingNumericDateFormat() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str(date_parse(123456789), DATE_MEDIUM, MISSING_NUMERIC)");
@@ -822,11 +1006,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	/**
-	 * DateStringWithLocale tests
-	 */
-
-	@Test
+    /**
+     * DateStringWithLocale tests
+     */
+    @Test
 	public void dateStringLocale() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME, \"en\")");
@@ -837,7 +1020,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale invalid 1.
+     */
+    @Test
 	public void dateStringLocaleInvalid1() {
 		try {
 			Expression exp = getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), \"777\", DATE_SHOW_DATE_AND_TIME, \"en\")");
@@ -848,7 +1034,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale invalid 2.
+     */
+    @Test
 	public void dateStringLocaleInvalid2() {
 		try {
 			Expression exp = getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), DATE_MEDIUM, \"777\", \"en\")");
@@ -859,7 +1048,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale invalid 3.
+     */
+    @Test
 	public void dateStringLocaleInvalid3() {
 		try {
 			getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME, 777)");
@@ -869,7 +1061,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale wrong type 1.
+     */
+    @Test
 	public void dateStringLocaleWrongType1() {
 		try {
 			getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), 777, DATE_SHOW_DATE_AND_TIME, \"en\")");
@@ -879,7 +1074,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale wrong type 2.
+     */
+    @Test
 	public void dateStringLocaleWrongType2() {
 		try {
 			getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), DATE_MEDIUM, 777, \"en\")");
@@ -889,7 +1087,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale wrong type 3.
+     */
+    @Test
 	public void dateStringLocaleWrongType3() {
 		try {
 			getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME, 777)");
@@ -899,7 +1100,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale no arg.
+     */
+    @Test
 	public void dateStringLocaleNoArg() {
 		try {
 			getExpressionWithFunctionContext("date_str_loc()");
@@ -909,7 +1113,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale more args.
+     */
+    @Test
 	public void dateStringLocaleMoreArgs() {
 		try {
 			getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME, \"en\", 777)");
@@ -919,7 +1126,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale less args.
+     */
+    @Test
 	public void dateStringLocaleLessArgs() {
 		try {
 			getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME)");
@@ -929,7 +1139,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale missing date date.
+     */
+    @Test
 	public void dateStringLocaleMissingDateDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_loc(MISSING_DATE, DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME, \"en\")");
@@ -940,7 +1153,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale missing nominal date.
+     */
+    @Test
 	public void dateStringLocaleMissingNominalDate() {
 		try {
 			getExpressionWithFunctionContext("date_str_loc(MISSING_NOMINAL, DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME, \"en\")");
@@ -950,7 +1166,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale missing nominal date size.
+     */
+    @Test
 	public void dateStringLocaleMissingNominalDateSize() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), MISSING_NOMINAL, DATE_SHOW_DATE_AND_TIME, \"en\")");
@@ -961,7 +1180,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale missing numeric date size.
+     */
+    @Test
 	public void dateStringLocaleMissingNumericDateSize() {
 		try {
 			getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), MISSING_NUMERIC, DATE_SHOW_DATE_AND_TIME, \"en\")");
@@ -971,7 +1193,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale missing nominal date format.
+     */
+    @Test
 	public void dateStringLocaleMissingNominalDateFormat() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), DATE_MEDIUM, MISSING_NOMINAL, \"en\")");
@@ -982,7 +1207,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale missing numeric date format.
+     */
+    @Test
 	public void dateStringLocaleMissingNumericDateFormat() {
 		try {
 			getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), DATE_MEDIUM, MISSING_NUMERIC, \"en\")");
@@ -992,7 +1220,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale missing nominal locale.
+     */
+    @Test
 	public void dateStringLocaleMissingNominalLocale() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME, MISSING_NOMINAL)");
@@ -1003,7 +1234,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string locale missing numeric locale.
+     */
+    @Test
 	public void dateStringLocaleMissingNumericLocale() {
 		try {
 			getExpressionWithFunctionContext("date_str_loc(date_parse(123456789), DATE_MEDIUM, DATE_SHOW_DATE_AND_TIME, MISSING_NUMERIC)");
@@ -1013,9 +1247,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	/** DateStringCustom tests */
-
-	@Test
+    /**
+     * DateStringCustom tests
+     */
+    @Test
 	public void dateStringCustom() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), \"dd.MM.yy\")");
@@ -1026,7 +1261,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom with locale.
+     */
+    @Test
 	public void dateStringCustomWithLocale() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), \"dd.MM.yy\", \"de\")");
@@ -1037,7 +1275,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom wrong type 1.
+     */
+    @Test
 	public void dateStringCustomWrongType1() {
 		try {
 			getExpressionWithFunctionContext("date_str_custom(777, \"dd.MM.yy\", \"de\")");
@@ -1047,7 +1288,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom wrong type 2.
+     */
+    @Test
 	public void dateStringCustomWrongType2() {
 		try {
 			getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), 777, \"de\")");
@@ -1057,7 +1301,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom wrong type 3.
+     */
+    @Test
 	public void dateStringCustomWrongType3() {
 		try {
 			getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), \"dd.MM.yy\", 777)");
@@ -1067,7 +1314,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom invalid 1.
+     */
+    @Test
 	public void dateStringCustomInvalid1() {
 		try {
 			getExpressionWithFunctionContext("date_str_custom(\"777\", \"dd.MM.yy\", \"de\")");
@@ -1077,7 +1327,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom invalid 2.
+     */
+    @Test
 	public void dateStringCustomInvalid2() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), \"777\", \"de\")");
@@ -1088,7 +1341,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom invalid 3.
+     */
+    @Test
 	public void dateStringCustomInvalid3() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), \"dd.MM.yy\", \"777\")");
@@ -1099,7 +1355,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom no arg.
+     */
+    @Test
 	public void dateStringCustomNoArg() {
 		try {
 			getExpressionWithFunctionContext("date_str_custom()");
@@ -1109,7 +1368,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom more args.
+     */
+    @Test
 	public void dateStringCustomMoreArgs() {
 		try {
 			getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), \"dd.MM.yy\", \"de\", 777)");
@@ -1119,7 +1381,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom less args.
+     */
+    @Test
 	public void dateStringCustomLessArgs() {
 		try {
 			getExpressionWithFunctionContext("date_str_custom(date_parse(123456789)");
@@ -1129,7 +1394,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom without locale missing date date.
+     */
+    @Test
 	public void dateStringCustomWithoutLocaleMissingDateDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_custom(MISSING_DATE, \"dd.MM.yy\")");
@@ -1140,7 +1408,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom without locale missing nominal date.
+     */
+    @Test
 	public void dateStringCustomWithoutLocaleMissingNominalDate() {
 		try {
 			getExpressionWithFunctionContext("date_str_custom(MISSING_NOMINAL, \"dd.MM.yy\")");
@@ -1150,7 +1421,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom without locale missing nominal date format.
+     */
+    @Test
 	public void dateStringCustomWithoutLocaleMissingNominalDateFormat() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), MISSING_NOMINAL)");
@@ -1161,7 +1435,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom without locale missing numeric date format.
+     */
+    @Test
 	public void dateStringCustomWithoutLocaleMissingNumericDateFormat() {
 		try {
 			getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), MISSING_NUMERIC)");
@@ -1171,7 +1448,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom with locale missing date date.
+     */
+    @Test
 	public void dateStringCustomWithLocaleMissingDateDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_custom(MISSING_DATE, \"dd.MM.yy\", \"de\")");
@@ -1182,7 +1462,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom with locale missing nominal date.
+     */
+    @Test
 	public void dateStringCustomWithLocaleMissingNominalDate() {
 		try {
 			getExpressionWithFunctionContext("date_str_custom(MISSING_NOMINAL, \"dd.MM.yy\", \"de\")");
@@ -1192,7 +1475,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom with locale missing nominal date format.
+     */
+    @Test
 	public void dateStringCustomWithLocaleMissingNominalDateFormat() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), MISSING_NOMINAL, \"de\")");
@@ -1203,7 +1489,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom with locale missing numeric date format.
+     */
+    @Test
 	public void dateStringCustomWithLocaleMissingNumericDateFormat() {
 		try {
 			getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), MISSING_NUMERIC, \"de\")");
@@ -1213,7 +1502,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom with locale missing nominal locale.
+     */
+    @Test
 	public void dateStringCustomWithLocaleMissingNominalLocale() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), \"dd.MM.yy\", MISSING_NOMINAL)");
@@ -1224,7 +1516,10 @@ public class AntlrParserConversionTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date string custom with locale missing numeric locale.
+     */
+    @Test
 	public void dateStringCustomWithLocaleMissingNumericLocale() {
 		try {
 			getExpressionWithFunctionContext("date_str_custom(date_parse(123456789), \"dd.MM.yy\", MISSING_NUMERIC)");

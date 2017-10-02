@@ -25,7 +25,7 @@ import java.util.logging.Level;
 
 /**
  * The superclass for all attribute statistics objects.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class UnknownStatistics implements Statistics {
@@ -34,7 +34,10 @@ public class UnknownStatistics implements Statistics {
 
 	private int unknownCounter = 0;
 
-	public UnknownStatistics() {}
+    /**
+     * Instantiates a new Unknown statistics.
+     */
+    public UnknownStatistics() {}
 
 	/** Clone constructor. */
 	private UnknownStatistics(UnknownStatistics other) {

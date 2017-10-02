@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is att1 - (int)att1.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class TriangularFunction extends RegressionFunction {

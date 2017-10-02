@@ -34,19 +34,17 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
 
 
 /**
- *
  * A {@link Function} parsing a date to a string with respect to the pattern and optional locale.
  *
  * @author Marcel Seifert
- *
  */
 public class DateStringCustom extends AbstractFunction {
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 */
-	public DateStringCustom() {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     */
+    public DateStringCustom() {
 		super("conversion.date_str_custom", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, Ontology.NOMINAL);
 	}
 
@@ -61,14 +59,13 @@ public class DateStringCustom extends AbstractFunction {
 		return new SimpleExpressionEvaluator(makeStringCallable(inputEvaluators), type, isResultConstant(inputEvaluators));
 	}
 
-	/**
-	 * Builds a String Callable from one date and three string arguments
-	 *
-	 * @param inputEvaluators
-	 *            the input
-	 * @return the resulting callable<String>
-	 */
-	protected Callable<String> makeStringCallable(final ExpressionEvaluator inputEvaluators[]) {
+    /**
+     * Builds a String Callable from one date and three string arguments
+     *
+     * @param inputEvaluators the input
+     * @return the resulting callable<String>
+     */
+    protected Callable<String> makeStringCallable(final ExpressionEvaluator inputEvaluators[]) {
 
 		final ExpressionEvaluator date = inputEvaluators[0];
 		final ExpressionEvaluator pattern = inputEvaluators[1];
@@ -209,33 +206,28 @@ public class DateStringCustom extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result for one date and one string input value.
-	 *
-	 * @param dateDate
-	 *            the input date
-	 * @param patternString
-	 *            the pattern string
-	 * @return the result of the computation.
-	 */
-	protected String compute(Date dateDate, String patternString) {
+    /**
+     * Computes the result for one date and one string input value.
+     *
+     * @param dateDate      the input date
+     * @param patternString the pattern string
+     * @return the result of the computation.
+     */
+    protected String compute(Date dateDate, String patternString) {
 		String defaultLocale = Locale.getDefault().getISO3Language();
 
 		return compute(dateDate, patternString, defaultLocale);
 	}
 
-	/**
-	 * Computes the result for one date and two string input values.
-	 *
-	 * @param dateDate
-	 *            the input date
-	 * @param patternString
-	 *            the pattern string
-	 * @param localeString
-	 *            the locale string
-	 * @return the result of the computation.
-	 */
-	protected String compute(Date dateDate, String patternString, String localeString) {
+    /**
+     * Computes the result for one date and two string input values.
+     *
+     * @param dateDate      the input date
+     * @param patternString the pattern string
+     * @param localeString  the locale string
+     * @return the result of the computation.
+     */
+    protected String compute(Date dateDate, String patternString, String localeString) {
 		if (dateDate == null || patternString == null || localeString == null) {
 			return null;
 		}

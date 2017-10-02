@@ -43,16 +43,27 @@ import java.util.List;
 /**
  * This operator creates all products of the specified attributes. The attribute names can be
  * specified by regular expressions.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ProductGenerationOperator extends AbstractFeatureConstruction {
 
-	public static final String PARAMETER_FIRST_ATTRIBUTE_NAME = "first_attribute_name";
+    /**
+     * The constant PARAMETER_FIRST_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_FIRST_ATTRIBUTE_NAME = "first_attribute_name";
 
-	public static final String PARAMETER_SECOND_ATTRIBUTE_NAME = "second_attribute_name";
+    /**
+     * The constant PARAMETER_SECOND_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_SECOND_ATTRIBUTE_NAME = "second_attribute_name";
 
-	public ProductGenerationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Product generation operator.
+     *
+     * @param description the description
+     */
+    public ProductGenerationOperator(OperatorDescription description) {
 		super(description);
 	}
 

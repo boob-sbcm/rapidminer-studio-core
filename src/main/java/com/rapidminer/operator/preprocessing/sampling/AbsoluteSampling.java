@@ -42,15 +42,22 @@ import java.util.List;
  * complete data set. Please note that this operator does not sample during a data scan but jumps to
  * the rows. It should therefore only be used in case of memory data management and not, for
  * example, for database or file management.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AbsoluteSampling extends AbstractSamplingOperator {
 
-	/** The parameter name for &quot;The number of examples which should be sampled&quot; */
-	public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
+    /**
+     * The parameter name for &quot;The number of examples which should be sampled&quot;
+     */
+    public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
 
-	public AbsoluteSampling(OperatorDescription description) {
+    /**
+     * Instantiates a new Absolute sampling.
+     *
+     * @param description the description
+     */
+    public AbsoluteSampling(OperatorDescription description) {
 		super(description);
 	}
 

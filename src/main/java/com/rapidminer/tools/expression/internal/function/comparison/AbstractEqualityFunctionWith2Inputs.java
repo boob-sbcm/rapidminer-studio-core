@@ -39,10 +39,12 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  */
 public abstract class AbstractEqualityFunctionWith2Inputs extends AbstractFunction {
 
-	/**
-	 * Constructs an equality check Function with 2 parameters with {@link FunctionDescription}
-	 */
-	public AbstractEqualityFunctionWith2Inputs(String i18nKey) {
+    /**
+     * Constructs an equality check Function with 2 parameters with {@link FunctionDescription}
+     *
+     * @param i18nKey the 18 n key
+     */
+    public AbstractEqualityFunctionWith2Inputs(String i18nKey) {
 		super(i18nKey, 2, Ontology.BINOMINAL);
 	}
 
@@ -60,17 +62,15 @@ public abstract class AbstractEqualityFunctionWith2Inputs extends AbstractFuncti
 		return new SimpleExpressionEvaluator(makeBooleanCallable(left, right), isResultConstant(inputEvaluators), type);
 	}
 
-	/**
-	 * Builds a boolean callable from two {@link ExpressionEvaluator}s, where constant child results
-	 * are evaluated.
-	 *
-	 * @param left
-	 *            {@link ExpressionEvaluator}
-	 * @param right
-	 *            {@link ExpressionEvaluator}
-	 * @return the resulting boolean callable
-	 */
-	protected Callable<Boolean> makeBooleanCallable(ExpressionEvaluator left, ExpressionEvaluator right) {
+    /**
+     * Builds a boolean callable from two {@link ExpressionEvaluator}s, where constant child results
+     * are evaluated.
+     *
+     * @param left  {@link ExpressionEvaluator}
+     * @param right {@link ExpressionEvaluator}
+     * @return the resulting boolean callable
+     */
+    protected Callable<Boolean> makeBooleanCallable(ExpressionEvaluator left, ExpressionEvaluator right) {
 
 		ExpressionType leftType = left.getType();
 		ExpressionType rightType = right.getType();
@@ -718,193 +718,161 @@ public abstract class AbstractEqualityFunctionWith2Inputs extends AbstractFuncti
 		}
 	}
 
-	/**
-	 * Computes the result for two double values.
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(double left, double right);
+    /**
+     * Computes the result for two double values.
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(double left, double right);
 
-	/**
-	 * Computes the result for a double and a boolean value
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(double left, Boolean right);
+    /**
+     * Computes the result for a double and a boolean value
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(double left, Boolean right);
 
-	/**
-	 * Computes the result for a boolean and a double value
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected Boolean compute(Boolean left, double right) {
+    /**
+     * Computes the result for a boolean and a double value
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected Boolean compute(Boolean left, double right) {
 		return compute(right, left);
 	}
 
-	/**
-	 * Computes the result for a double and a String value
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(double left, String right);
+    /**
+     * Computes the result for a double and a String value
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(double left, String right);
 
-	/**
-	 * Computes the result for a String and a double value
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected Boolean compute(String left, double right) {
+    /**
+     * Computes the result for a String and a double value
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected Boolean compute(String left, double right) {
 		return compute(right, left);
 	}
 
-	/**
-	 * Computes the result for a double value and a date
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(double left, Date right);
+    /**
+     * Computes the result for a double value and a date
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(double left, Date right);
 
-	/**
-	 * Computes the result for a date value and a double value
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected Boolean compute(Date left, double right) {
+    /**
+     * Computes the result for a date value and a double value
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected Boolean compute(Date left, double right) {
 		return compute(right, left);
 	}
 
-	/**
-	 * Computes the result for two boolean values.
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(Boolean left, Boolean right);
+    /**
+     * Computes the result for two boolean values.
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(Boolean left, Boolean right);
 
-	/**
-	 * Computes the result for a boolean and a String value
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(Boolean left, String right);
+    /**
+     * Computes the result for a boolean and a String value
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(Boolean left, String right);
 
-	/**
-	 * Computes the result for a String value and a boolean value
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected Boolean compute(String left, Boolean right) {
+    /**
+     * Computes the result for a String value and a boolean value
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected Boolean compute(String left, Boolean right) {
 		return compute(right, left);
 	}
 
-	/**
-	 * Computes the result for a boolean value and a String value
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(Boolean left, Date right);
+    /**
+     * Computes the result for a boolean value and a String value
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(Boolean left, Date right);
 
-	/**
-	 * Computes the result for a date value and a boolean value
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected Boolean compute(Date left, Boolean right) {
+    /**
+     * Computes the result for a date value and a boolean value
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected Boolean compute(Date left, Boolean right) {
 		return compute(right, left);
 	}
 
-	/**
-	 * Computes the result for two String values.
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(String left, String right);
+    /**
+     * Computes the result for two String values.
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(String left, String right);
 
-	/**
-	 * Computes the result for a String value and a Date value
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(String left, Date right);
+    /**
+     * Computes the result for a String value and a Date value
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(String left, Date right);
 
-	/**
-	 * Computes the result for a Date value and a String value
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected Boolean compute(Date left, String right) {
+    /**
+     * Computes the result for a Date value and a String value
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected Boolean compute(Date left, String right) {
 		return compute(right, left);
 	}
 
-	/**
-	 * Computes the result for two Date values.
-	 *
-	 * @param left
-	 *            value
-	 * @param right
-	 *            value
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(Date left, Date right);
+    /**
+     * Computes the result for two Date values.
+     *
+     * @param left  value
+     * @param right value
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(Date left, Date right);
 
 	@Override
 	protected ExpressionType computeType(ExpressionType... inputTypes) {

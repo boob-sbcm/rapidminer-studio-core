@@ -29,7 +29,7 @@ import java.util.Iterator;
 
 /**
  * The soft margin loss of a classifier, defined as the average over all 1 - y * f(x).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SoftMarginLoss extends MeasuredPerformance {
@@ -42,10 +42,17 @@ public class SoftMarginLoss extends MeasuredPerformance {
 	/** A counter for average building. */
 	private double counter = 1;
 
-	/** Clone constructor. */
-	public SoftMarginLoss() {}
+    /**
+     * Clone constructor.
+     */
+    public SoftMarginLoss() {}
 
-	public SoftMarginLoss(SoftMarginLoss m) {
+    /**
+     * Instantiates a new Soft margin loss.
+     *
+     * @param m the m
+     */
+    public SoftMarginLoss(SoftMarginLoss m) {
 		super(m);
 		this.margin = m.margin;
 		this.counter = m.counter;

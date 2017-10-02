@@ -20,15 +20,23 @@ package com.rapidminer.tools;
 
 /**
  * An observer that fires another observable on any update.
- * 
+ *
+ * @param <T1> the type parameter
+ * @param <T2> the type parameter
  * @author Simon Fischer
- * */
+ */
 public class DelegatingObserver<T1, T2> implements Observer<T1> {
 
 	private final AbstractObservable<T2> target;
 	private final T2 argument;
 
-	public DelegatingObserver(AbstractObservable<T2> target, T2 argument) {
+    /**
+     * Instantiates a new Delegating observer.
+     *
+     * @param target   the target
+     * @param argument the argument
+     */
+    public DelegatingObserver(AbstractObservable<T2> target, T2 argument) {
 		super();
 		this.target = target;
 		this.argument = argument;

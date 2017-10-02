@@ -34,13 +34,15 @@ import com.rapidminer.tools.expression.internal.antlr.AntlrParser;
  * Tests the results of {@link AntlrParser#parse(String)} for rounding functions.
  *
  * @author David Arnu, Thilo Kamradt
- *
  */
 public class AntlrParserRoundingTest extends AntlrParserTest {
 
 	// round
 
-	@Test
+    /**
+     * Round down simple.
+     */
+    @Test
 	public void roundDownSimple() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(1.4)");
@@ -51,7 +53,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round up simple.
+     */
+    @Test
 	public void roundUpSimple() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(1.7)");
@@ -62,7 +67,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round 1 argument infinity.
+     */
+    @Test
 	public void round1ArgumentInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(INFINITY)");
@@ -73,7 +81,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round down 2 args.
+     */
+    @Test
 	public void roundDown2Args() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(1.3333,2)");
@@ -84,7 +95,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round up 2 args.
+     */
+    @Test
 	public void roundUp2Args() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(1.666,2)");
@@ -95,7 +109,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round up 2 args negative.
+     */
+    @Test
 	public void roundUp2ArgsNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(-1.666,2)");
@@ -106,7 +123,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round up 2 args double.
+     */
+    @Test
 	public void roundUp2ArgsDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(1.666,2.5)");
@@ -117,7 +137,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round down 2 args double.
+     */
+    @Test
 	public void roundDown2ArgsDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(1.3333,2.5)");
@@ -128,7 +151,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round 2 argument infinity 1.
+     */
+    @Test
 	public void round2ArgumentInfinity1() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(INFINITY, 2)");
@@ -139,7 +165,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round 2 argument infinity 2.
+     */
+    @Test
 	public void round2ArgumentInfinity2() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(2, INFINITY)");
@@ -150,7 +179,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round 2 argument neg infinity.
+     */
+    @Test
 	public void round2ArgumentNegInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(2, -INFINITY)");
@@ -161,7 +193,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round 2 argument negative precission.
+     */
+    @Test
 	public void round2ArgumentNegativePrecission() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(2, -5)");
@@ -172,7 +207,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round missing 1 argument.
+     */
+    @Test
 	public void roundMissing1Argument() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(MISSING_NUMERIC)");
@@ -183,7 +221,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round missing 2 argument first.
+     */
+    @Test
 	public void roundMissing2ArgumentFirst() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(MISSING_NUMERIC, 5)");
@@ -194,7 +235,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round missing 2 argument second.
+     */
+    @Test
 	public void roundMissing2ArgumentSecond() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(5.55,MISSING_NUMERIC)");
@@ -205,7 +249,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round empty.
+     */
+    @Test
 	public void roundEmpty() {
 		try {
 			getExpressionWithFunctionContext("round()");
@@ -215,7 +262,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round wrong type.
+     */
+    @Test
 	public void roundWrongType() {
 		try {
 			getExpressionWithFunctionContext("round(\"aa\")");
@@ -225,7 +275,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Round wrong types.
+     */
+    @Test
 	public void roundWrongTypes() {
 		try {
 			getExpressionWithFunctionContext("round(\"aa\", \"bb\")");
@@ -237,7 +290,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 
 	// rint
 
-	@Test
+    /**
+     * Rint down simple.
+     */
+    @Test
 	public void rintDownSimple() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(2.5)");
@@ -248,7 +304,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint up simple.
+     */
+    @Test
 	public void rintUpSimple() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(1.5)");
@@ -259,7 +318,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint 1 argument infinity.
+     */
+    @Test
 	public void rint1ArgumentInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(INFINITY)");
@@ -270,7 +332,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint down 2 args.
+     */
+    @Test
 	public void rintDown2Args() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(1.3333,2)");
@@ -281,7 +346,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint up 2 args.
+     */
+    @Test
 	public void rintUp2Args() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(1.666,2)");
@@ -292,7 +360,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint up 2 args negative.
+     */
+    @Test
 	public void rintUp2ArgsNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(-1.666,2)");
@@ -303,7 +374,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint up 2 args double.
+     */
+    @Test
 	public void rintUp2ArgsDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(1.666,2.5)");
@@ -314,7 +388,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint down 2 args double.
+     */
+    @Test
 	public void rintDown2ArgsDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(1.3333,2.5)");
@@ -325,7 +402,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint 2 argument infinity 1.
+     */
+    @Test
 	public void rint2ArgumentInfinity1() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(INFINITY, 2)");
@@ -336,7 +416,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint 2 argument infinity 2.
+     */
+    @Test
 	public void rint2ArgumentInfinity2() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(2, INFINITY)");
@@ -347,7 +430,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint 2 argument neg infinity.
+     */
+    @Test
 	public void rint2ArgumentNegInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(2, -INFINITY)");
@@ -358,7 +444,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint 2 argument negative precission.
+     */
+    @Test
 	public void rint2ArgumentNegativePrecission() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("round(2562, -3)");
@@ -369,7 +458,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint missing 1 argument.
+     */
+    @Test
 	public void rintMissing1Argument() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(MISSING_NUMERIC)");
@@ -380,7 +472,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint missing 2 argument first.
+     */
+    @Test
 	public void rintMissing2ArgumentFirst() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(MISSING_NUMERIC, 5)");
@@ -391,7 +486,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint missing 2 argument second.
+     */
+    @Test
 	public void rintMissing2ArgumentSecond() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("rint(5.55,MISSING_NUMERIC)");
@@ -402,7 +500,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint empty.
+     */
+    @Test
 	public void rintEmpty() {
 		try {
 			getExpressionWithFunctionContext("rint()");
@@ -412,7 +513,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint wrong type.
+     */
+    @Test
 	public void rintWrongType() {
 		try {
 			getExpressionWithFunctionContext("rint(\"aa\")");
@@ -422,7 +526,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Rint wrong types.
+     */
+    @Test
 	public void rintWrongTypes() {
 		try {
 			getExpressionWithFunctionContext("rint(\"aa\", \"bb\")");
@@ -434,7 +541,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 
 	// floor
 
-	@Test
+    /**
+     * Floor down simple.
+     */
+    @Test
 	public void floorDownSimple() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("floor(2.5)");
@@ -445,7 +555,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Floor down simple negative.
+     */
+    @Test
 	public void floorDownSimpleNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("floor(-2.5)");
@@ -456,7 +569,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Floor 1 argument infinity.
+     */
+    @Test
 	public void floor1ArgumentInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("floor(INFINITY)");
@@ -467,7 +583,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Floor 1 argument neg infinity.
+     */
+    @Test
 	public void floor1ArgumentNegInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("floor(-INFINITY)");
@@ -478,7 +597,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Floor missing 1 argument.
+     */
+    @Test
 	public void floorMissing1Argument() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("floor(MISSING_NUMERIC)");
@@ -489,7 +611,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Floor empty.
+     */
+    @Test
 	public void floorEmpty() {
 		try {
 			getExpressionWithFunctionContext("floor()");
@@ -499,7 +624,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Floor wrong type.
+     */
+    @Test
 	public void floorWrongType() {
 		try {
 			getExpressionWithFunctionContext("floor(\"aa\")");
@@ -511,7 +639,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 
 	// ceil
 
-	@Test
+    /**
+     * Ceil simple.
+     */
+    @Test
 	public void ceilSimple() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ceil(2.5)");
@@ -522,7 +653,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ceil simple negative.
+     */
+    @Test
 	public void ceilSimpleNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ceil(-2.5)");
@@ -533,7 +667,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ceil 1 argument infinity.
+     */
+    @Test
 	public void ceil1ArgumentInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ceil(INFINITY)");
@@ -544,7 +681,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ceil 1 argument neg infinity.
+     */
+    @Test
 	public void ceil1ArgumentNegInfinity() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ceil(-INFINITY)");
@@ -555,7 +695,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ceil missing 1 argument.
+     */
+    @Test
 	public void ceilMissing1Argument() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ceil(MISSING_NUMERIC)");
@@ -566,7 +709,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ceil empty.
+     */
+    @Test
 	public void ceilEmpty() {
 		try {
 			getExpressionWithFunctionContext("ceil()");
@@ -576,7 +722,10 @@ public class AntlrParserRoundingTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ceil wrong type.
+     */
+    @Test
 	public void ceilWrongType() {
 		try {
 			getExpressionWithFunctionContext("ceil(\"aa\")");

@@ -31,13 +31,13 @@ import java.util.regex.Pattern;
  * A simple line converter for reading data from BufferedReaders. Each line is separated into
  * columns using a pattern matcher based on regular expressions. In addition, comments might be also
  * defined. Everything after a comment character is completely ignored.
- * 
+ * <p>
  * Quotes might also be used. If a columns starts with a quote (&quot;) the end of the quoted region
  * is searched and the corresponding columns build a new column which replaces the old ones. Quoting
  * is added for compatibility reasons only. Since parsing is slower if quoting is used, quotes
  * should not be used at all. If possible please use and define a column separator which is not part
  * of your data.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RapidMinerLineReader {
@@ -66,8 +66,18 @@ public class RapidMinerLineReader {
 	/** Indicates if error lines should be skipped or if an error should occur. */
 	private boolean skipErrorLines;
 
-	/** Indicates if quoting (&quot;) can be used to form. */
-	public RapidMinerLineReader(String separatorsRegExpr, char[] commentChars, boolean useQuotes, char quoteChar,
+    /**
+     * Indicates if quoting (&quot;) can be used to form.  @param separatorsRegExpr the separators reg expr
+     *
+     * @param separatorsRegExpr the separators reg expr
+     * @param commentChars      the comment chars
+     * @param useQuotes         the use quotes
+     * @param quoteChar         the quote char
+     * @param escapeChar        the escape char
+     * @param trimLines         the trim lines
+     * @param skipErrorLines    the skip error lines
+     */
+    public RapidMinerLineReader(String separatorsRegExpr, char[] commentChars, boolean useQuotes, char quoteChar,
 			char escapeChar, boolean trimLines, boolean skipErrorLines) {
 		this.separatorPattern = Pattern.compile(separatorsRegExpr);
 		if (commentChars != null) {
@@ -83,13 +93,18 @@ public class RapidMinerLineReader {
 		this.skipErrorLines = skipErrorLines;
 	}
 
-	/**
-	 * Ignores comment and empty lines and returns the first line not starting with a comment.
-	 * Returns null if no such line exists. Throws an IOException if the line does not provide the
-	 * given expected number of columns. This check will not be performed if the given parameter
-	 * value is -1.
-	 */
-	public String[] readLine(BufferedReader in, int expectedNumberOfColumns) throws IOException {
+    /**
+     * Ignores comment and empty lines and returns the first line not starting with a comment.
+     * Returns null if no such line exists. Throws an IOException if the line does not provide the
+     * given expected number of columns. This check will not be performed if the given parameter
+     * value is -1.
+     *
+     * @param in                      the in
+     * @param expectedNumberOfColumns the expected number of columns
+     * @return the string [ ]
+     * @throws IOException the io exception
+     */
+    public String[] readLine(BufferedReader in, int expectedNumberOfColumns) throws IOException {
 		String line = null;
 		while (line == null) {
 			line = in.readLine();

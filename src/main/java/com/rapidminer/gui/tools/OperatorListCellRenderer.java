@@ -43,7 +43,12 @@ public class OperatorListCellRenderer extends DefaultListCellRenderer {
 
 	private boolean coloredBackground;
 
-	public OperatorListCellRenderer(boolean coloredBackground) {
+    /**
+     * Instantiates a new Operator list cell renderer.
+     *
+     * @param coloredBackground the colored background
+     */
+    public OperatorListCellRenderer(boolean coloredBackground) {
 		this.coloredBackground = coloredBackground;
 	}
 

@@ -40,7 +40,15 @@ final class DoubleAutoDenseChunk extends DoubleAutoChunk {
 
 	private double[] data = AutoColumnUtils.EMPTY_DOUBLE_ARRAY;
 
-	DoubleAutoDenseChunk(DoubleAutoChunk[] chunks, int id, int size, DataManagement management) {
+    /**
+     * Instantiates a new Double auto dense chunk.
+     *
+     * @param chunks     the chunks
+     * @param id         the id
+     * @param size       the size
+     * @param management the management
+     */
+    DoubleAutoDenseChunk(DoubleAutoChunk[] chunks, int id, int size, DataManagement management) {
 		super(id, chunks, management);
 		ensure(size);
 	}

@@ -37,12 +37,15 @@ import com.rapidminer.repository.gui.RepositoryTree;
  * Abstract superclass of actions that are executed on subclasses of {@link Entry}. Automatically
  * enables/disables itself.
  *
+ * @param <T> the type parameter
  * @author Simon Fischer, Adrian Wilke
  */
 public abstract class AbstractRepositoryAction<T extends Entry> extends ResourceAction {
 
-	/** the tree to which the action belongs to */
-	protected final RepositoryTree tree;
+    /**
+     * the tree to which the action belongs to
+     */
+    protected final RepositoryTree tree;
 
 	/** the required selection type for the action to show/enable */
 	private final Class<T> requiredSelectionType;
@@ -52,7 +55,15 @@ public abstract class AbstractRepositoryAction<T extends Entry> extends Resource
 
 	private static final long serialVersionUID = -6415235351430454776L;
 
-	public AbstractRepositoryAction(RepositoryTree tree, Class<T> requiredSelectionType, boolean needsWriteAccess,
+    /**
+     * Instantiates a new Abstract repository action.
+     *
+     * @param tree                  the tree
+     * @param requiredSelectionType the required selection type
+     * @param needsWriteAccess      the needs write access
+     * @param i18nKey               the 18 n key
+     */
+    public AbstractRepositoryAction(RepositoryTree tree, Class<T> requiredSelectionType, boolean needsWriteAccess,
 			String i18nKey) {
 		super(true, i18nKey);
 		this.tree = tree;
@@ -67,10 +78,10 @@ public abstract class AbstractRepositoryAction<T extends Entry> extends Resource
 		// so ignore ConditionalAction mechanism
 	}
 
-	/**
-	 * Enables action, if every entry exists and can be written if needed.
-	 */
-	public void enable() {
+    /**
+     * Enables action, if every entry exists and can be written if needed.
+     */
+    public void enable() {
 
 		// Do not treat entries, whose are already included in selected folders
 		List<Entry> entries = removeIntersectedEntries(tree.getSelectedEntries());
@@ -153,14 +164,22 @@ public abstract class AbstractRepositoryAction<T extends Entry> extends Resource
 		}
 	}
 
-	public abstract void actionPerformed(T cast);
+    /**
+     * Action performed.
+     *
+     * @param cast the cast
+     */
+    public abstract void actionPerformed(T cast);
 
-	/**
-	 * Removes entries from list, which are already included in parent entries
-	 *
-	 * Example: [/1/2/3, /1, /1/2] becomes [/1]
-	 */
-	protected List<Entry> removeIntersectedEntries(List<Entry> entries) {
+    /**
+     * Removes entries from list, which are already included in parent entries
+     * <p>
+     * Example: [/1/2/3, /1, /1/2] becomes [/1]
+     *
+     * @param entries the entries
+     * @return the list
+     */
+    protected List<Entry> removeIntersectedEntries(List<Entry> entries) {
 
 		// Get locations of entries
 		List<RepositoryLocation> locations = new LinkedList<>();

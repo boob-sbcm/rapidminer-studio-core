@@ -28,17 +28,19 @@ import com.rapidminer.operator.learner.functions.kernel.rvm.util.SECholeskyDecom
 
 /**
  * Test our SE99-based cholesky decomposition.
- * 
- * @author Piotr Kasprzak
  *
+ * @author Piotr Kasprzak
  */
 public class SECDTest extends TestCase {
 
 	private SECholeskyDecomposition cd;
 	
 	private Matrix L, PTR;
-	
-	@Test
+
+    /**
+     * Test paper example 1.
+     */
+    @Test
 	public void testPaperExample1() {
 		
 		double[][] A = {{  1890.3, -1705.6, -315.8,  3000.3},
@@ -55,7 +57,10 @@ public class SECDTest extends TestCase {
 		LTL.toString();
 	}
 
-	@Test
+    /**
+     * Test paper example 2.
+     */
+    @Test
 	public void testPaperExample2() {
 		
 		double[][] A = {{ 14.8253, -6.4243,   7.8746,  -1.2498, 10.2733, 10.2733},
@@ -73,8 +78,11 @@ public class SECDTest extends TestCase {
 		Matrix LTL = PTR.times((L.times(L.transpose())).times(PTR.transpose()));
 		LTL.toString();
 	}
-		
-	@Test	
+
+    /**
+     * Test swapping.
+     */
+    @Test
 	public void testSwapping() {
 		
 		double[][] A = new double[4][4];

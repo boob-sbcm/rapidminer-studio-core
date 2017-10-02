@@ -28,7 +28,7 @@ import java.util.Iterator;
  * {@link com.rapidminer.datatable.CorrelationMatrixRow2DataTableRowWrapper} objects. If matrix is
  * symetrical, it will iterate only over the pairs of the lower left triangle of the matrix, sparing
  * the diagonal. Otherwise it will return all pairs.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class PairwiseMatrix2DataTableRowIterator implements Iterator<DataTableRow> {
@@ -41,19 +41,24 @@ public class PairwiseMatrix2DataTableRowIterator implements Iterator<DataTableRo
 
 	private boolean showSymetrically;
 
-	/**
-	 * Creates a new DataTable iterator for the given numerical matrix. If the idAttribute is null
-	 * the DataTableRows will not be able to deliver an Id.
-	 */
-	public PairwiseMatrix2DataTableRowIterator(NumericalMatrix matrix) {
+    /**
+     * Creates a new DataTable iterator for the given numerical matrix. If the idAttribute is null
+     * the DataTableRows will not be able to deliver an Id.
+     *
+     * @param matrix the matrix
+     */
+    public PairwiseMatrix2DataTableRowIterator(NumericalMatrix matrix) {
 		this(matrix, true);
 	}
 
-	/**
-	 * Creates a new iterator that will show the matrix symetrically only if matrix is symetrically
-	 * and parameter showSymetrically is true.
-	 */
-	public PairwiseMatrix2DataTableRowIterator(NumericalMatrix matrix, boolean showSymetrically) {
+    /**
+     * Creates a new iterator that will show the matrix symetrically only if matrix is symetrically
+     * and parameter showSymetrically is true.
+     *
+     * @param matrix           the matrix
+     * @param showSymetrically the show symetrically
+     */
+    public PairwiseMatrix2DataTableRowIterator(NumericalMatrix matrix, boolean showSymetrically) {
 		this.showSymetrically = showSymetrically;
 		this.matrix = matrix;
 		this.firstAttribute = 0;

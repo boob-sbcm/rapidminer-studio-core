@@ -31,18 +31,29 @@ import javax.swing.text.Segment;
 
 /**
  * HTML token marker.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class HTMLTokenMarker extends TokenMarker {
 
-	public static final byte JAVASCRIPT = Token.INTERNAL_FIRST;
+    /**
+     * The constant JAVASCRIPT.
+     */
+    public static final byte JAVASCRIPT = Token.INTERNAL_FIRST;
 
-	public HTMLTokenMarker() {
+    /**
+     * Instantiates a new Html token marker.
+     */
+    public HTMLTokenMarker() {
 		this(true);
 	}
 
-	public HTMLTokenMarker(boolean js) {
+    /**
+     * Instantiates a new Html token marker.
+     *
+     * @param js the js
+     */
+    public HTMLTokenMarker(boolean js) {
 		this.js = js;
 		keywords = JavaScriptTokenMarker.getKeywords();
 	}

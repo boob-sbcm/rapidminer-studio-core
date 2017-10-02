@@ -26,18 +26,39 @@ import java.awt.Font;
 
 
 /**
- * 
+ * The type Legend configuration change event.
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class LegendConfigurationChangeEvent {
 
-	public enum LegendConfigurationChangeType {
-		POSITON, // the legend position has changed
-		FONT, // the legend font has changed
-		SHOW_DIMENSION_TYPE, // displays the type of a dimension in front of categorical dimension
-								// legend items
-		BACKGROUND_COLOR, FRAME_COLOR, SHOW_LEGEND_FRAME
+    /**
+     * The enum Legend configuration change type.
+     */
+    public enum LegendConfigurationChangeType {
+        /**
+         * Positon legend configuration change type.
+         */
+        POSITON, // the legend position has changed
+        /**
+         * Font legend configuration change type.
+         */
+        FONT, // the legend font has changed
+        /**
+         * Show dimension type legend configuration change type.
+         */
+        SHOW_DIMENSION_TYPE, // displays the type of a dimension in front of categorical dimension
+        /**
+         * The Background color.
+         */
+// legend items
+		BACKGROUND_COLOR, /**
+         * Frame color legend configuration change type.
+         */
+        FRAME_COLOR, /**
+         * Show legend frame legend configuration change type.
+         */
+        SHOW_LEGEND_FRAME
 	}
 
 	private LegendPosition legendPosition = null;
@@ -49,19 +70,38 @@ public class LegendConfigurationChangeEvent {
 	private Color backgroundColor;
 	private boolean showLegendFrame;
 
-	public LegendConfigurationChangeEvent(LegendConfiguration source, LegendPosition legendPosition) {
+    /**
+     * Instantiates a new Legend configuration change event.
+     *
+     * @param source         the source
+     * @param legendPosition the legend position
+     */
+    public LegendConfigurationChangeEvent(LegendConfiguration source, LegendPosition legendPosition) {
 		this.source = source;
 		this.type = LegendConfigurationChangeType.POSITON;
 		this.legendPosition = legendPosition;
 	}
 
-	public LegendConfigurationChangeEvent(LegendConfiguration source, Font font) {
+    /**
+     * Instantiates a new Legend configuration change event.
+     *
+     * @param source the source
+     * @param font   the font
+     */
+    public LegendConfigurationChangeEvent(LegendConfiguration source, Font font) {
 		this.source = source;
 		this.type = LegendConfigurationChangeType.FONT;
 		this.legendFont = font;
 	}
 
-	public LegendConfigurationChangeEvent(LegendConfiguration source, boolean show, LegendConfigurationChangeType type) {
+    /**
+     * Instantiates a new Legend configuration change event.
+     *
+     * @param source the source
+     * @param show   the show
+     * @param type   the type
+     */
+    public LegendConfigurationChangeEvent(LegendConfiguration source, boolean show, LegendConfigurationChangeType type) {
 		if ((type != LegendConfigurationChangeType.SHOW_DIMENSION_TYPE)
 				&& (type != LegendConfigurationChangeType.SHOW_LEGEND_FRAME)) {
 			throw new RuntimeException(type + " is not allowed calling this constructor.");
@@ -75,10 +115,14 @@ public class LegendConfigurationChangeEvent {
 		}
 	}
 
-	/**
-	 * Only FRAME_COLOR or BACKGROUND_COLOR are allowed as type.
-	 */
-	public LegendConfigurationChangeEvent(LegendConfiguration source, Color color, LegendConfigurationChangeType type) {
+    /**
+     * Only FRAME_COLOR or BACKGROUND_COLOR are allowed as type.
+     *
+     * @param source the source
+     * @param color  the color
+     * @param type   the type
+     */
+    public LegendConfigurationChangeEvent(LegendConfiguration source, Color color, LegendConfigurationChangeType type) {
 		if ((type != LegendConfigurationChangeType.FRAME_COLOR) && (type != LegendConfigurationChangeType.BACKGROUND_COLOR)) {
 			throw new RuntimeException(type + " is not allowed calling this constructor.");
 		}
@@ -91,50 +135,75 @@ public class LegendConfigurationChangeEvent {
 		}
 	}
 
-	public boolean isShowDimensionType() {
+    /**
+     * Is show dimension type boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isShowDimensionType() {
 		return showDimensionType;
 	}
 
-	/**
-	 * @return the legendPosition
-	 */
-	public LegendPosition getLegendPosition() {
+    /**
+     * Gets legend position.
+     *
+     * @return the legendPosition
+     */
+    public LegendPosition getLegendPosition() {
 		return legendPosition;
 	}
 
-	/**
-	 * @return the legendFont
-	 */
-	public Font getLegendFont() {
+    /**
+     * Gets legend font.
+     *
+     * @return the legendFont
+     */
+    public Font getLegendFont() {
 		return legendFont;
 	}
 
-	public LegendConfiguration getSource() {
+    /**
+     * Gets source.
+     *
+     * @return the source
+     */
+    public LegendConfiguration getSource() {
 		return source;
 	}
 
-	public LegendConfigurationChangeType getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public LegendConfigurationChangeType getType() {
 		return type;
 	}
 
-	/**
-	 * @return the frameColor
-	 */
-	public Color getFrameColor() {
+    /**
+     * Gets frame color.
+     *
+     * @return the frameColor
+     */
+    public Color getFrameColor() {
 		return this.frameColor;
 	}
 
-	/**
-	 * @return the backgroundColor
-	 */
-	public Color getBackgroundColor() {
+    /**
+     * Gets background color.
+     *
+     * @return the backgroundColor
+     */
+    public Color getBackgroundColor() {
 		return this.backgroundColor;
 	}
 
-	/**
-	 * @return the showLegendFrame
-	 */
-	public boolean isShowLegendFrame() {
+    /**
+     * Is show legend frame boolean.
+     *
+     * @return the showLegendFrame
+     */
+    public boolean isShowLegendFrame() {
 		return this.showLegendFrame;
 	}
 }

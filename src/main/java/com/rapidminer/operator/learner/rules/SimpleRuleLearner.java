@@ -42,9 +42,17 @@ import com.rapidminer.parameter.ParameterTypeDouble;
  */
 public class SimpleRuleLearner extends AbstractLearner {
 
-	public static final String PARAMETER_PURENESS = "pureness";
+    /**
+     * The constant PARAMETER_PURENESS.
+     */
+    public static final String PARAMETER_PURENESS = "pureness";
 
-	public SimpleRuleLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Simple rule learner.
+     *
+     * @param description the description
+     */
+    public SimpleRuleLearner(OperatorDescription description) {
 		super(description);
 	}
 

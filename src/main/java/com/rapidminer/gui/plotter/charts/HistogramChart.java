@@ -75,42 +75,80 @@ import com.rapidminer.tools.math.MathFunctions;
  */
 public class HistogramChart extends RangeablePlotterAdapter {
 
-	public static final String PARAMETER_OPAQUENESS = "opaqueness";
+    /**
+     * The constant PARAMETER_OPAQUENESS.
+     */
+    public static final String PARAMETER_OPAQUENESS = "opaqueness";
 
-	public static final String PARAMETER_NUMBER_OF_BINS = "number_of_bins";
+    /**
+     * The constant PARAMETER_NUMBER_OF_BINS.
+     */
+    public static final String PARAMETER_NUMBER_OF_BINS = "number_of_bins";
 
-	public static final String PARAMETER_LOG_SCALE = "log_scale";
+    /**
+     * The constant PARAMETER_LOG_SCALE.
+     */
+    public static final String PARAMETER_LOG_SCALE = "log_scale";
 
 	private static final long serialVersionUID = 9140046811324105445L;
 
-	public static final int MIN_BIN_NUMBER = 1;
+    /**
+     * The constant MIN_BIN_NUMBER.
+     */
+    public static final int MIN_BIN_NUMBER = 1;
 
-	public static final int MAX_BIN_NUMBER = 100;
+    /**
+     * The constant MAX_BIN_NUMBER.
+     */
+    public static final int MAX_BIN_NUMBER = 100;
 
-	public static final int DEFAULT_BIN_NUMBER = 40;
+    /**
+     * The constant DEFAULT_BIN_NUMBER.
+     */
+    public static final int DEFAULT_BIN_NUMBER = 40;
 
-	protected transient DataTable dataTable;
+    /**
+     * The Data table.
+     */
+    protected transient DataTable dataTable;
 
 	private HistogramDataset histogramDataset;
 
 	/** Indicates which columns will be plotted. */
 	private boolean[] columns = new boolean[0];
 
-	protected int binNumber = DEFAULT_BIN_NUMBER;
+    /**
+     * The Bin number.
+     */
+    protected int binNumber = DEFAULT_BIN_NUMBER;
 
-	protected boolean logScale = false;
+    /**
+     * The Log scale.
+     */
+    protected boolean logScale = false;
 
 	private boolean absolute = false;
 
-	protected boolean drawLegend = true;
+    /**
+     * The Draw legend.
+     */
+    protected boolean drawLegend = true;
 
-	protected float opaqueness = 1.0f;
+    /**
+     * The Opaqueness.
+     */
+    protected float opaqueness = 1.0f;
 
 	private ListeningJCheckBox logScaleBox;
 	private ListeningJSlider binNumberSlider;
 	private ListeningJSlider opaquenessSlider;
 
-	public HistogramChart(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Histogram chart.
+     *
+     * @param settings the settings
+     */
+    public HistogramChart(final PlotterConfigurationModel settings) {
 		super(settings);
 
 		logScaleBox = new ListeningJCheckBox(PARAMETER_LOG_SCALE, "Log Scale", false);
@@ -154,7 +192,13 @@ public class HistogramChart extends RangeablePlotterAdapter {
 
 	}
 
-	public HistogramChart(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Histogram chart.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public HistogramChart(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -172,7 +216,12 @@ public class HistogramChart extends RangeablePlotterAdapter {
 		return null;
 	}
 
-	public boolean isLogScale() {
+    /**
+     * Is log scale boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLogScale() {
 		return this.logScale;
 	}
 
@@ -187,7 +236,12 @@ public class HistogramChart extends RangeablePlotterAdapter {
 		return true;
 	}
 
-	public void setDrawLegend(boolean drawLegend) {
+    /**
+     * Sets draw legend.
+     *
+     * @param drawLegend the draw legend
+     */
+    public void setDrawLegend(boolean drawLegend) {
 		this.drawLegend = drawLegend;
 	}
 
@@ -209,7 +263,12 @@ public class HistogramChart extends RangeablePlotterAdapter {
 		return MULTIPLE_SELECTION;
 	}
 
-	protected int getNumberOfPlots() {
+    /**
+     * Gets number of plots.
+     *
+     * @return the number of plots
+     */
+    protected int getNumberOfPlots() {
 		int counter = 0;
 		for (boolean column : columns) {
 			if (column) {
@@ -219,7 +278,10 @@ public class HistogramChart extends RangeablePlotterAdapter {
 		return counter;
 	}
 
-	public void prepareData() {
+    /**
+     * Prepare data.
+     */
+    public void prepareData() {
 		histogramDataset = new RapidHistogramDataset(isLogScale());
 
 		if (getNumberOfPlots() == 0) {

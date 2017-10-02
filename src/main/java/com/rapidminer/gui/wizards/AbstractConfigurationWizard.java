@@ -70,7 +70,10 @@ public abstract class AbstractConfigurationWizard extends JDialog {
 
 		private static final long serialVersionUID = 1L;
 
-		public NextButton() {
+        /**
+         * Instantiates a new Next button.
+         */
+        public NextButton() {
 			super(DUMMY_NEXT_ACTION);
 			addActionListener(new ActionListener() {
 
@@ -111,8 +114,13 @@ public abstract class AbstractConfigurationWizard extends JDialog {
 
 	private ConfigurationListener listener;
 
-	/** Creates a new wizard. */
-	public AbstractConfigurationWizard(String name, ConfigurationListener listener) {
+    /**
+     * Creates a new wizard.  @param name the name
+     *
+     * @param name     the name
+     * @param listener the listener
+     */
+    public AbstractConfigurationWizard(String name, ConfigurationListener listener) {
 		super(RapidMinerGUI.getMainFrame(), name, true);
 
 		this.listener = listener;
@@ -154,38 +162,61 @@ public abstract class AbstractConfigurationWizard extends JDialog {
 		setLocationRelativeTo(getOwner());
 	}
 
-	/** The default implementation returns true. */
-	public boolean validateCurrentStep(int currentStep, int newStep) {
+    /**
+     * The default implementation returns true.  @param currentStep the current step
+     *
+     * @param currentStep the current step
+     * @param newStep     the new step
+     * @return the boolean
+     */
+    public boolean validateCurrentStep(int currentStep, int newStep) {
 		return true;
 	}
 
-	/**
-	 * This method is invoked in the method step. Subclasses might perform some additional stuff
-	 * here. If false is returned, the step change is not performed.
-	 */
-	protected abstract void performStepAction(int currentStep, int oldStep);
+    /**
+     * This method is invoked in the method step. Subclasses might perform some additional stuff
+     * here. If false is returned, the step change is not performed.
+     *
+     * @param currentStep the current step
+     * @param oldStep     the old step
+     */
+    protected abstract void performStepAction(int currentStep, int oldStep);
 
-	/**
-	 * This method is invoked at the end of the configuration process. Subclasses should generate
-	 * the parameters object and pass it to the listener.
-	 */
-	protected abstract void finish(ConfigurationListener listener);
+    /**
+     * This method is invoked at the end of the configuration process. Subclasses should generate
+     * the parameters object and pass it to the listener.
+     *
+     * @param listener the listener
+     */
+    protected abstract void finish(ConfigurationListener listener);
 
-	/**
-	 * Subclasses might add an additional component here which is seen during all steps, e.g. a data
-	 * view table.
-	 */
-	protected void addBottomComponent(Component bottomComponent) {
+    /**
+     * Subclasses might add an additional component here which is seen during all steps, e.g. a data
+     * view table.
+     *
+     * @param bottomComponent the bottom component
+     */
+    protected void addBottomComponent(Component bottomComponent) {
 		c.weighty = 2;
 		layout.setConstraints(bottomComponent, c);
 		contentPanel.add(bottomComponent);
 	}
 
-	protected int getNumberOfSteps() {
+    /**
+     * Gets number of steps.
+     *
+     * @return the number of steps
+     */
+    protected int getNumberOfSteps() {
 		return numberOfSteps;
 	}
 
-	protected void addStep(Component c) {
+    /**
+     * Add step.
+     *
+     * @param c the c
+     */
+    protected void addStep(Component c) {
 		mainPanel.add(c, numberOfSteps + "");
 		numberOfSteps++;
 	}
@@ -217,7 +248,10 @@ public abstract class AbstractConfigurationWizard extends JDialog {
 		}
 	}
 
-	protected void cancel() {
+    /**
+     * Cancel.
+     */
+    protected void cancel() {
 		dispose();
 	}
 }

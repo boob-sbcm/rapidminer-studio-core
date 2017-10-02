@@ -42,7 +42,6 @@ import javax.swing.text.Document;
  * combo box item.
  *
  * @author Marco Boeck, Sebastian Land
- *
  */
 public class AutoCompleteComboBoxAddition {
 
@@ -131,16 +130,15 @@ public class AutoCompleteComboBoxAddition {
 	private final JComboBox<?> comboBox;
 	private final BasicComboBoxEditor comboBoxEditor;
 
-	/**
-	 * Adds an auto completion feature to the given JComboBox. Will set
-	 * {@link JComboBox#setEditable(boolean)} to true. When the user enters one or more characters,
-	 * it will automatically fill in the first match where the characters are a prefix of an item
-	 * from the {@link ComboBoxModel}. As soon as the constructor is called
-	 *
-	 * @param box
-	 *            the JComboBox which should get the auto completion feature
-	 */
-	public AutoCompleteComboBoxAddition(JComboBox<?> box) {
+    /**
+     * Adds an auto completion feature to the given JComboBox. Will set
+     * {@link JComboBox#setEditable(boolean)} to true. When the user enters one or more characters,
+     * it will automatically fill in the first match where the characters are a prefix of an item
+     * from the {@link ComboBoxModel}. As soon as the constructor is called
+     *
+     * @param box the JComboBox which should get the auto completion feature
+     */
+    public AutoCompleteComboBoxAddition(JComboBox<?> box) {
 		comboBox = box;
 
 		caseSensitive = false;
@@ -180,13 +178,12 @@ public class AutoCompleteComboBoxAddition {
 		});
 	}
 
-	/**
-	 * Sets the auto-fill feature to case sensitive.
-	 *
-	 * @param caseSensitive
-	 *            If set to true, matching is case sensitive; false otherwise
-	 */
-	public void setCaseSensitive(boolean caseSensitive) {
+    /**
+     * Sets the auto-fill feature to case sensitive.
+     *
+     * @param caseSensitive If set to true, matching is case sensitive; false otherwise
+     */
+    public void setCaseSensitive(boolean caseSensitive) {
 		this.caseSensitive = caseSensitive;
 	}
 

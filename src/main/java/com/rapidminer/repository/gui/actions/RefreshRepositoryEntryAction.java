@@ -34,7 +34,12 @@ public class RefreshRepositoryEntryAction extends AbstractRepositoryAction<Entry
 
 	private static final long serialVersionUID = 1L;
 
-	public RefreshRepositoryEntryAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Refresh repository entry action.
+     *
+     * @param tree the tree
+     */
+    public RefreshRepositoryEntryAction(RepositoryTree tree) {
 		super(tree, Entry.class, false, "repository_refresh_folder");
 	}
 

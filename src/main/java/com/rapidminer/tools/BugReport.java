@@ -47,7 +47,7 @@ import org.apache.xmlrpc.client.XmlRpcClient;
 /**
  * A bug report can be send by the user. It should only be used in cases where an exception does not
  * occur due to a user error.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa, Marco Boeck
  */
 public class BugReport {
@@ -158,7 +158,18 @@ public class BugReport {
 		return string.toString();
 	}
 
-	public static void createBugReport(File reportFile, Throwable exception, String userMessage, Process process,
+    /**
+     * Create bug report.
+     *
+     * @param reportFile  the report file
+     * @param exception   the exception
+     * @param userMessage the user message
+     * @param process     the process
+     * @param logMessage  the log message
+     * @param attachments the attachments
+     * @throws IOException the io exception
+     */
+    public static void createBugReport(File reportFile, Throwable exception, String userMessage, Process process,
 			String logMessage, File[] attachments) throws IOException {
 		ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(reportFile));
 		zipOut.setComment("RapidMiner bug report - generated " + new Date());
@@ -184,36 +195,25 @@ public class BugReport {
 		zipOut.close();
 	}
 
-	/**
-	 * Creates the BugZilla bugreport.
-	 * 
-	 * @param client
-	 *            the logged in BugZilla client
-	 * @param exception
-	 *            the exception which was thrown by the bug
-	 * @param userSummary
-	 *            summary of the bug
-	 * @param completeDescription
-	 *            description of the bug
-	 * @param component
-	 *            the component which malfunctionied
-	 * @param version
-	 *            the RM version
-	 * @param severity
-	 *            the severity of the bug
-	 * @param platform
-	 *            the platform (e.g. PC or Mac)
-	 * @param os
-	 *            the OS
-	 * @param attachments
-	 *            a list of optional attachements
-	 * @param attachProcess
-	 *            if <code>true</code>, will attach the current process xml
-	 * @param attachSystemProps
-	 *            if <code>true</code>, will attach system properties
-	 * @throws Exception
-	 */
-	public static void createBugZillaReport(XmlRpcClient client, Throwable exception, String userSummary,
+    /**
+     * Creates the BugZilla bugreport.
+     *
+     * @param client              the logged in BugZilla client
+     * @param exception           the exception which was thrown by the bug
+     * @param userSummary         summary of the bug
+     * @param completeDescription description of the bug
+     * @param component           the component which malfunctionied
+     * @param version             the RM version
+     * @param severity            the severity of the bug
+     * @param platform            the platform (e.g. PC or Mac)
+     * @param os                  the OS
+     * @param attachments         a list of optional attachements
+     * @param attachProcess       if <code>true</code>, will attach the current process xml
+     * @param attachSystemProps   if <code>true</code>, will attach system properties
+     * @param attachLogFile       the attach log file
+     * @throws Exception the exception
+     */
+    public static void createBugZillaReport(XmlRpcClient client, Throwable exception, String userSummary,
 			String completeDescription, String component, String version, String severity, String platform, String os,
 			File[] attachments, boolean attachProcess, boolean attachSystemProps, boolean attachLogFile) throws Exception {
 
@@ -356,21 +356,18 @@ public class BugReport {
 
 	}
 
-	/**
-	 * Creates the complete description of the bug including user description, exception stack
-	 * trace, system properties and RM and plugin versions.
-	 * 
-	 * @param userDescription
-	 *            the description the user entered
-	 * @param exception
-	 *            the {@link Throwable} on which the bug report is based upon
-	 * @param attachProcess
-	 *            if true, will attach the process xml
-	 * @param attachSystemProps
-	 *            if true, will attach the system properties
-	 * @return the human readable complete bug report
-	 */
-	public static String createCompleteBugDescription(String userDescription, Throwable exception, boolean attachProcess,
+    /**
+     * Creates the complete description of the bug including user description, exception stack
+     * trace, system properties and RM and plugin versions.
+     *
+     * @param userDescription   the description the user entered
+     * @param exception         the {@link Throwable} on which the bug report is based upon
+     * @param attachProcess     if true, will attach the process xml
+     * @param attachSystemProps if true, will attach the system properties
+     * @param attachLog         the attach log
+     * @return the human readable complete bug report
+     */
+    public static String createCompleteBugDescription(String userDescription, Throwable exception, boolean attachProcess,
 			boolean attachSystemProps, boolean attachLog) {
 		StringBuffer buffer = new StringBuffer();
 

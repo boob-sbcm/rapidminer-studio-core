@@ -25,44 +25,77 @@ import org.w3c.dom.Element;
 
 /**
  * This parameter type allows to select either Operator Values or Parameters for logging purposes.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class ParameterTypeValue extends ParameterTypeSingle {
 
-	public static class OperatorValueSelection {
+    /**
+     * The type Operator value selection.
+     */
+    public static class OperatorValueSelection {
 
 		private String operatorName;
 		private String valueParameterName;
 		private boolean isValue;
 
-		public OperatorValueSelection() {}
+        /**
+         * Instantiates a new Operator value selection.
+         */
+        public OperatorValueSelection() {}
 
-		public OperatorValueSelection(String operatorName, boolean isValue, String valueOrParameterName) {
+        /**
+         * Instantiates a new Operator value selection.
+         *
+         * @param operatorName         the operator name
+         * @param isValue              the is value
+         * @param valueOrParameterName the value or parameter name
+         */
+        public OperatorValueSelection(String operatorName, boolean isValue, String valueOrParameterName) {
 			this.operatorName = operatorName;
 			this.valueParameterName = valueOrParameterName;
 			this.isValue = isValue;
 		}
 
-		public String getOperator() {
+        /**
+         * Gets operator.
+         *
+         * @return the operator
+         */
+        public String getOperator() {
 			return operatorName;
 		}
 
-		public String getParameterName() {
+        /**
+         * Gets parameter name.
+         *
+         * @return the parameter name
+         */
+        public String getParameterName() {
 			if (!isValue) {
 				return valueParameterName;
 			}
 			return null;
 		}
 
-		public String getValueName() {
+        /**
+         * Gets value name.
+         *
+         * @return the value name
+         */
+        public String getValueName() {
 			if (isValue) {
 				return valueParameterName;
 			}
 			return null;
 		}
 
-		public boolean isValue() {
+        /**
+         * Is value boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isValue() {
 			return isValue;
 		}
 	}
@@ -76,12 +109,24 @@ public class ParameterTypeValue extends ParameterTypeSingle {
 	private static final String SEPERATOR_CHAR_REGEX = "\\.";
 	private static final String SEPERATOR_CHAR = ".";
 
-	public ParameterTypeValue(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type value.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeValue(Element element) throws XMLException {
 		super(element);
 		setOptional(false);
 	}
 
-	public ParameterTypeValue(String key, String description) {
+    /**
+     * Instantiates a new Parameter type value.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ParameterTypeValue(String key, String description) {
 		super(key, description);
 		setOptional(false);
 	}
@@ -119,7 +164,13 @@ public class ParameterTypeValue extends ParameterTypeSingle {
 		return parameterValue;
 	}
 
-	public static OperatorValueSelection transformString2OperatorValueSelection(String parameterValue) {
+    /**
+     * Transform string 2 operator value selection operator value selection.
+     *
+     * @param parameterValue the parameter value
+     * @return the operator value selection
+     */
+    public static OperatorValueSelection transformString2OperatorValueSelection(String parameterValue) {
 		String[] unescaped = parameterValue.split("(?<=[^" + ESCAPE_CHAR_REGEX + "])" + SEPERATOR_CHAR_REGEX, -1);
 		for (int i = 0; i < unescaped.length; i++) {
 			unescaped[i] = unescape(unescaped[i]);
@@ -140,7 +191,13 @@ public class ParameterTypeValue extends ParameterTypeSingle {
 		return escapedString;
 	}
 
-	public static String transformOperatorValueSelection2String(OperatorValueSelection selection) {
+    /**
+     * Transform operator value selection 2 string string.
+     *
+     * @param selection the selection
+     * @return the string
+     */
+    public static String transformOperatorValueSelection2String(OperatorValueSelection selection) {
 		String operator = selection.operatorName != null ? selection.getOperator().replace(ESCAPE_CHAR,
 				ESCAPE_CHAR + ESCAPE_CHAR) : "";
 		operator = operator.replace(SEPERATOR_CHAR, ESCAPE_CHAR + SEPERATOR_CHAR);

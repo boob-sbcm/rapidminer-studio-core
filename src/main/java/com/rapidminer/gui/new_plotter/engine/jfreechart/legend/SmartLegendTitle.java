@@ -42,19 +42,30 @@ import org.jfree.ui.RectangleEdge;
 
 /**
  * This class is the GUI container for all legend items.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class SmartLegendTitle extends LegendTitle {
 
 	private static final long serialVersionUID = 1L;
 
-	public SmartLegendTitle(LegendItemSource source, Arrangement hLayout, Arrangement vLayout) {
+    /**
+     * Instantiates a new Smart legend title.
+     *
+     * @param source  the source
+     * @param hLayout the h layout
+     * @param vLayout the v layout
+     */
+    public SmartLegendTitle(LegendItemSource source, Arrangement hLayout, Arrangement vLayout) {
 		super(source, hLayout, vLayout);
 	}
 
-	public SmartLegendTitle(LegendItemSource source) {
+    /**
+     * Instantiates a new Smart legend title.
+     *
+     * @param source the source
+     */
+    public SmartLegendTitle(LegendItemSource source) {
 		super(source);
 	}
 
@@ -167,7 +178,14 @@ public class SmartLegendTitle extends LegendTitle {
 		return result;
 	}
 
-	public static Paint transformLinearGradient(LinearGradientPaint paint, Shape target) {
+    /**
+     * Transform linear gradient paint.
+     *
+     * @param paint  the paint
+     * @param target the target
+     * @return the paint
+     */
+    public static Paint transformLinearGradient(LinearGradientPaint paint, Shape target) {
 		Rectangle2D bounds = target.getBounds2D();
 		float left = (float) bounds.getMinX();
 		float right = (float) bounds.getMaxX();

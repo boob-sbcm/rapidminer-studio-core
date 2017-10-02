@@ -53,7 +53,13 @@ public class ParameterTypeEnumeration extends CombinedParameterType {
 
 	private ParameterType type;
 
-	public ParameterTypeEnumeration(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type enumeration.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeEnumeration(Element element) throws XMLException {
 		super(element);
 
 		type = ParameterType.createType(XMLTools.getChildElement(element, ELEMENT_CHILD_TYPE, true));
@@ -63,12 +69,27 @@ public class ParameterTypeEnumeration extends CombinedParameterType {
 		}
 	}
 
-	public ParameterTypeEnumeration(String key, String description, ParameterType parameterType) {
+    /**
+     * Instantiates a new Parameter type enumeration.
+     *
+     * @param key           the key
+     * @param description   the description
+     * @param parameterType the parameter type
+     */
+    public ParameterTypeEnumeration(String key, String description, ParameterType parameterType) {
 		super(key, description, parameterType);
 		this.type = parameterType;
 	}
 
-	public ParameterTypeEnumeration(String key, String description, ParameterType parameterType, boolean expert) {
+    /**
+     * Instantiates a new Parameter type enumeration.
+     *
+     * @param key           the key
+     * @param description   the description
+     * @param parameterType the parameter type
+     * @param expert        the expert
+     */
+    public ParameterTypeEnumeration(String key, String description, ParameterType parameterType, boolean expert) {
 		this(key, description, parameterType);
 		setExpert(expert);
 	}
@@ -125,7 +146,12 @@ public class ParameterTypeEnumeration extends CombinedParameterType {
 		this.defaultValue = defaultValue;
 	}
 
-	public ParameterType getValueType() {
+    /**
+     * Gets value type.
+     *
+     * @return the value type
+     */
+    public ParameterType getValueType() {
 		return type;
 	}
 
@@ -139,7 +165,13 @@ public class ParameterTypeEnumeration extends CombinedParameterType {
 
 	}
 
-	public static String transformEnumeration2String(List<String> list) {
+    /**
+     * Transform enumeration 2 string string.
+     *
+     * @param list the list
+     * @return the string
+     */
+    public static String transformEnumeration2String(List<String> list) {
 		StringBuilder builder = new StringBuilder();
 		boolean isFirst = true;
 		for (String string : list) {
@@ -154,7 +186,13 @@ public class ParameterTypeEnumeration extends CombinedParameterType {
 		return builder.toString();
 	}
 
-	public static String[] transformString2Enumeration(String parameterValue) {
+    /**
+     * Transform string 2 enumeration string [ ].
+     *
+     * @param parameterValue the parameter value
+     * @return the string [ ]
+     */
+    public static String[] transformString2Enumeration(String parameterValue) {
 		if (parameterValue == null || "".equals(parameterValue)) {
 			return new String[0];
 		}

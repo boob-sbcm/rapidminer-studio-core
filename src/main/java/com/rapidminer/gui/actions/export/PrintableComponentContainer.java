@@ -23,14 +23,15 @@ import java.util.List;
 
 /**
  * A component which contains multiple {@link PrintableComponent}s.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public interface PrintableComponentContainer {
 
-	/**
-	 * @return the list of printable components for the printable component container
-	 */
-	public List<PrintableComponent> getPrintableComponents();
+    /**
+     * Gets printable components.
+     *
+     * @return the list of printable components for the printable component container
+     */
+    public List<PrintableComponent> getPrintableComponents();
 }

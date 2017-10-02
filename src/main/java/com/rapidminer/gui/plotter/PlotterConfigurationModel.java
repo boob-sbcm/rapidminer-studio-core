@@ -69,94 +69,220 @@ import com.rapidminer.parameter.ParameterTypeEnumeration;
  * This class is the model of plotter configuration. It holds the connection to the configuration
  * data and all listeners. It might be notified of changes of the parameters, updates the
  * configuration data and informs all listeners of the changed configuration.
- * 
+ *
  * @author Sebastian Land
  */
 public class PlotterConfigurationModel implements Cloneable {
 
-	public static final String LINES_PLOT = "Lines";
+    /**
+     * The constant LINES_PLOT.
+     */
+    public static final String LINES_PLOT = "Lines";
 
-	public static final String BOUND_PLOT = "Bound";
+    /**
+     * The constant BOUND_PLOT.
+     */
+    public static final String BOUND_PLOT = "Bound";
 
-	public static final String HINTON_PLOT = "Hinton";
+    /**
+     * The constant HINTON_PLOT.
+     */
+    public static final String HINTON_PLOT = "Hinton";
 
-	public static final String SURFACE_PLOT_3D = "Surface 3D";
+    /**
+     * The constant SURFACE_PLOT_3D.
+     */
+    public static final String SURFACE_PLOT_3D = "Surface 3D";
 
-	public static final String BOX_CHART_3D = "Box 3D";
+    /**
+     * The constant BOX_CHART_3D.
+     */
+    public static final String BOX_CHART_3D = "Box 3D";
 
-	public static final String BOX_CHART = "Box";
+    /**
+     * The constant BOX_CHART.
+     */
+    public static final String BOX_CHART = "Box";
 
-	public static final String STICK_CHART_3D = "Sticks 3D";
+    /**
+     * The constant STICK_CHART_3D.
+     */
+    public static final String STICK_CHART_3D = "Sticks 3D";
 
-	public static final String STICK_CHART = "Sticks";
+    /**
+     * The constant STICK_CHART.
+     */
+    public static final String STICK_CHART = "Sticks";
 
-	public static final String QUARTILE_PLOT_COLOR_MATRIX = "Quartile Color Matrix";
+    /**
+     * The constant QUARTILE_PLOT_COLOR_MATRIX.
+     */
+    public static final String QUARTILE_PLOT_COLOR_MATRIX = "Quartile Color Matrix";
 
-	public static final String QUARTILE_PLOT_COLOR = "Quartile Color";
+    /**
+     * The constant QUARTILE_PLOT_COLOR.
+     */
+    public static final String QUARTILE_PLOT_COLOR = "Quartile Color";
 
-	public static final String QUARTILE_PLOT = "Quartile";
+    /**
+     * The constant QUARTILE_PLOT.
+     */
+    public static final String QUARTILE_PLOT = "Quartile";
 
-	public static final String HISTOGRAM_PLOT_COLOR = "Histogram Color";
+    /**
+     * The constant HISTOGRAM_PLOT_COLOR.
+     */
+    public static final String HISTOGRAM_PLOT_COLOR = "Histogram Color";
 
-	public static final String HISTOGRAM_PLOT = "Histogram";
+    /**
+     * The constant HISTOGRAM_PLOT.
+     */
+    public static final String HISTOGRAM_PLOT = "Histogram";
 
-	public static final String DISTRIBUTION_PLOT = "Distribution";
+    /**
+     * The constant DISTRIBUTION_PLOT.
+     */
+    public static final String DISTRIBUTION_PLOT = "Distribution";
 
-	public static final String ANDREWS_CURVES = "Andrews Curves";
+    /**
+     * The constant ANDREWS_CURVES.
+     */
+    public static final String ANDREWS_CURVES = "Andrews Curves";
 
-	public static final String PARETO_PLOT = "Pareto";
+    /**
+     * The constant PARETO_PLOT.
+     */
+    public static final String PARETO_PLOT = "Pareto";
 
-	public static final String BAR_CHART = "Bars";
+    /**
+     * The constant BAR_CHART.
+     */
+    public static final String BAR_CHART = "Bars";
 
-	public static final String BAR_CHART_STACKED = "Bars Stacked";
+    /**
+     * The constant BAR_CHART_STACKED.
+     */
+    public static final String BAR_CHART_STACKED = "Bars Stacked";
 
-	public static final String RING_CHART = "Ring";
+    /**
+     * The constant RING_CHART.
+     */
+    public static final String RING_CHART = "Ring";
 
-	public static final String PIE_CHART_3D = "Pie 3D";
+    /**
+     * The constant PIE_CHART_3D.
+     */
+    public static final String PIE_CHART_3D = "Pie 3D";
 
-	public static final String PIE_CHART = "Pie";
+    /**
+     * The constant PIE_CHART.
+     */
+    public static final String PIE_CHART = "Pie";
 
-	public static final String DENSITY_PLOT = "Density";
+    /**
+     * The constant DENSITY_PLOT.
+     */
+    public static final String DENSITY_PLOT = "Density";
 
-	public static final String BLOCK_PLOT = "Block";
+    /**
+     * The constant BLOCK_PLOT.
+     */
+    public static final String BLOCK_PLOT = "Block";
 
-	public static final String SOM_PLOT = "SOM";
+    /**
+     * The constant SOM_PLOT.
+     */
+    public static final String SOM_PLOT = "SOM";
 
-	public static final String SURVEY_PLOT = "Survey";
+    /**
+     * The constant SURVEY_PLOT.
+     */
+    public static final String SURVEY_PLOT = "Survey";
 
-	public static final String MULTIPLE_SERIES_PLOT = "Series Multiple";
+    /**
+     * The constant MULTIPLE_SERIES_PLOT.
+     */
+    public static final String MULTIPLE_SERIES_PLOT = "Series Multiple";
 
-	public static final String SERIES_PLOT = "Series";
+    /**
+     * The constant SERIES_PLOT.
+     */
+    public static final String SERIES_PLOT = "Series";
 
-	public static final String DEVIATION_PLOT = "Deviation";
+    /**
+     * The constant DEVIATION_PLOT.
+     */
+    public static final String DEVIATION_PLOT = "Deviation";
 
-	public static final String PARALLEL_PLOT = "Parallel";
+    /**
+     * The constant PARALLEL_PLOT.
+     */
+    public static final String PARALLEL_PLOT = "Parallel";
 
-	public static final String BUBBLE_PLOT = "Bubble";
+    /**
+     * The constant BUBBLE_PLOT.
+     */
+    public static final String BUBBLE_PLOT = "Bubble";
 
-	public static final String SCATTER_PLOT_3D_COLOR = "Scatter 3D Color";
+    /**
+     * The constant SCATTER_PLOT_3D_COLOR.
+     */
+    public static final String SCATTER_PLOT_3D_COLOR = "Scatter 3D Color";
 
-	public static final String SCATTER_PLOT_3D = "Scatter 3D";
+    /**
+     * The constant SCATTER_PLOT_3D.
+     */
+    public static final String SCATTER_PLOT_3D = "Scatter 3D";
 
-	public static final String SCATTER_PLOT_MATRIX = "Scatter Matrix";
+    /**
+     * The constant SCATTER_PLOT_MATRIX.
+     */
+    public static final String SCATTER_PLOT_MATRIX = "Scatter Matrix";
 
-	public static final String MULTIPLE_SELECTION_SCATTER_PLOT = "Scatter Multiple";
+    /**
+     * The constant MULTIPLE_SELECTION_SCATTER_PLOT.
+     */
+    public static final String MULTIPLE_SELECTION_SCATTER_PLOT = "Scatter Multiple";
 
-	public static final String SCATTER_PLOT = "Scatter";
+    /**
+     * The constant SCATTER_PLOT.
+     */
+    public static final String SCATTER_PLOT = "Scatter";
 
-	public static final String RADVIZ_PLOT = "RadViz";
+    /**
+     * The constant RADVIZ_PLOT.
+     */
+    public static final String RADVIZ_PLOT = "RadViz";
 
-	public static final String WEB_PLOT = "Web";
+    /**
+     * The constant WEB_PLOT.
+     */
+    public static final String WEB_PLOT = "Web";
 
-	public final static LinkedHashMap<String, Class<? extends Plotter>> COMPLETE_PLOTTER_SELECTION = new LinkedHashMap<>();
+    /**
+     * The constant COMPLETE_PLOTTER_SELECTION.
+     */
+    public final static LinkedHashMap<String, Class<? extends Plotter>> COMPLETE_PLOTTER_SELECTION = new LinkedHashMap<>();
 
-	public final static LinkedHashMap<String, Class<? extends Plotter>> WEIGHT_PLOTTER_SELECTION = new LinkedHashMap<>();
+    /**
+     * The constant WEIGHT_PLOTTER_SELECTION.
+     */
+    public final static LinkedHashMap<String, Class<? extends Plotter>> WEIGHT_PLOTTER_SELECTION = new LinkedHashMap<>();
 
-	public final static LinkedHashMap<String, Class<? extends Plotter>> DATA_SET_PLOTTER_SELECTION = new LinkedHashMap<>();
+    /**
+     * The constant DATA_SET_PLOTTER_SELECTION.
+     */
+    public final static LinkedHashMap<String, Class<? extends Plotter>> DATA_SET_PLOTTER_SELECTION = new LinkedHashMap<>();
 
-	public final static LinkedHashMap<String, Class<? extends Plotter>> MODEL_PLOTTER_SELECTION = new LinkedHashMap<>();
+    /**
+     * The constant MODEL_PLOTTER_SELECTION.
+     */
+    public final static LinkedHashMap<String, Class<? extends Plotter>> MODEL_PLOTTER_SELECTION = new LinkedHashMap<>();
 
-	public final static LinkedHashMap<String, Class<? extends Plotter>> COLOR_HISTOGRAM_PLOTTER_SELECTION = new LinkedHashMap<>();
+    /**
+     * The constant COLOR_HISTOGRAM_PLOTTER_SELECTION.
+     */
+    public final static LinkedHashMap<String, Class<? extends Plotter>> COLOR_HISTOGRAM_PLOTTER_SELECTION = new LinkedHashMap<>();
 
 	static {
 
@@ -245,20 +371,40 @@ public class PlotterConfigurationModel implements Cloneable {
 		COLOR_HISTOGRAM_PLOTTER_SELECTION.put(HISTOGRAM_PLOT_COLOR, HistogramColorChart.class);
 	}
 
-	public static interface PlotterSettingsChangedListener {
+    /**
+     * The interface Plotter settings changed listener.
+     */
+    public static interface PlotterSettingsChangedListener {
 
-		public void settingChanged(String generalKey, String specificKey, String value);
+        /**
+         * Sets changed.
+         *
+         * @param generalKey  the general key
+         * @param specificKey the specific key
+         * @param value       the value
+         */
+        public void settingChanged(String generalKey, String specificKey, String value);
 	}
 
-	public static interface PlotterChangedListener {
+    /**
+     * The interface Plotter changed listener.
+     */
+    public static interface PlotterChangedListener {
 
-		/**
-		 * This has to return a complete list of the objects listening to the plotter settings,
-		 * defined inside this class.
-		 */
-		public List<PlotterSettingsChangedListener> getListeningObjects();
+        /**
+         * This has to return a complete list of the objects listening to the plotter settings,
+         * defined inside this class.
+         *
+         * @return the listening objects
+         */
+        public List<PlotterSettingsChangedListener> getListeningObjects();
 
-		public void plotterChanged(String plotterName);
+        /**
+         * Plotter changed.
+         *
+         * @param plotterName the plotter name
+         */
+        public void plotterChanged(String plotterName);
 	}
 
 	private PlotterConfigurationSettings settings = new PlotterConfigurationSettings();
@@ -268,25 +414,37 @@ public class PlotterConfigurationModel implements Cloneable {
 	private List<PlotterChangedListener> plotterListeners = new LinkedList<>();
 	private boolean isInitialPlotter = true;
 
-	/**
-	 * This is a convenience constructor building settings providing the complete plotter selection
-	 * and creating the given plotter per default. This might be used, if exactly one plotter should
-	 * be build.
-	 */
-	public PlotterConfigurationModel(String plotterName, DataTable dataTable) {
+    /**
+     * This is a convenience constructor building settings providing the complete plotter selection
+     * and creating the given plotter per default. This might be used, if exactly one plotter should
+     * be build.
+     *
+     * @param plotterName the plotter name
+     * @param dataTable   the data table
+     */
+    public PlotterConfigurationModel(String plotterName, DataTable dataTable) {
 		this(COMPLETE_PLOTTER_SELECTION, plotterName, dataTable);
 		isInitialPlotter = false;
 	}
 
-	/**
-	 * @param availablePlotters
-	 * @param dataTable
-	 */
-	public PlotterConfigurationModel(HashMap<String, Class<? extends Plotter>> availablePlotters, DataTable dataTable) {
+    /**
+     * Instantiates a new Plotter configuration model.
+     *
+     * @param availablePlotters the available plotters
+     * @param dataTable         the data table
+     */
+    public PlotterConfigurationModel(HashMap<String, Class<? extends Plotter>> availablePlotters, DataTable dataTable) {
 		this(availablePlotters, availablePlotters.keySet().iterator().next(), dataTable);
 	}
 
-	public PlotterConfigurationModel(HashMap<String, Class<? extends Plotter>> availablePlotters, String defaultPlotter,
+    /**
+     * Instantiates a new Plotter configuration model.
+     *
+     * @param availablePlotters the available plotters
+     * @param defaultPlotter    the default plotter
+     * @param dataTable         the data table
+     */
+    public PlotterConfigurationModel(HashMap<String, Class<? extends Plotter>> availablePlotters, String defaultPlotter,
 			DataTable dataTable) {
 		this.settings.setAvailablePlotters(availablePlotters);
 		setDataTable(dataTable);
@@ -294,11 +452,15 @@ public class PlotterConfigurationModel implements Cloneable {
 
 	}
 
-	/**
-	 * This constructor builds a new plotter with the given data set and selection but uses the
-	 * given settings.
-	 */
-	public PlotterConfigurationModel(PlotterConfigurationSettings settings,
+    /**
+     * This constructor builds a new plotter with the given data set and selection but uses the
+     * given settings.
+     *
+     * @param settings          the settings
+     * @param availablePlotters the available plotters
+     * @param dataTable         the data table
+     */
+    public PlotterConfigurationModel(PlotterConfigurationSettings settings,
 			HashMap<String, Class<? extends Plotter>> availablePlotters, DataTable dataTable) {
 		this.settings = settings;
 		setDataTable(dataTable);
@@ -310,7 +472,13 @@ public class PlotterConfigurationModel implements Cloneable {
 		return new PlotterConfigurationModel(settings.clone(), settings.getAvailablePlotters(), dataTable);
 	}
 
-	public void setParameterAsBoolean(String key, boolean value) {
+    /**
+     * Sets parameter as boolean.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public void setParameterAsBoolean(String key, boolean value) {
 		String name = PlotterAdapter.transformParameterName(plotter.getPlotterName());
 		if (key.startsWith("_")) {
 			setParameterValue(name + key, Boolean.toString(value));
@@ -319,7 +487,13 @@ public class PlotterConfigurationModel implements Cloneable {
 		}
 	}
 
-	public void setParameterAsDouble(String key, double value) {
+    /**
+     * Sets parameter as double.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public void setParameterAsDouble(String key, double value) {
 		String name = PlotterAdapter.transformParameterName(plotter.getPlotterName());
 		if (key.startsWith("_")) {
 			setParameterValue(name + key, Double.toString(value));
@@ -328,7 +502,13 @@ public class PlotterConfigurationModel implements Cloneable {
 		}
 	}
 
-	public void setParameterAsInt(String key, int value) {
+    /**
+     * Sets parameter as int.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public void setParameterAsInt(String key, int value) {
 		String name = PlotterAdapter.transformParameterName(plotter.getPlotterName());
 		if (key.startsWith("_")) {
 			setParameterValue(name + key, Integer.toString(value));
@@ -337,7 +517,13 @@ public class PlotterConfigurationModel implements Cloneable {
 		}
 	}
 
-	public void setParameterAsString(String key, String value) {
+    /**
+     * Sets parameter as string.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public void setParameterAsString(String key, String value) {
 		if (!key.startsWith("_")) {
 			key = "_" + key;
 		}
@@ -349,7 +535,13 @@ public class PlotterConfigurationModel implements Cloneable {
 		}
 	}
 
-	public void setParameterValue(String key, String value) {
+    /**
+     * Sets parameter value.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public void setParameterValue(String key, String value) {
 		// if not already the same, save and inform listener
 		String generalizedKey = generalizeKeyName(key);
 		Object knownSetting = settings.getParameterValue(generalizedKey);
@@ -361,11 +553,22 @@ public class PlotterConfigurationModel implements Cloneable {
 		}
 	}
 
-	public String getParameter(String key) {
+    /**
+     * Gets parameter.
+     *
+     * @param key the key
+     * @return the parameter
+     */
+    public String getParameter(String key) {
 		return settings.getParameterValue(key);
 	}
 
-	public void setPlotter(String name) {
+    /**
+     * Sets plotter.
+     *
+     * @param name the name
+     */
+    public void setPlotter(String name) {
 		if (settings.getPlotterName() == null || !settings.getPlotterName().equals(name) || isInitialPlotter) {
 			Class<?> plotterClass = settings.getAvailablePlotters().get(name);
 			if (plotterClass != null
@@ -388,7 +591,12 @@ public class PlotterConfigurationModel implements Cloneable {
 		}
 	}
 
-	public void setPlotter(Plotter plotter) {
+    /**
+     * Sets plotter.
+     *
+     * @param plotter the plotter
+     */
+    public void setPlotter(Plotter plotter) {
 		settings.setPlotterName(plotter.getPlotterName());
 
 		// removing everything listening depending on old plotter
@@ -431,13 +639,12 @@ public class PlotterConfigurationModel implements Cloneable {
 		informAllSettingsListener();
 	}
 
-	/**
-	 * Adds a set of parameters to the current settings, overriding old ones with the same name
-	 * 
-	 * @param settings
-	 *            A map of parameter settings
-	 */
-	public void addParameters(HashMap<String, String> settings) {
+    /**
+     * Adds a set of parameters to the current settings, overriding old ones with the same name
+     *
+     * @param settings A map of parameter settings
+     */
+    public void addParameters(HashMap<String, String> settings) {
 		for (String key : settings.keySet()) {
 			this.settings.setParameterValue(key, settings.get(key));
 		}
@@ -474,34 +681,58 @@ public class PlotterConfigurationModel implements Cloneable {
 		}
 	}
 
-	public void removeSettingsListener(PlotterSettingsChangedListener listener) {
+    /**
+     * Remove settings listener.
+     *
+     * @param listener the listener
+     */
+    public void removeSettingsListener(PlotterSettingsChangedListener listener) {
 		settingsListeners.remove(listener);
 	}
 
-	public void removePlotterListener(PlotterChangedListener listener) {
+    /**
+     * Remove plotter listener.
+     *
+     * @param listener the listener
+     */
+    public void removePlotterListener(PlotterChangedListener listener) {
 		plotterListeners.remove(listener);
 	}
 
-	public HashMap<String, Class<? extends Plotter>> getAvailablePlotters() {
+    /**
+     * Gets available plotters.
+     *
+     * @return the available plotters
+     */
+    public HashMap<String, Class<? extends Plotter>> getAvailablePlotters() {
 		return settings.getAvailablePlotters();
 	}
 
-	public DataTable getDataTable() {
+    /**
+     * Gets data table.
+     *
+     * @return the data table
+     */
+    public DataTable getDataTable() {
 		return dataTable;
 	}
 
-	/**
-	 * This listener will be registered and immediately informed over all settings
-	 */
-	public void registerSettingsListener(PlotterSettingsChangedListener listener) {
+    /**
+     * This listener will be registered and immediately informed over all settings
+     *
+     * @param listener the listener
+     */
+    public void registerSettingsListener(PlotterSettingsChangedListener listener) {
 		settingsListeners.add(listener);
 		informSettingsListener(listener);
 	}
 
-	/**
-	 * This listener will be registered and immediately informed about the current plotter
-	 */
-	public void registerPlotterListener(PlotterChangedListener listener) {
+    /**
+     * This listener will be registered and immediately informed about the current plotter
+     *
+     * @param listener the listener
+     */
+    public void registerPlotterListener(PlotterChangedListener listener) {
 		plotterListeners.add(listener);
 		// & changed == false
 		if (plotter != null) {
@@ -527,7 +758,12 @@ public class PlotterConfigurationModel implements Cloneable {
 		return result;
 	}
 
-	public void setDataTable(DataTable dataTable) {
+    /**
+     * Sets data table.
+     *
+     * @param dataTable the data table
+     */
+    public void setDataTable(DataTable dataTable) {
 		this.dataTable = dataTable;
 		if (plotter != null) {
 			plotter.setDataTable(dataTable);
@@ -535,37 +771,71 @@ public class PlotterConfigurationModel implements Cloneable {
 		informAllSettingsListener();
 	}
 
-	public Plotter getPlotter() {
+    /**
+     * Gets plotter.
+     *
+     * @return the plotter
+     */
+    public Plotter getPlotter() {
 		return plotter;
 	}
 
-	/**
-	 * This method returns an immutable set of the keys stored here.
-	 */
-	public Set<String> getParameterSet() {
+    /**
+     * This method returns an immutable set of the keys stored here.
+     *
+     * @return the parameter set
+     */
+    public Set<String> getParameterSet() {
 		return this.settings.getParameterSettings().keySet();
 	}
 
-	public HashMap<String, String> getParameterSettings() {
+    /**
+     * Gets parameter settings.
+     *
+     * @return the parameter settings
+     */
+    public HashMap<String, String> getParameterSettings() {
 		return this.settings.getParameterSettings();
 	}
 
-	// convenient parameter methods: This theoretically should not be necessary!
+    /**
+     * Sets axis.
+     *
+     * @param axis      the axis
+     * @param dimension the dimension
+     */
+// convenient parameter methods: This theoretically should not be necessary!
 	public void setAxis(int axis, int dimension) {
 		setAxis(axis, dataTable.getColumnName(dimension));
 	}
 
-	public void setAxis(int axis, String column) {
+    /**
+     * Sets axis.
+     *
+     * @param axis   the axis
+     * @param column the column
+     */
+    public void setAxis(int axis, String column) {
 		setParameterAsString(
 				PlotterAdapter.PARAMETER_SUFFIX_AXIS + PlotterAdapter.transformParameterName(plotter.getAxisName(axis)),
 				column);
 	}
 
-	public void enablePlotColumn(int dimension) {
+    /**
+     * Enable plot column.
+     *
+     * @param dimension the dimension
+     */
+    public void enablePlotColumn(int dimension) {
 		enablePlotColumn(dataTable.getColumnName(dimension));
 	}
 
-	public void enablePlotColumn(String column) {
+    /**
+     * Enable plot column.
+     *
+     * @param column the column
+     */
+    public void enablePlotColumn(String column) {
 		String key = PlotterAdapter.PARAMETER_PLOT_COLUMNS;
 		String[] oldColumns = ParameterTypeEnumeration.transformString2Enumeration(getParameter(key));
 		List<String> columns = new LinkedList<>();
@@ -574,7 +844,12 @@ public class PlotterConfigurationModel implements Cloneable {
 		setParameterAsString(key, ParameterTypeEnumeration.transformEnumeration2String(columns));
 	}
 
-	public PlotterConfigurationSettings getPlotterSettings() {
+    /**
+     * Gets plotter settings.
+     *
+     * @return the plotter settings
+     */
+    public PlotterConfigurationSettings getPlotterSettings() {
 		return settings;
 	}
 
@@ -582,7 +857,14 @@ public class PlotterConfigurationModel implements Cloneable {
 	 * IO Methods
 	 */
 
-	public static Element writeToXML(Document document, PlotterConfigurationModel model) {
+    /**
+     * Write to xml element.
+     *
+     * @param document the document
+     * @param model    the model
+     * @return the element
+     */
+    public static Element writeToXML(Document document, PlotterConfigurationModel model) {
 		Element parameters = document.createElement("plottersettings");
 		parameters.setAttribute("plotter", model.getPlotter().getPlotterName());
 		for (String key : model.settings.getParameterSettings().keySet()) {
@@ -594,11 +876,26 @@ public class PlotterConfigurationModel implements Cloneable {
 		return parameters;
 	}
 
-	public static PlotterConfigurationModel loadFromXML(Node node, DataTable table) {
+    /**
+     * Load from xml plotter configuration model.
+     *
+     * @param node  the node
+     * @param table the table
+     * @return the plotter configuration model
+     */
+    public static PlotterConfigurationModel loadFromXML(Node node, DataTable table) {
 		return loadFromXML(node, table, COMPLETE_PLOTTER_SELECTION);
 	}
 
-	public static PlotterConfigurationModel loadFromXML(Node node, DataTable table,
+    /**
+     * Load from xml plotter configuration model.
+     *
+     * @param node              the node
+     * @param table             the table
+     * @param availablePlotters the available plotters
+     * @return the plotter configuration model
+     */
+    public static PlotterConfigurationModel loadFromXML(Node node, DataTable table,
 			HashMap<String, Class<? extends Plotter>> availablePlotters) {
 		if (node instanceof Element) {
 			Element parameters = (Element) node;
@@ -621,7 +918,12 @@ public class PlotterConfigurationModel implements Cloneable {
 		return null;
 	}
 
-	public void setParameters(HashMap<String, String> settings) {
+    /**
+     * Sets parameters.
+     *
+     * @param settings the settings
+     */
+    public void setParameters(HashMap<String, String> settings) {
 		this.settings.setParamterSettings(settings);
 
 	}

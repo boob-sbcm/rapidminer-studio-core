@@ -45,27 +45,56 @@ import com.rapidminer.tools.ParameterService;
 
 
 /**
+ * The type Send mail operator.
  *
  * @author Simon Fischer, Nils Woehler
- *
  */
 public class SendMailOperator extends Operator {
 
-	public static final OperatorVersion VERSION_SWAPPED_INPUT_PORTS = new OperatorVersion(5, 2, 6);
+    /**
+     * The constant VERSION_SWAPPED_INPUT_PORTS.
+     */
+    public static final OperatorVersion VERSION_SWAPPED_INPUT_PORTS = new OperatorVersion(5, 2, 6);
 
 	private DummyPortPairExtender through = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public static final String PARAMETER_TO = "to";
-	public static final String PARAMETER_SUBJECT = "subject";
-	public static final String PARAMETER_BODY_PLAIN = "body_plain";
-	public static final String PARAMETER_BODY_HTML = "body_html";
-	public static final String PARAMETER_USE_HTML = "use_html";
+    /**
+     * The constant PARAMETER_TO.
+     */
+    public static final String PARAMETER_TO = "to";
+    /**
+     * The constant PARAMETER_SUBJECT.
+     */
+    public static final String PARAMETER_SUBJECT = "subject";
+    /**
+     * The constant PARAMETER_BODY_PLAIN.
+     */
+    public static final String PARAMETER_BODY_PLAIN = "body_plain";
+    /**
+     * The constant PARAMETER_BODY_HTML.
+     */
+    public static final String PARAMETER_BODY_HTML = "body_html";
+    /**
+     * The constant PARAMETER_USE_HTML.
+     */
+    public static final String PARAMETER_USE_HTML = "use_html";
 
-	public static final String PARAMETER_HEADERS = "headers";
+    /**
+     * The constant PARAMETER_HEADERS.
+     */
+    public static final String PARAMETER_HEADERS = "headers";
 
-	public static final String PARAMETER_THROW_ERROR = "ignore_errors";
+    /**
+     * The constant PARAMETER_THROW_ERROR.
+     */
+    public static final String PARAMETER_THROW_ERROR = "ignore_errors";
 
-	public SendMailOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Send mail operator.
+     *
+     * @param description the description
+     */
+    public SendMailOperator(OperatorDescription description) {
 		super(description);
 		through.start();
 		getTransformer().addRule(through.makePassThroughRule());

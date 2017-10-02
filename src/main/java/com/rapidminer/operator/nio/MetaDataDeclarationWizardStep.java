@@ -174,7 +174,12 @@ public class MetaDataDeclarationWizardStep extends WizardStep {
 
 	private final LoadingContentPane loadingContentPane;
 
-	public MetaDataDeclarationWizardStep(WizardState state) {
+    /**
+     * Instantiates a new Meta data declaration wizard step.
+     *
+     * @param state the state
+     */
+    public MetaDataDeclarationWizardStep(WizardState state) {
 		super("importwizard.metadata");
 		limitedPreviewBox.setSelected(true);
 
@@ -320,12 +325,20 @@ public class MetaDataDeclarationWizardStep extends WizardStep {
 		return true;
 	}
 
-	public void updateErrors(final Set<?> updateColumns) {
+    /**
+     * Update errors.
+     *
+     * @param updateColumns the update columns
+     */
+    public void updateErrors(final Set<?> updateColumns) {
 		updateErrors();
 		((UpdatableHeaderRowFilteringTableModel) previewTable.getModel()).updateHeader(updateColumns);
 	}
 
-	public void updateErrors() {
+    /**
+     * Update errors.
+     */
+    public void updateErrors() {
 		final List<ParsingError> errorList = new ArrayList<ParsingError>();
 
 		canProceed = true;
@@ -352,11 +365,23 @@ public class MetaDataDeclarationWizardStep extends WizardStep {
 
 		private static final long serialVersionUID = 1L;
 
-		public UpdatableHeaderRowFilteringTableModel(TableModel wrappedModel, int[] rowMap, boolean enabled) {
+        /**
+         * Instantiates a new Updatable header row filtering table model.
+         *
+         * @param wrappedModel the wrapped model
+         * @param rowMap       the row map
+         * @param enabled      the enabled
+         */
+        public UpdatableHeaderRowFilteringTableModel(TableModel wrappedModel, int[] rowMap, boolean enabled) {
 			super(wrappedModel, rowMap, enabled);
 		}
 
-		public void updateHeader(Set<?> columns) {
+        /**
+         * Update header.
+         *
+         * @param columns the columns
+         */
+        public void updateHeader(Set<?> columns) {
 			fireTableCellUpdated(TableModelEvent.HEADER_ROW, TableModelEvent.ALL_COLUMNS);
 		}
 

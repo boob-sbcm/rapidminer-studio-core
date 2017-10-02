@@ -26,7 +26,7 @@ import java.io.Serializable;
 /**
  * Stores a base model together with its contingency matrix, which offerers a more convenient access
  * in the context of ensemble classification.
- * 
+ *
  * @author Martin Scholz ingomierswa Exp $
  */
 public class BayBoostBaseModelInfo implements Serializable {
@@ -39,20 +39,43 @@ public class BayBoostBaseModelInfo implements Serializable {
 
 	private final ContingencyMatrix matrix;
 
-	public BayBoostBaseModelInfo(Model model, ContingencyMatrix matrix) {
+    /**
+     * Instantiates a new Bay boost base model info.
+     *
+     * @param model  the model
+     * @param matrix the matrix
+     */
+    public BayBoostBaseModelInfo(Model model, ContingencyMatrix matrix) {
 		this.model = model;
 		this.matrix = matrix;
 	}
 
-	public Model getModel() {
+    /**
+     * Gets model.
+     *
+     * @return the model
+     */
+    public Model getModel() {
 		return this.model;
 	}
 
-	public ContingencyMatrix getContingencyMatrix() {
+    /**
+     * Gets contingency matrix.
+     *
+     * @return the contingency matrix
+     */
+    public ContingencyMatrix getContingencyMatrix() {
 		return this.matrix;
 	}
 
-	public double getLiftRatio(int trueLabel, int predictedLabel) {
+    /**
+     * Gets lift ratio.
+     *
+     * @param trueLabel      the true label
+     * @param predictedLabel the predicted label
+     * @return the lift ratio
+     */
+    public double getLiftRatio(int trueLabel, int predictedLabel) {
 		return matrix.getLiftRatio(trueLabel, predictedLabel);
 	}
 

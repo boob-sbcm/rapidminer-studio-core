@@ -28,16 +28,24 @@ package com.rapidminer.gui.tools.syntax;
 
 /**
  * C++ token marker.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class CCTokenMarker extends CTokenMarker {
 
-	public CCTokenMarker() {
+    /**
+     * Instantiates a new Cc token marker.
+     */
+    public CCTokenMarker() {
 		super(true, getKeywords());
 	}
 
-	public static KeywordMap getKeywords() {
+    /**
+     * Gets keywords.
+     *
+     * @return the keywords
+     */
+    public static KeywordMap getKeywords() {
 		if (ccKeywords == null) {
 			KeywordMap ccKeywords = new KeywordMap(false);
 

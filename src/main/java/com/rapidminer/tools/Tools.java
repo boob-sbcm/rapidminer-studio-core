@@ -147,8 +147,10 @@ public class Tools {
 
 	// ThreadLocal because DateFormat is NOT threadsafe and creating a new DateFormat is
 	// EXTREMELY expensive
-	/** Used for formatting values in the {@link #formatDateTime(Date)} method. */
-	public static final ThreadLocal<DateFormat> DATE_TIME_FORMAT = new ThreadLocal<DateFormat>() {
+    /**
+     * Used for formatting values in the {@link #formatDateTime(Date)} method.
+     */
+    public static final ThreadLocal<DateFormat> DATE_TIME_FORMAT = new ThreadLocal<DateFormat>() {
 
 		@Override
 		protected DateFormat initialValue() {
@@ -170,8 +172,10 @@ public class Tools {
 	/** Used for formatting values in the {@link #formatPercent(double)} method. */
 	private static NumberFormat PERCENT_FORMAT = NumberFormat.getPercentInstance(FORMAT_LOCALE);
 
-	/** Used for determining the symbols used in decimal formats. */
-	public static DecimalFormatSymbols FORMAT_SYMBOLS = new DecimalFormatSymbols(FORMAT_LOCALE);
+    /**
+     * Used for determining the symbols used in decimal formats.
+     */
+    public static DecimalFormatSymbols FORMAT_SYMBOLS = new DecimalFormatSymbols(FORMAT_LOCALE);
 
 	/** this is close to the smallest machine epsilon where n + epsilon = n for double precision */
 	private static final double SMALLEST_MACHINE_EPSILON = 1.11E-16;
@@ -190,7 +194,10 @@ public class Tools {
 
 	private static final LinkedList<ResourceSource> ALL_RESOURCE_SOURCES = new LinkedList<>();
 
-	public static final String RESOURCE_PREFIX = "com/rapidminer/resources/";
+    /**
+     * The constant RESOURCE_PREFIX.
+     */
+    public static final String RESOURCE_PREFIX = "com/rapidminer/resources/";
 
 	static {
 		ALL_RESOURCE_SOURCES.add(new ResourceSource(Tools.class.getClassLoader()));
@@ -235,9 +242,15 @@ public class Tools {
 		});
 	}
 
-	public static String[] availableTimeZoneNames;
+    /**
+     * The Available time zone names.
+     */
+    public static String[] availableTimeZoneNames;
 
-	public static final int SYSTEM_TIME_ZONE = 0;
+    /**
+     * The constant SYSTEM_TIME_ZONE.
+     */
+    public static final int SYSTEM_TIME_ZONE = 0;
 
 	static {
 		String[] allTimeZoneNames = TimeZone.getAvailableIDs();
@@ -248,7 +261,12 @@ public class Tools {
 		System.arraycopy(allTimeZoneNames, 0, availableTimeZoneNames, 1, allTimeZoneNames.length);
 	}
 
-	public static void setFormatLocale(Locale locale) {
+    /**
+     * Sets format locale.
+     *
+     * @param locale the locale
+     */
+    public static void setFormatLocale(Locale locale) {
 		FORMAT_LOCALE = locale;
 
 		int numberDigits = 3;
@@ -265,15 +283,31 @@ public class Tools {
 		FORMAT_SYMBOLS = new DecimalFormatSymbols(locale);
 	}
 
-	public static Locale getFormatLocale() {
+    /**
+     * Gets format locale.
+     *
+     * @return the format locale
+     */
+    public static Locale getFormatLocale() {
 		return FORMAT_LOCALE;
 	}
 
-	public static String[] getAllTimeZones() {
+    /**
+     * Get all time zones string [ ].
+     *
+     * @return the string [ ]
+     */
+    public static String[] getAllTimeZones() {
 		return availableTimeZoneNames;
 	}
 
-	public static TimeZone getTimeZone(int index) {
+    /**
+     * Gets time zone.
+     *
+     * @param index the index
+     * @return the time zone
+     */
+    public static TimeZone getTimeZone(int index) {
 		if (index == SYSTEM_TIME_ZONE) {
 			return TimeZone.getDefault();
 		} else {
@@ -281,11 +315,21 @@ public class Tools {
 		}
 	}
 
-	public static TimeZone getPreferredTimeZone() {
+    /**
+     * Gets preferred time zone.
+     *
+     * @return the preferred time zone
+     */
+    public static TimeZone getPreferredTimeZone() {
 		return getTimeZone(getPreferredTimeZoneIndex());
 	}
 
-	public static int getPreferredTimeZoneIndex() {
+    /**
+     * Gets preferred time zone index.
+     *
+     * @return the preferred time zone index
+     */
+    public static int getPreferredTimeZoneIndex() {
 		String timeZoneString = ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_GENERAL_TIME_ZONE);
 		int preferredTimeZone = SYSTEM_TIME_ZONE;
 		try {
@@ -310,20 +354,25 @@ public class Tools {
 		return preferredTimeZone;
 	}
 
-	public static Calendar getPreferredCalendar() {
+    /**
+     * Gets preferred calendar.
+     *
+     * @return the preferred calendar
+     */
+    public static Calendar getPreferredCalendar() {
 		return Calendar.getInstance(getPreferredTimeZone(), Locale.getDefault());
 	}
 
-	/**
-	 * Formats the value according to the given valueType. The value must be an object of type
-	 * String for nominal values, an object of type Date for date_time values or of type Double for
-	 * numerical values.
-	 *
-	 * @param value
-	 * @param valueType
-	 * @return value as string
-	 */
-	public static String format(Object value, int valueType) {
+    /**
+     * Formats the value according to the given valueType. The value must be an object of type
+     * String for nominal values, an object of type Date for date_time values or of type Double for
+     * numerical values.
+     *
+     * @param value     the value
+     * @param valueType the value type
+     * @return value as string
+     */
+    public static String format(Object value, int valueType) {
 		if (value == null) {
 			return "?";
 		}
@@ -345,10 +394,13 @@ public class Tools {
 		return "?";
 	}
 
-	/**
-	 * Returns a formatted string of the given number (percent format with two fraction digits).
-	 */
-	public static String formatPercent(double value) {
+    /**
+     * Returns a formatted string of the given number (percent format with two fraction digits).
+     *
+     * @param value the value
+     * @return the string
+     */
+    public static String formatPercent(double value) {
 		if (Double.isNaN(value)) {
 			return "?";
 		}
@@ -368,11 +420,14 @@ public class Tools {
 		return PERCENT_FORMAT.format(value);
 	}
 
-	/**
-	 * Returns a formatted string of the given number (number format with usually three fraction
-	 * digits).
-	 */
-	public static String formatNumber(double value) {
+    /**
+     * Returns a formatted string of the given number (number format with usually three fraction
+     * digits).
+     *
+     * @param value the value
+     * @return the string
+     */
+    public static String formatNumber(double value) {
 		if (Double.isNaN(value)) {
 			return "?";
 		}
@@ -380,22 +435,31 @@ public class Tools {
 		return formatNumber(value, numberOfFractionDigits, false);
 	}
 
-	/**
-	 * Returns a formatted string of the given number (uses the property
-	 * rapidminer.gui.fractiondigits.numbers if the given number of digits is smaller than 0
-	 * (usually 3)).
-	 */
-	public static String formatNumber(double value, int numberOfDigits) {
+    /**
+     * Returns a formatted string of the given number (uses the property
+     * rapidminer.gui.fractiondigits.numbers if the given number of digits is smaller than 0
+     * (usually 3)).
+     *
+     * @param value          the value
+     * @param numberOfDigits the number of digits
+     * @return the string
+     */
+    public static String formatNumber(double value, int numberOfDigits) {
 		// TODO: read property for grouping characters
 		return formatNumber(value, numberOfDigits, false);
 	}
 
-	/**
-	 * Returns a formatted string of the given number (uses the property
-	 * rapidminer.gui.fractiondigits.numbers if the given number of digits is smaller than 0
-	 * (usually 3)).
-	 */
-	public static String formatNumber(double value, int numberOfDigits, boolean groupingCharacters) {
+    /**
+     * Returns a formatted string of the given number (uses the property
+     * rapidminer.gui.fractiondigits.numbers if the given number of digits is smaller than 0
+     * (usually 3)).
+     *
+     * @param value              the value
+     * @param numberOfDigits     the number of digits
+     * @param groupingCharacters the grouping characters
+     * @return the string
+     */
+    public static String formatNumber(double value, int numberOfDigits, boolean groupingCharacters) {
 		if (Double.isNaN(value)) {
 			return "?";
 		}
@@ -409,28 +473,40 @@ public class Tools {
 		return NUMBER_FORMAT.format(value);
 	}
 
-	/**
-	 * Returns a number string with no fraction digits if possible. Otherwise the default number of
-	 * digits will be returned.
-	 */
-	public static String formatIntegerIfPossible(double value) {
+    /**
+     * Returns a number string with no fraction digits if possible. Otherwise the default number of
+     * digits will be returned.
+     *
+     * @param value the value
+     * @return the string
+     */
+    public static String formatIntegerIfPossible(double value) {
 		return formatIntegerIfPossible(value, numberOfFractionDigits);
 	}
 
-	/**
-	 * Returns a number string with no fraction digits if possible. Otherwise the given number of
-	 * digits will be returned.
-	 */
-	public static String formatIntegerIfPossible(double value, int numberOfDigits) {
+    /**
+     * Returns a number string with no fraction digits if possible. Otherwise the given number of
+     * digits will be returned.
+     *
+     * @param value          the value
+     * @param numberOfDigits the number of digits
+     * @return the string
+     */
+    public static String formatIntegerIfPossible(double value, int numberOfDigits) {
 		// TODO: read property for grouping characters
 		return formatIntegerIfPossible(value, numberOfDigits, false);
 	}
 
-	/**
-	 * Returns a number string with no fraction digits if possible. Otherwise the given number of
-	 * digits will be returned.
-	 */
-	public static String formatIntegerIfPossible(double value, int numberOfDigits, boolean groupingCharacter) {
+    /**
+     * Returns a number string with no fraction digits if possible. Otherwise the given number of
+     * digits will be returned.
+     *
+     * @param value             the value
+     * @param numberOfDigits    the number of digits
+     * @param groupingCharacter the grouping character
+     * @return the string
+     */
+    public static String formatIntegerIfPossible(double value, int numberOfDigits, boolean groupingCharacter) {
 		if (Double.isNaN(value)) {
 			return "?";
 		}
@@ -451,21 +527,25 @@ public class Tools {
 		return formatNumber(value, numberOfDigits, groupingCharacter);
 	}
 
-	/** Format date as a short time string. */
-	public static String formatTime(Date date) {
+    /**
+     * Format date as a short time string.  @param date the date
+     *
+     * @param date the date
+     * @return the string
+     */
+    public static String formatTime(Date date) {
 		TIME_FORMAT.get().setTimeZone(getPreferredTimeZone());
 		return TIME_FORMAT.get().format(date);
 	}
 
-	/**
-	 * Format double value as a short time string. If value is NaN, returns {@value #MISSING_TIME}.
-	 *
-	 * @param value
-	 *            the value to be formatted as time
-	 * @return a short time string or {@value #MISSING_TIME} if value was NaN
-	 * @since 6.1.1
-	 */
-	public static String createTimeAndFormat(double value) {
+    /**
+     * Format double value as a short time string. If value is NaN, returns {@value #MISSING_TIME}.
+     *
+     * @param value the value to be formatted as time
+     * @return a short time string or {@value #MISSING_TIME} if value was NaN
+     * @since 6.1.1
+     */
+    public static String createTimeAndFormat(double value) {
 		if (Double.isNaN(value)) {
 			return MISSING_TIME;
 		} else {
@@ -474,21 +554,25 @@ public class Tools {
 		}
 	}
 
-	/** Format date as a short date string. */
-	public static String formatDate(Date date) {
+    /**
+     * Format date as a short date string.  @param date the date
+     *
+     * @param date the date
+     * @return the string
+     */
+    public static String formatDate(Date date) {
 		DATE_FORMAT.get().setTimeZone(getPreferredTimeZone());
 		return DATE_FORMAT.get().format(date);
 	}
 
-	/**
-	 * Format double value as a short date string. If value is NaN, returns {@value #MISSING_DATE}.
-	 *
-	 * @param value
-	 *            the value to be formatted as a date
-	 * @return a short date string or {@value #MISSING_DATE} if value was NaN
-	 * @since 6.1.1
-	 */
-	public static String createDateAndFormat(double value) {
+    /**
+     * Format double value as a short date string. If value is NaN, returns {@value #MISSING_DATE}.
+     *
+     * @param value the value to be formatted as a date
+     * @return a short date string or {@value #MISSING_DATE} if value was NaN
+     * @since 6.1.1
+     */
+    public static String createDateAndFormat(double value) {
 		if (Double.isNaN(value)) {
 			return MISSING_DATE;
 		} else {
@@ -497,22 +581,26 @@ public class Tools {
 		}
 	}
 
-	/** Format date as a short time string. */
-	public static String formatDateTime(Date date) {
+    /**
+     * Format date as a short time string.  @param date the date
+     *
+     * @param date the date
+     * @return the string
+     */
+    public static String formatDateTime(Date date) {
 		DATE_TIME_FORMAT.get().setTimeZone(getPreferredTimeZone());
 		return DATE_TIME_FORMAT.get().format(date);
 	}
 
-	/**
-	 * Format double value as a short datetime string. If value is NaN, returns
-	 * {@value #MISSING_DATE}.
-	 *
-	 * @param value
-	 *            the value to be formatted as datetime
-	 * @return a short datetime string or {@value #MISSING_DATE} if value was NaN
-	 * @since 6.1.1
-	 */
-	public static String createDateTimeAndFormat(double value) {
+    /**
+     * Format double value as a short datetime string. If value is NaN, returns
+     * {@value #MISSING_DATE}.
+     *
+     * @param value the value to be formatted as datetime
+     * @return a short datetime string or {@value #MISSING_DATE} if value was NaN
+     * @since 6.1.1
+     */
+    public static String createDateTimeAndFormat(double value) {
 		if (Double.isNaN(value)) {
 			return MISSING_DATE;
 		} else {
@@ -521,19 +609,36 @@ public class Tools {
 		}
 	}
 
-	public static String formatDateTime(Date date, String pattern) {
+    /**
+     * Format date time string.
+     *
+     * @param date    the date
+     * @param pattern the pattern
+     * @return the string
+     */
+    public static String formatDateTime(Date date, String pattern) {
 		SimpleDateFormat format = new SimpleDateFormat(pattern);
 		format.setTimeZone(getPreferredTimeZone());
 		return format.format(date);
 	}
 
-	/** Format the given amount of milliseconds as a human readable string. */
-	public static String formatDuration(long milliseconds) {
+    /**
+     * Format the given amount of milliseconds as a human readable string.  @param milliseconds the milliseconds
+     *
+     * @param milliseconds the milliseconds
+     * @return the string
+     */
+    public static String formatDuration(long milliseconds) {
 		return DURATION_TIME_FORMAT.format(milliseconds);
 	}
 
-	/** Returns the name for an ordinal number. */
-	public static String ordinalNumber(int n) {
+    /**
+     * Returns the name for an ordinal number.  @param n the n
+     *
+     * @param n the n
+     * @return the string
+     */
+    public static String ordinalNumber(int n) {
 		if (n % 10 == 1 && n % 100 != 11) {
 			return n + "st";
 		}
@@ -546,11 +651,15 @@ public class Tools {
 		return n + "th";
 	}
 
-	/**
-	 * Returns <code>true</code> if the difference between both numbers is smaller than IS_ZERO or
-	 * both are Double.NaN. If either d1 or d2 is Double.NaN it will return <code>false</code>.
-	 */
-	public static boolean isEqual(double d1, double d2) {
+    /**
+     * Returns <code>true</code> if the difference between both numbers is smaller than IS_ZERO or
+     * both are Double.NaN. If either d1 or d2 is Double.NaN it will return <code>false</code>.
+     *
+     * @param d1 the d 1
+     * @param d2 the d 2
+     * @return the boolean
+     */
+    public static boolean isEqual(double d1, double d2) {
 		// NaN handling
 		if (Double.isNaN(d1) && Double.isNaN(d2)) {
 			return true;
@@ -562,65 +671,96 @@ public class Tools {
 		return Math.abs(d1 - d2) < IS_ZERO;
 	}
 
-	/** Returns {@link #isEqual(double, double)} for d and 0. */
-	public static boolean isZero(double d) {
+    /**
+     * Returns {@link #isEqual(double, double)} for d and 0.  @param d the d
+     *
+     * @param d the d
+     * @return the boolean
+     */
+    public static boolean isZero(double d) {
 		return isEqual(d, 0.0d);
 	}
 
-	/** Returns not {@link #isEqual(double, double)}. */
-	public static boolean isNotEqual(double d1, double d2) {
+    /**
+     * Returns not {@link #isEqual(double, double)}.  @param d1 the d 1
+     *
+     * @param d1 the d 1
+     * @param d2 the d 2
+     * @return the boolean
+     */
+    public static boolean isNotEqual(double d1, double d2) {
 		return !isEqual(d1, d2);
 	}
 
-	/**
-	 * Returns <code>false</code> if either d1 or d2 is Double.NaN. Otherwis returns
-	 * <code>true</code> if the d1 is greater than d2.
-	 */
-	public static boolean isGreater(double d1, double d2) {
+    /**
+     * Returns <code>false</code> if either d1 or d2 is Double.NaN. Otherwis returns
+     * <code>true</code> if the d1 is greater than d2.
+     *
+     * @param d1 the d 1
+     * @param d2 the d 2
+     * @return the boolean
+     */
+    public static boolean isGreater(double d1, double d2) {
 		if (Double.isNaN(d1) || Double.isNaN(d2)) {
 			return false;
 		}
 		return Double.compare(d1, d2) > 0;
 	}
 
-	/**
-	 * Returns <code>false</code> if either d1 or d2 is Double.NaN. Returns <code>true</code> if the
-	 * d1 is greater than d2 or both are equal.
-	 */
-	public static boolean isGreaterEqual(double d1, double d2) {
+    /**
+     * Returns <code>false</code> if either d1 or d2 is Double.NaN. Returns <code>true</code> if the
+     * d1 is greater than d2 or both are equal.
+     *
+     * @param d1 the d 1
+     * @param d2 the d 2
+     * @return the boolean
+     */
+    public static boolean isGreaterEqual(double d1, double d2) {
 		if (Double.isNaN(d1) || Double.isNaN(d2)) {
 			return false;
 		}
 		return Double.compare(d1, d2) > 0 || isEqual(d1, d2);
 	}
 
-	/**
-	 * Returns <code>false</code> if either d1 or d2 is Double.NaN. Returns <code>true</code> if the
-	 * d1 is less than d2.
-	 */
-	public static boolean isLess(double d1, double d2) {
+    /**
+     * Returns <code>false</code> if either d1 or d2 is Double.NaN. Returns <code>true</code> if the
+     * d1 is less than d2.
+     *
+     * @param d1 the d 1
+     * @param d2 the d 2
+     * @return the boolean
+     */
+    public static boolean isLess(double d1, double d2) {
 		if (Double.isNaN(d1) || Double.isNaN(d2)) {
 			return false;
 		}
 		return Double.compare(d1, d2) < 0;
 	}
 
-	/**
-	 * Returns <code>false</code> if either d1 or d2 is Double.NaN. Returns <code>true</code> if the
-	 * d1 is less than d2 or both are equal.
-	 */
-	public static boolean isLessEqual(double d1, double d2) {
+    /**
+     * Returns <code>false</code> if either d1 or d2 is Double.NaN. Returns <code>true</code> if the
+     * d1 is less than d2 or both are equal.
+     *
+     * @param d1 the d 1
+     * @param d2 the d 2
+     * @return the boolean
+     */
+    public static boolean isLessEqual(double d1, double d2) {
 		if (Double.isNaN(d1) || Double.isNaN(d2)) {
 			return false;
 		}
 		return Double.compare(d1, d2) < 0 || isEqual(d1, d2);
 	}
 
-	/**
-	 * Returns <code>true</code> if date d1 is equal to date d2. Returns <code>false</code> if
-	 * either d1 or d2 is <code>null</code> or dates are not equal.
-	 */
-	public static boolean isEqual(Date d1, Date d2) {
+    /**
+     * Returns <code>true</code> if date d1 is equal to date d2. Returns <code>false</code> if
+     * either d1 or d2 is <code>null</code> or dates are not equal.
+     *
+     * @param d1 the d 1
+     * @param d2 the d 2
+     * @return the boolean
+     */
+    public static boolean isEqual(Date d1, Date d2) {
 		if (d1 == d2) {
 			return true;
 		}
@@ -630,55 +770,88 @@ public class Tools {
 		return d1.compareTo(d2) == 0;
 	}
 
-	/** Returns no {@link #isEqual(Date, Date)}. */
-	public static boolean isNotEqual(Date d1, Date d2) {
+    /**
+     * Returns no {@link #isEqual(Date, Date)}.  @param d1 the d 1
+     *
+     * @param d1 the d 1
+     * @param d2 the d 2
+     * @return the boolean
+     */
+    public static boolean isNotEqual(Date d1, Date d2) {
 		return !isEqual(d1, d2);
 	}
 
-	/**
-	 * Returns <code>true</code> if the date d1 is greater than date d2. Returns <code>false</code>
-	 * if either d1 or d2 are <code>null</code>.
-	 */
-	public static boolean isGreater(Date d1, Date d2) {
+    /**
+     * Returns <code>true</code> if the date d1 is greater than date d2. Returns <code>false</code>
+     * if either d1 or d2 are <code>null</code>.
+     *
+     * @param d1 the d 1
+     * @param d2 the d 2
+     * @return the boolean
+     */
+    public static boolean isGreater(Date d1, Date d2) {
 		if (d1 == null || d2 == null) {
 			return false;
 		}
 		return d1.compareTo(d2) > 0;
 	}
 
-	/** Returns true if the date d1 is greater than date d1 or both are equal */
-	public static boolean isGreaterEqual(Date d1, Date d2) {
+    /**
+     * Returns true if the date d1 is greater than date d1 or both are equal  @param d1 the d 1
+     *
+     * @param d1 the d 1
+     * @param d2 the d 2
+     * @return the boolean
+     */
+    public static boolean isGreaterEqual(Date d1, Date d2) {
 		return isEqual(d1, d2) || d1 != null && d1.compareTo(d2) > 0;
 	}
 
-	/**
-	 * Returns <code>true</code> if the date d1 is less than date d2. Returns <code>false</code> if
-	 * either d1 or d2 are <code>null</code>.
-	 */
-	public static boolean isLess(Date d1, Date d2) {
+    /**
+     * Returns <code>true</code> if the date d1 is less than date d2. Returns <code>false</code> if
+     * either d1 or d2 are <code>null</code>.
+     *
+     * @param d1 the d 1
+     * @param d2 the d 2
+     * @return the boolean
+     */
+    public static boolean isLess(Date d1, Date d2) {
 		if (d1 == null || d2 == null) {
 			return false;
 		}
 		return d1.compareTo(d2) < 0;
 	}
 
-	/** Returns true if the date d1 is less than date d1 or both are equal. */
-	public static boolean isLessEqual(Date d1, Date d2) {
+    /**
+     * Returns true if the date d1 is less than date d1 or both are equal.  @param d1 the d 1
+     *
+     * @param d1 the d 1
+     * @param d2 the d 2
+     * @return the boolean
+     */
+    public static boolean isLessEqual(Date d1, Date d2) {
 		return isEqual(d1, d2) || d1 != null && d1.compareTo(d2) < 0;
 	}
 
 	// ====================================
 
-	/** Returns the correct line separator for the current operating system. */
-	public static String getLineSeparator() {
+    /**
+     * Returns the correct line separator for the current operating system.  @return the line separator
+     *
+     * @return the line separator
+     */
+    public static String getLineSeparator() {
 		return LINE_SEPARATOR;
 	}
 
-	/**
-	 * Returns the correct line separator for the current operating system concatenated for the
-	 * given number of times.
-	 */
-	public static String getLineSeparators(int number) {
+    /**
+     * Returns the correct line separator for the current operating system concatenated for the
+     * given number of times.
+     *
+     * @param number the number
+     * @return the line separators
+     */
+    public static String getLineSeparators(int number) {
 		if (number < 0) {
 			number = 0;
 		}
@@ -689,12 +862,15 @@ public class Tools {
 		return result.toString();
 	}
 
-	/**
-	 * Replaces all possible line feed character combinations by &quot;\n&quot;. This might be
-	 * important for GUI purposes like tool tip texts which do not support carriage return
-	 * combinations.
-	 */
-	public static String transformAllLineSeparators(String text) {
+    /**
+     * Replaces all possible line feed character combinations by &quot;\n&quot;. This might be
+     * important for GUI purposes like tool tip texts which do not support carriage return
+     * combinations.
+     *
+     * @param text the text
+     * @return the string
+     */
+    public static String transformAllLineSeparators(String text) {
 		Pattern crlf = Pattern.compile("(\r\n|\r|\n|\n\r)");
 		Matcher m = crlf.matcher(text);
 		if (m.find()) {
@@ -703,11 +879,14 @@ public class Tools {
 		return text;
 	}
 
-	/**
-	 * Removes all possible line feed character combinations. This might be important for GUI
-	 * purposes like tool tip texts which do not support carriage return combinations.
-	 */
-	public static String removeAllLineSeparators(String text) {
+    /**
+     * Removes all possible line feed character combinations. This might be important for GUI
+     * purposes like tool tip texts which do not support carriage return combinations.
+     *
+     * @param text the text
+     * @return the string
+     */
+    public static String removeAllLineSeparators(String text) {
 		Pattern crlf = Pattern.compile("(\r\n|\r|\n|\n\r)");
 		Matcher m = crlf.matcher(text);
 		if (m.find()) {
@@ -716,24 +895,25 @@ public class Tools {
 		return text;
 	}
 
-	/**
-	 * Returns the class name of the given class without the package information.
-	 *
-	 * @deprecated Call c.getSimpleName() directly.
-	 */
-	@Deprecated
+    /**
+     * Returns the class name of the given class without the package information.
+     *
+     * @param c the c
+     * @return the string
+     * @deprecated Call c.getSimpleName() directly.
+     */
+    @Deprecated
 	public static String classNameWOPackage(Class<?> c) {
 		return c.getSimpleName();
 	}
 
-	/**
-	 * Clones a {@link List} of {@link Operator}s including connections.
-	 *
-	 * @param operators
-	 *            List of operators.
-	 * @return Cloned list of operators.
-	 */
-	public static List<Operator> cloneOperators(List<Operator> operators) {
+    /**
+     * Clones a {@link List} of {@link Operator}s including connections.
+     *
+     * @param operators List of operators.
+     * @return Cloned list of operators.
+     */
+    public static List<Operator> cloneOperators(List<Operator> operators) {
 		List<Operator> clonedOperators = new ArrayList<>(operators.size());
 		Map<Operator, Operator> originalToClone = new HashMap<>(operators.size());
 
@@ -796,10 +976,14 @@ public class Tools {
 
 	// ====================================
 
-	/**
-	 * Reads the output of the reader and delivers it as string.
-	 */
-	public static String readOutput(BufferedReader in) throws IOException {
+    /**
+     * Reads the output of the reader and delivers it as string.
+     *
+     * @param in the in
+     * @return the string
+     * @throws IOException the io exception
+     */
+    public static String readOutput(BufferedReader in) throws IOException {
 		StringBuffer output = new StringBuffer();
 		String line = null;
 		while ((line = in.readLine()) != null) {
@@ -809,11 +993,15 @@ public class Tools {
 		return output.toString();
 	}
 
-	/**
-	 * Creates a file relative to the given parent if name is not an absolute file name. Returns
-	 * null if name is null.
-	 */
-	public static File getFile(File parent, String name) {
+    /**
+     * Creates a file relative to the given parent if name is not an absolute file name. Returns
+     * null if name is null.
+     *
+     * @param parent the parent
+     * @param name   the name
+     * @return the file
+     */
+    public static File getFile(File parent, String name) {
 		if (name == null) {
 			return null;
 		}
@@ -825,14 +1013,19 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * This method checks if the given file is a Zip file containing one entry (in case of file
-	 * extension .zip). If this is the case, a reader based on a ZipInputStream for this entry is
-	 * returned. Otherwise, this method checks if the file has the extension .gz. If this applies, a
-	 * gzipped stream reader is returned. Otherwise, this method just returns a BufferedReader for
-	 * the given file (file was not zipped at all).
-	 */
-	public static BufferedReader getReader(File file, Charset encoding) throws IOException {
+    /**
+     * This method checks if the given file is a Zip file containing one entry (in case of file
+     * extension .zip). If this is the case, a reader based on a ZipInputStream for this entry is
+     * returned. Otherwise, this method checks if the file has the extension .gz. If this applies, a
+     * gzipped stream reader is returned. Otherwise, this method just returns a BufferedReader for
+     * the given file (file was not zipped at all).
+     *
+     * @param file     the file
+     * @param encoding the encoding
+     * @return the reader
+     * @throws IOException the io exception
+     */
+    public static BufferedReader getReader(File file, Charset encoding) throws IOException {
 		// handle zip files if necessary
 		if (file.getAbsolutePath().endsWith(".zip")) {
 			try (ZipFile zipFile = new ZipFile(file)) {
@@ -853,13 +1046,15 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * This method tries to identify the encoding if a GUI is running and a process is defined. In
-	 * this case, the encoding is taken from the process. Otherwise, the method tries to identify
-	 * the encoding via the property {@link RapidMiner#PROPERTY_RAPIDMINER_GENERAL_DEFAULT_ENCODING}
-	 * . If this is not possible, this method just returns the default system encoding.
-	 */
-	public static Charset getDefaultEncoding() {
+    /**
+     * This method tries to identify the encoding if a GUI is running and a process is defined. In
+     * this case, the encoding is taken from the process. Otherwise, the method tries to identify
+     * the encoding via the property {@link RapidMiner#PROPERTY_RAPIDMINER_GENERAL_DEFAULT_ENCODING}
+     * . If this is not possible, this method just returns the default system encoding.
+     *
+     * @return the default encoding
+     */
+    public static Charset getDefaultEncoding() {
 		Charset result = null;
 
 		if (RapidMiner.getExecutionMode().hasMainFrame()) {
@@ -901,8 +1096,15 @@ public class Tools {
 		return result;
 	}
 
-	/** Returns the relative path of the first file resolved against the second. */
-	public static String getRelativePath(File firstFile, File secondFile) throws IOException {
+    /**
+     * Returns the relative path of the first file resolved against the second.  @param firstFile the first file
+     *
+     * @param firstFile  the first file
+     * @param secondFile the second file
+     * @return the relative path
+     * @throws IOException the io exception
+     */
+    public static String getRelativePath(File firstFile, File secondFile) throws IOException {
 		String canonicalFirstPath = firstFile.getCanonicalPath();
 		String canonicalSecondPath = secondFile.getCanonicalPath();
 
@@ -929,10 +1131,15 @@ public class Tools {
 		return relPath;
 	}
 
-	/**
-	 * Waits for process to die and writes log messages. Terminates if exit value is not 0.
-	 */
-	public static void waitForProcess(final Operator operator, final Process process, final String name)
+    /**
+     * Waits for process to die and writes log messages. Terminates if exit value is not 0.
+     *
+     * @param operator the operator
+     * @param process  the process
+     * @param name     the name
+     * @throws OperatorException the operator exception
+     */
+    public static void waitForProcess(final Operator operator, final Process process, final String name)
 			throws OperatorException {
 		int exitValue = -1;
 		try {
@@ -989,39 +1196,70 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * @deprecated Use {@link MailUtilities#sendEmail(String,String,String)} instead
-	 */
-	@Deprecated
+    /**
+     * Send email.
+     *
+     * @param address the address
+     * @param subject the subject
+     * @param content the content
+     * @deprecated Use {@link MailUtilities#sendEmail(String, String, String)} instead
+     */
+    @Deprecated
 	public static void sendEmail(String address, String subject, String content) {
 		MailUtilities.sendEmail(address, subject, content);
 	}
 
-	/** Adds a new resource source. Might be used by plugins etc. */
-	public static void addResourceSource(ResourceSource source) {
+    /**
+     * Adds a new resource source. Might be used by plugins etc.  @param source the source
+     *
+     * @param source the source
+     */
+    public static void addResourceSource(ResourceSource source) {
 		ALL_RESOURCE_SOURCES.add(source);
 	}
 
-	/** Adds a new resource source before the others. Might be used by plugins etc. */
-	public static void prependResourceSource(ResourceSource source) {
+    /**
+     * Adds a new resource source before the others. Might be used by plugins etc.  @param source the source
+     *
+     * @param source the source
+     */
+    public static void prependResourceSource(ResourceSource source) {
 		ALL_RESOURCE_SOURCES.addFirst(source);
 	}
 
-	public static URL getResource(ClassLoader loader, String name) {
+    /**
+     * Gets resource.
+     *
+     * @param loader the loader
+     * @param name   the name
+     * @return the resource
+     */
+    public static URL getResource(ClassLoader loader, String name) {
 		return getResource(loader, RESOURCE_PREFIX, name);
 	}
 
-	public static URL getResource(ClassLoader loader, String prefix, String name) {
+    /**
+     * Gets resource.
+     *
+     * @param loader the loader
+     * @param prefix the prefix
+     * @param name   the name
+     * @return the resource
+     */
+    public static URL getResource(ClassLoader loader, String prefix, String name) {
 		return loader.getResource(prefix + name);
 	}
 
-	/**
-	 * Returns the desired resource. Tries first to find a resource in the core RapidMiner resources
-	 * directory. If no resource with the given name is found, it is tried to load with help of the
-	 * ResourceSource which might have been added by plugins. Please note that resource names are
-	 * only allowed to use '/' as separator instead of File.separator!
-	 */
-	public static URL getResource(String name) {
+    /**
+     * Returns the desired resource. Tries first to find a resource in the core RapidMiner resources
+     * directory. If no resource with the given name is found, it is tried to load with help of the
+     * ResourceSource which might have been added by plugins. Please note that resource names are
+     * only allowed to use '/' as separator instead of File.separator!
+     *
+     * @param name the name
+     * @return the resource
+     */
+    public static URL getResource(String name) {
 		Iterator<ResourceSource> i = ALL_RESOURCE_SOURCES.iterator();
 		while (i.hasNext()) {
 			ResourceSource source = i.next();
@@ -1039,18 +1277,18 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * Return an input stream of the desired resource. Tries first to find a resource in the core
-	 * RapidMiner resources directory. If no resource with the given name is found, it is tried to
-	 * load with help of the ResourceSource which might have been added by plugins. Please note that
-	 * resource names are only allowed to use '/' as separator instead of File.separator!
-	 *
-	 * @throws IOException
-	 *             if stream cannot be opened
-	 * @throws RepositoryException
-	 *             if resource cannot be found
-	 */
-	public static InputStream getResourceInputStream(String name) throws IOException, RepositoryException {
+    /**
+     * Return an input stream of the desired resource. Tries first to find a resource in the core
+     * RapidMiner resources directory. If no resource with the given name is found, it is tried to
+     * load with help of the ResourceSource which might have been added by plugins. Please note that
+     * resource names are only allowed to use '/' as separator instead of File.separator!
+     *
+     * @param name the name
+     * @return the resource input stream
+     * @throws IOException         if stream cannot be opened
+     * @throws RepositoryException if resource cannot be found
+     */
+    public static InputStream getResourceInputStream(String name) throws IOException, RepositoryException {
 		URL resourceURL = Tools.getResource(name);
 		if (resourceURL == null) {
 			throw new RepositoryException("Missing resource " + name);
@@ -1058,16 +1296,27 @@ public class Tools {
 		return resourceURL.openStream();
 	}
 
-	public static String readTextFile(InputStream in) throws IOException {
+    /**
+     * Read text file string.
+     *
+     * @param in the in
+     * @return the string
+     * @throws IOException the io exception
+     */
+    public static String readTextFile(InputStream in) throws IOException {
 		return readTextFile(new InputStreamReader(in, "UTF-8"));
 	}
 
-	/**
-	 * Reads a text file into a single string. Process files created with RapidMiner 5.2.008 or
-	 * earlier will be read with the system encoding (for compatibility reasons); all other files
-	 * will be read with UTF-8 encoding.
-	 */
-	public static String readTextFile(File file) throws IOException {
+    /**
+     * Reads a text file into a single string. Process files created with RapidMiner 5.2.008 or
+     * earlier will be read with the system encoding (for compatibility reasons); all other files
+     * will be read with UTF-8 encoding.
+     *
+     * @param file the file
+     * @return the string
+     * @throws IOException the io exception
+     */
+    public static String readTextFile(File file) throws IOException {
 		// due to a bug in pre-5.2.009, process files were stored in System encoding instead of
 		// UTF-8. So we have to check the process version, and if it's less than 5.2.009 we have
 		// to retrieve the file again with System encoding.
@@ -1124,7 +1373,14 @@ public class Tools {
 		}
 	}
 
-	public static String readTextFile(Reader r) throws IOException {
+    /**
+     * Read text file string.
+     *
+     * @param r the r
+     * @return the string
+     * @throws IOException the io exception
+     */
+    public static String readTextFile(Reader r) throws IOException {
 		StringBuilder contents = new StringBuilder();
 		BufferedReader reader = new BufferedReader(r);
 		String line = "";
@@ -1138,31 +1394,26 @@ public class Tools {
 		return contents.toString();
 	}
 
-	/**
-	 * Reads content from the provided input stream.
-	 *
-	 * @param stream
-	 *            the stream to read content from
-	 * @return the content as String
-	 * @throws IOException
-	 *             in case something goes wrong
-	 */
-	public static final String parseInputStreamToString(InputStream stream) throws IOException {
+    /**
+     * Reads content from the provided input stream.
+     *
+     * @param stream the stream to read content from
+     * @return the content as String
+     * @throws IOException in case something goes wrong
+     */
+    public static final String parseInputStreamToString(InputStream stream) throws IOException {
 		return parseInputStreamToString(stream, false);
 	}
 
-	/**
-	 * Reads content from the provided input stream.
-	 *
-	 * @param stream
-	 *            the stream to read content from
-	 * @param html
-	 *            return the string as html with line breaks between the lines
-	 * @return the content as String
-	 * @throws IOException
-	 *             in case something goes wrong
-	 */
-	public static final String parseInputStreamToString(InputStream stream, boolean html) throws IOException {
+    /**
+     * Reads content from the provided input stream.
+     *
+     * @param stream the stream to read content from
+     * @param html   return the string as html with line breaks between the lines
+     * @return the content as String
+     * @throws IOException in case something goes wrong
+     */
+    public static final String parseInputStreamToString(InputStream stream, boolean html) throws IOException {
 		try (InputStreamReader inputStreamReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
 				BufferedReader reader = new BufferedReader(inputStreamReader);) {
 
@@ -1185,7 +1436,14 @@ public class Tools {
 		}
 	}
 
-	public static void writeTextFile(File file, String text) throws IOException {
+    /**
+     * Write text file.
+     *
+     * @param file the file
+     * @param text the text
+     * @throws IOException the io exception
+     */
+    public static void writeTextFile(File file, String text) throws IOException {
 		// ! THIS IS TO PREVENT A JAVA PROBLEM (BUG?) ON WINDOWS NTFS FILESYSTEM !
 		// If the filename is something like C:\path\x:y.z, new FileOutputStream(file) will throw NO
 		// error
@@ -1206,11 +1464,24 @@ public class Tools {
 		}
 	}
 
-	public static final String[] TRUE_STRINGS = { "true", "on", "yes", "y" };
+    /**
+     * The constant TRUE_STRINGS.
+     */
+    public static final String[] TRUE_STRINGS = { "true", "on", "yes", "y" };
 
-	public static final String[] FALSE_STRINGS = { "false", "off", "no", "n" };
+    /**
+     * The constant FALSE_STRINGS.
+     */
+    public static final String[] FALSE_STRINGS = { "false", "off", "no", "n" };
 
-	public static boolean booleanValue(String string, boolean deflt) {
+    /**
+     * Boolean value boolean.
+     *
+     * @param string the string
+     * @param deflt  the deflt
+     * @return the boolean
+     */
+    public static boolean booleanValue(String string, boolean deflt) {
 		if (string == null) {
 			return deflt;
 		}
@@ -1228,7 +1499,13 @@ public class Tools {
 		return deflt;
 	}
 
-	public static File findSourceFile(StackTraceElement e) {
+    /**
+     * Find source file file.
+     *
+     * @param e the e
+     * @return the file
+     */
+    public static File findSourceFile(StackTraceElement e) {
 		try {
 			Class<?> clazz = Class.forName(e.getClassName());
 			while (clazz.getDeclaringClass() != null) {
@@ -1242,7 +1519,15 @@ public class Tools {
 		return FileSystemService.getSourceFile(filename + ".java");
 	}
 
-	public static Process launchFileEditor(File file, int line) throws IOException {
+    /**
+     * Launch file editor process.
+     *
+     * @param file the file
+     * @param line the line
+     * @return the process
+     * @throws IOException the io exception
+     */
+    public static Process launchFileEditor(File file, int line) throws IOException {
 		String editor = ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_TOOLS_EDITOR);
 		if (editor == null) {
 			throw new IOException("Property 'rapidminer.tools.editor' undefined.");
@@ -1252,27 +1537,50 @@ public class Tools {
 		return Runtime.getRuntime().exec(editor);
 	}
 
-	/** Replaces angle brackets by html entities. */
-	public static String escapeXML(String string) {
+    /**
+     * Replaces angle brackets by html entities.  @param string the string
+     *
+     * @param string the string
+     * @return the string
+     */
+    public static String escapeXML(String string) {
 		if (string == null) {
 			return "null";
 		}
 		return StringEscapeUtils.escapeXml(string);
 	}
 
-	/**
-	 * This method will encode the given string by replacing all forbidden characters by the
-	 * appropriate HTML entity.
-	 */
-	public static String escapeHTML(String string) {
+    /**
+     * This method will encode the given string by replacing all forbidden characters by the
+     * appropriate HTML entity.
+     *
+     * @param string the string
+     * @return the string
+     */
+    public static String escapeHTML(String string) {
 		return StringEscapeUtils.escapeHtml(string);
 	}
 
-	public static void findImplementationsInJar(JarFile jar, Class<?> superClass, List<String> implementations) {
+    /**
+     * Find implementations in jar.
+     *
+     * @param jar             the jar
+     * @param superClass      the super class
+     * @param implementations the implementations
+     */
+    public static void findImplementationsInJar(JarFile jar, Class<?> superClass, List<String> implementations) {
 		findImplementationsInJar(Tools.class.getClassLoader(), jar, superClass, implementations);
 	}
 
-	public static void findImplementationsInJar(ClassLoader loader, JarFile jar, Class<?> superClass,
+    /**
+     * Find implementations in jar.
+     *
+     * @param loader          the loader
+     * @param jar             the jar
+     * @param superClass      the super class
+     * @param implementations the implementations
+     */
+    public static void findImplementationsInJar(ClassLoader loader, JarFile jar, Class<?> superClass,
 			List<String> implementations) {
 		Enumeration<JarEntry> e = jar.entries();
 		while (e.hasMoreElements()) {
@@ -1296,8 +1604,14 @@ public class Tools {
 		}
 	}
 
-	/** TODO: Looks like this can be replaced by {@link Plugin#getMajorClassLoader()} */
-	public static Class<?> classForName(String className) throws ClassNotFoundException {
+    /**
+     * TODO: Looks like this can be replaced by {@link Plugin#getMajorClassLoader()} @param className the class name
+     *
+     * @param className the class name
+     * @return the class
+     * @throws ClassNotFoundException the class not found exception
+     */
+    public static Class<?> classForName(String className) throws ClassNotFoundException {
 		try {
 			return Class.forName(className);
 		} catch (ClassNotFoundException e) {
@@ -1318,22 +1632,32 @@ public class Tools {
 		throw new ClassNotFoundException(className);
 	}
 
-	/**
-	 * Splits the given line according to the given separator pattern while only those separators
-	 * will be regarded not lying inside of a quoting string. Please note that quoting characters
-	 * will not be regarded if they are escaped by an escaping character. The usual double quote
-	 * (&quot;) is used for quoting and can be escaped by a backslash, i.e. \&quot;.
-	 */
-	public static String[] quotedSplit(String line, Pattern separatorPattern) {
+    /**
+     * Splits the given line according to the given separator pattern while only those separators
+     * will be regarded not lying inside of a quoting string. Please note that quoting characters
+     * will not be regarded if they are escaped by an escaping character. The usual double quote
+     * (&quot;) is used for quoting and can be escaped by a backslash, i.e. \&quot;.
+     *
+     * @param line             the line
+     * @param separatorPattern the separator pattern
+     * @return the string [ ]
+     */
+    public static String[] quotedSplit(String line, Pattern separatorPattern) {
 		return quotedSplit(line, separatorPattern, '"', '\\');
 	}
 
-	/**
-	 * Splits the given line according to the given separator pattern while only those separators
-	 * will be regarded not lying inside of a quoting string. Please note that quoting characters
-	 * will not be regarded if they are escaped by an escaping character.
-	 */
-	public static String[] quotedSplit(String line, Pattern separatorPattern, char quotingChar, char escapeChar) {
+    /**
+     * Splits the given line according to the given separator pattern while only those separators
+     * will be regarded not lying inside of a quoting string. Please note that quoting characters
+     * will not be regarded if they are escaped by an escaping character.
+     *
+     * @param line             the line
+     * @param separatorPattern the separator pattern
+     * @param quotingChar      the quoting char
+     * @param escapeChar       the escape char
+     * @return the string [ ]
+     */
+    public static String[] quotedSplit(String line, Pattern separatorPattern, char quotingChar, char escapeChar) {
 
 		// determine split positions according to non-escaped quotes
 		int[] quoteSplitIndices = new int[line.length()];
@@ -1432,24 +1756,18 @@ public class Tools {
 		return resultArray;
 	}
 
-	/**
-	 * This method merges quoted splits, e.g. if a string line should be splitted by comma and
-	 * commas inside of a quoted string should not be used as splitting point.
-	 *
-	 * @param line
-	 *            the original line
-	 * @param splittedTokens
-	 *            the tokens as they were originally splitted
-	 * @param quoteString
-	 *            the string which should be used as quote indicator, e.g. &quot; or '
-	 * @return the array of strings where the given quoteString was regarded
-	 * @throws IOException
-	 *             if an open quote was not ended
-	 *
-	 * @deprecated Please use {@link #quotedSplit(String, Pattern, char, char)} or
-	 *             {@link #quotedSplit(String, Pattern)} instead
-	 */
-	@Deprecated
+    /**
+     * This method merges quoted splits, e.g. if a string line should be splitted by comma and
+     * commas inside of a quoted string should not be used as splitting point.
+     *
+     * @param line           the original line
+     * @param splittedTokens the tokens as they were originally splitted
+     * @param quoteString    the string which should be used as quote indicator, e.g. &quot; or '
+     * @return the array of strings where the given quoteString was regarded
+     * @throws IOException if an open quote was not ended
+     * @deprecated Please use {@link #quotedSplit(String, Pattern, char, char)} or             {@link #quotedSplit(String, Pattern)} instead
+     */
+    @Deprecated
 	public static String[] mergeQuotedSplits(String line, String[] splittedTokens, String quoteString) throws IOException {
 		int[] tokenStarts = new int[splittedTokens.length];
 		int currentCounter = 0;
@@ -1524,8 +1842,13 @@ public class Tools {
 		return quoted;
 	}
 
-	/** Delivers the next token and skip empty lines. */
-	public static void getFirstToken(StreamTokenizer tokenizer) throws IOException {
+    /**
+     * Delivers the next token and skip empty lines.  @param tokenizer the tokenizer
+     *
+     * @param tokenizer the tokenizer
+     * @throws IOException the io exception
+     */
+    public static void getFirstToken(StreamTokenizer tokenizer) throws IOException {
 		// skip empty lines
 		while (tokenizer.nextToken() == StreamTokenizer.TT_EOL) {
 		}
@@ -1538,15 +1861,26 @@ public class Tools {
 		}
 	}
 
-	/** Delivers the next token and checks if its the end of line. */
-	public static void getLastToken(StreamTokenizer tokenizer, boolean endOfFileOk) throws IOException {
+    /**
+     * Delivers the next token and checks if its the end of line.  @param tokenizer the tokenizer
+     *
+     * @param tokenizer   the tokenizer
+     * @param endOfFileOk the end of file ok
+     * @throws IOException the io exception
+     */
+    public static void getLastToken(StreamTokenizer tokenizer, boolean endOfFileOk) throws IOException {
 		if (tokenizer.nextToken() != StreamTokenizer.TT_EOL && (tokenizer.ttype != StreamTokenizer.TT_EOF || !endOfFileOk)) {
 			throw new IOException("expected the end of the line " + tokenizer.lineno());
 		}
 	}
 
-	/** Delivers the next token and checks for an unexpected end of line or file. */
-	public static void getNextToken(StreamTokenizer tokenizer) throws IOException {
+    /**
+     * Delivers the next token and checks for an unexpected end of line or file.  @param tokenizer the tokenizer
+     *
+     * @param tokenizer the tokenizer
+     * @throws IOException the io exception
+     */
+    public static void getNextToken(StreamTokenizer tokenizer) throws IOException {
 		if (tokenizer.nextToken() == StreamTokenizer.TT_EOL) {
 			throw new IOException("unexpected end of line " + tokenizer.lineno());
 		}
@@ -1560,8 +1894,13 @@ public class Tools {
 		}
 	}
 
-	/** Skips all tokens before next end of line (EOL). */
-	public static void waitForEOL(StreamTokenizer tokenizer) throws IOException {
+    /**
+     * Skips all tokens before next end of line (EOL).  @param tokenizer the tokenizer
+     *
+     * @param tokenizer the tokenizer
+     * @throws IOException the io exception
+     */
+    public static void waitForEOL(StreamTokenizer tokenizer) throws IOException {
 		// skip everything until EOL
 		while (tokenizer.nextToken() != StreamTokenizer.TT_EOL) {
 		}
@@ -1569,8 +1908,13 @@ public class Tools {
 		tokenizer.pushBack();
 	}
 
-	/** Deletes the file. If it is a directory, deletes recursively. */
-	public static boolean delete(File file) {
+    /**
+     * Deletes the file. If it is a directory, deletes recursively.  @param file the file
+     *
+     * @param file the file
+     * @return the boolean
+     */
+    public static boolean delete(File file) {
 		if (file.isDirectory()) {
 			boolean success = true;
 			File[] files = file.listFiles();
@@ -1595,7 +1939,14 @@ public class Tools {
 		}
 	}
 
-	public static void copy(File srcPath, File dstPath) throws IOException {
+    /**
+     * Copy.
+     *
+     * @param srcPath the src path
+     * @param dstPath the dst path
+     * @throws IOException the io exception
+     */
+    public static void copy(File srcPath, File dstPath) throws IOException {
 		if (srcPath.isDirectory()) {
 			if (!dstPath.exists()) {
 				boolean result = dstPath.mkdir();
@@ -1631,8 +1982,13 @@ public class Tools {
 		}
 	}
 
-	/** Returns a whitespace with length indent. */
-	public static String indent(int indent) {
+    /**
+     * Returns a whitespace with length indent.  @param indent the indent
+     *
+     * @param indent the indent
+     * @return the string
+     */
+    public static String indent(int indent) {
 		StringBuffer s = new StringBuffer();
 		for (int i = 0; i < indent; i++) {
 			s.append(" ");
@@ -1640,7 +1996,13 @@ public class Tools {
 		return s.toString();
 	}
 
-	public static String formatBytes(long numberOfBytes) {
+    /**
+     * Format bytes string.
+     *
+     * @param numberOfBytes the number of bytes
+     * @return the string
+     */
+    public static String formatBytes(long numberOfBytes) {
 		if (numberOfBytes > 1024 * 1024) {
 			long mBytes = numberOfBytes / (1024 * 1024);
 			if (mBytes >= 100) {
@@ -1656,13 +2018,16 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * Copies the contents read from the input stream to the output stream in the current thread.
-	 * Both streams will be closed, even in case of a failure.
-	 *
-	 * @param closeOutputStream
-	 */
-	public static void copyStreamSynchronously(InputStream in, OutputStream out, boolean closeOutputStream)
+    /**
+     * Copies the contents read from the input stream to the output stream in the current thread.
+     * Both streams will be closed, even in case of a failure.
+     *
+     * @param in                the in
+     * @param out               the out
+     * @param closeOutputStream the close output stream
+     * @throws IOException the io exception
+     */
+    public static void copyStreamSynchronously(InputStream in, OutputStream out, boolean closeOutputStream)
 			throws IOException {
 		byte[] buffer = new byte[1024 * 20];
 		try {
@@ -1688,8 +2053,13 @@ public class Tools {
 
 	}
 
-	/** Esacapes quotes, newlines, and backslashes. */
-	public static String escape(String unescaped) {
+    /**
+     * Esacapes quotes, newlines, and backslashes.  @param unescaped the unescaped
+     *
+     * @param unescaped the unescaped
+     * @return the string
+     */
+    public static String escape(String unescaped) {
 		StringBuilder result = new StringBuilder();
 		for (char c : unescaped.toCharArray()) {
 			switch (c) {
@@ -1710,16 +2080,13 @@ public class Tools {
 		return result.toString();
 	}
 
-	/**
-	 *
-	 * Returns the column name of the the n'th column like excel names it.
-	 *
-	 * @param index
-	 *            the index of the column
-	 *
-	 * @return
-	 */
-	public static String getExcelColumnName(int index) {
+    /**
+     * Returns the column name of the the n'th column like excel names it.
+     *
+     * @param index the index of the column
+     * @return excel column name
+     */
+    public static String getExcelColumnName(int index) {
 		if (index < 0) {
 			return "error";
 		}
@@ -1737,16 +2104,23 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * Replace quote chars in-quote characters by escapeChar+quotingChar
-	 *
-	 * Example: seperatorPatern = ',' , quotingChar = '"' , escapeCahr = '\\'
-	 *
-	 * line = '"Charles says: "Some people never go crazy, What truly horrible lives they must live"
-	 * ", 1968, " US"' return = '"Charles says: \
-	 * "Some people never go crazy, What truly horrible lives they must live\"", "1968", "US"'
-	 */
-	public static String escapeQuoteCharsInQuotes(String line, Pattern separatorPattern, char quotingChar, char escapeChar,
+    /**
+     * Replace quote chars in-quote characters by escapeChar+quotingChar
+     * <p>
+     * Example: seperatorPatern = ',' , quotingChar = '"' , escapeCahr = '\\'
+     * <p>
+     * line = '"Charles says: "Some people never go crazy, What truly horrible lives they must live"
+     * ", 1968, " US"' return = '"Charles says: \
+     * "Some people never go crazy, What truly horrible lives they must live\"", "1968", "US"'
+     *
+     * @param line             the line
+     * @param separatorPattern the separator pattern
+     * @param quotingChar      the quoting char
+     * @param escapeChar       the escape char
+     * @param showWarning      the show warning
+     * @return the string
+     */
+    public static String escapeQuoteCharsInQuotes(String line, Pattern separatorPattern, char quotingChar, char escapeChar,
 			boolean showWarning) {
 		// first remember quoteChar positions which should be escaped:
 		char lastChar = '0';
@@ -1822,7 +2196,13 @@ public class Tools {
 		return line;
 	}
 
-	public static String unescape(String escaped) {
+    /**
+     * Unescape string.
+     *
+     * @param escaped the escaped
+     * @return the string
+     */
+    public static String unescape(String escaped) {
 		StringBuilder result = new StringBuilder();
 		for (int index = 0; index < escaped.length(); index++) {
 			char c = escaped.charAt(index);
@@ -1858,16 +2238,25 @@ public class Tools {
 		return result.toString();
 	}
 
-	/** As {@link #toString(Collection, String)} with ", ". */
-	public static String toString(Collection<?> collection) {
+    /**
+     * As {@link #toString(Collection, String)} with ", ".  @param collection the collection
+     *
+     * @param collection the collection
+     * @return the string
+     */
+    public static String toString(Collection<?> collection) {
 		return toString(collection, ", ");
 	}
 
-	/**
-	 * Returns a string containing the toString()-representation of the elements of collection,
-	 * separated by the given separator.
-	 */
-	public static String toString(Collection<?> collection, String separator) {
+    /**
+     * Returns a string containing the toString()-representation of the elements of collection,
+     * separated by the given separator.
+     *
+     * @param collection the collection
+     * @param separator  the separator
+     * @return the string
+     */
+    public static String toString(Collection<?> collection, String separator) {
 		boolean first = true;
 		StringBuilder b = new StringBuilder();
 		for (Object o : collection) {
@@ -1881,11 +2270,24 @@ public class Tools {
 		return b.toString();
 	}
 
-	public static String toString(Object[] collection) {
+    /**
+     * To string string.
+     *
+     * @param collection the collection
+     * @return the string
+     */
+    public static String toString(Object[] collection) {
 		return toString(collection, ", ");
 	}
 
-	public static String toString(Object[] collection, String separator) {
+    /**
+     * To string string.
+     *
+     * @param collection the collection
+     * @param separator  the separator
+     * @return the string
+     */
+    public static String toString(Object[] collection, String separator) {
 		if (collection == null) {
 			return null;
 		} else {
@@ -1893,7 +2295,13 @@ public class Tools {
 		}
 	}
 
-	public static String formatSizeInBytes(long bytes) {
+    /**
+     * Format size in bytes string.
+     *
+     * @param bytes the bytes
+     * @return the string
+     */
+    public static String formatSizeInBytes(long bytes) {
 		long result = bytes;
 		long rest = 0;
 		int unit = 0;
@@ -1912,19 +2320,27 @@ public class Tools {
 		}
 	}
 
-	/**
-	 * This method will return a byte array containing the raw data from the given url. Please keep
-	 * in mind that in order to load the data, the data will be stored in memory twice.
-	 */
-	public static byte[] readUrl(URL url) throws IOException {
+    /**
+     * This method will return a byte array containing the raw data from the given url. Please keep
+     * in mind that in order to load the data, the data will be stored in memory twice.
+     *
+     * @param url the url
+     * @return the byte [ ]
+     * @throws IOException the io exception
+     */
+    public static byte[] readUrl(URL url) throws IOException {
 		return readInputStream(new BufferedInputStream(WebServiceTools.openStreamFromURL(url)));
 	}
 
-	/**
-	 * This method will return a byte array containing the raw data from the given input stream. The
-	 * stream will be closed afterwards in any case.
-	 */
-	public static byte[] readInputStream(InputStream in) throws IOException {
+    /**
+     * This method will return a byte array containing the raw data from the given input stream. The
+     * stream will be closed afterwards in any case.
+     *
+     * @param in the in
+     * @return the byte [ ]
+     * @throws IOException the io exception
+     */
+    public static byte[] readInputStream(InputStream in) throws IOException {
 
 		try {
 			class Part {
@@ -1968,8 +2384,15 @@ public class Tools {
 		}
 	}
 
-	/** Prefixes every occurrence */
-	public static String escape(String source, char escapeChar, char[] specialCharacters) {
+    /**
+     * Prefixes every occurrence  @param source the source
+     *
+     * @param source            the source
+     * @param escapeChar        the escape char
+     * @param specialCharacters the special characters
+     * @return the string
+     */
+    public static String escape(String source, char escapeChar, char[] specialCharacters) {
 		if (source == null) {
 			return null;
 		}
@@ -1991,16 +2414,31 @@ public class Tools {
 		return b.toString();
 	}
 
-	/** Splits the string at every split character unless escaped. */
-	public static List<String> unescape(String source, char escapeChar, char[] specialCharacters, char splitCharacter) {
+    /**
+     * Splits the string at every split character unless escaped.  @param source the source
+     *
+     * @param source            the source
+     * @param escapeChar        the escape char
+     * @param specialCharacters the special characters
+     * @param splitCharacter    the split character
+     * @return the list
+     */
+    public static List<String> unescape(String source, char escapeChar, char[] specialCharacters, char splitCharacter) {
 		return unescape(source, escapeChar, specialCharacters, splitCharacter, -1);
 	}
 
-	/**
-	 * Splits the string at every split character unless escaped. If the split limit is not -1, at
-	 * most so many tokens will be returned. No more escaping is performed in the last token!
-	 */
-	public static List<String> unescape(String source, char escapeChar, char[] specialCharacters, char splitCharacter,
+    /**
+     * Splits the string at every split character unless escaped. If the split limit is not -1, at
+     * most so many tokens will be returned. No more escaping is performed in the last token!
+     *
+     * @param source            the source
+     * @param escapeChar        the escape char
+     * @param specialCharacters the special characters
+     * @param splitCharacter    the split character
+     * @param splitLimit        the split limit
+     * @return the list
+     */
+    public static List<String> unescape(String source, char escapeChar, char[] specialCharacters, char splitCharacter,
 			int splitLimit) {
 		List<String> result = new LinkedList<>();
 		StringBuilder b = new StringBuilder();
@@ -2058,8 +2496,14 @@ public class Tools {
 		return result;
 	}
 
-	/** In contrast to o1.equals(o2), this method also works with p1==null. */
-	public static boolean equals(Object o1, Object o2) {
+    /**
+     * In contrast to o1.equals(o2), this method also works with p1==null.  @param o1 the o 1
+     *
+     * @param o1 the o 1
+     * @param o2 the o 2
+     * @return the boolean
+     */
+    public static boolean equals(Object o1, Object o2) {
 		if (o1 != null) {
 			return o1.equals(o2);
 		} else {
@@ -2069,19 +2513,20 @@ public class Tools {
 
 	}
 
-	/**
-	 * Iterates over a string an replaces all occurrences of charToMask by '%'. Furthermore all
-	 * appearing '%' will be escaped by '\' and all '\' will also be escaped by '\'. To unmask the
-	 * resulting string again use {@link #unmask(char, String)}.<br>
-	 * Examples (charToMask= '|'):<br>
-	 * hello|mandy => hello%mandy<br>
-	 * hel\lo|mandy => hel\\lo%mandy<br>
-	 * h%l\lo|mandy => h\%l\\lo%mandy<br>
-	 *
-	 * @param charToMask
-	 *            the character that should be masked. May not be '%' or '\\'
-	 */
-	public static String mask(char charToMask, String unmasked) {
+    /**
+     * Iterates over a string an replaces all occurrences of charToMask by '%'. Furthermore all
+     * appearing '%' will be escaped by '\' and all '\' will also be escaped by '\'. To unmask the
+     * resulting string again use {@link #unmask(char, String)}.<br>
+     * Examples (charToMask= '|'):<br>
+     * hello|mandy => hello%mandy<br>
+     * hel\lo|mandy => hel\\lo%mandy<br>
+     * h%l\lo|mandy => h\%l\\lo%mandy<br>
+     *
+     * @param charToMask the character that should be masked. May not be '%' or '\\'
+     * @param unmasked   the unmasked
+     * @return the string
+     */
+    public static String mask(char charToMask, String unmasked) {
 		if (charToMask == '%' || charToMask == '\\') {
 			throw new IllegalArgumentException("Parameter charToMask " + charToMask + " is not allowed!");
 		}
@@ -2102,16 +2547,17 @@ public class Tools {
 		return maskedStringBuilder.toString();
 	}
 
-	/**
-	 * Unmaskes a masked string. Examples (charToUnmask= '|'):<br>
-	 * hello%mandy => hello|mandy<br>
-	 * hel\\lo%mandy => hel\lo|mandy<br>
-	 * h\%l\\lo%mandy => h%l\lo|mandy<br>
-	 *
-	 * @param charToUnmask
-	 *            the char that should be unmasked
-	 */
-	public static String unmask(char charToUnmask, String masked) {
+    /**
+     * Unmaskes a masked string. Examples (charToUnmask= '|'):<br>
+     * hello%mandy => hello|mandy<br>
+     * hel\\lo%mandy => hel\lo|mandy<br>
+     * h\%l\\lo%mandy => h%l\lo|mandy<br>
+     *
+     * @param charToUnmask the char that should be unmasked
+     * @param masked       the masked
+     * @return the string
+     */
+    public static String unmask(char charToUnmask, String masked) {
 		if (charToUnmask == '%' || charToUnmask == '\\') {
 			throw new IllegalArgumentException("Parameter charToMask " + charToUnmask + " is not allowed!");
 		}
@@ -2142,17 +2588,16 @@ public class Tools {
 		return unmaskedStringBuilder.toString();
 	}
 
-	/**
-	 * This method tests if a file with the given file name could be stored on the current
-	 * filesystem the program is working on. For example, if working on Windows the string
-	 * <code>foo:bar</code> would return <code>false</code> (because <code>:</code> is forbidden).
-	 * The string <code>foo_bar</code> would return <code>true</code>.
-	 *
-	 * @param fileName
-	 *            if <code>null</code>, returns <code>false</code>
-	 * @return
-	 */
-	public static boolean canFileBeStoredOnCurrentFilesystem(String fileName) {
+    /**
+     * This method tests if a file with the given file name could be stored on the current
+     * filesystem the program is working on. For example, if working on Windows the string
+     * <code>foo:bar</code> would return <code>false</code> (because <code>:</code> is forbidden).
+     * The string <code>foo_bar</code> would return <code>true</code>.
+     *
+     * @param fileName if <code>null</code>, returns <code>false</code>
+     * @return boolean boolean
+     */
+    public static boolean canFileBeStoredOnCurrentFilesystem(String fileName) {
 		if (fileName == null) {
 			return false;
 		}
@@ -2188,28 +2633,27 @@ public class Tools {
 		return true;
 	}
 
-	/**
-	 * Copies the given {@link String} to the system {@link Clipboard}.
-	 *
-	 * @param s
-	 */
-	public static void copyStringToClipboard(String s) {
+    /**
+     * Copies the given {@link String} to the system {@link Clipboard}.
+     *
+     * @param s the s
+     */
+    public static void copyStringToClipboard(String s) {
 		StringSelection stringSelection = new StringSelection(s);
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		clipboard.setContents(stringSelection, null);
 	}
 
-	/**
-	 * This method checks for possible process circles via "Execute Process". Note that this is just
-	 * a heuristic and does not take flow operators such as "Branch" into account. As soon as a
-	 * possible circle has been detected, this method will always return {@code true}.
-	 *
-	 * @param process
-	 *            the root process to check for circles
-	 * @return {@code true} if a possible circle has been found; {@code false} otherwise
-	 * @since 6.5.0
-	 */
-	public static boolean doesProcessContainPossibleCircle(com.rapidminer.Process process) {
+    /**
+     * This method checks for possible process circles via "Execute Process". Note that this is just
+     * a heuristic and does not take flow operators such as "Branch" into account. As soon as a
+     * possible circle has been detected, this method will always return {@code true}.
+     *
+     * @param process the root process to check for circles
+     * @return {@code true} if a possible circle has been found; {@code false} otherwise
+     * @since 6.5.0
+     */
+    public static boolean doesProcessContainPossibleCircle(com.rapidminer.Process process) {
 		if (process == null) {
 			throw new IllegalArgumentException("process must not be null!");
 		}

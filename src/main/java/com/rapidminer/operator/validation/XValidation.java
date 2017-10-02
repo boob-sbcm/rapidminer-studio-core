@@ -53,14 +53,14 @@ import com.rapidminer.tools.RandomGenerator;
  * using {@rapidminer.math S_i} as the test set (input of the second inner operator) and
  * {@rapidminer.math S\backslash S_i} training set (input of the first inner operator).
  * </p>
- *
+ * <p>
  * <p>
  * The first inner operator must accept an {@link com.rapidminer.example.ExampleSet} while the
  * second must accept an {@link com.rapidminer.example.ExampleSet} and the output of the first
  * (which is in most cases a {@link com.rapidminer.operator.Model}) and must produce a
  * {@link com.rapidminer.operator.performance.PerformanceVector}.
  * </p>
- *
+ * <p>
  * <p>
  * Like other validation schemes the RapidMiner cross validation can use several types of sampling
  * for building the subsets. Linear sampling simply divides the example set into partitions without
@@ -68,7 +68,7 @@ import com.rapidminer.tools.RandomGenerator;
  * Stratifed sampling builds random subsets and ensures that the class distribution in the subsets
  * is the same as in the whole example set.
  * </p>
- *
+ * <p>
  * <p>
  * The cross validation operator provides several values which can be logged by means of a
  * {@link ProcessLogOperator}. Of course the number of the current iteration can be logged which
@@ -86,38 +86,45 @@ import com.rapidminer.tools.RandomGenerator;
  * applicable.</li>
  * </ul>
  *
- * @rapidminer.index cross-validation
  * @author Ingo Mierswa
+ * @rapidminer.index cross -validation
  * @deprecated use the {@link #CrossValidationOperator} from the concurrency extension instead.
  */
 @Deprecated
 public class XValidation extends ValidationChain {
 
-	/** The parameter name for &quot;Number of subsets for the crossvalidation.&quot; */
-	public static final String PARAMETER_NUMBER_OF_VALIDATIONS = "number_of_validations";
+    /**
+     * The parameter name for &quot;Number of subsets for the crossvalidation.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_VALIDATIONS = "number_of_validations";
 
-	/**
-	 * The parameter name for &quot;Set the number of validations to the number of examples. If set
-	 * to true, number_of_validations is ignored&quot;
-	 */
-	public static final String PARAMETER_LEAVE_ONE_OUT = "leave_one_out";
+    /**
+     * The parameter name for &quot;Set the number of validations to the number of examples. If set
+     * to true, number_of_validations is ignored&quot;
+     */
+    public static final String PARAMETER_LEAVE_ONE_OUT = "leave_one_out";
 
-	/**
-	 * The parameter name for &quot;Defines the sampling type of the cross validation (linear =
-	 * consecutive subsets, shuffled = random subsets, stratified = random subsets with class
-	 * distribution kept constant)&quot;
-	 */
-	public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
+    /**
+     * The parameter name for &quot;Defines the sampling type of the cross validation (linear =
+     * consecutive subsets, shuffled = random subsets, stratified = random subsets with class
+     * distribution kept constant)&quot;
+     */
+    public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
 
-	/**
-	 * The parameter name for &quot;Indicates if only performance vectors should be averaged or all
-	 * types of averagable result vectors&quot;
-	 */
-	public static final String PARAMETER_AVERAGE_PERFORMANCES_ONLY = "average_performances_only";
+    /**
+     * The parameter name for &quot;Indicates if only performance vectors should be averaged or all
+     * types of averagable result vectors&quot;
+     */
+    public static final String PARAMETER_AVERAGE_PERFORMANCES_ONLY = "average_performances_only";
 
 	private int iteration;
 
-	public XValidation(OperatorDescription description) {
+    /**
+     * Instantiates a new X validation.
+     *
+     * @param description the description
+     */
+    public XValidation(OperatorDescription description) {
 		super(description);
 		addValue(new ValueDouble("iteration", "The number of the current iteration.") {
 
@@ -172,7 +179,15 @@ public class XValidation extends ValidationChain {
 		}
 	}
 
-	protected void performIteration(SplittedExampleSet splittedES, int iteration)
+    /**
+     * Perform iteration.
+     *
+     * @param splittedES the splitted es
+     * @param iteration  the iteration
+     * @throws OperatorException       the operator exception
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    protected void performIteration(SplittedExampleSet splittedES, int iteration)
 			throws OperatorException, ProcessStoppedException {
 		splittedES.selectAllSubsetsBut(iteration);
 		learn(splittedES);

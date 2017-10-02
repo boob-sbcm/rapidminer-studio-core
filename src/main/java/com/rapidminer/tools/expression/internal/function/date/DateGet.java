@@ -40,11 +40,13 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * A {@link Function} for getting part of a date.
  *
  * @author David Arnu
- *
  */
 public class DateGet extends AbstractFunction {
 
-	public DateGet() {
+    /**
+     * Instantiates a new Date get.
+     */
+    public DateGet() {
 		super("date.date_get", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS, Ontology.INTEGER);
 	}
 
@@ -198,15 +200,16 @@ public class DateGet extends AbstractFunction {
 		}
 	}
 
-	/**
-	 *
-	 * @param date
-	 * @param unit
-	 * @param locale
-	 * @param timeZone
-	 * @return the value of the selected unit of the given date
-	 */
-	protected double compute(Date date, String unit, String valueLocale, String valueTimeZone) {
+    /**
+     * Compute double.
+     *
+     * @param date          the date
+     * @param unit          the unit
+     * @param valueLocale   the value locale
+     * @param valueTimeZone the value time zone
+     * @return the value of the selected unit of the given date
+     */
+    protected double compute(Date date, String unit, String valueLocale, String valueTimeZone) {
 		Locale locale;
 		TimeZone zone;
 		if (valueLocale == null) {

@@ -29,7 +29,7 @@ import javax.swing.table.TableModel;
 
 /**
  * A renderer for the weight table view of a kernel model.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KernelModelWeightsRenderer extends AbstractTableModelTableRenderer {

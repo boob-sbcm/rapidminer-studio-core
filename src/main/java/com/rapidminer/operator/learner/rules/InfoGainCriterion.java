@@ -25,7 +25,7 @@ import com.rapidminer.example.ExampleSet;
 
 /**
  * The info gain criterion for rule learning.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class InfoGainCriterion extends AbstractCriterion {

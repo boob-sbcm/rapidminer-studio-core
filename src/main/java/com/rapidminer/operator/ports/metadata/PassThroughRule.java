@@ -26,9 +26,9 @@ import com.rapidminer.operator.ports.OutputPort;
  * Assigns meta data received from an input port to an output port. Useful e.g. for preprocessing
  * operators. If meta data changes dynamically, can be modified by overriding
  * {@link #modifyMetaData(MetaData)}.
- * 
+ *
  * @author Simon Fischer
- * */
+ */
 public class PassThroughRule implements MDTransformationRule {
 
 	private final OutputPort outputPort;
@@ -36,7 +36,14 @@ public class PassThroughRule implements MDTransformationRule {
 	private final InputPort inputPort;
 	private final boolean optional;
 
-	public PassThroughRule(InputPort inputPort, OutputPort outputPort, boolean mandatory) {
+    /**
+     * Instantiates a new Pass through rule.
+     *
+     * @param inputPort  the input port
+     * @param outputPort the output port
+     * @param mandatory  the mandatory
+     */
+    public PassThroughRule(InputPort inputPort, OutputPort outputPort, boolean mandatory) {
 		super();
 		this.outputPort = outputPort;
 		this.inputPort = inputPort;
@@ -58,24 +65,42 @@ public class PassThroughRule implements MDTransformationRule {
 		}
 	}
 
-	/**
-	 * Modifies the received meta data before it is passed to the output. Can be used if the
-	 * transformation depends on parameters etc. The default implementation just returns the
-	 * original. Subclasses may safely modify the meta data, since a copy is used for this method.
-	 */
-	public MetaData modifyMetaData(MetaData unmodifiedMetaData) {
+    /**
+     * Modifies the received meta data before it is passed to the output. Can be used if the
+     * transformation depends on parameters etc. The default implementation just returns the
+     * original. Subclasses may safely modify the meta data, since a copy is used for this method.
+     *
+     * @param unmodifiedMetaData the unmodified meta data
+     * @return the meta data
+     */
+    public MetaData modifyMetaData(MetaData unmodifiedMetaData) {
 		return unmodifiedMetaData;
 	}
 
-	public OutputPort getOutputPort() {
+    /**
+     * Gets output port.
+     *
+     * @return the output port
+     */
+    public OutputPort getOutputPort() {
 		return this.outputPort;
 	}
 
-	public InputPort getInputPort() {
+    /**
+     * Gets input port.
+     *
+     * @return the input port
+     */
+    public InputPort getInputPort() {
 		return this.inputPort;
 	}
 
-	public boolean isOptional() {
+    /**
+     * Is optional boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isOptional() {
 		return this.optional;
 	}
 

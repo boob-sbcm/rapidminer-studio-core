@@ -24,7 +24,7 @@ import java.util.Iterator;
 /**
  * An iterator for attribute roles which is able to iterate over all attributes or skip either
  * regular or special attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeRoleIterator implements Iterator<AttributeRole> {
@@ -35,7 +35,13 @@ public class AttributeRoleIterator implements Iterator<AttributeRole> {
 
 	private AttributeRole current = null;
 
-	public AttributeRoleIterator(Iterator<AttributeRole> parent, int type) {
+    /**
+     * Instantiates a new Attribute role iterator.
+     *
+     * @param parent the parent
+     * @param type   the type
+     */
+    public AttributeRoleIterator(Iterator<AttributeRole> parent, int type) {
 		this.parent = parent;
 		this.type = type;
 	}

@@ -27,18 +27,30 @@ import org.w3c.dom.Element;
  * Helper class for GUI purposes. This parameter type should hold information about other parameter
  * values, e.g. for the definition of the parameters for a parameter optimization. Parameters of
  * this type are never optional.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ParameterTypeParameterValue extends ParameterTypeSingle {
 
 	private static final long serialVersionUID = 5248919176004016189L;
 
-	public ParameterTypeParameterValue(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type parameter value.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeParameterValue(Element element) throws XMLException {
 		super(element);
 	}
 
-	public ParameterTypeParameterValue(String key, String description) {
+    /**
+     * Instantiates a new Parameter type parameter value.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ParameterTypeParameterValue(String key, String description) {
 		super(key, description);
 		setOptional(false);
 	}

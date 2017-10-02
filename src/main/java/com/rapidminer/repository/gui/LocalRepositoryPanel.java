@@ -52,6 +52,8 @@ import javax.swing.event.DocumentListener;
 
 
 /**
+ * The type Local repository panel.
+ *
  * @author Simon Fischer
  */
 public class LocalRepositoryPanel extends JPanel implements RepositoryConfigurationPanel {
@@ -68,8 +70,13 @@ public class LocalRepositoryPanel extends JPanel implements RepositoryConfigurat
 
 	private JButton finishButton;
 
-	/** The optional finish button will be disabled when invalid information is entered. */
-	public LocalRepositoryPanel(JButton finishButton, boolean isNew) {
+    /**
+     * The optional finish button will be disabled when invalid information is entered.  @param finishButton the finish button
+     *
+     * @param finishButton the finish button
+     * @param isNew        the is new
+     */
+    public LocalRepositoryPanel(JButton finishButton, boolean isNew) {
 		this.finishButton = finishButton;
 
 		standardLocation.setSelected(isNew);

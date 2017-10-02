@@ -20,16 +20,27 @@ package com.rapidminer.tools.math.function.window;
 
 /**
  * A Hann window function.
- * 
+ *
  * @author Tobias Malbrecht, Ingo Mierswa
  */
 public class HannWindowFunction extends WindowFunction {
 
-	public HannWindowFunction(Integer width) {
+    /**
+     * Instantiates a new Hann window function.
+     *
+     * @param width the width
+     */
+    public HannWindowFunction(Integer width) {
 		super(width);
 	}
 
-	public HannWindowFunction(Integer width, Integer justification) {
+    /**
+     * Instantiates a new Hann window function.
+     *
+     * @param width         the width
+     * @param justification the justification
+     */
+    public HannWindowFunction(Integer width, Integer justification) {
 		super(width, justification);
 	}
 

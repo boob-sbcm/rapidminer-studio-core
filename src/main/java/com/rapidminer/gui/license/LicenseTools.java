@@ -56,70 +56,74 @@ public class LicenseTools {
 
 	private static final String FREE_TIER_PREFIX = "free";
 
-	/**
-	 * @deprecated use {@link #getPrecedenceKey(License)} instead.
-	 */
-	@Deprecated
+    /**
+     * The constant LAST_ACTIVE_LICENSE_PRECEDENCE.
+     *
+     * @deprecated use {@link #getPrecedenceKey(License)} instead.
+     */
+    @Deprecated
 	public static final String LAST_ACTIVE_LICENSE_PRECEDENCE = "license.last_active.precedence";
-	/**
-	 * @deprecated use {@link #getEditionKey(License)} instead.
-	 */
-	@Deprecated
+    /**
+     * The constant LAST_ACTIVE_LICENSE_PRODUCT_EDITION.
+     *
+     * @deprecated use {@link #getEditionKey(License)} instead.
+     */
+    @Deprecated
 	public static final String LAST_ACTIVE_LICENSE_PRODUCT_EDITION = "license.last_active.product_edition";
-	/**
-	 * @deprecated use {@link #getEditionKey(License)}, {@link #getExpirationDateKey(License)} or
-	 *             {@link #getPrecedenceKey(License)} instead.
-	 */
-	@Deprecated
+    /**
+     * The constant LAST_ACTIVE_LICENSE_PRODUCT_ID.
+     *
+     * @deprecated use {@link #getEditionKey(License)}, {@link #getExpirationDateKey(License)} or             {@link #getPrecedenceKey(License)} instead.
+     */
+    @Deprecated
 	public static final String LAST_ACTIVE_LICENSE_PRODUCT_ID = "license.last_active.product_id";
-	/**
-	 * @deprecated use {@link #getExpirationDateKey(License)} instead.
-	 */
-	@Deprecated
+    /**
+     * The constant LAST_ACTIVE_LICENSE_EXPIRATION_DATE.
+     *
+     * @deprecated use {@link #getExpirationDateKey(License)} instead.
+     */
+    @Deprecated
 	public static final String LAST_ACTIVE_LICENSE_EXPIRATION_DATE = "license.last_active.expiration_date";
 
-	/**
-	 * Date formatter to generate ISO8601 compliant string representations in UTC time.
-	 */
-	public static final DateTimeFormatter ISO_DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    /**
+     * Date formatter to generate ISO8601 compliant string representations in UTC time.
+     */
+    public static final DateTimeFormatter ISO_DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 			.withLocale(Locale.UK).withZone(ZoneOffset.UTC);
 
-	/**
-	 * Date formatter format the license start and end date for UI labels. Format will look like this: 'July 07, 2018'
-	 */
-	public static final DateTimeFormatter UI_DATE_FORMATTER = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
+    /**
+     * Date formatter format the license start and end date for UI labels. Format will look like this: 'July 07, 2018'
+     */
+    public static final DateTimeFormatter UI_DATE_FORMATTER = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
 
-	/**
-	 * Get the translated name of the product associated with the license.
-	 *
-	 * @param license
-	 *            The {@link License}.
-	 * @return The translated product name.
-	 */
-	public static String translateProductName(License license) {
+    /**
+     * Get the translated name of the product associated with the license.
+     *
+     * @param license The {@link License}.
+     * @return The translated product name.
+     */
+    public static String translateProductName(License license) {
 		return I18N.getMessage(I18N.getGUIBundle(), "gui.license." + license.getProductId() + ".label");
 	}
 
-	/**
-	 * Get the translated edition of the product associated with the license.
-	 *
-	 * @param license
-	 *            The {@link License}.
-	 * @return The translated product edition.
-	 */
-	public static String translateProductEdition(License license) {
+    /**
+     * Get the translated edition of the product associated with the license.
+     *
+     * @param license The {@link License}.
+     * @return The translated product edition.
+     */
+    public static String translateProductEdition(License license) {
 		return I18N.getMessage(I18N.getGUIBundle(),
 				"gui.license." + license.getProductId() + "." + license.getProductEdition() + ".label");
 	}
 
-	/**
-	 * Translates the data row constraint with the license.
-	 *
-	 * @param license
-	 *            The {@link License}.
-	 * @return The translated data row constraint.
-	 */
-	public static String translateDataRowConstraint(License license) {
+    /**
+     * Translates the data row constraint with the license.
+     *
+     * @param license The {@link License}.
+     * @return The translated data row constraint.
+     */
+    public static String translateDataRowConstraint(License license) {
 		String limit;
 		try {
 			limit = license.getConstraints().getConstraintValue(ProductConstraintManager.INSTANCE.getDataRowConstraint());
@@ -134,14 +138,13 @@ public class LicenseTools {
 		return I18N.getMessage(I18N.getGUIBundle(), "gui.license.constraint.data_row.label", limit);
 	}
 
-	/**
-	 * Translates the Hadoop node constraint with the license.
-	 *
-	 * @param license
-	 *            The {@link License}.
-	 * @return The translated Hadoop node constraint.
-	 */
-	public static String translateHadoopNodeConstraint(License license) {
+    /**
+     * Translates the Hadoop node constraint with the license.
+     *
+     * @param license The {@link License}.
+     * @return The translated Hadoop node constraint.
+     */
+    public static String translateHadoopNodeConstraint(License license) {
 		String limit;
 		try {
 			limit = license.getConstraints().getConstraintValue(LicenseConstants.NODES_CONSTRAINT);
@@ -161,14 +164,13 @@ public class LicenseTools {
 		return I18N.getMessage(I18N.getGUIBundle(), "gui.license.constraint.hadoop_node.label", limit);
 	}
 
-	/**
-	 * Translates the pushdown operator constraint with the license.
-	 *
-	 * @param license
-	 *            The {@link License}.
-	 * @return The translated pushdown operator constraint.
-	 */
-	public static String translatePushdownOperatorConstraint(License license) {
+    /**
+     * Translates the pushdown operator constraint with the license.
+     *
+     * @param license The {@link License}.
+     * @return The translated pushdown operator constraint.
+     */
+    public static String translatePushdownOperatorConstraint(License license) {
 		Boolean rmOperatorsAllowed;
 		try {
 			rmOperatorsAllowed = Boolean
@@ -186,14 +188,13 @@ public class LicenseTools {
 		return I18N.getMessage(I18N.getGUIBundle(), "gui.license.constraint.pushdown_operator.label", value);
 	}
 
-	/**
-	 * Translates the logical processor constraint with the license.
-	 *
-	 * @param license
-	 *            The {@link License}.
-	 * @return The translated logical processor constraint.
-	 */
-	public static String translateLogicalProcessorConstraint(License license) {
+    /**
+     * Translates the logical processor constraint with the license.
+     *
+     * @param license The {@link License}.
+     * @return The translated logical processor constraint.
+     */
+    public static String translateLogicalProcessorConstraint(License license) {
 		String limit;
 		try {
 			limit = license.getConstraints()
@@ -204,14 +205,13 @@ public class LicenseTools {
 		return I18N.getMessage(I18N.getGUIBundle(), "gui.license.constraint.logical_processor.label", limit);
 	}
 
-	/**
-	 * Translates the memory constraint with the license.
-	 *
-	 * @param license
-	 *            The {@link License}.
-	 * @return The translated memory constraint.
-	 */
-	public static String translateMemoryConstraint(License license) {
+    /**
+     * Translates the memory constraint with the license.
+     *
+     * @param license The {@link License}.
+     * @return The translated memory constraint.
+     */
+    public static String translateMemoryConstraint(License license) {
 		String limit;
 		try {
 			limit = license.getConstraints()
@@ -222,14 +222,13 @@ public class LicenseTools {
 		return I18N.getMessage(I18N.getGUIBundle(), "gui.license.constraint.memory.label", limit);
 	}
 
-	/**
-	 * Translates the web service constraint with the license.
-	 *
-	 * @param license
-	 *            The {@link License}.
-	 * @return The translated web service constraint.
-	 */
-	public static String translateWebServiceConstraint(License license) {
+    /**
+     * Translates the web service constraint with the license.
+     *
+     * @param license The {@link License}.
+     * @return The translated web service constraint.
+     */
+    public static String translateWebServiceConstraint(License license) {
 		String limit;
 		try {
 			limit = license.getConstraints()
@@ -245,10 +244,12 @@ public class LicenseTools {
 		return I18N.getMessage(I18N.getGUIBundle(), "gui.license.constraint.web_service.label", limit);
 	}
 
-	/**
-	 * Load last active license properties.
-	 */
-	public static Properties loadLastActiveLicenseProperties() {
+    /**
+     * Load last active license properties.
+     *
+     * @return the properties
+     */
+    public static Properties loadLastActiveLicenseProperties() {
 		File licensePropertiesFile = FileSystemService.getUserConfigFile(LICENSE_PROPERTIES_PATH);
 		Properties licenseProperties = new Properties();
 
@@ -292,11 +293,13 @@ public class LicenseTools {
 		licenseProperties.remove(LAST_ACTIVE_LICENSE_PRECEDENCE);
 	}
 
-	/**
-	 * Store active license properties. Requires RapidMiner to be running ad standalone GUI
-	 * application.
-	 */
-	public static void storeActiveLicenseProperties(License activeLicense) {
+    /**
+     * Store active license properties. Requires RapidMiner to be running ad standalone GUI
+     * application.
+     *
+     * @param activeLicense the active license
+     */
+    public static void storeActiveLicenseProperties(License activeLicense) {
 		// do nothing when RapidMiner is not executed as standalone GUI application
 		if (RapidMiner.getExecutionMode() != ExecutionMode.UI) {
 			return;
@@ -325,23 +328,53 @@ public class LicenseTools {
 		}
 	}
 
-	public static String getPrecedenceKey(License license) {
+    /**
+     * Gets precedence key.
+     *
+     * @param license the license
+     * @return the precedence key
+     */
+    public static String getPrecedenceKey(License license) {
 		return String.format(LAST_ACTIVE_LICENSE_PRECEDENCE_FOR_PRODUCT, license.getProductId());
 	}
 
-	public static String getExpirationDateKey(License license) {
+    /**
+     * Gets expiration date key.
+     *
+     * @param license the license
+     * @return the expiration date key
+     */
+    public static String getExpirationDateKey(License license) {
 		return String.format(LAST_ACTIVE_LICENSE_EXPIRATION_DATE_FOR_PRODUCT, license.getProductId());
 	}
 
-	public static String getEditionKey(License license) {
+    /**
+     * Gets edition key.
+     *
+     * @param license the license
+     * @return the edition key
+     */
+    public static String getEditionKey(License license) {
 		return String.format(LAST_ACTIVE_LICENSE_PRODUCT_EDITION_FOR_PRODUCT, license.getProductId());
 	}
 
-	public static boolean isLicenseFree(License license) {
+    /**
+     * Is license free boolean.
+     *
+     * @param license the license
+     * @return the boolean
+     */
+    public static boolean isLicenseFree(License license) {
 		return isLicenseFree(license.getProductEdition());
 	}
 
-	public static boolean isLicenseFree(String edition) {
+    /**
+     * Is license free boolean.
+     *
+     * @param edition the edition
+     * @return the boolean
+     */
+    public static boolean isLicenseFree(String edition) {
 		// Compare the beginning of the edition String to the prefix of free tier licenses.
 		return edition.startsWith(FREE_TIER_PREFIX);
 	}

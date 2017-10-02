@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is positive if (sin(att1*att2) + sin(att1+att2)) > 0.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SinusClassificationFunction extends ClassificationFunction {

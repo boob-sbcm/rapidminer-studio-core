@@ -65,10 +65,10 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class MissingValueReplenishment extends ValueReplenishment {
 
-	/**
-	 * The parameter name for &quot;This value is used for some of the replenishment types.&quot;
-	 */
-	public static final String PARAMETER_REPLENISHMENT_VALUE = "replenishment_value";
+    /**
+     * The parameter name for &quot;This value is used for some of the replenishment types.&quot;
+     */
+    public static final String PARAMETER_REPLENISHMENT_VALUE = "replenishment_value";
 
 	private static final int NONE = 0;
 
@@ -84,9 +84,17 @@ public class MissingValueReplenishment extends ValueReplenishment {
 
 	private static final String[] REPLENISHMENT_NAMES = { "none", "minimum", "maximum", "average", "zero", "value" };
 
-	public static final OperatorVersion VERSION_BEFORE_ROUND_ON_INTEGER_ATTRIBUTES = new OperatorVersion(5, 2, 0);
+    /**
+     * The constant VERSION_BEFORE_ROUND_ON_INTEGER_ATTRIBUTES.
+     */
+    public static final OperatorVersion VERSION_BEFORE_ROUND_ON_INTEGER_ATTRIBUTES = new OperatorVersion(5, 2, 0);
 
-	public MissingValueReplenishment(OperatorDescription description) {
+    /**
+     * Instantiates a new Missing value replenishment.
+     *
+     * @param description the description
+     */
+    public MissingValueReplenishment(OperatorDescription description) {
 		super(description);
 	}
 

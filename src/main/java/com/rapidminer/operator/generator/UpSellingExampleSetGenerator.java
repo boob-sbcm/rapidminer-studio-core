@@ -48,8 +48,10 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class UpSellingExampleSetGenerator extends AbstractExampleSource {
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
 
 	private static String[] ATTRIBUTE_NAMES = { "name", "age", "lifestyle", "zip code", "family status", "car", "sports",
 			"earnings" };
@@ -60,7 +62,12 @@ public class UpSellingExampleSetGenerator extends AbstractExampleSource {
 	private static String[][] POSSIBLE_VALUES = { null, null, { "healthy", "active", "cozily" }, null,
 			{ "married", "single" }, { "practical", "expensive" }, { "soccer", "badminton", "athletics" }, null };
 
-	public UpSellingExampleSetGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Up selling example set generator.
+     *
+     * @param description the description
+     */
+    public UpSellingExampleSetGenerator(OperatorDescription description) {
 		super(description);
 	}
 

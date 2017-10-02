@@ -26,7 +26,7 @@ import javax.swing.plaf.ComponentUI;
 
 /**
  * The UI for a check box.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CheckBoxUI extends RadioButtonUI {
@@ -35,7 +35,13 @@ public class CheckBoxUI extends RadioButtonUI {
 
 	private boolean initialize = false;
 
-	public static ComponentUI createUI(JComponent jcomponent) {
+    /**
+     * Create ui component ui.
+     *
+     * @param jcomponent the jcomponent
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent jcomponent) {
 		return new CheckBoxUI();
 	}
 

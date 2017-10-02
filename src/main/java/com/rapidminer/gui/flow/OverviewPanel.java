@@ -40,6 +40,7 @@ import com.vlsolutions.swing.docking.Dockable;
 
 
 /**
+ * The type Overview panel.
  *
  * @author Simon Fischer
  */
@@ -57,7 +58,12 @@ public class OverviewPanel extends JPanel implements Dockable {
 	private Rectangle dragStartRect;
 	private double scale = 1d;
 
-	public OverviewPanel(ProcessRendererView processRenderer) {
+    /**
+     * Instantiates a new Overview panel.
+     *
+     * @param processRenderer the process renderer
+     */
+    public OverviewPanel(ProcessRendererView processRenderer) {
 		this.processRenderer = processRenderer;
 		addMouseListener(new MouseAdapter() {
 
@@ -114,7 +120,10 @@ public class OverviewPanel extends JPanel implements Dockable {
 		g.dispose();
 	}
 
-	public static final String OVERVIEW_DOCK_KEY = "overview";
+    /**
+     * The constant OVERVIEW_DOCK_KEY.
+     */
+    public static final String OVERVIEW_DOCK_KEY = "overview";
 	private final DockKey DOCK_KEY = new ResourceDockKey(OVERVIEW_DOCK_KEY);
 	{
 		DOCK_KEY.setDockGroup(MainFrame.DOCK_GROUP_ROOT);

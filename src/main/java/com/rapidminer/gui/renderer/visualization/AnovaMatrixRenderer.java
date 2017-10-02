@@ -28,7 +28,8 @@ import java.awt.Component;
 
 
 /**
- * 
+ * The type Anova matrix renderer.
+ *
  * @author Sebastian Land
  */
 public class AnovaMatrixRenderer extends AbstractRenderer {

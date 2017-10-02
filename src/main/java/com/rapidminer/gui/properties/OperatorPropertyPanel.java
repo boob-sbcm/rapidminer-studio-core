@@ -99,7 +99,6 @@ import com.vlsolutions.swing.docking.Dockable;
  * </ul>
  *
  * @author Simon Fischer, Tobias Malbrecht, Nils Woehler
- *
  */
 public class OperatorPropertyPanel extends PropertyPanel implements Dockable, ProcessEditor {
 
@@ -122,7 +121,10 @@ public class OperatorPropertyPanel extends PropertyPanel implements Dockable, Pr
 
 	private static final XMLInputFactory XML_STREAM_FACTORY = XMLInputFactory.newFactory();
 
-	public static final String PROPERTY_EDITOR_DOCK_KEY = "property_editor";
+    /**
+     * The constant PROPERTY_EDITOR_DOCK_KEY.
+     */
+    public static final String PROPERTY_EDITOR_DOCK_KEY = "property_editor";
 
 	static {
 		XML_STREAM_FACTORY.setProperty(XMLInputFactory.IS_COALESCING, true);
@@ -171,13 +173,21 @@ public class OperatorPropertyPanel extends PropertyPanel implements Dockable, Pr
 		}
 	};
 
-	final transient ToggleAction TOGGLE_EXPERT_MODE_ACTION = new ToggleExpertModeAction();
+    /**
+     * The Toggle expert mode action.
+     */
+    final transient ToggleAction TOGGLE_EXPERT_MODE_ACTION = new ToggleExpertModeAction();
 
 	private final JSpinner compatibilityLevelSpinner = new JSpinner(new CompatibilityLevelSpinnerModel());
 	private final ResourceLabel compatibilityLabel = new ResourceLabel("compatibility_level");
 	private final JPanel compatibilityPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
 
-	public OperatorPropertyPanel(final MainFrame mainFrame) {
+    /**
+     * Instantiates a new Operator property panel.
+     *
+     * @param mainFrame the main frame
+     */
+    public OperatorPropertyPanel(final MainFrame mainFrame) {
 		super();
 		headerLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
@@ -360,11 +370,21 @@ public class OperatorPropertyPanel extends PropertyPanel implements Dockable, Pr
 		return DOCK_KEY;
 	}
 
-	public boolean isExpertMode() {
+    /**
+     * Is expert mode boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isExpertMode() {
 		return TOGGLE_EXPERT_MODE_ACTION.isSelected();
 	}
 
-	public void setExpertMode(boolean isExpert) {
+    /**
+     * Sets expert mode.
+     *
+     * @param isExpert the is expert
+     */
+    public void setExpertMode(boolean isExpert) {
 		TOGGLE_EXPERT_MODE_ACTION.setSelected(isExpert);
 	}
 

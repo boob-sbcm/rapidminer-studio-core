@@ -34,7 +34,7 @@ import java.util.Map;
 
 /**
  * Individuals contain the feature information and the fitness.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class AggregationIndividual {
@@ -45,31 +45,70 @@ public class AggregationIndividual {
 
 	private double crowdingDistance;
 
-	public AggregationIndividual(int[] individual) {
+    /**
+     * Instantiates a new Aggregation individual.
+     *
+     * @param individual the individual
+     */
+    public AggregationIndividual(int[] individual) {
 		this.individual = individual;
 	}
 
-	public double getCrowdingDistance() {
+    /**
+     * Gets crowding distance.
+     *
+     * @return the crowding distance
+     */
+    public double getCrowdingDistance() {
 		return crowdingDistance;
 	}
 
-	public void setCrowdingDistance(double crowdingDistance) {
+    /**
+     * Sets crowding distance.
+     *
+     * @param crowdingDistance the crowding distance
+     */
+    public void setCrowdingDistance(double crowdingDistance) {
 		this.crowdingDistance = crowdingDistance;
 	}
 
-	public int[] getIndividual() {
+    /**
+     * Get individual int [ ].
+     *
+     * @return the int [ ]
+     */
+    public int[] getIndividual() {
 		return individual;
 	}
 
-	public void setPerformance(PerformanceVector fitness) {
+    /**
+     * Sets performance.
+     *
+     * @param fitness the fitness
+     */
+    public void setPerformance(PerformanceVector fitness) {
 		this.fitness = fitness;
 	}
 
-	public PerformanceVector getPerformance() {
+    /**
+     * Gets performance.
+     *
+     * @return the performance
+     */
+    public PerformanceVector getPerformance() {
 		return fitness;
 	}
 
-	public ExampleSet createExampleSet(ExampleSet originalExampleSet, Attribute[] allAttributes, FeatureGenerator generator)
+    /**
+     * Create example set example set.
+     *
+     * @param originalExampleSet the original example set
+     * @param allAttributes      the all attributes
+     * @param generator          the generator
+     * @return the example set
+     * @throws GenerationException the generation exception
+     */
+    public ExampleSet createExampleSet(ExampleSet originalExampleSet, Attribute[] allAttributes, FeatureGenerator generator)
 			throws GenerationException {
 		AttributeWeightedExampleSet es = new AttributeWeightedExampleSet(originalExampleSet, null);
 		Map<Integer, List<String>> mergeMap = new HashMap<Integer, List<String>>();

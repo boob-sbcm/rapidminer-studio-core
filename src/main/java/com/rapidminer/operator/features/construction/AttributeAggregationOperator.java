@@ -57,20 +57,39 @@ import com.rapidminer.tools.math.function.aggregation.AggregationFunction;
  */
 public class AttributeAggregationOperator extends AbstractFeatureConstruction {
 
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	public static final String PARAMETER_AGGREGATION_FUNCTION = "aggregation_function";
+    /**
+     * The constant PARAMETER_AGGREGATION_FUNCTION.
+     */
+    public static final String PARAMETER_AGGREGATION_FUNCTION = "aggregation_function";
 
-	public static final String PARAMETER_IGNORE_MISSINGS = "ignore_missings";
+    /**
+     * The constant PARAMETER_IGNORE_MISSINGS.
+     */
+    public static final String PARAMETER_IGNORE_MISSINGS = "ignore_missings";
 
-	public static final String PARAMETER_IGNORE_MISSING_ATTRIBUTES = "ignore_missing_attributes";
+    /**
+     * The constant PARAMETER_IGNORE_MISSING_ATTRIBUTES.
+     */
+    public static final String PARAMETER_IGNORE_MISSING_ATTRIBUTES = "ignore_missing_attributes";
 
-	/** The parameter name for &quot;Indicates if the all old attributes should be kept.&quot; */
-	public static final String PARAMETER_KEEP_ALL = "keep_all";
+    /**
+     * The parameter name for &quot;Indicates if the all old attributes should be kept.&quot;
+     */
+    public static final String PARAMETER_KEEP_ALL = "keep_all";
 
 	private final OperatorVersion VERSION_BEFORE_HANDLING_EMPTY_ATTRIBUTE_SETS = new OperatorVersion(6, 5, 2);
 
-	public AttributeAggregationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute aggregation operator.
+     *
+     * @param description the description
+     */
+    public AttributeAggregationOperator(OperatorDescription description) {
 		super(description);
 	}
 

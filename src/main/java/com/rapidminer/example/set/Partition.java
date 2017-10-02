@@ -52,20 +52,28 @@ public class Partition implements Cloneable, Serializable {
 	 */
 	private int[] tableIndexMap = null;
 
-	/**
-	 * Creates a new partition of a given size consisting of <tt>ratio.length</tt> sets. The set
-	 * <i>i</i> will be of size of <i>size x ratio[i]</i>, i.e. the sum of all <i>ratio[i]</i> must
-	 * be 1. Initially all partitions are selected.
-	 */
-	public Partition(double ratio[], int size, PartitionBuilder builder) {
+    /**
+     * Creates a new partition of a given size consisting of <tt>ratio.length</tt> sets. The set
+     * <i>i</i> will be of size of <i>size x ratio[i]</i>, i.e. the sum of all <i>ratio[i]</i> must
+     * be 1. Initially all partitions are selected.
+     *
+     * @param ratio   the ratio
+     * @param size    the size
+     * @param builder the builder
+     */
+    public Partition(double ratio[], int size, PartitionBuilder builder) {
 		init(ratio, size, builder);
 	}
 
-	/**
-	 * Creates a new partition of a given size consisting of <i>noPartitions</i> equally sized sets.
-	 * Initially all partitions are selected.
-	 */
-	public Partition(int noPartitions, int size, PartitionBuilder builder) {
+    /**
+     * Creates a new partition of a given size consisting of <i>noPartitions</i> equally sized sets.
+     * Initially all partitions are selected.
+     *
+     * @param noPartitions the no partitions
+     * @param size         the size
+     * @param builder      the builder
+     */
+    public Partition(int noPartitions, int size, PartitionBuilder builder) {
 		double[] ratio = new double[noPartitions];
 		for (int i = 0; i < ratio.length; i++) {
 			ratio[i] = 1 / (double) noPartitions;
@@ -73,8 +81,13 @@ public class Partition implements Cloneable, Serializable {
 		init(ratio, size, builder);
 	}
 
-	/** Creates a partition from the given one. Partition numbering starts at 0. */
-	public Partition(int[] elements, int numberOfPartitions) {
+    /**
+     * Creates a partition from the given one. Partition numbering starts at 0.  @param elements the elements
+     *
+     * @param elements           the elements
+     * @param numberOfPartitions the number of partitions
+     */
+    public Partition(int[] elements, int numberOfPartitions) {
 		init(elements, numberOfPartitions);
 	}
 
@@ -204,12 +217,15 @@ public class Partition implements Cloneable, Serializable {
 		return hc;
 	}
 
-	/**
-	 * Returns true if the last possible index stored in lastElementIndex for all currently selected
-	 * partitions is not yet reached. Might be used to prune iterations (especially useful for
-	 * linear partitions).
-	 */
-	public boolean hasNext(int index) {
+    /**
+     * Returns true if the last possible index stored in lastElementIndex for all currently selected
+     * partitions is not yet reached. Might be used to prune iterations (especially useful for
+     * linear partitions).
+     *
+     * @param index the index
+     * @return the boolean
+     */
+    public boolean hasNext(int index) {
 		for (int p = 0; p < mask.length; p++) {
 			if (mask[p]) {
 				if (index <= lastElementIndex[p]) {
@@ -220,38 +236,59 @@ public class Partition implements Cloneable, Serializable {
 		return false;
 	}
 
-	/** Clears the selection, i.e. deselects all subsets. */
-	public void clearSelection() {
+    /**
+     * Clears the selection, i.e. deselects all subsets.
+     */
+    public void clearSelection() {
 		this.mask = new boolean[mask.length];
 		recalculateTableIndices();
 	}
 
-	public void invertSelection() {
+    /**
+     * Invert selection.
+     */
+    public void invertSelection() {
 		for (int i = 0; i < mask.length; i++) {
 			mask[i] = !mask[i];
 		}
 		recalculateTableIndices();
 	};
 
-	/** Marks the given subset as selected. */
-	public void selectSubset(int i) {
+    /**
+     * Marks the given subset as selected.  @param i the
+     *
+     * @param i the
+     */
+    public void selectSubset(int i) {
 		this.mask[i] = true;
 		recalculateTableIndices();
 	}
 
-	/** Marks the given subset as deselected. */
-	public void deselectSubset(int i) {
+    /**
+     * Marks the given subset as deselected.  @param i the
+     *
+     * @param i the
+     */
+    public void deselectSubset(int i) {
 		this.mask[i] = false;
 		recalculateTableIndices();
 	}
 
-	/** Returns the number of subsets. */
-	public int getNumberOfSubsets() {
+    /**
+     * Returns the number of subsets.  @return the number of subsets
+     *
+     * @return the number of subsets
+     */
+    public int getNumberOfSubsets() {
 		return partitionSizes.length;
 	}
 
-	/** Returns the number of selected elements. */
-	public int getSelectionSize() {
+    /**
+     * Returns the number of selected elements.  @return the selection size
+     *
+     * @return the selection size
+     */
+    public int getSelectionSize() {
 		int s = 0;
 		for (int i = 0; i < partitionSizes.length; i++) {
 			if (mask[i]) {
@@ -261,16 +298,23 @@ public class Partition implements Cloneable, Serializable {
 		return s;
 	}
 
-	/** Returns the total number of examples. */
-	public int getTotalSize() {
+    /**
+     * Returns the total number of examples.  @return the total size
+     *
+     * @return the total size
+     */
+    public int getTotalSize() {
 		return elements.length;
 	}
 
-	/**
-	 * Returns true iff the example with the given index is selected according to the current
-	 * selection mask.
-	 */
-	public boolean isSelected(int index) {
+    /**
+     * Returns true iff the example with the given index is selected according to the current
+     * selection mask.
+     *
+     * @param index the index
+     * @return the boolean
+     */
+    public boolean isSelected(int index) {
 		return mask[elements[index]];
 	}
 
@@ -295,10 +339,13 @@ public class Partition implements Cloneable, Serializable {
 		}
 	}
 
-	/**
-	 * Returns the actual example table index of the i-th example of the currently selected subset.
-	 */
-	public int mapIndex(int index) {
+    /**
+     * Returns the actual example table index of the i-th example of the currently selected subset.
+     *
+     * @param index the index
+     * @return the int
+     */
+    public int mapIndex(int index) {
 		return tableIndexMap[index];
 	}
 
@@ -317,19 +364,16 @@ public class Partition implements Cloneable, Serializable {
 		return new Partition(this);
 	}
 
-	/**
-	 * Composes the parentPartition with the childPartition. The childPartition is applied to the
-	 * selected subsets of the parentPartition. The non-selected subsets of the parentPartition
-	 * cannot be reached and are hidden.
-	 *
-	 * @param parentPartition
-	 *            the outer partition to which the childPartition is applied
-	 * @param childPartition
-	 *            the inner partition that should be applied to the parentPartition
-	 * @return a composed partition that yields the same result a first applying the parentPartition
-	 *         and then the childPartition
-	 */
-	static Partition compose(Partition parentPartition, Partition childPartition) {
+    /**
+     * Composes the parentPartition with the childPartition. The childPartition is applied to the
+     * selected subsets of the parentPartition. The non-selected subsets of the parentPartition
+     * cannot be reached and are hidden.
+     *
+     * @param parentPartition the outer partition to which the childPartition is applied
+     * @param childPartition  the inner partition that should be applied to the parentPartition
+     * @return a composed partition that yields the same result a first applying the parentPartition         and then the childPartition
+     */
+    static Partition compose(Partition parentPartition, Partition childPartition) {
 		int numberOfElements = parentPartition.elements.length;
 		int[] newElements = new int[numberOfElements];
 		int numberOfNonHiddenPartitions = childPartition.getNumberOfSubsets();

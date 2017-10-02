@@ -44,7 +44,6 @@ import com.rapidminer.tools.ObjectVisualizerService;
  * Visualizes clusters as a bookmark like tree.
  *
  * @author Michael Wurst, Ingo Mierswa
- *
  */
 public class ClusterTreeVisualization extends JTree implements TreeSelectionListener, Renderable {
 
@@ -58,7 +57,13 @@ public class ClusterTreeVisualization extends JTree implements TreeSelectionList
 
 		private final Object id;
 
-		public ClusterTreeLeaf(String title, Object id) {
+        /**
+         * Instantiates a new Cluster tree leaf.
+         *
+         * @param title the title
+         * @param id    the id
+         */
+        public ClusterTreeLeaf(String title, Object id) {
 			this.title = title;
 			this.id = id;
 		}
@@ -68,14 +73,23 @@ public class ClusterTreeVisualization extends JTree implements TreeSelectionList
 			return title;
 		}
 
-		/** Returns the id. */
-		public Object getId() {
+        /**
+         * Returns the id.  @return the id
+         *
+         * @return the id
+         */
+        public Object getId() {
 			return id;
 		}
 
 	}
 
-	public ClusterTreeVisualization(HierarchicalClusterModel cm) {
+    /**
+     * Instantiates a new Cluster tree visualization.
+     *
+     * @param cm the cm
+     */
+    public ClusterTreeVisualization(HierarchicalClusterModel cm) {
 		DefaultTreeModel model = new DefaultTreeModel(generateTreeModel(cm.getRootNode()));
 		setModel(model);
 		addTreeSelectionListener(this);
@@ -83,7 +97,12 @@ public class ClusterTreeVisualization extends JTree implements TreeSelectionList
 		setBackgroundWhite();
 	}
 
-	public ClusterTreeVisualization(ClusterModel cm) {
+    /**
+     * Instantiates a new Cluster tree visualization.
+     *
+     * @param cm the cm
+     */
+    public ClusterTreeVisualization(ClusterModel cm) {
 		DefaultTreeModel model = new DefaultTreeModel(generateFlatModel(cm));
 		setModel(model);
 		addTreeSelectionListener(this);
@@ -109,8 +128,10 @@ public class ClusterTreeVisualization extends JTree implements TreeSelectionList
 		}
 	}
 
-	/** Expands the complete tree. */
-	public void expandAll() {
+    /**
+     * Expands the complete tree.
+     */
+    public void expandAll() {
 		int row = 0;
 		while (row < getRowCount()) {
 			expandRow(row);

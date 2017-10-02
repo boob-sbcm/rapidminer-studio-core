@@ -39,6 +39,8 @@ import java.util.List;
 
 
 /**
+ * The type Example set precondition.
+ *
  * @author Simon Fischer
  */
 public class ExampleSetPrecondition extends AbstractPrecondition {
@@ -50,26 +52,63 @@ public class ExampleSetPrecondition extends AbstractPrecondition {
 	private final String[] requiredAttributes;
 	private boolean optional = false;
 
-	public ExampleSetPrecondition(InputPort inputPort) {
+    /**
+     * Instantiates a new Example set precondition.
+     *
+     * @param inputPort the input port
+     */
+    public ExampleSetPrecondition(InputPort inputPort) {
 		this(inputPort, Ontology.ATTRIBUTE_VALUE, (String[]) null);
 	}
 
-	public ExampleSetPrecondition(InputPort inputPort, int allowedValueTypesForRegularAttributes, String... requiredSpecials) {
+    /**
+     * Instantiates a new Example set precondition.
+     *
+     * @param inputPort                             the input port
+     * @param allowedValueTypesForRegularAttributes the allowed value types for regular attributes
+     * @param requiredSpecials                      the required specials
+     */
+    public ExampleSetPrecondition(InputPort inputPort, int allowedValueTypesForRegularAttributes, String... requiredSpecials) {
 		this(inputPort, new String[0], allowedValueTypesForRegularAttributes, new String[0], Ontology.ATTRIBUTE_VALUE,
 				requiredSpecials);
 	}
 
-	public ExampleSetPrecondition(InputPort inputPort, String[] requiredAttributeNames, int allowedValueTypesForRegular,
+    /**
+     * Instantiates a new Example set precondition.
+     *
+     * @param inputPort                   the input port
+     * @param requiredAttributeNames      the required attribute names
+     * @param allowedValueTypesForRegular the allowed value types for regular
+     * @param requiredSpecials            the required specials
+     */
+    public ExampleSetPrecondition(InputPort inputPort, String[] requiredAttributeNames, int allowedValueTypesForRegular,
 			String... requiredSpecials) {
 		this(inputPort, requiredAttributeNames, allowedValueTypesForRegular, new String[0], Ontology.ATTRIBUTE_VALUE,
 				requiredSpecials);
 	}
 
-	public ExampleSetPrecondition(InputPort inputPort, String requiredSpecials, int allowedValueTypForSpecial) {
+    /**
+     * Instantiates a new Example set precondition.
+     *
+     * @param inputPort                 the input port
+     * @param requiredSpecials          the required specials
+     * @param allowedValueTypForSpecial the allowed value typ for special
+     */
+    public ExampleSetPrecondition(InputPort inputPort, String requiredSpecials, int allowedValueTypForSpecial) {
 		this(inputPort, new String[0], Ontology.ATTRIBUTE_VALUE, new String[0], allowedValueTypForSpecial, requiredSpecials);
 	}
 
-	public ExampleSetPrecondition(InputPort inputPort, String[] requiredAttributeNames, int allowedValueTypesForRegular,
+    /**
+     * Instantiates a new Example set precondition.
+     *
+     * @param inputPort                   the input port
+     * @param requiredAttributeNames      the required attribute names
+     * @param allowedValueTypesForRegular the allowed value types for regular
+     * @param ignoreForTypeCheck          the ignore for type check
+     * @param allowedValueTypesForSpecial the allowed value types for special
+     * @param requiredSpecials            the required specials
+     */
+    public ExampleSetPrecondition(InputPort inputPort, String[] requiredAttributeNames, int allowedValueTypesForRegular,
 			String[] ignoreForTypeCheck, int allowedValueTypesForSpecial, String... requiredSpecials) {
 		super(inputPort);
 		this.allowedValueTypes = allowedValueTypesForRegular;
@@ -79,7 +118,12 @@ public class ExampleSetPrecondition extends AbstractPrecondition {
 		this.ignoreForTypeCheck = ignoreForTypeCheck;
 	}
 
-	public void setOptional(boolean optional) {
+    /**
+     * Sets optional.
+     *
+     * @param optional the optional
+     */
+    public void setOptional(boolean optional) {
 		this.optional = optional;
 	}
 
@@ -203,12 +247,13 @@ public class ExampleSetPrecondition extends AbstractPrecondition {
 		}
 	}
 
-	/**
-	 * Can be implemented by subclasses.
-	 * 
-	 * @throws UndefinedParameterError
-	 */
-	public void makeAdditionalChecks(ExampleSetMetaData emd) throws UndefinedParameterError {}
+    /**
+     * Can be implemented by subclasses.
+     *
+     * @param emd the emd
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public void makeAdditionalChecks(ExampleSetMetaData emd) throws UndefinedParameterError {}
 
 	@Override
 	public String getDescription() {

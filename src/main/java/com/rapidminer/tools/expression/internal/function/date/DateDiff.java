@@ -29,11 +29,13 @@ import com.rapidminer.tools.expression.FunctionInputException;
  * A {@link Function} for calculating the difference between two dates in milliseconds.
  *
  * @author David Arnu
- *
  */
 public class DateDiff extends Abstract2DateInputIntegerOutputFunction {
 
-	public DateDiff() {
+    /**
+     * Instantiates a new Date diff.
+     */
+    public DateDiff() {
 		super("date.date_diff", FunctionDescription.UNFIXED_NUMBER_OF_ARGUMENTS);
 	}
 

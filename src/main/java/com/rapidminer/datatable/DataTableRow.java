@@ -21,17 +21,30 @@ package com.rapidminer.datatable;
 /**
  * A data list that contains Object arrays that record process results or other data. Each row can
  * consist of an id and an object array which represents the data.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface DataTableRow {
 
-	/** Returns the Id of this table row. */
-	public String getId();
+    /**
+     * Returns the Id of this table row.  @return the id
+     *
+     * @return the id
+     */
+    public String getId();
 
-	/** Returns the i-th value. */
-	public double getValue(int index);
+    /**
+     * Returns the i-th value.  @param index the index
+     *
+     * @param index the index
+     * @return the value
+     */
+    public double getValue(int index);
 
-	/** Returns the total number of values. */
-	public int getNumberOfValues();
+    /**
+     * Returns the total number of values.  @return the number of values
+     *
+     * @return the number of values
+     */
+    public int getNumberOfValues();
 }

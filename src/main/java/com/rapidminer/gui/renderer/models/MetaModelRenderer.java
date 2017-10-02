@@ -28,7 +28,8 @@ import java.awt.Component;
 
 
 /**
- * 
+ * The type Meta model renderer.
+ *
  * @author Sebastian Land
  */
 public class MetaModelRenderer extends AbstractRenderer {

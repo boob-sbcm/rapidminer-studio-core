@@ -32,13 +32,17 @@ public abstract class AbstractErrorWarningTableModel extends AbstractTableModel 
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @return the number of errors this table model contains
-	 */
-	public abstract int getErrorCount();
+    /**
+     * Gets error count.
+     *
+     * @return the number of errors this table model contains
+     */
+    public abstract int getErrorCount();
 
-	/**
-	 * @return the number of warnings this table model contains
-	 */
-	public abstract int getWarningCount();
+    /**
+     * Gets warning count.
+     *
+     * @return the number of warnings this table model contains
+     */
+    public abstract int getWarningCount();
 }

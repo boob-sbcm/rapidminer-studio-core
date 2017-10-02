@@ -22,7 +22,7 @@ package com.rapidminer.example.table;
  * Implementation of DataRow that is backed by primitive arrays. Should always be used if more than
  * 50% of the data is sparse. As fast (or even faster than map implementation) but needs
  * considerably less memory.
- * 
+ *
  * @author Niraj Aswani, Julien Nioche, Ingo Mierswa, Shevek Exp $
  */
 public class DoubleSparseArrayDataRow extends AbstractSparseArrayDataRow {
@@ -32,13 +32,19 @@ public class DoubleSparseArrayDataRow extends AbstractSparseArrayDataRow {
 	/** Stores the used attribute values. */
 	private double[] values;
 
-	/** Creates an empty sparse array data row with size 0. */
-	public DoubleSparseArrayDataRow() {
+    /**
+     * Creates an empty sparse array data row with size 0.
+     */
+    public DoubleSparseArrayDataRow() {
 		this(0);
 	}
 
-	/** Creates a sparse array data row of the given size. */
-	public DoubleSparseArrayDataRow(int size) {
+    /**
+     * Creates a sparse array data row of the given size.  @param size the size
+     *
+     * @param size the size
+     */
+    public DoubleSparseArrayDataRow(int size) {
 		super(size);
 		values = new double[size];
 	}

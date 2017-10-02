@@ -99,15 +99,13 @@ class ResultLimitPanel extends JPanel {
 	private final int limit;
 	private JPanel containerPanel;
 
-	/**
-	 * Creates a warning panel that notifies that the license limit was breached.
-	 *
-	 * @param backgroundColor
-	 *            the background color for the panel
-	 * @param violation
-	 *            the violation that causes the warning panel
-	 */
-	ResultLimitPanel(Color backgroundColor, LicenseConstraintViolation<Integer, Integer> violation) {
+    /**
+     * Creates a warning panel that notifies that the license limit was breached.
+     *
+     * @param backgroundColor the background color for the panel
+     * @param violation       the violation that causes the warning panel
+     */
+    ResultLimitPanel(Color backgroundColor, LicenseConstraintViolation<Integer, Integer> violation) {
 		limit = violation.getConstraintValue();
 
 		initGUI(backgroundColor, violation);
@@ -168,13 +166,12 @@ class ResultLimitPanel extends JPanel {
 		setBackground(backgroundColor);
 	}
 
-	/**
-	 * Changes the text to inform the user that he should reopen the result.
-	 *
-	 * @param newlicenseLimit
-	 *            the new license limit after the license changed
-	 */
-	void licenseUpdated(Integer newlicenseLimit) {
+    /**
+     * Changes the text to inform the user that he should reopen the result.
+     *
+     * @param newlicenseLimit the new license limit after the license changed
+     */
+    void licenseUpdated(Integer newlicenseLimit) {
 		if (newlicenseLimit == null || newlicenseLimit > limit) {
 			containerPanel.removeAll();
 			GridBagConstraints gbc = new GridBagConstraints();

@@ -42,7 +42,6 @@ import com.rapidminer.tools.Ontology;
  * Model for {@link AttributeStatisticsPanel}s which are backed by a numerical {@link Attribute}.
  *
  * @author Marco Boeck
- *
  */
 public class NumericalAttributeStatisticsModel extends AbstractAttributeStatisticsModel {
 
@@ -70,13 +69,13 @@ public class NumericalAttributeStatisticsModel extends AbstractAttributeStatisti
 	/** array of charts for this model */
 	private JFreeChart[] chartsArray;
 
-	/**
-	 * Creates a new {@link NumericalAttributeStatisticsModel}.
-	 *
-	 * @param exampleSet
-	 * @param attribute
-	 */
-	public NumericalAttributeStatisticsModel(ExampleSet exampleSet, Attribute attribute) {
+    /**
+     * Creates a new {@link NumericalAttributeStatisticsModel}.
+     *
+     * @param exampleSet the example set
+     * @param attribute  the attribute
+     */
+    public NumericalAttributeStatisticsModel(ExampleSet exampleSet, Attribute attribute) {
 		super(exampleSet, attribute);
 
 		chartsArray = new JFreeChart[1];
@@ -93,39 +92,39 @@ public class NumericalAttributeStatisticsModel extends AbstractAttributeStatisti
 		fireStatisticsChangedEvent();
 	}
 
-	/**
-	 * Gets the average of the numerical values.
-	 *
-	 * @return
-	 */
-	public double getAverage() {
+    /**
+     * Gets the average of the numerical values.
+     *
+     * @return average average
+     */
+    public double getAverage() {
 		return average;
 	}
 
-	/**
-	 * Gets the standard deviation of the numerical values.
-	 *
-	 * @return
-	 */
-	public double getDeviation() {
+    /**
+     * Gets the standard deviation of the numerical values.
+     *
+     * @return deviation deviation
+     */
+    public double getDeviation() {
 		return deviation;
 	}
 
-	/**
-	 * Gets the minimum of the numerical values.
-	 *
-	 * @return
-	 */
-	public double getMinimum() {
+    /**
+     * Gets the minimum of the numerical values.
+     *
+     * @return minimum minimum
+     */
+    public double getMinimum() {
 		return minimum;
 	}
 
-	/**
-	 * Gets the maximum of the numerical values.
-	 *
-	 * @return
-	 */
-	public double getMaximum() {
+    /**
+     * Gets the maximum of the numerical values.
+     *
+     * @return maximum maximum
+     */
+    public double getMaximum() {
 		return maximum;
 	}
 

@@ -24,7 +24,7 @@ import com.rapidminer.operator.learner.subgroups.hypothesis.Rule;
 
 /**
  * Calculates the weighed relative accuracy.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class WRAcc extends UtilityFunction {
@@ -34,7 +34,13 @@ public class WRAcc extends UtilityFunction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public WRAcc(double totalWeight, double totalPredictionWeight) {
+    /**
+     * Instantiates a new Wr acc.
+     *
+     * @param totalWeight           the total weight
+     * @param totalPredictionWeight the total prediction weight
+     */
+    public WRAcc(double totalWeight, double totalPredictionWeight) {
 		super(totalWeight, totalPredictionWeight);
 	}
 

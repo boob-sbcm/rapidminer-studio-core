@@ -41,7 +41,7 @@ import com.rapidminer.tools.RandomGenerator;
  * Abstract superclass of all attribute generators. Implementing classes have to implement the
  * <tt>generate(Example)</tt>, method and specify the input and output attributes by the appropriate
  * methods so that the using algorithms can use them correctly.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa Exp $
  */
 public abstract class FeatureGenerator {
@@ -69,19 +69,25 @@ public abstract class FeatureGenerator {
 		}
 	}
 
-	/** Indicates a non-restrictive generator selection mode. */
-	public static final int SELECTION_MODE_ALL = 0;
+    /**
+     * Indicates a non-restrictive generator selection mode.
+     */
+    public static final int SELECTION_MODE_ALL = 0;
 
-	/** Indicates a restrictive generator selection mode. */
-	public static final int SELECTION_MODE_RESTRICTIVE = 1;
+    /**
+     * Indicates a restrictive generator selection mode.
+     */
+    public static final int SELECTION_MODE_RESTRICTIVE = 1;
 
 	/**
 	 * Indicates the selection mode. One of SELECTION_MODE_ALL and SELECTION_MODE_RESTRICTIVE.
 	 */
 	private static int selectionMode = SELECTION_MODE_ALL;
 
-	/** The attributes of the function(s) calculated by this FeatureGenerator. */
-	protected Attribute[] resultAttributes;
+    /**
+     * The attributes of the function(s) calculated by this FeatureGenerator.
+     */
+    protected Attribute[] resultAttributes;
 
 	/**
 	 * The argument attributes on which to operate with respect to the example tables attribute
@@ -95,56 +101,84 @@ public abstract class FeatureGenerator {
 	// ------------------------------ The abstract methods
 	// ------------------------------
 
-	/**
-	 * Generates the new attribute values for the example e and returns the new attribute values as
-	 * doubles. <tt>e.getAttribute(getArgument(i))</tt> is the correct way to access argument
-	 * <i>i</i>. If the according attribute's type is VALUE_SERIES, the end index can be determined
-	 * by <tt>i_end = getExampleTable().getBlockEndIndex(getArgument(i))</tt>. Thus all values of
-	 * the series can be accessed using indices <i>i</i> through <i>i_end</i>.
-	 */
-	public abstract void generate(DataRow data) throws GenerationException;
+    /**
+     * Generates the new attribute values for the example e and returns the new attribute values as
+     * doubles. <tt>e.getAttribute(getArgument(i))</tt> is the correct way to access argument
+     * <i>i</i>. If the according attribute's type is VALUE_SERIES, the end index can be determined
+     * by <tt>i_end = getExampleTable().getBlockEndIndex(getArgument(i))</tt>. Thus all values of
+     * the series can be accessed using indices <i>i</i> through <i>i_end</i>.
+     *
+     * @param data the data
+     * @throws GenerationException the generation exception
+     */
+    public abstract void generate(DataRow data) throws GenerationException;
 
-	/**
-	 * Returns an array of Attributes where the length is the arity of the generator, <tt>[i]</tt>
-	 * is the attribute type of the i-th argument.
-	 */
-	public abstract Attribute[] getInputAttributes();
+    /**
+     * Returns an array of Attributes where the length is the arity of the generator, <tt>[i]</tt>
+     * is the attribute type of the i-th argument.
+     *
+     * @return the attribute [ ]
+     */
+    public abstract Attribute[] getInputAttributes();
 
-	/** Returns the generated attributes types. */
-	public abstract Attribute[] getOutputAttributes(ExampleTable input);
+    /**
+     * Returns the generated attributes types.  @param input the input
+     *
+     * @param input the input
+     * @return the attribute [ ]
+     */
+    public abstract Attribute[] getOutputAttributes(ExampleTable input);
 
-	/**
-	 * Subclasses must implement this method so that a new instance of this generator class is
-	 * returned. The arguments and the example table will not be cloned and thus be null. This kind
-	 * of clone is needed as generating algorithms must be able to clone generators form their pool
-	 * without changing the arguments already set for the others.
-	 */
-	public abstract FeatureGenerator newInstance();
+    /**
+     * Subclasses must implement this method so that a new instance of this generator class is
+     * returned. The arguments and the example table will not be cloned and thus be null. This kind
+     * of clone is needed as generating algorithms must be able to clone generators form their pool
+     * without changing the arguments already set for the others.
+     *
+     * @return the feature generator
+     */
+    public abstract FeatureGenerator newInstance();
 
-	/**
-	 * Sets the function name. This method is only useful if subclasses can generate more than one
-	 * function. (like the BasicArithmeticOperationGenerator).
-	 */
-	public abstract void setFunction(String name);
+    /**
+     * Sets the function name. This method is only useful if subclasses can generate more than one
+     * function. (like the BasicArithmeticOperationGenerator).
+     *
+     * @param name the name
+     */
+    public abstract void setFunction(String name);
 
-	/**
-	 * Sets the function name. This method is only useful if subclasses can generate more than one
-	 * function. (like the BasicArithmeticOperationGenerator).
-	 */
-	public abstract String getFunction();
+    /**
+     * Sets the function name. This method is only useful if subclasses can generate more than one
+     * function. (like the BasicArithmeticOperationGenerator).
+     *
+     * @return the function
+     */
+    public abstract String getFunction();
 
-	/**
-	 * Returns all compatible input attribute arrays for this generator from the given example set
-	 * as list. Features with a depth greater than maxDepth or which contains one of the given
-	 * functions should not be used as input candidates. Subclasses must consider if the generator
-	 * is self-applicable or commutative. A maxDepth of -1 means that no maximal depth should be
-	 * considered.
-	 */
-	public abstract List<Attribute[]> getInputCandidates(ExampleSet exampleSet, String[] functions);
+    /**
+     * Returns all compatible input attribute arrays for this generator from the given example set
+     * as list. Features with a depth greater than maxDepth or which contains one of the given
+     * functions should not be used as input candidates. Subclasses must consider if the generator
+     * is self-applicable or commutative. A maxDepth of -1 means that no maximal depth should be
+     * considered.
+     *
+     * @param exampleSet the example set
+     * @param functions  the functions
+     * @return the input candidates
+     */
+    public abstract List<Attribute[]> getInputCandidates(ExampleSet exampleSet, String[] functions);
 
 	// --------------------------------------------------------------------------------
 
-	protected boolean checkCompatibility(Attribute attribute, Attribute compatible, String[] functions) {
+    /**
+     * Check compatibility boolean.
+     *
+     * @param attribute  the attribute
+     * @param compatible the compatible
+     * @param functions  the functions
+     * @return the boolean
+     */
+    protected boolean checkCompatibility(Attribute attribute, Attribute compatible, String[] functions) {
 		if (Tools.compatible(attribute, compatible)) {
 			for (int f = 0; f < functions.length; f++) {
 				if (attribute.getConstruction().indexOf(functions[f]) != -1) {
@@ -157,41 +191,57 @@ public abstract class FeatureGenerator {
 		}
 	}
 
-	protected void setExampleTable(ExampleTable et) {
+    /**
+     * Sets example table.
+     *
+     * @param et the et
+     */
+    protected void setExampleTable(ExampleTable et) {
 		this.exampleTable = et;
 	}
 
-	/** Gets the example table the examples are from. */
-	protected ExampleTable getExampleTable() {
+    /**
+     * Gets the example table the examples are from.  @return the example table
+     *
+     * @return the example table
+     */
+    protected ExampleTable getExampleTable() {
 		return exampleTable;
 	}
 
-	/**
-	 * Sets the arguments (indices) used in future <tt>generate(...)</tt> calls and has to be called
-	 * prior to any <tt>generate(...)</tt> calls. The caller of this method has to take care that:
-	 * <ul>
-	 * <li><tt>args.length == getInputAttributes().length</tt>, i.e. that the arity is correct.
-	 * <li>The types of the example attributes match the types specified by
-	 * <tt>getInputAttributes()</tt>.
-	 * <li>The true attribute indices are used (as used by the example set's example table)
-	 * </ul>
-	 */
-	public void setArguments(Attribute[] args) {
+    /**
+     * Sets the arguments (indices) used in future <tt>generate(...)</tt> calls and has to be called
+     * prior to any <tt>generate(...)</tt> calls. The caller of this method has to take care that:
+     * <ul>
+     * <li><tt>args.length == getInputAttributes().length</tt>, i.e. that the arity is correct.
+     * <li>The types of the example attributes match the types specified by
+     * <tt>getInputAttributes()</tt>.
+     * <li>The true attribute indices are used (as used by the example set's example table)
+     * </ul>
+     *
+     * @param args the args
+     */
+    public void setArguments(Attribute[] args) {
 		arguments = args;
 	}
 
-	/**
-	 * returns <tt>true</tt>, if the arguments have already been set, and <tt>false</tt> otherwise.
-	 */
-	public boolean argumentsSet() {
+    /**
+     * returns <tt>true</tt>, if the arguments have already been set, and <tt>false</tt> otherwise.
+     *
+     * @return the boolean
+     */
+    public boolean argumentsSet() {
 		return getInputAttributes().length == 0 || arguments != null;
 	}
 
-	/**
-	 * Returns the i-th selected argument (the true index as used in the example set's example
-	 * table).
-	 */
-	public Attribute getArgument(int i) {
+    /**
+     * Returns the i-th selected argument (the true index as used in the example set's example
+     * table).
+     *
+     * @param i the
+     * @return the argument
+     */
+    public Attribute getArgument(int i) {
 		return arguments[i];
 	}
 
@@ -210,8 +260,13 @@ public abstract class FeatureGenerator {
 
 	// --------------------------------------------------------------------------------
 
-	/** Creates a new FeatureGenerator for a given function name. */
-	public static FeatureGenerator createGeneratorForFunction(String functionName) {
+    /**
+     * Creates a new FeatureGenerator for a given function name.  @param functionName the function name
+     *
+     * @param functionName the function name
+     * @return the feature generator
+     */
+    public static FeatureGenerator createGeneratorForFunction(String functionName) {
 		if (functionName == null) {
 			return null;
 		}
@@ -238,16 +293,19 @@ public abstract class FeatureGenerator {
 
 	// --------------------------------------------------------------------------------
 
-	/**
-	 * Randomly selects a generator from the generator list. The probability of a generator to be
-	 * selected is proportional to its number of attribute combinations as delivered by
-	 * {@link #getInputCandidates(ExampleSet, String[])} method. Returns null if no generators are
-	 * applicable.
-	 *
-	 * @param generators
-	 *            List of {@link FeatureGenerator}s
-	 */
-	public static FeatureGenerator selectGenerator(ExampleSet exampleSet, List<? extends FeatureGenerator> generators,
+    /**
+     * Randomly selects a generator from the generator list. The probability of a generator to be
+     * selected is proportional to its number of attribute combinations as delivered by
+     * {@link #getInputCandidates(ExampleSet, String[])} method. Returns null if no generators are
+     * applicable.
+     *
+     * @param exampleSet the example set
+     * @param generators List of {@link FeatureGenerator}s
+     * @param functions  the functions
+     * @param random     the random
+     * @return the feature generator
+     */
+    public static FeatureGenerator selectGenerator(ExampleSet exampleSet, List<? extends FeatureGenerator> generators,
 			String[] functions, RandomGenerator random) {
 		int combinationSum = 0;
 		double[] probs = new double[generators.size()];
@@ -272,17 +330,16 @@ public abstract class FeatureGenerator {
 
 	// --------------------------------------------------------------------------------
 
-	/**
-	 * Generates all new attributes and updates the ExampleTable. Returns a list of Attributes for
-	 * the newly generated attributes.
-	 * 
-	 * @param exampleTable
-	 *            the source example table
-	 * @param generatorList
-	 *            List of FeatureGenerators
-	 * @return A list of Attributes
-	 */
-	public static List<Attribute> generateAll(ExampleTable exampleTable, Collection<FeatureGenerator> generatorList)
+    /**
+     * Generates all new attributes and updates the ExampleTable. Returns a list of Attributes for
+     * the newly generated attributes.
+     *
+     * @param exampleTable  the source example table
+     * @param generatorList List of FeatureGenerators
+     * @return A list of Attributes
+     * @throws GenerationException the generation exception
+     */
+    public static List<Attribute> generateAll(ExampleTable exampleTable, Collection<FeatureGenerator> generatorList)
 			throws GenerationException {
 		LogService.getRoot().log(Level.FINE, "com.rapidminer.generator.FeatureGenerator.starting_feature_generation",
 				generatorList.size());
@@ -351,11 +408,21 @@ public abstract class FeatureGenerator {
 		return newAttributeList;
 	}
 
-	public static int getSelectionMode() {
+    /**
+     * Gets selection mode.
+     *
+     * @return the selection mode
+     */
+    public static int getSelectionMode() {
 		return selectionMode;
 	}
 
-	public static void setSelectionMode(int mode) {
+    /**
+     * Sets selection mode.
+     *
+     * @param mode the mode
+     */
+    public static void setSelectionMode(int mode) {
 		selectionMode = mode;
 	}
 

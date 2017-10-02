@@ -67,79 +67,95 @@ import libsvm.svm_problem;
  * tasks and <code>epsilon-SVR</code> and <code>nu-SVR</code> for regression tasks. Supports also
  * multiclass learning and probability estimation based on Platt scaling for proper confidence
  * values after applying the learned model on a classification data set.
- * 
- * @rapidminer.index SVM
- * @rapidminer.reference Chang/Lin/2001a
+ *
  * @author Ingo Mierswa
+ * @rapidminer.index SVM
+ * @rapidminer.reference Chang /Lin/2001a
  */
 public class LibSVMLearner extends AbstractKernelBasedLearner {
 
-	/**
-	 * The parameter name for &quot;SVM for classification (C-SVC, nu-SVC), regression (epsilon-SVR,
-	 * nu-SVR) and distribution estimation (one-class)&quot;
-	 */
-	public static final String PARAMETER_SVM_TYPE = "svm_type";
+    /**
+     * The parameter name for &quot;SVM for classification (C-SVC, nu-SVC), regression (epsilon-SVR,
+     * nu-SVR) and distribution estimation (one-class)&quot;
+     */
+    public static final String PARAMETER_SVM_TYPE = "svm_type";
 
-	/** The parameter name for &quot;The type of the kernel functions&quot; */
-	public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
+    /**
+     * The parameter name for &quot;The type of the kernel functions&quot;
+     */
+    public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
 
-	/** The parameter name for &quot;The degree for a polynomial kernel function.&quot; */
-	public static final String PARAMETER_DEGREE = "degree";
+    /**
+     * The parameter name for &quot;The degree for a polynomial kernel function.&quot;
+     */
+    public static final String PARAMETER_DEGREE = "degree";
 
-	/**
-	 * The parameter name for &quot;The parameter gamma for polynomial, rbf, and sigmoid kernel
-	 * functions (0 means 1/#attributes).&quot;
-	 */
-	public static final String PARAMETER_GAMMA = "gamma";
+    /**
+     * The parameter name for &quot;The parameter gamma for polynomial, rbf, and sigmoid kernel
+     * functions (0 means 1/#attributes).&quot;
+     */
+    public static final String PARAMETER_GAMMA = "gamma";
 
-	/**
-	 * The parameter name for &quot;The parameter coef0 for polynomial and sigmoid kernel
-	 * functions.&quot;
-	 */
-	public static final String PARAMETER_COEF0 = "coef0";
+    /**
+     * The parameter name for &quot;The parameter coef0 for polynomial and sigmoid kernel
+     * functions.&quot;
+     */
+    public static final String PARAMETER_COEF0 = "coef0";
 
-	/** The parameter name for &quot;The cost parameter C for c_svc, epsilon_svr, and nu_svr.&quot; */
-	public static final String PARAMETER_C = "C";
+    /**
+     * The parameter name for &quot;The cost parameter C for c_svc, epsilon_svr, and nu_svr.&quot;
+     */
+    public static final String PARAMETER_C = "C";
 
-	/** The parameter name for &quot;The parameter nu for nu_svc, one_class, and nu_svr.&quot; */
-	public static final String PARAMETER_NU = "nu";
+    /**
+     * The parameter name for &quot;The parameter nu for nu_svc, one_class, and nu_svr.&quot;
+     */
+    public static final String PARAMETER_NU = "nu";
 
-	/** The parameter name for &quot;Cache size in Megabyte.&quot; */
-	public static final String PARAMETER_CACHE_SIZE = "cache_size";
+    /**
+     * The parameter name for &quot;Cache size in Megabyte.&quot;
+     */
+    public static final String PARAMETER_CACHE_SIZE = "cache_size";
 
-	/** The parameter name for &quot;Tolerance of termination criterion.&quot; */
-	public static final String PARAMETER_EPSILON = "epsilon";
+    /**
+     * The parameter name for &quot;Tolerance of termination criterion.&quot;
+     */
+    public static final String PARAMETER_EPSILON = "epsilon";
 
-	/** The parameter name for &quot;Tolerance of loss function of epsilon-SVR.&quot; */
-	public static final String PARAMETER_P = "p";
+    /**
+     * The parameter name for &quot;Tolerance of loss function of epsilon-SVR.&quot;
+     */
+    public static final String PARAMETER_P = "p";
 
-	/**
-	 * The parameter name for &quot;The weights w for all classes (first column: class name, second
-	 * column: weight), i.e. set the parameters C of each class w * C (empty: using 1 for all
-	 * classes where the weight was not defined).&quot;
-	 */
-	public static final String PARAMETER_CLASS_WEIGHTS = "class_weights";
+    /**
+     * The parameter name for &quot;The weights w for all classes (first column: class name, second
+     * column: weight), i.e. set the parameters C of each class w * C (empty: using 1 for all
+     * classes where the weight was not defined).&quot;
+     */
+    public static final String PARAMETER_CLASS_WEIGHTS = "class_weights";
 
-	/** The parameter name for &quot;Whether to use the shrinking heuristics.&quot; */
-	public static final String PARAMETER_SHRINKING = "shrinking";
+    /**
+     * The parameter name for &quot;Whether to use the shrinking heuristics.&quot;
+     */
+    public static final String PARAMETER_SHRINKING = "shrinking";
 
-	/**
-	 * The parameter name for &quot;Indicates if proper confidence values should be
-	 * calculated.&quot;
-	 */
-	public static final String PARAMETER_CALCULATE_CONFIDENCES = "calculate_confidences";
+    /**
+     * The parameter name for &quot;Indicates if proper confidence values should be
+     * calculated.&quot;
+     */
+    public static final String PARAMETER_CALCULATE_CONFIDENCES = "calculate_confidences";
 
-	/**
-	 * The parameter name for &quot;Indicates if the traditional libsvm one-class classification
-	 * behavior should be used.&quot;
-	 */
-	public static final String PARAMETER_ONECLASS_CLASSIFICATION = "one_class_classification";
+    /**
+     * The parameter name for &quot;Indicates if the traditional libsvm one-class classification
+     * behavior should be used.&quot;
+     */
+    public static final String PARAMETER_ONECLASS_CLASSIFICATION = "one_class_classification";
 
-	/**
-	 * The parameter name for &quot;Indicates if proper confidence values should be
-	 * calculated.&quot;
-	 */
-	public static final String PARAMETER_CONFIDENCE_FOR_MULTICLASS = "confidence_for_multiclass";
+    /**
+     * The parameter name for &quot;Indicates if proper confidence values should be
+     * calculated.&quot;
+     */
+    public static final String PARAMETER_CONFIDENCE_FOR_MULTICLASS = "confidence_for_multiclass";
 
 	/*
 	 * What to do for a new LibSVM version (current version 2.84):
@@ -150,19 +166,43 @@ public class LibSVMLearner extends AbstractKernelBasedLearner {
 	 * checkParameters - add method getGenericKernel
 	 */
 
-	/** The different SVM types implemented by the LibSVM package. */
-	public static final String[] SVM_TYPES = { "C-SVC", "nu-SVC", "one-class", "epsilon-SVR", "nu-SVR" };
+    /**
+     * The different SVM types implemented by the LibSVM package.
+     */
+    public static final String[] SVM_TYPES = { "C-SVC", "nu-SVC", "one-class", "epsilon-SVR", "nu-SVR" };
 
-	public static final int SVM_TYPE_C_SVC = 0;
-	public static final int SVM_TYPE_NU_SVC = 1;
-	public static final int SVM_TYPE_ONE_CLASS = 2;
-	public static final int SVM_TYPE_EPS_SVR = 3;
-	public static final int SVM_TYPE_NU_SVR = 4;
+    /**
+     * The constant SVM_TYPE_C_SVC.
+     */
+    public static final int SVM_TYPE_C_SVC = 0;
+    /**
+     * The constant SVM_TYPE_NU_SVC.
+     */
+    public static final int SVM_TYPE_NU_SVC = 1;
+    /**
+     * The constant SVM_TYPE_ONE_CLASS.
+     */
+    public static final int SVM_TYPE_ONE_CLASS = 2;
+    /**
+     * The constant SVM_TYPE_EPS_SVR.
+     */
+    public static final int SVM_TYPE_EPS_SVR = 3;
+    /**
+     * The constant SVM_TYPE_NU_SVR.
+     */
+    public static final int SVM_TYPE_NU_SVR = 4;
 
-	/** The different kernel types implemented by the LibSVM package. */
-	public static final String[] KERNEL_TYPES = { "linear", "poly", "rbf", "sigmoid", "precomputed" };
+    /**
+     * The different kernel types implemented by the LibSVM package.
+     */
+    public static final String[] KERNEL_TYPES = { "linear", "poly", "rbf", "sigmoid", "precomputed" };
 
-	public LibSVMLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Lib svm learner.
+     *
+     * @param description the description
+     */
+    public LibSVMLearner(OperatorDescription description) {
 		super(description);
 		getExampleSetInputPort().addPrecondition(new SimplePrecondition(getExampleSetInputPort(), null, false) {
 
@@ -252,11 +292,15 @@ public class LibSVMLearner extends AbstractKernelBasedLearner {
 		return false;
 	}
 
-	/**
-	 * Creates a data node row for the LibSVM (sparse format, i.e. each node keeps the index and the
-	 * value if not default).
-	 */
-	protected static svm_node[] makeNodes(Example e, FastExample2SparseTransform ripper) {
+    /**
+     * Creates a data node row for the LibSVM (sparse format, i.e. each node keeps the index and the
+     * value if not default).
+     *
+     * @param e      the e
+     * @param ripper the ripper
+     * @return the svm node [ ]
+     */
+    protected static svm_node[] makeNodes(Example e, FastExample2SparseTransform ripper) {
 		int[] nonDefaultIndices = ripper.getNonDefaultAttributeIndices(e);
 		double[] nonDefaultValues = ripper.getNonDefaultAttributeValues(e, nonDefaultIndices);
 		svm_node[] nodeArray = new svm_node[nonDefaultIndices.length];

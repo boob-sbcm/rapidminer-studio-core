@@ -42,18 +42,18 @@ import com.rapidminer.tools.container.ValueAndCount;
  * count.
  *
  * @author Marco Boeck
- *
  */
 public class NominalValueDialog extends ButtonDialog {
 
 	private static final long serialVersionUID = 7061405741134293387L;
 
-	/**
-	 * Creates a new {@link NominalValueDialog} instance.
-	 *
-	 * @param listOfValues
-	 */
-	public NominalValueDialog(Window owner, List<ValueAndCount> listOfValues) {
+    /**
+     * Creates a new {@link NominalValueDialog} instance.
+     *
+     * @param owner        the owner
+     * @param listOfValues the list of values
+     */
+    public NominalValueDialog(Window owner, List<ValueAndCount> listOfValues) {
 		super(owner, "attribute_statistics.nominal_values_dialog", ModalityType.APPLICATION_MODAL, new Object[] {});
 
 		JPanel tablePanel = new JPanel();

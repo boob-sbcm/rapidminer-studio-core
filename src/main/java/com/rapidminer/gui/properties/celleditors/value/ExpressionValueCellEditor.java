@@ -51,7 +51,6 @@ import com.rapidminer.parameter.ParameterTypeExpression;
  * Cell editor that contains an expression value
  *
  * @author Ingo Mierswa, Nils Woehler, Sabrina Kirstein
- *
  */
 public class ExpressionValueCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {
 
@@ -97,7 +96,12 @@ public class ExpressionValueCellEditor extends AbstractCellEditor implements Pro
 	/** layout of the panel */
 	private final GridBagLayout gridBagLayout = new GridBagLayout();
 
-	public ExpressionValueCellEditor(ParameterTypeExpression type) {
+    /**
+     * Instantiates a new Expression value cell editor.
+     *
+     * @param type the type
+     */
+    public ExpressionValueCellEditor(ParameterTypeExpression type) {
 
 		this.type = type;
 		panel.setLayout(gridBagLayout);
@@ -225,8 +229,12 @@ public class ExpressionValueCellEditor extends AbstractCellEditor implements Pro
 		return false;
 	}
 
-	/** set the text of the expression and update the panel */
-	protected void setText(String text) {
+    /**
+     * set the text of the expression and update the panel  @param text the text
+     *
+     * @param text the text
+     */
+    protected void setText(String text) {
 		if (text == null) {
 			editorPane.setText("");
 		} else {

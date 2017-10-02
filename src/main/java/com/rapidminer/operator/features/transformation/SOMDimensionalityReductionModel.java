@@ -53,7 +53,14 @@ public class SOMDimensionalityReductionModel extends AbstractModel {
 
 	private int dimensions;
 
-	protected SOMDimensionalityReductionModel(ExampleSet exampleSet, KohonenNet net, int dimensions) {
+    /**
+     * Instantiates a new Som dimensionality reduction model.
+     *
+     * @param exampleSet the example set
+     * @param net        the net
+     * @param dimensions the dimensions
+     */
+    protected SOMDimensionalityReductionModel(ExampleSet exampleSet, KohonenNet net, int dimensions) {
 		super(exampleSet);
 		this.net = net;
 		this.dimensions = dimensions;

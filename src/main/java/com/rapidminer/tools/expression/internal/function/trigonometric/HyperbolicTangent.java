@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric hyperbolic tangent of an angle.
  *
  * @author Denis Schernov
- *
  */
 public class HyperbolicTangent extends Abstract1DoubleInputFunction {
 
-	public HyperbolicTangent() {
+    /**
+     * Instantiates a new Hyperbolic tangent.
+     */
+    public HyperbolicTangent() {
 		super("trigonometrical.tanh", Ontology.NUMERICAL);
 	}
 

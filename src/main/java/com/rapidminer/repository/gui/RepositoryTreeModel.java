@@ -53,7 +53,6 @@ import com.rapidminer.tools.Observer;
  * Model representing {@link Entry}s as a tree.
  *
  * @author Simon Fischer , Denis Schernov, Marcel Seifert
- *
  */
 public class RepositoryTreeModel implements TreeModel {
 
@@ -188,13 +187,28 @@ public class RepositoryTreeModel implements TreeModel {
 
 	private boolean onlyWriteableRepositories = false;
 
-	RepositorySortingMethod sortingMethod = RepositorySortingMethod.NAME_ASC;
+    /**
+     * The Sorting method.
+     */
+    RepositorySortingMethod sortingMethod = RepositorySortingMethod.NAME_ASC;
 
-	public RepositoryTreeModel(final RepositoryManager root) {
+    /**
+     * Instantiates a new Repository tree model.
+     *
+     * @param root the root
+     */
+    public RepositoryTreeModel(final RepositoryManager root) {
 		this(root, false, false);
 	}
 
-	public RepositoryTreeModel(final RepositoryManager root, final boolean onlyFolders,
+    /**
+     * Instantiates a new Repository tree model.
+     *
+     * @param root                     the root
+     * @param onlyFolders              the only folders
+     * @param onlyWritableRepositories the only writable repositories
+     */
+    public RepositoryTreeModel(final RepositoryManager root, final boolean onlyFolders,
 			final boolean onlyWritableRepositories) {
 
 		this.root = root;
@@ -222,20 +236,24 @@ public class RepositoryTreeModel implements TreeModel {
 		}, true);
 	}
 
-	TreePath getPathTo(Entry entry) {
+    /**
+     * Gets path to.
+     *
+     * @param entry the entry
+     * @return the path to
+     */
+    TreePath getPathTo(Entry entry) {
 		return RepositoryTreeModel.getPathTo(entry, root);
 	}
 
-	/**
-	 * Gets a tree path based on an entry.
-	 *
-	 * @param entry
-	 *            The entry for which a path should be determined
-	 * @param repositoryManager
-	 *            The manager is used as the root of a tree path
-	 * @return A tree path.
-	 */
-	public static TreePath getPathTo(Entry entry, RepositoryManager repositoryManager) {
+    /**
+     * Gets a tree path based on an entry.
+     *
+     * @param entry             The entry for which a path should be determined
+     * @param repositoryManager The manager is used as the root of a tree path
+     * @return A tree path.
+     */
+    public static TreePath getPathTo(Entry entry, RepositoryManager repositoryManager) {
 		if (entry == null) {
 			return new TreePath(repositoryManager);
 		} else if (entry.getContainingFolder() == null) {
@@ -255,7 +273,12 @@ public class RepositoryTreeModel implements TreeModel {
 		listeners.remove(TreeModelListener.class, l);
 	}
 
-	public void setParentTree(JTree tree) {
+    /**
+     * Sets parent tree.
+     *
+     * @param tree the tree
+     */
+    public void setParentTree(JTree tree) {
 		parentTree = tree;
 	}
 
@@ -531,15 +554,14 @@ public class RepositoryTreeModel implements TreeModel {
 		return writeableRepositories;
 	}
 
-	/**
-	 * Sets the {@link RepositorySortingMethod} with which this {@link RepositoryTreeModel} is
-	 * sorted
-	 *
-	 * @param method
-	 *            The {@link RepositorySortingMethod}
-	 * @since 7.4
-	 */
-	void setSortingMethod(RepositorySortingMethod method) {
+    /**
+     * Sets the {@link RepositorySortingMethod} with which this {@link RepositoryTreeModel} is
+     * sorted
+     *
+     * @param method The {@link RepositorySortingMethod}
+     * @since 7.4
+     */
+    void setSortingMethod(RepositorySortingMethod method) {
 		sortingMethod = method;
 		sortedRepositoryEntriesHashMap.clear();
 
@@ -558,13 +580,14 @@ public class RepositoryTreeModel implements TreeModel {
 		SwingUtilities.invokeLater(() -> treeUtil.restoreSelectionPaths(parentTree));
 	}
 
-	/**
-	 * Gets the {@link RepositorySortingMethod} with which this {@link RepositoryTreeModel} is
-	 * sorted
-	 *
-	 * @since 7.4
-	 */
-	RepositorySortingMethod getSortingMethod() {
+    /**
+     * Gets the {@link RepositorySortingMethod} with which this {@link RepositoryTreeModel} is
+     * sorted
+     *
+     * @return the sorting method
+     * @since 7.4
+     */
+    RepositorySortingMethod getSortingMethod() {
 		return sortingMethod;
 	}
 

@@ -33,29 +33,29 @@ import org.apache.xmlrpc.client.XmlRpcCommonsTransportFactory;
 
 /**
  * Handles XMLRPC connections to BugZilla.
- * 
+ *
  * @author Marco Boeck
  */
 public class XmlRpcHandler {
 
-	public static final String BUGZILLA_URL = "http://bugs.rapid-i.com";
+    /**
+     * The constant BUGZILLA_URL.
+     */
+    public static final String BUGZILLA_URL = "http://bugs.rapid-i.com";
 
 	private static final String BUGZILLA_APPENDIX = "xmlrpc.cgi";
 
-	/**
-	 * Handles the login to a given BugZilla XmlRpc server.
-	 * 
-	 * @param serverURL
-	 *            the URL to the server, e.g. "http://my.bug-server.com"
-	 * @param login
-	 *            the BugZilla login
-	 * @param password
-	 *            the BugZilla password
-	 * @return the logged in XmlRpcClient instance
-	 * @throws MalformedURLException
-	 * @throws XmlRpcException
-	 */
-	public static synchronized XmlRpcClient login(String serverURL, String login, char[] password)
+    /**
+     * Handles the login to a given BugZilla XmlRpc server.
+     *
+     * @param serverURL the URL to the server, e.g. "http://my.bug-server.com"
+     * @param login     the BugZilla login
+     * @param password  the BugZilla password
+     * @return the logged in XmlRpcClient instance
+     * @throws MalformedURLException the malformed url exception
+     * @throws XmlRpcException       the xml rpc exception
+     */
+    public static synchronized XmlRpcClient login(String serverURL, String login, char[] password)
 			throws MalformedURLException, XmlRpcException {
 		String server;
 		if (serverURL.endsWith("/")) {

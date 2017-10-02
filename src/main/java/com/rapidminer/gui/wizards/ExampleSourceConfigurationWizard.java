@@ -151,8 +151,12 @@ public class ExampleSourceConfigurationWizard extends AbstractConfigurationWizar
 	/** The result attribute description file name. */
 	private JTextField resultFileField = new JTextField(40);
 
-	/** Creates a new wizard. */
-	public ExampleSourceConfigurationWizard(ConfigurationListener listener) {
+    /**
+     * Creates a new wizard.  @param listener the listener
+     *
+     * @param listener the listener
+     */
+    public ExampleSourceConfigurationWizard(ConfigurationListener listener) {
 		super("Example Source Wizard", listener);
 
 		dataViewPane.setVisible(false);

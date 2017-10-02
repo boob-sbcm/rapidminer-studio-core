@@ -20,11 +20,17 @@ package com.rapidminer.tools.math.optimization.ec.es;
 
 /**
  * A mutation operator which can be applied on the population.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface Mutation extends PopulationOperator {
 
-	public void setValueType(int index, OptimizationValueType type);
+    /**
+     * Sets value type.
+     *
+     * @param index the index
+     * @param type  the type
+     */
+    public void setValueType(int index, OptimizationValueType type);
 
 }

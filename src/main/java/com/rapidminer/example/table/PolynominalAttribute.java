@@ -28,15 +28,15 @@ import java.util.Iterator;
  * attribute fields this class keeps information about the nominal values and the value to index
  * mappings. If one of the methods designed for numerical attributes was invoked a RuntimeException
  * will be thrown.
- * 
+ * <p>
  * It will be guaranteed that all values are mapped to indices without any missing values. This
  * could, however, be changed in future versions thus operators should not rely on this fact.
- * 
+ * <p>
  * This class is one of the two available implementations of {@link NominalAttribute} available in
  * RapidMiner. In contrast to the {@link BinominalAttribute}, which stores the possible values
  * internally very efficient, this class allows an arbitrary number of nominal values and uses a
  * {@link PolynominalMapping} for the internal representation mapping.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class PolynominalAttribute extends NominalAttribute {
@@ -48,17 +48,22 @@ public class PolynominalAttribute extends NominalAttribute {
 
 	private NominalMapping nominalMapping = new PolynominalMapping();
 
-	/**
-	 * Creates a simple attribute which is not part of a series and does not provide a unit string.
-	 */
-	/* pp */PolynominalAttribute(String name) {
+    /**
+     * Creates a simple attribute which is not part of a series and does not provide a unit string.
+     *
+     * @param name the name
+     */
+/* pp */PolynominalAttribute(String name) {
 		this(name, Ontology.NOMINAL);
 	}
 
-	/**
-	 * Creates a simple attribute which is not part of a series and does not provide a unit string.
-	 */
-	/* pp */PolynominalAttribute(String name, int valueType) {
+    /**
+     * Creates a simple attribute which is not part of a series and does not provide a unit string.
+     *
+     * @param name      the name
+     * @param valueType the value type
+     */
+/* pp */PolynominalAttribute(String name, int valueType) {
 		super(name, valueType);
 	}
 

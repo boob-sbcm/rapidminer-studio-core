@@ -34,34 +34,32 @@ import javax.swing.JMenu;
  */
 public interface MenuItemFactory {
 
-	/**
-	 * Wrapper for a single menu entry.
-	 */
-	static final class MenuEntry {
+    /**
+     * Wrapper for a single menu entry.
+     */
+    static final class MenuEntry {
 
 		private final Action action;
 		private final JComponent component;
 		private final JMenu menu;
 
-		/**
-		 * Creates a wrapper for a single item.
-		 *
-		 * @param action
-		 *            the action of the menu item
-		 */
-		public MenuEntry(Action action) {
+        /**
+         * Creates a wrapper for a single item.
+         *
+         * @param action the action of the menu item
+         */
+        public MenuEntry(Action action) {
 			this.action = action;
 			this.component = null;
 			this.menu = null;
 		}
 
-		/**
-		 * Creates a wrapper for both {@link JMenu}s and general {@link JComponent}s.
-		 *
-		 * @param component
-		 *            the sub-menu or custom component
-		 */
-		public MenuEntry(JComponent component) {
+        /**
+         * Creates a wrapper for both {@link JMenu}s and general {@link JComponent}s.
+         *
+         * @param component the sub-menu or custom component
+         */
+        public MenuEntry(JComponent component) {
 			this.action = null;
 			if (component instanceof JMenu) {
 				this.component = null;
@@ -72,33 +70,63 @@ public interface MenuItemFactory {
 			}
 		}
 
-		public boolean isMenu() {
+        /**
+         * Is menu boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isMenu() {
 			return menu != null;
 		}
 
-		public boolean isAction() {
+        /**
+         * Is action boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isAction() {
 			return action != null;
 		}
 
-		public boolean isComponent() {
+        /**
+         * Is component boolean.
+         *
+         * @return the boolean
+         */
+        public boolean isComponent() {
 			return component != null;
 		}
 
-		public Action getAction() {
+        /**
+         * Gets action.
+         *
+         * @return the action
+         */
+        public Action getAction() {
 			if (action == null) {
 				throw new UnsupportedOperationException();
 			}
 			return action;
 		}
 
-		public JMenu getMenu() {
+        /**
+         * Gets menu.
+         *
+         * @return the menu
+         */
+        public JMenu getMenu() {
 			if (menu == null) {
 				throw new UnsupportedOperationException();
 			}
 			return menu;
 		}
 
-		public JComponent getComponent() {
+        /**
+         * Gets component.
+         *
+         * @return the component
+         */
+        public JComponent getComponent() {
 			if (component == null) {
 				throw new UnsupportedOperationException();
 			}
@@ -107,9 +135,11 @@ public interface MenuItemFactory {
 
 	}
 
-	/**
-	 * @return The list of menu entries, may be empty but must not be {@code null}.
-	 */
-	public List<MenuEntry> create();
+    /**
+     * Create list.
+     *
+     * @return The list of menu entries, may be empty but must not be {@code null}.
+     */
+    public List<MenuEntry> create();
 
 }

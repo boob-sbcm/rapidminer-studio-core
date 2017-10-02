@@ -35,26 +35,33 @@ public class NumericalAttribute extends AbstractAttribute {
 
 	private static final long serialVersionUID = -7425486508057529570L;
 
-	/**
-	 * Indicates the default number of fraction digits which is defined by the system property
-	 * rapidminer.gui.fractiondigits.numbers.
-	 */
-	public static final int DEFAULT_NUMBER_OF_DIGITS = -1;
+    /**
+     * Indicates the default number of fraction digits which is defined by the system property
+     * rapidminer.gui.fractiondigits.numbers.
+     */
+    public static final int DEFAULT_NUMBER_OF_DIGITS = -1;
 
-	/** Indicates an unlimited number of fraction digits. */
-	public static final int UNLIMITED_NUMBER_OF_DIGITS = -2;
+    /**
+     * Indicates an unlimited number of fraction digits.
+     */
+    public static final int UNLIMITED_NUMBER_OF_DIGITS = -2;
 
-	/**
-	 * Creates a simple attribute which is not part of a series and does not provide a unit string.
-	 */
-	protected NumericalAttribute(String name) {
+    /**
+     * Creates a simple attribute which is not part of a series and does not provide a unit string.
+     *
+     * @param name the name
+     */
+    protected NumericalAttribute(String name) {
 		this(name, Ontology.NUMERICAL);
 	}
 
-	/**
-	 * Creates a simple attribute which is not part of a series and does not provide a unit string.
-	 */
-	/* pp */ NumericalAttribute(String name, int valueType) {
+    /**
+     * Creates a simple attribute which is not part of a series and does not provide a unit string.
+     *
+     * @param name      the name
+     * @param valueType the value type
+     */
+/* pp */ NumericalAttribute(String name, int valueType) {
 		super(name, valueType);
 		registerStatistics(new NumericalStatistics());
 		registerStatistics(new WeightedNumericalStatistics());

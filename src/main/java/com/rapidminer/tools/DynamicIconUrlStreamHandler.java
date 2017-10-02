@@ -55,21 +55,24 @@ import javax.imageio.ImageIO;
  * </p>
  *
  * @author Thilo Kamradt, Simon Fischer, Marco Boeck
- *
  */
 public class DynamicIconUrlStreamHandler extends URLStreamHandler {
 
-	/** the identifier of the progress bar icon (fading from green to very dark green) */
-	public static final String IDENTIFIER_PROGRESS = "progress";
+    /**
+     * the identifier of the progress bar icon (fading from green to very dark green)
+     */
+    public static final String IDENTIFIER_PROGRESS = "progress";
 
-	/** the identifier of the quota bar icon (first 50% green, last 50% fading from green to red) */
-	public static final String IDENTIFIER_QUOTA = "quota";
+    /**
+     * the identifier of the quota bar icon (first 50% green, last 50% fading from green to red)
+     */
+    public static final String IDENTIFIER_QUOTA = "quota";
 
-	/**
-	 * the identifier of the quota bar icon (always one color only: green (0-70%), orange (70-90%),
-	 * red (90-100%)
-	 */
-	public static final String IDENTIFIER_QUOTA_UNI = "quota_uni";
+    /**
+     * the identifier of the quota bar icon (always one color only: green (0-70%), orange (70-90%),
+     * red (90-100%)
+     */
+    public static final String IDENTIFIER_QUOTA_UNI = "quota_uni";
 
 	/** mapping between identifiers and the dynicon implementations */
 	private static final Map<String, DynamicIcon> mapping = new HashMap<>();
@@ -146,16 +149,14 @@ public class DynamicIconUrlStreamHandler extends URLStreamHandler {
 		});
 	}
 
-	/**
-	 * Register the specified {@link DynamicIcon} under the given identifier. For instructions on
-	 * how to use the icon in an HTML document, see {@link DynamicIcon}.
-	 *
-	 * @param identifier
-	 *            the identifier of the dynamic icon
-	 * @param dynIcon
-	 *            the implementation of the icon
-	 */
-	public static void registerDynamicIcon(String identifier, DynamicIcon dynIcon) {
+    /**
+     * Register the specified {@link DynamicIcon} under the given identifier. For instructions on
+     * how to use the icon in an HTML document, see {@link DynamicIcon}.
+     *
+     * @param identifier the identifier of the dynamic icon
+     * @param dynIcon    the implementation of the icon
+     */
+    public static void registerDynamicIcon(String identifier, DynamicIcon dynIcon) {
 		if (identifier == null || identifier.isEmpty()) {
 			throw new IllegalArgumentException("identifier must not be null or empty!");
 		}

@@ -132,7 +132,10 @@ public class RepositoryTree extends JTree {
 
 		private static final long serialVersionUID = 1L;
 
-		// Remember whether the last cut/copy action was a MOVE
+        /**
+         * The Latest action.
+         */
+// Remember whether the last cut/copy action was a MOVE
 		// A move will result in the entry being deleted upon drop / paste
 		// Unfortunately there is no easy way to know this from the TransferSupport
 		// passed to importData(). It is not even kno wn in createTransferable(), so we
@@ -144,7 +147,10 @@ public class RepositoryTree extends JTree {
 		// the way the transfer system is implemented. See RM-10 for further details.
 		int latestAction = 0;
 
-		public RepositoryTreeTransferhandler() {
+        /**
+         * Instantiates a new Repository tree transferhandler.
+         */
+        public RepositoryTreeTransferhandler() {
 			addDragListener(new DragListener() {
 
 				@Override
@@ -714,7 +720,15 @@ public class RepositoryTree extends JTree {
 
 		private boolean hasSeparatorAfter;
 
-		public RepositoryActionEntry(Class<? extends AbstractRepositoryAction<?>> actionClass,
+        /**
+         * Instantiates a new Repository action entry.
+         *
+         * @param actionClass        the action class
+         * @param condition          the condition
+         * @param hasSeparatorBefore the has separator before
+         * @param hasSeparatorAfter  the has separator after
+         */
+        public RepositoryActionEntry(Class<? extends AbstractRepositoryAction<?>> actionClass,
 				RepositoryActionCondition condition, boolean hasSeparatorBefore, boolean hasSeparatorAfter) {
 			this.actionClass = actionClass;
 			this.condition = condition;
@@ -722,34 +736,72 @@ public class RepositoryTree extends JTree {
 			this.hasSeparatorBefore = hasSeparatorBefore;
 		}
 
-		public boolean hasSeperatorBefore() {
+        /**
+         * Has seperator before boolean.
+         *
+         * @return the boolean
+         */
+        public boolean hasSeperatorBefore() {
 			return hasSeparatorBefore;
 		}
 
-		public boolean hasSeperatorAfter() {
+        /**
+         * Has seperator after boolean.
+         *
+         * @return the boolean
+         */
+        public boolean hasSeperatorAfter() {
 			return hasSeparatorAfter;
 		}
 
-		public RepositoryActionCondition getRepositoryActionCondition() {
+        /**
+         * Gets repository action condition.
+         *
+         * @return the repository action condition
+         */
+        public RepositoryActionCondition getRepositoryActionCondition() {
 			return condition;
 		}
 
-		public Class<? extends AbstractRepositoryAction<?>> getRepositoryActionClass() {
+        /**
+         * Gets repository action class.
+         *
+         * @return the repository action class
+         */
+        public Class<? extends AbstractRepositoryAction<?>> getRepositoryActionClass() {
 			return actionClass;
 		}
 	}
 
-	public final AbstractRepositoryAction<Entry> RENAME_ACTION = new RenameRepositoryEntryAction(this);
+    /**
+     * The Rename action.
+     */
+    public final AbstractRepositoryAction<Entry> RENAME_ACTION = new RenameRepositoryEntryAction(this);
 
-	public final AbstractRepositoryAction<Entry> DELETE_ACTION = new DeleteRepositoryEntryAction(this);
+    /**
+     * The Delete action.
+     */
+    public final AbstractRepositoryAction<Entry> DELETE_ACTION = new DeleteRepositoryEntryAction(this);
 
-	public final AbstractRepositoryAction<DataEntry> OPEN_ACTION = new OpenEntryAction(this);
+    /**
+     * The Open action.
+     */
+    public final AbstractRepositoryAction<DataEntry> OPEN_ACTION = new OpenEntryAction(this);
 
-	public final AbstractRepositoryAction<Entry> REFRESH_ACTION = new RefreshRepositoryEntryAction(this);
+    /**
+     * The Refresh action.
+     */
+    public final AbstractRepositoryAction<Entry> REFRESH_ACTION = new RefreshRepositoryEntryAction(this);
 
-	public final AbstractRepositoryAction<Folder> CREATE_FOLDER_ACTION = new CreateFolderAction(this);
+    /**
+     * The Create folder action.
+     */
+    public final AbstractRepositoryAction<Folder> CREATE_FOLDER_ACTION = new CreateFolderAction(this);
 
-	public final ResourceActionAdapter SHOW_PROCESS_IN_REPOSITORY_ACTION = new ShowProcessInRepositoryAction(this);
+    /**
+     * The Show process in repository action.
+     */
+    public final ResourceActionAdapter SHOW_PROCESS_IN_REPOSITORY_ACTION = new ShowProcessInRepositoryAction(this);
 
 	private final Dialog owner;
 
@@ -757,9 +809,15 @@ public class RepositoryTree extends JTree {
 
 	private EventListenerList listenerList = new EventListenerList();
 
-	final ToggleAction SORT_BY_NAME_ACTION = new SortByNameAction(this);
+    /**
+     * The Sort by name action.
+     */
+    final ToggleAction SORT_BY_NAME_ACTION = new SortByNameAction(this);
 
-	final ToggleAction SORT_BY_LAST_MODIFIED_DATE_ACTION = new SortByLastModifiedAction(this);
+    /**
+     * The Sort by last modified date action.
+     */
+    final ToggleAction SORT_BY_LAST_MODIFIED_DATE_ACTION = new SortByLastModifiedAction(this);
 
 	private static final long serialVersionUID = -6613576606220873341L;
 
@@ -804,35 +862,65 @@ public class RepositoryTree extends JTree {
 				new Class<?>[] { Entry.class }, new Class<?>[] { LocalRepository.class }), false, false);
 	}
 
-	public RepositoryTree() {
+    /**
+     * Instantiates a new Repository tree.
+     */
+    public RepositoryTree() {
 		this(null);
 	}
 
-	public RepositoryTree(Dialog owner) {
+    /**
+     * Instantiates a new Repository tree.
+     *
+     * @param owner the owner
+     */
+    public RepositoryTree(Dialog owner) {
 		this(owner, false);
 	}
 
-	public RepositoryTree(Dialog owner, boolean onlyFolders) {
+    /**
+     * Instantiates a new Repository tree.
+     *
+     * @param owner       the owner
+     * @param onlyFolders the only folders
+     */
+    public RepositoryTree(Dialog owner, boolean onlyFolders) {
 		this(owner, onlyFolders, false, true);
 	}
 
-	public RepositoryTree(Dialog owner, boolean onlyFolders, boolean onlyWritableRepositories) {
+    /**
+     * Instantiates a new Repository tree.
+     *
+     * @param owner                    the owner
+     * @param onlyFolders              the only folders
+     * @param onlyWritableRepositories the only writable repositories
+     */
+    public RepositoryTree(Dialog owner, boolean onlyFolders, boolean onlyWritableRepositories) {
 		this(owner, onlyFolders, onlyWritableRepositories, true);
 	}
 
-	public RepositoryTree(Dialog owner, boolean onlyFolders, boolean onlyWritableRepositories, boolean installDraghandler) {
+    /**
+     * Instantiates a new Repository tree.
+     *
+     * @param owner                    the owner
+     * @param onlyFolders              the only folders
+     * @param onlyWritableRepositories the only writable repositories
+     * @param installDraghandler       the install draghandler
+     */
+    public RepositoryTree(Dialog owner, boolean onlyFolders, boolean onlyWritableRepositories, boolean installDraghandler) {
 		this(owner, onlyFolders, onlyWritableRepositories, installDraghandler, null);
 	}
 
-	/**
-	 * @param installDraghandler
-	 *            when true, the {@link RepositoryTreeTransferhandler} is installed and the user is
-	 *            able to drag/drop data.
-	 * @param backgroundColor
-	 *            if {@code null} the default background color will be used, otherwise the provided
-	 *            background color will be used
-	 */
-	public RepositoryTree(Dialog owner, boolean onlyFolders, boolean onlyWritableRepositories, boolean installDraghandler,
+    /**
+     * Instantiates a new Repository tree.
+     *
+     * @param owner                    the owner
+     * @param onlyFolders              the only folders
+     * @param onlyWritableRepositories the only writable repositories
+     * @param installDraghandler       when true, the {@link RepositoryTreeTransferhandler} is installed and the user is            able to drag/drop data.
+     * @param backgroundColor          if {@code null} the default background color will be used, otherwise the provided            background color will be used
+     */
+    public RepositoryTree(Dialog owner, boolean onlyFolders, boolean onlyWritableRepositories, boolean installDraghandler,
 			final Color backgroundColor) {
 		super(new RepositoryTreeModel(RepositoryManager.getInstance(null), onlyFolders, onlyWritableRepositories));
 		this.owner = owner;
@@ -1068,33 +1156,48 @@ public class RepositoryTree extends JTree {
 		}
 	}
 
-	public void enableActions() {
+    /**
+     * Enable actions.
+     */
+    public void enableActions() {
 		listToEnable.forEach(AbstractRepositoryAction::enable);
 	}
 
-	public void addRepositorySelectionListener(RepositorySelectionListener listener) {
+    /**
+     * Add repository selection listener.
+     *
+     * @param listener the listener
+     */
+    public void addRepositorySelectionListener(RepositorySelectionListener listener) {
 		listenerList.add(RepositorySelectionListener.class, listener);
 	}
 
-	public void removeRepositorySelectionListener(RepositorySelectionListener listener) {
+    /**
+     * Remove repository selection listener.
+     *
+     * @param listener the listener
+     */
+    public void removeRepositorySelectionListener(RepositorySelectionListener listener) {
 		listenerList.remove(RepositorySelectionListener.class, listener);
 	}
 
-	/**
-	 * Adds a {@link RepositorySortingMethodListener}
-	 *
-	 * @since 7.4
-	 */
-	public void addRepostorySortingMethodListener(RepositorySortingMethodListener l) {
+    /**
+     * Adds a {@link RepositorySortingMethodListener}
+     *
+     * @param l the l
+     * @since 7.4
+     */
+    public void addRepostorySortingMethodListener(RepositorySortingMethodListener l) {
 		listenerList.add(RepositorySortingMethodListener.class, l);
 	}
 
-	/**
-	 * Removes a {@link RepositorySortingMethodListener}
-	 *
-	 * @since 7.4
-	 */
-	public void removeRepostorySortingMethodListener(RepositorySortingMethodListener l) {
+    /**
+     * Removes a {@link RepositorySortingMethodListener}
+     *
+     * @param l the l
+     * @since 7.4
+     */
+    public void removeRepostorySortingMethodListener(RepositorySortingMethodListener l) {
 		listenerList.remove(RepositorySortingMethodListener.class, l);
 	}
 
@@ -1108,11 +1211,15 @@ public class RepositoryTree extends JTree {
 		}
 	}
 
-	/**
-	 * Selects as much as possible of the selected path to the given location. Returns true if the
-	 * given location references a folder.
-	 */
-	boolean expandIfExists(RepositoryLocation relativeTo, String location) {
+    /**
+     * Selects as much as possible of the selected path to the given location. Returns true if the
+     * given location references a folder.
+     *
+     * @param relativeTo the relative to
+     * @param location   the location
+     * @return the boolean
+     */
+    boolean expandIfExists(RepositoryLocation relativeTo, String location) {
 		RepositoryLocation loc;
 		boolean full = true;
 		if (location != null) {
@@ -1161,10 +1268,12 @@ public class RepositoryTree extends JTree {
 		// loc = loc.parent();
 	}
 
-	/**
-	 * Expands the tree to select the given entry if it exists.
-	 */
-	public void expandAndSelectIfExists(RepositoryLocation location) {
+    /**
+     * Expands the tree to select the given entry if it exists.
+     *
+     * @param location the location
+     */
+    public void expandAndSelectIfExists(RepositoryLocation location) {
 		if (location.parent() != null) {
 			expandIfExists(location.parent(), location.getName());
 		} else {
@@ -1263,8 +1372,12 @@ public class RepositoryTree extends JTree {
 		menu.show(this, e.getX(), e.getY());
 	}
 
-	/** Opens the process held by the given entry (in the background) and opens it. */
-	public static void openProcess(final ProcessEntry processEntry) {
+    /**
+     * Opens the process held by the given entry (in the background) and opens it.  @param processEntry the process entry
+     *
+     * @param processEntry the process entry
+     */
+    public static void openProcess(final ProcessEntry processEntry) {
 		RepositoryProcessLocation processLocation = new RepositoryProcessLocation(processEntry.getLocation());
 		if (RapidMinerGUI.getMainFrame().close()) {
 			OpenAction.open(processLocation, true);
@@ -1287,7 +1400,12 @@ public class RepositoryTree extends JTree {
 		 */
 	}
 
-	public Entry getSelectedEntry() {
+    /**
+     * Gets selected entry.
+     *
+     * @return the selected entry
+     */
+    public Entry getSelectedEntry() {
 		TreePath path = getSelectionPath();
 		if (path == null) {
 			return null;
@@ -1300,10 +1418,12 @@ public class RepositoryTree extends JTree {
 		}
 	}
 
-	/**
-	 * Gets list of selected entries of this tree
-	 */
-	public List<Entry> getSelectedEntries() {
+    /**
+     * Gets list of selected entries of this tree
+     *
+     * @return the selected entries
+     */
+    public List<Entry> getSelectedEntries() {
 		List<Entry> selectedEntries = new LinkedList<>();
 		TreePath[] paths = getSelectionPaths();
 		if (paths != null) {
@@ -1317,7 +1437,12 @@ public class RepositoryTree extends JTree {
 		return selectedEntries;
 	}
 
-	public Collection<AbstractRepositoryAction<?>> getAllActions() {
+    /**
+     * Gets all actions.
+     *
+     * @return the all actions
+     */
+    public Collection<AbstractRepositoryAction<?>> getAllActions() {
 		List<AbstractRepositoryAction<?>> listOfAbstractRepositoryActions = new LinkedList<>();
 		for (Action action : createContextMenuActions(this, new LinkedList<Entry>())) {
 			if (action instanceof AbstractRepositoryAction<?>) {
@@ -1327,52 +1452,40 @@ public class RepositoryTree extends JTree {
 		return listOfAbstractRepositoryActions;
 	}
 
-	/**
-	 * Appends the given {@link AbstractRepositoryAction} extending class to the popup menu actions.
-	 * <p>
-	 * The class <b>MUST</b> have one public constructor taking only a RepositoryTree. </br>
-	 * Example: public MyNewRepoAction(RepositoryTree tree) { ... } </br>
-	 * Otherwise creating the action via reflection will fail.
-	 *
-	 * @param actionClass
-	 *            the class extending {@link AbstractRepositoryAction}
-	 * @param condition
-	 *            the {@link RepositoryActionCondition} which determines on which selected entries
-	 *            the action will be visible.
-	 * @param hasSeparatorBefore
-	 *            if true, a separator will be added before the action
-	 * @param hasSeparatorAfter
-	 *            if true, a separator will be added after the action
-	 * @return true if the action was successfully added; false otherwise
-	 */
-	public static void addRepositoryAction(Class<? extends AbstractRepositoryAction<?>> actionClass,
+    /**
+     * Appends the given {@link AbstractRepositoryAction} extending class to the popup menu actions.
+     * <p>
+     * The class <b>MUST</b> have one public constructor taking only a RepositoryTree. </br>
+     * Example: public MyNewRepoAction(RepositoryTree tree) { ... } </br>
+     * Otherwise creating the action via reflection will fail.
+     *
+     * @param actionClass        the class extending {@link AbstractRepositoryAction}
+     * @param condition          the {@link RepositoryActionCondition} which determines on which selected entries            the action will be visible.
+     * @param hasSeparatorBefore if true, a separator will be added before the action
+     * @param hasSeparatorAfter  if true, a separator will be added after the action
+     * @return true if the action was successfully added; false otherwise
+     */
+    public static void addRepositoryAction(Class<? extends AbstractRepositoryAction<?>> actionClass,
 			RepositoryActionCondition condition, boolean hasSeparatorBefore, boolean hasSeparatorAfter) {
 		addRepositoryAction(actionClass, condition, null, hasSeparatorBefore, hasSeparatorAfter);
 	}
 
-	/**
-	 * Adds the given {@link AbstractRepositoryAction} extending class to the popup menu actions at
-	 * the given index.
-	 * <p>
-	 * The class <b>MUST</b> have one public constructor taking only a RepositoryTree. </br>
-	 * Example: public MyNewRepoAction(RepositoryTree tree) { ... } </br>
-	 * Otherwise creating the action via reflection will fail.
-	 *
-	 * @param actionClass
-	 *            the class extending {@link AbstractRepositoryAction}
-	 * @param condition
-	 *            the {@link RepositoryActionCondition} which determines on which selected entries
-	 *            the action will be visible.
-	 * @param insertAfterThisAction
-	 *            the class of the action after which the new action should be inserted. Set to
-	 *            {@code null} to append the action at the end.
-	 * @param hasSeparatorBefore
-	 *            if true, a separator will be added before the action
-	 * @param hasSeparatorAfter
-	 *            if true, a separator will be added after the action
-	 * @return true if the action was successfully added; false otherwise
-	 */
-	public static void addRepositoryAction(Class<? extends AbstractRepositoryAction<?>> actionClass,
+    /**
+     * Adds the given {@link AbstractRepositoryAction} extending class to the popup menu actions at
+     * the given index.
+     * <p>
+     * The class <b>MUST</b> have one public constructor taking only a RepositoryTree. </br>
+     * Example: public MyNewRepoAction(RepositoryTree tree) { ... } </br>
+     * Otherwise creating the action via reflection will fail.
+     *
+     * @param actionClass           the class extending {@link AbstractRepositoryAction}
+     * @param condition             the {@link RepositoryActionCondition} which determines on which selected entries            the action will be visible.
+     * @param insertAfterThisAction the class of the action after which the new action should be inserted. Set to            {@code null} to append the action at the end.
+     * @param hasSeparatorBefore    if true, a separator will be added before the action
+     * @param hasSeparatorAfter     if true, a separator will be added after the action
+     * @return true if the action was successfully added; false otherwise
+     */
+    public static void addRepositoryAction(Class<? extends AbstractRepositoryAction<?>> actionClass,
 			RepositoryActionCondition condition, Class<? extends Action> insertAfterThisAction, boolean hasSeparatorBefore,
 			boolean hasSeparatorAfter) {
 		if (actionClass == null || condition == null) {
@@ -1409,13 +1522,12 @@ public class RepositoryTree extends JTree {
 		}
 	}
 
-	/**
-	 * Removes the given action from the popup menu actions.
-	 *
-	 * @param actionClass
-	 *            the class of the {@link AbstractRepositoryAction} to remove
-	 */
-	public static void removeRepositoryAction(Class<? extends AbstractRepositoryAction<?>> actionClass) {
+    /**
+     * Removes the given action from the popup menu actions.
+     *
+     * @param actionClass the class of the {@link AbstractRepositoryAction} to remove
+     */
+    public static void removeRepositoryAction(Class<? extends AbstractRepositoryAction<?>> actionClass) {
 		Iterator<RepositoryActionEntry> iterator = REPOSITORY_ACTIONS.iterator();
 
 		while (iterator.hasNext()) {
@@ -1465,14 +1577,13 @@ public class RepositoryTree extends JTree {
 		return listOfActions;
 	}
 
-	/**
-	 * Sets the {@link RepositorySortingMethod} with which the {@link RepositoryTreeModel} is sorted
-	 *
-	 * @param method
-	 *            The {@link RepositorySortingMethod}
-	 * @since 7.4
-	 */
-	public void setSortingMethod(RepositorySortingMethod method) {
+    /**
+     * Sets the {@link RepositorySortingMethod} with which the {@link RepositoryTreeModel} is sorted
+     *
+     * @param method The {@link RepositorySortingMethod}
+     * @since 7.4
+     */
+    public void setSortingMethod(RepositorySortingMethod method) {
 		if (getModel() instanceof RepositoryTreeModel) {
 			// Remember expansion state before setting new RepositorySortingMethod
 			Enumeration<TreePath> expandedDescendants = getExpandedDescendants(new TreePath(treeModel.getRoot()));
@@ -1494,13 +1605,14 @@ public class RepositoryTree extends JTree {
 		}
 	}
 
-	/**
-	 * Gets the {@link RepositorySortingMethod} with which this {@link RepositoryTreeModel} is
-	 * sorted
-	 *
-	 * @since 7.4
-	 */
-	public RepositorySortingMethod getSortingMethod() {
+    /**
+     * Gets the {@link RepositorySortingMethod} with which this {@link RepositoryTreeModel} is
+     * sorted
+     *
+     * @return the sorting method
+     * @since 7.4
+     */
+    public RepositorySortingMethod getSortingMethod() {
 		if (getModel() instanceof RepositoryTreeModel) {
 			return ((RepositoryTreeModel) getModel()).getSortingMethod();
 		}

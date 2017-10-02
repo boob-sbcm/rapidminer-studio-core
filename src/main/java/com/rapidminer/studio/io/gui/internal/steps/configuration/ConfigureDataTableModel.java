@@ -76,19 +76,15 @@ final class ConfigureDataTableModel extends AbstractTableModel {
 	 */
 	private final DataSetMetaData originalDataSourceMetaData;
 
-	/**
-	 * Creates a new model instance.
-	 *
-	 * @param dataSource
-	 *            the data source used to query the preview data
-	 * @param metaData
-	 *            the metaData copy to use
-	 * @param l
-	 *            the progress listener to report progress to
-	 * @throws DataSetException
-	 *             in case reading the preview fails
-	 */
-	public ConfigureDataTableModel(DataSource dataSource, DataSetMetaData metaData, ProgressListener l)
+    /**
+     * Creates a new model instance.
+     *
+     * @param dataSource the data source used to query the preview data
+     * @param metaData   the metaData copy to use
+     * @param l          the progress listener to report progress to
+     * @throws DataSetException in case reading the preview fails
+     */
+    public ConfigureDataTableModel(DataSource dataSource, DataSetMetaData metaData, ProgressListener l)
 			throws DataSetException {
 		this.metaData = metaData;
 		this.originalDataSourceMetaData = dataSource.getMetadata();
@@ -96,13 +92,13 @@ final class ConfigureDataTableModel extends AbstractTableModel {
 		read(dataSet, l);
 	}
 
-	/**
-	 * Rereads the data with the current date format.
-	 *
-	 * @param listener
-	 * @throws DataSetException
-	 */
-	void reread(ProgressListener listener) throws DataSetException {
+    /**
+     * Rereads the data with the current date format.
+     *
+     * @param listener the listener
+     * @throws DataSetException the data set exception
+     */
+    void reread(ProgressListener listener) throws DataSetException {
 		DateFormat originalDateFormat = originalDataSourceMetaData.getDateFormat();
 		originalDataSourceMetaData.setDateFormat(metaData.getDateFormat());
 
@@ -237,14 +233,14 @@ final class ConfigureDataTableModel extends AbstractTableModel {
 		}
 	}
 
-	/**
-	 * Reads the column with index columnIndex again and stores the results.
-	 *
-	 * @param columnIndex
-	 *            the column to reread
-	 * @throws DataSetException
-	 */
-	synchronized void rereadColumn(int columnIndex, ProgressListener listener) throws DataSetException {
+    /**
+     * Reads the column with index columnIndex again and stores the results.
+     *
+     * @param columnIndex the column to reread
+     * @param listener    the listener
+     * @throws DataSetException the data set exception
+     */
+    synchronized void rereadColumn(int columnIndex, ProgressListener listener) throws DataSetException {
 		if (listener != null) {
 			listener.setTotal(100);
 		}
@@ -301,11 +297,12 @@ final class ConfigureDataTableModel extends AbstractTableModel {
 		}
 	}
 
-	/**
-	 * @return the stored list of {@link ParsingError}s that occurred during construction of this
-	 *         table model
-	 */
-	List<ParsingError> getParsingErrors() {
+    /**
+     * Gets parsing errors.
+     *
+     * @return the stored list of {@link ParsingError}s that occurred during construction of this         table model
+     */
+    List<ParsingError> getParsingErrors() {
 		return parsingErrorList;
 	}
 
@@ -340,16 +337,14 @@ final class ConfigureDataTableModel extends AbstractTableModel {
 		}
 	}
 
-	/**
-	 * Returns whether a parsing error happened for the cell specified by rowIndex and columnIndex.
-	 *
-	 * @param rowIndex
-	 *            the row index
-	 * @param columnIndex
-	 *            the column index
-	 * @return {@code true} if a parsing error happened for this cell
-	 */
-	boolean hasError(int rowIndex, int columnIndex) {
+    /**
+     * Returns whether a parsing error happened for the cell specified by rowIndex and columnIndex.
+     *
+     * @param rowIndex    the row index
+     * @param columnIndex the column index
+     * @return {@code true} if a parsing error happened for this cell
+     */
+    boolean hasError(int rowIndex, int columnIndex) {
 		Set<Integer> errorRows = errorCells.get(columnIndex);
 		if (errorRows != null && errorRows.contains(rowIndex) && !metaData.getColumnMetaData(columnIndex).isRemoved()) {
 			return true;

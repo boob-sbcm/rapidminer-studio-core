@@ -60,7 +60,6 @@ import com.rapidminer.tools.documentation.ExampleProcess;
  * The operator description is shown in the RapidMiner Help Window.
  *
  * @author Miguel Buescher, Sebastian Land, Marcel Seifert
- *
  */
 public class OperatorDocLoader {
 
@@ -70,21 +69,20 @@ public class OperatorDocLoader {
 	 */
 	private static Map<String, String> DOC_CACHE = new HashMap<>(100);
 
-	/**
-	 * Gets the operator documentation as an HTML string.
-	 *
-	 * The documentation sources will be used in the following order: 1. Documentation Cache 2.
-	 * Single-XML documentation format (for each operator) 3. OperatorsDoc.xml file documentation
-	 * format
-	 *
-	 * Previously uncached documentations will be cached after reading for a better response time.
-	 * If something goes wrong, a log message will be triggered.
-	 *
-	 * @param operator
-	 *            The operator from that to get the documentation.
-	 * @return HTML string of the operator documentation
-	 */
-	static String getDocumentation(Operator operator) {
+    /**
+     * Gets the operator documentation as an HTML string.
+     * <p>
+     * The documentation sources will be used in the following order: 1. Documentation Cache 2.
+     * Single-XML documentation format (for each operator) 3. OperatorsDoc.xml file documentation
+     * format
+     * <p>
+     * Previously uncached documentations will be cached after reading for a better response time.
+     * If something goes wrong, a log message will be triggered.
+     *
+     * @param operator The operator from that to get the documentation.
+     * @return HTML string of the operator documentation
+     */
+    static String getDocumentation(Operator operator) {
 		String html = null;
 		if (operator != null) {
 

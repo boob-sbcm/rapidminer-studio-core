@@ -25,11 +25,15 @@ import com.rapidminer.gui.new_plotter.listener.events.RangeAxisConfigChangeEvent
 /**
  * Classes that implement this interface listen to changes of the {@link RangeAxisConfig} like
  * adding or removing new ValueSources.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public interface RangeAxisConfigListener {
 
-	public void rangeAxisConfigChanged(RangeAxisConfigChangeEvent e);
+    /**
+     * Range axis config changed.
+     *
+     * @param e the e
+     */
+    public void rangeAxisConfigChanged(RangeAxisConfigChangeEvent e);
 }

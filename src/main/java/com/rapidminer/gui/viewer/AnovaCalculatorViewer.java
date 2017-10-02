@@ -37,6 +37,7 @@ import com.rapidminer.tools.Tools;
 
 
 /**
+ * The type Anova calculator viewer.
  *
  * @author Sebastian Land, Marco Boeck
  */
@@ -44,7 +45,21 @@ public class AnovaCalculatorViewer extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public AnovaCalculatorViewer(String name, double sumSquaresBetween, int degreesOfFreedom1, double meanSquaresBetween,
+    /**
+     * Instantiates a new Anova calculator viewer.
+     *
+     * @param name                 the name
+     * @param sumSquaresBetween    the sum squares between
+     * @param degreesOfFreedom1    the degrees of freedom 1
+     * @param meanSquaresBetween   the mean squares between
+     * @param fValue               the f value
+     * @param prob                 the prob
+     * @param sumSquaresResiduals  the sum squares residuals
+     * @param degreesOfFreedom2    the degrees of freedom 2
+     * @param meanSquaresResiduals the mean squares residuals
+     * @param alpha                the alpha
+     */
+    public AnovaCalculatorViewer(String name, double sumSquaresBetween, int degreesOfFreedom1, double meanSquaresBetween,
 			double fValue, double prob, double sumSquaresResiduals, int degreesOfFreedom2, double meanSquaresResiduals,
 			double alpha) {
 

@@ -20,9 +20,9 @@ package com.rapidminer.operator.nio.model.xlsx;
 
 /**
  * Indicates a XLSX cell's data type.
- *
+ * <p>
  * Available data types are: <br/>
- *
+ * <p>
  * <table border="1">
  * <tr>
  * <td>b (Boolean)</td>
@@ -56,48 +56,46 @@ package com.rapidminer.operator.nio.model.xlsx;
  * </tr>
  * </table>
  *
- * @see ECMA-376, 4th Edition, 18.18.11 Cell Type (pp. 2432 ff.)
- *
  * @author Nils Woehler
+ * @see ECMA-376, 4th Edition, 18.18.11 Cell Type (pp. 2432 ff.)
  * @since 6.3.0
- *
  */
 public enum XlsxCellType {
 
-	/**
-	 * A boolean cell
-	 */
-	BOOLEAN("b"),
+    /**
+     * A boolean cell
+     */
+    BOOLEAN("b"),
 
-	/**
-	 * A date cell
-	 */
-	DATE("d"),
+    /**
+     * A date cell
+     */
+    DATE("d"),
 
-	/**
-	 * Cell that contains an error
-	 */
-	ERROR("e"),
+    /**
+     * Cell that contains an error
+     */
+    ERROR("e"),
 
-	/**
-	 * Cell that contains a string which is not stored within the shared string table
-	 */
-	INLINE_STRING("inlineStr"),
+    /**
+     * Cell that contains a string which is not stored within the shared string table
+     */
+    INLINE_STRING("inlineStr"),
 
-	/**
-	 * Cell that contains a number
-	 */
-	NUMBER("n"),
+    /**
+     * Cell that contains a number
+     */
+    NUMBER("n"),
 
-	/**
-	 * Cell that contains a string which is stored in the shared strings table
-	 */
-	SHARED_STRING("s"),
+    /**
+     * Cell that contains a string which is stored in the shared strings table
+     */
+    SHARED_STRING("s"),
 
-	/**
-	 * Cell that contains a string
-	 */
-	STRING("str");
+    /**
+     * Cell that contains a string
+     */
+    STRING("str");
 
 	private final String identifier;
 
@@ -105,26 +103,25 @@ public enum XlsxCellType {
 		this.identifier = identifier;
 	}
 
-	/**
-	 * @return the {@link XlsxCellType} identifier specified by ECMA-376
-	 */
-	public String getIdentifier() {
+    /**
+     * Gets identifier.
+     *
+     * @return the {@link XlsxCellType} identifier specified by ECMA-376
+     */
+    public String getIdentifier() {
 		return identifier;
 	}
 
-	/**
-	 * Looks up the {@link XlsxCellType} by comparing the provided identifier with the
-	 * {@link XlsxCellType#identifier}.
-	 *
-	 * @param identifier
-	 *            the identifier that should be used to lookup the {@link XlsxCellType}
-	 * @param cellStyleId
-	 *            the parsed cell style index. Might be <code>null</code> in case it is empty.
-	 * @param numberFormats
-	 *            all parsed number formats
-	 * @return the referenced XslxCellType or <code>null</code> if the XslxCellType is not known.
-	 */
-	public static XlsxCellType getCellType(String identifier, XlsxNumberFormats numberFormats, String cellStyleId) {
+    /**
+     * Looks up the {@link XlsxCellType} by comparing the provided identifier with the
+     * {@link XlsxCellType#identifier}.
+     *
+     * @param identifier    the identifier that should be used to lookup the {@link XlsxCellType}
+     * @param numberFormats all parsed number formats
+     * @param cellStyleId   the parsed cell style index. Might be <code>null</code> in case it is empty.
+     * @return the referenced XslxCellType or <code>null</code> if the XslxCellType is not known.
+     */
+    public static XlsxCellType getCellType(String identifier, XlsxNumberFormats numberFormats, String cellStyleId) {
 		// in case no identifier is given
 		if (identifier == null) {
 			// check if we have a number format which seems to be a date format

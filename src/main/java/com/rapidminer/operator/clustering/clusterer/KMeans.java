@@ -51,24 +51,31 @@ import de.dfki.madm.operator.KMeanspp;
  */
 public class KMeans extends RMAbstractClusterer {
 
-	/** The parameter name for &quot;the maximal number of clusters&quot; */
-	public static final String PARAMETER_K = "k";
+    /**
+     * The parameter name for &quot;the maximal number of clusters&quot;
+     */
+    public static final String PARAMETER_K = "k";
 
-	/**
-	 * The parameter name for &quot;the maximal number of runs of the k method with random
-	 * initialization that are performed&quot;
-	 */
-	public static final String PARAMETER_MAX_RUNS = "max_runs";
+    /**
+     * The parameter name for &quot;the maximal number of runs of the k method with random
+     * initialization that are performed&quot;
+     */
+    public static final String PARAMETER_MAX_RUNS = "max_runs";
 
-	/**
-	 * The parameter name for &quot;the maximal number of iterations performed for one run of the k
-	 * method&quot;
-	 */
-	public static final String PARAMETER_MAX_OPTIMIZATION_STEPS = "max_optimization_steps";
+    /**
+     * The parameter name for &quot;the maximal number of iterations performed for one run of the k
+     * method&quot;
+     */
+    public static final String PARAMETER_MAX_OPTIMIZATION_STEPS = "max_optimization_steps";
 
 	private static final int SQUARED_EUCLIDEAN_INDEX = 6;
 
-	public KMeans(OperatorDescription description) {
+    /**
+     * Instantiates a new K means.
+     *
+     * @param description the description
+     */
+    public KMeans(OperatorDescription description) {
 		super(description);
 	}
 

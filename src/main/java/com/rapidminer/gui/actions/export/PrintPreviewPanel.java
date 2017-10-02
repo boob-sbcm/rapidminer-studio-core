@@ -36,7 +36,6 @@ import org.jdesktop.swingx.border.DropShadowBorder;
  * The preview panel used by the {@link PrintAndExportDialog} to show a print preview.
  *
  * @author Nils Woehler
- *
  */
 public class PrintPreviewPanel extends JPanel {
 
@@ -44,8 +43,17 @@ public class PrintPreviewPanel extends JPanel {
 
 	private static final int MAX_DIM = 430;
 
-	enum Orientation {
-		LANDSCAPE, PORTRAIT;
+    /**
+     * The enum Orientation.
+     */
+    enum Orientation {
+        /**
+         * Landscape orientation.
+         */
+        LANDSCAPE, /**
+         * Portrait orientation.
+         */
+        PORTRAIT;
 	}
 
 	private class ComponentPreviewPanel extends JPanel {
@@ -128,13 +136,13 @@ public class PrintPreviewPanel extends JPanel {
 
 	private JPanel portraitPanel;
 
-	/**
-	 * Creates a preview panel for the specified {@link PrintableComponent}.
-	 *
-	 * @param comp
-	 *            the {@link PrintableComponent} the preview panel should be created for.
-	 */
-	public PrintPreviewPanel(PrintableComponent comp, PageFormat pageFormat) {
+    /**
+     * Creates a preview panel for the specified {@link PrintableComponent}.
+     *
+     * @param comp       the {@link PrintableComponent} the preview panel should be created for.
+     * @param pageFormat the page format
+     */
+    public PrintPreviewPanel(PrintableComponent comp, PageFormat pageFormat) {
 		this.printer = new ComponentPrinter(comp);
 		this.cardLayout = new CardLayout();
 		this.pageFormat = pageFormat;
@@ -160,7 +168,12 @@ public class PrintPreviewPanel extends JPanel {
 		setPageFormat(pageFormat);
 	}
 
-	public void setPageFormat(PageFormat pageFormat) {
+    /**
+     * Sets page format.
+     *
+     * @param pageFormat the page format
+     */
+    public void setPageFormat(PageFormat pageFormat) {
 		this.pageFormat = pageFormat;
 		remove(landscapePanel);
 		remove(portraitPanel);

@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for cancelTrigger complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="cancelTrigger">
  *   &lt;complexContent>
@@ -39,8 +39,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "cancelTrigger", propOrder = {
@@ -48,15 +46,15 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class CancelTrigger {
 
+    /**
+     * The Trigger name.
+     */
     protected String triggerName;
 
     /**
      * Gets the value of the triggerName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getTriggerName() {
         return triggerName;
@@ -64,11 +62,8 @@ public class CancelTrigger {
 
     /**
      * Sets the value of the triggerName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setTriggerName(String value) {
         this.triggerName = value;

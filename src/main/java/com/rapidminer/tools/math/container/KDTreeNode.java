@@ -23,12 +23,9 @@ import java.io.Serializable;
 
 /**
  * The node for a KD tree.
- * 
+ *
+ * @param <T> This is the type of value with is stored with the points and retrieved on nearest            neighbour search
  * @author Sebastian Land
- * 
- * @param <T>
- *            This is the type of value with is stored with the points and retrieved on nearest
- *            neighbour search
  */
 public class KDTreeNode<T> implements Serializable {
 
@@ -40,13 +37,26 @@ public class KDTreeNode<T> implements Serializable {
 	private KDTreeNode<T> greaterChild;
 	private int comparationDimension;
 
-	public KDTreeNode(double[] values, T storeValue, int comparationDimension) {
+    /**
+     * Instantiates a new Kd tree node.
+     *
+     * @param values               the values
+     * @param storeValue           the store value
+     * @param comparationDimension the comparation dimension
+     */
+    public KDTreeNode(double[] values, T storeValue, int comparationDimension) {
 		this.values = values;
 		this.storeValue = storeValue;
 		this.comparationDimension = comparationDimension;
 	}
 
-	public KDTreeNode<T> getNearChild(double[] compare) {
+    /**
+     * Gets near child.
+     *
+     * @param compare the compare
+     * @return the near child
+     */
+    public KDTreeNode<T> getNearChild(double[] compare) {
 		if (compare[comparationDimension] < values[comparationDimension]) {
 			return lesserChild;
 		} else {
@@ -54,7 +64,13 @@ public class KDTreeNode<T> implements Serializable {
 		}
 	}
 
-	public KDTreeNode<T> getFarChild(double[] compare) {
+    /**
+     * Gets far child.
+     *
+     * @param compare the compare
+     * @return the far child
+     */
+    public KDTreeNode<T> getFarChild(double[] compare) {
 		if (compare[comparationDimension] >= values[comparationDimension]) {
 			return lesserChild;
 		} else {
@@ -62,7 +78,13 @@ public class KDTreeNode<T> implements Serializable {
 		}
 	}
 
-	public boolean hasNearChild(double[] compare) {
+    /**
+     * Has near child boolean.
+     *
+     * @param compare the compare
+     * @return the boolean
+     */
+    public boolean hasNearChild(double[] compare) {
 		if (compare[comparationDimension] < values[comparationDimension]) {
 			return lesserChild != null;
 		} else {
@@ -70,7 +92,13 @@ public class KDTreeNode<T> implements Serializable {
 		}
 	}
 
-	public boolean hasFarChild(double[] compare) {
+    /**
+     * Has far child boolean.
+     *
+     * @param compare the compare
+     * @return the boolean
+     */
+    public boolean hasFarChild(double[] compare) {
 		if (compare[comparationDimension] >= values[comparationDimension]) {
 			return lesserChild != null;
 		} else {
@@ -78,7 +106,12 @@ public class KDTreeNode<T> implements Serializable {
 		}
 	}
 
-	public void setChild(KDTreeNode<T> node) {
+    /**
+     * Sets child.
+     *
+     * @param node the node
+     */
+    public void setChild(KDTreeNode<T> node) {
 		if (node.getValues()[comparationDimension] < values[comparationDimension]) {
 			lesserChild = node;
 		} else {
@@ -86,35 +119,75 @@ public class KDTreeNode<T> implements Serializable {
 		}
 	}
 
-	public T getStoreValue() {
+    /**
+     * Gets store value.
+     *
+     * @return the store value
+     */
+    public T getStoreValue() {
 		return storeValue;
 	}
 
-	public KDTreeNode<T> getLesserChild() {
+    /**
+     * Gets lesser child.
+     *
+     * @return the lesser child
+     */
+    public KDTreeNode<T> getLesserChild() {
 		return lesserChild;
 	}
 
-	public void setLesserChild(KDTreeNode<T> leftChild) {
+    /**
+     * Sets lesser child.
+     *
+     * @param leftChild the left child
+     */
+    public void setLesserChild(KDTreeNode<T> leftChild) {
 		this.lesserChild = leftChild;
 	}
 
-	public KDTreeNode<T> getGreaterChild() {
+    /**
+     * Gets greater child.
+     *
+     * @return the greater child
+     */
+    public KDTreeNode<T> getGreaterChild() {
 		return greaterChild;
 	}
 
-	public void setGreaterChild(KDTreeNode<T> rightChild) {
+    /**
+     * Sets greater child.
+     *
+     * @param rightChild the right child
+     */
+    public void setGreaterChild(KDTreeNode<T> rightChild) {
 		this.greaterChild = rightChild;
 	}
 
-	public double[] getValues() {
+    /**
+     * Get values double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getValues() {
 		return values;
 	}
 
-	public double getCompareValue() {
+    /**
+     * Gets compare value.
+     *
+     * @return the compare value
+     */
+    public double getCompareValue() {
 		return values[comparationDimension];
 	}
 
-	public int getCompareDimension() {
+    /**
+     * Gets compare dimension.
+     *
+     * @return the compare dimension
+     */
+    public int getCompareDimension() {
 		return comparationDimension;
 	}
 

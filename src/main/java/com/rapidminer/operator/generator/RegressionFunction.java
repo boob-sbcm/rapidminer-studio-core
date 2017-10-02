@@ -31,7 +31,7 @@ import com.rapidminer.tools.math.container.Range;
 
 /**
  * A target function for regression labels, i.e. continous numercial labels.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class RegressionFunction implements TargetFunction {
@@ -40,8 +40,14 @@ public abstract class RegressionFunction implements TargetFunction {
 
 	private double upper = 10.0d;
 
-	protected int numberOfExamples = 0;
-	protected int numberOfAttributes = 0;
+    /**
+     * The Number of examples.
+     */
+    protected int numberOfExamples = 0;
+    /**
+     * The Number of attributes.
+     */
+    protected int numberOfAttributes = 0;
 
 	/** Does nothing. */
 	@Override
@@ -57,11 +63,21 @@ public abstract class RegressionFunction implements TargetFunction {
 		this.upper = upper;
 	}
 
-	public double getLowerArgumentBound() {
+    /**
+     * Gets lower argument bound.
+     *
+     * @return the lower argument bound
+     */
+    public double getLowerArgumentBound() {
 		return this.lower;
 	}
 
-	public double getUpperArgumentBound() {
+    /**
+     * Gets upper argument bound.
+     *
+     * @return the upper argument bound
+     */
+    public double getUpperArgumentBound() {
 		return this.upper;
 	}
 

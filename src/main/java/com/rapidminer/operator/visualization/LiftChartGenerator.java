@@ -40,10 +40,10 @@ import java.util.List;
 /**
  * This operator creates a Lift chart for the given example set and model. The model will be applied
  * on the example set and a lift chart will be produced afterwards.
- * 
+ * <p>
  * Please note that a predicted label of the given example set will be removed during the
  * application of this operator.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class LiftChartGenerator extends Operator {
@@ -54,7 +54,12 @@ public class LiftChartGenerator extends Operator {
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort modelOutput = getOutputPorts().createPort("model");
 
-	public LiftChartGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Lift chart generator.
+     *
+     * @param description the description
+     */
+    public LiftChartGenerator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput

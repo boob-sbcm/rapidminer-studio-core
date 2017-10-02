@@ -28,30 +28,45 @@ import com.rapidminer.operator.MailNotSentException;
 
 
 /**
+ * The type Mail utilities.
  *
  * @author Simon Fischer, Nils Woehler
- *
  */
 public class MailUtilities {
 
 	private static MailSessionFactory mailFactory = new DefaultMailSessionFactory();
 
-	public static void setMailSessionFactory(MailSessionFactory mailFactory) {
+    /**
+     * Sets mail session factory.
+     *
+     * @param mailFactory the mail factory
+     */
+    public static void setMailSessionFactory(MailSessionFactory mailFactory) {
 		MailUtilities.mailFactory = mailFactory;
 	}
 
-	public static void sendEmail(String address, String subject, String content) {
+    /**
+     * Send email.
+     *
+     * @param address the address
+     * @param subject the subject
+     * @param content the content
+     */
+    public static void sendEmail(String address, String subject, String content) {
 		sendEmail(address, subject, content, null);
 
 	}
 
-	/**
-	 * Sends a mail to the given address, using the specified subject and contents. Subject must
-	 * contain no whitespace!
-	 *
-	 * @param headers
-	 */
-	public static void sendEmail(String address, String subject, String content, Map<String, String> headers) {
+    /**
+     * Sends a mail to the given address, using the specified subject and contents. Subject must
+     * contain no whitespace!
+     *
+     * @param address the address
+     * @param subject the subject
+     * @param content the content
+     * @param headers the headers
+     */
+    public static void sendEmail(String address, String subject, String content, Map<String, String> headers) {
 		try {
 			sendEmailWithException(address, subject, content, headers);
 		} catch (MailNotSentException e) {
@@ -59,7 +74,16 @@ public class MailUtilities {
 		}
 	}
 
-	public static void sendEmailWithException(String address, String subject, String content, Map<String, String> headers)
+    /**
+     * Send email with exception.
+     *
+     * @param address the address
+     * @param subject the subject
+     * @param content the content
+     * @param headers the headers
+     * @throws MailNotSentException the mail not sent exception
+     */
+    public static void sendEmailWithException(String address, String subject, String content, Map<String, String> headers)
 			throws MailNotSentException {
 		try {
 			String method = ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_TOOLS_MAIL_METHOD);
@@ -108,11 +132,24 @@ public class MailUtilities {
 		}
 	}
 
-	public static void sendEmailWithException(String address, String subject, String content) throws MailNotSentException {
+    /**
+     * Send email with exception.
+     *
+     * @param address the address
+     * @param subject the subject
+     * @param content the content
+     * @throws MailNotSentException the mail not sent exception
+     */
+    public static void sendEmailWithException(String address, String subject, String content) throws MailNotSentException {
 		sendEmailWithException(address, subject, content, null);
 	}
 
-	public static Session makeSession() {
+    /**
+     * Make session session.
+     *
+     * @return the session
+     */
+    public static Session makeSession() {
 		return mailFactory.makeSession();
 	}
 }

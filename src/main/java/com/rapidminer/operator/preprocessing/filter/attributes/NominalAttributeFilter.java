@@ -28,7 +28,7 @@ import com.rapidminer.parameter.ParameterHandler;
 /**
  * This class implements the condition if an attribute is nominal. All non-nominal attributes will
  * be removed.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class NominalAttributeFilter extends AbstractAttributeFilterCondition {

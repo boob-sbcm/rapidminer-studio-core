@@ -51,7 +51,13 @@ public class SelectColumnAction extends AbstractAction {
 
 	private ExtendedJTable table;
 
-	public SelectColumnAction(ExtendedJTable table, IconSize size) {
+    /**
+     * Instantiates a new Select column action.
+     *
+     * @param table the table
+     * @param size  the size
+     */
+    public SelectColumnAction(ExtendedJTable table, IconSize size) {
 		super("Select Column", ICONS[size.ordinal()]);
 		this.table = table;
 		putValue(SHORT_DESCRIPTION, "Select the complete column");

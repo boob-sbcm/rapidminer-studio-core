@@ -40,13 +40,17 @@ import com.rapidminer.operator.ports.metadata.MetaDataError;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public class ProcessRendererTooltipProvider implements TipProvider {
 
 	private ProcessRendererModel model;
 
-	public ProcessRendererTooltipProvider(ProcessRendererModel model) {
+    /**
+     * Instantiates a new Process renderer tooltip provider.
+     *
+     * @param model the model
+     */
+    public ProcessRendererTooltipProvider(ProcessRendererModel model) {
 		this.model = model;
 	}
 

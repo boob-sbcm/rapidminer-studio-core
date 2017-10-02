@@ -46,14 +46,19 @@ import com.rapidminer.tools.expression.internal.function.comparison.NotEquals;
  * JUnit Tests for the {@link Equals} and {@link NotEquals} functions of the Antlr ExpressionParser
  *
  * @author Sabrina Kirstein
- *
  */
 public class AntlrParserEqualsTest extends AntlrParserTest {
 
-	// long value for some date entry
+    /**
+     * The constant sometime.
+     */
+// long value for some date entry
 	static long sometime = 1436792411000l;
 
-	// long value for some other date entry
+    /**
+     * The constant someothertime.
+     */
+// long value for some other date entry
 	static long someothertime = 1436792413450l;
 
 	private static ExampleSet makeDateExampleSet() {
@@ -73,7 +78,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		return builder.build();
 	}
 
-	@Test
+    /**
+     * Equals true nominal.
+     */
+    @Test
 	public void equalsTrueNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"Moe\" == \"Moe\"");
@@ -84,7 +92,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals true boolean.
+     */
+    @Test
 	public void equalsTrueBoolean() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("TRUE == TRUE");
@@ -95,7 +106,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals true date.
+     */
+    @Test
 	public void equalsTrueDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -110,7 +124,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals true numeric.
+     */
+    @Test
 	public void equalsTrueNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1.45 == 1.45");
@@ -121,7 +138,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals false nominal.
+     */
+    @Test
 	public void equalsFalseNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"Moe\" == \"Mr.Szyslak\"");
@@ -132,7 +152,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals false boolean.
+     */
+    @Test
 	public void equalsFalseBoolean() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("TRUE == FALSE");
@@ -143,7 +166,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals false date.
+     */
+    @Test
 	public void equalsFalseDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -158,7 +184,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals false numeric.
+     */
+    @Test
 	public void equalsFalseNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("3.14 == 1");
@@ -169,7 +198,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals true numeric nominal.
+     */
+    @Test
 	public void equalsTrueNumericNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("3 == \"3\"");
@@ -180,7 +212,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals false numeric nominal.
+     */
+    @Test
 	public void equalsFalseNumericNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("3 == \"Claptrap\"");
@@ -191,7 +226,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals false numeric date.
+     */
+    @Test
 	public void equalsFalseNumericDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -206,7 +244,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals true numeric date.
+     */
+    @Test
 	public void equalsTrueNumericDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -221,7 +262,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals numeric boolean true true.
+     */
+    @Test
 	public void equalsNumericBooleanTrueTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1 == TRUE");
@@ -232,7 +276,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals numeric boolean false true.
+     */
+    @Test
 	public void equalsNumericBooleanFalseTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("0 == FALSE");
@@ -243,7 +290,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals numeric boolean true false.
+     */
+    @Test
 	public void equalsNumericBooleanTrueFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("5 == TRUE");
@@ -254,7 +304,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals numeric boolean false false.
+     */
+    @Test
 	public void equalsNumericBooleanFalseFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("-1 == FALSE");
@@ -265,7 +318,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals false boolean nominal.
+     */
+    @Test
 	public void equalsFalseBooleanNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"MoXXi\" == FALSE");
@@ -276,7 +332,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals true boolean nominal.
+     */
+    @Test
 	public void equalsTrueBooleanNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"false\" == FALSE");
@@ -287,7 +346,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals boolean date.
+     */
+    @Test
 	public void equalsBooleanDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -302,7 +364,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals nominal date.
+     */
+    @Test
 	public void equalsNominalDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -317,7 +382,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals numeric missing.
+     */
+    @Test
 	public void equalsNumericMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1 == MISSING_NUMERIC");
@@ -337,7 +405,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals nominal missing.
+     */
+    @Test
 	public void equalsNominalMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"Batman\" == MISSING_NUMERIC");
@@ -357,7 +428,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals bool missing.
+     */
+    @Test
 	public void equalsBoolMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("TRUE == MISSING_NUMERIC");
@@ -377,7 +451,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals date missing.
+     */
+    @Test
 	public void equalsDateMissing() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -401,7 +478,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals missing missing.
+     */
+    @Test
 	public void equalsMissingMissing() {
 		try {
 			// same type missings
@@ -437,7 +517,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 
 	// not equals
 
-	@Test
+    /**
+     * Not equals false nominal.
+     */
+    @Test
 	public void notEqualsFalseNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"Moe\" != \"Moe\"");
@@ -448,7 +531,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals false boolean.
+     */
+    @Test
 	public void notEqualsFalseBoolean() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("TRUE != TRUE");
@@ -459,7 +545,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals false date.
+     */
+    @Test
 	public void notEqualsFalseDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -474,7 +563,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals false numeric.
+     */
+    @Test
 	public void notEqualsFalseNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1.45 != 1.45");
@@ -485,7 +577,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals true nominal.
+     */
+    @Test
 	public void notEqualsTrueNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"Moe\" != \"Mr.Szyslak\"");
@@ -496,7 +591,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals true boolean.
+     */
+    @Test
 	public void notEqualsTrueBoolean() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("TRUE != FALSE");
@@ -507,7 +605,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals true date.
+     */
+    @Test
 	public void notEqualsTrueDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -522,7 +623,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals true numeric.
+     */
+    @Test
 	public void notEqualsTrueNumeric() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("3.14 != 1");
@@ -533,7 +637,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals false numeric nominal.
+     */
+    @Test
 	public void notEqualsFalseNumericNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("3 != \"3\"");
@@ -544,7 +651,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals true numeric nominal.
+     */
+    @Test
 	public void notEqualsTrueNumericNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("3 != \"Claptrap\"");
@@ -555,7 +665,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals true numeric date.
+     */
+    @Test
 	public void notEqualsTrueNumericDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -570,7 +683,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals false numeric date.
+     */
+    @Test
 	public void notEqualsFalseNumericDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -585,7 +701,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals numeric boolean false false.
+     */
+    @Test
 	public void notEqualsNumericBooleanFalseFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1 != TRUE");
@@ -596,7 +715,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals numeric boolean true false.
+     */
+    @Test
 	public void notEqualsNumericBooleanTrueFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("0 != FALSE");
@@ -607,7 +729,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals numeric boolean false true.
+     */
+    @Test
 	public void notEqualsNumericBooleanFalseTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("5 != TRUE");
@@ -618,7 +743,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals numeric boolean true true.
+     */
+    @Test
 	public void notEqualsNumericBooleanTrueTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("-1 != FALSE");
@@ -629,7 +757,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals true boolean nominal.
+     */
+    @Test
 	public void notEqualsTrueBooleanNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"MoXXi\" != FALSE");
@@ -640,7 +771,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals false boolean nominal.
+     */
+    @Test
 	public void notEqualsFalseBooleanNominal() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"false\" != FALSE");
@@ -651,7 +785,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals boolean date.
+     */
+    @Test
 	public void notEqualsBooleanDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -666,7 +803,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals nominal date.
+     */
+    @Test
 	public void notEqualsNominalDate() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -681,7 +821,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals numeric missing.
+     */
+    @Test
 	public void notEqualsNumericMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("1 != MISSING_NUMERIC");
@@ -698,7 +841,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals nominal missing.
+     */
+    @Test
 	public void notEqualsNominalMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("\"Batman\" != MISSING_NUMERIC");
@@ -715,7 +861,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals bool missing.
+     */
+    @Test
 	public void notEqualsBoolMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("TRUE != MISSING_NUMERIC");
@@ -735,7 +884,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals date missing.
+     */
+    @Test
 	public void notEqualsDateMissing() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -756,7 +908,10 @@ public class AntlrParserEqualsTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not equals missing missing.
+     */
+    @Test
 	public void notEqualsMissingMissing() {
 		try {
 			// same type missings

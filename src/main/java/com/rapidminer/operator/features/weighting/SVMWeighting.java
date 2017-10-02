@@ -46,13 +46,17 @@ import com.rapidminer.tools.OperatorService;
  * most of the SVM based operators available in RapidMiner, this one works for multiple classes,
  * too. Please note that the attribute values, however, still have to be numerical. Please use
  * appropriate preprocessing operators in order to ensure this.
- * 
+ *
  * @author Ingo Mierswa
- * 
  */
 public class SVMWeighting extends AbstractWeighting {
 
-	public SVMWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Svm weighting.
+     *
+     * @param description the description
+     */
+    public SVMWeighting(OperatorDescription description) {
 		super(description, true);
 	}
 

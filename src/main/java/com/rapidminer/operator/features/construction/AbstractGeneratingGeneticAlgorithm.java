@@ -48,90 +48,147 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  * generates new attributes and thus can change the length of an individual. Therfore specialized
  * mutation and crossover operators are being applied. Generators are chosen at random from a list
  * of generators specified by boolean parameters. <br/>
- *
+ * <p>
  * Since this operator does not contain algorithms to extract features from value series, it is
  * restricted to example sets with only single attributes. For automatic feature extraction from
  * values series the value series plugin for RapidMiner written by Ingo Mierswa should be used. It
  * is available at <a href="http://rapidminer.com">http://rapidminer.com</a>
  *
- * @rapidminer.reference Ritthoff/etal/2001a
- *
  * @author Ingo Mierswa
+ * @rapidminer.reference Ritthoff /etal/2001a
  */
 public abstract class AbstractGeneratingGeneticAlgorithm extends ExampleSetBasedFeatureOperator {
 
-	public static final String[] SELECTION_SCHEMES = { "uniform", "cut", "roulette wheel", "stochastic universal sampling",
+    /**
+     * The constant SELECTION_SCHEMES.
+     */
+    public static final String[] SELECTION_SCHEMES = { "uniform", "cut", "roulette wheel", "stochastic universal sampling",
 			"Boltzmann", "rank", "tournament", "non dominated sorting" };
 
-	public static final int UNIFORM_SELECTION = 0;
+    /**
+     * The constant UNIFORM_SELECTION.
+     */
+    public static final int UNIFORM_SELECTION = 0;
 
-	public static final int CUT_SELECTION = 1;
+    /**
+     * The constant CUT_SELECTION.
+     */
+    public static final int CUT_SELECTION = 1;
 
-	public static final int ROULETTE_WHEEL = 2;
+    /**
+     * The constant ROULETTE_WHEEL.
+     */
+    public static final int ROULETTE_WHEEL = 2;
 
-	public static final int STOCHASTIC_UNIVERSAL = 3;
+    /**
+     * The constant STOCHASTIC_UNIVERSAL.
+     */
+    public static final int STOCHASTIC_UNIVERSAL = 3;
 
-	public static final int BOLTZMANN_SELECTION = 4;
+    /**
+     * The constant BOLTZMANN_SELECTION.
+     */
+    public static final int BOLTZMANN_SELECTION = 4;
 
-	public static final int RANK_SELECTION = 5;
+    /**
+     * The constant RANK_SELECTION.
+     */
+    public static final int RANK_SELECTION = 5;
 
-	public static final int TOURNAMENT_SELECTION = 6;
+    /**
+     * The constant TOURNAMENT_SELECTION.
+     */
+    public static final int TOURNAMENT_SELECTION = 6;
 
-	public static final int NON_DOMINATED_SORTING_SELECTION = 7;
+    /**
+     * The constant NON_DOMINATED_SORTING_SELECTION.
+     */
+    public static final int NON_DOMINATED_SORTING_SELECTION = 7;
 
-	/** The parameter name for &quot;Number of individuals per generation.&quot; */
-	public static final String PARAMETER_POPULATION_SIZE = "population_size";
+    /**
+     * The parameter name for &quot;Number of individuals per generation.&quot;
+     */
+    public static final String PARAMETER_POPULATION_SIZE = "population_size";
 
-	/**
-	 * The parameter name for &quot;Number of generations after which to terminate the
-	 * algorithm.&quot;
-	 */
-	public static final String PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS = "maximum_number_of_generations";
+    /**
+     * The parameter name for &quot;Number of generations after which to terminate the
+     * algorithm.&quot;
+     */
+    public static final String PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS = "maximum_number_of_generations";
 
-	public static final String PARAMETER_USE_EARLY_STOPPING = "use_early_stopping";
+    /**
+     * The constant PARAMETER_USE_EARLY_STOPPING.
+     */
+    public static final String PARAMETER_USE_EARLY_STOPPING = "use_early_stopping";
 
-	/**
-	 * The parameter name for &quot;Stop criterion: Stop after n generations without improval of the
-	 * performance (-1: perform all generations).&quot;
-	 */
-	public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
+    /**
+     * The parameter name for &quot;Stop criterion: Stop after n generations without improval of the
+     * performance (-1: perform all generations).&quot;
+     */
+    public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
 
-	/**
-	 * The parameter name for &quot;The fraction of the current population which should be used as
-	 * tournament members (only tournament selection).&quot;
-	 */
-	public static final String PARAMETER_TOURNAMENT_SIZE = "tournament_size";
+    /**
+     * The parameter name for &quot;The fraction of the current population which should be used as
+     * tournament members (only tournament selection).&quot;
+     */
+    public static final String PARAMETER_TOURNAMENT_SIZE = "tournament_size";
 
-	/** The parameter name for &quot;The scaling temperature (only Boltzmann selection).&quot; */
-	public static final String PARAMETER_START_TEMPERATURE = "start_temperature";
+    /**
+     * The parameter name for &quot;The scaling temperature (only Boltzmann selection).&quot;
+     */
+    public static final String PARAMETER_START_TEMPERATURE = "start_temperature";
 
-	/**
-	 * The parameter name for &quot;If set to true the selection pressure is increased to maximum
-	 * during the complete optimization run (only Boltzmann and tournament selection).&quot;
-	 */
-	public static final String PARAMETER_DYNAMIC_SELECTION_PRESSURE = "dynamic_selection_pressure";
+    /**
+     * The parameter name for &quot;If set to true the selection pressure is increased to maximum
+     * during the complete optimization run (only Boltzmann and tournament selection).&quot;
+     */
+    public static final String PARAMETER_DYNAMIC_SELECTION_PRESSURE = "dynamic_selection_pressure";
 
-	/**
-	 * The parameter name for &quot;If set to true, the best individual of each generations is
-	 * guaranteed to be selected for the next generation (elitist selection).&quot;
-	 */
-	public static final String PARAMETER_KEEP_BEST_INDIVIDUAL = "keep_best_individual";
+    /**
+     * The parameter name for &quot;If set to true, the best individual of each generations is
+     * guaranteed to be selected for the next generation (elitist selection).&quot;
+     */
+    public static final String PARAMETER_KEEP_BEST_INDIVIDUAL = "keep_best_individual";
 
-	public static final String PARAMETER_P_INITIALIZE = "p_initialize";
+    /**
+     * The constant PARAMETER_P_INITIALIZE.
+     */
+    public static final String PARAMETER_P_INITIALIZE = "p_initialize";
 
-	public static final String PARAMETER_P_CROSSOVER = "p_crossover";
+    /**
+     * The constant PARAMETER_P_CROSSOVER.
+     */
+    public static final String PARAMETER_P_CROSSOVER = "p_crossover";
 
-	public static final String PARAMETER_CROSSOVER_TYPE = "crossover_type";
+    /**
+     * The constant PARAMETER_CROSSOVER_TYPE.
+     */
+    public static final String PARAMETER_CROSSOVER_TYPE = "crossover_type";
 
-	public static final String PARAMETER_USE_PLUS = "use_plus";
+    /**
+     * The constant PARAMETER_USE_PLUS.
+     */
+    public static final String PARAMETER_USE_PLUS = "use_plus";
 
-	public static final String PARAMETER_USE_DIFF = "use_diff";
+    /**
+     * The constant PARAMETER_USE_DIFF.
+     */
+    public static final String PARAMETER_USE_DIFF = "use_diff";
 
-	public static final String PARAMETER_USE_MULT = "use_mult";
+    /**
+     * The constant PARAMETER_USE_MULT.
+     */
+    public static final String PARAMETER_USE_MULT = "use_mult";
 
-	public static final String PARAMETER_USE_DIV = "use_div";
+    /**
+     * The constant PARAMETER_USE_DIV.
+     */
+    public static final String PARAMETER_USE_DIV = "use_div";
 
-	public static final String PARAMETER_RECIPROCAL_VALUE = "reciprocal_value";
+    /**
+     * The constant PARAMETER_RECIPROCAL_VALUE.
+     */
+    public static final String PARAMETER_RECIPROCAL_VALUE = "reciprocal_value";
 
 	/** The size of the population. */
 	private int numberOfIndividuals;
@@ -145,24 +202,43 @@ public abstract class AbstractGeneratingGeneticAlgorithm extends ExampleSetBased
 	 */
 	private int generationsWithoutImproval;
 
-	public AbstractGeneratingGeneticAlgorithm(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract generating genetic algorithm.
+     *
+     * @param description the description
+     */
+    public AbstractGeneratingGeneticAlgorithm(OperatorDescription description) {
 		super(description);
 	}
 
-	/**
-	 * Returns a specialized generating mutation, e.g. a <code>AttributeGenerator</code>.
-	 */
-	protected abstract ExampleSetBasedPopulationOperator getGeneratingPopulationOperator(ExampleSet exampleSet)
+    /**
+     * Returns a specialized generating mutation, e.g. a <code>AttributeGenerator</code>.
+     *
+     * @param exampleSet the example set
+     * @return the generating population operator
+     * @throws OperatorException the operator exception
+     */
+    protected abstract ExampleSetBasedPopulationOperator getGeneratingPopulationOperator(ExampleSet exampleSet)
 			throws OperatorException;
 
-	/**
-	 * Returns an operator that performs the mutation. Can be overridden by subclasses.
-	 */
-	protected abstract ExampleSetBasedPopulationOperator getMutationPopulationOperator(ExampleSet example)
+    /**
+     * Returns an operator that performs the mutation. Can be overridden by subclasses.
+     *
+     * @param example the example
+     * @return the mutation population operator
+     * @throws OperatorException the operator exception
+     */
+    protected abstract ExampleSetBasedPopulationOperator getMutationPopulationOperator(ExampleSet example)
 			throws OperatorException;
 
-	/** Returns an empty list. */
-	protected List<ExampleSetBasedPopulationOperator> getPostProcessingPopulationOperators(ExampleSet input)
+    /**
+     * Returns an empty list.  @param input the input
+     *
+     * @param input the input
+     * @return the post processing population operators
+     * @throws OperatorException the operator exception
+     */
+    protected List<ExampleSetBasedPopulationOperator> getPostProcessingPopulationOperators(ExampleSet input)
 			throws OperatorException {
 		return new LinkedList<ExampleSetBasedPopulationOperator>();
 	}
@@ -244,7 +320,14 @@ public abstract class AbstractGeneratingGeneticAlgorithm extends ExampleSetBased
 		return initP;
 	}
 
-	protected List<ExampleSetBasedPopulationOperator> getPreProcessingPopulationOperators(ExampleSet exampleSet)
+    /**
+     * Gets pre processing population operators.
+     *
+     * @param exampleSet the example set
+     * @return the pre processing population operators
+     * @throws OperatorException the operator exception
+     */
+    protected List<ExampleSetBasedPopulationOperator> getPreProcessingPopulationOperators(ExampleSet exampleSet)
 			throws OperatorException {
 		List<ExampleSetBasedPopulationOperator> popOps = new LinkedList<ExampleSetBasedPopulationOperator>();
 		ExampleSetBasedPopulationOperator generator = getGeneratingPopulationOperator(exampleSet);
@@ -254,16 +337,26 @@ public abstract class AbstractGeneratingGeneticAlgorithm extends ExampleSetBased
 		return popOps;
 	}
 
-	/** Returns an <code>UnbalancedCrossover</code>. */
-	protected ExampleSetBasedPopulationOperator getCrossoverPopulationOperator(ExampleSet exampleSet)
+    /**
+     * Returns an <code>UnbalancedCrossover</code>.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     * @return the crossover population operator
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected ExampleSetBasedPopulationOperator getCrossoverPopulationOperator(ExampleSet exampleSet)
 			throws UndefinedParameterError {
 		double pCrossover = getParameterAsDouble(PARAMETER_P_CROSSOVER);
 		int crossoverType = getParameterAsInt(PARAMETER_CROSSOVER_TYPE);
 		return new UnbalancedCrossover(crossoverType, pCrossover, getRandom());
 	}
 
-	/** Returns a list with all generator which should be used. */
-	public List<FeatureGenerator> getGenerators() {
+    /**
+     * Returns a list with all generator which should be used.  @return the generators
+     *
+     * @return the generators
+     */
+    public List<FeatureGenerator> getGenerators() {
 		List<FeatureGenerator> generators = new ArrayList<FeatureGenerator>();
 		if (getParameterAsBoolean(PARAMETER_USE_PLUS)) {
 			generators.add(new BasicArithmeticOperationGenerator(BasicArithmeticOperationGenerator.SUM));

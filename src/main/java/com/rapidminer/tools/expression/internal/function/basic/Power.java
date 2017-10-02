@@ -26,18 +26,24 @@ import com.rapidminer.tools.expression.internal.function.Abstract2DoubleInputFun
  * A {@link Function} for computer powers of numbers.
  *
  * @author Gisa Schaefer
- *
  */
 public class Power extends Abstract2DoubleInputFunction {
 
-	/**
-	 * Constructs a power function.
-	 */
-	public Power() {
+    /**
+     * Constructs a power function.
+     */
+    public Power() {
 		super("basic.power", 2, Ontology.NUMERICAL);
 	}
 
-	protected Power(String i18n, int numberOfArgumentsToCheck, int returnType) {
+    /**
+     * Instantiates a new Power.
+     *
+     * @param i18n                     the 18 n
+     * @param numberOfArgumentsToCheck the number of arguments to check
+     * @param returnType               the return type
+     */
+    protected Power(String i18n, int numberOfArgumentsToCheck, int returnType) {
 		super(i18n, numberOfArgumentsToCheck, returnType);
 	}
 

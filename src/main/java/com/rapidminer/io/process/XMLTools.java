@@ -84,7 +84,10 @@ public class XMLTools {
 
 	private final static DocumentBuilderFactory BUILDER_FACTORY;
 
-	public static final String SCHEMA_URL_PROCESS = "http://www.rapidminer.com/xml/schema/RapidMinerProcess";
+    /**
+     * The constant SCHEMA_URL_PROCESS.
+     */
+    public static final String SCHEMA_URL_PROCESS = "http://www.rapidminer.com/xml/schema/RapidMinerProcess";
 
 	static {
 		DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
@@ -136,11 +139,18 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * This method should not be called since it is slower than
-	 * {@link #parseAndValidate(InputStream, URI, String)}
-	 */
-	public static Document parseAndValidate(InputStream in, URL schemaURL, String sourceName) throws XMLException,
+    /**
+     * This method should not be called since it is slower than
+     * {@link #parseAndValidate(InputStream, URI, String)}
+     *
+     * @param in         the in
+     * @param schemaURL  the schema url
+     * @param sourceName the source name
+     * @return the document
+     * @throws XMLException the xml exception
+     * @throws IOException  the io exception
+     */
+    public static Document parseAndValidate(InputStream in, URL schemaURL, String sourceName) throws XMLException,
 			IOException {
 		try {
 			return parseAndValidate(in, new URI(schemaURL.toString()), sourceName);
@@ -149,10 +159,17 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * The schema URL might be given as URI for performance reasons.
-	 */
-	public static Document parseAndValidate(InputStream in, URI schemaURL, String sourceName) throws XMLException,
+    /**
+     * The schema URL might be given as URI for performance reasons.
+     *
+     * @param in         the in
+     * @param schemaURL  the schema url
+     * @param sourceName the source name
+     * @return the document
+     * @throws XMLException the xml exception
+     * @throws IOException  the io exception
+     */
+    public static Document parseAndValidate(InputStream in, URI schemaURL, String sourceName) throws XMLException,
 			IOException {
 		XMLErrorHandler errorHandler = new XMLErrorHandler(sourceName);
 
@@ -178,41 +195,82 @@ public class XMLTools {
 		return (Document) result.getNode();
 	}
 
-	public static Document parse(String string) throws SAXException, IOException {
+    /**
+     * Parse document.
+     *
+     * @param string the string
+     * @return the document
+     * @throws SAXException the sax exception
+     * @throws IOException  the io exception
+     */
+    public static Document parse(String string) throws SAXException, IOException {
 		return createDocumentBuilder().parse(new ByteArrayInputStream(string.getBytes(Charset.forName("UTF-8"))));
 		// new ReaderInputStream(new StringReader(string)));
 	}
 
-	public static Document parse(InputStream in) throws SAXException, IOException {
+    /**
+     * Parse document.
+     *
+     * @param in the in
+     * @return the document
+     * @throws SAXException the sax exception
+     * @throws IOException  the io exception
+     */
+    public static Document parse(InputStream in) throws SAXException, IOException {
 		return createDocumentBuilder().parse(in);
 	}
 
-	public static Document parse(File file) throws SAXException, IOException {
+    /**
+     * Parse document.
+     *
+     * @param file the file
+     * @return the document
+     * @throws SAXException the sax exception
+     * @throws IOException  the io exception
+     */
+    public static Document parse(File file) throws SAXException, IOException {
 		return createDocumentBuilder().parse(file);
 	}
 
-	public static String toString(Document document) throws XMLException {
+    /**
+     * To string string.
+     *
+     * @param document the document
+     * @return the string
+     * @throws XMLException the xml exception
+     */
+    public static String toString(Document document) throws XMLException {
 		ByteArrayOutputStream buf = new ByteArrayOutputStream();
 		Charset utf8 = Charset.forName("UTF-8");
 		stream(document, buf, utf8);
 		return new String(buf.toByteArray(), utf8);
 	}
 
-	/**
-	 * @param document
-	 * @param encoding
-	 * @return
-	 * @throws XMLException
-	 * @deprecated use {@link #toString(Document)} instead
-	 */
-	@Deprecated
+    /**
+     * To string string.
+     *
+     * @param document the document
+     * @param encoding the encoding
+     * @return string string
+     * @throws XMLException the xml exception
+     * @deprecated use {@link #toString(Document)} instead
+     */
+    @Deprecated
 	public static String toString(Document document, Charset encoding) throws XMLException {
 		ByteArrayOutputStream buf = new ByteArrayOutputStream();
 		stream(document, buf, encoding);
 		return new String(buf.toByteArray(), encoding);
 	}
 
-	public static void stream(Document document, File file, Charset encoding) throws XMLException {
+    /**
+     * Stream.
+     *
+     * @param document the document
+     * @param file     the file
+     * @param encoding the encoding
+     * @throws XMLException the xml exception
+     */
+    public static void stream(Document document, File file, Charset encoding) throws XMLException {
 
 		OutputStream out = null;
 		try {
@@ -230,11 +288,27 @@ public class XMLTools {
 		}
 	}
 
-	public static void stream(Document document, OutputStream out, Charset encoding) throws XMLException {
+    /**
+     * Stream.
+     *
+     * @param document the document
+     * @param out      the out
+     * @param encoding the encoding
+     * @throws XMLException the xml exception
+     */
+    public static void stream(Document document, OutputStream out, Charset encoding) throws XMLException {
 		stream(new DOMSource(document), out, encoding);
 	}
 
-	public static void stream(DOMSource source, OutputStream out, Charset encoding) throws XMLException {
+    /**
+     * Stream.
+     *
+     * @param source   the source
+     * @param out      the out
+     * @param encoding the encoding
+     * @throws XMLException the xml exception
+     */
+    public static void stream(DOMSource source, OutputStream out, Charset encoding) throws XMLException {
 		// we wrap this in a Writer to fix a Java bug
 		// see http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6296446
 		if (encoding == null) {
@@ -243,15 +317,40 @@ public class XMLTools {
 		stream(source, new StreamResult(new OutputStreamWriter(out, encoding)), encoding);
 	}
 
-	public static void stream(Document document, Result result, Charset encoding) throws XMLException {
+    /**
+     * Stream.
+     *
+     * @param document the document
+     * @param result   the result
+     * @param encoding the encoding
+     * @throws XMLException the xml exception
+     */
+    public static void stream(Document document, Result result, Charset encoding) throws XMLException {
 		stream(new DOMSource(document), result, encoding);
 	}
 
-	public static void stream(DOMSource source, Result result, Charset encoding) throws XMLException {
+    /**
+     * Stream.
+     *
+     * @param source   the source
+     * @param result   the result
+     * @param encoding the encoding
+     * @throws XMLException the xml exception
+     */
+    public static void stream(DOMSource source, Result result, Charset encoding) throws XMLException {
 		stream(source, result, encoding, null);
 	}
 
-	public static void stream(DOMSource source, Result result, Charset encoding, Properties outputProperties)
+    /**
+     * Stream.
+     *
+     * @param source           the source
+     * @param result           the result
+     * @param encoding         the encoding
+     * @param outputProperties the output properties
+     * @throws XMLException the xml exception
+     */
+    public static void stream(DOMSource source, Result result, Charset encoding, Properties outputProperties)
 			throws XMLException {
 		Transformer transformer;
 		try {
@@ -287,11 +386,15 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * As {@link #getTagContents(Element, String, boolean)}, but never throws an exception. Returns
-	 * null if can't retrieve string.
-	 */
-	public static String getTagContents(Element element, String tag) {
+    /**
+     * As {@link #getTagContents(Element, String, boolean)}, but never throws an exception. Returns
+     * null if can't retrieve string.
+     *
+     * @param element the element
+     * @param tag     the tag
+     * @return the tag contents
+     */
+    public static String getTagContents(Element element, String tag) {
 		try {
 			return getTagContents(element, tag, false);
 		} catch (XMLException e) {
@@ -300,7 +403,15 @@ public class XMLTools {
 		}
 	}
 
-	public static String getTagContents(Element element, String tag, String deflt) {
+    /**
+     * Gets tag contents.
+     *
+     * @param element the element
+     * @param tag     the tag
+     * @param deflt   the deflt
+     * @return the tag contents
+     */
+    public static String getTagContents(Element element, String tag, String deflt) {
 		String result = getTagContents(element, tag);
 		if (result == null) {
 			return deflt;
@@ -309,14 +420,20 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * For a tag <parent> <tagName>content</tagName> <something>else</something> ... </parent>
-	 *
-	 * returns "content". This will return the content of the first occurring child element with
-	 * name tagName. If no such tag exists and {@link XMLException} is thrown if
-	 * throwExceptionOnError is true. Otherwise null is returned.
-	 */
-	public static String getTagContents(Element parent, String tagName, boolean throwExceptionOnError) throws XMLException {
+    /**
+     * For a tag <parent> <tagName>content</tagName> <something>else</something> ... </parent>
+     * <p>
+     * returns "content". This will return the content of the first occurring child element with
+     * name tagName. If no such tag exists and {@link XMLException} is thrown if
+     * throwExceptionOnError is true. Otherwise null is returned.
+     *
+     * @param parent                the parent
+     * @param tagName               the tag name
+     * @param throwExceptionOnError the throw exception on error
+     * @return the tag contents
+     * @throws XMLException the xml exception
+     */
+    public static String getTagContents(Element parent, String tagName, boolean throwExceptionOnError) throws XMLException {
 		NodeList nodeList = parent.getChildNodes();
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Node node = nodeList.item(i);
@@ -332,13 +449,18 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * This will parse the text contents of an child element of element parent with the given
-	 * tagName as integer. If no such child element can be found an XMLException is thrown. If more
-	 * than one exists, the first is used. A {@link XMLException} is thrown if the text content is
-	 * not a valid integer.
-	 */
-	public static int getTagContentsAsInt(Element element, String tag) throws XMLException {
+    /**
+     * This will parse the text contents of an child element of element parent with the given
+     * tagName as integer. If no such child element can be found an XMLException is thrown. If more
+     * than one exists, the first is used. A {@link XMLException} is thrown if the text content is
+     * not a valid integer.
+     *
+     * @param element the element
+     * @param tag     the tag
+     * @return the tag contents as int
+     * @throws XMLException the xml exception
+     */
+    public static int getTagContentsAsInt(Element element, String tag) throws XMLException {
 		final String string = getTagContents(element, tag, true);
 		try {
 			return Integer.parseInt(string);
@@ -347,13 +469,19 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * This will parse the text contents of an child element of element parent with the given
-	 * tagName as integer. If no such child element can be found, the given default value is
-	 * returned. If more than one exists, the first is used. A {@link XMLException} is thrown if the
-	 * text content is not a valid integer.
-	 */
-	public static int getTagContentsAsInt(Element element, String tag, int dfltValue) throws XMLException {
+    /**
+     * This will parse the text contents of an child element of element parent with the given
+     * tagName as integer. If no such child element can be found, the given default value is
+     * returned. If more than one exists, the first is used. A {@link XMLException} is thrown if the
+     * text content is not a valid integer.
+     *
+     * @param element   the element
+     * @param tag       the tag
+     * @param dfltValue the dflt value
+     * @return the tag contents as int
+     * @throws XMLException the xml exception
+     */
+    public static int getTagContentsAsInt(Element element, String tag, int dfltValue) throws XMLException {
 		final String string = getTagContents(element, tag, false);
 		if (string == null) {
 			return dfltValue;
@@ -365,13 +493,18 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * This will parse the text contents of an child element of element parent with the given
-	 * tagName as long. If no such child element can be found an XMLException is thrown. If more
-	 * than one exists, the first is used. A {@link XMLException} is thrown if the text content is
-	 * not a valid long.
-	 */
-	public static long getTagContentsAsLong(Element element, String tag) throws XMLException {
+    /**
+     * This will parse the text contents of an child element of element parent with the given
+     * tagName as long. If no such child element can be found an XMLException is thrown. If more
+     * than one exists, the first is used. A {@link XMLException} is thrown if the text content is
+     * not a valid long.
+     *
+     * @param element the element
+     * @param tag     the tag
+     * @return the tag contents as long
+     * @throws XMLException the xml exception
+     */
+    public static long getTagContentsAsLong(Element element, String tag) throws XMLException {
 		final String string = getTagContents(element, tag, true);
 		try {
 			return Long.parseLong(string);
@@ -380,13 +513,19 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * This will parse the text contents of an child element of element parent with the given
-	 * tagName as long. If no such child element can be found, the given default value is returned.
-	 * If more than one exists, the first is used. A {@link XMLException} is thrown if the text
-	 * content is not a valid long.
-	 */
-	public static long getTagContentsAsLong(Element element, String tag, int dfltValue) throws XMLException {
+    /**
+     * This will parse the text contents of an child element of element parent with the given
+     * tagName as long. If no such child element can be found, the given default value is returned.
+     * If more than one exists, the first is used. A {@link XMLException} is thrown if the text
+     * content is not a valid long.
+     *
+     * @param element   the element
+     * @param tag       the tag
+     * @param dfltValue the dflt value
+     * @return the tag contents as long
+     * @throws XMLException the xml exception
+     */
+    public static long getTagContentsAsLong(Element element, String tag, int dfltValue) throws XMLException {
 		final String string = getTagContents(element, tag, false);
 		if (string == null) {
 			return dfltValue;
@@ -398,13 +537,19 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * This will parse the text contents of an child element of element parent with the given
-	 * tagName as double. If no such child element can be found, the given default value is
-	 * returned. If more than one exists, the first is used. A {@link XMLException} is thrown if the
-	 * text content is not a valid integer.
-	 */
-	public static double getTagContentsAsDouble(Element element, String tag, double dfltValue) throws XMLException {
+    /**
+     * This will parse the text contents of an child element of element parent with the given
+     * tagName as double. If no such child element can be found, the given default value is
+     * returned. If more than one exists, the first is used. A {@link XMLException} is thrown if the
+     * text content is not a valid integer.
+     *
+     * @param element   the element
+     * @param tag       the tag
+     * @param dfltValue the dflt value
+     * @return the tag contents as double
+     * @throws XMLException the xml exception
+     */
+    public static double getTagContentsAsDouble(Element element, String tag, double dfltValue) throws XMLException {
 		final String string = getTagContents(element, tag, false);
 		if (string == null) {
 			return dfltValue;
@@ -416,13 +561,19 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * This will parse the text contents of an child element of element parent with the given
-	 * tagName as boolean. If no such child element can be found the default is returned. If more
-	 * than one exists, the first is used. A {@link NumberFormatException} is thrown if the text
-	 * content is not a valid integer.
-	 */
-	public static boolean getTagContentsAsBoolean(Element parent, String tagName, boolean dflt) throws XMLException {
+    /**
+     * This will parse the text contents of an child element of element parent with the given
+     * tagName as boolean. If no such child element can be found the default is returned. If more
+     * than one exists, the first is used. A {@link NumberFormatException} is thrown if the text
+     * content is not a valid integer.
+     *
+     * @param parent  the parent
+     * @param tagName the tag name
+     * @param dflt    the dflt
+     * @return the tag contents as boolean
+     * @throws XMLException the xml exception
+     */
+    public static boolean getTagContentsAsBoolean(Element parent, String tagName, boolean dflt) throws XMLException {
 		String string = getTagContents(parent, tagName, false);
 		if (string == null) {
 			return dflt;
@@ -434,12 +585,16 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * If parent has a direct child with the given name, the child's children are removed and are
-	 * replaced by a single text node with the given text. If no direct child of parent with the
-	 * given tag name exists, a new one is created.
-	 */
-	public static void setTagContents(Element parent, String tagName, String value) {
+    /**
+     * If parent has a direct child with the given name, the child's children are removed and are
+     * replaced by a single text node with the given text. If no direct child of parent with the
+     * given tag name exists, a new one is created.
+     *
+     * @param parent  the parent
+     * @param tagName the tag name
+     * @param value   the value
+     */
+    public static void setTagContents(Element parent, String tagName, String value) {
 		if (value == null) {
 			value = "";
 		}
@@ -465,10 +620,13 @@ public class XMLTools {
 		child.appendChild(parent.getOwnerDocument().createTextNode(value));
 	}
 
-	/**
-	 * This method removes all child elements with the given name of the given element.
-	 */
-	public static void deleteTagContents(Element parentElement, String name) {
+    /**
+     * This method removes all child elements with the given name of the given element.
+     *
+     * @param parentElement the parent element
+     * @param name          the name
+     */
+    public static void deleteTagContents(Element parentElement, String name) {
 		NodeList children = parentElement.getElementsByTagName(name);
 		for (int i = children.getLength() - 1; i >= 0; i--) {
 			Element child = (Element) children.item(i);
@@ -476,7 +634,13 @@ public class XMLTools {
 		}
 	}
 
-	public static XMLGregorianCalendar getXMLGregorianCalendar(Date date) {
+    /**
+     * Gets xml gregorian calendar.
+     *
+     * @param date the date
+     * @return the xml gregorian calendar
+     */
+    public static XMLGregorianCalendar getXMLGregorianCalendar(Date date) {
 		if (date == null) {
 			return null;
 		}
@@ -505,19 +669,30 @@ public class XMLTools {
 		// return xmlGregorianCalendar;
 	}
 
-	/**
-	 * This will return the inner tag of the given element with the given tagName. If no such
-	 * element can be found, or if there are more than one, an {@link XMLException} is thrown.
-	 */
-	public static Element getUniqueInnerTag(Element element, String tagName) throws XMLException {
+    /**
+     * This will return the inner tag of the given element with the given tagName. If no such
+     * element can be found, or if there are more than one, an {@link XMLException} is thrown.
+     *
+     * @param element the element
+     * @param tagName the tag name
+     * @return the unique inner tag
+     * @throws XMLException the xml exception
+     */
+    public static Element getUniqueInnerTag(Element element, String tagName) throws XMLException {
 		return getUniqueInnerTag(element, tagName, true);
 	}
 
-	/**
-	 * This method will return null if the element doesn't exist if obligatory is false. Otherwise
-	 * an exception is thrown. If the element is not unique, an exception is thrown in any cases.
-	 */
-	public static Element getUniqueInnerTag(Element element, String tagName, boolean obligatory) throws XMLException {
+    /**
+     * This method will return null if the element doesn't exist if obligatory is false. Otherwise
+     * an exception is thrown. If the element is not unique, an exception is thrown in any cases.
+     *
+     * @param element    the element
+     * @param tagName    the tag name
+     * @param obligatory the obligatory
+     * @return the unique inner tag
+     * @throws XMLException the xml exception
+     */
+    public static Element getUniqueInnerTag(Element element, String tagName, boolean obligatory) throws XMLException {
 		NodeList children = element.getChildNodes();
 		Collection<Element> elements = new ArrayList<Element>();
 		for (int i = 0; i < children.getLength(); i++) {
@@ -544,11 +719,15 @@ public class XMLTools {
 
 	}
 
-	/**
-	 * This method will return a Collection of all Elements that are direct child elements of the
-	 * given element and have the given tag name.
-	 */
-	public static Collection<Element> getChildElements(Element father, String tagName) {
+    /**
+     * This method will return a Collection of all Elements that are direct child elements of the
+     * given element and have the given tag name.
+     *
+     * @param father  the father
+     * @param tagName the tag name
+     * @return the child elements
+     */
+    public static Collection<Element> getChildElements(Element father, String tagName) {
 		LinkedList<Element> elements = new LinkedList<Element>();
 		NodeList list = father.getChildNodes();
 		for (int i = 0; i < list.getLength(); i++) {
@@ -562,11 +741,14 @@ public class XMLTools {
 		return elements;
 	}
 
-	/**
-	 * This method will return a Collection of all Elements that are direct child elements of the
-	 * given element.
-	 */
-	public static Collection<Element> getChildElements(Element father) {
+    /**
+     * This method will return a Collection of all Elements that are direct child elements of the
+     * given element.
+     *
+     * @param father the father
+     * @return the child elements
+     */
+    public static Collection<Element> getChildElements(Element father) {
 		LinkedList<Element> elements = new LinkedList<Element>();
 		NodeList list = father.getChildNodes();
 		for (int i = 0; i < list.getLength(); i++) {
@@ -578,12 +760,18 @@ public class XMLTools {
 		return elements;
 	}
 
-	/**
-	 * This method will return the single inner child with the given name of the given father
-	 * element. If obligatory is true, an Exception is thrown if the element is not present. If it's
-	 * ambiguous, an execption is thrown in any case.
-	 */
-	public static Element getChildElement(Element father, String tagName, boolean mandatory) throws XMLException {
+    /**
+     * This method will return the single inner child with the given name of the given father
+     * element. If obligatory is true, an Exception is thrown if the element is not present. If it's
+     * ambiguous, an execption is thrown in any case.
+     *
+     * @param father    the father
+     * @param tagName   the tag name
+     * @param mandatory the mandatory
+     * @return the child element
+     * @throws XMLException the xml exception
+     */
+    public static Element getChildElement(Element father, String tagName, boolean mandatory) throws XMLException {
 		Collection<Element> children = getChildElements(father, tagName);
 		switch (children.size()) {
 			case 0:
@@ -601,30 +789,39 @@ public class XMLTools {
 
 	}
 
-	/**
-	 * This is the same as {@link #getChildElement(Element, String, boolean)}, but its always
-	 * obligatory to have the child element.
-	 *
-	 * @throws XMLException
-	 */
-	public static Element getUniqueChildElement(Element father, String tagName) throws XMLException {
+    /**
+     * This is the same as {@link #getChildElement(Element, String, boolean)}, but its always
+     * obligatory to have the child element.
+     *
+     * @param father  the father
+     * @param tagName the tag name
+     * @return the unique child element
+     * @throws XMLException the xml exception
+     */
+    public static Element getUniqueChildElement(Element father, String tagName) throws XMLException {
 		return getChildElement(father, tagName, true);
 	}
 
-	/**
-	 * This adds a single tag with the given content to the given parent element. The new tag is
-	 * automatically appended.
-	 */
-	public static void addTag(Element parent, String name, String textValue) {
+    /**
+     * This adds a single tag with the given content to the given parent element. The new tag is
+     * automatically appended.
+     *
+     * @param parent    the parent
+     * @param name      the name
+     * @param textValue the text value
+     */
+    public static void addTag(Element parent, String name, String textValue) {
 		Element child = parent.getOwnerDocument().createElement(name);
 		child.setTextContent(textValue);
 		parent.appendChild(child);
 	}
 
-	/**
-	 * Creates a new, empty document.
-	 */
-	public static Document createDocument() {
+    /**
+     * Creates a new, empty document.
+     *
+     * @return the document
+     */
+    public static Document createDocument() {
 		try {
 			DocumentBuilder builder = createDocumentBuilder();
 			return builder.newDocument();
@@ -633,21 +830,31 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * This will add an empty new tag to the given fatherElement with the given name.
-	 */
-	public static Element addTag(Element fatherElement, String tagName) {
+    /**
+     * This will add an empty new tag to the given fatherElement with the given name.
+     *
+     * @param fatherElement the father element
+     * @param tagName       the tag name
+     * @return the element
+     */
+    public static Element addTag(Element fatherElement, String tagName) {
 		Element createElement = fatherElement.getOwnerDocument().createElement(tagName);
 		fatherElement.appendChild(createElement);
 		return createElement;
 	}
 
-	/**
-	 * Returns the unique child of the given element with the given tag name. This child tag must be
-	 * unique, or an exception will be raised. If optional is false and the tag is missing, this
-	 * method also raises an exception. Otherwise it returns null.
-	 */
-	public static Element getChildTag(Element element, String xmlTagName, boolean optional) throws XMLException {
+    /**
+     * Returns the unique child of the given element with the given tag name. This child tag must be
+     * unique, or an exception will be raised. If optional is false and the tag is missing, this
+     * method also raises an exception. Otherwise it returns null.
+     *
+     * @param element    the element
+     * @param xmlTagName the xml tag name
+     * @param optional   the optional
+     * @return the child tag
+     * @throws XMLException the xml exception
+     */
+    public static Element getChildTag(Element element, String xmlTagName, boolean optional) throws XMLException {
 		NodeList children = element.getChildNodes();
 		Element found = null;
 		for (int i = 0; i < children.getLength(); i++) {
@@ -669,10 +876,14 @@ public class XMLTools {
 		}
 	}
 
-	/**
-	 * Returns the contents of the inner tags with the given name as String array.
-	 */
-	public static String[] getChildTagsContentAsStringArray(Element father, String childElementName) {
+    /**
+     * Returns the contents of the inner tags with the given name as String array.
+     *
+     * @param father           the father
+     * @param childElementName the child element name
+     * @return the string [ ]
+     */
+    public static String[] getChildTagsContentAsStringArray(Element father, String childElementName) {
 		Collection<Element> valueElements = XMLTools.getChildElements(father, childElementName);
 		String[] values = new String[valueElements.size()];
 		int i = 0;
@@ -684,12 +895,15 @@ public class XMLTools {
 		return values;
 	}
 
-	/**
-	 * Returns the contents of the inner tags with the given name as int array.
-	 *
-	 * @throws XMLException
-	 */
-	public static int[] getChildTagsContentAsIntArray(Element father, String childElementName) throws XMLException {
+    /**
+     * Returns the contents of the inner tags with the given name as int array.
+     *
+     * @param father           the father
+     * @param childElementName the child element name
+     * @return the int [ ]
+     * @throws XMLException the xml exception
+     */
+    public static int[] getChildTagsContentAsIntArray(Element father, String childElementName) throws XMLException {
 		Collection<Element> valueElements = XMLTools.getChildElements(father, childElementName);
 		int[] values = new int[valueElements.size()];
 		int i = 0;
@@ -705,12 +919,16 @@ public class XMLTools {
 		return values;
 	}
 
-	/**
-	 * This method will get a XPath expression matching all elements given. This works by following
-	 * this algorithm: 1. Check whether the last element is of same type Yes: if paths of elements
-	 * are of same structure, keep it, but remove counters where necessary if not,
-	 */
-	public static String getXPath(Document document, Element... elements) {
+    /**
+     * This method will get a XPath expression matching all elements given. This works by following
+     * this algorithm: 1. Check whether the last element is of same type Yes: if paths of elements
+     * are of same structure, keep it, but remove counters where necessary if not,
+     *
+     * @param document the document
+     * @param elements the elements
+     * @return the x path
+     */
+    public static String getXPath(Document document, Element... elements) {
 		Map<String, List<Element>> elementTypeElementsMap = new HashMap<String, List<Element>>();
 		for (Element element : elements) {
 			List<Element> typeElements = elementTypeElementsMap.get(element.getTagName());

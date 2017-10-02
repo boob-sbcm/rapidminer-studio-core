@@ -38,7 +38,6 @@ import com.vlsolutions.swing.docking.TabbedDockableContainer;
 
 
 /**
- *
  * This class saves and restores certain properties associated with a specific {@link Perspective}.
  * Currently, this class is used to restore the selected tabs and the scroll positions of
  * {@link JScrollPane}s for a specific {@link Perspective} after a perspective switch occurred.
@@ -65,33 +64,49 @@ public class PerspectiveProperties {
 		private final int vertical;
 		private final int horizontal;
 
-		public ScrollBarsPosition(int vertical, int horizontal) {
+        /**
+         * Instantiates a new Scroll bars position.
+         *
+         * @param vertical   the vertical
+         * @param horizontal the horizontal
+         */
+        public ScrollBarsPosition(int vertical, int horizontal) {
 			this.vertical = vertical;
 			this.horizontal = horizontal;
 		}
 
-		public int getVertical() {
+        /**
+         * Gets vertical.
+         *
+         * @return the vertical
+         */
+        public int getVertical() {
 			return vertical;
 		}
 
-		public int getHorizontal() {
+        /**
+         * Gets horizontal.
+         *
+         * @return the horizontal
+         */
+        public int getHorizontal() {
 			return horizontal;
 		}
 	}
 
-	/**
-	 * This method stores certain properties about the current {@link Perspective}.
-	 */
-	public void store() {
+    /**
+     * This method stores certain properties about the current {@link Perspective}.
+     */
+    public void store() {
 		storeFocusedDockables();
 		storeScrollBarPositions();
 	}
 
-	/**
-	 * This method applies properties to the current {@link Perspective} which were previously
-	 * stored by {@link #store()}.
-	 */
-	public void apply() {
+    /**
+     * This method applies properties to the current {@link Perspective} which were previously
+     * stored by {@link #store()}.
+     */
+    public void apply() {
 		applyFocusedDockables();
 		applyScrollBarPositions();
 	}

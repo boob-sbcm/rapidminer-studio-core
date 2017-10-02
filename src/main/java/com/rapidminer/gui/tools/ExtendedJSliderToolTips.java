@@ -30,12 +30,17 @@ import javax.swing.event.ChangeListener;
 
 /**
  * This class handles the tool tips for JSliders.
- * 
+ *
  * @author Santhosh Kumar, Ingo Mierswa
  */
 public class ExtendedJSliderToolTips {
 
-	public static void enableSliderToolTips(final JSlider slider) {
+    /**
+     * Enable slider tool tips.
+     *
+     * @param slider the slider
+     */
+    public static void enableSliderToolTips(final JSlider slider) {
 		slider.addChangeListener(new ChangeListener() {
 
 			private boolean adjusting = false;
@@ -61,7 +66,12 @@ public class ExtendedJSliderToolTips {
 		});
 	}
 
-	public static void postToolTip(JComponent comp) {
+    /**
+     * Post tool tip.
+     *
+     * @param comp the comp
+     */
+    public static void postToolTip(JComponent comp) {
 		Action action = comp.getActionMap().get("postTip");
 		if (action == null) {
 			return;
@@ -71,7 +81,12 @@ public class ExtendedJSliderToolTips {
 		action.actionPerformed(ae);
 	}
 
-	public static void hideToolTip(JComponent comp) {
+    /**
+     * Hide tool tip.
+     *
+     * @param comp the comp
+     */
+    public static void hideToolTip(JComponent comp) {
 		Action action = comp.getActionMap().get("hideTip");
 		if (action == null) {
 			return;

@@ -35,14 +35,19 @@ import java.util.LinkedList;
 
 /**
  * This action tries to open the folder of the selected entry in the OS file browser.
- * 
+ *
  * @author Marco Boeck
  */
 public class OpenInFileBrowserAction extends AbstractRepositoryAction<Entry> {
 
 	private static final long serialVersionUID = 1L;
 
-	public OpenInFileBrowserAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Open in file browser action.
+     *
+     * @param tree the tree
+     */
+    public OpenInFileBrowserAction(RepositoryTree tree) {
 		super(tree, Entry.class, false, "repository_open_in_filebrowser");
 	}
 

@@ -30,7 +30,7 @@ import com.rapidminer.operator.ports.metadata.PassThroughRule;
 
 /**
  * Abstract superclass of operators accepting an ExampleSet and producing a PerformanceVector.
- * 
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractExampleSetEvaluator extends Operator {
@@ -39,14 +39,25 @@ public abstract class AbstractExampleSetEvaluator extends Operator {
 	private OutputPort performanceOutput = getOutputPorts().createPort("performance");
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	public AbstractExampleSetEvaluator(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract example set evaluator.
+     *
+     * @param description the description
+     */
+    public AbstractExampleSetEvaluator(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new PassThroughRule(exampleSetInput, exampleSetOutput, false));
 		getTransformer().addRule(new GenerateNewMDRule(performanceOutput, PerformanceVector.class));
 	}
 
-	/** Implements the evaluation. Called by {@link #apply()}. */
-	public abstract PerformanceVector evaluate(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Implements the evaluation. Called by {@link #apply()}.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     * @return the performance vector
+     * @throws OperatorException the operator exception
+     */
+    public abstract PerformanceVector evaluate(ExampleSet exampleSet) throws OperatorException;
 
 	@Override
 	public void doWork() throws OperatorException {
@@ -64,7 +75,12 @@ public abstract class AbstractExampleSetEvaluator extends Operator {
 		}
 	}
 
-	protected InputPort getExampleSetInputPort() {
+    /**
+     * Gets example set input port.
+     *
+     * @return the example set input port
+     */
+    protected InputPort getExampleSetInputPort() {
 		return exampleSetInput;
 	}
 }

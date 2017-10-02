@@ -27,7 +27,7 @@ import org.w3c.dom.Element;
 /**
  * A parameter type for String values. Operators ask for the value with
  * {@link com.rapidminer.operator.Operator#getParameterAsString(String)}.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class ParameterTypeString extends ParameterTypeSingle {
@@ -38,33 +38,75 @@ public class ParameterTypeString extends ParameterTypeSingle {
 
 	private String defaultValue = null;
 
-	public ParameterTypeString(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type string.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeString(Element element) throws XMLException {
 		super(element);
 
 		defaultValue = XMLTools.getTagContents(element, ELEMENT_DEFAULT);
 	}
 
-	public ParameterTypeString(String key, String description, boolean optional, boolean expert) {
+    /**
+     * Instantiates a new Parameter type string.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     * @param expert      the expert
+     */
+    public ParameterTypeString(String key, String description, boolean optional, boolean expert) {
 		this(key, description, optional);
 		setExpert(expert);
 	}
 
-	public ParameterTypeString(String key, String description, boolean optional) {
+    /**
+     * Instantiates a new Parameter type string.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     */
+    public ParameterTypeString(String key, String description, boolean optional) {
 		super(key, description);
 		this.defaultValue = null;
 		setOptional(optional);
 	}
 
-	public ParameterTypeString(String key, String description) {
+    /**
+     * Instantiates a new Parameter type string.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ParameterTypeString(String key, String description) {
 		this(key, description, true);
 	}
 
-	public ParameterTypeString(String key, String description, String defaultValue, boolean expert) {
+    /**
+     * Instantiates a new Parameter type string.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultValue the default value
+     * @param expert       the expert
+     */
+    public ParameterTypeString(String key, String description, String defaultValue, boolean expert) {
 		this(key, description, defaultValue);
 		setExpert(expert);
 	}
 
-	public ParameterTypeString(String key, String description, String defaultValue) {
+    /**
+     * Instantiates a new Parameter type string.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultValue the default value
+     */
+    public ParameterTypeString(String key, String description, String defaultValue) {
 		this(key, description);
 		this.defaultValue = defaultValue;
 	}

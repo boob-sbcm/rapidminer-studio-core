@@ -36,28 +36,33 @@ import java.util.regex.PatternSyntaxException;
 /**
  * This operator switches off all features whose name matches the one given in the parameter
  * <code>skip_features_with_name</code>. The name can be defined as a regular expression.
- * 
+ *
  * @author Buelent Moeller, Ingo Mierswa
  */
 public class FeatureNameFilter extends FeatureFilter {
 
-	/**
-	 * The parameter name for &quot;Remove attributes with a matching name (accepts regular
-	 * expressions)&quot;
-	 */
-	public static final String PARAMETER_SKIP_FEATURES_WITH_NAME = "skip_features_with_name";
+    /**
+     * The parameter name for &quot;Remove attributes with a matching name (accepts regular
+     * expressions)&quot;
+     */
+    public static final String PARAMETER_SKIP_FEATURES_WITH_NAME = "skip_features_with_name";
 
-	/**
-	 * The parameter name for &quot;Does not remove attributes if their name fulfills this matching
-	 * criterion (accepts regular expressions)&quot;
-	 */
-	public static final String PARAMETER_EXCEPT_FEATURES_WITH_NAME = "except_features_with_name";
+    /**
+     * The parameter name for &quot;Does not remove attributes if their name fulfills this matching
+     * criterion (accepts regular expressions)&quot;
+     */
+    public static final String PARAMETER_EXCEPT_FEATURES_WITH_NAME = "except_features_with_name";
 
 	private Pattern skipPattern;
 
 	private Pattern exceptionPattern;
 
-	public FeatureNameFilter(OperatorDescription description) {
+    /**
+     * Instantiates a new Feature name filter.
+     *
+     * @param description the description
+     */
+    public FeatureNameFilter(OperatorDescription description) {
 		super(description);
 	}
 

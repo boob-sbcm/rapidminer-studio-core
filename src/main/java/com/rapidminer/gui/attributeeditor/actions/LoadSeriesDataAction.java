@@ -30,7 +30,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class LoadSeriesDataAction extends ResourceAction {
@@ -39,7 +39,12 @@ public class LoadSeriesDataAction extends ResourceAction {
 
 	private final AttributeEditor attributeEditor;
 
-	public LoadSeriesDataAction(AttributeEditor attributeEditor) {
+    /**
+     * Instantiates a new Load series data action.
+     *
+     * @param attributeEditor the attribute editor
+     */
+    public LoadSeriesDataAction(AttributeEditor attributeEditor) {
 		super("attribute_editor.load_series_data");
 		this.attributeEditor = attributeEditor;
 	}

@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * This individual operator removes all attributes from the example set which has weight 0 or the
  * same minimum and maximum values.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RemoveUselessAttributes extends ExampleSetBasedIndividualOperator {

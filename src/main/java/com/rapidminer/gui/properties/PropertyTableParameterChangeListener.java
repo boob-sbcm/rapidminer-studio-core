@@ -29,14 +29,19 @@ import com.rapidminer.parameter.ParameterTypeStringCategory;
 
 /**
  * The parameter selection change listener used by {@link PropertyTable}s.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PropertyTableParameterChangeListener implements ParameterChangeListener {
 
 	private PropertyTable propertyTable;
 
-	public PropertyTableParameterChangeListener(PropertyTable propertyTable) {
+    /**
+     * Instantiates a new Property table parameter change listener.
+     *
+     * @param propertyTable the property table
+     */
+    public PropertyTableParameterChangeListener(PropertyTable propertyTable) {
 		this.propertyTable = propertyTable;
 	}
 

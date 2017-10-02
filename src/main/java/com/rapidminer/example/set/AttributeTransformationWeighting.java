@@ -27,10 +27,10 @@ import com.rapidminer.example.AttributeWeights;
  * This transformation simply returns the weight-scaled value. It must only be used by
  * {@link AttributeWeightedExampleSet} since this class takes care of reassigning
  * {@link #attributeWeights} after clone.
- * 
+ * <p>
  * Usage of this Transformation for nominal attributes is forbidden, since the indices may not be
  * altered!
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeTransformationWeighting implements AttributeTransformation {
@@ -39,12 +39,21 @@ public class AttributeTransformationWeighting implements AttributeTransformation
 
 	private AttributeWeights attributeWeights;
 
-	public AttributeTransformationWeighting(AttributeWeights attributeWeights) {
+    /**
+     * Instantiates a new Attribute transformation weighting.
+     *
+     * @param attributeWeights the attribute weights
+     */
+    public AttributeTransformationWeighting(AttributeWeights attributeWeights) {
 		setAttributeWeights(attributeWeights);
 	}
 
-	/** Clone constructor. */
-	public AttributeTransformationWeighting(AttributeTransformationWeighting other) {
+    /**
+     * Clone constructor.  @param other the other
+     *
+     * @param other the other
+     */
+    public AttributeTransformationWeighting(AttributeTransformationWeighting other) {
 		// We don't clone here. Weights are re-assigned by AttributeWeightedExampleSet.clone();
 		this.attributeWeights = other.attributeWeights;
 	}
@@ -54,7 +63,12 @@ public class AttributeTransformationWeighting implements AttributeTransformation
 		return new AttributeTransformationWeighting(this);
 	}
 
-	public void setAttributeWeights(AttributeWeights weights) {
+    /**
+     * Sets attribute weights.
+     *
+     * @param weights the weights
+     */
+    public void setAttributeWeights(AttributeWeights weights) {
 		this.attributeWeights = weights;
 	}
 

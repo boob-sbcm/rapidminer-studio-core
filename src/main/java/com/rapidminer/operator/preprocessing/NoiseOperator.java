@@ -58,31 +58,44 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class NoiseOperator extends PreprocessingOperator {
 
-	/** The parameter name for &quot;Adds this number of random attributes.&quot; */
-	public static final String PARAMETER_RANDOM_ATTRIBUTES = "random_attributes";
+    /**
+     * The parameter name for &quot;Adds this number of random attributes.&quot;
+     */
+    public static final String PARAMETER_RANDOM_ATTRIBUTES = "random_attributes";
 
-	/**
-	 * The parameter name for &quot;Add this percentage of a numerical label range as a normal
-	 * distributed noise or probability for a nominal label change.&quot;
-	 */
-	public static final String PARAMETER_LABEL_NOISE = "label_noise";
+    /**
+     * The parameter name for &quot;Add this percentage of a numerical label range as a normal
+     * distributed noise or probability for a nominal label change.&quot;
+     */
+    public static final String PARAMETER_LABEL_NOISE = "label_noise";
 
-	/** The parameter name for &quot;The standard deviation of the default attribute noise.&quot; */
-	public static final String PARAMETER_DEFAULT_ATTRIBUTE_NOISE = "default_attribute_noise";
+    /**
+     * The parameter name for &quot;The standard deviation of the default attribute noise.&quot;
+     */
+    public static final String PARAMETER_DEFAULT_ATTRIBUTE_NOISE = "default_attribute_noise";
 
-	/** The parameter name for &quot;List of noises for each attributes.&quot; */
-	public static final String PARAMETER_NOISE = "noise";
+    /**
+     * The parameter name for &quot;List of noises for each attributes.&quot;
+     */
+    public static final String PARAMETER_NOISE = "noise";
 
-	/** The parameter name for &quot;Offset added to the values of each random attribute&quot; */
-	public static final String PARAMETER_OFFSET = "offset";
+    /**
+     * The parameter name for &quot;Offset added to the values of each random attribute&quot;
+     */
+    public static final String PARAMETER_OFFSET = "offset";
 
-	/**
-	 * The parameter name for &quot;Linear factor multiplicated with the values of each random
-	 * attribute&quot;
-	 */
-	public static final String PARAMETER_LINEAR_FACTOR = "linear_factor";
+    /**
+     * The parameter name for &quot;Linear factor multiplicated with the values of each random
+     * attribute&quot;
+     */
+    public static final String PARAMETER_LINEAR_FACTOR = "linear_factor";
 
-	public NoiseOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Noise operator.
+     *
+     * @param description the description
+     */
+    public NoiseOperator(OperatorDescription description) {
 		super(description);
 	}
 

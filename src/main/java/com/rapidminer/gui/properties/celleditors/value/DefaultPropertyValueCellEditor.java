@@ -53,11 +53,11 @@ import com.rapidminer.tools.Tools;
  * {@link PropertyTable}s to show or editing the properties / parameters. For more special parameter
  * types other solutions exist.
  *
+ * @author Ingo Mierswa, Simon Fischer, Nils Woehler
  * @see FileValueCellEditor
  * @see ListValueCellEditor
  * @see ColorValueCellEditor
  * @see OperatorValueValueCellEditor
- * @author Ingo Mierswa, Simon Fischer, Nils Woehler
  */
 public class DefaultPropertyValueCellEditor extends DefaultRMCellEditor implements PropertyValueCellEditor {
 
@@ -69,7 +69,12 @@ public class DefaultPropertyValueCellEditor extends DefaultRMCellEditor implemen
 
 	private boolean rendersLabel = false;
 
-	public DefaultPropertyValueCellEditor(final ParameterTypeCategory type) {
+    /**
+     * Instantiates a new Default property value cell editor.
+     *
+     * @param type the type
+     */
+    public DefaultPropertyValueCellEditor(final ParameterTypeCategory type) {
 		super(new ExtendedJComboBox<>(type.getValues()));
 		useEditorAsRenderer = true;
 		((JComboBox<?>) editorComponent).removeItemListener(this.delegate);
@@ -104,7 +109,12 @@ public class DefaultPropertyValueCellEditor extends DefaultRMCellEditor implemen
 		((JComboBox<?>) editorComponent).addItemListener(delegate);
 	}
 
-	public DefaultPropertyValueCellEditor(final ParameterTypeStringCategory type) {
+    /**
+     * Instantiates a new Default property value cell editor.
+     *
+     * @param type the type
+     */
+    public DefaultPropertyValueCellEditor(final ParameterTypeStringCategory type) {
 		super(new JComboBox<>(type.getValues()));
 
 		if (type.isEditable()) {
@@ -155,7 +165,12 @@ public class DefaultPropertyValueCellEditor extends DefaultRMCellEditor implemen
 		((JComboBox<?>) editorComponent).addItemListener(delegate);
 	}
 
-	public DefaultPropertyValueCellEditor(final ParameterTypeBoolean type) {
+    /**
+     * Instantiates a new Default property value cell editor.
+     *
+     * @param type the type
+     */
+    public DefaultPropertyValueCellEditor(final ParameterTypeBoolean type) {
 		super(new JCheckBox());
 		rendersLabel = true;
 		((JCheckBox) editorComponent).setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -191,7 +206,12 @@ public class DefaultPropertyValueCellEditor extends DefaultRMCellEditor implemen
 		useEditorAsRenderer = true;
 	}
 
-	public DefaultPropertyValueCellEditor(final ParameterTypeInt type) {
+    /**
+     * Instantiates a new Default property value cell editor.
+     *
+     * @param type the type
+     */
+    public DefaultPropertyValueCellEditor(final ParameterTypeInt type) {
 		super(new JTextField(TEXT_FIELD_WIDTH));
 		setClickCountToStart(1);
 		editorComponent.addFocusListener(new FocusListener() {
@@ -286,7 +306,12 @@ public class DefaultPropertyValueCellEditor extends DefaultRMCellEditor implemen
 		useEditorAsRenderer = true;
 	}
 
-	public DefaultPropertyValueCellEditor(final ParameterTypeDouble type) {
+    /**
+     * Instantiates a new Default property value cell editor.
+     *
+     * @param type the type
+     */
+    public DefaultPropertyValueCellEditor(final ParameterTypeDouble type) {
 		super(new JTextField(TEXT_FIELD_WIDTH));
 		setClickCountToStart(1);
 		editorComponent.addFocusListener(new FocusListener() {
@@ -380,7 +405,12 @@ public class DefaultPropertyValueCellEditor extends DefaultRMCellEditor implemen
 		useEditorAsRenderer = true;
 	}
 
-	public DefaultPropertyValueCellEditor(final ParameterTypePassword type) {
+    /**
+     * Instantiates a new Default property value cell editor.
+     *
+     * @param type the type
+     */
+    public DefaultPropertyValueCellEditor(final ParameterTypePassword type) {
 		super(new JPasswordField());
 		setClickCountToStart(1);
 		editorComponent.addFocusListener(new FocusListener() {
@@ -428,7 +458,12 @@ public class DefaultPropertyValueCellEditor extends DefaultRMCellEditor implemen
 		useEditorAsRenderer = true;
 	}
 
-	public DefaultPropertyValueCellEditor(final ParameterTypeChar type) {
+    /**
+     * Instantiates a new Default property value cell editor.
+     *
+     * @param type the type
+     */
+    public DefaultPropertyValueCellEditor(final ParameterTypeChar type) {
 		super(new CharTextField());
 		setClickCountToStart(1);
 		editorComponent.addFocusListener(new FocusListener() {
@@ -445,7 +480,12 @@ public class DefaultPropertyValueCellEditor extends DefaultRMCellEditor implemen
 		});
 	}
 
-	public DefaultPropertyValueCellEditor(final ParameterType type) {
+    /**
+     * Instantiates a new Default property value cell editor.
+     *
+     * @param type the type
+     */
+    public DefaultPropertyValueCellEditor(final ParameterType type) {
 		super(new JTextField(TEXT_FIELD_WIDTH));
 		setClickCountToStart(1);
 		editorComponent.addFocusListener(new FocusListener() {

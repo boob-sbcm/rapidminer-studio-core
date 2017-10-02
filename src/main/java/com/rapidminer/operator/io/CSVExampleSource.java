@@ -35,15 +35,14 @@ import com.rapidminer.parameter.ParameterTypeFile;
  * (including the column separators) with a double quote (&quot;). You can escape the quoting
  * character with a backslash, i.e. \&quot;.
  * </p>
- *
+ * <p>
  * <p>
  * For other file formats or column separators you can use in almost all cases the operator
  * {@link SimpleExampleSource} or, if this is not sufficient, the operator {@link ExampleSource}.
  * </p>
  *
- * @rapidminer.index csv
  * @author Ingo Mierswa
- *
+ * @rapidminer.index csv
  * @deprecated Replaced by {@link com.rapidminer.operator.nio.CSVExampleSource}.
  */
 @Deprecated
@@ -55,7 +54,12 @@ public class CSVExampleSource extends SimpleExampleSource {
 	// PARAMETER_FILENAME));
 	// }
 
-	public CSVExampleSource(final OperatorDescription description) {
+    /**
+     * Instantiates a new Csv example source.
+     *
+     * @param description the description
+     */
+    public CSVExampleSource(final OperatorDescription description) {
 		super(description);
 	}
 

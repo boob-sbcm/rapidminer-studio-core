@@ -29,6 +29,8 @@ import org.jfree.chart.renderer.category.BarRenderer;
 
 
 /**
+ * The type Formatted bar renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedBarRenderer extends BarRenderer implements FormattedRenderer {
@@ -37,7 +39,10 @@ public class FormattedBarRenderer extends BarRenderer implements FormattedRender
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedBarRenderer() {
+    /**
+     * Instantiates a new Formatted bar renderer.
+     */
+    public FormattedBarRenderer() {
 		super();
 	}
 

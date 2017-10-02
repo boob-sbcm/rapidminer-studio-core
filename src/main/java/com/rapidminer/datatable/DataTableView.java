@@ -25,11 +25,10 @@ import java.util.Vector;
 
 /**
  * This class is a view on a DataTable which hides all examples not listed in an index list.
- * 
+ * <p>
  * Set the list of selected examples via {@link #setSelectedIndices(Vector)}.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class DataTableView extends AbstractDataTable implements DataTableListener {
 
@@ -37,7 +36,12 @@ public class DataTableView extends AbstractDataTable implements DataTableListene
 	private Vector<Integer> selectedIndices = null;
 	private int numberOfSelectedRows;
 
-	public DataTableView(DataTable parentDataTable) {
+    /**
+     * Instantiates a new Data table view.
+     *
+     * @param parentDataTable the parent data table
+     */
+    public DataTableView(DataTable parentDataTable) {
 		super(parentDataTable.getName());
 
 		this.parentTable = parentDataTable;
@@ -49,11 +53,21 @@ public class DataTableView extends AbstractDataTable implements DataTableListene
 
 	}
 
-	public DataTable getParentTable() {
+    /**
+     * Gets parent table.
+     *
+     * @return the parent table
+     */
+    public DataTable getParentTable() {
 		return parentTable;
 	}
 
-	public void setSelectedIndices(Vector<Integer> selectedIndices) {
+    /**
+     * Sets selected indices.
+     *
+     * @param selectedIndices the selected indices
+     */
+    public void setSelectedIndices(Vector<Integer> selectedIndices) {
 		this.selectedIndices = selectedIndices;
 		if (selectedIndices != null) {
 			numberOfSelectedRows = selectedIndices.size();

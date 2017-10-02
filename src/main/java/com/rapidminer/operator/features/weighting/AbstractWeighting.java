@@ -63,33 +63,46 @@ public abstract class AbstractWeighting extends Operator implements CapabilityPr
 
 	private static final String[] SORT_DIRECTIONS = new String[] { "ascending", "descending" };
 
-	public static final int SORT_ASCENDING = 0;
-	public static final int SORT_DESCENDING = 1;
+    /**
+     * The constant SORT_ASCENDING.
+     */
+    public static final int SORT_ASCENDING = 0;
+    /**
+     * The constant SORT_DESCENDING.
+     */
+    public static final int SORT_DESCENDING = 1;
 
-	/** The parameter name for &quot;Activates the normalization of all weights.&quot; */
-	public static final String PARAMETER_NORMALIZE_WEIGHTS = "normalize_weights";
-	public static final String PARAMETER_SORT_WEIGHTS = "sort_weights";
-	public static final String PARAMETER_SORT_DIRECTION = "sort_direction";
+    /**
+     * The parameter name for &quot;Activates the normalization of all weights.&quot;
+     */
+    public static final String PARAMETER_NORMALIZE_WEIGHTS = "normalize_weights";
+    /**
+     * The constant PARAMETER_SORT_WEIGHTS.
+     */
+    public static final String PARAMETER_SORT_WEIGHTS = "sort_weights";
+    /**
+     * The constant PARAMETER_SORT_DIRECTION.
+     */
+    public static final String PARAMETER_SORT_DIRECTION = "sort_direction";
 
-	/**
-	 * Constructs a full AbstractWeighting-Operator but this one will not check for the presence of
-	 * a label in the ExampleSet (and ExampleSetMetaData). If you want the AbstractWeighting to do
-	 * so,please use {@link #AbstractWeighting(OperatorDescription, boolean)}.
-	 *
-	 * @param description
-	 */
-	public AbstractWeighting(OperatorDescription description) {
+    /**
+     * Constructs a full AbstractWeighting-Operator but this one will not check for the presence of
+     * a label in the ExampleSet (and ExampleSetMetaData). If you want the AbstractWeighting to do
+     * so,please use {@link #AbstractWeighting(OperatorDescription, boolean)}.
+     *
+     * @param description the description
+     */
+    public AbstractWeighting(OperatorDescription description) {
 		this(description, false);
 	}
 
-	/**
-	 *
-	 * @param description
-	 *            description of the Operator
-	 * @param checkForLabel
-	 *            if no label exist, the operator throws an UserError and shows a MetaData warning
-	 */
-	public AbstractWeighting(OperatorDescription description, boolean checkForLabel) {
+    /**
+     * Instantiates a new Abstract weighting.
+     *
+     * @param description   description of the Operator
+     * @param checkForLabel if no label exist, the operator throws an UserError and shows a MetaData warning
+     */
+    public AbstractWeighting(OperatorDescription description, boolean checkForLabel) {
 		super(description);
 		if (isExampleSetMandatory()) {
 			exampleSetInput.addPrecondition(new CapabilityPrecondition(this, exampleSetInput));
@@ -120,12 +133,23 @@ public abstract class AbstractWeighting extends Operator implements CapabilityPr
 		});
 	}
 
-	protected abstract AttributeWeights calculateWeights(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Calculate weights attribute weights.
+     *
+     * @param exampleSet the example set
+     * @return the attribute weights
+     * @throws OperatorException the operator exception
+     */
+    protected abstract AttributeWeights calculateWeights(ExampleSet exampleSet) throws OperatorException;
 
-	/**
-	 * Helper method for anonymous instances of this class.
-	 */
-	public AttributeWeights doWork(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Helper method for anonymous instances of this class.
+     *
+     * @param exampleSet the example set
+     * @return the attribute weights
+     * @throws OperatorException the operator exception
+     */
+    public AttributeWeights doWork(ExampleSet exampleSet) throws OperatorException {
 		exampleSetInput.receive(exampleSet);
 
 		// check capabilities and produce errors if they are not fulfilled
@@ -157,11 +181,21 @@ public abstract class AbstractWeighting extends Operator implements CapabilityPr
 		weightsOutput.deliver(weights);
 	}
 
-	public InputPort getExampleSetInputPort() {
+    /**
+     * Gets example set input port.
+     *
+     * @return the example set input port
+     */
+    public InputPort getExampleSetInputPort() {
 		return exampleSetInput;
 	}
 
-	public OutputPort getWeightsOutputPort() {
+    /**
+     * Gets weights output port.
+     *
+     * @return the weights output port
+     */
+    public OutputPort getWeightsOutputPort() {
 		return weightsOutput;
 	}
 
@@ -179,11 +213,21 @@ public abstract class AbstractWeighting extends Operator implements CapabilityPr
 		return list;
 	}
 
-	protected boolean isExampleSetMandatory() {
+    /**
+     * Is example set mandatory boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean isExampleSetMandatory() {
 		return true;
 	}
 
-	protected boolean onlyWarnForNonSufficientCapabilities() {
+    /**
+     * Only warn for non sufficient capabilities boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean onlyWarnForNonSufficientCapabilities() {
 		return false;
 	}
 }

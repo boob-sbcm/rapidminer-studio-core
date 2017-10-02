@@ -30,7 +30,7 @@ import com.rapidminer.tools.Ontology;
 
 /**
  * Checks if the the given learner can work on the example set.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CapabilityCheck {
@@ -39,16 +39,26 @@ public class CapabilityCheck {
 
 	private boolean onlyWarn;
 
-	public CapabilityCheck(CapabilityProvider provider, boolean onlyWarn) {
+    /**
+     * Instantiates a new Capability check.
+     *
+     * @param provider the provider
+     * @param onlyWarn the only warn
+     */
+    public CapabilityCheck(CapabilityProvider provider, boolean onlyWarn) {
 		this.capabilityProvider = provider;
 		this.onlyWarn = onlyWarn;
 	}
 
-	/**
-	 * Checks if this learner can be used for the given example set, i.e. if it has sufficient
-	 * capabilities.
-	 */
-	public void checkLearnerCapabilities(Operator learningOperator, ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Checks if this learner can be used for the given example set, i.e. if it has sufficient
+     * capabilities.
+     *
+     * @param learningOperator the learning operator
+     * @param exampleSet       the example set
+     * @throws OperatorException the operator exception
+     */
+    public void checkLearnerCapabilities(Operator learningOperator, ExampleSet exampleSet) throws OperatorException {
 		try {
 			// nominal attributes
 			if (Tools.containsValueType(exampleSet, Ontology.NOMINAL)) {

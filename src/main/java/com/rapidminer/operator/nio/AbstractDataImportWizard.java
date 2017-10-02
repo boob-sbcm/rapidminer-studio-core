@@ -44,7 +44,16 @@ public abstract class AbstractDataImportWizard extends DataImportWizard {
 
 	private RepositoryLocation preselectedLocation;
 
-	public AbstractDataImportWizard(AbstractDataResultSetReader reader, RepositoryLocation preselectedLocation, String key,
+    /**
+     * Instantiates a new Abstract data import wizard.
+     *
+     * @param reader              the reader
+     * @param preselectedLocation the preselected location
+     * @param key                 the key
+     * @param arguments           the arguments
+     * @throws OperatorException the operator exception
+     */
+    public AbstractDataImportWizard(AbstractDataResultSetReader reader, RepositoryLocation preselectedLocation, String key,
 			Object... arguments) throws OperatorException {
 		super(key, arguments);
 		this.reader = reader;
@@ -54,36 +63,42 @@ public abstract class AbstractDataImportWizard extends DataImportWizard {
 		logStats("start");
 	}
 
-	/**
-	 * Logs an event for this import type (CSV, Excel, ...) with the
-	 * {@link ActionStatisticsCollector}. Event type can be passed as arg, e.g. "start", "complete",
-	 * "error".
-	 */
-	protected void logStats(String arg) {
+    /**
+     * Logs an event for this import type (CSV, Excel, ...) with the
+     * {@link ActionStatisticsCollector}. Event type can be passed as arg, e.g. "start", "complete",
+     * "error".
+     *
+     * @param arg the arg
+     */
+    protected void logStats(String arg) {
 		ActionStatisticsCollector.getInstance().log(ActionStatisticsCollector.TYPE_IMPORT,
 				getReader() != null ? getReader().getOperatorDescription().getKey() : getClass().getSimpleName(), arg);
 	}
 
-	/**
-	 * Creates a {@link DataResultSetFactory} for the {@link AbstractDataResultSetReader} given in
-	 * the constructor.
-	 */
-	protected abstract DataResultSetFactory makeFactory(AbstractDataResultSetReader reader) throws OperatorException;
+    /**
+     * Creates a {@link DataResultSetFactory} for the {@link AbstractDataResultSetReader} given in
+     * the constructor.
+     *
+     * @param reader the reader
+     * @return the data result set factory
+     * @throws OperatorException the operator exception
+     */
+    protected abstract DataResultSetFactory makeFactory(AbstractDataResultSetReader reader) throws OperatorException;
 
-	/**
-	 * Same as {@link #addCommonSteps()} where the store step will be added only if
-	 * {@link #getReader()} is null.
-	 */
-	protected void addCommonSteps() {
+    /**
+     * Same as {@link #addCommonSteps()} where the store step will be added only if
+     * {@link #getReader()} is null.
+     */
+    protected void addCommonSteps() {
 		addCommonSteps(getReader() == null);
 	}
 
-	/**
-	 *
-	 * @param includeStoreStep
-	 *            If true, a step to store the data in the repository will be added.
-	 */
-	protected void addCommonSteps(boolean includeStoreStep) {
+    /**
+     * Add common steps.
+     *
+     * @param includeStoreStep If true, a step to store the data in the repository will be added.
+     */
+    protected void addCommonSteps(boolean includeStoreStep) {
 		addStep(new AnnotationDeclarationWizardStep(getState()));
 		addStep(new MetaDataDeclarationWizardStep(getState()));
 		if (includeStoreStep) {
@@ -99,11 +114,21 @@ public abstract class AbstractDataImportWizard extends DataImportWizard {
 		logStats("cancelled");
 	}
 
-	public WizardState getState() {
+    /**
+     * Gets state.
+     *
+     * @return the state
+     */
+    public WizardState getState() {
 		return state;
 	}
 
-	public AbstractDataResultSetReader getReader() {
+    /**
+     * Gets reader.
+     *
+     * @return the reader
+     */
+    public AbstractDataResultSetReader getReader() {
 		return reader;
 	}
 

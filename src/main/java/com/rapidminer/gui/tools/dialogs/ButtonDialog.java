@@ -72,43 +72,46 @@ import com.rapidminer.tools.usagestats.ActionStatisticsCollector;
  * Dialog that provides some helper methods to create buttons. Automatically registers accelerators
  * and action listeners. Override {@link #ok()}, {@link #cancel()} and {@link #close()} to customize
  * the behaviour.
- *
+ * <p>
  * The user can query if the ok button was pressed ({@link #wasConfirmed}).
  *
  * @author Simon Fischer, Marco Boeck
  */
 public class ButtonDialog extends JDialog {
 
-	/**
-	 * A builder for {@link ButtonDialog}s. After calling all relevant setters, call
-	 * {@link #build()} to create the actual dialog instance.
-	 * <p>
-	 * <strong>Attention:</strong> Without setting an explicit parent via {@link #setOwner(Window)},
-	 * modal dialogs will display inconsistent behavior and sometimes appear behind other dialogs.
-	 * This can be a big problem as the user will not find the dialog, yet he is blocked from
-	 * interacting with the rest of the program!
-	 * </p>
-	 *
-	 *
-	 * @author Marco Boeck
-	 * @since 6.5.0
-	 *
-	 */
-	public static class ButtonDialogBuilder {
+    /**
+     * A builder for {@link ButtonDialog}s. After calling all relevant setters, call
+     * {@link #build()} to create the actual dialog instance.
+     * <p>
+     * <strong>Attention:</strong> Without setting an explicit parent via {@link #setOwner(Window)},
+     * modal dialogs will display inconsistent behavior and sometimes appear behind other dialogs.
+     * This can be a big problem as the user will not find the dialog, yet he is blocked from
+     * interacting with the rest of the program!
+     * </p>
+     *
+     * @author Marco Boeck
+     * @since 6.5.0
+     */
+    public static class ButtonDialogBuilder {
 
-		/**
-		 * Default buttons which can automatically added to the button dialog.
-		 *
-		 */
-		public enum DefaultButtons {
-			/** labelled Ok, sets the status to confirmed */
-			OK_BUTTON,
+        /**
+         * Default buttons which can automatically added to the button dialog.
+         */
+        public enum DefaultButtons {
+            /**
+             * labelled Ok, sets the status to confirmed
+             */
+            OK_BUTTON,
 
-			/** labelled Cancel, sets the status to not confirmed */
-			CANCEL_BUTTON,
+            /**
+             * labelled Cancel, sets the status to not confirmed
+             */
+            CANCEL_BUTTON,
 
-			/** labelled Close, sets the status to not confirmed */
-			CLOSE_BUTTON;
+            /**
+             * labelled Close, sets the status to not confirmed
+             */
+            CLOSE_BUTTON;
 		}
 
 		/** the i18n key */
@@ -141,14 +144,12 @@ public class ButtonDialog extends JDialog {
 		/** default buttons if layout should be done */
 		private DefaultButtons[] defaultButtons;
 
-		/**
-		 * Create a new builder for a {@link ButtonDialog}.
-		 *
-		 * @param key
-		 *            the i18n key used for the properties gui.dialog.-key-.title and
-		 *            gui.dialog.-key-.icon
-		 */
-		public ButtonDialogBuilder(final String key) {
+        /**
+         * Create a new builder for a {@link ButtonDialog}.
+         *
+         * @param key the i18n key used for the properties gui.dialog.-key-.title and            gui.dialog.-key-.icon
+         */
+        public ButtonDialogBuilder(final String key) {
 			if (key == null || key.trim().isEmpty()) {
 				throw new IllegalArgumentException("key must not be null or empty!");
 			}
@@ -156,50 +157,45 @@ public class ButtonDialog extends JDialog {
 			this.key = key;
 		}
 
-		/**
-		 * Sets the parent window for the dialog. Can be a {@link Dialog}, can be a {@link Frame},
-		 * can be a {@link Window}. This is used to determine modality order. By default, no parent
-		 * is set.
-		 *
-		 * @param owner
-		 *            the parent of the dialog
-		 * @return the builder itself, never {@code null}
-		 */
-		public ButtonDialogBuilder setOwner(final Window owner) {
+        /**
+         * Sets the parent window for the dialog. Can be a {@link Dialog}, can be a {@link Frame},
+         * can be a {@link Window}. This is used to determine modality order. By default, no parent
+         * is set.
+         *
+         * @param owner the parent of the dialog
+         * @return the builder itself, never {@code null}
+         */
+        public ButtonDialogBuilder setOwner(final Window owner) {
 			this.owner = owner;
 			return this;
 		}
 
-		/**
-		 * Sets optional i18n arguments which are used to replace placeholders. By default, no
-		 * arguments are passed.
-		 *
-		 * @param args
-		 *            arguments which will replace the placeholders in the I18n-Properties message.
-		 *            The first argument will replace <code>{0}</code>, the second <code>{1}</code>
-		 *            and so on.
-		 * @return the builder itself, never {@code null}
-		 */
-		public ButtonDialogBuilder setI18nArguments(final Object... args) {
+        /**
+         * Sets optional i18n arguments which are used to replace placeholders. By default, no
+         * arguments are passed.
+         *
+         * @param args arguments which will replace the placeholders in the I18n-Properties message.            The first argument will replace <code>{0}</code>, the second <code>{1}</code>            and so on.
+         * @return the builder itself, never {@code null}
+         */
+        public ButtonDialogBuilder setI18nArguments(final Object... args) {
 			this.i18nArgs = args;
 			return this;
 		}
 
-		/**
-		 * Sets the modality type which should be used for the dialog. By default, a dialog is
-		 * {@link ModalityType#MODELESS}.
-		 * <p>
-		 * <strong>Attention:</strong> Without setting an explicit parent via
-		 * {@link #setOwner(Window)} , modal dialogs will display inconsistent behavior and
-		 * sometimes appear behind other dialogs. This can be a big problem as the user will not
-		 * find the dialog, yet he is blocked from interacting with the rest of the program!
-		 * </p>
-		 *
-		 * @param modalityType
-		 *            the modality type
-		 * @return the builder itself, never {@code null}
-		 */
-		public ButtonDialogBuilder setModalityType(final ModalityType modalityType) {
+        /**
+         * Sets the modality type which should be used for the dialog. By default, a dialog is
+         * {@link ModalityType#MODELESS}.
+         * <p>
+         * <strong>Attention:</strong> Without setting an explicit parent via
+         * {@link #setOwner(Window)} , modal dialogs will display inconsistent behavior and
+         * sometimes appear behind other dialogs. This can be a big problem as the user will not
+         * find the dialog, yet he is blocked from interacting with the rest of the program!
+         * </p>
+         *
+         * @param modalityType the modality type
+         * @return the builder itself, never {@code null}
+         */
+        public ButtonDialogBuilder setModalityType(final ModalityType modalityType) {
 			if (modalityType == null) {
 				throw new IllegalArgumentException("modalityType must not be null!");
 			}
@@ -208,16 +204,15 @@ public class ButtonDialog extends JDialog {
 			return this;
 		}
 
-		/**
-		 * Sets the graphics configuration which should be used for the dialog. Determines on which
-		 * screen the dialog opens in a multi-monitor setup. By default, the default configuration
-		 * is used.
-		 *
-		 * @param graphicsConfig
-		 *            the graphics config to use
-		 * @return the builder itself, never {@code null}
-		 */
-		public ButtonDialogBuilder setGraphicsConfiguration(final GraphicsConfiguration graphicsConfig) {
+        /**
+         * Sets the graphics configuration which should be used for the dialog. Determines on which
+         * screen the dialog opens in a multi-monitor setup. By default, the default configuration
+         * is used.
+         *
+         * @param graphicsConfig the graphics config to use
+         * @return the builder itself, never {@code null}
+         */
+        public ButtonDialogBuilder setGraphicsConfiguration(final GraphicsConfiguration graphicsConfig) {
 			if (graphicsConfig == null) {
 				throw new IllegalArgumentException("graphicsConfig must not be null!");
 			}
@@ -226,17 +221,15 @@ public class ButtonDialog extends JDialog {
 			return this;
 		}
 
-		/**
-		 * Optionally specify the contents of the button dialog including layout. To specify
-		 * buttons, call {@link #setButtons(AbstractButton...)}.
-		 *
-		 * @param mainComponent
-		 *            the component in the center of the dialog
-		 * @param size
-		 *            the size of the dialog, see constants in {@link ButtonDialog}
-		 * @return the builder itself, never {@code null}
-		 */
-		public ButtonDialogBuilder setContent(final JComponent mainComponent, final int size) {
+        /**
+         * Optionally specify the contents of the button dialog including layout. To specify
+         * buttons, call {@link #setButtons(AbstractButton...)}.
+         *
+         * @param mainComponent the component in the center of the dialog
+         * @param size          the size of the dialog, see constants in {@link ButtonDialog}
+         * @return the builder itself, never {@code null}
+         */
+        public ButtonDialogBuilder setContent(final JComponent mainComponent, final int size) {
 			if (mainComponent == null) {
 				throw new IllegalArgumentException("mainComponent must not be null!");
 			}
@@ -247,42 +240,38 @@ public class ButtonDialog extends JDialog {
 			return this;
 		}
 
-		/**
-		 * Optionally specify custom buttons for the button dialog. Custom buttons always take
-		 * precedence over default buttons. Has no effect unless
-		 * {@link #setContent(JComponent, int)} has also been called.
-		 *
-		 * @param buttons
-		 *            the custom buttons which should be added to the dialog. If neither custom nor
-		 *            default buttons are specified, a default ok button is added
-		 * @return the the builder itself, never {@code null}
-		 */
-		public ButtonDialogBuilder setButtons(final AbstractButton... buttons) {
+        /**
+         * Optionally specify custom buttons for the button dialog. Custom buttons always take
+         * precedence over default buttons. Has no effect unless
+         * {@link #setContent(JComponent, int)} has also been called.
+         *
+         * @param buttons the custom buttons which should be added to the dialog. If neither custom nor            default buttons are specified, a default ok button is added
+         * @return the the builder itself, never {@code null}
+         */
+        public ButtonDialogBuilder setButtons(final AbstractButton... buttons) {
 			this.buttons = buttons;
 			return this;
 		}
 
-		/**
-		 * Optionally specify default buttons for the button dialog. Custom buttons always take
-		 * precedence over default buttons. Has no effect unless
-		 * {@link #setContent(JComponent, int)} has also been called.
-		 *
-		 * @param defaultButtons
-		 *            the default buttons which should be added to the dialog. If neither custom nor
-		 *            default buttons are specified, a default ok button is added
-		 * @return the the builder itself, never {@code null}
-		 */
-		public ButtonDialogBuilder setButtons(final DefaultButtons... defaultButtons) {
+        /**
+         * Optionally specify default buttons for the button dialog. Custom buttons always take
+         * precedence over default buttons. Has no effect unless
+         * {@link #setContent(JComponent, int)} has also been called.
+         *
+         * @param defaultButtons the default buttons which should be added to the dialog. If neither custom nor            default buttons are specified, a default ok button is added
+         * @return the the builder itself, never {@code null}
+         */
+        public ButtonDialogBuilder setButtons(final DefaultButtons... defaultButtons) {
 			this.defaultButtons = defaultButtons;
 			return this;
 		}
 
-		/**
-		 * Creates the actual {@link ButtonDialog} instance according to the specified settings.
-		 *
-		 * @return the dialog instance, never {@code null}
-		 */
-		public ButtonDialog build() {
+        /**
+         * Creates the actual {@link ButtonDialog} instance according to the specified settings.
+         *
+         * @return the dialog instance, never {@code null}
+         */
+        public ButtonDialog build() {
 			ButtonDialog dialog = new ButtonDialog(owner, key, modalityType, graphicsConfig, i18nArgs);
 
 			// see if we also should prepare the layout
@@ -329,47 +318,75 @@ public class ButtonDialog extends JDialog {
 	/** the maximum height ({@value #MAX_HEIGHT}) before size {@link #HUGE} will be reduced */
 	private static final int MAX_HEIGHT = 800;
 
-	/** 720x540 */
-	public static final int NORMAL = 1;
+    /**
+     * 720x540
+     */
+    public static final int NORMAL = 1;
 
-	/** 720x300 */
-	public static final int BROAD = 12;
+    /**
+     * 720x300
+     */
+    public static final int BROAD = 12;
 
-	/** 360x540 */
-	public static final int NARROW = 2;
+    /**
+     * 360x540
+     */
+    public static final int NARROW = 2;
 
-	/** 800x600 */
-	public static final int LARGE = 3;
+    /**
+     * 800x600
+     */
+    public static final int LARGE = 3;
 
-	/** 1020x700 */
-	public static final int WIDE = 11;
+    /**
+     * 1020x700
+     */
+    public static final int WIDE = 11;
 
-	/** 1000x760, automatically reduced to {@link #LARGE} for small resolutions */
-	public static final int HUGE = 9;
+    /**
+     * 1000x760, automatically reduced to {@link #LARGE} for small resolutions
+     */
+    public static final int HUGE = 9;
 
-	/** 1000x760 */
-	public static final int HUGE_FORCED = 10;
+    /**
+     * 1000x760
+     */
+    public static final int HUGE_FORCED = 10;
 
-	/** 600x200 */
-	public static final int MESSAGE = 4;
+    /**
+     * 600x200
+     */
+    public static final int MESSAGE = 4;
 
-	/** 500x250 */
-	public static final int MESSAGE_BIT_EXTENDED = 15;
+    /**
+     * 500x250
+     */
+    public static final int MESSAGE_BIT_EXTENDED = 15;
 
-	/** 600x400 */
-	public static final int MESSAGE_EXTENDED = 5;
+    /**
+     * 600x400
+     */
+    public static final int MESSAGE_EXTENDED = 5;
 
-	/** 420x300 */
-	public static final int DEFAULT_SIZE = 8;
+    /**
+     * 420x300
+     */
+    public static final int DEFAULT_SIZE = 8;
 
-	/** 570x170 */
-	public static final int EXTENSIVE = 14;
+    /**
+     * 570x170
+     */
+    public static final int EXTENSIVE = 14;
 
-	/** 520x770 */
-	public static final int TALL = 16;
+    /**
+     * 520x770
+     */
+    public static final int TALL = 16;
 
-	/** 720x700 */
-	public static final int NORMAL_EXTENDED = 13;
+    /**
+     * 720x700
+     */
+    public static final int NORMAL_EXTENDED = 13;
 
 	private static final Dimension DIMENSION_MESSAGE = new Dimension(600, 200);
 	private static final Dimension DIMENSION_MESSAGE_BIT_EXTENDED = new Dimension(500, 250);
@@ -385,30 +402,46 @@ public class ButtonDialog extends JDialog {
 	private static final Dimension DIMENSION_EXTENSIVE = new Dimension(570, 170);
 	private static final Dimension DIMENSION_TALL = new Dimension(520, 770);
 
-	public static final int GAP = 6;
+    /**
+     * The constant GAP.
+     */
+    public static final int GAP = 6;
 
-	protected static final Insets INSETS = new Insets(GAP, GAP, GAP, GAP);
+    /**
+     * The constant INSETS.
+     */
+    protected static final Insets INSETS = new Insets(GAP, GAP, GAP, GAP);
 
-	protected FixedWidthEditorPane infoTextLabel;
+    /**
+     * The Info text label.
+     */
+    protected FixedWidthEditorPane infoTextLabel;
 
-	/**
-	 * Arguments which will replace the place holder in the I18n-Properties message. The first
-	 * argument will replace <code>{0}</code>, the second <code>{1}</code> and so on.
-	 */
-	protected final Object[] arguments;
+    /**
+     * Arguments which will replace the place holder in the I18n-Properties message. The first
+     * argument will replace <code>{0}</code>, the second <code>{1}</code> and so on.
+     */
+    protected final Object[] arguments;
 
 	private Component centerComponent;
 
 	private String key = null;
 
-	protected boolean wasConfirmed = false;
+    /**
+     * The Was confirmed.
+     */
+    protected boolean wasConfirmed = false;
 
 	private final LinkedList<ChangeListener> listeners = new LinkedList<>();
 
-	/**
-	 * @deprecated Use {@link ButtonDialogBuilder} instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Button dialog.
+     *
+     * @param key       the key
+     * @param arguments the arguments
+     * @deprecated Use {@link ButtonDialogBuilder} instead
+     */
+    @Deprecated
 	public ButtonDialog(String key, Object... arguments) {
 		super(ApplicationFrame.getApplicationFrame(),
 				I18N.getMessage(I18N.getGUIBundle(), "gui.dialog." + key + ".title", arguments), false);
@@ -419,10 +452,15 @@ public class ButtonDialog extends JDialog {
 		checkForEDT();
 	}
 
-	/**
-	 * @deprecated Use {@link ButtonDialogBuilder} instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Button dialog.
+     *
+     * @param key       the key
+     * @param modal     the modal
+     * @param arguments the arguments
+     * @deprecated Use {@link ButtonDialogBuilder} instead
+     */
+    @Deprecated
 	public ButtonDialog(String key, boolean modal, Object... arguments) {
 		super(ApplicationFrame.getApplicationFrame(),
 				I18N.getMessage(I18N.getGUIBundle(), "gui.dialog." + key + ".title", arguments), modal);
@@ -433,10 +471,15 @@ public class ButtonDialog extends JDialog {
 		checkForEDT();
 	}
 
-	/**
-	 * @deprecated Use {@link ButtonDialogBuilder} instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Button dialog.
+     *
+     * @param key       the key
+     * @param type      the type
+     * @param arguments the arguments
+     * @deprecated Use {@link ButtonDialogBuilder} instead
+     */
+    @Deprecated
 	public ButtonDialog(String key, ModalityType type, Object... arguments) {
 		super(ApplicationFrame.getApplicationFrame(),
 				I18N.getMessage(I18N.getGUIBundle(), "gui.dialog." + key + ".title", arguments), type);
@@ -447,10 +490,16 @@ public class ButtonDialog extends JDialog {
 		checkForEDT();
 	}
 
-	/**
-	 * @deprecated Use {@link ButtonDialogBuilder} instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Button dialog.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param modal     the modal
+     * @param arguments the arguments
+     * @deprecated Use {@link ButtonDialogBuilder} instead
+     */
+    @Deprecated
 	public ButtonDialog(Dialog owner, String key, boolean modal, Object... arguments) {
 		super(owner, I18N.getMessage(I18N.getGUIBundle(), "gui.dialog." + key + ".title", arguments), modal);
 		this.arguments = arguments;
@@ -460,10 +509,15 @@ public class ButtonDialog extends JDialog {
 		checkForEDT();
 	}
 
-	/**
-	 * @deprecated Use {@link ButtonDialogBuilder} instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Button dialog.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param arguments the arguments
+     * @deprecated Use {@link ButtonDialogBuilder} instead
+     */
+    @Deprecated
 	public ButtonDialog(Dialog owner, String key, Object... arguments) {
 		super(owner, I18N.getMessage(I18N.getGUIBundle(), "gui.dialog." + key + ".title", arguments), false);
 		this.arguments = arguments;
@@ -473,59 +527,57 @@ public class ButtonDialog extends JDialog {
 		checkForEDT();
 	}
 
-	/**
-	 * @deprecated Use {@link ButtonDialogBuilder} instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Button dialog.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param modal     the modal
+     * @param arguments the arguments
+     * @deprecated Use {@link ButtonDialogBuilder} instead
+     */
+    @Deprecated
 	public ButtonDialog(Frame owner, String key, boolean modal, Object... arguments) {
 		this(owner, key, modal ? ModalityType.APPLICATION_MODAL : ModalityType.MODELESS, arguments);
 	}
 
-	/**
-	 * @deprecated Use {@link ButtonDialogBuilder} instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Button dialog.
+     *
+     * @param owner     the owner
+     * @param key       the key
+     * @param arguments the arguments
+     * @deprecated Use {@link ButtonDialogBuilder} instead
+     */
+    @Deprecated
 	public ButtonDialog(Frame owner, String key, Object... arguments) {
 		this(owner, key, ModalityType.APPLICATION_MODAL, arguments);
 	}
 
-	/**
-	 * Constructor used by the {@link ButtonDialogBuilder} and can also be used when subclassing.
-	 *
-	 * @param owner
-	 *            the owner or {@code null}. Note that an owner should be set if the dialog will be
-	 *            modal, otherwise the order ends up being undefined and causing all sorts of
-	 *            trouble
-	 * @param key
-	 *            the i18n key
-	 * @param modalityType
-	 *            the modality type
-	 * @param arguments
-	 *            the optional i18n arguments
-	 * @since 6.5.0
-	 */
-	protected ButtonDialog(Window owner, String key, ModalityType modalityType, Object... arguments) {
+    /**
+     * Constructor used by the {@link ButtonDialogBuilder} and can also be used when subclassing.
+     *
+     * @param owner        the owner or {@code null}. Note that an owner should be set if the dialog will be            modal, otherwise the order ends up being undefined and causing all sorts of            trouble
+     * @param key          the i18n key
+     * @param modalityType the modality type
+     * @param arguments    the optional i18n arguments
+     * @since 6.5.0
+     */
+    protected ButtonDialog(Window owner, String key, ModalityType modalityType, Object... arguments) {
 		this(owner, key, modalityType, owner != null ? owner.getGraphicsConfiguration() : null, arguments);
 	}
 
-	/**
-	 * Constructor used by the {@link ButtonDialogBuilder} and can also be used when subclassing.
-	 *
-	 * @param owner
-	 *            the owner or {@code null}. Note that an owner should be set if the dialog will be
-	 *            modal, otherwise the order ends up being undefined and causing all sorts of
-	 *            trouble
-	 * @param key
-	 *            the i18n key
-	 * @param modalityType
-	 *            the modality type
-	 * @param graphicsConfig
-	 *            the graphics config to use or {@code null}
-	 * @param arguments
-	 *            the optional i18n arguments
-	 * @since 6.5.0
-	 */
-	protected ButtonDialog(Window owner, String key, ModalityType modalityType, GraphicsConfiguration graphicsConfig,
+    /**
+     * Constructor used by the {@link ButtonDialogBuilder} and can also be used when subclassing.
+     *
+     * @param owner          the owner or {@code null}. Note that an owner should be set if the dialog will be            modal, otherwise the order ends up being undefined and causing all sorts of            trouble
+     * @param key            the i18n key
+     * @param modalityType   the modality type
+     * @param graphicsConfig the graphics config to use or {@code null}
+     * @param arguments      the optional i18n arguments
+     * @since 6.5.0
+     */
+    protected ButtonDialog(Window owner, String key, ModalityType modalityType, GraphicsConfiguration graphicsConfig,
 			Object... arguments) {
 		super(owner, I18N.getMessage(I18N.getGUIBundle(), "gui.dialog." + key + ".title", arguments), modalityType,
 				graphicsConfig);
@@ -542,26 +594,40 @@ public class ButtonDialog extends JDialog {
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 
-	protected final String getKey() {
+    /**
+     * Gets key.
+     *
+     * @return the key
+     */
+    protected final String getKey() {
 		return "gui.dialog." + key;
 	}
 
-	/**
-	 * Returns the internationalized info text for this dialog. Argument formation is already
-	 * applied.
-	 */
-	protected String getInfoText() {
+    /**
+     * Returns the internationalized info text for this dialog. Argument formation is already
+     * applied.
+     *
+     * @return the info text
+     */
+    protected String getInfoText() {
 		return I18N.getMessage(I18N.getGUIBundle(), getKey() + ".message", this.arguments);
 	}
 
-	protected Icon getInfoIcon() {
+    /**
+     * Gets info icon.
+     *
+     * @return the info icon
+     */
+    protected Icon getInfoIcon() {
 		return SwingTools.createIcon("48/" + I18N.getMessage(I18N.getGUIBundle(), getKey() + ".icon"));
 	}
 
-	/**
-	 * Returns the internationalized title for this dialog. Argument formation is already applied.
-	 */
-	protected String getDialogTitle() {
+    /**
+     * Returns the internationalized title for this dialog. Argument formation is already applied.
+     *
+     * @return the dialog title
+     */
+    protected String getDialogTitle() {
 		return I18N.getMessage(I18N.getGUIBundle(), getKey() + ".title", this.arguments);
 	}
 
@@ -594,27 +660,66 @@ public class ButtonDialog extends JDialog {
 		return infoPanel;
 	}
 
-	protected void layoutDefault(JComponent centerComponent, int size, Collection<AbstractButton> buttons) {
+    /**
+     * Layout default.
+     *
+     * @param centerComponent the center component
+     * @param size            the size
+     * @param buttons         the buttons
+     */
+    protected void layoutDefault(JComponent centerComponent, int size, Collection<AbstractButton> buttons) {
 		layoutDefault(centerComponent, size, buttons.toArray(new AbstractButton[buttons.size()]));
 	}
 
-	protected void layoutDefault(JComponent centerComponent, Collection<AbstractButton> buttons) {
+    /**
+     * Layout default.
+     *
+     * @param centerComponent the center component
+     * @param buttons         the buttons
+     */
+    protected void layoutDefault(JComponent centerComponent, Collection<AbstractButton> buttons) {
 		layoutDefault(centerComponent, DEFAULT_SIZE, buttons.toArray(new AbstractButton[buttons.size()]));
 	}
 
-	protected void layoutDefault(JComponent centerComponent, AbstractButton... buttons) {
+    /**
+     * Layout default.
+     *
+     * @param centerComponent the center component
+     * @param buttons         the buttons
+     */
+    protected void layoutDefault(JComponent centerComponent, AbstractButton... buttons) {
 		layoutDefault(centerComponent, DEFAULT_SIZE, buttons);
 	}
 
-	protected void layoutDefault(JComponent centerComponent, int size, AbstractButton... buttons) {
+    /**
+     * Layout default.
+     *
+     * @param centerComponent the center component
+     * @param size            the size
+     * @param buttons         the buttons
+     */
+    protected void layoutDefault(JComponent centerComponent, int size, AbstractButton... buttons) {
 		layoutDefault(centerComponent, makeButtonPanel(buttons), size);
 	}
 
-	protected void layoutDefault(final JComponent centerComponent, JPanel buttonPanel) {
+    /**
+     * Layout default.
+     *
+     * @param centerComponent the center component
+     * @param buttonPanel     the button panel
+     */
+    protected void layoutDefault(final JComponent centerComponent, JPanel buttonPanel) {
 		layoutDefault(centerComponent, buttonPanel, DEFAULT_SIZE);
 	}
 
-	protected void layoutDefault(final JComponent centerComponent, JPanel buttonPanel, int size) {
+    /**
+     * Layout default.
+     *
+     * @param centerComponent the center component
+     * @param buttonPanel     the button panel
+     * @param size            the size
+     */
+    protected void layoutDefault(final JComponent centerComponent, JPanel buttonPanel, int size) {
 		this.centerComponent = centerComponent;
 		setTitle(getDialogTitle());
 		setLayout(new BorderLayout());
@@ -667,15 +772,27 @@ public class ButtonDialog extends JDialog {
 		setDefaultLocation();
 	}
 
-	protected void setDefaultLocation() {
+    /**
+     * Sets default location.
+     */
+    protected void setDefaultLocation() {
 		setLocationRelativeTo(getOwner() != null ? getOwner() : ApplicationFrame.getApplicationFrame());
 	}
 
-	protected void setDefaultSize() {
+    /**
+     * Sets default size.
+     */
+    protected void setDefaultSize() {
 		setDefaultSize(NORMAL);
 	}
 
-	protected Dimension getDefaultSize(int size) {
+    /**
+     * Gets default size.
+     *
+     * @param size the size
+     * @return the default size
+     */
+    protected Dimension getDefaultSize(int size) {
 		switch (size) {
 			case NARROW:
 				return DIMENSION_NARROW;
@@ -725,18 +842,35 @@ public class ButtonDialog extends JDialog {
 		}
 	}
 
-	protected void setDefaultSize(int size) {
+    /**
+     * Sets default size.
+     *
+     * @param size the size
+     */
+    protected void setDefaultSize(int size) {
 		if (size != DEFAULT_SIZE) {
 			setPreferredSize(getDefaultSize(size));
 		}
 		pack();
 	}
 
-	protected JPanel makeButtonPanel(Collection<AbstractButton> buttons) {
+    /**
+     * Make button panel j panel.
+     *
+     * @param buttons the buttons
+     * @return the j panel
+     */
+    protected JPanel makeButtonPanel(Collection<AbstractButton> buttons) {
 		return makeButtonPanel(buttons.toArray(new AbstractButton[buttons.size()]));
 	}
 
-	protected JPanel makeButtonPanel(AbstractButton... buttons) {
+    /**
+     * Make button panel j panel.
+     *
+     * @param buttons the buttons
+     * @return the j panel
+     */
+    protected JPanel makeButtonPanel(AbstractButton... buttons) {
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, GAP, GAP));
 		for (final AbstractButton button : buttons) {
 			if (button != null) {
@@ -754,12 +888,22 @@ public class ButtonDialog extends JDialog {
 		return buttonPanel;
 	}
 
-	/** Will be default button. */
-	protected JButton makeOkButton() {
+    /**
+     * Will be default button.  @return the j button
+     *
+     * @return the j button
+     */
+    protected JButton makeOkButton() {
 		return makeOkButton("ok");
 	}
 
-	protected JButton makeOkButton(String i18nKey) {
+    /**
+     * Make ok button j button.
+     *
+     * @param i18nKey the 18 n key
+     * @return the j button
+     */
+    protected JButton makeOkButton(String i18nKey) {
 		Action okAction = new ResourceAction(i18nKey) {
 
 			private static final long serialVersionUID = 1L;
@@ -776,12 +920,22 @@ public class ButtonDialog extends JDialog {
 		return button;
 	}
 
-	/** Will listen to ESCAPE. */
-	protected JButton makeCancelButton() {
+    /**
+     * Will listen to ESCAPE.  @return the j button
+     *
+     * @return the j button
+     */
+    protected JButton makeCancelButton() {
 		return makeCancelButton("cancel");
 	}
 
-	protected JButton makeCancelButton(String i18nKey) {
+    /**
+     * Make cancel button j button.
+     *
+     * @param i18nKey the 18 n key
+     * @return the j button
+     */
+    protected JButton makeCancelButton(String i18nKey) {
 		Action cancelAction = new ResourceAction(i18nKey) {
 
 			private static final long serialVersionUID = 1L;
@@ -798,8 +952,12 @@ public class ButtonDialog extends JDialog {
 		return new JButton(cancelAction);
 	}
 
-	/** Will be default button and listen to ESCAPE. */
-	protected JButton makeCloseButton() {
+    /**
+     * Will be default button and listen to ESCAPE.  @return the j button
+     *
+     * @return the j button
+     */
+    protected JButton makeCloseButton() {
 		Action action = new ResourceAction("close") {
 
 			private static final long serialVersionUID = 1L;
@@ -818,30 +976,31 @@ public class ButtonDialog extends JDialog {
 		return button;
 	}
 
-	protected void cancel() {
+    /**
+     * Cancel.
+     */
+    protected void cancel() {
 		dispose();
 	}
 
-	protected void ok() {
+    /**
+     * Ok.
+     */
+    protected void ok() {
 		dispose();
 	}
 
-	/**
-	 *
-	 * Calls {@link #setConfirmed(boolean)} and {@link #ok()} or {@link #cancel()} depending on the
-	 * provided input.
-	 * <p>
-	 * Necessary for extensions that cannot call the protected {@link #ok()}, {@link #cancel()} and
-	 * {@link #setConfirmed(boolean)} methods.
-	 *
-	 * @param accept
-	 *            defines whether the user has accepted the dialog. If {@code true} {@link #ok()} is
-	 *            called and {@link #setConfirmed(boolean)} is set to {@code true} as well. If
-	 *            {@code false} {@link #cancel()} is called and {@link #setConfirmed(boolean)} is
-	 *            set to {@code false}.
-	 * @since 6.5.0
-	 */
-	public void accept(boolean accept) {
+    /**
+     * Calls {@link #setConfirmed(boolean)} and {@link #ok()} or {@link #cancel()} depending on the
+     * provided input.
+     * <p>
+     * Necessary for extensions that cannot call the protected {@link #ok()}, {@link #cancel()} and
+     * {@link #setConfirmed(boolean)} methods.
+     *
+     * @param accept defines whether the user has accepted the dialog. If {@code true} {@link #ok()} is            called and {@link #setConfirmed(boolean)} is set to {@code true} as well. If            {@code false} {@link #cancel()} is called and {@link #setConfirmed(boolean)} is            set to {@code false}.
+     * @since 6.5.0
+     */
+    public void accept(boolean accept) {
 		if (accept) {
 			setConfirmed(true);
 			ok();
@@ -851,20 +1010,38 @@ public class ButtonDialog extends JDialog {
 		}
 	}
 
-	protected void close() {
+    /**
+     * Close.
+     */
+    protected void close() {
 		dispose();
 	}
 
-	/** Returns true iff the user pressed the generated ok button. */
-	public boolean wasConfirmed() {
+    /**
+     * Returns true iff the user pressed the generated ok button.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean wasConfirmed() {
 		return wasConfirmed;
 	}
 
-	protected void setConfirmed(boolean b) {
+    /**
+     * Sets confirmed.
+     *
+     * @param b the b
+     */
+    protected void setConfirmed(boolean b) {
 		this.wasConfirmed = b;
 	}
 
-	public static TitledBorder createTitledBorder(String title) {
+    /**
+     * Create titled border titled border.
+     *
+     * @param title the title
+     * @return the titled border
+     */
+    public static TitledBorder createTitledBorder(String title) {
 		TitledBorder border = new TitledBorder(createBorder(), title) {
 
 			private static final long serialVersionUID = 3113821577644055057L;
@@ -877,23 +1054,48 @@ public class ButtonDialog extends JDialog {
 		return border;
 	}
 
-	public static Border createBorder() {
+    /**
+     * Create border border.
+     *
+     * @return the border
+     */
+    public static Border createBorder() {
 		return BorderFactory.createMatteBorder(1, 1, 1, 1, Color.LIGHT_GRAY);
 	}
 
-	public static GridLayout createGridLayout(int rows, int columns) {
+    /**
+     * Create grid layout grid layout.
+     *
+     * @param rows    the rows
+     * @param columns the columns
+     * @return the grid layout
+     */
+    public static GridLayout createGridLayout(int rows, int columns) {
 		return new GridLayout(rows, columns, GAP, GAP);
 	}
 
-	public void addChangeListener(ChangeListener l) {
+    /**
+     * Add change listener.
+     *
+     * @param l the l
+     */
+    public void addChangeListener(ChangeListener l) {
 		listeners.add(l);
 	}
 
-	public void removeChangeListener(ChangeListener l) {
+    /**
+     * Remove change listener.
+     *
+     * @param l the l
+     */
+    public void removeChangeListener(ChangeListener l) {
 		listeners.remove(l);
 	}
 
-	protected void fireStateChanged() {
+    /**
+     * Fire state changed.
+     */
+    protected void fireStateChanged() {
 		ChangeEvent e = new ChangeEvent(this);
 		for (ChangeListener l : listeners) {
 			l.stateChanged(e);

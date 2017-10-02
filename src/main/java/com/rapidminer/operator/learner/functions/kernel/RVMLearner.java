@@ -59,72 +59,100 @@ import com.rapidminer.tools.RandomGenerator;
  * (Tipping/Faul/2003) is also available if the parameter &quot;rvm_type&quot; is set to
  * &quot;Constructive-Regression-RVM&quot;.
  *
- * @rapidminer.reference Tipping/2001a
- * @rapidminer.reference Tipping/Faul/2003a
- *
  * @author Piotr Kasprzak, Ingo Mierswa
+ * @rapidminer.reference Tipping /2001a
+ * @rapidminer.reference Tipping /Faul/2003a
  * @rapidminer.index RVM
  */
 public class RVMLearner extends AbstractKernelBasedLearner {
 
-	/** The parameter name for &quot;Regression RVM&quot; */
-	public static final String PARAMETER_RVM_TYPE = "rvm_type";
+    /**
+     * The parameter name for &quot;Regression RVM&quot;
+     */
+    public static final String PARAMETER_RVM_TYPE = "rvm_type";
 
-	/** The parameter name for &quot;The type of the kernel functions.&quot; */
-	public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
+    /**
+     * The parameter name for &quot;The type of the kernel functions.&quot;
+     */
+    public static final String PARAMETER_KERNEL_TYPE = "kernel_type";
 
-	/** The parameter name for &quot;The maximum number of iterations used.&quot; */
-	public static final String PARAMETER_MAX_ITERATION = "max_iteration";
+    /**
+     * The parameter name for &quot;The maximum number of iterations used.&quot;
+     */
+    public static final String PARAMETER_MAX_ITERATION = "max_iteration";
 
-	/**
-	 * The parameter name for &quot;Abort iteration if largest log alpha change is smaller than
-	 * this&quot;
-	 */
-	public static final String PARAMETER_MIN_DELTA_LOG_ALPHA = "min_delta_log_alpha";
+    /**
+     * The parameter name for &quot;Abort iteration if largest log alpha change is smaller than
+     * this&quot;
+     */
+    public static final String PARAMETER_MIN_DELTA_LOG_ALPHA = "min_delta_log_alpha";
 
-	/** The parameter name for &quot;Prune basis function if its alpha is bigger than this&quot; */
-	public static final String PARAMETER_ALPHA_MAX = "alpha_max";
+    /**
+     * The parameter name for &quot;Prune basis function if its alpha is bigger than this&quot;
+     */
+    public static final String PARAMETER_ALPHA_MAX = "alpha_max";
 
-	/** The parameter name for &quot;The lengthscale used in all kernels.&quot; */
-	public static final String PARAMETER_KERNEL_LENGTHSCALE = "kernel_lengthscale";
+    /**
+     * The parameter name for &quot;The lengthscale used in all kernels.&quot;
+     */
+    public static final String PARAMETER_KERNEL_LENGTHSCALE = "kernel_lengthscale";
 
-	/** The parameter name for &quot;The degree used in the poly kernel.&quot; */
-	public static final String PARAMETER_KERNEL_DEGREE = "kernel_degree";
+    /**
+     * The parameter name for &quot;The degree used in the poly kernel.&quot;
+     */
+    public static final String PARAMETER_KERNEL_DEGREE = "kernel_degree";
 
-	/** The parameter name for &quot;The bias used in the poly kernel.&quot; */
-	public static final String PARAMETER_KERNEL_BIAS = "kernel_bias";
+    /**
+     * The parameter name for &quot;The bias used in the poly kernel.&quot;
+     */
+    public static final String PARAMETER_KERNEL_BIAS = "kernel_bias";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter sigma1 (Epanechnikov, Gaussian
-	 * Combination, Multiquadric).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_SIGMA1 = "kernel_sigma1";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma1 (Epanechnikov, Gaussian
+     * Combination, Multiquadric).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA1 = "kernel_sigma1";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter sigma2 (Gaussian Combination).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_SIGMA2 = "kernel_sigma2";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma2 (Gaussian Combination).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA2 = "kernel_sigma2";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter sigma3 (Gaussian Combination).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_SIGMA3 = "kernel_sigma3";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter sigma3 (Gaussian Combination).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SIGMA3 = "kernel_sigma3";
 
-	/**
-	 * The parameter name for &quot;The SVM kernel parameter shift (polynomial, Multiquadric).&quot;
-	 */
-	public static final String PARAMETER_KERNEL_SHIFT = "kernel_shift";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter shift (polynomial, Multiquadric).&quot;
+     */
+    public static final String PARAMETER_KERNEL_SHIFT = "kernel_shift";
 
-	/** The parameter name for &quot;The SVM kernel parameter a (neural).&quot; */
-	public static final String PARAMETER_KERNEL_A = "kernel_a";
+    /**
+     * The parameter name for &quot;The SVM kernel parameter a (neural).&quot;
+     */
+    public static final String PARAMETER_KERNEL_A = "kernel_a";
 
-	/** The parameter name for &quot;The SVM kernel parameter b (neural).&quot; */
-	public static final String PARAMETER_KERNEL_B = "kernel_b";
-	public static final String[] RVM_TYPES = { "Regression-RVM", "Classification-RVM", "Constructive-Regression-RVM" };
-	public static final String[] KERNEL_TYPES = { "rbf", "cauchy", "laplace", "poly", "sigmoid", "Epanechnikov",
+    /**
+     * The parameter name for &quot;The SVM kernel parameter b (neural).&quot;
+     */
+    public static final String PARAMETER_KERNEL_B = "kernel_b";
+    /**
+     * The constant RVM_TYPES.
+     */
+    public static final String[] RVM_TYPES = { "Regression-RVM", "Classification-RVM", "Constructive-Regression-RVM" };
+    /**
+     * The constant KERNEL_TYPES.
+     */
+    public static final String[] KERNEL_TYPES = { "rbf", "cauchy", "laplace", "poly", "sigmoid", "Epanechnikov",
 			"gaussian combination", "multiquadric" };
 
-	public RVMLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Rvm learner.
+     *
+     * @param description the description
+     */
+    public RVMLearner(OperatorDescription description) {
 		super(description);
 	}
 
@@ -269,11 +297,15 @@ public class RVMLearner extends AbstractKernelBasedLearner {
 		return new RVMModel(exampleSet, model);
 	}
 
-	/**
-	 * Create the appropriate kernel functions depending on the ui settings.
-	 */
-
-	public KernelBasisFunction[] createKernels(double[][] x, int numKernels) throws OperatorException {
+    /**
+     * Create the appropriate kernel functions depending on the ui settings.
+     *
+     * @param x          the x
+     * @param numKernels the num kernels
+     * @return the kernel basis function [ ]
+     * @throws OperatorException the operator exception
+     */
+    public KernelBasisFunction[] createKernels(double[][] x, int numKernels) throws OperatorException {
 
 		KernelBasisFunction[] kernels = new KernelBasisFunction[numKernels];
 		KernelBasisFunction kernel = null;

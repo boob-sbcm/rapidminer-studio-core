@@ -39,7 +39,7 @@ import java.util.List;
 
 /**
  * Evolutionary Strategy approach for optimization of the logistic regression problem.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KernelLogisticRegressionOptimization extends ESOptimization {
@@ -61,8 +61,26 @@ public class KernelLogisticRegressionOptimization extends ESOptimization {
 
 	private boolean multiobjective = false;
 
-	/** Creates a new evolutionary SVM optimization. */
-	@Deprecated
+    /**
+     * Creates a new evolutionary SVM optimization.  @param exampleSet the example set
+     *
+     * @param exampleSet                    the example set
+     * @param kernel                        the kernel
+     * @param c                             the c
+     * @param initType                      the init type
+     * @param maxIterations                 the max iterations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param popSize                       the pop size
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param crossoverProb                 the crossover prob
+     * @param showConvergencePlot           the show convergence plot
+     * @param random                        the random
+     * @param logging                       the logging
+     */
+    @Deprecated
 	public KernelLogisticRegressionOptimization(ExampleSet exampleSet, // training data
 			Kernel kernel, // kernel
 			double c, int initType, // start population creation type para
@@ -74,8 +92,27 @@ public class KernelLogisticRegressionOptimization extends ESOptimization {
 				tournamentFraction, keepBest, mutationType, crossoverProb, showConvergencePlot, random, logging, null);
 	}
 
-	/** Creates a new evolutionary SVM optimization. */
-	public KernelLogisticRegressionOptimization(
+    /**
+     * Creates a new evolutionary SVM optimization.  @param exampleSet the example set
+     *
+     * @param exampleSet                    the example set
+     * @param kernel                        the kernel
+     * @param c                             the c
+     * @param initType                      the init type
+     * @param maxIterations                 the max iterations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param popSize                       the pop size
+     * @param selectionType                 the selection type
+     * @param tournamentFraction            the tournament fraction
+     * @param keepBest                      the keep best
+     * @param mutationType                  the mutation type
+     * @param crossoverProb                 the crossover prob
+     * @param showConvergencePlot           the show convergence plot
+     * @param random                        the random
+     * @param logging                       the logging
+     * @param executingOperator             the executing operator
+     */
+    public KernelLogisticRegressionOptimization(
 			ExampleSet exampleSet, // training data
 			Kernel kernel, // kernel
 			double c,
@@ -163,7 +200,13 @@ public class KernelLogisticRegressionOptimization extends ESOptimization {
 		return performanceVector;
 	}
 
-	public Model train() throws OperatorException {
+    /**
+     * Train model.
+     *
+     * @return the model
+     * @throws OperatorException the operator exception
+     */
+    public Model train() throws OperatorException {
 		optimize();
 		return getModel(getBestValuesEver());
 	}

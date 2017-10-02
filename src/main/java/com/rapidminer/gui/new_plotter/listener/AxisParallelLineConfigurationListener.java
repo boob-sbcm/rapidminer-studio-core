@@ -22,10 +22,16 @@ import com.rapidminer.gui.new_plotter.event.AxisParallelLineConfigurationChangeE
 
 
 /**
- * 
+ * The interface Axis parallel line configuration listener.
+ *
  * @author Marius Helf
  */
 public interface AxisParallelLineConfigurationListener {
 
-	public void axisParallelLineConfigurationChanged(AxisParallelLineConfigurationChangeEvent e);
+    /**
+     * Axis parallel line configuration changed.
+     *
+     * @param e the e
+     */
+    public void axisParallelLineConfigurationChanged(AxisParallelLineConfigurationChangeEvent e);
 }

@@ -45,15 +45,20 @@ public class NewOperatorEditor extends JPanel implements TreeSelectionListener, 
 
 	private final NewOperatorGroupTree newOperatorGroupTree;
 
-	public NewOperatorEditor() {
+    /**
+     * Instantiates a new New operator editor.
+     */
+    public NewOperatorEditor() {
 		this(null);
 	}
 
-	/**
-	 * The drag listener will be registered at the operator tree and will receive drag start events
-	 * if a drag has started and drag stopped events if dragging has stopped again
-	 */
-	public NewOperatorEditor(DragListener dragListener) {
+    /**
+     * The drag listener will be registered at the operator tree and will receive drag start events
+     * if a drag has started and drag stopped events if dragging has stopped again
+     *
+     * @param dragListener the drag listener
+     */
+    public NewOperatorEditor(DragListener dragListener) {
 		super(new BorderLayout());
 		// will cause the tree half to keep fixed size during resizing
 		setBorder(null);
@@ -72,7 +77,10 @@ public class NewOperatorEditor extends JPanel implements TreeSelectionListener, 
 		// do nothing
 	}
 
-	public static final String NEW_OPERATOR_DOCK_KEY = "new_operator";
+    /**
+     * The constant NEW_OPERATOR_DOCK_KEY.
+     */
+    public static final String NEW_OPERATOR_DOCK_KEY = "new_operator";
 	private final DockKey DOCK_KEY = new ResourceDockKey(NEW_OPERATOR_DOCK_KEY);
 
 	@Override
@@ -89,15 +97,30 @@ public class NewOperatorEditor extends JPanel implements TreeSelectionListener, 
 		DOCK_KEY.setDockGroup(MainFrame.DOCK_GROUP_ROOT);
 	}
 
-	public boolean shouldAutoConnectNewOperatorsInputs() {
+    /**
+     * Should auto connect new operators inputs boolean.
+     *
+     * @return the boolean
+     */
+    public boolean shouldAutoConnectNewOperatorsInputs() {
 		return newOperatorGroupTree.shouldAutoConnectNewOperatorsInputs();
 	}
 
-	public boolean shouldAutoConnectNewOperatorsOutputs() {
+    /**
+     * Should auto connect new operators outputs boolean.
+     *
+     * @return the boolean
+     */
+    public boolean shouldAutoConnectNewOperatorsOutputs() {
 		return newOperatorGroupTree.shouldAutoConnectNewOperatorsOutputs();
 	}
-	
-	public NewOperatorGroupTree getNewOperatorGroupTree() {
+
+    /**
+     * Gets new operator group tree.
+     *
+     * @return the new operator group tree
+     */
+    public NewOperatorGroupTree getNewOperatorGroupTree() {
 		return newOperatorGroupTree;
 	}
 }

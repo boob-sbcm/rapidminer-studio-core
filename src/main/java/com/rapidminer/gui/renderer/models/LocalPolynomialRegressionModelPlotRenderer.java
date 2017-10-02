@@ -26,8 +26,9 @@ import com.rapidminer.operator.learner.local.LocalPolynomialRegressionModel;
 
 
 /**
+ * The type Local polynomial regression model plot renderer.
+ *
  * @author Sebastian Land
- * 
  */
 public class LocalPolynomialRegressionModelPlotRenderer extends AbstractDataTablePlotterRenderer {
 

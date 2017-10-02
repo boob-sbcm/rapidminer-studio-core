@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Checks for each value if it should mutated. Sets a non-min value to min and a min value to a
  * random value between min and max.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SparsityMutation implements Mutation {
@@ -40,7 +40,16 @@ public class SparsityMutation implements Mutation {
 
 	private RandomGenerator random;
 
-	public SparsityMutation(double prob, double[] min, double[] max, OptimizationValueType[] valueTypes,
+    /**
+     * Instantiates a new Sparsity mutation.
+     *
+     * @param prob       the prob
+     * @param min        the min
+     * @param max        the max
+     * @param valueTypes the value types
+     * @param random     the random
+     */
+    public SparsityMutation(double prob, double[] min, double[] max, OptimizationValueType[] valueTypes,
 			RandomGenerator random) {
 		this.prob = prob;
 		this.min = min;

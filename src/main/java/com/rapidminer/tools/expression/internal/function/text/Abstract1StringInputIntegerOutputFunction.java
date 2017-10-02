@@ -36,22 +36,16 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * output.
  *
  * @author Thilo Kamradt
- *
  */
 public abstract class Abstract1StringInputIntegerOutputFunction extends AbstractFunction {
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 *
-	 * @param i18nKey
-	 *            the key for the {@link FunctionDescription}. The functionName is read from
-	 *            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName
-	 *            from ".group", the description from ".description" and the function with
-	 *            parameters from ".parameters". If ".parameters" is not present, the ".name" is
-	 *            taken for the function with parameters.
-	 */
-	public Abstract1StringInputIntegerOutputFunction(String i18n) {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     *
+     * @param i18n the 18 n
+     */
+    public Abstract1StringInputIntegerOutputFunction(String i18n) {
 		super(i18n, 1, Ontology.INTEGER);
 	}
 
@@ -68,17 +62,14 @@ public abstract class Abstract1StringInputIntegerOutputFunction extends Abstract
 		return new SimpleExpressionEvaluator(makeStringCallable(eEvaluator), type, isResultConstant(inputEvaluators));
 	}
 
-	/**
-	 * Builds a DoubleCallable from left and right using {@link #compute(String, String)}, where
-	 * constant child results are evaluated.
-	 *
-	 * @param left
-	 *            the left input
-	 * @param right
-	 *            the right input
-	 * @return the resulting DoubleCallable
-	 */
-	protected DoubleCallable makeStringCallable(ExpressionEvaluator evaluator) {
+    /**
+     * Builds a DoubleCallable from left and right using {@link #compute(String, String)}, where
+     * constant child results are evaluated.
+     *
+     * @param evaluator the evaluator
+     * @return the resulting DoubleCallable
+     */
+    protected DoubleCallable makeStringCallable(ExpressionEvaluator evaluator) {
 		final Callable<String> funcEvaluator = evaluator.getStringFunction();
 		try {
 
@@ -112,13 +103,13 @@ public abstract class Abstract1StringInputIntegerOutputFunction extends Abstract
 		}
 	}
 
-	/**
-	 * Computes the result for one input String value.
-	 *
-	 * @param value1
-	 * @return the result of the computation.
-	 */
-	protected abstract double compute(String value1);
+    /**
+     * Computes the result for one input String value.
+     *
+     * @param value1 the value 1
+     * @return the result of the computation.
+     */
+    protected abstract double compute(String value1);
 
 	@Override
 	protected ExpressionType computeType(ExpressionType... inputTypes) {

@@ -34,11 +34,13 @@ import com.rapidminer.tools.expression.internal.antlr.AntlrParser;
  * Tests the results of {@link AntlrParser#parse(String)} for bitwise functions.
  *
  * @author David Arnu
- *
  */
 public class AntlrParserBitwiseTest extends AntlrParserTest {
 
-	@Test
+    /**
+     * Bit or simple.
+     */
+    @Test
 	public void bitOrSimple() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("bit_or(2,1)");
@@ -49,7 +51,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit or negative.
+     */
+    @Test
 	public void bitOrNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("bit_or(-2,1)");
@@ -60,7 +65,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit or double integer.
+     */
+    @Test
 	public void bitOrDoubleInteger() {
 		try {
 			getExpressionWithFunctionContext(" bit_or(2.5,1)");
@@ -70,7 +78,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit or integer double.
+     */
+    @Test
 	public void bitOrIntegerDouble() {
 		try {
 			getExpressionWithFunctionContext(" bit_or(2,1.5)");
@@ -80,7 +91,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit or infinity.
+     */
+    @Test
 	public void bitOrInfinity() {
 		try {
 			getExpressionWithFunctionContext(" bit_or(2,INFINITY)");
@@ -90,7 +104,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit or missing.
+     */
+    @Test
 	public void bitOrMissing() {
 		try {
 			getExpressionWithFunctionContext(" bit_or(2,MISSING_NUMERIC)");
@@ -100,7 +117,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit or wrong type.
+     */
+    @Test
 	public void bitOrWrongType() {
 		try {
 			getExpressionWithFunctionContext(" bit_or(\"aa\",1.5)");
@@ -110,7 +130,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit empty.
+     */
+    @Test
 	public void bitEmpty() {
 		try {
 			getExpressionWithFunctionContext(" bit_or()");
@@ -122,7 +145,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 
 	// bit XOR
 
-	@Test
+    /**
+     * Bit xor simple.
+     */
+    @Test
 	public void bitXorSimple() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("bit_xor(6,5)");
@@ -133,7 +159,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit xor negative.
+     */
+    @Test
 	public void bitXorNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("bit_xor(-2,1)");
@@ -144,7 +173,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit xor double integer.
+     */
+    @Test
 	public void bitXorDoubleInteger() {
 		try {
 			getExpressionWithFunctionContext(" bit_xor(2.5,1)");
@@ -154,7 +186,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit xor integer double.
+     */
+    @Test
 	public void bitXorIntegerDouble() {
 		try {
 			getExpressionWithFunctionContext(" bit_xor(2,1.5)");
@@ -164,7 +199,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit xor infinity.
+     */
+    @Test
 	public void bitXorInfinity() {
 		try {
 			getExpressionWithFunctionContext(" bit_xor(2,INFINITY)");
@@ -174,7 +212,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit xor missing.
+     */
+    @Test
 	public void bitXorMissing() {
 		try {
 			getExpressionWithFunctionContext(" bit_xor(2,MISSING_NUMERIC)");
@@ -184,7 +225,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit xor wrong type.
+     */
+    @Test
 	public void bitXorWrongType() {
 		try {
 			getExpressionWithFunctionContext(" bit_xor(\"aa\",1.5)");
@@ -194,7 +238,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit xor empty.
+     */
+    @Test
 	public void bitXorEmpty() {
 		try {
 			getExpressionWithFunctionContext(" bit_xor()");
@@ -206,7 +253,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 
 	// bit AND
 
-	@Test
+    /**
+     * Bit and simple.
+     */
+    @Test
 	public void bitAndSimple() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("bit_and(6,5)");
@@ -217,7 +267,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit and negative.
+     */
+    @Test
 	public void bitAndNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("bit_and(-2,5)");
@@ -228,7 +281,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit and double integer.
+     */
+    @Test
 	public void bitAndDoubleInteger() {
 		try {
 			getExpressionWithFunctionContext("bit_and(2.5,1)");
@@ -238,7 +294,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit and integer double.
+     */
+    @Test
 	public void bitAndIntegerDouble() {
 		try {
 			getExpressionWithFunctionContext(" bit_and(2,1.5)");
@@ -248,7 +307,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit and infinity.
+     */
+    @Test
 	public void bitAndInfinity() {
 		try {
 			getExpressionWithFunctionContext(" bit_and(2,INFINITY)");
@@ -258,7 +320,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit and missing.
+     */
+    @Test
 	public void bitAndMissing() {
 		try {
 			getExpressionWithFunctionContext(" bit_and(2,MISSING_NUMERIC)");
@@ -268,7 +333,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit and wrong type.
+     */
+    @Test
 	public void bitAndWrongType() {
 		try {
 			getExpressionWithFunctionContext(" bit_and(\"aa\",1.5)");
@@ -278,7 +346,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit and empty.
+     */
+    @Test
 	public void bitAndEmpty() {
 		try {
 			getExpressionWithFunctionContext(" bit_and()");
@@ -290,7 +361,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 
 	// bit NOT
 
-	@Test
+    /**
+     * Bit not simple.
+     */
+    @Test
 	public void bitNotSimple() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("bit_not(2)");
@@ -301,7 +375,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit not negative.
+     */
+    @Test
 	public void bitNotNegative() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("bit_not(-2)");
@@ -312,7 +389,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit not double.
+     */
+    @Test
 	public void bitNotDouble() {
 		try {
 			getExpressionWithFunctionContext(" bit_not(2.5)");
@@ -322,7 +402,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit not infinity.
+     */
+    @Test
 	public void bitNotInfinity() {
 		try {
 			getExpressionWithFunctionContext(" bit_not(INFINITY)");
@@ -332,7 +415,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit not missing.
+     */
+    @Test
 	public void bitNotMissing() {
 		try {
 			getExpressionWithFunctionContext(" bit_not(MISSING_NUMERIC)");
@@ -342,7 +428,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit not wrong type.
+     */
+    @Test
 	public void bitNotWrongType() {
 		try {
 			getExpressionWithFunctionContext(" bit_not(\"aa\")");
@@ -352,7 +441,10 @@ public class AntlrParserBitwiseTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Bit not empty.
+     */
+    @Test
 	public void bitNotEmpty() {
 		try {
 			getExpressionWithFunctionContext(" bit_not()");

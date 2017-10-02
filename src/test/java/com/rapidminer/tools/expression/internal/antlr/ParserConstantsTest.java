@@ -42,7 +42,6 @@ import com.rapidminer.tools.expression.internal.antlr.AntlrParser;
  * {@link BasicConstantsResolver} or the {@link StandardFunctionsWithConstants}.
  *
  * @author Gisa Schaefer
- *
  */
 public class ParserConstantsTest {
 
@@ -56,7 +55,10 @@ public class ParserConstantsTest {
 		return parser.parse(expression);
 	}
 
-	@Test
+    /**
+     * Constant true.
+     */
+    @Test
 	public void constantTrue() {
 		try {
 			Expression expression = getExpressionWithConstantContext("true");
@@ -67,7 +69,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant true.
+     */
+    @Test
 	public void constantTRUE() {
 		try {
 			Expression expression = getExpressionWithConstantContext("TRUE");
@@ -78,7 +83,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant false.
+     */
+    @Test
 	public void constantFalse() {
 		try {
 			Expression expression = getExpressionWithConstantContext("false");
@@ -89,7 +97,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant false.
+     */
+    @Test
 	public void constantFALSE() {
 		try {
 			Expression expression = getExpressionWithConstantContext("FALSE");
@@ -100,7 +111,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant e.
+     */
+    @Test
 	public void constantE() {
 		try {
 			Expression expression = getExpressionWithConstantContext("e");
@@ -111,7 +125,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant pi.
+     */
+    @Test
 	public void constantPi() {
 		try {
 			Expression expression = getExpressionWithConstantContext("pi");
@@ -122,7 +139,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant infinity.
+     */
+    @Test
 	public void constantInfinity() {
 		try {
 			Expression expression = getExpressionWithConstantContext("INFINITY");
@@ -133,7 +153,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant na n.
+     */
+    @Test
 	public void constantNaN() {
 		try {
 			Expression expression = getExpressionWithConstantContext("NaN");
@@ -144,7 +167,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant nan.
+     */
+    @Test
 	public void constantNAN() {
 		try {
 			Expression expression = getExpressionWithConstantContext("NAN");
@@ -155,7 +181,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant missing numeric.
+     */
+    @Test
 	public void constantMissingNumeric() {
 		try {
 			Expression expression = getExpressionWithConstantContext("MISSING_NUMERIC");
@@ -166,7 +195,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant missing.
+     */
+    @Test
 	public void constantMissing() {
 		try {
 			Expression expression = getExpressionWithConstantContext("MISSING");
@@ -178,7 +210,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant missing nominal.
+     */
+    @Test
 	public void constantMissingNominal() {
 		try {
 			Expression expression = getExpressionWithConstantContext("MISSING_NOMINAL");
@@ -190,7 +225,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant missing date.
+     */
+    @Test
 	public void constantMissingDate() {
 		try {
 			Expression expression = getExpressionWithConstantContext("MISSING_DATE");
@@ -202,7 +240,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant date short.
+     */
+    @Test
 	public void constantDateShort() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_SHORT");
@@ -213,7 +254,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant date medium.
+     */
+    @Test
 	public void constantDateMedium() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_MEDIUM");
@@ -224,7 +268,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant date long.
+     */
+    @Test
 	public void constantDateLong() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_LONG");
@@ -235,7 +282,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant date full.
+     */
+    @Test
 	public void constantDateFull() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_FULL");
@@ -246,7 +296,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant show date only.
+     */
+    @Test
 	public void constantShowDateOnly() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_SHOW_DATE_ONLY");
@@ -257,7 +310,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant show time only.
+     */
+    @Test
 	public void constantShowTimeOnly() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_SHOW_TIME_ONLY");
@@ -268,7 +324,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant show date and time.
+     */
+    @Test
 	public void constantShowDateAndTime() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_SHOW_DATE_AND_TIME");
@@ -279,7 +338,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant date unit year.
+     */
+    @Test
 	public void constantDateUnitYear() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_UNIT_YEAR");
@@ -290,7 +352,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant date unit month.
+     */
+    @Test
 	public void constantDateUnitMonth() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_UNIT_MONTH");
@@ -301,7 +366,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant date unit week.
+     */
+    @Test
 	public void constantDateUnitWeek() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_UNIT_WEEK");
@@ -312,7 +380,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant date unit day.
+     */
+    @Test
 	public void constantDateUnitDay() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_UNIT_DAY");
@@ -323,7 +394,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant date unit hour.
+     */
+    @Test
 	public void constantDateUnitHour() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_UNIT_HOUR");
@@ -334,7 +408,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant date unit minute.
+     */
+    @Test
 	public void constantDateUnitMinute() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_UNIT_MINUTE");
@@ -345,7 +422,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant date unit second.
+     */
+    @Test
 	public void constantDateUnitSecond() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_UNIT_SECOND");
@@ -356,7 +436,10 @@ public class ParserConstantsTest {
 		}
 	}
 
-	@Test
+    /**
+     * Constant date unit millisecond.
+     */
+    @Test
 	public void constantDateUnitMillisecond() {
 		try {
 			Expression expression = getExpressionWithConstantContext("DATE_UNIT_MILLISECOND");

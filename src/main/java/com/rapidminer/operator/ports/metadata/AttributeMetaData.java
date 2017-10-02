@@ -43,7 +43,6 @@ import com.rapidminer.tools.math.container.Range;
  * Meta data about an attribute
  *
  * @author Simon Fischer
- *
  */
 public class AttributeMetaData implements Serializable {
 
@@ -67,23 +66,36 @@ public class AttributeMetaData implements Serializable {
 
 	private Annotations annotations = new Annotations();
 
-	public AttributeMetaData(String name, int type) {
+    /**
+     * Instantiates a new Attribute meta data.
+     *
+     * @param name the name
+     * @param type the type
+     */
+    public AttributeMetaData(String name, int type) {
 		this(name, type, null);
 	}
 
-	/**
-	 * This will generate the complete meta data with all values.
-	 */
-	public AttributeMetaData(AttributeRole role, ExampleSet exampleSet) {
+    /**
+     * This will generate the complete meta data with all values.
+     *
+     * @param role       the role
+     * @param exampleSet the example set
+     */
+    public AttributeMetaData(AttributeRole role, ExampleSet exampleSet) {
 		this(role, exampleSet, false);
 	}
 
-	/**
-	 * This will generate the attribute meta data with the data's values shortened if the number of
-	 * values exceeds the respective property and the boolean flag is set to true. If shortened only
-	 * the first 100 characters of each nominal value is returned.
-	 */
-	public AttributeMetaData(AttributeRole role, ExampleSet exampleSet, boolean shortened) {
+    /**
+     * This will generate the attribute meta data with the data's values shortened if the number of
+     * values exceeds the respective property and the boolean flag is set to true. If shortened only
+     * the first 100 characters of each nominal value is returned.
+     *
+     * @param role       the role
+     * @param exampleSet the example set
+     * @param shortened  the shortened
+     */
+    public AttributeMetaData(AttributeRole role, ExampleSet exampleSet, boolean shortened) {
 		this(role.getAttribute().getName(), role.getAttribute().getValueType(), role.getSpecialName());
 		Attribute att = role.getAttribute();
 		if (att.isNominal()) {
@@ -127,18 +139,40 @@ public class AttributeMetaData implements Serializable {
 		this.annotations.putAll(att.getAnnotations());
 	}
 
-	public AttributeMetaData(String name, int type, String role) {
+    /**
+     * Instantiates a new Attribute meta data.
+     *
+     * @param name the name
+     * @param type the type
+     * @param role the role
+     */
+    public AttributeMetaData(String name, int type, String role) {
 		this.name = name;
 		this.type = type;
 		this.role = role;
 	}
 
-	public AttributeMetaData(String name, String role, int nominalType, String... values) {
+    /**
+     * Instantiates a new Attribute meta data.
+     *
+     * @param name        the name
+     * @param role        the role
+     * @param nominalType the nominal type
+     * @param values      the values
+     */
+    public AttributeMetaData(String name, String role, int nominalType, String... values) {
 		this(name, role, values);
 		this.type = nominalType;
 	}
 
-	public AttributeMetaData(String name, String role, String... values) {
+    /**
+     * Instantiates a new Attribute meta data.
+     *
+     * @param name   the name
+     * @param role   the role
+     * @param values the values
+     */
+    public AttributeMetaData(String name, String role, String... values) {
 		this.name = name;
 		this.type = Ontology.NOMINAL;
 		this.role = role;
@@ -148,7 +182,14 @@ public class AttributeMetaData implements Serializable {
 		}
 	}
 
-	public AttributeMetaData(String name, String role, Range range) {
+    /**
+     * Instantiates a new Attribute meta data.
+     *
+     * @param name  the name
+     * @param role  the role
+     * @param range the range
+     */
+    public AttributeMetaData(String name, String role, Range range) {
 		this.name = name;
 		this.role = role;
 		this.type = Ontology.REAL;
@@ -156,7 +197,15 @@ public class AttributeMetaData implements Serializable {
 		this.valueSetRelation = SetRelation.EQUAL;
 	}
 
-	public AttributeMetaData(String name, String role, int type, Range range) {
+    /**
+     * Instantiates a new Attribute meta data.
+     *
+     * @param name  the name
+     * @param role  the role
+     * @param type  the type
+     * @param range the range
+     */
+    public AttributeMetaData(String name, String role, int type, Range range) {
 		this(name, role, range);
 		this.type = type;
 	}
@@ -176,7 +225,12 @@ public class AttributeMetaData implements Serializable {
 		valueSet.addAll(attributeMetaData.getValueSet());
 	}
 
-	public AttributeMetaData(Attribute attribute) {
+    /**
+     * Instantiates a new Attribute meta data.
+     *
+     * @param attribute the attribute
+     */
+    public AttributeMetaData(Attribute attribute) {
 		this.name = attribute.getName();
 		this.type = attribute.getValueType();
 		this.annotations.putAll(attribute.getAnnotations());
@@ -189,15 +243,30 @@ public class AttributeMetaData implements Serializable {
 		}
 	}
 
-	public String getRole() {
+    /**
+     * Gets role.
+     *
+     * @return the role
+     */
+    public String getRole() {
 		return role;
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
+    public void setName(String name) {
 		String oldName = this.name;
 		this.name = name;
 		// informing ExampleSetMEtaData if one registered
@@ -206,18 +275,30 @@ public class AttributeMetaData implements Serializable {
 		}
 	}
 
-	public String getTypeName() {
+    /**
+     * Gets type name.
+     *
+     * @return the type name
+     */
+    public String getTypeName() {
 		return Ontology.ATTRIBUTE_VALUE_TYPE.mapIndex(type);
 	}
 
-	public int getValueType() {
+    /**
+     * Gets value type.
+     *
+     * @return the value type
+     */
+    public int getValueType() {
 		return type;
 	}
 
-	/**
-	 * If you change the type, keep in mind to set the value sets and their relation
-	 */
-	public void setType(int type) {
+    /**
+     * If you change the type, keep in mind to set the value sets and their relation
+     *
+     * @param type the type
+     */
+    public void setType(int type) {
 		if (Ontology.ATTRIBUTE_VALUE_TYPE.isA(type, Ontology.NUMERICAL)) {
 			valueSet.clear();
 		} else {
@@ -231,7 +312,12 @@ public class AttributeMetaData implements Serializable {
 		return getDescription();
 	}
 
-	public String getDescription() {
+    /**
+     * Gets description.
+     *
+     * @return the description
+     */
+    public String getDescription() {
 		StringBuilder buf = new StringBuilder();
 		if (role != null && !role.equals(Attributes.ATTRIBUTE_NAME)) {
 			buf.append("<em>");
@@ -268,11 +354,21 @@ public class AttributeMetaData implements Serializable {
 		return buf.toString();
 	}
 
-	public String getValueTypeName() {
+    /**
+     * Gets value type name.
+     *
+     * @return the value type name
+     */
+    public String getValueTypeName() {
 		return Ontology.ATTRIBUTE_VALUE_TYPE.mapIndex(getValueType());
 	}
 
-	public String getValueSetDescription() {
+    /**
+     * Gets value set description.
+     *
+     * @return the value set description
+     */
+    public String getValueSetDescription() {
 		StringBuilder buf = new StringBuilder();
 		appendValueSetDescription(buf);
 		return buf.toString();
@@ -347,7 +443,12 @@ public class AttributeMetaData implements Serializable {
 		}
 	}
 
-	protected String getDescriptionAsTableRow() {
+    /**
+     * Gets description as table row.
+     *
+     * @return the description as table row
+     */
+    protected String getDescriptionAsTableRow() {
 		StringBuilder b = new StringBuilder();
 		b.append("<tr><td>");
 		String role2 = getRole();
@@ -397,105 +498,186 @@ public class AttributeMetaData implements Serializable {
 		return new AttributeMetaData(this);
 	}
 
-	public boolean isNominal() {
+    /**
+     * Is nominal boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isNominal() {
 		return Ontology.ATTRIBUTE_VALUE_TYPE.isA(type, Ontology.NOMINAL);
 	}
 
-	public boolean isBinominal() {
+    /**
+     * Is binominal boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isBinominal() {
 		return Ontology.ATTRIBUTE_VALUE_TYPE.isA(type, Ontology.BINOMINAL);
 	}
 
-	public boolean isPolynominal() {
+    /**
+     * Is polynominal boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isPolynominal() {
 		return Ontology.ATTRIBUTE_VALUE_TYPE.isA(type, Ontology.POLYNOMINAL);
 	}
 
-	public boolean isNumerical() {
+    /**
+     * Is numerical boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isNumerical() {
 		return Ontology.ATTRIBUTE_VALUE_TYPE.isA(type, Ontology.NUMERICAL);
 	}
 
-	/**
-	 * @return {@code true} if the type of the attribute is a {@link Ontology#DATE_TIME} (and all
-	 *         it's subtypes), {@code false} otherwise
-	 * 
-	 * @since 6.4.0
-	 */
-	public boolean isDateTime() {
+    /**
+     * Is date time boolean.
+     *
+     * @return {@code true} if the type of the attribute is a {@link Ontology#DATE_TIME} (and all         it's subtypes), {@code false} otherwise
+     * @since 6.4.0
+     */
+    public boolean isDateTime() {
 		return Ontology.ATTRIBUTE_VALUE_TYPE.isA(type, Ontology.DATE_TIME);
 	}
 
-	public MetaDataInfo containsMissingValues() {
+    /**
+     * Contains missing values meta data info.
+     *
+     * @return the meta data info
+     */
+    public MetaDataInfo containsMissingValues() {
 		return numberOfMissingValues.isAtLeast(1);
 	}
 
-	public void setNumberOfMissingValues(MDInteger numberOfMissingValues) {
+    /**
+     * Sets number of missing values.
+     *
+     * @param numberOfMissingValues the number of missing values
+     */
+    public void setNumberOfMissingValues(MDInteger numberOfMissingValues) {
 		this.numberOfMissingValues = numberOfMissingValues;
 	}
 
-	public MDInteger getNumberOfMissingValues() {
+    /**
+     * Gets number of missing values.
+     *
+     * @return the number of missing values
+     */
+    public MDInteger getNumberOfMissingValues() {
 		return this.numberOfMissingValues;
 	}
 
-	public SetRelation getValueSetRelation() {
+    /**
+     * Gets value set relation.
+     *
+     * @return the value set relation
+     */
+    public SetRelation getValueSetRelation() {
 		return valueSetRelation;
 	}
 
-	public Set<String> getValueSet() {
+    /**
+     * Gets value set.
+     *
+     * @return the value set
+     */
+    public Set<String> getValueSet() {
 		return valueSet;
 	}
 
-	public void setValueSet(Set<String> valueSet, SetRelation relation) {
+    /**
+     * Sets value set.
+     *
+     * @param valueSet the value set
+     * @param relation the relation
+     */
+    public void setValueSet(Set<String> valueSet, SetRelation relation) {
 		this.valueSetRelation = relation;
 		this.valueSet = valueSet;
 	}
 
-	public Range getValueRange() {
+    /**
+     * Gets value range.
+     *
+     * @return the value range
+     */
+    public Range getValueRange() {
 		return valueRange;
 	}
 
-	public void setValueRange(Range range, SetRelation relation) {
+    /**
+     * Sets value range.
+     *
+     * @param range    the range
+     * @param relation the relation
+     */
+    public void setValueRange(Range range, SetRelation relation) {
 		this.valueSetRelation = relation;
 		this.valueRange = range;
 	}
 
-	public AttributeMetaData copy() {
+    /**
+     * Copy attribute meta data.
+     *
+     * @return the attribute meta data
+     */
+    public AttributeMetaData copy() {
 		return new AttributeMetaData(this);
 	}
 
-	/**
-	 * Sets the role of this attribute. The name is equivalent with the names from Attributes. To
-	 * reset use null as parameter.
-	 */
-	public void setRole(String role) {
+    /**
+     * Sets the role of this attribute. The name is equivalent with the names from Attributes. To
+     * reset use null as parameter.
+     *
+     * @param role the role
+     */
+    public void setRole(String role) {
 		this.role = role;
 	}
 
-	public void setRegular() {
+    /**
+     * Sets regular.
+     */
+    public void setRegular() {
 		this.role = null;
 	}
 
-	public boolean isSpecial() {
+    /**
+     * Is special boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSpecial() {
 		return role != null;
 	}
 
-	/**
-	 * This method returns a AttributeMetaData object for the prediction attribute created on
-	 * applying a model on an exampleset with the given label.
-	 */
-	public static AttributeMetaData createPredictionMetaData(AttributeMetaData labelMetaData) {
+    /**
+     * This method returns a AttributeMetaData object for the prediction attribute created on
+     * applying a model on an exampleset with the given label.
+     *
+     * @param labelMetaData the label meta data
+     * @return the attribute meta data
+     */
+    public static AttributeMetaData createPredictionMetaData(AttributeMetaData labelMetaData) {
 		AttributeMetaData result = labelMetaData.clone();
 		result.setName("prediction(" + result.getName() + ")");
 		result.setRole(Attributes.PREDICTION_NAME);
 		return result;
 	}
 
-	/**
-	 * This method creates the attribute meta data for the confidence attributes in the given
-	 * exampleSetMetaData. If the values are not known precisely the attributeSet relation of the
-	 * exampleSetMetaData object is set appropriate.
-	 *
-	 * @return
-	 */
-	public static ExampleSetMetaData createConfidenceAttributeMetaData(ExampleSetMetaData exampleSetMD) {
+    /**
+     * This method creates the attribute meta data for the confidence attributes in the given
+     * exampleSetMetaData. If the values are not known precisely the attributeSet relation of the
+     * exampleSetMetaData object is set appropriate.
+     *
+     * @param exampleSetMD the example set md
+     * @return example set meta data
+     */
+    public static ExampleSetMetaData createConfidenceAttributeMetaData(ExampleSetMetaData exampleSetMD) {
 		if (exampleSetMD.hasSpecial(Attributes.LABEL_NAME) == MetaDataInfo.YES) {
 			AttributeMetaData labelMetaData = exampleSetMD.getLabelMetaData();
 			if (labelMetaData.isNominal()) {
@@ -513,28 +695,57 @@ public class AttributeMetaData implements Serializable {
 		return exampleSetMD;
 	}
 
-	public void setValueSetRelation(SetRelation valueSetRelation) {
+    /**
+     * Sets value set relation.
+     *
+     * @param valueSetRelation the value set relation
+     */
+    public void setValueSetRelation(SetRelation valueSetRelation) {
 		this.valueSetRelation = valueSetRelation;
 	}
 
-	public void setMean(MDReal mean) {
+    /**
+     * Sets mean.
+     *
+     * @param mean the mean
+     */
+    public void setMean(MDReal mean) {
 		this.mean = mean;
 	}
 
-	public MDReal getMean() {
+    /**
+     * Gets mean.
+     *
+     * @return the mean
+     */
+    public MDReal getMean() {
 		return mean;
 	}
 
-	public void setMode(String mode) {
+    /**
+     * Sets mode.
+     *
+     * @param mode the mode
+     */
+    public void setMode(String mode) {
 		this.mode = mode;
 	}
 
-	public String getMode() {
+    /**
+     * Gets mode.
+     *
+     * @return the mode
+     */
+    public String getMode() {
 		return mode;
 	}
 
-	/** Sets types and ranges to the superset of this and the argument. */
-	public void merge(AttributeMetaData amd) {
+    /**
+     * Sets types and ranges to the superset of this and the argument.  @param amd the amd
+     *
+     * @param amd the amd
+     */
+    public void merge(AttributeMetaData amd) {
 		if (amd.isNominal() != this.isNominal()) {
 			this.type = Ontology.ATTRIBUTE_VALUE;
 		}
@@ -557,8 +768,12 @@ public class AttributeMetaData implements Serializable {
 		}
 	}
 
-	/** Returns either the value range or the value set, depending on the type of attribute. */
-	public String getRangeString() {
+    /**
+     * Returns either the value range or the value set, depending on the type of attribute.  @return the range string
+     *
+     * @return the range string
+     */
+    public String getRangeString() {
 
 		if (Ontology.ATTRIBUTE_VALUE_TYPE.isA(getValueType(), Ontology.DATE_TIME)) {
 			if (!Double.isInfinite(getValueRange().getLower()) && !Double.isInfinite(getValueRange().getUpper())) {
@@ -599,20 +814,22 @@ public class AttributeMetaData implements Serializable {
 		}
 	}
 
-	/**
-	 * Throws away nominal values until the value set size is at most the value specified by
-	 * property {@link RapidMiner#PROPERTY_RAPIDMINER_GENERAL_MAX_NOMINAL_VALUES}.
-	 */
-	public void shrinkValueSet() {
+    /**
+     * Throws away nominal values until the value set size is at most the value specified by
+     * property {@link RapidMiner#PROPERTY_RAPIDMINER_GENERAL_MAX_NOMINAL_VALUES}.
+     */
+    public void shrinkValueSet() {
 		int maxSize = getMaximumNumberOfNominalValues();
 		shrinkValueSet(maxSize);
 	}
 
-	/**
-	 * Returns the maximum number of values to be used for meta data generation as specified by
-	 * {@link RapidMiner#PROPERTY_RAPIDMINER_GENERAL_MAX_NOMINAL_VALUES}.
-	 */
-	public static int getMaximumNumberOfNominalValues() {
+    /**
+     * Returns the maximum number of values to be used for meta data generation as specified by
+     * {@link RapidMiner#PROPERTY_RAPIDMINER_GENERAL_MAX_NOMINAL_VALUES}.
+     *
+     * @return the maximum number of nominal values
+     */
+    public static int getMaximumNumberOfNominalValues() {
 		int maxSize = 100;
 		String maxSizeString = ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_GENERAL_MAX_NOMINAL_VALUES);
 		if (maxSizeString != null) {
@@ -646,11 +863,14 @@ public class AttributeMetaData implements Serializable {
 		}
 	}
 
-	/**
-	 * This method is only to be used by ExampleSetMetaData to register as owner of this
-	 * attributeMetaData. Returnes is this object or a clone if this object already has an owner.
-	 */
-	/* pp */AttributeMetaData registerOwner(ExampleSetMetaData owner) {
+    /**
+     * This method is only to be used by ExampleSetMetaData to register as owner of this
+     * attributeMetaData. Returnes is this object or a clone if this object already has an owner.
+     *
+     * @param owner the owner
+     * @return the attribute meta data
+     */
+/* pp */AttributeMetaData registerOwner(ExampleSetMetaData owner) {
 		if (this.owner == null) {
 			this.owner = owner;
 			return this;
@@ -661,7 +881,12 @@ public class AttributeMetaData implements Serializable {
 		}
 	}
 
-	public void setAnnotations(Annotations annotations) {
+    /**
+     * Sets annotations.
+     *
+     * @param annotations the annotations
+     */
+    public void setAnnotations(Annotations annotations) {
 		if (annotations == null) {
 			this.annotations = new Annotations();
 		} else {
@@ -669,7 +894,12 @@ public class AttributeMetaData implements Serializable {
 		}
 	}
 
-	public Annotations getAnnotations() {
+    /**
+     * Gets annotations.
+     *
+     * @return the annotations
+     */
+    public Annotations getAnnotations() {
 		return annotations;
 	}
 }

@@ -54,11 +54,11 @@ import com.rapidminer.tools.SystemInfoUtilities.OperatingSystem;
  * When started for the first time, listens on a given socket on localhost. If started for the
  * second time, contacts this socket and passes command line options to this socket. We use a lock
  * file mechanism to make sure only one server instance exists.
- *
+ * <p>
  * The port number on which we listen is stored in a file in the users home directory,
  * .RapidMiner/rapidminer.lock. The lock file contains two lines: the port number of the first
  * instance and a random session id. It is readable only to the current user.
- *
+ * <p>
  * In order to use this class, first try to contact another instance by calling
  * {@link #sendArgsToOtherInstanceIfUp(String...)}. If true is returned, commands were sent to and
  * processed by the other instance successfully and we can terminate. If false is returned, the
@@ -66,31 +66,39 @@ import com.rapidminer.tools.SystemInfoUtilities.OperatingSystem;
  * Now, when another instance is started, callbacks are made to the {@link RemoteControlHandler}
  * passed. Precisely this is done when calling
  * {@link #defaultLaunchWithArguments(String[], RemoteControlHandler)}.
- *
+ * <p>
  * Currently, the only supported message accepted by the server has this format:
- *
+ * <p>
  * <args session-id="12345678"><arg>arg1</arg><arg>arg2</arg>...</args>
- *
+ * <p>
  * When opening the socket, the server will respond with <hello/> and confirm success with <ok/>.
  * Error messages come as <error>message</error>.
- *
+ * <p>
  * This class is deliberately not using any fancy stuff like RMI to make debugging easy. Just
  * connect to socket and type to debug. Also, no sophisticated protocol is necessary since this
  * class will only talk to itself, and never even to a server of another version.
  *
  * @author Simon Fischer
- *
  */
 public enum LaunchListener {
 
-	/** The singleton instance. */
-	INSTANCE;
+    /**
+     * The singleton instance.
+     */
+    INSTANCE;
 
-	/** Callbacks will be made to this interface when another client contacts us. */
-	public static interface RemoteControlHandler {
+    /**
+     * Callbacks will be made to this interface when another client contacts us.
+     */
+    public static interface RemoteControlHandler {
 
-		/** Callback method called when another client starts. */
-		boolean handleArguments(String[] args);
+        /**
+         * Callback method called when another client starts.  @param args the args
+         *
+         * @param args the args
+         * @return the boolean
+         */
+        boolean handleArguments(String[] args);
 
 	}
 
@@ -137,8 +145,12 @@ public enum LaunchListener {
 		return FileSystemService.getUserConfigFile("rapidminer.lock");
 	}
 
-	/** Returns the singleton instance */
-	public static LaunchListener getInstance() {
+    /**
+     * Returns the singleton instance  @return the instance
+     *
+     * @return the instance
+     */
+    public static LaunchListener getInstance() {
 		return INSTANCE;
 	}
 
@@ -371,12 +383,15 @@ public enum LaunchListener {
 		}
 	}
 
-	/**
-	 * Sends the arguments to the other client, if up.
-	 *
-	 * @return true if other client is not up, so we must continue launching our APP.
-	 * */
-	public static boolean defaultLaunchWithArguments(String[] args, RemoteControlHandler handler) throws IOException {
+    /**
+     * Sends the arguments to the other client, if up.
+     *
+     * @param args    the args
+     * @param handler the handler
+     * @return true if other client is not up, so we must continue launching our APP.
+     * @throws IOException the io exception
+     */
+    public static boolean defaultLaunchWithArguments(String[] args, RemoteControlHandler handler) throws IOException {
 		ParameterService.init();
 		if (!getInstance().sendArgsToOtherInstanceIfUp(args)) {
 			getInstance().installListener(handler);

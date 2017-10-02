@@ -31,7 +31,7 @@ import javax.swing.Icon;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RestoreOriginalColumnOrderAction extends AbstractAction {
@@ -51,7 +51,13 @@ public class RestoreOriginalColumnOrderAction extends AbstractAction {
 
 	private ExtendedJTable table;
 
-	public RestoreOriginalColumnOrderAction(ExtendedJTable table, IconSize size) {
+    /**
+     * Instantiates a new Restore original column order action.
+     *
+     * @param table the table
+     * @param size  the size
+     */
+    public RestoreOriginalColumnOrderAction(ExtendedJTable table, IconSize size) {
 		super("Restore Column Order", ICONS[size.ordinal()]);
 		this.table = table;
 		putValue(SHORT_DESCRIPTION, "Restore the original order of all columns.");

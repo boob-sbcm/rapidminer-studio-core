@@ -38,7 +38,7 @@ import java.util.logging.Logger;
  * This class handles all existing ResourceConsumptionEstimator values, which are stored in the
  * "OperatorsResourceConsumption.csv" file. If no value is found for a given Operator,
  * <code>null</code> will be returned.
- * 
+ *
  * @author Marco Boeck
  */
 public class OperatorResourceConsumptionHandler {
@@ -101,19 +101,16 @@ public class OperatorResourceConsumptionHandler {
 		}
 	}
 
-	/**
-	 * Gets an array with the cpu time consumption values. <br>
-	 * [0] is coefficient, [1] is degreeExamples, [2] is degreeAttributes, [3] is
-	 * degreeLogarithmusExamples, [4] is degreeLogarithmusAttributes <br>
-	 * Returns <code>null</code> if no values are found in the CSV file.
-	 * 
-	 * @param className
-	 *            use XYZ.class where XYZ is the operator class
-	 * @return an array containg cpu time consumption values. [0] is coefficient, [1] is
-	 *         degreeExamples, [2] is degreeAttributes, [3] is degreeLogarithmusExamples, [4] is
-	 *         degreeLogarithmusAttributes
-	 */
-	public static String[] getTimeConsumption(Class<?> clazz) {
+    /**
+     * Gets an array with the cpu time consumption values. <br>
+     * [0] is coefficient, [1] is degreeExamples, [2] is degreeAttributes, [3] is
+     * degreeLogarithmusExamples, [4] is degreeLogarithmusAttributes <br>
+     * Returns <code>null</code> if no values are found in the CSV file.
+     *
+     * @param clazz the clazz
+     * @return an array containg cpu time consumption values. [0] is coefficient, [1] is         degreeExamples, [2] is degreeAttributes, [3] is degreeLogarithmusExamples, [4] is         degreeLogarithmusAttributes
+     */
+    public static String[] getTimeConsumption(Class<?> clazz) {
 		if (clazz == null) {
 			throw new IllegalArgumentException("clazz must not be null!");
 		}
@@ -128,19 +125,16 @@ public class OperatorResourceConsumptionHandler {
 		}
 	}
 
-	/**
-	 * Gets an array with the memory consumption values. <br>
-	 * [0] is coefficient, [1] is degreeExamples, [2] is degreeAttributes, [3] is
-	 * degreeLogarithmusExamples, [4] is degreeLogarithmusAttributes <br>
-	 * Returns <code>null</code> if no values are found in the CSV file.
-	 * 
-	 * @param className
-	 *            use XYZ.class where XYZ is the operator class
-	 * @return an array containg memory consumption values. [0] is coefficient, [1] is
-	 *         degreeExamples, [2] is degreeAttributes, [3] is degreeLogarithmusExamples, [4] is
-	 *         degreeLogarithmusAttributes
-	 */
-	public static String[] getMemoryConsumption(Class<?> clazz) {
+    /**
+     * Gets an array with the memory consumption values. <br>
+     * [0] is coefficient, [1] is degreeExamples, [2] is degreeAttributes, [3] is
+     * degreeLogarithmusExamples, [4] is degreeLogarithmusAttributes <br>
+     * Returns <code>null</code> if no values are found in the CSV file.
+     *
+     * @param clazz the clazz
+     * @return an array containg memory consumption values. [0] is coefficient, [1] is         degreeExamples, [2] is degreeAttributes, [3] is degreeLogarithmusExamples, [4] is         degreeLogarithmusAttributes
+     */
+    public static String[] getMemoryConsumption(Class<?> clazz) {
 		if (clazz == null) {
 			throw new IllegalArgumentException("clazz must not be null!");
 		}
@@ -155,18 +149,15 @@ public class OperatorResourceConsumptionHandler {
 		}
 	}
 
-	/**
-	 * Gets the ResourceConsumptionEstimator for a given class.
-	 * 
-	 * @param inputPort
-	 *            the input port
-	 * @param clazz
-	 *            the class for which the ResourceConsumptionEstimator should be created
-	 * @param attributeSelector
-	 *            the attributeSelector (if existing)
-	 * @return the ResourceConsumptionEstimator for the given class
-	 */
-	public static ResourceConsumptionEstimator getResourceConsumptionEstimator(InputPort inputPort, Class<?> clazz,
+    /**
+     * Gets the ResourceConsumptionEstimator for a given class.
+     *
+     * @param inputPort         the input port
+     * @param clazz             the class for which the ResourceConsumptionEstimator should be created
+     * @param attributeSelector the attributeSelector (if existing)
+     * @return the ResourceConsumptionEstimator for the given class
+     */
+    public static ResourceConsumptionEstimator getResourceConsumptionEstimator(InputPort inputPort, Class<?> clazz,
 			AttributeSubsetSelector attributeSelector) {
 		String[] timeConsumption = getTimeConsumption(clazz);
 		String[] memoryConsumption = getMemoryConsumption(clazz);

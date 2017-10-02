@@ -26,9 +26,8 @@ import java.text.AttributedString;
 
 /**
  * A LegendItem which has a label left and right of the shape in addition to the default label.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class FlankedShapeLegendItem extends CustomLegendItem {
 
@@ -37,77 +36,219 @@ public class FlankedShapeLegendItem extends CustomLegendItem {
 	private String leftShapeLabel = null;
 	private String rightShapeLabel = null;
 
-	public FlankedShapeLegendItem(AttributedString label, String description, String toolTipText, String urlText,
+    /**
+     * Instantiates a new Flanked shape legend item.
+     *
+     * @param label               the label
+     * @param description         the description
+     * @param toolTipText         the tool tip text
+     * @param urlText             the url text
+     * @param shapeVisible        the shape visible
+     * @param shape               the shape
+     * @param shapeFilled         the shape filled
+     * @param fillPaint           the fill paint
+     * @param shapeOutlineVisible the shape outline visible
+     * @param outlinePaint        the outline paint
+     * @param outlineStroke       the outline stroke
+     * @param lineVisible         the line visible
+     * @param line                the line
+     * @param lineStroke          the line stroke
+     * @param linePaint           the line paint
+     */
+    public FlankedShapeLegendItem(AttributedString label, String description, String toolTipText, String urlText,
 			boolean shapeVisible, Shape shape, boolean shapeFilled, Paint fillPaint, boolean shapeOutlineVisible,
 			Paint outlinePaint, Stroke outlineStroke, boolean lineVisible, Shape line, Stroke lineStroke, Paint linePaint) {
 		super(label, description, toolTipText, urlText, shapeVisible, shape, shapeFilled, fillPaint, shapeOutlineVisible,
 				outlinePaint, outlineStroke, lineVisible, line, lineStroke, linePaint);
 	}
 
-	public FlankedShapeLegendItem(AttributedString label, String description, String toolTipText, String urlText,
+    /**
+     * Instantiates a new Flanked shape legend item.
+     *
+     * @param label         the label
+     * @param description   the description
+     * @param toolTipText   the tool tip text
+     * @param urlText       the url text
+     * @param shape         the shape
+     * @param fillPaint     the fill paint
+     * @param outlineStroke the outline stroke
+     * @param outlinePaint  the outline paint
+     */
+    public FlankedShapeLegendItem(AttributedString label, String description, String toolTipText, String urlText,
 			Shape shape, Paint fillPaint, Stroke outlineStroke, Paint outlinePaint) {
 		super(label, description, toolTipText, urlText, shape, fillPaint, outlineStroke, outlinePaint);
 	}
 
-	public FlankedShapeLegendItem(AttributedString label, String description, String toolTipText, String urlText,
+    /**
+     * Instantiates a new Flanked shape legend item.
+     *
+     * @param label       the label
+     * @param description the description
+     * @param toolTipText the tool tip text
+     * @param urlText     the url text
+     * @param shape       the shape
+     * @param fillPaint   the fill paint
+     */
+    public FlankedShapeLegendItem(AttributedString label, String description, String toolTipText, String urlText,
 			Shape shape, Paint fillPaint) {
 		super(label, description, toolTipText, urlText, shape, fillPaint);
 	}
 
-	public FlankedShapeLegendItem(AttributedString label, String description, String toolTipText, String urlText,
+    /**
+     * Instantiates a new Flanked shape legend item.
+     *
+     * @param label       the label
+     * @param description the description
+     * @param toolTipText the tool tip text
+     * @param urlText     the url text
+     * @param line        the line
+     * @param lineStroke  the line stroke
+     * @param linePaint   the line paint
+     */
+    public FlankedShapeLegendItem(AttributedString label, String description, String toolTipText, String urlText,
 			Shape line, Stroke lineStroke, Paint linePaint) {
 		super(label, description, toolTipText, urlText, line, lineStroke, linePaint);
 	}
 
-	public FlankedShapeLegendItem(String label, Paint paint) {
+    /**
+     * Instantiates a new Flanked shape legend item.
+     *
+     * @param label the label
+     * @param paint the paint
+     */
+    public FlankedShapeLegendItem(String label, Paint paint) {
 		super(label, paint);
 	}
 
-	public FlankedShapeLegendItem(String label, String description, String toolTipText, String urlText,
+    /**
+     * Instantiates a new Flanked shape legend item.
+     *
+     * @param label               the label
+     * @param description         the description
+     * @param toolTipText         the tool tip text
+     * @param urlText             the url text
+     * @param shapeVisible        the shape visible
+     * @param shape               the shape
+     * @param shapeFilled         the shape filled
+     * @param fillPaint           the fill paint
+     * @param shapeOutlineVisible the shape outline visible
+     * @param outlinePaint        the outline paint
+     * @param outlineStroke       the outline stroke
+     * @param lineVisible         the line visible
+     * @param line                the line
+     * @param lineStroke          the line stroke
+     * @param linePaint           the line paint
+     */
+    public FlankedShapeLegendItem(String label, String description, String toolTipText, String urlText,
 			boolean shapeVisible, Shape shape, boolean shapeFilled, Paint fillPaint, boolean shapeOutlineVisible,
 			Paint outlinePaint, Stroke outlineStroke, boolean lineVisible, Shape line, Stroke lineStroke, Paint linePaint) {
 		super(label, description, toolTipText, urlText, shapeVisible, shape, shapeFilled, fillPaint, shapeOutlineVisible,
 				outlinePaint, outlineStroke, lineVisible, line, lineStroke, linePaint);
 	}
 
-	public FlankedShapeLegendItem(String label, String description, String toolTipText, String urlText, Shape shape,
+    /**
+     * Instantiates a new Flanked shape legend item.
+     *
+     * @param label         the label
+     * @param description   the description
+     * @param toolTipText   the tool tip text
+     * @param urlText       the url text
+     * @param shape         the shape
+     * @param fillPaint     the fill paint
+     * @param outlineStroke the outline stroke
+     * @param outlinePaint  the outline paint
+     */
+    public FlankedShapeLegendItem(String label, String description, String toolTipText, String urlText, Shape shape,
 			Paint fillPaint, Stroke outlineStroke, Paint outlinePaint) {
 		super(label, description, toolTipText, urlText, shape, fillPaint, outlineStroke, outlinePaint);
 	}
 
-	public FlankedShapeLegendItem(String label, String description, String toolTipText, String urlText, Shape shape,
+    /**
+     * Instantiates a new Flanked shape legend item.
+     *
+     * @param label       the label
+     * @param description the description
+     * @param toolTipText the tool tip text
+     * @param urlText     the url text
+     * @param shape       the shape
+     * @param fillPaint   the fill paint
+     */
+    public FlankedShapeLegendItem(String label, String description, String toolTipText, String urlText, Shape shape,
 			Paint fillPaint) {
 		super(label, description, toolTipText, urlText, shape, fillPaint);
 	}
 
-	public FlankedShapeLegendItem(String label, String description, String toolTipText, String urlText, Shape line,
+    /**
+     * Instantiates a new Flanked shape legend item.
+     *
+     * @param label       the label
+     * @param description the description
+     * @param toolTipText the tool tip text
+     * @param urlText     the url text
+     * @param line        the line
+     * @param lineStroke  the line stroke
+     * @param linePaint   the line paint
+     */
+    public FlankedShapeLegendItem(String label, String description, String toolTipText, String urlText, Shape line,
 			Stroke lineStroke, Paint linePaint) {
 		super(label, description, toolTipText, urlText, line, lineStroke, linePaint);
 	}
 
-	public FlankedShapeLegendItem(String label) {
+    /**
+     * Instantiates a new Flanked shape legend item.
+     *
+     * @param label the label
+     */
+    public FlankedShapeLegendItem(String label) {
 		super(label);
 	}
 
-	public FlankedShapeLegendItem(String leftShapeLabel, String rightShapeLabel, String label) {
+    /**
+     * Instantiates a new Flanked shape legend item.
+     *
+     * @param leftShapeLabel  the left shape label
+     * @param rightShapeLabel the right shape label
+     * @param label           the label
+     */
+    public FlankedShapeLegendItem(String leftShapeLabel, String rightShapeLabel, String label) {
 		super(label);
 		this.leftShapeLabel = leftShapeLabel;
 		this.rightShapeLabel = rightShapeLabel;
 	}
 
-	public String getLeftShapeLabel() {
+    /**
+     * Gets left shape label.
+     *
+     * @return the left shape label
+     */
+    public String getLeftShapeLabel() {
 		return leftShapeLabel;
 	}
 
-	public void setLeftShapeLabel(String leftShapeLabel) {
+    /**
+     * Sets left shape label.
+     *
+     * @param leftShapeLabel the left shape label
+     */
+    public void setLeftShapeLabel(String leftShapeLabel) {
 		this.leftShapeLabel = leftShapeLabel;
 	}
 
-	public String getRightShapeLabel() {
+    /**
+     * Gets right shape label.
+     *
+     * @return the right shape label
+     */
+    public String getRightShapeLabel() {
 		return rightShapeLabel;
 	}
 
-	public void setRightShapeLabel(String rightShapeLabel) {
+    /**
+     * Sets right shape label.
+     *
+     * @param rightShapeLabel the right shape label
+     */
+    public void setRightShapeLabel(String rightShapeLabel) {
 		this.rightShapeLabel = rightShapeLabel;
 	}
 }

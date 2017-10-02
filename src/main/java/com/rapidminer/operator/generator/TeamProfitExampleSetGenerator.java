@@ -48,8 +48,10 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class TeamProfitExampleSetGenerator extends AbstractExampleSource {
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
 
 	private static String[] ATTRIBUTE_NAMES = { "size", "leader", "number of qualified employees", "leader changed",
 			"average years of experience", "structure" };
@@ -61,7 +63,12 @@ public class TeamProfitExampleSetGenerator extends AbstractExampleSource {
 			{ "Mr. Brown", "Mr. Miller", "Mrs. Smith", "Mrs. Hanson", "Mrs. Green", "Mr. Chang" }, null, { "yes", "no" },
 			null, { "flat", "hierachical" } };
 
-	public TeamProfitExampleSetGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Team profit example set generator.
+     *
+     * @param description the description
+     */
+    public TeamProfitExampleSetGenerator(OperatorDescription description) {
 		super(description);
 	}
 

@@ -43,34 +43,82 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * The model for the {@link com.rapidminer.gui.viewer.MetaDataViewerTable}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MetaDataViewerTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = -1598719681189990076L;
 
-	public static final int DEFAULT_MAX_NUMBER_OF_ROWS_FOR_STATISTICS = 100000;
+    /**
+     * The constant DEFAULT_MAX_NUMBER_OF_ROWS_FOR_STATISTICS.
+     */
+    public static final int DEFAULT_MAX_NUMBER_OF_ROWS_FOR_STATISTICS = 100000;
 
-	public static final int DEFAULT_MAX_DISPLAYED_VALUES = 50;
+    /**
+     * The constant DEFAULT_MAX_DISPLAYED_VALUES.
+     */
+    public static final int DEFAULT_MAX_DISPLAYED_VALUES = 50;
 
-	public static final int TYPE = 0;
-	public static final int INDEX = 1;
-	public static final int NAME = 2;
-	public static final int SOURCE = 3;
-	public static final int VALUE_TYPE = 4;
-	public static final int BLOCK_TYPE = 5;
-	public static final int STATISTICS_AVERAGE = 6;
-	public static final int STATISTICS_RANGE = 7;
-	public static final int STATISTICS_SUM = 8;
-	public static final int STATISTICS_UNKNOWN = 9;
-	public static final int UNIT = 10;
-	public static final int COMMENT = 11;
+    /**
+     * The constant TYPE.
+     */
+    public static final int TYPE = 0;
+    /**
+     * The constant INDEX.
+     */
+    public static final int INDEX = 1;
+    /**
+     * The constant NAME.
+     */
+    public static final int NAME = 2;
+    /**
+     * The constant SOURCE.
+     */
+    public static final int SOURCE = 3;
+    /**
+     * The constant VALUE_TYPE.
+     */
+    public static final int VALUE_TYPE = 4;
+    /**
+     * The constant BLOCK_TYPE.
+     */
+    public static final int BLOCK_TYPE = 5;
+    /**
+     * The constant STATISTICS_AVERAGE.
+     */
+    public static final int STATISTICS_AVERAGE = 6;
+    /**
+     * The constant STATISTICS_RANGE.
+     */
+    public static final int STATISTICS_RANGE = 7;
+    /**
+     * The constant STATISTICS_SUM.
+     */
+    public static final int STATISTICS_SUM = 8;
+    /**
+     * The constant STATISTICS_UNKNOWN.
+     */
+    public static final int STATISTICS_UNKNOWN = 9;
+    /**
+     * The constant UNIT.
+     */
+    public static final int UNIT = 10;
+    /**
+     * The constant COMMENT.
+     */
+    public static final int COMMENT = 11;
 
-	public static final String[] COLUMN_NAMES = new String[] { "Role", "Table Index", "Name", "Construction", "Type",
+    /**
+     * The constant COLUMN_NAMES.
+     */
+    public static final String[] COLUMN_NAMES = new String[] { "Role", "Table Index", "Name", "Construction", "Type",
 			"Block", "Statistics", "Range", "Sum", "Missings", Annotations.KEY_UNIT, Annotations.KEY_COMMENT };
 
-	public static final String[] COLUMN_TOOL_TIPS = new String[] {
+    /**
+     * The constant COLUMN_TOOL_TIPS.
+     */
+    public static final String[] COLUMN_TOOL_TIPS = new String[] {
 			"The type of the attribute (regular or one of the special types).",
 			"The index of the attribute in the example table backing up this example set (view).",
 			"The name of the attribute.", "The construction source of the attribute, i.e. how it was generated.",
@@ -82,7 +130,10 @@ public class MetaDataViewerTableModel extends AbstractTableModel {
 			"The number of unknown values in the data set for this attribute", "The unit annotation.",
 			"The comment annotation" };
 
-	public static final Class<?>[] COLUMN_CLASSES = new Class[] { String.class, Double.class, String.class, String.class,
+    /**
+     * The constant COLUMN_CLASSES.
+     */
+    public static final Class<?>[] COLUMN_CLASSES = new Class[] { String.class, Double.class, String.class, String.class,
 			String.class, String.class, String.class, String.class, Double.class, Double.class, String.class, String.class };
 
 	private int[] currentMapping = { TYPE, NAME, VALUE_TYPE, STATISTICS_AVERAGE, STATISTICS_RANGE, STATISTICS_UNKNOWN };
@@ -95,7 +146,12 @@ public class MetaDataViewerTableModel extends AbstractTableModel {
 
 	private String[] specialAttributeNames = new String[0];
 
-	public MetaDataViewerTableModel(ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Meta data viewer table model.
+     *
+     * @param exampleSet the example set
+     */
+    public MetaDataViewerTableModel(ExampleSet exampleSet) {
 		this.exampleSet = exampleSet;
 		if (this.exampleSet != null) {
 			this.regularAttributes = Tools.createRegularAttributeArray(exampleSet);
@@ -132,7 +188,10 @@ public class MetaDataViewerTableModel extends AbstractTableModel {
 		}
 	}
 
-	public void calculateStatistics() {
+    /**
+     * Calculate statistics.
+     */
+    public void calculateStatistics() {
 		exampleSet.recalculateAllAttributeStatistics();
 
 		// make sure this is called from the EDT
@@ -160,7 +219,13 @@ public class MetaDataViewerTableModel extends AbstractTableModel {
 
 	}
 
-	public void setShowColumn(int index, boolean show) {
+    /**
+     * Sets show column.
+     *
+     * @param index the index
+     * @param show  the show
+     */
+    public void setShowColumn(int index, boolean show) {
 		List<Integer> result = new LinkedList<Integer>();
 		for (int i = 0; i < COLUMN_NAMES.length; i++) {
 			if (i == index) {
@@ -182,7 +247,13 @@ public class MetaDataViewerTableModel extends AbstractTableModel {
 		fireTableStructureChanged();
 	}
 
-	public boolean getShowColumn(int index) {
+    /**
+     * Gets show column.
+     *
+     * @param index the index
+     * @return the show column
+     */
+    public boolean getShowColumn(int index) {
 		for (int element : currentMapping) {
 			if (element == index) {
 				return true;
@@ -511,8 +582,13 @@ public class MetaDataViewerTableModel extends AbstractTableModel {
 		return COLUMN_CLASSES[currentMapping[col]];
 	}
 
-	/** Returns the tool tip text for the specified column. */
-	public String getColumnToolTip(int column) {
+    /**
+     * Returns the tool tip text for the specified column.  @param column the column
+     *
+     * @param column the column
+     * @return the column tool tip
+     */
+    public String getColumnToolTip(int column) {
 		if (column < 0 || column >= currentMapping.length) {
 			return "";
 		} else {

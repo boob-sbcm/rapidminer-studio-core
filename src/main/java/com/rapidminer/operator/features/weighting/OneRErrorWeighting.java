@@ -46,7 +46,12 @@ public class OneRErrorWeighting extends AbstractWeighting {
 
 	private static final int PROGRESS_UPDATE_STEPS = 500;
 
-	public OneRErrorWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new One r error weighting.
+     *
+     * @param description the description
+     */
+    public OneRErrorWeighting(OperatorDescription description) {
 		super(description, true);
 	}
 

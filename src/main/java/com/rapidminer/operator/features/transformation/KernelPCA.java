@@ -63,7 +63,12 @@ public class KernelPCA extends Operator {
 	private OutputPort originalOutput = getOutputPorts().createPort("original");
 	private OutputPort modelOutput = getOutputPorts().createPort("preprocessing model");
 
-	public KernelPCA(OperatorDescription description) {
+    /**
+     * Instantiates a new Kernel pca.
+     *
+     * @param description the description
+     */
+    public KernelPCA(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, Ontology.NUMERICAL));

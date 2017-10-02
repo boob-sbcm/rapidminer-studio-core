@@ -61,13 +61,13 @@ import com.rapidminer.tools.Tools;
  * user specified format. This might be useful for time base OLAP to change the granularity of the
  * time stamps from day to week or month.
  * </p>
- *
+ * <p>
  * <p>
  * The date format can be specified by the date_format parameter like described in the following.
  * </p>
- *
+ * <p>
  * <h4>Date and Time Patterns</h4>
- *
+ * <p>
  * <p>
  * Date and time formats are specified by <em>date and time pattern</em> strings in the date_format
  * parameter. Within date and time pattern strings, unquoted letters from <code>'A'</code> to
@@ -77,12 +77,12 @@ import com.rapidminer.tools.Tools;
  * characters are not interpreted; they're simply copied into the output string during formatting or
  * matched against the input string during parsing.
  * </p>
- *
+ * <p>
  * <p>
  * The following pattern letters are defined (all other characters from <code>'A'</code> to
  * <code>'Z'</code> and from <code>'a'</code> to <code>'z'</code> are reserved):
  * </p>
- *
+ * <p>
  * <ul>
  * <li><em>G</em>: era designator; Text; example: AD</li>
  * <li><em>y</em>: year; Year; example: 1996; 96</li>
@@ -104,11 +104,11 @@ import com.rapidminer.tools.Tools;
  * <li><em>z</em>: time zone; General Time Zone; example: Pacific Standard Time; PST; GMT-08:00</li>
  * <li><em>Z</em>: time zone; RFC 822 Time Zone; example: -0800</li>
  * </ul>
- *
+ * <p>
  * <p>
  * Pattern letters are usually repeated, as their number determines the exact presentation:
  * </p>
- *
+ * <p>
  * <ul>
  * <li><em>Text:</em> For formatting, if the number of pattern letters is 4 or more, the full form
  * is used; otherwise a short or abbreviated form is used if available. For parsing, both forms are
@@ -118,7 +118,7 @@ import com.rapidminer.tools.Tools;
  * letters is ignored unless it's needed to separate two adjacent fields.</li>
  * <li><em>Year:</em> If the underlying calendar is the Gregorian calendar, the following rules are
  * applied.
- *
+ * <p>
  * <ul>
  * <li>For formatting, if the number of pattern letters is 2, the year is truncated to 2 digits;
  * otherwise it is interpreted as a <em>number</em>.</li>
@@ -136,35 +136,35 @@ import com.rapidminer.tools.Tools;
  * literally. So &quot;01/02/3&quot; or &quot;01/02/003&quot; are parsed, using the same pattern, as
  * Jan 2, 3 AD. Likewise, &quot;01/02/-3&quot; is parsed as Jan 2, 4 BC.</li>
  * </ul>
- *
+ * <p>
  * Otherwise, calendar system specific forms are applied. If the number of pattern letters is 4 or
  * more, a calendar specific long form is used. Otherwise, a calendar short or abbreviated form is
  * used.</li>
- *
+ * <p>
  * <li><em>Month:</em> If the number of pattern letters is 3 or more, the month is interpreted as
  * <em>text</em>; otherwise, it is interpreted as a <em>number</em>.</li>
- *
+ * <p>
  * <li><em>General time zone:</em> Time zones are interpreted as <em>text</em> if they have names.
  * It is possible to define time zones by representing a GMT offset value. RFC 822 time zones are
  * also accepted.</li>
- *
+ * <p>
  * <li><em>RFC 822 time zone:</em> For formatting, the RFC 822 4-digit time zone format is used.
  * General time zones are also accepted.</li>
  * </ul>
- *
+ * <p>
  * <p>
  * This operator also supports <em>localized date and time
  * pattern</em> strings by defining the locale parameter. In these strings, the pattern letters
  * described above may be replaced with other, locale dependent, pattern letters.
  * </p>
- *
+ * <p>
  * <h4>Examples</h4>
- *
+ * <p>
  * <p>
  * The following examples show how date and time patterns are interpreted in the U.S. locale. The
  * given date and time are 2001-07-04 12:08:56 local time in the U.S. Pacific Time time zone.
  * </p>
- *
+ * <p>
  * <ul>
  * <li><em>&quot;yyyy.MM.dd G 'at' HH:mm:ss z&quot;</em>: 2001.07.04 AD at 12:08:56 PDT</li>
  * <li><em>&quot;EEE, MMM d, ''yy&quot;</em>: Wed, Jul 4, '01</li>
@@ -183,17 +183,37 @@ public class Date2Nominal extends AbstractDateDataProcessing {
 
 	private static final String ATTRIBUTE_NAME_POSTFIX = "_nominal";
 
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	public static final String PARAMETER_DATE_FORMAT = "date_format";
+    /**
+     * The constant PARAMETER_DATE_FORMAT.
+     */
+    public static final String PARAMETER_DATE_FORMAT = "date_format";
 
-	public static final String PARAMETER_TIME_ZONE = "time_zone";
+    /**
+     * The constant PARAMETER_TIME_ZONE.
+     */
+    public static final String PARAMETER_TIME_ZONE = "time_zone";
 
-	public static final String PARAMETER_LOCALE = "locale";
+    /**
+     * The constant PARAMETER_LOCALE.
+     */
+    public static final String PARAMETER_LOCALE = "locale";
 
-	public static final String PARAMETER_KEEP_OLD_ATTRIBUTE = "keep_old_attribute";
+    /**
+     * The constant PARAMETER_KEEP_OLD_ATTRIBUTE.
+     */
+    public static final String PARAMETER_KEEP_OLD_ATTRIBUTE = "keep_old_attribute";
 
-	public Date2Nominal(OperatorDescription description) {
+    /**
+     * Instantiates a new Date 2 nominal.
+     *
+     * @param description the description
+     */
+    public Date2Nominal(OperatorDescription description) {
 		super(description);
 		getExampleSetInputPort().addPrecondition(
 				new AttributeParameterPrecondition(getExampleSetInputPort(), this, PARAMETER_ATTRIBUTE_NAME,

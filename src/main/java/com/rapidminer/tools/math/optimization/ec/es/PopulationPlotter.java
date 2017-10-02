@@ -27,7 +27,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Plots the current generation's Pareto set.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PopulationPlotter implements PopulationOperator {
@@ -72,7 +72,13 @@ public class PopulationPlotter implements PopulationOperator {
 		}
 	}
 
-	public SimpleDataTable createDataTable(Population pop) {
+    /**
+     * Create data table simple data table.
+     *
+     * @param pop the pop
+     * @return the simple data table
+     */
+    public SimpleDataTable createDataTable(Population pop) {
 		double[] prototype = pop.get(0).getFitnessValues();
 		String[] names = new String[prototype.length];
 		for (int i = 0; i < names.length; i++) {
@@ -82,7 +88,14 @@ public class PopulationPlotter implements PopulationOperator {
 		return dataTable;
 	}
 
-	public int fillDataTable(SimpleDataTable dataTable, Population pop) {
+    /**
+     * Fill data table int.
+     *
+     * @param dataTable the data table
+     * @param pop       the pop
+     * @return the int
+     */
+    public int fillDataTable(SimpleDataTable dataTable, Population pop) {
 		dataTable.clear();
 		int numberOfCriteria = 0;
 		for (int i = 0; i < pop.getNumberOfIndividuals(); i++) {
@@ -103,7 +116,12 @@ public class PopulationPlotter implements PopulationOperator {
 		return numberOfCriteria;
 	}
 
-	public void setCreateOtherPlottersEnabled(boolean enabled) {
+    /**
+     * Sets create other plotters enabled.
+     *
+     * @param enabled the enabled
+     */
+    public void setCreateOtherPlottersEnabled(boolean enabled) {
 		this.plotter.setCreateOtherPlottersEnabled(enabled);
 	}
 }

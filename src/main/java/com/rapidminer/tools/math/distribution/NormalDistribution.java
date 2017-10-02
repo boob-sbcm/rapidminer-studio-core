@@ -23,10 +23,9 @@ import com.rapidminer.tools.Tools;
 
 /**
  * This class represents a gaussian normal distribution.
- * 
+ *
  * @author Tobias Malbrecht, Sebastian Land <<<<<<< NormalDistribution.java
- * @version $Id: NormalDistribution.java,v 1.3.2.3 2009-04-08 14:40:23 tobiasmalbrecht Exp $ =======
- *          >>>>>>> 1.3.2.2
+ * @version $Id : NormalDistribution.java,v 1.3.2.3 2009-04-08 14:40:23 tobiasmalbrecht Exp $ =======          >>>>>>> 1.3.2.2
  */
 public class NormalDistribution extends ContinuousDistribution {
 
@@ -36,11 +35,23 @@ public class NormalDistribution extends ContinuousDistribution {
 
 	private static final double SQRT_FACTOR = Math.sqrt(2 * Math.PI);
 
-	protected double mean;
+    /**
+     * The Mean.
+     */
+    protected double mean;
 
-	protected double standardDeviation;
+    /**
+     * The Standard deviation.
+     */
+    protected double standardDeviation;
 
-	public NormalDistribution(double mean, double standardDeviation) {
+    /**
+     * Instantiates a new Normal distribution.
+     *
+     * @param mean              the mean
+     * @param standardDeviation the standard deviation
+     */
+    public NormalDistribution(double mean, double standardDeviation) {
 		this.mean = mean;
 		this.standardDeviation = standardDeviation;
 	}
@@ -50,21 +61,51 @@ public class NormalDistribution extends ContinuousDistribution {
 		return null;
 	}
 
-	public static double getProbability(double mean, double standardDeviation, double value) {
+    /**
+     * Gets probability.
+     *
+     * @param mean              the mean
+     * @param standardDeviation the standard deviation
+     * @param value             the value
+     * @return the probability
+     */
+    public static double getProbability(double mean, double standardDeviation, double value) {
 		double base = (value - mean) / standardDeviation;
 		return Math.exp(-0.5 * (base * base)) / (standardDeviation * SQRT_FACTOR);
 	}
 
-	public static double getLogProbability(double mean, double standardDeviation, double value) {
+    /**
+     * Gets log probability.
+     *
+     * @param mean              the mean
+     * @param standardDeviation the standard deviation
+     * @param value             the value
+     * @return the log probability
+     */
+    public static double getLogProbability(double mean, double standardDeviation, double value) {
 		double base = (value - mean) / standardDeviation;
 		return -Math.log(standardDeviation * SQRT_FACTOR) - 0.5 * (base * base);
 	}
 
-	public static final double getLowerBound(double mean, double standardDeviation) {
+    /**
+     * Gets lower bound.
+     *
+     * @param mean              the mean
+     * @param standardDeviation the standard deviation
+     * @return the lower bound
+     */
+    public static final double getLowerBound(double mean, double standardDeviation) {
 		return mean - BOUND_FACTOR * standardDeviation;
 	}
 
-	public static final double getUpperBound(double mean, double standardDeviation) {
+    /**
+     * Gets upper bound.
+     *
+     * @param mean              the mean
+     * @param standardDeviation the standard deviation
+     * @return the upper bound
+     */
+    public static final double getUpperBound(double mean, double standardDeviation) {
 		return mean + BOUND_FACTOR * standardDeviation;
 	}
 
@@ -73,15 +114,30 @@ public class NormalDistribution extends ContinuousDistribution {
 		return getProbability(mean, standardDeviation, value);
 	}
 
-	public double getMean() {
+    /**
+     * Gets mean.
+     *
+     * @return the mean
+     */
+    public double getMean() {
 		return mean;
 	}
 
-	public double getStandardDeviation() {
+    /**
+     * Gets standard deviation.
+     *
+     * @return the standard deviation
+     */
+    public double getStandardDeviation() {
 		return standardDeviation;
 	}
 
-	public double getVariance() {
+    /**
+     * Gets variance.
+     *
+     * @return the variance
+     */
+    public double getVariance() {
 		return standardDeviation * standardDeviation;
 	}
 

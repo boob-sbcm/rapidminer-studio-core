@@ -40,16 +40,16 @@ import java.util.regex.Pattern;
 /**
  * This operator sorts a given example set according to a subset of attributes and will sort pareto
  * dominated examples after non dominated.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class NonDominatedSorting extends AbstractDataProcessing {
 
-	/**
-	 * The parameter name for &quot;Indicates the attribute which should be used for determining the
-	 * sorting.&quot;
-	 */
-	public static final String PARAMETER_ATTRIBUTES = "attributes";
+    /**
+     * The parameter name for &quot;Indicates the attribute which should be used for determining the
+     * sorting.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTES = "attributes";
 
 	private static class SortingObject {
 
@@ -57,13 +57,24 @@ public class NonDominatedSorting extends AbstractDataProcessing {
 
 		private double[] values;
 
-		public SortingObject(int originalIndex, double[] values) {
+        /**
+         * Instantiates a new Sorting object.
+         *
+         * @param originalIndex the original index
+         * @param values        the values
+         */
+        public SortingObject(int originalIndex, double[] values) {
 			this.originalIndex = originalIndex;
 			this.values = values;
 		}
 	}
 
-	public NonDominatedSorting(OperatorDescription description) {
+    /**
+     * Instantiates a new Non dominated sorting.
+     *
+     * @param description the description
+     */
+    public NonDominatedSorting(OperatorDescription description) {
 		super(description);
 	}
 

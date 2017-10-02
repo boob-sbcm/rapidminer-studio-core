@@ -42,7 +42,13 @@ public class LoginAsAdminDropDownButton extends DropDownPopupButton {
 
 	private static final long serialVersionUID = -7638556190299142700L;
 
-	public LoginAsAdminDropDownButton(Window owner, Map<String, ConfigurableController> remoteControllers) {
+    /**
+     * Instantiates a new Login as admin drop down button.
+     *
+     * @param owner             the owner
+     * @param remoteControllers the remote controllers
+     */
+    public LoginAsAdminDropDownButton(Window owner, Map<String, ConfigurableController> remoteControllers) {
 		super("gui.label.configurable_dialog.login_as_admin.small", new LoginAsAdminPopupProvider(owner, remoteControllers));
 
 		setIcon(SwingTools.createIcon("24/" + I18N.getGUILabel("configurable_dialog.login_as_admin.small.icon")));
@@ -70,7 +76,13 @@ public class LoginAsAdminDropDownButton extends DropDownPopupButton {
 		/** the owner of this dropdown button */
 		private Window owner;
 
-		public LoginAsAdminPopupProvider(Window owner, Map<String, ConfigurableController> remoteControllers) {
+        /**
+         * Instantiates a new Login as admin popup provider.
+         *
+         * @param owner             the owner
+         * @param remoteControllers the remote controllers
+         */
+        public LoginAsAdminPopupProvider(Window owner, Map<String, ConfigurableController> remoteControllers) {
 			this.remoteControllers = remoteControllers;
 			this.owner = owner;
 		}

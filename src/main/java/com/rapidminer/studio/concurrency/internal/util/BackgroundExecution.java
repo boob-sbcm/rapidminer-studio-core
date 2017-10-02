@@ -30,11 +30,11 @@ package com.rapidminer.studio.concurrency.internal.util;
  */
 public interface BackgroundExecution {
 
-	/**
-	 * This returns the name of the Background Execution Unit
-	 *
-	 * @return A human readable name of the unit
-	 */
-	public String getName();
+    /**
+     * This returns the name of the Background Execution Unit
+     *
+     * @return A human readable name of the unit
+     */
+    public String getName();
 
 }

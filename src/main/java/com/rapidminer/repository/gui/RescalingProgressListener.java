@@ -37,17 +37,14 @@ public class RescalingProgressListener implements ProgressListener {
 	// Local
 	private Double total = 0.0;
 
-	/**
-	 * Constructs progress listener which uses just a part of its parent progress listener.
-	 *
-	 * @param parentListener
-	 *            The parent progress listener.
-	 * @param parentMinAbsolute
-	 *            Minimum progress value for this progress. Used to set parent progress listener.
-	 * @param parentMaxAbsolute
-	 *            Maximum progress value for this progress. Used to set parent progress listener.
-	 */
-	RescalingProgressListener(ProgressListener parentListener, int parentMinAbsolute, int parentMaxAbsolute) {
+    /**
+     * Constructs progress listener which uses just a part of its parent progress listener.
+     *
+     * @param parentListener    The parent progress listener.
+     * @param parentMinAbsolute Minimum progress value for this progress. Used to set parent progress listener.
+     * @param parentMaxAbsolute Maximum progress value for this progress. Used to set parent progress listener.
+     */
+    RescalingProgressListener(ProgressListener parentListener, int parentMinAbsolute, int parentMaxAbsolute) {
 		this.parentListener = parentListener;
 		this.parentMinAbsolute = parentMinAbsolute;
 		this.parentMaxAbsolute = parentMaxAbsolute;

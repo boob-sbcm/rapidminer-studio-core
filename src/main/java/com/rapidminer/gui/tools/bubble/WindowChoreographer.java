@@ -50,7 +50,6 @@ import com.rapidminer.gui.RapidMinerGUI;
  *
  * @author Jonas Wilms-Pfau
  * @since 7.5.0
- *
  */
 public class WindowChoreographer {
 
@@ -130,23 +129,21 @@ public class WindowChoreographer {
 	/** The close listener */
 	private final WindowListener closeListener = new CloseListener();
 
-	/**
-	 * Creates a new WindowChoreographer relative to the MainFrame, with a margin of
-	 * {@value #DEFAULT_TOP_MARGIN} to the top
-	 */
-	public WindowChoreographer() {
+    /**
+     * Creates a new WindowChoreographer relative to the MainFrame, with a margin of
+     * {@value #DEFAULT_TOP_MARGIN} to the top
+     */
+    public WindowChoreographer() {
 		this(RapidMinerGUI.getMainFrame().getContentPane(), DEFAULT_TOP_MARGIN);
 	}
 
-	/**
-	 * Creates a new WindowChoreographer
-	 *
-	 * @param parent
-	 *            Relative to this Component
-	 * @param yOffset
-	 *            The initial yOffset
-	 */
-	public WindowChoreographer(Component parent, int yOffset) {
+    /**
+     * Creates a new WindowChoreographer
+     *
+     * @param parent  Relative to this Component
+     * @param yOffset The initial yOffset
+     */
+    public WindowChoreographer(Component parent, int yOffset) {
 		this.parent = parent;
 		// Initial position
 		windowYOffset.set(0, yOffset);
@@ -173,14 +170,13 @@ public class WindowChoreographer {
 		}
 	}
 
-	/**
-	 * Adds a Window into the next free position
-	 *
-	 * @param w
-	 *            The window
-	 * @return true if the Window could be displayed immediately
-	 */
-	public synchronized boolean addWindow(Window w) {
+    /**
+     * Adds a Window into the next free position
+     *
+     * @param w The window
+     * @return true if the Window could be displayed immediately
+     */
+    public synchronized boolean addWindow(Window w) {
 		if (w == null) {
 			throw new IllegalArgumentException("w must not be null!");
 		}

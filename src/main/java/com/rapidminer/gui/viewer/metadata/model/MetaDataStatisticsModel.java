@@ -43,30 +43,47 @@ import javax.swing.event.EventListenerList;
  * <p>
  * Note that the {@link ExampleSet} which needs to be pased to the constructor is only stored via
  * {@link WeakReference}, so no example set memory leak can happen here.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class MetaDataStatisticsModel {
 
-	/**
-	 * Enum indicating the supported types of sorting.
-	 * 
-	 */
-	public static enum SortingType {
-		NAME, TYPE, MISSING;
+    /**
+     * Enum indicating the supported types of sorting.
+     */
+    public static enum SortingType {
+        /**
+         * Name sorting type.
+         */
+        NAME, /**
+         * Type sorting type.
+         */
+        TYPE, /**
+         * Missing sorting type.
+         */
+        MISSING;
 	}
 
-	/**
-	 * Enum indicating if sorting should be done ascending or descending.
-	 * 
-	 */
-	public static enum SortingDirection {
-		UNDEFINED, ASCENDING, DESCENDING;
+    /**
+     * Enum indicating if sorting should be done ascending or descending.
+     */
+    public static enum SortingDirection {
+        /**
+         * Undefined sorting direction.
+         */
+        UNDEFINED, /**
+         * Ascending sorting direction.
+         */
+        ASCENDING, /**
+         * Descending sorting direction.
+         */
+        DESCENDING;
 	}
 
-	/** the size of each page: {@value} */
-	public static final int PAGE_SIZE = 1000;
+    /**
+     * the size of each page: {@value}
+     */
+    public static final int PAGE_SIZE = 1000;
 
 	/** event listener for this model */
 	private final EventListenerList eventListener;
@@ -116,14 +133,12 @@ public class MetaDataStatisticsModel {
 	/** indicates for all {@link Ontology#VALUE_TYPE}s if they are visible */
 	private final Map<Integer, Boolean> mapOfValueTypeVisibility;
 
-	/**
-	 * Creates a new {@link MetaDataStatisticsModel} instance.
-	 * 
-	 * @param exampleSet
-	 *            the {@link ExampleSet} for which the meta data statistics should be created. No
-	 *            reference to it is stored to prevent memory leaks.
-	 */
-	public MetaDataStatisticsModel(final ExampleSet exampleSet) {
+    /**
+     * Creates a new {@link MetaDataStatisticsModel} instance.
+     *
+     * @param exampleSet the {@link ExampleSet} for which the meta data statistics should be created. No            reference to it is stored to prevent memory leaks.
+     */
+    public MetaDataStatisticsModel(final ExampleSet exampleSet) {
 		this.weakExampleSet = new WeakReference<>(exampleSet);
 		this.eventListener = new EventListenerList();
 		visibleCount = -1;
@@ -145,218 +160,219 @@ public class MetaDataStatisticsModel {
 		filterNameString = "";
 	}
 
-	/**
-	 * Returns the ordered {@link List} of {@link AbstractAttributeStatisticsModel}s.
-	 * 
-	 * @return
-	 */
-	public List<AbstractAttributeStatisticsModel> getOrderedAttributeStatisticsModels() {
+    /**
+     * Returns the ordered {@link List} of {@link AbstractAttributeStatisticsModel}s.
+     *
+     * @return ordered attribute statistics models
+     */
+    public List<AbstractAttributeStatisticsModel> getOrderedAttributeStatisticsModels() {
 		return orderedModelList;
 	}
 
-	/**
-	 * Returns the total number of {@link AbstractAttributeStatisticsModel}s in this model.
-	 * 
-	 * @return
-	 */
-	public int getTotalSize() {
+    /**
+     * Returns the total number of {@link AbstractAttributeStatisticsModel}s in this model.
+     *
+     * @return total size
+     */
+    public int getTotalSize() {
 		if (!mapOfStatModelVisibility.keySet().isEmpty()) {
 			return mapOfStatModelVisibility.keySet().size();
 		}
 		return 0;
 	}
 
-	/**
-	 * Returns the number of {@link AbstractAttributeStatisticsModel}s in this model which are
-	 * currently visible.
-	 * 
-	 * @return
-	 */
-	public int getVisibleSize() {
+    /**
+     * Returns the number of {@link AbstractAttributeStatisticsModel}s in this model which are
+     * currently visible.
+     *
+     * @return visible size
+     */
+    public int getVisibleSize() {
 		if (visibleCount == -1) {
 			return getTotalSize();
 		}
 		return visibleCount;
 	}
 
-	/**
-	 * Sets the number of visible attributes.
-	 * 
-	 * @param visibleCount
-	 */
-	public void setVisibleCount(final int visibleCount) {
+    /**
+     * Sets the number of visible attributes.
+     *
+     * @param visibleCount the visible count
+     */
+    public void setVisibleCount(final int visibleCount) {
 		this.visibleCount = visibleCount;
 	}
 
-	/**
-	 * Returns the {@link SortingDirection} for the given {@link SortingType}.
-	 * 
-	 * @param type
-	 * @return
-	 */
-	public SortingDirection getSortingDirection(final SortingType type) {
+    /**
+     * Returns the {@link SortingDirection} for the given {@link SortingType}.
+     *
+     * @param type the type
+     * @return sorting direction
+     */
+    public SortingDirection getSortingDirection(final SortingType type) {
 		return mapOfSortingSettings.get(type);
 	}
 
-	/**
-	 * Set the {@link SortingDirection} for the specified {@link SortingType}.
-	 * 
-	 * @param type
-	 * @param direction
-	 */
-	public void setSortingDirection(final SortingType type, final SortingDirection direction) {
+    /**
+     * Set the {@link SortingDirection} for the specified {@link SortingType}.
+     *
+     * @param type      the type
+     * @param direction the direction
+     */
+    public void setSortingDirection(final SortingType type, final SortingDirection direction) {
 		mapOfSortingSettings.put(type, direction);
 	}
 
-	/**
-	 * Returns if the given {@link AbstractAttributeStatisticsModel} is visible. Returns
-	 * <code>null</code> if the given stat model is unknown to the model.
-	 * 
-	 * @param model
-	 * @return
-	 */
-	public Boolean isAttributeStatisticsModelsVisible(final AbstractAttributeStatisticsModel model) {
+    /**
+     * Returns if the given {@link AbstractAttributeStatisticsModel} is visible. Returns
+     * <code>null</code> if the given stat model is unknown to the model.
+     *
+     * @param model the model
+     * @return boolean boolean
+     */
+    public Boolean isAttributeStatisticsModelsVisible(final AbstractAttributeStatisticsModel model) {
 		return mapOfStatModelVisibility.get(model);
 	}
 
-	/**
-	 * Sets if the given {@link AbstractAttributeStatisticsModel} is visible.
-	 * 
-	 * @param model
-	 * @return the original visibility value
-	 */
-	public Boolean setAttributeStatisticsModelVisible(final AbstractAttributeStatisticsModel model, final boolean visible) {
+    /**
+     * Sets if the given {@link AbstractAttributeStatisticsModel} is visible.
+     *
+     * @param model   the model
+     * @param visible the visible
+     * @return the original visibility value
+     */
+    public Boolean setAttributeStatisticsModelVisible(final AbstractAttributeStatisticsModel model, final boolean visible) {
 		return mapOfStatModelVisibility.put(model, visible);
 	}
 
-	/**
-	 * The {@link String} to filter attribute names against.
-	 * 
-	 * @return
-	 */
-	public String getFilterNameString() {
+    /**
+     * The {@link String} to filter attribute names against.
+     *
+     * @return filter name string
+     */
+    public String getFilterNameString() {
 		return filterNameString;
 	}
 
-	/**
-	 * Set the attribute name filter.
-	 * 
-	 * @param filterNameString
-	 */
-	public void setFilterNameString(final String filterNameString) {
+    /**
+     * Set the attribute name filter.
+     *
+     * @param filterNameString the filter name string
+     */
+    public void setFilterNameString(final String filterNameString) {
 		this.filterNameString = filterNameString;
 	}
 
-	/**
-	 * If <code>true</code>, show only attributes with missing values.
-	 * 
-	 * @return
-	 */
-	public boolean isShowOnlyMissingsAttributes() {
+    /**
+     * If <code>true</code>, show only attributes with missing values.
+     *
+     * @return boolean boolean
+     */
+    public boolean isShowOnlyMissingsAttributes() {
 		return showOnlyMissingsAttributes;
 	}
 
-	/**
-	 * Sets whether only attributes with missing values should be shown.
-	 * 
-	 * @param showOnlyMissingsAttributes
-	 */
-	public void setShowOnlyMissingsAttributes(final boolean showOnlyMissingsAttributes) {
+    /**
+     * Sets whether only attributes with missing values should be shown.
+     *
+     * @param showOnlyMissingsAttributes the show only missings attributes
+     */
+    public void setShowOnlyMissingsAttributes(final boolean showOnlyMissingsAttributes) {
 		this.showOnlyMissingsAttributes = showOnlyMissingsAttributes;
 	}
 
-	/**
-	 * If <code>true</code>, show special attributes.
-	 * 
-	 * @return
-	 */
-	public boolean isShowSpecialAttributes() {
+    /**
+     * If <code>true</code>, show special attributes.
+     *
+     * @return boolean boolean
+     */
+    public boolean isShowSpecialAttributes() {
 		return showSpecialAttributes;
 	}
 
-	/**
-	 * Sets whether special attributes should be shown.
-	 * 
-	 * @param showSpecialAttributes
-	 */
-	public void setShowSpecialAttributes(final boolean showSpecialAttributes) {
+    /**
+     * Sets whether special attributes should be shown.
+     *
+     * @param showSpecialAttributes the show special attributes
+     */
+    public void setShowSpecialAttributes(final boolean showSpecialAttributes) {
 		this.showSpecialAttributes = showSpecialAttributes;
 	}
 
-	/**
-	 * If <code>true</code>, show regular attributes.
-	 * 
-	 * @return
-	 */
-	public boolean isShowRegularAttributes() {
+    /**
+     * If <code>true</code>, show regular attributes.
+     *
+     * @return boolean boolean
+     */
+    public boolean isShowRegularAttributes() {
 		return showRegularAttributes;
 	}
 
-	/**
-	 * Sets whether regular attributes should be shown.
-	 * 
-	 * @param showRegularAttributes
-	 */
-	public void setShowRegularAttributes(final boolean showRegularAttributes) {
+    /**
+     * Sets whether regular attributes should be shown.
+     *
+     * @param showRegularAttributes the show regular attributes
+     */
+    public void setShowRegularAttributes(final boolean showRegularAttributes) {
 		this.showRegularAttributes = showRegularAttributes;
 	}
 
-	/**
-	 * Tries to return the {@link ExampleSet} for this model. However this is stored via a
-	 * {@link WeakReference}, so it might be gone when this method is called.
-	 * 
-	 * @return
-	 */
-	public ExampleSet getExampleSetOrNull() {
+    /**
+     * Tries to return the {@link ExampleSet} for this model. However this is stored via a
+     * {@link WeakReference}, so it might be gone when this method is called.
+     *
+     * @return example set or null
+     */
+    public ExampleSet getExampleSetOrNull() {
 		return weakExampleSet.get();
 	}
 
-	/**
-	 * Sets the visibility of {@link Ontology#VALUE_TYPE}s.
-	 * 
-	 * @param valueType
-	 * @param visible
-	 * @return the previous value
-	 */
-	public Boolean setAttributeTypeVisibility(final int valueType, final boolean visible) {
+    /**
+     * Sets the visibility of {@link Ontology#VALUE_TYPE}s.
+     *
+     * @param valueType the value type
+     * @param visible   the visible
+     * @return the previous value
+     */
+    public Boolean setAttributeTypeVisibility(final int valueType, final boolean visible) {
 		return mapOfValueTypeVisibility.put(valueType, visible);
 	}
 
-	/**
-	 * Returns the visibility for the given value type.
-	 * 
-	 * @param valueType
-	 * @return
-	 */
-	public Boolean getAttributeTypeVisibility(final int valueType) {
+    /**
+     * Returns the visibility for the given value type.
+     *
+     * @param valueType the value type
+     * @return attribute type visibility
+     */
+    public Boolean getAttributeTypeVisibility(final int valueType) {
 		return mapOfValueTypeVisibility.get(valueType);
 	}
 
-	/**
-	 * Adds a {@link MetaDataStatisticsEventListener} which will be informed of all changes to this
-	 * model.
-	 * 
-	 * @param listener
-	 */
-	public void registerEventListener(final MetaDataStatisticsEventListener listener) {
+    /**
+     * Adds a {@link MetaDataStatisticsEventListener} which will be informed of all changes to this
+     * model.
+     *
+     * @param listener the listener
+     */
+    public void registerEventListener(final MetaDataStatisticsEventListener listener) {
 		eventListener.add(MetaDataStatisticsEventListener.class, listener);
 	}
 
-	/**
-	 * Removes the {@link MetaDataStatisticsEventListener} from this model.
-	 * 
-	 * @param listener
-	 */
-	public void removeEventListener(final MetaDataStatisticsEventListener listener) {
+    /**
+     * Removes the {@link MetaDataStatisticsEventListener} from this model.
+     *
+     * @param listener the listener
+     */
+    public void removeEventListener(final MetaDataStatisticsEventListener listener) {
 		eventListener.remove(MetaDataStatisticsEventListener.class, listener);
 	}
 
-	/**
-	 * Returns the number of pages which are currently needed to display all visible stat models.
-	 * 
-	 * @return
-	 */
-	public int getNumberOfPages() {
+    /**
+     * Returns the number of pages which are currently needed to display all visible stat models.
+     *
+     * @return number of pages
+     */
+    public int getNumberOfPages() {
 		// double cast is needed so 1001/1000 returns 2 pages
 		int pages = (int) Math.ceil((double) getVisibleSize() / MetaDataStatisticsModel.PAGE_SIZE);
 		// no pages = 1 page
@@ -364,84 +380,84 @@ public class MetaDataStatisticsModel {
 		return pages;
 	}
 
-	/**
-	 * Sets the current page index. Note that index stats at 0.
-	 * 
-	 * @param index
-	 */
-	public void setCurrentPageIndex(final int index) {
+    /**
+     * Sets the current page index. Note that index stats at 0.
+     *
+     * @param index the index
+     */
+    public void setCurrentPageIndex(final int index) {
 		currentPageIndex = index;
 	}
 
-	/**
-	 * Returns the currently active page index. Note that index starts at 0.
-	 * 
-	 * @return
-	 */
-	public int getCurrentPageIndex() {
+    /**
+     * Returns the currently active page index. Note that index starts at 0.
+     *
+     * @return current page index
+     */
+    public int getCurrentPageIndex() {
 		return currentPageIndex;
 	}
 
-	/**
-	 * Returns <code>true</code> if the user applied a filter; <code>false</code> otherwise.
-	 * 
-	 * @return
-	 */
-	public boolean isFiltering() {
+    /**
+     * Returns <code>true</code> if the user applied a filter; <code>false</code> otherwise.
+     *
+     * @return boolean boolean
+     */
+    public boolean isFiltering() {
 		return getVisibleSize() < getTotalSize();
 	}
 
-	/**
-	 * Sets sorting and filtering to allowed.
-	 */
-	public void setAllowSortingAndFiltering() {
+    /**
+     * Sets sorting and filtering to allowed.
+     */
+    public void setAllowSortingAndFiltering() {
 		allowSortingAndFiltering = true;
 	}
 
-	/**
-	 * Returns <code>true</code> if filtering and sorting is allowed; <code>false</code> otherwise.
-	 * Both are only allowed after the data has been fully displayed and calculated.
-	 * 
-	 * @return the allowSortingAndFiltering
-	 */
-	public boolean isSortingAndFilteringAllowed() {
+    /**
+     * Returns <code>true</code> if filtering and sorting is allowed; <code>false</code> otherwise.
+     * Both are only allowed after the data has been fully displayed and calculated.
+     *
+     * @return the allowSortingAndFiltering
+     */
+    public boolean isSortingAndFilteringAllowed() {
 		return allowSortingAndFiltering;
 	}
 
-	/**
-	 * Sets the list of ordered {@link AbstractAttributeStatisticsModel}s.
-	 * 
-	 * @param orderedList
-	 */
-	public void setOrderedModelList(final List<AbstractAttributeStatisticsModel> orderedList) {
+    /**
+     * Sets the list of ordered {@link AbstractAttributeStatisticsModel}s.
+     *
+     * @param orderedList the ordered list
+     */
+    public void setOrderedModelList(final List<AbstractAttributeStatisticsModel> orderedList) {
 		this.orderedModelList = new ArrayList<>(orderedList);
 	}
 
-	/**
-	 * Fire when the initialization is complete.
-	 */
-	public void fireInitDoneEvent() {
+    /**
+     * Fire when the initialization is complete.
+     */
+    public void fireInitDoneEvent() {
 		fireEvent(EventType.INIT_DONE);
 	}
 
-	/**
-	 * Fire when pagination has changed.
-	 */
-	public void firePaginationChangedEvent() {
+    /**
+     * Fire when pagination has changed.
+     */
+    public void firePaginationChangedEvent() {
 		fireEvent(EventType.PAGINATION_CHANGED);
 	}
 
-	/**
-	 * Fire when the filters have changed.
-	 */
-	public void fireFilterChangedEvent() {
+    /**
+     * Fire when the filters have changed.
+     */
+    public void fireFilterChangedEvent() {
 		fireEvent(EventType.FILTER_CHANGED);
 	}
 
-	/**
-	 * Fire when the order of attributes has changed.
-	 */
-	public void fireOrderChangedEvent() {
+    /**
+     * Fire when the order of attributes has changed.
+     */
+    public void fireOrderChangedEvent() {
 		fireEvent(EventType.ORDER_CHANGED);
 	}
 

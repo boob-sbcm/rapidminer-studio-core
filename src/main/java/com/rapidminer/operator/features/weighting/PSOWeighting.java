@@ -52,43 +52,62 @@ import com.rapidminer.tools.math.optimization.ec.pso.PSOOptimization;
  */
 public class PSOWeighting extends OperatorChain {
 
-	/** The parameter name for &quot;Activates the normalization of all weights.&quot; */
-	public static final String PARAMETER_NORMALIZE_WEIGHTS = "normalize_weights";
+    /**
+     * The parameter name for &quot;Activates the normalization of all weights.&quot;
+     */
+    public static final String PARAMETER_NORMALIZE_WEIGHTS = "normalize_weights";
 
-	/** The parameter name for &quot;Number of individuals per generation.&quot; */
-	public static final String PARAMETER_POPULATION_SIZE = "population_size";
+    /**
+     * The parameter name for &quot;Number of individuals per generation.&quot;
+     */
+    public static final String PARAMETER_POPULATION_SIZE = "population_size";
 
-	/**
-	 * The parameter name for &quot;Number of generations after which to terminate the
-	 * algorithm.&quot;
-	 */
-	public static final String PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS = "maximum_number_of_generations";
+    /**
+     * The parameter name for &quot;Number of generations after which to terminate the
+     * algorithm.&quot;
+     */
+    public static final String PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS = "maximum_number_of_generations";
 
-	public static final String PARAMETER_USE_EARLY_STOPPING = "use_early_stopping";
+    /**
+     * The constant PARAMETER_USE_EARLY_STOPPING.
+     */
+    public static final String PARAMETER_USE_EARLY_STOPPING = "use_early_stopping";
 
-	/**
-	 * The parameter name for &quot;Stop criterion: Stop after n generations without improval of the
-	 * performance (-1: perform all generations).&quot;
-	 */
-	public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
+    /**
+     * The parameter name for &quot;Stop criterion: Stop after n generations without improval of the
+     * performance (-1: perform all generations).&quot;
+     */
+    public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
 
-	/** The parameter name for &quot;The (initial) weight for the old weighting.&quot; */
-	public static final String PARAMETER_INERTIA_WEIGHT = "inertia_weight";
+    /**
+     * The parameter name for &quot;The (initial) weight for the old weighting.&quot;
+     */
+    public static final String PARAMETER_INERTIA_WEIGHT = "inertia_weight";
 
-	/** The parameter name for &quot;The weight for the individual's best position during run.&quot; */
-	public static final String PARAMETER_LOCAL_BEST_WEIGHT = "local_best_weight";
+    /**
+     * The parameter name for &quot;The weight for the individual's best position during run.&quot;
+     */
+    public static final String PARAMETER_LOCAL_BEST_WEIGHT = "local_best_weight";
 
-	/** The parameter name for &quot;The weight for the population's best position during run.&quot; */
-	public static final String PARAMETER_GLOBAL_BEST_WEIGHT = "global_best_weight";
+    /**
+     * The parameter name for &quot;The weight for the population's best position during run.&quot;
+     */
+    public static final String PARAMETER_GLOBAL_BEST_WEIGHT = "global_best_weight";
 
-	/** The parameter name for &quot;If set to true the inertia weight is improved during run.&quot; */
-	public static final String PARAMETER_DYNAMIC_INERTIA_WEIGHT = "dynamic_inertia_weight";
+    /**
+     * The parameter name for &quot;If set to true the inertia weight is improved during run.&quot;
+     */
+    public static final String PARAMETER_DYNAMIC_INERTIA_WEIGHT = "dynamic_inertia_weight";
 
-	/** The parameter name for &quot;The lower bound for the weights.&quot; */
-	public static final String PARAMETER_MIN_WEIGHT = "min_weight";
+    /**
+     * The parameter name for &quot;The lower bound for the weights.&quot;
+     */
+    public static final String PARAMETER_MIN_WEIGHT = "min_weight";
 
-	/** The parameter name for &quot;The upper bound for the weights.&quot; */
-	public static final String PARAMETER_MAX_WEIGHT = "max_weight";
+    /**
+     * The parameter name for &quot;The upper bound for the weights.&quot;
+     */
+    public static final String PARAMETER_MAX_WEIGHT = "max_weight";
 
 	private final InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private final OutputPort weightsOutput = getOutputPorts().createPort("weights");
@@ -105,7 +124,15 @@ public class PSOWeighting extends OperatorChain {
 
 		private final PSOWeighting op;
 
-		public PSOWeightingOptimization(PSOWeighting op, int individualSize, RandomGenerator random)
+        /**
+         * Instantiates a new Pso weighting optimization.
+         *
+         * @param op             the op
+         * @param individualSize the individual size
+         * @param random         the random
+         * @throws UndefinedParameterError the undefined parameter error
+         */
+        public PSOWeightingOptimization(PSOWeighting op, int individualSize, RandomGenerator random)
 				throws UndefinedParameterError {
 			super(op.getParameterAsInt(PARAMETER_POPULATION_SIZE), individualSize, op
 					.getParameterAsInt(PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS), op
@@ -137,7 +164,12 @@ public class PSOWeighting extends OperatorChain {
 
 	private ExampleSet exampleSet;
 
-	public PSOWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Pso weighting.
+     *
+     * @param description the description
+     */
+    public PSOWeighting(OperatorDescription description) {
 		super(description, "Performance Evaluation");
 
 		inputExtender.start();

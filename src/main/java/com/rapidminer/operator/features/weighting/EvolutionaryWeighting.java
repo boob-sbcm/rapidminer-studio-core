@@ -51,32 +51,47 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  */
 public class EvolutionaryWeighting extends AbstractGeneticAlgorithm {
 
-	/** The parameter name for &quot;The (initial) variance for each mutation.&quot; */
-	public static final String PARAMETER_MUTATION_VARIANCE = "mutation_variance";
+    /**
+     * The parameter name for &quot;The (initial) variance for each mutation.&quot;
+     */
+    public static final String PARAMETER_MUTATION_VARIANCE = "mutation_variance";
 
-	/**
-	 * The parameter name for &quot;If set to true, the 1/5 rule for variance adaption is
-	 * used.&quot;
-	 */
-	public static final String PARAMETER_1_5_RULE = "1_5_rule";
+    /**
+     * The parameter name for &quot;If set to true, the 1/5 rule for variance adaption is
+     * used.&quot;
+     */
+    public static final String PARAMETER_1_5_RULE = "1_5_rule";
 
-	/** The parameter name for &quot;If set to true, the weights are bounded between 0 and 1.&quot; */
-	public static final String PARAMETER_BOUNDED_MUTATION = "bounded_mutation";
+    /**
+     * The parameter name for &quot;If set to true, the weights are bounded between 0 and 1.&quot;
+     */
+    public static final String PARAMETER_BOUNDED_MUTATION = "bounded_mutation";
 
-	/**
-	 * The parameter name for &quot;Probability for an individual to be selected for
-	 * crossover.&quot;
-	 */
-	public static final String PARAMETER_P_CROSSOVER = "p_crossover";
+    /**
+     * The parameter name for &quot;Probability for an individual to be selected for
+     * crossover.&quot;
+     */
+    public static final String PARAMETER_P_CROSSOVER = "p_crossover";
 
-	/** The parameter name for &quot;Type of the crossover.&quot; */
-	public static final String PARAMETER_CROSSOVER_TYPE = "crossover_type";
+    /**
+     * The parameter name for &quot;Type of the crossover.&quot;
+     */
+    public static final String PARAMETER_CROSSOVER_TYPE = "crossover_type";
 
-	public static final String PARAMETER_INITIALIZE_WITH_INPUT_WEIGHTS = "initialize_with_input_weights";
+    /**
+     * The constant PARAMETER_INITIALIZE_WITH_INPUT_WEIGHTS.
+     */
+    public static final String PARAMETER_INITIALIZE_WITH_INPUT_WEIGHTS = "initialize_with_input_weights";
 
-	public static final String PARAMETER_NOMINAL_MUTATION_RATE = "nominal_mutation_rate";
+    /**
+     * The constant PARAMETER_NOMINAL_MUTATION_RATE.
+     */
+    public static final String PARAMETER_NOMINAL_MUTATION_RATE = "nominal_mutation_rate";
 
-	public static final String PARAMETER_DEFAULT_NOMINAL_MUTATION_RATE = "use_default_mutation_rate";
+    /**
+     * The constant PARAMETER_DEFAULT_NOMINAL_MUTATION_RATE.
+     */
+    public static final String PARAMETER_DEFAULT_NOMINAL_MUTATION_RATE = "use_default_mutation_rate";
 
 	private WeightingMutation weighting = null;
 
@@ -84,7 +99,12 @@ public class EvolutionaryWeighting extends AbstractGeneticAlgorithm {
 
 	private final InputPort attributeWeightsInput = getInputPorts().createPort("attribute weights in");
 
-	public EvolutionaryWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Evolutionary weighting.
+     *
+     * @param description the description
+     */
+    public EvolutionaryWeighting(OperatorDescription description) {
 		super(description);
 
 		attributeWeightsInput.addPrecondition(new SimplePrecondition(attributeWeightsInput, new MetaData(

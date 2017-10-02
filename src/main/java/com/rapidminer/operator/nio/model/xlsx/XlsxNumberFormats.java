@@ -43,33 +43,33 @@ public class XlsxNumberFormats {
 	/** An array that contains the number format index references for the specific cell style */
 	private int[] cellNumberFormatIds;
 
-	/**
-	 * Initializes the cell number format IDs array with the specified size
-	 *
-	 * @param count
-	 *            the size of the cell number format IDs
-	 */
-	public void initializeCellNumberFormatIds(int count) {
+    /**
+     * Initializes the cell number format IDs array with the specified size
+     *
+     * @param count the size of the cell number format IDs
+     */
+    public void initializeCellNumberFormatIds(int count) {
 		cellNumberFormatIds = new int[count];
 	}
 
-	/**
-	 * Sets the number format Id for the specified index.
-	 *
-	 * @param index
-	 *            the index of the cell format
-	 * @param numberFormatId
-	 *            the number format ID
-	 */
-	public void setCellNumberFormatId(int index, int numberFormatId) {
+    /**
+     * Sets the number format Id for the specified index.
+     *
+     * @param index          the index of the cell format
+     * @param numberFormatId the number format ID
+     */
+    public void setCellNumberFormatId(int index, int numberFormatId) {
 		cellNumberFormatIds[index] = numberFormatId;
 	}
 
-	/**
-	 * Adds a new number format and fills the date format cache by checking whether it is a date
-	 * format.
-	 */
-	public void addNumberFormat(int numberFormatId, String formatCode) {
+    /**
+     * Adds a new number format and fills the date format cache by checking whether it is a date
+     * format.
+     *
+     * @param numberFormatId the number format id
+     * @param formatCode     the format code
+     */
+    public void addNumberFormat(int numberFormatId, String formatCode) {
 		numberFormats.put(numberFormatId, formatCode);
 		isDateFormatCache.put(numberFormatId, checkForDateFormat(numberFormatId, formatCode));
 	}
@@ -78,13 +78,13 @@ public class XlsxNumberFormats {
 		return DateUtil.isADateFormat(numberFormatId, formatCode);
 	}
 
-	/**
-	 * @param cellStyleId
-	 *            the cell style ID stored within the XLSX worksheet cell tag. <code>null</code> is
-	 *            allowed and will return <code>false</code>
-	 * @return <code>true</code> in case it is a date, <code>false</code> otherwise
-	 */
-	public boolean isDateFormatStyle(String cellStyleId) {
+    /**
+     * Is date format style boolean.
+     *
+     * @param cellStyleId the cell style ID stored within the XLSX worksheet cell tag. <code>null</code> is            allowed and will return <code>false</code>
+     * @return <code>true</code> in case it is a date, <code>false</code> otherwise
+     */
+    public boolean isDateFormatStyle(String cellStyleId) {
 		if (cellStyleId == null) {
 			return false;
 		}

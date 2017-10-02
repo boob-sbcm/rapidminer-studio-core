@@ -35,14 +35,15 @@ import Jama.Matrix;
  */
 public class CovarianceMatrix {
 
-	/**
-	 * Transforms the example set into a double matrix (doubling the amount of used memory) and
-	 * invokes {@link #getCovarianceMatrix(double[][])}.
-	 *
-	 * @deprecated Please use {@link #getCovarianceMatrix(ExampleSet, Operator)} so that the
-	 *             calculation can be stopped if necessary.
-	 */
-	@Deprecated
+    /**
+     * Transforms the example set into a double matrix (doubling the amount of used memory) and
+     * invokes {@link #getCovarianceMatrix(double[][])}.
+     *
+     * @param exampleSet the example set
+     * @return the covariance matrix
+     * @deprecated Please use {@link #getCovarianceMatrix(ExampleSet, Operator)} so that the             calculation can be stopped if necessary.
+     */
+    @Deprecated
 	public static Matrix getCovarianceMatrix(ExampleSet exampleSet) {
 		Matrix matrix = new Matrix(0, 0);
 		try {
@@ -53,18 +54,16 @@ public class CovarianceMatrix {
 		return matrix;
 	}
 
-	/**
-	 * Transforms the example set into a double matrix (doubling the amount of used memory) and
-	 * invokes {@link #getCovarianceMatrix(double[][])}.
-	 *
-	 * @param exampleSet
-	 *            ExampleSet to construct the covariance matrix from
-	 * @param op
-	 *            executing Operator which will be used to check for stop (can be null).
-	 *
-	 * @throws ProcessStoppedException
-	 */
-	public static Matrix getCovarianceMatrix(ExampleSet exampleSet, Operator op) throws ProcessStoppedException {
+    /**
+     * Transforms the example set into a double matrix (doubling the amount of used memory) and
+     * invokes {@link #getCovarianceMatrix(double[][])}.
+     *
+     * @param exampleSet ExampleSet to construct the covariance matrix from
+     * @param op         executing Operator which will be used to check for stop (can be null).
+     * @return the covariance matrix
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public static Matrix getCovarianceMatrix(ExampleSet exampleSet, Operator op) throws ProcessStoppedException {
 		boolean checkForStop = op != null;
 		double[][] data = new double[exampleSet.size()][exampleSet.getAttributes().size()];
 		int c = 0;
@@ -84,13 +83,14 @@ public class CovarianceMatrix {
 		return getCovarianceMatrix(data, op);
 	}
 
-	/**
-	 * Returns the covariance matrix from the given double matrix.
-	 *
-	 * @deprecated Please use {@link #getCovarianceMatrix(double[][], Operator)} so that the
-	 *             calculation can be stopped if necessary.
-	 */
-	@Deprecated
+    /**
+     * Returns the covariance matrix from the given double matrix.
+     *
+     * @param data the data
+     * @return the covariance matrix
+     * @deprecated Please use {@link #getCovarianceMatrix(double[][], Operator)} so that the             calculation can be stopped if necessary.
+     */
+    @Deprecated
 	public static Matrix getCovarianceMatrix(double[][] data) {
 		Matrix matrix = new Matrix(0, 0);
 		try {
@@ -101,15 +101,15 @@ public class CovarianceMatrix {
 		return matrix;
 	}
 
-	/**
-	 * Returns the covariance matrix from the given double matrix.
-	 *
-	 * @param data
-	 *            data to construct the covariance matrix from
-	 * @param op
-	 *            executing Operator which will be used to check for stop (can be null).
-	 */
-	public static Matrix getCovarianceMatrix(double[][] data, Operator op) throws ProcessStoppedException {
+    /**
+     * Returns the covariance matrix from the given double matrix.
+     *
+     * @param data data to construct the covariance matrix from
+     * @param op   executing Operator which will be used to check for stop (can be null).
+     * @return the covariance matrix
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public static Matrix getCovarianceMatrix(double[][] data, Operator op) throws ProcessStoppedException {
 		// checks
 		if (data.length == 0) {
 			throw new IllegalArgumentException(

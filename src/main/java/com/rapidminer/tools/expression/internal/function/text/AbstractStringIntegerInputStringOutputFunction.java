@@ -36,24 +36,17 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * string as output.
  *
  * @author Thilo Kamradt
- *
  */
 public abstract class AbstractStringIntegerInputStringOutputFunction extends AbstractFunction {
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 *
-	 * @param i18nKey
-	 *            the key for the {@link FunctionDescription}. The functionName is read from
-	 *            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName
-	 *            from ".group", the description from ".description" and the function with
-	 *            parameters from ".parameters". If ".parameters" is not present, the ".name" is
-	 *            taken for the function with parameters.
-	 * @param numberOfArgumentsToCheck
-	 *            the fixed number of parameters this functions expects or -1
-	 */
-	public AbstractStringIntegerInputStringOutputFunction(String i18nKey, int numberOfArgumentsToCheck) {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     *
+     * @param i18nKey                  the key for the {@link FunctionDescription}. The functionName is read from            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName            from ".group", the description from ".description" and the function with            parameters from ".parameters". If ".parameters" is not present, the ".name" is            taken for the function with parameters.
+     * @param numberOfArgumentsToCheck the fixed number of parameters this functions expects or -1
+     */
+    public AbstractStringIntegerInputStringOutputFunction(String i18nKey, int numberOfArgumentsToCheck) {
 		super(i18nKey, numberOfArgumentsToCheck, Ontology.NOMINAL);
 	}
 
@@ -71,17 +64,15 @@ public abstract class AbstractStringIntegerInputStringOutputFunction extends Abs
 		return new SimpleExpressionEvaluator(makeStringCallable(left, right), type, isResultConstant(inputEvaluators));
 	}
 
-	/**
-	 * Builds a DoubleCallable from left and right using {@link #compute(String, String)}, where
-	 * constant child results are evaluated.
-	 *
-	 * @param left
-	 *            the left input
-	 * @param right
-	 *            the right input
-	 * @return the resulting DoubleCallable
-	 */
-	protected Callable<String> makeStringCallable(ExpressionEvaluator left, ExpressionEvaluator right) {
+    /**
+     * Builds a DoubleCallable from left and right using {@link #compute(String, String)}, where
+     * constant child results are evaluated.
+     *
+     * @param left  the left input
+     * @param right the right input
+     * @return the resulting DoubleCallable
+     */
+    protected Callable<String> makeStringCallable(ExpressionEvaluator left, ExpressionEvaluator right) {
 		final Callable<String> funcLeft = left.getStringFunction();
 		final DoubleCallable funcRight = right.getDoubleFunction();
 		try {
@@ -135,14 +126,14 @@ public abstract class AbstractStringIntegerInputStringOutputFunction extends Abs
 		}
 	}
 
-	/**
-	 * Computes the result.
-	 *
-	 * @param text
-	 * @param index
-	 * @return the result of the computation.
-	 */
-	protected abstract String compute(String text, double index);
+    /**
+     * Computes the result.
+     *
+     * @param text  the text
+     * @param index the index
+     * @return the result of the computation.
+     */
+    protected abstract String compute(String text, double index);
 
 	@Override
 	protected ExpressionType computeType(ExpressionType... inputTypes) {

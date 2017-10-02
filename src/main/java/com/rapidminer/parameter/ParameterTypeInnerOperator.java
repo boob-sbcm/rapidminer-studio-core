@@ -26,19 +26,31 @@ import org.w3c.dom.Element;
 /**
  * Helper class for GUI purposes. This parameter type should hold information about other inner
  * operator names, e.g. for the definition of the inner operator of the OperatorEnabler operator.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ParameterTypeInnerOperator extends ParameterTypeSingle {
 
 	private static final long serialVersionUID = -8428679832770835634L;
 
-	public ParameterTypeInnerOperator(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type inner operator.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeInnerOperator(Element element) throws XMLException {
 		super(element);
 		setOptional(false);
 	}
 
-	public ParameterTypeInnerOperator(String key, String description) {
+    /**
+     * Instantiates a new Parameter type inner operator.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ParameterTypeInnerOperator(String key, String description) {
 		super(key, description);
 		setOptional(false);
 	}

@@ -27,28 +27,51 @@ import javax.swing.plaf.UIResource;
 
 /**
  * The UI for image icons.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ImageIconUIResource extends ImageIcon implements UIResource {
 
 	private static final long serialVersionUID = 705603654836477091L;
 
-	public ImageIconUIResource() {}
+    /**
+     * Instantiates a new Image icon ui resource.
+     */
+    public ImageIconUIResource() {}
 
-	public ImageIconUIResource(byte imageData[]) {
+    /**
+     * Instantiates a new Image icon ui resource.
+     *
+     * @param imageData the image data
+     */
+    public ImageIconUIResource(byte imageData[]) {
 		super(imageData);
 	}
 
-	public ImageIconUIResource(Image image) {
+    /**
+     * Instantiates a new Image icon ui resource.
+     *
+     * @param image the image
+     */
+    public ImageIconUIResource(Image image) {
 		super(image);
 	}
 
-	public ImageIconUIResource(URL location) {
+    /**
+     * Instantiates a new Image icon ui resource.
+     *
+     * @param location the location
+     */
+    public ImageIconUIResource(URL location) {
 		super(location, location.toExternalForm());
 	}
 
-	public ImageIconUIResource(String filename) {
+    /**
+     * Instantiates a new Image icon ui resource.
+     *
+     * @param filename the filename
+     */
+    public ImageIconUIResource(String filename) {
 		super(filename, filename);
 	}
 }

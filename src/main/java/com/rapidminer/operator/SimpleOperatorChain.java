@@ -34,18 +34,33 @@ import com.rapidminer.operator.ports.metadata.SubprocessTransformRule;
  */
 public class SimpleOperatorChain extends OperatorChain {
 
-	protected PortPairExtender inputExtender = new PortPairExtender("in", getInputPorts(), getSubprocess(0)
+    /**
+     * The Input extender.
+     */
+    protected PortPairExtender inputExtender = new PortPairExtender("in", getInputPorts(), getSubprocess(0)
 			.getInnerSources());
-	protected PortPairExtender outputExtender = new PortPairExtender("out", getSubprocess(0).getInnerSinks(),
+    /**
+     * The Output extender.
+     */
+    protected PortPairExtender outputExtender = new PortPairExtender("out", getSubprocess(0).getInnerSinks(),
 			getOutputPorts());
 
-	/** Creates an empty operator chain. */
-	public SimpleOperatorChain(OperatorDescription description) {
+    /**
+     * Creates an empty operator chain.  @param description the description
+     *
+     * @param description the description
+     */
+    public SimpleOperatorChain(OperatorDescription description) {
 		this(description, "Nested Process");
 	}
 
-	/** This constructor allows subclasses to change the subprocess' name. */
-	protected SimpleOperatorChain(OperatorDescription description, String subProcessName) {
+    /**
+     * This constructor allows subclasses to change the subprocess' name.  @param description the description
+     *
+     * @param description    the description
+     * @param subProcessName the sub process name
+     */
+    protected SimpleOperatorChain(OperatorDescription description, String subProcessName) {
 		super(description, subProcessName);
 		inputExtender.start();
 		outputExtender.start();
@@ -100,17 +115,21 @@ public class SimpleOperatorChain extends OperatorChain {
 		outputExtender.passDataThrough();
 	}
 
-	/**
-	 * @return the input extender
-	 */
-	public PortPairExtender getInputExtender() {
+    /**
+     * Gets input extender.
+     *
+     * @return the input extender
+     */
+    public PortPairExtender getInputExtender() {
 		return inputExtender;
 	}
 
-	/**
-	 * @return the output extender
-	 */
-	public PortPairExtender getOutputExtender() {
+    /**
+     * Gets output extender.
+     *
+     * @return the output extender
+     */
+    public PortPairExtender getOutputExtender() {
 		return outputExtender;
 	}
 }

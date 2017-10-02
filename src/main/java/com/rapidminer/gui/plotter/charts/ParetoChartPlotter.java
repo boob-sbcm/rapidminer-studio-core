@@ -90,15 +90,30 @@ import com.rapidminer.tools.Tools;
  */
 public class ParetoChartPlotter extends LabelRotatingPlotterAdapter {
 
-	public static final String PARAMETER_ROTATE_LABELS = "rotate_labels";
+    /**
+     * The constant PARAMETER_ROTATE_LABELS.
+     */
+    public static final String PARAMETER_ROTATE_LABELS = "rotate_labels";
 
-	public static final String PARAMETER_SHOW_CUMULATIVE_LABELS = "show_cumulative_labels";
+    /**
+     * The constant PARAMETER_SHOW_CUMULATIVE_LABELS.
+     */
+    public static final String PARAMETER_SHOW_CUMULATIVE_LABELS = "show_cumulative_labels";
 
-	public static final String PARAMETER_SHOW_BAR_LABELS = "show_bar_labels";
+    /**
+     * The constant PARAMETER_SHOW_BAR_LABELS.
+     */
+    public static final String PARAMETER_SHOW_BAR_LABELS = "show_bar_labels";
 
-	public static final String PARAMETER_SORTING_DIRECTION = "sorting_direction";
+    /**
+     * The constant PARAMETER_SORTING_DIRECTION.
+     */
+    public static final String PARAMETER_SORTING_DIRECTION = "sorting_direction";
 
-	public static final String PARAMETER_COUNT_VALUE = "count_value";
+    /**
+     * The constant PARAMETER_COUNT_VALUE.
+     */
+    public static final String PARAMETER_COUNT_VALUE = "count_value";
 
 	private static final long serialVersionUID = -8763693366081949249L;
 
@@ -124,10 +139,22 @@ public class ParetoChartPlotter extends LabelRotatingPlotterAdapter {
 	private static final String[] SORTING_DIRECTIONS = new String[] { "Descending Keys", "Ascending Keys",
 			"Descending Values", "Ascending Values" };
 
-	public static final int KEYS_DESCENDING = 0;
-	public static final int KEYS_ASCENDING = 1;
-	public static final int VALUES_DESCENDING = 2;
-	public static final int VALUES_ASCENDING = 3;
+    /**
+     * The constant KEYS_DESCENDING.
+     */
+    public static final int KEYS_DESCENDING = 0;
+    /**
+     * The constant KEYS_ASCENDING.
+     */
+    public static final int KEYS_ASCENDING = 1;
+    /**
+     * The constant VALUES_DESCENDING.
+     */
+    public static final int VALUES_DESCENDING = 2;
+    /**
+     * The constant VALUES_ASCENDING.
+     */
+    public static final int VALUES_ASCENDING = 3;
 
 	private ListeningJComboBox<String> countValues;
 
@@ -137,7 +164,12 @@ public class ParetoChartPlotter extends LabelRotatingPlotterAdapter {
 
 	private ListeningJCheckBox showBarLabels;
 
-	public ParetoChartPlotter(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Pareto chart plotter.
+     *
+     * @param settings the settings
+     */
+    public ParetoChartPlotter(final PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 
@@ -185,7 +217,13 @@ public class ParetoChartPlotter extends LabelRotatingPlotterAdapter {
 		});
 	}
 
-	public ParetoChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Pareto chart plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public ParetoChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
@@ -414,7 +452,12 @@ public class ParetoChartPlotter extends LabelRotatingPlotterAdapter {
 		paintParetoChart(g);
 	}
 
-	public void paintParetoChart(Graphics graphics) {
+    /**
+     * Paint pareto chart.
+     *
+     * @param graphics the graphics
+     */
+    public void paintParetoChart(Graphics graphics) {
 		prepareData();
 
 		JFreeChart chart = createChart();

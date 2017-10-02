@@ -41,7 +41,7 @@ import com.rapidminer.parameter.conditions.EqualTypeCondition;
  * frequent item set mining is divided into two parts: first, the generation of frequent item sets
  * and second, the generation of association rules from these sets.
  * </p>
- *
+ * <p>
  * <p>
  * For the generation of frequent item sets, you can use for example the operator {@link FPGrowth}.
  * The result will be a set of frequent item sets which could be used as input for this operator.
@@ -55,26 +55,67 @@ public class AssociationRuleGenerator extends Operator {
 	private OutputPort rulesOutput = getOutputPorts().createPort("rules");
 	private OutputPort itemSetsOutput = getOutputPorts().createPort("item sets");
 
-	public static final String PARAMETER_CRITERION = "criterion";
+    /**
+     * The constant PARAMETER_CRITERION.
+     */
+    public static final String PARAMETER_CRITERION = "criterion";
 
-	public static final String PARAMETER_MIN_CONFIDENCE = "min_confidence";
+    /**
+     * The constant PARAMETER_MIN_CONFIDENCE.
+     */
+    public static final String PARAMETER_MIN_CONFIDENCE = "min_confidence";
 
-	public static final String PARAMETER_MIN_CRITERION_VALUE = "min_criterion_value";
+    /**
+     * The constant PARAMETER_MIN_CRITERION_VALUE.
+     */
+    public static final String PARAMETER_MIN_CRITERION_VALUE = "min_criterion_value";
 
-	public static final String PARAMETER_GAIN_THETA = "gain_theta";
+    /**
+     * The constant PARAMETER_GAIN_THETA.
+     */
+    public static final String PARAMETER_GAIN_THETA = "gain_theta";
 
-	public static final String PARAMETER_LAPLACE_K = "laplace_k";
+    /**
+     * The constant PARAMETER_LAPLACE_K.
+     */
+    public static final String PARAMETER_LAPLACE_K = "laplace_k";
 
-	public static final String[] CRITERIA = {"confidence", "lift", "conviction", "ps", "gain", "laplace"};
+    /**
+     * The constant CRITERIA.
+     */
+    public static final String[] CRITERIA = {"confidence", "lift", "conviction", "ps", "gain", "laplace"};
 
-	public static final int CONFIDENCE = 0;
-	public static final int LIFT = 1;
-	public static final int CONVICTION = 2;
-	public static final int PS = 3;
-	public static final int GAIN = 4;
-	public static final int LAPLACE = 5;
+    /**
+     * The constant CONFIDENCE.
+     */
+    public static final int CONFIDENCE = 0;
+    /**
+     * The constant LIFT.
+     */
+    public static final int LIFT = 1;
+    /**
+     * The constant CONVICTION.
+     */
+    public static final int CONVICTION = 2;
+    /**
+     * The constant PS.
+     */
+    public static final int PS = 3;
+    /**
+     * The constant GAIN.
+     */
+    public static final int GAIN = 4;
+    /**
+     * The constant LAPLACE.
+     */
+    public static final int LAPLACE = 5;
 
-	public AssociationRuleGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Association rule generator.
+     *
+     * @param description the description
+     */
+    public AssociationRuleGenerator(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(new GenerateNewMDRule(rulesOutput, AssociationRules.class));
 		getTransformer().addPassThroughRule(itemSetsInput, itemSetsOutput);

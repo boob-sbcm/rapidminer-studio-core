@@ -30,7 +30,6 @@ import com.rapidminer.core.io.gui.WizardDirection;
  *
  * @author Nils Woehler
  * @since 7.0.0
- *
  */
 public final class TypeSelectionStep extends AbstractWizardStep {
 
@@ -39,7 +38,12 @@ public final class TypeSelectionStep extends AbstractWizardStep {
 	private final TypeSelectionView view;
 	private final ImportWizard wizard;
 
-	public TypeSelectionStep(ImportWizard wizard) {
+    /**
+     * Instantiates a new Type selection step.
+     *
+     * @param wizard the wizard
+     */
+    public TypeSelectionStep(ImportWizard wizard) {
 		this.wizard = wizard;
 		this.view = new TypeSelectionView(wizard);
 	}

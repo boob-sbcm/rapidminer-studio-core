@@ -60,7 +60,7 @@ import javax.swing.ListCellRenderer;
 
 /**
  * A dialog to generate rules for attribute ordering.
- * 
+ *
  * @author Nils Woehler
  */
 public class AttributeOrderingDialog extends PropertyDialog {
@@ -281,7 +281,14 @@ public class AttributeOrderingDialog extends PropertyDialog {
 
 	private JToggleButton hideMatchedButton;
 
-	public AttributeOrderingDialog(final ParameterTypeAttributeOrderingRules type, Collection<String> preselectedItems,
+    /**
+     * Instantiates a new Attribute ordering dialog.
+     *
+     * @param type             the type
+     * @param preselectedItems the preselected items
+     * @param useRegExp        the use reg exp
+     */
+    public AttributeOrderingDialog(final ParameterTypeAttributeOrderingRules type, Collection<String> preselectedItems,
 			boolean useRegExp) {
 		super(type, "attribute_ordering");
 		JPanel panel = new JPanel(new GridBagLayout());
@@ -559,7 +566,12 @@ public class AttributeOrderingDialog extends PropertyDialog {
 		addFilterConditions(selectedRules);
 	}
 
-	public Collection<String> getSelectedAttributeNames() {
+    /**
+     * Gets selected attribute names.
+     *
+     * @return the selected attribute names
+     */
+    public Collection<String> getSelectedAttributeNames() {
 		return selectedRules;
 	}
 

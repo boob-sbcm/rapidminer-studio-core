@@ -33,7 +33,7 @@ import java.util.logging.Level;
 /**
  * This class loads all available tips and provides them as string. Each invocation of
  * {@link #nextTip()} returns a new randomly chosen tip string.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class TipOfTheDayProvider {
@@ -42,7 +42,10 @@ public class TipOfTheDayProvider {
 
 	private Random random;
 
-	public TipOfTheDayProvider() {
+    /**
+     * Instantiates a new Tip of the day provider.
+     */
+    public TipOfTheDayProvider() {
 		this.random = new Random();
 
 		// load all tips
@@ -86,7 +89,12 @@ public class TipOfTheDayProvider {
 		}
 	}
 
-	public String nextTip() {
+    /**
+     * Next tip string.
+     *
+     * @return the string
+     */
+    public String nextTip() {
 		if (allTips.size() == 0) {
 			return "No tips available.";
 		} else {

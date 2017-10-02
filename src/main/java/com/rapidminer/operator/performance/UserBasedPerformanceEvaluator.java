@@ -44,7 +44,7 @@ import com.rapidminer.parameter.UndefinedParameterError;
  * performance values according to a list of performance criteria that it calculates. If an input
  * performance vector was already given, this is used for keeping the performance values.
  * </p>
- *
+ * <p>
  * <p>
  * Additional user-defined implementations of {@link PerformanceCriterion} can be specified by using
  * the parameter list <var>additional_performance_criteria</var>. Each key/value pair in this list
@@ -56,7 +56,7 @@ import com.rapidminer.parameter.UndefinedParameterError;
  * criteria. Please note that only the first three user defined criteria can be used as logging
  * value with names &quot;user1&quot;, ... , &quot;user3&quot;.
  * </p>
- *
+ * <p>
  * <p>
  * The resulting performance vectors are usually compared with a standard performance comparator
  * which only compares the fitness values of the main criterion. Other implementations than this
@@ -71,22 +71,27 @@ import com.rapidminer.parameter.UndefinedParameterError;
  */
 public class UserBasedPerformanceEvaluator extends AbstractPerformanceEvaluator {
 
-	/**
-	 * The parameter name for &quot;List of classes that implement
-	 * com.rapidminer..operator.performance.PerformanceCriterion.&quot;
-	 */
-	public static final String PARAMETER_ADDITIONAL_PERFORMANCE_CRITERIA = "additional_performance_criteria";
+    /**
+     * The parameter name for &quot;List of classes that implement
+     * com.rapidminer..operator.performance.PerformanceCriterion.&quot;
+     */
+    public static final String PARAMETER_ADDITIONAL_PERFORMANCE_CRITERIA = "additional_performance_criteria";
 
-	/**
-	 * The names of allowed user criteria. These are necessary for plotting purposes and the
-	 * definition of the main criterion.
-	 */
-	public static final String[] USER_CRITERIA_NAMES = { "user1", "user2", "user3" };
+    /**
+     * The names of allowed user criteria. These are necessary for plotting purposes and the
+     * definition of the main criterion.
+     */
+    public static final String[] USER_CRITERIA_NAMES = { "user1", "user2", "user3" };
 
 	/** Used for logging. */
 	private List<PerformanceCriterion> userCriteria = new ArrayList<PerformanceCriterion>();
 
-	public UserBasedPerformanceEvaluator(OperatorDescription description) {
+    /**
+     * Instantiates a new User based performance evaluator.
+     *
+     * @param description the description
+     */
+    public UserBasedPerformanceEvaluator(OperatorDescription description) {
 		super(description);
 		for (int i = 0; i < USER_CRITERIA_NAMES.length; i++) {
 			addUserPerformanceValue(USER_CRITERIA_NAMES[i], "The user defined performance criterion " + i);

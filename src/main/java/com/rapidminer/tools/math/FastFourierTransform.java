@@ -32,34 +32,49 @@ import java.util.Collections;
 /**
  * <p>
  * Performs a FastFourierTransform on an array of complex values. The runtime is {@rapidminer.math
- * O(n log n)}.
+ * O(n log n)}**.
  * </p>
  * <p>
  * The used direction simply defines used norm factors, it can be omitted but the resulting values
  * may be quantitative wrong.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class FastFourierTransform {
 
-	/** Specifies the transformation from time into frequency domain. */
-	public static final int TIME2FREQUENCY = 0;
+    /**
+     * Specifies the transformation from time into frequency domain.
+     */
+    public static final int TIME2FREQUENCY = 0;
 
-	/** Specifies the transformation from frequency into time domain. */
-	public static final int FREQUENCY2TIME = 1;
+    /**
+     * Specifies the transformation from frequency into time domain.
+     */
+    public static final int FREQUENCY2TIME = 1;
 
 	/** The window function which should be applied before calculating the FT. */
 	private int windowFunctionType = WindowFunction.HANNING;
 
-	public FastFourierTransform(int windowFunctionType) {
+    /**
+     * Instantiates a new Fast fourier transform.
+     *
+     * @param windowFunctionType the window function type
+     */
+    public FastFourierTransform(int windowFunctionType) {
 		this.windowFunctionType = windowFunctionType;
 	}
 
-	/**
-	 * Builds the fourier transform from the values of the first attribute onto the second.
-	 */
-	public Complex[] getFourierTransform(ExampleSet exampleSet, Attribute source, Attribute target) throws OperatorException {
+    /**
+     * Builds the fourier transform from the values of the first attribute onto the second.
+     *
+     * @param exampleSet the example set
+     * @param source     the source
+     * @param target     the target
+     * @return the complex [ ]
+     * @throws OperatorException the operator exception
+     */
+    public Complex[] getFourierTransform(ExampleSet exampleSet, Attribute source, Attribute target) throws OperatorException {
 		ArrayList<Tupel<Double, Double>> values = new ArrayList<Tupel<Double, Double>>();
 		for (Example example : exampleSet) {
 			Tupel<Double, Double> tupel = new Tupel<Double, Double>(example.getValue(target), Double.valueOf(example
@@ -76,16 +91,29 @@ public class FastFourierTransform {
 		return getFourierTransform(complex, TIME2FREQUENCY, windowFunctionType);
 	}
 
-	/** Normalizes the frequency to the correct value. */
-	public static double convertFrequency(double frequency, int nyquist, int totalLength) {
+    /**
+     * Normalizes the frequency to the correct value.  @param frequency the frequency
+     *
+     * @param frequency   the frequency
+     * @param nyquist     the nyquist
+     * @param totalLength the total length
+     * @return the double
+     */
+    public static double convertFrequency(double frequency, int nyquist, int totalLength) {
 		return frequency / (2.0d * Math.PI) * ((double) totalLength / (double) nyquist);
 	}
 
-	/**
-	 * Performs a fourier transformation in the specified direction. The window function type
-	 * defines one of the possible window functions.
-	 */
-	public Complex[] getFourierTransform(Complex[] series, int direction, int functionType) throws OperatorException {
+    /**
+     * Performs a fourier transformation in the specified direction. The window function type
+     * defines one of the possible window functions.
+     *
+     * @param series       the series
+     * @param direction    the direction
+     * @param functionType the function type
+     * @return the complex [ ]
+     * @throws OperatorException the operator exception
+     */
+    public Complex[] getFourierTransform(Complex[] series, int direction, int functionType) throws OperatorException {
 		int n = getGreatestPowerOf2LessThan(series.length);
 		WindowFunction filter = new WindowFunction(functionType, n);
 		if (n < 2) {
@@ -156,10 +184,13 @@ public class FastFourierTransform {
 		return result;
 	}
 
-	/**
-	 * Calculates the greatest power of 2 which is smaller than the given number.
-	 */
-	public static int getGreatestPowerOf2LessThan(int n) {
+    /**
+     * Calculates the greatest power of 2 which is smaller than the given number.
+     *
+     * @param n the n
+     * @return the greatest power of 2 less than
+     */
+    public static int getGreatestPowerOf2LessThan(int n) {
 		int power = (int) (Math.log(n) / Math.log(2));
 		return (int) Math.pow(2, power);
 	}

@@ -34,21 +34,33 @@ import java.util.Set;
 
 /**
  * A target function for classification labels, i.e. non-continous nominal labels.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class ClassificationFunction implements TargetFunction {
 
-	protected double lower = -10.0d;
+    /**
+     * The Lower.
+     */
+    protected double lower = -10.0d;
 
-	protected double upper = 10.0d;
+    /**
+     * The Upper.
+     */
+    protected double upper = 10.0d;
 
 	private int numberOfExamples = 0;
 	private int numberOfAttributes = 0;
 
-	Attribute label = AttributeFactory.createAttribute("label", Ontology.BINOMINAL);
+    /**
+     * The Label.
+     */
+    Attribute label = AttributeFactory.createAttribute("label", Ontology.BINOMINAL);
 
-	public ClassificationFunction() {
+    /**
+     * Instantiates a new Classification function.
+     */
+    public ClassificationFunction() {
 		label.getMapping().mapString("negative");
 		label.getMapping().mapString("positive");
 	}
@@ -62,7 +74,12 @@ public abstract class ClassificationFunction implements TargetFunction {
 		numberOfExamples = number;
 	}
 
-	public int getTotalNumberOfExamples() {
+    /**
+     * Gets total number of examples.
+     *
+     * @return the total number of examples
+     */
+    public int getTotalNumberOfExamples() {
 		return numberOfExamples;
 	}
 
@@ -71,7 +88,12 @@ public abstract class ClassificationFunction implements TargetFunction {
 		numberOfAttributes = number;
 	}
 
-	public int getTotalNumberOfAttributes() {
+    /**
+     * Gets total number of attributes.
+     *
+     * @return the total number of attributes
+     */
+    public int getTotalNumberOfAttributes() {
 		return numberOfAttributes;
 	}
 

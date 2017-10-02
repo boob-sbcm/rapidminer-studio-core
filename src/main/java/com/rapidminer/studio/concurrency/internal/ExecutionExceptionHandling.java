@@ -38,33 +38,28 @@ import com.rapidminer.operator.ports.Port;
  * </p>
  *
  * @author Sebastian Land
+ * @see ConcurrencyExecutionServiceProviderProviderto get the concurrency execution service
  * @since 7.4
- * @see ConcurrencyExecutionServiceProvider Provider to get the concurrency execution service
  */
 public enum ExecutionExceptionHandling {
 
-	/** the singleton instance */
-	INSTANCE;
+    /**
+     * the singleton instance
+     */
+    INSTANCE;
 
-	/**
-	 * Tries to get the underlying cause of an {@link ExecutionException} which occurred while using
-	 * {@link ConcurrencyExecutionServiceProvider}.
-	 *
-	 * @param e
-	 *            the exception which occurred during execution via
-	 *            {@link ConcurrencyExecutionService} methods.
-	 * @param process
-	 *            the process in which the exception occurred
-	 * @return the {@link UserError} or {@link OperatorException} that caused the execution
-	 *         exception.
-	 * @throws OperatorException
-	 *             if the execution exception cannot be processed.
-	 * @throws RuntimeException
-	 *             if the cause of the exception was a runtime exception
-	 * @throws Error
-	 *             if the cause of the exception was an error
-	 */
-	public OperatorException processExecutionException(ExecutionException e, Process process)
+    /**
+     * Tries to get the underlying cause of an {@link ExecutionException} which occurred while using
+     * {@link ConcurrencyExecutionServiceProvider}.
+     *
+     * @param e       the exception which occurred during execution via            {@link ConcurrencyExecutionService} methods.
+     * @param process the process in which the exception occurred
+     * @return the {@link UserError} or {@link OperatorException} that caused the execution         exception.
+     * @throws OperatorException if the execution exception cannot be processed.
+     * @throws RuntimeException  if the cause of the exception was a runtime exception
+     * @throws Error             if the cause of the exception was an error
+     */
+    public OperatorException processExecutionException(ExecutionException e, Process process)
 			throws OperatorException, RuntimeException, Error {
 		// unpack stacked execution exceptions
 		Throwable cause = e.getCause();

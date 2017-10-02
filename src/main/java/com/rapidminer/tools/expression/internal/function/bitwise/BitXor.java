@@ -28,11 +28,13 @@ import com.rapidminer.tools.expression.internal.function.Abstract2DoubleInputFun
  * A {@link Function} to calculate the xor value of two integers.
  *
  * @author Thilo Kamradt
- *
  */
 public class BitXor extends Abstract2DoubleInputFunction {
 
-	public BitXor() {
+    /**
+     * Instantiates a new Bit xor.
+     */
+    public BitXor() {
 		super("bitwise.bit_xor", 2, Ontology.INTEGER);
 	}
 

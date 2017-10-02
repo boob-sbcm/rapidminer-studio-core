@@ -33,7 +33,6 @@ import javax.swing.plaf.basic.BasicArrowButton;
 /**
  * The button used at the end of scrollbars.
  *
- *
  * @author Ingo Mierswa, Marco Boeck
  */
 public class GenericArrowButton extends BasicArrowButton implements UIResource {
@@ -44,7 +43,14 @@ public class GenericArrowButton extends BasicArrowButton implements UIResource {
 
 	private static final int OFFSET = 4;
 
-	public GenericArrowButton(int direction, int w, int h) {
+    /**
+     * Instantiates a new Generic arrow button.
+     *
+     * @param direction the direction
+     * @param w         the w
+     * @param h         the h
+     */
+    public GenericArrowButton(int direction, int w, int h) {
 		super(direction);
 
 		this.setSize(w, h);

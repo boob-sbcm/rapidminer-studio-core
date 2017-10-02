@@ -25,7 +25,7 @@ import com.rapidminer.operator.performance.PerformanceVector;
  * This object stores for each individual index the current values and the best value for the
  * individual so far. It also stores the fitness of the best values ever and the corresponding
  * values.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class Population {
@@ -48,7 +48,13 @@ public class Population {
 
 	private int lastImprovement = 0;
 
-	public Population(int popSize, int individualSize) {
+    /**
+     * Instantiates a new Population.
+     *
+     * @param popSize        the pop size
+     * @param individualSize the individual size
+     */
+    public Population(int popSize, int individualSize) {
 		values = new double[2][popSize][individualSize];
 		individualFitness = new double[2][popSize];
 		// setting best individual fitness to negative infinity
@@ -57,27 +63,59 @@ public class Population {
 		}
 	}
 
-	public int getNumberOfIndividuals() {
+    /**
+     * Gets number of individuals.
+     *
+     * @return the number of individuals
+     */
+    public int getNumberOfIndividuals() {
 		return values[CURRENT].length;
 	}
 
-	public int getIndividualSize() {
+    /**
+     * Gets individual size.
+     *
+     * @return the individual size
+     */
+    public int getIndividualSize() {
 		return values[CURRENT][0].length;
 	}
 
-	public double[] getValues(int index) {
+    /**
+     * Get values double [ ].
+     *
+     * @param index the index
+     * @return the double [ ]
+     */
+    public double[] getValues(int index) {
 		return values[CURRENT][index];
 	}
 
-	public double[] getLocalBestValues(int index) {
+    /**
+     * Get local best values double [ ].
+     *
+     * @param index the index
+     * @return the double [ ]
+     */
+    public double[] getLocalBestValues(int index) {
 		return values[BEST][index];
 	}
 
-	public double[] getGlobalBestValues() {
+    /**
+     * Get global best values double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getGlobalBestValues() {
 		return bestValuesEver;
 	}
 
-	public double getBestFitnessEver() {
+    /**
+     * Gets best fitness ever.
+     *
+     * @return the best fitness ever
+     */
+    public double getBestFitnessEver() {
 		if (bestPerformanceEver == null) {
 			return Double.NaN;
 		} else {
@@ -85,31 +123,65 @@ public class Population {
 		}
 	}
 
-	public PerformanceVector getBestPerformanceEver() {
+    /**
+     * Gets best performance ever.
+     *
+     * @return the best performance ever
+     */
+    public PerformanceVector getBestPerformanceEver() {
 		return bestPerformanceEver;
 	}
 
-	public double getBestFitnessInGeneration() {
+    /**
+     * Gets best fitness in generation.
+     *
+     * @return the best fitness in generation
+     */
+    public double getBestFitnessInGeneration() {
 		return generationsBest;
 	}
 
-	public void setValues(int index, double[] values) {
+    /**
+     * Sets values.
+     *
+     * @param index  the index
+     * @param values the values
+     */
+    public void setValues(int index, double[] values) {
 		this.values[CURRENT][index] = values;
 	}
 
-	public int getGeneration() {
+    /**
+     * Gets generation.
+     *
+     * @return the generation
+     */
+    public int getGeneration() {
 		return generation;
 	}
 
-	public void nextGeneration() {
+    /**
+     * Next generation.
+     */
+    public void nextGeneration() {
 		generation++;
 	}
 
-	public int getGenerationsWithoutImprovement() {
+    /**
+     * Gets generations without improvement.
+     *
+     * @return the generations without improvement
+     */
+    public int getGenerationsWithoutImprovement() {
 		return (generation - lastImprovement);
 	}
 
-	public void setFitnessVector(PerformanceVector[] performanceVectors) {
+    /**
+     * Sets fitness vector.
+     *
+     * @param performanceVectors the performance vectors
+     */
+    public void setFitnessVector(PerformanceVector[] performanceVectors) {
 		double[] fitnessValues = new double[performanceVectors.length];
 		for (int i = 0; i < fitnessValues.length; i++) {
 			fitnessValues[i] = performanceVectors[i] == null ? Double.NEGATIVE_INFINITY : performanceVectors[i]

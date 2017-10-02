@@ -48,18 +48,26 @@ import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
 
+/**
+ * The type Predict.
+ */
 public class Predict {
 
 	private static boolean flag_predict_probability = false;
 
 	private static final Pattern COLON = Pattern.compile(":");
 
-	/**
-	 * <p>
-	 * <b>Note: The streams are NOT closed</b>
-	 * </p>
-	 */
-	static void doPredict(BufferedReader reader, Writer writer, Model model) throws IOException {
+    /**
+     * <p>
+     * <b>Note: The streams are NOT closed</b>
+     * </p>
+     *
+     * @param reader the reader
+     * @param writer the writer
+     * @param model  the model
+     * @throws IOException the io exception
+     */
+    static void doPredict(BufferedReader reader, Writer writer, Model model) throws IOException {
 		int correct = 0;
 		int total = 0;
 		double error = 0;
@@ -180,7 +188,13 @@ public class Predict {
 		System.exit(1);
 	}
 
-	public static void main(String[] argv) throws IOException {
+    /**
+     * The entry point of application.
+     *
+     * @param argv the input arguments
+     * @throws IOException the io exception
+     */
+    public static void main(String[] argv) throws IOException {
 		int i;
 
 		// parse options

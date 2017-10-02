@@ -29,6 +29,8 @@ import org.jfree.chart.renderer.category.StackedAreaRenderer;
 
 
 /**
+ * The type Formatted stacked area renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedStackedAreaRenderer extends StackedAreaRenderer implements FormattedRenderer {
@@ -37,11 +39,19 @@ public class FormattedStackedAreaRenderer extends StackedAreaRenderer implements
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedStackedAreaRenderer() {
+    /**
+     * Instantiates a new Formatted stacked area renderer.
+     */
+    public FormattedStackedAreaRenderer() {
 		super();
 	}
 
-	public FormattedStackedAreaRenderer(boolean renderAsPercentages) {
+    /**
+     * Instantiates a new Formatted stacked area renderer.
+     *
+     * @param renderAsPercentages the render as percentages
+     */
+    public FormattedStackedAreaRenderer(boolean renderAsPercentages) {
 		super(renderAsPercentages);
 	}
 

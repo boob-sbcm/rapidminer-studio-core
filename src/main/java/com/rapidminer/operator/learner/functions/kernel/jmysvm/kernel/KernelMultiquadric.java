@@ -20,7 +20,7 @@ package com.rapidminer.operator.learner.functions.kernel.jmysvm.kernel;
 
 /**
  * Gaussian Combination Kernel
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KernelMultiquadric extends Kernel {
@@ -36,10 +36,18 @@ public class KernelMultiquadric extends Kernel {
 		return ("multiquadric(sigma=" + sigma + ",shift=" + shift + ")");
 	};
 
-	/** Class constructor. */
-	public KernelMultiquadric() {}
+    /**
+     * Class constructor.
+     */
+    public KernelMultiquadric() {}
 
-	public void setParameters(double sigma, double shift) {
+    /**
+     * Sets parameters.
+     *
+     * @param sigma the sigma
+     * @param shift the shift
+     */
+    public void setParameters(double sigma, double shift) {
 		this.sigma = sigma;
 		this.shift = shift;
 	}

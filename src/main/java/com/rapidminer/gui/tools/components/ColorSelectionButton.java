@@ -40,7 +40,7 @@ import javax.swing.colorchooser.AbstractColorChooserPanel;
 
 /**
  * This button presents a possibility to select a color.
- * 
+ *
  * @author Sebastian Land
  */
 public class ColorSelectionButton extends JButton {
@@ -53,17 +53,21 @@ public class ColorSelectionButton extends JButton {
 
 	private List<ColorSelectionListener> listeners = new LinkedList<ColorSelectionListener>();
 
-	/**
-	 * This method will create a new Color Selection Button which will open a dialog if pressed to
-	 * select a new color. The default color can be passed.
-	 * 
-	 * The i18nkey refers to the dialog title, which is retrieved from gui.label.-key- while the
-	 * button properties are refered from: gui.action.-key-.label = Which will be the caption
-	 * gui.action.-key-.acc = The accelerator key used for menu entries gui.action.-key-.tip = Which
-	 * will be the tool tip gui.action.-key-.mne = Which will give you access to the mnemonics key.
-	 * Please make it the same case as in the label
-	 */
-	public ColorSelectionButton(final String i18nKey, Color defaultColor, Object... arguments) {
+    /**
+     * This method will create a new Color Selection Button which will open a dialog if pressed to
+     * select a new color. The default color can be passed.
+     * <p>
+     * The i18nkey refers to the dialog title, which is retrieved from gui.label.-key- while the
+     * button properties are refered from: gui.action.-key-.label = Which will be the caption
+     * gui.action.-key-.acc = The accelerator key used for menu entries gui.action.-key-.tip = Which
+     * will be the tool tip gui.action.-key-.mne = Which will give you access to the mnemonics key.
+     * Please make it the same case as in the label
+     *
+     * @param i18nKey      the 18 n key
+     * @param defaultColor the default color
+     * @param arguments    the arguments
+     */
+    public ColorSelectionButton(final String i18nKey, Color defaultColor, Object... arguments) {
 		this.color = defaultColor;
 
 		setAction(new ResourceAction(i18nKey, arguments) {
@@ -83,11 +87,21 @@ public class ColorSelectionButton extends JButton {
 		setIcon(new ColorIcon(color));
 	}
 
-	public void addColorSelectionListener(ColorSelectionListener listener) {
+    /**
+     * Add color selection listener.
+     *
+     * @param listener the listener
+     */
+    public void addColorSelectionListener(ColorSelectionListener listener) {
 		listeners.add(listener);
 	}
 
-	public void removeColorSelectionListener(ColorSelectionListener listener) {
+    /**
+     * Remove color selection listener.
+     *
+     * @param listener the listener
+     */
+    public void removeColorSelectionListener(ColorSelectionListener listener) {
 		listeners.remove(listener);
 	}
 
@@ -97,14 +111,21 @@ public class ColorSelectionButton extends JButton {
 		}
 	}
 
-	/**
-	 * This method can be used to retrieve the selected Color.
-	 */
-	public Color getSelectedColor() {
+    /**
+     * This method can be used to retrieve the selected Color.
+     *
+     * @return the selected color
+     */
+    public Color getSelectedColor() {
 		return color;
 	}
 
-	public void setColor(Color color) {
+    /**
+     * Sets color.
+     *
+     * @param color the color
+     */
+    public void setColor(Color color) {
 		this.color = color;
 		setIcon(new ColorIcon(color));
 	}
@@ -121,7 +142,12 @@ public class ColorSelectionButton extends JButton {
 		}
 	}
 
-	public void setColorChooser(AbstractColorChooserPanel... colorChoosers) {
+    /**
+     * Sets color chooser.
+     *
+     * @param colorChoosers the color choosers
+     */
+    public void setColorChooser(AbstractColorChooserPanel... colorChoosers) {
 		this.colorChoosers = colorChoosers;
 	}
 
@@ -151,10 +177,21 @@ public class ColorSelectionButton extends JButton {
 	private static class ColorTracker implements ActionListener, Serializable {
 
 		private static final long serialVersionUID = 486260520128499950L;
-		JColorChooser chooser;
-		Color color;
+        /**
+         * The Chooser.
+         */
+        JColorChooser chooser;
+        /**
+         * The Color.
+         */
+        Color color;
 
-		public ColorTracker(JColorChooser c) {
+        /**
+         * Instantiates a new Color tracker.
+         *
+         * @param c the c
+         */
+        public ColorTracker(JColorChooser c) {
 			chooser = c;
 		}
 
@@ -163,7 +200,12 @@ public class ColorSelectionButton extends JButton {
 			color = chooser.getColor();
 		}
 
-		public Color getColor() {
+        /**
+         * Gets color.
+         *
+         * @return the color
+         */
+        public Color getColor() {
 			return color;
 		}
 	}

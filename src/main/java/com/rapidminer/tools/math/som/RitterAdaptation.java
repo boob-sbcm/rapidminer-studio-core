@@ -21,7 +21,7 @@ package com.rapidminer.tools.math.som;
 /**
  * The RitterAdaptation provides an implementation of the AdaptationFunction interface for
  * calculation the adaption of a node to an input stimulus.
- * 
+ *
  * @author Sebastian Land
  */
 public class RitterAdaptation implements AdaptationFunction {
@@ -77,19 +77,39 @@ public class RitterAdaptation implements AdaptationFunction {
 				* Math.pow((adaptationRadiusEnd / adaptationRadiusStart), (((double) time) / ((double) maxtime)));
 	}
 
-	public void setAdaptationRadiusStart(double start) {
+    /**
+     * Sets adaptation radius start.
+     *
+     * @param start the start
+     */
+    public void setAdaptationRadiusStart(double start) {
 		this.adaptationRadiusStart = start;
 	}
 
-	public void setAdaptationRadiusEnd(double end) {
+    /**
+     * Sets adaptation radius end.
+     *
+     * @param end the end
+     */
+    public void setAdaptationRadiusEnd(double end) {
 		this.adaptationRadiusEnd = end;
 	}
 
-	public void setLearnRateStart(double start) {
+    /**
+     * Sets learn rate start.
+     *
+     * @param start the start
+     */
+    public void setLearnRateStart(double start) {
 		this.learnRateStart = start;
 	}
 
-	public void setLearnRateEnd(double end) {
+    /**
+     * Sets learn rate end.
+     *
+     * @param end the end
+     */
+    public void setLearnRateEnd(double end) {
 		this.learnRateEnd = end;
 	}
 }

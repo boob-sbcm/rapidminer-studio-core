@@ -45,7 +45,7 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  * selection and backward elimination. However, we added some enhancements to the standard
  * algorithms which are described below:
  * </p>
- *
+ * <p>
  * <h4>Forward Selection</h4>
  * <ol>
  * <li>Create an initial population with {@rapidminer.math n} individuals where {@rapidminer.math n}
@@ -57,7 +57,7 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  * the previously unused attributes to the attribute set.</li>
  * <li>As long as the performance improved in the last {@rapidminer.math p} iterations go to 2</li>
  * </ol>
- *
+ * <p>
  * <h4>Backward Elimination</h4>
  * <ol>
  * <li>Start with an attribute set which uses all features.</li>
@@ -67,7 +67,7 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  * the previously used attributes from the attribute set.</li>
  * <li>As long as the performance improved in the last {@rapidminer.math p} iterations go to 2</li>
  * </ol>
- *
+ * <p>
  * <p>
  * The parameter {@rapidminer.math k} can be specified by the parameter <code>keep_best</code>, the
  * parameter {@rapidminer.math p} can be specified by the parameter
@@ -75,13 +75,13 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  * that the standard selection algorithms are used. Using other values increase the runtime but
  * might help to avoid local extrema in the search for the global optimum.
  * </p>
- *
+ * <p>
  * <p>
  * Another unusual parameter is <code>maximum_number_of_generations</code>. This parameter bounds
  * the number of iterations to this maximum of feature selections / deselections. In combination
  * with <code>generations_without_improval</code> this allows several different selection schemes
  * (which are described for forward selection, backward elimination works analogous):
- *
+ * <p>
  * <ul>
  * <li><code>maximum_number_of_generations</code> = {@rapidminer.math m} and
  * <code>generations_without_improval</code> = {@rapidminer.math p}: Selects maximal
@@ -106,30 +106,45 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  */
 public class FeatureSelectionOperator extends FeatureOperator {
 
-	/** The parameter name for &quot;Forward selection or backward elimination.&quot; */
-	public static final String PARAMETER_SELECTION_DIRECTION = "selection_direction";
+    /**
+     * The parameter name for &quot;Forward selection or backward elimination.&quot;
+     */
+    public static final String PARAMETER_SELECTION_DIRECTION = "selection_direction";
 
-	/** The parameter name for &quot;Keep the best n individuals in each generation.&quot; */
-	public static final String PARAMETER_KEEP_BEST = "keep_best";
+    /**
+     * The parameter name for &quot;Keep the best n individuals in each generation.&quot;
+     */
+    public static final String PARAMETER_KEEP_BEST = "keep_best";
 
-	/**
-	 * The parameter name for &quot;Stop after n generations without improvement of the performance
-	 * (-1: stops if the maximum_number_of_generations is reached).&quot;
-	 */
-	public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
-	public static final String PARAMETER_LIMIT_GENERATIONS_WITHOUT_IMPROVAL = "limit_generations_without_improval";
+    /**
+     * The parameter name for &quot;Stop after n generations without improvement of the performance
+     * (-1: stops if the maximum_number_of_generations is reached).&quot;
+     */
+    public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
+    /**
+     * The constant PARAMETER_LIMIT_GENERATIONS_WITHOUT_IMPROVAL.
+     */
+    public static final String PARAMETER_LIMIT_GENERATIONS_WITHOUT_IMPROVAL = "limit_generations_without_improval";
 
-	/**
-	 * The parameter name for &quot;Delivers the maximum amount of generations (-1: might use or
-	 * deselect all features).&quot;
-	 */
+    /**
+     * The parameter name for &quot;Delivers the maximum amount of generations (-1: might use or
+     * deselect all features).&quot;
+     */
+    public static final String PARAMETER_LIMIT_NUMBER_OF_GENERATIONS = "limit_number_of_generations";
+    /**
+     * The constant PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS.
+     */
+    public static final String PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS = "maximum_number_of_generations";
 
-	public static final String PARAMETER_LIMIT_NUMBER_OF_GENERATIONS = "limit_number_of_generations";
-	public static final String PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS = "maximum_number_of_generations";
+    /**
+     * The constant FORWARD_SELECTION.
+     */
+    public static final int FORWARD_SELECTION = 0;
 
-	public static final int FORWARD_SELECTION = 0;
-
-	public static final int BACKWARD_ELIMINATION = 1;
+    /**
+     * The constant BACKWARD_ELIMINATION.
+     */
+    public static final int BACKWARD_ELIMINATION = 1;
 
 	private static final String[] DIRECTIONS = { "forward", "backward" };
 
@@ -137,7 +152,12 @@ public class FeatureSelectionOperator extends FeatureOperator {
 
 	private int maxGenerations;
 
-	public FeatureSelectionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Feature selection operator.
+     *
+     * @param description the description
+     */
+    public FeatureSelectionOperator(OperatorDescription description) {
 		super(description);
 	}
 
@@ -162,7 +182,12 @@ public class FeatureSelectionOperator extends FeatureOperator {
 		super.doWork();
 	}
 
-	int getDefaultDirection() {
+    /**
+     * Gets default direction.
+     *
+     * @return the default direction
+     */
+    int getDefaultDirection() {
 		return FORWARD_SELECTION;
 	}
 

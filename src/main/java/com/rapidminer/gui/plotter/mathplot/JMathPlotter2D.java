@@ -27,7 +27,7 @@ import org.math.plot.PlotPanel;
 
 /**
  * The abstract super class for all 2D plotters using the JMathPlot library.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class JMathPlotter2D extends JMathPlotter {
@@ -37,11 +37,22 @@ public abstract class JMathPlotter2D extends JMathPlotter {
 	 */
 	private static final long serialVersionUID = -2547520708373816637L;
 
-	public JMathPlotter2D(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new J math plotter 2 d.
+     *
+     * @param settings the settings
+     */
+    public JMathPlotter2D(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
-	public JMathPlotter2D(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new J math plotter 2 d.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public JMathPlotter2D(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings, dataTable);
 	}
 

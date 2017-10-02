@@ -24,12 +24,23 @@ import com.rapidminer.operator.performance.PerformanceVector;
 
 /**
  * The interface for the EvoSVM optimization algorithms.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface EvoOptimization {
 
-	public EvoSVMModel train() throws OperatorException;
+    /**
+     * Train evo svm model.
+     *
+     * @return the evo svm model
+     * @throws OperatorException the operator exception
+     */
+    public EvoSVMModel train() throws OperatorException;
 
-	public PerformanceVector getOptimizationPerformance();
+    /**
+     * Gets optimization performance.
+     *
+     * @return the optimization performance
+     */
+    public PerformanceVector getOptimizationPerformance();
 }

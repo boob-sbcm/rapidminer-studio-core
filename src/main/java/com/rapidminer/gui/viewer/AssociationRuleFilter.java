@@ -83,7 +83,12 @@ public class AssociationRuleFilter extends JPanel {
 
 	private AssociationRules rules;
 
-	public AssociationRuleFilter(AssociationRules rules) {
+    /**
+     * Instantiates a new Association rule filter.
+     *
+     * @param rules the rules
+     */
+    public AssociationRuleFilter(AssociationRules rules) {
 		this.rules = rules;
 		this.itemArray = rules.getAllConclusionItems();
 
@@ -230,10 +235,10 @@ public class AssociationRuleFilter extends JPanel {
 		add(criterionMinSlider);
 	}
 
-	/**
-	 * Triggers the filtering.
-	 */
-	public void triggerFilter() {
+    /**
+     * Triggers the filtering.
+     */
+    public void triggerFilter() {
 		adjustFilter();
 	}
 
@@ -253,11 +258,21 @@ public class AssociationRuleFilter extends JPanel {
 		fireFilteringEvent(searchFilter, conjunctionMode, minRatio);
 	}
 
-	public void addAssociationRuleFilterListener(AssociationRuleFilterListener listener) {
+    /**
+     * Add association rule filter listener.
+     *
+     * @param listener the listener
+     */
+    public void addAssociationRuleFilterListener(AssociationRuleFilterListener listener) {
 		this.listeners.add(listener);
 	}
 
-	public void removeAssociationRuleFilterListener(AssociationRuleFilterListener listener) {
+    /**
+     * Remove association rule filter listener.
+     *
+     * @param listener the listener
+     */
+    public void removeAssociationRuleFilterListener(AssociationRuleFilterListener listener) {
 		this.listeners.remove(listener);
 	}
 

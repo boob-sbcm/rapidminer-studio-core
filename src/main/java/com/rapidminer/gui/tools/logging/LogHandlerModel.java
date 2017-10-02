@@ -34,7 +34,7 @@ import javax.swing.Icon;
  * <p>
  * Note that the name has to be unique between all log models to differentiate between them!
  * </p>
- * 
+ *
  * @author Sabrina Kirstein, Marco Boeck
  */
 public class LogHandlerModel extends AbstractPushLogModel {
@@ -55,20 +55,16 @@ public class LogHandlerModel extends AbstractPushLogModel {
 		}
 	};
 
-	/**
-	 * Creates a new {@link LogModel} with the specified settings. This model will automatically
-	 * push all log records it receives from the specified {@link Logger}.
-	 * 
-	 * @param logger
-	 *            the logger to which this model should register itself as a handler
-	 * @param modelIcon
-	 *            the icon to be displayed
-	 * @param modelName
-	 *            the name to be displayed
-	 * @param isClosable
-	 *            if <code>true</code>, the user can close this log in the view
-	 */
-	public LogHandlerModel(Logger logger, Icon modelIcon, String modelName, boolean isClosable) {
+    /**
+     * Creates a new {@link LogModel} with the specified settings. This model will automatically
+     * push all log records it receives from the specified {@link Logger}.
+     *
+     * @param logger     the logger to which this model should register itself as a handler
+     * @param modelIcon  the icon to be displayed
+     * @param modelName  the name to be displayed
+     * @param isClosable if <code>true</code>, the user can close this log in the view
+     */
+    public LogHandlerModel(Logger logger, Icon modelIcon, String modelName, boolean isClosable) {
 		super(modelIcon, modelName, isClosable);
 		if (logger == null) {
 			throw new IllegalArgumentException("logger must not be null!");

@@ -23,22 +23,41 @@ import java.awt.event.ActionEvent;
 
 /**
  * Implements an empty {@link #actionPerformed(ActionEvent)} method.
- * 
+ *
  * @author Simon Fischer
  */
 public class ResourceActionAdapter extends ResourceAction {
 
 	private static final long serialVersionUID = -2739419154938092834L;
 
-	public ResourceActionAdapter(String i18nKey, Object... i18nArgs) {
+    /**
+     * Instantiates a new Resource action adapter.
+     *
+     * @param i18nKey  the 18 n key
+     * @param i18nArgs the 18 n args
+     */
+    public ResourceActionAdapter(String i18nKey, Object... i18nArgs) {
 		this(false, i18nKey, i18nArgs);
 	}
 
-	public ResourceActionAdapter(boolean smallIcon, String key) {
+    /**
+     * Instantiates a new Resource action adapter.
+     *
+     * @param smallIcon the small icon
+     * @param key       the key
+     */
+    public ResourceActionAdapter(boolean smallIcon, String key) {
 		super(smallIcon, key);
 	}
 
-	public ResourceActionAdapter(boolean smallIcon, String i18nKey, Object... i18nArgs) {
+    /**
+     * Instantiates a new Resource action adapter.
+     *
+     * @param smallIcon the small icon
+     * @param i18nKey   the 18 n key
+     * @param i18nArgs  the 18 n args
+     */
+    public ResourceActionAdapter(boolean smallIcon, String i18nKey, Object... i18nArgs) {
 		super(smallIcon, i18nKey, i18nArgs);
 	}
 

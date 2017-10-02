@@ -39,10 +39,10 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  */
 public class Missing extends AbstractFunction {
 
-	/**
-	 * Constructs a MISSING Function with 1 parameter with {@link FunctionDescription}
-	 */
-	public Missing() {
+    /**
+     * Constructs a MISSING Function with 1 parameter with {@link FunctionDescription}
+     */
+    public Missing() {
 		super("comparison.missing", 1, Ontology.BINOMINAL);
 	}
 
@@ -60,14 +60,14 @@ public class Missing extends AbstractFunction {
 		return new SimpleExpressionEvaluator(makeBooleanCallable(evaluator), isResultConstant(inputEvaluators), type);
 	}
 
-	/**
-	 * Builds a boolean callable from a {@link ExpressionEvaluator}, where constant results are
-	 * evaluated.
-	 *
-	 * @param evaluator
-	 * @return the resulting boolean callable
-	 */
-	protected Callable<Boolean> makeBooleanCallable(ExpressionEvaluator evaluator) {
+    /**
+     * Builds a boolean callable from a {@link ExpressionEvaluator}, where constant results are
+     * evaluated.
+     *
+     * @param evaluator the evaluator
+     * @return the resulting boolean callable
+     */
+    protected Callable<Boolean> makeBooleanCallable(ExpressionEvaluator evaluator) {
 		try {
 			// act depending on the type of the given evaluator
 			switch (evaluator.getType()) {
@@ -179,13 +179,13 @@ public class Missing extends AbstractFunction {
 		return ExpressionType.BOOLEAN;
 	}
 
-	/**
-	 * Computes the result for a double value.
-	 *
-	 * @param value
-	 * @return the result of the computation.
-	 */
-	protected Boolean compute(double value) {
+    /**
+     * Computes the result for a double value.
+     *
+     * @param value the value
+     * @return the result of the computation.
+     */
+    protected Boolean compute(double value) {
 		if (Double.isNaN(value)) {
 			return true;
 		} else {
@@ -193,13 +193,13 @@ public class Missing extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result for a boolean value.
-	 *
-	 * @param value
-	 * @return the result of the computation.
-	 */
-	protected Boolean compute(Boolean value) {
+    /**
+     * Computes the result for a boolean value.
+     *
+     * @param value the value
+     * @return the result of the computation.
+     */
+    protected Boolean compute(Boolean value) {
 		if (value == null) {
 			return true;
 		} else {
@@ -207,13 +207,13 @@ public class Missing extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result for a String value.
-	 *
-	 * @param value
-	 * @return the result of the computation.
-	 */
-	protected Boolean compute(String value) {
+    /**
+     * Computes the result for a String value.
+     *
+     * @param value the value
+     * @return the result of the computation.
+     */
+    protected Boolean compute(String value) {
 		if (value == null) {
 			return true;
 		} else {
@@ -221,13 +221,13 @@ public class Missing extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result for a Date value.
-	 *
-	 * @param value
-	 * @return the result of the computation.
-	 */
-	protected Boolean compute(Date value) {
+    /**
+     * Computes the result for a Date value.
+     *
+     * @param value the value
+     * @return the result of the computation.
+     */
+    protected Boolean compute(Date value) {
 		if (value == null) {
 			return true;
 		} else {

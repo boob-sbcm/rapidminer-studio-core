@@ -94,13 +94,21 @@ import com.rapidminer.tools.plugin.Plugin;
  * Class that parses an XML DOM into an {@link Operator}.
  *
  * @author Simon Fischer
- *
  */
 public class XMLImporter {
 
-	public static final VersionNumber VERSION_RM_5 = new VersionNumber(5, 0);
-	public static final VersionNumber VERSION_RM_6 = new VersionNumber(6, 0);
-	public static final VersionNumber CURRENT_VERSION = VERSION_RM_6;
+    /**
+     * The constant VERSION_RM_5.
+     */
+    public static final VersionNumber VERSION_RM_5 = new VersionNumber(5, 0);
+    /**
+     * The constant VERSION_RM_6.
+     */
+    public static final VersionNumber VERSION_RM_6 = new VersionNumber(6, 0);
+    /**
+     * The constant CURRENT_VERSION.
+     */
+    public static final VersionNumber CURRENT_VERSION = VERSION_RM_6;
 
 	private static final Set<String> IRRELEVANT_PARAMETERS = new HashSet<String>();
 
@@ -108,17 +116,19 @@ public class XMLImporter {
 		IRRELEVANT_PARAMETERS.add("read_database.data_set_meta_data_information");
 	}
 
-	/**
-	 * Encoding in which process files are written. UTF-8 is guaranteed to exist on any JVM, see
-	 * javadoc of {@link Charset}.
-	 */
-	public static final Charset PROCESS_FILE_CHARSET = StandardCharsets.UTF_8;
+    /**
+     * Encoding in which process files are written. UTF-8 is guaranteed to exist on any JVM, see
+     * javadoc of {@link Charset}.
+     */
+    public static final Charset PROCESS_FILE_CHARSET = StandardCharsets.UTF_8;
 
 	private static List<ParseRule> PARSE_RULES = new LinkedList<ParseRule>();
 	private static HashMap<String, List<ParseRule>> OPERATOR_KEY_RULES_MAP = new HashMap<String, List<ParseRule>>();
 
-	/** Reads the parse rules from parserules.xml */
-	public static void init() {
+    /**
+     * Reads the parse rules from parserules.xml
+     */
+    public static void init() {
 		URL rulesResource = XMLImporter.class.getResource("/com/rapidminer/resources/parserules.xml");
 		if (rulesResource != null) {
 			// registering the core rules without name prefix
@@ -128,12 +138,15 @@ public class XMLImporter {
 		}
 	}
 
-	/**
-	 * This method adds the parse rules from the given resource to the import rule set. The operator
-	 * name prefix describes the operators coming from plugins. The core operators do not have any
-	 * name prefix, while the plugin operators are registered using <plugin>:<operatorname>
-	 */
-	public static void importParseRules(URL rulesResource, Plugin prover) {
+    /**
+     * This method adds the parse rules from the given resource to the import rule set. The operator
+     * name prefix describes the operators coming from plugins. The core operators do not have any
+     * name prefix, while the plugin operators are registered using <plugin>:<operatorname>
+     *
+     * @param rulesResource the rules resource
+     * @param prover        the prover
+     */
+    public static void importParseRules(URL rulesResource, Plugin prover) {
 		if (rulesResource == null) {
 			throw new NullPointerException("Parserules resource must not be null.");
 		} else {
@@ -179,7 +192,15 @@ public class XMLImporter {
 		}
 	}
 
-	public static ParseRule constructRuleFromElement(String operatorTypeName, Element element) throws XMLException {
+    /**
+     * Construct rule from element parse rule.
+     *
+     * @param operatorTypeName the operator type name
+     * @param element          the element
+     * @return the parse rule
+     * @throws XMLException the xml exception
+     */
+    public static ParseRule constructRuleFromElement(String operatorTypeName, Element element) throws XMLException {
 		ParseRule rule = null;
 		AbstractGenericParseRule genericRule = null;
 		if (element.getTagName().equals("replaceParameter")) {
@@ -257,36 +278,61 @@ public class XMLImporter {
 
 	private boolean operatorAsDirectChildrenDeprecatedReported = false;
 
-	/** Creates a new importer that reports progress to the given listener. */
-	public XMLImporter(ProgressListener listener) {
+    /**
+     * Creates a new importer that reports progress to the given listener.  @param listener the listener
+     *
+     * @param listener the listener
+     */
+    public XMLImporter(ProgressListener listener) {
 		progressListener = listener;
 	}
 
-	/**
-	 * This constructor will simply ignore the version. It will always use the one of RapidMiner.
-	 */
-	@Deprecated
+    /**
+     * This constructor will simply ignore the version. It will always use the one of RapidMiner.
+     *
+     * @param listener the listener
+     * @param version  the version
+     */
+    @Deprecated
 	public XMLImporter(ProgressListener listener, int version) {
 		this(listener);
 	}
 
-	public void addMessage(String msg) {
+    /**
+     * Add message.
+     *
+     * @param msg the msg
+     */
+    public void addMessage(String msg) {
 		LogService.getRoot().info(msg);
 		messages.append("<li>");
 		messages.append(msg);
 		messages.append("</li>");
 	}
 
-	public void parse(Document doc, Process process, List<UnknownParameterInformation> unknownParameters)
+    /**
+     * Parse.
+     *
+     * @param doc               the doc
+     * @param process           the process
+     * @param unknownParameters the unknown parameters
+     * @throws XMLException the xml exception
+     */
+    public void parse(Document doc, Process process, List<UnknownParameterInformation> unknownParameters)
 			throws XMLException {
 		parse(doc.getDocumentElement(), process, unknownParameters);
 	}
 
-	/**
-	 * This method will parsen a process that has been stored as a child to the given parent element
-	 * using the {@link XMLExporter#exportProcess(Element, Process)} with the same parentElement.
-	 */
-	public Process parse(Element parentElement, List<UnknownParameterInformation> unknownParameters) throws XMLException {
+    /**
+     * This method will parsen a process that has been stored as a child to the given parent element
+     * using the {@link XMLExporter#exportProcess(Element, Process)} with the same parentElement.
+     *
+     * @param parentElement     the parent element
+     * @param unknownParameters the unknown parameters
+     * @return the process
+     * @throws XMLException the xml exception
+     */
+    public Process parse(Element parentElement, List<UnknownParameterInformation> unknownParameters) throws XMLException {
 		Element processElement = XMLTools.getUniqueChildElement(parentElement, XMLExporter.ELEMENT_PROCESS);
 		Process process = new Process();
 		parse(processElement, process, unknownParameters);
@@ -461,7 +507,17 @@ public class XMLImporter {
 		}
 	}
 
-	public Operator parseOperator(Element opElement, VersionNumber processVersion, Process process,
+    /**
+     * Parse operator operator.
+     *
+     * @param opElement                   the op element
+     * @param processVersion              the process version
+     * @param process                     the process
+     * @param unknownParameterInformation the unknown parameter information
+     * @return the operator
+     * @throws XMLException the xml exception
+     */
+    public Operator parseOperator(Element opElement, VersionNumber processVersion, Process process,
 			List<UnknownParameterInformation> unknownParameterInformation) throws XMLException {
 		total = opElement.getElementsByTagName("operator").getLength();
 		Operator operator = parseOperator(opElement, null, processVersion, process, unknownParameterInformation);
@@ -915,11 +971,21 @@ public class XMLImporter {
 		}
 	}
 
-	public void doAfterAutoWire(Runnable runnable) {
+    /**
+     * Do after auto wire.
+     *
+     * @param runnable the runnable
+     */
+    public void doAfterAutoWire(Runnable runnable) {
 		jobsAfterAutoWire.add(runnable);
 	}
 
-	public void doAfterTreeConstruction(Runnable runnable) {
+    /**
+     * Do after tree construction.
+     *
+     * @param runnable the runnable
+     */
+    public void doAfterTreeConstruction(Runnable runnable) {
 		jobsAfterTreeConstruction.add(runnable);
 	}
 

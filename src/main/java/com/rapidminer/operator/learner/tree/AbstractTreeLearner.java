@@ -50,35 +50,64 @@ import com.rapidminer.parameter.ParameterTypeStringCategory;
  */
 public abstract class AbstractTreeLearner extends AbstractLearner {
 
-	/**
-	 * The parameter name for &quot;Specifies the used criterion for selecting attributes and
-	 * numerical splits.&quot;
-	 */
-	public static final String PARAMETER_CRITERION = "criterion";
+    /**
+     * The parameter name for &quot;Specifies the used criterion for selecting attributes and
+     * numerical splits.&quot;
+     */
+    public static final String PARAMETER_CRITERION = "criterion";
 
-	/** The parameter name for &quot;The minimal size of all leaves.&quot; */
-	public static final String PARAMETER_MINIMAL_SIZE_FOR_SPLIT = "minimal_size_for_split";
+    /**
+     * The parameter name for &quot;The minimal size of all leaves.&quot;
+     */
+    public static final String PARAMETER_MINIMAL_SIZE_FOR_SPLIT = "minimal_size_for_split";
 
-	/** The parameter name for &quot;The minimal size of all leaves.&quot; */
-	public static final String PARAMETER_MINIMAL_LEAF_SIZE = "minimal_leaf_size";
+    /**
+     * The parameter name for &quot;The minimal size of all leaves.&quot;
+     */
+    public static final String PARAMETER_MINIMAL_LEAF_SIZE = "minimal_leaf_size";
 
-	/** The parameter name for the minimal gain. */
-	public static final String PARAMETER_MINIMAL_GAIN = "minimal_gain";
+    /**
+     * The parameter name for the minimal gain.
+     */
+    public static final String PARAMETER_MINIMAL_GAIN = "minimal_gain";
 
-	public static final String[] CRITERIA_NAMES = { "gain_ratio", "information_gain", "gini_index", "accuracy" };
+    /**
+     * The constant CRITERIA_NAMES.
+     */
+    public static final String[] CRITERIA_NAMES = { "gain_ratio", "information_gain", "gini_index", "accuracy" };
 
-	public static final Class<?>[] CRITERIA_CLASSES = { GainRatioCriterion.class, InfoGainCriterion.class,
+    /**
+     * The constant CRITERIA_CLASSES.
+     */
+    public static final Class<?>[] CRITERIA_CLASSES = { GainRatioCriterion.class, InfoGainCriterion.class,
 		GiniIndexCriterion.class, AccuracyCriterion.class };
 
-	public static final int CRITERION_GAIN_RATIO = 0;
+    /**
+     * The constant CRITERION_GAIN_RATIO.
+     */
+    public static final int CRITERION_GAIN_RATIO = 0;
 
-	public static final int CRITERION_INFO_GAIN = 1;
+    /**
+     * The constant CRITERION_INFO_GAIN.
+     */
+    public static final int CRITERION_INFO_GAIN = 1;
 
-	public static final int CRITERION_GINI_INDEX = 2;
+    /**
+     * The constant CRITERION_GINI_INDEX.
+     */
+    public static final int CRITERION_GINI_INDEX = 2;
 
-	public static final int CRITERION_ACCURACY = 3;
+    /**
+     * The constant CRITERION_ACCURACY.
+     */
+    public static final int CRITERION_ACCURACY = 3;
 
-	public AbstractTreeLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract tree learner.
+     *
+     * @param description the description
+     */
+    public AbstractTreeLearner(OperatorDescription description) {
 		super(description);
 	}
 
@@ -87,21 +116,32 @@ public abstract class AbstractTreeLearner extends AbstractLearner {
 		return TreeModel.class;
 	}
 
-	/** Returns all termination criteria. */
-	public abstract List<Terminator> getTerminationCriteria(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Returns all termination criteria.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     * @return the termination criteria
+     * @throws OperatorException the operator exception
+     */
+    public abstract List<Terminator> getTerminationCriteria(ExampleSet exampleSet) throws OperatorException;
 
-	/**
-	 * Returns the pruner for this tree learner. If this method returns null, pruning will be
-	 * disabled.
-	 */
-	public abstract Pruner getPruner() throws OperatorException;
+    /**
+     * Returns the pruner for this tree learner. If this method returns null, pruning will be
+     * disabled.
+     *
+     * @return the pruner
+     * @throws OperatorException the operator exception
+     */
+    public abstract Pruner getPruner() throws OperatorException;
 
-	/**
-	 * The split preprocessing is applied before each new split The default implementation does
-	 * nothing and simply returns the given example set. Subclasses might want to override this in
-	 * order to perform some data preprocessing like random subset selections.
-	 */
-	public SplitPreprocessing getSplitPreprocessing() {
+    /**
+     * The split preprocessing is applied before each new split The default implementation does
+     * nothing and simply returns the given example set. Subclasses might want to override this in
+     * order to perform some data preprocessing like random subset selections.
+     *
+     * @return the split preprocessing
+     */
+    public SplitPreprocessing getSplitPreprocessing() {
 		return null;
 	}
 
@@ -126,9 +166,23 @@ public abstract class AbstractTreeLearner extends AbstractLearner {
 		return new TreeModel(exampleSet, root);
 	}
 
-	protected abstract TreeBuilder getTreeBuilder(ExampleSet exampleSet) throws OperatorException;
+    /**
+     * Gets tree builder.
+     *
+     * @param exampleSet the example set
+     * @return the tree builder
+     * @throws OperatorException the operator exception
+     */
+    protected abstract TreeBuilder getTreeBuilder(ExampleSet exampleSet) throws OperatorException;
 
-	protected Criterion createCriterion(double minimalGain) throws OperatorException {
+    /**
+     * Create criterion criterion.
+     *
+     * @param minimalGain the minimal gain
+     * @return the criterion
+     * @throws OperatorException the operator exception
+     */
+    protected Criterion createCriterion(double minimalGain) throws OperatorException {
 		return AbstractCriterion.createCriterion(this, minimalGain);
 	}
 

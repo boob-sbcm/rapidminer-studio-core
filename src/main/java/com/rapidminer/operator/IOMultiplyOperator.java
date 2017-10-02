@@ -39,19 +39,30 @@ import java.util.Set;
  * You can use this operator to create <code>k</code> copies of the given input object.<br/>
  * This operator is deprecated and should be replaced by IOMultiplier2. This happens automatically
  * when old processes are imported.
- * 
+ *
  * @author Ingo Mierswa
- * 
  */
 public class IOMultiplyOperator extends Operator {
 
-	public static final String PARAMETER_NUMBER_OF_COPIES = "number_of_copies";
+    /**
+     * The constant PARAMETER_NUMBER_OF_COPIES.
+     */
+    public static final String PARAMETER_NUMBER_OF_COPIES = "number_of_copies";
 
-	public static final String PARAMETER_IO_OBJECT = "io_object";
+    /**
+     * The constant PARAMETER_IO_OBJECT.
+     */
+    public static final String PARAMETER_IO_OBJECT = "io_object";
 
-	public static final String PARAMETER_MULTIPLY_TYPE = "multiply_type";
+    /**
+     * The constant PARAMETER_MULTIPLY_TYPE.
+     */
+    public static final String PARAMETER_MULTIPLY_TYPE = "multiply_type";
 
-	public static final String PARAMETER_MULTIPLY_WHICH = "multiply_which";
+    /**
+     * The constant PARAMETER_MULTIPLY_WHICH.
+     */
+    public static final String PARAMETER_MULTIPLY_WHICH = "multiply_which";
 
 	private static final String[] MULTIPLY_TYPES = new String[] { "multiply_one", "multiply_all" };
 
@@ -61,7 +72,12 @@ public class IOMultiplyOperator extends Operator {
 
 	private String[] objectArray = null;
 
-	public IOMultiplyOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Io multiply operator.
+     *
+     * @param description the description
+     */
+    public IOMultiplyOperator(OperatorDescription description) {
 		super(description);
 	}
 

@@ -48,7 +48,12 @@ public final class RemoveHoveredConnectionDecorator implements ProcessDrawDecora
 	private OutputPort from = null;
 	private boolean enableTrashSymbol = false;
 
-	public RemoveHoveredConnectionDecorator(ProcessRendererModel rendererModel) {
+    /**
+     * Instantiates a new Remove hovered connection decorator.
+     *
+     * @param rendererModel the renderer model
+     */
+    public RemoveHoveredConnectionDecorator(ProcessRendererModel rendererModel) {
 		this.rendererModel = rendererModel;
 	}
 

@@ -27,6 +27,8 @@ import java.util.List;
 
 
 /**
+ * The type Simple process setup error.
+ *
  * @author Simon Fischer
  */
 public class SimpleProcessSetupError implements ProcessSetupError {
@@ -37,16 +39,43 @@ public class SimpleProcessSetupError implements ProcessSetupError {
 	private final List<? extends QuickFix> fixes;
 	private final Severity severity;
 
-	public SimpleProcessSetupError(Severity severity, PortOwner owner, String i18nKey, Object... i18nArgs) {
+    /**
+     * Instantiates a new Simple process setup error.
+     *
+     * @param severity the severity
+     * @param owner    the owner
+     * @param i18nKey  the 18 n key
+     * @param i18nArgs the 18 n args
+     */
+    public SimpleProcessSetupError(Severity severity, PortOwner owner, String i18nKey, Object... i18nArgs) {
 		this(severity, owner, Collections.<QuickFix> emptyList(), false, i18nKey, i18nArgs);
 	}
 
-	public SimpleProcessSetupError(Severity severity, PortOwner owner, List<? extends QuickFix> fixes, String i18nKey,
+    /**
+     * Instantiates a new Simple process setup error.
+     *
+     * @param severity the severity
+     * @param owner    the owner
+     * @param fixes    the fixes
+     * @param i18nKey  the 18 n key
+     * @param i18nArgs the 18 n args
+     */
+    public SimpleProcessSetupError(Severity severity, PortOwner owner, List<? extends QuickFix> fixes, String i18nKey,
 			Object... i18nArgs) {
 		this(severity, owner, fixes, false, i18nKey, i18nArgs);
 	}
 
-	public SimpleProcessSetupError(Severity severity, PortOwner portOwner, List<? extends QuickFix> fixes,
+    /**
+     * Instantiates a new Simple process setup error.
+     *
+     * @param severity    the severity
+     * @param portOwner   the port owner
+     * @param fixes       the fixes
+     * @param absoluteKey the absolute key
+     * @param i18nKey     the 18 n key
+     * @param i18nArgs    the 18 n args
+     */
+    public SimpleProcessSetupError(Severity severity, PortOwner portOwner, List<? extends QuickFix> fixes,
 			boolean absoluteKey, String i18nKey, Object... i18nArgs) {
 		super();
 		if (absoluteKey) {

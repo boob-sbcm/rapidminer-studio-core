@@ -24,16 +24,24 @@ import java.util.Comparator;
 /**
  * Helper class for finding thresholds for cost sensitive learning or calculating the AUC
  * performance criterion.
- * 
+ *
  * @author Martin Scholz, Ingo Mierswa ingomierswa Exp $
  */
 public class WeightedConfidenceAndLabel implements Comparable<WeightedConfidenceAndLabel> {
 
-	public static class WCALComparator implements Comparator<WeightedConfidenceAndLabel> {
+    /**
+     * The type Wcal comparator.
+     */
+    public static class WCALComparator implements Comparator<WeightedConfidenceAndLabel> {
 
 		private ROCBias method;
 
-		public WCALComparator(ROCBias method) {
+        /**
+         * Instantiates a new Wcal comparator.
+         *
+         * @param method the method
+         */
+        public WCALComparator(ROCBias method) {
 			this.method = method;
 		}
 
@@ -60,11 +68,26 @@ public class WeightedConfidenceAndLabel implements Comparable<WeightedConfidence
 
 	private double weight = 1.0d;
 
-	public WeightedConfidenceAndLabel(double confidence, double label, double prediction) {
+    /**
+     * Instantiates a new Weighted confidence and label.
+     *
+     * @param confidence the confidence
+     * @param label      the label
+     * @param prediction the prediction
+     */
+    public WeightedConfidenceAndLabel(double confidence, double label, double prediction) {
 		this(confidence, label, prediction, 1.0d);
 	}
 
-	public WeightedConfidenceAndLabel(double confidence, double label, double prediction, double weight) {
+    /**
+     * Instantiates a new Weighted confidence and label.
+     *
+     * @param confidence the confidence
+     * @param label      the label
+     * @param prediction the prediction
+     * @param weight     the weight
+     */
+    public WeightedConfidenceAndLabel(double confidence, double label, double prediction, double weight) {
 		this.confidence = confidence;
 		this.label = label;
 		this.prediction = prediction;
@@ -100,19 +123,39 @@ public class WeightedConfidenceAndLabel implements Comparable<WeightedConfidence
 		return Double.valueOf(this.label).hashCode() ^ Double.valueOf(this.confidence).hashCode();
 	}
 
-	public double getLabel() {
+    /**
+     * Gets label.
+     *
+     * @return the label
+     */
+    public double getLabel() {
 		return this.label;
 	}
 
-	public double getPrediction() {
+    /**
+     * Gets prediction.
+     *
+     * @return the prediction
+     */
+    public double getPrediction() {
 		return this.prediction;
 	}
 
-	public double getConfidence() {
+    /**
+     * Gets confidence.
+     *
+     * @return the confidence
+     */
+    public double getConfidence() {
 		return this.confidence;
 	}
 
-	public double getWeight() {
+    /**
+     * Gets weight.
+     *
+     * @return the weight
+     */
+    public double getWeight() {
 		return weight;
 	}
 

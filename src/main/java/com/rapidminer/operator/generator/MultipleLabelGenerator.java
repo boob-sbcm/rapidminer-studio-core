@@ -51,24 +51,35 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class MultipleLabelGenerator extends AbstractExampleSource {
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
 
-	/**
-	 * The parameter name for &quot;Defines if multiple labels for regression tasks should be
-	 * generated.&quot;
-	 */
-	public static final String PARAMETER_REGRESSION = "regression";
+    /**
+     * The parameter name for &quot;Defines if multiple labels for regression tasks should be
+     * generated.&quot;
+     */
+    public static final String PARAMETER_REGRESSION = "regression";
 
-	/** The parameter name for &quot;The minimum value for the attributes.&quot; */
-	public static final String PARAMETER_ATTRIBUTES_LOWER_BOUND = "attributes_lower_bound";
+    /**
+     * The parameter name for &quot;The minimum value for the attributes.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTES_LOWER_BOUND = "attributes_lower_bound";
 
-	/** The parameter name for &quot;The maximum value for the attributes.&quot; */
-	public static final String PARAMETER_ATTRIBUTES_UPPER_BOUND = "attributes_upper_bound";
+    /**
+     * The parameter name for &quot;The maximum value for the attributes.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTES_UPPER_BOUND = "attributes_upper_bound";
 
 	private static final int NUMBER_OF_ATTRIBUTES = 5;
 
-	public MultipleLabelGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Multiple label generator.
+     *
+     * @param description the description
+     */
+    public MultipleLabelGenerator(OperatorDescription description) {
 		super(description);
 	}
 

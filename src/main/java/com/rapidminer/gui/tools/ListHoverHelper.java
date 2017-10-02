@@ -40,9 +40,7 @@ import javax.swing.event.MouseInputAdapter;
 /**
  * Utility class to get information about hovering index in a JList ListCellEditor.
  *
- *
  * @author Nils Woehler
- *
  */
 public class ListHoverHelper {
 
@@ -55,12 +53,22 @@ public class ListHoverHelper {
 
 		private Point lastLocation;
 
-		public HoverListener(JList<?> l) {
+        /**
+         * Instantiates a new Hover listener.
+         *
+         * @param l the l
+         */
+        public HoverListener(JList<?> l) {
 			list = l;
 			hoverIndex = -1;
 		}
 
-		public void setEnabled(boolean value) {
+        /**
+         * Sets enabled.
+         *
+         * @param value the value
+         */
+        public void setEnabled(boolean value) {
 			if (enabled == value) {
 				return;
 			}
@@ -94,7 +102,12 @@ public class ListHoverHelper {
 			}
 		}
 
-		public int hoverIndex() {
+        /**
+         * Hover index int.
+         *
+         * @return the int
+         */
+        public int hoverIndex() {
 			return hoverIndex;
 		}
 
@@ -268,13 +281,24 @@ public class ListHoverHelper {
 
 	private static Object HOVER = "xxx.Hover";
 
-	public static int index(JList<?> l) {
+    /**
+     * Index int.
+     *
+     * @param l the l
+     * @return the int
+     */
+    public static int index(JList<?> l) {
 		HoverListener h = (HoverListener) l.getClientProperty(HOVER);
 
 		return h == null ? -1 : h.hoverIndex();
 	}
 
-	public static void install(JList<?> l) {
+    /**
+     * Install.
+     *
+     * @param l the l
+     */
+    public static void install(JList<?> l) {
 		if (l.getClientProperty(HOVER) == null) {
 			HoverListener h = new HoverListener(l);
 
@@ -282,7 +306,12 @@ public class ListHoverHelper {
 		}
 	}
 
-	public static void uninstall(JList<?> l) {
+    /**
+     * Uninstall.
+     *
+     * @param l the l
+     */
+    public static void uninstall(JList<?> l) {
 		if (l != null) {
 			HoverListener h = (HoverListener) l.getClientProperty(HOVER);
 

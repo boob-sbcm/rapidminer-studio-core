@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ValidateProcessAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class ValidateProcessAction extends ResourceAction {
 
 	private final MainFrame mainFrame;
 
-	public ValidateProcessAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Validate process action.
+     *
+     * @param mainFrame the main frame
+     */
+    public ValidateProcessAction(MainFrame mainFrame) {
 		super("validate");
 		setCondition(PROCESS_RUNNING, DISALLOWED);
 		setCondition(EDIT_IN_PROGRESS, DISALLOWED);

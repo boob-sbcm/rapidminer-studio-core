@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Implementation of DataRow that is backed by a HashMap. Usually using the
  * {@link DoubleSparseArrayDataRow} should be more efficient.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SparseMapDataRow extends DataRow {

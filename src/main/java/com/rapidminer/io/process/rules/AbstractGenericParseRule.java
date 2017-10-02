@@ -25,15 +25,17 @@ import java.util.List;
 
 /**
  * This is an abstract class for all ParseRules that will apply to more than one operator key.
- * 
+ *
  * @author Sebastian Land
  */
 public abstract class AbstractGenericParseRule implements ParseRule {
 
-	/**
-	 * This method returns the list of applicable operator keys. Subclasses might implement this by
-	 * checking each operator registered on the {@link OperatorService}.
-	 */
-	public abstract List<String> getApplicableOperatorKeys();
+    /**
+     * This method returns the list of applicable operator keys. Subclasses might implement this by
+     * checking each operator registered on the {@link OperatorService}.
+     *
+     * @return the applicable operator keys
+     */
+    public abstract List<String> getApplicableOperatorKeys();
 
 }

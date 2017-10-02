@@ -43,7 +43,7 @@ import com.rapidminer.parameter.UndefinedParameterError;
 /**
  * This operator returns the best rule regarding WRAcc using exhaustive search. Features like the
  * incorporation of other metrics and the search for more than a single rule are prepared.
- *
+ * <p>
  * The search strategy is BFS, with save pruning whenever applicable. This operator can easily be
  * extended to support other search strategies.
  *
@@ -51,23 +51,41 @@ import com.rapidminer.parameter.UndefinedParameterError;
  */
 public class BestRuleInduction extends AbstractLearner {
 
-	/** Helper class containing a rule and an upper bound for the score. */
-	public static class RuleWithScoreUpperBound implements Comparable<Object> {
+    /**
+     * Helper class containing a rule and an upper bound for the score.
+     */
+    public static class RuleWithScoreUpperBound implements Comparable<Object> {
 
 		private final ConjunctiveRuleModel rule;
 
 		private final double scoreUpperBound;
 
-		public RuleWithScoreUpperBound(ConjunctiveRuleModel rule, double scoreUpperBound) {
+        /**
+         * Instantiates a new Rule with score upper bound.
+         *
+         * @param rule            the rule
+         * @param scoreUpperBound the score upper bound
+         */
+        public RuleWithScoreUpperBound(ConjunctiveRuleModel rule, double scoreUpperBound) {
 			this.rule = rule;
 			this.scoreUpperBound = scoreUpperBound;
 		}
 
-		public ConjunctiveRuleModel getRule() {
+        /**
+         * Gets rule.
+         *
+         * @return the rule
+         */
+        public ConjunctiveRuleModel getRule() {
 			return this.rule;
 		}
 
-		public double getScoreBound() {
+        /**
+         * Gets score bound.
+         *
+         * @return the score bound
+         */
+        public double getScoreBound() {
 			return this.scoreUpperBound;
 		}
 
@@ -120,7 +138,10 @@ public class BestRuleInduction extends AbstractLearner {
 
 	private double globalN;
 
-	protected ConjunctiveRuleModel bestRule;
+    /**
+     * The Best rule.
+     */
+    protected ConjunctiveRuleModel bestRule;
 
 	private double bestScore;
 
@@ -133,7 +154,12 @@ public class BestRuleInduction extends AbstractLearner {
 	// evaluations for any kind of refinements
 	private final Vector<ConjunctiveRuleModel> prunedNodes = new Vector<ConjunctiveRuleModel>();
 
-	public BestRuleInduction(OperatorDescription description) {
+    /**
+     * Instantiates a new Best rule induction.
+     *
+     * @param description the description
+     */
+    public BestRuleInduction(OperatorDescription description) {
 		super(description);
 	}
 
@@ -157,18 +183,24 @@ public class BestRuleInduction extends AbstractLearner {
 		return false;
 	}
 
-	protected void initHighscore() {
+    /**
+     * Init highscore.
+     */
+    protected void initHighscore() {
 		this.bestRule = null;
 		this.bestScore = Double.NEGATIVE_INFINITY;
 	}
 
-	/**
-	 * Adds a rule to the set of best rules if its score is high enough. Currently just a single
-	 * rule is stored. Additionally it is checked whether the rule is bad enough to be pruned.
-	 *
-	 * @return true iff the rule can be pruned
-	 */
-	protected boolean communicateToHighscore(ConjunctiveRuleModel rule, double[] counts) throws UndefinedParameterError {
+    /**
+     * Adds a rule to the set of best rules if its score is high enough. Currently just a single
+     * rule is stored. Additionally it is checked whether the rule is bad enough to be pruned.
+     *
+     * @param rule   the rule
+     * @param counts the counts
+     * @return true iff the rule can be pruned
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected boolean communicateToHighscore(ConjunctiveRuleModel rule, double[] counts) throws UndefinedParameterError {
 		double optimisticScore = this.getOptimisticScore(counts);
 		if (optimisticScore <= this.getPruningScore()) {
 			return true; // indicates pruning
@@ -190,13 +222,21 @@ public class BestRuleInduction extends AbstractLearner {
 		}
 	}
 
-	/** @return the best rule found */
-	protected ConjunctiveRuleModel getBestRule() {
+    /**
+     * Gets best rule.
+     *
+     * @return the best rule found
+     */
+    protected ConjunctiveRuleModel getBestRule() {
 		return this.bestRule;
 	}
 
-	/** @return the lowest score of the stored best rules for pruning */
-	protected double getPruningScore() {
+    /**
+     * Gets pruning score.
+     *
+     * @return the lowest score of the stored best rules for pruning
+     */
+    protected double getPruningScore() {
 		return this.bestScore;
 	}
 
@@ -309,14 +349,13 @@ public class BestRuleInduction extends AbstractLearner {
 		}
 	}
 
-	/**
-	 * @param rule
-	 *            a ConjuctiveRuleModel for which it is checked whether a more general rule has
-	 *            already been pruned.
-	 * @return true, if this rule is a refinement of a pruned rule. The rules are compared using the
-	 *         method <code>ConjunctiveRuleModel.isRefinementOf(ConjunctiveRuleModel model)</code>
-	 */
-	public boolean isRefinementOfPrunedRule(ConjunctiveRuleModel rule) {
+    /**
+     * Is refinement of pruned rule boolean.
+     *
+     * @param rule a ConjuctiveRuleModel for which it is checked whether a more general rule has            already been pruned.
+     * @return true, if this rule is a refinement of a pruned rule. The rules are compared using the         method <code>ConjunctiveRuleModel.isRefinementOf(ConjunctiveRuleModel model)</code>
+     */
+    public boolean isRefinementOfPrunedRule(ConjunctiveRuleModel rule) {
 		for (ConjunctiveRuleModel prunedRule : prunedNodes) {
 			// In this collection all rules predict positive, but the scores are
 			// computed for the best label. For this reason the following
@@ -328,12 +367,17 @@ public class BestRuleInduction extends AbstractLearner {
 		return false;
 	}
 
-	/**
-	 * Computes the WRAcc or BINOMIAL TEST FUNCTION based on p, n, and the global values P and N
-	 * stored in this object. First two entries of counts are p and n, optionally estimates for p
-	 * and n can be supplied as further parameters.
-	 */
-	protected double getScore(double[] counts, boolean predictPositives) throws UndefinedParameterError {
+    /**
+     * Computes the WRAcc or BINOMIAL TEST FUNCTION based on p, n, and the global values P and N
+     * stored in this object. First two entries of counts are p and n, optionally estimates for p
+     * and n can be supplied as further parameters.
+     *
+     * @param counts           the counts
+     * @param predictPositives the predict positives
+     * @return the score
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected double getScore(double[] counts, boolean predictPositives) throws UndefinedParameterError {
 		double p = counts[0];
 		double n = counts[1];
 		double cov = (p + n) / (globalP + globalN);
@@ -369,12 +413,16 @@ public class BestRuleInduction extends AbstractLearner {
 		return score;
 	}
 
-	/**
-	 * Computes the best possible score that might be achieved by refining the rule. During learning
-	 * the conclusion is normalized to "positive", so the better of the estimates of the better
-	 * conclusion is returned.
-	 */
-	protected double getOptimisticScore(double[] counts) throws UndefinedParameterError {
+    /**
+     * Computes the best possible score that might be achieved by refining the rule. During learning
+     * the conclusion is normalized to "positive", so the better of the estimates of the better
+     * conclusion is returned.
+     *
+     * @param counts the counts
+     * @return the optimistic score
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected double getOptimisticScore(double[] counts) throws UndefinedParameterError {
 		double p = counts[0];
 		double n = counts[1];
 
@@ -403,17 +451,15 @@ public class BestRuleInduction extends AbstractLearner {
 
 	}
 
-	/**
-	 * @param rule
-	 *            the rule to evaluate
-	 * @param exampleSet
-	 *            the exampleSet to get the counts for
-	 * @return a double[2] object, first parameter is p, second is n. If rule discovery relative to
-	 *         a predicted label is activated, then a double[4] is returned, which contains the
-	 *         estimated positives and negatives in the covered part as fields 3 and 4.
-	 * @throws OperatorException
-	 */
-	protected double[] getCounts(ConjunctiveRuleModel rule, ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Get counts double [ ].
+     *
+     * @param rule       the rule to evaluate
+     * @param exampleSet the exampleSet to get the counts for
+     * @return a double[2] object, first parameter is p, second is n. If rule discovery relative to         a predicted label is activated, then a double[4] is returned, which contains the         estimated positives and negatives in the covered part as fields 3 and 4.
+     * @throws OperatorException the operator exception
+     */
+    protected double[] getCounts(ConjunctiveRuleModel rule, ExampleSet exampleSet) throws OperatorException {
 		Attribute weightAttr = exampleSet.getAttributes().getWeight();
 		Attribute predictedLabel = exampleSet.getAttributes().getPredictedLabel();
 		boolean relToPred = predictedLabel != null && this.getParameterAsBoolean(PARAMETER_RELATIVE_TO_PREDICTIONS);

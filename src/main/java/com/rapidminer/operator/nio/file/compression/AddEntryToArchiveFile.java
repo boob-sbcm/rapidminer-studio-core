@@ -39,29 +39,57 @@ import java.util.List;
 /**
  * An operator which adds one or more files to an archive file. Archive files are files like zip
  * files etc.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class AddEntryToArchiveFile extends Operator {
 
-	public static final String PARAMETER_OVERRIDE_COMPRESSION_LEVEL = "override_compression_level";
-	public static final String PARAMETER_COMPRESSION_LEVEL = "compression_level";
-	public static final String PARAMETER_DIRECTORY = "directory";
+    /**
+     * The constant PARAMETER_OVERRIDE_COMPRESSION_LEVEL.
+     */
+    public static final String PARAMETER_OVERRIDE_COMPRESSION_LEVEL = "override_compression_level";
+    /**
+     * The constant PARAMETER_COMPRESSION_LEVEL.
+     */
+    public static final String PARAMETER_COMPRESSION_LEVEL = "compression_level";
+    /**
+     * The constant PARAMETER_DIRECTORY.
+     */
+    public static final String PARAMETER_DIRECTORY = "directory";
 
-	public static final String[] COMPRESSION_LEVELS = { "best compression", "fastest compression", "no compression",
+    /**
+     * The constant COMPRESSION_LEVELS.
+     */
+    public static final String[] COMPRESSION_LEVELS = { "best compression", "fastest compression", "no compression",
 			"default compression" };
-	public static final int COMPRESSION_LEVEL_BEST = 0;
-	public static final int COMPRESSION_LEVEL_FASTEST = 1;
-	public static final int COMPRESSION_LEVEL_NONE = 2;
-	public static final int COMPRESSION_LEVEL_DEFAULT = 3;
+    /**
+     * The constant COMPRESSION_LEVEL_BEST.
+     */
+    public static final int COMPRESSION_LEVEL_BEST = 0;
+    /**
+     * The constant COMPRESSION_LEVEL_FASTEST.
+     */
+    public static final int COMPRESSION_LEVEL_FASTEST = 1;
+    /**
+     * The constant COMPRESSION_LEVEL_NONE.
+     */
+    public static final int COMPRESSION_LEVEL_NONE = 2;
+    /**
+     * The constant COMPRESSION_LEVEL_DEFAULT.
+     */
+    public static final int COMPRESSION_LEVEL_DEFAULT = 3;
 
 	private InputPort archiveFileInput = getInputPorts().createPort("archive file", new MetaData(ZipFileObject.class));
 	private InputPortExtender fileInput = new InputPortExtender("file input", getInputPorts(),
 			new MetaData(FileObject.class), true);
 	private OutputPort archiveFileOutput = getOutputPorts().createPort("archive file");
 
-	public AddEntryToArchiveFile(OperatorDescription description) {
+    /**
+     * Instantiates a new Add entry to archive file.
+     *
+     * @param description the description
+     */
+    public AddEntryToArchiveFile(OperatorDescription description) {
 		super(description);
 		getTransformer().addPassThroughRule(archiveFileInput, archiveFileOutput);
 		fileInput.start();

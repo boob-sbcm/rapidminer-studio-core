@@ -43,50 +43,54 @@ public class PluginClassLoader extends URLClassLoader {
 
 	private volatile boolean ignoreDependencyClassloaders;
 
-	/**
-	 * @return {@code true} if the dependency classloaders are ignored by
-	 *         {@link #getResource(String)} and {@link #loadClass(String)}
-	 */
-	public boolean isIgnoreDependencyClassloaders() {
+    /**
+     * Is ignore dependency classloaders boolean.
+     *
+     * @return {@code true} if the dependency classloaders are ignored by         {@link #getResource(String)} and {@link #loadClass(String)}
+     */
+    public boolean isIgnoreDependencyClassloaders() {
 		return ignoreDependencyClassloaders;
 	}
 
-	/**
-	 * Specifies if the dependency classloaders are ignored by {@link #getResource(String)} and
-	 * {@link #loadClass(String)}.
-	 *
-	 * @param ignoreDependencyClassloaders
-	 *            flag to ignore dependency classloaders when looking for resources or loading
-	 *            classes
-	 */
-	public void setIgnoreDependencyClassloaders(boolean ignoreDependencyClassloaders) {
+    /**
+     * Specifies if the dependency classloaders are ignored by {@link #getResource(String)} and
+     * {@link #loadClass(String)}.
+     *
+     * @param ignoreDependencyClassloaders flag to ignore dependency classloaders when looking for resources or loading            classes
+     */
+    public void setIgnoreDependencyClassloaders(boolean ignoreDependencyClassloaders) {
 		this.ignoreDependencyClassloaders = ignoreDependencyClassloaders;
 	}
 
-	/**
-	 * This constructor is for plugins that only depend on the core.
-	 *
-	 * @param urls
-	 *            These URLs will be used for class building.
-	 */
-	public PluginClassLoader(URL[] urls) {
+    /**
+     * This constructor is for plugins that only depend on the core.
+     *
+     * @param urls These URLs will be used for class building.
+     */
+    public PluginClassLoader(URL[] urls) {
 		super(urls, RapidMiner.class.getClassLoader());
 	}
 
-	@Deprecated
+    /**
+     * Instantiates a new Plugin class loader.
+     *
+     * @param urls   the urls
+     * @param parent the parent
+     */
+    @Deprecated
 	public PluginClassLoader(URL[] urls, ClassLoader parent) {
 		super(urls, parent);
 	}
 
-	/**
-	 * This method can be used if for a plugin already is known which parent plugins are needed.
-	 * Otherwise you can use the standard constructor and add the Dependencies later using
-	 * {@link #addDependency(Plugin)}.
-	 *
-	 * @param urls
-	 * @param parentPlugins
-	 */
-	public PluginClassLoader(URL[] urls, Plugin... parentPlugins) {
+    /**
+     * This method can be used if for a plugin already is known which parent plugins are needed.
+     * Otherwise you can use the standard constructor and add the Dependencies later using
+     * {@link #addDependency(Plugin)}.
+     *
+     * @param urls          the urls
+     * @param parentPlugins the parent plugins
+     */
+    public PluginClassLoader(URL[] urls, Plugin... parentPlugins) {
 		super(urls, RapidMiner.class.getClassLoader());
 
 		for (Plugin plugin : parentPlugins) {
@@ -94,13 +98,12 @@ public class PluginClassLoader extends URLClassLoader {
 		}
 	}
 
-	/**
-	 * Adds a plugin to the list of dependencies.
-	 *
-	 * @param dependency
-	 *            The new dependency.
-	 */
-	public void addDependency(Plugin dependency) {
+    /**
+     * Adds a plugin to the list of dependencies.
+     *
+     * @param dependency The new dependency.
+     */
+    public void addDependency(Plugin dependency) {
 		dependencies.add(dependency);
 	}
 
@@ -162,38 +165,36 @@ public class PluginClassLoader extends URLClassLoader {
 		return "PluginClassLoader (" + Arrays.asList(getURLs()) + ")";
 	}
 
-	/**
-	 * Returns the key of the plugin for this classloader. Can be {@code null} if it has not been
-	 * specified.
-	 *
-	 * @return the plugin key or {@code null}
-	 */
-	public String getPluginKey() {
+    /**
+     * Returns the key of the plugin for this classloader. Can be {@code null} if it has not been
+     * specified.
+     *
+     * @return the plugin key or {@code null}
+     */
+    public String getPluginKey() {
 		return pluginKey;
 	}
 
-	/**
-	 * Set the key of the plugin for this classloader.
-	 *
-	 * @param pluginKey
-	 *            the key
-	 * @throws SecurityException
-	 *             if caller does not have {@link RuntimePermission} for {@code createClassLoader}
-	 */
-	public void setPluginKey(String pluginKey) {
+    /**
+     * Set the key of the plugin for this classloader.
+     *
+     * @param pluginKey the key
+     * @throws SecurityException if caller does not have {@link RuntimePermission} for {@code createClassLoader}
+     */
+    public void setPluginKey(String pluginKey) {
 		if (System.getSecurityManager() != null) {
 			AccessController.checkPermission(new RuntimePermission("createClassLoader"));
 		}
 		this.pluginKey = pluginKey;
 	}
 
-	/**
-	 * Returns a {@link Set} of {@link PluginClassLoader}s this {@link PluginClassLoader} depends on
-	 * (i.e., the corresponding {@link Plugin} depends on):
-	 *
-	 * @return Set of dependency {@link PluginClassLoader}s.
-	 */
-	public Set<PluginClassLoader> getDependencyClassLoaders() {
+    /**
+     * Returns a {@link Set} of {@link PluginClassLoader}s this {@link PluginClassLoader} depends on
+     * (i.e., the corresponding {@link Plugin} depends on):
+     *
+     * @return Set of dependency {@link PluginClassLoader}s.
+     */
+    public Set<PluginClassLoader> getDependencyClassLoaders() {
 		Set<PluginClassLoader> classLoaders = new HashSet<>();
 		// add class loaders of dependencies
 		for (Plugin dependency : dependencies) {

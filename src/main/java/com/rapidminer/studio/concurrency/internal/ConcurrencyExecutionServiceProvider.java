@@ -31,40 +31,39 @@ package com.rapidminer.studio.concurrency.internal;
  */
 public enum ConcurrencyExecutionServiceProvider {
 
-	/** the singleton provider instance */
-	INSTANCE;
+    /**
+     * the singleton provider instance
+     */
+    INSTANCE;
 
 	/** this is the concurrency execution service instance */
 	private ConcurrencyExecutionService service;
 
-	/**
-	 * Gets the concurrency execution service which can be used to parallelize operator tasks.
-	 *
-	 * @return the service or {@code null} if {@link #isInitialized()} returns {@code false}
-	 */
-	public ConcurrencyExecutionService getService() {
+    /**
+     * Gets the concurrency execution service which can be used to parallelize operator tasks.
+     *
+     * @return the service or {@code null} if {@link #isInitialized()} returns {@code false}
+     */
+    public ConcurrencyExecutionService getService() {
 		return service;
 	}
 
-	/**
-	 * Can be used to check if the concurrency execution service is initialized and can be used.
-	 *
-	 * @return {@code true} if the concurrency execution service is available; {@code false}
-	 *         otherwise
-	 */
-	public boolean isInitialized() {
+    /**
+     * Can be used to check if the concurrency execution service is initialized and can be used.
+     *
+     * @return {@code true} if the concurrency execution service is available; {@code false}         otherwise
+     */
+    public boolean isInitialized() {
 		return service != null;
 	}
 
-	/**
-	 * <strong>Attention: </strong> NOT PART OF THE PUBLIC API!
-	 *
-	 * @param service
-	 *            the {@link ConcurrencyExecutionService} to set. Must not be {@code null}!
-	 * @throws IllegalStateException
-	 *             if the concurrency execution service has already been set
-	 */
-	public void setConcurrencyExecutionService(ConcurrencyExecutionService service) {
+    /**
+     * <strong>Attention: </strong> NOT PART OF THE PUBLIC API!
+     *
+     * @param service the {@link ConcurrencyExecutionService} to set. Must not be {@code null}!
+     * @throws IllegalStateException if the concurrency execution service has already been set
+     */
+    public void setConcurrencyExecutionService(ConcurrencyExecutionService service) {
 		if (this.service != null) {
 			throw new IllegalStateException("ConcurrencyExecutionService is already set!");
 		}

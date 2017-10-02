@@ -33,12 +33,13 @@ import com.rapidminer.gui.tools.RegistryListener;
  * (un)registered. The {@link LogModelRegistry} creates the default model.
  *
  * @author Sabrina Kirstein, Marco Boeck
- *
  */
 public enum LogModelRegistry implements Registry<LogModel> {
 
-	/** The singleton instance which is created by the JVM */
-	INSTANCE;
+    /**
+     * The singleton instance which is created by the JVM
+     */
+    INSTANCE;
 
 	/** all registered {@link LogModel}s */
 	private List<LogModel> registeredLogModels;

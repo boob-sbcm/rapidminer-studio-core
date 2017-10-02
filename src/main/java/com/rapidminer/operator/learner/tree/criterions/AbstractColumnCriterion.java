@@ -71,10 +71,15 @@ public abstract class AbstractColumnCriterion implements ColumnCriterion {
 		return getBenefit(weightCounts);
 	}
 
-	/**
-	 * This method returns the criterion specified by the respective parameters.
-	 */
-	public static ColumnCriterion createColumnCriterion(ParameterHandler handler, double minimalGain)
+    /**
+     * This method returns the criterion specified by the respective parameters.
+     *
+     * @param handler     the handler
+     * @param minimalGain the minimal gain
+     * @return the column criterion
+     * @throws OperatorException the operator exception
+     */
+    public static ColumnCriterion createColumnCriterion(ParameterHandler handler, double minimalGain)
 			throws OperatorException {
 		String criterionName = handler.getParameterAsString(PARAMETER_CRITERION);
 		Class<?> criterionClass = null;

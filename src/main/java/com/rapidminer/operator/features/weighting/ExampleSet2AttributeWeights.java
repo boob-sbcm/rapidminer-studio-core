@@ -28,12 +28,17 @@ import com.rapidminer.operator.OperatorException;
 /**
  * This operator creates a new attribute weights IOObject from a given example set. The result is a
  * vector of attribute weights containing the weight 1.0 for each of the input attributes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExampleSet2AttributeWeights extends AbstractWeighting {
 
-	public ExampleSet2AttributeWeights(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set 2 attribute weights.
+     *
+     * @param description the description
+     */
+    public ExampleSet2AttributeWeights(OperatorDescription description) {
 		super(description, false);
 	}
 

@@ -35,11 +35,13 @@ import com.rapidminer.tools.expression.internal.antlr.AntlrParser;
  * Tests the results of {@link AntlrParser#parse(String)} for String information functions.
  *
  * @author David Arnu, Thilo Kamradt
- *
  */
 public class AntlrParserStringInformationTest extends AntlrParserTest {
 
-	// compare
+    /**
+     * Compare equal.
+     */
+// compare
 	@Test
 	public void compareEqual() {
 		try {
@@ -51,7 +53,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Compare one smaller.
+     */
+    @Test
 	public void compareOneSmaller() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("compare(\"abc\", \"abcd\")");
@@ -62,7 +67,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Compare two smaller.
+     */
+    @Test
 	public void compareTwoSmaller() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("compare(\"abc\", \"abcde\")");
@@ -73,7 +81,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Compare larger.
+     */
+    @Test
 	public void compareLarger() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("compare(\"babc\", \"abc\")");
@@ -84,7 +95,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Compare missing 1.
+     */
+    @Test
 	public void compareMissing1() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("compare( MISSING_NOMINAL, \"abc\")");
@@ -95,7 +109,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Compare missing 2.
+     */
+    @Test
 	public void compareMissing2() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("compare(\"abc\", MISSING_NOMINAL)");
@@ -106,7 +123,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Compare wrong first type.
+     */
+    @Test
 	public void compareWrongFirstType() {
 		try {
 			getExpressionWithFunctionContext(" compare(5, \"abc\")");
@@ -116,7 +136,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Compare wrong second type.
+     */
+    @Test
 	public void compareWrongSecondType() {
 		try {
 			getExpressionWithFunctionContext(" compare(\"abc\",5)");
@@ -126,7 +149,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Compare wrong argument number.
+     */
+    @Test
 	public void compareWrongArgumentNumber() {
 		try {
 			getExpressionWithFunctionContext(" compare(\"abc\")");
@@ -136,7 +162,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Compare empty.
+     */
+    @Test
 	public void compareEmpty() {
 		try {
 			getExpressionWithFunctionContext(" compare()");
@@ -146,7 +175,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	// contains
+    /**
+     * Contains true.
+     */
+// contains
 	@Test
 	public void containsTrue() {
 		try {
@@ -158,7 +190,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Contains false.
+     */
+    @Test
 	public void containsFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("contains(\"aaa\", \"bbb\")");
@@ -169,7 +204,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Contains missing 1.
+     */
+    @Test
 	public void containsMissing1() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("contains( MISSING_NOMINAL, \"abc\")");
@@ -180,7 +218,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Contains missing 2.
+     */
+    @Test
 	public void containsMissing2() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("contains(\"abc\", MISSING_NOMINAL)");
@@ -191,7 +232,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Contains empty.
+     */
+    @Test
 	public void containsEmpty() {
 		try {
 			getExpressionWithFunctionContext(" contains()");
@@ -201,7 +245,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Contains wrong number of arguments.
+     */
+    @Test
 	public void containsWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext(" contains(\"aaa\")");
@@ -211,7 +258,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Contains wrong first type.
+     */
+    @Test
 	public void containsWrongFirstType() {
 		try {
 			getExpressionWithFunctionContext(" contains(5, \"abc\")");
@@ -221,7 +271,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Contains wrong second type.
+     */
+    @Test
 	public void containsWrongSecondType() {
 		try {
 			getExpressionWithFunctionContext(" contains(\"abc\",5)");
@@ -233,7 +286,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 
 	// Matches
 
-	@Test
+    /**
+     * Matches true.
+     */
+    @Test
 	public void matchesTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("matches(\"abcd\", \"a[bxyz]c[abcdxyz]\")");
@@ -244,7 +300,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Matches false.
+     */
+    @Test
 	public void matchesFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("matches(\"abcd\", \"a[xyz]c[abcxyz]\")");
@@ -255,7 +314,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Matches illegal expression.
+     */
+    @Test
 	public void matchesIllegalExpression() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("matches(\"abcd\", \"a[xyz]c[abcxyz]{1,3\")");
@@ -267,7 +329,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Matches missing 1.
+     */
+    @Test
 	public void matchesMissing1() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("matches( MISSING_NOMINAL, \"abc\")");
@@ -278,7 +343,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Matches missing 2.
+     */
+    @Test
 	public void matchesMissing2() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("matches(\"abc\", MISSING_NOMINAL)");
@@ -289,7 +357,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Matches empty.
+     */
+    @Test
 	public void matchesEmpty() {
 		try {
 			getExpressionWithFunctionContext(" matches()");
@@ -299,7 +370,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Matches wrong number of arguments.
+     */
+    @Test
 	public void matchesWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext("matches(\"aaa\")");
@@ -309,7 +383,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Matches wrong first type.
+     */
+    @Test
 	public void matchesWrongFirstType() {
 		try {
 			getExpressionWithFunctionContext("matches(5, \"abc\")");
@@ -319,7 +396,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Matches wrong second type.
+     */
+    @Test
 	public void matchesWrongSecondType() {
 		try {
 			getExpressionWithFunctionContext("matches(\"abc\",5)");
@@ -331,7 +411,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 
 	// equals
 
-	@Test
+    /**
+     * Equals true.
+     */
+    @Test
 	public void equalsTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("equals(\"abcd\", \"abcd\")");
@@ -342,7 +425,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals false.
+     */
+    @Test
 	public void equalsFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("equals(\"abcd\", \"Zer0 als Nummer\")");
@@ -353,7 +439,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals missing 1.
+     */
+    @Test
 	public void equalsMissing1() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("equals( MISSING_NOMINAL, \"abc\")");
@@ -364,7 +453,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals missing 2.
+     */
+    @Test
 	public void equalsMissing2() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("equals(\"abc\", MISSING_NOMINAL)");
@@ -375,7 +467,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals empty.
+     */
+    @Test
 	public void equalsEmpty() {
 		try {
 			getExpressionWithFunctionContext("equals()");
@@ -385,7 +480,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals wrong number of arguments.
+     */
+    @Test
 	public void equalsWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext("equals(\"aaa\")");
@@ -395,7 +493,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals wrong first type.
+     */
+    @Test
 	public void equalsWrongFirstType() {
 		try {
 			getExpressionWithFunctionContext("equals(5, \"abc\")");
@@ -405,7 +506,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Equals wrong second type.
+     */
+    @Test
 	public void equalsWrongSecondType() {
 		try {
 			getExpressionWithFunctionContext("equals(\"abc\",5)");
@@ -417,7 +521,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 
 	// starts
 
-	@Test
+    /**
+     * Starts true.
+     */
+    @Test
 	public void startsTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("starts(\"abcd\", \"ab\")");
@@ -428,7 +535,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Starts false.
+     */
+    @Test
 	public void startsFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("starts(\"abcd\", \"bi\")");
@@ -439,7 +549,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Starts missing 1.
+     */
+    @Test
 	public void startsMissing1() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("starts( MISSING_NOMINAL, \"abc\")");
@@ -450,7 +563,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Starts missing 2.
+     */
+    @Test
 	public void startsMissing2() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("starts(\"abc\", MISSING_NOMINAL)");
@@ -461,7 +577,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Stats empty.
+     */
+    @Test
 	public void statsEmpty() {
 		try {
 			getExpressionWithFunctionContext("starts()");
@@ -471,7 +590,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Starts wrong number of arguments.
+     */
+    @Test
 	public void startsWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext("starts(\"aaa\")");
@@ -481,7 +603,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Starts wrong first type.
+     */
+    @Test
 	public void startsWrongFirstType() {
 		try {
 			getExpressionWithFunctionContext("starts(5, \"abc\")");
@@ -491,7 +616,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Starts wrong second type.
+     */
+    @Test
 	public void startsWrongSecondType() {
 		try {
 			getExpressionWithFunctionContext("starts(\"abc\",5)");
@@ -503,7 +631,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 
 	// ends
 
-	@Test
+    /**
+     * Ends true.
+     */
+    @Test
 	public void endsTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ends(\"abcd\", \"cd\")");
@@ -514,7 +645,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ends false.
+     */
+    @Test
 	public void endsFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ends(\"abcd\", \"bi\")");
@@ -525,7 +659,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ends missing 1.
+     */
+    @Test
 	public void endsMissing1() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ends( MISSING_NOMINAL, \"abc\")");
@@ -536,7 +673,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ends missing 2.
+     */
+    @Test
 	public void endsMissing2() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("ends(\"abc\", MISSING_NOMINAL)");
@@ -547,7 +687,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ends empty.
+     */
+    @Test
 	public void endsEmpty() {
 		try {
 			getExpressionWithFunctionContext("ends()");
@@ -557,7 +700,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ends wrong number of arguments.
+     */
+    @Test
 	public void endsWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext("ends(\"aaa\")");
@@ -567,7 +713,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ends wrong first type.
+     */
+    @Test
 	public void endsWrongFirstType() {
 		try {
 			getExpressionWithFunctionContext("ends(5, \"abc\")");
@@ -577,7 +726,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ends wrong second type.
+     */
+    @Test
 	public void endsWrongSecondType() {
 		try {
 			getExpressionWithFunctionContext("ends(\"abc\",5)");
@@ -589,7 +741,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 
 	// finds
 
-	@Test
+    /**
+     * Finds true.
+     */
+    @Test
 	public void findsTrue() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("finds(\"abcd\", \"cd\")");
@@ -600,7 +755,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Finds false.
+     */
+    @Test
 	public void findsFalse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("finds(\"abcd\", \"bi\")");
@@ -611,7 +769,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Finds empty in string.
+     */
+    @Test
 	public void findsEmptyInString() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("finds(\"abcd\", \"\")");
@@ -622,7 +783,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Finds string in empty.
+     */
+    @Test
 	public void findsStringInEmpty() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("finds(\"\", \"bi\")");
@@ -633,7 +797,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Finds illegal expression.
+     */
+    @Test
 	public void findsIllegalExpression() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("finds(\"abcd\", \"[xyz]c[abcxyz]{1,3\")");
@@ -645,7 +812,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Finds missing 1.
+     */
+    @Test
 	public void findsMissing1() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("finds( MISSING_NOMINAL, \"abc\")");
@@ -656,7 +826,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Finds missing 2.
+     */
+    @Test
 	public void findsMissing2() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("finds(\"abc\", MISSING_NOMINAL)");
@@ -667,7 +840,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Finds empty.
+     */
+    @Test
 	public void findsEmpty() {
 		try {
 			getExpressionWithFunctionContext("finds()");
@@ -677,7 +853,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Finds wrong number of arguments.
+     */
+    @Test
 	public void findsWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext("finds(\"aaa\")");
@@ -687,7 +866,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Finds wrong first type.
+     */
+    @Test
 	public void findsWrongFirstType() {
 		try {
 			getExpressionWithFunctionContext("finds(5, \"abc\")");
@@ -697,7 +879,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Finds wrong second type.
+     */
+    @Test
 	public void findsWrongSecondType() {
 		try {
 			getExpressionWithFunctionContext("finds(\"abc\",5)");
@@ -709,7 +894,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 
 	// index
 
-	@Test
+    /**
+     * Index matching string.
+     */
+    @Test
 	public void indexMatchingString() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("index(\"abcd\",\"c\")");
@@ -720,7 +908,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Index not matching string.
+     */
+    @Test
 	public void indexNotMatchingString() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("index(\"abcd\",\"t\")");
@@ -731,7 +922,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Index empty substring.
+     */
+    @Test
 	public void indexEmptySubstring() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("index(\"abcd\",\"\")");
@@ -742,7 +936,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Index empty main string.
+     */
+    @Test
 	public void indexEmptyMainString() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("index(\"\",\"c\")");
@@ -753,7 +950,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Index missing 1.
+     */
+    @Test
 	public void indexMissing1() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("index( MISSING_NOMINAL, \"abc\")");
@@ -764,7 +964,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Index missing 2.
+     */
+    @Test
 	public void indexMissing2() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("index(\"abc\", MISSING_NOMINAL)");
@@ -775,7 +978,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Index empty.
+     */
+    @Test
 	public void indexEmpty() {
 		try {
 			getExpressionWithFunctionContext("index()");
@@ -785,7 +991,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Index wrong number of arguments.
+     */
+    @Test
 	public void indexWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext("index(\"aaa\")");
@@ -795,7 +1004,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Index wrong first type.
+     */
+    @Test
 	public void indexWrongFirstType() {
 		try {
 			getExpressionWithFunctionContext("index(5, \"abc\")");
@@ -805,7 +1017,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Index wrong second type.
+     */
+    @Test
 	public void indexWrongSecondType() {
 		try {
 			getExpressionWithFunctionContext("index(\"abc\",5)");
@@ -817,7 +1032,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 
 	// length
 
-	@Test
+    /**
+     * Length simple use.
+     */
+    @Test
 	public void lengthSimpleUse() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("length(\"abcd\")");
@@ -828,7 +1046,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Length empty string.
+     */
+    @Test
 	public void lengthEmptyString() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("length(\"\")");
@@ -839,7 +1060,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Length missing.
+     */
+    @Test
 	public void lengthMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("length(MISSING_NOMINAL)");
@@ -850,7 +1074,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Lengths empty.
+     */
+    @Test
 	public void lengthsEmpty() {
 		try {
 			getExpressionWithFunctionContext("length()");
@@ -860,7 +1087,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Length wrong number of arguments.
+     */
+    @Test
 	public void lengthWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext("length(\"aaa\",\"aaa\")");
@@ -870,7 +1100,10 @@ public class AntlrParserStringInformationTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Length wrong type.
+     */
+    @Test
 	public void lengthWrongType() {
 		try {
 			getExpressionWithFunctionContext("length(5)");

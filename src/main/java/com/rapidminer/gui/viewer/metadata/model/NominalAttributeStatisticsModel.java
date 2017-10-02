@@ -45,9 +45,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  * Model for {@link AttributeStatisticsPanel}s which are backed by a nominal {@link Attribute}.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class NominalAttributeStatisticsModel extends AbstractAttributeStatisticsModel {
 
@@ -63,8 +62,10 @@ public class NominalAttributeStatisticsModel extends AbstractAttributeStatistics
 	/** the default number of displayed nominal values when NOT enlarged */
 	private static final int DEFAULT_MAX_DISPLAYED_VALUES = 2;
 
-	/** the default number of displayed nominal values when enlarged */
-	public static final int DEFAULT_MAX_DISPLAYED_VALUES_ENLARGED = 4;
+    /**
+     * the default number of displayed nominal values when enlarged
+     */
+    public static final int DEFAULT_MAX_DISPLAYED_VALUES_ENLARGED = 4;
 
 	/** {@value} */
 	private static final String LABEL_DOTS = "...";
@@ -87,13 +88,13 @@ public class NominalAttributeStatisticsModel extends AbstractAttributeStatistics
 	/** array of charts for this model */
 	private JFreeChart[] chartsArray;
 
-	/**
-	 * Creates a new {@link NominalAttributeStatisticsModel}.
-	 * 
-	 * @param exampleSet
-	 * @param attribute
-	 */
-	public NominalAttributeStatisticsModel(ExampleSet exampleSet, Attribute attribute) {
+    /**
+     * Creates a new {@link NominalAttributeStatisticsModel}.
+     *
+     * @param exampleSet the example set
+     * @param attribute  the attribute
+     */
+    public NominalAttributeStatisticsModel(ExampleSet exampleSet, Attribute attribute) {
 		super(exampleSet, attribute);
 
 		nominalValues = new LinkedList<>();
@@ -138,21 +139,21 @@ public class NominalAttributeStatisticsModel extends AbstractAttributeStatistics
 		}
 	}
 
-	/**
-	 * Returns a {@link List} of nominal values and their count.
-	 * 
-	 * @return
-	 */
-	public List<ValueAndCount> getNominalValuesAndCount() {
+    /**
+     * Returns a {@link List} of nominal values and their count.
+     *
+     * @return nominal values and count
+     */
+    public List<ValueAndCount> getNominalValuesAndCount() {
 		return new LinkedList<>(nominalValues);
 	}
 
-	/**
-	 * Returns a {@link List} of all value {@link String}s which should be shown.
-	 * 
-	 * @return
-	 */
-	public List<String> getValueStrings() {
+    /**
+     * Returns a {@link List} of all value {@link String}s which should be shown.
+     *
+     * @return value strings
+     */
+    public List<String> getValueStrings() {
 		List<String> list = new LinkedList<>();
 
 		int maxDisplayValues = !isEnlarged() ? DEFAULT_MAX_DISPLAYED_VALUES : DEFAULT_MAX_DISPLAYED_VALUES_ENLARGED;
@@ -178,12 +179,12 @@ public class NominalAttributeStatisticsModel extends AbstractAttributeStatistics
 		return list;
 	}
 
-	/**
-	 * Returns the {@link String} value which appears the least in the nominal mapping.
-	 * 
-	 * @return
-	 */
-	public String getLeast() {
+    /**
+     * Returns the {@link String} value which appears the least in the nominal mapping.
+     *
+     * @return least least
+     */
+    public String getLeast() {
 		if (nominalValues.size() == 0) {
 			return "";
 		}
@@ -191,12 +192,12 @@ public class NominalAttributeStatisticsModel extends AbstractAttributeStatistics
 		return value.getValue() + PARANTHESIS_OPEN + value.getCount() + PARENTHESIS_CLOSE;
 	}
 
-	/**
-	 * Returns the {@link String} value which appears the most in the nominal mapping.
-	 * 
-	 * @return
-	 */
-	public String getMost() {
+    /**
+     * Returns the {@link String} value which appears the most in the nominal mapping.
+     *
+     * @return most most
+     */
+    public String getMost() {
 		if (nominalValues.size() == 0) {
 			return "";
 		}

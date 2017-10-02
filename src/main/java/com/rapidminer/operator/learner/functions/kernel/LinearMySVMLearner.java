@@ -47,72 +47,108 @@ import java.util.List;
  * This way the weights of the linear combination can be extracted and stored solely in the
  * resulting model. The model is optimized for small size / fast store and retrieve operations as
  * well as time efficient during application.
- * 
+ *
  * @author Sebastian Land
  */
 public class LinearMySVMLearner extends AbstractKernelBasedLearner {
 
-	/** The parameter name for &quot;Size of the cache for kernel evaluations im MB &quot; */
-	public static final String PARAMETER_KERNEL_CACHE = "kernel_cache";
+    /**
+     * The parameter name for &quot;Size of the cache for kernel evaluations im MB &quot;
+     */
+    public static final String PARAMETER_KERNEL_CACHE = "kernel_cache";
 
-	/** The parameter name for &quot;Precision on the KKT conditions&quot; */
-	public static final String PARAMETER_CONVERGENCE_EPSILON = "convergence_epsilon";
+    /**
+     * The parameter name for &quot;Precision on the KKT conditions&quot;
+     */
+    public static final String PARAMETER_CONVERGENCE_EPSILON = "convergence_epsilon";
 
-	/** The parameter name for &quot;Stop after this many iterations&quot; */
-	public static final String PARAMETER_MAX_ITERATIONS = "max_iterations";
+    /**
+     * The parameter name for &quot;Stop after this many iterations&quot;
+     */
+    public static final String PARAMETER_MAX_ITERATIONS = "max_iterations";
 
-	/**
-	 * The parameter name for &quot;Scale the example values and store the scaling parameters for
-	 * test set.&quot;
-	 */
-	public static final String PARAMETER_SCALE = "scale";
+    /**
+     * The parameter name for &quot;Scale the example values and store the scaling parameters for
+     * test set.&quot;
+     */
+    public static final String PARAMETER_SCALE = "scale";
 
-	public static final String PARAMETER_C = "C";
+    /**
+     * The constant PARAMETER_C.
+     */
+    public static final String PARAMETER_C = "C";
 
-	/**
-	 * The parameter name for &quot;A factor for the SVM complexity constant for positive
-	 * examples&quot;
-	 */
-	public static final String PARAMETER_L_POS = "L_pos";
+    /**
+     * The parameter name for &quot;A factor for the SVM complexity constant for positive
+     * examples&quot;
+     */
+    public static final String PARAMETER_L_POS = "L_pos";
 
-	/**
-	 * The parameter name for &quot;A factor for the SVM complexity constant for negative
-	 * examples&quot;
-	 */
-	public static final String PARAMETER_L_NEG = "L_neg";
+    /**
+     * The parameter name for &quot;A factor for the SVM complexity constant for negative
+     * examples&quot;
+     */
+    public static final String PARAMETER_L_NEG = "L_neg";
 
-	/**
-	 * The parameter name for &quot;Insensitivity constant. No loss if prediction lies this close to
-	 * true value&quot;
-	 */
-	public static final String PARAMETER_EPSILON = "epsilon";
+    /**
+     * The parameter name for &quot;Insensitivity constant. No loss if prediction lies this close to
+     * true value&quot;
+     */
+    public static final String PARAMETER_EPSILON = "epsilon";
 
-	/** The parameter name for &quot;Epsilon for positive deviation only&quot; */
-	public static final String PARAMETER_EPSILON_PLUS = "epsilon_plus";
+    /**
+     * The parameter name for &quot;Epsilon for positive deviation only&quot;
+     */
+    public static final String PARAMETER_EPSILON_PLUS = "epsilon_plus";
 
-	/** The parameter name for &quot;Epsilon for negative deviation only&quot; */
-	public static final String PARAMETER_EPSILON_MINUS = "epsilon_minus";
+    /**
+     * The parameter name for &quot;Epsilon for negative deviation only&quot;
+     */
+    public static final String PARAMETER_EPSILON_MINUS = "epsilon_minus";
 
-	/** The parameter name for &quot;Adapts Cpos and Cneg to the relative size of the classes&quot; */
-	public static final String PARAMETER_BALANCE_COST = "balance_cost";
+    /**
+     * The parameter name for &quot;Adapts Cpos and Cneg to the relative size of the classes&quot;
+     */
+    public static final String PARAMETER_BALANCE_COST = "balance_cost";
 
-	/** The parameter name for &quot;Use quadratic loss for positive deviation&quot; */
-	public static final String PARAMETER_QUADRATIC_LOSS_POS = "quadratic_loss_pos";
+    /**
+     * The parameter name for &quot;Use quadratic loss for positive deviation&quot;
+     */
+    public static final String PARAMETER_QUADRATIC_LOSS_POS = "quadratic_loss_pos";
 
-	/** The parameter name for &quot;Use quadratic loss for negative deviation&quot; */
-	public static final String PARAMETER_QUADRATIC_LOSS_NEG = "quadratic_loss_neg";
+    /**
+     * The parameter name for &quot;Use quadratic loss for negative deviation&quot;
+     */
+    public static final String PARAMETER_QUADRATIC_LOSS_NEG = "quadratic_loss_neg";
 
-	/** Indicates a linear kernel. */
-	public static final int KERNEL_DOT = 0;
+    /**
+     * Indicates a linear kernel.
+     */
+    public static final int KERNEL_DOT = 0;
 
 	/** The SVM example set. */
 	private com.rapidminer.operator.learner.functions.kernel.jmysvm.examples.SVMExamples svmExamples;
 
-	public LinearMySVMLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Linear my svm learner.
+     *
+     * @param description the description
+     */
+    public LinearMySVMLearner(OperatorDescription description) {
 		super(description);
 	}
 
-	protected SVMInterface createSVM(Attribute label, Kernel kernel, SVMExamples sVMExamples,
+    /**
+     * Create svm svm interface.
+     *
+     * @param label              the label
+     * @param kernel             the kernel
+     * @param sVMExamples        the s vm examples
+     * @param rapidMinerExamples the rapid miner examples
+     * @return the svm interface
+     * @throws OperatorException the operator exception
+     */
+    protected SVMInterface createSVM(Attribute label, Kernel kernel, SVMExamples sVMExamples,
 			com.rapidminer.example.ExampleSet rapidMinerExamples) throws OperatorException {
 		if (label.isNominal()) {
 			return new SVMpattern(this, kernel, sVMExamples, rapidMinerExamples, RandomGenerator.getGlobalRandomGenerator());

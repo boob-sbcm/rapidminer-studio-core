@@ -35,24 +35,45 @@ import com.rapidminer.tools.Tools;
 
 
 /**
- * @author Marius Helf
+ * The type Archive file object.
  *
+ * @author Marius Helf
  */
 public abstract class ArchiveFileObject extends FileObject {
 
-	public enum FuzzyCompressionLevel {
-		/** use compression level as configured in the archive file object */
-		DEFAULT,
-		/** use highest compression level */
-		BEST,
-		/** compress as fast as possible */
-		FASTEST,
-		/** don't compress at all */
-		NONE
+    /**
+     * The enum Fuzzy compression level.
+     */
+    public enum FuzzyCompressionLevel {
+        /**
+         * use compression level as configured in the archive file object
+         */
+        DEFAULT,
+        /**
+         * use highest compression level
+         */
+        BEST,
+        /**
+         * compress as fast as possible
+         */
+        FASTEST,
+        /**
+         * don't compress at all
+         */
+        NONE
 	}
 
-	public enum BufferType {
-		MEMORY, FILE
+    /**
+     * The enum Buffer type.
+     */
+    public enum BufferType {
+        /**
+         * Memory buffer type.
+         */
+        MEMORY, /**
+         * File buffer type.
+         */
+        FILE
 	};
 
 	private static final long serialVersionUID = 1L;
@@ -68,12 +89,23 @@ public abstract class ArchiveFileObject extends FileObject {
 	private File tmpFile;
 	private FuzzyCompressionLevel compressionLevel = FuzzyCompressionLevel.DEFAULT;
 
-	public ArchiveFileObject() throws OperatorException {
+    /**
+     * Instantiates a new Archive file object.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public ArchiveFileObject() throws OperatorException {
 		bufferType = BufferType.FILE;
 		init();
 	}
 
-	public ArchiveFileObject(BufferType bufferType) throws OperatorException {
+    /**
+     * Instantiates a new Archive file object.
+     *
+     * @param bufferType the buffer type
+     * @throws OperatorException the operator exception
+     */
+    public ArchiveFileObject(BufferType bufferType) throws OperatorException {
 		super();
 		this.bufferType = bufferType;
 		init();
@@ -98,11 +130,21 @@ public abstract class ArchiveFileObject extends FileObject {
 		}
 	}
 
-	public OutputStream getArchiveDataStream() {
+    /**
+     * Gets archive data stream.
+     *
+     * @return the archive data stream
+     */
+    public OutputStream getArchiveDataStream() {
 		return archiveDataStream;
 	}
 
-	protected void flush() throws IOException {
+    /**
+     * Flush.
+     *
+     * @throws IOException the io exception
+     */
+    protected void flush() throws IOException {
 		archiveDataStream.flush();
 	}
 
@@ -153,17 +195,26 @@ public abstract class ArchiveFileObject extends FileObject {
 		return tmpFile;
 	}
 
-	public void addEntry(FileObject fileObject, String directory) throws OperatorException {
+    /**
+     * Add entry.
+     *
+     * @param fileObject the file object
+     * @param directory  the directory
+     * @throws OperatorException the operator exception
+     */
+    public void addEntry(FileObject fileObject, String directory) throws OperatorException {
 		addEntry(fileObject, directory, getCompressionLevel());
 	}
 
-	/**
-	 * @param fileObject
-	 * @param directory
-	 * @param default1
-	 * @throws OperatorException
-	 */
-	public abstract void addEntry(FileObject fileObject, String directory, FuzzyCompressionLevel localCompressionLevel)
+    /**
+     * Add entry.
+     *
+     * @param fileObject            the file object
+     * @param directory             the directory
+     * @param localCompressionLevel the local compression level
+     * @throws OperatorException the operator exception
+     */
+    public abstract void addEntry(FileObject fileObject, String directory, FuzzyCompressionLevel localCompressionLevel)
 			throws OperatorException;
 
 	/*
@@ -198,14 +249,29 @@ public abstract class ArchiveFileObject extends FileObject {
 		super.finalize();
 	}
 
-	public FuzzyCompressionLevel getCompressionLevel() {
+    /**
+     * Gets compression level.
+     *
+     * @return the compression level
+     */
+    public FuzzyCompressionLevel getCompressionLevel() {
 		return compressionLevel;
 	}
 
-	public void setCompressionLevel(FuzzyCompressionLevel compressionLevel) {
+    /**
+     * Sets compression level.
+     *
+     * @param compressionLevel the compression level
+     */
+    public void setCompressionLevel(FuzzyCompressionLevel compressionLevel) {
 		// TODO throw exception if compressionLevel is not supported
 		this.compressionLevel = compressionLevel;
 	}
 
-	public abstract Set<FuzzyCompressionLevel> getSupportedCompressionLevels();
+    /**
+     * Gets supported compression levels.
+     *
+     * @return the supported compression levels
+     */
+    public abstract Set<FuzzyCompressionLevel> getSupportedCompressionLevels();
 }

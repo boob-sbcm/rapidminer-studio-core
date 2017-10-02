@@ -25,17 +25,35 @@ import com.rapidminer.example.ExampleSet;
 
 /**
  * This criterion class can be used to incrementally calculate a benefit.
- * 
+ *
  * @author Sebastian Land
  */
 public abstract class AbstractCriterion implements Criterion {
 
-	protected double[] labelWeights;
-	protected double weight;
-	protected double[] totalLabelWeights;
-	protected double totalWeight;
-	protected Attribute labelAttribute;
-	protected Attribute weightAttribute;
+    /**
+     * The Label weights.
+     */
+    protected double[] labelWeights;
+    /**
+     * The Weight.
+     */
+    protected double weight;
+    /**
+     * The Total label weights.
+     */
+    protected double[] totalLabelWeights;
+    /**
+     * The Total weight.
+     */
+    protected double totalWeight;
+    /**
+     * The Label attribute.
+     */
+    protected Attribute labelAttribute;
+    /**
+     * The Weight attribute.
+     */
+    protected Attribute weightAttribute;
 
 	@Override
 	public void update(Example example) {

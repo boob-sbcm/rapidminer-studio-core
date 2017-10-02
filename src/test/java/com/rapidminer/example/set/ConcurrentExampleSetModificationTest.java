@@ -33,13 +33,11 @@ import com.rapidminer.example.utils.ExampleSets;
 
 
 /**
- *
  * Parallel test of the methods {@link AbstractExampleSet#recalculateAllAttributeStatistics()} and
  * {@link AbstractExampleSet#getStatistics(Attribute, String)} where a
  * ConcurrentModificationException existed.
  *
  * @author Andreas Timm
- *
  */
 public class ConcurrentExampleSetModificationTest {
 
@@ -51,7 +49,12 @@ public class ConcurrentExampleSetModificationTest {
 			Statistics.LEAST, Statistics.MAXIMUM, Statistics.MINIMUM, Statistics.MODE, Statistics.SUM,
 			Statistics.SUM_WEIGHTED, Statistics.UNKNOWN, Statistics.VARIANCE, Statistics.VARIANCE_WEIGHTED };
 
-	@Test
+    /**
+     * Test concurrent modification.
+     *
+     * @throws Exception the exception
+     */
+    @Test
 	public void testConcurrentModification() throws Exception {
 		ExampleSet testit = createExampleSet(new double[][] { { 5.0 }, { 3.0 }, { -1.0 }, { -4.0 }, { 0.0 }, { 2.0 } });
 
@@ -77,7 +80,12 @@ public class ConcurrentExampleSetModificationTest {
 
 		private ExampleSet aes;
 
-		public RWThread(ExampleSet exampleSet) {
+        /**
+         * Instantiates a new Rw thread.
+         *
+         * @param exampleSet the example set
+         */
+        public RWThread(ExampleSet exampleSet) {
 			aes = exampleSet;
 		}
 

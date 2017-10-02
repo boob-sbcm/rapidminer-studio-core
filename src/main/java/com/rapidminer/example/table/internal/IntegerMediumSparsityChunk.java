@@ -30,7 +30,12 @@ final class IntegerMediumSparsityChunk extends AbstractMediumSparsityChunk imple
 
 	private int[] data = AutoColumnUtils.EMPTY_INTEGER_ARRAY;
 
-	IntegerMediumSparsityChunk(double defaultValue) {
+    /**
+     * Instantiates a new Integer medium sparsity chunk.
+     *
+     * @param defaultValue the default value
+     */
+    IntegerMediumSparsityChunk(double defaultValue) {
 		super(defaultValue);
 	}
 

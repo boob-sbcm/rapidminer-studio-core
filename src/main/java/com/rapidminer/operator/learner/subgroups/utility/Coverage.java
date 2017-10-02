@@ -24,7 +24,7 @@ import com.rapidminer.operator.learner.subgroups.hypothesis.Rule;
 
 /**
  * Calculates the coverage.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class Coverage extends UtilityFunction {
@@ -34,7 +34,13 @@ public class Coverage extends UtilityFunction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Coverage(double totalWeight, double totalPositiveWeight) {
+    /**
+     * Instantiates a new Coverage.
+     *
+     * @param totalWeight         the total weight
+     * @param totalPositiveWeight the total positive weight
+     */
+    public Coverage(double totalWeight, double totalPositiveWeight) {
 		super(totalWeight, totalPositiveWeight);
 	}
 

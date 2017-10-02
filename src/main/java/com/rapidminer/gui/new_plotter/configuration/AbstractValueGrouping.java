@@ -33,12 +33,11 @@ import com.rapidminer.gui.new_plotter.utility.ValueRange;
 
 /**
  * Base class for most implementations of ValueGrouping.
- * 
+ * <p>
  * All groupings inheriting this class have in common that they depend on exactly one column of a
  * datatable.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public abstract class AbstractValueGrouping implements ValueGrouping {
 
@@ -48,7 +47,14 @@ public abstract class AbstractValueGrouping implements ValueGrouping {
 	private List<ValueGroupingListener> listeners = new LinkedList<ValueGroupingListener>();
 	private DateFormat dateFormat;
 
-	public AbstractValueGrouping(DataTableColumn dataTableColumn, boolean isCategorical, DateFormat dateFormat) {
+    /**
+     * Instantiates a new Abstract value grouping.
+     *
+     * @param dataTableColumn the data table column
+     * @param isCategorical   the is categorical
+     * @param dateFormat      the date format
+     */
+    public AbstractValueGrouping(DataTableColumn dataTableColumn, boolean isCategorical, DateFormat dateFormat) {
 		this.categorical = isCategorical;
 		this.dataTableColumn = dataTableColumn;
 		this.dateFormat = dateFormat;
@@ -59,11 +65,12 @@ public abstract class AbstractValueGrouping implements ValueGrouping {
 		return categorical || getDomainType() == ValueType.NOMINAL;
 	}
 
-	/**
-	 * @param categorical
-	 *            the categorical to set
-	 */
-	public void setCategorical(boolean categorical) {
+    /**
+     * Sets categorical.
+     *
+     * @param categorical the categorical to set
+     */
+    public void setCategorical(boolean categorical) {
 		if (categorical != this.categorical) {
 			this.categorical = categorical;
 			fireGroupingChanged(new ValueGroupingChangeEvent(this, categorical));
@@ -80,7 +87,12 @@ public abstract class AbstractValueGrouping implements ValueGrouping {
 		listeners.remove(l);
 	}
 
-	protected void fireGroupingChanged(ValueGroupingChangeEvent e) {
+    /**
+     * Fire grouping changed.
+     *
+     * @param e the e
+     */
+    protected void fireGroupingChanged(ValueGroupingChangeEvent e) {
 		for (ValueGroupingListener l : listeners) {
 			l.valueGroupingChanged(e);
 		}
@@ -89,21 +101,33 @@ public abstract class AbstractValueGrouping implements ValueGrouping {
 	@Override
 	public abstract ValueGrouping clone();
 
-	public DataTableColumn getDataTableColumn() {
+    /**
+     * Gets data table column.
+     *
+     * @return the data table column
+     */
+    public DataTableColumn getDataTableColumn() {
 		return dataTableColumn;
 	}
 
-	public void setDataTableColumn(DataTableColumn dataTableColumn) {
+    /**
+     * Sets data table column.
+     *
+     * @param dataTableColumn the data table column
+     */
+    public void setDataTableColumn(DataTableColumn dataTableColumn) {
 		if (dataTableColumn != this.dataTableColumn) {
 			this.dataTableColumn = dataTableColumn;
 		}
 	}
 
-	/**
-	 * Is called each time the underlying data (or the data column) changes. The default
-	 * implementation invalidates the cache.
-	 */
-	// protected void invalidateCache() {
+    /**
+     * Is called each time the underlying data (or the data column) changes. The default
+     * implementation invalidates the cache.
+     *
+     * @param dataTableColumn the data table column
+     */
+// protected void invalidateCache() {
 	// cachedGroupingModel = null;
 	// }
 
@@ -125,11 +149,16 @@ public abstract class AbstractValueGrouping implements ValueGrouping {
 		return createGroupingModel(data, upperBound, lowerBound);
 	}
 
-	/**
-	 * Returns an up-to-date grouping model without cumulation applied. Does not need to implement
-	 * caching, since this is handled in AbstractValueGrouping.
-	 */
-	protected abstract List<ValueRange> createGroupingModel(DataTable data, double upperBound, double lowerBound);
+    /**
+     * Returns an up-to-date grouping model without cumulation applied. Does not need to implement
+     * caching, since this is handled in AbstractValueGrouping.
+     *
+     * @param data       the data
+     * @param upperBound the upper bound
+     * @param lowerBound the lower bound
+     * @return the list
+     */
+    protected abstract List<ValueRange> createGroupingModel(DataTable data, double upperBound, double lowerBound);
 
 	@Override
 	public abstract boolean equals(Object obj);
@@ -147,13 +176,13 @@ public abstract class AbstractValueGrouping implements ValueGrouping {
 	 * 
 	 * Expects the list to contain only {@link NumericalValueRange}s.
 	 */
-	/**
-	 * @param valueGroups
-	 * @param valuesAreDates
-	 * 
-	 *            TODO use param valuesAreDates
-	 */
-	protected void applyAdaptiveVisualRounding(List<ValueRange> valueGroups, boolean valuesAreDates) {
+    /**
+     * Apply adaptive visual rounding.
+     *
+     * @param valueGroups    the value groups
+     * @param valuesAreDates TODO use param valuesAreDates
+     */
+    protected void applyAdaptiveVisualRounding(List<ValueRange> valueGroups, boolean valuesAreDates) {
 		if (valuesAreDates) {
 			DateFormat dateFormat = getDateFormat();
 			for (ValueRange range : valueGroups) {

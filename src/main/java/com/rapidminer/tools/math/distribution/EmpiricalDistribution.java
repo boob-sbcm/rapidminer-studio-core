@@ -20,14 +20,30 @@ package com.rapidminer.tools.math.distribution;
 
 /**
  * The interface for all empirically calculated distributions.
- * 
+ *
  * @author Tobias Malbrecht, Sebastian Land
  */
 public interface EmpiricalDistribution extends Distribution {
 
-	public void update(double value, double weight);
+    /**
+     * Update.
+     *
+     * @param value  the value
+     * @param weight the weight
+     */
+    public void update(double value, double weight);
 
-	public void update(double value);
+    /**
+     * Update.
+     *
+     * @param value the value
+     */
+    public void update(double value);
 
-	public double getTotalWeight();
+    /**
+     * Gets total weight.
+     *
+     * @return the total weight
+     */
+    public double getTotalWeight();
 }

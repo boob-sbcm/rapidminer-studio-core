@@ -52,22 +52,20 @@ import com.rapidminer.tools.Observer;
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public class ParameterErrorInfoBubble extends OperatorInfoBubble {
 
 	private static final Icon WARNING_ICON = SwingTools.createIcon("16/sign_warning.png");
 	private static final Icon ERROR_ICON = SwingTools.createIcon("16/error.png");
 
-	/**
-	 * Builder for {@link ParameterErrorInfoBubble}s. After calling all relevant setters, call
-	 * {@link #build()} to create the actual dialog instance.
-	 *
-	 * @author Nils Woehler
-	 * @since 6.5.0
-	 *
-	 */
-	public static class ParameterErrorBubbleBuilder
+    /**
+     * Builder for {@link ParameterErrorInfoBubble}s. After calling all relevant setters, call
+     * {@link #build()} to create the actual dialog instance.
+     *
+     * @author Nils Woehler
+     * @since 6.5.0
+     */
+    public static class ParameterErrorBubbleBuilder
 			extends BubbleWindowBuilder<ParameterErrorInfoBubble, ParameterErrorBubbleBuilder> {
 
 		private final Operator attachTo;
@@ -77,7 +75,17 @@ public class ParameterErrorInfoBubble extends OperatorInfoBubble {
 		private boolean hideOnRun;
 		private boolean ensureVisible;
 
-		public ParameterErrorBubbleBuilder(final Window owner, final Operator attachTo, final ParameterType parameter,
+        /**
+         * Instantiates a new Parameter error bubble builder.
+         *
+         * @param owner        the owner
+         * @param attachTo     the attach to
+         * @param parameter    the parameter
+         * @param decorateI18N the decorate i 18 n
+         * @param i18nKey      the 18 n key
+         * @param arguments    the arguments
+         */
+        public ParameterErrorBubbleBuilder(final Window owner, final Operator attachTo, final ParameterType parameter,
 				final String decorateI18N, final String i18nKey, final Object... arguments) {
 			super(owner, i18nKey, arguments);
 			this.attachTo = attachTo;
@@ -85,43 +93,37 @@ public class ParameterErrorInfoBubble extends OperatorInfoBubble {
 			this.decorateI18N = decorateI18N;
 		}
 
-		/**
-		 * Sets whether to hide the bubble when the operator is disabled. Defaults to {@code false}.
-		 *
-		 * @param hideOnDisable
-		 *            {@code true} if the bubble should be hidden upon disable; {@code false}
-		 *            otherwise
-		 * @return the builder instance
-		 */
-		public ParameterErrorBubbleBuilder setHideOnDisable(final boolean hideOnDisable) {
+        /**
+         * Sets whether to hide the bubble when the operator is disabled. Defaults to {@code false}.
+         *
+         * @param hideOnDisable {@code true} if the bubble should be hidden upon disable; {@code false}            otherwise
+         * @return the builder instance
+         */
+        public ParameterErrorBubbleBuilder setHideOnDisable(final boolean hideOnDisable) {
 			this.hideOnDisable = hideOnDisable;
 			return this;
 		}
 
-		/**
-		 * Sets whether to hide the bubble when the process is run. Defaults to {@code false}.
-		 *
-		 * @param hideOnRun
-		 *            {@code true} if the bubble should be hidden upon running a process;
-		 *            {@code false} otherwise
-		 * @return the builder instance
-		 */
-		public ParameterErrorBubbleBuilder setHideOnProcessRun(final boolean hideOnRun) {
+        /**
+         * Sets whether to hide the bubble when the process is run. Defaults to {@code false}.
+         *
+         * @param hideOnRun {@code true} if the bubble should be hidden upon running a process;            {@code false} otherwise
+         * @return the builder instance
+         */
+        public ParameterErrorBubbleBuilder setHideOnProcessRun(final boolean hideOnRun) {
 			this.hideOnRun = hideOnRun;
 			return this;
 		}
 
-		/**
-		 * Sets whether to make sure the bubble is visible by automatically switching perspective,
-		 * opening/showing the process dockable and changing the subprocess. Defaults to
-		 * {@code false}.
-		 *
-		 * @param ensureVisible
-		 *            {@code true} if the bubble should be hidden upon disable; {@code false}
-		 *            otherwise
-		 * @return the builder instance
-		 */
-		public ParameterErrorBubbleBuilder setEnsureVisible(final boolean ensureVisible) {
+        /**
+         * Sets whether to make sure the bubble is visible by automatically switching perspective,
+         * opening/showing the process dockable and changing the subprocess. Defaults to
+         * {@code false}.
+         *
+         * @param ensureVisible {@code true} if the bubble should be hidden upon disable; {@code false}            otherwise
+         * @return the builder instance
+         */
+        public ParameterErrorBubbleBuilder setEnsureVisible(final boolean ensureVisible) {
 			this.ensureVisible = ensureVisible;
 			return this;
 		}

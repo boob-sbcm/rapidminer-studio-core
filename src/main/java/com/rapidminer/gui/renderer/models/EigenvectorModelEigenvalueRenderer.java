@@ -33,12 +33,15 @@ import javax.swing.table.TableModel;
 /**
  * This is an renderer for {@link AbstractEigenvectorModel}s. It shows the EigenValues in a table
  * view.
- * 
+ *
  * @author Sebastian Land
  */
 public class EigenvectorModelEigenvalueRenderer extends AbstractTableModelTableRenderer {
 
-	public static class EigenvalueTableModel extends AbstractTableModel {
+    /**
+     * The type Eigenvalue table model.
+     */
+    public static class EigenvalueTableModel extends AbstractTableModel {
 
 		private static final long serialVersionUID = -9026248524043239399L;
 
@@ -48,7 +51,14 @@ public class EigenvectorModelEigenvalueRenderer extends AbstractTableModelTableR
 
 		private List<? extends ComponentVector> eigenVectors;
 
-		public EigenvalueTableModel(List<? extends ComponentVector> eigenVectors, double[] cumulativeVariance,
+        /**
+         * Instantiates a new Eigenvalue table model.
+         *
+         * @param eigenVectors       the eigen vectors
+         * @param cumulativeVariance the cumulative variance
+         * @param varianceSum        the variance sum
+         */
+        public EigenvalueTableModel(List<? extends ComponentVector> eigenVectors, double[] cumulativeVariance,
 				double varianceSum) {
 			this.eigenVectors = eigenVectors;
 			this.cumulativeVariance = cumulativeVariance;

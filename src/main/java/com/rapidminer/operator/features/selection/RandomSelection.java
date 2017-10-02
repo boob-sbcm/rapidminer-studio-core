@@ -36,15 +36,26 @@ import java.util.List;
  * This operator selects a randomly chosen number of attributes randomly from the input example set.
  * This can be useful in combination with a ParameterIteration operator or can be used as a baseline
  * for significance test comparisons for feature selection techniques.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RandomSelection extends AbstractFeatureSelection {
 
-	public static final String PARAMETER_USE_FIXED_NUMBER_OF_ATTRIBUTES = "use_fixed_number_of_attributes";
-	public static final String PARAMETER_NUMBER_OF_ATTRIBUTES = "number_of_attributes";
+    /**
+     * The constant PARAMETER_USE_FIXED_NUMBER_OF_ATTRIBUTES.
+     */
+    public static final String PARAMETER_USE_FIXED_NUMBER_OF_ATTRIBUTES = "use_fixed_number_of_attributes";
+    /**
+     * The constant PARAMETER_NUMBER_OF_ATTRIBUTES.
+     */
+    public static final String PARAMETER_NUMBER_OF_ATTRIBUTES = "number_of_attributes";
 
-	public RandomSelection(OperatorDescription description) {
+    /**
+     * Instantiates a new Random selection.
+     *
+     * @param description the description
+     */
+    public RandomSelection(OperatorDescription description) {
 		super(description);
 	}
 

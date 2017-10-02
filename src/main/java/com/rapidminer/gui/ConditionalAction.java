@@ -32,7 +32,7 @@ import javax.swing.SwingUtilities;
  * An action that must be enabled/disabled depending on certain conditions. These conditions can be
  * mandatory, disallowed, or irrelevant. All ConditionalActions created are added to a collection
  * and there status is automatically checked if the condition premises might have changed.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public abstract class ConditionalAction extends AbstractAction {
@@ -44,58 +44,125 @@ public abstract class ConditionalAction extends AbstractAction {
 
 	private static final List<WeakReference<ConditionalAction>> ALL_ACTIONS = new LinkedList<WeakReference<ConditionalAction>>();
 
-	/* The possible states. */
+    /**
+     * The constant DISALLOWED.
+     */
+/* The possible states. */
 	public static final int DISALLOWED = -1;
 
-	public static final int DONT_CARE = 0;
+    /**
+     * The constant DONT_CARE.
+     */
+    public static final int DONT_CARE = 0;
 
-	public static final int MANDATORY = 1;
+    /**
+     * The constant MANDATORY.
+     */
+    public static final int MANDATORY = 1;
 
-	/*
-	 * The possible conditions. TODO: Make enum
+    /**
+     * The constant OPERATOR_SELECTED.
+     */
+/*
+     * The possible conditions. TODO: Make enum
 	 */
 	public static final int OPERATOR_SELECTED = 0;
 
-	public static final int OPERATOR_CHAIN_SELECTED = 1;
+    /**
+     * The constant OPERATOR_CHAIN_SELECTED.
+     */
+    public static final int OPERATOR_CHAIN_SELECTED = 1;
 
-	public static final int ROOT_SELECTED = 2;
+    /**
+     * The constant ROOT_SELECTED.
+     */
+    public static final int ROOT_SELECTED = 2;
 
-	public static final int SIBLINGS_EXIST = 3;
+    /**
+     * The constant SIBLINGS_EXIST.
+     */
+    public static final int SIBLINGS_EXIST = 3;
 
-	public static final int PROCESS_STOPPED = 4;
+    /**
+     * The constant PROCESS_STOPPED.
+     */
+    public static final int PROCESS_STOPPED = 4;
 
-	public static final int PROCESS_PAUSED = 5;
+    /**
+     * The constant PROCESS_PAUSED.
+     */
+    public static final int PROCESS_PAUSED = 5;
 
-	public static final int PROCESS_RUNNING = 6;
+    /**
+     * The constant PROCESS_RUNNING.
+     */
+    public static final int PROCESS_RUNNING = 6;
 
-	public static final int PARENT_ENABLED = 7;
+    /**
+     * The constant PARENT_ENABLED.
+     */
+    public static final int PARENT_ENABLED = 7;
 
-	/** TODO: Unused */
-	public static final int EXECUTION_UNIT_SELECTED = 8;
+    /**
+     * TODO: Unused
+     */
+    public static final int EXECUTION_UNIT_SELECTED = 8;
 
-	public static final int EDIT_IN_PROGRESS = 9;
+    /**
+     * The constant EDIT_IN_PROGRESS.
+     */
+    public static final int EDIT_IN_PROGRESS = 9;
 
-	public static final int PROCESS_IS_ON_REMOTE_REPOSITORY = 10;
+    /**
+     * The constant PROCESS_IS_ON_REMOTE_REPOSITORY.
+     */
+    public static final int PROCESS_IS_ON_REMOTE_REPOSITORY = 10;
 
-	public static final int PROCESS_SAVED = 11;
+    /**
+     * The constant PROCESS_SAVED.
+     */
+    public static final int PROCESS_SAVED = 11;
 
-	public static final int PROCESS_RENDERER_IS_VISIBLE = 12;
+    /**
+     * The constant PROCESS_RENDERER_IS_VISIBLE.
+     */
+    public static final int PROCESS_RENDERER_IS_VISIBLE = 12;
 
-	public static final int PROCESS_RENDERER_HAS_UNDO_STEPS = 13;
+    /**
+     * The constant PROCESS_RENDERER_HAS_UNDO_STEPS.
+     */
+    public static final int PROCESS_RENDERER_HAS_UNDO_STEPS = 13;
 
-	public static final int PROCESS_RENDERER_HAS_REDO_STEPS = 14;
+    /**
+     * The constant PROCESS_RENDERER_HAS_REDO_STEPS.
+     */
+    public static final int PROCESS_RENDERER_HAS_REDO_STEPS = 14;
 
-	public static final int NUMBER_OF_CONDITIONS = 15;
+    /**
+     * The constant NUMBER_OF_CONDITIONS.
+     */
+    public static final int NUMBER_OF_CONDITIONS = 15;
 
 	private final int[] conditions = new int[NUMBER_OF_CONDITIONS];
 
 	private boolean isDisabledDueToFocusLost;
 
-	public ConditionalAction(String name) {
+    /**
+     * Instantiates a new Conditional action.
+     *
+     * @param name the name
+     */
+    public ConditionalAction(String name) {
 		this(name, null);
 	}
 
-	public ConditionalAction(String name, Icon icon) {
+    /**
+     * Instantiates a new Conditional action.
+     *
+     * @param name the name
+     * @param icon the icon
+     */
+    public ConditionalAction(String name, Icon icon) {
 		super(name, icon);
 		conditions[EDIT_IN_PROGRESS] = DISALLOWED;
 		if (SwingUtilities.isEventDispatchThread()) {
@@ -111,19 +178,22 @@ public abstract class ConditionalAction extends AbstractAction {
 		}
 	}
 
-	/**
-	 * @param index
-	 *            one out of OPERATOR_SELECTED, OPERATOR_CHAIN_SELECTED, ROOT_SELECTED,
-	 *            CLIPBOARD_FILLED, and PROCESS_RUNNING
-	 * @param condition
-	 *            one out of DISALLOWED, DONT_CARE, and MANDATORY
-	 */
-	public void setCondition(int index, int condition) {
+    /**
+     * Sets condition.
+     *
+     * @param index     one out of OPERATOR_SELECTED, OPERATOR_CHAIN_SELECTED, ROOT_SELECTED,            CLIPBOARD_FILLED, and PROCESS_RUNNING
+     * @param condition one out of DISALLOWED, DONT_CARE, and MANDATORY
+     */
+    public void setCondition(int index, int condition) {
 		conditions[index] = condition;
 	}
 
-	/** Updates all actions. */
-	public static void updateAll(boolean[] states) {
+    /**
+     * Updates all actions.  @param states the states
+     *
+     * @param states the states
+     */
+    public static void updateAll(boolean[] states) {
 		Iterator<WeakReference<ConditionalAction>> i = ALL_ACTIONS.iterator();
 		while (i.hasNext()) {
 			WeakReference<ConditionalAction> ref = i.next();
@@ -136,13 +206,15 @@ public abstract class ConditionalAction extends AbstractAction {
 		}
 	}
 
-	/**
-	 * Updates an action given the set of states that can be true or false. States refer to
-	 * OPERATOR_SELECTED... An action is enabled iff for all states the condition is MANDATORY and
-	 * state is true or DISALLOWED and state is false. If for all states the condition is DONT_CARE,
-	 * the enabling status of the action is not touched.
-	 */
-	protected void update(boolean[] state) {
+    /**
+     * Updates an action given the set of states that can be true or false. States refer to
+     * OPERATOR_SELECTED... An action is enabled iff for all states the condition is MANDATORY and
+     * state is true or DISALLOWED and state is false. If for all states the condition is DONT_CARE,
+     * the enabling status of the action is not touched.
+     *
+     * @param state the state
+     */
+    protected void update(boolean[] state) {
 		// if this action is disabled due to a focus loss never change its enabled state here
 		if (isDisabledDueToFocusLost) {
 			return;
@@ -165,16 +237,21 @@ public abstract class ConditionalAction extends AbstractAction {
 		}
 	}
 
-	public boolean isDisabledDueToFocusLost() {
+    /**
+     * Is disabled due to focus lost boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isDisabledDueToFocusLost() {
 		return isDisabledDueToFocusLost;
 	}
 
-	/**
-	 * If set to <code>true</code>, will not enable itself to condition changes.
-	 * 
-	 * @param isDisabledDueToFocusLost
-	 */
-	public void setDisabledDueToFocusLost(boolean isDisabledDueToFocusLost) {
+    /**
+     * If set to <code>true</code>, will not enable itself to condition changes.
+     *
+     * @param isDisabledDueToFocusLost the is disabled due to focus lost
+     */
+    public void setDisabledDueToFocusLost(boolean isDisabledDueToFocusLost) {
 		this.isDisabledDueToFocusLost = isDisabledDueToFocusLost;
 	}
 }

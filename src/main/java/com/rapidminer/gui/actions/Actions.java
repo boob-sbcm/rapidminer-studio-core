@@ -60,7 +60,10 @@ import com.rapidminer.operator.ProcessRootOperator;
  */
 public class Actions implements ProcessEditor {
 
-	public final Action INFO_OPERATOR_ACTION = new InfoOperatorAction() {
+    /**
+     * The constant INFO_OPERATOR_ACTION.
+     */
+    public final Action INFO_OPERATOR_ACTION = new InfoOperatorAction() {
 
 		private static final long serialVersionUID = 6758272768665592429L;
 
@@ -70,9 +73,15 @@ public class Actions implements ProcessEditor {
 		}
 	};
 
-	public final ToggleActivationItem TOGGLE_ACTIVATION_ITEM = new ToggleActivationItem(this);
+    /**
+     * The Toggle activation item.
+     */
+    public final ToggleActivationItem TOGGLE_ACTIVATION_ITEM = new ToggleActivationItem(this);
 
-	public final Action RENAME_OPERATOR_ACTION = new ResourceAction(true, "rename_in_processrenderer") {
+    /**
+     * The constant RENAME_OPERATOR_ACTION.
+     */
+    public final Action RENAME_OPERATOR_ACTION = new ResourceAction(true, "rename_in_processrenderer") {
 
 		{
 			setCondition(OPERATOR_SELECTED, MANDATORY);
@@ -86,15 +95,27 @@ public class Actions implements ProcessEditor {
 		}
 	};
 
-	public final Action DELETE_OPERATOR_ACTION = new DeleteOperatorAction();
+    /**
+     * The Delete operator action.
+     */
+    public final Action DELETE_OPERATOR_ACTION = new DeleteOperatorAction();
 
-	public final ToggleBreakpointItem TOGGLE_BREAKPOINT[] = {
+    /**
+     * The Toggle breakpoint.
+     */
+    public final ToggleBreakpointItem TOGGLE_BREAKPOINT[] = {
 			new ToggleBreakpointItem(this, BreakpointListener.BREAKPOINT_BEFORE),
 			new ToggleBreakpointItem(this, BreakpointListener.BREAKPOINT_AFTER) };
 
-	public transient final ToggleAllBreakpointsItem TOGGLE_ALL_BREAKPOINTS = new ToggleAllBreakpointsItem(this);
+    /**
+     * The Toggle all breakpoints.
+     */
+    public transient final ToggleAllBreakpointsItem TOGGLE_ALL_BREAKPOINTS = new ToggleAllBreakpointsItem(this);
 
-	public transient final Action MAKE_DIRTY_ACTION = new ResourceAction(true, "make_dirty") {
+    /**
+     * The constant MAKE_DIRTY_ACTION.
+     */
+    public transient final Action MAKE_DIRTY_ACTION = new ResourceAction(true, "make_dirty") {
 
 		private static final long serialVersionUID = -1260942717363137733L;
 
@@ -178,12 +199,23 @@ public class Actions implements ProcessEditor {
 		}
 	};
 
-	public Actions(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Actions.
+     *
+     * @param mainFrame the main frame
+     */
+    public Actions(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 	}
 
-	/** Creates a new popup menu for the selected operator. */
-	public void addToOperatorPopupMenu(JPopupMenu menu, Action renameAction, Action... furtherActions) {
+    /**
+     * Creates a new popup menu for the selected operator.  @param menu the menu
+     *
+     * @param menu           the menu
+     * @param renameAction   the rename action
+     * @param furtherActions the further actions
+     */
+    public void addToOperatorPopupMenu(JPopupMenu menu, Action renameAction, Action... furtherActions) {
 		final Operator op = getFirstSelectedOperator();
 		final boolean singleSelection = getSelectedOperators().size() == 1;
 
@@ -267,7 +299,12 @@ public class Actions implements ProcessEditor {
 
 	}
 
-	public Operator getFirstSelectedOperator() {
+    /**
+     * Gets first selected operator.
+     *
+     * @return the first selected operator
+     */
+    public Operator getFirstSelectedOperator() {
 		if (selection != null && !selection.isEmpty()) {
 			return selection.get(0);
 		} else {
@@ -275,15 +312,20 @@ public class Actions implements ProcessEditor {
 		}
 	}
 
-	public List<Operator> getSelectedOperators() {
+    /**
+     * Gets selected operators.
+     *
+     * @return the selected operators
+     */
+    public List<Operator> getSelectedOperators() {
 		return selection;
 	}
 
-	/**
-	 * Enables and disables all actions according to the current state (process running, operator
-	 * selected...
-	 */
-	public void enableActions() {
+    /**
+     * Enables and disables all actions according to the current state (process running, operator
+     * selected...
+     */
+    public void enableActions() {
 		synchronized (process) {
 			SwingTools.invokeLater(new Runnable() {
 
@@ -329,8 +371,10 @@ public class Actions implements ProcessEditor {
 
 	}
 
-	/** The currently selected operator will be deleted. */
-	public void delete() {
+    /**
+     * The currently selected operator will be deleted.
+     */
+    public void delete() {
 		Operator parent = null;
 		for (Operator selectedOperator : new LinkedList<Operator>(getSelectedOperators())) {
 			if (parent == null) {
@@ -344,11 +388,13 @@ public class Actions implements ProcessEditor {
 		mainFrame.selectOperator(parent);
 	}
 
-	/**
-	 * The given operators will be inserted at the last position of the currently selected operator
-	 * chain.
-	 */
-	public void insert(List<Operator> newOperators) {
+    /**
+     * The given operators will be inserted at the last position of the currently selected operator
+     * chain.
+     *
+     * @param newOperators the new operators
+     */
+    public void insert(List<Operator> newOperators) {
 		Object selectedNode = getSelectedOperator();
 		if (selectedNode == null) {
 			SwingTools.showVerySimpleErrorMessage("cannot_insert_operator");
@@ -377,18 +423,33 @@ public class Actions implements ProcessEditor {
 		mainFrame.selectOperators(newOperators);
 	}
 
-	public Operator getSelectedOperator() {
+    /**
+     * Gets selected operator.
+     *
+     * @return the selected operator
+     */
+    public Operator getSelectedOperator() {
 		return getFirstSelectedOperator();
 	}
 
-	public Operator getRootOperator() {
+    /**
+     * Gets root operator.
+     *
+     * @return the root operator
+     */
+    public Operator getRootOperator() {
 		if (process != null) {
 			return process.getRootOperator();
 		}
 		return null;
 	}
 
-	public Process getProcess() {
+    /**
+     * Gets process.
+     *
+     * @return the process
+     */
+    public Process getProcess() {
 		return process;
 	}
 
@@ -413,15 +474,14 @@ public class Actions implements ProcessEditor {
 		enableActions();
 	}
 
-	/**
-	 * Registers an {@link OperatorActionFactory} to be included when compiling {@link Operator}
-	 * specific {@link Action}s.
-	 *
-	 * @param factory
-	 *            the factory
-	 * @since 6.5
-	 */
-	public void register(OperatorActionFactory factory) {
+    /**
+     * Registers an {@link OperatorActionFactory} to be included when compiling {@link Operator}
+     * specific {@link Action}s.
+     *
+     * @param factory the factory
+     * @since 6.5
+     */
+    public void register(OperatorActionFactory factory) {
 		if (factory == null) {
 			throw new IllegalArgumentException("factory must not be null");
 		}

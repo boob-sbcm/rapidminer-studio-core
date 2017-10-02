@@ -28,7 +28,7 @@ import com.rapidminer.example.set.HeaderExampleSet;
  * preprocessing, e.g. a transformation model containing the parameters for a z-transformation.
  * Models can be combined by using a CombinedModel. All models can be applied with a ModelApplier
  * operator.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class AbstractModel extends ResultObjectAdapter implements Model {
@@ -53,13 +53,15 @@ public abstract class AbstractModel extends ResultObjectAdapter implements Model
 	 */
 	private boolean showProgress = false;
 
-	/**
-	 * Created a new model which was built on the given example set. Please note that the given
-	 * example set is automatically transformed into a {@link HeaderExampleSet} which means that no
-	 * reference to the data itself is kept but only to the header, i.e. to the attribute meta
-	 * descriptions.
-	 */
-	protected AbstractModel(ExampleSet exampleSet) {
+    /**
+     * Created a new model which was built on the given example set. Please note that the given
+     * example set is automatically transformed into a {@link HeaderExampleSet} which means that no
+     * reference to the data itself is kept but only to the header, i.e. to the attribute meta
+     * descriptions.
+     *
+     * @param exampleSet the example set
+     */
+    protected AbstractModel(ExampleSet exampleSet) {
 		if (exampleSet != null) {
 			this.headerExampleSet = new HeaderExampleSet(exampleSet);
 		}
@@ -115,11 +117,21 @@ public abstract class AbstractModel extends ResultObjectAdapter implements Model
 		return result;
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "mod";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "model file";
 	}
 
@@ -128,48 +140,51 @@ public abstract class AbstractModel extends ResultObjectAdapter implements Model
 		return false;
 	}
 
-	/**
-	 * If the Operator was set the Model will check for stop by calling checkForStop() at the
-	 * Operator. If the Operator is set to null nothing will happen and the Model will no longer
-	 * checkForStop.
-	 * 
-	 * @param operator If {@code true} this operator will check for stop by calling checkForStop()
-	 */
-	public void setOperator(Operator operator) {
+    /**
+     * If the Operator was set the Model will check for stop by calling checkForStop() at the
+     * Operator. If the Operator is set to null nothing will happen and the Model will no longer
+     * checkForStop.
+     *
+     * @param operator If {@code true} this operator will check for stop by calling checkForStop()
+     */
+    public void setOperator(Operator operator) {
 		this.operator = operator;
 	}
-	
-	/**
-	 * If this flag is set to {@code true}, the apply method can show the progress in the {@link OperatorProgress} from {@link #getOperator()}
-	 * 
-	 * @param boolean When {@code true} progress will be shown when applying.
-	 */
-	public void setShowProgress(boolean showProgress) {
+
+    /**
+     * If this flag is set to {@code true}, the apply method can show the progress in the {@link OperatorProgress} from {@link #getOperator()}
+     *
+     * @param showProgress the show progress
+     */
+    public void setShowProgress(boolean showProgress) {
 		this.showProgress = showProgress;
 	}
 
-	/**
-	 * delivers the set Operator or null if no Operator was set.
-	 */
-	public Operator getOperator() {
+    /**
+     * delivers the set Operator or null if no Operator was set.
+     *
+     * @return the operator
+     */
+    public Operator getOperator() {
 		return operator;
 	}
-	
-	/**
-	 * {@code true} if progress should be shown while applying this model.
-	 */
-	public boolean getShowProgress() {
+
+    /**
+     * {@code true} if progress should be shown while applying this model.
+     *
+     * @return the show progress
+     */
+    public boolean getShowProgress() {
 		return showProgress;
 	}
 
-	/**
-	 * Checks whether the running Process of the given Operator was stopped.If no Operator is set,
-	 * nothing will happen.
-	 * 
-	 * @throws ProcessStoppedException
-	 *             if the running Process was stopped
-	 */
-	protected void checkForStop() throws ProcessStoppedException {
+    /**
+     * Checks whether the running Process of the given Operator was stopped.If no Operator is set,
+     * nothing will happen.
+     *
+     * @throws ProcessStoppedException if the running Process was stopped
+     */
+    protected void checkForStop() throws ProcessStoppedException {
 		Operator op = getOperator();
 		if (op != null) {
 			op.checkForStop();

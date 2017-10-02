@@ -25,28 +25,47 @@ import com.rapidminer.tools.XMLException;
 
 
 /**
- *
  * A parameter condition which allows to combine multiple operator conditions with a logical AND
  * (&&).
  *
  * @author Nils Woehler
  * @since 6.5.0
- *
  */
 public class AndParameterCondition extends AbstractLogicalCondition {
 
 	private static final String ELEMENT_CONDITIONS = "AndSubConditions";
 
-	public AndParameterCondition(Element element) throws XMLException {
+    /**
+     * Instantiates a new And parameter condition.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public AndParameterCondition(Element element) throws XMLException {
 		super(element);
 	}
 
-	public AndParameterCondition(ParameterHandler parameterHandler, boolean becomeMandatory,
+    /**
+     * Instantiates a new And parameter condition.
+     *
+     * @param parameterHandler the parameter handler
+     * @param becomeMandatory  the become mandatory
+     * @param conditions       the conditions
+     */
+    public AndParameterCondition(ParameterHandler parameterHandler, boolean becomeMandatory,
 			ParameterCondition... conditions) {
 		super(parameterHandler, becomeMandatory, conditions);
 	}
 
-	public AndParameterCondition(ParameterHandler parameterHandler, String conditionParameter, boolean becomeMandatory,
+    /**
+     * Instantiates a new And parameter condition.
+     *
+     * @param parameterHandler   the parameter handler
+     * @param conditionParameter the condition parameter
+     * @param becomeMandatory    the become mandatory
+     * @param conditions         the conditions
+     */
+    public AndParameterCondition(ParameterHandler parameterHandler, String conditionParameter, boolean becomeMandatory,
 			ParameterCondition... conditions) {
 		super(parameterHandler, conditionParameter, becomeMandatory, conditions);
 	}

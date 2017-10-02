@@ -37,7 +37,10 @@ public class NominalAttributeTest {
 	private static final String[] VALUES = { "value0", "value1" };
 	private static final String MISSING_VALUE = "?";
 
-	@Test
+    /**
+     * Sets positive value in range.
+     */
+    @Test
 	public void setPositiveValueInRange() {
 		Attribute att = AttributeFactory.createAttribute(Ontology.NOMINAL);
 		att.setTableIndex(0);
@@ -53,7 +56,10 @@ public class NominalAttributeTest {
 		assertEquals(VALUES[1], att.getAsString(att.getValue(row), 0, false));
 	}
 
-	@Test
+    /**
+     * Sets positive value out of range.
+     */
+    @Test
 	public void setPositiveValueOutOfRange() {
 		Attribute att = AttributeFactory.createAttribute(Ontology.NOMINAL);
 		att.setTableIndex(0);
@@ -69,7 +75,10 @@ public class NominalAttributeTest {
 		assertEquals(MISSING_VALUE, att.getAsString(att.getValue(row), 0, false));
 	}
 
-	@Test
+    /**
+     * Sets negative value.
+     */
+    @Test
 	public void setNegativeValue() {
 		Attribute att = AttributeFactory.createAttribute(Ontology.NOMINAL);
 		att.setTableIndex(0);
@@ -85,7 +94,10 @@ public class NominalAttributeTest {
 		assertEquals(MISSING_VALUE, att.getAsString(att.getValue(row), 0, false));
 	}
 
-	@Test
+    /**
+     * Sets missing.
+     */
+    @Test
 	public void setMissing() {
 		Attribute att = AttributeFactory.createAttribute(Ontology.NOMINAL);
 		att.setTableIndex(0);

@@ -26,20 +26,28 @@ import javax.swing.JScrollPane;
 /**
  * This extended version of the JScrollPane uses increased numbers of unit increments for both
  * scroll bars making it more useful for mouse wheels.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExtendedJScrollPane extends JScrollPane {
 
 	private static final long serialVersionUID = 218317624316997140L;
 
-	public ExtendedJScrollPane() {
+    /**
+     * Instantiates a new Extended j scroll pane.
+     */
+    public ExtendedJScrollPane() {
 		super();
 		getHorizontalScrollBar().setUnitIncrement(10);
 		getVerticalScrollBar().setUnitIncrement(10);
 	}
 
-	public ExtendedJScrollPane(Component component) {
+    /**
+     * Instantiates a new Extended j scroll pane.
+     *
+     * @param component the component
+     */
+    public ExtendedJScrollPane(Component component) {
 		super(component);
 		getHorizontalScrollBar().setUnitIncrement(10);
 		getVerticalScrollBar().setUnitIncrement(10);

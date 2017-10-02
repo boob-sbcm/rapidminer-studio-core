@@ -33,6 +33,7 @@ import com.rapidminer.gui.ApplicationFrame;
 
 
 /**
+ * The type Multi confirm dialog.
  *
  * @author Tobias Malbrecht
  */
@@ -42,38 +43,31 @@ public class MultiConfirmDialog extends ConfirmDialog {
 
 	private boolean applyToAll = false;
 
-	/**
-	 * Creates a confirm dialog where the user can select that his selection should apply to all
-	 * cases.
-	 *
-	 * @param i18nKey
-	 *            the i18n key
-	 * @param mode
-	 *            the {@link ConfirmDialog}
-	 * @param i18nArgs
-	 *            additional i18n arguments
-	 * @deprecated use {@link #MultiConfirmDialog(Window, String, int, Object...)} instead
-	 */
-	@Deprecated
+    /**
+     * Creates a confirm dialog where the user can select that his selection should apply to all
+     * cases.
+     *
+     * @param i18nKey  the i18n key
+     * @param mode     the {@link ConfirmDialog}
+     * @param i18nArgs additional i18n arguments
+     * @deprecated use {@link #MultiConfirmDialog(Window, String, int, Object...)} instead
+     */
+    @Deprecated
 	public MultiConfirmDialog(String i18nKey, int mode, Object... i18nArgs) {
 		this(ApplicationFrame.getApplicationFrame(), i18nKey, mode, i18nArgs);
 	}
 
-	/**
-	 * Creates a confirm dialog where the user can select that his selection should apply to all
-	 * cases.
-	 *
-	 * @param owner
-	 *            the owner window where this dialog will be shown in
-	 * @param i18nKey
-	 *            the i18n key
-	 * @param mode
-	 *            the {@link ConfirmDialog}
-	 * @param i18nArgs
-	 *            additional i18n arguments
-	 * @since 6.5.0
-	 */
-	public MultiConfirmDialog(Window owner, String i18nKey, int mode, Object... i18nArgs) {
+    /**
+     * Creates a confirm dialog where the user can select that his selection should apply to all
+     * cases.
+     *
+     * @param owner    the owner window where this dialog will be shown in
+     * @param i18nKey  the i18n key
+     * @param mode     the {@link ConfirmDialog}
+     * @param i18nArgs additional i18n arguments
+     * @since 6.5.0
+     */
+    public MultiConfirmDialog(Window owner, String i18nKey, int mode, Object... i18nArgs) {
 		super(owner, i18nKey, mode, false, i18nArgs);
 	}
 
@@ -96,7 +90,12 @@ public class MultiConfirmDialog extends ConfirmDialog {
 		layoutDefault(null, buttonPanel);
 	}
 
-	public boolean applyToAll() {
+    /**
+     * Apply to all boolean.
+     *
+     * @return the boolean
+     */
+    public boolean applyToAll() {
 		return applyToAll;
 	}
 }

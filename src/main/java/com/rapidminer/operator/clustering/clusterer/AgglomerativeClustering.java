@@ -68,9 +68,15 @@ import com.rapidminer.tools.math.similarity.DistanceMeasures;
  */
 public class AgglomerativeClustering extends Operator implements CapabilityProvider {
 
-	public static final String PARAMETER_MODE = "mode";
+    /**
+     * The constant PARAMETER_MODE.
+     */
+    public static final String PARAMETER_MODE = "mode";
 
-	public static final String[] modes = new String[] { "SingleLink", "CompleteLink", "AverageLink" };
+    /**
+     * The constant modes.
+     */
+    public static final String[] modes = new String[] { "SingleLink", "CompleteLink", "AverageLink" };
 
 	private static final double INTERMEDIATE_PROGRESS = 60;
 
@@ -81,7 +87,12 @@ public class AgglomerativeClustering extends Operator implements CapabilityProvi
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private DistanceMeasureHelper measureHelper = new DistanceMeasureHelper(this);
 
-	public AgglomerativeClustering(OperatorDescription description) {
+    /**
+     * Instantiates a new Agglomerative clustering.
+     *
+     * @param description the description
+     */
+    public AgglomerativeClustering(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new DistanceMeasurePrecondition(exampleSetInput, this));

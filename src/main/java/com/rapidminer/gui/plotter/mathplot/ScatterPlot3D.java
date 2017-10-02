@@ -30,18 +30,29 @@ import org.math.plot.Plot3DPanel;
 
 /**
  * This plotter can be used to create 3D scatter plots.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class ScatterPlot3D extends JMathPlotter3D {
 
 	private static final long serialVersionUID = -3741835931346090326L;
 
-	public ScatterPlot3D(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Scatter plot 3 d.
+     *
+     * @param settings the settings
+     */
+    public ScatterPlot3D(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
-	public ScatterPlot3D(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Scatter plot 3 d.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public ScatterPlot3D(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings, dataTable);
 	}
 

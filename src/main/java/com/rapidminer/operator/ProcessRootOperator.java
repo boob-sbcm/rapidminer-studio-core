@@ -70,33 +70,77 @@ public final class ProcessRootOperator extends OperatorChain {
 
 	private static final OperatorVersion OPERATOR_REPLACE_MACROS_CAUSES_ERROR_ON_UNDEFINED = new OperatorVersion(6, 0, 2);
 
-	/** The property name for &quot;The default random seed (-1: random random seed).&quot; */
-	public static final String PROPERTY_RAPIDMINER_GENERAL_RANDOMSEED = "rapidminer.general.randomseed";
+    /**
+     * The property name for &quot;The default random seed (-1: random random seed).&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GENERAL_RANDOMSEED = "rapidminer.general.randomseed";
 
-	public static final String PARAMETER_ENCODING = "encoding";
+    /**
+     * The constant PARAMETER_ENCODING.
+     */
+    public static final String PARAMETER_ENCODING = "encoding";
 
-	public static final String PARAMETER_LOGVERBOSITY = "logverbosity";
+    /**
+     * The constant PARAMETER_LOGVERBOSITY.
+     */
+    public static final String PARAMETER_LOGVERBOSITY = "logverbosity";
 
-	public static final String PARAMETER_LOGFILE = "logfile";
+    /**
+     * The constant PARAMETER_LOGFILE.
+     */
+    public static final String PARAMETER_LOGFILE = "logfile";
 
-	public static final String PARAMETER_RESULTFILE = "resultfile";
+    /**
+     * The constant PARAMETER_RESULTFILE.
+     */
+    public static final String PARAMETER_RESULTFILE = "resultfile";
 
-	public static final String PARAMETER_TEMP_DIR = "temp_dir";
+    /**
+     * The constant PARAMETER_TEMP_DIR.
+     */
+    public static final String PARAMETER_TEMP_DIR = "temp_dir";
 
-	public static final String PARAMETER_DELETE_TEMP_FILES = "delete_temp_files";
+    /**
+     * The constant PARAMETER_DELETE_TEMP_FILES.
+     */
+    public static final String PARAMETER_DELETE_TEMP_FILES = "delete_temp_files";
 
-	public static final String PARAMETER_RANDOM_SEED = "random_seed";
+    /**
+     * The constant PARAMETER_RANDOM_SEED.
+     */
+    public static final String PARAMETER_RANDOM_SEED = "random_seed";
 
-	public static final String PARAMETER_SEND_MAIL = "send_mail";
+    /**
+     * The constant PARAMETER_SEND_MAIL.
+     */
+    public static final String PARAMETER_SEND_MAIL = "send_mail";
 
-	public static final String[] PARAMETER_SEND_MAIL_OPTIONS = { "always", "never", "for_long_processes" };
-	public static final int PARAMETER_SEND_MAIL_ALWAYS = 0;
-	public static final int PARAMETER_SEND_MAIL_NEVER = 1;
-	public static final int PARAMETER_SEND_MAIL_FOR_LONG = 2;
+    /**
+     * The constant PARAMETER_SEND_MAIL_OPTIONS.
+     */
+    public static final String[] PARAMETER_SEND_MAIL_OPTIONS = { "always", "never", "for_long_processes" };
+    /**
+     * The constant PARAMETER_SEND_MAIL_ALWAYS.
+     */
+    public static final int PARAMETER_SEND_MAIL_ALWAYS = 0;
+    /**
+     * The constant PARAMETER_SEND_MAIL_NEVER.
+     */
+    public static final int PARAMETER_SEND_MAIL_NEVER = 1;
+    /**
+     * The constant PARAMETER_SEND_MAIL_FOR_LONG.
+     */
+    public static final int PARAMETER_SEND_MAIL_FOR_LONG = 2;
 
-	public static final String PARAMETER_PROCESS_DURATION_FOR_MAIL = "process_duration_for_mail";
+    /**
+     * The constant PARAMETER_PROCESS_DURATION_FOR_MAIL.
+     */
+    public static final String PARAMETER_PROCESS_DURATION_FOR_MAIL = "process_duration_for_mail";
 
-	public static final String PARAMETER_NOTIFICATION_EMAIL = "notification_email";
+    /**
+     * The constant PARAMETER_NOTIFICATION_EMAIL.
+     */
+    public static final String PARAMETER_NOTIFICATION_EMAIL = "notification_email";
 
 	static {
 		ParameterService.registerParameter(new ParameterTypeInt(PROPERTY_RAPIDMINER_GENERAL_RANDOMSEED,
@@ -116,8 +160,12 @@ public final class ProcessRootOperator extends OperatorChain {
 	private final OutputPortExtender processInputExtender = new OutputPortExtender("input", getSubprocess(0)
 			.getInnerSources());
 
-	/** Creates a new process operator without reference to an process. */
-	public ProcessRootOperator(OperatorDescription description) {
+    /**
+     * Creates a new process operator without reference to an process.  @param description the description
+     *
+     * @param description the description
+     */
+    public ProcessRootOperator(OperatorDescription description) {
 		this(description, null);
 		getTransformer().addRuleAtBeginning(new MDTransformationRule() {
 
@@ -172,8 +220,13 @@ public final class ProcessRootOperator extends OperatorChain {
 		});
 	}
 
-	/** Creates a new process operator which directly references to the given process. */
-	public ProcessRootOperator(OperatorDescription description, Process process) {
+    /**
+     * Creates a new process operator which directly references to the given process.  @param description the description
+     *
+     * @param description the description
+     * @param process     the process
+     */
+    public ProcessRootOperator(OperatorDescription description, Process process) {
 		super(description, "Main Process");
 		resultPortExtender.start();
 		processInputExtender.start();
@@ -190,16 +243,30 @@ public final class ProcessRootOperator extends OperatorChain {
 		rename("Root");
 	}
 
-	public void deliverInput(List<IOObject> inputs) {
+    /**
+     * Deliver input.
+     *
+     * @param inputs the inputs
+     */
+    public void deliverInput(List<IOObject> inputs) {
 		processInputExtender.deliver(inputs);
 	}
 
-	public void deliverInputMD(List<MetaData> inputMD) {
+    /**
+     * Deliver input md.
+     *
+     * @param inputMD the input md
+     */
+    public void deliverInputMD(List<MetaData> inputMD) {
 		processInputExtender.deliverMetaData(inputMD);
 	}
 
-	/** Sets the process. */
-	public void setProcess(Process process) {
+    /**
+     * Sets the process.  @param process the process
+     *
+     * @param process the process
+     */
+    public void setProcess(Process process) {
 		this.process = process;
 		registerOperator(this.process);
 	}
@@ -212,13 +279,21 @@ public final class ProcessRootOperator extends OperatorChain {
 		return process;
 	}
 
-	/** Adds an process listener to the list of listeners. */
-	public void addProcessListener(ProcessListener l) {
+    /**
+     * Adds an process listener to the list of listeners.  @param l the l
+     *
+     * @param l the l
+     */
+    public void addProcessListener(ProcessListener l) {
 		listenerList.add(l);
 	}
 
-	/** Removes an process listener from the list of listeners. */
-	public void removeProcessListener(ProcessListener l) {
+    /**
+     * Removes an process listener from the list of listeners.  @param l the l
+     *
+     * @param l the l
+     */
+    public void removeProcessListener(ProcessListener l) {
 		listenerList.remove(l);
 	}
 
@@ -240,13 +315,21 @@ public final class ProcessRootOperator extends OperatorChain {
 		getListenerListCopy().forEach(l -> l.processStarts(process));
 	}
 
-	/** Counts the step and notifies all process listeners. */
-	public void processStartedOperator(Operator op) {
+    /**
+     * Counts the step and notifies all process listeners.  @param op the op
+     *
+     * @param op the op
+     */
+    public void processStartedOperator(Operator op) {
 		getListenerListCopy().forEach(l -> l.processStartedOperator(process, op));
 	}
 
-	/** Counts the step and notifies all process listeners. */
-	public void processFinishedOperator(Operator op) {
+    /**
+     * Counts the step and notifies all process listeners.  @param op the op
+     *
+     * @param op the op
+     */
+    public void processFinishedOperator(Operator op) {
 		getListenerListCopy().forEach(l -> l.processFinishedOperator(process, op));
 	}
 
@@ -260,11 +343,15 @@ public final class ProcessRootOperator extends OperatorChain {
 		getListenerListCopy().forEach(l -> l.processEnded(process));
 	}
 
-	/**
-	 * This method can be used to send an email after the process has finished. Currently only a
-	 * working sendmail server is supported.
-	 */
-	public void sendEmail(IOContainer results, Throwable e) throws UndefinedParameterError {
+    /**
+     * This method can be used to send an email after the process has finished. Currently only a
+     * working sendmail server is supported.
+     *
+     * @param results the results
+     * @param e       the e
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public void sendEmail(IOContainer results, Throwable e) throws UndefinedParameterError {
 		int sendEmail = getParameterAsInt(PARAMETER_SEND_MAIL);
 		if (sendEmail == PARAMETER_SEND_MAIL_NEVER) {
 			return;
@@ -375,28 +462,33 @@ public final class ProcessRootOperator extends OperatorChain {
 		return types;
 	}
 
-	/**
-	 * Convenience backport method to get the results of a process.
-	 *
-	 * @param omitNullResults
-	 *            if set to <code>false</code> the returned {@link IOContainer} will contain
-	 *            <code>null</code> values for empty results instead of omitting them.
-	 */
-	public IOContainer getResults(boolean omitNullResults) {
+    /**
+     * Convenience backport method to get the results of a process.
+     *
+     * @param omitNullResults if set to <code>false</code> the returned {@link IOContainer} will contain            <code>null</code> values for empty results instead of omitting them.
+     * @return the results
+     */
+    public IOContainer getResults(boolean omitNullResults) {
 		InputPorts innerSinks = getSubprocess(0).getInnerSinks();
 		return innerSinks.createIOContainer(false, omitNullResults);
 	}
 
-	/**
-	 * Convenience backport method to get the results of a process. This method will omit empty
-	 * result values instead of returning them as <code>null</code> value.
-	 */
-	public IOContainer getResults() {
+    /**
+     * Convenience backport method to get the results of a process. This method will omit empty
+     * result values instead of returning them as <code>null</code> value.
+     *
+     * @return the results
+     */
+    public IOContainer getResults() {
 		return getSubprocess(0).getInnerSinks().createIOContainer(false, true);
 	}
 
-	/** Returns the meta data delivered to the output ports. */
-	public List<MetaData> getResultMetaData() {
+    /**
+     * Returns the meta data delivered to the output ports.  @return the result meta data
+     *
+     * @return the result meta data
+     */
+    public List<MetaData> getResultMetaData() {
 		LinkedList<MetaData> result = new LinkedList<>();
 		for (InputPort resultPort : getSubprocess(0).getInnerSinks().getAllPorts()) {
 			result.add(resultPort.getMetaData());

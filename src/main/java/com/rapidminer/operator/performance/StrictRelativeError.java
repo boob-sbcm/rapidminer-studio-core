@@ -25,16 +25,24 @@ import com.rapidminer.tools.Tools;
  * The average relative error in a strict way of calculation: <i>Sum(|label-predicted|/min(|label|,
  * |predicted|))/#examples</i>. The relative error of label 0 and prediction 0 is defined as 0. If
  * the minimum of label and prediction is 0, the relative error is defined as infinite.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class StrictRelativeError extends SimpleCriterion {
 
 	private static final long serialVersionUID = 8055914052886853327L;
 
-	public StrictRelativeError() {}
+    /**
+     * Instantiates a new Strict relative error.
+     */
+    public StrictRelativeError() {}
 
-	public StrictRelativeError(StrictRelativeError sc) {
+    /**
+     * Instantiates a new Strict relative error.
+     *
+     * @param sc the sc
+     */
+    public StrictRelativeError(StrictRelativeError sc) {
 		super(sc);
 	}
 

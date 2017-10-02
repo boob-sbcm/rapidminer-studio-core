@@ -56,15 +56,30 @@ import com.rapidminer.tools.math.optimization.ec.es.OptimizationValueType;
  */
 public class PolynomialRegression extends AbstractLearner {
 
-	public static final String PARAMETER_MAX_ITERATIONS = "max_iterations";
+    /**
+     * The constant PARAMETER_MAX_ITERATIONS.
+     */
+    public static final String PARAMETER_MAX_ITERATIONS = "max_iterations";
 
-	public static final String PARAMETER_REPLICATION_FACTOR = "replication_factor";
+    /**
+     * The constant PARAMETER_REPLICATION_FACTOR.
+     */
+    public static final String PARAMETER_REPLICATION_FACTOR = "replication_factor";
 
-	public static final String PARAMETER_MAX_DEGREE = "max_degree";
+    /**
+     * The constant PARAMETER_MAX_DEGREE.
+     */
+    public static final String PARAMETER_MAX_DEGREE = "max_degree";
 
-	public static final String PARAMETER_MIN_COEFFICIENT = "min_coefficient";
+    /**
+     * The constant PARAMETER_MIN_COEFFICIENT.
+     */
+    public static final String PARAMETER_MIN_COEFFICIENT = "min_coefficient";
 
-	public static final String PARAMETER_MAX_COEFFICIENT = "max_coefficient";
+    /**
+     * The constant PARAMETER_MAX_COEFFICIENT.
+     */
+    public static final String PARAMETER_MAX_COEFFICIENT = "max_coefficient";
 
 	private static class RegressionOptimization extends ESOptimization {
 
@@ -76,7 +91,20 @@ public class PolynomialRegression extends AbstractLearner {
 
 		private Attribute[] attributes;
 
-		public RegressionOptimization(ExampleSet exampleSet, int replicationFactor, int maxIterations, int maxDegree,
+        /**
+         * Instantiates a new Regression optimization.
+         *
+         * @param exampleSet        the example set
+         * @param replicationFactor the replication factor
+         * @param maxIterations     the max iterations
+         * @param maxDegree         the max degree
+         * @param minCoefficient    the min coefficient
+         * @param maxCoefficient    the max coefficient
+         * @param random            the random
+         * @param logging           the logging
+         * @param executingOperator the executing operator
+         */
+        public RegressionOptimization(ExampleSet exampleSet, int replicationFactor, int maxIterations, int maxDegree,
 				double minCoefficient, double maxCoefficient, RandomGenerator random, LoggingHandler logging,
 				Operator executingOperator) {
 
@@ -154,7 +182,13 @@ public class PolynomialRegression extends AbstractLearner {
 			return performanceVector;
 		}
 
-		public double[][] getCoefficients(double[] values) {
+        /**
+         * Get coefficients double [ ] [ ].
+         *
+         * @param values the values
+         * @return the double [ ] [ ]
+         */
+        public double[][] getCoefficients(double[] values) {
 			int attSize = exampleSet.getAttributes().size();
 			double[][] coefficients = new double[replicationFactor][attSize];
 			for (int f = 0; f < replicationFactor; f++) {
@@ -165,7 +199,13 @@ public class PolynomialRegression extends AbstractLearner {
 			return coefficients;
 		}
 
-		public double[][] getDegrees(double[] values) {
+        /**
+         * Get degrees double [ ] [ ].
+         *
+         * @param values the values
+         * @return the double [ ] [ ]
+         */
+        public double[][] getDegrees(double[] values) {
 			int attSize = exampleSet.getAttributes().size();
 			double[][] degrees = new double[replicationFactor][attSize];
 			for (int f = 0; f < replicationFactor; f++) {
@@ -176,12 +216,23 @@ public class PolynomialRegression extends AbstractLearner {
 			return degrees;
 		}
 
-		public double getOffset(double[] values) {
+        /**
+         * Gets offset.
+         *
+         * @param values the values
+         * @return the offset
+         */
+        public double getOffset(double[] values) {
 			return values[values.length - 1];
 		}
 	}
 
-	public PolynomialRegression(OperatorDescription description) {
+    /**
+     * Instantiates a new Polynomial regression.
+     *
+     * @param description the description
+     */
+    public PolynomialRegression(OperatorDescription description) {
 		super(description);
 	}
 

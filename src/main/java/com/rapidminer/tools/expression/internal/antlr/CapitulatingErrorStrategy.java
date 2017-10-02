@@ -32,7 +32,6 @@ import org.antlr.v4.runtime.TokenStream;
  * error messages of the {@link DefaultErrorStrategy}.
  *
  * @author Gisa Schaefer
- *
  */
 class CapitulatingErrorStrategy extends DefaultErrorStrategy {
 

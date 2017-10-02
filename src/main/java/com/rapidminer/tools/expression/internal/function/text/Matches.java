@@ -27,14 +27,13 @@ import com.rapidminer.tools.expression.FunctionInputException;
  * A {@link Function} for checking whether a nominal value matches a regular expression
  *
  * @author Thilo Kamradt
- *
  */
 public class Matches extends Abstract2StringInputBooleanOutputFunction {
 
-	/**
-	 * Creates a function for checking whether a nominal value matches a regular expression
-	 */
-	public Matches() {
+    /**
+     * Creates a function for checking whether a nominal value matches a regular expression
+     */
+    public Matches() {
 		super("text_information.matches");
 	}
 

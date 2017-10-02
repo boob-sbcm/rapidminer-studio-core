@@ -30,13 +30,50 @@ import java.awt.Color;
 
 
 /**
+ * The type Series format change event.
+ *
  * @author Nils Woehler
- * 
  */
 public class SeriesFormatChangeEvent implements ConfigurationChangeEvent {
 
-	public enum SeriesFormatChangeType {
-		ITEM_SHAPE, ITEM_SIZE, ITEM_COLOR, LINE_WIDTH, LINE_STYLE, LINE_COLOR, OPACITY, AREA_FILL_STYLE, SERIES_TYPE, STACKING_MODE, UTILITY_INDICATOR
+    /**
+     * The enum Series format change type.
+     */
+    public enum SeriesFormatChangeType {
+        /**
+         * Item shape series format change type.
+         */
+        ITEM_SHAPE, /**
+         * Item size series format change type.
+         */
+        ITEM_SIZE, /**
+         * Item color series format change type.
+         */
+        ITEM_COLOR, /**
+         * Line width series format change type.
+         */
+        LINE_WIDTH, /**
+         * Line style series format change type.
+         */
+        LINE_STYLE, /**
+         * Line color series format change type.
+         */
+        LINE_COLOR, /**
+         * Opacity series format change type.
+         */
+        OPACITY, /**
+         * Area fill style series format change type.
+         */
+        AREA_FILL_STYLE, /**
+         * Series type series format change type.
+         */
+        SERIES_TYPE, /**
+         * Stacking mode series format change type.
+         */
+        STACKING_MODE, /**
+         * Utility indicator series format change type.
+         */
+        UTILITY_INDICATOR
 	}
 
 	private final SeriesFormat source;
@@ -56,65 +93,123 @@ public class SeriesFormatChangeEvent implements ConfigurationChangeEvent {
 	private FillStyle areaFillStyle = null;
 	private Integer opacity = null;
 
-	public SeriesFormatChangeEvent(SeriesFormat source, VisualizationType seriesType) {
+    /**
+     * Instantiates a new Series format change event.
+     *
+     * @param source     the source
+     * @param seriesType the series type
+     */
+    public SeriesFormatChangeEvent(SeriesFormat source, VisualizationType seriesType) {
 		this.type = SeriesFormatChangeType.SERIES_TYPE;
 		this.seriesType = seriesType;
 		this.source = source;
 	}
 
-	public SeriesFormatChangeEvent(SeriesFormat source, StackingMode stackingMode) {
+    /**
+     * Instantiates a new Series format change event.
+     *
+     * @param source       the source
+     * @param stackingMode the stacking mode
+     */
+    public SeriesFormatChangeEvent(SeriesFormat source, StackingMode stackingMode) {
 		this.type = SeriesFormatChangeType.STACKING_MODE;
 		this.stackingMode = stackingMode;
 		this.source = source;
 	}
 
-	public SeriesFormatChangeEvent(SeriesFormat source, IndicatorType errorIndicator) {
+    /**
+     * Instantiates a new Series format change event.
+     *
+     * @param source         the source
+     * @param errorIndicator the error indicator
+     */
+    public SeriesFormatChangeEvent(SeriesFormat source, IndicatorType errorIndicator) {
 		this.type = SeriesFormatChangeType.UTILITY_INDICATOR;
 		this.errorIndicator = errorIndicator;
 		this.source = source;
 	}
 
-	public SeriesFormatChangeEvent(SeriesFormat source, LineStyle lineStyle) {
+    /**
+     * Instantiates a new Series format change event.
+     *
+     * @param source    the source
+     * @param lineStyle the line style
+     */
+    public SeriesFormatChangeEvent(SeriesFormat source, LineStyle lineStyle) {
 		this.type = SeriesFormatChangeType.LINE_STYLE;
 		this.lineStyle = lineStyle;
 		this.source = source;
 	}
 
-	public SeriesFormatChangeEvent(SeriesFormat source, ItemShape itemShape) {
+    /**
+     * Instantiates a new Series format change event.
+     *
+     * @param source    the source
+     * @param itemShape the item shape
+     */
+    public SeriesFormatChangeEvent(SeriesFormat source, ItemShape itemShape) {
 		this.type = SeriesFormatChangeType.ITEM_SHAPE;
 		this.itemShape = itemShape;
 		this.source = source;
 	}
 
-	public SeriesFormatChangeEvent(SeriesFormat source, Double itemSize) {
+    /**
+     * Instantiates a new Series format change event.
+     *
+     * @param source   the source
+     * @param itemSize the item size
+     */
+    public SeriesFormatChangeEvent(SeriesFormat source, Double itemSize) {
 		super();
 		this.type = SeriesFormatChangeType.ITEM_SIZE;
 		this.itemSize = itemSize;
 		this.source = source;
 	}
 
-	public SeriesFormatChangeEvent(SeriesFormat source, Float lineWidth) {
+    /**
+     * Instantiates a new Series format change event.
+     *
+     * @param source    the source
+     * @param lineWidth the line width
+     */
+    public SeriesFormatChangeEvent(SeriesFormat source, Float lineWidth) {
 		this.type = SeriesFormatChangeType.LINE_WIDTH;
 		this.lineWidth = lineWidth;
 		this.source = source;
 	}
 
-	public SeriesFormatChangeEvent(SeriesFormat source, FillStyle areaFillStyle) {
+    /**
+     * Instantiates a new Series format change event.
+     *
+     * @param source        the source
+     * @param areaFillStyle the area fill style
+     */
+    public SeriesFormatChangeEvent(SeriesFormat source, FillStyle areaFillStyle) {
 		this.type = SeriesFormatChangeType.AREA_FILL_STYLE;
 		this.areaFillStyle = areaFillStyle;
 		this.source = source;
 	}
 
-	public SeriesFormatChangeEvent(SeriesFormat source, Integer opacity) {
+    /**
+     * Instantiates a new Series format change event.
+     *
+     * @param source  the source
+     * @param opacity the opacity
+     */
+    public SeriesFormatChangeEvent(SeriesFormat source, Integer opacity) {
 		this.type = SeriesFormatChangeType.OPACITY;
 		this.opacity = opacity;
 		this.source = source;
 	}
 
-	/**
-	 * Allowed {@link SeriesFormatChangeType}s are LINE_COLOR or ITEM_COLOR.
-	 */
-	public SeriesFormatChangeEvent(SeriesFormat source, SeriesFormatChangeType type, Color color) {
+    /**
+     * Allowed {@link SeriesFormatChangeType}s are LINE_COLOR or ITEM_COLOR.
+     *
+     * @param source the source
+     * @param type   the type
+     * @param color  the color
+     */
+    public SeriesFormatChangeEvent(SeriesFormat source, SeriesFormatChangeType type, Color color) {
 		this.type = type;
 		if ((type != SeriesFormatChangeType.ITEM_COLOR) && (type != SeriesFormatChangeType.LINE_COLOR)) {
 			throw new RuntimeException(type + " is not allowed calling this constructor.");
@@ -127,98 +222,138 @@ public class SeriesFormatChangeEvent implements ConfigurationChangeEvent {
 		this.source = source;
 	}
 
-	public SeriesFormatChangeType getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public SeriesFormatChangeType getType() {
 		return type;
 	}
 
-	public VisualizationType getSeriesType() {
+    /**
+     * Gets series type.
+     *
+     * @return the series type
+     */
+    public VisualizationType getSeriesType() {
 		return seriesType;
 	}
 
-	public IndicatorType getErrorIndicator() {
+    /**
+     * Gets error indicator.
+     *
+     * @return the error indicator
+     */
+    public IndicatorType getErrorIndicator() {
 		return errorIndicator;
 	}
 
-	public StackingMode getStackingMode() {
+    /**
+     * Gets stacking mode.
+     *
+     * @return the stacking mode
+     */
+    public StackingMode getStackingMode() {
 		return stackingMode;
 	}
 
-	/**
-	 * @return the source
-	 */
-	public SeriesFormat getSource() {
+    /**
+     * Gets source.
+     *
+     * @return the source
+     */
+    public SeriesFormat getSource() {
 		return source;
 	}
 
-	/**
-	 * @return the lineStyle
-	 */
-	public LineStyle getLineStyle() {
+    /**
+     * Gets line style.
+     *
+     * @return the lineStyle
+     */
+    public LineStyle getLineStyle() {
 		return lineStyle;
 	}
 
-	/**
-	 * @return the itemShape
-	 */
-	public ItemShape getItemShape() {
+    /**
+     * Gets item shape.
+     *
+     * @return the itemShape
+     */
+    public ItemShape getItemShape() {
 		return itemShape;
 	}
 
-	/**
-	 * @return the itemSize
-	 */
-	public Double getItemSize() {
+    /**
+     * Gets item size.
+     *
+     * @return the itemSize
+     */
+    public Double getItemSize() {
 		return itemSize;
 	}
 
-	/**
-	 * @return the lineWidth
-	 */
-	public Float getLineWidth() {
+    /**
+     * Gets line width.
+     *
+     * @return the lineWidth
+     */
+    public Float getLineWidth() {
 		return lineWidth;
 	}
 
-	/**
-	 * @return the lineColor
-	 */
-	public Color getLineColor() {
+    /**
+     * Gets line color.
+     *
+     * @return the lineColor
+     */
+    public Color getLineColor() {
 		return lineColor;
 	}
 
-	/**
-	 * @return the opacity
-	 */
-	public Integer getOpacity() {
+    /**
+     * Gets opacity.
+     *
+     * @return the opacity
+     */
+    public Integer getOpacity() {
 		return opacity;
 	}
 
-	/**
-	 * @param seriesType
-	 *            the seriesType to set
-	 */
-	public void setSeriesType(VisualizationType seriesType) {
+    /**
+     * Sets series type.
+     *
+     * @param seriesType the seriesType to set
+     */
+    public void setSeriesType(VisualizationType seriesType) {
 		this.seriesType = seriesType;
 	}
 
-	/**
-	 * @param stackingMode
-	 *            the stackingMode to set
-	 */
-	public void setStackingMode(StackingMode stackingMode) {
+    /**
+     * Sets stacking mode.
+     *
+     * @param stackingMode the stackingMode to set
+     */
+    public void setStackingMode(StackingMode stackingMode) {
 		this.stackingMode = stackingMode;
 	}
 
-	/**
-	 * @return the itemColor
-	 */
-	public Color getItemColor() {
+    /**
+     * Gets item color.
+     *
+     * @return the itemColor
+     */
+    public Color getItemColor() {
 		return itemColor;
 	}
 
-	/**
-	 * @return the areaFillStyle
-	 */
-	public FillStyle getAreaFillStyle() {
+    /**
+     * Gets area fill style.
+     *
+     * @return the areaFillStyle
+     */
+    public FillStyle getAreaFillStyle() {
 		return areaFillStyle;
 	}
 

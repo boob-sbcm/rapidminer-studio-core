@@ -31,7 +31,7 @@ import java.util.Vector;
  * provides various methods to place those objects into the SearchSpace (by associating those
  * Objects to the list of objects in the SearchSpace) as well as to do some Outlier Tests on those
  * Objects.
- * 
+ *
  * @author Stephan Deutsch, Ingo Mierswa
  */
 public class SearchSpace {
@@ -82,11 +82,13 @@ public class SearchSpace {
 	 */
 	// private int minPtsUpperBound;
 
-	/**
-	 * This constructor creates a SearchSpace with (integer) <i>dim</i> dimensions and initializes
-	 * all fields in the instance of that Class with zero values where appropriate.
-	 */
-	public SearchSpace(int dim) {
+    /**
+     * This constructor creates a SearchSpace with (integer) <i>dim</i> dimensions and initializes
+     * all fields in the instance of that Class with zero values where appropriate.
+     *
+     * @param dim the dim
+     */
+    public SearchSpace(int dim) {
 		this.dimensions = dim;
 		this.createListOfObjects(); // create a list of Objects mapped to this.listOfObjects
 		// initialize the SearchRooms Vektor parameters by creating arrays and filling them with
@@ -101,158 +103,171 @@ public class SearchSpace {
 		}
 	}
 
-	/**
-	 * This constructor creates a SearchSpace with (integer) <i>2</i> dimensions as a default and
-	 * initializes all fields in the instance of that Class with zero values where appropriate.
-	 */
-	public SearchSpace() { // construct a searchroom with at least 2 dimensions
+    /**
+     * This constructor creates a SearchSpace with (integer) <i>2</i> dimensions as a default and
+     * initializes all fields in the instance of that Class with zero values where appropriate.
+     */
+    public SearchSpace() { // construct a searchroom with at least 2 dimensions
 		this(2);
 	}
 
-	/**
-	 * This constructor creates a SearchSpace with (integer) <i>dim</i> dimensions and initializes
-	 * all fields in the instance of that Class with zero values where appropriate.
-	 */
-	public SearchSpace(int dim, int minptslb, int minptsub) {
+    /**
+     * This constructor creates a SearchSpace with (integer) <i>dim</i> dimensions and initializes
+     * all fields in the instance of that Class with zero values where appropriate.
+     *
+     * @param dim      the dim
+     * @param minptslb the minptslb
+     * @param minptsub the minptsub
+     */
+    public SearchSpace(int dim, int minptslb, int minptsub) {
 		this(dim);
 		// this.minPtsLowerBound = minptslb;
 		// this.minPtsUpperBound = minptsub;
 	}
 
-	/**
-	 * Returns the (integer) number of objects in the Searchroom (associated with it via
-	 * {@link #addObject(SearchObject)} to the room) as an integer value as we overall do not expect
-	 * the searchroom to hold more than 2 billion objects.
-	 * 
-	 */
-	public int getNumberOfObjects() {
+    /**
+     * Returns the (integer) number of objects in the Searchroom (associated with it via
+     * {@link #addObject(SearchObject)} to the room) as an integer value as we overall do not expect
+     * the searchroom to hold more than 2 billion objects.
+     *
+     * @return the number of objects
+     */
+    public int getNumberOfObjects() {
 		return this.listOfObjects.size();
 	}
 
-	/**
-	 * Sets the minimum value of all SearchObjects in a SearchSpace to a value for a dimension dim.
-	 * 
-	 * @param dim
-	 * @param value
-	 */
-	void setMinimumVectorValue(int dim, double value) {
+    /**
+     * Sets the minimum value of all SearchObjects in a SearchSpace to a value for a dimension dim.
+     *
+     * @param dim   the dim
+     * @param value the value
+     */
+    void setMinimumVectorValue(int dim, double value) {
 		this.minimumVectorValue[dim] = value;
 	}
 
-	/**
-	 * Returns the minimum value of all SearchObjects in a SearchSpace for a dimension dim.
-	 * 
-	 * @param dim
-	 */
-	double getMinimumVectorValue(int dim) {
+    /**
+     * Returns the minimum value of all SearchObjects in a SearchSpace for a dimension dim.
+     *
+     * @param dim the dim
+     * @return the minimum vector value
+     */
+    double getMinimumVectorValue(int dim) {
 		return this.minimumVectorValue[dim];
 	}
 
-	/**
-	 * Sets the maximum value of all SearchObjects in a SearchSpace to a value for a dimension dim.
-	 * 
-	 * @param dim
-	 * @param value
-	 */
-	void setMaximumVectorValue(int dim, double value) {
+    /**
+     * Sets the maximum value of all SearchObjects in a SearchSpace to a value for a dimension dim.
+     *
+     * @param dim   the dim
+     * @param value the value
+     */
+    void setMaximumVectorValue(int dim, double value) {
 		this.maximumVectorValue[dim] = value;
 	}
 
-	/**
-	 * Returns the maximum value of all SearchObjects in a SearchSpace for a dimension dim.
-	 * 
-	 * @param dim
-	 */
-	double getMaximumVectorValue(int dim) {
+    /**
+     * Returns the maximum value of all SearchObjects in a SearchSpace for a dimension dim.
+     *
+     * @param dim the dim
+     * @return the maximum vector value
+     */
+    double getMaximumVectorValue(int dim) {
 		return this.maximumVectorValue[dim];
 	}
 
-	/**
-	 * Sets the range value (maximum - minimum) of all SearchObjects in a SearchSpace to a value for
-	 * a dimension dim.
-	 * 
-	 * @param dim
-	 * @param value
-	 */
-	void setRangeVectorValue(int dim, double value) {
+    /**
+     * Sets the range value (maximum - minimum) of all SearchObjects in a SearchSpace to a value for
+     * a dimension dim.
+     *
+     * @param dim   the dim
+     * @param value the value
+     */
+    void setRangeVectorValue(int dim, double value) {
 		this.rangeVectorValue[dim] = value;
 	}
 
-	/**
-	 * Returns the range value (maximum - minimum) of all SearchObjects in a SearchSpace for a
-	 * dimension dim.
-	 * 
-	 * @param dim
-	 */
-	double getRangeVectorValue(int dim) {
+    /**
+     * Returns the range value (maximum - minimum) of all SearchObjects in a SearchSpace for a
+     * dimension dim.
+     *
+     * @param dim the dim
+     * @return the range vector value
+     */
+    double getRangeVectorValue(int dim) {
 		return this.rangeVectorValue[dim];
 	}
 
-	/**
-	 * <p>
-	 * Sets the number of dimensions for the SearchSpace to dim.
-	 * </p>
-	 * <p>
-	 * <em>Attention</em>: This is a value that the SearchSpace keeps for the purpose of consistency
-	 * checks for all SearchObjects (as each SearchObject has its own number of dimensions and not
-	 * all the dimensions of the SearchObjects need to be the same - to give implementation
-	 * freedom).
-	 * </p>
-	 * 
-	 * @param dim
-	 */
-	public void setDimensions(int dim) {
+    /**
+     * <p>
+     * Sets the number of dimensions for the SearchSpace to dim.
+     * </p>
+     * <p>
+     * <em>Attention</em>: This is a value that the SearchSpace keeps for the purpose of consistency
+     * checks for all SearchObjects (as each SearchObject has its own number of dimensions and not
+     * all the dimensions of the SearchObjects need to be the same - to give implementation
+     * freedom).
+     * </p>
+     *
+     * @param dim the dim
+     */
+    public void setDimensions(int dim) {
 		this.dimensions = dim;
 	}
 
-	/**
-	 * Returns the number of dimensions of the SearchSpace.
-	 */
-	public int getDimensions() {
+    /**
+     * Returns the number of dimensions of the SearchSpace.
+     *
+     * @return the dimensions
+     */
+    public int getDimensions() {
 		return this.dimensions;
 	}
 
-	/**
-	 * Creates a listOfObjects (e.g. a new Vector Class instance within the SearchSpace) and is used
-	 * by a constructor.
-	 * 
-	 */
-	void createListOfObjects() {
+    /**
+     * Creates a listOfObjects (e.g. a new Vector Class instance within the SearchSpace) and is used
+     * by a constructor.
+     */
+    void createListOfObjects() {
 		this.listOfObjects = new Vector<>();
 	}
 
-	/** Delivers the list of objects. */
-	public Vector<SearchObject> getSearchObjects() {
+    /**
+     * Delivers the list of objects.  @return the search objects
+     *
+     * @return the search objects
+     */
+    public Vector<SearchObject> getSearchObjects() {
 		return listOfObjects;
 	}
 
-	/**
-	 * This method returns the outlierstatus of the Searchobject (element at index i) in the
-	 * SearchSpace from the Searchroom's listOfObjects.
-	 * 
-	 * @param i
-	 * @return the boolean outlier status
-	 */
-	public boolean getSearchObjectOutlierStatus(int i) {
+    /**
+     * This method returns the outlierstatus of the Searchobject (element at index i) in the
+     * SearchSpace from the Searchroom's listOfObjects.
+     *
+     * @param i the
+     * @return the boolean outlier status
+     */
+    public boolean getSearchObjectOutlierStatus(int i) {
 		SearchObject so = this.listOfObjects.elementAt(i);
 		return so.getOutlierStatus();
 	}
 
-	/**
-	 * This adds a SearchObject to the SearchSpace.
-	 * 
-	 * <p>
-	 * It prints a warning to STDOUT in case the dimensions of the SearchObject and SearchSpace are
-	 * incompatible, but as the SearchSpace can perform some operations over SearchObjects with
-	 * different dimensions, this is not a showstopper.
-	 * 
-	 * <p>
-	 * The method also automatically updates the min/max/range information the SearchSpace knows for
-	 * itself.
-	 * 
-	 * @param objectToAdd
-	 */
-	public void addObject(SearchObject objectToAdd) {
+    /**
+     * This adds a SearchObject to the SearchSpace.
+     * <p>
+     * <p>
+     * It prints a warning to STDOUT in case the dimensions of the SearchObject and SearchSpace are
+     * incompatible, but as the SearchSpace can perform some operations over SearchObjects with
+     * different dimensions, this is not a showstopper.
+     * <p>
+     * <p>
+     * The method also automatically updates the min/max/range information the SearchSpace knows for
+     * itself.
+     *
+     * @param objectToAdd the object to add
+     */
+    public void addObject(SearchObject objectToAdd) {
 		this.listOfObjects.addElement(objectToAdd); // add the object of type SearchObject to the
 													// SearchSpace
 		for (int i = 0; i < this.getDimensions(); i++) {
@@ -266,36 +281,41 @@ public class SearchSpace {
 		}
 	}
 
-	/**
-	 * This method returns a SearchObject with the i-th index in the listOfObjects; the result has
-	 * to be casted to SearchObject (Vector Class speciality, as it returns only a JAVA Object Class
-	 * object). This is better than to access the listOfObjects directly, but sadly I do not use it
-	 * consistently. Maybe in the cleaning-up, this will be changed.
-	 * 
-	 * @param index
-	 */
-	public SearchObject getObject(int index) {
+    /**
+     * This method returns a SearchObject with the i-th index in the listOfObjects; the result has
+     * to be casted to SearchObject (Vector Class speciality, as it returns only a JAVA Object Class
+     * object). This is better than to access the listOfObjects directly, but sadly I do not use it
+     * consistently. Maybe in the cleaning-up, this will be changed.
+     *
+     * @param index the index
+     * @return the object
+     */
+    public SearchObject getObject(int index) {
 		return this.listOfObjects.elementAt(index);
 	}
 
-	/**
-	 * This method returns an Enumeration of all SearchObjects from a SearchSpace.
-	 */
-	public Enumeration<SearchObject> getObjects() {
+    /**
+     * This method returns an Enumeration of all SearchObjects from a SearchSpace.
+     *
+     * @return the objects
+     */
+    public Enumeration<SearchObject> getObjects() {
 		return this.listOfObjects.elements();
 	}
 
-	/**
-	 * Checks the dimensional integrity of the Searchroom and returns an array if int values for
-	 * each object with 0 for equal dimensions of room and object, -1 for less dimensions in the
-	 * room than object thinks it has and +1 for more dimensions in the room than object has.
-	 * 
-	 * <p>
-	 * Method prints to the STDOUT a message on whether the overall integrity is given (all objects
-	 * have the same dimensions as the searchroom. ATTN: this checks only those objects in the
-	 * search room, e.g. which have been added to it using {@link #addObject(SearchObject)}.
-	 */
-	int[] dimensionsIntegrityCheck() {
+    /**
+     * Checks the dimensional integrity of the Searchroom and returns an array if int values for
+     * each object with 0 for equal dimensions of room and object, -1 for less dimensions in the
+     * room than object thinks it has and +1 for more dimensions in the room than object has.
+     * <p>
+     * <p>
+     * Method prints to the STDOUT a message on whether the overall integrity is given (all objects
+     * have the same dimensions as the searchroom. ATTN: this checks only those objects in the
+     * search room, e.g. which have been added to it using {@link #addObject(SearchObject)}.
+     *
+     * @return the int [ ]
+     */
+    int[] dimensionsIntegrityCheck() {
 		SearchObject sobject;
 		int number = this.getNumberOfObjects();
 		int[] range = new int[number];
@@ -316,19 +336,19 @@ public class SearchSpace {
 		return range;
 	}
 
-	/**
-	 * This method resets the Outlier Status for all Objects in the Search room to have a clean
-	 * start or to have a new identification of outliers with a separate method. As this zeros all
-	 * boolean outlier statuses of all objects associated to this Searchroom and also zeros all
-	 * outlier smooth factors, a current status list should be drawn down and stored somewhere
-	 * before using this method.
-	 * 
-	 * ATTN: As this only uses references to Objects associated to a Searchroom, in case more than
-	 * one Searchroom uses a (fraction) range of objects, this might override the results from other
-	 * detections for those objects. But it is encouraged to associate objects to only one
-	 * SearchSpace and use duplications of objects with similar vektors in other SearchRooms.
-	 */
-	public void resetOutlierStatus() {
+    /**
+     * This method resets the Outlier Status for all Objects in the Search room to have a clean
+     * start or to have a new identification of outliers with a separate method. As this zeros all
+     * boolean outlier statuses of all objects associated to this Searchroom and also zeros all
+     * outlier smooth factors, a current status list should be drawn down and stored somewhere
+     * before using this method.
+     * <p>
+     * ATTN: As this only uses references to Objects associated to a Searchroom, in case more than
+     * one Searchroom uses a (fraction) range of objects, this might override the results from other
+     * detections for those objects. But it is encouraged to associate objects to only one
+     * SearchSpace and use duplications of objects with similar vektors in other SearchRooms.
+     */
+    public void resetOutlierStatus() {
 		SearchObject sobject;
 		for (int i = 0; i < this.getNumberOfObjects(); i++) {
 			sobject = this.listOfObjects.elementAt(i); // cast this to SearchObject from Vector
@@ -338,19 +358,24 @@ public class SearchSpace {
 		}
 	}
 
-	/**
-	 * BruteForce Radius Search to determine the outlier status of an object rObject of the type
-	 * SearchObject this method takes d and p as parameters acc. to distance based DB(p,D)-Outlier
-	 * (Knorr, Ng) and identifies an object as being an outlier, if more than a proportion p of the
-	 * objects is more than distance D from rObject away.
-	 * 
-	 * The simplest approach is to make a radius search for rObject and compare its distance to all
-	 * other objects step by step with D (in this case d). If more than M = N(1-p) objects are
-	 * within d, than rObject is not an Outlier, else it is. Although this is an approach with
-	 * O(N^2) for all objects (it is O(N) for rObject), this prunes the search as soon as more than
-	 * M objects are within d from rObject to get some improvement.
-	 */
-	public void radiusODSearch(double d, double p, SearchObject rObject, int kindOfDistance) {
+    /**
+     * BruteForce Radius Search to determine the outlier status of an object rObject of the type
+     * SearchObject this method takes d and p as parameters acc. to distance based DB(p,D)-Outlier
+     * (Knorr, Ng) and identifies an object as being an outlier, if more than a proportion p of the
+     * objects is more than distance D from rObject away.
+     * <p>
+     * The simplest approach is to make a radius search for rObject and compare its distance to all
+     * other objects step by step with D (in this case d). If more than M = N(1-p) objects are
+     * within d, than rObject is not an Outlier, else it is. Although this is an approach with
+     * O(N^2) for all objects (it is O(N) for rObject), this prunes the search as soon as more than
+     * M objects are within d from rObject to get some improvement.
+     *
+     * @param d              the d
+     * @param p              the p
+     * @param rObject        the r object
+     * @param kindOfDistance the kind of distance
+     */
+    public void radiusODSearch(double d, double p, SearchObject rObject, int kindOfDistance) {
 		int number = this.getNumberOfObjects(); // set N (number) to number of Objects in Search
 												// Room
 		long m = Math.round(number * (1 - p)); // set M for Objects in Search room
@@ -377,22 +402,25 @@ public class SearchSpace {
 		 */
 	}
 
-	/**
-	 * This method invokes the class method radiusODSearch on all objects in the SearchSpace
-	 * (associated to this Searchroom via the listOfObjects vektor). radiusODSearch does a brute
-	 * force distance Outlier test based on the parameters d and p for DB(p,d)-Outliers acc. to
-	 * Knorr and Ng's approach to unify statistical Outlier tests. The result of the Outliertest is
-	 * stored in the Objects themselves, e.g. each SearchObject knows its Outlier status (set
-	 * recently, e.g. by this search) and can tell it by using the SearchObject's class method
-	 * getOutlierStatus() (see there!)
-	 * 
-	 * Added feature: prints progress on STDOUT for each 10% segment (app.) one hash "#" is printed
-	 * to show progress if brute force should hit complexity boundaries (e.g. with a lot of
-	 * dimensions as well as lots of objects). This also prints the parameters d and p and N for
-	 * better understanding
-	 * 
-	 */
-	public void allRadiusSearch(double d, double p, int kindOfDistance) {
+    /**
+     * This method invokes the class method radiusODSearch on all objects in the SearchSpace
+     * (associated to this Searchroom via the listOfObjects vektor). radiusODSearch does a brute
+     * force distance Outlier test based on the parameters d and p for DB(p,d)-Outliers acc. to
+     * Knorr and Ng's approach to unify statistical Outlier tests. The result of the Outliertest is
+     * stored in the Objects themselves, e.g. each SearchObject knows its Outlier status (set
+     * recently, e.g. by this search) and can tell it by using the SearchObject's class method
+     * getOutlierStatus() (see there!)
+     * <p>
+     * Added feature: prints progress on STDOUT for each 10% segment (app.) one hash "#" is printed
+     * to show progress if brute force should hit complexity boundaries (e.g. with a lot of
+     * dimensions as well as lots of objects). This also prints the parameters d and p and N for
+     * better understanding
+     *
+     * @param d              the d
+     * @param p              the p
+     * @param kindOfDistance the kind of distance
+     */
+    public void allRadiusSearch(double d, double p, int kindOfDistance) {
 		int n = this.getNumberOfObjects();
 		int segment = 10;
 		for (int i = 0; i < n; i++) {
@@ -406,25 +434,26 @@ public class SearchSpace {
 		}
 	}
 
-	/**
-	 * Returns the average distances measures for the objects in the SearchSpace, calculating:
-	 * 
-	 * <p>
-	 * mean distance
-	 * <p>
-	 * standard deviation
-	 * <p>
-	 * variance
-	 * 
-	 * The calculation is time consuming and should only be invoked if the data set is parsed for
-	 * the first time (to get a feeling on it for statistical choices of parameters p and d for e.g.
-	 * DB(p,d)-Outliers). It parses the objects matrix upper half to build an array of distances
-	 * between objects (without doubling and without the distances of objects to themselves) which
-	 * should be (n^2-n)/2 distances of value.
-	 * 
-	 * @return double[3] of mean, variance and standard deviation
-	 */
-	public double[] getAverageDistanceMeasures(int kindOfDistance) {
+    /**
+     * Returns the average distances measures for the objects in the SearchSpace, calculating:
+     * <p>
+     * <p>
+     * mean distance
+     * <p>
+     * standard deviation
+     * <p>
+     * variance
+     * <p>
+     * The calculation is time consuming and should only be invoked if the data set is parsed for
+     * the first time (to get a feeling on it for statistical choices of parameters p and d for e.g.
+     * DB(p,d)-Outliers). It parses the objects matrix upper half to build an array of distances
+     * between objects (without doubling and without the distances of objects to themselves) which
+     * should be (n^2-n)/2 distances of value.
+     *
+     * @param kindOfDistance the kind of distance
+     * @return double[3] of mean, variance and standard deviation
+     */
+    public double[] getAverageDistanceMeasures(int kindOfDistance) {
 		double meanDistance = 0; // mean distance between objects in the SearchSpace
 		double standardDeviationOfDistance = 0; // standard deviation of objects in the SearchSpace
 		double varianceOfDistance = 0; // variance of distance in the SearchSpace
@@ -458,20 +487,19 @@ public class SearchSpace {
 		return distMeasures;
 	}
 
-	/**
-	 * Returns the average LOF measures for the objects in the SearchSpace, calculating:
-	 * 
-	 * <p>
-	 * mean LOF
-	 * <p>
-	 * standard deviation
-	 * <p>
-	 * variance
-	 * 
-	 * 
-	 * @return double[3] of mean, variance and standard deviation
-	 */
-	public double[] getAverageLOFMeasures() {
+    /**
+     * Returns the average LOF measures for the objects in the SearchSpace, calculating:
+     * <p>
+     * <p>
+     * mean LOF
+     * <p>
+     * standard deviation
+     * <p>
+     * variance
+     *
+     * @return double[3] of mean, variance and standard deviation
+     */
+    public double[] getAverageLOFMeasures() {
 		double meanLOF = 0; // mean LOF of objects in the SearchSpace
 		double standardDeviationOfLOF = 0; // standard deviation of Lof of objects in the
 											// SearchSpace
@@ -499,11 +527,13 @@ public class SearchSpace {
 		return lofMeasures;
 	}
 
-	/**
-	 * This method returns the maximum Outlier Factor of all SearchObjects in the SearchSpace. Attn:
-	 * Due to initializing, the outlier factors should be greater or equal to zero.
-	 */
-	public double getMaximumOutlierFactor() {
+    /**
+     * This method returns the maximum Outlier Factor of all SearchObjects in the SearchSpace. Attn:
+     * Due to initializing, the outlier factors should be greater or equal to zero.
+     *
+     * @return the maximum outlier factor
+     */
+    public double getMaximumOutlierFactor() {
 		double maxOutlierFactor = 0;
 		for (int i = 0; i < this.getNumberOfObjects(); i++) {
 			SearchObject so = this.getObject(i);
@@ -514,24 +544,25 @@ public class SearchSpace {
 		return maxOutlierFactor;
 	}
 
-	/**
-	 * <p>
-	 * This method processes a sequential search over the SearchSpace for a SearchObject so (named p
-	 * here to be in line with the literature).
-	 * </p>
-	 * 
-	 * <p>
-	 * As a result of the search a structure of k-distance-Containers is build and listed within the
-	 * SearchObject. Each container for a distance of an object or a number of objects o in relation
-	 * to p is filled with all the objects within that distance. The containers are sorted in a
-	 * linked list in the SearchObject by increasing distance. Just imagine it like p being a
-	 * submarine sending a ping and listing all echos in radiuses (=distance) with the echos stored
-	 * in a band (=container) if they are on the same radius.
-	 * </p>
-	 * 
-	 * @param so
-	 */
-	public void findKdistanceContainers(SearchObject so, int kindOfDistance) {
+    /**
+     * <p>
+     * This method processes a sequential search over the SearchSpace for a SearchObject so (named p
+     * here to be in line with the literature).
+     * </p>
+     * <p>
+     * <p>
+     * As a result of the search a structure of k-distance-Containers is build and listed within the
+     * SearchObject. Each container for a distance of an object or a number of objects o in relation
+     * to p is filled with all the objects within that distance. The containers are sorted in a
+     * linked list in the SearchObject by increasing distance. Just imagine it like p being a
+     * submarine sending a ping and listing all echos in radiuses (=distance) with the echos stored
+     * in a band (=container) if they are on the same radius.
+     * </p>
+     *
+     * @param so             the so
+     * @param kindOfDistance the kind of distance
+     */
+    public void findKdistanceContainers(SearchObject so, int kindOfDistance) {
 		SearchObject obj; // an iterator reference for the i-th object
 		double distance; // the distance between the so object and the obj object
 		ListIterator<KdistanceContainer> li; // an iterator over the list of containers for so
@@ -601,18 +632,15 @@ public class SearchSpace {
 		} // continue with the for-loop and take the next object from the Searchroom
 	}
 
-	/**
-	 * Finds and fills all K distance containers for all objects in the Search Room by invoking the
-	 * process of finding all k distance containers for one Search Object.
-	 * 
-	 * @param kindOfDistance
-	 * @param operator
-	 *            if this is NOT <code>null</code>, will call {@link Operator#checkForStop()}.
-	 * @throws ProcessStoppedException
-	 *             only if the the operator parameter was not <code>null</code> and a stop request
-	 *             was issued
-	 */
-	public void findAllKdContainers(int kindOfDistance, Operator operator) throws ProcessStoppedException {
+    /**
+     * Finds and fills all K distance containers for all objects in the Search Room by invoking the
+     * process of finding all k distance containers for one Search Object.
+     *
+     * @param kindOfDistance the kind of distance
+     * @param operator       if this is NOT <code>null</code>, will call {@link Operator#checkForStop()}.
+     * @throws ProcessStoppedException only if the the operator parameter was not <code>null</code> and a stop request             was issued
+     */
+    public void findAllKdContainers(int kindOfDistance, Operator operator) throws ProcessStoppedException {
 		for (int i = 0; i < this.getNumberOfObjects(); i++) {
 			if (operator != null) {
 				operator.checkForStop();
@@ -621,26 +649,23 @@ public class SearchSpace {
 		}
 	}
 
-	/**
-	 * <p>
-	 * Some deeper magic to compute all the LOFs for the objects in the searchroom up to MinPtsUB =
-	 * kMax! The LOF output is only done up from kMin!
-	 * </p>
-	 * 
-	 * <p>
-	 * This one is heavily documented in the source, so if you are interested on how it is done,
-	 * have a look at the source for the method.
-	 * </p>
-	 * 
-	 * @param kMin
-	 * @param kMax
-	 * @param operator
-	 *            if this is NOT <code>null</code>, will call {@link Operator#checkForStop()}.
-	 * @throws ProcessStoppedException
-	 *             only if the the operator parameter was not <code>null</code> and a stop request
-	 *             was issued
-	 */
-	public void computeLOF(int kMin, int kMax, Operator operator) throws ProcessStoppedException {
+    /**
+     * <p>
+     * Some deeper magic to compute all the LOFs for the objects in the searchroom up to MinPtsUB =
+     * kMax! The LOF output is only done up from kMin!
+     * </p>
+     * <p>
+     * <p>
+     * This one is heavily documented in the source, so if you are interested on how it is done,
+     * have a look at the source for the method.
+     * </p>
+     *
+     * @param kMin     the k min
+     * @param kMax     the k max
+     * @param operator if this is NOT <code>null</code>, will call {@link Operator#checkForStop()}.
+     * @throws ProcessStoppedException only if the the operator parameter was not <code>null</code> and a stop request             was issued
+     */
+    public void computeLOF(int kMin, int kMax, Operator operator) throws ProcessStoppedException {
 		/*
 		 * What we do in this step is (1) to scan the k-distance containers for all objects to find
 		 * the k-distances for that object and to store it in the object's array
@@ -889,23 +914,20 @@ public class SearchSpace {
 		} // all objects conducted
 	}
 
-	/**
-	 * This function computes the D^k_n Outliers according to Ramaswamy, Rastogi and Shim which
-	 * computes the top-n D^k-Outliers, the outliers (= objects) with the maximum distance to the
-	 * k-th nearest neighbors.
-	 * 
-	 * Please be aware that this function requires the findAllKdContainers method has to be run
-	 * first, else it will simply stop or will not work.
-	 * 
-	 * @param dk
-	 * @param n
-	 * @param operator
-	 *            if this is NOT <code>null</code>, will call {@link Operator#checkForStop()}.
-	 * @throws ProcessStoppedException
-	 *             only if the the operator parameter was not <code>null</code> and a stop request
-	 *             was issued
-	 */
-	public void computeDKN(int dk, int n, Operator operator) throws ProcessStoppedException {
+    /**
+     * This function computes the D^k_n Outliers according to Ramaswamy, Rastogi and Shim which
+     * computes the top-n D^k-Outliers, the outliers (= objects) with the maximum distance to the
+     * k-th nearest neighbors.
+     * <p>
+     * Please be aware that this function requires the findAllKdContainers method has to be run
+     * first, else it will simply stop or will not work.
+     *
+     * @param dk       the dk
+     * @param n        the n
+     * @param operator if this is NOT <code>null</code>, will call {@link Operator#checkForStop()}.
+     * @throws ProcessStoppedException only if the the operator parameter was not <code>null</code> and a stop request             was issued
+     */
+    public void computeDKN(int dk, int n, Operator operator) throws ProcessStoppedException {
 		Vector<SearchObject> listofDKNcandidates = new Vector<>();
 		int minDKNdistindex = 0;
 		double minD = 0;

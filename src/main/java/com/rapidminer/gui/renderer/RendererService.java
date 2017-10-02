@@ -55,7 +55,7 @@ import com.rapidminer.tools.WebServiceTools;
  * which want to provide a Renderer for visualization and reporting must place an entry in the
  * <code>ioobjects.xml</xml> file in order to allow
  * for renderer retrieval.
- * 
+ *
  * @author Ingo Mierswa, Nils Woehler
  */
 public class RendererService {
@@ -66,16 +66,32 @@ public class RendererService {
 		private final String iconName;
 		private final Icon icon;
 
-		public IconData(String iconName, Icon icon) {
+        /**
+         * Instantiates a new Icon data.
+         *
+         * @param iconName the icon name
+         * @param icon     the icon
+         */
+        public IconData(String iconName, Icon icon) {
 			this.iconName = iconName;
 			this.icon = icon;
 		}
 
-		public Icon getIcon() {
+        /**
+         * Gets icon.
+         *
+         * @return the icon
+         */
+        public Icon getIcon() {
 			return icon;
 		}
 
-		public String getIconName() {
+        /**
+         * Gets icon name.
+         *
+         * @return the icon name
+         */
+        public String getIconName() {
 			return iconName;
 		}
 	}
@@ -106,21 +122,42 @@ public class RendererService {
 
 	private static boolean isInitialized = false;
 
-	public static void init() {
+    /**
+     * Init.
+     */
+    public static void init() {
 		URL url = Tools.getResource("ioobjects.xml");
 		init(url);
 		init("ioobjects.xml", url, RendererService.class.getClassLoader());
 	}
 
-	public static void init(URL ioObjectsURL) {
+    /**
+     * Init.
+     *
+     * @param ioObjectsURL the io objects url
+     */
+    public static void init(URL ioObjectsURL) {
 		init(ioObjectsURL.getFile(), ioObjectsURL, RendererService.class.getClassLoader());
 	}
 
-	public static void init(String name, InputStream in) {
+    /**
+     * Init.
+     *
+     * @param name the name
+     * @param in   the in
+     */
+    public static void init(String name, InputStream in) {
 		init(name, in, RendererService.class.getClassLoader());
 	}
 
-	public static void init(String name, URL ioObjectsURL, ClassLoader classLoader) {
+    /**
+     * Init.
+     *
+     * @param name         the name
+     * @param ioObjectsURL the io objects url
+     * @param classLoader  the class loader
+     */
+    public static void init(String name, URL ioObjectsURL, ClassLoader classLoader) {
 		InputStream in = null;
 		try {
 			if (ioObjectsURL != null) {
@@ -146,7 +183,14 @@ public class RendererService {
 		}
 	}
 
-	public static void init(String rendererFileName, InputStream in, ClassLoader classLoader) {
+    /**
+     * Init.
+     *
+     * @param rendererFileName the renderer file name
+     * @param in               the in
+     * @param classLoader      the class loader
+     */
+    public static void init(String rendererFileName, InputStream in, ClassLoader classLoader) {
 		LogService.getRoot().log(Level.CONFIG, "com.rapidminer.gui.renderer.RendererService.loading_renderers",
 				rendererFileName);
 		try {
@@ -220,18 +264,34 @@ public class RendererService {
 
 	}
 
-	/**
-	 * This method remains for compatibility reasons. But one should use
-	 * {@link #registerRenderers(String, String, boolean, String, List, ClassLoader)} in order to
-	 * assign an icon to the ioobject class.
-	 */
-	@Deprecated
+    /**
+     * This method remains for compatibility reasons. But one should use
+     * {@link #registerRenderers(String, String, boolean, String, List, ClassLoader)} in order to
+     * assign an icon to the ioobject class.
+     *
+     * @param reportableNames    the reportable names
+     * @param className          the class name
+     * @param reportable         the reportable
+     * @param rendererClassNames the renderer class names
+     * @param classLoader        the class loader
+     */
+    @Deprecated
 	public static void registerRenderers(String reportableNames, String className, boolean reportable,
 			List<String> rendererClassNames, ClassLoader classLoader) {
 		registerRenderers(reportableNames, className, reportable, null, rendererClassNames, classLoader);
 	}
 
-	@SuppressWarnings("unchecked")
+    /**
+     * Register renderers.
+     *
+     * @param reportableName     the reportable name
+     * @param className          the class name
+     * @param reportable         the reportable
+     * @param iconName           the icon name
+     * @param rendererClassNames the renderer class names
+     * @param classLoader        the class loader
+     */
+    @SuppressWarnings("unchecked")
 	public static void registerRenderers(String reportableName, String className, boolean reportable, String iconName,
 			List<String> rendererClassNames, ClassLoader classLoader) {
 		objectNames.add(reportableName);
@@ -283,11 +343,21 @@ public class RendererService {
 		}
 	}
 
-	public static Set<String> getAllRenderableObjectNames() {
+    /**
+     * Gets all renderable object names.
+     *
+     * @return the all renderable object names
+     */
+    public static Set<String> getAllRenderableObjectNames() {
 		return objectNames;
 	}
 
-	public static Set<String> getAllReportableObjectNames() {
+    /**
+     * Gets all reportable object names.
+     *
+     * @return the all reportable object names
+     */
+    public static Set<String> getAllReportableObjectNames() {
 		Set<String> result = new TreeSet<>();
 		for (String name : objectNames) {
 			if (reportableMap.contains(name)) {
@@ -297,13 +367,13 @@ public class RendererService {
 		return result;
 	}
 
-	/**
-	 * Returns the Reportable name for objects of the given class.
-	 *
-	 * @return the name of the IOObject as specified in the ioobjectsXXX.xml file. Returns null if
-	 *         the object is not registered
-	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+    /**
+     * Returns the Reportable name for objects of the given class.
+     *
+     * @param clazz the clazz
+     * @return the name of the IOObject as specified in the ioobjectsXXX.xml file. Returns null if         the object is not registered
+     */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
 	public static String getName(Class<?> clazz) {
 		String result = class2NameMap.get(clazz);
 		if (result == null) {
@@ -319,26 +389,35 @@ public class RendererService {
 		return result;
 	}
 
-	/**
-	 * This returns the highest super class of the report type with the given reportable name.
-	 */
-	public static Class<? extends IOObject> getClass(String reportableName) {
+    /**
+     * This returns the highest super class of the report type with the given reportable name.
+     *
+     * @param reportableName the reportable name
+     * @return the class
+     */
+    public static Class<? extends IOObject> getClass(String reportableName) {
 		return objectClassesByReportableName.get(reportableName);
 	}
 
-	/**
-	 * This returns the highest super class of the report type with the given class name.
-	 */
-	public static Class<? extends IOObject> getClassByClassName(String className) {
+    /**
+     * This returns the highest super class of the report type with the given class name.
+     *
+     * @param className the class name
+     * @return the class by class name
+     */
+    public static Class<? extends IOObject> getClassByClassName(String className) {
 		return objectClassesByClassName.get(className);
 	}
 
-	/**
-	 * Returns a list of renderers defined for this IOObject name (as returned by
-	 * {@link #getName(Class)} for the respective object). It is recommended to use
-	 * {@link #getRenderers(IOObject)} instead.
-	 * */
-	public static List<Renderer> getRenderers(String reportableName) {
+    /**
+     * Returns a list of renderers defined for this IOObject name (as returned by
+     * {@link #getName(Class)} for the respective object). It is recommended to use
+     * {@link #getRenderers(IOObject)} instead.
+     *
+     * @param reportableName the reportable name
+     * @return the renderers
+     */
+    public static List<Renderer> getRenderers(String reportableName) {
 		List<Renderer> renderers = objectRenderers.get(reportableName);
 		if (renderers != null) {
 			return renderers;
@@ -346,13 +425,25 @@ public class RendererService {
 		return new LinkedList<>();
 	}
 
-	/** Returns a list of shared (i.e. not thread-safe!) renderers defined for this IOObject. */
-	public static List<Renderer> getRenderers(IOObject ioo) {
+    /**
+     * Returns a list of shared (i.e. not thread-safe!) renderers defined for this IOObject.  @param ioo the ioo
+     *
+     * @param ioo the ioo
+     * @return the renderers
+     */
+    public static List<Renderer> getRenderers(IOObject ioo) {
 		String reportableName = RendererService.getName(ioo.getClass());
 		return getRenderers(reportableName);
 	}
 
-	public static Renderer getRenderer(String reportableName, String rendererName) {
+    /**
+     * Gets renderer.
+     *
+     * @param reportableName the reportable name
+     * @param rendererName   the renderer name
+     * @return the renderer
+     */
+    public static Renderer getRenderer(String reportableName, String rendererName) {
 		List<Renderer> renderers = getRenderers(reportableName);
 		for (Renderer renderer : renderers) {
 			if (renderer.getName().equals(rendererName)) {
@@ -362,19 +453,25 @@ public class RendererService {
 		return null;
 	}
 
-	/**
-	 * This returns the icon registered for the given class or a default icon, if nothing has been
-	 * registered.
-	 */
-	public static Icon getIcon(Class<? extends IOObject> objectClass) {
+    /**
+     * This returns the icon registered for the given class or a default icon, if nothing has been
+     * registered.
+     *
+     * @param objectClass the object class
+     * @return the icon
+     */
+    public static Icon getIcon(Class<? extends IOObject> objectClass) {
 		return getIconData(objectClass).getIcon();
 	}
 
-	/**
-	 * This returns the icon name registered for the given class or a default icon, if nothing has
-	 * been registered.
-	 */
-	public static String getIconName(Class<? extends IOObject> objectClass) {
+    /**
+     * This returns the icon name registered for the given class or a default icon, if nothing has
+     * been registered.
+     *
+     * @param objectClass the object class
+     * @return the icon name
+     */
+    public static String getIconName(Class<? extends IOObject> objectClass) {
 		return getIconData(objectClass).getIconName();
 	}
 
@@ -395,13 +492,16 @@ public class RendererService {
 		return icon;
 	}
 
-	/**
-	 * Creates a new renderer for the given object.
-	 * 
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
-	 */
-	public static Renderer createRenderer(IOObject ioobject, String rendererName) {
+    /**
+     * Creates a new renderer for the given object.
+     *
+     * @param ioobject     the ioobject
+     * @param rendererName the renderer name
+     * @return the renderer
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     */
+    public static Renderer createRenderer(IOObject ioobject, String rendererName) {
 		String reportableName = getName(ioobject.getClass());
 		Map<String, Class<? extends Renderer>> rendererClassMap = rendererNameToRendererClasses.get(reportableName);
 		if (rendererClassMap == null) {
@@ -418,11 +518,13 @@ public class RendererService {
 		}
 	}
 
-	/**
-	 * This returns whether the {@link RendererService} has already been initialized at least once.
-	 * This holds true even if only the core objects have been registered.
-	 */
-	public static boolean isInitialized() {
+    /**
+     * This returns whether the {@link RendererService} has already been initialized at least once.
+     * This holds true even if only the core objects have been registered.
+     *
+     * @return the boolean
+     */
+    public static boolean isInitialized() {
 		return isInitialized;
 	}
 }

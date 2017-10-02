@@ -34,7 +34,6 @@ import com.rapidminer.tools.ProgressListener;
  * TableModel is available.
  *
  * @author Simon Fischer
- *
  */
 public class DefaultPreview extends AbstractTableModel {
 
@@ -52,11 +51,27 @@ public class DefaultPreview extends AbstractTableModel {
 	 */
 	private static final int CELL_MAX_LENGTH = 100;
 
-	public DefaultPreview(DataResultSet resultSet, ProgressListener l) throws OperatorException, ParseException {
+    /**
+     * Instantiates a new Default preview.
+     *
+     * @param resultSet the result set
+     * @param l         the l
+     * @throws OperatorException the operator exception
+     * @throws ParseException    the parse exception
+     */
+    public DefaultPreview(DataResultSet resultSet, ProgressListener l) throws OperatorException, ParseException {
 		read(resultSet, l);
 	}
 
-	public void read(DataResultSet resultSet, ProgressListener listener) throws OperatorException, ParseException {
+    /**
+     * Read.
+     *
+     * @param resultSet the result set
+     * @param listener  the listener
+     * @throws OperatorException the operator exception
+     * @throws ParseException    the parse exception
+     */
+    public void read(DataResultSet resultSet, ProgressListener listener) throws OperatorException, ParseException {
 		if (listener != null) {
 			listener.setTotal(previewSize);
 		}
@@ -116,16 +131,14 @@ public class DefaultPreview extends AbstractTableModel {
 		}
 	}
 
-	/**
-	 * Shortens the provided value to a maximum length of {@link #CELL_MAX_LENGTH} so we do not run
-	 * into any displaying issues.
-	 *
-	 * @param displayValue
-	 *            the value to be shortened. Can be <code>null</code>.
-	 * @return the full value of length below {@link #CELL_MAX_LENGTH} or a value with only
-	 *         {@link #CELL_MAX_LENGTH} characters
-	 */
-	public static final String shortenDisplayValue(String displayValue) {
+    /**
+     * Shortens the provided value to a maximum length of {@link #CELL_MAX_LENGTH} so we do not run
+     * into any displaying issues.
+     *
+     * @param displayValue the value to be shortened. Can be <code>null</code>.
+     * @return the full value of length below {@link #CELL_MAX_LENGTH} or a value with only         {@link #CELL_MAX_LENGTH} characters
+     */
+    public static final String shortenDisplayValue(String displayValue) {
 		if (displayValue != null && displayValue.length() > CELL_MAX_LENGTH) {
 			// chop text and end with "..."
 			return displayValue.substring(0, CELL_MAX_LENGTH - 1) + "\u2026";

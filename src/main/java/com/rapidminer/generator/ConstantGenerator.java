@@ -32,20 +32,31 @@ import java.util.List;
 /**
  * Generates a constant attribute. The format is &quot;const[value]()&quot; for the
  * {@link com.rapidminer.operator.features.construction.FeatureGenerationOperator} operator.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class ConstantGenerator extends FeatureGenerator {
 
-	public static final String FUNCTION_NAME = "const";
+    /**
+     * The constant FUNCTION_NAME.
+     */
+    public static final String FUNCTION_NAME = "const";
 
 	private double constant = 1.0d;
 
 	private String constantString = "1";
 
-	public ConstantGenerator() {}
+    /**
+     * Instantiates a new Constant generator.
+     */
+    public ConstantGenerator() {}
 
-	public ConstantGenerator(double constant) {
+    /**
+     * Instantiates a new Constant generator.
+     *
+     * @param constant the constant
+     */
+    public ConstantGenerator(double constant) {
 		this.constant = constant;
 		this.constantString = constant + "";
 	}

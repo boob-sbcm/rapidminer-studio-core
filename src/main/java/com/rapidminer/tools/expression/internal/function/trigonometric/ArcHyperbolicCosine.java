@@ -25,15 +25,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric arc hyperbolic cosine of an angle.
  *
  * @author Denis Schernov
- *
  */
 public class ArcHyperbolicCosine extends Abstract1DoubleInputFunction {
 
-	public ArcHyperbolicCosine() {
+    /**
+     * Instantiates a new Arc hyperbolic cosine.
+     */
+    public ArcHyperbolicCosine() {
 		super("trigonometrical.acosh", Ontology.NUMERICAL);
 	}
 

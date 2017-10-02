@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for response complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="response">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "response", propOrder = {
@@ -50,16 +48,19 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Response {
 
+    /**
+     * The Error message.
+     */
     protected String errorMessage;
+    /**
+     * The Status.
+     */
     protected int status;
 
     /**
      * Gets the value of the errorMessage property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getErrorMessage() {
         return errorMessage;
@@ -67,11 +68,8 @@ public class Response {
 
     /**
      * Sets the value of the errorMessage property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setErrorMessage(String value) {
         this.errorMessage = value;
@@ -79,7 +77,8 @@ public class Response {
 
     /**
      * Gets the value of the status property.
-     * 
+     *
+     * @return the status
      */
     public int getStatus() {
         return status;
@@ -87,7 +86,8 @@ public class Response {
 
     /**
      * Sets the value of the status property.
-     * 
+     *
+     * @param value the value
      */
     public void setStatus(int value) {
         this.status = value;

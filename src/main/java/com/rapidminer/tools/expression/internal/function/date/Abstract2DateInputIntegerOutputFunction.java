@@ -36,11 +36,16 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * function can has time zone and locale information as optional arguments.
  *
  * @author David Arnu
- *
  */
 public abstract class Abstract2DateInputIntegerOutputFunction extends AbstractFunction {
 
-	public Abstract2DateInputIntegerOutputFunction(String i18nKey, int numberOfArgumentsToCheck) {
+    /**
+     * Instantiates a new Abstract 2 date input integer output function.
+     *
+     * @param i18nKey                  the 18 n key
+     * @param numberOfArgumentsToCheck the number of arguments to check
+     */
+    public Abstract2DateInputIntegerOutputFunction(String i18nKey, int numberOfArgumentsToCheck) {
 		super(i18nKey, numberOfArgumentsToCheck, Ontology.INTEGER);
 	}
 
@@ -65,7 +70,16 @@ public abstract class Abstract2DateInputIntegerOutputFunction extends AbstractFu
 
 	}
 
-	protected DoubleCallable makeDoubleCallable(ExpressionEvaluator left, ExpressionEvaluator right,
+    /**
+     * Make double callable double callable.
+     *
+     * @param left     the left
+     * @param right    the right
+     * @param locale   the locale
+     * @param timeZone the time zone
+     * @return the double callable
+     */
+    protected DoubleCallable makeDoubleCallable(ExpressionEvaluator left, ExpressionEvaluator right,
 			ExpressionEvaluator locale, ExpressionEvaluator timeZone) {
 
 		final Callable<Date> funcLeft = left.getDateFunction();
@@ -189,21 +203,17 @@ public abstract class Abstract2DateInputIntegerOutputFunction extends AbstractFu
 		}
 	}
 
-	/**
-	 * Computes the result for two input date values with additional optional locale and time zone
-	 * arguments.
-	 *
-	 * @param left
-	 *            first date
-	 * @param right
-	 *            second date
-	 * @param valueLocale
-	 *            locale string, can be null
-	 * @param valueTimezone
-	 *            time zone string, can be null
-	 * @return the result of the computation.
-	 */
-	protected abstract double compute(Date left, Date right, String valueLocale, String valueTimezone);
+    /**
+     * Computes the result for two input date values with additional optional locale and time zone
+     * arguments.
+     *
+     * @param left          first date
+     * @param right         second date
+     * @param valueLocale   locale string, can be null
+     * @param valueTimezone time zone string, can be null
+     * @return the result of the computation.
+     */
+    protected abstract double compute(Date left, Date right, String valueLocale, String valueTimezone);
 
 	@Override
 	protected ExpressionType computeType(ExpressionType... inputTypes) {

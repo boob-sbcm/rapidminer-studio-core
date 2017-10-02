@@ -33,9 +33,8 @@ import java.util.List;
 /**
  * A plot instance, composed from a {@link PlotConfiguration} and {@link PlotData}. Can be used by a
  * {@link PlotEngine} to create a chart.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class PlotInstance implements PlotConfigurationListener {
 
@@ -44,7 +43,13 @@ public class PlotInstance implements PlotConfigurationListener {
 	private MasterOfDesaster masterOfDesaster;
 	private PlotConfiguration currentPlotConfigurationClone;
 
-	public PlotInstance(PlotConfiguration plotConfiguration, DataTable dataTable) {
+    /**
+     * Instantiates a new Plot instance.
+     *
+     * @param plotConfiguration the plot configuration
+     * @param dataTable         the data table
+     */
+    public PlotInstance(PlotConfiguration plotConfiguration, DataTable dataTable) {
 		this.masterOfDesaster = new MasterOfDesaster();
 		this.masterPlotConfiguration = plotConfiguration;
 
@@ -57,45 +62,90 @@ public class PlotInstance implements PlotConfigurationListener {
 		plotData = new PlotData(this, dataTable);
 	}
 
-	public PlotConfiguration getCurrentPlotConfigurationClone() {
+    /**
+     * Gets current plot configuration clone.
+     *
+     * @return the current plot configuration clone
+     */
+    public PlotConfiguration getCurrentPlotConfigurationClone() {
 		return currentPlotConfigurationClone;
 	}
 
-	public PlotConfiguration getMasterPlotConfiguration() {
+    /**
+     * Gets master plot configuration.
+     *
+     * @return the master plot configuration
+     */
+    public PlotConfiguration getMasterPlotConfiguration() {
 		return masterPlotConfiguration;
 	}
 
-	public PlotData getPlotData() {
+    /**
+     * Gets plot data.
+     *
+     * @return the plot data
+     */
+    public PlotData getPlotData() {
 		return plotData;
 	}
 
-	public void setPlotData(PlotData plotData) {
+    /**
+     * Sets plot data.
+     *
+     * @param plotData the plot data
+     */
+    public void setPlotData(PlotData plotData) {
 		this.plotData = plotData;
 	}
 
-	public MasterOfDesaster getMasterOfDesaster() {
+    /**
+     * Gets master of desaster.
+     *
+     * @return the master of desaster
+     */
+    public MasterOfDesaster getMasterOfDesaster() {
 		return masterOfDesaster;
 	}
 
-	public List<PlotConfigurationError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<PlotConfigurationError> getErrors() {
 		List<PlotConfigurationError> errorList = new LinkedList<PlotConfigurationError>();
 		errorList.addAll(currentPlotConfigurationClone.getErrors());
 		errorList.addAll(plotData.getErrors());
 		return errorList;
 	}
 
-	public List<PlotConfigurationError> getWarnings() {
+    /**
+     * Gets warnings.
+     *
+     * @return the warnings
+     */
+    public List<PlotConfigurationError> getWarnings() {
 		List<PlotConfigurationError> warnings = new LinkedList<PlotConfigurationError>();
 		warnings.addAll(currentPlotConfigurationClone.getWarnings());
 		warnings.addAll(plotData.getWarnings());
 		return warnings;
 	}
 
-	public boolean isValid() {
+    /**
+     * Is valid boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isValid() {
 		return currentPlotConfigurationClone.isValid() && plotData.isValid();
 	}
 
-	public boolean hasWarnings() {
+    /**
+     * Has warnings boolean.
+     *
+     * @return the boolean
+     */
+    public boolean hasWarnings() {
 		return currentPlotConfigurationClone.getWarnings().size() > 0 || plotData.getWarnings().size() > 0;
 	}
 
@@ -105,7 +155,10 @@ public class PlotInstance implements PlotConfigurationListener {
 		return true;
 	}
 
-	public void triggerReplot() {
+    /**
+     * Trigger replot.
+     */
+    public void triggerReplot() {
 		this.masterPlotConfiguration.triggerReplot();
 	}
 }

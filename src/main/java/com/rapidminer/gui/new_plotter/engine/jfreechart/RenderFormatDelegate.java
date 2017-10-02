@@ -48,19 +48,18 @@ import java.util.Vector;
 
 /**
  * Provides item formatting like color, shape etc. for rendering.
- * 
+ * <p>
  * Colors: There are two possibilities: either, a series color can be set which is returned for all
  * items in a series. Alternatively a series ColorProvider can be set, which is then used to
  * retrieve colors for each value in each series. To retrieve colors for values, this class must be
  * able to access the values. Thus, if a ColorProvider for a series is set, also the series values
  * must be set via setSeriesValues().
- * 
+ * <p>
  * If a series color is set, it has precedence over a ColorProvider for the same series.
- * 
+ * <p>
  * The same applies for Shapes.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class RenderFormatDelegate implements SeriesFormatListener {
 
@@ -82,20 +81,32 @@ public class RenderFormatDelegate implements SeriesFormatListener {
 	private Vector<double[]> selectedValues;
 	private SizeProvider sizeProvider;
 
-	public RenderFormatDelegate() {
+    /**
+     * Instantiates a new Render format delegate.
+     */
+    public RenderFormatDelegate() {
 		super();
 		this.groupCellKeysBySeriesIdx = null;
 	}
 
-	public RenderFormatDelegate(ValueSourceData valueSourceData, PlotInstance plotInstance) {
+    /**
+     * Instantiates a new Render format delegate.
+     *
+     * @param valueSourceData the value source data
+     * @param plotInstance    the plot instance
+     */
+    public RenderFormatDelegate(ValueSourceData valueSourceData, PlotInstance plotInstance) {
 		super();
 		setConfiguration(valueSourceData, plotInstance);
 	}
 
-	/**
-	 * If a series color for seriesIdx is set, returns that color. Otherwise returns null.
-	 */
-	public Paint getSeriesFillPaint(int seriesIdx) {
+    /**
+     * If a series color for seriesIdx is set, returns that color. Otherwise returns null.
+     *
+     * @param seriesIdx the series idx
+     * @return the series fill paint
+     */
+    public Paint getSeriesFillPaint(int seriesIdx) {
 		if (!individualColorForEachItem) {
 			if (colorProvider != null) {
 				if (seriesColorFromDimensionConfig) {
@@ -114,10 +125,14 @@ public class RenderFormatDelegate implements SeriesFormatListener {
 		}
 	}
 
-	/**
-	 * Returns the paint to be used for drawing the item valueIdx in series seriesIdx.
-	 */
-	public Paint getItemPaint(int seriesIdx, int valueIdx) {
+    /**
+     * Returns the paint to be used for drawing the item valueIdx in series seriesIdx.
+     *
+     * @param seriesIdx the series idx
+     * @param valueIdx  the value idx
+     * @return the item paint
+     */
+    public Paint getItemPaint(int seriesIdx, int valueIdx) {
 		boolean selected = isItemSelected(seriesIdx, valueIdx);
 		if (!individualColorForEachItem) {
 			if (colorProvider != null) {
@@ -160,15 +175,15 @@ public class RenderFormatDelegate implements SeriesFormatListener {
 		}
 	}
 
-	/**
-	 * Returns if the given item is selected (aka value of 1 in the {@link PlotDimension#SELECTED}
-	 * column)
-	 * 
-	 * @param seriesIdx
-	 * @param valueIdx
-	 * @return
-	 */
-	public boolean isItemSelected(int seriesIdx, int valueIdx) {
+    /**
+     * Returns if the given item is selected (aka value of 1 in the {@link PlotDimension#SELECTED}
+     * column)
+     *
+     * @param seriesIdx the series idx
+     * @param valueIdx  the value idx
+     * @return boolean boolean
+     */
+    public boolean isItemSelected(int seriesIdx, int valueIdx) {
 		double selectedValue = getItemValue(seriesIdx, PlotDimension.SELECTED, valueIdx);
 		boolean selected = (selectedValue == 1) ? true : false;
 		return selected;
@@ -190,7 +205,14 @@ public class RenderFormatDelegate implements SeriesFormatListener {
 		}
 	}
 
-	public Shape getItemShape(int seriesIdx, int valueIdx) {
+    /**
+     * Gets item shape.
+     *
+     * @param seriesIdx the series idx
+     * @param valueIdx  the value idx
+     * @return the item shape
+     */
+    public Shape getItemShape(int seriesIdx, int valueIdx) {
 		// get shape
 		Shape shape;
 		if (!individualShapeForEachItem) {
@@ -248,16 +270,13 @@ public class RenderFormatDelegate implements SeriesFormatListener {
 		return shape;
 	}
 
-	/**
-	 * Sets the configuration of this {@link RenderFormatDelegate}. null arguments are not allowed.
-	 * 
-	 * @param valueSourceData
-	 *            The {@link ValueSourceData} for which this {@link RenderFormatDelegate} provides
-	 *            the format.
-	 * @param plotInstance
-	 *            The {@link PlotInstance}.
-	 */
-	public void setConfiguration(ValueSourceData valueSourceData, PlotInstance plotInstance) {
+    /**
+     * Sets the configuration of this {@link RenderFormatDelegate}. null arguments are not allowed.
+     *
+     * @param valueSourceData The {@link ValueSourceData} for which this {@link RenderFormatDelegate} provides            the format.
+     * @param plotInstance    The {@link PlotInstance}.
+     */
+    public void setConfiguration(ValueSourceData valueSourceData, PlotInstance plotInstance) {
 
 		// retrieve colorProvider
 		DefaultDimensionConfig colorDimensionConfig = (DefaultDimensionConfig) plotInstance
@@ -344,11 +363,21 @@ public class RenderFormatDelegate implements SeriesFormatListener {
 		return seriesValues;
 	}
 
-	public void addListener(RenderFormatDelegateChangeListener l) {
+    /**
+     * Add listener.
+     *
+     * @param l the l
+     */
+    public void addListener(RenderFormatDelegateChangeListener l) {
 		listeners.add(l);
 	}
 
-	public void removeListener(RenderFormatDelegateChangeListener l) {
+    /**
+     * Remove listener.
+     *
+     * @param l the l
+     */
+    public void removeListener(RenderFormatDelegateChangeListener l) {
 		listeners.remove(l);
 	}
 
@@ -363,7 +392,13 @@ public class RenderFormatDelegate implements SeriesFormatListener {
 		fireChanged();
 	}
 
-	public Color getSeriesColor(int seriesIdx) {
+    /**
+     * Gets series color.
+     *
+     * @param seriesIdx the series idx
+     * @return the series color
+     */
+    public Color getSeriesColor(int seriesIdx) {
 		if (!individualColorForEachItem) {
 			if (seriesColorFromDimensionConfig) {
 				double colorIdx = getValueOfCurrentRange(seriesIdx, PlotDimension.COLOR);
@@ -381,7 +416,12 @@ public class RenderFormatDelegate implements SeriesFormatListener {
 		}
 	}
 
-	public SeriesFormat getSeriesFormat() {
+    /**
+     * Gets series format.
+     *
+     * @return the series format
+     */
+    public SeriesFormat getSeriesFormat() {
 		return seriesFormat;
 	}
 
@@ -394,7 +434,14 @@ public class RenderFormatDelegate implements SeriesFormatListener {
 		return value;
 	}
 
-	public Paint getItemOutlinePaint(int seriesIdx, int valueIdx) {
+    /**
+     * Gets item outline paint.
+     *
+     * @param seriesIdx the series idx
+     * @param valueIdx  the value idx
+     * @return the item outline paint
+     */
+    public Paint getItemOutlinePaint(int seriesIdx, int valueIdx) {
 		// TODO Auto-generated method stub
 		return null;
 	}

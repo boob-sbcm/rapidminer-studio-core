@@ -29,11 +29,9 @@ import javax.swing.Icon;
 
 
 /**
- * 
  * A {@link Card} that contains a printable component.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class PrintableComponentCard implements Card {
 
@@ -41,7 +39,12 @@ public class PrintableComponentCard implements Card {
 	private final UUID uuid = UUID.randomUUID();
 	private Icon icon;
 
-	public PrintableComponentCard(PrintableComponent component) {
+    /**
+     * Instantiates a new Printable component card.
+     *
+     * @param component the component
+     */
+    public PrintableComponentCard(PrintableComponent component) {
 		this.component = component;
 		this.icon = SwingTools.createIcon("24/" + component.getExportIconName());
 		if (icon == null) {
@@ -71,10 +74,12 @@ public class PrintableComponentCard implements Card {
 		return icon;
 	}
 
-	/**
-	 * @return the {@link PrintableComponent} this card was created for.
-	 */
-	public PrintableComponent getPrintableComponent() {
+    /**
+     * Gets printable component.
+     *
+     * @return the {@link PrintableComponent} this card was created for.
+     */
+    public PrintableComponent getPrintableComponent() {
 		return component;
 	}
 

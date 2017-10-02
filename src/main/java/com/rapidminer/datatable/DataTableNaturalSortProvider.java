@@ -29,16 +29,27 @@ import java.util.List;
 /**
  * A sort provider which sorts the rows based on the values of one column. Nominal values are sorted
  * by the string values, all other column types use the double values for sorting.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class DataTableNaturalSortProvider implements DataTableSortProvider {
 
-	boolean ascending;
-	int columnIdx;
+    /**
+     * The Ascending.
+     */
+    boolean ascending;
+    /**
+     * The Column idx.
+     */
+    int columnIdx;
 
-	public DataTableNaturalSortProvider(int columnIdx, boolean ascending) {
+    /**
+     * Instantiates a new Data table natural sort provider.
+     *
+     * @param columnIdx the column idx
+     * @param ascending the ascending
+     */
+    public DataTableNaturalSortProvider(int columnIdx, boolean ascending) {
 		this.ascending = ascending;
 		this.columnIdx = columnIdx;
 	}

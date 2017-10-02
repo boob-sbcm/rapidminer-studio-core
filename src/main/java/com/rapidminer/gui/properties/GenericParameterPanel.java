@@ -31,9 +31,8 @@ import java.util.List;
 /**
  * This panel might be used, where ever ParameterTypes should be editable without presence of an
  * operator or special circumstances.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class GenericParameterPanel extends PropertyPanel {
 
@@ -41,11 +40,19 @@ public class GenericParameterPanel extends PropertyPanel {
 
 	private Parameters parameters = new Parameters();
 
-	public GenericParameterPanel() {
+    /**
+     * Instantiates a new Generic parameter panel.
+     */
+    public GenericParameterPanel() {
 
 	}
 
-	public GenericParameterPanel(Parameters parameters) {
+    /**
+     * Instantiates a new Generic parameter panel.
+     *
+     * @param parameters the parameters
+     */
+    public GenericParameterPanel(Parameters parameters) {
 		super();
 		setParameters(parameters);
 	}
@@ -93,25 +100,44 @@ public class GenericParameterPanel extends PropertyPanel {
 		}
 	}
 
-	public void setValue(String key, String value) {
+    /**
+     * Sets value.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public void setValue(String key, String value) {
 		parameters.setParameter(key, value);
 		setupComponents();
 	}
 
-	public void setParameters(Parameters parameters) {
+    /**
+     * Sets parameters.
+     *
+     * @param parameters the parameters
+     */
+    public void setParameters(Parameters parameters) {
 		this.parameters = parameters;
 
 		// calling super method for rebuilding panel
 		setupComponents();
 	}
 
-	public void clearProperties() {
+    /**
+     * Clear properties.
+     */
+    public void clearProperties() {
 		this.parameters = new Parameters();
 
 		setupComponents();
 	}
 
-	public Parameters getParameters() {
+    /**
+     * Gets parameters.
+     *
+     * @return the parameters
+     */
+    public Parameters getParameters() {
 		return parameters;
 	}
 

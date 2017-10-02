@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SaveLogFileAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class SaveLogFileAction extends ResourceAction {
 
 	private LogViewer loggingViewer;
 
-	public SaveLogFileAction(LogViewer loggingViewer) {
+    /**
+     * Instantiates a new Save log file action.
+     *
+     * @param loggingViewer the logging viewer
+     */
+    public SaveLogFileAction(LogViewer loggingViewer) {
 		super(true, "save_log_file");
 		this.loggingViewer = loggingViewer;
 	}

@@ -41,18 +41,15 @@ public class PerspectiveToggleGroup extends ToggleButtonGroup {
 
 	private final PerspectiveController perspectiveController;
 
-	/**
-	 * Creates a new {@link PerspectiveToggleGroup} from the given Actions (requires at least two
-	 * actions).
-	 *
-	 * @param perspectiveController
-	 *            the perspective controller which should be used
-	 * @param preferredSize
-	 *            the preferredSize of the nested {@link CompositeToggleButton}s or {@code null}
-	 * @param actions
-	 *            the action
-	 */
-	public PerspectiveToggleGroup(PerspectiveController perspectiveController, Dimension preferredSize, Action... actions) {
+    /**
+     * Creates a new {@link PerspectiveToggleGroup} from the given Actions (requires at least two
+     * actions).
+     *
+     * @param perspectiveController the perspective controller which should be used
+     * @param preferredSize         the preferredSize of the nested {@link CompositeToggleButton}s or {@code null}
+     * @param actions               the action
+     */
+    public PerspectiveToggleGroup(PerspectiveController perspectiveController, Dimension preferredSize, Action... actions) {
 		super(preferredSize, actions);
 		this.perspectiveController = perspectiveController;
 	}

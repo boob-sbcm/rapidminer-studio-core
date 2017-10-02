@@ -40,8 +40,17 @@ import com.rapidminer.operator.learner.meta.SimpleVoteModel;
  */
 public class ConfigurableRandomForestModel extends SimplePredictionModel implements MetaModel {
 
-	public enum VotingStrategy {
-		MAJORITY_VOTE("majority vote"), CONFIDENCE_VOTE("confidence vote");
+    /**
+     * The enum Voting strategy.
+     */
+    public enum VotingStrategy {
+        /**
+         * The Majority vote.
+         */
+        MAJORITY_VOTE("majority vote"), /**
+         * The Confidence vote.
+         */
+        CONFIDENCE_VOTE("confidence vote");
 
 		private final String value;
 
@@ -60,7 +69,14 @@ public class ConfigurableRandomForestModel extends SimplePredictionModel impleme
 	/** The wrapped voting meta model. */
 	private final SimplePredictionModel model;
 
-	public ConfigurableRandomForestModel(ExampleSet exampleSet, List<? extends TreeModel> models, VotingStrategy strategy) {
+    /**
+     * Instantiates a new Configurable random forest model.
+     *
+     * @param exampleSet the example set
+     * @param models     the models
+     * @param strategy   the strategy
+     */
+    public ConfigurableRandomForestModel(ExampleSet exampleSet, List<? extends TreeModel> models, VotingStrategy strategy) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.EQUAL,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 		switch (strategy) {

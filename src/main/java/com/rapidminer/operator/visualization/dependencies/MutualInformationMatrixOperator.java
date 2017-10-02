@@ -40,17 +40,22 @@ import java.util.List;
  * example set. This operator produces a dependency matrix which can be displayed to the user in the
  * result tab.
  * </p>
- * 
+ * <p>
  * <p>
  * Please note that this simple implementation performs a data scan for each attribute combination
  * and might therefore take some time for non-memory example tables.
  * </p>
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MutualInformationMatrixOperator extends AbstractPairwiseMatrixOperator {
 
-	public MutualInformationMatrixOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Mutual information matrix operator.
+     *
+     * @param description the description
+     */
+    public MutualInformationMatrixOperator(OperatorDescription description) {
 		super(description);
 	}
 

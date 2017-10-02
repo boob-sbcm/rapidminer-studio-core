@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa, Tobias Malbrecht
  */
 public class PauseAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class PauseAction extends ResourceAction {
 
 	private final MainFrame mainFrame;
 
-	public PauseAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Pause action.
+     *
+     * @param mainFrame the main frame
+     */
+    public PauseAction(MainFrame mainFrame) {
 		super("pause");
 		this.mainFrame = mainFrame;
 		setCondition(PROCESS_RUNNING, MANDATORY);

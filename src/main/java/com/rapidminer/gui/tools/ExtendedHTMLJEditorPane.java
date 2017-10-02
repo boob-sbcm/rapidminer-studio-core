@@ -39,15 +39,30 @@ public class ExtendedHTMLJEditorPane extends JEditorPane {
 
 	private static final long serialVersionUID = -1169198792942550655L;
 
-	public ExtendedHTMLJEditorPane() {
+    /**
+     * Instantiates a new Extended htmlj editor pane.
+     */
+    public ExtendedHTMLJEditorPane() {
 		super();
 	}
 
-	public ExtendedHTMLJEditorPane(String url) throws IOException {
+    /**
+     * Instantiates a new Extended htmlj editor pane.
+     *
+     * @param url the url
+     * @throws IOException the io exception
+     */
+    public ExtendedHTMLJEditorPane(String url) throws IOException {
 		super(url);
 	}
 
-	public ExtendedHTMLJEditorPane(String type, String text) {
+    /**
+     * Instantiates a new Extended htmlj editor pane.
+     *
+     * @param type the type
+     * @param text the text
+     */
+    public ExtendedHTMLJEditorPane(String type, String text) {
 		super(type, text);
 	}
 
@@ -56,17 +71,30 @@ public class ExtendedHTMLJEditorPane extends JEditorPane {
 		return new ExtendedHTMLEditorKit();
 	}
 
-	public void installDefaultStylesheet() {
+    /**
+     * Install default stylesheet.
+     */
+    public void installDefaultStylesheet() {
 		installDefaultStylesheet(((HTMLEditorKit) getEditorKit()).getStyleSheet());
 	}
 
-	public static StyleSheet makeDefaultStylesheet() {
+    /**
+     * Make default stylesheet style sheet.
+     *
+     * @return the style sheet
+     */
+    public static StyleSheet makeDefaultStylesheet() {
 		StyleSheet css = new StyleSheet();
 		installDefaultStylesheet(css);
 		return css;
 	}
 
-	public static void installDefaultStylesheet(StyleSheet css) {
+    /**
+     * Install default stylesheet.
+     *
+     * @param css the css
+     */
+    public static void installDefaultStylesheet(StyleSheet css) {
 		css.addRule("body {font-family:Sans;font-size:12pt;}");
 		css.addRule("h3 {margin:0; padding:0;margin-top:8px;margin-bottom:3px; }");
 		// String hcolor =

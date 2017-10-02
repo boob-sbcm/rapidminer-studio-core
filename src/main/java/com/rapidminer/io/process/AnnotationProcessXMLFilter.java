@@ -46,11 +46,15 @@ import com.rapidminer.operator.ProcessRootOperator;
  */
 public class AnnotationProcessXMLFilter implements ProcessXMLFilter {
 
-	/** user data key for operator annotations */
-	public static final String KEY_OPERATOR_ANNOTATION = "com.rapidminer.io.process.operator_annotation";
+    /**
+     * user data key for operator annotations
+     */
+    public static final String KEY_OPERATOR_ANNOTATION = "com.rapidminer.io.process.operator_annotation";
 
-	/** user data key for process annotations */
-	public static final String KEY_PROCESS_ANNOTATION = "com.rapidminer.io.process.process_annotation";
+    /**
+     * user data key for process annotations
+     */
+    public static final String KEY_PROCESS_ANNOTATION = "com.rapidminer.io.process.process_annotation";
 
 	private static final String XML_ATTRIBUTE_HEIGHT = "height";
 	private static final String XML_ATTRIBUTE_WIDTH = "width";
@@ -257,24 +261,22 @@ public class AnnotationProcessXMLFilter implements ProcessXMLFilter {
 		}
 	}
 
-	/**
-	 * Returns the operator annotations for the given operator.
-	 *
-	 * @param operator
-	 *            the operator in question
-	 * @return the annotations or {@code null} if there are none
-	 */
-	public static WorkflowAnnotations lookupOperatorAnnotations(Operator operator) {
+    /**
+     * Returns the operator annotations for the given operator.
+     *
+     * @param operator the operator in question
+     * @return the annotations or {@code null} if there are none
+     */
+    public static WorkflowAnnotations lookupOperatorAnnotations(Operator operator) {
 		return (WorkflowAnnotations) operator.getUserData(KEY_OPERATOR_ANNOTATION);
 	}
 
-	/**
-	 * Adds a {@link OperatorAnnotation} to the {@link Operator}.
-	 *
-	 * @param annotation
-	 *            the new annotation
-	 */
-	public static void addOperatorAnnotation(OperatorAnnotation annotation) {
+    /**
+     * Adds a {@link OperatorAnnotation} to the {@link Operator}.
+     *
+     * @param annotation the new annotation
+     */
+    public static void addOperatorAnnotation(OperatorAnnotation annotation) {
 		if (annotation == null) {
 			throw new IllegalArgumentException("annotation must not be null!");
 		}
@@ -287,13 +289,12 @@ public class AnnotationProcessXMLFilter implements ProcessXMLFilter {
 		annotation.getAttachedTo().setUserData(KEY_OPERATOR_ANNOTATION, annotations);
 	}
 
-	/**
-	 * Removes the given {@link OperatorAnnotation}.
-	 *
-	 * @param annotation
-	 *            the annotation to remove
-	 */
-	public static void removeOperatorAnnotation(OperatorAnnotation annotation) {
+    /**
+     * Removes the given {@link OperatorAnnotation}.
+     *
+     * @param annotation the annotation to remove
+     */
+    public static void removeOperatorAnnotation(OperatorAnnotation annotation) {
 		if (annotation == null) {
 			throw new IllegalArgumentException("annotation must not be null!");
 		}
@@ -306,24 +307,22 @@ public class AnnotationProcessXMLFilter implements ProcessXMLFilter {
 		annotation.getAttachedTo().setUserData(KEY_OPERATOR_ANNOTATION, annotations);
 	}
 
-	/**
-	 * Returns the process annotations for the given execution unit.
-	 *
-	 * @param process
-	 *            the execution unit in question
-	 * @return the annotations or {@code null} if there are none
-	 */
-	public static WorkflowAnnotations lookupProcessAnnotations(ExecutionUnit process) {
+    /**
+     * Returns the process annotations for the given execution unit.
+     *
+     * @param process the execution unit in question
+     * @return the annotations or {@code null} if there are none
+     */
+    public static WorkflowAnnotations lookupProcessAnnotations(ExecutionUnit process) {
 		return (WorkflowAnnotations) process.getUserData(KEY_PROCESS_ANNOTATION);
 	}
 
-	/**
-	 * Adds a {@link ProcessAnnotation}.
-	 *
-	 * @param annotation
-	 *            the new annotation
-	 */
-	public static void addProcessAnnotation(ProcessAnnotation annotation) {
+    /**
+     * Adds a {@link ProcessAnnotation}.
+     *
+     * @param annotation the new annotation
+     */
+    public static void addProcessAnnotation(ProcessAnnotation annotation) {
 		if (annotation == null) {
 			throw new IllegalArgumentException("annotation must not be null!");
 		}
@@ -336,13 +335,12 @@ public class AnnotationProcessXMLFilter implements ProcessXMLFilter {
 		annotation.getProcess().setUserData(KEY_PROCESS_ANNOTATION, annotations);
 	}
 
-	/**
-	 * Removes the given {@link ProcessAnnotation}.
-	 *
-	 * @param annotation
-	 *            the annotation to remove
-	 */
-	public static void removeProcessAnnotation(ProcessAnnotation annotation) {
+    /**
+     * Removes the given {@link ProcessAnnotation}.
+     *
+     * @param annotation the annotation to remove
+     */
+    public static void removeProcessAnnotation(ProcessAnnotation annotation) {
 		if (annotation == null) {
 			throw new IllegalArgumentException("annotation must not be null!");
 		}

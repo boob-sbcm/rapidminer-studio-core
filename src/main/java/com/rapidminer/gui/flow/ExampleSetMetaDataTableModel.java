@@ -52,7 +52,12 @@ public class ExampleSetMetaDataTableModel implements TableModel {
 	private static final int MISSINGS_COLUMN = 4;
 	private static final int COMMENT_COLUMN = 5;
 
-	public ExampleSetMetaDataTableModel(ExampleSetMetaData emd) {
+    /**
+     * Instantiates a new Example set meta data table model.
+     *
+     * @param emd the emd
+     */
+    public ExampleSetMetaDataTableModel(ExampleSetMetaData emd) {
 		super();
 		this.attributes = new LinkedList<AttributeMetaData>(emd.getAllAttributes());
 	}
@@ -126,7 +131,13 @@ public class ExampleSetMetaDataTableModel implements TableModel {
 		throw new UnsupportedOperationException("Table is read only.");
 	}
 
-	public static Component makeTableForToolTip(ExampleSetMetaData emd) {
+    /**
+     * Make table for tool tip component.
+     *
+     * @param emd the emd
+     * @return the component
+     */
+    public static Component makeTableForToolTip(ExampleSetMetaData emd) {
 		ExtendedJTable table = new ExtendedJTable(new ExampleSetMetaDataTableModel(emd), true, true, true, false, false);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBorder(null);

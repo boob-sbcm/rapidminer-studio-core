@@ -39,19 +39,17 @@ import com.vlsolutions.swing.docking.TabbedDockableContainer;
  *
  * @author Marcel Michel
  * @since 6.2.0
- *
  */
 public class DockingTools {
 
-	/**
-	 * Tries to resolve a {@link DockableState} with the given dockKey.
-	 *
-	 * @param dockKey
-	 *            The dock key of the desired {@link DockableState}
-	 * @return If successful the found {@link DockableState}, otherwise <code>null</code>.
-	 * @since 6.2.0
-	 */
-	public static DockableState getDockableState(String dockKey) {
+    /**
+     * Tries to resolve a {@link DockableState} with the given dockKey.
+     *
+     * @param dockKey The dock key of the desired {@link DockableState}
+     * @return If successful the found {@link DockableState}, otherwise <code>null</code>.
+     * @since 6.2.0
+     */
+    public static DockableState getDockableState(String dockKey) {
 		MainFrame mainFrame = RapidMinerGUI.getMainFrame();
 		for (DockableState dockableState : mainFrame.getDockingDesktop().getDockables()) {
 			Dockable dockable = dockableState.getDockable();
@@ -62,46 +60,39 @@ public class DockingTools {
 		return null;
 	}
 
-	/**
-	 * Opens a {@link Dockable} if closed or brings it to foreground.
-	 *
-	 * @param dockKey
-	 *            The dock key of the desired {@link Dockable}
-	 * @since 6.2.0
-	 */
-	public static void openDockable(String dockKey) {
+    /**
+     * Opens a {@link Dockable} if closed or brings it to foreground.
+     *
+     * @param dockKey The dock key of the desired {@link Dockable}
+     * @since 6.2.0
+     */
+    public static void openDockable(String dockKey) {
 		openDockable(dockKey, null);
 	}
 
-	/**
-	 * Opens a {@link Dockable} if closed or brings it to foreground in regard to the defined
-	 * dockKeyContainer.
-	 *
-	 * @param dockKey
-	 *            The dock key of the desired {@link Dockable}
-	 * @param dockKeyContainer
-	 *            The desired container of the {@link Dockable}
-	 * @since 6.2.0
-	 */
-	public static void openDockable(String dockKey, String dockKeyContainer) {
+    /**
+     * Opens a {@link Dockable} if closed or brings it to foreground in regard to the defined
+     * dockKeyContainer.
+     *
+     * @param dockKey          The dock key of the desired {@link Dockable}
+     * @param dockKeyContainer The desired container of the {@link Dockable}
+     * @since 6.2.0
+     */
+    public static void openDockable(String dockKey, String dockKeyContainer) {
 		openDockable(dockKey, dockKeyContainer, null);
 	}
 
-	/**
-	 * Opens a {@link Dockable} if closed or brings it to foreground in regard to the defined
-	 * dockKeyContainer. If no container could be found the {@link Dockable} will be added in
-	 * respect to the dockablePosition.
-	 *
-	 * @param dockKey
-	 *            The dock key of the desired {@link Dockable}
-	 * @param dockKeyContainer
-	 *            The desired container of the {@link Dockable}, can be <code>null</code>
-	 * @param dockablePosition
-	 *            The desired position of the {@link Dockable} if no container could be found, can
-	 *            be <code>null</code>
-	 * @since 6.2.0
-	 */
-	public static void openDockable(String dockKey, String dockKeyContainer, RelativeDockablePosition dockablePosition) {
+    /**
+     * Opens a {@link Dockable} if closed or brings it to foreground in regard to the defined
+     * dockKeyContainer. If no container could be found the {@link Dockable} will be added in
+     * respect to the dockablePosition.
+     *
+     * @param dockKey          The dock key of the desired {@link Dockable}
+     * @param dockKeyContainer The desired container of the {@link Dockable}, can be <code>null</code>
+     * @param dockablePosition The desired position of the {@link Dockable} if no container could be found, can            be <code>null</code>
+     * @since 6.2.0
+     */
+    public static void openDockable(String dockKey, String dockKeyContainer, RelativeDockablePosition dockablePosition) {
 		if (dockKey == null) {
 			throw new IllegalArgumentException("dockKey cannot be null");
 		}

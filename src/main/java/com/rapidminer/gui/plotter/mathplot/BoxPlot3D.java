@@ -36,11 +36,22 @@ public class BoxPlot3D extends JMathPlotter3D {
 
 	private static final long serialVersionUID = -7533259303423637127L;
 
-	public BoxPlot3D(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Box plot 3 d.
+     *
+     * @param settings the settings
+     */
+    public BoxPlot3D(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
-	public BoxPlot3D(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Box plot 3 d.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public BoxPlot3D(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings, dataTable);
 	}
 

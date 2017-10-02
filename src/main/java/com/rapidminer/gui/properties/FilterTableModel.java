@@ -55,7 +55,6 @@ import com.rapidminer.tools.Tools;
  * This is the backing model for the {@link TablePanel} used by the example set filters.
  *
  * @author Marco Boeck
- *
  */
 public class FilterTableModel extends AbstractTableModel implements TablePanelModel {
 
@@ -113,14 +112,13 @@ public class FilterTableModel extends AbstractTableModel implements TablePanelMo
 	/** the format for time */
 	private final DateFormat FORMAT_TIME = new SimpleDateFormat(CustomFilters.TIME_FORMAT_STRING, Locale.ENGLISH);
 
-	/**
-	 * Creates a new {@link FilterTableModel} instance.
-	 *
-	 * @param inputPort
-	 * @throws IllegalArgumentException
-	 *             if the input port has no example set
-	 */
-	public FilterTableModel(InputPort inputPort) throws IllegalArgumentException {
+    /**
+     * Creates a new {@link FilterTableModel} instance.
+     *
+     * @param inputPort the input port
+     * @throws IllegalArgumentException if the input port has no example set
+     */
+    public FilterTableModel(InputPort inputPort) throws IllegalArgumentException {
 		if (inputPort == null) {
 			throw new IllegalArgumentException("InputPort must not be null!");
 		}
@@ -617,14 +615,12 @@ public class FilterTableModel extends AbstractTableModel implements TablePanelMo
 		super.fireTableStructureChanged();
 	}
 
-	/**
-	 * Sets checkMetaDataForComparators and fires an update if it has been changed.
-	 *
-	 * @param checkMetaDataForComparators
-	 *            the flag which decides whether the meta data should be checked for filter
-	 *            comparator preselection
-	 */
-	public void setCheckMetaDataForComparators(boolean checkMetaDataForComparators) {
+    /**
+     * Sets checkMetaDataForComparators and fires an update if it has been changed.
+     *
+     * @param checkMetaDataForComparators the flag which decides whether the meta data should be checked for filter            comparator preselection
+     */
+    public void setCheckMetaDataForComparators(boolean checkMetaDataForComparators) {
 		if (this.checkMetaDataForComparators != checkMetaDataForComparators) {
 			this.checkMetaDataForComparators = checkMetaDataForComparators;
 			for (int row = 0; row < rowsCount; row++) {

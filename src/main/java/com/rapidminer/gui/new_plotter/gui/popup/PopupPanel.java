@@ -37,9 +37,8 @@ import javax.swing.SwingUtilities;
 
 /**
  * A JPanel that contains the component that should be shown when a popup action is triggered.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class PopupPanel extends JPanel implements PropertyChangeListener {
 
@@ -51,7 +50,12 @@ public class PopupPanel extends JPanel implements PropertyChangeListener {
 
 	private Window containingWindow;
 
-	public PopupPanel(Component comp) {
+    /**
+     * Instantiates a new Popup panel.
+     *
+     * @param comp the comp
+     */
+    public PopupPanel(Component comp) {
 		this.setLayout(new GridBagLayout());
 
 		GridBagConstraints itemConstraint = new GridBagConstraints();
@@ -77,27 +81,39 @@ public class PopupPanel extends JPanel implements PropertyChangeListener {
 		}
 	}
 
-	public void addListener(PopupComponentListener l) {
+    /**
+     * Add listener.
+     *
+     * @param l the l
+     */
+    public void addListener(PopupComponentListener l) {
 		listenerList.add(l);
 	}
 
-	public void removeListener(PopupComponentListener l) {
+    /**
+     * Remove listener.
+     *
+     * @param l the l
+     */
+    public void removeListener(PopupComponentListener l) {
 		listenerList.remove(l);
 	}
 
-	/**
-	 * Starts tracking of focus change.
-	 * 
-	 * @param containingWindow
-	 *            the window that contains the popup
-	 * @param actionSource
-	 */
-	public void startTracking(Window containingWindow, Component actionSource) {
+    /**
+     * Starts tracking of focus change.
+     *
+     * @param containingWindow the window that contains the popup
+     * @param actionSource     the action source
+     */
+    public void startTracking(Window containingWindow, Component actionSource) {
 		this.containingWindow = containingWindow;
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addPropertyChangeListener(PERMANENT_FOCUS_OWNER, this);
 	}
 
-	public void stopTracking() {
+    /**
+     * Stop tracking.
+     */
+    public void stopTracking() {
 		this.containingWindow = null;
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().removePropertyChangeListener(PERMANENT_FOCUS_OWNER, this);
 	}

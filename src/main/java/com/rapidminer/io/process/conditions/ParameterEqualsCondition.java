@@ -26,15 +26,27 @@ import org.w3c.dom.NodeList;
 
 
 /**
- * 
+ * The type Parameter equals condition.
+ *
  * @author Sebastian Land
  */
 public class ParameterEqualsCondition implements ParseRuleCondition {
 
-	protected String parameterKey;
-	protected String parameterValue;
+    /**
+     * The Parameter key.
+     */
+    protected String parameterKey;
+    /**
+     * The Parameter value.
+     */
+    protected String parameterValue;
 
-	public ParameterEqualsCondition(Element element) {
+    /**
+     * Instantiates a new Parameter equals condition.
+     *
+     * @param element the element
+     */
+    public ParameterEqualsCondition(Element element) {
 		NodeList children = element.getChildNodes();
 		for (int i = 0; i < children.getLength(); i++) {
 			Node child = children.item(i);

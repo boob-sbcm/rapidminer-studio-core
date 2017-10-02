@@ -21,16 +21,24 @@ package com.rapidminer.operator.performance;
 /**
  * The squared error. Sums up the square of the absolute deviations and divides the sum by the
  * number of examples.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class SquaredError extends SimpleCriterion {
 
 	private static final long serialVersionUID = 322984719296835789L;
 
-	public SquaredError() {}
+    /**
+     * Instantiates a new Squared error.
+     */
+    public SquaredError() {}
 
-	public SquaredError(SquaredError se) {
+    /**
+     * Instantiates a new Squared error.
+     *
+     * @param se the se
+     */
+    public SquaredError(SquaredError se) {
 		super(se);
 	}
 

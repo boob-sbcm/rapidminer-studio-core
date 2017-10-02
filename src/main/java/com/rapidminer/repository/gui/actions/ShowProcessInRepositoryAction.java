@@ -29,7 +29,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * This action will show the current process in the repository tree
- * 
+ *
  * @author Marcin Skirzynski
  */
 public class ShowProcessInRepositoryAction extends ResourceActionAdapter {
@@ -38,7 +38,12 @@ public class ShowProcessInRepositoryAction extends ResourceActionAdapter {
 
 	private final RepositoryTree tree;
 
-	public ShowProcessInRepositoryAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Show process in repository action.
+     *
+     * @param tree the tree
+     */
+    public ShowProcessInRepositoryAction(RepositoryTree tree) {
 		super(true, "link");
 		this.tree = tree;
 		setCondition(PROCESS_SAVED, ConditionalAction.MANDATORY);

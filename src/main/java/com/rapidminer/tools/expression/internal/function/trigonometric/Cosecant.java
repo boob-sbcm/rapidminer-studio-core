@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric cosecant of a radian.
  *
  * @author Denis Schernov
- *
  */
 public class Cosecant extends Abstract1DoubleInputFunction {
 
-	public Cosecant() {
+    /**
+     * Instantiates a new Cosecant.
+     */
+    public Cosecant() {
 		super("trigonometrical.cosec", Ontology.NUMERICAL);
 	}
 

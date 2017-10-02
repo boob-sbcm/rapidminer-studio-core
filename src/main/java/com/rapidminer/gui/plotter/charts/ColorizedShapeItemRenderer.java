@@ -39,7 +39,7 @@ import org.jfree.util.ShapeUtilities;
 
 /**
  * This renderer provides colorized renderering not based on the series but on a numerical value.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ColorizedShapeItemRenderer extends XYShapeRenderer {
@@ -52,7 +52,13 @@ public class ColorizedShapeItemRenderer extends XYShapeRenderer {
 
 	private ColorProvider colorProvider = new ColorProvider(true);
 
-	public ColorizedShapeItemRenderer(double minColor, double maxColor) {
+    /**
+     * Instantiates a new Colorized shape item renderer.
+     *
+     * @param minColor the min color
+     * @param maxColor the max color
+     */
+    public ColorizedShapeItemRenderer(double minColor, double maxColor) {
 		super();
 		this.minColor = minColor;
 		this.maxColor = maxColor;

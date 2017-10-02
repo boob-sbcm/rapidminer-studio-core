@@ -38,8 +38,8 @@ import com.rapidminer.parameter.ParameterTypeList;
  * A Dialog displaying a {@link ListPropertyTable}. This can be used to add new values to the
  * parameter list or change current values. Removal of values is also supported.
  *
- * @see com.rapidminer.gui.properties.ListPropertyTable
  * @author Ingo Mierswa, Simon Fischer, Tobias Malbrecht, Nils Woehler, Marius Helf
+ * @see com.rapidminer.gui.properties.ListPropertyTable
  */
 public class ListPropertyDialog extends PropertyDialog {
 
@@ -51,7 +51,14 @@ public class ListPropertyDialog extends PropertyDialog {
 
 	private final List<String[]> parameterList;
 
-	public ListPropertyDialog(final ParameterTypeList type, List<String[]> parameterList, Operator operator) {
+    /**
+     * Instantiates a new List property dialog.
+     *
+     * @param type          the type
+     * @param parameterList the parameter list
+     * @param operator      the operator
+     */
+    public ListPropertyDialog(final ParameterTypeList type, List<String[]> parameterList, Operator operator) {
 		super(type, "list");
 		this.parameterList = parameterList;
 		listPropertyTable = new ListPropertyTable2(type, parameterList, operator);

@@ -71,7 +71,7 @@ import org.jfree.ui.RectangleInsets;
 
 /**
  * This is the series chart plotter.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class SeriesChartPlotter extends RangeablePlotterAdapter {
@@ -110,7 +110,12 @@ public class SeriesChartPlotter extends RangeablePlotterAdapter {
 
 	private List<Integer> plotIndexToColumnIndexMap = new ArrayList<Integer>();
 
-	public SeriesChartPlotter(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Series chart plotter.
+     *
+     * @param settings the settings
+     */
+    public SeriesChartPlotter(final PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 
@@ -128,7 +133,13 @@ public class SeriesChartPlotter extends RangeablePlotterAdapter {
 		});
 	}
 
-	public SeriesChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Series chart plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public SeriesChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}

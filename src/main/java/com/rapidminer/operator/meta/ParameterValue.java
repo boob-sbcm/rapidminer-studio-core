@@ -27,7 +27,7 @@ import java.util.Map;
 
 /**
  * The parameter values used by the class {@link ParameterSet}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ParameterValue implements Serializable {
@@ -40,21 +40,43 @@ public class ParameterValue implements Serializable {
 
 	private final String parameterValue;
 
-	public ParameterValue(String operator, String parameterKey, String parameterValue) {
+    /**
+     * Instantiates a new Parameter value.
+     *
+     * @param operator       the operator
+     * @param parameterKey   the parameter key
+     * @param parameterValue the parameter value
+     */
+    public ParameterValue(String operator, String parameterKey, String parameterValue) {
 		this.operator = operator;
 		this.parameterKey = parameterKey;
 		this.parameterValue = parameterValue;
 	}
 
-	public String getOperator() {
+    /**
+     * Gets operator.
+     *
+     * @return the operator
+     */
+    public String getOperator() {
 		return operator;
 	}
 
-	public String getParameterKey() {
+    /**
+     * Gets parameter key.
+     *
+     * @return the parameter key
+     */
+    public String getParameterKey() {
 		return parameterKey;
 	}
 
-	public String getParameterValue() {
+    /**
+     * Gets parameter value.
+     *
+     * @return the parameter value
+     */
+    public String getParameterValue() {
 		return parameterValue;
 	}
 
@@ -63,7 +85,13 @@ public class ParameterValue implements Serializable {
 		return operator + "." + parameterKey + "\t= " + parameterValue;
 	}
 
-	public void apply(Process process, Map<String, String> nameTranslation) {
+    /**
+     * Apply.
+     *
+     * @param process         the process
+     * @param nameTranslation the name translation
+     */
+    public void apply(Process process, Map<String, String> nameTranslation) {
 		String opName = null;
 		if (nameTranslation != null) {
 			opName = nameTranslation.get(this.operator);

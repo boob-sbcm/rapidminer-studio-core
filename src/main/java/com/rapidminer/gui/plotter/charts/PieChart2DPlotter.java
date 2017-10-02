@@ -27,15 +27,17 @@ import org.jfree.data.general.PieDataset;
 
 /**
  * A simple 2D pie chart plotter.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PieChart2DPlotter extends AbstractPieChartPlotter {
 
-	/**
-	 * @param settings
-	 */
-	public PieChart2DPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Pie chart 2 d plotter.
+     *
+     * @param settings the settings
+     */
+    public PieChart2DPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 
 	}

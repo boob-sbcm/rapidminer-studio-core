@@ -27,8 +27,9 @@ import com.rapidminer.parameter.ParameterTypeEnumeration;
 
 
 /**
- * @author Sebastian Land
+ * The type Listening list selection model.
  *
+ * @author Sebastian Land
  */
 public class ListeningListSelectionModel extends DefaultListSelectionModel implements PlotterSettingsChangedListener {
 
@@ -36,7 +37,13 @@ public class ListeningListSelectionModel extends DefaultListSelectionModel imple
 	private String generalKey;
 	private JList<String> list;
 
-	public ListeningListSelectionModel(String generalKey, JList<String> list) {
+    /**
+     * Instantiates a new Listening list selection model.
+     *
+     * @param generalKey the general key
+     * @param list       the list
+     */
+    public ListeningListSelectionModel(String generalKey, JList<String> list) {
 		if (generalKey.startsWith("_")) {
 			this.generalKey = generalKey;
 		} else {

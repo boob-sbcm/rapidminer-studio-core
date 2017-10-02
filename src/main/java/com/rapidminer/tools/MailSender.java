@@ -23,11 +23,20 @@ import java.util.Map;
 
 /**
  * This is the interface for all mail sending techniques.
- * 
+ *
  * @author Simon Fischer
  */
 public interface MailSender {
 
-	public void sendEmail(String address, String subject, String content, Map<String, String> headers) throws Exception;
+    /**
+     * Send email.
+     *
+     * @param address the address
+     * @param subject the subject
+     * @param content the content
+     * @param headers the headers
+     * @throws Exception the exception
+     */
+    public void sendEmail(String address, String subject, String content, Map<String, String> headers) throws Exception;
 
 }

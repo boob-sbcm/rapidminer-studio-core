@@ -26,32 +26,47 @@ import java.io.Serializable;
 /**
  * This is the activation function of a neural net node. This class performs the calculation of the
  * node's output values as well as the error calculation and the update of the weights.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class ActivationFunction implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Delivers the name of this activation function.
-	 */
-	public abstract String getTypeName();
+    /**
+     * Delivers the name of this activation function.
+     *
+     * @return the type name
+     */
+    public abstract String getTypeName();
 
-	/**
-	 * Calculates the value.
-	 */
-	public abstract double calculateValue(InnerNode node, Example example);
+    /**
+     * Calculates the value.
+     *
+     * @param node    the node
+     * @param example the example
+     * @return the double
+     */
+    public abstract double calculateValue(InnerNode node, Example example);
 
-	/**
-	 * Calculates the error.
-	 */
-	public abstract double calculateError(InnerNode node, Example example);
+    /**
+     * Calculates the error.
+     *
+     * @param node    the node
+     * @param example the example
+     * @return the double
+     */
+    public abstract double calculateError(InnerNode node, Example example);
 
-	/**
-	 * Calculates the update of the weights.
-	 */
-	public void update(InnerNode node, Example example, double learningRate, double momentum) {
+    /**
+     * Calculates the update of the weights.
+     *
+     * @param node         the node
+     * @param example      the example
+     * @param learningRate the learning rate
+     * @param momentum     the momentum
+     */
+    public void update(InnerNode node, Example example, double learningRate, double momentum) {
 		Node[] inputs = node.getInputNodes();
 		double[] weights = node.getWeights();
 		double[] weightChanges = node.getWeightChanges();

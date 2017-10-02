@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
  * This filename filter interprets a given glob expression, to determine if a file should be
  * accepted. Glob expressions are widely used in shells. See {@link GlobCompiler} for more details
  * about this language.
- * 
+ *
  * @author Sebastian Land
  */
 public class GlobFilenameFilter implements FilenameFilter {
@@ -37,11 +37,22 @@ public class GlobFilenameFilter implements FilenameFilter {
 	private Pattern filenamePattern;
 	private boolean includeDirectories = false;
 
-	public GlobFilenameFilter(String glob) {
+    /**
+     * Instantiates a new Glob filename filter.
+     *
+     * @param glob the glob
+     */
+    public GlobFilenameFilter(String glob) {
 		filenamePattern = GlobCompiler.compileGlob(glob);
 	}
 
-	public GlobFilenameFilter(String glob, boolean includeDirectories) {
+    /**
+     * Instantiates a new Glob filename filter.
+     *
+     * @param glob               the glob
+     * @param includeDirectories the include directories
+     */
+    public GlobFilenameFilter(String glob, boolean includeDirectories) {
 		filenamePattern = GlobCompiler.compileGlob(glob);
 		this.includeDirectories = includeDirectories;
 	}

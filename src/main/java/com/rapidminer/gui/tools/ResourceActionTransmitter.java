@@ -26,9 +26,8 @@ import javax.swing.Action;
 
 /**
  * Encapsulates an action. Transmits all actionPerformed calls to that action.
- * 
+ *
  * @author Tobias Malbrecht
- * 
  */
 public class ResourceActionTransmitter extends ResourceAction {
 
@@ -38,20 +37,52 @@ public class ResourceActionTransmitter extends ResourceAction {
 
 	private final Component eventSource;
 
-	public ResourceActionTransmitter(String i18nKey, Action action, Object... i18nArgs) {
+    /**
+     * Instantiates a new Resource action transmitter.
+     *
+     * @param i18nKey  the 18 n key
+     * @param action   the action
+     * @param i18nArgs the 18 n args
+     */
+    public ResourceActionTransmitter(String i18nKey, Action action, Object... i18nArgs) {
 		this(false, i18nKey, action, null, i18nArgs);
 	}
 
-	public ResourceActionTransmitter(String i18nKey, Action action, Component fixedEventSource, Object... i18nArgs) {
+    /**
+     * Instantiates a new Resource action transmitter.
+     *
+     * @param i18nKey          the 18 n key
+     * @param action           the action
+     * @param fixedEventSource the fixed event source
+     * @param i18nArgs         the 18 n args
+     */
+    public ResourceActionTransmitter(String i18nKey, Action action, Component fixedEventSource, Object... i18nArgs) {
 		this(false, i18nKey, action, fixedEventSource, i18nArgs);
 
 	}
 
-	public ResourceActionTransmitter(boolean smallIcon, String i18nKey, Action action, Object... i18nArgs) {
+    /**
+     * Instantiates a new Resource action transmitter.
+     *
+     * @param smallIcon the small icon
+     * @param i18nKey   the 18 n key
+     * @param action    the action
+     * @param i18nArgs  the 18 n args
+     */
+    public ResourceActionTransmitter(boolean smallIcon, String i18nKey, Action action, Object... i18nArgs) {
 		this(smallIcon, i18nKey, action, null, i18nArgs);
 	}
 
-	public ResourceActionTransmitter(boolean smallIcon, String i18nKey, Action action, Component fixedEventSource,
+    /**
+     * Instantiates a new Resource action transmitter.
+     *
+     * @param smallIcon        the small icon
+     * @param i18nKey          the 18 n key
+     * @param action           the action
+     * @param fixedEventSource the fixed event source
+     * @param i18nArgs         the 18 n args
+     */
+    public ResourceActionTransmitter(boolean smallIcon, String i18nKey, Action action, Component fixedEventSource,
 			Object... i18nArgs) {
 		super(smallIcon, i18nKey, i18nArgs);
 		this.action = action;

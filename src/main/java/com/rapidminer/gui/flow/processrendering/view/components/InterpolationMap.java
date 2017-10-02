@@ -101,12 +101,20 @@ public class InterpolationMap {
 		}
 	}
 
-	public InterpolationMap(Component component) {
+    /**
+     * Instantiates a new Interpolation map.
+     *
+     * @param component the component
+     */
+    public InterpolationMap(Component component) {
 		this.component = component;
 		timer.setRepeats(false);
 	}
 
-	protected void fireRepaint() {
+    /**
+     * Fire repaint.
+     */
+    protected void fireRepaint() {
 		component.repaint();
 		cleanUp();
 		if (!map.isEmpty() && !timer.isRunning()) {
@@ -114,27 +122,38 @@ public class InterpolationMap {
 		}
 	}
 
-	/** Starts interpolating the extension value for the given operator. */
-	public void rollOut(Operator operator) {
+    /**
+     * Starts interpolating the extension value for the given operator.  @param operator the operator
+     *
+     * @param operator the operator
+     */
+    public void rollOut(Operator operator) {
 		map.put(operator, new InterpolatedValue(true, 1d));
 		if (!timer.isRunning()) {
 			timer.start();
 		}
 	}
 
-	/**
-	 * Starts interpolating the extension value for the given operator in the opposite direction,
-	 * starting with the current value.
-	 */
-	public void rollIn(Operator operator) {
+    /**
+     * Starts interpolating the extension value for the given operator in the opposite direction,
+     * starting with the current value.
+     *
+     * @param operator the operator
+     */
+    public void rollIn(Operator operator) {
 		map.put(operator, new InterpolatedValue(false, getValue(operator)));
 		if (!timer.isRunning()) {
 			timer.start();
 		}
 	}
 
-	/** Returns the current interpolated value for the given operator. */
-	public double getValue(Operator op) {
+    /**
+     * Returns the current interpolated value for the given operator.  @param op the op
+     *
+     * @param op the op
+     * @return the value
+     */
+    public double getValue(Operator op) {
 		InterpolatedValue val = map.get(op);
 		if (val == null) {
 			return 0d;
@@ -156,7 +175,10 @@ public class InterpolationMap {
 		}
 	}
 
-	public void clear() {
+    /**
+     * Clear.
+     */
+    public void clear() {
 		map.clear();
 	}
 }

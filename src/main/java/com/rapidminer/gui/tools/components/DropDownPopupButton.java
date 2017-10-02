@@ -56,86 +56,82 @@ public class DropDownPopupButton extends JButton {
 	 */
 	private static final String DEFAULT_COLOR = "4F4F4F";
 
-	/**
-	 * Interface providing a method to obtain a {@link JPopupMenu}.
-	 */
-	public interface PopupMenuProvider {
+    /**
+     * Interface providing a method to obtain a {@link JPopupMenu}.
+     */
+    public interface PopupMenuProvider {
 
-		/**
-		 * Returns a popup menu that should be used.
-		 *
-		 * @return a popup menu
-		 */
-		JPopupMenu getPopupMenu();
+        /**
+         * Returns a popup menu that should be used.
+         *
+         * @return a popup menu
+         */
+        JPopupMenu getPopupMenu();
 	}
 
-	/**
-	 * A builder for {@link DropDownPopupButton}s. The {@link #build()} method creates a button with
-	 * text, icon and tooltip specified via {@link #with(ResourceAction)} that shows a popup menu
-	 * with entries specified by {@link #add(Action)} and {@link #add(JMenuItem)}.
-	 *
-	 * @author Gisa Schaefer
-	 *
-	 */
-	public static class DropDownPopupButtonBuilder {
+    /**
+     * A builder for {@link DropDownPopupButton}s. The {@link #build()} method creates a button with
+     * text, icon and tooltip specified via {@link #with(ResourceAction)} that shows a popup menu
+     * with entries specified by {@link #add(Action)} and {@link #add(JMenuItem)}.
+     *
+     * @author Gisa Schaefer
+     */
+    public static class DropDownPopupButtonBuilder {
 
 		private ResourceAction action;
 
 		private JPopupMenu popupMenu = new JPopupMenu();
 
-		/**
-		 * Sets the action that specifies the text, icon and tooltip of the button created by this
-		 * builder.
-		 *
-		 * @param action
-		 *            the {@link ResourceAction} specifying the text, icon and tooltip of the button
-		 * @return the builder
-		 */
-		public DropDownPopupButtonBuilder with(ResourceAction action) {
+        /**
+         * Sets the action that specifies the text, icon and tooltip of the button created by this
+         * builder.
+         *
+         * @param action the {@link ResourceAction} specifying the text, icon and tooltip of the button
+         * @return the builder
+         */
+        public DropDownPopupButtonBuilder with(ResourceAction action) {
 			this.action = action;
 			return this;
 		}
 
-		/**
-		 * Adds an action to the popup menu that is displayed when the button is clicked.
-		 *
-		 * @param action
-		 *            the action to add
-		 * @return the builder
-		 */
-		public DropDownPopupButtonBuilder add(Action action) {
+        /**
+         * Adds an action to the popup menu that is displayed when the button is clicked.
+         *
+         * @param action the action to add
+         * @return the builder
+         */
+        public DropDownPopupButtonBuilder add(Action action) {
 			popupMenu.add(action);
 			return this;
 		}
 
-		/**
-		 * Adds an item to the popup menu that is displayed when the button is clicked.
-		 *
-		 * @param item
-		 *            the item to add
-		 * @return the builder
-		 */
-		public DropDownPopupButtonBuilder add(JMenuItem item) {
+        /**
+         * Adds an item to the popup menu that is displayed when the button is clicked.
+         *
+         * @param item the item to add
+         * @return the builder
+         */
+        public DropDownPopupButtonBuilder add(JMenuItem item) {
 			popupMenu.add(item);
 			return this;
 		}
 
-		/**
-		 * Adds a separator to the popup menu that is displayed when the button is clicked.
-		 *
-		 * @return the builder
-		 */
-		public DropDownPopupButtonBuilder addSeparator() {
+        /**
+         * Adds a separator to the popup menu that is displayed when the button is clicked.
+         *
+         * @return the builder
+         */
+        public DropDownPopupButtonBuilder addSeparator() {
 			popupMenu.addSeparator();
 			return this;
 		}
 
-		/**
-		 * Creates a {@link DropDownPopupButton} from the given data.
-		 *
-		 * @return the button created with the given data
-		 */
-		public DropDownPopupButton build() {
+        /**
+         * Creates a {@link DropDownPopupButton} from the given data.
+         *
+         * @return the button created with the given data
+         */
+        public DropDownPopupButton build() {
 			return new DropDownPopupButton(action, new PopupMenuProvider() {
 
 				@Override
@@ -192,17 +188,14 @@ public class DropDownPopupButton extends JButton {
 
 	private String text;
 
-	/**
-	 * Creates a button with text, icon and tooltip specified by the i18n together with a popup menu
-	 * that acts as a dropdown.
-	 *
-	 * @param i18n
-	 *            [i18n].label for the text of the button, [i18n].icon for the icon and [i18n].tip
-	 *            for the tooltip
-	 * @param popupMenuProvider
-	 *            the provider for the menu that is shown when the button is clicked
-	 */
-	public DropDownPopupButton(String i18n, PopupMenuProvider popupMenuProvider) {
+    /**
+     * Creates a button with text, icon and tooltip specified by the i18n together with a popup menu
+     * that acts as a dropdown.
+     *
+     * @param i18n              [i18n].label for the text of the button, [i18n].icon for the icon and [i18n].tip            for the tooltip
+     * @param popupMenuProvider the provider for the menu that is shown when the button is clicked
+     */
+    public DropDownPopupButton(String i18n, PopupMenuProvider popupMenuProvider) {
 		super(I18N.getGUIMessageOrNull(i18n + ".label"), getIcon(i18n));
 		setToolTipText(I18N.getGUIMessageOrNull(i18n + ".tip"));
 
@@ -211,16 +204,14 @@ public class DropDownPopupButton extends JButton {
 		setupAction();
 	}
 
-	/**
-	 * Creates a button with text, icon and tooltip specified by the action together with a popup
-	 * menu that acts as a dropdown.
-	 *
-	 * @param action
-	 *            the {@link ResourceAction} that provides the text, icon and tooltip for the button
-	 * @param popupMenuProvider
-	 *            the provider for the menu that is shown when the button is clicked
-	 */
-	public DropDownPopupButton(ResourceAction action, PopupMenuProvider popupMenuProvider) {
+    /**
+     * Creates a button with text, icon and tooltip specified by the action together with a popup
+     * menu that acts as a dropdown.
+     *
+     * @param action            the {@link ResourceAction} that provides the text, icon and tooltip for the button
+     * @param popupMenuProvider the provider for the menu that is shown when the button is clicked
+     */
+    public DropDownPopupButton(ResourceAction action, PopupMenuProvider popupMenuProvider) {
 		super(action);
 		menuProvider = popupMenuProvider;
 		setupAction();
@@ -278,36 +269,33 @@ public class DropDownPopupButton extends JButton {
 		return selectedSize;
 	}
 
-	/**
-	 * Sets the arrow size. The default size is 12.
-	 *
-	 * @param size
-	 *            the size of the downward pointing arrow
-	 */
-	public void setArrowSize(int size) {
+    /**
+     * Sets the arrow size. The default size is 12.
+     *
+     * @param size the size of the downward pointing arrow
+     */
+    public void setArrowSize(int size) {
 		arrowSize = size;
 		setText(text);
 	}
 
-	/**
-	 * Sets the text font size. The default size is 12.
-	 *
-	 * @param size
-	 *            the size of the text
-	 */
-	public void setTextSize(int size) {
+    /**
+     * Sets the text font size. The default size is 12.
+     *
+     * @param size the size of the text
+     */
+    public void setTextSize(int size) {
 		fontSize = size;
 		setText(text);
 	}
 
-	/**
-	 * Sets the color for the font and arrow (in hex format). If set to {@code null} the default
-	 * color {@link #DEFAULT_COLOR} is used.
-	 *
-	 * @param color
-	 *            the color (in hex format) that should be used for font and arrow
-	 */
-	public void setColor(String color) {
+    /**
+     * Sets the color for the font and arrow (in hex format). If set to {@code null} the default
+     * color {@link #DEFAULT_COLOR} is used.
+     *
+     * @param color the color (in hex format) that should be used for font and arrow
+     */
+    public void setColor(String color) {
 		this.color = color;
 		setText(text);
 	}
@@ -330,14 +318,13 @@ public class DropDownPopupButton extends JButton {
 		return SwingTools.createIcon("16/" + iconName);
 	}
 
-	/**
-	 * Adds a {@link PopupMenuListener} that will be registered to the buttons popup menu each time
-	 * it is shown.
-	 *
-	 * @param listener
-	 *            the listener to add
-	 */
-	public void addPopupMenuListener(PopupMenuListener listener) {
+    /**
+     * Adds a {@link PopupMenuListener} that will be registered to the buttons popup menu each time
+     * it is shown.
+     *
+     * @param listener the listener to add
+     */
+    public void addPopupMenuListener(PopupMenuListener listener) {
 		otherListeners.add(listener);
 	}
 }

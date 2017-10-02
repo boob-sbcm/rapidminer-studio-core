@@ -26,8 +26,9 @@ import java.util.TreeSet;
 
 
 /**
- * @author Sebastian Land
+ * The type Gsp set.
  *
+ * @author Sebastian Land
  */
 public class GSPSet extends ResultObjectAdapter {
 
@@ -37,29 +38,55 @@ public class GSPSet extends ResultObjectAdapter {
 
 	private int maxTransactions = 0;
 
-	public GSPSet() {}
+    /**
+     * Instantiates a new Gsp set.
+     */
+    public GSPSet() {}
 
-	public void addSequence(Sequence sequence, double support) {
+    /**
+     * Add sequence.
+     *
+     * @param sequence the sequence
+     * @param support  the support
+     */
+    public void addSequence(Sequence sequence, double support) {
 		sequences.add(new Tupel<Sequence, Double>(sequence, support));
 		maxTransactions = Math.max(maxTransactions, sequence.size());
 	}
 
-	/**
-	 * @return the maxTransactions
-	 */
-	public int getMaxTransactions() {
+    /**
+     * Gets max transactions.
+     *
+     * @return the maxTransactions
+     */
+    public int getMaxTransactions() {
 		return maxTransactions;
 	}
 
-	public int getNumberOfSequences() {
+    /**
+     * Gets number of sequences.
+     *
+     * @return the number of sequences
+     */
+    public int getNumberOfSequences() {
 		return sequences.size();
 	}
 
-	public Sequence[] getSequenceArray() {
+    /**
+     * Get sequence array sequence [ ].
+     *
+     * @return the sequence [ ]
+     */
+    public Sequence[] getSequenceArray() {
 		return sequences.stream().map(Tupel::getFirst).toArray(Sequence[]::new);
 	}
 
-	public double[] getSupportArray() {
+    /**
+     * Get support array double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getSupportArray() {
 		return sequences.stream().mapToDouble(Tupel::getSecond).toArray();
 	}
 

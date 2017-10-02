@@ -31,17 +31,27 @@ import com.rapidminer.operator.learner.tree.criterions.ColumnCriterion;
  * preprocessings must be non-null.
  *
  * @author Gisa Schaefer
- *
  */
 public class NonParallelPreprocessingTreeBuilder extends NonParallelTreeBuilder {
 
 	private final SplitPreprocessing splitPreprocessing;
 
-	/**
-	 * Checks that the preprocessings are not null. Stores the splitPreprocessing and pipes the
-	 * other parameters to the super constructor.
-	 */
-	public NonParallelPreprocessingTreeBuilder(Operator operator, ColumnCriterion criterion,
+    /**
+     * Checks that the preprocessings are not null. Stores the splitPreprocessing and pipes the
+     * other parameters to the super constructor.
+     *
+     * @param operator                       the operator
+     * @param criterion                      the criterion
+     * @param terminationCriteria            the termination criteria
+     * @param pruner                         the pruner
+     * @param preprocessing                  the preprocessing
+     * @param prePruning                     the pre pruning
+     * @param numberOfPrepruningAlternatives the number of prepruning alternatives
+     * @param minSizeForSplit                the min size for split
+     * @param minLeafSize                    the min leaf size
+     * @param splitPreprocessing             the split preprocessing
+     */
+    public NonParallelPreprocessingTreeBuilder(Operator operator, ColumnCriterion criterion,
 			List<ColumnTerminator> terminationCriteria, Pruner pruner, AttributePreprocessing preprocessing,
 			boolean prePruning, int numberOfPrepruningAlternatives, int minSizeForSplit, int minLeafSize,
 			SplitPreprocessing splitPreprocessing) {

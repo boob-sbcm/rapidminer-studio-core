@@ -58,7 +58,7 @@ import com.rapidminer.tools.math.container.Range;
 /**
  * This operator maps all non numeric attributes to real valued attributes. Nothing is done for
  * numeric attributes, binary attributes are mapped to 0 and 1.
- *
+ * <p>
  * For nominal attributes one of the following calculations will be done:
  * <ul>
  * <li>Dichotomization, i.e. dummy coding or effect coding: one new attribute for each but one value
@@ -70,7 +70,7 @@ import com.rapidminer.tools.math.container.Range;
  * nominal attribute will simply be turned into a real valued attribute, the old values results in
  * equidistant real values.</li>
  * </ul>
- *
+ * <p>
  * At this moment the same applies for ordinal attributes, in a future release more appropriate
  * values based on the ranking between the ordinal values may be included.
  *
@@ -78,21 +78,27 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class NominalToNumeric extends PreprocessingOperator {
 
-	/**
-	 * This inner class is just a stub which delegates serialization to the full implementation
-	 * which now resides in its own file. This stub is necessary to be able to read models which
-	 * have been saved with an older version of RapidMiner, where the full class had been
-	 * implemented at this location. The class has been extracted in RM 5.1.009.
-	 *
-	 * @see com.rapidminer.operator.preprocessing.filter.NominalToNumericModel
-	 * @author Marius Helf
-	 */
-	@Deprecated
+    /**
+     * This inner class is just a stub which delegates serialization to the full implementation
+     * which now resides in its own file. This stub is necessary to be able to read models which
+     * have been saved with an older version of RapidMiner, where the full class had been
+     * implemented at this location. The class has been extracted in RM 5.1.009.
+     *
+     * @author Marius Helf
+     * @see com.rapidminer.operator.preprocessing.filter.NominalToNumericModel
+     */
+    @Deprecated
 	public static class NominalToNumericModel extends com.rapidminer.operator.preprocessing.filter.NominalToNumericModel {
 
 		private static final long serialVersionUID = -4203775081616082145L;
 
-		protected NominalToNumericModel(ExampleSet exampleSet, int codingType) {
+        /**
+         * Instantiates a new Nominal to numeric model.
+         *
+         * @param exampleSet the example set
+         * @param codingType the coding type
+         */
+        protected NominalToNumericModel(ExampleSet exampleSet, int codingType) {
 			super(exampleSet, codingType);
 		}
 
@@ -102,29 +108,77 @@ public class NominalToNumeric extends PreprocessingOperator {
 		}
 	}
 
-	public static final String PARAMETER_CODING_TYPE = "coding_type";
-	public static final String PARAMETER_USE_COMPARISON_GROUPS = "use_comparison_groups";
-	public static final String PARAMETER_COMPARISON_GROUP = "comparison_group";
-	public static final String PARAMETER_USE_UNDERSCORE_IN_NAME = "use_underscore_in_name";
-	public static final String PARAMETER_COMPARISON_GROUPS = "comparison_groups";
-	public static final String PARAMETER_ATTRIBUTE_FOR_COMPARISON_GROUP = "comparison_group_attribute";
-	public static final String PARAMETER_UNEXPECTED_VALUE_HANDLING = "unexpected_value_handling";
+    /**
+     * The constant PARAMETER_CODING_TYPE.
+     */
+    public static final String PARAMETER_CODING_TYPE = "coding_type";
+    /**
+     * The constant PARAMETER_USE_COMPARISON_GROUPS.
+     */
+    public static final String PARAMETER_USE_COMPARISON_GROUPS = "use_comparison_groups";
+    /**
+     * The constant PARAMETER_COMPARISON_GROUP.
+     */
+    public static final String PARAMETER_COMPARISON_GROUP = "comparison_group";
+    /**
+     * The constant PARAMETER_USE_UNDERSCORE_IN_NAME.
+     */
+    public static final String PARAMETER_USE_UNDERSCORE_IN_NAME = "use_underscore_in_name";
+    /**
+     * The constant PARAMETER_COMPARISON_GROUPS.
+     */
+    public static final String PARAMETER_COMPARISON_GROUPS = "comparison_groups";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_FOR_COMPARISON_GROUP.
+     */
+    public static final String PARAMETER_ATTRIBUTE_FOR_COMPARISON_GROUP = "comparison_group_attribute";
+    /**
+     * The constant PARAMETER_UNEXPECTED_VALUE_HANDLING.
+     */
+    public static final String PARAMETER_UNEXPECTED_VALUE_HANDLING = "unexpected_value_handling";
 
-	// values for coding type combo box
+    /**
+     * The constant DUMMY_CODING.
+     */
+// values for coding type combo box
 	public static final int DUMMY_CODING = 0;
-	public static final int EFFECT_CODING = 1;
-	public static final int INTEGERS_CODING = 2;
-	public static final String[] ENCODING_TYPES = new String[] { "dummy coding", "effect coding", "unique integers" };
+    /**
+     * The constant EFFECT_CODING.
+     */
+    public static final int EFFECT_CODING = 1;
+    /**
+     * The constant INTEGERS_CODING.
+     */
+    public static final int INTEGERS_CODING = 2;
+    /**
+     * The constant ENCODING_TYPES.
+     */
+    public static final String[] ENCODING_TYPES = new String[] { "dummy coding", "effect coding", "unique integers" };
 
-	// values for combobox which defines how additional values in the apply example set are handled
+    /**
+     * The constant ALL_ZEROES_AND_NO_WARNING.
+     */
+// values for combobox which defines how additional values in the apply example set are handled
 	// which are not in the training set.
 	public static final int ALL_ZEROES_AND_NO_WARNING = 0;
-	public static final int ALL_ZEROES_AND_WARNING = 1;
-	public static final String[] UNEXPECTED_VALUE_HANDLING = new String[] { "all 0", "all 0 and warning" };
+    /**
+     * The constant ALL_ZEROES_AND_WARNING.
+     */
+    public static final int ALL_ZEROES_AND_WARNING = 1;
+    /**
+     * The constant UNEXPECTED_VALUE_HANDLING.
+     */
+    public static final String[] UNEXPECTED_VALUE_HANDLING = new String[] { "all 0", "all 0 and warning" };
 
-	// values for the naming scheme chooser
+    /**
+     * The constant UNDERSCORE_NAMING_SCHEME.
+     */
+// values for the naming scheme chooser
 	public static final int UNDERSCORE_NAMING_SCHEME = 0;
-	public static final int EQUAL_SIGN_NAMING_SCHEME = 1;
+    /**
+     * The constant EQUAL_SIGN_NAMING_SCHEME.
+     */
+    public static final int EQUAL_SIGN_NAMING_SCHEME = 1;
 
 	private static final OperatorVersion VERSION_5_2_8 = new OperatorVersion(5, 2, 8);
 
@@ -134,7 +188,12 @@ public class NominalToNumeric extends PreprocessingOperator {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public NominalToNumeric(OperatorDescription description) {
+    /**
+     * Instantiates a new Nominal to numeric.
+     *
+     * @param description the description
+     */
+    public NominalToNumeric(OperatorDescription description) {
 		super(description);
 	}
 
@@ -183,11 +242,16 @@ public class NominalToNumeric extends PreprocessingOperator {
 		}
 	}
 
-	/**
-	 * Constructs the name of the target attribute for the current naming scheme and the given
-	 * source attribute and the value string.
-	 */
-	protected static String getTargetAttributeName(String sourceAttributeName, String value, boolean useUnderscore) {
+    /**
+     * Constructs the name of the target attribute for the current naming scheme and the given
+     * source attribute and the value string.
+     *
+     * @param sourceAttributeName the source attribute name
+     * @param value               the value
+     * @param useUnderscore       the use underscore
+     * @return the target attribute name
+     */
+    protected static String getTargetAttributeName(String sourceAttributeName, String value, boolean useUnderscore) {
 		if (useUnderscore) {
 			return sourceAttributeName + "_" + value;
 		} else {

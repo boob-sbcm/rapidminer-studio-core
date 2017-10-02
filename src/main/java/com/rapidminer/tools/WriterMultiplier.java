@@ -24,7 +24,7 @@ import java.io.Writer;
 
 /**
  * By using this multiplier all written content is multiplied to the given writers.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class WriterMultiplier extends Writer {
@@ -32,8 +32,12 @@ public class WriterMultiplier extends Writer {
 	/** The writers to write the contents to. */
 	private Writer[] writer;
 
-	/** Creates a new writer multiplier. */
-	public WriterMultiplier(Writer[] writer) {
+    /**
+     * Creates a new writer multiplier.  @param writer the writer
+     *
+     * @param writer the writer
+     */
+    public WriterMultiplier(Writer[] writer) {
 		this.writer = writer;
 	}
 

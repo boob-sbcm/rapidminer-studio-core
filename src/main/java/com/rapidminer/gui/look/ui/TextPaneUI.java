@@ -32,7 +32,7 @@ import javax.swing.plaf.basic.BasicTextPaneUI;
 
 /**
  * The UI for text panes.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class TextPaneUI extends BasicTextPaneUI {
@@ -60,7 +60,13 @@ public class TextPaneUI extends BasicTextPaneUI {
 
 	private TextPanePopupListener popupListener = new TextPanePopupListener();
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new TextPaneUI();
 	}
 

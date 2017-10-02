@@ -27,7 +27,7 @@ import com.rapidminer.tools.RandomGenerator;
 /**
  * Create data rows based on random data in the range of the minimum and maximum values of the
  * attributes of the given base example set.
- * 
+ *
  * @author Ingo Mierswa Exp $
  * @deprecated since 7.5.4.
  */
@@ -42,7 +42,14 @@ public class RandomDataRowReader extends AbstractDataRowReader {
 
 	private int counter = 0;
 
-	public RandomDataRowReader(ExampleSet baseExampleSet, Attribute[] attributes, int size) {
+    /**
+     * Instantiates a new Random data row reader.
+     *
+     * @param baseExampleSet the base example set
+     * @param attributes     the attributes
+     * @param size           the size
+     */
+    public RandomDataRowReader(ExampleSet baseExampleSet, Attribute[] attributes, int size) {
 		super(new DataRowFactory(DataRowFactory.TYPE_DOUBLE_ARRAY, '.'));
 		this.baseExampleSet = baseExampleSet;
 		this.attributes = attributes;

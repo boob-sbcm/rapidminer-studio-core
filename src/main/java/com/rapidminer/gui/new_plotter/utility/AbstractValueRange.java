@@ -30,9 +30,8 @@ import java.util.List;
 /**
  * Value range that is a abstract superclass for most value ranges. Implements applyRange and
  * applyRangeOnDataTableRows.
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public abstract class AbstractValueRange implements ValueRange, Cloneable {
 
@@ -60,7 +59,12 @@ public abstract class AbstractValueRange implements ValueRange, Cloneable {
 		}
 	}
 
-	protected void fireValueRangeChanged(ValueRangeChangeEvent e) {
+    /**
+     * Fire value range changed.
+     *
+     * @param e the e
+     */
+    protected void fireValueRangeChanged(ValueRangeChangeEvent e) {
 		Iterator<WeakReference<ValueRangeListener>> it = listeners.iterator();
 		while (it.hasNext()) {
 			ValueRangeListener listener = it.next().get();

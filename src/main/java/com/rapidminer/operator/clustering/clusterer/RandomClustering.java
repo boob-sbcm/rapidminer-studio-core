@@ -40,14 +40,21 @@ import com.rapidminer.tools.RandomGenerator;
  *
  * @author Sebastian Land
  */
-
 public class RandomClustering extends RMAbstractClusterer {
 
-	public static final String PARAMETER_NUMBER_OF_CLUSTERS = "number_of_clusters";
+    /**
+     * The constant PARAMETER_NUMBER_OF_CLUSTERS.
+     */
+    public static final String PARAMETER_NUMBER_OF_CLUSTERS = "number_of_clusters";
 
 	private static final int OPERATOR_PROGRESS_STEPS = 10_000;
 
-	public RandomClustering(OperatorDescription description) {
+    /**
+     * Instantiates a new Random clustering.
+     *
+     * @param description the description
+     */
+    public RandomClustering(OperatorDescription description) {
 		super(description);
 	}
 

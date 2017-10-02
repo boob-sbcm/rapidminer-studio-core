@@ -40,17 +40,35 @@ public class TermDetermination {
 
 	private double minValue;
 
-	public TermDetermination(Criterion criterion) {
+    /**
+     * Instantiates a new Term determination.
+     *
+     * @param criterion the criterion
+     */
+    public TermDetermination(Criterion criterion) {
 		this(criterion, Double.NEGATIVE_INFINITY);
 	}
 
-	public TermDetermination(Criterion criterion, double minValue) {
+    /**
+     * Instantiates a new Term determination.
+     *
+     * @param criterion the criterion
+     * @param minValue  the min value
+     */
+    public TermDetermination(Criterion criterion, double minValue) {
 		this.criterion = criterion;
 		splitter = new NumericalSplitter(criterion);
 		this.minValue = minValue;
 	}
 
-	public SplitCondition getBestTerm(ExampleSet exampleSet, String labelName) {
+    /**
+     * Gets best term.
+     *
+     * @param exampleSet the example set
+     * @param labelName  the label name
+     * @return the best term
+     */
+    public SplitCondition getBestTerm(ExampleSet exampleSet, String labelName) {
 		SplitCondition bestCondition = null;
 		double bestBenefit = Double.NEGATIVE_INFINITY;
 		double bestTotalWeight = 0;

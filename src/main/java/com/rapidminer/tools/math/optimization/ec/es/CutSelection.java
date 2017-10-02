@@ -24,18 +24,29 @@ import java.util.List;
 
 /**
  * Creates a new population by a deterministical selection of the best individuals.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CutSelection implements PopulationOperator {
 
 	private int popSize;
 
-	public CutSelection(int popSize) {
+    /**
+     * Instantiates a new Cut selection.
+     *
+     * @param popSize the pop size
+     */
+    public CutSelection(int popSize) {
 		this.popSize = popSize;
 	}
 
-	public boolean performOperation(int generation) {
+    /**
+     * Perform operation boolean.
+     *
+     * @param generation the generation
+     * @return the boolean
+     */
+    public boolean performOperation(int generation) {
 		return true;
 	}
 

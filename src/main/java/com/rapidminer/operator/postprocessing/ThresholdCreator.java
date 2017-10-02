@@ -31,30 +31,35 @@ import java.util.List;
 /**
  * This operator creates a user defined threshold for crisp classifying based on prediction
  * confidences.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ThresholdCreator extends AbstractReader<Threshold> {
 
-	/**
-	 * The parameter name for &quot;The confidence threshold to determine if the prediction should
-	 * be positive.&quot;
-	 */
-	public static final String PARAMETER_THRESHOLD = "threshold";
+    /**
+     * The parameter name for &quot;The confidence threshold to determine if the prediction should
+     * be positive.&quot;
+     */
+    public static final String PARAMETER_THRESHOLD = "threshold";
 
-	/**
-	 * The parameter name for &quot;The class which should be considered as the first one
-	 * (confidence 0).&quot;
-	 */
-	public static final String PARAMETER_FIRST_CLASS = "first_class";
+    /**
+     * The parameter name for &quot;The class which should be considered as the first one
+     * (confidence 0).&quot;
+     */
+    public static final String PARAMETER_FIRST_CLASS = "first_class";
 
-	/**
-	 * The parameter name for &quot;The class which should be considered as the second one
-	 * (confidence 1).&quot;
-	 */
-	public static final String PARAMETER_SECOND_CLASS = "second_class";
+    /**
+     * The parameter name for &quot;The class which should be considered as the second one
+     * (confidence 1).&quot;
+     */
+    public static final String PARAMETER_SECOND_CLASS = "second_class";
 
-	public ThresholdCreator(OperatorDescription description) {
+    /**
+     * Instantiates a new Threshold creator.
+     *
+     * @param description the description
+     */
+    public ThresholdCreator(OperatorDescription description) {
 		super(description, Threshold.class);
 	}
 

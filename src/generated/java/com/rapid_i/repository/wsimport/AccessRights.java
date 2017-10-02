@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for accessRights complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="accessRights">
  *   &lt;complexContent>
@@ -42,8 +42,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "accessRights", propOrder = {
@@ -54,18 +52,27 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class AccessRights {
 
+    /**
+     * The Execute.
+     */
     protected String execute;
+    /**
+     * The Group.
+     */
     protected String group;
+    /**
+     * The Read.
+     */
     protected String read;
+    /**
+     * The Write.
+     */
     protected String write;
 
     /**
      * Gets the value of the execute property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getExecute() {
         return execute;
@@ -73,11 +80,8 @@ public class AccessRights {
 
     /**
      * Sets the value of the execute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setExecute(String value) {
         this.execute = value;
@@ -85,11 +89,8 @@ public class AccessRights {
 
     /**
      * Gets the value of the group property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getGroup() {
         return group;
@@ -97,11 +98,8 @@ public class AccessRights {
 
     /**
      * Sets the value of the group property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setGroup(String value) {
         this.group = value;
@@ -109,11 +107,8 @@ public class AccessRights {
 
     /**
      * Gets the value of the read property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getRead() {
         return read;
@@ -121,11 +116,8 @@ public class AccessRights {
 
     /**
      * Sets the value of the read property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setRead(String value) {
         this.read = value;
@@ -133,11 +125,8 @@ public class AccessRights {
 
     /**
      * Gets the value of the write property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getWrite() {
         return write;
@@ -145,11 +134,8 @@ public class AccessRights {
 
     /**
      * Sets the value of the write property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setWrite(String value) {
         this.write = value;

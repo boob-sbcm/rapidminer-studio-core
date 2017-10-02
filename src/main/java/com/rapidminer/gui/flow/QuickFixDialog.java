@@ -34,6 +34,7 @@ import com.rapidminer.operator.ports.quickfix.QuickFix;
 
 
 /**
+ * The type Quick fix dialog.
  *
  * @author Simon Fischer
  */
@@ -59,7 +60,12 @@ public class QuickFixDialog extends ButtonDialog {
 		});
 	}
 
-	public QuickFixDialog(Collection<? extends QuickFix> fixes) {
+    /**
+     * Instantiates a new Quick fix dialog.
+     *
+     * @param fixes the fixes
+     */
+    public QuickFixDialog(Collection<? extends QuickFix> fixes) {
 		super(ApplicationFrame.getApplicationFrame(), "quick_fix_dialog", ModalityType.APPLICATION_MODAL, new Object[] {});
 
 		for (final QuickFix fix : fixes) {

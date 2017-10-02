@@ -33,7 +33,7 @@ import com.rapidminer.tools.Tools;
 /**
  * A tree is a node in a tree model containing several edges to other trees (children) combined with
  * conditions at these edges.
- *
+ * <p>
  * Leafs contain the class label which should be predicted.
  *
  * @author Sebastian Land, Ingo Mierswa
@@ -50,19 +50,41 @@ public class Tree implements Serializable {
 
 	private transient ExampleSet trainingSet = null;
 
-	public Tree(ExampleSet trainingSet) {
+    /**
+     * Instantiates a new Tree.
+     *
+     * @param trainingSet the training set
+     */
+    public Tree(ExampleSet trainingSet) {
 		this.trainingSet = trainingSet;
 	}
 
-	public ExampleSet getTrainingSet() {
+    /**
+     * Gets training set.
+     *
+     * @return the training set
+     */
+    public ExampleSet getTrainingSet() {
 		return this.trainingSet;
 	}
 
-	public void addCount(String className, int count) {
+    /**
+     * Add count.
+     *
+     * @param className the class name
+     * @param count     the count
+     */
+    public void addCount(String className, int count) {
 		counterMap.put(className, count);
 	}
 
-	public int getCount(String className) {
+    /**
+     * Gets count.
+     *
+     * @param className the class name
+     * @return the count
+     */
+    public int getCount(String className) {
 		Integer count = counterMap.get(className);
 		if (count == null) {
 			return 0;
@@ -71,7 +93,12 @@ public class Tree implements Serializable {
 		}
 	}
 
-	public int getFrequencySum() {
+    /**
+     * Gets frequency sum.
+     *
+     * @return the frequency sum
+     */
+    public int getFrequencySum() {
 		int sum = 0;
 		for (Integer i : counterMap.values()) {
 			sum += i;
@@ -79,7 +106,12 @@ public class Tree implements Serializable {
 		return sum;
 	}
 
-	public int getSubtreeFrequencySum() {
+    /**
+     * Gets subtree frequency sum.
+     *
+     * @return the subtree frequency sum
+     */
+    public int getSubtreeFrequencySum() {
 		if (children.size() == 0) {
 			return getFrequencySum();
 		} else {
@@ -91,17 +123,24 @@ public class Tree implements Serializable {
 		}
 	}
 
-	/**
-	 * This returns the class counts from all contained examples by iterating recursively through
-	 * the tree.
-	 */
-	public Map<String, Integer> getSubtreeCounterMap() {
+    /**
+     * This returns the class counts from all contained examples by iterating recursively through
+     * the tree.
+     *
+     * @return the subtree counter map
+     */
+    public Map<String, Integer> getSubtreeCounterMap() {
 		Map<String, Integer> counterMap = new LinkedHashMap<String, Integer>();
 		fillSubtreeCounterMap(counterMap);
 		return counterMap;
 	}
 
-	protected void fillSubtreeCounterMap(Map<String, Integer> counterMap) {
+    /**
+     * Fill subtree counter map.
+     *
+     * @param counterMap the counter map
+     */
+    protected void fillSubtreeCounterMap(Map<String, Integer> counterMap) {
 		if (children.size() == 0) {
 			// then its leaf: Add all counted frequencies
 			for (String key : this.counterMap.keySet()) {
@@ -118,36 +157,75 @@ public class Tree implements Serializable {
 		}
 	}
 
-	public Map<String, Integer> getCounterMap() {
+    /**
+     * Gets counter map.
+     *
+     * @return the counter map
+     */
+    public Map<String, Integer> getCounterMap() {
 		return counterMap;
 	}
 
-	public void setLeaf(String label) {
+    /**
+     * Sets leaf.
+     *
+     * @param label the label
+     */
+    public void setLeaf(String label) {
 		this.label = label;
 	}
 
-	public void addChild(Tree child, SplitCondition condition) {
+    /**
+     * Add child.
+     *
+     * @param child     the child
+     * @param condition the condition
+     */
+    public void addChild(Tree child, SplitCondition condition) {
 		this.children.add(new Edge(child, condition));
 		Collections.sort(this.children);
 	}
 
-	public void removeChildren() {
+    /**
+     * Remove children.
+     */
+    public void removeChildren() {
 		this.children.clear();
 	}
 
-	public boolean isLeaf() {
+    /**
+     * Is leaf boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLeaf() {
 		return children.size() == 0;
 	}
 
-	public String getLabel() {
+    /**
+     * Gets label.
+     *
+     * @return the label
+     */
+    public String getLabel() {
 		return this.label;
 	}
 
-	public Iterator<Edge> childIterator() {
+    /**
+     * Child iterator iterator.
+     *
+     * @return the iterator
+     */
+    public Iterator<Edge> childIterator() {
 		return children.iterator();
 	}
 
-	public int getNumberOfChildren() {
+    /**
+     * Gets number of children.
+     *
+     * @return the number of children
+     */
+    public int getNumberOfChildren() {
 		return children.size();
 	}
 

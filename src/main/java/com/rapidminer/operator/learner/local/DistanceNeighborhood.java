@@ -32,14 +32,18 @@ import java.util.List;
 
 
 /**
+ * The type Distance neighborhood.
+ *
  * @author Sebastian Land
- * 
  */
 public class DistanceNeighborhood implements Neighborhood {
 
 	private static final long serialVersionUID = -4880619185491306844L;
 
-	public static final String PARAMETER_DISTANCE = "fixed_distance";
+    /**
+     * The constant PARAMETER_DISTANCE.
+     */
+    public static final String PARAMETER_DISTANCE = "fixed_distance";
 
 	private double withinDistance;
 

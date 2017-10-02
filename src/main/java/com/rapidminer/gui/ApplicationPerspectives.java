@@ -37,104 +37,190 @@ import com.vlsolutions.swing.docking.DockingContext;
 @Deprecated
 public abstract class ApplicationPerspectives {
 
-	protected final PerspectiveController perspectiveController;
+    /**
+     * The Perspective controller.
+     */
+    protected final PerspectiveController perspectiveController;
 
-	public ApplicationPerspectives(final PerspectiveController perspectiveController) {
+    /**
+     * Instantiates a new Application perspectives.
+     *
+     * @param perspectiveController the perspective controller
+     */
+    public ApplicationPerspectives(final PerspectiveController perspectiveController) {
 		this.perspectiveController = perspectiveController;
 	}
 
-	public ApplicationPerspectives(final DockingContext context) {
+    /**
+     * Instantiates a new Application perspectives.
+     *
+     * @param context the context
+     */
+    public ApplicationPerspectives(final DockingContext context) {
 		perspectiveController = new PerspectiveController(context);
 	}
 
-	public void showPerspective(final Perspective perspective) {
+    /**
+     * Show perspective.
+     *
+     * @param perspective the perspective
+     */
+    public void showPerspective(final Perspective perspective) {
 		perspectiveController.showPerspective(perspective);
 	}
 
-	public JMenu getWorkspaceMenu() {
+    /**
+     * Gets workspace menu.
+     *
+     * @return the workspace menu
+     */
+    public JMenu getWorkspaceMenu() {
 		LogService.getRoot().log(Level.WARNING,
 				"The access of the WorkspaceMenu deprecated. Use the PerspectiveController instead.");
 		return new JMenu();
 	}
 
-	public JToolBar getWorkspaceToolBar() {
+    /**
+     * Gets workspace tool bar.
+     *
+     * @return the workspace tool bar
+     */
+    public JToolBar getWorkspaceToolBar() {
 		LogService.getRoot().log(Level.WARNING,
 				"The access of the WorkspaceToolBar is deprecated. Use the PerspectiveController instead.");
 		return new JToolBar();
 	}
 
-	/**
-	 * Checks if the given string is valid as name of a new perspective.
-	 *
-	 * @param name
-	 * @return validity
-	 */
-	public boolean isValidName(final String name) {
+    /**
+     * Checks if the given string is valid as name of a new perspective.
+     *
+     * @param name the name
+     * @return validity boolean
+     */
+    public boolean isValidName(final String name) {
 		return perspectiveController.getModel().isValidName(name);
 	}
 
-	/**
-	 *
-	 * @throws IllegalArgumentException
-	 *             if name is already used
-	 */
-	public Perspective addPerspective(final String name, final boolean userDefined) {
+    /**
+     * Add perspective perspective.
+     *
+     * @param name        the name
+     * @param userDefined the user defined
+     * @return the perspective
+     * @throws IllegalArgumentException if name is already used
+     */
+    public Perspective addPerspective(final String name, final boolean userDefined) {
 		return perspectiveController.getModel().addPerspective(name, userDefined);
 	}
 
-	/** Saves all perspectives to the users config directory. */
-	public void saveAll() {
+    /**
+     * Saves all perspectives to the users config directory.
+     */
+    public void saveAll() {
 		perspectiveController.saveAll();
 	}
 
-	/** Loads all perspectives from the users config directory. */
-	public void loadAll() {
+    /**
+     * Loads all perspectives from the users config directory.
+     */
+    public void loadAll() {
 		perspectiveController.loadAll();
 	}
 
-	public Perspective getCurrentPerspective() {
+    /**
+     * Gets current perspective.
+     *
+     * @return the current perspective
+     */
+    public Perspective getCurrentPerspective() {
 		return perspectiveController.getModel().getSelectedPerspective();
 	}
 
-	/** Switches to the given perspective, storing the current one. */
-	public void showPerspective(final String name) {
+    /**
+     * Switches to the given perspective, storing the current one.  @param name the name
+     *
+     * @param name the name
+     */
+    public void showPerspective(final String name) {
 		perspectiveController.showPerspective(name);
 	}
 
-	/**
-	 * Creates a user-defined perspectives, and possibly switches to this new perspective
-	 * immediately. The new perspective will be a copy of the current one.
-	 */
-	public Perspective createUserPerspective(final String name, final boolean show) {
+    /**
+     * Creates a user-defined perspectives, and possibly switches to this new perspective
+     * immediately. The new perspective will be a copy of the current one.
+     *
+     * @param name the name
+     * @param show the show
+     * @return the perspective
+     */
+    public Perspective createUserPerspective(final String name, final boolean show) {
 		return perspectiveController.createUserPerspective(name, show);
 	}
 
-	/** Shows the tab as a child of the given dockable in all perspectives. */
-	public void showTabInAllPerspectives(final Dockable dockable, final Dockable parent) {
+    /**
+     * Shows the tab as a child of the given dockable in all perspectives.  @param dockable the dockable
+     *
+     * @param dockable the dockable
+     * @param parent   the parent
+     */
+    public void showTabInAllPerspectives(final Dockable dockable, final Dockable parent) {
 		perspectiveController.showTabInAllPerspectives(dockable, parent);
 	}
 
-	public void removeFromAllPerspectives(final Dockable dockable) {
+    /**
+     * Remove from all perspectives.
+     *
+     * @param dockable the dockable
+     */
+    public void removeFromAllPerspectives(final Dockable dockable) {
 		perspectiveController.removeFromAllPerspectives(dockable);
 	}
 
-	protected abstract void makePredefined();
+    /**
+     * Make predefined.
+     */
+    protected abstract void makePredefined();
 
-	protected abstract void restoreDefault(String perspectiveName);
+    /**
+     * Restore default.
+     *
+     * @param perspectiveName the perspective name
+     */
+    protected abstract void restoreDefault(String perspectiveName);
 
-	protected Perspective getPerspective(final String name) {
+    /**
+     * Gets perspective.
+     *
+     * @param name the name
+     * @return the perspective
+     */
+    protected Perspective getPerspective(final String name) {
 		return perspectiveController.getModel().getPerspective(name);
 	}
 
-	public void addPerspectiveChangeListener(final PerspectiveChangeListener listener) {
+    /**
+     * Add perspective change listener.
+     *
+     * @param listener the listener
+     */
+    public void addPerspectiveChangeListener(final PerspectiveChangeListener listener) {
 		perspectiveController.getModel().addPerspectiveChangeListener(listener);
 	}
 
-	public boolean removePerspectiveChangeListener(final PerspectiveChangeListener listener) {
+    /**
+     * Remove perspective change listener boolean.
+     *
+     * @param listener the listener
+     * @return the boolean
+     */
+    public boolean removePerspectiveChangeListener(final PerspectiveChangeListener listener) {
 		return perspectiveController.getModel().removePerspectiveChangeListener(listener);
 	}
 
-	public void notifyChangeListener() {
+    /**
+     * Notify change listener.
+     */
+    public void notifyChangeListener() {
 		perspectiveController.getModel().notifyChangeListener();
 	}
 

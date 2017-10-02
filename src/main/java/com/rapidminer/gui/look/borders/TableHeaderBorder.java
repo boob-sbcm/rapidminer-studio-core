@@ -26,14 +26,17 @@ import java.awt.Insets;
 
 /**
  * The UIResource for table header borders.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class TableHeaderBorder extends javax.swing.border.AbstractBorder {
 
 	private static final long serialVersionUID = -1708520253527386097L;
 
-	protected Insets editorBorderInsets = new Insets(0, 0, 1, 0);
+    /**
+     * The Editor border insets.
+     */
+    protected Insets editorBorderInsets = new Insets(0, 0, 1, 0);
 
 	@Override
 	public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {

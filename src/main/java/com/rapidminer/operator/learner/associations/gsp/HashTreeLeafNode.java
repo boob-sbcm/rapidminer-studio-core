@@ -22,8 +22,9 @@ import java.util.ArrayList;
 
 
 /**
+ * The type Hash tree leaf node.
+ *
  * @author Sebastian Land
- * 
  */
 public class HashTreeLeafNode implements HashTreeNode {
 

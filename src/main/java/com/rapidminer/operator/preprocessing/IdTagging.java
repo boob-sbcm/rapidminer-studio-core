@@ -51,23 +51,28 @@ import java.util.Set;
  * This operator adds an ID attribute to the given example set. Each example is tagged with an
  * incremental integer number. If the example set already contains an id attribute, the old
  * attribute will be removed before the new one is added.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class IdTagging extends AbstractDataProcessing {
 
-	/**
-	 * The parameter name for &quot;True if nominal ids (instead of integer ids) should be
-	 * created&quot;
-	 */
-	public static final String PARAMETER_CREATE_NOMINAL_IDS = "create_nominal_ids";
+    /**
+     * The parameter name for &quot;True if nominal ids (instead of integer ids) should be
+     * created&quot;
+     */
+    public static final String PARAMETER_CREATE_NOMINAL_IDS = "create_nominal_ids";
 
-	/**
-	 * The parameter name for the offset added to the generated id.
-	 */
-	public static final String PARAMETER_OFFSET = "offset";
+    /**
+     * The parameter name for the offset added to the generated id.
+     */
+    public static final String PARAMETER_OFFSET = "offset";
 
-	public IdTagging(OperatorDescription description) {
+    /**
+     * Instantiates a new Id tagging.
+     *
+     * @param description the description
+     */
+    public IdTagging(OperatorDescription description) {
 		super(description);
 	}
 

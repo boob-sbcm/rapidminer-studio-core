@@ -34,7 +34,6 @@ import javax.swing.event.AncestorListener;
  * Bubble that attaches to and moves with a simple {@link JComponent}.
  *
  * @author Simon Fischer
- *
  */
 public class ComponentBubbleWindow extends BubbleWindow {
 
@@ -46,13 +45,38 @@ public class ComponentBubbleWindow extends BubbleWindow {
 
 	private AncestorListener ancestorListener;
 
-	public ComponentBubbleWindow(final JComponent component, Window owner, AlignedSide preferredAlignment, String i18nKey,
+    /**
+     * Instantiates a new Component bubble window.
+     *
+     * @param component          the component
+     * @param owner              the owner
+     * @param preferredAlignment the preferred alignment
+     * @param i18nKey            the 18 n key
+     * @param buttonsToAdd       the buttons to add
+     * @param arguments          the arguments
+     */
+    public ComponentBubbleWindow(final JComponent component, Window owner, AlignedSide preferredAlignment, String i18nKey,
 			JButton[] buttonsToAdd, Object... arguments) {
 		this(component, BubbleStyle.COMIC, owner, preferredAlignment, i18nKey, null, null, false, false, buttonsToAdd,
 				arguments);
 	}
 
-	public ComponentBubbleWindow(final JComponent component, BubbleStyle style, Window owner, AlignedSide preferredAlignment,
+    /**
+     * Instantiates a new Component bubble window.
+     *
+     * @param component          the component
+     * @param style              the style
+     * @param owner              the owner
+     * @param preferredAlignment the preferred alignment
+     * @param i18nKey            the 18 n key
+     * @param titleFont          the title font
+     * @param bodyFont           the body font
+     * @param moveable           the moveable
+     * @param showCloseButton    the show close button
+     * @param buttonsToAdd       the buttons to add
+     * @param arguments          the arguments
+     */
+    public ComponentBubbleWindow(final JComponent component, BubbleStyle style, Window owner, AlignedSide preferredAlignment,
 			String i18nKey, Font titleFont, Font bodyFont, boolean moveable, boolean showCloseButton, JButton[] buttonsToAdd,
 			Object... arguments) {
 		super(owner, style, preferredAlignment, i18nKey, null, titleFont, bodyFont, moveable, showCloseButton, buttonsToAdd,

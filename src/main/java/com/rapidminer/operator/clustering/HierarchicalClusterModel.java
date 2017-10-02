@@ -25,7 +25,7 @@ import com.rapidminer.tools.Tools;
 /**
  * This class provides the data of a generic hierarchical cluster model. Therefore it holds a root
  * node, giving access to the complete cluster hierarchy.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class HierarchicalClusterModel extends ResultObjectAdapter implements ClusterModelInterface {
@@ -34,32 +34,51 @@ public class HierarchicalClusterModel extends ResultObjectAdapter implements Clu
 
 	private HierarchicalClusterNode rootNode;
 
-	/**
-	 * Creates a hierarchical cluster model by copying a flat one.
-	 * 
-	 * @param clusterModel
-	 *            the cluster model to copy.
-	 */
-	public HierarchicalClusterModel(ClusterModel clusterModel) {
+    /**
+     * Creates a hierarchical cluster model by copying a flat one.
+     *
+     * @param clusterModel the cluster model to copy.
+     */
+    public HierarchicalClusterModel(ClusterModel clusterModel) {
 		rootNode = new HierarchicalClusterNode("root");
 		for (Cluster cluster : clusterModel.getClusters()) {
 			rootNode.addSubNode(new HierarchicalClusterLeafNode(cluster.getClusterId(), cluster.getExampleIds()));
 		}
 	}
 
-	public HierarchicalClusterModel(HierarchicalClusterNode root) {
+    /**
+     * Instantiates a new Hierarchical cluster model.
+     *
+     * @param root the root
+     */
+    public HierarchicalClusterModel(HierarchicalClusterNode root) {
 		this.rootNode = root;
 	}
 
-	public HierarchicalClusterNode getRootNode() {
+    /**
+     * Gets root node.
+     *
+     * @return the root node
+     */
+    public HierarchicalClusterNode getRootNode() {
 		return rootNode;
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "hcm";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "Hierarchical Cluster Model";
 	}
 

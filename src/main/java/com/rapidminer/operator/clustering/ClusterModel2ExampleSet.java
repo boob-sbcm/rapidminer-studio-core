@@ -47,7 +47,7 @@ import java.util.List;
  * models depend on a static nature of the id attributes, the outcome on another exampleset with
  * different values but same ids will be unpredictable and hence not automatically creation of ids
  * is performed. Only centroid based clusterings support assiging unseen examples to clusters. *
- * 
+ *
  * @author Sebastian Land
  */
 public class ClusterModel2ExampleSet extends Operator {
@@ -57,11 +57,25 @@ public class ClusterModel2ExampleSet extends Operator {
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort modelOutput = getOutputPorts().createPort("model");
 
-	public static final String PARAMETER_KEEP_MODEL = "keep_model";
-	public static final String PARAMETER_REMOVE_UNLABELED = "remove_unlabeled";
-	public static final String PARAMETER_ADD_AS_LABEL = "add_as_label";
+    /**
+     * The constant PARAMETER_KEEP_MODEL.
+     */
+    public static final String PARAMETER_KEEP_MODEL = "keep_model";
+    /**
+     * The constant PARAMETER_REMOVE_UNLABELED.
+     */
+    public static final String PARAMETER_REMOVE_UNLABELED = "remove_unlabeled";
+    /**
+     * The constant PARAMETER_ADD_AS_LABEL.
+     */
+    public static final String PARAMETER_ADD_AS_LABEL = "add_as_label";
 
-	public ClusterModel2ExampleSet(OperatorDescription description) {
+    /**
+     * Instantiates a new Cluster model 2 example set.
+     *
+     * @param description the description
+     */
+    public ClusterModel2ExampleSet(OperatorDescription description) {
 		super(description);
 		getTransformer().addRule(
 				new AttributeAddingExampleSetPassThroughRule(exampleSetInput, exampleSetOutput, new AttributeMetaData(
@@ -69,7 +83,15 @@ public class ClusterModel2ExampleSet extends Operator {
 		getTransformer().addRule(new PassThroughRule(modelInput, modelOutput, false));
 	}
 
-	public ExampleSet addClusterAttribute(ExampleSet exampleSet, ClusterModel model) throws OperatorException {
+    /**
+     * Add cluster attribute example set.
+     *
+     * @param exampleSet the example set
+     * @param model      the model
+     * @return the example set
+     * @throws OperatorException the operator exception
+     */
+    public ExampleSet addClusterAttribute(ExampleSet exampleSet, ClusterModel model) throws OperatorException {
 		Attributes attributes = exampleSet.getAttributes();
 
 		// additional checks

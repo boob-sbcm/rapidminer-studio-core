@@ -28,15 +28,15 @@ import com.rapidminer.example.Attribute;
  */
 public class ParallelDecisionTreeLeafCreator {
 
-	/**
-	 * Transforms the tree node into a leaf by storing the number of label values and naming the
-	 * leaf by the majority label value.
-	 *
-	 * @param node
-	 * @param columnTable
-	 * @param selectedExamples
-	 */
-	public void changeTreeToLeaf(Tree node, ColumnExampleTable columnTable, int[] selectedExamples) {
+    /**
+     * Transforms the tree node into a leaf by storing the number of label values and naming the
+     * leaf by the majority label value.
+     *
+     * @param node             the node
+     * @param columnTable      the column table
+     * @param selectedExamples the selected examples
+     */
+    public void changeTreeToLeaf(Tree node, ColumnExampleTable columnTable, int[] selectedExamples) {
 		Attribute label = columnTable.getLabel();
 		int[] labelColumn = columnTable.getLabelColumn();
 		int numberOfLabels = label.getMapping().size();

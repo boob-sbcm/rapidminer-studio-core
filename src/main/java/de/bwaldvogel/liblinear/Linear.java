@@ -48,14 +48,14 @@ import java.util.regex.Pattern;
 
 /**
  * <h2>Java port of <a href="http://www.csie.ntu.edu.tw/~cjlin/liblinear/">liblinear</a></h2>
- *
+ * <p>
  * <p>
  * The usage should be pretty similar to the C version of <tt>liblinear</tt>.
  * </p>
  * <p>
  * Please consider reading the <tt>README</tt> file of <tt>liblinear</tt>.
  * </p>
- *
+ * <p>
  * <p>
  * <em>The port was done by Benedikt Waldvogel (mail at bwaldvogel.de)</em>
  * </p>
@@ -64,21 +64,34 @@ import java.util.regex.Pattern;
  */
 public class Linear {
 
-	static final Charset FILE_CHARSET = Charset.forName("ISO-8859-1");
+    /**
+     * The File charset.
+     */
+    static final Charset FILE_CHARSET = Charset.forName("ISO-8859-1");
 
-	static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
+    /**
+     * The Default locale.
+     */
+    static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
 	private static Object OUTPUT_MUTEX = new Object();
 	private static PrintStream DEBUG_OUTPUT = System.out;
 
 	private static final long DEFAULT_RANDOM_SEED = 0L;
-	static Random random = new Random(DEFAULT_RANDOM_SEED);
+    /**
+     * The Random.
+     */
+    static Random random = new Random(DEFAULT_RANDOM_SEED);
 
-	/**
-	 * @param target
-	 *            predicted classes
-	 */
-	public static void crossValidation(Problem prob, Parameter param, int nr_fold, double[] target) {
+    /**
+     * Cross validation.
+     *
+     * @param prob    the prob
+     * @param param   the param
+     * @param nr_fold the nr fold
+     * @param target  predicted classes
+     */
+    public static void crossValidation(Problem prob, Parameter param, int nr_fold, double[] target) {
 		int i;
 		int l = prob.l;
 		int[] perm = new int[l];
@@ -134,12 +147,32 @@ public class Linear {
 	/** used as complex return type */
 	private static class GroupClassesReturn {
 
-		final int[] count;
-		final int[] label;
-		final int nr_class;
-		final int[] start;
+        /**
+         * The Count.
+         */
+        final int[] count;
+        /**
+         * The Label.
+         */
+        final int[] label;
+        /**
+         * The Nr class.
+         */
+        final int nr_class;
+        /**
+         * The Start.
+         */
+        final int[] start;
 
-		GroupClassesReturn(int nr_class, int[] label, int[] start, int[] count) {
+        /**
+         * Instantiates a new Group classes return.
+         *
+         * @param nr_class the nr class
+         * @param label    the label
+         * @param start    the start
+         * @param count    the count
+         */
+        GroupClassesReturn(int nr_class, int[] label, int[] start, int[] count) {
 			this.nr_class = nr_class;
 			this.label = label;
 			this.start = start;
@@ -214,7 +247,12 @@ public class Linear {
 		return new GroupClassesReturn(nr_class, label, start, count);
 	}
 
-	static void info(String message) {
+    /**
+     * Info.
+     *
+     * @param message the message
+     */
+    static void info(String message) {
 		synchronized (OUTPUT_MUTEX) {
 			if (DEBUG_OUTPUT == null) {
 				return;
@@ -224,7 +262,13 @@ public class Linear {
 		}
 	}
 
-	static void info(String format, Object... args) {
+    /**
+     * Info.
+     *
+     * @param format the format
+     * @param args   the args
+     */
+    static void info(String format, Object... args) {
 		synchronized (OUTPUT_MUTEX) {
 			if (DEBUG_OUTPUT == null) {
 				return;
@@ -234,15 +278,15 @@ public class Linear {
 		}
 	}
 
-	/**
-	 * @param s
-	 *            the string to parse for the double value
-	 * @throws IllegalArgumentException
-	 *             if s is empty or represents NaN or Infinity
-	 * @throws NumberFormatException
-	 *             see {@link Double#parseDouble(String)}
-	 */
-	static double atof(String s) {
+    /**
+     * Atof double.
+     *
+     * @param s the string to parse for the double value
+     * @return the double
+     * @throws IllegalArgumentException if s is empty or represents NaN or Infinity
+     * @throws NumberFormatException    see {@link Double#parseDouble(String)}
+     */
+    static double atof(String s) {
 		if (s == null || s.length() < 1) {
 			throw new IllegalArgumentException("Can't convert empty string to integer");
 		}
@@ -253,15 +297,14 @@ public class Linear {
 		return d;
 	}
 
-	/**
-	 * @param s
-	 *            the string to parse for the integer value
-	 * @throws IllegalArgumentException
-	 *             if s is empty
-	 * @throws NumberFormatException
-	 *             see {@link Integer#parseInt(String)}
-	 */
-	static int atoi(String s) throws NumberFormatException {
+    /**
+     * Atoi int.
+     *
+     * @param s the string to parse for the integer value
+     * @return the int
+     * @throws NumberFormatException see {@link Integer#parseInt(String)}
+     */
+    static int atoi(String s) throws NumberFormatException {
 		if (s == null || s.length() < 1) {
 			throw new IllegalArgumentException("Can't convert empty string to integer");
 		}
@@ -272,33 +315,45 @@ public class Linear {
 		return Integer.parseInt(s);
 	}
 
-	/**
-	 * Java5 'backport' of Arrays.copyOf
-	 */
-	public static double[] copyOf(double[] original, int newLength) {
+    /**
+     * Java5 'backport' of Arrays.copyOf
+     *
+     * @param original  the original
+     * @param newLength the new length
+     * @return the double [ ]
+     */
+    public static double[] copyOf(double[] original, int newLength) {
 		double[] copy = new double[newLength];
 		System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
 		return copy;
 	}
 
-	/**
-	 * Java5 'backport' of Arrays.copyOf
-	 */
-	public static int[] copyOf(int[] original, int newLength) {
+    /**
+     * Java5 'backport' of Arrays.copyOf
+     *
+     * @param original  the original
+     * @param newLength the new length
+     * @return the int [ ]
+     */
+    public static int[] copyOf(int[] original, int newLength) {
 		int[] copy = new int[newLength];
 		System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
 		return copy;
 	}
 
-	/**
-	 * Loads the model from inputReader. It uses {@link java.util.Locale#ENGLISH} for number
-	 * formatting.
-	 *
-	 * <p>
-	 * Note: The inputReader is <b>NOT closed</b> after reading or in case of an exception.
-	 * </p>
-	 */
-	public static Model loadModel(Reader inputReader) throws IOException {
+    /**
+     * Loads the model from inputReader. It uses {@link java.util.Locale#ENGLISH} for number
+     * formatting.
+     * <p>
+     * <p>
+     * Note: The inputReader is <b>NOT closed</b> after reading or in case of an exception.
+     * </p>
+     *
+     * @param inputReader the input reader
+     * @return the model
+     * @throws IOException the io exception
+     */
+    public static Model loadModel(Reader inputReader) throws IOException {
 		Model model = new Model();
 
 		model.label = null;
@@ -374,11 +429,15 @@ public class Linear {
 		return model;
 	}
 
-	/**
-	 * Loads the model from the file with ISO-8859-1 charset. It uses
-	 * {@link java.util.Locale#ENGLISH} for number formatting.
-	 */
-	public static Model loadModel(File modelFile) throws IOException {
+    /**
+     * Loads the model from the file with ISO-8859-1 charset. It uses
+     * {@link java.util.Locale#ENGLISH} for number formatting.
+     *
+     * @param modelFile the model file
+     * @return the model
+     * @throws IOException the io exception
+     */
+    public static Model loadModel(File modelFile) throws IOException {
 		BufferedReader inputReader = new BufferedReader(new InputStreamReader(new FileInputStream(modelFile), FILE_CHARSET));
 		try {
 			return loadModel(inputReader);
@@ -387,7 +446,12 @@ public class Linear {
 		}
 	}
 
-	static void closeQuietly(Closeable c) {
+    /**
+     * Close quietly.
+     *
+     * @param c the c
+     */
+    static void closeQuietly(Closeable c) {
 		if (c == null) {
 			return;
 		}
@@ -397,16 +461,28 @@ public class Linear {
 		}
 	}
 
-	public static double predict(Model model, Feature[] x) {
+    /**
+     * Predict double.
+     *
+     * @param model the model
+     * @param x     the x
+     * @return the double
+     */
+    public static double predict(Model model, Feature[] x) {
 		double[] dec_values = new double[model.nr_class];
 		return predictValues(model, x, dec_values);
 	}
 
-	/**
-	 * @throws IllegalArgumentException
-	 *             if model is not probabilistic (see {@link Model#isProbabilityModel()})
-	 */
-	public static double predictProbability(Model model, Feature[] x, double[] prob_estimates)
+    /**
+     * Predict probability double.
+     *
+     * @param model          the model
+     * @param x              the x
+     * @param prob_estimates the prob estimates
+     * @return the double
+     * @throws IllegalArgumentException if model is not probabilistic (see {@link Model#isProbabilityModel()})
+     */
+    public static double predictProbability(Model model, Feature[] x, double[] prob_estimates)
 			throws IllegalArgumentException {
 		if (!model.isProbabilityModel()) {
 			StringBuilder sb = new StringBuilder("probability output is only supported for logistic regression");
@@ -451,7 +527,15 @@ public class Linear {
 		return label;
 	}
 
-	public static double predictValues(Model model, Feature[] x, double[] dec_values) {
+    /**
+     * Predict values double.
+     *
+     * @param model      the model
+     * @param x          the x
+     * @param dec_values the dec values
+     * @return the double
+     */
+    public static double predictValues(Model model, Feature[] x, double[] dec_values) {
 		int n;
 		if (model.bias >= 0) {
 			n = model.nr_feature + 1;
@@ -499,7 +583,15 @@ public class Linear {
 		}
 	}
 
-	static void printf(Formatter formatter, String format, Object... args) throws IOException {
+    /**
+     * Printf.
+     *
+     * @param formatter the formatter
+     * @param format    the format
+     * @param args      the args
+     * @throws IOException the io exception
+     */
+    static void printf(Formatter formatter, String format, Object... args) throws IOException {
 		formatter.format(format, args);
 		IOException ioException = formatter.ioException();
 		if (ioException != null) {
@@ -507,15 +599,19 @@ public class Linear {
 		}
 	}
 
-	/**
-	 * Writes the model to the modelOutput. It uses {@link java.util.Locale#ENGLISH} for number
-	 * formatting.
-	 *
-	 * <p>
-	 * <b>Note: The modelOutput is closed after reading or in case of an exception.</b>
-	 * </p>
-	 */
-	public static void saveModel(Writer modelOutput, Model model) throws IOException {
+    /**
+     * Writes the model to the modelOutput. It uses {@link java.util.Locale#ENGLISH} for number
+     * formatting.
+     * <p>
+     * <p>
+     * <b>Note: The modelOutput is closed after reading or in case of an exception.</b>
+     * </p>
+     *
+     * @param modelOutput the model output
+     * @param model       the model
+     * @throws IOException the io exception
+     */
+    public static void saveModel(Writer modelOutput, Model model) throws IOException {
 		int nr_feature = model.nr_feature;
 		int w_size = nr_feature;
 		if (model.bias >= 0) {
@@ -568,11 +664,15 @@ public class Linear {
 		}
 	}
 
-	/**
-	 * Writes the model to the file with ISO-8859-1 charset. It uses
-	 * {@link java.util.Locale#ENGLISH} for number formatting.
-	 */
-	public static void saveModel(File modelFile, Model model) throws IOException {
+    /**
+     * Writes the model to the file with ISO-8859-1 charset. It uses
+     * {@link java.util.Locale#ENGLISH} for number formatting.
+     *
+     * @param modelFile the model file
+     * @param model     the model
+     * @throws IOException the io exception
+     */
+    public static void saveModel(File modelFile, Model model) throws IOException {
 		BufferedWriter modelOutput = new BufferedWriter(
 				new OutputStreamWriter(new FileOutputStream(modelFile), FILE_CHARSET));
 		saveModel(modelOutput, model);
@@ -1740,7 +1840,13 @@ public class Linear {
 		info("#nonzeros/#features = %d/%d%n", nnz, w_size);
 	}
 
-	// transpose matrix X from row format to column format
+    /**
+     * Transpose problem.
+     *
+     * @param prob the prob
+     * @return the problem
+     */
+// transpose matrix X from row format to column format
 	static Problem transpose(Problem prob) {
 		int l = prob.l;
 		int n = prob.n;
@@ -1778,29 +1884,54 @@ public class Linear {
 		return prob_col;
 	}
 
-	static void swap(double[] array, int idxA, int idxB) {
+    /**
+     * Swap.
+     *
+     * @param array the array
+     * @param idxA  the idx a
+     * @param idxB  the idx b
+     */
+    static void swap(double[] array, int idxA, int idxB) {
 		double temp = array[idxA];
 		array[idxA] = array[idxB];
 		array[idxB] = temp;
 	}
 
-	static void swap(int[] array, int idxA, int idxB) {
+    /**
+     * Swap.
+     *
+     * @param array the array
+     * @param idxA  the idx a
+     * @param idxB  the idx b
+     */
+    static void swap(int[] array, int idxA, int idxB) {
 		int temp = array[idxA];
 		array[idxA] = array[idxB];
 		array[idxB] = temp;
 	}
 
-	static void swap(IntArrayPointer array, int idxA, int idxB) {
+    /**
+     * Swap.
+     *
+     * @param array the array
+     * @param idxA  the idx a
+     * @param idxB  the idx b
+     */
+    static void swap(IntArrayPointer array, int idxA, int idxB) {
 		int temp = array.get(idxA);
 		array.set(idxA, array.get(idxB));
 		array.set(idxB, temp);
 	}
 
-	/**
-	 * @throws IllegalArgumentException
-	 *             if the feature nodes of prob are not sorted in ascending order
-	 */
-	public static Model train(Problem prob, Parameter param) {
+    /**
+     * Train model.
+     *
+     * @param prob  the prob
+     * @param param the param
+     * @return the model
+     * @throws IllegalArgumentException if the feature nodes of prob are not sorted in ascending order
+     */
+    public static Model train(Problem prob, Parameter param) {
 
 		if (prob == null) {
 			throw new IllegalArgumentException("problem must not be null");
@@ -2051,26 +2182,37 @@ public class Linear {
 		}
 	}
 
-	public static void disableDebugOutput() {
+    /**
+     * Disable debug output.
+     */
+    public static void disableDebugOutput() {
 		setDebugOutput(null);
 	}
 
-	public static void enableDebugOutput() {
+    /**
+     * Enable debug output.
+     */
+    public static void enableDebugOutput() {
 		setDebugOutput(System.out);
 	}
 
-	public static void setDebugOutput(PrintStream debugOutput) {
+    /**
+     * Sets debug output.
+     *
+     * @param debugOutput the debug output
+     */
+    public static void setDebugOutput(PrintStream debugOutput) {
 		synchronized (OUTPUT_MUTEX) {
 			DEBUG_OUTPUT = debugOutput;
 		}
 	}
 
-	/**
-	 * resets the PRNG
-	 *
-	 * this is i.a. needed for regression testing (eg. the Weka wrapper)
-	 */
-	public static void resetRandom() {
+    /**
+     * resets the PRNG
+     * <p>
+     * this is i.a. needed for regression testing (eg. the Weka wrapper)
+     */
+    public static void resetRandom() {
 		random = new Random(DEFAULT_RANDOM_SEED);
 	}
 }

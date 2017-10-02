@@ -34,11 +34,15 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * Abstract class for a {@link Function} that has two date arguments and returns a boolean.
  *
  * @author David Arnu
- *
  */
 public abstract class Abstract2DateInputBooleanOutput extends AbstractFunction {
 
-	public Abstract2DateInputBooleanOutput(String i18nKey) {
+    /**
+     * Instantiates a new Abstract 2 date input boolean output.
+     *
+     * @param i18nKey the 18 n key
+     */
+    public Abstract2DateInputBooleanOutput(String i18nKey) {
 		super(i18nKey, 2, Ontology.BINOMINAL);
 	}
 
@@ -119,14 +123,14 @@ public abstract class Abstract2DateInputBooleanOutput extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result for two input date values.
-	 *
-	 * @param left
-	 * @param right
-	 * @return the result of the computation.
-	 */
-	protected abstract Boolean compute(Date left, Date right);
+    /**
+     * Computes the result for two input date values.
+     *
+     * @param left  the left
+     * @param right the right
+     * @return the result of the computation.
+     */
+    protected abstract Boolean compute(Date left, Date right);
 
 	@Override
 	protected ExpressionType computeType(ExpressionType... inputTypes) {

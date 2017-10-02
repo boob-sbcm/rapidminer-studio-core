@@ -20,7 +20,7 @@ package com.rapidminer.report;
 
 /**
  * This interface indicates that the implementing class is in general reportable.
- * 
+ *
  * @author Sebastian Land
  */
 public interface Reportable {

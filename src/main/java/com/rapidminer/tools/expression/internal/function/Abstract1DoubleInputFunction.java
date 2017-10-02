@@ -29,28 +29,20 @@ import com.rapidminer.tools.expression.internal.SimpleExpressionEvaluator;
 
 
 /**
- *
  * Abstract class for a {@link Function} that has one double argument.
  *
  * @author David Arnu
- *
  */
 public abstract class Abstract1DoubleInputFunction extends AbstractFunction {
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 *
-	 * @param i18nKey
-	 *            the key for the {@link FunctionDescription}. The functionName is read from
-	 *            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName
-	 *            from ".group", the description from ".description" and the function with
-	 *            parameters from ".parameters". If ".parameters" is not present, the ".name" is
-	 *            taken for the function with parameters.
-	 * @param returnType
-	 *            the {@link Ontology#ATTRIBUTE_VALUE_TYPE}
-	 */
-	public Abstract1DoubleInputFunction(String i18nKey, int returnType) {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     *
+     * @param i18nKey    the key for the {@link FunctionDescription}. The functionName is read from            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName            from ".group", the description from ".description" and the function with            parameters from ".parameters". If ".parameters" is not present, the ".name" is            taken for the function with parameters.
+     * @param returnType the {@link Ontology#ATTRIBUTE_VALUE_TYPE}
+     */
+    public Abstract1DoubleInputFunction(String i18nKey, int returnType) {
 		super(i18nKey, 1, returnType);
 	}
 
@@ -105,13 +97,13 @@ public abstract class Abstract1DoubleInputFunction extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Computes the result for one input double value.
-	 *
-	 * @param value1
-	 * @return the result of the computation.
-	 */
-	protected abstract double compute(double value1);
+    /**
+     * Computes the result for one input double value.
+     *
+     * @param value1 the value 1
+     * @return the result of the computation.
+     */
+    protected abstract double compute(double value1);
 
 	@Override
 	protected ExpressionType computeType(ExpressionType... inputTypes) {

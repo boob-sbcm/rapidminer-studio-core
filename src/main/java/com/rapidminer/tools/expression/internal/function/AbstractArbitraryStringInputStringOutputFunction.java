@@ -30,29 +30,21 @@ import com.rapidminer.tools.expression.internal.SimpleExpressionEvaluator;
 
 
 /**
- *
  * Abstract class for a {@link Function} that has arbitrary many String arguments and returns a
  * String argument.
  *
  * @author David Arnu
- *
  */
 public abstract class AbstractArbitraryStringInputStringOutputFunction extends AbstractFunction {
 
-	/**
-	 * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
-	 * and the function name generated from the description.
-	 *
-	 * @param i18nKey
-	 *            the key for the {@link FunctionDescription}. The functionName is read from
-	 *            "gui.dialog.function.i18nKey.name", the helpTextName from ".help", the groupName
-	 *            from ".group", the description from ".description" and the function with
-	 *            parameters from ".parameters". If ".parameters" is not present, the ".name" is
-	 *            taken for the function with parameters.
-	 * @param numberOfArgumentsToCheck
-	 *            the fixed number of parameters this functions expects or -1
-	 */
-	public AbstractArbitraryStringInputStringOutputFunction(String i18n, int numberOfArgumentsToCheck) {
+    /**
+     * Constructs an AbstractFunction with {@link FunctionDescription} generated from the arguments
+     * and the function name generated from the description.
+     *
+     * @param i18n                     the 18 n
+     * @param numberOfArgumentsToCheck the fixed number of parameters this functions expects or -1
+     */
+    public AbstractArbitraryStringInputStringOutputFunction(String i18n, int numberOfArgumentsToCheck) {
 		super(i18n, numberOfArgumentsToCheck, Ontology.NOMINAL);
 	}
 
@@ -78,14 +70,13 @@ public abstract class AbstractArbitraryStringInputStringOutputFunction extends A
 
 	}
 
-	/**
-	 * Builds a String callable from an arbitrary number of String input arguments
-	 *
-	 * @param inputEvaluators
-	 *            the input
-	 * @return the resulting callable<String>
-	 */
-	protected Callable<String> makeStringCallable(final ExpressionEvaluator[] inputEvaluators) {
+    /**
+     * Builds a String callable from an arbitrary number of String input arguments
+     *
+     * @param inputEvaluators the input
+     * @return the resulting callable<String>
+     */
+    protected Callable<String> makeStringCallable(final ExpressionEvaluator[] inputEvaluators) {
 		final int inputLength = inputEvaluators.length;
 		final String[] constantValues = new String[inputLength];
 		try {
@@ -132,22 +123,20 @@ public abstract class AbstractArbitraryStringInputStringOutputFunction extends A
 
 	}
 
-	/**
-	 * Computes the result for arbitrary many String values.
-	 *
-	 * @param String
-	 *            values
-	 * @return the result of the computation.
-	 */
-	protected abstract String compute(String... values);
+    /**
+     * Computes the result for arbitrary many String values.
+     *
+     * @param values the values
+     * @return the result of the computation.
+     */
+    protected abstract String compute(String... values);
 
-	/**
-	 * Checks the number of input values. By default this does nothing but for functions with a
-	 * fixed number of arguments a check can be added.
-	 *
-	 * @param values
-	 *            input value
-	 */
-	protected abstract void checkNumberOfInputs(int length);
+    /**
+     * Checks the number of input values. By default this does nothing but for functions with a
+     * fixed number of arguments a check can be added.
+     *
+     * @param length the length
+     */
+    protected abstract void checkNumberOfInputs(int length);
 
 }

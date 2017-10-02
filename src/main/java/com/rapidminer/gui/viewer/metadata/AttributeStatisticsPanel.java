@@ -93,7 +93,6 @@ import com.rapidminer.tools.container.ValueAndCount;
  * different attribute value types.
  *
  * @author Marco Boeck
- *
  */
 public class AttributeStatisticsPanel extends JPanel {
 
@@ -105,8 +104,10 @@ public class AttributeStatisticsPanel extends JPanel {
 	/** the font size of value labels */
 	private static final float FONT_SIZE_LABEL_VALUE = 14;
 
-	/** the identifier for custom special attributes */
-	public static final String GENERIC_SPECIAL_NAME = "special";
+    /**
+     * the identifier for custom special attributes
+     */
+    public static final String GENERIC_SPECIAL_NAME = "special";
 
 	/** the dimension for the attribute name label */
 	private static final Dimension DIMENSION_LABEL_ATTRIBUTE = new Dimension(230, 30);
@@ -197,8 +198,10 @@ public class AttributeStatisticsPanel extends JPanel {
 	/** the mouse listener for this panel to notice hovering/enlarge/shrink/popup requests */
 	private MouseAdapter enlargeAndHoverAndPopupMouseAdapter;
 
-	/** list containing all panels which display a chart */
-	protected List<JPanel> listOfChartPanels;
+    /**
+     * list containing all panels which display a chart
+     */
+    protected List<JPanel> listOfChartPanels;
 
 	/** list containing all panels which should only displayed if the model is enlarged */
 	private List<JPanel> listOfNumStatPanels;
@@ -278,13 +281,12 @@ public class AttributeStatisticsPanel extends JPanel {
 	/** the listener which listens on the model for changes */
 	private AttributeStatisticsEventListener listener;
 
-	/**
-	 * Creates a new {@link AttributeStatisticsPanel} instance. Before displaying the panel, an
-	 * {@link AbstractAttributeStatisticsModel} should be set via
-	 * {@link #setModel(AbstractAttributeStatisticsModel, boolean)}.
-	 *
-	 */
-	public AttributeStatisticsPanel() {
+    /**
+     * Creates a new {@link AttributeStatisticsPanel} instance. Before displaying the panel, an
+     * {@link AbstractAttributeStatisticsModel} should be set via
+     * {@link #setModel(AbstractAttributeStatisticsModel, boolean)}.
+     */
+    public AttributeStatisticsPanel() {
 		listOfChartPanels = new LinkedList<>();
 		listOfNumStatPanels = new LinkedList<>();
 		listOfAdditionalNumStatPanels = new LinkedList<>();
@@ -803,33 +805,30 @@ public class AttributeStatisticsPanel extends JPanel {
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
-	/**
-	 * Returns the {@link AbstractAttributeStatisticsModel} used by this instance. For numerical
-	 * attributes it is a {@link NumericalAttributeStatisticsModel}, for nominal attributes it is a
-	 * {@link NominalAttributeStatisticsModel}, and for date_time attributes it is a
-	 * {@link DateTimeAttributeStatisticsModel}.
-	 *
-	 * @return the model or <code>null</code> if called before
-	 *         {@link #setModel(AbstractAttributeStatisticsModel, boolean)} has been called
-	 */
-	public AbstractAttributeStatisticsModel getModel() {
+    /**
+     * Returns the {@link AbstractAttributeStatisticsModel} used by this instance. For numerical
+     * attributes it is a {@link NumericalAttributeStatisticsModel}, for nominal attributes it is a
+     * {@link NominalAttributeStatisticsModel}, and for date_time attributes it is a
+     * {@link DateTimeAttributeStatisticsModel}.
+     *
+     * @return the model or <code>null</code> if called before         {@link #setModel(AbstractAttributeStatisticsModel, boolean)} has been called
+     */
+    public AbstractAttributeStatisticsModel getModel() {
 		return model;
 	}
 
-	/**
-	 * Set the new {@link AbstractAttributeStatisticsModel}. The model must be an implementation of
-	 * {@link AbstractAttributeStatisticsModel} which matches the {@link Attribute} value type. In
-	 * other words, a numerical attribute must have a {@link NumericalAttributeStatisticsModel}, a
-	 * nominal attribute must have a {@link NominalAttributeStatisticsModel}, and a date_time
-	 * attribute must have a {@link DateTimeAttributeStatisticsModel}.
-	 *
-	 * @param model
-	 * @param updateGUI
-	 *            if <code>true</code>, will update the GUI
-	 * @throws IllegalArgumentException
-	 *             if the model is of the wrong type
-	 */
-	public void setModel(final AbstractAttributeStatisticsModel model, final boolean updateGUI)
+    /**
+     * Set the new {@link AbstractAttributeStatisticsModel}. The model must be an implementation of
+     * {@link AbstractAttributeStatisticsModel} which matches the {@link Attribute} value type. In
+     * other words, a numerical attribute must have a {@link NumericalAttributeStatisticsModel}, a
+     * nominal attribute must have a {@link NominalAttributeStatisticsModel}, and a date_time
+     * attribute must have a {@link DateTimeAttributeStatisticsModel}.
+     *
+     * @param model     the model
+     * @param updateGUI if <code>true</code>, will update the GUI
+     * @throws IllegalArgumentException if the model is of the wrong type
+     */
+    public void setModel(final AbstractAttributeStatisticsModel model, final boolean updateGUI)
 			throws IllegalArgumentException {
 		// make sure model is of correct type
 		if (model.getAttribute().isNumerical()) {
@@ -1252,14 +1251,13 @@ public class AttributeStatisticsPanel extends JPanel {
 		labelStatsUntil.setToolTipText(labelStatsUntil.getText());
 	}
 
-	/**
-	 * Sets the minimum and preferred size of the name column. Also revalidates and repaints the
-	 * panel. If not yet initialized, does nothing.
-	 *
-	 * @param nameDim
-	 *            the new minimum size. If <code>null</code>, resets to the default.
-	 */
-	public void updateNameColumnWidth(Dimension nameDim) {
+    /**
+     * Sets the minimum and preferred size of the name column. Also revalidates and repaints the
+     * panel. If not yet initialized, does nothing.
+     *
+     * @param nameDim the new minimum size. If <code>null</code>, resets to the default.
+     */
+    public void updateNameColumnWidth(Dimension nameDim) {
 		if (labelAttName != null) {
 			if (nameDim == null) {
 				labelAttName.setMinimumSize(DIMENSION_LABEL_ATTRIBUTE);

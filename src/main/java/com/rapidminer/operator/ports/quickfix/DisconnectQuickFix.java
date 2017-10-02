@@ -23,13 +23,21 @@ import com.rapidminer.operator.ports.OutputPort;
 
 
 /**
+ * The type Disconnect quick fix.
+ *
  * @author Simon Fischer
  */
 public class DisconnectQuickFix extends AbstractQuickFix {
 
 	private OutputPort outputPort;
 
-	public DisconnectQuickFix(OutputPort out, InputPort in) {
+    /**
+     * Instantiates a new Disconnect quick fix.
+     *
+     * @param out the out
+     * @param in  the in
+     */
+    public DisconnectQuickFix(OutputPort out, InputPort in) {
 		super(5, false, "disconnect", new Object[] { out.getSpec(), in.getSpec() });
 		this.outputPort = out;
 	}

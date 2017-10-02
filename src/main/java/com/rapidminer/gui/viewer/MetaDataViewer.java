@@ -61,7 +61,15 @@ public class MetaDataViewer extends JPanel implements Tableable {
 
 		private MetaDataViewerTable metaDataTable;
 
-		ToggleShowColumnItem(String name, int index, boolean state, MetaDataViewerTable metaDataTable) {
+        /**
+         * Instantiates a new Toggle show column item.
+         *
+         * @param name          the name
+         * @param index         the index
+         * @param state         the state
+         * @param metaDataTable the meta data table
+         */
+        ToggleShowColumnItem(String name, int index, boolean state, MetaDataViewerTable metaDataTable) {
 			super("Show column '" + name + "'", state);
 			setToolTipText("Toggles if the column with name '" + name + "' should be displayed");
 			setIcon(SwingTools.createIcon("16/table_selection_column.png"));
@@ -86,7 +94,13 @@ public class MetaDataViewer extends JPanel implements Tableable {
 
 	private MetaDataViewerTable metaDataTable = new MetaDataViewerTable();
 
-	public MetaDataViewer(ExampleSet exampleSet, boolean showOptions) {
+    /**
+     * Instantiates a new Meta data viewer.
+     *
+     * @param exampleSet  the example set
+     * @param showOptions the show options
+     */
+    public MetaDataViewer(ExampleSet exampleSet, boolean showOptions) {
 		super(new BorderLayout());
 		ViewToolBar toolBar = new ViewToolBar();
 		toolBar.add(generalInfo, ViewToolBar.LEFT);
@@ -142,7 +156,12 @@ public class MetaDataViewer extends JPanel implements Tableable {
 		setExampleSet(exampleSet);
 	}
 
-	public void setExampleSet(ExampleSet exampleSet) {
+    /**
+     * Sets example set.
+     *
+     * @param exampleSet the example set
+     */
+    public void setExampleSet(ExampleSet exampleSet) {
 		if (exampleSet != null) {
 			StringBuffer infoText = new StringBuffer("ExampleSet (");
 			int noExamples = exampleSet.size();

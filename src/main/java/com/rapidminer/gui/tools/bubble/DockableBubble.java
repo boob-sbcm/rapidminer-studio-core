@@ -29,56 +29,38 @@ import javax.swing.JButton;
  * their ID. The bubble triggers two events which are observable by the {@link BubbleListener};
  * either if the close button was clicked, or if the corresponding button was used. The keys for the
  * title and the text must be of format gui.bubble.xxx.body or gui.bubble.xxx.title.
- * 
+ *
  * @author Thilo Kamradt
- * 
  */
-
 public class DockableBubble extends BubbleWindow {
 
 	private static final long serialVersionUID = 3888050226315317727L;
 
-	/**
-	 * Creates a Bubble which points to the Dockable with the given key
-	 * 
-	 * @param owner
-	 *            the {@link Window} on which this {@link BubbleWindow} should be shown.
-	 * @param preferredAlignment
-	 *            offer for alignment but the Class will calculate by itself whether the position is
-	 *            usable.
-	 * @param i18nKey
-	 *            of the message which should be shown
-	 * @param docKey
-	 *            key of the Dockable to which this {@link BubbleWindow} should be placed relative
-	 *            to.
-	 * @param arguments
-	 *            arguments to pass thought to the I18N Object
-	 */
-	public DockableBubble(final Window owner, final AlignedSide preferredAlignment, final String i18nKey,
+    /**
+     * Creates a Bubble which points to the Dockable with the given key
+     *
+     * @param owner              the {@link Window} on which this {@link BubbleWindow} should be shown.
+     * @param preferredAlignment offer for alignment but the Class will calculate by itself whether the position is            usable.
+     * @param i18nKey            of the message which should be shown
+     * @param docKey             key of the Dockable to which this {@link BubbleWindow} should be placed relative            to.
+     * @param arguments          arguments to pass thought to the I18N Object
+     */
+    public DockableBubble(final Window owner, final AlignedSide preferredAlignment, final String i18nKey,
 			final String docKey, final Object... arguments) {
 		this(owner, preferredAlignment, i18nKey, docKey, null, arguments);
 	}
 
-	/**
-	 * Creates a Bubble which points to the Dockable with the given key
-	 * 
-	 * @param owner
-	 *            the {@link Window} on which this {@link BubbleWindow} should be shown.
-	 * @param preferredAlignment
-	 *            offer for alignment but the Class will calculate by itself whether the position is
-	 *            usable.
-	 * @param i18nKey
-	 *            of the message which should be shown
-	 * @param docKey
-	 *            key of the Dockable to which this {@link BubbleWindow} should be placed relative
-	 *            to.
-	 * @param buttonsToAdd
-	 *            array of JButtons which will be added to the Bubble (null instead of the array
-	 *            won't throw an error).
-	 * @param arguments
-	 *            arguments to pass thought to the I18N Object
-	 */
-	public DockableBubble(final Window owner, final AlignedSide preferredAlignment, final String i18nKey,
+    /**
+     * Creates a Bubble which points to the Dockable with the given key
+     *
+     * @param owner              the {@link Window} on which this {@link BubbleWindow} should be shown.
+     * @param preferredAlignment offer for alignment but the Class will calculate by itself whether the position is            usable.
+     * @param i18nKey            of the message which should be shown
+     * @param docKey             key of the Dockable to which this {@link BubbleWindow} should be placed relative            to.
+     * @param buttonsToAdd       array of JButtons which will be added to the Bubble (null instead of the array            won't throw an error).
+     * @param arguments          arguments to pass thought to the I18N Object
+     */
+    public DockableBubble(final Window owner, final AlignedSide preferredAlignment, final String i18nKey,
 			final String docKey, final JButton[] buttonsToAdd, final Object... arguments) {
 		super(owner, preferredAlignment, i18nKey, docKey, buttonsToAdd, arguments);
 		if (preferredAlignment != AlignedSide.MIDDLE) {

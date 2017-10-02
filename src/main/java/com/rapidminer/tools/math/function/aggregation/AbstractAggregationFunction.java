@@ -26,56 +26,145 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * Superclass for aggregation functions providing some generic functions.
- * 
+ * <p>
  * In comparison to the more specialized functions available in the
  * {@link com.rapidminer.operator.preprocessing.transformation.aggregation.AggregationFunction}
  * these functions have a more broader use, but are limited to numerical values.
- * 
+ *
  * @author Tobias Malbrecht
- * 
  */
 public abstract class AbstractAggregationFunction implements AggregationFunction {
 
-	@SuppressWarnings("unchecked")
+    /**
+     * The constant KNOWN_AGGREGATION_FUNCTIONS.
+     */
+    @SuppressWarnings("unchecked")
 	public static final Class<? extends AggregationFunction>[] KNOWN_AGGREGATION_FUNCTIONS = new Class[] {
 			AverageFunction.class, VarianceFunction.class, StandardDeviationFunction.class, CountFunction.class,
 			MinFunction.class, MaxFunction.class, SumFunction.class, ModeFunction.class, MedianFunction.class,
 			ProductFunction.class };
 
-	public static final String[] KNOWN_AGGREGATION_FUNCTION_NAMES = { "average", "variance", "standard_deviation", "count",
+    /**
+     * The constant KNOWN_AGGREGATION_FUNCTION_NAMES.
+     */
+    public static final String[] KNOWN_AGGREGATION_FUNCTION_NAMES = { "average", "variance", "standard_deviation", "count",
 			"minimum", "maximum", "sum", "mode", "median", "product" };
 
-	public enum AggregationFunctionType {
-		average, variance, standard_deviation, count, minimum, maximum, sum, mode, median, product,
+    /**
+     * The enum Aggregation function type.
+     */
+    public enum AggregationFunctionType {
+        /**
+         * Average aggregation function type.
+         */
+        average, /**
+         * Variance aggregation function type.
+         */
+        variance, /**
+         * Standard deviation aggregation function type.
+         */
+        standard_deviation, /**
+         * Count aggregation function type.
+         */
+        count, /**
+         * Minimum aggregation function type.
+         */
+        minimum, /**
+         * Maximum aggregation function type.
+         */
+        maximum, /**
+         * Sum aggregation function type.
+         */
+        sum, /**
+         * Mode aggregation function type.
+         */
+        mode, /**
+         * Median aggregation function type.
+         */
+        median, /**
+         * Product aggregation function type.
+         */
+        product,
 	}
 
-	public static final int AVERAGE = 0;
+    /**
+     * The constant AVERAGE.
+     */
+    public static final int AVERAGE = 0;
 
-	public static final int VARIANCE = 1;
+    /**
+     * The constant VARIANCE.
+     */
+    public static final int VARIANCE = 1;
 
-	public static final int STANDARD_DEVIATION = 2;
+    /**
+     * The constant STANDARD_DEVIATION.
+     */
+    public static final int STANDARD_DEVIATION = 2;
 
-	public static final int COUNT = 3;
+    /**
+     * The constant COUNT.
+     */
+    public static final int COUNT = 3;
 
-	public static final int MINIMUM = 4;
+    /**
+     * The constant MINIMUM.
+     */
+    public static final int MINIMUM = 4;
 
-	public static final int MAXIMUM = 5;
+    /**
+     * The constant MAXIMUM.
+     */
+    public static final int MAXIMUM = 5;
 
-	public static final int SUM = 6;
+    /**
+     * The constant SUM.
+     */
+    public static final int SUM = 6;
 
-	public static final int MODE = 7;
+    /**
+     * The constant MODE.
+     */
+    public static final int MODE = 7;
 
-	public static final int MEDIAN = 8;
+    /**
+     * The constant MEDIAN.
+     */
+    public static final int MEDIAN = 8;
 
-	public static final int PRODUCT = 9;
+    /**
+     * The constant PRODUCT.
+     */
+    public static final int PRODUCT = 9;
 
-	public static final boolean DEFAULT_IGNORE_MISSINGS = true;
+    /**
+     * The constant DEFAULT_IGNORE_MISSINGS.
+     */
+    public static final boolean DEFAULT_IGNORE_MISSINGS = true;
 
-	protected boolean ignoreMissings = DEFAULT_IGNORE_MISSINGS;
+    /**
+     * The Ignore missings.
+     */
+    protected boolean ignoreMissings = DEFAULT_IGNORE_MISSINGS;
 
-	protected boolean foundMissing = false;
+    /**
+     * The Found missing.
+     */
+    protected boolean foundMissing = false;
 
-	@SuppressWarnings("unchecked")
+    /**
+     * Create aggregation function aggregation function.
+     *
+     * @param functionName   the function name
+     * @param ignoreMissings the ignore missings
+     * @return the aggregation function
+     * @throws InstantiationException    the instantiation exception
+     * @throws IllegalAccessException    the illegal access exception
+     * @throws ClassNotFoundException    the class not found exception
+     * @throws NoSuchMethodException     the no such method exception
+     * @throws InvocationTargetException the invocation target exception
+     */
+    @SuppressWarnings("unchecked")
 	public static AggregationFunction createAggregationFunction(String functionName, boolean ignoreMissings)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException,
 			InvocationTargetException {
@@ -95,12 +184,34 @@ public abstract class AbstractAggregationFunction implements AggregationFunction
 		return clazz.getConstructor(Boolean.class).newInstance(ignoreMissings);
 	}
 
-	public static AggregationFunction createAggregationFunction(String functionName) throws InstantiationException,
+    /**
+     * Create aggregation function aggregation function.
+     *
+     * @param functionName the function name
+     * @return the aggregation function
+     * @throws InstantiationException    the instantiation exception
+     * @throws IllegalAccessException    the illegal access exception
+     * @throws ClassNotFoundException    the class not found exception
+     * @throws NoSuchMethodException     the no such method exception
+     * @throws InvocationTargetException the invocation target exception
+     */
+    public static AggregationFunction createAggregationFunction(String functionName) throws InstantiationException,
 			IllegalAccessException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
 		return createAggregationFunction(functionName, true);
 	}
 
-	public static AggregationFunction createAggregationFunction(int typeIndex, boolean ignoreMissings)
+    /**
+     * Create aggregation function aggregation function.
+     *
+     * @param typeIndex      the type index
+     * @param ignoreMissings the ignore missings
+     * @return the aggregation function
+     * @throws InstantiationException    the instantiation exception
+     * @throws IllegalAccessException    the illegal access exception
+     * @throws NoSuchMethodException     the no such method exception
+     * @throws InvocationTargetException the invocation target exception
+     */
+    public static AggregationFunction createAggregationFunction(int typeIndex, boolean ignoreMissings)
 			throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 		if (typeIndex >= 0 && typeIndex < KNOWN_AGGREGATION_FUNCTION_NAMES.length) {
 			Class<? extends AggregationFunction> clazz = KNOWN_AGGREGATION_FUNCTIONS[typeIndex];
@@ -110,25 +221,43 @@ public abstract class AbstractAggregationFunction implements AggregationFunction
 		}
 	}
 
-	public static AggregationFunction createAggregationFunction(int typeIndex)
+    /**
+     * Create aggregation function aggregation function.
+     *
+     * @param typeIndex the type index
+     * @return the aggregation function
+     * @throws InstantiationException    the instantiation exception
+     * @throws IllegalAccessException    the illegal access exception
+     * @throws NoSuchMethodException     the no such method exception
+     * @throws InvocationTargetException the invocation target exception
+     */
+    public static AggregationFunction createAggregationFunction(int typeIndex)
 			throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 		return createAggregationFunction(typeIndex, true);
 	}
 
-	public AbstractAggregationFunction() {
+    /**
+     * Instantiates a new Abstract aggregation function.
+     */
+    public AbstractAggregationFunction() {
 		this(true);
 	}
 
-	public AbstractAggregationFunction(Boolean ignoreMissings) {
+    /**
+     * Instantiates a new Abstract aggregation function.
+     *
+     * @param ignoreMissings the ignore missings
+     */
+    public AbstractAggregationFunction(Boolean ignoreMissings) {
 		this.ignoreMissings = ignoreMissings;
 		this.foundMissing = false;
 		reset();
 	}
 
-	/**
-	 * Reset the counters.
-	 */
-	protected abstract void reset();
+    /**
+     * Reset the counters.
+     */
+    protected abstract void reset();
 
 	/**
 	 * Resets the counters and computes the aggregation function solely based on the given values.

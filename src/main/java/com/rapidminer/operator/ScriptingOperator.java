@@ -51,7 +51,7 @@ import groovy.lang.Script;
  * Groovy script which will be interpreted and executed during process runtime. For a complete
  * reference of Groovy scripting please refer to http://groovy.codehaus.org/.
  * </p>
- *
+ * <p>
  * <p>
  * In addition to the usual scripting code elements from Groovy, the RapidMiner scripting operator
  * defines some special scripting elements:
@@ -80,12 +80,12 @@ import groovy.lang.Script;
  * <code>example[&quot;attribute_name&quot;] = &quot;value&quot;;</code> or <br />
  * <code>example[&quot;attribute_name&quot;] = 5.7;</code></li>
  * </ul>
- *
+ * <p>
  * <p>
  * <em>Note:</em> Scripts written for this operator may access Java code. Scripts may hence become
  * incompatible in future releases of RapidMiner.
  * </p>
- *
+ * <p>
  * <p>
  * <em>Note:</em> As of RapidMiner Studio 7.5, Execute Script is now capable of executing many
  * scripts in parallel by implementing script caching. Before that, each execution parsed its script
@@ -149,11 +149,20 @@ public class ScriptingOperator extends Operator {
 	private InputPortExtender inExtender = new InputPortExtender("input", getInputPorts());
 	private OutputPortExtender outExtender = new OutputPortExtender("output", getOutputPorts());
 
-	public static final String PARAMETER_SCRIPT = "script";
+    /**
+     * The constant PARAMETER_SCRIPT.
+     */
+    public static final String PARAMETER_SCRIPT = "script";
 
-	public static final String GROOVY_DOMAIN = "/groovyscript";
+    /**
+     * The constant GROOVY_DOMAIN.
+     */
+    public static final String GROOVY_DOMAIN = "/groovyscript";
 
-	public static final String PARAMETER_STANDARD_IMPORTS = "standard_imports";
+    /**
+     * The constant PARAMETER_STANDARD_IMPORTS.
+     */
+    public static final String PARAMETER_STANDARD_IMPORTS = "standard_imports";
 
 	/** the max number of entries in the script cache */
 	private static final int MAX_CACHE_SIZE = 500;
@@ -191,7 +200,12 @@ public class ScriptingOperator extends Operator {
 				}
 			});
 
-	public ScriptingOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Scripting operator.
+     *
+     * @param description the description
+     */
+    public ScriptingOperator(OperatorDescription description) {
 		super(description);
 		inExtender.start();
 		outExtender.start();

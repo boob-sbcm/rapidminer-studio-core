@@ -32,6 +32,8 @@ import org.jfree.chart.renderer.xy.XYErrorRenderer;
 
 
 /**
+ * The type Formatted xy error renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedXYErrorRenderer extends XYErrorRenderer implements FormattedRenderer,
@@ -41,7 +43,10 @@ public class FormattedXYErrorRenderer extends XYErrorRenderer implements Formatt
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedXYErrorRenderer() {
+    /**
+     * Instantiates a new Formatted xy error renderer.
+     */
+    public FormattedXYErrorRenderer() {
 		super();
 		formatDelegate.addListener(this);
 	}

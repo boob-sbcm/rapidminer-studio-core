@@ -51,14 +51,13 @@ import com.rapidminer.gui.tools.ListHoverHelper;
 /**
  * Container in which the user can switch the displayed children by clicking on an icon in a bar on
  * the left hand side.
- *
+ * <p>
  * Titles and icons for the elements representing the individual cards are taken from the GUI
  * properties gui.cards.PANEL_KEY.CARD_KEY.title and gui.cards.PANEL_KEY.CARD_KEY.icon where
  * PANEL_KEY is the key passed to {@link #ButtonBarCardPanel(String)} and CARD_KEY is the one passed
  * to {@link #addCard(String, JComponent)}.
  *
  * @author Florian Ziegler, David Arnu, Nils Woehler
- *
  */
 public class ButtonBarCardPanel extends JPanel {
 
@@ -80,21 +79,20 @@ public class ButtonBarCardPanel extends JPanel {
 
 	private ExtendedJScrollPane navigationScrollPane;
 
-	/**
-	 * Constructor that creates a {@link ButtonBarCardPanel} which always shows the list of cards.
-	 */
-	public ButtonBarCardPanel() {
+    /**
+     * Constructor that creates a {@link ButtonBarCardPanel} which always shows the list of cards.
+     */
+    public ButtonBarCardPanel() {
 		this(new HashSet<String>(), true);
 	}
 
-	/**
-	 * Constructor that creates a {@link ButtonBarCardPanel} with cards shown.
-	 *
-	 * @param showCards
-	 *            if set to <code>false</code> the cards are not shown and the user cannot select
-	 *            the shown card manually
-	 */
-	public ButtonBarCardPanel(Set<String> noCardKeys, boolean showCards) {
+    /**
+     * Constructor that creates a {@link ButtonBarCardPanel} with cards shown.
+     *
+     * @param noCardKeys the no card keys
+     * @param showCards  if set to <code>false</code> the cards are not shown and the user cannot select            the shown card manually
+     */
+    public ButtonBarCardPanel(Set<String> noCardKeys, boolean showCards) {
 		this.noCardKeys = noCardKeys;
 		this.showCards = showCards;
 
@@ -167,15 +165,13 @@ public class ButtonBarCardPanel extends JPanel {
 		keyToComponentMap = new HashMap<>();
 	}
 
-	/**
-	 * Adds a card to the {@link ButtonBarCardPanel}
-	 *
-	 * @param card
-	 *            the card referring to the component
-	 * @param componentToAdd
-	 *            the component that is shown once the card is selected
-	 */
-	public void addCard(Card card, Component componentToAdd) {
+    /**
+     * Adds a card to the {@link ButtonBarCardPanel}
+     *
+     * @param card           the card referring to the component
+     * @param componentToAdd the component that is shown once the card is selected
+     */
+    public void addCard(Card card, Component componentToAdd) {
 		JPanel borderPanel = new JPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
@@ -197,35 +193,39 @@ public class ButtonBarCardPanel extends JPanel {
 		}
 	}
 
-	/**
-	 *
-	 * @return the component of this ButtonBarCardPanel that is currently shown
-	 */
-	public Component getShownComponent() {
+    /**
+     * Gets shown component.
+     *
+     * @return the component of this ButtonBarCardPanel that is currently shown
+     */
+    public Component getShownComponent() {
 		return keyToComponentMap.get(navigation.getSelectedValue().getKey());
 	}
 
-	/**
-	 * @return the currently selected card
-	 */
-	public Card getSelectedCard() {
+    /**
+     * Gets selected card.
+     *
+     * @return the currently selected card
+     */
+    public Card getSelectedCard() {
 		return navigation.getSelectedValue();
 	}
 
-	/**
-	 * @param index
-	 *            changes the selected card to the card at the specified index
-	 */
-	public void setSelectedCard(int index) {
+    /**
+     * Sets selected card.
+     *
+     * @param index changes the selected card to the card at the specified index
+     */
+    public void setSelectedCard(int index) {
 		navigation.setSelectedIndex(index);
 	}
 
-	/**
-	 * @param key
-	 *            Sets the selections to a specific card identified by it's key. If the key is not
-	 *            present, nothings happens.
-	 */
-	public void selectCard(String key) {
+    /**
+     * Select card.
+     *
+     * @param key Sets the selections to a specific card identified by it's key. If the key is not            present, nothings happens.
+     */
+    public void selectCard(String key) {
 		for (int i = 0; i < navigation.getModel().getSize(); i++) {
 			if (navigation.getModel().getElementAt(i).getKey().equals(key)) {
 				navigation.setSelectedIndex(i);
@@ -234,11 +234,21 @@ public class ButtonBarCardPanel extends JPanel {
 		}
 	}
 
-	public void addCardSelectionListener(CardSelectionListener l) {
+    /**
+     * Add card selection listener.
+     *
+     * @param l the l
+     */
+    public void addCardSelectionListener(CardSelectionListener l) {
 		listenerList.add(CardSelectionListener.class, l);
 	}
 
-	public void removeCardSelectionListener(CardSelectionListener l) {
+    /**
+     * Remove card selection listener.
+     *
+     * @param l the l
+     */
+    public void removeCardSelectionListener(CardSelectionListener l) {
 		listenerList.remove(CardSelectionListener.class, l);
 	}
 

@@ -32,19 +32,17 @@ import com.rapidminer.tools.expression.UnknownValue;
  * A basic {@link Expression}.
  *
  * @author Gisa Schaefer
- *
  */
 class SimpleExpression implements Expression {
 
 	private ExpressionEvaluator evaluator;
 
-	/**
-	 * Creates a basic expression based on the evaluator.
-	 *
-	 * @param evaluator
-	 *            the evaluator to use for evaluating the expression
-	 */
-	SimpleExpression(ExpressionEvaluator evaluator) {
+    /**
+     * Creates a basic expression based on the evaluator.
+     *
+     * @param evaluator the evaluator to use for evaluating the expression
+     */
+    SimpleExpression(ExpressionEvaluator evaluator) {
 		this.evaluator = evaluator;
 	}
 

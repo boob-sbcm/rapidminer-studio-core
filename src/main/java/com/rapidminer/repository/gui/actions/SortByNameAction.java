@@ -28,7 +28,6 @@ import com.rapidminer.repository.gui.RepositoryTree;
  *
  * @author Marcel Seifert
  * @since 7.4
- *
  */
 public class SortByNameAction extends SortByAction {
 
@@ -38,7 +37,12 @@ public class SortByNameAction extends SortByAction {
 
 	private static final String I18N = "repository_sort_alphanumeric";
 
-	public SortByNameAction(RepositoryTree tree) {
+    /**
+     * Instantiates a new Sort by name action.
+     *
+     * @param tree the tree
+     */
+    public SortByNameAction(RepositoryTree tree) {
 		super(I18N, tree, REPOSITORY_SORTING_METHOD);
 	}
 

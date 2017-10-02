@@ -43,7 +43,14 @@ public class ThresholdModel extends PredictionModel implements DelegationModel {
 
 	private Model innerModel;
 
-	public ThresholdModel(ExampleSet exampleSet, Model innerModel, double[] thresholds) {
+    /**
+     * Instantiates a new Threshold model.
+     *
+     * @param exampleSet the example set
+     * @param innerModel the inner model
+     * @param thresholds the thresholds
+     */
+    public ThresholdModel(ExampleSet exampleSet, Model innerModel, double[] thresholds) {
 		super(exampleSet, null, null);
 		this.innerModel = innerModel;
 		this.thresholds = thresholds;

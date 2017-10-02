@@ -32,31 +32,38 @@ import java.util.NoSuchElementException;
  * <li>synchronization (Sun's implementation may be synchronized, too, but it is not documented)</li>
  * <li>defined exception handling.</li>
  * </ol>
- * 
+ *
+ * @param <A> the type parameter
  * @author Simon Fischer
- * */
+ */
 public interface Observable<A> {
 
-	/**
-	 * Adds an observer that will be notified on the EDT if onEDT is true.
-	 * 
-	 * @throws a
-	 *             NPE if observer is null.
-	 */
-	public void addObserver(Observer<A> observer, boolean onEDT);
+    /**
+     * Adds an observer that will be notified on the EDT if onEDT is true.
+     *
+     * @param observer the observer
+     * @param onEDT    the on edt
+     * @throws a NPE if observer is null.
+     */
+    public void addObserver(Observer<A> observer, boolean onEDT);
 
-	/**
-	 * Removes an observer from this observable.
-	 * 
-	 * @throws NoSuchElementException
-	 *             if observer is not registered with this Observable.
-	 */
-	public void removeObserver(Observer<A> observer);
+    /**
+     * Removes an observer from this observable.
+     *
+     * @param observer the observer
+     * @throws NoSuchElementException if observer is not registered with this Observable.
+     */
+    public void removeObserver(Observer<A> observer);
 
-	/**
-	 * Same as {@link #addObserver(Observer, boolean), but adds this observer as the first in the
-	 * list.
-	 */
-	void addObserverAsFirst(Observer<A> observer, boolean onEDT);
+    /**
+     * Same as {@link #addObserver(Observer, boolean), but adds this observer as the first in the
+     * list.*
+     *
+     * @param observer the observer
+     * @param onEDT    the on edt*
+     * @param observer the observer
+     * @param onEDT    the on edt
+     */
+    void addObserverAsFirst(Observer<A> observer, boolean onEDT);
 
 }

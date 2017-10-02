@@ -34,6 +34,8 @@ import java.util.Set;
 
 
 /**
+ * The type Data evaluator.
+ *
  * @author Tobias Malbrecht
  */
 public abstract class DataEvaluator {
@@ -62,14 +64,22 @@ public abstract class DataEvaluator {
 
 	private boolean complete = false;
 
-	// TODO add date guessing and missing evaluation
+    /**
+     * Instantiates a new Data evaluator.
+     *
+     * @param numberFormat the number format
+     */
+// TODO add date guessing and missing evaluation
 	// TODO add different formats for each string array value
 	public DataEvaluator(NumberFormat numberFormat) {
 		this.numberFormat = numberFormat;
 		start();
 	}
 
-	public void start() {
+    /**
+     * Start.
+     */
+    public void start() {
 		rowCount = 0;
 		columnCount = 0;
 		columnNames = null;
@@ -83,7 +93,12 @@ public abstract class DataEvaluator {
 		complete = false;
 	}
 
-	public void setColumnNames(String[] columnNames) {
+    /**
+     * Sets column names.
+     *
+     * @param columnNames the column names
+     */
+    public void setColumnNames(String[] columnNames) {
 		if (columnCount < columnNames.length) {
 			this.columnNames = new String[columnNames.length];
 			for (int i = 0; i < columnNames.length; i++) {
@@ -95,7 +110,12 @@ public abstract class DataEvaluator {
 		}
 	}
 
-	public void setValueTypes(int[] valueTypes) {
+    /**
+     * Sets value types.
+     *
+     * @param valueTypes the value types
+     */
+    public void setValueTypes(int[] valueTypes) {
 		if (columnCount < valueTypes.length) {
 			this.valueTypes = new int[valueTypes.length];
 			for (int i = 0; i < valueTypes.length; i++) {
@@ -107,7 +127,12 @@ public abstract class DataEvaluator {
 		}
 	}
 
-	public void update(String[] values) {
+    /**
+     * Update.
+     *
+     * @param values the values
+     */
+    public void update(String[] values) {
 		if (columnCount < values.length) {
 			extendToLength(values.length);
 		}
@@ -173,7 +198,12 @@ public abstract class DataEvaluator {
 		columnCount = length;
 	}
 
-	public void finish(boolean complete) {
+    /**
+     * Finish.
+     *
+     * @param complete the complete
+     */
+    public void finish(boolean complete) {
 		this.complete = complete;
 		if (columnNames == null) {
 			this.columnNames = new String[columnCount];
@@ -207,35 +237,76 @@ public abstract class DataEvaluator {
 		}
 	}
 
-	protected String[] getColumnNames() {
+    /**
+     * Get column names string [ ].
+     *
+     * @return the string [ ]
+     */
+    protected String[] getColumnNames() {
 		return columnNames;
 	}
 
-	protected int getColumnCount() {
+    /**
+     * Gets column count.
+     *
+     * @return the column count
+     */
+    protected int getColumnCount() {
 		return columnCount;
 	}
 
-	protected int getRowCount() {
+    /**
+     * Gets row count.
+     *
+     * @return the row count
+     */
+    protected int getRowCount() {
 		return rowCount;
 	}
 
-	protected int[] getValueTypes() {
+    /**
+     * Get value types int [ ].
+     *
+     * @return the int [ ]
+     */
+    protected int[] getValueTypes() {
 		return valueTypes;
 	}
 
-	protected int[] getNumberOfMissings() {
+    /**
+     * Get number of missings int [ ].
+     *
+     * @return the int [ ]
+     */
+    protected int[] getNumberOfMissings() {
 		return numberOfMissings;
 	}
 
-	protected Set<String> getValueSet(int column) {
+    /**
+     * Gets value set.
+     *
+     * @param column the column
+     * @return the value set
+     */
+    protected Set<String> getValueSet(int column) {
 		return valueSets.get(column);
 	}
 
-	protected boolean isGuess() {
+    /**
+     * Is guess boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean isGuess() {
 		return !complete;
 	}
 
-	public ExampleSetMetaData getMetaData() {
+    /**
+     * Gets meta data.
+     *
+     * @return the meta data
+     */
+    public ExampleSetMetaData getMetaData() {
 		ExampleSetMetaData metaData = new ExampleSetMetaData();
 		for (int i = 0; i < getColumnCount(); i++) {
 			AttributeMetaData amd = new AttributeMetaData(getColumnNames()[i], getValueTypes()[i]);
@@ -261,5 +332,11 @@ public abstract class DataEvaluator {
 		return metaData;
 	}
 
-	public abstract String getGenericColumnName(int column);
+    /**
+     * Gets generic column name.
+     *
+     * @param column the column
+     * @return the generic column name
+     */
+    public abstract String getGenericColumnName(int column);
 }

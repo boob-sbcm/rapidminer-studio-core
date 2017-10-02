@@ -69,7 +69,7 @@ import com.rapidminer.tools.container.Pair;
  * properly stopped during focus losts, resizing, or column movement. The current value is then set
  * to the model. The only way to abort the value change is by pressing the escape key.
  * </p>
- *
+ * <p>
  * <p>
  * The extended table is sortable per default. Developers should note that this feature might lead
  * to problems if the columns contain different class types and different editors. In this case one
@@ -86,10 +86,22 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 
 	private static final int DEFAULT_COLUMN_WIDTH = 100;
 
-	public static final int NO_DATE_FORMAT = -1;
-	public static final int DATE_FORMAT = 0;
-	public static final int TIME_FORMAT = 1;
-	public static final int DATE_TIME_FORMAT = 2;
+    /**
+     * The constant NO_DATE_FORMAT.
+     */
+    public static final int NO_DATE_FORMAT = -1;
+    /**
+     * The constant DATE_FORMAT.
+     */
+    public static final int DATE_FORMAT = 0;
+    /**
+     * The constant TIME_FORMAT.
+     */
+    public static final int TIME_FORMAT = 1;
+    /**
+     * The constant DATE_TIME_FORMAT.
+     */
+    public static final int DATE_TIME_FORMAT = 2;
 
 	private final Action ROW_ACTION = new SelectRowAction(this, IconSize.SMALL);
 	private final Action COLUMN_ACTION = new SelectColumnAction(this, IconSize.SMALL);
@@ -132,32 +144,78 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 	private int lastColoredHighlightedRow = -1;
 	private boolean checkHighlight = false;
 
-	public ExtendedJTable() {
+    /**
+     * Instantiates a new Extended j table.
+     */
+    public ExtendedJTable() {
 		this(null, true);
 	}
 
-	public ExtendedJTable(final boolean sortable) {
+    /**
+     * Instantiates a new Extended j table.
+     *
+     * @param sortable the sortable
+     */
+    public ExtendedJTable(final boolean sortable) {
 		this(null, sortable);
 	}
 
-	public ExtendedJTable(final TableModel model, final boolean sortable) {
+    /**
+     * Instantiates a new Extended j table.
+     *
+     * @param model    the model
+     * @param sortable the sortable
+     */
+    public ExtendedJTable(final TableModel model, final boolean sortable) {
 		this(model, sortable, true);
 	}
 
-	public ExtendedJTable(final TableModel model, final boolean sortable, final boolean columnMovable) {
+    /**
+     * Instantiates a new Extended j table.
+     *
+     * @param model         the model
+     * @param sortable      the sortable
+     * @param columnMovable the column movable
+     */
+    public ExtendedJTable(final TableModel model, final boolean sortable, final boolean columnMovable) {
 		this(model, sortable, columnMovable, true);
 	}
 
-	public ExtendedJTable(final boolean sortable, final boolean columnMovable, final boolean autoResize) {
+    /**
+     * Instantiates a new Extended j table.
+     *
+     * @param sortable      the sortable
+     * @param columnMovable the column movable
+     * @param autoResize    the auto resize
+     */
+    public ExtendedJTable(final boolean sortable, final boolean columnMovable, final boolean autoResize) {
 		this(null, sortable, columnMovable, autoResize);
 	}
 
-	public ExtendedJTable(final TableModel model, final boolean sortable, final boolean columnMovable,
+    /**
+     * Instantiates a new Extended j table.
+     *
+     * @param model         the model
+     * @param sortable      the sortable
+     * @param columnMovable the column movable
+     * @param autoResize    the auto resize
+     */
+    public ExtendedJTable(final TableModel model, final boolean sortable, final boolean columnMovable,
 			final boolean autoResize) {
 		this(model, sortable, columnMovable, autoResize, true, false);
 	}
 
-	public ExtendedJTable(final TableModel model, final boolean sortable, final boolean columnMovable,
+    /**
+     * Instantiates a new Extended j table.
+     *
+     * @param model                  the model
+     * @param sortable               the sortable
+     * @param columnMovable          the column movable
+     * @param autoResize             the auto resize
+     * @param useColoredCellRenderer the use colored cell renderer
+     * @param fixFirstColumn         the fix first column
+     */
+    public ExtendedJTable(final TableModel model, final boolean sortable, final boolean columnMovable,
 			final boolean autoResize, final boolean useColoredCellRenderer, final boolean fixFirstColumn) {
 		super();
 		this.sortable = sortable;
@@ -225,83 +283,133 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Colors.TABLE_CELL_BORDER));
 	}
 
-	/** Registers a new {@link ToolTipWindow} on this table. */
-	public void installToolTip() {
+    /**
+     * Registers a new {@link ToolTipWindow} on this table.
+     */
+    public void installToolTip() {
 		// adding a new extended tool tip window
 		new ToolTipWindow(new TableToolTipProvider(), this);
 		setToolTipText(null);
 	}
 
-	protected Object readResolve() {
+    /**
+     * Read resolve object.
+     *
+     * @return the object
+     */
+    protected Object readResolve() {
 		this.renderer = new ColoredTableCellRenderer();
 		return this;
 	}
 
-	protected ExtendedJTableSorterModel getTableSorter() {
+    /**
+     * Gets table sorter.
+     *
+     * @return the table sorter
+     */
+    protected ExtendedJTableSorterModel getTableSorter() {
 		return this.tableSorter;
 	}
 
-	/**
-	 * Subclasses might overwrite this method which by default simply returns NO_DATE. The returned
-	 * format should be one out of NO_DATE_FORMAT, DATE_FORMAT, TIME_FORMAT, or DATE_TIME_FORMAT.
-	 * This information will be used for the cell renderer.
-	 */
-	public int getDateFormat(final int row, final int column) {
+    /**
+     * Subclasses might overwrite this method which by default simply returns NO_DATE. The returned
+     * format should be one out of NO_DATE_FORMAT, DATE_FORMAT, TIME_FORMAT, or DATE_TIME_FORMAT.
+     * This information will be used for the cell renderer.
+     *
+     * @param row    the row
+     * @param column the column
+     * @return the date format
+     */
+    public int getDateFormat(final int row, final int column) {
 		return NO_DATE_FORMAT;
 	}
 
-	/**
-	 * The given color provider will be used for the cell renderer. The default method
-	 * implementation returns {@link SwingTools#LIGHTEST_BLUE} and white for alternating rows. If no
-	 * colors should be used at all, set the cell color provider to null or to the default white
-	 * color provider {@link CellColorProviderWhite}.
-	 */
-	public void setCellColorProvider(final CellColorProvider cellColorProvider) {
+    /**
+     * The given color provider will be used for the cell renderer. The default method
+     * implementation returns {@link SwingTools#LIGHTEST_BLUE} and white for alternating rows. If no
+     * colors should be used at all, set the cell color provider to null or to the default white
+     * color provider {@link CellColorProviderWhite}.
+     *
+     * @param cellColorProvider the cell color provider
+     */
+    public void setCellColorProvider(final CellColorProvider cellColorProvider) {
 		this.cellColorProvider = cellColorProvider;
 	}
 
-	/**
-	 * The returned color provider will be used for the cell renderer. The default method
-	 * implementation returns {@link SwingTools#LIGHTEST_BLUE} and white for alternating rows. If no
-	 * colors should be used at all, set the cell color provider to null or to the default white
-	 * color provider {@link CellColorProviderWhite}.
-	 */
-	public CellColorProvider getCellColorProvider() {
+    /**
+     * The returned color provider will be used for the cell renderer. The default method
+     * implementation returns {@link SwingTools#LIGHTEST_BLUE} and white for alternating rows. If no
+     * colors should be used at all, set the cell color provider to null or to the default white
+     * color provider {@link CellColorProviderWhite}.
+     *
+     * @return the cell color provider
+     */
+    public CellColorProvider getCellColorProvider() {
 		return this.cellColorProvider;
 	}
 
-	public void setColoredTableCellRenderer(ColoredTableCellRenderer renderer) {
+    /**
+     * Sets colored table cell renderer.
+     *
+     * @param renderer the renderer
+     */
+    public void setColoredTableCellRenderer(ColoredTableCellRenderer renderer) {
 		this.renderer = renderer;
 	}
 
-	public void setSortable(final boolean sortable) {
+    /**
+     * Sets sortable.
+     *
+     * @param sortable the sortable
+     */
+    public void setSortable(final boolean sortable) {
 		this.sortable = sortable;
 	}
 
-	public boolean isSortable() {
+    /**
+     * Is sortable boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSortable() {
 		return sortable;
 	}
 
-	public void setShowPopupMenu(final boolean showPopupMenu) {
+    /**
+     * Sets show popup menu.
+     *
+     * @param showPopupMenu the show popup menu
+     */
+    public void setShowPopupMenu(final boolean showPopupMenu) {
 		this.showPopopUpMenu = showPopupMenu;
 	}
 
-	public void setFixFirstColumnForRearranging(final boolean fixFirstColumn) {
+    /**
+     * Sets fix first column for rearranging.
+     *
+     * @param fixFirstColumn the fix first column
+     */
+    public void setFixFirstColumnForRearranging(final boolean fixFirstColumn) {
 		this.fixFirstColumn = fixFirstColumn;
 	}
 
-	public void setMaximalTextLength(final int maximalTextLength) {
+    /**
+     * Sets maximal text length.
+     *
+     * @param maximalTextLength the maximal text length
+     */
+    public void setMaximalTextLength(final int maximalTextLength) {
 		Arrays.fill(maximalTextLengths, maximalTextLength);
 	}
 
-	/**
-	 * Sets whether row highlighting (aka darken the row the mouse is currently over) is active or
-	 * not. By default it is active. Can only be activated if {@link #useColoredCellRenderer} is
-	 * {@code true}.
-	 *
-	 * @param enabled
-	 */
-	public void setRowHighlighting(boolean enabled) {
+    /**
+     * Sets whether row highlighting (aka darken the row the mouse is currently over) is active or
+     * not. By default it is active. Can only be activated if {@link #useColoredCellRenderer} is
+     * {@code true}.
+     *
+     * @param enabled the enabled
+     */
+    public void setRowHighlighting(boolean enabled) {
 		if (!useColoredCellRenderer) {
 			return;
 		}
@@ -309,15 +417,14 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		rowHighlightingEnabled = enabled;
 	}
 
-	/**
-	 * If row highlighting is enabled (see {@link #setRowHighlighting(boolean)}, returns whether the
-	 * given row is the currently highlighted row.
-	 *
-	 * @param row
-	 *            the row to check
-	 * @return {@code true} if it is currently highlighted; {@code false} otherwise
-	 */
-	public boolean isRowHighlighted(int row) {
+    /**
+     * If row highlighting is enabled (see {@link #setRowHighlighting(boolean)}, returns whether the
+     * given row is the currently highlighted row.
+     *
+     * @param row the row to check
+     * @return {@code true} if it is currently highlighted; {@code false} otherwise
+     */
+    public boolean isRowHighlighted(int row) {
 		if (!rowHighlightingEnabled) {
 			return false;
 		}
@@ -325,13 +432,12 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		return row == rowHighlight;
 	}
 
-	/**
-	 * Sets the last highlighted row.
-	 *
-	 * @param row
-	 *            the last highlighted row
-	 */
-	public void setLastHighlightedRow(int row) {
+    /**
+     * Sets the last highlighted row.
+     *
+     * @param row the last highlighted row
+     */
+    public void setLastHighlightedRow(int row) {
 		if (!rowHighlightingEnabled) {
 			return;
 		}
@@ -339,24 +445,41 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		lastColoredHighlightedRow = row;
 	}
 
-	/**
-	 * Returns whether row highlighting (see {@link #setRowHighlighting(boolean)} is enabled.
-	 *
-	 * @return
-	 */
-	public boolean isRowHighlighting() {
+    /**
+     * Returns whether row highlighting (see {@link #setRowHighlighting(boolean)} is enabled.
+     *
+     * @return boolean boolean
+     */
+    public boolean isRowHighlighting() {
 		return rowHighlightingEnabled;
 	}
 
-	public void setMaximalTextLength(final int maximalTextLength, final int column) {
+    /**
+     * Sets maximal text length.
+     *
+     * @param maximalTextLength the maximal text length
+     * @param column            the column
+     */
+    public void setMaximalTextLength(final int maximalTextLength, final int column) {
 		maximalTextLengths[column] = maximalTextLength;
 	}
 
-	public void setCutOnLineBreak(final boolean enable) {
+    /**
+     * Sets cut on line break.
+     *
+     * @param enable the enable
+     */
+    public void setCutOnLineBreak(final boolean enable) {
 		Arrays.fill(cutOnLineBreaks, enable);
 	}
 
-	public void setCutOnLineBreak(final boolean enable, final int column) {
+    /**
+     * Sets cut on line break.
+     *
+     * @param enable the enable
+     * @param column the column
+     */
+    public void setCutOnLineBreak(final boolean enable, final int column) {
 		cutOnLineBreaks[column] = enable;
 	}
 
@@ -400,7 +523,13 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		});
 	}
 
-	public void setSortingStatus(final int status, final boolean cancelSorting) {
+    /**
+     * Sets sorting status.
+     *
+     * @param status        the status
+     * @param cancelSorting the cancel sorting
+     */
+    public void setSortingStatus(final int status, final boolean cancelSorting) {
 		if (getModel() instanceof ExtendedJTableSorterModel) {
 			ExtendedJTableSorterModel sorterModel = (ExtendedJTableSorterModel) getModel();
 
@@ -421,7 +550,10 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		}
 	}
 
-	public void pack() {
+    /**
+     * Pack.
+     */
+    public void pack() {
 		packer = new ExtendedJTablePacker(true);
 		if (isShowing()) {
 			packer.pack(this);
@@ -438,7 +570,10 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		}
 	}
 
-	public void unpack() {
+    /**
+     * Unpack.
+     */
+    public void unpack() {
 		JTableHeader header = getTableHeader();
 		if (header != null) {
 			for (int c = 0; c < getColumnCount(); c++) {
@@ -454,7 +589,10 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		}
 	}
 
-	public void packColumn() {
+    /**
+     * Pack column.
+     */
+    public void packColumn() {
 		JTableHeader header = getTableHeader();
 		if (header != null) {
 			int col = getSelectedColumn();
@@ -496,7 +634,10 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		}
 	}
 
-	public void sortColumnsAccordingToNames() {
+    /**
+     * Sort columns according to names.
+     */
+    public void sortColumnsAccordingToNames() {
 		int offset = 0;
 		if (fixFirstColumn) {
 			offset = 1;
@@ -515,7 +656,10 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		}
 	}
 
-	public void restoreOriginalColumnOrder() {
+    /**
+     * Restore original column order.
+     */
+    public void restoreOriginalColumnOrder() {
 		for (int i = 0; i < originalOrder.length; i++) {
 			String nextColumn = originalOrder[i];
 			for (int j = i; j < getColumnCount(); j++) {
@@ -571,7 +715,12 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		super.columnMarginChanged(e);
 	}
 
-	public boolean shouldUseColoredCellRenderer() {
+    /**
+     * Should use colored cell renderer boolean.
+     *
+     * @return the boolean
+     */
+    public boolean shouldUseColoredCellRenderer() {
 		return this.useColoredCellRenderer;
 	}
 
@@ -612,7 +761,14 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		return getToolTipText(colIndex, rowIndex);
 	}
 
-	protected String getToolTipText(final int colIndex, final int rowIndex) {
+    /**
+     * Gets tool tip text.
+     *
+     * @param colIndex the col index
+     * @param rowIndex the row index
+     * @return the tool tip text
+     */
+    protected String getToolTipText(final int colIndex, final int rowIndex) {
 		int realColumnIndex = convertColumnIndexToModel(colIndex);
 		String text = null;
 		if (rowIndex >= 0 && rowIndex < getRowCount() && realColumnIndex >= 0
@@ -753,34 +909,49 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		return super.getScrollableTracksViewportWidth();
 	}
 
-	/**
-	 * Converts the index of the row in the view to the corresponding row in the original model.
-	 * They might difer if the table is sorted.
-	 *
-	 * @param rowIndex
-	 *            The index of the row in the view.
-	 * @return The index of the row in the original model.
-	 */
-	public int getModelIndex(final int rowIndex) {
+    /**
+     * Converts the index of the row in the view to the corresponding row in the original model.
+     * They might difer if the table is sorted.
+     *
+     * @param rowIndex The index of the row in the view.
+     * @return The index of the row in the original model.
+     */
+    public int getModelIndex(final int rowIndex) {
 		if (tableSorter != null) {
 			return tableSorter.modelIndex(rowIndex);
 		}
 		return rowIndex;
 	}
 
-	public void setExtendedScrollPane(final ExtendedJScrollPane scrollPane) {
+    /**
+     * Sets extended scroll pane.
+     *
+     * @param scrollPane the scroll pane
+     */
+    public void setExtendedScrollPane(final ExtendedJScrollPane scrollPane) {
 		this.scrollPaneParent = scrollPane;
 	}
 
-	public ExtendedJScrollPane getExtendedScrollPane() {
+    /**
+     * Gets extended scroll pane.
+     *
+     * @return the extended scroll pane
+     */
+    public ExtendedJScrollPane getExtendedScrollPane() {
 		return this.scrollPaneParent;
 	}
 
-	public void selectCompleteRow() {
+    /**
+     * Select complete row.
+     */
+    public void selectCompleteRow() {
 		addColumnSelectionInterval(0, getColumnCount() - 1);
 	}
 
-	public void selectCompleteColumn() {
+    /**
+     * Select complete column.
+     */
+    public void selectCompleteColumn() {
 		addRowSelectionInterval(0, getRowCount() - 1);
 	}
 
@@ -844,17 +1015,33 @@ public class ExtendedJTable extends JTable implements Tableable, MouseListener {
 		}
 	}
 
-	protected void showPopupMenu(final JPopupMenu menu, final Point location) {
+    /**
+     * Show popup menu.
+     *
+     * @param menu     the menu
+     * @param location the location
+     */
+    protected void showPopupMenu(final JPopupMenu menu, final Point location) {
 		menu.show(this, (int) location.getX(), (int) location.getY());
 	}
 
-	public JPopupMenu createPopupMenu() {
+    /**
+     * Create popup menu j popup menu.
+     *
+     * @return the j popup menu
+     */
+    public JPopupMenu createPopupMenu() {
 		JPopupMenu menu = new JPopupMenu();
 		populatePopupMenu(menu);
 		return menu;
 	}
 
-	public void populatePopupMenu(final JPopupMenu menu) {
+    /**
+     * Populate popup menu.
+     *
+     * @param menu the menu
+     */
+    public void populatePopupMenu(final JPopupMenu menu) {
 		menu.add(ROW_ACTION);
 		menu.add(COLUMN_ACTION);
 

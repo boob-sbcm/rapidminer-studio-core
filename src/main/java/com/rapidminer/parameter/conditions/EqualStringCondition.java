@@ -28,7 +28,7 @@ import org.w3c.dom.Element;
 
 /**
  * This condition checks if a string parameter (also string category) has a certain value.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class EqualStringCondition extends ParameterCondition {
@@ -37,13 +37,27 @@ public class EqualStringCondition extends ParameterCondition {
 	private static final String ELEMENT_VALUE = "Value";
 	private String[] types;
 
-	public EqualStringCondition(Element element) throws XMLException {
+    /**
+     * Instantiates a new Equal string condition.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public EqualStringCondition(Element element) throws XMLException {
 		super(element);
 		Element valuesElement = XMLTools.getChildElement(element, ELEMENT_VALUES, true);
 		types = XMLTools.getChildTagsContentAsStringArray(valuesElement, ELEMENT_VALUE);
 	}
 
-	public EqualStringCondition(ParameterHandler handler, String conditionParameter, boolean becomeMandatory,
+    /**
+     * Instantiates a new Equal string condition.
+     *
+     * @param handler            the handler
+     * @param conditionParameter the condition parameter
+     * @param becomeMandatory    the become mandatory
+     * @param types              the types
+     */
+    public EqualStringCondition(ParameterHandler handler, String conditionParameter, boolean becomeMandatory,
 			String... types) {
 		super(handler, conditionParameter, becomeMandatory);
 		this.types = types;

@@ -21,6 +21,8 @@ package com.rapidminer.tools.container;
 /**
  * A basic container class for a comparable pair of comparable objects.
  *
+ * @param <T> the type parameter
+ * @param <K> the type parameter
  * @author Sabrina Kirstein
  */
 public class ComparablePair<T extends Comparable<T>, K extends Comparable<K>> extends Pair<T, K> implements
@@ -28,7 +30,13 @@ Comparable<Pair<T, K>> {
 
 	private static final long serialVersionUID = 1L;
 
-	public ComparablePair(T t, K k) {
+    /**
+     * Instantiates a new Comparable pair.
+     *
+     * @param t the t
+     * @param k the k
+     */
+    public ComparablePair(T t, K k) {
 		super(t, k);
 	}
 

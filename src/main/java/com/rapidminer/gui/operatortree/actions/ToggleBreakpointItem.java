@@ -29,7 +29,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa, Tobias Malbrecht
  */
 public class ToggleBreakpointItem extends ToggleAction {
@@ -45,7 +45,13 @@ public class ToggleBreakpointItem extends ToggleAction {
 		setCondition(ROOT_SELECTED, DISALLOWED);
 	}
 
-	public ToggleBreakpointItem(final Actions actions, final int position) {
+    /**
+     * Instantiates a new Toggle breakpoint item.
+     *
+     * @param actions  the actions
+     * @param position the position
+     */
+    public ToggleBreakpointItem(final Actions actions, final int position) {
 		super(true, "breakpoint_" + BreakpointListener.BREAKPOINT_POS_NAME[position]);
 
 		this.actions = actions;

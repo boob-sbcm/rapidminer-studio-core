@@ -53,7 +53,7 @@ import com.rapidminer.tools.expression.internal.UnknownResolverVariableException
  * of the new attributes and their construction description are defined in the parameter list
  * &quot;functions&quot;.
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>operators</em> are supported:
  * <ul>
@@ -74,7 +74,7 @@ import com.rapidminer.tools.expression.internal.UnknownResolverVariableException
  * <li>Boolean Or: ||</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>log and exponential functions</em> are supported:
  * <ul>
@@ -85,7 +85,7 @@ import com.rapidminer.tools.expression.internal.UnknownResolverVariableException
  * <li>Power: pow(x,y)</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>trigonometric functions</em> are supported:
  * <ul>
@@ -104,7 +104,7 @@ import com.rapidminer.tools.expression.internal.UnknownResolverVariableException
  * <li>Inverse Hyperbolic Tangent: atanh(x)</li></li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>statistical functions</em> are supported:
  * <ul>
@@ -114,7 +114,7 @@ import com.rapidminer.tools.expression.internal.UnknownResolverVariableException
  * <li>Ceiling: ceil(x)</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>aggregation functions</em> are supported:
  * <ul>
@@ -123,7 +123,7 @@ import com.rapidminer.tools.expression.internal.UnknownResolverVariableException
  * <li>Maximum: max(x,y,z...)</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>text functions</em> are supported:
  * <ul>
@@ -149,7 +149,7 @@ import com.rapidminer.tools.expression.internal.UnknownResolverVariableException
  * <li>Trim (remove leading and trailing whitespace): trim(text)</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>miscellaneous functions</em> are supported:
  * <ul>
@@ -165,22 +165,22 @@ import com.rapidminer.tools.expression.internal.UnknownResolverVariableException
  * <li>Retrieving parameter value: param(operator name, parameter name)</li>
  * </ul>
  * </p>
- *
+ * <p>
  * <p>
  * The following <em>process related functions</em> are supported:
  * <ul>
  * <li>Retrieving a parameter value: param("operator", "parameter")</li>
  * </ul>
  * </p>
- *
- *
+ * <p>
+ * <p>
  * <p>
  * Beside those operators and functions, this operator also supports the constants pi and e if this
  * is indicated by the corresponding parameter (default: true). You can also use strings in formulas
  * (for example in a conditioned if-formula) but the string values have to be enclosed in double
  * quotes.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that there are some restrictions for the attribute names in order to let this
  * operator work properly:
@@ -193,7 +193,7 @@ import com.rapidminer.tools.expression.internal.UnknownResolverVariableException
  * If these conditions are not fulfilled, the names must be changed beforehand, for example with the
  * {@link ChangeAttributeName} operator.
  * </p>
- *
+ * <p>
  * <p>
  * <br/>
  * <em>Examples:</em><br/>
@@ -205,16 +205,23 @@ import com.rapidminer.tools.expression.internal.UnknownResolverVariableException
  */
 public class AttributeConstruction extends AbstractFeatureConstruction {
 
-	/** The parameter name for &quot;List of functions to generate.&quot; */
-	public static final String PARAMETER_FUNCTIONS = "function_descriptions";
+    /**
+     * The parameter name for &quot;List of functions to generate.&quot;
+     */
+    public static final String PARAMETER_FUNCTIONS = "function_descriptions";
 
-	/**
-	 * The parameter name for &quot;If set to true, all the original attributes are kept, otherwise
-	 * they are removed from the example set.&quot;
-	 */
-	public static final String PARAMETER_KEEP_ALL = "keep_all";
+    /**
+     * The parameter name for &quot;If set to true, all the original attributes are kept, otherwise
+     * they are removed from the example set.&quot;
+     */
+    public static final String PARAMETER_KEEP_ALL = "keep_all";
 
-	public AttributeConstruction(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute construction.
+     *
+     * @param description the description
+     */
+    public AttributeConstruction(OperatorDescription description) {
 		super(description);
 	}
 

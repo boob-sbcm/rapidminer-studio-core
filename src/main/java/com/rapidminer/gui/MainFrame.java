@@ -266,83 +266,104 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 
 	private static final long serialVersionUID = 1L;
 
-	/** The property name for &quot;The pixel size of each plot in matrix plots.&quot; */
-	public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_MATRIXPLOT_SIZE = "rapidminer.gui.plotter.matrixplot.size";
+    /**
+     * The property name for &quot;The pixel size of each plot in matrix plots.&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_MATRIXPLOT_SIZE = "rapidminer.gui.plotter.matrixplot.size";
 
-	/**
-	 * The property name for &quot;The maximum number of rows used for a plotter, using only a
-	 * sample of this size if more rows are available.&quot;
-	 */
-	public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_ROWS_MAXIMUM = "rapidminer.gui.plotter.rows.maximum";
+    /**
+     * The property name for &quot;The maximum number of rows used for a plotter, using only a
+     * sample of this size if more rows are available.&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_ROWS_MAXIMUM = "rapidminer.gui.plotter.rows.maximum";
 
-	/**
-	 * The property name for the &quot; The maximum number of examples in a data set for which
-	 * default plotter settings will be generated.&quot;
-	 */
-	public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_DEFAULT_MAXIMUM = "rapidminer.gui.plotter.default.maximum";
+    /**
+     * The property name for the &quot; The maximum number of examples in a data set for which
+     * default plotter settings will be generated.&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_DEFAULT_MAXIMUM = "rapidminer.gui.plotter.default.maximum";
 
-	/**
-	 * The property name for &quot;Limit number of displayed classes plotter legends. -1 for no
-	 * limit.&quot;
-	 */
-	public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_LEGEND_CLASSLIMIT = "rapidminer.gui.plotter.legend.classlimit";
+    /**
+     * The property name for &quot;Limit number of displayed classes plotter legends. -1 for no
+     * limit.&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_LEGEND_CLASSLIMIT = "rapidminer.gui.plotter.legend.classlimit";
 
-	/** The property name for &quot;The color for minimum values of the plotter legend.&quot; */
-	public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_LEGEND_MINCOLOR = "rapidminer.gui.plotter.legend.mincolor";
+    /**
+     * The property name for &quot;The color for minimum values of the plotter legend.&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_LEGEND_MINCOLOR = "rapidminer.gui.plotter.legend.mincolor";
 
-	/** The property name for &quot;The color for maximum values of the plotter legend.&quot; */
-	public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_LEGEND_MAXCOLOR = "rapidminer.gui.plotter.legend.maxcolor";
+    /**
+     * The property name for &quot;The color for maximum values of the plotter legend.&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_LEGEND_MAXCOLOR = "rapidminer.gui.plotter.legend.maxcolor";
 
-	/**
-	 * The property name for &quot;Limit number of displayed classes for colorized plots. -1 for no
-	 * limit.&quot;
-	 */
-	public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_COLORS_CLASSLIMIT = "rapidminer.gui.plotter.colors.classlimit";
+    /**
+     * The property name for &quot;Limit number of displayed classes for colorized plots. -1 for no
+     * limit.&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_PLOTTER_COLORS_CLASSLIMIT = "rapidminer.gui.plotter.colors.classlimit";
 
-	/**
-	 * The property name for &quot;Maximum number of states in the undo list.&quot;
-	 *
-	 * @deprecated Since 7.5. Use {@link RapidMinerGUI#PROPERTY_RAPIDMINER_GUI_UNDOLIST_SIZE}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * The property name for &quot;Maximum number of states in the undo list.&quot;
+     *
+     * @deprecated Since 7.5. Use {@link RapidMinerGUI#PROPERTY_RAPIDMINER_GUI_UNDOLIST_SIZE}             instead
+     */
+    @Deprecated
 	public static final String PROPERTY_RAPIDMINER_GUI_UNDOLIST_SIZE = RapidMinerGUI.PROPERTY_RAPIDMINER_GUI_UNDOLIST_SIZE;
 
-	/**
-	 * The property name for &quot;Maximum number of examples to use for the attribute editor. -1
-	 * for no limit.&quot;
-	 */
-	public static final String PROPERTY_RAPIDMINER_GUI_ATTRIBUTEEDITOR_ROWLIMIT = "rapidminer.gui.attributeeditor.rowlimit";
+    /**
+     * The property name for &quot;Maximum number of examples to use for the attribute editor. -1
+     * for no limit.&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_ATTRIBUTEEDITOR_ROWLIMIT = "rapidminer.gui.attributeeditor.rowlimit";
 
-	/** The property name for &quot;Beep on process success?&quot; */
-	public static final String PROPERTY_RAPIDMINER_GUI_BEEP_SUCCESS = "rapidminer.gui.beep.success";
+    /**
+     * The property name for &quot;Beep on process success?&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_BEEP_SUCCESS = "rapidminer.gui.beep.success";
 
-	/** The property name for &quot;Beep on error?&quot; */
-	public static final String PROPERTY_RAPIDMINER_GUI_BEEP_ERROR = "rapidminer.gui.beep.error";
+    /**
+     * The property name for &quot;Beep on error?&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_BEEP_ERROR = "rapidminer.gui.beep.error";
 
-	/** The property name for &quot;Beep when breakpoint reached?&quot; */
-	public static final String PROPERTY_RAPIDMINER_GUI_BEEP_BREAKPOINT = "rapidminer.gui.beep.breakpoint";
+    /**
+     * The property name for &quot;Beep when breakpoint reached?&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_BEEP_BREAKPOINT = "rapidminer.gui.beep.breakpoint";
 
-	/**
-	 * The property name for &quot;Limit number of displayed rows in the message viewer. -1 for no
-	 * limit.&quot;
-	 */
-	public static final String PROPERTY_RAPIDMINER_GUI_MESSAGEVIEWER_ROWLIMIT = "rapidminer.gui.messageviewer.rowlimit";
+    /**
+     * The property name for &quot;Limit number of displayed rows in the message viewer. -1 for no
+     * limit.&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_MESSAGEVIEWER_ROWLIMIT = "rapidminer.gui.messageviewer.rowlimit";
 
-	/** The property name for &quot;Shows process info screen after loading?&quot; */
-	public static final String PROPERTY_RAPIDMINER_GUI_PROCESSINFO_SHOW = "rapidminer.gui.processinfo.show";
+    /**
+     * The property name for &quot;Shows process info screen after loading?&quot;
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_PROCESSINFO_SHOW = "rapidminer.gui.processinfo.show";
 
-	public static final String PROPERTY_RAPIDMINER_GUI_SAVE_BEFORE_RUN = "rapidminer.gui.save_before_run";
+    /**
+     * The constant PROPERTY_RAPIDMINER_GUI_SAVE_BEFORE_RUN.
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_SAVE_BEFORE_RUN = "rapidminer.gui.save_before_run";
 
-	public static final String PROPERTY_RAPIDMINER_GUI_SAVE_ON_PROCESS_CREATION = "rapidminer.gui.save_on_process_creation";
+    /**
+     * The constant PROPERTY_RAPIDMINER_GUI_SAVE_ON_PROCESS_CREATION.
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_SAVE_ON_PROCESS_CREATION = "rapidminer.gui.save_on_process_creation";
 
-	/**
-	 * The property determining whether or not to switch to result view when results are produced.
-	 */
-	public static final String PROPERTY_RAPIDMINER_GUI_AUTO_SWITCH_TO_RESULTVIEW = "rapidminer.gui.auto_switch_to_resultview";
+    /**
+     * The property determining whether or not to switch to result view when results are produced.
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_AUTO_SWITCH_TO_RESULTVIEW = "rapidminer.gui.auto_switch_to_resultview";
 
-	/** Log level of the LoggingViewer. */
-	public static final String PROPERTY_RAPIDMINER_GUI_LOG_LEVEL = "rapidminer.gui.log_level";
+    /**
+     * Log level of the LoggingViewer.
+     */
+    public static final String PROPERTY_RAPIDMINER_GUI_LOG_LEVEL = "rapidminer.gui.log_level";
 
 	private static final int MAX_LOCATION_TITLE_LENGTH = 150;
 
@@ -354,39 +375,105 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 
 	// --------------------------------------------------------------------------------
 
-	public static final int EDIT_MODE = 0;
-	public static final int RESULTS_MODE = 1;
+    /**
+     * The constant EDIT_MODE.
+     */
+    public static final int EDIT_MODE = 0;
+    /**
+     * The constant RESULTS_MODE.
+     */
+    public static final int RESULTS_MODE = 1;
 
-	public final transient Action AUTO_WIRE = new AutoWireAction(this);
+    /**
+     * The Auto wire.
+     */
+    public final transient Action AUTO_WIRE = new AutoWireAction(this);
 
-	public final transient Action NEW_ACTION = new NewAction();
-	public final transient Action OPEN_ACTION = new OpenAction();
-	public final transient SaveAction SAVE_ACTION = new SaveAction();
-	public final transient Action SAVE_AS_ACTION = new SaveAsAction();
-	public final transient ToggleAction PROPAGATE_REAL_METADATA_ACTION = new PropagateRealMetaDataAction(this);
+    /**
+     * The New action.
+     */
+    public final transient Action NEW_ACTION = new NewAction();
+    /**
+     * The Open action.
+     */
+    public final transient Action OPEN_ACTION = new OpenAction();
+    /**
+     * The Save action.
+     */
+    public final transient SaveAction SAVE_ACTION = new SaveAction();
+    /**
+     * The Save as action.
+     */
+    public final transient Action SAVE_AS_ACTION = new SaveAsAction();
+    /**
+     * The Propagate real metadata action.
+     */
+    public final transient ToggleAction PROPAGATE_REAL_METADATA_ACTION = new PropagateRealMetaDataAction(this);
 
 	private final transient Action importDataAction = new ImportDataAction();
-	public final transient Action IMPORT_PROCESS_ACTION = new ImportProcessAction();
-	public final transient Action EXPORT_PROCESS_ACTION = new ExportProcessAction();
+    /**
+     * The Import process action.
+     */
+    public final transient Action IMPORT_PROCESS_ACTION = new ImportProcessAction();
+    /**
+     * The Export process action.
+     */
+    public final transient Action EXPORT_PROCESS_ACTION = new ExportProcessAction();
 
-	// ---------- Export as Image/Print actions -----------------
+    /**
+     * The Export action.
+     */
+// ---------- Export as Image/Print actions -----------------
 	public final transient Action EXPORT_ACTION = new ShowPrintAndExportDialogAction(false);
 
-	public final transient Action EXIT_ACTION = new ExitAction(this);
+    /**
+     * The Exit action.
+     */
+    public final transient Action EXIT_ACTION = new ExitAction(this);
 
-	public final transient RunAction RUN_ACTION = new RunAction(this);
-	public final transient Action PAUSE_ACTION = new PauseAction(this);
-	public final transient Action STOP_ACTION = new StopAction(this);
-	public final transient Action VALIDATE_ACTION = new ValidateProcessAction(this);
-	public final transient ToggleAction VALIDATE_AUTOMATICALLY_ACTION = new ValidateAutomaticallyAction();
+    /**
+     * The Run action.
+     */
+    public final transient RunAction RUN_ACTION = new RunAction(this);
+    /**
+     * The Pause action.
+     */
+    public final transient Action PAUSE_ACTION = new PauseAction(this);
+    /**
+     * The Stop action.
+     */
+    public final transient Action STOP_ACTION = new StopAction(this);
+    /**
+     * The Validate action.
+     */
+    public final transient Action VALIDATE_ACTION = new ValidateProcessAction(this);
+    /**
+     * The Validate automatically action.
+     */
+    public final transient ToggleAction VALIDATE_AUTOMATICALLY_ACTION = new ValidateAutomaticallyAction();
 
 	private transient JButton runRemoteToolbarButton;
 
-	public final transient Action NEW_PERSPECTIVE_ACTION = new NewPerspectiveAction(this);
-	public final transient Action SETTINGS_ACTION = new SettingsAction();
-	public final transient Action UNDO_ACTION = new UndoAction(this);
-	public final transient Action REDO_ACTION = new RedoAction(this);
-	public final transient Action MANAGE_CONFIGURABLES_ACTION = new ResourceAction(true, "manage_configurables") {
+    /**
+     * The New perspective action.
+     */
+    public final transient Action NEW_PERSPECTIVE_ACTION = new NewPerspectiveAction(this);
+    /**
+     * The Settings action.
+     */
+    public final transient Action SETTINGS_ACTION = new SettingsAction();
+    /**
+     * The Undo action.
+     */
+    public final transient Action UNDO_ACTION = new UndoAction(this);
+    /**
+     * The Redo action.
+     */
+    public final transient Action REDO_ACTION = new RedoAction(this);
+    /**
+     * The constant MANAGE_CONFIGURABLES_ACTION.
+     */
+    public final transient Action MANAGE_CONFIGURABLES_ACTION = new ResourceAction(true, "manage_configurables") {
 
 		private static final long serialVersionUID = 1L;
 
@@ -401,8 +488,14 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 
 	// DOCKING
 
-	public static final DockGroup DOCK_GROUP_ROOT = new DockGroup("root");
-	public static final DockGroup DOCK_GROUP_RESULTS = new DockGroup("results");
+    /**
+     * The constant DOCK_GROUP_ROOT.
+     */
+    public static final DockGroup DOCK_GROUP_ROOT = new DockGroup("root");
+    /**
+     * The constant DOCK_GROUP_RESULTS.
+     */
+    public static final DockGroup DOCK_GROUP_RESULTS = new DockGroup("results");
 
 	private final DockingContext dockingContext = new DockingContext();
 	private final DockingDesktop dockingDesktop = new DockingDesktop("mainDesktop", dockingContext);
@@ -542,11 +635,12 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		}
 	};
 
-	/**
-	 * @deprecated since 7.5; a view is automatically pushed on the undo stack when using
-	 *             {@link ProcessRendererModel#setDisplayedChain(OperatorChain)}
-	 */
-	@Deprecated
+    /**
+     * Add view switch to undo.
+     *
+     * @deprecated since 7.5; a view is automatically pushed on the undo stack when using             {@link ProcessRendererModel#setDisplayedChain(OperatorChain)}
+     */
+    @Deprecated
 	public void addViewSwitchToUndo() {}
 
 	/** Lets the process model check for changes in the process */
@@ -558,7 +652,12 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		processPanel.getProcessRenderer().repaint();
 	}
 
-	public void validateProcess(final boolean force) {
+    /**
+     * Validate process.
+     *
+     * @param force the force
+     */
+    public void validateProcess(final boolean force) {
 		if (force || getProcessState() != Process.PROCESS_STATE_RUNNING) {
 			metaDataUpdateQueue.validate(getProcess(), force || VALIDATE_AUTOMATICALLY_ACTION.isSelected());
 		} else {
@@ -566,7 +665,12 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		}
 	}
 
-	public boolean isProcessRendererFocused() {
+    /**
+     * Is process renderer focused boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isProcessRendererFocused() {
 		return processPanel.getProcessRenderer().hasFocus();
 	}
 
@@ -617,8 +721,10 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 
 	// --------------------------------------------------------------------------------
 
-	/** Creates a new main frame containing the RapidMiner GUI. */
-	public MainFrame() {
+    /**
+     * Creates a new main frame containing the RapidMiner GUI.
+     */
+    public MainFrame() {
 		super(getFrameTitle());
 
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -816,11 +922,11 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		processModel.addProcessEditor(macroViewer);
 	}
 
-	/**
-	 * Finishes the MainFrame initialization. Should be called after all extension have been
-	 * initialized.
-	 */
-	public void finishInitialization() {
+    /**
+     * Finishes the MainFrame initialization. Should be called after all extension have been
+     * initialized.
+     */
+    public void finishInitialization() {
 
 		// Configurators (if they exist)
 		if (!ConfigurationManager.getInstance().isEmpty()) {
@@ -854,51 +960,87 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		}
 	}
 
-	public OperatorPropertyPanel getPropertyPanel() {
+    /**
+     * Gets property panel.
+     *
+     * @return the property panel
+     */
+    public OperatorPropertyPanel getPropertyPanel() {
 		return propertyPanel;
 	}
 
-	/**
-	 * Returns a registry for {@link DataImportWizardFactory} instances. The factories are used to
-	 * populate menus such as the main import menu.
-	 *
-	 * @return the registry
-	 * @deprecated Use {@link DataSourceFactoryRegistry} instead. Registering a
-	 *             {@link DataImportWizardRegistry} will not have an effect anymore.
-	 */
-	@Deprecated
+    /**
+     * Returns a registry for {@link DataImportWizardFactory} instances. The factories are used to
+     * populate menus such as the main import menu.
+     *
+     * @return the registry
+     * @deprecated Use {@link DataSourceFactoryRegistry} instead. Registering a             {@link DataImportWizardRegistry} will not have an effect anymore.
+     */
+    @Deprecated
 	public DataImportWizardRegistry getDataImportWizardRegistry() {
 		return importWizardRegistry;
 	}
 
-	public LogViewer getLogViewer() {
+    /**
+     * Gets log viewer.
+     *
+     * @return the log viewer
+     */
+    public LogViewer getLogViewer() {
 		return logViewer;
 	}
 
-	public NewOperatorEditor getNewOperatorEditor() {
+    /**
+     * Gets new operator editor.
+     *
+     * @return the new operator editor
+     */
+    public NewOperatorEditor getNewOperatorEditor() {
 		return newOperatorEditor;
 	}
 
-	public OperatorTree getOperatorTree() {
+    /**
+     * Gets operator tree.
+     *
+     * @return the operator tree
+     */
+    public OperatorTree getOperatorTree() {
 		return operatorTree.getOperatorTree();
 	}
 
-	public Actions getActions() {
+    /**
+     * Gets actions.
+     *
+     * @return the actions
+     */
+    public Actions getActions() {
 		return actions;
 	}
 
-	public ResultDisplay getResultDisplay() {
+    /**
+     * Gets result display.
+     *
+     * @return the result display
+     */
+    public ResultDisplay getResultDisplay() {
 		return resultDisplay;
 	}
 
-	/**
-	 * @return the toolbar button for running processes on the Server
-	 */
-	public JButton getRunRemoteToolbarButton() {
+    /**
+     * Gets run remote toolbar button.
+     *
+     * @return the toolbar button for running processes on the Server
+     */
+    public JButton getRunRemoteToolbarButton() {
 		return runRemoteToolbarButton;
 	}
 
-	public int getProcessState() {
+    /**
+     * Gets process state.
+     *
+     * @return the process state
+     */
+    public int getProcessState() {
 		Process process = getProcess();
 		if (process == null) {
 			return Process.PROCESS_STATE_UNKNOWN;
@@ -907,15 +1049,23 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		}
 	}
 
-	/**
-	 * @deprecated Use {@link #getProcess()} instead
-	 */
-	@Deprecated
+    /**
+     * Gets experiment.
+     *
+     * @return the experiment
+     * @deprecated Use {@link #getProcess()} instead
+     */
+    @Deprecated
 	public final Process getExperiment() {
 		return getProcess();
 	}
 
-	public final Process getProcess() {
+    /**
+     * Gets process.
+     *
+     * @return the process
+     */
+    public final Process getProcess() {
 		return processModel.getProcess();
 	}
 
@@ -923,23 +1073,21 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 	// M A I N A C T I O N S
 	// ===================================================
 
-	/**
-	 * Creates a new process. If there are unsaved changes, the user will be asked to save their
-	 * work.
-	 */
-	public void newProcess() {
+    /**
+     * Creates a new process. If there are unsaved changes, the user will be asked to save their
+     * work.
+     */
+    public void newProcess() {
 		newProcess(true);
 	}
 
-	/**
-	 * Creates a new process. Depending on the given parameter, the user will or will not be asked
-	 * to save unsaved changes.
-	 *
-	 * @param checkforUnsavedWork
-	 *            Iff {@code true} the user is asked to save their unsaved work (if any), otherwise
-	 *            unsaved work is discarded without warning.
-	 */
-	public void newProcess(final boolean checkforUnsavedWork) {
+    /**
+     * Creates a new process. Depending on the given parameter, the user will or will not be asked
+     * to save unsaved changes.
+     *
+     * @param checkforUnsavedWork Iff {@code true} the user is asked to save their unsaved work (if any), otherwise            unsaved work is discarded without warning.
+     */
+    public void newProcess(final boolean checkforUnsavedWork) {
 		// ask for confirmation before stopping the currently running process and opening a new one!
 		if (getProcessState() == Process.PROCESS_STATE_RUNNING || getProcessState() == Process.PROCESS_STATE_PAUSED) {
 			if (SwingTools.showConfirmDialog("close_running_process",
@@ -976,22 +1124,20 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		newProgressThread.start();
 	}
 
-	/**
-	 * Runs or resumes the current process. If the process is started, checks for potential errors
-	 * first and prevents execution unless the user has disabled the pre-run check.
-	 */
-	public void runProcess() {
+    /**
+     * Runs or resumes the current process. If the process is started, checks for potential errors
+     * first and prevents execution unless the user has disabled the pre-run check.
+     */
+    public void runProcess() {
 		runProcess(true);
 	}
 
-	/**
-	 * Runs or resumes the current process.
-	 *
-	 * @param precheckBeforeExecution
-	 *            if {@code true} and the process is started, checks for potential errors first and
-	 *            prevents execution unless the user has disabled the pre-run check
-	 */
-	public void runProcess(boolean precheckBeforeExecution) {
+    /**
+     * Runs or resumes the current process.
+     *
+     * @param precheckBeforeExecution if {@code true} and the process is started, checks for potential errors first and            prevents execution unless the user has disabled the pre-run check
+     */
+    public void runProcess(boolean precheckBeforeExecution) {
 		if (getProcessState() == Process.PROCESS_STATE_STOPPED) {
 			// Run
 			if (isChanged() || getProcess().getProcessLocation() == null) {
@@ -1019,11 +1165,11 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		}
 	}
 
-	/**
-	 * Can be used to stop the currently running process. Please note that the ProcessThread will
-	 * still be running in the background until the current operator is finished.
-	 */
-	public void stopProcess() {
+    /**
+     * Can be used to stop the currently running process. Please note that the ProcessThread will
+     * still be running in the background until the current operator is finished.
+     */
+    public void stopProcess() {
 		if (getProcessState() != Process.PROCESS_STATE_STOPPED) {
 			getProcess().getLogger().info("Process stopped. Completing current operator.");
 			getStatusBar().setSpecialText("Process stopped. Completing current operator.");
@@ -1036,7 +1182,10 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		}
 	}
 
-	public void pauseProcess() {
+    /**
+     * Pause process.
+     */
+    public void pauseProcess() {
 		if (getProcessState() == Process.PROCESS_STATE_RUNNING) {
 			getProcess().getLogger().info("Process paused. Completing current operator.");
 			getStatusBar().setSpecialText("Process paused. Completing current operator.");
@@ -1046,8 +1195,13 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		}
 	}
 
-	/** Will be invoked from the process thread after the process was successfully ended. */
-	void processEnded(final Process process, final IOContainer results) {
+    /**
+     * Will be invoked from the process thread after the process was successfully ended.  @param process the process
+     *
+     * @param process the process
+     * @param results the results
+     */
+    void processEnded(final Process process, final IOContainer results) {
 		if (process.equals(getProcess())) {
 			if (results != null) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -1066,26 +1220,25 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		}
 	}
 
-	/**
-	 * Sets a new process and registers the MainFrame listener. Please note that this method does
-	 * not invoke {@link #processChanged()}. Do so if necessary.
-	 *
-	 * @deprecated Use {@link #setProcess(Process, boolean)} instead
-	 */
-	@Deprecated
+    /**
+     * Sets a new process and registers the MainFrame listener. Please note that this method does
+     * not invoke {@link #processChanged()}. Do so if necessary.
+     *
+     * @param process the process
+     * @deprecated Use {@link #setProcess(Process, boolean)} instead
+     */
+    @Deprecated
 	public void setExperiment(final Process process) {
 		setProcess(process, true);
 	}
 
-	/**
-	 * Sets a (new) process.
-	 *
-	 * @param process
-	 *            the process to be set
-	 * @param newProcess
-	 *            whether the process should be treated as new
-	 */
-	public void setProcess(final Process process, final boolean newProcess) {
+    /**
+     * Sets a (new) process.
+     *
+     * @param process    the process to be set
+     * @param newProcess whether the process should be treated as new
+     */
+    public void setProcess(final Process process, final boolean newProcess) {
 		setOrOpenProcess(process, newProcess, false);
 	}
 
@@ -1108,73 +1261,87 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		updateProcessNow();
 	}
 
-	/**
-	 * Sets a new process and registers the MainFrame's listeners.
-	 *
-	 * @deprecated Since 7.5. Use {@link #setProcess(Process, boolean)} instead, since undo steps
-	 *             are automatically added when necessary.
-	 */
-	@Deprecated
+    /**
+     * Sets a new process and registers the MainFrame's listeners.
+     *
+     * @param process       the process
+     * @param newProcess    the new process
+     * @param addToUndoList the add to undo list
+     * @deprecated Since 7.5. Use {@link #setProcess(Process, boolean)} instead, since undo steps             are automatically added when necessary.
+     */
+    @Deprecated
 	public void setProcess(final Process process, final boolean newProcess, final boolean addToUndoList) {
 		setProcess(process, newProcess);
 	}
 
-	/**
-	 * Must be called when the process changed (such that is different from the process before).
-	 * Enables the correct actions if the process can be saved to disk.
-	 *
-	 * @deprecated this method is no longer necessary (and does nothing) since the MainFrame
-	 *             observes the process using an Observer pattern. See {@link #processObserver}.
-	 */
-	@Deprecated
+    /**
+     * Must be called when the process changed (such that is different from the process before).
+     * Enables the correct actions if the process can be saved to disk.
+     *
+     * @deprecated this method is no longer necessary (and does nothing) since the MainFrame             observes the process using an Observer pattern. See {@link #processObserver}.
+     */
+    @Deprecated
 	public void processChanged() {}
 
-	/** Returns true if the process has changed since the last save. */
-	public boolean isChanged() {
+    /**
+     * Returns true if the process has changed since the last save.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean isChanged() {
 		return processModel.hasChanged();
 	}
 
-	public void undo() {
+    /**
+     * Undo.
+     */
+    public void undo() {
 		Exception e = processModel.undo();
 		if (e != null) {
 			SwingTools.showSimpleErrorMessage("while_changing_process", e);
 		}
 	}
 
-	public void redo() {
+    /**
+     * Redo.
+     */
+    public void redo() {
 		Exception e = processModel.redo();
 		if (e != null) {
 			SwingTools.showSimpleErrorMessage("while_changing_process", e);
 		}
 	}
 
-	public void enableUndoAction() {
+    /**
+     * Enable undo action.
+     */
+    public void enableUndoAction() {
 		UNDO_ACTION.setEnabled(processModel.hasUndoSteps());
 		REDO_ACTION.setEnabled(processModel.hasRedoSteps());
 	}
 
-	/**
-	 * Returns <code>true</code> if the current process has undo steps available.
-	 *
-	 * @return
-	 */
-	public boolean hasUndoSteps() {
+    /**
+     * Returns <code>true</code> if the current process has undo steps available.
+     *
+     * @return boolean boolean
+     */
+    public boolean hasUndoSteps() {
 		return processModel.hasUndoSteps();
 	}
 
-	/**
-	 * Returns <code>true</code> if the current process has redo steps available.
-	 *
-	 * @return
-	 */
-	public boolean hasRedoSteps() {
+    /**
+     * Returns <code>true</code> if the current process has redo steps available.
+     *
+     * @return boolean boolean
+     */
+    public boolean hasRedoSteps() {
 		return processModel.hasRedoSteps();
 	}
 
-	/**
-	 * Sets the window title (RapidMiner + filename + an asterisk if process was modified.
-	 */
-	public void setTitle() {
+    /**
+     * Sets the window title (RapidMiner + filename + an asterisk if process was modified.
+     */
+    public void setTitle() {
 		if (hostname == null) {
 			try {
 				hostname = " @ " + InetAddress.getLocalHost().getHostName();
@@ -1207,15 +1374,13 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 
 	// //////////////////// File menu actions ////////////////////
 
-	/**
-	 * Closes the current process
-	 *
-	 * @param askForConfirmation
-	 *            if <code>true</code>, will prompt the user if he really wants to close the current
-	 *            process
-	 * @return
-	 */
-	public boolean close(final boolean askForConfirmation) {
+    /**
+     * Closes the current process
+     *
+     * @param askForConfirmation if <code>true</code>, will prompt the user if he really wants to close the current            process
+     * @return boolean boolean
+     */
+    public boolean close(final boolean askForConfirmation) {
 		if (!isChanged()) {
 			return true;
 		}
@@ -1260,25 +1425,43 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 
 	}
 
-	public boolean close() {
+    /**
+     * Close boolean.
+     *
+     * @return the boolean
+     */
+    public boolean close() {
 		return close(true);
 	}
 
-	/**
-	 * @deprecated Since 7.5. Use {@link #setOpenedProcess(Process)}, the other parameters are
-	 *             irrelevant.
-	 */
-	@Deprecated
+    /**
+     * Sets opened process.
+     *
+     * @param process    the process
+     * @param showInfo   the show info
+     * @param sourceName the source name
+     * @deprecated Since 7.5. Use {@link #setOpenedProcess(Process)}, the other parameters are             irrelevant.
+     */
+    @Deprecated
 	public void setOpenedProcess(final Process process, final boolean showInfo, final String sourceName) {
 		setOpenedProcess(process);
 	}
 
-	/** Opens the specified process. */
-	public void setOpenedProcess(final Process process) {
+    /**
+     * Opens the specified process.  @param process the process
+     *
+     * @param process the process
+     */
+    public void setOpenedProcess(final Process process) {
 		setOrOpenProcess(process, true, true);
 	}
 
-	public void exit(final boolean relaunch) {
+    /**
+     * Exit.
+     *
+     * @param relaunch the relaunch
+     */
+    public void exit(final boolean relaunch) {
 		if (isChanged()) {
 			ProcessLocation loc = getProcess().getProcessLocation();
 			String locName;
@@ -1324,8 +1507,10 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		RapidMiner.quit(relaunch ? RapidMiner.ExitMode.RELAUNCH : RapidMiner.ExitMode.NORMAL);
 	}
 
-	/** Updates the list of recently used files. */
-	public void updateRecentFileList() {
+    /**
+     * Updates the list of recently used files.
+     */
+    public void updateRecentFileList() {
 		recentFilesMenu.removeAll();
 		List<ProcessLocation> recentFiles = RapidMinerGUI.getRecentFiles();
 		int j = 1;
@@ -1346,10 +1531,10 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		}
 	}
 
-	/**
-	 * Update the elements of the main tool bar.
-	 */
-	public void updateToolbar() {
+    /**
+     * Update the elements of the main tool bar.
+     */
+    public void updateToolbar() {
 		toolBar.update();
 	}
 
@@ -1376,22 +1561,43 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 	@Override
 	public void windowDeactivated(final WindowEvent e) {}
 
-	/**
-	 * This methods provide plugins the possibility to modify the menus
-	 */
-	public void removeMenu(final int index) {
+    /**
+     * This methods provide plugins the possibility to modify the menus
+     *
+     * @param index the index
+     */
+    public void removeMenu(final int index) {
 		menuBar.remove(menuBar.getMenu(index));
 	}
 
-	public void removeMenuItem(final int menuIndex, final int itemIndex) {
+    /**
+     * Remove menu item.
+     *
+     * @param menuIndex the menu index
+     * @param itemIndex the item index
+     */
+    public void removeMenuItem(final int menuIndex, final int itemIndex) {
 		menuBar.getMenu(menuIndex).remove(itemIndex);
 	}
 
-	public void addMenuItem(final int menuIndex, final int itemIndex, final JMenuItem item) {
+    /**
+     * Add menu item.
+     *
+     * @param menuIndex the menu index
+     * @param itemIndex the item index
+     * @param item      the item
+     */
+    public void addMenuItem(final int menuIndex, final int itemIndex, final JMenuItem item) {
 		menuBar.getMenu(menuIndex).add(item, itemIndex);
 	}
 
-	public void addMenu(int menuIndex, final JMenu menu) {
+    /**
+     * Add menu.
+     *
+     * @param menuIndex the menu index
+     * @param menu      the menu
+     */
+    public void addMenu(int menuIndex, final JMenu menu) {
 		menu.setMargin(menuBarInsets);
 		if (menuIndex < -1 || menuIndex >= menuBar.getComponentCount()) {
 			menuIndex = -1;
@@ -1399,71 +1605,106 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		menuBar.add(menu, menuIndex);
 	}
 
-	public void addMenuSeparator(final int menuIndex) {
+    /**
+     * Add menu separator.
+     *
+     * @param menuIndex the menu index
+     */
+    public void addMenuSeparator(final int menuIndex) {
 		menuBar.getMenu(menuIndex).addSeparator();
 	}
 
 	// / LISTENERS
 
-	public List<Operator> getSelectedOperators() {
+    /**
+     * Gets selected operators.
+     *
+     * @return the selected operators
+     */
+    public List<Operator> getSelectedOperators() {
 		return processModel.getSelectedOperators();
 	}
 
-	public Operator getFirstSelectedOperator() {
+    /**
+     * Gets first selected operator.
+     *
+     * @return the first selected operator
+     */
+    public Operator getFirstSelectedOperator() {
 		List<Operator> selectedOperators = processModel.getSelectedOperators();
 		return selectedOperators.isEmpty() ? null : selectedOperators.get(0);
 	}
 
-	/**
-	 * @deprecated use {@link #addExtendedProcessEditor(ExtendedProcessEditor)} instead.
-	 */
-	@Deprecated
+    /**
+     * Add process editor.
+     *
+     * @param p the p
+     * @deprecated use {@link #addExtendedProcessEditor(ExtendedProcessEditor)} instead.
+     */
+    @Deprecated
 	public void addProcessEditor(final ProcessEditor p) {
 		processModel.addProcessEditor(p);
 	}
 
-	/**
-	 * Adds the given {@link ExtendedProcessEditor} listener.
-	 */
-	public void addExtendedProcessEditor(final ExtendedProcessEditor p) {
+    /**
+     * Adds the given {@link ExtendedProcessEditor} listener.
+     *
+     * @param p the p
+     */
+    public void addExtendedProcessEditor(final ExtendedProcessEditor p) {
 		processModel.addProcessEditor(p);
 	}
 
-	/**
-	 * @deprecated use {@link #removeExtendedProcessEditor(ExtendedProcessEditor)} instead.
-	 */
-	@Deprecated
+    /**
+     * Remove process editor.
+     *
+     * @param p the p
+     * @deprecated use {@link #removeExtendedProcessEditor(ExtendedProcessEditor)} instead.
+     */
+    @Deprecated
 	public void removeProcessEditor(final ProcessEditor p) {
 		processModel.removeProcessEditor(p);
 	}
 
-	/**
-	 * Removes the given {@link ExtendedProcessEditor} listener.
-	 */
-	public void removeExtendedProcessEditor(final ExtendedProcessEditor p) {
+    /**
+     * Removes the given {@link ExtendedProcessEditor} listener.
+     *
+     * @param p the p
+     */
+    public void removeExtendedProcessEditor(final ExtendedProcessEditor p) {
 		processModel.removeProcessEditor(p);
 	}
 
-	public void addProcessStorageListener(final ProcessStorageListener listener) {
+    /**
+     * Add process storage listener.
+     *
+     * @param listener the listener
+     */
+    public void addProcessStorageListener(final ProcessStorageListener listener) {
 		processModel.addProcessStorageListener(listener);
 	}
 
-	public void removeProcessStorageListener(final ProcessStorageListener listener) {
+    /**
+     * Remove process storage listener.
+     *
+     * @param listener the listener
+     */
+    public void removeProcessStorageListener(final ProcessStorageListener listener) {
 		processModel.removeProcessStorageListener(listener);
 	}
 
-	/**
-	 * Selects and shows a single given operator. Will switch the displayed chain either to the
-	 * parent or the selected chain, depending on the provided flag. This can be used to easily
-	 * update the view. Convenience method.
-	 *
-	 * @param currentlySelected
-	 * @param showParent
-	 * @since 7.5
-	 * @see #selectOperators(List)
-	 * @see #selectOperator(Operator)
-	 */
-	public void selectAndShowOperator(Operator currentlySelected, boolean showParent) {
+    /**
+     * Selects and shows a single given operator. Will switch the displayed chain either to the
+     * parent or the selected chain, depending on the provided flag. This can be used to easily
+     * update the view. Convenience method.
+     *
+     * @param currentlySelected the currently selected
+     * @param showParent        the show parent
+     * @see #selectOperators(List) #selectOperators(List)#selectOperators(List)
+     * @see #selectOperator(Operator) #selectOperator(Operator)#selectOperator(Operator)
+     * @since 7.5
+     */
+    public void selectAndShowOperator(Operator currentlySelected, boolean showParent) {
 		if (currentlySelected == null) {
 			currentlySelected = getProcess().getRootOperator();
 		}
@@ -1477,14 +1718,24 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		selectOperators(Collections.singletonList(currentlySelected));
 	}
 
-	public void selectOperator(Operator currentlySelected) {
+    /**
+     * Select operator.
+     *
+     * @param currentlySelected the currently selected
+     */
+    public void selectOperator(Operator currentlySelected) {
 		if (currentlySelected == null) {
 			currentlySelected = getProcess().getRootOperator();
 		}
 		selectOperators(Collections.singletonList(currentlySelected));
 	}
 
-	public void selectOperators(List<Operator> currentlySelected) {
+    /**
+     * Select operators.
+     *
+     * @param currentlySelected the currently selected
+     */
+    public void selectOperators(List<Operator> currentlySelected) {
 		if (currentlySelected == null) {
 			currentlySelected = Collections.<Operator> singletonList(getProcess().getRootOperator());
 		}
@@ -1501,27 +1752,50 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		processModel.fireOperatorSelectionChanged(currentlySelected);
 	}
 
-	public void fireProcessUpdated() {
+    /**
+     * Fire process updated.
+     */
+    public void fireProcessUpdated() {
 		processModel.fireProcessUpdated();
 	}
 
-	public DockingDesktop getDockingDesktop() {
+    /**
+     * Gets docking desktop.
+     *
+     * @return the docking desktop
+     */
+    public DockingDesktop getDockingDesktop() {
 		return dockingDesktop;
 	}
 
-	/**
-	 * @deprecated use {@link #getPerspectiveController()} instead
-	 */
-	@Deprecated
+    /**
+     * Gets perspectives.
+     *
+     * @return the perspectives
+     * @deprecated use {@link #getPerspectiveController()} instead
+     */
+    @Deprecated
 	public Perspectives getPerspectives() {
 		return perspectives;
 	}
 
-	public PerspectiveController getPerspectiveController() {
+    /**
+     * Gets perspective controller.
+     *
+     * @return the perspective controller
+     */
+    public PerspectiveController getPerspectiveController() {
 		return perspectiveController;
 	}
 
-	public void handleBrokenProxessXML(final ProcessLocation location, final String xml, final Exception e) {
+    /**
+     * Handle broken proxess xml.
+     *
+     * @param location the location
+     * @param xml      the xml
+     * @param e        the e
+     */
+    public void handleBrokenProxessXML(final ProcessLocation location, final String xml, final Exception e) {
 		SwingTools.showSimpleErrorMessage("while_loading", e, location.toString(), e.getMessage());
 		Process process = new Process();
 		process.setProcessLocation(location);
@@ -1530,118 +1804,167 @@ public class MainFrame extends ApplicationFrame implements WindowListener {
 		xmlEditor.setText(xml);
 	}
 
-	public OperatorDocumentationBrowser getOperatorDocViewer() {
+    /**
+     * Gets operator doc viewer.
+     *
+     * @return the operator doc viewer
+     */
+    public OperatorDocumentationBrowser getOperatorDocViewer() {
 		return operatorDocumentationBrowser;
 	}
 
-	public ProcessPanel getProcessPanel() {
+    /**
+     * Gets process panel.
+     *
+     * @return the process panel
+     */
+    public ProcessPanel getProcessPanel() {
 		return processPanel;
 	}
 
-	public void registerDockable(final Dockable dockable) {
+    /**
+     * Register dockable.
+     *
+     * @param dockable the dockable
+     */
+    public void registerDockable(final Dockable dockable) {
 		dockingDesktop.registerDockable(dockable);
 	}
 
-	public void processHasBeenSaved() {
+    /**
+     * Process has been saved.
+     */
+    public void processHasBeenSaved() {
 		processModel.processHasBeenSaved();
 	}
 
-	public ProcessContextProcessEditor getProcessContextEditor() {
+    /**
+     * Gets process context editor.
+     *
+     * @return the process context editor
+     */
+    public ProcessContextProcessEditor getProcessContextEditor() {
 		return processContextEditor;
 	}
 
-	public RepositoryBrowser getRepositoryBrowser() {
+    /**
+     * Gets repository browser.
+     *
+     * @return the repository browser
+     */
+    public RepositoryBrowser getRepositoryBrowser() {
 		return repositoryBrowser;
 	}
 
-	public Component getXMLEditor() {
+    /**
+     * Gets xml editor.
+     *
+     * @return the xml editor
+     */
+    public Component getXMLEditor() {
 		return xmlEditor;
 	}
 
-	/**
-	 * This returns the file menu to change menu entries
-	 */
-	public JMenu getFileMenu() {
+    /**
+     * This returns the file menu to change menu entries
+     *
+     * @return the file menu
+     */
+    public JMenu getFileMenu() {
 		return fileMenu;
 	}
 
-	/**
-	 * This returns the connections menu to change menu entries
-	 */
-	public JMenu getConnectionsMenu() {
+    /**
+     * This returns the connections menu to change menu entries
+     *
+     * @return the connections menu
+     */
+    public JMenu getConnectionsMenu() {
 		return connectionsMenu;
 	}
 
-	/**
-	 * This returns the settings menu to change menu entries.
-	 *
-	 * @deprecated the tools menu was split into multiple menus. Use {@link #getConnectionsMenu()}
-	 *             or {@link #getSettingsMenu()} instead
-	 */
-	@Deprecated
+    /**
+     * This returns the settings menu to change menu entries.
+     *
+     * @return the tools menu
+     * @deprecated the tools menu was split into multiple menus. Use {@link #getConnectionsMenu()}             or {@link #getSettingsMenu()} instead
+     */
+    @Deprecated
 	public JMenu getToolsMenu() {
 		return settingsMenu;
 	}
 
-	/**
-	 * This returns the settings menu to change menu entries
-	 *
-	 * @return the settings menu
-	 */
-	public JMenu getSettingsMenu() {
+    /**
+     * This returns the settings menu to change menu entries
+     *
+     * @return the settings menu
+     */
+    public JMenu getSettingsMenu() {
 		return settingsMenu;
 	}
 
-	/**
-	 * This returns the edit menu to change menu entries
-	 */
-	public JMenu getEditMenu() {
+    /**
+     * This returns the edit menu to change menu entries
+     *
+     * @return the edit menu
+     */
+    public JMenu getEditMenu() {
 		return editMenu;
 	}
 
-	/**
-	 * This returns the process menu to change menu entries
-	 */
-
-	public JMenu getProcessMenu() {
+    /**
+     * This returns the process menu to change menu entries
+     *
+     * @return the process menu
+     */
+    public JMenu getProcessMenu() {
 		return processMenu;
 	}
 
-	/**
-	 * This returns the help menu to change menu entries
-	 */
-	public JMenu getHelpMenu() {
+    /**
+     * This returns the help menu to change menu entries
+     *
+     * @return the help menu
+     */
+    public JMenu getHelpMenu() {
 		return helpMenu;
 	}
 
-	/**
-	 * This returns the extensions menu to change menu entries
-	 *
-	 * @since 7.0.0
-	 */
-	public JMenu getExtensionsMenu() {
+    /**
+     * This returns the extensions menu to change menu entries
+     *
+     * @return the extensions menu
+     * @since 7.0.0
+     */
+    public JMenu getExtensionsMenu() {
 		return extensionsMenu;
 	}
 
-	public DockableMenu getDockableMenu() {
+    /**
+     * Gets dockable menu.
+     *
+     * @return the dockable menu
+     */
+    public DockableMenu getDockableMenu() {
 		return dockableMenu;
 	}
 
-	/**
-	 *
-	 * @return the toolbar containing e.g. process run buttons
-	 */
-	public JToolBar getButtonToolbar() {
+    /**
+     * Gets button toolbar.
+     *
+     * @return the toolbar containing e.g. process run buttons
+     */
+    public JToolBar getButtonToolbar() {
 		return buttonToolbar;
 	}
 
-	/**
-	 * The {@link TutorialSelector} holds the selected {@link Tutorial}.
-	 *
-	 * @return the registered tutorial selector
-	 * @since 7.0.0
-	 */
-	public TutorialSelector getTutorialSelector() {
+    /**
+     * The {@link TutorialSelector} holds the selected {@link Tutorial}.
+     *
+     * @return the registered tutorial selector
+     * @since 7.0.0
+     */
+    public TutorialSelector getTutorialSelector() {
 		return tutorialSelector;
 	}
 

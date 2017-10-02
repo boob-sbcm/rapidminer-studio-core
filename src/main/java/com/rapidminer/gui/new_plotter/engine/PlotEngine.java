@@ -26,27 +26,30 @@ import java.util.List;
 
 /**
  * Currently this interface is just an indicator interface.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public interface PlotEngine {
 
-	/**
-	 * @return errors from the engine, e.g. PlotConfiguration settings which are not supported by
-	 *         this engine and prevent the chart from being created.
-	 */
-	public List<PlotConfigurationError> getEngineErrors();
+    /**
+     * Gets engine errors.
+     *
+     * @return errors from the engine, e.g. PlotConfiguration settings which are not supported by         this engine and prevent the chart from being created.
+     */
+    public List<PlotConfigurationError> getEngineErrors();
 
-	/**
-	 * @return errors from the engine, e.g. PlotConfiguration settings which are not supported by
-	 *         this engine, but still allow the the chart to be created.
-	 */
-	public List<PlotConfigurationError> getEngineWarnings();
+    /**
+     * Gets engine warnings.
+     *
+     * @return errors from the engine, e.g. PlotConfiguration settings which are not supported by         this engine, but still allow the the chart to be created.
+     */
+    public List<PlotConfigurationError> getEngineWarnings();
 
-	/**
-	 * @return the PlotInstance for which this engine creates a chart.
-	 */
-	public PlotInstance getPlotInstance();
+    /**
+     * Gets plot instance.
+     *
+     * @return the PlotInstance for which this engine creates a chart.
+     */
+    public PlotInstance getPlotInstance();
 
 }

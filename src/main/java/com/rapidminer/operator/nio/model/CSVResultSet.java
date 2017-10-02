@@ -49,9 +49,9 @@ import com.rapidminer.tools.WebServiceTools;
 
 
 /**
+ * The type Csv result set.
  *
  * @author Simon Fischer
- *
  */
 public class CSVResultSet implements DataResultSet {
 
@@ -77,10 +77,28 @@ public class CSVResultSet implements DataResultSet {
 	private long multiplier;
 	private long lineCounter = 0;
 
-	public static enum ColumnSplitter {
+    /**
+     * The enum Column splitter.
+     */
+    public static enum ColumnSplitter {
 
-		SEMI_COLON(";", Pattern.compile(";")), COMMA(",", Pattern.compile(",")), TAB("\t", Pattern.compile("\t")), TILDE("~",
-				Pattern.compile("~")), PIPE("|", Pattern.compile("\\|"));
+        /**
+         * Semi colon column splitter.
+         */
+        SEMI_COLON(";", Pattern.compile(";")), /**
+         * Comma column splitter.
+         */
+        COMMA(",", Pattern.compile(",")), /**
+         * Tab column splitter.
+         */
+        TAB("\t", Pattern.compile("\t")), /**
+         * Tilde column splitter.
+         */
+        TILDE("~",
+				Pattern.compile("~")), /**
+         * Pipe column splitter.
+         */
+        PIPE("|", Pattern.compile("\\|"));
 
 		private final Pattern pattern;
 		private final String seperator;
@@ -90,11 +108,21 @@ public class CSVResultSet implements DataResultSet {
 			this.pattern = pattern;
 		}
 
-		public Pattern getPattern() {
+        /**
+         * Gets pattern.
+         *
+         * @return the pattern
+         */
+        public Pattern getPattern() {
 			return pattern;
 		}
 
-		public String getString() {
+        /**
+         * Gets string.
+         *
+         * @return the string
+         */
+        public String getString() {
 			return seperator;
 		}
 
@@ -112,7 +140,14 @@ public class CSVResultSet implements DataResultSet {
 		return count;
 	}
 
-	public CSVResultSet(CSVResultSetConfiguration configuration, Operator operator) throws OperatorException {
+    /**
+     * Instantiates a new Csv result set.
+     *
+     * @param configuration the configuration
+     * @param operator      the operator
+     * @throws OperatorException the operator exception
+     */
+    public CSVResultSet(CSVResultSetConfiguration configuration, Operator operator) throws OperatorException {
 		this.configuration = configuration;
 		this.operator = operator;
 		open();
@@ -183,51 +218,47 @@ public class CSVResultSet implements DataResultSet {
 		}
 	}
 
-	/**
-	 * Guesses the column separator of the csv file by counting which {@link ColumnSplitter} appears
-	 * the most in the first rows.
-	 *
-	 * @param csvFile
-	 *            the csv file
-	 * @return the most frequent column separator
-	 */
-	public static String guessColumnSeperator(File csvFile) {
+    /**
+     * Guesses the column separator of the csv file by counting which {@link ColumnSplitter} appears
+     * the most in the first rows.
+     *
+     * @param csvFile the csv file
+     * @return the most frequent column separator
+     */
+    public static String guessColumnSeperator(File csvFile) {
 		return guessColumnSplitter(csvFile).getString();
 	}
 
-	/**
-	 * Guesses the column separator of the csv file by counting which {@link ColumnSplitter} appears
-	 * the most in the first rows.
-	 *
-	 * @param csvFile
-	 *            the path to the file to analyze
-	 * @return the most frequent column separator
-	 */
-	public static String guessColumnSeperator(String csvFile) {
+    /**
+     * Guesses the column separator of the csv file by counting which {@link ColumnSplitter} appears
+     * the most in the first rows.
+     *
+     * @param csvFile the path to the file to analyze
+     * @return the most frequent column separator
+     */
+    public static String guessColumnSeperator(String csvFile) {
 		return guessColumnSplitter(csvFile).getString();
 	}
 
-	/**
-	 * Guesses the column splitter of the csv file by counting which {@link ColumnSplitter} appears
-	 * the most in the first rows.
-	 *
-	 * @param csvFile
-	 *            the path to the file to analyze
-	 * @return the most frequent {@link ColumnSplitter}
-	 */
-	public static ColumnSplitter guessColumnSplitter(String csvFile) {
+    /**
+     * Guesses the column splitter of the csv file by counting which {@link ColumnSplitter} appears
+     * the most in the first rows.
+     *
+     * @param csvFile the path to the file to analyze
+     * @return the most frequent {@link ColumnSplitter}
+     */
+    public static ColumnSplitter guessColumnSplitter(String csvFile) {
 		return guessColumnSplitter(new File(csvFile));
 	}
 
-	/**
-	 * Guesses the column splitter of the csv file by counting which {@link ColumnSplitter} appears
-	 * the most in the first rows.
-	 *
-	 * @param csvFile
-	 *            the file to analyze
-	 * @return the most frequent {@link ColumnSplitter}
-	 */
-	public static ColumnSplitter guessColumnSplitter(File csvFile) {
+    /**
+     * Guesses the column splitter of the csv file by counting which {@link ColumnSplitter} appears
+     * the most in the first rows.
+     *
+     * @param csvFile the file to analyze
+     * @return the most frequent {@link ColumnSplitter}
+     */
+    public static ColumnSplitter guessColumnSplitter(File csvFile) {
 		try (LineReader tempReader = new LineReader(csvFile, StandardCharsets.UTF_8)) {
 
 			/* could be default, apply heuristics to find the column splitter */
@@ -276,7 +307,13 @@ public class CSVResultSet implements DataResultSet {
 		}
 	}
 
-	protected InputStream openStream() throws UserError {
+    /**
+     * Open stream input stream.
+     *
+     * @return the input stream
+     * @throws UserError the user error
+     */
+    protected InputStream openStream() throws UserError {
 		try {
 			URL url = new URL(configuration.getCsvFile());
 			try {
@@ -436,7 +473,12 @@ public class CSVResultSet implements DataResultSet {
 		return currentRow;
 	}
 
-	public List<ParsingError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<ParsingError> getErrors() {
 		return errors;
 	}
 }

@@ -46,29 +46,60 @@ import java.util.List;
 
 /**
  * Operator to write a {@link FileObject} to a file or repository blob.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class WriteFileOperator extends Operator {
 
-	public static final String PARAMETER_FILENAME = "filename";
-	public static final String PARAMETER_REPOSITORY_LOCATION = "repository_entry";
+    /**
+     * The constant PARAMETER_FILENAME.
+     */
+    public static final String PARAMETER_FILENAME = "filename";
+    /**
+     * The constant PARAMETER_REPOSITORY_LOCATION.
+     */
+    public static final String PARAMETER_REPOSITORY_LOCATION = "repository_entry";
 
-	public static final String[] DESTINATION_TYPES = new String[] { "file", "repository blob entry" };
-	public static final String PARAMETER_DESTINATION_TYPE = "resource_type";
-	public static final int DESTINATION_TYPE_FILE = 0;
-	public static final int DESTINATION_TYPE_REPOSITORY = 1;
-	public static final String PARAMETER_MIME_TYPE = "mime_type";
+    /**
+     * The constant DESTINATION_TYPES.
+     */
+    public static final String[] DESTINATION_TYPES = new String[] { "file", "repository blob entry" };
+    /**
+     * The constant PARAMETER_DESTINATION_TYPE.
+     */
+    public static final String PARAMETER_DESTINATION_TYPE = "resource_type";
+    /**
+     * The constant DESTINATION_TYPE_FILE.
+     */
+    public static final int DESTINATION_TYPE_FILE = 0;
+    /**
+     * The constant DESTINATION_TYPE_REPOSITORY.
+     */
+    public static final int DESTINATION_TYPE_REPOSITORY = 1;
+    /**
+     * The constant PARAMETER_MIME_TYPE.
+     */
+    public static final String PARAMETER_MIME_TYPE = "mime_type";
 
 	private static final String MIME_TYPE_OCTESTSTREAM = "application/octet-stream";
 	private static final String[] MIME_TYPES = new String[] { MIME_TYPE_OCTESTSTREAM, "application/xml", "application/zip",
 			"application/vnd.ms-excel", "text/html", "text/csv" };
 
-	public InputPort fileInputPort = getInputPorts().createPort("file", FileObject.class);
-	public OutputPort fileOutputPort = getOutputPorts().createPort("file");
+    /**
+     * The File input port.
+     */
+    public InputPort fileInputPort = getInputPorts().createPort("file", FileObject.class);
+    /**
+     * The File output port.
+     */
+    public OutputPort fileOutputPort = getOutputPorts().createPort("file");
 
-	public WriteFileOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Write file operator.
+     *
+     * @param description the description
+     */
+    public WriteFileOperator(OperatorDescription description) {
 		super(description);
 		getTransformer().addPassThroughRule(fileInputPort, fileOutputPort);
 	}

@@ -37,7 +37,7 @@ import org.xml.sax.SAXException;
 /**
  * This entity resolver uses a cached dtds from the resources instead of requesting each dtds from
  * the internet.
- * 
+ *
  * @author Sebastian Land
  */
 public class XHTMLEntityResolver implements EntityResolver {
@@ -65,11 +65,19 @@ public class XHTMLEntityResolver implements EntityResolver {
 	}
 	private EntityResolver fallback;
 
-	public XHTMLEntityResolver(EntityResolver fallback) {
+    /**
+     * Instantiates a new Xhtml entity resolver.
+     *
+     * @param fallback the fallback
+     */
+    public XHTMLEntityResolver(EntityResolver fallback) {
 		this.fallback = fallback;
 	}
 
-	public XHTMLEntityResolver() {
+    /**
+     * Instantiates a new Xhtml entity resolver.
+     */
+    public XHTMLEntityResolver() {
 		this.fallback = null;
 	}
 

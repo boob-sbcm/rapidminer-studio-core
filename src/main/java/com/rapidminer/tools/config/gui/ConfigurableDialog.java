@@ -105,7 +105,6 @@ import com.rapidminer.tools.config.gui.renderer.ConfigurableRenderer;
  * Dialog which can be used to manage all {@link Configurable}s in RapidMiner Studio.
  *
  * @author Marco Boeck, Sabrina Kirstein
- *
  */
 public class ConfigurableDialog extends ButtonDialog {
 
@@ -138,8 +137,10 @@ public class ConfigurableDialog extends ButtonDialog {
 	/** the background color of the name panel showing the header of a Configurable */
 	private static final Color NAME_PANEL_GRAY = new Color(220, 220, 220);
 
-	/** separator if the title has to be cut */
-	public static final String SEPARATOR = "[...]";
+    /**
+     * separator if the title has to be cut
+     */
+    public static final String SEPARATOR = "[...]";
 
 	/** the model backing the info label list for connections */
 	private DefaultListModel<String> localInfoLabelListModel;
@@ -256,7 +257,10 @@ public class ConfigurableDialog extends ButtonDialog {
 
 	private Map<String, Boolean> addingConfigurablesFirstTime = new HashMap<>();
 
-	protected static boolean isAddingDialogOpened = false;
+    /**
+     * The constant isAddingDialogOpened.
+     */
+    protected static boolean isAddingDialogOpened = false;
 
 	private final ConfigurableModelEventListener modelEventListener = new ConfigurableModelEventListener() {
 
@@ -452,15 +456,19 @@ public class ConfigurableDialog extends ButtonDialog {
 	/** configurable that was selected before a refresh */
 	private Configurable lastSelected;
 
-	public ConfigurableDialog() {
+    /**
+     * Instantiates a new Configurable dialog.
+     */
+    public ConfigurableDialog() {
 		this(RapidMinerGUI.getMainFrame().getProcess());
 	}
 
-	/**
-	 * @param openProcess
-	 *            the currently opened process
-	 */
-	public ConfigurableDialog(Process openProcess) {
+    /**
+     * Instantiates a new Configurable dialog.
+     *
+     * @param openProcess the currently opened process
+     */
+    public ConfigurableDialog(Process openProcess) {
 		super(ApplicationFrame.getApplicationFrame(), "configurable_dialog", ModalityType.MODELESS, new Object[] {});
 
 		Repository processLoc = null;
@@ -1784,10 +1792,12 @@ public class ConfigurableDialog extends ButtonDialog {
 		}
 	}
 
-	/**
-	 * Displays the result of a test action or a configurator action.
-	 */
-	protected void displayResult(ActionResult result) {
+    /**
+     * Displays the result of a test action or a configurator action.
+     *
+     * @param result the result
+     */
+    protected void displayResult(ActionResult result) {
 		ImageIcon icon = null;
 		if (Result.SUCCESS.equals(result.getResult())) {
 			icon = SUCCESS_ICON;
@@ -1805,59 +1815,73 @@ public class ConfigurableDialog extends ButtonDialog {
 		updateButtonState(false);
 	}
 
-	/**
-	 * Displays that an action is currently running.
-	 */
-	protected void displayActionIsRunning() {
+    /**
+     * Displays that an action is currently running.
+     */
+    protected void displayActionIsRunning() {
 
 		testLabel.setIcon(WORKING_ICON);
 	}
 
-	/**
-	 * Displays an error dialog indicating that saving has failed.
-	 */
-	protected void displaySaveErrorDialog() {
+    /**
+     * Displays an error dialog indicating that saving has failed.
+     */
+    protected void displaySaveErrorDialog() {
 		SwingTools.showVerySimpleErrorMessage(ConfigurableDialog.this, "configurable_dialog.save_configurable");
 	}
 
-	/**
-	 * Displays an error dialog indicating that saving has failed due to the server which is not
-	 * up-to-date.
-	 */
-	protected void displaySaveUploadErrorDialogServerNotUpToDate(String serverName) {
+    /**
+     * Displays an error dialog indicating that saving has failed due to the server which is not
+     * up-to-date.
+     *
+     * @param serverName the server name
+     */
+    protected void displaySaveUploadErrorDialogServerNotUpToDate(String serverName) {
 		SwingTools.showVerySimpleErrorMessage(ConfigurableDialog.this,
 				"configurable_controller_upload_error_server_not_up_to_date", serverName);
 	}
 
-	/**
-	 * Displays an error dialog indicating that saving for a specific typeId has failed.
-	 */
-	protected void displaySaveUploadErrorDialog(String typeId, String repositoryName, String repositoryURL) {
+    /**
+     * Displays an error dialog indicating that saving for a specific typeId has failed.
+     *
+     * @param typeId         the type id
+     * @param repositoryName the repository name
+     * @param repositoryURL  the repository url
+     */
+    protected void displaySaveUploadErrorDialog(String typeId, String repositoryName, String repositoryURL) {
 		SwingTools.showVerySimpleErrorMessage(ConfigurableDialog.this, "configurable_controller_upload_error_server", typeId,
 				repositoryName, repositoryURL);
 	}
 
-	/**
-	 * Displays an error dialog indicating that the connection to the server has failed.
-	 */
-	protected void displayConnectionErrorDialog(String repositoryName, String repositoryURL) {
+    /**
+     * Displays an error dialog indicating that the connection to the server has failed.
+     *
+     * @param repositoryName the repository name
+     * @param repositoryURL  the repository url
+     */
+    protected void displayConnectionErrorDialog(String repositoryName, String repositoryURL) {
 		SwingTools.showVerySimpleErrorMessage(ConfigurableDialog.this, "configurable_controller_connection_failed",
 				repositoryName, repositoryURL);
 	}
 
-	/**
-	 * Collapses a remote task pane, if it exists
-	 */
-	protected void collapseRemoteTaskPane(String repositoryName) {
+    /**
+     * Collapses a remote task pane, if it exists
+     *
+     * @param repositoryName the repository name
+     */
+    protected void collapseRemoteTaskPane(String repositoryName) {
 		if (remoteTaskPanes.containsKey(repositoryName)) {
 			remoteTaskPanes.get(repositoryName).setCollapsed(true);
 		}
 	}
 
-	/**
-	 * Tries to select the specified {@link Configurable} identified via its name and typeId.
-	 */
-	public void selectConfigurable(String configurableName, String typeId) {
+    /**
+     * Tries to select the specified {@link Configurable} identified via its name and typeId.
+     *
+     * @param configurableName the configurable name
+     * @param typeId           the type id
+     */
+    public void selectConfigurable(String configurableName, String typeId) {
 
 		// set a preferred typeId for new configurables
 		// dialog is started from the parameter panel of a specific operator which needs a
@@ -2034,14 +2058,12 @@ public class ConfigurableDialog extends ButtonDialog {
 		}
 	}
 
-	/**
-	 * Refreshes {@link Configurable}s for the given source
-	 *
-	 * @param source
-	 *            Name of the {@link RemoteRepository}, from where the {@link Configurable}s are
-	 *            loaded
-	 */
-	public void refreshConfigurables(String source) {
+    /**
+     * Refreshes {@link Configurable}s for the given source
+     *
+     * @param source Name of the {@link RemoteRepository}, from where the {@link Configurable}s are            loaded
+     */
+    public void refreshConfigurables(String source) {
 		// reset the task panes, connections and reload them
 		// make sure they are added together
 		addingConfigurablesFirstTime.put(source, true);

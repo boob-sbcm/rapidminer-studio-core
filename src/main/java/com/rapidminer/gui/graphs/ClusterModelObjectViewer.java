@@ -44,7 +44,12 @@ public class ClusterModelObjectViewer implements GraphObjectViewer, ListSelectio
 
 	private Object clusterModel;
 
-	public ClusterModelObjectViewer(Object clusterModel) {
+    /**
+     * Instantiates a new Cluster model object viewer.
+     *
+     * @param clusterModel the cluster model
+     */
+    public ClusterModelObjectViewer(Object clusterModel) {
 		this.clusterModel = clusterModel;
 	}
 

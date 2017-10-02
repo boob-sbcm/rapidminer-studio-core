@@ -81,32 +81,77 @@ import com.rapidminer.tutorial.Tutorial;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public final class ProcessDrawer {
 
-	public static final Font OPERATOR_FONT = ProcessRendererModel.OPERATOR_FONT;
+    /**
+     * The constant OPERATOR_FONT.
+     */
+    public static final Font OPERATOR_FONT = ProcessRendererModel.OPERATOR_FONT;
 
-	public static final int OPERATOR_WIDTH = ProcessRendererModel.OPERATOR_WIDTH;
-	public static final int OPERATOR_MIN_HEIGHT = ProcessRendererModel.MIN_OPERATOR_HEIGHT;
-	public static final int HEADER_HEIGHT = ProcessRendererModel.HEADER_HEIGHT;
-	public static final int PORT_SIZE = ProcessRendererModel.PORT_SIZE;
-	public static final int PORT_SIZE_HIGHLIGHT = (int) (PORT_SIZE * 1.4f);
-	public static final int PORT_OFFSET = OPERATOR_FONT.getSize() + 6 + PORT_SIZE;
-	public static final int WALL_WIDTH = 3;
+    /**
+     * The constant OPERATOR_WIDTH.
+     */
+    public static final int OPERATOR_WIDTH = ProcessRendererModel.OPERATOR_WIDTH;
+    /**
+     * The constant OPERATOR_MIN_HEIGHT.
+     */
+    public static final int OPERATOR_MIN_HEIGHT = ProcessRendererModel.MIN_OPERATOR_HEIGHT;
+    /**
+     * The constant HEADER_HEIGHT.
+     */
+    public static final int HEADER_HEIGHT = ProcessRendererModel.HEADER_HEIGHT;
+    /**
+     * The constant PORT_SIZE.
+     */
+    public static final int PORT_SIZE = ProcessRendererModel.PORT_SIZE;
+    /**
+     * The constant PORT_SIZE_HIGHLIGHT.
+     */
+    public static final int PORT_SIZE_HIGHLIGHT = (int) (PORT_SIZE * 1.4f);
+    /**
+     * The constant PORT_OFFSET.
+     */
+    public static final int PORT_OFFSET = OPERATOR_FONT.getSize() + 6 + PORT_SIZE;
+    /**
+     * The constant WALL_WIDTH.
+     */
+    public static final int WALL_WIDTH = 3;
 
-	public static final int GRID_WIDTH = OPERATOR_WIDTH * 3 / 4;
-	public static final int GRID_HEIGHT = OPERATOR_MIN_HEIGHT * 3 / 4;
-	public static final int GRID_X_OFFSET = OPERATOR_WIDTH / 2;
-	public static final int GRID_Y_OFFSET = OPERATOR_MIN_HEIGHT / 2;
-	public static final int GRID_AUTOARRANGE_WIDTH = OPERATOR_WIDTH * 3 / 2;
-	public static final int GRID_AUTOARRANGE_HEIGHT = OPERATOR_MIN_HEIGHT * 3 / 2;
+    /**
+     * The constant GRID_WIDTH.
+     */
+    public static final int GRID_WIDTH = OPERATOR_WIDTH * 3 / 4;
+    /**
+     * The constant GRID_HEIGHT.
+     */
+    public static final int GRID_HEIGHT = OPERATOR_MIN_HEIGHT * 3 / 4;
+    /**
+     * The constant GRID_X_OFFSET.
+     */
+    public static final int GRID_X_OFFSET = OPERATOR_WIDTH / 2;
+    /**
+     * The constant GRID_Y_OFFSET.
+     */
+    public static final int GRID_Y_OFFSET = OPERATOR_MIN_HEIGHT / 2;
+    /**
+     * The constant GRID_AUTOARRANGE_WIDTH.
+     */
+    public static final int GRID_AUTOARRANGE_WIDTH = OPERATOR_WIDTH * 3 / 2;
+    /**
+     * The constant GRID_AUTOARRANGE_HEIGHT.
+     */
+    public static final int GRID_AUTOARRANGE_HEIGHT = OPERATOR_MIN_HEIGHT * 3 / 2;
 
-	/** rendering hints which enable general and text anti aliasing */
-	public static final RenderingHints HI_QUALITY_HINTS = new RenderingHints(null);
+    /**
+     * rendering hints which enable general and text anti aliasing
+     */
+    public static final RenderingHints HI_QUALITY_HINTS = new RenderingHints(null);
 
-	/** rendering hints which disable general and text anti aliasing */
-	public static final RenderingHints LOW_QUALITY_HINTS = new RenderingHints(null);
+    /**
+     * rendering hints which disable general and text anti aliasing
+     */
+    public static final RenderingHints LOW_QUALITY_HINTS = new RenderingHints(null);
 
 	static {
 		HI_QUALITY_HINTS.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -116,9 +161,18 @@ public final class ProcessDrawer {
 		LOW_QUALITY_HINTS.put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 	}
 
-	public static final Color INNER_DRAG_COLOR = new Color(230, 242, 255, 150);
-	public static final Color BORDER_DRAG_COLOR = new Color(200, 200, 200, 200);
-	public static final Color OPERATOR_BORDER_COLOR_SELECTED = new Color(255, 102, 0);
+    /**
+     * The constant INNER_DRAG_COLOR.
+     */
+    public static final Color INNER_DRAG_COLOR = new Color(230, 242, 255, 150);
+    /**
+     * The constant BORDER_DRAG_COLOR.
+     */
+    public static final Color BORDER_DRAG_COLOR = new Color(200, 200, 200, 200);
+    /**
+     * The constant OPERATOR_BORDER_COLOR_SELECTED.
+     */
+    public static final Color OPERATOR_BORDER_COLOR_SELECTED = new Color(255, 102, 0);
 
 	private static final Color INNER_COLOR = Color.WHITE;
 	private static final Color SHADOW_COLOR = Color.LIGHT_GRAY;
@@ -224,16 +278,13 @@ public final class ProcessDrawer {
 	/** the list of operator decorators */
 	private CopyOnWriteArrayList<OperatorDrawDecorator> operatorDecorators;
 
-	/**
-	 * Creates a new drawer instance which can be used to draw the process specified in the model.
-	 *
-	 * @param model
-	 *            the model containing the data needed to draw the process. See
-	 *            {@link ProcessRendererModel} for a minimal configuration
-	 * @param drawHighlight
-	 *            if {@code true} will highlight drop area in the process during drag & drop
-	 */
-	public ProcessDrawer(final ProcessRendererModel model, final boolean drawHighlight) {
+    /**
+     * Creates a new drawer instance which can be used to draw the process specified in the model.
+     *
+     * @param model         the model containing the data needed to draw the process. See            {@link ProcessRendererModel} for a minimal configuration
+     * @param drawHighlight if {@code true} will highlight drop area in the process during drag & drop
+     */
+    public ProcessDrawer(final ProcessRendererModel model, final boolean drawHighlight) {
 		if (model == null) {
 			throw new IllegalArgumentException("model must not be null!");
 		}
@@ -251,16 +302,14 @@ public final class ProcessDrawer {
 		operatorDecorators = new CopyOnWriteArrayList<OperatorDrawDecorator>();
 	}
 
-	/**
-	 * Draws the entire process(es) based on the {@link ProcessRendererModel} data. Registered
-	 * decorators are called during their respective {@link RenderPhase}s.
-	 *
-	 * @param g2
-	 *            the graphics context to draw upon
-	 * @param printing
-	 *            if {@code true} we are printing instead of drawing to the screen
-	 */
-	public void draw(final Graphics2D g2, final boolean printing) {
+    /**
+     * Draws the entire process(es) based on the {@link ProcessRendererModel} data. Registered
+     * decorators are called during their respective {@link RenderPhase}s.
+     *
+     * @param g2       the graphics context to draw upon
+     * @param printing if {@code true} we are printing instead of drawing to the screen
+     */
+    public void draw(final Graphics2D g2, final boolean printing) {
 		Graphics2D g = (Graphics2D) g2.create();
 		double zoomFactor = model.getZoomFactor();
 
@@ -396,51 +445,42 @@ public final class ProcessDrawer {
 		g2.draw(wall);
 	}
 
-	/**
-	 * Draws the process(es) background based on the {@link ProcessRendererModel} data and then
-	 * calls all registered {@link ProcessDrawDecorator}s for the background render phase.
-	 *
-	 * @param process
-	 *            the process to draw the background for
-	 * @param g2
-	 *            the graphics context to draw upon
-	 * @param printing
-	 *            if {@code true} we are printing instead of drawing to the screen
-	 */
-	public void drawBackground(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
+    /**
+     * Draws the process(es) background based on the {@link ProcessRendererModel} data and then
+     * calls all registered {@link ProcessDrawDecorator}s for the background render phase.
+     *
+     * @param process  the process to draw the background for
+     * @param g2       the graphics context to draw upon
+     * @param printing if {@code true} we are printing instead of drawing to the screen
+     */
+    public void drawBackground(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
 		Graphics2D gBG = (Graphics2D) g2.create();
 		renderBackground(process, gBG, printing);
 		gBG.dispose();
 	}
 
-	/**
-	 * Draws process annotations and then calls all registered {@link ProcessDrawDecorator}s for the
-	 * annotations render phase.
-	 *
-	 * @param process
-	 *            the process to draw the annotations for
-	 * @param g2
-	 *            the graphics context to draw upon
-	 * @param printing
-	 *            if {@code true} we are printing instead of drawing to the screen
-	 */
-	public void drawAnnotations(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
+    /**
+     * Draws process annotations and then calls all registered {@link ProcessDrawDecorator}s for the
+     * annotations render phase.
+     *
+     * @param process  the process to draw the annotations for
+     * @param g2       the graphics context to draw upon
+     * @param printing if {@code true} we are printing instead of drawing to the screen
+     */
+    public void drawAnnotations(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
 		// let decorators draw
 		drawPhaseDecorators(process, g2, RenderPhase.ANNOTATIONS, printing);
 	}
 
-	/**
-	 * Draws operator backgrounds and then calls all registered {@link ProcessDrawDecorator}s for
-	 * the annotations render phase.
-	 *
-	 * @param process
-	 *            the process to draw the operator backgrounds for
-	 * @param g2
-	 *            the graphics context to draw upon
-	 * @param printing
-	 *            if {@code true} we are printing instead of drawing to the screen
-	 */
-	public void drawOperatorBackgrounds(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
+    /**
+     * Draws operator backgrounds and then calls all registered {@link ProcessDrawDecorator}s for
+     * the annotations render phase.
+     *
+     * @param process  the process to draw the operator backgrounds for
+     * @param g2       the graphics context to draw upon
+     * @param printing if {@code true} we are printing instead of drawing to the screen
+     */
+    public void drawOperatorBackgrounds(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
 		Graphics2D gBG = (Graphics2D) g2.create();
 		// draw background of operators
 		for (Operator op : process.getOperators()) {
@@ -472,18 +512,15 @@ public final class ProcessDrawer {
 		drawPhaseDecorators(process, g2, RenderPhase.OPERATOR_BACKGROUND, printing);
 	}
 
-	/**
-	 * Draws the process(es) operator connections based on the {@link ProcessRendererModel} data and
-	 * then calls all registered {@link ProcessDrawDecorator}s for the connections render phase.
-	 *
-	 * @param process
-	 *            the process to draw the connections for
-	 * @param g2
-	 *            the graphics context to draw upon
-	 * @param printing
-	 *            if {@code true} we are printing instead of drawing to the screen
-	 */
-	public void drawConnections(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
+    /**
+     * Draws the process(es) operator connections based on the {@link ProcessRendererModel} data and
+     * then calls all registered {@link ProcessDrawDecorator}s for the connections render phase.
+     *
+     * @param process  the process to draw the connections for
+     * @param g2       the graphics context to draw upon
+     * @param printing if {@code true} we are printing instead of drawing to the screen
+     */
+    public void drawConnections(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
 		Graphics2D gCo = (Graphics2D) g2.create();
 		// draw connections for all operators
 		for (Operator operator : process.getOperators()) {
@@ -498,35 +535,29 @@ public final class ProcessDrawer {
 		drawPhaseDecorators(process, g2, RenderPhase.CONNECTIONS, printing);
 	}
 
-	/**
-	 * Draws operator annotations and then calls all registered {@link ProcessDrawDecorator}s for
-	 * the annotations render phase.
-	 *
-	 * @param process
-	 *            the process to draw the operator annotations for
-	 * @param g2
-	 *            the graphics context to draw upon
-	 * @param printing
-	 *            if {@code true} we are printing instead of drawing to the screen
-	 */
-	public void drawOperatorAnnotations(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
+    /**
+     * Draws operator annotations and then calls all registered {@link ProcessDrawDecorator}s for
+     * the annotations render phase.
+     *
+     * @param process  the process to draw the operator annotations for
+     * @param g2       the graphics context to draw upon
+     * @param printing if {@code true} we are printing instead of drawing to the screen
+     */
+    public void drawOperatorAnnotations(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
 		// let decorators draw
 		drawPhaseDecorators(process, g2, RenderPhase.OPERATOR_ANNOTATIONS, printing);
 	}
 
-	/**
-	 * Draws the process operators based on the {@link ProcessRendererModel} data including their
-	 * ports and the ports for the surrounding process and then calls all registered
-	 * {@link ProcessDrawDecorator}s for the operator render phase.
-	 *
-	 * @param process
-	 *            the process to draw the operators for
-	 * @param g2
-	 *            the graphics context to draw upon
-	 * @param printing
-	 *            if {@code true} we are printing instead of drawing to the screen
-	 */
-	public void drawOperators(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
+    /**
+     * Draws the process operators based on the {@link ProcessRendererModel} data including their
+     * ports and the ports for the surrounding process and then calls all registered
+     * {@link ProcessDrawDecorator}s for the operator render phase.
+     *
+     * @param process  the process to draw the operators for
+     * @param g2       the graphics context to draw upon
+     * @param printing if {@code true} we are printing instead of drawing to the screen
+     */
+    public void drawOperators(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
 		Graphics2D gOp = (Graphics2D) g2.create();
 		// draw not selected operators in order
 		for (Operator op : process.getOperators()) {
@@ -552,71 +583,56 @@ public final class ProcessDrawer {
 		drawPhaseDecorators(process, g2, RenderPhase.OPERATORS, printing);
 	}
 
-	/**
-	 * Draws additions to operators and then calls all registered {@link ProcessDrawDecorator}s for
-	 * the operator additions render phase.
-	 *
-	 * @param process
-	 *            the process to draw the operator additions for
-	 * @param g2
-	 *            the graphics context to draw upon
-	 * @param printing
-	 *            if {@code true} we are printing instead of drawing to the screen
-	 */
-	public void drawOperatorAdditions(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
+    /**
+     * Draws additions to operators and then calls all registered {@link ProcessDrawDecorator}s for
+     * the operator additions render phase.
+     *
+     * @param process  the process to draw the operator additions for
+     * @param g2       the graphics context to draw upon
+     * @param printing if {@code true} we are printing instead of drawing to the screen
+     */
+    public void drawOperatorAdditions(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
 		// let decorators draw
 		drawPhaseDecorators(process, g2, RenderPhase.OPERATOR_ADDITIONS, printing);
 	}
 
-	/**
-	 * Draws the process(es) operator overlay (i.e. execution order) based on the
-	 * {@link ProcessRendererModel} data and then calls all registered {@link ProcessDrawDecorator}s
-	 * for the overlay render phase.
-	 *
-	 * @param process
-	 *            the process to draw the overlay for
-	 * @param g2
-	 *            the graphics context to draw upon
-	 * @param printing
-	 *            if {@code true} we are printing instead of drawing to the screen
-	 */
-	public void drawOverlay(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
+    /**
+     * Draws the process(es) operator overlay (i.e. execution order) based on the
+     * {@link ProcessRendererModel} data and then calls all registered {@link ProcessDrawDecorator}s
+     * for the overlay render phase.
+     *
+     * @param process  the process to draw the overlay for
+     * @param g2       the graphics context to draw upon
+     * @param printing if {@code true} we are printing instead of drawing to the screen
+     */
+    public void drawOverlay(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
 		// let decorators draw
 		drawPhaseDecorators(process, g2, RenderPhase.OVERLAY, printing);
 	}
 
-	/**
-	 * Draws the process(es) foreground based on the {@link ProcessRendererModel} data and then
-	 * calls all registered {@link ProcessDrawDecorator}s for the foreground render phase.
-	 *
-	 * @param process
-	 *            the process to draw the foreground for
-	 * @param g2
-	 *            the graphics context to draw upon
-	 * @param printing
-	 *            if {@code true} we are printing instead of drawing to the screen
-	 */
-	public void drawForeground(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
+    /**
+     * Draws the process(es) foreground based on the {@link ProcessRendererModel} data and then
+     * calls all registered {@link ProcessDrawDecorator}s for the foreground render phase.
+     *
+     * @param process  the process to draw the foreground for
+     * @param g2       the graphics context to draw upon
+     * @param printing if {@code true} we are printing instead of drawing to the screen
+     */
+    public void drawForeground(final ExecutionUnit process, final Graphics2D g2, final boolean printing) {
 		Graphics2D gBG = (Graphics2D) g2.create();
 		renderForeground(process, gBG, printing);
 		gBG.dispose();
 	}
 
-	/**
-	 * Draws the given {@link Operator} if inside the graphics clip bounds.
-	 *
-	 * @param op
-	 *            the operator to draw. Note that it must have a position attached, see
-	 *            {@link GUIProcessXMLFilter}
-	 * @param drawPorts
-	 *            if {@true} will also draw operator ports, otherwise will not draw ports
-	 * @param g2
-	 *            the graphics context to draw upon
-	 * @param printing
-	 *            if {@code true} we are printing instead of drawing to the screen
-	 *
-	 */
-	public void drawOperator(final Operator op, final boolean drawPorts, final Graphics2D g2, final boolean printing) {
+    /**
+     * Draws the given {@link Operator} if inside the graphics clip bounds.
+     *
+     * @param op        the operator to draw. Note that it must have a position attached, see            {@link GUIProcessXMLFilter}
+     * @param drawPorts if {@true} will also draw operator ports, otherwise will not draw ports
+     * @param g2        the graphics context to draw upon
+     * @param printing  if {@code true} we are printing instead of drawing to the screen
+     */
+    public void drawOperator(final Operator op, final boolean drawPorts, final Graphics2D g2, final boolean printing) {
 		Rectangle2D frame = model.getOperatorRect(op);
 		if (frame == null) {
 			return;
@@ -637,17 +653,13 @@ public final class ProcessDrawer {
 		drawOperatorDecorators(op, g2, printing);
 	}
 
-	/**
-	 * Adds the given draw decorator for the specified render phase.
-	 *
-	 * @param decorator
-	 *            the decorator instance to add
-	 * @param phase
-	 *            the phase during which the decorator should be called to draw. If multiple
-	 *            decorators want to draw during the same phase, they are called in the order they
-	 *            were registered
-	 */
-	public void addDecorator(final ProcessDrawDecorator decorator, final RenderPhase phase) {
+    /**
+     * Adds the given draw decorator for the specified render phase.
+     *
+     * @param decorator the decorator instance to add
+     * @param phase     the phase during which the decorator should be called to draw. If multiple            decorators want to draw during the same phase, they are called in the order they            were registered
+     */
+    public void addDecorator(final ProcessDrawDecorator decorator, final RenderPhase phase) {
 		if (decorator == null) {
 			throw new IllegalArgumentException("decorator must not be null!");
 		}
@@ -658,16 +670,14 @@ public final class ProcessDrawer {
 		decorators.get(phase).add(decorator);
 	}
 
-	/**
-	 * Removes the given decorator for the specified render phase. If the decorator has already been
-	 * removed, does nothing.
-	 *
-	 * @param decorator
-	 *            the decorator instance to remove
-	 * @param phase
-	 *            the phase from which the decorator should be removed
-	 */
-	public void removeDecorator(final ProcessDrawDecorator decorator, final RenderPhase phase) {
+    /**
+     * Removes the given decorator for the specified render phase. If the decorator has already been
+     * removed, does nothing.
+     *
+     * @param decorator the decorator instance to remove
+     * @param phase     the phase from which the decorator should be removed
+     */
+    public void removeDecorator(final ProcessDrawDecorator decorator, final RenderPhase phase) {
 		if (decorator == null) {
 			throw new IllegalArgumentException("decorator must not be null!");
 		}
@@ -678,14 +688,13 @@ public final class ProcessDrawer {
 		decorators.get(phase).remove(decorator);
 	}
 
-	/**
-	 * Adds the given operator draw decorator. The decorator is called directly after the operator
-	 * was drawn.
-	 *
-	 * @param decorator
-	 *            the decorator instance to add
-	 */
-	public void addDecorator(final OperatorDrawDecorator decorator) {
+    /**
+     * Adds the given operator draw decorator. The decorator is called directly after the operator
+     * was drawn.
+     *
+     * @param decorator the decorator instance to add
+     */
+    public void addDecorator(final OperatorDrawDecorator decorator) {
 		if (decorator == null) {
 			throw new IllegalArgumentException("decorator must not be null!");
 		}
@@ -693,14 +702,13 @@ public final class ProcessDrawer {
 		operatorDecorators.add(decorator);
 	}
 
-	/**
-	 * Removes the given operator decorator. If the decorator has already been removed, does
-	 * nothing.
-	 *
-	 * @param decorator
-	 *            the decorator instance to remove
-	 */
-	public void removeDecorator(final OperatorDrawDecorator decorator) {
+    /**
+     * Removes the given operator decorator. If the decorator has already been removed, does
+     * nothing.
+     *
+     * @param decorator the decorator instance to remove
+     */
+    public void removeDecorator(final OperatorDrawDecorator decorator) {
 		if (decorator == null) {
 			throw new IllegalArgumentException("decorator must not be null!");
 		}

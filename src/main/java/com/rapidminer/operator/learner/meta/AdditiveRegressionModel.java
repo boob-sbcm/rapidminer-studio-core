@@ -48,7 +48,15 @@ public class AdditiveRegressionModel extends PredictionModel implements MetaMode
 
 	private double shrinkage;
 
-	public AdditiveRegressionModel(ExampleSet exampleSet, Model defaultModel, Model[] residualModels, double shrinkage) {
+    /**
+     * Instantiates a new Additive regression model.
+     *
+     * @param exampleSet     the example set
+     * @param defaultModel   the default model
+     * @param residualModels the residual models
+     * @param shrinkage      the shrinkage
+     */
+    public AdditiveRegressionModel(ExampleSet exampleSet, Model defaultModel, Model[] residualModels, double shrinkage) {
 		super(exampleSet, null, null);
 		this.defaultModel = defaultModel;
 		this.residualModels = residualModels;

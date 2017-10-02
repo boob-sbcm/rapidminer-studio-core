@@ -39,24 +39,29 @@ import com.rapidminer.parameter.UndefinedParameterError;
  *
  * @author Sebastian Land
  * @since 7.4
- *
  */
 public abstract class ParallelOperatorChain extends OperatorChain {
 
 	private static String PARAMETER_ENABLE_PARALLEL_EXECUTION = "enable_parallel_execution";
 
-	public ParallelOperatorChain(OperatorDescription description, String... subprocessNames) {
+    /**
+     * Instantiates a new Parallel operator chain.
+     *
+     * @param description     the description
+     * @param subprocessNames the subprocess names
+     */
+    public ParallelOperatorChain(OperatorDescription description, String... subprocessNames) {
 		super(description, subprocessNames);
 	}
 
-	/**
-	 * This method checks whether the user has disabled the parallel execution or whether there are
-	 * breakpoints inside the subprocess. In boths situations the process needs to be executed
-	 * synchronously.
-	 *
-	 * @return
-	 */
-	protected boolean checkParallelizability() {
+    /**
+     * This method checks whether the user has disabled the parallel execution or whether there are
+     * breakpoints inside the subprocess. In boths situations the process needs to be executed
+     * synchronously.
+     *
+     * @return boolean boolean
+     */
+    protected boolean checkParallelizability() {
 		boolean executeParallely = getParameterAsBoolean(PARAMETER_ENABLE_PARALLEL_EXECUTION);
 		if (executeParallely) {
 			// now check if there's a break point. Then we switch back to serial as well.
@@ -71,18 +76,18 @@ public abstract class ParallelOperatorChain extends OperatorChain {
 		return executeParallely;
 	}
 
-	/**
-	 * This method returns a List of the copies or clones of each IOObject. Copies are simply
-	 * references on the same objects if the object is immutable. ExampleSets are provided by cloned
-	 * reference or materialized, depending on parameter.
-	 *
-	 * @param inputData
-	 * @param materializeIfPossible
-	 *            if {@code true}, {@link ExampleSet}s will be materialized instead of cloned
-	 * @return
-	 * @throws UndefinedParameterError
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * This method returns a List of the copies or clones of each IOObject. Copies are simply
+     * references on the same objects if the object is immutable. ExampleSets are provided by cloned
+     * reference or materialized, depending on parameter.
+     *
+     * @param <T>                   the type parameter
+     * @param inputData             the input data
+     * @param materializeIfPossible if {@code true}, {@link ExampleSet}s will be materialized instead of cloned
+     * @return data copy
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    @SuppressWarnings("unchecked")
 	protected <T extends IOObject> List<T> getDataCopy(List<IOObject> inputData, boolean materializeIfPossible)
 			throws UndefinedParameterError {
 		List<IOObject> clonedInputData = new ArrayList<>(inputData.size());
@@ -92,19 +97,19 @@ public abstract class ParallelOperatorChain extends OperatorChain {
 		return (List<T>) clonedInputData;
 	}
 
-	/**
-	 * This method returns a copy or clone of the given {@link IOObject}. Copies are simply
-	 * references on the same objects if the object is immutable. For ExampleSets the behavior
-	 * depends on the second parameter. If requested, ExampleSets are checked for their
-	 * thread-safety and materialized if necessary.
-	 *
-	 * @param input
-	 * @param materializeUnsafeExampleSets
-	 *            if {@code true}, ExampleSets that are not thread-safe are materialized
-	 * @return
-	 * @throws UndefinedParameterError
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * This method returns a copy or clone of the given {@link IOObject}. Copies are simply
+     * references on the same objects if the object is immutable. For ExampleSets the behavior
+     * depends on the second parameter. If requested, ExampleSets are checked for their
+     * thread-safety and materialized if necessary.
+     *
+     * @param <T>                          the type parameter
+     * @param input                        the input
+     * @param materializeUnsafeExampleSets if {@code true}, ExampleSets that are not thread-safe are materialized
+     * @return data copy
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    @SuppressWarnings("unchecked")
 	protected <T extends IOObject> T getDataCopy(IOObject input, boolean materializeUnsafeExampleSets)
 			throws UndefinedParameterError {
 		if (materializeUnsafeExampleSets && input instanceof ExampleSet) {

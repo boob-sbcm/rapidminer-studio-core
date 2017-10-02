@@ -40,44 +40,44 @@ public final class SystemInfoUtilities {
 	private static final int TENTH_POWER_OF_TWO = 1024;
 	private static final Logger LOGGER = Logger.getLogger(SystemInfoUtilities.class.getSimpleName());
 
-	/**
-	 * Available JVM architectures.
-	 */
-	public enum JVMArch {
-		/**
-		 * 32 bit
-		 */
-		THIRTY_TWO,
-		/**
-		 * 64 bit
-		 */
-		SIXTY_FOUR,
+    /**
+     * Available JVM architectures.
+     */
+    public enum JVMArch {
+        /**
+         * 32 bit
+         */
+        THIRTY_TWO,
+        /**
+         * 64 bit
+         */
+        SIXTY_FOUR,
 	}
 
-	/**
-	 * Possible operating systems.
-	 */
-	public enum OperatingSystem {
-		/**
-		 * Windows
-		 */
-		WINDOWS,
-		/**
-		 * Apple OSX
-		 */
-		OSX,
-		/**
-		 * Any Unix derivat
-		 */
-		UNIX,
-		/**
-		 * Any Solaris derivat
-		 */
-		SOLARIS,
-		/**
-		 * Unknown other operating system.
-		 */
-		OTHER,
+    /**
+     * Possible operating systems.
+     */
+    public enum OperatingSystem {
+        /**
+         * Windows
+         */
+        WINDOWS,
+        /**
+         * Apple OSX
+         */
+        OSX,
+        /**
+         * Any Unix derivat
+         */
+        UNIX,
+        /**
+         * Any Solaris derivat
+         */
+        SOLARIS,
+        /**
+         * Unknown other operating system.
+         */
+        OTHER,
 	}
 
 	/**
@@ -91,31 +91,42 @@ public final class SystemInfoUtilities {
 		return ManagementFactory.getOperatingSystemMXBean();
 	}
 
-	/**
-	 * @return the current max heap memory size in MB
-	 */
-	public static long getMaxHeapMemorySize() {
+    /**
+     * Gets max heap memory size.
+     *
+     * @return the current max heap memory size in MB
+     */
+    public static long getMaxHeapMemorySize() {
 		long maxMem = ManagementFactory.getMemoryMXBean().getHeapMemoryUsage().getMax();
 		maxMem /= TENTH_POWER_OF_TWO;
 		maxMem /= TENTH_POWER_OF_TWO;
 		return maxMem;
 	}
 
-	/**
-	 * @return the number of processors
-	 */
-	public static int getNumberOfProcessors() {
+    /**
+     * Gets number of processors.
+     *
+     * @return the number of processors
+     */
+    public static int getNumberOfProcessors() {
 		return getOperatingSystemBean().getAvailableProcessors();
 	}
 
-	public static Integer getJavaVersion() {
+    /**
+     * Gets java version.
+     *
+     * @return the java version
+     */
+    public static Integer getJavaVersion() {
 		return Integer.parseInt(System.getProperty("java.version").substring(0, 3).replace(".", ""));
 	}
 
-	/**
-	 * @return the current {@link JVMArch}
-	 */
-	public static JVMArch getJVMArchitecture() {
+    /**
+     * Gets jvm architecture.
+     *
+     * @return the current {@link JVMArch}
+     */
+    public static JVMArch getJVMArchitecture() {
 		if (getOperatingSystemBean().getArch().contains("64")) {
 			return JVMArch.SIXTY_FOUR;
 		} else {
@@ -123,15 +134,14 @@ public final class SystemInfoUtilities {
 		}
 	}
 
-	/**
-	 * Returns total physical memory in MB. If it is run in a 32-bit JVM it may return only a
-	 * maximum of 4GB even if more memory is available.
-	 *
-	 * @return the amount of physical memory in MB
-	 * @throws IOException
-	 *             if something goes wrong
-	 */
-	public static Long getTotalPhysicalMemorySize() throws IOException {
+    /**
+     * Returns total physical memory in MB. If it is run in a 32-bit JVM it may return only a
+     * maximum of 4GB even if more memory is available.
+     *
+     * @return the amount of physical memory in MB
+     * @throws IOException if something goes wrong
+     */
+    public static Long getTotalPhysicalMemorySize() throws IOException {
 		OperatingSystemMXBean operatingSystemBean = getOperatingSystemBean();
 
 		long memory = 0L;
@@ -166,22 +176,21 @@ public final class SystemInfoUtilities {
 		return memory;
 	}
 
-	/**
-	 * Returns free physical memory in MB. If it is run in a 32-bit JVM it may return only a maximum
-	 * of 2GB even if more memory is available.
-	 * <p>
-	 * <strong>Attention:</strong> The returned value is dependant on the OS. For example on Linux
-	 * you might see less memory than there is actually available due to the OS using it for disk
-	 * caching. That memory is not actually blocked because the OS would release it if requested,
-	 * however this method will return the free memory which does NOT contain the ram used for disk
-	 * caching. Use with care!
-	 * </p>
-	 *
-	 * @return the free phsycial memory in MB or <code>-1</code> if we cannot determine it
-	 * @since 6.0.004
-	 *
-	 */
-	public static Long getFreePhysicalMemorySize() {
+    /**
+     * Returns free physical memory in MB. If it is run in a 32-bit JVM it may return only a maximum
+     * of 2GB even if more memory is available.
+     * <p>
+     * <strong>Attention:</strong> The returned value is dependant on the OS. For example on Linux
+     * you might see less memory than there is actually available due to the OS using it for disk
+     * caching. That memory is not actually blocked because the OS would release it if requested,
+     * however this method will return the free memory which does NOT contain the ram used for disk
+     * caching. Use with care!
+     * </p>
+     *
+     * @return the free phsycial memory in MB or <code>-1</code> if we cannot determine it
+     * @since 6.0.004
+     */
+    public static Long getFreePhysicalMemorySize() {
 		OperatingSystemMXBean operatingSystemBean = getOperatingSystemBean();
 
 		long memory = 0L;
@@ -279,18 +288,30 @@ public final class SystemInfoUtilities {
 		throw new IOException("Not yet implemented"); // TODO implement
 	}
 
-	public static String getOperatingSystemName() {
+    /**
+     * Gets operating system name.
+     *
+     * @return the operating system name
+     */
+    public static String getOperatingSystemName() {
 		return getOperatingSystemBean().getName();
 	}
 
-	public static String getOperatingSystemVersion() {
+    /**
+     * Gets operating system version.
+     *
+     * @return the operating system version
+     */
+    public static String getOperatingSystemVersion() {
 		return getOperatingSystemBean().getVersion();
 	}
 
-	/**
-	 * @return the current operating system
-	 */
-	public static OperatingSystem getOperatingSystem() {
+    /**
+     * Gets operating system.
+     *
+     * @return the current operating system
+     */
+    public static OperatingSystem getOperatingSystem() {
 		String systemName = getOperatingSystemName().toLowerCase();
 		if (isWindows(systemName)) {
 			return OperatingSystem.WINDOWS;
@@ -321,10 +342,10 @@ public final class SystemInfoUtilities {
 		return osName.indexOf("sunos") >= 0;
 	}
 
-	/**
-	 * Uses the logger to write current environment infos to the log (with {@link Level#INFO}).
-	 */
-	public static void logEnvironmentInfos() {
+    /**
+     * Uses the logger to write current environment infos to the log (with {@link Level#INFO}).
+     */
+    public static void logEnvironmentInfos() {
 		if (LOGGER.isLoggable(Level.INFO)) {
 			LOGGER.log(Level.INFO, "Operating system: " + getOperatingSystemName() + ", Version: "
 					+ getOperatingSystemVersion());
@@ -346,11 +367,12 @@ public final class SystemInfoUtilities {
 		}
 	}
 
-	/**
-	 * @param args
-	 *            the arguments
-	 */
-	public static void main(String[] args) {
+    /**
+     * The entry point of application.
+     *
+     * @param args the arguments
+     */
+    public static void main(String[] args) {
 		logEnvironmentInfos();
 	}
 }

@@ -42,7 +42,6 @@ import com.rapidminer.tools.expression.Resolver;
  * constants that can be used during such an evaluation via their {@link Resolver}s.
  *
  * @author Gisa Schaefer
- *
  */
 public class SimpleExpressionContext implements ExpressionContext {
 
@@ -52,19 +51,15 @@ public class SimpleExpressionContext implements ExpressionContext {
 	private List<Resolver> scopeResolvers;
 	private List<Resolver> constantResolvers;
 
-	/**
-	 * Creates a {@link ExpressionContext} that uses the given functions and resolvers.
-	 *
-	 * @param functions
-	 *            the functions to use in expressions
-	 * @param scopeResolvers
-	 *            the scope resolvers to use
-	 * @param dynamicResolvers
-	 *            the resolvers for dynamic variables to use
-	 * @param constantResolvers
-	 *            the resolvers for constants
-	 */
-	public SimpleExpressionContext(List<Function> functions, List<Resolver> scopeResolvers, List<Resolver> dynamicResolvers,
+    /**
+     * Creates a {@link ExpressionContext} that uses the given functions and resolvers.
+     *
+     * @param functions         the functions to use in expressions
+     * @param scopeResolvers    the scope resolvers to use
+     * @param dynamicResolvers  the resolvers for dynamic variables to use
+     * @param constantResolvers the resolvers for constants
+     */
+    public SimpleExpressionContext(List<Function> functions, List<Resolver> scopeResolvers, List<Resolver> dynamicResolvers,
 			List<Resolver> constantResolvers) {
 		this.scopeResolvers = scopeResolvers;
 		this.dynamicResolvers = dynamicResolvers;

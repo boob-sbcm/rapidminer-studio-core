@@ -24,14 +24,19 @@ import java.util.List;
 
 /**
  * Performs a very elitist selection by just adding the best individual for k times.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ElitistSelection implements PopulationOperator {
 
 	private int popSize = 1;
 
-	public ElitistSelection(int popSize) {
+    /**
+     * Instantiates a new Elitist selection.
+     *
+     * @param popSize the pop size
+     */
+    public ElitistSelection(int popSize) {
 		this.popSize = popSize;
 	}
 

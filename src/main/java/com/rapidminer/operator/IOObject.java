@@ -35,68 +35,100 @@ import java.util.List;
  * to be implemented like a usual <code>clone</code> method for IO objects which can be altered
  * after creation. In all other cases the implementation can simply return the same object. Hence,
  * we use the name <code>copy</code> instead of <code>clone</code>.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface IOObject extends Serializable {
 
-	/** Sets the source of this IOObject. */
-	public void setSource(String sourceName);
+    /**
+     * Sets the source of this IOObject.  @param sourceName the source name
+     *
+     * @param sourceName the source name
+     */
+    public void setSource(String sourceName);
 
-	/** Returns the source of this IOObject (might return null if the source is unknown). */
-	public String getSource();
+    /**
+     * Returns the source of this IOObject (might return null if the source is unknown).  @return the source
+     *
+     * @return the source
+     */
+    public String getSource();
 
-	/**
-	 * This method is called if this IOObject is put out of the specified port after being created
-	 * or processed by the given operator. This method has to keep track of the processing stations
-	 * of this object, so that they are remembered and might be returned by the method
-	 * getProcessingHistory.
-	 */
-	public void appendOperatorToHistory(Operator operator, OutputPort port);
+    /**
+     * This method is called if this IOObject is put out of the specified port after being created
+     * or processed by the given operator. This method has to keep track of the processing stations
+     * of this object, so that they are remembered and might be returned by the method
+     * getProcessingHistory.
+     *
+     * @param operator the operator
+     * @param port     the port
+     */
+    public void appendOperatorToHistory(Operator operator, OutputPort port);
 
-	/**
-	 * This method must return a list of each step of processing steps this IOObject has been made
-	 * including it's creating operator.
-	 */
-	public List<ProcessingStep> getProcessingHistory();
+    /**
+     * This method must return a list of each step of processing steps this IOObject has been made
+     * including it's creating operator.
+     *
+     * @return the processing history
+     */
+    public List<ProcessingStep> getProcessingHistory();
 
-	/**
-	 * Should return a copy of this IOObject. Please note that the method can usually be implemented
-	 * by simply returning the same object (i.e. return this;). The object needs only to be cloned
-	 * in cases the IOObject can be altered after creation. This is for example the case for
-	 * ExampleSets.
-	 */
-	public IOObject copy();
+    /**
+     * Should return a copy of this IOObject. Please note that the method can usually be implemented
+     * by simply returning the same object (i.e. return this;). The object needs only to be cloned
+     * in cases the IOObject can be altered after creation. This is for example the case for
+     * ExampleSets.
+     *
+     * @return the io object
+     */
+    public IOObject copy();
 
-	/** Writes the object data into a stream. */
-	public void write(OutputStream out) throws IOException;
+    /**
+     * Writes the object data into a stream.  @param out the out
+     *
+     * @param out the out
+     * @throws IOException the io exception
+     */
+    public void write(OutputStream out) throws IOException;
 
-	/**
-	 * Gets the logging associated with the operator currently working on this IOObject or the
-	 * global log service if no operator was set.
-	 */
-	public LoggingHandler getLog();
+    /**
+     * Gets the logging associated with the operator currently working on this IOObject or the
+     * global log service if no operator was set.
+     *
+     * @return the log
+     */
+    public LoggingHandler getLog();
 
-	/**
-	 * Sets the current working operator, i.e. the operator which is currently working on this
-	 * IOObject. This might be used for example for logging.
-	 */
-	public void setLoggingHandler(LoggingHandler loggingHandler);
+    /**
+     * Sets the current working operator, i.e. the operator which is currently working on this
+     * IOObject. This might be used for example for logging.
+     *
+     * @param loggingHandler the logging handler
+     */
+    public void setLoggingHandler(LoggingHandler loggingHandler);
 
-	public Annotations getAnnotations();
+    /**
+     * Gets annotations.
+     *
+     * @return the annotations
+     */
+    public Annotations getAnnotations();
 
-	/**
-	 * Returns user specified data attached to the IOObject. The key has to be a fully qualified
-	 * name
-	 */
-	public Object getUserData(String key);
+    /**
+     * Returns user specified data attached to the IOObject. The key has to be a fully qualified
+     * name
+     *
+     * @param key the key
+     * @return the user data
+     */
+    public Object getUserData(String key);
 
-	/**
-	 * Specify user data attached to the IOObject. The key has to be a fully qualified name
-	 * 
-	 * @return the previous value associated with key, or null if there was no mapping for key. (A
-	 *         null return can also indicate that the user data previously associated null with
-	 *         key.)
-	 */
-	public Object setUserData(String key, Object value);
+    /**
+     * Specify user data attached to the IOObject. The key has to be a fully qualified name
+     *
+     * @param key   the key
+     * @param value the value
+     * @return the previous value associated with key, or null if there was no mapping for key. (A         null return can also indicate that the user data previously associated null with         key.)
+     */
+    public Object setUserData(String key, Object value);
 }

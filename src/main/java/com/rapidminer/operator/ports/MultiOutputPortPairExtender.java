@@ -24,15 +24,29 @@ import com.rapidminer.operator.ports.metadata.MetaData;
 
 
 /**
+ * The type Multi output port pair extender.
+ *
  * @author Simon Fischer
  */
 public class MultiOutputPortPairExtender extends MultiPortPairExtender<InputPort, OutputPort> {
 
-	public MultiOutputPortPairExtender(String name, Ports<InputPort> singlePorts, Ports<OutputPort>[] multiPortsList) {
+    /**
+     * Instantiates a new Multi output port pair extender.
+     *
+     * @param name           the name
+     * @param singlePorts    the single ports
+     * @param multiPortsList the multi ports list
+     */
+    public MultiOutputPortPairExtender(String name, Ports<InputPort> singlePorts, Ports<OutputPort>[] multiPortsList) {
 		super(name, singlePorts, multiPortsList);
 	}
 
-	public MDTransformationRule makePassThroughRule() {
+    /**
+     * Make pass through rule md transformation rule.
+     *
+     * @return the md transformation rule
+     */
+    public MDTransformationRule makePassThroughRule() {
 		return new MDTransformationRule() {
 
 			@Override
@@ -47,14 +61,14 @@ public class MultiOutputPortPairExtender extends MultiPortPairExtender<InputPort
 		};
 	}
 
-	/**
-	 * Do not use this method, it can cause a memory leak. This passes the data to several ports (in
-	 * subprocesses). If one of the subprocesses is not executed it will continue to hold the data.
-	 * Use {@link #passDataThrough(int)} instead to pass the data to where it will be used.
-	 *
-	 * @deprecated use {@link #passDataThrough(int)} instead
-	 */
-	@Deprecated
+    /**
+     * Do not use this method, it can cause a memory leak. This passes the data to several ports (in
+     * subprocesses). If one of the subprocesses is not executed it will continue to hold the data.
+     * Use {@link #passDataThrough(int)} instead to pass the data to where it will be used.
+     *
+     * @deprecated use {@link #passDataThrough(int)} instead
+     */
+    @Deprecated
 	public void passDataThrough() {
 		for (MultiPortPair mpp : getManagedPairs()) {
 			IOObject data = mpp.singlePort.getAnyDataOrNull();
@@ -64,15 +78,14 @@ public class MultiOutputPortPairExtender extends MultiPortPairExtender<InputPort
 		}
 	}
 
-	/**
-	 * Passes the data from the singlePort of the {@link MultiPortPair} to the i-th port of the
-	 * multiPorts.
-	 *
-	 * @param i
-	 *            the port to receive the data
-	 * @since 7.5.0
-	 */
-	public void passDataThrough(int i) {
+    /**
+     * Passes the data from the singlePort of the {@link MultiPortPair} to the i-th port of the
+     * multiPorts.
+     *
+     * @param i the port to receive the data
+     * @since 7.5.0
+     */
+    public void passDataThrough(int i) {
 		for (MultiPortPair mpp : getManagedPairs()) {
 			IOObject data = mpp.singlePort.getAnyDataOrNull();
 			mpp.multiPorts.get(i).deliver(data);

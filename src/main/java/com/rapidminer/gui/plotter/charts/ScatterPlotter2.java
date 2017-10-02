@@ -33,7 +33,7 @@ import org.jfree.data.xy.XYZDataset;
 
 /**
  * This is the scatter plotter based on JFreeChart.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ScatterPlotter2 extends Abstract2DChartPlotter {
@@ -45,11 +45,22 @@ public class ScatterPlotter2 extends Abstract2DChartPlotter {
 	private static final Color DESELECTED_COLOR = new Color(Color.LIGHT_GRAY.getRed(), Color.LIGHT_GRAY.getGreen(),
 			Color.LIGHT_GRAY.getBlue(), 75);
 
-	public ScatterPlotter2(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Scatter plotter 2.
+     *
+     * @param settings the settings
+     */
+    public ScatterPlotter2(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
-	public ScatterPlotter2(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Scatter plotter 2.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public ScatterPlotter2(PlotterConfigurationModel settings, DataTable dataTable) {
 		super(settings, dataTable);
 	}
 

@@ -35,9 +35,8 @@ import javax.swing.SwingWorker;
 
 /**
  * This action starts the license upgrade process.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class UpgradeLicenseAction extends ResourceAction {
 
@@ -46,10 +45,10 @@ public class UpgradeLicenseAction extends ResourceAction {
 	/** the uri for the license upgrade */
 	private static final String URI_LICENSE_UPGRADE = I18N.getGUILabel("license.url");
 
-	/**
-	 * Creates a new {@link UpgradeLicenseAction} instance.
-	 */
-	public UpgradeLicenseAction() {
+    /**
+     * Creates a new {@link UpgradeLicenseAction} instance.
+     */
+    public UpgradeLicenseAction() {
 		super(false, "upgrade_license");
 	}
 

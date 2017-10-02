@@ -42,11 +42,13 @@ import com.rapidminer.tools.LogService;
  *
  * @author Jonas Wilms-Pfau, Marco Boeck
  * @since 7.5
- *
  */
 enum RuleService {
 
-	INSTANCE;
+    /**
+     * Instance rule service.
+     */
+    INSTANCE;
 
 	private final Set<String> PROHIBITED_KEYWORDS = new HashSet<>();
 
@@ -84,14 +86,19 @@ enum RuleService {
 		reloadRules();
 	}
 
-	public Set<VerifiableRule> getRules() {
+    /**
+     * Gets rules.
+     *
+     * @return the rules
+     */
+    public Set<VerifiableRule> getRules() {
 		return rules;
 	}
 
-	/**
-	 * Reloads the CTA rules from either local file or Nexus.
-	 */
-	public void reloadRules() {
+    /**
+     * Reloads the CTA rules from either local file or Nexus.
+     */
+    public void reloadRules() {
 		if (!RapidMiner.getExecutionMode().equals(ExecutionMode.UI)) {
 			return;
 		}

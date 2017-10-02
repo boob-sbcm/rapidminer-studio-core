@@ -38,7 +38,6 @@ import com.rapidminer.gui.flow.processrendering.view.ProcessRendererView;
  *
  * @author Gisa Schaefer
  * @since 7.1.0
- *
  */
 class ProcessPanelScroller {
 
@@ -97,15 +96,13 @@ class ProcessPanelScroller {
 
 	};
 
-	/**
-	 * Creates a handler for scrolling for the view and its surrounding scrollPane.
-	 *
-	 * @param view
-	 *            the {@link ProcessRendererView}
-	 * @param scrollPane
-	 *            the {@link JScrollPane} containing the view
-	 */
-	ProcessPanelScroller(final ProcessRendererView view, final JScrollPane scrollPane) {
+    /**
+     * Creates a handler for scrolling for the view and its surrounding scrollPane.
+     *
+     * @param view       the {@link ProcessRendererView}
+     * @param scrollPane the {@link JScrollPane} containing the view
+     */
+    ProcessPanelScroller(final ProcessRendererView view, final JScrollPane scrollPane) {
 		this.scrollPane = scrollPane;
 		this.rendererView = view;
 		rendererView.addMouseWheelListener(wheelListener);

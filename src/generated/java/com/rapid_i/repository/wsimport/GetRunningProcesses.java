@@ -27,9 +27,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for getRunningProcesses complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="getRunningProcesses">
  *   &lt;complexContent>
@@ -41,8 +41,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getRunningProcesses", propOrder = {
@@ -50,16 +48,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class GetRunningProcesses {
 
+    /**
+     * The Since.
+     */
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar since;
 
     /**
      * Gets the value of the since property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is     {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getSince() {
         return since;
@@ -67,11 +65,8 @@ public class GetRunningProcesses {
 
     /**
      * Sets the value of the since property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is     {@link XMLGregorianCalendar }
      */
     public void setSince(XMLGregorianCalendar value) {
         this.since = value;

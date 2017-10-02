@@ -27,27 +27,25 @@ import java.util.List;
  * the default provider by calling {@link RepositoryManager#setProvider(RepositoryProvider)}.
  *
  * @author Marcel Michel
- *
  */
 public interface RepositoryProvider {
 
-	/**
-	 * The loading mechanism will be triggered during the {@link RepositoryManager#init()} method.
-	 * The implementation should read the configuration and return parsed {@link Repository}s as
-	 * {@link List}.
-	 *
-	 * @return the loaded {@link Repository} entries as {@link List}
-	 */
-	public List<Repository> load();
+    /**
+     * The loading mechanism will be triggered during the {@link RepositoryManager#init()} method.
+     * The implementation should read the configuration and return parsed {@link Repository}s as
+     * {@link List}.
+     *
+     * @return the loaded {@link Repository} entries as {@link List}
+     */
+    public List<Repository> load();
 
-	/**
-	 * The saving mechanism will be triggered after every
-	 * {@link RepositoryManager#addRepository(Repository)} call. The implementation should save the
-	 * delivered {@link Repository} entries.
-	 *
-	 * @param repositories
-	 *            the {@link Repository} entries which should be saved
-	 */
-	public void save(List<Repository> repositories);
+    /**
+     * The saving mechanism will be triggered after every
+     * {@link RepositoryManager#addRepository(Repository)} call. The implementation should save the
+     * delivered {@link Repository} entries.
+     *
+     * @param repositories the {@link Repository} entries which should be saved
+     */
+    public void save(List<Repository> repositories);
 
 }

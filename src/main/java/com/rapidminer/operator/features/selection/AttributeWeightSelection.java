@@ -44,40 +44,44 @@ import java.util.Vector;
  * This operator selects all attributes which have a weight satisfying a given condition. For
  * example, only attributes with a weight greater than <code>min_weight</code> should be selected.
  * This operator is also able to select the k attributes with the highest weight.
- * 
+ *
  * @author Ingo Mierswa, Stefan Rueping
  */
 public class AttributeWeightSelection extends AbstractDataProcessing {
 
-	/** The parameter name for &quot;Use this weight for the selection relation.&quot; */
-	public static final String PARAMETER_WEIGHT = "weight";
+    /**
+     * The parameter name for &quot;Use this weight for the selection relation.&quot;
+     */
+    public static final String PARAMETER_WEIGHT = "weight";
 
-	/** The parameter name for &quot;Selects only weights which fulfill this relation.&quot; */
-	public static final String PARAMETER_WEIGHT_RELATION = "weight_relation";
+    /**
+     * The parameter name for &quot;Selects only weights which fulfill this relation.&quot;
+     */
+    public static final String PARAMETER_WEIGHT_RELATION = "weight_relation";
 
-	/**
-	 * The parameter name for &quot;Number k of attributes to be selected for weight-relations 'top
-	 * k' or 'bottom k'.&quot;
-	 */
-	public static final String PARAMETER_K = "k";
+    /**
+     * The parameter name for &quot;Number k of attributes to be selected for weight-relations 'top
+     * k' or 'bottom k'.&quot;
+     */
+    public static final String PARAMETER_K = "k";
 
-	/**
-	 * The parameter name for &quot;Percentage of attributes to be selected for weight-relations
-	 * 'top p%' or 'bottom p%'.&quot;
-	 */
-	public static final String PARAMETER_P = "p";
+    /**
+     * The parameter name for &quot;Percentage of attributes to be selected for weight-relations
+     * 'top p%' or 'bottom p%'.&quot;
+     */
+    public static final String PARAMETER_P = "p";
 
-	/**
-	 * The parameter name for &quot;Indicates if attributes which weight is unknown should be
-	 * deselected.&quot;
-	 */
-	public static final String PARAMETER_DESELECT_UNKNOWN = "deselect_unknown";
+    /**
+     * The parameter name for &quot;Indicates if attributes which weight is unknown should be
+     * deselected.&quot;
+     */
+    public static final String PARAMETER_DESELECT_UNKNOWN = "deselect_unknown";
 
-	/**
-	 * The parameter name for &quot;Indicates if the absolute values of the weights should be used
-	 * for comparison.&quot;
-	 */
-	public static final String PARAMETER_USE_ABSOLUTE_WEIGHTS = "use_absolute_weights";
+    /**
+     * The parameter name for &quot;Indicates if the absolute values of the weights should be used
+     * for comparison.&quot;
+     */
+    public static final String PARAMETER_USE_ABSOLUTE_WEIGHTS = "use_absolute_weights";
 
 	private static final String[] WEIGHT_RELATIONS = { "greater", "greater equals", "equals", "less equals", "less",
 			"top k", "bottom k", "all but top k", "all but bottom k", "top p%", "bottom p%" };
@@ -107,7 +111,12 @@ public class AttributeWeightSelection extends AbstractDataProcessing {
 	private InputPort weightsInput = getInputPorts().createPort("weights", AttributeWeights.class);
 	private OutputPort weightsOutput = getOutputPorts().createPort("weights");
 
-	public AttributeWeightSelection(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute weight selection.
+     *
+     * @param description the description
+     */
+    public AttributeWeightSelection(OperatorDescription description) {
 		super(description);
 		getTransformer().addPassThroughRule(weightsInput, weightsOutput);
 	}

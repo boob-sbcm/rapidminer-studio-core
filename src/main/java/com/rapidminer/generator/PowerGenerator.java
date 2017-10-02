@@ -26,12 +26,15 @@ import java.util.logging.Level;
 /**
  * This class has two numerical input attributes and one output attribute. Calculates the power of
  * the input attribute to the second.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PowerGenerator extends BinaryNumericalGenerator {
 
-	public PowerGenerator() {}
+    /**
+     * Instantiates a new Power generator.
+     */
+    public PowerGenerator() {}
 
 	@Override
 	public FeatureGenerator newInstance() {

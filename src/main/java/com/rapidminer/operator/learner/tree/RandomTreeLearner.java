@@ -38,17 +38,26 @@ import com.rapidminer.tools.RandomGenerator;
  * </p>
  *
  * @author Ingo Mierswa
- *
  */
 @SuppressWarnings("deprecation")
 public class RandomTreeLearner extends DecisionTreeLearner {
 
-	public static final String PARAMETER_USE_HEURISTIC_SUBSET_RATION = "guess_subset_ratio";
+    /**
+     * The constant PARAMETER_USE_HEURISTIC_SUBSET_RATION.
+     */
+    public static final String PARAMETER_USE_HEURISTIC_SUBSET_RATION = "guess_subset_ratio";
 
-	/** The parameter name for &quot;Ratio of randomly chosen attributes to test&quot; */
-	public static final String PARAMETER_SUBSET_RATIO = "subset_ratio";
+    /**
+     * The parameter name for &quot;Ratio of randomly chosen attributes to test&quot;
+     */
+    public static final String PARAMETER_SUBSET_RATIO = "subset_ratio";
 
-	public RandomTreeLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Random tree learner.
+     *
+     * @param description the description
+     */
+    public RandomTreeLearner(OperatorDescription description) {
 		super(description);
 	}
 

@@ -20,7 +20,7 @@ package com.rapidminer.operator.learner.functions.kernel.rvm.kernel;
 
 /**
  * Returns the value of the Gaussian combination kernel of both examples.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class KernelGaussianCombination extends Kernel {
@@ -36,15 +36,24 @@ public class KernelGaussianCombination extends Kernel {
 	/** The parameter sigma3 of the Gaussian combination kernel. */
 	private double sigma3 = 2.0d;
 
-	/** Constructor(s) */
-	public KernelGaussianCombination(double sigma1, double sigma2, double sigma3) {
+    /**
+     * Constructor(s)  @param sigma1 the sigma 1
+     *
+     * @param sigma1 the sigma 1
+     * @param sigma2 the sigma 2
+     * @param sigma3 the sigma 3
+     */
+    public KernelGaussianCombination(double sigma1, double sigma2, double sigma3) {
 		super();
 		this.sigma1 = sigma1;
 		this.sigma2 = sigma2;
 		this.sigma3 = sigma3;
 	}
 
-	public KernelGaussianCombination() {
+    /**
+     * Instantiates a new Kernel gaussian combination.
+     */
+    public KernelGaussianCombination() {
 		super();
 	}
 

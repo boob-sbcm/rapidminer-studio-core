@@ -35,12 +35,11 @@ import com.rapidminer.io.process.XMLTools;
  * The operator documentation, currently consisting of a short synopsis, a long help text plus
  * examples. None of the getters returns null. If no long description is given, the synopsis will be
  * returned.
- *
+ * <p>
  * Setting properties of instances of this class will, as a side effect, also modify the original
  * DOM element used to create this instance, so the DOM is always in sync with the data.
  *
  * @author Simon Fischer
- *
  */
 public class OperatorDocumentation {
 
@@ -54,7 +53,12 @@ public class OperatorDocumentation {
 	private final Element element;
 	private final List<ExampleProcess> exampleProcesses = new LinkedList<ExampleProcess>();
 
-	public OperatorDocumentation(String name) {
+    /**
+     * Instantiates a new Operator documentation.
+     *
+     * @param name the name
+     */
+    public OperatorDocumentation(String name) {
 		this.name = this.shortName = name;
 		this.documentation = this.synopsis = null;
 		this.element = null;
@@ -62,7 +66,13 @@ public class OperatorDocumentation {
 		this.tags = new ArrayList<>();
 	}
 
-	OperatorDocumentation(OperatorDocBundle operatorDocBundle, Element element) {
+    /**
+     * Instantiates a new Operator documentation.
+     *
+     * @param operatorDocBundle the operator doc bundle
+     * @param element           the element
+     */
+    OperatorDocumentation(OperatorDocBundle operatorDocBundle, Element element) {
 		this.operatorDocBundle = operatorDocBundle;
 		this.name = XMLTools.getTagContents(element, "name");
 		this.shortName = XMLTools.getTagContents(element, "shortName");
@@ -86,7 +96,12 @@ public class OperatorDocumentation {
 		}
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		if (name != null) {
 			return name;
 		} else {
@@ -94,14 +109,24 @@ public class OperatorDocumentation {
 		}
 	}
 
-	public void setName(String name) {
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
+    public void setName(String name) {
 		this.name = name;
 		if (element != null) {
 			XMLTools.setTagContents(element, "name", name);
 		}
 	}
 
-	public String getShortName() {
+    /**
+     * Gets short name.
+     *
+     * @return the short name
+     */
+    public String getShortName() {
 		if (shortName != null) {
 			return shortName;
 		} else {
@@ -109,40 +134,75 @@ public class OperatorDocumentation {
 		}
 	}
 
-	public void setShortName(String shortName) {
+    /**
+     * Sets short name.
+     *
+     * @param shortName the short name
+     */
+    public void setShortName(String shortName) {
 		this.shortName = shortName;
 		if (element != null) {
 			XMLTools.setTagContents(element, "shortName", shortName);
 		}
 	}
 
-	public String getSynopsis() {
+    /**
+     * Gets synopsis.
+     *
+     * @return the synopsis
+     */
+    public String getSynopsis() {
 		return synopsis;
 	}
 
-	public String getDocumentation() {
+    /**
+     * Gets documentation.
+     *
+     * @return the documentation
+     */
+    public String getDocumentation() {
 		return documentation;
 	}
 
-	public void setDocumentation(String text) {
+    /**
+     * Sets documentation.
+     *
+     * @param text the text
+     */
+    public void setDocumentation(String text) {
 		this.documentation = text;
 		if (element != null) {
 			XMLTools.setTagContents(element, "help", documentation);
 		}
 	}
 
-	public void setSynopsis(String text) {
+    /**
+     * Sets synopsis.
+     *
+     * @param text the text
+     */
+    public void setSynopsis(String text) {
 		this.synopsis = text;
 		if (element != null) {
 			XMLTools.setTagContents(element, "synopsis", text);
 		}
 	}
 
-	public String getDeprecation() {
+    /**
+     * Gets deprecation.
+     *
+     * @return the deprecation
+     */
+    public String getDeprecation() {
 		return deprecation;
 	}
 
-	public void setDeprecation(String deprecation) {
+    /**
+     * Sets deprecation.
+     *
+     * @param deprecation the deprecation
+     */
+    public void setDeprecation(String deprecation) {
 		if (deprecation != null) {
 			deprecation = deprecation.trim();
 			if (deprecation.isEmpty()) {
@@ -155,11 +215,21 @@ public class OperatorDocumentation {
 		}
 	}
 
-	public List<String> getTags() {
+    /**
+     * Gets tags.
+     *
+     * @return the tags
+     */
+    public List<String> getTags() {
 		return Collections.unmodifiableList(tags);
 	}
 
-	public void setTags(List<String> tags) {
+    /**
+     * Sets tags.
+     *
+     * @param tags the tags
+     */
+    public void setTags(List<String> tags) {
 		this.tags = tags;
 		if (element != null) {
 			XMLTools.deleteTagContents(element, "tags");
@@ -175,7 +245,13 @@ public class OperatorDocumentation {
 		}
 	}
 
-	public void addExample(Process process, String comment) {
+    /**
+     * Add example.
+     *
+     * @param process the process
+     * @param comment the comment
+     */
+    public void addExample(Process process, String comment) {
 		Element exampleElement = element != null ? element.getOwnerDocument().createElement("example") : null;
 		ExampleProcess exampleProcess = new ExampleProcess(exampleElement);
 		exampleProcess.setProcessXML(process.getRootOperator().getXML(true));
@@ -188,11 +264,21 @@ public class OperatorDocumentation {
 		exampleProcesses.add(exampleProcess);
 	}
 
-	public List<ExampleProcess> getExamples() {
+    /**
+     * Gets examples.
+     *
+     * @return the examples
+     */
+    public List<ExampleProcess> getExamples() {
 		return Collections.unmodifiableList(exampleProcesses);
 	}
 
-	public void removeExample(int index) {
+    /**
+     * Remove example.
+     *
+     * @param index the index
+     */
+    public void removeExample(int index) {
 		ExampleProcess process = exampleProcesses.get(index);
 		if (element != null) {
 			element.removeChild(process.getElement());
@@ -201,7 +287,12 @@ public class OperatorDocumentation {
 
 	}
 
-	public OperatorDocBundle getBundle() {
+    /**
+     * Gets bundle.
+     *
+     * @return the bundle
+     */
+    public OperatorDocBundle getBundle() {
 		return this.operatorDocBundle;
 	}
 }

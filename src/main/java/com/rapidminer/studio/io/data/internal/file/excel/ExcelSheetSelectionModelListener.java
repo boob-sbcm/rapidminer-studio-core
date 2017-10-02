@@ -29,50 +29,41 @@ import javax.swing.table.TableModel;
  */
 public interface ExcelSheetSelectionModelListener {
 
-	/**
-	 * Called in case the selected sheet has been changed.
-	 * 
-	 * @param newSheetIndex
-	 *            the new sheet index
-	 * @param sheetNames
-	 *            all available sheet names
-	 * @param newTableModel
-	 *            the table model for the selected sheet
-	 * @param isShowingPreview
-	 *            whether the table model is only showing a preview instead of the whole data
-	 * @param wasModelLoaded
-	 *            whether the table model was loaded ({@code true}) or retrieved from cache (
-	 *            {@code false})
-	 */
-	void sheetIndexUpdated(int newSheetIndex, String[] sheetNames, TableModel newTableModel, boolean isShowingPreview,
+    /**
+     * Called in case the selected sheet has been changed.
+     *
+     * @param newSheetIndex    the new sheet index
+     * @param sheetNames       all available sheet names
+     * @param newTableModel    the table model for the selected sheet
+     * @param isShowingPreview whether the table model is only showing a preview instead of the whole data
+     * @param wasModelLoaded   whether the table model was loaded ({@code true}) or retrieved from cache (            {@code false})
+     */
+    void sheetIndexUpdated(int newSheetIndex, String[] sheetNames, TableModel newTableModel, boolean isShowingPreview,
 			boolean wasModelLoaded);
 
-	/**
-	 * Called in case a new table model is loaded.
-	 */
-	void loadingNewTableModel();
+    /**
+     * Called in case a new table model is loaded.
+     */
+    void loadingNewTableModel();
 
-	/**
-	 * Called in case the loading of a new table model has failed.
-	 *
-	 * @param e
-	 *            the error that has occurred during loading
-	 */
-	void reportErrorLoadingTableModel(Exception e);
+    /**
+     * Called in case the loading of a new table model has failed.
+     *
+     * @param e the error that has occurred during loading
+     */
+    void reportErrorLoadingTableModel(Exception e);
 
-	/**
-	 * Called on a header row index change.
-	 *
-	 * @param newHeaderRowIndex
-	 *            the new header row index
-	 */
-	void headerRowIndexUpdated(int newHeaderRowIndex);
+    /**
+     * Called on a header row index change.
+     *
+     * @param newHeaderRowIndex the new header row index
+     */
+    void headerRowIndexUpdated(int newHeaderRowIndex);
 
-	/**
-	 * Called on a cell range selection change.
-	 *
-	 * @param newSelection
-	 *            the new {@link CellRangeSelection}
-	 */
-	void cellRangeSelectionUpdate(CellRangeSelection newSelection);
+    /**
+     * Called on a cell range selection change.
+     *
+     * @param newSelection the new {@link CellRangeSelection}
+     */
+    void cellRangeSelectionUpdate(CellRangeSelection newSelection);
 }

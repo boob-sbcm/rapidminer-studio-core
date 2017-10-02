@@ -26,7 +26,8 @@ import org.apache.commons.collections15.Transformer;
 
 /**
  * The basic vertex shaper for the {@link GraphViewer}.
- * 
+ *
+ * @param <V> the type parameter
  * @author Ingo Mierswa
  */
 public class BasicVertexShapeTransformer<V> implements Transformer<V, Shape> {

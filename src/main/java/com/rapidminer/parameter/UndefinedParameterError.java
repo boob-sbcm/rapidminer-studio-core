@@ -32,28 +32,66 @@ public class UndefinedParameterError extends ParameterError {
 
 	private static final long serialVersionUID = -2861031839668411515L;
 
-	/** Creates a new UndefinedParameterError. */
-	public UndefinedParameterError(String key) {
+    /**
+     * Creates a new UndefinedParameterError.  @param key the key
+     *
+     * @param key the key
+     */
+    public UndefinedParameterError(String key) {
 		super(null, 205, key, "");
 	}
 
-	public UndefinedParameterError(String key, String additionalMessage) {
+    /**
+     * Instantiates a new Undefined parameter error.
+     *
+     * @param key               the key
+     * @param additionalMessage the additional message
+     */
+    public UndefinedParameterError(String key, String additionalMessage) {
 		super(null, 205, key, additionalMessage);
 	}
 
-	public UndefinedParameterError(String key, Operator operator) {
+    /**
+     * Instantiates a new Undefined parameter error.
+     *
+     * @param key      the key
+     * @param operator the operator
+     */
+    public UndefinedParameterError(String key, Operator operator) {
 		this(key, operator, "");
 	}
 
-	public UndefinedParameterError(String key, Operator operator, String additionalMessage) {
+    /**
+     * Instantiates a new Undefined parameter error.
+     *
+     * @param key               the key
+     * @param operator          the operator
+     * @param additionalMessage the additional message
+     */
+    public UndefinedParameterError(String key, Operator operator, String additionalMessage) {
 		super(operator, 217, key, key, operator, additionalMessage);
 	}
 
-	public UndefinedParameterError(Operator operator, String code, String additionalText) {
+    /**
+     * Instantiates a new Undefined parameter error.
+     *
+     * @param operator       the operator
+     * @param code           the code
+     * @param additionalText the additional text
+     */
+    public UndefinedParameterError(Operator operator, String code, String additionalText) {
 		super(operator, code, additionalText);
 	}
 
-	public UndefinedParameterError(Operator operator, int code, String parameterKey, Object... arguments) {
+    /**
+     * Instantiates a new Undefined parameter error.
+     *
+     * @param operator     the operator
+     * @param code         the code
+     * @param parameterKey the parameter key
+     * @param arguments    the arguments
+     */
+    public UndefinedParameterError(Operator operator, int code, String parameterKey, Object... arguments) {
 		super(operator, code, parameterKey, arguments);
 	}
 

@@ -61,30 +61,47 @@ import com.rapidminer.tools.expression.internal.UnknownResolverVariableException
  */
 public class UserSpecificationDataGenerator extends AbstractExampleSource {
 
-	public static final String PARAMETER_VALUES = "attribute_values";
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
-	public static final String PARAMETER_ATTRIBUTE_VALUE = "attribute_value";
+    /**
+     * The constant PARAMETER_VALUES.
+     */
+    public static final String PARAMETER_VALUES = "attribute_values";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_VALUE.
+     */
+    public static final String PARAMETER_ATTRIBUTE_VALUE = "attribute_value";
 
-	/**
-	 * The parameter name for &quot;The name of the attribute of which the type should be
-	 * changed.&quot;
-	 */
-	public static final String PARAMETER_NAME = "name";
+    /**
+     * The parameter name for &quot;The name of the attribute of which the type should be
+     * changed.&quot;
+     */
+    public static final String PARAMETER_NAME = "name";
 
-	/**
-	 * The parameter name for &quot;The target type of the attribute (only changed if parameter
-	 * change_attribute_type is true).&quot;
-	 */
-	public static final String PARAMETER_TARGET_ROLE = "target_role";
+    /**
+     * The parameter name for &quot;The target type of the attribute (only changed if parameter
+     * change_attribute_type is true).&quot;
+     */
+    public static final String PARAMETER_TARGET_ROLE = "target_role";
 
-	public static final String PARAMETER_ROLES = "set_additional_roles";
+    /**
+     * The constant PARAMETER_ROLES.
+     */
+    public static final String PARAMETER_ROLES = "set_additional_roles";
 
 	private static final String REGULAR_NAME = "regular";
 
 	private static final String[] TARGET_ROLES = new String[] { REGULAR_NAME, Attributes.ID_NAME, Attributes.LABEL_NAME,
 			Attributes.PREDICTION_NAME, Attributes.CLUSTER_NAME, Attributes.WEIGHT_NAME, Attributes.BATCH_NAME };
 
-	public UserSpecificationDataGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new User specification data generator.
+     *
+     * @param description the description
+     */
+    public UserSpecificationDataGenerator(OperatorDescription description) {
 		super(description);
 	}
 

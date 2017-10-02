@@ -27,16 +27,21 @@ import com.rapidminer.parameter.PortProvider;
 /**
  * This condition checks whether an {@link OutputPort} of a {@link Operator} is connected or not.
  * The condition is fulfilled if the {@link OutputPort} is NOT connected.
- * 
- * @deprecated use {@link PortConnectedCondition} instead
- * 
+ *
  * @author Nils Woehler
- * 
+ * @deprecated use {@link PortConnectedCondition} instead
  */
 @Deprecated
 public class OutputPortNotConnectedCondition extends PortConnectedCondition {
 
-	public OutputPortNotConnectedCondition(ParameterHandler handler, PortProvider portProvider, boolean becomeMandatory) {
+    /**
+     * Instantiates a new Output port not connected condition.
+     *
+     * @param handler         the handler
+     * @param portProvider    the port provider
+     * @param becomeMandatory the become mandatory
+     */
+    public OutputPortNotConnectedCondition(ParameterHandler handler, PortProvider portProvider, boolean becomeMandatory) {
 		super(handler, portProvider, becomeMandatory, false);
 	}
 

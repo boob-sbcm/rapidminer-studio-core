@@ -25,29 +25,53 @@ import java.util.List;
 
 /**
  * An entry in the header table.
- * 
+ *
  * @author Sebastian Land
  */
 public class Header {
 
-	FrequencyStack frequencies;
+    /**
+     * The Frequencies.
+     */
+    FrequencyStack frequencies;
 
-	List<FPTreeNode> siblingChain;
+    /**
+     * The Sibling chain.
+     */
+    List<FPTreeNode> siblingChain;
 
-	public Header() {
+    /**
+     * Instantiates a new Header.
+     */
+    public Header() {
 		frequencies = new ListFrequencyStack();
 		siblingChain = new LinkedList<FPTreeNode>();
 	}
 
-	public void addSibling(FPTreeNode node) {
+    /**
+     * Add sibling.
+     *
+     * @param node the node
+     */
+    public void addSibling(FPTreeNode node) {
 		siblingChain.add(node);
 	}
 
-	public Collection<FPTreeNode> getSiblingChain() {
+    /**
+     * Gets sibling chain.
+     *
+     * @return the sibling chain
+     */
+    public Collection<FPTreeNode> getSiblingChain() {
 		return siblingChain;
 	}
 
-	public FrequencyStack getFrequencies() {
+    /**
+     * Gets frequencies.
+     *
+     * @return the frequencies
+     */
+    public FrequencyStack getFrequencies() {
 		return frequencies;
 	}
 }

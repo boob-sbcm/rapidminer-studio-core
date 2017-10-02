@@ -31,15 +31,16 @@ import java.util.List;
 
 
 /**
+ * The type Abstract attribute filter condition.
+ *
  * @author Sebastian Land
- * 
  */
 public abstract class AbstractAttributeFilterCondition implements AttributeFilterCondition {
 
-	/**
-	 * All implementing filter conditions have to have an empty constructor.
-	 */
-	public AbstractAttributeFilterCondition() {};
+    /**
+     * All implementing filter conditions have to have an empty constructor.
+     */
+    public AbstractAttributeFilterCondition() {};
 
 	@Override
 	public ScanResult check(Attribute attribute, Example example) {

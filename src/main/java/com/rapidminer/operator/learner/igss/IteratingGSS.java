@@ -61,90 +61,138 @@ import com.rapidminer.tools.RandomGenerator;
  * Science, University of Dortmund.
  *
  * @author Dirk Dach
- *
  * @deprecated This learner is not used anymore.
  */
 @Deprecated
 public class IteratingGSS extends AbstractLearner {
 
-	/** The parameter name for &quot;approximation parameter&quot; */
-	public static final String PARAMETER_EPSILON = "epsilon";
+    /**
+     * The parameter name for &quot;approximation parameter&quot;
+     */
+    public static final String PARAMETER_EPSILON = "epsilon";
 
-	/** The parameter name for &quot;desired confidence&quot; */
-	public static final String PARAMETER_DELTA = "delta";
+    /**
+     * The parameter name for &quot;desired confidence&quot;
+     */
+    public static final String PARAMETER_DELTA = "delta";
 
-	/** The parameter name for &quot;minimum utility used for pruning&quot; */
-	public static final String PARAMETER_MIN_UTILITY_PRUNING = "min_utility_pruning";
+    /**
+     * The parameter name for &quot;minimum utility used for pruning&quot;
+     */
+    public static final String PARAMETER_MIN_UTILITY_PRUNING = "min_utility_pruning";
 
-	/** The parameter name for &quot;minimum utility for the usefulness of a rule&quot; */
-	public static final String PARAMETER_MIN_UTILITY_USEFUL = "min_utility_useful";
+    /**
+     * The parameter name for &quot;minimum utility for the usefulness of a rule&quot;
+     */
+    public static final String PARAMETER_MIN_UTILITY_USEFUL = "min_utility_useful";
 
-	/**
-	 * The parameter name for &quot;the number of examples drawn before the next hypothesis
-	 * update&quot;
-	 */
-	public static final String PARAMETER_STEPSIZE = "stepsize";
+    /**
+     * The parameter name for &quot;the number of examples drawn before the next hypothesis
+     * update&quot;
+     */
+    public static final String PARAMETER_STEPSIZE = "stepsize";
 
-	/**
-	 * The parameter name for &quot;the number of examples a hypothesis must cover before normal
-	 * approximation is used&quot;
-	 */
-	public static final String PARAMETER_LARGE = "large";
+    /**
+     * The parameter name for &quot;the number of examples a hypothesis must cover before normal
+     * approximation is used&quot;
+     */
+    public static final String PARAMETER_LARGE = "large";
 
-	/** The parameter name for &quot;the maximum complexity of hypothesis&quot; */
-	public static final String PARAMETER_MAX_COMPLEXITY = "max_complexity";
+    /**
+     * The parameter name for &quot;the maximum complexity of hypothesis&quot;
+     */
+    public static final String PARAMETER_MAX_COMPLEXITY = "max_complexity";
 
-	/** The parameter name for &quot;the minimum complexity of hypothesis&quot; */
-	public static final String PARAMETER_MIN_COMPLEXITY = "min_complexity";
+    /**
+     * The parameter name for &quot;the minimum complexity of hypothesis&quot;
+     */
+    public static final String PARAMETER_MIN_COMPLEXITY = "min_complexity";
 
-	/** The parameter name for &quot;the number of iterations&quot; */
-	public static final String PARAMETER_ITERATIONS = "iterations";
+    /**
+     * The parameter name for &quot;the number of iterations&quot;
+     */
+    public static final String PARAMETER_ITERATIONS = "iterations";
 
-	/**
-	 * The parameter name for &quot;Switch to binomial utility funtion before increasing
-	 * complexity&quot;
-	 */
-	public static final String PARAMETER_USE_BINOMIAL = "use_binomial";
+    /**
+     * The parameter name for &quot;Switch to binomial utility funtion before increasing
+     * complexity&quot;
+     */
+    public static final String PARAMETER_USE_BINOMIAL = "use_binomial";
 
-	/** The parameter name for &quot;the utility function to be used&quot; */
-	public static final String PARAMETER_UTILITY_FUNCTION = "utility_function";
+    /**
+     * The parameter name for &quot;the utility function to be used&quot;
+     */
+    public static final String PARAMETER_UTILITY_FUNCTION = "utility_function";
 
-	/** The parameter name for &quot;use kbs to reweight examples after each iteration&quot; */
-	public static final String PARAMETER_USE_KBS = "use_kbs";
+    /**
+     * The parameter name for &quot;use kbs to reweight examples after each iteration&quot;
+     */
+    public static final String PARAMETER_USE_KBS = "use_kbs";
 
-	/** The parameter name for &quot;use rejection sampling instead of weighted examples&quot; */
-	public static final String PARAMETER_REJECTION_SAMPLING = "rejection_sampling";
+    /**
+     * The parameter name for &quot;use rejection sampling instead of weighted examples&quot;
+     */
+    public static final String PARAMETER_REJECTION_SAMPLING = "rejection_sampling";
 
-	/** The parameter name for &quot;criterion to decide if the complexity is increased &quot; */
-	public static final String PARAMETER_USEFUL_CRITERION = "useful_criterion";
+    /**
+     * The parameter name for &quot;criterion to decide if the complexity is increased &quot;
+     */
+    public static final String PARAMETER_USEFUL_CRITERION = "useful_criterion";
 
-	/**
-	 * The parameter name for &quot;used by example criterion to determine usefulness of a
-	 * hypothesis&quot;
-	 */
-	public static final String PARAMETER_EXAMPLE_FACTOR = "example_factor";
+    /**
+     * The parameter name for &quot;used by example criterion to determine usefulness of a
+     * hypothesis&quot;
+     */
+    public static final String PARAMETER_EXAMPLE_FACTOR = "example_factor";
 
-	/** The parameter name for &quot;make all iterations even if termination criterion is met&quot; */
-	public static final String PARAMETER_FORCE_ITERATIONS = "force_iterations";
+    /**
+     * The parameter name for &quot;make all iterations even if termination criterion is met&quot;
+     */
+    public static final String PARAMETER_FORCE_ITERATIONS = "force_iterations";
 
-	/** The parameter name for &quot;generate h->Y+/Y- or h->Y+ only.&quot; */
-	public static final String PARAMETER_GENERATE_ALL_HYPOTHESIS = "generate_all_hypothesis";
+    /**
+     * The parameter name for &quot;generate h->Y+/Y- or h->Y+ only.&quot;
+     */
+    public static final String PARAMETER_GENERATE_ALL_HYPOTHESIS = "generate_all_hypothesis";
 
-	/** The parameter name for &quot;Set weights back to 1 when complexity is increased.&quot; */
-	public static final String PARAMETER_RESET_WEIGHTS = "reset_weights";
-	public static final String[] CRITERION_TYPES = { "worst_utility", "utility", "best_utility", "example" };
+    /**
+     * The parameter name for &quot;Set weights back to 1 when complexity is increased.&quot;
+     */
+    public static final String PARAMETER_RESET_WEIGHTS = "reset_weights";
+    /**
+     * The constant CRITERION_TYPES.
+     */
+    public static final String[] CRITERION_TYPES = { "worst_utility", "utility", "best_utility", "example" };
 
-	public static final int FIRST_TYPE_INDEX = 0;
+    /**
+     * The constant FIRST_TYPE_INDEX.
+     */
+    public static final int FIRST_TYPE_INDEX = 0;
 
-	public static final int TYPE_WORST_UTILITY = 0;
+    /**
+     * The constant TYPE_WORST_UTILITY.
+     */
+    public static final int TYPE_WORST_UTILITY = 0;
 
-	public static final int TYPE_UTILITY = 1;
+    /**
+     * The constant TYPE_UTILITY.
+     */
+    public static final int TYPE_UTILITY = 1;
 
-	public static final int TYPE_BEST_UTILITY = 2;
+    /**
+     * The constant TYPE_BEST_UTILITY.
+     */
+    public static final int TYPE_BEST_UTILITY = 2;
 
-	public static final int TYPE_EXAMPLE = 3;
+    /**
+     * The constant TYPE_EXAMPLE.
+     */
+    public static final int TYPE_EXAMPLE = 3;
 
-	public static final int LAST_TYPE_INDEX = 3;
+    /**
+     * The constant LAST_TYPE_INDEX.
+     */
+    public static final int LAST_TYPE_INDEX = 3;
 
 	/** stores all results */
 	private IGSSResult gssResult;
@@ -221,8 +269,10 @@ public class IteratingGSS extends AbstractLearner {
 	/** Factor needed by example_criterion. */
 	private double exampleFactor;
 
-	/** minimal model number for example_criterion */
-	public int MIN_MODEL_NUMBER = 2;
+    /**
+     * minimal model number for example_criterion
+     */
+    public int MIN_MODEL_NUMBER = 2;
 
 	/** Use rejection sampling or weights directly. */
 	private boolean rejectionSampling;
@@ -233,8 +283,12 @@ public class IteratingGSS extends AbstractLearner {
 	/** The number of iterations for the IGSS algorithm. */
 	private int iterations;
 
-	/** Must pass the given object to the superclass. */
-	public IteratingGSS(OperatorDescription description) {
+    /**
+     * Must pass the given object to the superclass.  @param description the description
+     *
+     * @param description the description
+     */
+    public IteratingGSS(OperatorDescription description) {
 		super(description);
 	}
 
@@ -326,8 +380,17 @@ public class IteratingGSS extends AbstractLearner {
 		}
 	}
 
-	/** Returns the n best hypothesis with maximum error epsilon with confidence 1-delta. */
-	public LinkedList<Result> gss(ExampleSet exampleSet, LinkedList<Hypothesis> hypothesisList, double delta, double epsilon)
+    /**
+     * Returns the n best hypothesis with maximum error epsilon with confidence 1-delta.  @param exampleSet the example set
+     *
+     * @param exampleSet     the example set
+     * @param hypothesisList the hypothesis list
+     * @param delta          the delta
+     * @param epsilon        the epsilon
+     * @return the linked list
+     * @throws OperatorException the operator exception
+     */
+    public LinkedList<Result> gss(ExampleSet exampleSet, LinkedList<Hypothesis> hypothesisList, double delta, double epsilon)
 			throws OperatorException {
 		// Initialization.
 		LinkedList<Hypothesis> delete = new LinkedList<Hypothesis>();// Stores deleted hypothesis.
@@ -453,11 +516,17 @@ public class IteratingGSS extends AbstractLearner {
 
 	}
 
-	/**
-	 * Reweights the examples according to knowledge based sampling. Normalizes weights to [0,1] if
-	 * the parameter normalize is set to true.
-	 */
-	public ContingencyMatrix reweight(ExampleSet exampleSet, Model model, boolean normalize) throws OperatorException {
+    /**
+     * Reweights the examples according to knowledge based sampling. Normalizes weights to [0,1] if
+     * the parameter normalize is set to true.
+     *
+     * @param exampleSet the example set
+     * @param model      the model
+     * @param normalize  the normalize
+     * @return the contingency matrix
+     * @throws OperatorException the operator exception
+     */
+    public ContingencyMatrix reweight(ExampleSet exampleSet, Model model, boolean normalize) throws OperatorException {
 		exampleSet = model.apply(exampleSet); // apply and create predicted label
 		WeightedPerformanceMeasures wpm = new WeightedPerformanceMeasures(exampleSet);
 		WeightedPerformanceMeasures.reweightExamples(exampleSet, wpm.getContingencyMatrix(), false);
@@ -666,8 +735,17 @@ public class IteratingGSS extends AbstractLearner {
 		return new BayBoostModel(exampleSet, modelInfo, priors);
 	}
 
-	/** Test if the model is useful according to the given criterion. */
-	public boolean isUseful(Result current, LinkedList<Result> otherResults, int criterion, ExampleSet exampleSet,
+    /**
+     * Test if the model is useful according to the given criterion.  @param current the current
+     *
+     * @param current          the current
+     * @param otherResults     the other results
+     * @param criterion        the criterion
+     * @param exampleSet       the example set
+     * @param min_model_number the min model number
+     * @return the boolean
+     */
+    public boolean isUseful(Result current, LinkedList<Result> otherResults, int criterion, ExampleSet exampleSet,
 			int min_model_number) {
 
 		boolean result = true;
@@ -725,11 +803,18 @@ public class IteratingGSS extends AbstractLearner {
 		return result;
 	}
 
-	/**
-	 * Prunes the given list of hypothesis. All hypothesis with an upper utility bound less than the
-	 * parameter minUtility is pruned.
-	 */
-	public LinkedList<Hypothesis> prune(LinkedList<Hypothesis> hypoList, double minUtility, double totalWeight,
+    /**
+     * Prunes the given list of hypothesis. All hypothesis with an upper utility bound less than the
+     * parameter minUtility is pruned.
+     *
+     * @param hypoList            the hypo list
+     * @param minUtility          the min utility
+     * @param totalWeight         the total weight
+     * @param totalPositiveWeight the total positive weight
+     * @param delta_p             the delta p
+     * @return the linked list
+     */
+    public LinkedList<Hypothesis> prune(LinkedList<Hypothesis> hypoList, double minUtility, double totalWeight,
 			double totalPositiveWeight, double delta_p) {
 		double delta_hp = delta_p / hypoList.size();
 		ListIterator<Hypothesis> it = hypoList.listIterator();
@@ -743,8 +828,13 @@ public class IteratingGSS extends AbstractLearner {
 		return hypoList;
 	}
 
-	/** Generates all successors of the hypothesis in the given list. */
-	public LinkedList<Hypothesis> generate(LinkedList<Hypothesis> oldHypothesis) {
+    /**
+     * Generates all successors of the hypothesis in the given list.  @param oldHypothesis the old hypothesis
+     *
+     * @param oldHypothesis the old hypothesis
+     * @return the linked list
+     */
+    public LinkedList<Hypothesis> generate(LinkedList<Hypothesis> oldHypothesis) {
 		LinkedList<Hypothesis> newHypothesis = new LinkedList<Hypothesis>();
 		while (!oldHypothesis.isEmpty()) {
 			Hypothesis hypo = oldHypothesis.removeFirst();
@@ -756,8 +846,13 @@ public class IteratingGSS extends AbstractLearner {
 
 	}
 
-	/** Returns the logarithm to base 2 */
-	public static double log2(double arg) {
+    /**
+     * Returns the logarithm to base 2  @param arg the arg
+     *
+     * @param arg the arg
+     * @return the double
+     */
+    public static double log2(double arg) {
 		return Math.log(arg) / Math.log(2);
 	}
 

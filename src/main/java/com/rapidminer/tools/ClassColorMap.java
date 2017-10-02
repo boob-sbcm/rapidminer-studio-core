@@ -25,6 +25,8 @@ import com.rapidminer.tools.plugin.Plugin;
 
 
 /**
+ * The type Class color map.
+ *
  * @author Simon Fischer
  */
 public class ClassColorMap extends ParentResolvingMap<Class<?>, Color> {

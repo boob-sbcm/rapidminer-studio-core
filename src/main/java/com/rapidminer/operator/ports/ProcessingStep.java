@@ -24,7 +24,7 @@ import com.rapidminer.operator.Operator;
 /**
  * This class holds information about a processing step for an IOObject. Currently the name of the
  * operator and port is remembered.
- * 
+ *
  * @author Sebastian Land
  */
 public class ProcessingStep {
@@ -33,26 +33,33 @@ public class ProcessingStep {
 
 	private String portName;
 
-	/**
-	 * This constructor builds a ProcessingStep from the current operator and the used outputport of
-	 * the respective IOObject.
-	 */
-	public ProcessingStep(Operator operator, OutputPort port) {
+    /**
+     * This constructor builds a ProcessingStep from the current operator and the used outputport of
+     * the respective IOObject.
+     *
+     * @param operator the operator
+     * @param port     the port
+     */
+    public ProcessingStep(Operator operator, OutputPort port) {
 		this.operatorName = operator.getName();
 		this.portName = port.getName();
 	}
 
-	/**
-	 * This returns the name of the operator, which processed the respective IOObject.
-	 */
-	public String getOperatorName() {
+    /**
+     * This returns the name of the operator, which processed the respective IOObject.
+     *
+     * @return the operator name
+     */
+    public String getOperatorName() {
 		return operatorName;
 	}
 
-	/**
-	 * This return the name of the output port, which was used to return the respective IOObject.
-	 */
-	public String getPortName() {
+    /**
+     * This return the name of the output port, which was used to return the respective IOObject.
+     *
+     * @return the port name
+     */
+    public String getPortName() {
 		return portName;
 	}
 

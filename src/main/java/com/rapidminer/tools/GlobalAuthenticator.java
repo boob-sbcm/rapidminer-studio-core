@@ -42,7 +42,6 @@ import com.rapidminer.tools.cipher.CipherTools;
  * will be delegated subsequently until an authenticator is found.
  *
  * @author Simon Fischer
- *
  */
 public class GlobalAuthenticator extends Authenticator {
 
@@ -57,7 +56,12 @@ public class GlobalAuthenticator extends Authenticator {
 		refreshProxyAuthenticators();
 	}
 
-	@Deprecated
+    /**
+     * Register.
+     *
+     * @param authenticator the authenticator
+     */
+    @Deprecated
 	/**
 	 * This method is deprecated use registerServerAuthenticator instead.
 	 */
@@ -65,26 +69,30 @@ public class GlobalAuthenticator extends Authenticator {
 		registerServerAuthenticator(authenticator);
 	}
 
-	/**
-	 * This method adds another Authenticator to the GlobalAuthenticator that will be enqueued in
-	 * the list of Authenticators that are tried for URLs that need authentification.
-	 */
-	public synchronized static void registerServerAuthenticator(URLAuthenticator authenticator) {
+    /**
+     * This method adds another Authenticator to the GlobalAuthenticator that will be enqueued in
+     * the list of Authenticators that are tried for URLs that need authentification.
+     *
+     * @param authenticator the authenticator
+     */
+    public synchronized static void registerServerAuthenticator(URLAuthenticator authenticator) {
 		THE_INSTANCE.serverAuthenticators.add(authenticator);
 	}
 
-	/**
-	 * This method adds another Authenticator to the GlobalAuthenticator that will be enqueued in
-	 * the list of Authenticators that are tried for Proxy requests for authentification.
-	 */
-	public synchronized static void registerProxyAuthenticator(URLAuthenticator authenticator) {
+    /**
+     * This method adds another Authenticator to the GlobalAuthenticator that will be enqueued in
+     * the list of Authenticators that are tried for Proxy requests for authentification.
+     *
+     * @param authenticator the authenticator
+     */
+    public synchronized static void registerProxyAuthenticator(URLAuthenticator authenticator) {
 		THE_INSTANCE.proxyAuthenticators.add(authenticator);
 	}
 
-	/**
-	 * This method adds the default ProxyAuthenticators to the GlobalAuthenticator.
-	 */
-	public synchronized static void refreshProxyAuthenticators() {
+    /**
+     * This method adds the default ProxyAuthenticators to the GlobalAuthenticator.
+     */
+    public synchronized static void refreshProxyAuthenticators() {
 		THE_INSTANCE.proxyAuthenticators.clear();
 		THE_INSTANCE.socksProxyAuthenticator = new SocksProxyAuthenticator(ProxyAuthenticator.SOCKS);
 		registerProxyAuthenticator(new ProxyAuthenticator(ProxyAuthenticator.HTTP));
@@ -130,24 +138,41 @@ public class GlobalAuthenticator extends Authenticator {
 		}
 	}
 
-	/**
-	 * This method is called to cause the loading of the class and the execution of static blocks.
-	 */
-	public static void init() {}
+    /**
+     * This method is called to cause the loading of the class and the execution of static blocks.
+     */
+    public static void init() {}
 
-	public static GlobalAuthenticator getInstance() {
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+    public static GlobalAuthenticator getInstance() {
 		return THE_INSTANCE;
 	}
 
-	public interface URLAuthenticator {
+    /**
+     * The interface Url authenticator.
+     */
+    public interface URLAuthenticator {
 
-		/**
-		 * This method returns the PasswordAuthentification if this Authenticator is registered for
-		 * the given URL. Otherwise null can be returned.
-		 */
-		public PasswordAuthentication getAuthentication(URL url) throws PasswordInputCanceledException;
+        /**
+         * This method returns the PasswordAuthentification if this Authenticator is registered for
+         * the given URL. Otherwise null can be returned.
+         *
+         * @param url the url
+         * @return the authentication
+         * @throws PasswordInputCanceledException the password input canceled exception
+         */
+        public PasswordAuthentication getAuthentication(URL url) throws PasswordInputCanceledException;
 
-		public String getName();
+        /**
+         * Gets name.
+         *
+         * @return the name
+         */
+        public String getName();
 	}
 
 	private static class ProxyAuthenticator implements URLAuthenticator {
@@ -155,16 +180,39 @@ public class GlobalAuthenticator extends Authenticator {
 		private static final String PROXY_AUTH = "407";
 		private static final int STATUS_FIELD = 0;
 
-		public static final String SOCKS = "socks";
-		public static final String HTTP = "http";
-		public static final String HTTPS = "https";
-		public static final String FTP = "ftp";
+        /**
+         * The constant SOCKS.
+         */
+        public static final String SOCKS = "socks";
+        /**
+         * The constant HTTP.
+         */
+        public static final String HTTP = "http";
+        /**
+         * The constant HTTPS.
+         */
+        public static final String HTTPS = "https";
+        /**
+         * The constant FTP.
+         */
+        public static final String FTP = "ftp";
 
 		private String protocol;
-		protected String username = "";
-		protected String password = "";
+        /**
+         * The Username.
+         */
+        protected String username = "";
+        /**
+         * The Password.
+         */
+        protected String password = "";
 
-		public ProxyAuthenticator(String protocol) {
+        /**
+         * Instantiates a new Proxy authenticator.
+         *
+         * @param protocol the protocol
+         */
+        public ProxyAuthenticator(String protocol) {
 			this.protocol = protocol;
 		}
 
@@ -173,7 +221,16 @@ public class GlobalAuthenticator extends Authenticator {
 			return getAuthentication(url, "auth.proxy", false);
 		}
 
-		public PasswordAuthentication getAuthentication(URL url, String i18n, boolean forceRefresh)
+        /**
+         * Gets authentication.
+         *
+         * @param url          the url
+         * @param i18n         the 18 n
+         * @param forceRefresh the force refresh
+         * @return the authentication
+         * @throws PasswordInputCanceledException the password input canceled exception
+         */
+        public PasswordAuthentication getAuthentication(URL url, String i18n, boolean forceRefresh)
 				throws PasswordInputCanceledException {
 			if (protocol.equals(SOCKS) || url.getProtocol().equals(protocol)) {
 				// password is stored encrypted, try to decrypt password
@@ -249,27 +306,25 @@ public class GlobalAuthenticator extends Authenticator {
 			return I18N.getMessage(I18N.getGUIBundle(), i18n);
 		}
 
-		/**
-		 * The current ProxyAddress
-		 *
-		 * @return The SocketAddress as given by the GlobalAuthenticator
-		 */
-		protected SocketAddress getProxyAddress() {
+        /**
+         * The current ProxyAddress
+         *
+         * @return The SocketAddress as given by the GlobalAuthenticator
+         */
+        protected SocketAddress getProxyAddress() {
 			return new InetSocketAddress(GlobalAuthenticator.getInstance().getRequestingHost(),
 					GlobalAuthenticator.getInstance().getRequestingPort());
 		}
 
-		/**
-		 * Verify the proxy by accessing the url using the given PasswordAuthentication
-		 *
-		 * @param url
-		 *            The URL to test
-		 * @param pA
-		 *            username+password to test
-		 * @return A valid passwordAuthentication or null
-		 * @throws PasswordInputCanceledException
-		 */
-		protected PasswordAuthentication verify(URL url, PasswordAuthentication pA) throws PasswordInputCanceledException {
+        /**
+         * Verify the proxy by accessing the url using the given PasswordAuthentication
+         *
+         * @param url The URL to test
+         * @param pA  username+password to test
+         * @return A valid passwordAuthentication or null
+         * @throws PasswordInputCanceledException the password input canceled exception
+         */
+        protected PasswordAuthentication verify(URL url, PasswordAuthentication pA) throws PasswordInputCanceledException {
 			try {
 				// make sure to only call foo.bar not foo.bar/destroy/world
 				URL safeUrl = new URL(url.getProtocol(), url.getHost(), url.getPort(), "");
@@ -293,21 +348,23 @@ public class GlobalAuthenticator extends Authenticator {
 
 	private static class SocksProxyAuthenticator extends ProxyAuthenticator {
 
-		/**
-		 * SOCKS implementation is screwed up, so we don't have access to the requested URI
-		 */
-		public static final String TEST_URL = "http://www.rapidminer.com";
-		/**
-		 * Magic string for SOCKS proxies
-		 *
-		 * @see {@link SocksSocketImpl#authenticate(byte, InputStream, BufferedOutputStream, long)}
-		 */
-		public static final String SOCKS5 = "SOCKS5";
+        /**
+         * SOCKS implementation is screwed up, so we don't have access to the requested URI
+         */
+        public static final String TEST_URL = "http://www.rapidminer.com";
+        /**
+         * Magic string for SOCKS proxies
+         *
+         * @see {@link SocksSocketImpl#authenticate(byte, InputStream, BufferedOutputStream, long)}
+         */
+        public static final String SOCKS5 = "SOCKS5";
 
-		/**
-		 * @param protocol
-		 */
-		public SocksProxyAuthenticator(String protocol) {
+        /**
+         * Instantiates a new Socks proxy authenticator.
+         *
+         * @param protocol the protocol
+         */
+        public SocksProxyAuthenticator(String protocol) {
 			super(protocol);
 		}
 

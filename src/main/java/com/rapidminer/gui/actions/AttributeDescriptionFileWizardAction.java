@@ -29,14 +29,17 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AttributeDescriptionFileWizardAction extends ResourceAction implements ConfigurationListener {
 
 	private static final long serialVersionUID = 5591885109312707090L;
 
-	public AttributeDescriptionFileWizardAction() {
+    /**
+     * Instantiates a new Attribute description file wizard action.
+     */
+    public AttributeDescriptionFileWizardAction() {
 		super("attribute_wizard");
 	}
 

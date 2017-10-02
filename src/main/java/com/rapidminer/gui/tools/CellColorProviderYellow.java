@@ -23,7 +23,7 @@ import java.awt.Color;
 
 /**
  * This provider always delivers the lightest available yellow tone.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CellColorProviderYellow implements CellColorProvider {

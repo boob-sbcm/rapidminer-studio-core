@@ -47,7 +47,7 @@ import com.rapidminer.tools.Ontology;
  * calculates. If an input performance vector was already given, this is used for keeping the
  * performance values.
  * </p>
- *
+ * <p>
  * <p>
  * All of the performance criteria can be switched on using boolean parameters. Their values can be
  * queried by a ProcessLogOperator using the same names. The main criterion is used for comparisons
@@ -55,7 +55,7 @@ import com.rapidminer.tools.Ontology;
  * selection or other meta optimization process setups. If no other main criterion was selected, the
  * first criterion in the resulting performance vector will be assumed to be the main criterion.
  * </p>
- *
+ * <p>
  * <p>
  * The resulting performance vectors are usually compared with a standard performance comparator
  * which only compares the fitness values of the main criterion. Other implementations than this
@@ -70,11 +70,11 @@ import com.rapidminer.tools.Ontology;
  */
 public class PolynominalClassificationPerformanceEvaluator extends AbstractPerformanceEvaluator {
 
-	/**
-	 * The parameter name for &quot;The weights for all classes (first column: class name, second
-	 * column: weight), empty: using 1 for all classes.&quot;
-	 */
-	public static final String PARAMETER_CLASS_WEIGHTS = "class_weights";
+    /**
+     * The parameter name for &quot;The weights for all classes (first column: class name, second
+     * column: weight), empty: using 1 for all classes.&quot;
+     */
+    public static final String PARAMETER_CLASS_WEIGHTS = "class_weights";
 
 	/** The proper criteria to the names. */
 	private static final Class<?>[] SIMPLE_CRITERIA_CLASSES = { com.rapidminer.operator.performance.AbsoluteError.class,
@@ -90,7 +90,12 @@ public class PolynominalClassificationPerformanceEvaluator extends AbstractPerfo
 		com.rapidminer.operator.performance.CrossEntropy.class, com.rapidminer.operator.performance.Margin.class,
 		com.rapidminer.operator.performance.SoftMarginLoss.class, com.rapidminer.operator.performance.LogisticLoss.class };
 
-	public PolynominalClassificationPerformanceEvaluator(OperatorDescription description) {
+    /**
+     * Instantiates a new Polynominal classification performance evaluator.
+     *
+     * @param description the description
+     */
+    public PolynominalClassificationPerformanceEvaluator(OperatorDescription description) {
 		super(description);
 	}
 

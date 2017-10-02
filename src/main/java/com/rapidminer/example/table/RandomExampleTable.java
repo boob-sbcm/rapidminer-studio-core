@@ -31,7 +31,7 @@ import java.util.List;
  * i.e. each random value lies in the same range as values of the given attributes (min and max) of
  * the base example set. Please note that the attributes must already have proper minimum and
  * maximum values. The random values are constructed by a {@link RandomDataRowReader}.
- * 
+ *
  * @author Ingo Mierswa Exp $
  * @deprecated since 7.5.4.
  */
@@ -44,7 +44,14 @@ public class RandomExampleTable extends AbstractExampleTable {
 
 	private int size;
 
-	public RandomExampleTable(ExampleSet baseExampleSet, List<Attribute> attributes, int size) {
+    /**
+     * Instantiates a new Random example table.
+     *
+     * @param baseExampleSet the base example set
+     * @param attributes     the attributes
+     * @param size           the size
+     */
+    public RandomExampleTable(ExampleSet baseExampleSet, List<Attribute> attributes, int size) {
 		super(attributes);
 		this.baseExampleSet = baseExampleSet;
 		this.size = size;

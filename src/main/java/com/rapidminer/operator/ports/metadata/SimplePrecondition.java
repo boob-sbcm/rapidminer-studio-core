@@ -26,20 +26,32 @@ import java.util.Collection;
 /**
  * Checks whether a given port receives an object of a desired class. If more checks are desired,
  * override {@link #makeAdditionalChecks}.
- * 
+ *
  * @author Simon Fischer
- * 
- * */
+ */
 public class SimplePrecondition extends AbstractPrecondition {
 
 	private final MetaData desiredMetaData;
 	private final boolean mandatory;
 
-	public SimplePrecondition(InputPort inputPort, MetaData desiredMetaData) {
+    /**
+     * Instantiates a new Simple precondition.
+     *
+     * @param inputPort       the input port
+     * @param desiredMetaData the desired meta data
+     */
+    public SimplePrecondition(InputPort inputPort, MetaData desiredMetaData) {
 		this(inputPort, desiredMetaData, true);
 	}
 
-	public SimplePrecondition(InputPort inputPort, MetaData desiredMetaData, boolean mandatory) {
+    /**
+     * Instantiates a new Simple precondition.
+     *
+     * @param inputPort       the input port
+     * @param desiredMetaData the desired meta data
+     * @param mandatory       the mandatory
+     */
+    public SimplePrecondition(InputPort inputPort, MetaData desiredMetaData, boolean mandatory) {
 		super(inputPort);
 		this.desiredMetaData = desiredMetaData;
 		this.mandatory = mandatory;
@@ -69,8 +81,12 @@ public class SimplePrecondition extends AbstractPrecondition {
 		return (isMandatory() ? "<em>expects:</em> " : "<em>optional:</em> ") + desiredMetaData;
 	}
 
-	/** Override this method to make additional checks. The default implementation does nothing. */
-	public void makeAdditionalChecks(MetaData received) {}
+    /**
+     * Override this method to make additional checks. The default implementation does nothing.  @param received the received
+     *
+     * @param received the received
+     */
+    public void makeAdditionalChecks(MetaData received) {}
 
 	@Override
 	public boolean isCompatible(MetaData input, CompatibilityLevel level) {
@@ -88,7 +104,12 @@ public class SimplePrecondition extends AbstractPrecondition {
 		}
 	}
 
-	protected boolean isMandatory() {
+    /**
+     * Is mandatory boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean isMandatory() {
 		return mandatory;
 	}
 

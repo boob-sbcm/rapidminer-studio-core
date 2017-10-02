@@ -34,7 +34,7 @@ import com.rapidminer.operator.ports.OutputPort;
  * matrixes up to now cannot be used by other operators but can be displayed to the user in the
  * result tab.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that this simple implementation performs a data scan for each attribute combination
  * and might therefore take some time for non-memory example tables.
@@ -48,23 +48,45 @@ public abstract class AbstractPairwiseMatrixOperator extends Operator {
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort matrixOutput = getOutputPorts().createPort("matrix");
 
-	public AbstractPairwiseMatrixOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract pairwise matrix operator.
+     *
+     * @param description the description
+     */
+    public AbstractPairwiseMatrixOperator(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addPassThroughRule(exampleSetInput, exampleSetOutput);
 		getTransformer().addGenerationRule(matrixOutput, NumericalMatrix.class);
 	}
 
-	public abstract String getMatrixName();
+    /**
+     * Gets matrix name.
+     *
+     * @return the matrix name
+     */
+    public abstract String getMatrixName();
 
-	public abstract double getMatrixValue(ExampleSet exampleSet, Attribute firstAttribute, Attribute secondAttribute);
+    /**
+     * Gets matrix value.
+     *
+     * @param exampleSet      the example set
+     * @param firstAttribute  the first attribute
+     * @param secondAttribute the second attribute
+     * @return the matrix value
+     */
+    public abstract double getMatrixValue(ExampleSet exampleSet, Attribute firstAttribute, Attribute secondAttribute);
 
-	/**
-	 * This default implementation does nothing. Subclasses might calculate for example a
-	 * discretization but should either deliver a new view or a fresh example set in order to not
-	 * change the underlying data.
-	 */
-	protected ExampleSet performPreprocessing(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * This default implementation does nothing. Subclasses might calculate for example a
+     * discretization but should either deliver a new view or a fresh example set in order to not
+     * change the underlying data.
+     *
+     * @param exampleSet the example set
+     * @return the example set
+     * @throws OperatorException the operator exception
+     */
+    protected ExampleSet performPreprocessing(ExampleSet exampleSet) throws OperatorException {
 		return exampleSet;
 	}
 

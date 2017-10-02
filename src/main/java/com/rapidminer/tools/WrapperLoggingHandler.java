@@ -24,24 +24,40 @@ import java.util.logging.Logger;
 
 /**
  * Forwards log messages to a {@link Logger}
- * 
+ *
  * @author Simon Fischer
- * */
+ */
 public class WrapperLoggingHandler implements LoggingHandler {
 
-	public static final Level[] LEVELS = { Level.ALL, Level.FINER, Level.FINE,
+    /**
+     * The constant LEVELS.
+     */
+    public static final Level[] LEVELS = { Level.ALL, Level.FINER, Level.FINE,
 
 	Level.INFO, Level.INFO, Level.WARNING, Level.SEVERE, Level.SEVERE, Level.SEVERE, Level.OFF };
 
 	private Logger logger;
 
-	public WrapperLoggingHandler() {}
+    /**
+     * Instantiates a new Wrapper logging handler.
+     */
+    public WrapperLoggingHandler() {}
 
-	public WrapperLoggingHandler(Logger logger) {
+    /**
+     * Instantiates a new Wrapper logging handler.
+     *
+     * @param logger the logger
+     */
+    public WrapperLoggingHandler(Logger logger) {
 		this.logger = logger;
 	}
 
-	public void setLogger(Logger logger) {
+    /**
+     * Sets logger.
+     *
+     * @param logger the logger
+     */
+    public void setLogger(Logger logger) {
 		this.logger = logger;
 	}
 

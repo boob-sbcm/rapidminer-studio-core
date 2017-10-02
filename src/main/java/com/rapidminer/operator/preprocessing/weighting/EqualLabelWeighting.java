@@ -59,7 +59,12 @@ public class EqualLabelWeighting extends AbstractExampleWeighting {
 	 */
 	private static final OperatorVersion VERSION_MAY_WRITE_INTO_DATA = new OperatorVersion(7, 1, 1);
 
-	public EqualLabelWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Equal label weighting.
+     *
+     * @param description the description
+     */
+    public EqualLabelWeighting(OperatorDescription description) {
 		super(description);
 	}
 

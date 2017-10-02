@@ -27,13 +27,15 @@ import java.net.URL;
  * A class loader that consecutively tries to load classes from all registered plugins. It starts
  * with the system class loader and then tries all plugins in the order as returned by
  * {@link Plugin#getAllPlugins()}.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class AllPluginsClassLoader extends ClassLoader {
 
-	public AllPluginsClassLoader() {
+    /**
+     * Instantiates a new All plugins class loader.
+     */
+    public AllPluginsClassLoader() {
 		super(RapidMiner.class.getClassLoader());
 	}
 

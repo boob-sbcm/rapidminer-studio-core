@@ -62,16 +62,22 @@ import com.rapidminer.tools.math.AverageVector;
  */
 public abstract class ValidationChain extends OperatorChain implements CapabilityProvider {
 
-	/**
-	 * The parameter name for &quot;Indicates if a model of the complete data set should be
-	 * additionally build after estimation.&quot;
-	 */
-	public static final String PARAMETER_CREATE_COMPLETE_MODEL = "create_complete_model";
+    /**
+     * The parameter name for &quot;Indicates if a model of the complete data set should be
+     * additionally build after estimation.&quot;
+     */
+    public static final String PARAMETER_CREATE_COMPLETE_MODEL = "create_complete_model";
 
-	// input
+    /**
+     * The Training set input.
+     */
+// input
 	protected final InputPort trainingSetInput = getInputPorts().createPort("training", ExampleSet.class);
 
-	// training
+    /**
+     * The Training process example set output.
+     */
+// training
 	protected final OutputPort trainingProcessExampleSetOutput = getSubprocess(0).getInnerSources().createPort("training");
 	private final InputPort trainingProcessModelInput = getSubprocess(0).getInnerSinks().createPort("model", Model.class);
 
@@ -85,7 +91,10 @@ public abstract class ValidationChain extends OperatorChain implements Capabilit
 	private final PortPairExtender applyProcessPerformancePortExtender = new PortPairExtender("averagable",
 			getSubprocess(1).getInnerSinks(), getOutputPorts(), new MetaData(AverageVector.class));
 
-	// output
+    /**
+     * The Model output.
+     */
+// output
 	protected final OutputPort modelOutput = getOutputPorts().createPort("model");
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("training");
 
@@ -97,7 +106,12 @@ public abstract class ValidationChain extends OperatorChain implements Capabilit
 	private double lastSecondPerformance = Double.NaN;
 	private double lastThirdPerformance = Double.NaN;
 
-	public ValidationChain(OperatorDescription description) {
+    /**
+     * Instantiates a new Validation chain.
+     *
+     * @param description the description
+     */
+    public ValidationChain(OperatorDescription description) {
 		super(description, "Training", "Testing");
 		throughExtender.start();
 
@@ -186,16 +200,32 @@ public abstract class ValidationChain extends OperatorChain implements Capabilit
 		});
 	}
 
-	/**
-	 * This method can be overwritten in order to give a more senseful quickfix.
-	 */
-	protected Precondition getCapabilityPrecondition() {
+    /**
+     * This method can be overwritten in order to give a more senseful quickfix.
+     *
+     * @return the capability precondition
+     */
+    protected Precondition getCapabilityPrecondition() {
 		return new CapabilityPrecondition(this, trainingSetInput);
 	}
 
-	protected abstract MDInteger getTrainingSetSize(MDInteger originalSize) throws UndefinedParameterError;
+    /**
+     * Gets training set size.
+     *
+     * @param originalSize the original size
+     * @return the training set size
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected abstract MDInteger getTrainingSetSize(MDInteger originalSize) throws UndefinedParameterError;
 
-	protected abstract MDInteger getTestSetSize(MDInteger originalSize) throws UndefinedParameterError;
+    /**
+     * Gets test set size.
+     *
+     * @param originalSize the original size
+     * @return the test set size
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected abstract MDInteger getTestSetSize(MDInteger originalSize) throws UndefinedParameterError;
 
 	@Override
 	public boolean shouldAutoConnect(OutputPort outputPort) {
@@ -208,29 +238,32 @@ public abstract class ValidationChain extends OperatorChain implements Capabilit
 		}
 	}
 
-	/**
-	 * This is the main method of the validation chain and must be implemented to estimate a
-	 * performance of inner operators on the given example set. The implementation can make use of
-	 * the provided helper methods in this class.
-	 */
-	public abstract void estimatePerformance(ExampleSet inputSet) throws OperatorException;
+    /**
+     * This is the main method of the validation chain and must be implemented to estimate a
+     * performance of inner operators on the given example set. The implementation can make use of
+     * the provided helper methods in this class.
+     *
+     * @param inputSet the input set
+     * @throws OperatorException the operator exception
+     */
+    public abstract void estimatePerformance(ExampleSet inputSet) throws OperatorException;
 
-	/**
-	 * Returns the first subprocess (or operator chain), i.e. the learning operator (chain).
-	 *
-	 * @throws OperatorException
-	 */
-	protected void executeLearner() throws OperatorException {
+    /**
+     * Returns the first subprocess (or operator chain), i.e. the learning operator (chain).
+     *
+     * @throws OperatorException the operator exception
+     */
+    protected void executeLearner() throws OperatorException {
 		getSubprocess(0).execute();
 	}
 
-	/**
-	 * Returns the second encapsulated inner operator (or operator chain), i.e. the application and
-	 * evaluation operator (chain)
-	 *
-	 * @throws OperatorException
-	 */
-	protected void executeEvaluator() throws OperatorException {
+    /**
+     * Returns the second encapsulated inner operator (or operator chain), i.e. the application and
+     * evaluation operator (chain)
+     *
+     * @throws OperatorException the operator exception
+     */
+    protected void executeEvaluator() throws OperatorException {
 		getSubprocess(1).execute();
 	}
 
@@ -307,25 +340,38 @@ public abstract class ValidationChain extends OperatorChain implements Capabilit
 		}
 	}
 
-	/** Applies the learner (= first encapsulated inner operator). for building the final model. */
-	protected void learnFinalModel(ExampleSet trainingSet) throws OperatorException {
+    /**
+     * Applies the learner (= first encapsulated inner operator). for building the final model.  @param trainingSet the training set
+     *
+     * @param trainingSet the training set
+     * @throws OperatorException the operator exception
+     */
+    protected void learnFinalModel(ExampleSet trainingSet) throws OperatorException {
 		learn(trainingSet);
 	}
 
-	/** Applies the learner (= first encapsulated inner operator). */
-	protected final void learn(ExampleSet trainingSet) throws OperatorException {
+    /**
+     * Applies the learner (= first encapsulated inner operator).  @param trainingSet the training set
+     *
+     * @param trainingSet the training set
+     * @throws OperatorException the operator exception
+     */
+    protected final void learn(ExampleSet trainingSet) throws OperatorException {
 		trainingProcessExampleSetOutput.deliver(trainingSet);
 		executeLearner();
 	}
 
-	/**
-	 * Applies the applier and evaluator (= second subprocess). In order to reuse possibly created
-	 * predicted label attributes, we do the following: We compare the predicted label of
-	 * <code>testSet</code> before and after applying the inner operator. If it changed, the
-	 * predicted label is removed again. No outer operator could ever see it. The same applies for
-	 * the confidence attributes in case of classification learning.
-	 */
-	protected final void evaluate(ExampleSet testSet) throws OperatorException {
+    /**
+     * Applies the applier and evaluator (= second subprocess). In order to reuse possibly created
+     * predicted label attributes, we do the following: We compare the predicted label of
+     * <code>testSet</code> before and after applying the inner operator. If it changed, the
+     * predicted label is removed again. No outer operator could ever see it. The same applies for
+     * the confidence attributes in case of classification learning.
+     *
+     * @param testSet the test set
+     * @throws OperatorException the operator exception
+     */
+    protected final void evaluate(ExampleSet testSet) throws OperatorException {
 		Attribute predictedBefore = testSet.getAttributes().getPredictedLabel();
 
 		applyProcessExampleSetOutput.deliver(testSet);

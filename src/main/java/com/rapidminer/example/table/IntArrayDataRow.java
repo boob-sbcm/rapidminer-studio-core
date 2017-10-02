@@ -20,7 +20,7 @@ package com.rapidminer.example.table;
 
 /**
  * Implementation of DataRow that is backed by an integer array.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class IntArrayDataRow extends DataRow {
@@ -30,8 +30,12 @@ public class IntArrayDataRow extends DataRow {
 	/** Holds the data for all attributes. */
 	private int[] data;
 
-	/** Creates a new data row backed by an primitive array. */
-	public IntArrayDataRow(int[] data) {
+    /**
+     * Creates a new data row backed by an primitive array.  @param data the data
+     *
+     * @param data the data
+     */
+    public IntArrayDataRow(int[] data) {
 		this.data = data;
 	}
 

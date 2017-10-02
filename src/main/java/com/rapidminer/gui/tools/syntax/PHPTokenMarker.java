@@ -32,12 +32,15 @@ import javax.swing.text.Segment;
 
 /**
  * PHP token marker.
- * 
+ *
  * @author Clancy Malcolm, Ingo Mierswa
  */
 public class PHPTokenMarker extends TokenMarker {
 
-	public static final byte SCRIPT = Token.INTERNAL_FIRST;
+    /**
+     * The constant SCRIPT.
+     */
+    public static final byte SCRIPT = Token.INTERNAL_FIRST;
 
 	@Override
 	public byte markTokensImpl(byte token, Segment line, int lineIndex) {

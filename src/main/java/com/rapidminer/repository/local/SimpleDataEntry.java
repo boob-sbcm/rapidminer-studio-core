@@ -22,11 +22,20 @@ import com.rapidminer.repository.DataEntry;
 
 
 /**
+ * The type Simple data entry.
+ *
  * @author Simon Fischer
  */
 public abstract class SimpleDataEntry extends SimpleEntry implements DataEntry {
 
-	SimpleDataEntry(String name, SimpleFolder containingFolder, LocalRepository localRepository) {
+    /**
+     * Instantiates a new Simple data entry.
+     *
+     * @param name             the name
+     * @param containingFolder the containing folder
+     * @param localRepository  the local repository
+     */
+    SimpleDataEntry(String name, SimpleFolder containingFolder, LocalRepository localRepository) {
 		super(name, containingFolder, localRepository);
 	}
 

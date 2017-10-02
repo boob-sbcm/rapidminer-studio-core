@@ -23,14 +23,19 @@ import com.rapidminer.example.ExampleSet;
 
 /**
  * Terminates if the example set has less than minSize examples.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class MinSizeTermination implements Terminator {
 
 	private int minSize;
 
-	public MinSizeTermination(int minSize) {
+    /**
+     * Instantiates a new Min size termination.
+     *
+     * @param minSize the min size
+     */
+    public MinSizeTermination(int minSize) {
 		this.minSize = minSize;
 	}
 

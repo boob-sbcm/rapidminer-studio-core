@@ -50,7 +50,8 @@ import java.util.Map;
 /**
  * Superclass of all operators that have no input and generate a single output. This class is mainly
  * a tribute to the e-LICO DMO.
- * 
+ *
+ * @param <T> the type parameter
  * @author Simon Fischer
  */
 public abstract class AbstractReader<T extends IOObject> extends Operator {
@@ -62,7 +63,13 @@ public abstract class AbstractReader<T extends IOObject> extends Operator {
 	private MetaData cachedMetaData;
 	private MetaDataError cachedError;
 
-	public AbstractReader(OperatorDescription description, Class<? extends IOObject> generatedClass) {
+    /**
+     * Instantiates a new Abstract reader.
+     *
+     * @param description    the description
+     * @param generatedClass the generated class
+     */
+    public AbstractReader(OperatorDescription description, Class<? extends IOObject> generatedClass) {
 		super(description);
 		this.generatedClass = generatedClass;
 		getTransformer().addRule(new MDTransformationRule() {
@@ -110,16 +117,32 @@ public abstract class AbstractReader<T extends IOObject> extends Operator {
 		}, false);
 	}
 
-	public MetaData getGeneratedMetaData() throws OperatorException {
+    /**
+     * Gets generated meta data.
+     *
+     * @return the generated meta data
+     * @throws OperatorException the operator exception
+     */
+    public MetaData getGeneratedMetaData() throws OperatorException {
 		return new MetaData(generatedClass);
 	}
 
-	protected boolean isMetaDataCacheable() {
+    /**
+     * Is meta data cacheable boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean isMetaDataCacheable() {
 		return false;
 	}
 
-	/** Creates (or reads) the ExampleSet that will be returned by {@link #apply()}. */
-	public abstract T read() throws OperatorException;
+    /**
+     * Creates (or reads) the ExampleSet that will be returned by {@link #apply()}.  @return the t
+     *
+     * @return the t
+     * @throws OperatorException the operator exception
+     */
+    public abstract T read() throws OperatorException;
 
 	@Override
 	public void doWork() throws OperatorException {
@@ -128,7 +151,12 @@ public abstract class AbstractReader<T extends IOObject> extends Operator {
 		outputPort.deliver(result);
 	}
 
-	protected void addAnnotations(T result) {
+    /**
+     * Add annotations.
+     *
+     * @param result the result
+     */
+    protected void addAnnotations(T result) {
 		for (ReaderDescription rd : READER_DESCRIPTIONS.values()) {
 			if (rd.readerClass.equals(this.getClass())) {
 				if (result.getAnnotations().getAnnotation(Annotations.KEY_SOURCE) == null) {
@@ -145,15 +173,24 @@ public abstract class AbstractReader<T extends IOObject> extends Operator {
 		}
 	}
 
-	/** Describes an operator that can read certain file types. */
-	public static class ReaderDescription {
+    /**
+     * Describes an operator that can read certain file types.
+     */
+    public static class ReaderDescription {
 
 		private final String fileExtension;
 		private final Class<? extends AbstractReader<?>> readerClass;
 		/** This parameter must be set to the file name. */
 		private final String fileParameterKey;
 
-		public ReaderDescription(String fileExtension, Class<? extends AbstractReader<?>> readerClass,
+        /**
+         * Instantiates a new Reader description.
+         *
+         * @param fileExtension    the file extension
+         * @param readerClass      the reader class
+         * @param fileParameterKey the file parameter key
+         */
+        public ReaderDescription(String fileExtension, Class<? extends AbstractReader<?>> readerClass,
 				String fileParameterKey) {
 			super();
 			this.fileExtension = fileExtension;
@@ -164,15 +201,24 @@ public abstract class AbstractReader<T extends IOObject> extends Operator {
 
 	private static final Map<String, ReaderDescription> READER_DESCRIPTIONS = new HashMap<String, ReaderDescription>();
 
-	/** Registers an operator that can read files with a given extension. */
-	protected static void registerReaderDescription(ReaderDescription rd) {
+    /**
+     * Registers an operator that can read files with a given extension.  @param rd the rd
+     *
+     * @param rd the rd
+     */
+    protected static void registerReaderDescription(ReaderDescription rd) {
 		READER_DESCRIPTIONS.put(rd.fileExtension.toLowerCase(), rd);
 	}
 
-	/**
-	 * @depreacated call {@link #createReader(URI)}
-	 */
-	@Deprecated
+    /**
+     * Create reader abstract reader.
+     *
+     * @param url the url
+     * @return the abstract reader
+     * @throws OperatorCreationException the operator creation exception
+     * @depreacated call {@link #createReader(URI)}
+     */
+    @Deprecated
 	public static AbstractReader<?> createReader(URL url) throws OperatorCreationException {
 		try {
 			return createReader(url.toURI());
@@ -181,12 +227,16 @@ public abstract class AbstractReader<T extends IOObject> extends Operator {
 		}
 	}
 
-	/**
-	 * Returns a reader that can read the given file or URL. The type is determined by looking at
-	 * the file extension. Only Operators registered via
-	 * {@link #registerReaderDescription(ReaderDescription)} will be checked.
-	 */
-	public static AbstractReader<?> createReader(URI uri) throws OperatorCreationException {
+    /**
+     * Returns a reader that can read the given file or URL. The type is determined by looking at
+     * the file extension. Only Operators registered via
+     * {@link #registerReaderDescription(ReaderDescription)} will be checked.
+     *
+     * @param uri the uri
+     * @return the abstract reader
+     * @throws OperatorCreationException the operator creation exception
+     */
+    public static AbstractReader<?> createReader(URI uri) throws OperatorCreationException {
 		String fileName = uri.toString();
 		int dot = fileName.lastIndexOf('.');
 		if (dot == -1) {
@@ -212,7 +262,13 @@ public abstract class AbstractReader<T extends IOObject> extends Operator {
 		}
 	}
 
-	public static boolean canMakeReaderFor(URL url) {
+    /**
+     * Can make reader for boolean.
+     *
+     * @param url the url
+     * @return the boolean
+     */
+    public static boolean canMakeReaderFor(URL url) {
 		String file = url.getFile();
 		int dot = file.lastIndexOf('.');
 		if (dot == -1) {
@@ -223,8 +279,13 @@ public abstract class AbstractReader<T extends IOObject> extends Operator {
 		}
 	}
 
-	/** Returns the key of the parameter that specifies the file to be read. */
-	public static String getFileParameterForOperator(Operator operator) {
+    /**
+     * Returns the key of the parameter that specifies the file to be read.  @param operator the operator
+     *
+     * @param operator the operator
+     * @return the file parameter for operator
+     */
+    public static String getFileParameterForOperator(Operator operator) {
 		for (ReaderDescription rd : READER_DESCRIPTIONS.values()) {
 			if (rd.readerClass.equals(operator.getClass())) {
 				return rd.fileParameterKey;
@@ -239,7 +300,12 @@ public abstract class AbstractReader<T extends IOObject> extends Operator {
 		cacheDirty = true;
 	}
 
-	protected boolean supportsEncoding() {
+    /**
+     * Supports encoding boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean supportsEncoding() {
 		return false;
 	}
 

@@ -52,7 +52,10 @@ public class DrillerOscillationFunction implements TargetFunction {
 	private int numberOfAttributes;
 	private int numberOfExamples;
 
-	public DrillerOscillationFunction() {}
+    /**
+     * Instantiates a new Driller oscillation function.
+     */
+    public DrillerOscillationFunction() {}
 
 	@Override
 	public double calculate(double[] args) throws FunctionException {

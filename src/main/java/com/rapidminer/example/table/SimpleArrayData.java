@@ -20,11 +20,16 @@ package com.rapidminer.example.table;
 
 /**
  * The data is hold as string array. Objects of this type are used by the SimpleArrayDataRowReader.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface SimpleArrayData {
 
-	public String[] getData();
+    /**
+     * Get data string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getData();
 
 }

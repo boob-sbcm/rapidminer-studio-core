@@ -40,7 +40,7 @@ import com.rapidminer.tools.XMLException;
  * for a parameter type category) have to transform the values themself, e.g. with the following
  * code:<br/>
  * <br/>
- *
+ * <p>
  * <code>int index = ((ParameterTypeCategory)((ParameterTypeList)getParameters().getParameterType(PARAMETER_LIST)).getValueType()).getIndex(pair[1]);</code>
  *
  * @author Ingo Mierswa, Simon Fischer
@@ -62,7 +62,13 @@ public class ParameterTypeList extends CombinedParameterType {
 	private final ParameterType valueType;
 	private final ParameterType keyType;
 
-	public ParameterTypeList(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type list.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeList(Element element) throws XMLException {
 		super(element);
 
 		valueType = ParameterType.createType(XMLTools.getChildElement(element, ELEMENT_VALUE_TYPE, true));
@@ -76,7 +82,14 @@ public class ParameterTypeList extends CombinedParameterType {
 		}
 	}
 
-	@Deprecated
+    /**
+     * Instantiates a new Parameter type list.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param valueType   the value type
+     */
+    @Deprecated
 	/**
 	 * This constructor is deprecated, because it does not provide enough information for user guidance
 	 */
@@ -84,7 +97,15 @@ public class ParameterTypeList extends CombinedParameterType {
 		this(key, description, valueType, new LinkedList<String[]>());
 	}
 
-	@Deprecated
+    /**
+     * Instantiates a new Parameter type list.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param valueType   the value type
+     * @param defaultList the default list
+     */
+    @Deprecated
 	/**
 	 * This constructor is deprecated, because it does not provide enough information for user guidance
 	 */
@@ -98,22 +119,58 @@ public class ParameterTypeList extends CombinedParameterType {
 		}
 	}
 
-	public ParameterTypeList(String key, String description, ParameterType keyType, ParameterType valueType, boolean expert) {
+    /**
+     * Instantiates a new Parameter type list.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param keyType     the key type
+     * @param valueType   the value type
+     * @param expert      the expert
+     */
+    public ParameterTypeList(String key, String description, ParameterType keyType, ParameterType valueType, boolean expert) {
 		this(key, description, keyType, valueType, new LinkedList<String[]>());
 		setExpert(expert);
 	}
 
-	public ParameterTypeList(String key, String description, ParameterType keyType, ParameterType valueType) {
+    /**
+     * Instantiates a new Parameter type list.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param keyType     the key type
+     * @param valueType   the value type
+     */
+    public ParameterTypeList(String key, String description, ParameterType keyType, ParameterType valueType) {
 		this(key, description, keyType, valueType, new LinkedList<String[]>());
 	}
 
-	public ParameterTypeList(String key, String description, ParameterType keyType, ParameterType valueType,
+    /**
+     * Instantiates a new Parameter type list.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param keyType     the key type
+     * @param valueType   the value type
+     * @param defaultList the default list
+     * @param expert      the expert
+     */
+    public ParameterTypeList(String key, String description, ParameterType keyType, ParameterType valueType,
 			List<String[]> defaultList, boolean expert) {
 		this(key, description, keyType, valueType, defaultList);
 		setExpert(expert);
 	}
 
-	public ParameterTypeList(String key, String description, ParameterType keyType, ParameterType valueType,
+    /**
+     * Instantiates a new Parameter type list.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param keyType     the key type
+     * @param valueType   the value type
+     * @param defaultList the default list
+     */
+    public ParameterTypeList(String key, String description, ParameterType keyType, ParameterType valueType,
 			List<String[]> defaultList) {
 		super(key, description, keyType, valueType);
 		this.defaultList = defaultList;
@@ -121,11 +178,21 @@ public class ParameterTypeList extends CombinedParameterType {
 		this.keyType = keyType;
 	}
 
-	public ParameterType getValueType() {
+    /**
+     * Gets value type.
+     *
+     * @return the value type
+     */
+    public ParameterType getValueType() {
 		return valueType;
 	}
 
-	public ParameterType getKeyType() {
+    /**
+     * Gets key type.
+     *
+     * @return the key type
+     */
+    public ParameterType getKeyType() {
 		return keyType;
 	}
 
@@ -210,7 +277,13 @@ public class ParameterTypeList extends CombinedParameterType {
 		}
 	}
 
-	public static String transformList2String(List<String[]> parameterList) {
+    /**
+     * Transform list 2 string string.
+     *
+     * @param parameterList the parameter list
+     * @return the string
+     */
+    public static String transformList2String(List<String[]> parameterList) {
 		StringBuffer result = new StringBuffer();
 		Iterator<String[]> i = parameterList.iterator();
 		boolean first = true;
@@ -239,7 +312,13 @@ public class ParameterTypeList extends CombinedParameterType {
 		return result.toString();
 	}
 
-	public static List<String[]> transformString2List(String listString) {
+    /**
+     * Transform string 2 list list.
+     *
+     * @param listString the list string
+     * @return the list
+     */
+    public static List<String[]> transformString2List(String listString) {
 		List<String[]> result = new LinkedList<>();
 		String[] splittedList = listString.split(Character.valueOf(Parameters.RECORD_SEPARATOR).toString());
 		for (String record : splittedList) {

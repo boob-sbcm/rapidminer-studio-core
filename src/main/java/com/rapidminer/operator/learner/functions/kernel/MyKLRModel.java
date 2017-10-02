@@ -28,19 +28,32 @@ import com.rapidminer.operator.learner.functions.kernel.logistic.KLR;
 
 /**
  * The model for the MyKLR learner by Stefan Rueping.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MyKLRModel extends AbstractMySVMModel {
 
 	private static final long serialVersionUID = 8033254475867697195L;
 
-	public MyKLRModel(ExampleSet exampleSet,
+    /**
+     * Instantiates a new My klr model.
+     *
+     * @param exampleSet the example set
+     * @param model      the model
+     * @param kernel     the kernel
+     * @param kernelType the kernel type
+     */
+    public MyKLRModel(ExampleSet exampleSet,
 			com.rapidminer.operator.learner.functions.kernel.jmysvm.examples.SVMExamples model, Kernel kernel, int kernelType) {
 		super(exampleSet, model, kernel, kernelType);
 	}
 
-	public String getModelInfo() {
+    /**
+     * Gets model info.
+     *
+     * @return the model info
+     */
+    public String getModelInfo() {
 		return "KLR Model (" + getNumberOfSupportVectors() + " support vectors)";
 	}
 

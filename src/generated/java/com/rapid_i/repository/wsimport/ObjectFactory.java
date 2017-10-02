@@ -25,18 +25,17 @@ import javax.xml.namespace.QName;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the com.rapid_i.repository.wsimport package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the com.rapid_i.repository.wsimport package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -70,14 +69,14 @@ public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.rapid_i.repository.wsimport
-     * 
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link GetFolderContentsResponse }
-     * 
+     *
+     * @return the get folder contents response
      */
     public GetFolderContentsResponse createGetFolderContentsResponse() {
         return new GetFolderContentsResponse();
@@ -85,7 +84,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DeleteEntryResponse }
-     * 
+     *
+     * @return the delete entry response
      */
     public DeleteEntryResponse createDeleteEntryResponse() {
         return new DeleteEntryResponse();
@@ -93,7 +93,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Rename }
-     * 
+     *
+     * @return the rename
      */
     public Rename createRename() {
         return new Rename();
@@ -101,7 +102,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetFolderContents }
-     * 
+     *
+     * @return the get folder contents
      */
     public GetFolderContents createGetFolderContents() {
         return new GetFolderContents();
@@ -109,7 +111,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetProcessContentsResponse }
-     * 
+     *
+     * @return the get process contents response
      */
     public GetProcessContentsResponse createGetProcessContentsResponse() {
         return new GetProcessContentsResponse();
@@ -117,7 +120,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SetAccessRightsResponse }
-     * 
+     *
+     * @return the set access rights response
      */
     public SetAccessRightsResponse createSetAccessRightsResponse() {
         return new SetAccessRightsResponse();
@@ -125,7 +129,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link StoreProcessResponse }
-     * 
+     *
+     * @return the store process response
      */
     public StoreProcessResponse createStoreProcessResponse() {
         return new StoreProcessResponse();
@@ -133,7 +138,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetEntryResponse }
-     * 
+     *
+     * @return the get entry response
      */
     public GetEntryResponse createGetEntryResponse() {
         return new GetEntryResponse();
@@ -141,7 +147,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetEntry }
-     * 
+     *
+     * @return the get entry
      */
     public GetEntry createGetEntry() {
         return new GetEntry();
@@ -149,7 +156,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetAccessRightsResponse }
-     * 
+     *
+     * @return the get access rights response
      */
     public GetAccessRightsResponse createGetAccessRightsResponse() {
         return new GetAccessRightsResponse();
@@ -157,7 +165,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetProcessContents }
-     * 
+     *
+     * @return the get process contents
      */
     public GetProcessContents createGetProcessContents() {
         return new GetProcessContents();
@@ -165,7 +174,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DeleteEntry }
-     * 
+     *
+     * @return the delete entry
      */
     public DeleteEntry createDeleteEntry() {
         return new DeleteEntry();
@@ -173,7 +183,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link StoreProcess }
-     * 
+     *
+     * @return the store process
      */
     public StoreProcess createStoreProcess() {
         return new StoreProcess();
@@ -181,7 +192,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link StartNewRevisionResponse }
-     * 
+     *
+     * @return the start new revision response
      */
     public StartNewRevisionResponse createStartNewRevisionResponse() {
         return new StartNewRevisionResponse();
@@ -189,7 +201,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RenameResponse }
-     * 
+     *
+     * @return the rename response
      */
     public RenameResponse createRenameResponse() {
         return new RenameResponse();
@@ -197,7 +210,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetAccessRights }
-     * 
+     *
+     * @return the get access rights
      */
     public GetAccessRights createGetAccessRights() {
         return new GetAccessRights();
@@ -205,7 +219,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MakeFolderResponse }
-     * 
+     *
+     * @return the make folder response
      */
     public MakeFolderResponse createMakeFolderResponse() {
         return new MakeFolderResponse();
@@ -213,7 +228,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MakeFolder }
-     * 
+     *
+     * @return the make folder
      */
     public MakeFolder createMakeFolder() {
         return new MakeFolder();
@@ -221,7 +237,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Move }
-     * 
+     *
+     * @return the move
      */
     public Move createMove() {
         return new Move();
@@ -229,7 +246,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link StartNewRevision }
-     * 
+     *
+     * @return the start new revision
      */
     public StartNewRevision createStartNewRevision() {
         return new StartNewRevision();
@@ -237,7 +255,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SetAccessRights }
-     * 
+     *
+     * @return the set access rights
      */
     public SetAccessRights createSetAccessRights() {
         return new SetAccessRights();
@@ -245,7 +264,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetAllGroupNamesResponse }
-     * 
+     *
+     * @return the get all group names response
      */
     public GetAllGroupNamesResponse createGetAllGroupNamesResponse() {
         return new GetAllGroupNamesResponse();
@@ -253,7 +273,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GetAllGroupNames }
-     * 
+     *
+     * @return the get all group names
      */
     public GetAllGroupNames createGetAllGroupNames() {
         return new GetAllGroupNames();
@@ -261,7 +282,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateBlobResponse }
-     * 
+     *
+     * @return the create blob response
      */
     public CreateBlobResponse createCreateBlobResponse() {
         return new CreateBlobResponse();
@@ -269,7 +291,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MoveResponse }
-     * 
+     *
+     * @return the move response
      */
     public MoveResponse createMoveResponse() {
         return new MoveResponse();
@@ -277,7 +300,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreateBlob }
-     * 
+     *
+     * @return the create blob
      */
     public CreateBlob createCreateBlob() {
         return new CreateBlob();
@@ -285,7 +309,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link EntryResponse }
-     * 
+     *
+     * @return the entry response
      */
     public EntryResponse createEntryResponse() {
         return new EntryResponse();
@@ -293,7 +318,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Response }
-     * 
+     *
+     * @return the response
      */
     public Response createResponse() {
         return new Response();
@@ -301,7 +327,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ProcessContentsResponse }
-     * 
+     *
+     * @return the process contents response
      */
     public ProcessContentsResponse createProcessContentsResponse() {
         return new ProcessContentsResponse();
@@ -309,7 +336,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AccessRights }
-     * 
+     *
+     * @return the access rights
      */
     public AccessRights createAccessRights() {
         return new AccessRights();
@@ -317,7 +345,8 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FolderContentsResponse }
-     * 
+     *
+     * @return the folder contents response
      */
     public FolderContentsResponse createFolderContentsResponse() {
         return new FolderContentsResponse();
@@ -325,7 +354,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetProcessContents }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "getProcessContents")
     public JAXBElement<GetProcessContents> createGetProcessContents(GetProcessContents value) {
@@ -334,7 +365,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetAccessRightsResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "getAccessRightsResponse")
     public JAXBElement<GetAccessRightsResponse> createGetAccessRightsResponse(GetAccessRightsResponse value) {
@@ -343,7 +376,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetEntry }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "getEntry")
     public JAXBElement<GetEntry> createGetEntry(GetEntry value) {
@@ -352,7 +387,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DeleteEntry }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "deleteEntry")
     public JAXBElement<DeleteEntry> createDeleteEntry(DeleteEntry value) {
@@ -361,7 +398,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link StoreProcess }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "storeProcess")
     public JAXBElement<StoreProcess> createStoreProcess(StoreProcess value) {
@@ -370,7 +409,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link StartNewRevisionResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "startNewRevisionResponse")
     public JAXBElement<StartNewRevisionResponse> createStartNewRevisionResponse(StartNewRevisionResponse value) {
@@ -379,7 +420,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link RenameResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "renameResponse")
     public JAXBElement<RenameResponse> createRenameResponse(RenameResponse value) {
@@ -388,7 +431,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetAccessRights }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "getAccessRights")
     public JAXBElement<GetAccessRights> createGetAccessRights(GetAccessRights value) {
@@ -397,7 +442,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link MakeFolderResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "makeFolderResponse")
     public JAXBElement<MakeFolderResponse> createMakeFolderResponse(MakeFolderResponse value) {
@@ -406,7 +453,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link MakeFolder }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "makeFolder")
     public JAXBElement<MakeFolder> createMakeFolder(MakeFolder value) {
@@ -415,7 +464,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Move }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "move")
     public JAXBElement<Move> createMove(Move value) {
@@ -424,7 +475,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetFolderContentsResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "getFolderContentsResponse")
     public JAXBElement<GetFolderContentsResponse> createGetFolderContentsResponse(GetFolderContentsResponse value) {
@@ -433,7 +486,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DeleteEntryResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "deleteEntryResponse")
     public JAXBElement<DeleteEntryResponse> createDeleteEntryResponse(DeleteEntryResponse value) {
@@ -442,7 +497,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Rename }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "rename")
     public JAXBElement<Rename> createRename(Rename value) {
@@ -451,7 +508,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SetAccessRightsResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "setAccessRightsResponse")
     public JAXBElement<SetAccessRightsResponse> createSetAccessRightsResponse(SetAccessRightsResponse value) {
@@ -460,7 +519,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetProcessContentsResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "getProcessContentsResponse")
     public JAXBElement<GetProcessContentsResponse> createGetProcessContentsResponse(GetProcessContentsResponse value) {
@@ -469,7 +530,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetFolderContents }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "getFolderContents")
     public JAXBElement<GetFolderContents> createGetFolderContents(GetFolderContents value) {
@@ -478,7 +541,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetEntryResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "getEntryResponse")
     public JAXBElement<GetEntryResponse> createGetEntryResponse(GetEntryResponse value) {
@@ -487,7 +552,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link StoreProcessResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "storeProcessResponse")
     public JAXBElement<StoreProcessResponse> createStoreProcessResponse(StoreProcessResponse value) {
@@ -496,7 +563,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetAllGroupNames }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "getAllGroupNames")
     public JAXBElement<GetAllGroupNames> createGetAllGroupNames(GetAllGroupNames value) {
@@ -505,7 +574,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateBlobResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "createBlobResponse")
     public JAXBElement<CreateBlobResponse> createCreateBlobResponse(CreateBlobResponse value) {
@@ -514,7 +585,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link MoveResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "moveResponse")
     public JAXBElement<MoveResponse> createMoveResponse(MoveResponse value) {
@@ -523,7 +596,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateBlob }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "createBlob")
     public JAXBElement<CreateBlob> createCreateBlob(CreateBlob value) {
@@ -532,7 +607,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link StartNewRevision }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "startNewRevision")
     public JAXBElement<StartNewRevision> createStartNewRevision(StartNewRevision value) {
@@ -541,7 +618,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SetAccessRights }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "setAccessRights")
     public JAXBElement<SetAccessRights> createSetAccessRights(SetAccessRights value) {
@@ -550,7 +629,9 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetAllGroupNamesResponse }{@code >}}
-     * 
+     *
+     * @param value the value
+     * @return the jaxb element
      */
     @XmlElementDecl(namespace = "http://service.web.rapidanalytics.de/", name = "getAllGroupNamesResponse")
     public JAXBElement<GetAllGroupNamesResponse> createGetAllGroupNamesResponse(GetAllGroupNamesResponse value) {

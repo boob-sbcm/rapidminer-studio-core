@@ -48,19 +48,32 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class TransactionClustersExampleSetGenerator extends AbstractExampleSource {
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_TRANSACTIONS = "number_transactions";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_TRANSACTIONS = "number_transactions";
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_CUSTOMERS = "number_customers";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_CUSTOMERS = "number_customers";
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_ITEMS = "number_items";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_ITEMS = "number_items";
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_CLUSTERS = "number_clusters";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_CLUSTERS = "number_clusters";
 
-	public TransactionClustersExampleSetGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Transaction clusters example set generator.
+     *
+     * @param description the description
+     */
+    public TransactionClustersExampleSetGenerator(OperatorDescription description) {
 		super(description);
 	}
 

@@ -80,7 +80,13 @@ public class PerformanceVectorViewer extends JPanel {
 
 	}
 
-	public PerformanceVectorViewer(final PerformanceVector performanceVector, final IOContainer container) {
+    /**
+     * Instantiates a new Performance vector viewer.
+     *
+     * @param performanceVector the performance vector
+     * @param container         the container
+     */
+    public PerformanceVectorViewer(final PerformanceVector performanceVector, final IOContainer container) {
 		setLayout(new BorderLayout());
 
 		// all criteria

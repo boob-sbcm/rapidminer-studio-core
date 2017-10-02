@@ -27,26 +27,48 @@ import com.rapidminer.parameter.UndefinedParameterError;
 /**
  * Specifies how roc plots are evaluate: - first count correct classifications, then count incorrect
  * ones - first count incorrect classifications, then count correct ones - distribute them evenly.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public enum ROCBias {
 
-	PESSIMISTIC,
+    /**
+     * Pessimistic roc bias.
+     */
+    PESSIMISTIC,
 
-	NEUTRAL,
+    /**
+     * Neutral roc bias.
+     */
+    NEUTRAL,
 
-	OPTIMISTIC;
+    /**
+     * Optimistic roc bias.
+     */
+    OPTIMISTIC;
 
-	/** Parameter to select the bias type. */
-	public static final String PARAMETER_NAME_ROC_BIAS = "roc_bias";
+    /**
+     * Parameter to select the bias type.
+     */
+    public static final String PARAMETER_NAME_ROC_BIAS = "roc_bias";
 
-	public static ROCBias getROCBiasParameter(Operator operator) throws UndefinedParameterError {
+    /**
+     * Gets roc bias parameter.
+     *
+     * @param operator the operator
+     * @return the roc bias parameter
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public static ROCBias getROCBiasParameter(Operator operator) throws UndefinedParameterError {
 		return ROCBias.values()[operator.getParameterAsInt(PARAMETER_NAME_ROC_BIAS)];
 	}
 
-	public static ParameterType makeParameterType() {
+    /**
+     * Make parameter type parameter type.
+     *
+     * @return the parameter type
+     */
+    public static ParameterType makeParameterType() {
 		String[] values = new String[ROCBias.values().length];
 		for (int i = 0; i < values.length; i++) {
 			values[i] = ROCBias.values()[i].toString().toLowerCase();

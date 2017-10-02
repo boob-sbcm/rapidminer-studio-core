@@ -25,7 +25,7 @@ import java.util.Iterator;
  * An ExampleReader iterates over a sequence of examples. Please note, that although this interface
  * extends Iterator<Example>, the method remove() is usually not supported. Invocing remove will
  * lead to an {@link java.lang.UnsupportedOperationException} in most cases.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public interface ExampleReader extends Iterator<Example> {

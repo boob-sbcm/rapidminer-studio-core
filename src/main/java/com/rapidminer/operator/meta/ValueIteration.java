@@ -52,7 +52,7 @@ import com.rapidminer.tools.Ontology;
  * selected, an iteration is only performed for those values which exhibit an occurrence ratio of at
  * least p. This may be helpful, if only large subgroups should be considered.
  * </p>
- *
+ * <p>
  * <p>
  * The current value of the loop can be accessed with the specified macro name.
  * </p>
@@ -63,11 +63,20 @@ import com.rapidminer.tools.Ontology;
 @Deprecated
 public class ValueIteration extends OperatorChain {
 
-	public static final String PARAMETER_ATTRIBUTE = "attribute";
+    /**
+     * The constant PARAMETER_ATTRIBUTE.
+     */
+    public static final String PARAMETER_ATTRIBUTE = "attribute";
 
-	public static final String PARAMETER_ITERATION_MACRO = "iteration_macro";
+    /**
+     * The constant PARAMETER_ITERATION_MACRO.
+     */
+    public static final String PARAMETER_ITERATION_MACRO = "iteration_macro";
 
-	public static final String DEFAULT_ITERATION_MACRO_NAME = "loop_value";
+    /**
+     * The constant DEFAULT_ITERATION_MACRO_NAME.
+     */
+    public static final String DEFAULT_ITERATION_MACRO_NAME = "loop_value";
 
 	private String currentValue = null; // for logging
 
@@ -76,7 +85,12 @@ public class ValueIteration extends OperatorChain {
 	private final CollectingPortPairExtender outExtender = new CollectingPortPairExtender("out", getSubprocess(0)
 			.getInnerSinks(), getOutputPorts());
 
-	public ValueIteration(OperatorDescription description) {
+    /**
+     * Instantiates a new Value iteration.
+     *
+     * @param description the description
+     */
+    public ValueIteration(OperatorDescription description) {
 		super(description, "Iteration");
 
 		outExtender.start();

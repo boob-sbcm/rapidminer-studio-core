@@ -79,13 +79,22 @@ public abstract class Abstract2DChartPlotter extends RangeablePlotterAdapter {
 
 	private static final long serialVersionUID = 4568273282283350833L;
 
-	public static class SeriesAndItem {
+    /**
+     * The type Series and item.
+     */
+    public static class SeriesAndItem {
 
 		private int series;
 
 		private int item;
 
-		public SeriesAndItem(int series, int item) {
+        /**
+         * Instantiates a new Series and item.
+         *
+         * @param series the series
+         * @param item   the item
+         */
+        public SeriesAndItem(int series, int item) {
 			this.series = series;
 			this.item = item;
 		}
@@ -112,8 +121,10 @@ public abstract class Abstract2DChartPlotter extends RangeablePlotterAdapter {
 	private static final int Y_AXIS = 1;
 	private static final int COLOR_AXIS = 2;
 
-	/** The currently used data table object. */
-	protected transient DataTable dataTable;
+    /**
+     * The currently used data table object.
+     */
+    protected transient DataTable dataTable;
 
 	private XYDataset dataSet = new DefaultXYDataset();
 
@@ -137,19 +148,38 @@ public abstract class Abstract2DChartPlotter extends RangeablePlotterAdapter {
 
 	private Map<SeriesAndItem, String> idMap = new HashMap<SeriesAndItem, String>();
 
-	public Abstract2DChartPlotter(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Abstract 2 d chart plotter.
+     *
+     * @param settings the settings
+     */
+    public Abstract2DChartPlotter(final PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 
 	}
 
-	public Abstract2DChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Abstract 2 d chart plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public Abstract2DChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
 
-	/** Subclasses have to implement this method. */
-	public abstract AbstractXYItemRenderer getItemRenderer(boolean nominal, int size, double minColor, double maxColor);
+    /**
+     * Subclasses have to implement this method.  @param nominal the nominal
+     *
+     * @param nominal  the nominal
+     * @param size     the size
+     * @param minColor the min color
+     * @param maxColor the max color
+     * @return the item renderer
+     */
+    public abstract AbstractXYItemRenderer getItemRenderer(boolean nominal, int size, double minColor, double maxColor);
 
 	/** Returns true. */
 	@Override
@@ -360,7 +390,14 @@ public abstract class Abstract2DChartPlotter extends RangeablePlotterAdapter {
 		}
 	}
 
-	protected String getId(int series, int index) {
+    /**
+     * Gets id.
+     *
+     * @param series the series
+     * @param index  the index
+     * @return the id
+     */
+    protected String getId(int series, int index) {
 		return idMap.get(new SeriesAndItem(series, index));
 	}
 

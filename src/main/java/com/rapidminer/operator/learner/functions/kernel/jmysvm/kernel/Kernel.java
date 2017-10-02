@@ -27,47 +27,47 @@ import java.io.Serializable;
 
 /**
  * Abstract base class for all kernels.
- * 
+ *
  * @author Stefan Rueping, Ingo Mierswa
  */
 public abstract class Kernel implements Serializable {
 
 	private static final long serialVersionUID = 6086202515099260920L;
 
-	/**
-	 * Container for the examples, parameters etc.
-	 */
-	protected SVMExamples the_examples;
+    /**
+     * Container for the examples, parameters etc.
+     */
+    protected SVMExamples the_examples;
 
-	/**
-	 * dimension of the examples
-	 */
-	protected int dim;
+    /**
+     * dimension of the examples
+     */
+    protected int dim;
 
-	/**
-	 * Kernel cache
-	 */
-	protected transient Cache kernel_cache;
+    /**
+     * Kernel cache
+     */
+    protected transient Cache kernel_cache;
 
-	/**
-	 * Number of elements in cache
-	 */
-	protected int kernel_cache_size;
+    /**
+     * Number of elements in cache
+     */
+    protected int kernel_cache_size;
 
-	/**
-	 * Size of cache in MB
-	 */
-	protected int cache_MB;
+    /**
+     * Size of cache in MB
+     */
+    protected int cache_MB;
 
-	/**
-	 * number of examples after shrinking
-	 */
-	protected int examples_total;
+    /**
+     * number of examples after shrinking
+     */
+    protected int examples_total;
 
-	/**
-	 * Class constructor
-	 */
-	public Kernel() {};
+    /**
+     * Class constructor
+     */
+    public Kernel() {};
 
 	/**
 	 * Output as String
@@ -77,30 +77,49 @@ public abstract class Kernel implements Serializable {
 		return ("abstract kernel class");
 	};
 
-	/**
-	 * Init the kernel
-	 * 
-	 * @param examples
-	 *            Container for the examples.
-	 */
-	public void init(SVMExamples examples, int cacheSizeMB) {
+    /**
+     * Init the kernel
+     *
+     * @param examples    Container for the examples.
+     * @param cacheSizeMB the cache size mb
+     */
+    public void init(SVMExamples examples, int cacheSizeMB) {
 		the_examples = examples;
 		examples_total = the_examples.count_examples();
 		dim = the_examples.get_dim();
 		init_kernel_cache(cacheSizeMB);
 	};
 
-	/**
-	 * Calculates kernel value of vectors x and y
-	 */
-	public abstract double calculate_K(int[] x_index, double[] x_att, int[] y_index, double[] y_att);
+    /**
+     * Calculates kernel value of vectors x and y
+     *
+     * @param x_index the x index
+     * @param x_att   the x att
+     * @param y_index the y index
+     * @param y_att   the y att
+     * @return the double
+     */
+    public abstract double calculate_K(int[] x_index, double[] x_att, int[] y_index, double[] y_att);
 
-	public abstract String getDistanceFormula(double[] x, String[] attributeNames);
+    /**
+     * Gets distance formula.
+     *
+     * @param x              the x
+     * @param attributeNames the attribute names
+     * @return the distance formula
+     */
+    public abstract String getDistanceFormula(double[] x, String[] attributeNames);
 
-	/**
-	 * calculate inner product
-	 */
-	public double innerproduct(int[] x_index, double[] x_att, int[] y_index, double[] y_att) {
+    /**
+     * calculate inner product
+     *
+     * @param x_index the x index
+     * @param x_att   the x att
+     * @param y_index the y index
+     * @param y_att   the y att
+     * @return the double
+     */
+    public double innerproduct(int[] x_index, double[] x_att, int[] y_index, double[] y_att) {
 		double result = 0;
 		int xpos = x_index.length - 1;
 		int ypos = y_index.length - 1;
@@ -122,10 +141,16 @@ public abstract class Kernel implements Serializable {
 		return result;
 	};
 
-	/**
-	 * calculate ||x-y||^2
-	 */
-	public double norm2(int[] x_index, double[] x_att, int[] y_index, double[] y_att) {
+    /**
+     * calculate ||x-y||^2
+     *
+     * @param x_index the x index
+     * @param x_att   the x att
+     * @param y_index the y index
+     * @param y_att   the y att
+     * @return the double
+     */
+    public double norm2(int[] x_index, double[] x_att, int[] y_index, double[] y_att) {
 		double result = 0;
 		double tmp;
 		int xpos = x_index.length - 1;
@@ -165,10 +190,13 @@ public abstract class Kernel implements Serializable {
 		return result;
 	};
 
-	/**
-	 * Gets a kernel row
-	 */
-	public double[] get_row(int i) {
+    /**
+     * Gets a kernel row
+     *
+     * @param i the
+     * @return the double [ ]
+     */
+    public double[] get_row(int i) {
 		double[] result = null;
 		result = ((double[]) kernel_cache.get_element(i));
 		if (result == null) {
@@ -185,13 +213,12 @@ public abstract class Kernel implements Serializable {
 		return result;
 	};
 
-	/**
-	 * Inits the kernel cache.
-	 * 
-	 * @param size
-	 *            of the cache in MB
-	 */
-	public void init_kernel_cache(int size) {
+    /**
+     * Inits the kernel cache.
+     *
+     * @param size of the cache in MB
+     */
+    public void init_kernel_cache(int size) {
 		cache_MB = size;
 		// array of train_size doubles
 		kernel_cache_size = size * 1048576 / 4 / examples_total;
@@ -206,14 +233,21 @@ public abstract class Kernel implements Serializable {
 		kernel_cache = new Cache(kernel_cache_size, examples_total);
 	};
 
-	public int getCacheSize() {
+    /**
+     * Gets cache size.
+     *
+     * @return the cache size
+     */
+    public int getCacheSize() {
 		return cache_MB;
 	}
 
-	/**
-	 * Sets the number of examples to new value
-	 */
-	public void set_examples_size(int new_examples_total) {
+    /**
+     * Sets the number of examples to new value
+     *
+     * @param new_examples_total the new examples total
+     */
+    public void set_examples_size(int new_examples_total) {
 		// number of rows that fit into cache:
 		int new_kernel_cache_size = cache_MB * 1048576 / 4 / new_examples_total;
 		if (new_kernel_cache_size < 1) {
@@ -238,10 +272,14 @@ public abstract class Kernel implements Serializable {
 		examples_total = new_examples_total;
 	};
 
-	/**
-	 * Calculate K(i,j)
-	 */
-	public double calculate_K(int i, int j) {
+    /**
+     * Calculate K(i,j)
+     *
+     * @param i the
+     * @param j the j
+     * @return the double
+     */
+    public double calculate_K(int i, int j) {
 		int[] x_index;
 		double[] x_att;
 		int[] y_index;
@@ -254,11 +292,25 @@ public abstract class Kernel implements Serializable {
 		return calculate_K(x_index, x_att, y_index, y_att);
 	};
 
-	public double calculate_K(SVMExample x, SVMExample y) {
+    /**
+     * Calculate k double.
+     *
+     * @param x the x
+     * @param y the y
+     * @return the double
+     */
+    public double calculate_K(SVMExample x, SVMExample y) {
 		return calculate_K(x.index, x.att, y.index, y.att);
 	};
 
-	public double[] calculate_K_row(double[] result, int i) {
+    /**
+     * Calculate k row double [ ].
+     *
+     * @param result the result
+     * @param i      the
+     * @return the double [ ]
+     */
+    public double[] calculate_K_row(double[] result, int i) {
 		int[] x_index;
 		double[] x_att;
 		int[] y_index;
@@ -275,13 +327,13 @@ public abstract class Kernel implements Serializable {
 		return result;
 	};
 
-	/**
-	 * swap two training examples
-	 * 
-	 * @param pos1
-	 * @param pos2
-	 */
-	public void swap(int pos1, int pos2) {
+    /**
+     * swap two training examples
+     *
+     * @param pos1 the pos 1
+     * @param pos2 the pos 2
+     */
+    public void swap(int pos1, int pos2) {
 		// called after container swap
 		kernel_cache.swap(pos1, pos2);
 	}

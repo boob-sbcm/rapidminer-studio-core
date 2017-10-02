@@ -62,7 +62,7 @@ import com.rapidminer.tools.Ontology;
  * derived. A major advantage of FPGrowth compared to Apriori is that it uses only 2 data scans and
  * is therefore often applicable even on large data sets.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that the given data set is only allowed to contain binominal attributes, i.e. nominal
  * attributes with only two different values. Simply use the provided preprocessing operators in
@@ -70,7 +70,7 @@ import com.rapidminer.tools.Ontology;
  * changing the value types of numerical attributes to nominal and the operator Nominal2Binominal
  * for transforming nominal attributes into binominal / binary ones.
  * </p>
- *
+ * <p>
  * <p>
  * The frequent item sets are mined for the positive entries in your data base, i.e. for those
  * nominal values which are defined as positive in your data base. If you use an attribute
@@ -78,12 +78,12 @@ import com.rapidminer.tools.Ontology;
  * operator this corresponds to the second value which is defined via the classes attribute or inner
  * value tags.
  * </p>
- *
+ * <p>
  * <p>
  * If your data does not specify the positive entries correctly, you may set them using the
  * parameter positive_value. This only works if all your attributes contain this value!
  * </p>
- *
+ * <p>
  * <p>
  * This operator has two basic working modes: finding at least the specified number of item sets
  * with highest support without taking the min_support into account (default) or finding all item
@@ -94,26 +94,36 @@ import com.rapidminer.tools.Ontology;
  */
 public class FPGrowth extends Operator {
 
-	/**
-	 * Indicates if this operator should try to find a minimum number of item sets by iteratively
-	 * decreasing the minimum support.
-	 */
-	public static final String PARAMETER_FIND_MIN_NUMBER_OF_ITEMSETS = "find_min_number_of_itemsets";
+    /**
+     * Indicates if this operator should try to find a minimum number of item sets by iteratively
+     * decreasing the minimum support.
+     */
+    public static final String PARAMETER_FIND_MIN_NUMBER_OF_ITEMSETS = "find_min_number_of_itemsets";
 
-	/**
-	 * Indicates the minimum number of item sets by iteratively decreasing the minimum support.
-	 */
-	public static final String PARAMETER_MIN_NUMBER_OF_ITEMSETS = "min_number_of_itemsets";
+    /**
+     * Indicates the minimum number of item sets by iteratively decreasing the minimum support.
+     */
+    public static final String PARAMETER_MIN_NUMBER_OF_ITEMSETS = "min_number_of_itemsets";
 
-	public static final String PARAMETER_MAX_REDUCTION_STEPS = "max_number_of_retries";
+    /**
+     * The constant PARAMETER_MAX_REDUCTION_STEPS.
+     */
+    public static final String PARAMETER_MAX_REDUCTION_STEPS = "max_number_of_retries";
 
-	public static final String PARAMETER_POSITIVE_VALUE = "positive_value";
+    /**
+     * The constant PARAMETER_POSITIVE_VALUE.
+     */
+    public static final String PARAMETER_POSITIVE_VALUE = "positive_value";
 
-	/** The parameter name for &quot;Minimal Support&quot; */
-	public static final String PARAMETER_MIN_SUPPORT = "min_support";
+    /**
+     * The parameter name for &quot;Minimal Support&quot;
+     */
+    public static final String PARAMETER_MIN_SUPPORT = "min_support";
 
-	/** The parameter name the maximum number of items. */
-	public static final String PARAMETER_MAX_ITEMS = "max_items";
+    /**
+     * The parameter name the maximum number of items.
+     */
+    public static final String PARAMETER_MAX_ITEMS = "max_items";
 
 	private static final String PARAMETER_MUST_CONTAIN = "must_contain";
 
@@ -124,7 +134,12 @@ public class FPGrowth extends Operator {
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private final OutputPort frequentSetsOutput = getOutputPorts().createPort("frequent sets");
 
-	public FPGrowth(OperatorDescription description) {
+    /**
+     * Instantiates a new Fp growth.
+     *
+     * @param description the description
+     */
+    public FPGrowth(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, Ontology.BINOMINAL));

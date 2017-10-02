@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for getSystemLoadAverageResponse complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="getSystemLoadAverageResponse">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getSystemLoadAverageResponse", propOrder = {
@@ -49,12 +47,16 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetSystemLoadAverageResponse {
 
+    /**
+     * The Return.
+     */
     @XmlElement(name = "return")
     protected double _return;
 
     /**
      * Gets the value of the return property.
-     * 
+     *
+     * @return the return
      */
     public double getReturn() {
         return _return;
@@ -62,7 +64,8 @@ public class GetSystemLoadAverageResponse {
 
     /**
      * Sets the value of the return property.
-     * 
+     *
+     * @param value the value
      */
     public void setReturn(double value) {
         this._return = value;

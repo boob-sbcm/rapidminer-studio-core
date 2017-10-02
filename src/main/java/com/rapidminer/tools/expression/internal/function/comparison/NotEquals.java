@@ -27,14 +27,13 @@ import com.rapidminer.tools.expression.FunctionDescription;
  * Class for the NOT EQUALS function that has 2 arbitrary inputs
  *
  * @author Sabrina Kirstein
- *
  */
 public class NotEquals extends AbstractEqualityFunctionWith2Inputs {
 
-	/**
-	 * Constructs a NOT EQUALS Function with 2 parameters with {@link FunctionDescription}
-	 */
-	public NotEquals() {
+    /**
+     * Constructs a NOT EQUALS Function with 2 parameters with {@link FunctionDescription}
+     */
+    public NotEquals() {
 		super("comparison.not_equals");
 	}
 

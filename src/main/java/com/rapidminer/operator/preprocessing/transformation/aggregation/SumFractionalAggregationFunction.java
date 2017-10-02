@@ -27,20 +27,39 @@ import java.util.List;
  * This function first behaves like {@link SumAggregationFunction}, but it delivers fractions of the
  * total sum instead of absolute values. E.g. {@link SumAggregationFunction} delivers [6, 10, 4]
  * this function would deliver [0.3, 0.5, 0.2]
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class SumFractionalAggregationFunction extends SumAggregationFunction {
 
-	public static final String FUNCTION_SUM_FRACTIONAL = "fractional_sum";
+    /**
+     * The constant FUNCTION_SUM_FRACTIONAL.
+     */
+    public static final String FUNCTION_SUM_FRACTIONAL = "fractional_sum";
 
-	public SumFractionalAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
+    /**
+     * Instantiates a new Sum fractional aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     */
+    public SumFractionalAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, FUNCTION_SUM_FRACTIONAL, FUNCTION_SEPARATOR_OPEN,
 				FUNCTION_SEPARATOR_CLOSE);
 	}
 
-	public SumFractionalAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
+    /**
+     * Instantiates a new Sum fractional aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public SumFractionalAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
 			String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, separatorOpen, separatorClose);
 	}

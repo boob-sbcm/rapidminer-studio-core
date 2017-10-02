@@ -24,15 +24,23 @@ import javax.swing.JCheckBox;
 
 
 /**
+ * The type Listening j check box.
+ *
  * @author Sebastian Land
- * 
  */
 public class ListeningJCheckBox extends JCheckBox implements PlotterSettingsChangedListener {
 
 	private static final long serialVersionUID = -3145893699784702675L;
 	private String generalKey;
 
-	public ListeningJCheckBox(String generalKey, String text, boolean defaultValue) {
+    /**
+     * Instantiates a new Listening j check box.
+     *
+     * @param generalKey   the general key
+     * @param text         the text
+     * @param defaultValue the default value
+     */
+    public ListeningJCheckBox(String generalKey, String text, boolean defaultValue) {
 		super(text, defaultValue);
 		if (generalKey.startsWith("_")) {
 			this.generalKey = generalKey;

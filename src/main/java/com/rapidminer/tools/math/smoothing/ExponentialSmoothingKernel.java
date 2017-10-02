@@ -20,7 +20,7 @@ package com.rapidminer.tools.math.smoothing;
 
 /**
  * This class implements the exponential smoothing kernel.
- * 
+ *
  * @author Sebastian Land
  */
 public class ExponentialSmoothingKernel extends SmoothingKernel {

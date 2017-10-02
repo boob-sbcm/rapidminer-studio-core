@@ -69,17 +69,26 @@ import com.rapidminer.tools.ProgressListener;
  */
 public class XlsxResultSet implements DataResultSet {
 
-	/**
-	 * Defines whether the Excel file is read by the operator or by the Wizard.
-	 */
-	public static enum XlsxReadMode {
-		WIZARD_WORKPANE, WIZARD_PREVIEW, OPERATOR,
-		/**
-		 * Specifies that the {@link XlsxResultSet} was created to display preview content in the
-		 * sheet selection step of the new data import dialog. If used the
-		 * {@link XlsxSheetTableModel} will load a data preview instead of the full sheet content.
-		 */
-		WIZARD_SHEET_SELECTION
+    /**
+     * Defines whether the Excel file is read by the operator or by the Wizard.
+     */
+    public static enum XlsxReadMode {
+        /**
+         * Wizard workpane xlsx read mode.
+         */
+        WIZARD_WORKPANE, /**
+         * Wizard preview xlsx read mode.
+         */
+        WIZARD_PREVIEW, /**
+         * Operator xlsx read mode.
+         */
+        OPERATOR,
+        /**
+         * Specifies that the {@link XlsxResultSet} was created to display preview content in the
+         * sheet selection step of the new data import dialog. If used the
+         * {@link XlsxSheetTableModel} will load a data preview instead of the full sheet content.
+         */
+        WIZARD_SHEET_SELECTION
 	}
 
 	/**
@@ -146,23 +155,18 @@ public class XlsxResultSet implements DataResultSet {
 
 	private int progressCounter = 0;
 
-	/**
-	 * Configures the Excel result set with the provided configuration object. Also parses multiple
-	 * XML configuration files included in the XLSX file and creates the worksheet parser.
-	 *
-	 * @param callingOperator
-	 *            the calling operator. <code>null</code> is allowed in case the class isn't created
-	 *            from within an operator.
-	 * @param configuration
-	 *            the result set configuration
-	 * @param provider
-	 *            a {@link DateFormatProvider}, can be {@code null} in which case the date format is
-	 *            fixed by the current value of {@link configuration#getDatePattern()}
-	 * @throws UserError
-	 *             in case something is configured in a wrong way so that the XLSX file cannot be
-	 *             parsed
-	 */
-	public XlsxResultSet(Operator callingOperator, final ExcelResultSetConfiguration configuration, int sheetIndex,
+    /**
+     * Configures the Excel result set with the provided configuration object. Also parses multiple
+     * XML configuration files included in the XLSX file and creates the worksheet parser.
+     *
+     * @param callingOperator the calling operator. <code>null</code> is allowed in case the class isn't created            from within an operator.
+     * @param configuration   the result set configuration
+     * @param sheetIndex      the sheet index
+     * @param readMode        the read mode
+     * @param provider        a {@link DateFormatProvider}, can be {@code null} in which case the date format is            fixed by the current value of {@link configuration#getDatePattern()}
+     * @throws UserError in case something is configured in a wrong way so that the XLSX file cannot be             parsed
+     */
+    public XlsxResultSet(Operator callingOperator, final ExcelResultSetConfiguration configuration, int sheetIndex,
 			XlsxReadMode readMode, final DateFormatProvider provider) throws UserError {
 
 		// Check file presence
@@ -268,20 +272,17 @@ public class XlsxResultSet implements DataResultSet {
 		}
 	}
 
-	/**
-	 * Configures the Excel result set with the provided configuration object. Also parses multiple
-	 * XML configuration files included in the XLSX file and creates the worksheet parser.
-	 *
-	 * @param callingOperator
-	 *            the calling operator. <code>null</code> is allowed in case the class isn't created
-	 *            from within an operator.
-	 * @param configuration
-	 *            the result set configuration
-	 * @throws UserError
-	 *             in case something is configured in a wrong way so that the XLSX file cannot be
-	 *             parsed
-	 */
-	public XlsxResultSet(Operator callingOperator, ExcelResultSetConfiguration configuration, int sheetIndex,
+    /**
+     * Configures the Excel result set with the provided configuration object. Also parses multiple
+     * XML configuration files included in the XLSX file and creates the worksheet parser.
+     *
+     * @param callingOperator the calling operator. <code>null</code> is allowed in case the class isn't created            from within an operator.
+     * @param configuration   the result set configuration
+     * @param sheetIndex      the sheet index
+     * @param readMode        the read mode
+     * @throws UserError in case something is configured in a wrong way so that the XLSX file cannot be             parsed
+     */
+    public XlsxResultSet(Operator callingOperator, ExcelResultSetConfiguration configuration, int sheetIndex,
 			XlsxReadMode readMode) throws UserError {
 		this(callingOperator, configuration, sheetIndex, readMode, null);
 	}
@@ -443,20 +444,22 @@ public class XlsxResultSet implements DataResultSet {
 		return new int[getNumberOfColumns()];
 	}
 
-	/**
-	 * @return the number of all rows available by the specified worksheet (also includes empty rows
-	 *         at the end of the file) or -1 if number is unknown
-	 */
-	public int getNumberOfRows() {
+    /**
+     * Gets number of rows.
+     *
+     * @return the number of all rows available by the specified worksheet (also includes empty rows         at the end of the file) or -1 if number is unknown
+     */
+    public int getNumberOfRows() {
 		return sheetMetaData.getNumberOfRows();
 	}
 
-	/**
-	 * @param columnMetaDatas
-	 *            meta data defined by the operator
-	 * @return all names of columns that have been found empty after parsing the XLSX file
-	 */
-	public List<String> getEmptyColumnNames(ColumnMetaData[] columnMetaDatas) {
+    /**
+     * Gets empty column names.
+     *
+     * @param columnMetaDatas meta data defined by the operator
+     * @return all names of columns that have been found empty after parsing the XLSX file
+     */
+    public List<String> getEmptyColumnNames(ColumnMetaData[] columnMetaDatas) {
 		List<String> toRemove = new LinkedList<>();
 		String[] columnNames = getColumnNames();
 		boolean[] emptyColumns = worksheetParser.getEmptyColumns();
@@ -544,13 +547,12 @@ public class XlsxResultSet implements DataResultSet {
 		}
 	}
 
-	/**
-	 * @param parameterAsBoolean
-	 *            defines whether the first row should be used as names. If set to <code>true</code>
-	 *            the worksheet parser will skip all beginning empty rows until the first row with
-	 *            content was found.
-	 */
-	public void setUseFirstRowAsNames(boolean isFirstRowAsNames) {
+    /**
+     * Sets use first row as names.
+     *
+     * @param isFirstRowAsNames the is first row as names
+     */
+    public void setUseFirstRowAsNames(boolean isFirstRowAsNames) {
 		this.worksheetParser.setUseFirstRowAsNames(isFirstRowAsNames);
 	}
 

@@ -1,104 +1,91 @@
-RapidMiner Studio Core
-=============================
+RapidMiner Studio
+=================
 
-Easy-to-use visual environment for predictive analytics. No programming required. RapidMiner is easily the most powerful and intuitive graphical user interface for the design of analysis processes. Forget sifting through code! You can also choose to run in batch mode. Whatever you prefer, RapidMiner has it all.
+  Copyright (C) 2001-2017 RapidMiner GmbH
 
-This project contains the open source core of [RapidMiner Studio](https://rapidminer.com/studio).
 
-## Getting Started
+How to start RapidMiner Studio (Windows):
+----------------------------------
 
-* [Install](https://rapidminer.com/studio) RapidMiner Studio
-* Have a look at our [Getting Started](http://docs.rapidminer.com/studio/getting-started/) Videos
-* You miss something? There might be an [Extension](https://marketplace.rapidminer.com) for it
-* Have questions? Check out our official [community](https://community.rapidminer.com) and [documentation](https://docs.rapidminer.com)
+To start RapidMiner Studio, you can use the "RapidMiner Studio.exe" file located in the same
+directory as this readme. If you do not want to/cannot use .exe file, you can also
+start RapidMiner Studio via the "RapidMiner-Studio.bat" file also located in this folder.
 
-## RapidMiner Studio Core as Dependency
+IMPORTANT: Starting RapidMiner Studio via the rapidminer.jar is not recommended as doing so will break
+the update mechanism of RapidMiner Studio.
 
-Using Gradle:
-```gradle
-apply plugin: 'java'
 
-repositories {
-    maven { url 'https://maven.rapidminer.com/content/groups/public/' }
-}
+How to start RapidMiner Studio (Linux):
+--------------------------------
 
-dependencies {
-    compile group: 'com.rapidminer.studio', name: 'rapidminer-studio-core', version: '+'
-}
-```
-Using Maven:
-```xml
-<project>
-...
-<repositories>
-  <repository>
-    <id>rapidminer</id>
-    <url>https://maven.rapidminer.com/content/groups/public/</url>
-  </repository>
-</repositories>
-...
-<dependency>
-  <groupId>com.rapidminer.studio</groupId>
-  <artifactId>rapidminer-studio-core</artifactId>
-  <version>LATEST</version>
-</dependency>
-...
-</project>
-```
+To start RapidMiner Studio, you can use the "RapidMiner-Studio.sh" file located in the same 
+directory as this readme. In some cases you will need to set chmod +x RapidMiner-Studio via 
+console first. Then call ./RapidMiner-Studio.sh inside the RapidMiner Studio directory to 
+start RapidMiner Studio. 
 
-## Build RapidMiner Studio Core from Source
-1. Clone rapidminer-studio using [git](https://git-scm.com/) into a folder named `rapidminer-studio-core`
-2. Execute `gradlew jar`
-3. The jar file is located in __build/libs__
+IMPORTANT:Starting RapidMiner Studio via the rapidminer.jar is not recommended 
+as doing so will break the update mechanism of RapidMiner Studio.
 
-Please have in mind that the jar file still require all dependencies listed in the [build.gradle](build.gradle) file.
 
-## Import RapidMiner Studio Core into your IDE
-1. Your IDE has to support Gradle projects.
-	1. Install [Gradle 2.3+](https://gradle.org/gradle-download/)
-	2. Install and configure a Gradle plugin for your IDE
-2. Import rapidminer-studio-core as a Gradle project
+How to start RapidMiner Studio (Mac):
+------------------------------
 
-### Start the RapidMiner Studio Core GUI
+To start RapidMiner Studio, you can use the "RapidMiner Studio.app" file located in the same directory 
+as this readme. If you do not want to/cannot use .app file, you can also start RapidMiner Studio via 
+the RapidMiner-Studio.sh file also located in this folder.
 
-To start the graphical user interface of RapidMiner Studio Core create a new `GuiLauncher.java` file in __src/main/java__ and run it with your IDE. If you want to use the generated jar, add the jar and all dependencies to the Java class path `java -cp "all;required;jars" GuiLauncher`. You can list the runtime dependencies by executing `gradlew dependencies --configuration runtime`.
+IMPORTANT: Do not move the "RapidMiner Studio.app" file as this will break the launcher! 
+Also starting RapidMiner Studio via the rapidminer.jar is not recommended as doing so will 
+break the update mechanism of RapidMiner Studio.
 
-```java
-import com.rapidminer.gui.RapidMinerGUI;
 
-class GuiLauncher {
-	public static void main(String args[]) throws Exception {
-		System.setProperty(PlatformUtilities.PROPERTY_RAPIDMINER_HOME, Paths.get("").toAbsolutePath().toString());
-		RapidMinerGUI.registerStartupListener(new ToolbarGUIStartupListener());
-		RapidMinerGUI.main(args);
-	}
-}
-```
+Acquire extensions for RapidMiner Studio:
+-----------------------------------
 
-### Run RapidMiner Studio Core in CLI mode
+RapidMiner Studio ships with a huge list of operators for many purposes, however certain
+functionality for a specific purpose has been moved to extensions.
+If you want more operators for these specific purposes like Text Mining or Web Mining, 
+you can browse through the available extensions for RapidMiner Studio via "Help" -> 
+"Updates and Extensions (Marketplace)". There you will find popular extensions or
+you can search for any available extension. To install them, just select them,
+click "Install" in the lower right corner and follow the instructions.
 
-**Prerequisite**: Start the RapidMiner Studio GUI at least once and accept the EULA.
 
-To run RapidMiner Studio in command line mode create a new `CliLauncher.java` file in __src/main/java__ with the following content:
+Community forum:
+----------------
 
-```java
-import com.rapidminer.RapidMiner;
+You can visit our active community forums via "Help" -> "Community Forum".
+There you can find ideas on how to achieve certain goals, tips&tricks when designing processes, 
+solutions to common problems and much more.
+If you are experiencing an error and want to ask for help via the forums, please remember
+to copy&paste the error from the log file (see below).
 
-class CliLauncher {
-	public static void main(String args[]) throws Exception {
-		System.setProperty(PlatformUtilities.PROPERTY_RAPIDMINER_HOME, Paths.get("").toAbsolutePath().toString());
-		RapidMiner.setExecutionMode(RapidMiner.ExecutionMode.COMMAND_LINE);
-		RapidMiner.init();
-	}
-}
-```
 
-## Diving in
+Log file:
+---------
 
-* Create your own [Extension](http://docs.rapidminer.com/developers/creating-your-own-extension/)
-* [Integrate](http://community.rapidminer.com/t5/Become-a-RapidMiner-Developer/Frequently-Asked-Questions-Development/m-p/19782) RapidMiner Studio Core into your project
-* And much more at our [Developer Board](http://community.rapidminer.com/t5/Become-a-RapidMiner-Developer/bd-p/BARDDBoard)
+In your user home folder there is a ".RapidMiner" folder. Inside it you will find a
+rm.log file which contains all log messages from the latest RapidMiner Studio execution.
 
-## License
 
-See the [LICENSE](LICENSE) file.
+NOTE ON CONFIGURATION FILES:
+----------------------------
+RapidMiner Studio looks for the following configuration files and reads them in 
+this ordering
+
+  RAPID_MINER_HOME/rapidminer-studio-settings.cfg
+  ~/.RapidMiner/rapidminer-studio-settings.cfg
+  rapidminer-studio-settings.cfg
+
+
+Where ~ is your home directory. You can see which files are read 
+when RapidMiner Studio starts.
+
+
+Please note:
+------------
+
+* The license of all 3rd party libraries can be found in the directory 
+  "third-party-licenses" located in the main directory of RapidMiner Studio.
+  
+ 

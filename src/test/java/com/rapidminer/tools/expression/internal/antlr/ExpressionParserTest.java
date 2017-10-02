@@ -31,7 +31,6 @@ import com.rapidminer.tools.expression.ExpressionException;
  * various inputs using the {@link AntlrParser#parseExpression} method.
  *
  * @author Gisa Schaefer
- *
  */
 public class ExpressionParserTest {
 
@@ -54,421 +53,631 @@ public class ExpressionParserTest {
 
 	}
 
-	@Test
+    /**
+     * Empty input.
+     */
+    @Test
 	public void emptyInput() {
 		boolean result = parse("");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Integer input.
+     */
+    @Test
 	public void integerInput() {
 		boolean result = parse("2378423");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Integer wrong input.
+     */
+    @Test
 	public void integerWrongInput() {
 		boolean result = parse("2378423)");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Integer wrong bracket.
+     */
+    @Test
 	public void integerWrongBracket() {
 		boolean result = parse("(2378423))");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Exponent wrong.
+     */
+    @Test
 	public void exponentWrong() {
 		boolean result = parse("2378423e-");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Exponent wrong newline.
+     */
+    @Test
 	public void exponentWrongNewline() {
 		boolean result = parse("2378423e-\n one + two");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Exponent right.
+     */
+    @Test
 	public void exponentRight() {
 		boolean result = parse("2378423e-10");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Real.
+     */
+    @Test
 	public void real() {
 		boolean result = parse("123.141529");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Real without non fractional digits.
+     */
+    @Test
 	public void realWithoutNonFractionalDigits() {
 		boolean result = parse(".141529");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Real without non fractional digits and exponent.
+     */
+    @Test
 	public void realWithoutNonFractionalDigitsAndExponent() {
 		boolean result = parse(".141529e12");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Real with negative exponent.
+     */
+    @Test
 	public void realWithNegativeExponent() {
 		boolean result = parse("3.141529E-12");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Real with positive exponent.
+     */
+    @Test
 	public void realWithPositiveExponent() {
 		boolean result = parse("3.141529E+12");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Integer wrong 2 input.
+     */
+    @Test
 	public void integerWrong2Input() {
 		boolean result = parse("2x");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Simple addition.
+     */
+    @Test
 	public void simpleAddition() {
 		boolean result = parse("2+ 3+11");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Simple substraction.
+     */
+    @Test
 	public void simpleSubstraction() {
 		boolean result = parse("11 -3-4- 1");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Addition substraction.
+     */
+    @Test
 	public void additionSubstraction() {
 		boolean result = parse("11 +3-4+ 1");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Multiplication division modulo.
+     */
+    @Test
 	public void multiplicationDivisionModulo() {
 		boolean result = parse("3*4/5*5%2 *223424");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Addition multiplication mixed.
+     */
+    @Test
 	public void additionMultiplicationMixed() {
 		boolean result = parse("3 +4/5*5%2-1 -223424+ 11*2");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Right associativity of power.
+     */
+    @Test
 	public void rightAssociativityOfPower() {
 		boolean result = parse("2^ 2^3");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Unary plus minus.
+     */
+    @Test
 	public void unaryPlusMinus() {
 		boolean result = parse("3*-5+ -+ -+--11");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Constant test.
+     */
+    @Test
 	public void constantTest() {
 		boolean result = parse("att2Blup");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Big constant test.
+     */
+    @Test
 	public void bigConstantTest() {
 		boolean result = parse("DATE_UNIT_DATE");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Not constant test.
+     */
+    @Test
 	public void notConstantTest() {
 		boolean result = parse("3DATE_UNIT_DATE");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Not constant 2 test.
+     */
+    @Test
 	public void notConstant2Test() {
 		boolean result = parse("$DATE_UNIT_DATE");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * No parameter function.
+     */
+    @Test
 	public void noParameterFunction() {
 		boolean result = parse("date_now()");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * One parameter function.
+     */
+    @Test
 	public void oneParameterFunction() {
 		boolean result = parse("cos(1 )");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Nested functions.
+     */
+    @Test
 	public void nestedFunctions() {
 		boolean result = parse("sin(cos(1 ) )");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * More parameter function.
+     */
+    @Test
 	public void moreParameterFunction() {
 		boolean result = parse("date_str_loc(att1,DATE_MEDIUM, DATE_SHOW_TIME_ONLY, \"us\")");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Function mixed with calculation.
+     */
+    @Test
 	public void functionMixedWithCalculation() {
 		boolean result = parse("-dings(1,2,att45)*2+7*3^5");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Parentheses.
+     */
+    @Test
 	public void parentheses() {
 		boolean result = parse("3*(2+5)");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Superfluous parentheses.
+     */
+    @Test
 	public void superfluousParentheses() {
 		boolean result = parse("(3*(2+(5)))");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Wrong parentheses.
+     */
+    @Test
 	public void wrongParentheses() {
 		boolean result = parse("((3*(2+5))");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Attribute with spaces.
+     */
+    @Test
 	public void attributeWithSpaces() {
 		boolean result = parse("[my attribute! \" 1+2 \u0714 \u06dd \u199c $%-_]");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Attribute with newline.
+     */
+    @Test
 	public void attributeWithNewline() {
 		boolean result = parse("[my attribute! \n 1+2]");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Attribute missing bracket.
+     */
+    @Test
 	public void attributeMissingBracket() {
 		boolean result = parse("[my attribute! 1+2");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Attribute missing opening bracket.
+     */
+    @Test
 	public void attributeMissingOpeningBracket() {
 		boolean result = parse("my attribute! 1+2]");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * String with newline.
+     */
+    @Test
 	public void stringWithNewline() {
 		boolean result = parse("\"bla blup \n !\"");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * String with missing closing.
+     */
+    @Test
 	public void stringWithMissingClosing() {
 		boolean result = parse("\"bla blup ?");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * String with quotes.
+     */
+    @Test
 	public void stringWithQuotes() {
 		boolean result = parse("\"bla blup \" !\"");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * String with escaped quotes.
+     */
+    @Test
 	public void stringWithEscapedQuotes() {
 		boolean result = parse("\"bla blup \\\" !\"");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Empty string.
+     */
+    @Test
 	public void emptyString() {
 		boolean result = parse("\"\"");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * String with backslash.
+     */
+    @Test
 	public void StringWithBackslash() {
 		boolean result = parse("\"bla\\a \"");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * String with escaped backslash.
+     */
+    @Test
 	public void StringWithEscapedBackslash() {
 		boolean result = parse("\"bla\\\\a \"");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * String with unicode.
+     */
+    @Test
 	public void StringWithUnicode() {
 		boolean result = parse("\"bla\\u234f blup\"");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Macro with spaces.
+     */
+    @Test
 	public void macroWithSpaces() {
 		boolean result = parse("%{my macro[\"3\"]\u0714}");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Macro with tab.
+     */
+    @Test
 	public void macroWithTab() {
 		boolean result = parse("%{my macro\t blup}");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Macro without closing.
+     */
+    @Test
 	public void macroWithoutClosing() {
 		boolean result = parse("%{my macro blup");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Indirect macro with spaces.
+     */
+    @Test
 	public void indirectMacroWithSpaces() {
 		boolean result = parse("#{my macro[\"3\"]\u0714}");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Indirect macro with tab.
+     */
+    @Test
 	public void indirectMacroWithTab() {
 		boolean result = parse("#{my macro\t blup}");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Indirect macro without closing.
+     */
+    @Test
 	public void indirectMacroWithoutClosing() {
 		boolean result = parse("#{my macro blup");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Comparision.
+     */
+    @Test
 	public void comparision() {
 		boolean result = parse("3+4 > [my attribute] <= TRUE");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Comparision and equality.
+     */
+    @Test
 	public void comparisionAndEquality() {
 		boolean result = parse("TRUE == 3+4 > [my attribute]");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Comparision and equality and and.
+     */
+    @Test
 	public void comparisionAndEqualityAndAND() {
 		boolean result = parse("TRUE == 3+4 > [my attribute] && 7< #{my macro}");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Comparision and equality and or.
+     */
+    @Test
 	public void comparisionAndEqualityAndOR() {
 		boolean result = parse("TRUE == 3+4 > [my attribute] || 7< #{my macro}");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * And and or.
+     */
+    @Test
 	public void andAndOr() {
 		boolean result = parse("TRUE || 3>4 && [my attribute]");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * And and or and not.
+     */
+    @Test
 	public void andAndOrAndNOT() {
 		boolean result = parse("! TRUE || 3>4 && ![my attribute]");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Attribute with wrong bracket.
+     */
+    @Test
 	public void attributeWithWrongBracket() {
 		boolean result = parse("[my attribut]e]");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Attribute with escaped bracket.
+     */
+    @Test
 	public void attributeWithEscapedBracket() {
 		boolean result = parse("[my attribut\\]e]");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Attribute with wrong open bracket.
+     */
+    @Test
 	public void attributeWithWrongOpenBracket() {
 		boolean result = parse("[my attribut[e]");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Attribute with escaped open bracket.
+     */
+    @Test
 	public void attributeWithEscapedOpenBracket() {
 		boolean result = parse("[my attribut\\[e]");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Two attributes.
+     */
+    @Test
 	public void twoAttributes() {
 		boolean result = parse("[my attribut]+[e]");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Attribute with single backslash.
+     */
+    @Test
 	public void attributeWithSingleBackslash() {
 		boolean result = parse("[my attribut\\e]");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Attribute with single backslash end.
+     */
+    @Test
 	public void attributeWithSingleBackslashEnd() {
 		boolean result = parse("[my attribut\\]");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Attribute with double backslash.
+     */
+    @Test
 	public void attributeWithDoubleBackslash() {
 		boolean result = parse("[my attribut\\\\]");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Macro with wrong bracket.
+     */
+    @Test
 	public void macroWithWrongBracket() {
 		boolean result = parse("%{my mac}ro}");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Macro with escaped bracket.
+     */
+    @Test
 	public void macroWithEscapedBracket() {
 		boolean result = parse("%{my mac\\}ro}");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Macro with wrong open bracket.
+     */
+    @Test
 	public void macroWithWrongOpenBracket() {
 		boolean result = parse("%{my mac{ro}");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Macro with escaped open bracket.
+     */
+    @Test
 	public void macroWithEscapedOpenBracket() {
 		boolean result = parse("%{my mac\\{ro}");
 		assertTrue(result);
 	}
 
-	@Test
+    /**
+     * Macro with single backslash.
+     */
+    @Test
 	public void macroWithSingleBackslash() {
 		boolean result = parse("%{my mac\\ro}");
 		assertFalse(result);
 	}
 
-	@Test
+    /**
+     * Macro with double backslash.
+     */
+    @Test
 	public void macroWithDoubleBackslash() {
 		boolean result = parse("%{my mac\\\\ro}");
 		assertTrue(result);

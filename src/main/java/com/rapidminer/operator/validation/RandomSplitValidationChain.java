@@ -49,7 +49,7 @@ import java.util.List;
  * {@link com.rapidminer.operator.Model}) and must produce a
  * {@link com.rapidminer.operator.performance.PerformanceVector}.
  * </p>
- * 
+ * <p>
  * <p>
  * This validation operator provides several values which can be logged by means of a
  * {@link ProcessLogOperator}. All performance estimation operators of RapidMiner provide access to
@@ -65,16 +65,27 @@ import java.util.List;
  * <li>for the main criterion, also the variance and the standard deviation can be accessed where
  * applicable.</li>
  * </ul>
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class RandomSplitValidationChain extends ValidationChain {
 
-	public static final String PARAMETER_SPLIT_RATIO = "split_ratio";
+    /**
+     * The constant PARAMETER_SPLIT_RATIO.
+     */
+    public static final String PARAMETER_SPLIT_RATIO = "split_ratio";
 
-	public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
+    /**
+     * The constant PARAMETER_SAMPLING_TYPE.
+     */
+    public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
 
-	public RandomSplitValidationChain(OperatorDescription description) {
+    /**
+     * Instantiates a new Random split validation chain.
+     *
+     * @param description the description
+     */
+    public RandomSplitValidationChain(OperatorDescription description) {
 		super(description);
 	}
 

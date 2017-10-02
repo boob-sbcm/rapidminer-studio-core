@@ -61,7 +61,7 @@ import java.util.Set;
  * classes, the deviation of the instance from the instances of the same class, and the distance
  * between the instance and its k nearest neighbors.
  * </p>
- * 
+ * <p>
  * <p>
  * The main concept of ECODB (Enhanced Class Outlier - Distance Based) algorithm is to rank each
  * instance in the dataset D given the parameters N (top N class outliers), and K (the number of
@@ -74,38 +74,48 @@ import java.util.Set;
  * instance T and every instance belong to the same class of the instance. KDist(T) is the summation
  * of distances between the instance T and its K nearest neighbors.
  * </p>
- * 
+ * <p>
  * <p>
  * The ECODB algorithm maintains a list of only the instances of the top N class outliers. The less
  * is the value of COF of an instance, the higher is the priority of the instance to be a class
  * outlier.
  * </p>
- * 
+ * <p>
  * <p>
  * The operator supports mixed euclidian distance. The Operator takes an example set and passes it
  * on with an boolean top-n COF outlier status in a new boolean-valued special outlier attribute
  * indicating true (outlier) and false (no outlier), and another special attribute "COF Factor"
  * which measures the degree of being Class Outlier for an object.
  * </p>
- * 
+ *
  * @author Motaz K. Saad, Marius Helf
  */
 public class EcodbOperator extends AbstractOutlierDetection {
 
-	/**
-	 * The parameter name for &quot;Specifies the k value for the k-th nearest neighbours to be the
-	 * analyzed.&quot;
-	 */
-	public static final String PARAMETER_NUMBER_OF_NEIGHBORS = "number_of_neighbors";
+    /**
+     * The parameter name for &quot;Specifies the k value for the k-th nearest neighbours to be the
+     * analyzed.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_NEIGHBORS = "number_of_neighbors";
 
-	/** The parameter name for &quot;The number of top-n Class Outliers to be looked for.&quot; */
-	public static final String PARAMETER_NUMBER_OF_Class_OUTLIERS = "number_of_class_outliers";
+    /**
+     * The parameter name for &quot;The number of top-n Class Outliers to be looked for.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_Class_OUTLIERS = "number_of_class_outliers";
 
-	public final static OperatorVersion VERSION_LOWERCASE_ATTRIBUTE_NAME = new OperatorVersion(5, 2, 6);
+    /**
+     * The constant VERSION_LOWERCASE_ATTRIBUTE_NAME.
+     */
+    public final static OperatorVersion VERSION_LOWERCASE_ATTRIBUTE_NAME = new OperatorVersion(5, 2, 6);
 
 	private static final String COF_FACTOR_NAME = "COF Factor";
 
-	public EcodbOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Ecodb operator.
+     *
+     * @param description the description
+     */
+    public EcodbOperator(OperatorDescription description) {
 		super(description);
 	}
 

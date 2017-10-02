@@ -50,7 +50,6 @@ import com.vlsolutions.swing.docking.DockableState;
  * for printer menus.
  *
  * @author Simon Fischer
- *
  */
 public class PrintingTools {
 
@@ -58,26 +57,48 @@ public class PrintingTools {
 	private static PageFormat pageFormat = getPrinterJob().defaultPage();
 	private static PrintRequestAttributeSet printSettings = new HashPrintRequestAttributeSet();
 
-	public static PrinterJob getPrinterJob() {
+    /**
+     * Gets printer job.
+     *
+     * @return the printer job
+     */
+    public static PrinterJob getPrinterJob() {
 		return PRINTER_JOB;
 	}
 
-	public static PageFormat getPageFormat() {
+    /**
+     * Gets page format.
+     *
+     * @return the page format
+     */
+    public static PageFormat getPageFormat() {
 		return pageFormat;
 	}
 
-	public static void editPrintSettings() {
+    /**
+     * Edit print settings.
+     */
+    public static void editPrintSettings() {
 		getPrinterJob().pageDialog(printSettings);
 	}
 
-	public static PrintRequestAttributeSet getPrintSettings() {
+    /**
+     * Gets print settings.
+     *
+     * @return the print settings
+     */
+    public static PrintRequestAttributeSet getPrintSettings() {
 		return printSettings;
 	}
 
-	/**
-	 * @return <code>true</code> on success. <code>false</code> if user aborts printing.
-	 */
-	public static boolean print(Printable printable) throws PrinterException {
+    /**
+     * Print boolean.
+     *
+     * @param printable the printable
+     * @return <code>true</code> on success. <code>false</code> if user aborts printing.
+     * @throws PrinterException the printer exception
+     */
+    public static boolean print(Printable printable) throws PrinterException {
 		getPrinterJob().setPrintable(printable);
 		if (getPrinterJob().printDialog()) {
 			PrintingTools.getPrinterJob().print(printSettings);
@@ -87,10 +108,15 @@ public class PrintingTools {
 		}
 	}
 
-	/**
-	 * @return <code>true</code> on success. <code>false</code> if user aborts printing.
-	 */
-	public static boolean print(Printable printable, PrintRequestAttributeSet printSettings) throws PrinterException {
+    /**
+     * Print boolean.
+     *
+     * @param printable     the printable
+     * @param printSettings the print settings
+     * @return <code>true</code> on success. <code>false</code> if user aborts printing.
+     * @throws PrinterException the printer exception
+     */
+    public static boolean print(Printable printable, PrintRequestAttributeSet printSettings) throws PrinterException {
 		getPrinterJob().setPrintable(printable);
 		if (getPrinterJob().printDialog(printSettings)) {
 			PrintingTools.getPrinterJob().print(printSettings);
@@ -100,35 +126,30 @@ public class PrintingTools {
 		}
 	}
 
-	/**
-	 * Creates a export menu item for the provided component.
-	 *
-	 * @param component
-	 *            the component the menu should be created for
-	 * @param componentName
-	 *            the name of the component
-	 */
-	public static JMenuItem makeExportPrintMenu(Component component, String componentName) {
+    /**
+     * Creates a export menu item for the provided component.
+     *
+     * @param component     the component the menu should be created for
+     * @param componentName the name of the component
+     * @return the j menu item
+     */
+    public static JMenuItem makeExportPrintMenu(Component component, String componentName) {
 		JMenuItem menuItem = new JMenuItem(
 				new ShowPrintAndExportDialogAction(new SimplePrintableComponent(component, componentName), true));
 		return menuItem;
 	}
 
-	/**
-	 * Prompt a file chooser dialog where the user selects a file location and returns a
-	 * {@link File} at this location.
-	 *
-	 * @param i18nKey
-	 *            the i18n key for the dialog to be shown. The provided i18nKey must be contained in
-	 *            the GUI properties file (gui.dialog.i18nKey.[title|message|icon]).
-	 * @param fileExtension
-	 *            the explicit file extension like "pdf" or "png".
-	 * @param extensionDescription
-	 *            the description of the given format for this file extension
-	 * @return the new File in the an object can be stored
-	 * @throws IOException
-	 */
-	static public File promptForFileLocation(String i18nKey, String fileExtension, String extensionDescription)
+    /**
+     * Prompt a file chooser dialog where the user selects a file location and returns a
+     * {@link File} at this location.
+     *
+     * @param i18nKey              the i18n key for the dialog to be shown. The provided i18nKey must be contained in            the GUI properties file (gui.dialog.i18nKey.[title|message|icon]).
+     * @param fileExtension        the explicit file extension like "pdf" or "png".
+     * @param extensionDescription the description of the given format for this file extension
+     * @return the new File in the an object can be stored
+     * @throws IOException the io exception
+     */
+    static public File promptForFileLocation(String i18nKey, String fileExtension, String extensionDescription)
 			throws IOException {
 
 		// check parameters
@@ -142,21 +163,17 @@ public class PrintingTools {
 		return promptForFileLocation(i18nKey, new String[] { fileExtension }, new String[] { extensionDescription });
 	}
 
-	/**
-	 * Prompt a file chooser dialog where the user selects a file location and returns a
-	 * {@link File} at this location.
-	 *
-	 * @param i18nKey
-	 *            the i18n key for the dialog to be shown. The provided i18nKey must be contained in
-	 *            the GUI properties file (gui.dialog.i18nKey.[title|message|icon]).
-	 * @param fileExtensions
-	 *            a list of explicit file extension like "pdf" or "png".
-	 * @param extensionDescriptions
-	 *            a list of descriptions of the given format for this file extension
-	 * @return the new File in the an object can be stored
-	 * @throws IOException
-	 */
-	static public File promptForFileLocation(String i18nKey, String[] fileExtensions, String[] extensionDescriptions)
+    /**
+     * Prompt a file chooser dialog where the user selects a file location and returns a
+     * {@link File} at this location.
+     *
+     * @param i18nKey               the i18n key for the dialog to be shown. The provided i18nKey must be contained in            the GUI properties file (gui.dialog.i18nKey.[title|message|icon]).
+     * @param fileExtensions        a list of explicit file extension like "pdf" or "png".
+     * @param extensionDescriptions a list of descriptions of the given format for this file extension
+     * @return the new File in the an object can be stored
+     * @throws IOException the io exception
+     */
+    static public File promptForFileLocation(String i18nKey, String[] fileExtensions, String[] extensionDescriptions)
 			throws IOException {
 
 		// check parameters
@@ -191,25 +208,26 @@ public class PrintingTools {
 		return file;
 	}
 
-	/**
-	 * Returns a list of printable components below the root component. If the root component is a
-	 * {@link PrintableComponent} itself, it will be first in the list. The first component in list
-	 * is always showing. Other might not be visible on screen.
-	 *
-	 * @return the components that can be exported as an image.
-	 */
-	public static final List<PrintableComponent> findExportComponents(Component root) {
+    /**
+     * Returns a list of printable components below the root component. If the root component is a
+     * {@link PrintableComponent} itself, it will be first in the list. The first component in list
+     * is always showing. Other might not be visible on screen.
+     *
+     * @param root the root
+     * @return the components that can be exported as an image.
+     */
+    public static final List<PrintableComponent> findExportComponents(Component root) {
 		List<PrintableComponent> components = new LinkedList<>();
 		findExportComponents(root, components);
 		return components;
 	}
 
-	/**
-	 * Returns a list of printable components from the currently visible perspective.
-	 *
-	 * @return the components that can be exported as an image.
-	 */
-	public static final List<PrintableComponent> findExportComponents() {
+    /**
+     * Returns a list of printable components from the currently visible perspective.
+     *
+     * @return the components that can be exported as an image.
+     */
+    public static final List<PrintableComponent> findExportComponents() {
 		List<PrintableComponent> components = new LinkedList<>();
 
 		// otherwise search for all PrintableComponents in current perspective

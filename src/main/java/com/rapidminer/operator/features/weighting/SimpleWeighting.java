@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * This PopulationOperator realizes a simple weighting, i.e. creates a list of clones of each
  * individual and weights one attribute in each of the clones with some different weights.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimpleWeighting extends IndividualOperator {
@@ -42,8 +42,13 @@ public class SimpleWeighting extends IndividualOperator {
 	/** These weights are used for building new individuals. */
 	private double[] weights = null;
 
-	/** Creates a simple weighting. */
-	public SimpleWeighting(double compareWeight, double[] weights) {
+    /**
+     * Creates a simple weighting.  @param compareWeight the compare weight
+     *
+     * @param compareWeight the compare weight
+     * @param weights       the weights
+     */
+    public SimpleWeighting(double compareWeight, double[] weights) {
 		this.compareWeight = compareWeight;
 		this.weights = weights;
 	}

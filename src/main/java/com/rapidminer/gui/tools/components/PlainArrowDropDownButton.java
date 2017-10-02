@@ -39,7 +39,8 @@ import javax.swing.event.PopupMenuListener;
 
 
 /**
- * 
+ * The type Plain arrow drop down button.
+ *
  * @author Dominik Halfkann
  */
 public abstract class PlainArrowDropDownButton extends JButton {
@@ -81,11 +82,17 @@ public abstract class PlainArrowDropDownButton extends JButton {
 		}
 	};
 
-	public static class DropDownArrowButton extends ArrowButton {
+    /**
+     * The type Drop down arrow button.
+     */
+    public static class DropDownArrowButton extends ArrowButton {
 
 		private static final long serialVersionUID = -398619111521186260L;
 
-		public DropDownArrowButton() {
+        /**
+         * Instantiates a new Drop down arrow button.
+         */
+        public DropDownArrowButton() {
 			super(SwingConstants.SOUTH);
 		}
 	}
@@ -94,7 +101,12 @@ public abstract class PlainArrowDropDownButton extends JButton {
 
 	private boolean popupVisible = false;
 
-	public PlainArrowDropDownButton(Action action) {
+    /**
+     * Instantiates a new Plain arrow drop down button.
+     *
+     * @param action the action
+     */
+    public PlainArrowDropDownButton(Action action) {
 		super(action);
 		arrowButton.getModel().addChangeListener(changeListener);
 		arrowButton.addActionListener(new ActionListener() {
@@ -109,36 +121,82 @@ public abstract class PlainArrowDropDownButton extends JButton {
 		arrowButton.setMargin(new Insets(0, 0, 0, 0));
 	}
 
-	protected abstract JPopupMenu getPopupMenu();
+    /**
+     * Gets popup menu.
+     *
+     * @return the popup menu
+     */
+    protected abstract JPopupMenu getPopupMenu();
 
-	public void add(Action action) {
+    /**
+     * Add.
+     *
+     * @param action the action
+     */
+    public void add(Action action) {
 		getPopupMenu().add(action);
 	}
 
-	public void add(JMenuItem item) {
+    /**
+     * Add.
+     *
+     * @param item the item
+     */
+    public void add(JMenuItem item) {
 		getPopupMenu().add(item);
 	}
 
-	public JButton addToToolBar(JToolBar toolbar) {
+    /**
+     * Add to tool bar j button.
+     *
+     * @param toolbar the toolbar
+     * @return the j button
+     */
+    public JButton addToToolBar(JToolBar toolbar) {
 		toolbar.add(arrowButton);
 		return arrowButton;
 	}
 
-	public JButton addToToolBar(VLToolBar toolbar) {
+    /**
+     * Add to tool bar j button.
+     *
+     * @param toolbar the toolbar
+     * @return the j button
+     */
+    public JButton addToToolBar(VLToolBar toolbar) {
 		toolbar.add(arrowButton);
 		return arrowButton;
 	}
 
-	public JButton addToToolBar(ViewToolBar toolbar, int alignment) {
+    /**
+     * Add to tool bar j button.
+     *
+     * @param toolbar   the toolbar
+     * @param alignment the alignment
+     * @return the j button
+     */
+    public JButton addToToolBar(ViewToolBar toolbar, int alignment) {
 		toolbar.add(arrowButton, alignment);
 		return arrowButton;
 	}
 
-	public JButton getDropDownArrowButton() {
+    /**
+     * Gets drop down arrow button.
+     *
+     * @return the drop down arrow button
+     */
+    public JButton getDropDownArrowButton() {
 		return arrowButton;
 	}
 
-	// factory methods
+    /**
+     * Make drop down button plain arrow drop down button.
+     *
+     * @param mainAction the main action
+     * @param actions    the actions
+     * @return the plain arrow drop down button
+     */
+// factory methods
 	public static PlainArrowDropDownButton makeDropDownButton(Action mainAction, Action... actions) {
 		final JPopupMenu menu = new JPopupMenu();
 		for (Action action : actions) {
@@ -155,7 +213,13 @@ public abstract class PlainArrowDropDownButton extends JButton {
 		};
 	}
 
-	public static PlainArrowDropDownButton makeDropDownButton(Action action) {
+    /**
+     * Make drop down button plain arrow drop down button.
+     *
+     * @param action the action
+     * @return the plain arrow drop down button
+     */
+    public static PlainArrowDropDownButton makeDropDownButton(Action action) {
 		final JPopupMenu menu = new JPopupMenu();
 		return new PlainArrowDropDownButton(action) {
 

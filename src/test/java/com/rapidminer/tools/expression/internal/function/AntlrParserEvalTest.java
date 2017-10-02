@@ -49,11 +49,13 @@ import com.rapidminer.tools.expression.internal.antlr.AntlrParser;
  * Tests the results of {@link AntlrParser#parse(String)} for the eval function.
  *
  * @author Gisa Schaefer
- *
  */
 public class AntlrParserEvalTest extends AntlrParserTest {
 
-	@Test
+    /**
+     * Eval wrong number of arguments.
+     */
+    @Test
 	public void evalWrongNumberOfArguments() {
 		try {
 			getExpressionWithFunctionContext("eval()");
@@ -63,7 +65,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval wrong input type.
+     */
+    @Test
 	public void evalWrongInputType() {
 		try {
 			getExpressionWithFunctionContext("eval(2 ,1.5 )");
@@ -73,7 +78,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Multiply ints via eval.
+     */
+    @Test
 	public void multiplyIntsViaEval() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("eval(\"3*5\")");
@@ -84,7 +92,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval missing string.
+     */
+    @Test
 	public void evalMissingString() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("eval(MISSING_NOMINAL)");
@@ -95,7 +106,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Multiply ints via eval to double.
+     */
+    @Test
 	public void multiplyIntsViaEvalToDouble() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("eval(\"3*5\",REAL)");
@@ -106,7 +120,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Multiply doubles via eval.
+     */
+    @Test
 	public void multiplyDoublesViaEval() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("eval(\"3.0\"+\"*5\")");
@@ -117,7 +134,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Divide ints via eval with type.
+     */
+    @Test
 	public void divideIntsViaEvalWithType() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("eval(\"4 /2\",REAL)");
@@ -128,7 +148,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Divide doubles via eval with wrong type.
+     */
+    @Test
 	public void divideDoublesViaEvalWithWrongType() {
 		try {
 			getExpressionWithFunctionContext("eval(\"5.0 /2\",INTEGER)");
@@ -138,7 +161,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval with invalid type.
+     */
+    @Test
 	public void evalWithInvalidType() {
 		try {
 			getExpressionWithFunctionContext("eval(\"5.0 /2\",\"blup\")");
@@ -148,7 +174,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Modulo ints via eval with string type.
+     */
+    @Test
 	public void moduloIntsViaEvalWithStringType() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("eval(\"5 %2\",NOMINAL)");
@@ -159,7 +188,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval with string type missing.
+     */
+    @Test
 	public void evalWithStringTypeMissing() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("eval(\"MISSING_NOMINAL\",NOMINAL)");
@@ -170,7 +202,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval with string type missing numerical.
+     */
+    @Test
 	public void evalWithStringTypeMissingNumerical() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("eval(\"MISSING_NUMERIC\",NOMINAL)");
@@ -181,7 +216,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval with string type missing date.
+     */
+    @Test
 	public void evalWithStringTypeMissingDate() {
 		try {
 			Expression expression = getExpressionWithFunctionContext("eval(\"MISSING_DATE\",NOMINAL)");
@@ -192,7 +230,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Different point operations with nested eval fail.
+     */
+    @Test
 	public void differentPointOperationsWithNestedEvalFail() {
 		try {
 			getExpressionWithFunctionContext("eval(\"4%3 *\"+\"eval(\"+\"5/2\"+\")\")");
@@ -202,7 +243,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Power ints eval with macro.
+     */
+    @Test
 	public void powerIntsEvalWithMacro() {
 		try {
 			MacroHandler handler = new MacroHandler(null);
@@ -217,7 +261,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Different point operations with nested eval.
+     */
+    @Test
 	public void differentPointOperationsWithNestedEval() {
 		try {
 			MacroHandler handler = new MacroHandler(null);
@@ -233,7 +280,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval attribute without second.
+     */
+    @Test
 	public void evalAttributeWithoutSecond() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -265,7 +315,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		return builder.build();
 	}
 
-	@Test
+    /**
+     * Eval attribute with second.
+     */
+    @Test
 	public void evalAttributeWithSecond() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -280,7 +333,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval attribute with second to double.
+     */
+    @Test
 	public void evalAttributeWithSecondToDouble() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -295,7 +351,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval attribute with second to string.
+     */
+    @Test
 	public void evalAttributeWithSecondToString() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -310,7 +369,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval attribute with second not constant.
+     */
+    @Test
 	public void evalAttributeWithSecondNotConstant() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -322,7 +384,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval attribute with second to string missing.
+     */
+    @Test
 	public void evalAttributeWithSecondToStringMissing() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -338,7 +403,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval attribute with second to string missing both.
+     */
+    @Test
 	public void evalAttributeWithSecondToStringMissingBoth() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -353,7 +421,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval attribute with second to date.
+     */
+    @Test
 	public void evalAttributeWithSecondToDate() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -368,7 +439,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval real attribute with second to double.
+     */
+    @Test
 	public void evalRealAttributeWithSecondToDouble() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -383,7 +457,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval real attribute with second to integer.
+     */
+    @Test
 	public void evalRealAttributeWithSecondToInteger() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -398,7 +475,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval string attribute with second.
+     */
+    @Test
 	public void evalStringAttributeWithSecond() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -417,7 +497,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval boolean attribute with second.
+     */
+    @Test
 	public void evalBooleanAttributeWithSecond() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -432,7 +515,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Eval attribute from string.
+     */
+    @Test
 	public void evalAttributeFromString() {
 		try {
 			ExampleSet exampleSet = makeExampleSet();
@@ -447,7 +533,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Attribute from macro.
+     */
+    @Test
 	public void attributeFromMacro() {
 		try {
 			MacroHandler handler = new MacroHandler(null);
@@ -467,7 +556,10 @@ public class AntlrParserEvalTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Attribute from macro with type.
+     */
+    @Test
 	public void attributeFromMacroWithType() {
 		try {
 			MacroHandler handler = new MacroHandler(null);

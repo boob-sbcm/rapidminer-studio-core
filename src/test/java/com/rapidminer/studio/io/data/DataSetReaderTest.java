@@ -50,7 +50,6 @@ import com.rapidminer.studio.io.data.DefaultColumnMetaData;
  * Tests the {@link DataSetReader}.
  *
  * @author Gisa Schaefer
- *
  */
 public class DataSetReaderTest {
 
@@ -62,7 +61,10 @@ public class DataSetReaderTest {
 	private DataSetReader reader;
 	private List<ColumnMetaData> columnMetaData;
 
-	@BeforeClass
+    /**
+     * Sets up for all.
+     */
+    @BeforeClass
 	public static void setUpForAll() {
 		// row with number, String, date, missing
 		row = new DataSetRow() {
@@ -159,7 +161,10 @@ public class DataSetReaderTest {
 		};
 	}
 
-	@Before
+    /**
+     * Sets up.
+     */
+    @Before
 	public void setUp() {
 		columnMetaData = new ArrayList<ColumnMetaData>(
 				Arrays.asList(new ColumnMetaData[] { new DefaultColumnMetaData("att1", ColumnType.REAL),
@@ -169,7 +174,15 @@ public class DataSetReaderTest {
 		reader = new DataSetReader(null, columnMetaData, false);
 	}
 
-	@Test
+    /**
+     * Attribute creation.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test
 	public void attributeCreation() throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		ExampleSet result = reader.read(dataSet, null);
 		Attributes attributes = result.getAttributes();
@@ -180,13 +193,29 @@ public class DataSetReaderTest {
 		assertTrue(attributes.get("att4").isNumerical());
 	}
 
-	@Test
+    /**
+     * Number of rows.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test
 	public void numberOfRows() throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		ExampleSet result = reader.read(dataSet, null);
 		assertEquals(numberOfRows, result.size());
 	}
 
-	@Test
+    /**
+     * Removing column.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test
 	public void removingColumn() throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		columnMetaData.get(0).setRemoved(true);
 		ExampleSet result = reader.read(dataSet, null);
@@ -195,7 +224,15 @@ public class DataSetReaderTest {
 		assertEquals(3, attributes.size());
 	}
 
-	@Test
+    /**
+     * Check value 0.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test
 	public void checkValue0() throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		columnMetaData.get(1).setRemoved(true);
 		columnMetaData.get(2).setRemoved(true);
@@ -207,7 +244,15 @@ public class DataSetReaderTest {
 		}
 	}
 
-	@Test
+    /**
+     * Check value 1.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test
 	public void checkValue1() throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		columnMetaData.get(0).setRemoved(true);
 		columnMetaData.get(2).setRemoved(true);
@@ -220,7 +265,15 @@ public class DataSetReaderTest {
 
 	}
 
-	@Test
+    /**
+     * Check value 2.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test
 	public void checkValue2() throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		columnMetaData.get(0).setRemoved(true);
 		columnMetaData.get(1).setRemoved(true);
@@ -232,7 +285,15 @@ public class DataSetReaderTest {
 		}
 	}
 
-	@Test
+    /**
+     * Check value 3.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test
 	public void checkValue3() throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		columnMetaData.get(0).setRemoved(true);
 		columnMetaData.get(1).setRemoved(true);
@@ -244,21 +305,45 @@ public class DataSetReaderTest {
 		}
 	}
 
-	@Test
+    /**
+     * Special role.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test
 	public void specialRole() throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		columnMetaData.get(0).setRole("label");
 		ExampleSet result = reader.read(dataSet, null);
 		assertEquals("label", result.getAttributes().getRole("att1").getSpecialName());
 	}
 
-	@Test(expected = ParseException.class)
+    /**
+     * Parse exception nominal in numeric column.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test(expected = ParseException.class)
 	public void parseExceptionNominalInNumericColumn()
 			throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		columnMetaData.get(1).setType(ColumnType.REAL);
 		reader.read(dataSet, null);
 	}
 
-	@Test
+    /**
+     * Fault tolerant nominal in numeric column.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test
 	public void faultTolerantNominalInNumericColumn()
 			throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		reader.setFaultTolerant(true);
@@ -270,7 +355,15 @@ public class DataSetReaderTest {
 		assertEquals(Double.NaN, result.getExample(0).getNumericalValue(attribute), 1e-15);
 	}
 
-	@Test
+    /**
+     * Fault tolerant nominal in date column.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test
 	public void faultTolerantNominalInDateColumn()
 			throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		reader.setFaultTolerant(true);
@@ -282,14 +375,30 @@ public class DataSetReaderTest {
 		assertEquals(Double.NaN, result.getExample(0).getValue(attribute), 1e-15);
 	}
 
-	@Test(expected = UserError.class)
+    /**
+     * More columns in meta data than in data set.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test(expected = UserError.class)
 	public void moreColumnsInMetaDataThanInDataSet()
 			throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		columnMetaData.add(new DefaultColumnMetaData("att5", ColumnType.BINARY));
 		reader.read(dataSet, null);
 	}
 
-	@Test(expected = UserError.class)
+    /**
+     * More columns in meta data than in data set remove before.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test(expected = UserError.class)
 	public void moreColumnsInMetaDataThanInDataSetRemoveBefore()
 			throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		columnMetaData.add(new DefaultColumnMetaData("att5", ColumnType.BINARY));
@@ -297,7 +406,15 @@ public class DataSetReaderTest {
 		reader.read(dataSet, null);
 	}
 
-	@Test
+    /**
+     * More columns in meta data than in data set but removed.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test
 	public void moreColumnsInMetaDataThanInDataSetButRemoved()
 			throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		columnMetaData.add(new DefaultColumnMetaData("att5", ColumnType.BINARY));
@@ -305,13 +422,29 @@ public class DataSetReaderTest {
 		reader.read(dataSet, null);
 	}
 
-	@Test(expected = UserError.class)
+    /**
+     * Two columns with same name.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test(expected = UserError.class)
 	public void twoColumnsWithSameName() throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		columnMetaData.get(3).setName("att1");
 		reader.read(dataSet, null);
 	}
 
-	@Test
+    /**
+     * Two columns with same name but removed.
+     *
+     * @throws UserError               the user error
+     * @throws ProcessStoppedException the process stopped exception
+     * @throws DataSetException        the data set exception
+     * @throws ParseException          the parse exception
+     */
+    @Test
 	public void twoColumnsWithSameNameButRemoved()
 			throws UserError, ProcessStoppedException, DataSetException, ParseException {
 		columnMetaData.get(3).setName("att1");

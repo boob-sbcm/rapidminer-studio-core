@@ -50,7 +50,6 @@ import com.rapidminer.tools.container.Pair;
  *
  * @author Nils Woehler
  * @since 7.0.0
- *
  */
 final class LocalFileLocationWizardStep extends AbstractWizardStep {
 
@@ -69,13 +68,13 @@ final class LocalFileLocationWizardStep extends AbstractWizardStep {
 	private final List<FileFilter> fileFilters;
 	private final ImportWizard wizard;
 
-	/**
-	 * Creates a new {@link LocalFileLocationWizardStep} instance.
-	 *
-	 * @param allFileEndingsAndDescriptions
-	 *            all list of all registered file endings with descriptions
-	 */
-	public LocalFileLocationWizardStep(List<Pair<String, Set<String>>> allFileEndingsAndDescriptions, ImportWizard wizard) {
+    /**
+     * Creates a new {@link LocalFileLocationWizardStep} instance.
+     *
+     * @param allFileEndingsAndDescriptions all list of all registered file endings with descriptions
+     * @param wizard                        the wizard
+     */
+    public LocalFileLocationWizardStep(List<Pair<String, Set<String>>> allFileEndingsAndDescriptions, ImportWizard wizard) {
 		this.wizard = wizard;
 		this.fileFilters = new LinkedList<>();
 		for (final Pair<String, Set<String>> item : allFileEndingsAndDescriptions) {

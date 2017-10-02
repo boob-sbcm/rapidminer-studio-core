@@ -20,27 +20,49 @@ package com.rapidminer.operator.learner.functions.kernel.rvm;
 
 /**
  * Defines the interface for the various RVM-implementations
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
  */
 abstract public class RVMBase {
 
-	protected Problem problem;				// The problem to be learned
-	protected Parameter parameter;				// Various parameters influencing the learning process
+    /**
+     * The Problem.
+     */
+    protected Problem problem;				// The problem to be learned
+    /**
+     * The Parameter.
+     */
+    protected Parameter parameter;				// Various parameters influencing the learning process
 
-	protected Model model = null;			// The learned model
+    /**
+     * The Model.
+     */
+    protected Model model = null;			// The learned model
 
-	/** Constructor */
-	public RVMBase(Problem problem, Parameter parameter) {
+    /**
+     * Constructor  @param problem the problem
+     *
+     * @param problem   the problem
+     * @param parameter the parameter
+     */
+    public RVMBase(Problem problem, Parameter parameter) {
 		this.problem = problem;
 		this.parameter = parameter;
 	}
 
-	/** Does the hard work of learning the model from the inputs */
-	abstract public Model learn();
+    /**
+     * Does the hard work of learning the model from the inputs  @return the model
+     *
+     * @return the model
+     */
+    abstract public Model learn();
 
-	/** Get the learned model */
-	public Model getModel() {
+    /**
+     * Get the learned model  @return the model
+     *
+     * @return the model
+     */
+    public Model getModel() {
 		return model;
 	}
 }

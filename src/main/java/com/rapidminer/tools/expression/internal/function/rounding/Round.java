@@ -27,11 +27,13 @@ import com.rapidminer.tools.expression.FunctionInputException;
  * A {@link Function} for rounding numbers.
  *
  * @author David Arnu
- *
  */
 public class Round extends Abstract1or2DoubleInputFunction {
 
-	public Round() {
+    /**
+     * Instantiates a new Round.
+     */
+    public Round() {
 		super("rounding.round", Ontology.NUMERICAL);
 	}
 

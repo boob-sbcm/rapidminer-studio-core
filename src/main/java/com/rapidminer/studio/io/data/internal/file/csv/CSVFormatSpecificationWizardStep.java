@@ -44,7 +44,10 @@ import com.rapidminer.studio.io.gui.internal.steps.AbstractWizardStep;
  */
 public class CSVFormatSpecificationWizardStep extends AbstractWizardStep {
 
-	static final String CSV_FORMAT_SPECIFICATION_STEP_ID = "csv.format_specification";
+    /**
+     * The Csv format specification step id.
+     */
+    static final String CSV_FORMAT_SPECIFICATION_STEP_ID = "csv.format_specification";
 
 	private Map<String, String> enteringConfiguration;
 	private boolean calculateMetaData = true;
@@ -54,7 +57,13 @@ public class CSVFormatSpecificationWizardStep extends AbstractWizardStep {
 	private final CSVDataSource csvDataSource;
 	private final ImportWizard wizard;
 
-	CSVFormatSpecificationWizardStep(CSVDataSource csvDataSource, ImportWizard wizard) {
+    /**
+     * Instantiates a new Csv format specification wizard step.
+     *
+     * @param csvDataSource the csv data source
+     * @param wizard        the wizard
+     */
+    CSVFormatSpecificationWizardStep(CSVDataSource csvDataSource, ImportWizard wizard) {
 		this.wizard = wizard;
 		this.formatPanel = new CSVFormatSpecificationPanel(csvDataSource.getResultSetConfiguration());
 		this.formatPanel.addChangeListener(new ChangeListener() {

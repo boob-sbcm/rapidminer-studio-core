@@ -50,7 +50,13 @@ public class ParameterTypeMatrix extends ParameterTypeString {
 
 	private String columnBaseName;
 
-	public ParameterTypeMatrix(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type matrix.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeMatrix(Element element) throws XMLException {
 		super(element);
 
 		isSquared = Boolean.valueOf(element.getAttribute(ATTRIBUTE_IS_SQUARED));
@@ -59,12 +65,33 @@ public class ParameterTypeMatrix extends ParameterTypeString {
 		columnBaseName = XMLTools.getTagContents(element, ELEMENT_COLUMN_NAME, true);
 	}
 
-	public ParameterTypeMatrix(String key, String description, String baseName, String rowBaseName, String columnBaseName,
+    /**
+     * Instantiates a new Parameter type matrix.
+     *
+     * @param key            the key
+     * @param description    the description
+     * @param baseName       the base name
+     * @param rowBaseName    the row base name
+     * @param columnBaseName the column base name
+     * @param isSquared      the is squared
+     */
+    public ParameterTypeMatrix(String key, String description, String baseName, String rowBaseName, String columnBaseName,
 			boolean isSquared) {
 		this(key, description, baseName, rowBaseName, columnBaseName, isSquared, true);
 	}
 
-	public ParameterTypeMatrix(String key, String description, String baseName, String rowBaseName, String columnBaseName,
+    /**
+     * Instantiates a new Parameter type matrix.
+     *
+     * @param key            the key
+     * @param description    the description
+     * @param baseName       the base name
+     * @param rowBaseName    the row base name
+     * @param columnBaseName the column base name
+     * @param isSquared      the is squared
+     * @param isOptional     the is optional
+     */
+    public ParameterTypeMatrix(String key, String description, String baseName, String rowBaseName, String columnBaseName,
 			boolean isSquared, boolean isOptional) {
 		super(key, description, isOptional);
 		this.isSquared = isSquared;
@@ -73,35 +100,75 @@ public class ParameterTypeMatrix extends ParameterTypeString {
 		this.columnBaseName = columnBaseName;
 	}
 
-	public boolean isSquared() {
+    /**
+     * Is squared boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSquared() {
 		return isSquared;
 	}
 
-	public void setSquared(boolean isSquared) {
+    /**
+     * Sets squared.
+     *
+     * @param isSquared the is squared
+     */
+    public void setSquared(boolean isSquared) {
 		this.isSquared = isSquared;
 	}
 
-	public String getBaseName() {
+    /**
+     * Gets base name.
+     *
+     * @return the base name
+     */
+    public String getBaseName() {
 		return baseName;
 	}
 
-	public void setBaseName(String baseName) {
+    /**
+     * Sets base name.
+     *
+     * @param baseName the base name
+     */
+    public void setBaseName(String baseName) {
 		this.baseName = baseName;
 	}
 
-	public String getRowBaseName() {
+    /**
+     * Gets row base name.
+     *
+     * @return the row base name
+     */
+    public String getRowBaseName() {
 		return rowBaseName;
 	}
 
-	public void setRowBaseName(String rowBaseName) {
+    /**
+     * Sets row base name.
+     *
+     * @param rowBaseName the row base name
+     */
+    public void setRowBaseName(String rowBaseName) {
 		this.rowBaseName = rowBaseName;
 	}
 
-	public String getColumnBaseName() {
+    /**
+     * Gets column base name.
+     *
+     * @return the column base name
+     */
+    public String getColumnBaseName() {
 		return columnBaseName;
 	}
 
-	public void setColumnBaseName(String columnBaseName) {
+    /**
+     * Sets column base name.
+     *
+     * @param columnBaseName the column base name
+     */
+    public void setColumnBaseName(String columnBaseName) {
 		this.columnBaseName = columnBaseName;
 	}
 

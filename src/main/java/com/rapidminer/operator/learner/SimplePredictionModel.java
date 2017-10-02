@@ -44,38 +44,37 @@ public abstract class SimplePredictionModel extends PredictionModel {
 
 	private static final int OPERATOR_PROGRESS_STEPS = 1000;
 
-	/**
-	 * @deprecated Since RapidMiner Studio 6.0.009. Please use the new Constructor
-	 *             {@link #SimplePredictionModel(ExampleSet, com.rapidminer.example.set.ExampleSetUtilities.SetsCompareOption, com.rapidminer.example.set.ExampleSetUtilities.TypesCompareOption)}
-	 *             which offers the possibility to check for AttributeType and kind of ExampleSet
-	 *             before execution.
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Simple prediction model.
+     *
+     * @param exampleSet the example set
+     * @deprecated Since RapidMiner Studio 6.0.009. Please use the new Constructor             {@link #SimplePredictionModel(ExampleSet, com.rapidminer.example.set.ExampleSetUtilities.SetsCompareOption, com.rapidminer.example.set.ExampleSetUtilities.TypesCompareOption)}             which offers the possibility to check for AttributeType and kind of ExampleSet             before execution.
+     */
+    @Deprecated
 	protected SimplePredictionModel(ExampleSet exampleSet) {
 		this(exampleSet, null, null);
 	}
 
-	/**
-	 *
-	 * @param sizeCompareOperator
-	 *            describes the allowed relations between the given ExampleSet and future
-	 *            ExampleSets on which this Model will be applied. If this parameter is null no
-	 *            error will be thrown and no check will be done.
-	 * @param typeCompareOperator
-	 *            describes the allowed relations between the types of the attributes of the given
-	 *            ExampleSet and the types of future attributes of ExampleSet on which this Model
-	 *            will be applied. If this parameter is null no error will be thrown and no check
-	 *            will be done.
-	 */
-	protected SimplePredictionModel(ExampleSet exampleSet, ExampleSetUtilities.SetsCompareOption sizeCompareOperator,
+    /**
+     * Instantiates a new Simple prediction model.
+     *
+     * @param exampleSet          the example set
+     * @param sizeCompareOperator describes the allowed relations between the given ExampleSet and future            ExampleSets on which this Model will be applied. If this parameter is null no            error will be thrown and no check will be done.
+     * @param typeCompareOperator describes the allowed relations between the types of the attributes of the given            ExampleSet and the types of future attributes of ExampleSet on which this Model            will be applied. If this parameter is null no error will be thrown and no check            will be done.
+     */
+    protected SimplePredictionModel(ExampleSet exampleSet, ExampleSetUtilities.SetsCompareOption sizeCompareOperator,
 			ExampleSetUtilities.TypesCompareOption typeCompareOperator) {
 		super(exampleSet, sizeCompareOperator, typeCompareOperator);
 	}
 
-	/**
-	 * Applies the model to a single example and returns the predicted class value.
-	 */
-	public abstract double predict(Example example) throws OperatorException;
+    /**
+     * Applies the model to a single example and returns the predicted class value.
+     *
+     * @param example the example
+     * @return the double
+     * @throws OperatorException the operator exception
+     */
+    public abstract double predict(Example example) throws OperatorException;
 
 	/** Iterates over all examples and applies the model to them. */
 	@Override

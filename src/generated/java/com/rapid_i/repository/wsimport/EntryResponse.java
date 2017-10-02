@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for entryResponse complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="entryResponse">
  *   &lt;complexContent>
@@ -45,8 +45,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "entryResponse", propOrder = {
@@ -62,17 +60,39 @@ public class EntryResponse
     extends Response
 {
 
+    /**
+     * The Date.
+     */
     protected long date;
+    /**
+     * The Io object class name.
+     */
     protected String ioObjectClassName;
+    /**
+     * The Latest revision.
+     */
     protected int latestRevision;
+    /**
+     * The Location.
+     */
     protected String location;
+    /**
+     * The Size.
+     */
     protected int size;
+    /**
+     * The Type.
+     */
     protected String type;
+    /**
+     * The User.
+     */
     protected String user;
 
     /**
      * Gets the value of the date property.
-     * 
+     *
+     * @return the date
      */
     public long getDate() {
         return date;
@@ -80,7 +100,8 @@ public class EntryResponse
 
     /**
      * Sets the value of the date property.
-     * 
+     *
+     * @param value the value
      */
     public void setDate(long value) {
         this.date = value;
@@ -88,11 +109,8 @@ public class EntryResponse
 
     /**
      * Gets the value of the ioObjectClassName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getIoObjectClassName() {
         return ioObjectClassName;
@@ -100,11 +118,8 @@ public class EntryResponse
 
     /**
      * Sets the value of the ioObjectClassName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setIoObjectClassName(String value) {
         this.ioObjectClassName = value;
@@ -112,7 +127,8 @@ public class EntryResponse
 
     /**
      * Gets the value of the latestRevision property.
-     * 
+     *
+     * @return the latest revision
      */
     public int getLatestRevision() {
         return latestRevision;
@@ -120,7 +136,8 @@ public class EntryResponse
 
     /**
      * Sets the value of the latestRevision property.
-     * 
+     *
+     * @param value the value
      */
     public void setLatestRevision(int value) {
         this.latestRevision = value;
@@ -128,11 +145,8 @@ public class EntryResponse
 
     /**
      * Gets the value of the location property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getLocation() {
         return location;
@@ -140,11 +154,8 @@ public class EntryResponse
 
     /**
      * Sets the value of the location property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setLocation(String value) {
         this.location = value;
@@ -152,7 +163,8 @@ public class EntryResponse
 
     /**
      * Gets the value of the size property.
-     * 
+     *
+     * @return the size
      */
     public int getSize() {
         return size;
@@ -160,7 +172,8 @@ public class EntryResponse
 
     /**
      * Sets the value of the size property.
-     * 
+     *
+     * @param value the value
      */
     public void setSize(int value) {
         this.size = value;
@@ -168,11 +181,8 @@ public class EntryResponse
 
     /**
      * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getType() {
         return type;
@@ -180,11 +190,8 @@ public class EntryResponse
 
     /**
      * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setType(String value) {
         this.type = value;
@@ -192,11 +199,8 @@ public class EntryResponse
 
     /**
      * Gets the value of the user property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getUser() {
         return user;
@@ -204,11 +208,8 @@ public class EntryResponse
 
     /**
      * Sets the value of the user property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setUser(String value) {
         this.user = value;

@@ -41,7 +41,6 @@ import java.util.logging.Level;
  * Replaces the old {@link IOMultiplyOperator} by a number of {@link IOMultiplier}s.
  *
  * @author Simon Fischer
- *
  */
 public class ReplaceIOMultiplierRule extends AbstractGenericParseRule {
 

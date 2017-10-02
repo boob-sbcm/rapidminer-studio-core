@@ -26,28 +26,54 @@ import org.w3c.dom.Element;
 /**
  * A ParameterType for OAuth. Requires an {@link OAuthMechanism} for the authentication.
  * Authentication workflow is triggered by the {@link OAuthValueCellEditor}.
- * 
+ *
  * @author Marcel Michel
  * @since 6.0.003
- * 
  */
 public class ParameterTypeOAuth extends ParameterTypePassword {
 
 	private static final long serialVersionUID = -2367046707430250941L;
 
-	protected OAuthMechanism oAuth;
+    /**
+     * The O auth.
+     */
+    protected OAuthMechanism oAuth;
 
-	public ParameterTypeOAuth(String key, String description, OAuthMechanism oAuthMechanism) {
+    /**
+     * Instantiates a new Parameter type o auth.
+     *
+     * @param key            the key
+     * @param description    the description
+     * @param oAuthMechanism the o auth mechanism
+     */
+    public ParameterTypeOAuth(String key, String description, OAuthMechanism oAuthMechanism) {
 		super(key, description);
 		oAuth = oAuthMechanism;
 	}
 
-	public ParameterTypeOAuth(String key, String description, boolean optional, OAuthMechanism oAuthMechanism) {
+    /**
+     * Instantiates a new Parameter type o auth.
+     *
+     * @param key            the key
+     * @param description    the description
+     * @param optional       the optional
+     * @param oAuthMechanism the o auth mechanism
+     */
+    public ParameterTypeOAuth(String key, String description, boolean optional, OAuthMechanism oAuthMechanism) {
 		this(key, description, oAuthMechanism);
 		setOptional(optional);
 	}
 
-	public ParameterTypeOAuth(String key, String description, boolean optional, boolean expert, OAuthMechanism oAuthMechanism) {
+    /**
+     * Instantiates a new Parameter type o auth.
+     *
+     * @param key            the key
+     * @param description    the description
+     * @param optional       the optional
+     * @param expert         the expert
+     * @param oAuthMechanism the o auth mechanism
+     */
+    public ParameterTypeOAuth(String key, String description, boolean optional, boolean expert, OAuthMechanism oAuthMechanism) {
 		this(key, description, oAuthMechanism);
 		setExpert(expert);
 		setOptional(optional);
@@ -69,11 +95,21 @@ public class ParameterTypeOAuth extends ParameterTypePassword {
 	@Override
 	protected void writeDefinitionToXML(Element typeElement) {}
 
-	public OAuthMechanism getOAuthMechanism() {
+    /**
+     * Gets o auth mechanism.
+     *
+     * @return the o auth mechanism
+     */
+    public OAuthMechanism getOAuthMechanism() {
 		return oAuth;
 	};
 
-	public void setOAuthMechanism(OAuthMechanism oAuthMechanism) {
+    /**
+     * Sets o auth mechanism.
+     *
+     * @param oAuthMechanism the o auth mechanism
+     */
+    public void setOAuthMechanism(OAuthMechanism oAuthMechanism) {
 		oAuth = oAuthMechanism;
 	}
 }

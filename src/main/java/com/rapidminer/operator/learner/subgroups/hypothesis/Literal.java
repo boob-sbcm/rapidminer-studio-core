@@ -26,7 +26,7 @@ import java.io.Serializable;
 
 /**
  * A literator for a rule.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class Literal implements Serializable {
@@ -37,24 +37,51 @@ public class Literal implements Serializable {
 
 	private double value = 0.0d;
 
-	public Literal(Attribute attribute, double value) {
+    /**
+     * Instantiates a new Literal.
+     *
+     * @param attribute the attribute
+     * @param value     the value
+     */
+    public Literal(Attribute attribute, double value) {
 		this.attribute = attribute;
 		this.value = value;
 	}
 
-	public boolean applicable(Example example) {
+    /**
+     * Applicable boolean.
+     *
+     * @param example the example
+     * @return the boolean
+     */
+    public boolean applicable(Example example) {
 		return (example.getValue(attribute) == value);
 	}
 
-	public Attribute getAttribute() {
+    /**
+     * Gets attribute.
+     *
+     * @return the attribute
+     */
+    public Attribute getAttribute() {
 		return attribute;
 	}
 
-	public double getValue() {
+    /**
+     * Gets value.
+     *
+     * @return the value
+     */
+    public double getValue() {
 		return value;
 	}
 
-	public String getValueAsString() {
+    /**
+     * Gets value as string.
+     *
+     * @return the value as string
+     */
+    public String getValueAsString() {
 		return attribute.getMapping().mapIndex((int) value);
 	}
 
@@ -63,7 +90,13 @@ public class Literal implements Serializable {
 		return this.attribute.hashCode() ^ Integer.valueOf((int) value);
 	}
 
-	public boolean contradicts(Literal otherLiteral) {
+    /**
+     * Contradicts boolean.
+     *
+     * @param otherLiteral the other literal
+     * @return the boolean
+     */
+    public boolean contradicts(Literal otherLiteral) {
 		if (this.attribute.equals(otherLiteral.attribute) && (this.value != otherLiteral.value)) {
 			return true;
 		}

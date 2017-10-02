@@ -40,7 +40,6 @@ import com.rapidminer.tools.StrictDecimalFormat;
 
 
 /**
- *
  * <p>
  * This operator can be used to load data from .csv files. The user can specify the delimiter and
  * various other parameters.
@@ -50,20 +49,49 @@ import com.rapidminer.tools.StrictDecimalFormat;
  */
 public class CSVExampleSource extends AbstractDataResultSetReader {
 
-	public static final String PARAMETER_CSV_FILE = "csv_file";
-	public static final String PARAMETER_TRIM_LINES = "trim_lines";
-	public static final String PARAMETER_SKIP_COMMENTS = "skip_comments";
-	public static final String PARAMETER_COMMENT_CHARS = "comment_characters";
-	public static final String PARAMETER_USE_QUOTES = "use_quotes";
-	public static final String PARAMETER_QUOTES_CHARACTER = "quotes_character";
-	public static final String PARAMETER_COLUMN_SEPARATORS = "column_separators";
-	public static final String PARAMETER_ESCAPE_CHARACTER = "escape_character";
+    /**
+     * The constant PARAMETER_CSV_FILE.
+     */
+    public static final String PARAMETER_CSV_FILE = "csv_file";
+    /**
+     * The constant PARAMETER_TRIM_LINES.
+     */
+    public static final String PARAMETER_TRIM_LINES = "trim_lines";
+    /**
+     * The constant PARAMETER_SKIP_COMMENTS.
+     */
+    public static final String PARAMETER_SKIP_COMMENTS = "skip_comments";
+    /**
+     * The constant PARAMETER_COMMENT_CHARS.
+     */
+    public static final String PARAMETER_COMMENT_CHARS = "comment_characters";
+    /**
+     * The constant PARAMETER_USE_QUOTES.
+     */
+    public static final String PARAMETER_USE_QUOTES = "use_quotes";
+    /**
+     * The constant PARAMETER_QUOTES_CHARACTER.
+     */
+    public static final String PARAMETER_QUOTES_CHARACTER = "quotes_character";
+    /**
+     * The constant PARAMETER_COLUMN_SEPARATORS.
+     */
+    public static final String PARAMETER_COLUMN_SEPARATORS = "column_separators";
+    /**
+     * The constant PARAMETER_ESCAPE_CHARACTER.
+     */
+    public static final String PARAMETER_ESCAPE_CHARACTER = "escape_character";
 
 	static {
 		AbstractReader.registerReaderDescription(new ReaderDescription("csv", CSVExampleSource.class, PARAMETER_CSV_FILE));
 	}
 
-	public CSVExampleSource(final OperatorDescription description) {
+    /**
+     * Instantiates a new Csv example source.
+     *
+     * @param description the description
+     */
+    public CSVExampleSource(final OperatorDescription description) {
 		super(description);
 	}
 

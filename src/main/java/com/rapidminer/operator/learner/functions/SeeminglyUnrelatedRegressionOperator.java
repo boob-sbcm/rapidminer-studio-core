@@ -70,7 +70,12 @@ public class SeeminglyUnrelatedRegressionOperator extends AbstractLearner {
 
 	private InputPortExtender unrelatedExampleSets = new InputPortExtender("unrelated example sets", getInputPorts());
 
-	public SeeminglyUnrelatedRegressionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Seemingly unrelated regression operator.
+     *
+     * @param description the description
+     */
+    public SeeminglyUnrelatedRegressionOperator(OperatorDescription description) {
 		super(description);
 
 		unrelatedExampleSets.start();
@@ -82,7 +87,18 @@ public class SeeminglyUnrelatedRegressionOperator extends AbstractLearner {
 		return learn(mainSet, dataSets);
 	}
 
-	public SeeminglyUnrelatedRegressionModel learn(ExampleSet mainSet, List<ExampleSet> dataSets) throws UserError,
+    /**
+     * Learn seemingly unrelated regression model.
+     *
+     * @param mainSet  the main set
+     * @param dataSets the data sets
+     * @return the seemingly unrelated regression model
+     * @throws UserError               the user error
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws OperatorException       the operator exception
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public SeeminglyUnrelatedRegressionModel learn(ExampleSet mainSet, List<ExampleSet> dataSets) throws UserError,
 	UndefinedParameterError, OperatorException, ProcessStoppedException {
 		// check if each data set is part of the mainSet and has the same size
 		int numberOfExamples = mainSet.size();

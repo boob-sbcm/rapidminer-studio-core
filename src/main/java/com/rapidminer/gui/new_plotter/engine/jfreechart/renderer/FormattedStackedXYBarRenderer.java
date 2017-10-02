@@ -29,6 +29,8 @@ import org.jfree.chart.renderer.xy.StackedXYBarRenderer;
 
 
 /**
+ * The type Formatted stacked xy bar renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedStackedXYBarRenderer extends StackedXYBarRenderer implements FormattedRenderer {
@@ -37,11 +39,19 @@ public class FormattedStackedXYBarRenderer extends StackedXYBarRenderer implemen
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedStackedXYBarRenderer() {
+    /**
+     * Instantiates a new Formatted stacked xy bar renderer.
+     */
+    public FormattedStackedXYBarRenderer() {
 		super();
 	}
 
-	public FormattedStackedXYBarRenderer(double margin) {
+    /**
+     * Instantiates a new Formatted stacked xy bar renderer.
+     *
+     * @param margin the margin
+     */
+    public FormattedStackedXYBarRenderer(double margin) {
 		super(margin);
 	}
 

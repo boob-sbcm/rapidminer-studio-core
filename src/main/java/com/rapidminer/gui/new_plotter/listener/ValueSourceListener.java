@@ -22,10 +22,16 @@ import com.rapidminer.gui.new_plotter.listener.events.ValueSourceChangeEvent;
 
 
 /**
+ * The interface Value source listener.
+ *
  * @author Nils Woehler, Marius Helf
- * 
  */
 public interface ValueSourceListener {
 
-	public void valueSourceChanged(ValueSourceChangeEvent e);
+    /**
+     * Value source changed.
+     *
+     * @param e the e
+     */
+    public void valueSourceChanged(ValueSourceChangeEvent e);
 }

@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is sin(att1) + att1.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SinusWithTrendFunction extends RegressionFunction {

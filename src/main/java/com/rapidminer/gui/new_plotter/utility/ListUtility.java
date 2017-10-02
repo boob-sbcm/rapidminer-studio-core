@@ -22,22 +22,29 @@ import java.util.List;
 
 
 /**
+ * The type List utility.
+ *
  * @author Nils Woehler
- * 
  */
 public class ListUtility {
 
-	/**
-	 * This function shifts the element to a new index in the list. If element is shifted right the
-	 * element currently at the new position (if any) and any subsequent elements are shifted to the
-	 * right (adds one to their indices). If the element is shifted left the element currently at
-	 * the new position (if any) and any subsequent elements up to the old index are shifted to the
-	 * right (adds one to their indices). All elements from the right side of the old index are
-	 * shifted left. <b> If size of list is one or the old index equals the new index, no changes
-	 * will commence. Returns <code>true</code> if changes have been performed, <code>false</code>
-	 * otherwise.
-	 */
-	public static <T> boolean changeIndex(List<T> list, T element, int index) {
+    /**
+     * This function shifts the element to a new index in the list. If element is shifted right the
+     * element currently at the new position (if any) and any subsequent elements are shifted to the
+     * right (adds one to their indices). If the element is shifted left the element currently at
+     * the new position (if any) and any subsequent elements up to the old index are shifted to the
+     * right (adds one to their indices). All elements from the right side of the old index are
+     * shifted left. <b> If size of list is one or the old index equals the new index, no changes
+     * will commence. Returns <code>true</code> if changes have been performed, <code>false</code>
+     * otherwise.
+     *
+     * @param <T>     the type parameter
+     * @param list    the list
+     * @param element the element
+     * @param index   the index
+     * @return the boolean
+     */
+    public static <T> boolean changeIndex(List<T> list, T element, int index) {
 
 		final int oldIndex = list.indexOf(element);
 		final int listSize = list.size();

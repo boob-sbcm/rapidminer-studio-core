@@ -68,45 +68,63 @@ import Jama.SingularValueDecomposition;
  */
 public class FastICA extends Operator {
 
-	/**
-	 * The parameter name for &quot;Number components to be extracted (-1 number of attributes is
-	 * used).&quot;
-	 */
-	public static final String PARAMETER_NUMBER_OF_COMPONENTS = "number_of_components";
+    /**
+     * The parameter name for &quot;Number components to be extracted (-1 number of attributes is
+     * used).&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_COMPONENTS = "number_of_components";
 
-	/**
-	 * The parameter name for &quot;If 'parallel' the components are extracted simultaneously,
-	 * 'deflation' the components are extracted one at a time&quot;
-	 */
-	public static final String PARAMETER_ALGORITHM_TYPE = "algorithm_type";
+    /**
+     * The parameter name for &quot;If 'parallel' the components are extracted simultaneously,
+     * 'deflation' the components are extracted one at a time&quot;
+     */
+    public static final String PARAMETER_ALGORITHM_TYPE = "algorithm_type";
 
-	/**
-	 * The parameter name for &quot;The functional form of the G function used in the approximation
-	 * to neg-entropy&quot;
-	 */
-	public static final String PARAMETER_FUNCTION = "function";
+    /**
+     * The parameter name for &quot;The functional form of the G function used in the approximation
+     * to neg-entropy&quot;
+     */
+    public static final String PARAMETER_FUNCTION = "function";
 
-	/**
-	 * The parameter name for &quot;constant in range [1, 2] used in approximation to neg-entropy
-	 * when fun="logcosh"&quot;
-	 */
-	public static final String PARAMETER_ALPHA = "alpha";
+    /**
+     * The parameter name for &quot;constant in range [1, 2] used in approximation to neg-entropy
+     * when fun="logcosh"&quot;
+     */
+    public static final String PARAMETER_ALPHA = "alpha";
 
-	/** The parameter name for &quot;Indicates whether rows of the data matrix &quot; */
-	public static final String PARAMETER_ROW_NORM = "row_norm";
+    /**
+     * The parameter name for &quot;Indicates whether rows of the data matrix &quot;
+     */
+    public static final String PARAMETER_ROW_NORM = "row_norm";
 
-	/** The parameter name for &quot;maximum number of iterations to perform&quot; */
-	public static final String PARAMETER_MAX_ITERATION = "max_iteration";
+    /**
+     * The parameter name for &quot;maximum number of iterations to perform&quot;
+     */
+    public static final String PARAMETER_MAX_ITERATION = "max_iteration";
 
-	/** The parameter name for &quot;A positive scalar giving the tolerance at which &quot; */
-	public static final String PARAMETER_TOLERANCE = "tolerance";
+    /**
+     * The parameter name for &quot;A positive scalar giving the tolerance at which &quot;
+     */
+    public static final String PARAMETER_TOLERANCE = "tolerance";
 
-	public static final String PARAMETER_REDUCTION_TYPE = "dimensionality_reduction";
+    /**
+     * The constant PARAMETER_REDUCTION_TYPE.
+     */
+    public static final String PARAMETER_REDUCTION_TYPE = "dimensionality_reduction";
 
-	public static final String[] REDUCTION_METHODS = new String[] { "none", "fixed number" };
+    /**
+     * The constant REDUCTION_METHODS.
+     */
+    public static final String[] REDUCTION_METHODS = new String[] { "none", "fixed number" };
 
-	public static final int REDUCTION_NONE = 0;
-	public static final int REDUCTION_FIXED = 1;
+    /**
+     * The constant REDUCTION_NONE.
+     */
+    public static final int REDUCTION_NONE = 0;
+    /**
+     * The constant REDUCTION_FIXED.
+     */
+    public static final int REDUCTION_FIXED = 1;
 
 	private static final String[] ALGORITHM_TYPE = new String[] { "deflation", "parallel" };
 
@@ -118,7 +136,12 @@ public class FastICA extends Operator {
 	private OutputPort originalOutput = getOutputPorts().createPort("original");
 	private OutputPort modelOutput = getOutputPorts().createPort("preprocessing model");
 
-	public FastICA(OperatorDescription description) {
+    /**
+     * Instantiates a new Fast ica.
+     *
+     * @param description the description
+     */
+    public FastICA(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, Ontology.NUMERICAL) {

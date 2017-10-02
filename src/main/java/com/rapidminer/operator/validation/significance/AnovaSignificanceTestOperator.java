@@ -33,14 +33,19 @@ import com.rapidminer.tools.math.SignificanceTestResult;
  * Determines if the null hypothesis (all actual mean values are the same) holds for the input
  * performance vectors. This operator uses an ANalysis Of VAriances approach to determine
  * probability that the null hypothesis is wrong.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class AnovaSignificanceTestOperator extends SignificanceTestOperator {
 
 	private double probability;
 
-	public AnovaSignificanceTestOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Anova significance test operator.
+     *
+     * @param description the description
+     */
+    public AnovaSignificanceTestOperator(OperatorDescription description) {
 		super(description);
 
 		addValue(new ValueDouble("probability", "The probability for not differ significantly of the last test.") {

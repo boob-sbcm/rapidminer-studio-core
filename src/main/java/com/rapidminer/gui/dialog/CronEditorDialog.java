@@ -57,7 +57,6 @@ import com.rapidminer.tools.I18N;
  * expression after the dialog has been confirmed.
  *
  * @author Marco Boeck, Miguel Buescher
- *
  */
 public class CronEditorDialog extends ButtonDialog {
 
@@ -130,17 +129,22 @@ public class CronEditorDialog extends ButtonDialog {
 
 	private static final long serialVersionUID = 837836954191730785L;
 
-	public CronEditorDialog(Operator operator, ParameterTypeCronExpression type) {
+    /**
+     * Instantiates a new Cron editor dialog.
+     *
+     * @param operator the operator
+     * @param type     the type
+     */
+    public CronEditorDialog(Operator operator, ParameterTypeCronExpression type) {
 		this(ApplicationFrame.getApplicationFrame());
 	}
 
-	/**
-	 * Creates a new cron editor dialog.
-	 *
-	 * @param owner
-	 *            the parent window for this dialog
-	 */
-	public CronEditorDialog(Window owner) {
+    /**
+     * Creates a new cron editor dialog.
+     *
+     * @param owner the parent window for this dialog
+     */
+    public CronEditorDialog(Window owner) {
 		super(owner, "croneditordialog", ModalityType.APPLICATION_MODAL, new Object[] {});
 
 		setupGUI();
@@ -1061,13 +1065,13 @@ public class CronEditorDialog extends ButtonDialog {
 		layoutDefault(mainPanel, panelButtons, ButtonDialog.TALL);
 	}
 
-	/**
-	 * Returns the cron expression as a {@link String} if {@link #wasConfirmed()} returns
-	 * <code>true</code>, otherwise returns an empty {@link String} .
-	 *
-	 * @return
-	 */
-	public String getCronExpression() {
+    /**
+     * Returns the cron expression as a {@link String} if {@link #wasConfirmed()} returns
+     * <code>true</code>, otherwise returns an empty {@link String} .
+     *
+     * @return cron expression
+     */
+    public String getCronExpression() {
 		if (wasConfirmed()) {
 			StringBuffer cronBuffer = new StringBuffer();
 
@@ -1232,11 +1236,21 @@ public class CronEditorDialog extends ButtonDialog {
 		}
 	}
 
-	public void setCheckboxes(boolean b) {
+    /**
+     * Sets checkboxes.
+     *
+     * @param b the b
+     */
+    public void setCheckboxes(boolean b) {
 		radioButtonSecEvery.setSelected(b);
 	}
 
-	public void setSpinnerSecStartValue(String cronExpression) {
+    /**
+     * Sets spinner sec start value.
+     *
+     * @param cronExpression the cron expression
+     */
+    public void setSpinnerSecStartValue(String cronExpression) {
 		Number nn = null;
 		try {
 			nn = NumberFormat.getInstance().parse(cronExpression);
@@ -1247,16 +1261,21 @@ public class CronEditorDialog extends ButtonDialog {
 		spinnerSecStart.setEnabled(true);
 	}
 
-	public void expressionparser(String[] Array) {
+    /**
+     * Expressionparser.
+     *
+     * @param Array the array
+     */
+    public void expressionparser(String[] Array) {
 		if (Array[0] != "*") {
 			spinnerSecStart.setEnabled(true);
 		}
 	}
 
-	/**
-	 * Shows the cron editor dialog.
-	 */
-	public void prompt() {
+    /**
+     * Shows the cron editor dialog.
+     */
+    public void prompt() {
 		setVisible(true);
 	}
 
@@ -1291,7 +1310,12 @@ public class CronEditorDialog extends ButtonDialog {
 		return null;
 	}
 
-	// Parsing cronexpression
+    /**
+     * Sets spinner cron expression values.
+     *
+     * @param cronExpression the cron expression
+     */
+// Parsing cronexpression
 	public void setSpinnerCronExpressionValues(String cronExpression) {
 		String[] numbers = cronExpression.split(" ");
 		if (!cronExpression.equals("")) {

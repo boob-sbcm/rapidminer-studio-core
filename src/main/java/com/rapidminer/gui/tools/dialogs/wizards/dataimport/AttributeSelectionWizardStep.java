@@ -39,6 +39,8 @@ import javax.swing.table.TableCellRenderer;
 
 
 /**
+ * The type Attribute selection wizard step.
+ *
  * @author Tobias Malbrecht
  */
 public abstract class AttributeSelectionWizardStep extends WizardStep {
@@ -57,11 +59,19 @@ public abstract class AttributeSelectionWizardStep extends WizardStep {
 
 	private AttributeMetaData[] attributes;
 
-	class RoleSelectionTableModel extends AbstractTableModel {
+    /**
+     * The type Role selection table model.
+     */
+    class RoleSelectionTableModel extends AbstractTableModel {
 
 		private static final long serialVersionUID = -8756273955084001031L;
 
-		public void setMetaData(final ExampleSetMetaData metaData) {
+        /**
+         * Sets meta data.
+         *
+         * @param metaData the meta data
+         */
+        public void setMetaData(final ExampleSetMetaData metaData) {
 			attributes = new AttributeMetaData[metaData.getAllAttributes().size()];
 			int i = 0;
 			for (AttributeMetaData amd : metaData.getAllAttributes()) {
@@ -151,17 +161,28 @@ public abstract class AttributeSelectionWizardStep extends WizardStep {
 		}
 	}
 
-	class RoleSelectionTable extends JTable {
+    /**
+     * The type Role selection table.
+     */
+    class RoleSelectionTable extends JTable {
 
 		private static final long serialVersionUID = -4636146637929280203L;
 
 		private LinkedList<RoleSelectionEditor> editors = new LinkedList<RoleSelectionEditor>();
 
-		class RoleSelectionEditor extends DefaultCellEditor implements TableCellRenderer {
+        /**
+         * The type Role selection editor.
+         */
+        class RoleSelectionEditor extends DefaultCellEditor implements TableCellRenderer {
 
 			private static final long serialVersionUID = 6077812831224991517L;
 
-			public RoleSelectionEditor(JComboBox<?> comboBox) {
+            /**
+             * Instantiates a new Role selection editor.
+             *
+             * @param comboBox the combo box
+             */
+            public RoleSelectionEditor(JComboBox<?> comboBox) {
 				super(comboBox);
 			}
 
@@ -172,17 +193,28 @@ public abstract class AttributeSelectionWizardStep extends WizardStep {
 			}
 		}
 
-		public RoleSelectionTable() {
+        /**
+         * Instantiates a new Role selection table.
+         */
+        public RoleSelectionTable() {
 			super(new RoleSelectionTableModel());
 			setRowHeight(28);
 		}
 
-		public void setMetaData(ExampleSetMetaData metaData) {
+        /**
+         * Sets meta data.
+         *
+         * @param metaData the meta data
+         */
+        public void setMetaData(ExampleSetMetaData metaData) {
 			((RoleSelectionTableModel) getModel()).setMetaData(metaData);
 			updateEditorsAndRenderers();
 		}
 
-		public void updateEditorsAndRenderers() {
+        /**
+         * Update editors and renderers.
+         */
+        public void updateEditorsAndRenderers() {
 			if (editors != null) {
 				editors.clear();
 				int numberOfRows = getModel().getRowCount();
@@ -221,11 +253,21 @@ public abstract class AttributeSelectionWizardStep extends WizardStep {
 
 	private RoleSelectionTable table = new RoleSelectionTable();
 
-	public AttributeSelectionWizardStep(String key) {
+    /**
+     * Instantiates a new Attribute selection wizard step.
+     *
+     * @param key the key
+     */
+    public AttributeSelectionWizardStep(String key) {
 		super(key);
 	}
 
-	public void setMetaData(ExampleSetMetaData metaData) {
+    /**
+     * Sets meta data.
+     *
+     * @param metaData the meta data
+     */
+    public void setMetaData(ExampleSetMetaData metaData) {
 		table.setMetaData(metaData);
 	}
 

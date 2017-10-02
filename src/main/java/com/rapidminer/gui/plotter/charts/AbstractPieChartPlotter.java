@@ -88,17 +88,28 @@ import com.rapidminer.tools.math.function.aggregation.AverageFunction;
  * This is the main pie chart plotter.
  *
  * @author Ingo Mierswa
- *
  */
 public abstract class AbstractPieChartPlotter extends PlotterAdapter {
 
-	public static final String PARAMETERS_AGGREGATION = "aggregation";
+    /**
+     * The constant PARAMETERS_AGGREGATION.
+     */
+    public static final String PARAMETERS_AGGREGATION = "aggregation";
 
-	public static final String PARAMETERS_USE_DISTINCT = "use_distinct";
+    /**
+     * The constant PARAMETERS_USE_DISTINCT.
+     */
+    public static final String PARAMETERS_USE_DISTINCT = "use_distinct";
 
-	public static final String PARAMETERS_EXPLOSION_GROUPS = "explosion_groups";
+    /**
+     * The constant PARAMETERS_EXPLOSION_GROUPS.
+     */
+    public static final String PARAMETERS_EXPLOSION_GROUPS = "explosion_groups";
 
-	public static final String PARAMETERS_EXPLOSION_AMOUNT = "explosion_amount";
+    /**
+     * The constant PARAMETERS_EXPLOSION_AMOUNT.
+     */
+    public static final String PARAMETERS_EXPLOSION_AMOUNT = "explosion_amount";
 
 	private static final long serialVersionUID = 8750708105082707503L;
 
@@ -150,7 +161,12 @@ public abstract class AbstractPieChartPlotter extends PlotterAdapter {
 
 	private ChartPanel panel = new ChartPanel(null);
 
-	public AbstractPieChartPlotter(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Abstract pie chart plotter.
+     *
+     * @param settings the settings
+     */
+    public AbstractPieChartPlotter(final PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 		useDistinct = new ListeningJCheckBox("_" + PARAMETERS_USE_DISTINCT, "Use Only Distinct", false);
@@ -217,14 +233,32 @@ public abstract class AbstractPieChartPlotter extends PlotterAdapter {
 		});
 	}
 
-	public AbstractPieChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Abstract pie chart plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public AbstractPieChartPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}
 
-	public abstract JFreeChart createChart(PieDataset pieDataSet, boolean createLegend);
+    /**
+     * Create chart j free chart.
+     *
+     * @param pieDataSet   the pie data set
+     * @param createLegend the create legend
+     * @return the j free chart
+     */
+    public abstract JFreeChart createChart(PieDataset pieDataSet, boolean createLegend);
 
-	public abstract boolean isSupportingExplosion();
+    /**
+     * Is supporting explosion boolean.
+     *
+     * @return the boolean
+     */
+    public abstract boolean isSupportingExplosion();
 
 	@Override
 	public void setDataTable(DataTable dataTable) {
@@ -505,7 +539,10 @@ public abstract class AbstractPieChartPlotter extends PlotterAdapter {
 		return panel;
 	}
 
-	public void updatePlotter() {
+    /**
+     * Update plotter.
+     */
+    public void updatePlotter() {
 		int categoryCount = prepareData();
 		String maxClassesProperty = ParameterService
 				.getParameterValue(MainFrame.PROPERTY_RAPIDMINER_GUI_PLOTTER_LEGEND_CLASSLIMIT);

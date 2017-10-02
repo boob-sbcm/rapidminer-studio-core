@@ -88,7 +88,13 @@ public class AutoMLPImprovedNeuralNetVisualizer extends AbstractPrintableIOObjec
 
 	private Map<Integer, List<Node>> layers = new LinkedHashMap<Integer, List<Node>>();
 
-	public AutoMLPImprovedNeuralNetVisualizer(AutoMLPImprovedNeuralNetModel neuralNet, String[] attributeNames) {
+    /**
+     * Instantiates a new Auto mlp improved neural net visualizer.
+     *
+     * @param neuralNet      the neural net
+     * @param attributeNames the attribute names
+     */
+    public AutoMLPImprovedNeuralNetVisualizer(AutoMLPImprovedNeuralNetModel neuralNet, String[] attributeNames) {
 		super(neuralNet, "automlp_improved_neural_net");
 		this.neuralNet = neuralNet;
 		this.attributeNames = attributeNames;

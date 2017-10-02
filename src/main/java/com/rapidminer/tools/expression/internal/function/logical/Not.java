@@ -25,14 +25,13 @@ import com.rapidminer.tools.expression.FunctionDescription;
  * Class for the NOT function that has 1 logical (numerical, true or false) input
  *
  * @author Sabrina Kirstein
- *
  */
 public class Not extends AbstractLogicalFunctionWith1Input {
 
-	/**
-	 * Constructs a NOT Function with 1 parameter with {@link FunctionDescription}
-	 */
-	public Not() {
+    /**
+     * Constructs a NOT Function with 1 parameter with {@link FunctionDescription}
+     */
+    public Not() {
 		super("logical.not");
 	}
 

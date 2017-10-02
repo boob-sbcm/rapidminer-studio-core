@@ -29,9 +29,9 @@ import java.util.List;
 
 
 /**
- * 
+ * The type Prediction model meta data.
+ *
  * @author Simon Fischer
- * 
  */
 public class PredictionModelMetaData extends ModelMetaData {
 
@@ -41,14 +41,27 @@ public class PredictionModelMetaData extends ModelMetaData {
 
 	private List<AttributeMetaData> generatedPredictionAttributes = new LinkedList<AttributeMetaData>();
 
-	/** Clone constructor */
-	protected PredictionModelMetaData() {}
+    /**
+     * Clone constructor
+     */
+    protected PredictionModelMetaData() {}
 
-	public PredictionModelMetaData(Class<? extends PredictionModel> modelClass) {
+    /**
+     * Instantiates a new Prediction model meta data.
+     *
+     * @param modelClass the model class
+     */
+    public PredictionModelMetaData(Class<? extends PredictionModel> modelClass) {
 		this(modelClass, null);
 	}
 
-	public PredictionModelMetaData(Class<? extends PredictionModel> modelClass, ExampleSetMetaData trainingSetMetaData) {
+    /**
+     * Instantiates a new Prediction model meta data.
+     *
+     * @param modelClass          the model class
+     * @param trainingSetMetaData the training set meta data
+     */
+    public PredictionModelMetaData(Class<? extends PredictionModel> modelClass, ExampleSetMetaData trainingSetMetaData) {
 		super(modelClass, trainingSetMetaData);
 		if (trainingSetMetaData != null) {
 			AttributeMetaData labelAttributeMetaData = trainingSetMetaData.getLabelMetaData();
@@ -96,15 +109,30 @@ public class PredictionModelMetaData extends ModelMetaData {
 		return emd;
 	}
 
-	public List<AttributeMetaData> getPredictionAttributeMetaData() {
+    /**
+     * Gets prediction attribute meta data.
+     *
+     * @return the prediction attribute meta data
+     */
+    public List<AttributeMetaData> getPredictionAttributeMetaData() {
 		return generatedPredictionAttributes;
 	}
 
-	public AttributeMetaData getPredictedLabelMetaData() {
+    /**
+     * Gets predicted label meta data.
+     *
+     * @return the predicted label meta data
+     */
+    public AttributeMetaData getPredictedLabelMetaData() {
 		return predictedLabelMetaData;
 	}
 
-	public SetRelation getPredictionAttributeSetRelation() {
+    /**
+     * Gets prediction attribute set relation.
+     *
+     * @return the prediction attribute set relation
+     */
+    public SetRelation getPredictionAttributeSetRelation() {
 		if (predictedLabelMetaData != null) {
 			return predictedLabelMetaData.getValueSetRelation();
 		} else {

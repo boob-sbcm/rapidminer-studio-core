@@ -23,13 +23,17 @@ import com.rapidminer.operator.ports.InputPort;
 
 /**
  * This precondition checks if a series is contained in the example set
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class ExampleSetContainsSeriesPrecondition extends ExampleSetPrecondition {
 
-	public ExampleSetContainsSeriesPrecondition(InputPort inputPort) {
+    /**
+     * Instantiates a new Example set contains series precondition.
+     *
+     * @param inputPort the input port
+     */
+    public ExampleSetContainsSeriesPrecondition(InputPort inputPort) {
 		super(inputPort);
 	}
 

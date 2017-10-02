@@ -29,11 +29,11 @@ import java.util.Iterator;
  * <p>
  * An association rule which can be created from a frequent item set.
  * </p>
- * 
+ * <p>
  * <p>
  * Note: this class has a natural ordering that is inconsistent with equals.
  * </p>
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class AssociationRule implements Serializable, Comparable<AssociationRule> {
@@ -46,77 +46,169 @@ public class AssociationRule implements Serializable, Comparable<AssociationRule
 
 	private Collection<Item> conclusion;
 
-	public AssociationRule(Collection<Item> premise, Collection<Item> conclusion, double totalSupport) {
+    /**
+     * Instantiates a new Association rule.
+     *
+     * @param premise      the premise
+     * @param conclusion   the conclusion
+     * @param totalSupport the total support
+     */
+    public AssociationRule(Collection<Item> premise, Collection<Item> conclusion, double totalSupport) {
 		this.premise = premise;
 		this.conclusion = conclusion;
 		this.totalSupport = totalSupport;
 	}
 
-	public double getGain() {
+    /**
+     * Gets gain.
+     *
+     * @return the gain
+     */
+    public double getGain() {
 		return gain;
 	}
 
-	public void setGain(double gain) {
+    /**
+     * Sets gain.
+     *
+     * @param gain the gain
+     */
+    public void setGain(double gain) {
 		this.gain = gain;
 	}
 
-	public double getConviction() {
+    /**
+     * Gets conviction.
+     *
+     * @return the conviction
+     */
+    public double getConviction() {
 		return conviction;
 	}
 
-	public void setConviction(double conviction) {
+    /**
+     * Sets conviction.
+     *
+     * @param conviction the conviction
+     */
+    public void setConviction(double conviction) {
 		this.conviction = conviction;
 	}
 
-	public double getLaplace() {
+    /**
+     * Gets laplace.
+     *
+     * @return the laplace
+     */
+    public double getLaplace() {
 		return laplace;
 	}
 
-	public void setLaplace(double laplace) {
+    /**
+     * Sets laplace.
+     *
+     * @param laplace the laplace
+     */
+    public void setLaplace(double laplace) {
 		this.laplace = laplace;
 	}
 
-	public double getLift() {
+    /**
+     * Gets lift.
+     *
+     * @return the lift
+     */
+    public double getLift() {
 		return lift;
 	}
 
-	public void setLift(double lift) {
+    /**
+     * Sets lift.
+     *
+     * @param lift the lift
+     */
+    public void setLift(double lift) {
 		this.lift = lift;
 	}
 
-	public double getPs() {
+    /**
+     * Gets ps.
+     *
+     * @return the ps
+     */
+    public double getPs() {
 		return ps;
 	}
 
-	public void setPs(double ps) {
+    /**
+     * Sets ps.
+     *
+     * @param ps the ps
+     */
+    public void setPs(double ps) {
 		this.ps = ps;
 	}
 
-	public void setConfidence(double confidence) {
+    /**
+     * Sets confidence.
+     *
+     * @param confidence the confidence
+     */
+    public void setConfidence(double confidence) {
 		this.confidence = confidence;
 	}
 
-	public double getConfidence() {
+    /**
+     * Gets confidence.
+     *
+     * @return the confidence
+     */
+    public double getConfidence() {
 		return this.confidence;
 	}
 
-	public double getTotalSupport() {
+    /**
+     * Gets total support.
+     *
+     * @return the total support
+     */
+    public double getTotalSupport() {
 		return this.totalSupport;
 	}
 
-	public Iterator<Item> getPremiseItems() {
+    /**
+     * Gets premise items.
+     *
+     * @return the premise items
+     */
+    public Iterator<Item> getPremiseItems() {
 		return premise.iterator();
 	}
 
-	public Iterator<Item> getConclusionItems() {
+    /**
+     * Gets conclusion items.
+     *
+     * @return the conclusion items
+     */
+    public Iterator<Item> getConclusionItems() {
 		return conclusion.iterator();
 	}
 
-	public String toPremiseString() {
+    /**
+     * To premise string string.
+     *
+     * @return the string
+     */
+    public String toPremiseString() {
 		return premise.toString();
 	}
 
-	public String toConclusionString() {
+    /**
+     * To conclusion string string.
+     *
+     * @return the string
+     */
+    public String toConclusionString() {
 		return conclusion.toString();
 	}
 

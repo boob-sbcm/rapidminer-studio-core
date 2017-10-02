@@ -66,21 +66,45 @@ import com.rapidminer.tools.Tools;
  */
 public class EvolutionaryFeatureAggregation extends OperatorChain {
 
-	public static final String PARAMETER_POPULATION_CRITERIA_DATA_FILE = "population_criteria_data_file";
+    /**
+     * The constant PARAMETER_POPULATION_CRITERIA_DATA_FILE.
+     */
+    public static final String PARAMETER_POPULATION_CRITERIA_DATA_FILE = "population_criteria_data_file";
 
-	public static final String PARAMETER_AGGREGATION_FUNCTION = "aggregation_function";
+    /**
+     * The constant PARAMETER_AGGREGATION_FUNCTION.
+     */
+    public static final String PARAMETER_AGGREGATION_FUNCTION = "aggregation_function";
 
-	public static final String PARAMETER_POPULATION_SIZE = "population_size";
+    /**
+     * The constant PARAMETER_POPULATION_SIZE.
+     */
+    public static final String PARAMETER_POPULATION_SIZE = "population_size";
 
-	public static final String PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS = "maximum_number_of_generations";
+    /**
+     * The constant PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS.
+     */
+    public static final String PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS = "maximum_number_of_generations";
 
-	public static final String PARAMETER_SELECTION_TYPE = "selection_type";
+    /**
+     * The constant PARAMETER_SELECTION_TYPE.
+     */
+    public static final String PARAMETER_SELECTION_TYPE = "selection_type";
 
-	public static final String PARAMETER_TOURNAMENT_FRACTION = "tournament_fraction";
+    /**
+     * The constant PARAMETER_TOURNAMENT_FRACTION.
+     */
+    public static final String PARAMETER_TOURNAMENT_FRACTION = "tournament_fraction";
 
-	public static final String PARAMETER_CROSSOVER_TYPE = "crossover_type";
+    /**
+     * The constant PARAMETER_CROSSOVER_TYPE.
+     */
+    public static final String PARAMETER_CROSSOVER_TYPE = "crossover_type";
 
-	public static final String PARAMETER_P_CROSSOVER = "p_crossover";
+    /**
+     * The constant PARAMETER_P_CROSSOVER.
+     */
+    public static final String PARAMETER_P_CROSSOVER = "p_crossover";
 
 	/** The names for the selection types. */
 	private static final String[] SELECTION_TYPES = { "tournament", "non-dominated" };
@@ -124,8 +148,12 @@ public class EvolutionaryFeatureAggregation extends OperatorChain {
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("example set out");
 	private final OutputPort performanceOutput = getOutputPorts().createPort("performance vector out");
 
-	/** Creates a new evolutionary feature aggregation algorithm. */
-	public EvolutionaryFeatureAggregation(OperatorDescription description) {
+    /**
+     * Creates a new evolutionary feature aggregation algorithm.  @param description the description
+     *
+     * @param description the description
+     */
+    public EvolutionaryFeatureAggregation(OperatorDescription description) {
 		super(description, "Performance Evaluation");
 
 		getTransformer().addRule(new ExampleSetPassThroughRule(exampleSetInput, exampleSetOutput, SetRelation.SUBSET) {
@@ -290,11 +318,15 @@ public class EvolutionaryFeatureAggregation extends OperatorChain {
 		}
 	}
 
-	/**
-	 * Creates example sets from all individuals and invoke the inner operators in order to estimate
-	 * the performance.
-	 */
-	public void evaluate(List<AggregationIndividual> population, ExampleSet originalExampleSet) throws OperatorException {
+    /**
+     * Creates example sets from all individuals and invoke the inner operators in order to estimate
+     * the performance.
+     *
+     * @param population         the population
+     * @param originalExampleSet the original example set
+     * @throws OperatorException the operator exception
+     */
+    public void evaluate(List<AggregationIndividual> population, ExampleSet originalExampleSet) throws OperatorException {
 		Iterator<AggregationIndividual> i = population.iterator();
 		while (i.hasNext()) {
 			AggregationIndividual individual = i.next();

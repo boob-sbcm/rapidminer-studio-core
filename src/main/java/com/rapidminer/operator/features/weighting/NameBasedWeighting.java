@@ -47,23 +47,37 @@ import com.rapidminer.parameter.ParameterTypeRegexp;
  * be equally distributed among these attributes. All other feature weights whose feature names are
  * not covered by one of the regular expressions are set to the default weight.
  * </p>
- * 
+ * <p>
  * <p>
  * Please note that the weights defined in the regular expression list are set in the order as they
  * are defined in the list, i.e. weights can overwrite weights set before.
  * </p>
- * 
+ *
  * @author Thomas Beckers, Ingo Mierswa, Tobias Malbrecht
  */
 public class NameBasedWeighting extends AbstractWeighting {
 
-	public static final String PARAMETER_ATTRIBUTE_NAME_REGEX = "name_regex_to_weights";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME_REGEX.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME_REGEX = "name_regex_to_weights";
 
-	public static final String PARAMETER_DISTRIBUTE_WEIGHTS = "distribute_weights";
+    /**
+     * The constant PARAMETER_DISTRIBUTE_WEIGHTS.
+     */
+    public static final String PARAMETER_DISTRIBUTE_WEIGHTS = "distribute_weights";
 
-	public static final String PARAMETER_DEFAULT_WEIGHT = "default_weight";
+    /**
+     * The constant PARAMETER_DEFAULT_WEIGHT.
+     */
+    public static final String PARAMETER_DEFAULT_WEIGHT = "default_weight";
 
-	public NameBasedWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Name based weighting.
+     *
+     * @param description the description
+     */
+    public NameBasedWeighting(OperatorDescription description) {
 		super(description, false);
 	}
 

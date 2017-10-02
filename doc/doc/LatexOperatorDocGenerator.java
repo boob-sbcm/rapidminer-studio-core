@@ -23,13 +23,16 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Formats operator documentation in LaTeX style.
- * 
- * @rapidminer.todo Lookup class when link is found and decide which tag to use (op, ioobj, ...)
+ *
  * @author Simon Fischer, Ingo Mierswa
+ * @rapidminer.todo Lookup class when link is found and decide which tag to use (op, ioobj, ...)
  */
 public class LatexOperatorDocGenerator extends AbstractOperatorDocGenerator {
 
-	public static final String[][] TAGS = { { "", "" }, // operator
+    /**
+     * The constant TAGS.
+     */
+    public static final String[][] TAGS = { { "", "" }, // operator
 		{ "\\operator{", "}" }, // operator name
 		{ "\\group{", "}" }, // group
 		{ Tools.getLineSeparator() + "\\begin{parameters}", "\\end{parameters}" }, // parameter list
@@ -55,20 +58,44 @@ public class LatexOperatorDocGenerator extends AbstractOperatorDocGenerator {
 		{ Tools.getLineSeparator() + "\\paragraph{Learner capabilities:}", Tools.getLineSeparator() } // learner capabilities
 	};
 
-	public String getOpenTag(int tagNo) {
+    /**
+     * Gets open tag.
+     *
+     * @param tagNo the tag no
+     * @return the open tag
+     */
+    public String getOpenTag(int tagNo) {
 		return TAGS[tagNo][0];
 	}
 
-	public String getCloseTag(int tagNo) {
+    /**
+     * Gets close tag.
+     *
+     * @param tagNo the tag no
+     * @return the close tag
+     */
+    public String getCloseTag(int tagNo) {
 		return TAGS[tagNo][1];
 	}
 
-	public String marginIcon(String iconName) {
+    /**
+     * Margin icon string.
+     *
+     * @param iconName the icon name
+     * @return the string
+     */
+    public String marginIcon(String iconName) {
 		String fig = "\\includegraphics{graphics/" + iconName + "}";
 		return "\\marginpar[\\flushright" + fig + "]{" + fig + "}";
 	}
 
-	public String escape(String toEscape) {
+    /**
+     * Escape string.
+     *
+     * @param toEscape the to escape
+     * @return the string
+     */
+    public String escape(String toEscape) {
 		String escaped = toEscape;
 		escaped = escaped.replaceAll("MACRO_START", "\\\\% \\\\{");  // hack for macro definitions
 		escaped = escaped.replaceAll("MACRO_END",   "\\\\}");        // hack for macro definitions
@@ -96,7 +123,13 @@ public class LatexOperatorDocGenerator extends AbstractOperatorDocGenerator {
 		return escaped;
 	}
 
-	public void beginGroup(String groupName, PrintWriter out) {
+    /**
+     * Begin group.
+     *
+     * @param groupName the group name
+     * @param out       the out
+     */
+    public void beginGroup(String groupName, PrintWriter out) {
 		out.println("\\pagebreak[4]");
 		if (groupName != null) {
 			groupName = groupName.replace(' ', '_');
@@ -106,11 +139,25 @@ public class LatexOperatorDocGenerator extends AbstractOperatorDocGenerator {
 		}
 	}
 
-	public void endGroup(String groupName, PrintWriter out) {
+    /**
+     * End group.
+     *
+     * @param groupName the group name
+     * @param out       the out
+     */
+    public void endGroup(String groupName, PrintWriter out) {
 		out.println("\\vfill");
 	}
 
-	public String transformHTMLJavadocComment(String comment, final Class clazz, final String operatorName) {
+    /**
+     * Transform html javadoc comment string.
+     *
+     * @param comment      the comment
+     * @param clazz        the clazz
+     * @param operatorName the operator name
+     * @return the string
+     */
+    public String transformHTMLJavadocComment(String comment, final Class clazz, final String operatorName) {
 		try {
 			SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
 			comment = "<body>" + comment + "</body>";

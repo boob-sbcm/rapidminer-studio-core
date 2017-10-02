@@ -32,22 +32,33 @@ import java.util.RandomAccess;
  * This class is an implementation of the GeometricDataCollection interface, which searches all
  * datapoints linearly for the next k neighbours. Hence O(n) computations are required for this
  * operation.
- * 
+ *
+ * @param <T> This is the type of value with is stored with the points and retrieved on nearest            neighbour search
  * @author Sebastian Land
- * 
- * @param <T>
- *            This is the type of value with is stored with the points and retrieved on nearest
- *            neighbour search
  */
 public class LinearList<T extends Serializable> implements GeometricDataCollection<T>, RandomAccess {
 
 	private static final long serialVersionUID = -746048910140779285L;
 
-	DistanceMeasure distance;
-	ArrayList<double[]> samples = new ArrayList<double[]>();
-	ArrayList<T> storedValues = new ArrayList<T>();
+    /**
+     * The Distance.
+     */
+    DistanceMeasure distance;
+    /**
+     * The Samples.
+     */
+    ArrayList<double[]> samples = new ArrayList<double[]>();
+    /**
+     * The Stored values.
+     */
+    ArrayList<T> storedValues = new ArrayList<T>();
 
-	public LinearList(DistanceMeasure distance) {
+    /**
+     * Instantiates a new Linear list.
+     *
+     * @param distance the distance
+     */
+    public LinearList(DistanceMeasure distance) {
 		this.distance = distance;
 	}
 

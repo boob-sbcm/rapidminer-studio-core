@@ -49,7 +49,7 @@ import java.util.Map;
  * This operator provides the ability to evaluate classification costs. Therefore a cost matrix
  * might be specified, denoting the costs for every possible classification outcome: predicted label
  * x real label. Costs will be minimized during optimization.
- * 
+ *
  * @author Sebastian Land
  */
 public class CostEvaluator extends Operator {
@@ -66,7 +66,12 @@ public class CostEvaluator extends Operator {
 
 	private double lastCosts = Double.NaN;
 
-	public CostEvaluator(OperatorDescription description) {
+    /**
+     * Instantiates a new Cost evaluator.
+     *
+     * @param description the description
+     */
+    public CostEvaluator(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new ExampleSetPrecondition(exampleSetInput, Ontology.ATTRIBUTE_VALUE,

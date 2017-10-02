@@ -33,9 +33,8 @@ import java.awt.Graphics;
 /**
  * Plots a dendrogram of a given cluster model. The nodes in the model must have different, non-NaN
  * distance values for this operator to work.
- * 
+ *
  * @author Sebastian Land, Michael Wurst
- * 
  */
 public class DendrogramPlotter extends AbstractPrintableIOObjectPanel implements Renderable {
 
@@ -59,7 +58,12 @@ public class DendrogramPlotter extends AbstractPrintableIOObjectPanel implements
 
 	private Color color = SwingTools.DARKEST_BLUE;
 
-	public DendrogramPlotter(HierarchicalClusterModel hcm) {
+    /**
+     * Instantiates a new Dendrogram plotter.
+     *
+     * @param hcm the hcm
+     */
+    public DendrogramPlotter(HierarchicalClusterModel hcm) {
 		super(hcm, "dendogram_view");
 		this.hcm = hcm;
 

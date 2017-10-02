@@ -31,12 +31,15 @@ import javax.swing.text.Segment;
 
 /**
  * Shell script token marker.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class ShellScriptTokenMarker extends TokenMarker {
 
-	// public members
+    /**
+     * The constant LVARIABLE.
+     */
+// public members
 	public static final byte LVARIABLE = Token.INTERNAL_FIRST;
 
 	@Override

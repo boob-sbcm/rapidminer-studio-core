@@ -24,7 +24,7 @@ import com.rapidminer.operator.learner.subgroups.hypothesis.Rule;
 
 /**
  * Calculates the odds ratio.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public class OddsRatio extends UtilityFunction {
@@ -34,7 +34,13 @@ public class OddsRatio extends UtilityFunction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public OddsRatio(double totalWeight, double totalPositiveWeight) {
+    /**
+     * Instantiates a new Odds ratio.
+     *
+     * @param totalWeight         the total weight
+     * @param totalPositiveWeight the total positive weight
+     */
+    public OddsRatio(double totalWeight, double totalPositiveWeight) {
 		super(totalWeight, totalPositiveWeight);
 	}
 

@@ -29,16 +29,18 @@ import com.rapidminer.tools.math.container.Range;
 /**
  * Tools class for handling meta data. Should contain analogs to the Tools class for handling
  * exampleSet.
- * 
+ *
  * @author Sebastian Land
  */
 public class MetaDataTools {
 
-	/**
-	 * This method is the analogon to the checkAndCreateIds of the Tools class for meta data. It
-	 * creates an integer id attribute with as much informations as available.
-	 */
-	public static void checkAndCreateIds(ExampleSetMetaData emd) {
+    /**
+     * This method is the analogon to the checkAndCreateIds of the Tools class for meta data. It
+     * creates an integer id attribute with as much informations as available.
+     *
+     * @param emd the emd
+     */
+    public static void checkAndCreateIds(ExampleSetMetaData emd) {
 		if (emd.getSpecial(Attributes.ID_NAME) == null) {
 			AttributeMetaData idMD = new AttributeMetaData(Attributes.ID_NAME, Ontology.INTEGER, Attributes.ID_NAME);
 			if (emd.getNumberOfExamples().isKnown()) {

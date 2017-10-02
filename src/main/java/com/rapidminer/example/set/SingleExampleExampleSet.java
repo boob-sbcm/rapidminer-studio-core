@@ -47,7 +47,13 @@ public class SingleExampleExampleSet extends AbstractExampleSet {
 
 		private SingleExampleExampleSet exampleSet;
 
-		public SingleExampleIterator(DataRow dataRow, SingleExampleExampleSet exampleSet) {
+        /**
+         * Instantiates a new Single example iterator.
+         *
+         * @param dataRow    the data row
+         * @param exampleSet the example set
+         */
+        public SingleExampleIterator(DataRow dataRow, SingleExampleExampleSet exampleSet) {
 			this.dataRow = dataRow;
 			this.exampleSet = exampleSet;
 		}
@@ -72,12 +78,23 @@ public class SingleExampleExampleSet extends AbstractExampleSet {
 
 	private Example example;
 
-	public SingleExampleExampleSet(ExampleSet exampleSet, Example example) {
+    /**
+     * Instantiates a new Single example example set.
+     *
+     * @param exampleSet the example set
+     * @param example    the example
+     */
+    public SingleExampleExampleSet(ExampleSet exampleSet, Example example) {
 		this.parent = (ExampleSet) exampleSet.clone();
 		this.example = example;
 	}
 
-	public SingleExampleExampleSet(SingleExampleExampleSet exampleSet) {
+    /**
+     * Instantiates a new Single example example set.
+     *
+     * @param exampleSet the example set
+     */
+    public SingleExampleExampleSet(SingleExampleExampleSet exampleSet) {
 		this.parent = (ExampleSet) exampleSet.parent.clone();
 		this.example = exampleSet.example;
 	}

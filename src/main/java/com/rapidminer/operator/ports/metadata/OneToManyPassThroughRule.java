@@ -27,20 +27,31 @@ import java.util.Collection;
 
 /**
  * A rule which copies meta data from one input port to several output ports.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class OneToManyPassThroughRule implements MDTransformationRule {
 
 	private final InputPort inputPort;
 	private final Collection<OutputPort> outputPorts;
 
-	public OneToManyPassThroughRule(InputPort inputPort, OutputPorts outputPorts) {
+    /**
+     * Instantiates a new One to many pass through rule.
+     *
+     * @param inputPort   the input port
+     * @param outputPorts the output ports
+     */
+    public OneToManyPassThroughRule(InputPort inputPort, OutputPorts outputPorts) {
 		this(inputPort, outputPorts.getAllPorts());
 	}
 
-	public OneToManyPassThroughRule(InputPort inputPort, Collection<OutputPort> outputPorts) {
+    /**
+     * Instantiates a new One to many pass through rule.
+     *
+     * @param inputPort   the input port
+     * @param outputPorts the output ports
+     */
+    public OneToManyPassThroughRule(InputPort inputPort, Collection<OutputPort> outputPorts) {
 		this.inputPort = inputPort;
 		this.outputPorts = outputPorts;
 	}
@@ -61,15 +72,16 @@ public class OneToManyPassThroughRule implements MDTransformationRule {
 		}
 	}
 
-	/**
-	 * Modifies the received meta data before it is passed to the output. Can be used if the
-	 * transformation depends on parameters etc. The default implementation just returns the
-	 * original. Subclasses may safely modify the meta data, since a copy is used for this method.
-	 * 
-	 * @param outputIndex
-	 *            TODO
-	 */
-	public MetaData modifyMetaData(MetaData unmodifiedMetaData, int outputIndex) {
+    /**
+     * Modifies the received meta data before it is passed to the output. Can be used if the
+     * transformation depends on parameters etc. The default implementation just returns the
+     * original. Subclasses may safely modify the meta data, since a copy is used for this method.
+     *
+     * @param unmodifiedMetaData the unmodified meta data
+     * @param outputIndex        TODO
+     * @return the meta data
+     */
+    public MetaData modifyMetaData(MetaData unmodifiedMetaData, int outputIndex) {
 		return unmodifiedMetaData;
 	}
 }

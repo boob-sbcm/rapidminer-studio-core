@@ -40,21 +40,44 @@ class Tron {
 
 	private final int max_iter;
 
-	public Tron(final Function fun_obj) {
+    /**
+     * Instantiates a new Tron.
+     *
+     * @param fun_obj the fun obj
+     */
+    public Tron(final Function fun_obj) {
 		this(fun_obj, 0.1);
 	}
 
-	public Tron(final Function fun_obj, double eps) {
+    /**
+     * Instantiates a new Tron.
+     *
+     * @param fun_obj the fun obj
+     * @param eps     the eps
+     */
+    public Tron(final Function fun_obj, double eps) {
 		this(fun_obj, eps, 1000);
 	}
 
-	public Tron(final Function fun_obj, double eps, int max_iter) {
+    /**
+     * Instantiates a new Tron.
+     *
+     * @param fun_obj  the fun obj
+     * @param eps      the eps
+     * @param max_iter the max iter
+     */
+    public Tron(final Function fun_obj, double eps, int max_iter) {
 		this.fun_obj = fun_obj;
 		this.eps = eps;
 		this.max_iter = max_iter;
 	}
 
-	void tron(double[] w) {
+    /**
+     * Tron.
+     *
+     * @param w the w
+     */
+    void tron(double[] w) {
 		// Parameters for updating the iterates.
 		double eta0 = 1e-4, eta1 = 0.25, eta2 = 0.75;
 

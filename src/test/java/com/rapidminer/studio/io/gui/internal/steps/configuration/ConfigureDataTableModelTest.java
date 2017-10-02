@@ -54,7 +54,6 @@ import com.rapidminer.tools.Tools;
  * Tests the {@link ConfigureDataTableModel}.
  *
  * @author Gisa Schaefer
- *
  */
 public class ConfigureDataTableModelTest {
 
@@ -66,7 +65,10 @@ public class ConfigureDataTableModelTest {
 	private static List<ColumnMetaData> columnMetaData;
 	private static DataSetMetaData metaData;
 
-	@BeforeClass
+    /**
+     * Sets up for all.
+     */
+    @BeforeClass
 	public static void setUpForAll() {
 		// row with number, String, date, missing
 		row = new DataSetRow() {
@@ -235,7 +237,10 @@ public class ConfigureDataTableModelTest {
 		};
 	}
 
-	@Before
+    /**
+     * Sets up.
+     */
+    @Before
 	public void setUp() {
 		try {
 			dataSet.reset();
@@ -249,7 +254,12 @@ public class ConfigureDataTableModelTest {
 						new DefaultColumnMetaData("att4", ColumnType.INTEGER) }));
 	}
 
-	@Test
+    /**
+     * Data creation column names.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void dataCreationColumnNames() throws DataSetException {
 		ConfigureDataTableModel model = new ConfigureDataTableModel(dataSource, metaData, null);
 		assertEquals(4, model.getColumnCount());
@@ -259,7 +269,12 @@ public class ConfigureDataTableModelTest {
 		assertEquals("att4", model.getColumnName(3));
 	}
 
-	@Test
+    /**
+     * Data creation data values.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void dataCreationDataValues() throws DataSetException {
 		ConfigureDataTableModel model = new ConfigureDataTableModel(dataSource, metaData, null);
 		assertEquals(numberOfRows, model.getRowCount());
@@ -271,7 +286,12 @@ public class ConfigureDataTableModelTest {
 		}
 	}
 
-	@Test
+    /**
+     * No error cells.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void noErrorCells() throws DataSetException {
 		ConfigureDataTableModel model = new ConfigureDataTableModel(dataSource, metaData, null);
 		for (int rowIndex = 0; rowIndex < model.getRowCount(); rowIndex++) {
@@ -281,7 +301,12 @@ public class ConfigureDataTableModelTest {
 		}
 	}
 
-	@Test
+    /**
+     * Error cells.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void errorCells() throws DataSetException {
 		columnMetaData.get(1).setType(ColumnType.REAL);
 		ConfigureDataTableModel model = new ConfigureDataTableModel(dataSource, metaData, null);
@@ -292,7 +317,12 @@ public class ConfigureDataTableModelTest {
 		}
 	}
 
-	@Test
+    /**
+     * Error cells error column removed.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void errorCellsErrorColumnRemoved() throws DataSetException {
 		columnMetaData.get(1).setType(ColumnType.REAL);
 		ConfigureDataTableModel model = new ConfigureDataTableModel(dataSource, metaData, null);
@@ -304,13 +334,23 @@ public class ConfigureDataTableModelTest {
 		}
 	}
 
-	@Test
+    /**
+     * No parsing and column errors.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void noParsingAndColumnErrors() throws DataSetException {
 		ConfigureDataTableModel model = new ConfigureDataTableModel(dataSource, metaData, null);
 		assertTrue(model.getParsingErrors().isEmpty());
 	}
 
-	@Test
+    /**
+     * Parsing errors.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void parsingErrors() throws DataSetException {
 		columnMetaData.get(1).setType(ColumnType.REAL);
 		ConfigureDataTableModel model = new ConfigureDataTableModel(dataSource, metaData, null);
@@ -324,7 +364,12 @@ public class ConfigureDataTableModelTest {
 		}
 	}
 
-	@Test
+    /**
+     * Reread column data values.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void rereadColumnDataValues() throws DataSetException {
 		final AtomicBoolean setTotalWasCalled = new AtomicBoolean();
 		final AtomicBoolean setCompletedWasCalled = new AtomicBoolean();

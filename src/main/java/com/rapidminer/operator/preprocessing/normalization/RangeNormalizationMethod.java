@@ -44,16 +44,20 @@ import java.util.List;
 /**
  * This is the transformation method for transforming the data of an attribute into a certain
  * interval.
- * 
+ *
  * @author Sebastian Land
  */
 public class RangeNormalizationMethod extends AbstractNormalizationMethod {
 
-	/** The parameter name for &quot;The minimum value after normalization&quot; */
-	public static final String PARAMETER_MIN = "min";
+    /**
+     * The parameter name for &quot;The minimum value after normalization&quot;
+     */
+    public static final String PARAMETER_MIN = "min";
 
-	/** The parameter name for &quot;The maximum value after normalization&quot; */
-	public static final String PARAMETER_MAX = "max";
+    /**
+     * The parameter name for &quot;The maximum value after normalization&quot;
+     */
+    public static final String PARAMETER_MAX = "max";
 
 	@Override
 	public Collection<AttributeMetaData> modifyAttributeMetaData(ExampleSetMetaData emd, AttributeMetaData amd,

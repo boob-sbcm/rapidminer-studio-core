@@ -43,7 +43,6 @@ import com.rapidminer.tools.Ontology;
  * containing them.
  *
  * @author Sebastian Land
- *
  */
 public class ExtractClusterPrototypes extends Operator {
 
@@ -51,7 +50,12 @@ public class ExtractClusterPrototypes extends Operator {
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort modelOutput = getOutputPorts().createPort("model");
 
-	public ExtractClusterPrototypes(OperatorDescription description) {
+    /**
+     * Instantiates a new Extract cluster prototypes.
+     *
+     * @param description the description
+     */
+    public ExtractClusterPrototypes(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addPassThroughRule(modelInput, modelOutput);

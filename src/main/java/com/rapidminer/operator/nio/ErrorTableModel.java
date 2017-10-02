@@ -32,7 +32,6 @@ import com.rapidminer.studio.io.gui.internal.steps.configuration.AbstractErrorWa
  * A table model to display {@link ParsingError}s.
  *
  * @author Simon Fischer
- *
  */
 public class ErrorTableModel extends AbstractErrorWarningTableModel {
 
@@ -91,7 +90,12 @@ public class ErrorTableModel extends AbstractErrorWarningTableModel {
 		}
 	}
 
-	public void setErrors(Collection<ParsingError> errors) {
+    /**
+     * Sets errors.
+     *
+     * @param errors the errors
+     */
+    public void setErrors(Collection<ParsingError> errors) {
 		if (!this.errors.equals(errors)) {
 			this.errors.clear();
 			this.errors.addAll(errors);
@@ -111,7 +115,13 @@ public class ErrorTableModel extends AbstractErrorWarningTableModel {
 		}
 	}
 
-	public ParsingError getErrorInRow(int index) {
+    /**
+     * Gets error in row.
+     *
+     * @param index the index
+     * @return the error in row
+     */
+    public ParsingError getErrorInRow(int index) {
 		if (index < errors.size()) {
 			return errors.get(index);
 		} else {

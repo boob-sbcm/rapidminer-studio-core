@@ -66,6 +66,7 @@ import com.vlsolutions.swing.docking.Dockable;
 
 
 /**
+ * The type Error table.
  *
  * @author Simon Fischer
  */
@@ -266,7 +267,10 @@ public class ErrorTable extends JPanel implements Dockable, ProcessEditor {
 			I18N.getMessage(I18N.getGUIBundle(), "gui.errortable.header.fixes.tip"),
 			I18N.getMessage(I18N.getGUIBundle(), "gui.errortable.header.location.tip") };
 
-	public static final String ERROR_TABLE_DOCK_KEY = "error_table";
+    /**
+     * The constant ERROR_TABLE_DOCK_KEY.
+     */
+    public static final String ERROR_TABLE_DOCK_KEY = "error_table";
 
 	private final DockKey DOCK_KEY = new ResourceDockKey(ERROR_TABLE_DOCK_KEY);
 	{
@@ -293,7 +297,12 @@ public class ErrorTable extends JPanel implements Dockable, ProcessEditor {
 
 	private List<ProcessSetupError> errors = new LinkedList<ProcessSetupError>();
 
-	public ErrorTable(final MainFrame mainFrame) {
+    /**
+     * Instantiates a new Error table.
+     *
+     * @param mainFrame the main frame
+     */
+    public ErrorTable(final MainFrame mainFrame) {
 		super(new BorderLayout());
 
 		this.mainFrame = mainFrame;

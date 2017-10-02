@@ -53,7 +53,6 @@ import com.rapidminer.tools.I18N;
  * This dialog displays the custom filters for the {@link ExampleFilter} operator.
  *
  * @author Marco Boeck
- *
  */
 public class FilterPropertyDialog extends PropertyDialog {
 
@@ -69,13 +68,14 @@ public class FilterPropertyDialog extends PropertyDialog {
 	private JRadioButton radioButtonOR;
 	private JCheckBox checkBoxMetadata;
 
-	/**
-	 * Creates a new {@link FilterPropertyDialog}.
-	 *
-	 * @param type
-	 * @param key
-	 */
-	public FilterPropertyDialog(final Operator operator, final ParameterTypeFilter type, final String key) {
+    /**
+     * Creates a new {@link FilterPropertyDialog}.
+     *
+     * @param operator the operator
+     * @param type     the type
+     * @param key      the key
+     */
+    public FilterPropertyDialog(final Operator operator, final ParameterTypeFilter type, final String key) {
 		super(type, key);
 		if (operator == null) {
 			throw new IllegalArgumentException("operator must not be null!");

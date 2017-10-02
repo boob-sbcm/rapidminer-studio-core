@@ -25,14 +25,16 @@ import com.rapidminer.operator.ports.Port;
 /**
  * This interfaces provides the possibility to retrieve Ports during runtime to check for example if
  * the {@link InputPort} is connected or not.
- * 
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public interface PortProvider {
 
-	/** Returns the desired {@link Port}. */
-	public Port getPort();
+    /**
+     * Returns the desired {@link Port}.  @return the port
+     *
+     * @return the port
+     */
+    public Port getPort();
 
 }

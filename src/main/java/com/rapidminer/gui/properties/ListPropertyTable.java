@@ -37,7 +37,7 @@ import javax.swing.event.ChangeEvent;
  * For {@link com.rapidminer.parameter.ParameterTypeList} the parameter values are parameter lists
  * themselves. Hence, the key must be editable, too (not only the value). That is what this
  * implementation of PropertyTable is good for.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class ListPropertyTable extends PropertyTable {
@@ -50,7 +50,14 @@ public class ListPropertyTable extends PropertyTable {
 
 	private transient String keyToolTip;
 
-	public ListPropertyTable(ParameterTypeList type, List<String[]> parameterList, Operator operator) {
+    /**
+     * Instantiates a new List property table.
+     *
+     * @param type          the type
+     * @param parameterList the parameter list
+     * @param operator      the operator
+     */
+    public ListPropertyTable(ParameterTypeList type, List<String[]> parameterList, Operator operator) {
 		super(new String[] { type.getKeyType().getKey().replaceAll("_", " "),
 				type.getValueType().getKey().replaceAll("_", " ") });
 		this.type = type;
@@ -80,7 +87,10 @@ public class ListPropertyTable extends PropertyTable {
 		keyToolTip = SwingTools.transformToolTipText(toolTip.toString());
 	}
 
-	public void addRow() {
+    /**
+     * Add row.
+     */
+    public void addRow() {
 		getDefaultModel().addRow(new Object[] { "", type.getValueType().getDefaultValue() });
 		updateEditorsAndRenderers();
 
@@ -90,7 +100,10 @@ public class ListPropertyTable extends PropertyTable {
 		getModel().setValueAt(getKeyEditor(lastIndex).getCellEditorValue(), lastIndex, 0);
 	}
 
-	public void removeSelected() {
+    /**
+     * Remove selected.
+     */
+    public void removeSelected() {
 		int[] selectedRow = getSelectedRows();
 		for (int i = selectedRow.length - 1; i >= 0; i--) {
 			getDefaultModel().removeRow(selectedRow[i]);
@@ -98,7 +111,12 @@ public class ListPropertyTable extends PropertyTable {
 		getDefaultModel().fireTableStructureChanged();
 	}
 
-	public void storeParameterList(List<String[]> list) {
+    /**
+     * Store parameter list.
+     *
+     * @param list the list
+     */
+    public void storeParameterList(List<String[]> list) {
 		list.clear();
 		for (int i = 0; i < getModel().getRowCount(); i++) {
 			String firstString = null;

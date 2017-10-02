@@ -33,14 +33,34 @@ public abstract class AbstractEigenvectorModel extends AbstractModel {
 
 	private static final long serialVersionUID = -7361306351791833948L;
 
-	protected AbstractEigenvectorModel(ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Abstract eigenvector model.
+     *
+     * @param exampleSet the example set
+     */
+    protected AbstractEigenvectorModel(ExampleSet exampleSet) {
 		super(exampleSet);
 	}
 
-	public abstract EigenvectorTableModel getEigenvectorTableModel();
+    /**
+     * Gets eigenvector table model.
+     *
+     * @return the eigenvector table model
+     */
+    public abstract EigenvectorTableModel getEigenvectorTableModel();
 
-	public abstract EigenvalueTableModel getEigenvalueTableModel();
+    /**
+     * Gets eigenvalue table model.
+     *
+     * @return the eigenvalue table model
+     */
+    public abstract EigenvalueTableModel getEigenvalueTableModel();
 
-	public abstract double[] getCumulativeVariance();
+    /**
+     * Get cumulative variance double [ ].
+     *
+     * @return the double [ ]
+     */
+    public abstract double[] getCumulativeVariance();
 
 }

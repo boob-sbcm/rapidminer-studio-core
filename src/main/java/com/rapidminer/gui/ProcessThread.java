@@ -54,7 +54,12 @@ public class ProcessThread extends Thread {
 
 	private Process process;
 
-	public ProcessThread(final Process process) {
+    /**
+     * Instantiates a new Process thread.
+     *
+     * @param process the process
+     */
+    public ProcessThread(final Process process) {
 		super("ProcessThread");
 		this.process = process;
 	}
@@ -160,20 +165,31 @@ public class ProcessThread extends Thread {
 		}
 	}
 
-	public static void beep(final String reason) {
+    /**
+     * Beep.
+     *
+     * @param reason the reason
+     */
+    public static void beep(final String reason) {
 		if (Tools.booleanValue(ParameterService.getParameterValue("rapidminer.gui.beep." + reason), false)) {
 			java.awt.Toolkit.getDefaultToolkit().beep();
 		}
 	}
 
-	public void stopProcess() {
+    /**
+     * Stop process.
+     */
+    public void stopProcess() {
 		if (process != null) {
 			this.process.stop();
 			this.interrupt();
 		}
 	}
 
-	public void pauseProcess() {
+    /**
+     * Pause process.
+     */
+    public void pauseProcess() {
 		if (process != null) {
 			this.process.pause();
 		}

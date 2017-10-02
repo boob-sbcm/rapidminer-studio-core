@@ -27,18 +27,41 @@ import org.w3c.dom.Element;
 /**
  * Filter applied to operators and processes during import and export of process XML files. E.g.,
  * the ProcessRenderer uses this functionality to add GUI information to the process XML.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public interface ProcessXMLFilter {
 
-	public void operatorExported(Operator operator, Element element);
+    /**
+     * Operator exported.
+     *
+     * @param operator the operator
+     * @param element  the element
+     */
+    public void operatorExported(Operator operator, Element element);
 
-	public void operatorImported(Operator operator, Element element);
+    /**
+     * Operator imported.
+     *
+     * @param operator the operator
+     * @param element  the element
+     */
+    public void operatorImported(Operator operator, Element element);
 
-	public void executionUnitExported(ExecutionUnit unit, Element element);
+    /**
+     * Execution unit exported.
+     *
+     * @param unit    the unit
+     * @param element the element
+     */
+    public void executionUnitExported(ExecutionUnit unit, Element element);
 
-	public void executionUnitImported(ExecutionUnit unit, Element element);
+    /**
+     * Execution unit imported.
+     *
+     * @param unit    the unit
+     * @param element the element
+     */
+    public void executionUnitImported(ExecutionUnit unit, Element element);
 
 }

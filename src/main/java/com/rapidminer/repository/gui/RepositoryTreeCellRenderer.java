@@ -44,6 +44,8 @@ import com.rapidminer.tools.Tools;
 
 
 /**
+ * The type Repository tree cell renderer.
+ *
  * @author Simon Fischer
  */
 public class RepositoryTreeCellRenderer extends DefaultTreeCellRenderer {

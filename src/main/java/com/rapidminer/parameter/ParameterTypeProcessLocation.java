@@ -19,94 +19,93 @@
 package com.rapidminer.parameter;
 
 /**
- *
+ * The type Parameter type process location.
  *
  * @author Marcel Seifert
- *
  */
 public class ParameterTypeProcessLocation extends ParameterTypeRepositoryLocation {
 
 	private static final long serialVersionUID = -2679649330364282920L;
 
-	/**
-	 * Creates a new parameter type for files with the given extension. If the extension is null no
-	 * file filters will be used.
-	 *
-	 * @param key
-	 * @param description
-	 * @param optional
-	 */
-	public ParameterTypeProcessLocation(String key, String description, boolean optional) {
+    /**
+     * Creates a new parameter type for files with the given extension. If the extension is null no
+     * file filters will be used.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     */
+    public ParameterTypeProcessLocation(String key, String description, boolean optional) {
 		super(key, description, optional);
 	}
 
-	/**
-	 * Creates a new parameter type for files with the given extension. If the extension is null no
-	 * file filters will be used.
-	 *
-	 * @param key
-	 * @param description
-	 * @param allowEntries
-	 * @param allowDirectories
-	 * @param optional
-	 */
-	public ParameterTypeProcessLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
+    /**
+     * Creates a new parameter type for files with the given extension. If the extension is null no
+     * file filters will be used.
+     *
+     * @param key              the key
+     * @param description      the description
+     * @param allowEntries     the allow entries
+     * @param allowDirectories the allow directories
+     * @param optional         the optional
+     */
+    public ParameterTypeProcessLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
 			boolean optional) {
 		super(key, description, allowEntries, allowDirectories, optional);
 	}
 
-	/**
-	 * Creates a new parameter type for files with the given extension. If the extension is null no
-	 * file filters will be used. If {@link #enforceValidRepositoryEntryName} is set to
-	 * <code>true</code>, will enforce valid repository entry names.
-	 *
-	 * @param key
-	 * @param description
-	 * @param allowEntries
-	 * @param allowDirectories
-	 * @param allowAbsoluteEntries
-	 * @param optional
-	 * @param enforceValidRepositoryEntryName
-	 */
-	public ParameterTypeProcessLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
+    /**
+     * Creates a new parameter type for files with the given extension. If the extension is null no
+     * file filters will be used. If {@link #enforceValidRepositoryEntryName} is set to
+     * <code>true</code>, will enforce valid repository entry names.
+     *
+     * @param key                             the key
+     * @param description                     the description
+     * @param allowEntries                    the allow entries
+     * @param allowDirectories                the allow directories
+     * @param allowAbsoluteEntries            the allow absolute entries
+     * @param optional                        the optional
+     * @param enforceValidRepositoryEntryName the enforce valid repository entry name
+     */
+    public ParameterTypeProcessLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
 			boolean allowAbsoluteEntries, boolean optional, boolean enforceValidRepositoryEntryName) {
 		super(key, description, allowEntries, allowDirectories, allowAbsoluteEntries, optional,
 				enforceValidRepositoryEntryName);
 	}
 
-	/**
-	 * Creates a new parameter type for files with the given extension. If the extension is null no
-	 * file filters will be used. If {@link #enforceValidRepositoryEntryName} is set to
-	 * <code>true</code>, will enforce valid repository entry names.
-	 *
-	 * @param key
-	 * @param description
-	 * @param allowEntries
-	 * @param allowDirectories
-	 * @param allowAbsoluteEntries
-	 * @param optional
-	 * @param enforceValidRepositoryEntryName
-	 * @param onlyWriteableLocations
-	 */
-	public ParameterTypeProcessLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
+    /**
+     * Creates a new parameter type for files with the given extension. If the extension is null no
+     * file filters will be used. If {@link #enforceValidRepositoryEntryName} is set to
+     * <code>true</code>, will enforce valid repository entry names.
+     *
+     * @param key                             the key
+     * @param description                     the description
+     * @param allowEntries                    the allow entries
+     * @param allowDirectories                the allow directories
+     * @param allowAbsoluteEntries            the allow absolute entries
+     * @param optional                        the optional
+     * @param enforceValidRepositoryEntryName the enforce valid repository entry name
+     * @param onlyWriteableLocations          the only writeable locations
+     */
+    public ParameterTypeProcessLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
 			boolean allowAbsoluteEntries, boolean optional, boolean enforceValidRepositoryEntryName,
 			boolean onlyWriteableLocations) {
 		super(key, description, allowEntries, allowDirectories, allowAbsoluteEntries, optional,
 				enforceValidRepositoryEntryName, onlyWriteableLocations);
 	}
 
-	/**
-	 * Creates a new parameter type for files with the given extension. If the extension is null no
-	 * file filters will be used.
-	 *
-	 * @param key
-	 * @param description
-	 * @param allowEntries
-	 * @param allowDirectories
-	 * @param allowAbsoluteEntries
-	 * @param optional
-	 */
-	public ParameterTypeProcessLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
+    /**
+     * Creates a new parameter type for files with the given extension. If the extension is null no
+     * file filters will be used.
+     *
+     * @param key                  the key
+     * @param description          the description
+     * @param allowEntries         the allow entries
+     * @param allowDirectories     the allow directories
+     * @param allowAbsoluteEntries the allow absolute entries
+     * @param optional             the optional
+     */
+    public ParameterTypeProcessLocation(String key, String description, boolean allowEntries, boolean allowDirectories,
 			boolean allowAbsoluteEntries, boolean optional) {
 		super(key, description, allowEntries, allowDirectories, allowAbsoluteEntries, optional);
 	}

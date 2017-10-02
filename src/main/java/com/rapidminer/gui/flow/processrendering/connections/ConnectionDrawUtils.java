@@ -72,20 +72,16 @@ public final class ConnectionDrawUtils {
 	/** color for the enabled icon and surrounding circle */
 	private static final Color ENABLED_COLOR = new Color(227, 60, 49);
 
-	/**
-	 * Renders a trash icon in the middle of a connection.
-	 *
-	 * @param from
-	 *            the port from which the connection starts
-	 * @param enableTrashSymbol
-	 *            if {@code true} the black trash icon is used, otherwise the gray one
-	 * @param g2
-	 *            the graphics for rendering
-	 * @param model
-	 *            the model providing port locations
-	 * @return the circle in which the icon was drawn
-	 */
-	public static final Shape renderConnectionRemovalIcon(OutputPort from, boolean enableTrashSymbol, final Graphics2D g2,
+    /**
+     * Renders a trash icon in the middle of a connection.
+     *
+     * @param from              the port from which the connection starts
+     * @param enableTrashSymbol if {@code true} the black trash icon is used, otherwise the gray one
+     * @param g2                the graphics for rendering
+     * @param model             the model providing port locations
+     * @return the circle in which the icon was drawn
+     */
+    public static final Shape renderConnectionRemovalIcon(OutputPort from, boolean enableTrashSymbol, final Graphics2D g2,
 			ProcessRendererModel model) {
 		// no icon when dragging is in progress
 		if (model.isDragStarted() || model.isImportDragged()) {

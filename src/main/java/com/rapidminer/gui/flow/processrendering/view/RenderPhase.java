@@ -45,53 +45,70 @@ package com.rapidminer.gui.flow.processrendering.view;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public enum RenderPhase {
 
-	/** the first phase during rendering. Last to be notified of events. */
-	BACKGROUND,
+    /**
+     * the first phase during rendering. Last to be notified of events.
+     */
+    BACKGROUND,
 
-	/** the second phase during rendering. Eighth to be notified of events. */
-	ANNOTATIONS,
+    /**
+     * the second phase during rendering. Eighth to be notified of events.
+     */
+    ANNOTATIONS,
 
-	/** the third phase during rendering. Seventh to be notified of events. */
-	OPERATOR_ANNOTATIONS,
+    /**
+     * the third phase during rendering. Seventh to be notified of events.
+     */
+    OPERATOR_ANNOTATIONS,
 
-	/** the fourth phase during rendering. Sixth to be notified of events. */
-	OPERATOR_BACKGROUND,
+    /**
+     * the fourth phase during rendering. Sixth to be notified of events.
+     */
+    OPERATOR_BACKGROUND,
 
-	/** the fifth phase during rendering. Fifth to be notified of events. */
-	CONNECTIONS,
+    /**
+     * the fifth phase during rendering. Fifth to be notified of events.
+     */
+    CONNECTIONS,
 
-	/** the sixth phase during rendering. Fourth to be notified of events. */
-	OPERATORS,
+    /**
+     * the sixth phase during rendering. Fourth to be notified of events.
+     */
+    OPERATORS,
 
-	/** the seventh phase during rendering. Third to be notified of events. */
-	OPERATOR_ADDITIONS,
+    /**
+     * the seventh phase during rendering. Third to be notified of events.
+     */
+    OPERATOR_ADDITIONS,
 
-	/** the eighth phase during rendering. Second to be notified of events. */
-	OVERLAY,
+    /**
+     * the eighth phase during rendering. Second to be notified of events.
+     */
+    OVERLAY,
 
-	/** the last phase during rendering. First to be notified of events. */
-	FOREGROUND;
+    /**
+     * the last phase during rendering. First to be notified of events.
+     */
+    FOREGROUND;
 
-	/**
-	 * Returns the phases in drawing order (first to last).
-	 *
-	 * @return the array containing the sorted phases for drawing
-	 */
-	public static RenderPhase[] drawOrder() {
+    /**
+     * Returns the phases in drawing order (first to last).
+     *
+     * @return the array containing the sorted phases for drawing
+     */
+    public static RenderPhase[] drawOrder() {
 		return new RenderPhase[] { BACKGROUND, ANNOTATIONS, OPERATOR_ANNOTATIONS, OPERATOR_BACKGROUND, CONNECTIONS,
 				OPERATORS, OPERATOR_ADDITIONS, OVERLAY, FOREGROUND };
 	}
 
-	/**
-	 * Returns the phases in event processing order (first to last).
-	 *
-	 * @return the array containing the sorted phases for event handling
-	 */
-	public static RenderPhase[] eventOrder() {
+    /**
+     * Returns the phases in event processing order (first to last).
+     *
+     * @return the array containing the sorted phases for event handling
+     */
+    public static RenderPhase[] eventOrder() {
 		return new RenderPhase[] { FOREGROUND, OVERLAY, OPERATOR_ADDITIONS, OPERATORS, CONNECTIONS, OPERATOR_BACKGROUND,
 				OPERATOR_ANNOTATIONS, ANNOTATIONS, BACKGROUND };
 	}

@@ -61,15 +61,13 @@ import com.rapidminer.tools.container.Pair;
  * Singleton to access configurable items and to provide means to configure them by the user.
  *
  * @author Simon Fischer, Marco Boeck, Sabrina Kirstein
- *
  */
 public abstract class ConfigurationManager implements Observable<Pair<EventType, Configurable>> {
 
-	/**
-	 * Compares {@link Configurable}s.
-	 *
-	 */
-	public static class ConfigurableComparator implements Comparator<Configurable> {
+    /**
+     * Compares {@link Configurable}s.
+     */
+    public static class ConfigurableComparator implements Comparator<Configurable> {
 
 		@Override
 		public int compare(Configurable o1, Configurable o2) {
@@ -106,21 +104,21 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 
 	};
 
-	/**
-	 * URL from which configurations are loaded from RapidMiner Server via the ConfigurationServlet
-	 * (includes trailing slash).
-	 */
-	public static final String RM_SERVER_CONFIGURATION_URL_PREFIX = "/api/rest/configuration/";
+    /**
+     * URL from which configurations are loaded from RapidMiner Server via the ConfigurationServlet
+     * (includes trailing slash).
+     */
+    public static final String RM_SERVER_CONFIGURATION_URL_PREFIX = "/api/rest/configuration/";
 
-	/**
-	 * User name of admin, used to check the access of a user to remote connections
-	 */
-	public static final String RM_SERVER_CONFIGURATION_USER_ADMIN = "admin";
+    /**
+     * User name of admin, used to check the access of a user to remote connections
+     */
+    public static final String RM_SERVER_CONFIGURATION_USER_ADMIN = "admin";
 
-	/**
-	 * Source name if the remote repository is local (null)
-	 */
-	public static final String RM_SERVER_CONFIGURATION_SOURCE_NAME_LOCAL = "123%%%local%%%123";
+    /**
+     * Source name if the remote repository is local (null)
+     */
+    public static final String RM_SERVER_CONFIGURATION_SOURCE_NAME_LOCAL = "123%%%local%%%123";
 
 	/** singleton instance */
 	private static ConfigurationManager theInstance;
@@ -160,8 +158,10 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		public void entryAdded(com.rapidminer.repository.Entry newEntry, Folder parent) {}
 	};
 
-	/** Private singleton constructor. */
-	protected ConfigurationManager() {}
+    /**
+     * Private singleton constructor.
+     */
+    protected ConfigurationManager() {}
 
 	/** mapping between configuration type ids and configurables */
 	private Map<String, Map<ComparablePair<String, String>, Configurable>> configurables = new HashMap<>();
@@ -176,48 +176,61 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 
 	private Object LOCK = new Object();
 
-	public static synchronized void setInstance(ConfigurationManager manager) {
+    /**
+     * Sets instance.
+     *
+     * @param manager the manager
+     */
+    public static synchronized void setInstance(ConfigurationManager manager) {
 		if (theInstance != null) {
 			throw new RuntimeException("Configuration manager already set.");
 		}
 		ConfigurationManager.theInstance = manager;
 	}
 
-	public static synchronized ConfigurationManager getInstance() {
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+    public static synchronized ConfigurationManager getInstance() {
 		if (theInstance == null) {
 			theInstance = new ClientConfigurationManager();
 		}
 		return theInstance;
 	}
 
-	/**
-	 * Loads all parameters from a configuration file or database. The returned map uses (id,value)
-	 * pairs as IDs and key-value parameter map as values.
-	 *
-	 * @since 6.2.0
-	 */
-	protected abstract Map<Pair<Integer, String>, Map<String, String>> loadAllParameters(
+    /**
+     * Loads all parameters from a configuration file or database. The returned map uses (id,value)
+     * pairs as IDs and key-value parameter map as values.
+     *
+     * @param configurator the configurator
+     * @return the map
+     * @throws ConfigurationException the configuration exception
+     * @since 6.2.0
+     */
+    protected abstract Map<Pair<Integer, String>, Map<String, String>> loadAllParameters(
 	        AbstractConfigurator<?> configurator) throws ConfigurationException;
 
-	/**
-	 * Registers a new {@link Configurator}. Will create GUI actions and JSF pages to configure it.
-	 *
-	 * @deprecated Extending {@link Configurator} is not recommended anymore. Extend
-	 *             {@link AbstractConfigurator} and use {@link #register(AbstractConfigurator)}
-	 *             instead.
-	 */
-	@Deprecated
+    /**
+     * Registers a new {@link Configurator}. Will create GUI actions and JSF pages to configure it.
+     *
+     * @param configurator the configurator
+     * @deprecated Extending {@link Configurator} is not recommended anymore. Extend             {@link AbstractConfigurator} and use {@link #register(AbstractConfigurator)}             instead.
+     */
+    @Deprecated
 	public synchronized void register(Configurator<? extends Configurable> configurator) {
 		register((AbstractConfigurator<? extends Configurable>) configurator);
 	}
 
-	/**
-	 * Registers a new {@link AbstractConfigurator}. Will create GUI actions and JSF pages to
-	 * configure it.
-	 *
-	 * @since 6.2.0
-	 */
-	public synchronized void register(AbstractConfigurator<? extends Configurable> configurator) {
+    /**
+     * Registers a new {@link AbstractConfigurator}. Will create GUI actions and JSF pages to
+     * configure it.
+     *
+     * @param configurator the configurator
+     * @since 6.2.0
+     */
+    public synchronized void register(AbstractConfigurator<? extends Configurable> configurator) {
 
 		if (configurator == null) {
 			throw new NullPointerException("Registered configurator is null.");
@@ -237,13 +250,15 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 
 	}
 
-	/**
-	 * @return the {@link Configurator} with the given {@link Configurator#getTypeId()}.
-	 * @deprecated use {@link #getAbstractConfigurator(String)} instead
-	 * @throws IllegalArgumentException
-	 *             in case the selected configurator is not a {@link Configurator}
-	 **/
-	@Deprecated
+    /**
+     * Gets configurator.
+     *
+     * @param typeId the type id
+     * @return the {@link Configurator} with the given {@link Configurator#getTypeId()}.
+     * @throws IllegalArgumentException in case the selected configurator is not a {@link Configurator}
+     * @deprecated use {@link #getAbstractConfigurator(String)} instead
+     */
+    @Deprecated
 	public Configurator<? extends Configurable> getConfigurator(String typeId) {
 		AbstractConfigurator<? extends Configurable> configurator = configurators.get(typeId);
 		if (configurator != null && !(configurator instanceof Configurator)) {
@@ -254,45 +269,57 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return (Configurator<? extends Configurable>) configurator;
 	}
 
-	/**
-	 * @return the {@link AbstractConfigurator} with the given
-	 *         {@link AbstractConfigurator#getTypeId()}.
-	 * @since 6.2.0
-	 **/
-	public AbstractConfigurator<? extends Configurable> getAbstractConfigurator(String typeId) {
+    /**
+     * Gets abstract configurator.
+     *
+     * @param typeId the type id
+     * @return the {@link AbstractConfigurator} with the given         {@link AbstractConfigurator#getTypeId()}.
+     * @since 6.2.0
+     */
+    public AbstractConfigurator<? extends Configurable> getAbstractConfigurator(String typeId) {
 		return configurators.get(typeId);
 	}
 
-	/** Returns all registered {@link Configurator#getTypeId()}s. */
-	public List<String> getAllTypeIds() {
+    /**
+     * Returns all registered {@link Configurator#getTypeId()}s.  @return the all type ids
+     *
+     * @return the all type ids
+     */
+    public List<String> getAllTypeIds() {
 		List<String> result = new LinkedList<>();
 		result.addAll(configurators.keySet());
 		return result;
 	}
 
-	/**
-	 * Returns <code>true</code> if there is <strong>no</strong> {@link Configurator} registered;
-	 * <code>false</code> otherwise.
-	 *
-	 * @return
-	 */
-	public boolean isEmpty() {
+    /**
+     * Returns <code>true</code> if there is <strong>no</strong> {@link Configurator} registered;
+     * <code>false</code> otherwise.
+     *
+     * @return boolean boolean
+     */
+    public boolean isEmpty() {
 		return configurators.size() <= 0;
 	}
 
-	public boolean hasTypeId(String typeId) {
+    /**
+     * Has type id boolean.
+     *
+     * @param typeId the type id
+     * @return the boolean
+     */
+    public boolean hasTypeId(String typeId) {
 		return configurators.keySet().contains(typeId);
 	}
 
-	/**
-	 * Returns all configurable names. Better to use
-	 * {@link #getAllConfigurableNamesAndSources(String)}.
-	 *
-	 * @param typeId
-	 * @return the names of all configurables
-	 * @deprecated Use {@link #getAllConfigurableNamesAndSources(String)} instead
-	 */
-	@Deprecated
+    /**
+     * Returns all configurable names. Better to use
+     * {@link #getAllConfigurableNamesAndSources(String)}.
+     *
+     * @param typeId the type id
+     * @return the names of all configurables
+     * @deprecated Use {@link #getAllConfigurableNamesAndSources(String)} instead
+     */
+    @Deprecated
 	public List<String> getAllConfigurableNames(String typeId) {
 
 		List<String> configurableNames = new LinkedList<>();
@@ -305,13 +332,13 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return configurableNames;
 	}
 
-	/**
-	 * Returns all the configurables as combination of name and source.
-	 *
-	 * @param typeId
-	 * @return list with unique keys for all configurables
-	 */
-	public List<ComparablePair<String, String>> getAllConfigurableNamesAndSources(String typeId) {
+    /**
+     * Returns all the configurables as combination of name and source.
+     *
+     * @param typeId the type id
+     * @return list with unique keys for all configurables
+     */
+    public List<ComparablePair<String, String>> getAllConfigurableNamesAndSources(String typeId) {
 		Map<ComparablePair<String, String>, Configurable> configurablesForType = configurables.get(typeId);
 		if (configurablesForType == null) {
 			throw new IllegalArgumentException("Unknown configurable type: " + typeId);
@@ -319,24 +346,19 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return new LinkedList<>(configurablesForType.keySet());
 	}
 
-	/**
-	 * Looks up a {@link Configurable} of the given name and type. If there are two configurables
-	 * with the same name and typeId, i.e. one located locally and one located on a RM Server, the
-	 * local one would be returned. The configurable is first searched in the local connections and
-	 * if there was no such configurable, it is searched in each existing RM Server.
-	 *
-	 * @param typeId
-	 *            must be one of {@link #getAllTypeIds()}
-	 * @param name
-	 *            must be a {@link Configurable#getName()} where {@link Configurable} is registered
-	 *            under the given type.
-	 * @param accessor
-	 *            represents the user accessing the repository. Can and should be taken from
-	 *            {@link com.rapidminer.Process#getRepositoryAccessor()}.
-	 * @return the configurable which was found first for the name and typeId
-	 * @throws ConfigurationException
-	 */
-	public Configurable lookup(String typeId, String name, RepositoryAccessor accessor) throws ConfigurationException {
+    /**
+     * Looks up a {@link Configurable} of the given name and type. If there are two configurables
+     * with the same name and typeId, i.e. one located locally and one located on a RM Server, the
+     * local one would be returned. The configurable is first searched in the local connections and
+     * if there was no such configurable, it is searched in each existing RM Server.
+     *
+     * @param typeId   must be one of {@link #getAllTypeIds()}
+     * @param name     must be a {@link Configurable#getName()} where {@link Configurable} is registered            under the given type.
+     * @param accessor represents the user accessing the repository. Can and should be taken from            {@link com.rapidminer.Process#getRepositoryAccessor()}.
+     * @return the configurable which was found first for the name and typeId
+     * @throws ConfigurationException the configuration exception
+     */
+    public Configurable lookup(String typeId, String name, RepositoryAccessor accessor) throws ConfigurationException {
 		checkAccess(typeId, name, accessor);
 		Map<ComparablePair<String, String>, Configurable> nameAndSourceToConfigurable = configurables.get(typeId);
 		if (nameAndSourceToConfigurable == null) {
@@ -369,17 +391,26 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return result;
 	}
 
-	/**
-	 * Checks access to the {@link Configurable} with the given type and name. If access is
-	 * permitted, throws. The default implementation does nothing (everyone can access everything).
-	 */
-	protected void checkAccess(String typeId, String name, RepositoryAccessor accessor) throws ConfigurationException {}
+    /**
+     * Checks access to the {@link Configurable} with the given type and name. If access is
+     * permitted, throws. The default implementation does nothing (everyone can access everything).
+     *
+     * @param typeId   the type id
+     * @param name     the name
+     * @param accessor the accessor
+     * @throws ConfigurationException the configuration exception
+     */
+    protected void checkAccess(String typeId, String name, RepositoryAccessor accessor) throws ConfigurationException {}
 
-	/**
-	 * Adds the configurable to internal maps. Once they are added, they can be obtained via
-	 * {@link #lookup(String, String, RepositoryAccessor)}.
-	 */
-	public void registerConfigurable(String typeId, Configurable configurable) throws ConfigurationException {
+    /**
+     * Adds the configurable to internal maps. Once they are added, they can be obtained via
+     * {@link #lookup(String, String, RepositoryAccessor)}.
+     *
+     * @param typeId       the type id
+     * @param configurable the configurable
+     * @throws ConfigurationException the configuration exception
+     */
+    public void registerConfigurable(String typeId, Configurable configurable) throws ConfigurationException {
 		boolean changed;
 		synchronized (LOCK) {
 			String source = getSourceNameForConfigurable(configurable);
@@ -405,12 +436,12 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		}
 	}
 
-	/**
-	 * Returns all currently registered {@link Configurable}s.
-	 *
-	 * @return
-	 */
-	public Collection<Configurable> getAllConfigurables() {
+    /**
+     * Returns all currently registered {@link Configurable}s.
+     *
+     * @return all configurables
+     */
+    public Collection<Configurable> getAllConfigurables() {
 		List<Configurable> listOfConfigurables = new LinkedList<>();
 		for (Map<ComparablePair<String, String>, Configurable> map : configurables.values()) {
 			for (Configurable c : map.values()) {
@@ -420,11 +451,11 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return listOfConfigurables;
 	}
 
-	/**
-	 * Inits the {@link ConfigurationManager}. This includes initial configuration loading as well
-	 * as registering listeners to remote repositories.
-	 */
-	public void initialize() {
+    /**
+     * Inits the {@link ConfigurationManager}. This includes initial configuration loading as well
+     * as registering listeners to remote repositories.
+     */
+    public void initialize() {
 		if (initialized) {
 			loadConfiguration();
 			return;
@@ -528,15 +559,15 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		}
 	}
 
-	/**
-	 * Loads all configurations from the configuration database or file.
-	 * <p>
-	 * Note: In general there is no need to call this method, cause the {@link ConfigurationManager}
-	 * should notice all changes. But some edge cases might require a reload (e.g. configuration
-	 * file change).
-	 * </p>
-	 */
-	public void loadConfiguration() {
+    /**
+     * Loads all configurations from the configuration database or file.
+     * <p>
+     * Note: In general there is no need to call this method, cause the {@link ConfigurationManager}
+     * should notice all changes. But some edge cases might require a reload (e.g. configuration
+     * file change).
+     * </p>
+     */
+    public void loadConfiguration() {
 		for (AbstractConfigurator<? extends Configurable> configurator : configurators.values()) {
 			LogService.getRoot().log(Level.INFO, "com.rapidminer.tools.config.ConfigurationManager.loading_configuration",
 			        configurator.getName());
@@ -610,45 +641,44 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 
 	}
 
-	/**
-	 * Creates and <strong>registers</strong> a {@link Configurable}.
-	 *
-	 * @param typeId
-	 * @param name
-	 * @return
-	 * @throws ConfigurationException
-	 */
-	public Configurable create(String typeId, String name) throws ConfigurationException {
+    /**
+     * Creates and <strong>registers</strong> a {@link Configurable}.
+     *
+     * @param typeId the type id
+     * @param name   the name
+     * @return configurable configurable
+     * @throws ConfigurationException the configuration exception
+     */
+    public Configurable create(String typeId, String name) throws ConfigurationException {
 		Configurable configurable = createWithoutRegistering(typeId, name, null);
 		registerConfigurable(typeId, configurable);
 		return configurable;
 	}
 
-	/**
-	 * Creates a new {@link Configurable} without registering it.
-	 *
-	 * @param typeId
-	 * @param name
-	 * @return the created configurable
-	 * @deprecated Use {@link #createWithoutRegistering(String, String, RemoteRepository)} instead
-	 * @throws ConfigurationException
-	 */
-	@Deprecated
+    /**
+     * Creates a new {@link Configurable} without registering it.
+     *
+     * @param typeId the type id
+     * @param name   the name
+     * @return the created configurable
+     * @throws ConfigurationException the configuration exception
+     * @deprecated Use {@link #createWithoutRegistering(String, String, RemoteRepository)} instead
+     */
+    @Deprecated
 	public Configurable createWithoutRegistering(String typeId, String name) throws ConfigurationException {
 		return createWithoutRegistering(typeId, name, null);
 	}
 
-	/**
-	 * Creates a new {@link Configurable} without registering it.
-	 *
-	 * @param typeId
-	 * @param name
-	 * @param source
-	 *            source of the configurable, can be null (for local configurables)
-	 * @return the created configurable
-	 * @throws ConfigurationException
-	 */
-	public Configurable createWithoutRegistering(String typeId, String name, RemoteRepository source)
+    /**
+     * Creates a new {@link Configurable} without registering it.
+     *
+     * @param typeId the type id
+     * @param name   the name
+     * @param source source of the configurable, can be null (for local configurables)
+     * @return the created configurable
+     * @throws ConfigurationException the configuration exception
+     */
+    public Configurable createWithoutRegistering(String typeId, String name, RemoteRepository source)
 	        throws ConfigurationException {
 		AbstractConfigurator<? extends Configurable> configurator = configurators.get(typeId);
 		if (configurator == null) {
@@ -661,31 +691,32 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return configurable;
 	}
 
-	/**
-	 * Saves the configuration, e.g. when RapidMiner exits.
-	 *
-	 * @throws ConfigurationException
-	 */
-	public void saveConfiguration() throws ConfigurationException {
+    /**
+     * Saves the configuration, e.g. when RapidMiner exits.
+     *
+     * @throws ConfigurationException the configuration exception
+     */
+    public void saveConfiguration() throws ConfigurationException {
 		for (String typeId : getAllTypeIds()) {
 			saveConfiguration(typeId);
 		}
 	}
 
-	/**
-	 * Saves one configuration with the given typeID
-	 *
-	 * @throws ConfigurationException
-	 */
-	public abstract void saveConfiguration(String typeId) throws ConfigurationException;
+    /**
+     * Saves one configuration with the given typeID
+     *
+     * @param typeId the type id
+     * @throws ConfigurationException the configuration exception
+     */
+    public abstract void saveConfiguration(String typeId) throws ConfigurationException;
 
-	/**
-	 * Returns the permitted user groups of a configurable
-	 *
-	 * @param configurable
-	 * @return the permitted user groups of the given configurable
-	 */
-	public Set<String> getPermittedGroupsForConfigurable(Configurable configurable) {
+    /**
+     * Returns the permitted user groups of a configurable
+     *
+     * @param configurable the configurable
+     * @return the permitted user groups of the given configurable
+     */
+    public Set<String> getPermittedGroupsForConfigurable(Configurable configurable) {
 
 		String source = getSourceNameForConfigurable(configurable);
 		String typeId = configurable.getTypeId();
@@ -710,13 +741,13 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		        : configurable.getSource().getName();
 	}
 
-	/**
-	 * Sets the permitted user groups of a configurable
-	 *
-	 * @param configurable
-	 * @param newPermittedGroups
-	 */
-	public void setPermittedGroupsForConfigurable(Configurable configurable, Set<String> newPermittedGroups) {
+    /**
+     * Sets the permitted user groups of a configurable
+     *
+     * @param configurable       the configurable
+     * @param newPermittedGroups the new permitted groups
+     */
+    public void setPermittedGroupsForConfigurable(Configurable configurable, Set<String> newPermittedGroups) {
 
 		String source = getSourceNameForConfigurable(configurable);
 		String typeId = configurable.getTypeId();
@@ -733,10 +764,13 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 
 	}
 
-	/**
-	 * Maps keys of ParameterTypes to ParameterTypes
-	 */
-	public Map<String, ParameterType> parameterListToMap(List<ParameterType> parameterTypes) {
+    /**
+     * Maps keys of ParameterTypes to ParameterTypes
+     *
+     * @param parameterTypes the parameter types
+     * @return the map
+     */
+    public Map<String, ParameterType> parameterListToMap(List<ParameterType> parameterTypes) {
 		Map<String, ParameterType> result = new HashMap<>();
 		for (ParameterType type : parameterTypes) {
 			result.put(type.getKey(), type);
@@ -744,27 +778,26 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return result;
 	}
 
-	/**
-	 * Removes the {@link Configurable} with the given type id and name.
-	 *
-	 * @param typeId
-	 * @param name
-	 * @deprecated Use {@link #removeConfigurable(String, String, String)} instead
-	 */
-	@Deprecated
+    /**
+     * Removes the {@link Configurable} with the given type id and name.
+     *
+     * @param typeId the type id
+     * @param name   the name
+     * @deprecated Use {@link #removeConfigurable(String, String, String)} instead
+     */
+    @Deprecated
 	public void removeConfigurable(String typeId, String name) {
 		removeConfigurable(typeId, name, null);
 	}
 
-	/**
-	 * Removes the {@link Configurable} with the given type id, name and source.
-	 *
-	 * @param typeId
-	 * @param name
-	 * @param source
-	 *            name of the source of the configurable, can be null (for local configurables)
-	 */
-	public void removeConfigurable(String typeId, String name, String source) {
+    /**
+     * Removes the {@link Configurable} with the given type id, name and source.
+     *
+     * @param typeId the type id
+     * @param name   the name
+     * @param source name of the source of the configurable, can be null (for local configurables)
+     */
+    public void removeConfigurable(String typeId, String name, String source) {
 		Configurable removedConfigurable = null;
 
 		if (source == null) {
@@ -781,23 +814,28 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		}
 	}
 
-	/**
-	 * Returns the xml representation of the registered configurables.
-	 *
-	 * @deprecated Use {@link #getConfigurablesAsXML(AbstractConfigurator, boolean)} instead.
-	 */
-	@Deprecated
+    /**
+     * Returns the xml representation of the registered configurables.
+     *
+     * @param configurator the configurator
+     * @param onlyLocal    the only local
+     * @return the configurables as xml
+     * @deprecated Use {@link #getConfigurablesAsXML(AbstractConfigurator, boolean)} instead.
+     */
+    @Deprecated
 	public Document getConfigurablesAsXML(Configurator<? extends Configurable> configurator, boolean onlyLocal) {
 		return getConfigurablesAsXML((AbstractConfigurator<? extends Configurable>) configurator, onlyLocal);
 	}
 
-	/**
-	 * Returns the xml representation of the registered configurables.
-	 *
-	 * @return the configurable as XML document
-	 * @since 6.2.0
-	 */
-	public Document getConfigurablesAsXML(AbstractConfigurator<? extends Configurable> configurator, boolean onlyLocal) {
+    /**
+     * Returns the xml representation of the registered configurables.
+     *
+     * @param configurator the configurator
+     * @param onlyLocal    the only local
+     * @return the configurable as XML document
+     * @since 6.2.0
+     */
+    public Document getConfigurablesAsXML(AbstractConfigurator<? extends Configurable> configurator, boolean onlyLocal) {
 		Document doc = XMLTools.createDocument();
 		Element root = doc.createElement("configuration");
 		doc.appendChild(root);
@@ -815,19 +853,16 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return doc;
 	}
 
-	/**
-	 * Returns the xml representation of the given configurables.
-	 *
-	 * @param typeId
-	 *            the configurables of this typeId should be returned
-	 * @param configurables
-	 *            the configurables of one source
-	 * @param source
-	 *            the source of the given configurables, can be null (for local configurables)
-	 * @return the configurables as XML document
-	 * @since 6.4.0
-	 */
-	public Document getConfigurablesAsXML(String typeId, List<Configurable> configurables, String source) {
+    /**
+     * Returns the xml representation of the given configurables.
+     *
+     * @param typeId        the configurables of this typeId should be returned
+     * @param configurables the configurables of one source
+     * @param source        the source of the given configurables, can be null (for local configurables)
+     * @return the configurables as XML document
+     * @since 6.4.0
+     */
+    public Document getConfigurablesAsXML(String typeId, List<Configurable> configurables, String source) {
 		Document doc = XMLTools.createDocument();
 		Element root = doc.createElement("configuration");
 		doc.appendChild(root);
@@ -854,30 +889,38 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return doc;
 	}
 
-	/**
-	 * Creates an XML-element where the tag name equals {@link Configurator#getTypeId()}. This tag
-	 * has name and id attributes corresponding to {@link Configurable#getName()} and
-	 * {@link Configurable#getId()}. The parameters are encoded as tags whose name matches
-	 * {@link ParameterType#getKey()} and the text-contents of these tags matches the parameter
-	 * value.
-	 *
-	 * @deprecated Use {@link #toXML(Document, AbstractConfigurator, Configurable)} instead
-	 */
-	@Deprecated
+    /**
+     * Creates an XML-element where the tag name equals {@link Configurator#getTypeId()}. This tag
+     * has name and id attributes corresponding to {@link Configurable#getName()} and
+     * {@link Configurable#getId()}. The parameters are encoded as tags whose name matches
+     * {@link ParameterType#getKey()} and the text-contents of these tags matches the parameter
+     * value.
+     *
+     * @param doc          the doc
+     * @param configurator the configurator
+     * @param configurable the configurable
+     * @return the element
+     * @deprecated Use {@link #toXML(Document, AbstractConfigurator, Configurable)} instead
+     */
+    @Deprecated
 	public static Element toXML(Document doc, Configurator<? extends Configurable> configurator, Configurable configurable) {
 		return toXML(doc, (AbstractConfigurator<? extends Configurable>) configurator, configurable);
 	}
 
-	/**
-	 * Creates an XML-element where the tag name equals {@link Configurator#getTypeId()}. This tag
-	 * has name and id attributes corresponding to {@link Configurable#getName()} and
-	 * {@link Configurable#getId()}. The parameters are encoded as tags whose name matches
-	 * {@link ParameterType#getKey()} and the text-contents of these tags matches the parameter
-	 * value.
-	 *
-	 * @since 6.2.0
-	 */
-	public static Element toXML(Document doc, AbstractConfigurator<? extends Configurable> configurator,
+    /**
+     * Creates an XML-element where the tag name equals {@link Configurator#getTypeId()}. This tag
+     * has name and id attributes corresponding to {@link Configurable#getName()} and
+     * {@link Configurable#getId()}. The parameters are encoded as tags whose name matches
+     * {@link ParameterType#getKey()} and the text-contents of these tags matches the parameter
+     * value.
+     *
+     * @param doc          the doc
+     * @param configurator the configurator
+     * @param configurable the configurable
+     * @return the element
+     * @since 6.2.0
+     */
+    public static Element toXML(Document doc, AbstractConfigurator<? extends Configurable> configurator,
 	        Configurable configurable) {
 		Element element = doc.createElement(configurator.getTypeId());
 		element.setAttribute("name", configurable.getName());
@@ -921,41 +964,36 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return element;
 	}
 
-	/**
-	 * Returns the xml representation of the registered configurables by using the given old key to
-	 * decrypt the information and the specified new key to encrypt the information.
-	 *
-	 * @param configurator
-	 * @param onlyLocal
-	 * @param decryptKey
-	 *            {@link Key} used to decrypt the configurable values
-	 * @param encryptKey
-	 *            {@link Key} which should be used to encrypt them in the returned xml
-	 * @deprecated Use
-	 *             {@link #getConfigurablesAsXMLAndChangeEncryption(AbstractConfigurator, boolean, Key, Key)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Returns the xml representation of the registered configurables by using the given old key to
+     * decrypt the information and the specified new key to encrypt the information.
+     *
+     * @param configurator the configurator
+     * @param onlyLocal    the only local
+     * @param decryptKey   {@link Key} used to decrypt the configurable values
+     * @param encryptKey   {@link Key} which should be used to encrypt them in the returned xml
+     * @return the configurables as xml and change encryption
+     * @deprecated Use {@link #getConfigurablesAsXMLAndChangeEncryption(AbstractConfigurator, boolean, Key, Key)}             instead
+     */
+    @Deprecated
 	public Document getConfigurablesAsXMLAndChangeEncryption(Configurator<? extends Configurable> configurator,
 	        boolean onlyLocal, Key decryptKey, Key encryptKey) {
 		return getConfigurablesAsXMLAndChangeEncryption((AbstractConfigurator<? extends Configurable>) configurator,
 		        onlyLocal, decryptKey, encryptKey);
 	}
 
-	/**
-	 * Returns the xml representation of the registered configurables by using the given old key to
-	 * decrypt the information and the specified new key to encrypt the information.
-	 *
-	 * @param configurator
-	 * @param onlyLocal
-	 * @param decryptKey
-	 *            {@link Key} used to decrypt the configurable values
-	 * @param encryptKey
-	 *            {@link Key} which should be used to encrypt them in the returned xml
-	 * @return
-	 * @since 6.2.0
-	 */
-	public Document getConfigurablesAsXMLAndChangeEncryption(AbstractConfigurator<? extends Configurable> configurator,
+    /**
+     * Returns the xml representation of the registered configurables by using the given old key to
+     * decrypt the information and the specified new key to encrypt the information.
+     *
+     * @param configurator the configurator
+     * @param onlyLocal    the only local
+     * @param decryptKey   {@link Key} used to decrypt the configurable values
+     * @param encryptKey   {@link Key} which should be used to encrypt them in the returned xml
+     * @return configurables as xml and change encryption
+     * @since 6.2.0
+     */
+    public Document getConfigurablesAsXMLAndChangeEncryption(AbstractConfigurator<? extends Configurable> configurator,
 	        boolean onlyLocal, Key decryptKey, Key encryptKey) {
 		Document doc = XMLTools.createDocument();
 		Element root = doc.createElement("configuration");
@@ -1009,25 +1047,33 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return element;
 	}
 
-	/**
-	 * The returned map uses (id,value) pairs as IDs and key-value parameter map as values.
-	 *
-	 * @see #toXML(Document, Configurator, Configurable)
-	 * @deprecated use {@link #fromXML(Document, AbstractConfigurator)} instead
-	 */
-	@Deprecated
+    /**
+     * The returned map uses (id,value) pairs as IDs and key-value parameter map as values.
+     *
+     * @param doc          the doc
+     * @param configurator the configurator
+     * @return the map
+     * @throws ConfigurationException the configuration exception
+     * @see #toXML(Document, Configurator, Configurable) #toXML(Document, Configurator, Configurable)#toXML(Document, Configurator, Configurable)
+     * @deprecated use {@link #fromXML(Document, AbstractConfigurator)} instead
+     */
+    @Deprecated
 	public static Map<Pair<Integer, String>, Map<String, String>> fromXML(Document doc,
 	        Configurator<? extends Configurable> configurator) throws ConfigurationException {
 		return fromXML(doc, (AbstractConfigurator<? extends Configurable>) configurator);
 	}
 
-	/**
-	 * The returned map uses (id,value) pairs as IDs and key-value parameter map as values.
-	 *
-	 * @see #toXML(Document, AbstractConfigurator, Configurable)
-	 * @since 6.2.0
-	 */
-	public static Map<Pair<Integer, String>, Map<String, String>> fromXML(Document doc,
+    /**
+     * The returned map uses (id,value) pairs as IDs and key-value parameter map as values.
+     *
+     * @param doc          the doc
+     * @param configurator the configurator
+     * @return the map
+     * @throws ConfigurationException the configuration exception
+     * @see #toXML(Document, AbstractConfigurator, Configurable) #toXML(Document, AbstractConfigurator, Configurable)#toXML(Document, AbstractConfigurator, Configurable)
+     * @since 6.2.0
+     */
+    public static Map<Pair<Integer, String>, Map<String, String>> fromXML(Document doc,
 	        AbstractConfigurator<? extends Configurable> configurator) throws ConfigurationException {
 		Map<Pair<Integer, String>, Map<String, String>> result = new TreeMap<>(new Comparator<Pair<Integer, String>>() {
 
@@ -1070,11 +1116,15 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return result;
 	}
 
-	/**
-	 * The returned list contains (id,name) pairs with the new ids from the configurables that have
-	 * been saved on the server
-	 */
-	public static List<Pair<Integer, String>> newIdsFromXML(Document doc) throws ConfigurationException {
+    /**
+     * The returned list contains (id,name) pairs with the new ids from the configurables that have
+     * been saved on the server
+     *
+     * @param doc the doc
+     * @return the list
+     * @throws ConfigurationException the configuration exception
+     */
+    public static List<Pair<Integer, String>> newIdsFromXML(Document doc) throws ConfigurationException {
 		Element root = doc.getDocumentElement();
 		if (!"configuration".equals(root.getTagName())) {
 			throw new ConfigurationException("XML root tag must be <configuration>");
@@ -1096,10 +1146,15 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return newIds;
 	}
 
-	/**
-	 * The returned map uses (id,value) pairs as IDs and permitted user group lists as values.
-	 */
-	public static Map<Pair<Integer, String>, Set<String>> permittedGroupsfromXML(Document doc,
+    /**
+     * The returned map uses (id,value) pairs as IDs and permitted user group lists as values.
+     *
+     * @param doc          the doc
+     * @param configurator the configurator
+     * @return the map
+     * @throws ConfigurationException the configuration exception
+     */
+    public static Map<Pair<Integer, String>, Set<String>> permittedGroupsfromXML(Document doc,
 	        AbstractConfigurator<? extends Configurable> configurator) throws ConfigurationException {
 		Map<Pair<Integer, String>, Set<String>> result = new TreeMap<>(new Comparator<Pair<Integer, String>>() {
 
@@ -1145,29 +1200,28 @@ public abstract class ConfigurationManager implements Observable<Pair<EventType,
 		return result;
 	}
 
-	/**
-	 * <strong>WARNING:</strong> This method replaces all {@link Configurable}s with a given source
-	 * in this manager with the given ones. While this method works, no {@link Configurable}s can be
-	 * added/removed in the meantime.
-	 *
-	 * @param newConfigurables
-	 * @deprecated Use {@link #replaceConfigurables(Collection, String)} instead
-	 */
-	@Deprecated
+    /**
+     * <strong>WARNING:</strong> This method replaces all {@link Configurable}s with a given source
+     * in this manager with the given ones. While this method works, no {@link Configurable}s can be
+     * added/removed in the meantime.
+     *
+     * @param newConfigurables the new configurables
+     * @deprecated Use {@link #replaceConfigurables(Collection, String)} instead
+     */
+    @Deprecated
 	public void replaceConfigurables(Collection<Configurable> newConfigurables) {
 		replaceConfigurables(newConfigurables, null);
 	}
 
-	/**
-	 * <strong>WARNING:</strong> This method replaces all {@link Configurable}s with a given source
-	 * in this manager with the given ones. While this method works, no {@link Configurable}s can be
-	 * added/removed in the meantime.
-	 *
-	 * @param newConfigurables
-	 * @param source
-	 *            the source of the replacing configurables, can be null for local configurables
-	 */
-	public void replaceConfigurables(Collection<Configurable> newConfigurables, final String source) {
+    /**
+     * <strong>WARNING:</strong> This method replaces all {@link Configurable}s with a given source
+     * in this manager with the given ones. While this method works, no {@link Configurable}s can be
+     * added/removed in the meantime.
+     *
+     * @param newConfigurables the new configurables
+     * @param source           the source of the replacing configurables, can be null for local configurables
+     */
+    public void replaceConfigurables(Collection<Configurable> newConfigurables, final String source) {
 
 		synchronized (LOCK) {
 

@@ -34,38 +34,32 @@ import com.rapidminer.operator.Operator;
  *
  * @author Marco Boeck
  * @since 6.4.0
- *
  */
 public interface ProcessRendererEventListener extends EventListener {
 
-	/**
-	 * Called when something in the model has changed which is not directly related to
-	 * {@link Operator}s.
-	 *
-	 * @param e
-	 *            the event instance
-	 */
-	public void modelChanged(final ProcessRendererModelEvent e);
+    /**
+     * Called when something in the model has changed which is not directly related to
+     * {@link Operator}s.
+     *
+     * @param e the event instance
+     */
+    public void modelChanged(final ProcessRendererModelEvent e);
 
-	/**
-	 * Called when something in the model has changed which is directly related to {@link Operator}
-	 * s.
-	 *
-	 * @param e
-	 *            the event instance
-	 * @param operators
-	 *            a collection of affected operators
-	 */
-	public void operatorsChanged(final ProcessRendererOperatorEvent e, final Collection<Operator> operators);
+    /**
+     * Called when something in the model has changed which is directly related to {@link Operator}
+     * s.
+     *
+     * @param e         the event instance
+     * @param operators a collection of affected operators
+     */
+    public void operatorsChanged(final ProcessRendererOperatorEvent e, final Collection<Operator> operators);
 
-	/**
-	 * Called when workflow annotations have changed.
-	 *
-	 * @param e
-	 *            the event instance
-	 * @param annotations
-	 *            a collection of affected annotations. Can contain {@code null}!
-	 */
-	public void annotationsChanged(final ProcessRendererAnnotationEvent e, final Collection<WorkflowAnnotation> annotations);
+    /**
+     * Called when workflow annotations have changed.
+     *
+     * @param e           the event instance
+     * @param annotations a collection of affected annotations. Can contain {@code null}!
+     */
+    public void annotationsChanged(final ProcessRendererAnnotationEvent e, final Collection<WorkflowAnnotation> annotations);
 
 }

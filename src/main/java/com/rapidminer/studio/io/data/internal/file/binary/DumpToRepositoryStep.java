@@ -44,15 +44,23 @@ import com.rapidminer.studio.io.gui.internal.steps.AbstractToRepositoryStep;
  */
 public class DumpToRepositoryStep extends AbstractToRepositoryStep<BinaryImportDestinationChooser> {
 
-	/** I18n key to identify this step. */
-	public static final String STEP_ID = "binary.dump_to_repo";
+    /**
+     * I18n key to identify this step.
+     */
+    public static final String STEP_ID = "binary.dump_to_repo";
 
 	/** The data source (e.g., a wrapper file). */
 	private final BinaryDataSource source;
 
 	private boolean error;
 
-	public DumpToRepositoryStep(BinaryDataSource source, ImportWizard wizard) {
+    /**
+     * Instantiates a new Dump to repository step.
+     *
+     * @param source the source
+     * @param wizard the wizard
+     */
+    public DumpToRepositoryStep(BinaryDataSource source, ImportWizard wizard) {
 		super(wizard);
 		this.source = source;
 	}

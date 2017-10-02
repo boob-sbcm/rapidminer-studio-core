@@ -40,7 +40,12 @@ public class FocusedComponentBorder extends AbstractBorder implements UIResource
 
 	private static final FocusedComponentBorder INSTANCE = new FocusedComponentBorder();
 
-	public static FocusedComponentBorder getInstance() {
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+    public static FocusedComponentBorder getInstance() {
 		return INSTANCE;
 	}
 

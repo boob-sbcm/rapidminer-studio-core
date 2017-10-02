@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is positive if (att1*att1*att1*att1) > 100.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimplePolynomialClassificationFunction extends ClassificationFunction {

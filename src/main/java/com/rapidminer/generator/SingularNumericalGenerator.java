@@ -33,7 +33,7 @@ import com.rapidminer.tools.Ontology;
 
 /**
  * Generators of this class will have one numerical input attribute and one output attribute.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public abstract class SingularNumericalGenerator extends FeatureGenerator {
@@ -42,12 +42,18 @@ public abstract class SingularNumericalGenerator extends FeatureGenerator {
 
 	private boolean performLogging = true;
 
-	public SingularNumericalGenerator() {}
+    /**
+     * Instantiates a new Singular numerical generator.
+     */
+    public SingularNumericalGenerator() {}
 
-	/**
-	 * Subclasses have to implement this method to calculate the function result.
-	 */
-	public abstract double calculateValue(double value);
+    /**
+     * Subclasses have to implement this method to calculate the function result.
+     *
+     * @param value the value
+     * @return the double
+     */
+    public abstract double calculateValue(double value);
 
 	@Override
 	public Attribute[] getInputAttributes() {

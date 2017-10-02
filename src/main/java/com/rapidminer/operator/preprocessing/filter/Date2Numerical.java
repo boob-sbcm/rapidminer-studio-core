@@ -60,15 +60,32 @@ import com.rapidminer.tools.Tools;
  */
 public class Date2Numerical extends AbstractDateDataProcessing {
 
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
-	public static final String PARAMETER_TIME_UNIT = "time_unit";
+    /**
+     * The constant PARAMETER_TIME_UNIT.
+     */
+    public static final String PARAMETER_TIME_UNIT = "time_unit";
 
-	public static final String PARAMETER_KEEP_OLD_ATTRIBUTE = "keep_old_attribute";
+    /**
+     * The constant PARAMETER_KEEP_OLD_ATTRIBUTE.
+     */
+    public static final String PARAMETER_KEEP_OLD_ATTRIBUTE = "keep_old_attribute";
 
-	Calendar calendar = null;
+    /**
+     * The Calendar.
+     */
+    Calendar calendar = null;
 
-	public Date2Numerical(OperatorDescription description) {
+    /**
+     * Instantiates a new Date 2 numerical.
+     *
+     * @param description the description
+     */
+    public Date2Numerical(OperatorDescription description) {
 		super(description);
 		getExampleSetInputPort().addPrecondition(
 				new AttributeParameterPrecondition(getExampleSetInputPort(), this, PARAMETER_ATTRIBUTE_NAME,

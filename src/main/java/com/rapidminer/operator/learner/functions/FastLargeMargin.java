@@ -52,27 +52,37 @@ import java.util.List;
  * those delivered by classical SVM or logistic regression implementations, this linear classifier
  * is able to work on data set with millions of examples and attributes.
  *
- * @rapidminer.index SVM
  * @author Ingo Mierswa
+ * @rapidminer.index SVM
  */
 public class FastLargeMargin extends AbstractLearner {
 
-	public static final String PARAMETER_SOLVER = "solver";
+    /**
+     * The constant PARAMETER_SOLVER.
+     */
+    public static final String PARAMETER_SOLVER = "solver";
 
-	/** The parameter name for &quot;The cost parameter C for c_svc, epsilon_svr, and nu_svr.&quot; */
-	public static final String PARAMETER_C = "C";
+    /**
+     * The parameter name for &quot;The cost parameter C for c_svc, epsilon_svr, and nu_svr.&quot;
+     */
+    public static final String PARAMETER_C = "C";
 
-	/** The parameter name for &quot;Tolerance of termination criterion.&quot; */
-	public static final String PARAMETER_EPSILON = "epsilon";
+    /**
+     * The parameter name for &quot;Tolerance of termination criterion.&quot;
+     */
+    public static final String PARAMETER_EPSILON = "epsilon";
 
-	/**
-	 * The parameter name for &quot;The weights w for all classes (first column: class name, second
-	 * column: weight), i.e. set the parameters C of each class w * C (empty: using 1 for all
-	 * classes where the weight was not defined).&quot;
-	 */
-	public static final String PARAMETER_CLASS_WEIGHTS = "class_weights";
+    /**
+     * The parameter name for &quot;The weights w for all classes (first column: class name, second
+     * column: weight), i.e. set the parameters C of each class w * C (empty: using 1 for all
+     * classes where the weight was not defined).&quot;
+     */
+    public static final String PARAMETER_CLASS_WEIGHTS = "class_weights";
 
-	public static final String PARAMETER_USE_BIAS = "use_bias";
+    /**
+     * The constant PARAMETER_USE_BIAS.
+     */
+    public static final String PARAMETER_USE_BIAS = "use_bias";
 
 	/*
 	 * What to do for a new LibLinear version (current version 1.33):
@@ -81,15 +91,34 @@ public class FastLargeMargin extends AbstractLearner {
 	 * public of Model (nr_class, l, nSV, label etc.)
 	 */
 
-	/** The different SVM types implemented by the LibSVM package. */
-	public static final String[] SOLVER = { "L2 SVM Dual", "L2 SVM Primal", "L2 Logistic Regression", "L1 SVM Dual" };
+    /**
+     * The different SVM types implemented by the LibSVM package.
+     */
+    public static final String[] SOLVER = { "L2 SVM Dual", "L2 SVM Primal", "L2 Logistic Regression", "L1 SVM Dual" };
 
-	public static final int SOLVER_L2_SVM_DUAL = 0;
-	public static final int SOLVER_L2_SVM_PRIMAL = 1;
-	public static final int SOLVER_L2_LR = 2;
-	public static final int SOLVER_L1_SVM_DUAL = 3;
+    /**
+     * The constant SOLVER_L2_SVM_DUAL.
+     */
+    public static final int SOLVER_L2_SVM_DUAL = 0;
+    /**
+     * The constant SOLVER_L2_SVM_PRIMAL.
+     */
+    public static final int SOLVER_L2_SVM_PRIMAL = 1;
+    /**
+     * The constant SOLVER_L2_LR.
+     */
+    public static final int SOLVER_L2_LR = 2;
+    /**
+     * The constant SOLVER_L1_SVM_DUAL.
+     */
+    public static final int SOLVER_L1_SVM_DUAL = 3;
 
-	public FastLargeMargin(OperatorDescription description) {
+    /**
+     * Instantiates a new Fast large margin.
+     *
+     * @param description the description
+     */
+    public FastLargeMargin(OperatorDescription description) {
 		super(description);
 	}
 
@@ -104,11 +133,16 @@ public class FastLargeMargin extends AbstractLearner {
 		}
 	}
 
-	/**
-	 * Creates a data node row for the LibSVM (sparse format, i.e. each node keeps the index and the
-	 * value if not default).
-	 */
-	public static FeatureNode[] makeNodes(Example e, FastExample2SparseTransform ripper, boolean useBias) {
+    /**
+     * Creates a data node row for the LibSVM (sparse format, i.e. each node keeps the index and the
+     * value if not default).
+     *
+     * @param e       the e
+     * @param ripper  the ripper
+     * @param useBias the use bias
+     * @return the feature node [ ]
+     */
+    public static FeatureNode[] makeNodes(Example e, FastExample2SparseTransform ripper, boolean useBias) {
 		int[] nonDefaultIndices = ripper.getNonDefaultAttributeIndices(e);
 		double[] nonDefaultValues = ripper.getNonDefaultAttributeValues(e, nonDefaultIndices);
 		int offset = 0;

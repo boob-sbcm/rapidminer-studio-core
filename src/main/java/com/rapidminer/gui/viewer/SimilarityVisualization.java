@@ -44,14 +44,20 @@ import javax.swing.JRadioButton;
 
 /**
  * Visualizes a similarity measure interactively.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimilarityVisualization extends JPanel {
 
 	private static final long serialVersionUID = 1976956148942768107L;
 
-	public SimilarityVisualization(SimilarityMeasureObject sim, ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Similarity visualization.
+     *
+     * @param sim        the sim
+     * @param exampleSet the example set
+     */
+    public SimilarityVisualization(SimilarityMeasureObject sim, ExampleSet exampleSet) {
 		super();
 		setLayout(new BorderLayout());
 

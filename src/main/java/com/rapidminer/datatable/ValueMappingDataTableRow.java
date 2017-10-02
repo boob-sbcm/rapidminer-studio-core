@@ -19,6 +19,8 @@
 package com.rapidminer.datatable;
 
 /**
+ * The type Value mapping data table row.
+ *
  * @author Marius Helf
  */
 public class ValueMappingDataTableRow implements DataTableRow {
@@ -26,7 +28,13 @@ public class ValueMappingDataTableRow implements DataTableRow {
 	private ValueMappingDataTableView dataTable;
 	private DataTableRow row;
 
-	public ValueMappingDataTableRow(DataTableRow row, ValueMappingDataTableView valueMappingDataTable) {
+    /**
+     * Instantiates a new Value mapping data table row.
+     *
+     * @param row                   the row
+     * @param valueMappingDataTable the value mapping data table
+     */
+    public ValueMappingDataTableRow(DataTableRow row, ValueMappingDataTableView valueMappingDataTable) {
 		this.dataTable = valueMappingDataTable;
 		this.row = row;
 	}

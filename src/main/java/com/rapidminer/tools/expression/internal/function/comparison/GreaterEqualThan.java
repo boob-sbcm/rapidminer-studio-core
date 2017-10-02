@@ -28,11 +28,11 @@ import com.rapidminer.tools.expression.FunctionDescription;
  */
 public class GreaterEqualThan extends AbstractComparisonFunctionWith2Inputs {
 
-	/**
-	 * Constructs a GREATER OR EQUAL THAN Function with 2 parameters with
-	 * {@link FunctionDescription}
-	 */
-	public GreaterEqualThan() {
+    /**
+     * Constructs a GREATER OR EQUAL THAN Function with 2 parameters with
+     * {@link FunctionDescription}
+     */
+    public GreaterEqualThan() {
 		super("comparison.greater_equals");
 	}
 

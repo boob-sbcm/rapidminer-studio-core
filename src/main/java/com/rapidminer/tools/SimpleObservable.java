@@ -28,10 +28,10 @@ import javax.swing.SwingUtilities;
 /**
  * Copy of the AbstractObservable, but does not allow duplicate listener
  *
+ * @param <A> the type parameter
  * @author Simon Fischer
  * @author Jonas Wilms-Pfau
  * @since 7.4
- *
  */
 public class SimpleObservable<A> implements Observable<A> {
 
@@ -101,13 +101,19 @@ public class SimpleObservable<A> implements Observable<A> {
 		}
 	}
 
-	/** Equivalent to <code>fireUpdate(null)</code>. */
-	protected void fireUpdate() {
+    /**
+     * Equivalent to <code>fireUpdate(null)</code>.
+     */
+    protected void fireUpdate() {
 		fireUpdate(null);
 	}
 
-	/** Updates all observers with the given argument. */
-	protected void fireUpdate(final A argument) {
+    /**
+     * Updates all observers with the given argument.  @param argument the argument
+     *
+     * @param argument the argument
+     */
+    protected void fireUpdate(final A argument) {
 		// lists are copied in order to avoid ConcurrentModification occurs if updating
 		// an observer triggers insertion of another
 		List<com.rapidminer.tools.Observer<A>> copy;

@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric tangent of an angle.
  *
  * @author Denis Schernov
- *
  */
 public class Tangent extends Abstract1DoubleInputFunction {
 
-	public Tangent() {
+    /**
+     * Instantiates a new Tangent.
+     */
+    public Tangent() {
 		super("trigonometrical.tan", Ontology.NUMERICAL);
 	}
 

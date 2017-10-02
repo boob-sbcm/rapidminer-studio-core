@@ -31,10 +31,10 @@ import com.rapidminer.parameter.UndefinedParameterError;
  */
 public class MinNumberOfAttributesCondition implements ProcessBranchCondition {
 
-	/**
-	 * Constructor used by reflection.
-	 */
-	public MinNumberOfAttributesCondition() {}
+    /**
+     * Constructor used by reflection.
+     */
+    public MinNumberOfAttributesCondition() {}
 
 	@Override
 	public boolean check(ProcessBranch operator, String value) throws OperatorException {

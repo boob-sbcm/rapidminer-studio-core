@@ -36,11 +36,17 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * optional parameters
  *
  * @author David Arnu
- *
  */
 public abstract class AbstractDateManipulationFunction extends AbstractFunction {
 
-	public AbstractDateManipulationFunction(String i18nKey, int numberOfArgumentsToCheck, int returnType) {
+    /**
+     * Instantiates a new Abstract date manipulation function.
+     *
+     * @param i18nKey                  the 18 n key
+     * @param numberOfArgumentsToCheck the number of arguments to check
+     * @param returnType               the return type
+     */
+    public AbstractDateManipulationFunction(String i18nKey, int numberOfArgumentsToCheck, int returnType) {
 		super(i18nKey, numberOfArgumentsToCheck, returnType);
 	}
 
@@ -241,21 +247,18 @@ public abstract class AbstractDateManipulationFunction extends AbstractFunction 
 		}
 	}
 
-	/**
-	 * Computes the result for manipulating a date for a certain value on a given unit with
-	 * additional locale and time zone arguments.
-	 *
-	 * @param date
-	 *            date to manipulate
-	 * @param value
-	 *            the amount of which the date should change
-	 * @param unit
-	 *            the unit constant which should be changed
-	 * @param valueTimezone
-	 *            time zone string
-	 * @return the result of the computation.
-	 */
-	protected abstract Date compute(Date date, double value, String unit, String valueLocale, String valueTimezone);
+    /**
+     * Computes the result for manipulating a date for a certain value on a given unit with
+     * additional locale and time zone arguments.
+     *
+     * @param date          date to manipulate
+     * @param value         the amount of which the date should change
+     * @param unit          the unit constant which should be changed
+     * @param valueLocale   the value locale
+     * @param valueTimezone time zone string
+     * @return the result of the computation.
+     */
+    protected abstract Date compute(Date date, double value, String unit, String valueLocale, String valueTimezone);
 
 	@Override
 	protected ExpressionType computeType(ExpressionType... inputTypes) {

@@ -28,9 +28,8 @@ import org.w3c.dom.Element;
 /**
  * This is the parameter type that can be used to define any number of filters which can be applied
  * on an example set to only show matching examples.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class ParameterTypeFilter extends ParameterType {
 
@@ -38,27 +37,27 @@ public class ParameterTypeFilter extends ParameterType {
 
 	private InputPort inPort;
 
-	/**
-	 * Creates a new {@link ParameterTypeFilter} instance.
-	 * 
-	 * @param key
-	 * @param description
-	 * @param inPort
-	 * @param optional
-	 */
-	public ParameterTypeFilter(final String key, String description, InputPort inPort, boolean optional) {
+    /**
+     * Creates a new {@link ParameterTypeFilter} instance.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param inPort      the in port
+     * @param optional    the optional
+     */
+    public ParameterTypeFilter(final String key, String description, InputPort inPort, boolean optional) {
 		super(key, description);
 
 		setOptional(optional);
 		this.inPort = inPort;
 	}
 
-	/**
-	 * Returns the {@link InputPort} where the data to apply the filter on is connected to.
-	 * 
-	 * @return
-	 */
-	public InputPort getInputPort() {
+    /**
+     * Returns the {@link InputPort} where the data to apply the filter on is connected to.
+     *
+     * @return input port
+     */
+    public InputPort getInputPort() {
 		return this.inPort;
 	}
 

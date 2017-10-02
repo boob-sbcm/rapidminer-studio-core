@@ -29,6 +29,8 @@ import org.jfree.chart.renderer.category.AreaRenderer;
 
 
 /**
+ * The type Formatted area renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedAreaRenderer extends AreaRenderer implements FormattedRenderer {
@@ -37,7 +39,10 @@ public class FormattedAreaRenderer extends AreaRenderer implements FormattedRend
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedAreaRenderer() {
+    /**
+     * Instantiates a new Formatted area renderer.
+     */
+    public FormattedAreaRenderer() {
 		super();
 	}
 

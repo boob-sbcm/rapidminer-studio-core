@@ -26,17 +26,20 @@ import com.rapidminer.example.ExampleSet;
 /**
  * This subclass of {@link Condition} serves to excludes all examples containing no missing values
  * from an example set.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class MissingAttributesCondition implements Condition {
 
 	private static final long serialVersionUID = 6872303452739421943L;
 
-	/**
-	 * Throws an exception since this condition does not support parameter string.
-	 */
-	public MissingAttributesCondition(ExampleSet exampleSet, String parameterString) {}
+    /**
+     * Throws an exception since this condition does not support parameter string.
+     *
+     * @param exampleSet      the example set
+     * @param parameterString the parameter string
+     */
+    public MissingAttributesCondition(ExampleSet exampleSet, String parameterString) {}
 
 	/**
 	 * Since the condition cannot be altered after creation we can just return the condition object

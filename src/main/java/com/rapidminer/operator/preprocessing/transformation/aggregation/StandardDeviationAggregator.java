@@ -20,7 +20,7 @@ package com.rapidminer.operator.preprocessing.transformation.aggregation;
 
 /**
  * This is an {@link Aggregator} for the {@link VarianceAggregationFunction}
- * 
+ *
  * @author Sebastian Land
  */
 public class StandardDeviationAggregator extends NumericalAggregator {
@@ -30,7 +30,12 @@ public class StandardDeviationAggregator extends NumericalAggregator {
 	private double totalWeightSum = 0d;
 	private double count = 0;
 
-	public StandardDeviationAggregator(AggregationFunction function) {
+    /**
+     * Instantiates a new Standard deviation aggregator.
+     *
+     * @param function the function
+     */
+    public StandardDeviationAggregator(AggregationFunction function) {
 		super(function);
 	}
 

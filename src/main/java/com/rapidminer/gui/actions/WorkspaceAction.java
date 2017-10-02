@@ -27,6 +27,7 @@ import com.rapidminer.gui.tools.ResourceAction;
 
 
 /**
+ * The type Workspace action.
  *
  * @author Simon Fischer
  */
@@ -41,14 +42,28 @@ public class WorkspaceAction extends ResourceAction {
 
 	private final Perspective perspective;
 
-	public WorkspaceAction(ApplicationPerspectives perspectives, Perspective perspective, String name) {
+    /**
+     * Instantiates a new Workspace action.
+     *
+     * @param perspectives the perspectives
+     * @param perspective  the perspective
+     * @param name         the name
+     */
+    public WorkspaceAction(ApplicationPerspectives perspectives, Perspective perspective, String name) {
 		super(true, "workspace_" + name);
 		this.perspective = perspective;
 		this.perspectives = perspectives;
 		this.perspectiveController = null;
 	}
 
-	public WorkspaceAction(PerspectiveController perspectiveController, Perspective perspective, String name) {
+    /**
+     * Instantiates a new Workspace action.
+     *
+     * @param perspectiveController the perspective controller
+     * @param perspective           the perspective
+     * @param name                  the name
+     */
+    public WorkspaceAction(PerspectiveController perspectiveController, Perspective perspective, String name) {
 		super(true, "workspace_" + name);
 		this.perspective = perspective;
 		this.perspectives = null;
@@ -64,10 +79,12 @@ public class WorkspaceAction extends ResourceAction {
 		}
 	}
 
-	/**
-	 * Returns the {@link Perspective} for this action.
-	 */
-	public Perspective getPerspective() {
+    /**
+     * Returns the {@link Perspective} for this action.
+     *
+     * @return the perspective
+     */
+    public Perspective getPerspective() {
 		return perspective;
 	}
 }

@@ -23,21 +23,27 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Neural Kernel
- * 
+ *
  * @author Stefan Rueping, Ingo Mierswa
  */
 public class KernelNeural extends Kernel {
 
 	private static final long serialVersionUID = 3862702323530107467L;
 
-	double a = 1.0;
+    /**
+     * The A.
+     */
+    double a = 1.0;
 
-	double b = 0.0;
+    /**
+     * The B.
+     */
+    double b = 0.0;
 
-	/**
-	 * Class constructor
-	 */
-	public KernelNeural() {};
+    /**
+     * Class constructor
+     */
+    public KernelNeural() {};
 
 	/**
 	 * Output as String
@@ -47,7 +53,13 @@ public class KernelNeural extends Kernel {
 		return ("neural(" + a + "," + b + ")");
 	};
 
-	public void setParameters(double a, double b) {
+    /**
+     * Sets parameters.
+     *
+     * @param a the a
+     * @param b the b
+     */
+    public void setParameters(double a, double b) {
 		this.a = a;
 		this.b = b;
 	}

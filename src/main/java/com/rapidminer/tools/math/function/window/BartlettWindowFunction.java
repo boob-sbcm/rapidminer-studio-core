@@ -20,16 +20,27 @@ package com.rapidminer.tools.math.function.window;
 
 /**
  * A Bartlett window function.
- * 
+ *
  * @author Tobias Malbrecht, Ingo Mierswa
  */
 public class BartlettWindowFunction extends WindowFunction {
 
-	public BartlettWindowFunction(Integer width) {
+    /**
+     * Instantiates a new Bartlett window function.
+     *
+     * @param width the width
+     */
+    public BartlettWindowFunction(Integer width) {
 		super(width);
 	}
 
-	public BartlettWindowFunction(Integer width, Integer justification) {
+    /**
+     * Instantiates a new Bartlett window function.
+     *
+     * @param width         the width
+     * @param justification the justification
+     */
+    public BartlettWindowFunction(Integer width, Integer justification) {
 		super(width, justification);
 	}
 

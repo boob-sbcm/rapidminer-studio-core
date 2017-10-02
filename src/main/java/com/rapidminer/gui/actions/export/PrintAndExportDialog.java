@@ -44,7 +44,6 @@ import com.rapidminer.gui.tools.dialogs.ButtonDialog;
  * A dialog which is shown if the {@link ShowPrintAndExportDialogAction} is executed.
  *
  * @author Nils Woehler
- *
  */
 public class PrintAndExportDialog extends ButtonDialog {
 
@@ -58,7 +57,12 @@ public class PrintAndExportDialog extends ButtonDialog {
 
 	private PageFormat pageFormat = PrintingTools.getPageFormat();
 
-	public PrintAndExportDialog(List<PrintableComponent> components) {
+    /**
+     * Instantiates a new Print and export dialog.
+     *
+     * @param components the components
+     */
+    public PrintAndExportDialog(List<PrintableComponent> components) {
 		super(ApplicationFrame.getApplicationFrame(), "export_and_print", ModalityType.APPLICATION_MODAL, new Object[] {});
 		this.components = components;
 		this.previewPanels = new LinkedList<>();

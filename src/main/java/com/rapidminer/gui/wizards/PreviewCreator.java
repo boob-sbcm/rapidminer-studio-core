@@ -26,11 +26,16 @@ import java.io.Serializable;
  * given {@link PreviewListener}. Please make sure that implementing classes provide an empty
  * constructor since objects will be constructed via reflection. The actual wizard can than be
  * created by the method defined in this interface.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface PreviewCreator extends Serializable {
 
-	public void createPreview(PreviewListener listener);
+    /**
+     * Create preview.
+     *
+     * @param listener the listener
+     */
+    public void createPreview(PreviewListener listener);
 
 }

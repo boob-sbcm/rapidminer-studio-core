@@ -26,20 +26,51 @@ import com.rapidminer.tools.math.function.aggregation.AbstractAggregationFunctio
 
 
 /**
+ * The type Value source change event.
+ *
  * @author Nils Woehler
- * 
  */
 public class ValueSourceChangeEvent implements ConfigurationChangeEvent {
 
-	public enum ValueSourceChangeType {
-		DATATABLE_COLUMN_MAP, AGGREGATION_FUNCTION_MAP,		// the aggregation function has been
-														// exchanged
-		USES_GROUPING, SERIES_FORMAT_CHANGED,			// the series format of a value source has been
-												// changed or exchanged
+    /**
+     * The enum Value source change type.
+     */
+    public enum ValueSourceChangeType {
+        /**
+         * Datatable column map value source change type.
+         */
+        DATATABLE_COLUMN_MAP, /**
+         * Aggregation function map value source change type.
+         */
+        AGGREGATION_FUNCTION_MAP,		// the aggregation function has been
+        /**
+         * Uses grouping value source change type.
+         */
+// exchanged
+		USES_GROUPING, /**
+         * Series format changed value source change type.
+         */
+        SERIES_FORMAT_CHANGED,			// the series format of a value source has been
+        /**
+         * The Aggregation windowing changed.
+         */
+// changed or exchanged
 		AGGREGATION_WINDOWING_CHANGED,  // the aggregation windowing has changed
-		USE_RELATIVE_UTILITIES,			// using relative or absolute values has changed
-		UPDATED,						// has updated its values
-		AUTO_NAMING, LABEL
+        /**
+         * Use relative utilities value source change type.
+         */
+        USE_RELATIVE_UTILITIES,			// using relative or absolute values has changed
+        /**
+         * Updated value source change type.
+         */
+        UPDATED,						// has updated its values
+        /**
+         * Auto naming value source change type.
+         */
+        AUTO_NAMING, /**
+         * Label value source change type.
+         */
+        LABEL
 	}
 
 	private final ValueSource source;
@@ -57,21 +88,42 @@ public class ValueSourceChangeEvent implements ConfigurationChangeEvent {
 	private Boolean autoNaming;
 	private String label;
 
-	public ValueSourceChangeEvent(ValueSource source, DataTableColumn column, SeriesUsageType seriesUsage) {
+    /**
+     * Instantiates a new Value source change event.
+     *
+     * @param source      the source
+     * @param column      the column
+     * @param seriesUsage the series usage
+     */
+    public ValueSourceChangeEvent(ValueSource source, DataTableColumn column, SeriesUsageType seriesUsage) {
 		this.source = source;
 		this.type = ValueSourceChangeType.DATATABLE_COLUMN_MAP;
 		this.column = column;
 		this.seriesUsagType = seriesUsage;
 	}
 
-	public ValueSourceChangeEvent(ValueSource source, AggregationFunctionType function, SeriesUsageType seriesUsage) {
+    /**
+     * Instantiates a new Value source change event.
+     *
+     * @param source      the source
+     * @param function    the function
+     * @param seriesUsage the series usage
+     */
+    public ValueSourceChangeEvent(ValueSource source, AggregationFunctionType function, SeriesUsageType seriesUsage) {
 		this.source = source;
 		this.type = ValueSourceChangeType.AGGREGATION_FUNCTION_MAP;
 		this.seriesUsagType = seriesUsage;
 		this.aggregationFunctionType = function;
 	}
 
-	public ValueSourceChangeEvent(ValueSource source, ValueSourceChangeType type, Boolean bool) {
+    /**
+     * Instantiates a new Value source change event.
+     *
+     * @param source the source
+     * @param type   the type
+     * @param bool   the bool
+     */
+    public ValueSourceChangeEvent(ValueSource source, ValueSourceChangeType type, Boolean bool) {
 		if ((type != ValueSourceChangeType.USE_RELATIVE_UTILITIES) && (type != ValueSourceChangeType.USES_GROUPING)
 				&& (type != ValueSourceChangeType.AUTO_NAMING)) {
 			throw new RuntimeException(type + " is not allowed calling this constructor.");
@@ -88,28 +140,48 @@ public class ValueSourceChangeEvent implements ConfigurationChangeEvent {
 
 	}
 
-	public ValueSourceChangeEvent(ValueSource source, String label) {
+    /**
+     * Instantiates a new Value source change event.
+     *
+     * @param source the source
+     * @param label  the label
+     */
+    public ValueSourceChangeEvent(ValueSource source, String label) {
 		this.source = source;
 		this.type = ValueSourceChangeType.LABEL;
 		this.label = label;
 	}
 
-	public ValueSourceChangeEvent(ValueSource source, SeriesFormatChangeEvent seriesFormatChange) {
+    /**
+     * Instantiates a new Value source change event.
+     *
+     * @param source             the source
+     * @param seriesFormatChange the series format change
+     */
+    public ValueSourceChangeEvent(ValueSource source, SeriesFormatChangeEvent seriesFormatChange) {
 		this.source = source;
 		this.type = ValueSourceChangeType.SERIES_FORMAT_CHANGED;
 		this.seriesFormatChange = seriesFormatChange;
 	}
 
-	public ValueSourceChangeEvent(ValueSource source, AggregationWindowing newWindowing) {
+    /**
+     * Instantiates a new Value source change event.
+     *
+     * @param source       the source
+     * @param newWindowing the new windowing
+     */
+    public ValueSourceChangeEvent(ValueSource source, AggregationWindowing newWindowing) {
 		this.source = source;
 		this.type = ValueSourceChangeType.AGGREGATION_WINDOWING_CHANGED;
 		this.aggregationWindowing = newWindowing;
 	}
 
-	/**
-	 * Creates an Event with {@link ValueSourceChangeType} UPDATED
-	 */
-	public ValueSourceChangeEvent(ValueSource source) {
+    /**
+     * Creates an Event with {@link ValueSourceChangeType} UPDATED
+     *
+     * @param source the source
+     */
+    public ValueSourceChangeEvent(ValueSource source) {
 		this.source = source;
 		this.type = ValueSourceChangeType.UPDATED;
 	}
@@ -119,84 +191,111 @@ public class ValueSourceChangeEvent implements ConfigurationChangeEvent {
 		return ConfigurationChangeType.VALUE_SOURCE_CHANGE;
 	}
 
-	/**
-	 * @return the source
-	 */
-	public ValueSource getSource() {
+    /**
+     * Gets source.
+     *
+     * @return the source
+     */
+    public ValueSource getSource() {
 		return source;
 	}
 
-	/**
-	 * @return the type
-	 */
-	public ValueSourceChangeType getType() {
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
+    public ValueSourceChangeType getType() {
 		return type;
 	}
 
-	/**
-	 * @return the usesGrouping
-	 */
-	public Boolean getUsesGrouping() {
+    /**
+     * Gets uses grouping.
+     *
+     * @return the usesGrouping
+     */
+    public Boolean getUsesGrouping() {
 		return usesGrouping;
 	}
 
-	/**
-	 * @return the autoNaming
-	 */
-	public Boolean getAutoNaming() {
+    /**
+     * Gets auto naming.
+     *
+     * @return the autoNaming
+     */
+    public Boolean getAutoNaming() {
 		return autoNaming;
 	}
 
-	/**
-	 * @return the label
-	 */
-	public String getLabel() {
+    /**
+     * Gets label.
+     *
+     * @return the label
+     */
+    public String getLabel() {
 		return label;
 	}
 
-	/**
-	 * @return the valueRangeChanged
-	 */
-	public ValueRangeChangeEvent getValueRangeChanged() {
+    /**
+     * Gets value range changed.
+     *
+     * @return the valueRangeChanged
+     */
+    public ValueRangeChangeEvent getValueRangeChanged() {
 		return valueRangeChanged;
 	}
 
-	/**
-	 * @return the useRelative
-	 */
-	public Boolean getUseRelative() {
+    /**
+     * Gets use relative.
+     *
+     * @return the useRelative
+     */
+    public Boolean getUseRelative() {
 		return useRelative;
 	}
 
-	/**
-	 * @return the seriesFormatChange
-	 */
-	public SeriesFormatChangeEvent getSeriesFormatChange() {
+    /**
+     * Gets series format change.
+     *
+     * @return the seriesFormatChange
+     */
+    public SeriesFormatChangeEvent getSeriesFormatChange() {
 		return seriesFormatChange;
 	}
 
-	/**
-	 * @return the column
-	 */
-	public DataTableColumn getDataTableColumn() {
+    /**
+     * Gets data table column.
+     *
+     * @return the column
+     */
+    public DataTableColumn getDataTableColumn() {
 		return column;
 	}
 
-	/**
-	 * @return the aggregationFunctionType
-	 */
-	public AggregationFunctionType getAggregationFunctionType() {
+    /**
+     * Gets aggregation function type.
+     *
+     * @return the aggregationFunctionType
+     */
+    public AggregationFunctionType getAggregationFunctionType() {
 		return aggregationFunctionType;
 	}
 
-	/**
-	 * @return the seriesUsagType
-	 */
-	public SeriesUsageType getSeriesUsagType() {
+    /**
+     * Gets series usag type.
+     *
+     * @return the seriesUsagType
+     */
+    public SeriesUsageType getSeriesUsagType() {
 		return seriesUsagType;
 	}
 
-	public AggregationWindowing getAggregationWindowing() {
+    /**
+     * Gets aggregation windowing.
+     *
+     * @return the aggregation windowing
+     */
+    public AggregationWindowing getAggregationWindowing() {
 		return aggregationWindowing;
 	}
 

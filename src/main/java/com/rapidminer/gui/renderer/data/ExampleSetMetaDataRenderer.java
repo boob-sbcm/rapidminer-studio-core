@@ -36,7 +36,7 @@ import java.util.List;
 
 /**
  * A renderer for the meta data view of example sets.
- * 
+ *
  * @author Ingo Mierswa, Marco Boeck
  */
 public class ExampleSetMetaDataRenderer extends AbstractRenderer {

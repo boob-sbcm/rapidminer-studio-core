@@ -27,17 +27,24 @@ import com.rapidminer.tools.Ontology;
  * Calculates the maximum.
  *
  * @author Tobias Malbrecht, Ingo Mierswa
- *
  */
 public class MaxFunction extends AbstractAggregationFunction {
 
 	private double maxValue;
 
-	public MaxFunction() {
+    /**
+     * Instantiates a new Max function.
+     */
+    public MaxFunction() {
 		this(DEFAULT_IGNORE_MISSINGS);
 	}
 
-	public MaxFunction(Boolean ignoreMissings) {
+    /**
+     * Instantiates a new Max function.
+     *
+     * @param ignoreMissings the ignore missings
+     */
+    public MaxFunction(Boolean ignoreMissings) {
 		super(ignoreMissings);
 	}
 

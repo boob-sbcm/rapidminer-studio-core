@@ -55,7 +55,6 @@ import com.rapidminer.tools.XMLException;
  *
  * @author Simon Fischer, Michael Knopf
  * @since 6.4.0
- *
  */
 public class ProcessRendererTransferHandler extends ReceivingOperatorTransferHandler {
 
@@ -73,7 +72,14 @@ public class ProcessRendererTransferHandler extends ReceivingOperatorTransferHan
 	/** the operator after which the dropped operator will be added */
 	private Operator dropInsertionPredecessor;
 
-	public ProcessRendererTransferHandler(ProcessRendererView view, ProcessRendererModel model,
+    /**
+     * Instantiates a new Process renderer transfer handler.
+     *
+     * @param view       the view
+     * @param model      the model
+     * @param controller the controller
+     */
+    public ProcessRendererTransferHandler(ProcessRendererView view, ProcessRendererModel model,
 			ProcessRendererController controller) {
 		this.view = view;
 		this.model = model;

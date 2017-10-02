@@ -26,7 +26,7 @@ import com.rapidminer.operator.ports.OutputPort;
 /**
  * This operator updates a {@link Model} with an {@link ExampleSet}. Please note that the model must
  * return true for {@link Model#isUpdatable()} in order to be usable with this operator.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ModelUpdater extends Operator {
@@ -37,7 +37,12 @@ public class ModelUpdater extends Operator {
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 	private OutputPort modelOutput = getOutputPorts().createPort("model");
 
-	public ModelUpdater(OperatorDescription description) {
+    /**
+     * Instantiates a new Model updater.
+     *
+     * @param description the description
+     */
+    public ModelUpdater(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addPassThroughRule(exampleSetInput, exampleSetOutput);

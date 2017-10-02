@@ -44,16 +44,23 @@ import java.util.List;
  * label. In these cases a simple sampling without stratification is performed. In some cases it
  * might happen that not the exact desired number of examples is sampled, e.g. if the desired number
  * is 100 from three qually distributed classes the resulting number will be 99 (33 of each class).
- * 
+ *
  * @author Sebastian Land
  */
 @SuppressWarnings("deprecation")
 public class AbsoluteStratifiedSampling extends AbstractStratifiedSampling {
 
-	/** The parameter name for &quot;The fraction of examples which should be sampled&quot; */
-	public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
+    /**
+     * The parameter name for &quot;The fraction of examples which should be sampled&quot;
+     */
+    public static final String PARAMETER_SAMPLE_SIZE = "sample_size";
 
-	public AbsoluteStratifiedSampling(OperatorDescription description) {
+    /**
+     * Instantiates a new Absolute stratified sampling.
+     *
+     * @param description the description
+     */
+    public AbsoluteStratifiedSampling(OperatorDescription description) {
 		super(description);
 	}
 

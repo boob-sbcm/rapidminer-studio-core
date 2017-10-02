@@ -28,7 +28,7 @@ import java.util.Iterator;
 /**
  * Collects the average vectors of a run. The averagables can be averaged by using
  * {@link #average()}.
- * 
+ *
  * @author Ralf Klinkenberg, Ingo Mierswa
  */
 public class RunVector extends ResultObjectAdapter {
@@ -38,31 +38,50 @@ public class RunVector extends ResultObjectAdapter {
 	/** List of average vectors. */
 	private ArrayList<AverageVector> vectorList = new ArrayList<AverageVector>();
 
-	/** Adds a new average vector. */
-	public void addVector(AverageVector av) {
+    /**
+     * Adds a new average vector.  @param av the av
+     *
+     * @param av the av
+     */
+    public void addVector(AverageVector av) {
 		vectorList.add(av);
 	}
 
-	/** Returns the average vector with index i. */
-	public AverageVector getVector(int index) {
+    /**
+     * Returns the average vector with index i.  @param index the index
+     *
+     * @param index the index
+     * @return the vector
+     */
+    public AverageVector getVector(int index) {
 		return vectorList.get(index);
 	}
 
-	/** Returns all average vectors as list. */
-	public ArrayList<AverageVector> getVectorList() {
+    /**
+     * Returns all average vectors as list.  @return the vector list
+     *
+     * @return the vector list
+     */
+    public ArrayList<AverageVector> getVectorList() {
 		return vectorList;
 	}
 
-	/** Returns the number of average vectors. */
-	public int size() {
+    /**
+     * Returns the number of average vectors.  @return the int
+     *
+     * @return the int
+     */
+    public int size() {
 		return vectorList.size();
 	}
 
-	/**
-	 * Calculates the mean value of the averagables of the average vectors and returns an average
-	 * vector which contains for each averagable the mean value.
-	 */
-	public AverageVector average() {
+    /**
+     * Calculates the mean value of the averagables of the average vectors and returns an average
+     * vector which contains for each averagable the mean value.
+     *
+     * @return the average vector
+     */
+    public AverageVector average() {
 		try {
 			AverageVector output = (AverageVector) getVector(0).clone();
 			for (int i = 1; i < size(); i++) {
@@ -121,11 +140,21 @@ public class RunVector extends ResultObjectAdapter {
 		return result.toString();
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "rvc";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "run vector";
 	}
 

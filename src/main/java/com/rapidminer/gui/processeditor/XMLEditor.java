@@ -52,7 +52,7 @@ import com.vlsolutions.swing.docking.Dockable;
  * A text area for editing the process as XML. This editor is the second possible way to edit or
  * create RapidMiner processes. All changes are reflected by the process. However, it should be more
  * convenient to use the tree view for process design. <br/>
- *
+ * <p>
  * This XML editor support very simple syntax highlighting based on keyword parsing.
  *
  * @author Ingo Mierswa, Simon Fischer
@@ -61,7 +61,10 @@ public class XMLEditor extends JPanel implements ProcessEditor, Dockable {
 
 	private static final long serialVersionUID = 4172143138689034659L;
 
-	public static final String XML_EDITOR_DOCK_KEY = "xml_editor";
+    /**
+     * The constant XML_EDITOR_DOCK_KEY.
+     */
+    public static final String XML_EDITOR_DOCK_KEY = "xml_editor";
 
 	private final DockKey DOCK_KEY = new ResourceDockKey(XML_EDITOR_DOCK_KEY);
 	{
@@ -72,7 +75,12 @@ public class XMLEditor extends JPanel implements ProcessEditor, Dockable {
 
 	private final MainFrame mainFrame;
 
-	public XMLEditor(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Xml editor.
+     *
+     * @param mainFrame the main frame
+     */
+    public XMLEditor(MainFrame mainFrame) {
 		super(new BorderLayout());
 		this.mainFrame = mainFrame;
 
@@ -107,7 +115,12 @@ public class XMLEditor extends JPanel implements ProcessEditor, Dockable {
 		add(rTextScrollPane, BorderLayout.CENTER);
 	}
 
-	public void setText(String text) {
+    /**
+     * Sets text.
+     *
+     * @param text the text
+     */
+    public void setText(String text) {
 		this.editor.setText(text);
 	}
 
@@ -136,7 +149,13 @@ public class XMLEditor extends JPanel implements ProcessEditor, Dockable {
 		}
 	}
 
-	public synchronized void validateProcess() throws IOException, XMLException {
+    /**
+     * Validate process.
+     *
+     * @throws IOException  the io exception
+     * @throws XMLException the xml exception
+     */
+    public synchronized void validateProcess() throws IOException, XMLException {
 		Process newExp = new Process(editor.getText().trim());
 		if (!newExp.getRootOperator().getXML(true)
 				.equals(RapidMinerGUI.getMainFrame().getProcess().getRootOperator().getXML(true))) {
@@ -146,7 +165,12 @@ public class XMLEditor extends JPanel implements ProcessEditor, Dockable {
 		}
 	}
 
-	public String getXMLFromEditor() {
+    /**
+     * Gets xml from editor.
+     *
+     * @return the xml from editor
+     */
+    public String getXMLFromEditor() {
 		return this.editor.getText().trim();
 	}
 

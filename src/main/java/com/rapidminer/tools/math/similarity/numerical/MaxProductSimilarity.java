@@ -28,7 +28,7 @@ import com.rapidminer.tools.math.similarity.SimilarityMeasure;
  * Specialized similarity that takes the maximum product of two feature values. If this value is
  * zero, the similarity is undefined. This similarity measure is used mainly with features extracted
  * from cluster models.
- * 
+ *
  * @author Michael Wurst
  */
 public class MaxProductSimilarity extends SimilarityMeasure {

@@ -31,73 +31,63 @@ import java.util.Date;
  */
 public interface Resolver {
 
-	/**
-	 * Returns the {@link FunctionInput}s of all variables known to this resolver.
-	 *
-	 * @return the {@link FunctionInput}s of all known variables
-	 */
-	public Collection<FunctionInput> getAllVariables();
+    /**
+     * Returns the {@link FunctionInput}s of all variables known to this resolver.
+     *
+     * @return the {@link FunctionInput}s of all known variables
+     */
+    public Collection<FunctionInput> getAllVariables();
 
-	/**
-	 * Returns the {@link ExpressionType} of the variable with name variableName or {@code null} if
-	 * this variable does not exist.
-	 *
-	 * @param variableName
-	 *            the name of the variable
-	 * @return the type of the variable variableName or {@code null}
-	 */
-	public ExpressionType getVariableType(String variableName);
+    /**
+     * Returns the {@link ExpressionType} of the variable with name variableName or {@code null} if
+     * this variable does not exist.
+     *
+     * @param variableName the name of the variable
+     * @return the type of the variable variableName or {@code null}
+     */
+    public ExpressionType getVariableType(String variableName);
 
-	/**
-	 * Returns the String value of the variable variableName, if this variable has a String value.
-	 * Check the expression type of the variable using {@link #getExpressionType()} before calling
-	 * this method.
-	 *
-	 * @param variableName
-	 *            the name of the variable
-	 * @return the String value of the variable variableName, if this variable has a String value
-	 * @throws IllegalStateException
-	 *             if the variable is not of type {@link ExpressionType#STRING}
-	 */
-	public String getStringValue(String variableName);
+    /**
+     * Returns the String value of the variable variableName, if this variable has a String value.
+     * Check the expression type of the variable using {@link #getExpressionType()} before calling
+     * this method.
+     *
+     * @param variableName the name of the variable
+     * @return the String value of the variable variableName, if this variable has a String value
+     * @throws IllegalStateException if the variable is not of type {@link ExpressionType#STRING}
+     */
+    public String getStringValue(String variableName);
 
-	/**
-	 * Returns the double value of the variable variableName, if this variable has a double value.
-	 * Check the expression type of the variable using {@link #getExpressionType()} before calling
-	 * this method.
-	 *
-	 * @param variableName
-	 *            the name of the variable
-	 * @return the double value of the variable variableName, if this variable has a double value
-	 * @throws IllegalStateException
-	 *             if the variable is not of type {@link ExpressionType#INTEGER} or
-	 *             {@link ExpressionType#DOUBLE}
-	 */
-	public double getDoubleValue(String variableName);
+    /**
+     * Returns the double value of the variable variableName, if this variable has a double value.
+     * Check the expression type of the variable using {@link #getExpressionType()} before calling
+     * this method.
+     *
+     * @param variableName the name of the variable
+     * @return the double value of the variable variableName, if this variable has a double value
+     * @throws IllegalStateException if the variable is not of type {@link ExpressionType#INTEGER} or             {@link ExpressionType#DOUBLE}
+     */
+    public double getDoubleValue(String variableName);
 
-	/**
-	 * Returns the boolean value of the variable variableName, if this variable has a boolean value.
-	 * Check the expression type of the variable using {@link #getExpressionType()} before calling
-	 * this method.
-	 *
-	 * @param variableName
-	 *            the name of the variable
-	 * @return the boolean value of the variable variableName, if this variable has a boolean value
-	 * @throws IllegalStateException
-	 *             if the variable is not of type {@link ExpressionType#BOOLEAN}
-	 */
-	public boolean getBooleanValue(String variableName);
+    /**
+     * Returns the boolean value of the variable variableName, if this variable has a boolean value.
+     * Check the expression type of the variable using {@link #getExpressionType()} before calling
+     * this method.
+     *
+     * @param variableName the name of the variable
+     * @return the boolean value of the variable variableName, if this variable has a boolean value
+     * @throws IllegalStateException if the variable is not of type {@link ExpressionType#BOOLEAN}
+     */
+    public boolean getBooleanValue(String variableName);
 
-	/**
-	 * Returns the Date value of the variable variableName, if this variable has a Date value. Check
-	 * the expression type of the variable using {@link #getExpressionType()} before calling this
-	 * method.
-	 *
-	 * @param variableName
-	 *            the name of the variable
-	 * @return the Date value of the variable variableName, if this variable has a Date value
-	 * @throws IllegalStateException
-	 *             if the variable is not of type {@link ExpressionType#DATE}
-	 */
-	public Date getDateValue(String variableName);
+    /**
+     * Returns the Date value of the variable variableName, if this variable has a Date value. Check
+     * the expression type of the variable using {@link #getExpressionType()} before calling this
+     * method.
+     *
+     * @param variableName the name of the variable
+     * @return the Date value of the variable variableName, if this variable has a Date value
+     * @throws IllegalStateException if the variable is not of type {@link ExpressionType#DATE}
+     */
+    public Date getDateValue(String variableName);
 }

@@ -42,11 +42,28 @@ final class IntegerIncompleteDenseChunk extends IntegerIncompleteChunk {
 
 	private int[] data = AutoColumnUtils.EMPTY_INTEGER_ARRAY;
 
-	IntegerIncompleteDenseChunk(int id, IntegerIncompleteChunk[] chunks, int size, DataManagement management) {
+    /**
+     * Instantiates a new Integer incomplete dense chunk.
+     *
+     * @param id         the id
+     * @param chunks     the chunks
+     * @param size       the size
+     * @param management the management
+     */
+    IntegerIncompleteDenseChunk(int id, IntegerIncompleteChunk[] chunks, int size, DataManagement management) {
 		this(id, chunks, size, false, management);
 	}
 
-	IntegerIncompleteDenseChunk(int id, IntegerIncompleteChunk[] chunks, int size, boolean stayDense,
+    /**
+     * Instantiates a new Integer incomplete dense chunk.
+     *
+     * @param id         the id
+     * @param chunks     the chunks
+     * @param size       the size
+     * @param stayDense  the stay dense
+     * @param management the management
+     */
+    IntegerIncompleteDenseChunk(int id, IntegerIncompleteChunk[] chunks, int size, boolean stayDense,
 			DataManagement management) {
 		super(id, chunks, management);
 		this.undecided = !stayDense;

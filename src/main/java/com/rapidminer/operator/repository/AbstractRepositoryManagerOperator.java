@@ -28,18 +28,19 @@ import com.rapidminer.operator.ports.PortPairExtender;
 /**
  * Abstract Operator for Repository Management. It just provides dummy input and output ports with a
  * pass through rule for MD.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public abstract class AbstractRepositoryManagerOperator extends Operator {
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	/**
-	 * @param description
-	 */
-	public AbstractRepositoryManagerOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract repository manager operator.
+     *
+     * @param description the description
+     */
+    public AbstractRepositoryManagerOperator(OperatorDescription description) {
 		super(description);
 
 		dummyPorts.start();

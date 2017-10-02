@@ -71,7 +71,12 @@ public class ComboBoxUI extends BasicComboBoxUI {
 
 		private static final long serialVersionUID = 1389744017891652801L;
 
-		public RapidLookComboPopup(JComboBox<?> comboBox) {
+        /**
+         * Instantiates a new Rapid look combo popup.
+         *
+         * @param comboBox the combo box
+         */
+        public RapidLookComboPopup(JComboBox<?> comboBox) {
 			super(comboBox);
 		}
 
@@ -238,7 +243,13 @@ public class ComboBoxUI extends BasicComboBoxUI {
 
 	private boolean isDown = false;
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new ComboBoxUI();
 	}
 
@@ -349,7 +360,12 @@ public class ComboBoxUI extends BasicComboBoxUI {
 		return this.comboBox;
 	}
 
-	protected void synchronizeEditorStatus(boolean enabled) {
+    /**
+     * Synchronize editor status.
+     *
+     * @param enabled the enabled
+     */
+    protected void synchronizeEditorStatus(boolean enabled) {
 		if (this.comboBox.getEditor() instanceof RapidLookComboBoxEditor) {
 			((RapidLookComboBoxEditor) this.comboBox.getEditor()).setEnable(enabled);
 		}

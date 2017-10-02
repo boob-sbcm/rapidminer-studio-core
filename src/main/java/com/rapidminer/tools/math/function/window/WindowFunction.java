@@ -25,41 +25,80 @@ import java.lang.reflect.InvocationTargetException;
  * A window function applies weights to the data points in a series window. Left, right or center
  * justification allows to adjust which data points should get the highest weights. In case of
  * center justification the window function is symmetric.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public abstract class WindowFunction {
 
-	@SuppressWarnings("unchecked")
+    /**
+     * The constant FUNCTIONS.
+     */
+    @SuppressWarnings("unchecked")
 	public static final Class<? extends WindowFunction>[] FUNCTIONS = new Class[] { RectangularWindowFunction.class,
 			TriangularWindowFunction.class, GaussianWindowFunction.class, HannWindowFunction.class,
 			HammingWindowFunction.class, BlackmanWindowFunction.class, BlackmanHarrisWindowFunction.class,
 			BartlettWindowFunction.class };
 
-	public static final String[] FUNCTION_NAMES = { "Rectangular", "Triangular", "Gaussian", "Hann", "Hamming", "Blackman",
+    /**
+     * The constant FUNCTION_NAMES.
+     */
+    public static final String[] FUNCTION_NAMES = { "Rectangular", "Triangular", "Gaussian", "Hann", "Hamming", "Blackman",
 			"Blackman-Harris", "Bartlett" };
 
-	public static final int RECTANGULAR = 0;
+    /**
+     * The constant RECTANGULAR.
+     */
+    public static final int RECTANGULAR = 0;
 
-	public static final int TRIANGULAR = 1;
+    /**
+     * The constant TRIANGULAR.
+     */
+    public static final int TRIANGULAR = 1;
 
-	public static final int GAUSSIAN = 2;
+    /**
+     * The constant GAUSSIAN.
+     */
+    public static final int GAUSSIAN = 2;
 
-	public static final int HANN = 3;
+    /**
+     * The constant HANN.
+     */
+    public static final int HANN = 3;
 
-	public static final int HAMMING = 4;
+    /**
+     * The constant HAMMING.
+     */
+    public static final int HAMMING = 4;
 
-	public static final int BLACKMAN = 5;
+    /**
+     * The constant BLACKMAN.
+     */
+    public static final int BLACKMAN = 5;
 
-	public static final int BLACKMAN_HARRIS = 6;
+    /**
+     * The constant BLACKMAN_HARRIS.
+     */
+    public static final int BLACKMAN_HARRIS = 6;
 
-	public static final int BARTLETT = 7;
+    /**
+     * The constant BARTLETT.
+     */
+    public static final int BARTLETT = 7;
 
-	public static final int JUSTIFY_CENTER = 0;
+    /**
+     * The constant JUSTIFY_CENTER.
+     */
+    public static final int JUSTIFY_CENTER = 0;
 
-	public static final int JUSTIFY_LEFT = 1;
+    /**
+     * The constant JUSTIFY_LEFT.
+     */
+    public static final int JUSTIFY_LEFT = 1;
 
-	public static final int JUSTIFY_RIGHT = 2;
+    /**
+     * The constant JUSTIFY_RIGHT.
+     */
+    public static final int JUSTIFY_RIGHT = 2;
 
 	private int width;
 
@@ -67,7 +106,20 @@ public abstract class WindowFunction {
 
 	private int justifiedOffset;
 
-	@SuppressWarnings("unchecked")
+    /**
+     * Create window function window function.
+     *
+     * @param functionName  the function name
+     * @param justification the justification
+     * @param width         the width
+     * @return the window function
+     * @throws InstantiationException    the instantiation exception
+     * @throws IllegalAccessException    the illegal access exception
+     * @throws ClassNotFoundException    the class not found exception
+     * @throws NoSuchMethodException     the no such method exception
+     * @throws InvocationTargetException the invocation target exception
+     */
+    @SuppressWarnings("unchecked")
 	public static WindowFunction createWindowFunction(String functionName, int justification, int width)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException,
 			InvocationTargetException {
@@ -87,12 +139,36 @@ public abstract class WindowFunction {
 		return clazz.getConstructor(Integer.class, Integer.class).newInstance(width, justification);
 	}
 
-	public static WindowFunction createWindowFunction(String functionName, int width) throws InstantiationException,
+    /**
+     * Create window function window function.
+     *
+     * @param functionName the function name
+     * @param width        the width
+     * @return the window function
+     * @throws InstantiationException    the instantiation exception
+     * @throws IllegalAccessException    the illegal access exception
+     * @throws ClassNotFoundException    the class not found exception
+     * @throws NoSuchMethodException     the no such method exception
+     * @throws InvocationTargetException the invocation target exception
+     */
+    public static WindowFunction createWindowFunction(String functionName, int width) throws InstantiationException,
 			IllegalAccessException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
 		return createWindowFunction(functionName, JUSTIFY_CENTER, width);
 	}
 
-	public static WindowFunction createWindowFunction(int typeIndex, int justification, int width)
+    /**
+     * Create window function window function.
+     *
+     * @param typeIndex     the type index
+     * @param justification the justification
+     * @param width         the width
+     * @return the window function
+     * @throws InstantiationException    the instantiation exception
+     * @throws IllegalAccessException    the illegal access exception
+     * @throws NoSuchMethodException     the no such method exception
+     * @throws InvocationTargetException the invocation target exception
+     */
+    public static WindowFunction createWindowFunction(int typeIndex, int justification, int width)
 			throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 		if (typeIndex >= 0 && typeIndex < FUNCTION_NAMES.length) {
 			Class<? extends WindowFunction> clazz = FUNCTIONS[typeIndex];
@@ -102,16 +178,38 @@ public abstract class WindowFunction {
 		}
 	}
 
-	public static WindowFunction createWindowFunction(int typeIndex, int width)
+    /**
+     * Create window function window function.
+     *
+     * @param typeIndex the type index
+     * @param width     the width
+     * @return the window function
+     * @throws InstantiationException    the instantiation exception
+     * @throws IllegalAccessException    the illegal access exception
+     * @throws NoSuchMethodException     the no such method exception
+     * @throws InvocationTargetException the invocation target exception
+     */
+    public static WindowFunction createWindowFunction(int typeIndex, int width)
 			throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 		return createWindowFunction(typeIndex, JUSTIFY_CENTER, width);
 	}
 
-	public WindowFunction(int width) {
+    /**
+     * Instantiates a new Window function.
+     *
+     * @param width the width
+     */
+    public WindowFunction(int width) {
 		this(width, JUSTIFY_CENTER);
 	}
 
-	public WindowFunction(int width, int justification) {
+    /**
+     * Instantiates a new Window function.
+     *
+     * @param width         the width
+     * @param justification the justification
+     */
+    public WindowFunction(int width, int justification) {
 		this.width = width;
 		switch (justification) {
 			case JUSTIFY_CENTER:
@@ -129,7 +227,12 @@ public abstract class WindowFunction {
 		}
 	}
 
-	public double[] getWeights() {
+    /**
+     * Get weights double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getWeights() {
 		double[] weights = new double[width];
 		for (int i = 0; i < width; i++) {
 			weights[i] = getValue(justifiedWidth, justifiedOffset + i);
@@ -137,9 +240,22 @@ public abstract class WindowFunction {
 		return weights;
 	}
 
-	protected abstract double getValue(int width, int n);
+    /**
+     * Gets value.
+     *
+     * @param width the width
+     * @param n     the n
+     * @return the value
+     */
+    protected abstract double getValue(int width, int n);
 
-	public double getValue(int n) {
+    /**
+     * Gets value.
+     *
+     * @param n the n
+     * @return the value
+     */
+    public double getValue(int n) {
 		return getValue(width, n);
 	}
 }

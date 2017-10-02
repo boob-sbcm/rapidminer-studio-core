@@ -54,7 +54,7 @@ import com.rapidminer.tools.math.optimization.ec.es.Individual;
  * is not classified at all (marked as unknown). Based on the predictions of the model of the inner
  * learner this operator optimized a set of thresholds regarding the defined weights.
  * </p>
- *
+ * <p>
  * <p>
  * This operator might be very useful in cases where it is better to not classify an example then to
  * classify it in a wrong way. This way, it is often possible to get very high accuracies for the
@@ -66,31 +66,41 @@ import com.rapidminer.tools.math.optimization.ec.es.Individual;
  */
 public class CostBasedThresholdLearner extends AbstractMetaLearner {
 
-	/**
-	 * The parameter name for &quot;The weights for all classes (first column: class names, second
-	 * column: weight), empty: using 1 for all classes. The costs for not classifying at all are
-	 * defined with class name '?'.&quot;
-	 */
-	public static final String PARAMETER_CLASS_WEIGHTS = "class_weights";
+    /**
+     * The parameter name for &quot;The weights for all classes (first column: class names, second
+     * column: weight), empty: using 1 for all classes. The costs for not classifying at all are
+     * defined with class name '?'.&quot;
+     */
+    public static final String PARAMETER_CLASS_WEIGHTS = "class_weights";
 
-	public static final String PARAMETER_ALLOW_UNKOWN_PREDICTIONS = "allow_unkown_predictions";
+    /**
+     * The constant PARAMETER_ALLOW_UNKOWN_PREDICTIONS.
+     */
+    public static final String PARAMETER_ALLOW_UNKOWN_PREDICTIONS = "allow_unkown_predictions";
 
-	/**
-	 * The parameter name for &quot;Use this cost value for predicting an example as unknown (-1:
-	 * use same costs as for correct class).&quot;
-	 */
-	public static final String PARAMETER_PREDICT_UNKNOWN_COSTS = "predict_unknown_costs";
+    /**
+     * The parameter name for &quot;Use this cost value for predicting an example as unknown (-1:
+     * use same costs as for correct class).&quot;
+     */
+    public static final String PARAMETER_PREDICT_UNKNOWN_COSTS = "predict_unknown_costs";
 
-	/**
-	 * The parameter name for &quot;Use this amount of input data for model learning and the rest
-	 * for threshold optimization.&quot;
-	 */
-	public static final String PARAMETER_TRAINING_RATIO = "training_ratio";
+    /**
+     * The parameter name for &quot;Use this amount of input data for model learning and the rest
+     * for threshold optimization.&quot;
+     */
+    public static final String PARAMETER_TRAINING_RATIO = "training_ratio";
 
-	/** The parameter name for &quot;Defines the number of optimization iterations.&quot; */
-	public static final String PARAMETER_NUMBER_OF_ITERATIONS = "number_of_iterations";
+    /**
+     * The parameter name for &quot;Defines the number of optimization iterations.&quot;
+     */
+    public static final String PARAMETER_NUMBER_OF_ITERATIONS = "number_of_iterations";
 
-	public CostBasedThresholdLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Cost based threshold learner.
+     *
+     * @param description the description
+     */
+    public CostBasedThresholdLearner(OperatorDescription description) {
 		super(description);
 	}
 

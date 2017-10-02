@@ -20,14 +20,16 @@ package com.rapidminer.datatable;
 
 /**
  * Provides a value mapping for {@link DataTable}s. See {@link ValueMappingDataTableView}.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public interface DataTableMappingProvider {
 
-	/**
-	 * Returns the mapped value for the originalValue.
-	 */
-	public double mapFromParentValue(double parentValue);
+    /**
+     * Returns the mapped value for the originalValue.
+     *
+     * @param parentValue the parent value
+     * @return the double
+     */
+    public double mapFromParentValue(double parentValue);
 }

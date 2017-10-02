@@ -95,6 +95,8 @@ import edu.uci.ics.jung.visualization.util.ArrowFactory;
 /**
  * The basic graph viewer component for graph display.
  *
+ * @param <V> the type parameter
+ * @param <E> the type parameter
  * @author Ingo Mierswa, Marco Boeck
  */
 public class GraphViewer<V, E> extends JPanel implements Renderable, PrintableComponent {
@@ -107,19 +109,40 @@ public class GraphViewer<V, E> extends JPanel implements Renderable, PrintableCo
 
 	private static final Color BORDER_INVIS = new Color(0, 0, 0, 0);
 
-	public static final Color NODE_SELECTED = Colors.TEXT_HIGHLIGHT_BACKGROUND;
+    /**
+     * The constant NODE_SELECTED.
+     */
+    public static final Color NODE_SELECTED = Colors.TEXT_HIGHLIGHT_BACKGROUND;
 
-	public static final Color NODE_BACKGROUND = new Color(230, 230, 230);
+    /**
+     * The constant NODE_BACKGROUND.
+     */
+    public static final Color NODE_BACKGROUND = new Color(230, 230, 230);
 
-	public static final Color NODE_ON_PATH = NODE_SELECTED;
+    /**
+     * The constant NODE_ON_PATH.
+     */
+    public static final Color NODE_ON_PATH = NODE_SELECTED;
 
-	public static final Font EDGE_FONT = FontTools.getFont("Open Sans", Font.PLAIN, 12);
+    /**
+     * The constant EDGE_FONT.
+     */
+    public static final Font EDGE_FONT = FontTools.getFont("Open Sans", Font.PLAIN, 12);
 
-	public static final Font EDGE_FONT_ON_PATH = FontTools.getFont("Open Sans Semibold", Font.BOLD, 13);
+    /**
+     * The constant EDGE_FONT_ON_PATH.
+     */
+    public static final Font EDGE_FONT_ON_PATH = FontTools.getFont("Open Sans Semibold", Font.BOLD, 13);
 
-	public static final Font VERTEX_BOLD_FONT = FontTools.getFont("Open Sans Semibold", Font.BOLD, 14);
+    /**
+     * The constant VERTEX_BOLD_FONT.
+     */
+    public static final Font VERTEX_BOLD_FONT = FontTools.getFont("Open Sans Semibold", Font.BOLD, 14);
 
-	public static final Font VERTEX_PLAIN_FONT = FontTools.getFont("Open Sans Semibold", Font.BOLD, 14);
+    /**
+     * The constant VERTEX_PLAIN_FONT.
+     */
+    public static final Font VERTEX_PLAIN_FONT = FontTools.getFont("Open Sans Semibold", Font.BOLD, 14);
 
 	private VisualizationViewer<V, E> vv;
 
@@ -139,7 +162,12 @@ public class GraphViewer<V, E> extends JPanel implements Renderable, PrintableCo
 
 	private transient JSplitPane objectViewerSplitPane;
 
-	public GraphViewer(final GraphCreator<V, E> graphCreator) {
+    /**
+     * Instantiates a new Graph viewer.
+     *
+     * @param graphCreator the graph creator
+     */
+    public GraphViewer(final GraphCreator<V, E> graphCreator) {
 		try {
 			if (!RapidMiner.getExecutionMode().isHeadless()) {
 				graphMouse = new SingleDefaultGraphMouse<>(1 / 1.1f, 1.1f);
@@ -227,7 +255,12 @@ public class GraphViewer<V, E> extends JPanel implements Renderable, PrintableCo
 		this.layoutSelection.setLayout();
 	}
 
-	public LayoutSelection<V, E> getLayoutSelection() {
+    /**
+     * Gets layout selection.
+     *
+     * @return the layout selection
+     */
+    public LayoutSelection<V, E> getLayoutSelection() {
 		return this.layoutSelection;
 	}
 
@@ -334,11 +367,22 @@ public class GraphViewer<V, E> extends JPanel implements Renderable, PrintableCo
 		return controls;
 	}
 
-	public void updateLayout() {
+    /**
+     * Update layout.
+     */
+    public void updateLayout() {
 		changeLayout(this.layout, this.layoutSelection.getAnimate(), 0, 0);
 	}
 
-	public void changeLayout(final Layout<V, E> newLayout, boolean animate, int desiredWidth, int desiredHeight) {
+    /**
+     * Change layout.
+     *
+     * @param newLayout     the new layout
+     * @param animate       the animate
+     * @param desiredWidth  the desired width
+     * @param desiredHeight the desired height
+     */
+    public void changeLayout(final Layout<V, E> newLayout, boolean animate, int desiredWidth, int desiredHeight) {
 		if (newLayout != null) {
 			MultiLayerTransformer transformer = vv.getRenderContext().getMultiLayerTransformer();
 			double scale = transformer.getTransformer(Layer.VIEW).getScale();
@@ -418,11 +462,17 @@ public class GraphViewer<V, E> extends JPanel implements Renderable, PrintableCo
 		vv.getRenderer().getVertexLabelRenderer().setPosition(Renderer.VertexLabel.Position.CNTR);
 	}
 
-	public void zoomIn() {
+    /**
+     * Zoom in.
+     */
+    public void zoomIn() {
 		scaler.scale(vv, 1.1f, vv.getCenter());
 	}
 
-	public void zoomOut() {
+    /**
+     * Zoom out.
+     */
+    public void zoomOut() {
 		scaler.scale(vv, 1 / 1.1f, vv.getCenter());
 	}
 
@@ -430,7 +480,12 @@ public class GraphViewer<V, E> extends JPanel implements Renderable, PrintableCo
 		setPaintEdgeLabels(!showEdgeLabels);
 	}
 
-	public void setPaintEdgeLabels(boolean showEdgeLabels) {
+    /**
+     * Sets paint edge labels.
+     *
+     * @param showEdgeLabels the show edge labels
+     */
+    public void setPaintEdgeLabels(boolean showEdgeLabels) {
 		this.showEdgeLabels = showEdgeLabels;
 		if (this.showEdgeLabels) {
 			vv.getRenderContext().setEdgeLabelTransformer(new Transformer<E, String>() {
@@ -456,7 +511,12 @@ public class GraphViewer<V, E> extends JPanel implements Renderable, PrintableCo
 		setPaintVertexLabels(!showVertexLabels);
 	}
 
-	public void setPaintVertexLabels(boolean showVertexLabels) {
+    /**
+     * Sets paint vertex labels.
+     *
+     * @param showVertexLabels the show vertex labels
+     */
+    public void setPaintVertexLabels(boolean showVertexLabels) {
 		this.showVertexLabels = showVertexLabels;
 		if (this.showVertexLabels) {
 			Renderer.Vertex<V, E> vertexRenderer = graphCreator.getVertexRenderer();
@@ -485,11 +545,21 @@ public class GraphViewer<V, E> extends JPanel implements Renderable, PrintableCo
 		vv.repaint();
 	}
 
-	public GraphCreator<V, E> getGraphCreator() {
+    /**
+     * Gets graph creator.
+     *
+     * @return the graph creator
+     */
+    public GraphCreator<V, E> getGraphCreator() {
 		return this.graphCreator;
 	}
 
-	public Component getVisualizationComponent() {
+    /**
+     * Gets visualization component.
+     *
+     * @return the visualization component
+     */
+    public Component getVisualizationComponent() {
 		return vv;
 	}
 
@@ -534,7 +604,12 @@ public class GraphViewer<V, E> extends JPanel implements Renderable, PrintableCo
 		vv.paint(graphics);
 	}
 
-	public List<ParameterType> getParameterTypes() {
+    /**
+     * Gets parameter types.
+     *
+     * @return the parameter types
+     */
+    public List<ParameterType> getParameterTypes() {
 		return new LinkedList<>();
 	}
 

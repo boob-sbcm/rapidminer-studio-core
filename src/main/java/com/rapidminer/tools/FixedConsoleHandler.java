@@ -28,9 +28,8 @@ import java.util.logging.StreamHandler;
  * The regular {@link ConsoleHandler} fails to call super.close() which prevents
  * {@link Formatter#getTail(java.util.logging.Handler)} to be written propertly. We solve this by
  * reflectively calling the private method {@link StreamHandler#flushAndClose}.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class FixedConsoleHandler extends ConsoleHandler {
 

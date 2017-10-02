@@ -32,27 +32,31 @@ import javax.swing.SwingUtilities;
 
 /**
  * This queue updates the meta data on any update received from a process.
- * 
+ *
  * @author Simon Fischer
- * 
  */
 public class MetaDataUpdateQueue extends UpdateQueue {
 
 	private final MainFrame mainFrame;
 
-	public MetaDataUpdateQueue(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Meta data update queue.
+     *
+     * @param mainFrame the main frame
+     */
+    public MetaDataUpdateQueue(MainFrame mainFrame) {
 		super("MetaDataValidation");
 		this.mainFrame = mainFrame;
 		this.setPriority(MIN_PRIORITY);
 	}
 
-	/**
-	 * Enqueues a tasks to validate the given process.
-	 * 
-	 * @param force
-	 *            if false, process will be validated only if validate automatically is selected.
-	 */
-	public void validate(final Process process, final boolean force) {
+    /**
+     * Enqueues a tasks to validate the given process.
+     *
+     * @param process the process
+     * @param force   if false, process will be validated only if validate automatically is selected.
+     */
+    public void validate(final Process process, final boolean force) {
 		execute(new Runnable() {
 
 			@Override

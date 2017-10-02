@@ -20,7 +20,7 @@ package com.rapidminer.example.table;
 
 /**
  * Implementation of DataRow that is backed by a long array.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class LongArrayDataRow extends DataRow {
@@ -30,8 +30,12 @@ public class LongArrayDataRow extends DataRow {
 	/** Holds the data for all attributes. */
 	private long[] data;
 
-	/** Creates a new data row backed by an primitive array. */
-	public LongArrayDataRow(long[] data) {
+    /**
+     * Creates a new data row backed by an primitive array.  @param data the data
+     *
+     * @param data the data
+     */
+    public LongArrayDataRow(long[] data) {
 		this.data = data;
 	}
 

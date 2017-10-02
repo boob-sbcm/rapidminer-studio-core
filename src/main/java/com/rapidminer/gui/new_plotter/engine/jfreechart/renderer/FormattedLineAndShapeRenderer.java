@@ -29,6 +29,8 @@ import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 
 
 /**
+ * The type Formatted line and shape renderer.
+ *
  * @author Marius Helf
  */
 public class FormattedLineAndShapeRenderer extends LineAndShapeRenderer implements FormattedRenderer {
@@ -37,11 +39,20 @@ public class FormattedLineAndShapeRenderer extends LineAndShapeRenderer implemen
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedLineAndShapeRenderer() {
+    /**
+     * Instantiates a new Formatted line and shape renderer.
+     */
+    public FormattedLineAndShapeRenderer() {
 		super();
 	}
 
-	public FormattedLineAndShapeRenderer(boolean lines, boolean shapes) {
+    /**
+     * Instantiates a new Formatted line and shape renderer.
+     *
+     * @param lines  the lines
+     * @param shapes the shapes
+     */
+    public FormattedLineAndShapeRenderer(boolean lines, boolean shapes) {
 		super(lines, shapes);
 	}
 

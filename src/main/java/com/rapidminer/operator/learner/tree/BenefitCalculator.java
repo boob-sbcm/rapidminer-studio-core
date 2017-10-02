@@ -37,7 +37,6 @@ import com.rapidminer.studio.internal.Resources;
  * Used to calculate the benefit for splitting at a certain attribute.
  *
  * @author Gisa Schaefer
- *
  */
 public class BenefitCalculator {
 
@@ -49,7 +48,14 @@ public class BenefitCalculator {
 
 	private ColumnNumericalSplitter splitter;
 
-	public BenefitCalculator(ColumnExampleTable columnTable, ColumnCriterion criterion, Operator operator) {
+    /**
+     * Instantiates a new Benefit calculator.
+     *
+     * @param columnTable the column table
+     * @param criterion   the criterion
+     * @param operator    the operator
+     */
+    public BenefitCalculator(ColumnExampleTable columnTable, ColumnCriterion criterion, Operator operator) {
 		this.columnTable = columnTable;
 		this.criterion = criterion;
 		this.operator = operator;
@@ -71,16 +77,16 @@ public class BenefitCalculator {
 		}
 	}
 
-	/**
-	 * Calculates the benefits for all selected attributes on the given selected examples in
-	 * parallel.
-	 *
-	 * @param allSelectedExamples
-	 * @param selectedAttributes
-	 * @return
-	 * @throws OperatorException
-	 */
-	public List<ParallelBenefit> calculateAllBenefitsParallel(final Map<Integer, int[]> allSelectedExamples,
+    /**
+     * Calculates the benefits for all selected attributes on the given selected examples in
+     * parallel.
+     *
+     * @param allSelectedExamples the all selected examples
+     * @param selectedAttributes  the selected attributes
+     * @return list list
+     * @throws OperatorException the operator exception
+     */
+    public List<ParallelBenefit> calculateAllBenefitsParallel(final Map<Integer, int[]> allSelectedExamples,
 			final int[] selectedAttributes) throws OperatorException {
 		ConcurrencyContext context = Resources.getConcurrencyContext(operator);
 
@@ -125,14 +131,14 @@ public class BenefitCalculator {
 		return benefits;
 	}
 
-	/**
-	 * Calculates the benefits for all selected attributes on the given selected examples.
-	 *
-	 * @param allSelectedExamples
-	 * @param selectedAttributes
-	 * @return
-	 */
-	public List<ParallelBenefit> calculateAllBenefits(Map<Integer, int[]> allSelectedExamples, int[] selectedAttributes) {
+    /**
+     * Calculates the benefits for all selected attributes on the given selected examples.
+     *
+     * @param allSelectedExamples the all selected examples
+     * @param selectedAttributes  the selected attributes
+     * @return list list
+     */
+    public List<ParallelBenefit> calculateAllBenefits(Map<Integer, int[]> allSelectedExamples, int[] selectedAttributes) {
 		Vector<ParallelBenefit> benefits = new Vector<ParallelBenefit>();
 
 		for (int attribute : selectedAttributes) {

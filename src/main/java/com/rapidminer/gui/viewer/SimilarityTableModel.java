@@ -28,7 +28,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * The table model for the similarity visualization.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimilarityTableModel extends AbstractTableModel {
@@ -45,7 +45,13 @@ public class SimilarityTableModel extends AbstractTableModel {
 
 	private Attribute idAttribute;
 
-	public SimilarityTableModel(DistanceMeasure similarity, ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Similarity table model.
+     *
+     * @param similarity the similarity
+     * @param exampleSet the example set
+     */
+    public SimilarityTableModel(DistanceMeasure similarity, ExampleSet exampleSet) {
 		this.similarity = similarity;
 		this.exampleSet = exampleSet;
 		this.idAttribute = exampleSet.getAttributes().getId();

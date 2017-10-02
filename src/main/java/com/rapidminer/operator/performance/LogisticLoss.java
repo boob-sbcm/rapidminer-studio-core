@@ -41,10 +41,17 @@ public class LogisticLoss extends MeasuredPerformance {
 
 	private double counter = 0.0d;
 
-	/** Clone constructor. */
-	public LogisticLoss() {}
+    /**
+     * Clone constructor.
+     */
+    public LogisticLoss() {}
 
-	public LogisticLoss(LogisticLoss m) {
+    /**
+     * Instantiates a new Logistic loss.
+     *
+     * @param m the m
+     */
+    public LogisticLoss(LogisticLoss m) {
 		super(m);
 		this.loss = m.loss;
 		this.counter = m.counter;

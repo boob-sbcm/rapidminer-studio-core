@@ -42,7 +42,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * The tutorial group must be a .zip file renamed to .tutorial containing
- *
+ * <p>
  * <ul>
  * <li>a {@code group.properties} file which contains the default English properties</li>
  * <li>an arbitrarily number of localized {@code group_xy.properties} files (e.g.
@@ -70,7 +70,6 @@ import com.rapidminer.tools.Tools;
  *
  * @author Gisa Schaefer, Marcel Michel
  * @since 7.0.0
- *
  */
 public class TutorialGroup implements ZipStreamResource {
 
@@ -116,12 +115,26 @@ public class TutorialGroup implements ZipStreamResource {
 
 	private String name;
 
-	TutorialGroup(String name) throws IOException, RepositoryException {
+    /**
+     * Instantiates a new Tutorial group.
+     *
+     * @param name the name
+     * @throws IOException         the io exception
+     * @throws RepositoryException the repository exception
+     */
+    TutorialGroup(String name) throws IOException, RepositoryException {
 		this.name = name;
 		load();
 	}
 
-	TutorialGroup(Path path) throws IOException, RepositoryException {
+    /**
+     * Instantiates a new Tutorial group.
+     *
+     * @param path the path
+     * @throws IOException         the io exception
+     * @throws RepositoryException the repository exception
+     */
+    TutorialGroup(Path path) throws IOException, RepositoryException {
 		this.name = path.getFileName().toString().replaceAll("\\.tutorial", "");
 		this.path = path;
 		load();
@@ -150,26 +163,30 @@ public class TutorialGroup implements ZipStreamResource {
 		return null;
 	}
 
-	/**
-	 * @return the name of the tutorial which is also the name of the zip file
-	 */
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name of the tutorial which is also the name of the zip file
+     */
+    public String getName() {
 		return name;
 	}
 
-	/**
-	 * @return the contained {@link Tutorial}s as {@link List}
-	 */
-	public List<Tutorial> getTutorials() {
+    /**
+     * Gets tutorials.
+     *
+     * @return the contained {@link Tutorial}s as {@link List}
+     */
+    public List<Tutorial> getTutorials() {
 		return Collections.unmodifiableList(tutorials);
 	}
 
-	/**
-	 * Uses the {@link TutorialManager} to query the number of completed {@link Tutorial}s.
-	 *
-	 * @return the number of completed {@link Tutorial}s
-	 */
-	public int getNumberOfCompletedTutorials() {
+    /**
+     * Uses the {@link TutorialManager} to query the number of completed {@link Tutorial}s.
+     *
+     * @return the number of completed {@link Tutorial}s
+     */
+    public int getNumberOfCompletedTutorials() {
 		int count = 0;
 		for (Tutorial tutorial : tutorials) {
 			if (TutorialManager.INSTANCE.hasCompletedTutorial(tutorial.getIdentifier())) {
@@ -179,18 +196,21 @@ public class TutorialGroup implements ZipStreamResource {
 		return count;
 	}
 
-	/**
-	 * @return the number of contained {@link Tutorial}s
-	 */
-	public int getNumberOfTutorials() {
+    /**
+     * Gets number of tutorials.
+     *
+     * @return the number of contained {@link Tutorial}s
+     */
+    public int getNumberOfTutorials() {
 		return tutorials.size();
 	}
 
-	/**
-	 * @return {@code true} if the result of {@link #getNumberOfTutorials()} is equal to the result
-	 *         of {@link #getNumberOfCompletedTutorials()}, otherwise {@code false}
-	 */
-	public boolean hasCompleted() {
+    /**
+     * Has completed boolean.
+     *
+     * @return {@code true} if the result of {@link #getNumberOfTutorials()} is equal to the result         of {@link #getNumberOfCompletedTutorials()}, otherwise {@code false}
+     */
+    public boolean hasCompleted() {
 		return getNumberOfCompletedTutorials() == getNumberOfTutorials();
 	}
 

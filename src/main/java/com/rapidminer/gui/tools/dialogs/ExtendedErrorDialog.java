@@ -88,99 +88,74 @@ public class ExtendedErrorDialog extends ButtonDialog {
 
 	private final JComponent mainComponent = new JPanel(new BorderLayout());
 
-	/**
-	 * Creates a dialog with the internationalized I18n-message from the given key and a panel for
-	 * detailed stack trace.
-	 *
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param error
-	 *            the exception associated to this message
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 * @deprecated use {@link #ExtendedErrorDialog(Window, String, Throwable, Object...)} instead
-	 */
-	@Deprecated
+    /**
+     * Creates a dialog with the internationalized I18n-message from the given key and a panel for
+     * detailed stack trace.
+     *
+     * @param key       the I18n-key which will be used to display the internationalized message
+     * @param error     the exception associated to this message
+     * @param arguments additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     * @deprecated use {@link #ExtendedErrorDialog(Window, String, Throwable, Object...)} instead
+     */
+    @Deprecated
 	public ExtendedErrorDialog(String key, Throwable error, Object... arguments) {
 		this(key, error, false, arguments);
 	}
 
-	/**
-	 * Creates a dialog with the internationalized I18n-message from the given key and a panel for
-	 * detailed stack trace.
-	 *
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param error
-	 *            the exception associated to this message
-	 * @param displayExceptionMessage
-	 *            indicates if the exception message can be shown using the details button.
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 * @deprecated use {@link #ExtendedErrorDialog(Window, String, Throwable, boolean, Object...)}
-	 *             instead
-	 */
-	@Deprecated
+    /**
+     * Creates a dialog with the internationalized I18n-message from the given key and a panel for
+     * detailed stack trace.
+     *
+     * @param key                     the I18n-key which will be used to display the internationalized message
+     * @param error                   the exception associated to this message
+     * @param displayExceptionMessage indicates if the exception message can be shown using the details button.
+     * @param arguments               additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     * @deprecated use {@link #ExtendedErrorDialog(Window, String, Throwable, boolean, Object...)}             instead
+     */
+    @Deprecated
 	public ExtendedErrorDialog(String key, Throwable error, boolean displayExceptionMessage, Object... arguments) {
 		this(ApplicationFrame.getApplicationFrame(), key, error, displayExceptionMessage, arguments);
 	}
 
-	/**
-	 * Creates a dialog with the internationalized I18n-message from the given key.
-	 *
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param errorMessage
-	 *            the error message associated to this message
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 * @deprecated use {@link #ExtendedErrorDialog(Window, String, String, Object...)} instead
-	 */
-	@Deprecated
+    /**
+     * Creates a dialog with the internationalized I18n-message from the given key.
+     *
+     * @param key          the I18n-key which will be used to display the internationalized message
+     * @param errorMessage the error message associated to this message
+     * @param arguments    additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     * @deprecated use {@link #ExtendedErrorDialog(Window, String, String, Object...)} instead
+     */
+    @Deprecated
 	public ExtendedErrorDialog(String key, String errorMessage, Object... arguments) {
 		this(ApplicationFrame.getApplicationFrame(), key, errorMessage, arguments);
 	}
 
-	/**
-	 * Creates a dialog with the internationalized I18n-message from the given key and a panel for
-	 * detailed stack trace.
-	 *
-	 * @param owner
-	 *            the owner window in which the dialog is displayed
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param error
-	 *            the exception associated to this message
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 * @since 6.5.0
-	 */
-	public ExtendedErrorDialog(Window owner, String key, Throwable error, Object... arguments) {
+    /**
+     * Creates a dialog with the internationalized I18n-message from the given key and a panel for
+     * detailed stack trace.
+     *
+     * @param owner     the owner window in which the dialog is displayed
+     * @param key       the I18n-key which will be used to display the internationalized message
+     * @param error     the exception associated to this message
+     * @param arguments additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     * @since 6.5.0
+     */
+    public ExtendedErrorDialog(Window owner, String key, Throwable error, Object... arguments) {
 		this(owner, key, error, false, arguments);
 	}
 
-	/**
-	 * Creates a dialog with the internationalized I18n-message from the given key and a panel for
-	 * detailed stack trace.
-	 *
-	 * @param owner
-	 *            the owner window in which the dialog is displayed
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param error
-	 *            the exception associated to this message
-	 * @param displayExceptionMessage
-	 *            indicates if the exception message can be shown using the details button.
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 * @since 6.5.0
-	 */
-	public ExtendedErrorDialog(Window owner, String key, Throwable error, boolean displayExceptionMessage,
+    /**
+     * Creates a dialog with the internationalized I18n-message from the given key and a panel for
+     * detailed stack trace.
+     *
+     * @param owner                   the owner window in which the dialog is displayed
+     * @param key                     the I18n-key which will be used to display the internationalized message
+     * @param error                   the exception associated to this message
+     * @param displayExceptionMessage indicates if the exception message can be shown using the details button.
+     * @param arguments               additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     * @since 6.5.0
+     */
+    public ExtendedErrorDialog(Window owner, String key, Throwable error, boolean displayExceptionMessage,
 			Object... arguments) {
 		super(owner, "error." + key, ModalityType.APPLICATION_MODAL, arguments);
 		this.error = error;
@@ -207,21 +182,16 @@ public class ExtendedErrorDialog extends ButtonDialog {
 				getButtons(hasError && displayExceptionMessage, isBugReportException(error), detailedPane, error));
 	}
 
-	/**
-	 * Creates a dialog with the internationalized I18n-message from the given key.
-	 *
-	 * @param owner
-	 *            the owner window in which the dialog is displayed
-	 * @param key
-	 *            the I18n-key which will be used to display the internationalized message
-	 * @param errorMessage
-	 *            the error message associated to this message
-	 * @param arguments
-	 *            additional arguments for the internationalized message, which replace
-	 *            <code>{0}</code>, <code>{1}</code>, etcpp.
-	 * @since 6.5.0
-	 */
-	public ExtendedErrorDialog(Window owner, String key, String errorMessage, Object... arguments) {
+    /**
+     * Creates a dialog with the internationalized I18n-message from the given key.
+     *
+     * @param owner        the owner window in which the dialog is displayed
+     * @param key          the I18n-key which will be used to display the internationalized message
+     * @param errorMessage the error message associated to this message
+     * @param arguments    additional arguments for the internationalized message, which replace            <code>{0}</code>, <code>{1}</code>, etcpp.
+     * @since 6.5.0
+     */
+    public ExtendedErrorDialog(Window owner, String key, String errorMessage, Object... arguments) {
 		super(owner, "error." + key, ModalityType.APPLICATION_MODAL, arguments);
 
 		boolean hasError = errorMessage != null && !errorMessage.isEmpty();
@@ -484,7 +454,12 @@ public class ExtendedErrorDialog extends ButtonDialog {
 
 		private static final long serialVersionUID = -2482220036723949144L;
 
-		public StackTraceList(Throwable t) {
+        /**
+         * Instantiates a new Stack trace list.
+         *
+         * @param t the t
+         */
+        public StackTraceList(Throwable t) {
 			super(new DefaultListModel<>());
 			setFont(getFont().deriveFont(Font.PLAIN));
 			setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);

@@ -32,30 +32,31 @@ import java.util.List;
  */
 public enum RunActionRegistry {
 
-	/** Singleton instance. */
-	INSTANCE;
+    /**
+     * Singleton instance.
+     */
+    INSTANCE;
 
 	private List<MenuItemFactory> factories = new ArrayList<>();
 
-	/**
-	 * Registers a new {@link MenuItemFactory}.
-	 *
-	 * @param factory
-	 *            the new factory
-	 */
-	public void register(MenuItemFactory factory) {
+    /**
+     * Registers a new {@link MenuItemFactory}.
+     *
+     * @param factory the new factory
+     */
+    public void register(MenuItemFactory factory) {
 		if (factory == null) {
 			throw new IllegalArgumentException("Factory must not be null!");
 		}
 		factories.add(factory);
 	}
 
-	/**
-	 * Returns an unmodifiable list of a registered factories.
-	 *
-	 * @return the list of factories
-	 */
-	public List<MenuItemFactory> getFacories() {
+    /**
+     * Returns an unmodifiable list of a registered factories.
+     *
+     * @return the list of factories
+     */
+    public List<MenuItemFactory> getFacories() {
 		return Collections.unmodifiableList(factories);
 	}
 }

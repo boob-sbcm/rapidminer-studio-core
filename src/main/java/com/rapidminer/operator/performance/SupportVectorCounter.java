@@ -40,16 +40,16 @@ import java.util.List;
  * of support vectors of the first delivered model and might fail on this task if no appropriate
  * kernel based model is delivered. Currently, at least the models delivered by the operator JMySVM,
  * MyKLR, LibSVM, GPLearner, KernelLogisticRegression, RVM, and the EvoSVM should be supported.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SupportVectorCounter extends Operator {
 
-	/**
-	 * The parameter name for &quot;Indicates if the fitness should for maximal or minimal number of
-	 * features.&quot;
-	 */
-	public static final String PARAMETER_OPTIMIZATION_DIRECTION = "optimization_direction";
+    /**
+     * The parameter name for &quot;Indicates if the fitness should for maximal or minimal number of
+     * features.&quot;
+     */
+    public static final String PARAMETER_OPTIMIZATION_DIRECTION = "optimization_direction";
 
 	private double lastCount = Double.NaN;
 
@@ -59,7 +59,12 @@ public class SupportVectorCounter extends Operator {
 	private OutputPort modelOutput = getOutputPorts().createPort("model");
 	private OutputPort performanceOutput = getOutputPorts().createPort("performance vector");
 
-	public SupportVectorCounter(OperatorDescription description) {
+    /**
+     * Instantiates a new Support vector counter.
+     *
+     * @param description the description
+     */
+    public SupportVectorCounter(OperatorDescription description) {
 		super(description);
 
 		getTransformer().addGenerationRule(performanceOutput, PerformanceVector.class);

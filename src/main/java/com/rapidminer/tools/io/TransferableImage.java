@@ -27,20 +27,22 @@ import java.io.IOException;
 
 /**
  * This class wraps an {@link Image} and allows it to be copied to the system clipboard.
- * 
+ *
  * @author Marco Boeck
  */
 public class TransferableImage implements Transferable {
 
-	/** the image */
-	Image image;
+    /**
+     * the image
+     */
+    Image image;
 
-	/**
-	 * Standard constructor.
-	 * 
-	 * @param image
-	 */
-	public TransferableImage(Image image) {
+    /**
+     * Standard constructor.
+     *
+     * @param image the image
+     */
+    public TransferableImage(Image image) {
 		this.image = image;
 	}
 

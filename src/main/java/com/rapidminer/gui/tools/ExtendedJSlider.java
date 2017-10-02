@@ -23,14 +23,23 @@ import javax.swing.JSlider;
 
 /**
  * This extended version of the JSlider shows the currently selected value as tool tip.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExtendedJSlider extends JSlider {
 
 	private static final long serialVersionUID = -3411054850324165365L;
 
-	public ExtendedJSlider(int orientation, int min, int max, int value, boolean showValueAsToolTip) {
+    /**
+     * Instantiates a new Extended j slider.
+     *
+     * @param orientation        the orientation
+     * @param min                the min
+     * @param max                the max
+     * @param value              the value
+     * @param showValueAsToolTip the show value as tool tip
+     */
+    public ExtendedJSlider(int orientation, int min, int max, int value, boolean showValueAsToolTip) {
 		super(orientation, min, max, value);
 
 		if (showValueAsToolTip) {

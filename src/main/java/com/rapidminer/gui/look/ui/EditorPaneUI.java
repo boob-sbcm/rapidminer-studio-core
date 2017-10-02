@@ -39,7 +39,10 @@ import com.rapidminer.gui.tools.components.LinkButton;
 @SuppressWarnings("deprecation")
 public class EditorPaneUI extends BasicEditorPaneUI {
 
-	public class EditorPanePopupListener extends MouseAdapter {
+    /**
+     * The type Editor pane popup listener.
+     */
+    public class EditorPanePopupListener extends MouseAdapter {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
@@ -62,7 +65,13 @@ public class EditorPaneUI extends BasicEditorPaneUI {
 
 	private EditorPanePopupListener popupListener = new EditorPanePopupListener();
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new EditorPaneUI();
 	}
 

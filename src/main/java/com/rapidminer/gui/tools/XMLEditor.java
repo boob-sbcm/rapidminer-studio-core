@@ -28,15 +28,18 @@ import com.rapidminer.gui.tools.syntax.XMLTokenMarker;
 /**
  * A generic XML editor.
  *
- * @deprecated Use {@link RSyntaxTextArea} with XML highlighting instead
  * @author Ingo Mierswa
+ * @deprecated Use {@link RSyntaxTextArea} with XML highlighting instead
  */
 @Deprecated
 public class XMLEditor extends JEditTextArea {
 
 	private static final long serialVersionUID = 5515907668417632521L;
 
-	public XMLEditor() {
+    /**
+     * Instantiates a new Xml editor.
+     */
+    public XMLEditor() {
 		super(getDefaults());
 		setTokenMarker(new XMLTokenMarker());
 	}

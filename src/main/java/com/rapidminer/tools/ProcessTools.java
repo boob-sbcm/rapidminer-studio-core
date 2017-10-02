@@ -37,7 +37,6 @@ import com.rapidminer.tools.container.Pair;
  *
  * @author Marco Boeck
  * @since 6.5.0
- *
  */
 public final class ProcessTools {
 
@@ -48,16 +47,14 @@ public final class ProcessTools {
 		throw new UnsupportedOperationException("Static utility class");
 	}
 
-	/**
-	 * Checks whether the given process has at least one connected result port, i.e. if the process
-	 * would generate results in the result perspective.
-	 *
-	 * @param process
-	 *            the process in question
-	 * @return {@code true} if the process has at least one connected result port; {@code false} if
-	 *         it does not
-	 */
-	public static boolean isProcessConnectedToResultPort(final Process process) {
+    /**
+     * Checks whether the given process has at least one connected result port, i.e. if the process
+     * would generate results in the result perspective.
+     *
+     * @param process the process in question
+     * @return {@code true} if the process has at least one connected result port; {@code false} if         it does not
+     */
+    public static boolean isProcessConnectedToResultPort(final Process process) {
 		if (process == null) {
 			throw new IllegalArgumentException("process must not be null!");
 		}
@@ -65,16 +62,14 @@ public final class ProcessTools {
 		return process.getRootOperator().getSubprocess(0).getInnerSinks().getNumberOfConnectedPorts() > 0;
 	}
 
-	/**
-	 * Extracts the last executed operator of the {@link ProcessRootOperator} of the provided
-	 * process.
-	 *
-	 * @param process
-	 *            the process to extract the operator from
-	 * @return the last executed child operator of the {@link ProcessRootOperator} or {@code null}
-	 *         if process contains no operators
-	 */
-	public static Operator getLastExecutedRootChild(final Process process) {
+    /**
+     * Extracts the last executed operator of the {@link ProcessRootOperator} of the provided
+     * process.
+     *
+     * @param process the process to extract the operator from
+     * @return the last executed child operator of the {@link ProcessRootOperator} or {@code null}         if process contains no operators
+     */
+    public static Operator getLastExecutedRootChild(final Process process) {
 		if (process == null) {
 			throw new IllegalArgumentException("process must not be null!");
 		}
@@ -83,22 +78,20 @@ public final class ProcessTools {
 		return enabledOps.isEmpty() ? null : enabledOps.get(enabledOps.size() - 1);
 	}
 
-	/**
-	 * Checks whether the given process contains at least one operator with a mandatory input port
-	 * which is not connected. The port is then returned. If no such port can be found, returns
-	 * {@code null}.
-	 * <p>
-	 * This method explicitly only checks for unconnected ports because metadata alone could lead to
-	 * a false positive. That would prevent process execution, so a false positive has to be
-	 * prevented under any circumstances.
-	 * </p>
-	 *
-	 * @param process
-	 *            the process in question
-	 * @return the first {@link Port} found if the process contains at least one operator with an
-	 *         input port which is not connected; {@code null} otherwise
-	 */
-	public static Port getPortWithoutMandatoryConnection(final Process process) {
+    /**
+     * Checks whether the given process contains at least one operator with a mandatory input port
+     * which is not connected. The port is then returned. If no such port can be found, returns
+     * {@code null}.
+     * <p>
+     * This method explicitly only checks for unconnected ports because metadata alone could lead to
+     * a false positive. That would prevent process execution, so a false positive has to be
+     * prevented under any circumstances.
+     * </p>
+     *
+     * @param process the process in question
+     * @return the first {@link Port} found if the process contains at least one operator with an         input port which is not connected; {@code null} otherwise
+     */
+    public static Port getPortWithoutMandatoryConnection(final Process process) {
 		if (process == null) {
 			throw new IllegalArgumentException("process must not be null!");
 		}
@@ -130,21 +123,19 @@ public final class ProcessTools {
 		return null;
 	}
 
-	/**
-	 * Checks whether the given operator or one of its suboperators has a mandatory input port which
-	 * is not connected. The port is then returned. If no such port can be found, returns
-	 * {@code null}.
-	 * <p>
-	 * This method explicitly only checks for unconnected ports because metadata alone could lead to
-	 * a false positive.
-	 * </p>
-	 *
-	 * @param operator
-	 *            the operator for which to check for unconnected mandatory ports
-	 * @return the first {@link Port} found if the operator has at least one input port which is not
-	 *         connected; {@code null} otherwise
-	 */
-	public static Port getMissingPortConnection(Operator operator) {
+    /**
+     * Checks whether the given operator or one of its suboperators has a mandatory input port which
+     * is not connected. The port is then returned. If no such port can be found, returns
+     * {@code null}.
+     * <p>
+     * This method explicitly only checks for unconnected ports because metadata alone could lead to
+     * a false positive.
+     * </p>
+     *
+     * @param operator the operator for which to check for unconnected mandatory ports
+     * @return the first {@link Port} found if the operator has at least one input port which is not         connected; {@code null} otherwise
+     */
+    public static Port getMissingPortConnection(Operator operator) {
 		// look for matching errors. We can only identify this via metadata errors
 		for (ProcessSetupError error : operator.getErrorList()) {
 			if (error instanceof InputMissingMetaDataError) {
@@ -158,18 +149,15 @@ public final class ProcessTools {
 		return null;
 	}
 
-	/**
-	 * Checks whether the given process contains at least one operator with a mandatory parameter
-	 * which has no value and no default value. Both the operator and the parameter are then
-	 * returned. If no such operator can be found, returns {@code null}.
-	 *
-	 * @param process
-	 *            the process in question
-	 * @return the first {@link Operator} found if the process contains at least one operator with a
-	 *         mandatory parameter which is neither set nor has a default value; {@code null}
-	 *         otherwise
-	 */
-	public static Pair<Operator, ParameterType> getOperatorWithoutMandatoryParameter(final Process process) {
+    /**
+     * Checks whether the given process contains at least one operator with a mandatory parameter
+     * which has no value and no default value. Both the operator and the parameter are then
+     * returned. If no such operator can be found, returns {@code null}.
+     *
+     * @param process the process in question
+     * @return the first {@link Operator} found if the process contains at least one operator with a         mandatory parameter which is neither set nor has a default value; {@code null}         otherwise
+     */
+    public static Pair<Operator, ParameterType> getOperatorWithoutMandatoryParameter(final Process process) {
 		if (process == null) {
 			throw new IllegalArgumentException("process must not be null!");
 		}
@@ -191,18 +179,15 @@ public final class ProcessTools {
 		return null;
 	}
 
-	/**
-	 * Checks whether the given operator or one of its sub-operators has a mandatory parameter which
-	 * has no value and no default value. Both the operator and the parameter are then returned. If
-	 * no such operator can be found, returns {@code null}.
-	 *
-	 * @param operator
-	 *            the operator in question
-	 * @return the first {@link Operator} found if the operator or one of its sub-operators has a
-	 *         mandatory parameter which is neither set nor has a default value; {@code null}
-	 *         otherwise
-	 */
-	public static Pair<Operator, ParameterType> getOperatorWithoutMandatoryParameter(final Operator operator) {
+    /**
+     * Checks whether the given operator or one of its sub-operators has a mandatory parameter which
+     * has no value and no default value. Both the operator and the parameter are then returned. If
+     * no such operator can be found, returns {@code null}.
+     *
+     * @param operator the operator in question
+     * @return the first {@link Operator} found if the operator or one of its sub-operators has a         mandatory parameter which is neither set nor has a default value; {@code null}         otherwise
+     */
+    public static Pair<Operator, ParameterType> getOperatorWithoutMandatoryParameter(final Operator operator) {
 		if (operator == null) {
 			throw new IllegalArgumentException("operator must not be null!");
 		}

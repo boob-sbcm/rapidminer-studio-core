@@ -26,19 +26,31 @@ import org.w3c.dom.Element;
 /**
  * This is an abstract class for all ParameterTypes that are a combination of several other
  * {@link ParameterType}s. In fact it doesn't do anything...
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public abstract class CombinedParameterType extends ParameterType {
 
 	private static final long serialVersionUID = 1674072082952288334L;
 
-	public CombinedParameterType(String key, String description, ParameterType... types) {
+    /**
+     * Instantiates a new Combined parameter type.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param types       the types
+     */
+    public CombinedParameterType(String key, String description, ParameterType... types) {
 		super(key, description);
 	}
 
-	public CombinedParameterType(Element element) throws XMLException {
+    /**
+     * Instantiates a new Combined parameter type.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public CombinedParameterType(Element element) throws XMLException {
 		super(element);
 	}
 }

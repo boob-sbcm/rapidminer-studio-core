@@ -37,11 +37,20 @@ import com.rapidminer.operator.learner.local.LocalPolynomialRegressionModel.Regr
  */
 public class LocalPolynomialRegressionModelTableRenderer extends AbstractDataTableTableRenderer {
 
-	public static class LocalPolynomialRegressionModelDataTable extends AbstractDataTable {
+    /**
+     * The type Local polynomial regression model data table.
+     */
+    public static class LocalPolynomialRegressionModelDataTable extends AbstractDataTable {
 
 		private LocalPolynomialRegressionModel model;
 
-		public LocalPolynomialRegressionModelDataTable(String name, LocalPolynomialRegressionModel model) {
+        /**
+         * Instantiates a new Local polynomial regression model data table.
+         *
+         * @param name  the name
+         * @param model the model
+         */
+        public LocalPolynomialRegressionModelDataTable(String name, LocalPolynomialRegressionModel model) {
 			super(name);
 			this.model = model;
 		}

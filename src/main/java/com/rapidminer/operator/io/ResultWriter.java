@@ -48,21 +48,26 @@ import com.rapidminer.tools.io.Encoding;
  * result file parameter with the same name of the ProcessRootOperator (the root of the process)
  * will be used. If this file is also not specified the results are simply written to the console
  * (standard out).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ResultWriter extends Operator {
 
-	/**
-	 * The parameter name for &quot;Appends the descriptions of the input objects to this file. If
-	 * empty, use the general file defined in the process root operator.&quot;
-	 */
-	public static final String PARAMETER_RESULT_FILE = "result_file";
+    /**
+     * The parameter name for &quot;Appends the descriptions of the input objects to this file. If
+     * empty, use the general file defined in the process root operator.&quot;
+     */
+    public static final String PARAMETER_RESULT_FILE = "result_file";
 	private boolean firstRun = true;
 
 	private PortPairExtender portExtender = new PortPairExtender("input", getInputPorts(), getOutputPorts());
 
-	public ResultWriter(OperatorDescription description) {
+    /**
+     * Instantiates a new Result writer.
+     *
+     * @param description the description
+     */
+    public ResultWriter(OperatorDescription description) {
 		super(description);
 		portExtender.start();
 		getTransformer().addRule(portExtender.makePassThroughRule());

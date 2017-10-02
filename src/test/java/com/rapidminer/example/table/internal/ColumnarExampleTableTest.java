@@ -44,7 +44,10 @@ import com.rapidminer.tools.Ontology;
  */
 public class ColumnarExampleTableTest {
 
-	@Test
+    /**
+     * Create no rows test.
+     */
+    @Test
 	public void createNoRowsTest() {
 		ExampleTable table = new ColumnarExampleTable(Arrays.asList(ExampleTestTools.attributeInt()));
 
@@ -52,7 +55,10 @@ public class ColumnarExampleTableTest {
 		assertEquals(0, table.size());
 	}
 
-	@Test
+    /**
+     * Create no rows two attributes remove test.
+     */
+    @Test
 	public void createNoRowsTwoAttributesRemoveTest() {
 		ExampleTable table = new ColumnarExampleTable(
 				Arrays.asList(ExampleTestTools.attributeInt(), ExampleTestTools.attributeReal()));
@@ -62,7 +68,10 @@ public class ColumnarExampleTableTest {
 		assertEquals(0, table.size());
 	}
 
-	@Test
+    /**
+     * Create two rows test.
+     */
+    @Test
 	public void createTwoRowsTest() {
 		Attribute attribute = ExampleTestTools.attributeInt();
 
@@ -75,13 +84,19 @@ public class ColumnarExampleTableTest {
 		assertEquals(0, table.getDataRow(0).get(attribute), 0);
 	}
 
-	@Test
+    /**
+     * Create many expected test.
+     */
+    @Test
 	public void createManyExpectedTest() {
 		ColumnarExampleTable table = new ColumnarExampleTable(Arrays.asList(ExampleTestTools.attributeInt()));
 		table.setExpectedSize(2 * AutoColumnUtils.CHUNK_SIZE + 1);
 	}
 
-	@Test
+    /**
+     * Create many expected test completable.
+     */
+    @Test
 	public void createManyExpectedTestCompletable() {
 		ColumnarExampleTable table = new ColumnarExampleTable(Arrays.asList(ExampleTestTools.attributeInt()),
 				DataManagement.AUTO, true);
@@ -89,13 +104,19 @@ public class ColumnarExampleTableTest {
 		table.complete();
 	}
 
-	@Test
+    /**
+     * Create many expected test nom.
+     */
+    @Test
 	public void createManyExpectedTestNom() {
 		ColumnarExampleTable table = new ColumnarExampleTable(Arrays.asList(ExampleTestTools.attributeDogCatMouse()));
 		table.setExpectedSize(2 * AutoColumnUtils.CHUNK_SIZE + 1);
 	}
 
-	@Test
+    /**
+     * Create many expected test nom completable.
+     */
+    @Test
 	public void createManyExpectedTestNomCompletable() {
 		ColumnarExampleTable table = new ColumnarExampleTable(Arrays.asList(ExampleTestTools.attributeDogCatMouse()),
 				DataManagement.AUTO, true);
@@ -103,14 +124,20 @@ public class ColumnarExampleTableTest {
 		table.complete();
 	}
 
-	@Test
+    /**
+     * Create many expected test binom.
+     */
+    @Test
 	public void createManyExpectedTestBinom() {
 		Attribute a = AttributeFactory.createAttribute(Ontology.BINOMINAL);
 		ColumnarExampleTable table = new ColumnarExampleTable(Arrays.asList(a));
 		table.setExpectedSize(2 * AutoColumnUtils.CHUNK_SIZE + 1);
 	}
 
-	@Test
+    /**
+     * Create many expected test binom completable.
+     */
+    @Test
 	public void createManyExpectedTestBinomCompletable() {
 		Attribute a = AttributeFactory.createAttribute(Ontology.BINOMINAL);
 		ColumnarExampleTable table = new ColumnarExampleTable(Arrays.asList(a), DataManagement.AUTO, true);
@@ -118,7 +145,10 @@ public class ColumnarExampleTableTest {
 		table.complete();
 	}
 
-	@Test
+    /**
+     * Create filled rows test.
+     */
+    @Test
 	public void createFilledRowsTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -135,7 +165,10 @@ public class ColumnarExampleTableTest {
 		assertEquals(11.5, table.getDataRow(1).get(attribute2), 1.0e-12);
 	}
 
-	@Test
+    /**
+     * Remove attribute test.
+     */
+    @Test
 	public void removeAttributeTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -155,7 +188,10 @@ public class ColumnarExampleTableTest {
 		assertEquals(11.5, table.getDataRow(1).get(attribute2), 1.0e-12);
 	}
 
-	@Test
+    /**
+     * Add attributes test.
+     */
+    @Test
 	public void addAttributesTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -179,7 +215,10 @@ public class ColumnarExampleTableTest {
 		assertEquals(7, table.getDataRow(1).get(attribute1), 0);
 	}
 
-	@Test
+    /**
+     * Remove and add attribute test.
+     */
+    @Test
 	public void removeAndAddAttributeTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -201,7 +240,10 @@ public class ColumnarExampleTableTest {
 		assertEquals(11.5, table.getDataRow(1).get(attribute2), 1.0e-12);
 	}
 
-	@Test
+    /**
+     * Add data rows test.
+     */
+    @Test
 	public void addDataRowsTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeDogCatMouse();
@@ -221,7 +263,10 @@ public class ColumnarExampleTableTest {
 		assertEquals("dog", attribute2.getMapping().mapIndex((int) table.getDataRow(1).get(attribute2)));
 	}
 
-	@Test
+    /**
+     * Add data rows expected size after test.
+     */
+    @Test
 	public void addDataRowsExpectedSizeAfterTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeDogCatMouse();
@@ -242,7 +287,10 @@ public class ColumnarExampleTableTest {
 		assertEquals("dog", attribute2.getMapping().mapIndex((int) table.getDataRow(1).get(attribute2)));
 	}
 
-	@Test
+    /**
+     * Createfill columns test.
+     */
+    @Test
 	public void createfillColumnsTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -260,7 +308,10 @@ public class ColumnarExampleTableTest {
 		assertEquals(2 * 9, table.getDataRow(9).get(attribute2), 0);
 	}
 
-	@Test
+    /**
+     * Createfill column test.
+     */
+    @Test
 	public void createfillColumnTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -278,7 +329,10 @@ public class ColumnarExampleTableTest {
 		assertEquals(0, table.getDataRow(9).get(attribute2), 0);
 	}
 
-	@Test(expected = ArrayIndexOutOfBoundsException.class)
+    /**
+     * Access unknown attribute test.
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
 	public void accessUnknownAttributeTest() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -290,7 +344,10 @@ public class ColumnarExampleTableTest {
 		table.getDataRow(0).get(attribute3);
 	}
 
-	@Test(expected = ArrayIndexOutOfBoundsException.class)
+    /**
+     * Access unknown attribute 2 test.
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
 	public void accessUnknownAttribute2Test() {
 		Attribute attribute1 = ExampleTestTools.attributeInt();
 		Attribute attribute2 = ExampleTestTools.attributeReal();
@@ -304,7 +361,10 @@ public class ColumnarExampleTableTest {
 		table.getDataRow(0).get(attribute3);
 	}
 
-	@Test
+    /**
+     * Access null column test.
+     */
+    @Test
 	public void accessNullColumnTest() {
 		List<Attribute> atts = new ArrayList<>(8);
 		for (int i = 0; i < 8; i++) {
@@ -315,7 +375,10 @@ public class ColumnarExampleTableTest {
 		table.addRow(new double[table.getNumberOfAttributes()]);
 	}
 
-	@Test
+    /**
+     * Binominal column test.
+     */
+    @Test
 	public void binominalColumnTest() {
 		Attribute attribute = AttributeFactory.createAttribute(Ontology.BINOMINAL);
 		ColumnarExampleTable table = new ColumnarExampleTable(Arrays.asList(attribute));

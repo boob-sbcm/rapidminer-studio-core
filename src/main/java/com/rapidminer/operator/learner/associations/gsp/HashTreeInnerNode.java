@@ -23,12 +23,16 @@ import java.util.HashMap;
 
 
 /**
+ * The type Hash tree inner node.
+ *
  * @author Sebastian Land
- * 
  */
 public class HashTreeInnerNode implements HashTreeNode {
 
-	protected HashMap<Item, HashTreeNode> children = new HashMap<Item, HashTreeNode>();
+    /**
+     * The Children.
+     */
+    protected HashMap<Item, HashTreeNode> children = new HashMap<Item, HashTreeNode>();
 
 	@Override
 	public void addSequence(Sequence candidate, int candidateIndex, int depth, HashTreeNode father,

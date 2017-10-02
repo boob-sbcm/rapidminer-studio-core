@@ -21,19 +21,34 @@ package com.rapidminer.gui.tools;
 /**
  * A listener listening for selection events (e.g. fired in a {@link FilterTextField} when the user
  * presses arrow keys.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public interface SelectionNavigationListener {
 
-	public void up();
+    /**
+     * Up.
+     */
+    public void up();
 
-	public void down();
+    /**
+     * Down.
+     */
+    public void down();
 
-	public void left();
+    /**
+     * Left.
+     */
+    public void left();
 
-	public void right();
+    /**
+     * Right.
+     */
+    public void right();
 
-	public void selected();
+    /**
+     * Selected.
+     */
+    public void selected();
 
 }

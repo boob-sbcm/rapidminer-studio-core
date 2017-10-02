@@ -33,22 +33,34 @@ import com.rapidminer.tools.ParameterService;
 /**
  * An instance of this class represents either a group, a sub-group or a parameter of the
  * {@link SettingsDialog}.
- *
+ * <p>
  * Parent/child relations are completely handled in the constructors.
  *
  * @author Adrian Wilke
  */
 public class SettingsItem {
 
-	/**
-	 * Regarding the {@link SettingsDialog}, this represents either a tab (GROUP), a heading in a
-	 * tab (SUB_GROUP), or a setting by a parameter (PARAMETER)
-	 */
-	public enum Type {
-		GROUP, SUB_GROUP, PARAMETER
+    /**
+     * Regarding the {@link SettingsDialog}, this represents either a tab (GROUP), a heading in a
+     * tab (SUB_GROUP), or a setting by a parameter (PARAMETER)
+     */
+    public enum Type {
+        /**
+         * Group type.
+         */
+        GROUP, /**
+         * Sub group type.
+         */
+        SUB_GROUP, /**
+         * Parameter type.
+         */
+        PARAMETER
 	}
 
-	public final static String DEFAULT_PARAMETER_PREFIX = "rapidminer.";
+    /**
+     * The constant DEFAULT_PARAMETER_PREFIX.
+     */
+    public final static String DEFAULT_PARAMETER_PREFIX = "rapidminer.";
 
 	/** Key of properties file */
 	private String key;
@@ -65,17 +77,14 @@ public class SettingsItem {
 	/** Indicates, if this item has been used in the settings dialog */
 	private boolean usedInDialog = false;
 
-	/**
-	 * Sets object variables and updates parent/child relations.
-	 *
-	 * @param key
-	 *            The elements key
-	 * @param parent
-	 *            Parent SettingsItem or <code>null</code>, if there is none
-	 * @param type
-	 *            The type of the item
-	 */
-	public SettingsItem(String key, SettingsItem parent, Type type) {
+    /**
+     * Sets object variables and updates parent/child relations.
+     *
+     * @param key    The elements key
+     * @param parent Parent SettingsItem or <code>null</code>, if there is none
+     * @param type   The type of the item
+     */
+    public SettingsItem(String key, SettingsItem parent, Type type) {
 		if (key == null || key.isEmpty()) {
 			throw new IllegalArgumentException(
 					"Settings item has no Key." + (parent == null ? "" : " Parent: " + parent.toString()));
@@ -94,31 +103,42 @@ public class SettingsItem {
 		}
 	}
 
-	/**
-	 * Adds item to the list of children.
-	 */
-	public void addChild(SettingsItem child) {
+    /**
+     * Adds item to the list of children.
+     *
+     * @param child the child
+     */
+    public void addChild(SettingsItem child) {
 		children.add(child);
 	}
 
-	/**
-	 * Returns all children of this item.
-	 */
-	public List<SettingsItem> getChildren() {
+    /**
+     * Returns all children of this item.
+     *
+     * @return the children
+     */
+    public List<SettingsItem> getChildren() {
 		return children;
 	}
 
-	/**
-	 * Returns all children of the specified type.
-	 */
-	public List<SettingsItem> getChildren(Type type) {
+    /**
+     * Returns all children of the specified type.
+     *
+     * @param type the type
+     * @return the children
+     */
+    public List<SettingsItem> getChildren(Type type) {
 		return getChildren(type, null);
 	}
 
-	/**
-	 * Returns all children in regard of the specified type and filter.
-	 */
-	public List<SettingsItem> getChildren(Type type, String filter) {
+    /**
+     * Returns all children in regard of the specified type and filter.
+     *
+     * @param type   the type
+     * @param filter the filter
+     * @return the children
+     */
+    public List<SettingsItem> getChildren(Type type, String filter) {
 		List<SettingsItem> childs = new LinkedList<>();
 		for (SettingsItem child : children) {
 			if (child.type.equals(type) && isInFilter(child, filter)) {
@@ -128,10 +148,14 @@ public class SettingsItem {
 		return childs;
 	}
 
-	/**
-	 * Checks if the given child matches the filter.
-	 */
-	public boolean isInFilter(SettingsItem child, String filter) {
+    /**
+     * Checks if the given child matches the filter.
+     *
+     * @param child  the child
+     * @param filter the filter
+     * @return the boolean
+     */
+    public boolean isInFilter(SettingsItem child, String filter) {
 		if (!child.type.equals(Type.PARAMETER)) {
 			return true;
 		}
@@ -157,13 +181,15 @@ public class SettingsItem {
 		}
 	}
 
-	/**
-	 * Returns the corresponding i18n string if the key was found or an empty String, if the key was
-	 * not found.
-	 *
-	 * Logs a warning message, if the i18n description could not be found.
-	 */
-	public String getDescription() {
+    /**
+     * Returns the corresponding i18n string if the key was found or an empty String, if the key was
+     * not found.
+     * <p>
+     * Logs a warning message, if the i18n description could not be found.
+     *
+     * @return the description
+     */
+    public String getDescription() {
 		String description = I18N.getSettingsMessage(key, I18N.SettingsType.DESCRIPTION);
 		if (description.equals(key + I18N.SettingsType.DESCRIPTION)) {
 
@@ -180,17 +206,21 @@ public class SettingsItem {
 		}
 	}
 
-	/**
-	 * Returns the group key. Or <code>null</code>, if the group key is not known.
-	 */
-	public String getGroupKey() {
+    /**
+     * Returns the group key. Or <code>null</code>, if the group key is not known.
+     *
+     * @return the group key
+     */
+    public String getGroupKey() {
 		return ParameterService.getGroupKey(getKey());
 	}
 
-	/**
-	 * Returns the hierarchy of the current item and its children. Contains one item per line.
-	 */
-	public String getHierarchy() {
+    /**
+     * Returns the hierarchy of the current item and its children. Contains one item per line.
+     *
+     * @return the hierarchy
+     */
+    public String getHierarchy() {
 		return getHierarchy(0).toString();
 	}
 
@@ -221,37 +251,45 @@ public class SettingsItem {
 		return sb;
 	}
 
-	/**
-	 * Returns the properties key. This identifies the current item.
-	 */
-	public String getKey() {
+    /**
+     * Returns the properties key. This identifies the current item.
+     *
+     * @return the key
+     */
+    public String getKey() {
 		return key;
 	}
 
-	/**
-	 * Returns the type of the defined parameter identified by its ID. Returns <code>null</code> if
-	 * its key is unknown.
-	 */
-	public ParameterType getParameterType() {
+    /**
+     * Returns the type of the defined parameter identified by its ID. Returns <code>null</code> if
+     * its key is unknown.
+     *
+     * @return the parameter type
+     */
+    public ParameterType getParameterType() {
 		return ParameterService.getParameterType(key);
 	}
 
-	/**
-	 * Returns the parent of this item or <code>null</code>, if no parent item exists.
-	 */
-	public SettingsItem getParent() {
+    /**
+     * Returns the parent of this item or <code>null</code>, if no parent item exists.
+     *
+     * @return the parent
+     */
+    public SettingsItem getParent() {
 		return parent;
 	}
 
-	/**
-	 * Returns a i18n string if found or the key if not found.
-	 *
-	 * Logs a warning message, if a i18n string could not be found and the debug mode is activated.
-	 *
-	 * If this item is of type group and there is no i18n specified, the group-key is used and
-	 * formatted.
-	 */
-	public String getTitle() {
+    /**
+     * Returns a i18n string if found or the key if not found.
+     * <p>
+     * Logs a warning message, if a i18n string could not be found and the debug mode is activated.
+     * <p>
+     * If this item is of type group and there is no i18n specified, the group-key is used and
+     * formatted.
+     *
+     * @return the title
+     */
+    public String getTitle() {
 		String title = I18N.getSettingsMessage(key, I18N.SettingsType.TITLE);
 		if (title.equals(key + I18N.SettingsType.TITLE)) {
 
@@ -310,24 +348,32 @@ public class SettingsItem {
 		return title;
 	}
 
-	/**
-	 * Returns the type of this items.
-	 */
-	public Type getType() {
+    /**
+     * Returns the type of this items.
+     *
+     * @return the type
+     */
+    public Type getType() {
 		return type;
 	}
 
-	/**
-	 * Returns <code>true</code> if this item has already been added to the settings dialog. This is
-	 * useful to check, if a sub-group (represented by an heading in a dialog tab) has already been
-	 * added.
-	 */
-	public boolean isUsedInDialog() {
+    /**
+     * Returns <code>true</code> if this item has already been added to the settings dialog. This is
+     * useful to check, if a sub-group (represented by an heading in a dialog tab) has already been
+     * added.
+     *
+     * @return the boolean
+     */
+    public boolean isUsedInDialog() {
 		return usedInDialog;
 	}
 
-	/** Sets if this item has been added to the settings dialog. */
-	public void setUsedInDialog(boolean usedInDialog) {
+    /**
+     * Sets if this item has been added to the settings dialog.  @param usedInDialog the used in dialog
+     *
+     * @param usedInDialog the used in dialog
+     */
+    public void setUsedInDialog(boolean usedInDialog) {
 		this.usedInDialog = usedInDialog;
 	}
 

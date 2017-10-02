@@ -31,18 +31,31 @@ import java.util.Iterator;
 
 /**
  * Calculates the best split point for numerical attributes according to a given criterion.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class NumericalSplitter {
 
 	private Criterion criterion;
 
-	public NumericalSplitter(Criterion criterion) {
+    /**
+     * Instantiates a new Numerical splitter.
+     *
+     * @param criterion the criterion
+     */
+    public NumericalSplitter(Criterion criterion) {
 		this.criterion = criterion;
 	}
 
-	public double getBestSplit(ExampleSet inputSet, Attribute attribute) throws OperatorException {
+    /**
+     * Gets best split.
+     *
+     * @param inputSet  the input set
+     * @param attribute the attribute
+     * @return the best split
+     * @throws OperatorException the operator exception
+     */
+    public double getBestSplit(ExampleSet inputSet, Attribute attribute) throws OperatorException {
 		SortedExampleSet exampleSet = new SortedExampleSet(inputSet, attribute, SortedExampleSet.INCREASING);
 		// Attribute labelAttribute = exampleSet.getAttributes().getLabel(); // see bug report 952
 		// double oldLabel = Double.NaN; // see bug report 952

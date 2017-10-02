@@ -21,17 +21,19 @@ package com.rapidminer.datatable;
 /**
  * This is the interface of conditions for FilteredDataTables. They might be stacked in order to
  * decide which examples should be kept.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public interface DataTableFilterCondition {
 
-	/**
-	 * This method decides if the given data row is kept or filtered out. If return true, the row
-	 * will be in the resulting filtered data set. If returns false, the row will be removed in the
-	 * resulting set.
-	 */
-	public boolean keepRow(DataTableRow row);
+    /**
+     * This method decides if the given data row is kept or filtered out. If return true, the row
+     * will be in the resulting filtered data set. If returns false, the row will be removed in the
+     * resulting set.
+     *
+     * @param row the row
+     * @return the boolean
+     */
+    public boolean keepRow(DataTableRow row);
 
 }

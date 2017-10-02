@@ -41,28 +41,39 @@ import com.rapidminer.tools.Tools;
  */
 public class SplittedExampleSet extends AbstractExampleSet {
 
-	public static final OperatorVersion VERSION_SAMPLING_CHANGED = new OperatorVersion(5, 1, 2);
+    /**
+     * The constant VERSION_SAMPLING_CHANGED.
+     */
+    public static final OperatorVersion VERSION_SAMPLING_CHANGED = new OperatorVersion(5, 1, 2);
 
 	private static final long serialVersionUID = 4573262969007377183L;
 
-	/** Indicates a non-shuffled sampling for partition building. */
-	public static final String[] SAMPLING_NAMES = { "linear sampling", "shuffled sampling", "stratified sampling", "automatic" };
+    /**
+     * Indicates a non-shuffled sampling for partition building.
+     */
+    public static final String[] SAMPLING_NAMES = { "linear sampling", "shuffled sampling", "stratified sampling", "automatic" };
 
-	/** Indicates a non-shuffled sampling for partition building. */
-	public static final int LINEAR_SAMPLING = 0;
+    /**
+     * Indicates a non-shuffled sampling for partition building.
+     */
+    public static final int LINEAR_SAMPLING = 0;
 
-	/** Indicates a shuffled sampling for partition building. */
-	public static final int SHUFFLED_SAMPLING = 1;
+    /**
+     * Indicates a shuffled sampling for partition building.
+     */
+    public static final int SHUFFLED_SAMPLING = 1;
 
-	/** Indicates a stratified shuffled sampling for partition building. */
-	public static final int STRATIFIED_SAMPLING = 2;
+    /**
+     * Indicates a stratified shuffled sampling for partition building.
+     */
+    public static final int STRATIFIED_SAMPLING = 2;
 
-	/**
-	 * Indicates the usage of the automatic mode, where stratified sampling
-	 * is used per default for partition building. If it isn't applicable, shuffled
-	 * sampling will be used instead.
-	 */
-	public static final int AUTOMATIC = 3;
+    /**
+     * Indicates the usage of the automatic mode, where stratified sampling
+     * is used per default for partition building. If it isn't applicable, shuffled
+     * sampling will be used instead.
+     */
+    public static final int AUTOMATIC = 3;
 
 	/** The partition. */
 	private Partition partition;
@@ -70,26 +81,27 @@ public class SplittedExampleSet extends AbstractExampleSet {
 	/** The parent example set. */
 	private ExampleSet parent;
 
-	/** Constructs a SplittedExampleSet with the given partition. */
-	public SplittedExampleSet(ExampleSet exampleSet, Partition partition) {
+    /**
+     * Constructs a SplittedExampleSet with the given partition.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     * @param partition  the partition
+     */
+    public SplittedExampleSet(ExampleSet exampleSet, Partition partition) {
 		this.parent = (ExampleSet) exampleSet.clone();
 		this.partition = partition;
 	}
 
-	/**
-	 * Constructs a SplittedExampleSet with the given partition. If tryCompose is {@code true} and
-	 * exampleSet is a SplittedExampleSet a new Partition is constructed out of the
-	 * {@link Partition} of exampleSet and partition in order to prevent nested SplittedExampleSets.
-	 *
-	 * @param exampleSet
-	 *            the parent example set
-	 * @param partition
-	 *            the partition to use
-	 * @param tryCompose
-	 *            if {@code true} and exampleSet is a SplittedExampleSet then the partitions are
-	 *            composed
-	 */
-	public SplittedExampleSet(ExampleSet exampleSet, Partition partition, boolean tryCompose) {
+    /**
+     * Constructs a SplittedExampleSet with the given partition. If tryCompose is {@code true} and
+     * exampleSet is a SplittedExampleSet a new Partition is constructed out of the
+     * {@link Partition} of exampleSet and partition in order to prevent nested SplittedExampleSets.
+     *
+     * @param exampleSet the parent example set
+     * @param partition  the partition to use
+     * @param tryCompose if {@code true} and exampleSet is a SplittedExampleSet then the partitions are            composed
+     */
+    public SplittedExampleSet(ExampleSet exampleSet, Partition partition, boolean tryCompose) {
 		if (tryCompose && exampleSet instanceof SplittedExampleSet) {
 			SplittedExampleSet splitted = (SplittedExampleSet) exampleSet;
 			this.parent = (ExampleSet) splitted.parent.clone();
@@ -101,113 +113,153 @@ public class SplittedExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	/**
-	 * Creates an example set that is splitted into two subsets using the given sampling type. If
-	 * autoSwitchToShuffled is true, the sampling type is switched from Stratified to Shuffled
-	 * automatically without error when no classification label is present. This shouldn't be used,
-	 * but it keeps compatibility to previous versions.
-	 *
-	 *
-	 * @throws UserError
-	 */
-	public SplittedExampleSet(ExampleSet exampleSet, double splitRatio, int samplingType, boolean useLocalRandomSeed,
+    /**
+     * Creates an example set that is splitted into two subsets using the given sampling type. If
+     * autoSwitchToShuffled is true, the sampling type is switched from Stratified to Shuffled
+     * automatically without error when no classification label is present. This shouldn't be used,
+     * but it keeps compatibility to previous versions.
+     *
+     * @param exampleSet           the example set
+     * @param splitRatio           the split ratio
+     * @param samplingType         the sampling type
+     * @param useLocalRandomSeed   the use local random seed
+     * @param seed                 the seed
+     * @param autoSwitchToShuffled the auto switch to shuffled
+     * @throws UserError the user error
+     */
+    public SplittedExampleSet(ExampleSet exampleSet, double splitRatio, int samplingType, boolean useLocalRandomSeed,
 			int seed, boolean autoSwitchToShuffled) throws UserError {
 		this(exampleSet, new double[] { splitRatio, 1 - splitRatio }, samplingType, useLocalRandomSeed, seed,
 				autoSwitchToShuffled);
 	}
 
-	/**
-	 * Creates an example set that is splitted into two subsets using the given sampling type.
-	 *
-	 * @throws UserError
-	 */
-	public SplittedExampleSet(ExampleSet exampleSet, double splitRatio, int samplingType, boolean useLocalRandomSeed,
+    /**
+     * Creates an example set that is splitted into two subsets using the given sampling type.
+     *
+     * @param exampleSet         the example set
+     * @param splitRatio         the split ratio
+     * @param samplingType       the sampling type
+     * @param useLocalRandomSeed the use local random seed
+     * @param seed               the seed
+     * @throws UserError the user error
+     */
+    public SplittedExampleSet(ExampleSet exampleSet, double splitRatio, int samplingType, boolean useLocalRandomSeed,
 			int seed) throws UserError {
 		this(exampleSet, new double[] { splitRatio, 1 - splitRatio }, samplingType, useLocalRandomSeed, seed);
 	}
 
-	/**
-	 * Creates an example set that is splitted into two subsets using the given sampling type.
-	 *
-	 * @param tryCompose
-	 *            if {@code true} and exampleSet is a SplittedExampleSet then the partitions of the
-	 *            exampleSet and the one constructed here are composed in order to prevent nested
-	 *            SplittedExampleSets.
-	 * @throws UserError
-	 */
-	public SplittedExampleSet(ExampleSet exampleSet, double splitRatio, int samplingType, boolean useLocalRandomSeed,
+    /**
+     * Creates an example set that is splitted into two subsets using the given sampling type.
+     *
+     * @param exampleSet         the example set
+     * @param splitRatio         the split ratio
+     * @param samplingType       the sampling type
+     * @param useLocalRandomSeed the use local random seed
+     * @param tryCompose         if {@code true} and exampleSet is a SplittedExampleSet then the partitions of the            exampleSet and the one constructed here are composed in order to prevent nested            SplittedExampleSets.
+     * @param seed               the seed
+     * @throws UserError the user error
+     */
+    public SplittedExampleSet(ExampleSet exampleSet, double splitRatio, int samplingType, boolean useLocalRandomSeed,
 			boolean tryCompose, int seed) throws UserError {
 		this(exampleSet, new double[] { splitRatio, 1 - splitRatio }, samplingType, useLocalRandomSeed, tryCompose, seed);
 	}
 
-	/**
-	 * Creates an example set that is splitted into n subsets with the given sampling type.
-	 *
-	 * @throws UserError
-	 */
-	public SplittedExampleSet(ExampleSet exampleSet, double[] splitRatios, int samplingType, boolean useLocalRandomSeed,
+    /**
+     * Creates an example set that is splitted into n subsets with the given sampling type.
+     *
+     * @param exampleSet         the example set
+     * @param splitRatios        the split ratios
+     * @param samplingType       the sampling type
+     * @param useLocalRandomSeed the use local random seed
+     * @param seed               the seed
+     * @throws UserError the user error
+     */
+    public SplittedExampleSet(ExampleSet exampleSet, double[] splitRatios, int samplingType, boolean useLocalRandomSeed,
 			int seed) throws UserError {
 		this(exampleSet, new Partition(splitRatios, exampleSet.size(),
 				createPartitionBuilder(exampleSet, samplingType, useLocalRandomSeed, seed, true)));
 	}
 
-	/**
-	 * Creates an example set that is splitted into n subsets with the given sampling type.
-	 * 
-	 * @param tryCompose
-	 *            if {@code true} and exampleSet is a SplittedExampleSet then the partitions of the
-	 *            exampleSet and the one constructed here are composed in order to prevent nested
-	 *            SplittedExampleSets.
-	 * @throws UserError
-	 */
-	public SplittedExampleSet(ExampleSet exampleSet, double[] splitRatios, int samplingType, boolean useLocalRandomSeed,
+    /**
+     * Creates an example set that is splitted into n subsets with the given sampling type.
+     *
+     * @param exampleSet         the example set
+     * @param splitRatios        the split ratios
+     * @param samplingType       the sampling type
+     * @param useLocalRandomSeed the use local random seed
+     * @param tryCompose         if {@code true} and exampleSet is a SplittedExampleSet then the partitions of the            exampleSet and the one constructed here are composed in order to prevent nested            SplittedExampleSets.
+     * @param seed               the seed
+     * @throws UserError the user error
+     */
+    public SplittedExampleSet(ExampleSet exampleSet, double[] splitRatios, int samplingType, boolean useLocalRandomSeed,
 			boolean tryCompose, int seed) throws UserError {
 		this(exampleSet, new Partition(splitRatios, exampleSet.size(),
 				createPartitionBuilder(exampleSet, samplingType, useLocalRandomSeed, seed, true)), tryCompose);
 	}
 
-	/**
-	 * Creates an example set that is splitted into n subsets with the given sampling type. If
-	 * autoSwitchToShuffled is true, the sampling type is switched from Stratified to Shuffled
-	 * automatically without error when no classification label is present. This shouldn't be used,
-	 * but it keeps compatibility to previous versions.
-	 *
-	 * @throws UserError
-	 */
-	public SplittedExampleSet(ExampleSet exampleSet, double[] splitRatios, int samplingType, boolean useLocalRandomSeed,
+    /**
+     * Creates an example set that is splitted into n subsets with the given sampling type. If
+     * autoSwitchToShuffled is true, the sampling type is switched from Stratified to Shuffled
+     * automatically without error when no classification label is present. This shouldn't be used,
+     * but it keeps compatibility to previous versions.
+     *
+     * @param exampleSet           the example set
+     * @param splitRatios          the split ratios
+     * @param samplingType         the sampling type
+     * @param useLocalRandomSeed   the use local random seed
+     * @param seed                 the seed
+     * @param autoSwitchToShuffled the auto switch to shuffled
+     * @throws UserError the user error
+     */
+    public SplittedExampleSet(ExampleSet exampleSet, double[] splitRatios, int samplingType, boolean useLocalRandomSeed,
 			int seed, boolean autoSwitchToShuffled) throws UserError {
 		this(exampleSet, new Partition(splitRatios, exampleSet.size(),
 				createPartitionBuilder(exampleSet, samplingType, useLocalRandomSeed, seed, autoSwitchToShuffled)));
 	}
 
-	/**
-	 * Creates an example set that is splitted into <i>numberOfSubsets</i> parts with the given
-	 * sampling type.
-	 *
-	 * @throws UserError
-	 */
-	public SplittedExampleSet(ExampleSet exampleSet, int numberOfSubsets, int samplingType, boolean useLocalRandomSeed,
+    /**
+     * Creates an example set that is splitted into <i>numberOfSubsets</i> parts with the given
+     * sampling type.
+     *
+     * @param exampleSet         the example set
+     * @param numberOfSubsets    the number of subsets
+     * @param samplingType       the sampling type
+     * @param useLocalRandomSeed the use local random seed
+     * @param seed               the seed
+     * @throws UserError the user error
+     */
+    public SplittedExampleSet(ExampleSet exampleSet, int numberOfSubsets, int samplingType, boolean useLocalRandomSeed,
 			int seed) throws UserError {
 		this(exampleSet, new Partition(numberOfSubsets, exampleSet.size(),
 				createPartitionBuilder(exampleSet, samplingType, useLocalRandomSeed, seed, true)));
 	}
 
-	/**
-	 * Creates an example set that is splitted into <i>numberOfSubsets</i> parts with the given
-	 * sampling type. If autoSwitchToShuffled is true, the sampling type is switched from Stratified
-	 * to Shuffled automatically without error when no classification label is present. This
-	 * shouldn't be used, but it keeps compatibility to previous versions.
-	 *
-	 * @throws UserError
-	 */
-	public SplittedExampleSet(ExampleSet exampleSet, int numberOfSubsets, int samplingType, boolean useLocalRandomSeed,
+    /**
+     * Creates an example set that is splitted into <i>numberOfSubsets</i> parts with the given
+     * sampling type. If autoSwitchToShuffled is true, the sampling type is switched from Stratified
+     * to Shuffled automatically without error when no classification label is present. This
+     * shouldn't be used, but it keeps compatibility to previous versions.
+     *
+     * @param exampleSet           the example set
+     * @param numberOfSubsets      the number of subsets
+     * @param samplingType         the sampling type
+     * @param useLocalRandomSeed   the use local random seed
+     * @param seed                 the seed
+     * @param autoSwitchToShuffled the auto switch to shuffled
+     * @throws UserError the user error
+     */
+    public SplittedExampleSet(ExampleSet exampleSet, int numberOfSubsets, int samplingType, boolean useLocalRandomSeed,
 			int seed, boolean autoSwitchToShuffled) throws UserError {
 		this(exampleSet, new Partition(numberOfSubsets, exampleSet.size(),
 				createPartitionBuilder(exampleSet, samplingType, useLocalRandomSeed, seed, autoSwitchToShuffled)));
 	}
 
-	/** Clone constructor. */
-	public SplittedExampleSet(SplittedExampleSet exampleSet) {
+    /**
+     * Clone constructor.  @param exampleSet the example set
+     *
+     * @param exampleSet the example set
+     */
+    public SplittedExampleSet(SplittedExampleSet exampleSet) {
 		this.parent = (ExampleSet) exampleSet.parent.clone();
 		this.partition = (Partition) exampleSet.partition.clone();
 	}
@@ -266,19 +318,31 @@ public class SplittedExampleSet extends AbstractExampleSet {
 
 	}
 
-	/** Adds the given subset. */
-	public void selectAdditionalSubset(int index) {
+    /**
+     * Adds the given subset.  @param index the index
+     *
+     * @param index the index
+     */
+    public void selectAdditionalSubset(int index) {
 		partition.selectSubset(index);
 	}
 
-	/** Selects exactly one subset. */
-	public void selectSingleSubset(int index) {
+    /**
+     * Selects exactly one subset.  @param index the index
+     *
+     * @param index the index
+     */
+    public void selectSingleSubset(int index) {
 		partition.clearSelection();
 		partition.selectSubset(index);
 	}
 
-	/** Selects all but one subset. */
-	public void selectAllSubsetsBut(int index) {
+    /**
+     * Selects all but one subset.  @param index the index
+     *
+     * @param index the index
+     */
+    public void selectAllSubsetsBut(int index) {
 		partition.clearSelection();
 		for (int i = 0; i < partition.getNumberOfSubsets(); i++) {
 			if (i != index) {
@@ -287,26 +351,36 @@ public class SplittedExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	/** Selects all subsets. */
-	public void selectAllSubsets() {
+    /**
+     * Selects all subsets.
+     */
+    public void selectAllSubsets() {
 		partition.clearSelection();
 		for (int i = 0; i < partition.getNumberOfSubsets(); i++) {
 			partition.selectSubset(i);
 		}
 	}
 
-	/** Inverts the current selection */
-	public void invertSelection() {
+    /**
+     * Inverts the current selection
+     */
+    public void invertSelection() {
 		partition.invertSelection();
 	}
 
-	/** Clears the current selection */
-	public void clearSelection() {
+    /**
+     * Clears the current selection
+     */
+    public void clearSelection() {
 		partition.clearSelection();
 	}
 
-	/** Returns the number of subsets. */
-	public int getNumberOfSubsets() {
+    /**
+     * Returns the number of subsets.  @return the number of subsets
+     *
+     * @return the number of subsets
+     */
+    public int getNumberOfSubsets() {
 		return partition.getNumberOfSubsets();
 	}
 
@@ -330,8 +404,13 @@ public class SplittedExampleSet extends AbstractExampleSet {
 		return this.parent.getExample(actualIndex);
 	}
 
-	/** Returns the index of the example in the parent example set. */
-	public int getActualParentIndex(int index) {
+    /**
+     * Returns the index of the example in the parent example set.  @param index the index
+     *
+     * @param index the index
+     * @return the actual parent index
+     */
+    public int getActualParentIndex(int index) {
 		return partition.mapIndex(index);
 	}
 
@@ -352,12 +431,16 @@ public class SplittedExampleSet extends AbstractExampleSet {
 
 	// -------------------- Factory methods --------------------
 
-	/**
-	 * Works only for nominal and integer attributes. If <i>k</i> is the number of different values,
-	 * this method splits the example set into <i>k</i> subsets according to the value of the given
-	 * attribute.
-	 */
-	public static SplittedExampleSet splitByAttribute(ExampleSet exampleSet, Attribute attribute) {
+    /**
+     * Works only for nominal and integer attributes. If <i>k</i> is the number of different values,
+     * this method splits the example set into <i>k</i> subsets according to the value of the given
+     * attribute.
+     *
+     * @param exampleSet the example set
+     * @param attribute  the attribute
+     * @return the splitted example set
+     */
+    public static SplittedExampleSet splitByAttribute(ExampleSet exampleSet, Attribute attribute) {
 		int[] elements = new int[exampleSet.size()];
 		int i = 0;
 		Map<Integer, Integer> indexMap = new HashMap<Integer, Integer>();
@@ -378,13 +461,18 @@ public class SplittedExampleSet extends AbstractExampleSet {
 		return new SplittedExampleSet(exampleSet, partition);
 	}
 
-	/**
-	 * Works only for real-value attributes. Returns an example set splitted into two parts
-	 * containing all examples providing a greater (smaller) value for the given attribute than the
-	 * given value. The first partition contains all examples providing a smaller or the same value
-	 * than the given one.
-	 */
-	public static SplittedExampleSet splitByAttribute(ExampleSet exampleSet, Attribute attribute, double value) {
+    /**
+     * Works only for real-value attributes. Returns an example set splitted into two parts
+     * containing all examples providing a greater (smaller) value for the given attribute than the
+     * given value. The first partition contains all examples providing a smaller or the same value
+     * than the given one.
+     *
+     * @param exampleSet the example set
+     * @param attribute  the attribute
+     * @param value      the value
+     * @return the splitted example set
+     */
+    public static SplittedExampleSet splitByAttribute(ExampleSet exampleSet, Attribute attribute, double value) {
 		int[] elements = new int[exampleSet.size()];
 		Iterator<Example> reader = exampleSet.iterator();
 		int i = 0;

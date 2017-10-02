@@ -51,7 +51,13 @@ public class SelectRowAction extends AbstractAction {
 
 	private ExtendedJTable table;
 
-	public SelectRowAction(ExtendedJTable table, IconSize size) {
+    /**
+     * Instantiates a new Select row action.
+     *
+     * @param table the table
+     * @param size  the size
+     */
+    public SelectRowAction(ExtendedJTable table, IconSize size) {
 		super("Select Row", ICONS[size.ordinal()]);
 		this.table = table;
 		putValue(SHORT_DESCRIPTION, "Select the complete row");

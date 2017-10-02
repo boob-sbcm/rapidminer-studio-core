@@ -45,6 +45,7 @@ import com.rapidminer.gui.tools.dialogs.ButtonDialog;
 
 
 /**
+ * The type Extended j file chooser.
  *
  * @author Tobias Malbrecht
  */
@@ -56,7 +57,16 @@ public class ExtendedJFileChooser extends JFileChooser {
 
 		private static final long serialVersionUID = -553876079090407051L;
 
-		public FileChooserButtonDialog(Window owner, String key, boolean modal, ExtendedJFileChooser chooser,
+        /**
+         * Instantiates a new File chooser button dialog.
+         *
+         * @param owner     the owner
+         * @param key       the key
+         * @param modal     the modal
+         * @param chooser   the chooser
+         * @param arguments the arguments
+         */
+        public FileChooserButtonDialog(Window owner, String key, boolean modal, ExtendedJFileChooser chooser,
 				Object... arguments) {
 			super(owner, key, modal ? ModalityType.APPLICATION_MODAL : ModalityType.MODELESS, arguments);
 			chooser.setControlButtonsAreShown(false);
@@ -68,13 +78,25 @@ public class ExtendedJFileChooser extends JFileChooser {
 
 	private final Object[] i18nArgs;
 
-	public ExtendedJFileChooser(File directory) {
+    /**
+     * Instantiates a new Extended j file chooser.
+     *
+     * @param directory the directory
+     */
+    public ExtendedJFileChooser(File directory) {
 		super(directory);
 		this.i18nKey = null;
 		this.i18nArgs = null;
 	}
 
-	public ExtendedJFileChooser(String i18nKey, File directory, Object... i18nArgs) {
+    /**
+     * Instantiates a new Extended j file chooser.
+     *
+     * @param i18nKey   the 18 n key
+     * @param directory the directory
+     * @param i18nArgs  the 18 n args
+     */
+    public ExtendedJFileChooser(String i18nKey, File directory, Object... i18nArgs) {
 		super(directory);
 		this.i18nKey = i18nKey;
 		this.i18nArgs = i18nArgs;
@@ -131,19 +153,34 @@ public class ExtendedJFileChooser extends JFileChooser {
 		return buttons;
 	}
 
-	public void addChangeListener(ChangeListener l) {
+    /**
+     * Add change listener.
+     *
+     * @param l the l
+     */
+    public void addChangeListener(ChangeListener l) {
 		if (getUI() instanceof FileChooserUI) {
 			((FileChooserUI) getUI()).addChangeListener(l);
 		}
 	}
 
-	public void removeChangeListener(ChangeListener l) {
+    /**
+     * Remove change listener.
+     *
+     * @param l the l
+     */
+    public void removeChangeListener(ChangeListener l) {
 		if (getUI() instanceof FileChooserUI) {
 			((FileChooserUI) getUI()).removeChangeListener(l);
 		}
 	}
 
-	public boolean isFileSelected() {
+    /**
+     * Is file selected boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isFileSelected() {
 		if (getUI() instanceof FileChooserUI) {
 			return ((FileChooserUI) getUI()).isFileSelected();
 		}

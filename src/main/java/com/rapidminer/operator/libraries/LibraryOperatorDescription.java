@@ -37,7 +37,7 @@ import org.w3c.dom.Element;
  * This is the abstract superclass for all {@link OperatorDescription}s that are stored inside an
  * {@link OperatorLibrary}. These provide additional functionality for accessing different versions
  * of these operators.
- * 
+ *
  * @author Sebastian Land
  */
 public abstract class LibraryOperatorDescription extends OperatorDescription {
@@ -49,7 +49,20 @@ public abstract class LibraryOperatorDescription extends OperatorDescription {
 	private List<VersionNumber> operatorVersions = new LinkedList<VersionNumber>();
 	private OperatorLibrary containingLibrary;
 
-	public LibraryOperatorDescription(OperatorLibrary containingLibrary, String fullyQualifiedGroupKey, String key,
+    /**
+     * Instantiates a new Library operator description.
+     *
+     * @param containingLibrary      the containing library
+     * @param fullyQualifiedGroupKey the fully qualified group key
+     * @param key                    the key
+     * @param clazz                  the clazz
+     * @param classLoader            the class loader
+     * @param iconName               the icon name
+     * @param provider               the provider
+     * @param bundle                 the bundle
+     * @param availableVersions      the available versions
+     */
+    public LibraryOperatorDescription(OperatorLibrary containingLibrary, String fullyQualifiedGroupKey, String key,
 			Class<? extends Operator> clazz, ClassLoader classLoader, String iconName, Plugin provider,
 			OperatorDocBundle bundle, List<VersionNumber> availableVersions) {
 		super(fullyQualifiedGroupKey, key, clazz, classLoader, iconName, provider, bundle);
@@ -57,53 +70,68 @@ public abstract class LibraryOperatorDescription extends OperatorDescription {
 		this.operatorVersions.addAll(availableVersions);
 	}
 
-	/**
-	 * Operator for constructing these descriptions from xml that has been generated with the
-	 * {@link #writeXML(Element)} method.
-	 * 
-	 * Please notice that you have to regularly add all defined operator versions using the
-	 * {@link #addVersion(VersionNumber)} method.
-	 */
-	public LibraryOperatorDescription(OperatorLibrary operatorLibrary, Element element, Class<? extends Operator> clazz) {
+    /**
+     * Operator for constructing these descriptions from xml that has been generated with the
+     * {@link #writeXML(Element)} method.
+     * <p>
+     * Please notice that you have to regularly add all defined operator versions using the
+     * {@link #addVersion(VersionNumber)} method.
+     *
+     * @param operatorLibrary the operator library
+     * @param element         the element
+     * @param clazz           the clazz
+     */
+    public LibraryOperatorDescription(OperatorLibrary operatorLibrary, Element element, Class<? extends Operator> clazz) {
 		super(element.getAttribute(ATTRIBUTE_GROUP_KEY), element.getAttribute(ATTRIBUTE_KEY), clazz, clazz.getClassLoader(),
 				element.getAttribute(ATTRIBUTE_ICON), null, operatorLibrary.getDocumentationBundle());
 		this.containingLibrary = operatorLibrary;
 	}
 
-	/**
-	 * This returns a list of all defined version numbers.
-	 */
-	public final List<VersionNumber> getOperatorVersions() {
+    /**
+     * This returns a list of all defined version numbers.
+     *
+     * @return the operator versions
+     */
+    public final List<VersionNumber> getOperatorVersions() {
 		return operatorVersions;
 	}
 
-	/**
-	 * This adds the given version to the existing numbers of versions. This has to be called by
-	 * subclasses in order to publish a new version of an operator! This ensures that the listeners
-	 * of the {@link OperatorLibraryService} will be informed.
-	 */
-	protected final void addVersion(VersionNumber versionNumber) {
+    /**
+     * This adds the given version to the existing numbers of versions. This has to be called by
+     * subclasses in order to publish a new version of an operator! This ensures that the listeners
+     * of the {@link OperatorLibraryService} will be informed.
+     *
+     * @param versionNumber the version number
+     */
+    protected final void addVersion(VersionNumber versionNumber) {
 		operatorVersions.add(versionNumber);
 		OperatorLibraryService.getService().notifiyOperatorChanged(this);
 	}
 
-	/**
-	 * This returns the collection of all Preconditions that exist for the i-th port. It may return
-	 * an empty collection if no preconditions have been specified.
-	 */
-	public abstract Collection<? extends Precondition> getPortPreconditions(int i);
+    /**
+     * This returns the collection of all Preconditions that exist for the i-th port. It may return
+     * an empty collection if no preconditions have been specified.
+     *
+     * @param i the
+     * @return the port preconditions
+     */
+    public abstract Collection<? extends Precondition> getPortPreconditions(int i);
 
-	/**
-	 * This method returns the library this description is contained in.
-	 */
-	public OperatorLibrary getLibrary() {
+    /**
+     * This method returns the library this description is contained in.
+     *
+     * @return the library
+     */
+    public OperatorLibrary getLibrary() {
 		return containingLibrary;
 	}
 
-	/**
-	 * This method saves all settings into the given element.
-	 */
-	public void writeXML(Element operatorElement) {
+    /**
+     * This method saves all settings into the given element.
+     *
+     * @param operatorElement the operator element
+     */
+    public void writeXML(Element operatorElement) {
 		operatorElement.setAttribute(ATTRIBUTE_KEY, getKey());
 		operatorElement.setAttribute(ATTRIBUTE_GROUP_KEY, getGroup());
 		operatorElement.setAttribute(ATTRIBUTE_ICON, getIconName());

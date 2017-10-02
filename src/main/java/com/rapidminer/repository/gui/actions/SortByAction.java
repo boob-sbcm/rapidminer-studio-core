@@ -32,7 +32,6 @@ import com.rapidminer.repository.gui.RepositoryTree;
  *
  * @author Marcel Seifert
  * @since 7.4
- *
  */
 public abstract class SortByAction extends ToggleAction {
 
@@ -42,7 +41,14 @@ public abstract class SortByAction extends ToggleAction {
 
 	private RepositorySortingMethod method;
 
-	public SortByAction(String i18n, RepositoryTree tree, RepositorySortingMethod method) {
+    /**
+     * Instantiates a new Sort by action.
+     *
+     * @param i18n   the 18 n
+     * @param tree   the tree
+     * @param method the method
+     */
+    public SortByAction(String i18n, RepositoryTree tree, RepositorySortingMethod method) {
 		super(true, i18n);
 		this.tree = tree;
 		this.method = method;

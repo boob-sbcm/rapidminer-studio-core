@@ -26,7 +26,7 @@ import com.rapidminer.datatable.SimpleDataTableRow;
 /**
  * The Rainflow Matrix adds another data table view for the residuals of the Rainflow Matrix
  * calculation as well as a new plot tab for the residuals.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RainflowMatrix extends NumericalMatrix {
@@ -35,12 +35,26 @@ public class RainflowMatrix extends NumericalMatrix {
 
 	private String[] residuals;
 
-	public RainflowMatrix(String name, String[] columnNames, Matrix matrix, boolean symmetrical, String[] residuals) {
+    /**
+     * Instantiates a new Rainflow matrix.
+     *
+     * @param name        the name
+     * @param columnNames the column names
+     * @param matrix      the matrix
+     * @param symmetrical the symmetrical
+     * @param residuals   the residuals
+     */
+    public RainflowMatrix(String name, String[] columnNames, Matrix matrix, boolean symmetrical, String[] residuals) {
 		super(name, columnNames, matrix, symmetrical);
 		this.residuals = residuals;
 	}
 
-	public SimpleDataTable createResidualTable() {
+    /**
+     * Create residual table simple data table.
+     *
+     * @return the simple data table
+     */
+    public SimpleDataTable createResidualTable() {
 		SimpleDataTable residualTable = new SimpleDataTable("Rainflow Matrix Residuals", new String[] { "Residual Index",
 				"Residual Class" });
 		for (int i = 0; i < getNumberOfColumns(); i++) {

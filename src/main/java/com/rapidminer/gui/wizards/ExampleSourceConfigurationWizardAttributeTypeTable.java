@@ -37,7 +37,7 @@ import javax.swing.table.TableColumnModel;
 
 /**
  * This table shows only the attribute names and the attribute types (regular or special).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExampleSourceConfigurationWizardAttributeTypeTable extends ExtendedJTable {
@@ -50,7 +50,12 @@ public class ExampleSourceConfigurationWizardAttributeTypeTable extends Extended
 
 		private List<AttributeDataSource> sources;
 
-		public ExampleSourceConfigurationWizardAttributeTypeTableModel(List<AttributeDataSource> sources) {
+        /**
+         * Instantiates a new Example source configuration wizard attribute type table model.
+         *
+         * @param sources the sources
+         */
+        public ExampleSourceConfigurationWizardAttributeTypeTableModel(List<AttributeDataSource> sources) {
 			this.sources = sources;
 		}
 
@@ -81,7 +86,12 @@ public class ExampleSourceConfigurationWizardAttributeTypeTable extends Extended
 		}
 	}
 
-	public ExampleSourceConfigurationWizardAttributeTypeTable(List<AttributeDataSource> sources) {
+    /**
+     * Instantiates a new Example source configuration wizard attribute type table.
+     *
+     * @param sources the sources
+     */
+    public ExampleSourceConfigurationWizardAttributeTypeTable(List<AttributeDataSource> sources) {
 		super(false);
 		setAutoResizeMode(AUTO_RESIZE_OFF);
 		setModel(new ExampleSourceConfigurationWizardAttributeTypeTableModel(sources));
@@ -89,7 +99,10 @@ public class ExampleSourceConfigurationWizardAttributeTypeTable extends Extended
 		update();
 	}
 
-	public void update() {
+    /**
+     * Update.
+     */
+    public void update() {
 		((AbstractTableModel) getModel()).fireTableStructureChanged();
 		TableColumnModel columnModel = getColumnModel();
 		for (int i = 0; i < columnModel.getColumnCount(); i++) {

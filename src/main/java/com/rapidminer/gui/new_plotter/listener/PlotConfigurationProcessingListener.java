@@ -19,12 +19,19 @@
 package com.rapidminer.gui.new_plotter.listener;
 
 /**
+ * The interface Plot configuration processing listener.
+ *
  * @author Nils Woehler
- * 
  */
 public interface PlotConfigurationProcessingListener {
 
-	public void startProcessing();
+    /**
+     * Start processing.
+     */
+    public void startProcessing();
 
-	public void endProcessing();
+    /**
+     * End processing.
+     */
+    public void endProcessing();
 }

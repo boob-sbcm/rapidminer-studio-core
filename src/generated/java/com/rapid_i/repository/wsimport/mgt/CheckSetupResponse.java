@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for checkSetupResponse complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="checkSetupResponse">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "checkSetupResponse", propOrder = {
@@ -49,12 +47,16 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class CheckSetupResponse {
 
+    /**
+     * The Return.
+     */
     @XmlElement(name = "return")
     protected boolean _return;
 
     /**
      * Gets the value of the return property.
-     * 
+     *
+     * @return the boolean
      */
     public boolean isReturn() {
         return _return;
@@ -62,7 +64,8 @@ public class CheckSetupResponse {
 
     /**
      * Sets the value of the return property.
-     * 
+     *
+     * @param value the value
      */
     public void setReturn(boolean value) {
         this._return = value;

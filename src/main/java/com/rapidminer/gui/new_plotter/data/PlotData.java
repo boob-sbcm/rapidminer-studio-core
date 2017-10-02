@@ -51,8 +51,9 @@ import com.rapidminer.gui.new_plotter.utility.ValueRange;
 
 
 /**
+ * The type Plot data.
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class PlotData implements DataTableListener, PlotConfigurationListener {
 
@@ -79,7 +80,13 @@ public class PlotData implements DataTableListener, PlotConfigurationListener {
 
 	private PlotConfigurationChangeEvent lastProcessedEvent = null;
 
-	public PlotData(PlotInstance plotInstance, DataTable dataTable) {
+    /**
+     * Instantiates a new Plot data.
+     *
+     * @param plotInstance the plot instance
+     * @param dataTable    the data table
+     */
+    public PlotData(PlotInstance plotInstance, DataTable dataTable) {
 		if (plotInstance == null) {
 			throw new IllegalArgumentException("null not allowed for plotInstance");
 		}
@@ -171,26 +178,31 @@ public class PlotData implements DataTableListener, PlotConfigurationListener {
 		dataTableIsValid = true;
 	}
 
-	/**
-	 * This method can be very slow. It updates the filtered data table if the current data table is
-	 * not valid. CAUTION: DONT use this method in the event dispatcher thread.
-	 */
-	public SortedDataTableView getDataTable() {
+    /**
+     * This method can be very slow. It updates the filtered data table if the current data table is
+     * not valid. CAUTION: DONT use this method in the event dispatcher thread.
+     *
+     * @return the data table
+     */
+    public SortedDataTableView getDataTable() {
 		if (!dataTableIsValid) {
 			updateFilteredDataTable();
 		}
 		return sortedDataTableView;
 	}
 
-	/**
-	 * Returns the data table. If sampled is true, then a sampled data table is returned, which
-	 * contains at most as many rows as the rapidminer property rapidminer.gui.plotter.rows.maximum
-	 * suggests.
-	 * 
-	 * This method can be very slow. It updates the filtered data table if the current data table is
-	 * not valid. CAUTION: DONT use this method in the event dispatcher thread.
-	 */
-	public DataTable getDataTable(boolean sampled) {
+    /**
+     * Returns the data table. If sampled is true, then a sampled data table is returned, which
+     * contains at most as many rows as the rapidminer property rapidminer.gui.plotter.rows.maximum
+     * suggests.
+     * <p>
+     * This method can be very slow. It updates the filtered data table if the current data table is
+     * not valid. CAUTION: DONT use this method in the event dispatcher thread.
+     *
+     * @param sampled the sampled
+     * @return the data table
+     */
+    public DataTable getDataTable(boolean sampled) {
 		SortedDataTableView currentDataTable = getDataTable();
 		if (!sampled) {
 			return currentDataTable;
@@ -210,25 +222,30 @@ public class PlotData implements DataTableListener, PlotConfigurationListener {
 		}
 	}
 
-	/**
-	 * @return the sorted {@link DataTableView} without checking if it has to be updated. CAUTIO:
-	 *         this may return an invalid datatable! Use only to register as listener or such stuff.
-	 */
-	public SortedDataTableView getSortedDataTableWithoutImplicitUpdate() {
+    /**
+     * Gets sorted data table without implicit update.
+     *
+     * @return the sorted {@link DataTableView} without checking if it has to be updated. CAUTIO:         this may return an invalid datatable! Use only to register as listener or such stuff.
+     */
+    public SortedDataTableView getSortedDataTableWithoutImplicitUpdate() {
 		return sortedDataTableView;
 	}
 
-	/**
-	 * @return the valueMappingDataTable
-	 */
-	public ValueMappingDataTableView getValueMappingDataTable() {
+    /**
+     * Gets value mapping data table.
+     *
+     * @return the valueMappingDataTable
+     */
+    public ValueMappingDataTableView getValueMappingDataTable() {
 		return valueMappingDataTable;
 	}
 
-	/**
-	 * @return the originalDataTable
-	 */
-	public DataTable getOriginalDataTable() {
+    /**
+     * Gets original data table.
+     *
+     * @return the originalDataTable
+     */
+    public DataTable getOriginalDataTable() {
 		return originalDataTable;
 	}
 
@@ -261,7 +278,13 @@ public class PlotData implements DataTableListener, PlotConfigurationListener {
 		}
 	}
 
-	public DimensionConfigData getDimensionConfigData(DefaultDimensionConfig dimensionConfig) {
+    /**
+     * Gets dimension config data.
+     *
+     * @param dimensionConfig the dimension config
+     * @return the dimension config data
+     */
+    public DimensionConfigData getDimensionConfigData(DefaultDimensionConfig dimensionConfig) {
 		if (dimensionConfig != null) {
 			int id = dimensionConfig.getId();
 			return dimensionConfigDataMap.get(id);
@@ -269,7 +292,13 @@ public class PlotData implements DataTableListener, PlotConfigurationListener {
 		return null;
 	}
 
-	public ValueSourceData getValueSourceData(ValueSource valueSource) {
+    /**
+     * Gets value source data.
+     *
+     * @param valueSource the value source
+     * @return the value source data
+     */
+    public ValueSourceData getValueSourceData(ValueSource valueSource) {
 		if (valueSource != null) {
 			int id = valueSource.getId();
 			return valueSourceDataMap.get(id);
@@ -277,7 +306,13 @@ public class PlotData implements DataTableListener, PlotConfigurationListener {
 		return null;
 	}
 
-	public RangeAxisData getRangeAxisData(RangeAxisConfig rangeAxisConfig) {
+    /**
+     * Gets range axis data.
+     *
+     * @param rangeAxisConfig the range axis config
+     * @return the range axis data
+     */
+    public RangeAxisData getRangeAxisData(RangeAxisConfig rangeAxisConfig) {
 		if (rangeAxisConfig != null) {
 			int id = rangeAxisConfig.getId();
 			return rangeAxisDataMap.get(id);
@@ -285,7 +320,12 @@ public class PlotData implements DataTableListener, PlotConfigurationListener {
 		return null;
 	}
 
-	public DomainConfigManagerData getDomainConfigManagerData() {
+    /**
+     * Gets domain config manager data.
+     *
+     * @return the domain config manager data
+     */
+    public DomainConfigManagerData getDomainConfigManagerData() {
 		return domainConfigManagerData;
 	}
 
@@ -522,7 +562,12 @@ public class PlotData implements DataTableListener, PlotConfigurationListener {
 		}
 	}
 
-	public List<PlotConfigurationError> getErrors() {
+    /**
+     * Gets errors.
+     *
+     * @return the errors
+     */
+    public List<PlotConfigurationError> getErrors() {
 		List<PlotConfigurationError> errors = new LinkedList<PlotConfigurationError>();
 
 		for (ValueSourceData valueSourceData : getValueSourcesData()) {
@@ -564,7 +609,12 @@ public class PlotData implements DataTableListener, PlotConfigurationListener {
 		return errors;
 	}
 
-	public List<PlotConfigurationError> getWarnings() {
+    /**
+     * Gets warnings.
+     *
+     * @return the warnings
+     */
+    public List<PlotConfigurationError> getWarnings() {
 		List<PlotConfigurationError> warnings = new LinkedList<PlotConfigurationError>();
 		for (ValueSourceData valueSourceData : getValueSourcesData()) {
 			warnings.addAll(valueSourceData.getErrors());
@@ -596,14 +646,21 @@ public class PlotData implements DataTableListener, PlotConfigurationListener {
 		return valueSourceDataMap.values();
 	}
 
-	public boolean isValid() {
+    /**
+     * Is valid boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isValid() {
 		return getErrors().isEmpty();
 	}
 
-	/**
-	 * @return
-	 */
-	public boolean isDataTableValid() {
+    /**
+     * Is data table valid boolean.
+     *
+     * @return boolean boolean
+     */
+    public boolean isDataTableValid() {
 		return dataTableIsValid;
 	}
 }

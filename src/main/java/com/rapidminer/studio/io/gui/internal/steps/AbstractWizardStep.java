@@ -52,10 +52,10 @@ public abstract class AbstractWizardStep implements WizardStep {
 		this.changeListeners.remove(listener);
 	}
 
-	/**
-	 * Fires a {@link ChangeEvent} that informs the listeners of a changed state.
-	 */
-	protected void fireStateChanged() {
+    /**
+     * Fires a {@link ChangeEvent} that informs the listeners of a changed state.
+     */
+    protected void fireStateChanged() {
 		ChangeEvent event = new ChangeEvent(this);
 		for (ChangeListener listener : changeListeners) {
 			try {

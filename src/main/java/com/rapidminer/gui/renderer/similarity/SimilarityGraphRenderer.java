@@ -27,7 +27,7 @@ import com.rapidminer.operator.similarity.SimilarityMeasureObject;
 
 /**
  * A renderer for the graph view of a similarity measure.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimilarityGraphRenderer extends AbstractGraphRenderer {

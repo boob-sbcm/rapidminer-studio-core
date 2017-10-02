@@ -20,12 +20,20 @@ package com.rapidminer.gui.attributeeditor;
 
 /**
  * Can be used to listen for changes of the view area induced by a data control object.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public interface DataControlListener {
 
-	/** The listener should change the viewport in this method. */
-	public void update(int firstRow, int lastRow, int firstColumn, int lastColumn, int fractionDigits);
+    /**
+     * The listener should change the viewport in this method.  @param firstRow the first row
+     *
+     * @param firstRow       the first row
+     * @param lastRow        the last row
+     * @param firstColumn    the first column
+     * @param lastColumn     the last column
+     * @param fractionDigits the fraction digits
+     */
+    public void update(int firstRow, int lastRow, int firstColumn, int lastColumn, int fractionDigits);
 
 }

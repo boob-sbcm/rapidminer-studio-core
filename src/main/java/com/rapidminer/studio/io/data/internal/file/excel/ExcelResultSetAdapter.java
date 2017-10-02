@@ -77,21 +77,15 @@ class ExcelResultSetAdapter extends ResultSetAdapter {
 
 	};
 
-	/**
-	 * Creates a new {@link ExcelResultSetAdapter} instance.
-	 *
-	 * @param excelResultSet
-	 *            the wrapped {@link DataResultSet}
-	 * @param startRow
-	 *            the actual data start row index (without the header row)
-	 * @param maxEndRow
-	 *            the end row or {@link ResultSetAdapter#NO_END_ROW} if the whole Excel file should
-	 *            be read
-	 * @throws DataSetException
-	 *             in case the creation of the {@link ExcelResultSetAdapter} failed because of file
-	 *             reading errors or alike
-	 */
-	public ExcelResultSetAdapter(DataResultSet excelResultSet, int startRow, int maxEndRow) throws DataSetException {
+    /**
+     * Creates a new {@link ExcelResultSetAdapter} instance.
+     *
+     * @param excelResultSet the wrapped {@link DataResultSet}
+     * @param startRow       the actual data start row index (without the header row)
+     * @param maxEndRow      the end row or {@link ResultSetAdapter#NO_END_ROW} if the whole Excel file should            be read
+     * @throws DataSetException in case the creation of the {@link ExcelResultSetAdapter} failed because of file             reading errors or alike
+     */
+    public ExcelResultSetAdapter(DataResultSet excelResultSet, int startRow, int maxEndRow) throws DataSetException {
 		super(excelResultSet, startRow, maxEndRow);
 	}
 

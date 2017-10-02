@@ -75,23 +75,45 @@ public class SOMModelPlotter extends SOMPlotter {
 
 	private int lastPlotterComponentIndex;
 
-	public SOMModelPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Som model plotter.
+     *
+     * @param settings the settings
+     */
+    public SOMModelPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 	}
 
-	public SOMModelPlotter(PlotterConfigurationModel settings, ExampleSet exampleSet, Model model) {
+    /**
+     * Instantiates a new Som model plotter.
+     *
+     * @param settings   the settings
+     * @param exampleSet the example set
+     * @param model      the model
+     */
+    public SOMModelPlotter(PlotterConfigurationModel settings, ExampleSet exampleSet, Model model) {
 		super(settings);
 		this.model = model;
 		this.exampleSet = exampleSet;
 		this.colorizer = new SOMClassColorizer(exampleSet.getAttributes().getLabel().getMapping().size());
 	}
 
-	public void setExampleSet(ExampleSet exampleSet) {
+    /**
+     * Sets example set.
+     *
+     * @param exampleSet the example set
+     */
+    public void setExampleSet(ExampleSet exampleSet) {
 		this.exampleSet = exampleSet;
 		this.colorizer = new SOMClassColorizer(exampleSet.getAttributes().getLabel().getMapping().size());
 	}
 
-	public void setModel(Model model) {
+    /**
+     * Sets model.
+     *
+     * @param model the model
+     */
+    public void setModel(Model model) {
 		this.model = model;
 	}
 
@@ -201,7 +223,12 @@ public class SOMModelPlotter extends SOMPlotter {
 		return null;
 	}
 
-	public void setAlphaLevel(double alphaLevel) {
+    /**
+     * Sets alpha level.
+     *
+     * @param alphaLevel the alpha level
+     */
+    public void setAlphaLevel(double alphaLevel) {
 		this.alphaLevel = (float) alphaLevel;
 		if (show) {
 			this.repaint();

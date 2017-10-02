@@ -27,7 +27,7 @@ import java.util.Random;
  * Like RouletteWheel this population operator selects a given fixed number of individuals by
  * subdividing a roulette wheel in sections of size proportional to the individuals' fitness values.
  * The fitness values are filtered according to the Boltzmann theorem.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class BoltzmannSelection extends RouletteWheel {
@@ -36,7 +36,17 @@ public class BoltzmannSelection extends RouletteWheel {
 
 	private double delta = 0.0d;
 
-	public BoltzmannSelection(int popSize, double temperature, int maxGenerations, boolean dynamic, boolean keepBest,
+    /**
+     * Instantiates a new Boltzmann selection.
+     *
+     * @param popSize        the pop size
+     * @param temperature    the temperature
+     * @param maxGenerations the max generations
+     * @param dynamic        the dynamic
+     * @param keepBest       the keep best
+     * @param random         the random
+     */
+    public BoltzmannSelection(int popSize, double temperature, int maxGenerations, boolean dynamic, boolean keepBest,
 			Random random) {
 		super(popSize, keepBest, random);
 		this.temperature = temperature;

@@ -30,14 +30,19 @@ import com.rapidminer.operator.ports.metadata.MetaData;
 
 /**
  * The default implementation of an {@link InputPort}
- * 
+ *
  * @author Simon Fischer, Sebastian Land
- * 
  */
 public class InputPortImpl extends AbstractInputPort {
 
-	/** Use the factory method {@link InputPorts#createPort()} to create InputPorts. */
-	protected InputPortImpl(Ports<? extends Port> owner, String name, boolean simulatesStack) {
+    /**
+     * Use the factory method {@link InputPorts#createPort()} to create InputPorts.  @param owner the owner
+     *
+     * @param owner          the owner
+     * @param name           the name
+     * @param simulatesStack the simulates stack
+     */
+    protected InputPortImpl(Ports<? extends Port> owner, String name, boolean simulatesStack) {
 		super(owner, name, simulatesStack);
 	}
 

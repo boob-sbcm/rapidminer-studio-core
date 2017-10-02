@@ -36,7 +36,7 @@ import com.rapidminer.operator.ports.ProcessingStep;
  * This class holds informations about plotter settings in the processing history since the
  * RapidMiner startup. They might be used for pre-initilizing the plotter with settings from the
  * past processing history.
- *
+ * <p>
  * Please note that this class must NOT store all information in
  *
  * @author Sebastian Land
@@ -45,7 +45,15 @@ public final class PlotterSettingsHistory {
 
 	private static final HashMap<ProcessingStep, PlotterConfigurationSettings> settingsHistory = new HashMap<>();
 
-	@SuppressWarnings("unchecked")
+    /**
+     * Gets plotter settings from history.
+     *
+     * @param object            the object
+     * @param dataTable         the data table
+     * @param plotterSelections the plotter selections
+     * @return the plotter settings from history
+     */
+    @SuppressWarnings("unchecked")
 	public static PlotterConfigurationModel getPlotterSettingsFromHistory(IOObject object, DataTable dataTable,
 			LinkedHashMap<String, Class<? extends Plotter>> plotterSelections) {
 		List<ProcessingStep> steps = object.getProcessingHistory();

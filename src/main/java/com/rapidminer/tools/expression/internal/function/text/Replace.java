@@ -27,14 +27,13 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryString
  * A {@link Function} which replaces all parts of a nominal value which match a specific string.
  *
  * @author Thilo Kamradt
- *
  */
 public class Replace extends AbstractArbitraryStringInputStringOutputFunction {
 
-	/**
-	 * Creates a function that replaces all parts of a nominal value which match a specific string
-	 */
-	public Replace() {
+    /**
+     * Creates a function that replaces all parts of a nominal value which match a specific string
+     */
+    public Replace() {
 		super("text_transformation.replace", 3);
 	}
 

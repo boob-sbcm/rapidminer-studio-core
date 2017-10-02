@@ -29,49 +29,48 @@ import com.rapidminer.tools.config.Configurable;
  * {@link Configurable} instance, so two {@link Configurable}s of the same
  * {@link AbstractConfigurator Configurator} type can have different actions.
  * </p>
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface ConfigurableAction {
 
-	/**
-	 * Returns <code>true</code> if this action makes use of GUI components, e.g. Swing dialogs,
-	 * etc. If not, returns <code>false</code>.
-	 * 
-	 * @return
-	 */
-	public boolean hasUI();
+    /**
+     * Returns <code>true</code> if this action makes use of GUI components, e.g. Swing dialogs,
+     * etc. If not, returns <code>false</code>.
+     *
+     * @return boolean boolean
+     */
+    public boolean hasUI();
 
-	/**
-	 * Executed when the action is performed. The {@link ActionResult} indicates
-	 * success/failure/neither and an optional message which can be diplayed to the user.
-	 * 
-	 * This method is called in a separate thread.
-	 * 
-	 * @return
-	 */
-	public ActionResult doWork();
+    /**
+     * Executed when the action is performed. The {@link ActionResult} indicates
+     * success/failure/neither and an optional message which can be diplayed to the user.
+     * <p>
+     * This method is called in a separate thread.
+     *
+     * @return action result
+     */
+    public ActionResult doWork();
 
-	/**
-	 * Returns the name of the action which is displayed to the user.
-	 * 
-	 * @return
-	 */
-	public String getName();
+    /**
+     * Returns the name of the action which is displayed to the user.
+     *
+     * @return name name
+     */
+    public String getName();
 
-	/**
-	 * Returns the tooltip of the action which is displayed to the user.
-	 * 
-	 * @return
-	 */
-	public String getTooltip();
+    /**
+     * Returns the tooltip of the action which is displayed to the user.
+     *
+     * @return tooltip tooltip
+     */
+    public String getTooltip();
 
-	/**
-	 * Returns the name of the icon for this action. If this is <code>null</code>, no icon will be
-	 * shown.
-	 * 
-	 * @return
-	 */
-	public String getIconName();
+    /**
+     * Returns the name of the icon for this action. If this is <code>null</code>, no icon will be
+     * shown.
+     *
+     * @return icon name
+     */
+    public String getIconName();
 }

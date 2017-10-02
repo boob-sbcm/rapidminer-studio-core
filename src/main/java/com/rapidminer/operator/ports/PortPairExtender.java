@@ -38,10 +38,9 @@ import com.rapidminer.tools.Observer;
  * {@link com.rapidminer.operator.ports.metadata.ManyToManyPassThroughRule}. It guarantees that
  * there is always exactly one pair of in and output pairs which is not connected.
  *
+ * @author Simon Fischer
  * @see PortPairExtender
  * @see MultiPortPairExtender
- *
- * @author Simon Fischer
  */
 public class PortPairExtender implements PortExtender {
 
@@ -67,8 +66,10 @@ public class PortPairExtender implements PortExtender {
 
 	private int minNumber = 0;
 
-	/** A pair of ports managed by a PortPairExtender. */
-	public static class PortPair {
+    /**
+     * A pair of ports managed by a PortPairExtender.
+     */
+    public static class PortPair {
 
 		private final InputPort inputPort;
 		private final OutputPort outputPort;
@@ -78,32 +79,45 @@ public class PortPairExtender implements PortExtender {
 			this.outputPort = outputPort;
 		}
 
-		public InputPort getInputPort() {
+        /**
+         * Gets input port.
+         *
+         * @return the input port
+         */
+        public InputPort getInputPort() {
 			return inputPort;
 		}
 
-		public OutputPort getOutputPort() {
+        /**
+         * Gets output port.
+         *
+         * @return the output port
+         */
+        public OutputPort getOutputPort() {
 			return outputPort;
 		}
 	}
 
-	public PortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts) {
+    /**
+     * Instantiates a new Port pair extender.
+     *
+     * @param name     the name
+     * @param inPorts  the in ports
+     * @param outPorts the out ports
+     */
+    public PortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts) {
 		this(name, inPorts, outPorts, null);
 	}
 
-	/**
-	 * Creates a new port pair extender
-	 *
-	 * @param name
-	 *            The name prefix for all generated ports.
-	 * @param inPorts
-	 *            Add generated input ports to these InputPorts
-	 * @param outPorts
-	 *            Add generated output ports to these OutputPorts
-	 * @param preconditionMetaData
-	 *            If non-null, create a SimplePrecondition for each newly generated input port.
-	 */
-	public PortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts, MetaData preconditionMetaData) {
+    /**
+     * Creates a new port pair extender
+     *
+     * @param name                 The name prefix for all generated ports.
+     * @param inPorts              Add generated input ports to these InputPorts
+     * @param outPorts             Add generated output ports to these OutputPorts
+     * @param preconditionMetaData If non-null, create a SimplePrecondition for each newly generated input port.
+     */
+    public PortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts, MetaData preconditionMetaData) {
 		this.name = name;
 		this.inPorts = inPorts;
 		this.outPorts = outPorts;
@@ -151,8 +165,10 @@ public class PortPairExtender implements PortExtender {
 		}
 	}
 
-	/** Creates an initial port and starts to listen. */
-	public void start() {
+    /**
+     * Creates an initial port and starts to listen.
+     */
+    public void start() {
 		managedPairs.add(createPort());
 		fixNames();
 		inPorts.addObserver(observer, false);
@@ -192,11 +208,13 @@ public class PortPairExtender implements PortExtender {
 		}
 	}
 
-	/**
-	 * The generated rule copies all meta data from the generated input ports to all generated
-	 * output ports.
-	 */
-	public MDTransformationRule makePassThroughRule() {
+    /**
+     * The generated rule copies all meta data from the generated input ports to all generated
+     * output ports.
+     *
+     * @return the md transformation rule
+     */
+    public MDTransformationRule makePassThroughRule() {
 		return new MDTransformationRule() {
 
 			@Override
@@ -215,20 +233,30 @@ public class PortPairExtender implements PortExtender {
 		};
 	}
 
-	protected MetaData transformMetaData(MetaData md) {
+    /**
+     * Transform meta data meta data.
+     *
+     * @param md the md
+     * @return the meta data
+     */
+    protected MetaData transformMetaData(MetaData md) {
 		return md;
 	}
 
-	/** Passes the actual data from the output ports to their connected input ports. */
-	public void passDataThrough() {
+    /**
+     * Passes the actual data from the output ports to their connected input ports.
+     */
+    public void passDataThrough() {
 		for (PortPair pair : managedPairs) {
 			IOObject data = pair.inputPort.getAnyDataOrNull();
 			pair.outputPort.deliver(data);
 		}
 	}
 
-	/** Does the same as {@link #passDataThrough()} but copies the IOObjects. */
-	public void passCloneThrough() {
+    /**
+     * Does the same as {@link #passDataThrough()} but copies the IOObjects.
+     */
+    public void passCloneThrough() {
 		for (PortPair pair : managedPairs) {
 			IOObject data = pair.inputPort.getAnyDataOrNull();
 			if (data != null) {
@@ -239,19 +267,25 @@ public class PortPairExtender implements PortExtender {
 		}
 	}
 
-	/** Returns an unmodifiable view of all port pairs managed by this port extender. */
-	public List<PortPair> getManagedPairs() {
+    /**
+     * Returns an unmodifiable view of all port pairs managed by this port extender.  @return the managed pairs
+     *
+     * @return the managed pairs
+     */
+    public List<PortPair> getManagedPairs() {
 		return Collections.unmodifiableList(managedPairs);
 	}
 
-	/**
-	 * Returns a list of all non-null data delivered to the input ports created by this port
-	 * extender.
-	 *
-	 * @throws UserError
-	 * @deprecated use {@link #getData(Class))}
-	 */
-	@Deprecated
+    /**
+     * Returns a list of all non-null data delivered to the input ports created by this port
+     * extender.
+     *
+     * @param <T> the type parameter
+     * @return the data
+     * @throws UserError the user error
+     * @deprecated use {@link #getData(Class))}
+     */
+    @Deprecated
 	public <T extends IOObject> List<T> getData() throws UserError {
 		List<T> results = new LinkedList<T>();
 		for (PortPair pair : managedPairs) {
@@ -263,7 +297,15 @@ public class PortPairExtender implements PortExtender {
 		return results;
 	}
 
-	public <T extends IOObject> List<T> getData(Class<T> desiredClass) throws UserError {
+    /**
+     * Gets data.
+     *
+     * @param <T>          the type parameter
+     * @param desiredClass the desired class
+     * @return the data
+     * @throws UserError the user error
+     */
+    public <T extends IOObject> List<T> getData(Class<T> desiredClass) throws UserError {
 		List<T> results = new LinkedList<T>();
 		for (PortPair pair : managedPairs) {
 			T data = pair.inputPort.<T> getDataOrNull(desiredClass);
@@ -274,14 +316,16 @@ public class PortPairExtender implements PortExtender {
 		return results;
 	}
 
-	/**
-	 * Returns a list of all non-null data delivered to the input ports created by this port
-	 * extender.
-	 *
-	 * @throws UserError
-	 * @deprecated use {@link #getOutputData(Class)}
-	 */
-	@Deprecated
+    /**
+     * Returns a list of all non-null data delivered to the input ports created by this port
+     * extender.
+     *
+     * @param <T> the type parameter
+     * @return the output data
+     * @throws UserError the user error
+     * @deprecated use {@link #getOutputData(Class)}
+     */
+    @Deprecated
 	public <T extends IOObject> List<T> getOutputData() throws UserError {
 		List<T> results = new LinkedList<T>();
 		for (PortPair pair : managedPairs) {
@@ -293,7 +337,15 @@ public class PortPairExtender implements PortExtender {
 		return results;
 	}
 
-	public <T extends IOObject> List<T> getOutputData(Class<T> desiredClass) throws UserError {
+    /**
+     * Gets output data.
+     *
+     * @param <T>          the type parameter
+     * @param desiredClass the desired class
+     * @return the output data
+     * @throws UserError the user error
+     */
+    public <T extends IOObject> List<T> getOutputData(Class<T> desiredClass) throws UserError {
 		List<T> results = new LinkedList<T>();
 		for (PortPair pair : managedPairs) {
 			T data = pair.outputPort.<T> getDataOrNull(desiredClass);
@@ -304,13 +356,15 @@ public class PortPairExtender implements PortExtender {
 		return results;
 	}
 
-	/**
-	 * This method is a convenient method for delivering several IOObjects. But keep in mind that
-	 * you cannot deliver more IObjects than you received first hand. First objects in list will be
-	 * delivered on the first port. If input ports are not connected or got not delivered an objects
-	 * unequal null, the corresponding output port is skipped.
-	 */
-	public void deliver(List<? extends IOObject> ioObjectList) {
+    /**
+     * This method is a convenient method for delivering several IOObjects. But keep in mind that
+     * you cannot deliver more IObjects than you received first hand. First objects in list will be
+     * delivered on the first port. If input ports are not connected or got not delivered an objects
+     * unequal null, the corresponding output port is skipped.
+     *
+     * @param ioObjectList the io object list
+     */
+    public void deliver(List<? extends IOObject> ioObjectList) {
 		Iterator<PortPair> portIterator = getManagedPairs().iterator();
 		for (IOObject object : ioObjectList) {
 			PortPair pair = portIterator.next();

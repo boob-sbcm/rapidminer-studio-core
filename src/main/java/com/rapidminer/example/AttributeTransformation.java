@@ -23,17 +23,36 @@ import java.io.Serializable;
 
 /**
  * This interface is used to define on-the-fly transformations in data views.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface AttributeTransformation extends Serializable, Cloneable {
 
 	public Object clone();
 
-	public double transform(Attribute attribute, double value);
+    /**
+     * Transform double.
+     *
+     * @param attribute the attribute
+     * @param value     the value
+     * @return the double
+     */
+    public double transform(Attribute attribute, double value);
 
-	public double inverseTransform(Attribute attribute, double value);
+    /**
+     * Inverse transform double.
+     *
+     * @param attribute the attribute
+     * @param value     the value
+     * @return the double
+     */
+    public double inverseTransform(Attribute attribute, double value);
 
-	public boolean isReversable();
+    /**
+     * Is reversable boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isReversable();
 
 }

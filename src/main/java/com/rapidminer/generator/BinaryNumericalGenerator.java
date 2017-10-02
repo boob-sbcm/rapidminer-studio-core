@@ -34,7 +34,7 @@ import java.util.logging.Level;
 
 /**
  * Objects of this generator class have two numerical input attributes and one output attribute.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class BinaryNumericalGenerator extends FeatureGenerator {
@@ -42,13 +42,28 @@ public abstract class BinaryNumericalGenerator extends FeatureGenerator {
 	private static final Attribute[] INPUT_ATTR = { AttributeFactory.createAttribute(Ontology.NUMERICAL),
 			AttributeFactory.createAttribute(Ontology.NUMERICAL) };
 
-	public abstract double calculateValue(double value1, double value2);
+    /**
+     * Calculate value double.
+     *
+     * @param value1 the value 1
+     * @param value2 the value 2
+     * @return the double
+     */
+    public abstract double calculateValue(double value1, double value2);
 
-	/** Must return true if this generator is commutative. */
-	public abstract boolean isCommutative();
+    /**
+     * Must return true if this generator is commutative.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public abstract boolean isCommutative();
 
-	/** Must return true if this generator is self applicable. */
-	public abstract boolean isSelfApplicable();
+    /**
+     * Must return true if this generator is self applicable.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public abstract boolean isSelfApplicable();
 
 	@Override
 	public Attribute[] getInputAttributes() {

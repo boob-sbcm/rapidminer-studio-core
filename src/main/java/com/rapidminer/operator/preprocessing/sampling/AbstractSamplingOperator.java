@@ -29,12 +29,17 @@ import com.rapidminer.parameter.UndefinedParameterError;
 /**
  * Abstract superclass of operators leaving the attribute set and data unchanged but reducing the
  * number of examples.
- * 
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractSamplingOperator extends AbstractDataProcessing {
 
-	public AbstractSamplingOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract sampling operator.
+     *
+     * @param description the description
+     */
+    public AbstractSamplingOperator(OperatorDescription description) {
 		super(description);
 	}
 
@@ -48,10 +53,14 @@ public abstract class AbstractSamplingOperator extends AbstractDataProcessing {
 		return metaData;
 	}
 
-	/**
-	 * subclasses must implement this method for exact size meta data.
-	 */
-	protected abstract MDInteger getSampledSize(ExampleSetMetaData emd) throws UndefinedParameterError;
+    /**
+     * subclasses must implement this method for exact size meta data.
+     *
+     * @param emd the emd
+     * @return the sampled size
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    protected abstract MDInteger getSampledSize(ExampleSetMetaData emd) throws UndefinedParameterError;
 
 	@Override
 	public boolean writesIntoExistingData() {

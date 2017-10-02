@@ -23,7 +23,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Polynomial Kernel
- * 
+ *
  * @author Stefan Rueping, Ingo Mierswa
  */
 public class KernelPolynomial extends Kernel {
@@ -32,10 +32,10 @@ public class KernelPolynomial extends Kernel {
 
 	private double degree = 2;
 
-	/**
-	 * Class constructor
-	 */
-	public KernelPolynomial() {};
+    /**
+     * Class constructor
+     */
+    public KernelPolynomial() {};
 
 	/**
 	 * Output as String
@@ -45,7 +45,12 @@ public class KernelPolynomial extends Kernel {
 		return ("poly(" + degree + ")");
 	}
 
-	public void setDegree(double degree) {
+    /**
+     * Sets degree.
+     *
+     * @param degree the degree
+     */
+    public void setDegree(double degree) {
 		this.degree = degree;
 	}
 
@@ -93,7 +98,12 @@ public class KernelPolynomial extends Kernel {
 		return result.toString();
 	}
 
-	public double getDegree() {
+    /**
+     * Gets degree.
+     *
+     * @return the degree
+     */
+    public double getDegree() {
 		return degree;
 	}
 }

@@ -33,7 +33,6 @@ import com.rapidminer.gui.viewer.metadata.model.NominalAttributeStatisticsModel;
  * This action is only to be used by the {@link AttributePopupMenu}.
  *
  * @author Marco Boeck
- *
  */
 public class ShowNomValueAction extends ResourceAction {
 
@@ -41,14 +40,14 @@ public class ShowNomValueAction extends ResourceAction {
 
 	private AttributeStatisticsPanel asp;
 
-	/**
-	 * Creates a new {@link ShowNomValueAction} instance. If this action is used for the static
-	 * {@link AttributePopupMenu}s of the {@link AttributeStatisticsPanel}, the param can be set to
-	 * <code>null</code>.
-	 *
-	 * @param asp
-	 */
-	public ShowNomValueAction(AttributeStatisticsPanel asp) {
+    /**
+     * Creates a new {@link ShowNomValueAction} instance. If this action is used for the static
+     * {@link AttributePopupMenu}s of the {@link AttributeStatisticsPanel}, the param can be set to
+     * <code>null</code>.
+     *
+     * @param asp the asp
+     */
+    public ShowNomValueAction(AttributeStatisticsPanel asp) {
 		super(true, "meta_data_stats.show_nominal_values");
 		this.asp = asp;
 	}

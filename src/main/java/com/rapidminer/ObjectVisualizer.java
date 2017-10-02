@@ -25,21 +25,56 @@ package com.rapidminer;
  * constructed in the contstructor but in the method {@link #startVisualization(Object)} in order to
  * ensure that the visualizer can be constructed also in environments where graphical user
  * interfaces are not allowed.
- * 
+ *
  * @author Michael Wurst, Ingo Mierswa
  */
 public interface ObjectVisualizer {
 
-	public void startVisualization(Object objId);
+    /**
+     * Start visualization.
+     *
+     * @param objId the obj id
+     */
+    public void startVisualization(Object objId);
 
-	public void stopVisualization(Object objId);
+    /**
+     * Stop visualization.
+     *
+     * @param objId the obj id
+     */
+    public void stopVisualization(Object objId);
 
-	public String getTitle(Object objId);
+    /**
+     * Gets title.
+     *
+     * @param objId the obj id
+     * @return the title
+     */
+    public String getTitle(Object objId);
 
-	public boolean isCapableToVisualize(Object objId);
+    /**
+     * Is capable to visualize boolean.
+     *
+     * @param objId the obj id
+     * @return the boolean
+     */
+    public boolean isCapableToVisualize(Object objId);
 
-	public String getDetailData(Object objId, String fieldName);
+    /**
+     * Gets detail data.
+     *
+     * @param objId     the obj id
+     * @param fieldName the field name
+     * @return the detail data
+     */
+    public String getDetailData(Object objId, String fieldName);
 
-	public String[] getFieldNames(Object objId);
+    /**
+     * Get field names string [ ].
+     *
+     * @param objId the obj id
+     * @return the string [ ]
+     */
+    public String[] getFieldNames(Object objId);
 
 }

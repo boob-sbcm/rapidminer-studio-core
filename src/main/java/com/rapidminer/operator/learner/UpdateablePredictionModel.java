@@ -36,11 +36,23 @@ public abstract class UpdateablePredictionModel extends PredictionModel {
 
 	private static final long serialVersionUID = -4204522134594981103L;
 
-	protected UpdateablePredictionModel(ExampleSet trainingExampleSet) {
+    /**
+     * Instantiates a new Updateable prediction model.
+     *
+     * @param trainingExampleSet the training example set
+     */
+    protected UpdateablePredictionModel(ExampleSet trainingExampleSet) {
 		super(trainingExampleSet, null, null);
 	}
 
-	protected UpdateablePredictionModel(ExampleSet trainingExampleSet, SetsCompareOption setsCompareOption,
+    /**
+     * Instantiates a new Updateable prediction model.
+     *
+     * @param trainingExampleSet the training example set
+     * @param setsCompareOption  the sets compare option
+     * @param typesCompareOption the types compare option
+     */
+    protected UpdateablePredictionModel(ExampleSet trainingExampleSet, SetsCompareOption setsCompareOption,
 			TypesCompareOption typesCompareOption) {
 		super(trainingExampleSet, setsCompareOption, typesCompareOption);
 	}
@@ -65,5 +77,11 @@ public abstract class UpdateablePredictionModel extends PredictionModel {
 		update(mappedExampleSet);
 	}
 
-	public abstract void update(ExampleSet updateExampleSet) throws OperatorException;
+    /**
+     * Update.
+     *
+     * @param updateExampleSet the update example set
+     * @throws OperatorException the operator exception
+     */
+    public abstract void update(ExampleSet updateExampleSet) throws OperatorException;
 }

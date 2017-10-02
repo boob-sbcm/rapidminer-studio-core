@@ -45,10 +45,8 @@ import com.rapidminer.gui.new_plotter.utility.ValueRange;
 
 /**
  * A source for numerical values.
- * 
- * 
+ *
  * @author Marius Helf, Nils Woehler
- * 
  */
 public class DefaultDimensionConfig extends AbstractDimensionConfig implements ValueGroupingListener, ValueRangeListener {
 
@@ -67,7 +65,14 @@ public class DefaultDimensionConfig extends AbstractDimensionConfig implements V
 
 	private final int Id;
 
-	public DefaultDimensionConfig(PlotConfiguration plotConfiguration, DataTableColumn dataTableColumn,
+    /**
+     * Instantiates a new Default dimension config.
+     *
+     * @param plotConfiguration the plot configuration
+     * @param dataTableColumn   the data table column
+     * @param dimension         the dimension
+     */
+    public DefaultDimensionConfig(PlotConfiguration plotConfiguration, DataTableColumn dataTableColumn,
 			PlotDimension dimension) {
 		this(dataTableColumn, dimension, plotConfiguration.getNextId());
 	}

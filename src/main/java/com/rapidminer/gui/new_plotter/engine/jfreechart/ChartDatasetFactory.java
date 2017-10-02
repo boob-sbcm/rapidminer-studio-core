@@ -58,9 +58,8 @@ import org.jfree.data.xy.XYSeriesCollection;
 /**
  * Helper class for converting data delivered by {@link ValueSource}s into datasets usable by
  * JFreeChart.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class ChartDatasetFactory {
 
@@ -69,20 +68,18 @@ public class ChartDatasetFactory {
 	 */
 	private ChartDatasetFactory() {}
 
-	/**
-	 * @param valueSource
-	 * @param plotInstance
-	 * @param autoWidthFraction
-	 *            If this value is greater than 0, an auto width for the intervals is calculated
-	 *            such that the intervals nearest to each other touch. This value is then multiplied
-	 *            with the value of autoWidthFtraction. If unset, the intervals have width 0.
-	 * @param allowDuplicates
-	 * @param sortByDomain
-	 *            if true, the data is sorted by domain values (useful for bar and area charts)
-	 * @return
-	 * @throws ChartPlottimeException
-	 */
-	public static XYSeriesCollection createXYSeriesCollection(ValueSource valueSource, PlotInstance plotInstance,
+    /**
+     * Create xy series collection xy series collection.
+     *
+     * @param valueSource       the value source
+     * @param plotInstance      the plot instance
+     * @param autoWidthFraction If this value is greater than 0, an auto width for the intervals is calculated            such that the intervals nearest to each other touch. This value is then multiplied            with the value of autoWidthFtraction. If unset, the intervals have width 0.
+     * @param allowDuplicates   the allow duplicates
+     * @param sortByDomain      if true, the data is sorted by domain values (useful for bar and area charts)
+     * @return xy series collection
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static XYSeriesCollection createXYSeriesCollection(ValueSource valueSource, PlotInstance plotInstance,
 			double autoWidthFraction, boolean allowDuplicates, boolean sortByDomain) throws ChartPlottimeException {
 		XYSeriesCollection xyDataset = new XYSeriesCollection();
 		if (autoWidthFraction > 0) {
@@ -133,14 +130,18 @@ public class ChartDatasetFactory {
 		return xyDataset;
 	}
 
-	/**
-	 * Creates a dataset which supports custom intervals on both axes.
-	 * 
-	 * Expects a grouping on the domain axis.
-	 * 
-	 * @throws ChartPlottimeException
-	 */
-	public static DefaultIntervalXYDataset createDefaultIntervalXYDataset(ValueSource valueSource,
+    /**
+     * Creates a dataset which supports custom intervals on both axes.
+     * <p>
+     * Expects a grouping on the domain axis.
+     *
+     * @param valueSource          the value source
+     * @param plotInstance         the plot instance
+     * @param createRangeIntervals the create range intervals
+     * @return the default interval xy dataset
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static DefaultIntervalXYDataset createDefaultIntervalXYDataset(ValueSource valueSource,
 			PlotInstance plotInstance, boolean createRangeIntervals) throws ChartPlottimeException {
 		ValueSourceData valueSourceData = plotInstance.getPlotData().getValueSourceData(valueSource);
 		assertMaxValueCountNotExceededOrThrowException(valueSourceData);
@@ -231,7 +232,17 @@ public class ChartDatasetFactory {
 		return intervalDataset;
 	}
 
-	public static CategoryDataset createDefaultCategoryDataset(ValueSource valueSource, PlotInstance plotInstance,
+    /**
+     * Create default category dataset category dataset.
+     *
+     * @param valueSource             the value source
+     * @param plotInstance            the plot instance
+     * @param fillWithZero            the fill with zero
+     * @param allowValuesLessThanZero the allow values less than zero
+     * @return the category dataset
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static CategoryDataset createDefaultCategoryDataset(ValueSource valueSource, PlotInstance plotInstance,
 			boolean fillWithZero, boolean allowValuesLessThanZero) throws ChartPlottimeException {
 		ValueSourceData valueSourceData = plotInstance.getPlotData().getValueSourceData(valueSource);
 		assertMaxValueCountNotExceededOrThrowException(valueSourceData);
@@ -287,7 +298,15 @@ public class ChartDatasetFactory {
 		return dataset;
 	}
 
-	public static String generateSeriesName(ValueSource valueSource, GroupCellKey groupCellKey,
+    /**
+     * Generate series name string.
+     *
+     * @param valueSource       the value source
+     * @param groupCellKey      the group cell key
+     * @param plotConfiguration the plot configuration
+     * @return the string
+     */
+    public static String generateSeriesName(ValueSource valueSource, GroupCellKey groupCellKey,
 			PlotConfiguration plotConfiguration) {
 		// groupCellKey.removeRangeForDimension(Dimension.X); // legend does not need X-group
 		String filterName = groupCellKey.getNiceString(plotConfiguration);
@@ -305,7 +324,15 @@ public class ChartDatasetFactory {
 		return builder.toString();
 	}
 
-	public static XYDataset createDefaultXYDataset(ValueSource valueSource, PlotInstance plotInstace)
+    /**
+     * Create default xy dataset xy dataset.
+     *
+     * @param valueSource the value source
+     * @param plotInstace the plot instace
+     * @return the xy dataset
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static XYDataset createDefaultXYDataset(ValueSource valueSource, PlotInstance plotInstace)
 			throws ChartPlottimeException {
 		DefaultXYDataset dataset = new DefaultXYDataset();
 		ValueSourceData valueSourceData = plotInstace.getPlotData().getValueSourceData(valueSource);
@@ -317,7 +344,16 @@ public class ChartDatasetFactory {
 		return dataset;
 	}
 
-	public static XYDataset createDefaultXYDataset(ValueSource valueSource, int seriesIdx, PlotInstance plotInstance)
+    /**
+     * Create default xy dataset xy dataset.
+     *
+     * @param valueSource  the value source
+     * @param seriesIdx    the series idx
+     * @param plotInstance the plot instance
+     * @return the xy dataset
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static XYDataset createDefaultXYDataset(ValueSource valueSource, int seriesIdx, PlotInstance plotInstance)
 			throws ChartPlottimeException {
 		DefaultXYDataset dataset = new DefaultXYDataset();
 		addSeriesToDefaultXYDataset(valueSource, seriesIdx, plotInstance, dataset);
@@ -365,7 +401,15 @@ public class ChartDatasetFactory {
 		}
 	}
 
-	public static DefaultTableXYDataset createDefaultTableXYDataset(ValueSource valueSource, PlotInstance plotInstance)
+    /**
+     * Create default table xy dataset default table xy dataset.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the default table xy dataset
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static DefaultTableXYDataset createDefaultTableXYDataset(ValueSource valueSource, PlotInstance plotInstance)
 			throws ChartPlottimeException {
 		ValueSourceData valueSourceData = plotInstance.getPlotData().getValueSourceData(valueSource);
 		assertMaxValueCountNotExceededOrThrowException(valueSourceData);
@@ -411,7 +455,15 @@ public class ChartDatasetFactory {
 		return dataset;
 	}
 
-	public static DefaultStatisticalCategoryDataset createDefaultStatisticalCategoryDataset(ValueSource valueSource,
+    /**
+     * Create default statistical category dataset default statistical category dataset.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the default statistical category dataset
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static DefaultStatisticalCategoryDataset createDefaultStatisticalCategoryDataset(ValueSource valueSource,
 			PlotInstance plotInstance) throws ChartPlottimeException {
 		ValueSourceData valueSourceData = plotInstance.getPlotData().getValueSourceData(valueSource);
 		assertMaxValueCountNotExceededOrThrowException(valueSourceData);
@@ -459,16 +511,19 @@ public class ChartDatasetFactory {
 		return dataset;
 	}
 
-	/**
-	 * Creates a new {@link DefaultMultiValueCategoryDataset}. Such a dataset contains a list of
-	 * values for each datapoint of a series. For each series in valueSource a series in the dataset
-	 * created. A datapoint in the dataset refers to one x value. In the valueSource there might
-	 * exist several datapoints for each x value. These are collected in the list for the
-	 * appropriate datapoint in the dataset.
-	 * 
-	 * @throws ChartPlottimeException
-	 */
-	public static DefaultMultiValueCategoryDataset createDefaultMultiValueCategoryDataset(ValueSource valueSource,
+    /**
+     * Creates a new {@link DefaultMultiValueCategoryDataset}. Such a dataset contains a list of
+     * values for each datapoint of a series. For each series in valueSource a series in the dataset
+     * created. A datapoint in the dataset refers to one x value. In the valueSource there might
+     * exist several datapoints for each x value. These are collected in the list for the
+     * appropriate datapoint in the dataset.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the default multi value category dataset
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static DefaultMultiValueCategoryDataset createDefaultMultiValueCategoryDataset(ValueSource valueSource,
 			PlotInstance plotInstance) throws ChartPlottimeException {
 		ValueSourceData valueSourceData = plotInstance.getPlotData().getValueSourceData(valueSource);
 		assertMaxValueCountNotExceededOrThrowException(valueSourceData);
@@ -516,16 +571,19 @@ public class ChartDatasetFactory {
 		return dataset;
 	}
 
-	/**
-	 * Same as {@link #createDefaultMultiValueCategoryDataset(ValueSource, PlotConfiguration)}, but
-	 * instead of storing only the values it stores pairs in the lists, where the first value is the
-	 * data value, and the second value holds the index of the value in the series in valueSource.
-	 * 
-	 * Must be used for the FormattedScatterRenderer.
-	 * 
-	 * @throws ChartPlottimeException
-	 */
-	public static DefaultMultiValueCategoryDataset createAnnotatedDefaultMultiValueCategoryDataset(ValueSource valueSource,
+    /**
+     * Same as {@link #createDefaultMultiValueCategoryDataset(ValueSource, PlotConfiguration)}, but
+     * instead of storing only the values it stores pairs in the lists, where the first value is the
+     * data value, and the second value holds the index of the value in the series in valueSource.
+     * <p>
+     * Must be used for the FormattedScatterRenderer.
+     *
+     * @param valueSource  the value source
+     * @param plotInstance the plot instance
+     * @return the default multi value category dataset
+     * @throws ChartPlottimeException the chart plottime exception
+     */
+    public static DefaultMultiValueCategoryDataset createAnnotatedDefaultMultiValueCategoryDataset(ValueSource valueSource,
 			PlotInstance plotInstance) throws ChartPlottimeException {
 		ValueSourceData valueSourceData = plotInstance.getPlotData().getValueSourceData(valueSource);
 		assertMaxValueCountNotExceededOrThrowException(valueSourceData);

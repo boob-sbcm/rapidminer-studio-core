@@ -42,9 +42,8 @@ import javax.swing.JTextField;
 /**
  * A cell editor for cron expression parameters. Supports the direct specification of cron
  * expressions. Also provides a button which starts a dialog to edit cron expressions.
- * 
+ *
  * @author Nils Woehler
- * 
  */
 public class CronExpressionCellEditor extends AbstractCellEditor implements PropertyValueCellEditor {
 
@@ -58,7 +57,12 @@ public class CronExpressionCellEditor extends AbstractCellEditor implements Prop
 
 	private JButton button;
 
-	public CronExpressionCellEditor(final ParameterTypeCronExpression type) {
+    /**
+     * Instantiates a new Cron expression cell editor.
+     *
+     * @param type the type
+     */
+    public CronExpressionCellEditor(final ParameterTypeCronExpression type) {
 		panel.setLayout(new GridBagLayout());
 		panel.setToolTipText(type.getDescription());
 		textField.setToolTipText(type.getDescription());

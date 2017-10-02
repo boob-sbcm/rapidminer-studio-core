@@ -39,7 +39,7 @@ import java.util.Arrays;
  * input example sets where common features are kept and both feature sets are extended in a way
  * that the feature sets are equal for both example sets. The second step then merges both example
  * sets and will deliver the resulting example set.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExampleSetUnion extends Operator {
@@ -48,7 +48,12 @@ public class ExampleSetUnion extends Operator {
 	private InputPort exampleSet2Input = getInputPorts().createPort("example set 2", ExampleSet.class);
 	private OutputPort unionOutput = getOutputPorts().createPort("union");
 
-	public ExampleSetUnion(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set union.
+     *
+     * @param description the description
+     */
+    public ExampleSetUnion(OperatorDescription description) {
 		super(description);
 		// exampleSet1Input.addPrecondition(new ExampleSetPrecondition(exampleSet1Input, -1,
 		// Attributes.ID_NAME));

@@ -28,7 +28,7 @@ import javax.swing.table.TableModel;
 
 /**
  * A renderer for the table view of a similarity measure.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SimilarityTableRenderer extends AbstractTableModelTableRenderer {

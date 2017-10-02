@@ -25,7 +25,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * The model for a NumericalMatrix.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class NumericalMatrixViewerTableModel extends AbstractTableModel {
@@ -34,7 +34,12 @@ public class NumericalMatrixViewerTableModel extends AbstractTableModel {
 
 	private transient NumericalMatrix matrix;
 
-	public NumericalMatrixViewerTableModel(NumericalMatrix matrix) {
+    /**
+     * Instantiates a new Numerical matrix viewer table model.
+     *
+     * @param matrix the matrix
+     */
+    public NumericalMatrixViewerTableModel(NumericalMatrix matrix) {
 		this.matrix = matrix;
 	}
 

@@ -33,14 +33,13 @@ import java.util.List;
  * Input for Operator.apply(). Instances of this class are containers for IOObjects. They are
  * available by calling one of the <tt>getInput</tt> methods. The operator can choose between
  * keeping the IOObject in the container or delete it using it.<br>
- * 
+ * <p>
  * From Version 5.0 on, IOContainers are only used for compatibility reasons and are only a
  * collection of IOObjects. IOContainers are no longer passed between Operators and hence most of
  * its functionality is obsolete.
- * 
- * @see com.rapidminer.operator.IOObject
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
+ * @see com.rapidminer.operator.IOObject
  */
 public class IOContainer implements Serializable {
 
@@ -48,7 +47,10 @@ public class IOContainer implements Serializable {
 
 	private final List<IOObject> ioObjects;
 
-	public static final IOContainer DUMMY_IO_CONTAINER = new IOContainer(new IOObject[] { new ResultObjectAdapter() {
+    /**
+     * The constant DUMMY_IO_CONTAINER.
+     */
+    public static final IOContainer DUMMY_IO_CONTAINER = new IOContainer(new IOObject[] { new ResultObjectAdapter() {
 
 		private static final long serialVersionUID = -5877096753744650074L;
 
@@ -64,21 +66,30 @@ public class IOContainer implements Serializable {
 
 	} });
 
-	/** Creates a new and empty IOContainer. */
-	public IOContainer() {
+    /**
+     * Creates a new and empty IOContainer.
+     */
+    public IOContainer() {
 		this(new IOObject[0]);
 	}
 
-	/**
-	 * Creates a new IOContainer containing the contents of the Collection which must contain only
-	 * IOObjects.
-	 */
-	public IOContainer(Collection<? extends IOObject> objectCollection) {
+    /**
+     * Creates a new IOContainer containing the contents of the Collection which must contain only
+     * IOObjects.
+     *
+     * @param objectCollection the object collection
+     */
+    public IOContainer(Collection<? extends IOObject> objectCollection) {
 		ioObjects = new ArrayList<>(objectCollection.size());
 		ioObjects.addAll(objectCollection);
 	}
 
-	public IOContainer(IOObject... objectArray) {
+    /**
+     * Instantiates a new Io container.
+     *
+     * @param objectArray the object array
+     */
+    public IOContainer(IOObject... objectArray) {
 		ioObjects = new ArrayList<>(objectArray.length);
 		for (int i = 0; i < objectArray.length; i++) {
 			ioObjects.add(objectArray[i]);
@@ -97,56 +108,101 @@ public class IOContainer implements Serializable {
 		return result.toString();
 	}
 
-	/** Returns the number of {@link IOObject}s in this container. */
-	public int size() {
+    /**
+     * Returns the number of {@link IOObject}s in this container.  @return the int
+     *
+     * @return the int
+     */
+    public int size() {
 		return ioObjects.size();
 	}
 
-	/** Returns the n-th {@link IOObject} in this container. */
-	public IOObject getElementAt(int index) {
+    /**
+     * Returns the n-th {@link IOObject} in this container.  @param index the index
+     *
+     * @param index the index
+     * @return the element at
+     */
+    public IOObject getElementAt(int index) {
 		return ioObjects.get(index);
 	}
 
-	/** Removes and returns the n-th {@link IOObject} in this container. */
-	public IOObject removeElementAt(int index) {
+    /**
+     * Removes and returns the n-th {@link IOObject} in this container.  @param index the index
+     *
+     * @param index the index
+     * @return the io object
+     */
+    public IOObject removeElementAt(int index) {
 		return ioObjects.remove(index);
 	}
 
-	/**
-	 * Returns all IOObjects.
-	 */
-	public IOObject[] getIOObjects() {
+    /**
+     * Returns all IOObjects.
+     *
+     * @return the io object [ ]
+     */
+    public IOObject[] getIOObjects() {
 		return ioObjects.toArray(new IOObject[ioObjects.size()]);
 	}
 
-	/** Gets the first IOObject which is of class cls. */
-	public <T extends IOObject> T get(Class<T> cls) throws MissingIOObjectException {
+    /**
+     * Gets the first IOObject which is of class cls.  @param <T>  the type parameter
+     *
+     * @param <T> the type parameter
+     * @param cls the cls
+     * @return the t
+     * @throws MissingIOObjectException the missing io object exception
+     */
+    public <T extends IOObject> T get(Class<T> cls) throws MissingIOObjectException {
 		return getInput(cls, 0, false);
 	}
 
-	/** Gets the nr-th IOObject which is of class cls. */
-	public <T extends IOObject> T get(Class<T> cls, int nr) throws MissingIOObjectException {
+    /**
+     * Gets the nr-th IOObject which is of class cls.  @param <T>  the type parameter
+     *
+     * @param <T> the type parameter
+     * @param cls the cls
+     * @param nr  the nr
+     * @return the t
+     * @throws MissingIOObjectException the missing io object exception
+     */
+    public <T extends IOObject> T get(Class<T> cls, int nr) throws MissingIOObjectException {
 		return getInput(cls, nr, false);
 	}
 
-	/**
-	 * Removes the first IOObject which is of class cls. The removed object is returned.
-	 */
-	public <T extends IOObject> T remove(Class<T> cls) throws MissingIOObjectException {
+    /**
+     * Removes the first IOObject which is of class cls. The removed object is returned.
+     *
+     * @param <T> the type parameter
+     * @param cls the cls
+     * @return the t
+     * @throws MissingIOObjectException the missing io object exception
+     */
+    public <T extends IOObject> T remove(Class<T> cls) throws MissingIOObjectException {
 		return getInput(cls, 0, true);
 	}
 
-	/**
-	 * Removes the nr-th IOObject which is of class cls. The removed object is returned.
-	 */
-	public <T extends IOObject> T remove(Class<T> cls, int nr) throws MissingIOObjectException {
+    /**
+     * Removes the nr-th IOObject which is of class cls. The removed object is returned.
+     *
+     * @param <T> the type parameter
+     * @param cls the cls
+     * @param nr  the nr
+     * @return the t
+     * @throws MissingIOObjectException the missing io object exception
+     */
+    public <T extends IOObject> T remove(Class<T> cls, int nr) throws MissingIOObjectException {
 		return getInput(cls, nr, true);
 	}
 
-	/**
-	 * Returns true if this IOContainer containts an IOObject of the desired class.
-	 */
-	public boolean contains(Class<? extends IOObject> cls) {
+    /**
+     * Returns true if this IOContainer containts an IOObject of the desired class.
+     *
+     * @param cls the cls
+     * @return the boolean
+     */
+    public boolean contains(Class<? extends IOObject> cls) {
 		try {
 			getInput(cls, 0, false);
 			return true;
@@ -178,17 +234,23 @@ public class IOContainer implements Serializable {
 		throw new MissingIOObjectException(cls);
 	}
 
-	/**
-	 * Creates a new IOContainer by adding all IOObjects of this container to the given IOObject.
-	 */
-	public IOContainer append(IOObject object) {
+    /**
+     * Creates a new IOContainer by adding all IOObjects of this container to the given IOObject.
+     *
+     * @param object the object
+     * @return the io container
+     */
+    public IOContainer append(IOObject object) {
 		return append(new IOObject[] { object });
 	}
 
-	/**
-	 * Creates a new IOContainer by adding all IOObjects of this container to the given IOObjects.
-	 */
-	public IOContainer append(IOObject[] output) {
+    /**
+     * Creates a new IOContainer by adding all IOObjects of this container to the given IOObjects.
+     *
+     * @param output the output
+     * @return the io container
+     */
+    public IOContainer append(IOObject[] output) {
 		List<IOObject> newObjects = new LinkedList<>();
 		for (int i = 0; i < output.length; i++) {
 			newObjects.add(output[i]);
@@ -197,17 +259,23 @@ public class IOContainer implements Serializable {
 		return new IOContainer(newObjects);
 	}
 
-	/**
-	 * Creates a new IOContainer by adding the given object before the IOObjects of this container.
-	 */
-	public IOContainer prepend(IOObject object) {
+    /**
+     * Creates a new IOContainer by adding the given object before the IOObjects of this container.
+     *
+     * @param object the object
+     * @return the io container
+     */
+    public IOContainer prepend(IOObject object) {
 		return prepend(new IOObject[] { object });
 	}
 
-	/**
-	 * Creates a new IOContainer by adding the given objects before the IOObjects of this container.
-	 */
-	public IOContainer prepend(IOObject[] output) {
+    /**
+     * Creates a new IOContainer by adding the given objects before the IOObjects of this container.
+     *
+     * @param output the output
+     * @return the io container
+     */
+    public IOContainer prepend(IOObject[] output) {
 		List<IOObject> newObjects = new LinkedList<>();
 		newObjects.addAll(ioObjects);
 		for (int i = 0; i < output.length; i++) {
@@ -216,16 +284,25 @@ public class IOContainer implements Serializable {
 		return new IOContainer(newObjects);
 	}
 
-	/** Appends this container's IOObjects to output. */
-	public IOContainer append(Collection<IOObject> output) {
+    /**
+     * Appends this container's IOObjects to output.  @param output the output
+     *
+     * @param output the output
+     * @return the io container
+     */
+    public IOContainer append(Collection<IOObject> output) {
 		List<IOObject> newObjects = new LinkedList<>();
 		newObjects.addAll(output);
 		newObjects.addAll(ioObjects);
 		return new IOContainer(newObjects);
 	}
 
-	/** Copies the contents of this IOContainer by invoking the method copy of all IOObjects. */
-	public IOContainer copy() {
+    /**
+     * Copies the contents of this IOContainer by invoking the method copy of all IOObjects.  @return the io container
+     *
+     * @return the io container
+     */
+    public IOContainer copy() {
 		List<IOObject> clones = new LinkedList<>();
 		Iterator<IOObject> i = ioObjects.iterator();
 		while (i.hasNext()) {
@@ -234,12 +311,19 @@ public class IOContainer implements Serializable {
 		return new IOContainer(clones);
 	}
 
-	/** Removes all Objects from this IOContainer. */
-	public void removeAll() {
+    /**
+     * Removes all Objects from this IOContainer.
+     */
+    public void removeAll() {
 		ioObjects.clear();
 	}
 
-	public List<IOObject> asList() {
+    /**
+     * As list list.
+     *
+     * @return the list
+     */
+    public List<IOObject> asList() {
 		return Collections.unmodifiableList(ioObjects);
 	}
 }

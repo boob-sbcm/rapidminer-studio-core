@@ -33,6 +33,7 @@ import java.util.List;
 
 
 /**
+ * The type Operator enabler repair rule.
  *
  * @author Sebastian Land
  */

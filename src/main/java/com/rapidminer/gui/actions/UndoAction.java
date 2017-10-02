@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class UndoAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class UndoAction extends ResourceAction {
 
 	private MainFrame mainFrame;
 
-	public UndoAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Undo action.
+     *
+     * @param mainFrame the main frame
+     */
+    public UndoAction(MainFrame mainFrame) {
 		super("undo");
 		this.mainFrame = mainFrame;
 		setCondition(EDIT_IN_PROGRESS, DISALLOWED);

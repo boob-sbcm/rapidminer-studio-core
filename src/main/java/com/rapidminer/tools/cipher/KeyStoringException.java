@@ -27,7 +27,13 @@ public class KeyStoringException extends Exception {
 
 	private static final long serialVersionUID = -251163459747969941L;
 
-	public KeyStoringException(String message, Exception e) {
+    /**
+     * Instantiates a new Key storing exception.
+     *
+     * @param message the message
+     * @param e       the e
+     */
+    public KeyStoringException(String message, Exception e) {
 		super(message, e);
 	}
 }

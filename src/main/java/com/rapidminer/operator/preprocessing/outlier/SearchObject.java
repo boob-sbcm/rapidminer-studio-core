@@ -28,7 +28,7 @@ import java.util.ListIterator;
  * test data set in the core of the outlier operators. Such an object is able to store all relevant
  * coordinates, dimensions, etc. for an object (e.g. from an Example from a RapidMiner ExampleSet)
  * as well as perform various operations, such as radius search to other objects.
- * 
+ *
  * @author Stephan Deutsch, Ingo Mierswa
  */
 public class SearchObject {
@@ -127,13 +127,16 @@ public class SearchObject {
 	 */
 	private int minPtsUpperBound;
 
-	/**
-	 * Constructor creates a new instance of <tt>SearchObject</tt> class and initializes the object
-	 * with integer <i>dim</i> dimensions and the String label <i>l</i>. Each dimension vektor is
-	 * set to (double) ZERO and Outlier status is set to false and Outlier Factor is set to ZERO as
-	 * well.
-	 */
-	public SearchObject(int dim, String l) {
+    /**
+     * Constructor creates a new instance of <tt>SearchObject</tt> class and initializes the object
+     * with integer <i>dim</i> dimensions and the String label <i>l</i>. Each dimension vektor is
+     * set to (double) ZERO and Outlier status is set to false and Outlier Factor is set to ZERO as
+     * well.
+     *
+     * @param dim the dim
+     * @param l   the l
+     */
+    public SearchObject(int dim, String l) {
 		this.dimensions = dim; // set dimensions to dim
 		this.vector = new double[this.dimensions]; // construct a vector of floats with dimension
 													// dim
@@ -148,30 +151,30 @@ public class SearchObject {
 																		// kdContainers
 	}
 
-	/**
-	 * Constructor creates a new instance of <tt>SearchObject</tt> class and initializes the object
-	 * with integer <i>2</i> dimensions and the String label <i>not labeled object</i>. Each
-	 * dimension vektor is set to (double) ZERO and Outlier status is set to false and Outlier
-	 * Factor is set to ZERO as well. this is only a default constructor and should not be used for
-	 * 2-dimensional objects. The class does not provide sufficient consistency checks to entirely
-	 * rely on default construction.
-	 */
-	public SearchObject() {
+    /**
+     * Constructor creates a new instance of <tt>SearchObject</tt> class and initializes the object
+     * with integer <i>2</i> dimensions and the String label <i>not labeled object</i>. Each
+     * dimension vektor is set to (double) ZERO and Outlier status is set to false and Outlier
+     * Factor is set to ZERO as well. this is only a default constructor and should not be used for
+     * 2-dimensional objects. The class does not provide sufficient consistency checks to entirely
+     * rely on default construction.
+     */
+    public SearchObject() {
 		this(2, "not labeled object");
 	}
 
-	/**
-	 * Constructor creates a new instance of <tt>SearchObject</tt> class and initializes the object
-	 * with integer <i>dim</i> dimensions and the String label <i>l</i> and an (integer)
-	 * MinPts-Range. Each dimension vektor is set to (double) ZERO and Outlier status is set to
-	 * false and Outlier Factor is set to ZERO as well.
-	 * 
-	 * @param dim
-	 * @param l
-	 * @param minptslb
-	 * @param minptsub
-	 */
-	public SearchObject(int dim, String l, int minptslb, int minptsub) {
+    /**
+     * Constructor creates a new instance of <tt>SearchObject</tt> class and initializes the object
+     * with integer <i>dim</i> dimensions and the String label <i>l</i> and an (integer)
+     * MinPts-Range. Each dimension vektor is set to (double) ZERO and Outlier status is set to
+     * false and Outlier Factor is set to ZERO as well.
+     *
+     * @param dim      the dim
+     * @param l        the l
+     * @param minptslb the minptslb
+     * @param minptsub the minptsub
+     */
+    public SearchObject(int dim, String l, int minptslb, int minptsub) {
 		this(dim, l); // first create the object with dim and label using that constructor
 		this.cardN = new int[minptsub + 1];
 		this.kDistance = new double[minptsub + 1];
@@ -190,26 +193,28 @@ public class SearchObject {
 		}
 	}
 
-	/**
-	 * <p>
-	 * Changes the number of dimensions for an object and copies the values of the old vector for
-	 * the object into the new vektor (which is initialized with the new dimension number).
-	 * </p>
-	 * 
-	 * <p>
-	 * <em>Attention</em>: If the new dimension number is less than the old number, only the values
-	 * of the relevant new domain range are copied. If the new vector has more dimensions, all the
-	 * old are copied and the new ones are initialized with ZERO. Those should afterwards be
-	 * initialized with the {@link #setVektor(int, double)} method in a proper manner.
-	 * </p>
-	 * 
-	 * <p>
-	 * The safest way to change the dimensions of an object is to create a new one with the new
-	 * dimensions and to copy the vektor values and all other relevant data and to initialize the
-	 * additional dimensions with the proper values.
-	 * </p>
-	 */
-	public void setDimensions(int dim) {
+    /**
+     * <p>
+     * Changes the number of dimensions for an object and copies the values of the old vector for
+     * the object into the new vektor (which is initialized with the new dimension number).
+     * </p>
+     * <p>
+     * <p>
+     * <em>Attention</em>: If the new dimension number is less than the old number, only the values
+     * of the relevant new domain range are copied. If the new vector has more dimensions, all the
+     * old are copied and the new ones are initialized with ZERO. Those should afterwards be
+     * initialized with the {@link #setVektor(int, double)} method in a proper manner.
+     * </p>
+     * <p>
+     * <p>
+     * The safest way to change the dimensions of an object is to create a new one with the new
+     * dimensions and to copy the vektor values and all other relevant data and to initialize the
+     * additional dimensions with the proper values.
+     * </p>
+     *
+     * @param dim the dim
+     */
+    public void setDimensions(int dim) {
 		double[] changeVektor = new double[this.dimensions]; // create a new vektor to hold the
 																// existing one
 		int oldDimensions = this.dimensions; // store the old number of dimensions
@@ -229,110 +234,124 @@ public class SearchObject {
 			// copied
 	}
 
-	/**
-	 * Provides the (integer) number of dimensions of the Object. Remark: some methods actually use
-	 * the this.dimensions reference which is used by this, but this method would be able to provide
-	 * the dimensions externally.
-	 */
-	public int getDimensions() {
+    /**
+     * Provides the (integer) number of dimensions of the Object. Remark: some methods actually use
+     * the this.dimensions reference which is used by this, but this method would be able to provide
+     * the dimensions externally.
+     *
+     * @return the dimensions
+     */
+    public int getDimensions() {
 		return (this.dimensions);
 	}
 
-	/**
-	 * Sets the label of the object to (String) <i>l</i>.
-	 */
-	public void setLabel(String l) {
+    /**
+     * Sets the label of the object to (String) <i>l</i>.
+     *
+     * @param l the l
+     */
+    public void setLabel(String l) {
 		this.label = l;
 	}
 
-	/**
-	 * Returns the label of the object (e.g. its "name" for other purposes)
-	 */
-	public String getLabel() {
+    /**
+     * Returns the label of the object (e.g. its "name" for other purposes)
+     *
+     * @return the label
+     */
+    public String getLabel() {
 		return (this.label);
 	}
 
-	/**
-	 * Sets the vector for the object to (double) <i>value</i> for the dimension (integer)
-	 * <i>dim</i>, with this method subsequently all dimensions of an objects vector can be set.
-	 * 
-	 * @param dim
-	 * @param value
-	 */
-	public void setVektor(int dim, double value) {
+    /**
+     * Sets the vector for the object to (double) <i>value</i> for the dimension (integer)
+     * <i>dim</i>, with this method subsequently all dimensions of an objects vector can be set.
+     *
+     * @param dim   the dim
+     * @param value the value
+     */
+    public void setVektor(int dim, double value) {
 		this.vector[dim] = value;
 	}
 
-	/**
-	 * Returns the value of the object's vektor with dimension (integer) <i>dim</i>.
-	 * 
-	 * @param dim
-	 */
-	public double getVektor(int dim) {
+    /**
+     * Returns the value of the object's vektor with dimension (integer) <i>dim</i>.
+     *
+     * @param dim the dim
+     * @return the vektor
+     */
+    public double getVektor(int dim) {
 		return (this.vector[dim]);
 	}
 
-	/**
-	 * Sets a BOOLEAN Outlier Status for the object to store the results of Outlier tests according
-	 * to a yes/no Outlier state (e.g. DB(p,D) Outliers and others.
-	 * 
-	 * @param status
-	 */
-	public void setOutlierStatus(boolean status) {
+    /**
+     * Sets a BOOLEAN Outlier Status for the object to store the results of Outlier tests according
+     * to a yes/no Outlier state (e.g. DB(p,D) Outliers and others.
+     *
+     * @param status the status
+     */
+    public void setOutlierStatus(boolean status) {
 		this.outlierStatus = status;
 	}
 
-	/**
-	 * Provides the BOOLEAN Outlier status of an Object (-> the status has to be set through a test,
-	 * so the user should see that the status is only set by methods providing a consistent view on
-	 * the outlier test, else this has only the meaning of the accidentally stored status (default
-	 * should be ZERO ;-).
-	 */
-	public boolean getOutlierStatus() {
+    /**
+     * Provides the BOOLEAN Outlier status of an Object (-> the status has to be set through a test,
+     * so the user should see that the status is only set by methods providing a consistent view on
+     * the outlier test, else this has only the meaning of the accidentally stored status (default
+     * should be ZERO ;-).
+     *
+     * @return the outlier status
+     */
+    public boolean getOutlierStatus() {
 		return (this.outlierStatus);
 	}
 
-	/**
-	 * Sets a (double) Outlier <i>factor</i> to store smooth Outlier status information, such as
-	 * local outlier factors and others.
-	 * 
-	 * @param factor
-	 */
-	public void setOutlierFactor(double factor) {
+    /**
+     * Sets a (double) Outlier <i>factor</i> to store smooth Outlier status information, such as
+     * local outlier factors and others.
+     *
+     * @param factor the factor
+     */
+    public void setOutlierFactor(double factor) {
 		this.outlierFactor = factor;
 	}
 
-	/**
-	 * Returns the Outlier factor of an object.
-	 */
-	public double getOutlierFactor() {
+    /**
+     * Returns the Outlier factor of an object.
+     *
+     * @return the outlier factor
+     */
+    public double getOutlierFactor() {
 		return (this.outlierFactor);
 	}
 
-	/**
-	 * <p>
-	 * Returns the euclidian (metric) distance between two SearchObjects by looking at the object's
-	 * vektors and returning the length of the substracted vector between the two object's vectors.
-	 * </p>
-	 * 
-	 * <p>
-	 * The method checks if both objects have the same dimensions and for ensuring smooth program
-	 * execution takes the mimimum number of dimensions of the two objects. So it looks at a higher
-	 * dimensional object as if it has only as many dimensions as the object with fewer
-	 * dimensionality. ATTENTION: This - of course - creates different distance as if the object
-	 * with maximum dimensions would be taken as the reference and the missing dimensions of the
-	 * object with fewer dimensions would be set to zero.
-	 * </p>
-	 * 
-	 * <p>
-	 * It would be expected that an integrity check would be performed before using the distance
-	 * functions from any functions utilizing this distance. E.g.
-	 * {@link SearchSpace#dimensionsIntegrityCheck()} provides such an integrity check for a search
-	 * room's dimensions (although that function does not check object to object integrity
-	 * separately).
-	 * </p>
-	 */
-	public double getDistanceEuclidian(SearchObject toObject) {
+    /**
+     * <p>
+     * Returns the euclidian (metric) distance between two SearchObjects by looking at the object's
+     * vektors and returning the length of the substracted vector between the two object's vectors.
+     * </p>
+     * <p>
+     * <p>
+     * The method checks if both objects have the same dimensions and for ensuring smooth program
+     * execution takes the mimimum number of dimensions of the two objects. So it looks at a higher
+     * dimensional object as if it has only as many dimensions as the object with fewer
+     * dimensionality. ATTENTION: This - of course - creates different distance as if the object
+     * with maximum dimensions would be taken as the reference and the missing dimensions of the
+     * object with fewer dimensions would be set to zero.
+     * </p>
+     * <p>
+     * <p>
+     * It would be expected that an integrity check would be performed before using the distance
+     * functions from any functions utilizing this distance. E.g.
+     * {@link SearchSpace#dimensionsIntegrityCheck()} provides such an integrity check for a search
+     * room's dimensions (although that function does not check object to object integrity
+     * separately).
+     * </p>
+     *
+     * @param toObject the to object
+     * @return the distance euclidian
+     */
+    public double getDistanceEuclidian(SearchObject toObject) {
 		double distance = 0;
 		int dim_of_toObject = toObject.getDimensions();
 		int minimumDimensions = 0;
@@ -344,64 +363,24 @@ public class SearchObject {
 		return (Math.sqrt(distance));
 	}
 
-	/**
-	 * This method returns the distance between two objects according to a specification on which
-	 * distance shall be computed (at the moment the method supports EUCLIDIAN distance (int
-	 * kindOfDistance = 1) and COSINE distance (int kindOfDistance = 2) and the following similar
-	 * distances: SQUARED (0) (the squared value of the metric/euclidian distance, INV_COSINE (3)
-	 * the inversted cosine (actually the sine) distance which is simply 1-cos, and ANGLE_RADIANT
-	 * (4) the angle between the objects related to zero coordinates in the actual n-dimensional
-	 * euclidian coordinate system (ARC COSINE in radiant between [0 ; pi]).
-	 * 
-	 * <p>
-	 * The method substitutes the distance method
-	 * 
-	 * @link #getDistance(SearchObject) which is only capable to compute the EUCLIDIAN distance.
-	 * 
-	 *       <p>
-	 *       The parameter (int) kindOfDistance defines the kind of distance to compute, Attn.: If
-	 *       no kind of distance is specified properly, EUCLIDIAN is set as a default to prevent
-	 *       malfunction. A Warning is printed to STDOUT accordingly.
-	 * 
-	 *       <p>
-	 *       The first parameter, however, as in the older getDistance function, is the SearchObject
-	 *       to which the distances is to be measured.
-	 * 
-	 *       <p>
-	 *       For further information: The difference between EUCLIDIAN distance and COSINE distance
-	 *       is as follows:
-	 *       <p>
-	 *       d_euclidian(X,Y)=SQUARE_ROOT(SUM_i((x_i - y_i)^2)) and
-	 *       <p>
-	 *       d_cosine(X,Y)=SUM_i(x_i * y_i) / (SQUARE_ROOT(SUM_i(x_i)) * SQUARE_ROOT(SUM_i(y_i)))
-	 *       <p>
-	 *       Or in other words, while euclidian distance is measuring the metric distance between
-	 *       two vectors equalling the norm of the subtraction of the two vectors, the cosine
-	 *       distance is measuring the cosine of the angle between the two vectors. The cosine
-	 *       distance is used especially for measuring the similarity between texts represented by
-	 *       their vectorized term structure (e.g. using Term Frequency or Inverse Term Frequency -
-	 *       TF/IDF) for the purpose of Information Retreival.
-	 *       <p>
-	 *       inverted cosine distance is supported by computing 1-cos distance, as with cosine in
-	 *       the interval between [1; 1/2*pi] is monotonic and falling, from [1;0] and the largest
-	 *       angles actually have the smallest value, it might very well be useful to invert the
-	 *       scala to sine distance (1-cos distance) for reflecting increasing angles resulting in
-	 *       increasing values for the distance used. Attn: the effect in this case decellerates,
-	 *       e.g. the larger angles have less difference in distance values, hence a grouping of
-	 *       objects kind of explodes in the middle and gets denser in the outer ring.
-	 *       <p>
-	 *       Therefore, in addition, the actual angle in radiant is introduced. With this kind of
-	 *       distance, the direct angle between obejects is used, resulting in a linear monotonic
-	 *       growing distance representation.
-	 *       <p>
-	 *       Overall, the user should decide on which kind of distance is to be used depending on
-	 *       the actual application, as some distance measures can have VERY funny effects is used
-	 *       in the wrong way.
-	 * 
-	 * @param toObject
-	 * @param kindOfDistance
-	 */
-	public double getDistance(SearchObject toObject, int kindOfDistance) {
+    /**
+     * This method returns the distance between two objects according to a specification on which
+     * distance shall be computed (at the moment the method supports EUCLIDIAN distance (int
+     * kindOfDistance = 1) and COSINE distance (int kindOfDistance = 2) and the following similar
+     * distances: SQUARED (0) (the squared value of the metric/euclidian distance, INV_COSINE (3)
+     * the inversted cosine (actually the sine) distance which is simply 1-cos, and ANGLE_RADIANT
+     * (4) the angle between the objects related to zero coordinates in the actual n-dimensional
+     * euclidian coordinate system (ARC COSINE in radiant between [0 ; pi]).
+     * <p>
+     * <p>
+     * The method substitutes the distance method
+     *
+     * @param toObject       the to object
+     * @param kindOfDistance the kind of distance
+     * @return the distance
+     * @link #getDistance(SearchObject) which is only capable to compute the EUCLIDIAN distance.       <p>       The parameter (int) kindOfDistance defines the kind of distance to compute, Attn.: If       no kind of distance is specified properly, EUCLIDIAN is set as a default to prevent       malfunction. A Warning is printed to STDOUT accordingly.       <p>       The first parameter, however, as in the older getDistance function, is the SearchObject       to which the distances is to be measured.       <p>       For further information: The difference between EUCLIDIAN distance and COSINE distance       is as follows:       <p>       d_euclidian(X,Y)=SQUARE_ROOT(SUM_i((x_i - y_i)^2)) and       <p>       d_cosine(X,Y)=SUM_i(x_i * y_i) / (SQUARE_ROOT(SUM_i(x_i)) * SQUARE_ROOT(SUM_i(y_i)))       <p>       Or in other words, while euclidian distance is measuring the metric distance between       two vectors equalling the norm of the subtraction of the two vectors, the cosine       distance is measuring the cosine of the angle between the two vectors. The cosine       distance is used especially for measuring the similarity between texts represented by       their vectorized term structure (e.g. using Term Frequency or Inverse Term Frequency -       TF/IDF) for the purpose of Information Retreival.       <p>       inverted cosine distance is supported by computing 1-cos distance, as with cosine in       the interval between [1; 1/2*pi] is monotonic and falling, from [1;0] and the largest       angles actually have the smallest value, it might very well be useful to invert the       scala to sine distance (1-cos distance) for reflecting increasing angles resulting in       increasing values for the distance used. Attn: the effect in this case decellerates,       e.g. the larger angles have less difference in distance values, hence a grouping of       objects kind of explodes in the middle and gets denser in the outer ring.       <p>       Therefore, in addition, the actual angle in radiant is introduced. With this kind of       distance, the direct angle between obejects is used, resulting in a linear monotonic       growing distance representation.       <p>       Overall, the user should decide on which kind of distance is to be used depending on       the actual application, as some distance measures can have VERY funny effects is used       in the wrong way.
+     */
+    public double getDistance(SearchObject toObject, int kindOfDistance) {
 		double distance = 0;
 		int SQUARED = 1; // squared value of the euclidian distance will be used
 		int EUCLIDIAN = 0; // euclidian (metric) distance will be used
@@ -466,134 +445,142 @@ public class SearchObject {
 
 	}
 
-	/**
-	 * Adds a new KdContainer to the SearchObject at index in the container list.
-	 * 
-	 */
-	public void addKdContainer(int index) {
+    /**
+     * Adds a new KdContainer to the SearchObject at index in the container list.
+     *
+     * @param index the index
+     */
+    public void addKdContainer(int index) {
 		KdistanceContainer container = new KdistanceContainer(this);
 		this.listOfkDContainers.add(index, container);
 	}
 
-	/**
-	 * Adds a new KdContainer to the SearchObject at index in the container list and also sets the
-	 * distance value of the container to dist.
-	 * 
-	 */
-	public void addKdContainer(int index, double dist) {
+    /**
+     * Adds a new KdContainer to the SearchObject at index in the container list and also sets the
+     * distance value of the container to dist.
+     *
+     * @param index the index
+     * @param dist  the dist
+     */
+    public void addKdContainer(int index, double dist) {
 		KdistanceContainer container = new KdistanceContainer(this);
 		container.setDistance(dist);
 		this.listOfkDContainers.add(index, container);
 	}
 
-	/**
-	 * Adds an existing KdContainer to the container list at position index.
-	 * 
-	 * @param index
-	 * @param kd
-	 */
-	public void addKdContainer(int index, KdistanceContainer kd) {
+    /**
+     * Adds an existing KdContainer to the container list at position index.
+     *
+     * @param index the index
+     * @param kd    the kd
+     */
+    public void addKdContainer(int index, KdistanceContainer kd) {
 		this.listOfkDContainers.add(index, kd);
 	}
 
-	/**
-	 * Adds an existing KdContainer to the container lost at the end of the list.
-	 * 
-	 * @param kd
-	 */
-	public void addKdContainer(KdistanceContainer kd) {
+    /**
+     * Adds an existing KdContainer to the container lost at the end of the list.
+     *
+     * @param kd the kd
+     */
+    public void addKdContainer(KdistanceContainer kd) {
 		this.listOfkDContainers.add(kd);
 	}
 
-	/**
-	 * Adds a new KdContainer to the SearchObject at the end of the container list.
-	 * 
-	 */
-	public void addKdContainer() {
+    /**
+     * Adds a new KdContainer to the SearchObject at the end of the container list.
+     */
+    public void addKdContainer() {
 		KdistanceContainer container = new KdistanceContainer(this);
 		this.listOfkDContainers.add(container);
 	}
 
-	/**
-	 * returns a ListIterator for the list of containers in the SearchObject.
-	 */
-	public ListIterator<KdistanceContainer> getKdContainerListIterator() {
+    /**
+     * returns a ListIterator for the list of containers in the SearchObject.
+     *
+     * @return the kd container list iterator
+     */
+    public ListIterator<KdistanceContainer> getKdContainerListIterator() {
 		return listOfkDContainers.listIterator();
 	}
 
-	/**
-	 * Sets the k-distance for the SearchObject for k to dist.
-	 * 
-	 * @param k
-	 * @param dist
-	 */
-	public void setKDistance(int k, double dist) {
+    /**
+     * Sets the k-distance for the SearchObject for k to dist.
+     *
+     * @param k    the k
+     * @param dist the dist
+     */
+    public void setKDistance(int k, double dist) {
 		this.kDistance[k] = dist;
 	}
 
-	/**
-	 * Returns the k-distance for the SearchObject for k.
-	 * 
-	 * @param k
-	 */
-	public double getKDistance(int k) {
+    /**
+     * Returns the k-distance for the SearchObject for k.
+     *
+     * @param k the k
+     * @return the k distance
+     */
+    public double getKDistance(int k) {
 		return this.kDistance[k];
 	}
 
-	/**
-	 * Sets the local reachability density for k for a SearchObject for k to lrdvalue.
-	 * 
-	 * @param k
-	 * @param lrdvalue
-	 */
-	public void setLRD(int k, double lrdvalue) {
+    /**
+     * Sets the local reachability density for k for a SearchObject for k to lrdvalue.
+     *
+     * @param k        the k
+     * @param lrdvalue the lrdvalue
+     */
+    public void setLRD(int k, double lrdvalue) {
 		this.lrd[k] = lrdvalue;
 	}
 
-	/**
-	 * Returns the local reachability density for k for a SearchObject.
-	 * 
-	 * @param k
-	 */
-	public double getLRD(int k) {
+    /**
+     * Returns the local reachability density for k for a SearchObject.
+     *
+     * @param k the k
+     * @return the lrd
+     */
+    public double getLRD(int k) {
 		return this.lrd[k];
 	}
 
-	/**
-	 * Sets the cardinality for k-neighbourhood (|N_k(p)|) for a SearchObject for k to card.
-	 * 
-	 * @param k
-	 * @param card
-	 */
-	public void setCardN(int k, int card) {
+    /**
+     * Sets the cardinality for k-neighbourhood (|N_k(p)|) for a SearchObject for k to card.
+     *
+     * @param k    the k
+     * @param card the card
+     */
+    public void setCardN(int k, int card) {
 		this.cardN[k] = card;
 	}
 
-	/**
-	 * Returns the cardinality for k-neighbourhood (|N_k(p)|) for a SearchObject for k.
-	 * 
-	 * @param k
-	 */
-	public int getCardN(int k) {
+    /**
+     * Returns the cardinality for k-neighbourhood (|N_k(p)|) for a SearchObject for k.
+     *
+     * @param k the k
+     * @return the card n
+     */
+    public int getCardN(int k) {
 		return this.cardN[k];
 	}
 
-	/**
-	 * Sets the k-LOF for a SearchObject to lof for k.
-	 * 
-	 * @param k
-	 * @param lof
-	 */
-	public void setLOF(int k, double lof) {
+    /**
+     * Sets the k-LOF for a SearchObject to lof for k.
+     *
+     * @param k   the k
+     * @param lof the lof
+     */
+    public void setLOF(int k, double lof) {
 		this.localOutlierFactor[k] = lof;
 	}
 
-	/**
-	 * Returns the k-LOF for a SearchObject for k.
-	 * 
-	 * @param k
-	 */
-	public double getLOF(int k) {
+    /**
+     * Returns the k-LOF for a SearchObject for k.
+     *
+     * @param k the k
+     * @return the lof
+     */
+    public double getLOF(int k) {
 		return this.localOutlierFactor[k];
 	}
 }

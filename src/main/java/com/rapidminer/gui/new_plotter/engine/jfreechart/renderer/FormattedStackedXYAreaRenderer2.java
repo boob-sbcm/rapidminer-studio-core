@@ -31,6 +31,8 @@ import org.jfree.chart.urls.XYURLGenerator;
 
 
 /**
+ * The type Formatted stacked xy area renderer 2.
+ *
  * @author Marius Helf
  */
 public class FormattedStackedXYAreaRenderer2 extends StackedXYAreaRenderer2 implements FormattedRenderer {
@@ -39,11 +41,20 @@ public class FormattedStackedXYAreaRenderer2 extends StackedXYAreaRenderer2 impl
 
 	private RenderFormatDelegate formatDelegate = new RenderFormatDelegate();
 
-	public FormattedStackedXYAreaRenderer2() {
+    /**
+     * Instantiates a new Formatted stacked xy area renderer 2.
+     */
+    public FormattedStackedXYAreaRenderer2() {
 		super();
 	}
 
-	public FormattedStackedXYAreaRenderer2(XYToolTipGenerator labelGenerator, XYURLGenerator urlGenerator) {
+    /**
+     * Instantiates a new Formatted stacked xy area renderer 2.
+     *
+     * @param labelGenerator the label generator
+     * @param urlGenerator   the url generator
+     */
+    public FormattedStackedXYAreaRenderer2(XYToolTipGenerator labelGenerator, XYURLGenerator urlGenerator) {
 		super(labelGenerator, urlGenerator);
 	}
 

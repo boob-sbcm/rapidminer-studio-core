@@ -22,20 +22,30 @@ import com.rapidminer.repository.Entry;
 
 
 /**
- * 
+ * The type Repository selection event.
+ *
  * @author Simon Fischer
- * 
  */
 public class RepositorySelectionEvent {
 
 	private Entry entry;
 
-	public RepositorySelectionEvent(Entry entry) {
+    /**
+     * Instantiates a new Repository selection event.
+     *
+     * @param entry the entry
+     */
+    public RepositorySelectionEvent(Entry entry) {
 		super();
 		this.entry = entry;
 	}
 
-	public Entry getEntry() {
+    /**
+     * Gets entry.
+     *
+     * @return the entry
+     */
+    public Entry getEntry() {
 		return entry;
 	}
 }

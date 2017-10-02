@@ -37,7 +37,13 @@ import com.rapidminer.gui.look.RapidLookTools;
  */
 public class CheckBoxMenuItemUI extends BasicCheckBoxMenuItemUI {
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new CheckBoxMenuItemUI();
 	}
 

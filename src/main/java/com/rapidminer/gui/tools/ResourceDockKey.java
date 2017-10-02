@@ -35,7 +35,7 @@ import com.vlsolutions.swing.docking.DockKey;
  * gui.dockkey.-key-.tip which will be shown as tool tip when hovering over this dockables tab <br>
  * gui.dockkey.-key-.icon this icon is loaded from the 16er icons by prepending an 16/. It is shown
  * in the view selection menu.
- *
+ * <p>
  * By default the DockKey is created to be part of the ROOT dock group. If it should be part of the
  * results instead, you will have to call
  * {@link #setDockGroup(com.vlsolutions.swing.docking.DockGroup)} with the result constant from the
@@ -45,11 +45,22 @@ import com.vlsolutions.swing.docking.DockKey;
  */
 public class ResourceDockKey extends DockKey {
 
-	public ResourceDockKey(String resourceKey) {
+    /**
+     * Instantiates a new Resource dock key.
+     *
+     * @param resourceKey the resource key
+     */
+    public ResourceDockKey(String resourceKey) {
 		this(resourceKey, false);
 	}
 
-	public ResourceDockKey(String resourceKey, boolean displayIcon) {
+    /**
+     * Instantiates a new Resource dock key.
+     *
+     * @param resourceKey the resource key
+     * @param displayIcon the display icon
+     */
+    public ResourceDockKey(String resourceKey, boolean displayIcon) {
 		super(resourceKey);
 
 		setName(getMessage(resourceKey + ".name"));
@@ -72,12 +83,12 @@ public class ResourceDockKey extends DockKey {
 		setDockGroup(MainFrame.DOCK_GROUP_ROOT);
 	}
 
-	/**
-	 * Returns a short description for this dockable.
-	 *
-	 * @return a short description or {@code null} if none was specified
-	 */
-	public String getShortDescription() {
+    /**
+     * Returns a short description for this dockable.
+     *
+     * @return a short description or {@code null} if none was specified
+     */
+    public String getShortDescription() {
 		return getMessageOrNull(getKey() + ".short");
 	}
 

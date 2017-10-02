@@ -38,7 +38,7 @@ import java.util.Random;
 /**
  * The density plotter does not only plot the single plot points but also tries to calculate a color
  * for all pixels in between.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DensityPlotter extends PlotterAdapter {
@@ -49,14 +49,42 @@ public class DensityPlotter extends PlotterAdapter {
 	 */
 	private static class Point {
 
-		String id;
-		double x;
-		double y;
-		double densityColor;
-		double pointColor;
-		Color borderColor;
+        /**
+         * The Id.
+         */
+        String id;
+        /**
+         * The X.
+         */
+        double x;
+        /**
+         * The Y.
+         */
+        double y;
+        /**
+         * The Density color.
+         */
+        double densityColor;
+        /**
+         * The Point color.
+         */
+        double pointColor;
+        /**
+         * The Border color.
+         */
+        Color borderColor;
 
-		public Point(double x, double y, double densityColor, double pointColor, Color borderColor, String id) {
+        /**
+         * Instantiates a new Point.
+         *
+         * @param x            the x
+         * @param y            the y
+         * @param densityColor the density color
+         * @param pointColor   the point color
+         * @param borderColor  the border color
+         * @param id           the id
+         */
+        public Point(double x, double y, double densityColor, double pointColor, Color borderColor, String id) {
 			this.x = x;
 			this.y = y;
 			this.densityColor = densityColor;
@@ -109,12 +137,23 @@ public class DensityPlotter extends PlotterAdapter {
 
 	private transient BufferedImage image = null;
 
-	public DensityPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Density plotter.
+     *
+     * @param settings the settings
+     */
+    public DensityPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 	}
 
-	public DensityPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Density plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public DensityPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}

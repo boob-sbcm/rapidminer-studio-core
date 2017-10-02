@@ -27,25 +27,169 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
 
+/**
+ * The type Function expression parser.
+ */
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class FunctionExpressionParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.5", RuntimeMetaData.VERSION); }
 
-	protected static final DFA[] _decisionToDFA;
-	protected static final PredictionContextCache _sharedContextCache =
+    /**
+     * The constant _decisionToDFA.
+     */
+    protected static final DFA[] _decisionToDFA;
+    /**
+     * The constant _sharedContextCache.
+     */
+    protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
-	public static final int
-		PLUS=1, MINUS=2, MULTIPLY=3, DIVIDE=4, MODULO=5, POWER=6, LESS=7, LEQ=8, 
-		GREATER=9, GEQ=10, EQUALS=11, NOT_EQUALS=12, NOT=13, OR=14, AND=15, LPARENTHESIS=16, 
-		RPARENTHESIS=17, COMMA=18, NAME=19, INTEGER=20, REAL=21, ATTRIBUTE=22, 
-		STRING=23, SCOPE_CONSTANT=24, INDIRECT_SCOPE_CONSTANT=25, LSQUARE_BRACKET=26, 
-		OPENING_QOUTES=27, SCOPE_OPEN=28, INDIRECT_SCOPE_OPEN=29, WHITESPACES=30, 
-		SCOPE_CLOSE=31, RSQUARE_BRACKET=32, CLOSING_QUOTES=33;
-	public static final int
-		RULE_operationExp = 0, RULE_atomExp = 1, RULE_lowerExp = 2, RULE_function = 3, 
-		RULE_attribute = 4, RULE_scopeConstant = 5, RULE_indirectScopeConstant = 6, 
-		RULE_string = 7, RULE_variable = 8, RULE_real = 9, RULE_integer = 10;
-	public static final String[] ruleNames = {
+    /**
+     * The constant PLUS.
+     */
+    public static final int
+		PLUS=1, /**
+     * The Minus.
+     */
+    MINUS=2, /**
+     * The Multiply.
+     */
+    MULTIPLY=3, /**
+     * The Divide.
+     */
+    DIVIDE=4, /**
+     * The Modulo.
+     */
+    MODULO=5, /**
+     * The Power.
+     */
+    POWER=6, /**
+     * The Less.
+     */
+    LESS=7, /**
+     * The Leq.
+     */
+    LEQ=8,
+    /**
+     * The Greater.
+     */
+    GREATER=9, /**
+     * The Geq.
+     */
+    GEQ=10, /**
+     * The Equals.
+     */
+    EQUALS=11, /**
+     * The Not equals.
+     */
+    NOT_EQUALS=12, /**
+     * The Not.
+     */
+    NOT=13, /**
+     * The Or.
+     */
+    OR=14, /**
+     * The And.
+     */
+    AND=15, /**
+     * The Lparenthesis.
+     */
+    LPARENTHESIS=16,
+    /**
+     * The Rparenthesis.
+     */
+    RPARENTHESIS=17, /**
+     * The Comma.
+     */
+    COMMA=18, /**
+     * The Name.
+     */
+    NAME=19, /**
+     * The Integer.
+     */
+    INTEGER=20, /**
+     * The Real.
+     */
+    REAL=21, /**
+     * The Attribute.
+     */
+    ATTRIBUTE=22,
+    /**
+     * The String.
+     */
+    STRING=23, /**
+     * The Scope constant.
+     */
+    SCOPE_CONSTANT=24, /**
+     * The Indirect scope constant.
+     */
+    INDIRECT_SCOPE_CONSTANT=25, /**
+     * The Lsquare bracket.
+     */
+    LSQUARE_BRACKET=26,
+    /**
+     * The Opening qoutes.
+     */
+    OPENING_QOUTES=27, /**
+     * The Scope open.
+     */
+    SCOPE_OPEN=28, /**
+     * The Indirect scope open.
+     */
+    INDIRECT_SCOPE_OPEN=29, /**
+     * The Whitespaces.
+     */
+    WHITESPACES=30,
+    /**
+     * The Scope close.
+     */
+    SCOPE_CLOSE=31, /**
+     * The Rsquare bracket.
+     */
+    RSQUARE_BRACKET=32, /**
+     * The Closing quotes.
+     */
+    CLOSING_QUOTES=33;
+    /**
+     * The constant RULE_operationExp.
+     */
+    public static final int
+		RULE_operationExp = 0, /**
+     * The Rule atom exp.
+     */
+    RULE_atomExp = 1, /**
+     * The Rule lower exp.
+     */
+    RULE_lowerExp = 2, /**
+     * The Rule function.
+     */
+    RULE_function = 3,
+    /**
+     * The Rule attribute.
+     */
+    RULE_attribute = 4, /**
+     * The Rule scope constant.
+     */
+    RULE_scopeConstant = 5, /**
+     * The Rule indirect scope constant.
+     */
+    RULE_indirectScopeConstant = 6,
+    /**
+     * The Rule string.
+     */
+    RULE_string = 7, /**
+     * The Rule variable.
+     */
+    RULE_variable = 8, /**
+     * The Rule real.
+     */
+    RULE_real = 9, /**
+     * The Rule integer.
+     */
+    RULE_integer = 10;
+    /**
+     * The constant ruleNames.
+     */
+    public static final String[] ruleNames = {
 		"operationExp", "atomExp", "lowerExp", "function", "attribute", "scopeConstant", 
 		"indirectScopeConstant", "string", "variable", "real", "integer"
 	};
@@ -64,12 +208,17 @@ public class FunctionExpressionParser extends Parser {
 		"SCOPE_OPEN", "INDIRECT_SCOPE_OPEN", "WHITESPACES", "SCOPE_CLOSE", "RSQUARE_BRACKET", 
 		"CLOSING_QUOTES"
 	};
-	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
+    /**
+     * The constant VOCABULARY.
+     */
+    public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
-	/**
-	 * @deprecated Use {@link #VOCABULARY} instead.
-	 */
-	@Deprecated
+    /**
+     * The constant tokenNames.
+     *
+     * @deprecated Use {@link #VOCABULARY} instead.
+     */
+    @Deprecated
 	public static final String[] tokenNames;
 	static {
 		tokenNames = new String[_SYMBOLIC_NAMES.length];
@@ -85,80 +234,270 @@ public class FunctionExpressionParser extends Parser {
 		}
 	}
 
-	@Override
+    /**
+     * Get token names string [ ].
+     *
+     * @return the string [ ]
+     */
+    @Override
 	@Deprecated
 	public String[] getTokenNames() {
 		return tokenNames;
 	}
 
-	@Override
+    /**
+     * Gets vocabulary.
+     *
+     * @return the vocabulary
+     */
+    @Override
 
 	public Vocabulary getVocabulary() {
 		return VOCABULARY;
 	}
 
-	@Override
+    /**
+     * Gets grammar file name.
+     *
+     * @return the grammar file name
+     */
+    @Override
 	public String getGrammarFileName() { return "FunctionExpressionParser.g4"; }
 
-	@Override
+    /**
+     * Get rule names string [ ].
+     *
+     * @return the string [ ]
+     */
+    @Override
 	public String[] getRuleNames() { return ruleNames; }
 
-	@Override
+    /**
+     * Gets serialized atn.
+     *
+     * @return the serialized atn
+     */
+    @Override
 	public String getSerializedATN() { return _serializedATN; }
 
-	@Override
+    /**
+     * Gets atn.
+     *
+     * @return the atn
+     */
+    @Override
 	public ATN getATN() { return _ATN; }
 
-	public FunctionExpressionParser(TokenStream input) {
+    /**
+     * Instantiates a new Function expression parser.
+     *
+     * @param input the input
+     */
+    public FunctionExpressionParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
-	public static class OperationExpContext extends ParserRuleContext {
-		public Token op;
-		public List<OperationExpContext> operationExp() {
+
+    /**
+     * The type Operation exp context.
+     */
+    public static class OperationExpContext extends ParserRuleContext {
+        /**
+         * The Op.
+         */
+        public Token op;
+
+        /**
+         * Operation exp list.
+         *
+         * @return the list
+         */
+        public List<OperationExpContext> operationExp() {
 			return getRuleContexts(OperationExpContext.class);
 		}
-		public OperationExpContext operationExp(int i) {
+
+        /**
+         * Operation exp operation exp context.
+         *
+         * @param i the
+         * @return the operation exp context
+         */
+        public OperationExpContext operationExp(int i) {
 			return getRuleContext(OperationExpContext.class,i);
 		}
-		public TerminalNode NOT() { return getToken(FunctionExpressionParser.NOT, 0); }
-		public TerminalNode PLUS() { return getToken(FunctionExpressionParser.PLUS, 0); }
-		public TerminalNode MINUS() { return getToken(FunctionExpressionParser.MINUS, 0); }
-		public AtomExpContext atomExp() {
+
+        /**
+         * Not terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode NOT() { return getToken(FunctionExpressionParser.NOT, 0); }
+
+        /**
+         * Plus terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode PLUS() { return getToken(FunctionExpressionParser.PLUS, 0); }
+
+        /**
+         * Minus terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode MINUS() { return getToken(FunctionExpressionParser.MINUS, 0); }
+
+        /**
+         * Atom exp atom exp context.
+         *
+         * @return the atom exp context
+         */
+        public AtomExpContext atomExp() {
 			return getRuleContext(AtomExpContext.class,0);
 		}
-		public TerminalNode POWER() { return getToken(FunctionExpressionParser.POWER, 0); }
-		public TerminalNode MULTIPLY() { return getToken(FunctionExpressionParser.MULTIPLY, 0); }
-		public TerminalNode DIVIDE() { return getToken(FunctionExpressionParser.DIVIDE, 0); }
-		public TerminalNode MODULO() { return getToken(FunctionExpressionParser.MODULO, 0); }
-		public TerminalNode LESS() { return getToken(FunctionExpressionParser.LESS, 0); }
-		public TerminalNode LEQ() { return getToken(FunctionExpressionParser.LEQ, 0); }
-		public TerminalNode GREATER() { return getToken(FunctionExpressionParser.GREATER, 0); }
-		public TerminalNode GEQ() { return getToken(FunctionExpressionParser.GEQ, 0); }
-		public TerminalNode EQUALS() { return getToken(FunctionExpressionParser.EQUALS, 0); }
-		public TerminalNode NOT_EQUALS() { return getToken(FunctionExpressionParser.NOT_EQUALS, 0); }
-		public TerminalNode AND() { return getToken(FunctionExpressionParser.AND, 0); }
-		public TerminalNode OR() { return getToken(FunctionExpressionParser.OR, 0); }
-		public OperationExpContext(ParserRuleContext parent, int invokingState) {
+
+        /**
+         * Power terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode POWER() { return getToken(FunctionExpressionParser.POWER, 0); }
+
+        /**
+         * Multiply terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode MULTIPLY() { return getToken(FunctionExpressionParser.MULTIPLY, 0); }
+
+        /**
+         * Divide terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode DIVIDE() { return getToken(FunctionExpressionParser.DIVIDE, 0); }
+
+        /**
+         * Modulo terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode MODULO() { return getToken(FunctionExpressionParser.MODULO, 0); }
+
+        /**
+         * Less terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode LESS() { return getToken(FunctionExpressionParser.LESS, 0); }
+
+        /**
+         * Leq terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode LEQ() { return getToken(FunctionExpressionParser.LEQ, 0); }
+
+        /**
+         * Greater terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode GREATER() { return getToken(FunctionExpressionParser.GREATER, 0); }
+
+        /**
+         * Geq terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode GEQ() { return getToken(FunctionExpressionParser.GEQ, 0); }
+
+        /**
+         * Equals terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode EQUALS() { return getToken(FunctionExpressionParser.EQUALS, 0); }
+
+        /**
+         * Not equals terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode NOT_EQUALS() { return getToken(FunctionExpressionParser.NOT_EQUALS, 0); }
+
+        /**
+         * And terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode AND() { return getToken(FunctionExpressionParser.AND, 0); }
+
+        /**
+         * Or terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode OR() { return getToken(FunctionExpressionParser.OR, 0); }
+
+        /**
+         * Instantiates a new Operation exp context.
+         *
+         * @param parent        the parent
+         * @param invokingState the invoking state
+         */
+        public OperationExpContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_operationExp; }
-		@Override
+
+        /**
+         * Gets rule index.
+         *
+         * @return the rule index
+         */
+        @Override public int getRuleIndex() { return RULE_operationExp; }
+
+        /**
+         * Enter rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).enterOperationExp(this);
 		}
-		@Override
+
+        /**
+         * Exit rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).exitOperationExp(this);
 		}
-		@Override
+
+        /**
+         * Accept t.
+         *
+         * @param <T>     the type parameter
+         * @param visitor the visitor
+         * @return the t
+         */
+        @Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof FunctionExpressionParserVisitor ) return ((FunctionExpressionParserVisitor<? extends T>)visitor).visitOperationExp(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final OperationExpContext operationExp() throws RecognitionException {
+    /**
+     * Operation exp operation exp context.
+     *
+     * @return the operation exp context
+     * @throws RecognitionException the recognition exception
+     */
+    public final OperationExpContext operationExp() throws RecognitionException {
 		return operationExp(0);
 	}
 
@@ -354,54 +693,149 @@ public class FunctionExpressionParser extends Parser {
 		return _localctx;
 	}
 
-	public static class AtomExpContext extends ParserRuleContext {
-		public FunctionContext function() {
+    /**
+     * The type Atom exp context.
+     */
+    public static class AtomExpContext extends ParserRuleContext {
+        /**
+         * Function function context.
+         *
+         * @return the function context
+         */
+        public FunctionContext function() {
 			return getRuleContext(FunctionContext.class,0);
 		}
-		public AttributeContext attribute() {
+
+        /**
+         * Attribute attribute context.
+         *
+         * @return the attribute context
+         */
+        public AttributeContext attribute() {
 			return getRuleContext(AttributeContext.class,0);
 		}
-		public ScopeConstantContext scopeConstant() {
+
+        /**
+         * Scope constant scope constant context.
+         *
+         * @return the scope constant context
+         */
+        public ScopeConstantContext scopeConstant() {
 			return getRuleContext(ScopeConstantContext.class,0);
 		}
-		public IndirectScopeConstantContext indirectScopeConstant() {
+
+        /**
+         * Indirect scope constant indirect scope constant context.
+         *
+         * @return the indirect scope constant context
+         */
+        public IndirectScopeConstantContext indirectScopeConstant() {
 			return getRuleContext(IndirectScopeConstantContext.class,0);
 		}
-		public StringContext string() {
+
+        /**
+         * String string context.
+         *
+         * @return the string context
+         */
+        public StringContext string() {
 			return getRuleContext(StringContext.class,0);
 		}
-		public VariableContext variable() {
+
+        /**
+         * Variable variable context.
+         *
+         * @return the variable context
+         */
+        public VariableContext variable() {
 			return getRuleContext(VariableContext.class,0);
 		}
-		public RealContext real() {
+
+        /**
+         * Real real context.
+         *
+         * @return the real context
+         */
+        public RealContext real() {
 			return getRuleContext(RealContext.class,0);
 		}
-		public IntegerContext integer() {
+
+        /**
+         * Integer integer context.
+         *
+         * @return the integer context
+         */
+        public IntegerContext integer() {
 			return getRuleContext(IntegerContext.class,0);
 		}
-		public LowerExpContext lowerExp() {
+
+        /**
+         * Lower exp lower exp context.
+         *
+         * @return the lower exp context
+         */
+        public LowerExpContext lowerExp() {
 			return getRuleContext(LowerExpContext.class,0);
 		}
-		public AtomExpContext(ParserRuleContext parent, int invokingState) {
+
+        /**
+         * Instantiates a new Atom exp context.
+         *
+         * @param parent        the parent
+         * @param invokingState the invoking state
+         */
+        public AtomExpContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_atomExp; }
-		@Override
+
+        /**
+         * Gets rule index.
+         *
+         * @return the rule index
+         */
+        @Override public int getRuleIndex() { return RULE_atomExp; }
+
+        /**
+         * Enter rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).enterAtomExp(this);
 		}
-		@Override
+
+        /**
+         * Exit rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).exitAtomExp(this);
 		}
-		@Override
+
+        /**
+         * Accept t.
+         *
+         * @param <T>     the type parameter
+         * @param visitor the visitor
+         * @return the t
+         */
+        @Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof FunctionExpressionParserVisitor ) return ((FunctionExpressionParserVisitor<? extends T>)visitor).visitAtomExp(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final AtomExpContext atomExp() throws RecognitionException {
+    /**
+     * Atom exp atom exp context.
+     *
+     * @return the atom exp context
+     * @throws RecognitionException the recognition exception
+     */
+    public final AtomExpContext atomExp() throws RecognitionException {
 		AtomExpContext _localctx = new AtomExpContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_atomExp);
 		try {
@@ -483,32 +917,91 @@ public class FunctionExpressionParser extends Parser {
 		return _localctx;
 	}
 
-	public static class LowerExpContext extends ParserRuleContext {
-		public TerminalNode LPARENTHESIS() { return getToken(FunctionExpressionParser.LPARENTHESIS, 0); }
-		public OperationExpContext operationExp() {
+    /**
+     * The type Lower exp context.
+     */
+    public static class LowerExpContext extends ParserRuleContext {
+        /**
+         * Lparenthesis terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode LPARENTHESIS() { return getToken(FunctionExpressionParser.LPARENTHESIS, 0); }
+
+        /**
+         * Operation exp operation exp context.
+         *
+         * @return the operation exp context
+         */
+        public OperationExpContext operationExp() {
 			return getRuleContext(OperationExpContext.class,0);
 		}
-		public TerminalNode RPARENTHESIS() { return getToken(FunctionExpressionParser.RPARENTHESIS, 0); }
-		public LowerExpContext(ParserRuleContext parent, int invokingState) {
+
+        /**
+         * Rparenthesis terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode RPARENTHESIS() { return getToken(FunctionExpressionParser.RPARENTHESIS, 0); }
+
+        /**
+         * Instantiates a new Lower exp context.
+         *
+         * @param parent        the parent
+         * @param invokingState the invoking state
+         */
+        public LowerExpContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_lowerExp; }
-		@Override
+
+        /**
+         * Gets rule index.
+         *
+         * @return the rule index
+         */
+        @Override public int getRuleIndex() { return RULE_lowerExp; }
+
+        /**
+         * Enter rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).enterLowerExp(this);
 		}
-		@Override
+
+        /**
+         * Exit rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).exitLowerExp(this);
 		}
-		@Override
+
+        /**
+         * Accept t.
+         *
+         * @param <T>     the type parameter
+         * @param visitor the visitor
+         * @return the t
+         */
+        @Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof FunctionExpressionParserVisitor ) return ((FunctionExpressionParserVisitor<? extends T>)visitor).visitLowerExp(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final LowerExpContext lowerExp() throws RecognitionException {
+    /**
+     * Lower exp lower exp context.
+     *
+     * @return the lower exp context
+     * @throws RecognitionException the recognition exception
+     */
+    public final LowerExpContext lowerExp() throws RecognitionException {
 		LowerExpContext _localctx = new LowerExpContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_lowerExp);
 		try {
@@ -533,40 +1026,125 @@ public class FunctionExpressionParser extends Parser {
 		return _localctx;
 	}
 
-	public static class FunctionContext extends ParserRuleContext {
-		public TerminalNode NAME() { return getToken(FunctionExpressionParser.NAME, 0); }
-		public TerminalNode LPARENTHESIS() { return getToken(FunctionExpressionParser.LPARENTHESIS, 0); }
-		public TerminalNode RPARENTHESIS() { return getToken(FunctionExpressionParser.RPARENTHESIS, 0); }
-		public List<OperationExpContext> operationExp() {
+    /**
+     * The type Function context.
+     */
+    public static class FunctionContext extends ParserRuleContext {
+        /**
+         * Name terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode NAME() { return getToken(FunctionExpressionParser.NAME, 0); }
+
+        /**
+         * Lparenthesis terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode LPARENTHESIS() { return getToken(FunctionExpressionParser.LPARENTHESIS, 0); }
+
+        /**
+         * Rparenthesis terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode RPARENTHESIS() { return getToken(FunctionExpressionParser.RPARENTHESIS, 0); }
+
+        /**
+         * Operation exp list.
+         *
+         * @return the list
+         */
+        public List<OperationExpContext> operationExp() {
 			return getRuleContexts(OperationExpContext.class);
 		}
-		public OperationExpContext operationExp(int i) {
+
+        /**
+         * Operation exp operation exp context.
+         *
+         * @param i the
+         * @return the operation exp context
+         */
+        public OperationExpContext operationExp(int i) {
 			return getRuleContext(OperationExpContext.class,i);
 		}
-		public List<TerminalNode> COMMA() { return getTokens(FunctionExpressionParser.COMMA); }
-		public TerminalNode COMMA(int i) {
+
+        /**
+         * Comma list.
+         *
+         * @return the list
+         */
+        public List<TerminalNode> COMMA() { return getTokens(FunctionExpressionParser.COMMA); }
+
+        /**
+         * Comma terminal node.
+         *
+         * @param i the
+         * @return the terminal node
+         */
+        public TerminalNode COMMA(int i) {
 			return getToken(FunctionExpressionParser.COMMA, i);
 		}
-		public FunctionContext(ParserRuleContext parent, int invokingState) {
+
+        /**
+         * Instantiates a new Function context.
+         *
+         * @param parent        the parent
+         * @param invokingState the invoking state
+         */
+        public FunctionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_function; }
-		@Override
+
+        /**
+         * Gets rule index.
+         *
+         * @return the rule index
+         */
+        @Override public int getRuleIndex() { return RULE_function; }
+
+        /**
+         * Enter rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).enterFunction(this);
 		}
-		@Override
+
+        /**
+         * Exit rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).exitFunction(this);
 		}
-		@Override
+
+        /**
+         * Accept t.
+         *
+         * @param <T>     the type parameter
+         * @param visitor the visitor
+         * @return the t
+         */
+        @Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof FunctionExpressionParserVisitor ) return ((FunctionExpressionParserVisitor<? extends T>)visitor).visitFunction(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final FunctionContext function() throws RecognitionException {
+    /**
+     * Function function context.
+     *
+     * @return the function context
+     * @throws RecognitionException the recognition exception
+     */
+    public final FunctionContext function() throws RecognitionException {
 		FunctionContext _localctx = new FunctionContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_function);
 		int _la;
@@ -633,28 +1211,75 @@ public class FunctionExpressionParser extends Parser {
 		return _localctx;
 	}
 
-	public static class AttributeContext extends ParserRuleContext {
-		public TerminalNode ATTRIBUTE() { return getToken(FunctionExpressionParser.ATTRIBUTE, 0); }
-		public AttributeContext(ParserRuleContext parent, int invokingState) {
+    /**
+     * The type Attribute context.
+     */
+    public static class AttributeContext extends ParserRuleContext {
+        /**
+         * Attribute terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode ATTRIBUTE() { return getToken(FunctionExpressionParser.ATTRIBUTE, 0); }
+
+        /**
+         * Instantiates a new Attribute context.
+         *
+         * @param parent        the parent
+         * @param invokingState the invoking state
+         */
+        public AttributeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_attribute; }
-		@Override
+
+        /**
+         * Gets rule index.
+         *
+         * @return the rule index
+         */
+        @Override public int getRuleIndex() { return RULE_attribute; }
+
+        /**
+         * Enter rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).enterAttribute(this);
 		}
-		@Override
+
+        /**
+         * Exit rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).exitAttribute(this);
 		}
-		@Override
+
+        /**
+         * Accept t.
+         *
+         * @param <T>     the type parameter
+         * @param visitor the visitor
+         * @return the t
+         */
+        @Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof FunctionExpressionParserVisitor ) return ((FunctionExpressionParserVisitor<? extends T>)visitor).visitAttribute(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final AttributeContext attribute() throws RecognitionException {
+    /**
+     * Attribute attribute context.
+     *
+     * @return the attribute context
+     * @throws RecognitionException the recognition exception
+     */
+    public final AttributeContext attribute() throws RecognitionException {
 		AttributeContext _localctx = new AttributeContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_attribute);
 		try {
@@ -675,28 +1300,75 @@ public class FunctionExpressionParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ScopeConstantContext extends ParserRuleContext {
-		public TerminalNode SCOPE_CONSTANT() { return getToken(FunctionExpressionParser.SCOPE_CONSTANT, 0); }
-		public ScopeConstantContext(ParserRuleContext parent, int invokingState) {
+    /**
+     * The type Scope constant context.
+     */
+    public static class ScopeConstantContext extends ParserRuleContext {
+        /**
+         * Scope constant terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode SCOPE_CONSTANT() { return getToken(FunctionExpressionParser.SCOPE_CONSTANT, 0); }
+
+        /**
+         * Instantiates a new Scope constant context.
+         *
+         * @param parent        the parent
+         * @param invokingState the invoking state
+         */
+        public ScopeConstantContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_scopeConstant; }
-		@Override
+
+        /**
+         * Gets rule index.
+         *
+         * @return the rule index
+         */
+        @Override public int getRuleIndex() { return RULE_scopeConstant; }
+
+        /**
+         * Enter rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).enterScopeConstant(this);
 		}
-		@Override
+
+        /**
+         * Exit rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).exitScopeConstant(this);
 		}
-		@Override
+
+        /**
+         * Accept t.
+         *
+         * @param <T>     the type parameter
+         * @param visitor the visitor
+         * @return the t
+         */
+        @Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof FunctionExpressionParserVisitor ) return ((FunctionExpressionParserVisitor<? extends T>)visitor).visitScopeConstant(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ScopeConstantContext scopeConstant() throws RecognitionException {
+    /**
+     * Scope constant scope constant context.
+     *
+     * @return the scope constant context
+     * @throws RecognitionException the recognition exception
+     */
+    public final ScopeConstantContext scopeConstant() throws RecognitionException {
 		ScopeConstantContext _localctx = new ScopeConstantContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_scopeConstant);
 		try {
@@ -717,28 +1389,75 @@ public class FunctionExpressionParser extends Parser {
 		return _localctx;
 	}
 
-	public static class IndirectScopeConstantContext extends ParserRuleContext {
-		public TerminalNode INDIRECT_SCOPE_CONSTANT() { return getToken(FunctionExpressionParser.INDIRECT_SCOPE_CONSTANT, 0); }
-		public IndirectScopeConstantContext(ParserRuleContext parent, int invokingState) {
+    /**
+     * The type Indirect scope constant context.
+     */
+    public static class IndirectScopeConstantContext extends ParserRuleContext {
+        /**
+         * Indirect scope constant terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode INDIRECT_SCOPE_CONSTANT() { return getToken(FunctionExpressionParser.INDIRECT_SCOPE_CONSTANT, 0); }
+
+        /**
+         * Instantiates a new Indirect scope constant context.
+         *
+         * @param parent        the parent
+         * @param invokingState the invoking state
+         */
+        public IndirectScopeConstantContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_indirectScopeConstant; }
-		@Override
+
+        /**
+         * Gets rule index.
+         *
+         * @return the rule index
+         */
+        @Override public int getRuleIndex() { return RULE_indirectScopeConstant; }
+
+        /**
+         * Enter rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).enterIndirectScopeConstant(this);
 		}
-		@Override
+
+        /**
+         * Exit rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).exitIndirectScopeConstant(this);
 		}
-		@Override
+
+        /**
+         * Accept t.
+         *
+         * @param <T>     the type parameter
+         * @param visitor the visitor
+         * @return the t
+         */
+        @Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof FunctionExpressionParserVisitor ) return ((FunctionExpressionParserVisitor<? extends T>)visitor).visitIndirectScopeConstant(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final IndirectScopeConstantContext indirectScopeConstant() throws RecognitionException {
+    /**
+     * Indirect scope constant indirect scope constant context.
+     *
+     * @return the indirect scope constant context
+     * @throws RecognitionException the recognition exception
+     */
+    public final IndirectScopeConstantContext indirectScopeConstant() throws RecognitionException {
 		IndirectScopeConstantContext _localctx = new IndirectScopeConstantContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_indirectScopeConstant);
 		try {
@@ -759,28 +1478,75 @@ public class FunctionExpressionParser extends Parser {
 		return _localctx;
 	}
 
-	public static class StringContext extends ParserRuleContext {
-		public TerminalNode STRING() { return getToken(FunctionExpressionParser.STRING, 0); }
-		public StringContext(ParserRuleContext parent, int invokingState) {
+    /**
+     * The type String context.
+     */
+    public static class StringContext extends ParserRuleContext {
+        /**
+         * String terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode STRING() { return getToken(FunctionExpressionParser.STRING, 0); }
+
+        /**
+         * Instantiates a new String context.
+         *
+         * @param parent        the parent
+         * @param invokingState the invoking state
+         */
+        public StringContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_string; }
-		@Override
+
+        /**
+         * Gets rule index.
+         *
+         * @return the rule index
+         */
+        @Override public int getRuleIndex() { return RULE_string; }
+
+        /**
+         * Enter rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).enterString(this);
 		}
-		@Override
+
+        /**
+         * Exit rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).exitString(this);
 		}
-		@Override
+
+        /**
+         * Accept t.
+         *
+         * @param <T>     the type parameter
+         * @param visitor the visitor
+         * @return the t
+         */
+        @Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof FunctionExpressionParserVisitor ) return ((FunctionExpressionParserVisitor<? extends T>)visitor).visitString(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final StringContext string() throws RecognitionException {
+    /**
+     * String string context.
+     *
+     * @return the string context
+     * @throws RecognitionException the recognition exception
+     */
+    public final StringContext string() throws RecognitionException {
 		StringContext _localctx = new StringContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_string);
 		try {
@@ -801,28 +1567,75 @@ public class FunctionExpressionParser extends Parser {
 		return _localctx;
 	}
 
-	public static class VariableContext extends ParserRuleContext {
-		public TerminalNode NAME() { return getToken(FunctionExpressionParser.NAME, 0); }
-		public VariableContext(ParserRuleContext parent, int invokingState) {
+    /**
+     * The type Variable context.
+     */
+    public static class VariableContext extends ParserRuleContext {
+        /**
+         * Name terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode NAME() { return getToken(FunctionExpressionParser.NAME, 0); }
+
+        /**
+         * Instantiates a new Variable context.
+         *
+         * @param parent        the parent
+         * @param invokingState the invoking state
+         */
+        public VariableContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_variable; }
-		@Override
+
+        /**
+         * Gets rule index.
+         *
+         * @return the rule index
+         */
+        @Override public int getRuleIndex() { return RULE_variable; }
+
+        /**
+         * Enter rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).enterVariable(this);
 		}
-		@Override
+
+        /**
+         * Exit rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).exitVariable(this);
 		}
-		@Override
+
+        /**
+         * Accept t.
+         *
+         * @param <T>     the type parameter
+         * @param visitor the visitor
+         * @return the t
+         */
+        @Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof FunctionExpressionParserVisitor ) return ((FunctionExpressionParserVisitor<? extends T>)visitor).visitVariable(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final VariableContext variable() throws RecognitionException {
+    /**
+     * Variable variable context.
+     *
+     * @return the variable context
+     * @throws RecognitionException the recognition exception
+     */
+    public final VariableContext variable() throws RecognitionException {
 		VariableContext _localctx = new VariableContext(_ctx, getState());
 		enterRule(_localctx, 16, RULE_variable);
 		try {
@@ -843,28 +1656,75 @@ public class FunctionExpressionParser extends Parser {
 		return _localctx;
 	}
 
-	public static class RealContext extends ParserRuleContext {
-		public TerminalNode REAL() { return getToken(FunctionExpressionParser.REAL, 0); }
-		public RealContext(ParserRuleContext parent, int invokingState) {
+    /**
+     * The type Real context.
+     */
+    public static class RealContext extends ParserRuleContext {
+        /**
+         * Real terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode REAL() { return getToken(FunctionExpressionParser.REAL, 0); }
+
+        /**
+         * Instantiates a new Real context.
+         *
+         * @param parent        the parent
+         * @param invokingState the invoking state
+         */
+        public RealContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_real; }
-		@Override
+
+        /**
+         * Gets rule index.
+         *
+         * @return the rule index
+         */
+        @Override public int getRuleIndex() { return RULE_real; }
+
+        /**
+         * Enter rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).enterReal(this);
 		}
-		@Override
+
+        /**
+         * Exit rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).exitReal(this);
 		}
-		@Override
+
+        /**
+         * Accept t.
+         *
+         * @param <T>     the type parameter
+         * @param visitor the visitor
+         * @return the t
+         */
+        @Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof FunctionExpressionParserVisitor ) return ((FunctionExpressionParserVisitor<? extends T>)visitor).visitReal(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final RealContext real() throws RecognitionException {
+    /**
+     * Real real context.
+     *
+     * @return the real context
+     * @throws RecognitionException the recognition exception
+     */
+    public final RealContext real() throws RecognitionException {
 		RealContext _localctx = new RealContext(_ctx, getState());
 		enterRule(_localctx, 18, RULE_real);
 		try {
@@ -885,28 +1745,75 @@ public class FunctionExpressionParser extends Parser {
 		return _localctx;
 	}
 
-	public static class IntegerContext extends ParserRuleContext {
-		public TerminalNode INTEGER() { return getToken(FunctionExpressionParser.INTEGER, 0); }
-		public IntegerContext(ParserRuleContext parent, int invokingState) {
+    /**
+     * The type Integer context.
+     */
+    public static class IntegerContext extends ParserRuleContext {
+        /**
+         * Integer terminal node.
+         *
+         * @return the terminal node
+         */
+        public TerminalNode INTEGER() { return getToken(FunctionExpressionParser.INTEGER, 0); }
+
+        /**
+         * Instantiates a new Integer context.
+         *
+         * @param parent        the parent
+         * @param invokingState the invoking state
+         */
+        public IntegerContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_integer; }
-		@Override
+
+        /**
+         * Gets rule index.
+         *
+         * @return the rule index
+         */
+        @Override public int getRuleIndex() { return RULE_integer; }
+
+        /**
+         * Enter rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).enterInteger(this);
 		}
-		@Override
+
+        /**
+         * Exit rule.
+         *
+         * @param listener the listener
+         */
+        @Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof FunctionExpressionParserListener ) ((FunctionExpressionParserListener)listener).exitInteger(this);
 		}
-		@Override
+
+        /**
+         * Accept t.
+         *
+         * @param <T>     the type parameter
+         * @param visitor the visitor
+         * @return the t
+         */
+        @Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof FunctionExpressionParserVisitor ) return ((FunctionExpressionParserVisitor<? extends T>)visitor).visitInteger(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final IntegerContext integer() throws RecognitionException {
+    /**
+     * Integer integer context.
+     *
+     * @return the integer context
+     * @throws RecognitionException the recognition exception
+     */
+    public final IntegerContext integer() throws RecognitionException {
 		IntegerContext _localctx = new IntegerContext(_ctx, getState());
 		enterRule(_localctx, 20, RULE_integer);
 		try {
@@ -927,7 +1834,15 @@ public class FunctionExpressionParser extends Parser {
 		return _localctx;
 	}
 
-	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
+    /**
+     * Sempred boolean.
+     *
+     * @param _localctx the localctx
+     * @param ruleIndex the rule index
+     * @param predIndex the pred index
+     * @return the boolean
+     */
+    public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
 		case 0:
 			return operationExp_sempred((OperationExpContext)_localctx, predIndex);
@@ -954,7 +1869,10 @@ public class FunctionExpressionParser extends Parser {
 		return true;
 	}
 
-	public static final String _serializedATN =
+    /**
+     * The constant _serializedATN.
+     */
+    public static final String _serializedATN =
 		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3#g\4\2\t\2\4\3\t\3"+
 		"\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f"+
 		"\t\f\3\2\3\2\3\2\3\2\3\2\3\2\5\2\37\n\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3"+
@@ -981,7 +1899,10 @@ public class FunctionExpressionParser extends Parser {
 		"\2\2\2VW\7\23\2\2W\t\3\2\2\2XY\7\30\2\2Y\13\3\2\2\2Z[\7\32\2\2[\r\3\2"+
 		"\2\2\\]\7\33\2\2]\17\3\2\2\2^_\7\31\2\2_\21\3\2\2\2`a\7\25\2\2a\23\3\2"+
 		"\2\2bc\7\27\2\2c\25\3\2\2\2de\7\26\2\2e\27\3\2\2\2\b\36\65\67CQT";
-	public static final ATN _ATN =
+    /**
+     * The constant _ATN.
+     */
+    public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
 		_decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];

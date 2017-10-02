@@ -27,7 +27,7 @@ import org.w3c.dom.Element;
 
 /**
  * This condition checks if a boolean parameter has a certain value.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class BooleanParameterCondition extends ParameterCondition {
@@ -36,13 +36,27 @@ public class BooleanParameterCondition extends ParameterCondition {
 
 	private boolean conditionValue;
 
-	public BooleanParameterCondition(Element element) throws XMLException {
+    /**
+     * Instantiates a new Boolean parameter condition.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public BooleanParameterCondition(Element element) throws XMLException {
 		super(element);
 
 		conditionValue = Boolean.valueOf(XMLTools.getTagContents(element, ELEMENT_CONDITION_VALUE, true));
 	}
 
-	public BooleanParameterCondition(ParameterHandler parameterHandler, String conditionParameter, boolean becomeMandatory,
+    /**
+     * Instantiates a new Boolean parameter condition.
+     *
+     * @param parameterHandler   the parameter handler
+     * @param conditionParameter the condition parameter
+     * @param becomeMandatory    the become mandatory
+     * @param conditionValue     the condition value
+     */
+    public BooleanParameterCondition(ParameterHandler parameterHandler, String conditionParameter, boolean becomeMandatory,
 			boolean conditionValue) {
 		super(parameterHandler, conditionParameter, becomeMandatory);
 		this.conditionValue = conditionValue;

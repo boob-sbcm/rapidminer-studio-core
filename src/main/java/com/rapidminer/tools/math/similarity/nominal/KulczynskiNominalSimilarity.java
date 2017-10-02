@@ -20,7 +20,7 @@ package com.rapidminer.tools.math.similarity.nominal;
 
 /**
  * Implements the Kulczynski similarity for nominal attributes.
- * 
+ *
  * @author Sebastian Land, Michael Wurst
  */
 public class KulczynskiNominalSimilarity extends AbstractNominalSimilarity {

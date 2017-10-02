@@ -37,7 +37,7 @@ import java.util.Set;
 /**
  * This model is able to transform the data in a way, every transformed attribute of an example
  * contains the proportion of the total sum of this attribute over all examples.
- * 
+ *
  * @author Sebastian Land
  */
 public class ProportionNormalizationModel extends AbstractNormalizationModel {
@@ -47,8 +47,13 @@ public class ProportionNormalizationModel extends AbstractNormalizationModel {
 	private HashMap<String, Double> attributeSums;
 	private Set<String> attributeNames;
 
-	/** Create a new normalization model. */
-	public ProportionNormalizationModel(ExampleSet exampleSet, HashMap<String, Double> attributeSums) {
+    /**
+     * Create a new normalization model.  @param exampleSet the example set
+     *
+     * @param exampleSet    the example set
+     * @param attributeSums the attribute sums
+     */
+    public ProportionNormalizationModel(ExampleSet exampleSet, HashMap<String, Double> attributeSums) {
 		super(exampleSet);
 		this.attributeSums = attributeSums;
 		attributeNames = new HashSet<String>();
@@ -109,12 +114,22 @@ public class ProportionNormalizationModel extends AbstractNormalizationModel {
 		}
 		return buffer.toString();
 	}
-	
-	public Set<String> getAttributeNames() {
+
+    /**
+     * Gets attribute names.
+     *
+     * @return the attribute names
+     */
+    public Set<String> getAttributeNames() {
 		return attributeNames;
 	}
-	
-	public Map<String, Double> getAttributeSums() {
+
+    /**
+     * Gets attribute sums.
+     *
+     * @return the attribute sums
+     */
+    public Map<String, Double> getAttributeSums() {
 		return attributeSums;
 	}
 

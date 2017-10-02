@@ -37,18 +37,25 @@ import com.rapidminer.tools.Ontology;
  * exampleSet at the given port. If the attribute(s) are not contained, only a warning will be
  * given. Since this Precondition does not register errors beside the warning, it might be used in
  * addition to the ExampleSetPrecondition.
- *
+ * <p>
  * An implementation of the AttributeNameProvider might be used to provide the names of attribute
  * unknown during creation time.
  *
  * @author Sebastian Land
- *
  */
 public class AttributeSetPrecondition extends AbstractPrecondition {
 
-	public static abstract class AttributeNameProvider {
+    /**
+     * The type Attribute name provider.
+     */
+    public static abstract class AttributeNameProvider {
 
-		public abstract String[] getRequiredAttributeNames();
+        /**
+         * Get required attribute names string [ ].
+         *
+         * @return the string [ ]
+         */
+        public abstract String[] getRequiredAttributeNames();
 	}
 
 	private static class ParameterAttributeNameProvider extends AttributeNameProvider {
@@ -56,7 +63,13 @@ public class AttributeSetPrecondition extends AbstractPrecondition {
 		private final ParameterHandler handler;
 		private final String[] parameterKeys;
 
-		public ParameterAttributeNameProvider(ParameterHandler handler, String... parameterKeys) {
+        /**
+         * Instantiates a new Parameter attribute name provider.
+         *
+         * @param handler       the handler
+         * @param parameterKeys the parameter keys
+         */
+        public ParameterAttributeNameProvider(ParameterHandler handler, String... parameterKeys) {
 			this.handler = handler;
 			this.parameterKeys = parameterKeys;
 		}
@@ -73,11 +86,21 @@ public class AttributeSetPrecondition extends AbstractPrecondition {
 			return names.toArray(new String[names.size()]);
 		}
 
-		public ParameterHandler getHandler() {
+        /**
+         * Gets handler.
+         *
+         * @return the handler
+         */
+        public ParameterHandler getHandler() {
 			return this.handler;
 		}
 
-		public String[] getParameterKeys() {
+        /**
+         * Get parameter keys string [ ].
+         *
+         * @return the string [ ]
+         */
+        public String[] getParameterKeys() {
 			return this.parameterKeys;
 		}
 	}
@@ -88,7 +111,14 @@ public class AttributeSetPrecondition extends AbstractPrecondition {
 		private final String parameterKey;
 		private final int entry;
 
-		public ParameterListAttributeNameProvider(ParameterHandler handler, String parameterKey, int entry) {
+        /**
+         * Instantiates a new Parameter list attribute name provider.
+         *
+         * @param handler      the handler
+         * @param parameterKey the parameter key
+         * @param entry        the entry
+         */
+        public ParameterListAttributeNameProvider(ParameterHandler handler, String parameterKey, int entry) {
 			this.handler = handler;
 			this.parameterKey = parameterKey;
 			this.entry = entry;
@@ -112,11 +142,21 @@ public class AttributeSetPrecondition extends AbstractPrecondition {
 			return new String[0];
 		}
 
-		public ParameterHandler getHandler() {
+        /**
+         * Gets handler.
+         *
+         * @return the handler
+         */
+        public ParameterHandler getHandler() {
 			return this.handler;
 		}
 
-		public String getParameterKey() {
+        /**
+         * Gets parameter key.
+         *
+         * @return the parameter key
+         */
+        public String getParameterKey() {
 			return this.parameterKey;
 		}
 	}
@@ -125,16 +165,37 @@ public class AttributeSetPrecondition extends AbstractPrecondition {
 	private final AttributeNameProvider requiredNameProvider;
 	private final int requiredAttributesType;
 
-	public AttributeSetPrecondition(InputPort inputPort, String... requiredAttributeNames) {
+    /**
+     * Instantiates a new Attribute set precondition.
+     *
+     * @param inputPort              the input port
+     * @param requiredAttributeNames the required attribute names
+     */
+    public AttributeSetPrecondition(InputPort inputPort, String... requiredAttributeNames) {
 		this(inputPort, null, requiredAttributeNames);
 	}
 
-	public AttributeSetPrecondition(InputPort inputPort, AttributeNameProvider attributeNameProvider,
+    /**
+     * Instantiates a new Attribute set precondition.
+     *
+     * @param inputPort              the input port
+     * @param attributeNameProvider  the attribute name provider
+     * @param requiredAttributeNames the required attribute names
+     */
+    public AttributeSetPrecondition(InputPort inputPort, AttributeNameProvider attributeNameProvider,
 			String... requiredAttributeNames) {
 		this(inputPort, attributeNameProvider, Ontology.VALUE_TYPE, requiredAttributeNames);
 	}
 
-	public AttributeSetPrecondition(InputPort inputPort, AttributeNameProvider attributeNameProvider,
+    /**
+     * Instantiates a new Attribute set precondition.
+     *
+     * @param inputPort                the input port
+     * @param attributeNameProvider    the attribute name provider
+     * @param typeOfRequiredAttributes the type of required attributes
+     * @param requiredAttributeNames   the required attribute names
+     */
+    public AttributeSetPrecondition(InputPort inputPort, AttributeNameProvider attributeNameProvider,
 			int typeOfRequiredAttributes, String... requiredAttributeNames) {
 		super(inputPort);
 		this.requiredAttributes = requiredAttributeNames;
@@ -206,7 +267,12 @@ public class AttributeSetPrecondition extends AbstractPrecondition {
 		}
 	}
 
-	protected final String[] getRequiredNames() {
+    /**
+     * Get required names string [ ].
+     *
+     * @return the string [ ]
+     */
+    protected final String[] getRequiredNames() {
 		int length = requiredAttributes.length;
 		String[] providedNames = requiredNameProvider.getRequiredAttributeNames();
 		if (requiredNameProvider != null) {
@@ -222,8 +288,14 @@ public class AttributeSetPrecondition extends AbstractPrecondition {
 		return result;
 	}
 
-	/** Can be implemented by subclasses in order to specify quickfixes. */
-	public QuickFix getQuickFix(ExampleSetMetaData emd) throws UndefinedParameterError {
+    /**
+     * Can be implemented by subclasses in order to specify quickfixes.  @param emd the emd
+     *
+     * @param emd the emd
+     * @return the quick fix
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public QuickFix getQuickFix(ExampleSetMetaData emd) throws UndefinedParameterError {
 		if (requiredNameProvider != null) {
 			if (requiredNameProvider instanceof ParameterAttributeNameProvider) {
 				ParameterAttributeNameProvider provider = (ParameterAttributeNameProvider) requiredNameProvider;
@@ -236,8 +308,12 @@ public class AttributeSetPrecondition extends AbstractPrecondition {
 		return null;
 	}
 
-	/** Can be implemented by subclasses. */
-	public void makeAdditionalChecks(ExampleSetMetaData emd) {}
+    /**
+     * Can be implemented by subclasses.  @param emd the emd
+     *
+     * @param emd the emd
+     */
+    public void makeAdditionalChecks(ExampleSetMetaData emd) {}
 
 	@Override
 	public String getDescription() {
@@ -254,15 +330,27 @@ public class AttributeSetPrecondition extends AbstractPrecondition {
 		return new ExampleSetMetaData();
 	}
 
-	public static AttributeNameProvider getAttributesByParameter(ParameterHandler handler, String... parameterKeys) {
+    /**
+     * Gets attributes by parameter.
+     *
+     * @param handler       the handler
+     * @param parameterKeys the parameter keys
+     * @return the attributes by parameter
+     */
+    public static AttributeNameProvider getAttributesByParameter(ParameterHandler handler, String... parameterKeys) {
 		return new ParameterAttributeNameProvider(handler, parameterKeys);
 	}
 
-	/**
-	 * Returns an AttributeNameProvider that can extract one column of a ParameterTypeList for use
-	 * them as attribute names.
-	 */
-	public static AttributeNameProvider getAttributesByParameterListEntry(ParameterHandler handler, String parameterListKey,
+    /**
+     * Returns an AttributeNameProvider that can extract one column of a ParameterTypeList for use
+     * them as attribute names.
+     *
+     * @param handler          the handler
+     * @param parameterListKey the parameter list key
+     * @param entry            the entry
+     * @return the attributes by parameter list entry
+     */
+    public static AttributeNameProvider getAttributesByParameterListEntry(ParameterHandler handler, String parameterListKey,
 			int entry) {
 		return new ParameterListAttributeNameProvider(handler, parameterListKey, entry);
 	}

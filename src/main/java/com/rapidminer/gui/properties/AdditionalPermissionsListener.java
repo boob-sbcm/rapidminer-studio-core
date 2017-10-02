@@ -24,16 +24,15 @@ import com.rapidminer.tools.ParameterService;
  * @author Joao Pedro Pinheiro
  * @since 7.4
  */
-
 public class AdditionalPermissionsListener extends WindowAdapter {
 
 	/** stores if the beta features are activated when the listener is constructed */
 	private boolean permissionsActiveBefore;
 
-	/**
-	 * Constructs a Listener for extra permissions activation
-	 */
-	AdditionalPermissionsListener() {
+    /**
+     * Constructs a Listener for extra permissions activation
+     */
+    AdditionalPermissionsListener() {
 		permissionsActiveBefore = Boolean.parseBoolean(
 				ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_UPDATE_ADDITIONAL_PERMISSIONS));
 	}

@@ -37,7 +37,7 @@ import java.util.Set;
 /**
  * A simple model which can be used to transform all regular attributes into a value range between
  * the given min and max values.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class MinMaxNormalizationModel extends AbstractNormalizationModel {
@@ -52,8 +52,15 @@ public class MinMaxNormalizationModel extends AbstractNormalizationModel {
 	private final HashMap<String, Tupel<Double, Double>> attributeRanges;
 	private final Set<String> attributeNames;
 
-	/** Create a new normalization model. */
-	public MinMaxNormalizationModel(ExampleSet exampleSet, double min, double max,
+    /**
+     * Create a new normalization model.  @param exampleSet the example set
+     *
+     * @param exampleSet      the example set
+     * @param min             the min
+     * @param max             the max
+     * @param attributeRanges the attribute ranges
+     */
+    public MinMaxNormalizationModel(ExampleSet exampleSet, double min, double max,
 			HashMap<String, Tupel<Double, Double>> attributeRanges) {
 		super(exampleSet);
 		this.min = min;
@@ -115,20 +122,40 @@ public class MinMaxNormalizationModel extends AbstractNormalizationModel {
 	public String toString() {
 		return "Normalize between " + this.min + " and " + this.max;
 	}
-	
-	public double getMin() {
+
+    /**
+     * Gets min.
+     *
+     * @return the min
+     */
+    public double getMin() {
 		return min;
 	}
 
-	public double getMax() {
+    /**
+     * Gets max.
+     *
+     * @return the max
+     */
+    public double getMax() {
 		return max;
 	}
 
-	public Map<String, Tupel<Double, Double>> getAttributeRanges() {
+    /**
+     * Gets attribute ranges.
+     *
+     * @return the attribute ranges
+     */
+    public Map<String, Tupel<Double, Double>> getAttributeRanges() {
 		return attributeRanges;
 	}
 
-	public Set<String> getAttributeNames() {
+    /**
+     * Gets attribute names.
+     *
+     * @return the attribute names
+     */
+    public Set<String> getAttributeNames() {
 		return attributeNames;
 	}
 }

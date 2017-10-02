@@ -35,7 +35,7 @@ import java.util.Set;
 
 /**
  * This is the abstract superclass for all nominal similarity measures.
- * 
+ *
  * @author Sebastian Land
  */
 public abstract class AbstractNominalSimilarity extends SimilarityMeasure {
@@ -114,18 +114,15 @@ public abstract class AbstractNominalSimilarity extends SimilarityMeasure {
 		return calculateSimilarity(equalNonFalseValues, unequalValues, equalFalseValues);
 	}
 
-	/**
-	 * Calculate a similarity given the number of attributes for which both examples agree/disagree.
-	 * 
-	 * @param equalNonFalseValues
-	 *            the number of attributes for which both examples are equal and non-zero
-	 * @param unequalValues
-	 *            the number of attributes for which both examples have unequal values
-	 * @param equalFalseValues
-	 *            the number of attributes for which both examples have zero values
-	 * @return the similarity
-	 */
-	protected abstract double calculateSimilarity(double equalNonFalseValues, double unequalValues, double equalFalseValues);
+    /**
+     * Calculate a similarity given the number of attributes for which both examples agree/disagree.
+     *
+     * @param equalNonFalseValues the number of attributes for which both examples are equal and non-zero
+     * @param unequalValues       the number of attributes for which both examples have unequal values
+     * @param equalFalseValues    the number of attributes for which both examples have zero values
+     * @return the similarity
+     */
+    protected abstract double calculateSimilarity(double equalNonFalseValues, double unequalValues, double equalFalseValues);
 
 	@Override
 	public void init(ExampleSet exampleSet) throws OperatorException {

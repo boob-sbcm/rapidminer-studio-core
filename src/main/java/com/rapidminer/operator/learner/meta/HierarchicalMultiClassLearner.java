@@ -49,18 +49,32 @@ import java.util.concurrent.atomic.AtomicInteger;
  * higher number of classes this might prove more accurate than the one versus all or one versus one
  * approach. If applying the models in a binary tree like structure, less models need to be stored
  * in memory as well as less applications have to be performed before having a result.
- * 
+ *
  * @author Tobias Malbrecht, Sebastian Land
  */
 public class HierarchicalMultiClassLearner extends AbstractMetaLearner {
 
-	public static final String PARAMETER_HIERARCHY = "hierarchy";
+    /**
+     * The constant PARAMETER_HIERARCHY.
+     */
+    public static final String PARAMETER_HIERARCHY = "hierarchy";
 
-	public static final String PARAMETER_PARENT_CLASS = "parent_class";
+    /**
+     * The constant PARAMETER_PARENT_CLASS.
+     */
+    public static final String PARAMETER_PARENT_CLASS = "parent_class";
 
-	public static final String PARAMETER_CHILD_CLASS = "child_class";
+    /**
+     * The constant PARAMETER_CHILD_CLASS.
+     */
+    public static final String PARAMETER_CHILD_CLASS = "child_class";
 
-	public HierarchicalMultiClassLearner(OperatorDescription description) {
+    /**
+     * Instantiates a new Hierarchical multi class learner.
+     *
+     * @param description the description
+     */
+    public HierarchicalMultiClassLearner(OperatorDescription description) {
 		super(description);
 	}
 

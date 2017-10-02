@@ -20,26 +20,39 @@ package com.rapidminer.operator;
 
 /**
  * The super class for loggable String values.
- * 
+ *
  * @author Ingo Mierswa
  */
 public abstract class ValueString extends Value {
 
-	/**
-	 * Creates a new Value object with the given key as name and the given description. This value
-	 * will be documented.
-	 */
-	public ValueString(String key, String description) {
+    /**
+     * Creates a new Value object with the given key as name and the given description. This value
+     * will be documented.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ValueString(String key, String description) {
 		super(key, description);
 	}
 
-	/** Creates a new Value object. */
-	public ValueString(String key, String description, boolean documented) {
+    /**
+     * Creates a new Value object.  @param key the key
+     *
+     * @param key         the key
+     * @param description the description
+     * @param documented  the documented
+     */
+    public ValueString(String key, String description, boolean documented) {
 		super(key, description, documented);
 	}
 
-	/** Returns the double value which should be logged. */
-	public abstract String getStringValue();
+    /**
+     * Returns the double value which should be logged.  @return the string value
+     *
+     * @return the string value
+     */
+    public abstract String getStringValue();
 
 	@Override
 	public final boolean isNominal() {

@@ -27,7 +27,7 @@ import com.rapidminer.example.table.DataRow;
  * This is an {@link Aggregator} for the {@link LeastOccuringAggregationFunction}. If the least
  * value that at least occurrs once is not unique, the first value from the nominal mapping will be
  * used.
- * 
+ *
  * @author Sebastian Land
  */
 public class LeastOccurringAggregator implements Aggregator {
@@ -35,7 +35,12 @@ public class LeastOccurringAggregator implements Aggregator {
 	private Attribute sourceAttribute;
 	private double[] frequencies;
 
-	public LeastOccurringAggregator(AggregationFunction function) {
+    /**
+     * Instantiates a new Least occurring aggregator.
+     *
+     * @param function the function
+     */
+    public LeastOccurringAggregator(AggregationFunction function) {
 		this.sourceAttribute = function.getSourceAttribute();
 		frequencies = new double[sourceAttribute.getMapping().size()];
 	}

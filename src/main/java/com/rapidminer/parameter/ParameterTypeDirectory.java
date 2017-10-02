@@ -21,19 +21,33 @@ package com.rapidminer.parameter;
 /**
  * A parameter type for directories. Operators ask for the selected directory with
  * {@link com.rapidminer.operator.Operator#getParameterAsFile(String)} .
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ParameterTypeDirectory extends ParameterTypeFile {
 
 	private static final long serialVersionUID = 8908250135075572154L;
 
-	public ParameterTypeDirectory(String key, String description, boolean optional) {
+    /**
+     * Instantiates a new Parameter type directory.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     */
+    public ParameterTypeDirectory(String key, String description, boolean optional) {
 		super(key, description, null, null);
 		setOptional(optional);
 	}
 
-	public ParameterTypeDirectory(String key, String description, String defaultFileName) {
+    /**
+     * Instantiates a new Parameter type directory.
+     *
+     * @param key             the key
+     * @param description     the description
+     * @param defaultFileName the default file name
+     */
+    public ParameterTypeDirectory(String key, String description, String defaultFileName) {
 		super(key, description, null, defaultFileName);
 		setOptional(true);
 	}

@@ -39,7 +39,13 @@ import javax.swing.plaf.basic.BasicSpinnerUI;
  */
 public class SpinnerUI extends BasicSpinnerUI {
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new SpinnerUI();
 	}
 

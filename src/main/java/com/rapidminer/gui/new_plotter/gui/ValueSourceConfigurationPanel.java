@@ -66,8 +66,9 @@ import com.rapidminer.tools.math.function.aggregation.AbstractAggregationFunctio
 
 
 /**
- * @author Nils Woehler
+ * The type Value source configuration panel.
  *
+ * @author Nils Woehler
  */
 public class ValueSourceConfigurationPanel extends AbstractTreeSelectionDependentPanel {
 
@@ -115,7 +116,15 @@ public class ValueSourceConfigurationPanel extends AbstractTreeSelectionDependen
 
 	private JCheckBox automateLabelCheckBox;
 
-	public ValueSourceConfigurationPanel(boolean smallIcons, JTree plotConfigurationTree,
+    /**
+     * Instantiates a new Value source configuration panel.
+     *
+     * @param smallIcons            the small icons
+     * @param plotConfigurationTree the plot configuration tree
+     * @param th                    the th
+     * @param plotInstance          the plot instance
+     */
+    public ValueSourceConfigurationPanel(boolean smallIcons, JTree plotConfigurationTree,
 			DataTableColumnListTransferHandler th, PlotInstance plotInstance) {
 		super(plotConfigurationTree, plotInstance);
 		this.plotConfigurationTree = plotConfigurationTree;

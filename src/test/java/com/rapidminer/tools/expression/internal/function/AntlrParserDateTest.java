@@ -47,14 +47,22 @@ import com.rapidminer.tools.expression.internal.antlr.AntlrParser;
  * Tests the results of {@link AntlrParser#parse(String)} for date functions.
  *
  * @author David Arnu
- *
  */
 public class AntlrParserDateTest extends AntlrParserTest {
 
-	// double values for some date entries
+    /**
+     * The constant sometime.
+     */
+// double values for some date entries
 	static double sometime = 123142313411234.0;
-	static double sometime_before = sometime - 5000;
-	static double sometime_after = sometime + 5000;
+    /**
+     * The Sometime before.
+     */
+    static double sometime_before = sometime - 5000;
+    /**
+     * The Sometime after.
+     */
+    static double sometime_after = sometime + 5000;
 
 	private static ExampleSet makeDateExampleSet() {
 		List<Attribute> attributes = new LinkedList<>();
@@ -75,7 +83,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		return builder.build();
 	}
 
-	// date_now
+    /**
+     * Date now basic.
+     */
+// date_now
 	@Test
 	public void dateNowBasic() {
 		try {
@@ -90,7 +101,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date now argument numerical.
+     */
+    @Test
 	public void dateNowArgumentNumerical() {
 		try {
 			getExpressionWithFunctionContext("date_now(5)");
@@ -100,7 +114,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date now argument string.
+     */
+    @Test
 	public void dateNowArgumentString() {
 		try {
 			getExpressionWithFunctionContext("date_now(\"bla\")");
@@ -112,7 +129,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 
 	// date_before
 
-	@Test
+    /**
+     * Date before true.
+     */
+    @Test
 	public void dateBeforeTRUE() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -127,7 +147,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date before false.
+     */
+    @Test
 	public void dateBeforeFALSE() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -142,7 +165,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date before equal.
+     */
+    @Test
 	public void dateBeforeEqual() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -156,7 +182,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date before missing first.
+     */
+    @Test
 	public void dateBeforeMissingFirst() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -171,7 +200,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date before missing second.
+     */
+    @Test
 	public void dateBeforeMissingSecond() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -186,7 +218,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date before wrong first.
+     */
+    @Test
 	public void dateBeforeWrongFirst() {
 		try {
 			getExpressionWithFunctionContext("date_before(\"bla\", date_now())");
@@ -196,7 +231,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date before wrong second.
+     */
+    @Test
 	public void dateBeforeWrongSecond() {
 		try {
 			getExpressionWithFunctionContext("date_before(date_now(), \"bla\")");
@@ -208,7 +246,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 
 	// date_after
 
-	@Test
+    /**
+     * Date after true.
+     */
+    @Test
 	public void dateAfterTRUE() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -223,7 +264,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date after false.
+     */
+    @Test
 	public void dateAfterFALSE() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -237,7 +281,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date after equal.
+     */
+    @Test
 	public void dateAfterEqual() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -251,7 +298,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date after missing first.
+     */
+    @Test
 	public void dateAfterMissingFirst() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -266,7 +316,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date after missing second.
+     */
+    @Test
 	public void dateAfterMissingSecond() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -281,7 +334,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date after wrong first.
+     */
+    @Test
 	public void dateAfterWrongFirst() {
 		try {
 			getExpressionWithFunctionContext("date_after(\"bla\", date_now())");
@@ -291,7 +347,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date after wrong second.
+     */
+    @Test
 	public void dateAfterWrongSecond() {
 		try {
 			getExpressionWithFunctionContext("date_after(date_now(), \"bla\")");
@@ -301,7 +360,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	// date_diff
+    /**
+     * Date diff basic.
+     */
+// date_diff
 	@Test
 	public void dateDiffBasic() {
 		try {
@@ -314,7 +376,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date diff positive.
+     */
+    @Test
 	public void dateDiffPositive() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -327,7 +392,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date diff negative.
+     */
+    @Test
 	public void dateDiffNegative() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -340,7 +408,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date diff equal.
+     */
+    @Test
 	public void dateDiffEqual() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -353,7 +424,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date diff missing first.
+     */
+    @Test
 	public void dateDiffMissingFirst() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -367,7 +441,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date diff missing second.
+     */
+    @Test
 	public void dateDiffMissingSecond() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -381,7 +458,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date diff wrong first.
+     */
+    @Test
 	public void dateDiffWrongFirst() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -394,7 +474,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date diff wrong second.
+     */
+    @Test
 	public void dateDiffWrongSecond() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -407,7 +490,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date diff with locale tz.
+     */
+    @Test
 	public void dateDiffWithLocaleTZ() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -421,7 +507,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date diff locale tz wrong format.
+     */
+    @Test
 	public void dateDiffLocaleTZWrongFormat() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -435,7 +524,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date diff locale tz wrong type.
+     */
+    @Test
 	public void dateDiffLocaleTZWrongType() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -448,7 +540,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date diff locale tz missing.
+     */
+    @Test
 	public void dateDiffLocaleTZMissing() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -464,7 +559,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 
 	// date_add
 
-	@Test
+    /**
+     * Date add basic.
+     */
+    @Test
 	public void dateAddBasic() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -481,7 +579,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	public void dateAddBasicWithLocaleTZ() {
+    /**
+     * Date add basic with locale tz.
+     */
+    public void dateAddBasicWithLocaleTZ() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
 			ExampleResolver resolver = new ExampleResolver(exampleSet);
@@ -497,7 +598,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	public void dateAddBasicWithLocaleTZMissing() {
+    /**
+     * Date add basic with locale tz missing.
+     */
+    public void dateAddBasicWithLocaleTZMissing() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
 			ExampleResolver resolver = new ExampleResolver(exampleSet);
@@ -513,7 +617,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date add missing first.
+     */
+    @Test
 	public void dateAddMissingFirst() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -527,7 +634,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date add missing second.
+     */
+    @Test
 	public void dateAddMissingSecond() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -541,7 +651,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date add missing third.
+     */
+    @Test
 	public void dateAddMissingThird() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -555,7 +668,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date add wrong first.
+     */
+    @Test
 	public void dateAddWrongFirst() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -568,7 +684,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date add wrong second.
+     */
+    @Test
 	public void dateAddWrongSecond() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -581,7 +700,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date add wrong third type.
+     */
+    @Test
 	public void dateAddWrongThirdType() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -594,7 +716,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date add wrong third constant.
+     */
+    @Test
 	public void dateAddWrongThirdConstant() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -609,7 +734,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date add wrong locale tz.
+     */
+    @Test
 	public void dateAddWrongLocaleTZ() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -624,7 +752,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 
 	// date_set
 
-	@Test
+    /**
+     * Date set basic.
+     */
+    @Test
 	public void dateSetBasic() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -638,7 +769,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date set basic with locale tz.
+     */
+    @Test
 	public void dateSetBasicWithLocaleTZ() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -652,7 +786,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date set basic with locale tz missing.
+     */
+    @Test
 	public void dateSetBasicWithLocaleTZMissing() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -666,7 +803,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date set missing first.
+     */
+    @Test
 	public void dateSetMissingFirst() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -680,7 +820,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date set missing second.
+     */
+    @Test
 	public void dateSetMissingSecond() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -694,7 +837,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date set missing third.
+     */
+    @Test
 	public void dateSetMissingThird() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -708,7 +854,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date set wrong first.
+     */
+    @Test
 	public void dateSetWrongFirst() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -721,7 +870,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date set wrong second.
+     */
+    @Test
 	public void dateSetWrongSecond() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -734,7 +886,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date set wrong third type.
+     */
+    @Test
 	public void dateSetWrongThirdType() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -747,7 +902,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date set wrong third constant.
+     */
+    @Test
 	public void dateSetWrongThirdConstant() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -762,7 +920,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date set wrong locale tz.
+     */
+    @Test
 	public void dateSetWrongLocaleTZ() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -777,7 +938,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 
 	// date_get
 
-	@Test
+    /**
+     * Date get basic.
+     */
+    @Test
 	public void dateGetBasic() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -790,7 +954,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date get missing first.
+     */
+    @Test
 	public void dateGetMissingFirst() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -804,7 +971,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date get missing second.
+     */
+    @Test
 	public void dateGetMissingSecond() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -817,7 +987,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date get basic with locale tz.
+     */
+    @Test
 	public void dateGetBasicWithLocaleTZ() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -830,7 +1003,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date get wrong first.
+     */
+    @Test
 	public void dateGetWrongFirst() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -843,7 +1019,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date get wrong second.
+     */
+    @Test
 	public void dateGetWrongSecond() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -856,7 +1035,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date get wrong unit.
+     */
+    @Test
 	public void dateGetWrongUnit() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -870,7 +1052,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date get missing locale tz.
+     */
+    @Test
 	public void dateGetMissingLocaleTZ() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -884,7 +1069,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date get wrong locale tz.
+     */
+    @Test
 	public void dateGetWrongLocaleTZ() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();
@@ -897,7 +1085,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	// date_time
+    /**
+     * Date millis.
+     */
+// date_time
 	@Test
 	public void dateMillis() {
 		try {
@@ -912,7 +1103,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date millis wrong type.
+     */
+    @Test
 	public void dateMillisWrongType() {
 		try {
 			getExpressionWithFunctionContext("date_millis(5)");
@@ -922,7 +1116,10 @@ public class AntlrParserDateTest extends AntlrParserTest {
 		}
 	}
 
-	@Test
+    /**
+     * Date millis missing.
+     */
+    @Test
 	public void dateMillisMissing() {
 		try {
 			ExampleSet exampleSet = makeDateExampleSet();

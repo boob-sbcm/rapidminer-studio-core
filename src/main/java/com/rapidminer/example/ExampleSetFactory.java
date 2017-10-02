@@ -38,7 +38,7 @@ import com.rapidminer.tools.Ontology;
  * existing data in an extra step and then use one of the factory methods. In these cases, it is
  * better to directly fill an {@link ExampleSetBuilder} from your data source.
  * </p>
- *
+ * <p>
  * <p>
  * However, in some cases it might be more convenient to use this class in order to create example
  * sets from data matrices in a fast and simple way. The resulting example set will be backed up by
@@ -50,7 +50,7 @@ import com.rapidminer.tools.Ontology;
  * Object matrix methods the method tries to identify the type itself and initialized the example
  * set with the correct attribute types (nominal or numerical).
  * </p>
- *
+ * <p>
  * <p>
  * Please note that the internal representation of the nominal attribute values depend on the order
  * they appear in the data set. If this is not allowed (e.g. for the label attribute of different
@@ -64,20 +64,27 @@ import com.rapidminer.tools.Ontology;
  */
 public class ExampleSetFactory {
 
-	/**
-	 * Create a numerical example set from the given data matrix. The resulting example set will not
-	 * contain a label and consists of numerical attributes only.
-	 */
-	public static ExampleSet createExampleSet(double[][] data) {
+    /**
+     * Create a numerical example set from the given data matrix. The resulting example set will not
+     * contain a label and consists of numerical attributes only.
+     *
+     * @param data the data
+     * @return the example set
+     */
+    public static ExampleSet createExampleSet(double[][] data) {
 		return createExampleSet(data, null);
 	}
 
-	/**
-	 * Create a numerical example set from the given data matrix. The label of the resulting example
-	 * set be build from the column with the given index. The example set consists of numerical
-	 * attributes only.
-	 */
-	public static ExampleSet createExampleSet(double[][] data, int classColumn) {
+    /**
+     * Create a numerical example set from the given data matrix. The label of the resulting example
+     * set be build from the column with the given index. The example set consists of numerical
+     * attributes only.
+     *
+     * @param data        the data
+     * @param classColumn the class column
+     * @return the example set
+     */
+    public static ExampleSet createExampleSet(double[][] data, int classColumn) {
 		if (data.length == 0) {
 			throw new RuntimeException(
 					"ExampleSetFactory.createExampleSet(double[][], int): data matrix is not allowed to be empty.");
@@ -99,12 +106,16 @@ public class ExampleSetFactory {
 		return createExampleSet(dataWithoutLabel, labels);
 	}
 
-	/**
-	 * Create a numerical example set from the given data matrix. The label of the resulting example
-	 * set be build from the given double array. The example set consists of numerical attributes
-	 * only.
-	 */
-	public static ExampleSet createExampleSet(double[][] data, double[] labels) {
+    /**
+     * Create a numerical example set from the given data matrix. The label of the resulting example
+     * set be build from the given double array. The example set consists of numerical attributes
+     * only.
+     *
+     * @param data   the data
+     * @param labels the labels
+     * @return the example set
+     */
+    public static ExampleSet createExampleSet(double[][] data, double[] labels) {
 		if (data.length == 0) {
 			throw new RuntimeException(
 					"ExampleSetFactory.createExampleSet(double[][], double[]): data matrix is not allowed to be empty.");
@@ -140,20 +151,27 @@ public class ExampleSetFactory {
 		return builder.build();
 	}
 
-	/**
-	 * Create a mixed-type example set from the given data matrix. The resulting example set will
-	 * not contain a label and might consist of numerical, nominal or date attributes.
-	 */
-	public static ExampleSet createExampleSet(Object[][] data) {
+    /**
+     * Create a mixed-type example set from the given data matrix. The resulting example set will
+     * not contain a label and might consist of numerical, nominal or date attributes.
+     *
+     * @param data the data
+     * @return the example set
+     */
+    public static ExampleSet createExampleSet(Object[][] data) {
 		return createExampleSet(data, null);
 	}
 
-	/**
-	 * Create a numerical example set from the given data matrix. The label of the resulting example
-	 * set be build from the column with the given index. The example set might consist of
-	 * numerical, nominal or date attributes.
-	 */
-	public static ExampleSet createExampleSet(Object[][] data, int classColumn) {
+    /**
+     * Create a numerical example set from the given data matrix. The label of the resulting example
+     * set be build from the column with the given index. The example set might consist of
+     * numerical, nominal or date attributes.
+     *
+     * @param data        the data
+     * @param classColumn the class column
+     * @return the example set
+     */
+    public static ExampleSet createExampleSet(Object[][] data, int classColumn) {
 		if (data.length == 0) {
 			throw new RuntimeException(
 					"ExampleSetFactory.createExampleSet(Object[][], int): data matrix is not allowed to be empty.");
@@ -175,12 +193,16 @@ public class ExampleSetFactory {
 		return createExampleSet(dataWithoutLabel, labels);
 	}
 
-	/**
-	 * Create a numerical example set from the given data matrix. The label of the resulting example
-	 * set be build from the given double array. The example set might consist of numerical, nominal
-	 * or date attributes.
-	 */
-	public static ExampleSet createExampleSet(Object[][] data, Object[] labels) {
+    /**
+     * Create a numerical example set from the given data matrix. The label of the resulting example
+     * set be build from the given double array. The example set might consist of numerical, nominal
+     * or date attributes.
+     *
+     * @param data   the data
+     * @param labels the labels
+     * @return the example set
+     */
+    public static ExampleSet createExampleSet(Object[][] data, Object[] labels) {
 		if (data.length == 0) {
 			throw new RuntimeException(
 					"ExampleSetFactory.createExampleSet(Object[][], Object[]): data matrix is not allowed to be empty.");

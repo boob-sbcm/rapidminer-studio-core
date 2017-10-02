@@ -42,7 +42,7 @@ import com.rapidminer.tools.Ontology;
  * resulting example set are created according to the values of the specified attribute. This works
  * similar to the <code>GROUP BY</code> clause in SQL.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that the resulting example set is simply a splitted example set where no subset is
  * selected. Following operators might decide to select one or several of the subsets, e.g. one of
@@ -53,12 +53,20 @@ import com.rapidminer.tools.Ontology;
  */
 public class GroupByOperator extends Operator {
 
-	public final static String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public final static String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
 
 	private InputPort exampleSetInput = getInputPorts().createPort("example set");
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	public GroupByOperator(OperatorDescription desc) {
+    /**
+     * Instantiates a new Group by operator.
+     *
+     * @param desc the desc
+     */
+    public GroupByOperator(OperatorDescription desc) {
 		super(desc);
 
 		exampleSetInput.addPrecondition(new AttributeSetPrecondition(exampleSetInput, AttributeSetPrecondition

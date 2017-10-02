@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is att1*att1*att1 + att2*att2 + att3.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PolynomialFunction extends RegressionFunction {

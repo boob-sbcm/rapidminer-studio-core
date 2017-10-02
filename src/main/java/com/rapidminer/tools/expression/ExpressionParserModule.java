@@ -33,29 +33,29 @@ import com.rapidminer.gui.properties.ExpressionPropertyDialog;
  */
 public interface ExpressionParserModule {
 
-	/**
-	 * Returns the key associated to this module. The constants of this module are shown in the
-	 * {@link ExpressionPropertyDialog} under the category defined by
-	 * "gui.dialog.function_input.key.constant_category".
-	 *
-	 * @return the key for the module
-	 */
-	public String getKey();
+    /**
+     * Returns the key associated to this module. The constants of this module are shown in the
+     * {@link ExpressionPropertyDialog} under the category defined by
+     * "gui.dialog.function_input.key.constant_category".
+     *
+     * @return the key for the module
+     */
+    public String getKey();
 
-	/**
-	 * Returns all {@link Constant}s stored in this module. The constants are shown in the
-	 * {@link ExpressionPropertyDialog} under the category defined by
-	 * "gui.dialog.function_input.key.constant_category" where key is defined by {@link #getKey()}.
-	 *
-	 * @return all constants known by this module
-	 */
-	public List<Constant> getConstants();
+    /**
+     * Returns all {@link Constant}s stored in this module. The constants are shown in the
+     * {@link ExpressionPropertyDialog} under the category defined by
+     * "gui.dialog.function_input.key.constant_category" where key is defined by {@link #getKey()}.
+     *
+     * @return all constants known by this module
+     */
+    public List<Constant> getConstants();
 
-	/**
-	 * Returns all {@link Function}s stored in this module.
-	 *
-	 * @return all functions known by this module
-	 */
-	public List<Function> getFunctions();
+    /**
+     * Returns all {@link Function}s stored in this module.
+     *
+     * @return all functions known by this module
+     */
+    public List<Function> getFunctions();
 
 }

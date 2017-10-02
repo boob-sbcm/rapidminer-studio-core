@@ -24,6 +24,8 @@ import com.rapidminer.operator.ports.OutputPort;
 
 
 /**
+ * The type Generate model transformation rule.
+ *
  * @author Simon Fischer
  */
 public class GenerateModelTransformationRule implements MDTransformationRule {
@@ -32,7 +34,14 @@ public class GenerateModelTransformationRule implements MDTransformationRule {
 	private final InputPort exampleSetInput;
 	private final Class<? extends Model> modelClass;
 
-	public GenerateModelTransformationRule(InputPort exampleSetInput, OutputPort outputPort,
+    /**
+     * Instantiates a new Generate model transformation rule.
+     *
+     * @param exampleSetInput the example set input
+     * @param outputPort      the output port
+     * @param modelClass      the model class
+     */
+    public GenerateModelTransformationRule(InputPort exampleSetInput, OutputPort outputPort,
 			Class<? extends Model> modelClass) {
 		this.outputPort = outputPort;
 		this.exampleSetInput = exampleSetInput;
@@ -53,10 +62,12 @@ public class GenerateModelTransformationRule implements MDTransformationRule {
 		return;
 	}
 
-	/**
-	 * @return the {@link OutputPort} the MD rule is for
-	 */
-	public OutputPort getOutputPort() {
+    /**
+     * Gets output port.
+     *
+     * @return the {@link OutputPort} the MD rule is for
+     */
+    public OutputPort getOutputPort() {
 		return outputPort;
 	}
 }

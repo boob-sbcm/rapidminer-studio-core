@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SaveAttributeFileAction extends ResourceAction {
@@ -35,7 +35,12 @@ public class SaveAttributeFileAction extends ResourceAction {
 
 	private final AttributeEditor attributeEditor;
 
-	public SaveAttributeFileAction(AttributeEditor attributeEditor) {
+    /**
+     * Instantiates a new Save attribute file action.
+     *
+     * @param attributeEditor the attribute editor
+     */
+    public SaveAttributeFileAction(AttributeEditor attributeEditor) {
 		super("attribute_editor.save_aml_file");
 		this.attributeEditor = attributeEditor;
 	}

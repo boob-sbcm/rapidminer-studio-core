@@ -50,20 +50,26 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class InternalBinominalRemapping extends AbstractDataProcessing {
 
-	/**
-	 * The parameter name for &quot;The attributes to which the mapping correction should be
-	 * applied.&quot;
-	 */
-	public static final String PARAMETER_ATTRIBUTES = "attributes";
+    /**
+     * The parameter name for &quot;The attributes to which the mapping correction should be
+     * applied.&quot;
+     */
+    public static final String PARAMETER_ATTRIBUTES = "attributes";
 
-	/** The parameter name for &quot;Consider also special attributes (label, id...)&quot; */
-	public static final String PARAMETER_APPLY_TO_SPECIAL_FEATURES = "apply_to_special_features";
+    /**
+     * The parameter name for &quot;Consider also special attributes (label, id...)&quot;
+     */
+    public static final String PARAMETER_APPLY_TO_SPECIAL_FEATURES = "apply_to_special_features";
 
-	/** The parameter name for &quot;The first/negative/false value.&quot; */
-	public static final String PARAMETER_NEGATIVE_VALUE = "negative_value";
+    /**
+     * The parameter name for &quot;The first/negative/false value.&quot;
+     */
+    public static final String PARAMETER_NEGATIVE_VALUE = "negative_value";
 
-	/** The parameter name for &quot;The second/positive/true value.&quot; */
-	public static final String PARAMETER_POSITIVE_VALUE = "positive_value";
+    /**
+     * The parameter name for &quot;The second/positive/true value.&quot;
+     */
+    public static final String PARAMETER_POSITIVE_VALUE = "positive_value";
 
 	/**
 	 * Incompatible version, old version writes into the example set.
@@ -73,7 +79,12 @@ public class InternalBinominalRemapping extends AbstractDataProcessing {
 	private AttributeSubsetSelector attributeSelector = new AttributeSubsetSelector(this, getInputPort(),
 			Ontology.BINOMINAL);
 
-	public InternalBinominalRemapping(OperatorDescription description) {
+    /**
+     * Instantiates a new Internal binominal remapping.
+     *
+     * @param description the description
+     */
+    public InternalBinominalRemapping(OperatorDescription description) {
 		super(description);
 		getExampleSetInputPort().addPrecondition(attributeSelector.makePrecondition());
 	}

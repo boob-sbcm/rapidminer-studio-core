@@ -24,7 +24,7 @@ import java.io.Serializable;
 /**
  * This class represents a node in a KohonenNet. This node contains its current weight, which is
  * randomly set initially, but adopted during the trainingsphase.
- * 
+ *
  * @author Sebastian Land
  */
 public class KohonenNode implements Serializable {
@@ -32,15 +32,30 @@ public class KohonenNode implements Serializable {
 	private static final long serialVersionUID = -7614188662702840710L;
 	private double[] weight;
 
-	public KohonenNode(double[] weightInit) {
+    /**
+     * Instantiates a new Kohonen node.
+     *
+     * @param weightInit the weight init
+     */
+    public KohonenNode(double[] weightInit) {
 		weight = weightInit.clone();
 	}
 
-	public double[] getWeights() {
+    /**
+     * Get weights double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getWeights() {
 		return weight;
 	}
 
-	public void setWeights(double[] weights) {
+    /**
+     * Sets weights.
+     *
+     * @param weights the weights
+     */
+    public void setWeights(double[] weights) {
 		this.weight = weights.clone();
 	}
 }

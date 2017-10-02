@@ -20,7 +20,7 @@ package com.rapidminer.tools.math.similarity.nominal;
 
 /**
  * Implements the Dice similarity for nominal attributes.
- * 
+ *
  * @author Sebastian Land, Michael Wurst
  */
 public class JaccardNominalSimilarity extends AbstractNominalSimilarity {

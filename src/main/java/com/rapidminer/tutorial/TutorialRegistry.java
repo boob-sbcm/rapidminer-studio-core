@@ -39,11 +39,13 @@ import com.rapidminer.tools.io.GlobFilenameFilter;
  *
  * @author Gisa Schaefer, Marcel Michel
  * @since 7.0.0
- *
  */
 public enum TutorialRegistry {
 
-	INSTANCE;
+    /**
+     * Instance tutorial registry.
+     */
+    INSTANCE;
 
 	/** the folder inside .RapidMiner containing the tutorials */
 	private static final String FOLDER_NAME_TUTORIALS = "tutorials";
@@ -73,25 +75,25 @@ public enum TutorialRegistry {
 		}
 	}
 
-	/**
-	 * Registers a tutorial group that should be loaded from the resources at
-	 * tutorial/[tutorialGroupName].tutorial. </br>
-	 * Given a file called {@code my-extension.tutorial} is present at
-	 * {@code src/main/resources/com.rapidminer.resources.tutorial/} the following snippet will
-	 * register the tutorial:
-	 *
-	 * <pre>
-	 * {@code public static void initGui(MainFrame mainframe) {
-	 * 	TutorialRegistry.INSTANCE.register("my-extension");
-	 * }
-	 * </pre>
-	 *
-	 * @see TutorialGroup Description of the .tutorial file contents
-	 *
-	 * @param tutorialGroupName
-	 *            the unique name of the tutorial group
-	 */
-	public void register(String tutorialGroupName) {
+    /**
+     * Registers a tutorial group that should be loaded from the resources at
+     * tutorial/[tutorialGroupName].tutorial. </br>
+     * Given a file called {@code my-extension.tutorial} is present at
+     * {@code src/main/resources/com.rapidminer.resources.tutorial/} the following snippet will
+     * register the tutorial:
+     * <p>
+     * <pre>
+     * {@code public static void initGui(MainFrame mainframe) {
+     * 	TutorialRegistry.INSTANCE.register("my-extension");
+     * }
+     * </pre>
+     *
+     * @param tutorialGroupName the unique name of the tutorial group*
+     * @param tutorialGroupName the tutorial group name
+     * @param tutorialGroupName the tutorial group name
+     * @see TutorialGroup Description of the .tutorial file contents*
+     */
+    public void register(String tutorialGroupName) {
 		if (tutorialGroupName == null) {
 			throw new IllegalArgumentException("tutorialGroupName must not be null!");
 		}
@@ -111,21 +113,22 @@ public enum TutorialRegistry {
 		tutorialGroupsByName.put(tutorialGroup.getName(), tutorialGroup);
 	}
 
-	/**
-	 * Gets a {@link TutorialGroup} by name.
-	 *
-	 * @param tutorialGroupName
-	 *            the name the tutorial group
-	 * @return the found tutorial group or {@code null}
-	 */
-	public TutorialGroup getTutorialGroup(String tutorialGroupName) {
+    /**
+     * Gets a {@link TutorialGroup} by name.
+     *
+     * @param tutorialGroupName the name the tutorial group
+     * @return the found tutorial group or {@code null}
+     */
+    public TutorialGroup getTutorialGroup(String tutorialGroupName) {
 		return tutorialGroupsByName.get(tutorialGroupName);
 	}
 
-	/**
-	 * @return all registered {@link TutorialGroup}s
-	 */
-	public List<TutorialGroup> getAllTutorialGroups() {
+    /**
+     * Gets all tutorial groups.
+     *
+     * @return all registered {@link TutorialGroup}s
+     */
+    public List<TutorialGroup> getAllTutorialGroups() {
 		return new ArrayList<>(tutorialGroupsByName.values());
 	}
 }

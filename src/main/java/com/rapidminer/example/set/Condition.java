@@ -35,29 +35,28 @@ import java.io.Serializable;
  * implement a two argument constructor taking an {@link ExampleSet} and a parameter String. The
  * meaning of the parameter string is dependent on the implementation and may even be ignored,
  * although it would be nice to print a warning.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public interface Condition extends Serializable {
 
-	/**
-	 * Should return true if the given example does fulfill this condition.
-	 * 
-	 * @param example
-	 * @return
-	 * @throws ExpressionEvaluationException
-	 *             if the condition cannot be evaluated
-	 */
-	public boolean conditionOk(Example example) throws ExpressionEvaluationException;
+    /**
+     * Should return true if the given example does fulfill this condition.
+     *
+     * @param example the example
+     * @return boolean boolean
+     * @throws ExpressionEvaluationException if the condition cannot be evaluated
+     */
+    public boolean conditionOk(Example example) throws ExpressionEvaluationException;
 
-	/**
-	 * Returns a duplicate of this condition. Subclasses which cannot dynamically changed can also
-	 * return the same object.
-	 * 
-	 * @deprecated Conditions should not be able to be changed dynamically and hence there is no
-	 *             need for a copy
-	 */
-	@Deprecated
+    /**
+     * Returns a duplicate of this condition. Subclasses which cannot dynamically changed can also
+     * return the same object.
+     *
+     * @return the condition
+     * @deprecated Conditions should not be able to be changed dynamically and hence there is no             need for a copy
+     */
+    @Deprecated
 	public Condition duplicate();
 
 }

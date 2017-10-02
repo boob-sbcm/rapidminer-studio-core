@@ -22,10 +22,16 @@ import com.rapidminer.gui.new_plotter.listener.events.DimensionConfigChangeEvent
 
 
 /**
+ * The interface Dimension config listener.
+ *
  * @author Nils Woehler
- * 
  */
 public interface DimensionConfigListener {
 
-	public void dimensionConfigChanged(DimensionConfigChangeEvent e);
+    /**
+     * Dimension config changed.
+     *
+     * @param e the e
+     */
+    public void dimensionConfigChanged(DimensionConfigChangeEvent e);
 }

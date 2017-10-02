@@ -29,15 +29,31 @@ public class WizardCreationException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	public WizardCreationException(String message) {
+    /**
+     * Instantiates a new Wizard creation exception.
+     *
+     * @param message the message
+     */
+    public WizardCreationException(String message) {
 		super(message);
 	}
 
-	public WizardCreationException(Throwable cause) {
+    /**
+     * Instantiates a new Wizard creation exception.
+     *
+     * @param cause the cause
+     */
+    public WizardCreationException(Throwable cause) {
 		super(cause);
 	}
 
-	public WizardCreationException(String message, Throwable cause) {
+    /**
+     * Instantiates a new Wizard creation exception.
+     *
+     * @param message the message
+     * @param cause   the cause
+     */
+    public WizardCreationException(String message, Throwable cause) {
 		super(message, cause);
 	}
 }

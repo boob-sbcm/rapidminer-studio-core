@@ -72,13 +72,20 @@ public class OperatorList extends JList<OperatorDescription> implements MouseLis
 
 	private transient Operator selectedOperator;
 
-	/** Creates a new instance of OperatorList */
-	public OperatorList() {
+    /**
+     * Creates a new instance of OperatorList
+     */
+    public OperatorList() {
 		this(false, true);
 	}
 
-	/** Creates a new instance of OperatorList */
-	public OperatorList(boolean horizontalWrap, boolean coloredCellBackgrounds) {
+    /**
+     * Creates a new instance of OperatorList  @param horizontalWrap the horizontal wrap
+     *
+     * @param horizontalWrap         the horizontal wrap
+     * @param coloredCellBackgrounds the colored cell backgrounds
+     */
+    public OperatorList(boolean horizontalWrap, boolean coloredCellBackgrounds) {
 		operatorDialogCellRenderer = new OperatorListCellRenderer(coloredCellBackgrounds);
 		if (horizontalWrap) {
 			setLayoutOrientation(HORIZONTAL_WRAP);
@@ -101,7 +108,12 @@ public class OperatorList extends JList<OperatorDescription> implements MouseLis
 		});
 	}
 
-	public void setOperatorDescriptions(Vector<OperatorDescription> descriptions) {
+    /**
+     * Sets operator descriptions.
+     *
+     * @param descriptions the descriptions
+     */
+    public void setOperatorDescriptions(Vector<OperatorDescription> descriptions) {
 		setListData(descriptions);
 	}
 

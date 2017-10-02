@@ -26,9 +26,9 @@ import javax.swing.table.DefaultTableModel;
 /**
  * A table model model used by {@link MatrixPropertyTable}. This model is necessary to support
  * proper column removal.
- * 
- * @see com.rapidminer.gui.properties.MatrixPropertyTable
+ *
  * @author Helge Homburg
+ * @see com.rapidminer.gui.properties.MatrixPropertyTable
  */
 public class MatrixPropertyTableModel extends DefaultTableModel {
 
@@ -38,13 +38,26 @@ public class MatrixPropertyTableModel extends DefaultTableModel {
 
 	private String columnBaseName;
 
-	public MatrixPropertyTableModel(String baseName, String columnBaseName, int rows, int columns) {
+    /**
+     * Instantiates a new Matrix property table model.
+     *
+     * @param baseName       the base name
+     * @param columnBaseName the column base name
+     * @param rows           the rows
+     * @param columns        the columns
+     */
+    public MatrixPropertyTableModel(String baseName, String columnBaseName, int rows, int columns) {
 		super(rows, columns);
 		this.baseName = baseName;
 		this.columnBaseName = columnBaseName;
 	}
 
-	public Vector<?> getColumnIdentifiers() {
+    /**
+     * Gets column identifiers.
+     *
+     * @return the column identifiers
+     */
+    public Vector<?> getColumnIdentifiers() {
 		return columnIdentifiers;
 	}
 

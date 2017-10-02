@@ -22,16 +22,43 @@ import org.jfree.data.Range;
 
 
 /**
+ * The interface Link and brush axis.
+ *
  * @author Nils Woehler
- * 
  */
 public interface LinkAndBrushAxis {
 
-	public Range calculateZoomRange(double lowerPercent, double upperPercent, boolean zoomIn);
+    /**
+     * Calculate zoom range range.
+     *
+     * @param lowerPercent the lower percent
+     * @param upperPercent the upper percent
+     * @param zoomIn       the zoom in
+     * @return the range
+     */
+    public Range calculateZoomRange(double lowerPercent, double upperPercent, boolean zoomIn);
 
-	public Range restoreAutoRange(boolean zoomOut);
+    /**
+     * Restore auto range range.
+     *
+     * @param zoomOut the zoom out
+     * @return the range
+     */
+    public Range restoreAutoRange(boolean zoomOut);
 
-	public void saveUpperBound(double max, double maxWOMargin);
+    /**
+     * Save upper bound.
+     *
+     * @param max         the max
+     * @param maxWOMargin the max wo margin
+     */
+    public void saveUpperBound(double max, double maxWOMargin);
 
-	public void saveLowerBound(double min, double minWOMargin);
+    /**
+     * Save lower bound.
+     *
+     * @param min         the min
+     * @param minWOMargin the min wo margin
+     */
+    public void saveLowerBound(double min, double minWOMargin);
 }

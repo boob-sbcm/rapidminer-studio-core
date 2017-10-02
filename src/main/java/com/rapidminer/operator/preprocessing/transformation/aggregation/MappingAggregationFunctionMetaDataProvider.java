@@ -29,12 +29,10 @@ import com.rapidminer.tools.Ontology;
 
 
 /**
- * 
  * This class offers an implementation of {@link AggregationFunctionMetaDataProvider} interface and
  * can be parameterized to work for several {@link AggregationFunction}s on instanciation.
- * 
+ *
  * @author Thilo Kamradt
- * 
  */
 public class MappingAggregationFunctionMetaDataProvider implements AggregationFunctionMetaDataProvider {
 
@@ -44,18 +42,16 @@ public class MappingAggregationFunctionMetaDataProvider implements AggregationFu
 	private String separatorClose;
 	private Map<Integer, Integer> ioMap;
 
-	/**
-	 * 
-	 * @param aggregationFunctionName
-	 *            name of the AggregationFunction which will be displayed to the user
-	 * @param functionName
-	 *            name of the function which will be used for the generated attribute name
-	 * @param separatorOpen
-	 * @param separatorClose
-	 * @param ioMap
-	 *            a {@link Map} which maps possible attribute input-types to their output-types
-	 */
-	public MappingAggregationFunctionMetaDataProvider(String aggregationFunctionName, String functionName,
+    /**
+     * Instantiates a new Mapping aggregation function meta data provider.
+     *
+     * @param aggregationFunctionName name of the AggregationFunction which will be displayed to the user
+     * @param functionName            name of the function which will be used for the generated attribute name
+     * @param separatorOpen           the separator open
+     * @param separatorClose          the separator close
+     * @param ioMap                   a {@link Map} which maps possible attribute input-types to their output-types
+     */
+    public MappingAggregationFunctionMetaDataProvider(String aggregationFunctionName, String functionName,
 			String separatorOpen, String separatorClose, Map<Integer, Integer> ioMap) {
 		this.aggregationFunctionName = aggregationFunctionName;
 		this.functionName = functionName;

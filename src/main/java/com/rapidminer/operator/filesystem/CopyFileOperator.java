@@ -39,24 +39,35 @@ import java.util.List;
 
 
 /**
- * 
  * This operator copies a file to another location. If the destination is a directory, the file is
  * copied in there. If the target already exists and overwriting is enabled, the existing file will
  * be overwritten. Else, an exception is thrown.
- * 
+ *
  * @author Philipp Kersting
- * 
  */
-
 public class CopyFileOperator extends Operator {
 
-	public static final String PARAMETER_SOURCE_FILE = "source_file";
-	public static final String PARAMETER_NEW_FILE = "new_file";
-	public static final String PARAMETER_OVERWRITE = "overwrite";
+    /**
+     * The constant PARAMETER_SOURCE_FILE.
+     */
+    public static final String PARAMETER_SOURCE_FILE = "source_file";
+    /**
+     * The constant PARAMETER_NEW_FILE.
+     */
+    public static final String PARAMETER_NEW_FILE = "new_file";
+    /**
+     * The constant PARAMETER_OVERWRITE.
+     */
+    public static final String PARAMETER_OVERWRITE = "overwrite";
 
 	private PortPairExtender dummyPorts = new DummyPortPairExtender("through", getInputPorts(), getOutputPorts());
 
-	public CopyFileOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Copy file operator.
+     *
+     * @param description the description
+     */
+    public CopyFileOperator(OperatorDescription description) {
 		super(description);
 		dummyPorts.start();
 		getTransformer().addRule(dummyPorts.makePassThroughRule());

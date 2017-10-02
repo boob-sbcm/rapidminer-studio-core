@@ -27,9 +27,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for executeProcessCron complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="executeProcessCron">
  *   &lt;complexContent>
@@ -45,8 +45,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "executeProcessCron", propOrder = {
@@ -58,21 +56,33 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class ExecuteProcessCron {
 
+    /**
+     * The Process location.
+     */
     protected String processLocation;
+    /**
+     * The Cron expression.
+     */
     protected String cronExpression;
+    /**
+     * The Start.
+     */
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar start;
+    /**
+     * The End.
+     */
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar end;
+    /**
+     * The Process context.
+     */
     protected ProcessContextWrapper processContext;
 
     /**
      * Gets the value of the processLocation property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getProcessLocation() {
         return processLocation;
@@ -80,11 +90,8 @@ public class ExecuteProcessCron {
 
     /**
      * Sets the value of the processLocation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setProcessLocation(String value) {
         this.processLocation = value;
@@ -92,11 +99,8 @@ public class ExecuteProcessCron {
 
     /**
      * Gets the value of the cronExpression property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getCronExpression() {
         return cronExpression;
@@ -104,11 +108,8 @@ public class ExecuteProcessCron {
 
     /**
      * Sets the value of the cronExpression property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setCronExpression(String value) {
         this.cronExpression = value;
@@ -116,11 +117,8 @@ public class ExecuteProcessCron {
 
     /**
      * Gets the value of the start property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is     {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getStart() {
         return start;
@@ -128,11 +126,8 @@ public class ExecuteProcessCron {
 
     /**
      * Sets the value of the start property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is     {@link XMLGregorianCalendar }
      */
     public void setStart(XMLGregorianCalendar value) {
         this.start = value;
@@ -140,11 +135,8 @@ public class ExecuteProcessCron {
 
     /**
      * Gets the value of the end property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is     {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getEnd() {
         return end;
@@ -152,11 +144,8 @@ public class ExecuteProcessCron {
 
     /**
      * Sets the value of the end property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is     {@link XMLGregorianCalendar }
      */
     public void setEnd(XMLGregorianCalendar value) {
         this.end = value;
@@ -164,11 +153,8 @@ public class ExecuteProcessCron {
 
     /**
      * Gets the value of the processContext property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ProcessContextWrapper }
-     *     
+     *
+     * @return possible object is     {@link ProcessContextWrapper }
      */
     public ProcessContextWrapper getProcessContext() {
         return processContext;
@@ -176,11 +162,8 @@ public class ExecuteProcessCron {
 
     /**
      * Sets the value of the processContext property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProcessContextWrapper }
-     *     
+     *
+     * @param value allowed object is     {@link ProcessContextWrapper }
      */
     public void setProcessContext(ProcessContextWrapper value) {
         this.processContext = value;

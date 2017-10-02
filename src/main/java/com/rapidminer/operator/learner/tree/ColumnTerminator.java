@@ -27,6 +27,15 @@ package com.rapidminer.operator.learner.tree;
  */
 public interface ColumnTerminator {
 
-	public boolean shouldStop(int[] selectedExamples, int[] selectedAttributes, ColumnExampleTable columnTable, int depth);
+    /**
+     * Should stop boolean.
+     *
+     * @param selectedExamples   the selected examples
+     * @param selectedAttributes the selected attributes
+     * @param columnTable        the column table
+     * @param depth              the depth
+     * @return the boolean
+     */
+    public boolean shouldStop(int[] selectedExamples, int[] selectedAttributes, ColumnExampleTable columnTable, int depth);
 
 }

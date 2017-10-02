@@ -30,7 +30,7 @@ import java.util.Map;
  * is directly read from the numerical matrix instead of building a copy. If the matrix is
  * symmetrical, only pairs of the lower left triangle are returned. Please note that the method for
  * adding new rows is not supported by this type of data tables.
- * 
+ *
  * @author Ingo Mierswa, Sebastian Land
  */
 public class DataTablePairwiseMatrixExtractionAdapter extends AbstractDataTable {
@@ -49,7 +49,16 @@ public class DataTablePairwiseMatrixExtractionAdapter extends AbstractDataTable 
 
 	private boolean showSymetrical;
 
-	public DataTablePairwiseMatrixExtractionAdapter(NumericalMatrix matrix, String[] rowNames, String[] columnNames,
+    /**
+     * Instantiates a new Data table pairwise matrix extraction adapter.
+     *
+     * @param matrix           the matrix
+     * @param rowNames         the row names
+     * @param columnNames      the column names
+     * @param tableColumnNames the table column names
+     * @param showSymetrical   the show symetrical
+     */
+    public DataTablePairwiseMatrixExtractionAdapter(NumericalMatrix matrix, String[] rowNames, String[] columnNames,
 			String[] tableColumnNames, boolean showSymetrical) {
 		super("Pairwise Correlation Table");
 		this.showSymetrical = showSymetrical;
@@ -72,10 +81,15 @@ public class DataTablePairwiseMatrixExtractionAdapter extends AbstractDataTable 
 		}
 	}
 
-	/**
-	 * Creates all pairs of one triangle of the given symetrical matrix.
-	 */
-	public DataTablePairwiseMatrixExtractionAdapter(NumericalMatrix matrix, String[] rowNames, String[] columnNames,
+    /**
+     * Creates all pairs of one triangle of the given symetrical matrix.
+     *
+     * @param matrix           the matrix
+     * @param rowNames         the row names
+     * @param columnNames      the column names
+     * @param tableColumnNames the table column names
+     */
+    public DataTablePairwiseMatrixExtractionAdapter(NumericalMatrix matrix, String[] rowNames, String[] columnNames,
 			String[] tableColumnNames) {
 		this(matrix, rowNames, columnNames, tableColumnNames, true);
 	}

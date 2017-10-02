@@ -36,7 +36,13 @@ public class NominalSplitCondition extends AbstractSplitCondition {
 
 	private String valueString;
 
-	public NominalSplitCondition(Attribute attribute, String valueString) {
+    /**
+     * Instantiates a new Nominal split condition.
+     *
+     * @param attribute   the attribute
+     * @param valueString the value string
+     */
+    public NominalSplitCondition(Attribute attribute, String valueString) {
 		super(attribute.getName());
 		if (valueString == null) {
 			this.value = Double.NaN;

@@ -29,11 +29,16 @@ import com.rapidminer.repository.gui.RepositoryBrowser;
  *
  * @author Marcel Seifert
  * @since 7.4
- *
  */
 public enum RepositorySortingMethod implements Comparator<Entry> {
-	NAME_ASC(RepositoryTools.ENTRY_COMPARATOR) {
-	}, LAST_MODIFIED_DATE_DESC(RepositoryTools.ENTRY_COMPARATOR_LAST_MODIFIED);
+    /**
+     * Name asc repository sorting method.
+     */
+    NAME_ASC(RepositoryTools.ENTRY_COMPARATOR) {
+	}, /**
+     * Last modified date desc repository sorting method.
+     */
+    LAST_MODIFIED_DATE_DESC(RepositoryTools.ENTRY_COMPARATOR_LAST_MODIFIED);
 
 	private final Comparator<Entry> comparator;
 

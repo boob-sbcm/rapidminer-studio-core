@@ -99,7 +99,10 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		}
 	}
 
-	public static class DropDownArrowButton extends ArrowButton {
+    /**
+     * The type Drop down arrow button.
+     */
+    public static class DropDownArrowButton extends ArrowButton {
 
 		private static final long serialVersionUID = -398619111521186260L;
 
@@ -107,7 +110,12 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 
 		private JButton mainButton;
 
-		public DropDownArrowButton(JButton mainButton) {
+        /**
+         * Instantiates a new Drop down arrow button.
+         *
+         * @param mainButton the main button
+         */
+        public DropDownArrowButton(JButton mainButton) {
 			super(SwingConstants.SOUTH);
 			this.mainButton = mainButton;
 		}
@@ -151,24 +159,23 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 			g2.dispose();
 		}
 
-		/**
-		 *
-		 * This method gets the factor for enlargement or reduction of the arrow, if it should be
-		 * displayed in a non-standard size.
-		 *
-		 */
-		public float getSizeFactor() {
+        /**
+         * This method gets the factor for enlargement or reduction of the arrow, if it should be
+         * displayed in a non-standard size.
+         *
+         * @return the size factor
+         */
+        public float getSizeFactor() {
 			return sizeFactor;
 		}
 
-		/**
-		 *
-		 * This method determines the factor for enlargement or reduction of the arrow, if it should
-		 * be displayed in a non-standard size. Standard is a width of 4 px and a height of 8 px.
-		 *
-		 * @param sizeFactor
-		 */
-		public void setSizeFactor(float sizeFactor) {
+        /**
+         * This method determines the factor for enlargement or reduction of the arrow, if it should
+         * be displayed in a non-standard size. Standard is a width of 4 px and a height of 8 px.
+         *
+         * @param sizeFactor the size factor
+         */
+        public void setSizeFactor(float sizeFactor) {
 			this.sizeFactor = sizeFactor;
 		}
 
@@ -224,11 +231,20 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		}
 	};
 
-	protected JButton mainButton = this;
+    /**
+     * The Main button.
+     */
+    protected JButton mainButton = this;
 
-	protected final DropDownArrowButton arrowButton = new DropDownArrowButton(this);
+    /**
+     * The Arrow button.
+     */
+    protected final DropDownArrowButton arrowButton = new DropDownArrowButton(this);
 
-	protected boolean popupVisible = false;
+    /**
+     * The Popup visible.
+     */
+    protected boolean popupVisible = false;
 
 	private final JToolBar arrowButtonPanel = new JToolBar();
 
@@ -272,7 +288,14 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		}
 	};
 
-	public FancyDropDownButton(Action mainAction, Action arrowAction, boolean showText) {
+    /**
+     * Instantiates a new Fancy drop down button.
+     *
+     * @param mainAction  the main action
+     * @param arrowAction the arrow action
+     * @param showText    the show text
+     */
+    public FancyDropDownButton(Action mainAction, Action arrowAction, boolean showText) {
 		super(mainAction);
 		if (!showText) {
 			mainButton.setText(null);
@@ -324,38 +347,77 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		arrowButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
-	public FancyDropDownButton(Action action, boolean showText) {
+    /**
+     * Instantiates a new Fancy drop down button.
+     *
+     * @param action   the action
+     * @param showText the show text
+     */
+    public FancyDropDownButton(Action action, boolean showText) {
 		this(action, null, showText);
 	}
 
-	/**
-	 * Shows no text on buttons.
-	 */
-	public FancyDropDownButton(Action action) {
+    /**
+     * Shows no text on buttons.
+     *
+     * @param action the action
+     */
+    public FancyDropDownButton(Action action) {
 		this(action, false);
 	}
 
-	public void addArrowButtonMouseListener(MouseListener l) {
+    /**
+     * Add arrow button mouse listener.
+     *
+     * @param l the l
+     */
+    public void addArrowButtonMouseListener(MouseListener l) {
 		arrowButton.addMouseListener(l);
 		emptyPanel.addMouseListener(l);
 	}
 
-	public void removeArrowButtonMouseListener(MouseListener l) {
+    /**
+     * Remove arrow button mouse listener.
+     *
+     * @param l the l
+     */
+    public void removeArrowButtonMouseListener(MouseListener l) {
 		arrowButton.removeMouseListener(l);
 		emptyPanel.removeMouseListener(l);
 	}
 
-	protected abstract JPopupMenu getPopupMenu();
+    /**
+     * Gets popup menu.
+     *
+     * @return the popup menu
+     */
+    protected abstract JPopupMenu getPopupMenu();
 
-	public void add(Action action) {
+    /**
+     * Add.
+     *
+     * @param action the action
+     */
+    public void add(Action action) {
 		getPopupMenu().add(action);
 	}
 
-	public void add(JMenuItem item) {
+    /**
+     * Add.
+     *
+     * @param item the item
+     */
+    public void add(JMenuItem item) {
 		getPopupMenu().add(item);
 	}
 
-	public JButton addToToolBar(JToolBar toolbar) {
+    /**
+     * Add to tool bar j button.
+     *
+     * @param toolbar the toolbar
+     * @return the j button
+     */
+    public JButton addToToolBar(JToolBar toolbar) {
 		arrowButtonPanel.add(arrowButton);
 		arrowButtonPanel.add(emptyPanel);
 		toolbar.add(mainButton);
@@ -363,7 +425,15 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		return mainButton;
 	}
 
-	public JButton addToToolBar(JToolBar toolbar, Object mainButtonConstraints, Object arrowButtonConstraints) {
+    /**
+     * Add to tool bar j button.
+     *
+     * @param toolbar                the toolbar
+     * @param mainButtonConstraints  the main button constraints
+     * @param arrowButtonConstraints the arrow button constraints
+     * @return the j button
+     */
+    public JButton addToToolBar(JToolBar toolbar, Object mainButtonConstraints, Object arrowButtonConstraints) {
 		arrowButtonPanel.add(arrowButton);
 		arrowButtonPanel.add(emptyPanel);
 		toolbar.add(mainButton, mainButtonConstraints);
@@ -371,7 +441,15 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		return mainButton;
 	}
 
-	public JButton addToToolbar(JPanel toolbar, Object mainButtonConstraints, Object arrowButtonConstraints) {
+    /**
+     * Add to toolbar j button.
+     *
+     * @param toolbar                the toolbar
+     * @param mainButtonConstraints  the main button constraints
+     * @param arrowButtonConstraints the arrow button constraints
+     * @return the j button
+     */
+    public JButton addToToolbar(JPanel toolbar, Object mainButtonConstraints, Object arrowButtonConstraints) {
 		arrowButtonPanel.add(arrowButton);
 		arrowButtonPanel.add(emptyPanel);
 		toolbar.add(mainButton, mainButtonConstraints);
@@ -379,7 +457,13 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		return mainButton;
 	}
 
-	public JButton addToToolBar(VLToolBar toolbar) {
+    /**
+     * Add to tool bar j button.
+     *
+     * @param toolbar the toolbar
+     * @return the j button
+     */
+    public JButton addToToolBar(VLToolBar toolbar) {
 		arrowButtonPanel.add(arrowButton);
 		arrowButtonPanel.add(emptyPanel);
 		toolbar.add(mainButton);
@@ -387,7 +471,14 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		return mainButton;
 	}
 
-	public JButton addToToolBar(ViewToolBar toolbar, int alignment) {
+    /**
+     * Add to tool bar j button.
+     *
+     * @param toolbar   the toolbar
+     * @param alignment the alignment
+     * @return the j button
+     */
+    public JButton addToToolBar(ViewToolBar toolbar, int alignment) {
 		arrowButtonPanel.add(arrowButton);
 		arrowButtonPanel.add(emptyPanel);
 		toolbar.add(mainButton, alignment);
@@ -395,7 +486,15 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		return mainButton;
 	}
 
-	public JButton addToToolbar(JToolBar toolbar, Object mainButtonConstraints, Object arrowButtonConstraints) {
+    /**
+     * Add to toolbar j button.
+     *
+     * @param toolbar                the toolbar
+     * @param mainButtonConstraints  the main button constraints
+     * @param arrowButtonConstraints the arrow button constraints
+     * @return the j button
+     */
+    public JButton addToToolbar(JToolBar toolbar, Object mainButtonConstraints, Object arrowButtonConstraints) {
 		arrowButtonPanel.add(arrowButton);
 		arrowButtonPanel.add(emptyPanel);
 		toolbar.add(mainButton, mainButtonConstraints);
@@ -404,7 +503,13 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 
 	}
 
-	public JButton addToFlowLayoutPanel(JPanel panel) {
+    /**
+     * Add to flow layout panel j button.
+     *
+     * @param panel the panel
+     * @return the j button
+     */
+    public JButton addToFlowLayoutPanel(JPanel panel) {
 		arrowButtonPanel.add(arrowButton);
 		arrowButtonPanel.add(emptyPanel);
 		panel.add(mainButton);
@@ -412,14 +517,25 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		return mainButton;
 	}
 
-	public JButton addArrowToFlowLayoutPanel(JPanel panel) {
+    /**
+     * Add arrow to flow layout panel j button.
+     *
+     * @param panel the panel
+     * @return the j button
+     */
+    public JButton addArrowToFlowLayoutPanel(JPanel panel) {
 		// mainButton.setVisible(false);
 		panel.add(mainButton);
 		panel.add(arrowButton);
 		return mainButton;
 	}
 
-	public void setArrowButtonVisible(boolean b) {
+    /**
+     * Sets arrow button visible.
+     *
+     * @param b the b
+     */
+    public void setArrowButtonVisible(boolean b) {
 		CardLayout cl = (CardLayout) arrowButtonPanel.getLayout();
 		if (b) {
 			cl.first(arrowButtonPanel);
@@ -428,28 +544,48 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		}
 	}
 
-	public boolean isArrowButtonVisible() {
+    /**
+     * Is arrow button visible boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isArrowButtonVisible() {
 		return arrowButton.isVisible();
 	}
 
-	public void setArrowSizeFactor(float factor) {
+    /**
+     * Sets arrow size factor.
+     *
+     * @param factor the factor
+     */
+    public void setArrowSizeFactor(float factor) {
 		arrowButton.setSizeFactor(factor);
 	}
 
-	public float getArrowSizeFactor() {
+    /**
+     * Gets arrow size factor.
+     *
+     * @return the arrow size factor
+     */
+    public float getArrowSizeFactor() {
 		return arrowButton.getSizeFactor();
 	}
 
-	public boolean isPopupMenuVisible() {
+    /**
+     * Is popup menu visible boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isPopupMenuVisible() {
 		return popupVisible;
 	}
 
-	/**
-	 * Returns <code>true</code> if the mouse currently hovers over this button.
-	 *
-	 * @return
-	 */
-	public boolean isHovered() {
+    /**
+     * Returns <code>true</code> if the mouse currently hovers over this button.
+     *
+     * @return boolean boolean
+     */
+    public boolean isHovered() {
 		return hovered;
 	}
 
@@ -495,7 +631,14 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		super.paintComponent(g);
 	}
 
-	// factory methods
+    /**
+     * Make drop down button fancy drop down button.
+     *
+     * @param mainAction the main action
+     * @param actions    the actions
+     * @return the fancy drop down button
+     */
+// factory methods
 	public static FancyDropDownButton makeDropDownButton(Action mainAction, Action... actions) {
 		final JPopupMenu menu = new JPopupMenu();
 		for (Action action : actions) {
@@ -512,7 +655,13 @@ public abstract class FancyDropDownButton extends JButton implements FancyConsta
 		};
 	}
 
-	public static FancyDropDownButton makeDropDownButton(Action action) {
+    /**
+     * Make drop down button fancy drop down button.
+     *
+     * @param action the action
+     * @return the fancy drop down button
+     */
+    public static FancyDropDownButton makeDropDownButton(Action action) {
 		final JPopupMenu menu = new JPopupMenu();
 		return new FancyDropDownButton(action) {
 

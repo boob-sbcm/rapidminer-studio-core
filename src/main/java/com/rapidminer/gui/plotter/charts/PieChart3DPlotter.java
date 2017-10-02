@@ -28,17 +28,19 @@ import org.jfree.data.general.PieDataset;
 
 /**
  * A simple 3D pie chart plotter.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PieChart3DPlotter extends AbstractPieChartPlotter {
 
 	private static final long serialVersionUID = -2107283003284552898L;
 
-	/**
-	 * @param settings
-	 */
-	public PieChart3DPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Pie chart 3 d plotter.
+     *
+     * @param settings the settings
+     */
+    public PieChart3DPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 
 	}

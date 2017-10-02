@@ -63,7 +63,7 @@ import com.rapidminer.tools.math.ROCDataGenerator;
  * ROC curve for each of them. All ROC curves together are plotted in the same plotter. The
  * comparison is based on the average values of a k-fold cross validation. Alternatively, this
  * operator can use an internal split into a test and a training set from the given data set.
- *
+ * <p>
  * Please note that a former predicted label of the given example set will be removed during the
  * application of this operator.
  *
@@ -71,21 +71,27 @@ import com.rapidminer.tools.math.ROCDataGenerator;
  */
 public class ROCBasedComparisonOperator extends OperatorChain implements CapabilityProvider {
 
-	/** The parameter name for the number of folds. */
-	public static final String PARAMETER_NUMBER_OF_FOLDS = "number_of_folds";
+    /**
+     * The parameter name for the number of folds.
+     */
+    public static final String PARAMETER_NUMBER_OF_FOLDS = "number_of_folds";
 
-	/** The parameter name for &quot;Relative size of the training set&quot; */
-	public static final String PARAMETER_SPLIT_RATIO = "split_ratio";
+    /**
+     * The parameter name for &quot;Relative size of the training set&quot;
+     */
+    public static final String PARAMETER_SPLIT_RATIO = "split_ratio";
 
-	/**
-	 * The parameter name for &quot;Defines the sampling type of the cross validation (linear =
-	 * consecutive subsets, shuffled = random subsets, stratified = random subsets with class
-	 * distribution kept constant)&quot;
-	 */
-	public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
+    /**
+     * The parameter name for &quot;Defines the sampling type of the cross validation (linear =
+     * consecutive subsets, shuffled = random subsets, stratified = random subsets with class
+     * distribution kept constant)&quot;
+     */
+    public static final String PARAMETER_SAMPLING_TYPE = "sampling_type";
 
-	/** Indicates if example weights should be used. */
-	public static final String PARAMETER_USE_EXAMPLE_WEIGHTS = "use_example_weights";
+    /**
+     * Indicates if example weights should be used.
+     */
+    public static final String PARAMETER_USE_EXAMPLE_WEIGHTS = "use_example_weights";
 
 	private final InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private final OutputPort exampleSetOutput = getOutputPorts().createPort("exampleSet");
@@ -100,7 +106,12 @@ public class ROCBasedComparisonOperator extends OperatorChain implements Capabil
 		}
 	};
 
-	public ROCBasedComparisonOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Roc based comparison operator.
+     *
+     * @param description the description
+     */
+    public ROCBasedComparisonOperator(OperatorDescription description) {
 		super(description, "Model Generation");
 		trainingSetExtender.start();
 		modelExtender.start();

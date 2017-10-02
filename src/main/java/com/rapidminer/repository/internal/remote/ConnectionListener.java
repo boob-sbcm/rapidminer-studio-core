@@ -22,19 +22,22 @@ package com.rapidminer.repository.internal.remote;
  * Listens to the connections of a RapidMiner Server repository.
  *
  * @author Simon Fischer
- *
  */
 public interface ConnectionListener {
 
-	/**
-	 * Called after disconnection. Guarantees that {@link RemoteRepository#isConnected()} returns
-	 * false.
-	 */
-	public void connectionLost(RemoteRepository repository);
+    /**
+     * Called after disconnection. Guarantees that {@link RemoteRepository#isConnected()} returns
+     * false.
+     *
+     * @param repository the repository
+     */
+    public void connectionLost(RemoteRepository repository);
 
-	/**
-	 * Called after connection was established. Guarantees that
-	 * {@link RemoteRepository#isConnected()} returns true.
-	 */
-	public void connectionEstablished(RemoteRepository repository);
+    /**
+     * Called after connection was established. Guarantees that
+     * {@link RemoteRepository#isConnected()} returns true.
+     *
+     * @param repository the repository
+     */
+    public void connectionEstablished(RemoteRepository repository);
 }

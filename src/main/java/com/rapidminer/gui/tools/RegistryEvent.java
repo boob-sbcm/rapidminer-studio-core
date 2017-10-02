@@ -22,25 +22,27 @@ import java.util.EventObject;
 
 
 /**
- * 
  * Event for the {@link Registry} which contains the type and the object which
  * registered/unregistered.
- * 
+ *
+ * @param <T> the type parameter
  * @author Marco Boeck
- * 
  */
 public class RegistryEvent<T> extends EventObject {
 
-	/**
-	 * The type of a {@link RegistryEvent}.
-	 * 
-	 */
-	public static enum RegistryEventType {
-		/** an object registered itself to the registry */
-		REGISTERED,
+    /**
+     * The type of a {@link RegistryEvent}.
+     */
+    public static enum RegistryEventType {
+        /**
+         * an object registered itself to the registry
+         */
+        REGISTERED,
 
-		/** an object unregistered itself from the registry */
-		UNREGISTERED;
+        /**
+         * an object unregistered itself from the registry
+         */
+        UNREGISTERED;
 	}
 
 	private static final long serialVersionUID = 8034757100709544142L;
@@ -49,38 +51,35 @@ public class RegistryEvent<T> extends EventObject {
 
 	private RegistryEventType type;
 
-	/**
-	 * Create a new {@link RegistryEvent} of the specified {@link RegistryEventType} and the given
-	 * object which was registered or unregistered.
-	 * 
-	 * @param source
-	 *            the "source" of the event, typically the {@link Registry}
-	 * @param type
-	 *            whether it was a register or unregister event
-	 * @param registerObject
-	 *            the object which was registered/unregistered from the registry
-	 */
-	public RegistryEvent(Object source, RegistryEventType type, T registerObject) {
+    /**
+     * Create a new {@link RegistryEvent} of the specified {@link RegistryEventType} and the given
+     * object which was registered or unregistered.
+     *
+     * @param source         the "source" of the event, typically the {@link Registry}
+     * @param type           whether it was a register or unregister event
+     * @param registerObject the object which was registered/unregistered from the registry
+     */
+    public RegistryEvent(Object source, RegistryEventType type, T registerObject) {
 		super(source);
 		this.type = type;
 		this.registerObject = registerObject;
 	}
 
-	/**
-	 * Returns the object which registered/unregistered itself from the {@link Registry}.
-	 * 
-	 * @return
-	 */
-	public T getObject() {
+    /**
+     * Returns the object which registered/unregistered itself from the {@link Registry}.
+     *
+     * @return object object
+     */
+    public T getObject() {
 		return registerObject;
 	}
 
-	/**
-	 * Returns whether this was register or an unregister event.
-	 * 
-	 * @return
-	 */
-	public RegistryEventType getType() {
+    /**
+     * Returns whether this was register or an unregister event.
+     *
+     * @return type type
+     */
+    public RegistryEventType getType() {
 		return type;
 	}
 }

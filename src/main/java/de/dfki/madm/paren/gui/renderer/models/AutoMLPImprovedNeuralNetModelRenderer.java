@@ -30,10 +30,10 @@ import de.dfki.madm.paren.operator.learner.functions.neuralnet.AutoMLPImprovedNe
 
 
 /**
+ * The type Auto mlp improved neural net model renderer.
  *
  * @author Sebastian Land, modified by Syed Atif Mehdi (01/09/2010)
  */
-
 public class AutoMLPImprovedNeuralNetModelRenderer extends AbstractRenderer {
 
 	@Override

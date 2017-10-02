@@ -30,7 +30,7 @@ import org.w3c.dom.Element;
 /**
  * This {@link ParameterCondition} implementation checks whether the currently selected
  * {@link OperatorVersion} matches a predefined one.
- * 
+ *
  * @author Sebastian Land
  */
 public class EqualOperatorVersionCondition extends ParameterCondition {
@@ -39,12 +39,24 @@ public class EqualOperatorVersionCondition extends ParameterCondition {
 	private VersionNumber neededVersion;
 	private Operator operator;
 
-	public EqualOperatorVersionCondition(Element element) throws XMLException {
+    /**
+     * Instantiates a new Equal operator version condition.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public EqualOperatorVersionCondition(Element element) throws XMLException {
 		super(element);
 		neededVersion = new VersionNumber(XMLTools.getTagContents(element, ELEMENT_VERSION, true));
 	}
 
-	public EqualOperatorVersionCondition(Operator operator, VersionNumber neededVersion) {
+    /**
+     * Instantiates a new Equal operator version condition.
+     *
+     * @param operator      the operator
+     * @param neededVersion the needed version
+     */
+    public EqualOperatorVersionCondition(Operator operator, VersionNumber neededVersion) {
 		super(operator, false);
 		this.operator = operator;
 		this.neededVersion = neededVersion;

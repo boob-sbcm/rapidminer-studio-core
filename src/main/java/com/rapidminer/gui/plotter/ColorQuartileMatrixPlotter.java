@@ -36,14 +36,17 @@ import javax.swing.Icon;
 
 /**
  * A quartil matrix plotter which uses the {@link ColorQuartilePlotter} for each of the plots.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ColorQuartileMatrixPlotter extends PlotterAdapter {
 
 	private static final long serialVersionUID = -3049267947471497204L;
 
-	static final int MAX_NUMBER_OF_COLUMNS = 100;
+    /**
+     * The Max number of columns.
+     */
+    static final int MAX_NUMBER_OF_COLUMNS = 100;
 
 	private ColorQuartilePlotter[] plotters = new ColorQuartilePlotter[0];
 
@@ -55,7 +58,12 @@ public class ColorQuartileMatrixPlotter extends PlotterAdapter {
 
 	private transient DataTable dataTable;
 
-	public ColorQuartileMatrixPlotter(PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Color quartile matrix plotter.
+     *
+     * @param settings the settings
+     */
+    public ColorQuartileMatrixPlotter(PlotterConfigurationModel settings) {
 		super(settings);
 		setBackground(Color.white);
 		String sizeProperty = ParameterService.getParameterValue(MainFrame.PROPERTY_RAPIDMINER_GUI_PLOTTER_MATRIXPLOT_SIZE);
@@ -73,7 +81,13 @@ public class ColorQuartileMatrixPlotter extends PlotterAdapter {
 		}
 	}
 
-	public ColorQuartileMatrixPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
+    /**
+     * Instantiates a new Color quartile matrix plotter.
+     *
+     * @param settings  the settings
+     * @param dataTable the data table
+     */
+    public ColorQuartileMatrixPlotter(PlotterConfigurationModel settings, DataTable dataTable) {
 		this(settings);
 		setDataTable(dataTable);
 	}

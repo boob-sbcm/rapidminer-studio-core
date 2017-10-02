@@ -39,7 +39,7 @@ import com.rapidminer.gui.tools.ExtendedJScrollPane;
 /**
  * This is a dialog which shows two checkboxes for each possible dimension where the user can select
  * if points and / or lines should be drawn for each dimension.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class PointsAndLinesDialog extends JDialog {
@@ -50,7 +50,14 @@ public class PointsAndLinesDialog extends JDialog {
 
 	private DefaultTableModel model;
 
-	public PointsAndLinesDialog(String[] names, boolean[] points, boolean[] lines) {
+    /**
+     * Instantiates a new Points and lines dialog.
+     *
+     * @param names  the names
+     * @param points the points
+     * @param lines  the lines
+     */
+    public PointsAndLinesDialog(String[] names, boolean[] points, boolean[] lines) {
 		super(ApplicationFrame.getApplicationFrame(), "Points and Lines", true);
 
 		Object[][] data = new Object[names.length][3];
@@ -183,19 +190,41 @@ public class PointsAndLinesDialog extends JDialog {
 		setLocationRelativeTo(getOwner());
 	}
 
-	public void setOk(boolean ok) {
+    /**
+     * Sets ok.
+     *
+     * @param ok the ok
+     */
+    public void setOk(boolean ok) {
 		this.ok = ok;
 	}
 
-	public boolean isOk() {
+    /**
+     * Is ok boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isOk() {
 		return this.ok;
 	}
 
-	public boolean showPoints(int index) {
+    /**
+     * Show points boolean.
+     *
+     * @param index the index
+     * @return the boolean
+     */
+    public boolean showPoints(int index) {
 		return (Boolean) model.getValueAt(index, 1);
 	}
 
-	public boolean showLines(int index) {
+    /**
+     * Show lines boolean.
+     *
+     * @param index the index
+     * @return the boolean
+     */
+    public boolean showLines(int index) {
 		return (Boolean) model.getValueAt(index, 2);
 	}
 }

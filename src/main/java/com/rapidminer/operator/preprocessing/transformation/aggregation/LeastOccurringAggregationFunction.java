@@ -24,19 +24,39 @@ import com.rapidminer.example.Attribute;
 /**
  * This class implements the Mode Aggregation function. This will calculate the least value of the
  * attribute of the examples within a group, that at least occurrs once.
- * 
+ *
  * @author Sebastian Land
  */
 public class LeastOccurringAggregationFunction extends NominalAggregationFunction {
 
-	public static final String FUNCTION_LEAST_OCCURRING = "leastO";
+    /**
+     * The constant FUNCTION_LEAST_OCCURRING.
+     */
+    public static final String FUNCTION_LEAST_OCCURRING = "leastO";
 
-	public LeastOccurringAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
+    /**
+     * Instantiates a new Least occurring aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     */
+    public LeastOccurringAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, FUNCTION_LEAST_OCCURRING, FUNCTION_SEPARATOR_OPEN,
 				FUNCTION_SEPARATOR_CLOSE);
 	}
 
-	public LeastOccurringAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
+    /**
+     * Instantiates a new Least occurring aggregation function.
+     *
+     * @param sourceAttribute    the source attribute
+     * @param ignoreMissings     the ignore missings
+     * @param countOnlyDisctinct the count only disctinct
+     * @param functionName       the function name
+     * @param separatorOpen      the separator open
+     * @param separatorClose     the separator close
+     */
+    public LeastOccurringAggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDisctinct,
 			String functionName, String separatorOpen, String separatorClose) {
 		super(sourceAttribute, ignoreMissings, countOnlyDisctinct, functionName, separatorOpen, separatorClose);
 	}

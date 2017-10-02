@@ -25,7 +25,7 @@ import com.rapidminer.operator.learner.igss.hypothesis.Hypothesis;
  * Object of this class represent results found by the IGSS algorithm. Stored are the found
  * hypothesis, the utility of the hypothesis, the used weight and the size of the confidence
  * intervall.
- * 
+ *
  * @author Dirk Dach
  */
 public class Result {
@@ -45,7 +45,16 @@ public class Result {
 	/** The size of the confidence intervall of this result's hypothesis */
 	private double confidence;
 
-	public Result(Hypothesis h, double totalExampleWeight, double totalPositiveWeight, double u, double c) {
+    /**
+     * Instantiates a new Result.
+     *
+     * @param h                   the h
+     * @param totalExampleWeight  the total example weight
+     * @param totalPositiveWeight the total positive weight
+     * @param u                   the u
+     * @param c                   the c
+     */
+    public Result(Hypothesis h, double totalExampleWeight, double totalPositiveWeight, double u, double c) {
 		this.hypo = h;
 		this.totalWeight = totalExampleWeight;
 		this.totalPositiveWeight = totalPositiveWeight;
@@ -53,28 +62,48 @@ public class Result {
 		this.confidence = c;
 	}
 
-	/** Returns the stored hypothesis. */
-	public Hypothesis getHypothesis() {
+    /**
+     * Returns the stored hypothesis.  @return the hypothesis
+     *
+     * @return the hypothesis
+     */
+    public Hypothesis getHypothesis() {
 		return hypo;
 	}
 
-	/** Returns the stored utility. */
-	public double getUtility() {
+    /**
+     * Returns the stored utility.  @return the utility
+     *
+     * @return the utility
+     */
+    public double getUtility() {
 		return utility;
 	}
 
-	/** Returns the stored size of the confidence intervall. */
-	public double getConfidence() {
+    /**
+     * Returns the stored size of the confidence intervall.  @return the confidence
+     *
+     * @return the confidence
+     */
+    public double getConfidence() {
 		return confidence;
 	}
 
-	/** Returns the stored positive weight. */
-	public double getTotalPositiveWeight() {
+    /**
+     * Returns the stored positive weight.  @return the total positive weight
+     *
+     * @return the total positive weight
+     */
+    public double getTotalPositiveWeight() {
 		return totalPositiveWeight;
 	}
 
-	/** Returns the stored total weight. */
-	public double getTotalWeight() {
+    /**
+     * Returns the stored total weight.  @return the total weight
+     *
+     * @return the total weight
+     */
+    public double getTotalWeight() {
 		return totalWeight;
 	}
 

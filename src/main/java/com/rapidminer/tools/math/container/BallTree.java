@@ -37,11 +37,8 @@ import java.util.Stack;
  * fashion supporting the search for nearest neighbours. This is only working well in low to middle
  * number of dimensions. Since the building of the tree is very expensiv, in most cases a linear
  * search strategy will outperform the ballTree in overall performance.
- * 
- * @param <T>
- *            This is the type of value with is stored with the points and retrieved on nearest
- *            neighbour search
- * 
+ *
+ * @param <T> This is the type of value with is stored with the points and retrieved on nearest            neighbour search
  * @author Sebastian Land
  */
 public class BallTree<T extends Serializable> implements GeometricDataCollection<T> {
@@ -55,7 +52,12 @@ public class BallTree<T extends Serializable> implements GeometricDataCollection
 	private int size = 0;
 	private ArrayList<T> values = new ArrayList<T>();
 
-	public BallTree(DistanceMeasure distance) {
+    /**
+     * Instantiates a new Ball tree.
+     *
+     * @param distance the distance
+     */
+    public BallTree(DistanceMeasure distance) {
 		this.distance = distance;
 	}
 
@@ -251,7 +253,12 @@ public class BallTree<T extends Serializable> implements GeometricDataCollection
 		return result;
 	}
 
-	public SimpleDataTable getVisualization() {
+    /**
+     * Gets visualization.
+     *
+     * @return the visualization
+     */
+    public SimpleDataTable getVisualization() {
 		SimpleDataTable table = new SimpleDataTable("BallTree", new String[] { "x", "y", "radius" });
 		fillTable(table, root);
 		return table;

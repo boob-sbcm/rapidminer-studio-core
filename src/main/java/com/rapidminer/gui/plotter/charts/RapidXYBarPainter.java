@@ -35,7 +35,7 @@ import org.jfree.ui.RectangleEdge;
 
 /**
  * The painter for the bar charts.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class RapidXYBarPainter implements XYBarPainter {
@@ -49,22 +49,22 @@ public class RapidXYBarPainter implements XYBarPainter {
 	/** The division point between the third and fourth gradient regions. */
 	private final double g3;
 
-	/**
-	 * Creates a new instance.
-	 */
-	public RapidXYBarPainter() {
+    /**
+     * Creates a new instance.
+     */
+    public RapidXYBarPainter() {
 		// this(0.10, 0.20, 0.80);
 		this(0.0, 0.3, 0.7);
 	}
 
-	/**
-	 * Creates a new instance.
-	 * 
-	 * @param g1
-	 * @param g2
-	 * @param g3
-	 */
-	public RapidXYBarPainter(double g1, double g2, double g3) {
+    /**
+     * Creates a new instance.
+     *
+     * @param g1 the g 1
+     * @param g2 the g 2
+     * @param g3 the g 3
+     */
+    public RapidXYBarPainter(double g1, double g2, double g3) {
 		this.g1 = g1;
 		this.g2 = g2;
 		this.g3 = g3;

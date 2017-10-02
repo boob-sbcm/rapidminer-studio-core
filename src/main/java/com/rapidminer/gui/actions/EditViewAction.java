@@ -26,7 +26,8 @@ import java.awt.event.ActionEvent;
 
 
 /**
- * 
+ * The type Edit view action.
+ *
  * @author Simon Fischer
  */
 public class EditViewAction extends ResourceAction {
@@ -35,7 +36,12 @@ public class EditViewAction extends ResourceAction {
 
 	private MainFrame mainFrame;
 
-	public EditViewAction(MainFrame mainFrame) {
+    /**
+     * Instantiates a new Edit view action.
+     *
+     * @param mainFrame the main frame
+     */
+    public EditViewAction(MainFrame mainFrame) {
 		super("edit_view");
 		this.mainFrame = mainFrame;
 	}

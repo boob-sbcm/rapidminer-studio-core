@@ -57,26 +57,24 @@ class MemoryExampleSetBuilder extends ExampleSetBuilder {
 	/** the functions to use for filling the columns */
 	private Map<Attribute, IntToDoubleFunction> columnFillers = new HashMap<>();
 
-	/**
-	 * Creates a builder that stores values in a {@link MemoryExampleTable} based on the given
-	 * attributes.
-	 *
-	 * @param attributes
-	 *            the {@link Attribute}s that the {@link ExampleSet} should contain
-	 */
-	MemoryExampleSetBuilder(List<Attribute> attributes) {
+    /**
+     * Creates a builder that stores values in a {@link MemoryExampleTable} based on the given
+     * attributes.
+     *
+     * @param attributes the {@link Attribute}s that the {@link ExampleSet} should contain
+     */
+    MemoryExampleSetBuilder(List<Attribute> attributes) {
 		super(attributes);
 		setTableIndices();
 	}
 
-	/**
-	 * Creates a builder that stores values in a {@link MemoryExampleTable} based on the given
-	 * attributes.
-	 *
-	 * @param attributes
-	 *            the {@link Attribute}s that the {@link ExampleSet} should contain
-	 */
-	MemoryExampleSetBuilder(Attribute... attributes) {
+    /**
+     * Creates a builder that stores values in a {@link MemoryExampleTable} based on the given
+     * attributes.
+     *
+     * @param attributes the {@link Attribute}s that the {@link ExampleSet} should contain
+     */
+    MemoryExampleSetBuilder(Attribute... attributes) {
 		super(attributes);
 		setTableIndices();
 	}

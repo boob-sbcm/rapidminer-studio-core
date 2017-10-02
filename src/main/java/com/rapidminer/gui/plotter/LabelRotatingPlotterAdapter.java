@@ -33,20 +33,29 @@ import com.rapidminer.tools.I18N;
 
 
 /**
- * @author Sebastian Land
+ * The type Label rotating plotter adapter.
  *
+ * @author Sebastian Land
  */
 public abstract class LabelRotatingPlotterAdapter extends PlotterAdapter {
 
 	private static final long serialVersionUID = -8622638833472714672L;
 
-	public static final String PARAMETER_ROTATE_LABELS = "rotate_labels";
+    /**
+     * The constant PARAMETER_ROTATE_LABELS.
+     */
+    public static final String PARAMETER_ROTATE_LABELS = "rotate_labels";
 
 	private final ListeningJCheckBox rotateLabels;
 
 	private boolean rotateLabelsFlag = false;
 
-	public LabelRotatingPlotterAdapter(final PlotterConfigurationModel settings) {
+    /**
+     * Instantiates a new Label rotating plotter adapter.
+     *
+     * @param settings the settings
+     */
+    public LabelRotatingPlotterAdapter(final PlotterConfigurationModel settings) {
 		super(settings);
 		rotateLabels = new ListeningJCheckBox("_" + PARAMETER_ROTATE_LABELS,
 				I18N.getGUILabel("plotter_panel.rotate_labels.label"), false);
@@ -60,7 +69,10 @@ public abstract class LabelRotatingPlotterAdapter extends PlotterAdapter {
 
 	}
 
-	protected abstract void updatePlotter();
+    /**
+     * Update plotter.
+     */
+    protected abstract void updatePlotter();
 
 	@Override
 	public List<ParameterType> getAdditionalParameterKeys(InputPort inputPort) {
@@ -70,7 +82,12 @@ public abstract class LabelRotatingPlotterAdapter extends PlotterAdapter {
 		return types;
 	}
 
-	public boolean isLabelRotating() {
+    /**
+     * Is label rotating boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLabelRotating() {
 		return rotateLabelsFlag;
 	}
 
@@ -90,7 +107,12 @@ public abstract class LabelRotatingPlotterAdapter extends PlotterAdapter {
 		return list;
 	}
 
-	protected JComponent getRotateLabelComponent() {
+    /**
+     * Gets rotate label component.
+     *
+     * @return the rotate label component
+     */
+    protected JComponent getRotateLabelComponent() {
 		return rotateLabels;
 	}
 }

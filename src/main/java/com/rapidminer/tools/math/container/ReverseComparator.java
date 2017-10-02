@@ -24,10 +24,9 @@ import java.util.Comparator;
 
 /**
  * This comparator reverses the sort direction for a given comparator.
- * 
+ *
+ * @param <F> the type of the comparable
  * @author Sebastian Land
- * @param <F>
- *            the type of the comparable
  */
 public class ReverseComparator<F> implements Comparator<F>, Serializable {
 
@@ -35,7 +34,12 @@ public class ReverseComparator<F> implements Comparator<F>, Serializable {
 
 	private Comparator<? super F> comparator;
 
-	public ReverseComparator(Comparator<? super F> comp) {
+    /**
+     * Instantiates a new Reverse comparator.
+     *
+     * @param comp the comp
+     */
+    public ReverseComparator(Comparator<? super F> comp) {
 		this.comparator = comp;
 	}
 

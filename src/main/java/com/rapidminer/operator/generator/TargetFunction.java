@@ -26,72 +26,122 @@ import com.rapidminer.tools.RandomGenerator;
 /**
  * A target function which is used for the {@link ExampleSetGenerator} operator. All target function
  * will need an empty constructor since they are initialized via reflection.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface TargetFunction {
 
-	/**
-	 * Will be thrown if an error occurs during the calculation of the target function.
-	 */
-	public static class FunctionException extends Exception {
+    /**
+     * Will be thrown if an error occurs during the calculation of the target function.
+     */
+    public static class FunctionException extends Exception {
 
 		private static final long serialVersionUID = -990633489806141677L;
 
 		private String functionName;
 
-		public FunctionException(String functionName, String message) {
+        /**
+         * Instantiates a new Function exception.
+         *
+         * @param functionName the function name
+         * @param message      the message
+         */
+        public FunctionException(String functionName, String message) {
 			super(message);
 			this.functionName = functionName;
 		}
 
-		public String getFunctionName() {
+        /**
+         * Gets function name.
+         *
+         * @return the function name
+         */
+        public String getFunctionName() {
 			return functionName;
 		}
 	}
 
-	/** Should be called before the data is created. */
-	public void init(RandomGenerator random);
+    /**
+     * Should be called before the data is created.  @param random the random
+     *
+     * @param random the random
+     */
+    public void init(RandomGenerator random);
 
-	/** Calculates the target function on arguments. */
-	public double calculate(double[] args) throws FunctionException;
+    /**
+     * Calculates the target function on arguments.  @param args the args
+     *
+     * @param args the args
+     * @return the double
+     * @throws FunctionException the function exception
+     */
+    public double calculate(double[] args) throws FunctionException;
 
-	/** Returns the label attribute. */
-	public Attribute getLabel();
+    /**
+     * Returns the label attribute.  @return the label
+     *
+     * @return the label
+     */
+    public Attribute getLabel();
 
-	/** Creates and returns a number of arguments. */
-	public double[] createArguments(int dimension, RandomGenerator random) throws FunctionException;
+    /**
+     * Creates and returns a number of arguments.  @param dimension the dimension
+     *
+     * @param dimension the dimension
+     * @param random    the random
+     * @return the double [ ]
+     * @throws FunctionException the function exception
+     */
+    public double[] createArguments(int dimension, RandomGenerator random) throws FunctionException;
 
-	/** Sets the lower bound for the arguments. */
-	public void setLowerArgumentBound(double lower);
+    /**
+     * Sets the lower bound for the arguments.  @param lower the lower
+     *
+     * @param lower the lower
+     */
+    public void setLowerArgumentBound(double lower);
 
-	/** Sets the upper bound for the arguments. */
-	public void setUpperArgumentBound(double upper);
+    /**
+     * Sets the upper bound for the arguments.  @param upper the upper
+     *
+     * @param upper the upper
+     */
+    public void setUpperArgumentBound(double upper);
 
-	/**
-	 * Sets the maximal number of examples. This might be used by some target functions in order to
-	 * create proper arguments.
-	 */
-	public void setTotalNumberOfExamples(int number);
+    /**
+     * Sets the maximal number of examples. This might be used by some target functions in order to
+     * create proper arguments.
+     *
+     * @param number the number
+     */
+    public void setTotalNumberOfExamples(int number);
 
-	/**
-	 * Sets the maximal number of attributes. This might be used by some target functions in order
-	 * to create proper arguments.
-	 */
-	public void setTotalNumberOfAttributes(int number);
+    /**
+     * Sets the maximal number of attributes. This might be used by some target functions in order
+     * to create proper arguments.
+     *
+     * @param number the number
+     */
+    public void setTotalNumberOfAttributes(int number);
 
-	/**
-	 * This method returns the meta data of the generated data.
-	 */
-	public ExampleSetMetaData getGeneratedMetaData();
+    /**
+     * This method returns the meta data of the generated data.
+     *
+     * @return the generated meta data
+     */
+    public ExampleSetMetaData getGeneratedMetaData();
 
-	/**
-	 * @return The minimum number of attributes this functions must produce
-	 */
-	public int getMinNumberOfAttributes();
+    /**
+     * Gets min number of attributes.
+     *
+     * @return The minimum number of attributes this functions must produce
+     */
+    public int getMinNumberOfAttributes();
 
-	/**
-	 * @return The maximum number of attributes this functions can produce
-	 */
-	public int getMaxNumberOfAttributes();
+    /**
+     * Gets max number of attributes.
+     *
+     * @return The maximum number of attributes this functions can produce
+     */
+    public int getMaxNumberOfAttributes();
 }

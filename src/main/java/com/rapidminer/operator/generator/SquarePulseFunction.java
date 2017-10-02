@@ -20,7 +20,7 @@ package com.rapidminer.operator.generator;
 
 /**
  * The label is a square pulse in attribute att1.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SquarePulseFunction extends RegressionFunction {

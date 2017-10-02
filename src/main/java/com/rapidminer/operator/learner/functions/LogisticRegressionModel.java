@@ -44,7 +44,15 @@ public class LogisticRegressionModel extends SimpleBinaryPredictionModel {
 
 	private boolean interceptAdded;
 
-	public LogisticRegressionModel(ExampleSet exampleSet, double[] beta, double[] variance, boolean interceptAdded) {
+    /**
+     * Instantiates a new Logistic regression model.
+     *
+     * @param exampleSet     the example set
+     * @param beta           the beta
+     * @param variance       the variance
+     * @param interceptAdded the intercept added
+     */
+    public LogisticRegressionModel(ExampleSet exampleSet, double[] beta, double[] variance, boolean interceptAdded) {
 		super(exampleSet, 0.5d);
 		this.attributeNames = com.rapidminer.example.Tools.getRegularAttributeNames(exampleSet);
 		this.beta = beta;
@@ -96,19 +104,39 @@ public class LogisticRegressionModel extends SimpleBinaryPredictionModel {
 		return result.toString();
 	}
 
-	public String[] getAttributeNames() {
+    /**
+     * Get attribute names string [ ].
+     *
+     * @return the string [ ]
+     */
+    public String[] getAttributeNames() {
 		return attributeNames;
 	}
 
-	public double[] getCoefficients() {
+    /**
+     * Get coefficients double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getCoefficients() {
 		return beta;
 	}
 
-	public String getFirstLabel() {
+    /**
+     * Gets first label.
+     *
+     * @return the first label
+     */
+    public String getFirstLabel() {
 		return getTrainingHeader().getAttributes().getLabel().getMapping().getNegativeString();
 	}
 
-	public String getSecondLabel() {
+    /**
+     * Gets second label.
+     *
+     * @return the second label
+     */
+    public String getSecondLabel() {
 		return getTrainingHeader().getAttributes().getLabel().getMapping().getPositiveString();
 	}
 }

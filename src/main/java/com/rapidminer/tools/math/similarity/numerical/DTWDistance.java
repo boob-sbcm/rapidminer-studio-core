@@ -29,14 +29,23 @@ import java.util.ArrayList;
 /**
  * A distance measure based on "Dynamic Time Warping". The DTW distance is mapped to a similarity
  * measure using f(x)= 1 - (x / (1 + x)). Feature weights are also supported.
- * 
+ *
  * @author Piotr Kasprzak, Sebastian Land
  */
 public class DTWDistance extends DistanceMeasure {
 
 	private static final long serialVersionUID = 1382144431606583122L;
 
-	protected double pointDistance(int i, int j, double[] ts1, double[] ts2) {
+    /**
+     * Point distance double.
+     *
+     * @param i   the
+     * @param j   the j
+     * @param ts1 the ts 1
+     * @param ts2 the ts 2
+     * @return the double
+     */
+    protected double pointDistance(int i, int j, double[] ts1, double[] ts2) {
 		double diff = ts1[i] - ts2[j];
 		return (diff * diff);
 	}

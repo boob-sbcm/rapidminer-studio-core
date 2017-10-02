@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric secant of a radian.
  *
  * @author Denis Schernov
- *
  */
 public class Secant extends Abstract1DoubleInputFunction {
 
-	public Secant() {
+    /**
+     * Instantiates a new Secant.
+     */
+    public Secant() {
 		super("trigonometrical.sec", Ontology.NUMERICAL);
 	}
 

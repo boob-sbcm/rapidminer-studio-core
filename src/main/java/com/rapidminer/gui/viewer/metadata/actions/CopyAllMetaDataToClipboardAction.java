@@ -34,23 +34,24 @@ import java.util.List;
 /**
  * The action copies all meta data into the clipboard, separating each column via <code>\t</code> so
  * pasting into for example Excel is possible.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class CopyAllMetaDataToClipboardAction extends ResourceAction {
 
 	private static final long serialVersionUID = 6979404131032484600L;
 
-	/** the {@link MetaDataStatisticsModel} model from which the meta data should be copied */
-	MetaDataStatisticsModel model;
+    /**
+     * the {@link MetaDataStatisticsModel} model from which the meta data should be copied
+     */
+    MetaDataStatisticsModel model;
 
-	/**
-	 * Creates a new {@link CopyAllMetaDataToClipboardAction} instance.
-	 * 
-	 * @param model
-	 */
-	public CopyAllMetaDataToClipboardAction(MetaDataStatisticsModel model) {
+    /**
+     * Creates a new {@link CopyAllMetaDataToClipboardAction} instance.
+     *
+     * @param model the model
+     */
+    public CopyAllMetaDataToClipboardAction(MetaDataStatisticsModel model) {
 		super(true, "meta_data_stats.copy_all_metadata");
 		this.model = model;
 	}

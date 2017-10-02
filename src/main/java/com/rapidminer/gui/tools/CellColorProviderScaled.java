@@ -24,7 +24,7 @@ import java.util.Set;
 
 /**
  * Delivers a color based on the given value scaled.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class CellColorProviderScaled implements CellColorProvider {
@@ -39,7 +39,16 @@ public class CellColorProviderScaled implements CellColorProvider {
 
 	private Set<Integer> notColorizedIndices;
 
-	public CellColorProviderScaled(ExtendedJTable table, boolean absolute, double min, double max,
+    /**
+     * Instantiates a new Cell color provider scaled.
+     *
+     * @param table                     the table
+     * @param absolute                  the absolute
+     * @param min                       the min
+     * @param max                       the max
+     * @param notColorizedColumnIndices the not colorized column indices
+     */
+    public CellColorProviderScaled(ExtendedJTable table, boolean absolute, double min, double max,
 			Set<Integer> notColorizedColumnIndices) {
 		this.table = table;
 		this.absolute = absolute;

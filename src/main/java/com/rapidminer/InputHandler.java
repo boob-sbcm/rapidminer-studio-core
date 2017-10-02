@@ -21,11 +21,17 @@ package com.rapidminer;
 /**
  * Handles user input in a way dependent on the execution mode. Currently, it is only used to query
  * passwords.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public interface InputHandler {
 
-	public String inputPassword(String messageText);
+    /**
+     * Input password string.
+     *
+     * @param messageText the message text
+     * @return the string
+     */
+    public String inputPassword(String messageText);
 
 }

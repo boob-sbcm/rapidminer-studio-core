@@ -28,7 +28,7 @@ import com.rapidminer.tools.math.TestGroup;
 /**
  * This container class contains an operator tree and the results delivered by the tree. It will be
  * used by the class {@link ResultHistory}.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ResultContainer {
@@ -39,7 +39,14 @@ public class ResultContainer {
 
 	private TestGroup group = null;
 
-	public ResultContainer(String name, String processXML, IOContainer ioContainer) {
+    /**
+     * Instantiates a new Result container.
+     *
+     * @param name        the name
+     * @param processXML  the process xml
+     * @param ioContainer the io container
+     */
+    public ResultContainer(String name, String processXML, IOContainer ioContainer) {
 		this.name = name;
 		this.processXML = processXML;
 		this.resultString = ioContainer.toString();
@@ -56,19 +63,39 @@ public class ResultContainer {
 		}
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return this.name;
 	}
 
-	public String getProcess() {
+    /**
+     * Gets process.
+     *
+     * @return the process
+     */
+    public String getProcess() {
 		return this.processXML;
 	}
 
-	public String getResults() {
+    /**
+     * Gets results.
+     *
+     * @return the results
+     */
+    public String getResults() {
 		return this.resultString;
 	}
 
-	public TestGroup getTestGroup() {
+    /**
+     * Gets test group.
+     *
+     * @return the test group
+     */
+    public TestGroup getTestGroup() {
 		return this.group;
 	}
 

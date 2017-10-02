@@ -84,7 +84,7 @@ import com.rapidminer.tools.OperatorService;
  * multiple attributes (similar to the group-by clause known from SQL). In this case a new line will
  * be created for each group.
  * </p>
- *
+ * <p>
  * <p>
  * Please note that the known HAVING clause from SQL can be simulated by an additional
  * {@link ExampleFilter} operator following this one.
@@ -94,12 +94,21 @@ import com.rapidminer.tools.OperatorService;
  */
 public class AggregationOperator extends AbstractDataProcessing {
 
-	public static class AggregationTreeNode {
+    /**
+     * The type Aggregation tree node.
+     */
+    public static class AggregationTreeNode {
 
 		private TreeMap<Object, AggregationTreeNode> childrenMap = null;
 		private TreeMap<Object, LeafAggregationTreeNode> leafMap = null;
 
-		public AggregationTreeNode getOrCreateChild(Object value) {
+        /**
+         * Gets or create child.
+         *
+         * @param value the value
+         * @return the or create child
+         */
+        public AggregationTreeNode getOrCreateChild(Object value) {
 			// creating map dynamically to save allocated objects in case this won't be used
 			if (childrenMap == null) {
 				childrenMap = new TreeMap<>();
@@ -114,18 +123,36 @@ public class AggregationOperator extends AbstractDataProcessing {
 			return childNode;
 		}
 
-		public AggregationTreeNode getChild(Object value) {
+        /**
+         * Gets child.
+         *
+         * @param value the value
+         * @return the child
+         */
+        public AggregationTreeNode getChild(Object value) {
 			if (childrenMap != null) {
 				return childrenMap.get(value);
 			}
 			return null;
 		}
 
-		public Set<Entry<Object, AggregationTreeNode>> getChilds() {
+        /**
+         * Gets childs.
+         *
+         * @return the childs
+         */
+        public Set<Entry<Object, AggregationTreeNode>> getChilds() {
 			return childrenMap.entrySet();
 		}
 
-		public LeafAggregationTreeNode getOrCreateLeaf(Object value, List<AggregationFunction> aggregationFunctions) {
+        /**
+         * Gets or create leaf.
+         *
+         * @param value                the value
+         * @param aggregationFunctions the aggregation functions
+         * @return the or create leaf
+         */
+        public LeafAggregationTreeNode getOrCreateLeaf(Object value, List<AggregationFunction> aggregationFunctions) {
 			// creating map dynamically to save allocated objects in case this won't be used
 			if (leafMap == null) {
 				leafMap = new TreeMap<>();
@@ -140,18 +167,34 @@ public class AggregationOperator extends AbstractDataProcessing {
 			return leafNode;
 		}
 
-		public LeafAggregationTreeNode getLeaf(Object value) {
+        /**
+         * Gets leaf.
+         *
+         * @param value the value
+         * @return the leaf
+         */
+        public LeafAggregationTreeNode getLeaf(Object value) {
 			if (leafMap != null) {
 				return leafMap.get(value);
 			}
 			return null;
 		}
 
-		public Set<Entry<Object, LeafAggregationTreeNode>> getLeaves() {
+        /**
+         * Gets leaves.
+         *
+         * @return the leaves
+         */
+        public Set<Entry<Object, LeafAggregationTreeNode>> getLeaves() {
 			return leafMap.entrySet();
 		}
 
-		public Collection<? extends Object> getValues() {
+        /**
+         * Gets values.
+         *
+         * @return the values
+         */
+        public Collection<? extends Object> getValues() {
 			if (childrenMap != null) {
 				return childrenMap.keySet();
 			}
@@ -162,63 +205,105 @@ public class AggregationOperator extends AbstractDataProcessing {
 		}
 	}
 
-	public static class LeafAggregationTreeNode {
+    /**
+     * The type Leaf aggregation tree node.
+     */
+    public static class LeafAggregationTreeNode {
 
 		private List<Aggregator> aggregators;
 
-		/**
-		 * Creates a new {@link LeafAggregationTreeNode} for all the given
-		 * {@link AggregationFunction}s. For each function, one {@link Aggregator} will be created,
-		 * that will keep track of the current counted values.
-		 */
-		public LeafAggregationTreeNode(List<AggregationFunction> aggregationFunctions) {
+        /**
+         * Creates a new {@link LeafAggregationTreeNode} for all the given
+         * {@link AggregationFunction}s. For each function, one {@link Aggregator} will be created,
+         * that will keep track of the current counted values.
+         *
+         * @param aggregationFunctions the aggregation functions
+         */
+        public LeafAggregationTreeNode(List<AggregationFunction> aggregationFunctions) {
 			aggregators = new ArrayList<>(aggregationFunctions.size());
 			for (AggregationFunction function : aggregationFunctions) {
 				aggregators.add(function.createAggregator());
 			}
 		}
 
-		/**
-		 * This will count the given examples for all registered {@link Aggregator}s.
-		 */
-		public void count(Example example) {
+        /**
+         * This will count the given examples for all registered {@link Aggregator}s.
+         *
+         * @param example the example
+         */
+        public void count(Example example) {
 			for (Aggregator aggregator : aggregators) {
 				aggregator.count(example);
 			}
 		}
 
-		/**
-		 * This will count the given examples for all registered {@link Aggregator}s with the given
-		 * weight. If there's no weight attribute available, it is preferable to use the
-		 * {@link #count(Example)} method, as it might be more efficiently implemented.
-		 */
-		public void count(Example example, double weight) {
+        /**
+         * This will count the given examples for all registered {@link Aggregator}s with the given
+         * weight. If there's no weight attribute available, it is preferable to use the
+         * {@link #count(Example)} method, as it might be more efficiently implemented.
+         *
+         * @param example the example
+         * @param weight  the weight
+         */
+        public void count(Example example, double weight) {
 			for (Aggregator aggregator : aggregators) {
 				aggregator.count(example, weight);
 			}
 		}
 
-		/**
-		 * This simply returns the list of all aggregators. They may be used for setting values
-		 * within the respective data row of the created example set.
-		 */
-		public List<Aggregator> getAggregators() {
+        /**
+         * This simply returns the list of all aggregators. They may be used for setting values
+         * within the respective data row of the created example set.
+         *
+         * @return the aggregators
+         */
+        public List<Aggregator> getAggregators() {
 			return aggregators;
 		}
 	}
 
-	public static final String PARAMETER_USE_DEFAULT_AGGREGATION = "use_default_aggregation";
-	public static final String PARAMETER_DEFAULT_AGGREGATION_FUNCTION = "default_aggregation_function";
-	public static final String PARAMETER_AGGREGATION_ATTRIBUTES = "aggregation_attributes";
-	public static final String PARAMETER_AGGREGATION_FUNCTIONS = "aggregation_functions";
-	public static final String PARAMETER_GROUP_BY_ATTRIBUTES = "group_by_attributes";
-	public static final String PARAMETER_ONLY_DISTINCT = "only_distinct";
-	public static final String PARAMETER_IGNORE_MISSINGS = "ignore_missings";
-	public static final String PARAMETER_ALL_COMBINATIONS = "count_all_combinations";
+    /**
+     * The constant PARAMETER_USE_DEFAULT_AGGREGATION.
+     */
+    public static final String PARAMETER_USE_DEFAULT_AGGREGATION = "use_default_aggregation";
+    /**
+     * The constant PARAMETER_DEFAULT_AGGREGATION_FUNCTION.
+     */
+    public static final String PARAMETER_DEFAULT_AGGREGATION_FUNCTION = "default_aggregation_function";
+    /**
+     * The constant PARAMETER_AGGREGATION_ATTRIBUTES.
+     */
+    public static final String PARAMETER_AGGREGATION_ATTRIBUTES = "aggregation_attributes";
+    /**
+     * The constant PARAMETER_AGGREGATION_FUNCTIONS.
+     */
+    public static final String PARAMETER_AGGREGATION_FUNCTIONS = "aggregation_functions";
+    /**
+     * The constant PARAMETER_GROUP_BY_ATTRIBUTES.
+     */
+    public static final String PARAMETER_GROUP_BY_ATTRIBUTES = "group_by_attributes";
+    /**
+     * The constant PARAMETER_ONLY_DISTINCT.
+     */
+    public static final String PARAMETER_ONLY_DISTINCT = "only_distinct";
+    /**
+     * The constant PARAMETER_IGNORE_MISSINGS.
+     */
+    public static final String PARAMETER_IGNORE_MISSINGS = "ignore_missings";
+    /**
+     * The constant PARAMETER_ALL_COMBINATIONS.
+     */
+    public static final String PARAMETER_ALL_COMBINATIONS = "count_all_combinations";
 
-	/* These two only remain for compatibility */
+    /**
+     * The constant GENERIC_GROUP_NAME.
+     */
+/* These two only remain for compatibility */
 	public static final String GENERIC_GROUP_NAME = "group";
-	public static final String GENERIC_ALL_NAME = "all";
+    /**
+     * The constant GENERIC_ALL_NAME.
+     */
+    public static final String GENERIC_ALL_NAME = "all";
 
 	/*
 	 * Later from this version, no group attribute will be created if no attributes for groups were
@@ -235,14 +320,22 @@ public class AggregationOperator extends AbstractDataProcessing {
 	 */
 	private static final OperatorVersion VERSION_6_0_6 = new OperatorVersion(6, 0, 6);
 
-	/*
-	 * From version 7.5.0 on the operator will use a new MedianAggregator
+    /**
+     * The constant VERSION_7_4_0.
+     */
+/*
+     * From version 7.5.0 on the operator will use a new MedianAggregator
 	 */
 	static final OperatorVersion VERSION_7_4_0 = new OperatorVersion(7, 4, 0);
 
 	private final AttributeSubsetSelector attributeSelector = new AttributeSubsetSelector(this, getExampleSetInputPort());
 
-	public AggregationOperator(OperatorDescription desc) {
+    /**
+     * Instantiates a new Aggregation operator.
+     *
+     * @param desc the desc
+     */
+    public AggregationOperator(OperatorDescription desc) {
 		super(desc);
 	}
 

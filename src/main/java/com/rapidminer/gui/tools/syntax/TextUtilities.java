@@ -33,23 +33,21 @@ import javax.swing.text.Document;
 
 /**
  * Class with several utility functions used by the text area component.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class TextUtilities {
 
-	/**
-	 * Returns the offset of the bracket matching the one at the specified offset of the document,
-	 * or -1 if the bracket is unmatched (or if the character is not a bracket).
-	 * 
-	 * @param doc
-	 *            The document
-	 * @param offset
-	 *            The offset
-	 * @exception BadLocationException
-	 *                If an out-of-bounds access was attempted on the document text
-	 */
-	public static int findMatchingBracket(Document doc, int offset) throws BadLocationException {
+    /**
+     * Returns the offset of the bracket matching the one at the specified offset of the document,
+     * or -1 if the bracket is unmatched (or if the character is not a bracket).
+     *
+     * @param doc    The document
+     * @param offset The offset
+     * @return the int
+     * @throws BadLocationException the bad location exception
+     */
+    public static int findMatchingBracket(Document doc, int offset) throws BadLocationException {
 		if (doc.getLength() == 0) {
 			return -1;
 		}
@@ -151,15 +149,15 @@ public class TextUtilities {
 		return -1;
 	}
 
-	/**
-	 * Locates the start of the word at the specified position.
-	 * 
-	 * @param line
-	 *            The text
-	 * @param pos
-	 *            The position
-	 */
-	public static int findWordStart(String line, int pos, String noWordSep) {
+    /**
+     * Locates the start of the word at the specified position.
+     *
+     * @param line      The text
+     * @param pos       The position
+     * @param noWordSep the no word sep
+     * @return the int
+     */
+    public static int findWordStart(String line, int pos, String noWordSep) {
 		char ch = line.charAt(pos - 1);
 
 		if (noWordSep == null) {
@@ -179,15 +177,15 @@ public class TextUtilities {
 		return wordStart;
 	}
 
-	/**
-	 * Locates the end of the word at the specified position.
-	 * 
-	 * @param line
-	 *            The text
-	 * @param pos
-	 *            The position
-	 */
-	public static int findWordEnd(String line, int pos, String noWordSep) {
+    /**
+     * Locates the end of the word at the specified position.
+     *
+     * @param line      The text
+     * @param pos       The position
+     * @param noWordSep the no word sep
+     * @return the int
+     */
+    public static int findWordEnd(String line, int pos, String noWordSep) {
 		char ch = line.charAt(pos);
 
 		if (noWordSep == null) {

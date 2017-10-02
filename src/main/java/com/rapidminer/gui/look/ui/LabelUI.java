@@ -28,14 +28,20 @@ import javax.swing.plaf.basic.BasicLabelUI;
 
 /**
  * The UI of labels.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class LabelUI extends BasicLabelUI {
 
 	private static final LabelUI LABEL_UI = new LabelUI();
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return LABEL_UI;
 	}
 

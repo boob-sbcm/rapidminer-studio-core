@@ -40,7 +40,7 @@ import java.util.List;
 
 /**
  * PSO approach for SVM optimization. Currently only classification problems are supported.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class PSOSVMOptimization extends PSOOptimization {
@@ -73,13 +73,25 @@ public class PSOSVMOptimization extends PSOOptimization {
 
 	private SimplePlotterDialog plotter;
 
-	/**
-	 * @deprecated Since 7.4. Please use
-	 *             {@link #PSOSVMOptimization(ExampleSet, Kernel, double, int, int, int, double, double, double, boolean, boolean, RandomGenerator, Operator)
-	 *             PSOSVMOptimization} if an operator is known to monitor operator progress and stop
-	 *             long running processes if necessary.
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Psosvm optimization.
+     *
+     * @param exampleSet                    the example set
+     * @param kernel                        the kernel
+     * @param c                             the c
+     * @param maxIterations                 the max iterations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param popSize                       the pop size
+     * @param inertiaWeight                 the inertia weight
+     * @param localWeight                   the local weight
+     * @param globalWeight                  the global weight
+     * @param dynamicInertiaWeight          the dynamic inertia weight
+     * @param showPlot                      the show plot
+     * @param random                        the random
+     * @deprecated Since 7.4. Please use             {@link #PSOSVMOptimization(ExampleSet, Kernel, double, int, int, int, double, double, double, boolean, boolean, RandomGenerator, Operator)
+     * PSOSVMOptimization} if an operator is known to monitor operator progress and stop             long running processes if necessary.
+     */
+    @Deprecated
 	public PSOSVMOptimization(ExampleSet exampleSet, // training data
 			Kernel kernel, double c, // double epsilon, // SVM paras
 			int maxIterations, int generationsWithoutImprovement, // convergence
@@ -90,8 +102,24 @@ public class PSOSVMOptimization extends PSOOptimization {
 				globalWeight, dynamicInertiaWeight, showPlot, random, null);
 	}
 
-	/** Creates a new evolutionary SVM optimization. */
-	public PSOSVMOptimization(ExampleSet exampleSet, // training data
+    /**
+     * Creates a new evolutionary SVM optimization.  @param exampleSet the example set
+     *
+     * @param exampleSet                    the example set
+     * @param kernel                        the kernel
+     * @param c                             the c
+     * @param maxIterations                 the max iterations
+     * @param generationsWithoutImprovement the generations without improvement
+     * @param popSize                       the pop size
+     * @param inertiaWeight                 the inertia weight
+     * @param localWeight                   the local weight
+     * @param globalWeight                  the global weight
+     * @param dynamicInertiaWeight          the dynamic inertia weight
+     * @param showPlot                      the show plot
+     * @param random                        the random
+     * @param op                            the op
+     */
+    public PSOSVMOptimization(ExampleSet exampleSet, // training data
 			Kernel kernel, double c, // double epsilon, // SVM paras
 			int maxIterations, int generationsWithoutImprovement, // convergence
 																	 // paras
@@ -166,10 +194,13 @@ public class PSOSVMOptimization extends PSOOptimization {
 		return result;
 	}
 
-	/**
-	 * Returns a model containing all support vectors, i.e. the examples with non-zerp alphas.
-	 */
-	public EvoSVMModel getModel(double[] alphas) {
+    /**
+     * Returns a model containing all support vectors, i.e. the examples with non-zerp alphas.
+     *
+     * @param alphas the alphas
+     * @return the model
+     */
+    public EvoSVMModel getModel(double[] alphas) {
 		if (showPlot) {
 			plotter.dispose();
 		}

@@ -180,27 +180,20 @@ class XlsxSheetContentParser implements AutoCloseable {
 	/** The encoding used to read the XML stream */
 	private final Charset encoding;
 
-	/**
-	 * Constructs object by saving the shared strings and instantiating a XML reader.
-	 *
-	 * @param xlsxFile
-	 *            The xlsx file itself
-	 * @param workbookZipEntryPath
-	 *            the path of the workbook Zip entry
-	 * @param sharedStrings
-	 *            A ordered list of shared strings to generate complete cell values.
-	 * @param numberFormats
-	 *            the parsed XLSX number formats
-	 * @param maximumCellRange
-	 *            the maximum cell that should be parsed
-	 * @param columnOffset
-	 *            the offset of the first column to use.
-	 * @throws XMLStreamException
-	 *             On errors creating a XML stream reader.
-	 * @throws IOException
-	 *             in case opening the workbook does not work
-	 */
-	public XlsxSheetContentParser(File xlsxFile, String workbookZipEntryPath, String[] sharedStrings,
+    /**
+     * Constructs object by saving the shared strings and instantiating a XML reader.
+     *
+     * @param xlsxFile             The xlsx file itself
+     * @param workbookZipEntryPath the path of the workbook Zip entry
+     * @param sharedStrings        A ordered list of shared strings to generate complete cell values.
+     * @param numberFormats        the parsed XLSX number formats
+     * @param sheetMetaData        the sheet meta data
+     * @param factory              the factory
+     * @param encoding             the encoding
+     * @throws XMLStreamException On errors creating a XML stream reader.
+     * @throws IOException        in case opening the workbook does not work
+     */
+    public XlsxSheetContentParser(File xlsxFile, String workbookZipEntryPath, String[] sharedStrings,
 			XlsxNumberFormats numberFormats, XlsxSheetMetaData sheetMetaData, XMLInputFactory factory, Charset encoding)
 			throws XMLStreamException, IOException {
 		this.xlsxFile = xlsxFile;
@@ -214,18 +207,14 @@ class XlsxSheetContentParser implements AutoCloseable {
 		reset(factory);
 	}
 
-	/**
-	 * Continues parsing the XML stream until a complete row is found.
-	 *
-	 * @param readMode
-	 *            defines whether reading is done from an operator which means the parameters should
-	 *            be obeyed or if reading is done from a Wizard which means all data should be read
-	 * @throws XMLStreamException
-	 *             If there is an error processing the underlying XML source.
-	 * @throws ParseException
-	 *             If there is an error on parsing a single XML item.
-	 */
-	public void next(XlsxReadMode readMode) throws XMLStreamException, ParseException {
+    /**
+     * Continues parsing the XML stream until a complete row is found.
+     *
+     * @param readMode defines whether reading is done from an operator which means the parameters should            be obeyed or if reading is done from a Wizard which means all data should be read
+     * @throws XMLStreamException If there is an error processing the underlying XML source.
+     * @throws ParseException     If there is an error on parsing a single XML item.
+     */
+    public void next(XlsxReadMode readMode) throws XMLStreamException, ParseException {
 
 		// If reading from an operator or wizard preview skip rows up to row index before actual
 		// first row that should be parsed
@@ -423,22 +412,21 @@ class XlsxSheetContentParser implements AutoCloseable {
 		}
 	}
 
-	/**
-	 * Returns the {@code 0-based} index of the current row, which was extracted from the worksheet.
-	 *
-	 * @return the {@code 0} based index of the current parsed row. Returns {@code -1} in case no
-	 *         row has been parsed yet. It is increased each time calling {@link #next()} and is
-	 *         reset to {@code -1} in case {@link #reset(XMLInputFactory)} is called.
-	 */
-	int getCurrentRowIndex() {
+    /**
+     * Returns the {@code 0-based} index of the current row, which was extracted from the worksheet.
+     *
+     * @return the {@code 0} based index of the current parsed row. Returns {@code -1} in case no         row has been parsed yet. It is increased each time calling {@link #next()} and is         reset to {@code -1} in case {@link #reset(XMLInputFactory)} is called.
+     */
+    int getCurrentRowIndex() {
 		return currentRowIndex;
 	}
 
-	/**
-	 * @return the content of the current parsed row. Returns <code>null</code> in case no row has
-	 *         been parsed yet.
-	 */
-	XlsxCell[] getRowContent() {
+    /**
+     * Get row content xlsx cell [ ].
+     *
+     * @return the content of the current parsed row. Returns <code>null</code> in case no row has         been parsed yet.
+     */
+    XlsxCell[] getRowContent() {
 		return currentRowContent;
 	}
 
@@ -456,30 +444,25 @@ class XlsxSheetContentParser implements AutoCloseable {
 		}
 	}
 
-	/**
-	 * @return <code>true</code> in case the {@link XMLStreamReader} has more rows with content
-	 *         available.
-	 */
-	boolean hasNext() {
+    /**
+     * Has next boolean.
+     *
+     * @return <code>true</code> in case the {@link XMLStreamReader} has more rows with content         available.
+     */
+    boolean hasNext() {
 		return hasMoreContent && sheetMetaData.getLastRowIndex() >= 0 && currentRowIndex < sheetMetaData.getLastRowIndex();
 	}
 
-	/**
-	 * Closes the current open {@link XMLStreamReader} and creates a new one which starts the
-	 * reading process at the first row. It is assumed the the XLSX content and operator
-	 * configuration remain the same.
-	 *
-	 * @param factory
-	 *            the {@link XMLInputFactory} that should be used to open the
-	 *            {@link XMLStreamReader}.
-	 *
-	 * @throws IOException
-	 *             if an I/O error has occurred
-	 * @throws XMLStreamException
-	 *             if there are errors freeing associated XML reader resources or creating a new XML
-	 *             reader
-	 */
-	void reset(XMLInputFactory xmlFactory) throws IOException, XMLStreamException {
+    /**
+     * Closes the current open {@link XMLStreamReader} and creates a new one which starts the
+     * reading process at the first row. It is assumed the the XLSX content and operator
+     * configuration remain the same.
+     *
+     * @param xmlFactory the xml factory
+     * @throws IOException        if an I/O error has occurred
+     * @throws XMLStreamException if there are errors freeing associated XML reader resources or creating a new XML             reader
+     */
+    void reset(XMLInputFactory xmlFactory) throws IOException, XMLStreamException {
 
 		// close open file and reader object
 		close();
@@ -505,39 +488,39 @@ class XlsxSheetContentParser implements AutoCloseable {
 		Arrays.fill(emptyColumn, true);
 	}
 
-	/**
-	 * @return an array which stores if an column was empty during parsing. You should only call
-	 *         this method iff {@link #hasNext()} returns <code>false</code>.
-	 */
-	boolean[] getEmptyColumns() {
+    /**
+     * Get empty columns boolean [ ].
+     *
+     * @return an array which stores if an column was empty during parsing. You should only call         this method iff {@link #hasNext()} returns <code>false</code>.
+     */
+    boolean[] getEmptyColumns() {
 		return emptyColumn;
 	}
 
-	/**
-	 * @param parameterAsBoolean
-	 *            defines whether the first row should be used as names. If set to <code>true</code>
-	 *            the worksheet parser will skip all beginning empty rows until the first row with
-	 *            content was found.
-	 */
-	void setUseFirstRowAsNames(boolean isFirstRowAsNames) {
+    /**
+     * Sets use first row as names.
+     *
+     * @param isFirstRowAsNames the is first row as names
+     */
+    void setUseFirstRowAsNames(boolean isFirstRowAsNames) {
 		this.isUseFirstRowAsNames = isFirstRowAsNames;
 	}
 
-	/**
-	 *
-	 * @return The total size of the entry data, which can be used to determine the total operator
-	 *         progress
-	 */
-	long getTotalSize() {
+    /**
+     * Gets total size.
+     *
+     * @return The total size of the entry data, which can be used to determine the total operator         progress
+     */
+    long getTotalSize() {
 		return xlsxZipFile.getEntry(workbookZipEntryPath).getSize();
 	}
 
-	/**
-	 *
-	 * @return The current position in the entry data, which can be used to determine the current
-	 *         operator progress
-	 */
-	long getCurrentPosition() {
+    /**
+     * Gets current position.
+     *
+     * @return The current position in the entry data, which can be used to determine the current         operator progress
+     */
+    long getCurrentPosition() {
 		return cis.getByteCount();
 	}
 

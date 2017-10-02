@@ -49,12 +49,13 @@ import com.rapidminer.tools.expression.FunctionInput.Category;
  *
  * @author Sabrina Kirstein
  * @since 6.5.0
- *
  */
 public class FunctionInputPanel extends JPanel {
 
-	/** functions that should be highlighted in the description of date function constants */
-	public static final String[] HIGHLIGHT_FUNCTIONS_DESCRIPTIONS = { "date_str_loc", "date_str", "date_add", "date_set",
+    /**
+     * functions that should be highlighted in the description of date function constants
+     */
+    public static final String[] HIGHLIGHT_FUNCTIONS_DESCRIPTIONS = { "date_str_loc", "date_str", "date_add", "date_set",
 		"date_get", "eval" };
 
 	/**
@@ -121,25 +122,22 @@ public class FunctionInputPanel extends JPanel {
 
 	private static final String NAME_PREDEFINED_MACRO = "Predefined Macro";
 
-	/**
-	 * Creates a panel for a given function input without a value.
-	 *
-	 * @param input
-	 *            the related function input
-	 */
-	public FunctionInputPanel(FunctionInput input) {
+    /**
+     * Creates a panel for a given function input without a value.
+     *
+     * @param input the related function input
+     */
+    public FunctionInputPanel(FunctionInput input) {
 		this(input, null);
 	}
 
-	/**
-	 * Creates a panel for a given function input with a specified value.
-	 *
-	 * @param input
-	 *            the related function input
-	 * @param inputValue
-	 *            value of the function input
-	 */
-	public FunctionInputPanel(FunctionInput input, String inputValue) {
+    /**
+     * Creates a panel for a given function input with a specified value.
+     *
+     * @param input      the related function input
+     * @param inputValue value of the function input
+     */
+    public FunctionInputPanel(FunctionInput input, String inputValue) {
 
 		this.inputValue = inputValue;
 		this.input = input;
@@ -149,23 +147,30 @@ public class FunctionInputPanel extends JPanel {
 		addMouseListener(createOrGetHoverMouseListener());
 	}
 
-	/**
-	 * Gives the input name
-	 *
-	 * @return input name
-	 */
-	public String getInputName() {
+    /**
+     * Gives the input name
+     *
+     * @return input name
+     */
+    public String getInputName() {
 		return input.getName();
 	}
 
-	public Category getCategory() {
+    /**
+     * Gets category.
+     *
+     * @return the category
+     */
+    public Category getCategory() {
 		return input.getCategory();
 	}
 
-	/**
-	 * Register an observer to react on click events
-	 */
-	public void registerObserver(Observer<FunctionInputPanel> observer) {
+    /**
+     * Register an observer to react on click events
+     *
+     * @param observer the observer
+     */
+    public void registerObserver(Observer<FunctionInputPanel> observer) {
 		observable.addObserver(observer, false);
 	}
 

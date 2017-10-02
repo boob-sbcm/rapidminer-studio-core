@@ -30,7 +30,7 @@ import javax.swing.SwingConstants;
 
 /**
  * This toolbar extension is not floatable and activate the hover effect.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExtendedJToolBar extends JToolBar {
@@ -39,18 +39,19 @@ public class ExtendedJToolBar extends JToolBar {
 
 	private boolean visibleSeparator;
 
-	public ExtendedJToolBar() {
+    /**
+     * Instantiates a new Extended j tool bar.
+     */
+    public ExtendedJToolBar() {
 		this(false);
 	}
 
-	/**
-	 * Creates a {@link JToolBar} with some custom settings.
-	 * 
-	 * @param visibleSeparator
-	 *            determines whether a visible separator is added when calling
-	 *            {@link #addSeparator()}.
-	 */
-	public ExtendedJToolBar(boolean visibleSeparator) {
+    /**
+     * Creates a {@link JToolBar} with some custom settings.
+     *
+     * @param visibleSeparator determines whether a visible separator is added when calling            {@link #addSeparator()}.
+     */
+    public ExtendedJToolBar(boolean visibleSeparator) {
 		super();
 		setFloatable(false);
 		setRollover(true);

@@ -24,34 +24,77 @@ import org.w3c.dom.Element;
 
 
 /**
+ * The type Parameter type cron expression.
+ *
  * @author Nils Woehler
- * 
  */
 public class ParameterTypeCronExpression extends ParameterTypeString {
 
 	private static final long serialVersionUID = 1L;
 
-	public ParameterTypeCronExpression(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type cron expression.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeCronExpression(Element element) throws XMLException {
 		super(element);
 	}
 
-	public ParameterTypeCronExpression(String key, String description, boolean optional, boolean expert) {
+    /**
+     * Instantiates a new Parameter type cron expression.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     * @param expert      the expert
+     */
+    public ParameterTypeCronExpression(String key, String description, boolean optional, boolean expert) {
 		super(key, description, optional, expert);
 	}
 
-	public ParameterTypeCronExpression(String key, String description, boolean optional) {
+    /**
+     * Instantiates a new Parameter type cron expression.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     */
+    public ParameterTypeCronExpression(String key, String description, boolean optional) {
 		super(key, description, optional);
 	}
 
-	public ParameterTypeCronExpression(String key, String description) {
+    /**
+     * Instantiates a new Parameter type cron expression.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ParameterTypeCronExpression(String key, String description) {
 		super(key, description, true);
 	}
 
-	public ParameterTypeCronExpression(String key, String description, String defaultValue, boolean expert) {
+    /**
+     * Instantiates a new Parameter type cron expression.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultValue the default value
+     * @param expert       the expert
+     */
+    public ParameterTypeCronExpression(String key, String description, String defaultValue, boolean expert) {
 		super(key, description, defaultValue, expert);
 	}
 
-	public ParameterTypeCronExpression(String key, String description, String defaultValue) {
+    /**
+     * Instantiates a new Parameter type cron expression.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultValue the default value
+     */
+    public ParameterTypeCronExpression(String key, String description, String defaultValue) {
 		super(key, description, defaultValue);
 	}
 

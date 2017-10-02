@@ -28,8 +28,9 @@ import java.util.List;
 
 
 /**
+ * The type Abstract dimension config.
+ *
  * @author Nils Woehler
- * 
  */
 public abstract class AbstractDimensionConfig implements DimensionConfig {
 
@@ -38,7 +39,12 @@ public abstract class AbstractDimensionConfig implements DimensionConfig {
 
 	private transient List<WeakReference<DimensionConfigListener>> listeners = new LinkedList<WeakReference<DimensionConfigListener>>();
 
-	public AbstractDimensionConfig(PlotDimension dimension) {
+    /**
+     * Instantiates a new Abstract dimension config.
+     *
+     * @param dimension the dimension
+     */
+    public AbstractDimensionConfig(PlotDimension dimension) {
 		this.dimension = dimension;
 	}
 
@@ -63,15 +69,30 @@ public abstract class AbstractDimensionConfig implements DimensionConfig {
 		}
 	}
 
-	protected void setFireEvents(boolean fireEvents) {
+    /**
+     * Sets fire events.
+     *
+     * @param fireEvents the fire events
+     */
+    protected void setFireEvents(boolean fireEvents) {
 		this.fireEvents = fireEvents;
 	}
 
-	protected boolean isFiringEvents() {
+    /**
+     * Is firing events boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean isFiringEvents() {
 		return this.fireEvents;
 	}
 
-	protected void fireDimensionConfigChanged(DimensionConfigChangeEvent e) {
+    /**
+     * Fire dimension config changed.
+     *
+     * @param e the e
+     */
+    protected void fireDimensionConfigChanged(DimensionConfigChangeEvent e) {
 		if (isFiringEvents()) {
 			Iterator<WeakReference<DimensionConfigListener>> it = listeners.iterator();
 			while (it.hasNext()) {

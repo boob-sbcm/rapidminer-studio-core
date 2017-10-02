@@ -41,18 +41,27 @@ import javax.swing.SwingUtilities;
 
 
 /**
- * 
+ * The type Meta data decleration wizard step.
+ *
  * @author Tobias Malbrecht
  * @author Sebastian Loh (22.04.2010)
- * 
  */
 public abstract class MetaDataDeclerationWizardStep extends WizardStep {
 
-	protected MetaDataDeclarationEditor editor = null;
+    /**
+     * The Editor.
+     */
+    protected MetaDataDeclarationEditor editor = null;
 
-	protected AbstractDataReader reader;
+    /**
+     * The Reader.
+     */
+    protected AbstractDataReader reader;
 
-	protected final JCheckBox tolerateErrorCheckBox = new JCheckBox("Read non matching values as missings.", true);
+    /**
+     * The Tolerate error check box.
+     */
+    protected final JCheckBox tolerateErrorCheckBox = new JCheckBox("Read non matching values as missings.", true);
 	{
 		tolerateErrorCheckBox
 				.setToolTipText("Values which does not match to the specified value typed are considered as missings. A binomial attribute is changed to a nominal, if more than two different values are read.");
@@ -113,7 +122,10 @@ public abstract class MetaDataDeclerationWizardStep extends WizardStep {
 			}.start();
 		}
 	});
-	protected JPanel validationButtonsPanel = new JPanel(ButtonDialog.createGridLayout(1, 2));
+    /**
+     * The Validation buttons panel.
+     */
+    protected JPanel validationButtonsPanel = new JPanel(ButtonDialog.createGridLayout(1, 2));
 	{
 		validationButtonsPanel.add(validateValueTypesButton, 0);
 		validationButtonsPanel.add(abortValueTypeValidationButton, 1);
@@ -165,7 +177,10 @@ public abstract class MetaDataDeclerationWizardStep extends WizardStep {
 			}.start();
 		}
 	});
-	protected JPanel errorPreviewButtonsPanel = new JPanel(ButtonDialog.createGridLayout(1, 2));
+    /**
+     * The Error preview buttons panel.
+     */
+    protected JPanel errorPreviewButtonsPanel = new JPanel(ButtonDialog.createGridLayout(1, 2));
 	{
 		errorPreviewButtonsPanel.add(showErrorRowsButton, 0);
 		errorPreviewButtonsPanel.add(abortShowErrorRowsButton, 1);
@@ -222,20 +237,34 @@ public abstract class MetaDataDeclerationWizardStep extends WizardStep {
 		}
 	});
 
-	protected JPanel guessingButtonsPanel = new JPanel(ButtonDialog.createGridLayout(1, 2));
+    /**
+     * The Guessing buttons panel.
+     */
+    protected JPanel guessingButtonsPanel = new JPanel(ButtonDialog.createGridLayout(1, 2));
 	{
 		guessingButtonsPanel.add(guessValueTypesButton, 0);
 		guessingButtonsPanel.add(abortGuessingButton, 1);
 		abortGuessingButton.setEnabled(false);
 	}
 
-	public MetaDataDeclerationWizardStep(String key, AbstractDataReader reader) {
+    /**
+     * Instantiates a new Meta data decleration wizard step.
+     *
+     * @param key    the key
+     * @param reader the reader
+     */
+    public MetaDataDeclerationWizardStep(String key, AbstractDataReader reader) {
 		super(key);
 		editor = new MetaDataDeclarationEditor(reader, true);
 		this.reader = reader;
 	}
 
-	protected void setData(List<Object[]> data) {
+    /**
+     * Sets data.
+     *
+     * @param data the data
+     */
+    protected void setData(List<Object[]> data) {
 		editor.setData(data);
 	}
 
@@ -295,7 +324,10 @@ public abstract class MetaDataDeclerationWizardStep extends WizardStep {
 		return true;
 	}
 
-	protected void doAfterEnteringAction() {
+    /**
+     * Do after entering action.
+     */
+    protected void doAfterEnteringAction() {
 		// do nothing
 	}
 

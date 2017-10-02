@@ -24,12 +24,17 @@ import com.rapidminer.operator.features.AbstractFeatureProcessing;
 
 /**
  * Abstract super class of all operators transforming the feature space.
- * 
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractFeatureTransformation extends AbstractFeatureProcessing {
 
-	public AbstractFeatureTransformation(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract feature transformation.
+     *
+     * @param description the description
+     */
+    public AbstractFeatureTransformation(OperatorDescription description) {
 		super(description);
 	}
 

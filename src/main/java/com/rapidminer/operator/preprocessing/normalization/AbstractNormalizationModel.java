@@ -33,8 +33,9 @@ import com.rapidminer.tools.ParameterService;
 
 
 /**
- * @author Sebastian Land
+ * The type Abstract normalization model.
  *
+ * @author Sebastian Land
  */
 public abstract class AbstractNormalizationModel extends PreprocessingModel {
 
@@ -42,7 +43,12 @@ public abstract class AbstractNormalizationModel extends PreprocessingModel {
 
 	private static final int OPERATOR_PROGRESS_STEPS = 10_000;
 
-	protected AbstractNormalizationModel(ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Abstract normalization model.
+     *
+     * @param exampleSet the example set
+     */
+    protected AbstractNormalizationModel(ExampleSet exampleSet) {
 		super(exampleSet);
 
 	}
@@ -85,13 +91,17 @@ public abstract class AbstractNormalizationModel extends PreprocessingModel {
 		return exampleSet;
 	}
 
-	/**
-	 * This method must be implemented by the subclasses. Subclasses have to iterate over the
-	 * exampleset and on each example iterate over the oldAttribute array and set the new values on
-	 * the corresponding new attribute
-	 * @throws ProcessStoppedException
-	 */
-	protected void applyOnData(ExampleSet exampleSet, Attribute[] oldAttributes, Attribute[] newAttributes) throws ProcessStoppedException {
+    /**
+     * This method must be implemented by the subclasses. Subclasses have to iterate over the
+     * exampleset and on each example iterate over the oldAttribute array and set the new values on
+     * the corresponding new attribute
+     *
+     * @param exampleSet    the example set
+     * @param oldAttributes the old attributes
+     * @param newAttributes the new attributes
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    protected void applyOnData(ExampleSet exampleSet, Attribute[] oldAttributes, Attribute[] newAttributes) throws ProcessStoppedException {
 		// initialize progress
 		long progressCounter = 0;
 		long progressTotal = 0;
@@ -123,13 +133,17 @@ public abstract class AbstractNormalizationModel extends PreprocessingModel {
 		}
 	}
 
-	/**
-	 * Subclasses might implement this methods in order to return a value if the implementation
-	 * differs from the getValue() method for view creation. Otherwise this method just calls
-	 * getValue(). If this method does not deliver enough informations, the subclass might override
-	 * {@link #applyOnData(ExampleSet, Attribute[], Attribute[])}
-	 */
-	public double computeValue(Attribute attribute, double oldValue) {
+    /**
+     * Subclasses might implement this methods in order to return a value if the implementation
+     * differs from the getValue() method for view creation. Otherwise this method just calls
+     * getValue(). If this method does not deliver enough informations, the subclass might override
+     * {@link #applyOnData(ExampleSet, Attribute[], Attribute[])}
+     *
+     * @param attribute the attribute
+     * @param oldValue  the old value
+     * @return the value
+     */
+    public double computeValue(Attribute attribute, double oldValue) {
 		return getValue(attribute, oldValue);
 	}
 

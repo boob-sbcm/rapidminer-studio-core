@@ -23,26 +23,50 @@ package com.rapidminer.tools.math;
  * by a fourier transform. Since the FT input values must not be equivalent the magnitudes of the
  * spectrum do not correspond to the real amplitudes. Like the human ear this filter tries to
  * calculate more accurate values (see ERB or Bark filters).
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SpectrumFilter {
 
-	public static final int NONE = 0;
+    /**
+     * The constant NONE.
+     */
+    public static final int NONE = 0;
 
-	public static final int ERB = 1;
+    /**
+     * The constant ERB.
+     */
+    public static final int ERB = 1;
 
-	public static final int LOG = 2;
+    /**
+     * The constant LOG.
+     */
+    public static final int LOG = 2;
 
-	public static final int LOG2 = 3;
+    /**
+     * The constant LOG2.
+     */
+    public static final int LOG2 = 3;
 
 	private int weightType;
 
-	public SpectrumFilter(int weightType) {
+    /**
+     * Instantiates a new Spectrum filter.
+     *
+     * @param weightType the weight type
+     */
+    public SpectrumFilter(int weightType) {
 		this.weightType = weightType;
 	}
 
-	public Peak[] filter(Complex[] spectrum, int totalSize) {
+    /**
+     * Filter peak [ ].
+     *
+     * @param spectrum  the spectrum
+     * @param totalSize the total size
+     * @return the peak [ ]
+     */
+    public Peak[] filter(Complex[] spectrum, int totalSize) {
 		Peak[] result = new Peak[spectrum.length];
 		for (int i = 0; i < result.length; i++) {
 			result[i] = new Peak(FastFourierTransform.convertFrequency(i, spectrum.length, totalSize), filterValue(

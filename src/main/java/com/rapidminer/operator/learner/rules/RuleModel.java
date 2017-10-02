@@ -32,7 +32,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * The basic rule model.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class RuleModel extends SimplePredictionModel implements Readable {
@@ -41,7 +41,12 @@ public class RuleModel extends SimplePredictionModel implements Readable {
 
 	private List<Rule> rules = new ArrayList<>();
 
-	public RuleModel(ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Rule model.
+     *
+     * @param exampleSet the example set
+     */
+    public RuleModel(ExampleSet exampleSet) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);
 	}
@@ -65,7 +70,13 @@ public class RuleModel extends SimplePredictionModel implements Readable {
 		return Double.NaN; // return unknown if no rule exists
 	}
 
-	public double getPrediction(Example example) {
+    /**
+     * Gets prediction.
+     *
+     * @param example the example
+     * @return the prediction
+     */
+    public double getPrediction(Example example) {
 		for (Rule rule : rules) {
 			if (rule.coversExample(example)) {
 				double label = getLabel().getMapping().getIndex(rule.getLabel());
@@ -75,15 +86,30 @@ public class RuleModel extends SimplePredictionModel implements Readable {
 		return Double.NaN; // return unknown if no rule exists
 	}
 
-	public void addRule(Rule rule) {
+    /**
+     * Add rule.
+     *
+     * @param rule the rule
+     */
+    public void addRule(Rule rule) {
 		this.rules.add(rule);
 	}
 
-	public void addRules(Collection<Rule> newRules) {
+    /**
+     * Add rules.
+     *
+     * @param newRules the new rules
+     */
+    public void addRules(Collection<Rule> newRules) {
 		this.rules.addAll(newRules);
 	}
 
-	public List<Rule> getRules() {
+    /**
+     * Gets rules.
+     *
+     * @return the rules
+     */
+    public List<Rule> getRules() {
 		return this.rules;
 	}
 
@@ -112,11 +138,22 @@ public class RuleModel extends SimplePredictionModel implements Readable {
 		return buffer.toString();
 	}
 
-	public int getNumberOfReadables() {
+    /**
+     * Gets number of readables.
+     *
+     * @return the number of readables
+     */
+    public int getNumberOfReadables() {
 		return 1;
 	}
 
-	public Readable getReadable(int index) {
+    /**
+     * Gets readable.
+     *
+     * @param index the index
+     * @return the readable
+     */
+    public Readable getReadable(int index) {
 		return this;
 	}
 

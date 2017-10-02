@@ -25,10 +25,16 @@ import java.awt.Color;
  * This is the interface for every visualization of a SOM map. It contains only one method, which
  * returns a color for a double value. The double value represents something like the height of the
  * SOM map at one point and should represent this in the returned color.
- * 
+ *
  * @author Sebastian Land
  */
 public interface SOMMatrixColorizer {
 
-	public Color getPointColor(double value);
+    /**
+     * Gets point color.
+     *
+     * @param value the value
+     * @return the point color
+     */
+    public Color getPointColor(double value);
 }

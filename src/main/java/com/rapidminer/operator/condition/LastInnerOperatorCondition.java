@@ -31,7 +31,7 @@ import com.rapidminer.operator.WrongNumberOfInnerOperatorsException;
  * operators before can handle their predecessors output. It is therefore not necessary to add a
  * {@link SimpleChainInnerOperatorCondition} additionally to this condition to the list of
  * conditions.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 @SuppressWarnings("deprecation")
@@ -47,33 +47,42 @@ public class LastInnerOperatorCondition implements InnerOperatorCondition {
 
 	private boolean allowEmptyChains = false;
 
-	/**
-	 * Creates an inner operator condition. The first operator in the chain gets the input of the
-	 * operator chain. Each operator must be able to handle the output of the predecessor. The last
-	 * operator must provide all classes in the given <code>mustDeliver</code> class array. Empty
-	 * chains are not allowed.
-	 */
-	public LastInnerOperatorCondition(Class<?>[] mustDeliver) {
+    /**
+     * Creates an inner operator condition. The first operator in the chain gets the input of the
+     * operator chain. Each operator must be able to handle the output of the predecessor. The last
+     * operator must provide all classes in the given <code>mustDeliver</code> class array. Empty
+     * chains are not allowed.
+     *
+     * @param mustDeliver the must deliver
+     */
+    public LastInnerOperatorCondition(Class<?>[] mustDeliver) {
 		this(null, mustDeliver);
 	}
 
-	/**
-	 * Creates an inner operator condition. The first operator in the chain gets the input of the
-	 * operator chain and additionally the given classes <code>willGet</code>. Each operator must be
-	 * able to handle the output of the predecessor. The last operator must provide all classes in
-	 * the given <code>mustDeliver</code> class array. Empty chains are not allowed.
-	 */
-	public LastInnerOperatorCondition(Class<?>[] willGet, Class<?>[] mustDeliver) {
+    /**
+     * Creates an inner operator condition. The first operator in the chain gets the input of the
+     * operator chain and additionally the given classes <code>willGet</code>. Each operator must be
+     * able to handle the output of the predecessor. The last operator must provide all classes in
+     * the given <code>mustDeliver</code> class array. Empty chains are not allowed.
+     *
+     * @param willGet     the will get
+     * @param mustDeliver the must deliver
+     */
+    public LastInnerOperatorCondition(Class<?>[] willGet, Class<?>[] mustDeliver) {
 		this(willGet, mustDeliver, false);
 	}
 
-	/**
-	 * Creates an inner operator condition. The first operator in the chain gets the input of the
-	 * operator chain and additionally the given classes <code>willGet</code>. Each operator must be
-	 * able to handle the output of the predecessor. The last operator must provide all classes in
-	 * the given <code>mustDeliver</code> class array.
-	 */
-	public LastInnerOperatorCondition(Class<?>[] willGet, Class<?>[] mustDeliver, boolean allowEmptyChains) {
+    /**
+     * Creates an inner operator condition. The first operator in the chain gets the input of the
+     * operator chain and additionally the given classes <code>willGet</code>. Each operator must be
+     * able to handle the output of the predecessor. The last operator must provide all classes in
+     * the given <code>mustDeliver</code> class array.
+     *
+     * @param willGet          the will get
+     * @param mustDeliver      the must deliver
+     * @param allowEmptyChains the allow empty chains
+     */
+    public LastInnerOperatorCondition(Class<?>[] willGet, Class<?>[] mustDeliver, boolean allowEmptyChains) {
 		this.willGet = willGet;
 		this.mustDeliver = mustDeliver;
 		this.allowEmptyChains = allowEmptyChains;

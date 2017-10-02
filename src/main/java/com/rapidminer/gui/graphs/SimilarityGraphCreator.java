@@ -102,7 +102,13 @@ public class SimilarityGraphCreator extends GraphCreatorAdaptor {
 
 	private DefaultObjectViewer objectViewer;
 
-	public SimilarityGraphCreator(DistanceMeasure measure, ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Similarity graph creator.
+     *
+     * @param measure    the measure
+     * @param exampleSet the example set
+     */
+    public SimilarityGraphCreator(DistanceMeasure measure, ExampleSet exampleSet) {
 		this.measure = measure;
 		this.exampleSet = exampleSet;
 		objectViewer = new DefaultObjectViewer(exampleSet);

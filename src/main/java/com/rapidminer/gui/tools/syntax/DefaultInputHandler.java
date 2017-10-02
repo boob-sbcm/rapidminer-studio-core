@@ -40,15 +40,15 @@ import javax.swing.KeyStroke;
 /**
  * The default input handler. It maps sequences of keystrokes into actions and inserts key typed
  * events into the text area.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public class DefaultInputHandler extends InputHandler {
 
-	/**
-	 * Creates a new input handler with no key bindings defined.
-	 */
-	public DefaultInputHandler() {
+    /**
+     * Creates a new input handler with no key bindings defined.
+     */
+    public DefaultInputHandler() {
 		bindings = currentBindings = new Hashtable<KeyStroke, Object>();
 	}
 
@@ -271,16 +271,16 @@ public class DefaultInputHandler extends InputHandler {
 		}
 	}
 
-	/**
-	 * Converts a string to a keystroke. The string should be of the form
-	 * <i>modifiers</i>+<i>shortcut</i> where <i>modifiers</i> is any combination of A for Alt, C
-	 * for Control, S for Shift or M for Meta, and <i>shortcut</i> is either a single character, or
-	 * a keycode name from the <code>KeyEvent</code> class, without the <code>VK_</code> prefix.
-	 * 
-	 * @param keyStroke
-	 *            A string description of the key stroke
-	 */
-	public static KeyStroke parseKeyStroke(String keyStroke) {
+    /**
+     * Converts a string to a keystroke. The string should be of the form
+     * <i>modifiers</i>+<i>shortcut</i> where <i>modifiers</i> is any combination of A for Alt, C
+     * for Control, S for Shift or M for Meta, and <i>shortcut</i> is either a single character, or
+     * a keycode name from the <code>KeyEvent</code> class, without the <code>VK_</code> prefix.
+     *
+     * @param keyStroke A string description of the key stroke
+     * @return the key stroke
+     */
+    public static KeyStroke parseKeyStroke(String keyStroke) {
 		if (keyStroke == null) {
 			return null;
 		}

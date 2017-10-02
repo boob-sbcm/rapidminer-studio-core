@@ -21,7 +21,6 @@ package com.rapidminer.operator.learner.tree;
 /**
  * Encapsulates some information about the benefit of a split.
  *
- *
  * @author Ingo Mierswa, Gisa Schaefer
  */
 public class ParallelBenefit implements Comparable<ParallelBenefit> {
@@ -32,25 +31,53 @@ public class ParallelBenefit implements Comparable<ParallelBenefit> {
 
 	private double splitValue;
 
-	public ParallelBenefit(double benefit, int attributeNumber) {
+    /**
+     * Instantiates a new Parallel benefit.
+     *
+     * @param benefit         the benefit
+     * @param attributeNumber the attribute number
+     */
+    public ParallelBenefit(double benefit, int attributeNumber) {
 		this(benefit, attributeNumber, Double.NaN);
 	}
 
-	public ParallelBenefit(double benefit, int attributeNumber, double splitValue) {
+    /**
+     * Instantiates a new Parallel benefit.
+     *
+     * @param benefit         the benefit
+     * @param attributeNumber the attribute number
+     * @param splitValue      the split value
+     */
+    public ParallelBenefit(double benefit, int attributeNumber, double splitValue) {
 		this.benefit = benefit;
 		this.attributeNumber = attributeNumber;
 		this.splitValue = splitValue;
 	}
 
-	public int getAttributeNumber() {
+    /**
+     * Gets attribute number.
+     *
+     * @return the attribute number
+     */
+    public int getAttributeNumber() {
 		return this.attributeNumber;
 	}
 
-	public double getSplitValue() {
+    /**
+     * Gets split value.
+     *
+     * @return the split value
+     */
+    public double getSplitValue() {
 		return this.splitValue;
 	}
 
-	public double getBenefit() {
+    /**
+     * Gets benefit.
+     *
+     * @return the benefit
+     */
+    public double getBenefit() {
 		return this.benefit;
 	}
 

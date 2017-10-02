@@ -40,52 +40,73 @@ import java.util.List;
 
 /**
  * Abstract superclass for all operators that replenish values, e.g. nan or infinite values.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public abstract class ValueReplenishment extends PreprocessingOperator {
 
-	/**
-	 * The parameter name for &quot;Function to apply to all columns that are not explicitly
-	 * specified by parameter 'columns'.&quot;
-	 */
-	public static final String PARAMETER_DEFAULT = "default";
+    /**
+     * The parameter name for &quot;Function to apply to all columns that are not explicitly
+     * specified by parameter 'columns'.&quot;
+     */
+    public static final String PARAMETER_DEFAULT = "default";
 
-	/** The parameter name for &quot;List of replacement functions for each column.&quot; */
-	public static final String PARAMETER_COLUMNS = "columns";
+    /**
+     * The parameter name for &quot;List of replacement functions for each column.&quot;
+     */
+    public static final String PARAMETER_COLUMNS = "columns";
 
-	public ValueReplenishment(OperatorDescription description) {
+    /**
+     * Instantiates a new Value replenishment.
+     *
+     * @param description the description
+     */
+    public ValueReplenishment(OperatorDescription description) {
 		super(description);
 	}
 
-	/**
-	 * Returns the value which should be replaced.
-	 */
-	public abstract double getReplacedValue();
+    /**
+     * Returns the value which should be replaced.
+     *
+     * @return the replaced value
+     */
+    public abstract double getReplacedValue();
 
-	/**
-	 * Returns the value of the replenishment function with the given index.
-	 * 
-	 * @throws UndefinedParameterError
-	 * @throws UserError
-	 */
-	public abstract double getReplenishmentValue(int functionIndex, ExampleSet baseExampleSet, Attribute attribute)
+    /**
+     * Returns the value of the replenishment function with the given index.
+     *
+     * @param functionIndex  the function index
+     * @param baseExampleSet the base example set
+     * @param attribute      the attribute
+     * @return the replenishment value
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws UserError               the user error
+     */
+    public abstract double getReplenishmentValue(int functionIndex, ExampleSet baseExampleSet, Attribute attribute)
 			throws UndefinedParameterError, UserError;
 
-	/** Returns an array of all replenishment functions. */
-	public abstract String[] getFunctionNames();
+    /**
+     * Returns an array of all replenishment functions.  @return the string [ ]
+     *
+     * @return the string [ ]
+     */
+    public abstract String[] getFunctionNames();
 
-	/**
-	 * Returns the index of the replenishment function which will be used for attributes not listed
-	 * in the parameter list &quot;columns&quot;.
-	 */
-	public abstract int getDefaultFunction();
+    /**
+     * Returns the index of the replenishment function which will be used for attributes not listed
+     * in the parameter list &quot;columns&quot;.
+     *
+     * @return the default function
+     */
+    public abstract int getDefaultFunction();
 
-	/**
-	 * Returns the index of the replenishment function which will be used for attributes listed in
-	 * the parameter list &quot;columns&quot;.
-	 */
-	public abstract int getDefaultColumnFunction();
+    /**
+     * Returns the index of the replenishment function which will be used for attributes listed in
+     * the parameter list &quot;columns&quot;.
+     *
+     * @return the default column function
+     */
+    public abstract int getDefaultColumnFunction();
 
 	@Override
 	public PreprocessingModel createPreprocessingModel(ExampleSet exampleSet) throws OperatorException {

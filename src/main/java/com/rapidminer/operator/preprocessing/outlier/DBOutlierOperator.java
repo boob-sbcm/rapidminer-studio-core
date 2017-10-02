@@ -45,7 +45,7 @@ import java.util.Set;
  * Knorr and Ng. A DB(p,D)-outlier is an object to which at least a proportion of p of all objects
  * are farer away than distance D. It implements a global homogenous outlier search.
  * </p>
- *
+ * <p>
  * <p>
  * Currently, the operator supports cosine, sine or squared distances in addition to the usual
  * euclidian distance which can be specified by the corresponding parameter. The operator takes two
@@ -53,7 +53,7 @@ import java.util.Set;
  * created from the examples in the ExampleSet passed to the operator. These search objects will be
  * added to a search space which will perform the outlier search according to the DB(p,D) scheme.
  * </p>
- *
+ * <p>
  * <p>
  * The Outlier status (boolean in its nature) is written to a new special attribute
  * &quot;Outlier&quot; and is passed on with the example set.
@@ -63,21 +63,30 @@ import java.util.Set;
  */
 public class DBOutlierOperator extends AbstractOutlierDetection {
 
-	/** The parameter name for &quot;The distance for objects.&quot; */
-	public static final String PARAMETER_DISTANCE = "distance";
+    /**
+     * The parameter name for &quot;The distance for objects.&quot;
+     */
+    public static final String PARAMETER_DISTANCE = "distance";
 
-	/** The parameter name for &quot;The proportion of objects related to D.&quot; */
-	public static final String PARAMETER_PROPORTION = "proportion";
+    /**
+     * The parameter name for &quot;The proportion of objects related to D.&quot;
+     */
+    public static final String PARAMETER_PROPORTION = "proportion";
 
-	/**
-	 * The parameter name for &quot;Indicates which distance function will be used for calculating
-	 * the distance between two objects&quot;
-	 */
-	public static final String PARAMETER_DISTANCE_FUNCTION = "distance_function";
+    /**
+     * The parameter name for &quot;Indicates which distance function will be used for calculating
+     * the distance between two objects&quot;
+     */
+    public static final String PARAMETER_DISTANCE_FUNCTION = "distance_function";
 	private static final String[] distanceFunctionList = { "euclidian distance", "squared distance", "cosine distance",
 			"inverted cosine distance", "angle" };
 
-	public DBOutlierOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Db outlier operator.
+     *
+     * @param description the description
+     */
+    public DBOutlierOperator(OperatorDescription description) {
 		super(description);
 	}
 

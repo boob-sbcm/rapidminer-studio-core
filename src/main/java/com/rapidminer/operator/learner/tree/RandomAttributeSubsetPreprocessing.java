@@ -35,20 +35,14 @@ public class RandomAttributeSubsetPreprocessing implements AttributePreprocessin
 	private double subsetRatio;
 	private boolean useHeuristicRation;
 
-	/**
-	 * Stores the parameters for using them in {@link #preprocess}.
-	 *
-	 * @param useHeuristicRation
-	 *            if <code>true</code> the subsetRatio is ignored and <code>log(m) + 1</code> out of
-	 *            <code>m</code> entries are randomly selected by {@link #preprocess}
-	 * @param subsetRatio
-	 *            the percentage of entries that are randomly selected by {@link #preprocess} - only
-	 *            used if useHeuristicRatio is <code>false</code>
-	 * @param random
-	 *            the {@link Random} used for the random selection of the entries in
-	 *            {@link #preprocess}
-	 */
-	public RandomAttributeSubsetPreprocessing(boolean useHeuristicRation, double subsetRatio, Random random) {
+    /**
+     * Stores the parameters for using them in {@link #preprocess}.
+     *
+     * @param useHeuristicRation if <code>true</code> the subsetRatio is ignored and <code>log(m) + 1</code> out of            <code>m</code> entries are randomly selected by {@link #preprocess}
+     * @param subsetRatio        the percentage of entries that are randomly selected by {@link #preprocess} - only            used if useHeuristicRatio is <code>false</code>
+     * @param random             the {@link Random} used for the random selection of the entries in            {@link #preprocess}
+     */
+    public RandomAttributeSubsetPreprocessing(boolean useHeuristicRation, double subsetRatio, Random random) {
 		this.subsetRatio = subsetRatio;
 		this.random = random;
 		this.useHeuristicRation = useHeuristicRation;

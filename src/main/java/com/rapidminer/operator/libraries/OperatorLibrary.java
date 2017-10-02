@@ -36,126 +36,164 @@ import java.util.Set;
 /**
  * This is the interface for all OperatorLibraries. These are objects that contain the description
  * of an arbitrary number of Operators, together with their documentation.
- * 
+ *
  * @author Sebastian Land
  */
 public interface OperatorLibrary extends Serializable {
 
-	/**
-	 * This is the repository location where this library is stored.
-	 */
-	public String getRepositoryLocation();
+    /**
+     * This is the repository location where this library is stored.
+     *
+     * @return the repository location
+     */
+    public String getRepositoryLocation();
 
-	/**
-	 * This method returns the keys of all defined operators.
-	 */
-	public Set<String> getOperatorKeys();
+    /**
+     * This method returns the keys of all defined operators.
+     *
+     * @return the operator keys
+     */
+    public Set<String> getOperatorKeys();
 
-	/**
-	 * This method returns the {@link OperatorDescription} associated with the given key.
-	 */
-	public LibraryOperatorDescription getDescription(String key);
+    /**
+     * This method returns the {@link OperatorDescription} associated with the given key.
+     *
+     * @param key the key
+     * @return the description
+     */
+    public LibraryOperatorDescription getDescription(String key);
 
-	/**
-	 * This method must return the {@link OperatorDescription}'s of all defined operators.
-	 */
-	public List<LibraryOperatorDescription> getOperatorDescriptions();
+    /**
+     * This method must return the {@link OperatorDescription}'s of all defined operators.
+     *
+     * @return the operator descriptions
+     */
+    public List<LibraryOperatorDescription> getOperatorDescriptions();
 
-	/**
-	 * This method will register this {@link OperatorLibrary}s operators to the
-	 * {@link OperatorService}.
-	 * 
-	 * @throws OperatorCreationException
-	 */
-	public void registerOperators() throws OperatorCreationException;
+    /**
+     * This method will register this {@link OperatorLibrary}s operators to the
+     * {@link OperatorService}.
+     *
+     * @throws OperatorCreationException the operator creation exception
+     */
+    public void registerOperators() throws OperatorCreationException;
 
-	/**
-	 * This method will unregister this {@link OperatorLibrary}s operators from the
-	 * {@link OperatorService}.
-	 */
-	public void unregisterOperators();
+    /**
+     * This method will unregister this {@link OperatorLibrary}s operators from the
+     * {@link OperatorService}.
+     */
+    public void unregisterOperators();
 
-	/**
-	 * This method has to return a {@link OperatorDocumentation} for the given key. The result must
-	 * be not null! If no documentation exists, use a default one, with just the key as name.
-	 */
-	public OperatorDocumentation getOperatorDocumentation(String operatorKey);
+    /**
+     * This method has to return a {@link OperatorDocumentation} for the given key. The result must
+     * be not null! If no documentation exists, use a default one, with just the key as name.
+     *
+     * @param operatorKey the operator key
+     * @return the operator documentation
+     */
+    public OperatorDocumentation getOperatorDocumentation(String operatorKey);
 
-	/**
-	 * This returns a {@link OperatorDocBundle} that contains information about each single
-	 * delivered {@link Operator} of this library.
-	 */
-	public OperatorDocBundle getDocumentationBundle();
+    /**
+     * This returns a {@link OperatorDocBundle} that contains information about each single
+     * delivered {@link Operator} of this library.
+     *
+     * @return the documentation bundle
+     */
+    public OperatorDocBundle getDocumentationBundle();
 
-	/**
-	 * This returns the name of the library. This name will be displayed as Subgroup name in the
-	 * NewOperatorTree below the top group for libraries.
-	 */
-	public String getName();
+    /**
+     * This returns the name of the library. This name will be displayed as Subgroup name in the
+     * NewOperatorTree below the top group for libraries.
+     *
+     * @return the name
+     */
+    public String getName();
 
-	/**
-	 * This returns a short textual description of the functionality provided by this
-	 * {@link OperatorLibrary}.
-	 */
-	public String getSynopsis();
+    /**
+     * This returns a short textual description of the functionality provided by this
+     * {@link OperatorLibrary}.
+     *
+     * @return the synopsis
+     */
+    public String getSynopsis();
 
-	/**
-	 * This returns a HTML fragment that in detail describes the inner working of this
-	 * {@link OperatorLibrary}.
-	 */
-	public String getDocumentation();
+    /**
+     * This returns a HTML fragment that in detail describes the inner working of this
+     * {@link OperatorLibrary}.
+     *
+     * @return the documentation
+     */
+    public String getDocumentation();
 
-	/**
-	 * This method returns a {@link VersionNumber} that is the version of this
-	 * {@link OperatorLibrary}.
-	 */
-	public VersionNumber getVersion();
+    /**
+     * This method returns a {@link VersionNumber} that is the version of this
+     * {@link OperatorLibrary}.
+     *
+     * @return the version
+     */
+    public VersionNumber getVersion();
 
-	/**
-	 * This method returns the namespace of this OperatorLibrary. These namespaces are used to
-	 * distinguish between different libraries. The namespace should be unique and must be of the
-	 * form: rmol_"Qualifier".
-	 */
-	public String getNamespace();
+    /**
+     * This method returns the namespace of this OperatorLibrary. These namespaces are used to
+     * distinguish between different libraries. The namespace should be unique and must be of the
+     * form: rmol_"Qualifier".
+     *
+     * @return the namespace
+     */
+    public String getNamespace();
 
-	/**
-	 * This method returns the speaking name of the namespace of this OperatorLibrary. These
-	 * namespaces are used to distinguish between different libraries. The namespace should be
-	 * unique and must be of the form: rmol_"Qualifier". In order to make it unique a random suffix
-	 * is added. This returns the original namespace name given by user.
-	 */
-	public String getNamespaceName();
+    /**
+     * This method returns the speaking name of the namespace of this OperatorLibrary. These
+     * namespaces are used to distinguish between different libraries. The namespace should be
+     * unique and must be of the form: rmol_"Qualifier". In order to make it unique a random suffix
+     * is added. This returns the original namespace name given by user.
+     *
+     * @return the namespace name
+     */
+    public String getNamespaceName();
 
-	/**
-	 * This sets the name of the library. This name will be displayed as Subgroup name in the
-	 * NewOperatorTree below the top group for libraries.
-	 */
-	public void setName(String newName);
+    /**
+     * This sets the name of the library. This name will be displayed as Subgroup name in the
+     * NewOperatorTree below the top group for libraries.
+     *
+     * @param newName the new name
+     */
+    public void setName(String newName);
 
-	/**
-	 * This sets a short textual description of the functionality provided by this
-	 * {@link OperatorLibrary}.
-	 */
-	public void setSynopsis(String newSyopsis);
+    /**
+     * This sets a short textual description of the functionality provided by this
+     * {@link OperatorLibrary}.
+     *
+     * @param newSyopsis the new syopsis
+     */
+    public void setSynopsis(String newSyopsis);
 
-	/**
-	 * This sets a HTML fragment that in detail describes the inner working of this
-	 * {@link OperatorLibrary}.
-	 */
-	public void setDocumentation(String newDocumentation);
+    /**
+     * This sets a HTML fragment that in detail describes the inner working of this
+     * {@link OperatorLibrary}.
+     *
+     * @param newDocumentation the new documentation
+     */
+    public void setDocumentation(String newDocumentation);
 
-	/**
-	 * This method sets a {@link VersionNumber} that is the version of this {@link OperatorLibrary}.
-	 */
-	public void setVersion(VersionNumber newVersion);
+    /**
+     * This method sets a {@link VersionNumber} that is the version of this {@link OperatorLibrary}.
+     *
+     * @param newVersion the new version
+     */
+    public void setVersion(VersionNumber newVersion);
 
-	/**
-	 * This method will save the current state of the library to the given repository entry
-	 */
-	public void save(BlobEntry entry);
+    /**
+     * This method will save the current state of the library to the given repository entry
+     *
+     * @param entry the entry
+     */
+    public void save(BlobEntry entry);
 
-	/**
-	 * This method will save the current state of the library into the given stream.
-	 */
-	public void save(OutputStream out);
+    /**
+     * This method will save the current state of the library into the given stream.
+     *
+     * @param out the out
+     */
+    public void save(OutputStream out);
 }

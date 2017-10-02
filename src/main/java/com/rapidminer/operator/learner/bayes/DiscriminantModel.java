@@ -47,7 +47,17 @@ public class DiscriminantModel extends SimplePredictionModel {
 
 	private double[] constClassValues;
 
-	public DiscriminantModel(ExampleSet exampleSet, String[] labels, Matrix[] meanVectors, Matrix[] inverseCovariances,
+    /**
+     * Instantiates a new Discriminant model.
+     *
+     * @param exampleSet           the example set
+     * @param labels               the labels
+     * @param meanVectors          the mean vectors
+     * @param inverseCovariances   the inverse covariances
+     * @param aprioriProbabilities the apriori probabilities
+     * @param alpha                the alpha
+     */
+    public DiscriminantModel(ExampleSet exampleSet, String[] labels, Matrix[] meanVectors, Matrix[] inverseCovariances,
 			double[] aprioriProbabilities, double alpha) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.EQUAL,
 				ExampleSetUtilities.TypesCompareOption.ALLOW_SAME_PARENTS);

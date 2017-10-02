@@ -29,7 +29,7 @@ import java.util.Iterator;
 
 /**
  * A frequent item set contains a set of frequent {@link Item}s.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class FrequentItemSet implements Comparable<FrequentItemSet>, Cloneable, Serializable {
@@ -40,35 +40,71 @@ public class FrequentItemSet implements Comparable<FrequentItemSet>, Cloneable, 
 
 	private int frequency;
 
-	public FrequentItemSet() {
+    /**
+     * Instantiates a new Frequent item set.
+     */
+    public FrequentItemSet() {
 		this.items = new ArrayList<Item>(1);
 	}
 
-	public FrequentItemSet(ArrayList<Item> items, int frequency) {
+    /**
+     * Instantiates a new Frequent item set.
+     *
+     * @param items     the items
+     * @param frequency the frequency
+     */
+    public FrequentItemSet(ArrayList<Item> items, int frequency) {
 		this.items = items;
 		Collections.sort(this.items);
 		this.frequency = frequency;
 	}
 
-	public void addItem(Item item, int frequency) {
+    /**
+     * Add item.
+     *
+     * @param item      the item
+     * @param frequency the frequency
+     */
+    public void addItem(Item item, int frequency) {
 		items.add(item);
 		Collections.sort(this.items);
 		this.frequency = frequency;
 	}
 
-	public Collection<Item> getItems() {
+    /**
+     * Gets items.
+     *
+     * @return the items
+     */
+    public Collection<Item> getItems() {
 		return items;
 	}
 
-	public Item getItem(int index) {
+    /**
+     * Gets item.
+     *
+     * @param index the index
+     * @return the item
+     */
+    public Item getItem(int index) {
 		return items.get(index);
 	}
 
-	public int getNumberOfItems() {
+    /**
+     * Gets number of items.
+     *
+     * @return the number of items
+     */
+    public int getNumberOfItems() {
 		return items.size();
 	}
 
-	public int getFrequency() {
+    /**
+     * Gets frequency.
+     *
+     * @return the frequency
+     */
+    public int getFrequency() {
 		return frequency;
 	}
 
@@ -114,10 +150,12 @@ public class FrequentItemSet implements Comparable<FrequentItemSet>, Cloneable, 
 		return items.hashCode();
 	}
 
-	/**
-	 * This method returns a representation of the items
-	 */
-	public String getItemsAsString() {
+    /**
+     * This method returns a representation of the items
+     *
+     * @return the items as string
+     */
+    public String getItemsAsString() {
 		StringBuffer buffer = new StringBuffer();
 		Iterator<Item> iterator = items.iterator();
 		while (iterator.hasNext()) {

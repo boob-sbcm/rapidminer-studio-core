@@ -28,12 +28,17 @@ import javax.swing.plaf.basic.BasicButtonListener;
 
 /**
  * A listener for toggle buttons.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ToggleButtonListener extends BasicButtonListener {
 
-	public ToggleButtonListener(AbstractButton button) {
+    /**
+     * Instantiates a new Toggle button listener.
+     *
+     * @param button the button
+     */
+    public ToggleButtonListener(AbstractButton button) {
 		super(button);
 	}
 

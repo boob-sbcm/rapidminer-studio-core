@@ -31,7 +31,7 @@ import javax.swing.SwingUtilities;
 
 /**
  * An input handler using a JOptionPane.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class GUIInputHandler implements InputHandler {

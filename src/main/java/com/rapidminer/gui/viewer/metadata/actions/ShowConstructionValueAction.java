@@ -27,23 +27,24 @@ import java.awt.event.ActionEvent;
 
 /**
  * The action shows the construction value for all {@link AbstractAttributeStatisticsModel}s.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public class ShowConstructionValueAction extends ResourceAction {
 
 	private static final long serialVersionUID = 6979404131032484600L;
 
-	/** the {@link MetaDataStatisticsModel} model */
-	MetaDataStatisticsModel model;
+    /**
+     * the {@link MetaDataStatisticsModel} model
+     */
+    MetaDataStatisticsModel model;
 
-	/**
-	 * Creates a new {@link ShowConstructionValueAction} instance.
-	 * 
-	 * @param model
-	 */
-	public ShowConstructionValueAction(MetaDataStatisticsModel model) {
+    /**
+     * Creates a new {@link ShowConstructionValueAction} instance.
+     *
+     * @param model the model
+     */
+    public ShowConstructionValueAction(MetaDataStatisticsModel model) {
 		super(true, "meta_data_stats.toggle_show_construction");
 		this.model = model;
 	}

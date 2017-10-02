@@ -26,10 +26,14 @@ package com.rapidminer.operator.internal;
  */
 public interface ProcessEmbeddingOperator {
 
-	/** Key used to identify <em>Execute Process</em>. */
-	public static final String OPERATOR_KEY = "productivity:execute_process";
+    /**
+     * Key used to identify <em>Execute Process</em>.
+     */
+    public static final String OPERATOR_KEY = "productivity:execute_process";
 
-	/** The parameter name for the process file which should be encapsulated by this operator. */
-	public static final String PARAMETER_PROCESS_FILE = "process_location";
+    /**
+     * The parameter name for the process file which should be encapsulated by this operator.
+     */
+    public static final String PARAMETER_PROCESS_FILE = "process_location";
 
 }

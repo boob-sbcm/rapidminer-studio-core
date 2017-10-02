@@ -27,7 +27,7 @@ import org.w3c.dom.Element;
  * A parameter type for Long values. Operators ask for the Long value with
  * {@link com.rapidminer.operator.Operator#getParameterAslong(String)}. For infinite ranges
  * Long.MIN_VALUE and Long.MAX_VALUE should be used.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer
  */
 public class ParameterTypeLong extends ParameterTypeNumber {
@@ -48,7 +48,13 @@ public class ParameterTypeLong extends ParameterTypeNumber {
 
 	private boolean noDefault = true;
 
-	public ParameterTypeLong(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type long.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeLong(Element element) throws XMLException {
 		super(element);
 
 		noDefault = element.hasAttribute(ATTRIBUTE_DEFAULT);
@@ -59,19 +65,45 @@ public class ParameterTypeLong extends ParameterTypeNumber {
 		min = Long.parseLong(element.getAttribute(ATTRIBUTE_MIN));
 	}
 
-	public ParameterTypeLong(String key, String description, long min, long max) {
+    /**
+     * Instantiates a new Parameter type long.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param min         the min
+     * @param max         the max
+     */
+    public ParameterTypeLong(String key, String description, long min, long max) {
 		this(key, description, min, max, -1);
 		this.noDefault = true;
 		setOptional(false);
 	}
 
-	public ParameterTypeLong(String key, String description, long min, long max, boolean optional) {
+    /**
+     * Instantiates a new Parameter type long.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param min         the min
+     * @param max         the max
+     * @param optional    the optional
+     */
+    public ParameterTypeLong(String key, String description, long min, long max, boolean optional) {
 		this(key, description, min, max, -1);
 		this.noDefault = true;
 		setOptional(optional);
 	}
 
-	public ParameterTypeLong(String key, String description, long min, long max, long defaultValue) {
+    /**
+     * Instantiates a new Parameter type long.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param min          the min
+     * @param max          the max
+     * @param defaultValue the default value
+     */
+    public ParameterTypeLong(String key, String description, long min, long max, long defaultValue) {
 		super(key, description);
 		this.defaultValue = defaultValue;
 		this.min = min;
@@ -79,16 +111,36 @@ public class ParameterTypeLong extends ParameterTypeNumber {
 		this.noDefault = false;
 	}
 
-	public ParameterTypeLong(String key, String description, long min, long max, long defaultValue, boolean expert) {
+    /**
+     * Instantiates a new Parameter type long.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param min          the min
+     * @param max          the max
+     * @param defaultValue the default value
+     * @param expert       the expert
+     */
+    public ParameterTypeLong(String key, String description, long min, long max, long defaultValue, boolean expert) {
 		this(key, description, min, max, defaultValue);
 		setExpert(expert);
 	}
 
-	public void setMinValue(long min) {
+    /**
+     * Sets min value.
+     *
+     * @param min the min
+     */
+    public void setMinValue(long min) {
 		this.min = min;
 	}
 
-	public void getMaxValue(long max) {
+    /**
+     * Gets max value.
+     *
+     * @param max the max
+     */
+    public void getMaxValue(long max) {
 		this.max = max;
 	}
 
@@ -102,15 +154,30 @@ public class ParameterTypeLong extends ParameterTypeNumber {
 		return max;
 	}
 
-	public long getMinValuelong() {
+    /**
+     * Gets min valuelong.
+     *
+     * @return the min valuelong
+     */
+    public long getMinValuelong() {
 		return min;
 	}
 
-	public long getMaxValuelong() {
+    /**
+     * Gets max valuelong.
+     *
+     * @return the max valuelong
+     */
+    public long getMaxValuelong() {
 		return max;
 	}
 
-	public long getDefaultlong() {
+    /**
+     * Gets defaultlong.
+     *
+     * @return the defaultlong
+     */
+    public long getDefaultlong() {
 		return defaultValue;
 	}
 
@@ -155,7 +222,13 @@ public class ParameterTypeLong extends ParameterTypeNumber {
 		return range;
 	}
 
-	public String getStringRepresentation(long defaultValue2) {
+    /**
+     * Gets string representation.
+     *
+     * @param defaultValue2 the default value 2
+     * @return the string representation
+     */
+    public String getStringRepresentation(long defaultValue2) {
 		String valueString = defaultValue2 + "";
 		if (defaultValue2 == Long.MAX_VALUE) {
 			valueString = "+\u221E";

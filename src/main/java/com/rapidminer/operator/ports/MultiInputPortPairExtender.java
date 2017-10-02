@@ -22,15 +22,29 @@ import com.rapidminer.operator.ports.metadata.MDTransformationRule;
 
 
 /**
+ * The type Multi input port pair extender.
+ *
  * @author Simon Fischer
  */
 public class MultiInputPortPairExtender extends MultiPortPairExtender<OutputPort, InputPort> {
 
-	public MultiInputPortPairExtender(String name, Ports<OutputPort> singlePorts, Ports<InputPort>[] multiPortsList) {
+    /**
+     * Instantiates a new Multi input port pair extender.
+     *
+     * @param name           the name
+     * @param singlePorts    the single ports
+     * @param multiPortsList the multi ports list
+     */
+    public MultiInputPortPairExtender(String name, Ports<OutputPort> singlePorts, Ports<InputPort>[] multiPortsList) {
 		super(name, singlePorts, multiPortsList);
 	}
 
-	public MDTransformationRule makePassThroughRule() {
+    /**
+     * Make pass through rule md transformation rule.
+     *
+     * @return the md transformation rule
+     */
+    public MDTransformationRule makePassThroughRule() {
 		return new MDTransformationRule() {
 
 			@Override
@@ -42,11 +56,13 @@ public class MultiInputPortPairExtender extends MultiPortPairExtender<OutputPort
 		};
 	}
 
-	/**
-	 * Delivers all data from all managed input ports to the corresponding output port belonging to
-	 * the group specified by toIndex.
-	 */
-	public void passDataThrough(int fromIndex) {
+    /**
+     * Delivers all data from all managed input ports to the corresponding output port belonging to
+     * the group specified by toIndex.
+     *
+     * @param fromIndex the from index
+     */
+    public void passDataThrough(int fromIndex) {
 		for (MultiPortPair mpp : getManagedPairs()) {
 			mpp.singlePort.deliver(mpp.multiPorts.get(fromIndex).getAnyDataOrNull());
 		}

@@ -25,15 +25,30 @@ import com.rapidminer.parameter.Parameters;
 
 /**
  * Classes implementing this interface should be able to show a preview.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface PreviewListener {
 
-	public Parameters getParameters();
+    /**
+     * Gets parameters.
+     *
+     * @return the parameters
+     */
+    public Parameters getParameters();
 
-	public ParameterHandler getParameterHandler();
+    /**
+     * Gets parameter handler.
+     *
+     * @return the parameter handler
+     */
+    public ParameterHandler getParameterHandler();
 
-	public Process getProcess();
+    /**
+     * Gets process.
+     *
+     * @return the process
+     */
+    public Process getProcess();
 
 }

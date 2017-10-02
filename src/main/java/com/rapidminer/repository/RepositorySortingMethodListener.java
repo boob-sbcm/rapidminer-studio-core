@@ -33,14 +33,13 @@ import com.rapidminer.repository.gui.actions.SortByAction;
  */
 public interface RepositorySortingMethodListener extends EventListener {
 
-	/**
-	 * This should be called when the {@link RepositorySortingMethod} was changed and can be
-	 * implemented e.g. by {@link SortByAction}s to indicate which {@link RepositorySortingMethod}
-	 * is currently selected.
-	 *
-	 * @param method
-	 *            The {@link RepositorySortingMethod}
-	 */
-	public void changedRepositorySortingMethod(RepositorySortingMethod method);
+    /**
+     * This should be called when the {@link RepositorySortingMethod} was changed and can be
+     * implemented e.g. by {@link SortByAction}s to indicate which {@link RepositorySortingMethod}
+     * is currently selected.
+     *
+     * @param method The {@link RepositorySortingMethod}
+     */
+    public void changedRepositorySortingMethod(RepositorySortingMethod method);
 
 }

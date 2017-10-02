@@ -52,100 +52,217 @@ import com.rapidminer.tools.Tools;
  * An input handler converts the user's key strokes into concrete actions. It also takes care of
  * macro recording and action repetition.
  * <p>
- * 
+ * <p>
  * This class provides all the necessary support code for an input handler, but doesn't actually do
  * any key binding logic. It is up to the implementations of this class to do so.
- * 
+ *
  * @author Slava Pestov, Ingo Mierswa
  */
 public abstract class InputHandler extends KeyAdapter {
 
-	/**
-	 * If this client property is set to Boolean.TRUE on the text area, the home/end keys will
-	 * support 'smart' BRIEF-like behaviour (one press = start/end of line, two presses = start/end
-	 * of viewscreen, three presses = start/end of document). By default, this property is not set.
-	 */
-	public static final String SMART_HOME_END_PROPERTY = "InputHandler.homeEnd";
+    /**
+     * If this client property is set to Boolean.TRUE on the text area, the home/end keys will
+     * support 'smart' BRIEF-like behaviour (one press = start/end of line, two presses = start/end
+     * of viewscreen, three presses = start/end of document). By default, this property is not set.
+     */
+    public static final String SMART_HOME_END_PROPERTY = "InputHandler.homeEnd";
 
-	public static final ActionListener BACKSPACE = new Backspace();
+    /**
+     * The constant BACKSPACE.
+     */
+    public static final ActionListener BACKSPACE = new Backspace();
 
-	public static final ActionListener BACKSPACE_WORD = new BackspaceWord();
+    /**
+     * The constant BACKSPACE_WORD.
+     */
+    public static final ActionListener BACKSPACE_WORD = new BackspaceWord();
 
-	public static final ActionListener DELETE = new Delete();
+    /**
+     * The constant DELETE.
+     */
+    public static final ActionListener DELETE = new Delete();
 
-	public static final ActionListener DELETE_WORD = new DeleteWord();
+    /**
+     * The constant DELETE_WORD.
+     */
+    public static final ActionListener DELETE_WORD = new DeleteWord();
 
-	public static final ActionListener END = new End(false);
+    /**
+     * The constant END.
+     */
+    public static final ActionListener END = new End(false);
 
-	public static final ActionListener DOCUMENT_END = new DocumentEnd(false);
+    /**
+     * The constant DOCUMENT_END.
+     */
+    public static final ActionListener DOCUMENT_END = new DocumentEnd(false);
 
-	public static final ActionListener SELECT_END = new End(true);
+    /**
+     * The constant SELECT_END.
+     */
+    public static final ActionListener SELECT_END = new End(true);
 
-	public static final ActionListener SELECT_DOC_END = new DocumentEnd(true);
+    /**
+     * The constant SELECT_DOC_END.
+     */
+    public static final ActionListener SELECT_DOC_END = new DocumentEnd(true);
 
-	public static final ActionListener INSERT_BREAK = new InsertBreak();
+    /**
+     * The constant INSERT_BREAK.
+     */
+    public static final ActionListener INSERT_BREAK = new InsertBreak();
 
-	public static final ActionListener INSERT_TAB = new InsertTab();
+    /**
+     * The constant INSERT_TAB.
+     */
+    public static final ActionListener INSERT_TAB = new InsertTab();
 
-	public static final ActionListener HOME = new Home(false);
+    /**
+     * The constant HOME.
+     */
+    public static final ActionListener HOME = new Home(false);
 
-	public static final ActionListener DOCUMENT_HOME = new DocumentHome(false);
+    /**
+     * The constant DOCUMENT_HOME.
+     */
+    public static final ActionListener DOCUMENT_HOME = new DocumentHome(false);
 
-	public static final ActionListener SELECT_HOME = new Home(true);
+    /**
+     * The constant SELECT_HOME.
+     */
+    public static final ActionListener SELECT_HOME = new Home(true);
 
-	public static final ActionListener SELECT_DOC_HOME = new DocumentHome(true);
+    /**
+     * The constant SELECT_DOC_HOME.
+     */
+    public static final ActionListener SELECT_DOC_HOME = new DocumentHome(true);
 
-	public static final ActionListener NEXT_CHAR = new NextChar(false);
+    /**
+     * The constant NEXT_CHAR.
+     */
+    public static final ActionListener NEXT_CHAR = new NextChar(false);
 
-	public static final ActionListener NEXT_LINE = new NextLine(false);
+    /**
+     * The constant NEXT_LINE.
+     */
+    public static final ActionListener NEXT_LINE = new NextLine(false);
 
-	public static final ActionListener NEXT_PAGE = new NextPage(false);
+    /**
+     * The constant NEXT_PAGE.
+     */
+    public static final ActionListener NEXT_PAGE = new NextPage(false);
 
-	public static final ActionListener NEXT_WORD = new NextWord(false);
+    /**
+     * The constant NEXT_WORD.
+     */
+    public static final ActionListener NEXT_WORD = new NextWord(false);
 
-	public static final ActionListener SELECT_NEXT_CHAR = new NextChar(true);
+    /**
+     * The constant SELECT_NEXT_CHAR.
+     */
+    public static final ActionListener SELECT_NEXT_CHAR = new NextChar(true);
 
-	public static final ActionListener SELECT_NEXT_LINE = new NextLine(true);
+    /**
+     * The constant SELECT_NEXT_LINE.
+     */
+    public static final ActionListener SELECT_NEXT_LINE = new NextLine(true);
 
-	public static final ActionListener SELECT_NEXT_PAGE = new NextPage(true);
+    /**
+     * The constant SELECT_NEXT_PAGE.
+     */
+    public static final ActionListener SELECT_NEXT_PAGE = new NextPage(true);
 
-	public static final ActionListener SELECT_NEXT_WORD = new NextWord(true);
+    /**
+     * The constant SELECT_NEXT_WORD.
+     */
+    public static final ActionListener SELECT_NEXT_WORD = new NextWord(true);
 
-	public static final ActionListener OVERWRITE = new Overwrite();
+    /**
+     * The constant OVERWRITE.
+     */
+    public static final ActionListener OVERWRITE = new Overwrite();
 
-	public static final ActionListener PREV_CHAR = new PrevChar(false);
+    /**
+     * The constant PREV_CHAR.
+     */
+    public static final ActionListener PREV_CHAR = new PrevChar(false);
 
-	public static final ActionListener PREV_LINE = new PrevLine(false);
+    /**
+     * The constant PREV_LINE.
+     */
+    public static final ActionListener PREV_LINE = new PrevLine(false);
 
-	public static final ActionListener PREV_PAGE = new PrevPage(false);
+    /**
+     * The constant PREV_PAGE.
+     */
+    public static final ActionListener PREV_PAGE = new PrevPage(false);
 
-	public static final ActionListener PREV_WORD = new PrevWord(false);
+    /**
+     * The constant PREV_WORD.
+     */
+    public static final ActionListener PREV_WORD = new PrevWord(false);
 
-	public static final ActionListener SELECT_PREV_CHAR = new PrevChar(true);
+    /**
+     * The constant SELECT_PREV_CHAR.
+     */
+    public static final ActionListener SELECT_PREV_CHAR = new PrevChar(true);
 
-	public static final ActionListener SELECT_PREV_LINE = new PrevLine(true);
+    /**
+     * The constant SELECT_PREV_LINE.
+     */
+    public static final ActionListener SELECT_PREV_LINE = new PrevLine(true);
 
-	public static final ActionListener SELECT_PREV_PAGE = new PrevPage(true);
+    /**
+     * The constant SELECT_PREV_PAGE.
+     */
+    public static final ActionListener SELECT_PREV_PAGE = new PrevPage(true);
 
-	public static final ActionListener SELECT_PREV_WORD = new PrevWord(true);
+    /**
+     * The constant SELECT_PREV_WORD.
+     */
+    public static final ActionListener SELECT_PREV_WORD = new PrevWord(true);
 
-	public static final ActionListener REPEAT = new Repeat();
+    /**
+     * The constant REPEAT.
+     */
+    public static final ActionListener REPEAT = new Repeat();
 
-	public static final ActionListener TOGGLE_RECT = new ToggleRect();
+    /**
+     * The constant TOGGLE_RECT.
+     */
+    public static final ActionListener TOGGLE_RECT = new ToggleRect();
 
-	// Default action
+    /**
+     * The constant INSERT_CHAR.
+     */
+// Default action
 	public static final ActionListener INSERT_CHAR = new insert_char();
 
-	// Clipboard
+    /**
+     * The constant CLIP_COPY.
+     */
+// Clipboard
 	public static final Action CLIP_COPY = new ClipCopy();
 
-	public static final Action CLIP_PASTE = new ClipPaste();
+    /**
+     * The constant CLIP_PASTE.
+     */
+    public static final Action CLIP_PASTE = new ClipPaste();
 
-	public static final Action CLIP_CUT = new ClipCut();
+    /**
+     * The constant CLIP_CUT.
+     */
+    public static final Action CLIP_CUT = new ClipCut();
 
-	public static final Action SELECT_ALL = new SelectAll();
+    /**
+     * The constant SELECT_ALL.
+     */
+    public static final Action SELECT_ALL = new SelectAll();
 
-	public static final Action SEARCH_AND_REPLACE = new SearchAction(IconSize.SMALL);
+    /**
+     * The constant SEARCH_AND_REPLACE.
+     */
+    public static final Action SEARCH_AND_REPLACE = new SearchAction(IconSize.SMALL);
 
 	private static Hashtable<String, ActionListener> actions;
 
@@ -192,23 +309,23 @@ public abstract class InputHandler extends KeyAdapter {
 		actions.put("select-all", SELECT_ALL);
 	}
 
-	/**
-	 * Returns a named text area action.
-	 * 
-	 * @param name
-	 *            The action name
-	 */
-	public static ActionListener getAction(String name) {
+    /**
+     * Returns a named text area action.
+     *
+     * @param name The action name
+     * @return the action
+     */
+    public static ActionListener getAction(String name) {
 		return actions.get(name);
 	}
 
-	/**
-	 * Returns the name of the specified text area action.
-	 * 
-	 * @param listener
-	 *            The action
-	 */
-	public static String getActionName(ActionListener listener) {
+    /**
+     * Returns the name of the specified text area action.
+     *
+     * @param listener The action
+     * @return the action name
+     */
+    public static String getActionName(ActionListener listener) {
 		Enumeration<String> enumeration = getActions();
 		while (enumeration.hasMoreElements()) {
 			String name = enumeration.nextElement();
@@ -220,120 +337,126 @@ public abstract class InputHandler extends KeyAdapter {
 		return null;
 	}
 
-	/**
-	 * Returns an enumeration of all available actions.
-	 */
-	public static Enumeration<String> getActions() {
+    /**
+     * Returns an enumeration of all available actions.
+     *
+     * @return the actions
+     */
+    public static Enumeration<String> getActions() {
 		return actions.keys();
 	}
 
-	/**
-	 * Adds the default key bindings to this input handler. This should not be called in the
-	 * constructor of this input handler, because applications might load the key bindings from a
-	 * file, etc.
-	 */
-	public abstract void addDefaultKeyBindings();
+    /**
+     * Adds the default key bindings to this input handler. This should not be called in the
+     * constructor of this input handler, because applications might load the key bindings from a
+     * file, etc.
+     */
+    public abstract void addDefaultKeyBindings();
 
-	/**
-	 * Adds a key binding to this input handler.
-	 * 
-	 * @param keyBinding
-	 *            The key binding (the format of this is input-handler specific)
-	 * @param action
-	 *            The action
-	 */
-	public abstract void addKeyBinding(String keyBinding, ActionListener action);
+    /**
+     * Adds a key binding to this input handler.
+     *
+     * @param keyBinding The key binding (the format of this is input-handler specific)
+     * @param action     The action
+     */
+    public abstract void addKeyBinding(String keyBinding, ActionListener action);
 
-	/**
-	 * Removes a key binding from this input handler.
-	 * 
-	 * @param keyBinding
-	 *            The key binding
-	 */
-	public abstract void removeKeyBinding(String keyBinding);
+    /**
+     * Removes a key binding from this input handler.
+     *
+     * @param keyBinding The key binding
+     */
+    public abstract void removeKeyBinding(String keyBinding);
 
-	/**
-	 * Removes all key bindings from this input handler.
-	 */
-	public abstract void removeAllKeyBindings();
+    /**
+     * Removes all key bindings from this input handler.
+     */
+    public abstract void removeAllKeyBindings();
 
-	/**
-	 * Grabs the next key typed event and invokes the specified action with the key as a the action
-	 * command.
-	 */
-	public void grabNextKeyStroke(ActionListener listener) {
+    /**
+     * Grabs the next key typed event and invokes the specified action with the key as a the action
+     * command.
+     *
+     * @param listener the listener
+     */
+    public void grabNextKeyStroke(ActionListener listener) {
 		grabAction = listener;
 	}
 
-	/**
-	 * Returns if repeating is enabled. When repeating is enabled, actions will be executed multiple
-	 * times. This is usually invoked with a special key stroke in the input handler.
-	 */
-	public boolean isRepeatEnabled() {
+    /**
+     * Returns if repeating is enabled. When repeating is enabled, actions will be executed multiple
+     * times. This is usually invoked with a special key stroke in the input handler.
+     *
+     * @return the boolean
+     */
+    public boolean isRepeatEnabled() {
 		return repeat;
 	}
 
-	/**
-	 * Enables repeating. When repeating is enabled, actions will be executed multiple times. Once
-	 * repeating is enabled, the input handler should read a number from the keyboard.
-	 */
-	public void setRepeatEnabled(boolean repeat) {
+    /**
+     * Enables repeating. When repeating is enabled, actions will be executed multiple times. Once
+     * repeating is enabled, the input handler should read a number from the keyboard.
+     *
+     * @param repeat the repeat
+     */
+    public void setRepeatEnabled(boolean repeat) {
 		this.repeat = repeat;
 	}
 
-	/**
-	 * Returns the number of times the next action will be repeated.
-	 */
-	public int getRepeatCount() {
+    /**
+     * Returns the number of times the next action will be repeated.
+     *
+     * @return the repeat count
+     */
+    public int getRepeatCount() {
 		return repeat ? Math.max(1, repeatCount) : 1;
 	}
 
-	/**
-	 * Sets the number of times the next action will be repeated.
-	 * 
-	 * @param repeatCount
-	 *            The repeat count
-	 */
-	public void setRepeatCount(int repeatCount) {
+    /**
+     * Sets the number of times the next action will be repeated.
+     *
+     * @param repeatCount The repeat count
+     */
+    public void setRepeatCount(int repeatCount) {
 		this.repeatCount = repeatCount;
 	}
 
-	/**
-	 * Returns the macro recorder. If this is non-null, all executed actions should be forwarded to
-	 * the recorder.
-	 */
-	public InputHandler.MacroRecorder getMacroRecorder() {
+    /**
+     * Returns the macro recorder. If this is non-null, all executed actions should be forwarded to
+     * the recorder.
+     *
+     * @return the macro recorder
+     */
+    public InputHandler.MacroRecorder getMacroRecorder() {
 		return recorder;
 	}
 
-	/**
-	 * Sets the macro recorder. If this is non-null, all executed actions should be forwarded to the
-	 * recorder.
-	 * 
-	 * @param recorder
-	 *            The macro recorder
-	 */
-	public void setMacroRecorder(InputHandler.MacroRecorder recorder) {
+    /**
+     * Sets the macro recorder. If this is non-null, all executed actions should be forwarded to the
+     * recorder.
+     *
+     * @param recorder The macro recorder
+     */
+    public void setMacroRecorder(InputHandler.MacroRecorder recorder) {
 		this.recorder = recorder;
 	}
 
-	/**
-	 * Returns a copy of this input handler that shares the same key bindings. Setting key bindings
-	 * in the copy will also set them in the original.
-	 */
-	public abstract InputHandler copy();
+    /**
+     * Returns a copy of this input handler that shares the same key bindings. Setting key bindings
+     * in the copy will also set them in the original.
+     *
+     * @return the input handler
+     */
+    public abstract InputHandler copy();
 
-	/**
-	 * Executes the specified action, repeating and recording it as necessary.
-	 * 
-	 * @param listener
-	 *            The action listener
-	 * @param source
-	 *            The event source
-	 * @param actionCommand
-	 *            The action command
-	 */
-	public void executeAction(ActionListener listener, Object source, String actionCommand) {
+    /**
+     * Executes the specified action, repeating and recording it as necessary.
+     *
+     * @param listener      The action listener
+     * @param source        The event source
+     * @param actionCommand The action command
+     */
+    public void executeAction(ActionListener listener, Object source, String actionCommand) {
 		// create event
 		ActionEvent evt = new ActionEvent(source, ActionEvent.ACTION_PERFORMED, actionCommand);
 
@@ -379,13 +502,13 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	/**
-	 * Returns the text area that fired the specified event.
-	 * 
-	 * @param evt
-	 *            The event
-	 */
-	public static JEditTextArea getTextArea(EventObject evt) {
+    /**
+     * Returns the text area that fired the specified event.
+     *
+     * @param evt The event
+     * @return the text area
+     */
+    public static JEditTextArea getTextArea(EventObject evt) {
 		if (evt != null) {
 			Object o = evt.getSource();
 			if (o instanceof Component) {
@@ -414,11 +537,13 @@ public abstract class InputHandler extends KeyAdapter {
 
 	// protected members
 
-	/**
-	 * If a key is being grabbed, this method should be called with the appropriate key event. It
-	 * executes the grab action with the typed character as the parameter.
-	 */
-	protected void handleGrabAction(KeyEvent evt) {
+    /**
+     * If a key is being grabbed, this method should be called with the appropriate key event. It
+     * executes the grab action with the typed character as the parameter.
+     *
+     * @param evt the evt
+     */
+    protected void handleGrabAction(KeyEvent evt) {
 		// Clear it *before* it is executed so that executeAction()
 		// resets the repeat count
 		ActionListener _grabAction = grabAction;
@@ -426,46 +551,67 @@ public abstract class InputHandler extends KeyAdapter {
 		executeAction(_grabAction, evt.getSource(), String.valueOf(evt.getKeyChar()));
 	}
 
-	// protected members
+    /**
+     * The Grab action.
+     */
+// protected members
 	protected ActionListener grabAction;
 
-	protected boolean repeat;
+    /**
+     * The Repeat.
+     */
+    protected boolean repeat;
 
-	protected int repeatCount;
+    /**
+     * The Repeat count.
+     */
+    protected int repeatCount;
 
-	protected InputHandler.MacroRecorder recorder;
+    /**
+     * The Recorder.
+     */
+    protected InputHandler.MacroRecorder recorder;
 
-	/**
-	 * If an action implements this interface, it should not be repeated. Instead, it will handle
-	 * the repetition itself.
-	 */
-	public interface NonRepeatable {
+    /**
+     * If an action implements this interface, it should not be repeated. Instead, it will handle
+     * the repetition itself.
+     */
+    public interface NonRepeatable {
 	}
 
-	/**
-	 * If an action implements this interface, it should not be recorded by the macro recorder.
-	 * Instead, it will do its own recording.
-	 */
-	public interface NonRecordable {
+    /**
+     * If an action implements this interface, it should not be recorded by the macro recorder.
+     * Instead, it will do its own recording.
+     */
+    public interface NonRecordable {
 	}
 
-	/**
-	 * For use by EditAction.Wrapper only.
-	 * 
-	 * @since jEdit 2.2final
-	 */
-	public interface Wrapper {
+    /**
+     * For use by EditAction.Wrapper only.
+     *
+     * @since jEdit 2.2final
+     */
+    public interface Wrapper {
 	}
 
-	/**
-	 * Macro recorder.
-	 */
-	public interface MacroRecorder {
+    /**
+     * Macro recorder.
+     */
+    public interface MacroRecorder {
 
-		void actionPerformed(ActionListener listener, String actionCommand);
+        /**
+         * Action performed.
+         *
+         * @param listener      the listener
+         * @param actionCommand the action command
+         */
+        void actionPerformed(ActionListener listener, String actionCommand);
 	}
 
-	public static class Backspace implements ActionListener {
+    /**
+     * The type Backspace.
+     */
+    public static class Backspace implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent evt) {
@@ -493,7 +639,10 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class BackspaceWord implements ActionListener {
+    /**
+     * The type Backspace word.
+     */
+    public static class BackspaceWord implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent evt) {
@@ -528,7 +677,10 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class Delete implements ActionListener {
+    /**
+     * The type Delete.
+     */
+    public static class Delete implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent evt) {
@@ -556,7 +708,10 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class DeleteWord implements ActionListener {
+    /**
+     * The type Delete word.
+     */
+    public static class DeleteWord implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent evt) {
@@ -591,11 +746,19 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class End implements ActionListener {
+    /**
+     * The type End.
+     */
+    public static class End implements ActionListener {
 
 		private boolean select;
 
-		public End(boolean select) {
+        /**
+         * Instantiates a new End.
+         *
+         * @param select the select
+         */
+        public End(boolean select) {
 			this.select = select;
 		}
 
@@ -637,11 +800,19 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class DocumentEnd implements ActionListener {
+    /**
+     * The type Document end.
+     */
+    public static class DocumentEnd implements ActionListener {
 
 		private boolean select;
 
-		public DocumentEnd(boolean select) {
+        /**
+         * Instantiates a new Document end.
+         *
+         * @param select the select
+         */
+        public DocumentEnd(boolean select) {
 			this.select = select;
 		}
 
@@ -656,11 +827,19 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class Home implements ActionListener {
+    /**
+     * The type Home.
+     */
+    public static class Home implements ActionListener {
 
 		private boolean select;
 
-		public Home(boolean select) {
+        /**
+         * Instantiates a new Home.
+         *
+         * @param select the select
+         */
+        public Home(boolean select) {
 			this.select = select;
 		}
 
@@ -697,11 +876,19 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class DocumentHome implements ActionListener {
+    /**
+     * The type Document home.
+     */
+    public static class DocumentHome implements ActionListener {
 
 		private boolean select;
 
-		public DocumentHome(boolean select) {
+        /**
+         * Instantiates a new Document home.
+         *
+         * @param select the select
+         */
+        public DocumentHome(boolean select) {
 			this.select = select;
 		}
 
@@ -716,7 +903,10 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class InsertBreak implements ActionListener {
+    /**
+     * The type Insert break.
+     */
+    public static class InsertBreak implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent evt) {
@@ -731,7 +921,10 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class InsertTab implements ActionListener {
+    /**
+     * The type Insert tab.
+     */
+    public static class InsertTab implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent evt) {
@@ -746,11 +939,19 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class NextChar implements ActionListener {
+    /**
+     * The type Next char.
+     */
+    public static class NextChar implements ActionListener {
 
 		private boolean select;
 
-		public NextChar(boolean select) {
+        /**
+         * Instantiates a new Next char.
+         *
+         * @param select the select
+         */
+        public NextChar(boolean select) {
 			this.select = select;
 		}
 
@@ -771,11 +972,19 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class NextLine implements ActionListener {
+    /**
+     * The type Next line.
+     */
+    public static class NextLine implements ActionListener {
 
 		private boolean select;
 
-		public NextLine(boolean select) {
+        /**
+         * Instantiates a new Next line.
+         *
+         * @param select the select
+         */
+        public NextLine(boolean select) {
 			this.select = select;
 		}
 
@@ -805,11 +1014,19 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class NextPage implements ActionListener {
+    /**
+     * The type Next page.
+     */
+    public static class NextPage implements ActionListener {
 
 		private boolean select;
 
-		public NextPage(boolean select) {
+        /**
+         * Instantiates a new Next page.
+         *
+         * @param select the select
+         */
+        public NextPage(boolean select) {
 			this.select = select;
 		}
 
@@ -838,11 +1055,19 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class NextWord implements ActionListener {
+    /**
+     * The type Next word.
+     */
+    public static class NextWord implements ActionListener {
 
 		private boolean select;
 
-		public NextWord(boolean select) {
+        /**
+         * Instantiates a new Next word.
+         *
+         * @param select the select
+         */
+        public NextWord(boolean select) {
 			this.select = select;
 		}
 
@@ -875,7 +1100,10 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class Overwrite implements ActionListener {
+    /**
+     * The type Overwrite.
+     */
+    public static class Overwrite implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent evt) {
@@ -884,11 +1112,19 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class PrevChar implements ActionListener {
+    /**
+     * The type Prev char.
+     */
+    public static class PrevChar implements ActionListener {
 
 		private boolean select;
 
-		public PrevChar(boolean select) {
+        /**
+         * Instantiates a new Prev char.
+         *
+         * @param select the select
+         */
+        public PrevChar(boolean select) {
 			this.select = select;
 		}
 
@@ -909,11 +1145,19 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class PrevLine implements ActionListener {
+    /**
+     * The type Prev line.
+     */
+    public static class PrevLine implements ActionListener {
 
 		private boolean select;
 
-		public PrevLine(boolean select) {
+        /**
+         * Instantiates a new Prev line.
+         *
+         * @param select the select
+         */
+        public PrevLine(boolean select) {
 			this.select = select;
 		}
 
@@ -943,11 +1187,19 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class PrevPage implements ActionListener {
+    /**
+     * The type Prev page.
+     */
+    public static class PrevPage implements ActionListener {
 
 		private boolean select;
 
-		public PrevPage(boolean select) {
+        /**
+         * Instantiates a new Prev page.
+         *
+         * @param select the select
+         */
+        public PrevPage(boolean select) {
 			this.select = select;
 		}
 
@@ -973,11 +1225,19 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class PrevWord implements ActionListener {
+    /**
+     * The type Prev word.
+     */
+    public static class PrevWord implements ActionListener {
 
 		private boolean select;
 
-		public PrevWord(boolean select) {
+        /**
+         * Instantiates a new Prev word.
+         *
+         * @param select the select
+         */
+        public PrevWord(boolean select) {
 			this.select = select;
 		}
 
@@ -1010,7 +1270,10 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class Repeat implements ActionListener, InputHandler.NonRecordable {
+    /**
+     * The type Repeat.
+     */
+    public static class Repeat implements ActionListener, InputHandler.NonRecordable {
 
 		@Override
 		public void actionPerformed(ActionEvent evt) {
@@ -1023,7 +1286,10 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class ToggleRect implements ActionListener {
+    /**
+     * The type Toggle rect.
+     */
+    public static class ToggleRect implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent evt) {
@@ -1032,7 +1298,10 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class insert_char implements ActionListener, InputHandler.NonRepeatable {
+    /**
+     * The type Insert char.
+     */
+    public static class insert_char implements ActionListener, InputHandler.NonRepeatable {
 
 		@Override
 		public void actionPerformed(ActionEvent evt) {
@@ -1052,11 +1321,17 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class ClipCopy extends AbstractAction {
+    /**
+     * The type Clip copy.
+     */
+    public static class ClipCopy extends AbstractAction {
 
 		private static final long serialVersionUID = 2942143617686299824L;
 
-		public ClipCopy() {
+        /**
+         * Instantiates a new Clip copy.
+         */
+        public ClipCopy() {
 			super("Copy");
 			putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
 		}
@@ -1068,11 +1343,17 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class ClipPaste extends AbstractAction {
+    /**
+     * The type Clip paste.
+     */
+    public static class ClipPaste extends AbstractAction {
 
 		private static final long serialVersionUID = 1961399179178333327L;
 
-		public ClipPaste() {
+        /**
+         * Instantiates a new Clip paste.
+         */
+        public ClipPaste() {
 			super("Paste");
 			putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK));
 		}
@@ -1084,11 +1365,17 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class ClipCut extends AbstractAction {
+    /**
+     * The type Clip cut.
+     */
+    public static class ClipCut extends AbstractAction {
 
 		private static final long serialVersionUID = 8199702559544536825L;
 
-		public ClipCut() {
+        /**
+         * Instantiates a new Clip cut.
+         */
+        public ClipCut() {
 			super("Cut");
 			putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
 		}
@@ -1100,11 +1387,17 @@ public abstract class InputHandler extends KeyAdapter {
 		}
 	}
 
-	public static class SelectAll extends AbstractAction {
+    /**
+     * The type Select all.
+     */
+    public static class SelectAll extends AbstractAction {
 
 		private static final long serialVersionUID = -5706102409245450060L;
 
-		public SelectAll() {
+        /**
+         * Instantiates a new Select all.
+         */
+        public SelectAll() {
 			super("Select All");
 			putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
 		}

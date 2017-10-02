@@ -23,15 +23,16 @@ import com.rapidminer.tools.expression.internal.function.Abstract1DoubleInputFun
 
 
 /**
- *
  * A {@link Function} computing the trigonometric cotangent of a radian.
  *
  * @author Denis Schernov
- *
  */
 public class Cotangent extends Abstract1DoubleInputFunction {
 
-	public Cotangent() {
+    /**
+     * Instantiates a new Cotangent.
+     */
+    public Cotangent() {
 		super("trigonometrical.cot", Ontology.NUMERICAL);
 	}
 

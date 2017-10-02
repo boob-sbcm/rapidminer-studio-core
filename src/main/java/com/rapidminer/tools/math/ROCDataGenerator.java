@@ -40,15 +40,17 @@ import javax.swing.JDialog;
 /**
  * Helper class containing some methods for ROC plots, threshold finding and area under curve
  * calculation.
- * 
+ *
  * @author Ingo Mierswa, Martin Scholz, Simon Fischer
  */
 public class ROCDataGenerator implements Serializable {
 
 	private static final long serialVersionUID = -4473681331604071436L;
 
-	/** Defines the maximum amount of points which is plotted in the ROC curve. */
-	public static final int MAX_ROC_POINTS = 200;
+    /**
+     * Defines the maximum amount of points which is plotted in the ROC curve.
+     */
+    public static final int MAX_ROC_POINTS = 200;
 
 	private double misclassificationCostsPositive = 1.0d;
 
@@ -58,26 +60,38 @@ public class ROCDataGenerator implements Serializable {
 
 	private double bestThreshold = Double.NaN;
 
-	/** Creates a new ROC data generator. */
-	public ROCDataGenerator(double misclassificationCostsPositive, double misclassificationCostsNegative) {
+    /**
+     * Creates a new ROC data generator.  @param misclassificationCostsPositive the misclassification costs positive
+     *
+     * @param misclassificationCostsPositive the misclassification costs positive
+     * @param misclassificationCostsNegative the misclassification costs negative
+     */
+    public ROCDataGenerator(double misclassificationCostsPositive, double misclassificationCostsNegative) {
 		this.misclassificationCostsPositive = misclassificationCostsPositive;
 		this.misclassificationCostsNegative = misclassificationCostsNegative;
 	}
 
-	/**
-	 * The best threshold will automatically be determined during the calculation of the ROC data
-	 * list. Please note that the given weights are taken into account (defining the slope.
-	 */
-	public double getBestThreshold() {
+    /**
+     * The best threshold will automatically be determined during the calculation of the ROC data
+     * list. Please note that the given weights are taken into account (defining the slope.
+     *
+     * @return the best threshold
+     */
+    public double getBestThreshold() {
 		return bestThreshold;
 	}
 
-	/**
-	 * Creates a list of ROC data points from the given example set. The example set must have a
-	 * binary label attribute and confidence values for both values, i.e. a model must have been
-	 * applied on the data.
-	 */
-	public ROCData createROCData(ExampleSet exampleSet, boolean useExampleWeights, ROCBias method) {
+    /**
+     * Creates a list of ROC data points from the given example set. The example set must have a
+     * binary label attribute and confidence values for both values, i.e. a model must have been
+     * applied on the data.
+     *
+     * @param exampleSet        the example set
+     * @param useExampleWeights the use example weights
+     * @param method            the method
+     * @return the roc data
+     */
+    public ROCData createROCData(ExampleSet exampleSet, boolean useExampleWeights, ROCBias method) {
 		Attribute label = exampleSet.getAttributes().getLabel();
 		exampleSet.recalculateAttributeStatistics(label);
 		Attribute predictedLabel = exampleSet.getAttributes().getPredictedLabel();
@@ -235,8 +249,14 @@ public class ROCDataGenerator implements Serializable {
 		return dataTable;
 	}
 
-	/** Creates a dialog containing a plotter for a given list of ROC data points. */
-	public void createROCPlotDialog(ROCData data, boolean showSlope, boolean showThresholds) {
+    /**
+     * Creates a dialog containing a plotter for a given list of ROC data points.  @param data the data
+     *
+     * @param data           the data
+     * @param showSlope      the show slope
+     * @param showThresholds the show thresholds
+     */
+    public void createROCPlotDialog(ROCData data, boolean showSlope, boolean showThresholds) {
 		SimplePlotterDialog plotter = new SimplePlotterDialog(createDataTable(data, showSlope, showThresholds));
 		plotter.setXAxis(0);
 		plotter.plotColumn(1, true);
@@ -253,8 +273,12 @@ public class ROCDataGenerator implements Serializable {
 		plotter.setVisible(true);
 	}
 
-	/** Creates a dialog containing a plotter for a given list of ROC data points. */
-	public void createROCPlotDialog(ROCData data) {
+    /**
+     * Creates a dialog containing a plotter for a given list of ROC data points.  @param data the data
+     *
+     * @param data the data
+     */
+    public void createROCPlotDialog(ROCData data) {
 		ROCChartPlotter plotter = new ROCChartPlotter();
 		plotter.addROCData("ROC", data);
 		JDialog dialog = new JDialog();
@@ -265,8 +289,13 @@ public class ROCDataGenerator implements Serializable {
 		dialog.setVisible(true);
 	}
 
-	/** Calculates the area under the curve for a given list of ROC data points. */
-	public double calculateAUC(ROCData rocData) {
+    /**
+     * Calculates the area under the curve for a given list of ROC data points.  @param rocData the roc data
+     *
+     * @param rocData the roc data
+     * @return the double
+     */
+    public double calculateAUC(ROCData rocData) {
 		if (rocData.getNumberOfPoints() == 2) {
 			return 0.5;
 		}

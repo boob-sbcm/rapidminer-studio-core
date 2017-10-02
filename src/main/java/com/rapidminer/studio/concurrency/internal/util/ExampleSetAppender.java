@@ -46,45 +46,37 @@ import com.rapidminer.tools.Ontology;
 /**
  * Provides utility methods to merge multiple {@link ExampleSet}s into a single one.
  *
- *
  * @author Sebastian Land
  * @since 7.4
- *
  */
 public class ExampleSetAppender {
 
-	/**
-	 * Merge the given {@link ExampleSet}s into one ExampleSet. Checks for validity of the arguments
-	 * and throws in case the provided sets cannot be merged.
-	 *
-	 * @param caller
-	 *            the calling operator which is checked for stop; can be {@code null}
-	 * @param allExampleSets
-	 *            the {@link ExampleSet}s to merge together
-	 * @return the merged {@link ExampleSet}
-	 * @throws OperatorException
-	 *             if the provided ExampleSets are incompatible with each other
-	 */
-	public static ExampleSet merge(Operator caller, ExampleSet... allExampleSets) throws OperatorException {
+    /**
+     * Merge the given {@link ExampleSet}s into one ExampleSet. Checks for validity of the arguments
+     * and throws in case the provided sets cannot be merged.
+     *
+     * @param caller         the calling operator which is checked for stop; can be {@code null}
+     * @param allExampleSets the {@link ExampleSet}s to merge together
+     * @return the merged {@link ExampleSet}
+     * @throws OperatorException if the provided ExampleSets are incompatible with each other
+     */
+    public static ExampleSet merge(Operator caller, ExampleSet... allExampleSets) throws OperatorException {
 		if (allExampleSets == null) {
 			throw new IllegalArgumentException("allExampleSets must not be null!");
 		}
 		return merge(caller, Arrays.asList(allExampleSets));
 	}
 
-	/**
-	 * Merge the given {@link ExampleSet}s into one ExampleSet. Checks for validity of the arguments
-	 * and throws in case the provided sets cannot be merged.
-	 *
-	 * @param caller
-	 *            the calling operator which is checked for stop; can be {@code null}
-	 * @param allExampleSets
-	 *            the {@link ExampleSet}s to merge together
-	 * @return the merged {@link ExampleSet}
-	 * @throws OperatorException
-	 *             if the provided ExampleSets are incompatible with each other
-	 */
-	public static ExampleSet merge(Operator caller, List<ExampleSet> allExampleSets) throws OperatorException {
+    /**
+     * Merge the given {@link ExampleSet}s into one ExampleSet. Checks for validity of the arguments
+     * and throws in case the provided sets cannot be merged.
+     *
+     * @param caller         the calling operator which is checked for stop; can be {@code null}
+     * @param allExampleSets the {@link ExampleSet}s to merge together
+     * @return the merged {@link ExampleSet}
+     * @throws OperatorException if the provided ExampleSets are incompatible with each other
+     */
+    public static ExampleSet merge(Operator caller, List<ExampleSet> allExampleSets) throws OperatorException {
 		// input sanity checks
 		if (allExampleSets == null) {
 			throw new IllegalArgumentException("allExampleSets must not be null!");

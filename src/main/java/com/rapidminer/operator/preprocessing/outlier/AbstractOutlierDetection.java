@@ -32,15 +32,20 @@ import java.util.Set;
 
 /**
  * Abstract superclass of outlier detection operators.
- * 
+ * <p>
  * TODO: All subclasses generate outlier indicator attribute. Double-check this and add this to meta
  * data.
- * 
+ *
  * @author Simon Fischer
  */
 public abstract class AbstractOutlierDetection extends AbstractExampleSetProcessing {
 
-	public AbstractOutlierDetection(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract outlier detection.
+     *
+     * @param description the description
+     */
+    public AbstractOutlierDetection(OperatorDescription description) {
 		super(description);
 	}
 
@@ -52,7 +57,12 @@ public abstract class AbstractOutlierDetection extends AbstractExampleSetProcess
 		return metaData;
 	}
 
-	protected abstract Set<String> getOutlierValues();
+    /**
+     * Gets outlier values.
+     *
+     * @return the outlier values
+     */
+    protected abstract Set<String> getOutlierValues();
 
 	@Override
 	public boolean writesIntoExistingData() {

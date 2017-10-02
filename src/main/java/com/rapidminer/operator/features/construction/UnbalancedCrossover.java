@@ -34,7 +34,7 @@ import java.util.Random;
  * have different lengths. <br>
  * This crossover type should only be used for SINGLE_VALUEs, i.e. attributes without a block number
  * (blocknumber can and should be assigned to value series attributes)!
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class UnbalancedCrossover extends ExampleSetBasedSelectionCrossover {
@@ -45,16 +45,32 @@ public class UnbalancedCrossover extends ExampleSetBasedSelectionCrossover {
 
 		private double weight;
 
-		public AttributeWeightContainer(Attribute attribute, double weight) {
+        /**
+         * Instantiates a new Attribute weight container.
+         *
+         * @param attribute the attribute
+         * @param weight    the weight
+         */
+        public AttributeWeightContainer(Attribute attribute, double weight) {
 			this.attribute = attribute;
 			this.weight = weight;
 		}
 
-		public Attribute getAttribute() {
+        /**
+         * Gets attribute.
+         *
+         * @return the attribute
+         */
+        public Attribute getAttribute() {
 			return attribute;
 		}
 
-		public double getWeight() {
+        /**
+         * Gets weight.
+         *
+         * @return the weight
+         */
+        public double getWeight() {
 			return weight;
 		}
 
@@ -66,11 +82,15 @@ public class UnbalancedCrossover extends ExampleSetBasedSelectionCrossover {
 
 	private Random random;
 
-	/**
-	 * Creates a new generating crossover with the given type which will be applied with the given
-	 * probability.
-	 */
-	public UnbalancedCrossover(int type, double prob, Random random) {
+    /**
+     * Creates a new generating crossover with the given type which will be applied with the given
+     * probability.
+     *
+     * @param type   the type
+     * @param prob   the prob
+     * @param random the random
+     */
+    public UnbalancedCrossover(int type, double prob, Random random) {
 		super(type, prob, random, 1, Integer.MAX_VALUE, -1);
 		this.random = random;
 	}

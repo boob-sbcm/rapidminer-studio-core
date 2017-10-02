@@ -28,12 +28,17 @@ import javax.swing.plaf.basic.BasicButtonListener;
 
 /**
  * The button listener used for buttons.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ButtonListener extends BasicButtonListener {
 
-	public ButtonListener(AbstractButton b) {
+    /**
+     * Instantiates a new Button listener.
+     *
+     * @param b the b
+     */
+    public ButtonListener(AbstractButton b) {
 		super(b);
 	}
 

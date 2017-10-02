@@ -115,11 +115,21 @@ public class StatusBar extends JPanel implements ProcessEditor {
 
 		private final Operator operator;
 
-		public OperatorEntry(Operator operator) {
+        /**
+         * Instantiates a new Operator entry.
+         *
+         * @param operator the operator
+         */
+        public OperatorEntry(Operator operator) {
 			this.operator = operator;
 		}
 
-		public void addOperator(Operator operator) {
+        /**
+         * Add operator.
+         *
+         * @param operator the operator
+         */
+        public void addOperator(Operator operator) {
 			synchronized (children) {
 				if (this.operator == operator.getParent()) {
 					children.add(new OperatorEntry(operator));
@@ -131,7 +141,12 @@ public class StatusBar extends JPanel implements ProcessEditor {
 			}
 		}
 
-		public void removeOperator(Operator operator) {
+        /**
+         * Remove operator.
+         *
+         * @param operator the operator
+         */
+        public void removeOperator(Operator operator) {
 			synchronized (children) {
 				Iterator<OperatorEntry> iterator = children.iterator();
 				while (iterator.hasNext()) {
@@ -145,7 +160,14 @@ public class StatusBar extends JPanel implements ProcessEditor {
 			}
 		}
 
-		public String toString(OperatorEntry entry, long time) {
+        /**
+         * To string string.
+         *
+         * @param entry the entry
+         * @param time  the time
+         * @return the string
+         */
+        public String toString(OperatorEntry entry, long time) {
 			synchronized (children) {
 				StringBuffer buffer = new StringBuffer();
 				Operator currentOperator = entry.getOperator();
@@ -172,7 +194,12 @@ public class StatusBar extends JPanel implements ProcessEditor {
 			}
 		}
 
-		public Operator getOperator() {
+        /**
+         * Gets operator.
+         *
+         * @return the operator
+         */
+        public Operator getOperator() {
 			return operator;
 		}
 	}
@@ -192,11 +219,19 @@ public class StatusBar extends JPanel implements ProcessEditor {
 	/** Only needed to keep track where we added ourselves as listeners. */
 	private Process process;
 
-	public StatusBar() {
+    /**
+     * Instantiates a new Status bar.
+     */
+    public StatusBar() {
 		this(true);
 	}
 
-	public StatusBar(boolean showProgressBar) {
+    /**
+     * Instantiates a new Status bar.
+     *
+     * @param showProgressBar the show progress bar
+     */
+    public StatusBar(boolean showProgressBar) {
 		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -267,17 +302,28 @@ public class StatusBar extends JPanel implements ProcessEditor {
 		}
 	}
 
-	public void setSpecialText(String specialText) {
+    /**
+     * Sets special text.
+     *
+     * @param specialText the special text
+     */
+    public void setSpecialText(String specialText) {
 		this.specialText = specialText;
 		setText(this.specialText);
 	}
 
-	public void clearSpecialText() {
+    /**
+     * Clear special text.
+     */
+    public void clearSpecialText() {
 		this.specialText = null;
 		setText();
 	}
 
-	public void startClockThread() {
+    /**
+     * Start clock thread.
+     */
+    public void startClockThread() {
 		new Timer(1000, new ActionListener() {
 
 			@Override
@@ -291,8 +337,14 @@ public class StatusBar extends JPanel implements ProcessEditor {
 		}).start();
 	}
 
-	/** Sets the progress in the status bar. Executed on EDT. */
-	public void setProgress(final String label, final int completed, final int total) {
+    /**
+     * Sets the progress in the status bar. Executed on EDT.  @param label the label
+     *
+     * @param label     the label
+     * @param completed the completed
+     * @param total     the total
+     */
+    public void setProgress(final String label, final int completed, final int total) {
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
@@ -322,14 +374,14 @@ public class StatusBar extends JPanel implements ProcessEditor {
 		});
 	}
 
-	/**
-	 * Sets the progress in the status bar using intermediate mode. Executed on the EDT.
-	 *
-	 * @param label
-	 * @param completed
-	 * @param total
-	 */
-	public void setIndeterminateProgress(final String label, final int completed, final int total) {
+    /**
+     * Sets the progress in the status bar using intermediate mode. Executed on the EDT.
+     *
+     * @param label     the label
+     * @param completed the completed
+     * @param total     the total
+     */
+    public void setIndeterminateProgress(final String label, final int completed, final int total) {
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override

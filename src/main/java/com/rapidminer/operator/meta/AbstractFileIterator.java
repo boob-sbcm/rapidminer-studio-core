@@ -57,26 +57,67 @@ public abstract class AbstractFileIterator extends OperatorChain {
 	private final String PORT_INNER_FILE_SOURCE = "file object";
 	private final OutputPort innerFileSource = getSubprocess(0).getInnerSources().createPort(PORT_INNER_FILE_SOURCE);
 
-	public static final String PARAMETER_FILTER = "filter";
+    /**
+     * The constant PARAMETER_FILTER.
+     */
+    public static final String PARAMETER_FILTER = "filter";
 
-	public static final String PARAMETER_FILE_NAME_MACRO = "file_name_macro";
-	public static final String PARAMETER_FILE_PATH_MACRO = "file_path_macro";
-	public static final String PARAMETER_PARENT_PATH_MACRO = "parent_path_macro";
+    /**
+     * The constant PARAMETER_FILE_NAME_MACRO.
+     */
+    public static final String PARAMETER_FILE_NAME_MACRO = "file_name_macro";
+    /**
+     * The constant PARAMETER_FILE_PATH_MACRO.
+     */
+    public static final String PARAMETER_FILE_PATH_MACRO = "file_path_macro";
+    /**
+     * The constant PARAMETER_PARENT_PATH_MACRO.
+     */
+    public static final String PARAMETER_PARENT_PATH_MACRO = "parent_path_macro";
 
-	public static final String PARAMETER_RECURSIVE = "recursive";
+    /**
+     * The constant PARAMETER_RECURSIVE.
+     */
+    public static final String PARAMETER_RECURSIVE = "recursive";
 
-	public static final String PARAMETER_ITERATE_OVER_SUBDIRS = "iterate_over_subdirs";
-	public static final String PARAMETER_ITERATE_OVER_FILES = "iterate_over_files";
+    /**
+     * The constant PARAMETER_ITERATE_OVER_SUBDIRS.
+     */
+    public static final String PARAMETER_ITERATE_OVER_SUBDIRS = "iterate_over_subdirs";
+    /**
+     * The constant PARAMETER_ITERATE_OVER_FILES.
+     */
+    public static final String PARAMETER_ITERATE_OVER_FILES = "iterate_over_files";
 
-	public static final String PARAMETER_FILTERED_STRING = "filtered_string";
+    /**
+     * The constant PARAMETER_FILTERED_STRING.
+     */
+    public static final String PARAMETER_FILTERED_STRING = "filtered_string";
 
-	public static final int FILTERED_STRING_FILE_NAME = 0;
-	public static final int FILTERED_STRING_FILE_PATH = 1;
-	public static final int FILTERED_STRING_PARENT_PATH = 2;
-	public static final String[] FILTERED_STRINGS = { "file name (last part of the path)",
+    /**
+     * The constant FILTERED_STRING_FILE_NAME.
+     */
+    public static final int FILTERED_STRING_FILE_NAME = 0;
+    /**
+     * The constant FILTERED_STRING_FILE_PATH.
+     */
+    public static final int FILTERED_STRING_FILE_PATH = 1;
+    /**
+     * The constant FILTERED_STRING_PARENT_PATH.
+     */
+    public static final int FILTERED_STRING_PARENT_PATH = 2;
+    /**
+     * The constant FILTERED_STRINGS.
+     */
+    public static final String[] FILTERED_STRINGS = { "file name (last part of the path)",
 			"full path (including file name)", "parent path" };
 
-	public AbstractFileIterator(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract file iterator.
+     *
+     * @param description the description
+     */
+    public AbstractFileIterator(OperatorDescription description) {
 		super(description, "Nested Process");
 		inputExtender.start();
 		outputExtender.start();
@@ -109,15 +150,46 @@ public abstract class AbstractFileIterator extends OperatorChain {
 		iterate(null, filter, iterateSubDirs, iterateFiles, recursive);
 	}
 
-	MacroHandler macroHandler;
-	String fileNameMacro;
-	String pathNameMacro;
-	String parentPathMacro;
+    /**
+     * The Macro handler.
+     */
+    MacroHandler macroHandler;
+    /**
+     * The File name macro.
+     */
+    String fileNameMacro;
+    /**
+     * The Path name macro.
+     */
+    String pathNameMacro;
+    /**
+     * The Parent path macro.
+     */
+    String parentPathMacro;
 
-	abstract protected void iterate(Object currentParent, Pattern filter, boolean iterateSubDirs, boolean iterateFiles,
+    /**
+     * Iterate.
+     *
+     * @param currentParent  the current parent
+     * @param filter         the filter
+     * @param iterateSubDirs the iterate sub dirs
+     * @param iterateFiles   the iterate files
+     * @param recursive      the recursive
+     * @throws OperatorException the operator exception
+     */
+    abstract protected void iterate(Object currentParent, Pattern filter, boolean iterateSubDirs, boolean iterateFiles,
 			boolean recursive) throws OperatorException;
 
-	protected void doWorkForSingleIterationStep(String fileName, String fullPath, String parentPath, FileObject fileObject)
+    /**
+     * Do work for single iteration step.
+     *
+     * @param fileName   the file name
+     * @param fullPath   the full path
+     * @param parentPath the parent path
+     * @param fileObject the file object
+     * @throws OperatorException the operator exception
+     */
+    protected void doWorkForSingleIterationStep(String fileName, String fullPath, String parentPath, FileObject fileObject)
 			throws OperatorException {
 		clearAllInnerSinks();
 		macroHandler.addMacro(fileNameMacro, fileName);
@@ -142,7 +214,16 @@ public abstract class AbstractFileIterator extends OperatorChain {
 		return new OperatorVersion[] { OPERATOR_VERSION_OUT_PORTS };
 	}
 
-	protected boolean matchesFilter(Pattern filter, String fileName, String fullPath, String parentPath) {
+    /**
+     * Matches filter boolean.
+     *
+     * @param filter     the filter
+     * @param fileName   the file name
+     * @param fullPath   the full path
+     * @param parentPath the parent path
+     * @return the boolean
+     */
+    protected boolean matchesFilter(Pattern filter, String fileName, String fullPath, String parentPath) {
 		if (filter != null) {
 			int matchWhat;
 			try {
@@ -214,14 +295,37 @@ public abstract class AbstractFileIterator extends OperatorChain {
 		return types;
 	}
 
-	protected class EntryContainer {
+    /**
+     * The type Entry container.
+     */
+    protected class EntryContainer {
 
-		public String fileName;
-		public String fullPath;
-		public String parentPath;
-		public FileObject fileObject;
+        /**
+         * The File name.
+         */
+        public String fileName;
+        /**
+         * The Full path.
+         */
+        public String fullPath;
+        /**
+         * The Parent path.
+         */
+        public String parentPath;
+        /**
+         * The File object.
+         */
+        public FileObject fileObject;
 
-		public EntryContainer(String file, String full, String parent, FileObject object) {
+        /**
+         * Instantiates a new Entry container.
+         *
+         * @param file   the file
+         * @param full   the full
+         * @param parent the parent
+         * @param object the object
+         */
+        public EntryContainer(String file, String full, String parent, FileObject object) {
 			this.fileName = file;
 			this.fullPath = full;
 			this.parentPath = parent;

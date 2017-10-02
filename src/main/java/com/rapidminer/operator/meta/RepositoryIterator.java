@@ -44,15 +44,22 @@ import com.rapidminer.repository.RepositoryLocation;
  * Operator to iterate over entries in a repository.
  *
  * @author Vaclav Uher
- *
  */
 public class RepositoryIterator extends AbstractRepositoryIterator {
 
-	public static final String PARAMETER_DIRECTORY = "repository_folder";
+    /**
+     * The constant PARAMETER_DIRECTORY.
+     */
+    public static final String PARAMETER_DIRECTORY = "repository_folder";
 
 	private RepositoryLocation repositoryLocation;
 
-	public RepositoryIterator(OperatorDescription description) {
+    /**
+     * Instantiates a new Repository iterator.
+     *
+     * @param description the description
+     */
+    public RepositoryIterator(OperatorDescription description) {
 		super(description);
 	}
 

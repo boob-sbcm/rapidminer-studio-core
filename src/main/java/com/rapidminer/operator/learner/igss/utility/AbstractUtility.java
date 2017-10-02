@@ -23,19 +23,28 @@ import com.rapidminer.operator.learner.igss.hypothesis.Hypothesis;
 
 /**
  * Abstract superclass for all utility functions.
- * 
+ *
  * @author Dirk Dach
  */
 public abstract class AbstractUtility implements Utility {
 
-	/** The prior probability of the two classes of the label. */
-	protected double[] priors;
+    /**
+     * The prior probability of the two classes of the label.
+     */
+    protected double[] priors;
 
-	/** The number of covered examples before normal approximation is used. */
-	protected int large;
+    /**
+     * The number of covered examples before normal approximation is used.
+     */
+    protected int large;
 
-	/** Constructor for all utilities. */
-	public AbstractUtility(double[] priors, int large) {
+    /**
+     * Constructor for all utilities.  @param priors the priors
+     *
+     * @param priors the priors
+     * @param large  the large
+     */
+    public AbstractUtility(double[] priors, int large) {
 		this.priors = new double[priors.length];
 		System.arraycopy(priors, 0, this.priors, 0, 2);
 		this.large = large;
@@ -90,17 +99,42 @@ public abstract class AbstractUtility implements Utility {
 		}
 	}
 
-	/** Calculates the confidence intervall for small numbers of examples. */
-	public abstract double confSmallM(double totalWeight, double delta);
+    /**
+     * Calculates the confidence intervall for small numbers of examples.  @param totalWeight the total weight
+     *
+     * @param totalWeight the total weight
+     * @param delta       the delta
+     * @return the double
+     */
+    public abstract double confSmallM(double totalWeight, double delta);
 
-	/** Calculates the normal approximation of the confidence intervall. */
-	public abstract double conf(double totalWeight, double delta);
+    /**
+     * Calculates the normal approximation of the confidence intervall.  @param totalWeight the total weight
+     *
+     * @param totalWeight the total weight
+     * @param delta       the delta
+     * @return the double
+     */
+    public abstract double conf(double totalWeight, double delta);
 
-	/** Calculates the normal approximation of the confidence intervall for a specific hypothesis. */
-	public abstract double conf(double totalWeight, double totalPositiveWeight, Hypothesis hypo, double delta);
+    /**
+     * Calculates the normal approximation of the confidence intervall for a specific hypothesis.  @param totalWeight the total weight
+     *
+     * @param totalWeight         the total weight
+     * @param totalPositiveWeight the total positive weight
+     * @param hypo                the hypo
+     * @param delta               the delta
+     * @return the double
+     */
+    public abstract double conf(double totalWeight, double totalPositiveWeight, Hypothesis hypo, double delta);
 
-	/** Calculates the inverse of the normal distribution, e.g.inverseNormal(0.95)==1.64. */
-	public double inverseNormal(double p) {
+    /**
+     * Calculates the inverse of the normal distribution, e.g.inverseNormal(0.95)==1.64.  @param p the p
+     *
+     * @param p the p
+     * @return the double
+     */
+    public double inverseNormal(double p) {
 		// Coefficients in rational approximations
 		double[] a = { -3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02, 1.383577518672690e+02,
 				-3.066479806614716e+01, 2.506628277459239e+00 };

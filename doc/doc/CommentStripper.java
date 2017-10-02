@@ -14,18 +14,30 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Delivers the class comments of the Javadoc comments of an operator class.
- * 
+ *
  * @author Simon Fischer
  */
 public class CommentStripper {
 
 	private File sourceDir;
 
-	public CommentStripper(File sourceDir) {
+    /**
+     * Instantiates a new Comment stripper.
+     *
+     * @param sourceDir the source dir
+     */
+    public CommentStripper(File sourceDir) {
 		this.sourceDir = sourceDir;
 	}
 
-	@SuppressWarnings("fallthrough")
+    /**
+     * Strip class comment string.
+     *
+     * @param clazz the clazz
+     * @return the string
+     * @throws IOException the io exception
+     */
+    @SuppressWarnings("fallthrough")
 	public String stripClassComment(Class clazz) throws IOException {
 		File sourceFile = new File(sourceDir, clazz.getName().replaceAll("\\.", File.separator) + ".java");
 		if (!sourceFile.exists())

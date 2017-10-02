@@ -43,7 +43,7 @@ import com.rapidminer.parameter.conditions.EqualTypeCondition;
 /**
  * Genetic algorithms are general purpose optimization / search algorithms that are suitable in case
  * of no or little problem knowledge. <br/>
- *
+ * <p>
  * A genetic algorithm works as follows
  * <ol>
  * <li>Generate an initial population consisting of <code>population_size</code> individuals. Each
@@ -59,7 +59,7 @@ import com.rapidminer.parameter.conditions.EqualTypeCondition;
  * <li>Perform selection with a defined selection scheme.</li>
  * <li>As long as the fitness improves, go to 2</li>
  * </ol>
- *
+ * <p>
  * If the example set contains value series attributes with blocknumbers, the whole block should be
  * switched on and off.
  *
@@ -67,71 +67,116 @@ import com.rapidminer.parameter.conditions.EqualTypeCondition;
  */
 public abstract class AbstractGeneticAlgorithm extends FeatureOperator {
 
-	/** The parameter name for &quot;Number of individuals per generation.&quot; */
-	public static final String PARAMETER_POPULATION_SIZE = "population_size";
+    /**
+     * The parameter name for &quot;Number of individuals per generation.&quot;
+     */
+    public static final String PARAMETER_POPULATION_SIZE = "population_size";
 
-	/**
-	 * The parameter name for &quot;Number of generations after which to terminate the
-	 * algorithm.&quot;
-	 */
-	public static final String PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS = "maximum_number_of_generations";
+    /**
+     * The parameter name for &quot;Number of generations after which to terminate the
+     * algorithm.&quot;
+     */
+    public static final String PARAMETER_MAXIMUM_NUMBER_OF_GENERATIONS = "maximum_number_of_generations";
 
-	/**
-	 * The parameter name for &quot;Stop criterion: Stop after n generations without improval of the
-	 * performance (-1: perform all generations).&quot;
-	 */
-	public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
+    /**
+     * The parameter name for &quot;Stop criterion: Stop after n generations without improval of the
+     * performance (-1: perform all generations).&quot;
+     */
+    public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
 
-	/** The parameter name for &quot;The selection scheme of this EA.&quot; */
-	public static final String PARAMETER_SELECTION_SCHEME = "selection_scheme";
+    /**
+     * The parameter name for &quot;The selection scheme of this EA.&quot;
+     */
+    public static final String PARAMETER_SELECTION_SCHEME = "selection_scheme";
 
-	/**
-	 * The parameter name for &quot;The fraction of the current population which should be used as
-	 * tournament members (only tournament selection).&quot;
-	 */
-	public static final String PARAMETER_TOURNAMENT_SIZE = "tournament_size";
+    /**
+     * The parameter name for &quot;The fraction of the current population which should be used as
+     * tournament members (only tournament selection).&quot;
+     */
+    public static final String PARAMETER_TOURNAMENT_SIZE = "tournament_size";
 
-	/** The parameter name for &quot;The scaling temperature (only Boltzmann selection).&quot; */
-	public static final String PARAMETER_START_TEMPERATURE = "start_temperature";
+    /**
+     * The parameter name for &quot;The scaling temperature (only Boltzmann selection).&quot;
+     */
+    public static final String PARAMETER_START_TEMPERATURE = "start_temperature";
 
-	/**
-	 * The parameter name for &quot;If set to true the selection pressure is increased to maximum
-	 * during the complete optimization run (only Boltzmann and tournament selection).&quot;
-	 */
-	public static final String PARAMETER_DYNAMIC_SELECTION_PRESSURE = "dynamic_selection_pressure";
+    /**
+     * The parameter name for &quot;If set to true the selection pressure is increased to maximum
+     * during the complete optimization run (only Boltzmann and tournament selection).&quot;
+     */
+    public static final String PARAMETER_DYNAMIC_SELECTION_PRESSURE = "dynamic_selection_pressure";
 
-	/**
-	 * The parameter name for &quot;If set to true, the best individual of each generations is
-	 * guaranteed to be selected for the next generation (elitist selection).&quot;
-	 */
-	public static final String PARAMETER_KEEP_BEST_INDIVIDUAL = "keep_best_individual";
+    /**
+     * The parameter name for &quot;If set to true, the best individual of each generations is
+     * guaranteed to be selected for the next generation (elitist selection).&quot;
+     */
+    public static final String PARAMETER_KEEP_BEST_INDIVIDUAL = "keep_best_individual";
 
-	public static final String PARAMETER_SAVE_INTERMEDIATE_WEIGHTS = "save_intermediate_weights";
+    /**
+     * The constant PARAMETER_SAVE_INTERMEDIATE_WEIGHTS.
+     */
+    public static final String PARAMETER_SAVE_INTERMEDIATE_WEIGHTS = "save_intermediate_weights";
 
-	public static final String PARAMETER_INTERMEDIATE_WEIGHTS_GENERATIONS = "intermediate_weights_generations";
+    /**
+     * The constant PARAMETER_INTERMEDIATE_WEIGHTS_GENERATIONS.
+     */
+    public static final String PARAMETER_INTERMEDIATE_WEIGHTS_GENERATIONS = "intermediate_weights_generations";
 
-	public static final String PARAMETER_INTERMEDIATE_WEIGHTS_FILE = "intermediate_weights_file";
+    /**
+     * The constant PARAMETER_INTERMEDIATE_WEIGHTS_FILE.
+     */
+    public static final String PARAMETER_INTERMEDIATE_WEIGHTS_FILE = "intermediate_weights_file";
 
-	public static final String PARAMETER_USE_EARLY_STOPPING = "use_early_stopping";
+    /**
+     * The constant PARAMETER_USE_EARLY_STOPPING.
+     */
+    public static final String PARAMETER_USE_EARLY_STOPPING = "use_early_stopping";
 
-	public static final String[] SELECTION_SCHEMES = { "uniform", "cut", "roulette wheel", "stochastic universal sampling",
+    /**
+     * The constant SELECTION_SCHEMES.
+     */
+    public static final String[] SELECTION_SCHEMES = { "uniform", "cut", "roulette wheel", "stochastic universal sampling",
 		"Boltzmann", "rank", "tournament", "non dominated sorting" };
 
-	public static final int UNIFORM_SELECTION = 0;
+    /**
+     * The constant UNIFORM_SELECTION.
+     */
+    public static final int UNIFORM_SELECTION = 0;
 
-	public static final int CUT_SELECTION = 1;
+    /**
+     * The constant CUT_SELECTION.
+     */
+    public static final int CUT_SELECTION = 1;
 
-	public static final int ROULETTE_WHEEL = 2;
+    /**
+     * The constant ROULETTE_WHEEL.
+     */
+    public static final int ROULETTE_WHEEL = 2;
 
-	public static final int STOCHASTIC_UNIVERSAL = 3;
+    /**
+     * The constant STOCHASTIC_UNIVERSAL.
+     */
+    public static final int STOCHASTIC_UNIVERSAL = 3;
 
-	public static final int BOLTZMANN_SELECTION = 4;
+    /**
+     * The constant BOLTZMANN_SELECTION.
+     */
+    public static final int BOLTZMANN_SELECTION = 4;
 
-	public static final int RANK_SELECTION = 5;
+    /**
+     * The constant RANK_SELECTION.
+     */
+    public static final int RANK_SELECTION = 5;
 
-	public static final int TOURNAMENT_SELECTION = 6;
+    /**
+     * The constant TOURNAMENT_SELECTION.
+     */
+    public static final int TOURNAMENT_SELECTION = 6;
 
-	public static final int NON_DOMINATED_SORTING_SELECTION = 7;
+    /**
+     * The constant NON_DOMINATED_SORTING_SELECTION.
+     */
+    public static final int NON_DOMINATED_SORTING_SELECTION = 7;
 
 	/** The size of the population. */
 	private int numberOfIndividuals;
@@ -145,27 +190,52 @@ public abstract class AbstractGeneticAlgorithm extends FeatureOperator {
 	 */
 	private int generationsWithoutImproval;
 
-	public AbstractGeneticAlgorithm(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract genetic algorithm.
+     *
+     * @param description the description
+     */
+    public AbstractGeneticAlgorithm(OperatorDescription description) {
 		super(description);
 	}
 
-	/**
-	 * Returns an operator that performs the mutation. Can be overridden by subclasses.
-	 */
-	protected abstract PopulationOperator getMutationPopulationOperator(ExampleSet example) throws OperatorException;
+    /**
+     * Returns an operator that performs the mutation. Can be overridden by subclasses.
+     *
+     * @param example the example
+     * @return the mutation population operator
+     * @throws OperatorException the operator exception
+     */
+    protected abstract PopulationOperator getMutationPopulationOperator(ExampleSet example) throws OperatorException;
 
-	/**
-	 * Returns an operator that performs crossover. Can be overridden by subclasses.
-	 */
-	protected abstract PopulationOperator getCrossoverPopulationOperator(ExampleSet example) throws OperatorException;
+    /**
+     * Returns an operator that performs crossover. Can be overridden by subclasses.
+     *
+     * @param example the example
+     * @return the crossover population operator
+     * @throws OperatorException the operator exception
+     */
+    protected abstract PopulationOperator getCrossoverPopulationOperator(ExampleSet example) throws OperatorException;
 
-	/** Returns an empty list. */
-	protected List<PopulationOperator> getPreProcessingPopulationOperators(ExampleSet input) throws OperatorException {
+    /**
+     * Returns an empty list.  @param input the input
+     *
+     * @param input the input
+     * @return the pre processing population operators
+     * @throws OperatorException the operator exception
+     */
+    protected List<PopulationOperator> getPreProcessingPopulationOperators(ExampleSet input) throws OperatorException {
 		return new LinkedList<PopulationOperator>();
 	}
 
-	/** Returns an empty list. */
-	protected List<PopulationOperator> getPostProcessingPopulationOperators(ExampleSet input) throws OperatorException {
+    /**
+     * Returns an empty list.  @param input the input
+     *
+     * @param input the input
+     * @return the post processing population operators
+     * @throws OperatorException the operator exception
+     */
+    protected List<PopulationOperator> getPostProcessingPopulationOperators(ExampleSet input) throws OperatorException {
 		return new LinkedList<PopulationOperator>();
 	}
 

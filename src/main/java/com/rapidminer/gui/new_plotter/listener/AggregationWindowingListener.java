@@ -22,9 +22,16 @@ import com.rapidminer.gui.new_plotter.configuration.AggregationWindowing;
 
 
 /**
+ * The interface Aggregation windowing listener.
+ *
  * @author Marius Helf
  */
 public interface AggregationWindowingListener {
 
-	public void aggregationWindowingChanged(AggregationWindowing source);
+    /**
+     * Aggregation windowing changed.
+     *
+     * @param source the source
+     */
+    public void aggregationWindowingChanged(AggregationWindowing source);
 }

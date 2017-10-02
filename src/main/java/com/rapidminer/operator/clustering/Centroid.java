@@ -27,7 +27,7 @@ import java.util.Collection;
 /**
  * This class represents a single centroid used for centroid based clustering. It also provides
  * methods for centroid calculation of a number of examples.
- * 
+ *
  * @author Sebastian Land
  */
 public class Centroid implements Serializable {
@@ -39,27 +39,52 @@ public class Centroid implements Serializable {
 	private double[] centroidSum;
 	private int numberOfAssigned = 0;
 
-	public Centroid(int numberOfDimensions) {
+    /**
+     * Instantiates a new Centroid.
+     *
+     * @param numberOfDimensions the number of dimensions
+     */
+    public Centroid(int numberOfDimensions) {
 		centroid = new double[numberOfDimensions];
 		centroidSum = new double[numberOfDimensions];
 	}
 
-	public double[] getCentroid() {
+    /**
+     * Get centroid double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getCentroid() {
 		return centroid;
 	}
 
-	public void setCentroid(double[] coordinates) {
+    /**
+     * Sets centroid.
+     *
+     * @param coordinates the coordinates
+     */
+    public void setCentroid(double[] coordinates) {
 		this.centroid = coordinates;
 	}
 
-	public void assignExample(double[] exampleValues) {
+    /**
+     * Assign example.
+     *
+     * @param exampleValues the example values
+     */
+    public void assignExample(double[] exampleValues) {
 		numberOfAssigned++;
 		for (int i = 0; i < exampleValues.length; i++) {
 			centroidSum[i] += exampleValues[i];
 		}
 	}
 
-	public boolean finishAssign() {
+    /**
+     * Finish assign boolean.
+     *
+     * @return the boolean
+     */
+    public boolean finishAssign() {
 		double[] newCentroid = new double[centroid.length];
 		boolean stable = true;
 		for (int i = 0; i < centroid.length; i++) {
@@ -72,10 +97,13 @@ public class Centroid implements Serializable {
 		return stable;
 	}
 
-	/**
-	 * This method only returns the first 100 attributes
-	 */
-	public String toString(Collection<String> dimensionNames) {
+    /**
+     * This method only returns the first 100 attributes
+     *
+     * @param dimensionNames the dimension names
+     * @return the string
+     */
+    public String toString(Collection<String> dimensionNames) {
 		StringBuffer buffer = new StringBuffer();
 		int i = 0;
 		for (String dimName : dimensionNames) {

@@ -46,12 +46,12 @@ import com.rapidminer.tools.Ontology;
  * {@link Aggregator}, that will count the examples of one single group and compute the aggregated
  * value. So for example the {@link MeanAggregationFunction} provides an {@link MeanAggregator},
  * that will calculate the mean on all examples delivered to him.
- *
+ * <p>
  * The list of the names of all available functions can be queried from the static method
  * {@link #getAvailableAggregationFunctionNames()}. With a name one can call the static method
  * {@link #createAggregationFunction(String, Attribute)} to create a certain aggregator for the
  * actual counting.
- *
+ * <p>
  * Additional functions can be registered by calling
  * {@link #registerNewAggregationFunction(String, Class)} from extensions, preferable during their
  * initialization. Please notice that there will be no warning prior process execution if the
@@ -61,31 +61,97 @@ import com.rapidminer.tools.Ontology;
  */
 public abstract class AggregationFunction {
 
-	public static final String FUNCTION_SEPARATOR_OPEN = "(";
-	public static final String FUNCTION_SEPARATOR_CLOSE = ")";
+    /**
+     * The constant FUNCTION_SEPARATOR_OPEN.
+     */
+    public static final String FUNCTION_SEPARATOR_OPEN = "(";
+    /**
+     * The constant FUNCTION_SEPARATOR_CLOSE.
+     */
+    public static final String FUNCTION_SEPARATOR_CLOSE = ")";
 
-	// available functions
+    /**
+     * The constant FUNCTION_NAME_SUM.
+     */
+// available functions
 	public static final String FUNCTION_NAME_SUM = "sum";
-	public static final String FUNCTION_NAME_SUM_FRACTIONAL = "sum (fractional)";
-	public static final String FUNCTION_NAME_MEDIAN = "median";
-	public static final String FUNCTION_NAME_AVERAGE = "average";
-	public static final String FUNCTION_NAME_VARIANCE = "variance";
-	public static final String FUNCTION_NAME_STANDARD_DEVIATION = "standard_deviation";
-	public static final String FUNCTION_NAME_COUNT_IGNORE_MISSINGS = "count (ignoring missings)";
-	public static final String FUNCTION_NAME_COUNT_INCLUDE_MISSINGS = "count (including missings)";
-	public static final String FUNCTION_NAME_COUNT = "count";
-	public static final String FUNCTION_NAME_COUNT_FRACTIONAL = "count (fractional)";
-	public static final String FUNCTION_NAME_COUNT_PERCENTAGE = "count (percentage)";
-	public static final String FUNCTION_NAME_MINIMUM = "minimum";
-	public static final String FUNCTION_NAME_MAXIMUM = "maximum";
-	public static final String FUNCTION_NAME_LOG_PRODUCT = "log product";
-	public static final String FUNCTION_NAME_PRODOCT = "product";
-	public static final String FUNCTION_NAME_MODE = "mode";
-	public static final String FUNCTION_NAME_LEAST = "least";
-	public static final String FUNCTION_NAME_LEAST_ONLY_OCCURRING = "least (only occurring)";
-	public static final String FUNCTION_NAME_CONCATENATION = "concatenation";
+    /**
+     * The constant FUNCTION_NAME_SUM_FRACTIONAL.
+     */
+    public static final String FUNCTION_NAME_SUM_FRACTIONAL = "sum (fractional)";
+    /**
+     * The constant FUNCTION_NAME_MEDIAN.
+     */
+    public static final String FUNCTION_NAME_MEDIAN = "median";
+    /**
+     * The constant FUNCTION_NAME_AVERAGE.
+     */
+    public static final String FUNCTION_NAME_AVERAGE = "average";
+    /**
+     * The constant FUNCTION_NAME_VARIANCE.
+     */
+    public static final String FUNCTION_NAME_VARIANCE = "variance";
+    /**
+     * The constant FUNCTION_NAME_STANDARD_DEVIATION.
+     */
+    public static final String FUNCTION_NAME_STANDARD_DEVIATION = "standard_deviation";
+    /**
+     * The constant FUNCTION_NAME_COUNT_IGNORE_MISSINGS.
+     */
+    public static final String FUNCTION_NAME_COUNT_IGNORE_MISSINGS = "count (ignoring missings)";
+    /**
+     * The constant FUNCTION_NAME_COUNT_INCLUDE_MISSINGS.
+     */
+    public static final String FUNCTION_NAME_COUNT_INCLUDE_MISSINGS = "count (including missings)";
+    /**
+     * The constant FUNCTION_NAME_COUNT.
+     */
+    public static final String FUNCTION_NAME_COUNT = "count";
+    /**
+     * The constant FUNCTION_NAME_COUNT_FRACTIONAL.
+     */
+    public static final String FUNCTION_NAME_COUNT_FRACTIONAL = "count (fractional)";
+    /**
+     * The constant FUNCTION_NAME_COUNT_PERCENTAGE.
+     */
+    public static final String FUNCTION_NAME_COUNT_PERCENTAGE = "count (percentage)";
+    /**
+     * The constant FUNCTION_NAME_MINIMUM.
+     */
+    public static final String FUNCTION_NAME_MINIMUM = "minimum";
+    /**
+     * The constant FUNCTION_NAME_MAXIMUM.
+     */
+    public static final String FUNCTION_NAME_MAXIMUM = "maximum";
+    /**
+     * The constant FUNCTION_NAME_LOG_PRODUCT.
+     */
+    public static final String FUNCTION_NAME_LOG_PRODUCT = "log product";
+    /**
+     * The constant FUNCTION_NAME_PRODOCT.
+     */
+    public static final String FUNCTION_NAME_PRODOCT = "product";
+    /**
+     * The constant FUNCTION_NAME_MODE.
+     */
+    public static final String FUNCTION_NAME_MODE = "mode";
+    /**
+     * The constant FUNCTION_NAME_LEAST.
+     */
+    public static final String FUNCTION_NAME_LEAST = "least";
+    /**
+     * The constant FUNCTION_NAME_LEAST_ONLY_OCCURRING.
+     */
+    public static final String FUNCTION_NAME_LEAST_ONLY_OCCURRING = "least (only occurring)";
+    /**
+     * The constant FUNCTION_NAME_CONCATENATION.
+     */
+    public static final String FUNCTION_NAME_CONCATENATION = "concatenation";
 
-	public static final Map<String, Class<? extends AggregationFunction>> AGGREATION_FUNCTIONS = new TreeMap<>();
+    /**
+     * The constant AGGREATION_FUNCTIONS.
+     */
+    public static final Map<String, Class<? extends AggregationFunction>> AGGREATION_FUNCTIONS = new TreeMap<>();
 	static {
 		// numerical/date
 		AGGREATION_FUNCTIONS.put(FUNCTION_NAME_SUM, SumAggregationFunction.class);
@@ -135,7 +201,10 @@ public abstract class AggregationFunction {
 		LEGACY_AGGREATION_FUNCTIONS_VERSIONS.put(FUNCTION_NAME_MEDIAN, AggregationOperator.VERSION_7_4_0);
 	}
 
-	public static final Map<String, AggregationFunctionMetaDataProvider> AGGREGATION_FUNCTIONS_META_DATA_PROVIDER = new HashMap<>();
+    /**
+     * The constant AGGREGATION_FUNCTIONS_META_DATA_PROVIDER.
+     */
+    public static final Map<String, AggregationFunctionMetaDataProvider> AGGREGATION_FUNCTIONS_META_DATA_PROVIDER = new HashMap<>();
 	static {
 		HashMap<Integer, Integer> transformationRules = new HashMap<Integer, Integer>() {
 
@@ -226,70 +295,96 @@ public abstract class AggregationFunction {
 	private boolean isIgnoringMissings;
 	private boolean isCountingOnlyDistinct;
 
-	public AggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDistinct) {
+    /**
+     * Instantiates a new Aggregation function.
+     *
+     * @param sourceAttribute   the source attribute
+     * @param ignoreMissings    the ignore missings
+     * @param countOnlyDistinct the count only distinct
+     */
+    public AggregationFunction(Attribute sourceAttribute, boolean ignoreMissings, boolean countOnlyDistinct) {
 		this.sourceAttribute = sourceAttribute;
 		this.isIgnoringMissings = ignoreMissings;
 		this.isCountingOnlyDistinct = countOnlyDistinct;
 	}
 
-	/**
-	 * This returns the attribute this aggregation function will derive the data from.
-	 */
-	public Attribute getSourceAttribute() {
+    /**
+     * This returns the attribute this aggregation function will derive the data from.
+     *
+     * @return the source attribute
+     */
+    public Attribute getSourceAttribute() {
 		return sourceAttribute;
 	}
 
-	/**
-	 * This returns the attribute that will be created in the resulting {@link ExampleSet} to get
-	 * the aggregated values for each group.
-	 */
-	public abstract Attribute getTargetAttribute();
+    /**
+     * This returns the attribute that will be created in the resulting {@link ExampleSet} to get
+     * the aggregated values for each group.
+     *
+     * @return the target attribute
+     */
+    public abstract Attribute getTargetAttribute();
 
-	/**
-	 * This will return the {@link Aggregator} object that computes the value of this particular
-	 * {@link AggregationFunction} for a specific group.
-	 */
-	public abstract Aggregator createAggregator();
+    /**
+     * This will return the {@link Aggregator} object that computes the value of this particular
+     * {@link AggregationFunction} for a specific group.
+     *
+     * @return the aggregator
+     */
+    public abstract Aggregator createAggregator();
 
-	/**
-	 * This determines, if any missing values will be just ignored or counted with the respective
-	 * aggregation function. Some functions might cope with that, others will just turn to be NaN.
-	 */
-	public boolean isIgnoringMissings() {
+    /**
+     * This determines, if any missing values will be just ignored or counted with the respective
+     * aggregation function. Some functions might cope with that, others will just turn to be NaN.
+     *
+     * @return the boolean
+     */
+    public boolean isIgnoringMissings() {
 		return isIgnoringMissings;
 	}
 
-	/**
-	 * This determines, if values are counted only once, if occurring more than once. Please note
-	 * that will increase the memory load drastically on numerical attributes.
-	 */
-	public boolean isCountingOnlyDistinct() {
+    /**
+     * This determines, if values are counted only once, if occurring more than once. Please note
+     * that will increase the memory load drastically on numerical attributes.
+     *
+     * @return the boolean
+     */
+    public boolean isCountingOnlyDistinct() {
 		return isCountingOnlyDistinct;
 	}
 
-	/**
-	 * This will return whether this {@link AggregationFunction} is compatible with the given
-	 * sourceAttribute.
-	 */
-	public abstract boolean isCompatible();
+    /**
+     * This will return whether this {@link AggregationFunction} is compatible with the given
+     * sourceAttribute.
+     *
+     * @return the boolean
+     */
+    public abstract boolean isCompatible();
 
-	/**
-	 * This method will fill in the default value of this aggregation function. It has to maintain
-	 * the mapping, if the function is nominal. The default value will be a NaN. Every subclass that
-	 * wants to change this, has to override this method.
-	 */
-	public void setDefault(Attribute attribute, DoubleArrayDataRow row) {
+    /**
+     * This method will fill in the default value of this aggregation function. It has to maintain
+     * the mapping, if the function is nominal. The default value will be a NaN. Every subclass that
+     * wants to change this, has to override this method.
+     *
+     * @param attribute the attribute
+     * @param row       the row
+     */
+    public void setDefault(Attribute attribute, DoubleArrayDataRow row) {
 		row.set(attribute, Double.NaN);
 	}
 
-	/**
-	 * This will create the {@link AggregationFunction} with the given name for the given source
-	 * Attribute.
-	 *
-	 * @param name
-	 *            please use one of the FUNCTION_NAME_* constants to prevent unnecessary errors
-	 */
-	public static final AggregationFunction createAggregationFunction(String name, Attribute sourceAttribute,
+    /**
+     * This will create the {@link AggregationFunction} with the given name for the given source
+     * Attribute.
+     *
+     * @param name              please use one of the FUNCTION_NAME_* constants to prevent unnecessary errors
+     * @param sourceAttribute   the source attribute
+     * @param ignoreMissings    the ignore missings
+     * @param countOnlyDistinct the count only distinct
+     * @return the aggregation function
+     * @throws OperatorException the operator exception
+     */
+    public static final AggregationFunction createAggregationFunction(String name, Attribute sourceAttribute,
 			boolean ignoreMissings, boolean countOnlyDistinct) throws OperatorException {
 		Class<? extends AggregationFunction> aggregationFunctionClass = AGGREATION_FUNCTIONS.get(name);
 		if (aggregationFunctionClass == null) {
@@ -306,17 +401,19 @@ public abstract class AggregationFunction {
 		}
 	}
 
-	/**
-	 * This will create the {@link AggregationFunction} with the given name for the given source
-	 * Attribute with a fallback to a legacy {@link AggregationFunction} if necessary.
-	 *
-	 * @param name
-	 *            please use one of the FUNCTION_NAME_* constants to prevent unnecessary errors
-	 * @param version
-	 *            The {@link OperatorVersion} of the executing operator to ensure that a legacy
-	 *            function will be used for old versions
-	 */
-	public static final AggregationFunction createAggregationFunction(String name, Attribute sourceAttribute,
+    /**
+     * This will create the {@link AggregationFunction} with the given name for the given source
+     * Attribute with a fallback to a legacy {@link AggregationFunction} if necessary.
+     *
+     * @param name              please use one of the FUNCTION_NAME_* constants to prevent unnecessary errors
+     * @param sourceAttribute   the source attribute
+     * @param ignoreMissings    the ignore missings
+     * @param countOnlyDistinct the count only distinct
+     * @param version           The {@link OperatorVersion} of the executing operator to ensure that a legacy            function will be used for old versions
+     * @return the aggregation function
+     * @throws OperatorException the operator exception
+     */
+    public static final AggregationFunction createAggregationFunction(String name, Attribute sourceAttribute,
 			boolean ignoreMissings, boolean countOnlyDistinct, OperatorVersion version) throws OperatorException {
 		Class<? extends AggregationFunction> aggregationFunctionClass = null;
 		// check if the legacy version should be used
@@ -345,16 +442,18 @@ public abstract class AggregationFunction {
 		}
 	}
 
-	/**
-	 * This method can be called in order to get the target attribute meta data after the
-	 * aggregation functions have been applied. This method can register errors on the given
-	 * InputPort (if not null), if there's an illegal state. If the state makes applying an
-	 * {@link AggregationFunction} impossible, this method will return null!
-	 *
-	 * @param aggregationFunctionName
-	 *            please use one of the FUNCTION_NAME_* constants to prevent unnecessary errors
-	 */
-	public static final AttributeMetaData getAttributeMetaData(String aggregationFunctionName,
+    /**
+     * This method can be called in order to get the target attribute meta data after the
+     * aggregation functions have been applied. This method can register errors on the given
+     * InputPort (if not null), if there's an illegal state. If the state makes applying an
+     * {@link AggregationFunction} impossible, this method will return null!
+     *
+     * @param aggregationFunctionName please use one of the FUNCTION_NAME_* constants to prevent unnecessary errors
+     * @param sourceAttributeMetaData the source attribute meta data
+     * @param inputPort               the input port
+     * @return the attribute meta data
+     */
+    public static final AttributeMetaData getAttributeMetaData(String aggregationFunctionName,
 			AttributeMetaData sourceAttributeMetaData, InputPort inputPort) {
 		AggregationFunctionMetaDataProvider metaDataProvider = AGGREGATION_FUNCTIONS_META_DATA_PROVIDER
 				.get(aggregationFunctionName);
@@ -370,11 +469,13 @@ public abstract class AggregationFunction {
 		}
 	}
 
-	/**
-	 * This method will return the array containing the names of all available aggregation
-	 * functions. The names are sorted according to natural ordering.
-	 */
-	public static String[] getAvailableAggregationFunctionNames() {
+    /**
+     * This method will return the array containing the names of all available aggregation
+     * functions. The names are sorted according to natural ordering.
+     *
+     * @return the string [ ]
+     */
+    public static String[] getAvailableAggregationFunctionNames() {
 		String[] names = new String[AGGREATION_FUNCTIONS.size()];
 		int i = 0;
 		for (String name : AGGREATION_FUNCTIONS.keySet()) {
@@ -385,14 +486,14 @@ public abstract class AggregationFunction {
 		return names;
 	}
 
-	/**
-	 * This method will return a list of aggregate functions that are compatible with the provided
-	 * valueType.
-	 *
-	 * @param valueType
-	 *            a valueType found in {@link Ontology}.
-	 */
-	public static List<String> getCompatibleAggregationFunctionNames(int valueType) {
+    /**
+     * This method will return a list of aggregate functions that are compatible with the provided
+     * valueType.
+     *
+     * @param valueType a valueType found in {@link Ontology}.
+     * @return the compatible aggregation function names
+     */
+    public static List<String> getCompatibleAggregationFunctionNames(int valueType) {
 		List<String> compatibleAggregationFunctions = new LinkedList<>();
 
 		Attribute sampleAttribute = AttributeFactory.createAttribute(valueType);
@@ -410,22 +511,28 @@ public abstract class AggregationFunction {
 		return compatibleAggregationFunctions;
 	}
 
-	/**
-	 * With this method extensions might register additional aggregation functions if needed.
-	 */
-	public static void registerNewAggregationFunction(String name, Class<? extends AggregationFunction> clazz,
+    /**
+     * With this method extensions might register additional aggregation functions if needed.
+     *
+     * @param name             the name
+     * @param clazz            the clazz
+     * @param metaDataProvider the meta data provider
+     */
+    public static void registerNewAggregationFunction(String name, Class<? extends AggregationFunction> clazz,
 			AggregationFunctionMetaDataProvider metaDataProvider) {
 		AGGREATION_FUNCTIONS.put(name, clazz);
 		AGGREGATION_FUNCTIONS_META_DATA_PROVIDER.put(name, metaDataProvider);
 	}
 
-	/**
-	 * This function is called once during the aggregation process, when all {@link Aggregator}s are
-	 * known. In this step post-processing like normalization etc. can be done.
-	 *
-	 * The default implementation does nothing.
-	 */
-	public void postProcessing(List<Aggregator> allAggregators) {
+    /**
+     * This function is called once during the aggregation process, when all {@link Aggregator}s are
+     * known. In this step post-processing like normalization etc. can be done.
+     * <p>
+     * The default implementation does nothing.
+     *
+     * @param allAggregators the all aggregators
+     */
+    public void postProcessing(List<Aggregator> allAggregators) {
 		// do nothing
 	}
 

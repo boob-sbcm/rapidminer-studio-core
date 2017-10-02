@@ -27,13 +27,22 @@
 package de.bwaldvogel.liblinear;
 
 /**
+ * The type L 2 r l 2 svr function.
+ *
  * @since 1.91
  */
 public class L2R_L2_SvrFunction extends L2R_L2_SvcFunction {
 
 	private double p;
 
-	public L2R_L2_SvrFunction(Problem prob, double[] C, double p) {
+    /**
+     * Instantiates a new L 2 r l 2 svr function.
+     *
+     * @param prob the prob
+     * @param C    the c
+     * @param p    the p
+     */
+    public L2R_L2_SvrFunction(Problem prob, double[] C, double p) {
 		super(prob, C);
 		this.p = p;
 	}

@@ -28,7 +28,6 @@ import java.util.Arrays;
  * midpoint of the both middle values will be returned as the median. The memory consumption will
  * grow linearly with the size of the dataset.
  *
- *
  * @author Marcel Seifert
  * @since 7.5
  */
@@ -45,19 +44,37 @@ public class MedianAggregator extends NumericalAggregator {
 		private int size = 0;
 		private double[] data;
 
-		public VariableDoubleArray() {
+        /**
+         * Instantiates a new Variable double array.
+         */
+        public VariableDoubleArray() {
 			data = new double[INITIAL_ARRAY_SIZE];
 		}
 
-		public int size() {
+        /**
+         * Size int.
+         *
+         * @return the int
+         */
+        public int size() {
 			return size;
 		}
 
-		public double[] getArray() {
+        /**
+         * Get array double [ ].
+         *
+         * @return the double [ ]
+         */
+        public double[] getArray() {
 			return data;
 		}
 
-		public void add(double value) {
+        /**
+         * Add.
+         *
+         * @param value the value
+         */
+        public void add(double value) {
 			if (data.length == size) {
 				int newSize = size + (size >> 2);
 				data = Arrays.copyOf(data, newSize);
@@ -72,7 +89,12 @@ public class MedianAggregator extends NumericalAggregator {
 	private int count = 0;
 	private double weightCount = 0;
 
-	public MedianAggregator(AggregationFunction function) {
+    /**
+     * Instantiates a new Median aggregator.
+     *
+     * @param function the function
+     */
+    public MedianAggregator(AggregationFunction function) {
 		super(function);
 	}
 

@@ -26,38 +26,75 @@ import java.io.Serializable;
 
 /**
  * A convenience class that contains the parameters of a PlattScalingModel.
- * 
+ *
  * @author Martin Scholz
  */
 public class PlattParameters implements Serializable {
 
 	private static final long serialVersionUID = 7677598913328136657L;
 
-	double a;
+    /**
+     * The A.
+     */
+    double a;
 
-	double b;
+    /**
+     * The B.
+     */
+    double b;
 
-	public PlattParameters() {}
+    /**
+     * Instantiates a new Platt parameters.
+     */
+    public PlattParameters() {}
 
-	public PlattParameters(double a, double b) {
+    /**
+     * Instantiates a new Platt parameters.
+     *
+     * @param a the a
+     * @param b the b
+     */
+    public PlattParameters(double a, double b) {
 		this.a = a;
 		this.b = b;
 	}
 
-	public double getA() {
+    /**
+     * Gets a.
+     *
+     * @return the a
+     */
+    public double getA() {
 		return a;
 	}
 
-	public double getB() {
+    /**
+     * Gets b.
+     *
+     * @return the b
+     */
+    public double getB() {
 		return b;
 	}
 
-	void readParameters(ObjectInputStream in) throws IOException {
+    /**
+     * Read parameters.
+     *
+     * @param in the in
+     * @throws IOException the io exception
+     */
+    void readParameters(ObjectInputStream in) throws IOException {
 		this.a = in.readDouble();
 		this.b = in.readDouble();
 	}
 
-	void writeParameters(ObjectOutputStream out) throws IOException {
+    /**
+     * Write parameters.
+     *
+     * @param out the out
+     * @throws IOException the io exception
+     */
+    void writeParameters(ObjectOutputStream out) throws IOException {
 		out.writeDouble(this.a);
 		out.writeDouble(this.b);
 	}

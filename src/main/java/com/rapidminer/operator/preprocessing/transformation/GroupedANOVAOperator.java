@@ -69,12 +69,29 @@ public class GroupedANOVAOperator extends Operator {
 	private OutputPort significanceOutput = getOutputPorts().createPort("significance");
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	public static final String PARAMETER_ANOVA_ATTRIBUTE = "anova_attribute";
-	public static final String PARAMETER_GROUP_BY_ATTRIBUTE = "group_by_attribute";
-	public static final String PARAMETER_SIGNIFICANCE_LEVEL = "significance_level";
-	public static final String PARAMETER_ONLY_DISTINCT = "only_distinct";
+    /**
+     * The constant PARAMETER_ANOVA_ATTRIBUTE.
+     */
+    public static final String PARAMETER_ANOVA_ATTRIBUTE = "anova_attribute";
+    /**
+     * The constant PARAMETER_GROUP_BY_ATTRIBUTE.
+     */
+    public static final String PARAMETER_GROUP_BY_ATTRIBUTE = "group_by_attribute";
+    /**
+     * The constant PARAMETER_SIGNIFICANCE_LEVEL.
+     */
+    public static final String PARAMETER_SIGNIFICANCE_LEVEL = "significance_level";
+    /**
+     * The constant PARAMETER_ONLY_DISTINCT.
+     */
+    public static final String PARAMETER_ONLY_DISTINCT = "only_distinct";
 
-	public GroupedANOVAOperator(OperatorDescription desc) {
+    /**
+     * Instantiates a new Grouped anova operator.
+     *
+     * @param desc the desc
+     */
+    public GroupedANOVAOperator(OperatorDescription desc) {
 		super(desc);
 		getTransformer().addRule(new GenerateNewMDRule(significanceOutput, SignificanceTestResult.class));
 		getTransformer().addPassThroughRule(exampleSetInput, exampleSetOutput);
@@ -90,7 +107,14 @@ public class GroupedANOVAOperator extends Operator {
 		significanceOutput.deliver(apply(exampleSet));
 	}
 
-	public SignificanceTestResult apply(ExampleSet exampleSet) throws OperatorException {
+    /**
+     * Apply significance test result.
+     *
+     * @param exampleSet the example set
+     * @return the significance test result
+     * @throws OperatorException the operator exception
+     */
+    public SignificanceTestResult apply(ExampleSet exampleSet) throws OperatorException {
 		// init and checks
 		String attributeName = getParameterAsString(PARAMETER_ANOVA_ATTRIBUTE);
 		String groupByAttributeName = getParameterAsString(PARAMETER_GROUP_BY_ATTRIBUTE);

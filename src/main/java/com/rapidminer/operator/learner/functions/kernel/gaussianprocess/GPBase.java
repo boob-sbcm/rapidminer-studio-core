@@ -24,35 +24,64 @@ import com.rapidminer.operator.ProcessStoppedException;
 
 /**
  * Defines the interface for the various RVM-implementations
- * 
+ *
  * @author Piotr Kasprzak
  */
 abstract public class GPBase {
 
-	protected Problem problem; // The problem to be learned
+    /**
+     * The Problem.
+     */
+    protected Problem problem; // The problem to be learned
 
-	protected Parameter parameter; // Various parameters influencing the learning process
+    /**
+     * The Parameter.
+     */
+    protected Parameter parameter; // Various parameters influencing the learning process
 
 	private Operator operator; // The base operator running this.
 
-	protected Model model = null; // The learned model
+    /**
+     * The Model.
+     */
+    protected Model model = null; // The learned model
 
-	/** Constructor */
-	public GPBase(Problem problem, Parameter parameter, Operator operator) {
+    /**
+     * Constructor  @param problem the problem
+     *
+     * @param problem   the problem
+     * @param parameter the parameter
+     * @param operator  the operator
+     */
+    public GPBase(Problem problem, Parameter parameter, Operator operator) {
 		this.problem = problem;
 		this.parameter = parameter;
 		this.operator = operator;
 	}
 
-	/** Does the hard work of learning the model from the inputs */
-	abstract public Model learn() throws Exception;
+    /**
+     * Does the hard work of learning the model from the inputs  @return the model
+     *
+     * @return the model
+     * @throws Exception the exception
+     */
+    abstract public Model learn() throws Exception;
 
-	/** Get the learned model */
-	public Model getModel() {
+    /**
+     * Get the learned model  @return the model
+     *
+     * @return the model
+     */
+    public Model getModel() {
 		return model;
 	}
 
-	public void checkForStop() throws ProcessStoppedException {
+    /**
+     * Check for stop.
+     *
+     * @throws ProcessStoppedException the process stopped exception
+     */
+    public void checkForStop() throws ProcessStoppedException {
 		operator.checkForStop();
 	}
 }

@@ -39,11 +39,21 @@ public abstract class AbstractEntropyWeighting extends AbstractWeighting {
 
 	private static final int PROGRESS_UPDATE_STEPS = 1_000_000;
 
-	public AbstractEntropyWeighting(OperatorDescription description) {
+    /**
+     * Instantiates a new Abstract entropy weighting.
+     *
+     * @param description the description
+     */
+    public AbstractEntropyWeighting(OperatorDescription description) {
 		super(description, true);
 	}
 
-	public abstract Criterion getEntropyCriterion();
+    /**
+     * Gets entropy criterion.
+     *
+     * @return the entropy criterion
+     */
+    public abstract Criterion getEntropyCriterion();
 
 	@Override
 	protected AttributeWeights calculateWeights(ExampleSet exampleSet) throws OperatorException {

@@ -54,15 +54,23 @@ public abstract class PSOOptimization implements Optimization {
 
 	private Operator operator;
 
-	/**
-	 * Creates a new PSO optimization with the given parameters.
-	 *
-	 * @deprecated Please use
-	 *             {@link #PSOOptimization(int popSize, int individualSize, int maxGen, int maxWithoutImprovement, double inertiaWeight, double localWeight, double globalWeight, double minValue, double maxValue, boolean dynamicInertiaWeight, RandomGenerator random, Operator op)}
-	 *             instead. Creating the PSOOptimization without an operator will not display the
-	 *             progress
-	 */
-	@Deprecated
+    /**
+     * Creates a new PSO optimization with the given parameters.
+     *
+     * @param popSize               the pop size
+     * @param individualSize        the individual size
+     * @param maxGen                the max gen
+     * @param maxWithoutImprovement the max without improvement
+     * @param inertiaWeight         the inertia weight
+     * @param localWeight           the local weight
+     * @param globalWeight          the global weight
+     * @param minValue              the min value
+     * @param maxValue              the max value
+     * @param dynamicInertiaWeight  the dynamic inertia weight
+     * @param random                the random
+     * @deprecated Please use             {@link #PSOOptimization(int popSize, int individualSize, int maxGen, int maxWithoutImprovement, double inertiaWeight, double localWeight, double globalWeight, double minValue, double maxValue, boolean dynamicInertiaWeight, RandomGenerator random, Operator op)}             instead. Creating the PSOOptimization without an operator will not display the             progress
+     */
+    @Deprecated
 	public PSOOptimization(int popSize, int individualSize, int maxGen, int maxWithoutImprovement, double inertiaWeight,
 			double localWeight, double globalWeight, double minValue, double maxValue, boolean dynamicInertiaWeight,
 			RandomGenerator random) {
@@ -84,10 +92,23 @@ public abstract class PSOOptimization implements Optimization {
 		this.population = createInitialPopulation(popSize, individualSize);
 	}
 
-	/**
-	 * Creates a new PSO optimization with the given parameters.
-	 */
-	public PSOOptimization(int popSize, int individualSize, int maxGen, int maxWithoutImprovement, double inertiaWeight,
+    /**
+     * Creates a new PSO optimization with the given parameters.
+     *
+     * @param popSize               the pop size
+     * @param individualSize        the individual size
+     * @param maxGen                the max gen
+     * @param maxWithoutImprovement the max without improvement
+     * @param inertiaWeight         the inertia weight
+     * @param localWeight           the local weight
+     * @param globalWeight          the global weight
+     * @param minValue              the min value
+     * @param maxValue              the max value
+     * @param dynamicInertiaWeight  the dynamic inertia weight
+     * @param random                the random
+     * @param op                    the op
+     */
+    public PSOOptimization(int popSize, int individualSize, int maxGen, int maxWithoutImprovement, double inertiaWeight,
 			double localWeight, double globalWeight, double minValue, double maxValue, boolean dynamicInertiaWeight,
 			RandomGenerator random, Operator op) {
 		this(popSize, individualSize, maxGen, maxWithoutImprovement, inertiaWeight, localWeight, globalWeight, minValue,
@@ -95,28 +116,50 @@ public abstract class PSOOptimization implements Optimization {
 		this.operator = op;
 	}
 
-	/**
-	 * Subclasses must implement this method to calculate the fitness of the given individual.
-	 * Please note that null might be returned for non-valid individuals.
-	 */
-	public abstract PerformanceVector evaluateIndividual(double[] individual) throws OperatorException;
+    /**
+     * Subclasses must implement this method to calculate the fitness of the given individual.
+     * Please note that null might be returned for non-valid individuals.
+     *
+     * @param individual the individual
+     * @return the performance vector
+     * @throws OperatorException the operator exception
+     */
+    public abstract PerformanceVector evaluateIndividual(double[] individual) throws OperatorException;
 
-	/**
-	 * This method is invoked after each evaluation. The default implementation does nothing but
-	 * subclasses might implement this method to support online plotting or logging.
-	 */
-	public void nextIteration() throws OperatorException {}
+    /**
+     * This method is invoked after each evaluation. The default implementation does nothing but
+     * subclasses might implement this method to support online plotting or logging.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public void nextIteration() throws OperatorException {}
 
-	public void setMinValue(double minValue) {
+    /**
+     * Sets min value.
+     *
+     * @param minValue the min value
+     */
+    public void setMinValue(double minValue) {
 		this.minValue = minValue;
 	}
 
-	public void setMaxValue(double maxValue) {
+    /**
+     * Sets max value.
+     *
+     * @param maxValue the max value
+     */
+    public void setMaxValue(double maxValue) {
 		this.maxValue = maxValue;
 	}
 
-	/** Creates the initial population. */
-	protected Population createInitialPopulation(int popSize, int individualSize) {
+    /**
+     * Creates the initial population.  @param popSize the pop size
+     *
+     * @param popSize        the pop size
+     * @param individualSize the individual size
+     * @return the population
+     */
+    protected Population createInitialPopulation(int popSize, int individualSize) {
 		Population initPop = new Population(popSize, individualSize);
 		for (int i = 0; i < popSize; i++) {
 			double[] values = new double[individualSize];
@@ -128,7 +171,22 @@ public abstract class PSOOptimization implements Optimization {
 		return initPop;
 	}
 
-	public void reinit(int popSize, int individualSize, int maxGen, int maxWithoutImprovement, double inertiaWeight,
+    /**
+     * Reinit.
+     *
+     * @param popSize               the pop size
+     * @param individualSize        the individual size
+     * @param maxGen                the max gen
+     * @param maxWithoutImprovement the max without improvement
+     * @param inertiaWeight         the inertia weight
+     * @param localWeight           the local weight
+     * @param globalWeight          the global weight
+     * @param minValue              the min value
+     * @param maxValue              the max value
+     * @param dynamicInertiaWeight  the dynamic inertia weight
+     * @param random                the random
+     */
+    public void reinit(int popSize, int individualSize, int maxGen, int maxWithoutImprovement, double inertiaWeight,
 			double localWeight, double globalWeight, double minValue, double maxValue, boolean dynamicInertiaWeight,
 			RandomGenerator random) {
 		this.maxGen = maxGen;

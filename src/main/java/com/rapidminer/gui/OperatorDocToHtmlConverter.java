@@ -59,19 +59,33 @@ import com.rapidminer.tools.Tools;
  * This class handles the conversion of the operator documentation XML to an HTML page.
  *
  * @author Philipp Kersting, Marco Boeck, Marcel Seifert
- *
  */
 public class OperatorDocToHtmlConverter {
 
 	private static final TransformerFactory XSLT_TRANSFORMER_FACTORY = TransformerFactory.newInstance();
-	public static final String STYLESHEET_RESOURCE = "/com/rapidminer/resources/documentationview.xslt";
+    /**
+     * The constant STYLESHEET_RESOURCE.
+     */
+    public static final String STYLESHEET_RESOURCE = "/com/rapidminer/resources/documentationview.xslt";
 	private static final byte[] XSLT_CONTENT;
 	private static final int MAX_CATEROGIES_DISPLAYED_IN_HELP = 10;
 
-	static final String INTEGER_LABEL = I18N.getGUILabel("attribute_type.integer");
-	static final String LONG_LABEL = I18N.getGUILabel("attribute_type.long");
-	static final String REAL_LABEL = I18N.getGUILabel("attribute_type.real");
-	static final String SELECTION_LABEL = I18N.getGUILabel("attribute_type.selection");
+    /**
+     * The Integer label.
+     */
+    static final String INTEGER_LABEL = I18N.getGUILabel("attribute_type.integer");
+    /**
+     * The Long label.
+     */
+    static final String LONG_LABEL = I18N.getGUILabel("attribute_type.long");
+    /**
+     * The Real label.
+     */
+    static final String REAL_LABEL = I18N.getGUILabel("attribute_type.real");
+    /**
+     * The Selection label.
+     */
+    static final String SELECTION_LABEL = I18N.getGUILabel("attribute_type.selection");
 	private static final String STRING_LABEL = I18N.getGUILabel("attribute_type.string");
 	private static final String LIST_LABEL = I18N.getGUILabel("attribute_type.list");
 	private static final String ENUMERATION_LABEL = I18N.getGUILabel("attribute_type.enumeration");
@@ -94,18 +108,16 @@ public class OperatorDocToHtmlConverter {
 		XSLT_CONTENT = content;
 	}
 
-	/**
-	 * Applies the documentation XSLT to the specified XML source and returns the transformed HTML
-	 * as {@link String}.
-	 *
-	 * @param xmlSource
-	 *            the source containing the documentation XML
-	 * @return the transformed documentation XML as HTML
-	 * @throws TransformerException
-	 *             in case the transformation goes wrong
-	 * @since 6.4.0
-	 */
-	public static String applyXSLTTransformation(Source xmlSource) throws TransformerException {
+    /**
+     * Applies the documentation XSLT to the specified XML source and returns the transformed HTML
+     * as {@link String}.
+     *
+     * @param xmlSource the source containing the documentation XML
+     * @return the transformed documentation XML as HTML
+     * @throws TransformerException in case the transformation goes wrong
+     * @since 6.4.0
+     */
+    public static String applyXSLTTransformation(Source xmlSource) throws TransformerException {
 		StringWriter buffer = new StringWriter();
 		Source xsltSource = new StreamSource(new ByteArrayInputStream(XSLT_CONTENT));
 		Transformer trans = XSLT_TRANSFORMER_FACTORY.newTransformer(xsltSource);
@@ -113,24 +125,23 @@ public class OperatorDocToHtmlConverter {
 		return buffer.toString();
 	}
 
-	/**
-	 * Replaces underscores in the given {@link String} with a blank.
-	 *
-	 * @param string
-	 * @return
-	 */
-	public static String insertBlanks(String string) {
+    /**
+     * Replaces underscores in the given {@link String} with a blank.
+     *
+     * @param string the string
+     * @return string string
+     */
+    public static String insertBlanks(String string) {
 		return string.replace('_', ' ');
 	}
 
-	/**
-	 * Returns the name of a type in exchange for its class' name.
-	 *
-	 * @param type
-	 *            the class' name as String
-	 * @return the short name of the class as String
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * Returns the name of a type in exchange for its class' name.
+     *
+     * @param type the class' name as String
+     * @return the short name of the class as String
+     */
+    @SuppressWarnings("unchecked")
 	public static String getTypeNameForType(String type) {
 		if (type == null || type.isEmpty()) {
 			return "";
@@ -148,7 +159,13 @@ public class OperatorDocToHtmlConverter {
 		}
 	}
 
-	static String getTypeNameForType(Class<? extends IOObject> typeClass) {
+    /**
+     * Gets type name for type.
+     *
+     * @param typeClass the type class
+     * @return the type name for type
+     */
+    static String getTypeNameForType(Class<? extends IOObject> typeClass) {
 		String typeName;
 		if (typeClass != null) {
 			typeName = RendererService.getName(typeClass);
@@ -167,14 +184,13 @@ public class OperatorDocToHtmlConverter {
 		return typeName;
 	}
 
-	/**
-	 * Returns the path to the icon that belongs to the given operator key.
-	 *
-	 * @param operatorKey
-	 *            the key of the operator
-	 * @return the path to icon for the given operator key
-	 */
-	public static String getIconNameForOperator(String operatorKey) {
+    /**
+     * Returns the path to the icon that belongs to the given operator key.
+     *
+     * @param operatorKey the key of the operator
+     * @return the path to icon for the given operator key
+     */
+    public static String getIconNameForOperator(String operatorKey) {
 		if (operatorKey == null) {
 			LogService.getRoot().finer("Tried to retrieve icon name for null operatorKey!");
 			return null;
@@ -198,7 +214,13 @@ public class OperatorDocToHtmlConverter {
 		}
 	}
 
-	public static String getIconNameForOperatorSmall(String operatorKey) {
+    /**
+     * Gets icon name for operator small.
+     *
+     * @param operatorKey the operator key
+     * @return the icon name for operator small
+     */
+    public static String getIconNameForOperatorSmall(String operatorKey) {
 		if (operatorKey == null) {
 			LogService.getRoot().finer("Tried to retrieve icon name for null operatorKey!");
 			return null;
@@ -216,7 +238,13 @@ public class OperatorDocToHtmlConverter {
 		return SwingTools.getIconPath("16/" + operatorDescription.getIconName());
 	}
 
-	public static String getOperatorNameForKey(String operatorKey) {
+    /**
+     * Gets operator name for key.
+     *
+     * @param operatorKey the operator key
+     * @return the operator name for key
+     */
+    public static String getOperatorNameForKey(String operatorKey) {
 		OperatorDescription operatorDescription = OperatorService.getOperatorDescription(operatorKey);
 		if (operatorDescription != null) {
 			return operatorDescription.getName();
@@ -225,7 +253,13 @@ public class OperatorDocToHtmlConverter {
 		}
 	}
 
-	public static String getPluginNameForOperator(String operatorKey) {
+    /**
+     * Gets plugin name for operator.
+     *
+     * @param operatorKey the operator key
+     * @return the plugin name for operator
+     */
+    public static String getPluginNameForOperator(String operatorKey) {
 		OperatorDescription operatorDescription;
 		int index = operatorKey.indexOf(".");
 		if (index != -1) {
@@ -240,17 +274,15 @@ public class OperatorDocToHtmlConverter {
 		return operatorDescription.getProviderName();
 	}
 
-	/**
-	 * Gets the {@link ParameterType} of the given operator key and parameter name as an i18n
-	 * string. This is used if no type is specified in the documentation xml.
-	 *
-	 * @param operatorKey
-	 *            The key of the operator
-	 * @param parameterName
-	 *            The name of the parameter
-	 * @return An i18n string containing the type, if one can be found. Empty string else.
-	 */
-	public static String getParameterType(String operatorKey, String parameterName) {
+    /**
+     * Gets the {@link ParameterType} of the given operator key and parameter name as an i18n
+     * string. This is used if no type is specified in the documentation xml.
+     *
+     * @param operatorKey   The key of the operator
+     * @param parameterName The name of the parameter
+     * @return An i18n string containing the type, if one can be found. Empty string else.
+     */
+    public static String getParameterType(String operatorKey, String parameterName) {
 		Operator operator = null;
 		int index = operatorKey.indexOf(".");
 		// remove operator group if existent
@@ -308,17 +340,15 @@ public class OperatorDocToHtmlConverter {
 
 	}
 
-	/**
-	 * Gets the ParameterRange of the given operator key and parameter name as a string. This is
-	 * used if no range is specified in the documentation xml.
-	 *
-	 * @param operatorKey
-	 *            The key of the operator
-	 * @param parameterName
-	 *            The name of the parameter
-	 * @return A string containing the range, if one can be found. Empty string else.
-	 */
-	public static String getParameterRange(String operatorKey, String parameterName) {
+    /**
+     * Gets the ParameterRange of the given operator key and parameter name as a string. This is
+     * used if no range is specified in the documentation xml.
+     *
+     * @param operatorKey   The key of the operator
+     * @param parameterName The name of the parameter
+     * @return A string containing the range, if one can be found. Empty string else.
+     */
+    public static String getParameterRange(String operatorKey, String parameterName) {
 		Operator operator = null;
 		int index = operatorKey.indexOf(".");
 		// remove operator group if existent
@@ -438,17 +468,15 @@ public class OperatorDocToHtmlConverter {
 		}
 	}
 
-	/**
-	 * Gets the default value of the given operator key and parameter name as a string. This is used
-	 * if no default value is specified in the documentation xml.
-	 *
-	 * @param operatorKey
-	 *            The key of the operator
-	 * @param parameterName
-	 *            The name of the parameter
-	 * @return A string containing the default value, if one can be found. Empty string else.
-	 */
-	public static String getParameterDefault(String operatorKey, String parameterName) {
+    /**
+     * Gets the default value of the given operator key and parameter name as a string. This is used
+     * if no default value is specified in the documentation xml.
+     *
+     * @param operatorKey   The key of the operator
+     * @param parameterName The name of the parameter
+     * @return A string containing the default value, if one can be found. Empty string else.
+     */
+    public static String getParameterDefault(String operatorKey, String parameterName) {
 		Operator operator = null;
 		int index = operatorKey.indexOf(".");
 		// remove operator group if existent
@@ -486,17 +514,14 @@ public class OperatorDocToHtmlConverter {
 		}
 	}
 
-	/**
-	 * Returns if the given parameter is optional.
-	 *
-	 * @param operatorKey
-	 *            The key of the operator
-	 * @param parameterName
-	 *            The name of the parameter
-	 * @return {@code true} if the parameter is optional. {@code false} if the parameter is not
-	 *         optional or if no parameter exists for the given name and operator.
-	 */
-	public static boolean isParameterOptional(String operatorKey, String parameterName) {
+    /**
+     * Returns if the given parameter is optional.
+     *
+     * @param operatorKey   The key of the operator
+     * @param parameterName The name of the parameter
+     * @return {@code true} if the parameter is optional. {@code false} if the parameter is not         optional or if no parameter exists for the given name and operator.
+     */
+    public static boolean isParameterOptional(String operatorKey, String parameterName) {
 		Operator operator = null;
 		int index = operatorKey.indexOf(".");
 		if (index != -1) {
@@ -531,15 +556,14 @@ public class OperatorDocToHtmlConverter {
 		}
 	}
 
-	/**
-	 * Searches for a class with the given name and returns the path of the resource. Used for the
-	 * images of the ports' data types.
-	 *
-	 * @param type
-	 *            the class' name as String
-	 * @return the path of the resource of the corresponding icon.
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * Searches for a class with the given name and returns the path of the resource. Used for the
+     * images of the ports' data types.
+     *
+     * @param type the class' name as String
+     * @return the path of the resource of the corresponding icon.
+     */
+    @SuppressWarnings("unchecked")
 	public static String getIconNameForType(String type) {
 		String iconName;
 		if (type == null || type.isEmpty()) {
@@ -561,8 +585,14 @@ public class OperatorDocToHtmlConverter {
 		String path = SwingTools.getIconPath("24/" + iconName);
 		return path;
 	}
-	
-	public static String getTagHtmlForKey(String operatorKey) {
+
+    /**
+     * Gets tag html for key.
+     *
+     * @param operatorKey the operator key
+     * @return the tag html for key
+     */
+    public static String getTagHtmlForKey(String operatorKey) {
 		// operator keys in the documentation begin with "operator.", so remove that
 		int index = operatorKey.indexOf(".");
 		if (index != -1) {
@@ -572,7 +602,13 @@ public class OperatorDocToHtmlConverter {
 		return getTagHtmlForDescription(operatorDescription);
 	}
 
-	static String getTagHtmlForDescription(OperatorDescription operatorDescription) {
+    /**
+     * Gets tag html for description.
+     *
+     * @param operatorDescription the operator description
+     * @return the tag html for description
+     */
+    static String getTagHtmlForDescription(OperatorDescription operatorDescription) {
 		if (operatorDescription != null) {
 			List<String> tags = operatorDescription.getTags();
 			if(tags != null && !tags.isEmpty()){

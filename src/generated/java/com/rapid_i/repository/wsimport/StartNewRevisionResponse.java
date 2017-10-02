@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for startNewRevisionResponse complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="startNewRevisionResponse">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "startNewRevisionResponse", propOrder = {
@@ -49,16 +47,16 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class StartNewRevisionResponse {
 
+    /**
+     * The Return.
+     */
     @XmlElement(name = "return")
     protected Response _return;
 
     /**
      * Gets the value of the return property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Response }
-     *     
+     *
+     * @return possible object is     {@link Response }
      */
     public Response getReturn() {
         return _return;
@@ -66,11 +64,8 @@ public class StartNewRevisionResponse {
 
     /**
      * Sets the value of the return property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Response }
-     *     
+     *
+     * @param value allowed object is     {@link Response }
      */
     public void setReturn(Response value) {
         this._return = value;

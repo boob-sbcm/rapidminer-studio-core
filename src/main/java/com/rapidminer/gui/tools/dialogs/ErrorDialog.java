@@ -29,6 +29,7 @@ import com.rapidminer.tools.I18N;
 
 
 /**
+ * The type Error dialog.
  *
  * @author Tobias Malbrecht
  */
@@ -36,32 +37,27 @@ public class ErrorDialog extends ButtonDialog {
 
 	private static final long serialVersionUID = -5825873580778775409L;
 
-	/**
-	 * Displays an error dialog.
-	 *
-	 * @param key
-	 *            the i18n key
-	 * @param arguments
-	 *            further i18n arguments
-	 * @deprecated use {@link #ErrorDialog(Window, String, Object...)} instead
-	 */
-	@Deprecated
+    /**
+     * Displays an error dialog.
+     *
+     * @param key       the i18n key
+     * @param arguments further i18n arguments
+     * @deprecated use {@link #ErrorDialog(Window, String, Object...)} instead
+     */
+    @Deprecated
 	public ErrorDialog(String key, Object... arguments) {
 		this(ApplicationFrame.getApplicationFrame(), key, arguments);
 	}
 
-	/**
-	 * Displays an error dialog.
-	 *
-	 * @param owner
-	 *            the owner window where this dialog is displayed in
-	 * @param key
-	 *            the i18n key
-	 * @param arguments
-	 *            further i18n arguments
-	 * @since 6.5.0
-	 */
-	public ErrorDialog(Window owner, String key, Object... arguments) {
+    /**
+     * Displays an error dialog.
+     *
+     * @param owner     the owner window where this dialog is displayed in
+     * @param key       the i18n key
+     * @param arguments further i18n arguments
+     * @since 6.5.0
+     */
+    public ErrorDialog(Window owner, String key, Object... arguments) {
 		super(owner, "error." + key, ModalityType.APPLICATION_MODAL,
 				arguments);
 		layoutDefault(new JPanel(), makeOkButton());

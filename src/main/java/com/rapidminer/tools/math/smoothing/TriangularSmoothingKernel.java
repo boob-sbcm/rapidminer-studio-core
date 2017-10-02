@@ -21,7 +21,7 @@ package com.rapidminer.tools.math.smoothing;
 /**
  * This class implements a triangular smoothing kernel. If distance is 0, the weight is 1, with
  * growing distance the weight will decrease linearly to zero.
- * 
+ *
  * @author Sebastian Land
  */
 public class TriangularSmoothingKernel extends SmoothingKernel {

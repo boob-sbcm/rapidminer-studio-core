@@ -60,7 +60,6 @@ import com.rapidminer.tools.LogService;
  * {@link PlotterControlPanel}.
  *
  * @author David Arnu, Michael Knopf
- *
  */
 public class PlotterChooser extends JButton {
 
@@ -97,11 +96,11 @@ public class PlotterChooser extends JButton {
 		private final Font defaultFont; // see constructor
 		private final Font hoverFont; // see constructor
 
-		/**
-		 * Defines the layout of the panel once for all cells. Instances are reused for cell
-		 * rendering.
-		 */
-		public PlotterListCellRenderer() {
+        /**
+         * Defines the layout of the panel once for all cells. Instances are reused for cell
+         * rendering.
+         */
+        public PlotterListCellRenderer() {
 			super();
 			// setup label
 			this.label = new JLabel();
@@ -175,7 +174,10 @@ public class PlotterChooser extends JButton {
 
 	private JList<String> plotterList = new JList<>(new DefaultListModel<>());
 
-	public PlotterChooser() {
+    /**
+     * Instantiates a new Plotter chooser.
+     */
+    public PlotterChooser() {
 		super();
 
 		ListHoverHelper.install(plotterList);
@@ -227,7 +229,12 @@ public class PlotterChooser extends JButton {
 		});
 	}
 
-	public void setSettings(PlotterConfigurationModel plotterSettings) {
+    /**
+     * Sets settings.
+     *
+     * @param plotterSettings the plotter settings
+     */
+    public void setSettings(PlotterConfigurationModel plotterSettings) {
 		populateList(plotterSettings);
 	}
 
@@ -252,12 +259,20 @@ public class PlotterChooser extends JButton {
 
 	}
 
-	public void removeAllItems() {
+    /**
+     * Remove all items.
+     */
+    public void removeAllItems() {
 		((DefaultListModel<String>) plotterList.getModel()).clear();
 
 	}
 
-	public void addItem(String item) {
+    /**
+     * Add item.
+     *
+     * @param item the item
+     */
+    public void addItem(String item) {
 		((DefaultListModel<String>) plotterList.getModel()).addElement(item);
 		if (plotterList.getModel().getSize() == 1) {
 			plotterList.setSelectedIndex(0);
@@ -265,7 +280,12 @@ public class PlotterChooser extends JButton {
 		}
 	}
 
-	public void setSelectedItem(String plotterName) {
+    /**
+     * Sets selected item.
+     *
+     * @param plotterName the plotter name
+     */
+    public void setSelectedItem(String plotterName) {
 		plotterList.setSelectedValue(plotterName, true);
 		updateButtonText();
 
@@ -281,26 +301,30 @@ public class PlotterChooser extends JButton {
 		setText((String) getSelectedItem());
 	}
 
-	public Object getSelectedItem() {
+    /**
+     * Gets selected item.
+     *
+     * @return the selected item
+     */
+    public Object getSelectedItem() {
 		return plotterList.getSelectedValue();
 	}
 
-	/**
-	 * Query if the small plot preview icons are used
-	 *
-	 * @return true, if the small icons are used
-	 */
-	public boolean isSmallIconsUsed() {
+    /**
+     * Query if the small plot preview icons are used
+     *
+     * @return true, if the small icons are used
+     */
+    public boolean isSmallIconsUsed() {
 		return smallIcons;
 	}
 
-	/**
-	 * Set to true if the small plot preview icons should be used
-	 *
-	 * @param smallIcons
-	 *            true, for the small icons to be used
-	 */
-	public void setUseSmallIcons(boolean smallIcons) {
+    /**
+     * Set to true if the small plot preview icons should be used
+     *
+     * @param smallIcons true, for the small icons to be used
+     */
+    public void setUseSmallIcons(boolean smallIcons) {
 		this.smallIcons = smallIcons;
 	}
 

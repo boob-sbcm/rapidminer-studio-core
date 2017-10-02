@@ -23,7 +23,7 @@ import com.rapidminer.example.Attribute;
 
 /**
  * This is an {@link Item} based on boolean attributes.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class BooleanAttributeItem implements Item {
@@ -34,7 +34,12 @@ public class BooleanAttributeItem implements Item {
 
 	private String name;
 
-	public BooleanAttributeItem(Attribute item) {
+    /**
+     * Instantiates a new Boolean attribute item.
+     *
+     * @param item the item
+     */
+    public BooleanAttributeItem(Attribute item) {
 		this.name = item.getName();
 	}
 
@@ -48,7 +53,12 @@ public class BooleanAttributeItem implements Item {
 		this.frequency++;
 	}
 
-	public void increaseFrequency(double value) {
+    /**
+     * Increase frequency.
+     *
+     * @param value the value
+     */
+    public void increaseFrequency(double value) {
 		this.frequency += value;
 	}
 
@@ -80,7 +90,12 @@ public class BooleanAttributeItem implements Item {
 		}
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return name;
 	}
 

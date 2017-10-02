@@ -27,13 +27,19 @@ import com.rapidminer.operator.ports.metadata.MetaData;
 /**
  * This extender is just for operators which don't have any real input. It just should ensure the
  * correct execution order. And throw a warning if nothing is connected.
- * 
+ *
  * @author Sebastian Land
- * 
  */
 public class DummyPortPairExtender extends PortPairExtender {
 
-	public DummyPortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts) {
+    /**
+     * Instantiates a new Dummy port pair extender.
+     *
+     * @param name     the name
+     * @param inPorts  the in ports
+     * @param outPorts the out ports
+     */
+    public DummyPortPairExtender(String name, InputPorts inPorts, OutputPorts outPorts) {
 		super(name, inPorts, outPorts);
 	}
 

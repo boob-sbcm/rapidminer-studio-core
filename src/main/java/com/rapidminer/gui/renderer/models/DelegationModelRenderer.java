@@ -28,7 +28,8 @@ import java.awt.Component;
 
 
 /**
- * 
+ * The type Delegation model renderer.
+ *
  * @author Sebastian Land
  */
 public class DelegationModelRenderer extends AbstractRenderer {

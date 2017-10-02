@@ -31,10 +31,10 @@ import com.rapidminer.parameter.UndefinedParameterError;
  */
 public class FileExistsCondition implements ProcessBranchCondition {
 
-	/**
-	 * Constructor used by reflection.
-	 */
-	public FileExistsCondition() {}
+    /**
+     * Constructor used by reflection.
+     */
+    public FileExistsCondition() {}
 
 	/**
 	 * This method checks if the file with pathname value exists.

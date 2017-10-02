@@ -20,7 +20,7 @@ package com.rapidminer.example.table;
 
 /**
  * Implementation of DataRow that is backed by a double array.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa Exp $
  */
 public class DoubleArrayDataRow extends DataRow {
@@ -30,16 +30,30 @@ public class DoubleArrayDataRow extends DataRow {
 	/** Holds the data for all attributes. */
 	private double[] data;
 
-	/** Creates a new data row backed by an primitive array. */
-	public DoubleArrayDataRow(double[] data) {
+    /**
+     * Creates a new data row backed by an primitive array.  @param data the data
+     *
+     * @param data the data
+     */
+    public DoubleArrayDataRow(double[] data) {
 		this.data = data;
 	}
 
-	public DoubleArrayDataRow(DoubleArrayDataRow dataRow) {
+    /**
+     * Instantiates a new Double array data row.
+     *
+     * @param dataRow the data row
+     */
+    public DoubleArrayDataRow(DoubleArrayDataRow dataRow) {
 		this.data = dataRow.getData();
 	}
 
-	public double[] getData() {
+    /**
+     * Get data double [ ].
+     *
+     * @return the double [ ]
+     */
+    public double[] getData() {
 		return data;
 	}
 

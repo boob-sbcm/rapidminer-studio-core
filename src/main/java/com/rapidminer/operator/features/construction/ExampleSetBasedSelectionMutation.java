@@ -28,7 +28,7 @@ import java.util.Random;
 
 /**
  * Inverts the used bit for every feature of every example set with a given fixed probability.
- * 
+ *
  * @author Ingo Mierswa Exp $
  */
 public class ExampleSetBasedSelectionMutation extends ExampleSetBasedIndividualOperator {
@@ -43,7 +43,16 @@ public class ExampleSetBasedSelectionMutation extends ExampleSetBasedIndividualO
 
 	private int exactNumber;
 
-	public ExampleSetBasedSelectionMutation(double probability, Random random, int minNumber, int maxNumber, int exactNumber) {
+    /**
+     * Instantiates a new Example set based selection mutation.
+     *
+     * @param probability the probability
+     * @param random      the random
+     * @param minNumber   the min number
+     * @param maxNumber   the max number
+     * @param exactNumber the exact number
+     */
+    public ExampleSetBasedSelectionMutation(double probability, Random random, int minNumber, int maxNumber, int exactNumber) {
 		this.probability = probability;
 		this.random = random;
 		this.minNumber = minNumber;

@@ -26,14 +26,19 @@ import javax.swing.JComponent;
 
 /**
  * The graph object viewer for nodes in a similarity graph.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DefaultObjectViewer implements GraphObjectViewer {
 
 	private Object visualizationTarget;
 
-	public DefaultObjectViewer(Object visualizationTarget) {
+    /**
+     * Instantiates a new Default object viewer.
+     *
+     * @param visualizationTarget the visualization target
+     */
+    public DefaultObjectViewer(Object visualizationTarget) {
 		this.visualizationTarget = visualizationTarget;
 	}
 

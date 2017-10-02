@@ -35,9 +35,9 @@ import com.vlsolutions.swing.docking.ws.WorkspaceException;
 
 
 /**
+ * The type Perspective.
  *
  * @author Simon Fischer
- *
  */
 @SuppressWarnings("deprecation")
 public class Perspective {
@@ -49,27 +49,54 @@ public class Perspective {
 	private final PerspectiveModel model;
 	private final PerspectiveProperties properties = new PerspectiveProperties();
 
-	public Perspective(ApplicationPerspectives owner, String name) {
+    /**
+     * Instantiates a new Perspective.
+     *
+     * @param owner the owner
+     * @param name  the name
+     */
+    public Perspective(ApplicationPerspectives owner, String name) {
 		this.name = name;
 		this.owner = owner;
 		this.model = null;
 	}
 
-	public Perspective(PerspectiveModel model, String name) {
+    /**
+     * Instantiates a new Perspective.
+     *
+     * @param model the model
+     * @param name  the name
+     */
+    public Perspective(PerspectiveModel model, String name) {
 		this.name = name;
 		this.model = model;
 		this.owner = null;
 	}
 
-	public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
 		return name;
 	}
 
-	public Workspace getWorkspace() {
+    /**
+     * Gets workspace.
+     *
+     * @return the workspace
+     */
+    public Workspace getWorkspace() {
 		return workspace;
 	}
 
-	public void store(DockingContext dockingContext) {
+    /**
+     * Store.
+     *
+     * @param dockingContext the docking context
+     */
+    public void store(DockingContext dockingContext) {
 		properties.store();
 		try {
 			workspace.loadFrom(dockingContext);
@@ -81,7 +108,12 @@ public class Perspective {
 
 	}
 
-	protected void apply(DockingContext dockingContext) {
+    /**
+     * Apply.
+     *
+     * @param dockingContext the docking context
+     */
+    protected void apply(DockingContext dockingContext) {
 		try {
 			workspace.apply(dockingContext);
 			model.notifyChangeListener();
@@ -92,12 +124,20 @@ public class Perspective {
 		properties.apply();
 	}
 
-	File getFile() {
+    /**
+     * Gets file.
+     *
+     * @return the file
+     */
+    File getFile() {
 		return FileSystemService
 				.getUserConfigFile("vlperspective-" + (isUserDefined() ? "user-" : "predefined-") + name + ".xml");
 	}
 
-	public void save() {
+    /**
+     * Save.
+     */
+    public void save() {
 		File file = getFile();
 		OutputStream out = null;
 		try {
@@ -116,7 +156,10 @@ public class Perspective {
 		}
 	}
 
-	public void load() {
+    /**
+     * Load.
+     */
+    public void load() {
 		LogService.getRoot().log(Level.FINE, "com.rapidminer.gui.Perspective.loading_perspective", getName());
 		File file = getFile();
 		if (!file.exists()) {
@@ -153,15 +196,28 @@ public class Perspective {
 		}
 	}
 
-	public void setUserDefined(boolean b) {
+    /**
+     * Sets user defined.
+     *
+     * @param b the b
+     */
+    public void setUserDefined(boolean b) {
 		this.userDefined = b;
 	}
 
-	public boolean isUserDefined() {
+    /**
+     * Is user defined boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isUserDefined() {
 		return this.userDefined;
 	}
 
-	public void delete() {
+    /**
+     * Delete.
+     */
+    public void delete() {
 		File file = getFile();
 		if (file.exists()) {
 			file.delete();

@@ -25,7 +25,7 @@ import com.rapidminer.tools.math.similarity.DistanceMeasure;
 
 /**
  * This is a wrapper around a {@link DistanceMeasure}.
- * 
+ *
  * @author Sebastian Land
  */
 public class SimilarityMeasureObject extends ResultObjectAdapter {
@@ -35,24 +35,50 @@ public class SimilarityMeasureObject extends ResultObjectAdapter {
 	private DistanceMeasure measure;
 	private ExampleSet exampleSet;
 
-	public SimilarityMeasureObject(DistanceMeasure measure, ExampleSet exampleSet) {
+    /**
+     * Instantiates a new Similarity measure object.
+     *
+     * @param measure    the measure
+     * @param exampleSet the example set
+     */
+    public SimilarityMeasureObject(DistanceMeasure measure, ExampleSet exampleSet) {
 		this.measure = measure;
 		this.exampleSet = exampleSet;
 	}
 
-	public DistanceMeasure getDistanceMeasure() {
+    /**
+     * Gets distance measure.
+     *
+     * @return the distance measure
+     */
+    public DistanceMeasure getDistanceMeasure() {
 		return measure;
 	}
 
-	public ExampleSet getExampleSet() {
+    /**
+     * Gets example set.
+     *
+     * @return the example set
+     */
+    public ExampleSet getExampleSet() {
 		return exampleSet;
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "sim";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "Similarity Measure";
 	}
 

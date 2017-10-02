@@ -81,11 +81,22 @@ public class TreeModelGraphCreator extends GraphCreatorAdaptor {
 
 	private Map<String, List<String>> pathToRootMap = new HashMap<>();
 
-	public TreeModelGraphCreator(TreeModel model) {
+    /**
+     * Instantiates a new Tree model graph creator.
+     *
+     * @param model the model
+     */
+    public TreeModelGraphCreator(TreeModel model) {
 		this.model = model;
 	}
 
-	public Tree getTree(String id) {
+    /**
+     * Gets tree.
+     *
+     * @param id the id
+     * @return the tree
+     */
+    public Tree getTree(String id) {
 		return vertexMap.get(id);
 	}
 
@@ -206,10 +217,12 @@ public class TreeModelGraphCreator extends GraphCreatorAdaptor {
 		}
 	}
 
-	/**
-	 * Returns the model.
-	 */
-	public TreeModel getModel() {
+    /**
+     * Returns the model.
+     *
+     * @return the model
+     */
+    public TreeModel getModel() {
 		return model;
 	}
 

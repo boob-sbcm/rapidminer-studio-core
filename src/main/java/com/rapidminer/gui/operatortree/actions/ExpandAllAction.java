@@ -31,7 +31,7 @@ import javax.swing.Icon;
 
 /**
  * Start the corresponding action.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class ExpandAllAction extends AbstractAction {
@@ -51,7 +51,13 @@ public class ExpandAllAction extends AbstractAction {
 
 	private OperatorTree operatorTree;
 
-	public ExpandAllAction(OperatorTree operatorTree, IconSize size) {
+    /**
+     * Instantiates a new Expand all action.
+     *
+     * @param operatorTree the operator tree
+     * @param size         the size
+     */
+    public ExpandAllAction(OperatorTree operatorTree, IconSize size) {
 		super("Expand Tree", ICONS[size.ordinal()]);
 		putValue(SHORT_DESCRIPTION, "Expands the complete operator tree");
 		putValue(MNEMONIC_KEY, Integer.valueOf(KeyEvent.VK_X));

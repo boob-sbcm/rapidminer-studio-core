@@ -41,15 +41,15 @@ import com.rapidminer.gui.RapidMinerGUI;
  */
 public class FontTools {
 
-	/**
-	 * The position of standard fonts in the selectableFonts array.
-	 */
-	public static final int OPTION_INDEX_STANDARD_FONTS = 0;
+    /**
+     * The position of standard fonts in the selectableFonts array.
+     */
+    public static final int OPTION_INDEX_STANDARD_FONTS = 0;
 
-	/**
-	 * The position of system fonts in the selectableFonts array.
-	 */
-	public static final int OPTION_INDEX_SYSTEM_FONTS = 1;
+    /**
+     * The position of system fonts in the selectableFonts array.
+     */
+    public static final int OPTION_INDEX_SYSTEM_FONTS = 1;
 
 	private static final String OPTION_STANDARD_FONTS = "Standard fonts";
 
@@ -72,31 +72,28 @@ public class FontTools {
 		LOGICAL_FONT_FAMILIES.add(Font.MONOSPACED);
 	}
 
-	/**
-	 * This should be used everywhere as a replacement for {@link Font#Font(String, int, int)}.
-	 * Returns a {@link Font} which can be one of the following depending on the value of
-	 * {@link RapidMinerGUI#PROPERTY_FONT_CONFIG}:
-	 *
-	 * 1. Standard fonts: {@link StyleContext#getDefaultStyleContext()#getFont(String, int, int)}
-	 * will be returned, which is a composite Font of the delivered with a fallback for unknown
-	 * glyphs, which works well in the most cases.
-	 *
-	 * 2. System fonts: Replaces all fonts expect {@link Font#DIALOG}, {@link Font#DIALOG_INPUT},
-	 * {@link Font#SANS_SERIF}, {@link Font#SERIF}, {@link Font#MONOSPACED} with
-	 * {@link Font#DIALOG}.
-	 *
-	 * 3. Custom fonts: The family will be replaced by the user selection
-	 * {@link RapidMinerGUI#PROPERTY_FONT_CONFIG}.
-	 *
-	 * @param family
-	 *            font family string
-	 * @param style
-	 *            style int
-	 * @param size
-	 *            size int
-	 * @return A {@link Font} with respect to {@link RapidMinerGUI#PROPERTY_FONT_CONFIG}.
-	 */
-	public static Font getFont(String family, int style, int size) {
+    /**
+     * This should be used everywhere as a replacement for {@link Font#Font(String, int, int)}.
+     * Returns a {@link Font} which can be one of the following depending on the value of
+     * {@link RapidMinerGUI#PROPERTY_FONT_CONFIG}:
+     * <p>
+     * 1. Standard fonts: {@link StyleContext#getDefaultStyleContext()#getFont(String, int, int)}
+     * will be returned, which is a composite Font of the delivered with a fallback for unknown
+     * glyphs, which works well in the most cases.
+     * <p>
+     * 2. System fonts: Replaces all fonts expect {@link Font#DIALOG}, {@link Font#DIALOG_INPUT},
+     * {@link Font#SANS_SERIF}, {@link Font#SERIF}, {@link Font#MONOSPACED} with
+     * {@link Font#DIALOG}.
+     * <p>
+     * 3. Custom fonts: The family will be replaced by the user selection
+     * {@link RapidMinerGUI#PROPERTY_FONT_CONFIG}.
+     *
+     * @param family font family string
+     * @param style  style int
+     * @param size   size int
+     * @return A {@link Font} with respect to {@link RapidMinerGUI#PROPERTY_FONT_CONFIG}.
+     */
+    public static Font getFont(String family, int style, int size) {
 		String fontConfig = getFontConfig();
 		Font font;
 		switch (fontConfig) {
@@ -117,11 +114,11 @@ public class FontTools {
 		return font;
 	}
 
-	/**
-	 * This should be called during the GUI initialization after applying LAF. The UI fonts will be
-	 * replaced according to the user's wishes.
-	 */
-	public static void checkAndSetFallbackUIFont() {
+    /**
+     * This should be called during the GUI initialization after applying LAF. The UI fonts will be
+     * replaced according to the user's wishes.
+     */
+    public static void checkAndSetFallbackUIFont() {
 		String fontConfig = getFontConfig();
 		if (OPTION_STANDARD_FONTS.equals(fontConfig)) {
 			return;
@@ -155,14 +152,14 @@ public class FontTools {
 		}
 	}
 
-	/**
-	 * Gets the available fonts on this system and returns them as a String array. At the beginning
-	 * of the array 2 entries will be inserted, one representing the standard fonts and one
-	 * representing the system fonts.
-	 *
-	 * @return array of available font options
-	 */
-	public static String[] getAvailableFonts() {
+    /**
+     * Gets the available fonts on this system and returns them as a String array. At the beginning
+     * of the array 2 entries will be inserted, one representing the standard fonts and one
+     * representing the system fonts.
+     *
+     * @return array of available font options
+     */
+    public static String[] getAvailableFonts() {
 		String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 		String[] selectableFonts = new String[fonts.length + 2];
 		selectableFonts[OPTION_INDEX_STANDARD_FONTS] = OPTION_STANDARD_FONTS;

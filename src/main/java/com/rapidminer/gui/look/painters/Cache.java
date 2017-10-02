@@ -36,12 +36,22 @@ public class Cache {
 
 	private List<WeakReference<Cache.Entry>> entries;
 
-	Cache(int maxCount) {
+    /**
+     * Instantiates a new Cache.
+     *
+     * @param maxCount the max count
+     */
+    Cache(int maxCount) {
 		this.maxCount = maxCount;
 		this.entries = new ArrayList<WeakReference<Cache.Entry>>(maxCount);
 	}
 
-	void setMaxCount(int maxCount) {
+    /**
+     * Sets max count.
+     *
+     * @param maxCount the max count
+     */
+    void setMaxCount(int maxCount) {
 		this.maxCount = maxCount;
 	}
 
@@ -68,12 +78,32 @@ public class Cache {
 		}
 	}
 
-	public Image getImage(Object key, GraphicsConfiguration config, int w, int h, Object[] args) {
+    /**
+     * Gets image.
+     *
+     * @param key    the key
+     * @param config the config
+     * @param w      the w
+     * @param h      the h
+     * @param args   the args
+     * @return the image
+     */
+    public Image getImage(Object key, GraphicsConfiguration config, int w, int h, Object[] args) {
 		Cache.Entry entry = getEntry(key, config, w, h, args);
 		return entry.getImage();
 	}
 
-	public void setImage(Object key, GraphicsConfiguration config, int w, int h, Object[] args, Image image) {
+    /**
+     * Sets image.
+     *
+     * @param key    the key
+     * @param config the config
+     * @param w      the w
+     * @param h      the h
+     * @param args   the args
+     * @param image  the image
+     */
+    public void setImage(Object key, GraphicsConfiguration config, int w, int h, Object[] args, Image image) {
 		Cache.Entry entry = getEntry(key, config, w, h, args);
 		entry.setImage(image);
 	}
@@ -90,18 +120,36 @@ public class Cache {
 
 		private int h;
 
-		Entry(GraphicsConfiguration config, int w, int h, Object[] args) {
+        /**
+         * Instantiates a new Entry.
+         *
+         * @param config the config
+         * @param w      the w
+         * @param h      the h
+         * @param args   the args
+         */
+        Entry(GraphicsConfiguration config, int w, int h, Object[] args) {
 			this.config = config;
 			this.args = args;
 			this.w = w;
 			this.h = h;
 		}
 
-		public void setImage(Image image) {
+        /**
+         * Sets image.
+         *
+         * @param image the image
+         */
+        public void setImage(Image image) {
 			this.image = image;
 		}
 
-		public Image getImage() {
+        /**
+         * Gets image.
+         *
+         * @return the image
+         */
+        public Image getImage() {
 			return this.image;
 		}
 
@@ -118,7 +166,16 @@ public class Cache {
 			return value.toString();
 		}
 
-		public boolean equals(GraphicsConfiguration config, int w, int h, Object[] args) {
+        /**
+         * Equals boolean.
+         *
+         * @param config the config
+         * @param w      the w
+         * @param h      the h
+         * @param args   the args
+         * @return the boolean
+         */
+        public boolean equals(GraphicsConfiguration config, int w, int h, Object[] args) {
 			if (this.w == w && this.h == h
 					&& (this.config != null && this.config.equals(config) || this.config == null && config == null)) {
 				if (this.args == null && args == null) {

@@ -24,7 +24,7 @@ import com.rapidminer.gui.tools.SwingTools;
 
 /**
  * A dummy visualizer, capable of visualizing anything, but actually doing nothing.
- * 
+ *
  * @author Michael Wurst, Ingo Mierswa
  */
 public class DummyObjectVisualizer implements ObjectVisualizer {

@@ -37,6 +37,7 @@ import com.rapidminer.report.Reportable;
 
 
 /**
+ * The type Eigenvector model variance plot renderer.
  *
  * @author Sebastian Land
  */

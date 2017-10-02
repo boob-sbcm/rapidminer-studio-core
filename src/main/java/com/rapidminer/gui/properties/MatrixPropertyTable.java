@@ -32,7 +32,7 @@ import javax.swing.table.TableColumn;
 
 /**
  * For {@link com.rapidminer.parameter.ParameterTypeMatrix}
- * 
+ *
  * @author Helge Homburg
  */
 public class MatrixPropertyTable extends ExtendedJTable {
@@ -45,7 +45,16 @@ public class MatrixPropertyTable extends ExtendedJTable {
 
 	private String rowBaseName;
 
-	public MatrixPropertyTable(String baseName, String rowBaseName, String columnBaseName, double[][] parameterMatrix,
+    /**
+     * Instantiates a new Matrix property table.
+     *
+     * @param baseName        the base name
+     * @param rowBaseName     the row base name
+     * @param columnBaseName  the column base name
+     * @param parameterMatrix the parameter matrix
+     * @param operator        the operator
+     */
+    public MatrixPropertyTable(String baseName, String rowBaseName, String columnBaseName, double[][] parameterMatrix,
 			Operator operator) {
 		super(null, false, false);
 		this.rowBaseName = rowBaseName;
@@ -81,7 +90,10 @@ public class MatrixPropertyTable extends ExtendedJTable {
 		}
 	}
 
-	public void addRow() {
+    /**
+     * Add row.
+     */
+    public void addRow() {
 		if (model.getColumnCount() == 0) {
 			addColumn();
 		}
@@ -90,11 +102,17 @@ public class MatrixPropertyTable extends ExtendedJTable {
 		model.setValueAt(rowBaseName + " " + (currentRow + 1), currentRow, 0);
 	}
 
-	public void addColumn() {
+    /**
+     * Add column.
+     */
+    public void addColumn() {
 		model.addColumn(model.getColumnCount(), new Object[model.getRowCount()]);
 	}
 
-	public void removeSelectedRow() {
+    /**
+     * Remove selected row.
+     */
+    public void removeSelectedRow() {
 		int[] selectedRows = getSelectedRows();
 		if (selectedRows.length < model.getRowCount()) {
 			for (int i = selectedRows.length - 1; i >= 0; i--) {
@@ -104,7 +122,10 @@ public class MatrixPropertyTable extends ExtendedJTable {
 		}
 	}
 
-	public void removeSelectedColumn() {
+    /**
+     * Remove selected column.
+     */
+    public void removeSelectedColumn() {
 		int[] selectedColumns = getSelectedColumns();
 		if (selectedColumns.length < model.getColumnCount() - 1) {
 			for (int i = selectedColumns.length - 1; i >= 0; i--) {
@@ -114,7 +135,10 @@ public class MatrixPropertyTable extends ExtendedJTable {
 		}
 	}
 
-	public void removeSelectedRowAndColumn() {
+    /**
+     * Remove selected row and column.
+     */
+    public void removeSelectedRowAndColumn() {
 		if (model.getRowCount() > 1) {
 			model.removeRow(model.getRowCount() - 1);
 			removeColumn(model.getColumnCount() - 1);
@@ -122,7 +146,10 @@ public class MatrixPropertyTable extends ExtendedJTable {
 		}
 	}
 
-	public void fillNewRowAndColumn() {
+    /**
+     * Fill new row and column.
+     */
+    public void fillNewRowAndColumn() {
 		int currentRow = model.getRowCount() - 1;
 		int currentColumn = model.getColumnCount() - 1;
 		model.setValueAt("1.0", 0, currentColumn);
@@ -133,7 +160,12 @@ public class MatrixPropertyTable extends ExtendedJTable {
 		model.setValueAt("0.0", currentRow, currentColumn);
 	}
 
-	public double[][] getParameterMatrix() {
+    /**
+     * Get parameter matrix double [ ] [ ].
+     *
+     * @return the double [ ] [ ]
+     */
+    public double[][] getParameterMatrix() {
 		double[][] matrix = new double[getModel().getRowCount()][getModel().getColumnCount() - 1];
 		for (int i = 0; i < getModel().getRowCount(); i++) {
 			for (int j = 0; j < getModel().getColumnCount() - 1; j++) {
@@ -143,11 +175,22 @@ public class MatrixPropertyTable extends ExtendedJTable {
 		return matrix;
 	}
 
-	public Operator getOperator(int row) {
+    /**
+     * Gets operator.
+     *
+     * @param row the row
+     * @return the operator
+     */
+    public Operator getOperator(int row) {
 		return operator;
 	}
 
-	public void removeColumn(int index) {
+    /**
+     * Remove column.
+     *
+     * @param index the index
+     */
+    public void removeColumn(int index) {
 		TableColumn column = getColumnModel().getColumn(index);
 		int modelIndex = column.getModelIndex();
 		Vector<?> modelData = model.getDataVector();

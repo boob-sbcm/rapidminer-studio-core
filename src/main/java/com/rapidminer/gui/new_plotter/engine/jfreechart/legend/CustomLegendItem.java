@@ -28,9 +28,8 @@ import org.jfree.chart.LegendItem;
 
 /**
  * A {@link LegendItem} which additionally contains a custom shape.
- * 
+ *
  * @author Marius Helf
- * 
  */
 public class CustomLegendItem extends LegendItem {
 
@@ -39,7 +38,26 @@ public class CustomLegendItem extends LegendItem {
 
 	// private boolean isShapeOutlineVisible;
 
-	public CustomLegendItem(AttributedString label, String description, String toolTipText, String urlText,
+    /**
+     * Instantiates a new Custom legend item.
+     *
+     * @param label               the label
+     * @param description         the description
+     * @param toolTipText         the tool tip text
+     * @param urlText             the url text
+     * @param shapeVisible        the shape visible
+     * @param shape               the shape
+     * @param shapeFilled         the shape filled
+     * @param fillPaint           the fill paint
+     * @param shapeOutlineVisible the shape outline visible
+     * @param outlinePaint        the outline paint
+     * @param outlineStroke       the outline stroke
+     * @param lineVisible         the line visible
+     * @param line                the line
+     * @param lineStroke          the line stroke
+     * @param linePaint           the line paint
+     */
+    public CustomLegendItem(AttributedString label, String description, String toolTipText, String urlText,
 			boolean shapeVisible, Shape shape, boolean shapeFilled, Paint fillPaint, boolean shapeOutlineVisible,
 			Paint outlinePaint, Stroke outlineStroke, boolean lineVisible, Shape line, Stroke lineStroke, Paint linePaint) {
 		super(label, description, toolTipText, urlText, shapeVisible, shape, shapeFilled, fillPaint, shapeOutlineVisible,
@@ -47,28 +65,86 @@ public class CustomLegendItem extends LegendItem {
 		this.shape = shape;
 	}
 
-	public CustomLegendItem(AttributedString label, String description, String toolTipText, String urlText, Shape shape,
+    /**
+     * Instantiates a new Custom legend item.
+     *
+     * @param label         the label
+     * @param description   the description
+     * @param toolTipText   the tool tip text
+     * @param urlText       the url text
+     * @param shape         the shape
+     * @param fillPaint     the fill paint
+     * @param outlineStroke the outline stroke
+     * @param outlinePaint  the outline paint
+     */
+    public CustomLegendItem(AttributedString label, String description, String toolTipText, String urlText, Shape shape,
 			Paint fillPaint, Stroke outlineStroke, Paint outlinePaint) {
 		super(label, description, toolTipText, urlText, shape, fillPaint, outlineStroke, outlinePaint);
 		this.shape = shape;
 	}
 
-	public CustomLegendItem(AttributedString label, String description, String toolTipText, String urlText, Shape shape,
+    /**
+     * Instantiates a new Custom legend item.
+     *
+     * @param label       the label
+     * @param description the description
+     * @param toolTipText the tool tip text
+     * @param urlText     the url text
+     * @param shape       the shape
+     * @param fillPaint   the fill paint
+     */
+    public CustomLegendItem(AttributedString label, String description, String toolTipText, String urlText, Shape shape,
 			Paint fillPaint) {
 		super(label, description, toolTipText, urlText, shape, fillPaint);
 		this.shape = shape;
 	}
 
-	public CustomLegendItem(AttributedString label, String description, String toolTipText, String urlText, Shape line,
+    /**
+     * Instantiates a new Custom legend item.
+     *
+     * @param label       the label
+     * @param description the description
+     * @param toolTipText the tool tip text
+     * @param urlText     the url text
+     * @param line        the line
+     * @param lineStroke  the line stroke
+     * @param linePaint   the line paint
+     */
+    public CustomLegendItem(AttributedString label, String description, String toolTipText, String urlText, Shape line,
 			Stroke lineStroke, Paint linePaint) {
 		super(label, description, toolTipText, urlText, line, lineStroke, linePaint);
 	}
 
-	public CustomLegendItem(String label, Paint paint) {
+    /**
+     * Instantiates a new Custom legend item.
+     *
+     * @param label the label
+     * @param paint the paint
+     */
+    public CustomLegendItem(String label, Paint paint) {
 		super(label, paint);
 	}
 
-	public CustomLegendItem(String label, String description, String toolTipText, String urlText, boolean shapeVisible,
+    /**
+     * Instantiates a new Custom legend item.
+     *
+     * @param label               the label
+     * @param description         the description
+     * @param toolTipText         the tool tip text
+     * @param urlText             the url text
+     * @param shapeVisible        the shape visible
+     * @param shape               the shape
+     * @param shapeFilled         the shape filled
+     * @param fillPaint           the fill paint
+     * @param shapeOutlineVisible the shape outline visible
+     * @param outlinePaint        the outline paint
+     * @param outlineStroke       the outline stroke
+     * @param lineVisible         the line visible
+     * @param line                the line
+     * @param lineStroke          the line stroke
+     * @param linePaint           the line paint
+     */
+    public CustomLegendItem(String label, String description, String toolTipText, String urlText, boolean shapeVisible,
 			Shape shape, boolean shapeFilled, Paint fillPaint, boolean shapeOutlineVisible, Paint outlinePaint,
 			Stroke outlineStroke, boolean lineVisible, Shape line, Stroke lineStroke, Paint linePaint) {
 		super(label, description, toolTipText, urlText, shapeVisible, shape, shapeFilled, fillPaint, shapeOutlineVisible,
@@ -76,24 +152,62 @@ public class CustomLegendItem extends LegendItem {
 		this.shape = shape;
 	}
 
-	public CustomLegendItem(String label, String description, String toolTipText, String urlText, Shape shape,
+    /**
+     * Instantiates a new Custom legend item.
+     *
+     * @param label         the label
+     * @param description   the description
+     * @param toolTipText   the tool tip text
+     * @param urlText       the url text
+     * @param shape         the shape
+     * @param fillPaint     the fill paint
+     * @param outlineStroke the outline stroke
+     * @param outlinePaint  the outline paint
+     */
+    public CustomLegendItem(String label, String description, String toolTipText, String urlText, Shape shape,
 			Paint fillPaint, Stroke outlineStroke, Paint outlinePaint) {
 		super(label, description, toolTipText, urlText, shape, fillPaint, outlineStroke, outlinePaint);
 		this.shape = shape;
 	}
 
-	public CustomLegendItem(String label, String description, String toolTipText, String urlText, Shape shape,
+    /**
+     * Instantiates a new Custom legend item.
+     *
+     * @param label       the label
+     * @param description the description
+     * @param toolTipText the tool tip text
+     * @param urlText     the url text
+     * @param shape       the shape
+     * @param fillPaint   the fill paint
+     */
+    public CustomLegendItem(String label, String description, String toolTipText, String urlText, Shape shape,
 			Paint fillPaint) {
 		super(label, description, toolTipText, urlText, shape, fillPaint);
 		this.shape = shape;
 	}
 
-	public CustomLegendItem(String label, String description, String toolTipText, String urlText, Shape line,
+    /**
+     * Instantiates a new Custom legend item.
+     *
+     * @param label       the label
+     * @param description the description
+     * @param toolTipText the tool tip text
+     * @param urlText     the url text
+     * @param line        the line
+     * @param lineStroke  the line stroke
+     * @param linePaint   the line paint
+     */
+    public CustomLegendItem(String label, String description, String toolTipText, String urlText, Shape line,
 			Stroke lineStroke, Paint linePaint) {
 		super(label, description, toolTipText, urlText, line, lineStroke, linePaint);
 	}
 
-	public CustomLegendItem(String label) {
+    /**
+     * Instantiates a new Custom legend item.
+     *
+     * @param label the label
+     */
+    public CustomLegendItem(String label) {
 		super(label);
 	}
 

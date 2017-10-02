@@ -38,7 +38,7 @@ import com.rapidminer.operator.nio.model.xlsx.XlsxWorkbookRelationParser.XlsxWor
 
 /**
  * SAX parser for XLSX Workbook relations.
- *
+ * <p>
  * This parser extracts paths of files, which are included inside a XLSX archive.
  *
  * @author Adrian Wilke, Nils Woehler
@@ -46,17 +46,25 @@ import com.rapidminer.operator.nio.model.xlsx.XlsxWorkbookRelationParser.XlsxWor
  */
 public class XlsxWorkbookRelationParser extends AbstractXlsxSAXHandler<XlsxWorkbookRel> {
 
-	/** Container for XLSX workbook relations. */
-	static final class XlsxWorkbookRel {
+    /**
+     * Container for XLSX workbook relations.
+     */
+    static final class XlsxWorkbookRel {
 
-		/** Path of the shared strings XML file */
-		public String sharedStringsPath;
+        /**
+         * Path of the shared strings XML file
+         */
+        public String sharedStringsPath;
 
-		/** Path to the styles XML file */
-		public String stylesPath;
+        /**
+         * Path to the styles XML file
+         */
+        public String stylesPath;
 
-		/** Mapping of Relationship IDs and worksheet files */
-		public String worksheetsPath;
+        /**
+         * Mapping of Relationship IDs and worksheet files
+         */
+        public String worksheetsPath;
 
 	}
 
@@ -80,12 +88,12 @@ public class XlsxWorkbookRelationParser extends AbstractXlsxSAXHandler<XlsxWorkb
 		TYPES_SHARED_STRINGS.add("/xl/sharedStrings.xml");
 	}
 
-	/**
-	 * Possible type declarations of styles files.
-	 *
-	 * @see Apache POI project org.apache.poi.xssf.usermodel.XSSFRelation.java
-	 */
-	public static final Set<String> TYPES_STYLES = new HashSet<>();
+    /**
+     * Possible type declarations of styles files.
+     *
+     * @see ApachePOIproject org.apache.poi.xssf.usermodel.XSSFRelation.java
+     */
+    public static final Set<String> TYPES_STYLES = new HashSet<>();
 	static {
 		TYPES_STYLES.add("application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml");
 		TYPES_STYLES.add("http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles");
@@ -122,7 +130,15 @@ public class XlsxWorkbookRelationParser extends AbstractXlsxSAXHandler<XlsxWorkb
 	/** The XLSX zip file */
 	private final ZipFile zipFile;
 
-	public XlsxWorkbookRelationParser(Operator callingOperator, ZipFile zipFile, List<XlsxWorkbookSheet> xlsxWorkbookSheets,
+    /**
+     * Instantiates a new Xlsx workbook relation parser.
+     *
+     * @param callingOperator    the calling operator
+     * @param zipFile            the zip file
+     * @param xlsxWorkbookSheets the xlsx workbook sheets
+     * @param sheetIndex         the sheet index
+     */
+    public XlsxWorkbookRelationParser(Operator callingOperator, ZipFile zipFile, List<XlsxWorkbookSheet> xlsxWorkbookSheets,
 			int sheetIndex) {
 		this.callingOperator = callingOperator;
 		this.zipFile = zipFile;

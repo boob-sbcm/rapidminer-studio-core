@@ -74,7 +74,13 @@ public class DataViewer extends JPanel implements Tableable {
 
 	private JScrollPane tableScrollPane;
 
-	public DataViewer(ExampleSet exampleSet, boolean providedFilter) {
+    /**
+     * Instantiates a new Data viewer.
+     *
+     * @param exampleSet     the example set
+     * @param providedFilter the provided filter
+     */
+    public DataViewer(ExampleSet exampleSet, boolean providedFilter) {
 		super(new BorderLayout());
 		setOpaque(true);
 		setBackground(Colors.WHITE);
@@ -175,7 +181,12 @@ public class DataViewer extends JPanel implements Tableable {
 		dataTable.unpack();
 	}
 
-	public void setExampleSet(ExampleSet exampleSet) {
+    /**
+     * Sets example set.
+     *
+     * @param exampleSet the example set
+     */
+    public void setExampleSet(ExampleSet exampleSet) {
 		dataTable.setExampleSet(exampleSet);
 	}
 

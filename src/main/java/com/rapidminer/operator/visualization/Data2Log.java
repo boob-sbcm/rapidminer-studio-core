@@ -50,14 +50,25 @@ public class Data2Log extends Operator {
 	private InputPort exampleSetInput = getInputPorts().createPort("example set", ExampleSet.class);
 	private OutputPort exampleSetOutput = getOutputPorts().createPort("example set");
 
-	public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
-	public static final String PARAMETER_EXAMPLE_INDEX = "example_index";
+    /**
+     * The constant PARAMETER_ATTRIBUTE_NAME.
+     */
+    public static final String PARAMETER_ATTRIBUTE_NAME = "attribute_name";
+    /**
+     * The constant PARAMETER_EXAMPLE_INDEX.
+     */
+    public static final String PARAMETER_EXAMPLE_INDEX = "example_index";
 
 	private Object currentValue = null;
 
 	private boolean isNominal = false;
 
-	public Data2Log(OperatorDescription description) {
+    /**
+     * Instantiates a new Data 2 log.
+     *
+     * @param description the description
+     */
+    public Data2Log(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new AttributeSetPrecondition(exampleSetInput, AttributeSetPrecondition

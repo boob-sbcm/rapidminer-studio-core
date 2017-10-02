@@ -29,13 +29,18 @@ import java.util.LinkedList;
 
 /**
  * The standard (slow, non scaling) regression RVM (see bla).
- * 
+ *
  * @author Piotr Kasprzak, Ingo Mierswa
  */
 public class RVMClassification extends RVMBase {
 
-	/** Constructor */
-	public RVMClassification(ClassificationProblem problem, Parameter parameter) {
+    /**
+     * Constructor  @param problem the problem
+     *
+     * @param problem   the problem
+     * @param parameter the parameter
+     */
+    public RVMClassification(ClassificationProblem problem, Parameter parameter) {
 		super(problem, parameter);
 	}
 
@@ -344,8 +349,13 @@ public class RVMClassification extends RVMBase {
 		return model;
 	}
 
-	/** Sigmoid link function */
-	public double sigmoid(double x) {
+    /**
+     * Sigmoid link function  @param x the x
+     *
+     * @param x the x
+     * @return the double
+     */
+    public double sigmoid(double x) {
 		return 1.0 / (1.0 + Math.exp(-x));
 	}
 

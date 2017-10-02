@@ -23,44 +23,45 @@ import java.awt.Graphics;
 
 /**
  * This interface provides methods for exporting visual components.
- * 
+ *
  * @author Sebastian Land
  */
 public interface Renderable extends Reportable {
 
-	/** Will be invoked before rendering and even before render width and height retrieval. */
-	public void prepareRendering();
+    /**
+     * Will be invoked before rendering and even before render width and height retrieval.
+     */
+    public void prepareRendering();
 
-	/**
-	 * Will be invoked directly after rendering and gives the object the chance to perform some
-	 * clean-up.
-	 */
-	public void finishRendering();
+    /**
+     * Will be invoked directly after rendering and gives the object the chance to perform some
+     * clean-up.
+     */
+    public void finishRendering();
 
-	/**
-	 * This method paints the visual representation onto the given graphics
-	 * 
-	 * @param graphics
-	 *            the graphics to render onto
-	 */
-	public void render(Graphics graphics, int width, int height);
+    /**
+     * This method paints the visual representation onto the given graphics
+     *
+     * @param graphics the graphics to render onto
+     * @param width    the width
+     * @param height   the height
+     */
+    public void render(Graphics graphics, int width, int height);
 
-	/**
-	 * This method returns the pixel width the rendering needs
-	 * 
-	 * @param preferredWidth
-	 *            tells the renderable of the size it should deliver best
-	 * @return the pixel width
-	 */
-	public int getRenderWidth(int preferredWidth);
+    /**
+     * This method returns the pixel width the rendering needs
+     *
+     * @param preferredWidth tells the renderable of the size it should deliver best
+     * @return the pixel width
+     */
+    public int getRenderWidth(int preferredWidth);
 
-	/**
-	 * This method return the pixel height the rendering needs
-	 * 
-	 * @param preferredHeight
-	 *            tells the renderable of the size it should deliver best
-	 * @return the pixel height
-	 */
-	public int getRenderHeight(int preferredHeight);
+    /**
+     * This method return the pixel height the rendering needs
+     *
+     * @param preferredHeight tells the renderable of the size it should deliver best
+     * @return the pixel height
+     */
+    public int getRenderHeight(int preferredHeight);
 
 }

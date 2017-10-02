@@ -36,12 +36,17 @@ import java.util.List;
 /**
  * This operator creates a new, shuffled ExampleSet by making creating a shuffled view using a
  * {@link SortedExampleSet}
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa
  */
 public class PermutationOperator extends AbstractDataProcessing {
 
-	public PermutationOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Permutation operator.
+     *
+     * @param description the description
+     */
+    public PermutationOperator(OperatorDescription description) {
 		super(description);
 	}
 

@@ -30,21 +30,39 @@ import java.util.Map;
  * listener will be noticed about the parameter changes. Please make sure that implementing classes
  * provide an empty constructor since objects will be constructed via reflection. The actual wizard
  * can than be created by the method defined in this interface.
- * 
+ *
  * @author Ingo Mierswa
  */
 public interface ConfigurationWizardCreator extends Serializable {
 
-	/**
-	 * This has to return a key, which is then combined with "gui.action.wizard." for searching in
-	 * the gui properties for the internationalized button text and icon.
-	 */
-	public String getI18NKey();
+    /**
+     * This has to return a key, which is then combined with "gui.action.wizard." for searching in
+     * the gui properties for the internationalized button text and icon.
+     *
+     * @return the i 18 n key
+     */
+    public String getI18NKey();
 
-	public void setParameters(Map<String, String> parameters);
+    /**
+     * Sets parameters.
+     *
+     * @param parameters the parameters
+     */
+    public void setParameters(Map<String, String> parameters);
 
-	public Map<String, String> getParameters();
+    /**
+     * Gets parameters.
+     *
+     * @return the parameters
+     */
+    public Map<String, String> getParameters();
 
-	public void createConfigurationWizard(ParameterType type, ConfigurationListener listener);
+    /**
+     * Create configuration wizard.
+     *
+     * @param type     the type
+     * @param listener the listener
+     */
+    public void createConfigurationWizard(ParameterType type, ConfigurationListener listener);
 
 }

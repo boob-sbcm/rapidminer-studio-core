@@ -23,7 +23,7 @@ import com.rapidminer.tools.Tools;
 
 /**
  * Returns the value of the Multiquadric kernel of both examples.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class MultiquadricKernel extends Kernel {
@@ -41,19 +41,39 @@ public class MultiquadricKernel extends Kernel {
 		return KERNEL_MULTIQUADRIC;
 	}
 
-	public void setSigma(double sigma) {
+    /**
+     * Sets sigma.
+     *
+     * @param sigma the sigma
+     */
+    public void setSigma(double sigma) {
 		this.sigma = sigma;
 	}
 
-	public double getSigma() {
+    /**
+     * Gets sigma.
+     *
+     * @return the sigma
+     */
+    public double getSigma() {
 		return sigma;
 	}
 
-	public void setShift(double shift) {
+    /**
+     * Sets shift.
+     *
+     * @param shift the shift
+     */
+    public void setShift(double shift) {
 		this.shift = shift;
 	}
 
-	public double getShift() {
+    /**
+     * Gets shift.
+     *
+     * @return the shift
+     */
+    public double getShift() {
 		return shift;
 	}
 

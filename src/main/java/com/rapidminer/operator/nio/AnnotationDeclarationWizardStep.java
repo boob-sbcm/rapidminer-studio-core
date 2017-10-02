@@ -40,7 +40,7 @@ import javax.swing.table.TableModel;
 
 /**
  * This Wizard Step might be used to select several rows as annotation rows having special meaning.
- * 
+ *
  * @author Sebastian Land
  */
 public class AnnotationDeclarationWizardStep extends WizardStep {
@@ -51,7 +51,12 @@ public class AnnotationDeclarationWizardStep extends WizardStep {
 
 	private final LoadingContentPane loadingContentPane = new LoadingContentPane("loading_data", panel);
 
-	public AnnotationDeclarationWizardStep(WizardState state) {
+    /**
+     * Instantiates a new Annotation declaration wizard step.
+     *
+     * @param state the state
+     */
+    public AnnotationDeclarationWizardStep(WizardState state) {
 		super("importwizard.annotations");
 		this.state = state;
 		ExtendedJTable extendedTable = new ExtendedJTable(false, false, false);

@@ -24,7 +24,7 @@ package com.rapidminer.example.table;
  * {@link com.rapidminer.example.table.DoubleArrayDataRow}s but these need the double amount
  * compared to these float representations which are therefore a good trade-off between precision
  * and memory usage.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class FloatArrayDataRow extends DataRow {
@@ -34,8 +34,12 @@ public class FloatArrayDataRow extends DataRow {
 	/** Holds the data for all attributes. */
 	private float[] data;
 
-	/** Creates a new data row backed by an primitive array. */
-	public FloatArrayDataRow(float[] data) {
+    /**
+     * Creates a new data row backed by an primitive array.  @param data the data
+     *
+     * @param data the data
+     */
+    public FloatArrayDataRow(float[] data) {
 		this.data = data;
 	}
 

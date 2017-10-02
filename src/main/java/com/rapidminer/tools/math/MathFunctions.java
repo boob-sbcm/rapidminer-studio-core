@@ -32,64 +32,84 @@ import java.util.Iterator;
  * <ul>
  * <li><tt>tanh()</tt> : tangens hyperbolicus, <i>y = tanh(x) = (e^x - e^-x) / (e^x + e^-x)</i></li>
  * </ul>
- * 
+ *
  * @author Ralf Klinkenberg, Ingo Mierswa
  */
 public class MathFunctions {
 
-	protected static final double log2 = Math.log(2.0d);
+    /**
+     * The constant log2.
+     */
+    protected static final double log2 = Math.log(2.0d);
 
-	/**
-	 * coefficients for polynomials used in normalInverse() to estimate normal distribution;
-	 */
-	// coefficients for approximation of intervall 0,138... < probability <
+    /**
+     * coefficients for polynomials used in normalInverse() to estimate normal distribution;
+     */
+// coefficients for approximation of intervall 0,138... < probability <
 	// 0,861...
 	protected static final double DIVISOR_COEFFICIENTS_0[] = { -5.99633501014107895267E1, 9.80010754185999661536E1,
 			-5.66762857469070293439E1, 1.39312609387279679503E1, -1.23916583867381258016E0, };
 
-	protected static final double DIVIDER_COEFFICIENTS_0[] = { 1.00000000000000000000E0, 1.95448858338141759834E0,
+    /**
+     * The constant DIVIDER_COEFFICIENTS_0.
+     */
+    protected static final double DIVIDER_COEFFICIENTS_0[] = { 1.00000000000000000000E0, 1.95448858338141759834E0,
 			4.67627912898881538453E0, 8.63602421390890590575E1, -2.25462687854119370527E2, 2.00260212380060660359E2,
 			-8.20372256168333339912E1, 1.59056225126211695515E1, -1.18331621121330003142E0, };
 
-	// coefficients for approximation of intervall exp(-32) < probability <
+    /**
+     * The constant DIVISOR_COEFFICIENTS_1.
+     */
+// coefficients for approximation of intervall exp(-32) < probability <
 	// 0,138...
 	// or 0,861 < probability < 1 - exp(-32)
 	protected static final double DIVISOR_COEFFICIENTS_1[] = { 4.05544892305962419923E0, 3.15251094599893866154E1,
 			5.71628192246421288162E1, 4.40805073893200834700E1, 1.46849561928858024014E1, 2.18663306850790267539E0,
 			-1.40256079171354495875E-1, -3.50424626827848203418E-2, -8.57456785154685413611E-4, };
 
-	protected static final double DIVIDER_COEFFICIENTS_1[] = { 1.00000000000000000000E0, 1.57799883256466749731E1,
+    /**
+     * The constant DIVIDER_COEFFICIENTS_1.
+     */
+    protected static final double DIVIDER_COEFFICIENTS_1[] = { 1.00000000000000000000E0, 1.57799883256466749731E1,
 			4.53907635128879210584E1, 4.13172038254672030440E1, 1.50425385692907503408E1, 2.50464946208309415979E0,
 			-1.42182922854787788574E-1, -3.80806407691578277194E-2, -9.33259480895457427372E-4, };
 
-	// coefficients for approximation of intervall 0 < probability < exp(-32)
+    /**
+     * The constant DIVISOR_COEFFICIENTS_3.
+     */
+// coefficients for approximation of intervall 0 < probability < exp(-32)
 	// or 1 - exp(-32) < probability < 1
 	protected static final double DIVISOR_COEFFICIENTS_3[] = { 3.23774891776946035970E0, 6.91522889068984211695E0,
 			3.93881025292474443415E0, 1.33303460815807542389E0, 2.01485389549179081538E-1, 1.23716634817820021358E-2,
 			3.01581553508235416007E-4, 2.65806974686737550832E-6, 6.23974539184983293730E-9, };
 
-	protected static final double DIVIDER_COEFFICIENTS_3[] = { 1.00000000000000000000E0, 6.02427039364742014255E0,
+    /**
+     * The constant DIVIDER_COEFFICIENTS_3.
+     */
+    protected static final double DIVIDER_COEFFICIENTS_3[] = { 1.00000000000000000000E0, 6.02427039364742014255E0,
 			3.67983563856160859403E0, 1.37702099489081330271E0, 2.16236993594496635890E-1, 1.34204006088543189037E-2,
 			3.28014464682127739104E-4, 2.89247864745380683936E-6, 6.79019408009981274425E-9, };
 
-	/**
-	 * returns tangens hyperbolicus of <tt>x</tt>, i.e. <i>y = tanh(x) = (e^x - e^-x) / (e^x +
-	 * e^-x)</i>.
-	 */
-	public static double tanh(double x) {
+    /**
+     * returns tangens hyperbolicus of <tt>x</tt>, i.e. <i>y = tanh(x) = (e^x - e^-x) / (e^x +
+     * e^-x)</i>.
+     *
+     * @param x the x
+     * @return the double
+     */
+    public static double tanh(double x) {
 		return ((java.lang.Math.exp(x) - java.lang.Math.exp(-x)) / (java.lang.Math.exp(x) + java.lang.Math.exp(-x)));
 	}
 
-	/**
-	 * Returns the value x for which the area under the normal probability density function
-	 * (integrated from minus infinity to this value x) is equal to the given probability. The
-	 * normal distribution has mean of zero and variance of one.
-	 * 
-	 * @param probability
-	 *            the area under the normal pdf
-	 * @return x
-	 */
-	public static double normalInverse(double probability) {
+    /**
+     * Returns the value x for which the area under the normal probability density function
+     * (integrated from minus infinity to this value x) is equal to the given probability. The
+     * normal distribution has mean of zero and variance of one.
+     *
+     * @param probability the area under the normal pdf
+     * @return x double
+     */
+    public static double normalInverse(double probability) {
 
 		final double smallArgumentEnd = Math.exp(-2);
 		final double rootedPi = Math.sqrt(2.0 * Math.PI);
@@ -138,11 +158,15 @@ public class MathFunctions {
 		}
 	}
 
-	/**
-	 * Solves a given polynomial at x. The polynomial is given by the coefficients. The coefficients
-	 * are stored in natural order: coefficients[i] : c_i*x^i
-	 */
-	public static double solvePolynomial(double x, double[] coefficients) {
+    /**
+     * Solves a given polynomial at x. The polynomial is given by the coefficients. The coefficients
+     * are stored in natural order: coefficients[i] : c_i*x^i
+     *
+     * @param x            the x
+     * @param coefficients the coefficients
+     * @return the double
+     */
+    public static double solvePolynomial(double x, double[] coefficients) {
 		double value = coefficients[0];
 		for (int i = 1; i < coefficients.length; i++) {
 			value += coefficients[i] * Math.pow(x, i);
@@ -150,14 +174,14 @@ public class MathFunctions {
 		return value;
 	}
 
-	/**
-	 * @param v
-	 *            a vector values
-	 * @param a
-	 *            a threeshold, only values greater equal this value are used in the calculation
-	 * @return the variance
-	 */
-	public static double variance(double v[], double a) {
+    /**
+     * Variance double.
+     *
+     * @param v a vector values
+     * @param a a threeshold, only values greater equal this value are used in the calculation
+     * @return the variance
+     */
+    public static double variance(double v[], double a) {
 		// calc mean
 		double sum = 0.0;
 		int counter = 0;
@@ -182,8 +206,16 @@ public class MathFunctions {
 		return variance;
 	}
 
-	/** This method calculates the correlation between two (numerical) attributes of an example set. */
-	public static double correlation(ExampleSet exampleSet, Attribute firstAttribute, Attribute secondAttribute,
+    /**
+     * This method calculates the correlation between two (numerical) attributes of an example set.  @param exampleSet the example set
+     *
+     * @param exampleSet      the example set
+     * @param firstAttribute  the first attribute
+     * @param secondAttribute the second attribute
+     * @param squared         the squared
+     * @return the double
+     */
+    public static double correlation(ExampleSet exampleSet, Attribute firstAttribute, Attribute secondAttribute,
 			boolean squared) {
 		double sumProd = 0.0d;
 		double sumFirst = 0.0d;
@@ -223,7 +255,14 @@ public class MathFunctions {
 		}
 	}
 
-	public static double correlation(double[] x1, double[] x2) {
+    /**
+     * Correlation double.
+     *
+     * @param x1 the x 1
+     * @param x2 the x 2
+     * @return the double
+     */
+    public static double correlation(double[] x1, double[] x2) {
 		// Calculate the mean and stddev
 		int counter = 0;
 		double sum1 = 0.0;
@@ -253,7 +292,14 @@ public class MathFunctions {
 		return sum / Math.sqrt(sumS1 * sumS2);
 	}
 
-	public static double robustMin(double m1, double m2) {
+    /**
+     * Robust min double.
+     *
+     * @param m1 the m 1
+     * @param m2 the m 2
+     * @return the double
+     */
+    public static double robustMin(double m1, double m2) {
 		double min = Math.min(m1, m2);
 		if (!Double.isNaN(min)) {
 			return min;
@@ -266,7 +312,14 @@ public class MathFunctions {
 		}
 	}
 
-	public static double robustMax(double m1, double m2) {
+    /**
+     * Robust max double.
+     *
+     * @param m1 the m 1
+     * @param m2 the m 2
+     * @return the double
+     */
+    public static double robustMax(double m1, double m2) {
 		double max = Math.max(m1, m2);
 		if (!Double.isNaN(max)) {
 			return max;
@@ -279,21 +332,24 @@ public class MathFunctions {
 		}
 	}
 
-	/**
-	 * This method returns the logarithmus dualis from value
-	 * 
-	 * @param value
-	 *            the value
-	 * @return the log2 of value
-	 */
-	public static double ld(double value) {
+    /**
+     * This method returns the logarithmus dualis from value
+     *
+     * @param value the value
+     * @return the log2 of value
+     */
+    public static double ld(double value) {
 		return Math.log(value) / log2;
 	}
 
-	/**
-	 * Returns the greatest common divisor (GCD) of the given pair of values.
-	 */
-	public static long getGCD(long a, long b) {
+    /**
+     * Returns the greatest common divisor (GCD) of the given pair of values.
+     *
+     * @param a the a
+     * @param b the b
+     * @return the gcd
+     */
+    public static long getGCD(long a, long b) {
 		long c;
 		while (b != 0) {
 			c = a % b;
@@ -303,10 +359,13 @@ public class MathFunctions {
 		return a;
 	}
 
-	/**
-	 * Returns the greatest common divisor (GCD) of the given pair of values.
-	 */
-	public static long getGCD(Collection<Long> collection) {
+    /**
+     * Returns the greatest common divisor (GCD) of the given pair of values.
+     *
+     * @param collection the collection
+     * @return the gcd
+     */
+    public static long getGCD(Collection<Long> collection) {
 		boolean first = true;
 		long currentGCD = 1;
 		Iterator<Long> i = collection.iterator();
@@ -322,7 +381,13 @@ public class MathFunctions {
 		return currentGCD;
 	}
 
-	public static int factorial(int k) {
+    /**
+     * Factorial int.
+     *
+     * @param k the k
+     * @return the int
+     */
+    public static int factorial(int k) {
 		int result = 1;
 		for (int i = k; i > 1; i--) {
 			result += i;
@@ -330,7 +395,13 @@ public class MathFunctions {
 		return result;
 	}
 
-	public static Matrix invertMatrix(Matrix m) {
+    /**
+     * Invert matrix matrix.
+     *
+     * @param m the m
+     * @return the matrix
+     */
+    public static Matrix invertMatrix(Matrix m) {
 		double startFactor = 0.1d;
 		while (true) {
 			try {

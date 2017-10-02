@@ -29,19 +29,17 @@ import com.rapidminer.tools.expression.internal.function.AbstractArbitraryString
  * Function for getting a parameter of a certain operator.
  *
  * @author Gisa Schaefer
- *
  */
 public class ParameterValue extends AbstractArbitraryStringInputStringOutputFunction {
 
 	private final Process process;
 
-	/**
-	 * Creates a function that looks up a operator parameter in the process.
-	 *
-	 * @param process
-	 *            the process where to find the operator
-	 */
-	public ParameterValue(Process process) {
+    /**
+     * Creates a function that looks up a operator parameter in the process.
+     *
+     * @param process the process where to find the operator
+     */
+    public ParameterValue(Process process) {
 		super("process.param", 2);
 		this.process = process;
 	}

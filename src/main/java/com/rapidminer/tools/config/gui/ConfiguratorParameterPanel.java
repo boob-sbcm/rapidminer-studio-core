@@ -32,21 +32,19 @@ import com.rapidminer.tools.parameter.Parameter;
  * dependency changes.
  *
  * @author Marco Boeck
- *
  */
 public class ConfiguratorParameterPanel extends GenericParameterPanel {
 
 	private static final long serialVersionUID = 1L;
 	private final ConfigurableDialog configurableDialog;
 
-	/**
-	 * Creates a new {@link ConfiguratorParameterPanel} for the specified {@link Parameters}.
-	 *
-	 * @param configurableDialog
-	 *
-	 * @param parameters
-	 */
-	public ConfiguratorParameterPanel(ConfigurableDialog configurableDialog, Parameters parameters) {
+    /**
+     * Creates a new {@link ConfiguratorParameterPanel} for the specified {@link Parameters}.
+     *
+     * @param configurableDialog the configurable dialog
+     * @param parameters         the parameters
+     */
+    public ConfiguratorParameterPanel(ConfigurableDialog configurableDialog, Parameters parameters) {
 		super(parameters);
 		this.configurableDialog = configurableDialog;
 	}

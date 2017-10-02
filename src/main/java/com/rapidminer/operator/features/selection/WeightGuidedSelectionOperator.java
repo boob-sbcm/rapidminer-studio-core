@@ -54,19 +54,22 @@ import com.rapidminer.parameter.conditions.BooleanParameterCondition;
  */
 public class WeightGuidedSelectionOperator extends FeatureOperator {
 
-	/**
-	 * The parameter name for &quot;Stop after n generations without improvement of the performance
-	 * (-1: stops if the number of features is reached).&quot;
-	 */
-	public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
+    /**
+     * The parameter name for &quot;Stop after n generations without improvement of the performance
+     * (-1: stops if the number of features is reached).&quot;
+     */
+    public static final String PARAMETER_GENERATIONS_WITHOUT_IMPROVAL = "generations_without_improval";
 
-	/**
-	 * The parameter name for &quot;Indicates that the absolute values of the input weights should
-	 * be used to determine the feature adding order.&quot;
-	 */
-	public static final String PARAMETER_USE_ABSOLUTE_WEIGHTS = "use_absolute_weights";
+    /**
+     * The parameter name for &quot;Indicates that the absolute values of the input weights should
+     * be used to determine the feature adding order.&quot;
+     */
+    public static final String PARAMETER_USE_ABSOLUTE_WEIGHTS = "use_absolute_weights";
 
-	public static final String PARAMETER_USE_EARLY_STOPPING = "use_early_stopping";
+    /**
+     * The constant PARAMETER_USE_EARLY_STOPPING.
+     */
+    public static final String PARAMETER_USE_EARLY_STOPPING = "use_early_stopping";
 
 	private int generationsWOImp;
 
@@ -76,7 +79,12 @@ public class WeightGuidedSelectionOperator extends FeatureOperator {
 
 	private InputPort attributeWeightsInput = getInputPorts().createPort("attribute weights in", AttributeWeights.class);
 
-	public WeightGuidedSelectionOperator(OperatorDescription description) {
+    /**
+     * Instantiates a new Weight guided selection operator.
+     *
+     * @param description the description
+     */
+    public WeightGuidedSelectionOperator(OperatorDescription description) {
 		super(description);
 	}
 

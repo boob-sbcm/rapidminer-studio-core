@@ -41,10 +41,10 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  */
 public class If extends AbstractFunction {
 
-	/**
-	 * Constructs an IF Function with 3 parameters with {@link FunctionDescription}
-	 */
-	public If() {
+    /**
+     * Constructs an IF Function with 3 parameters with {@link FunctionDescription}
+     */
+    public If() {
 		super("logical.if", 3, Ontology.ATTRIBUTE_VALUE);
 	}
 
@@ -102,18 +102,15 @@ public class If extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Builds a boolean callable from the given evaluators
-	 *
-	 * @param condition
-	 *            evaluator
-	 * @param ifBlock
-	 *            evaluator
-	 * @param elseBlock
-	 *            evaluator
-	 * @return the resulting boolean callable
-	 */
-	protected Callable<Boolean> makeBooleanCallable(final ExpressionEvaluator condition, final ExpressionEvaluator ifBlock,
+    /**
+     * Builds a boolean callable from the given evaluators
+     *
+     * @param condition evaluator
+     * @param ifBlock   evaluator
+     * @param elseBlock evaluator
+     * @return the resulting boolean callable
+     */
+    protected Callable<Boolean> makeBooleanCallable(final ExpressionEvaluator condition, final ExpressionEvaluator ifBlock,
 			final ExpressionEvaluator elseBlock) {
 
 		// if we know that the condition is constant, make the callable based on the selected case
@@ -211,18 +208,15 @@ public class If extends AbstractFunction {
 
 	}
 
-	/**
-	 * Builds a String callable from the given evaluators
-	 *
-	 * @param condition
-	 *            evaluator
-	 * @param ifBlock
-	 *            evaluator
-	 * @param elseBlock
-	 *            evaluator
-	 * @return the resulting String callable
-	 */
-	protected Callable<String> makeStringCallable(final ExpressionEvaluator condition, final ExpressionEvaluator ifBlock,
+    /**
+     * Builds a String callable from the given evaluators
+     *
+     * @param condition evaluator
+     * @param ifBlock   evaluator
+     * @param elseBlock evaluator
+     * @return the resulting String callable
+     */
+    protected Callable<String> makeStringCallable(final ExpressionEvaluator condition, final ExpressionEvaluator ifBlock,
 			final ExpressionEvaluator elseBlock) {
 		// if we know that the condition is constant, make the callable based on the selected case
 		if (condition.isConstant()) {
@@ -373,18 +367,15 @@ public class If extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Builds a Date callable from the given evaluators
-	 *
-	 * @param condition
-	 *            evaluator
-	 * @param ifBlock
-	 *            evaluator
-	 * @param elseBlock
-	 *            evaluator
-	 * @return the resulting Date callable
-	 */
-	protected Callable<Date> makeDateCallable(final ExpressionEvaluator condition, final ExpressionEvaluator ifBlock,
+    /**
+     * Builds a Date callable from the given evaluators
+     *
+     * @param condition evaluator
+     * @param ifBlock   evaluator
+     * @param elseBlock evaluator
+     * @return the resulting Date callable
+     */
+    protected Callable<Date> makeDateCallable(final ExpressionEvaluator condition, final ExpressionEvaluator ifBlock,
 			final ExpressionEvaluator elseBlock) {
 
 		// if we know that the condition is constant, make the callable based on the selected case
@@ -481,18 +472,15 @@ public class If extends AbstractFunction {
 		}
 	}
 
-	/**
-	 * Builds a Double callable from the given evaluators
-	 *
-	 * @param condition
-	 *            evaluator
-	 * @param ifBlock
-	 *            evaluator
-	 * @param elseBlock
-	 *            evaluator
-	 * @return the resulting Double callable
-	 */
-	protected DoubleCallable makeDoubleCallable(final ExpressionEvaluator condition, final ExpressionEvaluator ifBlock,
+    /**
+     * Builds a Double callable from the given evaluators
+     *
+     * @param condition evaluator
+     * @param ifBlock   evaluator
+     * @param elseBlock evaluator
+     * @return the resulting Double callable
+     */
+    protected DoubleCallable makeDoubleCallable(final ExpressionEvaluator condition, final ExpressionEvaluator ifBlock,
 			final ExpressionEvaluator elseBlock) {
 		// if we know that the condition is constant, make the callable based on the selected case
 		if (condition.isConstant()) {

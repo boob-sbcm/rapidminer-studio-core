@@ -21,40 +21,48 @@ package com.rapidminer.report;
 /**
  * This is the basic interface for all streams for reportable items. Subclasses might implement
  * streams for different file formats.
- * 
+ *
  * @author Sebastian Land, Ingo Mierswa, Helge Homburg
  */
 public interface ReportStream {
 
-	/**
-	 * Returns the string name of this stream.
-	 */
-	public String getName();
+    /**
+     * Returns the string name of this stream.
+     *
+     * @return the name
+     */
+    public String getName();
 
-	/**
-	 * This method will cause the stream to add a page break to the stream.
-	 */
-	public void addPageBreak();
+    /**
+     * This method will cause the stream to add a page break to the stream.
+     */
+    public void addPageBreak();
 
-	/**
-	 * This method will cause the stream to start a new Section at the specified level.
-	 * 
-	 * @param sectionName
-	 * @param sectionLevel
-	 * @throws ReportException
-	 */
-	public void startSection(String sectionName, int sectionLevel) throws ReportException;
+    /**
+     * This method will cause the stream to start a new Section at the specified level.
+     *
+     * @param sectionName  the section name
+     * @param sectionLevel the section level
+     * @throws ReportException the report exception
+     */
+    public void startSection(String sectionName, int sectionLevel) throws ReportException;
 
-	/**
-	 * This method will cause the stream to append a readable to the stream.
-	 */
-	public void append(String name, Reportable reportable, int width, int height) throws ReportException;
+    /**
+     * This method will cause the stream to append a readable to the stream.
+     *
+     * @param name       the name
+     * @param reportable the reportable
+     * @param width      the width
+     * @param height     the height
+     * @throws ReportException the report exception
+     */
+    public void append(String name, Reportable reportable, int width, int height) throws ReportException;
 
-	/**
-	 * This method is called to free all resourcess and finish writing if needed.
-	 * 
-	 * @throws ReportException
-	 */
-	public void close() throws ReportException;
+    /**
+     * This method is called to free all resourcess and finish writing if needed.
+     *
+     * @throws ReportException the report exception
+     */
+    public void close() throws ReportException;
 
 }

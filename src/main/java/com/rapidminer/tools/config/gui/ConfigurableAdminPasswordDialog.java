@@ -46,7 +46,6 @@ import com.rapidminer.tools.config.ConfigurationManager;
  * Dialog asking for admin password of a given {@link RemoteRepository}.
  *
  * @author Sabrina Kirstein
- *
  */
 public class ConfigurableAdminPasswordDialog extends ButtonDialog {
 
@@ -75,7 +74,13 @@ public class ConfigurableAdminPasswordDialog extends ButtonDialog {
 
 	private final String sourceName;
 
-	public ConfigurableAdminPasswordDialog(Window owner, RemoteRepository source) {
+    /**
+     * Instantiates a new Configurable admin password dialog.
+     *
+     * @param owner  the owner
+     * @param source the source
+     */
+    public ConfigurableAdminPasswordDialog(Window owner, RemoteRepository source) {
 		super(owner, "configurable_dialog.password_dialog_admin", ModalityType.MODELESS, new Object[] {
 		        source != null ? source.getName() : "", source != null ? source.getBaseUrl().toString() : "" });
 		JButton okButton = makeOkButton("configurable_dialog.password_dialog_admin.ok");
@@ -97,17 +102,21 @@ public class ConfigurableAdminPasswordDialog extends ButtonDialog {
 		}
 	}
 
-	/**
-	 * @return the password of the admin (given by user)
-	 */
-	public char[] getPassword() {
+    /**
+     * Get password char [ ].
+     *
+     * @return the password of the admin (given by user)
+     */
+    public char[] getPassword() {
 		return passwordField.getPassword();
 	}
 
-	/**
-	 * @return the user name of the admin (not given by user)
-	 */
-	public String getUserName() {
+    /**
+     * Gets user name.
+     *
+     * @return the user name of the admin (not given by user)
+     */
+    public String getUserName() {
 		return userField.getText();
 	}
 

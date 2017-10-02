@@ -44,7 +44,7 @@ import java.util.List;
 
 /**
  * This class represents an operator that creates a similarity measure based on an ExampleSet.
- * 
+ *
  * @author Michael Wurst, Ingo Mierswa
  */
 public class ExampleSet2Similarity extends Operator {
@@ -55,7 +55,12 @@ public class ExampleSet2Similarity extends Operator {
 
 	private DistanceMeasureHelper measureHelper = new DistanceMeasureHelper(this);
 
-	public ExampleSet2Similarity(OperatorDescription description) {
+    /**
+     * Instantiates a new Example set 2 similarity.
+     *
+     * @param description the description
+     */
+    public ExampleSet2Similarity(OperatorDescription description) {
 		super(description);
 
 		exampleSetInput.addPrecondition(new DistanceMeasurePrecondition(exampleSetInput, this));

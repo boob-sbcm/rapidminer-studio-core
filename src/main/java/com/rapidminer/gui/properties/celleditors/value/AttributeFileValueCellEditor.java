@@ -36,7 +36,7 @@ import com.rapidminer.parameter.ParameterTypeAttributeFile;
  * This is an extension of the FileValueCellEditor which also supports the opening of an
  * AttributeEditor. This editor should be used if an attribute description file is desired instead
  * of a normal file.
- * 
+ *
  * @author Simon Fischer, Ingo Mierswa
  */
 public class AttributeFileValueCellEditor extends FileValueCellEditor {
@@ -45,7 +45,12 @@ public class AttributeFileValueCellEditor extends FileValueCellEditor {
 
 	private transient Operator exampleSource;
 
-	public AttributeFileValueCellEditor(ParameterTypeAttributeFile type) {
+    /**
+     * Instantiates a new Attribute file value cell editor.
+     *
+     * @param type the type
+     */
+    public AttributeFileValueCellEditor(ParameterTypeAttributeFile type) {
 		super(type);
 		JButton button = new JButton(new ResourceAction(true, "edit_attributefile") {
 

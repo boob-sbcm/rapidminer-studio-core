@@ -36,15 +36,13 @@ public class ClearCacheAction extends ResourceAction {
 
 	private final IOObjectMap map;
 
-	/**
-	 * Creates a new {@link ClearCacheAction} for the specified {@link IOObjectMap}.
-	 *
-	 * @param map
-	 *            The corresponding {@link IOObjectMap};
-	 * @throws NullPointerException
-	 *             If specified map is <code>null</code>.
-	 */
-	public ClearCacheAction(IOObjectMap map) {
+    /**
+     * Creates a new {@link ClearCacheAction} for the specified {@link IOObjectMap}.
+     *
+     * @param map The corresponding {@link IOObjectMap};
+     * @throws NullPointerException If specified map is <code>null</code>.
+     */
+    public ClearCacheAction(IOObjectMap map) {
 		super(true, "ioobject_viewer.clear");
 		Objects.requireNonNull(map);
 		this.map = map;

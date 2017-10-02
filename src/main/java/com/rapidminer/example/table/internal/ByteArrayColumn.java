@@ -31,7 +31,6 @@ import com.rapidminer.tools.Ontology;
  * @author Jan Czogalla
  * @see Column
  * @see ColumnarExampleTable
- *
  */
 class ByteArrayColumn implements Column {
 
@@ -54,8 +53,12 @@ class ByteArrayColumn implements Column {
 
 	private byte[] data;
 
-	/** Creates a new {@code ByteArrayColumn} with a capacity for {@code size} boolean values. */
-	ByteArrayColumn(int size) {
+    /**
+     * Creates a new {@code ByteArrayColumn} with a capacity for {@code size} boolean values.  @param size the size
+     *
+     * @param size the size
+     */
+    ByteArrayColumn(int size) {
 		data = new byte[byteSize(size)];
 	}
 

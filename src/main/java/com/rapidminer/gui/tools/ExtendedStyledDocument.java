@@ -46,7 +46,6 @@ import javax.swing.text.StyledDocument;
  * </p>
  *
  * @author Marco Boeck
- *
  */
 public class ExtendedStyledDocument extends DefaultStyledDocument {
 
@@ -66,37 +65,33 @@ public class ExtendedStyledDocument extends DefaultStyledDocument {
 
 	private final Object LOCK = new Object();
 
-	/**
-	 * Creates an empty styled document which supports batch insertion.
-	 *
-	 * @param maxRows
-	 *            if set to > 0, will limit the max batch row amount. Oldest entries will be
-	 *            discarded for new entries.
-	 */
-	public ExtendedStyledDocument(int maxRows) {
+    /**
+     * Creates an empty styled document which supports batch insertion.
+     *
+     * @param maxRows if set to > 0, will limit the max batch row amount. Oldest entries will be            discarded for new entries.
+     */
+    public ExtendedStyledDocument(int maxRows) {
 		this.listToInsert = new LinkedList<>();
 		this.lineLength = new LinkedList<>();
 		this.maxRows = maxRows;
 	}
 
-	/**
-	 * Stores the given {@link String} line for the next batch update. If the number of elements
-	 * awaiting batch update are >= maxRows, will discard the oldest element. Call
-	 * {@link #executeBatch(int)} or {@link #executeBatchAppend()} to execute the batch update.
-	 * <p>
-	 * <strong>Attention:</strong> Every {@link String} is considered as one line so a line
-	 * separator will be added into the document after it.
-	 * </p>
-	 * <p>
-	 * This method is thread safe.
-	 * </p>
-	 *
-	 * @param str
-	 *            the {@link String} to add to the document.
-	 * @param a
-	 *            the style formatting settings
-	 */
-	public void appendLineForBatch(String str, SimpleAttributeSet a) {
+    /**
+     * Stores the given {@link String} line for the next batch update. If the number of elements
+     * awaiting batch update are >= maxRows, will discard the oldest element. Call
+     * {@link #executeBatch(int)} or {@link #executeBatchAppend()} to execute the batch update.
+     * <p>
+     * <strong>Attention:</strong> Every {@link String} is considered as one line so a line
+     * separator will be added into the document after it.
+     * </p>
+     * <p>
+     * This method is thread safe.
+     * </p>
+     *
+     * @param str the {@link String} to add to the document.
+     * @param a   the style formatting settings
+     */
+    public void appendLineForBatch(String str, SimpleAttributeSet a) {
 		if (str == null || str.isEmpty()) {
 			throw new IllegalArgumentException("str must not be null or empty!");
 		}
@@ -137,37 +132,34 @@ public class ExtendedStyledDocument extends DefaultStyledDocument {
 		}
 	}
 
-	/**
-	 * Executes a batch update. This takes all previously stored {@link String}s and appends them to
-	 * the document together. If no {@link String}s have been appended since the last batch update,
-	 * does nothing.
-	 * <p>
-	 * This method is thread safe.
-	 * </p>
-	 *
-	 * @return a list with the length of each added row. Note that this might return one more row
-	 *         than added which is of length 0
-	 * @throws BadLocationException
-	 */
-	public List<Integer> executeBatchAppend() throws BadLocationException {
+    /**
+     * Executes a batch update. This takes all previously stored {@link String}s and appends them to
+     * the document together. If no {@link String}s have been appended since the last batch update,
+     * does nothing.
+     * <p>
+     * This method is thread safe.
+     * </p>
+     *
+     * @return a list with the length of each added row. Note that this might return one more row         than added which is of length 0
+     * @throws BadLocationException the bad location exception
+     */
+    public List<Integer> executeBatchAppend() throws BadLocationException {
 		return executeBatch(getLength());
 	}
 
-	/**
-	 * Executes a batch update. This takes all previously stored {@link String}s and adds them to
-	 * the document together at the specified offset. If no {@link String}s have been appended since
-	 * the last batch update, does nothing.
-	 * <p>
-	 * This method is thread safe.
-	 * </p>
-	 *
-	 * @param offset
-	 *            the offset from the beginning of the document where the batch should be added
-	 * @return a list with the length of each added row. Note that this might return one more row
-	 *         than added which is of length 0
-	 * @throws BadLocationException
-	 */
-	public List<Integer> executeBatch(int offset) throws BadLocationException {
+    /**
+     * Executes a batch update. This takes all previously stored {@link String}s and adds them to
+     * the document together at the specified offset. If no {@link String}s have been appended since
+     * the last batch update, does nothing.
+     * <p>
+     * This method is thread safe.
+     * </p>
+     *
+     * @param offset the offset from the beginning of the document where the batch should be added
+     * @return a list with the length of each added row. Note that this might return one more row         than added which is of length 0
+     * @throws BadLocationException the bad location exception
+     */
+    public List<Integer> executeBatch(int offset) throws BadLocationException {
 		ElementSpec[] data = null;
 		List<Integer> toReturn = new LinkedList<>();
 		synchronized (LOCK) {
@@ -188,16 +180,16 @@ public class ExtendedStyledDocument extends DefaultStyledDocument {
 		return toReturn;
 	}
 
-	/**
-	 * Returns the size of the current batch update, i.e. how many batch elements have been added
-	 * since the last batch update.
-	 * <p>
-	 * This method is thread safe.
-	 * </p>
-	 *
-	 * @return the current number of added batch updates
-	 */
-	public int getBatchSize() {
+    /**
+     * Returns the size of the current batch update, i.e. how many batch elements have been added
+     * since the last batch update.
+     * <p>
+     * This method is thread safe.
+     * </p>
+     *
+     * @return the current number of added batch updates
+     */
+    public int getBatchSize() {
 		int size = 0;
 		synchronized (LOCK) {
 			// we take the linelength list because the other one contains start/end tags
@@ -207,29 +199,28 @@ public class ExtendedStyledDocument extends DefaultStyledDocument {
 		return size;
 	}
 
-	/**
-	 * Discards the accumulated strings for a batch update. Does not change the {@link Document}.
-	 * After this method has been called, {@link #isBatchUpdateReady()} will return
-	 * <code>false</code>.
-	 * <p>
-	 * This method is thread safe.
-	 * </p>
-	 */
-	public void clearBatch() {
+    /**
+     * Discards the accumulated strings for a batch update. Does not change the {@link Document}.
+     * After this method has been called, {@link #isBatchUpdateReady()} will return
+     * <code>false</code>.
+     * <p>
+     * This method is thread safe.
+     * </p>
+     */
+    public void clearBatch() {
 		synchronized (LOCK) {
 			listToInsert.clear();
 			lineLength.clear();
 		}
 	}
 
-	/**
-	 * Sets the maximum amount of lines allowed in a batch before oldest ones get discarded for new
-	 * ones.
-	 *
-	 * @param maxRows
-	 *            if set to > 0, limits the number of batch items
-	 */
-	public void setMaxRows(int maxRows) {
+    /**
+     * Sets the maximum amount of lines allowed in a batch before oldest ones get discarded for new
+     * ones.
+     *
+     * @param maxRows if set to > 0, limits the number of batch items
+     */
+    public void setMaxRows(int maxRows) {
 		this.maxRows = maxRows;
 	}
 }

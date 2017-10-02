@@ -52,7 +52,6 @@ import com.rapidminer.tools.Tools;
  * Unit tests for the {@link CSVDataSource#getData()} method.
  *
  * @author Nils Woehler, Gisa Schaefer
- *
  */
 public class CSVDataSourceDataTest {
 
@@ -66,7 +65,13 @@ public class CSVDataSourceDataTest {
 	// remember system locale
 	private static Locale systemLocale = Locale.getDefault();
 
-	@BeforeClass
+    /**
+     * Sets .
+     *
+     * @throws URISyntaxException the uri syntax exception
+     * @throws IOException        the io exception
+     */
+    @BeforeClass
 	public static void setup() throws URISyntaxException, IOException {
 		simpleTestFile = new File(CSVDataSourceDataTest.class.getResource("iris1.csv").toURI());
 		simpleTestFileSeparatorAndDecimalCharacter = new File(CSVDataSourceDataTest.class.getResource("iris2.csv").toURI());
@@ -80,13 +85,22 @@ public class CSVDataSourceDataTest {
 		Locale.setDefault(Locale.ENGLISH);
 	}
 
-	@AfterClass
+    /**
+     * Tear down.
+     */
+    @AfterClass
 	public static void tearDown() {
 		// restore system locale
 		Locale.setDefault(systemLocale);
 	}
 
-	@Test
+    /**
+     * Default meta data test.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void defaultMetaDataTest() throws DataSetException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFile.toPath());
@@ -154,7 +168,13 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Default test with changed separator and decimal character.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void defaultTestWithChangedSeparatorAndDecimalCharacter() throws DataSetException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFileSeparatorAndDecimalCharacter.toPath());
@@ -222,7 +242,13 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test(expected = HeaderRowBehindStartRowException.class)
+    /**
+     * Header row behind start row.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test(expected = HeaderRowBehindStartRowException.class)
 	public void headerRowBehindStartRow() throws DataSetException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFile.toPath());
@@ -236,7 +262,13 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test(expected = HeaderRowBehindStartRowException.class)
+    /**
+     * Header row behind start row 2.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test(expected = HeaderRowBehindStartRowException.class)
 	public void headerRowBehindStartRow2() throws DataSetException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFile.toPath());
@@ -251,7 +283,13 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test(expected = StartRowNotFoundException.class)
+    /**
+     * Start row not available.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test(expected = StartRowNotFoundException.class)
 	public void startRowNotAvailable() throws DataSetException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFile.toPath());
@@ -266,7 +304,13 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test(expected = HeaderRowNotFoundException.class)
+    /**
+     * Header row not found.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test(expected = HeaderRowNotFoundException.class)
 	public void headerRowNotFound() throws DataSetException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFile.toPath());
@@ -277,7 +321,13 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Data content starts at fith row.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void dataContentStartsAtFithRow() throws DataSetException, ParseException {
 
 		try (CSVDataSource dataSource = new CSVDataSource()) {
@@ -346,7 +396,13 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * No header row defined.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void noHeaderRowDefined() throws DataSetException, ParseException {
 
 		try (CSVDataSource dataSource = new CSVDataSource()) {
@@ -411,7 +467,13 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Missing in header row.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void missingInHeaderRow() throws DataSetException, ParseException {
 
 		try (CSVDataSource dataSource = new CSVDataSource()) {
@@ -429,7 +491,13 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Data content starts at fith row header row as second row.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void dataContentStartsAtFithRowHeaderRowAsSecondRow() throws DataSetException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFile.toPath());
@@ -497,7 +565,13 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * First data row defined.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test
 	public void firstDataRowDefined() throws DataSetException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFile.toPath());
@@ -565,7 +639,13 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test(expected = StartRowNotFoundException.class)
+    /**
+     * Wrong column separator.
+     *
+     * @throws DataSetException the data set exception
+     * @throws ParseException   the parse exception
+     */
+    @Test(expected = StartRowNotFoundException.class)
 	public void wrongColumnSeparator() throws DataSetException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFile.toPath());
@@ -576,7 +656,14 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Encoding test utf 8.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void encodingTestUtf8() throws DataSetException, IndexOutOfBoundsException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFile.toPath());
@@ -603,7 +690,14 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Encoding test.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void encodingTest() throws DataSetException, IndexOutOfBoundsException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFile.toPath());
@@ -630,7 +724,14 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Trim lines enabled.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void trimLinesEnabled() throws DataSetException, IndexOutOfBoundsException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFileSpaceAsSeparator.toPath());
@@ -662,7 +763,14 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Trim lines disabled.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void trimLinesDisabled() throws DataSetException, IndexOutOfBoundsException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFileSpaceAsSeparator.toPath());
@@ -696,7 +804,14 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ignore comments enabled.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void ignoreCommentsEnabled() throws DataSetException, IndexOutOfBoundsException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFileCommentsQuotesAndEscape.toPath());
@@ -724,7 +839,14 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ignore comments disabled.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void ignoreCommentsDisabled() throws DataSetException, IndexOutOfBoundsException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFileCommentsQuotesAndEscape.toPath());
@@ -756,7 +878,14 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Ignore comments enabled other character.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void ignoreCommentsEnabledOtherCharacter() throws DataSetException, IndexOutOfBoundsException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFileCommentsQuotesAndEscape.toPath());
@@ -788,7 +917,14 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Using quotes and standard characters.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void usingQuotesAndStandardCharacters() throws DataSetException, IndexOutOfBoundsException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFileCommentsQuotesAndEscape.toPath());
@@ -820,7 +956,14 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not using quotes and standard characters.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void notUsingQuotesAndStandardCharacters() throws DataSetException, IndexOutOfBoundsException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFileCommentsQuotesAndEscape.toPath());
@@ -854,7 +997,14 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Not using quotes and other characters.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void notUsingQuotesAndOtherCharacters() throws DataSetException, IndexOutOfBoundsException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFileCommentsQuotesAndEscape.toPath());
@@ -893,7 +1043,14 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Using other quotes.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void usingOtherQuotes() throws DataSetException, IndexOutOfBoundsException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFileCommentsQuotesAndEscape.toPath());
@@ -932,7 +1089,14 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Using other escape character.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void usingOtherEscapeCharacter() throws DataSetException, IndexOutOfBoundsException, ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFileCommentsQuotesAndEscape.toPath());
@@ -974,7 +1138,12 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Caching test.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void cachingTest() throws DataSetException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFile.toPath());
@@ -994,7 +1163,12 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Length test.
+     *
+     * @throws DataSetException the data set exception
+     */
+    @Test
 	public void lengthTest() throws DataSetException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
 			dataSource.setLocation(simpleTestFile.toPath());
@@ -1025,7 +1199,15 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Simple nominal to date test.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws ParseException            the parse exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void simpleNominalToDateTest()
 			throws DataSetException, ParseException, IndexOutOfBoundsException, java.text.ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
@@ -1068,7 +1250,15 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test(expected = ParseException.class)
+    /**
+     * Wrong date format test.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws ParseException            the parse exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test(expected = ParseException.class)
 	public void wrongDateFormatTest()
 			throws DataSetException, ParseException, IndexOutOfBoundsException, java.text.ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {
@@ -1098,7 +1288,15 @@ public class CSVDataSourceDataTest {
 		}
 	}
 
-	@Test
+    /**
+     * Test last row as start and header row.
+     *
+     * @throws DataSetException          the data set exception
+     * @throws ParseException            the parse exception
+     * @throws IndexOutOfBoundsException the index out of bounds exception
+     * @throws ParseException            the parse exception
+     */
+    @Test
 	public void testLastRowAsStartAndHeaderRow()
 			throws DataSetException, ParseException, IndexOutOfBoundsException, java.text.ParseException {
 		try (CSVDataSource dataSource = new CSVDataSource()) {

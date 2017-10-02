@@ -56,9 +56,9 @@ import com.rapidminer.tools.FontTools;
 
 
 /**
+ * The type Font dialog.
+ *
  * @author Nils Woehler
- *
- *
  */
 public class FontDialog extends ButtonDialog {
 
@@ -69,9 +69,15 @@ public class FontDialog extends ButtonDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final int RET_CANCEL = 0;
+    /**
+     * The constant RET_CANCEL.
+     */
+    public static final int RET_CANCEL = 0;
 
-	public static final int RET_OK = 1;
+    /**
+     * The constant RET_OK.
+     */
+    public static final int RET_OK = 1;
 
 	private Font font;
 
@@ -100,7 +106,14 @@ public class FontDialog extends ButtonDialog {
 
 	private JLabel previewLabel;
 
-	public FontDialog(Component parent, Font font, String i18nKey) {
+    /**
+     * Instantiates a new Font dialog.
+     *
+     * @param parent  the parent
+     * @param font    the font
+     * @param i18nKey the 18 n key
+     */
+    public FontDialog(Component parent, Font font, String i18nKey) {
 		super(parent != null ? SwingUtilities.getWindowAncestor(parent) : null, i18nKey, ModalityType.APPLICATION_MODAL,
 				new Object[] {});
 		this.font = font;
@@ -455,7 +468,12 @@ public class FontDialog extends ButtonDialog {
 		dispose();
 	}
 
-	public int getReturnStatus() {
+    /**
+     * Gets return status.
+     *
+     * @return the return status
+     */
+    public int getReturnStatus() {
 		return returnStatus;
 	}
 }

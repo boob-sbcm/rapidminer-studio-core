@@ -54,15 +54,32 @@ import com.rapidminer.tools.OperatorResourceConsumptionHandler;
  */
 public class AttributeMerge extends AbstractDataProcessing {
 
-	public static final String PARAMETER_FIRST_ATTRIBUTE = "first_attribute";
+    /**
+     * The constant PARAMETER_FIRST_ATTRIBUTE.
+     */
+    public static final String PARAMETER_FIRST_ATTRIBUTE = "first_attribute";
 
-	public static final String PARAMETER_SECOND_ATTRIBUTE = "second_attribute";
+    /**
+     * The constant PARAMETER_SECOND_ATTRIBUTE.
+     */
+    public static final String PARAMETER_SECOND_ATTRIBUTE = "second_attribute";
 
-	public static final String PARAMETER_SEPARATOR = "separator";
+    /**
+     * The constant PARAMETER_SEPARATOR.
+     */
+    public static final String PARAMETER_SEPARATOR = "separator";
 
-	public static final String PARAMETER_TRIM_VALUES = "trim_values";
+    /**
+     * The constant PARAMETER_TRIM_VALUES.
+     */
+    public static final String PARAMETER_TRIM_VALUES = "trim_values";
 
-	public AttributeMerge(OperatorDescription description) {
+    /**
+     * Instantiates a new Attribute merge.
+     *
+     * @param description the description
+     */
+    public AttributeMerge(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(

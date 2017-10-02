@@ -25,7 +25,7 @@ import com.rapidminer.example.Example;
  * This function represents a sigmoid activation function by calculating 1 / (1 + exp(- weighted
  * sum). The sigmoid function is usually used for the input and hidden layers and for the output
  * layer for classification problems.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class SigmoidFunction extends ActivationFunction {

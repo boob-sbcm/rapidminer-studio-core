@@ -35,27 +35,34 @@ import java.util.List;
  * and if a label will be shown.
  *
  * @author Marius Helf
- *
  */
 public class AxisParallelLinesConfiguration implements AxisParallelLineConfigurationListener, Cloneable {
 
 	private List<AxisParallelLineConfiguration> lineConfigurations = new LinkedList<AxisParallelLineConfiguration>();
 	private List<WeakReference<AxisParallelLinesConfigurationListener>> listeners = new LinkedList<WeakReference<AxisParallelLinesConfigurationListener>>();
 
-	public void addLine(double value, boolean labelVisible, LineStyle style, float width) {
+    /**
+     * Add line.
+     *
+     * @param value        the value
+     * @param labelVisible the label visible
+     * @param style        the style
+     * @param width        the width
+     */
+    public void addLine(double value, boolean labelVisible, LineStyle style, float width) {
 		AxisParallelLineConfiguration line = new AxisParallelLineConfiguration(value, labelVisible);
 		line.getFormat().setStyle(style);
 		line.getFormat().setWidth(width);
 		addLine(line);
 	}
 
-	/**
-	 * Adds the given {@link AxisParallelLineConfiguration} line. If the exact same line already
-	 * exists, the line will NOT be added again.
-	 *
-	 * @param line
-	 */
-	public void addLine(AxisParallelLineConfiguration line) {
+    /**
+     * Adds the given {@link AxisParallelLineConfiguration} line. If the exact same line already
+     * exists, the line will NOT be added again.
+     *
+     * @param line the line
+     */
+    public void addLine(AxisParallelLineConfiguration line) {
 		if (lineConfigurations.contains(line)) {
 			return;
 		}
@@ -65,14 +72,24 @@ public class AxisParallelLinesConfiguration implements AxisParallelLineConfigura
 		fireLineAdded(line);
 	}
 
-	public void removeLine(AxisParallelLineConfiguration line) {
+    /**
+     * Remove line.
+     *
+     * @param line the line
+     */
+    public void removeLine(AxisParallelLineConfiguration line) {
 		lineConfigurations.remove(line);
 		line.removeAxisParallelLineConfigurationListener(this);
 		line.getFormat().removeLineFormatListener(line);
 		fireLineRemoved(line);
 	}
 
-	public List<AxisParallelLineConfiguration> getLines() {
+    /**
+     * Gets lines.
+     *
+     * @return the lines
+     */
+    public List<AxisParallelLineConfiguration> getLines() {
 		return lineConfigurations;
 	}
 
@@ -102,7 +119,12 @@ public class AxisParallelLinesConfiguration implements AxisParallelLineConfigura
 		}
 	}
 
-	public void addAxisParallelLinesConfigurationListener(AxisParallelLinesConfigurationListener l) {
+    /**
+     * Add axis parallel lines configuration listener.
+     *
+     * @param l the l
+     */
+    public void addAxisParallelLinesConfigurationListener(AxisParallelLinesConfigurationListener l) {
 		for (WeakReference<AxisParallelLinesConfigurationListener> listenerRef : listeners) {
 			if (l.equals(listenerRef.get())) {
 				return;
@@ -111,7 +133,12 @@ public class AxisParallelLinesConfiguration implements AxisParallelLineConfigura
 		listeners.add(new WeakReference<AxisParallelLinesConfigurationListener>(l));
 	}
 
-	public void removeAxisParallelLinesConfigurationListener(AxisParallelLinesConfigurationListener l) {
+    /**
+     * Remove axis parallel lines configuration listener.
+     *
+     * @param l the l
+     */
+    public void removeAxisParallelLinesConfigurationListener(AxisParallelLinesConfigurationListener l) {
 		Iterator<WeakReference<AxisParallelLinesConfigurationListener>> it = listeners.iterator();
 		while (it.hasNext()) {
 			AxisParallelLinesConfigurationListener listener = it.next().get();

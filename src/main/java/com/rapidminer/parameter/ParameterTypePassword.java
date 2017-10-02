@@ -37,7 +37,13 @@ public class ParameterTypePassword extends ParameterTypeString {
 
 	private static final long serialVersionUID = 384977559199162363L;
 
-	public ParameterTypePassword(String key, String description) {
+    /**
+     * Instantiates a new Parameter type password.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ParameterTypePassword(String key, String description) {
 		super(key, description, true);
 		setExpert(false);
 	}

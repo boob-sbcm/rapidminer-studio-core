@@ -25,7 +25,7 @@ import java.util.Random;
 
 /**
  * Performs a tournament selection on the given population list.
- * 
+ *
  * @author Ingo Mierswa ingomierswa Exp $
  */
 public class AggregationTournamentSelection implements AggregationSelection {
@@ -36,7 +36,14 @@ public class AggregationTournamentSelection implements AggregationSelection {
 
 	private Random random;
 
-	public AggregationTournamentSelection(int popSize, double tournamentFraction, Random random) {
+    /**
+     * Instantiates a new Aggregation tournament selection.
+     *
+     * @param popSize            the pop size
+     * @param tournamentFraction the tournament fraction
+     * @param random             the random
+     */
+    public AggregationTournamentSelection(int popSize, double tournamentFraction, Random random) {
 		this.popSize = popSize;
 		this.tournamentFraction = tournamentFraction;
 		this.random = random;

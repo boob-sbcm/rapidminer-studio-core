@@ -49,7 +49,15 @@ public class LinearMySVMModel extends PredictionModel {
 
 	private double[] weights = null;
 
-	public LinearMySVMModel(ExampleSet exampleSet,
+    /**
+     * Instantiates a new Linear my svm model.
+     *
+     * @param exampleSet the example set
+     * @param model      the model
+     * @param kernel     the kernel
+     * @param kernelType the kernel type
+     */
+    public LinearMySVMModel(ExampleSet exampleSet,
 			com.rapidminer.operator.learner.functions.kernel.jmysvm.examples.SVMExamples model, Kernel kernel,
 			int kernelType) {
 		super(exampleSet, ExampleSetUtilities.SetsCompareOption.ALLOW_SUPERSET,

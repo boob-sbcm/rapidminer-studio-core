@@ -42,7 +42,10 @@ import com.rapidminer.tools.usagestats.ActionStatisticsCollector.Key;
  * @since 7.5.0
  */
 enum CtaDao {
-	INSTANCE;
+    /**
+     * Instance cta dao.
+     */
+    INSTANCE;
 
 	/** Insert a new event with the current timestamp */
 	private static final String INSERT_EVENT_QUERY = "INSERT INTO event(type,value,argument,count) VALUES (?,?,?,?)";
@@ -83,28 +86,26 @@ enum CtaDao {
 		}
 	}
 
-	/**
-	 * Store a rule triggered event
-	 *
-	 * @param rule
-	 *            The Rule that has been triggered
-	 * @param action
-	 *            The users action
-	 * @throws SQLException
-	 */
-	public void triggered(Rule rule, String action) throws SQLException {
+    /**
+     * Store a rule triggered event
+     *
+     * @param rule   The Rule that has been triggered
+     * @param action The users action
+     * @throws SQLException the sql exception
+     */
+    public void triggered(Rule rule, String action) throws SQLException {
 		insertRule.setString(1, rule.getId());
 		insertRule.setString(2, action);
 		insertRule.execute();
 	}
 
-	/**
-	 * Store events
-	 *
-	 * @param events
-	 * @throws SQLException
-	 */
-	public void storeEvents(Map<Key, Long> events) throws SQLException {
+    /**
+     * Store events
+     *
+     * @param events the events
+     * @throws SQLException the sql exception
+     */
+    public void storeEvents(Map<Key, Long> events) throws SQLException {
 		for (Entry<Key, Long> event : events.entrySet()) {
 			Key key = event.getKey();
 			insertEvent.setString(1, key.getType());
@@ -118,14 +119,14 @@ enum CtaDao {
 		insertEvent.executeBatch();
 	}
 
-	/**
-	 * Verifies the rules
-	 *
-	 * @param rule
-	 * @return true if the rule is fulfilled
-	 * @throws SQLException
-	 */
-	public boolean verify(Rule rule) throws SQLException {
+    /**
+     * Verifies the rules
+     *
+     * @param rule the rule
+     * @return true if the rule is fulfilled
+     * @throws SQLException the sql exception
+     */
+    public boolean verify(Rule rule) throws SQLException {
 		// An empty rule should not be triggered
 		boolean isValid = false;
 		List<PreparedStatement> statements = getStatements(rule);
@@ -170,16 +171,16 @@ enum CtaDao {
 		return statements;
 	}
 
-	/**
-	 * Cleans up the Database
-	 * <ul>
-	 * <li>Delete all events older than a month</li>
-	 * <li>Delete all events over 1.000.000</li>
-	 * </ul>
-	 *
-	 * @throws SQLException
-	 */
-	public void cleanUpDatabase() throws SQLException {
+    /**
+     * Cleans up the Database
+     * <ul>
+     * <li>Delete all events older than a month</li>
+     * <li>Delete all events over 1.000.000</li>
+     * </ul>
+     *
+     * @throws SQLException the sql exception
+     */
+    public void cleanUpDatabase() throws SQLException {
 		deleteOlderOneMonth.executeUpdate();
 		try (ResultSet oldResult = selectOver250k.executeQuery()) {
 			if (oldResult.next()) {

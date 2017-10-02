@@ -36,7 +36,7 @@ import com.rapidminer.tools.Tools;
  * interface of RapidMiner. Since they cannot be displayed with the command line version of
  * RapidMiner the operator {@link DataStatisticsOperator} can be used as a workaround in cases where
  * the graphical user interface cannot be used.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class DataStatistics extends ResultObjectAdapter {
@@ -50,7 +50,13 @@ public class DataStatistics extends ResultObjectAdapter {
 		return "Data Statistics";
 	}
 
-	public void addInfo(ExampleSet exampleSet, Attribute attribute) {
+    /**
+     * Add info.
+     *
+     * @param exampleSet the example set
+     * @param attribute  the attribute
+     */
+    public void addInfo(ExampleSet exampleSet, Attribute attribute) {
 		StringBuffer result = new StringBuffer(attribute.toString() + ": ");
 		if (Ontology.ATTRIBUTE_VALUE_TYPE.isA(attribute.getValueType(), Ontology.DATE_TIME)) {
 			long minMilliseconds = (long) exampleSet.getStatistics(attribute, Statistics.MINIMUM);
@@ -92,11 +98,21 @@ public class DataStatistics extends ResultObjectAdapter {
 		return result.toString();
 	}
 
-	public String getExtension() {
+    /**
+     * Gets extension.
+     *
+     * @return the extension
+     */
+    public String getExtension() {
 		return "sta";
 	}
 
-	public String getFileDescription() {
+    /**
+     * Gets file description.
+     *
+     * @return the file description
+     */
+    public String getFileDescription() {
 		return "data statistics";
 	}
 }

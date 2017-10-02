@@ -25,7 +25,8 @@ import com.rapidminer.operator.visualization.dependencies.NumericalMatrix;
 
 
 /**
- * 
+ * The type Numerical matrix pairwise renderer.
+ *
  * @author Sebastian Land
  */
 public class NumericalMatrixPairwiseRenderer extends AbstractDataTableTableRenderer {

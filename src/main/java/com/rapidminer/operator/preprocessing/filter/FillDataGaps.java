@@ -58,7 +58,7 @@ import com.rapidminer.tools.math.MathFunctions;
  * This operator fills gaps in the data based on the ID attribute of the data set. The ID attribute
  * must either have the value type &quot;integer&quot; or one of the data value types.
  * </p>
- *
+ * <p>
  * <p>
  * The operator performs the following steps:
  * </p>
@@ -69,7 +69,7 @@ import com.rapidminer.tools.math.MathFunctions;
  * <li>All rows which would have an ID value which is a multiple of the GCD but are missing are
  * added to the data set</li>
  * </ol>
- *
+ * <p>
  * <p>
  * Please note that all values of attributes beside the ID attribute will have a missing value which
  * often must be replaced as a next step.
@@ -79,15 +79,32 @@ import com.rapidminer.tools.math.MathFunctions;
  */
 public class FillDataGaps extends AbstractExampleSetProcessing {
 
-	public static final String PARAMETER_USE_GCD_FOR_STEP_SIZE = "use_gcd_for_step_size";
+    /**
+     * The constant PARAMETER_USE_GCD_FOR_STEP_SIZE.
+     */
+    public static final String PARAMETER_USE_GCD_FOR_STEP_SIZE = "use_gcd_for_step_size";
 
-	public static final String PARAMETER_STEP_SIZE = "step_size";
+    /**
+     * The constant PARAMETER_STEP_SIZE.
+     */
+    public static final String PARAMETER_STEP_SIZE = "step_size";
 
-	public static final String PARAMETER_START = "start";
+    /**
+     * The constant PARAMETER_START.
+     */
+    public static final String PARAMETER_START = "start";
 
-	public static final String PARAMETER_END = "end";
+    /**
+     * The constant PARAMETER_END.
+     */
+    public static final String PARAMETER_END = "end";
 
-	public FillDataGaps(OperatorDescription description) {
+    /**
+     * Instantiates a new Fill data gaps.
+     *
+     * @param description the description
+     */
+    public FillDataGaps(OperatorDescription description) {
 		super(description);
 
 		getExampleSetInputPort().addPrecondition(

@@ -45,7 +45,6 @@ import com.rapidminer.tools.Ontology;
  * {@link MetaDataStatisticsModel} when the view tells it the user changes something.
  *
  * @author Marco Boeck
- *
  */
 public class MetaDataStatisticsController {
 
@@ -70,16 +69,13 @@ public class MetaDataStatisticsController {
 	 */
 	private List<AbstractAttributeStatisticsModel> backupInitialOrderList;
 
-	/**
-	 * Creates a new {@link MetaDataStatisticsController} instance. Does not store
-	 *
-	 * @param exampleSet
-	 *            the {@link ExampleSet} for which the meta data statistics should be created. No
-	 *            reference to it is stored to prevent memory leaks.
-	 * @param view
-	 * @param model
-	 */
-	public MetaDataStatisticsController(MetaDataStatisticsViewer view, MetaDataStatisticsModel model) {
+    /**
+     * Creates a new {@link MetaDataStatisticsController} instance. Does not store
+     *
+     * @param view  the view
+     * @param model the model
+     */
+    public MetaDataStatisticsController(MetaDataStatisticsViewer view, MetaDataStatisticsModel model) {
 		if (model.getExampleSetOrNull() == null) {
 			throw new IllegalArgumentException("model exampleSet must not be null at construction time!");
 		}
@@ -98,12 +94,12 @@ public class MetaDataStatisticsController {
 		calculateStatistics(model.getExampleSetOrNull());
 	}
 
-	/**
-	 * Call to let the controller know that GUI or calculations are done. Once both are done (aka
-	 * this method has been called twice after initialization), the GUI will be notified to display
-	 * everything.
-	 */
-	public void waitAtBarrier() {
+    /**
+     * Call to let the controller know that GUI or calculations are done. Once both are done (aka
+     * this method has been called twice after initialization), the GUI will be notified to display
+     * everything.
+     */
+    public void waitAtBarrier() {
 		try {
 			// GUI is done, tell barrier so once GUI and calculations are done the GUI can be
 			// updated
@@ -115,62 +111,62 @@ public class MetaDataStatisticsController {
 		}
 	}
 
-	/**
-	 * Changes the current page index to the first page (if possible).
-	 */
-	public void setCurrentPageIndexToFirstPage() {
+    /**
+     * Changes the current page index to the first page (if possible).
+     */
+    public void setCurrentPageIndexToFirstPage() {
 		if (model.getCurrentPageIndex() > 0) {
 			model.setCurrentPageIndex(0);
 			model.firePaginationChangedEvent();
 		}
 	}
 
-	/**
-	 * Decrements the current page index (if possible).
-	 */
-	public void decrementCurrentPageIndex() {
+    /**
+     * Decrements the current page index (if possible).
+     */
+    public void decrementCurrentPageIndex() {
 		if (model.getCurrentPageIndex() > 0) {
 			model.setCurrentPageIndex(model.getCurrentPageIndex() - 1);
 			model.firePaginationChangedEvent();
 		}
 	}
 
-	/**
-	 * Increments the current page index (if possible).
-	 */
-	public void incrementCurrentPageIndex() {
+    /**
+     * Increments the current page index (if possible).
+     */
+    public void incrementCurrentPageIndex() {
 		if (model.getCurrentPageIndex() < model.getNumberOfPages() - 1) {
 			model.setCurrentPageIndex(model.getCurrentPageIndex() + 1);
 			model.firePaginationChangedEvent();
 		}
 	}
 
-	/**
-	 * Changes the current page index to the last page (if possible).
-	 */
-	public void setCurrentPageIndexToLastPage() {
+    /**
+     * Changes the current page index to the last page (if possible).
+     */
+    public void setCurrentPageIndexToLastPage() {
 		if (model.getCurrentPageIndex() < model.getNumberOfPages() - 1) {
 			model.setCurrentPageIndex(model.getNumberOfPages() - 1);
 			model.firePaginationChangedEvent();
 		}
 	}
 
-	/**
-	 * Changes the current page to the human index page (which obviously starts at 1 rather than 0).
-	 *
-	 * @param humanPageIndex
-	 */
-	public void jumpToHumanPageIndex(int humanPageIndex) {
+    /**
+     * Changes the current page to the human index page (which obviously starts at 1 rather than 0).
+     *
+     * @param humanPageIndex the human page index
+     */
+    public void jumpToHumanPageIndex(int humanPageIndex) {
 		if (model.getCurrentPageIndex() != humanPageIndex - 1) {
 			model.setCurrentPageIndex(humanPageIndex - 1);
 			model.firePaginationChangedEvent();
 		}
 	}
 
-	/**
-	 * Call when the attribute name sorting should be cycled.
-	 */
-	public void cycleAttributeNameSorting() {
+    /**
+     * Call when the attribute name sorting should be cycled.
+     */
+    public void cycleAttributeNameSorting() {
 		SortingDirection direction = model.getSortingDirection(SortingType.NAME);
 
 		switch (direction) {
@@ -188,10 +184,10 @@ public class MetaDataStatisticsController {
 		}
 	}
 
-	/**
-	 * Call when the attribute type sorting should be cycled.
-	 */
-	public void cycleAttributeTypeSorting() {
+    /**
+     * Call when the attribute type sorting should be cycled.
+     */
+    public void cycleAttributeTypeSorting() {
 		SortingDirection direction = model.getSortingDirection(SortingType.TYPE);
 
 		switch (direction) {
@@ -209,10 +205,10 @@ public class MetaDataStatisticsController {
 		}
 	}
 
-	/**
-	 * Call when the attribute missings sorting should be cycled.
-	 */
-	public void cycleAttributeMissingSorting() {
+    /**
+     * Call when the attribute missings sorting should be cycled.
+     */
+    public void cycleAttributeMissingSorting() {
 		SortingDirection direction = model.getSortingDirection(SortingType.MISSING);
 
 		switch (direction) {
@@ -230,12 +226,12 @@ public class MetaDataStatisticsController {
 		}
 	}
 
-	/**
-	 * Sets the {@link List} of ordered {@link AbstractAttributeStatisticsModel}s.
-	 *
-	 * @param list
-	 */
-	public void setAttributeStatisticsModels(List<AbstractAttributeStatisticsModel> orderedModelList) {
+    /**
+     * Sets the {@link List} of ordered {@link AbstractAttributeStatisticsModel}s.
+     *
+     * @param orderedModelList the ordered model list
+     */
+    public void setAttributeStatisticsModels(List<AbstractAttributeStatisticsModel> orderedModelList) {
 		model.setOrderedModelList(new ArrayList<>(orderedModelList));
 		this.backupInitialOrderList = new ArrayList<>(orderedModelList);
 		for (AbstractAttributeStatisticsModel statModel : orderedModelList) {
@@ -243,65 +239,65 @@ public class MetaDataStatisticsController {
 		}
 	}
 
-	/**
-	 * Set the attribute name filter.
-	 *
-	 * @param filterNameString
-	 */
-	public void setFilterNameString(String filterNameString) {
+    /**
+     * Set the attribute name filter.
+     *
+     * @param filterNameString the filter name string
+     */
+    public void setFilterNameString(String filterNameString) {
 		model.setFilterNameString(filterNameString);
 		applyFilters();
 	}
 
-	/**
-	 * Sets whether only attributes with missing values should be shown.
-	 *
-	 * @param showOnlyMissingsAttributes
-	 */
-	public void setShowOnlyMissingsAttributes(boolean showOnlyMissingsAttributes) {
+    /**
+     * Sets whether only attributes with missing values should be shown.
+     *
+     * @param showOnlyMissingsAttributes the show only missings attributes
+     */
+    public void setShowOnlyMissingsAttributes(boolean showOnlyMissingsAttributes) {
 		model.setShowOnlyMissingsAttributes(showOnlyMissingsAttributes);
 		applyFilters();
 	}
 
-	/**
-	 * Sets whether special attributes should be shown.
-	 *
-	 * @param showSpecialAttributes
-	 */
-	public void setShowSpecialAttributes(boolean showSpecialAttributes) {
+    /**
+     * Sets whether special attributes should be shown.
+     *
+     * @param showSpecialAttributes the show special attributes
+     */
+    public void setShowSpecialAttributes(boolean showSpecialAttributes) {
 		model.setShowSpecialAttributes(showSpecialAttributes);
 		applyFilters();
 	}
 
-	/**
-	 * Sets whether regular attributes should be shown.
-	 *
-	 * @param showRegularAttributes
-	 */
-	public void setShowRegularAttributes(boolean showRegularAttributes) {
+    /**
+     * Sets whether regular attributes should be shown.
+     *
+     * @param showRegularAttributes the show regular attributes
+     */
+    public void setShowRegularAttributes(boolean showRegularAttributes) {
 		model.setShowRegularAttributes(showRegularAttributes);
 		applyFilters();
 	}
 
-	/**
-	 * Sets the visibility of {@link Ontology#VALUE_TYPE}s.
-	 *
-	 * @param valueType
-	 * @param visible
-	 */
-	public void setAttributeTypeVisibility(int valueType, boolean visible) {
+    /**
+     * Sets the visibility of {@link Ontology#VALUE_TYPE}s.
+     *
+     * @param valueType the value type
+     * @param visible   the visible
+     */
+    public void setAttributeTypeVisibility(int valueType, boolean visible) {
 		model.setAttributeTypeVisibility(valueType, visible);
 		applyFilters();
 	}
 
-	/**
-	 * Returns the ordered {@link List} of {@link AbstractAttributeStatisticsModel}s of the given
-	 * page index. Only returns models which are visible and only returns max {@value #PAGE_SIZE}
-	 * models. If pageIndex * {@value #PAGE_SIZE} > {@link #getTotalSize()} returns an empty list.
-	 *
-	 * @return
-	 */
-	public List<AbstractAttributeStatisticsModel> getPagedAndVisibleAttributeStatisticsModels() {
+    /**
+     * Returns the ordered {@link List} of {@link AbstractAttributeStatisticsModel}s of the given
+     * page index. Only returns models which are visible and only returns max {@value #PAGE_SIZE}
+     * models. If pageIndex * {@value #PAGE_SIZE} > {@link #getTotalSize()} returns an empty list.
+     *
+     * @return paged and visible attribute statistics models
+     */
+    public List<AbstractAttributeStatisticsModel> getPagedAndVisibleAttributeStatisticsModels() {
 		List<AbstractAttributeStatisticsModel> resultList = new LinkedList<>();
 
 		// this would be the starting index of no other stat models where hidden before this index
@@ -328,10 +324,10 @@ public class MetaDataStatisticsController {
 		return resultList;
 	}
 
-	/**
-	 * Stops the statistics recalculation and the sorting queue.
-	 */
-	void stop() {
+    /**
+     * Stops the statistics recalculation and the sorting queue.
+     */
+    void stop() {
 		worker.cancel(true);
 		sortingQueue.shutdown();
 	}

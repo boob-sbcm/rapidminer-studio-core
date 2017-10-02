@@ -58,10 +58,10 @@ class BetaFeaturesListener extends WindowAdapter {
 	/** stores if the beta features are activated when the listener is constructed */
 	private boolean betaActiveBefore;
 
-	/**
-	 * Constructs a listener for beta features activation.
-	 */
-	BetaFeaturesListener() {
+    /**
+     * Constructs a listener for beta features activation.
+     */
+    BetaFeaturesListener() {
 		betaActiveBefore = Boolean
 				.parseBoolean(ParameterService.getParameterValue(RapidMiner.PROPERTY_RAPIDMINER_UPDATE_BETA_FEATURES));
 	}

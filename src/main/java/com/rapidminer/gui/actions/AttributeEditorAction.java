@@ -38,7 +38,10 @@ public class AttributeEditorAction extends ResourceAction {
 
 	private static final long serialVersionUID = -1571544885210247278L;
 
-	public AttributeEditorAction() {
+    /**
+     * Instantiates a new Attribute editor action.
+     */
+    public AttributeEditorAction() {
 		super("attribute_editor");
 	}
 

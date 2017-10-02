@@ -24,13 +24,21 @@ import java.util.List;
 
 /**
  * This is the basic interface for all frame icon providers.
- * 
+ *
  * @author Mierswa
  */
 public interface FrameIconProvider {
 
-	public static final String[] FRAME_ICON_SIZES = { "16", "24", "32", "48", "64", "128" };
+    /**
+     * The constant FRAME_ICON_SIZES.
+     */
+    public static final String[] FRAME_ICON_SIZES = { "16", "24", "32", "48", "64", "128" };
 
-	public List<Image> getFrameIcons();
+    /**
+     * Gets frame icons.
+     *
+     * @return the frame icons
+     */
+    public List<Image> getFrameIcons();
 
 }

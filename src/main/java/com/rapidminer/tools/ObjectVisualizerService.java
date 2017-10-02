@@ -41,23 +41,29 @@ public class ObjectVisualizerService {
 
 	private static final Map<Object, WeakReference<ObjectVisualizer>> visualizerMap = new WeakHashMap<>();
 
-	/**
-	 * This method adds the given visualizer for the target object. Please not that only one
-	 * visualizer per object is allowed. The subsequent added visualizer will overwrite the first.
-	 *
-	 * The targets will be remembered using a weak reference, so that they don't pose a memory leak:
-	 * If the object isn't referenced anywhere else, it will be deleted.
-	 */
-	public static void addObjectVisualizer(Object target, ObjectVisualizer visualizer) {
+    /**
+     * This method adds the given visualizer for the target object. Please not that only one
+     * visualizer per object is allowed. The subsequent added visualizer will overwrite the first.
+     * <p>
+     * The targets will be remembered using a weak reference, so that they don't pose a memory leak:
+     * If the object isn't referenced anywhere else, it will be deleted.
+     *
+     * @param target     the target
+     * @param visualizer the visualizer
+     */
+    public static void addObjectVisualizer(Object target, ObjectVisualizer visualizer) {
 		visualizerMap.put(target, new WeakReference<>(visualizer));
 	}
 
-	/**
-	 * Returns the object visualizer registered for this targetObject. If the targetObject is of
-	 * type ExampleSet and there's no special visualizer registered, it will return an new
-	 * ExampleVisualizer.
-	 */
-	public static ObjectVisualizer getVisualizerForObject(Object targetObject) {
+    /**
+     * Returns the object visualizer registered for this targetObject. If the targetObject is of
+     * type ExampleSet and there's no special visualizer registered, it will return an new
+     * ExampleVisualizer.
+     *
+     * @param targetObject the target object
+     * @return the visualizer for object
+     */
+    public static ObjectVisualizer getVisualizerForObject(Object targetObject) {
 		ObjectVisualizer capableVisualizer = null;
 		WeakReference<ObjectVisualizer> visualizerReference = visualizerMap.get(targetObject);
 		if (visualizerReference != null) {

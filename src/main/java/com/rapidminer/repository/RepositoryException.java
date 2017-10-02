@@ -19,23 +19,44 @@
 package com.rapidminer.repository;
 
 /**
+ * The type Repository exception.
+ *
  * @author Simon Fischer
  */
 public class RepositoryException extends Exception {
 
 	private static final long serialVersionUID = -6082363312818364741L;
 
-	public RepositoryException() {}
+    /**
+     * Instantiates a new Repository exception.
+     */
+    public RepositoryException() {}
 
-	public RepositoryException(String message) {
+    /**
+     * Instantiates a new Repository exception.
+     *
+     * @param message the message
+     */
+    public RepositoryException(String message) {
 		super(message);
 	}
 
-	public RepositoryException(Throwable cause) {
+    /**
+     * Instantiates a new Repository exception.
+     *
+     * @param cause the cause
+     */
+    public RepositoryException(Throwable cause) {
 		super(cause);
 	}
 
-	public RepositoryException(String message, Throwable cause) {
+    /**
+     * Instantiates a new Repository exception.
+     *
+     * @param message the message
+     * @param cause   the cause
+     */
+    public RepositoryException(String message, Throwable cause) {
 		super(message, cause);
 	}
 

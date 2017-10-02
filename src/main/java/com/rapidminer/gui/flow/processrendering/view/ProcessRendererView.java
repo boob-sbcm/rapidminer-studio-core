@@ -139,7 +139,6 @@ import com.rapidminer.tools.SystemInfoUtilities.OperatingSystem;
  *
  * @author Simon Fischer, Marco Boeck, Jan Czogalla
  * @since 6.4.0
- *
  */
 public class ProcessRendererView extends JPanel implements PrintableComponent {
 
@@ -694,7 +693,14 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 	/** the repaint filter to ensure a minimal interval between repaints */
 	private final RepaintFilter repaintFilter;
 
-	public ProcessRendererView(final ProcessRendererModel model, final ProcessPanel processPanel,
+    /**
+     * Instantiates a new Process renderer view.
+     *
+     * @param model        the model
+     * @param processPanel the process panel
+     * @param mainFrame    the main frame
+     */
+    public ProcessRendererView(final ProcessRendererModel model, final ProcessPanel processPanel,
 			final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		this.model = model;
@@ -921,15 +927,14 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 		getProcessDrawer().draw((Graphics2D) graphics.create(), true);
 	}
 
-	/**
-	 * Return the index of the process under the given {@link Point2D view point}.
-	 *
-	 * @param p
-	 *            the point
-	 * @return the index or -1 if no process is under the point
-	 * @see #getProcessIndexOfOperator(Operator)
-	 */
-	public int getProcessIndexUnder(final Point2D p) {
+    /**
+     * Return the index of the process under the given {@link Point2D view point}.
+     *
+     * @param p the point
+     * @return the index or -1 if no process is under the point
+     * @see #getProcessIndexOfOperator(Operator) #getProcessIndexOfOperator(Operator)#getProcessIndexOfOperator(Operator)
+     */
+    public int getProcessIndexUnder(final Point2D p) {
 		if (p == null) {
 			return -1;
 		}
@@ -948,17 +953,15 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 		return -1;
 	}
 
-	/**
-	 * Converts a {@link Point view point} to a point relative to the specified process.
-	 *
-	 * @param p
-	 *            the original point
-	 * @param processIndex
-	 *            the index of the process
-	 * @return the relative point or {@code null} if no process exists for the specified index
-	 * @see ProcessRendererView#fromProcessSpace(Point, int)
-	 */
-	public Point toProcessSpace(final Point p, final int processIndex) {
+    /**
+     * Converts a {@link Point view point} to a point relative to the specified process.
+     *
+     * @param p            the original point
+     * @param processIndex the index of the process
+     * @return the relative point or {@code null} if no process exists for the specified index
+     * @see ProcessRendererView#fromProcessSpace(Point, int) ProcessRendererView#fromProcessSpace(Point, int)ProcessRendererView#fromProcessSpace(Point, int)
+     */
+    public Point toProcessSpace(final Point p, final int processIndex) {
 		if (processIndex == -1 || processIndex >= model.getProcesses().size()) {
 			return null;
 		}
@@ -967,16 +970,15 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 		return new Point((int) ((p.getX() - xOffset) * (1 / zoomFactor)), (int) (p.getY() * (1 / zoomFactor)));
 	}
 
-	/**
-	 * Returns the index of the process of the given {@link Operator}.
-	 *
-	 * @param op
-	 *            the operator
-	 * @return the index or -1 if the process is not currently shown
-	 * @since 7.5
-	 * @see #getProcessIndexUnder(Point2D)
-	 */
-	public int getProcessIndexOfOperator(Operator op) {
+    /**
+     * Returns the index of the process of the given {@link Operator}.
+     *
+     * @param op the operator
+     * @return the index or -1 if the process is not currently shown
+     * @see #getProcessIndexUnder(Point2D) #getProcessIndexUnder(Point2D)#getProcessIndexUnder(Point2D)
+     * @since 7.5
+     */
+    public int getProcessIndexOfOperator(Operator op) {
 		if (op == null) {
 			return -1;
 		}
@@ -984,18 +986,16 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 		return model.getProcessIndex(eu);
 	}
 
-	/**
-	 * Converts a {@link Point} from the process to a point relative to the current view.
-	 *
-	 * @param p
-	 *            the process point
-	 * @param processIndex
-	 *            the index of the process
-	 * @return the view point or {@code null} if no process exists for the specified index
-	 * @since 7.5
-	 * @see #toProcessSpace(Point, int)
-	 */
-	public Point fromProcessSpace(final Point p, final int processIndex) {
+    /**
+     * Converts a {@link Point} from the process to a point relative to the current view.
+     *
+     * @param p            the process point
+     * @param processIndex the index of the process
+     * @return the view point or {@code null} if no process exists for the specified index
+     * @see #toProcessSpace(Point, int) #toProcessSpace(Point, int)#toProcessSpace(Point, int)
+     * @since 7.5
+     */
+    public Point fromProcessSpace(final Point p, final int processIndex) {
 		if (processIndex == -1 || processIndex >= model.getProcesses().size()) {
 			return null;
 		}
@@ -1024,11 +1024,11 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 		return xOffset;
 	}
 
-	/**
-	 * Call when the process has been updated, i.e. an operator has been added. Will update operator
-	 * locations and then repaint.
-	 */
-	public void processUpdated() {
+    /**
+     * Call when the process has been updated, i.e. an operator has been added. Will update operator
+     * locations and then repaint.
+     */
+    public void processUpdated() {
 		Operator hoveredOp = model.getHoveringOperator();
 		boolean hoveredOperatorFound = hoveredOp == null ? true : false;
 		List<Operator> movedOperators = new LinkedList<Operator>();
@@ -1089,46 +1089,48 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 		}
 	}
 
-	/**
-	 * Does the repaint. Only call this method directly when there is a reason not to go through the
-	 * {@link RepaintFilter}. Otherwise use {{@link #repaint()}.
-	 */
-	void doRepaint() {
+    /**
+     * Does the repaint. Only call this method directly when there is a reason not to go through the
+     * {@link RepaintFilter}. Otherwise use {{@link #repaint()}.
+     */
+    void doRepaint() {
 		super.repaint();
 		if (overviewPanel != null && overviewPanel.isShowing()) {
 			overviewPanel.repaint();
 		}
 	}
 
-	/**
-	 * Adds a listener that will be informed when the user right-clicks an operator or a port.
-	 *
-	 * @param l
-	 *            the listener
-	 */
-	public void addProcessInteractionListener(final ProcessInteractionListener l) {
+    /**
+     * Adds a listener that will be informed when the user right-clicks an operator or a port.
+     *
+     * @param l the listener
+     */
+    public void addProcessInteractionListener(final ProcessInteractionListener l) {
 		if (l == null) {
 			throw new IllegalArgumentException("l must not be null!");
 		}
 		processInteractionListeners.add(l);
 	}
 
-	/**
-	 * @see #addProcessInteractionListener(ProcessInteractionListener)
-	 */
-	public void removeProcessInteractionListener(final ProcessInteractionListener l) {
+    /**
+     * Remove process interaction listener.
+     *
+     * @param l the l
+     * @see #addProcessInteractionListener(ProcessInteractionListener) #addProcessInteractionListener(ProcessInteractionListener)#addProcessInteractionListener(ProcessInteractionListener)
+     */
+    public void removeProcessInteractionListener(final ProcessInteractionListener l) {
 		if (l == null) {
 			throw new IllegalArgumentException("l must not be null!");
 		}
 		processInteractionListeners.remove(l);
 	}
 
-	/**
-	 * Returns the {@link OverviewPanel} for this instance.
-	 *
-	 * @return the overview panel, never {@code null}
-	 */
-	public OverviewPanel getOverviewPanel() {
+    /**
+     * Returns the {@link OverviewPanel} for this instance.
+     *
+     * @return the overview panel, never {@code null}
+     */
+    public OverviewPanel getOverviewPanel() {
 		return overviewPanel;
 	}
 
@@ -1159,80 +1161,75 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 		return null;
 	}
 
-	/**
-	 * Returns the {@link DragListener} for the process renderer.
-	 *
-	 * @return the listener, never {@code null}
-	 */
-	public DragListener getDragListener() {
+    /**
+     * Returns the {@link DragListener} for the process renderer.
+     *
+     * @return the listener, never {@code null}
+     */
+    public DragListener getDragListener() {
 		return dragListener;
 	}
 
-	/**
-	 * Returns the {@link ProcessDrawer} which is responsible for drawing the process(es) in the
-	 * {@link ProcessRendererView}.
-	 *
-	 * @return the drawer instance, never {@code null}
-	 */
-	public ProcessDrawer getProcessDrawer() {
+    /**
+     * Returns the {@link ProcessDrawer} which is responsible for drawing the process(es) in the
+     * {@link ProcessRendererView}.
+     *
+     * @return the drawer instance, never {@code null}
+     */
+    public ProcessDrawer getProcessDrawer() {
 		return drawer;
 	}
 
-	/**
-	 * Returns the {@link ProcessDrawer} which is responsible for drawing the process(es) in the
-	 * {@link OverviewPanel}.
-	 *
-	 * @return the drawer instance, never {@code null}
-	 */
-	public ProcessDrawer getOverviewPanelDrawer() {
+    /**
+     * Returns the {@link ProcessDrawer} which is responsible for drawing the process(es) in the
+     * {@link OverviewPanel}.
+     *
+     * @return the drawer instance, never {@code null}
+     */
+    public ProcessDrawer getOverviewPanelDrawer() {
 		return drawerOverview;
 	}
 
-	/**
-	 * Returns the {@link ProcessRendererModel} which is backing the GUI.
-	 *
-	 * @return the model instance, never {@code null}
-	 */
-	public ProcessRendererModel getModel() {
+    /**
+     * Returns the {@link ProcessRendererModel} which is backing the GUI.
+     *
+     * @return the model instance, never {@code null}
+     */
+    public ProcessRendererModel getModel() {
 		return model;
 	}
 
-	/**
-	 * Returns the action which automatically fits the process size to the existing operator
-	 * locations.
-	 *
-	 * @return the action, never {@code null}
-	 */
-	public Action getAutoFitAction() {
+    /**
+     * Returns the action which automatically fits the process size to the existing operator
+     * locations.
+     *
+     * @return the action, never {@code null}
+     */
+    public Action getAutoFitAction() {
 		return autoFitAction;
 	}
 
-	/**
-	 * Returns the action which automatically arranges all operators of the process according to a
-	 * graph layout algorithm.
-	 *
-	 * @return the action, never {@code null}
-	 */
-	public Action getArrangeOperatorsAction() {
+    /**
+     * Returns the action which automatically arranges all operators of the process according to a
+     * graph layout algorithm.
+     *
+     * @return the action, never {@code null}
+     */
+    public Action getArrangeOperatorsAction() {
 		return arrangeOperatorsAction;
 	}
 
-	/**
-	 * Adds the given renderer decorator for the specified render phase.
-	 * <p>
-	 * To add a {@link ProcessDrawDecorator}, call {@link #getProcessDrawer()} and
-	 * {@link ProcessDrawer#addDecorator(ProcessDrawDecorator, RenderPhase)} on it.
-	 * </p>
-	 *
-	 * @param decorator
-	 *            the decorator instance to add
-	 * @param phase
-	 *            the phase during which the decorator should be notified of events. If multiple
-	 *            decorators want to handle events during the same phase, they are called in the
-	 *            order they were registered. If any of the decorators in the chain consume the
-	 *            event, the remaining decorators will <strong>not</strong> be notified!
-	 */
-	public void addEventDecorator(ProcessEventDecorator decorator, RenderPhase phase) {
+    /**
+     * Adds the given renderer decorator for the specified render phase.
+     * <p>
+     * To add a {@link ProcessDrawDecorator}, call {@link #getProcessDrawer()} and
+     * {@link ProcessDrawer#addDecorator(ProcessDrawDecorator, RenderPhase)} on it.
+     * </p>
+     *
+     * @param decorator the decorator instance to add
+     * @param phase     the phase during which the decorator should be notified of events. If multiple            decorators want to handle events during the same phase, they are called in the            order they were registered. If any of the decorators in the chain consume the            event, the remaining decorators will <strong>not</strong> be notified!
+     */
+    public void addEventDecorator(ProcessEventDecorator decorator, RenderPhase phase) {
 		if (decorator == null) {
 			throw new IllegalArgumentException("decorator must not be null!");
 		}
@@ -1243,20 +1240,18 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 		decorators.get(phase).add(decorator);
 	}
 
-	/**
-	 * Removes the given decorator for the specified render phase. If the decorator has already been
-	 * removed, does nothing.
-	 * <p>
-	 * To remove a {@link ProcessDrawDecorator}, call {@link #getProcessDrawer()} and
-	 * {@link ProcessDrawer#removeDecorator(ProcessDrawDecorator, RenderPhase)} on it.
-	 * </p>
-	 *
-	 * @param decorator
-	 *            the decorator instance to remove
-	 * @param phase
-	 *            the phase from which the decorator should be removed
-	 */
-	public void removeEventDecorator(ProcessEventDecorator decorator, RenderPhase phase) {
+    /**
+     * Removes the given decorator for the specified render phase. If the decorator has already been
+     * removed, does nothing.
+     * <p>
+     * To remove a {@link ProcessDrawDecorator}, call {@link #getProcessDrawer()} and
+     * {@link ProcessDrawer#removeDecorator(ProcessDrawDecorator, RenderPhase)} on it.
+     * </p>
+     *
+     * @param decorator the decorator instance to remove
+     * @param phase     the phase from which the decorator should be removed
+     */
+    public void removeEventDecorator(ProcessEventDecorator decorator, RenderPhase phase) {
 		if (decorator == null) {
 			throw new IllegalArgumentException("decorator must not be null!");
 		}
@@ -1267,57 +1262,50 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 		decorators.get(phase).remove(decorator);
 	}
 
-	/**
-	 * Does the same as {@link ProcessDrawer#addDecorator(ProcessDrawDecorator, RenderPhase)}.
-	 *
-	 * @param decorator
-	 *            the draw decorator
-	 * @param phase
-	 *            the specified phase in which to draw
-	 */
-	public void addDrawDecorator(ProcessDrawDecorator decorator, RenderPhase phase) {
+    /**
+     * Does the same as {@link ProcessDrawer#addDecorator(ProcessDrawDecorator, RenderPhase)}.
+     *
+     * @param decorator the draw decorator
+     * @param phase     the specified phase in which to draw
+     */
+    public void addDrawDecorator(ProcessDrawDecorator decorator, RenderPhase phase) {
 		getProcessDrawer().addDecorator(decorator, phase);
 	}
 
-	/**
-	 * Does the same as {@link ProcessDrawer#removeDecorator(ProcessDrawDecorator, RenderPhase)}.
-	 *
-	 * @param decorator
-	 *            the draw decorator to add
-	 * @param phase
-	 *            the specified phase for which the decorator was registered
-	 */
-	public void removeDrawDecorator(ProcessDrawDecorator decorator, RenderPhase phase) {
+    /**
+     * Does the same as {@link ProcessDrawer#removeDecorator(ProcessDrawDecorator, RenderPhase)}.
+     *
+     * @param decorator the draw decorator to add
+     * @param phase     the specified phase for which the decorator was registered
+     */
+    public void removeDrawDecorator(ProcessDrawDecorator decorator, RenderPhase phase) {
 		getProcessDrawer().removeDecorator(decorator, phase);
 	}
 
-	/**
-	 * Does the same as {@link ProcessDrawer#addDecorator(OperatorDrawDecorator)}.
-	 *
-	 * @param decorator
-	 *            the operator draw decorator
-	 */
-	public void addDrawDecorator(OperatorDrawDecorator decorator) {
+    /**
+     * Does the same as {@link ProcessDrawer#addDecorator(OperatorDrawDecorator)}.
+     *
+     * @param decorator the operator draw decorator
+     */
+    public void addDrawDecorator(OperatorDrawDecorator decorator) {
 		getProcessDrawer().addDecorator(decorator);
 	}
 
-	/**
-	 * Does the same as {@link ProcessDrawer#removeDecorator(OperatorDrawDecorator)}.
-	 *
-	 * @param decorator
-	 *            the operator draw decorator to remove
-	 */
-	public void removeDrawDecorator(OperatorDrawDecorator decorator) {
+    /**
+     * Does the same as {@link ProcessDrawer#removeDecorator(OperatorDrawDecorator)}.
+     *
+     * @param decorator the operator draw decorator to remove
+     */
+    public void removeDrawDecorator(OperatorDrawDecorator decorator) {
 		getProcessDrawer().removeDecorator(decorator);
 	}
 
-	/**
-	 * Opens a rename textfield at the location of the specified operator.
-	 *
-	 * @param op
-	 *            the operator to be renamed
-	 */
-	public void rename(final Operator op) {
+    /**
+     * Opens a rename textfield at the location of the specified operator.
+     *
+     * @param op the operator to be renamed
+     */
+    public void rename(final Operator op) {
 		if (op == null) {
 			throw new IllegalArgumentException("op must not be null!");
 		}
@@ -1412,10 +1400,10 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 		repaint();
 	}
 
-	/**
-	 * Updates location and size of the extension buttons.
-	 */
-	void updateExtensionButtons() {
+    /**
+     * Updates location and size of the extension buttons.
+     */
+    void updateExtensionButtons() {
 		for (ExtensionButton button : subprocessExtensionButtons) {
 			int subprocessIndex = button.getSubprocessIndex();
 			int buttonSize = button.getWidth();
@@ -1434,14 +1422,13 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 		}
 	}
 
-	/**
-	 * Shows a popup menu if preconditions are fulfilled.
-	 *
-	 * @param e
-	 *            the mouse event potentially triggering the popup menu
-	 * @return {@code true} if a popup menu was displayed; {@code false} otherwise
-	 */
-	boolean showPopupMenu(final MouseEvent e) {
+    /**
+     * Shows a popup menu if preconditions are fulfilled.
+     *
+     * @param e the mouse event potentially triggering the popup menu
+     * @return {@code true} if a popup menu was displayed; {@code false} otherwise
+     */
+    boolean showPopupMenu(final MouseEvent e) {
 		if (model.getConnectingPortSource() != null) {
 			return false;
 		}
@@ -1663,10 +1650,10 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 
 	}
 
-	/**
-	 * Updates the currently displayed cursor depending on hover state.
-	 */
-	void updateCursor() {
+    /**
+     * Updates the currently displayed cursor depending on hover state.
+     */
+    void updateCursor() {
 		if (model.getHoveringOperator() != null || model.getHoveringPort() != null) {
 			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		} else {
@@ -1674,13 +1661,12 @@ public class ProcessRendererView extends JPanel implements PrintableComponent {
 		}
 	}
 
-	/**
-	 * Sets the hovering operator and updates the operator name rollout and the cursor.
-	 *
-	 * @param hoveringOperator
-	 *            the operator or {@code null}
-	 */
-	void setHoveringOperator(final Operator hoveringOperator) {
+    /**
+     * Sets the hovering operator and updates the operator name rollout and the cursor.
+     *
+     * @param hoveringOperator the operator or {@code null}
+     */
+    void setHoveringOperator(final Operator hoveringOperator) {
 		model.setHoveringOperator(hoveringOperator);
 		updateCursor();
 		model.fireMiscChanged();

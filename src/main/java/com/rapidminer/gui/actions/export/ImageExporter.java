@@ -49,7 +49,6 @@ import com.rapidminer.tools.I18N;
  * PNG, JPG, PDF, SVG, and EPS.
  *
  * @author Nils Woehler
- *
  */
 public class ImageExporter {
 
@@ -59,8 +58,17 @@ public class ImageExporter {
 	private static final String PNG = "png";
 	private static final String PDF = "pdf";
 
-	public enum ExportStatus {
-		EXPORTED, ABORTED
+    /**
+     * The enum Export status.
+     */
+    public enum ExportStatus {
+        /**
+         * Exported export status.
+         */
+        EXPORTED, /**
+         * Aborted export status.
+         */
+        ABORTED
 	}
 
 	private static final String[] FILE_EXTENSIONS = new String[] { PNG, JPG, SVG, EPS, PDF };
@@ -70,20 +78,23 @@ public class ImageExporter {
 
 	private PrintableComponent printableComponent;
 
-	public ImageExporter(PrintableComponent printableComponent) {
+    /**
+     * Instantiates a new Image exporter.
+     *
+     * @param printableComponent the printable component
+     */
+    public ImageExporter(PrintableComponent printableComponent) {
 		this.printableComponent = printableComponent;
 	}
 
-	/**
-	 * Opens a dialog that prompts for a file location. Depending on the file extensions the
-	 * provided component is exported as a bitmap or vector graphics image.
-	 *
-	 * @return the export status, which is EXPORTED or ABORTED.
-	 *
-	 * @throws IOException
-	 *             in case something goes wrong
-	 */
-	public ExportStatus exportImage() throws ImageExportException {
+    /**
+     * Opens a dialog that prompts for a file location. Depending on the file extensions the
+     * provided component is exported as a bitmap or vector graphics image.
+     *
+     * @return the export status, which is EXPORTED or ABORTED.
+     * @throws ImageExportException the image export exception
+     */
+    public ExportStatus exportImage() throws ImageExportException {
 		File chosenFile;
 		try {
 			chosenFile = PrintingTools.promptForFileLocation("export_image", FILE_EXTENSIONS, EXTENSION_DESCRIPTIONS);

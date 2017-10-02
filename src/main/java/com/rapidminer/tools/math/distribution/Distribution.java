@@ -23,32 +23,48 @@ import java.io.Serializable;
 
 /**
  * The basic interface for all distributions of variables.
- * 
+ *
  * @author Tobias Malbrecht
  */
 public interface Distribution extends Serializable {
 
-	public boolean isDiscrete();
+    /**
+     * Is discrete boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isDiscrete();
 
-	public boolean isContinuous();
+    /**
+     * Is continuous boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isContinuous();
 
-	public String getAttributeName();
+    /**
+     * Gets attribute name.
+     *
+     * @return the attribute name
+     */
+    public String getAttributeName();
 
-	/**
-	 * This method returns the density of the given distribution at the specified value.
-	 * 
-	 * @param value
-	 *            the value which density shall be returned
-	 */
-	public double getProbability(double value);
+    /**
+     * This method returns the density of the given distribution at the specified value.
+     *
+     * @param value the value which density shall be returned
+     * @return the probability
+     */
+    public double getProbability(double value);
 
-	/**
-	 * this method should return a string representation of the given value. Numerical Attributes
-	 * might return a string representation of the value.
-	 * 
-	 * @param value
-	 */
-	public String mapValue(double value);
+    /**
+     * this method should return a string representation of the given value. Numerical Attributes
+     * might return a string representation of the value.
+     *
+     * @param value the value
+     * @return the string
+     */
+    public String mapValue(double value);
 
 	/**
 	 * Should return an textual representation of the distribution.
@@ -56,18 +72,26 @@ public interface Distribution extends Serializable {
 	@Override
 	public String toString();
 
-	/**
-	 * This should return the number of parameters defining this distribution
-	 */
-	public int getNumberOfParameters();
+    /**
+     * This should return the number of parameters defining this distribution
+     *
+     * @return the number of parameters
+     */
+    public int getNumberOfParameters();
 
-	/**
-	 * This method should return the name of the i-th parameter
-	 */
-	public String getParameterName(int index);
+    /**
+     * This method should return the name of the i-th parameter
+     *
+     * @param index the index
+     * @return the parameter name
+     */
+    public String getParameterName(int index);
 
-	/**
-	 * This method should return the value of the i-th parameter
-	 */
-	public double getParameterValue(int index);
+    /**
+     * This method should return the value of the i-th parameter
+     *
+     * @param index the index
+     * @return the parameter value
+     */
+    public double getParameterValue(int index);
 }

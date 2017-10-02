@@ -65,10 +65,9 @@ import org.jfree.data.Range;
 
 /**
  * A Swing GUI component for displaying a {@link JFreeChart} object. The chart will be buffered.
- * <P>
- * 
+ * <p>
+ *
  * @author Nils Woehler
- * 
  */
 public class LinkAndBrushChartPanel extends ChartPanel {
 
@@ -84,7 +83,13 @@ public class LinkAndBrushChartPanel extends ChartPanel {
 
 	private transient List<WeakReference<LinkAndBrushSelectionListener>> listeners = new LinkedList<WeakReference<LinkAndBrushSelectionListener>>();
 
-	public LinkAndBrushChartPanel(JFreeChart chart, boolean zoomOnLinkAndBrushSelection) {
+    /**
+     * Instantiates a new Link and brush chart panel.
+     *
+     * @param chart                       the chart
+     * @param zoomOnLinkAndBrushSelection the zoom on link and brush selection
+     */
+    public LinkAndBrushChartPanel(JFreeChart chart, boolean zoomOnLinkAndBrushSelection) {
 		super(chart, 600, 400, 200, 133, DEFAULT_MAXIMUM_DRAW_WIDTH, DEFAULT_MAXIMUM_DRAW_HEIGHT, DEFAULT_BUFFER_USED,
 				false,  // copy
 				false,  // properties
@@ -99,7 +104,17 @@ public class LinkAndBrushChartPanel extends ChartPanel {
 		setMouseWheelEnabled(false);
 	}
 
-	public LinkAndBrushChartPanel(JFreeChart chart, int defaultWidth, int defaultHeigth, int minDrawWidth,
+    /**
+     * Instantiates a new Link and brush chart panel.
+     *
+     * @param chart              the chart
+     * @param defaultWidth       the default width
+     * @param defaultHeigth      the default heigth
+     * @param minDrawWidth       the min draw width
+     * @param minDrawHeigth      the min draw heigth
+     * @param zoomOnLinkAndBrush the zoom on link and brush
+     */
+    public LinkAndBrushChartPanel(JFreeChart chart, int defaultWidth, int defaultHeigth, int minDrawWidth,
 			int minDrawHeigth, boolean zoomOnLinkAndBrush) {
 		super(chart, defaultWidth, defaultHeigth, minDrawWidth, minDrawHeigth, DEFAULT_MAXIMUM_DRAW_WIDTH,
 				DEFAULT_MAXIMUM_DRAW_HEIGHT, DEFAULT_BUFFER_USED, false,  // copy
@@ -115,7 +130,18 @@ public class LinkAndBrushChartPanel extends ChartPanel {
 		setMouseWheelEnabled(false);
 	}
 
-	public LinkAndBrushChartPanel(JFreeChart chart, int defaultWidth, int defaultHeigth, int minDrawWidth,
+    /**
+     * Instantiates a new Link and brush chart panel.
+     *
+     * @param chart              the chart
+     * @param defaultWidth       the default width
+     * @param defaultHeigth      the default heigth
+     * @param minDrawWidth       the min draw width
+     * @param minDrawHeigth      the min draw heigth
+     * @param zoomOnLinkAndBrush the zoom on link and brush
+     * @param useBuffer          the use buffer
+     */
+    public LinkAndBrushChartPanel(JFreeChart chart, int defaultWidth, int defaultHeigth, int minDrawWidth,
 			int minDrawHeigth, boolean zoomOnLinkAndBrush, boolean useBuffer) {
 		super(chart, defaultWidth, defaultHeigth, minDrawWidth, minDrawHeigth, DEFAULT_MAXIMUM_DRAW_WIDTH,
 				DEFAULT_MAXIMUM_DRAW_HEIGHT, useBuffer, false,  // copy
@@ -234,21 +260,21 @@ public class LinkAndBrushChartPanel extends ChartPanel {
 		}
 	}
 
-	/**
-	 * If set to <code>true</code>, will zoom on selection, otherwise will do a selection.
-	 * 
-	 * @param zoomOnLinkAndBrushSelection
-	 */
-	public void setZoomOnLinkAndBrushSelection(boolean zoomOnLinkAndBrushSelection) {
+    /**
+     * If set to <code>true</code>, will zoom on selection, otherwise will do a selection.
+     *
+     * @param zoomOnLinkAndBrushSelection the zoom on link and brush selection
+     */
+    public void setZoomOnLinkAndBrushSelection(boolean zoomOnLinkAndBrushSelection) {
 		this.zoomOnLinkAndBrushSelection = zoomOnLinkAndBrushSelection;
 	}
 
-	/**
-	 * Returns whether the panel will zoom on selection or not.
-	 *
-	 * @return
-	 */
-	public boolean getZoomOnLinkAndBrushSelection() {
+    /**
+     * Returns whether the panel will zoom on selection or not.
+     *
+     * @return zoom on link and brush selection
+     */
+    public boolean getZoomOnLinkAndBrushSelection() {
 		return zoomOnLinkAndBrushSelection;
 	}
 
@@ -385,12 +411,22 @@ public class LinkAndBrushChartPanel extends ChartPanel {
 		setHorizontalTraceLine(null);
 	}
 
-	@SuppressWarnings("unchecked")
+    /**
+     * Gets overlay list.
+     *
+     * @return the overlay list
+     */
+    @SuppressWarnings("unchecked")
 	public List<Overlay> getOverlayList() {
 		return (List<Overlay>) getChartFieldValueByName("overlays");
 	}
 
-	public void setOverlayList(List<Overlay> list) {
+    /**
+     * Sets overlay list.
+     *
+     * @param list the list
+     */
+    public void setOverlayList(List<Overlay> list) {
 		setChartFieldValue(getChartFieldByName("overlays"), list);
 	}
 
@@ -612,20 +648,22 @@ public class LinkAndBrushChartPanel extends ChartPanel {
 		}
 	}
 
-	/**
-	 * Add a {@link LinkAndBrushSelectionListener}. The listener is saved as a {@link WeakReference}
-	 * . Thus listener must not be hidden (anonymous) classes!
-	 */
-	public void addLinkAndBrushSelectionListener(LinkAndBrushSelectionListener l) {
+    /**
+     * Add a {@link LinkAndBrushSelectionListener}. The listener is saved as a {@link WeakReference}
+     * . Thus listener must not be hidden (anonymous) classes!
+     *
+     * @param l the l
+     */
+    public void addLinkAndBrushSelectionListener(LinkAndBrushSelectionListener l) {
 		listeners.add(new WeakReference<LinkAndBrushSelectionListener>(l));
 	}
 
-	/**
-	 * Remove a {@link LinkAndBrushSelectionListener}.
-	 * 
-	 * @param l
-	 */
-	public void removeLinkAndBrushSelectionListener(LinkAndBrushSelectionListener l) {
+    /**
+     * Remove a {@link LinkAndBrushSelectionListener}.
+     *
+     * @param l the l
+     */
+    public void removeLinkAndBrushSelectionListener(LinkAndBrushSelectionListener l) {
 		Iterator<WeakReference<LinkAndBrushSelectionListener>> it = listeners.iterator();
 		while (it.hasNext()) {
 			WeakReference<LinkAndBrushSelectionListener> wrl = it.next();
@@ -636,12 +674,12 @@ public class LinkAndBrushChartPanel extends ChartPanel {
 		}
 	}
 
-	/**
-	 * Informs all {@link LinkAndBrushSelectionListener} of a {@link LinkAndBrushSelection}.
-	 * 
-	 * @param e
-	 */
-	public void informLinkAndBrushSelectionListeners(LinkAndBrushSelection e) {
+    /**
+     * Informs all {@link LinkAndBrushSelectionListener} of a {@link LinkAndBrushSelection}.
+     *
+     * @param e the e
+     */
+    public void informLinkAndBrushSelectionListeners(LinkAndBrushSelection e) {
 		// create a copy to avoid ConcurrentModificationException when informing and remove listener
 		// happens
 		List<WeakReference<LinkAndBrushSelectionListener>> listenersCopy = new LinkedList<WeakReference<LinkAndBrushSelectionListener>>();
@@ -716,10 +754,12 @@ public class LinkAndBrushChartPanel extends ChartPanel {
 		}
 	}
 
-	/**
-	 * This method sets the coordinate transformation for this component.
-	 */
-	public void setCoordinateTransformation(CoordinateTransformation transformation) {
+    /**
+     * This method sets the coordinate transformation for this component.
+     *
+     * @param transformation the transformation
+     */
+    public void setCoordinateTransformation(CoordinateTransformation transformation) {
 		this.coordinateTransformation = transformation;
 	}
 }

@@ -26,16 +26,24 @@ package com.rapidminer.operator.performance;
  * test cases in which the prediction error is larger than the others. If this number is
  * significantly greater than the mean absolute error, it means that there are test cases in which
  * the prediction error is significantly greater than the average prediction error.
- * 
+ *
  * @author Ingo Mierswa, Simon Fischer Exp $
  */
 public class RootMeanSquaredError extends SimpleCriterion {
 
 	private static final long serialVersionUID = -4425511584684855855L;
 
-	public RootMeanSquaredError() {}
+    /**
+     * Instantiates a new Root mean squared error.
+     */
+    public RootMeanSquaredError() {}
 
-	public RootMeanSquaredError(RootMeanSquaredError sc) {
+    /**
+     * Instantiates a new Root mean squared error.
+     *
+     * @param sc the sc
+     */
+    public RootMeanSquaredError(RootMeanSquaredError sc) {
 		super(sc);
 	}
 

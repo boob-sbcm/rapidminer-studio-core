@@ -27,7 +27,12 @@ public class ColumnMaxDepthTermination implements ColumnTerminator {
 
 	private int maxDepth;
 
-	public ColumnMaxDepthTermination(int maxDepth) {
+    /**
+     * Instantiates a new Column max depth termination.
+     *
+     * @param maxDepth the max depth
+     */
+    public ColumnMaxDepthTermination(int maxDepth) {
 		this.maxDepth = maxDepth;
 	}
 

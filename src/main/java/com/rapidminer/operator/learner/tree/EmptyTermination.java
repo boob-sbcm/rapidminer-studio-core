@@ -23,7 +23,7 @@ import com.rapidminer.example.ExampleSet;
 
 /**
  * Splitting should be terminated if the example set is empty.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class EmptyTermination implements Terminator {

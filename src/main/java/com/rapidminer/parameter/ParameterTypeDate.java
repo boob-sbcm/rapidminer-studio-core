@@ -36,7 +36,6 @@ import com.rapidminer.tools.XMLException;
  * {@link ParameterTypeDate#getParameterAsDate(String, Operator)}.
  *
  * @author Nils Woehler
- *
  */
 public class ParameterTypeDate extends ParameterTypeSingle {
 
@@ -44,7 +43,10 @@ public class ParameterTypeDate extends ParameterTypeSingle {
 
 	private Date defaultValue = null;
 
-	public static final ThreadLocal<SimpleDateFormat> DATE_FORMAT;
+    /**
+     * The constant DATE_FORMAT.
+     */
+    public static final ThreadLocal<SimpleDateFormat> DATE_FORMAT;
 
 	static {
 		// ThreadLocale because this is static and used by other threads
@@ -60,31 +62,63 @@ public class ParameterTypeDate extends ParameterTypeSingle {
 		};
 	}
 
-	/**
-	 * @param element
-	 * @throws XMLException
-	 */
-	public ParameterTypeDate(Element element) throws XMLException {
+    /**
+     * Instantiates a new Parameter type date.
+     *
+     * @param element the element
+     * @throws XMLException the xml exception
+     */
+    public ParameterTypeDate(Element element) throws XMLException {
 		super(element);
 	}
 
-	public ParameterTypeDate(String key, String description) {
+    /**
+     * Instantiates a new Parameter type date.
+     *
+     * @param key         the key
+     * @param description the description
+     */
+    public ParameterTypeDate(String key, String description) {
 		super(key, description);
 	}
 
-	public ParameterTypeDate(String key, String description, Date defaultValue) {
+    /**
+     * Instantiates a new Parameter type date.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultValue the default value
+     */
+    public ParameterTypeDate(String key, String description, Date defaultValue) {
 		super(key, description);
 		setDefaultValue(defaultValue);
 	}
 
-	public ParameterTypeDate(String key, String description, boolean optional, boolean expert) {
+    /**
+     * Instantiates a new Parameter type date.
+     *
+     * @param key         the key
+     * @param description the description
+     * @param optional    the optional
+     * @param expert      the expert
+     */
+    public ParameterTypeDate(String key, String description, boolean optional, boolean expert) {
 		super(key, description);
 		setOptional(optional);
 		setExpert(expert);
 		setDefaultValue(null);
 	}
 
-	public ParameterTypeDate(String key, String description, Date defaultValue, boolean optional, boolean expert) {
+    /**
+     * Instantiates a new Parameter type date.
+     *
+     * @param key          the key
+     * @param description  the description
+     * @param defaultValue the default value
+     * @param optional     the optional
+     * @param expert       the expert
+     */
+    public ParameterTypeDate(String key, String description, Date defaultValue, boolean optional, boolean expert) {
 		super(key, description);
 		setOptional(optional);
 		setExpert(expert);
@@ -154,7 +188,16 @@ public class ParameterTypeDate extends ParameterTypeSingle {
 		return ret;
 	}
 
-	public static Date getParameterAsDate(String key, Operator operator) throws UndefinedParameterError, UserError {
+    /**
+     * Gets parameter as date.
+     *
+     * @param key      the key
+     * @param operator the operator
+     * @return the parameter as date
+     * @throws UndefinedParameterError the undefined parameter error
+     * @throws UserError               the user error
+     */
+    public static Date getParameterAsDate(String key, Operator operator) throws UndefinedParameterError, UserError {
 		String value = operator.getParameter(key);
 		if (value == null || value.trim().isEmpty()) {
 			throw new UndefinedParameterError(key, operator);
@@ -166,11 +209,14 @@ public class ParameterTypeDate extends ParameterTypeSingle {
 		}
 	}
 
-	/**
-	 * Can be used to check whether the current string is a valid date string for this parameter
-	 * type.
-	 */
-	public static boolean isValidDate(String dateString) {
+    /**
+     * Can be used to check whether the current string is a valid date string for this parameter
+     * type.
+     *
+     * @param dateString the date string
+     * @return the boolean
+     */
+    public static boolean isValidDate(String dateString) {
 		try {
 			return dateString != null && DATE_FORMAT.get().parse(dateString) != null;
 		} catch (ParseException e) {

@@ -23,19 +23,33 @@ import com.rapidminer.operator.ports.metadata.MetaData;
 
 
 /**
- * 
+ * The interface Input ports.
+ *
  * @author Simon Fischer
- * 
  */
 public interface InputPorts extends Ports<InputPort> {
 
-	/** Checks all preconditions at the ports. */
-	public void checkPreconditions();
+    /**
+     * Checks all preconditions at the ports.
+     */
+    public void checkPreconditions();
 
-	/** Creates an input port with a simple precondition requiring input of type clazz. */
-	public InputPort createPort(String name, Class<? extends IOObject> clazz);
+    /**
+     * Creates an input port with a simple precondition requiring input of type clazz.  @param name the name
+     *
+     * @param name  the name
+     * @param clazz the clazz
+     * @return the input port
+     */
+    public InputPort createPort(String name, Class<? extends IOObject> clazz);
 
-	/** Creates an input port with a simple precondition requiring input with given meta data. */
-	public InputPort createPort(String name, MetaData metaData);
+    /**
+     * Creates an input port with a simple precondition requiring input with given meta data.  @param name the name
+     *
+     * @param name     the name
+     * @param metaData the meta data
+     * @return the input port
+     */
+    public InputPort createPort(String name, MetaData metaData);
 
 }

@@ -31,6 +31,7 @@ import com.rapidminer.operator.visualization.dependencies.NumericalMatrix;
 
 
 /**
+ * The type Numerical matrix table renderer.
  *
  * @author Sebastian Land
  */

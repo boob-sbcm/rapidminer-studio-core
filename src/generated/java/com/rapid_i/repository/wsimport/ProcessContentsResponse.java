@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for processContentsResponse complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="processContentsResponse">
  *   &lt;complexContent>
@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "processContentsResponse", propOrder = {
@@ -52,16 +50,19 @@ public class ProcessContentsResponse
     extends Response
 {
 
+    /**
+     * The Contents.
+     */
     protected String contents;
+    /**
+     * The Location.
+     */
     protected String location;
 
     /**
      * Gets the value of the contents property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getContents() {
         return contents;
@@ -69,11 +70,8 @@ public class ProcessContentsResponse
 
     /**
      * Sets the value of the contents property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setContents(String value) {
         this.contents = value;
@@ -81,11 +79,8 @@ public class ProcessContentsResponse
 
     /**
      * Gets the value of the location property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is     {@link String }
      */
     public String getLocation() {
         return location;
@@ -93,11 +88,8 @@ public class ProcessContentsResponse
 
     /**
      * Sets the value of the location property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is     {@link String }
      */
     public void setLocation(String value) {
         this.location = value;

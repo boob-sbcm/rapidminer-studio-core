@@ -77,26 +77,24 @@ public class DataResultSetTranslationConfiguration {
 
 	private int dataManagementType = DataRowFactory.TYPE_DOUBLE_ARRAY;
 
-	/**
-	 * This constructor can be used to generate an empty configuration just depending on the given
-	 * resultSet
-	 *
-	 * @param resultSet
-	 * @throws OperatorException
-	 */
-	public DataResultSetTranslationConfiguration(AbstractDataResultSetReader readerOperator) {
+    /**
+     * This constructor can be used to generate an empty configuration just depending on the given
+     * resultSet
+     *
+     * @param readerOperator the reader operator
+     * @throws OperatorException
+     */
+    public DataResultSetTranslationConfiguration(AbstractDataResultSetReader readerOperator) {
 		this(readerOperator, null);
 	}
 
-	/**
-	 * This constructor can be used to generate a configuration with the given annotations.
-	 *
-	 * @param dataResultSet
-	 *            the result set to derive parameters from
-	 * @param annotations
-	 *            list of annotations for the rows
-	 */
-	public DataResultSetTranslationConfiguration(DataResultSet dataResultSet, List<String> annotations) {
+    /**
+     * This constructor can be used to generate a configuration with the given annotations.
+     *
+     * @param dataResultSet the result set to derive parameters from
+     * @param annotations   list of annotations for the rows
+     */
+    public DataResultSetTranslationConfiguration(DataResultSet dataResultSet, List<String> annotations) {
 		this(null, dataResultSet);
 		int counter = 0;
 		annotationsMap.clear();
@@ -121,7 +119,12 @@ public class DataResultSetTranslationConfiguration {
 		reconfigure(readerOperator);
 	}
 
-	public void reconfigure(AbstractDataResultSetReader readerOperator) {
+    /**
+     * Reconfigure.
+     *
+     * @param readerOperator the reader operator
+     */
+    public void reconfigure(AbstractDataResultSetReader readerOperator) {
 		// reading parameter settings
 		if (readerOperator != null) {
 			try {
@@ -169,11 +172,21 @@ public class DataResultSetTranslationConfiguration {
 		}
 	}
 
-	public void setColumnMetaData(ColumnMetaData[] columnMetaData) {
+    /**
+     * Sets column meta data.
+     *
+     * @param columnMetaData the column meta data
+     */
+    public void setColumnMetaData(ColumnMetaData[] columnMetaData) {
 		this.columnMetaData = columnMetaData;
 	}
 
-	public void reconfigure(DataResultSet dataResultSet) {
+    /**
+     * Reconfigure.
+     *
+     * @param dataResultSet the data result set
+     */
+    public void reconfigure(DataResultSet dataResultSet) {
 		if (dataResultSet != null) {
 			int numberOfColumns = dataResultSet.getNumberOfColumns();
 			columnMetaData = new ColumnMetaData[numberOfColumns];
@@ -186,8 +199,12 @@ public class DataResultSetTranslationConfiguration {
 		}
 	}
 
-	/** Sets the parameters in the given operator to describe this configuration. */
-	public void setParameters(AbstractDataResultSetReader operator) {
+    /**
+     * Sets the parameters in the given operator to describe this configuration.  @param operator the operator
+     *
+     * @param operator the operator
+     */
+    public void setParameters(AbstractDataResultSetReader operator) {
 		operator.getParameters().setParameter(PARAMETER_DATE_FORMAT, getDatePattern());
 		// meta data
 		List<String[]> metaDataList = new LinkedList<>();
@@ -216,7 +233,13 @@ public class DataResultSetTranslationConfiguration {
 		operator.getParameters().setParameter(PARAMETER_FIRST_ROW_AS_NAMES, "false");
 	}
 
-	public ColumnMetaData getColumnMetaData(int col) {
+    /**
+     * Gets column meta data.
+     *
+     * @param col the col
+     * @return the column meta data
+     */
+    public ColumnMetaData getColumnMetaData(int col) {
 		if (columnMetaData != null && col < columnMetaData.length) {
 			return columnMetaData[col];
 		} else {
@@ -224,10 +247,12 @@ public class DataResultSetTranslationConfiguration {
 		}
 	}
 
-	/**
-	 * This will return all indices of each selected column
-	 */
-	public int[] getSelectedIndices() {
+    /**
+     * This will return all indices of each selected column
+     *
+     * @return the int [ ]
+     */
+    public int[] getSelectedIndices() {
 		int numberOfSelected = 0;
 		int[] selectedIndices = new int[columnMetaData.length];
 		for (int i = 0; i < selectedIndices.length; i++) {
@@ -245,28 +270,43 @@ public class DataResultSetTranslationConfiguration {
 		}
 	}
 
-	/**
-	 * This returns the annotation of a line or null if no present
-	 */
-	public String getAnnotation(int line) {
+    /**
+     * This returns the annotation of a line or null if no present
+     *
+     * @param line the line
+     * @return the annotation
+     */
+    public String getAnnotation(int line) {
 		return annotationsMap.get(line);
 	}
 
-	public SortedSet<Integer> getAnnotatedRowIndices() {
+    /**
+     * Gets annotated row indices.
+     *
+     * @return the annotated row indices
+     */
+    public SortedSet<Integer> getAnnotatedRowIndices() {
 		SortedSet<Integer> result = new TreeSet<>();
 		result.addAll(annotationsMap.keySet());
 		return result;
 	}
 
-	public Map<Integer, String> getAnnotationsMap() {
+    /**
+     * Gets annotations map.
+     *
+     * @return the annotations map
+     */
+    public Map<Integer, String> getAnnotationsMap() {
 		return annotationsMap;
 	}
 
-	/**
-	 * Returns the row annotated to be used as the name of the attribute or -1 if no such row was
-	 * selected.
-	 */
-	public int getNameRow() {
+    /**
+     * Returns the row annotated to be used as the name of the attribute or -1 if no such row was
+     * selected.
+     *
+     * @return the name row
+     */
+    public int getNameRow() {
 		if (annotationsMap == null) {
 			return -1;
 		} else {
@@ -279,23 +319,48 @@ public class DataResultSetTranslationConfiguration {
 		}
 	}
 
-	public int getNumerOfColumns() {
+    /**
+     * Gets numer of columns.
+     *
+     * @return the numer of columns
+     */
+    public int getNumerOfColumns() {
 		return columnMetaData.length;
 	}
 
-	public ColumnMetaData[] getColumnMetaData() {
+    /**
+     * Get column meta data column meta data [ ].
+     *
+     * @return the column meta data [ ]
+     */
+    public ColumnMetaData[] getColumnMetaData() {
 		return columnMetaData;
 	}
 
-	public void setFaultTolerant(boolean faultTolerant) {
+    /**
+     * Sets fault tolerant.
+     *
+     * @param faultTolerant the fault tolerant
+     */
+    public void setFaultTolerant(boolean faultTolerant) {
 		this.faultTolerant = faultTolerant;
 	}
 
-	public boolean isFaultTolerant() {
+    /**
+     * Is fault tolerant boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isFaultTolerant() {
 		return faultTolerant;
 	}
 
-	public int getLastAnnotatedRowIndex() {
+    /**
+     * Gets last annotated row index.
+     *
+     * @return the last annotated row index
+     */
+    public int getLastAnnotatedRowIndex() {
 		if (annotationsMap == null || annotationsMap.isEmpty()) {
 			return -1;
 		}
@@ -303,13 +368,21 @@ public class DataResultSetTranslationConfiguration {
 		return annotatedRows.last();
 	}
 
-	public void resetValueTypes() {
+    /**
+     * Reset value types.
+     */
+    public void resetValueTypes() {
 		for (ColumnMetaData cmd : columnMetaData) {
 			cmd.setAttributeValueType(Ontology.ATTRIBUTE_VALUE);
 		}
 	}
 
-	public DateFormat getDateFormat() {
+    /**
+     * Gets date format.
+     *
+     * @return the date format
+     */
+    public DateFormat getDateFormat() {
 		if (dateFormat == null) {
 			this.dateFormat = new ThreadLocal<DateFormat>() {
 
@@ -328,11 +401,21 @@ public class DataResultSetTranslationConfiguration {
 		return this.dateFormat.get();
 	}
 
-	public String getDatePattern() {
+    /**
+     * Gets date pattern.
+     *
+     * @return the date pattern
+     */
+    public String getDatePattern() {
 		return datePattern;
 	}
 
-	public void setDatePattern(String datePattern) {
+    /**
+     * Sets date pattern.
+     *
+     * @param datePattern the date pattern
+     */
+    public void setDatePattern(String datePattern) {
 		this.datePattern = datePattern;
 		dateFormat = null;
 	}
@@ -342,7 +425,12 @@ public class DataResultSetTranslationConfiguration {
 		return "Annotations: " + annotationsMap + "; columns: " + Arrays.toString(columnMetaData);
 	}
 
-	public void addColumnMetaData(ExampleSetMetaData emd) {
+    /**
+     * Add column meta data.
+     *
+     * @param emd the emd
+     */
+    public void addColumnMetaData(ExampleSetMetaData emd) {
 		MDInteger numberOfExamples = emd.getNumberOfExamples();
 		numberOfExamples.subtract(annotationsMap.size());
 		for (ColumnMetaData cmd : columnMetaData) {
@@ -352,28 +440,49 @@ public class DataResultSetTranslationConfiguration {
 		}
 	}
 
-	/** Returns true if meta data is manually set. */
-	public boolean isComplete() {
+    /**
+     * Returns true if meta data is manually set.  @return the boolean
+     *
+     * @return the boolean
+     */
+    public boolean isComplete() {
 		return columnMetaData != null && columnMetaData.length > 0;
 	}
 
-	public void setNumberFormat(NumberFormat numberFormat) {
+    /**
+     * Sets number format.
+     *
+     * @param numberFormat the number format
+     */
+    public void setNumberFormat(NumberFormat numberFormat) {
 		this.numberFormat = numberFormat;
 	}
 
-	public NumberFormat getNumberFormat() {
+    /**
+     * Gets number format.
+     *
+     * @return the number format
+     */
+    public NumberFormat getNumberFormat() {
 		return numberFormat;
 	}
 
-	public int getDataManagementType() {
+    /**
+     * Gets data management type.
+     *
+     * @return the data management type
+     */
+    public int getDataManagementType() {
 		return dataManagementType;
 	}
 
-	/**
-	 * @param readerOperator
-	 *            the operator to retrieve the parameter from
-	 */
-	public static ColumnMetaData[] readColumnMetaData(AbstractDataResultSetReader readerOperator) {
+    /**
+     * Read column meta data column meta data [ ].
+     *
+     * @param readerOperator the operator to retrieve the parameter from
+     * @return the column meta data [ ]
+     */
+    public static ColumnMetaData[] readColumnMetaData(AbstractDataResultSetReader readerOperator) {
 		// initializing data structures
 		List<String[]> metaDataSettings;
 		if (readerOperator.isParameterSet(PARAMETER_META_DATA)) {

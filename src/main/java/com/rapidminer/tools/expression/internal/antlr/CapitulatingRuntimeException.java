@@ -23,17 +23,16 @@ package com.rapidminer.tools.expression.internal.antlr;
  * {@link CapitulatingErrorStrategy} encounters an error it does not want to recover from.
  *
  * @author Gisa Schaefer
- *
  */
 class CapitulatingRuntimeException extends RuntimeException {
 
 	private static final long serialVersionUID = -4281221436108519452L;
 
-	/**
-	 * Creates a {@link RuntimeException} that marks that a parser or lexer has encountered an error
-	 * it does not want to recover from.
-	 */
-	CapitulatingRuntimeException() {
+    /**
+     * Creates a {@link RuntimeException} that marks that a parser or lexer has encountered an error
+     * it does not want to recover from.
+     */
+    CapitulatingRuntimeException() {
 		super();
 	}
 

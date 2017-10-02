@@ -67,9 +67,9 @@ import com.rapidminer.tools.I18N;
  * Abstract {@link WizardStep} that allows to select a repository location as destination of the
  * import. Triggers the actual import on success.
  *
+ * @param <T> the type parameter
  * @author Michael Knopf, Gisa Schaefer, Marcel Michel
  * @since 7.0.0
- *
  */
 public abstract class AbstractToRepositoryStep<T extends RepositoryLocationChooser> extends AbstractWizardStep {
 
@@ -176,10 +176,17 @@ public abstract class AbstractToRepositoryStep<T extends RepositoryLocationChoos
 	/** Flag used to set the default file name once */
 	private boolean defaultFileNameInitialized;
 
-	/** the import wizard which holds this step */
-	protected final ImportWizard wizard;
+    /**
+     * the import wizard which holds this step
+     */
+    protected final ImportWizard wizard;
 
-	public AbstractToRepositoryStep(final ImportWizard wizard) {
+    /**
+     * Instantiates a new Abstract to repository step.
+     *
+     * @param wizard the wizard
+     */
+    public AbstractToRepositoryStep(final ImportWizard wizard) {
 		this.wizard = wizard;
 		JDialog dialog = wizard.getDialog();
 		if (dialog != null) {
@@ -377,47 +384,47 @@ public abstract class AbstractToRepositoryStep<T extends RepositoryLocationChoos
 		return null; // last step
 	}
 
-	/**
-	 * Creates a file chooser that determines where to store data.
-	 *
-	 * @param initialDestination
-	 *            the initial location the file chooser should show
-	 * @return a file chooser
-	 */
-	protected abstract T initializeChooser(String initialDestination);
+    /**
+     * Creates a file chooser that determines where to store data.
+     *
+     * @param initialDestination the initial location the file chooser should show
+     * @return a file chooser
+     */
+    protected abstract T initializeChooser(String initialDestination);
 
-	/**
-	 * @return a panel that contains the chooser
-	 */
-	protected abstract JPanel getContentPanel();
+    /**
+     * Gets content panel.
+     *
+     * @return a panel that contains the chooser
+     */
+    protected abstract JPanel getContentPanel();
 
-	/**
-	 * @return the chooser initialized by {@link #initializeChooser(String)}.
-	 */
-	protected T getChooser() {
+    /**
+     * Gets chooser.
+     *
+     * @return the chooser initialized by {@link #initializeChooser(String)}.
+     */
+    protected T getChooser() {
 		return chooser;
 	}
 
-	/**
-	 * Indicator if the created {@link ProgressThread} which was created via
-	 * {@link #getImportThread(RepositoryLocation, Folder)} has successfully completed the import.
-	 *
-	 * @return {@code true} if the import successfully completed, otherwise {@code false}
-	 */
-	protected abstract boolean isImportSuccess();
+    /**
+     * Indicator if the created {@link ProgressThread} which was created via
+     * {@link #getImportThread(RepositoryLocation, Folder)} has successfully completed the import.
+     *
+     * @return {@code true} if the import successfully completed, otherwise {@code false}
+     */
+    protected abstract boolean isImportSuccess();
 
-	/**
-	 * Creates a progress thread that stores the data at the entryLocation.
-	 *
-	 * @param entryLocation
-	 *            the location where the data should be stored
-	 * @param parent
-	 *            the parent folder of the location
-	 * @return a progress thread that imports the data to the location
-	 * @throws InvalidConfigurationException
-	 *             in case the current step is configured wrong
-	 */
-	protected abstract ProgressThread getImportThread(final RepositoryLocation entryLocation, final Folder parent)
+    /**
+     * Creates a progress thread that stores the data at the entryLocation.
+     *
+     * @param entryLocation the location where the data should be stored
+     * @param parent        the parent folder of the location
+     * @return a progress thread that imports the data to the location
+     * @throws InvalidConfigurationException in case the current step is configured wrong
+     */
+    protected abstract ProgressThread getImportThread(final RepositoryLocation entryLocation, final Folder parent)
 			throws InvalidConfigurationException;
 
 	/**

@@ -30,82 +30,85 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+ * The enum Solver type.
+ */
 public enum SolverType {
 
-	/**
-	 * L2-regularized logistic regression (primal)
-	 *
-	 * (fka L2_LR)
-	 */
-	L2R_LR(0, true, false),
+    /**
+     * L2-regularized logistic regression (primal)
+     * <p>
+     * (fka L2_LR)
+     */
+    L2R_LR(0, true, false),
 
-	/**
-	 * L2-regularized L2-loss support vector classification (dual)
-	 *
-	 * (fka L2LOSS_SVM_DUAL)
-	 */
-	L2R_L2LOSS_SVC_DUAL(1, false, false),
+    /**
+     * L2-regularized L2-loss support vector classification (dual)
+     * <p>
+     * (fka L2LOSS_SVM_DUAL)
+     */
+    L2R_L2LOSS_SVC_DUAL(1, false, false),
 
-	/**
-	 * L2-regularized L2-loss support vector classification (primal)
-	 *
-	 * (fka L2LOSS_SVM)
-	 */
-	L2R_L2LOSS_SVC(2, false, false),
+    /**
+     * L2-regularized L2-loss support vector classification (primal)
+     * <p>
+     * (fka L2LOSS_SVM)
+     */
+    L2R_L2LOSS_SVC(2, false, false),
 
-	/**
-	 * L2-regularized L1-loss support vector classification (dual)
-	 *
-	 * (fka L1LOSS_SVM_DUAL)
-	 */
-	L2R_L1LOSS_SVC_DUAL(3, false, false),
+    /**
+     * L2-regularized L1-loss support vector classification (dual)
+     * <p>
+     * (fka L1LOSS_SVM_DUAL)
+     */
+    L2R_L1LOSS_SVC_DUAL(3, false, false),
 
-	/**
-	 * multi-class support vector classification by Crammer and Singer
-	 */
-	MCSVM_CS(4, false, false),
+    /**
+     * multi-class support vector classification by Crammer and Singer
+     */
+    MCSVM_CS(4, false, false),
 
-	/**
-	 * L1-regularized L2-loss support vector classification
-	 *
-	 * @since 1.5
-	 */
-	L1R_L2LOSS_SVC(5, false, false),
+    /**
+     * L1-regularized L2-loss support vector classification
+     *
+     * @since 1.5
+     */
+    L1R_L2LOSS_SVC(5, false, false),
 
-	/**
-	 * L1-regularized logistic regression
-	 *
-	 * @since 1.5
-	 */
-	L1R_LR(6, true, false),
+    /**
+     * L1-regularized logistic regression
+     *
+     * @since 1.5
+     */
+    L1R_LR(6, true, false),
 
-	/**
-	 * L2-regularized logistic regression (dual)
-	 *
-	 * @since 1.7
-	 */
-	L2R_LR_DUAL(7, true, false),
+    /**
+     * L2-regularized logistic regression (dual)
+     *
+     * @since 1.7
+     */
+    L2R_LR_DUAL(7, true, false),
 
-	/**
-	 * L2-regularized L2-loss support vector regression (dual)
-	 *
-	 * @since 1.91
-	 */
-	L2R_L2LOSS_SVR(11, false, true),
+    /**
+     * L2-regularized L2-loss support vector regression (dual)
+     *
+     * @since 1.91
+     */
+    L2R_L2LOSS_SVR(11, false, true),
 
-	/**
-	 * L2-regularized L1-loss support vector regression (dual)
-	 *
-	 * @since 1.91
-	 */
-	L2R_L2LOSS_SVR_DUAL(12, false, true),
+    /**
+     * L2-regularized L1-loss support vector regression (dual)
+     *
+     * @since 1.91
+     */
+    L2R_L2LOSS_SVR_DUAL(12, false, true),
 
-	/**
-	 * L2-regularized L2-loss support vector regression (primal)
-	 *
-	 * @since 1.91
-	 */
-	L2R_L1LOSS_SVR_DUAL(13, false, true),
+    /**
+     * L2-regularized L2-loss support vector regression (primal)
+     *
+     * @since 1.91
+     */
+    L2R_L1LOSS_SVR_DUAL(13, false, true),
 
 	;
 
@@ -129,11 +132,22 @@ public enum SolverType {
 		}
 	}
 
-	public int getId() {
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
 		return id;
 	}
 
-	public static SolverType getById(int id) {
+    /**
+     * Gets by id.
+     *
+     * @param id the id
+     * @return the by id
+     */
+    public static SolverType getById(int id) {
 		SolverType solverType = SOLVERS_BY_ID.get(Integer.valueOf(id));
 		if (solverType == null) {
 			throw new RuntimeException("found no solvertype for id " + id);
@@ -141,17 +155,23 @@ public enum SolverType {
 		return solverType;
 	}
 
-	/**
-	 * @since 1.9
-	 */
-	public boolean isLogisticRegressionSolver() {
+    /**
+     * Is logistic regression solver boolean.
+     *
+     * @return the boolean
+     * @since 1.9
+     */
+    public boolean isLogisticRegressionSolver() {
 		return logisticRegressionSolver;
 	}
 
-	/**
-	 * @since 1.91
-	 */
-	public boolean isSupportVectorRegression() {
+    /**
+     * Is support vector regression boolean.
+     *
+     * @return the boolean
+     * @since 1.91
+     */
+    public boolean isSupportVectorRegression() {
 		return supportVectorRegression;
 	}
 }

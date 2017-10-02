@@ -44,7 +44,8 @@ import javax.swing.event.PopupMenuListener;
 
 
 /**
- * 
+ * The type Toggle drop down button.
+ *
  * @author Tobias Malbrecht
  */
 public abstract class ToggleDropDownButton extends JToggleButton implements ToggleActionListener {
@@ -96,13 +97,22 @@ public abstract class ToggleDropDownButton extends JToggleButton implements Togg
 		}
 	};
 
-	protected JToggleButton mainButton = this;
+    /**
+     * The Main button.
+     */
+    protected JToggleButton mainButton = this;
 
-	public static class DropDownArrowButton extends ArrowButton {
+    /**
+     * The type Drop down arrow button.
+     */
+    public static class DropDownArrowButton extends ArrowButton {
 
 		private static final long serialVersionUID = -398619111521186260L;
 
-		public DropDownArrowButton() {
+        /**
+         * Instantiates a new Drop down arrow button.
+         */
+        public DropDownArrowButton() {
 			super(SwingConstants.SOUTH);
 		}
 	}
@@ -111,7 +121,12 @@ public abstract class ToggleDropDownButton extends JToggleButton implements Togg
 
 	private boolean popupVisible = false;
 
-	public ToggleDropDownButton(Action action) {
+    /**
+     * Instantiates a new Toggle drop down button.
+     *
+     * @param action the action
+     */
+    public ToggleDropDownButton(Action action) {
 		super(action);
 		if (action instanceof ToggleAction) {
 			((ToggleAction) action).addToggleActionListener(this);
@@ -141,41 +156,88 @@ public abstract class ToggleDropDownButton extends JToggleButton implements Togg
 		});
 	}
 
-	protected abstract JPopupMenu getPopupMenu();
+    /**
+     * Gets popup menu.
+     *
+     * @return the popup menu
+     */
+    protected abstract JPopupMenu getPopupMenu();
 
-	public void add(Action action) {
+    /**
+     * Add.
+     *
+     * @param action the action
+     */
+    public void add(Action action) {
 		getPopupMenu().add(action);
 	}
 
-	public void add(JMenuItem item) {
+    /**
+     * Add.
+     *
+     * @param item the item
+     */
+    public void add(JMenuItem item) {
 		getPopupMenu().add(item);
 	}
 
-	public JToggleButton addToToolBar(JToolBar toolbar) {
+    /**
+     * Add to tool bar j toggle button.
+     *
+     * @param toolbar the toolbar
+     * @return the j toggle button
+     */
+    public JToggleButton addToToolBar(JToolBar toolbar) {
 		toolbar.add(mainButton);
 		toolbar.add(arrowButton);
 		return mainButton;
 	}
 
-	public JToggleButton addToToolBar(VLToolBar toolbar) {
+    /**
+     * Add to tool bar j toggle button.
+     *
+     * @param toolbar the toolbar
+     * @return the j toggle button
+     */
+    public JToggleButton addToToolBar(VLToolBar toolbar) {
 		toolbar.add(mainButton);
 		toolbar.add(arrowButton);
 		return mainButton;
 	}
 
-	public JToggleButton addToToolBar(ViewToolBar toolbar, int alignment) {
+    /**
+     * Add to tool bar j toggle button.
+     *
+     * @param toolbar   the toolbar
+     * @param alignment the alignment
+     * @return the j toggle button
+     */
+    public JToggleButton addToToolBar(ViewToolBar toolbar, int alignment) {
 		toolbar.add(mainButton, alignment);
 		toolbar.add(arrowButton, alignment);
 		return mainButton;
 	}
 
-	public JToggleButton addToFlowLayoutPanel(JPanel panel) {
+    /**
+     * Add to flow layout panel j toggle button.
+     *
+     * @param panel the panel
+     * @return the j toggle button
+     */
+    public JToggleButton addToFlowLayoutPanel(JPanel panel) {
 		panel.add(mainButton);
 		panel.add(arrowButton);
 		return mainButton;
 	}
 
-	// factory methods
+    /**
+     * Make drop down button toggle drop down button.
+     *
+     * @param mainAction the main action
+     * @param actions    the actions
+     * @return the toggle drop down button
+     */
+// factory methods
 	public static ToggleDropDownButton makeDropDownButton(ToggleAction mainAction, Action... actions) {
 		final JPopupMenu menu = new JPopupMenu();
 		for (Action action : actions) {
@@ -192,7 +254,13 @@ public abstract class ToggleDropDownButton extends JToggleButton implements Togg
 		};
 	}
 
-	public static ToggleDropDownButton makeDropDownButton(ToggleAction action) {
+    /**
+     * Make drop down button toggle drop down button.
+     *
+     * @param action the action
+     * @return the toggle drop down button
+     */
+    public static ToggleDropDownButton makeDropDownButton(ToggleAction action) {
 		final JPopupMenu menu = new JPopupMenu();
 		return new ToggleDropDownButton(action) {
 

@@ -154,12 +154,12 @@ final class ExcelDataSource extends FileDataSource {
 				endRow);
 	}
 
-	/**
-	 * @return the {@link ExcelResultSetConfiguration} for this {@link ExcelDataSource}. It is
-	 *         holding information about the Excel file path and the configured sheet and cell range
-	 *         to be imported.
-	 */
-	ExcelResultSetConfiguration getResultSetConfiguration() {
+    /**
+     * Gets result set configuration.
+     *
+     * @return the {@link ExcelResultSetConfiguration} for this {@link ExcelDataSource}. It is         holding information about the Excel file path and the configured sheet and cell range         to be imported.
+     */
+    ExcelResultSetConfiguration getResultSetConfiguration() {
 		return configuration;
 	}
 
@@ -190,23 +190,21 @@ final class ExcelDataSource extends FileDataSource {
 		}
 	}
 
-	/**
-	 * Returns the index of the header row.
-	 *
-	 * @return the index of the header row or {@link ResultSetAdapter#NO_HEADER_ROW} if no header
-	 *         row is specified.
-	 */
-	public int getHeaderRowIndex() {
+    /**
+     * Returns the index of the header row.
+     *
+     * @return the index of the header row or {@link ResultSetAdapter#NO_HEADER_ROW} if no header         row is specified.
+     */
+    public int getHeaderRowIndex() {
 		return headerRowIndex;
 	}
 
-	/**
-	 * Updates the header row index.
-	 *
-	 * @param headerRowIndex
-	 *            the new header row index
-	 */
-	public void setHeaderRowIndex(int headerRowIndex) {
+    /**
+     * Updates the header row index.
+     *
+     * @param headerRowIndex the new header row index
+     */
+    public void setHeaderRowIndex(int headerRowIndex) {
 		this.headerRowIndex = headerRowIndex;
 	}
 
@@ -215,19 +213,17 @@ final class ExcelDataSource extends FileDataSource {
 		return metaData;
 	}
 
-	/**
-	 * Creates a new meta data instance with the results of the
-	 * {@link ExcelSheetSelectionWizardStep} and assigns it to the {@link #metaData} field of the
-	 * {@link ExcelDataSource}.
-	 * <p>
-	 * The method checks if the header row and the starting row exist and throws an exception
-	 * otherwise.
-	 *
-	 * @throws DataSetException
-	 *             in case the guessing failed (e.g. because of file reading errors, wrong file
-	 *             path, etc.)
-	 */
-	void createMetaData() throws DataSetException {
+    /**
+     * Creates a new meta data instance with the results of the
+     * {@link ExcelSheetSelectionWizardStep} and assigns it to the {@link #metaData} field of the
+     * {@link ExcelDataSource}.
+     * <p>
+     * The method checks if the header row and the starting row exist and throws an exception
+     * otherwise.
+     *
+     * @throws DataSetException in case the guessing failed (e.g. because of file reading errors, wrong file             path, etc.)
+     */
+    void createMetaData() throws DataSetException {
 		// create a new Excel ResultSet configuration which reads the whole selected sheet
 		// we cannot call getData() here as it might already skip the first lines
 		try (ExcelResultSetConfiguration configuration = new ExcelResultSetConfiguration()) {

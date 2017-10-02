@@ -32,43 +32,73 @@ import java.util.List;
  * A class which configures a line which is parallel to one of the plot axes.
  *
  * @author Marius Helf
- *
  */
 public class AxisParallelLineConfiguration implements LineFormatListener, Cloneable {
 
-	LineFormat format = new LineFormat();
+    /**
+     * The Format.
+     */
+    LineFormat format = new LineFormat();
 	private boolean labelVisible = true;
 	private double value;
 
 	private List<WeakReference<AxisParallelLineConfigurationListener>> listeners = new LinkedList<WeakReference<AxisParallelLineConfigurationListener>>();
 
-	/**
-	 * Creates a new {@link AxisParallelLineConfiguration}.
-	 */
-	public AxisParallelLineConfiguration(double value, boolean labelVisible) {
+    /**
+     * Creates a new {@link AxisParallelLineConfiguration}.
+     *
+     * @param value        the value
+     * @param labelVisible the label visible
+     */
+    public AxisParallelLineConfiguration(double value, boolean labelVisible) {
 		this.value = value;
 	}
 
-	public double getValue() {
+    /**
+     * Gets value.
+     *
+     * @return the value
+     */
+    public double getValue() {
 		return value;
 	}
 
-	public void setValue(double value) {
+    /**
+     * Sets value.
+     *
+     * @param value the value
+     */
+    public void setValue(double value) {
 		if (this.value != value) {
 			this.value = value;
 			fireAxisParallelLineConfigurationChanged(new AxisParallelLineConfigurationChangeEvent(this, value));
 		}
 	}
 
-	public boolean isLabelVisible() {
+    /**
+     * Is label visible boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLabelVisible() {
 		return labelVisible;
 	}
 
-	public LineFormat getFormat() {
+    /**
+     * Gets format.
+     *
+     * @return the format
+     */
+    public LineFormat getFormat() {
 		return format;
 	}
 
-	public void setLabelVisible(boolean labelVisible) {
+    /**
+     * Sets label visible.
+     *
+     * @param labelVisible the label visible
+     */
+    public void setLabelVisible(boolean labelVisible) {
 		if (labelVisible != this.labelVisible) {
 			this.labelVisible = labelVisible;
 			fireAxisParallelLineConfigurationChanged(new AxisParallelLineConfigurationChangeEvent(this, labelVisible));
@@ -104,11 +134,21 @@ public class AxisParallelLineConfiguration implements LineFormatListener, Clonea
 		return "Line (value: " + value + ")";
 	}
 
-	public void addAxisParallelLineConfigurationListener(AxisParallelLineConfigurationListener l) {
+    /**
+     * Add axis parallel line configuration listener.
+     *
+     * @param l the l
+     */
+    public void addAxisParallelLineConfigurationListener(AxisParallelLineConfigurationListener l) {
 		listeners.add(new WeakReference<AxisParallelLineConfigurationListener>(l));
 	}
 
-	public void removeAxisParallelLineConfigurationListener(AxisParallelLineConfigurationListener l) {
+    /**
+     * Remove axis parallel line configuration listener.
+     *
+     * @param l the l
+     */
+    public void removeAxisParallelLineConfigurationListener(AxisParallelLineConfigurationListener l) {
 		Iterator<WeakReference<AxisParallelLineConfigurationListener>> it = listeners.iterator();
 		while (it.hasNext()) {
 			AxisParallelLineConfigurationListener listener = it.next().get();

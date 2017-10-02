@@ -31,7 +31,7 @@ import java.util.List;
 
 /**
  * Indicates that input for a port was missing or had the wrong type.
- * 
+ *
  * @author Simon Fischer
  */
 public class InputMissingMetaDataError extends SimpleMetaDataError {
@@ -39,11 +39,24 @@ public class InputMissingMetaDataError extends SimpleMetaDataError {
 	private InputPort inputPort;
 	private Class<? extends IOObject> desiredClass;
 
-	public InputMissingMetaDataError(InputPort inputPort, Class<? extends IOObject> desiredClazz) {
+    /**
+     * Instantiates a new Input missing meta data error.
+     *
+     * @param inputPort    the input port
+     * @param desiredClazz the desired clazz
+     */
+    public InputMissingMetaDataError(InputPort inputPort, Class<? extends IOObject> desiredClazz) {
 		this(inputPort, desiredClazz, null);
 	}
 
-	public InputMissingMetaDataError(InputPort inputPort, Class<? extends IOObject> desiredClass,
+    /**
+     * Instantiates a new Input missing meta data error.
+     *
+     * @param inputPort     the input port
+     * @param desiredClass  the desired class
+     * @param receivedClass the received class
+     */
+    public InputMissingMetaDataError(InputPort inputPort, Class<? extends IOObject> desiredClass,
 			Class<? extends IOObject> receivedClass) {
 		super(Severity.ERROR, inputPort, receivedClass == null ? "input_missing" : "expected",
 				receivedClass == null ? new Object[] { inputPort.getSpec() }

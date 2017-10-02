@@ -72,7 +72,13 @@ public class ScrollBarUI extends BasicScrollBarUI {
 
 	private MouseListener thumbPressedListener;
 
-	public static ComponentUI createUI(JComponent c) {
+    /**
+     * Create ui component ui.
+     *
+     * @param c the c
+     * @return the component ui
+     */
+    public static ComponentUI createUI(JComponent c) {
 		return new ScrollBarUI();
 	}
 
@@ -86,7 +92,12 @@ public class ScrollBarUI extends BasicScrollBarUI {
 		super.uninstallUI(c);
 	}
 
-	protected MouseListener createThumbPressedListener() {
+    /**
+     * Create thumb pressed listener mouse listener.
+     *
+     * @return the mouse listener
+     */
+    protected MouseListener createThumbPressedListener() {
 		return new ScrollBarThumbListener();
 	}
 

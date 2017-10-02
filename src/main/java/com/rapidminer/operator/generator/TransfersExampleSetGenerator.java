@@ -49,11 +49,15 @@ import com.rapidminer.tools.math.container.Range;
  */
 public class TransfersExampleSetGenerator extends AbstractExampleSource {
 
-	/** The parameter name for &quot;The number of generated examples.&quot; */
-	public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
+    /**
+     * The parameter name for &quot;The number of generated examples.&quot;
+     */
+    public static final String PARAMETER_NUMBER_EXAMPLES = "number_examples";
 
-	/** The parameter name for the creation of a fraud label. */
-	public static final String PARAMETER_CREATE_FRAUD_LABEL = "create_fraud_label";
+    /**
+     * The parameter name for the creation of a fraud label.
+     */
+    public static final String PARAMETER_CREATE_FRAUD_LABEL = "create_fraud_label";
 
 	private static String[] ATTRIBUTE_NAMES = { "Source", "Target", "ProjectID", "Reason", "Person", "Amount" };
 
@@ -65,7 +69,12 @@ public class TransfersExampleSetGenerator extends AbstractExampleSource {
 			{ "Prj01", "Prj02", "Prj03", "Prj04", "Prj05", "Prj06", "Prj07", "Prj08" }, null,
 			{ "Mr. Brown", "Mr. Miller", "Mrs. Smith", "Mrs. Hanson", "Mrs. Green", "Mr. Chang" }, null };
 
-	public TransfersExampleSetGenerator(OperatorDescription description) {
+    /**
+     * Instantiates a new Transfers example set generator.
+     *
+     * @param description the description
+     */
+    public TransfersExampleSetGenerator(OperatorDescription description) {
 		super(description);
 	}
 

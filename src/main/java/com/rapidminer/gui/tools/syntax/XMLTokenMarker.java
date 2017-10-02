@@ -32,12 +32,15 @@ import javax.swing.text.Segment;
 
 /**
  * XML Token Marker Rewrite
- * 
+ *
  * @author Tom Bradford, Ingo Mierswa
  */
 public class XMLTokenMarker extends TokenMarker {
 
-	public XMLTokenMarker() {}
+    /**
+     * Instantiates a new Xml token marker.
+     */
+    public XMLTokenMarker() {}
 
 	@Override
 	public byte markTokensImpl(byte token, Segment line, int lineIndex) {

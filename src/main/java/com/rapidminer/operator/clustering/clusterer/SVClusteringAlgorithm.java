@@ -42,69 +42,161 @@ public class SVClusteringAlgorithm implements SVMInterface {
 	private static final int[] RAPID_MINER_VERBOSITY = { LogService.STATUS, LogService.STATUS, LogService.STATUS,
 			LogService.MINIMUM, LogService.MINIMUM };
 
-	protected Kernel kernel;
+    /**
+     * The Kernel.
+     */
+    protected Kernel kernel;
 
-	protected SVCExampleSet examples;
+    /**
+     * The Examples.
+     */
+    protected SVCExampleSet examples;
 
-	double[] alphas;
+    /**
+     * The Alphas.
+     */
+    double[] alphas;
 
-	protected int examples_total;
+    /**
+     * The Examples total.
+     */
+    protected int examples_total;
 
-	protected int target_count;
+    /**
+     * The Target count.
+     */
+    protected int target_count;
 
-	protected double convergence_epsilon = 1e-3;
+    /**
+     * The Convergence epsilon.
+     */
+    protected double convergence_epsilon = 1e-3;
 
-	protected double lambda_factor;
+    /**
+     * The Lambda factor.
+     */
+    protected double lambda_factor;
 
-	protected int[] at_bound;
+    /**
+     * The At bound.
+     */
+    protected int[] at_bound;
 
-	protected double[] sum;
+    /**
+     * The Sum.
+     */
+    protected double[] sum;
 
-	protected double[] K;
+    /**
+     * The K.
+     */
+    protected double[] K;
 
-	protected int[] working_set;
+    /**
+     * The Working set.
+     */
+    protected int[] working_set;
 
-	protected double[] primal;
+    /**
+     * The Primal.
+     */
+    protected double[] primal;
 
-	protected double sum_alpha;
+    /**
+     * The Sum alpha.
+     */
+    protected double sum_alpha;
 
-	protected double lambda_eq;
+    /**
+     * The Lambda eq.
+     */
+    protected double lambda_eq;
 
-	protected int to_shrink;
+    /**
+     * The To shrink.
+     */
+    protected int to_shrink;
 
-	protected double feasible_epsilon;
+    /**
+     * The Feasible epsilon.
+     */
+    protected double feasible_epsilon;
 
-	protected double lambda_WS;
+    /**
+     * The Lambda ws.
+     */
+    protected double lambda_WS;
 
-	boolean shrinked;
+    /**
+     * The Shrinked.
+     */
+    boolean shrinked;
 
 	private int max_iterations = 100000;
 
-	protected int working_set_size = 10;
+    /**
+     * The Working set size.
+     */
+    protected int working_set_size = 10;
 
-	protected int parameters_working_set_size = 10;
+    /**
+     * The Parameters working set size.
+     */
+    protected int parameters_working_set_size = 10;
 
-	protected double is_zero = 1e-10;
+    /**
+     * The Is zero.
+     */
+    protected double is_zero = 1e-10;
 
-	protected int shrink_const = 55;
+    /**
+     * The Shrink const.
+     */
+    protected int shrink_const = 55;
 
-	protected double C = 0.0d;
+    /**
+     * The C.
+     */
+    protected double C = 0.0d;
 
-	protected double descend = 1e-15;
+    /**
+     * The Descend.
+     */
+    protected double descend = 1e-15;
 
-	MinHeap heap_min;
+    /**
+     * The Heap min.
+     */
+    MinHeap heap_min;
 
-	MaxHeap heap_max;
+    /**
+     * The Heap max.
+     */
+    MaxHeap heap_max;
 
-	protected QuadraticProblem qp;
+    /**
+     * The Qp.
+     */
+    protected QuadraticProblem qp;
 
 	private Operator paramOperator;
 
-	public SVClusteringAlgorithm() {
+    /**
+     * Instantiates a new Sv clustering algorithm.
+     */
+    public SVClusteringAlgorithm() {
 		// Empty constructor
 	}
 
-	public SVClusteringAlgorithm(Operator paramOperator, Kernel new_kernel, SVCExampleSet new_examples)
+    /**
+     * Instantiates a new Sv clustering algorithm.
+     *
+     * @param paramOperator the param operator
+     * @param new_kernel    the new kernel
+     * @param new_examples  the new examples
+     * @throws UndefinedParameterError the undefined parameter error
+     */
+    public SVClusteringAlgorithm(Operator paramOperator, Kernel new_kernel, SVCExampleSet new_examples)
 			throws UndefinedParameterError {
 		init(new_kernel, new_examples);
 		this.paramOperator = paramOperator;
@@ -114,7 +206,13 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		C = 1.0 / (examples_total * paramOperator.getParameterAsDouble(SVClustering.PARAMETER_P));
 	};
 
-	public void init(Kernel new_kernel, SVCExampleSet new_examples) {
+    /**
+     * Init.
+     *
+     * @param new_kernel   the new kernel
+     * @param new_examples the new examples
+     */
+    public void init(Kernel new_kernel, SVCExampleSet new_examples) {
 		kernel = new_kernel;
 		examples = new_examples;
 		examples_total = examples.count_examples();
@@ -241,10 +339,10 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		exit_optimizer();
 	}
 
-	/**
-	 * print statistics about result
-	 */
-	protected void print_statistics() {
+    /**
+     * print statistics about result
+     */
+    protected void print_statistics() {
 		int dim = examples.get_dim();
 		int i, j;
 		double alpha;
@@ -300,15 +398,19 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		return examples.get_b();
 	}
 
-	/** Returns the value of R. */
-	public double getR() {
+    /**
+     * Returns the value of R.  @return the r
+     *
+     * @return the r
+     */
+    public double getR() {
 		return examples.get_R();
 	}
 
-	/**
-	 * init the optimizer
-	 */
-	protected void init_optimizer() {
+    /**
+     * init the optimizer
+     */
+    protected void init_optimizer() {
 		primal = new double[working_set_size];
 		sum = new double[examples_total];
 		K = new double[examples_total];
@@ -346,17 +448,17 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		qp.set_n(working_set_size);
 	};
 
-	/**
-	 * exit the optimizer
-	 */
-	protected void exit_optimizer() {
+    /**
+     * exit the optimizer
+     */
+    protected void exit_optimizer() {
 		qp = null;
 	};
 
-	/**
-	 * shrink the variables
-	 */
-	protected void shrink() {
+    /**
+     * shrink the variables
+     */
+    protected void shrink() {
 		// move shrinked examples to back
 		if (to_shrink > examples_total / 10) {
 			int i;
@@ -394,10 +496,10 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		;
 	};
 
-	/**
-	 * reset the shrinked variables
-	 */
-	protected void reset_shrinked() {
+    /**
+     * reset the shrinked variables
+     */
+    protected void reset_shrinked() {
 		int old_ex_tot = examples_total;
 		target_count = 0;
 		examples_total = examples.count_examples();
@@ -430,10 +532,10 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		logln(5, "Resetting shrinked from " + old_ex_tot + " to " + examples_total);
 	};
 
-	/**
-	 * Project variables to constraints
-	 */
-	protected void project_to_constraint() {
+    /**
+     * Project variables to constraints
+     */
+    protected void project_to_constraint() {
 		// project alphas to match the constraint
 		double alpha_sum = sum_alpha - 1;
 		int SVcount = 0;
@@ -509,13 +611,12 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		;
 	};
 
-	/**
-	 * Calculates the working set
-	 *
-	 * @exception Exception
-	 *                on any error
-	 */
-	protected void calculate_working_set() {
+    /**
+     * Calculates the working set
+     *
+     * @throws Exception on any error
+     */
+    protected void calculate_working_set() {
 		// reset WSS
 		if (working_set_size < parameters_working_set_size) {
 			working_set_size = parameters_working_set_size;
@@ -710,10 +811,10 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		;
 	};
 
-	/**
-	 * Updates the working set
-	 */
-	protected void update_working_set() {
+    /**
+     * Updates the working set
+     */
+    protected void update_working_set() {
 		// setup subproblem
 		int i, j;
 		int pos_i, pos_j;
@@ -747,13 +848,12 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		;
 	};
 
-	/**
-	 * Initialises the working set
-	 *
-	 * @exception Exception
-	 *                on any error
-	 */
-	protected void init_working_set() {
+    /**
+     * Initialises the working set
+     *
+     * @throws Exception on any error
+     */
+    protected void init_working_set() {
 		project_to_constraint();
 		// calculate sum
 		int i, j;
@@ -789,10 +889,10 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		update_working_set();
 	};
 
-	/**
-	 * Calls the optimizer
-	 */
-	protected void optimize() {
+    /**
+     * Calls the optimizer
+     */
+    protected void optimize() {
 		// check();
 		// optimizer-specific call
 		int i;
@@ -950,10 +1050,10 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		;
 	};
 
-	/**
-	 * Stores the optimizer results
-	 */
-	protected void put_optimizer_values() {
+    /**
+     * Stores the optimizer results
+     */
+    protected void put_optimizer_values() {
 		// update nabla, sum, examples.
 		// sum[i] += (primal_j^*-primal_j-alpha_j^*+alpha_j)K(i,j)
 		// check for |nabla| < is_zero (nabla <-> nabla*)
@@ -985,12 +1085,12 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		;
 	};
 
-	/**
-	 * Checks if the optimization converged
-	 *
-	 * @return boolean true optimzation if converged
-	 */
-	protected boolean convergence() {
+    /**
+     * Checks if the optimization converged
+     *
+     * @return boolean true optimzation if converged
+     */
+    protected boolean convergence() {
 		double the_lambda_eq = 0;
 		int total = 0;
 		double alpha_sum = 0;
@@ -1079,18 +1179,23 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		return result;
 	};
 
-	protected final double nabla(int i) {
+    /**
+     * Nabla double.
+     *
+     * @param i the
+     * @return the double
+     */
+    protected final double nabla(int i) {
 		return -K[i] + 2 * sum[i];
 	};
 
-	/**
-	 * lagrangian multiplier of variable i
-	 *
-	 * @param i
-	 *            variable index
-	 * @return lambda
-	 */
-	protected double lambda(int i) {
+    /**
+     * lagrangian multiplier of variable i
+     *
+     * @param i variable index
+     * @return lambda double
+     */
+    protected double lambda(int i) {
 		double alpha;
 		double result;
 		result = -java.lang.Math.abs(nabla(i) + lambda_eq);
@@ -1109,7 +1214,13 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		return result;
 	};
 
-	protected boolean feasible(int i) {
+    /**
+     * Feasible boolean.
+     *
+     * @param i the
+     * @return the boolean
+     */
+    protected boolean feasible(int i) {
 		boolean is_feasible = true;
 		double alpha = alphas[i];
 		double the_lambda = lambda(i);
@@ -1148,15 +1259,13 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		return is_feasible;
 	};
 
-	/**
-	 * log the output plus newline
-	 *
-	 * @param level
-	 *            warning level
-	 * @param message
-	 *            Message test
-	 */
-	protected void logln(int level, String message) {
+    /**
+     * log the output plus newline
+     *
+     * @param level   warning level
+     * @param message Message test
+     */
+    protected void logln(int level, String message) {
 		paramOperator.getLog().log(message, RAPID_MINER_VERBOSITY[level - 1]);
 	};
 
@@ -1206,10 +1315,10 @@ public class SVClusteringAlgorithm implements SVMInterface {
 		return Math.sqrt(the_sum);
 	};
 
-	/**
-	 * check internal variables, for debugging only
-	 */
-	protected void check() {
+    /**
+     * check internal variables, for debugging only
+     */
+    protected void check() {
 		double tsum;
 		int i, j;
 		double s = 0;

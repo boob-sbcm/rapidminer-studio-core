@@ -25,14 +25,17 @@ import com.rapidminer.gui.tools.syntax.TextAreaDefaults;
 
 /**
  * A generic HTML editor.
- * 
+ *
  * @author Ingo Mierswa
  */
 public class HTMLEditor extends JEditTextArea {
 
 	private static final long serialVersionUID = -6706176641327836203L;
 
-	public HTMLEditor() {
+    /**
+     * Instantiates a new Html editor.
+     */
+    public HTMLEditor() {
 		super(getDefaults());
 		setTokenMarker(new HTMLTokenMarker());
 	}

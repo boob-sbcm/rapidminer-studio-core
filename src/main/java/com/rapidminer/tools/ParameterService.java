@@ -55,7 +55,7 @@ import com.rapidminer.tools.parameter.WindowsExeParameterWriter;
  * This class loads the RapidMiner property files and provides methods to access them. It also
  * stores the values of the properties. They are still mirrored in the System properties for keeping
  * compatibility but it is strongly recommended to use this class to get access.
- *
+ * <p>
  * During init this class will try to load settings from various sources. Sources with a higher
  * specificy will overwrite settings with a lower. The sequence is as follows while only the first
  * step is executed if the {@link ExecutionMode} forbidds file access:
@@ -80,13 +80,24 @@ public class ParameterService {
 
 	private static final Logger LOGGER = Logger.getLogger(ParameterService.class.getSimpleName());
 
-	public static final String RAPIDMINER_CONFIG_FILE_NAME = "rapidminer-studio-settings.cfg";
+    /**
+     * The constant RAPIDMINER_CONFIG_FILE_NAME.
+     */
+    public static final String RAPIDMINER_CONFIG_FILE_NAME = "rapidminer-studio-settings.cfg";
 
-	/** Property specifying the root directory of the RapidMiner project sources. */
-	public static final String PROPERTY_RAPIDMINER_SRC_ROOT = "rapidminer.src.root";
-	public static final String PROPERTY_RAPIDMINER_CONFIG_DIR = "rapidminer.config.dir";
+    /**
+     * Property specifying the root directory of the RapidMiner project sources.
+     */
+    public static final String PROPERTY_RAPIDMINER_SRC_ROOT = "rapidminer.src.root";
+    /**
+     * The constant PROPERTY_RAPIDMINER_CONFIG_DIR.
+     */
+    public static final String PROPERTY_RAPIDMINER_CONFIG_DIR = "rapidminer.config.dir";
 
-	public static final String ENVIRONMENT_RAPIDMINER_CONFIG_DIR = "RAPIDMINER_CONFIG_DIR";
+    /**
+     * The constant ENVIRONMENT_RAPIDMINER_CONFIG_DIR.
+     */
+    public static final String ENVIRONMENT_RAPIDMINER_CONFIG_DIR = "RAPIDMINER_CONFIG_DIR";
 
 	private static boolean intialized = false;
 	private static final List<ParameterChangeListener> PARAMETER_LISTENERS = new LinkedList<>();
@@ -98,10 +109,10 @@ public class ParameterService {
 		PARAMETER_WRITERS.add(new WindowsBatParameterWriter());
 	}
 
-	/**
-	 * Reads the configuration file if allowed by the {@link com.rapidminer.operator.ExecutionMode}.
-	 */
-	public static void init() {
+    /**
+     * Reads the configuration file if allowed by the {@link com.rapidminer.operator.ExecutionMode}.
+     */
+    public static void init() {
 		if (!intialized) {
 			// then try to read configuration from file system if allowed to do so.
 			if (RapidMiner.getExecutionMode().canAccessFilesystem()) {
@@ -150,11 +161,14 @@ public class ParameterService {
 		}
 	}
 
-	/**
-	 * This method sets the given parameter to the given value. If the parameter is not known, yet,
-	 * it will be added as a defined parameter with a default scope.
-	 */
-	public static void setParameterValue(ParameterType type, String value) {
+    /**
+     * This method sets the given parameter to the given value. If the parameter is not known, yet,
+     * it will be added as a defined parameter with a default scope.
+     *
+     * @param type  the type
+     * @param value the value
+     */
+    public static void setParameterValue(ParameterType type, String value) {
 		Parameter parameter = PARAMETER_MAP.get(type.getKey());
 		if (parameter == null) {
 			parameter = new Parameter(type, value);
@@ -163,15 +177,18 @@ public class ParameterService {
 		setParameterValue(type.getKey(), value);
 	}
 
-	/**
-	 * This method sets the parameter with the given key to the given value. If the parameter does
-	 * not yet exist a new non defined parameter will be created. The value can then be retrieved
-	 * but it won't be saved in any configuration file and will be lost after restarting RapidMiner.
-	 *
-	 * For compatibility reasons this will set the parameter also in the System properties. This
-	 * might be removed in further versions.
-	 */
-	public static void setParameterValue(String key, String value) {
+    /**
+     * This method sets the parameter with the given key to the given value. If the parameter does
+     * not yet exist a new non defined parameter will be created. The value can then be retrieved
+     * but it won't be saved in any configuration file and will be lost after restarting RapidMiner.
+     * <p>
+     * For compatibility reasons this will set the parameter also in the System properties. This
+     * might be removed in further versions.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    public static void setParameterValue(String key, String value) {
 		// this might be removed later. It remains only for compatibility
 		if (System.getProperty(key) == null) {
 			System.setProperty(key, value);
@@ -206,11 +223,14 @@ public class ParameterService {
 		}
 	}
 
-	/**
-	 * This method returns the value of the given parameter or null if this parameter is unknown.
-	 * For compatibility reasons this will return defined parameters as well as undefined.
-	 */
-	public static String getParameterValue(String key) {
+    /**
+     * This method returns the value of the given parameter or null if this parameter is unknown.
+     * For compatibility reasons this will return defined parameters as well as undefined.
+     *
+     * @param key the key
+     * @return the parameter value
+     */
+    public static String getParameterValue(String key) {
 		Parameter parameter = PARAMETER_MAP.get(key);
 		if (parameter != null) {
 			return parameter.getValue();
@@ -218,11 +238,14 @@ public class ParameterService {
 		return null;
 	}
 
-	/**
-	 * This will return the group of the parameter with the given key. If the key is unknown, null
-	 * will be returned.
-	 */
-	public static String getGroupKey(String key) {
+    /**
+     * This will return the group of the parameter with the given key. If the key is unknown, null
+     * will be returned.
+     *
+     * @param key the key
+     * @return the group key
+     */
+    public static String getGroupKey(String key) {
 		Parameter parameter = PARAMETER_MAP.get(key);
 		if (parameter != null) {
 			return parameter.getGroup();
@@ -230,11 +253,14 @@ public class ParameterService {
 		return null;
 	}
 
-	/**
-	 * This method returns the type of the defined parameter identified by key or null if this key
-	 * is unknown.
-	 */
-	public static ParameterType getParameterType(String key) {
+    /**
+     * This method returns the type of the defined parameter identified by key or null if this key
+     * is unknown.
+     *
+     * @param key the key
+     * @return the parameter type
+     */
+    public static ParameterType getParameterType(String key) {
 		Parameter parameter = PARAMETER_MAP.get(key);
 		if (parameter != null) {
 			return parameter.getType();
@@ -242,18 +268,22 @@ public class ParameterService {
 		return null;
 	}
 
-	/**
-	 * This method returns all keys of all parameters, implicit as well as defined ones.
-	 */
-	public static Collection<String> getParameterKeys() {
+    /**
+     * This method returns all keys of all parameters, implicit as well as defined ones.
+     *
+     * @return the parameter keys
+     */
+    public static Collection<String> getParameterKeys() {
 		return PARAMETER_MAP.keySet();
 	}
 
-	/**
-	 * This method will return a Collection of all keys of defined parameter types. Undefined types
-	 * will not be returned.
-	 */
-	public static Collection<String> getDefinedParameterKeys() {
+    /**
+     * This method will return a Collection of all keys of defined parameter types. Undefined types
+     * will not be returned.
+     *
+     * @return the defined parameter keys
+     */
+    public static Collection<String> getDefinedParameterKeys() {
 		LinkedList<String> keys = new LinkedList<>();
 		for (Entry<String, Parameter> entry : PARAMETER_MAP.entrySet()) {
 			if (entry.getValue().isDefined()) {
@@ -263,11 +293,13 @@ public class ParameterService {
 		return keys;
 	}
 
-	/**
-	 * This method will return a Collection of all keys of defined parameter types. Undefined types
-	 * will not be returned.
-	 */
-	public static Set<ParameterType> getDefinedParameterTypes() {
+    /**
+     * This method will return a Collection of all keys of defined parameter types. Undefined types
+     * will not be returned.
+     *
+     * @return the defined parameter types
+     */
+    public static Set<ParameterType> getDefinedParameterTypes() {
 		HashSet<ParameterType> types = new HashSet<>();
 		for (Entry<String, Parameter> entry : PARAMETER_MAP.entrySet()) {
 			if (entry.getValue().isDefined()) {
@@ -284,24 +316,26 @@ public class ParameterService {
 		return new File(file.getAbsoluteFile() + "." + System.getProperty("os.name"));
 	}
 
-	/**
-	 * This sets the parameters to the values given by a properties file denoted by the given file
-	 * object.
-	 *
-	 * @throws IOException
-	 * @throws FileNotFoundException
-	 */
-	public static void setParameters(File file) throws FileNotFoundException, IOException {
+    /**
+     * This sets the parameters to the values given by a properties file denoted by the given file
+     * object.
+     *
+     * @param file the file
+     * @throws FileNotFoundException the file not found exception
+     * @throws IOException           the io exception
+     */
+    public static void setParameters(File file) throws FileNotFoundException, IOException {
 		setParameters(new FileInputStream(file));
 	}
 
-	/**
-	 * This method reads the input stream that streams in a properties file and sets the parameter
-	 * values accordingly. If the stream cannot be accessed an exception will be thrown.
-	 *
-	 * @throws IOException
-	 */
-	public static void setParameters(InputStream in) throws IOException {
+    /**
+     * This method reads the input stream that streams in a properties file and sets the parameter
+     * values accordingly. If the stream cannot be accessed an exception will be thrown.
+     *
+     * @param in the in
+     * @throws IOException the io exception
+     */
+    public static void setParameters(InputStream in) throws IOException {
 		Properties properties = new Properties();
 		properties.load(in);
 
@@ -316,13 +350,16 @@ public class ParameterService {
 		}
 	}
 
-	/**
-	 * This returns the file with the given fileName from the directory denoted by first the
-	 * Parameter named {@value #PROPERTY_RAPIDMINER_CONFIG_DIR} and if this one is not defined by
-	 * the environment variable {@value #ENVIRONMENT_RAPIDMINER_CONFIG_DIR}. If neither one is
-	 * defined, null is returned.
-	 */
-	public static File getGlobalConfigFile(String fileName) {
+    /**
+     * This returns the file with the given fileName from the directory denoted by first the
+     * Parameter named {@value #PROPERTY_RAPIDMINER_CONFIG_DIR} and if this one is not defined by
+     * the environment variable {@value #ENVIRONMENT_RAPIDMINER_CONFIG_DIR}. If neither one is
+     * defined, null is returned.
+     *
+     * @param fileName the file name
+     * @return the global config file
+     */
+    public static File getGlobalConfigFile(String fileName) {
 		File dir = getGlobalConfigDir();
 		if (dir != null) {
 			File result = new File(dir, fileName);
@@ -366,13 +403,13 @@ public class ParameterService {
 		}
 	}
 
-	/**
-	 * This method will save all currently known defined parameter types into the version and os
-	 * dependent config file in the user's RapidMiner directory. This method will also generate
-	 * files that are needed for preStartParameter that affect as environment variables the staring
-	 * JVM. If file access isn't allowed nothing is done at all.
-	 */
-	public static void saveParameters() {
+    /**
+     * This method will save all currently known defined parameter types into the version and os
+     * dependent config file in the user's RapidMiner directory. This method will also generate
+     * files that are needed for preStartParameter that affect as environment variables the staring
+     * JVM. If file access isn't allowed nothing is done at all.
+     */
+    public static void saveParameters() {
 		saveParameters(FileSystemService.getMainUserConfigFile());
 
 		// now export properties using all additional registered writers
@@ -383,14 +420,16 @@ public class ParameterService {
 		informListenerOfSave();
 	}
 
-	/**
-	 * This method will save all currently known defined parameters into the given file. If file
-	 * access isn't allowed by the execution mode, nothing is done.
-	 *
-	 * Please notice that in contrast to {@link #saveParameters()}, no preStartParameter files are
-	 * written.
-	 */
-	public static void saveParameters(File configFile) {
+    /**
+     * This method will save all currently known defined parameters into the given file. If file
+     * access isn't allowed by the execution mode, nothing is done.
+     * <p>
+     * Please notice that in contrast to {@link #saveParameters()}, no preStartParameter files are
+     * written.
+     *
+     * @param configFile the config file
+     */
+    public static void saveParameters(File configFile) {
 		if (!RapidMiner.getExecutionMode().canAccessFilesystem()) {
 			LogService.getRoot().log(Level.CONFIG,
 					"com.rapidminer.tools.ParameterService.ignoring_request_to_save_properties",
@@ -428,14 +467,16 @@ public class ParameterService {
 		}
 	}
 
-	/**
-	 * This method lets register the given {@link ParameterType} with defaults settings. To have
-	 * more control over the scope and group name refer to any other registerParameter method.
-	 *
-	 * If a implicite Parameter is already defined with the key, it will be converted to an explict
-	 * without loosing the data.
-	 */
-	public static void registerParameter(ParameterType type) {
+    /**
+     * This method lets register the given {@link ParameterType} with defaults settings. To have
+     * more control over the scope and group name refer to any other registerParameter method.
+     * <p>
+     * If a implicite Parameter is already defined with the key, it will be converted to an explict
+     * without loosing the data.
+     *
+     * @param type the type
+     */
+    public static void registerParameter(ParameterType type) {
 		Parameter parameter = PARAMETER_MAP.get(type.getKey());
 		if (parameter == null) {
 			parameter = new Parameter(type);
@@ -445,10 +486,13 @@ public class ParameterService {
 		}
 	}
 
-	/**
-	 * This method allows to set the group explicitly rather than deriving it from the key.
-	 */
-	public static void registerParameter(ParameterType type, String group) {
+    /**
+     * This method allows to set the group explicitly rather than deriving it from the key.
+     *
+     * @param type  the type
+     * @param group the group
+     */
+    public static void registerParameter(ParameterType type, String group) {
 		Parameter parameter = PARAMETER_MAP.get(type.getKey());
 		if (parameter == null) {
 			parameter = new Parameter(type, group);
@@ -459,12 +503,16 @@ public class ParameterService {
 		}
 	}
 
-	/**
-	 * This method can be used to register the given {@link ParameterType} on the given
-	 * {@link ParameterScope}. This method can be used to define for example preStartParameters like
-	 * memory size...
-	 */
-	public static void registerParameter(ParameterType type, String group, ParameterScope scope) {
+    /**
+     * This method can be used to register the given {@link ParameterType} on the given
+     * {@link ParameterScope}. This method can be used to define for example preStartParameters like
+     * memory size...
+     *
+     * @param type  the type
+     * @param group the group
+     * @param scope the scope
+     */
+    public static void registerParameter(ParameterType type, String group, ParameterScope scope) {
 		Parameter parameter = PARAMETER_MAP.get(type.getKey());
 		if (parameter == null) {
 			parameter = new Parameter(type, group);
@@ -488,18 +536,22 @@ public class ParameterService {
 		}
 	}
 
-	/**
-	 * This will add the given listener to the list of listers. It will be informed whenever a
-	 * setting is changed.
-	 */
-	public static void registerParameterChangeListener(ParameterChangeListener listener) {
+    /**
+     * This will add the given listener to the list of listers. It will be informed whenever a
+     * setting is changed.
+     *
+     * @param listener the listener
+     */
+    public static void registerParameterChangeListener(ParameterChangeListener listener) {
 		PARAMETER_LISTENERS.add(listener);
 	}
 
-	/**
-	 * This method will remove the given listener from the list. It won't be informed anymore.
-	 */
-	public static void removeParameterChangeListener(ParameterChangeListener listener) {
+    /**
+     * This method will remove the given listener from the list. It won't be informed anymore.
+     *
+     * @param listener the listener
+     */
+    public static void removeParameterChangeListener(ParameterChangeListener listener) {
 		PARAMETER_LISTENERS.remove(listener);
 	}
 
@@ -507,12 +559,15 @@ public class ParameterService {
 	 * Deprecated methods remaining for compatibility only.
 	 */
 
-	/**
-	 * This method is deprecated and shouldn't be used anymore. To save RapidMiner's Parameters, use
-	 * method {@link #saveProperties(File))}. To save the given properties you can simply call
-	 * {@link Properties#store(java.io.OutputStream, String)} yourself.
-	 */
-	@Deprecated
+    /**
+     * This method is deprecated and shouldn't be used anymore. To save RapidMiner's Parameters, use
+     * method {@link #saveProperties(File))}. To save the given properties you can simply call
+     * {@link Properties#store(java.io.OutputStream, String)} yourself.
+     *
+     * @param properties the properties
+     * @param file       the file
+     */
+    @Deprecated
 	public static void writeProperties(Properties properties, File file) {
 		if (!RapidMiner.getExecutionMode().canAccessFilesystem()) {
 			LogService.getRoot().log(Level.CONFIG,
@@ -529,104 +584,134 @@ public class ParameterService {
 		}
 	}
 
-	/**
-	 * This method shouldn't be used anymore since it does two actions at one time: Setting and
-	 * saving. You can easily replace it by subsequent calls to
-	 * {@link #setParameterValue(String, String)} and {@link #saveParameters()}.
-	 */
-	@Deprecated
+    /**
+     * This method shouldn't be used anymore since it does two actions at one time: Setting and
+     * saving. You can easily replace it by subsequent calls to
+     * {@link #setParameterValue(String, String)} and {@link #saveParameters()}.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    @Deprecated
 	public static void writePropertyIntoMainUserConfigFile(String key, String value) {
 		setParameterValue(key, value);
 		saveParameters();
 	}
 
-	/**
-	 * Deprecated method. Remains only for compatibility. Please use
-	 * {@link FileSystemService#getMainUserConfigFile()} instead.
-	 */
-	@Deprecated
+    /**
+     * Deprecated method. Remains only for compatibility. Please use
+     * {@link FileSystemService#getMainUserConfigFile()} instead.
+     *
+     * @return the main user config file
+     */
+    @Deprecated
 	public static File getMainUserConfigFile() {
 		return FileSystemService.getMainUserConfigFile();
 	}
 
-	/**
-	 * Deprecated method. Remains only for compatibility. Please use
-	 * {@link FileSystemService#getUserConfigFile(String)} instead.
-	 */
-	@Deprecated
+    /**
+     * Deprecated method. Remains only for compatibility. Please use
+     * {@link FileSystemService#getUserConfigFile(String)} instead.
+     *
+     * @param name the name
+     * @return the user config file
+     */
+    @Deprecated
 	public static File getUserConfigFile(String name) {
 		return FileSystemService.getUserConfigFile(name);
 	}
 
-	/**
-	 * Deprecated method. Remains only for compatibility. Please use
-	 * {@link FileSystemService#getUserRapidMinerDir()} instead.
-	 */
-
-	@Deprecated
+    /**
+     * Deprecated method. Remains only for compatibility. Please use
+     * {@link FileSystemService#getUserRapidMinerDir()} instead.
+     *
+     * @return the user rapid miner dir
+     */
+    @Deprecated
 	public static File getUserRapidMinerDir() {
 		return FileSystemService.getUserRapidMinerDir();
 	}
 
-	/**
-	 * Deprecated method. Remains only for compatibility. Please use
-	 * {@link FileSystemService#getRapidMinerHome()} instead.
-	 */
-	@Deprecated
+    /**
+     * Deprecated method. Remains only for compatibility. Please use
+     * {@link FileSystemService#getRapidMinerHome()} instead.
+     *
+     * @return the rapid miner home
+     * @throws IOException the io exception
+     */
+    @Deprecated
 	public static File getRapidMinerHome() throws IOException {
 		return FileSystemService.getRapidMinerHome();
 	}
 
-	/**
-	 * Deprecated method. Remains only for compatibility. Please use
-	 * {@link FileSystemService#getLibraryFile(String)} instead.
-	 */
-	@Deprecated
+    /**
+     * Deprecated method. Remains only for compatibility. Please use
+     * {@link FileSystemService#getLibraryFile(String)} instead.
+     *
+     * @param name the name
+     * @return the library file
+     * @throws IOException the io exception
+     */
+    @Deprecated
 	public static File getLibraryFile(String name) throws IOException {
 		return FileSystemService.getLibraryFile(name);
 	}
 
-	/**
-	 * Deprecated method. Remains only for compatibility. Please use
-	 * {@link FileSystemService#getSourceRoot()} instead.
-	 */
-	@Deprecated
+    /**
+     * Deprecated method. Remains only for compatibility. Please use
+     * {@link FileSystemService#getSourceRoot()} instead.
+     *
+     * @return the source root
+     */
+    @Deprecated
 	public static File getSourceRoot() {
 		return FileSystemService.getSourceRoot();
 	}
 
-	/**
-	 * Deprecated method. Remains only for compatibility. Please use
-	 * {@link FileSystemService#getSourceFile(String)} instead.
-	 */
-	@Deprecated
+    /**
+     * Deprecated method. Remains only for compatibility. Please use
+     * {@link FileSystemService#getSourceFile(String)} instead.
+     *
+     * @param name the name
+     * @return the source file
+     */
+    @Deprecated
 	public static File getSourceFile(String name) {
 		return FileSystemService.getSourceFile(name);
 	}
 
-	/**
-	 * Deprecated method. Remains only for compatibility. Please use
-	 * {@link FileSystemService#getSourceResourceFile(String)} instead.
-	 */
-	@Deprecated
+    /**
+     * Deprecated method. Remains only for compatibility. Please use
+     * {@link FileSystemService#getSourceResourceFile(String)} instead.
+     *
+     * @param name the name
+     * @return the source resource file
+     */
+    @Deprecated
 	public static File getSourceResourceFile(String name) {
 		return FileSystemService.getSourceResourceFile(name);
 	}
 
-	/**
-	 * This method is deprecated and remains only for compatibility. Please use {@link #init()}
-	 * instead.
-	 */
-	@Deprecated
+    /**
+     * This method is deprecated and remains only for compatibility. Please use {@link #init()}
+     * instead.
+     *
+     * @param operatorsXMLStream the operators xml stream
+     */
+    @Deprecated
 	public static void init(InputStream operatorsXMLStream) {
 		init();
 	}
 
-	/**
-	 * Returns true if value is "true", "yes", "y" or "on". Returns false if value is "false", "no",
-	 * "n" or "off". Otherwise returns <tt>deflt</tt>.
-	 */
-	@Deprecated
+    /**
+     * Returns true if value is "true", "yes", "y" or "on". Returns false if value is "false", "no",
+     * "n" or "off". Otherwise returns <tt>deflt</tt>.
+     *
+     * @param value the value
+     * @param deflt the deflt
+     * @return the boolean
+     */
+    @Deprecated
 	public static boolean booleanValue(String value, boolean deflt) {
 		if (value == null) {
 			return deflt;

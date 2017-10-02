@@ -38,10 +38,7 @@ import com.rapidminer.tools.Tools;
  * interpreted.
  *
  * @author Simon Fischer
- * @deprecated replaced by either {@link LinkLocalButton} for actions that only trigger
- *             in-application actions or by {@link LinkRemoteButton} for actions that open a website
- *             in the browser.
- *
+ * @deprecated replaced by either {@link LinkLocalButton} for actions that only trigger             in-application actions or by {@link LinkRemoteButton} for actions that open a website             in the browser.
  */
 @Deprecated
 public class LinkButton extends ExtendedHTMLJEditorPane {
@@ -53,15 +50,33 @@ public class LinkButton extends ExtendedHTMLJEditorPane {
 	private final boolean addLinkTag;
 	private final boolean normalFont;
 
-	public LinkButton(final Action action) {
+    /**
+     * Instantiates a new Link button.
+     *
+     * @param action the action
+     */
+    public LinkButton(final Action action) {
 		this(action, false);
 	}
 
-	public LinkButton(final Action action, boolean addLinkTag) {
+    /**
+     * Instantiates a new Link button.
+     *
+     * @param action     the action
+     * @param addLinkTag the add link tag
+     */
+    public LinkButton(final Action action, boolean addLinkTag) {
 		this(action, addLinkTag, false);
 	}
 
-	public LinkButton(final Action action, boolean addLinkTag, boolean normalFont) {
+    /**
+     * Instantiates a new Link button.
+     *
+     * @param action     the action
+     * @param addLinkTag the add link tag
+     * @param normalFont the normal font
+     */
+    public LinkButton(final Action action, boolean addLinkTag, boolean normalFont) {
 		super("text/html", makeHTML(action, addLinkTag, normalFont));
 		this.addLinkTag = addLinkTag;
 		this.normalFont = normalFont;
@@ -88,15 +103,14 @@ public class LinkButton extends ExtendedHTMLJEditorPane {
 		addHyperlinkListener(actionLinkListener);
 	}
 
-	/**
-	 * Replaces the current action of the link button by another action. The current
-	 * {@link HyperlinkListener} will be unregistered and a new one will be created. Furthermore the
-	 * button text will be exchanged.
-	 *
-	 * @param action
-	 *            the new action
-	 */
-	public void setAction(Action action) {
+    /**
+     * Replaces the current action of the link button by another action. The current
+     * {@link HyperlinkListener} will be unregistered and a new one will be created. Furthermore the
+     * button text will be exchanged.
+     *
+     * @param action the new action
+     */
+    public void setAction(Action action) {
 		if (action == null) {
 			throw new IllegalArgumentException("Action must not be null");
 		}

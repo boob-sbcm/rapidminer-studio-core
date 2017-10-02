@@ -39,21 +39,35 @@ public class CSVImportWizard extends AbstractDataImportWizard {
 
 	private static final long serialVersionUID = 1L;
 
-	public CSVImportWizard() throws OperatorException {
+    /**
+     * Instantiates a new Csv import wizard.
+     *
+     * @throws OperatorException the operator exception
+     */
+    public CSVImportWizard() throws OperatorException {
 		this(null, null, null);
 	}
 
-	/**
-	 * Using this constructor you can skip the file selection step if already known.
-	 * 
-	 * @param file
-	 * @throws OperatorException
-	 */
-	public CSVImportWizard(File file, RepositoryLocation preselectedLocation) throws OperatorException {
+    /**
+     * Using this constructor you can skip the file selection step if already known.
+     *
+     * @param file                the file
+     * @param preselectedLocation the preselected location
+     * @throws OperatorException the operator exception
+     */
+    public CSVImportWizard(File file, RepositoryLocation preselectedLocation) throws OperatorException {
 		this(file, preselectedLocation, true);
 	}
 
-	public CSVImportWizard(File file, RepositoryLocation preselectedLocation, boolean addStoreStep) throws OperatorException {
+    /**
+     * Instantiates a new Csv import wizard.
+     *
+     * @param file                the file
+     * @param preselectedLocation the preselected location
+     * @param addStoreStep        the add store step
+     * @throws OperatorException the operator exception
+     */
+    public CSVImportWizard(File file, RepositoryLocation preselectedLocation, boolean addStoreStep) throws OperatorException {
 		super(null, preselectedLocation, "data_import_wizard");
 
 		// setting available info
@@ -67,7 +81,15 @@ public class CSVImportWizard extends AbstractDataImportWizard {
 		layoutDefault(HUGE);
 	}
 
-	public CSVImportWizard(final CSVExampleSource source, final ConfigurationListener listener,
+    /**
+     * Instantiates a new Csv import wizard.
+     *
+     * @param source              the source
+     * @param listener            the listener
+     * @param preselectedLocation the preselected location
+     * @throws OperatorException the operator exception
+     */
+    public CSVImportWizard(final CSVExampleSource source, final ConfigurationListener listener,
 			final RepositoryLocation preselectedLocation) throws OperatorException {
 		super(source, preselectedLocation, "data_import_wizard");
 

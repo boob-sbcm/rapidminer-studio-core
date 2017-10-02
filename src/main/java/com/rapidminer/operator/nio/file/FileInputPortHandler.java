@@ -45,7 +45,6 @@ import com.rapidminer.tools.WebServiceTools;
  * Provides methods for creating and working with a file InputPort. Used by reading operators.
  *
  * @author Dominik Halfkann
- *
  */
 public class FileInputPortHandler {
 
@@ -53,13 +52,14 @@ public class FileInputPortHandler {
 	private String fileParameterName;
 	private Operator operator;
 
-	/**
-	 *
-	 * @param fileParameterName
-	 *            has to be a path to a file or a URL. If it is a URL the file will be downloaded
-	 *            and temporary saved.
-	 */
-	public FileInputPortHandler(Operator operator, InputPort fileInputPort, String fileParameterName) {
+    /**
+     * Instantiates a new File input port handler.
+     *
+     * @param operator          the operator
+     * @param fileInputPort     the file input port
+     * @param fileParameterName has to be a path to a file or a URL. If it is a URL the file will be downloaded            and temporary saved.
+     */
+    public FileInputPortHandler(Operator operator, InputPort fileInputPort, String fileParameterName) {
 		this.fileInputPort = fileInputPort;
 		this.fileParameterName = fileParameterName;
 		this.operator = operator;
@@ -77,12 +77,15 @@ public class FileInputPortHandler {
 	private URL fileCachedForURL;
 	private File cachedFile;
 
-	/**
-	 * Returns either the selected file referenced by the value of the parameter with the name
-	 * {@link #getFileParameterName()} or the file delivered at {@link #fileInputPort}. Which of
-	 * these options is chosen is determined by the parameter {@link #PARAMETER_DESTINATION_TYPE}.
-	 * */
-	public File getSelectedFile() throws OperatorException {
+    /**
+     * Returns either the selected file referenced by the value of the parameter with the name
+     * {@link #getFileParameterName()} or the file delivered at {@link #fileInputPort}. Which of
+     * these options is chosen is determined by the parameter {@link #PARAMETER_DESTINATION_TYPE}.
+     *
+     * @return the selected file
+     * @throws OperatorException the operator exception
+     */
+    public File getSelectedFile() throws OperatorException {
 		if (!(fileInputPort.isConnected() || fileInputPort.getPorts().getOwner().getOperator().getProcess() == null
 				&& fileInputPort.getAnyDataOrNull() != null)) {
 			String fileParameter = operator.getParameterAsString(fileParameterName);
@@ -119,10 +122,14 @@ public class FileInputPortHandler {
 		}
 	}
 
-	/**
-	 * Same as {@link #getSelectedFile()}, but opens the stream.
-	 * */
-	public InputStream openSelectedFile() throws OperatorException, IOException {
+    /**
+     * Same as {@link #getSelectedFile()}, but opens the stream.
+     *
+     * @return the input stream
+     * @throws OperatorException the operator exception
+     * @throws IOException       the io exception
+     */
+    public InputStream openSelectedFile() throws OperatorException, IOException {
 		if (!(fileInputPort.isConnected() || fileInputPort.getPorts().getOwner().getOperator().getProcess() == null
 				&& fileInputPort.getAnyDataOrNull() != null)) {
 			return new FileInputStream(getSelectedFile());
@@ -131,11 +138,13 @@ public class FileInputPortHandler {
 		}
 	}
 
-	/**
-	 * Same as {@link #getSelectedFile()}, but returns true if file is specified (in the respective
-	 * way).
-	 * */
-	public boolean isFileSpecified() {
+    /**
+     * Same as {@link #getSelectedFile()}, but returns true if file is specified (in the respective
+     * way).
+     *
+     * @return the boolean
+     */
+    public boolean isFileSpecified() {
 		if (!(fileInputPort.isConnected() || fileInputPort.getPorts().getOwner().getOperator().getProcess() == null
 				&& fileInputPort.getAnyDataOrNull() != null)) {
 			return operator.isParameterSet(fileParameterName);
@@ -149,50 +158,35 @@ public class FileInputPortHandler {
 
 	}
 
-	/**
-	 * Creates the file parameter named by fileParameterName that depends on whether or not the port
-	 * returned by the given PortProvider is connected.
-	 *
-	 * @param parameterHandler
-	 *            used to check dependencies
-	 * @param parameterName
-	 *            Name of the parameter that is created
-	 * @param description
-	 *            Description of the parameter
-	 * @param portProvider
-	 *            port which accepts the FileObject. If this port is connected, the parameter will
-	 *            be hidden.
-	 * @param fileExtensions
-	 *            allowed file types.
-	 * */
-	public static ParameterType makeFileParameterType(ParameterHandler parameterHandler, String parameterName,
+    /**
+     * Creates the file parameter named by fileParameterName that depends on whether or not the port
+     * returned by the given PortProvider is connected.
+     *
+     * @param parameterHandler used to check dependencies
+     * @param parameterName    Name of the parameter that is created
+     * @param description      Description of the parameter
+     * @param portProvider     port which accepts the FileObject. If this port is connected, the parameter will            be hidden.
+     * @param fileExtensions   allowed file types.
+     * @return the parameter type
+     */
+    public static ParameterType makeFileParameterType(ParameterHandler parameterHandler, String parameterName,
 			String description, PortProvider portProvider, String... fileExtensions) {
 		return makeFileParameterType(parameterHandler, parameterName, description, portProvider, false, fileExtensions);
 	}
 
-	/**
-	 * Creates the file parameter named by fileParameterName that depends on whether or not the port
-	 * returned by the given PortProvider is connected.
-	 *
-	 * @param parameterHandler
-	 *            used to check dependencies
-	 * @param parameterName
-	 *            Name of the parameter that is created
-	 * @param description
-	 *            Description of the parameter
-	 * @param portProvider
-	 *            port which accepts the FileObject. If this port is connected, the parameter will
-	 *            be hidden.
-	 * @param addAllFileFormatsFilter
-	 *            defines whether a filter for all file extension should be added as default filter
-	 *            for the file chooser dialog. This makes most sense for file reading operations
-	 *            that allow to read files with multiple file extensions. For file writing
-	 *            operations it is not recommended as the new filter will not add the correct file
-	 *            ending when entering the path of a file that does not exist.
-	 * @param fileExtensions
-	 *            allowed file types.
-	 * */
-	public static ParameterType makeFileParameterType(ParameterHandler parameterHandler, String parameterName,
+    /**
+     * Creates the file parameter named by fileParameterName that depends on whether or not the port
+     * returned by the given PortProvider is connected.
+     *
+     * @param parameterHandler           used to check dependencies
+     * @param parameterName              Name of the parameter that is created
+     * @param description                Description of the parameter
+     * @param portProvider               port which accepts the FileObject. If this port is connected, the parameter will            be hidden.
+     * @param addAllFileExtensionsFilter the add all file extensions filter
+     * @param fileExtensions             allowed file types.
+     * @return the parameter type
+     */
+    public static ParameterType makeFileParameterType(ParameterHandler parameterHandler, String parameterName,
 			String description, PortProvider portProvider, boolean addAllFileExtensionsFilter, String... fileExtensions) {
 		String[] fileExtArray = new String[fileExtensions.length];
 		int i = 0;
@@ -206,46 +200,57 @@ public class FileInputPortHandler {
 		return fileParam;
 	}
 
-	/**
-	 * Uses a default description and a single file extension.
-	 *
-	 * @see #makeFileParameterType(ParameterHandler, String, String, PortProvider, String...)
-	 * */
-	public static ParameterType makeFileParameterType(ParameterHandler parameterHandler, String parameterName,
+    /**
+     * Uses a default description and a single file extension.
+     *
+     * @param parameterHandler the parameter handler
+     * @param parameterName    the parameter name
+     * @param fileExtension    the file extension
+     * @param portProvider     the port provider
+     * @return the parameter type
+     * @see #makeFileParameterType(ParameterHandler, String, String, PortProvider, String...) #makeFileParameterType(ParameterHandler, String, String, PortProvider, String...)#makeFileParameterType(ParameterHandler, String, String, PortProvider, String...)
+     */
+    public static ParameterType makeFileParameterType(ParameterHandler parameterHandler, String parameterName,
 			String fileExtension, PortProvider portProvider) {
 		return makeFileParameterType(parameterHandler, parameterName, "Name of the file to read the data from.",
 				fileExtension, portProvider);
 	}
 
-	/**
-	 * Uses a single allowed file extension.
-	 *
-	 * @see #makeFileParameterType(ParameterHandler, String, String, PortProvider, String...)
-	 * */
-	public static ParameterType makeFileParameterType(ParameterHandler parameterHandler, String parameterName,
+    /**
+     * Uses a single allowed file extension.
+     *
+     * @param parameterHandler the parameter handler
+     * @param parameterName    the parameter name
+     * @param description      the description
+     * @param fileExtension    the file extension
+     * @param portProvider     the port provider
+     * @return the parameter type
+     * @see #makeFileParameterType(ParameterHandler, String, String, PortProvider, String...) #makeFileParameterType(ParameterHandler, String, String, PortProvider, String...)#makeFileParameterType(ParameterHandler, String, String, PortProvider, String...)
+     */
+    public static ParameterType makeFileParameterType(ParameterHandler parameterHandler, String parameterName,
 			String description, String fileExtension, PortProvider portProvider) {
 		return makeFileParameterType(parameterHandler, parameterName, description, portProvider, fileExtension);
 	}
 
-	/**
-	 * Adds a new (file-)InputPortNotConnectedCondition for a given parameter.
-	 *
-	 * @param parameter
-	 * @param parameterHandler
-	 * @param portProvider
-	 */
-	public static void addFileDependencyCondition(ParameterType parameter, ParameterHandler parameterHandler,
+    /**
+     * Adds a new (file-)InputPortNotConnectedCondition for a given parameter.
+     *
+     * @param parameter        the parameter
+     * @param parameterHandler the parameter handler
+     * @param portProvider     the port provider
+     */
+    public static void addFileDependencyCondition(ParameterType parameter, ParameterHandler parameterHandler,
 			PortProvider portProvider) {
 		parameter.registerDependencyCondition(new PortConnectedCondition(parameterHandler, portProvider, true, false));
 	}
 
-	/**
-	 * Returns the specified filename or "InputFileObject" if the file OutputPort is connected.
-	 *
-	 * @return
-	 * @throws OperatorException
-	 */
-	public String getSelectedFileDescription() throws OperatorException {
+    /**
+     * Returns the specified filename or "InputFileObject" if the file OutputPort is connected.
+     *
+     * @return selected file description
+     * @throws OperatorException the operator exception
+     */
+    public String getSelectedFileDescription() throws OperatorException {
 		if (!fileInputPort.isConnected()) {
 			return operator.getParameterAsString(fileParameterName);
 		} else {

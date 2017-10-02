@@ -35,11 +35,13 @@ import com.rapidminer.tools.expression.internal.function.AbstractFunction;
  * A {@link Function} that returns the time in milliseconds .
  *
  * @author David Arnu
- *
  */
 public class DateMillis extends AbstractFunction {
 
-	public DateMillis() {
+    /**
+     * Instantiates a new Date millis.
+     */
+    public DateMillis() {
 		super("date.date_millis", 1, Ontology.INTEGER);
 	}
 

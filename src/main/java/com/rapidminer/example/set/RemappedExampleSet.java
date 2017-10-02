@@ -46,86 +46,76 @@ public class RemappedExampleSet extends AbstractExampleSet {
 
 	private ExampleSet parent;
 
-	/**
-	 * @deprecated use static creation method
-	 *             {@link #create(ExampleSet, ExampleSet, boolean, boolean)} instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Remapped example set.
+     *
+     * @param parentSet  the parent set
+     * @param mappingSet the mapping set
+     * @deprecated use static creation method             {@link #create(ExampleSet, ExampleSet, boolean, boolean)} instead
+     */
+    @Deprecated
 	public RemappedExampleSet(ExampleSet parentSet, ExampleSet mappingSet) {
 		this(parentSet, mappingSet, true);
 	}
 
-	/**
-	 * @deprecated use static creation method
-	 *             {@link #create(ExampleSet, ExampleSet, boolean, boolean)} instead
-	 */
-	@Deprecated
+    /**
+     * Instantiates a new Remapped example set.
+     *
+     * @param parentSet      the parent set
+     * @param _mappingSet    the mapping set
+     * @param keepAdditional the keep additional
+     * @deprecated use static creation method             {@link #create(ExampleSet, ExampleSet, boolean, boolean)} instead
+     */
+    @Deprecated
 	public RemappedExampleSet(ExampleSet parentSet, ExampleSet _mappingSet, boolean keepAdditional) {
 		this(parentSet, _mappingSet, keepAdditional, true);
 	}
 
-	/**
-	 * Sorts the regular attributes of parentSet in the order of mappingSet. If additional
-	 * attributes occur and keepAdditional is {@code true}, they are appended on the end of the
-	 * example set. If transformMappings is {@code true} then mapping indices returned by
-	 * {@link Example#getValue} are remapped to the mappings used in mappingSet and the attribute
-	 * mappings are changed to those in mappingSet.
-	 * <p>
-	 * Note that {@link Example#getValueAsString} might not return the same as before the remapping
-	 * but a missing value if not all strings in the old attribute mapping are part of the mapping
-	 * from {@link #mappingSet}. Therefore, {@link RemappedExampleSet}s with transformMappings
-	 * {@code true} should not be returned at ports unless those affected attributes are removed.
-	 *
-	 * @param parentSet
-	 *            the example set that should be adjusted to the mapping set
-	 * @param mappingSet
-	 *            the example set to which we want to adjust the parent set
-	 * @param keepAdditional
-	 *            if {@code true} attributes from the parentSet that are not in the mappingSet are
-	 *            kept
-	 * @param transformMappings
-	 *            if {@code true} an {@link AttributeTransformationRemapping} is added to the
-	 *            nominal attributes of the adjusted example set so that {@code example.getValue(a)}
-	 *            returns the mapping index according to the mapping of the attribute in mappingSet
-	 *            and the nominal mapping of those attributes is adjusted
-	 * @deprecated use static creation method
-	 *             {@link #create(ExampleSet, ExampleSet, boolean, boolean)} instead
-	 */
-	@Deprecated
+    /**
+     * Sorts the regular attributes of parentSet in the order of mappingSet. If additional
+     * attributes occur and keepAdditional is {@code true}, they are appended on the end of the
+     * example set. If transformMappings is {@code true} then mapping indices returned by
+     * {@link Example#getValue} are remapped to the mappings used in mappingSet and the attribute
+     * mappings are changed to those in mappingSet.
+     * <p>
+     * Note that {@link Example#getValueAsString} might not return the same as before the remapping
+     * but a missing value if not all strings in the old attribute mapping are part of the mapping
+     * from {@link #mappingSet}. Therefore, {@link RemappedExampleSet}s with transformMappings
+     * {@code true} should not be returned at ports unless those affected attributes are removed.
+     *
+     * @param parentSet         the example set that should be adjusted to the mapping set
+     * @param mappingSet        the example set to which we want to adjust the parent set
+     * @param keepAdditional    if {@code true} attributes from the parentSet that are not in the mappingSet are            kept
+     * @param transformMappings if {@code true} an {@link AttributeTransformationRemapping} is added to the            nominal attributes of the adjusted example set so that {@code example.getValue(a)}            returns the mapping index according to the mapping of the attribute in mappingSet            and the nominal mapping of those attributes is adjusted
+     * @deprecated use static creation method             {@link #create(ExampleSet, ExampleSet, boolean, boolean)} instead
+     */
+    @Deprecated
 	public RemappedExampleSet(ExampleSet parentSet, ExampleSet mappingSet, boolean keepAdditional,
 			boolean transformMappings) {
 		this.parent = (ExampleSet) parentSet.clone();
 		remap(mappingSet, keepAdditional, transformMappings, parent);
 	}
 
-	/**
-	 * Creates a new example set with the regular attributes of parentSet sorted in the order of
-	 * mappingSet. If additional attributes occur and keepAdditional is {@code true}, they are
-	 * appended on the end of the example set. If transformMappings is {@code true} then mapping
-	 * indices returned by {@link Example#getValue} are remapped to the mappings used in mappingSet
-	 * and the attribute mappings are changed to those in mappingSet.
-	 * <p>
-	 * Note that {@link Example#getValueAsString} might not return the same as before the remapping
-	 * but a missing value if not all strings in the old attribute mapping are part of the mapping
-	 * from {@link #mappingSet}. Therefore, {@link RemappedExampleSet}s with transformMappings
-	 * {@code true} should not be returned at ports unless those affected attributes are removed.
-	 *
-	 * @param parentSet
-	 *            the example set that should be adjusted to the mapping set
-	 * @param mappingSet
-	 *            the example set to which we want to adjust the parent set
-	 * @param keepAdditional
-	 *            if {@code true} attributes from the parentSet that are not in the mappingSet are
-	 *            kept
-	 * @param transformMappings
-	 *            if {@code true} an {@link AttributeTransformationRemapping} is added to the
-	 *            nominal attributes of the adjusted example set so that {@code example.getValue(a)}
-	 *            returns the mapping index according to the mapping of the attribute in mappingSet
-	 *            and the nominal mapping of those attributes is adjusted
-	 * @return a new example set based on parentSet remapped to mappingSet
-	 * @since 7.5.1
-	 */
-	public static ExampleSet create(ExampleSet parentSet, ExampleSet mappingSet, boolean keepAdditional,
+    /**
+     * Creates a new example set with the regular attributes of parentSet sorted in the order of
+     * mappingSet. If additional attributes occur and keepAdditional is {@code true}, they are
+     * appended on the end of the example set. If transformMappings is {@code true} then mapping
+     * indices returned by {@link Example#getValue} are remapped to the mappings used in mappingSet
+     * and the attribute mappings are changed to those in mappingSet.
+     * <p>
+     * Note that {@link Example#getValueAsString} might not return the same as before the remapping
+     * but a missing value if not all strings in the old attribute mapping are part of the mapping
+     * from {@link #mappingSet}. Therefore, {@link RemappedExampleSet}s with transformMappings
+     * {@code true} should not be returned at ports unless those affected attributes are removed.
+     *
+     * @param parentSet         the example set that should be adjusted to the mapping set
+     * @param mappingSet        the example set to which we want to adjust the parent set
+     * @param keepAdditional    if {@code true} attributes from the parentSet that are not in the mappingSet are            kept
+     * @param transformMappings if {@code true} an {@link AttributeTransformationRemapping} is added to the            nominal attributes of the adjusted example set so that {@code example.getValue(a)}            returns the mapping index according to the mapping of the attribute in mappingSet            and the nominal mapping of those attributes is adjusted
+     * @return a new example set based on parentSet remapped to mappingSet
+     * @since 7.5.1
+     */
+    public static ExampleSet create(ExampleSet parentSet, ExampleSet mappingSet, boolean keepAdditional,
 			boolean transformMappings) {
 		ExampleSet newSet = (ExampleSet) parentSet.clone();
 		remap(mappingSet, keepAdditional, transformMappings, newSet);
@@ -211,8 +201,12 @@ public class RemappedExampleSet extends AbstractExampleSet {
 		}
 	}
 
-	/** Clone constructor. */
-	public RemappedExampleSet(RemappedExampleSet other) {
+    /**
+     * Clone constructor.  @param other the other
+     *
+     * @param other the other
+     */
+    public RemappedExampleSet(RemappedExampleSet other) {
 		this.parent = (ExampleSet) other.parent.clone();
 	}
 

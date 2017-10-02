@@ -25,17 +25,16 @@ import com.rapidminer.Process;
  * Extends the {@link ProcessEditor} interface and adds a method which is called when the user
  * changes the view on a process, e.g. when he enters/leaves a subprocess in the process design
  * panel.
- * 
+ *
  * @author Marco Boeck
- * 
  */
 public interface ExtendedProcessEditor extends ProcessEditor {
 
-	/**
-	 * Notifies the listener that the view on a process was changed, e.g. when the user
-	 * enters/leaves a subprocess in the process design view.
-	 * 
-	 * @param process
-	 */
-	public void processViewChanged(Process process);
+    /**
+     * Notifies the listener that the view on a process was changed, e.g. when the user
+     * enters/leaves a subprocess in the process design view.
+     *
+     * @param process the process
+     */
+    public void processViewChanged(Process process);
 }

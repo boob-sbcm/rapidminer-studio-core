@@ -24,23 +24,37 @@ import java.io.Serializable;
 /**
  * An Example for the kernel based algorithms provided by Stefan Rueping. Since RapidMiner cannot
  * deliver the example with index i directly, a new data structure is needed.
- * 
+ *
  * @author Stefan Rueping, Ingo Mierswa
  */
 public class SVMExample implements Serializable {
 
 	private static final long serialVersionUID = 8539279195547132597L;
 
-	public int[] index;
+    /**
+     * The Index.
+     */
+    public int[] index;
 
-	public double[] att;
+    /**
+     * The Att.
+     */
+    public double[] att;
 
-	public SVMExample() {
+    /**
+     * Instantiates a new Svm example.
+     */
+    public SVMExample() {
 		index = null;
 		att = null;
 	}
 
-	public SVMExample(double[] values) {
+    /**
+     * Instantiates a new Svm example.
+     *
+     * @param values the values
+     */
+    public SVMExample(double[] values) {
 		index = new int[values.length];
 		for (int i = 0; i < index.length; i++) {
 			index[i] = i;
@@ -48,20 +62,37 @@ public class SVMExample implements Serializable {
 		this.att = values;
 	}
 
-	/*
-	 * For internal purposes only!!!
+    /**
+     * Instantiates a new Svm example.
+     *
+     * @param e the e
+     */
+/*
+     * For internal purposes only!!!
 	 */
 	public SVMExample(SVMExample e) {
 		this.index = e.index;
 		this.att = e.att;
 	}
 
-	public SVMExample(int[] new_index, double[] new_att) {
+    /**
+     * Instantiates a new Svm example.
+     *
+     * @param new_index the new index
+     * @param new_att   the new att
+     */
+    public SVMExample(int[] new_index, double[] new_att) {
 		index = new_index;
 		att = new_att;
 	}
 
-	public double[] toDense(int dim) {
+    /**
+     * To dense double [ ].
+     *
+     * @param dim the dim
+     * @return the double [ ]
+     */
+    public double[] toDense(int dim) {
 		double[] dense;
 		dense = new double[dim];
 		int pos = 0;
